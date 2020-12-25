@@ -100,15 +100,10 @@ export default function ExponentRule() {
     const newExponents = Array.from(inputList);
 
     if (result.combine) {
-      console.log(combine.draggableId);
-      console.log(newExponents);
-      console.log(newExponents.find((it) => it.id === combine.draggableId));
       // super simple: just removing the dragging item
       const power1 = newExponents.find((it) => it.id === combine.draggableId)
         .power;
       const power2 = newExponents.find((it) => it.id === draggableId).power;
-      console.log(power1);
-      console.log(power2);
       const destinationIndex = newExponents.findIndex(
         (it) => it.id === combine.draggableId
       );

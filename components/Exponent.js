@@ -7,20 +7,19 @@ export default function Exponent(props) {
    * combine one exponent into two exponents
    * break two exponents into one
    */
-  const representation1 = "x^" + props.power
-  const representation2 = "(" + "X".repeat(props.power) + ")"
+  var base = "x";
+  if (props.base) {
+      base = "(" + props.base + ")" + "" // have to cast as string, typescript would be better here
+  }
+
+  const representation1 = base + "^" + props.power;
+  const representation2 = base.repeat(props.power);
   return (
-    <Draggable draggableId={props.id} index={props.index}>
-      {(provided) => (
-        <div 
-        {...provided.draggableProps}
-        {...provided.dragHandleProps}
-        ref={provided.innerRef}
-        onClick={() => props.onClick(props.id)}
-        className="divide-y text-xl container w-60 text-center p-16 bg-red-500">
-         {props.expanded ? representation2 : representation1}
-        </div>
-      )}
-    </Draggable>
+    <div
+      onClick={() => props.onClick(props.id)}
+      className="divide-y text-xl container w-60 text-center p-16 bg-red-500"
+    >
+      {props.expanded ? representation2 : representation1}
+    </div>
   );
 }

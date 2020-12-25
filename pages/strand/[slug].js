@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import styles from '../../styles/Home.module.css'
+import styles from "../../styles/Home.module.css";
 
 const Strand = () => {
   const router = useRouter();
@@ -79,14 +79,15 @@ const Strand = () => {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <div className="flex items-center justify-center">
-          <div>
+        <div className="grid grid-cols-2 gap-4">
             {data.map((x) => (
               <Link key={x.id} href={"/skill-group/" + x.slug}>
-                <div className="p-4 m-4 bg-purple-500">45% | {x.title}</div>
+                <div className="gap-0 divide-y-2">
+                  <div className="p-8 bg-purple-500">{x.title}</div>
+                  <div className="p-4 bg-purple-500">45%</div>
+                </div>
               </Link>
             ))}
-          </div>
         </div>
       </main>
     </div>

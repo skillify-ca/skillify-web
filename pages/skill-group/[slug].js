@@ -20,7 +20,7 @@ const SkillGroup = () => {
         {
           id: "NA1-02",
           title:
-            "Describe the relationship between the algebraic and geometric representations of a single-variable term up to degree three",
+            "Understand length, area, and volume and how they relate to exponents",
           description:
             "[i.e., length, which is one dimensional, can be represented by x ; area, which is two dimensional, can be represented by (x)(x) or x2; volume, which is three dimensional, can be represented by (x)(x)(x),(x2)(x), or x3 ]",
         },
@@ -49,14 +49,17 @@ const SkillGroup = () => {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <div className="flex items-center justify-center">
-          <div>
-            {data.map((x) => (
-              <Link key={x.id} href={"/skill/" + x.id}>
-                <div className="p-4 m-4 bg-pink-500">25% | {x.title}</div>
-              </Link>
-            ))}
-          </div>
+        <div className="grid grid-cols-2 gap-4">
+          {data.map((x) => (
+            <Link key={x.id} href={"/skill/" + x.id}>
+              <div className="gap-0 divide-y-2">
+                <div className="p-8 bg-pink-500">{x.title}</div>
+                <div className="p-4 bg-pink-500">
+                  {Math.round(Math.random() * 100)}%
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </main>
     </div>
