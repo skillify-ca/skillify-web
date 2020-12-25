@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
+import styles from '../../styles/Home.module.css'
 
 const Strand = () => {
   const router = useRouter();
@@ -76,12 +77,18 @@ const Strand = () => {
   console.log(initialData[slug]);
 
   return (
-    <div>
-      {data.map((x) => (
-        <Link key={x.id} href={"/skill-group/" + x.slug}>
-          <div className="p-4 m-4 bg-purple-500">45% | {x.title}</div>
-        </Link>
-      ))}
+    <div className={styles.container}>
+      <main className={styles.main}>
+        <div className="flex items-center justify-center">
+          <div>
+            {data.map((x) => (
+              <Link key={x.id} href={"/skill-group/" + x.slug}>
+                <div className="p-4 m-4 bg-purple-500">45% | {x.title}</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </main>
     </div>
   );
 };
