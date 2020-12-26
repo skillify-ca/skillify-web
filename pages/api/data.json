@@ -1,4 +1,10 @@
 {
+  "outline": [
+    "Number Sense and Algebra",
+    "Linear Relations",
+    "Analytic Geometry",
+    "Measurement and Geometry"
+  ],
   "strand": {
     "number-sense-and-algebra": {
       "title": "Number Sense and Algebra",
@@ -17,7 +23,7 @@
       ]
     },
     "linear-relations": {
-      "title": "Number Sense and Algebra",
+      "title": "Linear Relations",
       "skillGroups": [
         {
           "id": "LR1",
@@ -57,7 +63,7 @@
       ]
     },
     "measurement-geometry": {
-      "title": "Analytic Geometry",
+      "title": "Measurement and Geometry",
       "skillGroups": [
         {
           "id": "MG1",
