@@ -18,13 +18,15 @@ const Strand = () => {
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <div className="bg-yellow-500 p-4">
         <h1 className="text-xl text-center p-4">{skill.title}</h1>
         <h1 className="text-base text-center p-4">{skill.description}</h1>
       </div>
       <div className="bg-purple-500">
-        <h1 className="text-xl text-center p-4">Current Mastery: <ProgressBar value={45} color={"purple"}/></h1>
+        <h1 className="text-xl text-center p-4">
+          Current Mastery: <ProgressBar value={45} color={"purple"} />
+        </h1>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div>
@@ -32,15 +34,29 @@ const Strand = () => {
             <div className="p-4 text-xl text-center">
               <h1>Video Briefing</h1>
             </div>
-            <iframe
-              className="self-center"
-              width="420"
-              height="345"
-              src={
-                "http://www.youtube.com/embed/" + skill.sourceId + "?autoplay=1"
-              }
-              frameBorder="0"
-            ></iframe>
+            <div>
+              <div
+                className="video"
+                style={{
+                  position: "relative",
+                  paddingBottom: "56.25%" /* 16:9 */,
+                  paddingTop: 25,
+                  height: 0,
+                }}
+              >
+                <iframe
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                  }}
+                  src={`https://www.youtube.com/embed/${skill.sourceId}`}
+                  frameBorder="0"
+                />
+              </div>
+            </div>
           </div>
         </div>
         <div>
