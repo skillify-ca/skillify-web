@@ -1,34 +1,11 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
+import apiData from "../api/data.json"
 
 const Strand = () => {
   const router = useRouter();
   const { slug } = router.query;
-
-  const initialData = {
-    "NA1-01": {
-      title:
-        "Substitute into and evaluate algebraic expressions involving exponents",
-      description:
-        "You should be able to evaluate expressions involving natural-number exponents with rational-number bases",
-      sourceId: "XZRQhkii0h0",
-    },
-    "NA1-02": {
-      title:
-        "Describe the relationship between the algebraic and geometric representations of a single-variable term up to degree three",
-      description:
-        "[i.e., length, which is one dimensional, can be represented by x ; area, which is two dimensional, can be represented by (x)(x) or x2; volume, which is three dimensional, can be represented by (x)(x)(x),(x2)(x), or x3 ]",
-      sourceId: "uJ49XUGhejw",
-    },
-    "NA1-03": {
-      title: "Derive the exponent rules for multiplying and dividing monomials",
-      description:
-        "apply these rules in expressions involving one and two variables with positive exponents",
-      sourceId: "7gZBCTw2EmI",
-    },
-  };
-
-  const skill = initialData[slug];
+  const skill = apiData["skills"][slug];
 
   return (
     <div>
