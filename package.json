@@ -5,11 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "postbuild": "next-on-netlify"
   },
   "dependencies": {
     "autoprefixer": "^10.1.0",
     "next": "10.0.3",
+    "next-on-netlify": "^2.6.3",
     "postcss": "^8.2.1",
     "react": "17.0.1",
     "react-beautiful-dnd": "13.0.0",
