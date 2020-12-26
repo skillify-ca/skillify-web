@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function Navbar(props) {
   return (
-    <div class="lg:px-16 px-6 bg-white flex flex-wrap items-center p-4">
-      <div class="flex-1 flex justify-between items-center">
+    <div className="lg:px-16 px-6 bg-white flex flex-wrap items-center p-4">
+      <div className="flex-1 flex justify-between items-center">
         <Link href="/">
           <svg
             width="32"
@@ -16,9 +16,9 @@ export default function Navbar(props) {
         </Link>
       </div>
 
-      <label for="menu-toggle" class="pointer-cursor lg:hidden block">
+      <label for="menu-toggle" className="pointer-cursor lg:hidden block">
         <svg
-          class="fill-current text-gray-900"
+          className="fill-current text-gray-900"
           xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="20"
@@ -28,16 +28,16 @@ export default function Navbar(props) {
           <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
         </svg>
       </label>
-      <input class="hidden" type="checkbox" id="menu-toggle" />
+      <input className="hidden" type="checkbox" id="menu-toggle" />
 
-      <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+      <div className="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
         <nav></nav>
         <a
           href="#"
-          class="lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 pointer-cursor"
+          className="lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 pointer-cursor"
         >
           <img
-            class="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400"
+            className="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400"
             src="https://pbs.twimg.com/profile_images/1128143121475342337/e8tkhRaz_normal.jpg"
             alt="Andy Leverenz"
           />
