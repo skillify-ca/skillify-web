@@ -3,15 +3,18 @@ import Link from "next/link";
 import apiData from "../api/data.json";
 import ProgressBar from "../../components/ProgressBar";
 import Navbar from "../../components/Navbar";
+import React, { useState } from "react";
 
-const Strand = () => {
+const Skill = () => {
   const router = useRouter();
   const { slug } = router.query;
   const skill = apiData["skills"][slug];
+
   if (skill === undefined) {
     return (
-      <div className="flex justify-center p-16 bg-purple-500 text-white text-center text-xl">
-        Coming Soon
+      <div>
+        <Navbar />
+        <div className="bg-yellow-500 p-4">Coming Soon</div>
       </div>
     );
   }
@@ -74,4 +77,4 @@ const Strand = () => {
   );
 };
 
-export default Strand;
+export default Skill;

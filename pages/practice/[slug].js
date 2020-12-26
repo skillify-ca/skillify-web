@@ -19,7 +19,7 @@ const Quiz = () => {
 
   if (data === undefined) {
     return (
-      <div className="flex justify-center p-16 bg-purple-500 text-white text-center text-xl">
+      <div className="flex justify-center p-16 bg-blue-500 text-white text-center text-xl">
         Coming Soon
       </div>
     );

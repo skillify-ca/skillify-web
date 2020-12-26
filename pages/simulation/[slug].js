@@ -17,6 +17,13 @@ const Strand = () => {
   };
 
   const simulation = initialData[slug];
+  if (simulation === undefined) {
+    return (
+      <div className="flex justify-center p-16 bg-green-500 text-white text-center text-xl">
+        Coming Soon
+      </div>
+    );
+  }
 
   return (
     <div>

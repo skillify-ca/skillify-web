@@ -108,47 +108,47 @@
       "title": "Solving Equations",
       "skills": [
         {
-          "id": "NA2.01", 
+          "id": "NA2-01", 
           "title": "Simplify Numerical Expressions", 
           "description": "simplify numerical expressions involving integers and rational numbers, with and without the use of technology"
         },
         {
-          "id": "NA2.02", 
+          "id": "NA2-02", 
           "title": "Percent, Ratio, Rate, and Proportion", 
           "description": "Solve problems requiring the manipulation of expressions arising from applications of percent, ratio, rate, and proportion"
         },
         {
-          "id": "NA2.03", 
+          "id": "NA2-03", 
           "title": "Square and Square Root", 
           "description": "relate their understanding of inverse operations to squaring and taking the square root, and apply inverse operations to simplify expressions and solve equations"
         },
         {
-          "id": "NA2.04", 
+          "id": "NA2-04", 
           "title": "Add and Subtract Polynomials", 
           "description": "add and subtract polynomials with up to two variables [e.g., (2x – 5) + (3x + 1), (3x2y + 2xy2) + (4x2y – 6xy2)], using a variety of tools (e.g., algebra tiles, computer algebra systems, paper and pencil)"
         },    
         {
-          "id": "NA2.05", 
+          "id": "NA2-05", 
           "title": "Multiply Polynomial and Monomial", 
           "description": " multiply a polynomial by a monomial involving the same variable [e.g., 2x(x + 4),2x2(3x2 – 2x + 1)], using a variety of tools (e.g., algebra tiles, diagrams,computer algebra systems, paper and pencil)"
         },
         {
-          "id": "NA2.06", 
+          "id": "NA2-06", 
           "title": "Simplify Polynomials", 
           "description": " expand and simplify polynomial expressions involving one variable [e.g., 2x(4x + 1) – 3x(x + 2)], using a variety of tools (e.g., algebra tiles, computer algebra systems, paper and pencil)"
         },
         {
-          "id": "NA2.07", 
+          "id": "NA2-07", 
           "title": "First Degree Equations", 
           "description": "solve first-degree equations, including equations with fractional coefficients, using a variety of tools (e.g., computer algebra systems, paper and pencil) and strategies(e.g., the balance analogy, algebraic strategies)"
         },
         {
-          "id": "NA2.08", 
+          "id": "NA2-08", 
           "title": "Rearranging Formulas", 
           "description": " rearrange formulas involving variables in the first degree, with and without substitution (e.g., in analytic geometry, in measurement) ( Sample problem: A circular garden has a circumference of 30 m. What is the length of a straight path that goes through the centre of this garden?)"
         },
         {
-          "id": "NA2.09", 
+          "id": "NA2-09", 
           "title": "Solving Problems", 
           "description": "solve problems that can be modelled with first-degree equations, and compare algebraic methods to other solution methods (Sample problem: Solve the following problem in more than one way: Jonah is involved in a walkathon. His goal is to walk 25 km. He begins at 9:00 a.m. and walks at a steady rate of 4 km/h. How many kilometres does he still have left to walk at 1:15 p.m. if he is to achieve his goal?"
         }
@@ -175,6 +175,51 @@
       "title": "Exponent rules for power of power",
       "description": "Apply it to simplify expressions involving one and two variables with positive exponents",
       "sourceId": "39l-MZFUEzY"
+    },
+    "NA2-01": {
+      "title": "Simplify Numerical Expressions",
+      "description": "Simplify numerical expressions involving integers and rational numbers, with and without the use of technology",
+      "sourceId": "aR6phzMLuKM"
+    },
+    "NA2-02": {
+      "title": "Percent, Ratio, Rate, and Proportion",
+      "description": "Solve problems requiring the manipulation of expressions arising from applications of percent, ratio, rate, and proportion",
+      "sourceId": "HpdMJaKaXXc"
+    },
+    "NA2-03": {
+      "title": "Square and Square Root",
+      "description": "Relate their understanding of inverse operations to squaring and taking the square root, and apply inverse operations to simplify expressions and solve equations",
+      "sourceId": "S3IEeCyUWWA"
+    },
+    "NA2-04": {
+      "title": "Add and Subtract Polynomials",
+      "description": "Add and subtract polynomials with up to two variables [e.g., (2x – 5) + (3x + 1), (3x2y + 2xy2) + (4x2y – 6xy2)], using a variety of tools (e.g., algebra tiles, computer algebra systems, paper and pencil)",
+      "sourceId": "PF5Y6yHm8FA"
+    },
+    "NA2-05": {
+      "title": "Multiply Polynomial and Monomial",
+      "description": "Multiply a polynomial by a monomial involving the same variable [e.g., 2x(x + 4),2x2(3x2 – 2x + 1)], using a variety of tools (e.g., algebra tiles, diagrams,computer algebra systems, paper and pencil)",
+      "sourceId": "nI-7On2adTs"
+    },
+    "NA2-06": {
+      "title": "Simplify Polynomials",
+      "description": "Expand and simplify polynomial expressions involving one variable [e.g., 2x(4x + 1) – 3x(x + 2)], using a variety of tools (e.g., algebra tiles, computer algebra systems, paper and pencil)",
+      "sourceId": "DKC74YKJpNY"
+    },
+    "NA2-07": {
+      "title": "First Degree Equations",
+      "description": "Solve first-degree equations, including equations with fractional coefficients, using a variety of tools (e.g., computer algebra systems, paper and pencil) and strategies(e.g., the balance analogy, algebraic strategies)",
+      "sourceId": "GYNK6NDNEFk"
+    },
+    "NA2-08": {
+      "title": "Rearranging Formulas",
+      "description": "Rearrange formulas involving variables in the first degree, with and without substitution (e.g., in analytic geometry, in measurement) ( Sample problem: A circular garden has a circumference of 30 m. What is the length of a straight path that goes through the centre of this garden?)",
+      "sourceId": "eTSVTTg_QZ4"
+    },
+    "NA2-09": {
+      "title": "Solving Problems",
+      "description": "solve problems that can be modelled with first-degree equations, and compare algebraic methods to other solution methods (Sample problem: Solve the following problem in more than one way: Jonah is involved in a walkathon. His goal is to walk 25 km. He begins at 9:00 a.m. and walks at a steady rate of 4 km/h. How many kilometres does he still have left to walk at 1:15 p.m. if he is to achieve his goal?",
+      "sourceId": "qLJKZ0tPYTc"
     }
   },
   "practice": {
