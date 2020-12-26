@@ -4,6 +4,7 @@ import apiData from "../api/data.json";
 import ProgressBar from "../../components/ProgressBar";
 import Navbar from "../../components/Navbar";
 import React, { useState } from "react";
+import YouTube from "react-youtube";
 
 const Skill = () => {
   const router = useRouter();
@@ -17,6 +18,19 @@ const Skill = () => {
         <div className="bg-yellow-500 p-4">Coming Soon</div>
       </div>
     );
+  }
+
+  const opts = {
+    height: "390",
+    width: "640",
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 1,
+    },
+  };
+
+  const _onReady = () => {
+    
   }
 
   return (
@@ -38,27 +52,11 @@ const Skill = () => {
               <h1>Video Briefing</h1>
             </div>
             <div>
-              <div
-                className="video"
-                style={{
-                  position: "relative",
-                  paddingBottom: "56.25%" /* 16:9 */,
-                  paddingTop: 25,
-                  height: 0,
-                }}
-              >
-                <iframe
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                  }}
-                  src={`https://www.youtube.com/embed/${skill.sourceId}`}
-                  frameBorder="0"
-                />
-              </div>
+              <YouTube
+                videoId={skill.sourceId}
+                opts={opts}
+                onReady={_onReady}
+              />
             </div>
           </div>
         </div>
