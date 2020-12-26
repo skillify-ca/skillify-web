@@ -23,3 +23,13 @@ const ProgressBar = (props) => {
 };
 
 export default ProgressBar;
+
+export async function getStaticProps(context) {
+    return {
+      props: {
+          value: 45,
+          color: "red"
+      }, // will be passed to the page component as props
+    }
+  }
+  

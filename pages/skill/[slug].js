@@ -22,7 +22,7 @@ const Skill = () => {
 
   const opts = {
     height: "390",
-    width: "640",
+    width: "100%",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
@@ -30,7 +30,7 @@ const Skill = () => {
   };
 
   const _onReady = () => {
-    
+
   }
 
   return (
@@ -47,11 +47,11 @@ const Skill = () => {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div>
-          <div className="p-4 m-4 bg-red-500 flex flex-col">
-            <div className="p-4 text-xl text-center">
+          <div className="flex flex-col">
+            <div className="mr-4 mt-4 ml-4 p-4 mb-0 bg-red-500 text-xl text-center">
               <h1>Video Briefing</h1>
             </div>
-            <div>
+            <div className="grid p-4 grid-cols-1">
               <YouTube
                 videoId={skill.sourceId}
                 opts={opts}
@@ -61,7 +61,7 @@ const Skill = () => {
           </div>
         </div>
         <div>
-          <div>
+          <div className="grid grid-cols-2 lg:grid-cols-1">
             <Link href={"/simulation/" + slug}>
               <div className="p-4 m-4 text-xl bg-green-500">Simulation</div>
             </Link>
