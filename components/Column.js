@@ -7,7 +7,7 @@ export default function Column(props) {
     <div>
       <Droppable isCombineEnabled droppableId={props.column.id}>
         {(provided) => (
-          <div className="p-4" ref={provided.innerRef} {...provided.droppableProps}>
+          <div className="p-4 grid grid-cols-2 gap-4" ref={provided.innerRef} {...provided.droppableProps}>
             {props.exponents.map((exp, index) => (
               <DraggableExponent
                 key={exp.id}

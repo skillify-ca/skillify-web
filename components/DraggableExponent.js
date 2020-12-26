@@ -9,8 +9,8 @@ export default function DraggableExponent(props) {
    */
   var base = "x"
 
-  const representation1 = "base" + "^" + props.power
-  const representation2 = "(" + ("base").repeat(props.power) + ")"
+  const representation1 = base + "^" + props.power
+  const representation2 = "(" + (base).repeat(props.power) + ")"
   return (
     <Draggable draggableId={props.id} index={props.index}>
       {(provided) => (
@@ -19,7 +19,7 @@ export default function DraggableExponent(props) {
         {...provided.dragHandleProps}
         ref={provided.innerRef}
         onClick={() => props.onClick(props.id)}
-        className="divide-y text-xl container w-60 text-center p-16 bg-red-500">
+        className="divide-y text-xl container text-center p-16 bg-red-500">
          {props.expanded ? representation2 : representation1}
         </div>
       )}

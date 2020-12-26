@@ -28,7 +28,11 @@ export default function ExponentRule() {
   const onAddBtnClick = (event) => {
     setCounter(counter + 1);
     setInputList(
-      inputList.concat({ id: "exp-" + (counter + 1), power: 2, expanded: false })
+      inputList.concat({
+        id: "exp-" + (counter + 1),
+        power: 2,
+        expanded: false,
+      })
     );
   };
 
@@ -73,14 +77,14 @@ export default function ExponentRule() {
       });
       setCounter(counter + 1);
     } else if (mode == "switch") {
-        const index = inputList.findIndex((x) => x.id === id);
-        newExponents.splice(index, 1);
-        newExponents.splice(index, 0, {
-            id: "exp-" + (counter + 1),
-            power: inputList[index].power,
-            expanded: !inputList[index].expanded
-        })
-        setCounter(counter + 1);
+      const index = inputList.findIndex((x) => x.id === id);
+      newExponents.splice(index, 1);
+      newExponents.splice(index, 0, {
+        id: "exp-" + (counter + 1),
+        power: inputList[index].power,
+        expanded: !inputList[index].expanded,
+      });
+      setCounter(counter + 1);
     }
     setInputList(newExponents);
   };
@@ -139,66 +143,72 @@ export default function ExponentRule() {
   };
 
   return (
-    <div className="divide-y p-4 container mx-auto bg-green-500">
-      <div className="text-xl text-center">
-        You can simplify exponent expressions by combining terms with the same base. 
-        The following terms all have the same base (X) and they are all being multiplied together.
-        How can you generally simplify expressions that look like X^a * X^b?
-    </div>  
-      <div className="text-xl text-center">
+    <div className="divide-y p-4 container mx-auto">
+      <div className="text-xl text-center p-4">
+        You can simplify exponent expressions by combining terms with the same
+        base. The following terms all have the same base (X) and they are all
+        being multiplied together.
+      </div>
+      <div className="text-xl text-center pt-4">
         Total: X^{inputList.map((exp) => exp.power).reduce((x, y) => x + y)}
       </div>
-      <div className="p-4 bg-purple-500 m-4 flex justify-around">
-        <form>
-          <input
-            type="radio"
-            value="increment"
-            id="increment"
-            onChange={handleChange}
-            name="mode"
-            checked={mode === "increment"}
-          />
-          <label className="p-4">Increment</label>
-
-          <input
-            type="radio"
-            value="decrement"
-            id="decrement"
-            onChange={handleChange}
-            name="mode"
-            checked={mode === "decrement"}
-          />
-          <label className="p-4">Decrement</label>
-
-          <input
-            type="radio"
-            value="delete"
-            id="delete"
-            onChange={handleChange}
-            name="mode"
-            checked={mode === "delete"}
-          />
-          <label className="p-4">Delete</label>
-
-          <input
-            type="radio"
-            value="split"
-            id="split"
-            onChange={handleChange}
-            name="mode"
-            checked={mode === "split"}
-          />
-          <label className="p-4">Split</label>
-
-          <input
-            type="radio"
-            value="switch"
-            id="switch"
-            onChange={handleChange}
-            name="mode"
-            checked={mode === "switch"}
-          />
-          <label className="p-4">Switch</label>
+      <div className="p-4 bg-purple-500 m-4">
+        <form className="grid grid-cols-2">
+          <div>
+            <input
+              type="radio"
+              value="increment"
+              id="increment"
+              onChange={handleChange}
+              name="mode"
+              checked={mode === "increment"}
+            />
+            <label className="p-4">Increment</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              value="decrement"
+              id="decrement"
+              onChange={handleChange}
+              name="mode"
+              checked={mode === "decrement"}
+            />
+            <label className="p-4">Decrement</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              value="delete"
+              id="delete"
+              onChange={handleChange}
+              name="mode"
+              checked={mode === "delete"}
+            />
+            <label className="p-4">Delete</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              value="split"
+              id="split"
+              onChange={handleChange}
+              name="mode"
+              checked={mode === "split"}
+            />
+            <label className="p-4">Split</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              value="switch"
+              id="switch"
+              onChange={handleChange}
+              name="mode"
+              checked={mode === "switch"}
+            />
+            <label className="p-4">Switch</label>
+          </div>
         </form>
       </div>
 
@@ -214,6 +224,9 @@ export default function ExponentRule() {
           onClick={onExponentClick}
         />
       </DragDropContext>
+      <div className="text-xl text-center p-4">
+        How can you generally simplify expressions that look like X^a * X^b?
+      </div>
     </div>
   );
 }

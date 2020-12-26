@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Area() {
+export default function AreaMethodMultiplication() {
   const [x, setX] = useState(12);
   const [y, setY] = useState(34);
 

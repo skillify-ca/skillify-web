@@ -1,109 +1,129 @@
 {
   "strand": {
-    "number-sense-and-algebra": [
-      {
-        "id": "NSA1",
-        "title": "Operating with Exponents",
-        "slug": "operating-with-exponents",
-        "description": "Exponent rules of multiplication and division"
-      },
-      {
-        "id": "NSA2",
-        "title": "Solving Equations",
-        "slug": "manipulating-expressions-solving-equations"
-      }
-    ],
-    "linear-relations": [
-      {
-        "id": "LR1",
-        "title": "Data Management Techniques",
-        "slug": "using-data-management-to-investigate-relationships"
-      },
-      {
-        "id": "LR2",
-        "title": "Characteristics of Linear Relations",
-        "slug": "understanding-characteristics-of-linear-relations"
-      },
-      {
-        "id": "LR3",
-        "title": "Representations of Linear Relations",
-        "slug": "connecting-various-representations-of-linear-relations"
-      }
-    ],
-    "analytic-geometry": [
-      {
-        "id": "AG1",
-        "title": "Equation of a Relation and the Shape of its Graph",
-        "slug": "investigating-the-relationship-between-the-equation-of-a-relation-and-the-shape-of-its-graph"
-      },
-      {
-        "id": "AG2",
-        "title": "Properties of a Slope",
-        "slug": "investigating-the-properties-of-a-slope"
-      },
-      {
-        "id": "AG3",
-        "title": "Properties of Linear Relations",
-        "slug": "properties-of-linear-relations"
-      }
-    ],
-    "measurement-geometry": [
-      {
-        "id": "MG1",
-        "title": "Optimal Values of Measurements",
-        "slug": "optimal-values-of-measurements"
-      },
-      {
-        "id": "MG2",
-        "title": "Perimeter Area Surface Area and Volume",
-        "slug": "perimeter-area-surface-area-and-volume"
-      },
-      {
-        "id": "MG3",
-        "title": "Geometric Relationships",
-        "slug": "geometric-relationships"
-      }
-    ]
+    "number-sense-and-algebra": {
+      "title": "Number Sense and Algebra",
+      "skillGroups": [
+        {
+          "id": "NSA1",
+          "title": "Operating with Exponents",
+          "slug": "operating-with-exponents",
+          "description": "Exponent rules of multiplication and division"
+        },
+        {
+          "id": "NSA2",
+          "title": "Solving Equations",
+          "slug": "manipulating-expressions-solving-equations"
+        }
+      ]
+    },
+    "linear-relations": {
+      "title": "Number Sense and Algebra",
+      "skillGroups": [
+        {
+          "id": "LR1",
+          "title": "Data Management Techniques",
+          "slug": "using-data-management-to-investigate-relationships"
+        },
+        {
+          "id": "LR2",
+          "title": "Characteristics of Linear Relations",
+          "slug": "understanding-characteristics-of-linear-relations"
+        },
+        {
+          "id": "LR3",
+          "title": "Representations of Linear Relations",
+          "slug": "connecting-various-representations-of-linear-relations"
+        }
+      ]
+    },
+    "analytic-geometry": {
+      "title": "Analytic Geometry",
+      "skillGroups": [
+        {
+          "id": "AG1",
+          "title": "Equation of a Relation and the Shape of its Graph",
+          "slug": "investigating-the-relationship-between-the-equation-of-a-relation-and-the-shape-of-its-graph"
+        },
+        {
+          "id": "AG2",
+          "title": "Properties of a Slope",
+          "slug": "investigating-the-properties-of-a-slope"
+        },
+        {
+          "id": "AG3",
+          "title": "Properties of Linear Relations",
+          "slug": "properties-of-linear-relations"
+        }
+      ]
+    },
+    "measurement-geometry": {
+      "title": "Analytic Geometry",
+      "skillGroups": [
+        {
+          "id": "MG1",
+          "title": "Optimal Values of Measurements",
+          "slug": "optimal-values-of-measurements"
+        },
+        {
+          "id": "MG2",
+          "title": "Perimeter Area Surface Area and Volume",
+          "slug": "perimeter-area-surface-area-and-volume"
+        },
+        {
+          "id": "MG3",
+          "title": "Geometric Relationships",
+          "slug": "geometric-relationships"
+        }
+      ]
+    }
   },
   "skillGroups": {
-    "operating-with-exponents": [
-      {
-        "id": "NA1-01",
-        "title": "Substitute into and evaluate algebraic expressions involving exponents",
-        "description": "Evaluate expressions involving natural-number exponents with rational-number bases"
-      },
-      {
-        "id": "NA1-02",
-        "title": "Understand length, area, and volume and how they relate to exponents",
-        "description": "[i.e., length, which is one dimensional, can be represented by x ; area, which is two dimensional, can be represented by (x)(x) or x2; volume, which is three dimensional, can be represented by (x)(x)(x),(x2)(x), or x3 ]"
-      },
-      {
-        "id": "NA1-03",
-        "title": "Derive the exponent rules for multiplying and dividing monomials",
-        "description": "apply these rules in expressions involving one and two variables with positive exponents"
-      },
-      {
-        "id": "NA1-04",
-        "title": "Extend the multiplication rule to derive and understand the power of a power rule",
-        "description": "apply it to simplify expressions involving one and two variables with positive exponents"
-      }
-    ]
+    "operating-with-exponents": {
+      "title": "Operating with Exponents",
+      "skills": [
+        {
+          "id": "NA1-01",
+          "title": "Exponent Basics",
+          "description": "Evaluate expressions involving natural-number exponents with rational-number bases"
+        },
+        {
+          "id": "NA1-02",
+          "title": "Length, area, and volume using exponents",
+          "description": "[i.e., length, which is one dimensional, can be represented by x ; area, which is two dimensional, can be represented by (x)(x) or x2; volume, which is three dimensional, can be represented by (x)(x)(x),(x2)(x), or x3 ]"
+        },
+        {
+          "id": "NA1-03",
+          "title": "Exponent rules for multiplication and division",
+          "description": "apply these rules in expressions involving one and two variables with positive exponents"
+        },
+        {
+          "id": "NA1-04",
+          "title": "Power of a power rule",
+          "description": "apply it to simplify expressions involving one and two variables with positive exponents"
+        }
+      ]
+    }
   },
   "skills": {
     "NA1-01": {
-      "title": "Substitute into and evaluate algebraic expressions involving exponents",
+      "title": "Exponent Basics",
       "description": "You should be able to evaluate expressions involving natural-number exponents with rational-number bases",
       "sourceId": "XZRQhkii0h0"
     },
     "NA1-02": {
-      "title": "Describe the relationship between the algebraic and geometric representations of a single-variable term up to degree three",
-      "description": "[i.e., length, which is one dimensional, can be represented by x ; area, which is two dimensional, can be represented by (x)(x) or x2; volume, which is three dimensional, can be represented by (x)(x)(x),(x2)(x), or x3 ]",
+      "title": "Length, area, and volume using exponents",
+      "description": "Length, which is one dimensional, can be represented by x ; area, which is two dimensional, can be represented by (x)(x) or x^2; volume, which is three dimensional, can be represented by (x)(x)(x),(x2)(x), or x^3",
       "sourceId": "uJ49XUGhejw"
     },
     "NA1-03": {
-      "title": "Derive the exponent rules for multiplying and dividing monomials",
-      "description": "apply these rules in expressions involving one and two variables with positive exponents",
+      "title": "Exponent rules for multiplication and division",
+      "description": "Apply these rules in expressions involving one and two variables with positive exponents",
       "sourceId": "7gZBCTw2EmI"
+    },
+    "NA1-04": {
+      "title": "Exponent rules for power of power",
+      "description": "Apply it to simplify expressions involving one and two variables with positive exponents",
+      "sourceId": "39l-MZFUEzY"
     }
   },
   "practice": {
@@ -191,6 +211,35 @@
           { "text": "2 and 4", "isCorrect": true },
           { "text": "1 and 6", "isCorrect": false },
           { "text": "6 and 4", "isCorrect": false }
+        ]
+      }
+    ],
+    "NA1-04": [
+      {
+        "question": "What is ((9.8)^3)^2",
+        "choices": [
+          { "text": "986", "isCorrect": false },
+          { "text": "85,842", "isCorrect": false },
+          { "text": "885,842", "isCorrect": true },
+          { "text": "685,842", "isCorrect": false }
+        ]
+      },
+      {
+        "question": "What is (7^2)^2",
+        "choices": [
+          { "text": "2104", "isCorrect": false },
+          { "text": "1400", "isCorrect": false },
+          { "text": "2401", "isCorrect": true },
+          { "text": "490", "isCorrect": false }
+        ]
+      },
+      {
+        "question": "What is ((1/2)^2)^2",
+        "choices": [
+          { "text": "1/2", "isCorrect": false },
+          { "text": "1/4", "isCorrect": false },
+          { "text": "1/8", "isCorrect": false },
+          { "text": "1/16", "isCorrect": true }
         ]
       }
     ]

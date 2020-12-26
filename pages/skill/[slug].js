@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import apiData from "../api/data.json"
+import apiData from "../api/data.json";
+import ProgressBar from "../../components/ProgressBar";
+import Navbar from "../../components/Navbar";
 
 const Strand = () => {
   const router = useRouter();
@@ -9,10 +11,13 @@ const Strand = () => {
 
   return (
     <div>
+      <Navbar/>
       <div className="bg-yellow-500 p-4">
-        <h1 className="text-xl text-center p-4">Current Mastery: 45%</h1>
         <h1 className="text-xl text-center p-4">{skill.title}</h1>
         <h1 className="text-base text-center p-4">{skill.description}</h1>
+      </div>
+      <div className="bg-purple-500">
+        <h1 className="text-xl text-center p-4">Current Mastery: <ProgressBar value={45} color={"purple"}/></h1>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div>
