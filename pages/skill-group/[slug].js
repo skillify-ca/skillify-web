@@ -25,12 +25,12 @@ const SkillGroup = () => {
       </div>
       <div className="text-xl text-center p-4">{data.title}</div>
       <div className="p-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             {data.skills.map((x) => (
               <Link key={x.id} href={"/skill/" + x.id}>
                 <div className="gap-0 divide-y-2">
-                  <div className="p-8 bg-pink-500">{x.title}</div>
-                  <div className="p-4 bg-pink-500">
+                  <div className="p-2 bg-yellow-500">{x.title}</div>
+                  <div className="p-2 bg-yellow-500">
                     <ProgressBar
                       value={Math.round(Math.random() * 100)}
                       color="pink"
