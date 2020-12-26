@@ -17,14 +17,12 @@ const Quiz = () => {
     }
   };
 
-  var choices = [
-    {text: "A"},
-    {text: "B"},
-    {text: "C"},
-    {text: "D"},
-  ]
-  if (data != undefined) {
-    choices = data[index].choices
+  if (data === undefined) {
+    return (
+      <div className="flex justify-center p-16 bg-purple-500 text-white text-center text-xl">
+        Coming Soon
+      </div>
+    );
   }
 
   return (
@@ -33,16 +31,16 @@ const Quiz = () => {
       <div className="p-4 m-4 bg-purple-500">{data[index].question}</div>
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div onClick={onClick} className="p-4 m-4 bg-red-500">
-          {choices[0].text}
+          {data[index].choices[0].text}
         </div>
         <div onClick={onClick} className="p-4 m-4 bg-green-500">
-          {choices[1].text}
+          {data[index].choices[1].text}
         </div>
         <div onClick={onClick} className="p-4 m-4 bg-blue-500">
-          {choices[2].text}
+          {data[index].choices[2].text}
         </div>
         <div onClick={onClick} className="p-4 m-4 bg-yellow-500">
-          {choices[3].text}
+          {data[index].choices[3].text}
         </div>
       </div>
     </div>

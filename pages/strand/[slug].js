@@ -12,9 +12,12 @@ const Strand = () => {
   const initialData = apiData;
 
   const data = initialData["strand"][slug];
-  var title = "Title";
-  if (data != undefined) {
-    title = data.title;
+  if (data === undefined) {
+    return (
+      <div className="flex justify-center p-16 bg-purple-500 text-white text-center text-xl">
+        Coming Soon
+      </div>
+    );
   }
 
   return (
@@ -22,7 +25,7 @@ const Strand = () => {
       <div>
         <Navbar />
       </div>
-      <div className="text-xl text-center p-4">{title}</div>
+      <div className="text-xl text-center p-4">{data.title}</div>
       <div className="p-4">
           <div className="grid grid-cols-2 gap-4">
             {data.skillGroups.map((x) => (

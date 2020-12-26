@@ -8,6 +8,13 @@ const Strand = () => {
   const router = useRouter();
   const { slug } = router.query;
   const skill = apiData["skills"][slug];
+  if (skill === undefined) {
+    return (
+      <div className="flex justify-center p-16 bg-purple-500 text-white text-center text-xl">
+        Coming Soon
+      </div>
+    );
+  }
 
   return (
     <div>
