@@ -1,0 +1,7 @@
+# Next-on-Netlify Redirects
+/api/hello  /.netlify/functions/next_api_hello  200
+/practice/:slug  /practice/[slug].html  200
+/simulation/:slug  /simulation/[slug].html  200
+/skill/:slug  /skill/[slug].html  200
+/skill-group/:slug  /skill-group/[slug].html  200
+/strand/:slug  /strand/[slug].html  200
