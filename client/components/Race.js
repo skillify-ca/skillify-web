@@ -10,7 +10,7 @@ export default function Race(props) {
   const [progress, setProgress] = useState(0);
 
   function onKeyPress({key}) {
-    if (key === "Enter") {
+    if (key === "Enter") { // TODO should I use keycode for mobile?
       if (currentGuess == questionSet[currentIndex].answer) {
         setErrorVisibility(false);
         setCurrentIndex(Math.min(questionSet.length-1, currentIndex + 1));

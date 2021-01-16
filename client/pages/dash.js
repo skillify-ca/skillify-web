@@ -3,18 +3,29 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  useQuery,
+  useSubscription,
   gql,
 } from "@apollo/client";
+import { WebSocketLink } from 'apollo-link-ws'
 import Race from "./../components/Race"
 
+const link = process.browser
+  ? new WebSocketLink({
+    uri: `ws://localhost:4000/`,
+      options: {
+        reconnect: true,
+      },
+    })
+  : null;
+
 const client = new ApolloClient({
+  link,
   uri: "http://localhost:4000/",
   cache: new InMemoryCache(),
 });
 
 const GET_MESSAGES = gql`
-  query {
+  subscription {
     messages {
       id
       content
@@ -24,7 +35,7 @@ const GET_MESSAGES = gql`
 `;
 
 const Messages = ({ user }) => {
-  const { data } = useQuery(GET_MESSAGES);
+  const { data } = useSubscription(GET_MESSAGES);
   if (!data) {
     return null;
   }
