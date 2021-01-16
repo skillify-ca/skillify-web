@@ -5,6 +5,8 @@ server/node_modules
 client/node_modules
 client/out_publish
 client/out_publish/*
+client/out_functions
+client/out_functions/*
 
 /node_modules
 /.pnp
