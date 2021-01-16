@@ -1,43 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PlayerList from "./PlayerList";
-import { useEffect } from "react";
+import useInput from "../hooks/useInput";
+import useEventListener from "../hooks/useEventListener.ts";
 
 export default function Race(props) {
-  useEffect(() => {
-    const listener = event => {
-      if (event.code === "Enter" || event.code === "NumpadEnter") {
-        console.log("Enter key was pressed. Run your function.");
-        // callMyFunction();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isErrorVisible, setErrorVisibility] = useState(false);
+  const [currentGuess, setCurrentGuess, guessInput] = useInput({ type: "number" });
+
+  function onKeyPress({key}) {
+    if (key === "Enter") {
+      if (currentGuess == questionSet[currentIndex].answer) {
+        setErrorVisibility((it) => false);
+        setCurrentIndex((c) => c + 1);
+        setCurrentGuess((c) => "");
+      } else {
+        setErrorVisibility((it) => true);
       }
-    };
-    document.addEventListener("keydown", listener);
-    return () => {
-      document.removeEventListener("keydown", listener);
-    };
-  }, []);
+    }
+  }
+
+  const questionSet = [
+    { description: "1 + 1 = ", answer: 2 },
+    { description: "2 + 2 = ", answer: 4 },
+    { description: "3 + 3 = ", answer: 6 },
+    { description: "4 + 4 = ", answer: 8 },
+    { description: "5 + 5 = ", answer: 10 },
+  ];
+
+  // example with window based event
+
+  useEventListener("keydown", onKeyPress);
 
   return (
-    <div class="container px-16 py-16">
-      <p class="text-lg">Numbers Dash, Intermediate Level</p>
+    <div className="container px-16 py-16">
+      <p className="text-lg">Numbers Dash, Intermediate Level</p>
       <div>
-        <p class="text-sm pt-8">1 of 10</p>
+        <p className="text-sm pt-8">{currentIndex + 1} of 5</p>
         <div>
-          <div class="flex flex-col bg-gray-300 place-items-center mx-auto">
-            <p class="text-xl pt-8">83 + 64 = </p>
-            <p class="text-base pt-8">Input</p>
-            <input
-              class="input w-1/2 border border-gray-400 appearance-none rounded px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"
-              id="answer"
-              type="text"
-              autofocus
-            />
-            <p className="text-base text-red-500 py-4">Oops, try again</p>
+          <div className="flex flex-col bg-gray-300 place-items-center mx-auto">
+            <p className="text-xl pt-8">
+              {questionSet[currentIndex].description}
+            </p>
+            <p className="text-base pt-8">Input</p>
+            {guessInput}
+            <div className="py-8">
+              {isErrorVisible && (
+                <p className="text-base text-red-500">Oops, try again</p>
+              )}
+            </div>
           </div>
-          
         </div>
         <div>
-          <PlayerList/>
-          </div>
+          <PlayerList />
+        </div>
       </div>
     </div>
   );
