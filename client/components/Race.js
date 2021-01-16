@@ -7,15 +7,18 @@ export default function Race(props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isErrorVisible, setErrorVisibility] = useState(false);
   const [currentGuess, setCurrentGuess, guessInput] = useInput({ type: "number" });
+  const [progress, setProgress] = useState(0);
 
   function onKeyPress({key}) {
     if (key === "Enter") {
       if (currentGuess == questionSet[currentIndex].answer) {
-        setErrorVisibility((it) => false);
-        setCurrentIndex((c) => c + 1);
-        setCurrentGuess((c) => "");
+        setErrorVisibility(false);
+        setCurrentIndex(Math.min(questionSet.length-1, currentIndex + 1));
+        setCurrentGuess("");
+        const progress = Math.round(((currentIndex + 1).toPrecision() / questionSet.length) * 12);
+        setProgress(progress); // max progress is 12
       } else {
-        setErrorVisibility((it) => true);
+        setErrorVisibility(true);
       }
     }
   }
@@ -26,6 +29,7 @@ export default function Race(props) {
     { description: "3 + 3 = ", answer: 6 },
     { description: "4 + 4 = ", answer: 8 },
     { description: "5 + 5 = ", answer: 10 },
+    { description: "6 + 6 = ", answer: 12 },
   ];
 
   // example with window based event
@@ -36,7 +40,7 @@ export default function Race(props) {
     <div className="container px-16 py-16">
       <p className="text-lg">Numbers Dash, Intermediate Level</p>
       <div>
-        <p className="text-sm pt-8">{currentIndex + 1} of 5</p>
+        <p className="text-sm pt-8">{currentIndex + 1} of {questionSet.length}</p>
         <div>
           <div className="flex flex-col bg-gray-300 place-items-center mx-auto">
             <p className="text-xl pt-8">
@@ -52,7 +56,7 @@ export default function Race(props) {
           </div>
         </div>
         <div>
-          <PlayerList />
+          <PlayerList progress={progress} />
         </div>
       </div>
     </div>
