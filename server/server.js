@@ -1,6 +1,6 @@
 const { GraphQLServer, PubSub } = require("graphql-yoga");
 
-const messages = [];
+var messages = [];
 
 const typeDefs = `
 type Message {
@@ -15,6 +15,7 @@ type Query {
 
 type Mutation {
     postMessage(user: String!, content: String!): ID!
+    deleteMessage(id: ID!): String
 }
 
 type Subscription {
@@ -40,6 +41,11 @@ const resolvers = {
       subscribers.forEach((fn) => fn());
       return id;
     },
+    deleteMessage: (parent, {id}) => {
+      messages.pop();
+      subscribers.forEach((fn) => fn());
+      return "Deleted";
+    }
   },
   Subscription: {
     messages: {
