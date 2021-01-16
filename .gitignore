@@ -7,6 +7,7 @@ client/out_publish
 client/out_publish/*
 client/out_functions
 client/out_functions/*
+client/package-lock.json
 
 /node_modules
 /.pnp
