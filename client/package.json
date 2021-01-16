@@ -12,6 +12,7 @@
     "@apollo/client": "^3.3.7",
     "autoprefixer": "^10.1.0",
     "graphql": "^15.4.0",
+    "mousetrap": "^1.6.5",
     "next": "10.0.3",
     "next-on-netlify": "^2.6.3",
     "postcss": "^8.2.1",
