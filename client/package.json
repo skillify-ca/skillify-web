@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.7",
+    "@auth0/auth0-react": "^1.2.0",
     "apollo-link-ws": "^1.0.20",
     "autoprefixer": "^10.1.0",
     "graphql": "^15.4.0",

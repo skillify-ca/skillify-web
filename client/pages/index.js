@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Outline from "../components/Outline";
 import Navbar from "../components/Navbar";
+import LoginButton from "../components/LoginButton";
 
 export default function Home() {
   return (
@@ -14,7 +15,9 @@ export default function Home() {
           <title>Create Next App</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <Outline />
+
+          <LoginButton/>
+          <Outline />
       </div>
     </div>
   );

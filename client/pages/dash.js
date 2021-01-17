@@ -9,6 +9,9 @@ import {
 } from "@apollo/client";
 import { WebSocketLink } from "apollo-link-ws";
 import Race from "./../components/Race";
+import Navbar from "./../components/Navbar";
+
+//https://vithushan.auth0.com/login?client=R8d5SngeS7x4F2P4qXe0NiyEY2w5uaJd&protocol=oauth2&response_type=token%20id_token&redirect_uri=http://localhost:3000/callback&scope=openid%20profile
 
 const link = process.browser
   ? new WebSocketLink({
@@ -87,6 +90,7 @@ const Dash = () => {
   return (
     <ApolloProvider client={client}>
       <div>
+        <Navbar/>
         <Race />
         <JoinButton />
         <LeaveButton />

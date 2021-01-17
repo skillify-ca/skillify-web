@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Navbar(props) {
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
   return (
     <div className="lg:px-16 px-6 bg-white flex flex-wrap items-center p-4">
       <div className="flex-1 flex justify-between items-center">
@@ -30,17 +33,22 @@ export default function Navbar(props) {
       </label>
       <input className="hidden" type="checkbox" id="menu-toggle" />
 
-      <div className="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+      <div
+        className="hidden lg:flex lg:items-center lg:w-auto w-full"
+        id="menu"
+      >
         <nav></nav>
         <a
           href="#"
           className="lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 pointer-cursor"
         >
-          <img
-            className="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400"
-            src="https://pbs.twimg.com/profile_images/1128143121475342337/e8tkhRaz_normal.jpg"
-            alt="Andy Leverenz"
-          />
+          {isAuthenticated && (
+            <div>
+              <img src={user.picture} alt={user.name} />
+              <h2>{user.name}</h2>
+              <p>{user.email}</p>
+            </div>
+          )}
         </a>
       </div>
     </div>
