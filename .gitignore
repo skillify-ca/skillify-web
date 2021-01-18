@@ -8,6 +8,8 @@ client/out_publish/*
 client/out_functions
 client/out_functions/*
 client/package-lock.json
+client/libs/auth0.js
+client/.env
 
 /node_modules
 /.pnp

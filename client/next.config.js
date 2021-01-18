@@ -1,4 +1,4 @@
 module.exports = {
-    // Target must be serverless
-    target: 'serverless'
-  };
+  // Target must be serverless
+  target: "serverless",
+};
