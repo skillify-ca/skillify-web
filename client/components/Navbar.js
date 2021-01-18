@@ -19,7 +19,7 @@ export default function Navbar(props) {
         </Link>
       </div>
 
-      <label for="menu-toggle" className="pointer-cursor lg:hidden block">
+      <label htmlFor="menu-toggle" className="pointer-cursor lg:hidden block">
         <svg
           className="fill-current text-gray-900"
           xmlns="http://www.w3.org/2000/svg"
