@@ -7,12 +7,12 @@ const style: React.CSSProperties = {
 };
 
 export interface NumberTileProps {
-  name: string;
+  name: number;
   type: string;
   isDropped: boolean;
 }
 
-export const NumberTile: React.FC<NumberTileProps> = ({ name, type, isDropped }) => {
+export const NumberTile: React.FC<NumberTileProps> = ({ name, value, type, isDropped }) => {
   const [{ opacity }, drag] = useDrag({
     item: { name, type },
     collect: (monitor) => ({
@@ -23,7 +23,7 @@ export const NumberTile: React.FC<NumberTileProps> = ({ name, type, isDropped })
   return (
     <div ref={drag} style={{ ...style, opacity }}>
       <div className="bg-purple-400 w-24 h-24 m-4 flex items-center justify-center">
-        {isDropped ? <s>{name}</s> : name}
+        {name}
       </div>
     </div>
   );

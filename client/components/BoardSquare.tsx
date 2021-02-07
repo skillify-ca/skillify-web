@@ -52,7 +52,7 @@ export const BoardSquare: React.FC<BoardSquareProps> = ({
       {isActive ? "Release to drop" : ``}
 
       {lastDroppedItem && (
-        <NumberTile name={"$"} type={ItemTypes.NUMBER_TILE} isDropped={true} key={1} />
+        <NumberTile name={Number.parseInt(lastDroppedItem)} type={ItemTypes.NUMBER_TILE} isDropped={true} key={1} />
       )}
     </div>
   );

@@ -12,7 +12,6 @@ interface BoardSquareState {
 
 interface BoxState {
   name: string;
-  value: number;
   type: string;
 }
 
@@ -44,15 +43,15 @@ export const Container: React.FC = () => {
   ]);
 
   const [boxes] = useState<BoxState[]>([
-    { name: "1", value: 1, type: ItemTypes.NUMBER_TILE },
-    { name: "2", value: 2, type: ItemTypes.NUMBER_TILE },
-    { name: "3", value: 3, type: ItemTypes.NUMBER_TILE },
-    { name: "4", value: 4, type: ItemTypes.NUMBER_TILE },
-    { name: "5", value: 5, type: ItemTypes.NUMBER_TILE },
-    { name: "6", value: 6, type: ItemTypes.NUMBER_TILE },
-    { name: "7", value: 7, type: ItemTypes.NUMBER_TILE },
-    { name: "8", value: 8, type: ItemTypes.NUMBER_TILE },
-    { name: "9", value: 9, type: ItemTypes.NUMBER_TILE },
+    { name: "1", type: ItemTypes.NUMBER_TILE },
+    { name: "2", type: ItemTypes.NUMBER_TILE },
+    { name: "3", type: ItemTypes.NUMBER_TILE },
+    { name: "4", type: ItemTypes.NUMBER_TILE },
+    { name: "5", type: ItemTypes.NUMBER_TILE },
+    { name: "6", type: ItemTypes.NUMBER_TILE },
+    { name: "7", type: ItemTypes.NUMBER_TILE },
+    { name: "8", type: ItemTypes.NUMBER_TILE },
+    { name: "9", type: ItemTypes.NUMBER_TILE },
   ]);
 
   const [droppedBoxNames, setDroppedBoxNames] = useState<string[]>([]);
@@ -62,7 +61,7 @@ export const Container: React.FC = () => {
   }
 
   const handleDrop = useCallback(
-    (index: number, item: { name: string, value: number }) => {
+    (index: number, item: { name: string }) => {
       const { name } = item;
       setDroppedBoxNames(
         update(droppedBoxNames, name ? { $push: [name] } : { $push: [] })
@@ -96,10 +95,9 @@ export const Container: React.FC = () => {
       <div style={{ overflow: "hidden", clear: "both" }}>
         {boxes
           .filter(({ name }) => !isDropped(name))
-          .map(({ name, value, type }, index) => (
+          .map(({ name, type }, index) => (
             <NumberTile
               name={name}
-              value={value}
               type={type}
               isDropped={isDropped(name)}
               key={index}
