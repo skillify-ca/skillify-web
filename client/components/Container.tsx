@@ -12,6 +12,7 @@ interface BoardSquareState {
 
 interface BoxState {
   name: string;
+  value: number;
   type: string;
 }
 
@@ -21,6 +22,7 @@ export interface BoardSquareSpec {
 }
 export interface BoxSpec {
   name: string;
+  value: number;
   type: string;
 }
 export interface ContainerState {
@@ -43,25 +45,35 @@ export const Container: React.FC = () => {
   ]);
 
   const [boxes] = useState<BoxState[]>([
-    { name: "1", type: ItemTypes.NUMBER_TILE },
-    { name: "2", type: ItemTypes.NUMBER_TILE },
-    { name: "3", type: ItemTypes.NUMBER_TILE },
-    { name: "4", type: ItemTypes.NUMBER_TILE },
-    { name: "5", type: ItemTypes.NUMBER_TILE },
-    { name: "6", type: ItemTypes.NUMBER_TILE },
-    { name: "7", type: ItemTypes.NUMBER_TILE },
-    { name: "8", type: ItemTypes.NUMBER_TILE },
-    { name: "9", type: ItemTypes.NUMBER_TILE },
+    { name: "1", value: 1, type: ItemTypes.NUMBER_TILE },
+    { name: "2", value: 2, type: ItemTypes.NUMBER_TILE },
+    { name: "3", value: 3, type: ItemTypes.NUMBER_TILE },
+    { name: "4", value: 4, type: ItemTypes.NUMBER_TILE },
+    { name: "5", value: 5, type: ItemTypes.NUMBER_TILE },
+    { name: "6", value: 6, type: ItemTypes.NUMBER_TILE },
+    { name: "7", value: 7, type: ItemTypes.NUMBER_TILE },
+    { name: "8", value: 8, type: ItemTypes.NUMBER_TILE },
+    { name: "9", value: 9, type: ItemTypes.NUMBER_TILE },
   ]);
 
   const [droppedBoxNames, setDroppedBoxNames] = useState<string[]>([]);
+
+  const [isPlayerOne, setIsPlayerOne] = useState<boolean>(true);
 
   function isDropped(boxName: string) {
     return droppedBoxNames.indexOf(boxName) > -1;
   }
 
+  function totalSum() {
+    return boxes
+      .filter(({ name }) => isDropped(name))
+      .map((it) => it.value)
+      .reduce((a, b) => a + b, 0);
+  }
+
   const handleDrop = useCallback(
     (index: number, item: { name: string }) => {
+      console.log(item);
       const { name } = item;
       setDroppedBoxNames(
         update(droppedBoxNames, name ? { $push: [name] } : { $push: [] })
@@ -75,12 +87,18 @@ export const Container: React.FC = () => {
           },
         })
       );
+      setIsPlayerOne(!isPlayerOne);
     },
-    [droppedBoxNames, boardSquares]
+    [droppedBoxNames, boardSquares, isPlayerOne]
   );
 
   return (
     <div>
+      <h1>Total Sum: {totalSum()}</h1>
+      <h1>
+        Player Turn: Player
+        {isPlayerOne ? "One" : "Two"}
+      </h1>
       <div style={{ overflow: "hidden", clear: "both" }}>
         {boardSquares.map(({ accepts, lastDroppedItem }, index) => (
           <BoardSquare
@@ -95,9 +113,10 @@ export const Container: React.FC = () => {
       <div style={{ overflow: "hidden", clear: "both" }}>
         {boxes
           .filter(({ name }) => !isDropped(name))
-          .map(({ name, type }, index) => (
+          .map(({ name, value, type }, index) => (
             <NumberTile
               name={name}
+              value={value}
               type={type}
               isDropped={isDropped(name)}
               key={index}

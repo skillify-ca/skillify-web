@@ -7,7 +7,8 @@ const style: React.CSSProperties = {
 };
 
 export interface NumberTileProps {
-  name: number;
+  name: string;
+  value: number;
   type: string;
   isDropped: boolean;
 }
@@ -23,7 +24,7 @@ export const NumberTile: React.FC<NumberTileProps> = ({ name, value, type, isDro
   return (
     <div ref={drag} style={{ ...style, opacity }}>
       <div className="bg-purple-400 w-24 h-24 m-4 flex items-center justify-center">
-        {name}
+        {value}
       </div>
     </div>
   );

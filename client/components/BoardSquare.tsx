@@ -16,7 +16,7 @@ const style: React.CSSProperties = {
   float: "left",
   display: "flex",
   justifyContent: "center",
-  alignItems: "center"
+  alignItems: "center",
 };
 
 export interface BoardSquareProps {
@@ -52,7 +52,13 @@ export const BoardSquare: React.FC<BoardSquareProps> = ({
       {isActive ? "Release to drop" : ``}
 
       {lastDroppedItem && (
-        <NumberTile name={Number.parseInt(lastDroppedItem)} type={ItemTypes.NUMBER_TILE} isDropped={true} key={1} />
+        <NumberTile
+          name={lastDroppedItem}
+          value={Number.parseInt(lastDroppedItem)}
+          type={ItemTypes.NUMBER_TILE}
+          isDropped={true}
+          key={1}
+        />
       )}
     </div>
   );
