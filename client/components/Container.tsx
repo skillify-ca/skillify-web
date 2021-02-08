@@ -75,19 +75,21 @@ export const Container: React.FC = () => {
     (index: number, item: { name: string }) => {
       console.log(item);
       const { name } = item;
-      setDroppedBoxNames(
-        update(droppedBoxNames, name ? { $push: [name] } : { $push: [] })
-      );
-      setBoardSquares(
-        update(boardSquares, {
-          [index]: {
-            lastDroppedItem: {
-              $set: name,
+      if (!droppedBoxNames.includes(name) && boardSquares[index].lastDroppedItem == null) {
+        setDroppedBoxNames(
+          update(droppedBoxNames, name ? { $push: [name] } : { $push: [] })
+        );
+        setBoardSquares(
+          update(boardSquares, {
+            [index]: {
+              lastDroppedItem: {
+                $set: name,
+              },
             },
-          },
-        })
-      );
-      setIsPlayerOne(!isPlayerOne);
+          })
+        );
+        setIsPlayerOne(!isPlayerOne);
+      }
     },
     [droppedBoxNames, boardSquares, isPlayerOne]
   );
