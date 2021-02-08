@@ -7,7 +7,7 @@ import update from "immutability-helper";
 
 interface BoardSquareState {
   accepts: string[];
-  lastDroppedItem: any;
+  lastDroppedItem: number;
 }
 
 interface BoxState {
@@ -31,8 +31,13 @@ export interface ContainerState {
   boxes: BoxSpec[];
 }
 
+enum GameState {
+  NEW, IN_PROGRESS, PLAYER_ONE_WON, PLAYER_TWO_WON
+}
+
 export const Container: React.FC = () => {
-  const [boardSquares, setBoardSquares] = useState<BoardSquareState[]>([
+  const TARGET = 15;
+  const INITIAL_GAME_DATA = [
     { accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
     { accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
     { accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
@@ -42,7 +47,8 @@ export const Container: React.FC = () => {
     { accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
     { accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
     { accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
-  ]);
+  ];
+  const [boardSquares, setBoardSquares] = useState<BoardSquareState[]>(INITIAL_GAME_DATA);
 
   const [boxes] = useState<BoxState[]>([
     { name: "1", value: 1, type: ItemTypes.NUMBER_TILE },
@@ -59,6 +65,7 @@ export const Container: React.FC = () => {
   const [droppedBoxNames, setDroppedBoxNames] = useState<string[]>([]);
 
   const [isPlayerOne, setIsPlayerOne] = useState<boolean>(true);
+  const [gameState, setGameState] = useState<GameState>(GameState.NEW)
 
   function isDropped(boxName: string) {
     return droppedBoxNames.indexOf(boxName) > -1;
@@ -71,28 +78,94 @@ export const Container: React.FC = () => {
       .reduce((a, b) => a + b, 0);
   }
 
+  function calculateGameOver(boardSquares: BoardSquareState[]) {
+    const row1 = [boardSquares[0], boardSquares[1], boardSquares[2]];
+    const row2 = [boardSquares[3], boardSquares[4], boardSquares[5]];
+    const row3 = [boardSquares[6], boardSquares[7], boardSquares[8]];
+    if (isRowValid(row1) || isRowValid(row2) || isRowValid(row3)) {
+      return true;
+    }
+
+    const col1 = [boardSquares[0], boardSquares[3], boardSquares[6]];
+    const col2 = [boardSquares[1], boardSquares[4], boardSquares[7]];
+    const col3 = [boardSquares[2], boardSquares[5], boardSquares[8]];
+    if (isRowValid(col1) || isRowValid(col2) || isRowValid(col3)) {
+      return true;
+    }
+
+    const diag1 = [boardSquares[0], boardSquares[4], boardSquares[8]];
+    const diag2 = [boardSquares[2], boardSquares[4], boardSquares[6]];
+    if (isRowValid(diag1) || isRowValid(diag2)) {
+      return true;
+    }
+    return false;
+  }
+
+  function isRowValid(row: BoardSquareState[]) {
+    if (row.map((it) => it.lastDroppedItem).includes(null)) {
+      return false;
+    }
+
+    const sum = row.map((it) => it.lastDroppedItem).reduce((a,b) => a + b, 0)
+    console.log("SUM : " + sum)
+    return sum == TARGET
+  }
+
   const handleDrop = useCallback(
     (index: number, item: { name: string }) => {
-      console.log(item);
       const { name } = item;
+
+      // Only handle the drop if the piece and the board square are unused
+      if (droppedBoxNames.includes(name) || droppedBoxNames.includes(name.toString())) {
+        return;
+      }
+
+      // Don't handle drops if game is over
+      if (gameState == GameState.PLAYER_ONE_WON || gameState == GameState.PLAYER_TWO_WON) {
+        return;
+      }
+      
       if (!droppedBoxNames.includes(name) && boardSquares[index].lastDroppedItem == null) {
+        
+        // Start game 
+        if (gameState == GameState.NEW) {
+          setGameState(GameState.IN_PROGRESS)
+        }
         setDroppedBoxNames(
           update(droppedBoxNames, name ? { $push: [name] } : { $push: [] })
         );
-        setBoardSquares(
-          update(boardSquares, {
-            [index]: {
-              lastDroppedItem: {
-                $set: name,
-              },
+
+        const newBoardSquares = update(boardSquares, {
+          [index]: {
+            lastDroppedItem: {
+              $set: Number.parseInt(name),
             },
-          })
-        );
+          },
+        });
+        setBoardSquares(newBoardSquares);
+
+        const isGameOver = calculateGameOver(newBoardSquares);
+
+        if (isGameOver) {
+           if (isPlayerOne) {
+             setGameState(GameState.PLAYER_ONE_WON)
+           } else {
+            setGameState(GameState.PLAYER_TWO_WON)
+           }
+        } else {
+        // if game is not over then next player's turn
         setIsPlayerOne(!isPlayerOne);
+        }
       }
     },
     [droppedBoxNames, boardSquares, isPlayerOne]
   );
+
+  const onResetClicked = () => {
+    setBoardSquares(INITIAL_GAME_DATA);
+    setDroppedBoxNames([]);
+    setGameState(GameState.NEW)
+  }
 
   return (
     <div>
@@ -101,6 +174,7 @@ export const Container: React.FC = () => {
         Player Turn: Player
         {isPlayerOne ? "One" : "Two"}
       </h1>
+      <h1>Game State: {GameState[gameState]}</h1>
       <div style={{ overflow: "hidden", clear: "both" }}>
         {boardSquares.map(({ accepts, lastDroppedItem }, index) => (
           <BoardSquare
@@ -125,6 +199,7 @@ export const Container: React.FC = () => {
             />
           ))}
       </div>
+      <button onClick={onResetClicked}>Reset</button>
     </div>
   );
 };
