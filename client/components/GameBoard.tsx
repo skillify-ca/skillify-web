@@ -1,14 +1,60 @@
-const GameBoard = () => {
-    return <div>
-        Game Board
-        Inputs 
-        - a set of 9 numbers that you want students to become confident with
-        - a target number that is the win condition (default = 30)
+import React, { useState } from "react";
+import { Container } from "./Container";
+import GameOver from "./GameOver";
+import Rules from "./Rules";
+import TeacherControls from "./TeacherControls";
 
-        - multiplayer aspect (2 players) game state
-        <h1> Tic Tac Toe 30 </h1>
-    </div>;
+enum GameState {
+  MENU,
+  GAME,
+  GAME_OVER,
+}
+
+const GameBoard = () => {
+  const [gameState, setGameState] = useState(GameState.MENU);
+  const [winner, setWinner] = useState(null);
+
+  const onCreateGameClick = () => {
+    setGameState(GameState.GAME);
   };
-  
-  export default GameBoard;
-  
+  const onExitClick = () => {
+    setGameState(GameState.MENU);
+  };
+
+  const onGameOver = (player) => {
+    setGameState(GameState.GAME_OVER);
+    setWinner(player)
+  };
+
+  const onRematchClick = () => {
+    setGameState(GameState.GAME);
+  };
+
+  const onNewGameClick = () => {
+    setGameState(GameState.MENU);
+  };
+
+  let component;
+  if (gameState == GameState.MENU) {
+    component = <TeacherControls onClick={onCreateGameClick} />;
+  } else if (gameState == GameState.GAME_OVER) {
+    component = (
+      <GameOver
+        winner={winner}
+        onRematchClick={onRematchClick}
+        onNewGameClick={onNewGameClick}
+      />
+    );
+  } else {
+    component = <Container onExitClick={onExitClick} onGameOver={onGameOver} />; // Game
+  }
+  return (
+    <div>
+      <h1 className="text-lg"> Tic Tac Toe</h1>
+
+      <div className="pt-4">{component}</div>
+    </div>
+  );
+};
+
+export default GameBoard;

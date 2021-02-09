@@ -31,11 +31,7 @@ export interface ContainerState {
   boxes: BoxSpec[];
 }
 
-enum GameState {
-  NEW, IN_PROGRESS, PLAYER_ONE_WON, PLAYER_TWO_WON
-}
-
-export const Container: React.FC = () => {
+export const Container = ({onExitClick, onGameOver}) => {
   const TARGET = 15;
   const INITIAL_GAME_DATA = [
     { accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
@@ -48,7 +44,9 @@ export const Container: React.FC = () => {
     { accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
     { accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
   ];
-  const [boardSquares, setBoardSquares] = useState<BoardSquareState[]>(INITIAL_GAME_DATA);
+  const [boardSquares, setBoardSquares] = useState<BoardSquareState[]>(
+    INITIAL_GAME_DATA
+  );
 
   const [boxes] = useState<BoxState[]>([
     { name: "1", value: 1, type: ItemTypes.NUMBER_TILE },
@@ -65,7 +63,6 @@ export const Container: React.FC = () => {
   const [droppedBoxNames, setDroppedBoxNames] = useState<string[]>([]);
 
   const [isPlayerOne, setIsPlayerOne] = useState<boolean>(true);
-  const [gameState, setGameState] = useState<GameState>(GameState.NEW)
 
   function isDropped(boxName: string) {
     return droppedBoxNames.indexOf(boxName) > -1;
@@ -106,9 +103,9 @@ export const Container: React.FC = () => {
       return false;
     }
 
-    const sum = row.map((it) => it.lastDroppedItem).reduce((a,b) => a + b, 0)
-    console.log("SUM : " + sum)
-    return sum == TARGET
+    const sum = row.map((it) => it.lastDroppedItem).reduce((a, b) => a + b, 0);
+    console.log("SUM : " + sum);
+    return sum == TARGET;
   }
 
   const handleDrop = useCallback(
@@ -116,21 +113,17 @@ export const Container: React.FC = () => {
       const { name } = item;
 
       // Only handle the drop if the piece and the board square are unused
-      if (droppedBoxNames.includes(name) || droppedBoxNames.includes(name.toString())) {
+      if (
+        droppedBoxNames.includes(name) ||
+        droppedBoxNames.includes(name.toString())
+      ) {
         return;
       }
 
-      // Don't handle drops if game is over
-      if (gameState == GameState.PLAYER_ONE_WON || gameState == GameState.PLAYER_TWO_WON) {
-        return;
-      }
-      
-      if (!droppedBoxNames.includes(name) && boardSquares[index].lastDroppedItem == null) {
-        
-        // Start game 
-        if (gameState == GameState.NEW) {
-          setGameState(GameState.IN_PROGRESS)
-        }
+      if (
+        !droppedBoxNames.includes(name) &&
+        boardSquares[index].lastDroppedItem == null
+      ) {
         setDroppedBoxNames(
           update(droppedBoxNames, name ? { $push: [name] } : { $push: [] })
         );
@@ -147,14 +140,14 @@ export const Container: React.FC = () => {
         const isGameOver = calculateGameOver(newBoardSquares);
 
         if (isGameOver) {
-           if (isPlayerOne) {
-             setGameState(GameState.PLAYER_ONE_WON)
-           } else {
-            setGameState(GameState.PLAYER_TWO_WON)
-           }
+          if (isPlayerOne) {
+            onGameOver("player1")
+          } else {
+            onGameOver("player2")
+          }
         } else {
-        // if game is not over then next player's turn
-        setIsPlayerOne(!isPlayerOne);
+          // if game is not over then next player's turn
+          setIsPlayerOne(!isPlayerOne);
         }
       }
     },
@@ -164,18 +157,17 @@ export const Container: React.FC = () => {
   const onResetClicked = () => {
     setBoardSquares(INITIAL_GAME_DATA);
     setDroppedBoxNames([]);
-    setGameState(GameState.NEW)
-  }
+    setGameState(GameState.NEW);
+  };
 
   return (
     <div>
-      <h1>Total Sum: {totalSum()}</h1>
+      <button onClick={onExitClick}>Exit</button>
       <h1>
         Player Turn: Player
         {isPlayerOne ? "One" : "Two"}
       </h1>
-      <h1>Game State: {GameState[gameState]}</h1>
-      <div style={{ overflow: "hidden", clear: "both" }}>
+      <div className="grid grid-cols-3 gap-2">
         {boardSquares.map(({ accepts, lastDroppedItem }, index) => (
           <BoardSquare
             accept={accepts}

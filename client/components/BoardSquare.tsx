@@ -4,9 +4,8 @@ import { NumberTile } from "./NumberTile";
 import { ItemTypes } from "./ItemTypes";
 
 const style: React.CSSProperties = {
-  height: "12rem",
-  width: "12rem",
-  marginRight: "1.5rem",
+  height: "6rem",
+  width: "6rem",
   marginBottom: "1.5rem",
   color: "white",
   padding: "1rem",
