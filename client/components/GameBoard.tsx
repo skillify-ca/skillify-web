@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { Modal, useModal, ModalTransition } from "react-simple-hook-modal";
 import { Container } from "./Container";
 import GameOver from "./GameOver";
 import Rules from "./Rules";
 import TeacherControls from "./TeacherControls";
+import 'react-simple-hook-modal/dist/styles.css';
 
 enum GameState {
   MENU,
@@ -29,17 +31,22 @@ const GameBoard = () => {
     setGameState(GameState.MENU);
   };
 
+  const { isModalOpen, openModal, closeModal } = useModal();
+
   const onGameOver = (player) => {
-    setGameState(GameState.GAME_OVER);
+    //setGameState(GameState.GAME_OVER);
+    openModal();
     setWinner(player);
   };
 
   const onRematchClick = () => {
     setGameState(GameState.GAME);
+    closeModal();
   };
 
   const onNewGameClick = () => {
     setGameState(GameState.MENU);
+    closeModal();
   };
 
   let component;
@@ -66,10 +73,21 @@ const GameBoard = () => {
     ); // Game
   }
   return (
-    <div>
+    <div className="container pt-8">
       <h1 className="text-lg"> Tic Tac Toe</h1>
 
       <div className="pt-4">{component}</div>
+      <Modal
+        id="game-over-model"
+        isOpen={isModalOpen}
+        transition={ModalTransition.SCALE}
+      >
+        <GameOver
+          winner={winner}
+          onRematchClick={onRematchClick}
+          onNewGameClick={onNewGameClick}
+        />
+      </Modal>
     </div>
   );
 };
