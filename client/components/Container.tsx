@@ -32,8 +32,15 @@ export interface ContainerState {
   boxes: BoxSpec[];
 }
 
-export const Container = ({ onExitClick, onGameOver }) => {
-  const TARGET = 15;
+export const Container = ({
+  onExitClick,
+  onGameOver,
+  target,
+  gameNumbers,
+  playerOne,
+  playerTwo,
+}) => {
+  const TARGET = target;
   const INITIAL_GAME_DATA = [
     { accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
     { accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
@@ -49,17 +56,15 @@ export const Container = ({ onExitClick, onGameOver }) => {
     INITIAL_GAME_DATA
   );
 
-  const [boxes] = useState<BoxState[]>([
-    { name: "1", value: 1, type: ItemTypes.NUMBER_TILE },
-    { name: "2", value: 2, type: ItemTypes.NUMBER_TILE },
-    { name: "3", value: 3, type: ItemTypes.NUMBER_TILE },
-    { name: "4", value: 4, type: ItemTypes.NUMBER_TILE },
-    { name: "5", value: 5, type: ItemTypes.NUMBER_TILE },
-    { name: "6", value: 6, type: ItemTypes.NUMBER_TILE },
-    { name: "7", value: 7, type: ItemTypes.NUMBER_TILE },
-    { name: "8", value: 8, type: ItemTypes.NUMBER_TILE },
-    { name: "9", value: 9, type: ItemTypes.NUMBER_TILE },
-  ]);
+  const [boxes] = useState<BoxState[]>(
+    gameNumbers.split(",").map((it) => {
+      return {
+        name: it.toString(),
+        value: it,
+        type: ItemTypes.NUMBER_TILE,
+      };
+    })
+  );
 
   const [droppedBoxNames, setDroppedBoxNames] = useState<string[]>([]);
 
@@ -142,9 +147,9 @@ export const Container = ({ onExitClick, onGameOver }) => {
 
         if (isGameOver) {
           if (isPlayerOne) {
-            onGameOver("player1");
+            onGameOver(playerOne);
           } else {
-            onGameOver("player2");
+            onGameOver(playerTwo);
           }
         } else {
           // if game is not over then next player's turn
@@ -166,9 +171,10 @@ export const Container = ({ onExitClick, onGameOver }) => {
         <Button text="Exit" onClick={onExitClick} />
         <Button text="Reset" onClick={onResetClicked} />
       </div>
-      <h1>
-        Player Turn: Player
-        {isPlayerOne ? "One" : "Two"}
+      <h1 className="bg-blue-500 text-lg my-4 p-4 text-center">
+        Player Turn: 
+        {" "}
+        {isPlayerOne ? playerOne : playerTwo}
       </h1>
       <div className="grid grid-cols-3 gap-2">
         {boardSquares.map(({ accepts, lastDroppedItem }, index) => (

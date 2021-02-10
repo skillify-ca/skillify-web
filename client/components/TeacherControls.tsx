@@ -1,6 +1,12 @@
+import { useState } from "react";
 import Rules from "./Rules";
 
 const TeacherControls = ({ onClick }) => {
+  const [targetNumber, setTargetNumber] = useState(15);
+  const [gameNumbers, setGameNumbers] = useState("1,2,3,4,5,6,7,8,9");
+  const [playerOne, setPlayerOne] = useState("Player One");
+  const [playerTwo, setPlayerTwo] = useState("Player Two");
+
   return (
     <div className="">
       <Rules />
@@ -16,7 +22,8 @@ const TeacherControls = ({ onClick }) => {
             id="target-number"
             name="target"
             type="number"
-            defaultValue={15}
+            value={targetNumber}
+            onChange={(e) => setTargetNumber(Number.parseInt(e.target.value))}
             className="appearance-none rounded-none relative block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
             placeholder="Target Number"
           />
@@ -25,7 +32,8 @@ const TeacherControls = ({ onClick }) => {
             id="numbers"
             name="numbers"
             type="text"
-            defaultValue={"1,2,3,4,5,6,7,8,9"}
+            value={gameNumbers}
+            onChange={(e) => setGameNumbers(e.target.value)}
             className="appearance-none rounded-none relative block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
             placeholder="Numbers to use in game (eg. 1,2,3,4,5,6,7,8,9)"
           />
@@ -34,6 +42,8 @@ const TeacherControls = ({ onClick }) => {
             id="player-one"
             name="player-one"
             type="text"
+            value={playerOne}
+            onChange={(e) => setPlayerOne(e.target.value)}
             className="appearance-none rounded-none relative block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
             placeholder="Enter Player One's Name"
           />
@@ -42,6 +52,8 @@ const TeacherControls = ({ onClick }) => {
             id="player-two"
             name="player-two"
             type="text"
+            value={playerTwo}
+            onChange={(e) => setPlayerTwo(e.target.value)}
             className="appearance-none rounded-none relative block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
             placeholder="Enter Player Two's Name"
           />
@@ -49,7 +61,14 @@ const TeacherControls = ({ onClick }) => {
         <button
           type="submit"
           className="group relative w-3/4 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          onClick={onClick}
+          onClick={() =>
+            onClick({
+              target: targetNumber,
+              gameNumbers: gameNumbers,
+              playerOne: playerOne,
+              playerTwo: playerTwo,
+            })
+          }
         >
           Create Game
         </button>

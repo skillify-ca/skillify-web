@@ -13,9 +13,17 @@ enum GameState {
 const GameBoard = () => {
   const [gameState, setGameState] = useState(GameState.MENU);
   const [winner, setWinner] = useState(null);
+  const [targetNumber, setTargetNumber] = useState(15);
+  const [gameNumbers, setGameNumbers] = useState("1,2,3,4,5,6,7,8,9");
+  const [playerOne, setPlayerOne] = useState("Player One");
+  const [playerTwo, setPlayerTwo] = useState("Player Two");
 
-  const onCreateGameClick = () => {
+  const onCreateGameClick = ({ target, gameNumbers, playerOne, playerTwo }) => {
     setGameState(GameState.GAME);
+    setTargetNumber(target);
+    setGameNumbers(gameNumbers);
+    setPlayerOne(playerOne);
+    setPlayerTwo(playerTwo);
   };
   const onExitClick = () => {
     setGameState(GameState.MENU);
@@ -23,7 +31,7 @@ const GameBoard = () => {
 
   const onGameOver = (player) => {
     setGameState(GameState.GAME_OVER);
-    setWinner(player)
+    setWinner(player);
   };
 
   const onRematchClick = () => {
@@ -46,7 +54,16 @@ const GameBoard = () => {
       />
     );
   } else {
-    component = <Container onExitClick={onExitClick} onGameOver={onGameOver} />; // Game
+    component = (
+      <Container
+        onExitClick={onExitClick}
+        onGameOver={onGameOver}
+        target={targetNumber}
+        gameNumbers={gameNumbers}
+        playerOne={playerOne}
+        playerTwo={playerTwo}
+      />
+    ); // Game
   }
   return (
     <div>
