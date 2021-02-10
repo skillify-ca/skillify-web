@@ -4,6 +4,7 @@ import { BoardSquare } from "./BoardSquare";
 import { NumberTile } from "./NumberTile";
 import { ItemTypes } from "./ItemTypes";
 import update from "immutability-helper";
+import Button from "./Button";
 
 interface BoardSquareState {
   accepts: string[];
@@ -31,7 +32,7 @@ export interface ContainerState {
   boxes: BoxSpec[];
 }
 
-export const Container = ({onExitClick, onGameOver}) => {
+export const Container = ({ onExitClick, onGameOver }) => {
   const TARGET = 15;
   const INITIAL_GAME_DATA = [
     { accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
@@ -141,9 +142,9 @@ export const Container = ({onExitClick, onGameOver}) => {
 
         if (isGameOver) {
           if (isPlayerOne) {
-            onGameOver("player1")
+            onGameOver("player1");
           } else {
-            onGameOver("player2")
+            onGameOver("player2");
           }
         } else {
           // if game is not over then next player's turn
@@ -157,12 +158,14 @@ export const Container = ({onExitClick, onGameOver}) => {
   const onResetClicked = () => {
     setBoardSquares(INITIAL_GAME_DATA);
     setDroppedBoxNames([]);
-    setGameState(GameState.NEW);
   };
 
   return (
     <div>
-      <button onClick={onExitClick}>Exit</button>
+      <div className="flex flex-row space-x-4">
+        <Button text="Exit" onClick={onExitClick} />
+        <Button text="Reset" onClick={onResetClicked} />
+      </div>
       <h1>
         Player Turn: Player
         {isPlayerOne ? "One" : "Two"}
@@ -191,7 +194,6 @@ export const Container = ({onExitClick, onGameOver}) => {
             />
           ))}
       </div>
-      <button onClick={onResetClicked}>Reset</button>
     </div>
   );
 };
