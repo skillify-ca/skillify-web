@@ -21,6 +21,30 @@ export default function Outline(props) {
             (Sum 10)
           </div>
         </Link>
+        <Link href="/addition10">
+          <div className="gap-0 divide-y-2 divide-yellow-800 bg-blue-500 p-8 text-center">
+            <p>Addition</p> 
+            (Sum 20)
+          </div>
+        </Link>
+        <Link href="/addition10">
+          <div className="gap-0 divide-y-2 divide-yellow-800 bg-red-500 p-8 text-center">
+            <p>Addition</p> 
+            (Sum 30)
+          </div>
+        </Link>
+        <Link href="/addition10">
+          <div className="gap-0 divide-y-2 divide-yellow-800 bg-yellow-500 p-8 text-center">
+            <p>Addition</p> 
+            (Sum 40)
+          </div>
+        </Link>
+        <Link href="/addition10">
+          <div className="gap-0 divide-y-2 divide-yellow-800 bg-pink-500 p-8 text-center">
+            <p>Addition</p> 
+            (Sum 50)
+          </div>
+        </Link>
         <Link href="/games/TicTacToe">
         <div className="gap-0 divide-y-2 divide-yellow-800 bg-purple-500 p-8 text-center">
             Tic Tac Toe

@@ -45,8 +45,6 @@ const Addition10 = () => {
     <div className="py-16 m-8 space-y-8 bg-white flex flex-col shadow-lg justify-center items-center">
       <p>
         Question {index + 1} / {length}
-        {correctGuesses}
-        {length}
       </p>
       <div className="p-16 bg-purple-300 text-2xl">{data[index].text}</div>
       <input
