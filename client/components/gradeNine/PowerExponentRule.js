@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Exponent from "./Exponent";
 import Column from "./Column";
 import { DragDropContext } from "react-beautiful-dnd";
 

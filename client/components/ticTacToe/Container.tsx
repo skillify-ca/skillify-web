@@ -4,7 +4,7 @@ import { BoardSquare } from "./BoardSquare";
 import { NumberTile } from "./NumberTile";
 import { ItemTypes } from "./ItemTypes";
 import update from "immutability-helper";
-import Button from "./Button";
+import Button from "../Button";
 
 interface BoardSquareState {
   accepts: string[];

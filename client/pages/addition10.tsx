@@ -8,7 +8,7 @@ const Addition10 = () => {
   return (
     <div>
       <div className="p-4">
-        
+        Quiz
       </div>
     </div>
   );

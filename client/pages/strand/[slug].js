@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import styles from "../../styles/Home.module.css";
 import apiData from "../api/data.json";
 import ProgressBar from "../../components/ProgressBar";
 import Navbar from "../../components/Navbar";

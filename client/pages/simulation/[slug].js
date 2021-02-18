@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import ExponentRule from "../../components/ExponentRule";
-import EvaluateExponent from "../../components/EvaluateExponent";
-import LengthAreaVolumeExponents from "../../components/LengthAreaVolumeExponents";
-import PowerExponentRule from "../../components/PowerExponentRule";
+import ExponentRule from "../../components/gradeNine/ExponentRule";
+import EvaluateExponent from "../../components/gradeNine/EvaluateExponent";
+import LengthAreaVolumeExponents from "../../components/gradeNine/LengthAreaVolumeExponents";
+import PowerExponentRule from "../../components/gradeNine/PowerExponentRule";
 
 const Strand = () => {
   const router = useRouter();

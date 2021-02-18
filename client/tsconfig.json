@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "components/ItemTypes.js", "components/Grid.js", "components/GridContext.js"  ],
+, "components/ticTacToe/ItemTypes.js", "components/Grid.js", "components/GridContext.js"  ],
   "exclude": [
     "node_modules"
   ]
