@@ -15,8 +15,14 @@ export default function Outline(props) {
     <div>
       <div className="text-xl text-center p-4">Nulakam</div>
       <div className="grid grid-cols-2 gap-4">
+        <Link href="/addition10">
+          <div className="gap-0 divide-y-2 divide-yellow-800 bg-green-500 p-8 text-center">
+            <p>Addition</p> 
+            (Sum 10)
+          </div>
+        </Link>
         <Link href="/games/TicTacToe">
-          <div className="bg-purple-500 text-center">
+        <div className="gap-0 divide-y-2 divide-yellow-800 bg-purple-500 p-8 text-center">
             Tic Tac Toe
           </div>
         </Link>

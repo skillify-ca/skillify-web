@@ -1,0 +1,28 @@
+{
+    "questions": [
+        {
+            "text": "1 + 1 =",
+            "answer": 2
+        },
+        {
+            "text": "1 + 2 =",
+            "answer": 2
+        },
+        {
+            "text": "3 + 5 =",
+            "answer": 8
+        },
+        {
+            "text": "4 + 4 =",
+            "answer": 8
+        },
+        {
+            "text": "6 + 4 =",
+            "answer": 10
+        },
+        {
+            "text": "6 + 3 =",
+            "answer": 9
+        }
+    ]
+}
