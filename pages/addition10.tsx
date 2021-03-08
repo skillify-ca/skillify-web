@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Modal, ModalTransition } from "react-simple-hook-modal";
 import apiData from "../pages/api/addition10.json";
 import "react-simple-hook-modal/dist/styles.css";
+import Navbar from "../components/Navbar";
 
 const Addition10 = () => {
   const [index, setIndex] = useState(0);
@@ -68,7 +69,9 @@ const Addition10 = () => {
   );
 
   return (
-    <div className="container">
+    <div>
+      <Navbar />
+
       <div className="pt-4">{component}</div>
       <Modal
         id="game-over-model"
