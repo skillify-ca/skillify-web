@@ -18,7 +18,9 @@ export default function Outline(props) {
         <Link href="/addition10">
           <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
             <p>Comparison</p>
+            <div className="w-16 h-16 m-4">
             <img classname="h-4" src="/images/skills/comparison.png" alt="" />
+            </div>
           </div>
         </Link>
         <Link href="/addition10">
@@ -62,7 +64,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-yellow-500 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
             <p>Fractions</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/fractions.jpeg" alt="" />
@@ -70,7 +72,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-yellow-500 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
             <p>Shapes</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/shapes.png" alt="" />
@@ -78,7 +80,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-yellow-500 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
             <p>Transformations</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/symmetry.gif" alt="" />
@@ -86,7 +88,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-yellow-500 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
             <p>Graphs</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/graph.png" alt="" />
@@ -94,7 +96,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-yellow-500 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
             <p>Stats</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/dice.png" alt="" />
@@ -102,7 +104,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-yellow-500 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
             <p>Measurement</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/measurement.jpeg" alt="" />
@@ -110,7 +112,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0 bg-gray-400 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
             <p>Money</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/lock.png" alt="" />
@@ -118,7 +120,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-gray-400 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
             <p>Patterns</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/lock.png" alt="" />
@@ -126,7 +128,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-gray-400 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
             <p>Time</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/lock.png" alt="" />
@@ -134,7 +136,15 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-gray-400 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+            <p>Negatives</p>
+            <div className="w-16 h-16 m-4">
+              <img src="/images/skills/lock.png" alt="" />
+            </div>
+          </div>
+        </Link>
+        <Link href="/addition10">
+          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
             <p>Variables</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/lock.png" alt="" />
@@ -142,7 +152,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-gray-400 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
             <p>Decimals</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/lock.png" alt="" />
@@ -150,7 +160,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-gray-400 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
             <p>Percents</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/lock.png" alt="" />
@@ -158,7 +168,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-gray-400 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
             <p>Ratios</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/lock.png" alt="" />
@@ -166,7 +176,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-gray-400 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
             <p>Exponents</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/lock.png" alt="" />
@@ -174,7 +184,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-gray-400 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
             <p>Functions</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/lock.png" alt="" />
@@ -182,7 +192,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-gray-400 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
             <p>Number Theory</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/lock.png" alt="" />
@@ -190,7 +200,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-gray-400 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
             <p>Pythagorean Theorem</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/lock.png" alt="" />
@@ -198,7 +208,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-gray-400 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
             <p>Functions</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/lock.png" alt="" />
@@ -206,7 +216,7 @@ export default function Outline(props) {
           </div>
         </Link>
         <Link href="/addition10">
-          <div className="gap-0  bg-gray-400 p-8 text-center">
+          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
             <p>Polynomials</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/lock.png" alt="" />
@@ -224,7 +234,7 @@ export default function Outline(props) {
         <Link href="/grade-nine">
           <div className="gap-0 ">
             <div className="p-8 bg-yellow-500 text-center">
-              Grade 9 Math (MPM1D1)
+              Grade 9 EQAO
             </div>
           </div>
         </Link>
