@@ -1,0 +1,68 @@
+{
+  "addition": {
+    "levels": [
+      {
+        "grade": "1",
+        "questions": [
+          {
+            "text": "1 + 1 =",
+            "answer": 2
+          },
+          {
+            "text": "1 + 2 =",
+            "answer": 3
+          },
+          {
+            "text": "3 + 5 =",
+            "answer": 8
+          },
+          {
+            "text": "4 + 4 =",
+            "answer": 8
+          },
+          {
+            "text": "3 + 4 =",
+            "answer": 7
+          },
+          {
+            "text": "6 + 3 =",
+            "answer": 9
+          }
+        ]
+      }
+    ]
+  },
+  "subtraction": {
+    "levels": [
+      {
+        "grade": "1",
+        "questions": [
+          {
+            "text": "5 - 1 =",
+            "answer": 4
+          },
+          {
+            "text": "3 - 2 =",
+            "answer": 1
+          },
+          {
+            "text": "5 - 5 =",
+            "answer": 0
+          },
+          {
+            "text": "4 - 1 =",
+            "answer": 3
+          },
+          {
+            "text": "3 - 3 =",
+            "answer": 0
+          },
+          {
+            "text": "6 - 3 =",
+            "answer": 3
+          }
+        ]
+      }
+    ]
+  }
+}

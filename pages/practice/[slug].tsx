@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Modal, ModalTransition } from "react-simple-hook-modal";
-import apiData from "../pages/api/addition10.json";
+import apiData from "../api/practice.json";
 import "react-simple-hook-modal/dist/styles.css";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 
-const Addition10 = () => {
+const Quiz = ({ slug }) => {
   const [index, setIndex] = useState(0);
   const [guess, setGuess] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [isGameOver, setGameOver] = useState(false);
   const inputElement = useRef(null);
 
-  const data = apiData["questions"];
+  const data = apiData[slug].levels[0].questions;
   const length = data.length;
 
   useEffect(() => {
@@ -95,4 +95,22 @@ const Addition10 = () => {
   );
 };
 
-export default Addition10;
+export async function getStaticProps({ params }) {
+  return {
+    props: {
+      slug: params.slug,
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { slug: "addition" } },
+      { params: { slug: "subtraction" } },
+    ],
+    fallback: true,
+  };
+}
+
+export default Quiz;
