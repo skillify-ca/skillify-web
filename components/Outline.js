@@ -47,7 +47,7 @@ export default function Outline(props) {
             </div>
           </div>
         </Link>
-        <Link href="/practice/addition">
+        <Link href="/practice/multiplication">
           <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
             <p>Multiplication</p>
             <div className="w-16 h-16 m-4">

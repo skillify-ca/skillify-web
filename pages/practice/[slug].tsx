@@ -108,6 +108,7 @@ export async function getStaticPaths() {
     paths: [
       { params: { slug: "addition" } },
       { params: { slug: "subtraction" } },
+      { params: { slug: "multiplication" } },
     ],
     fallback: true,
   };
