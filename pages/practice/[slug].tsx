@@ -11,7 +11,7 @@ const Quiz = ({ slug }) => {
   const [isGameOver, setGameOver] = useState(false);
   const inputElement = useRef(null);
 
-  let data = [];
+  let data = [{ text: "", answer: 0 }];
   if (apiData[slug] != null && apiData[slug] != undefined) {
     data = apiData[slug].levels[0].questions;
   }
