@@ -46,6 +46,15 @@ const Quiz = ({ slug }) => {
     setGameOver(false);
   };
 
+  const handleKeypress = (e) => {
+    //it triggers by pressing the enter key
+    console.log("KEY")
+    console.log(e);
+    if (e.charCode === 13) {
+      submitGuess();
+    }
+  };
+
   const component = (
     <div className="py-16 m-8 space-y-8 bg-white flex flex-col shadow-lg justify-center items-center">
       <p>
@@ -61,14 +70,16 @@ const Quiz = ({ slug }) => {
         className="appearance-none rounded-none relative block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
         placeholder="Enter Answer"
         ref={inputElement}
+        onKeyPress={handleKeypress}
       />
-      <button
-        type="submit"
-        className="group relative w-3/4 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        onClick={submitGuess}
-      >
-        Submit
-      </button>
+      <form onSubmit={submitGuess}>
+        <button
+          type="submit"
+          className="group relative w-3/4 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          Submit
+        </button>
+      </form>
     </div>
   );
 
