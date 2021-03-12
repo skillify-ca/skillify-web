@@ -24,7 +24,8 @@ const Quiz = ({ slug }) => {
     }
   }, []);
 
-  const submitGuess = () => {
+  const submitGuess = (e) => {
+    e.preventDefault();
     if (Number.parseInt(guess) == data[index].answer) {
       setCorrectGuesses(correctGuesses + 1);
     }
@@ -49,7 +50,7 @@ const Quiz = ({ slug }) => {
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
-      submitGuess();
+      submitGuess(e);
     }
   };
 
@@ -61,7 +62,7 @@ const Quiz = ({ slug }) => {
       <div className="p-16 bg-purple-300 text-2xl">{data[index].text}</div>
       <input
         id="guess"
-        type="text"
+        type="number"
         autoComplete="off"
         value={guess}
         onChange={(e) => setGuess(e.target.value)}
@@ -73,7 +74,6 @@ const Quiz = ({ slug }) => {
       <form onSubmit={submitGuess}>
         <button
           type="submit"
-          onClick={submitGuess}
           className="group relative w-3/4 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           Submit
