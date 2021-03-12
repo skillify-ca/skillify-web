@@ -48,8 +48,6 @@ const Quiz = ({ slug }) => {
 
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
-    console.log("KEY");
-    console.log(e);
     if (e.charCode === 13) {
       submitGuess();
     }
@@ -72,13 +70,15 @@ const Quiz = ({ slug }) => {
         ref={inputElement}
         onKeyPress={handleKeypress}
       />
-      <button
-        type="submit"
-        className="group relative w-3/4 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        onClick={submitGuess}
-      >
-        Submit
-      </button>
+      <form onSubmit={submitGuess}>
+        <button
+          type="submit"
+          onClick={submitGuess}
+          className="group relative w-3/4 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          Submit
+        </button>
+      </form>
     </div>
   );
 
