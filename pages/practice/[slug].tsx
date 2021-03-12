@@ -63,7 +63,7 @@ const Quiz = ({ slug }) => {
       <div className="p-16 bg-purple-300 text-2xl">{data[index].text}</div>
       <input
         id="guess"
-        type="number"
+        type="text"
         autoComplete="off"
         value={guess}
         onChange={(e) => setGuess(e.target.value)}
