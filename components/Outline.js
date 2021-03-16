@@ -64,8 +64,8 @@ export default function Outline(props) {
             </div>
             <p className="mb-4">Level 1</p>
             <div className="flex">
-            <button className="bg-blue-400 p-2 w-16 m-2">Play</button>
-            <button className="bg-green-400 p-2 w-16 m-2">Study</button>
+              <button className="bg-blue-400 p-2 w-16 m-2">Play</button>
+              <button className="bg-green-400 p-2 w-16 m-2">Study</button>
             </div>
           </div>
         </Modal>
@@ -82,14 +82,6 @@ export default function Outline(props) {
             <p>Subtraction</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/subtraction.png" alt="" />
-            </div>
-          </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
-            <p>Mixed Operations</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/mixed.gif" alt="" />
             </div>
           </div>
         </Link>
@@ -117,158 +109,132 @@ export default function Outline(props) {
             </div>
           </div>
         </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
-            <p>Shapes</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/shapes.png" alt="" />
-            </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Mixed Operations</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
-            <p>Transformations</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/symmetry.gif" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Shapes</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
-            <p>Graphs</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/graph.png" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Angles</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
-            <p>Stats</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/dice.png" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Transformations</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
-            <p>Measurement</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/measurement.jpeg" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Graphs</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-            <p>Money</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Stats</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-            <p>Patterns</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Measurement</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-            <p>Time</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Money</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-            <p>Negatives</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Patterns</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-            <p>Variables</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Time</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-            <p>Decimals</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Negatives</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-            <p>Percents</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Variables</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-            <p>Ratios</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Decimals</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-            <p>Exponents</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Percents</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-            <p>Functions</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Ratios</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-            <p>Number Theory</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Exponents</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-            <p>Pythagorean Theorem</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Functions</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-            <p>Functions</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Number Theory</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-            <p>Polynomials</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Pythagorean Theorem</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
           </div>
-        </Link>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Functions</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
+          </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Polynomials</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
+          </div>
+        </div>
         <div className="col-span-2">
           <p className="text-xl">Experimental</p>
         </div>
