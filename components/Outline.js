@@ -1,28 +1,74 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import Modal from "react-modal";
 import ProgressBar from "./ProgressBar";
 import Navbar from "./Navbar";
 import apiData from "../pages/api/data.json";
 
+Modal.setAppElement("#root");
+
 export default function Outline(props) {
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      padding: "16px",
+    },
+  };
+
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
   /**
    * increment / decrement power button
    * combine one exponent into two exponents
    * break two exponents into one
    */
   const data = apiData["outline"];
+  var subtitle;
   return (
     <div>
       <div className="text-xl text-center p-4">Math Skill Tree</div>
       <div className="grid grid-cols-2 gap-4">
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
-            <p>Comparison</p>
-            <div className="w-16 h-16 m-4">
+        <div
+          onClick={openModal}
+          id="root"
+          className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center"
+        >
+          <p>Comparison</p>
+          <div className="w-16 h-16 m-4">
             <img src="/images/skills/comparison.png" alt="" />
+          </div>
+        </div>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <button onClick={closeModal}>X</button>
+          <div className="p-4 flex flex-col items-center">
+            <p>Comparison</p>
+            <div className="flex m-4">
+              <img src={"/images/bronze-star.png"} className="w-8" />
+              <img src={"/images/silver-star.png"} className="w-8" />
+            </div>
+            <p className="mb-4">Level 1</p>
+            <div className="flex">
+            <button className="bg-blue-400 p-2 w-16 m-2">Play</button>
+            <button className="bg-green-400 p-2 w-16 m-2">Study</button>
             </div>
           </div>
-        </Link>
+        </Modal>
         <Link href="/practice/addition">
           <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
             <p>Addition</p>
@@ -233,9 +279,7 @@ export default function Outline(props) {
         </Link>
         <Link href="/grade-nine">
           <div className="gap-0 ">
-            <div className="p-8 bg-yellow-500 text-center">
-              Grade 9 EQAO
-            </div>
+            <div className="p-8 bg-yellow-500 text-center">Grade 9 EQAO</div>
           </div>
         </Link>
       </div>
