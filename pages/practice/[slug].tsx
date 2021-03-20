@@ -13,9 +13,20 @@ const Quiz = ({ slug }) => {
   const [isGameOver, setGameOver] = useState(false);
   const inputElement = useRef(null);
 
+  let currentLevel = 0;
+  let levelString = "Easy";
+
   let data = [{ text: "", answer: 0 }];
   if (apiData[slug] != null && apiData[slug] != undefined) {
-    data = apiData[slug].levels[0].questions;
+    if (query.level != null && query.level != undefined) {
+      currentLevel = Number.parseInt(query.level as string) - 1;
+      data = apiData[slug].levels[currentLevel].questions;
+      if (currentLevel == 1) {
+        levelString = "Medium";
+      } else if (currentLevel == 2) {
+        levelString = "Hard";
+      }
+    }
   }
 
   const length = data.length;
@@ -58,9 +69,9 @@ const Quiz = ({ slug }) => {
 
   const component = (
     <div className="py-16 m-8 space-y-8 bg-white flex flex-col shadow-lg justify-center items-center">
-      <p>Level: {query.level}</p>
-      <p>
-        Question {index + 1} / {length}
+      <p className="text-lg m-4">Level: {levelString}</p>
+      <p className="text-lg m-4">
+        Question: {index + 1} / {length}
       </p>
       <div className="p-16 bg-purple-300 text-2xl">{data[index].text}</div>
       <input
@@ -123,7 +134,7 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { slug: "addition" } },
+      { params: { slug: "addition", level: "1" } },
       { params: { slug: "subtraction" } },
       { params: { slug: "multiplication" } },
     ],
