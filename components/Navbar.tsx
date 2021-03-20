@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { useState } from "react";
+import { signIn, useSession } from "next-auth/client";
 
 export default function Navbar(props) {
   const [active, setActive] = useState(false);
   const [profieMenuActive, setProfileMenuActive] = useState(false);
+  const [session, loading] = useSession();
 
   const handleClick = () => {
     setActive(!active);
@@ -92,7 +94,6 @@ export default function Navbar(props) {
                 >
                   Dashboard
                 </a>
-       
               </div>
             </div>
           </div>
@@ -100,19 +101,30 @@ export default function Navbar(props) {
             {/* <!-- Profile dropdown --> */}
             <div className="ml-3 relative">
               <div>
-                <button
-                  className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                  id="user-menu"
-                  aria-haspopup="true"
-                  onClick={handleProfileClick}
-                >
-                  <span className="sr-only">Open user menu</span>
-                  <img
-                    className="h-8 w-8 rounded-full"
-                    src="/images/avatar.png"
-                    alt=""
-                  />
-                </button>
+                <div>
+                  {!session && (
+                    <>
+                      <button onClick={() => signIn()}>
+                        <p className="text-white">Sign in</p>
+                      </button>
+                    </>
+                  )}
+                  {session && (
+                    <button
+                      className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                      id="user-menu"
+                      aria-haspopup="true"
+                      onClick={handleProfileClick}
+                    >
+                      <span className="sr-only">Open user menu</span>
+                      <img
+                        className="h-8 w-8 rounded-full"
+                        src={session.user.image}
+                        alt=""
+                      />
+                    </button>
+                  )}
+                </div>
               </div>
               {/* <!--
                 Profile dropdown panel, show/hide based on dropdown state.
@@ -148,7 +160,7 @@ export default function Navbar(props) {
                     Settings
                   </a>
                   <a
-                    href="#"
+                    href="/api/auth/signout"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     role="menuitem"
                   >
@@ -176,7 +188,6 @@ export default function Navbar(props) {
           >
             Dashboard
           </a>
-
         </div>
       </div>
     </nav>

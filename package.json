@@ -13,6 +13,7 @@
     "graphql": "^15.5.0",
     "immutability-helper": "^3.1.1",
     "next": "latest",
+    "next-auth": "^3.13.1",
     "postcss": "^8.1.10",
     "react": "^17.0.1",
     "react-beautiful-dnd": "^13.0.0",

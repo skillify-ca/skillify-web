@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import ProgressBar from "./ProgressBar";
 import Navbar from "./Navbar";
 import apiData from "../pages/api/data.json";
+import { signIn, useSession } from "next-auth/client";
 
 Modal.setAppElement("#root");
 
@@ -20,6 +21,7 @@ export default function Outline(props) {
     },
   };
 
+  const [session, loading] = useSession();
   const [modalIsOpen, setIsOpen] = React.useState(false);
   function openModal() {
     setIsOpen(true);
