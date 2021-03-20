@@ -8,27 +8,7 @@ import { signIn, useSession } from "next-auth/client";
 
 export default function Outline(props) {
   const [session, loading] = useSession();
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [modalTitle, setModalTitle] = React.useState("");
-  const [levelSelectOpen, setIsLevelSelectOpen] = React.useState(false);
-  const [level, setLevel] = React.useState("2");
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-    setModalTitle("");
-  }
-  function onLevelSelect(e) {
-    setLevel(e.target.value);
-  }
-
-  function onSkillSelect() {
-    setModalTitle();
-    openModal();
-  }
+  
   /**
    * increment / decrement power button
    * combine one exponent into two exponents
