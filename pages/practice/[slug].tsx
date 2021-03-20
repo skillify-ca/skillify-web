@@ -12,7 +12,9 @@ const Quiz = ({ slug }) => {
   const [guess, setGuess] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [isGameOver, setGameOver] = useState(false);
+  const [secondsElapsed, setSecondsElapsed] = useState(0);
   const inputElement = useRef(null);
+  const [interval, setMyInterval] = useState(null);
 
   let currentLevel = 0;
   let levelString = "Easy";
@@ -38,6 +40,15 @@ const Quiz = ({ slug }) => {
     }
   }, []);
 
+  useEffect(() => {
+    var newInterval = setInterval(() => {
+      setSecondsElapsed((secondsElapsed) => secondsElapsed + 1);
+    }, 1000);
+    setMyInterval(newInterval);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const submitGuess = (e) => {
     e.preventDefault();
     if (Number.parseInt(guess) == data[index].answer) {
@@ -50,6 +61,8 @@ const Quiz = ({ slug }) => {
         inputElement.current.focus();
       }
     } else {
+      clearInterval(interval);
+      setMyInterval(null);
       setGameOver(true);
     }
   };
@@ -59,6 +72,11 @@ const Quiz = ({ slug }) => {
     setCorrectGuesses(0);
     setGuess("");
     setGameOver(false);
+    setSecondsElapsed(0);
+    var newInterval = setInterval(() => {
+      setSecondsElapsed((secondsElapsed) => secondsElapsed + 1);
+    }, 1000);
+    setMyInterval(newInterval);
   };
 
   const handleKeypress = (e) => {
@@ -108,7 +126,7 @@ const Quiz = ({ slug }) => {
         transition={ModalTransition.SCALE}
       >
         <div className="py-16 m-8 space-y-8 bg-white flex flex-col justify-center items-center">
-          <p className="text-2xl">Speed </p>1 minute 24 seconds
+          <p className="text-2xl">Speed </p> {secondsElapsed} seconds
           <p className="text-2xl">Accuracy</p>
           {Math.round((100 * correctGuesses) / length)}%
           <button
