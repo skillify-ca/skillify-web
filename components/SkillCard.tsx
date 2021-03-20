@@ -81,7 +81,7 @@ const SkillCard = ({ title, image, disabled, link }: SkillCardProps) => {
           </select>
 
           <div className="flex">
-            <Link href={link}>
+            <Link href={link + "?level=" + level}>
               <button className="bg-blue-400 p-2 w-16 m-2">Play</button>
             </Link>
             <button className="bg-green-400 p-2 w-16 m-2">Study</button>

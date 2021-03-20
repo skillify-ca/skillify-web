@@ -3,8 +3,10 @@ import { Modal, ModalTransition } from "react-simple-hook-modal";
 import apiData from "../api/practice.json";
 import "react-simple-hook-modal/dist/styles.css";
 import Navbar from "../../components/Navbar";
+import { useRouter } from "next/router";
 
 const Quiz = ({ slug }) => {
+  const { query } = useRouter();
   const [index, setIndex] = useState(0);
   const [guess, setGuess] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState(0);
@@ -56,6 +58,7 @@ const Quiz = ({ slug }) => {
 
   const component = (
     <div className="py-16 m-8 space-y-8 bg-white flex flex-col shadow-lg justify-center items-center">
+      <p>Level: {query.level}</p>
       <p>
         Question {index + 1} / {length}
       </p>
