@@ -4,6 +4,7 @@ import apiData from "../api/practice.json";
 import "react-simple-hook-modal/dist/styles.css";
 import Navbar from "../../components/Navbar";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -110,13 +111,11 @@ const Quiz = ({ slug }) => {
           <p className="text-2xl">Speed </p>1 minute 24 seconds
           <p className="text-2xl">Accuracy</p>
           {Math.round((100 * correctGuesses) / length)}%
-          <button
-            type="submit"
-            className="group relative w-3/4 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            onClick={onCloseGameOver}
-          >
-            OK
-          </button>
+          <Link href="/">
+            <button className="group relative w-3/4 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              OK
+            </button>
+          </Link>
         </div>
       </Modal>
     </div>

@@ -20,8 +20,6 @@ const customStyles = {
   },
 };
 const SkillCard = ({ title, image, disabled, link }: SkillCardProps) => {
-  Modal.setAppElement(`#root`);
-
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [level, setLevel] = React.useState("1");
   function openModal() {
@@ -38,7 +36,6 @@ const SkillCard = ({ title, image, disabled, link }: SkillCardProps) => {
   return (
     <div>
       <div
-        id="root"
         className={`gap-0 flex flex-col items-center ${
           disabled ? "bg-gray-400" : "bg-yellow-500"
         } p-8 text-center`}
@@ -58,6 +55,7 @@ const SkillCard = ({ title, image, disabled, link }: SkillCardProps) => {
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
+        ariaHideApp={false}
       >
         <button onClick={closeModal}>X</button>
         <div className="p-4 flex flex-col items-center">
