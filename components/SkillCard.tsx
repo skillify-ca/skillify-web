@@ -6,6 +6,7 @@ export type SkillCardProps = {
   title: string;
   image?: string;
   disabled?: boolean;
+  link: string;
 };
 const customStyles = {
   content: {
@@ -18,7 +19,7 @@ const customStyles = {
     padding: "16px",
   },
 };
-const SkillCard = ({ title, image, disabled }: SkillCardProps) => {
+const SkillCard = ({ title, image, disabled, link }: SkillCardProps) => {
   Modal.setAppElement(`#root`);
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -80,7 +81,7 @@ const SkillCard = ({ title, image, disabled }: SkillCardProps) => {
           </select>
 
           <div className="flex">
-            <Link href="/practice/addition">
+            <Link href={link}>
               <button className="bg-blue-400 p-2 w-16 m-2">Play</button>
             </Link>
             <button className="bg-green-400 p-2 w-16 m-2">Study</button>
