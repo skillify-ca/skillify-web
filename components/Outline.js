@@ -2,27 +2,14 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Modal from "react-modal";
 import ProgressBar from "./ProgressBar";
-import Navbar from "./Navbar";
+import SkillCard from "./SkillCard";
 import apiData from "../pages/api/data.json";
 import { signIn, useSession } from "next-auth/client";
 
-Modal.setAppElement("#root");
-
 export default function Outline(props) {
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      padding: "16px",
-    },
-  };
-
   const [session, loading] = useSession();
   const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalTitle, setModalTitle] = React.useState("");
   const [levelSelectOpen, setIsLevelSelectOpen] = React.useState(false);
   const [level, setLevel] = React.useState("2");
 
@@ -32,9 +19,15 @@ export default function Outline(props) {
 
   function closeModal() {
     setIsOpen(false);
+    setModalTitle("");
   }
   function onLevelSelect(e) {
-    setLevel(e.target.value)
+    setLevel(e.target.value);
+  }
+
+  function onSkillSelect() {
+    setModalTitle();
+    openModal();
   }
   /**
    * increment / decrement power button
@@ -47,88 +40,17 @@ export default function Outline(props) {
     <div>
       <div className="text-xl text-center p-4">Math Skill Tree</div>
       <div className="grid grid-cols-2 gap-4">
-        <div
-          onClick={openModal}
-          id="root"
-          className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center"
-        >
-          <p>Comparison</p>
+        <SkillCard title="Addition" image="/images/skills/addition.png" link="/practice/addition"/>
+        <SkillCard title="Subtraction" image="/images/skills/subtraction.png" link="/practice/subtraction"/>
+        <SkillCard title="Multiplication" image="/images/skills/multiplication.png" link="/practice/multiplication"/>
+        <SkillCard title="Division" image="/images/skills/division.png" link="/practice/addition"/>
+        <SkillCard title="Fractions" image="/images/skills/fractions.jpeg" link="/practice/addition"/>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Money</p>
           <div className="w-16 h-16 m-4">
-            <img src="/images/skills/comparison.png" alt="" />
+            <img src="/images/skills/lock.png" alt="" />
           </div>
         </div>
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          <button onClick={closeModal}>X</button>
-          <div className="p-4 flex flex-col items-center">
-            <p>Comparison</p>
-            <div className="flex m-4">
-              <img src={"/images/bronze-star.png"} className="w-8" />
-              <img src={"/images/silver-star.png"} className="w-8" />
-            </div>
-            <p className="mb-4">Level {level}</p>
-
-            <select
-              class="block w-52 text-gray-700 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-              name="level"
-              value={level}
-              onChange={onLevelSelect}
-            >
-              <option value="">Select Level</option>
-              <option value="1">Level 1</option>
-              <option value="2">Level 2</option>
-            </select>
-
-            <div className="flex">
-              <button className="bg-blue-400 p-2 w-16 m-2">Play</button>
-              <button className="bg-green-400 p-2 w-16 m-2">Study</button>
-            </div>
-          </div>
-        </Modal>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
-            <p>Addition</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/addition.png" alt="" />
-            </div>
-          </div>
-        </Link>
-        <Link href="/practice/subtraction">
-          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
-            <p>Subtraction</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/subtraction.png" alt="" />
-            </div>
-          </div>
-        </Link>
-        <Link href="/practice/multiplication">
-          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
-            <p>Multiplication</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/multiplication.png" alt="" />
-            </div>
-          </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
-            <p>Division</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/division.png" alt="" />
-            </div>
-          </div>
-        </Link>
-        <Link href="/practice/addition">
-          <div className="gap-0 flex flex-col items-center  bg-yellow-500 p-8 text-center">
-            <p>Fractions</p>
-            <div className="w-16 h-16 m-4">
-              <img src="/images/skills/fractions.jpeg" alt="" />
-            </div>
-          </div>
-        </Link>
         <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
           <p>Mixed Operations</p>
           <div className="w-16 h-16 m-4">
@@ -167,12 +89,6 @@ export default function Outline(props) {
         </div>
         <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
           <p>Measurement</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Money</p>
           <div className="w-16 h-16 m-4">
             <img src="/images/skills/lock.png" alt="" />
           </div>
