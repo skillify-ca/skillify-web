@@ -86,6 +86,10 @@ const Quiz = ({ slug }) => {
     }
   };
 
+  const getAccuracy = () => {
+    return Math.round((100 * correctGuesses) / length);
+  };
+
   const component = (
     <div className="py-16 m-8 space-y-8 bg-white flex flex-col shadow-lg justify-center items-center">
       <p className="text-lg m-4">Level: {levelString}</p>
@@ -126,9 +130,21 @@ const Quiz = ({ slug }) => {
         transition={ModalTransition.SCALE}
       >
         <div className="py-16 m-8 space-y-8 bg-white flex flex-col justify-center items-center">
+          <div className="flex m-4">
+            {getAccuracy() > 0 && (
+              <img src={"/images/bronze-star.png"} className="w-16" />
+            )}
+            {getAccuracy() > 30 && (
+              <img src={"/images/silver-star.png"} className="w-16" />
+            )}
+            {getAccuracy() > 70 && (
+              <img src={"/images/gold-star.png"} className="w-16" />
+            )}
+            
+          </div>
           <p className="text-2xl">Speed </p> {secondsElapsed} seconds
           <p className="text-2xl">Accuracy</p>
-          {Math.round((100 * correctGuesses) / length)}%
+          {getAccuracy()}%
           <button
             type="submit"
             className="group relative w-3/4 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

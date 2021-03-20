@@ -60,10 +60,6 @@ const SkillCard = ({ title, image, disabled, link }: SkillCardProps) => {
         <button onClick={closeModal}>X</button>
         <div className="p-4 flex flex-col items-center">
           <p>{title}</p>
-          <div className="flex m-4">
-            <img src={"/images/bronze-star.png"} className="w-8" />
-            <img src={"/images/silver-star.png"} className="w-8" />
-          </div>
           <p className="mb-4">Level {level}</p>
 
           <select
