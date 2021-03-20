@@ -23,12 +23,18 @@ export default function Outline(props) {
 
   const [session, loading] = useSession();
   const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [levelSelectOpen, setIsLevelSelectOpen] = React.useState(false);
+  const [level, setLevel] = React.useState("2");
+
   function openModal() {
     setIsOpen(true);
   }
 
   function closeModal() {
     setIsOpen(false);
+  }
+  function onLevelSelect(e) {
+    setLevel(e.target.value)
   }
   /**
    * increment / decrement power button
@@ -64,7 +70,19 @@ export default function Outline(props) {
               <img src={"/images/bronze-star.png"} className="w-8" />
               <img src={"/images/silver-star.png"} className="w-8" />
             </div>
-            <p className="mb-4">Level 1</p>
+            <p className="mb-4">Level {level}</p>
+
+            <select
+              class="block w-52 text-gray-700 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+              name="level"
+              value={level}
+              onChange={onLevelSelect}
+            >
+              <option value="">Select Level</option>
+              <option value="1">Level 1</option>
+              <option value="2">Level 2</option>
+            </select>
+
             <div className="flex">
               <button className="bg-blue-400 p-2 w-16 m-2">Play</button>
               <button className="bg-green-400 p-2 w-16 m-2">Study</button>
