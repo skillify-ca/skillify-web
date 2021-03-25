@@ -8,7 +8,7 @@ import { signIn, useSession } from "next-auth/client";
 
 export default function Outline(props) {
   const [session, loading] = useSession();
-  
+
   /**
    * increment / decrement power button
    * combine one exponent into two exponents
@@ -18,15 +18,45 @@ export default function Outline(props) {
   var subtitle;
   return (
     <div>
-      <div className="text-xl text-center p-4">Math Skill Tree</div>
       <div className="grid grid-cols-2 gap-4">
-        <SkillCard title="Addition" image="/images/skills/addition.png" link="/practice/addition"/>
-        <SkillCard title="Subtraction" image="/images/skills/subtraction.png" link="/practice/subtraction"/>
-        <SkillCard title="Multiplication" image="/images/skills/multiplication.png" link="/practice/multiplication"/>
-        <SkillCard title="Division" image="/images/skills/division.png" link="/practice/addition"/>
-        <SkillCard title="Fractions" image="/images/skills/fractions.jpeg" link="/practice/addition"/>
+        <div className="text-xl text-center p-4 col-span-2">
+          Basic Operations
+        </div>
+        <SkillCard
+          title="Addition"
+          image="/images/skills/addition.png"
+          link="/practice/addition"
+        />
+        <SkillCard
+          title="Subtraction"
+          image="/images/skills/subtraction.png"
+          link="/practice/subtraction"
+        />
+        <SkillCard
+          title="Multiplication"
+          image="/images/skills/multiplication.png"
+          link="/practice/multiplication"
+        />
+        <SkillCard
+          title="Division"
+          image="/images/skills/division.png"
+          link="/practice/addition"
+        />
+        <div className="text-xl text-center p-4 col-span-2">Locked</div>
         <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Money</p>
+          <p>Counting</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
+          </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Place Values</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
+          </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Fractions</p>
           <div className="w-16 h-16 m-4">
             <img src="/images/skills/lock.png" alt="" />
           </div>
@@ -38,37 +68,19 @@ export default function Outline(props) {
           </div>
         </div>
         <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Shapes</p>
+          <p>Variables</p>
           <div className="w-16 h-16 m-4">
             <img src="/images/skills/lock.png" alt="" />
           </div>
         </div>
         <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Angles</p>
+          <p>Estimation</p>
           <div className="w-16 h-16 m-4">
             <img src="/images/skills/lock.png" alt="" />
           </div>
         </div>
         <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Transformations</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Graphs</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Stats</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Measurement</p>
+          <p>Logic</p>
           <div className="w-16 h-16 m-4">
             <img src="/images/skills/lock.png" alt="" />
           </div>
@@ -80,25 +92,62 @@ export default function Outline(props) {
           </div>
         </div>
         <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Money</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
+          </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
           <p>Time</p>
           <div className="w-16 h-16 m-4">
             <img src="/images/skills/lock.png" alt="" />
           </div>
         </div>
         <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Negatives</p>
+          <p>Data</p>
           <div className="w-16 h-16 m-4">
             <img src="/images/skills/lock.png" alt="" />
           </div>
         </div>
         <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Variables</p>
+          <p>Measurement</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
+          </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Geometry</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
+          </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Geometric Measurement</p>
           <div className="w-16 h-16 m-4">
             <img src="/images/skills/lock.png" alt="" />
           </div>
         </div>
         <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
           <p>Decimals</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
+          </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Stats</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
+          </div>
+        </div>
+        <div className="text-xl text-center p-4 col-span-2">Hard</div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Angles</p>
+          <div className="w-16 h-16 m-4">
+            <img src="/images/skills/lock.png" alt="" />
+          </div>
+        </div>
+        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <p>Negatives</p>
           <div className="w-16 h-16 m-4">
             <img src="/images/skills/lock.png" alt="" />
           </div>
@@ -114,6 +163,9 @@ export default function Outline(props) {
           <div className="w-16 h-16 m-4">
             <img src="/images/skills/lock.png" alt="" />
           </div>
+        </div>
+        <div className="text-xl text-center p-4 col-span-2">
+          Advanced
         </div>
         <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
           <p>Exponents</p>

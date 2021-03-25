@@ -91,7 +91,7 @@ const Quiz = ({ slug }) => {
   };
 
   const component = (
-    <div className="py-16 m-8 space-y-8 bg-white flex flex-col shadow-lg justify-center items-center">
+    <div className="py-16 m-8 space-y-8 bg-gray-100 flex flex-col shadow-lg justify-center items-center">
       <p className="text-lg m-4">Level: {levelString}</p>
       <p className="text-lg m-4">
         Question: {index + 1} / {length}
@@ -140,7 +140,6 @@ const Quiz = ({ slug }) => {
             {getAccuracy() > 70 && (
               <img src={"/images/gold-star.png"} className="w-16" />
             )}
-            
           </div>
           <p className="text-2xl">Speed </p> {secondsElapsed} seconds
           <p className="text-2xl">Accuracy</p>
