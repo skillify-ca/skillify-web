@@ -8,7 +8,63 @@ import { signIn, useSession } from "next-auth/client";
 
 export default function Outline(props) {
   const [session, loading] = useSession();
-  
+
+  const skills = [
+    {
+      title: "Numbers",
+      image: "/images/skills/counting.png",
+      link: "/practice/addition",
+    },
+    {
+      title: "Addition",
+      image: "/images/skills/addition.png",
+      link: "/practice/addition",
+    },
+    {
+      title: "Subtraction",
+      image: "/images/skills/subtraction.png",
+      link: "/practice/subtraction",
+    },
+    {
+      title: "Multiplication",
+      image: "/images/skills/multiplication.png",
+      link: "/practice/multiplication",
+    },
+    {
+      title: "Division",
+      image: "/images/skills/division.png",
+      link: "/practice/addition",
+    },
+    {
+      title: "Fractions",
+      image: "/images/skills/fractions.jpeg",
+      link: "/practice/addition",
+    },
+  ];
+  const lockedSkills = [
+    "Mixed Operations",
+    "Money",
+    "Logic",
+    "Shapes",
+    "Angles",
+    "Transformations",
+    "Graphs",
+    "Stats",
+    "Measurement",
+    "Patterns",
+    "Time",
+    "Negatives",
+    "Variables",
+    "Decimals",
+    "Percents",
+    "Ratios",
+    "Exponents",
+    "Functions",
+    "Number Theory",
+    "Pythagorean Theorem",
+    "Functions",
+    "Polynomials",
+  ];
   /**
    * increment / decrement power button
    * combine one exponent into two exponents
@@ -20,137 +76,24 @@ export default function Outline(props) {
     <div>
       <div className="text-xl text-center p-4">Math Skill Tree</div>
       <div className="grid grid-cols-2 gap-4">
-        <SkillCard title="Addition" image="/images/skills/addition.png" link="/practice/addition"/>
-        <SkillCard title="Subtraction" image="/images/skills/subtraction.png" link="/practice/subtraction"/>
-        <SkillCard title="Multiplication" image="/images/skills/multiplication.png" link="/practice/multiplication"/>
-        <SkillCard title="Division" image="/images/skills/division.png" link="/practice/addition"/>
-        <SkillCard title="Fractions" image="/images/skills/fractions.jpeg" link="/practice/addition"/>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Money</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
+        {skills.map((skill) => (
+          <SkillCard
+            key={skill.title}
+            title={skill.title}
+            image={skill.image}
+            link={skill.link}
+          />
+        ))}
+
+        {lockedSkills.map((skill) => (
+          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+            <p>{skill}</p>
+            <div className="w-16 h-16 m-4">
+              <img src="/images/skills/lock.png" alt="" />
+            </div>
           </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Mixed Operations</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Shapes</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Angles</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Transformations</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Graphs</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Stats</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Measurement</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Patterns</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Time</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Negatives</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Variables</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Decimals</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Percents</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Ratios</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Exponents</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Functions</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Number Theory</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Pythagorean Theorem</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Functions</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
-        <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
-          <p>Polynomials</p>
-          <div className="w-16 h-16 m-4">
-            <img src="/images/skills/lock.png" alt="" />
-          </div>
-        </div>
+        ))}
+
         <div className="col-span-2">
           <p className="text-xl">Experimental</p>
         </div>
