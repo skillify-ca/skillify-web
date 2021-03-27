@@ -17,6 +17,7 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     padding: "16px",
+    borderRadius: "16px",
   },
 };
 const SkillCard = ({ title, image, disabled, link }: SkillCardProps) => {
@@ -76,9 +77,9 @@ const SkillCard = ({ title, image, disabled, link }: SkillCardProps) => {
 
           <div className="flex">
             <Link href={link + "?level=" + level}>
-              <button className="bg-blue-400 p-2 w-16 m-2">Play</button>
+              <button className="bg-blue-400 p-2 w-16 m-2 rounded-xl">Play</button>
             </Link>
-            <button className="bg-green-400 p-2 w-16 m-2">Study</button>
+            <button className="bg-green-400 p-2 w-16 m-2 rounded-xl">Study</button>
           </div>
         </div>
       </Modal>
