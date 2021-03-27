@@ -86,11 +86,11 @@ const SkillCard = ({
 
           <div className="flex">
             <Link href={link + "?level=" + level}>
-              <button className="bg-blue-400 p-2 w-16 m-4 ring-4 ring-blue-200 rounded-xl">
+              <button className="bg-gradient-to-b from-blue-300 via-blue-400 to-blue-500 p-2 w-16 m-4 ring-2 ring-blue-200 rounded-xl">
                 Play
               </button>
             </Link>
-            <button className="bg-green-400 p-2 w-16 m-4 ring-4 ring-green-200 rounded-xl">
+            <button className="bg-gradient-to-b from-green-300 via-green-400 to-green-500 p-2 w-16 m-4 ring-2 ring-green-200 rounded-xl">
               Study
             </button>
           </div>

@@ -120,13 +120,6 @@ const Quiz = ({ slug }) => {
     </div>
   );
 
-  const getRating = () => {
-    if (getAccuracy() > 70) return 3;
-    if (getAccuracy() > 30) return 2;
-    if (getAccuracy() > 10) return 1;
-    return 0;
-  };
-
   return (
     <div>
       <Navbar />
