@@ -138,7 +138,6 @@ const Quiz = ({ slug }) => {
         transition={ModalTransition.SCALE}
       >
         <div className="py-16 m-8 space-y-8 bg-white flex flex-col justify-center items-center">
-          <StarRating rating={getRating()} />
           <p className="text-2xl">Speed </p> {secondsElapsed} seconds
           <p className="text-2xl">Accuracy</p>
           {getAccuracy()}%
