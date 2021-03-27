@@ -11,59 +11,28 @@ export default function Outline(props) {
 
   const skills = [
     {
-      title: "Numbers",
-      image: "/images/skills/counting.png",
-      link: "/practice/addition",
-    },
-    {
       title: "Addition",
       image: "/images/skills/addition.png",
       link: "/practice/addition",
     },
-    {
-      title: "Subtraction",
-      image: "/images/skills/subtraction.png",
-      link: "/practice/subtraction",
-    },
-    {
-      title: "Multiplication",
-      image: "/images/skills/multiplication.png",
-      link: "/practice/multiplication",
-    },
-    {
-      title: "Division",
-      image: "/images/skills/division.png",
-      link: "/practice/addition",
-    },
-    {
-      title: "Fractions",
-      image: "/images/skills/fractions.jpeg",
-      link: "/practice/addition",
-    },
   ];
   const lockedSkills = [
+    "Numbers",
+    "Subtraction",
+    "Multiplication",
+    "Division",
     "Mixed Operations",
-    "Money",
-    "Logic",
-    "Shapes",
-    "Angles",
-    "Transformations",
-    "Graphs",
-    "Stats",
-    "Measurement",
-    "Patterns",
-    "Time",
-    "Negatives",
     "Variables",
+    "Estimation",
+    "Logic",
+    "Patterns",
+    "Money",
+    "Time",
+    "Data",
+    "Geometry",
+    "Fractions",
     "Decimals",
-    "Percents",
-    "Ratios",
-    "Exponents",
-    "Functions",
-    "Number Theory",
-    "Pythagorean Theorem",
-    "Functions",
-    "Polynomials",
+    "Stats",
   ];
   /**
    * increment / decrement power button
@@ -74,8 +43,10 @@ export default function Outline(props) {
   var subtitle;
   return (
     <div>
-      <div className="text-xl text-center p-4">Math Skill Tree</div>
       <div className="grid grid-cols-2 gap-4">
+      <div className="col-span-2">
+          <p className="text-xl text-center">Math Skill Tree</p>
+        </div>
         {skills.map((skill) => (
           <SkillCard
             key={skill.title}
@@ -84,7 +55,9 @@ export default function Outline(props) {
             link={skill.link}
           />
         ))}
-
+        <div className="col-span-2">
+          <p className="text-xl">Locked</p>
+        </div>
         {lockedSkills.map((skill) => (
           <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
             <p>{skill}</p>

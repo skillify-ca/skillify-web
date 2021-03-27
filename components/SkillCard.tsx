@@ -38,7 +38,7 @@ const SkillCard = ({ title, image, disabled, link }: SkillCardProps) => {
       <div
         className={`gap-0 flex flex-col items-center ${
           disabled ? "bg-gray-400" : "bg-yellow-500"
-        } p-8 text-center`}
+        } p-8 text-center rounded-xl`}
         onClick={openModal}
       >
         <p>{title}</p>
