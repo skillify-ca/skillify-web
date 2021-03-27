@@ -92,31 +92,35 @@ const Quiz = ({ slug }) => {
   };
 
   const component = (
-    <div className="py-16 m-8 space-y-8 bg-gray-100 flex flex-col shadow-lg justify-center items-center">
-      <p className="text-lg m-4">Level: {levelString}</p>
-      <p className="text-lg m-4">
-        Question: {index + 1} / {length}
-      </p>
-      <div className="p-16 bg-purple-300 text-2xl">{data[index].text}</div>
-      <input
-        id="guess"
-        type="number"
-        autoComplete="off"
-        value={guess}
-        onChange={(e) => setGuess(e.target.value)}
-        className="appearance-none rounded-none relative block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-        placeholder="Enter Answer"
-        ref={inputElement}
-        onKeyPress={handleKeypress}
-      />
-      <form onSubmit={submitGuess}>
-        <button
-          type="submit"
-          className="group relative w-3/4 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
-          Submit
-        </button>
-      </form>
+    <div className="flex flex-col justify-center">
+      <div className="bg-gradient-to-b from-purple-200 via-purple-300 to-purple-300 flex flex-col justify-center items-center">
+        <p className="w-full p-2">
+          Question: {index + 1} / {length}
+        </p>
+        <div className="p-16 text-2xl">{data[index].text}</div>
+      </div>
+      <div className="flex space-y-4 p-4 flex-col justify-center items-center ">
+        <input
+          id="guess"
+          type="number"
+          autoComplete="off"
+          value={guess}
+          onChange={(e) => setGuess(e.target.value)}
+          className="appearance-none rounded-none relative block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          placeholder="Enter Answer"
+          ref={inputElement}
+          onKeyPress={handleKeypress}
+        />
+
+        <form onSubmit={submitGuess}>
+          <button
+            type="submit"
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 
@@ -124,7 +128,7 @@ const Quiz = ({ slug }) => {
     <div>
       <Navbar />
 
-      <div className="pt-4">{component}</div>
+      <div>{component}</div>
       <Modal
         id="game-over-model"
         isOpen={isGameOver}
