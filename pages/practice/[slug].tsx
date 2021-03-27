@@ -5,6 +5,7 @@ import "react-simple-hook-modal/dist/styles.css";
 import Navbar from "../../components/Navbar";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import StarRating from "../../components/Rating";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -119,6 +120,13 @@ const Quiz = ({ slug }) => {
     </div>
   );
 
+  const getRating = () => {
+    if (getAccuracy() > 70) return 3;
+    if (getAccuracy() > 30) return 2;
+    if (getAccuracy() > 10) return 1;
+    return 0;
+  };
+
   return (
     <div>
       <Navbar />
@@ -130,17 +138,7 @@ const Quiz = ({ slug }) => {
         transition={ModalTransition.SCALE}
       >
         <div className="py-16 m-8 space-y-8 bg-white flex flex-col justify-center items-center">
-          <div className="flex m-4">
-            {getAccuracy() > 0 && (
-              <img src={"/images/bronze-star.png"} className="w-16" />
-            )}
-            {getAccuracy() > 30 && (
-              <img src={"/images/silver-star.png"} className="w-16" />
-            )}
-            {getAccuracy() > 70 && (
-              <img src={"/images/gold-star.png"} className="w-16" />
-            )}
-          </div>
+          <StarRating rating={getRating()} />
           <p className="text-2xl">Speed </p> {secondsElapsed} seconds
           <p className="text-2xl">Accuracy</p>
           {getAccuracy()}%

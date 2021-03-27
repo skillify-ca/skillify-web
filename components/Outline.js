@@ -11,13 +11,20 @@ export default function Outline(props) {
 
   const skills = [
     {
+      title: "Numbers",
+      image: "/images/skills/counting.png",
+      link: "/practice/addition",
+      stars: 3,
+    },
+    {
       title: "Addition",
       image: "/images/skills/addition.png",
       link: "/practice/addition",
+      stars: 1,
     },
+ 
   ];
   const lockedSkills = [
-    "Numbers",
     "Subtraction",
     "Multiplication",
     "Division",
@@ -44,7 +51,7 @@ export default function Outline(props) {
   return (
     <div>
       <div className="grid grid-cols-2 gap-4">
-      <div className="col-span-2">
+        <div className="col-span-2">
           <p className="text-xl text-center">Math Skill Tree</p>
         </div>
         {skills.map((skill) => (
@@ -53,13 +60,14 @@ export default function Outline(props) {
             title={skill.title}
             image={skill.image}
             link={skill.link}
+            rating={skill.stars}
           />
         ))}
         <div className="col-span-2">
           <p className="text-xl">Locked</p>
         </div>
         {lockedSkills.map((skill) => (
-          <div className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <div key={skill.title} className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
             <p>{skill}</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/lock.png" alt="" />
