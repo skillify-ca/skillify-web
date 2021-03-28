@@ -3,15 +3,9 @@ import { useSession } from "next-auth/client";
 import Navbar from "../components/Navbar";
 import initializeApollo from "../lib/apollo";
 import { gql, useQuery } from "@apollo/client";
+import { FETCH_USERS } from "../graphql/fetchUsers";
+import { FETCH_FLASHCARD_GUESSES } from "../graphql/fetchFlashcardGuesses";
 
-const FETCH_USERS = gql`
-  query fetchUsers {
-    users(where: {}) {
-      id
-      name
-    }
-  }
-`;
 
 export default function Profile(props) {
   console.log(props.flashcard_guesses[0]);
@@ -81,19 +75,7 @@ export default function Profile(props) {
 export async function getStaticProps(context) {
   const client = initializeApollo();
   const { data } = await client.query({
-    query: gql`
-      query fetchFlashcardGuesses {
-        flashcard_guesses(
-          where: { userId: { _eq: "1" } }
-          order_by: { userId: desc }
-        ) {
-          guessId
-          userId
-          question
-          guess
-        }
-      }
-    `,
+    query: FETCH_FLASHCARD_GUESSES,
   });
   return {
     props: {

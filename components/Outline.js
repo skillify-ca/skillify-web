@@ -22,7 +22,6 @@ export default function Outline(props) {
       link: "/practice/addition",
       stars: 1,
     },
- 
   ];
   const lockedSkills = [
     "Subtraction",
@@ -67,7 +66,10 @@ export default function Outline(props) {
           <p className="text-xl">Locked</p>
         </div>
         {lockedSkills.map((skill) => (
-          <div key={skill.title} className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center">
+          <div
+            key={skill.title}
+            className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center"
+          >
             <p>{skill}</p>
             <div className="w-16 h-16 m-4">
               <img src="/images/skills/lock.png" alt="" />

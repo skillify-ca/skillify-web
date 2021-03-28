@@ -6,6 +6,8 @@ import Navbar from "../../components/Navbar";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import StarRating from "../../components/Rating";
+import { CREATE_GUESS } from "../../graphql/createGuess";
+import { useMutation } from "@apollo/client";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -20,11 +22,11 @@ const Quiz = ({ slug }) => {
   let currentLevel = 0;
   let levelString = "Easy";
 
-  let data = [{ text: "", answer: 0 }];
+  let questionData = [{ text: "", answer: 0 }];
   if (apiData[slug] != null && apiData[slug] != undefined) {
     if (query.level != null && query.level != undefined) {
       currentLevel = Number.parseInt(query.level as string) - 1;
-      data = apiData[slug].levels[currentLevel].questions;
+      questionData = apiData[slug].levels[currentLevel].questions;
       if (currentLevel == 1) {
         levelString = "Medium";
       } else if (currentLevel == 2) {
@@ -33,7 +35,7 @@ const Quiz = ({ slug }) => {
     }
   }
 
-  const length = data.length;
+  const length = questionData.length;
 
   useEffect(() => {
     if (inputElement.current) {
@@ -50,9 +52,20 @@ const Quiz = ({ slug }) => {
     return () => clearInterval(interval);
   }, []);
 
+  const [createFlashcardGuess, { data }] = useMutation(CREATE_GUESS);
+
   const submitGuess = (e) => {
     e.preventDefault();
-    if (Number.parseInt(guess) == data[index].answer) {
+
+    createFlashcardGuess({
+      variables: {
+        userId: "1",
+        question: questionData[index].text,
+        guess: guess,
+        timeTaken: 3,
+      },
+    });
+    if (Number.parseInt(guess) == questionData[index].answer) {
       setCorrectGuesses(correctGuesses + 1);
     }
     if (index < length - 1) {
@@ -97,7 +110,7 @@ const Quiz = ({ slug }) => {
         <p className="w-full p-2">
           Question: {index + 1} / {length}
         </p>
-        <div className="p-16 text-2xl">{data[index].text}</div>
+        <div className="p-16 text-2xl">{questionData[index].text}</div>
       </div>
       <div className="flex space-y-4 p-4 flex-col justify-center items-center ">
         <input
