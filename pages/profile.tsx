@@ -1,9 +1,11 @@
 import React from "react";
 import { useSession } from "next-auth/client";
 import Navbar from "../components/Navbar";
+import initializeApollo from "../lib/apollo";
+import { gql } from "@apollo/client";
 
 export default function Profile(props) {
-  console.log(props.res);
+  console.log(props.flashcard_guesses[0]);
   const [session] = useSession();
   const skills = [
     { title: "Numbers", image: "images/skills/counting.png", mastered: true },
@@ -32,6 +34,11 @@ export default function Profile(props) {
     <div className="flex flex-col">
       <Navbar />
       <ul>
+        {props.flashcard_guesses[0].map((it) => (
+          <li key={it.guessId}>
+            GUESS {it.question}
+          </li>
+        ))}
         {skills.map((it) => (
           <li key={it.title}>
             <div className="gap-4 flex bg-gradient-to-b from-purple-400 via-purple-500 to-purple-500 p-2 m-4 items-center justify-between text-center rounded-xl">
@@ -63,27 +70,25 @@ export default function Profile(props) {
 }
 
 export async function getStaticProps(context) {
-  const options = {
-    method: "POST",
-    body: JSON.stringify({
-      query: `query fetchFlashcardGuesses {
-        flashcard_guesses(where: { userId: { _eq: "1"} }, order_by: { userId: desc }) {
+  const client = initializeApollo();
+  const { data } = await client.query({
+    query: gql`
+      query fetchFlashcardGuesses {
+        flashcard_guesses(
+          where: { userId: { _eq: "1" } }
+          order_by: { userId: desc }
+        ) {
+          guessId
           userId
           question
           guess
         }
-      }`,
-      operationName: "fetchFlashcardGuesses",
-    }),
-  };
-  const fetchResponse = await fetch(
-    "https://talented-duckling-40.hasura.app/v1/graphql",
-    options
-  );
-  const responseJson = await fetchResponse.json();
+      }
+    `,
+  });
   return {
     props: {
-      res: responseJson.data,
+      flashcard_guesses: [data.flashcard_guesses],
     },
   };
 }
