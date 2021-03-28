@@ -2,7 +2,16 @@ import React from "react";
 import { useSession } from "next-auth/client";
 import Navbar from "../components/Navbar";
 import initializeApollo from "../lib/apollo";
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
+
+const FETCH_USERS = gql`
+  query fetchUsers {
+    users(where: {}) {
+      id
+      name
+    }
+  }
+`;
 
 export default function Profile(props) {
   console.log(props.flashcard_guesses[0]);
@@ -30,14 +39,14 @@ export default function Profile(props) {
     { title: "Stats", image: "images/skills/lock.png" },
   ];
 
+  const { loading, error, data } = useQuery(FETCH_USERS);
+  console.log(data);
   return (
     <div className="flex flex-col">
       <Navbar />
       <ul>
         {props.flashcard_guesses[0].map((it) => (
-          <li key={it.guessId}>
-            GUESS {it.question}
-          </li>
+          <li key={it.guessId}>GUESS {it.question}</li>
         ))}
         {skills.map((it) => (
           <li key={it.title}>
