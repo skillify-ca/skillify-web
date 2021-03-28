@@ -5,7 +5,6 @@ import "react-simple-hook-modal/dist/styles.css";
 import Navbar from "../../components/Navbar";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import StarRating from "../../components/Rating";
 import { CREATE_GUESS } from "../../graphql/createGuess";
 import { useMutation } from "@apollo/client";
 

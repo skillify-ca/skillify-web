@@ -6,9 +6,9 @@ import { gql, useQuery } from "@apollo/client";
 import { FETCH_USERS } from "../graphql/fetchUsers";
 import { FETCH_FLASHCARD_GUESSES } from "../graphql/fetchFlashcardGuesses";
 
-
 export default function Profile(props) {
-  console.log(props.flashcard_guesses[0]);
+  const guesses = useQuery(FETCH_FLASHCARD_GUESSES);
+  console.log(guesses.data.flashcard_guesses);
   const [session] = useSession();
   const skills = [
     { title: "Numbers", image: "images/skills/counting.png", mastered: true },
@@ -33,14 +33,13 @@ export default function Profile(props) {
     { title: "Stats", image: "images/skills/lock.png" },
   ];
 
-  const { loading, error, data } = useQuery(FETCH_USERS);
-  console.log(data);
+  const users = useQuery(FETCH_USERS);
   return (
     <div className="flex flex-col">
       <Navbar />
       <ul>
-        {props.flashcard_guesses[0].map((it) => (
-          <li key={it.guessId}>GUESS {it.question}</li>
+        {guesses.data.flashcard_guesses.map((it) => (
+          <li key={it.guessId}>GUESS {it.question} {it.guess}</li>
         ))}
         {skills.map((it) => (
           <li key={it.title}>
@@ -70,16 +69,4 @@ export default function Profile(props) {
       </ul>
     </div>
   );
-}
-
-export async function getStaticProps(context) {
-  const client = initializeApollo();
-  const { data } = await client.query({
-    query: FETCH_FLASHCARD_GUESSES,
-  });
-  return {
-    props: {
-      flashcard_guesses: [data.flashcard_guesses],
-    },
-  };
 }
