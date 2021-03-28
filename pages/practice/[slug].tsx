@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { CREATE_GUESS } from "../../graphql/createGuess";
 import { useMutation } from "@apollo/client";
+import { generateQuestions } from "./questionGenerator";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -17,22 +18,23 @@ const Quiz = ({ slug }) => {
   const [secondsElapsed, setSecondsElapsed] = useState(0);
   const inputElement = useRef(null);
   const [interval, setMyInterval] = useState(null);
+  const [questionData, setQuestionData] = useState([{ text: "", answer: 0 }]);
 
   let currentLevel = 0;
-  let levelString = "Easy";
+  let isDebug = false;
 
-  let questionData = [{ text: "", answer: 0 }];
-  if (apiData[slug] != null && apiData[slug] != undefined) {
-    if (query.level != null && query.level != undefined) {
-      currentLevel = Number.parseInt(query.level as string) - 1;
-      questionData = apiData[slug].levels[currentLevel].questions;
-      if (currentLevel == 1) {
-        levelString = "Medium";
-      } else if (currentLevel == 2) {
-        levelString = "Hard";
+  useEffect(() => {
+    if (isDebug) {
+      if (apiData[slug] != null && apiData[slug] != undefined) {
+        if (query.level != null && query.level != undefined) {
+          const currentLevel = Number.parseInt(query.level as string) - 1;
+          setQuestionData(apiData[slug].levels[currentLevel].questions);
+        }
       }
+    } else {
+      setQuestionData(generateQuestions(slug, currentLevel.toString()));
     }
-  }
+  }, []);
 
   const length = questionData.length;
 
