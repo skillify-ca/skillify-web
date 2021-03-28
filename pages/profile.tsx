@@ -14,6 +14,8 @@ export default function Profile(props) {
     { title: "Multiplication", image: "images/skills/lock.png" },
     { title: "Division", image: "images/skills/lock.png" },
     { title: "Mixed Operations", image: "images/skills/lock.png" },
+    { title: "Fractions", image: "images/skills/lock.png" },
+    { title: "Geometry", image: "images/skills/lock.png" },
     { title: "Variables", image: "images/skills/lock.png" },
     { title: "Estimation", image: "images/skills/lock.png" },
     { title: "Logic", image: "images/skills/lock.png" },
@@ -21,8 +23,6 @@ export default function Profile(props) {
     { title: "Money", image: "images/skills/lock.png" },
     { title: "Time", image: "images/skills/lock.png" },
     { title: "Data", image: "images/skills/lock.png" },
-    { title: "Geometry", image: "images/skills/lock.png" },
-    { title: "Fractions", image: "images/skills/lock.png" },
     { title: "Decimals", image: "images/skills/lock.png" },
     { title: "Stats", image: "images/skills/lock.png" },
   ];

@@ -29,6 +29,8 @@ export default function Outline(props) {
     "Multiplication",
     "Division",
     "Mixed Operations",
+    "Fractions",
+    "Geometry",
     "Variables",
     "Estimation",
     "Logic",
@@ -36,8 +38,6 @@ export default function Outline(props) {
     "Money",
     "Time",
     "Data",
-    "Geometry",
-    "Fractions",
     "Decimals",
     "Stats",
   ];
