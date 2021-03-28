@@ -3,6 +3,7 @@ import { useSession } from "next-auth/client";
 import Navbar from "../components/Navbar";
 
 export default function Profile(props) {
+  console.log(props.res);
   const [session] = useSession();
   const skills = [
     { title: "Numbers", image: "images/skills/counting.png", mastered: true },
@@ -59,4 +60,30 @@ export default function Profile(props) {
       </ul>
     </div>
   );
+}
+
+export async function getStaticProps(context) {
+  const options = {
+    method: "POST",
+    body: JSON.stringify({
+      query: `query fetchFlashcardGuesses {
+        flashcard_guesses(where: { userId: { _eq: "1"} }, order_by: { userId: desc }) {
+          userId
+          question
+          guess
+        }
+      }`,
+      operationName: "fetchFlashcardGuesses",
+    }),
+  };
+  const fetchResponse = await fetch(
+    "https://talented-duckling-40.hasura.app/v1/graphql",
+    options
+  );
+  const responseJson = await fetchResponse.json();
+  return {
+    props: {
+      res: responseJson.data,
+    },
+  };
 }
