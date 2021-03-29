@@ -11,6 +11,7 @@ import { generateQuestions } from "./questionGenerator";
 import { UPDATE_USER_SKILLS } from "../../graphql/updateUserSkills";
 import { FETCH_USER_SKILLS } from "../../graphql/fetchUserSkills";
 import { FETCH_USER_SKILL } from "../../graphql/fetchUserSkill";
+import { UNLOCK_NEXT_SKILL } from "../../graphql/unlockNextSkill";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -19,29 +20,17 @@ const Quiz = ({ slug }) => {
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [isGameOver, setGameOver] = useState(false);
   const [secondsElapsed, setSecondsElapsed] = useState(0);
-  const inputElement = useRef(null);
   const [interval, setMyInterval] = useState(null);
   const [questionData, setQuestionData] = useState([{ text: "", answer: 0 }]);
   const [currentLevel, setCurrentLevel] = React.useState(0);
-  let isDebug = false;
+  const inputElement = useRef(null);
+  const length = questionData.length;
 
   useEffect(() => {
     const level = Number.parseInt(query.level as string);
-
-    if (isDebug) {
-      if (apiData[slug] != null && apiData[slug] != undefined) {
-        if (query.level != null && query.level != undefined) {
-          setCurrentLevel(level);
-          setQuestionData(apiData[slug].levels[level].questions);
-        }
-      }
-    } else {
-      setCurrentLevel(level);
-      setQuestionData(generateQuestions(slug, level));
-    }
+    setCurrentLevel(level);
+    setQuestionData(generateQuestions(slug, level));
   }, []);
-
-  const length = questionData.length;
 
   useEffect(() => {
     if (inputElement.current) {
@@ -58,8 +47,8 @@ const Quiz = ({ slug }) => {
     return () => clearInterval(interval);
   }, []);
 
-  const [createFlashcardGuess, { data }] = useMutation(CREATE_GUESS);
-  const [updateUserSkillStars, userSkillData] = useMutation(
+  const [createFlashcardGuess, createGuessData] = useMutation(CREATE_GUESS);
+  const [updateUserSkillStars, updateUserSkillsData] = useMutation(
     UPDATE_USER_SKILLS,
     {
       refetchQueries: [{ query: FETCH_USER_SKILLS }],
@@ -70,6 +59,13 @@ const Quiz = ({ slug }) => {
       skillId: slug,
     },
   });
+  const userSkillsResult = useQuery(FETCH_USER_SKILLS);
+  const [unlockNextSkill, unlockNextSkillData] = useMutation(
+    UNLOCK_NEXT_SKILL,
+    {
+      refetchQueries: [{ query: FETCH_USER_SKILLS }],
+    }
+  );
 
   const submitGuess = (e) => {
     e.preventDefault();
@@ -98,7 +94,6 @@ const Quiz = ({ slug }) => {
 
       // if pass unlock star
       const starsEarnedForSkill = userSkillResult.data.user_skills[0].stars;
-      console.log(starsEarnedForSkill, currentLevel);
       if (starsEarnedForSkill < currentLevel) {
         updateUserSkillStars({
           variables: {
@@ -106,6 +101,19 @@ const Quiz = ({ slug }) => {
             stars: currentLevel,
           },
         });
+        if (currentLevel == 3) {
+          // unlock next skill
+          const lockedSkills = userSkillsResult.data.user_skills.filter(
+            (it) => it.locked == true
+          );
+          if (lockedSkills.length > 1) {
+            unlockNextSkill({
+              variables: {
+                skillId: lockedSkills[0].skill.skillId,
+              },
+            });
+          }
+        }
       }
     }
   };

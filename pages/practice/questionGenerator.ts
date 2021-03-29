@@ -4,8 +4,7 @@ const NUM_QUESTIONS = 5;
 const ADDITION_SKILL_ID = "6aa7774f-85d0-438f-a35f-04034ada4fe5"
 
 export const generateQuestions = (slug: string, currentLevel: number) => {
-  if (slug == ADDITION_SKILL_ID) return generateAdditionQuestions(currentLevel);
-  return apiData[slug].levels[currentLevel].questions;
+  return generateAdditionQuestions(currentLevel);
 };
 
 const generateAdditionQuestions = (currentLevel: number) => {
