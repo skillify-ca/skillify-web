@@ -27,11 +27,12 @@ const Quiz = ({ slug }) => {
     if (isDebug) {
       if (apiData[slug] != null && apiData[slug] != undefined) {
         if (query.level != null && query.level != undefined) {
-          const currentLevel = Number.parseInt(query.level as string) - 1;
+          const currentLevel = Number.parseInt(query.level as string);
           setQuestionData(apiData[slug].levels[currentLevel].questions);
         }
       }
     } else {
+      const currentLevel = Number.parseInt(query.level as string);
       setQuestionData(generateQuestions(slug, currentLevel.toString()));
     }
   }, []);

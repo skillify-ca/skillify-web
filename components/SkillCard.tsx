@@ -41,7 +41,6 @@ const SkillCard = ({
   function onLevelSelect(e) {
     setLevel(e.target.value);
   }
-  console.log(rating);
 
   return (
     <div>

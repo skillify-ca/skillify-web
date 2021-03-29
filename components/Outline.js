@@ -9,10 +9,7 @@ import { signIn, useSession } from "next-auth/client";
 import { FETCH_USER_SKILLS } from "../graphql/fetchUserSkills";
 
 const Outline = (props) => {
-  const [session, loading] = useSession();
   const userSkillsData = useQuery(FETCH_USER_SKILLS);
-  console.log("userSkillsData");
-  console.log(userSkillsData);
   let skills = [];
 
   if (userSkillsData.data) {
@@ -25,6 +22,7 @@ const Outline = (props) => {
         <div className="col-span-2">
           <p className="text-xl text-center">Math Skill Tree</p>
         </div>
+        {userSkillsData.loading && <p>Loading ...</p>}
         {skills
           .filter((it) => it.locked == false)
           .map((skill) => (

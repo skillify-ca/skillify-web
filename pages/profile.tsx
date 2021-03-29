@@ -8,7 +8,6 @@ import { FETCH_FLASHCARD_GUESSES } from "../graphql/fetchFlashcardGuesses";
 
 export default function Profile(props) {
   const guesses = useQuery(FETCH_FLASHCARD_GUESSES);
-  console.log(guesses.data.flashcard_guesses);
   const [session] = useSession();
   const skills = [
     { title: "Numbers", image: "images/skills/counting.png", mastered: true },
