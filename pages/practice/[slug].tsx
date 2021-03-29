@@ -9,6 +9,7 @@ import { CREATE_GUESS } from "../../graphql/createGuess";
 import { useMutation } from "@apollo/client";
 import { generateQuestions } from "./questionGenerator";
 import { UPDATE_USER_SKILLS } from "../../graphql/updateUserSkills";
+import { FETCH_USER_SKILLS } from "../../graphql/fetchUserSkills";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -56,7 +57,12 @@ const Quiz = ({ slug }) => {
   }, []);
 
   const [createFlashcardGuess, { data }] = useMutation(CREATE_GUESS);
-  const [updateUserSkillStars, userSkillData] = useMutation(UPDATE_USER_SKILLS);
+  const [updateUserSkillStars, userSkillData] = useMutation(
+    UPDATE_USER_SKILLS,
+    {
+      refetchQueries: [{ query: FETCH_USER_SKILLS }],
+    }
+  );
 
   const submitGuess = (e) => {
     e.preventDefault();
