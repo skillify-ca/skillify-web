@@ -8,6 +8,7 @@ import Link from "next/link";
 import { CREATE_GUESS } from "../../graphql/createGuess";
 import { useMutation } from "@apollo/client";
 import { generateQuestions } from "./questionGenerator";
+import { UPDATE_USER_SKILLS } from "../../graphql/updateUserSkills";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -55,6 +56,7 @@ const Quiz = ({ slug }) => {
   }, []);
 
   const [createFlashcardGuess, { data }] = useMutation(CREATE_GUESS);
+  const [updateUserSkillStars, userSkillData] = useMutation(UPDATE_USER_SKILLS);
 
   const submitGuess = (e) => {
     e.preventDefault();
@@ -80,6 +82,13 @@ const Quiz = ({ slug }) => {
       clearInterval(interval);
       setMyInterval(null);
       setGameOver(true);
+      // if pass unlock star
+      updateUserSkillStars({
+        variables: {
+          skillId: slug,
+          stars: 3,
+        },
+      });
     }
   };
 

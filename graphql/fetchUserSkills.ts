@@ -6,6 +6,7 @@ export const FETCH_USER_SKILLS = gql`
       stars
       locked
       skill {
+        id
         image
         title
       }

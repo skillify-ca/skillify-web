@@ -30,7 +30,7 @@ const Outline = (props) => {
               key={skill.skill.title}
               title={skill.skill.title}
               image={skill.skill.image}
-              link={"/practice/addition"}
+              link={`/practice/${skill.skill.id}`}
               rating={skill.stars}
             />
           ))}
