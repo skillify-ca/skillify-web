@@ -6,10 +6,11 @@ import Navbar from "../../components/Navbar";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { CREATE_GUESS } from "../../graphql/createGuess";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { generateQuestions } from "./questionGenerator";
 import { UPDATE_USER_SKILLS } from "../../graphql/updateUserSkills";
 import { FETCH_USER_SKILLS } from "../../graphql/fetchUserSkills";
+import { FETCH_USER_SKILL } from "../../graphql/fetchUserSkill";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -21,21 +22,22 @@ const Quiz = ({ slug }) => {
   const inputElement = useRef(null);
   const [interval, setMyInterval] = useState(null);
   const [questionData, setQuestionData] = useState([{ text: "", answer: 0 }]);
-
-  let currentLevel = 0;
+  const [currentLevel, setCurrentLevel] = React.useState(0);
   let isDebug = false;
 
   useEffect(() => {
+    const level = Number.parseInt(query.level as string);
+
     if (isDebug) {
       if (apiData[slug] != null && apiData[slug] != undefined) {
         if (query.level != null && query.level != undefined) {
-          const currentLevel = Number.parseInt(query.level as string);
-          setQuestionData(apiData[slug].levels[currentLevel].questions);
+          setCurrentLevel(level);
+          setQuestionData(apiData[slug].levels[level].questions);
         }
       }
     } else {
-      const currentLevel = Number.parseInt(query.level as string);
-      setQuestionData(generateQuestions(slug, currentLevel.toString()));
+      setCurrentLevel(level);
+      setQuestionData(generateQuestions(slug, level));
     }
   }, []);
 
@@ -63,6 +65,11 @@ const Quiz = ({ slug }) => {
       refetchQueries: [{ query: FETCH_USER_SKILLS }],
     }
   );
+  const userSkillResult = useQuery(FETCH_USER_SKILL, {
+    variables: {
+      skillId: slug,
+    },
+  });
 
   const submitGuess = (e) => {
     e.preventDefault();
@@ -88,13 +95,18 @@ const Quiz = ({ slug }) => {
       clearInterval(interval);
       setMyInterval(null);
       setGameOver(true);
+
       // if pass unlock star
-      updateUserSkillStars({
-        variables: {
-          skillId: slug,
-          stars: 3,
-        },
-      });
+      const starsEarnedForSkill = userSkillResult.data.user_skills[0].stars;
+      console.log(starsEarnedForSkill, currentLevel);
+      if (starsEarnedForSkill < currentLevel) {
+        updateUserSkillStars({
+          variables: {
+            skillId: slug,
+            stars: currentLevel,
+          },
+        });
+      }
     }
   };
 
