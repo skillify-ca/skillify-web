@@ -7,11 +7,11 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { CREATE_GUESS } from "../../graphql/createGuess";
 import { useMutation, useQuery } from "@apollo/client";
-import { generateQuestions } from "./questionGenerator";
 import { UPDATE_USER_SKILLS } from "../../graphql/updateUserSkills";
 import { FETCH_USER_SKILLS } from "../../graphql/fetchUserSkills";
 import { FETCH_USER_SKILL } from "../../graphql/fetchUserSkill";
 import { UNLOCK_NEXT_SKILL } from "../../graphql/unlockNextSkill";
+import { generateQuestions } from "../api/questionGenerator";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -125,6 +125,7 @@ const Quiz = ({ slug }) => {
     setGuess("");
     setGameOver(false);
     setSecondsElapsed(0);
+    setQuestionData(generateQuestions(slug, currentLevel))
     var newInterval = setInterval(() => {
       setSecondsElapsed((secondsElapsed) => secondsElapsed + 1);
     }, 1000);

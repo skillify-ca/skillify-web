@@ -8,7 +8,6 @@ export const generateQuestions = (slug: string, currentLevel: number) => {
 };
 
 const generateAdditionQuestions = (currentLevel: number) => {
-  console.log(currentLevel)
   const res = [];
   for (let i = 0; i < NUM_QUESTIONS; i++) {
     let min = 1;
