@@ -7,19 +7,22 @@ import { FETCH_USER_SKILLS } from "../graphql/fetchUserSkills";
 import Link from "next/link";
 
 export default function Profile(props) {
+  const [session] = useSession();
+  const users = useQuery(FETCH_USERS);
   const userSkillsData = useQuery(FETCH_USER_SKILLS);
   let skills = [];
-
   if (userSkillsData.data) {
     skills = userSkillsData.data.user_skills;
   }
+  const progress = () => {
+    const mastered = skills.filter((it) => it.locked == false && it.stars == 3);
+    return Math.round((mastered.length * 100) / skills.length);
+  };
 
-  const [session] = useSession();
-
-  const users = useQuery(FETCH_USERS);
   return (
     <div className="flex flex-col">
       <Navbar />
+      <h1 className="text-lg p-4 text-right">Progress {progress()}%</h1>
       <ul>
         {skills
           .filter((it) => it.locked == false)
