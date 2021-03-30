@@ -33,7 +33,7 @@ export default function Profile(props) {
           .map((it) => (
             <li key={it.skill.title}>
               <Link href={"portfolio/" + it.skill.id}>
-                <div className="gap-4 flex bg-gradient-to-b from-purple-400 via-purple-500 to-purple-500 p-2 m-4 items-center justify-between text-center rounded-xl">
+                  <div className="gap-4 flex bg-gradient-to-b from-purple-400 via-purple-400 to-purple-500 p-2 m-4 items-center justify-between text-center rounded-xl">
                   <div className="flex gap-4 h-8 items-center p-2">
                     <img
                       src={it.skill.image}
@@ -59,7 +59,7 @@ export default function Profile(props) {
           .filter((it) => it.locked == true)
           .map((it) => (
             <li key={it.skill.title}>
-              <div className="gap-4 flex bg-gray-400 p-2 m-4 items-center text-center rounded-xl">
+              <div className="gap-4 flex bg-gradient-to-b from-gray-400 via-gray-400 to-gray-500 p-2 m-4 items-center text-center rounded-xl">
                 <img
                   src="images/skills/lock.png"
                   alt="skill image"

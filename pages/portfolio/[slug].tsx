@@ -61,7 +61,7 @@ export default function Portfolio(props) {
             <Link href={"/sessionDetails/" + stats.session_id}>
               <li
                 key={it.session_id}
-                className="flex items-center justify-between p-4 m-4 bg-gradient-to-b from-purple-400 via-purple-400 to-purple-500"
+                className="flex items-center justify-between rounded-xl p-4 m-4 bg-gradient-to-b from-purple-400 via-purple-400 to-purple-500"
               >
                 Flashcards
                 <div className="flex flex-col">
