@@ -89,9 +89,6 @@ const SkillCard = ({
                 Play
               </button>
             </Link>
-            <button className="bg-gradient-to-b from-green-300 via-green-400 to-green-500 p-2 w-16 m-4 ring-2 ring-green-200 rounded-xl">
-              Study
-            </button>
           </div>
         </div>
       </Modal>

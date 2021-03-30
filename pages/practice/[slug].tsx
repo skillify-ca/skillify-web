@@ -77,7 +77,6 @@ const Quiz = ({ slug }) => {
     if (isCorrect) {
       setCorrectGuesses(correctGuesses + 1);
     }
-    console.log(sessionId)
     createFlashcardGuess({
       variables: {
         userId: "1",

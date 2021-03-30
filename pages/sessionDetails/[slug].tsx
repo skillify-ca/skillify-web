@@ -7,7 +7,6 @@ import _ from "lodash";
 import { FETCH_FLASHCARD_GUESSES_BY_SESSION } from "../../graphql/fetchFlashcardGuessBySession";
 
 export default function SessionDetails({slug}) {
-  console.log(slug)
   const guessesResult = useQuery(FETCH_FLASHCARD_GUESSES_BY_SESSION, {
     variables: { session_id: slug },
   });
