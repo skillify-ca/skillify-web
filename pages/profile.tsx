@@ -16,7 +16,11 @@ export default function Profile(props) {
   }
   const progress = () => {
     const mastered = skills.filter((it) => it.locked == false && it.stars == 3);
-    return Math.round((mastered.length * 100) / skills.length);
+    if (skills.length > 0) {
+      return Math.round((mastered.length * 100) / skills.length);
+    } else {
+      return 0;
+    }
   };
 
   return (
