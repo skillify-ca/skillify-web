@@ -12,6 +12,7 @@ import { FETCH_USER_SKILLS } from "../../graphql/fetchUserSkills";
 import { FETCH_USER_SKILL } from "../../graphql/fetchUserSkill";
 import { UNLOCK_NEXT_SKILL } from "../../graphql/unlockNextSkill";
 import { generateQuestions } from "../api/questionGenerator";
+import { v4 as uuidv4 } from "uuid";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -25,11 +26,13 @@ const Quiz = ({ slug }) => {
   const [currentLevel, setCurrentLevel] = React.useState(0);
   const inputElement = useRef(null);
   const length = questionData.length;
+  const [sessionId, setSessionId] = React.useState("");
 
   useEffect(() => {
     const level = Number.parseInt(query.level as string);
     setCurrentLevel(level);
     setQuestionData(generateQuestions(slug, level));
+    setSessionId(uuidv4());
   }, []);
 
   useEffect(() => {
@@ -70,17 +73,21 @@ const Quiz = ({ slug }) => {
   const submitGuess = (e) => {
     e.preventDefault();
 
+    let isCorrect = Number.parseInt(guess) == questionData[index].answer;
+    if (isCorrect) {
+      setCorrectGuesses(correctGuesses + 1);
+    }
+    console.log(sessionId)
     createFlashcardGuess({
       variables: {
         userId: "1",
         question: questionData[index].text,
         guess: guess,
         timeTaken: 3,
+        sessionId: sessionId,
+        is_correct: isCorrect
       },
     });
-    if (Number.parseInt(guess) == questionData[index].answer) {
-      setCorrectGuesses(correctGuesses + 1);
-    }
     if (index < length - 1) {
       setIndex(index + 1);
       setGuess("");
@@ -110,7 +117,7 @@ const Quiz = ({ slug }) => {
             unlockNextSkill({
               variables: {
                 skillId: lockedSkills[0].skill.id,
-                locked: false
+                locked: false,
               },
             });
           }
@@ -125,7 +132,7 @@ const Quiz = ({ slug }) => {
     setGuess("");
     setGameOver(false);
     setSecondsElapsed(0);
-    setQuestionData(generateQuestions(slug, currentLevel))
+    setQuestionData(generateQuestions(slug, currentLevel));
     var newInterval = setInterval(() => {
       setSecondsElapsed((secondsElapsed) => secondsElapsed + 1);
     }, 1000);

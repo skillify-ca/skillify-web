@@ -1,24 +1,25 @@
 import { gql } from "@apollo/client";
 
 export const CREATE_GUESS = gql`
-  mutation createFlashcardGuess(
-    $userId: String!
-    $question: String!
-    $guess: String!
-    $timeTaken: numeric
+  mutation MyMutation(
+    $is_correct: Boolean = false
+    $question: String = ""
+    $userId: String = ""
+    $guess: String = ""
+    $timeTaken: numeric = ""
   ) {
-    insert_flashcard_guesses_one(
-      object: {
-        userId: $userId
+    insert_flashcard_guesses(
+      objects: {
+        is_correct: $is_correct
         question: $question
-        guess: $guess
         timeTaken: $timeTaken
+        userId: $userId
+        guess: $guess
       }
     ) {
-      userId
-      question
-      guess
-      timeTaken
+      returning {
+        question
+      }
     }
   }
 `;
