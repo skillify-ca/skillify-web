@@ -37,7 +37,7 @@ export default function Profile(props) {
     <div className="flex flex-col">
       <Navbar />
       <ul>
-        {guesses.data.flashcard_guesses.map((it) => (
+        {guesses.data && guesses.data.flashcard_guesses.map((it) => (
           <li key={it.guessId}>GUESS {it.question} {it.guess}</li>
         ))}
         {skills.map((it) => (
