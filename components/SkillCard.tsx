@@ -79,8 +79,8 @@ const SkillCard = ({
           >
             <option value="">Select Level</option>
             <option value="1">Easy</option>
-            <option value="2">Medium</option>
-            <option value="3">Hard</option>
+            {rating > 0 && <option value="2">Medium</option>}
+            {rating > 1 && <option value="3">Hard</option>}
           </select>
 
           <div className="flex">
