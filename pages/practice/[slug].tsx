@@ -109,7 +109,8 @@ const Quiz = ({ slug }) => {
           if (lockedSkills.length > 1) {
             unlockNextSkill({
               variables: {
-                skillId: lockedSkills[0].skill.skillId,
+                skillId: lockedSkills[0].skill.id,
+                locked: false
               },
             });
           }
