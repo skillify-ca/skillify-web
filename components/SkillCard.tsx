@@ -46,7 +46,9 @@ const SkillCard = ({
     <div>
       <div
         className={`gap-0 flex flex-col items-center justify-between h-full ${
-          disabled ? "bg-gray-400" : "bg-gradient-to-b from-purple-400 via-purple-500 to-purple-500"
+          disabled
+            ? "bg-gray-400"
+            : "bg-gradient-to-b from-purple-400 via-purple-500 to-purple-500"
         } p-4 text-center shadow rounded-xl`}
         onClick={openModal}
       >
@@ -72,7 +74,7 @@ const SkillCard = ({
           <p className="mb-4">{title}</p>
 
           <select
-            className="block w-52 text-gray-700 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+            className="block w-52 text-gray-700 my-4 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
             name="level"
             value={level}
             onChange={onLevelSelect}
@@ -85,12 +87,15 @@ const SkillCard = ({
 
           <div className="flex">
             <Link href={link + "?level=" + level}>
-              <button className="bg-gradient-to-b from-blue-300 via-blue-400 to-blue-500 p-2 w-16 m-4 ring-2 ring-blue-200 rounded-xl">
-                Play
+              <button className="bg-gradient-to-b from-blue-300 via-blue-400 to-blue-500 p-2 w-16 m-4 border-b-4 border-blue-900 rounded-xl hover:from-blue-200">
+                Quiz
               </button>
             </Link>
-            <button className="bg-gradient-to-b from-green-300 via-green-400 to-green-500 p-2 w-16 m-4 ring-2 ring-green-200 rounded-xl">
-              Study
+            <button className="bg-gradient-to-b from-pink-300 via-pink-400 to-pink-500 p-2 w-20 m-4 border-b-4 border-pink-900 rounded-xl hover:from-pink-200">
+              Practice
+            </button>
+            <button className="bg-gradient-to-b from-yellow-300 via-yellow-400 to-yellow-500 p-2 w-20 m-4 border-b-4 border-yellow-900 rounded-xl hover:from-yellow-200">
+              Explore
             </button>
           </div>
         </div>
