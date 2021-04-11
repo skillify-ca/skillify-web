@@ -84,7 +84,7 @@ const Quiz = ({ slug }) => {
         guess: guess,
         timeTaken: 3,
         sessionId: sessionId,
-        is_correct: isCorrect
+        is_correct: isCorrect,
       },
     });
     if (index < length - 1) {
@@ -150,11 +150,11 @@ const Quiz = ({ slug }) => {
   };
 
   const component = (
-    <div className="flex flex-col justify-center">
-      <div className="bg-gradient-to-b from-purple-200 via-purple-300 to-purple-300 flex flex-col justify-center items-center">
-        <p className="w-full p-2">
+    <div className="flex flex-col justify-center items-center">
+      <p className="w-full p-2">
           Question: {index + 1} / {length}
         </p>
+      <div className="m-8 shadow-md ring-1 bg-gradient-to-b from-white via-white to-purple-100 flex flex-col justify-center items-center w-3/4 max-w-xl">
         <div className="p-16 text-2xl">{questionData[index].text}</div>
       </div>
       <div className="flex space-y-4 p-4 flex-col justify-center items-center ">
@@ -171,12 +171,10 @@ const Quiz = ({ slug }) => {
         />
 
         <form onSubmit={submitGuess}>
-          <button
-            type="submit"
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
+          <button type="submit" className="bg-gradient-to-b from-purple-300 via-purple-400 to-purple-500 p-2 w-20 m-4 border-b-4 border-purple-900 rounded-xl hover:from-purple-200">
             Submit
           </button>
+          
         </form>
       </div>
     </div>
