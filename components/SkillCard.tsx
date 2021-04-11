@@ -32,7 +32,9 @@ const SkillCard = ({
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [level, setLevel] = React.useState("1");
   function openModal() {
-    setIsOpen(true);
+    if (!disabled) {
+      setIsOpen(true);
+    }
   }
 
   function closeModal() {
@@ -43,23 +45,21 @@ const SkillCard = ({
   }
 
   return (
-    <div>
+    <div className="w-72">
       <div
-        className={`gap-0 flex flex-col items-center justify-between h-full ${
-          disabled
-            ? "bg-gray-400"
-            : "bg-gradient-to-b from-purple-400 via-purple-500 to-purple-500"
+        className={`gap-0 flex justify-between rounded-full items-center h-16 w-72 ${
+          disabled ? "bg-gray-400" : "bg-white"
         } p-4 text-center shadow rounded-xl`}
         onClick={openModal}
       >
-        <p>{title}</p>
-        <div className="w-16 h-16 m-4">
+        <div className="w-8 h-8 bg-white rounded-full p-1 ring-4 ring-blue-300">
           {disabled ? (
             <img src="/images/skills/lock.png" alt="" />
           ) : (
             image && <img src={image} alt="" />
           )}
         </div>
+        <p className="mx-4">{title}</p>
         <StarRating rating={rating} width={8} />
       </div>
       <Modal

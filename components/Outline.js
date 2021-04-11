@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import Link from "next/link";
 import Modal from "react-modal";
 import ProgressBar from "./ProgressBar";
@@ -9,23 +9,29 @@ import { signIn, useSession } from "next-auth/client";
 import { FETCH_USER_SKILLS } from "../graphql/fetchUserSkills";
 
 const Outline = (props) => {
+  const skillsEndRef = useRef(null);
+
   const userSkillsData = useQuery(FETCH_USER_SKILLS);
   let skills = [];
-
+  let unlockedSkills = [];
   if (userSkillsData.data) {
     skills = userSkillsData.data.user_skills;
+    unlockedSkills = skills.filter((it) => it.locked == false);
   }
 
   return (
     <div>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="col-span-2">
-          <p className="text-xl text-center">Math Skill Tree</p>
+      <div className="col-span-2 p-8 mb-8 bg-green-400 rounded-t-3xl">
+        <p className="text-xl mb-4">Math Skill Tree</p>
+        <div className="bg-green-300 p-8 rounded-full">
+          <p className="text-sm">Practice different math-related skills</p>
         </div>
+      </div>
+
+      <div className="flex flex-wrap justify-around gap-8">
         {userSkillsData.loading && <p>Loading ...</p>}
-        {skills
-          .filter((it) => it.locked == false)
-          .map((skill) => (
+        {unlockedSkills.map((skill, index) => (
+          <div key={skill.skill.title}>
             <SkillCard
               key={skill.skill.title}
               title={skill.skill.title}
@@ -33,24 +39,28 @@ const Outline = (props) => {
               link={`/practice/${skill.skill.id}`}
               rating={skill.stars}
             />
-          ))}
-        <div className="col-span-2">
-          <p className="text-xl">Locked</p>
+          </div>
+        ))}
+      </div>
+      <div className="col-span-2 my-8">
+          <p className="text-xl text-center">Locked</p>
         </div>
+      <div className="flex flex-wrap justify-around gap-8">
         {skills
           .filter((it) => it.locked == true)
-          .map((skill) => (
-            <div
-              key={skill.skill.title}
-              className="gap-0 flex flex-col items-center  bg-gray-400 p-8 text-center"
-            >
-              <p>{skill.skill.title}</p>
-              <div className="w-16 h-16 m-4">
-                <img src="/images/skills/lock.png" alt="" />
-              </div>
+
+          .map((skill, index) => (
+            <div key={skill.skill.title}>
+              <SkillCard
+                key={skill.skill.title}
+                title={skill.skill.title}
+                disabled={true}
+              />
             </div>
           ))}
+      </div>
 
+      <div className="flex flex-col">
         <div className="col-span-2">
           <p className="text-xl">Experimental</p>
         </div>
