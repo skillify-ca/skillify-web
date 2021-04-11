@@ -52,7 +52,7 @@ export default function Portfolio(props) {
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gradient-to-t from-purple-500 via-purple-400 to-purple-300">
       <Navbar />
       <h1 className="text-lg p-4">Quiz Attempts - Addition</h1>
-      <div className="flex items-center justify-between p-4 mx-4 border-b-4 bg-white">
+      <div className="flex items-center justify-between p-4 mx-4 border-b-4 bg-white rounded-t-md">
         <p>Date</p>
         <p>Accuracy</p>
         <p>Speed</p>
