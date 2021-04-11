@@ -21,11 +21,17 @@ const Outline = (props) => {
 
   return (
     <div>
-      <div className="col-span-2 p-8 mb-8 bg-green-400 rounded-t-3xl">
-        <p className="text-xl mb-4">Math Skill Tree</p>
-        <div className="bg-green-300 p-8 rounded-full">
-          <p className="text-sm">Practice different math-related skills</p>
+      <div className="col-span-2 p-8 mb-8 bg-white rounded-3xl">
+        <div className="flex justify-between items-center mb-4">
+          <p className="text-xl">Math Skill Tree</p>
+          <p className="bg-white ring-blue-400 p-1 rounded-full ring-4 w-16 h-8">
+            {Math.floor(
+              (100 * unlockedSkills.length) / skills.length
+            )}
+            %
+          </p>
         </div>
+        <p className="text-sm">Practice different math-related skills</p>
       </div>
 
       <div className="flex flex-wrap justify-around gap-8">
@@ -43,8 +49,8 @@ const Outline = (props) => {
         ))}
       </div>
       <div className="col-span-2 my-8">
-          <p className="text-xl text-center">Locked</p>
-        </div>
+        <p className="text-xl text-center">Locked</p>
+      </div>
       <div className="flex flex-wrap justify-around gap-8">
         {skills
           .filter((it) => it.locked == true)
@@ -58,22 +64,6 @@ const Outline = (props) => {
               />
             </div>
           ))}
-      </div>
-
-      <div className="flex flex-col">
-        <div className="col-span-2">
-          <p className="text-xl">Experimental</p>
-        </div>
-        <Link href="/games/TicTacToe">
-          <div className="gap-0  bg-purple-500 p-8 text-center">
-            Tic Tac Toe
-          </div>
-        </Link>
-        <Link href="/grade-nine">
-          <div className="gap-0 ">
-            <div className="p-8 bg-yellow-500 text-center">Grade 9 EQAO</div>
-          </div>
-        </Link>
       </div>
     </div>
   );
