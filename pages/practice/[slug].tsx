@@ -171,7 +171,7 @@ const Quiz = ({ slug }) => {
         />
 
         <form onSubmit={submitGuess}>
-          <button type="submit" className="bg-gradient-to-b from-purple-300 via-purple-400 to-purple-500 p-2 w-20 m-4 border-b-4 border-purple-900 rounded-xl hover:from-purple-200">
+          <button type="submit" className="bg-gradient-to-b from-purple-300 via-purple-400 to-purple-500 p-2 w-20 m-4 border-b-4 border-purple-900 rounded-xl hover:from-purple-200 active:border-b-2">
             Submit
           </button>
           
