@@ -7,8 +7,8 @@ export type SkillCardProps = {
   title: string;
   image?: string;
   disabled?: boolean;
-  link: string;
-  rating: number;
+  link?: string;
+  rating?: number;
 };
 const customStyles = {
   content: {
@@ -49,7 +49,7 @@ const SkillCard = ({
       <div
         className={`gap-0 flex justify-between rounded-full items-center h-16 w-72 ${
           disabled ? "bg-gray-400" : "bg-white"
-        } p-4 text-center shadow rounded-xl`}
+        } p-4 text-center shadow-md rounded-xl`}
         onClick={openModal}
       >
         <div className="w-8 h-8 bg-white rounded-full p-1 ring-4 ring-blue-300">

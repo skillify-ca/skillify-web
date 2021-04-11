@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { signIn, useSession } from "next-auth/client";
 
-export default function Navbar(props) {
+export default function Navbar() {
   const [active, setActive] = useState(false);
   const [profieMenuActive, setProfileMenuActive] = useState(false);
   const [session, loading] = useSession();
