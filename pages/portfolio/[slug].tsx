@@ -28,7 +28,7 @@ export default function Portfolio(props) {
   const sessionRollup = (guesses) => {
     let correct = 0;
     let speed = 0;
-    let date = 0;
+    let date = "";
     let session_id = null;
 
     if (guesses.length > 0) {
@@ -48,26 +48,27 @@ export default function Portfolio(props) {
     return { accuracy, speed, date, session_id };
   };
 
-  console.log(guessesBySession());
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gradient-to-t from-purple-500 via-purple-400 to-purple-300">
       <Navbar />
-      <h1 className="text-lg p-4">Digital Portfolio - Addition</h1>
-      <ul>
+      <h1 className="text-lg p-4">Quiz Attempts - Addition</h1>
+      <div className="flex items-center justify-between p-4 mx-4 border-b-4 bg-white">
+        <p>Date</p>
+        <p>Accuracy</p>
+        <p>Speed</p>
+      </div>
+      <ul className="mx-4">
         {guessesBySession().map((it) => {
           const stats = sessionRollup(it);
-          console.log(stats)
           return (
-            <Link href={"/sessionDetails/" + stats.session_id}>
+            <Link key={it.session_id} href={"/sessionDetails/" + stats.session_id}>
               <li
                 key={it.session_id}
-                className="flex items-center justify-between rounded-xl p-4 m-4 bg-gradient-to-b from-purple-400 via-purple-400 to-purple-500"
+                className="flex items-center justify-between p-4 bg-white border-b-2 hover:bg-blue-100"
               >
-                Flashcards
-                <div className="flex flex-col">
-                  <p>Accuracy: {stats.accuracy}% </p>
-                  Speed: {stats.speed} seconds
-                </div>
+                <p className="text-sm">{new Date(stats.date).toDateString()}</p>
+                <p className="text-sm">{stats.accuracy}% </p>
+                <p className="text-sm">{stats.speed} seconds</p>
               </li>
             </Link>
           );

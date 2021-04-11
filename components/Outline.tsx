@@ -39,7 +39,7 @@ export default function Outline() {
               key={skill.skill.title}
               title={skill.skill.title}
               image={skill.skill.image}
-              link={`/practice/${skill.skill.id}`}
+              link={`/quiz/${skill.skill.id}`}
               rating={skill.stars}
             />
           </div>

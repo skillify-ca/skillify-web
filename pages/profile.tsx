@@ -24,52 +24,52 @@ export default function Profile(props) {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gradient-to-t from-purple-500 via-purple-400 to-purple-300">
       <Navbar />
       <h1 className="text-lg p-4 text-right">Progress {progress()}%</h1>
-      <ul>
-        {skills
-          .filter((it) => it.locked == false)
-          .map((it) => (
-            <li key={it.skill.title}>
-              <Link href={"portfolio/" + it.skill.id}>
-                  <div className="gap-4 flex bg-gradient-to-b from-purple-400 via-purple-400 to-purple-500 p-2 m-4 items-center justify-between text-center rounded-xl">
-                  <div className="flex gap-4 h-8 items-center p-2">
+      <div className="flex flex-col justify-center items-center">
+        <ul>
+          {skills
+            .filter((it) => it.locked == false)
+            .map((it) => (
+              <li key={it.skill.title}>
+                <Link href={"portfolio/" + it.skill.id}>
+                  <div className="gap-4 flex justify-between rounded-full items-center h-16 w-72 bg-white p-4 text-center shadow-md m-4">
                     <img
                       src={it.skill.image}
                       alt="skill image"
                       className="w-8"
                     />
                     <p>{it.skill.title}</p>
+                    <img
+                      src={
+                        it.stars == 3
+                          ? "images/checkmark.png"
+                          : "images/progress.png"
+                      }
+                      alt="skill image"
+                      className="w-8"
+                    />
                   </div>
+                </Link>
+              </li>
+            ))}
+          {skills
+            .filter((it) => it.locked == true)
+            .map((it) => (
+              <li key={it.skill.title}>
+                <div className="gap-4 flex justify-between rounded-full items-center h-16 w-72 bg-gr bg-gray-300 p-4 text-center shadow-md m-4">
                   <img
-                    src={
-                      it.stars == 3
-                        ? "images/checkmark.png"
-                        : "images/progress.png"
-                    }
+                    src="images/skills/lock.png"
                     alt="skill image"
                     className="w-8"
                   />
+                  <p>{it.skill.title}</p>
                 </div>
-              </Link>
-            </li>
-          ))}
-        {skills
-          .filter((it) => it.locked == true)
-          .map((it) => (
-            <li key={it.skill.title}>
-              <div className="gap-4 flex bg-gradient-to-b from-gray-400 via-gray-400 to-gray-500 p-2 m-4 items-center text-center rounded-xl">
-                <img
-                  src="images/skills/lock.png"
-                  alt="skill image"
-                  className="w-8"
-                />
-                <p>{it.skill.title}</p>
-              </div>
-            </li>
-          ))}
-      </ul>
+              </li>
+            ))}
+        </ul>
+      </div>
     </div>
   );
 }
