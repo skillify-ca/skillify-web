@@ -52,7 +52,7 @@ const SkillCard = ({
         } p-4 text-center shadow-md rounded-xl`}
         onClick={openModal}
       >
-        <div className="w-8 h-8 bg-white rounded-full p-1 ring-4 ring-blue-300">
+        <div className="w-8 h-8 bg-purple-100 rounded-full p-1 ring-2 ring-blue-300">
           {disabled ? (
             <img src="/images/skills/lock.png" alt="" />
           ) : (

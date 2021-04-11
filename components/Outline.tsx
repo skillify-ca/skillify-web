@@ -19,7 +19,7 @@ export default function Outline() {
       <div className="col-span-2 p-8 mb-8 bg-white shadow-lg rounded-3xl">
         <div className="flex justify-between items-center mb-4">
           <p className="text-xl">Math Skill Tree</p>
-          <p className="bg-white ring-blue-400 text-center rounded-full ring-4 w-16 h-8">
+          <p className="flex justify-center items-center bg-purple-100 shadow-inner ring-blue-400 text-center rounded-full ring-8 w-16 h-16">
             {Math.floor((100 * unlockedSkills.length) / skills.length)}%
           </p>
         </div>

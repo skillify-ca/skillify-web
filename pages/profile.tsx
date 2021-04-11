@@ -7,7 +7,7 @@ import { FETCH_USER_SKILLS } from "../graphql/fetchUserSkills";
 import Link from "next/link";
 
 export default function Profile(props) {
-  const [session] = useSession();
+  const [session, user] = useSession();
   const users = useQuery(FETCH_USERS);
   const userSkillsData = useQuery(FETCH_USER_SKILLS);
   let skills = [];
@@ -26,9 +26,24 @@ export default function Profile(props) {
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gradient-to-t from-purple-500 via-purple-400 to-purple-300">
       <Navbar />
-      <h1 className="text-lg p-4 text-right">Progress {progress()}%</h1>
+      <div className="col-span-2 p-8 m-4 bg-white shadow-lg rounded-3xl">
+        <div className="flex justify-between items-center">
+          <div className="flex flex-col">
+            <p className="text-xl">{session && session.user.name}</p>
+            <p className="text-sm">{session && session.user.email}</p>
+            
+          </div>
+          <div className="flex flex-col gap-4 m-4">
+            <p className="text-sm">Progress</p>
+            <p className="flex justify-center items-center bg-purple-100 shadow-inner ring-blue-400 text-center rounded-full ring-8 w-16 h-16">
+              {progress()}%
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div className="flex flex-col justify-center items-center">
-        <ul>
+        <ul className="flex justify-center flex-wrap">
           {skills
             .filter((it) => it.locked == false)
             .map((it) => (
