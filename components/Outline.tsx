@@ -19,7 +19,7 @@ export default function Outline() {
       <div className="col-span-2 p-8 mb-8 bg-white shadow-lg rounded-3xl">
         <div className="flex justify-between items-center mb-4">
           <p className="text-xl">Math Skill Tree</p>
-          <p className="bg-white ring-blue-400 p-1 rounded-full ring-4 w-16 h-8">
+          <p className="bg-white ring-blue-400 text-center rounded-full ring-4 w-16 h-8">
             {Math.floor((100 * unlockedSkills.length) / skills.length)}%
           </p>
         </div>
@@ -29,7 +29,12 @@ export default function Outline() {
       <div className="flex flex-wrap justify-around gap-8">
         {userSkillsData.loading && <p>Loading ...</p>}
         {unlockedSkills.map((skill, index) => (
-          <div key={skill.skill.title} className={index == unlockedSkills.length - 1 ? "animate-bounce" : ""}>
+          <div
+            key={skill.skill.title}
+            className={
+              index == unlockedSkills.length - 1 ? "animate-bounce" : ""
+            }
+          >
             <SkillCard
               key={skill.skill.title}
               title={skill.skill.title}
