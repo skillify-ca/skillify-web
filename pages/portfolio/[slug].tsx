@@ -6,9 +6,16 @@ import { gql, useQuery } from "@apollo/client";
 import { FETCH_FLASHCARD_GUESSES } from "../../graphql/fetchFlashcardGuesses";
 import _ from "lodash";
 import Link from "next/link";
+import { getSkillIdFromSlug, USER_ID } from "../../graphql/utils/constants";
 
-export default function Portfolio(props) {
-  const guessesResult = useQuery(FETCH_FLASHCARD_GUESSES);
+const Portfolio = ({ slug }) => {
+  console.log(slug);
+  const guessesResult = useQuery(FETCH_FLASHCARD_GUESSES, {
+    variables: {
+      userId: USER_ID,
+      skillId: getSkillIdFromSlug(slug)
+    }
+  });
 
   let guesses = [];
   if (guessesResult.data) {
@@ -51,7 +58,7 @@ export default function Portfolio(props) {
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gradient-to-t from-purple-500 via-purple-400 to-purple-300">
       <Navbar />
-      <h1 className="text-lg p-4">Quiz Attempts - Addition</h1>
+      <h1 className="text-lg p-4">Quiz Attempts - {slug}</h1>
       <div className="flex items-center justify-between p-4 mx-4 border-b-4 bg-white rounded-t-md">
         <p>Date</p>
         <p>Accuracy</p>
@@ -60,13 +67,13 @@ export default function Portfolio(props) {
       <ul className="mx-4">
         {guessesBySession().map((it) => {
           const stats = sessionRollup(it);
-          console.log(it.session_id)
+          console.log(it.session_id);
           return (
-            <Link key={it.session_id} href={"/sessionDetails/" + stats.session_id}>
-              <li
-                
-                className="flex items-center justify-between p-4 bg-white border-b-2 hover:bg-blue-100"
-              >
+            <Link
+              key={it.session_id}
+              href={"/sessionDetails/" + stats.session_id}
+            >
+              <li className="flex items-center justify-between p-4 bg-white border-b-2 hover:bg-blue-100">
                 <p className="text-sm">{new Date(stats.date).toDateString()}</p>
                 <p className="text-sm">{stats.accuracy}% </p>
                 <p className="text-sm">{stats.speed} seconds</p>
@@ -77,4 +84,21 @@ export default function Portfolio(props) {
       </ul>
     </div>
   );
+};
+
+export async function getStaticProps({ params }) {
+  return {
+    props: {
+      slug: params.slug,
+    },
+  };
 }
+
+export async function getStaticPaths() {
+  return {
+    paths: [{ params: { slug: "addition" } }],
+    fallback: true,
+  };
+}
+
+export default Portfolio;

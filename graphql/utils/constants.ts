@@ -1,3 +1,5 @@
+export const USER_ID = "2";
+
 export const SKILLS = [
   {
     id: "332c6dfb-5ff6-416d-8134-a2cadb5035bd",

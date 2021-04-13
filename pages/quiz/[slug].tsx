@@ -13,9 +13,7 @@ import { FETCH_USER_SKILL } from "../../graphql/fetchUserSkill";
 import { UNLOCK_NEXT_SKILL } from "../../graphql/unlockNextSkill";
 import { generateQuestions } from "../api/questionGenerator";
 import { v4 as uuidv4 } from "uuid";
-import { getSkillIdFromSlug } from "../../graphql/utils/constants";
-
-const USER_ID = "2";
+import { getSkillIdFromSlug, USER_ID } from "../../graphql/utils/constants";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();

@@ -51,7 +51,7 @@ export default function Profile(props) {
             .filter((it) => it.locked == false)
             .map((it) => (
               <li key={it.skill.title}>
-                <Link href={"portfolio/" + it.skill.id}>
+                <Link href={"portfolio/" + it.skill.title}>
                   <div className="gap-4 flex justify-between rounded-full items-center h-16 w-72 bg-white p-4 text-center shadow-md m-4">
                     <img
                       src={it.skill.image}
