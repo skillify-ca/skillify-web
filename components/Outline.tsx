@@ -2,11 +2,16 @@ import React, { useRef, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import SkillCard from "./SkillCard";
 import { FETCH_USER_SKILLS } from "../graphql/fetchUserSkills";
-
+import { signIn, useSession } from "next-auth/client";
 export default function Outline() {
   const skillsEndRef = useRef(null);
+  const [session, loading] = useSession();
 
-  const userSkillsData = useQuery(FETCH_USER_SKILLS);
+  const userSkillsData = useQuery(FETCH_USER_SKILLS, {
+    variables: {
+      user_id: "1",
+    },
+  });
   let skills = [];
   let unlockedSkills = [];
   if (userSkillsData.data) {
