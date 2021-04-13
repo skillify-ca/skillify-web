@@ -54,7 +54,7 @@ const Quiz = ({ slug }) => {
   const [updateUserSkillStars, updateUserSkillsData] = useMutation(
     UPDATE_USER_SKILLS,
     {
-      refetchQueries: [{ query: FETCH_USER_SKILLS }],
+      refetchQueries: [{ query: FETCH_USER_SKILLS }], // whenever we update a skill, we should refetch
     }
   );
   const userSkillResult = useQuery(FETCH_USER_SKILL, {

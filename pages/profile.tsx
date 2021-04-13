@@ -9,7 +9,11 @@ import Link from "next/link";
 export default function Profile(props) {
   const [session, user] = useSession();
   const users = useQuery(FETCH_USERS);
-  const userSkillsData = useQuery(FETCH_USER_SKILLS);
+  const userSkillsData = useQuery(FETCH_USER_SKILLS, {
+    variables: {
+      userId: "2",
+    },
+  });
   let skills = [];
   if (userSkillsData.data) {
     skills = userSkillsData.data.user_skills;
@@ -31,7 +35,6 @@ export default function Profile(props) {
           <div className="flex flex-col">
             <p className="text-xl">{session && session.user.name}</p>
             <p className="text-sm">{session && session.user.email}</p>
-            
           </div>
           <div className="flex flex-col gap-4 m-4">
             <p className="text-sm">Progress</p>
