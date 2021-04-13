@@ -13,6 +13,9 @@ import { FETCH_USER_SKILL } from "../../graphql/fetchUserSkill";
 import { UNLOCK_NEXT_SKILL } from "../../graphql/unlockNextSkill";
 import { generateQuestions } from "../api/questionGenerator";
 import { v4 as uuidv4 } from "uuid";
+import { getSkillIdFromSlug } from "../../graphql/utils/constants";
+
+const USER_ID = "2";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -54,19 +57,38 @@ const Quiz = ({ slug }) => {
   const [updateUserSkillStars, updateUserSkillsData] = useMutation(
     UPDATE_USER_SKILLS,
     {
-      refetchQueries: [{ query: FETCH_USER_SKILLS }], // whenever we update a skill, we should refetch
+      refetchQueries: [
+        {
+          query: FETCH_USER_SKILLS,
+          variables: {
+            userId: USER_ID,
+          },
+        },
+      ], // whenever we update a skill, we should refetch
     }
   );
   const userSkillResult = useQuery(FETCH_USER_SKILL, {
     variables: {
-      skillId: slug,
+      skillId: getSkillIdFromSlug(slug),
+      userId: USER_ID,
     },
   });
-  const userSkillsResult = useQuery(FETCH_USER_SKILLS);
+  const userSkillsResult = useQuery(FETCH_USER_SKILLS, {
+    variables: {
+      userId: USER_ID,
+    },
+  });
   const [unlockNextSkill, unlockNextSkillData] = useMutation(
     UNLOCK_NEXT_SKILL,
     {
-      refetchQueries: [{ query: FETCH_USER_SKILLS }],
+      refetchQueries: [
+        {
+          query: FETCH_USER_SKILLS,
+          variables: {
+            userId: USER_ID,
+          },
+        },
+      ],
     }
   );
 
@@ -79,12 +101,13 @@ const Quiz = ({ slug }) => {
     }
     createFlashcardGuess({
       variables: {
-        userId: "1",
+        userId: USER_ID,
         question: questionData[index].text,
         guess: guess,
         timeTaken: 3,
         sessionId: sessionId,
         is_correct: isCorrect,
+        skillId: getSkillIdFromSlug(slug),
       },
     });
     if (index < length - 1) {
@@ -103,8 +126,9 @@ const Quiz = ({ slug }) => {
       if (starsEarnedForSkill < currentLevel) {
         updateUserSkillStars({
           variables: {
-            skillId: slug,
+            skillId: getSkillIdFromSlug(slug),
             stars: currentLevel,
+            userId: USER_ID,
           },
         });
         if (currentLevel == 3) {
@@ -117,6 +141,7 @@ const Quiz = ({ slug }) => {
               variables: {
                 skillId: lockedSkills[0].skill.id,
                 locked: false,
+                userId: USER_ID
               },
             });
           }
@@ -152,8 +177,8 @@ const Quiz = ({ slug }) => {
   const component = (
     <div className="flex flex-col justify-center items-center">
       <p className="w-full p-2">
-          Question: {index + 1} / {length}
-        </p>
+        Question: {index + 1} / {length}
+      </p>
       <div className="m-8 shadow-md ring-1 bg-gradient-to-b from-white via-white to-purple-100 flex flex-col justify-center items-center w-3/4 max-w-xl">
         <div className="p-16 text-2xl">{questionData[index].text}</div>
       </div>
@@ -171,10 +196,12 @@ const Quiz = ({ slug }) => {
         />
 
         <form onSubmit={submitGuess}>
-          <button type="submit" className="bg-gradient-to-b from-purple-300 via-purple-400 to-purple-500 p-2 w-20 m-4 border-b-4 border-purple-900 rounded-xl hover:from-purple-200 active:border-b-2">
+          <button
+            type="submit"
+            className="bg-gradient-to-b from-purple-300 via-purple-400 to-purple-500 p-2 w-20 m-4 border-b-4 border-purple-900 rounded-xl hover:from-purple-200 active:border-b-2"
+          >
             Submit
           </button>
-          
         </form>
       </div>
     </div>

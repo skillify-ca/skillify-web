@@ -60,10 +60,11 @@ export default function Portfolio(props) {
       <ul className="mx-4">
         {guessesBySession().map((it) => {
           const stats = sessionRollup(it);
+          console.log(it.session_id)
           return (
             <Link key={it.session_id} href={"/sessionDetails/" + stats.session_id}>
               <li
-                key={it.session_id}
+                
                 className="flex items-center justify-between p-4 bg-white border-b-2 hover:bg-blue-100"
               >
                 <p className="text-sm">{new Date(stats.date).toDateString()}</p>

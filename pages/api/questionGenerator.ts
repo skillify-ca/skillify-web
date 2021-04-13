@@ -1,13 +1,31 @@
-import apiData from "../api/practice.json";
-
 const NUM_QUESTIONS = 5;
-const ADDITION_SKILL_ID = "6aa7774f-85d0-438f-a35f-04034ada4fe5"
 
+export type FlashcardQuestion = {
+  text: String;
+  answer: number;
+};
 export const generateQuestions = (slug: string, currentLevel: number) => {
-  return generateAdditionQuestions(currentLevel);
+  if (slug.toLowerCase() == "numbers") {
+    return generateQuestionsForTopic(currentLevel, getRandomNumbersQuestion);
+  } else {
+    return generateQuestionsForTopic(currentLevel, getRandomAdditionQuestion);
+  }
 };
 
-const generateAdditionQuestions = (currentLevel: number) => {
+function getRandomNumbersQuestion(min: number, max: number) {
+  const a = getRndInteger(min, max);
+  const b = getRndInteger(min, max);
+  const text = `Which is bigger ${a} or ${b}?`;
+  return {
+    text: text,
+    answer: Math.max(a, b),
+  };
+}
+
+const generateQuestionsForTopic = (
+  currentLevel: number,
+  questionGenerator: (min: number, max: number) => FlashcardQuestion
+) => {
   const res = [];
   for (let i = 0; i < NUM_QUESTIONS; i++) {
     let min = 1;
@@ -19,7 +37,7 @@ const generateAdditionQuestions = (currentLevel: number) => {
       min = 101;
       max = 1000;
     }
-    res.push(getRandomAdditionQuestion(min, max));
+    res.push(questionGenerator(min, max));
   }
   return res;
 };
