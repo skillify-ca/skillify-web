@@ -78,3 +78,10 @@ export const getSkillIdFromSlug = (slug: string) => {
   }
   return "";
 };
+
+export const userId = (session) => {
+  if (session) {
+    return session["userId"];
+  }
+  return "-1";
+};

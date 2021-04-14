@@ -2,16 +2,15 @@ import React from "react";
 import { useSession } from "next-auth/client";
 import Navbar from "../components/Navbar";
 import { useQuery } from "@apollo/client";
-import { FETCH_USERS } from "../graphql/fetchUsers";
 import { FETCH_USER_SKILLS } from "../graphql/fetchUserSkills";
 import Link from "next/link";
+import { userId } from "../graphql/utils/constants";
 
 export default function Profile(props) {
   const [session, user] = useSession();
-  const users = useQuery(FETCH_USERS);
   const userSkillsData = useQuery(FETCH_USER_SKILLS, {
     variables: {
-      userId: "2",
+      userId: userId(session),
     },
   });
   let skills = [];

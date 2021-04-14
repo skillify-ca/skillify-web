@@ -6,12 +6,13 @@ import { gql, useQuery } from "@apollo/client";
 import { FETCH_FLASHCARD_GUESSES } from "../../graphql/fetchFlashcardGuesses";
 import _ from "lodash";
 import Link from "next/link";
-import { getSkillIdFromSlug, USER_ID } from "../../graphql/utils/constants";
+import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
 
 const Portfolio = ({ slug }) => {
+  const [session, loading] = useSession();
   const guessesResult = useQuery(FETCH_FLASHCARD_GUESSES, {
     variables: {
-      userId: USER_ID,
+      userId: userId(session),
       skillId: getSkillIdFromSlug(slug),
     },
   });
@@ -20,14 +21,14 @@ const Portfolio = ({ slug }) => {
   const [practiceSessions, setPracticeSessions] = React.useState([]);
 
   useEffect(() => {
-    if (guessesResult.data) {
+    if (guessesResult.data && userId(session) != "-1") {
       setGuesses(guessesResult.data.flashcard_guesses);
       const sessions = groupByPracticeSession(
         guessesResult.data.flashcard_guesses
       );
       setPracticeSessions(sessions);
     }
-  }, [guessesResult]);
+  }, [guessesResult, session]);
 
   const groupByPracticeSession = (guesses) => {
     const dict = _.groupBy(guesses, function (guess) {

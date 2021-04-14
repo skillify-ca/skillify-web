@@ -13,10 +13,12 @@ import { FETCH_USER_SKILL } from "../../graphql/fetchUserSkill";
 import { UNLOCK_NEXT_SKILL } from "../../graphql/unlockNextSkill";
 import { generateQuestions } from "../api/questionGenerator";
 import { v4 as uuidv4 } from "uuid";
-import { getSkillIdFromSlug, USER_ID } from "../../graphql/utils/constants";
+import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
+import { useSession } from "next-auth/client";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
+  const [session] = useSession();
   const [index, setIndex] = useState(0);
   const [guess, setGuess] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState(0);
@@ -28,6 +30,10 @@ const Quiz = ({ slug }) => {
   const inputElement = useRef(null);
   const length = questionData.length;
   const [sessionId, setSessionId] = React.useState("");
+  const [
+    starsAlreadyEarnedForSkill,
+    setStarsAlreadyEarnForSkill,
+  ] = React.useState(0);
 
   useEffect(() => {
     const level = Number.parseInt(query.level as string);
@@ -59,7 +65,7 @@ const Quiz = ({ slug }) => {
         {
           query: FETCH_USER_SKILLS,
           variables: {
-            userId: USER_ID,
+            userId: userId(session), // TODO what if someone runs this with null
           },
         },
       ], // whenever we update a skill, we should refetch
@@ -68,12 +74,12 @@ const Quiz = ({ slug }) => {
   const userSkillResult = useQuery(FETCH_USER_SKILL, {
     variables: {
       skillId: getSkillIdFromSlug(slug),
-      userId: USER_ID,
+      userId: userId(session),
     },
   });
   const userSkillsResult = useQuery(FETCH_USER_SKILLS, {
     variables: {
-      userId: USER_ID,
+      userId: userId(session),
     },
   });
   const [unlockNextSkill, unlockNextSkillData] = useMutation(
@@ -83,12 +89,18 @@ const Quiz = ({ slug }) => {
         {
           query: FETCH_USER_SKILLS,
           variables: {
-            userId: USER_ID,
+            userId: userId(session),
           },
         },
       ],
     }
   );
+
+  useEffect(() => {
+    if (userSkillResult.data) {
+      setStarsAlreadyEarnForSkill(userSkillResult.data.user_skills[0].stars);
+    }
+  }, [session]);
 
   const submitGuess = (e) => {
     e.preventDefault();
@@ -99,7 +111,7 @@ const Quiz = ({ slug }) => {
     }
     createFlashcardGuess({
       variables: {
-        userId: USER_ID,
+        userId: userId(session),
         question: questionData[index].text,
         guess: guess,
         timeTaken: 3,
@@ -119,14 +131,14 @@ const Quiz = ({ slug }) => {
       setMyInterval(null);
       setGameOver(true);
 
+      // TODO make it harder to unlock a star
       // if pass unlock star
-      const starsEarnedForSkill = userSkillResult.data.user_skills[0].stars;
-      if (starsEarnedForSkill < currentLevel) {
+      if (starsAlreadyEarnedForSkill < currentLevel) {
         updateUserSkillStars({
           variables: {
             skillId: getSkillIdFromSlug(slug),
             stars: currentLevel,
-            userId: USER_ID,
+            userId: userId(session),
           },
         });
         if (currentLevel == 3) {
@@ -139,7 +151,7 @@ const Quiz = ({ slug }) => {
               variables: {
                 skillId: lockedSkills[0].skill.id,
                 locked: false,
-                userId: USER_ID
+                userId: userId(session),
               },
             });
           }
@@ -178,7 +190,9 @@ const Quiz = ({ slug }) => {
         Question: {index + 1} / {length}
       </p>
       <div className="m-8 shadow-md ring-1 bg-gradient-to-b from-white via-white to-purple-100 flex flex-col justify-center items-center w-3/4 max-w-xl">
-        <div className="p-16 text-2xl">{questionData[index] && questionData[index].text}</div>
+        <div className="p-16 text-2xl">
+          {questionData[index] && questionData[index].text}
+        </div>
       </div>
       <div className="flex space-y-4 p-4 flex-col justify-center items-center ">
         <input
