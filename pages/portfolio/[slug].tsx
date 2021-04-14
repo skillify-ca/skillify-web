@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { session, useSession } from "next-auth/client";
 import Navbar from "../../components/Navbar";
 import initializeApollo from "../../lib/apollo";
@@ -9,20 +9,27 @@ import Link from "next/link";
 import { getSkillIdFromSlug, USER_ID } from "../../graphql/utils/constants";
 
 const Portfolio = ({ slug }) => {
-  console.log(slug);
   const guessesResult = useQuery(FETCH_FLASHCARD_GUESSES, {
     variables: {
       userId: USER_ID,
-      skillId: getSkillIdFromSlug(slug)
-    }
+      skillId: getSkillIdFromSlug(slug),
+    },
   });
 
-  let guesses = [];
-  if (guessesResult.data) {
-    guesses = guessesResult.data.flashcard_guesses;
-  }
+  const [guesses, setGuesses] = React.useState([]);
+  const [practiceSessions, setPracticeSessions] = React.useState([]);
 
-  let guessesBySession = () => {
+  useEffect(() => {
+    if (guessesResult.data) {
+      setGuesses(guessesResult.data.flashcard_guesses);
+      const sessions = groupByPracticeSession(
+        guessesResult.data.flashcard_guesses
+      );
+      setPracticeSessions(sessions);
+    }
+  }, [guessesResult]);
+
+  const groupByPracticeSession = (guesses) => {
     const dict = _.groupBy(guesses, function (guess) {
       return guess.session_id;
     });
@@ -65,12 +72,11 @@ const Portfolio = ({ slug }) => {
         <p>Speed</p>
       </div>
       <ul className="mx-4">
-        {guessesBySession().map((it) => {
+        {practiceSessions.map((it) => {
           const stats = sessionRollup(it);
-          console.log(it.session_id);
           return (
             <Link
-              key={it.session_id}
+              key={stats.session_id}
               href={"/sessionDetails/" + stats.session_id}
             >
               <li className="flex items-center justify-between p-4 bg-white border-b-2 hover:bg-blue-100">
@@ -96,7 +102,7 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { slug: "addition" } }],
+    paths: [{ params: { slug: "Numbers" } }],
     fallback: true,
   };
 }
