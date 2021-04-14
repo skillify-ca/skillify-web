@@ -29,6 +29,7 @@ export default function Profile(props) {
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gradient-to-t from-purple-500 via-purple-400 to-purple-300">
       <Navbar />
+      <div className="h-screen">
       <div className="col-span-2 p-8 m-4 bg-white shadow-lg rounded-3xl">
         <div className="flex justify-between items-center">
           <div className="flex flex-col">
@@ -87,6 +88,6 @@ export default function Profile(props) {
             ))}
         </ul>
       </div>
-    </div>
+    </div></div>
   );
 }

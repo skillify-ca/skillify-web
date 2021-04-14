@@ -8,7 +8,7 @@ export default function Home() {
       <div>
         <Navbar />
       </div>
-      <div className="p-4 h-screen bg-gradient-to-t from-blue-500 via-blue-400 to-blue-300">
+      <div className="p-4 bg-gradient-to-t from-blue-500 via-blue-400 to-blue-300">
         <Head>
           <title>Create Next App</title>
           <link rel="icon" href="/favicon.ico" />

@@ -5,11 +5,12 @@ import initializeApollo from "../../lib/apollo";
 import { gql, useQuery } from "@apollo/client";
 import _ from "lodash";
 import { FETCH_FLASHCARD_GUESSES_BY_SESSION } from "../../graphql/fetchFlashcardGuessBySession";
-import { USER_ID } from "../../graphql/utils/constants";
+import { userId, USER_ID } from "../../graphql/utils/constants";
 
 export default function SessionDetails({ slug }) {
+  const [session] = useSession();
   const guessesResult = useQuery(FETCH_FLASHCARD_GUESSES_BY_SESSION, {
-    variables: { session_id: slug, userId: USER_ID },
+    variables: { session_id: slug, userId: userId(session) },
   });
 
   let guesses = [];
