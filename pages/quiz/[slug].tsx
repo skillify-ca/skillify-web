@@ -178,7 +178,7 @@ const Quiz = ({ slug }) => {
         Question: {index + 1} / {length}
       </p>
       <div className="m-8 shadow-md ring-1 bg-gradient-to-b from-white via-white to-purple-100 flex flex-col justify-center items-center w-3/4 max-w-xl">
-        <div className="p-16 text-2xl">{questionData[index].text}</div>
+        <div className="p-16 text-2xl">{questionData[index] && questionData[index].text}</div>
       </div>
       <div className="flex space-y-4 p-4 flex-col justify-center items-center ">
         <input

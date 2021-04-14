@@ -72,5 +72,9 @@ export const SKILLS = [
 ];
 
 export const getSkillIdFromSlug = (slug: string) => {
-  return SKILLS.filter((it) => it.title == slug)[0].id; // get the id for the current skill
+  const filteredSkills = SKILLS.filter((it) => it.title == slug);
+  if (filteredSkills.length > 0) {
+    return filteredSkills[0].id; // get the id for the current skill
+  }
+  return "";
 };

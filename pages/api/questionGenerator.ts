@@ -5,11 +5,14 @@ export type FlashcardQuestion = {
   answer: number;
 };
 export const generateQuestions = (slug: string, currentLevel: number) => {
-  if (slug.toLowerCase() == "numbers") {
-    return generateQuestionsForTopic(currentLevel, getRandomNumbersQuestion);
-  } else {
-    return generateQuestionsForTopic(currentLevel, getRandomAdditionQuestion);
+  if (slug != null) {
+    if (slug.toLowerCase() == "numbers") {
+      return generateQuestionsForTopic(currentLevel, getRandomNumbersQuestion);
+    } else {
+      return generateQuestionsForTopic(currentLevel, getRandomAdditionQuestion);
+    }
   }
+  return [];
 };
 
 function getRandomNumbersQuestion(min: number, max: number) {
