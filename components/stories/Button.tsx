@@ -24,11 +24,33 @@ export interface ButtonProps {
  * Primary UI component for user interaction
  */
 export const Button: React.FC<ButtonProps> = ({ backgroundColor, textColor, label, onClick, ...props }) => {
+	let backgroundStyles;
+	switch (backgroundColor) {
+		case 'blue':
+			backgroundStyles = 'from-blue-300 via-blue-400 to-blue-500 border-blue-900 hover:from-blue-200'
+			break;
+		case 'green':
+			backgroundStyles = 'from-green-300 via-green-400 to-green-500 border-green-900 hover:from-green-200'
+			break;
+		case 'red':
+			backgroundStyles = 'from-red-300 via-red-400 to-red-500 border-red-900 hover:from-red-200'
+			break;
+		case 'purple':
+			backgroundStyles = 'from-purple-300 via-purple-400 to-purple-500 border-purple-900 hover:from-purple-200'
+			break;
+		case 'pink':
+			backgroundStyles = 'from-pink-300 via-pink-400 to-pink-500 border-pink-900 hover:from-pink-200'
+			break;
+		case 'yellow':
+			backgroundStyles = 'from-yellow-300 via-yellow-400 to-yellow-500 border-yellow-900 hover:from-yellow-200'
+			break;
+
+	}
 	return (
 		<button
 			type="button"
 			onClick={onClick}
-			className={`bg-gradient-to-b from-${backgroundColor}-300 via-${backgroundColor}-400 to-${backgroundColor}-500 p-2 w-20 m-4 border-b-4 border-${backgroundColor}-900 rounded-xl hover:from-${backgroundColor}-200 active:border-b-2`}
+			className={`bg-gradient-to-b p-2 w-20 m-4 border-b-4 rounded-xl active:border-b-2 ${backgroundStyles}`}
 			{...props}
 		>
 			<span className={`text-${textColor}`}>{label}</span>
