@@ -1,19 +1,15 @@
-import React from 'react';
-import './button.css';
+import React from "react";
 
 export interface ButtonProps {
   /**
-   * Is this the principal call to action on the page?
-   */
-  primary?: boolean;
-  /**
    * What background color to use
    */
-  backgroundColor?: string;
+  backgroundColor?: "blue" | "green" | "red" | "purple" | "pink" | "yellow";
   /**
-   * How large should the button be?
+   * What text color to use
+   * Can be white, black, gray-500, blue-200, blue-900, red-500, etc..
    */
-  size?: 'small' | 'medium' | 'large';
+   textColor?: string;
   /**
    * Button contents
    */
@@ -28,21 +24,18 @@ export interface ButtonProps {
  * Primary UI component for user interaction
  */
 export const Button: React.FC<ButtonProps> = ({
-  primary = false,
-  size = 'medium',
   backgroundColor,
+  textColor,
   label,
   ...props
 }) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
   return (
     <button
       type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-      style={{ backgroundColor }}
+      className={`bg-gradient-to-b from-${backgroundColor}-300 via-${backgroundColor}-400 to-${backgroundColor}-500 p-2 w-20 m-4 border-b-4 border-${backgroundColor}-900 rounded-xl hover:from-${backgroundColor}-200 active:border-b-2`}
       {...props}
     >
-      {label}
+      <span className={`text-${textColor}`}>{label}</span>
     </button>
   );
 };

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import Modal from "react-modal";
+import { Button } from "../stories/Button";
 import StarRating from "./Rating";
 
 export type SkillCardProps = {
@@ -87,16 +88,10 @@ const SkillCard = ({
 
           <div className="flex">
             <Link href={link + "?level=" + level}>
-              <button className="bg-gradient-to-b from-blue-300 via-blue-400 to-blue-500 p-2 w-16 m-4 border-b-4 border-blue-900 rounded-xl hover:from-blue-200 active:border-b-2">
-                Quiz
-              </button>
+              <Button backgroundColor="blue" label="Quiz" />
             </Link>
-            <button className="bg-gradient-to-b from-pink-300 via-pink-400 to-pink-500 p-2 w-20 m-4 border-b-4 border-pink-900 rounded-xl hover:from-pink-200 active:border-b-2">
-              Practice
-            </button>
-            <button className="bg-gradient-to-b from-yellow-300 via-yellow-400 to-yellow-500 p-2 w-20 m-4 border-b-4 border-yellow-900 rounded-xl hover:from-yellow-200 active:border-b-2">
-              Explore
-            </button>
+            <Button backgroundColor="pink" label="Practice" />
+            <Button backgroundColor="yellow" label="Explore" />
           </div>
         </div>
       </Modal>
