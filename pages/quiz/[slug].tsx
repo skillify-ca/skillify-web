@@ -192,7 +192,7 @@ const Quiz = ({ slug }) => {
         Question: {index + 1} / {length}
       </p>
       <p className="text-xl font-bold">Math Skill Tree</p>
-      <Card>
+      <Card size='large'>
         <p className="text-6xl">{questionData[index] && questionData[index].text}</p>
       </Card>
       <input

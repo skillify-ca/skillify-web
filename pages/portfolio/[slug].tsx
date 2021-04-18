@@ -121,9 +121,9 @@ const Portfolio = ({ slug }) => {
         <div>
           <p className="font-bold mb-2 text-sm text-gray-500">History</p>
           <div className="flex shadow-md items-center justify-between p-4 border-b-4 bg-white rounded-t-md border-blue-400">
-            <p className="font-bold">Date</p>
-            <p className="font-bold">Accuracy</p>
-            <p className="font-bold">Speed</p>
+            <p className="">Date</p>
+            <p className="">Accuracy</p>
+            <p className="">Speed</p>
           </div>
           <ul className="">
             {practiceSessions.map((it) => {

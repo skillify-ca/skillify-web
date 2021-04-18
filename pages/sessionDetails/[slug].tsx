@@ -38,7 +38,7 @@ export default function SessionDetails({ slug }) {
                 <p>Accuracy</p>
               </div>
 
-              <p className="font-bold">{"80"}% </p>
+              <p className="font-bold">{"XX"}% </p>
             </div>
           </Card>
           <Card size='small'>
@@ -49,7 +49,7 @@ export default function SessionDetails({ slug }) {
                 </svg>
                 Speed
                 </div>
-              <p className="font-bold">{"80"} seconds</p>
+              <p className="font-bold">{"XX"} seconds</p>
             </div>
           </Card>
         </div>
