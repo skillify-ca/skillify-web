@@ -7,6 +7,7 @@ import { FETCH_FLASHCARD_GUESSES } from "../../graphql/fetchFlashcardGuesses";
 import _ from "lodash";
 import Link from "next/link";
 import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
+import Card from "../../components/stories/Card";
 
 const Portfolio = ({ slug }) => {
   const [session, loading] = useSession();
@@ -63,35 +64,87 @@ const Portfolio = ({ slug }) => {
     return { accuracy, speed, date, session_id };
   };
 
+  const overallStats = () => {
+    let maxAccuracy = 0;
+    let speedForMaxAccuracy = 0;
+
+    practiceSessions.map((it) => {
+      const stats = sessionRollup(it);
+      if (stats.accuracy === maxAccuracy) {
+        speedForMaxAccuracy = Math.max(speedForMaxAccuracy, stats.speed)
+      }
+      else if (stats.accuracy > maxAccuracy) {
+        maxAccuracy = stats.accuracy;
+        speedForMaxAccuracy = stats.speed
+      }
+    })
+
+    return {
+      accuracy: maxAccuracy,
+      speed: speedForMaxAccuracy
+    }
+  }
+
   return (
-    <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gradient-to-t from-purple-500 via-purple-400 to-purple-300">
+    <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
       <Navbar />
-      <div className="h-screen">
-        <h1 className="text-lg p-4">Quiz Attempts - {slug}</h1>
-        <div className="flex items-center justify-between p-4 mx-4 border-b-4 bg-white rounded-t-md">
-          <p>Date</p>
-          <p>Accuracy</p>
-          <p>Speed</p>
+      <div className="h-screen flex flex-col p-4 gap-8">
+        <h1 className="text-lg font-bold">Quiz Attempts - {slug}</h1>
+        <div>
+          <p className="font-bold mb-2 text-sm text-gray-500">Best Attempt</p>
+          <div className="flex gap-4">
+            <Card size='small'>
+              <div className="flex flex-col items-center gap-2">
+                <div className="flex gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                  </svg>
+                  <p>Accuracy</p>
+                </div>
+
+                <p className="font-bold">{overallStats().accuracy}% </p>
+              </div>
+            </Card>
+            <Card size='small'>
+              <div className="flex flex-col items-center gap-2">
+                <div className="flex gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                Speed
+                </div>
+                <p className="font-bold">{overallStats().speed} seconds</p>
+              </div>
+            </Card>
+          </div>
         </div>
-        <ul className="mx-4">
-          {practiceSessions.map((it) => {
-            const stats = sessionRollup(it);
-            return (
-              <Link
-                key={stats.session_id}
-                href={"/sessionDetails/" + stats.session_id}
-              >
-                <li className="flex items-center justify-between p-4 bg-white border-b-2 hover:bg-blue-100">
-                  <p className="text-sm">
-                    {new Date(stats.date).toDateString()}
-                  </p>
-                  <p className="text-sm">{stats.accuracy}% </p>
-                  <p className="text-sm">{stats.speed} seconds</p>
-                </li>
-              </Link>
-            );
-          })}
-        </ul>
+        <div>
+          <p className="font-bold mb-2 text-sm text-gray-500">History</p>
+          <div className="flex shadow-md items-center justify-between p-4 border-b-4 bg-white rounded-t-md border-blue-400">
+            <p className="font-bold">Date</p>
+            <p className="font-bold">Accuracy</p>
+            <p className="font-bold">Speed</p>
+          </div>
+          <ul className="">
+            {practiceSessions.map((it) => {
+              const stats = sessionRollup(it);
+              return (
+                <Link
+                  key={stats.session_id}
+                  href={"/sessionDetails/" + stats.session_id}
+                >
+                  <li className="flex shadow-md items-center justify-between p-4 bg-white border-b-2 hover:bg-blue-100">
+                    <p className="text-sm">
+                      {new Date(stats.date).toDateString()}
+                    </p>
+                    <p className="text-sm">{stats.accuracy}% </p>
+                    <p className="text-sm">{stats.speed} seconds</p>
+                  </li>
+                </Link>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </div>
   );

@@ -30,7 +30,7 @@ export default function Profile(props) {
 	return (
 		<div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
 			<Navbar />
-			<div className="h-screen">
+			<div className="h-screen ">
 				<div className="col-span-2 p-8 m-4 bg-white shadow-lg rounded-3xl">
 					<div className="flex justify-between items-center">
 						<div className="flex flex-col">

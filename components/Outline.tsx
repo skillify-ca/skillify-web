@@ -56,7 +56,7 @@ export default function Outline() {
 
   return (
     <div className="flex flex-col gap-8 justify-between w-full col-span-2 items-center mb-4 p-16 mx-auto">
-      <Card>
+      <Card size='large'>
         <div className="flex flex-col gap-8 items-center">
           <p className="text-xl font-bold font-sans">Math Skill Tree</p>
           <p className="text-sm">Practice different math-related skills</p>

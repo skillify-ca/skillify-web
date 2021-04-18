@@ -21,5 +21,7 @@ module.exports = {
 			fontFamily: [ 'hover', 'focus' ]
 		}
 	},
-	plugins: []
+	plugins: [
+    require('tailwindcss-hero-patterns'),
+  ]
 };
