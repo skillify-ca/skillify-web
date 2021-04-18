@@ -191,9 +191,10 @@ const Quiz = ({ slug }) => {
       <p className="w-full p-2">
         Question: {index + 1} / {length}
       </p>
+        <p className="text-xl font-bold">Math Skill Tree</p>
       <Card>
-        <div className="max-w-xl text-9xl">
-          {questionData[index] && questionData[index].text}
+        <div className="max-w-xl">
+          <p className="text-8xl text-serif">{questionData[index] && questionData[index].text}</p>
         </div>
       </Card>
       <input

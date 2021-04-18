@@ -58,7 +58,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({ title, image, disabled, li
 							</button>
 						</div>
 						<div className="p-4 flex flex-col items-center gap-8">
-							<p className="font-bold">{title}</p>
+							<p className="text-xl font-bold">{title}</p>
 
 							<select
 								className="block w-52 text-gray-700 my-4 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"

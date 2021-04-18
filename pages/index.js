@@ -9,10 +9,6 @@ export default function Home() {
         <Navbar />
       </div>
       <div className="bg-gray-200">
-        <Head>
-          <title>Create Next App</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
         <Outline />
       </div>
     </div>

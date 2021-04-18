@@ -1,6 +1,6 @@
 const Card = ({ children }) => {
   return (
-    <div className="flex justify-center items-center p-8 bg-white shadow-md rounded-xl max-w-screen-lg m-auto h-72">
+    <div className="flex justify-center items-center p-8 bg-white shadow-md rounded-xl max-w-screen-lg w-80 m-auto h-72">
         {children}
     </div>
   );

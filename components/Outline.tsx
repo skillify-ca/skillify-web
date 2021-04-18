@@ -58,7 +58,7 @@ export default function Outline() {
     <div className="flex flex-col gap-8 justify-between w-full col-span-2 items-center mb-4 p-16 mx-auto">
       <Card>
         <div className="flex flex-col gap-8 items-center">
-          <p className="text-xl">Math Skill Tree</p>
+          <p className="text-xl font-bold font-sans">Math Skill Tree</p>
           <p className="text-sm">Practice different math-related skills</p>
           <p className="flex justify-center items-center bg-purple-100 shadow-inner ring-blue-400 text-center rounded-full ring-8 w-16 h-16">
             {getOverallProgress()}%
@@ -86,7 +86,7 @@ export default function Outline() {
           ))}
         </div>
         <div className="col-span-2 my-8">
-          <p className="text-xl text-center">{session ? "Locked" : "Please log in"}</p>
+          <p className="text-xl text-center font-bold">{session ? "Locked" : "Please log in"}</p>
         </div>
         <div className="flex flex-wrap justify-center gap-4">
           {skills
