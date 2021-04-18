@@ -15,6 +15,8 @@ import { generateQuestions } from "../api/questionGenerator";
 import { v4 as uuidv4 } from "uuid";
 import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
+import Card from "../../components/stories/Card";
+import { Button } from "../../components/stories/Button";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -185,37 +187,29 @@ const Quiz = ({ slug }) => {
   };
 
   const component = (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center bg-gray-100 gap-8 pb-24">
       <p className="w-full p-2">
         Question: {index + 1} / {length}
       </p>
-      <div className="m-8 shadow-md ring-1 bg-gradient-to-b from-white via-white to-purple-100 flex flex-col justify-center items-center w-3/4 max-w-xl">
-        <div className="p-16 text-2xl">
+      <Card>
+        <div className="max-w-xl text-9xl">
           {questionData[index] && questionData[index].text}
         </div>
-      </div>
-      <div className="flex space-y-4 p-4 flex-col justify-center items-center ">
-        <input
-          id="guess"
-          type="number"
-          autoComplete="off"
-          value={guess}
-          onChange={(e) => setGuess(e.target.value)}
-          className="appearance-none relative block px-3 py-4 text-center border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-          placeholder="Enter Answer"
-          ref={inputElement}
-          onKeyPress={handleKeypress}
-        />
+      </Card>
+      <input
+        id="guess"
+        type="number"
+        autoComplete="off"
+        value={guess}
+        onChange={(e) => setGuess(e.target.value)}
+        className="appearance-none relative block px-3 py-4 text-center border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 bg-blue-100 focus:z-10 sm:text-sm"
+        placeholder="Enter Answer"
+        ref={inputElement}
+        onKeyPress={handleKeypress}
+      />
 
-        <form onSubmit={submitGuess}>
-          <button
-            type="submit"
-            className="bg-gradient-to-b from-purple-300 via-purple-400 to-purple-500 p-2 w-20 m-4 border-b-4 border-purple-900 rounded-xl hover:from-purple-200 active:border-b-2"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
+
+      <Button onClick={submitGuess} label="Submit" backgroundColor="blue" />
     </div>
   );
 
