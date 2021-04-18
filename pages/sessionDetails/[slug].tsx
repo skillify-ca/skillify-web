@@ -21,7 +21,7 @@ export default function SessionDetails({ slug }) {
   
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-gray-200">
       <Navbar />
       <div className="p-4 flex flex-col gap-4">
         <div className="flex justify-between">
@@ -58,7 +58,7 @@ export default function SessionDetails({ slug }) {
             <p>Question</p>
             <p>Guess</p>
           </div>
-          <ul className="">
+          <ul className="bg-white">
             {guesses.map((it) => (
               <li className={`flex items-center justify-between p-4 border-b-2 hover:bg-blue-100`}>
                 <p className="text-sm">{it.question} </p>
