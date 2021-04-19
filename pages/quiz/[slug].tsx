@@ -188,19 +188,22 @@ const Quiz = ({ slug }) => {
   };
 
   const questionComponent = () => {
-    if (true) {
-      return <VerticalEquation question={questionData[index].text} />
+    if (slug.toLowerCase() !== "numbers") {
+      if (index % 2 === 0) {
+        return <VerticalEquation question={questionData[index].text} />
+      }
     }
+
     return <p className="text-6xl">{questionData[index].text}</p>;
   };
 
   const component = (
     <div className="flex flex-col justify-center items-center bg-gray-100 gap-8 pb-24">
       <div className="flex justify-between w-full p-4">
-      <p className="text-xl font-bold">{slug}</p>
-      <p className="font-bold text-gray-400">
-        Question: {index + 1} / {length}
-      </p>
+        <p className="text-xl font-bold">{slug}</p>
+        <p className="font-bold text-gray-400">
+          Question: {index + 1} / {length}
+        </p>
       </div>
       <Card size="large">{questionData[index] && questionComponent()}</Card>
       <input
