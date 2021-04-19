@@ -17,6 +17,7 @@ import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
 import Card from "../../components/stories/Card";
 import { Button } from "../../components/stories/Button";
+import { VerticalEquation } from "../../components/stories/VerticalEquation";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -186,15 +187,22 @@ const Quiz = ({ slug }) => {
     return Math.round((100 * correctGuesses) / length);
   };
 
+  const questionComponent = () => {
+    if (true) {
+      return <VerticalEquation question={questionData[index].text} />
+    }
+    return <p className="text-6xl">{questionData[index].text}</p>;
+  };
+
   const component = (
     <div className="flex flex-col justify-center items-center bg-gray-100 gap-8 pb-24">
-      <p className="w-full p-2">
+      <div className="flex justify-between w-full p-4">
+      <p className="text-xl font-bold">{slug}</p>
+      <p className="font-bold text-gray-400">
         Question: {index + 1} / {length}
       </p>
-      <p className="text-xl font-bold">Math Skill Tree</p>
-      <Card size='large'>
-        <p className="text-6xl">{questionData[index] && questionData[index].text}</p>
-      </Card>
+      </div>
+      <Card size="large">{questionData[index] && questionComponent()}</Card>
       <input
         id="guess"
         type="number"
@@ -206,7 +214,6 @@ const Quiz = ({ slug }) => {
         ref={inputElement}
         onKeyPress={handleKeypress}
       />
-
 
       <Button onClick={submitGuess} label="Submit" backgroundColor="blue" />
     </div>
