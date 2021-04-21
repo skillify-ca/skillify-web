@@ -40,39 +40,47 @@ export const SKILLS = [
   {
     id: "196453c2-0b5d-48e4-8726-d31c4fac3674",
     title: "Geometry",
+    slug: "geometry",
   },
   {
     id: "8eccb70d-436e-488d-bb1c-de9ddc280973",
     title: "Fractions",
+    slug: "fractions",
   },
   {
     id: "a5139286-58a2-454c-b19c-19f9bfbf1658",
     title: "Mixed Operations",
+    slug: "mixed-operations",
   },
   {
     id: "7a66ac87-de3c-4168-b68c-2ebc6b068cff",
     title: "Division",
+    slug: "division",
   },
   {
     id: "6538fb40-d168-46c4-8830-15562ce70051",
     title: "Multiplication",
+    slug: "multiplication",
   },
   {
     id: "f8c94eaa-d405-473f-b709-ea105877fbcb",
     title: "Subtraction",
+    slug: "subtraction",
   },
   {
     id: "6aa7774f-85d0-438f-a35f-04034ada4fe5",
     title: "Addition",
+    slug: "addition",
   },
   {
     id: "81d5ff9c-7789-480d-ad5d-d98af7d3cb98",
     title: "Numbers",
+    slug: "numbers",
   },
 ];
 
 export const getSkillIdFromSlug = (slug: string) => {
-  const filteredSkills = SKILLS.filter((it) => it.title == slug);
+  const filteredSkills = SKILLS.filter((it) => it.slug == slug);
   if (filteredSkills.length > 0) {
     return filteredSkills[0].id; // get the id for the current skill
   }

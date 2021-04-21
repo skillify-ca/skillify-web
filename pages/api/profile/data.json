@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "name": "numbers",
+      "statements": [
+        {
+          "text": "I can skip-count by twos, fives and tens"
+        },
+        { "text": "I can skip-count stories" },
+        { "text": "I can skip-count sequences" },
+        { "text": "I can count forward and backward by twos, fives and tens" },
+        { "text": "I can complete skip-counting puzzles" },
+        { "text": "I can complete number sequences" },
+        { "text": "I can identify numbers as even or odd" },
+        {
+          "text": "I can apply arithmetic rules to determine if a number is even or odd"
+        },
+        { "text": "I can identify numbers as prime or composite numbers" },
+        { "text": "I can identify ordinal numbers up to 100th" },
+        { "text": "I can use number lines up to 1000" },
+        { "text": "I can write numbers in words up to 100 000" },
+        { "text": "I can compare numbers up to 100 000" },
+        { "text": "I can pick the greatest/least number: up to 100 000" },
+        { "text": "I can put numbers up to 100 000 in order" }
+      ]
+    }
+  ]
+}

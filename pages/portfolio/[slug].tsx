@@ -8,6 +8,9 @@ import _ from "lodash";
 import Link from "next/link";
 import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
 import Card from "../../components/stories/Card";
+import data from "../api/profile/data.json";
+import StatementRow from "../../components/stories/StatementRow";
+import TopicItem from "../../components/stories/TopicItem";
 
 const Portfolio = ({ slug }) => {
   const [session, loading] = useSession();
@@ -20,9 +23,21 @@ const Portfolio = ({ slug }) => {
 
   const [guesses, setGuesses] = React.useState([]);
   const [practiceSessions, setPracticeSessions] = React.useState([]);
+  const [statements, setStatements] = React.useState([]);
+
+  useEffect(() => {
+    const filteredList = data.data.filter((it) => it.name === slug);
+    if (filteredList.length > 0) {
+      setStatements(filteredList[0].statements);
+    } else {
+      setStatements([]);
+    }
+  }, []);
 
   useEffect(() => {
     if (guessesResult.data && userId(session) != "-1") {
+      console.log("guessesResult.data", guessesResult.data)
+      console.log(getSkillIdFromSlug(slug))
       setGuesses(guessesResult.data.flashcard_guesses);
       const sessions = groupByPracticeSession(
         guessesResult.data.flashcard_guesses
@@ -71,19 +86,18 @@ const Portfolio = ({ slug }) => {
     practiceSessions.map((it) => {
       const stats = sessionRollup(it);
       if (stats.accuracy === maxAccuracy) {
-        speedForMaxAccuracy = Math.max(speedForMaxAccuracy, stats.speed)
-      }
-      else if (stats.accuracy > maxAccuracy) {
+        speedForMaxAccuracy = Math.max(speedForMaxAccuracy, stats.speed);
+      } else if (stats.accuracy > maxAccuracy) {
         maxAccuracy = stats.accuracy;
-        speedForMaxAccuracy = stats.speed
+        speedForMaxAccuracy = stats.speed;
       }
-    })
+    });
 
     return {
       accuracy: maxAccuracy,
-      speed: speedForMaxAccuracy
-    }
-  }
+      speed: speedForMaxAccuracy,
+    };
+  };
 
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
@@ -93,11 +107,22 @@ const Portfolio = ({ slug }) => {
         <div>
           <p className="font-bold mb-2 text-sm text-gray-500">Best Attempt</p>
           <div className="flex gap-4">
-            <Card size='small'>
+            <Card size="small">
               <div className="flex flex-col items-center gap-2">
                 <div className="flex gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                    />
                   </svg>
                   <p>Accuracy</p>
                 </div>
@@ -105,13 +130,24 @@ const Portfolio = ({ slug }) => {
                 <p className="font-bold">{overallStats().accuracy}% </p>
               </div>
             </Card>
-            <Card size='small'>
+            <Card size="small">
               <div className="flex flex-col items-center gap-2">
                 <div className="flex gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
-                Speed
+                  Speed
                 </div>
                 <p className="font-bold">{overallStats().speed} seconds</p>
               </div>

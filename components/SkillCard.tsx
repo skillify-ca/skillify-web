@@ -72,9 +72,12 @@ export const SkillCard: React.FC<SkillCardProps> = ({ title, image, disabled, li
 								{rating > 1 && <option value="3">Hard</option>}
 							</select>
 
-							<div className="flex">
-								<Link href={link + '?level=' + level}>
-									<Button backgroundColor="blue" label="Quiz" />
+							<div className="flex gap-4">
+								<Link href={"quiz/" + link + '?level=' + level}>
+									<Button backgroundColor="blue" textColor="white" label="Quiz" />
+								</Link>
+								<Link href={"practice/" + link + '?level=' + level}>
+									<Button backgroundColor="white" textColor="blue-900" label="Practice" />
 								</Link>
 							</div>
 						</div>

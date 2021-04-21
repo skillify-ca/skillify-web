@@ -4,7 +4,7 @@ export interface ButtonProps {
 	/**
    * What background color to use
    */
-	backgroundColor?: 'blue' | 'green' | 'red' | 'purple' | 'pink' | 'yellow';
+	backgroundColor?: 'blue' | 'green' | 'red' | 'purple' | 'pink' | 'yellow' | 'white';
 	/**
    * What text color to use
    * Can be white, black, gray-500, blue-200, blue-900, red-500, etc..
@@ -44,6 +44,9 @@ export const Button: React.FC<ButtonProps> = ({ backgroundColor, textColor, labe
 		case 'yellow':
 			backgroundStyles = 'from-yellow-300 via-yellow-400 to-yellow-500 border-yellow-900 hover:from-yellow-200'
 			break;
+		case 'white':
+			backgroundStyles = 'bg-gray-200 border-blue-900 hover:from-yellow-200'
+			break;
 
 	}
 	return (
@@ -53,7 +56,7 @@ export const Button: React.FC<ButtonProps> = ({ backgroundColor, textColor, labe
 			className={`bg-gradient-to-b px-4 py-2 font-bold border-b-4 rounded-xl active:border-b-2 ${backgroundStyles}`}
 			{...props}
 		>
-			<span className={`text-white`}>{label}</span>
+			<span className={`text-${textColor}`}>{label}</span>
 		</button>
 	);
 };

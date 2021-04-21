@@ -144,12 +144,15 @@ const Quiz = ({ slug }) => {
             userId: userId(session),
           },
         });
-        if (currentLevel == 3) {
+        if (currentLevel === 3) {
           // unlock next skill
           const lockedSkills = userSkillsResult.data.user_skills.filter(
             (it) => it.locked == true
           );
-          if (lockedSkills.length > 1) {
+          const unmasteredSkills = userSkillsResult.data.user_skills.filter(
+            (it) => it.locked == false && it.stars !== 3
+          );
+          if (unmasteredSkills.length < 1 && lockedSkills.length > 1) {
             unlockNextSkill({
               variables: {
                 skillId: lockedSkills[0].skill.id,
@@ -188,9 +191,9 @@ const Quiz = ({ slug }) => {
   };
 
   const questionComponent = () => {
-    if (slug.toLowerCase() !== "numbers") {
+    if (slug != undefined && slug.toLowerCase() !== "numbers") {
       if (index % 2 === 0) {
-        return <VerticalEquation question={questionData[index].text} />
+        return <VerticalEquation question={questionData[index].text} />;
       }
     }
 
