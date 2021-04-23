@@ -18,27 +18,25 @@ enum STAGE {
 
 export default function Diagnostic(props) {
   const [questions, setQuestions] = useState([]);
+  const [topics, setTopics] = useState([]);
   const [stage, setStage] = useState(STAGE.CREATE);
   const [index, setIndex] = useState(0);
   const [guess, setGuess] = useState("");
   const inputElement = useRef(null);
   const submitGuess = (e) => {
-    console.log("V");
     if (index < questions.length - 1) {
       setIndex(index + 1);
       setGuess('')
     }
   }
-  const createDiagnostic = (e) => {
+  const createDiagnostic = (topics: Topic[]) => {
+    setTopics(topics)
     setStage(STAGE.TEST)
   }
 
   useEffect(() => {
-    setQuestions(generateQuestionsForDiagnostic(TestLength.SHORT, [
-      Topic.MULTIPLICATION,
-      Topic.DIVISION,
-    ]));
-  }, [])
+    setQuestions(generateQuestionsForDiagnostic(TestLength.SHORT, topics));
+  }, [topics])
 
   let component;
   switch (stage) {

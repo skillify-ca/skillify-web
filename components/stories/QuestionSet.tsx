@@ -24,10 +24,10 @@ const QuestionSet = ({
   submitGuess,
 }: QuestionSetProps) => {
   const questionComponent = () => {
-    
+
     if (questionData[index].type === "vertical-equation") {
       return (
-        <VerticalEquation question={questionData[index].text} operator="+" />
+        <VerticalEquation question={questionData[index].text} operator={questionData[index].operator} />
       );
     }
 
@@ -35,8 +35,6 @@ const QuestionSet = ({
   };
 
   const handleKeypress = (e) => {
-    console.log(questionData[index].type);
-
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
       submitGuess(e);
@@ -44,7 +42,7 @@ const QuestionSet = ({
   };
 
   return (
-    <div className="flex flex-col justify-center items-center bg-gray-100 gap-8 pb-24">
+    <div className="flex flex-col justify-center items-center bg-gray-200 gap-8 pb-24">
       <div className="flex justify-between w-full p-4">
         <p className="text-xl font-bold">{title}</p>
         <p className="font-bold text-gray-400">
