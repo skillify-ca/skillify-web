@@ -1,11 +1,12 @@
 import React, { useRef, useState } from "react";
+import { Question } from "../../pages/api/questionGenerator";
 import { Button } from "./Button";
 import Card from "./Card";
 import { VerticalEquation } from "./VerticalEquation";
 
 type QuestionSetProps = {
   title: string;
-  questionData: any;
+  questionData: Question[];
   index: number;
   guess: any;
   setGuess: any;

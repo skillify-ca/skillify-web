@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Button } from "../components/stories/Button";
 import Dropdown from "../components/stories/Dropdown";
+import QuestionSet from "../components/stories/QuestionSet";
 import Toggle from "../components/stories/Toggle";
+import {
+  generateQuestionsForDiagnostic,
+  TestLength,
+  Topic,
+} from "./api/questionGenerator";
 
 export default function Diagnostic(props) {
+  const questions = generateQuestionsForDiagnostic(TestLength.SHORT, [
+    Topic.MULTIPLICATION,
+    Topic.DIVISION,
+  ]);
+  const [index, setIndex] = useState(0);
+  const [guess, setGuess] = useState("");
+	const inputElement = useRef(null);
+	const submitGuess = (e) => {
+    console.log("V");
+    if (index < questions.length - 1) {
+			setIndex(index + 1);
+    }
+  }
 
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
@@ -40,6 +59,16 @@ export default function Diagnostic(props) {
           </div>
 
           <Button backgroundColor="blue" label="Start" textColor="white" />
+
+          <QuestionSet
+            title="Diagnostic"
+            questionData={questions}
+            index={index}
+            guess={guess}
+            setGuess={setGuess}
+            inputElement={inputElement}
+            submitGuess={submitGuess}
+          />
         </div>
       </div>
     </div>
