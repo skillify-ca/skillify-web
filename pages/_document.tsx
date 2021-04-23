@@ -1,11 +1,15 @@
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document'
-import React from 'react'
+import React, { CSSProperties } from 'react'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx)
 
     return initialProps
+  }
+
+  bodyStyle: CSSProperties = {
+    backgroundColor: '#E5E7EB'
   }
 
   render() {
@@ -26,7 +30,7 @@ class MyDocument extends Document {
             crossOrigin=""
           />
         </Head>
-        <body>
+        <body style={this.bodyStyle}>
           <Main />
           <NextScript />
         </body>

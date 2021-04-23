@@ -94,6 +94,12 @@ export default function Navbar() {
                 >
                   Dashboard
                 </a>
+                <a
+                  href="/diagnostic"
+                  className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Diagnostic
+                </a>
               </div>
             </div>
           </div>
