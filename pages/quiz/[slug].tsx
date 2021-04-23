@@ -19,7 +19,7 @@ import Card from "../../components/stories/Card";
 import { Button } from "../../components/stories/Button";
 import { VerticalEquation } from "../../components/stories/VerticalEquation";
 
-const TopicQuiz = ({ slug }) => {
+const Quiz = ({ slug }) => {
   const { query } = useRouter();
   const [session] = useSession();
   const [index, setIndex] = useState(0);
@@ -276,4 +276,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default TopicQuiz;
+export default Quiz;
