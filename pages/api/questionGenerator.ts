@@ -19,9 +19,11 @@ function getRandomNumbersQuestion(min: number, max: number) {
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
   const text = `Which is bigger ${a} or ${b}?`;
+  
   return {
     text: text,
     answer: Math.max(a, b),
+    type: "word-problem",
   };
 }
 
@@ -49,9 +51,13 @@ function getRandomAdditionQuestion(min: number, max: number) {
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
   const text = `${a} + ${b} =`;
+  const types = ["vertical-equation", "horizontal-equation"];
+  const type = types[getRndInteger(0, types.length)];
+
   return {
     text: text,
     answer: a + b,
+    type: type
   };
 }
 

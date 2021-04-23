@@ -1,30 +1,41 @@
-import React, { useRef, useState } from 'react';
-import { Button } from './Button';
-import Card from './Card';
-import { VerticalEquation } from './VerticalEquation';
+import React, { useRef, useState } from "react";
+import { Button } from "./Button";
+import Card from "./Card";
+import { VerticalEquation } from "./VerticalEquation";
 
 type QuestionSetProps = {
-  slug: string;
+  title: string;
   questionData: any;
   index: number;
   guess: any;
   setGuess: any;
   inputElement: any;
   submitGuess: any;
-}
+};
 
-const QuestionSet = ({ slug, questionData, index, guess, setGuess, inputElement, submitGuess }: QuestionSetProps) => {
+const QuestionSet = ({
+  title,
+  questionData,
+  index,
+  guess,
+  setGuess,
+  inputElement,
+  submitGuess,
+}: QuestionSetProps) => {
   const questionComponent = () => {
-    if (slug != undefined && slug.toLowerCase() !== 'numbers') {
-      if (index % 2 === 0) {
-        return <VerticalEquation question={questionData[index].text} />;
-      }
+    
+    if (questionData[index].type === "vertical-equation") {
+      return (
+        <VerticalEquation question={questionData[index].text} operator="+" />
+      );
     }
 
     return <p className="text-6xl">{questionData[index].text}</p>;
   };
 
   const handleKeypress = (e) => {
+    console.log(questionData[index].type);
+
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
       submitGuess(e);
@@ -34,7 +45,7 @@ const QuestionSet = ({ slug, questionData, index, guess, setGuess, inputElement,
   return (
     <div className="flex flex-col justify-center items-center bg-gray-100 gap-8 pb-24">
       <div className="flex justify-between w-full p-4">
-        <p className="text-xl font-bold">{slug}</p>
+        <p className="text-xl font-bold">{title}</p>
         <p className="font-bold text-gray-400">
           Question: {index + 1} / {questionData.length}
         </p>
@@ -52,7 +63,12 @@ const QuestionSet = ({ slug, questionData, index, guess, setGuess, inputElement,
         onKeyPress={handleKeypress}
       />
 
-      <Button onClick={submitGuess} label="Submit" backgroundColor="blue" textColor="white" />
+      <Button
+        onClick={submitGuess}
+        label="Submit"
+        backgroundColor="blue"
+        textColor="white"
+      />
     </div>
   );
 };
