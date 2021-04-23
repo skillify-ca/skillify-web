@@ -19,7 +19,7 @@ import Card from "../../components/stories/Card";
 import { Button } from "../../components/stories/Button";
 import { VerticalEquation } from "../../components/stories/VerticalEquation";
 
-const Quiz = ({ slug }) => {
+const TopicQuiz = ({ slug }) => {
   const { query } = useRouter();
   const [session] = useSession();
   const [index, setIndex] = useState(0);
@@ -221,7 +221,7 @@ const Quiz = ({ slug }) => {
         onKeyPress={handleKeypress}
       />
 
-      <Button onClick={submitGuess} label="Submit" backgroundColor="blue" />
+      <Button onClick={submitGuess} label="Submit" backgroundColor="blue" textColor="white" />
     </div>
   );
 
@@ -276,4 +276,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default Quiz;
+export default TopicQuiz;
