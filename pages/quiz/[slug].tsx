@@ -183,7 +183,7 @@ const Quiz = ({ slug }) => {
 			<Navbar />
 
 			<QuestionSet
-				slug={slug}
+				title={slug}
 				questionData={questionData}
 				index={index}
 				guess={guess}
