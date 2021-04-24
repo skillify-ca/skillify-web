@@ -17,7 +17,8 @@ const DiagnosticTestForm = ({
 
   const toggle = (topic) => {
     if (topics.includes(topic)) {
-      setTopics(topics.filter(it => it === topic))
+      
+      setTopics(topics.filter(it => it !== topic))
     } else {
       let newTopics = [];
       newTopics.push(topic);
