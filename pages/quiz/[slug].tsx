@@ -11,7 +11,7 @@ import { UPDATE_USER_SKILLS } from '../../graphql/updateUserSkills';
 import { FETCH_USER_SKILLS } from '../../graphql/fetchUserSkills';
 import { FETCH_USER_SKILL } from '../../graphql/fetchUserSkill';
 import { UNLOCK_NEXT_SKILL } from '../../graphql/unlockNextSkill';
-import { generateQuestions } from '../api/questionGenerator';
+import { generateQuestions, Question } from '../api/questionGenerator';
 import { v4 as uuidv4 } from 'uuid';
 import { getSkillIdFromSlug, userId } from '../../graphql/utils/constants';
 import { useSession } from 'next-auth/client';
@@ -29,7 +29,9 @@ const Quiz = ({ slug }) => {
 	const [ isGameOver, setGameOver ] = useState(false);
 	const [ secondsElapsed, setSecondsElapsed ] = useState(0);
 	const [ interval, setMyInterval ] = useState(null);
-	const [ questionData, setQuestionData ] = useState([ { text: '', answer: 0 } ]);
+	const [ questionData, setQuestionData ] = useState<Question[]>([
+		{ text: '', answer: 0, type: 'horizontal-equation' }
+	]);
 	const [ currentLevel, setCurrentLevel ] = React.useState(0);
 	const inputElement = useRef(null);
 	const length = questionData.length;
