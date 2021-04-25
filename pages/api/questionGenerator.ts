@@ -33,6 +33,8 @@ export type Question = {
 };
 
 export const generateQuestionsForDiagnostic = (testLength: TestLength, topics: Topic[]) => {
+	console.log(testLength);
+
 	let questionsPerSection = 0;
 	switch (testLength) {
 		case TestLength.SHORT:

@@ -1,29 +1,23 @@
 import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import { TestLength } from '../../pages/api/questionGenerator'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const people = [
-  {
-    id: 2,
-    name: 'Short',
-  },
-  {
-    id: 3,
-    name: 'Medium',
-  },
-  {
-    id: 4,
-    name: 'Long',
-  },
-]
+const Dropdown = ({testLengths, selected, setSelected}) => {
 
-const Dropdown = () => {
-  const [selected, setSelected] = useState(people[1])
+  const onChange = (e) => {
+    console.log("selected", selected);
+    
+    setSelected(e)
+    // setTestLength(e.value)
+  	console.log("new", e);
 
+  }
+  
   return (
     <div className="flex items-center gap-4">
       <Listbox value={selected} onChange={setSelected}>
@@ -54,7 +48,7 @@ const Dropdown = () => {
                   static
                   className="absolute mt-1 bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
                 >
-                  {people.map((person) => (
+                  {testLengths.map((person) => (
                     <Listbox.Option
                       key={person.id}
                       className={({ active }) =>
