@@ -10,9 +10,33 @@ type DiagnosticTestFormProps = {
 	onClick: (topics: Topic[], testLength: TestLength) => void;
 };
 
+type TestLengthOption = {
+	id: number;
+	name: string;
+	value: TestLength;
+};
+
+const testLengths: TestLengthOption[] = [
+	{
+		id: 2,
+		name: 'Short',
+		value: TestLength.SHORT
+	},
+	{
+		id: 3,
+		name: 'Medium',
+		value: TestLength.MEDIUM
+	},
+	{
+		id: 4,
+		name: 'Long',
+		value: TestLength.LONG
+	}
+];
+
 const DiagnosticTestForm = ({ onClick }: DiagnosticTestFormProps) => {
 	const [ topics, setTopics ] = useState([]);
-	const [ testLength, setTestLength ] = useState(TestLength.MEDIUM);
+	const [ testLengthOption, setTestLengthOption ] = useState(testLengths[1]);
 
 	const toggle = (topic) => {
 		if (topics.includes(topic)) {
@@ -24,24 +48,6 @@ const DiagnosticTestForm = ({ onClick }: DiagnosticTestFormProps) => {
 			setTopics(newTopics);
 		}
 	};
-
-	const testLengths = [
-		{
-			id: 2,
-			name: 'Short',
-			value: TestLength.SHORT
-		},
-		{
-			id: 3,
-			name: 'Medium',
-			value: TestLength.MEDIUM
-		},
-		{
-			id: 4,
-			name: 'Long',
-			value: TestLength.LONG
-		}
-	];
 
 	return (
 		<div className="flex flex-col items-center bg-white rounded-lg p-4 w-64 h-96">
@@ -70,14 +76,14 @@ const DiagnosticTestForm = ({ onClick }: DiagnosticTestFormProps) => {
 			</div>
 
 			<div className="w-full mb-16">
-				<Dropdown testLengths={testLengths} selected={testLength} setSelected={setTestLength} />
+				<Dropdown testLengths={testLengths} selected={testLengthOption} setSelected={setTestLengthOption} />
 			</div>
 
 			<Button
 				backgroundColor="blue"
 				label="Start"
 				textColor="white"
-				onClick={(e) => onClick(topics, testLength)}
+				onClick={(e) => onClick(topics, testLengthOption.value)}
 			/>
 		</div>
 	);

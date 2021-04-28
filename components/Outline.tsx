@@ -86,7 +86,7 @@ export default function Outline() {
           ))}
         </div>
         <div className="col-span-2 my-8">
-          <p className="text-xl text-center font-bold">{session ? "Locked" : "Please log in"}</p>
+          <p className="text-xl text-center font-bold">{session ? "Locked" : "Please log in with a parents email"}</p>
         </div>
         <div className="flex flex-wrap justify-center gap-4">
           {skills
