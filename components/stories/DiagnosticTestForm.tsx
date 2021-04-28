@@ -51,7 +51,7 @@ const DiagnosticTestForm = ({ onClick }: DiagnosticTestFormProps) => {
 	};
 
 	return (
-		<div className="flex flex-col items-center bg-white rounded-lg p-16">
+		<div className="flex flex-col items-center bg-white rounded-lg p-4">
 			<p className="text-xl font-bold mb-8">Diagnostic Test</p>
 
 			<div className="grid grid-cols-2 w-full gap-4 mb-8">
