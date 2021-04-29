@@ -1,6 +1,13 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import TikTok from "../components/stories/TikTok";
+import dynamic from "next/dynamic";
+
+const TikTok = dynamic(
+  () => {
+    return import("../components/stories/TikTok");
+  },
+  { ssr: false }
+);
 
 export default function Video(props) {
 
