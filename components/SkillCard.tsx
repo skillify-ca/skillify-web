@@ -77,7 +77,10 @@ export const SkillCard: React.FC<SkillCardProps> = ({ title, image, disabled, li
 									<Button backgroundColor="blue" textColor="white" label="Quiz" />
 								</Link>
 								<Link href={"practice/" + link + '?level=' + level}>
-									<Button backgroundColor="white" textColor="blue-900" label="Practice" />
+									<Button backgroundColor="green" textColor="white" label="Practice" />
+								</Link>
+								<Link href={"video/"}>
+									<Button backgroundColor="purple" textColor="white" label="Videos" />
 								</Link>
 							</div>
 						</div>

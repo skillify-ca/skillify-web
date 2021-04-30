@@ -1,105 +1,25 @@
 import React, { useState, useRef, useEffect, Fragment } from 'react';
-import { Helmet } from 'react-helmet';
-import withRetry from 'fetch-retry';
+import InnerHTML from "dangerously-set-html-content";
 
-const TIKTOK_OEMBED_BASE_URL = `https://www.tiktok.com/oembed`;
-
-const fetchRetry = withRetry(window.fetch);
-
-export interface TikTokProps {
-  url: string;
+export type TikTokProps = {
+  index: number;
 }
 
-// https://github.com/andrewszucs/react-tiktok
-export default function TikTok({ url }: TikTokProps) {
-  const [loaded, setLoaded] = useState(false);
-  const [error, setError] = useState(undefined);
-  const [scriptSrc, setScriptSrc] = useState<string | undefined>(undefined);
-  const [html, setHTML] = useState<string | undefined>(undefined);
+export default function TikTok({ index }: TikTokProps) {
+  const urls = [
+    '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@moonmath/video/6935227849557216517" data-video-id="6935227849557216517" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@moonmath" href="https://www.tiktok.com/@moonmath">@moonmath</a> <p><a title="multiplicationtricks" target="_blank" href="https://www.tiktok.com/tag/multiplicationtricks">#multiplicationtricks</a> <a title="math" target="_blank" href="https://www.tiktok.com/tag/math">#math</a> <a title="grade3" target="_blank" href="https://www.tiktok.com/tag/grade3">#grade3</a> <a title="easymathstrick" target="_blank" href="https://www.tiktok.com/tag/easymathstrick">#easymathstrick</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp">#fyp</a> <a title="learnmath" target="_blank" href="https://www.tiktok.com/tag/learnmath">#learnmath</a> <a title="teachmath" target="_blank" href="https://www.tiktok.com/tag/teachmath">#teachmath</a> <a title="multiplication" target="_blank" href="https://www.tiktok.com/tag/multiplication">#multiplication</a> <a title="numbers" target="_blank" href="https://www.tiktok.com/tag/numbers">#numbers</a> <a title="homeschooling" target="_blank" href="https://www.tiktok.com/tag/homeschooling">#homeschooling</a> <a title="onlineclass" target="_blank" href="https://www.tiktok.com/tag/onlineclass">#onlineclass</a></p> <a target="_blank" title="♬ Wii Sports - Nolo Flows Yo" href="https://www.tiktok.com/music/Wii-Sports-6732306546669127682">♬ Wii Sports - Nolo Flows Yo</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>',
+    '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@pinkpencilmath/video/6939074916813737217" data-video-id="6939074916813737217" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@pinkpencilmath" href="https://www.tiktok.com/@pinkpencilmath">@pinkpencilmath</a> <p>Do you see the patterns? 🤔 <a title="math" target="_blank" href="https://www.tiktok.com/tag/math">##math</a> <a title="pinkpencilmath" target="_blank" href="https://www.tiktok.com/tag/pinkpencilmath">##pinkpencilmath</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp">##fyp</a> <a title="mathtricks" target="_blank" href="https://www.tiktok.com/tag/mathtricks">##mathtricks</a> <a title="timestable" target="_blank" href="https://www.tiktok.com/tag/timestable">##timestable</a> <a title="multiplication" target="_blank" href="https://www.tiktok.com/tag/multiplication">##multiplication</a> <a title="8" target="_blank" href="https://www.tiktok.com/tag/8">##8</a> <a title="mathtutor" target="_blank" href="https://www.tiktok.com/tag/mathtutor">##mathtutor</a> <a title="mathhelp" target="_blank" href="https://www.tiktok.com/tag/mathhelp">##mathhelp</a> <a title="mathematics" target="_blank" href="https://www.tiktok.com/tag/mathematics">##mathematics</a> <a title="fractions" target="_blank" href="https://www.tiktok.com/tag/fractions">##fractions</a></p> <a target="_blank" title="♬ All TikTok Mashup (JVKE - Upside Down) - JVKE 🌩" href="https://www.tiktok.com/music/All-TikTok-Mashup-JVKE-Upside-Down-6846350173593996037">♬ All TikTok Mashup (JVKE - Upside Down) - JVKE 🌩</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>',
+    '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@miss.mango_/video/6906990861339397382" data-video-id="6906990861339397382" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@miss.mango_" href="https://www.tiktok.com/@miss.mango_">@miss.mango_</a> <p>12’s trick! <a title="productivity" target="_blank" href="https://www.tiktok.com/tag/productivity">#Productivity</a> <a title="missmango" target="_blank" href="https://www.tiktok.com/tag/missmango">#missmango</a> <a title="christmas" target="_blank" href="https://www.tiktok.com/tag/christmas">#christmas</a> <a title="mathtricks" target="_blank" href="https://www.tiktok.com/tag/mathtricks">#mathtricks</a> <a title="multiplicationtricks" target="_blank" href="https://www.tiktok.com/tag/multiplicationtricks">#multiplicationtricks</a> <a title="multiplication" target="_blank" href="https://www.tiktok.com/tag/multiplication">#multiplication</a> <a title="teachertricks" target="_blank" href="https://www.tiktok.com/tag/teachertricks">#teachertricks</a> <a title="viral" target="_blank" href="https://www.tiktok.com/tag/viral">#viral</a> <a title="happyholidays" target="_blank" href="https://www.tiktok.com/tag/happyholidays">#happyholidays</a> <a title="foryou" target="_blank" href="https://www.tiktok.com/tag/foryou">#foryou</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp">#fyp</a></p> <a target="_blank" title="♬ Jingle Bell Rock - Bobby Helms" href="https://www.tiktok.com/music/Jingle-Bell-Rock-6814378818761918465">♬ Jingle Bell Rock - Bobby Helms</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>',
+    '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@pinkpencilmath/video/6937223175759531266" data-video-id="6937223175759531266" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@pinkpencilmath" href="https://www.tiktok.com/@pinkpencilmath">@pinkpencilmath</a> <p>Did you memorize it this way? Or is this new to you? 🤔 <a title="mathtricks" target="_blank" href="https://www.tiktok.com/tag/mathtricks">#mathtricks</a> <a title="pinkpencilmath" target="_blank" href="https://www.tiktok.com/tag/pinkpencilmath">#pinkpencilmath</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp">#fyp</a> <a title="math" target="_blank" href="https://www.tiktok.com/tag/math">#math</a> <a title="timestables" target="_blank" href="https://www.tiktok.com/tag/timestables">#timestables</a> <a title="multiplication" target="_blank" href="https://www.tiktok.com/tag/multiplication">#multiplication</a> <a title="mathhelp" target="_blank" href="https://www.tiktok.com/tag/mathhelp">#mathhelp</a> <a title="mathtutor" target="_blank" href="https://www.tiktok.com/tag/mathtutor">#mathtutor</a></p> <a target="_blank" title="♬ PiuPiu Dance - 쫑" href="https://www.tiktok.com/music/PiuPiu-Dance-6874938848854428417">♬ PiuPiu Dance - 쫑</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>'
+  ]
 
-  const ref = useRef(null);
-
-  /**
-   * Trigger loaded state when the iframe has loaded
-   */
-  useEffect(() => {
-    /**
-     * MutationObserver:
-     * https://stackoverflow.com/questions/3219758/detect-changes-in-the-dom
-     */
-    if (!('MutationObserver' in window)) return setLoaded(true);
-
-    /**
-     * TODO: Check bugs for MutationObserver
-     * https://caniuse.com/#feat=mutationobserver
-     */
-    const elem = ref.current;
-
-    const observer = new MutationObserver((mutationList) => {
-      // Get the iframe from the mutation that has added it
-      const iframeAdded = mutationList.reduce<Node | undefined>((acc, curr) => {
-        const iframe = Array.from(curr.addedNodes).find(
-          (node) => node.nodeName === 'IFRAME'
-        );
-        if (iframe) {
-          acc = iframe;
-        }
-        return acc;
-      }, undefined);
-
-      if (iframeAdded) {
-        iframeAdded.addEventListener('load', () => setLoaded(true));
-      }
-    });
-
-    if (elem) {
-      observer.observe(elem, {
-        childList: true,
-        attributes: true,
-        subtree: true
-      });
-    }
-    return () => {
-      observer.disconnect();
+  function createEmbedMarkup() {
+    return {
+      __html: urls[index]
     };
-  }, []);
-
-  useEffect(() => {
-    fetchRetry(`${TIKTOK_OEMBED_BASE_URL}?url=${url}`, {
-      retries: 3,
-      retryDelay: (attempt) => 2 ** attempt * 1000
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res && res.status_msg) throw new Error(res.status_msg);
-
-        if (!res || !res.html) throw new Error("API response doesn't look right");
-
-        const htmlString = res.html;
-
-        const tempElement = document.createElement('div');
-        tempElement.innerHTML = htmlString;
-
-        const scriptTag = tempElement.getElementsByTagName('script')[0];
-
-        setScriptSrc(scriptTag && scriptTag.src);
-        setHTML(htmlString.substr(0, htmlString.indexOf('<script')));
-      })
-      .catch((err) => setError(err));
-  }, [url]);
-
-  if (error) return <div>Error: {JSON.stringify(error)}</div>;
+  }
 
   return (
-    <Fragment>
-      <Helmet>
-        <script id='ttEmbedder' async src={scriptSrc} />
-      </Helmet>
-      <div
-        ref={ref}
-        style={{ display: loaded && html ? 'flex' : 'none' }}
-        dangerouslySetInnerHTML={{ __html: html || '' }}
-      />
-    </Fragment>
+    <InnerHTML html={createEmbedMarkup().__html} />
   );
 }
