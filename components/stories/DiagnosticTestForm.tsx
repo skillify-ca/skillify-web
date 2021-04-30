@@ -78,14 +78,7 @@ const DiagnosticTestForm = ({ onClick }: DiagnosticTestFormProps) => {
 				<p className="text-sm font-bold text-gray-700">Length</p>
 
 				<Dropdown testLengths={testLengths} selected={testLengthOption} setSelected={setTestLengthOption} />
-				<p className="text-sm font-bold text-gray-700">Parent's Email</p>
-				<input
-					className="p-2 mb-6 text-blue-700 border-b-2 border-blue-500 outline-none focus:bg-gray-300"
-					type="text"
-					placeholder="johndoe@email.com"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-				/>
+			
 			</div>
 
 			<Button
