@@ -92,13 +92,19 @@ export default function Navbar() {
                   href="/"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Dashboard
+                  Knowledge Tree
                 </a>
                 <a
                   href="/diagnostic"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Diagnostic
+                </a>
+                <a
+                  href="/games/TicTacToe"
+                  className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Tic Tac Toe
                 </a>
               </div>
             </div>
@@ -192,7 +198,7 @@ export default function Navbar() {
             href="/"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Dashboard
+            Knowledge Tree
           </a>
           <a
             href="/diagnostic"

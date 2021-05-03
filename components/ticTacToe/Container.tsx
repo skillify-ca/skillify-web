@@ -35,19 +35,19 @@ export interface ContainerState {
 export const Container = ({ onExitClick, onGameOver, target, gameNumbers, playerOne, playerTwo }) => {
 	const TARGET = target;
 	const INITIAL_GAME_DATA = [
-		{ accepts: [ ItemTypes.NUMBER_TILE ], lastDroppedItem: null },
-		{ accepts: [ ItemTypes.NUMBER_TILE ], lastDroppedItem: null },
-		{ accepts: [ ItemTypes.NUMBER_TILE ], lastDroppedItem: null },
-		{ accepts: [ ItemTypes.NUMBER_TILE ], lastDroppedItem: null },
-		{ accepts: [ ItemTypes.NUMBER_TILE ], lastDroppedItem: null },
-		{ accepts: [ ItemTypes.NUMBER_TILE ], lastDroppedItem: null },
-		{ accepts: [ ItemTypes.NUMBER_TILE ], lastDroppedItem: null },
-		{ accepts: [ ItemTypes.NUMBER_TILE ], lastDroppedItem: null },
-		{ accepts: [ ItemTypes.NUMBER_TILE ], lastDroppedItem: null }
+		{ accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
+		{ accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
+		{ accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
+		{ accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
+		{ accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
+		{ accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
+		{ accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
+		{ accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null },
+		{ accepts: [ItemTypes.NUMBER_TILE], lastDroppedItem: null }
 	];
-	const [ boardSquares, setBoardSquares ] = useState<BoardSquareState[]>(INITIAL_GAME_DATA);
+	const [boardSquares, setBoardSquares] = useState<BoardSquareState[]>(INITIAL_GAME_DATA);
 
-	const [ boxes ] = useState<BoxState[]>(
+	const [boxes] = useState<BoxState[]>(
 		gameNumbers.split(',').map((it) => {
 			return {
 				name: it.toString(),
@@ -57,9 +57,9 @@ export const Container = ({ onExitClick, onGameOver, target, gameNumbers, player
 		})
 	);
 
-	const [ droppedBoxNames, setDroppedBoxNames ] = useState<string[]>([]);
+	const [droppedBoxNames, setDroppedBoxNames] = useState<string[]>([]);
 
-	const [ isPlayerOne, setIsPlayerOne ] = useState<boolean>(true);
+	const [isPlayerOne, setIsPlayerOne] = useState<boolean>(true);
 
 	function isDropped(boxName: string) {
 		return droppedBoxNames.indexOf(boxName) > -1;
@@ -70,22 +70,22 @@ export const Container = ({ onExitClick, onGameOver, target, gameNumbers, player
 	}
 
 	function calculateGameOver(boardSquares: BoardSquareState[]) {
-		const row1 = [ boardSquares[0], boardSquares[1], boardSquares[2] ];
-		const row2 = [ boardSquares[3], boardSquares[4], boardSquares[5] ];
-		const row3 = [ boardSquares[6], boardSquares[7], boardSquares[8] ];
+		const row1 = [boardSquares[0], boardSquares[1], boardSquares[2]];
+		const row2 = [boardSquares[3], boardSquares[4], boardSquares[5]];
+		const row3 = [boardSquares[6], boardSquares[7], boardSquares[8]];
 		if (isRowValid(row1) || isRowValid(row2) || isRowValid(row3)) {
 			return true;
 		}
 
-		const col1 = [ boardSquares[0], boardSquares[3], boardSquares[6] ];
-		const col2 = [ boardSquares[1], boardSquares[4], boardSquares[7] ];
-		const col3 = [ boardSquares[2], boardSquares[5], boardSquares[8] ];
+		const col1 = [boardSquares[0], boardSquares[3], boardSquares[6]];
+		const col2 = [boardSquares[1], boardSquares[4], boardSquares[7]];
+		const col3 = [boardSquares[2], boardSquares[5], boardSquares[8]];
 		if (isRowValid(col1) || isRowValid(col2) || isRowValid(col3)) {
 			return true;
 		}
 
-		const diag1 = [ boardSquares[0], boardSquares[4], boardSquares[8] ];
-		const diag2 = [ boardSquares[2], boardSquares[4], boardSquares[6] ];
+		const diag1 = [boardSquares[0], boardSquares[4], boardSquares[8]];
+		const diag2 = [boardSquares[2], boardSquares[4], boardSquares[6]];
 		if (isRowValid(diag1) || isRowValid(diag2)) {
 			return true;
 		}
@@ -112,7 +112,7 @@ export const Container = ({ onExitClick, onGameOver, target, gameNumbers, player
 			}
 
 			if (!droppedBoxNames.includes(name) && boardSquares[index].lastDroppedItem == null) {
-				setDroppedBoxNames(update(droppedBoxNames, name ? { $push: [ name ] } : { $push: [] }));
+				setDroppedBoxNames(update(droppedBoxNames, name ? { $push: [name] } : { $push: [] }));
 
 				const newBoardSquares = update(boardSquares, {
 					[index]: {
@@ -137,7 +137,7 @@ export const Container = ({ onExitClick, onGameOver, target, gameNumbers, player
 				}
 			}
 		},
-		[ droppedBoxNames, boardSquares, isPlayerOne ]
+		[droppedBoxNames, boardSquares, isPlayerOne]
 	);
 
 	const onResetClicked = () => {
@@ -146,23 +146,32 @@ export const Container = ({ onExitClick, onGameOver, target, gameNumbers, player
 	};
 
 	return (
-		<div>
+		<div className="max-w-2xl bg-white p-16">
 			<div className="flex flex-row space-x-4">
 				<Button label="Exit" onClick={onExitClick} />
 				<Button label="Reset" onClick={onResetClicked} />
 			</div>
-			<h1 className="bg-blue-500 text-lg my-4 p-4 text-center">
+			<h1 className="text-lg my-4 p-4 text-center">
 				Player Turn: {isPlayerOne ? playerOne : playerTwo}
 			</h1>
-			<div className="grid grid-cols-3 gap-2">
-				{boardSquares.map(({ accepts, lastDroppedItem }, index) => (
-					<BoardSquare
-						accept={accepts}
-						lastDroppedItem={lastDroppedItem}
-						onDrop={(item) => handleDrop(index, item)}
-						key={index}
-					/>
-				))}
+			<div className="flex">
+
+			</div>
+			<div className="grid grid-cols-3 gap-0">
+				{boardSquares.map(({ accepts, lastDroppedItem }, index) => {
+					console.log("accepts", accepts);
+					console.log("lastDroppedItem", lastDroppedItem);
+					console.log("index", index);
+					return (
+						<BoardSquare
+							accept={accepts}
+							lastDroppedItem={lastDroppedItem}
+							onDrop={(item) => handleDrop(index, item)}
+							key={index}
+						/>
+					)
+				}
+				)}
 			</div>
 
 			<div style={{ overflow: 'hidden', clear: 'both' }}>
