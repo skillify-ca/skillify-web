@@ -33,8 +33,6 @@ export type Question = {
 };
 
 export const generateQuestionsForDiagnostic = (testLength: TestLength, topics: Topic[]) => {
-	console.log(testLength);
-
 	let questionsPerSection = 0;
 	switch (testLength) {
 		case TestLength.SHORT:
@@ -60,9 +58,9 @@ export const generateQuestionsForDiagnostic = (testLength: TestLength, topics: T
 export const generateQuestions = (slug: string, currentLevel: number) => {
 	if (slug != null) {
 		if (slug.toLowerCase() == 'numbers') {
-			return generateQuestionsForTopic(currentLevel, NUM_QUESTIONS, Topic.NUMBERS);
+			return generateQuestionsForTopic(Topic.NUMBERS, currentLevel,  NUM_QUESTIONS);
 		} else {
-			return generateQuestionsForTopic(currentLevel, NUM_QUESTIONS, Topic.ADDITION);
+			return generateQuestionsForTopic(Topic.ADDITION, currentLevel, NUM_QUESTIONS);
 		}
 	}
 	return [];
@@ -81,9 +79,6 @@ function getRandomNumbersQuestion(min: number, max: number): Question {
 }
 
 const generateQuestionsForTopic = (topic: Topic, currentLevel: Difficulty, numberOfQuestions: number) => {
-	console.log('difficulty ', currentLevel);
-	console.log('topic ', topic);
-
 	let questionGenerator: (min: number, max: number) => FlashcardQuestion;
 	switch (topic) {
 		case Topic.NUMBERS:
