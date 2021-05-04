@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from 'react';
 
 export interface WordProblemProp {
   question?: string;
+}
+const name = ['Lavan', 'Ravi', 'Vithushan', 'Harrishan', 'Yaathavi', 'Hayley', 'John', 'Lee','Bruce', 'Bobby', 'Carlos', 'Tyrone', 'Itachi', 'Bill', 'Mario', 'Yoshi','Tony','Dale','Robert','Howards', 'Donald', 'Sean', 'Babu', 'Lin', 'Jamal', 'Sophia', 'Jeremy', 'Kolly' ]
+const nameselctor =() => {
+    const random = Math.floor(Math.random() * name.length);
+    return name[random]; 
 }
 
 /**
@@ -11,6 +16,7 @@ export const WordProblem: React.FC<WordProblemProp> = ({
   question,
   ...props
 }) => {
+    const [name, setName] = useState(nameselctor());
     const parse = () => {
         const parts = question.split(" ");
         return {
@@ -21,7 +27,7 @@ export const WordProblem: React.FC<WordProblemProp> = ({
   return (
       <div>
     <div className="text-2xl flex flex-wrap">
-      <p className="align-left">Hayley has a chest of coins. Inside, there are
+      <p className="align-left">{name} has a chest of coins. Inside, there are
       <span className="text-yellow-500 font-black">{" "+parse().first+ " "}</span>
       gold coins and  
       <span className="text-gray-300 font-black">{" "+parse().second+ " "}</span>
@@ -33,7 +39,11 @@ export const WordProblem: React.FC<WordProblemProp> = ({
         placeholder="Enter Answer">
         </input>
     </div>
-    <p className=" text-2xl text-yellow-400 text-center">coins</p>
+    <div className= "flex flex-wrap mt-3">
+    <img src="/images/gold-coin.png" width="70" height="45" className="mr-2"></img>
+    <img src="/images/gold-coin.png" width="70" height="45" className="ml-3 "></img>
+    <img src="/images/gold-coin.png" width="70" height="45" className="ml-3 "></img>
+    </div>
 </div>
   );
 };
