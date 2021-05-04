@@ -1,25 +1,21 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 
-import { Button, ButtonProps } from "./Button";
+import { VerticalEquation, VerticalEquationProp } from "./VerticalEquation";
 
 export default {
-  title: "Example/Button",
-  component: Button,
+  title: "Vertical Equation",
+  component: VerticalEquation,
   argTypes: {
-    backgroundColor: {
-      control: {
-        type: "radio",
-        options: ["blue", "green", "yellow", "purple", "red", "pink"],
-      },
-    },
+  
   },
 } as Meta;
 
-const Template: Story<ButtonProps> = (args) => <Button {...args} />;
+const Template: Story<VerticalEquationProp> = (args) => <VerticalEquation {...args} />;
+
 
 export const Primary = Template.bind({});
 Primary.args = {
-  backgroundColor: "blue",
-  label: "Button",
+  question: "2 + 2",
+  operator: "+"
 };

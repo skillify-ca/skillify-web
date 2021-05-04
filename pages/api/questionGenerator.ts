@@ -155,7 +155,7 @@ function getRandomBinaryQuestion(
 	const b = getRndInteger(min, max);
 
 	const text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} =`;
-	const types = [ 'vertical-equation', 'horizontal-equation' ];
+	const types = [ 'vertical-equation', 'horizontal-equation', 'word-problem' ];
 	const type = types[getRndInteger(0, types.length)];
 
 	return {
