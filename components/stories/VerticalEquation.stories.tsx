@@ -1,7 +1,6 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 
-import { Button, ButtonProps } from "./Button";
 import { VerticalEquation, VerticalEquationProp } from "./VerticalEquation";
 
 export default {
@@ -13,6 +12,7 @@ export default {
 } as Meta;
 
 const Template: Story<VerticalEquationProp> = (args) => <VerticalEquation {...args} />;
+
 
 export const Primary = Template.bind({});
 Primary.args = {
