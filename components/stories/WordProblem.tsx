@@ -11,17 +11,29 @@ export const WordProblem: React.FC<WordProblemProp> = ({
   question,
   ...props
 }) => {
+    const parse = () => {
+        const parts = question.split(" ");
+        return {
+          first: parts[0],
+          second: parts[2],
+        };
+      };
   return (
       <div>
-    <div className="text-3xl flex flex-col">
-      <p className="align-left">Hayley has a chest of coins. Inside, there are 256 gold coins and 920 silver coins. how many coins are in the chest?</p>
+    <div className="text-2xl flex flex-wrap">
+      <p className="align-left">Hayley has a chest of coins. Inside, there are
+      <span className="text-yellow-500 font-black">{" "+parse().first+ " "}</span>
+      gold coins and  
+      <span className="text-gray-300 font-black">{" "+parse().second+ " "}</span>
+      silver coins. How many coins are in the chest?
+      </p>
       </div>
       <div className="text-2xl flex flex-wrap">
-           <input type="number" className="appearance-none relative block px-3 py-2 text-center border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 bg-blue-100 focus:z-10 text-sm sm:text-lg sm:w-1/5 w-full"
+           <input type="number" className="appearance-none relative block px-3 py-2 text-center border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 bg-blue-100 focus:z-10 text-sm sm:text-lg w-full"
         placeholder="Enter Answer">
         </input>
-        <p className="ml-3 text-yellow-400">coins</p>
     </div>
+    <p className=" text-2xl text-yellow-400 text-center">coins</p>
 </div>
   );
 };
