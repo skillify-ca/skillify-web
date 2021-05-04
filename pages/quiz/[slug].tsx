@@ -19,6 +19,7 @@ import Card from '../../components/stories/Card';
 import { Button } from '../../components/stories/Button';
 import { VerticalEquation } from '../../components/stories/VerticalEquation';
 import QuestionSet from '../../components/stories/QuestionSet';
+import { QuestionType } from '../api/questionTypes';
 
 const Quiz = ({ slug }) => {
 	const { query } = useRouter();
@@ -30,7 +31,7 @@ const Quiz = ({ slug }) => {
 	const [ secondsElapsed, setSecondsElapsed ] = useState(0);
 	const [ interval, setMyInterval ] = useState(null);
 	const [ questionData, setQuestionData ] = useState<Question[]>([
-		{ text: '', answer: 0, type: 'horizontal-equation' }
+		{ text: '', answer: 0, questionType: QuestionType.HORIZONTAL_EQUATION }
 	]);
 	const [ currentLevel, setCurrentLevel ] = React.useState(0);
 	const inputElement = useRef(null);
