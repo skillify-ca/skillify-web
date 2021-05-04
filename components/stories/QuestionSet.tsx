@@ -3,6 +3,7 @@ import { Question } from "../../pages/api/questionGenerator";
 import { Button } from "./Button";
 import Card from "./Card";
 import { VerticalEquation } from "./VerticalEquation";
+import { WordProblem } from "./WordProblem";
 
 type QuestionSetProps = {
   title: string;
@@ -28,6 +29,10 @@ const QuestionSet = ({
     if (questionData[index].type === "vertical-equation") {
       return (
         <VerticalEquation question={questionData[index].text} operator={questionData[index].operator} />
+      );
+    }else if (questionData[index].type === "word-problem") {
+      return (
+        <WordProblem question={questionData[index].text}/>
       );
     }
 
