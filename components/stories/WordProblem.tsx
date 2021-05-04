@@ -1,7 +1,7 @@
 import React from "react";
 
 export interface WordProblemProp {
-  question?: string;
+  question: string;
 }
 
 /**
