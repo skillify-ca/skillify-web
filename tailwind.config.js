@@ -1,3 +1,4 @@
+const { backgroundColor } = require('tailwindcss/defaultTheme');
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
@@ -18,7 +19,8 @@ module.exports = {
 	variants: {
 		extend: {
 			borderWidth: [ 'active' ],
-			fontFamily: [ 'hover', 'focus' ]
+			fontFamily: [ 'hover', 'focus' ],
+			backgroundColor: ['active']
 		}
 	},
 	plugins: [
