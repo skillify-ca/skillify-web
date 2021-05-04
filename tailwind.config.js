@@ -19,8 +19,7 @@ module.exports = {
 	variants: {
 		extend: {
 			borderWidth: [ 'active' ],
-			fontFamily: [ 'hover', 'focus' ],
-			backgroundColor: ['active']
+			fontFamily: [ 'hover', 'focus' ]
 		}
 	},
 	plugins: [
