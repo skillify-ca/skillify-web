@@ -16,6 +16,7 @@ type QuestionSetProps = {
   submitGuess: any;
 };
 
+
 const QuestionSet = ({
   title,
   questionData,
@@ -32,9 +33,8 @@ const QuestionSet = ({
         <VerticalEquation question={questionData[index].text} operator={questionData[index].operator} />
       );
     } else if (questionData[index].questionType == QuestionType.BINARY_WORD_PROBLEM) {
-      return <WordProblem question={questionData[index].text} />
+      return <WordProblem question={questionData[index].text} name = {questionData[index].name} />
     }
-
     return <p className="text-6xl">{questionData[index].text}</p>;
   };
 
