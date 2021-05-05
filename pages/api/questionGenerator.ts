@@ -1,3 +1,5 @@
+import { QuestionType } from './questionTypes';
+
 const NUM_QUESTIONS = 5;
 
 export type FlashcardQuestion = {
@@ -28,7 +30,7 @@ export enum Difficulty {
 export type Question = {
 	text: string;
 	answer: number;
-	type: string;
+	questionType: QuestionType;
 	operator?: string;
 	name?: string;
 };
@@ -67,7 +69,7 @@ export const generateQuestionsForDiagnostic = (testLength: TestLength, topics: T
 export const generateQuestions = (slug: string, currentLevel: number) => {
 	if (slug != null) {
 		if (slug.toLowerCase() == 'numbers') {
-			return generateQuestionsForTopic(Topic.NUMBERS, currentLevel,  NUM_QUESTIONS);
+			return generateQuestionsForTopic(Topic.NUMBERS, currentLevel, NUM_QUESTIONS);
 		} else {
 			return generateQuestionsForTopic(Topic.ADDITION, currentLevel, NUM_QUESTIONS);
 		}
@@ -83,7 +85,7 @@ function getRandomNumbersQuestion(min: number, max: number): Question {
 	return {
 		text: text,
 		answer: Math.max(a, b),
-		type: 'word-problem'
+		questionType: QuestionType.COMPARISON_WORD_PROBLEM
 	};
 }
 
@@ -143,7 +145,7 @@ function getRandomDivisionQuestion(min: number, max: number) {
 	const product = a * b;
 
 	const text = `${product} / ${b} =`;
-	const types = [ 'vertical-equation', 'horizontal-equation' ];
+	const types = [ QuestionType.VERTICAL_EQUATION, QuestionType.HORIZONTAL_EQUATION ];
 	const type = types[getRndInteger(0, types.length)];
 
 	return {
@@ -159,20 +161,26 @@ function getRandomBinaryQuestion(
 	max: number,
 	operator: string,
 	answerFunction: (a: number, b: number) => number
-) :Question{
+
+): Question {
 	const a = getRndInteger(min, max);
 	const b = getRndInteger(min, max);
 
 	const text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} =`;
-	const types = [ 'vertical-equation', 'horizontal-equation', 'word-problem' ];
+	const types = [
+		QuestionType.VERTICAL_EQUATION,
+		QuestionType.HORIZONTAL_EQUATION,
+		QuestionType.BINARY_WORD_PROBLEM
+	];
 	const type = types[getRndInteger(0, types.length)];
 
 	return {
 		text: text,
 		answer: answerFunction(Math.max(a, b), Math.min(a, b)),
-		type: type,
+		questionType: type,
 		operator: operator,
 		name: nameSelector()
+
 	};
 }
 

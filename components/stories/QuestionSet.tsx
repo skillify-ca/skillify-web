@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Question } from "../../pages/api/questionGenerator";
+import { QuestionType } from "../../pages/api/questionTypes";
 import { Button } from "./Button";
 import Card from "./Card";
 import { VerticalEquation } from "./VerticalEquation";
@@ -27,16 +28,13 @@ const QuestionSet = ({
 }: QuestionSetProps) => {
   const questionComponent = () => {
 
-    if (questionData[index].type === "vertical-equation") {
+    if (questionData[index].questionType === QuestionType.VERTICAL_EQUATION) {
       return (
         <VerticalEquation question={questionData[index].text} operator={questionData[index].operator} />
       );
-    }else if (questionData[index].type === "word-problem") {
-      return (
-        <WordProblem question = {questionData[index].text} name = {questionData[index].name} />
-      );
+    } else if (questionData[index].questionType == QuestionType.BINARY_WORD_PROBLEM) {
+      return <WordProblem question={questionData[index].text} name = {questionData[index].name} />
     }
-
     return <p className="text-6xl">{questionData[index].text}</p>;
   };
 
