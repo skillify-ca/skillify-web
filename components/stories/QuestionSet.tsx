@@ -15,6 +15,7 @@ type QuestionSetProps = {
   submitGuess: any;
 };
 
+
 const QuestionSet = ({
   title,
   questionData,
@@ -32,7 +33,7 @@ const QuestionSet = ({
       );
     }else if (questionData[index].type === "word-problem") {
       return (
-        <WordProblem question={questionData[index].text}/>
+        <WordProblem question = {questionData[index].text} name = {questionData[index].name} />
       );
     }
 
