@@ -36,7 +36,7 @@ const QuestionSet = ({
     } else if (questionData[index].questionType == QuestionType.BINARY_WORD_PROBLEM) {
       return <WordProblem question={questionData[index].text} name = {questionData[index].name} />
     } else if (questionData[index].questionType === QuestionType.TRUE_OR_FALSE_PROBLEM) {
-      return <TrueorFalse question={questionData[index].text} answer= {true}/>
+      return <TrueorFalse question={questionData[index].text}/>
     }
     return <p className="text-6xl">{questionData[index].text}</p>;
   };
