@@ -31,9 +31,9 @@ const QuestionSet = ({
         <VerticalEquation question={questionData[index].text} operator={questionData[index].operator} submitGuess={submitGuess} />
       );
     } else if (questionData[index].questionType == QuestionType.BINARY_WORD_PROBLEM) {
-      return <WordProblem question={questionData[index].text} name={questionData[index].name} />
+      return <WordProblem question={questionData[index].text} name={questionData[index].name} submitGuess={submitGuess} />
     }
-    
+
     return <HorizontalEquation question={questionData[index].text} submitGuess={submitGuess} />;
   };
 
