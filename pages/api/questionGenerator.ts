@@ -1,5 +1,5 @@
 import { QuestionType } from './questionTypes';
-import { setWordProb, setWordProblem, WordProblemModel } from './WordProblemModel';
+import { setWordProblem, WordProblemModel } from './WordProblemModel';
 
 const NUM_QUESTIONS = 5;
 
@@ -166,6 +166,7 @@ function getRandomBinaryQuestion(
 		QuestionType.BINARY_WORD_PROBLEM
 	];
 	const type = types[getRndInteger(0, types.length)];
+	//condition for if it is wordProblem
 
 	return {
 		text: text,

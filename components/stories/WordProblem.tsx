@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { noun } from '../../pages/api/WordProblemModel';
 
 export interface WordProblemProp {
   question: string;
   name: string;
   container: string;
+  noun1: noun;
+  noun2: noun;
 }
 
 
@@ -14,6 +17,8 @@ export const WordProblem: React.FC<WordProblemProp> = ({
   question,
   name,
   container,
+  noun1,
+  noun2,
   ...props
 }) => {
     const parse = () => {
@@ -23,14 +28,17 @@ export const WordProblem: React.FC<WordProblemProp> = ({
           second: parts[2],
         };
       };
+      console.log(noun1);
   return (
       <div>
     <div className="text-xl flex flex-wrap">
-      <p className="align-left">{name} has a {container} of coins. Inside, there are
-      <span className="text-yellow-500 font-black">{" "+parse().first+ " "}</span>
-      gold coins and  
-      <span className="text-gray-300 font-black">{" "+parse().second+ " "}</span>
-      silver coins. How many coins are in the chest?
+      <p className="align-left">{name} has a {container} of {noun1.type}. Inside, there are
+      <span className={noun1.colour}>{" "+parse().first+ " "}</span>
+      {/* text-yellow-600 replace yellow with noun1.ob.colour */}
+      {noun1.title} and  
+      <span className={noun2.colour}>{" "+parse().second+ " "}</span>
+      {noun2.title}. How many {noun1.type} are in the {container}?
+      {/* text-silver-600 replace silver with noun1.ob.colour */}
       </p>
       </div>
       <div className="text-2xl flex flex-wrap">
@@ -39,10 +47,14 @@ export const WordProblem: React.FC<WordProblemProp> = ({
         </input>
     </div>
     <div className= "flex flex-wrap mt-3">
-    <img src="/images/gold-coin.png" width="70" height="75" className="mr-2"></img>
-    <img src="/images/gold-coin.png" width="70" height="75" className="ml-3 "></img>
-    <img src="/images/gold-coin.png" width="70" height="75" className="ml-3 "></img>
+    <img src= {noun1.image} width="30" height="45" className="ml-2"></img>
+    <img src= {noun2.image} width="30" height="45" className="ml-6"></img>
+    <img src= {noun1.image} width="30" height="45" className="ml-6"></img>
+    <img src= {noun2.image} width="30" height="45" className="ml-6"></img>
+    <img src= {noun1.image} width="30" height="45" className="ml-6"></img>
     </div>
 </div>
   );
 };
+
+

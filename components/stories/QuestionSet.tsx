@@ -33,7 +33,8 @@ const QuestionSet = ({
         <VerticalEquation question={questionData[index].text} operator={questionData[index].operator} />
       );
     } else if (questionData[index].questionType == QuestionType.BINARY_WORD_PROBLEM) {
-      return <WordProblem question={questionData[index].text} name = {questionData[index].wordProblem.name} container = {questionData[index].wordProblem.container} />
+      console.log(questionData[index].wordProblem);
+      return <WordProblem question={questionData[index].text} name = {questionData[index].wordProblem.name} container = {questionData[index].wordProblem.container} noun1 = {questionData[index].wordProblem.item1} noun2 = {questionData[index].wordProblem.item2}/>
     }
     return <p className="text-6xl">{questionData[index].text}</p>;
   };
