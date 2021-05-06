@@ -8,8 +8,8 @@ export function randomize(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-var ans;
-var DisplayAns;
+let ans;
+let displayAns;
 export const TrueorFalse: React.FC<TrueorFalseProp> = ({
   question,
   ...props
@@ -22,8 +22,8 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
       second: part[2],
     };
   };
-  var num1 = parseInt(parse().first);
-  var num2 = parseInt(parse().second);
+  const  num1 = parseInt(parse().first);
+  const  num2 = parseInt(parse().second);
   switch (parse().operator) {
     case "+":
       ans = num1 + num2;
@@ -38,24 +38,23 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
       ans = num1 / num2;
       break;
   }
-  const TruthValue = randomize(0, 2);
-  switch (TruthValue) {
+  const truthValue = randomize(0, 2);
+  switch (truthValue) {
     case 0:
-      DisplayAns = ans + randomize(Math.floor(-ans / 10), Math.floor(ans / 10));
+      displayAns = ans + randomize(Math.floor(-ans / 10), (Math.floor(ans / 10) + 1));
       break;
     case 1:
-      DisplayAns = ans;
+      displayAns = ans;
       break;
   }
-  console.log(question);
   return (
-    <div className="flex flex-col items-center">
-      <p className="text-3xl text-center">
-        {question}  {DisplayAns}
+    <div className="flex flex-col items-center space-y-16">
+      <p className="text-3xl text-center font-normal">
+        {question}  {displayAns}
       </p>
-      <div className="flex flex-row  item-center space-x-10">
-        <Button label="True"></Button>
-        <Button label="False"></Button>
+      <div className="flex flex-row  item-center space-x-4 ">
+        <Button label="True" backgroundColor="green"></Button>
+        <Button label="False" backgroundColor="red"></Button>
       </div>
     </div>
   );
