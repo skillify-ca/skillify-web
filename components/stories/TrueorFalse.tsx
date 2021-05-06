@@ -49,8 +49,8 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
   }
   return (
     <div className="flex flex-col items-center space-y-16">
-      <p className="text-3xl text-center font-normal">
-        {question}  {displayAns}
+      <p className="text-4xl">
+        {question} {displayAns}
       </p>
       <div className="flex flex-row  item-center space-x-4 ">
         <Button label="True" backgroundColor="green"></Button>
