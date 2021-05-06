@@ -3,6 +3,7 @@ import { Question } from "../../pages/api/questionGenerator";
 import { QuestionType } from "../../pages/api/questionTypes";
 import { Button } from "./Button";
 import Card from "./Card";
+import { HorizontalEquation } from "./HorizontalEquation";
 import { VerticalEquation } from "./VerticalEquation";
 import { WordProblem } from "./WordProblem";
 
@@ -21,9 +22,6 @@ const QuestionSet = ({
   title,
   questionData,
   index,
-  guess,
-  setGuess,
-  inputElement,
   submitGuess,
 }: QuestionSetProps) => {
   const questionComponent = () => {
@@ -33,9 +31,10 @@ const QuestionSet = ({
         <VerticalEquation question={questionData[index].text} operator={questionData[index].operator} submitGuess={submitGuess} />
       );
     } else if (questionData[index].questionType == QuestionType.BINARY_WORD_PROBLEM) {
-      return <WordProblem question={questionData[index].text} name = {questionData[index].name} />
+      return <WordProblem question={questionData[index].text} name={questionData[index].name} />
     }
-    return <p className="text-6xl">{questionData[index].text}</p>;
+    
+    return <HorizontalEquation question={questionData[index].text} submitGuess={submitGuess} />;
   };
 
 

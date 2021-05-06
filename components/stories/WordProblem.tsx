@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 export interface WordProblemProp {
+  submitGuess: (e) => void;
   question: string;
   name: string;
 }
@@ -10,6 +11,7 @@ export interface WordProblemProp {
  * Primary UI component for user interaction
  */
 export const WordProblem: React.FC<WordProblemProp> = ({
+  submitGuess,
   question,
   name,
   ...props
