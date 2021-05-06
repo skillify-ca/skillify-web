@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 export interface WordProblemProp {
   question: string;
   name: string;
+  container: string;
+  
 }
 
 
@@ -12,6 +14,7 @@ export interface WordProblemProp {
 export const WordProblem: React.FC<WordProblemProp> = ({
   question,
   name,
+  container,
   ...props
 }) => {
     const parse = () => {
@@ -32,7 +35,7 @@ export const WordProblem: React.FC<WordProblemProp> = ({
       </p>
       </div>
       <div className="text-2xl flex flex-wrap">
-           <input type="number" className="appearance-none relative block px-3 py-2 text-center border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 bg-blue-100 focus:z-10 text-sm sm:text-lg w-full mt-2"
+           <input type="number" className= "appearance-none relative block px-3 py-2 text-center border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 bg-blue-100 focus:z-10 text-sm sm:text-lg w-full mt-2"
         placeholder="Enter Answer">
         </input>
     </div>
