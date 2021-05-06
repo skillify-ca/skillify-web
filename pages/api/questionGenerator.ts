@@ -170,7 +170,8 @@ function getRandomBinaryQuestion(
 	const types = [
 		QuestionType.VERTICAL_EQUATION,
 		QuestionType.HORIZONTAL_EQUATION,
-		QuestionType.BINARY_WORD_PROBLEM
+		QuestionType.BINARY_WORD_PROBLEM,
+		QuestionType.TRUE_OR_FALSE_PROBLEM
 	];
 	const type = types[getRndInteger(0, types.length)];
 

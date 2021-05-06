@@ -3,6 +3,7 @@ import { Question } from "../../pages/api/questionGenerator";
 import { QuestionType } from "../../pages/api/questionTypes";
 import { Button } from "./Button";
 import Card from "./Card";
+import { TrueorFalse } from "./TrueorFalse";
 import { VerticalEquation } from "./VerticalEquation";
 import { WordProblem } from "./WordProblem";
 
@@ -34,6 +35,8 @@ const QuestionSet = ({
       );
     } else if (questionData[index].questionType == QuestionType.BINARY_WORD_PROBLEM) {
       return <WordProblem question={questionData[index].text} name = {questionData[index].name} />
+    } else if (questionData[index].questionType === QuestionType.TRUE_OR_FALSE_PROBLEM) {
+      return <TrueorFalse question={questionData[index].text} answer= {true}/>
     }
     return <p className="text-6xl">{questionData[index].text}</p>;
   };
