@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "./Button";
+import { Input } from "./Input";
 
 export interface HorizontalEquationProp {
   question?: string;
@@ -24,17 +25,7 @@ export const HorizontalEquation: React.FC<HorizontalEquationProp> = ({
   return (
     <div className="flex flex-col gap-4 justify-between h-full">
       <p className="text-6xl w-full flex-grow flex justify-center items-center">{question}</p>
-      <input
-        id="guess"
-        type="number"
-        autoComplete="off"
-        value={guess}
-        onChange={(e) => setGuess(e.target.value)}
-        className="appearance-none relative block px-3 py-4 text-center border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 bg-blue-100 focus:z-10 sm:text-sm"
-        placeholder="Enter Answer"
-        onKeyPress={handleKeypress}
-      />
-
+      <Input guess={guess} setGuess={setGuess} handleKeypress={handleKeypress} />
       <Button
         onClick={submitGuess}
         label="Submit"
