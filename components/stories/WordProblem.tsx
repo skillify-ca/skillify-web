@@ -40,8 +40,8 @@ export const WordProblem: React.FC<WordProblemProp> = ({
 	};
 	console.log(noun1);
 	return (
-		<div>
-			<div className="text-xl flex flex-wrap">
+		<div className= "flex flex-col items-center gap-4">
+			<div className="text-2xl flex flex-wrap">
 				<p className="align-left">
 					{name} has a {container} of {noun1.type}. Inside, there are
 					<span className={noun1.colour}>{' ' + parse().first + ' '}</span>
