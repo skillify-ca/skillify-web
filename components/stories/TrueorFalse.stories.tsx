@@ -16,6 +16,5 @@ export default {
 
 export const Primary = Template.bind({});
 Primary.args = { 
-    question: "3 + 3 = 6",
-    answer: true,
+    question: "3 + 3 = ",
 };
