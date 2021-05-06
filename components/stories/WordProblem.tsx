@@ -4,7 +4,6 @@ export interface WordProblemProp {
   question: string;
   name: string;
   container: string;
-  
 }
 
 
@@ -27,7 +26,7 @@ export const WordProblem: React.FC<WordProblemProp> = ({
   return (
       <div>
     <div className="text-xl flex flex-wrap">
-      <p className="align-left">{name} has a chest of coins. Inside, there are
+      <p className="align-left">{name} has a {container} of coins. Inside, there are
       <span className="text-yellow-500 font-black">{" "+parse().first+ " "}</span>
       gold coins and  
       <span className="text-gray-300 font-black">{" "+parse().second+ " "}</span>

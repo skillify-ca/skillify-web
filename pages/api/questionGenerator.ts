@@ -45,8 +45,8 @@ const nameSelector =() => {
 }
 
 const containers = ['box', 'bag', 'basket']
-const containerselector=() => {
-	const randomContainer = Math.floor(Math.random() * name.length);
+const containerSelector =() => {
+	const randomContainer = Math.floor(Math.random() * containers.length);
 	return containers[randomContainer];
 }
 
@@ -186,8 +186,8 @@ function getRandomBinaryQuestion(
 		answer: answerFunction(Math.max(a, b), Math.min(a, b)),
 		questionType: type,
 		operator: operator,
-		name: nameSelector()
-
+		name: nameSelector(),
+		containers: containerSelector(),
 	};
 }
 
