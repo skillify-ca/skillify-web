@@ -1,5 +1,5 @@
 import { QuestionType } from './questionTypes';
-import { setWordProb, WordProblemModel } from './WordProblemModel';
+import { setWordProb, setWordProblem, WordProblemModel } from './WordProblemModel';
 
 const NUM_QUESTIONS = 5;
 
@@ -172,7 +172,7 @@ function getRandomBinaryQuestion(
 		answer: answerFunction(Math.max(a, b), Math.min(a, b)),
 		questionType: type,
 		operator: operator,
-		wordProblem: setWordProb(),	
+		wordProblem: setWordProblem(),	
 	};
 }
 

@@ -11,15 +11,15 @@ const nameSelector =() => {
     return name[random]; 
 }
 
-const container = ['box', 'bag', 'basket', 'case', 'amazon package', 'drawer']
-const containerSelector =() => {
-	const randomContainer = Math.floor(Math.random() * container.length);
-	return container[randomContainer];
+const itemGroup = ['box', 'bag', 'basket', 'case', 'amazon package', 'drawer']
+const itemGroupSelector =() => {
+	const randomItemGroup = Math.floor(Math.random() * itemGroup.length);
+	return itemGroup[randomItemGroup];
 }
-export function setWordProb(
+export function setWordProblem(
 ): WordProblemModel {
 	return {
 		name: nameSelector(),
-		container: containerSelector()
+		container: itemGroupSelector()
 	};
 }
