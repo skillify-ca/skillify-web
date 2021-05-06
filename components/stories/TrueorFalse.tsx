@@ -51,7 +51,7 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
   return (
     <div className="flex flex-col items-center">
       <p className="text-3xl text-center">
-        {question} {DisplayAns}
+        {question}  {DisplayAns}
       </p>
       <div className="flex flex-row  item-center space-x-10">
         <Button label="True"></Button>
