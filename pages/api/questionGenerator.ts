@@ -144,7 +144,7 @@ function getRandomDivisionQuestion(min: number, max: number) {
 	return {
 		text: text,
 		answer: a,
-		type: type,
+		questionType: type,
 		operator: '÷'
 	};
 }
