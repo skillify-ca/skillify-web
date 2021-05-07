@@ -3,9 +3,11 @@ import { Question } from '../../pages/api/questionGenerator';
 import { QuestionType } from '../../pages/api/questionTypes';
 import { Button } from './Button';
 import Card from './Card';
+import { TrueorFalse } from './TrueorFalse';
 import { HorizontalEquation } from './HorizontalEquation';
 import { VerticalEquation } from './VerticalEquation';
 import { WordProblem } from './WordProblem';
+import { LongDivision } from './LongDivision';
 
 type QuestionSetProps = {
 	title: string;
@@ -38,6 +40,10 @@ const QuestionSet = ({ title, questionData, index, submitGuess }: QuestionSetPro
 					noun2={questionData[index].wordProblem.item2}
 				/>
 			);
+		} else if (questionData[index].questionType === QuestionType.TRUE_OR_FALSE_PROBLEM) {
+			return <TrueorFalse question={questionData[index].text} />;
+		} else if (questionData[index].questionType === QuestionType.LONG_DIVISION_PROBLEM) {
+			return <LongDivision question={questionData[index].text} submitGuess={submitGuess} />;
 		}
 
 		return <HorizontalEquation question={questionData[index].text} submitGuess={submitGuess} />;

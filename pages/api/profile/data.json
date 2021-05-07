@@ -23,6 +23,10 @@
         { "text": "I can pick the greatest/least number: up to 100 000" },
         { "text": "I can put numbers up to 100 000 in order" }
       ]
-    }
+    },
+    { "name": "addition", "statements": [{ "text": "Add one digit numbers" },
+      {"text": "Add two digit numbers" },
+      {"text": "Add three digit numbers" },
+      {"text": "Identify and use properties of addition" }] }
   ]
 }

@@ -138,7 +138,7 @@ function getRandomDivisionQuestion(min: number, max: number) {
 	const product = a * b;
 
 	const text = `${product} / ${b} =`;
-	const types = [ QuestionType.VERTICAL_EQUATION, QuestionType.HORIZONTAL_EQUATION ];
+	const types = [ QuestionType.LONG_DIVISION_PROBLEM, QuestionType.HORIZONTAL_EQUATION ];
 	const type = types[getRndInteger(0, types.length)];
 
 	return {
@@ -162,7 +162,8 @@ function getRandomBinaryQuestion(
 	const types = [
 		QuestionType.VERTICAL_EQUATION,
 		QuestionType.HORIZONTAL_EQUATION,
-		QuestionType.BINARY_WORD_PROBLEM
+		QuestionType.BINARY_WORD_PROBLEM,
+		QuestionType.TRUE_OR_FALSE_PROBLEM,
 	];
 	const typeIndex = getRndInteger(0, types.length);
 	const type = types[typeIndex];
