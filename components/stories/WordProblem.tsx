@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
-import { Button } from './Button';
-import { Input } from './Input';
+import React, { useState } from "react";
+import { noun } from "../../pages/api/WordProblemModel";
+import { Button } from "./Button";
+import { Input } from "./Input";
 
 export interface WordProblemProp {
   submitGuess: (e) => void;
   question: string;
   name: string;
+  itemContainer?: string;
+  noun1: noun;
+  noun2: noun;
 }
-
 
 /**
  * Primary UI component for user interaction
@@ -16,9 +19,12 @@ export const WordProblem: React.FC<WordProblemProp> = ({
   submitGuess,
   question,
   name,
+  itemContainer,
+  noun1,
+  noun2,
   ...props
 }) => {
-  const [guess, setGuess] = useState('');
+  const [guess, setGuess] = useState("");
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
@@ -32,30 +38,44 @@ export const WordProblem: React.FC<WordProblemProp> = ({
       second: parts[2],
     };
   };
+  const title = (noun, number) => {
+    if (number == "1") {
+      return noun.singleTitle;
+    }
+    return noun.pluralTitle;
+  };
   return (
-    <div>
-      <div className="text-xl flex flex-wrap">
-        <p className="align-left">{name} has a chest of coins. Inside, there are
-      <span className="text-yellow-500 font-black">{" " + parse().first + " "}</span>
-      gold coins and
-      <span className="text-gray-300 font-black">{" " + parse().second + " "}</span>
-      silver coins. How many coins are in the chest?
-      </p>
+    <div className="flex flex-col items-center gap-4">
+      <div className="text-2xl flex flex-wrap">
+        <p className="align-left">
+          {name} has a {itemContainer} of {noun1.type}. Inside, there are
+          <span className={noun1.colour}>{" " + parse().first + " "}</span>
+          {title(noun1, parse().first)} and
+          <span className={noun2.colour}>{" " + parse().second + " "}</span>
+          {title(noun2, parse().second)}. How many {noun1.type} are in the{" "}
+          {itemContainer}?
+        </p>
       </div>
       <div className="text-2xl flex flex-wrap">
-        <Input guess={guess} setGuess={setGuess} handleKeypress={handleKeypress} />
+        <Input
+          guess={guess}
+          setGuess={setGuess}
+          handleKeypress={handleKeypress}
+        />
       </div>
-      <div className="flex flex-wrap mt-3">
-        <img src="/images/gold-coin.png" width="70" height="75" className="mr-2"></img>
-        <img src="/images/gold-coin.png" width="70" height="75" className="ml-3 "></img>
-        <img src="/images/gold-coin.png" width="70" height="75" className="ml-3 "></img>
+      <div className="flex flex-wrap mt-2">
+        <img src={noun1.image} width="60px" height="85px" />
+        <img src={noun2.image} width="60px" height="85px" />
+        <img src={noun1.image} width="60px" height="85px" />
+        <img src={noun2.image} width="60px" height="85px" />
+        <img src={noun1.image} width="60px" height="85px" />
       </div>
       <Button
-          onClick={submitGuess}
-          label="Submit"
-          backgroundColor="blue"
-          textColor="white"
-        />
+        onClick={submitGuess}
+        label="Submit"
+        backgroundColor="blue"
+        textColor="white"
+      />
     </div>
   );
 };
