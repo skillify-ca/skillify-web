@@ -3,6 +3,7 @@ import { Question } from "../../pages/api/questionGenerator";
 import { QuestionType } from "../../pages/api/questionTypes";
 import { Button } from "./Button";
 import Card from "./Card";
+import { TrueorFalse } from "./TrueorFalse";
 import { HorizontalEquation } from "./HorizontalEquation";
 import { VerticalEquation } from "./VerticalEquation";
 import { WordProblem } from "./WordProblem";
@@ -17,7 +18,6 @@ type QuestionSetProps = {
   submitGuess: any;
 };
 
-
 const QuestionSet = ({
   title,
   questionData,
@@ -25,19 +25,37 @@ const QuestionSet = ({
   submitGuess,
 }: QuestionSetProps) => {
   const questionComponent = () => {
-
     if (questionData[index].questionType === QuestionType.VERTICAL_EQUATION) {
       return (
-        <VerticalEquation question={questionData[index].text} operator={questionData[index].operator} submitGuess={submitGuess} />
+        <VerticalEquation
+          question={questionData[index].text}
+          operator={questionData[index].operator}
+          submitGuess={submitGuess}
+        />
       );
-    } else if (questionData[index].questionType == QuestionType.BINARY_WORD_PROBLEM) {
-      return <WordProblem question={questionData[index].text} name={questionData[index].name} submitGuess={submitGuess} />
+    } else if (
+      questionData[index].questionType == QuestionType.BINARY_WORD_PROBLEM
+    ) {
+      return (
+        <WordProblem
+          question={questionData[index].text}
+          name={questionData[index].name}
+          submitGuess={submitGuess}
+        />
+      );
+    } else if (
+      questionData[index].questionType === QuestionType.TRUE_OR_FALSE_PROBLEM
+    ) {
+      return <TrueorFalse question={questionData[index].text} />;
     }
 
-    return <HorizontalEquation question={questionData[index].text} submitGuess={submitGuess} />;
+    return (
+      <HorizontalEquation
+        question={questionData[index].text}
+        submitGuess={submitGuess}
+      />
+    );
   };
-
-
 
   return (
     <div className="flex flex-col justify-center items-center bg-gray-200 gap-8 pb-24">
