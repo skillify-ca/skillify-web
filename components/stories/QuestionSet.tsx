@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { Question } from "../../pages/api/questionGenerator";
 import { QuestionType } from "../../pages/api/questionTypes";
-import { Button } from "./Button";
 import Card from "./Card";
-import { TrueorFalse } from "./TrueorFalse";
 import { HorizontalEquation } from "./HorizontalEquation";
+import { LongDivision } from "./LongDivision";
+import { TrueorFalse } from "./TrueorFalse";
 import { VerticalEquation } from "./VerticalEquation";
 import { WordProblem } from "./WordProblem";
 
@@ -39,15 +39,26 @@ const QuestionSet = ({
       return (
         <WordProblem
           question={questionData[index].text}
-          name={questionData[index].name}
+          name={questionData[index].wordProblem.name}
           submitGuess={submitGuess}
+          itemContainer={questionData[index].wordProblem.itemContainer}
+          noun1={questionData[index].wordProblem.item1}
+          noun2={questionData[index].wordProblem.item2}
         />
       );
     } else if (
       questionData[index].questionType === QuestionType.TRUE_OR_FALSE_PROBLEM
     ) {
+
+      return ( 
+        <TrueorFalse question={questionData[index].text} 
+                         submitGuess={submitGuess}/>
+              );  
+    } else if (
+      questionData[index].questionType === QuestionType.LONG_DIVISION_PROBLEM
+    ) {
       return (
-        <TrueorFalse
+        <LongDivision
           question={questionData[index].text}
           submitGuess={submitGuess}
         />

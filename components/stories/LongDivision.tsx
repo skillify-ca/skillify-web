@@ -1,27 +1,34 @@
 import React, { useState } from 'react';
+import { Button } from "./Button";
 
 export interface LongDivisionProp {
-  question?: string;
-  operator: string;
-}
+    question?: string;
+    submitGuess: (e) => void;
+  }
 
+  
 /**
  * Primary UI component for user interaction
  */
-export const LongDivision: React.FC<LongDivisionProp> = ({
-  question,
-  operator,
-  ...props
-}) => {
-  const parse = () => {
-    const parts = question.split(" ");
-    return {
-      first: parts[0],
-      second: parts[2],
+ export const LongDivision: React.FC<LongDivisionProp> = ({
+    question,
+    submitGuess,
+    ...props
+  }) => {
+    const [guess, setGuess] = useState('');
+    const handleKeypress = (e) => {
+      //it triggers by pressing the enter key
+      if (e.charCode === 13) {
+        submitGuess(e);
+      }
     };
-  };
-
-  const classNamee = "text-8xl flex flex-col flex-end items-end border-b-8 border-pink-900";
+    const parse = () => {
+      const parts = question.split(" ");
+      return {
+        first: parts[0],
+        second: parts[2],
+      };
+    };
 
   return (
     <div className = "flex flex-col flex-end items-start">
@@ -30,6 +37,12 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
             <span>{parse().second}&nbsp;</span>
             <span className="align-right border-t-2 border-l-2 border-black"> {parse().first}</span>
         </div>
+        <Button
+        onClick={submitGuess}
+        label="Submit"
+        backgroundColor="blue"
+        textColor="white"
+      />
     </div>
   );
 };
