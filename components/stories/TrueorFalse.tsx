@@ -22,8 +22,8 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
       second: part[2],
     };
   };
-  const  num1 = parseInt(parse().first);
-  const  num2 = parseInt(parse().second);
+  const num1 = parseInt(parse().first);
+  const num2 = parseInt(parse().second);
   switch (parse().operator) {
     case "+":
       ans = num1 + num2;
@@ -41,7 +41,8 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
   const truthValue = randomize(0, 2);
   switch (truthValue) {
     case 0:
-      displayAns = ans + randomize(Math.floor(-ans / 10), (Math.floor(ans / 10) + 1));
+      displayAns =
+        ans + randomize(Math.floor(-ans / 10), Math.floor(ans / 10) + 1);
       break;
     case 1:
       displayAns = ans;
