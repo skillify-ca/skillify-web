@@ -14,3 +14,23 @@ export default function Practice(props) {
     </div>
   );
 }
+
+export async function getStaticProps({ params }) {
+  return {
+    props: {
+      slug: params.slug,
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { slug: "single-digit" } },
+      { params: { slug: "double-digit" } },
+      { params: { slug: "triple-digit" } },
+      { params: { slug: "properties" } },
+    ],
+    fallback: true,
+  };
+}
