@@ -1,7 +1,5 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import dynamic from "next/dynamic";
-import { Button } from "../components/stories/Button";
+import Navbar from "../../components/Navbar";
 
 export default function Practice(props) {
   return (
@@ -15,4 +13,24 @@ export default function Practice(props) {
       </div>
     </div>
   );
+}
+
+export async function getStaticProps({ params }) {
+  return {
+    props: {
+      slug: params.slug,
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { slug: "single-digit" } },
+      { params: { slug: "double-digit" } },
+      { params: { slug: "triple-digit" } },
+      { params: { slug: "properties" } },
+    ],
+    fallback: true,
+  };
 }
