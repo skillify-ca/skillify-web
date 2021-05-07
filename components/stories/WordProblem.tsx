@@ -7,7 +7,7 @@ export interface WordProblemProp {
 	submitGuess: (e) => void;
 	question: string;
 	name: string;
-	itemGroup: string;
+    itemGroup: string;
 	noun1: noun;
 	noun2: noun;
 }
@@ -19,7 +19,7 @@ export const WordProblem: React.FC<WordProblemProp> = ({
 	submitGuess,
 	question,
 	name,
-	itemGroup,
+    itemGroup,
 	noun1,
 	noun2,
 	...props
@@ -52,7 +52,7 @@ export const WordProblem: React.FC<WordProblemProp> = ({
 			<div className="text-2xl flex flex-wrap">
 				<Input guess={guess} setGuess={setGuess} handleKeypress={handleKeypress} />
 			</div>
-			<div className="flex flex-wrap mt-3">
+			<div className="flex flex-wrap mt-2">
 				<img src={noun1.image} width="60px" height="85px" />
 				<img src={noun2.image} width="60px" height="85px" />
 				<img src={noun1.image} width="60px" height="85px" />

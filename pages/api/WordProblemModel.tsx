@@ -1,6 +1,6 @@
 export type WordProblemModel = {
 	name: string;
-	container: string;
+	groupItem: string;
 	nounType: string;
 	item1: noun;
 	item2: noun;
@@ -2883,11 +2883,12 @@ const itemSelector = (itemType) => {
 	let item = itemList[randomNoun];
 	return item;
 };
+console.log(itemGroupSelector());
 export function createWordProblemModel(): WordProblemModel {
 	let itemGroup = itemTypeSelector();
 	return {
 		name: nameSelector(),
-		container: itemGroupSelector(),
+		groupItem: itemGroupSelector(),
 		nounType: itemGroup,
 		item1: itemSelector(itemGroup),
 		item2: itemSelector(itemGroup)
