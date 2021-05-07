@@ -7,7 +7,7 @@ export interface WordProblemProp {
 	submitGuess: (e) => void;
 	question: string;
 	name: string;
-	containerItem: string;
+	itemContainer?: string;
 	noun1: noun;
 	noun2: noun;
 }
@@ -19,7 +19,7 @@ export const WordProblem: React.FC<WordProblemProp> = ({
 	submitGuess,
 	question,
 	name,
-	containerItem,
+	itemContainer,
 	noun1,
 	noun2,
 	...props
@@ -38,7 +38,7 @@ export const WordProblem: React.FC<WordProblemProp> = ({
 			second: parts[2]
 		};
 	};
-	const plural = (noun, number) => {
+	const title = (noun, number) => {
 		if (number == '1') {
 			return noun.singleTitle;
 		}
@@ -48,11 +48,11 @@ export const WordProblem: React.FC<WordProblemProp> = ({
 		<div className="flex flex-col items-center gap-4">
 			<div className="text-2xl flex flex-wrap">
 				<p className="align-left">
-					{name} has a {containerItem} of {noun1.type}. Inside, there are
+					{name} has a {itemContainer} of {noun1.type}. Inside, there are
 					<span className={noun1.colour}>{' ' + parse().first + ' '}</span>
-					{plural(noun1, parse().first)} and
+					{title(noun1, parse().first)} and
 					<span className={noun2.colour}>{' ' + parse().second + ' '}</span>
-					{plural(noun2, parse().second)}. How many {noun1.type} are in the {containerItem}?
+					{title(noun2, parse().second)}. How many {noun1.type} are in the {itemContainer}?
 				</p>
 			</div>
 			<div className="text-2xl flex flex-wrap">

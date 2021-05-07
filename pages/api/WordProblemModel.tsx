@@ -107,7 +107,7 @@ const itemTypeSelector = () => {
 	}
 };
 const itemSelector = (itemType) => {
-	var itemList = [];
+	let itemList = [];
 	switch (itemType) {
 		case ItemType.PETS:
 			itemList = [ lions, ducks, aligators ];
