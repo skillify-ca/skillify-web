@@ -16,12 +16,14 @@ export interface LongDivisionProp {
     ...props
   }) => {
     const [guess, setGuess] = useState('');
+
     const handleKeypress = (e) => {
       //it triggers by pressing the enter key
       if (e.charCode === 13) {
         submitGuess(e);
       }
     };
+
     const parse = () => {
       const parts = question.split(" ");
       return {
@@ -30,20 +32,23 @@ export interface LongDivisionProp {
       };
     };
 
-  return (
-    <div className = "flex flex-col flex-end items-start">
-        <input type="text" className= "ml-4 align-center text-center border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 focus:z-10 text-sm sm:text-lg w-6" placeholder=" "></input>
-        <div> 
-            <span>{parse().second}&nbsp;</span>
-            <span className="align-right border-t-2 border-l-2 border-black"> {parse().first}</span>
+    return (
+        <div>  
+            <div className = "flex flex-row">
+                <span className="flex flex-col-reverse">{parse().second}&nbsp;</span>
+                <div className = "flex flex-col">
+                    <input type="text" contentEditable="true" className= "text-left border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 focus:z-10 text-md lg:text-md w-8" placeholder=" "></input>
+                    <span className="border-t-2 border-l-2 border-black">{parse().first}</span>
+                </div>
+            </div>
+            <div className="mt-4"> 
+                <Button
+                    onClick={submitGuess}
+                    label="Submit"
+                    backgroundColor="blue"
+                    textColor="white"
+                />
+            </div> 
         </div>
-        <Button
-        onClick={submitGuess}
-        label="Submit"
-        backgroundColor="blue"
-        textColor="white"
-      />
-    </div>
-  );
+    );
 };
-
