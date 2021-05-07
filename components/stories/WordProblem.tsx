@@ -7,7 +7,7 @@ export interface WordProblemProp {
 	submitGuess: (e) => void;
 	question: string;
 	name: string;
-	itemGroup: string;
+	containerItem: string;
 	noun1: noun;
 	noun2: noun;
 }
@@ -19,7 +19,7 @@ export const WordProblem: React.FC<WordProblemProp> = ({
 	submitGuess,
 	question,
 	name,
-	itemGroup,
+	containerItem,
 	noun1,
 	noun2,
 	...props
@@ -48,11 +48,11 @@ export const WordProblem: React.FC<WordProblemProp> = ({
 		<div className="flex flex-col items-center gap-4">
 			<div className="text-2xl flex flex-wrap">
 				<p className="align-left">
-					{name} has a {itemGroup} of {noun1.type}. Inside, there are
+					{name} has a {containerItem} of {noun1.type}. Inside, there are
 					<span className={noun1.colour}>{' ' + parse().first + ' '}</span>
 					{plural(noun1, parse().first)} and
 					<span className={noun2.colour}>{' ' + parse().second + ' '}</span>
-					{plural(noun2, parse().second)}. How many {noun1.type} are in the {itemGroup}?
+					{plural(noun2, parse().second)}. How many {noun1.type} are in the {containerItem}?
 				</p>
 			</div>
 			<div className="text-2xl flex flex-wrap">
