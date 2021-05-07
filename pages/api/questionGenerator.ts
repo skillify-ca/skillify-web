@@ -164,15 +164,19 @@ function getRandomBinaryQuestion(
 		QuestionType.HORIZONTAL_EQUATION,
 		QuestionType.BINARY_WORD_PROBLEM
 	];
-	const type = types[getRndInteger(0, types.length)];
+	const typeIndex = getRndInteger(0, types.length);
+	const type = types[typeIndex];
+	let wordProblemModel;
 	//condition for if it is wordProblem
-
+	if (type === QuestionType.BINARY_WORD_PROBLEM) {
+		wordProblemModel = createWordProblemModel();
+	}
 	return {
 		text: text,
 		answer: answerFunction(Math.max(a, b), Math.min(a, b)),
 		questionType: type,
 		operator: operator,
-		wordProblem: createWordProblemModel()
+		wordProblem: wordProblemModel
 	};
 }
 
