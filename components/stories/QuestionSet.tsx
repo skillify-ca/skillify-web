@@ -7,6 +7,7 @@ import { TrueorFalse } from "./TrueorFalse";
 import { HorizontalEquation } from "./HorizontalEquation";
 import { VerticalEquation } from "./VerticalEquation";
 import { WordProblem } from "./WordProblem";
+import { LongDivision } from "./LongDivision";
 
 type QuestionSetProps = {
   title: string;
@@ -47,6 +48,13 @@ const QuestionSet = ({
       questionData[index].questionType === QuestionType.TRUE_OR_FALSE_PROBLEM
     ) {
       return <TrueorFalse question={questionData[index].text} />;
+    } else if (
+      questionData[index].questionType === QuestionType.LONG_DIVISION_PROBLEM
+    ) {
+      return <LongDivision 
+        question={questionData[index].text}
+        submitGuess={submitGuess}
+        />;
     }
 
     return (
