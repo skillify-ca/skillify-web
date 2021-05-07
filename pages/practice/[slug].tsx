@@ -1,7 +1,5 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import dynamic from "next/dynamic";
-import { Button } from "../components/stories/Button";
+import Navbar from "../../components/Navbar";
 
 export default function Practice(props) {
   return (
