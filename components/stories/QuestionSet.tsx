@@ -35,7 +35,7 @@ const QuestionSet = ({ title, questionData, index, submitGuess }: QuestionSetPro
 					question={questionData[index].text}
 					name={questionData[index].wordProblem.name}
 					submitGuess={submitGuess}
-					itemGroup={questionData[index].wordProblem.groupItem}
+					containerItem={questionData[index].wordProblem.itemContainer}
 					noun1={questionData[index].wordProblem.item1}
 					noun2={questionData[index].wordProblem.item2}
 				/>

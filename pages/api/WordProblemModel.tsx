@@ -17,7 +17,7 @@ export type noun = {
 };
 const apples = {
 	type: 'fruits',
-	singleTitle: 'apples',
+	singleTitle: 'apple',
 	pluralTitle: 'apples',
 	colour: 'text-red-500 font-black',
 	image: '/images/apple.jpeg'
@@ -73,7 +73,7 @@ const silver = {
 };
 const copper = {
 	type: 'coins',
-	singleTitle: 'copper coins',
+	singleTitle: 'copper coin',
 	pluralTitle: 'copper coins',
 	colour: 'text-yellow-800 font-black',
 	image: '/images/copper__coins.jpeg'
