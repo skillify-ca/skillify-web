@@ -46,7 +46,12 @@ const QuestionSet = ({
     } else if (
       questionData[index].questionType === QuestionType.TRUE_OR_FALSE_PROBLEM
     ) {
-      return <TrueorFalse question={questionData[index].text} />;
+      return (
+        <TrueorFalse
+          question={questionData[index].text}
+          submitGuess={submitGuess}
+        />
+      );
     }
 
     return (

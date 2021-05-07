@@ -47,7 +47,7 @@ const Practice = ({ slug }) => {
         <ul className="">
           {statements.map((it, index) => {
             return (
-              <Link href={"/practice"}>
+              <Link href={"/practice/" + it.text}>
                 <li className="">
                   <StatementRow text={it.text} complete={index < 3} />
                 </li>
