@@ -10,61 +10,71 @@ export type WordProblemModel = {
 };
 export type noun = {
 	type: string;
-	title: string;
+	singleTitle: string;
+	pluralTitle: string;
 	colour: string;
 	image: string;
 };
 const apples = {
 	type: 'fruits',
-	title: 'apples',
+	singleTitle: 'apples',
+	pluralTitle: 'apples',
 	colour: 'text-red-500 font-black',
 	image: '/images/apple.jpeg'
 };
 const bannanas = {
 	type: 'fruits',
-	title: 'bannanas',
+	singleTitle: 'banana',
+	pluralTitle: 'bananas',
 	colour: 'text-yellow-500 font-black',
 	image: '/images/banana.png'
 };
 const oranges = {
 	type: 'fruits',
-	title: 'oranges',
+	singleTitle: 'orange',
+	pluralTitle: 'oranges',
 	colour: 'text-yellow-600 font-black',
 	image: '/images/orange.jpeg'
 };
 const lions = {
 	type: 'pets',
-	title: 'lions',
+	singleTitle: 'lion',
+	pluralTitle: 'lions',
 	colour: 'text-yellow-600 font-black',
 	image: '/images/lion.png'
 };
 const ducks = {
 	type: 'pets',
-	title: 'ducks',
+	singleTitle: 'duck',
+	pluralTitle: 'ducks',
 	colour: 'text-yellow-500 font-black',
 	image: '/images/duck.jpeg'
 };
 const aligators = {
 	type: 'pets',
-	title: 'aligators',
+	singleTitle: 'aligator',
+	pluralTitle: 'aligators',
 	colour: 'text-green-700 font-black',
 	image: '/images/aligator.png'
 };
 const gold = {
 	type: 'coins',
-	title: 'gold coins',
+	singleTitle: 'gold coin',
+	pluralTitle: 'gold coins',
 	colour: 'text-yellow-400 font-black',
 	image: '/images/gold__coins2.jpeg'
 };
 const silver = {
 	type: 'coins',
-	title: 'silver coins',
+	singleTitle: 'silver coin',
+	pluralTitle: 'silver coins',
 	colour: 'text-gray-400 font-black',
 	image: '/images/silver__coin.jpeg'
 };
 const copper = {
 	type: 'coins',
-	title: 'copper coins',
+	singleTitle: 'copper coins',
+	pluralTitle: 'copper coins',
 	colour: 'text-yellow-800 font-black',
 	image: '/images/copper__coins.jpeg'
 };

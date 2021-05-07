@@ -38,15 +38,21 @@ export const WordProblem: React.FC<WordProblemProp> = ({
 			second: parts[2]
 		};
 	};
+	const plural = (noun, number) => {
+		if (number == '1') {
+			return noun.singleTitle;
+		}
+		return noun.pluralTitle;
+	};
 	return (
 		<div className="flex flex-col items-center gap-4">
 			<div className="text-2xl flex flex-wrap">
 				<p className="align-left">
 					{name} has a {itemGroup} of {noun1.type}. Inside, there are
 					<span className={noun1.colour}>{' ' + parse().first + ' '}</span>
-					{noun1.title} and
+					{plural(noun1, parse().first)} and
 					<span className={noun2.colour}>{' ' + parse().second + ' '}</span>
-					{noun2.title}. How many {noun1.type} are in the {itemGroup}?
+					{plural(noun2, parse().second)}. How many {noun1.type} are in the {itemGroup}?
 				</p>
 			</div>
 			<div className="text-2xl flex flex-wrap">
