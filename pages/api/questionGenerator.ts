@@ -154,7 +154,6 @@ function getRandomBinaryQuestion(
 	max: number,
 	operator: string,
 	answerFunction: (a: number, b: number) => number
-
 ): Question {
 	const a = getRndInteger(min, max);
 	const b = getRndInteger(min, max);
@@ -173,7 +172,7 @@ function getRandomBinaryQuestion(
 		answer: answerFunction(Math.max(a, b), Math.min(a, b)),
 		questionType: type,
 		operator: operator,
-		wordProblem: createWordProblemModel(),	
+		wordProblem: createWordProblemModel()
 	};
 }
 
@@ -181,4 +180,3 @@ function getRandomBinaryQuestion(
 export function getRndInteger(min: number, max: number) {
 	return Math.floor(Math.random() * (max - min)) + min;
 }
-

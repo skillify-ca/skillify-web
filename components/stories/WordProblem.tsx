@@ -7,7 +7,7 @@ export interface WordProblemProp {
 	submitGuess: (e) => void;
 	question: string;
 	name: string;
-    itemGroup: string;
+	itemGroup: string;
 	noun1: noun;
 	noun2: noun;
 }
@@ -19,7 +19,7 @@ export const WordProblem: React.FC<WordProblemProp> = ({
 	submitGuess,
 	question,
 	name,
-    itemGroup,
+	itemGroup,
 	noun1,
 	noun2,
 	...props

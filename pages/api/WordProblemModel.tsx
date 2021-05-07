@@ -1,3 +1,5 @@
+/*(name) has a (groupItem) of (nounType). Inside there are [ranNum1] (item1.title) and [ranNum2] (item2.title).
+How many (nounType) are in the (groupItem)?*/
 export type WordProblemModel = {
 	name: string;
 	groupItem: string;
@@ -2859,10 +2861,23 @@ const itemGroupSelector = () => {
 	const randomItemGroup = Math.floor(Math.random() * itemGroup.length);
 	return itemGroup[randomItemGroup];
 };
-const itemType = [ 'pets', 'fruits', 'coins' ];
+export enum itemType {
+	PETS = 'pets',
+	COINS = 'coins',
+	FRUITS = 'fruits'
+}
 const itemTypeSelector = () => {
-	const randomItemType = Math.floor(Math.random() * itemType.length);
-	return itemType[randomItemType];
+	const randomItemType = Math.floor(Math.random() * Object.keys(itemType).length);
+	switch (randomItemType) {
+		case 0:
+			return itemType.PETS;
+		case 1:
+			return itemType.COINS;
+		case 2:
+			return itemType.FRUITS;
+		default:
+			console.log('ERROR');
+	}
 };
 const itemSelector = (itemType) => {
 	var itemList = [];
@@ -2885,12 +2900,12 @@ const itemSelector = (itemType) => {
 };
 console.log(itemGroupSelector());
 export function createWordProblemModel(): WordProblemModel {
-	let itemGroup = itemTypeSelector();
+	let itemType = itemTypeSelector();
 	return {
 		name: nameSelector(),
 		groupItem: itemGroupSelector(),
-		nounType: itemGroup,
-		item1: itemSelector(itemGroup),
-		item2: itemSelector(itemGroup)
+		nounType: itemType,
+		item1: itemSelector(itemType),
+		item2: itemSelector(itemType)
 	};
 }
