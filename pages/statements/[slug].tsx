@@ -43,12 +43,15 @@ const Practice = ({ slug }) => {
         <h1 className="text-gray-800 font-bold">
           Select an I can statement to practice it
         </h1>
+
         <ul className="">
           {statements.map((it, index) => {
             return (
-              <li className="">
-                <StatementRow text={it.text} complete={index < 3} />
-              </li>
+              <Link href={"/practice"}>
+                <li className="">
+                  <StatementRow text={it.text} complete={index < 3} />
+                </li>
+              </Link>
             );
           })}
         </ul>
