@@ -1,9 +1,9 @@
 import { name } from './names';
-/*(name) has a (groupItem) of (nounType). Inside there are [ranNum1] (item1.title) and [ranNum2] (item2.title).
-How many (nounType) are in the (groupItem)?*/
+/* Word problems are made with a specific template. The template is as follows: (name) has an (itemContainer) of (itemType). 
+Inside there are [randomNumber1] (item1.title) and [randomNumber2] (item2.title). How many (itemType) are in the (itemContainer)? */
 export type WordProblemModel = {
 	name: string;
-	groupItem: string;
+	itemContainer: string;
 	nounType: string;
 	item1: noun;
 	item2: noun;
@@ -84,7 +84,7 @@ const nameSelector = () => {
 };
 
 const itemGroup = [ 'box', 'bag', 'basket', 'case', 'package', 'drawer' ];
-const itemGroupSelector = () => {
+const itemContainerSelector = () => {
 	const randomItemGroup = Math.floor(Math.random() * itemGroup.length);
 	return itemGroup[randomItemGroup];
 };
@@ -129,7 +129,7 @@ export function createWordProblemModel(): WordProblemModel {
 	let itemType = itemTypeSelector();
 	return {
 		name: nameSelector(),
-		groupItem: itemGroupSelector(),
+		itemContainer: itemContainerSelector(),
 		nounType: itemType,
 		item1: itemSelector(itemType),
 		item2: itemSelector(itemType)
