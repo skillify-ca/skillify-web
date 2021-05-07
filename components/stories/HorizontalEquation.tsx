@@ -2,18 +2,16 @@ import React, { useState } from "react";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
-export interface VerticalEquationProp {
+export interface HorizontalEquationProp {
   question?: string;
-  operator: string;
   submitGuess: (e) => void;
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const VerticalEquation: React.FC<VerticalEquationProp> = ({
+export const HorizontalEquation: React.FC<HorizontalEquationProp> = ({
   question,
-  operator,
   submitGuess,
   ...props
 }) => {
@@ -24,23 +22,9 @@ export const VerticalEquation: React.FC<VerticalEquationProp> = ({
       submitGuess(e);
     }
   };
-  const parse = () => {
-    const parts = question.split(" ");
-    return {
-      first: parts[0],
-      second: parts[2],
-    };
-  };
   return (
-    <div className="flex flex-col gap-4">
-      <div className="text-8xl flex flex-col flex-end items-end border-b-8 border-blue-900">
-        <p className="align-right">{parse().first}</p>
-        <div className="flex">
-          <p>{operator}</p>
-          <p>{parse().second}</p>
-        </div>
-
-      </div>
+    <div className="flex flex-col gap-4 justify-between h-full">
+      <p className="text-6xl w-full flex-grow flex justify-center items-center">{question}</p>
       <Input guess={guess} setGuess={setGuess} handleKeypress={handleKeypress} />
       <Button
         onClick={submitGuess}
