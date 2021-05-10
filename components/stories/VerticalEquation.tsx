@@ -17,7 +17,7 @@ export const VerticalEquation: React.FC<VerticalEquationProp> = ({
   submitGuess,
   ...props
 }) => {
-  const [guess, setGuess] = useState('');
+  const [guess, setGuess] = useState("");
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
@@ -39,11 +39,14 @@ export const VerticalEquation: React.FC<VerticalEquationProp> = ({
           <p>{operator}</p>
           <p>{parse().second}</p>
         </div>
-
       </div>
-      <Input guess={guess} setGuess={setGuess} handleKeypress={handleKeypress} />
+      <Input
+        guess={guess}
+        setGuess={setGuess}
+        handleKeypress={handleKeypress}
+      />
       <Button
-        onClick={submitGuess}
+        onClick={(e) => submitGuess(guess)}
         label="Submit"
         backgroundColor="blue"
         textColor="white"

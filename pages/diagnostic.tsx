@@ -34,11 +34,15 @@ export default function Diagnostic(props) {
     if (index < questionData.length - 1) {
       setIndex(index + 1);
     }
-
-    console.log(e);
     let isCorrect = Number.parseInt(e) == questionData[index].answer;
     if (isCorrect) {
       setCorrectGuesses(correctGuesses + 1);
+    }
+    if (index == questionData.length - 1) {
+      const correctAns = correctGuesses;
+      const wrongAns = questionData.length - correctGuesses;
+      console.log(correctAns);
+      console.log(wrongAns);
     }
   };
 
