@@ -1,113 +1,26 @@
+import { random } from "lodash";
 import { name } from "./names";
-/* Word problems are made with a specific template. The template is as follows: (name) has an (itemContainer) of (itemType). 
-Inside there are [randomNumber1] (item1.title) and [randomNumber2] (item2.title). How many (itemType) are in the (itemContainer)? */
+import {
+  aligators,
+  apples,
+  bannanas,
+  copper,
+  ducks,
+  gold,
+  ItemContainerObj,
+  lions,
+  map,
+  noun,
+  oranges,
+  silver,
+} from "./WordProblemModelObjects";
 export type WordProblemModel = {
   name: string;
   operator: string;
-  itemContainer: itemContainerObj;
+  itemContainer: ItemContainerObj;
   nounType: string;
   item1: noun;
   item2?: noun;
-};
-export type noun = {
-  type: string;
-  singleTitle: string;
-  pluralTitle: string;
-  colour: string;
-  image: string;
-};
-export type itemContainerObj = {
-  singleTitle: string;
-  pluralTitle: string;
-};
-const apples = {
-  type: "fruits",
-  singleTitle: "apple",
-  pluralTitle: "apples",
-  colour: "text-red-500 font-black",
-  image: "/images/apple.jpeg",
-};
-const bannanas = {
-  type: "fruits",
-  singleTitle: "banana",
-  pluralTitle: "bananas",
-  colour: "text-yellow-500 font-black",
-  image: "/images/banana.png",
-};
-const oranges = {
-  type: "fruits",
-  singleTitle: "orange",
-  pluralTitle: "oranges",
-  colour: "text-yellow-600 font-black",
-  image: "/images/orange.jpeg",
-};
-const lions = {
-  type: "pets",
-  singleTitle: "lion",
-  pluralTitle: "lions",
-  colour: "text-yellow-600 font-black",
-  image: "/images/lion.png",
-};
-const ducks = {
-  type: "pets",
-  singleTitle: "duck",
-  pluralTitle: "ducks",
-  colour: "text-yellow-500 font-black",
-  image: "/images/duck.jpeg",
-};
-const aligators = {
-  type: "pets",
-  singleTitle: "aligator",
-  pluralTitle: "aligators",
-  colour: "text-green-700 font-black",
-  image: "/images/aligator.png",
-};
-const gold = {
-  type: "coins",
-  singleTitle: "gold coin",
-  pluralTitle: "gold coins",
-  colour: "text-yellow-400 font-black",
-  image: "/images/gold__coins2.jpeg",
-};
-const silver = {
-  type: "coins",
-  singleTitle: "silver coin",
-  pluralTitle: "silver coins",
-  colour: "text-gray-400 font-black",
-  image: "/images/silver__coin.jpeg",
-};
-const copper = {
-  type: "coins",
-  singleTitle: "copper coin",
-  pluralTitle: "copper coins",
-  colour: "text-yellow-800 font-black",
-  image: "/images/copper__coins.jpeg",
-};
-const box = {
-  singleTitle: "box",
-  pluralTitle: "boxes",
-};
-const bag = {
-  singleTitle: "bag",
-  pluralTitle: "bags",
-};
-const basket = {
-  singleTitle: "basket",
-  pluralTitle: "baskets",
-};
-//case is keyword
-const ccase = {
-  singleTitle: "case",
-  pluralTitle: "cases",
-};
-//packages is also keyword
-const ppackage = {
-  singleTitle: "package",
-  pluralTitle: "packages",
-};
-const drawer = {
-  singleTitle: "drawer",
-  pluralTitle: "drawers",
 };
 
 const nameSelector = () => {
@@ -115,10 +28,11 @@ const nameSelector = () => {
   return name[random];
 };
 
-const itemGroup = [box, bag, basket, ccase, ppackage, drawer];
+const itemGroup = Object.keys(map);
 const itemContainerSelector = () => {
   const randomItemGroup = Math.floor(Math.random() * itemGroup.length);
-  return itemGroup[randomItemGroup];
+  const foo = itemGroup[randomItemGroup];
+  return map[foo];
 };
 export enum ItemType {
   PETS = "pets",

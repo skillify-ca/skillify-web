@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { itemContainerObj, noun } from "../../pages/api/WordProblemModel";
+import {
+  ItemContainerObj,
+  noun,
+} from "../../pages/api/WordProblemModelObjects";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
@@ -7,14 +10,13 @@ export interface WordProblemAddProp {
   submitGuess: (e) => void;
   question: string;
   name: string;
-  itemContainer?: itemContainerObj;
+  itemContainer?: ItemContainerObj;
   noun1: noun;
   noun2: noun;
 }
 
-/**
- * Primary UI component for user interaction
- */
+/* Addition Word problems are made with a specific template. The template is as follows: (name) has an (itemContainer) of (itemType). 
+Inside there are [randomNumber1] (item1.title) and [randomNumber2] (item2.title). How many (itemType) are in the (itemContainer)? */
 export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
   submitGuess,
   question,
@@ -48,12 +50,13 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
     <div className="flex flex-col items-center gap-4">
       <div className="text-2xl flex flex-wrap">
         <p className="align-left">
-          {name} has a {itemContainer} of {noun1.type}. Inside, there are
+          {name} has a {itemContainer.singleTitle} of {noun1.type}. Inside,
+          there are
           <span className={noun1.colour}>{" " + parse().first + " "}</span>
           {title(noun1, parse().first)} and
           <span className={noun2.colour}>{" " + parse().second + " "}</span>
           {title(noun2, parse().second)}. How many {noun1.type} are in the{" "}
-          {itemContainer}?
+          {itemContainer.singleTitle}?
         </p>
       </div>
       <div className="text-2xl flex flex-wrap">

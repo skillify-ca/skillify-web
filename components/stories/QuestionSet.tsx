@@ -8,7 +8,7 @@ import { TrueorFalse } from "./TrueorFalse";
 import { VerticalEquation } from "./VerticalEquation";
 import { WordProblemAdd } from "./WordProblemAdd";
 import { WordProblemSub } from "./WordProblemSub";
-import { WordProblemMult } from "./WordProblemMult";
+import { WordProblemMulti } from "./WordProblemMulti";
 
 type QuestionSetProps = {
   title: string;
@@ -61,7 +61,7 @@ const QuestionSet = ({
         );
       } else if (questionData[index].operator == "x") {
         return (
-          <WordProblemMult
+          <WordProblemMulti
             question={questionData[index].text}
             name={questionData[index].wordProblem.name}
             submitGuess={submitGuess}

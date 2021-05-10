@@ -1,20 +1,25 @@
 import React, { useState } from "react";
-import { itemContainerObj, noun } from "../../pages/api/WordProblemModel";
+import {
+  ItemContainerObj,
+  noun,
+} from "../../pages/api/WordProblemModelObjects";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
-export interface WordProblemMultProp {
+export interface WordProblemMultiProp {
   submitGuess: (e) => void;
   question: string;
   name: string;
-  itemContainer: itemContainerObj;
+  itemContainer: ItemContainerObj;
   noun1: noun;
 }
 
 /**
- * Primary UI component for user interaction
+ * The Multipolication Word problem follows a specific template and is as follows:
+ * (name) has a (randomNumber1)(itemContainer). Each (itemContainer) has (randomNumber2) (noun.title).
+ * How many (noun.title) does (name) have in total?
  */
-export const WordProblemMult: React.FC<WordProblemMultProp> = ({
+export const WordProblemMulti: React.FC<WordProblemMultiProp> = ({
   submitGuess,
   question,
   name,
