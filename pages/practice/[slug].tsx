@@ -8,7 +8,6 @@ import QuestionSet from "../../components/stories/QuestionSet";
 import { QuestionType } from "../api/questionTypes";
 
 import Navbar from "../../components/Navbar";
-import { Button } from "../../components/stories/Button";
 
 const practiceQuiz = ({ slug }) => {
   const [index, setIndex] = useState(0);
@@ -19,13 +18,10 @@ const practiceQuiz = ({ slug }) => {
   const [questionData, setQuestionData] = useState<Question[]>([
     { text: "", answer: 0, questionType: QuestionType.HORIZONTAL_EQUATION },
   ]);
-  const [currentLevel, setCurrentLevel] = React.useState(0);
   const inputElement = useRef(null);
-  const length = questionData.length;
 
   useEffect(() => {
     const level = Number.parseInt(query.level as string);
-    setCurrentLevel(level);
     console.log(slug);
     setQuestionData(generateAdditionQuestions(slug));
   }, []);
