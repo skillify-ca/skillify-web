@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { noun } from "../../pages/api/WordProblemModel";
+import { itemContainerObj, noun } from "../../pages/api/WordProblemModel";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
@@ -7,7 +7,7 @@ export interface WordProblemAddProp {
   submitGuess: (e) => void;
   question: string;
   name: string;
-  itemContainer?: string;
+  itemContainer?: itemContainerObj;
   noun1: noun;
   noun2: noun;
 }

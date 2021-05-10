@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { noun } from "../../pages/api/WordProblemModel";
+import { itemContainerObj, noun } from "../../pages/api/WordProblemModel";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
@@ -7,7 +7,7 @@ export interface WordProblemSubProp {
   submitGuess: (e) => void;
   question: string;
   name: string;
-  itemContainer?: string;
+  itemContainer?: itemContainerObj;
   noun1: noun;
 }
 
@@ -47,10 +47,12 @@ export const WordProblemSub: React.FC<WordProblemSubProp> = ({
       <div className="text-2xl flex flex-wrap">
         <p className="align-left">
           {name} has a {itemContainer} of {noun1.type}. Inside, there are
-          <span>{" "}</span>
-          <span className= "border-2 border-black border-opacity-75 md:border-opacity-50 text-black font-extrabold">{parse().first}</span>
-          <span>{" "}</span>
-           {noun1.type}. {name} takes out 
+          <span> </span>
+          <span className="border-2 border-black border-opacity-75 md:border-opacity-50 text-black font-extrabold">
+            {parse().first}
+          </span>
+          <span> </span>
+          {noun1.type}. {name} takes out
           <span className={noun1.colour}>{" " + parse().second + " "}</span>
           {title(noun1, parse().second)}. How many {noun1.type} are in the{" "}
           {itemContainer}?
