@@ -1,0 +1,82 @@
+import { createWordProblemModel, WordProblemModel } from "./WordProblemModel";
+import { QuestionType } from "./questionTypes";
+
+const NUM_QUESTIONS = 5;
+
+
+export type FlashcardQuestion = {
+  text: String;
+  answer: number;
+};
+
+export type Question = {
+  text: string;
+  answer: number;
+  questionType: QuestionType;
+  operator?: string;
+  wordProblem?: WordProblemModel;
+};
+
+const generateQuestionsForTopic = (numberOfQuestions: number) => {
+  let questionGenerator: (min: number, max: number) => FlashcardQuestion;
+  questionGenerator = getRandomAdditionQuestion;
+  const res = [];
+  for (let i = 0; i < numberOfQuestions; i++) {
+    let min = 1;
+    let max = 1000;
+    res.push(questionGenerator(min, max));
+  }
+  return res;
+};
+
+export const generateAdditionQuestions = (
+  slug: string,
+  currentLevel: number
+) => {
+  if (slug != null) {
+    return generateQuestionsForTopic(NUM_QUESTIONS);
+  }
+  return [];
+};
+
+function getRandomAdditionQuestion(min: number, max: number) {
+  const add = (a: number, b: number) => a + b;
+  return getRandomBinaryQuestion(min, max, "+", add);
+}
+
+function getRandomBinaryQuestion(
+  min: number,
+  max: number,
+  operator: string,
+  answerFunction: (a: number, b: number) => number
+): Question {
+  const a = getRndInteger(min, max);
+  const b = getRndInteger(min, max);
+
+  const text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} =`;
+  const types = [
+    QuestionType.VERTICAL_EQUATION,
+    QuestionType.HORIZONTAL_EQUATION,
+    QuestionType.BINARY_WORD_PROBLEM,
+    QuestionType.TRUE_OR_FALSE_PROBLEM,
+  ];
+  const typeIndex = getRndInteger(0, types.length);
+  const type = types[typeIndex];
+  let wordProblemModel;
+  //condition for if it is wordProblem
+  if (type === QuestionType.BINARY_WORD_PROBLEM) {
+    wordProblemModel = createWordProblemModel();
+  }
+  return {
+    text: text,
+    answer: answerFunction(Math.max(a, b), Math.min(a, b)),
+    questionType: type,
+    operator: operator,
+    wordProblem: wordProblemModel,
+  };
+}
+
+// Get random number between min (inclusive) and max (exclusive)
+export function getRndInteger(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
