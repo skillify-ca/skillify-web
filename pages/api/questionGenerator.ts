@@ -1,3 +1,4 @@
+import { HorizontalEquation } from '../../components/stories/HorizontalEquation';
 import { QuestionType } from './questionTypes';
 import { createWordProblemModel, WordProblemModel } from './WordProblemModel';
 

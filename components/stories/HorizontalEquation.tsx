@@ -4,7 +4,7 @@ import { Input } from "./Input";
 
 export interface HorizontalEquationProp {
   question?: string;
-  submitGuess: (e) => void;
+  submitGuess: (number) => void;
 }
 
 /**
@@ -46,7 +46,7 @@ export const HorizontalEquation: React.FC<HorizontalEquationProp> = ({
         handleKeypress={handleKeypress}
       />
       <Button
-        onClick={submitGuess}
+        onClick={(e) => submitGuess(guess)}
         label="Submit"
         backgroundColor="blue"
         textColor="white"
