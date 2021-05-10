@@ -59,7 +59,6 @@ const QuestionSet = ({
             noun1={questionData[index].wordProblem.item1}
           />
         ); 
-        //console.log('Subtraction');
       }   
     } else if (
       questionData[index].questionType === QuestionType.TRUE_OR_FALSE_PROBLEM
