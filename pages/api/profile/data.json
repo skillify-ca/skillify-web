@@ -23,6 +23,15 @@
         { "text": "I can pick the greatest/least number: up to 100 000" },
         { "text": "I can put numbers up to 100 000 in order" }
       ]
+    },
+    {
+      "name": "addition",
+      "statements": [
+        { "text": "Add one digit numbers", "key": "single-digit" },
+        { "text": "Add two digit numbers", "key": "double-digit" },
+        { "text": "Add three digit numbers", "key": "triple-digit"},
+        { "text": "Identify and use properties of addition", "key": "properties" }
+      ]
     }
   ]
 }
