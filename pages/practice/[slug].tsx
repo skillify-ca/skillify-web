@@ -1,20 +1,71 @@
-import React from "react";
-import Navbar from "../../components/Navbar";
+import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
+import {
+  generateAdditionQuestions,
+  Question,
+} from "../api/practiceQuestionGenerator";
+import QuestionSet from "../../components/stories/QuestionSet";
+import { QuestionType } from "../api/questionTypes";
 
-export default function Practice(props) {
+import Navbar from "../../components/Navbar";
+import { Button } from "../../components/stories/Button";
+
+const Quiz = ({ slug }) => {
+  const [index, setIndex] = useState(0);
+  const { query } = useRouter();
+  const [guess, setGuess] = useState("");
+  const [correctGuesses, setCorrectGuesses] = useState(0);
+  const [isGameOver, setGameOver] = useState(false);
+  const [secondsElapsed, setSecondsElapsed] = useState(0);
+  const [interval, setMyInterval] = useState(null);
+  const [questionData, setQuestionData] = useState<Question[]>([
+    { text: "", answer: 0, questionType: QuestionType.HORIZONTAL_EQUATION },
+  ]);
+  const [currentLevel, setCurrentLevel] = React.useState(0);
+  const inputElement = useRef(null);
+  const length = questionData.length;
+  const [sessionId, setSessionId] = React.useState("");
+  const [
+    starsAlreadyEarnedForSkill,
+    setStarsAlreadyEarnForSkill,
+  ] = React.useState(0);
+
+  useEffect(() => {
+    const level = Number.parseInt(query.level as string);
+    setCurrentLevel(level);
+    setQuestionData(generateAdditionQuestions(slug, level));
+  }, []);
+
+  const submitGuess = (e) => {
+    e.preventDefault();
+    if (index < length - 1) {
+      setIndex(index + 1);
+      setGuess("");
+      if (inputElement.current) {
+        inputElement.current.focus();
+      }
+    } else {
+      clearInterval(interval);
+      setMyInterval(null);
+      setGameOver(true);
+    }
+  };
   return (
-    <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
+    <div>
       <Navbar />
-      <div className="flex flex-col items-center">
-        <div className="bg-white w-8/12">
-          <h1 className="text-xl text-center font-bold">Practice</h1>
-          <div className="flex justify-center items-center gap-4"></div>
-        </div>
-      </div>
+      <Button label="Submit" onClick={submitGuess}></Button>
+      <QuestionSet
+        title={slug}
+        questionData={questionData}
+        index={index}
+        guess={guess}
+        setGuess={setGuess}
+        inputElement={inputElement}
+        submitGuess={submitGuess}
+      />
     </div>
   );
-}
-
+};
 export async function getStaticProps({ params }) {
   return {
     props: {
@@ -34,3 +85,5 @@ export async function getStaticPaths() {
     fallback: true,
   };
 }
+
+export default Quiz;
