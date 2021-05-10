@@ -10,13 +10,11 @@ import { QuestionType } from "../api/questionTypes";
 import Navbar from "../../components/Navbar";
 import { Button } from "../../components/stories/Button";
 
-const Quiz = ({ slug }) => {
+const practiceQuiz = ({ slug }) => {
   const [index, setIndex] = useState(0);
   const { query } = useRouter();
   const [guess, setGuess] = useState("");
-  const [correctGuesses, setCorrectGuesses] = useState(0);
   const [isGameOver, setGameOver] = useState(false);
-  const [secondsElapsed, setSecondsElapsed] = useState(0);
   const [interval, setMyInterval] = useState(null);
   const [questionData, setQuestionData] = useState<Question[]>([
     { text: "", answer: 0, questionType: QuestionType.HORIZONTAL_EQUATION },
@@ -24,16 +22,12 @@ const Quiz = ({ slug }) => {
   const [currentLevel, setCurrentLevel] = React.useState(0);
   const inputElement = useRef(null);
   const length = questionData.length;
-  const [sessionId, setSessionId] = React.useState("");
-  const [
-    starsAlreadyEarnedForSkill,
-    setStarsAlreadyEarnForSkill,
-  ] = React.useState(0);
 
   useEffect(() => {
     const level = Number.parseInt(query.level as string);
     setCurrentLevel(level);
-    setQuestionData(generateAdditionQuestions(slug, level));
+    console.log(slug);
+    setQuestionData(generateAdditionQuestions(slug));
   }, []);
 
   const submitGuess = (e) => {
@@ -53,7 +47,6 @@ const Quiz = ({ slug }) => {
   return (
     <div>
       <Navbar />
-      <Button label="Submit" onClick={submitGuess}></Button>
       <QuestionSet
         title={slug}
         questionData={questionData}
@@ -86,4 +79,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default Quiz;
+export default practiceQuiz;
