@@ -170,7 +170,7 @@ function getRandomBinaryQuestion(
 	let wordProblemModel;
 	//condition for if it is wordProblem
 	if (type === QuestionType.BINARY_WORD_PROBLEM) {
-		wordProblemModel = createWordProblemModel();
+		wordProblemModel = createWordProblemModel(operator);
 	}
 	return {
 		text: text,
