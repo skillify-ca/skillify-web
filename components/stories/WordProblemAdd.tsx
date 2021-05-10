@@ -3,7 +3,7 @@ import { noun } from "../../pages/api/WordProblemModel";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
-export interface WordProblemProp {
+export interface WordProblemAddProp {
   submitGuess: (e) => void;
   question: string;
   name: string;
@@ -15,7 +15,7 @@ export interface WordProblemProp {
 /**
  * Primary UI component for user interaction
  */
-export const WordProblem: React.FC<WordProblemProp> = ({
+export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
   submitGuess,
   question,
   name,

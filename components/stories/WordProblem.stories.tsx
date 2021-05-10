@@ -1,17 +1,17 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 
-import { WordProblem, WordProblemProp } from "./WordProblem";
+import { WordProblemAdd, WordProblemAddProp } from "./WordProblemAdd";
 
 export default {
   title: "Word Problem Simple",
-  component: WordProblem,
+  component: WordProblemAdd,
   argTypes: {
   
   },
 } as Meta;
 
-const Template: Story<WordProblemProp> = (args) => <WordProblem {...args} />;
+const Template: Story<WordProblemAddProp> = (args) => <WordProblemAdd {...args} />;
 
 
 export const Primary = Template.bind({});

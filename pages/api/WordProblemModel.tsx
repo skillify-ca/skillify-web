@@ -3,10 +3,11 @@ import { name } from './names';
 Inside there are [randomNumber1] (item1.title) and [randomNumber2] (item2.title). How many (itemType) are in the (itemContainer)? */
 export type WordProblemModel = {
 	name: string;
+	operator: string;
 	itemContainer: string;
 	nounType: string;
 	item1: noun;
-	item2: noun;
+	item2?: noun;
 };
 export type noun = {
 	type: string;
@@ -125,13 +126,25 @@ const itemSelector = (itemType) => {
 	let item = itemList[randomNoun];
 	return item;
 };
-export function createWordProblemModel(): WordProblemModel {
+export function createWordProblemModel(operator): WordProblemModel {
 	let itemType = itemTypeSelector();
-	return {
-		name: nameSelector(),
-		itemContainer: itemContainerSelector(),
-		nounType: itemType,
-		item1: itemSelector(itemType),
-		item2: itemSelector(itemType)
-	};
+	if (operator == "+") {
+		return {
+			name: nameSelector(),
+			operator: operator,
+			itemContainer: itemContainerSelector(),
+			nounType: itemType,
+			item1: itemSelector(itemType),
+			item2: itemSelector(itemType)
+		};
+	}
+	else { 
+		return {
+			name: nameSelector(),
+			operator: operator,
+			itemContainer: itemContainerSelector(),
+			nounType: itemType,
+			item1: itemSelector(itemType)
+		};
+	}
 }

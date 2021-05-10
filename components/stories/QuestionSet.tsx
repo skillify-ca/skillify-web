@@ -6,7 +6,7 @@ import { HorizontalEquation } from "./HorizontalEquation";
 import { LongDivision } from "./LongDivision";
 import { TrueorFalse } from "./TrueorFalse";
 import { VerticalEquation } from "./VerticalEquation";
-import { WordProblem } from "./WordProblem";
+import { WordProblemAdd } from "./WordProblemAdd";
 
 type QuestionSetProps = {
   title: string;
@@ -36,16 +36,31 @@ const QuestionSet = ({
     } else if (
       questionData[index].questionType == QuestionType.BINARY_WORD_PROBLEM
     ) {
-      return (
-        <WordProblem
-          question={questionData[index].text}
-          name={questionData[index].wordProblem.name}
-          submitGuess={submitGuess}
-          itemContainer={questionData[index].wordProblem.itemContainer}
-          noun1={questionData[index].wordProblem.item1}
-          noun2={questionData[index].wordProblem.item2}
-        />
-      );
+      if(questionData[index].operator == '+') {
+        return (
+          <WordProblemAdd
+            question={questionData[index].text}
+            name={questionData[index].wordProblem.name}
+            submitGuess={submitGuess}
+            itemContainer={questionData[index].wordProblem.itemContainer}
+            noun1={questionData[index].wordProblem.item1}
+            noun2={questionData[index].wordProblem.item2}
+          />
+        );
+      }
+      else if (questionData[index].operator == '-') {
+        /*return (
+          <WordProblemAdd
+            question={questionData[index].text}
+            name={questionData[index].wordProblem.name}
+            submitGuess={submitGuess}
+            itemContainer={questionData[index].wordProblem.itemContainer}
+            noun1={questionData[index].wordProblem.item1}
+            noun2={questionData[index].wordProblem.item1}
+          />
+        ); */
+        console.log('Subtraction');
+      }   
     } else if (
       questionData[index].questionType === QuestionType.TRUE_OR_FALSE_PROBLEM
     ) {
