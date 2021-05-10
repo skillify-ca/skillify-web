@@ -4,7 +4,7 @@ import { Input } from "./Input";
 
 export interface HorizontalEquationProp {
   question?: string;
-  submitGuess: (e) => void;
+  submitGuess: (number) => void;
 }
 
 /**
@@ -15,7 +15,7 @@ export const HorizontalEquation: React.FC<HorizontalEquationProp> = ({
   submitGuess,
   ...props
 }) => {
-  const [guess, setGuess] = useState('');
+  const [guess, setGuess] = useState("");
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
@@ -24,10 +24,16 @@ export const HorizontalEquation: React.FC<HorizontalEquationProp> = ({
   };
   return (
     <div className="flex flex-col gap-4 justify-between h-full">
-      <p className="text-6xl w-full flex-grow flex justify-center items-center">{question}</p>
-      <Input guess={guess} setGuess={setGuess} handleKeypress={handleKeypress} />
+      <p className="text-6xl w-full flex-grow flex justify-center items-center">
+        {question}
+      </p>
+      <Input
+        guess={guess}
+        setGuess={setGuess}
+        handleKeypress={handleKeypress}
+      />
       <Button
-        onClick={submitGuess}
+        onClick={(e) => submitGuess(guess)}
         label="Submit"
         backgroundColor="blue"
         textColor="white"
