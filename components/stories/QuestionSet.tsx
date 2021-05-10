@@ -8,6 +8,7 @@ import { TrueorFalse } from "./TrueorFalse";
 import { VerticalEquation } from "./VerticalEquation";
 import { WordProblemAdd } from "./WordProblemAdd";
 import { WordProblemSub } from "./WordProblemSub";
+import { WordProblemMult } from "./WordProblemMult";
 
 type QuestionSetProps = {
   title: string;
@@ -37,7 +38,7 @@ const QuestionSet = ({
     } else if (
       questionData[index].questionType == QuestionType.BINARY_WORD_PROBLEM
     ) {
-      if(questionData[index].operator == '+') {
+      if (questionData[index].operator == "+") {
         return (
           <WordProblemAdd
             question={questionData[index].text}
@@ -48,8 +49,7 @@ const QuestionSet = ({
             noun2={questionData[index].wordProblem.item2}
           />
         );
-      }
-      else if (questionData[index].operator == '-') {
+      } else if (questionData[index].operator == "-") {
         return (
           <WordProblemSub
             question={questionData[index].text}
@@ -58,16 +58,27 @@ const QuestionSet = ({
             itemContainer={questionData[index].wordProblem.itemContainer}
             noun1={questionData[index].wordProblem.item1}
           />
-        ); 
-      }   
+        );
+      } else if (questionData[index].operator == "x") {
+        return (
+          <WordProblemMult
+            question={questionData[index].text}
+            name={questionData[index].wordProblem.name}
+            submitGuess={submitGuess}
+            itemContainer={questionData[index].wordProblem.itemContainer}
+            noun1={questionData[index].wordProblem.item1}
+          />
+        );
+      }
     } else if (
       questionData[index].questionType === QuestionType.TRUE_OR_FALSE_PROBLEM
     ) {
-
-      return ( 
-        <TrueorFalse question={questionData[index].text} 
-                         submitGuess={submitGuess}/>
-              );  
+      return (
+        <TrueorFalse
+          question={questionData[index].text}
+          submitGuess={submitGuess}
+        />
+      );
     } else if (
       questionData[index].questionType === QuestionType.LONG_DIVISION_PROBLEM
     ) {
