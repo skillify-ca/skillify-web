@@ -7,6 +7,7 @@ import { LongDivision } from "./LongDivision";
 import { TrueorFalse } from "./TrueorFalse";
 import { VerticalEquation } from "./VerticalEquation";
 import { WordProblemAdd } from "./WordProblemAdd";
+import { WordProblemSub } from "./WordProblemSub";
 
 type QuestionSetProps = {
   title: string;
@@ -49,17 +50,16 @@ const QuestionSet = ({
         );
       }
       else if (questionData[index].operator == '-') {
-        /*return (
-          <WordProblemAdd
+        return (
+          <WordProblemSub
             question={questionData[index].text}
             name={questionData[index].wordProblem.name}
             submitGuess={submitGuess}
             itemContainer={questionData[index].wordProblem.itemContainer}
             noun1={questionData[index].wordProblem.item1}
-            noun2={questionData[index].wordProblem.item1}
           />
-        ); */
-        console.log('Subtraction');
+        ); 
+        //console.log('Subtraction');
       }   
     } else if (
       questionData[index].questionType === QuestionType.TRUE_OR_FALSE_PROBLEM
