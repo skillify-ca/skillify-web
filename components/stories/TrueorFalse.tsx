@@ -1,7 +1,9 @@
 import React from "react";
 import { Button } from "./Button";
+
 export interface TrueorFalseProp {
   question?: string;
+  submitGuess: (e) => void;
 }
 
 export function randomize(min: number, max: number) {
@@ -12,6 +14,7 @@ let ans;
 let displayAns;
 export const TrueorFalse: React.FC<TrueorFalseProp> = ({
   question,
+  submitGuess,
   ...props
 }) => {
   const parse = () => {
@@ -54,8 +57,16 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
         {question} {displayAns}
       </p>
       <div className="flex flex-row  item-center space-x-4 ">
-        <Button label="True" backgroundColor="green"></Button>
-        <Button label="False" backgroundColor="red"></Button>
+        <Button
+          label="True"
+          backgroundColor="green"
+          onClick={submitGuess}
+        ></Button>
+        <Button
+          label="False"
+          backgroundColor="red"
+          onClick={submitGuess}
+        ></Button>
       </div>
     </div>
   );
