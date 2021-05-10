@@ -11,9 +11,7 @@ import Navbar from "../../components/Navbar";
 
 const practiceQuiz = ({ slug }) => {
   const [index, setIndex] = useState(0);
-  const { query } = useRouter();
   const [guess, setGuess] = useState("");
-  const [isGameOver, setGameOver] = useState(false);
   const [interval, setMyInterval] = useState(null);
   const [questionData, setQuestionData] = useState<Question[]>([
     { text: "", answer: 0, questionType: QuestionType.HORIZONTAL_EQUATION },
@@ -21,7 +19,6 @@ const practiceQuiz = ({ slug }) => {
   const inputElement = useRef(null);
 
   useEffect(() => {
-    const level = Number.parseInt(query.level as string);
     console.log(slug);
     setQuestionData(generateAdditionQuestions(slug));
   }, []);
@@ -37,7 +34,6 @@ const practiceQuiz = ({ slug }) => {
     } else {
       clearInterval(interval);
       setMyInterval(null);
-      setGameOver(true);
     }
   };
   return (
