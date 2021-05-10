@@ -1,3 +1,4 @@
+import { HorizontalEquation } from '../../components/stories/HorizontalEquation';
 import { QuestionType } from './questionTypes';
 
 const NUM_QUESTIONS = 5;
@@ -178,7 +179,7 @@ function getRandomBinaryQuestion(
 	return {
 		text: text,
 		answer: answerFunction(Math.max(a, b), Math.min(a, b)),
-		questionType: type,
+		questionType: QuestionType.HORIZONTAL_EQUATION,
 		operator: operator,
 		name: nameSelector()
 
