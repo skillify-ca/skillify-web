@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/router";
 import {
   generateAdditionQuestions,
   Question,
@@ -9,7 +8,7 @@ import { QuestionType } from "../api/questionTypes";
 
 import Navbar from "../../components/Navbar";
 
-const practiceQuiz = ({ slug }) => {
+const PracticeQuiz = ({ slug }) => {
   const [index, setIndex] = useState(0);
   const [guess, setGuess] = useState("");
   const [interval, setMyInterval] = useState(null);
@@ -19,7 +18,6 @@ const practiceQuiz = ({ slug }) => {
   const inputElement = useRef(null);
 
   useEffect(() => {
-    console.log(slug);
     setQuestionData(generateAdditionQuestions(slug));
   }, []);
 
@@ -71,4 +69,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default practiceQuiz;
+export default PracticeQuiz;
