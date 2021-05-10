@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { noun } from "../../pages/api/WordProblemModel";
+import { itemContainerObj, noun } from "../../pages/api/WordProblemModel";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
@@ -7,7 +7,7 @@ export interface WordProblemMultProp {
   submitGuess: (e) => void;
   question: string;
   name: string;
-  itemContainer?: string;
+  itemContainer: itemContainerObj;
   noun1: noun;
 }
 
@@ -51,12 +51,13 @@ export const WordProblemMult: React.FC<WordProblemMultProp> = ({
           <span className="border-2 border-black border-opacity-75 md:border-opacity-50 text-black font-extrabold">
             {" " + parse().first}
           </span>
-          {" " + itemContainer}. Each {itemContainer} has
+          {" " + title(itemContainer, parse().first)}. Each{" "}
+          {itemContainer.singleTitle} has
           <span className={noun1.colour}>
             {" " + parse().second + " "}
           </span>{" "}
-          {title(noun1, parse().second)}. How many{" "}
-          {title(noun1, parse().second)} does {name} have in total?
+          {title(noun1, parse().second)}. How many {noun1.pluralTitle} does{" "}
+          {name} have in total?
         </p>
       </div>
       <div className="text-2xl flex flex-wrap">

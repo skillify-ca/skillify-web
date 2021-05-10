@@ -4,7 +4,7 @@ Inside there are [randomNumber1] (item1.title) and [randomNumber2] (item2.title)
 export type WordProblemModel = {
   name: string;
   operator: string;
-  itemContainer: string;
+  itemContainer: itemContainerObj;
   nounType: string;
   item1: noun;
   item2?: noun;
@@ -15,6 +15,10 @@ export type noun = {
   pluralTitle: string;
   colour: string;
   image: string;
+};
+export type itemContainerObj = {
+  singleTitle: string;
+  pluralTitle: string;
 };
 const apples = {
   type: "fruits",
@@ -79,12 +83,39 @@ const copper = {
   colour: "text-yellow-800 font-black",
   image: "/images/copper__coins.jpeg",
 };
+const box = {
+  singleTitle: "box",
+  pluralTitle: "boxes",
+};
+const bag = {
+  singleTitle: "bag",
+  pluralTitle: "bags",
+};
+const basket = {
+  singleTitle: "basket",
+  pluralTitle: "baskets",
+};
+//case is keyword
+const ccase = {
+  singleTitle: "case",
+  pluralTitle: "cases",
+};
+//packages is also keyword
+const ppackage = {
+  singleTitle: "package",
+  pluralTitle: "packages",
+};
+const drawer = {
+  singleTitle: "drawer",
+  pluralTitle: "drawers",
+};
+
 const nameSelector = () => {
   const random = Math.floor(Math.random() * name.length);
   return name[random];
 };
 
-const itemGroup = ["box", "bag", "basket", "case", "package", "drawer"];
+const itemGroup = [box, bag, basket, ccase, ppackage, drawer];
 const itemContainerSelector = () => {
   const randomItemGroup = Math.floor(Math.random() * itemGroup.length);
   return itemGroup[randomItemGroup];
