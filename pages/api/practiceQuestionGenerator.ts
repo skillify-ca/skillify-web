@@ -17,13 +17,21 @@ export type Question = {
   wordProblem?: WordProblemModel;
 };
 
-const generateQuestionsForTopic = (numberOfQuestions: number) => {
+const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: number) => {
   let questionGenerator: (min: number, max: number) => FlashcardQuestion;
   questionGenerator = getRandomAdditionQuestion;
   const res = [];
   for (let i = 0; i < numberOfQuestions; i++) {
-    let min = 1;
-    let max = 1000;
+      let min = 1;
+      let max = 10;
+      if (digitDifficulty == "double-digit") {
+          min = 11;
+          max = 100;
+      } else if (digitDifficulty == "triple-digit") {
+          min = 101;
+          max = 1000;
+      }
+
     res.push(questionGenerator(min, max));
   }
   return res;
@@ -31,10 +39,10 @@ const generateQuestionsForTopic = (numberOfQuestions: number) => {
 
 export const generateAdditionQuestions = (
   slug: string,
-  currentLevel: number
 ) => {
   if (slug != null) {
-    return generateQuestionsForTopic(NUM_QUESTIONS);
+      const digitDifficulty = slug;
+    return generateQuestionsForTopic(digitDifficulty, NUM_QUESTIONS);
   }
   return [];
 };
