@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Button } from "../components/stories/Button";
+import DiagnosticResults from "../components/stories/DiagnosticResults";
 import DiagnosticTestForm from "../components/stories/DiagnosticTestForm";
 import Dropdown from "../components/stories/Dropdown";
 import QuestionSet from "../components/stories/QuestionSet";
@@ -16,6 +17,7 @@ import { QuestionType } from "./api/questionTypes";
 enum STAGE {
   CREATE,
   TEST,
+  RESULTS,
 }
 
 export default function Diagnostic(props) {
@@ -74,6 +76,8 @@ export default function Diagnostic(props) {
         />
       );
       break;
+    case STAGE.RESULTS:
+      component = <DiagnosticResults />;
   }
 
   return (

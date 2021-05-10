@@ -179,7 +179,7 @@ function getRandomBinaryQuestion(
 	return {
 		text: text,
 		answer: answerFunction(Math.max(a, b), Math.min(a, b)),
-		questionType: QuestionType.HORIZONTAL_EQUATION,
+		questionType: type,
 		operator: operator,
 		name: nameSelector()
 
