@@ -1,18 +1,12 @@
 import { random } from "lodash";
 import { name } from "./names";
 import {
-  aligators,
-  apples,
-  bannanas,
-  copper,
-  ducks,
-  gold,
+  animalsMap,
+  fruitsMap,
+  coinsMap,
   ItemContainerObj,
-  lions,
   map,
   noun,
-  oranges,
-  silver,
 } from "./WordProblemModelObjects";
 export type WordProblemModel = {
   name: string;
@@ -26,13 +20,6 @@ export type WordProblemModel = {
 const nameSelector = () => {
   const random = Math.floor(Math.random() * name.length);
   return name[random];
-};
-
-const itemGroup = Object.keys(map);
-const itemContainerSelector = () => {
-  const randomItemGroup = Math.floor(Math.random() * itemGroup.length);
-  const foo = itemGroup[randomItemGroup];
-  return map[foo];
 };
 export enum ItemType {
   PETS = "pets",
@@ -54,24 +41,23 @@ const itemTypeSelector = () => {
       console.log("ERROR");
   }
 };
+const getRandomItemFromMap = (map) => {
+  const keyList = Object.keys(map); //get keys of map
+  const randomIndex = Math.floor(Math.random() * keyList.length);
+  const randomKey = keyList[randomIndex];
+  return map[randomKey];
+};
 const itemSelector = (itemType) => {
-  let itemList = [];
   switch (itemType) {
     case ItemType.PETS:
-      itemList = [lions, ducks, aligators];
-      break;
+      return getRandomItemFromMap(animalsMap);
     case ItemType.COINS:
-      itemList = [gold, silver, copper];
-      break;
+      return getRandomItemFromMap(coinsMap);
     case ItemType.FRUITS:
-      itemList = [apples, oranges, bannanas];
-      break;
+      return getRandomItemFromMap(fruitsMap);
     default:
       console.log("Error");
   }
-  const randomNoun = Math.floor(Math.random() * itemList.length);
-  let item = itemList[randomNoun];
-  return item;
 };
 export function createWordProblemModel(operator): WordProblemModel {
   let itemType = itemTypeSelector();
@@ -79,7 +65,7 @@ export function createWordProblemModel(operator): WordProblemModel {
     return {
       name: nameSelector(),
       operator: operator,
-      itemContainer: itemContainerSelector(),
+      itemContainer: getRandomItemFromMap(map),
       nounType: itemType,
       item1: itemSelector(itemType),
       item2: itemSelector(itemType),
@@ -88,7 +74,7 @@ export function createWordProblemModel(operator): WordProblemModel {
     return {
       name: nameSelector(),
       operator: operator,
-      itemContainer: itemContainerSelector(),
+      itemContainer: getRandomItemFromMap(map),
       nounType: itemType,
       item1: itemSelector(itemType),
     };
