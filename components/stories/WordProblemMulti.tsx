@@ -1,4 +1,3 @@
-import { type } from "node:os";
 import React, { useState } from "react";
 import {
   ItemContainerObj,
@@ -7,24 +6,25 @@ import {
 import { Button } from "./Button";
 import { Input } from "./Input";
 
-export interface WordProblemAddProp {
+export interface WordProblemMultiProp {
   submitGuess: (e) => void;
   question: string;
   name: string;
-  itemContainer?: ItemContainerObj;
+  itemContainer: ItemContainerObj;
   noun1: noun;
-  noun2: noun;
 }
 
-/* Addition Word problems are made with a specific template. The template is as follows: (name) has an (itemContainer) of (itemType). 
-Inside there are [randomNumber1] (item1.title) and [randomNumber2] (item2.title). How many (itemType) are in the (itemContainer)? */
-export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
+/**
+ * The Multipolication Word problem follows a specific template and is as follows:
+ * (name) has a (randomNumber1)(itemContainer). Each (itemContainer) has (randomNumber2) (noun.title).
+ * How many (noun.title) does (name) have in total?
+ */
+export const WordProblemMulti: React.FC<WordProblemMultiProp> = ({
   submitGuess,
   question,
   name,
   itemContainer,
   noun1,
-  noun2,
   ...props
 }) => {
   const [guess, setGuess] = useState("");
@@ -51,13 +51,18 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
     <div className="flex flex-col items-center gap-4">
       <div className="text-2xl flex flex-wrap">
         <p className="align-left">
-          {name} has a {itemContainer.singleTitle} of {noun1.type}. Inside,
-          there are
-          <span className={noun1.colour}>{" " + parse().first + " "}</span>
-          {title(noun1, parse().first)} and
-          <span className={noun2.colour}>{" " + parse().second + " "}</span>
-          {title(noun2, parse().second)}. How many {noun1.type} are in the{" "}
-          {itemContainer.singleTitle}?
+          {name} has
+          <span> </span>
+          <span className="border-2 border-black border-opacity-75 md:border-opacity-50 text-black font-extrabold">
+            {" " + parse().first}
+          </span>
+          {" " + title(itemContainer, parse().first)}. Each{" "}
+          {itemContainer.singleTitle} has
+          <span className={noun1.colour}>
+            {" " + parse().second + " "}
+          </span>{" "}
+          {title(noun1, parse().second)}. How many {noun1.pluralTitle} does{" "}
+          {name} have in total?
         </p>
       </div>
       <div className="text-2xl flex flex-wrap">
@@ -69,9 +74,9 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
       </div>
       <div className="flex flex-wrap mt-2">
         <img src={noun1.image} width="60px" height="85px" />
-        <img src={noun2.image} width="60px" height="85px" />
         <img src={noun1.image} width="60px" height="85px" />
-        <img src={noun2.image} width="60px" height="85px" />
+        <img src={noun1.image} width="60px" height="85px" />
+        <img src={noun1.image} width="60px" height="85px" />
         <img src={noun1.image} width="60px" height="85px" />
       </div>
       <Button

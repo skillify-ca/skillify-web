@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { noun } from "../../pages/api/WordProblemModel";
+import {
+  ItemContainerObj,
+  noun,
+} from "../../pages/api/WordProblemModelObjects";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
@@ -7,12 +10,14 @@ export interface WordProblemSubProp {
   submitGuess: (e) => void;
   question: string;
   name: string;
-  itemContainer?: string;
+  itemContainer?: ItemContainerObj;
   noun1: noun;
 }
 
 /**
- * Primary UI component for user interaction
+ * The Subtraction Word problem follows a specific template and is as follows:
+ * (name) has a (itemContainer) of (randomNumber1) (nounType).
+ * (name) takes out (randomNumber2) (noun.title). How many (nounTypes) are left in the (itemContainer)?
  */
 export const WordProblemSub: React.FC<WordProblemSubProp> = ({
   submitGuess,
@@ -46,14 +51,17 @@ export const WordProblemSub: React.FC<WordProblemSubProp> = ({
     <div className="flex flex-col items-center gap-4">
       <div className="text-2xl flex flex-wrap">
         <p className="align-left">
-          {name} has a {itemContainer} of {noun1.type}. Inside, there are
-          <span>{" "}</span>
-          <span className= "border-2 border-black border-opacity-75 md:border-opacity-50 text-black font-extrabold">{parse().first}</span>
-          <span>{" "}</span>
-           {noun1.type}. {name} takes out 
+          {name} has a {itemContainer.singleTitle} of {noun1.type}. Inside,
+          there are
+          <span> </span>
+          <span className="border-2 border-black border-opacity-75 md:border-opacity-50 text-black font-extrabold">
+            {parse().first}
+          </span>
+          <span> </span>
+          {noun1.type}. {name} takes out
           <span className={noun1.colour}>{" " + parse().second + " "}</span>
           {title(noun1, parse().second)}. How many {noun1.type} are in the{" "}
-          {itemContainer}?
+          {itemContainer.singleTitle}?
         </p>
       </div>
       <div className="text-2xl flex flex-wrap">
