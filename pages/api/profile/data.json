@@ -41,6 +41,15 @@
         { "text": "I can subtract three digit numbers", "key": "triple-digit"},
         { "text": "I can identify and use properties of Subtration", "key": "properties" }
       ]
+    },
+    {
+      "name": "multiplication",
+      "statements": [
+        { "text": "I can multiply one digit numbers", "key": "single-digit" },
+        { "text": "I can multiply two digit numbers", "key": "double-digit" },
+        { "text": "I can multiply three digit numbers", "key": "triple-digit"},
+        { "text": "I can multiply and use properties of Subtration", "key": "properties" }
+      ]
     }
   ]
 }

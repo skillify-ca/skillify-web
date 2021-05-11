@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   generateAdditionQuestions,
+  generateMultiplicationQuestions,
   generateSubtractionQuestions,
   Question,
 } from "../../api/practiceQuestionGenerator";
@@ -23,6 +24,8 @@ const PracticeQuiz = ({ slug, difficulty }) => {
       setQuestionData(generateAdditionQuestions(difficulty));
     } else if (slug == "subtraction") {
       setQuestionData(generateSubtractionQuestions(difficulty));
+    } else if (slug == "multiplication") {
+      setQuestionData(generateMultiplicationQuestions(difficulty));
     }
   }, []);
 
