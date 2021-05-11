@@ -49,10 +49,12 @@ const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: n
 };
 
 export const generateAdditionQuestions = (
-  slug: string,
+  difficulty: string,
 ) => {
-  if (slug != null) {
-    const digitDifficulty = slug;
+  console.log(difficulty);
+  if (difficulty != null) {
+    console.log(difficulty);
+    const digitDifficulty = difficulty;
     return generateQuestionsForTopic(digitDifficulty, NUM_QUESTIONS, Topic.ADDITION);
   }
   return [];

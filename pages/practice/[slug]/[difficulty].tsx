@@ -9,7 +9,7 @@ import { QuestionType } from "../../api/questionTypes";
 
 import Navbar from "../../../components/Navbar";
 
-const PracticeQuiz = ({ slug }) => {
+const PracticeQuiz = ({ slug, difficulty }) => {
   const [index, setIndex] = useState(0);
   const [guess, setGuess] = useState("");
   const [interval, setMyInterval] = useState(null);
@@ -21,9 +21,9 @@ const PracticeQuiz = ({ slug }) => {
   useEffect(() => {
     console.log(slug);
     if (slug == "addition") {
-      setQuestionData(generateAdditionQuestions(slug));
+      setQuestionData(generateAdditionQuestions(difficulty));
     } else if (slug == "subtraction") {
-      setQuestionData(generateSubtractionQuestions(slug));
+      setQuestionData(generateSubtractionQuestions(difficulty));
     }
   }, []);
 
