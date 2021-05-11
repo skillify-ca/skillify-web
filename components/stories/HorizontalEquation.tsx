@@ -25,7 +25,7 @@ export const HorizontalEquation: React.FC<HorizontalEquationProp> = ({
   const parse = () => {
     const parts = question.split(" ");
     if (parts[1] == "/") {
-      parts[1] = " ÷ ";
+      parts[1] = "÷";
     }
     return {
       first: parts[0],
@@ -37,7 +37,7 @@ export const HorizontalEquation: React.FC<HorizontalEquationProp> = ({
     <div className="flex flex-col gap-4 justify-between h-full">
       <p className="text-6xl w-full flex-grow flex justify-center items-center">
         {parse().first}
-        {parse().operation}
+        {" " + parse().operation + " "}
         {parse().second}
       </p>
       <Input
