@@ -31,7 +31,7 @@ const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: n
           min = 101;
           max = 1000;
       }
-
+      
     res.push(questionGenerator(min, max));
   }
   return res;
