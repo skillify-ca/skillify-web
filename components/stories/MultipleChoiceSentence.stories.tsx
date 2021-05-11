@@ -1,6 +1,6 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
-import { MCType } from "./MultipleChoiceTypes";
+import { AdditionProperty } from "./MultipleChoiceTypes";
 
 import {
   MultipleChoiceSentence,
@@ -24,5 +24,5 @@ Primary.args = {
   option2: { question: "(3 + 5) + 2 = 3 + (5 + 2)", type: null },
   option3: { question: "2 + 0 = 2", type: null },
   option4: { question: "2 + 1 = 1 + 2", type: null },
-  answer: MCType.ASSOCIATIVE,
+  answer: AdditionProperty.ASSOCIATIVE,
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "./Button";
-import { MCType } from "./MultipleChoiceTypes";
+import { AdditionProperty } from "./MultipleChoiceTypes";
 
 export interface MultipleChoiceWordProp {
   displayQuestion?: string;
@@ -25,7 +25,7 @@ export const MultipleChoiceWord: React.FC<MultipleChoiceWordProp> = ({
     let i = 0;
     while (i < qlen) {
       if (question[i] == "(") {
-        ans = MCType.ASSOCIATIVE;
+        ans = AdditionProperty.ASSOCIATIVE;
         break;
       } else {
         ++i;
@@ -40,22 +40,22 @@ export const MultipleChoiceWord: React.FC<MultipleChoiceWordProp> = ({
   };
   switch (parse().third) {
     case "0":
-      ans = MCType.IDENTITY;
+      ans = AdditionProperty.IDENTITY;
       break;
     default:
-      ans = MCType.IDENTITY;
+      ans = AdditionProperty.IDENTITY;
       break;
   }
   const MCValue = randomize(0, 3);
   switch (MCValue) {
     case 0:
-      displayAns = MCType.ASSOCIATIVE;
+      displayAns = AdditionProperty.ASSOCIATIVE;
       break;
     case 1:
-      displayAns = MCType.COMMUTATIVE;
+      displayAns = AdditionProperty.COMMUTATIVE;
       break;
     case 2:
-      displayAns = MCType.IDENTITY;
+      displayAns = AdditionProperty.IDENTITY;
       break;
   }
   return (
