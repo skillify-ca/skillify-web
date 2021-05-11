@@ -1,19 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  generateAdditionQuestions,
-  Question,
-} from "../api/practiceQuestionGenerator";
+import { generateAdditionQuestions } from "../api/practiceQuestionGenerator";
 import QuestionSet from "../../components/stories/QuestionSet";
 import { QuestionType } from "../api/questionTypes";
 
 import Navbar from "../../components/Navbar";
 import { GuessData } from "../api/guessData";
+import { AnswerType, Question } from "../api/question";
 
 const PracticeQuiz = ({ slug }) => {
   const [index, setIndex] = useState(0);
   const [interval, setMyInterval] = useState(null);
   const [questionData, setQuestionData] = useState<Question[]>([
-    { text: "", answer: 0, questionType: QuestionType.HORIZONTAL_EQUATION },
+    {
+      text: "",
+      answer: "",
+      answerType: AnswerType.NUMBER,
+      questionType: QuestionType.HORIZONTAL_EQUATION,
+    },
   ]);
   const inputElement = useRef(null);
 
