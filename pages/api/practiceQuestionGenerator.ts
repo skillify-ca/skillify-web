@@ -14,7 +14,13 @@ const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: n
     case Topic.ADDITION:
       questionGenerator = getRandomAdditionQuestion;
       break;
-    default:
+    case Topic.MULTIPLICATION:
+      questionGenerator = getRandomMultiplicationQuestion;
+      break;
+    case Topic.DIVISION:
+      questionGenerator = getRandomDivisionQuestion;
+      break;
+    default: 
       console.log('ERROR');
   }
   const res = [];
@@ -51,6 +57,24 @@ export const generateSubtractionQuestions = (
   }
   return [];
 };
+export const generateMultiplicationQuestions = (
+  slug: string,
+) => {
+  if (slug != null) {
+    const digitDifficulty = slug;
+    return generateQuestionsForTopic(digitDifficulty, NUM_QUESTIONS, Topic.MULTIPLICATION);
+  }
+  return [];
+};
+export const generateDivisionQuestions = (
+  slug: string,
+) => {
+  if (slug != null) {
+    const digitDifficulty = slug;
+    return generateQuestionsForTopic(digitDifficulty, NUM_QUESTIONS, Topic.DIVISION);
+  }
+  return [];
+};
 
 function getRandomAdditionQuestion(min: number, max: number) {
   const add = (a: number, b: number) => a + b;
@@ -60,6 +84,14 @@ function getRandomAdditionQuestion(min: number, max: number) {
 function getRandomSubtractionQuestion(min: number, max: number) {
   const subtract = (a: number, b: number) => a - b;
   return getRandomBinaryQuestion(min, max, "-", subtract);
+}
+function getRandomMultiplicationQuestion(min: number, max: number) {
+  const subtract = (a: number, b: number) => a - b;
+  return getRandomBinaryQuestion(min, max, "x", subtract);
+}
+function getRandomDivisionQuestion(min: number, max: number) {
+  const subtract = (a: number, b: number) => a - b;
+  return getRandomBinaryQuestion(min, max, "/", subtract);
 }
 
 function getRandomBinaryQuestion(

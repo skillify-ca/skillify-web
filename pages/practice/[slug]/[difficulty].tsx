@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   generateAdditionQuestions,
+  generateDivisionQuestions,
+  generateMultiplicationQuestions,
   generateSubtractionQuestions,
 } from "../../api/practiceQuestionGenerator";
 import QuestionSet from "../../../components/stories/QuestionSet";
@@ -27,11 +29,16 @@ const PracticeQuiz = ({ slug, difficulty }) => {
       setQuestionData(generateAdditionQuestions(difficulty));
     } else if (slug == "subtraction") {
       setQuestionData(generateSubtractionQuestions(difficulty));
+    } else if (slug == "multiplication") {
+      setQuestionData(generateMultiplicationQuestions(difficulty));
+    } else if (slug == "division") {
+      setQuestionData(generateDivisionQuestions(difficulty));
     }
   }, []);
 
   const submitGuess = (guess: GuessData) => {
-    if (index < length - 1) {
+    if (index < questionData.length - 1) {
+      console.log("ERROR");
       setIndex(index + 1);
       if (inputElement.current) {
         inputElement.current.focus();
@@ -74,6 +81,14 @@ export async function getStaticPaths() {
       { params: { slug: "subtraction", difficulty: "double-digit" } },
       { params: { slug: "subtraction", difficulty: "triple-digit" } },
       { params: { slug: "subtraction", difficulty: "properties" } },
+      { params: { slug: "multiplication", difficulty: "single-digit" } },
+      { params: { slug: "multiplication", difficulty: "double-digit" } },
+      { params: { slug: "multiplication", difficulty: "triple-digit" } },
+      { params: { slug: "multiplication", difficulty: "properties" } },
+      { params: { slug: "division", difficulty: "single-digit" } },
+      { params: { slug: "division", difficulty: "double-digit" } },
+      { params: { slug: "division", difficulty: "triple-digit" } },
+      { params: { slug: "division", difficulty: "properties" } },
     ],
     fallback: true,
   };

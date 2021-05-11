@@ -55,13 +55,16 @@ export const generateQuestions = (slug: string, currentLevel: number) => {
 			return generateQuestionsForTopic(Topic.NUMBERS, currentLevel, NUM_QUESTIONS);
 		}else if (slug.toLowerCase() == 'subtraction') {
 			return generateQuestionsForTopic(Topic.SUBTRACTION, currentLevel, NUM_QUESTIONS);
-		}else{
+		}else if (slug.toLowerCase() == 'multiplication'){
+			return generateQuestionsForTopic(Topic.MULTIPLICATION, currentLevel, NUM_QUESTIONS);
+		}else if (slug.toLowerCase() == 'division'){
+			return generateQuestionsForTopic(Topic.DIVISION, currentLevel, NUM_QUESTIONS);
+		}else {
 			return generateQuestionsForTopic(Topic.ADDITION, currentLevel, NUM_QUESTIONS);
 		}
 	}
 	return [];
 };
-
 function getRandomNumbersQuestion(min: number, max: number): Question {
 	const a = getRndInteger(min, max);
 	const b = getRndInteger(min, max);
