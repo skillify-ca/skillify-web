@@ -75,7 +75,9 @@ export default function Diagnostic(props) {
       );
       break;
     case STAGE.RESULTS:
-      component = <DiagnosticResults correctGuesses={correctGuesses} />;
+      component = (
+        <DiagnosticResults correctGuesses={correctGuesses} index={index + 1} />
+      );
   }
 
   return (
