@@ -1,4 +1,4 @@
-export enum MCType {
+export enum AdditionProperty {
     ASSOCIATIVE,
     COMMUTATIVE,
     IDENTITY,

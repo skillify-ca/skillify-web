@@ -1,14 +1,14 @@
 import React from "react";
 import { Button } from "./Button";
-import { MCType } from "./MultipleChoiceTypes";
+import { AdditionProperty } from "./MultipleChoiceTypes";
 
 export interface MultipleChoiceSentenceProp {
   displayQuestion?: string;
-  option1: { question: string; type: MCType };
-  option2: { question: string; type: MCType };
-  option3: { question: string; type: MCType };
-  option4: { question: string; type: MCType };
-  answer: MCType;
+  option1: { question: string; type: AdditionProperty };
+  option2: { question: string; type: AdditionProperty };
+  option3: { question: string; type: AdditionProperty };
+  option4: { question: string; type: AdditionProperty };
+  answer: AdditionProperty;
   submitGuess: (e) => void;
 }
 
@@ -32,7 +32,7 @@ export const MultipleChoiceSentence: React.FC<MultipleChoiceSentenceProp> = ({
       let i = 0;
       while (i < qlen) {
         if (o.question[i] == "(") {
-          o.type = MCType.ASSOCIATIVE;
+          o.type = AdditionProperty.ASSOCIATIVE;
           break;
         } else {
           ++i;
@@ -47,10 +47,10 @@ export const MultipleChoiceSentence: React.FC<MultipleChoiceSentenceProp> = ({
       }
       switch (parse().third) {
         case "0":
-          o.type = MCType.IDENTITY;
+          o.type = AdditionProperty.IDENTITY;
           break;
         default:
-          o.type = MCType.COMMUTATIVE;
+          o.type = AdditionProperty.COMMUTATIVE;
 
           break;
       }
