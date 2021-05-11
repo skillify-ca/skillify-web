@@ -93,7 +93,9 @@ export default function Diagnostic(props) {
       break;
     case STAGE.DATA:
       component = (
-        <DiagnosticData correctGuesses={correctGuesses} index={index + 1} />
+        <DiagnosticData
+          questions={questionData.map((question) => question.text)}
+        />
       );
   }
 

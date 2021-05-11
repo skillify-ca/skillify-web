@@ -1,12 +1,18 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 
 type DiagnosticDataProps = {
-  correctGuesses: number;
-  index: number;
+  questions: Array<string>;
 };
 
-const DiagnosticData = ({ correctGuesses, index }: DiagnosticDataProps) => {
-  return <div>Diagnostic Data</div>;
+const DiagnosticData = ({ questions }: DiagnosticDataProps) => {
+  return (
+    <div>
+      Question:
+      {questions.map((q) => (
+        <div>{q}</div>
+      ))}
+    </div>
+  );
 };
 
 export default DiagnosticData;
