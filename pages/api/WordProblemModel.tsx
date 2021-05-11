@@ -6,15 +6,15 @@ import {
   coinsMap,
   ItemContainerObj,
   map,
-  noun,
+  Noun,
 } from "./WordProblemModelObjects";
 export type WordProblemModel = {
   name: string;
   operator: string;
   itemContainer: ItemContainerObj;
   nounType: string;
-  item1: noun;
-  item2?: noun;
+  item1: Noun;
+  item2?: Noun;
 };
 
 const nameSelector = () => {

@@ -1,13 +1,10 @@
 import { HorizontalEquation } from '../../components/stories/HorizontalEquation';
+import { AnswerType, Question } from './question';
 import { QuestionType } from './questionTypes';
 import { createWordProblemModel, WordProblemModel } from './WordProblemModel';
 
 const NUM_QUESTIONS = 5;
 
-export type FlashcardQuestion = {
-	text: String;
-	answer: number;
-};
 export enum Topic {
 	NUMBERS,
 	ADDITION,
@@ -28,14 +25,6 @@ export enum Difficulty {
 	MEDIUM,
 	HARD
 }
-
-export type Question = {
-	text: string;
-	answer: number;
-	questionType: QuestionType;
-	operator?: string;
-	wordProblem?: WordProblemModel;
-};
 
 export const generateQuestionsForDiagnostic = (testLength: TestLength, topics: Topic[]) => {
 	let questionsPerSection = 0;
@@ -80,13 +69,14 @@ function getRandomNumbersQuestion(min: number, max: number): Question {
 
 	return {
 		text: text,
-		answer: Math.max(a, b),
+		answer: Math.max(a, b).toString(),
+		answerType: AnswerType.NUMBER,
 		questionType: QuestionType.COMPARISON_WORD_PROBLEM
 	};
 }
 
 const generateQuestionsForTopic = (topic: Topic, currentLevel: Difficulty, numberOfQuestions: number) => {
-	let questionGenerator: (min: number, max: number) => FlashcardQuestion;
+	let questionGenerator: (min: number, max: number) => Question;
 	switch (topic) {
 		case Topic.NUMBERS:
 			questionGenerator = getRandomNumbersQuestion;
@@ -135,13 +125,13 @@ function getRandomMultiplicationQuestion(min: number, max: number) {
 	const multiply = (a: number, b: number) => a * b;
 	return getRandomBinaryQuestion(min, max, 'x', multiply);
 }
-function getRandomDivisionQuestion(min: number, max: number) {
+function getRandomDivisionQuestion(min: number, max: number): Question {
 	const a = getRndInteger(min, max);
 	const b = getRndInteger(min, max);
 	const product = a * b;
 
 	const text = `${product} / ${b} =`;
-	const types = [ QuestionType.LONG_DIVISION_PROBLEM, QuestionType.HORIZONTAL_EQUATION, QuestionType.BINARY_WORD_PROBLEM ];
+	const types = [QuestionType.LONG_DIVISION_PROBLEM, QuestionType.HORIZONTAL_EQUATION, QuestionType.BINARY_WORD_PROBLEM];
 	const type = types[getRndInteger(0, types.length)];
 	let wordProblemModel;
 	if (type == QuestionType.BINARY_WORD_PROBLEM) {
@@ -150,7 +140,8 @@ function getRandomDivisionQuestion(min: number, max: number) {
 
 	return {
 		text: text,
-		answer: a,
+		answer: a.toString(),
+		answerType: AnswerType.NUMBER,
 		questionType: type,
 		operator: '÷',
 		wordProblem: wordProblemModel
@@ -180,9 +171,11 @@ function getRandomBinaryQuestion(
 	if (type === QuestionType.BINARY_WORD_PROBLEM) {
 		wordProblemModel = createWordProblemModel(operator);
 	}
+
 	return {
 		text: text,
-		answer: answerFunction(Math.max(a, b), Math.min(a, b)),
+		answer: answerFunction(Math.max(a, b), Math.min(a, b)).toString(),
+		answerType: type === QuestionType.TRUE_OR_FALSE_PROBLEM ? AnswerType.BOOLEAN : AnswerType.NUMBER,
 		questionType: type,
 		operator: operator,
 		wordProblem: wordProblemModel

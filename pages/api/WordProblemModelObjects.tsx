@@ -1,4 +1,4 @@
-export type noun = {
+export type Noun = {
   type: string;
   singleTitle: string;
   pluralTitle: string;

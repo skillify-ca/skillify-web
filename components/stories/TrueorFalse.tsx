@@ -1,9 +1,11 @@
 import React from "react";
+import { GuessData } from "../../pages/api/guessData";
+import { Question } from "../../pages/api/question";
 import { Button } from "./Button";
 
 export interface TrueorFalseProp {
-  question?: string;
-  submitGuess: (e) => void;
+  question: Question;
+  submitGuess: (guess: GuessData) => void;
 }
 
 export function randomize(min: number, max: number) {
@@ -17,8 +19,14 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
   submitGuess,
   ...props
 }) => {
+  const onSubmit = (guess: boolean) => {
+    submitGuess({
+      guess: guess.toString(),
+      isCorrect: guess === (ans === displayAns),
+    });
+  };
   const parse = () => {
-    const part = question.split(" ");
+    const part = question.text.split(" ");
     return {
       first: part[0],
       operator: part[1],
@@ -54,19 +62,19 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
   return (
     <div className="flex flex-col items-center space-y-16">
       <p className="text-4xl">
-        {question} {displayAns}
+        {question.text} {displayAns}
       </p>
       <div className="flex flex-row  item-center space-x-4 ">
         <Button
           label="True"
           backgroundColor="green"
-          onClick={submitGuess}
-        ></Button>
+          onClick={(_) => onSubmit(true)}
+        />
         <Button
           label="False"
           backgroundColor="red"
-          onClick={submitGuess}
-        ></Button>
+          onClick={(_) => onSubmit(false)}
+        />
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
 import React from "react";
-import { Question } from "../../pages/api/questionGenerator";
 import { QuestionType } from "../../pages/api/questionTypes";
 import Card from "./Card";
 import { HorizontalEquation } from "./HorizontalEquation";
@@ -9,16 +8,16 @@ import { VerticalEquation } from "./VerticalEquation";
 import { WordProblemAdd } from "./WordProblemAdd";
 import { WordProblemSub } from "./WordProblemSub";
 import { WordProblemMulti } from "./WordProblemMulti";
+import { GuessData } from "../../pages/api/guessData";
 import { WordProblemDiv } from "./WordProblemDiv";
+import { Question } from "../../pages/api/question";
 
 type QuestionSetProps = {
   title: string;
   questionData: Question[];
   index: number;
-  guess: any;
-  setGuess: any;
   inputElement: any;
-  submitGuess: any;
+  submitGuess: (guessData: GuessData) => void;
 };
 
 const QuestionSet = ({
@@ -31,8 +30,7 @@ const QuestionSet = ({
     if (questionData[index].questionType === QuestionType.VERTICAL_EQUATION) {
       return (
         <VerticalEquation
-          question={questionData[index].text}
-          operator={questionData[index].operator}
+          question={questionData[index]}
           submitGuess={submitGuess}
         />
       );
@@ -42,41 +40,29 @@ const QuestionSet = ({
       if (questionData[index].operator == "+") {
         return (
           <WordProblemAdd
-            question={questionData[index].text}
-            name={questionData[index].wordProblem.name}
+            question={questionData[index]}
             submitGuess={submitGuess}
-            itemContainer={questionData[index].wordProblem.itemContainer}
-            noun1={questionData[index].wordProblem.item1}
-            noun2={questionData[index].wordProblem.item2}
           />
         );
       } else if (questionData[index].operator == "-") {
         return (
           <WordProblemSub
-            question={questionData[index].text}
-            name={questionData[index].wordProblem.name}
+            question={questionData[index]}
             submitGuess={submitGuess}
-            itemContainer={questionData[index].wordProblem.itemContainer}
-            noun1={questionData[index].wordProblem.item1}
           />
         );
       } else if (questionData[index].operator == "x") {
         return (
           <WordProblemMulti
-            question={questionData[index].text}
-            name={questionData[index].wordProblem.name}
+            question={questionData[index]}
             submitGuess={submitGuess}
-            itemContainer={questionData[index].wordProblem.itemContainer}
-            noun1={questionData[index].wordProblem.item1}
           />
         );
       } else if (questionData[index].operator == "÷") {
         return (
           <WordProblemDiv
-            question={questionData[index].text}
-            name={questionData[index].wordProblem.name}
+            question={questionData[index]}
             submitGuess={submitGuess}
-            noun1={questionData[index].wordProblem.item1}
           />
         );
       }
@@ -84,17 +70,14 @@ const QuestionSet = ({
       questionData[index].questionType === QuestionType.TRUE_OR_FALSE_PROBLEM
     ) {
       return (
-        <TrueorFalse
-          question={questionData[index].text}
-          submitGuess={submitGuess}
-        />
+        <TrueorFalse question={questionData[index]} submitGuess={submitGuess} />
       );
     } else if (
       questionData[index].questionType === QuestionType.LONG_DIVISION_PROBLEM
     ) {
       return (
         <LongDivision
-          question={questionData[index].text}
+          question={questionData[index]}
           submitGuess={submitGuess}
         />
       );
@@ -102,7 +85,7 @@ const QuestionSet = ({
 
     return (
       <HorizontalEquation
-        question={questionData[index].text}
+        question={questionData[index]}
         submitGuess={submitGuess}
       />
     );
