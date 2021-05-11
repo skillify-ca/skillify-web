@@ -1,5 +1,8 @@
 import { createWordProblemModel, WordProblemModel } from "./WordProblemModel";
 import { QuestionType } from "./questionTypes";
+import { Topic } from "./questionGenerator";
+import { subtract } from "lodash";
+
 
 const NUM_QUESTIONS = 5;
 
@@ -17,9 +20,18 @@ export type Question = {
   wordProblem?: WordProblemModel;
 };
 
-const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: number) => {
+const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: number, operator: Topic) => {
   let questionGenerator: (min: number, max: number) => FlashcardQuestion;
-  questionGenerator = getRandomAdditionQuestion;
+  switch (operator){
+    case Topic.SUBTRACTION:
+      questionGenerator = getRandomSubtractionQuestion;
+      break;
+    case Topic.ADDITION:
+      questionGenerator = getRandomAdditionQuestion;
+      break;
+    default: 
+      console.log('ERROR');
+  }
   const res = [];
   for (let i = 0; i < numberOfQuestions; i++) {
       let min = 1;
@@ -31,18 +43,26 @@ const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: n
           min = 101;
           max = 1000;
       }
-      
     res.push(questionGenerator(min, max));
   }
   return res;
 };
 
 export const generateAdditionQuestions = (
+  difficulty: string,
+) => {
+  if (difficulty != null) {
+    const digitDifficulty = difficulty;
+    return generateQuestionsForTopic(digitDifficulty, NUM_QUESTIONS, Topic.ADDITION);
+  }
+  return [];
+};
+export const generateSubtractionQuestions = (
   slug: string,
 ) => {
   if (slug != null) {
     const digitDifficulty = slug;
-    return generateQuestionsForTopic(digitDifficulty, NUM_QUESTIONS);
+    return generateQuestionsForTopic(digitDifficulty, NUM_QUESTIONS, Topic.SUBTRACTION);
   }
   return [];
 };
@@ -50,6 +70,11 @@ export const generateAdditionQuestions = (
 function getRandomAdditionQuestion(min: number, max: number) {
   const add = (a: number, b: number) => a + b;
   return getRandomBinaryQuestion(min, max, "+", add);
+}
+
+function getRandomSubtractionQuestion(min: number, max: number) {
+  const subtract = (a: number, b: number) => a - b;
+  return getRandomBinaryQuestion(min, max, "-", subtract);
 }
 
 function getRandomBinaryQuestion(

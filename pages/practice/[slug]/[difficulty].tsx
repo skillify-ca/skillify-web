@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   generateAdditionQuestions,
+  generateSubtractionQuestions,
   Question,
-} from "../api/practiceQuestionGenerator";
-import QuestionSet from "../../components/stories/QuestionSet";
-import { QuestionType } from "../api/questionTypes";
+} from "../../api/practiceQuestionGenerator";
+import QuestionSet from "../../../components/stories/QuestionSet";
+import { QuestionType } from "../../api/questionTypes";
 
-import Navbar from "../../components/Navbar";
+import Navbar from "../../../components/Navbar";
 
-const PracticeQuiz = ({ slug }) => {
+const PracticeQuiz = ({ slug, difficulty }) => {
   const [index, setIndex] = useState(0);
   const [guess, setGuess] = useState("");
   const [interval, setMyInterval] = useState(null);
@@ -18,7 +19,11 @@ const PracticeQuiz = ({ slug }) => {
   const inputElement = useRef(null);
 
   useEffect(() => {
-    setQuestionData(generateAdditionQuestions(slug));
+    if (slug == "addition") {
+      setQuestionData(generateAdditionQuestions(difficulty));
+    } else if (slug == "subtraction") {
+      setQuestionData(generateSubtractionQuestions(difficulty));
+    }
   }, []);
 
   const submitGuess = (e) => {
@@ -53,6 +58,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       slug: params.slug,
+      difficulty: params.difficulty,
     },
   };
 }
@@ -60,10 +66,14 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { slug: "single-digit" } },
-      { params: { slug: "double-digit" } },
-      { params: { slug: "triple-digit" } },
-      { params: { slug: "properties" } },
+      { params: { slug: "addition", difficulty: "single-digit" } },
+      { params: { slug: "addition", difficulty: "double-digit" } },
+      { params: { slug: "addition", difficulty: "triple-digit" } },
+      { params: { slug: "addition", difficulty: "properties" } },
+      { params: { slug: "subtraction", difficulty: "single-digit" } },
+      { params: { slug: "subtraction", difficulty: "double-digit" } },
+      { params: { slug: "subtraction", difficulty: "triple-digit" } },
+      { params: { slug: "subtraction", difficulty: "properties" } },
     ],
     fallback: true,
   };
