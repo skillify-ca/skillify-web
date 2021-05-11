@@ -23,11 +23,11 @@ export type Question = {
 const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: number, operator: Topic) => {
   let questionGenerator: (min: number, max: number) => FlashcardQuestion;
   switch (operator){
-    case Topic.ADDITION:
-      questionGenerator = getRandomAdditionQuestion;
-      break;
     case Topic.SUBTRACTION:
       questionGenerator = getRandomSubtractionQuestion;
+      break;
+    case Topic.ADDITION:
+      questionGenerator = getRandomAdditionQuestion;
       break;
     default: 
       console.log('ERROR');
