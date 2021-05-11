@@ -25,7 +25,6 @@ export default function Diagnostic(props) {
   const [testLength, setTestLength] = useState(TestLength.MEDIUM);
   const [stage, setStage] = useState(STAGE.CREATE);
   const [index, setIndex] = useState(0);
-  const [guess, setGuess] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [questionData, setQuestionData] = useState<Question[]>([
     { text: "", answer: 0, questionType: QuestionType.HORIZONTAL_EQUATION },

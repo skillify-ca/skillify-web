@@ -19,8 +19,12 @@ export const HorizontalEquation: React.FC<HorizontalEquationProp> = ({
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
-      submitGuess(e);
+      onSubmit();
     }
+  };
+  const onSubmit = () => {
+    submitGuess(Number.parseInt(guess));
+    setGuess("");
   };
   const parse = () => {
     const parts = question.split(" ");
