@@ -48,7 +48,16 @@
         { "text": "I can multiply one digit numbers", "key": "single-digit" },
         { "text": "I can multiply two digit numbers", "key": "double-digit" },
         { "text": "I can multiply three digit numbers", "key": "triple-digit"},
-        { "text": "I can multiply and use properties of Subtration", "key": "properties" }
+        { "text": "I can multiply and use properties of Multiplication", "key": "properties" }
+      ]
+    },
+    {
+      "name": "division",
+      "statements": [
+        { "text": "I can divide one digit numbers", "key": "single-digit" },
+        { "text": "I can divide two digit numbers", "key": "double-digit" },
+        { "text": "I can divide three digit numbers", "key": "triple-digit"},
+        { "text": "I can divide and use properties of Division", "key": "properties" }
       ]
     }
   ]
