@@ -40,16 +40,16 @@ export default function Diagnostic(props) {
     if (isCorrect) {
       setCorrectGuesses(correctGuesses + 1);
     }
+    if (index == questionData.length - 1) {
+      console.log("done!");
+      setStage(STAGE.RESULTS);
+    }
   };
 
   const createDiagnostic = (topics: Topic[], testLength: TestLength) => {
     setTopics(topics);
     setTestLength(testLength);
     setStage(STAGE.TEST);
-  };
-
-  const DiagnosticScores = () => {
-    setStage(STAGE.RESULTS);
   };
 
   useEffect(() => {
