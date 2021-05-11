@@ -22,16 +22,16 @@ const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: n
   questionGenerator = getRandomAdditionQuestion;
   const res = [];
   for (let i = 0; i < numberOfQuestions; i++) {
-    let min = 1;
-    let max = 10;
-    if (digitDifficulty == "double-digit") {
-      min = 11;
-      max = 100;
-    } else if (digitDifficulty == "triple-digit") {
-      min = 101;
-      max = 1000;
-    }
-
+      let min = 1;
+      let max = 10;
+      if (digitDifficulty == "double-digit") {
+          min = 11;
+          max = 100;
+      } else if (digitDifficulty == "triple-digit") {
+          min = 101;
+          max = 1000;
+      }
+      
     res.push(questionGenerator(min, max));
   }
   return res;

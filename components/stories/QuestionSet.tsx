@@ -10,6 +10,7 @@ import { WordProblemAdd } from "./WordProblemAdd";
 import { WordProblemSub } from "./WordProblemSub";
 import { WordProblemMulti } from "./WordProblemMulti";
 import { GuessData } from "../../pages/api/guessData";
+import { WordProblemDiv } from "./WordProblemDiv";
 
 type QuestionSetProps = {
   title: string;
@@ -55,6 +56,15 @@ const QuestionSet = ({
           <WordProblemMulti
             question={questionData[index]}
             submitGuess={submitGuess}
+          />
+        );
+      } else if (questionData[index].operator == "÷") {
+        return (
+          <WordProblemDiv
+            question={questionData[index].text}
+            name={questionData[index].wordProblem.name}
+            submitGuess={submitGuess}
+            noun1={questionData[index].wordProblem.item1}
           />
         );
       }

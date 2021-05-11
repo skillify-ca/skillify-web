@@ -69,12 +69,12 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
           label="True"
           backgroundColor="green"
           onClick={(_) => onSubmit(true)}
-        ></Button>
+        />
         <Button
           label="False"
           backgroundColor="red"
           onClick={(_) => onSubmit(false)}
-        ></Button>
+        />
       </div>
     </div>
   );
