@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Button } from "../components/stories/Button";
+import DiagnosticData from "../components/stories/DiagnosticData";
 import DiagnosticResults from "../components/stories/DiagnosticResults";
 import DiagnosticTestForm from "../components/stories/DiagnosticTestForm";
 import Dropdown from "../components/stories/Dropdown";
@@ -18,6 +19,7 @@ enum STAGE {
   CREATE,
   TEST,
   RESULTS,
+  DATA,
 }
 
 export default function Diagnostic(props) {
@@ -41,7 +43,6 @@ export default function Diagnostic(props) {
       setCorrectGuesses(correctGuesses + 1);
     }
     if (index == questionData.length - 1) {
-      console.log("done!");
       setStage(STAGE.RESULTS);
     }
   };
@@ -50,6 +51,10 @@ export default function Diagnostic(props) {
     setTopics(topics);
     setTestLength(testLength);
     setStage(STAGE.TEST);
+  };
+
+  const createDiagnosticData = () => {
+    setStage(STAGE.DATA);
   };
 
   useEffect(() => {
@@ -76,7 +81,16 @@ export default function Diagnostic(props) {
       break;
     case STAGE.RESULTS:
       component = (
-        <DiagnosticResults correctGuesses={correctGuesses} index={index + 1} />
+        <DiagnosticResults
+          correctGuesses={correctGuesses}
+          index={index + 1}
+          onClick={createDiagnosticData}
+        />
+      );
+      break;
+    case STAGE.DATA:
+      component = (
+        <DiagnosticData correctGuesses={correctGuesses} index={index + 1} />
       );
   }
 
