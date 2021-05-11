@@ -15,5 +15,6 @@ const Template: Story<MultipleChoiceProp> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
+  displayQuestion: "Which Property of Addition is Shown?",
   question: "3 + 2 = 2 + 3 ",
 };

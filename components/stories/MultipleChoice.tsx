@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "./Button";
 
 export interface MultipleChoiceProp {
+  displayQuestion?: string;
   question?: string;
   submitGuess: (e) => void;
 }
@@ -19,6 +20,7 @@ export enum MCType {
 let ans;
 let displayAns;
 export const MultipleChoice: React.FC<MultipleChoiceProp> = ({
+  displayQuestion,
   question,
   submitGuess,
   ...props
@@ -59,6 +61,7 @@ export const MultipleChoice: React.FC<MultipleChoiceProp> = ({
   }
   return (
     <div className="flex flex-col items-center space-y-16">
+      <h1 className="text-4l underline font-bold"> {displayQuestion} </h1>
       <p className="text-4xl">{question}</p>
       <div className="flex flex-row  item-center space-x-4 ">
         <Button
