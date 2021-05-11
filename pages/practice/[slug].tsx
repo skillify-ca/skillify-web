@@ -22,10 +22,12 @@ const PracticeQuiz = ({ slug }) => {
   }, []);
 
   const submitGuess = (e) => {
+    console.log(e);
     e.preventDefault();
-    if (index < length - 1) {
+    if (index < questionData.length - 1) {
       setIndex(index + 1);
       setGuess("");
+
       if (inputElement.current) {
         inputElement.current.focus();
       }
