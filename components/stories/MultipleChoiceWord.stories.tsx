@@ -7,7 +7,7 @@ import {
 } from "./MultipleChoiceWord";
 
 export default {
-  title: "Multiple Choice",
+  title: "Multiple Choice Word",
   component: MultipleChoiceWord,
   argTypes: {},
 } as Meta;

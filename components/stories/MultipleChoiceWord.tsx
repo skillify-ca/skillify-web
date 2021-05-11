@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "./Button";
+import { MCType } from "./MultipleChoiceTypes";
 
 export interface MultipleChoiceWordProp {
   displayQuestion?: string;
@@ -9,12 +10,6 @@ export interface MultipleChoiceWordProp {
 
 export function randomize(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
-}
-
-export enum MCType {
-  ASSOCIATIVE,
-  COMMUTATIVE,
-  IDENTITY,
 }
 
 let ans;
@@ -27,10 +22,14 @@ export const MultipleChoiceWord: React.FC<MultipleChoiceWordProp> = ({
 }) => {
   const parse = () => {
     const qlen = question.length;
-    const i = 0;
+    let i = 0;
     while (i < qlen) {
-      if (question[i] == "(") ans = MCType.ASSOCIATIVE;
-      break;
+      if (question[i] == "(") {
+        ans = MCType.ASSOCIATIVE;
+        break;
+      } else {
+        ++i;
+      }
     }
 
     const part = question.split(" ");
