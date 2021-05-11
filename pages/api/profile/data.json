@@ -27,19 +27,19 @@
     {
       "name": "addition",
       "statements": [
-        { "text": "Add one digit numbers", "key": "single-digit" },
-        { "text": "Add two digit numbers", "key": "double-digit" },
-        { "text": "Add three digit numbers", "key": "triple-digit"},
-        { "text": "Identify and use properties of addition", "key": "properties" }
+        { "text": "I can add one digit numbers", "key": "single-digit" },
+        { "text": "I can add two digit numbers", "key": "double-digit" },
+        { "text": "I can add three digit numbers", "key": "triple-digit"},
+        { "text": "I can identify and use properties of addition", "key": "properties" }
       ]
     },
     {
       "name": "subtraction",
       "statements": [
-        { "text": "Subtract one digit numbers", "key": "single-digit" },
-        { "text": "Subtract two digit numbers", "key": "double-digit" },
-        { "text": "Subtract three digit numbers", "key": "triple-digit"},
-        { "text": "Identify and use properties of Subtration", "key": "properties" }
+        { "text": "I can subtract one digit numbers", "key": "single-digit" },
+        { "text": "I can subtract two digit numbers", "key": "double-digit" },
+        { "text": "I can subtract three digit numbers", "key": "triple-digit"},
+        { "text": "I can identify and use properties of Subtration", "key": "properties" }
       ]
     }
   ]
