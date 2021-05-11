@@ -7,6 +7,7 @@ import QuestionSet from "../../components/stories/QuestionSet";
 import { QuestionType } from "../api/questionTypes";
 
 import Navbar from "../../components/Navbar";
+import { GuessData } from "../api/guessData";
 
 const PracticeQuiz = ({ slug }) => {
   const [index, setIndex] = useState(0);
@@ -20,7 +21,7 @@ const PracticeQuiz = ({ slug }) => {
     setQuestionData(generateAdditionQuestions(slug));
   }, []);
 
-  const submitGuess = (guess: number) => {
+  const submitGuess = (guess: GuessData) => {
     if (index < length - 1) {
       setIndex(index + 1);
       if (inputElement.current) {

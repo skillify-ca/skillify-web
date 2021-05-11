@@ -1,37 +1,24 @@
 import { createWordProblemModel, WordProblemModel } from "./WordProblemModel";
 import { QuestionType } from "./questionTypes";
+import { AnswerType, Question } from "./question";
 
 const NUM_QUESTIONS = 5;
 
-
-export type FlashcardQuestion = {
-  text: String;
-  answer: number;
-};
-
-export type Question = {
-  text: string;
-  answer: number;
-  questionType: QuestionType;
-  operator?: string;
-  wordProblem?: WordProblemModel;
-};
-
 const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: number) => {
-  let questionGenerator: (min: number, max: number) => FlashcardQuestion;
+  let questionGenerator: (min: number, max: number) => Question;
   questionGenerator = getRandomAdditionQuestion;
   const res = [];
   for (let i = 0; i < numberOfQuestions; i++) {
-      let min = 1;
-      let max = 10;
-      if (digitDifficulty == "double-digit") {
-          min = 11;
-          max = 100;
-      } else if (digitDifficulty == "triple-digit") {
-          min = 101;
-          max = 1000;
-      }
-      
+    let min = 1;
+    let max = 10;
+    if (digitDifficulty == "double-digit") {
+      min = 11;
+      max = 100;
+    } else if (digitDifficulty == "triple-digit") {
+      min = 101;
+      max = 1000;
+    }
+
     res.push(questionGenerator(min, max));
   }
   return res;
@@ -77,7 +64,8 @@ function getRandomBinaryQuestion(
   }
   return {
     text: text,
-    answer: answerFunction(Math.max(a, b), Math.min(a, b)),
+    answer: answerFunction(Math.max(a, b), Math.min(a, b)).toString(),
+    answerType: type === QuestionType.TRUE_OR_FALSE_PROBLEM ? AnswerType.BOOLEAN : AnswerType.NUMBER,
     questionType: type,
     operator: operator,
     wordProblem: wordProblemModel,

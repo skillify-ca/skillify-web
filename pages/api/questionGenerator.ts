@@ -1,4 +1,5 @@
 import { HorizontalEquation } from '../../components/stories/HorizontalEquation';
+import { AnswerType, Question } from './question';
 import { QuestionType } from './questionTypes';
 import { createWordProblemModel, WordProblemModel } from './WordProblemModel';
 
@@ -24,20 +25,6 @@ export enum Difficulty {
 	MEDIUM,
 	HARD
 }
-
-export enum AnswerType {
-	NUMBER,
-	BOOLEAN
-}
-
-export type Question = {
-	text: string;
-	answer: string;
-	answerType: AnswerType;
-	questionType: QuestionType;
-	operator?: string;
-	wordProblem?: WordProblemModel;
-};
 
 export const generateQuestionsForDiagnostic = (testLength: TestLength, topics: Topic[]) => {
 	let questionsPerSection = 0;
@@ -186,7 +173,7 @@ function getRandomBinaryQuestion(
 	return {
 		text: text,
 		answer: answerFunction(Math.max(a, b), Math.min(a, b)).toString(),
-		answerType: AnswerType.NUMBER,
+		answerType: type === QuestionType.TRUE_OR_FALSE_PROBLEM ? AnswerType.BOOLEAN : AnswerType.NUMBER,
 		questionType: type,
 		operator: operator,
 		wordProblem: wordProblemModel
