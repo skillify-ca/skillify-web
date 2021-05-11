@@ -29,6 +29,7 @@ export default function Diagnostic(props) {
   const [index, setIndex] = useState(0);
   const [guess, setGuess] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState(0);
+  const [guessAns, setGuessAns] = useState<Array<string>>([]);
   const [questionData, setQuestionData] = useState<Question[]>([
     { text: "", answer: 0, questionType: QuestionType.HORIZONTAL_EQUATION },
   ]);
@@ -41,6 +42,9 @@ export default function Diagnostic(props) {
     let isCorrect = Number.parseInt(e) == questionData[index].answer;
     if (isCorrect) {
       setCorrectGuesses(correctGuesses + 1);
+      setGuessAns((prevArray) => [...prevArray, "Correct"]);
+    } else {
+      setGuessAns((prevArray) => [...prevArray, "Incorrect"]);
     }
     if (index == questionData.length - 1) {
       setStage(STAGE.RESULTS);
@@ -92,6 +96,7 @@ export default function Diagnostic(props) {
       component = (
         <DiagnosticData
           questions={questionData.map((question) => question.text)}
+          guessAns={guessAns}
         />
       );
   }
