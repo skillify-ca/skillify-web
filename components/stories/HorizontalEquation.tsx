@@ -50,7 +50,7 @@ export const HorizontalEquation: React.FC<HorizontalEquationProp> = ({
         handleKeypress={handleKeypress}
       />
       <Button
-        onClick={(e) => submitGuess(guess)}
+        onClick={onSubmit}
         label="Submit"
         backgroundColor="blue"
         textColor="white"
