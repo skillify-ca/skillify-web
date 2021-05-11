@@ -1,7 +1,8 @@
 import React from "react";
 import { Button } from "./Button";
+import { AdditionProperty } from "./MultipleChoiceTypes";
 
-export interface MultipleChoiceProp {
+export interface MultipleChoiceWordProp {
   displayQuestion?: string;
   question?: string;
   submitGuess: (e) => void;
@@ -11,15 +12,9 @@ export function randomize(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-export enum MCType {
-  ASSOCIATIVE,
-  COMMUTATIVE,
-  IDENTITY,
-}
-
 let ans;
 let displayAns;
-export const MultipleChoice: React.FC<MultipleChoiceProp> = ({
+export const MultipleChoiceWord: React.FC<MultipleChoiceWordProp> = ({
   displayQuestion,
   question,
   submitGuess,
@@ -27,10 +22,14 @@ export const MultipleChoice: React.FC<MultipleChoiceProp> = ({
 }) => {
   const parse = () => {
     const qlen = question.length;
-    const i = 0;
+    let i = 0;
     while (i < qlen) {
-      if (question[i] == "(") ans = MCType.ASSOCIATIVE;
-      break;
+      if (question[i] == "(") {
+        ans = AdditionProperty.ASSOCIATIVE;
+        break;
+      } else {
+        ++i;
+      }
     }
 
     const part = question.split(" ");
@@ -41,22 +40,22 @@ export const MultipleChoice: React.FC<MultipleChoiceProp> = ({
   };
   switch (parse().third) {
     case "0":
-      ans = MCType.IDENTITY;
+      ans = AdditionProperty.IDENTITY;
       break;
     default:
-      ans = MCType.IDENTITY;
+      ans = AdditionProperty.IDENTITY;
       break;
   }
   const MCValue = randomize(0, 3);
   switch (MCValue) {
     case 0:
-      displayAns = MCType.ASSOCIATIVE;
+      displayAns = AdditionProperty.ASSOCIATIVE;
       break;
     case 1:
-      displayAns = MCType.COMMUTATIVE;
+      displayAns = AdditionProperty.COMMUTATIVE;
       break;
     case 2:
-      displayAns = MCType.IDENTITY;
+      displayAns = AdditionProperty.IDENTITY;
       break;
   }
   return (
