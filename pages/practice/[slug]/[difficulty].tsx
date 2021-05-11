@@ -2,19 +2,23 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   generateAdditionQuestions,
   generateSubtractionQuestions,
-  Question,
 } from "../../api/practiceQuestionGenerator";
 import QuestionSet from "../../../components/stories/QuestionSet";
 import { QuestionType } from "../../api/questionTypes";
-
+import { GuessData } from "../../api/guessData";
+import { AnswerType, Question } from "../../api/question";
 import Navbar from "../../../components/Navbar";
 
 const PracticeQuiz = ({ slug, difficulty }) => {
   const [index, setIndex] = useState(0);
-  const [guess, setGuess] = useState("");
   const [interval, setMyInterval] = useState(null);
   const [questionData, setQuestionData] = useState<Question[]>([
-    { text: "", answer: 0, questionType: QuestionType.HORIZONTAL_EQUATION },
+    {
+      text: "",
+      answer: "",
+      answerType: AnswerType.NUMBER,
+      questionType: QuestionType.HORIZONTAL_EQUATION,
+    },
   ]);
   const inputElement = useRef(null);
 
@@ -26,11 +30,9 @@ const PracticeQuiz = ({ slug, difficulty }) => {
     }
   }, []);
 
-  const submitGuess = (e) => {
-    e.preventDefault();
+  const submitGuess = (guess: GuessData) => {
     if (index < length - 1) {
       setIndex(index + 1);
-      setGuess("");
       if (inputElement.current) {
         inputElement.current.focus();
       }
@@ -46,8 +48,6 @@ const PracticeQuiz = ({ slug, difficulty }) => {
         title={slug}
         questionData={questionData}
         index={index}
-        guess={guess}
-        setGuess={setGuess}
         inputElement={inputElement}
         submitGuess={submitGuess}
       />

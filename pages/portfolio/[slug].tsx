@@ -36,8 +36,8 @@ const Portfolio = ({ slug }) => {
 
   useEffect(() => {
     if (guessesResult.data && userId(session) != "-1") {
-      console.log("guessesResult.data", guessesResult.data)
-      console.log(getSkillIdFromSlug(slug))
+      console.log("guessesResult.data", guessesResult.data);
+      console.log(getSkillIdFromSlug(slug));
       setGuesses(guessesResult.data.flashcard_guesses);
       const sessions = groupByPracticeSession(
         guessesResult.data.flashcard_guesses
