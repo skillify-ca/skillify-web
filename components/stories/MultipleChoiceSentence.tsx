@@ -59,28 +59,26 @@ export const MultipleChoiceSentence: React.FC<MultipleChoiceSentenceProp> = ({
   return (
     <div className="flex flex-col items-center space-y-16">
       <h1 className="text-4xl"> {displayQuestion} </h1>
-      <div className="flex flex-row  item-center space-x-4 ">
-        <Button
-          label={option1.question}
-          backgroundColor="red"
-          onClick={submitGuess}
-        ></Button>
-        <Button
-          label={option2.question}
-          backgroundColor="blue"
-          onClick={submitGuess}
-        ></Button>
-        <Button
-          label={option3.question}
-          backgroundColor="yellow"
-          onClick={submitGuess}
-        ></Button>
-        <Button
-          label={option4.question}
-          backgroundColor="green"
-          onClick={submitGuess}
-        ></Button>
-      </div>
+      <Button
+        label={option1.question}
+        backgroundColor="red"
+        onClick={submitGuess}
+      ></Button>
+      <Button
+        label={option2.question}
+        backgroundColor="blue"
+        onClick={submitGuess}
+      ></Button>
+      <Button
+        label={option3.question}
+        backgroundColor="yellow"
+        onClick={submitGuess}
+      ></Button>
+      <Button
+        label={option4.question}
+        backgroundColor="green"
+        onClick={submitGuess}
+      ></Button>
     </div>
   );
 };
