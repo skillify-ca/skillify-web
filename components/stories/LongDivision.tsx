@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
-import { Question } from "../../pages/api/questionGenerator";
+import { Question } from "../../pages/api/question";
 import { Button } from "./Button";
 
 export interface LongDivisionProp {

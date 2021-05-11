@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Question } from "../../pages/api/questionGenerator";
+import { Question } from "../../pages/api/question";
 import { Noun } from "../../pages/api/WordProblemModelObjects";
 import { Button } from "./Button";
 import { Input } from "./Input";
