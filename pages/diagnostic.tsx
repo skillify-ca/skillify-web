@@ -8,10 +8,9 @@ import Dropdown from "../components/stories/Dropdown";
 import QuestionSet from "../components/stories/QuestionSet";
 import Toggle from "../components/stories/Toggle";
 import { GuessData } from "./api/guessData";
+import { AnswerType, Question } from "./api/question";
 import {
-  AnswerType,
   generateQuestionsForDiagnostic,
-  Question,
   TestLength,
   Topic,
 } from "./api/questionGenerator";
