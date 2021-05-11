@@ -62,11 +62,6 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
           backgroundColor="green"
           onClick={submitGuess}
         ></Button>
-        <Button
-          label="False"
-          backgroundColor="red"
-          onClick={submitGuess}
-        ></Button>
       </div>
     </div>
   );
