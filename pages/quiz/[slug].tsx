@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Modal, ModalTransition } from "react-simple-hook-modal";
-import apiData from "../api/practice.json";
 import "react-simple-hook-modal/dist/styles.css";
 import Navbar from "../../components/Navbar";
 import { useRouter } from "next/router";
@@ -15,9 +14,6 @@ import { generateQuestions, Question } from "../api/questionGenerator";
 import { v4 as uuidv4 } from "uuid";
 import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
-import Card from "../../components/stories/Card";
-import { Button } from "../../components/stories/Button";
-import { VerticalEquation } from "../../components/stories/VerticalEquation";
 import QuestionSet from "../../components/stories/QuestionSet";
 import { QuestionType } from "../api/questionTypes";
 
@@ -25,7 +21,6 @@ const Quiz = ({ slug }) => {
   const { query } = useRouter();
   const [session] = useSession();
   const [index, setIndex] = useState(0);
-  const [guess, setGuess] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [isGameOver, setGameOver] = useState(false);
   const [secondsElapsed, setSecondsElapsed] = useState(0);
@@ -109,10 +104,9 @@ const Quiz = ({ slug }) => {
     }
   }, [session]);
 
-  const submitGuess = (e) => {
-    e.preventDefault();
+  const submitGuess = (currentGuess: number) => {
+    const isCorrect = currentGuess === questionData[index].answer;
 
-    let isCorrect = Number.parseInt(guess) == questionData[index].answer;
     if (isCorrect) {
       setCorrectGuesses(correctGuesses + 1);
     }
@@ -120,7 +114,7 @@ const Quiz = ({ slug }) => {
       variables: {
         userId: userId(session),
         question: questionData[index].text,
-        guess: guess,
+        guess: currentGuess.toString(),
         timeTaken: 3,
         sessionId: sessionId,
         is_correct: isCorrect,
@@ -129,7 +123,6 @@ const Quiz = ({ slug }) => {
     });
     if (index < length - 1) {
       setIndex(index + 1);
-      setGuess("");
       if (inputElement.current) {
         inputElement.current.focus();
       }
@@ -173,7 +166,6 @@ const Quiz = ({ slug }) => {
   const onCloseGameOver = () => {
     setIndex(0);
     setCorrectGuesses(0);
-    setGuess("");
     setGameOver(false);
     setSecondsElapsed(0);
     setQuestionData(generateQuestions(slug, currentLevel));
@@ -195,8 +187,6 @@ const Quiz = ({ slug }) => {
         title={slug}
         questionData={questionData}
         index={index}
-        guess={guess}
-        setGuess={setGuess}
         inputElement={inputElement}
         submitGuess={submitGuess}
       />

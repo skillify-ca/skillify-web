@@ -8,7 +8,7 @@ import { Button } from "./Button";
 import { Input } from "./Input";
 
 export interface WordProblemAddProp {
-  submitGuess: (e) => void;
+  submitGuess: (guess: number) => void;
   question: string;
   name: string;
   itemContainer?: ItemContainerObj;
@@ -31,8 +31,12 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
-      submitGuess(e);
+      onSubmit();
     }
+  };
+  const onSubmit = () => {
+    setGuess("");
+    submitGuess(Number.parseInt(guess));
   };
   const parse = () => {
     const parts = question.split(" ");
@@ -75,7 +79,7 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
         <img src={noun1.image} width="60px" height="85px" />
       </div>
       <Button
-        onClick={submitGuess}
+        onClick={onSubmit}
         label="Submit"
         backgroundColor="blue"
         textColor="white"

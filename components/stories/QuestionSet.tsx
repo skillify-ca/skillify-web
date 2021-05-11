@@ -14,10 +14,8 @@ type QuestionSetProps = {
   title: string;
   questionData: Question[];
   index: number;
-  guess: any;
-  setGuess: any;
   inputElement: any;
-  submitGuess: any;
+  submitGuess: (guess: number) => void;
 };
 
 const QuestionSet = ({

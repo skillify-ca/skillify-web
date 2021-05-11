@@ -69,8 +69,6 @@ export default function Diagnostic(props) {
           title=""
           questionData={questionData}
           index={index}
-          guess={guess}
-          setGuess={setGuess}
           inputElement={inputElement}
           submitGuess={submitGuess}
         />
@@ -83,6 +81,7 @@ export default function Diagnostic(props) {
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
       <Navbar />
+      {correctGuesses}
       <div className="p-8 flex flex-col items-center justify-center">
         {component}
       </div>

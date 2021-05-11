@@ -5,7 +5,7 @@ import { Input } from "./Input";
 export interface VerticalEquationProp {
   question?: string;
   operator: string;
-  submitGuess: (e) => void;
+  submitGuess: (guess: number) => void;
 }
 
 /**
@@ -21,8 +21,12 @@ export const VerticalEquation: React.FC<VerticalEquationProp> = ({
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
-      submitGuess(e);
+      onSubmit();
     }
+  };
+  const onSubmit = () => {
+    setGuess("");
+    submitGuess(Number.parseInt(guess));
   };
   const parse = () => {
     const parts = question.split(" ");
@@ -46,7 +50,7 @@ export const VerticalEquation: React.FC<VerticalEquationProp> = ({
         handleKeypress={handleKeypress}
       />
       <Button
-        onClick={(e) => submitGuess(guess)}
+        onClick={onSubmit}
         label="Submit"
         backgroundColor="blue"
         textColor="white"

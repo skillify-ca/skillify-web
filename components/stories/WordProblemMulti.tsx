@@ -7,7 +7,7 @@ import { Button } from "./Button";
 import { Input } from "./Input";
 
 export interface WordProblemMultiProp {
-  submitGuess: (e) => void;
+  submitGuess: (guess: number) => void;
   question: string;
   name: string;
   itemContainer: ItemContainerObj;
