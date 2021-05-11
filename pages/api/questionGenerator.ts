@@ -64,7 +64,7 @@ export const generateQuestions = (slug: string, currentLevel: number) => {
 	if (slug != null) {
 		if (slug.toLowerCase() == 'numbers') {
 			return generateQuestionsForTopic(Topic.NUMBERS, currentLevel, NUM_QUESTIONS);
-		} else if (slug.toLowerCase() == 'subtraction') {
+		}else if (slug.toLowerCase() == 'subtraction') {
 			return generateQuestionsForTopic(Topic.SUBTRACTION, currentLevel, NUM_QUESTIONS);
 		}else{
 			return generateQuestionsForTopic(Topic.ADDITION, currentLevel, NUM_QUESTIONS);

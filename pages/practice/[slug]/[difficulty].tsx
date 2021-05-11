@@ -19,7 +19,6 @@ const PracticeQuiz = ({ slug, difficulty }) => {
   const inputElement = useRef(null);
 
   useEffect(() => {
-    console.log(slug);
     if (slug == "addition") {
       setQuestionData(generateAdditionQuestions(difficulty));
     } else if (slug == "subtraction") {

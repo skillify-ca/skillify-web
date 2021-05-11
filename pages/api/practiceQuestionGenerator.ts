@@ -51,9 +51,7 @@ const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: n
 export const generateAdditionQuestions = (
   difficulty: string,
 ) => {
-  console.log(difficulty);
   if (difficulty != null) {
-    console.log(difficulty);
     const digitDifficulty = difficulty;
     return generateQuestionsForTopic(digitDifficulty, NUM_QUESTIONS, Topic.ADDITION);
   }
