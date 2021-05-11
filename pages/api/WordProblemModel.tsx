@@ -70,6 +70,14 @@ export function createWordProblemModel(operator): WordProblemModel {
       item1: itemSelector(itemType),
       item2: itemSelector(itemType),
     };
+  } else if (operator == "/") {
+    return {
+      name: nameSelector(),
+      operator: operator,
+      itemContainer: getRandomItemFromMap(map),
+      nounType: itemType,
+      item1: itemSelector(itemType),
+    };
   } else {
     return {
       name: nameSelector(),
