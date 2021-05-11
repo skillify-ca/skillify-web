@@ -40,18 +40,16 @@ export default function Diagnostic(props) {
     if (isCorrect) {
       setCorrectGuesses(correctGuesses + 1);
     }
-    if (index == questionData.length - 1) {
-      const correctAns = correctGuesses;
-      const wrongAns = questionData.length - correctGuesses;
-      console.log(correctAns);
-      console.log(wrongAns);
-    }
   };
 
   const createDiagnostic = (topics: Topic[], testLength: TestLength) => {
     setTopics(topics);
     setTestLength(testLength);
     setStage(STAGE.TEST);
+  };
+
+  const DiagnosticScores = () => {
+    setStage(STAGE.RESULTS);
   };
 
   useEffect(() => {
@@ -77,7 +75,7 @@ export default function Diagnostic(props) {
       );
       break;
     case STAGE.RESULTS:
-      component = <DiagnosticResults />;
+      component = <DiagnosticResults correctGuesses={correctGuesses} />;
   }
 
   return (
