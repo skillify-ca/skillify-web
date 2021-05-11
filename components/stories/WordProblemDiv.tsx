@@ -1,27 +1,28 @@
 import React, { useState } from "react";
-import { noun } from "../../pages/api/WordProblemModel";
+import {
+  ItemContainerObj,
+  noun,
+} from "../../pages/api/WordProblemModelObjects";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
-export interface WordProblemProp {
+export interface WordProblemDivProp {
   submitGuess: (e) => void;
   question: string;
   name: string;
-  itemContainer?: string;
   noun1: noun;
-  noun2: noun;
 }
 
 /**
- * Primary UI component for user interaction
+ * The Division Word problem follows a specific template and is as follows:
+ * (name) has a (randomNumber2)(noun.title) and (randomNumber1) friends. (name) wants to share the (noun.title) equally between
+ * their (randomNumber1) friends. How many (noun.title) will each friend have?
  */
-export const WordProblem: React.FC<WordProblemProp> = ({
+export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
   submitGuess,
   question,
   name,
-  itemContainer,
   noun1,
-  noun2,
   ...props
 }) => {
   const [guess, setGuess] = useState("");
@@ -46,14 +47,23 @@ export const WordProblem: React.FC<WordProblemProp> = ({
   };
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="text-2xl flex flex-wrap">
+      <div className="text-xl flex flex-wrap">
         <p className="align-left">
-          {name} has a {itemContainer} of {noun1.type}. Inside, there are
-          <span className={noun1.colour}>{" " + parse().first + " "}</span>
-          {title(noun1, parse().first)} and
-          <span className={noun2.colour}>{" " + parse().second + " "}</span>
-          {title(noun2, parse().second)}. How many {noun1.type} are in the{" "}
-          {itemContainer}?
+          {name} has
+          <span className={noun1.colour}>
+            {" " + parse().first}
+            {" " + title(noun1, parse().second) + " "}{" "}
+          </span>
+          <span> and </span>
+          <span className="text-black font-extrabold">
+            {parse().second + " friends"}.
+          </span>
+          {" " + name} wants to share the {title(noun1, parse().first) + " "}
+          equally between them. How many
+          <span className={noun1.colour}>
+            {" " + title(noun1, parse().first) + " "}
+          </span>
+          will each friend have?
         </p>
       </div>
       <div className="text-2xl flex flex-wrap">
@@ -65,9 +75,9 @@ export const WordProblem: React.FC<WordProblemProp> = ({
       </div>
       <div className="flex flex-wrap mt-2">
         <img src={noun1.image} width="60px" height="85px" />
-        <img src={noun2.image} width="60px" height="85px" />
         <img src={noun1.image} width="60px" height="85px" />
-        <img src={noun2.image} width="60px" height="85px" />
+        <img src={noun1.image} width="60px" height="85px" />
+        <img src={noun1.image} width="60px" height="85px" />
         <img src={noun1.image} width="60px" height="85px" />
       </div>
       <Button

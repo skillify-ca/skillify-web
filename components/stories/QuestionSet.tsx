@@ -6,7 +6,10 @@ import { HorizontalEquation } from "./HorizontalEquation";
 import { LongDivision } from "./LongDivision";
 import { TrueorFalse } from "./TrueorFalse";
 import { VerticalEquation } from "./VerticalEquation";
-import { WordProblem } from "./WordProblem";
+import { WordProblemAdd } from "./WordProblemAdd";
+import { WordProblemSub } from "./WordProblemSub";
+import { WordProblemMulti } from "./WordProblemMulti";
+import { WordProblemDiv } from "./WordProblemDiv";
 
 type QuestionSetProps = {
   title: string;
@@ -36,24 +39,56 @@ const QuestionSet = ({
     } else if (
       questionData[index].questionType == QuestionType.BINARY_WORD_PROBLEM
     ) {
-      return (
-        <WordProblem
-          question={questionData[index].text}
-          name={questionData[index].wordProblem.name}
-          submitGuess={submitGuess}
-          itemContainer={questionData[index].wordProblem.itemContainer}
-          noun1={questionData[index].wordProblem.item1}
-          noun2={questionData[index].wordProblem.item2}
-        />
-      );
+      if (questionData[index].operator == "+") {
+        return (
+          <WordProblemAdd
+            question={questionData[index].text}
+            name={questionData[index].wordProblem.name}
+            submitGuess={submitGuess}
+            itemContainer={questionData[index].wordProblem.itemContainer}
+            noun1={questionData[index].wordProblem.item1}
+            noun2={questionData[index].wordProblem.item2}
+          />
+        );
+      } else if (questionData[index].operator == "-") {
+        return (
+          <WordProblemSub
+            question={questionData[index].text}
+            name={questionData[index].wordProblem.name}
+            submitGuess={submitGuess}
+            itemContainer={questionData[index].wordProblem.itemContainer}
+            noun1={questionData[index].wordProblem.item1}
+          />
+        );
+      } else if (questionData[index].operator == "x") {
+        return (
+          <WordProblemMulti
+            question={questionData[index].text}
+            name={questionData[index].wordProblem.name}
+            submitGuess={submitGuess}
+            itemContainer={questionData[index].wordProblem.itemContainer}
+            noun1={questionData[index].wordProblem.item1}
+          />
+        );
+      } else if (questionData[index].operator == "÷") {
+        return (
+          <WordProblemDiv
+            question={questionData[index].text}
+            name={questionData[index].wordProblem.name}
+            submitGuess={submitGuess}
+            noun1={questionData[index].wordProblem.item1}
+          />
+        );
+      }
     } else if (
       questionData[index].questionType === QuestionType.TRUE_OR_FALSE_PROBLEM
     ) {
-
-      return ( 
-        <TrueorFalse question={questionData[index].text} 
-                         submitGuess={submitGuess}/>
-              );  
+      return (
+        <TrueorFalse
+          question={questionData[index].text}
+          submitGuess={submitGuess}
+        />
+      );
     } else if (
       questionData[index].questionType === QuestionType.LONG_DIVISION_PROBLEM
     ) {
