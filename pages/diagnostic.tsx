@@ -41,10 +41,8 @@ export default function Diagnostic(props) {
       setCorrectGuesses(correctGuesses + 1);
     }
     if (index == questionData.length - 1) {
-      const correctAns = correctGuesses;
-      const wrongAns = questionData.length - correctGuesses;
-      console.log(correctAns);
-      console.log(wrongAns);
+      console.log("done!");
+      setStage(STAGE.RESULTS);
     }
   };
 
@@ -77,7 +75,7 @@ export default function Diagnostic(props) {
       );
       break;
     case STAGE.RESULTS:
-      component = <DiagnosticResults />;
+      component = <DiagnosticResults correctGuesses={correctGuesses} />;
   }
 
   return (
