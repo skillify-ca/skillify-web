@@ -9,6 +9,7 @@ import { VerticalEquation } from "./VerticalEquation";
 import { WordProblemAdd } from "./WordProblemAdd";
 import { WordProblemSub } from "./WordProblemSub";
 import { WordProblemMulti } from "./WordProblemMulti";
+import { WordProblemDiv } from "./WordProblemDiv";
 
 type QuestionSetProps = {
   title: string;
@@ -66,6 +67,15 @@ const QuestionSet = ({
             name={questionData[index].wordProblem.name}
             submitGuess={submitGuess}
             itemContainer={questionData[index].wordProblem.itemContainer}
+            noun1={questionData[index].wordProblem.item1}
+          />
+        );
+      } else if (questionData[index].operator == "÷") {
+        return (
+          <WordProblemDiv
+            question={questionData[index].text}
+            name={questionData[index].wordProblem.name}
+            submitGuess={submitGuess}
             noun1={questionData[index].wordProblem.item1}
           />
         );
