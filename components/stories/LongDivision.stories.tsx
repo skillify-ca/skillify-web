@@ -17,5 +17,5 @@ const Template: Story<LongDivisionProp> = (args) => <LongDivision {...args} />;
 export const Primary = Template.bind({});
 
 Primary.args = {
-  question: "10 / 2"
+  question: "1000 / 20"
 };

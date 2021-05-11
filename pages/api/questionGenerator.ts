@@ -1,3 +1,4 @@
+import { HorizontalEquation } from '../../components/stories/HorizontalEquation';
 import { QuestionType } from './questionTypes';
 import { createWordProblemModel, WordProblemModel } from './WordProblemModel';
 
@@ -138,14 +139,19 @@ function getRandomDivisionQuestion(min: number, max: number) {
 	const product = a * b;
 
 	const text = `${product} / ${b} =`;
-	const types = [ QuestionType.LONG_DIVISION_PROBLEM, QuestionType.HORIZONTAL_EQUATION ];
+	const types = [ QuestionType.LONG_DIVISION_PROBLEM, QuestionType.HORIZONTAL_EQUATION, QuestionType.BINARY_WORD_PROBLEM ];
 	const type = types[getRndInteger(0, types.length)];
+	let wordProblemModel;
+	if (type == QuestionType.BINARY_WORD_PROBLEM) {
+		wordProblemModel = createWordProblemModel('÷');
+	}
 
 	return {
 		text: text,
 		answer: a,
 		questionType: type,
-		operator: '÷'
+		operator: '÷',
+		wordProblem: wordProblemModel
 	};
 }
 
@@ -170,7 +176,7 @@ function getRandomBinaryQuestion(
 	let wordProblemModel;
 	//condition for if it is wordProblem
 	if (type === QuestionType.BINARY_WORD_PROBLEM) {
-		wordProblemModel = createWordProblemModel();
+		wordProblemModel = createWordProblemModel(operator);
 	}
 	return {
 		text: text,
