@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "./Button";
 
-export interface MultipleChoiceProp {
+export interface MultipleChoiceWordProp {
   displayQuestion?: string;
   question?: string;
   submitGuess: (e) => void;
@@ -19,7 +19,7 @@ export enum MCType {
 
 let ans;
 let displayAns;
-export const MultipleChoice: React.FC<MultipleChoiceProp> = ({
+export const MultipleChoiceWord: React.FC<MultipleChoiceWordProp> = ({
   displayQuestion,
   question,
   submitGuess,
