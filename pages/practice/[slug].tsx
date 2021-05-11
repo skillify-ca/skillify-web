@@ -10,7 +10,6 @@ import Navbar from "../../components/Navbar";
 
 const PracticeQuiz = ({ slug }) => {
   const [index, setIndex] = useState(0);
-  const [guess, setGuess] = useState("");
   const [interval, setMyInterval] = useState(null);
   const [questionData, setQuestionData] = useState<Question[]>([
     { text: "", answer: 0, questionType: QuestionType.HORIZONTAL_EQUATION },
@@ -21,11 +20,9 @@ const PracticeQuiz = ({ slug }) => {
     setQuestionData(generateAdditionQuestions(slug));
   }, []);
 
-  const submitGuess = (e) => {
-    e.preventDefault();
+  const submitGuess = (guess: number) => {
     if (index < length - 1) {
       setIndex(index + 1);
-      setGuess("");
       if (inputElement.current) {
         inputElement.current.focus();
       }
@@ -41,8 +38,6 @@ const PracticeQuiz = ({ slug }) => {
         title={slug}
         questionData={questionData}
         index={index}
-        guess={guess}
-        setGuess={setGuess}
         inputElement={inputElement}
         submitGuess={submitGuess}
       />
