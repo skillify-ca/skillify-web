@@ -61,10 +61,8 @@ const QuestionSet = ({
       } else if (questionData[index].operator == "÷") {
         return (
           <WordProblemDiv
-            question={questionData[index].text}
-            name={questionData[index].wordProblem.name}
+            question={questionData[index]}
             submitGuess={submitGuess}
-            noun1={questionData[index].wordProblem.item1}
           />
         );
       }

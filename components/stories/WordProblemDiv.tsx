@@ -7,7 +7,6 @@ import { Input } from "./Input";
 export interface WordProblemDivProp {
   submitGuess: (e) => void;
   question: Question;
-  noun1: Noun;
 }
 
 /**
