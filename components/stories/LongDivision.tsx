@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { GuessData } from "../../pages/api/guessData";
+import { Question } from "../../pages/api/questionGenerator";
 import { Button } from "./Button";
 
 export interface LongDivisionProp {
-  question?: string;
-  submitGuess: (e) => void;
+  question: Question;
+  submitGuess: (guess: GuessData) => void;
 }
 
 /**
@@ -23,8 +25,12 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
     }
   };
 
+  const onSubmit = () => {
+    setGuess("");
+    submitGuess({ guess: guess, isCorrect: guess === question.answer });
+  };
   const parse = () => {
-    const parts = question.split(" ");
+    const parts = question.text.split(" ");
     return {
       first: parts[0],
       second: parts[2],
@@ -63,7 +69,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
       </div>
       <div className="mt-4">
         <Button
-          onClick={(e) => submitGuess(guess)}
+          onClick={onSubmit}
           label="Submit"
           backgroundColor="blue"
           textColor="white"

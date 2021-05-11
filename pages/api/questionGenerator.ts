@@ -4,10 +4,6 @@ import { createWordProblemModel, WordProblemModel } from './WordProblemModel';
 
 const NUM_QUESTIONS = 5;
 
-export type FlashcardQuestion = {
-	text: String;
-	answer: number;
-};
 export enum Topic {
 	NUMBERS,
 	ADDITION,
@@ -29,9 +25,15 @@ export enum Difficulty {
 	HARD
 }
 
+export enum AnswerType {
+	NUMBER,
+	BOOLEAN
+}
+
 export type Question = {
 	text: string;
-	answer: number;
+	answer: string;
+	answerType: AnswerType;
 	questionType: QuestionType;
 	operator?: string;
 	wordProblem?: WordProblemModel;
@@ -78,13 +80,14 @@ function getRandomNumbersQuestion(min: number, max: number): Question {
 
 	return {
 		text: text,
-		answer: Math.max(a, b),
+		answer: Math.max(a, b).toString(),
+		answerType: AnswerType.NUMBER,
 		questionType: QuestionType.COMPARISON_WORD_PROBLEM
 	};
 }
 
 const generateQuestionsForTopic = (topic: Topic, currentLevel: Difficulty, numberOfQuestions: number) => {
-	let questionGenerator: (min: number, max: number) => FlashcardQuestion;
+	let questionGenerator: (min: number, max: number) => Question;
 	switch (topic) {
 		case Topic.NUMBERS:
 			questionGenerator = getRandomNumbersQuestion;
@@ -133,18 +136,19 @@ function getRandomMultiplicationQuestion(min: number, max: number) {
 	const multiply = (a: number, b: number) => a * b;
 	return getRandomBinaryQuestion(min, max, 'x', multiply);
 }
-function getRandomDivisionQuestion(min: number, max: number) {
+function getRandomDivisionQuestion(min: number, max: number): Question {
 	const a = getRndInteger(min, max);
 	const b = getRndInteger(min, max);
 	const product = a * b;
 
 	const text = `${product} / ${b} =`;
-	const types = [ QuestionType.LONG_DIVISION_PROBLEM, QuestionType.HORIZONTAL_EQUATION ];
+	const types = [QuestionType.LONG_DIVISION_PROBLEM, QuestionType.HORIZONTAL_EQUATION];
 	const type = types[getRndInteger(0, types.length)];
 
 	return {
 		text: text,
-		answer: a,
+		answer: a.toString(),
+		answerType: AnswerType.NUMBER,
 		questionType: type,
 		operator: '÷'
 	};
@@ -173,9 +177,11 @@ function getRandomBinaryQuestion(
 	if (type === QuestionType.BINARY_WORD_PROBLEM) {
 		wordProblemModel = createWordProblemModel(operator);
 	}
+
 	return {
 		text: text,
-		answer: answerFunction(Math.max(a, b), Math.min(a, b)),
+		answer: answerFunction(Math.max(a, b), Math.min(a, b)).toString(),
+		answerType: AnswerType.NUMBER,
 		questionType: type,
 		operator: operator,
 		wordProblem: wordProblemModel

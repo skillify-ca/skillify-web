@@ -6,7 +6,9 @@ import DiagnosticTestForm from "../components/stories/DiagnosticTestForm";
 import Dropdown from "../components/stories/Dropdown";
 import QuestionSet from "../components/stories/QuestionSet";
 import Toggle from "../components/stories/Toggle";
+import { GuessData } from "./api/guessData";
 import {
+  AnswerType,
   generateQuestionsForDiagnostic,
   Question,
   TestLength,
@@ -27,16 +29,21 @@ export default function Diagnostic(props) {
   const [index, setIndex] = useState(0);
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [questionData, setQuestionData] = useState<Question[]>([
-    { text: "", answer: 0, questionType: QuestionType.HORIZONTAL_EQUATION },
+    {
+      text: "",
+      answer: "",
+      answerType: AnswerType.NUMBER,
+      questionType: QuestionType.HORIZONTAL_EQUATION,
+    },
   ]);
   const inputElement = useRef(null);
 
-  const submitGuess = (e) => {
+  const submitGuess = (guessData: GuessData) => {
     if (index < questionData.length - 1) {
       setIndex(index + 1);
     }
-    let isCorrect = Number.parseInt(e) == questionData[index].answer;
-    if (isCorrect) {
+
+    if (guessData.isCorrect) {
       setCorrectGuesses(correctGuesses + 1);
     }
     if (index == questionData.length - 1) {

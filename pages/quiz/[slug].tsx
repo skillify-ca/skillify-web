@@ -10,12 +10,17 @@ import { UPDATE_USER_SKILLS } from "../../graphql/updateUserSkills";
 import { FETCH_USER_SKILLS } from "../../graphql/fetchUserSkills";
 import { FETCH_USER_SKILL } from "../../graphql/fetchUserSkill";
 import { UNLOCK_NEXT_SKILL } from "../../graphql/unlockNextSkill";
-import { generateQuestions, Question } from "../api/questionGenerator";
+import {
+  AnswerType,
+  generateQuestions,
+  Question,
+} from "../api/questionGenerator";
 import { v4 as uuidv4 } from "uuid";
 import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
 import QuestionSet from "../../components/stories/QuestionSet";
 import { QuestionType } from "../api/questionTypes";
+import { GuessData } from "../api/guessData";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -26,7 +31,12 @@ const Quiz = ({ slug }) => {
   const [secondsElapsed, setSecondsElapsed] = useState(0);
   const [interval, setMyInterval] = useState(null);
   const [questionData, setQuestionData] = useState<Question[]>([
-    { text: "", answer: 0, questionType: QuestionType.HORIZONTAL_EQUATION },
+    {
+      text: "",
+      answer: "",
+      answerType: AnswerType.NUMBER,
+      questionType: QuestionType.HORIZONTAL_EQUATION,
+    },
   ]);
   const [currentLevel, setCurrentLevel] = React.useState(0);
   const inputElement = useRef(null);
@@ -104,10 +114,8 @@ const Quiz = ({ slug }) => {
     }
   }, [session]);
 
-  const submitGuess = (currentGuess: number) => {
-    const isCorrect = currentGuess === questionData[index].answer;
-
-    if (isCorrect) {
+  const submitGuess = (currentGuess: GuessData) => {
+    if (currentGuess.isCorrect) {
       setCorrectGuesses(correctGuesses + 1);
     }
     createFlashcardGuess({
@@ -117,7 +125,7 @@ const Quiz = ({ slug }) => {
         guess: currentGuess.toString(),
         timeTaken: 3,
         sessionId: sessionId,
-        is_correct: isCorrect,
+        is_correct: currentGuess.isCorrect,
         skillId: getSkillIdFromSlug(slug),
       },
     });
@@ -182,6 +190,7 @@ const Quiz = ({ slug }) => {
   return (
     <div>
       <Navbar />
+      {correctGuesses}
       <QuestionSet
         title={slug}
         questionData={questionData}

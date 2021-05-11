@@ -1,19 +1,17 @@
 import { type } from "node:os";
 import React, { useState } from "react";
+import { GuessData } from "../../pages/api/guessData";
+import { Question } from "../../pages/api/questionGenerator";
 import {
   ItemContainerObj,
-  noun,
+  Noun,
 } from "../../pages/api/WordProblemModelObjects";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
 export interface WordProblemAddProp {
-  submitGuess: (guess: number) => void;
-  question: string;
-  name: string;
-  itemContainer?: ItemContainerObj;
-  noun1: noun;
-  noun2: noun;
+  submitGuess: (guess: GuessData) => void;
+  question: Question;
 }
 
 /* Addition Word problems are made with a specific template. The template is as follows: (name) has an (itemContainer) of (itemType). 
@@ -21,12 +19,12 @@ Inside there are [randomNumber1] (item1.title) and [randomNumber2] (item2.title)
 export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
   submitGuess,
   question,
-  name,
-  itemContainer,
-  noun1,
-  noun2,
   ...props
 }) => {
+  const name = question.wordProblem.name;
+  const itemContainer: ItemContainerObj = question.wordProblem.itemContainer;
+  const noun1: Noun = question.wordProblem.item1;
+  const noun2: Noun = question.wordProblem.item2;
   const [guess, setGuess] = useState("");
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
@@ -36,10 +34,10 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
   };
   const onSubmit = () => {
     setGuess("");
-    submitGuess(Number.parseInt(guess));
+    submitGuess({ guess: guess, isCorrect: guess === question.answer });
   };
   const parse = () => {
-    const parts = question.split(" ");
+    const parts = question.text.split(" ");
     return {
       first: parts[0],
       second: parts[2],

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { GuessData } from "../../pages/api/guessData";
+import { Question } from "../../pages/api/questionGenerator";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
 export interface HorizontalEquationProp {
-  question?: string;
-  submitGuess: (number) => void;
+  question: Question;
+  submitGuess: (guess: GuessData) => void;
 }
 
 /**
@@ -23,11 +25,14 @@ export const HorizontalEquation: React.FC<HorizontalEquationProp> = ({
     }
   };
   const onSubmit = () => {
-    submitGuess(Number.parseInt(guess));
+    submitGuess({
+      guess: guess,
+      isCorrect: guess === question.answer,
+    });
     setGuess("");
   };
   const parse = () => {
-    const parts = question.split(" ");
+    const parts = question.text.split(" ");
     if (parts[1] == "/") {
       parts[1] = " ÷ ";
     }
