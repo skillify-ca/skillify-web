@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-import {
-  ItemContainerObj,
-  noun,
-} from "../../pages/api/WordProblemModelObjects";
+import { Question } from "../../pages/api/questionGenerator";
+import { Noun } from "../../pages/api/WordProblemModelObjects";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
 export interface WordProblemDivProp {
   submitGuess: (e) => void;
-  question: string;
-  name: string;
-  noun1: noun;
+  question: Question;
+  noun1: Noun;
 }
 
 /**
@@ -21,10 +18,10 @@ export interface WordProblemDivProp {
 export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
   submitGuess,
   question,
-  name,
-  noun1,
   ...props
 }) => {
+  const name = question.wordProblem.name;
+  const noun1: Noun = question.wordProblem.item1;
   const [guess, setGuess] = useState("");
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
@@ -33,7 +30,7 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
     }
   };
   const parse = () => {
-    const parts = question.split(" ");
+    const parts = question.text.split(" ");
     return {
       first: parts[0],
       second: parts[2],
