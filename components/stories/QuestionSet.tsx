@@ -1,5 +1,4 @@
 import React from "react";
-import { Question } from "../../pages/api/questionGenerator";
 import { QuestionType } from "../../pages/api/questionTypes";
 import Card from "./Card";
 import { HorizontalEquation } from "./HorizontalEquation";
@@ -11,6 +10,7 @@ import { WordProblemSub } from "./WordProblemSub";
 import { WordProblemMulti } from "./WordProblemMulti";
 import { GuessData } from "../../pages/api/guessData";
 import { WordProblemDiv } from "./WordProblemDiv";
+import { Question } from "../../pages/api/question";
 
 type QuestionSetProps = {
   title: string;
