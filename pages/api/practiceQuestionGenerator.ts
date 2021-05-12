@@ -48,7 +48,6 @@ const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: n
     }
     else {
       res.push(questionGenerator(min, max));
-
     }
   }
   return res;
