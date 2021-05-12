@@ -18,9 +18,6 @@ const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: n
     case Topic.MULTIPLICATION:
       questionGenerator = getRandomMultiplicationQuestion;
       break;
-    case Topic.DIVISION:
-      questionGenerator = getRandomDivisionQuestion(digitDifficulty);
-      break;
     default: 
       console.log('ERROR');
   }
@@ -46,8 +43,13 @@ const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: n
     else if (digitDifficulty == "12_items_equally") {
       max = 13;
     }
+    if (operator === Topic.DIVISION) {
+    res.push(getRandomDivisionQuestion(min, max, digitDifficulty));
+    }
+    else {
+      res.push(questionGenerator(min, max));
 
-    res.push(questionGenerator(min, max));
+    }
   }
   return res;
 };
@@ -158,6 +160,7 @@ function getRandomBinaryQuestion(
 
     } */
     factor = Object.keys(tweleveMap[a]);
+    console.log(factor);
     b = getRndInteger(1, factor.length); 
   }
   
@@ -189,8 +192,5 @@ function getRandomBinaryQuestion(
 // Get random number between min (inclusive) and max (exclusive)
 export function getRndInteger(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
-}
-function twelveMap(twelveMap: any) {
-  throw new Error("Function not implemented.");
 }
 
