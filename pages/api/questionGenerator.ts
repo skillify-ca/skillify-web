@@ -9,11 +9,11 @@ export type FlashcardQuestion = {
 	answer: number;
 };
 export enum Topic {
-	NUMBERS,
-	ADDITION,
-	SUBTRACTION,
-	MULTIPLICATION,
-	DIVISION
+	NUMBERS = "Numbers",
+	ADDITION = "Addition",
+	SUBTRACTION = "Subtraction",
+	MULTIPLICATION = "Multiplication",
+	DIVISION = "Division"
 }
 
 export enum TestLength {
@@ -27,6 +27,12 @@ export enum Difficulty {
 	EASY,
 	MEDIUM,
 	HARD
+}
+
+export enum Skill {
+	ADDITION_ONE_DIGIT = "Add one digit numbers",
+	ADDITION_TWO_DIGIT = "Add two digit numbers",
+	ADDITION_THREE_DIGIT = "Add three digit numbers"
 }
 
 export type Question = {
@@ -53,6 +59,7 @@ export const generateQuestionsForDiagnostic = (testLength: TestLength, topics: T
 			questionsPerSection = 1;
 	}
 	let questions: Question[] = [];
+
 	topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.EASY, questionsPerSection)));
 	topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.MEDIUM, questionsPerSection)));
 	topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.HARD, questionsPerSection)));
