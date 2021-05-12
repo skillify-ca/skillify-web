@@ -110,7 +110,6 @@ function getRandomDivisionQuestion(min: number, max: number, digitDifficulty) {
   if (digitDifficulty == "12_items_equally") {
     let factor;
     factor = Object.keys(tweleveMap[a]);
-    console.log(factor);
     b = getRndInteger(1, factor.length); 
   }
 	const product = a * b;
