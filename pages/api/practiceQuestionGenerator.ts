@@ -2,6 +2,7 @@ import { createWordProblemModel, WordProblemModel } from "./WordProblemModel";
 import { QuestionType } from "./questionTypes";
 import { AnswerType, Question } from "./question";
 import { Topic } from "./questionGenerator";
+import { MCQuestion } from "./question"
 
 const NUM_QUESTIONS = 5;
 
@@ -41,6 +42,38 @@ const generateQuestionsForTopic = (
     res.push(questionGenerator(min, max));
   }
   return res;
+};
+
+const generateMCQuestionsforTopic = (
+  numberofQuestions: number,
+  operator: Topic,
+) => {
+  let questionMCGenerator: (min: number, max: number) => MCQuestion;
+  switch (operator) {
+    case Topic.ADDITIONPROPERTIES:
+      questionMCGenerator = getRandomMCAdditionQuestion;
+      break;
+    default:
+      console.log("ERROR");
+  }
+  const res = [];
+  for (let i = 0; i < numberofQuestions; ++i) {
+  let min = 1;
+  let max = 15;
+  res.push(questionMCGenerator(min, max));
+}
+return res;
+};
+
+
+export const generateAdditionMCQuestions = (slug: string) => {
+  if (slug != null) {
+    return generateMCQuestionsforTopic(
+      NUM_QUESTIONS,
+      Topic.ADDITIONPROPERTIES
+    );
+  }
+  return [];
 };
 
 export const generateAdditionQuestions = (difficulty: string) => {
@@ -146,3 +179,5 @@ function getRandomBinaryQuestion(
 export function getRndInteger(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
+
+

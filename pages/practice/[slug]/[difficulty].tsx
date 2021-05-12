@@ -8,7 +8,7 @@ import {
 import QuestionSet from "../../../components/stories/QuestionSet";
 import { QuestionType } from "../../api/questionTypes";
 import { GuessData } from "../../api/guessData";
-import { AnswerType, Question } from "../../api/question";
+import { AnswerType, MCQuestion, Question } from "../../api/question";
 import Navbar from "../../../components/Navbar";
 
 const PracticeQuiz = ({ slug, difficulty }) => {
@@ -22,11 +22,20 @@ const PracticeQuiz = ({ slug, difficulty }) => {
       questionType: QuestionType.HORIZONTAL_EQUATION,
     },
   ]);
+  const [questionMCData, setQuestionMCData] = useState<MCQuestion[]>([
+    {
+      text: "",
+      questionType: QuestionType.MULTIPLE_CHOICE,
+    },
+  ]);
+
   const inputElement = useRef(null);
 
   useEffect(() => {
-    if (slug == "addition") {
+    if (slug == "addition" && difficulty != "properties") {
       setQuestionData(generateAdditionQuestions(difficulty));
+    } else if (slug == "addition" && difficulty == "properties") {
+      setQuestionMCData(generateAdditionMCQuestions);
     } else if (slug == "subtraction") {
       setQuestionData(generateSubtractionQuestions(difficulty));
     } else if (slug == "multiplication") {

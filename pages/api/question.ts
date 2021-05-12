@@ -18,6 +18,6 @@ export type Question = {
 
 export type MCQuestion = {
     text: string;
-    answerType: AdditionProperty;
+    answerType?: AdditionProperty;
     questionType: QuestionType;
 }

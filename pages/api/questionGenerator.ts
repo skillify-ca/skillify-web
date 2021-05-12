@@ -1,6 +1,7 @@
+import { StringNullableChain } from 'lodash';
 import { HorizontalEquation } from '../../components/stories/HorizontalEquation';
 import { AdditionProperty } from '../../components/stories/MultipleChoiceTypes';
-import { AnswerType, Question } from './question';
+import { AnswerType, MCQuestion, Question } from './question';
 import { QuestionType } from './questionTypes';
 import { createWordProblemModel, WordProblemModel } from './WordProblemModel';
 
@@ -80,6 +81,7 @@ function getRandomNumbersQuestion(min: number, max: number): Question {
 	};
 }
 
+
 const generateQuestionsForTopic = (topic: Topic, currentLevel: Difficulty, numberOfQuestions: number) => {
 	let questionGenerator: (min: number, max: number) => Question;
 	switch (topic) {
@@ -119,6 +121,9 @@ const generateQuestionsForTopic = (topic: Topic, currentLevel: Difficulty, numbe
 };
 
 
+function getRandomMCAdditionQuestion(min: number, max: number) {
+	return getRandomMCQuestion(min, max, '+')
+}
 
 function getRandomAdditionQuestion(min: number, max: number) {
 	const add = (a: number, b: number) => a + b;
@@ -153,6 +158,15 @@ function getRandomDivisionQuestion(min: number, max: number): Question {
 		operator: '÷',
 		wordProblem: wordProblemModel
 	};
+}
+
+
+function getRandomMCQuestion(
+	min: number, 
+	max: number, 
+	operator: string,
+): MCQuestion {
+	const 
 }
 
 function getRandomBinaryQuestion(
