@@ -30,7 +30,12 @@ const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: n
     if (digitDifficulty == "double-digit") {
       min = 11;
       max = 100;
-    } else if (digitDifficulty == "triple-digit") {
+    } 
+    else if (digitDifficulty == "upto_5X5"){
+      min = 1;
+      max = 5;
+    }
+    else if (digitDifficulty == "triple-digit") {
       min = 101;
       max = 1000;
     }
