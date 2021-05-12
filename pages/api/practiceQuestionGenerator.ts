@@ -5,7 +5,11 @@ import { Topic } from "./questionGenerator";
 
 const NUM_QUESTIONS = 5;
 
-const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: number, operator: Topic) => {
+const generateQuestionsForTopic = (
+  digitDifficulty: string,
+  numberOfQuestions: number,
+  operator: Topic
+) => {
   let questionGenerator: (min: number, max: number) => Question;
   switch (operator) {
     case Topic.SUBTRACTION:
@@ -20,8 +24,8 @@ const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: n
     case Topic.DIVISION:
       questionGenerator = getRandomDivisionQuestion;
       break;
-    default: 
-      console.log('ERROR');
+    default:
+      console.log("ERROR");
   }
   const res = [];
   for (let i = 0; i < numberOfQuestions; i++) {
@@ -39,39 +43,47 @@ const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: n
   return res;
 };
 
-export const generateAdditionQuestions = (
-  difficulty: string,
-) => {
+export const generateAdditionQuestions = (difficulty: string) => {
   if (difficulty != null) {
     const digitDifficulty = difficulty;
-    return generateQuestionsForTopic(digitDifficulty, NUM_QUESTIONS, Topic.ADDITION);
+    return generateQuestionsForTopic(
+      digitDifficulty,
+      NUM_QUESTIONS,
+      Topic.ADDITION
+    );
   }
   return [];
 };
-export const generateSubtractionQuestions = (
-  slug: string,
-) => {
+export const generateSubtractionQuestions = (slug: string) => {
   if (slug != null) {
     const digitDifficulty = slug;
-    return generateQuestionsForTopic(digitDifficulty, NUM_QUESTIONS, Topic.SUBTRACTION);
+    return generateQuestionsForTopic(
+      digitDifficulty,
+      NUM_QUESTIONS,
+      Topic.SUBTRACTION
+    );
   }
   return [];
 };
-export const generateMultiplicationQuestions = (
-  slug: string,
-) => {
+export const generateMultiplicationQuestions = (slug: string) => {
   if (slug != null) {
     const digitDifficulty = slug;
-    return generateQuestionsForTopic(digitDifficulty, NUM_QUESTIONS, Topic.MULTIPLICATION);
+    return generateQuestionsForTopic(
+      digitDifficulty,
+      NUM_QUESTIONS,
+      Topic.MULTIPLICATION
+    );
   }
   return [];
 };
-export const generateDivisionQuestions = (
-  slug: string,
-) => {
+export const generateDivisionQuestions = (slug: string) => {
   if (slug != null) {
     const digitDifficulty = slug;
-    return generateQuestionsForTopic(digitDifficulty, NUM_QUESTIONS, Topic.DIVISION);
+    return generateQuestionsForTopic(
+      digitDifficulty,
+      NUM_QUESTIONS,
+      Topic.DIVISION
+    );
   }
   return [];
 };
@@ -120,7 +132,10 @@ function getRandomBinaryQuestion(
   return {
     text: text,
     answer: answerFunction(Math.max(a, b), Math.min(a, b)).toString(),
-    answerType: type === QuestionType.TRUE_OR_FALSE_PROBLEM ? AnswerType.BOOLEAN : AnswerType.NUMBER,
+    answerType:
+      type === QuestionType.TRUE_OR_FALSE_PROBLEM
+        ? AnswerType.BOOLEAN
+        : AnswerType.NUMBER,
     questionType: type,
     operator: operator,
     wordProblem: wordProblemModel,

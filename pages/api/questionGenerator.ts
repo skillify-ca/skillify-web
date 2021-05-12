@@ -1,4 +1,5 @@
 import { HorizontalEquation } from '../../components/stories/HorizontalEquation';
+import { AdditionProperty } from '../../components/stories/MultipleChoiceTypes';
 import { AnswerType, Question } from './question';
 import { QuestionType } from './questionTypes';
 import { createWordProblemModel, WordProblemModel } from './WordProblemModel';
@@ -10,7 +11,8 @@ export enum Topic {
 	ADDITION,
 	SUBTRACTION,
 	MULTIPLICATION,
-	DIVISION
+	DIVISION,
+	ADDITIONPROPERTIES
 }
 
 export enum TestLength {
@@ -115,6 +117,8 @@ const generateQuestionsForTopic = (topic: Topic, currentLevel: Difficulty, numbe
 	}
 	return res;
 };
+
+
 
 function getRandomAdditionQuestion(min: number, max: number) {
 	const add = (a: number, b: number) => a + b;

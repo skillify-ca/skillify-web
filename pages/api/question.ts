@@ -1,3 +1,4 @@
+import { AdditionProperty } from "../../components/stories/MultipleChoiceTypes";
 import { QuestionType } from "./questionTypes";
 import { WordProblemModel } from "./WordProblemModel";
 
@@ -14,3 +15,9 @@ export type Question = {
     operator?: string;
     wordProblem?: WordProblemModel;
 };
+
+export type MCQuestion = {
+    text: string;
+    answerType: AdditionProperty;
+    questionType: QuestionType;
+}
