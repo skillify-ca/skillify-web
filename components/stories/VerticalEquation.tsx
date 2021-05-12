@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { GuessData } from "../../pages/api/guessData";
+import { Question } from "../../pages/api/question";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
 export interface VerticalEquationProp {
-  question?: string;
-  operator: string;
-  submitGuess: (e) => void;
+  question: Question;
+  submitGuess: (guess: GuessData) => void;
 }
 
 /**
@@ -13,7 +14,6 @@ export interface VerticalEquationProp {
  */
 export const VerticalEquation: React.FC<VerticalEquationProp> = ({
   question,
-  operator,
   submitGuess,
   ...props
 }) => {
@@ -21,11 +21,15 @@ export const VerticalEquation: React.FC<VerticalEquationProp> = ({
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
-      submitGuess(e);
+      onSubmit();
     }
   };
+  const onSubmit = () => {
+    setGuess("");
+    submitGuess({ guess: guess, isCorrect: guess === question.answer });
+  };
   const parse = () => {
-    const parts = question.split(" ");
+    const parts = question.text.split(" ");
     return {
       first: parts[0],
       second: parts[2],
@@ -36,7 +40,7 @@ export const VerticalEquation: React.FC<VerticalEquationProp> = ({
       <div className="text-8xl flex flex-col flex-end items-end border-b-8 border-blue-900">
         <p className="align-right">{parse().first}</p>
         <div className="flex">
-          <p>{operator}</p>
+          <p>{question.operator}</p>
           <p>{parse().second}</p>
         </div>
       </div>
@@ -46,7 +50,7 @@ export const VerticalEquation: React.FC<VerticalEquationProp> = ({
         handleKeypress={handleKeypress}
       />
       <Button
-        onClick={(e) => submitGuess(guess)}
+        onClick={onSubmit}
         label="Submit"
         backgroundColor="blue"
         textColor="white"

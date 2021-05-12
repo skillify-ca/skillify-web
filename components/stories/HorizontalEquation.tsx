@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { GuessData } from "../../pages/api/guessData";
+import { Question } from "../../pages/api/question";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
 export interface HorizontalEquationProp {
-  question?: string;
-  submitGuess: (number) => void;
+  question: Question;
+  submitGuess: (guess: GuessData) => void;
 }
 
 /**
@@ -19,13 +21,20 @@ export const HorizontalEquation: React.FC<HorizontalEquationProp> = ({
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
-      submitGuess(e);
+      onSubmit();
     }
   };
+  const onSubmit = () => {
+    submitGuess({
+      guess: guess,
+      isCorrect: guess === question.answer,
+    });
+    setGuess("");
+  };
   const parse = () => {
-    const parts = question.split(" ");
+    const parts = question.text.split(" ");
     if (parts[1] == "/") {
-      parts[1] = " ÷ ";
+      parts[1] = "÷";
     }
     return {
       first: parts[0],
@@ -37,7 +46,7 @@ export const HorizontalEquation: React.FC<HorizontalEquationProp> = ({
     <div className="flex flex-col gap-4 justify-between h-full">
       <p className="text-6xl w-full flex-grow flex justify-center items-center">
         {parse().first}
-        {parse().operation}
+        {" " + parse().operation + " "}
         {parse().second}
       </p>
       <Input
@@ -46,7 +55,7 @@ export const HorizontalEquation: React.FC<HorizontalEquationProp> = ({
         handleKeypress={handleKeypress}
       />
       <Button
-        onClick={(e) => submitGuess(guess)}
+        onClick={onSubmit}
         label="Submit"
         backgroundColor="blue"
         textColor="white"

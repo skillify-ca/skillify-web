@@ -1,14 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Button } from "../components/stories/Button";
+import DiagnosticData from "../components/stories/DiagnosticData";
 import DiagnosticResults from "../components/stories/DiagnosticResults";
 import DiagnosticTestForm from "../components/stories/DiagnosticTestForm";
 import Dropdown from "../components/stories/Dropdown";
 import QuestionSet from "../components/stories/QuestionSet";
 import Toggle from "../components/stories/Toggle";
+import { GuessData } from "./api/guessData";
+import { AnswerType, Question } from "./api/question";
 import {
   generateQuestionsForDiagnostic,
-  Question,
   TestLength,
   Topic,
 } from "./api/questionGenerator";
@@ -18,6 +20,7 @@ enum STAGE {
   CREATE,
   TEST,
   RESULTS,
+  DATA,
 }
 
 export default function Diagnostic(props) {
@@ -25,23 +28,30 @@ export default function Diagnostic(props) {
   const [testLength, setTestLength] = useState(TestLength.MEDIUM);
   const [stage, setStage] = useState(STAGE.CREATE);
   const [index, setIndex] = useState(0);
-  const [guess, setGuess] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState(0);
+  const [guessAns, setGuessAns] = useState<Array<string>>([]);
   const [questionData, setQuestionData] = useState<Question[]>([
-    { text: "", answer: 0, questionType: QuestionType.HORIZONTAL_EQUATION },
+    {
+      text: "",
+      answer: "",
+      answerType: AnswerType.NUMBER,
+      questionType: QuestionType.HORIZONTAL_EQUATION,
+    },
   ]);
   const inputElement = useRef(null);
 
-  const submitGuess = (e) => {
+  const submitGuess = (guessData: GuessData) => {
     if (index < questionData.length - 1) {
       setIndex(index + 1);
     }
-    let isCorrect = Number.parseInt(e) == questionData[index].answer;
-    if (isCorrect) {
+
+    if (guessData.isCorrect) {
       setCorrectGuesses(correctGuesses + 1);
+      setGuessAns((prevArray) => [...prevArray, "Correct"]);
+    } else {
+      setGuessAns((prevArray) => [...prevArray, "Incorrect"]);
     }
     if (index == questionData.length - 1) {
-      console.log("done!");
       setStage(STAGE.RESULTS);
     }
   };
@@ -50,6 +60,10 @@ export default function Diagnostic(props) {
     setTopics(topics);
     setTestLength(testLength);
     setStage(STAGE.TEST);
+  };
+
+  const createDiagnosticData = () => {
+    setStage(STAGE.DATA);
   };
 
   useEffect(() => {
@@ -67,8 +81,6 @@ export default function Diagnostic(props) {
           title=""
           questionData={questionData}
           index={index}
-          guess={guess}
-          setGuess={setGuess}
           inputElement={inputElement}
           submitGuess={submitGuess}
         />
@@ -76,7 +88,19 @@ export default function Diagnostic(props) {
       break;
     case STAGE.RESULTS:
       component = (
-        <DiagnosticResults correctGuesses={correctGuesses} index={index + 1} />
+        <DiagnosticResults
+          correctGuesses={correctGuesses}
+          index={index + 1}
+          onClick={createDiagnosticData}
+        />
+      );
+      break;
+    case STAGE.DATA:
+      component = (
+        <DiagnosticData
+          questions={questionData.map((question) => question.text)}
+          guessAns={guessAns}
+        />
       );
   }
 
