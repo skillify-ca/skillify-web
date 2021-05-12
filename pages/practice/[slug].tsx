@@ -22,8 +22,6 @@ const PracticeQuiz = ({ slug }) => {
   }, []);
 
   const submitGuess = (e) => {
-    console.log(e);
-    e.preventDefault();
     if (index < questionData.length - 1) {
       setIndex(index + 1);
       setGuess("");
