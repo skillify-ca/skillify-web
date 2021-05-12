@@ -6,7 +6,11 @@ import { tweleveMap } from "./factorsOfTwelveMap";
 
 const NUM_QUESTIONS = 5;
 
-const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: number, operator: Topic) => {
+const generateQuestionsForTopic = (
+  digitDifficulty: string,
+  numberOfQuestions: number,
+  operator: Topic
+) => {
   let questionGenerator: (min: number, max: number) => Question;
   switch (operator) {
     case Topic.SUBTRACTION:
@@ -18,8 +22,8 @@ const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: n
     case Topic.MULTIPLICATION:
       questionGenerator = getRandomMultiplicationQuestion;
       break;
-    default: 
-      console.log('ERROR');
+    default:
+      console.log("ERROR");
   }
   const res = [];
   for (let i = 0; i < numberOfQuestions; i++) {
@@ -28,64 +32,67 @@ const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: n
     if (digitDifficulty == "double-digit") {
       min = 11;
       max = 100;
-    } 
-    else if (digitDifficulty == "upto_5X5"){
+    } else if (digitDifficulty == "upto_5X5") {
       min = 1;
       max = 6;
-    }
-    else if (digitDifficulty == "triple-digit") {
+    } else if (digitDifficulty == "triple-digit") {
       min = 101;
       max = 1000;
-    }
-    else if (digitDifficulty == "upto_100÷10") {
+    } else if (digitDifficulty == "upto_100_divide_10") {
       max = 11;
-    }
-    else if (digitDifficulty == "12_items_equally") {
+    } else if (digitDifficulty == "12_items_equally") {
       max = 13;
     }
     if (operator === Topic.DIVISION) {
-    res.push(getRandomDivisionQuestion(min, max, digitDifficulty));
-    }
-    else {
+      res.push(getRandomDivisionQuestion(min, max, digitDifficulty));
+    } else {
       res.push(questionGenerator(min, max));
     }
   }
   return res;
 };
 
-export const generateAdditionQuestions = (
-  difficulty: string,
-) => {
+export const generateAdditionQuestions = (difficulty: string) => {
   if (difficulty != null) {
     const digitDifficulty = difficulty;
-    return generateQuestionsForTopic(digitDifficulty, NUM_QUESTIONS, Topic.ADDITION);
+    return generateQuestionsForTopic(
+      digitDifficulty,
+      NUM_QUESTIONS,
+      Topic.ADDITION
+    );
   }
   return [];
 };
-export const generateSubtractionQuestions = (
-  slug: string,
-) => {
+export const generateSubtractionQuestions = (slug: string) => {
   if (slug != null) {
     const digitDifficulty = slug;
-    return generateQuestionsForTopic(digitDifficulty, NUM_QUESTIONS, Topic.SUBTRACTION);
+    return generateQuestionsForTopic(
+      digitDifficulty,
+      NUM_QUESTIONS,
+      Topic.SUBTRACTION
+    );
   }
   return [];
 };
-export const generateMultiplicationQuestions = (
-  slug: string,
-) => {
+export const generateMultiplicationQuestions = (slug: string) => {
   if (slug != null) {
     const digitDifficulty = slug;
-    return generateQuestionsForTopic(digitDifficulty, NUM_QUESTIONS, Topic.MULTIPLICATION);
+    return generateQuestionsForTopic(
+      digitDifficulty,
+      NUM_QUESTIONS,
+      Topic.MULTIPLICATION
+    );
   }
   return [];
 };
-export const generateDivisionQuestions = (
-  slug: string,
-) => {
+export const generateDivisionQuestions = (slug: string) => {
   if (slug != null) {
     const digitDifficulty = slug;
-    return generateQuestionsForTopic(digitDifficulty, NUM_QUESTIONS, Topic.DIVISION);
+    return generateQuestionsForTopic(
+      digitDifficulty,
+      NUM_QUESTIONS,
+      Topic.DIVISION
+    );
   }
   return [];
 };
@@ -100,40 +107,44 @@ function getRandomSubtractionQuestion(min: number, max: number) {
   return getRandomBinaryQuestion(min, max, "-", subtract);
 }
 function getRandomMultiplicationQuestion(min: number, max: number) {
-  const subtract = (a: number, b: number) => a * b;
-  return getRandomBinaryQuestion(min, max, "x", subtract);
+  const multiplication = (a: number, b: number) => a * b;
+  return getRandomBinaryQuestion(min, max, "x", multiplication);
 }
 function getRandomDivisionQuestion(min: number, max: number, digitDifficulty) {
   const a = getRndInteger(min, max);
-	let b = getRndInteger(min, max);
+  let b = getRndInteger(min, max);
   if (digitDifficulty == "12_items_equally") {
     let factor;
     factor = Object.keys(tweleveMap[a]);
-    b = getRndInteger(1, factor.length); 
+    b = getRndInteger(1, factor.length);
   }
-	const product = a * b;
-	const text = `${product} / ${b} =`;
-	const types = [QuestionType.LONG_DIVISION_PROBLEM, QuestionType.HORIZONTAL_EQUATION, QuestionType.BINARY_WORD_PROBLEM];
-	const type = types[getRndInteger(0, types.length)];
-	let wordProblemModel;
-	if (type == QuestionType.BINARY_WORD_PROBLEM) {
-		wordProblemModel = createWordProblemModel('÷');
-	}
-	return {
-		text: text,
-		answer: a.toString(),
-		answerType: AnswerType.NUMBER,
-		questionType: type,
-		operator: '÷',
-		wordProblem: wordProblemModel
-	};
+  const product = a * b;
+  const text = `${product} / ${b} =`;
+  const types = [
+    QuestionType.LONG_DIVISION_PROBLEM,
+    QuestionType.HORIZONTAL_EQUATION,
+    QuestionType.BINARY_WORD_PROBLEM,
+  ];
+  const type = types[getRndInteger(0, types.length)];
+  let wordProblemModel;
+  if (type == QuestionType.BINARY_WORD_PROBLEM) {
+    wordProblemModel = createWordProblemModel("÷");
+  }
+  return {
+    text: text,
+    answer: a.toString(),
+    answerType: AnswerType.NUMBER,
+    questionType: type,
+    operator: "÷",
+    wordProblem: wordProblemModel,
+  };
 }
 
 function getRandomBinaryQuestion(
   min: number,
   max: number,
   operator: string,
-  answerFunction: (a: number, b: number) => number,
+  answerFunction: (a: number, b: number) => number
 ): Question {
   const a = getRndInteger(min, max);
   let b = getRndInteger(min, max);
@@ -154,15 +165,16 @@ function getRandomBinaryQuestion(
   return {
     text: text,
     answer: answerFunction(Math.max(a, b), Math.min(a, b)).toString(),
-    answerType: type === QuestionType.TRUE_OR_FALSE_PROBLEM ? AnswerType.BOOLEAN : AnswerType.NUMBER,
+    answerType:
+      type === QuestionType.TRUE_OR_FALSE_PROBLEM
+        ? AnswerType.BOOLEAN
+        : AnswerType.NUMBER,
     questionType: type,
     operator: operator,
     wordProblem: wordProblemModel,
   };
 }
-
 // Get random number between min (inclusive) and max (exclusive)
 export function getRndInteger(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
-

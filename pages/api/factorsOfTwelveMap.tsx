@@ -23,6 +23,7 @@ export const tweleveMap = {
     one: "1",
     two: "2",
     three: "3",
+    six: "6",
   },
   7: {
     one: "1",
@@ -40,6 +41,8 @@ export const tweleveMap = {
   },
   10: {
     one: "1",
+    two: "2",
+    five: "5",
     ten: "10",
   },
   11: {
@@ -48,6 +51,10 @@ export const tweleveMap = {
   },
   12: {
     one: "1",
+    two: "2",
+    three: "3",
+    four: "4",
+    six: "6",
     tweleve: "12",
   },
 };
