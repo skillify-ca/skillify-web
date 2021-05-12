@@ -97,6 +97,7 @@ export default function Diagnostic(props) {
         <DiagnosticData
           questions={questionData.map((question) => question.text)}
           guessAns={guessAns}
+          topic={topics}
         />
       );
   }
