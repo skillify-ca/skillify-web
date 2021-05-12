@@ -33,11 +33,14 @@ const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: n
     } 
     else if (digitDifficulty == "upto_5X5"){
       min = 1;
-      max = 5;
+      max = 6;
     }
     else if (digitDifficulty == "triple-digit") {
       min = 101;
       max = 1000;
+    }
+    else if (digitDifficulty == "upto_100÷10") {
+      max = 11;
     }
     res.push(questionGenerator(min, max));
   }
@@ -91,11 +94,11 @@ function getRandomSubtractionQuestion(min: number, max: number) {
   return getRandomBinaryQuestion(min, max, "-", subtract);
 }
 function getRandomMultiplicationQuestion(min: number, max: number) {
-  const subtract = (a: number, b: number) => a - b;
+  const subtract = (a: number, b: number) => a * b;
   return getRandomBinaryQuestion(min, max, "x", subtract);
 }
 function getRandomDivisionQuestion(min: number, max: number) {
-  const subtract = (a: number, b: number) => a - b;
+  const subtract = (a: number, b: number) => a / b;
   return getRandomBinaryQuestion(min, max, "/", subtract);
 }
 
