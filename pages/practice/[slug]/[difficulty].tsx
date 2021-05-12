@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
+  generateAdditionPropertyQuestions,
   generateAdditionQuestions,
   generateDivisionQuestions,
   generateMultiplicationQuestions,
@@ -25,6 +26,7 @@ const PracticeQuiz = ({ slug, difficulty }) => {
   const [questionMCData, setQuestionMCData] = useState<MCQuestion[]>([
     {
       text: "",
+      questionData: [],
       questionType: QuestionType.MULTIPLE_CHOICE,
     },
   ]);
@@ -35,7 +37,7 @@ const PracticeQuiz = ({ slug, difficulty }) => {
     if (slug == "addition" && difficulty != "properties") {
       setQuestionData(generateAdditionQuestions(difficulty));
     } else if (slug == "addition" && difficulty == "properties") {
-      setQuestionMCData(generateAdditionMCQuestions);
+      setQuestionMCData(generateAdditionPropertyQuestions(slug));
     } else if (slug == "subtraction") {
       setQuestionData(generateSubtractionQuestions(difficulty));
     } else if (slug == "multiplication") {
@@ -60,13 +62,16 @@ const PracticeQuiz = ({ slug, difficulty }) => {
   return (
     <div>
       <Navbar />
+      {(slug == "properties")?       
       <QuestionSet
         title={slug}
         questionData={questionData}
         index={index}
         inputElement={inputElement}
         submitGuess={submitGuess}
-      />
+      /> : 
+      <}
+
     </div>
   );
 };

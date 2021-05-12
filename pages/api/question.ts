@@ -18,6 +18,7 @@ export type Question = {
 
 export type MCQuestion = {
     text: string;
-    answerType?: AdditionProperty;
-    questionType: QuestionType;
+    operator?: string;
+    questionType: QuestionType.MULTIPLE_CHOICE;
+    questionData: Array<string>;
 }

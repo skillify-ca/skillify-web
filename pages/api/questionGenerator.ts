@@ -1,4 +1,5 @@
-import { StringNullableChain } from 'lodash';
+import { shuffle, StringNullableChain } from 'lodash';
+import { type } from 'node:os';
 import { HorizontalEquation } from '../../components/stories/HorizontalEquation';
 import { AdditionProperty } from '../../components/stories/MultipleChoiceTypes';
 import { AnswerType, MCQuestion, Question } from './question';
@@ -121,9 +122,6 @@ const generateQuestionsForTopic = (topic: Topic, currentLevel: Difficulty, numbe
 };
 
 
-function getRandomMCAdditionQuestion(min: number, max: number) {
-	return getRandomMCQuestion(min, max, '+')
-}
 
 function getRandomAdditionQuestion(min: number, max: number) {
 	const add = (a: number, b: number) => a + b;
@@ -161,13 +159,9 @@ function getRandomDivisionQuestion(min: number, max: number): Question {
 }
 
 
-function getRandomMCQuestion(
-	min: number, 
-	max: number, 
-	operator: string,
-): MCQuestion {
-	const 
-}
+
+
+
 
 function getRandomBinaryQuestion(
 	min: number,

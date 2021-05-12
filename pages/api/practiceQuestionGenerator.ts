@@ -2,7 +2,9 @@ import { createWordProblemModel, WordProblemModel } from "./WordProblemModel";
 import { QuestionType } from "./questionTypes";
 import { AnswerType, Question } from "./question";
 import { Topic } from "./questionGenerator";
-import { MCQuestion } from "./question"
+import { MCQuestion } from "./question";
+import { shuffle, StringNullableChain } from "lodash";
+import { AdditionProperty } from "../../components/stories/MultipleChoiceTypes";
 
 const NUM_QUESTIONS = 5;
 
@@ -44,31 +46,30 @@ const generateQuestionsForTopic = (
   return res;
 };
 
-const generateMCQuestionsforTopic = (
+const generatePropertyQuestionsforTopic = (
   numberofQuestions: number,
-  operator: Topic,
+  operator: Topic
 ) => {
-  let questionMCGenerator: (min: number, max: number) => MCQuestion;
+  let questionPropertyGenerator: (min: number, max: number) => MCQuestion;
   switch (operator) {
     case Topic.ADDITIONPROPERTIES:
-      questionMCGenerator = getRandomMCAdditionQuestion;
+      questionPropertyGenerator = getRandomPropertyAdditionQuestion;
       break;
     default:
       console.log("ERROR");
   }
   const res = [];
   for (let i = 0; i < numberofQuestions; ++i) {
-  let min = 1;
-  let max = 15;
-  res.push(questionMCGenerator(min, max));
-}
-return res;
+    let min = 1;
+    let max = 15;
+    res.push(questionPropertyGenerator(min, max));
+  }
+  return res;
 };
 
-
-export const generateAdditionMCQuestions = (slug: string) => {
+export const generateAdditionPropertyQuestions = (slug: string) => {
   if (slug != null) {
-    return generateMCQuestionsforTopic(
+    return generatePropertyQuestionsforTopic(
       NUM_QUESTIONS,
       Topic.ADDITIONPROPERTIES
     );
@@ -180,4 +181,47 @@ export function getRndInteger(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+function getRandomPropertyAdditionQuestion(min: number, max: number) {
+  return getRandomPropertyQuestion(min, max, "+");
+}
+function getRandomPropertyQuestion(
+  min: number,
+  max: number,
+  operator: string
+): MCQuestion {
+  const a = getRndInteger(min, max);
+  const b = getRndInteger(min, max);
+  const text = "Which equation shows the Associative Property?";
+  const additionPropertyTypes = [
+    AdditionProperty.ASSOCIATIVE,
+    AdditionProperty.COMMUTATIVE,
+    AdditionProperty.IDENTITY,
+  ];
+  const typeIndex = getRndInteger(0, additionPropertyTypes.length);
+  const additionPropertyType = additionPropertyTypes[typeIndex];
 
+  const identitynum = getRndInteger(min, max);
+  const x = getRndInteger(min, max);
+  const y = getRndInteger(min, max);
+  const z = getRndInteger(min, max);
+
+  const questionArr = [
+    `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${Math.min(
+      a,
+      b
+    )} ${operator} ${Math.max(a, b)}`,
+    `${identitynum} ${operator} 0 = ${identitynum}`,
+    `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${Math.max(
+      a,
+      b
+    )} ${operator} ${Math.min(a, b)}`,
+    `(${x} ${operator} ${y}) ${operator} ${z} = ${x} ${operator} (${y} ${operator} ${z})`,
+  ];
+
+  return {
+    text: text,
+    operator: operator,
+    questionType: QuestionType.MULTIPLE_CHOICE,
+    questionData: shuffle(questionArr),
+  };
+}
