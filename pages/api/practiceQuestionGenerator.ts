@@ -2,6 +2,7 @@ import { createWordProblemModel, WordProblemModel } from "./WordProblemModel";
 import { QuestionType } from "./questionTypes";
 import { AnswerType, Question } from "./question";
 import { Topic } from "./questionGenerator";
+import { tweleveMap } from "./factorsOfTwelveMap";
 
 const NUM_QUESTIONS = 5;
 
@@ -18,7 +19,7 @@ const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: n
       questionGenerator = getRandomMultiplicationQuestion;
       break;
     case Topic.DIVISION:
-      questionGenerator = getRandomDivisionQuestion;
+      questionGenerator = getRandomDivisionQuestion(digitDifficulty);
       break;
     default: 
       console.log('ERROR');
@@ -42,6 +43,10 @@ const generateQuestionsForTopic = (digitDifficulty: string, numberOfQuestions: n
     else if (digitDifficulty == "upto_100÷10") {
       max = 11;
     }
+    else if (digitDifficulty == "12_items_equally") {
+      max = 13;
+    }
+
     res.push(questionGenerator(min, max));
   }
   return res;
@@ -97,19 +102,65 @@ function getRandomMultiplicationQuestion(min: number, max: number) {
   const subtract = (a: number, b: number) => a * b;
   return getRandomBinaryQuestion(min, max, "x", subtract);
 }
-function getRandomDivisionQuestion(min: number, max: number) {
+function getRandomDivisionQuestion(min: number, max: number, digitDifficulty) {
   const subtract = (a: number, b: number) => a / b;
-  return getRandomBinaryQuestion(min, max, "/", subtract);
+  return getRandomBinaryQuestion(min, max, "/", subtract, digitDifficulty);
 }
 
 function getRandomBinaryQuestion(
   min: number,
   max: number,
   operator: string,
-  answerFunction: (a: number, b: number) => number
+  answerFunction: (a: number, b: number) => number,
+  digitDifficulty?: string
 ): Question {
   const a = getRndInteger(min, max);
-  const b = getRndInteger(min, max);
+  let b = getRndInteger(min, max);
+  if (digitDifficulty == "12_items_equally") {
+    let factor;
+    /*switch (a) {
+      case 1:
+        factor = Object.keys(tweleveMap[a]);
+        break;
+      case 2:
+        factor = Object.keys(tweleveMap[a]);
+        break;
+      case 3:
+        factor = Object.keys(tweleveMap[1]);
+        break;
+      case 4:
+        factor = Object.keys(tweleveMap[1]);
+        break;
+      case 5:
+        factor = Object.keys(tweleveMap[1]);
+        break;
+      case 6:
+        factor = Object.keys(tweleveMap[1]);
+        break;
+      case 7:
+        factor = Object.keys(tweleveMap[1]);
+        break;
+      case 8:
+        factor = Object.keys(tweleveMap[1]);
+        break;
+      case 9:
+        factor = Object.keys(tweleveMap[1]);
+        break;
+      case 10:
+        factor = Object.keys(tweleveMap[1]);
+        break;
+      case 11:
+        factor = Object.keys(tweleveMap[1]);
+        break;
+      case 12:
+        factor = Object.keys(tweleveMap[1]);
+        break;
+
+    } */
+    factor = Object.keys(tweleveMap[a]);
+    b = getRndInteger(1, factor.length); 
+  }
+  
 
   const text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} =`;
   const types = [
@@ -139,3 +190,7 @@ function getRandomBinaryQuestion(
 export function getRndInteger(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
+function twelveMap(twelveMap: any) {
+  throw new Error("Function not implemented.");
+}
+
