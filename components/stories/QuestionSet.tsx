@@ -10,11 +10,14 @@ import { WordProblemSub } from "./WordProblemSub";
 import { WordProblemMulti } from "./WordProblemMulti";
 import { GuessData } from "../../pages/api/guessData";
 import { WordProblemDiv } from "./WordProblemDiv";
-import { Question } from "../../pages/api/question";
+import { MCQuestion, Question } from "../../pages/api/question";
+import { MultipleChoiceSentence } from "./MultipleChoiceSentence";
+import { AdditionProperty } from "./MultipleChoiceTypes";
 
 type QuestionSetProps = {
   title: string;
   questionData: Question[];
+  answerData: MCQuestion[];
   index: number;
   inputElement: any;
   submitGuess: (guessData: GuessData) => void;
@@ -23,6 +26,7 @@ type QuestionSetProps = {
 const QuestionSet = ({
   title,
   questionData,
+  answerData,
   index,
   submitGuess,
 }: QuestionSetProps) => {
@@ -90,16 +94,35 @@ const QuestionSet = ({
       />
     );
   };
+  const answerComponent = () => {
+    return (
+      <MultipleChoiceSentence
+        displayQuestion="Which equation shows the Associative Property?"
+        option1={{ question: answerData[index].questionData[0], type: null }}
+        option2={{ question: answerData[index].questionData[1], type: null }}
+        option3={{ question: answerData[index].questionData[2], type: null }}
+        option4={{ question: answerData[index].questionData[3], type: null }}
+        answer={AdditionProperty.ASSOCIATIVE}
+        submitGuess={submitGuess}
+      />
+    );
+  };
+  const displayComponent = () => {};
 
   return (
     <div className="flex flex-col justify-center items-center bg-gray-200 gap-8 pb-24">
       <div className="flex justify-between w-full p-4">
         <p className="text-xl font-bold">{title}</p>
         <p className="font-bold text-gray-400">
+          {console.log(questionData)}
+          {/* {console.log(answerData)} */}
           Question: {index + 1} / {questionData.length}
         </p>
       </div>
-      <Card size="large">{questionData[index] && questionComponent()}</Card>
+      <Card size="large">
+        {questionData[index] && questionComponent()}
+        {answerData[index] && answerComponent()}
+      </Card>
     </div>
   );
 };
