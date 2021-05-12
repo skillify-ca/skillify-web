@@ -27,11 +27,39 @@
     {
       "name": "addition",
       "statements": [
-        { "text": "Add one digit numbers", "key": "single-digit" },
-        { "text": "Add two digit numbers", "key": "double-digit" },
-        { "text": "Add three digit numbers", "key": "triple-digit"},
-        { "text": "Identify and use properties of addition", "key": "properties" }
+        { "text": "I can add one digit numbers", "key": "single-digit" },
+        { "text": "I can add two digit numbers", "key": "double-digit" },
+        { "text": "I can add three digit numbers", "key": "triple-digit"},
+        { "text": "I can identify and use properties of addition", "key": "properties" }
+      ]
+    },
+    {
+      "name": "subtraction",
+      "statements": [
+        { "text": "I can subtract one digit numbers", "key": "single-digit" },
+        { "text": "I can subtract two digit numbers", "key": "double-digit" },
+        { "text": "I can subtract three digit numbers", "key": "triple-digit"},
+        { "text": "I can identify and use properties of Subtration", "key": "properties" }
+      ]
+    },
+    {
+      "name": "multiplication",
+      "statements": [
+        { "text": "I can solve equal-group problems up to 10", "key": "single-digit" },
+        { "text": "I can multiply numbers up to 5 X 5", "key": "upto_5X5" },
+        { "text": "I can multiply number up to 10 X 10", "key": "upto_10X10"},
+        { "text": "I can multiply and use properties of Multiplication", "key": "properties" }
+      ]
+    },
+    {
+      "name": "division",
+      "statements": [
+        { "text": "I can solve equal-group problems up to 10", "key": "single-digit" },
+        { "text": "I can divide up to 12 items equally", "key": "12_items_equally"},
+        { "text": "I can divide numbers up to 100 ÷ 10", "key": "upto_100÷10"},
+        { "text": "I can divide and use properties of Division", "key": "properties" }
       ]
     }
   ]
 }
+

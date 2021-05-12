@@ -6,15 +6,15 @@ import {
   coinsMap,
   ItemContainerObj,
   map,
-  noun,
+  Noun,
 } from "./WordProblemModelObjects";
 export type WordProblemModel = {
   name: string;
   operator: string;
   itemContainer: ItemContainerObj;
   nounType: string;
-  item1: noun;
-  item2?: noun;
+  item1: Noun;
+  item2?: Noun;
 };
 
 const nameSelector = () => {
@@ -69,6 +69,14 @@ export function createWordProblemModel(operator): WordProblemModel {
       nounType: itemType,
       item1: itemSelector(itemType),
       item2: itemSelector(itemType),
+    };
+  } else if (operator == "/") {
+    return {
+      name: nameSelector(),
+      operator: operator,
+      itemContainer: getRandomItemFromMap(map),
+      nounType: itemType,
+      item1: itemSelector(itemType),
     };
   } else {
     return {

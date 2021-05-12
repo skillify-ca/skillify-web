@@ -1,32 +1,26 @@
 import React, { useState } from "react";
-import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
-import {
-  ItemContainerObj,
-  Noun,
-} from "../../pages/api/WordProblemModelObjects";
+import { Noun } from "../../pages/api/WordProblemModelObjects";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
-export interface WordProblemMultiProp {
-  submitGuess: (guess: GuessData) => void;
+export interface WordProblemDivProp {
+  submitGuess: (e) => void;
   question: Question;
 }
 
 /**
- * The Multipolication Word problem follows a specific template and is as follows:
- * (name) has a (randomNumber1)(itemContainer). Each (itemContainer) has (randomNumber2) (noun.title).
- * How many (noun.title) does (name) have in total?
+ * The Division Word problem follows a specific template and is as follows:
+ * (name) has a (randomNumber2)(noun.title) and (randomNumber1) friends. (name) wants to share the (noun.title) equally between
+ * their (randomNumber1) friends. How many (noun.title) will each friend have?
  */
-export const WordProblemMulti: React.FC<WordProblemMultiProp> = ({
+export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
   submitGuess,
   question,
   ...props
 }) => {
   const name = question.wordProblem.name;
-  const itemContainer: ItemContainerObj = question.wordProblem.itemContainer;
   const noun1: Noun = question.wordProblem.item1;
-
   const [guess, setGuess] = useState("");
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
@@ -49,20 +43,23 @@ export const WordProblemMulti: React.FC<WordProblemMultiProp> = ({
   };
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="text-2xl flex flex-wrap">
+      <div className="text-xl flex flex-wrap">
         <p className="align-left">
           {name} has
-          <span> </span>
-          <span className="border-2 border-black border-opacity-75 md:border-opacity-50 text-black font-extrabold">
-            {" " + parse().first}
-          </span>
-          {" " + title(itemContainer, parse().first)}. Each{" "}
-          {itemContainer.singleTitle} has
           <span className={noun1.colour}>
-            {" " + parse().second + " "}
-          </span>{" "}
-          {title(noun1, parse().second)}. How many {noun1.pluralTitle} does{" "}
-          {name} have in total?
+            {" " + parse().first}
+            {" " + title(noun1, parse().second) + " "}{" "}
+          </span>
+          <span> and </span>
+          <span className="text-black font-extrabold">
+            {parse().second + " friends"}.
+          </span>
+          {" " + name} wants to share the {title(noun1, parse().first) + " "}
+          equally between them. How many
+          <span className={noun1.colour}>
+            {" " + title(noun1, parse().first) + " "}
+          </span>
+          will each friend have?
         </p>
       </div>
       <div className="text-2xl flex flex-wrap">

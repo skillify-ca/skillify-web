@@ -1,17 +1,16 @@
 import React, { useState } from "react";
+import { GuessData } from "../../pages/api/guessData";
+import { Question } from "../../pages/api/question";
 import {
   ItemContainerObj,
-  noun,
+  Noun,
 } from "../../pages/api/WordProblemModelObjects";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
 export interface WordProblemSubProp {
-  submitGuess: (e) => void;
-  question: string;
-  name: string;
-  itemContainer?: ItemContainerObj;
-  noun1: noun;
+  submitGuess: (guess: GuessData) => void;
+  question: Question;
 }
 
 /**
@@ -22,11 +21,12 @@ export interface WordProblemSubProp {
 export const WordProblemSub: React.FC<WordProblemSubProp> = ({
   submitGuess,
   question,
-  name,
-  itemContainer,
-  noun1,
   ...props
 }) => {
+  const name = question.wordProblem.name;
+  const itemContainer: ItemContainerObj = question.wordProblem.itemContainer;
+  const noun1: Noun = question.wordProblem.item1;
+
   const [guess, setGuess] = useState("");
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
@@ -35,7 +35,7 @@ export const WordProblemSub: React.FC<WordProblemSubProp> = ({
     }
   };
   const parse = () => {
-    const parts = question.split(" ");
+    const parts = question.text.split(" ");
     return {
       first: parts[0],
       second: parts[2],
