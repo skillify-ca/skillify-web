@@ -50,7 +50,7 @@ const DiagnosticData = ({
           className="items-end bg-blue-500 rounded p-3 text-white text-sm"
           onClick={(e) => onClick()}
         >
-          Go To Conclusion
+          See Evidence
         </button>
       </div>
     </>
