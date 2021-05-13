@@ -79,15 +79,13 @@ const Diagnostic = () => {
   const createDiagnosticData = () => {
     setStage(STAGE.DATA);
   };
-
-  const createDiagnosticEvidence = () => {
-    setStage(STAGE.EVIDENCE);
-  };
-
   const createDiagnosticConclusion = () => {
     setStage(STAGE.CONCLUSION);
   };
 
+  const createDiagnosticEvidence = () => {
+    setStage(STAGE.EVIDENCE);
+  };
   useEffect(() => {
     setQuestionData(generateQuestionsForDiagnostic(testLength, topics));
   }, [topics, testLength]);
@@ -134,7 +132,7 @@ const Diagnostic = () => {
       );
       break;
     case STAGE.CONCLUSION:
-      component = <DiagnosticConclusion />;
+      component = <DiagnosticConclusion topics={topics} />;
   }
 
   return (
