@@ -3,9 +3,9 @@ import React from "react";
 const DiagnosticConclusion = () => {
   return (
     <div>
+      <p className="mb-2 text-center font-black"> Conclusion </p>
       <p> Report Card - Ontario Curriculum</p>
-      <p> Average Grade Level - Grade 3 </p>
-      <p className="mb-6"> Conclusion </p>
+      <p className="mb-2"> Average Grade Level - Grade 3 </p>
       <div className="flex justify-between border-b border-black p-2">
         <span> Topic: </span>
         <span className="pr-4"> Grade Level: </span>
