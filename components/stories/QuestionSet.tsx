@@ -10,7 +10,9 @@ import { WordProblemSub } from "./WordProblemSub";
 import { WordProblemMulti } from "./WordProblemMulti";
 import { GuessData } from "../../pages/api/guessData";
 import { WordProblemDiv } from "./WordProblemDiv";
-import { Question } from "../../pages/api/question";
+import { MCModel, MCOption, Question } from "../../pages/api/question";
+import { MultipleChoiceSentence } from "./MultipleChoiceSentence";
+import { AdditionProperty } from "./MultipleChoiceTypes";
 
 type QuestionSetProps = {
   title: string;
@@ -31,6 +33,19 @@ const QuestionSet = ({
       return (
         <VerticalEquation
           question={questionData[index]}
+          submitGuess={submitGuess}
+        />
+      );
+    } else if (
+      questionData[index].questionType == QuestionType.MULTIPLE_CHOICE
+    ) {
+      return (
+        <MultipleChoiceSentence
+          displayQuestion={questionData[index].text}
+          option1={questionData[index].multipleChoice.options[0]}
+          option2={questionData[index].multipleChoice.options[1]}
+          option3={questionData[index].multipleChoice.options[2]}
+          option4={questionData[index].multipleChoice.options[3]}
           submitGuess={submitGuess}
         />
       );

@@ -1,13 +1,15 @@
+import Link from "next/link";
 import React from "react";
 import { Topic } from "../../pages/api/questionGenerator";
 
 type DiagnosticEvidenceProps = {
   topic: Array<string>;
-  onClick: () => void;
 };
 
-const DiagnosticData = ({ topic, onClick }: DiagnosticEvidenceProps) => {
+const DiagnosticEvidence = ({ topic }: DiagnosticEvidenceProps) => {
   let skillTopic;
+  console.log(topic);
+
   if (topic[0] == Topic.ADDITION) {
     skillTopic = Topic.ADDITION.toString();
   } else if (topic[0] == Topic.SUBTRACTION) {
@@ -30,14 +32,13 @@ const DiagnosticData = ({ topic, onClick }: DiagnosticEvidenceProps) => {
         <div>Add one digit numbers</div>
         <div>Got It</div>
       </div>
-      <button
-        className="mt-4 bg-blue-500 rounded p-3 text-white text-sm"
-        onClick={(e) => onClick()}
-      >
-        Go To Conclusion
-      </button>
+      <Link href="/diagnostic/data">
+        <button className="mt-4 bg-blue-500 rounded p-3 text-white text-sm">
+          Go To Data
+        </button>
+      </Link>
     </>
   );
 };
 
-export default DiagnosticData;
+export default DiagnosticEvidence;

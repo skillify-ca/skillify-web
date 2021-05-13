@@ -1,27 +1,26 @@
+import Link from "next/link";
 import React from "react";
 import { Topic } from "../../pages/api/questionGenerator";
 
 type DiagnosticDataProps = {
   questions: Array<string>;
   guessAns: Array<string>;
-  topic: Array<string>;
-  onClick: () => void;
+  topics: Array<string>;
 };
 
 const DiagnosticData = ({
   questions,
   guessAns,
-  topic,
-  onClick,
+  topics,
 }: DiagnosticDataProps) => {
   let skillTopic;
-  if (topic[0] == Topic.ADDITION) {
+  if (topics[0] == Topic.ADDITION) {
     skillTopic = Topic.ADDITION.toString();
-  } else if (topic[0] == Topic.SUBTRACTION) {
+  } else if (topics[0] == Topic.SUBTRACTION) {
     skillTopic = Topic.SUBTRACTION.toString();
-  } else if (topic[0] == Topic.MULTIPLICATION) {
+  } else if (topics[0] == Topic.MULTIPLICATION) {
     skillTopic = Topic.MULTIPLICATION.toString();
-  } else if (topic[0] == Topic.DIVISION) {
+  } else if (topics[0] == Topic.DIVISION) {
     skillTopic = Topic.DIVISION.toString();
   } else {
     skillTopic = "";
@@ -46,12 +45,11 @@ const DiagnosticData = ({
         </div>
       </div>
       <div className="mt-3">
-        <button
-          className="items-end bg-blue-500 rounded p-3 text-white text-sm"
-          onClick={(e) => onClick()}
-        >
-          See Evidence
-        </button>
+        <Link href="/diagnostic">
+          <button className="items-end bg-blue-500 rounded p-3 text-white text-sm">
+            Take Diagnostic Again
+          </button>
+        </Link>
       </div>
     </>
   );

@@ -1,15 +1,14 @@
+import Link from "next/link";
 import React, { useRef, useState } from "react";
 
 type DiagnosticResultsProps = {
   correctGuesses: number;
   index: number;
-  onClick: () => void;
 };
 
 const DiagnosticResults = ({
   correctGuesses,
   index,
-  onClick,
 }: DiagnosticResultsProps) => {
   const percentage = Math.round((correctGuesses / index) * 100);
   return (
@@ -23,12 +22,11 @@ const DiagnosticResults = ({
         {" "}
         {correctGuesses}/{index} Correct{" "}
       </div>
-      <button
-        className="items-end bg-blue-500 rounded p-3 text-white text-sm"
-        onClick={(e) => onClick()}
-      >
-        Go To Report
-      </button>
+      <Link href={"/diagnostic/conclusion"}>
+        <button className="items-end bg-blue-500 rounded p-3 text-white text-sm">
+          Go To Conclusion
+        </button>
+      </Link>
     </div>
   );
 };
