@@ -2,7 +2,7 @@ import { shuffle, StringNullableChain } from 'lodash';
 import { type } from 'node:os';
 import { HorizontalEquation } from '../../components/stories/HorizontalEquation';
 import { AdditionProperty } from '../../components/stories/MultipleChoiceTypes';
-import { AnswerType, MCQuestion, Question } from './question';
+import { AnswerType, MCModel, MCOption,  Question } from './question';
 import { QuestionType } from './questionTypes';
 import { createWordProblemModel, WordProblemModel } from './WordProblemModel';
 

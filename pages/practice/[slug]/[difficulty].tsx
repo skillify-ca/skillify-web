@@ -9,7 +9,7 @@ import {
 import QuestionSet from "../../../components/stories/QuestionSet";
 import { QuestionType } from "../../api/questionTypes";
 import { GuessData } from "../../api/guessData";
-import { AnswerType, MCQuestion, Question } from "../../api/question";
+import { AnswerType, MCModel, MCOption, Question } from "../../api/question";
 import Navbar from "../../../components/Navbar";
 import { Button } from "../../../components/stories/Button";
 
@@ -24,21 +24,12 @@ const PracticeQuiz = ({ slug, difficulty }) => {
       questionType: QuestionType.HORIZONTAL_EQUATION,
     },
   ]);
-  const [questionMCData, setQuestionMCData] = useState<MCQuestion[]>([
-    {
-      text: "",
-      questionData: [],
-      questionType: QuestionType.MULTIPLE_CHOICE,
-    },
-  ]);
 
   const inputElement = useRef(null);
 
   useEffect(() => {
     if (slug == "addition" && difficulty != "properties") {
       setQuestionData(generateAdditionQuestions(difficulty));
-    } else if (slug == "addition" && difficulty == "properties") {
-      setQuestionMCData(generateAdditionPropertyQuestions(slug));
     } else if (slug == "subtraction") {
       setQuestionData(generateSubtractionQuestions(difficulty));
     } else if (slug == "multiplication") {
@@ -67,7 +58,6 @@ const PracticeQuiz = ({ slug, difficulty }) => {
         title={slug}
         subtitle={difficulty}
         questionData={questionData}
-        answerData={questionMCData}
         index={index}
         inputElement={inputElement}
         submitGuess={submitGuess}

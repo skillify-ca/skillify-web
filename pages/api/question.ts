@@ -14,11 +14,21 @@ export type Question = {
     questionType: QuestionType;
     operator?: string;
     wordProblem?: WordProblemModel;
+    multiplechoice? : MCModel;
 };
 
-export type MCQuestion = {
+// export type MCQuestion = {
+//     text: string;
+//     operator?: string;
+//     questionType: QuestionType.MULTIPLE_CHOICE;
+//     questionData: Array<string>;
+// }
+
+export type MCOption = {
+    id: string;
     text: string;
-    operator?: string;
-    questionType: QuestionType.MULTIPLE_CHOICE;
-    questionData: Array<string>;
+}
+
+export type MCModel = {
+    options: Array<MCOption>;
 }
