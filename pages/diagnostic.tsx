@@ -61,6 +61,11 @@ const Diagnostic = () => {
       setGuessAns((prevArray) => [...prevArray, "Incorrect"]);
     }
     if (index == questionData.length - 1) {
+      dispatch(setDiagnostic({
+        questions: questionData,
+        guessAns: guessAns,
+        topics: topics
+      }));
       setStage(STAGE.RESULTS);
     }
   };
@@ -72,10 +77,6 @@ const Diagnostic = () => {
   };
 
   const createDiagnosticData = () => {
-    dispatch(setDiagnostic({
-      questions: questionData,
-      guessAns: guessAns
-    }));
     setStage(STAGE.DATA);
   };
 
@@ -112,7 +113,6 @@ const Diagnostic = () => {
         <DiagnosticResults
           correctGuesses={correctGuesses}
           index={index + 1}
-          onClick={createDiagnosticData}
         />
       );
       break;
@@ -121,8 +121,7 @@ const Diagnostic = () => {
         <DiagnosticData
           questions={questionData.map((question) => question.text)}
           guessAns={guessAns}
-          topic={topics}
-          onClick={createDiagnosticEvidence}
+          topics={topics}
         />
       );
       break;
@@ -141,9 +140,6 @@ const Diagnostic = () => {
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
       <Navbar />
-      <Link href={"diagnostic/data"}>
-        <Button backgroundColor="blue" label="REPORT" />
-      </Link>
       <div className="p-8 flex flex-col items-center justify-center">
         {component}
       </div>

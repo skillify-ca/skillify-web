@@ -1,16 +1,19 @@
 import { createSlice, PayloadAction, Slice } from '@reduxjs/toolkit'
 import { Question } from '../pages/api/question'
+import { Topic } from '../pages/api/questionGenerator'
 import { RootState } from './rootReducer'
 
 
 export interface DiagnosticState {
     questions: Array<Question>;
     guessAns: Array<string>;
+    topics: Array<Topic>
 }
 
 const initialState: DiagnosticState = {
     questions: [],
-    guessAns: []
+    guessAns: [],
+    topics: []
 }
 
 export const diagnosticSlice: Slice = createSlice({
@@ -22,6 +25,7 @@ export const diagnosticSlice: Slice = createSlice({
                 const newDiagnosticState = action.payload as DiagnosticState
                 state.questions = newDiagnosticState.questions
                 state.guessAns = newDiagnosticState.guessAns
+                state.topics = newDiagnosticState.topics
             }
         }
     },
