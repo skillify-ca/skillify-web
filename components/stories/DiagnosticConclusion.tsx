@@ -35,6 +35,13 @@ const DiagnosticConclusion = () => {
         >
           Worksheet#1
         </a>
+        <a
+          href="/worksheets/addition_and_subtraction_worksheet.pdf"
+          target="_blank"
+          className="mt-2 text-blue-500"
+        >
+          Worksheet#2
+        </a>
       </div>
     </div>
   );
