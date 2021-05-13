@@ -166,7 +166,7 @@ export const Container = ({
   };
 
   return (
-    <div className="bg-white p-8 gap-8 flex sm:flex-row flex-col items-center">
+    <div className="bg-white p-8 sm:gap-4 gap-8 flex sm:flex-row flex-col items-center">
       <div className="flex flex-col">
         <h1 className="text-lg text-center mb-8">
           Current Player: {isPlayerOne ? playerOne : playerTwo}
@@ -243,7 +243,7 @@ export const Container = ({
             })}
         </div>
       </div>
-      <div className="flex gap-4 flex-wrap w-96 px-8 justify-center">
+      <div className="flex gap-4 flex-wrap w-96 sm:px-0 px-8 justify-center">
         {boxes
           .filter(({ name }) => !isDropped(name))
           .map(({ name, value, type }, index) => (
