@@ -43,7 +43,7 @@ const QuestionSet = ({
     ) {
       return (
         <MultipleChoiceSentence
-          displayQuestion="Which Equation Shows the Associative Property of Addition?"
+          displayQuestion={`Which Equation Shows the ${questionData[index].answer} Property of Addition?`}
           option1={questionData[index].multiplechoice.options[0]}
           option2={questionData[index].multiplechoice.options[1]}
           option3={questionData[index].multiplechoice.options[2]}

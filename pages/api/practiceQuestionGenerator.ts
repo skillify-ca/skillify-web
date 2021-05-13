@@ -222,9 +222,22 @@ function getRandomPropertyQuestion(
   const option2: MCOption = {text: questionArr[1], id: "b"};
   const option3: MCOption = {text: questionArr[2], id: "c"};
   const option4: MCOption = {text: questionArr[3], id: "d"};
+
+  let MCanswer = ""
+  
+  switch (additionPropertyType) {
+    case AdditionProperty.ASSOCIATIVE:
+      MCanswer = "Associative";
+      break;
+    case AdditionProperty.COMMUTATIVE:
+      MCanswer = "Commutative";
+      break;
+    case AdditionProperty.IDENTITY:
+      MCanswer = "Identity";
+      break;
+  }
   
 
-  const MCanswer = option1.id;
 
   const optionarr = [
     option1, option2, option3, option4,

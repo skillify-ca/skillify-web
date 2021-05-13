@@ -24,5 +24,4 @@ Primary.args = {
   option2: { text: "(3 + 5) + 2 = 3 + (5 + 2)", type: "b" },
   option3: { text: "2 + 0 = 2", type: "c" },
   option4: { text: "2 + 1 = 1 + 2", type: "d" },
-  answer: AdditionProperty.ASSOCIATIVE,
 };
