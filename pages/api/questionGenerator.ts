@@ -49,25 +49,35 @@ export const generateQuestionsForDiagnostic = (testLength: TestLength, topics: T
 	}
 	let questions: Question[] = [];
 
-	topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.EASY, questionsPerSection)));
-	topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.MEDIUM, questionsPerSection)));
-	topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.HARD, questionsPerSection)));
-
+	if(topics[0]==Topic.ADDITION || topics[0]==Topic.SUBTRACTION ){
+		topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.EASY, questionsPerSection, "single-digit")));
+		topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.MEDIUM, questionsPerSection, "double-digit")));
+		topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.HARD, questionsPerSection, "triple-digit")));
+		
+	} else if(topics[0]==Topic.MULTIPLICATION) {
+		topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.EASY, questionsPerSection, "single-digit")));
+		topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.MEDIUM, questionsPerSection, "upto_5X5")));
+		topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.HARD, questionsPerSection, "upto_10X10")));
+	} else {
+		topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.EASY, questionsPerSection, "single-digit")));
+		topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.MEDIUM, questionsPerSection, "12_items_equally")));
+		topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.HARD, questionsPerSection, "upto_100_divide_10")));
+	}
 	return questions;
 };
 
 export const generateQuestions = (slug: string, currentLevel: number) => {
 	if (slug != null) {
 		if (slug.toLowerCase() == 'numbers') {
-			return generateQuestionsForTopic(Topic.NUMBERS, currentLevel, NUM_QUESTIONS);
+			return generateQuestionsForTopic(Topic.NUMBERS, currentLevel, NUM_QUESTIONS, "single-digit");
 		}else if (slug.toLowerCase() == 'subtraction') {
-			return generateQuestionsForTopic(Topic.SUBTRACTION, currentLevel, NUM_QUESTIONS);
+			return generateQuestionsForTopic(Topic.SUBTRACTION, currentLevel, NUM_QUESTIONS, "single-digit");
 		}else if (slug.toLowerCase() == 'multiplication'){
-			return generateQuestionsForTopic(Topic.MULTIPLICATION, currentLevel, NUM_QUESTIONS);
+			return generateQuestionsForTopic(Topic.MULTIPLICATION, currentLevel, NUM_QUESTIONS, "single-digit");
 		}else if (slug.toLowerCase() == 'division'){
-			return generateQuestionsForTopic(Topic.DIVISION, currentLevel, NUM_QUESTIONS);
+			return generateQuestionsForTopic(Topic.DIVISION, currentLevel, NUM_QUESTIONS, "single-digit");
 		}else {
-			return generateQuestionsForTopic(Topic.ADDITION, currentLevel, NUM_QUESTIONS);
+			return generateQuestionsForTopic(Topic.ADDITION, currentLevel, NUM_QUESTIONS, "single-digit");
 		}
 	}
 	return [];
@@ -85,7 +95,7 @@ function getRandomNumbersQuestion(min: number, max: number): Question {
 	};
 }
 
-const generateQuestionsForTopic = (topic: Topic, currentLevel: Difficulty, numberOfQuestions: number) => {
+const generateQuestionsForTopic = (topic: Topic, currentLevel: Difficulty, numberOfQuestions: number, digitDifficulty: string) => {
 	let questionGenerator: (min: number, max: number) => Question;
 	switch (topic) {
 		case Topic.NUMBERS:
@@ -111,16 +121,25 @@ const generateQuestionsForTopic = (topic: Topic, currentLevel: Difficulty, numbe
 	for (let i = 0; i < numberOfQuestions; i++) {
 		let min = 1;
 		let max = 10;
-		if (currentLevel == Difficulty.MEDIUM) {
+		if (digitDifficulty == "double-digit") {
 			min = 11;
 			max = 100;
-		} else if (currentLevel == Difficulty.HARD) {
+		} else if (digitDifficulty == "upto_5X5") {
+			max = 6;
+		} else if (digitDifficulty ==  "upto_10X10") {
+			max = 11;
+		} else if (digitDifficulty == "triple-digit") {
 			min = 101;
 			max = 1000;
+		} else if (digitDifficulty == "upto_100_divide_10") {
+			min = 9;
+			max = 101;
+		} else if (digitDifficulty == "12_items_equally") {
+			max = 13;
 		}
 		res.push(questionGenerator(min, max));
 	}
-	return res;
+  	return res;
 };
 
 function getRandomAdditionQuestion(min: number, max: number) {
