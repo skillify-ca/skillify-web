@@ -1,6 +1,10 @@
 import React from "react";
+import { Topic } from "../../pages/api/questionGenerator";
+type DiagnosticConclusionProps = {
+  topics: Array<Topic>;
+};
 
-const DiagnosticConclusion = () => {
+const DiagnosticConclusion = ({ topics }: DiagnosticConclusionProps) => {
   return (
     <div>
       <p className="mb-2 text-center font-black"> Conclusion </p>

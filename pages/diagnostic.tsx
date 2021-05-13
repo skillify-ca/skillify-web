@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { Button } from "../components/stories/Button";
 import DiagnosticConclusion from "../components/stories/DiagnosticConclusion";
 import DiagnosticData from "../components/stories/DiagnosticData";
+import DiagnosticEvidence from "../components/stories/DiagnosticEvidence";
 import DiagnosticResults from "../components/stories/DiagnosticResults";
 import DiagnosticTestForm from "../components/stories/DiagnosticTestForm";
 import Dropdown from "../components/stories/Dropdown";
@@ -22,6 +23,7 @@ enum STAGE {
   TEST,
   RESULTS,
   DATA,
+  EVIDENCE,
   CONCLUSION,
 }
 
@@ -71,6 +73,9 @@ export default function Diagnostic(props) {
     setStage(STAGE.CONCLUSION);
   };
 
+  const createDiagnosticEvidence = () => {
+    setStage(STAGE.EVIDENCE);
+  };
   useEffect(() => {
     setQuestionData(generateQuestionsForDiagnostic(testLength, topics));
   }, [topics, testLength]);
@@ -105,12 +110,21 @@ export default function Diagnostic(props) {
         <DiagnosticData
           questions={questionData.map((question) => question.text)}
           guessAns={guessAns}
+          topic={topics}
+          onClick={createDiagnosticEvidence}
+        />
+      );
+      break;
+    case STAGE.EVIDENCE:
+      component = (
+        <DiagnosticEvidence
+          topic={topics}
           onClick={createDiagnosticConclusion}
         />
       );
       break;
     case STAGE.CONCLUSION:
-      component = <DiagnosticConclusion />;
+      component = <DiagnosticConclusion topics={topics} />;
   }
 
   return (
