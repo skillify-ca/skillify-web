@@ -73,9 +73,7 @@ const GameBoard = () => {
     ); // Game
   }
   return (
-    <div className="container pt-8">
-      <h1 className="text-lg"> Tic Tac Toe</h1>
-
+    <div className="container">
       <div className="pt-4">{component}</div>
       <Modal
         id="game-over-model"
