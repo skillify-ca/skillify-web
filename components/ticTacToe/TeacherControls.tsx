@@ -5,8 +5,8 @@ import Rules from "./Rules";
 const TeacherControls = ({ onClick }) => {
   const [targetNumber, setTargetNumber] = useState(15);
   const [gameNumbers, setGameNumbers] = useState("1,2,3,4,5,6,7,8,9");
-  const [playerOne, setPlayerOne] = useState("Player One");
-  const [playerTwo, setPlayerTwo] = useState("Player Two");
+  const [playerOne, setPlayerOne] = useState("");
+  const [playerTwo, setPlayerTwo] = useState("");
 
   return (
     <div className="flex flex-col items-center">
@@ -47,7 +47,7 @@ const TeacherControls = ({ onClick }) => {
               value={playerOne}
               onChange={(e) => setPlayerOne(e.target.value)}
               className="appearance-none rounded-none relative block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              placeholder="Enter Player One's Name"
+              placeholder="Enter Name"
             />
             <label className="inline-flex">Player Two</label>
             <input
@@ -57,7 +57,7 @@ const TeacherControls = ({ onClick }) => {
               value={playerTwo}
               onChange={(e) => setPlayerTwo(e.target.value)}
               className="appearance-none rounded-none relative block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              placeholder="Enter Player Two's Name"
+              placeholder="Enter Name"
             />
           </div>
           <Button backgroundColor="blue" textColor="white" label="Create Game"

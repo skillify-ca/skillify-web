@@ -5,12 +5,14 @@ type DiagnosticDataProps = {
   questions: Array<string>;
   guessAns: Array<string>;
   topic: Array<number>;
+  onClick: () => void;
 };
 
 const DiagnosticData = ({
   questions,
   guessAns,
   topic,
+  onClick,
 }: DiagnosticDataProps) => {
   let skillTopic;
   if (topic[0] == 1) {
@@ -24,7 +26,6 @@ const DiagnosticData = ({
   } else {
     skillTopic = "";
   }
-
   return (
     <>
       <p className="mb-12"> Diagnostic Report : {skillTopic} </p>
@@ -43,6 +44,14 @@ const DiagnosticData = ({
             <div>{ans}</div>
           ))}
         </div>
+      </div>
+      <div className="mt-3">
+        <button
+          className="items-end bg-blue-500 rounded p-3 text-white text-sm"
+          onClick={(e) => onClick()}
+        >
+          Go To Conclusion
+        </button>
       </div>
     </>
   );
