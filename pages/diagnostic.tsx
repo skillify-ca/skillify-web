@@ -16,7 +16,9 @@ import {
 } from "./api/questionGenerator";
 import { QuestionType } from "./api/questionTypes";
 import { connect } from "react-redux";
-import { setDiagnosticResults } from "../redux/actions";
+import { setDiagnostic } from "../redux/diagnosticSlice";
+import Link from "next/link";
+import { useAppDispatch } from "../redux/store";
 
 enum STAGE {
   CREATE,
@@ -25,8 +27,9 @@ enum STAGE {
   DATA,
 }
 
-const Diagnostic = ({ diagnosticResults, setDiagnosticResults }) => {
-  setDiagnosticResults("VITH");
+const Diagnostic = () => {
+  const dispatch = useAppDispatch();
+  dispatch(setDiagnostic(""));
   const [topics, setTopics] = useState([]);
   const [testLength, setTestLength] = useState(TestLength.MEDIUM);
   const [stage, setStage] = useState(STAGE.CREATE);
@@ -110,6 +113,9 @@ const Diagnostic = ({ diagnosticResults, setDiagnosticResults }) => {
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
       <Navbar />
+      <Link href={"diagnostic/data"}>
+        <Button backgroundColor="blue" label="REPORT" />
+      </Link>
       <div className="p-8 flex flex-col items-center justify-center">
         {component}
       </div>
@@ -117,8 +123,4 @@ const Diagnostic = ({ diagnosticResults, setDiagnosticResults }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return { diagnosticResults: state.diagnosticResults };
-};
-// export default VisibilityFilters;
-export default connect(mapStateToProps, { setDiagnosticResults })(Diagnostic);
+export default Diagnostic;

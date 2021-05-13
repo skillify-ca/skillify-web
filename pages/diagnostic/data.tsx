@@ -1,13 +1,26 @@
-import { connect } from "react-redux";
-import { setDiagnosticResults } from "../../redux/actions";
+import React from "react";
+import { connect, useSelector } from "react-redux";
+import DiagnosticData from "../../components/stories/DiagnosticData";
+import { useAppDispatch } from "../../redux/store";
 
-const DiagnosticData = (diagnosticResults, setDiagnosticResults) => {
-  return <p>HELLO {diagnosticResults.toString()}</p>;
+import { diagnosticSelector } from "../../redux/diagnosticSlice";
+
+const DiagnosticDataPage = () => {
+  const dispatch = useAppDispatch();
+  const title = useSelector(diagnosticSelector);
+  console.log("diagnosticResults", title);
+  const diagnosticResults = "null";
+  const questionData = [];
+  const guessAns = [];
+  return (
+    <div>
+      <p>HELLO {title && JSON.stringify(title)}</p>
+      <DiagnosticData
+        questions={questionData.map((question) => question.text)}
+        guessAns={guessAns}
+      />
+    </div>
+  );
 };
 
-const mapStateToProps = (state) => {
-  return { diagnosticResults: state.diagnosticResults };
-};
-export default connect(mapStateToProps, { setDiagnosticResults })(
-  DiagnosticData
-);
+export default DiagnosticDataPage;

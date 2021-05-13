@@ -1,6 +1,9 @@
 import { SET_DIAGNOSTIC_RESULTS } from "../actionTypes";
 
-const initialState = "HELLO";
+const initialState = {
+  questions: "VVV",
+  guesses: "BBB",
+};
 
 const diagnosticResults = (state = initialState, action) => {
   switch (action.type) {
