@@ -47,7 +47,7 @@ export const BoardSquare: React.FC<BoardSquareProps> = ({
   }
 
   return (
-    <div ref={drop} style={{ ...style, backgroundColor }}>
+    <div ref={drop} className="w-24 h-24 bg-blue-200 border-blue-800 border-2 flex justify-center items-center">
       {isActive ? "Release to drop" : ``}
 
       {lastDroppedItem && (
