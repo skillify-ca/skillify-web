@@ -166,7 +166,7 @@ export const Container = ({
   };
 
   return (
-    <div className="bg-white p-16 gap-4 flex items-center">
+    <div className="bg-white p-8 sm:gap-4 gap-8 flex sm:flex-row flex-col items-center">
       <div className="flex flex-col">
         <h1 className="text-lg text-center mb-8">
           Current Player: {isPlayerOne ? playerOne : playerTwo}
@@ -190,8 +190,8 @@ export const Container = ({
           />
         </div>
       </div>
-      <div className="flex flex-col gap-8">
-        <div className="flex gap-8 w-96 justify-center">
+      <div className="flex flex-col gap-4">
+        <div className="flex gap-4 w-96 justify-center">
           {boardSquares
             .slice(0, 3)
             .map(({ accepts, lastDroppedItem }, index) => {
@@ -208,7 +208,7 @@ export const Container = ({
               );
             })}
         </div>
-        <div className="flex gap-8 w-96 justify-center">
+        <div className="flex gap-4 w-96 justify-center">
           {boardSquares
             .slice(3, 6)
             .map(({ accepts, lastDroppedItem }, index) => {
@@ -225,7 +225,7 @@ export const Container = ({
               );
             })}
         </div>
-        <div className="flex gap-8 w-96 justify-center">
+        <div className="flex gap-4 w-96 justify-center">
           {boardSquares
             .slice(6, 9)
             .map(({ accepts, lastDroppedItem }, index) => {
@@ -243,7 +243,7 @@ export const Container = ({
             })}
         </div>
       </div>
-      <div className="flex gap-4 flex-wrap">
+      <div className="flex gap-4 flex-wrap w-96 sm:px-0 px-8 justify-center">
         {boxes
           .filter(({ name }) => !isDropped(name))
           .map(({ name, value, type }, index) => (
