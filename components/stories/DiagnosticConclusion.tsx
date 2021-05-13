@@ -16,16 +16,14 @@ const DiagnosticConclusion = ({ topics }: DiagnosticConclusionProps) => {
       </div>
       <div className="flex flex-row justify-between p-2">
         <div>
-          <h5 className="border-red-500 border-2 mb-2">Addition</h5>
-          <h5 className="border-blue-500 border-2 mb-2">Subtraction</h5>
-          <h5 className="border-yellow-500 border-2 mb-2">Division</h5>
-          <h5 className="border-green-500 border-2 mb-2">Multiplication</h5>
+          {topics.map((it) => (
+            <p className="border-green-400 border-2 mb-2">{it}</p>
+          ))}
         </div>
         <div>
-          <h5 className="mb-3">Grade 3</h5>
-          <h5 className="mb-3">Grade 3</h5>
-          <h5 className="mb-3">Grade 3</h5>
-          <h5 className="mb-3">Grade 3</h5>
+          {topics.map((it) => (
+            <p className="border-blue-500 border-2 mb-2">Grade 3</p>
+          ))}
         </div>
       </div>
       <div className="flex flex-col">

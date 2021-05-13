@@ -113,13 +113,17 @@ function getRandomMultiplicationQuestion(min: number, max: number) {
 function getRandomDivisionQuestion(min: number, max: number, digitDifficulty) {
   const a = getRndInteger(min, max);
   let b = getRndInteger(min, max);
+  let text;
   if (digitDifficulty == "12_items_equally") {
     let factor;
     factor = Object.keys(tweleveMap[a]);
     b = getRndInteger(1, factor.length);
+    text = `${a} / ${b} =`;
+  }else {
+    const product = a * b;
+    text = `${product} / ${b} =`;
   }
-  const product = a * b;
-  const text = `${product} / ${b} =`;
+  
   const types = [
     QuestionType.LONG_DIVISION_PROBLEM,
     QuestionType.HORIZONTAL_EQUATION,
