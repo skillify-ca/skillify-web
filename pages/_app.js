@@ -7,6 +7,8 @@ import { ModalProvider } from "react-simple-hook-modal";
 import { Provider } from "next-auth/client";
 import initializeApollo from "../lib/apollo";
 import { ApolloProvider } from "@apollo/client";
+import { Provider as ReduxProvider } from "react-redux";
+import store from "../redux/store";
 
 function MyApp({ Component, pageProps }) {
   const client = initializeApollo();
@@ -14,14 +16,15 @@ function MyApp({ Component, pageProps }) {
   if (typeof window !== "undefined") {
     isMobile = window.innerWidth < 600;
   }
-  
 
   return (
     <ApolloProvider client={client}>
       <Provider session={pageProps.session}>
         <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
           <ModalProvider>
-            <Component {...pageProps} />
+            <ReduxProvider store={store}>
+              <Component {...pageProps} />
+            </ReduxProvider>
           </ModalProvider>
         </DndProvider>
       </Provider>
