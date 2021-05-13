@@ -1,9 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Button } from "../components/stories/Button";
-import DiagnosticConclusion from "../components/stories/DiagnosticConclusion";
-import DiagnosticData from "../components/stories/DiagnosticData";
-import DiagnosticEvidence from "../components/stories/DiagnosticEvidence";
 import DiagnosticResults from "../components/stories/DiagnosticResults";
 import DiagnosticTestForm from "../components/stories/DiagnosticTestForm";
 import Dropdown from "../components/stories/Dropdown";
@@ -26,9 +23,6 @@ enum STAGE {
   CREATE,
   TEST,
   RESULTS,
-  DATA,
-  EVIDENCE,
-  CONCLUSION,
 }
 
 const Diagnostic = () => {
@@ -79,17 +73,6 @@ const Diagnostic = () => {
     setTestLength(testLength);
     setStage(STAGE.TEST);
   };
-
-  const createDiagnosticData = () => {
-    setStage(STAGE.DATA);
-  };
-  const createDiagnosticConclusion = () => {
-    setStage(STAGE.CONCLUSION);
-  };
-
-  const createDiagnosticEvidence = () => {
-    setStage(STAGE.EVIDENCE);
-  };
   useEffect(() => {
     setQuestionData(generateQuestionsForDiagnostic(testLength, topics));
   }, [topics, testLength]);
@@ -115,22 +98,7 @@ const Diagnostic = () => {
         <DiagnosticResults correctGuesses={correctGuesses} index={index + 1} />
       );
       break;
-    case STAGE.DATA:
-      component = (
-        <DiagnosticData
-          questions={questionData.map((question) => question.text)}
-          guessAns={guessAns}
-          topics={topics}
-        />
-      );
-      break;
-    case STAGE.EVIDENCE:
-      component = <DiagnosticEvidence topic={topics} />;
-      break;
-    case STAGE.CONCLUSION:
-      component = <DiagnosticConclusion topics={topics} />;
   }
-
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
       <Navbar />
