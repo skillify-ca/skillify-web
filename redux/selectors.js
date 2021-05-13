@@ -1,0 +1,1 @@
+export const getDiagnosticState = store => store.diagnostic;

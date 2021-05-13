@@ -15,6 +15,8 @@ import {
   Topic,
 } from "./api/questionGenerator";
 import { QuestionType } from "./api/questionTypes";
+import { connect } from "react-redux";
+import { setDiagnosticResults } from "../redux/actions";
 
 enum STAGE {
   CREATE,
@@ -23,7 +25,8 @@ enum STAGE {
   DATA,
 }
 
-export default function Diagnostic(props) {
+const Diagnostic = ({ diagnosticResults, setDiagnosticResults }) => {
+  setDiagnosticResults("VITH");
   const [topics, setTopics] = useState([]);
   const [testLength, setTestLength] = useState(TestLength.MEDIUM);
   const [stage, setStage] = useState(STAGE.CREATE);
@@ -112,4 +115,10 @@ export default function Diagnostic(props) {
       </div>
     </div>
   );
-}
+};
+
+const mapStateToProps = (state) => {
+  return { diagnosticResults: state.diagnosticResults };
+};
+// export default VisibilityFilters;
+export default connect(mapStateToProps, { setDiagnosticResults })(Diagnostic);
