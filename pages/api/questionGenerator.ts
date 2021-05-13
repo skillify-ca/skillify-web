@@ -159,7 +159,11 @@ const generateQuestionsForTopic = (
       if (topic == Topic.DIVISION) {
         min = 1;
         max = 12;
-      } else {
+      } 
+	  else if (topic == Topic.MULTIPLICATION) {
+		  min = 1;
+		  max = 5;
+	  }else {
         min = 11;
         max = 100;
       }
