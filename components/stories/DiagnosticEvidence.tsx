@@ -34,7 +34,7 @@ const DiagnosticData = ({ topic, onClick }: DiagnosticEvidenceProps) => {
         className="mt-4 bg-blue-500 rounded p-3 text-white text-sm"
         onClick={(e) => onClick()}
       >
-        Evidence
+        Go To Conclusion
       </button>
     </>
   );
