@@ -56,7 +56,7 @@
       "statements": [
         { "text": "I can solve equal-group problems up to 10", "key": "single-digit" },
         { "text": "I can divide up to 12 items equally", "key": "12_items_equally"},
-        { "text": "I can divide numbers up to 100 ÷ 10", "key": "upto_100÷10"},
+        { "text": "I can divide numbers up to 100 ÷ 10", "key": "upto_100_divide_10"},
         { "text": "I can divide and use properties of Division", "key": "properties" }
       ]
     }
