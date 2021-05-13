@@ -16,7 +16,6 @@ import { AdditionProperty } from "./MultipleChoiceTypes";
 
 type QuestionSetProps = {
   title: string;
-  subtitle: string;
   questionData: Question[];
   index: number;
   inputElement: any;
@@ -25,7 +24,6 @@ type QuestionSetProps = {
 
 const QuestionSet = ({
   title,
-  subtitle,
   questionData,
   index,
   submitGuess,

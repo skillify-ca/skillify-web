@@ -9,9 +9,8 @@ import {
 import QuestionSet from "../../../components/stories/QuestionSet";
 import { QuestionType } from "../../api/questionTypes";
 import { GuessData } from "../../api/guessData";
-import { AnswerType, MCModel, MCOption, Question } from "../../api/question";
+import { AnswerType, Question } from "../../api/question";
 import Navbar from "../../../components/Navbar";
-import { Button } from "../../../components/stories/Button";
 
 const PracticeQuiz = ({ slug, difficulty }) => {
   const [index, setIndex] = useState(0);
@@ -58,7 +57,6 @@ const PracticeQuiz = ({ slug, difficulty }) => {
       <Navbar />
       <QuestionSet
         title={slug}
-        subtitle={difficulty}
         questionData={questionData}
         index={index}
         inputElement={inputElement}

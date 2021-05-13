@@ -27,18 +27,18 @@ export const MultipleChoiceSentence: React.FC<MultipleChoiceSentenceProp> = ({
 }) => {
   const parse = () => {
     const arr = [option1, option2, option3, option4];
-    for (const o of arr) {
-      const qlen = o.text.length;
+    for (const option of arr) {
+      const qlen = option.text.length;
       let i = 0;
       while (i < qlen) {
-        if (o.text[i] == "(") {
+        if (option.text[i] == "(") {
           break;
         } else {
           ++i;
         }
       }
-      if (o.text[i] == null) {
-        const part = o.text.split(" ");
+      if (option.text[i] == null) {
+        const part = option.text.split(" ");
         return {
           first: part[0],
           third: part[3],

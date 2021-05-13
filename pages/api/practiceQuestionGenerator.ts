@@ -25,9 +25,9 @@ const generateQuestionsForTopic = (
     case Topic.MULTIPLICATION:
       questionGenerator = getRandomMultiplicationQuestion;
       break;
-    case Topic.DIVISION:
-      questionGenerator = getRandomDivisionQuestion;
-      break;
+    // case Topic.DIVISION:
+    //   questionGenerator = getRandomDivisionQuestion;
+    //   break;
     default:
       console.log("ERROR");
   }
@@ -240,19 +240,36 @@ function getRandomPropertyQuestion(
   const y = getRndInteger(min, max);
   const z = getRndInteger(min, max);
 
-  const questionArr: string[] = [
-    `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${Math.min(
-      a,
-      b
-    )} ${operator} ${Math.max(a, b)}`,
-    `${identitynum} ${operator} 0 = ${identitynum}`,
-    `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${Math.max(
-      a,
-      b
-    )} ${operator} ${Math.min(a, b)}`,
-    `(${x} ${operator} ${y}) ${operator} ${z} = ${x} ${operator} (${y} ${operator} ${z})`,
-  ];
-  
+  // correct answers
+
+  const commutativeoption =`${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${Math.min(
+    a,
+    b
+  )} ${operator} ${Math.max(a, b)}`;
+
+  const identityoption = `${identitynum} ${operator} 0 = ${identitynum}`;
+
+  const associativeoption =     `(${x} ${operator} ${y}) ${operator} ${z} = ${x} ${operator} (${y} ${operator} ${z})`;
+
+    // wrong answers
+
+  const wrongcommutativeoption = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${Math.max(
+    a,
+    b
+  )} ${operator} ${Math.min(a, b)}`
+
+  const wrongassociativeoption = `(${x} ${operator} ${y}) ${operator} ${z} = (${x} ${operator} ${y}) ${operator} ${y}`;
+
+  const wrongidentityoption = `${identitynum} ${operator} 0 = ${identitynum}0`;
+
+  const wrongoptions: string[] = [wrongcommutativeoption, wrongassociativeoption, wrongidentityoption];
+
+  const wrongindex = getRndInteger(0, wrongoptions.length);
+
+  const wrongdisplay = wrongoptions[wrongindex]
+
+  const questionArr: string[] = [commutativeoption, identityoption, associativeoption, wrongdisplay]
+
   const option1: MCOption = {text: questionArr[0], id: "a"};
   const option2: MCOption = {text: questionArr[1], id: "b"};
   const option3: MCOption = {text: questionArr[2], id: "c"};
