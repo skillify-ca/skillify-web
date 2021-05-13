@@ -25,9 +25,9 @@ const generateQuestionsForTopic = (
     case Topic.MULTIPLICATION:
       questionGenerator = getRandomMultiplicationQuestion;
       break;
-    // case Topic.DIVISION:
-    //   questionGenerator = getRandomDivisionQuestion;
-    //   break;
+    case Topic.DIVISION:
+      questionGenerator = getRandomDivisionQuestion;
+      break;
     default:
       console.log("ERROR");
   }
@@ -242,41 +242,50 @@ function getRandomPropertyQuestion(
 
   // correct answers
 
-  const commutativeoption =`${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${Math.min(
+  const commutativeoption = `${Math.max(a, b)} ${operator} ${Math.min(
     a,
     b
-  )} ${operator} ${Math.max(a, b)}`;
+  )} = ${Math.min(a, b)} ${operator} ${Math.max(a, b)}`;
 
   const identityoption = `${identitynum} ${operator} 0 = ${identitynum}`;
 
-  const associativeoption =     `(${x} ${operator} ${y}) ${operator} ${z} = ${x} ${operator} (${y} ${operator} ${z})`;
+  const associativeoption = `(${x} ${operator} ${y}) ${operator} ${z} = ${x} ${operator} (${y} ${operator} ${z})`;
 
-    // wrong answers
+  // wrong answers
 
-  const wrongcommutativeoption = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${Math.max(
+  const wrongcommutativeoption = `${Math.max(a, b)} ${operator} ${Math.min(
     a,
     b
-  )} ${operator} ${Math.min(a, b)}`
+  )} = ${Math.max(a, b)} ${operator} ${Math.min(a, b)}`;
 
   const wrongassociativeoption = `(${x} ${operator} ${y}) ${operator} ${z} = (${x} ${operator} ${y}) ${operator} ${y}`;
 
   const wrongidentityoption = `${identitynum} ${operator} 0 = ${identitynum}0`;
 
-  const wrongoptions: string[] = [wrongcommutativeoption, wrongassociativeoption, wrongidentityoption];
+  const wrongoptions: string[] = [
+    wrongcommutativeoption,
+    wrongassociativeoption,
+    wrongidentityoption,
+  ];
 
   const wrongindex = getRndInteger(0, wrongoptions.length);
 
-  const wrongdisplay = wrongoptions[wrongindex]
+  const wrongdisplay = wrongoptions[wrongindex];
 
-  const questionArr: string[] = [commutativeoption, identityoption, associativeoption, wrongdisplay]
+  const questionArr: string[] = [
+    commutativeoption,
+    identityoption,
+    associativeoption,
+    wrongdisplay,
+  ];
 
-  const option1: MCOption = {text: questionArr[0], id: "a"};
-  const option2: MCOption = {text: questionArr[1], id: "b"};
-  const option3: MCOption = {text: questionArr[2], id: "c"};
-  const option4: MCOption = {text: questionArr[3], id: "d"};
+  const option1: MCOption = { text: questionArr[0], id: "a" };
+  const option2: MCOption = { text: questionArr[1], id: "b" };
+  const option3: MCOption = { text: questionArr[2], id: "c" };
+  const option4: MCOption = { text: questionArr[3], id: "d" };
 
-  let MCanswer = ""
-  
+  let MCanswer = "";
+
   switch (additionPropertyType) {
     case AdditionProperty.ASSOCIATIVE:
       MCanswer = "Associative";
@@ -288,15 +297,10 @@ function getRandomPropertyQuestion(
       MCanswer = "Identity";
       break;
   }
-  
 
+  const optionarr = [option1, option2, option3, option4];
 
-  const optionarr = [
-    option1, option2, option3, option4,
-  ];
-
-  const model: MCModel = {options: (shuffle(optionarr))};
-  
+  const model: MCModel = { options: shuffle(optionarr) };
 
   return {
     text: text,
@@ -304,7 +308,6 @@ function getRandomPropertyQuestion(
     answer: MCanswer,
     operator: operator,
     questionType: QuestionType.MULTIPLE_CHOICE,
-    multiplechoice: model,
-
+    multipleChoice: model,
   };
 }

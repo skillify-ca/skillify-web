@@ -42,10 +42,10 @@ const QuestionSet = ({
       return (
         <MultipleChoiceSentence
           displayQuestion={`Which Equation Shows the ${questionData[index].answer} Property of Addition?`}
-          option1={questionData[index].multiplechoice.options[0]}
-          option2={questionData[index].multiplechoice.options[1]}
-          option3={questionData[index].multiplechoice.options[2]}
-          option4={questionData[index].multiplechoice.options[3]}
+          option1={questionData[index].multipleChoice.options[0]}
+          option2={questionData[index].multipleChoice.options[1]}
+          option3={questionData[index].multipleChoice.options[2]}
+          option4={questionData[index].multipleChoice.options[3]}
           submitGuess={submitGuess}
         />
       );
