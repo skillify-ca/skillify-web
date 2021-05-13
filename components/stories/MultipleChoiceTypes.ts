@@ -1,5 +1,5 @@
 export enum AdditionProperty {
-    ASSOCIATIVE,
-    COMMUTATIVE,
-    IDENTITY,
+    ASSOCIATIVE = "Associative",
+    COMMUTATIVE = "Commutative",
+    IDENTITY = "Identity",
   }

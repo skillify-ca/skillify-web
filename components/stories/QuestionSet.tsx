@@ -41,7 +41,7 @@ const QuestionSet = ({
     ) {
       return (
         <MultipleChoiceSentence
-          displayQuestion={`Which Equation Shows the ${questionData[index].answer} Property of Addition?`}
+          displayQuestion={questionData[index].text}
           option1={questionData[index].multipleChoice.options[0]}
           option2={questionData[index].multipleChoice.options[1]}
           option3={questionData[index].multipleChoice.options[2]}

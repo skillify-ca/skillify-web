@@ -58,35 +58,14 @@ const generateQuestionsForTopic = (
   return res;
 };
 
-const generatePropertyQuestionsforTopic = (
-  numberofQuestions: number,
-  operator: Topic
-) => {
-  let questionPropertyGenerator: (min: number, max: number) => Question;
-  switch (operator) {
-    case Topic.ADDITIONPROPERTIES:
-      questionPropertyGenerator = getRandomPropertyAdditionQuestion;
-      break;
-    default:
-      console.log("ERROR");
-  }
+export const generateAdditionPropertyQuestions = () => {
   const res = [];
-  for (let i = 0; i < numberofQuestions; ++i) {
+  for (let i = 0; i < NUM_QUESTIONS; ++i) {
     let min = 1;
     let max = 15;
-    res.push(questionPropertyGenerator(min, max));
+    res.push(getRandomPropertyAdditionQuestion(min, max));
   }
   return res;
-};
-
-export const generateAdditionPropertyQuestions = (slug: string) => {
-  if (slug != null) {
-    return generatePropertyQuestionsforTopic(
-      NUM_QUESTIONS,
-      Topic.ADDITIONPROPERTIES
-    );
-  }
-  return [];
 };
 
 export const generateAdditionQuestions = (difficulty: string) => {
@@ -226,7 +205,7 @@ function getRandomPropertyQuestion(
 ): Question {
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
-  const text = "Which equation shows the Associative Property?";
+  
   const additionPropertyTypes = [
     AdditionProperty.ASSOCIATIVE,
     AdditionProperty.COMMUTATIVE,
@@ -234,6 +213,7 @@ function getRandomPropertyQuestion(
   ];
   const typeIndex = getRndInteger(0, additionPropertyTypes.length);
   const additionPropertyType = additionPropertyTypes[typeIndex];
+  const text = `Which equation shows the ${additionPropertyType} Property?`;
 
   const identitynum = getRndInteger(min, max);
   const x = getRndInteger(min, max);
@@ -284,20 +264,6 @@ function getRandomPropertyQuestion(
   const option3: MCOption = { text: questionArr[2], id: "c" };
   const option4: MCOption = { text: questionArr[3], id: "d" };
 
-  let MCanswer = "";
-
-  switch (additionPropertyType) {
-    case AdditionProperty.ASSOCIATIVE:
-      MCanswer = "Associative";
-      break;
-    case AdditionProperty.COMMUTATIVE:
-      MCanswer = "Commutative";
-      break;
-    case AdditionProperty.IDENTITY:
-      MCanswer = "Identity";
-      break;
-  }
-
   const optionarr = [option1, option2, option3, option4];
 
   const model: MCModel = { options: shuffle(optionarr) };
@@ -305,7 +271,7 @@ function getRandomPropertyQuestion(
   return {
     text: text,
     answerType: AnswerType.STRING,
-    answer: MCanswer,
+    answer: additionPropertyType,
     operator: operator,
     questionType: QuestionType.MULTIPLE_CHOICE,
     multipleChoice: model,
