@@ -17,6 +17,10 @@ import {
   Topic,
 } from "./api/questionGenerator";
 import { QuestionType } from "./api/questionTypes";
+import { connect } from "react-redux";
+import { setDiagnostic } from "../redux/diagnosticSlice";
+import Link from "next/link";
+import { useAppDispatch } from "../redux/store";
 
 enum STAGE {
   CREATE,
@@ -27,7 +31,8 @@ enum STAGE {
   CONCLUSION,
 }
 
-export default function Diagnostic(props) {
+const Diagnostic = () => {
+  const dispatch = useAppDispatch();
   const [topics, setTopics] = useState([]);
   const [testLength, setTestLength] = useState(TestLength.MEDIUM);
   const [stage, setStage] = useState(STAGE.CREATE);
@@ -56,6 +61,11 @@ export default function Diagnostic(props) {
       setGuessAns((prevArray) => [...prevArray, "Incorrect"]);
     }
     if (index == questionData.length - 1) {
+      dispatch(setDiagnostic({
+        questions: questionData,
+        guessAns: guessAns,
+        topics: topics
+      }));
       setStage(STAGE.RESULTS);
     }
   };
@@ -69,15 +79,13 @@ export default function Diagnostic(props) {
   const createDiagnosticData = () => {
     setStage(STAGE.DATA);
   };
-
-  const createDiagnosticEvidence = () => {
-    setStage(STAGE.EVIDENCE);
-  };
-
   const createDiagnosticConclusion = () => {
     setStage(STAGE.CONCLUSION);
   };
 
+  const createDiagnosticEvidence = () => {
+    setStage(STAGE.EVIDENCE);
+  };
   useEffect(() => {
     setQuestionData(generateQuestionsForDiagnostic(testLength, topics));
   }, [topics, testLength]);
@@ -103,7 +111,6 @@ export default function Diagnostic(props) {
         <DiagnosticResults
           correctGuesses={correctGuesses}
           index={index + 1}
-          onClick={createDiagnosticData}
         />
       );
       break;
@@ -112,8 +119,7 @@ export default function Diagnostic(props) {
         <DiagnosticData
           questions={questionData.map((question) => question.text)}
           guessAns={guessAns}
-          topic={topics}
-          onClick={createDiagnosticEvidence}
+          topics={topics}
         />
       );
       break;
@@ -126,7 +132,7 @@ export default function Diagnostic(props) {
       );
       break;
     case STAGE.CONCLUSION:
-      component = <DiagnosticConclusion />;
+      component = <DiagnosticConclusion topics={topics} />;
   }
 
   return (
@@ -137,4 +143,6 @@ export default function Diagnostic(props) {
       </div>
     </div>
   );
-}
+};
+
+export default Diagnostic;
