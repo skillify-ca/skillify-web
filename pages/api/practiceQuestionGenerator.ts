@@ -25,9 +25,6 @@ const generateQuestionsForTopic = (
     case Topic.MULTIPLICATION:
       questionGenerator = getRandomMultiplicationQuestion;
       break;
-    case Topic.DIVISION:
-      questionGenerator = getRandomDivisionQuestion;
-      break;
     default:
       console.log("ERROR");
   }
@@ -222,41 +219,41 @@ function getRandomPropertyQuestion(
 
   // correct answers
 
-  const commutativeoption = `${Math.max(a, b)} ${operator} ${Math.min(
+  const commutativeOption = `${Math.max(a, b)} ${operator} ${Math.min(
     a,
     b
   )} = ${Math.min(a, b)} ${operator} ${Math.max(a, b)}`;
 
-  const identityoption = `${identitynum} ${operator} 0 = ${identitynum}`;
+  const identityOption = `${identitynum} ${operator} 0 = ${identitynum}`;
 
-  const associativeoption = `(${x} ${operator} ${y}) ${operator} ${z} = ${x} ${operator} (${y} ${operator} ${z})`;
+  const associativeOption = `(${x} ${operator} ${y}) ${operator} ${z} = ${x} ${operator} (${y} ${operator} ${z})`;
 
   // wrong answers
 
-  const wrongcommutativeoption = `${Math.max(a, b)} ${operator} ${Math.min(
+  const wrongCommutativeOption = `${Math.max(a, b)} ${operator} ${Math.min(
     a,
     b
   )} = ${Math.max(a, b)} ${operator} ${Math.min(a, b)}`;
 
-  const wrongassociativeoption = `(${x} ${operator} ${y}) ${operator} ${z} = (${x} ${operator} ${y}) ${operator} ${y}`;
+  const wrongAssociativeOption = `(${x} ${operator} ${y}) ${operator} ${z} = (${x} ${operator} ${y}) ${operator} ${y}`;
 
-  const wrongidentityoption = `${identitynum} ${operator} 0 = ${identitynum}0`;
+  const wrongIdentityOption = `${identitynum} ${operator} 0 = ${identitynum}0`;
 
-  const wrongoptions: string[] = [
-    wrongcommutativeoption,
-    wrongassociativeoption,
-    wrongidentityoption,
+  const wrongOptions: string[] = [
+    wrongCommutativeOption,
+    wrongAssociativeOption,
+    wrongIdentityOption,
   ];
 
-  const wrongindex = getRndInteger(0, wrongoptions.length);
+  const wrongIndex = getRndInteger(0, wrongOptions.length);
 
-  const wrongdisplay = wrongoptions[wrongindex];
+  const wrongDisplay = wrongOptions[wrongIndex];
 
   const questionArr: string[] = [
-    commutativeoption,
-    identityoption,
-    associativeoption,
-    wrongdisplay,
+    commutativeOption,
+    identityOption,
+    associativeOption,
+    wrongDisplay,
   ];
 
   const option1: MCOption = { text: questionArr[0], id: "a" };
