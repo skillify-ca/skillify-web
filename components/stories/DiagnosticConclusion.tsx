@@ -1,11 +1,6 @@
 import React from "react";
 
-type DiagnosticDataProps = {
-  questions: Array<string>;
-  guessAns: Array<string>;
-};
-
-const DiagnosticConclusion = ({ questions, guessAns }: DiagnosticDataProps) => {
+const DiagnosticConclusion = () => {
   return (
     <div>
       <p> Report Card - Ontario Curriculum</p>
