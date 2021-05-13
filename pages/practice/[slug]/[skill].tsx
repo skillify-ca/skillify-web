@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
+  generateAdditionPropertyQuestions,
   generateAdditionQuestions,
   generateDivisionQuestions,
   generateMultiplicationQuestions,
@@ -11,7 +12,7 @@ import { GuessData } from "../../api/guessData";
 import { AnswerType, Question } from "../../api/question";
 import Navbar from "../../../components/Navbar";
 
-const PracticeQuiz = ({ slug, difficulty }) => {
+const PracticeQuiz = ({ slug, skill }) => {
   const [index, setIndex] = useState(0);
   const [interval, setMyInterval] = useState(null);
   const [questionData, setQuestionData] = useState<Question[]>([
@@ -22,17 +23,20 @@ const PracticeQuiz = ({ slug, difficulty }) => {
       questionType: QuestionType.HORIZONTAL_EQUATION,
     },
   ]);
+
   const inputElement = useRef(null);
 
   useEffect(() => {
-    if (slug == "addition") {
-      setQuestionData(generateAdditionQuestions(difficulty));
+    if (slug == "addition" && skill != "properties") {
+      setQuestionData(generateAdditionQuestions(skill));
+    } else if (slug == "addition" && skill == "properties") {
+      setQuestionData(generateAdditionPropertyQuestions());
     } else if (slug == "subtraction") {
-      setQuestionData(generateSubtractionQuestions(difficulty));
+      setQuestionData(generateSubtractionQuestions(skill));
     } else if (slug == "multiplication") {
-      setQuestionData(generateMultiplicationQuestions(difficulty));
+      setQuestionData(generateMultiplicationQuestions(skill));
     } else if (slug == "division") {
-      setQuestionData(generateDivisionQuestions(difficulty));
+      setQuestionData(generateDivisionQuestions(skill));
     }
   }, []);
 
@@ -65,7 +69,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       slug: params.slug,
-      difficulty: params.difficulty,
+      skill: params.skill,
     },
   };
 }
@@ -73,22 +77,22 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { slug: "addition", difficulty: "single-digit" } },
-      { params: { slug: "addition", difficulty: "double-digit" } },
-      { params: { slug: "addition", difficulty: "triple-digit" } },
-      { params: { slug: "addition", difficulty: "properties" } },
-      { params: { slug: "subtraction", difficulty: "single-digit" } },
-      { params: { slug: "subtraction", difficulty: "double-digit" } },
-      { params: { slug: "subtraction", difficulty: "triple-digit" } },
-      { params: { slug: "subtraction", difficulty: "properties" } },
-      { params: { slug: "multiplication", difficulty: "single-digit" } },
-      { params: { slug: "multiplication", difficulty: "double-digit" } },
-      { params: { slug: "multiplication", difficulty: "triple-digit" } },
-      { params: { slug: "multiplication", difficulty: "properties" } },
-      { params: { slug: "division", difficulty: "single-digit" } },
-      { params: { slug: "division", difficulty: "double-digit" } },
-      { params: { slug: "division", difficulty: "triple-digit" } },
-      { params: { slug: "division", difficulty: "properties" } },
+      { params: { slug: "addition", skill: "single-digit" } },
+      { params: { slug: "addition", skill: "double-digit" } },
+      { params: { slug: "addition", skill: "triple-digit" } },
+      { params: { slug: "addition", skill: "properties" } },
+      { params: { slug: "subtraction", skill: "single-digit" } },
+      { params: { slug: "subtraction", skill: "double-digit" } },
+      { params: { slug: "subtraction", skill: "triple-digit" } },
+      { params: { slug: "subtraction", skill: "properties" } },
+      { params: { slug: "multiplication", skill: "single-digit" } },
+      { params: { slug: "multiplication", skill: "double-digit" } },
+      { params: { slug: "multiplication", skill: "triple-digit" } },
+      { params: { slug: "multiplication", skill: "properties" } },
+      { params: { slug: "division", skill: "single-digit" } },
+      { params: { slug: "division", skill: "double-digit" } },
+      { params: { slug: "division", skill: "triple-digit" } },
+      { params: { slug: "division", skill: "properties" } },
     ],
     fallback: true,
   };

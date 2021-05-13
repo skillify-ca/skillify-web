@@ -2,6 +2,9 @@ import { createWordProblemModel, WordProblemModel } from "./WordProblemModel";
 import { QuestionType } from "./questionTypes";
 import { AnswerType, Question } from "./question";
 import { Topic } from "./questionGenerator";
+import { MCModel, MCOption } from "./question";
+import { shuffle, StringNullableChain } from "lodash";
+import { AdditionProperty } from "../../components/stories/MultipleChoiceTypes";
 import { tweleveMap } from "./factorsOfTwelveMap";
 
 const NUM_QUESTIONS = 5;
@@ -48,6 +51,16 @@ const generateQuestionsForTopic = (
     } else {
       res.push(questionGenerator(min, max));
     }
+  }
+  return res;
+};
+
+export const generateAdditionPropertyQuestions = () => {
+  const res = [];
+  for (let i = 0; i < NUM_QUESTIONS; ++i) {
+    let min = 1;
+    let max = 15;
+    res.push(getRandomPropertyAdditionQuestion(min, max));
   }
   return res;
 };
@@ -181,4 +194,87 @@ function getRandomBinaryQuestion(
 // Get random number between min (inclusive) and max (exclusive)
 export function getRndInteger(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function getRandomPropertyAdditionQuestion(min: number, max: number) {
+  return getRandomPropertyQuestion(min, max, "+");
+}
+function getRandomPropertyQuestion(
+  min: number,
+  max: number,
+  operator: string
+): Question {
+  const a = getRndInteger(min, max);
+  const b = getRndInteger(min, max);
+  
+  const additionPropertyTypes = [
+    AdditionProperty.ASSOCIATIVE,
+    AdditionProperty.COMMUTATIVE,
+    AdditionProperty.IDENTITY,
+  ];
+  const typeIndex = getRndInteger(0, additionPropertyTypes.length);
+  const additionPropertyType = additionPropertyTypes[typeIndex];
+  const text = `Which equation shows the ${additionPropertyType} Property?`;
+
+  const identitynum = getRndInteger(min, max);
+  const x = getRndInteger(min, max);
+  const y = getRndInteger(min, max);
+  const z = getRndInteger(min, max);
+
+  // correct answers
+
+  const commutativeOption = `${Math.max(a, b)} ${operator} ${Math.min(
+    a,
+    b
+  )} = ${Math.min(a, b)} ${operator} ${Math.max(a, b)}`;
+
+  const identityOption = `${identitynum} ${operator} 0 = ${identitynum}`;
+
+  const associativeOption = `(${x} ${operator} ${y}) ${operator} ${z} = ${x} ${operator} (${y} ${operator} ${z})`;
+
+  // wrong answers
+
+  const wrongCommutativeOption = `${Math.max(a, b)} ${operator} ${Math.min(
+    a,
+    b
+  )} = ${Math.max(a, b)} ${operator} ${Math.min(a, b)}`;
+
+  const wrongAssociativeOption = `(${x} ${operator} ${y}) ${operator} ${z} = (${x} ${operator} ${y}) ${operator} ${y}`;
+
+  const wrongIdentityOption = `${identitynum} ${operator} 0 = ${identitynum}0`;
+
+  const wrongOptions: string[] = [
+    wrongCommutativeOption,
+    wrongAssociativeOption,
+    wrongIdentityOption,
+  ];
+
+  const wrongIndex = getRndInteger(0, wrongOptions.length);
+
+  const wrongDisplay = wrongOptions[wrongIndex];
+
+  const questionArr: string[] = [
+    commutativeOption,
+    identityOption,
+    associativeOption,
+    wrongDisplay,
+  ];
+
+  const option1: MCOption = { text: questionArr[0], id: "a" };
+  const option2: MCOption = { text: questionArr[1], id: "b" };
+  const option3: MCOption = { text: questionArr[2], id: "c" };
+  const option4: MCOption = { text: questionArr[3], id: "d" };
+
+  const optionarr = [option1, option2, option3, option4];
+
+  const model: MCModel = { options: shuffle(optionarr) };
+
+  return {
+    text: text,
+    answerType: AnswerType.STRING,
+    answer: additionPropertyType,
+    operator: operator,
+    questionType: QuestionType.MULTIPLE_CHOICE,
+    multipleChoice: model,
+  };
 }
