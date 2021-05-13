@@ -29,7 +29,7 @@ const PracticeQuiz = ({ slug, difficulty }) => {
   useEffect(() => {
     if (slug == "addition" && difficulty != "properties") {
       setQuestionData(generateAdditionQuestions(difficulty));
-    } else if (slug == "addition") {
+    } else if (slug == "addition" && difficulty == "properties") {
       setQuestionData(generateAdditionPropertyQuestions(slug));
     } else if (slug == "subtraction") {
       setQuestionData(generateSubtractionQuestions(difficulty));

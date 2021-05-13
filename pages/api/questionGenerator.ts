@@ -2,19 +2,19 @@ import { shuffle, StringNullableChain } from 'lodash';
 import { type } from 'node:os';
 import { HorizontalEquation } from '../../components/stories/HorizontalEquation';
 import { AdditionProperty } from '../../components/stories/MultipleChoiceTypes';
-import { AnswerType, MCModel, MCOption,  Question } from './question';
+import { AnswerType,  Question } from './question';
 import { QuestionType } from './questionTypes';
 import { createWordProblemModel, WordProblemModel } from './WordProblemModel';
 
 const NUM_QUESTIONS = 5;
 
 export enum Topic {
-	NUMBERS,
-	ADDITION,
-	SUBTRACTION,
-	MULTIPLICATION,
-	DIVISION,
-	ADDITIONPROPERTIES
+	NUMBERS = "Numbers",
+	ADDITION = "Addition",
+	SUBTRACTION = "Subtraction",
+	MULTIPLICATION = "Multiplication",
+	DIVISION = "Division",
+	ADDITIONPROPERTIES = "AdditionProperties"
 }
 
 export enum TestLength {
