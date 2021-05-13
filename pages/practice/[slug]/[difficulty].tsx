@@ -65,6 +65,7 @@ const PracticeQuiz = ({ slug, difficulty }) => {
       <Navbar />
       <QuestionSet
         title={slug}
+        subtitle={difficulty}
         questionData={questionData}
         answerData={questionMCData}
         index={index}

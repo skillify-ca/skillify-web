@@ -16,6 +16,7 @@ import { AdditionProperty } from "./MultipleChoiceTypes";
 
 type QuestionSetProps = {
   title: string;
+  subtitle: string;
   questionData: Question[];
   answerData: MCQuestion[];
   index: number;
@@ -25,6 +26,7 @@ type QuestionSetProps = {
 
 const QuestionSet = ({
   title,
+  subtitle,
   questionData,
   answerData,
   index,
@@ -114,14 +116,16 @@ const QuestionSet = ({
       <div className="flex justify-between w-full p-4">
         <p className="text-xl font-bold">{title}</p>
         <p className="font-bold text-gray-400">
-          {console.log(questionData)}
+          {/* {console.log(questionData.length == 1)} */}
+          {console.log(subtitle)}
+          {console.log(answerData.length == 1)}
           {/* {console.log(answerData)} */}
           Question: {index + 1} / {questionData.length}
         </p>
       </div>
       <Card size="large">
-        {questionData[index] && questionComponent()}
-        {answerData[index] && answerComponent()}
+        {subtitle != "properties" && questionData[index] && questionComponent()}
+        {subtitle == "properties" && answerData[index] && answerComponent()}
       </Card>
     </div>
   );
