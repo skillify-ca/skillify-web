@@ -30,6 +30,12 @@ export enum Difficulty {
 	HARD
 }
 
+export enum Skill {
+	ADDITION_ONE_DIGIT = "Add one digit numbers",
+	ADDITION_TWO_DIGIT = "Add two digit numbers",
+	ADDITION_THREE_DIGIT = "Add three digit numbers"
+}
+
 export const generateQuestionsForDiagnostic = (testLength: TestLength, topics: Topic[]) => {
 	let questionsPerSection = 0;
 	switch (testLength) {
@@ -46,6 +52,7 @@ export const generateQuestionsForDiagnostic = (testLength: TestLength, topics: T
 			questionsPerSection = 1;
 	}
 	let questions: Question[] = [];
+
 	topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.EASY, questionsPerSection)));
 	topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.MEDIUM, questionsPerSection)));
 	topics.forEach((it) => questions.push(...generateQuestionsForTopic(it, Difficulty.HARD, questionsPerSection)));

@@ -45,18 +45,18 @@
     {
       "name": "multiplication",
       "statements": [
-        { "text": "I can multiply one digit numbers", "key": "single-digit" },
-        { "text": "I can multiply two digit numbers", "key": "double-digit" },
-        { "text": "I can multiply three digit numbers", "key": "triple-digit"},
+        { "text": "I can solve equal-group problems up to 10", "key": "single-digit" },
+        { "text": "I can multiply numbers up to 5 X 5", "key": "upto_5X5" },
+        { "text": "I can multiply number up to 10 X 10", "key": "upto_10X10"},
         { "text": "I can multiply and use properties of Multiplication", "key": "properties" }
       ]
     },
     {
       "name": "division",
       "statements": [
-        { "text": "I can divide one digit numbers", "key": "single-digit" },
-        { "text": "I can divide two digit numbers", "key": "double-digit" },
-        { "text": "I can divide three digit numbers", "key": "triple-digit"},
+        { "text": "I can solve equal-group problems up to 10", "key": "single-digit" },
+        { "text": "I can divide up to 12 items equally", "key": "12_items_equally"},
+        { "text": "I can divide numbers up to 100 ÷ 10", "key": "upto_100_divide_10"},
         { "text": "I can divide and use properties of Division", "key": "properties" }
       ]
     }
