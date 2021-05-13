@@ -2,7 +2,7 @@ import { createWordProblemModel, WordProblemModel } from "./WordProblemModel";
 import { QuestionType } from "./questionTypes";
 import { AnswerType, Question } from "./question";
 import { Topic } from "./questionGenerator";
-import { MCQuestion } from "./question";
+import { MCModel, MCOption } from "./question";
 import { shuffle, StringNullableChain } from "lodash";
 import { AdditionProperty } from "../../components/stories/MultipleChoiceTypes";
 
@@ -50,7 +50,7 @@ const generatePropertyQuestionsforTopic = (
   numberofQuestions: number,
   operator: Topic
 ) => {
-  let questionPropertyGenerator: (min: number, max: number) => MCQuestion;
+  let questionPropertyGenerator: (min: number, max: number) => Question;
   switch (operator) {
     case Topic.ADDITIONPROPERTIES:
       questionPropertyGenerator = getRandomPropertyAdditionQuestion;
@@ -188,7 +188,7 @@ function getRandomPropertyQuestion(
   min: number,
   max: number,
   operator: string
-): MCQuestion {
+): Question {
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
   const text = "Which equation shows the Associative Property?";
@@ -205,7 +205,7 @@ function getRandomPropertyQuestion(
   const y = getRndInteger(min, max);
   const z = getRndInteger(min, max);
 
-  const questionArr = [
+  const questionArr: string[] = [
     `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${Math.min(
       a,
       b
@@ -217,11 +217,29 @@ function getRandomPropertyQuestion(
     )} ${operator} ${Math.min(a, b)}`,
     `(${x} ${operator} ${y}) ${operator} ${z} = ${x} ${operator} (${y} ${operator} ${z})`,
   ];
+  
+  const option1: MCOption = {text: questionArr[0], id: "a"};
+  const option2: MCOption = {text: questionArr[1], id: "b"};
+  const option3: MCOption = {text: questionArr[2], id: "c"};
+  const option4: MCOption = {text: questionArr[3], id: "d"};
+  
+
+  const MCanswer = option1.id;
+
+  const optionarr = [
+    option1, option2, option3, option4,
+  ];
+
+  const model: MCModel = {options: (shuffle(optionarr))};
+  
 
   return {
     text: text,
+    answerType: AnswerType.STRING,
+    answer: MCanswer,
     operator: operator,
     questionType: QuestionType.MULTIPLE_CHOICE,
-    questionData: shuffle(questionArr),
+    multiplechoice: model,
+
   };
 }

@@ -4,7 +4,8 @@ import { WordProblemModel } from "./WordProblemModel";
 
 export enum AnswerType {
     NUMBER,
-    BOOLEAN
+    BOOLEAN,
+    STRING,
 }
 
 export type Question = {

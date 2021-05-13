@@ -1,14 +1,14 @@
 import React from "react";
+import { MCOption } from "../../pages/api/question";
 import { Button } from "./Button";
 import { AdditionProperty } from "./MultipleChoiceTypes";
 
 export interface MultipleChoiceSentenceProp {
   displayQuestion?: string;
-  option1: { question: string; type: AdditionProperty };
-  option2: { question: string; type: AdditionProperty };
-  option3: { question: string; type: AdditionProperty };
-  option4: { question: string; type: AdditionProperty };
-  answer: AdditionProperty;
+  option1: MCOption;
+  option2: MCOption;
+  option3: MCOption;
+  option4: MCOption;
   submitGuess: (e) => void;
 }
 
@@ -28,31 +28,21 @@ export const MultipleChoiceSentence: React.FC<MultipleChoiceSentenceProp> = ({
   const parse = () => {
     const arr = [option1, option2, option3, option4];
     for (const o of arr) {
-      const qlen = o.question.length;
+      const qlen = o.text.length;
       let i = 0;
       while (i < qlen) {
-        if (o.question[i] == "(") {
-          o.type = AdditionProperty.ASSOCIATIVE;
+        if (o.text[i] == "(") {
           break;
         } else {
           ++i;
         }
       }
-      if (o.type == null) {
-        const part = o.question.split(" ");
+      if (o.text[i] == null) {
+        const part = o.text.split(" ");
         return {
           first: part[0],
           third: part[3],
         };
-      }
-      switch (parse().third) {
-        case "0":
-          o.type = AdditionProperty.IDENTITY;
-          break;
-        default:
-          o.type = AdditionProperty.COMMUTATIVE;
-
-          break;
       }
     }
   };
@@ -60,22 +50,22 @@ export const MultipleChoiceSentence: React.FC<MultipleChoiceSentenceProp> = ({
     <div className="flex flex-col items-center space-y-16">
       <h1 className="text-4xl"> {displayQuestion} </h1>
       <Button
-        label={option1.question}
+        label={option1.text}
         backgroundColor="red"
         onClick={submitGuess}
       ></Button>
       <Button
-        label={option2.question}
+        label={option2.text}
         backgroundColor="blue"
         onClick={submitGuess}
       ></Button>
       <Button
-        label={option3.question}
+        label={option3.text}
         backgroundColor="yellow"
         onClick={submitGuess}
       ></Button>
       <Button
-        label={option4.question}
+        label={option4.text}
         backgroundColor="green"
         onClick={submitGuess}
       ></Button>
