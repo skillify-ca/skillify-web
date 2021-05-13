@@ -19,7 +19,7 @@ const Template: Story<MultipleChoiceSentenceProp> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  displayQuestion: "Which Equation Shows the Associative Property",
+  displayQuestion: "Which Equation Shows the Associative Property of Addition?",
   option1: { text: "3 + 2 = 2 + 3", id: "a" },
   option2: { text: "(3 + 5) + 2 = 3 + (5 + 2)", type: "b" },
   option3: { text: "2 + 0 = 2", type: "c" },
