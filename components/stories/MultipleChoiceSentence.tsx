@@ -47,8 +47,8 @@ export const MultipleChoiceSentence: React.FC<MultipleChoiceSentenceProp> = ({
     }
   };
   return (
-    <div className="flex flex-col items-center space-y-16">
-      <h1 className="text-4xl"> {displayQuestion} </h1>
+    <div className="flex flex-col items-center space-y-8">
+      <h1 className="text-4m font-semibold text-center"> {displayQuestion} </h1>
       <Button
         label={option1.text}
         backgroundColor="red"
