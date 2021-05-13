@@ -29,7 +29,6 @@ enum STAGE {
 
 const Diagnostic = () => {
   const dispatch = useAppDispatch();
-  dispatch(setDiagnostic(""));
   const [topics, setTopics] = useState([]);
   const [testLength, setTestLength] = useState(TestLength.MEDIUM);
   const [stage, setStage] = useState(STAGE.CREATE);
@@ -69,6 +68,10 @@ const Diagnostic = () => {
   };
 
   const createDiagnosticData = () => {
+    dispatch(setDiagnostic({
+      questions: questionData,
+      guessAns: guessAns
+    }));
     setStage(STAGE.DATA);
   };
 

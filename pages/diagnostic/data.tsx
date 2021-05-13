@@ -6,15 +6,11 @@ import { useAppDispatch } from "../../redux/store";
 import { diagnosticSelector } from "../../redux/diagnosticSlice";
 
 const DiagnosticDataPage = () => {
-  const dispatch = useAppDispatch();
-  const title = useSelector(diagnosticSelector);
-  console.log("diagnosticResults", title);
-  const diagnosticResults = "null";
-  const questionData = [];
-  const guessAns = [];
+  const diagnosticResults = useSelector(diagnosticSelector);
+  const questionData = diagnosticResults.questions;
+  const guessAns = diagnosticResults.guessAns;
   return (
     <div>
-      <p>HELLO {title && JSON.stringify(title)}</p>
       <DiagnosticData
         questions={questionData.map((question) => question.text)}
         guessAns={guessAns}

@@ -1,8 +1,8 @@
 import { combineReducers, Reducer } from '@reduxjs/toolkit'
-import { diagnosticSlice } from "./diagnosticSlice"
+import { diagnosticSlice, DiagnosticState } from "./diagnosticSlice"
 
 type State = {
-    diagnostic: string;
+    diagnostic: DiagnosticState;
 }
 const diagnosticReducer: Reducer = diagnosticSlice.reducer
 const rootReducer = combineReducers({ diagnostic: diagnosticReducer })

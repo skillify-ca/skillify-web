@@ -1,23 +1,28 @@
-// src/features/auth/authSlice.ts
 import { createSlice, PayloadAction, Slice } from '@reduxjs/toolkit'
+import { Question } from '../pages/api/question'
 import { RootState } from './rootReducer'
-import { AppThunk } from './store'
 
 
 export interface DiagnosticState {
-    title: string;
+    questions: Array<Question>;
+    guessAns: Array<string>;
 }
 
-export const initialState: DiagnosticState = {
-    title: "WHOA"
+const initialState: DiagnosticState = {
+    questions: [],
+    guessAns: []
 }
 
 export const diagnosticSlice: Slice = createSlice({
     name: 'diagnostic',
     initialState,
     reducers: {
-        setDiagnostic: state => {
-            state.title = "1"
+        setDiagnostic: (state, action: PayloadAction<DiagnosticState>) => {
+            if (action.type == "diagnostic/setDiagnostic") {
+                const newDiagnosticState = action.payload as DiagnosticState
+                state.questions = newDiagnosticState.questions
+                state.guessAns = newDiagnosticState.guessAns
+            }
         }
     },
 })
