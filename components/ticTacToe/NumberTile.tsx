@@ -1,5 +1,6 @@
 import React from "react";
 import { useDrag } from "react-dnd";
+import { ItemTypes } from "./ItemTypes";
 
 const style: React.CSSProperties = {
   cursor: "move",
@@ -23,7 +24,7 @@ export const NumberTile: React.FC<NumberTileProps> = ({ name, value, type, isDro
 
   return (
     <div ref={drag} style={{ ...style, opacity }}>
-      <div className="bg-purple-400 w-24 h-24 m-4 flex items-center justify-center">
+      <div className="bg-purple-400 w-16 h-16 flex items-center justify-center text-5xl">
         {value}
       </div>
     </div>

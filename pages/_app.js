@@ -10,11 +10,16 @@ import { ApolloProvider } from "@apollo/client";
 
 function MyApp({ Component, pageProps }) {
   const client = initializeApollo();
+  let isMobile = false;
+  if (typeof window !== "undefined") {
+    isMobile = window.innerWidth < 600;
+  }
+  
 
   return (
     <ApolloProvider client={client}>
       <Provider session={pageProps.session}>
-        <DndProvider backend={TouchBackend}>
+        <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
           <ModalProvider>
             <Component {...pageProps} />
           </ModalProvider>
