@@ -159,16 +159,18 @@ const generateQuestionsForTopic = (
       if (topic == Topic.DIVISION) {
         min = 1;
         max = 12;
-      } 
-	  else if (topic == Topic.MULTIPLICATION) {
-		  min = 1;
-		  max = 5;
-	  }else {
+      } else if (topic == Topic.MULTIPLICATION) {
+        min = 1;
+        max = 5;
+      } else {
         min = 11;
         max = 100;
       }
     } else if (currentLevel == Difficulty.HARD) {
       if (topic == Topic.DIVISION) {
+        min = 1;
+        max = 10;
+      } else if (topic == Topic.MULTIPLICATION) {
         min = 1;
         max = 10;
       } else {
