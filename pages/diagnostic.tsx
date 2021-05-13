@@ -61,11 +61,15 @@ const Diagnostic = () => {
       setGuessAns((prevArray) => [...prevArray, "Incorrect"]);
     }
     if (index == questionData.length - 1) {
-      dispatch(setDiagnostic({
-        questions: questionData,
-        guessAns: guessAns,
-        topics: topics
-      }));
+      dispatch(
+        setDiagnostic({
+          questions: questionData,
+          guessAns: guessAns,
+          topics: topics,
+        })
+      );
+      console.log("topic in diagnostic page", topics);
+
       setStage(STAGE.RESULTS);
     }
   };
@@ -108,10 +112,7 @@ const Diagnostic = () => {
       break;
     case STAGE.RESULTS:
       component = (
-        <DiagnosticResults
-          correctGuesses={correctGuesses}
-          index={index + 1}
-        />
+        <DiagnosticResults correctGuesses={correctGuesses} index={index + 1} />
       );
       break;
     case STAGE.DATA:
@@ -124,12 +125,7 @@ const Diagnostic = () => {
       );
       break;
     case STAGE.EVIDENCE:
-      component = (
-        <DiagnosticEvidence
-          topic={topics}
-          onClick={createDiagnosticConclusion}
-        />
-      );
+      component = <DiagnosticEvidence topic={topics} />;
       break;
     case STAGE.CONCLUSION:
       component = <DiagnosticConclusion topics={topics} />;

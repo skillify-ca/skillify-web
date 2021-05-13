@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { Topic } from "../../pages/api/questionGenerator";
 type DiagnosticConclusionProps = {
@@ -45,6 +46,11 @@ const DiagnosticConclusion = ({ topics }: DiagnosticConclusionProps) => {
           Worksheet#2
         </a>
       </div>
+      <Link href="/diagnostic/evidence">
+        <button className="items-end bg-blue-500 rounded p-3 text-white text-sm">
+          See Evidence
+        </button>
+      </Link>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { Topic } from "../../pages/api/questionGenerator";
 
@@ -44,9 +45,11 @@ const DiagnosticData = ({
         </div>
       </div>
       <div className="mt-3">
-        <button className="items-end bg-blue-500 rounded p-3 text-white text-sm">
-          See Evidence
-        </button>
+        <Link href="/diagnostic">
+          <button className="items-end bg-blue-500 rounded p-3 text-white text-sm">
+            Take Diagnostic Again
+          </button>
+        </Link>
       </div>
     </>
   );
