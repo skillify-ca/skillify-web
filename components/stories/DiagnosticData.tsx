@@ -3,9 +3,14 @@ import React from "react";
 type DiagnosticDataProps = {
   questions: Array<string>;
   guessAns: Array<string>;
+  onClick: () => void;
 };
 
-const DiagnosticData = ({ questions, guessAns }: DiagnosticDataProps) => {
+const DiagnosticData = ({
+  questions,
+  guessAns,
+  onClick,
+}: DiagnosticDataProps) => {
   return (
     <>
       <p className="mb-12"> Diagnostic Report </p>
@@ -24,6 +29,14 @@ const DiagnosticData = ({ questions, guessAns }: DiagnosticDataProps) => {
             <div>{q}</div>
           ))}
         </div>
+      </div>
+      <div className="mt-3">
+        <button
+          className="items-end bg-blue-500 rounded p-3 text-white text-sm"
+          onClick={(e) => onClick()}
+        >
+          Go To Conclusion
+        </button>
       </div>
     </>
   );
