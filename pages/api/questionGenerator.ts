@@ -1,7 +1,6 @@
 import { HorizontalEquation } from "../../components/stories/HorizontalEquation";
 import { AnswerType, Question } from "./question";
 import { tweleveMap } from "./factorsOfTwelveMap";
-import { Question, AnswerType } from "./question";
 import { QuestionType } from "./questionTypes";
 import { getRndInteger } from "./random";
 import { createWordProblemModel } from "./WordProblemModel";
