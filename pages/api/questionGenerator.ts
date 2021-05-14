@@ -1,8 +1,8 @@
-import { HorizontalEquation } from "../../components/stories/HorizontalEquation";
-import { tweleveMap } from "./factorsOfTwelveMap";
-import { AnswerType, Question } from "./question";
-import { QuestionType } from "./questionTypes";
-import { createWordProblemModel, WordProblemModel } from "./WordProblemModel";
+import { tweleveMap } from './factorsOfTwelveMap';
+import { AnswerType, Question } from './question';
+import { QuestionType } from './questionTypes';
+import { getRndInteger } from './random';
+import { createWordProblemModel } from './WordProblemModel';
 
 const NUM_QUESTIONS = 5;
 
@@ -226,9 +226,4 @@ function getRandomBinaryQuestion(
     operator: operator,
     wordProblem: wordProblemModel,
   };
-}
-
-// Get random number between min (inclusive) and max (exclusive)
-export function getRndInteger(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min)) + min;
 }
