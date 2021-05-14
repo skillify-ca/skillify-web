@@ -13,6 +13,7 @@ import { WordProblemDiv } from "./WordProblemDiv";
 import { MCModel, MCOption, Question } from "../../pages/api/question";
 import { MultipleChoiceSentence } from "./MultipleChoiceSentence";
 import { AdditionProperty } from "./MultipleChoiceTypes";
+import { MultipleChoiceWord } from "./MultipleChoiceWord";
 
 type QuestionSetProps = {
   title: string;
@@ -37,7 +38,7 @@ const QuestionSet = ({
         />
       );
     } else if (
-      questionData[index].questionType == QuestionType.MULTIPLE_CHOICE
+      questionData[index].questionType == QuestionType.MULTIPLE_CHOICE_SENTENCE
     ) {
       return (
         <MultipleChoiceSentence
@@ -46,6 +47,16 @@ const QuestionSet = ({
           option2={questionData[index].multipleChoice.options[1]}
           option3={questionData[index].multipleChoice.options[2]}
           option4={questionData[index].multipleChoice.options[3]}
+          submitGuess={submitGuess}
+        />
+      );
+    } else if (
+      questionData[index].questionType == QuestionType.MULTIPLE_CHOICE_WORD
+    ) {
+      return (
+        <MultipleChoiceWord
+          displayQuestion="Which Property of Addition is shown?"
+          question={questionData[index].multipleChoice.options[0]}
           submitGuess={submitGuess}
         />
       );
