@@ -1,10 +1,11 @@
 import React from "react";
+import { MCOption } from "../../pages/api/question";
 import { Button } from "./Button";
 import { AdditionProperty } from "./MultipleChoiceTypes";
 
 export interface MultipleChoiceWordProp {
   displayQuestion?: string;
-  question?: string;
+  question?: MCOption;
   submitGuess: (e) => void;
 }
 
@@ -21,7 +22,7 @@ export const MultipleChoiceWord: React.FC<MultipleChoiceWordProp> = ({
   ...props
 }) => {
   const parse = () => {
-    const qlen = question.length;
+    const qlen = question.text.length;
     let i = 0;
     while (i < qlen) {
       if (question[i] == "(") {
@@ -32,7 +33,7 @@ export const MultipleChoiceWord: React.FC<MultipleChoiceWordProp> = ({
       }
     }
 
-    const part = question.split(" ");
+    const part = question.text.split(" ");
     return {
       first: part[0],
       third: part[3],
@@ -61,7 +62,7 @@ export const MultipleChoiceWord: React.FC<MultipleChoiceWordProp> = ({
   return (
     <div className="flex flex-col items-center space-y-16">
       <h1 className="text-4l underline font-bold"> {displayQuestion} </h1>
-      <p className="text-4xl">{question}</p>
+      <p className="text-2xl">{question.text}</p>
       <div className="flex flex-row  item-center space-x-4 ">
         <Button
           label="Associative"
