@@ -12,7 +12,7 @@ import { GuessData } from "../../api/guessData";
 import { AnswerType, Question } from "../../api/question";
 import Navbar from "../../../components/Navbar";
 
-const PracticeQuiz = ({ topic, skill }) => {
+const PracticeQuiz = ({ slug, skill }) => {
   const [index, setIndex] = useState(0);
   const [interval, setMyInterval] = useState(null);
   const [questionData, setQuestionData] = useState<Question[]>([
@@ -27,15 +27,15 @@ const PracticeQuiz = ({ topic, skill }) => {
   const inputElement = useRef(null);
 
   useEffect(() => {
-    if (topic == "addition" && skill != "properties") {
+    if (slug == "addition" && skill != "properties") {
       setQuestionData(generateAdditionQuestions(skill));
-    } else if (topic == "addition" && skill == "properties") {
+    } else if (slug == "addition" && skill == "properties") {
       setQuestionData(generateAdditionPropertyQuestions());
-    } else if (topic == "subtraction") {
+    } else if (slug == "subtraction") {
       setQuestionData(generateSubtractionQuestions(skill));
-    } else if (topic == "multiplication") {
+    } else if (slug == "multiplication") {
       setQuestionData(generateMultiplicationQuestions(skill));
-    } else if (topic == "division") {
+    } else if (slug == "division") {
       setQuestionData(generateDivisionQuestions(skill));
     }
   }, []);
@@ -56,7 +56,7 @@ const PracticeQuiz = ({ topic, skill }) => {
     <div>
       <Navbar />
       <QuestionSet
-        title={topic}
+        title={slug}
         questionData={questionData}
         index={index}
         inputElement={inputElement}
@@ -68,7 +68,7 @@ const PracticeQuiz = ({ topic, skill }) => {
 export async function getStaticProps({ params }) {
   return {
     props: {
-      slug: params.topic,
+      slug: params.slug,
       skill: params.skill,
     },
   };

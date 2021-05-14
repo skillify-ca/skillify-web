@@ -62,7 +62,7 @@ export const MultipleChoiceWord: React.FC<MultipleChoiceWordProp> = ({
   return (
     <div className="flex flex-col items-center space-y-16">
       <h1 className="text-4l underline font-bold"> {displayQuestion} </h1>
-      <p className="text-4xl">{question}</p>
+      <p className="text-4xl">{question.text}</p>
       <div className="flex flex-row  item-center space-x-4 ">
         <Button
           label="Associative"
