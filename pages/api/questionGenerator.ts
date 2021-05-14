@@ -1,8 +1,8 @@
-import { tweleveMap } from './factorsOfTwelveMap';
-import { AnswerType, Question } from './question';
-import { QuestionType } from './questionTypes';
-import { getRndInteger } from './random';
-import { createWordProblemModel } from './WordProblemModel';
+import { tweleveMap } from "./factorsOfTwelveMap";
+import { Question, AnswerType } from "./question";
+import { QuestionType } from "./questionTypes";
+import { getRndInteger } from "./random";
+import { createWordProblemModel } from "./WordProblemModel";
 
 const NUM_QUESTIONS = 5;
 
