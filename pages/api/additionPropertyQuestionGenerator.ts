@@ -78,7 +78,6 @@ export function getRandomPropertyAdditionQuestion(min: number, max: number) {
     return `${identityNum} ${operator} 0 = ${identityNum}`;
   }
   
-
   function getIncorrectSentence(
     a: number,
     b: number,
