@@ -1,4 +1,4 @@
-import { createWordProblemModel, WordProblemModel } from "./WordProblemModel";
+import { createWordProblemModel } from "./WordProblemModel";
 import { QuestionType } from "./questionTypes";
 import { AnswerType, Question } from "./question";
 import { Topic } from "./questionGenerator";
@@ -131,11 +131,11 @@ function getRandomDivisionQuestion(min: number, max: number, digitDifficulty) {
     factor = Object.keys(tweleveMap[a]);
     b = getRndInteger(1, factor.length);
     text = `${a} / ${b} =`;
-  }else {
+  } else {
     const product = a * b;
     text = `${product} / ${b} =`;
   }
-  
+
   const types = [
     QuestionType.LONG_DIVISION_PROBLEM,
     QuestionType.HORIZONTAL_EQUATION,
