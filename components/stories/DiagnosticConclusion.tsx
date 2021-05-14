@@ -1,10 +1,29 @@
+import Link from "next/link";
 import React from "react";
 import { Topic } from "../../pages/api/questionGenerator";
+import {
+  AdditionWS,
+  DivisionWS,
+  MultiplicationWS,
+  SubtractionWS,
+  Worksheet,
+} from "./WorksheetsObj";
 type DiagnosticConclusionProps = {
   topics: Array<Topic>;
 };
 
 const DiagnosticConclusion = ({ topics }: DiagnosticConclusionProps) => {
+  const workSheets: Worksheet[] = topics.map((element) => {
+    if (element == Topic.ADDITION) {
+      return AdditionWS;
+    } else if (element == Topic.SUBTRACTION) {
+      return SubtractionWS;
+    } else if (element == Topic.MULTIPLICATION) {
+      return MultiplicationWS;
+    } else if (element == Topic.DIVISION) {
+      return DivisionWS;
+    }
+  });
   return (
     <div>
       <p className="mb-2 text-center font-black"> Conclusion </p>
@@ -22,7 +41,9 @@ const DiagnosticConclusion = ({ topics }: DiagnosticConclusionProps) => {
         </div>
         <div>
           {topics.map((it) => (
-            <p className="border-blue-500 border-2 mb-2">Grade 3</p>
+            <div>
+              <p className="border-blue-500 border-2 mb-2">Grade 3</p>
+            </div>
           ))}
         </div>
       </div>
@@ -30,21 +51,21 @@ const DiagnosticConclusion = ({ topics }: DiagnosticConclusionProps) => {
         <span className="font-extrabold border-b border-black">
           Worksheet Recommendations
         </span>
-        <a
-          href="/worksheets/multiplication_worksheet.pdf"
-          target="_blank"
-          className="mt-2 text-blue-500"
-        >
-          Worksheet#1
-        </a>
-        <a
-          href="/worksheets/addition_and_subtraction_worksheet.pdf"
-          target="_blank"
-          className="mt-2 text-blue-500"
-        >
-          Worksheet#2
-        </a>
+        {workSheets.map((it) => (
+          <a
+            className="text-blue-500 border-2 mb-2"
+            href={it.link}
+            target="_blank"
+          >
+            {it.title}
+          </a>
+        ))}
       </div>
+      <Link href="/diagnostic/evidence">
+        <button className="items-end bg-blue-500 rounded p-3 text-white text-sm">
+          See Evidence
+        </button>
+      </Link>
     </div>
   );
 };

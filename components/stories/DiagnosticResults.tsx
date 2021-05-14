@@ -22,12 +22,10 @@ const DiagnosticResults = ({
         {" "}
         {correctGuesses}/{index} Correct{" "}
       </div>
-      <Link href={"diagnostic/data"}>
-      <button
-        className="items-end bg-blue-500 rounded p-3 text-white text-sm"
-      >
-        Go To Report
-      </button>
+      <Link href={"/diagnostic/conclusion"}>
+        <button className="items-end bg-blue-500 rounded p-3 text-white text-sm">
+          Go To Conclusion
+        </button>
       </Link>
     </div>
   );
