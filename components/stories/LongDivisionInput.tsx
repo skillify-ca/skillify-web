@@ -1,30 +1,32 @@
 import React from "react";
 
-export interface InputProps {
+export interface LongDivisionInputProps {
   guess: string;
   setGuess: (string) => void;
   handleKeypress?: (e) => void;
+  width: number;
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const Input: React.FC<InputProps> = ({
+export const LongDivisionInput: React.FC<LongDivisionInputProps> = ({
   guess,
   setGuess,
   handleKeypress,
+  width,
 }) => {
   return (
     <input
       autoFocus
       onFocus={(e) => (e.target.value = "")}
       id="guess"
-      type="number"
+      type="text"
       autoComplete="off"
       value={guess}
       onChange={(e) => setGuess(e.target.value)}
-      className="appearance-none relative block px-3 py-4 text-center border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 bg-blue-100 focus:z-10 sm:text-sm"
-      placeholder="Enter Answer"
+      className={`text-left border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md w-${width}`}
+      placeholder=""
       onKeyPress={handleKeypress}
     />
   );

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
 import { Button } from "./Button";
+import { Input } from "./Input";
+import { LongDivisionInput } from "./LongDivisionInput";
 
 export interface LongDivisionProp {
   question: Question;
@@ -29,6 +31,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
     setGuess("");
     submitGuess({ guess: guess, isCorrect: guess === question.answer });
   };
+
   const parse = () => {
     const parts = question.text.split(" ");
     return {
@@ -57,11 +60,12 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
           {parse().second}&nbsp;
         </span>
         <div className="flex flex-col">
-          <input
-            type="text"
-            className={`text-left border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md w-${width}`}
-            placeholder=" "
-          ></input>
+          <LongDivisionInput
+            guess={guess}
+            setGuess={setGuess}
+            handleKeypress={handleKeypress}
+            width={width}
+          />
           <span className="border-t-2 border-l-2 border-black text-lg">
             {parse().first}
           </span>
