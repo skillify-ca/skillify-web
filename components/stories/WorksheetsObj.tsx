@@ -12,9 +12,9 @@ export const SubtractionWS = {
 };
 export const MultiplicationWS = {
   title: "Multiplication Worksheet",
-  link: "/worksheets/division_worksheet.pdf",
+  link: "/worksheets/multiplication.pdf",
 };
 export const DivisionWS = {
   title: "Division Worksheet",
-  link: "/worksheets/multiplication_worksheet.pdf",
+  link: "/worksheets/division_worksheet.pdf",
 };
