@@ -8,7 +8,7 @@ export interface LongDivisionInputProps {
 }
 
 /**
- * Primary UI component for user interaction
+ * Input tag in which user inputs their quotient answer (width changes according to dividend's # of digits)
  */
 export const LongDivisionInput: React.FC<LongDivisionInputProps> = ({
   guess,

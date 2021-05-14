@@ -102,7 +102,6 @@ const Diagnostic = () => {
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
       <Navbar />
-      {correctGuesses}
       <div className="p-8 flex flex-col items-center justify-center">
         {component}
       </div>
