@@ -1,10 +1,11 @@
 import React from "react";
+import { MCOption } from "../../pages/api/question";
 import { Button } from "./Button";
 import { AdditionProperty } from "./MultipleChoiceTypes";
 
 export interface MultipleChoiceWordProp {
   displayQuestion?: string;
-  question?: string;
+  question?: MCOption;
   submitGuess: (e) => void;
 }
 
@@ -21,7 +22,7 @@ export const MultipleChoiceWord: React.FC<MultipleChoiceWordProp> = ({
   ...props
 }) => {
   const parse = () => {
-    const qlen = question.length;
+    const qlen = question.text.length;
     let i = 0;
     while (i < qlen) {
       if (question[i] == "(") {
@@ -32,7 +33,7 @@ export const MultipleChoiceWord: React.FC<MultipleChoiceWordProp> = ({
       }
     }
 
-    const part = question.split(" ");
+    const part = question.text.split(" ");
     return {
       first: part[0],
       third: part[3],

@@ -203,152 +203,148 @@ function getRandomPropertyAdditionQuestion(min: number, max: number) {
   } else if (randomProperty == 1) {
     return getRandomWordPropertyQuestion(min, max, "+");
   }
+}
 
-  function getRandomWordPropertyQuestion(
-    min: number,
-    max: number,
-    operator: string
-  ): Question {
-    // correct answers
+function getRandomWordPropertyQuestion(
+  min: number,
+  max: number,
+  operator: string
+): Question {
+  // correct answers
 
-    // 2+3 = 3 + 2
-    const a = getRndInteger(min, max);
-    const b = getRndInteger(min, max);
+  // 2+3 = 3 + 2
+  const a = getRndInteger(min, max);
+  const b = getRndInteger(min, max);
 
-    const commutativeOption = `${Math.max(a, b)} ${operator} ${Math.min(
-      a,
-      b
-    )} = ${Math.min(a, b)} ${operator} ${Math.max(a, b)}`;
+  const commutativeOption = `${Math.max(a, b)} ${operator} ${Math.min(
+    a,
+    b
+  )} = ${Math.min(a, b)} ${operator} ${Math.max(a, b)}`;
 
-    // 2 + 0 = 2
-    const identitynum = getRndInteger(min, max);
+  // 2 + 0 = 2
+  const identitynum = getRndInteger(min, max);
 
-    const identityOption = `${identitynum} ${operator} 0 = ${identitynum}`;
+  const identityOption = `${identitynum} ${operator} 0 = ${identitynum}`;
 
-    // (2 + 3) + 4 = 2 + (3+4)
+  // (2 + 3) + 4 = 2 + (3+4)
 
-    const x = getRndInteger(min, max);
-    const y = getRndInteger(min, max);
-    const z = getRndInteger(min, max);
+  const x = getRndInteger(min, max);
+  const y = getRndInteger(min, max);
+  const z = getRndInteger(min, max);
 
-    const associativeOption = `(${x} ${operator} ${y}) ${operator} ${z} = ${x} ${operator} (${y} ${operator} ${z})`;
+  const associativeOption = `(${x} ${operator} ${y}) ${operator} ${z} = ${x} ${operator} (${y} ${operator} ${z})`;
 
-    // answer array chooser
+  // answer array chooser
 
-    const correctAnswers = [
-      commutativeOption,
-      identityOption,
-      associativeOption,
-    ];
-    const correctIndex = getRndInteger(0, correctAnswers.length);
-    const finalCorrectAnswer = correctAnswers[correctIndex];
+  const correctAnswers = [commutativeOption, identityOption, associativeOption];
+  const correctIndex = getRndInteger(0, correctAnswers.length);
+  const finalCorrectAnswer = correctAnswers[correctIndex];
 
-    const questionOption: MCOption = { text: finalCorrectAnswer, id: "a" };
+  const questionOption: MCOption = { text: finalCorrectAnswer, id: "a" };
 
-    const questionModel = [questionOption];
+  const questionModel = [questionOption];
 
-    const modelProperty: MCModel = { options: questionModel };
+  const modelProperty: MCModel = { options: questionModel };
 
-    return {
-      text: modelProperty.options[0].text,
-      answer: "a",
-      answerType: AnswerType.STRING,
-      operator: operator,
-      questionType: QuestionType.MULTIPLE_CHOICE,
-      multipleChoice: modelProperty,
-    };
-  }
+  return {
+    text: modelProperty.options[0].text,
+    answer: "a",
+    answerType: AnswerType.STRING,
+    operator: operator,
+    questionType: QuestionType.MULTIPLE_CHOICE_WORD,
+    multipleChoice: modelProperty,
+  };
+}
 
-  function getRandomSentencePropertyQuestion(
-    min: number,
-    max: number,
-    operator: string
-  ): Question {
-    // correct answers
+function getRandomSentencePropertyQuestion(
+  min: number,
+  max: number,
+  operator: string
+): Question {
+  // correct answers
 
-    // 2+3 = 3 + 2
-    const a = getRndInteger(min, max);
-    const b = getRndInteger(min, max);
+  // 2+3 = 3 + 2
+  const a = getRndInteger(min, max);
+  const b = getRndInteger(min, max);
 
-    const commutativeOption = `${Math.max(a, b)} ${operator} ${Math.min(
-      a,
-      b
-    )} = ${Math.min(a, b)} ${operator} ${Math.max(a, b)}`;
+  const commutativeOption = `${Math.max(a, b)} ${operator} ${Math.min(
+    a,
+    b
+  )} = ${Math.min(a, b)} ${operator} ${Math.max(a, b)}`;
 
-    // 2 + 0 = 2
-    const identitynum = getRndInteger(min, max);
+  // 2 + 0 = 2
+  const identitynum = getRndInteger(min, max);
 
-    const identityOption = `${identitynum} ${operator} 0 = ${identitynum}`;
+  const identityOption = `${identitynum} ${operator} 0 = ${identitynum}`;
 
-    // (2 + 3) + 4 = 2 + (3+4)
+  // (2 + 3) + 4 = 2 + (3+4)
 
-    const x = getRndInteger(min, max);
-    const y = getRndInteger(min, max);
-    const z = getRndInteger(min, max);
+  const x = getRndInteger(min, max);
+  const y = getRndInteger(min, max);
+  const z = getRndInteger(min, max);
 
-    const associativeOption = `(${x} ${operator} ${y}) ${operator} ${z} = ${x} ${operator} (${y} ${operator} ${z})`;
+  const associativeOption = `(${x} ${operator} ${y}) ${operator} ${z} = ${x} ${operator} (${y} ${operator} ${z})`;
 
-    // wrong answers
+  // wrong answers
 
-    // 2 + 3 = 2 + 3
+  // 2 + 3 = 2 + 3
 
-    const wrongCommutativeOption = `${Math.max(a, b)} ${operator} ${Math.min(
-      a,
-      b
-    )} = ${Math.max(a, b)} ${operator} ${Math.min(a, b)}`;
+  const wrongCommutativeOption = `${Math.max(a, b)} ${operator} ${Math.min(
+    a,
+    b
+  )} = ${Math.max(a, b)} ${operator} ${Math.min(a, b)}`;
 
-    // (2 + 1) + 4 = 2 + 1 + 1
-    const wrongAssociativeOption = `(${x} ${operator} ${y}) ${operator} ${z} = (${x} ${operator} ${y}) ${operator} ${y}`;
+  // (2 + 1) + 4 = 2 + 1 + 1
+  const wrongAssociativeOption = `(${x} ${operator} ${y}) ${operator} ${z} = (${x} ${operator} ${y}) ${operator} ${y}`;
 
-    // 2 +0 =20
-    const wrongIdentityOption = `${identitynum} ${operator} 0 = ${identitynum}0`;
+  // 2 +0 =20
+  const wrongIdentityOption = `${identitynum} ${operator} 0 = ${identitynum}0`;
 
-    const wrongOptions: string[] = [
-      wrongCommutativeOption,
-      wrongAssociativeOption,
-      wrongIdentityOption,
-    ];
+  const wrongOptions: string[] = [
+    wrongCommutativeOption,
+    wrongAssociativeOption,
+    wrongIdentityOption,
+  ];
 
-    const wrongIndex = getRndInteger(0, wrongOptions.length);
+  const wrongIndex = getRndInteger(0, wrongOptions.length);
 
-    const wrongDisplay = wrongOptions[wrongIndex];
+  const wrongDisplay = wrongOptions[wrongIndex];
 
-    // correct answer determiner
+  // correct answer determiner
 
-    const additionPropertyTypes = [
-      AdditionProperty.ASSOCIATIVE,
-      AdditionProperty.COMMUTATIVE,
-      AdditionProperty.IDENTITY,
-    ];
-    const typeIndex = getRndInteger(0, additionPropertyTypes.length);
-    const additionPropertyType = additionPropertyTypes[typeIndex];
-    const text = `Which equation shows the ${additionPropertyType} Property?`;
+  const additionPropertyTypes = [
+    AdditionProperty.ASSOCIATIVE,
+    AdditionProperty.COMMUTATIVE,
+    AdditionProperty.IDENTITY,
+  ];
+  const typeIndex = getRndInteger(0, additionPropertyTypes.length);
+  const additionPropertyType = additionPropertyTypes[typeIndex];
+  const text = `Which equation shows the ${additionPropertyType} Property?`;
 
-    // final question arr
+  // final question arr
 
-    const questionArr: string[] = [
-      commutativeOption,
-      identityOption,
-      associativeOption,
-      wrongDisplay,
-    ];
+  const questionArr: string[] = [
+    commutativeOption,
+    identityOption,
+    associativeOption,
+    wrongDisplay,
+  ];
 
-    const option1: MCOption = { text: questionArr[0], id: "a" };
-    const option2: MCOption = { text: questionArr[1], id: "b" };
-    const option3: MCOption = { text: questionArr[2], id: "c" };
-    const option4: MCOption = { text: questionArr[3], id: "d" };
+  const option1: MCOption = { text: questionArr[0], id: "a" };
+  const option2: MCOption = { text: questionArr[1], id: "b" };
+  const option3: MCOption = { text: questionArr[2], id: "c" };
+  const option4: MCOption = { text: questionArr[3], id: "d" };
 
-    const optionarr = [option1, option2, option3, option4];
+  const optionarr = [option1, option2, option3, option4];
 
-    const model: MCModel = { options: shuffle(optionarr) };
+  const model: MCModel = { options: shuffle(optionarr) };
 
-    return {
-      text: text,
-      answerType: AnswerType.STRING,
-      answer: additionPropertyType,
-      operator: operator,
-      questionType: QuestionType.MULTIPLE_CHOICE,
-      multipleChoice: model,
-    };
-  }
+  return {
+    text: text,
+    answerType: AnswerType.STRING,
+    answer: additionPropertyType,
+    operator: operator,
+    questionType: QuestionType.MULTIPLE_CHOICE_SENTENCE,
+    multipleChoice: model,
+  };
 }
