@@ -61,11 +61,18 @@ const DiagnosticConclusion = ({ topics }: DiagnosticConclusionProps) => {
           </a>
         ))}
       </div>
-      <Link href="/diagnostic/evidence">
-        <button className="items-end bg-blue-500 rounded p-3 text-white text-sm">
-          See Evidence
-        </button>
-      </Link>
+      <div className="w-1/2 flex-row content-evenly">
+        <Link href="/diagnostic/evidence">
+          <button className="items-end bg-blue-500 rounded p-3 text-white text-sm">
+            See Evidence
+          </button>
+        </Link>
+        <Link href="/">
+          <button className="items-end bg-green-500 rounded p-3 text-white text-sm">
+            Let's Practice
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };

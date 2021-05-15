@@ -1,6 +1,4 @@
-import { HorizontalEquation } from "../../components/stories/HorizontalEquation";
 import { AnswerType, Question } from "./question";
-import { tweleveMap } from "./factorsOfTwelveMap";
 import { QuestionType } from "./questionTypes";
 import { getRndInteger } from "./random";
 import { createWordProblemModel } from "./WordProblemModel";
@@ -33,7 +31,6 @@ export enum Skill {
   ADDITION_TWO_DIGIT = "Add two digit numbers",
   ADDITION_THREE_DIGIT = "Add three digit numbers",
 }
-
 export const generateQuestionsForDiagnostic = (
   testLength: TestLength,
   topics: Topic[]
@@ -149,7 +146,6 @@ export const generateQuestions = (slug: string, currentLevel: number) => {
     }
   }
   return [];
-
 };
 function getRandomNumbersQuestion(min: number, max: number): Question {
   const a = getRndInteger(min, max);
