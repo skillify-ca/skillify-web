@@ -48,22 +48,22 @@ const Diagnostic = () => {
       setIndex(index + 1);
     }
 
+    let updateGuessAns;
     if (guessData.isCorrect) {
       setCorrectGuesses(correctGuesses + 1);
-      setGuessAns((prevArray) => [...prevArray, "Correct"]);
+      updateGuessAns = guessAns.concat("Correct");
     } else {
-      setGuessAns((prevArray) => [...prevArray, "Incorrect"]);
+      updateGuessAns = guessAns.concat("Incorrect");
     }
+    setGuessAns(updateGuessAns);
     if (index == questionData.length - 1) {
       dispatch(
         setDiagnostic({
           questions: questionData,
-          guessAns: guessAns,
+          guessAns: updateGuessAns,
           topics: topics,
         })
       );
-      console.log("topic in diagnostic page", topics);
-
       setStage(STAGE.RESULTS);
     }
   };
