@@ -30,7 +30,6 @@ export enum Difficulty {
 
 export enum Skill {
   NUMBERS_50 = "Count and compare numbers up to 50",
-  ADDITION_PROPERTY = "Add using properties of addition",
   ADDITION_SINGLE = "Add one digit numbers",
   ADDITION_DOUBLE = "Add two digit numbers",
   ADDITION_TRIPLE = "Add three digit numbers",

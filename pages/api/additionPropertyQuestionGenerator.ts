@@ -10,7 +10,7 @@ export function getRandomPropertyAdditionQuestion(
   max: number,
   skill: Skill
 ) {
-  const randomProperty = getRndInteger(0, 3);
+  const randomProperty = getRndInteger(0, 2);
   if (randomProperty == 0) {
     return getRandomSentencePropertyQuestion(min, max, "+", skill);
   } else if (randomProperty == 1) {
