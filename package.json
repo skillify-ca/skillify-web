@@ -39,6 +39,7 @@
     "react-youtube": "^7.13.1",
     "tailwindcss": "^2.0.2",
     "tailwindcss-hero-patterns": "0.0.1",
+    "ui-progress-circle": "^1.1.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
