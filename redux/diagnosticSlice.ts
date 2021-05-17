@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction, Slice } from '@reduxjs/toolkit'
 import { Question } from '../pages/api/question'
-import { Topic } from '../pages/api/questionGenerator'
+import { Topic } from '../pages/api/skill'
 import { RootState } from './rootReducer'
-
 
 export interface DiagnosticState {
     questions: Array<Question>;

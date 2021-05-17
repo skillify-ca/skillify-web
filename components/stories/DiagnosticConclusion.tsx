@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { Topic } from "../../pages/api/questionGenerator";
+import { Topic } from "../../pages/api/skill";
 import {
   AdditionWS,
   DivisionWS,

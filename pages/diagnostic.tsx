@@ -8,17 +8,13 @@ import QuestionSet from "../components/stories/QuestionSet";
 import Toggle from "../components/stories/Toggle";
 import { GuessData } from "./api/guessData";
 import { AnswerType, Question } from "./api/question";
-import {
-  generateQuestionsForDiagnostic,
-  TestLength,
-  Topic,
-  Skill,
-} from "./api/questionGenerator";
 import { QuestionType } from "./api/questionTypes";
 import { connect } from "react-redux";
 import { setDiagnostic } from "../redux/diagnosticSlice";
 import Link from "next/link";
 import { useAppDispatch } from "../redux/store";
+import { Skill, Topic } from "./api/skill";
+import { generateQuestionsForDiagnostic } from "./diagnostic/diagnosticQuestionGenerator";
 
 enum STAGE {
   CREATE,
@@ -29,7 +25,6 @@ enum STAGE {
 const Diagnostic = () => {
   const dispatch = useAppDispatch();
   const [topics, setTopics] = useState([]);
-  const [testLength, setTestLength] = useState(TestLength.MEDIUM);
   const [stage, setStage] = useState(STAGE.CREATE);
   const [index, setIndex] = useState(0);
   const [correctGuesses, setCorrectGuesses] = useState(0);
@@ -70,14 +65,13 @@ const Diagnostic = () => {
     }
   };
 
-  const createDiagnostic = (topics: Topic[], testLength: TestLength) => {
+  const createDiagnostic = (topics: Topic[]) => {
     setTopics(topics);
-    setTestLength(testLength);
     setStage(STAGE.TEST);
   };
   useEffect(() => {
-    setQuestionData(generateQuestionsForDiagnostic(testLength, topics));
-  }, [topics, testLength]);
+    setQuestionData(generateQuestionsForDiagnostic());
+  }, [topics]);
 
   let component;
   switch (stage) {

@@ -1,5 +1,5 @@
-import { Skill } from "./questionGenerator";
 import { QuestionType } from "./questionTypes";
+import { Skill } from "./skill";
 import { WordProblemModel } from "./WordProblemModel";
 
 export enum AnswerType {
