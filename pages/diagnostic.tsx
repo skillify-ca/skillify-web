@@ -12,6 +12,7 @@ import {
   generateQuestionsForDiagnostic,
   TestLength,
   Topic,
+  Skill,
 } from "./api/questionGenerator";
 import { QuestionType } from "./api/questionTypes";
 import { connect } from "react-redux";
@@ -39,6 +40,7 @@ const Diagnostic = () => {
       answer: "",
       answerType: AnswerType.NUMBER,
       questionType: QuestionType.HORIZONTAL_EQUATION,
+      skill: Skill.ADDITION_SINGLE,
     },
   ]);
   const inputElement = useRef(null);

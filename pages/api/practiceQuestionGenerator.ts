@@ -5,15 +5,16 @@ import { Topic } from "./questionGenerator";
 import { tweleveMap } from "./factorsOfTwelveMap";
 import { getRndInteger } from "./random";
 import { getRandomPropertyAdditionQuestion } from "./additionPropertyQuestionGenerator";
+import { Skill } from "./questionGenerator";
 
 const NUM_QUESTIONS = 5;
 
 const generateQuestionsForTopic = (
-  digitDifficulty: string,
+  digitDifficulty: Skill,
   numberOfQuestions: number,
   operator: Topic
 ) => {
-  let questionGenerator: (min: number, max: number) => Question;
+  let questionGenerator: (min: number, max: number, skill: Skill) => Question;
   switch (operator) {
     case Topic.SUBTRACTION:
       questionGenerator = getRandomSubtractionQuestion;
@@ -31,25 +32,23 @@ const generateQuestionsForTopic = (
   for (let i = 0; i < numberOfQuestions; i++) {
     let min = 1;
     let max = 10;
-    if (digitDifficulty == "double-digit") {
+    if (digitDifficulty == Skill.ADDITION_DOUBLE) {
       min = 11;
       max = 100;
-    } else if (digitDifficulty == "upto_5X5") {
-      min = 1;
-      max = 6;
-    } else if (digitDifficulty == "triple-digit") {
+    } else if (digitDifficulty == Skill.ADDITION_TRIPLE) {
       min = 101;
       max = 1000;
-    } else if (digitDifficulty == "upto_100_divide_10") {
+    } else if (digitDifficulty == Skill.MULTIPLICATION_10) {
       max = 11;
-    } else if (digitDifficulty == "12_items_equally") {
+    } else if (digitDifficulty == Skill.MULTIPLICATION_5) {
+      max = 6;
+    } else if (digitDifficulty == Skill.DIVIDE_100) {
+      min = 9;
+      max = 101;
+    } else if (digitDifficulty == Skill.DIVIDE_12_EQUALLY) {
       max = 13;
     }
-    if (operator === Topic.DIVISION) {
-      res.push(getRandomDivisionQuestion(min, max, digitDifficulty));
-    } else {
-      res.push(questionGenerator(min, max));
-    }
+    res.push(questionGenerator(min, max, digitDifficulty));
   }
   return res;
 };
@@ -59,12 +58,14 @@ export const generateAdditionPropertyQuestions = () => {
   for (let i = 0; i < NUM_QUESTIONS; ++i) {
     let min = 1;
     let max = 15;
-    res.push(getRandomPropertyAdditionQuestion(min, max));
+    res.push(
+      getRandomPropertyAdditionQuestion(min, max, Skill.ADDITION_SINGLE)
+    );
   }
   return res;
 };
 
-export const generateAdditionQuestions = (difficulty: string) => {
+export const generateAdditionQuestions = (difficulty: Skill) => {
   if (difficulty != null) {
     const digitDifficulty = difficulty;
     return generateQuestionsForTopic(
@@ -75,7 +76,7 @@ export const generateAdditionQuestions = (difficulty: string) => {
   }
   return [];
 };
-export const generateSubtractionQuestions = (slug: string) => {
+export const generateSubtractionQuestions = (slug: Skill) => {
   if (slug != null) {
     const digitDifficulty = slug;
     return generateQuestionsForTopic(
@@ -86,7 +87,7 @@ export const generateSubtractionQuestions = (slug: string) => {
   }
   return [];
 };
-export const generateMultiplicationQuestions = (slug: string) => {
+export const generateMultiplicationQuestions = (slug: Skill) => {
   if (slug != null) {
     const digitDifficulty = slug;
     return generateQuestionsForTopic(
@@ -97,7 +98,7 @@ export const generateMultiplicationQuestions = (slug: string) => {
   }
   return [];
 };
-export const generateDivisionQuestions = (slug: string) => {
+export const generateDivisionQuestions = (slug: Skill) => {
   if (slug != null) {
     const digitDifficulty = slug;
     return generateQuestionsForTopic(
@@ -109,18 +110,23 @@ export const generateDivisionQuestions = (slug: string) => {
   return [];
 };
 
-function getRandomAdditionQuestion(min: number, max: number) {
+function getRandomAdditionQuestion(min: number, max: number, skill: Skill) {
   const add = (a: number, b: number) => a + b;
-  return getRandomBinaryQuestion(min, max, "+", add);
+  return getRandomBinaryQuestion(min, max, "+", add, skill);
 }
 
-function getRandomSubtractionQuestion(min: number, max: number) {
+function getRandomSubtractionQuestion(min: number, max: number, skill: Skill) {
   const subtract = (a: number, b: number) => a - b;
-  return getRandomBinaryQuestion(min, max, "-", subtract);
+  return getRandomBinaryQuestion(min, max, "-", subtract, skill);
 }
-function getRandomMultiplicationQuestion(min: number, max: number) {
-  const multiplication = (a: number, b: number) => a * b;
-  return getRandomBinaryQuestion(min, max, "x", multiplication);
+function getRandomMultiplicationQuestion(
+  min: number,
+  max: number,
+  skill: Skill
+) {
+  const multiply = (a: number, b: number) => a * b;
+
+  return getRandomBinaryQuestion(min, max, "x", multiply, skill);
 }
 function getRandomDivisionQuestion(min: number, max: number, digitDifficulty) {
   const a = getRndInteger(min, max);
@@ -160,7 +166,8 @@ function getRandomBinaryQuestion(
   min: number,
   max: number,
   operator: string,
-  answerFunction: (a: number, b: number) => number
+  answerFunction: (a: number, b: number) => number,
+  skill: Skill
 ): Question {
   const a = getRndInteger(min, max);
   let b = getRndInteger(min, max);
@@ -188,5 +195,6 @@ function getRandomBinaryQuestion(
     questionType: type,
     operator: operator,
     wordProblem: wordProblemModel,
+    skill: skill,
   };
 }

@@ -11,6 +11,7 @@ import { QuestionType } from "../../api/questionTypes";
 import { GuessData } from "../../api/guessData";
 import { AnswerType, Question } from "../../api/question";
 import Navbar from "../../../components/Navbar";
+import { Skill } from "../../api/questionGenerator";
 
 const PracticeQuiz = ({ slug, skill }) => {
   const [index, setIndex] = useState(0);
@@ -21,6 +22,7 @@ const PracticeQuiz = ({ slug, skill }) => {
       answer: "",
       answerType: AnswerType.NUMBER,
       questionType: QuestionType.HORIZONTAL_EQUATION,
+      skill: Skill.ADDITION_SINGLE,
     },
   ]);
 

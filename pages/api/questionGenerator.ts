@@ -29,17 +29,17 @@ export enum Difficulty {
 }
 
 export enum Skill {
+  NUMBERS_50 = "Count and compare numbers up to 50",
   ADDITION_SINGLE = "Add one digit numbers",
   ADDITION_DOUBLE = "Add two digit numbers",
   ADDITION_TRIPLE = "Add three digit numbers",
   SUBTRACTION_SINGLE = "Subtract single digit numbers",
   SUBTRACTION_DOUBLE = "Subtract double digit numbers",
   SUBTRACTION_TRIPLE = "Subtract triple digit numbers",
-  NUMBERS_50 = "Count and compare numbers up to 50",
-  DIVIDE_12_EQUALLY = "Divide numbers up to 12 equally",
-  DIVIDE_100 = "Divide numbers up to 100 equally",
   MULTIPLICATION_5 = "Multiply numbers up to 5x5",
   MULTIPLICATION_10 = "Multiply numbers up to 10x10",
+  DIVIDE_12_EQUALLY = "Divide numbers up to 12 equally",
+  DIVIDE_100 = "Divide numbers up to 100 equally",
 }
 
 export const generateQuestionsForDiagnostic = (
@@ -206,7 +206,6 @@ export const generateQuestions = (slug: string, currentLevel: number) => {
     }
   }
   return [];
-
 };
 function getRandomNumbersQuestion(
   min: number,
