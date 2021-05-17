@@ -266,8 +266,8 @@ const generateQuestionsForTopic = (
     } else if (digitDifficulty == Skill.MULTIPLICATION_5) {
       max = 6;
     } else if (digitDifficulty == Skill.DIVIDE_100) {
-      min = 9;
-      max = 101;
+      min = 1;
+      max = 10;
     } else if (digitDifficulty == Skill.DIVIDE_12_EQUALLY) {
       max = 13;
     }

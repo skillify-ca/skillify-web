@@ -23,7 +23,7 @@ module.exports = {
 		}
 	},
 	options: {
-		safelist: ['text-red-500', 'text-purple-600','text-green-600', 'text-green-700', 'text-yellow-500','text-yellow-400', 'px-4'],
+		safelist: ['text-red-500', 'text-purple-600','text-green-600', 'text-green-700', 'text-yellow-500','text-yellow-400', 'text-yellow-200', 'text-yellow-800',"text-green-300",  'px-4'],
 		blocklist: [/^debug-/],
 		keyframes: true,
 		fontFace: true,
