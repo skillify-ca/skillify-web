@@ -39,7 +39,6 @@ export const FillBlank: React.FC<FillBlankProp> = ({
         {step1.text.substring(0, 20)}{" "}
         <input
           spellCheck="false"
-          placeholder="Input Number"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-8"
         ></input>
         {step1.text.substring(22)}
@@ -49,7 +48,6 @@ export const FillBlank: React.FC<FillBlankProp> = ({
         {step2.text.substring(0, 8)}
         <input
           spellCheck="false"
-          placeholder="Input Number"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-8"
         ></input>
         {step2.text.substring(10)}
@@ -59,7 +57,6 @@ export const FillBlank: React.FC<FillBlankProp> = ({
         {step3.text.substring(0, 7)}
         <input
           spellCheck="false"
-          placeholder="Input Number"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-8"
         ></input>
       </p>
@@ -68,7 +65,6 @@ export const FillBlank: React.FC<FillBlankProp> = ({
         ={" "}
         <input
           spellCheck="false"
-          placeholder="Input Number"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-8"
         ></input>{" "}
       </p>
