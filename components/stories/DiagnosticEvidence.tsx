@@ -2,17 +2,16 @@ import Link from "next/link";
 import React from "react";
 
 type DiagnosticEvidenceProps = {
-  topic: string;
   skills: Array<string>;
 };
 
-const DiagnosticEvidence = ({ topic, skills }: DiagnosticEvidenceProps) => {
+const DiagnosticEvidence = ({ skills }: DiagnosticEvidenceProps) => {
   const skillArr = skills.filter(
     (item, index) => skills.indexOf(item) === index
   );
   return (
     <>
-      <p className="mb-12"> {topic} </p>
+      <p className="mb-12"> {"topic"} </p>
       <div className="flex justify-between w-1/4 border-b border-black p-2">
         <span> I can... </span>
         <span className="pl-16"> Grade Level </span>
