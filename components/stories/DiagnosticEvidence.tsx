@@ -3,9 +3,13 @@ import React from "react";
 
 type DiagnosticEvidenceProps = {
   topic: string;
+  skills: Array<string>;
 };
 
-const DiagnosticEvidence = ({ topic }: DiagnosticEvidenceProps) => {
+const DiagnosticEvidence = ({ topic, skills }: DiagnosticEvidenceProps) => {
+  const skillArr = skills.filter(
+    (item, index) => skills.indexOf(item) === index
+  );
   return (
     <>
       <p className="mb-12"> {topic} </p>
@@ -14,7 +18,11 @@ const DiagnosticEvidence = ({ topic }: DiagnosticEvidenceProps) => {
         <span className="pl-16"> Grade Level </span>
       </div>
       <div className="flex justify-between flex-row w-1/4 p-2">
-        <div>Add one digit numbers</div>
+        <div>
+          {skillArr.map((description) => (
+            <div>{description}</div>
+          ))}
+        </div>
         <div>Got It</div>
       </div>
       <Link href="/diagnostic/data">
