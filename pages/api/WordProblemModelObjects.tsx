@@ -9,7 +9,7 @@ export type ItemContainerObj = {
   singleTitle: string;
   pluralTitle: string;
 };
-
+//If you want to use another colour, you must also add it in the tailwind config under the safe list
 export const map = {
   package: {
     singleTitle: "package",
