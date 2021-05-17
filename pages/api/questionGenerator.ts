@@ -1,4 +1,3 @@
-import { HorizontalEquation } from "../../components/stories/HorizontalEquation";
 import { tweleveMap } from "./factorsOfTwelveMap";
 import { AnswerType, Question } from "./question";
 import { QuestionType } from "./questionTypes";
@@ -55,81 +54,46 @@ export const generateQuestionsForDiagnostic = (
   if (topics[0] == Topic.ADDITION || topics[0] == Topic.SUBTRACTION) {
     topics.forEach((it) =>
       questions.push(
-        ...generateQuestionsForTopic(
-          it,
-          Difficulty.EASY,
-          questionsPerSection,
-          "single-digit"
-        )
+        ...generateQuestionsForTopic(it, questionsPerSection, "single-digit")
       )
     );
     topics.forEach((it) =>
       questions.push(
-        ...generateQuestionsForTopic(
-          it,
-          Difficulty.MEDIUM,
-          questionsPerSection,
-          "double-digit"
-        )
+        ...generateQuestionsForTopic(it, questionsPerSection, "double-digit")
+
       )
     );
     topics.forEach((it) =>
       questions.push(
-        ...generateQuestionsForTopic(
-          it,
-          Difficulty.HARD,
-          questionsPerSection,
-          "triple-digit"
-        )
+        ...generateQuestionsForTopic(it, questionsPerSection, "triple-digit")
       )
     );
   } else if (topics[0] == Topic.MULTIPLICATION) {
     topics.forEach((it) =>
       questions.push(
-        ...generateQuestionsForTopic(
-          it,
-          Difficulty.EASY,
-          questionsPerSection,
-          "single-digit"
-        )
+        ...generateQuestionsForTopic(it, questionsPerSection, "single-digit")
       )
     );
     topics.forEach((it) =>
       questions.push(
-        ...generateQuestionsForTopic(
-          it,
-          Difficulty.MEDIUM,
-          questionsPerSection,
-          "upto_5X5"
-        )
+        ...generateQuestionsForTopic(it, questionsPerSection, "upto_5X5")
       )
     );
     topics.forEach((it) =>
       questions.push(
-        ...generateQuestionsForTopic(
-          it,
-          Difficulty.HARD,
-          questionsPerSection,
-          "upto_10X10"
-        )
+        ...generateQuestionsForTopic(it, questionsPerSection, "upto_10X10")
       )
     );
   } else {
     topics.forEach((it) =>
       questions.push(
-        ...generateQuestionsForTopic(
-          it,
-          Difficulty.EASY,
-          questionsPerSection,
-          "single-digit"
-        )
+        ...generateQuestionsForTopic(it, questionsPerSection, "single-digit")
       )
     );
     topics.forEach((it) =>
       questions.push(
         ...generateQuestionsForTopic(
           it,
-          Difficulty.MEDIUM,
           questionsPerSection,
           "12_items_equally"
         )
@@ -139,7 +103,6 @@ export const generateQuestionsForDiagnostic = (
       questions.push(
         ...generateQuestionsForTopic(
           it,
-          Difficulty.HARD,
           questionsPerSection,
           "upto_100_divide_10"
         )
@@ -154,35 +117,30 @@ export const generateQuestions = (slug: string, currentLevel: number) => {
     if (slug.toLowerCase() == "numbers") {
       return generateQuestionsForTopic(
         Topic.NUMBERS,
-        currentLevel,
         NUM_QUESTIONS,
         "single-digit"
       );
     } else if (slug.toLowerCase() == "subtraction") {
       return generateQuestionsForTopic(
         Topic.SUBTRACTION,
-        currentLevel,
         NUM_QUESTIONS,
         "single-digit"
       );
     } else if (slug.toLowerCase() == "multiplication") {
       return generateQuestionsForTopic(
         Topic.MULTIPLICATION,
-        currentLevel,
         NUM_QUESTIONS,
         "single-digit"
       );
     } else if (slug.toLowerCase() == "division") {
       return generateQuestionsForTopic(
         Topic.DIVISION,
-        currentLevel,
         NUM_QUESTIONS,
         "single-digit"
       );
     } else {
       return generateQuestionsForTopic(
         Topic.ADDITION,
-        currentLevel,
         NUM_QUESTIONS,
         "single-digit"
       );
@@ -202,9 +160,9 @@ function getRandomNumbersQuestion(min: number, max: number): Question {
     questionType: QuestionType.COMPARISON_WORD_PROBLEM,
   };
 }
+
 const generateQuestionsForTopic = (
   topic: Topic,
-  currentLevel: Difficulty,
   numberOfQuestions: number,
   digitDifficulty: string
 ) => {
