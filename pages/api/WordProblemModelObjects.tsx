@@ -77,7 +77,7 @@ export const animalsMap = {
   lions: {
     type: "pets",
     singleTitle: "lion",
-    pluralTitle: "Lions",
+    pluralTitle: "lions",
     colour: "text-yellow-600 font-black",
     image: "/images/lion.png",
   },
@@ -103,5 +103,19 @@ export const fruitsMap = {
     pluralTitle: "oranges",
     colour: "text-yellow-600 font-black",
     image: "/images/orange.jpeg",
+  },
+  grapes: {
+    type: "fruits",
+    singleTitle: "grape",
+    pluralTitle: "grapes",
+    colour: "text-purple-600 font-black",
+    image: "/images/grape.jpeg",
+  },
+  watermelons: {
+    type: "fruits",
+    singleTitle: "watermelon",
+    pluralTitle: "watermelon",
+    colour: "text-green-600 font-black",
+    image: "/images/watermelon.png",
   },
 };

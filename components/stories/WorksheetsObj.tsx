@@ -4,7 +4,7 @@ export type Worksheet = {
 };
 export const AdditionWS = {
   title: "Addition Worksheet",
-  link: "/worksheets/addition_and_subtraction_worksheet.pdf",
+  link: "/worksheets/addition_worksheet.pdf",
 };
 export const SubtractionWS = {
   title: "Subtraction Worksheet",
@@ -12,9 +12,9 @@ export const SubtractionWS = {
 };
 export const MultiplicationWS = {
   title: "Multiplication Worksheet",
-  link: "/worksheets/division_worksheet.pdf",
+  link: "/worksheets/multiplication_worksheet.pdf",
 };
 export const DivisionWS = {
   title: "Division Worksheet",
-  link: "/worksheets/multiplication_worksheet.pdf",
+  link: "/worksheets/division_worksheet.pdf",
 };

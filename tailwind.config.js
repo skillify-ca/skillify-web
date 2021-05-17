@@ -22,6 +22,12 @@ module.exports = {
 			fontFamily: [ 'hover', 'focus' ]
 		}
 	},
+	options: {
+		safelist: ['text-red-500', 'text-purple-600','text-green-600', 'text-green-700', 'text-yellow-500','text-yellow-400', 'px-4'],
+		blocklist: [/^debug-/],
+		keyframes: true,
+		fontFace: true,
+	 },
 	plugins: [
     require('tailwindcss-hero-patterns'),
   ]
