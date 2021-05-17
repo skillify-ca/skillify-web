@@ -7,6 +7,7 @@ import { random, shuffle, StringNullableChain } from "lodash";
 import { AdditionProperty } from "../../components/stories/MultipleChoiceTypes";
 import { tweleveMap } from "./factorsOfTwelveMap";
 import { getRandomPropertyAdditionQuestion } from "./additionPropertyQuestionGenerator";
+import { getRndInteger } from "./random";
 
 const NUM_QUESTIONS = 5;
 
@@ -189,8 +190,4 @@ function getRandomBinaryQuestion(
     operator: operator,
     wordProblem: wordProblemModel,
   };
-}
-// Get random number between min (inclusive) and max (exclusive)
-export function getRndInteger(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min)) + min;
 }
