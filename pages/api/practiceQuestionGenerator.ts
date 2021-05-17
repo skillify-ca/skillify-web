@@ -202,8 +202,20 @@ function getRandomPropertyAdditionQuestion(min: number, max: number) {
     return getRandomSentencePropertyQuestion(min, max, "+");
   } else if (randomProperty == 1) {
     return getRandomWordPropertyQuestion(min, max, "+");
-  }
+  // } else if (randomProperty == 2) {
+  //   return getRandomFillPropertyQuestion(min, max, "+")
+  // }
 }
+
+// function getRandomFillPropertyQuestion(
+//   min: number, 
+//   max: number, 
+//   operator: string,
+// ): Question {
+//   const a = getRndInteger(min, max)
+//   const b = get
+// }
+
 
 function getRandomWordPropertyQuestion(
   min: number,
@@ -347,4 +359,5 @@ function getRandomSentencePropertyQuestion(
     questionType: QuestionType.MULTIPLE_CHOICE_SENTENCE,
     multipleChoice: model,
   };
+}
 }
