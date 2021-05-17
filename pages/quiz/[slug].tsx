@@ -10,7 +10,7 @@ import { UPDATE_USER_SKILLS } from "../../graphql/updateUserSkills";
 import { FETCH_USER_SKILLS } from "../../graphql/fetchUserSkills";
 import { FETCH_USER_SKILL } from "../../graphql/fetchUserSkill";
 import { UNLOCK_NEXT_SKILL } from "../../graphql/unlockNextSkill";
-import { generateQuestions } from "./quizQuestionGenerator";
+import { generateQuestions } from "../api/quiz/quizQuestionGenerator";
 import { v4 as uuidv4 } from "uuid";
 import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
 import { useSession } from "next-auth/client";

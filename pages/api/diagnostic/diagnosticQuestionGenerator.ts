@@ -1,6 +1,6 @@
-import { Question } from "../api/question";
-import { generateQuestionForSkill } from "../api/questionGenerator";
-import { Skill } from "../api/skill";
+import { Question } from "../question";
+import { generateQuestionForSkill } from "../questionGenerator";
+import { Skill } from "../skill";
 
 const NUM_QUESTIONS = 5;
 

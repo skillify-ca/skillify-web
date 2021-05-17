@@ -1,5 +1,5 @@
-import { generateQuestionForSkill } from "../api/questionGenerator";
-import { Skill, Topic } from "../api/skill";
+import { generateQuestionForSkill } from "../questionGenerator";
+import { Skill, Topic } from "../skill";
 
 export const generatePracticeQuestions = (topic: string, skillStr: string) => {
   let skill: Skill;

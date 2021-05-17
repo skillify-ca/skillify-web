@@ -14,7 +14,7 @@ import { setDiagnostic } from "../redux/diagnosticSlice";
 import Link from "next/link";
 import { useAppDispatch } from "../redux/store";
 import { Skill, Topic } from "./api/skill";
-import { generateQuestionsForDiagnostic } from "./diagnostic/diagnosticQuestionGenerator";
+import { generateQuestionsForDiagnostic } from "./api/diagnostic/diagnosticQuestionGenerator";
 
 enum STAGE {
   CREATE,

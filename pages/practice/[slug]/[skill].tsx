@@ -5,7 +5,7 @@ import { GuessData } from "../../api/guessData";
 import { AnswerType, Question } from "../../api/question";
 import Navbar from "../../../components/Navbar";
 import { Skill } from "../../api/skill";
-import { generatePracticeQuestions } from "../practiceQuestionGenerator";
+import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGenerator";
 
 const PracticeQuiz = ({ slug, skill }) => {
   const [index, setIndex] = useState(0);
