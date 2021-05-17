@@ -7,10 +7,9 @@ import { diagnosticSelector } from "../../redux/diagnosticSlice";
 
 const DiagnosticConclusionPage = () => {
   const diagnosticResults = useSelector(diagnosticSelector);
-  const topics = diagnosticResults.topics;
   return (
     <div>
-      <DiagnosticConclusion topics={topics} />
+      <DiagnosticConclusion />
     </div>
   );
 };
