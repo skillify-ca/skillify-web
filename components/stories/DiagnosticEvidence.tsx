@@ -22,6 +22,9 @@ const DiagnosticEvidence = ({ skills, topic }: DiagnosticEvidenceProps) => {
   } else {
     skillTopic = "";
   }
+  const skillArr = skills.filter(
+    (item, index) => skills.indexOf(item) === index
+  );
   return (
     <>
       <p className="mb-12"> {skillTopic} </p>
@@ -31,7 +34,7 @@ const DiagnosticEvidence = ({ skills, topic }: DiagnosticEvidenceProps) => {
       </div>
       <div className="flex justify-between flex-row w-1/4 p-2">
         <div>
-          {skills.map((q) => (
+          {skillArr.map((q) => (
             <div>{q}</div>
           ))}
         </div>
