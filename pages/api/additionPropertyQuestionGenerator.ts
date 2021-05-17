@@ -10,13 +10,27 @@ export function getRandomPropertyAdditionQuestion(
   max: number,
   skill: Skill
 ) {
-  const randomProperty = getRndInteger(0, 2);
+  const randomProperty = getRndInteger(0, 3);
   if (randomProperty == 0) {
     return getRandomSentencePropertyQuestion(min, max, "+", skill);
   } else if (randomProperty == 1) {
     return getRandomWordPropertyQuestion(min, max, "+", skill);
-  }
+  // } else if (randomProperty == 3) {
+  //   return getRandomFillBlankQuestion(min, max, "+", skill);
+  // }
 }
+
+// function getRandomFillBlankQuestion(
+//   min: number,
+//   max: number,
+//   operator: string,
+//   skill: Skill
+// ): Question {
+//   const a = getRndInteger(min, max);
+//   const b = getRndInteger(min, max);
+//   const c = getRndInteger(min, max);
+
+//   function getStep1 = 
 
 function getRandomWordPropertyQuestion(
   min: number,
@@ -176,4 +190,5 @@ function getRandomSentencePropertyQuestion(
     multipleChoice: model,
     skill: skill,
   };
+}
 }
