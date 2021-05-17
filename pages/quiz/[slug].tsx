@@ -10,7 +10,7 @@ import { UPDATE_USER_SKILLS } from "../../graphql/updateUserSkills";
 import { FETCH_USER_SKILLS } from "../../graphql/fetchUserSkills";
 import { FETCH_USER_SKILL } from "../../graphql/fetchUserSkill";
 import { UNLOCK_NEXT_SKILL } from "../../graphql/unlockNextSkill";
-import { generateQuestions } from "../api/questionGenerator";
+import { generateQuestions, Skill } from "../api/questionGenerator";
 import { v4 as uuidv4 } from "uuid";
 import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
@@ -33,6 +33,7 @@ const Quiz = ({ slug }) => {
       answer: "",
       answerType: AnswerType.NUMBER,
       questionType: QuestionType.HORIZONTAL_EQUATION,
+      skill: Skill.ADDITION_SINGLE,
     },
   ]);
   const [currentLevel, setCurrentLevel] = React.useState(0);

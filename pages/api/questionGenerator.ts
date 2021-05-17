@@ -1,4 +1,6 @@
+import { HorizontalEquation } from "../../components/stories/HorizontalEquation";
 import { AnswerType, Question } from "./question";
+import { tweleveMap } from "./factorsOfTwelveMap";
 import { QuestionType } from "./questionTypes";
 import { getRndInteger } from "./random";
 import { createWordProblemModel } from "./WordProblemModel";
@@ -27,10 +29,19 @@ export enum Difficulty {
 }
 
 export enum Skill {
-  ADDITION_ONE_DIGIT = "Add one digit numbers",
-  ADDITION_TWO_DIGIT = "Add two digit numbers",
-  ADDITION_THREE_DIGIT = "Add three digit numbers",
+  NUMBERS_50 = "Count and compare numbers up to 50",
+  ADDITION_SINGLE = "Add one digit numbers",
+  ADDITION_DOUBLE = "Add two digit numbers",
+  ADDITION_TRIPLE = "Add three digit numbers",
+  SUBTRACTION_SINGLE = "Subtract single digit numbers",
+  SUBTRACTION_DOUBLE = "Subtract double digit numbers",
+  SUBTRACTION_TRIPLE = "Subtract triple digit numbers",
+  MULTIPLICATION_5 = "Multiply numbers up to 5x5",
+  MULTIPLICATION_10 = "Multiply numbers up to 10x10",
+  DIVIDE_12_EQUALLY = "Divide numbers up to 12 equally",
+  DIVIDE_100 = "Divide numbers up to 100 equally",
 }
+
 export const generateQuestionsForDiagnostic = (
   testLength: TestLength,
   topics: Topic[]
@@ -51,60 +62,109 @@ export const generateQuestionsForDiagnostic = (
   }
   let questions: Question[] = [];
 
-  if (topics[0] == Topic.ADDITION || topics[0] == Topic.SUBTRACTION) {
+  if (topics[0] == Topic.ADDITION) {
     topics.forEach((it) =>
       questions.push(
-        ...generateQuestionsForTopic(it, questionsPerSection, "single-digit")
+        ...generateQuestionsForTopic(
+          it,
+          questionsPerSection,
+          Skill.ADDITION_SINGLE
+        )
       )
     );
     topics.forEach((it) =>
       questions.push(
-        ...generateQuestionsForTopic(it, questionsPerSection, "double-digit")
+        ...generateQuestionsForTopic(
+          it,
+          questionsPerSection,
+          Skill.ADDITION_DOUBLE
+        )
       )
     );
     topics.forEach((it) =>
       questions.push(
-        ...generateQuestionsForTopic(it, questionsPerSection, "triple-digit")
+        ...generateQuestionsForTopic(
+          it,
+          questionsPerSection,
+          Skill.ADDITION_TRIPLE
+        )
+      )
+    );
+  } else if (topics[0] == Topic.SUBTRACTION) {
+    topics.forEach((it) =>
+      questions.push(
+        ...generateQuestionsForTopic(
+          it,
+          questionsPerSection,
+          Skill.SUBTRACTION_SINGLE
+        )
+      )
+    );
+    topics.forEach((it) =>
+      questions.push(
+        ...generateQuestionsForTopic(
+          it,
+          questionsPerSection,
+          Skill.SUBTRACTION_DOUBLE
+        )
+      )
+    );
+    topics.forEach((it) =>
+      questions.push(
+        ...generateQuestionsForTopic(
+          it,
+          questionsPerSection,
+          Skill.SUBTRACTION_TRIPLE
+        )
       )
     );
   } else if (topics[0] == Topic.MULTIPLICATION) {
     topics.forEach((it) =>
       questions.push(
-        ...generateQuestionsForTopic(it, questionsPerSection, "single-digit")
+        ...generateQuestionsForTopic(
+          it,
+          questionsPerSection,
+          Skill.MULTIPLICATION_5
+          //this should be changed to multiply by equal groups later
+        )
       )
     );
     topics.forEach((it) =>
       questions.push(
-        ...generateQuestionsForTopic(it, questionsPerSection, "upto_5X5")
+        ...generateQuestionsForTopic(
+          it,
+          questionsPerSection,
+          Skill.MULTIPLICATION_5
+        )
       )
     );
     topics.forEach((it) =>
       questions.push(
-        ...generateQuestionsForTopic(it, questionsPerSection, "upto_10X10")
+        ...generateQuestionsForTopic(
+          it,
+          questionsPerSection,
+          Skill.MULTIPLICATION_10
+        )
       )
     );
   } else {
     topics.forEach((it) =>
       questions.push(
-        ...generateQuestionsForTopic(it, questionsPerSection, "single-digit")
-      )
-    );
-    topics.forEach((it) =>
-      questions.push(
         ...generateQuestionsForTopic(
           it,
           questionsPerSection,
-          "12_items_equally"
+          Skill.DIVIDE_12_EQUALLY
         )
       )
     );
     topics.forEach((it) =>
       questions.push(
-        ...generateQuestionsForTopic(
-          it,
-          questionsPerSection,
-          "upto_100_divide_10"
-        )
+        ...generateQuestionsForTopic(it, questionsPerSection, Skill.DIVIDE_100)
+      )
+    );
+    topics.forEach((it) =>
+      questions.push(
+        ...generateQuestionsForTopic(it, questionsPerSection, Skill.DIVIDE_100)
       )
     );
   }
@@ -117,37 +177,41 @@ export const generateQuestions = (slug: string, currentLevel: number) => {
       return generateQuestionsForTopic(
         Topic.NUMBERS,
         NUM_QUESTIONS,
-        "single-digit"
+        Skill.NUMBERS_50
       );
     } else if (slug.toLowerCase() == "subtraction") {
       return generateQuestionsForTopic(
         Topic.SUBTRACTION,
         NUM_QUESTIONS,
-        "single-digit"
+        Skill.SUBTRACTION_SINGLE
       );
     } else if (slug.toLowerCase() == "multiplication") {
       return generateQuestionsForTopic(
         Topic.MULTIPLICATION,
         NUM_QUESTIONS,
-        "single-digit"
+        Skill.MULTIPLICATION_10
       );
     } else if (slug.toLowerCase() == "division") {
       return generateQuestionsForTopic(
         Topic.DIVISION,
         NUM_QUESTIONS,
-        "single-digit"
+        Skill.DIVIDE_12_EQUALLY
       );
     } else {
       return generateQuestionsForTopic(
         Topic.ADDITION,
         NUM_QUESTIONS,
-        "single-digit"
+        Skill.ADDITION_SINGLE
       );
     }
   }
   return [];
 };
-function getRandomNumbersQuestion(min: number, max: number): Question {
+function getRandomNumbersQuestion(
+  min: number,
+  max: number,
+  skill: Skill
+): Question {
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
   const text = `Which is bigger ${a} or ${b}?`;
@@ -157,15 +221,16 @@ function getRandomNumbersQuestion(min: number, max: number): Question {
     answer: Math.max(a, b).toString(),
     answerType: AnswerType.NUMBER,
     questionType: QuestionType.COMPARISON_WORD_PROBLEM,
+    skill: skill,
   };
 }
 
 const generateQuestionsForTopic = (
   topic: Topic,
   numberOfQuestions: number,
-  digitDifficulty: string
+  digitDifficulty: Skill
 ) => {
-  let questionGenerator: (min: number, max: number) => Question;
+  let questionGenerator: (min: number, max: number, skill: Skill) => Question;
   switch (topic) {
     case Topic.NUMBERS:
       questionGenerator = getRandomNumbersQuestion;
@@ -190,40 +255,49 @@ const generateQuestionsForTopic = (
   for (let i = 0; i < numberOfQuestions; i++) {
     let min = 1;
     let max = 10;
-    if (digitDifficulty == "double-digit") {
+    if (digitDifficulty == Skill.ADDITION_DOUBLE) {
       min = 11;
       max = 100;
-    } else if (digitDifficulty == "upto_5X5") {
-      max = 6;
-    } else if (digitDifficulty == "upto_10X10") {
-      max = 11;
-    } else if (digitDifficulty == "triple-digit") {
+    } else if (digitDifficulty == Skill.ADDITION_TRIPLE) {
       min = 101;
       max = 1000;
-    } else if (digitDifficulty == "upto_100_divide_10") {
+    } else if (digitDifficulty == Skill.MULTIPLICATION_10) {
+      max = 11;
+    } else if (digitDifficulty == Skill.MULTIPLICATION_5) {
+      max = 6;
+    } else if (digitDifficulty == Skill.DIVIDE_100) {
       min = 9;
       max = 101;
-    } else if (digitDifficulty == "12_items_equally") {
+    } else if (digitDifficulty == Skill.DIVIDE_12_EQUALLY) {
       max = 13;
     }
-    res.push(questionGenerator(min, max));
+    res.push(questionGenerator(min, max, digitDifficulty));
   }
   return res;
 };
 
-function getRandomAdditionQuestion(min: number, max: number) {
+function getRandomAdditionQuestion(min: number, max: number, skill: Skill) {
   const add = (a: number, b: number) => a + b;
-  return getRandomBinaryQuestion(min, max, "+", add);
+  return getRandomBinaryQuestion(min, max, "+", add, skill);
 }
-function getRandomSubtractionQuestion(min: number, max: number) {
+function getRandomSubtractionQuestion(min: number, max: number, skill: Skill) {
   const subtract = (a: number, b: number) => a - b;
-  return getRandomBinaryQuestion(min, max, "-", subtract);
+  return getRandomBinaryQuestion(min, max, "-", subtract, skill);
 }
-function getRandomMultiplicationQuestion(min: number, max: number) {
+function getRandomMultiplicationQuestion(
+  min: number,
+  max: number,
+  skill: Skill
+) {
   const multiply = (a: number, b: number) => a * b;
-  return getRandomBinaryQuestion(min, max, "x", multiply);
+
+  return getRandomBinaryQuestion(min, max, "x", multiply, skill);
 }
-function getRandomDivisionQuestion(min: number, max: number): Question {
+function getRandomDivisionQuestion(
+  min: number,
+  max: number,
+  skill: Skill
+): Question {
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
   const product = a * b;
@@ -246,6 +320,7 @@ function getRandomDivisionQuestion(min: number, max: number): Question {
     questionType: type,
     operator: "÷",
     wordProblem: wordProblemModel,
+    skill: skill,
   };
 }
 
@@ -253,7 +328,8 @@ function getRandomBinaryQuestion(
   min: number,
   max: number,
   operator: string,
-  answerFunction: (a: number, b: number) => number
+  answerFunction: (a: number, b: number) => number,
+  skill: Skill
 ): Question {
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
@@ -283,5 +359,6 @@ function getRandomBinaryQuestion(
     questionType: type,
     operator: operator,
     wordProblem: wordProblemModel,
+    skill: skill,
   };
 }
