@@ -13,8 +13,7 @@ const DiagnosticEvidencePage = () => {
   return (
     <div>
       <DiagnosticEvidence
-        //questions={questionData.map((question) => question.text)}
-        //guessAns={guessAns}
+        skills={questionData.map((question) => question.skill)}
         topic={topics}
       />
     </div>
