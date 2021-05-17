@@ -1,23 +1,20 @@
-import { createWordProblemModel } from "./WordProblemModel";
+import { createWordProblemModel, WordProblemModel } from "./WordProblemModel";
 import { QuestionType } from "./questionTypes";
 import { AnswerType, Question } from "./question";
-import { Topic } from "./questionGenerator";
+import { Skill, Topic } from "./questionGenerator";
 import { MCModel, MCOption } from "./question";
 import { random, shuffle, StringNullableChain } from "lodash";
 import { AdditionProperty } from "../../components/stories/MultipleChoiceTypes";
 import { tweleveMap } from "./factorsOfTwelveMap";
-import { getRndInteger } from "./random";
-import { getRandomPropertyAdditionQuestion } from "./additionPropertyQuestionGenerator";
-import { Skill } from "./questionGenerator";
 
 const NUM_QUESTIONS = 5;
 
 const generateQuestionsForTopic = (
-  digitDifficulty: Skill,
+  digitDifficulty: string,
   numberOfQuestions: number,
   operator: Topic
 ) => {
-  let questionGenerator: (min: number, max: number, skill: Skill) => Question;
+  let questionGenerator: (min: number, max: number) => Question;
   switch (operator) {
     case Topic.SUBTRACTION:
       questionGenerator = getRandomSubtractionQuestion;
@@ -35,23 +32,25 @@ const generateQuestionsForTopic = (
   for (let i = 0; i < numberOfQuestions; i++) {
     let min = 1;
     let max = 10;
-    if (digitDifficulty == Skill.ADDITION_DOUBLE) {
+    if (digitDifficulty == "double-digit") {
       min = 11;
       max = 100;
-    } else if (digitDifficulty == Skill.ADDITION_TRIPLE) {
+    } else if (digitDifficulty == "upto_5X5") {
+      min = 1;
+      max = 6;
+    } else if (digitDifficulty == "triple-digit") {
       min = 101;
       max = 1000;
-    } else if (digitDifficulty == Skill.MULTIPLICATION_10) {
+    } else if (digitDifficulty == "upto_100_divide_10") {
       max = 11;
-    } else if (digitDifficulty == Skill.MULTIPLICATION_5) {
-      max = 6;
-    } else if (digitDifficulty == Skill.DIVIDE_100) {
-      min = 9;
-      max = 101;
-    } else if (digitDifficulty == Skill.DIVIDE_12_EQUALLY) {
+    } else if (digitDifficulty == "12_items_equally") {
       max = 13;
     }
-    res.push(questionGenerator(min, max, digitDifficulty));
+    if (operator === Topic.DIVISION) {
+      res.push(getRandomDivisionQuestion(min, max, digitDifficulty));
+    } else {
+      res.push(questionGenerator(min, max));
+    }
   }
   return res;
 };
@@ -61,14 +60,12 @@ export const generateAdditionPropertyQuestions = () => {
   for (let i = 0; i < NUM_QUESTIONS; ++i) {
     let min = 1;
     let max = 15;
-    res.push(
-      getRandomPropertyAdditionQuestion(min, max, Skill.ADDITION_SINGLE)
-    );
+    res.push(getRandomPropertyAdditionQuestion(min, max));
   }
   return res;
 };
 
-export const generateAdditionQuestions = (difficulty: Skill) => {
+export const generateAdditionQuestions = (difficulty: string) => {
   if (difficulty != null) {
     const digitDifficulty = difficulty;
     return generateQuestionsForTopic(
@@ -79,7 +76,7 @@ export const generateAdditionQuestions = (difficulty: Skill) => {
   }
   return [];
 };
-export const generateSubtractionQuestions = (slug: Skill) => {
+export const generateSubtractionQuestions = (slug: string) => {
   if (slug != null) {
     const digitDifficulty = slug;
     return generateQuestionsForTopic(
@@ -90,7 +87,7 @@ export const generateSubtractionQuestions = (slug: Skill) => {
   }
   return [];
 };
-export const generateMultiplicationQuestions = (slug: Skill) => {
+export const generateMultiplicationQuestions = (slug: string) => {
   if (slug != null) {
     const digitDifficulty = slug;
     return generateQuestionsForTopic(
@@ -101,7 +98,7 @@ export const generateMultiplicationQuestions = (slug: Skill) => {
   }
   return [];
 };
-export const generateDivisionQuestions = (slug: Skill) => {
+export const generateDivisionQuestions = (slug: string) => {
   if (slug != null) {
     const digitDifficulty = slug;
     return generateQuestionsForTopic(
@@ -113,23 +110,18 @@ export const generateDivisionQuestions = (slug: Skill) => {
   return [];
 };
 
-function getRandomAdditionQuestion(min: number, max: number, skill: Skill) {
+function getRandomAdditionQuestion(min: number, max: number) {
   const add = (a: number, b: number) => a + b;
-  return getRandomBinaryQuestion(min, max, "+", add, skill);
+  return getRandomBinaryQuestion(min, max, "+", add);
 }
 
-function getRandomSubtractionQuestion(min: number, max: number, skill: Skill) {
+function getRandomSubtractionQuestion(min: number, max: number) {
   const subtract = (a: number, b: number) => a - b;
-  return getRandomBinaryQuestion(min, max, "-", subtract, skill);
+  return getRandomBinaryQuestion(min, max, "-", subtract);
 }
-function getRandomMultiplicationQuestion(
-  min: number,
-  max: number,
-  skill: Skill
-) {
-  const multiply = (a: number, b: number) => a * b;
-
-  return getRandomBinaryQuestion(min, max, "x", multiply, skill);
+function getRandomMultiplicationQuestion(min: number, max: number) {
+  const multiplication = (a: number, b: number) => a * b;
+  return getRandomBinaryQuestion(min, max, "x", multiplication);
 }
 function getRandomDivisionQuestion(min: number, max: number, digitDifficulty) {
   const a = getRndInteger(min, max);
@@ -169,8 +161,7 @@ function getRandomBinaryQuestion(
   min: number,
   max: number,
   operator: string,
-  answerFunction: (a: number, b: number) => number,
-  skill: Skill
+  answerFunction: (a: number, b: number) => number
 ): Question {
   const a = getRndInteger(min, max);
   let b = getRndInteger(min, max);
@@ -191,10 +182,8 @@ function getRandomBinaryQuestion(
   return {
     text: text,
     answer: answerFunction(Math.max(a, b), Math.min(a, b)).toString(),
-    answerType:
-      type === QuestionType.TRUE_OR_FALSE_PROBLEM
-        ? AnswerType.BOOLEAN
-        : AnswerType.NUMBER,
+    answerType: AnswerType.NUMBER,
+    skill: Skill.ADDITION_SINGLE,
     questionType: type,
     operator: operator,
     wordProblem: wordProblemModel,
@@ -222,7 +211,7 @@ function getRandomPropertyAdditionQuestion(min: number, max: number) {
 //   operator: string,
 // ): Question {
 //   const a = getRndInteger(min, max)
-//   const b = get
+//   const b
 // }
 
 
@@ -271,6 +260,7 @@ function getRandomWordPropertyQuestion(
     text: modelProperty.options[0].text,
     answer: "a",
     answerType: AnswerType.STRING,
+    skill: Skill.ADDITION_PROPERTY,
     operator: operator,
     questionType: QuestionType.MULTIPLE_CHOICE_WORD,
     multipleChoice: modelProperty,
@@ -362,6 +352,7 @@ function getRandomSentencePropertyQuestion(
 
   return {
     text: text,
+    skill: Skill.ADDITION_PROPERTY,
     answerType: AnswerType.STRING,
     answer: additionPropertyType,
     operator: operator,

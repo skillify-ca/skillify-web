@@ -33,6 +33,7 @@ export enum Skill {
   ADDITION_SINGLE = "Add one digit numbers",
   ADDITION_DOUBLE = "Add two digit numbers",
   ADDITION_TRIPLE = "Add three digit numbers",
+  ADDITION_PROPERTY = "Using Properties of addition",
   SUBTRACTION_SINGLE = "Subtract single digit numbers",
   SUBTRACTION_DOUBLE = "Subtract double digit numbers",
   SUBTRACTION_TRIPLE = "Subtract triple digit numbers",
