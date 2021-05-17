@@ -34,8 +34,8 @@ const DiagnosticEvidence = ({ skills, topic }: DiagnosticEvidenceProps) => {
       </div>
       <div className="flex justify-between flex-row w-1/4 p-2">
         <div>
-          {skillArr.map((q) => (
-            <div>{q}</div>
+          {skillArr.map((description) => (
+            <div>{description}</div>
           ))}
         </div>
         <div>Got It</div>
