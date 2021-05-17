@@ -1,9 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Button } from "../components/stories/Button";
-import DiagnosticConclusion from "../components/stories/DiagnosticConclusion";
-import DiagnosticData from "../components/stories/DiagnosticData";
-import DiagnosticEvidence from "../components/stories/DiagnosticEvidence";
 import DiagnosticResults from "../components/stories/DiagnosticResults";
 import DiagnosticTestForm from "../components/stories/DiagnosticTestForm";
 import Dropdown from "../components/stories/Dropdown";
@@ -15,6 +12,7 @@ import {
   generateQuestionsForDiagnostic,
   TestLength,
   Topic,
+  Skill,
 } from "./api/questionGenerator";
 import { QuestionType } from "./api/questionTypes";
 import { connect } from "react-redux";
@@ -26,9 +24,6 @@ enum STAGE {
   CREATE,
   TEST,
   RESULTS,
-  DATA,
-  EVIDENCE,
-  CONCLUSION,
 }
 
 const Diagnostic = () => {
@@ -45,6 +40,7 @@ const Diagnostic = () => {
       answer: "",
       answerType: AnswerType.NUMBER,
       questionType: QuestionType.HORIZONTAL_EQUATION,
+      skill: Skill.ADDITION_SINGLE,
     },
   ]);
   const inputElement = useRef(null);
@@ -54,18 +50,22 @@ const Diagnostic = () => {
       setIndex(index + 1);
     }
 
+    let updateGuessAns;
     if (guessData.isCorrect) {
       setCorrectGuesses(correctGuesses + 1);
-      setGuessAns((prevArray) => [...prevArray, "Correct"]);
+      updateGuessAns = guessAns.concat("Correct");
     } else {
-      setGuessAns((prevArray) => [...prevArray, "Incorrect"]);
+      updateGuessAns = guessAns.concat("Incorrect");
     }
+    setGuessAns(updateGuessAns);
     if (index == questionData.length - 1) {
-      dispatch(setDiagnostic({
-        questions: questionData,
-        guessAns: guessAns,
-        topics: topics
-      }));
+      dispatch(
+        setDiagnostic({
+          questions: questionData,
+          guessAns: updateGuessAns,
+          topics: topics,
+        })
+      );
       setStage(STAGE.RESULTS);
     }
   };
@@ -74,17 +74,6 @@ const Diagnostic = () => {
     setTopics(topics);
     setTestLength(testLength);
     setStage(STAGE.TEST);
-  };
-
-  const createDiagnosticData = () => {
-    setStage(STAGE.DATA);
-  };
-  const createDiagnosticConclusion = () => {
-    setStage(STAGE.CONCLUSION);
-  };
-
-  const createDiagnosticEvidence = () => {
-    setStage(STAGE.EVIDENCE);
   };
   useEffect(() => {
     setQuestionData(generateQuestionsForDiagnostic(testLength, topics));
@@ -108,33 +97,10 @@ const Diagnostic = () => {
       break;
     case STAGE.RESULTS:
       component = (
-        <DiagnosticResults
-          correctGuesses={correctGuesses}
-          index={index + 1}
-        />
+        <DiagnosticResults correctGuesses={correctGuesses} index={index + 1} />
       );
       break;
-    case STAGE.DATA:
-      component = (
-        <DiagnosticData
-          questions={questionData.map((question) => question.text)}
-          guessAns={guessAns}
-          topics={topics}
-        />
-      );
-      break;
-    case STAGE.EVIDENCE:
-      component = (
-        <DiagnosticEvidence
-          topic={topics}
-          onClick={createDiagnosticConclusion}
-        />
-      );
-      break;
-    case STAGE.CONCLUSION:
-      component = <DiagnosticConclusion topics={topics} />;
   }
-
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
       <Navbar />

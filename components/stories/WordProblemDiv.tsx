@@ -48,7 +48,7 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
           {name} has
           <span className={noun1.colour}>
             {" " + parse().first}
-            {" " + title(noun1, parse().second) + " "}{" "}
+            {" " + title(noun1, parse().first) + " "}{" "}
           </span>
           <span> and </span>
           <span className="text-black font-extrabold">
