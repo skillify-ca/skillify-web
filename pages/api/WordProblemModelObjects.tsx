@@ -102,6 +102,34 @@ export const animalsMap = {
     colour: "text-yellow-800 font-black",
     image: "/images/monkey.png",
   },
+  frogs: {
+    type: "pets",
+    singleTitle: "frog",
+    pluralTitle: "frogs",
+    colour: "text-green-400 font-black",
+    image: "/images/frog.jpeg",
+  },
+  turtles: {
+    type: "pets",
+    singleTitle: "turtle",
+    pluralTitle: "turtles",
+    colour: "text-green-700 font-black",
+    image: "/images/turtle.jpeg",
+  },
+  elephants: {
+    type: "pets",
+    singleTitle: "elephant",
+    pluralTitle: "elephants",
+    colour: "text-gray-400 font-black",
+    image: "/images/elephant.png",
+  },
+  giraffes: {
+    type: "pets",
+    singleTitle: "giraffe",
+    pluralTitle: "giraffes",
+    colour: "text-yellow-600 font-black",
+    image: "/images/giraffe.png",
+  },
 };
 export const fruitsMap = {
   apples: {

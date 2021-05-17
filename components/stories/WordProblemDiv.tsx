@@ -52,7 +52,7 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
           </span>
           <span> and </span>
           <span className="text-black font-extrabold">
-            {parse().second + " friends"}.
+            {parse().second + " friend(s)"}.
           </span>
           {" " + name} wants to share the {title(noun1, parse().first) + " "}
           equally between them. How many
