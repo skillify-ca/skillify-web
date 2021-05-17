@@ -1,3 +1,4 @@
+import { Skill } from "./questionGenerator";
 import { QuestionType } from "./questionTypes";
 import { WordProblemModel } from "./WordProblemModel";
 
@@ -12,6 +13,7 @@ export type Question = {
   answer: string;
   answerType: AnswerType;
   questionType: QuestionType;
+  skill: Skill;
   operator?: string;
   wordProblem?: WordProblemModel;
   multipleChoice?: MCModel;

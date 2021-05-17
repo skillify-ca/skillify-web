@@ -59,7 +59,7 @@ export const WordProblemSub: React.FC<WordProblemSubProp> = ({
           </span>
           <span> </span>
           {noun1.type}. {name} takes out
-          <span className={noun1.colour}>{" " + parse().second + " "}</span>
+          <span className={noun1.colour}>{" " + parse().first + " "}</span>
           {title(noun1, parse().second)}. How many {noun1.type} are in the{" "}
           {itemContainer.singleTitle}?
         </p>
