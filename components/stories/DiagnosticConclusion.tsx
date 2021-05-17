@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import { Topic } from "../../pages/api/questionGenerator";
-import "ui-progress-circle";
 import {
   AdditionWS,
   DivisionWS,
@@ -27,7 +26,6 @@ const DiagnosticConclusion = ({ topics }: DiagnosticConclusionProps) => {
   });
   return (
     <div>
-      <ui-progress-circle value="67"></ui-progress-circle>
       <p className="mb-2 text-center font-black"> Conclusion </p>
       <p> Report Card - Ontario Curriculum</p>
       <p className="mb-2"> Average Grade Level - Grade 3 </p>
