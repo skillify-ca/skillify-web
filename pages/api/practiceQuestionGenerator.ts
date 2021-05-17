@@ -186,7 +186,6 @@ function getRandomBinaryQuestion(
     questionType: type,
     operator: operator,
     wordProblem: wordProblemModel,
-    skill: skill,
   };
 }
 

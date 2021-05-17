@@ -15,11 +15,12 @@ export function getRandomPropertyAdditionQuestion(
     return getRandomSentencePropertyQuestion(min, max, "+", skill);
   } else if (randomProperty == 1) {
     return getRandomWordPropertyQuestion(min, max, "+", skill);
-  // } else if (randomProperty == 3) {
+  // } else if (randomProperty == 2) {
   //   return getRandomFillBlankQuestion(min, max, "+", skill);
   // }
 }
 
+// Wip
 // function getRandomFillBlankQuestion(
 //   min: number,
 //   max: number,
@@ -30,7 +31,11 @@ export function getRandomPropertyAdditionQuestion(
 //   const b = getRndInteger(min, max);
 //   const c = getRndInteger(min, max);
 
-//   function getStep1 = 
+//   const step1 = getStep1(a, b, c, operator);
+//   const step2 = getStep2(a, b, c, operator);
+//   const step3 = getStep3(a, b, c, operator);
+//   const step4 = getStep4(a, b, c, operator);
+
 
 function getRandomWordPropertyQuestion(
   min: number,
