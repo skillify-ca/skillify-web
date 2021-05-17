@@ -6,11 +6,12 @@ import { MCModel, MCOption } from "./question";
 import { random, shuffle, StringNullableChain } from "lodash";
 import { AdditionProperty } from "../../components/stories/MultipleChoiceTypes";
 import { tweleveMap } from "./factorsOfTwelveMap";
+import { getRandomPropertyAdditionQuestion } from "./additionPropertyQuestionGenerator";
 
 const NUM_QUESTIONS = 5;
 
 const generateQuestionsForTopic = (
-  digitDifficulty: string,
+  digitDifficulty: Skill,
   numberOfQuestions: number,
   operator: Topic
 ) => {
@@ -32,18 +33,18 @@ const generateQuestionsForTopic = (
   for (let i = 0; i < numberOfQuestions; i++) {
     let min = 1;
     let max = 10;
-    if (digitDifficulty == "double-digit") {
+    if (digitDifficulty == Skill.ADDITION_DOUBLE) {
       min = 11;
       max = 100;
-    } else if (digitDifficulty == "upto_5X5") {
+    } else if (digitDifficulty == Skill.MULTIPLICATION_5) {
       min = 1;
       max = 6;
-    } else if (digitDifficulty == "triple-digit") {
+    } else if (digitDifficulty == Skill.ADDITION_TRIPLE) {
       min = 101;
       max = 1000;
-    } else if (digitDifficulty == "upto_100_divide_10") {
-      max = 11;
-    } else if (digitDifficulty == "12_items_equally") {
+    } else if (digitDifficulty == Skill.DIVIDE_100) {
+      max = 11; 
+    } else if (digitDifficulty == Skill.DIVIDE_12_EQUALLY) {
       max = 13;
     }
     if (operator === Topic.DIVISION) {
@@ -60,12 +61,12 @@ export const generateAdditionPropertyQuestions = () => {
   for (let i = 0; i < NUM_QUESTIONS; ++i) {
     let min = 1;
     let max = 15;
-    res.push(getRandomPropertyAdditionQuestion(min, max));
+    res.push(getRandomPropertyAdditionQuestion(min, max, Skill.ADDITION_PROPERTY));
   }
   return res;
 };
 
-export const generateAdditionQuestions = (difficulty: string) => {
+export const generateAdditionQuestions = (difficulty: Skill) => {
   if (difficulty != null) {
     const digitDifficulty = difficulty;
     return generateQuestionsForTopic(
@@ -76,9 +77,9 @@ export const generateAdditionQuestions = (difficulty: string) => {
   }
   return [];
 };
-export const generateSubtractionQuestions = (slug: string) => {
-  if (slug != null) {
-    const digitDifficulty = slug;
+export const generateSubtractionQuestions = (difficulty: Skill) => {
+  if (difficulty != null) {
+    const digitDifficulty = difficulty;
     return generateQuestionsForTopic(
       digitDifficulty,
       NUM_QUESTIONS,
@@ -87,9 +88,9 @@ export const generateSubtractionQuestions = (slug: string) => {
   }
   return [];
 };
-export const generateMultiplicationQuestions = (slug: string) => {
-  if (slug != null) {
-    const digitDifficulty = slug;
+export const generateMultiplicationQuestions = (difficulty: Skill) => {
+  if (difficulty != null) {
+    const digitDifficulty = difficulty;
     return generateQuestionsForTopic(
       digitDifficulty,
       NUM_QUESTIONS,
@@ -98,9 +99,9 @@ export const generateMultiplicationQuestions = (slug: string) => {
   }
   return [];
 };
-export const generateDivisionQuestions = (slug: string) => {
-  if (slug != null) {
-    const digitDifficulty = slug;
+export const generateDivisionQuestions = (difficulty: Skill) => {
+  if (difficulty != null) {
+    const digitDifficulty = difficulty;
     return generateQuestionsForTopic(
       digitDifficulty,
       NUM_QUESTIONS,
@@ -192,172 +193,4 @@ function getRandomBinaryQuestion(
 // Get random number between min (inclusive) and max (exclusive)
 export function getRndInteger(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
-}
-
-function getRandomPropertyAdditionQuestion(min: number, max: number) {
-  const randomProperty = getRndInteger(0, 2);
-  if (randomProperty == 0) {
-    return getRandomSentencePropertyQuestion(min, max, "+");
-  } else if (randomProperty == 1) {
-    return getRandomWordPropertyQuestion(min, max, "+");
-  // } else if (randomProperty == 2) {
-  //   return getRandomFillPropertyQuestion(min, max, "+")
-  // }
-}
-
-// function getRandomFillPropertyQuestion(
-//   min: number, 
-//   max: number, 
-//   operator: string,
-// ): Question {
-//   const a = getRndInteger(min, max)
-//   const b
-// }
-
-
-function getRandomWordPropertyQuestion(
-  min: number,
-  max: number,
-  operator: string
-): Question {
-  // correct answers
-
-  // 2+3 = 3 + 2
-  const a = getRndInteger(min, max);
-  const b = getRndInteger(min, max);
-
-  const commutativeOption = `${Math.max(a, b)} ${operator} ${Math.min(
-    a,
-    b
-  )} = ${Math.min(a, b)} ${operator} ${Math.max(a, b)}`;
-
-  // 2 + 0 = 2
-  const identitynum = getRndInteger(min, max);
-
-  const identityOption = `${identitynum} ${operator} 0 = ${identitynum}`;
-
-  // (2 + 3) + 4 = 2 + (3+4)
-
-  const x = getRndInteger(min, max);
-  const y = getRndInteger(min, max);
-  const z = getRndInteger(min, max);
-
-  const associativeOption = `(${x} ${operator} ${y}) ${operator} ${z} = ${x} ${operator} (${y} ${operator} ${z})`;
-
-  // answer array chooser
-
-  const correctAnswers = [commutativeOption, identityOption, associativeOption];
-  const correctIndex = getRndInteger(0, correctAnswers.length);
-  const finalCorrectAnswer = correctAnswers[correctIndex];
-
-  const questionOption: MCOption = { text: finalCorrectAnswer, id: "a" };
-
-  const questionModel = [questionOption];
-
-  const modelProperty: MCModel = { options: questionModel };
-
-  return {
-    text: modelProperty.options[0].text,
-    answer: "a",
-    answerType: AnswerType.STRING,
-    skill: Skill.ADDITION_PROPERTY,
-    operator: operator,
-    questionType: QuestionType.MULTIPLE_CHOICE_WORD,
-    multipleChoice: modelProperty,
-  };
-}
-
-function getRandomSentencePropertyQuestion(
-  min: number,
-  max: number,
-  operator: string
-): Question {
-  // correct answers
-
-  // 2+3 = 3 + 2
-  const a = getRndInteger(min, max);
-  const b = getRndInteger(min, max);
-
-  const commutativeOption = `${Math.max(a, b)} ${operator} ${Math.min(
-    a,
-    b
-  )} = ${Math.min(a, b)} ${operator} ${Math.max(a, b)}`;
-
-  // 2 + 0 = 2
-  const identitynum = getRndInteger(min, max);
-
-  const identityOption = `${identitynum} ${operator} 0 = ${identitynum}`;
-
-  // (2 + 3) + 4 = 2 + (3+4)
-
-  const x = getRndInteger(min, max);
-  const y = getRndInteger(min, max);
-  const z = getRndInteger(min, max);
-
-  const associativeOption = `(${x} ${operator} ${y}) ${operator} ${z} = ${x} ${operator} (${y} ${operator} ${z})`;
-
-  // wrong answers
-
-  // 2 + 3 = 2 + 3
-
-  const wrongCommutativeOption = `${Math.max(a, b)} ${operator} ${Math.min(
-    a,
-    b
-  )} = ${Math.max(a, b)} ${operator} ${Math.min(a, b)}`;
-
-  // (2 + 1) + 4 = 2 + 1 + 1
-  const wrongAssociativeOption = `(${x} ${operator} ${y}) ${operator} ${z} = (${x} ${operator} ${y}) ${operator} ${y}`;
-
-  // 2 +0 =20
-  const wrongIdentityOption = `${identitynum} ${operator} 0 = ${identitynum}0`;
-
-  const wrongOptions: string[] = [
-    wrongCommutativeOption,
-    wrongAssociativeOption,
-    wrongIdentityOption,
-  ];
-
-  const wrongIndex = getRndInteger(0, wrongOptions.length);
-
-  const wrongDisplay = wrongOptions[wrongIndex];
-
-  // correct answer determiner
-
-  const additionPropertyTypes = [
-    AdditionProperty.ASSOCIATIVE,
-    AdditionProperty.COMMUTATIVE,
-    AdditionProperty.IDENTITY,
-  ];
-  const typeIndex = getRndInteger(0, additionPropertyTypes.length);
-  const additionPropertyType = additionPropertyTypes[typeIndex];
-  const text = `Which equation shows the ${additionPropertyType} Property?`;
-
-  // final question arr
-
-  const questionArr: string[] = [
-    commutativeOption,
-    identityOption,
-    associativeOption,
-    wrongDisplay,
-  ];
-
-  const option1: MCOption = { text: questionArr[0], id: "a" };
-  const option2: MCOption = { text: questionArr[1], id: "b" };
-  const option3: MCOption = { text: questionArr[2], id: "c" };
-  const option4: MCOption = { text: questionArr[3], id: "d" };
-
-  const optionarr = [option1, option2, option3, option4];
-
-  const model: MCModel = { options: shuffle(optionarr) };
-
-  return {
-    text: text,
-    skill: Skill.ADDITION_PROPERTY,
-    answerType: AnswerType.STRING,
-    answer: additionPropertyType,
-    operator: operator,
-    questionType: QuestionType.MULTIPLE_CHOICE_SENTENCE,
-    multipleChoice: model,
-  };
-}
 }
