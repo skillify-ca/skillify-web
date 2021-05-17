@@ -2,6 +2,7 @@ import { createWordProblemModel, WordProblemModel } from "./WordProblemModel";
 import { QuestionType } from "./questionTypes";
 import { AnswerType, Question } from "./question";
 import { Skill, Topic } from "./questionGenerator";
+import { Topic } from "./questionGenerator";
 import { MCModel, MCOption } from "./question";
 import { random, shuffle, StringNullableChain } from "lodash";
 import { AdditionProperty } from "../../components/stories/MultipleChoiceTypes";
@@ -187,6 +188,163 @@ function getRandomBinaryQuestion(
     questionType: type,
     operator: operator,
     wordProblem: wordProblemModel,
+  };
+}
+// Get random number between min (inclusive) and max (exclusive)
+export function getRndInteger(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function getRandomPropertyAdditionQuestion(min: number, max: number) {
+  const randomProperty = getRndInteger(0, 2);
+  if (randomProperty == 0) {
+    return getRandomSentencePropertyQuestion(min, max, "+");
+  } else if (randomProperty == 1) {
+    return getRandomWordPropertyQuestion(min, max, "+");
+  }
+}
+
+function getRandomWordPropertyQuestion(
+  min: number,
+  max: number,
+  operator: string
+): Question {
+  // correct answers
+
+  // 2+3 = 3 + 2
+  const a = getRndInteger(min, max);
+  const b = getRndInteger(min, max);
+
+  const commutativeOption = `${Math.max(a, b)} ${operator} ${Math.min(
+    a,
+    b
+  )} = ${Math.min(a, b)} ${operator} ${Math.max(a, b)}`;
+
+  // 2 + 0 = 2
+  const identitynum = getRndInteger(min, max);
+
+  const identityOption = `${identitynum} ${operator} 0 = ${identitynum}`;
+
+  // (2 + 3) + 4 = 2 + (3+4)
+
+  const x = getRndInteger(min, max);
+  const y = getRndInteger(min, max);
+  const z = getRndInteger(min, max);
+
+  const associativeOption = `(${x} ${operator} ${y}) ${operator} ${z} = ${x} ${operator} (${y} ${operator} ${z})`;
+
+  // answer array chooser
+
+  const correctAnswers = [commutativeOption, identityOption, associativeOption];
+  const correctIndex = getRndInteger(0, correctAnswers.length);
+  const finalCorrectAnswer = correctAnswers[correctIndex];
+
+  const questionOption: MCOption = { text: finalCorrectAnswer, id: "a" };
+
+  const questionModel = [questionOption];
+
+  const modelProperty: MCModel = { options: questionModel };
+
+  return {
+    text: modelProperty.options[0].text,
+    answer: "a",
+    answerType: AnswerType.STRING,
+    operator: operator,
+    questionType: QuestionType.MULTIPLE_CHOICE_WORD,
+    multipleChoice: modelProperty,
+  };
+}
+
+function getRandomSentencePropertyQuestion(
+  min: number,
+  max: number,
+  operator: string
+): Question {
+  // correct answers
+
+  // 2+3 = 3 + 2
+  const a = getRndInteger(min, max);
+  const b = getRndInteger(min, max);
+
+  const commutativeOption = `${Math.max(a, b)} ${operator} ${Math.min(
+    a,
+    b
+  )} = ${Math.min(a, b)} ${operator} ${Math.max(a, b)}`;
+
+  // 2 + 0 = 2
+  const identitynum = getRndInteger(min, max);
+
+  const identityOption = `${identitynum} ${operator} 0 = ${identitynum}`;
+
+  // (2 + 3) + 4 = 2 + (3+4)
+
+  const x = getRndInteger(min, max);
+  const y = getRndInteger(min, max);
+  const z = getRndInteger(min, max);
+
+  const associativeOption = `(${x} ${operator} ${y}) ${operator} ${z} = ${x} ${operator} (${y} ${operator} ${z})`;
+
+  // wrong answers
+
+  // 2 + 3 = 2 + 3
+
+  const wrongCommutativeOption = `${Math.max(a, b)} ${operator} ${Math.min(
+    a,
+    b
+  )} = ${Math.max(a, b)} ${operator} ${Math.min(a, b)}`;
+
+  // (2 + 1) + 4 = 2 + 1 + 1
+  const wrongAssociativeOption = `(${x} ${operator} ${y}) ${operator} ${z} = (${x} ${operator} ${y}) ${operator} ${y}`;
+
+  // 2 +0 =20
+  const wrongIdentityOption = `${identitynum} ${operator} 0 = ${identitynum}0`;
+
+  const wrongOptions: string[] = [
+    wrongCommutativeOption,
+    wrongAssociativeOption,
+    wrongIdentityOption,
+  ];
+
+  const wrongIndex = getRndInteger(0, wrongOptions.length);
+
+  const wrongDisplay = wrongOptions[wrongIndex];
+
+  // correct answer determiner
+
+  const additionPropertyTypes = [
+    AdditionProperty.ASSOCIATIVE,
+    AdditionProperty.COMMUTATIVE,
+    AdditionProperty.IDENTITY,
+  ];
+  const typeIndex = getRndInteger(0, additionPropertyTypes.length);
+  const additionPropertyType = additionPropertyTypes[typeIndex];
+  const text = `Which equation shows the ${additionPropertyType} Property?`;
+
+  // final question arr
+
+  const questionArr: string[] = [
+    commutativeOption,
+    identityOption,
+    associativeOption,
+    wrongDisplay,
+  ];
+
+  const option1: MCOption = { text: questionArr[0], id: "a" };
+  const option2: MCOption = { text: questionArr[1], id: "b" };
+  const option3: MCOption = { text: questionArr[2], id: "c" };
+  const option4: MCOption = { text: questionArr[3], id: "d" };
+
+  const optionarr = [option1, option2, option3, option4];
+
+  const model: MCModel = { options: shuffle(optionarr) };
+
+  return {
+    text: text,
+    answerType: AnswerType.STRING,
+    answer: additionPropertyType,
+    operator: operator,
+    questionType: QuestionType.MULTIPLE_CHOICE_SENTENCE,
+    multipleChoice: model,
   };
 }
 // Get random number between min (inclusive) and max (exclusive)
