@@ -8,11 +8,15 @@ import {
   SubtractionWS,
   Worksheet,
 } from "./WorksheetsObj";
-type DiagnosticConclusionProps = {
-  topics: Array<Topic>;
-};
+type DiagnosticConclusionProps = {};
 
-const DiagnosticConclusion = ({ topics }: DiagnosticConclusionProps) => {
+const DiagnosticConclusion = ({}: DiagnosticConclusionProps) => {
+  const topics = [
+    Topic.ADDITION,
+    Topic.SUBTRACTION,
+    Topic.MULTIPLICATION,
+    Topic.DIVISION,
+  ];
   const workSheets: Worksheet[] = topics.map((element) => {
     if (element == Topic.ADDITION) {
       return AdditionWS;
