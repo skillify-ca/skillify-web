@@ -43,6 +43,8 @@ export const FillBlank: React.FC<FillBlankProp> = ({
   }
   function onButton4Click(e) {
     submitGuess({ guess: "", isCorrect: true });
+    setButton1Visible(true);
+    setButton4Visible(false);
   }
 
   const handleKeypress = (e) => {
