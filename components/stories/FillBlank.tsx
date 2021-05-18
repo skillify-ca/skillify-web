@@ -50,14 +50,14 @@ export const FillBlank: React.FC<FillBlankProp> = ({
     for (index1 = 0; index1 < 8; ++index1) {
       step1first += step1parts[index1] + " ";
     }
-    for (index1 = 9; index1 < step1.split.length; ++index1) {
+    for (index1 = 9; index1 < 11; ++index1) {
       step1second += step1parts[index1] + " ";
     }
     for (index2 = 0; index2 < 3; ++index2) {
       step2first += step2parts[index2] + " ";
     }
 
-    for (index2 = 4; index2 < step2.split.length; ++index2) {
+    for (index2 = 4; index2 < 6; ++index2) {
       step2second += step2parts[index2] + " ";
     }
     for (index3 = 0; index3 < 3; ++index3) {
@@ -88,7 +88,7 @@ export const FillBlank: React.FC<FillBlankProp> = ({
       </p>
       <p>
         {" "}
-        {parse().steps[2]}
+        {parse().steps[2] + "("}
         <input
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-8"
