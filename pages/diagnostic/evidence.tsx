@@ -6,12 +6,11 @@ import { diagnosticSelector } from "../../redux/diagnosticSlice";
 
 const DiagnosticEvidencePage = () => {
   const diagnosticResults = useSelector(diagnosticSelector);
-  const questionData = diagnosticResults.questions;
-  const guessAns = diagnosticResults.guessAns;
   return (
     <div>
       <DiagnosticEvidence
-        skills={questionData.map((question) => question.skill)}
+        topic="Addition"
+        results={diagnosticResults}
       />
     </div>
   );
