@@ -58,6 +58,20 @@ export const coinsMap = {
     colour: "text-yellow-400 font-black",
     image: "/images/gold__coins2.jpeg",
   },
+  doge: {
+    type: "coins",
+    singleTitle: "doge coin",
+    pluralTitle: "doge coins",
+    colour: "text-yellow-200 font-black",
+    image: "/images/dogecoin.png",
+  },
+  ruby: {
+    type: "coins",
+    singleTitle: "mario coin",
+    pluralTitle: "mario coins",
+    colour: "text-red-500 font-black",
+    image: "/images/mario_coin.png",
+  },
 };
 export const animalsMap = {
   aligators: {
@@ -80,6 +94,41 @@ export const animalsMap = {
     pluralTitle: "lions",
     colour: "text-yellow-600 font-black",
     image: "/images/lion.png",
+  },
+  monkeys: {
+    type: "pets",
+    singleTitle: "monkey",
+    pluralTitle: "monkeys",
+    colour: "text-yellow-800 font-black",
+    image: "/images/monkey.png",
+  },
+  frogs: {
+    type: "pets",
+    singleTitle: "frog",
+    pluralTitle: "frogs",
+    colour: "text-green-400 font-black",
+    image: "/images/frog.jpeg",
+  },
+  turtles: {
+    type: "pets",
+    singleTitle: "turtle",
+    pluralTitle: "turtles",
+    colour: "text-green-700 font-black",
+    image: "/images/turtle.jpeg",
+  },
+  elephants: {
+    type: "pets",
+    singleTitle: "elephant",
+    pluralTitle: "elephants",
+    colour: "text-gray-400 font-black",
+    image: "/images/elephant.png",
+  },
+  giraffes: {
+    type: "pets",
+    singleTitle: "giraffe",
+    pluralTitle: "giraffes",
+    colour: "text-yellow-600 font-black",
+    image: "/images/giraffe.png",
   },
 };
 export const fruitsMap = {
@@ -114,8 +163,36 @@ export const fruitsMap = {
   watermelons: {
     type: "fruits",
     singleTitle: "watermelon",
-    pluralTitle: "watermelon",
+    pluralTitle: "watermelons",
     colour: "text-green-600 font-black",
     image: "/images/watermelon.png",
+  },
+  strawberries: {
+    type: "fruits",
+    singleTitle: "strawberry",
+    pluralTitle: "strawberries",
+    colour: "text-red-500 font-black",
+    image: "/images/strawberry.jpeg",
+  },
+  peaches: {
+    type: "fruits",
+    singleTitle: "peach",
+    pluralTitle: "peaches",
+    colour: "text-yellow-500 font-black",
+    image: "/images/peach.jpeg",
+  },
+  lemons: {
+    type: "fruits",
+    singleTitle: "lemon",
+    pluralTitle: "lemons",
+    colour: "text-yellow-200 font-black",
+    image: "/images/lemon.jpeg",
+  },
+  limes: {
+    type: "fruits",
+    singleTitle: "lime",
+    pluralTitle: "limes",
+    colour: "text-green-300 font-black",
+    image: "/images/lime.jpeg",
   },
 };
