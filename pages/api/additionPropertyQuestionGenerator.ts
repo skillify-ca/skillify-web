@@ -1,6 +1,13 @@
 import { shuffle } from "lodash";
 import { AdditionProperty } from "../../components/stories/MultipleChoiceTypes";
-import { Question, MCOption, MCModel, AnswerType, FillOption, fillBlankModel } from "./question";
+import {
+  Question,
+  MCOption,
+  MCModel,
+  AnswerType,
+  FillOption,
+  fillBlankModel,
+} from "./question";
 import { Skill } from "./skill";
 import { QuestionType } from "./questionTypes";
 import { getRandomItemFromArray, getRndInteger } from "./random";
@@ -11,7 +18,7 @@ export function getRandomPropertyAdditionQuestion(
   max: number,
   skill: Skill
 ) {
-  const randomProperty = getRndInteger(0, 2);
+  const randomProperty = getRndInteger(0, 3);
   if (randomProperty == 0) {
     return getRandomSentencePropertyQuestion(min, max, "+", skill);
   } else if (randomProperty == 1) {
@@ -32,17 +39,20 @@ export function getRandomFillBlankQuestion(
   const c = getRndInteger(min, max);
 
   return getFillBlankQuestion(a, b, c, operator, skill);
-
 }
 
-export function getFillBlankQuestion(a: number, b: number, c: number, operator: string, skill: Skill) {
+export function getFillBlankQuestion(
+  a: number,
+  b: number,
+  c: number,
+  operator: string,
+  skill: Skill
+) {
+  const step1: FillOption = { text: getStep1(a, b, c, operator) };
+  const step2: FillOption = { text: getStep2(a, b, c, operator) };
+  const step3: FillOption = { text: getStep3(a, b, c, operator) };
 
-  const step1: FillOption = { text: getStep1(a, b, c, operator)};
-  const step2: FillOption = { text: getStep2(a, b, c, operator)};
-  const step3: FillOption = { text: getStep3(a, b, c, operator)};
-
-
-  const fillArray: fillBlankModel = {options: [step1, step2, step3]}
+  const fillArray: fillBlankModel = { options: [step1, step2, step3] };
 
   return {
     text: "Fill in the Blanks using Properties",
@@ -51,21 +61,21 @@ export function getFillBlankQuestion(a: number, b: number, c: number, operator: 
     operator: operator,
     questionType: QuestionType.FILL_IN_THE_BLANK_PROBLEM,
     skill: skill,
-    fillInTheBlank: fillArray
+    fillInTheBlank: fillArray,
+  };
 }
+
+function getStep1(a: number, b: number, c: number, operator: string) {
+  return `${a} + ${b} + ${c} = ${b} + ${a} + ${c}`;
 }
 
-  function getStep1(a: number, b: number, c: number, operator: string) {
-    return  `${a} + ${b} + ${c} = ${b} + ${a} + ${c}`;
-  }
+function getStep2(a: number, b: number, c: number, operator: string) {
+  return `=   ${b} + (${a} + ${c})`;
+}
 
-  function getStep2(a: number, b: number, c: number, operator: string) {
-    return `=   ${b} + (${a} + ${c})`;
-  }
-
-  function getStep3(a: number, b: number, c: number, operator: string) {
-    return `= ${b} + ${a + c}`
-  }
+function getStep3(a: number, b: number, c: number, operator: string) {
+  return `= ${b} + ${a + c}`;
+}
 function getRandomWordPropertyQuestion(
   min: number,
   max: number,
@@ -225,4 +235,3 @@ function getRandomSentencePropertyQuestion(
     skill: skill,
   };
 }
-

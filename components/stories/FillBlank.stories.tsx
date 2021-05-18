@@ -13,7 +13,7 @@ const Template: Story<FillBlankProp> = (args) => <FillBlank {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   displayQuestion: "Fill in the blanks",
-  step1: { text: "47 + 59 + 33 = 59 + 47 + 33", id: "47" },
-  step2: { text: "= 59 + (47 + 33)", id: "47" },
-  step3: { text: "= 59 + 80", id: "80" },
+  step1: "47 + 59 + 33 = 59 + 47 + 33",
+  step2: "= 59 + (47 + 33)",
+  step3: "= 59 + 80",
 };

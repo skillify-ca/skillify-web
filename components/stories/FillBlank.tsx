@@ -4,9 +4,9 @@ import { Question } from "../../pages/api/question";
 
 export interface FillBlankProp {
   displayQuestion: string;
-  step1: Question;
-  step2: Question;
-  step3: Question;
+  step1: string;
+  step2: string;
+  step3: string;
   submitGuess: (guess: GuessData) => void;
 }
 
@@ -27,32 +27,32 @@ export const FillBlank: React.FC<FillBlankProp> = ({
   };
   const onSubmit = () => {
     setGuess("");
-    submitGuess({ guess: guess, isCorrect: guess === step3.answer });
+    submitGuess({ guess: guess, isCorrect: guess === "33" });
   };
 
   return (
     <div className="flex flex-col items-center space-y-8">
       <h1 className="text-4m font-semibold text-center"> {displayQuestion} </h1>
       <p>
-        {step1.text.substring(0, 20)}{" "}
+        {step1.substring(0, 20)}{" "}
         <input
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-8"
         ></input>
-        {step1.text.substring(22)}
+        {step1.substring(22)}
       </p>
       <p>
         {" "}
-        {step2.text.substring(0, 8)}
+        {step2.substring(0, 8)}
         <input
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-8"
         ></input>
-        {step2.text.substring(10)}
+        {step2.substring(10)}
       </p>
       <p>
         {" "}
-        {step3.text.substring(0, 7)}
+        {step3.substring(0, 7)}
         <input
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-8"
