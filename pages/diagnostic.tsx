@@ -24,7 +24,7 @@ enum STAGE {
 
 const Diagnostic = () => {
   const dispatch = useAppDispatch();
-  const [topics, setTopics] = useState([]);
+  const [grade, setGrade] = useState("");
   const [stage, setStage] = useState(STAGE.CREATE);
   const [index, setIndex] = useState(0);
   const [correctGuesses, setCorrectGuesses] = useState(0);
@@ -58,20 +58,19 @@ const Diagnostic = () => {
         setDiagnostic({
           questions: questionData,
           guessAns: updateGuessAns,
-          topics: topics,
         })
       );
       setStage(STAGE.RESULTS);
     }
   };
 
-  const createDiagnostic = (topics: Topic[]) => {
-    setTopics(topics);
+  const createDiagnostic = (grade: string) => {
+    setGrade(grade);
     setStage(STAGE.TEST);
   };
   useEffect(() => {
     setQuestionData(generateQuestionsForDiagnostic());
-  }, [topics]);
+  }, [grade]);
 
   let component;
   switch (stage) {
