@@ -2,7 +2,6 @@ import React from "react";
 import { Story, Meta } from "@storybook/react";
 import { FillBlank, FillBlankProp } from "./FillBlank";
 
-
 export default {
   title: "Fill in the Blanks",
   component: FillBlank,
