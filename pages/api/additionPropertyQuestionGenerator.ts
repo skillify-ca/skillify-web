@@ -70,7 +70,7 @@ function getStep1(a: number, b: number, c: number, operator: string) {
 }
 
 function getStep2(a: number, b: number, c: number, operator: string) {
-  return `=   ${b} + (${a} + ${c})`;
+  return `= ${b} + (${a} + ${c})`;
 }
 
 function getStep3(a: number, b: number, c: number, operator: string) {

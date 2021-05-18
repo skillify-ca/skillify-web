@@ -33,7 +33,6 @@ export type fillBlankModel = {
   options: Array<FillOption>;
 };
 
-
 export type FillOption = {
   text: string;
-}
+};
