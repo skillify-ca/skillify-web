@@ -44,7 +44,9 @@ const DiagnosticConclusion = ({ results }: DiagnosticConclusionProps) => {
       <div className="flex flex-row justify-between p-2">
         <div>
           {topics.map((it) => (
-            <p className="border-green-400 border-2 mb-2">{it}</p>
+            <Link href={"/diagnostic/evidence/".concat(it.toString())}>
+              <p className="border-green-400 border-2 mb-2"> {it} </p>
+            </Link>
           ))}
         </div>
         <div>
@@ -72,11 +74,6 @@ const DiagnosticConclusion = ({ results }: DiagnosticConclusionProps) => {
         ))}
       </div>
       <div className="w-1/2 flex-row content-evenly">
-        <Link href="/diagnostic/evidence">
-          <button className="items-end bg-blue-500 rounded p-3 text-white text-sm">
-            See Evidence
-          </button>
-        </Link>
         <Link href="/">
           <button className="items-end bg-green-500 rounded p-3 text-white text-sm">
             Let's Practice
