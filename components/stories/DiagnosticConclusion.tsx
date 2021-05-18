@@ -27,7 +27,6 @@ type DiagnosticConclusionProps = {
 
 const DiagnosticConclusion = ({ results }: DiagnosticConclusionProps) => {
   const workSheets: Worksheet[] = results.questions.map((element) => {
-    console.log(element.skill);
     let skills = element.skill;
     if (getResultForSkill(element.skill, results) === "Not yet") {
       switch (skills) {
@@ -58,6 +57,10 @@ const DiagnosticConclusion = ({ results }: DiagnosticConclusionProps) => {
       }
     }
   });
+  var filterArr = [workSheets[0]];
+  for (var i = 1; i < workSheets.length; i++) {
+    if (workSheets[i] != workSheets[i - 1]) filterArr.push(workSheets[i]);
+  }
   return (
     <div>
       <p className="mb-2 text-center font-black"> Conclusion </p>
@@ -103,7 +106,7 @@ const DiagnosticConclusion = ({ results }: DiagnosticConclusionProps) => {
         <span className="font-extrabold border-b border-black">
           Worksheet Recommendations
         </span>
-        {workSheets.map((it) => (
+        {filterArr.map((it) => (
           <a
             className="text-blue-500 border-2 mb-2"
             href={it.link}
