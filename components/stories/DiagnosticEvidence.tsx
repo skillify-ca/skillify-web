@@ -8,13 +8,11 @@ import { Topic } from "../../pages/api/skill";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 
 type DiagnosticEvidenceProps = {
-  topic: string;
+  topic: Topic;
   results: DiagnosticState;
 };
 
-const DiagnosticEvidence = ({ results }: DiagnosticEvidenceProps) => {
-  const topic = Topic.DIVISION;
-
+const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
   const skills = getSkillsForTopic(topic);
   return (
     <>

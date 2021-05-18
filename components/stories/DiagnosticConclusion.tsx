@@ -69,10 +69,18 @@ const DiagnosticConclusion = ({ results }: DiagnosticConclusionProps) => {
       </div>
       <div className="flex flex-row justify-between p-2">
         <div>
-          <p className="border-green-400 border-2 mb-2">Addition</p>
-          <p className="border-green-400 border-2 mb-2">Subtraction</p>
-          <p className="border-green-400 border-2 mb-2">Multiplication</p>
-          <p className="border-green-400 border-2 mb-2">Division</p>
+          <Link href="/diagnostic/evidence/addition">
+            <p className="border-green-400 border-2 mb-2">Addition</p>
+          </Link>
+          <Link href="/diagnostic/evidence/subtraction">
+            <p className="border-green-400 border-2 mb-2">Subtraction</p>
+          </Link>
+          <Link href="/diagnostic/evidence/multiplication">
+            <p className="border-green-400 border-2 mb-2">Multiplication</p>
+          </Link>
+          <Link href="/diagnostic/evidence/division">
+            <p className="border-green-400 border-2 mb-2">Division</p>
+          </Link>
         </div>
         <div>
           <div>
@@ -106,11 +114,6 @@ const DiagnosticConclusion = ({ results }: DiagnosticConclusionProps) => {
         ))}
       </div>
       <div className="w-1/2 flex-row content-evenly">
-        <Link href="/diagnostic/evidence">
-          <button className="items-end bg-blue-500 rounded p-3 text-white text-sm">
-            See Evidence
-          </button>
-        </Link>
         <Link href="/">
           <button className="items-end bg-green-500 rounded p-3 text-white text-sm">
             Let's Practice
