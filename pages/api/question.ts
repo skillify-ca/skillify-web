@@ -35,6 +35,5 @@ export type fillBlankModel = {
 
 
 export type FillOption = {
-  id :  string;
   text: string;
 }
