@@ -14,9 +14,12 @@ type DiagnosticEvidenceProps = {
 
 const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
   const skills = getSkillsForTopic(topic);
+
   return (
     <>
-      <p className="mb-12"> {"topic"} </p>
+      <p className="mb-12">
+        {topic && topic.charAt(0).toUpperCase() + topic.slice(1)}
+      </p>
       <div className="flex justify-between sm:w-1/4 border-b border-black p-2">
         <span> I can... </span>
         <span className="pl-16"> Result </span>
@@ -33,11 +36,13 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
           ))}
         </div>
       </div>
-      <Link href="/diagnostic/data">
-        <button className="mt-4 bg-blue-500 rounded p-3 text-white text-sm">
-          Go To Data
-        </button>
-      </Link>
+      {topic && (
+        <Link href={"/diagnostic/data/".concat(topic.toString())}>
+          <button className="mt-4 bg-blue-500 rounded p-3 text-white text-sm">
+            Go To Data
+          </button>
+        </Link>
+      )}
     </>
   );
 };
