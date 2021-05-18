@@ -25,9 +25,10 @@ type DiagnosticConclusionProps = {
   results: DiagnosticState;
 };
 
-const DiagnosticConclusion = ({ results }: DiagnosticConclusionProps) => {
+export const DiagnosticConclusion = ({
+  results,
+}: DiagnosticConclusionProps) => {
   const workSheets: Worksheet[] = results.questions.map((element) => {
-    console.log(element.skill);
     let skills = element.skill;
     if (getResultForSkill(element.skill, results) === "Not yet") {
       switch (skills) {
@@ -58,11 +59,55 @@ const DiagnosticConclusion = ({ results }: DiagnosticConclusionProps) => {
       }
     }
   });
+  let filterArr = [workSheets[0]];
+  for (var i = 1; i < workSheets.length; i++) {
+    if (workSheets[i] != workSheets[i - 1]) {
+      filterArr.push(workSheets[i]);
+    }
+  }
+  let gradeLevel = 0;
+  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 3") {
+    gradeLevel = gradeLevel + 3;
+  }
+  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 2") {
+    gradeLevel = gradeLevel + 2;
+  }
+  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 1") {
+    gradeLevel = gradeLevel + 1;
+  }
+  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 3") {
+    gradeLevel = gradeLevel + 3;
+  }
+  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 2") {
+    gradeLevel = gradeLevel + 2;
+  }
+  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 1") {
+    gradeLevel = gradeLevel + 1;
+  }
+  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 3") {
+    gradeLevel = gradeLevel + 3;
+  }
+  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 2") {
+    gradeLevel = gradeLevel + 2;
+  }
+  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 1") {
+    gradeLevel = gradeLevel + 1;
+  }
+  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 3") {
+    gradeLevel = gradeLevel + 3;
+  }
+  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 2") {
+    gradeLevel = gradeLevel + 2;
+  }
+  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 1") {
+    gradeLevel = gradeLevel + 1;
+  }
+  gradeLevel = gradeLevel / 4;
   return (
     <div>
       <p className="mb-2 text-center font-black"> Conclusion </p>
       <p> Report Card - Ontario Curriculum</p>
-      <p className="mb-2"> Average Grade Level - Grade 3 </p>
+      <p className="mb-2"> {"Average Grade Level - Grade " + gradeLevel} </p>
       <div className="flex justify-between border-b border-black p-2">
         <span> Topic: </span>
         <span className="pr-4"> Grade Level: </span>
@@ -103,15 +148,18 @@ const DiagnosticConclusion = ({ results }: DiagnosticConclusionProps) => {
         <span className="font-extrabold border-b border-black">
           Worksheet Recommendations
         </span>
-        {workSheets.map((it) => (
-          <a
-            className="text-blue-500 border-2 mb-2"
-            href={it.link}
-            target="_blank"
-          >
-            {it.title}
-          </a>
-        ))}
+        {filterArr.map(
+          (it) =>
+            it && (
+              <a
+                className="text-blue-500 border-2 mb-2"
+                href={it.pdf}
+                target="_blank"
+              >
+                {it.title}
+              </a>
+            )
+        )}
       </div>
       <div className="w-1/2 flex-row content-evenly">
         <Link href="/">
