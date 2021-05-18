@@ -154,12 +154,15 @@ export const FillBlank: React.FC<FillBlankProp> = ({
           type="number"
         ></input>
         {button3Visible && (
+
+
           <Button
             onClick={onButton3Click}
             label="Lock-in"
             textColor="white"
             backgroundColor="red"
           ></Button>
+
         )}
       </p>
 
@@ -179,6 +182,7 @@ export const FillBlank: React.FC<FillBlankProp> = ({
             textColor="white"
             backgroundColor="red"
           ></Button>
+
         )}
       </p>
     </div>
