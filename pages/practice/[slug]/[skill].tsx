@@ -23,7 +23,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   const inputElement = useRef(null);
 
   useEffect(() => {
-    setQuestionData(generatePracticeQuestions(slug, skill))
+    setQuestionData(generatePracticeQuestions(slug, skill));
   }, []);
 
   const submitGuess = (guess: GuessData) => {
