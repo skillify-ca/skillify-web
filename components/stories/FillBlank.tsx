@@ -83,6 +83,7 @@ export const FillBlank: React.FC<FillBlankProp> = ({
         <input
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-8"
+          type="number"
         ></input>
         {" " + parse().steps[1]}
       </p>
@@ -92,6 +93,7 @@ export const FillBlank: React.FC<FillBlankProp> = ({
         <input
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-8"
+          type="number"
         ></input>
         {" " + parse().steps[3]}
       </p>
@@ -101,6 +103,7 @@ export const FillBlank: React.FC<FillBlankProp> = ({
         <input
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-8"
+          type="number"
         ></input>
       </p>
       <p>
@@ -109,6 +112,7 @@ export const FillBlank: React.FC<FillBlankProp> = ({
         <input
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-8"
+          type="number"
         ></input>{" "}
       </p>
     </div>
