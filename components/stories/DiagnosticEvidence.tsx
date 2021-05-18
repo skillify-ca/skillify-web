@@ -1,44 +1,39 @@
 import Link from "next/link";
 import React from "react";
-import { Topic } from "../../pages/api/questionGenerator";
+import {
+  getResultForSkill,
+  getSkillsForTopic,
+} from "../../pages/api/diagnostic/diagnosticGrader";
+import { Topic } from "../../pages/api/skill";
+import { DiagnosticState } from "../../redux/diagnosticSlice";
 
 type DiagnosticEvidenceProps = {
-  skills: Array<string>;
-  topic: Array<string>;
+  topic: string;
+  results: DiagnosticState;
 };
 
-const DiagnosticEvidence = ({ skills, topic }: DiagnosticEvidenceProps) => {
-  let skillTopic;
-  console.log(topic);
+const DiagnosticEvidence = ({ results }: DiagnosticEvidenceProps) => {
+  const topic = Topic.DIVISION;
 
-  if (topic[0] == Topic.ADDITION) {
-    skillTopic = Topic.ADDITION.toString();
-  } else if (topic[0] == Topic.SUBTRACTION) {
-    skillTopic = Topic.SUBTRACTION.toString();
-  } else if (topic[0] == Topic.MULTIPLICATION) {
-    skillTopic = Topic.MULTIPLICATION.toString();
-  } else if (topic[0] == Topic.DIVISION) {
-    skillTopic = Topic.DIVISION.toString();
-  } else {
-    skillTopic = "";
-  }
-  const skillArr = skills.filter(
-    (item, index) => skills.indexOf(item) === index
-  );
+  const skills = getSkillsForTopic(topic);
   return (
     <>
-      <p className="mb-12"> {skillTopic} </p>
-      <div className="flex justify-between w-1/4 border-b border-black p-2">
+      <p className="mb-12"> {"topic"} </p>
+      <div className="flex justify-between sm:w-1/4 border-b border-black p-2">
         <span> I can... </span>
-        <span className="pl-16"> Grade Level </span>
+        <span className="pl-16"> Result </span>
       </div>
-      <div className="flex justify-between flex-row w-1/4 p-2">
+      <div className="flex justify-between flex-row sm:w-1/4 p-2">
         <div>
-          {skillArr.map((description) => (
-            <div>{description}</div>
+          {skills.map((skill) => (
+            <div>{skill}</div>
           ))}
         </div>
-        <div>Got It</div>
+        <div>
+          {skills.map((skill) => (
+            <div>{getResultForSkill(skill, results)}</div>
+          ))}
+        </div>
       </div>
       <Link href="/diagnostic/data">
         <button className="mt-4 bg-blue-500 rounded p-3 text-white text-sm">
