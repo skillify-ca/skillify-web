@@ -1,7 +1,10 @@
 import Link from "next/link";
 import React from "react";
-import { getGradeLevelForTopic } from "../../pages/api/diagnostic/diagnosticGrader";
-import { Topic } from "../../pages/api/skill";
+import {
+  getGradeLevelForTopic,
+  getResultForSkill,
+} from "../../pages/api/diagnostic/diagnosticGrader";
+import { Topic, Skill } from "../../pages/api/skill";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 import {
   AdditionWS,
@@ -15,21 +18,10 @@ type DiagnosticConclusionProps = {
 };
 
 const DiagnosticConclusion = ({ results }: DiagnosticConclusionProps) => {
-  const topics = [
-    Topic.ADDITION,
-    Topic.SUBTRACTION,
-    Topic.MULTIPLICATION,
-    Topic.DIVISION,
-  ];
-  const workSheets: Worksheet[] = topics.map((element) => {
-    if (element == Topic.ADDITION) {
+  const workSheets: Worksheet[] = results.questions.map((element) => {
+    console.log(element);
+    if (getResultForSkill(element.skill, results) === "Not yet") {
       return AdditionWS;
-    } else if (element == Topic.SUBTRACTION) {
-      return SubtractionWS;
-    } else if (element == Topic.MULTIPLICATION) {
-      return MultiplicationWS;
-    } else if (element == Topic.DIVISION) {
-      return DivisionWS;
     }
   });
   return (
@@ -43,18 +35,26 @@ const DiagnosticConclusion = ({ results }: DiagnosticConclusionProps) => {
       </div>
       <div className="flex flex-row justify-between p-2">
         <div>
-          {topics.map((it) => (
-            <p className="border-green-400 border-2 mb-2">{it}</p>
-          ))}
+          <p className="border-green-400 border-2 mb-2">Addition</p>
+          <p className="border-green-400 border-2 mb-2">Subtraction</p>
+          <p className="border-green-400 border-2 mb-2">Multiplication</p>
+          <p className="border-green-400 border-2 mb-2">Division</p>
         </div>
         <div>
-          {topics.map((it) => (
-            <div>
-              <p className="border-blue-500 border-2 mb-2">
-                {getGradeLevelForTopic(it, results)}
-              </p>
-            </div>
-          ))}
+          <div>
+            <p className="border-blue-500 border-2 mb-2">
+              {getGradeLevelForTopic(Topic.ADDITION, results)}
+            </p>
+            <p className="border-blue-500 border-2 mb-2">
+              {getGradeLevelForTopic(Topic.SUBTRACTION, results)}
+            </p>
+            <p className="border-blue-500 border-2 mb-2">
+              {getGradeLevelForTopic(Topic.MULTIPLICATION, results)}
+            </p>
+            <p className="border-blue-500 border-2 mb-2">
+              {getGradeLevelForTopic(Topic.DIVISION, results)}
+            </p>
+          </div>
         </div>
       </div>
       <div className="flex flex-col">
