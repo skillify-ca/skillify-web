@@ -1,72 +1,19 @@
 import Link from "next/link";
 import React from "react";
-import { Question } from "../../pages/api/question";
-import { Skill } from "../../pages/api/skill";
+import {
+  getResultForSkill,
+  getSkillsForTopic,
+} from "../../pages/api/diagnostic/diagnosticGrader";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
-
-const PASSING_GRADE = 0.8;
 
 type DiagnosticEvidenceProps = {
   topic: string;
   results: DiagnosticState;
 };
 
-type QuestionGuess = {
-  question: Question;
-  guess: string;
-};
-
 const DiagnosticEvidence = ({ results }: DiagnosticEvidenceProps) => {
   const topic = "Division";
 
-  const getSkillsForTopic = (topic: string) => {
-    switch (topic) {
-      case "Addition":
-        return [
-          Skill.ADDITION_SINGLE,
-          Skill.ADDITION_DOUBLE,
-          Skill.ADDITION_TRIPLE,
-        ];
-      case "Subtraction":
-        return [
-          Skill.SUBTRACTION_SINGLE,
-          Skill.SUBTRACTION_DOUBLE,
-          Skill.SUBTRACTION_TRIPLE,
-        ];
-      case "Multiplication":
-        return [
-          Skill.EQUAL_GROUP_10_ITEMS,
-          Skill.MULTIPLICATION_5,
-          Skill.MULTIPLICATION_10,
-        ];
-      case "Division":
-        return [
-          Skill.EQUAL_SHARING_8_ITEMS,
-          Skill.DIVIDE_12_EQUALLY,
-          Skill.DIVIDE_100,
-        ];
-    }
-    return [];
-  };
-  const getResultForSkill = (skill: Skill) => {
-    const questionsWithGuesses: QuestionGuess[] = results.questions.map(
-      (it, index) => ({ question: it, guess: results.guessAns[index] })
-    );
-    const filteredQuestionsWithGuesses = questionsWithGuesses.filter(
-      (it) => it.question.skill === skill
-    );
-    const correctGuesses = filteredQuestionsWithGuesses.filter(
-      (it) => it.guess === "Correct"
-    );
-    if (
-      correctGuesses.length / filteredQuestionsWithGuesses.length >
-      PASSING_GRADE
-    ) {
-      return "Got it!";
-    } else {
-      return "Not yet";
-    }
-  };
   const skills = getSkillsForTopic(topic);
   return (
     <>
@@ -83,7 +30,7 @@ const DiagnosticEvidence = ({ results }: DiagnosticEvidenceProps) => {
         </div>
         <div>
           {skills.map((skill) => (
-            <div>{getResultForSkill(skill)}</div>
+            <div>{getResultForSkill(skill, results)}</div>
           ))}
         </div>
       </div>
