@@ -4,13 +4,21 @@ import {
   getGradeLevelForTopic,
   getResultForSkill,
 } from "../../pages/api/diagnostic/diagnosticGrader";
-import { Topic, Skill } from "../../pages/api/skill";
+import { Skill, Topic } from "../../pages/api/skill";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 import {
-  AdditionWS,
-  DivisionWS,
-  MultiplicationWS,
-  SubtractionWS,
+  AdditionDoubleDigitWS,
+  AdditionSingleDigitWS,
+  AdditionTripleDigitWS,
+  Division100WS,
+  Division12EquallyWS,
+  DivisionEqualSharing8WS,
+  MultiplicationEqualGroup10WS,
+  MultiplicationTo10WS,
+  MultiplicationTo5WS,
+  SubtractionDoubleDigitWS,
+  SubtractionSingleDigitWS,
+  SubtractionTripleDigitWS,
   Worksheet,
 } from "./WorksheetsObj";
 type DiagnosticConclusionProps = {
@@ -19,9 +27,35 @@ type DiagnosticConclusionProps = {
 
 const DiagnosticConclusion = ({ results }: DiagnosticConclusionProps) => {
   const workSheets: Worksheet[] = results.questions.map((element) => {
-    console.log(element);
+    console.log(element.skill);
+    let skills = element.skill;
     if (getResultForSkill(element.skill, results) === "Not yet") {
-      return AdditionWS;
+      switch (skills) {
+        case Skill.ADDITION_SINGLE:
+          return AdditionSingleDigitWS;
+        case Skill.ADDITION_DOUBLE:
+          return AdditionDoubleDigitWS;
+        case Skill.ADDITION_TRIPLE:
+          return AdditionTripleDigitWS;
+        case Skill.SUBTRACTION_SINGLE:
+          return SubtractionSingleDigitWS;
+        case Skill.SUBTRACTION_DOUBLE:
+          return SubtractionDoubleDigitWS;
+        case Skill.SUBTRACTION_TRIPLE:
+          return SubtractionTripleDigitWS;
+        case Skill.MULTIPLICATION_5:
+          return MultiplicationEqualGroup10WS;
+        case Skill.MULTIPLICATION_10:
+          return MultiplicationTo5WS;
+        case Skill.EQUAL_GROUP_10_ITEMS:
+          return MultiplicationTo10WS;
+        case Skill.EQUAL_SHARING_8_ITEMS:
+          return DivisionEqualSharing8WS;
+        case Skill.DIVIDE_12_EQUALLY:
+          return Division12EquallyWS;
+        case Skill.DIVIDE_100:
+          return Division100WS;
+      }
     }
   });
   return (
