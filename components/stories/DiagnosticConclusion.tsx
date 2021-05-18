@@ -65,12 +65,49 @@ export const DiagnosticConclusion = ({
       filterArr.push(workSheets[i]);
     }
   }
-  console.log(filterArr);
+  let gradeLevel = 0;
+  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 3") {
+    gradeLevel = gradeLevel + 3;
+  }
+  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 2") {
+    gradeLevel = gradeLevel + 2;
+  }
+  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 1") {
+    gradeLevel = gradeLevel + 1;
+  }
+  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 3") {
+    gradeLevel = gradeLevel + 3;
+  }
+  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 2") {
+    gradeLevel = gradeLevel + 2;
+  }
+  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 1") {
+    gradeLevel = gradeLevel + 1;
+  }
+  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 3") {
+    gradeLevel = gradeLevel + 3;
+  }
+  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 2") {
+    gradeLevel = gradeLevel + 2;
+  }
+  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 1") {
+    gradeLevel = gradeLevel + 1;
+  }
+  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 3") {
+    gradeLevel = gradeLevel + 3;
+  }
+  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 2") {
+    gradeLevel = gradeLevel + 2;
+  }
+  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 1") {
+    gradeLevel = gradeLevel + 1;
+  }
+  gradeLevel = gradeLevel / 4;
   return (
     <div>
       <p className="mb-2 text-center font-black"> Conclusion </p>
       <p> Report Card - Ontario Curriculum</p>
-      <p className="mb-2"> Average Grade Level - Grade 3 </p>
+      <p className="mb-2"> {"Average Grade Level - Grade " + gradeLevel} </p>
       <div className="flex justify-between border-b border-black p-2">
         <span> Topic: </span>
         <span className="pr-4"> Grade Level: </span>
