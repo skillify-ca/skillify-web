@@ -28,26 +28,26 @@ export const FillBlank: React.FC<FillBlankProp> = ({
   function onButton1Click(e) {
     setButton2Visible(true);
     setButton1Visible(false);
-    document.getElementById("input1").readonly = true;
+    document.getElementById("input1").disabled = true;
     console.log(document.getElementById("input1").value);
   }
   function onButton2Click(e) {
     setButton3Visible(true);
     setButton2Visible(false);
-    document.getElementById("input2").readonly = true;
+    document.getElementById("input2").disabled = true;
     console.log(document.getElementById("input2").value);
   }
   function onButton3Click(e) {
     setButton4Visible(true);
     setButton3Visible(false);
-    document.getElementById("input3").readonly = true;
+    document.getElementById("input3").disabled = true;
     console.log(document.getElementById("input3").value);
   }
   function onButton4Click(e) {
     submitGuess({ guess: "", isCorrect: true });
     setButton1Visible(true);
     setButton4Visible(false);
-    document.getElementById("input4").readonly = true;
+    document.getElementById("input4").disabled;
   }
 
   const handleKeypress = (e) => {
