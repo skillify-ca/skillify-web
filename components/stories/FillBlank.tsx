@@ -29,25 +29,30 @@ export const FillBlank: React.FC<FillBlankProp> = ({
     setButton2Visible(true);
     setButton1Visible(false);
     document.getElementById("input1").disabled = true;
-    console.log(document.getElementById("input1").value);
+    document.getElementById("input2").disabled = false;
   }
   function onButton2Click(e) {
     setButton3Visible(true);
     setButton2Visible(false);
     document.getElementById("input2").disabled = true;
-    console.log(document.getElementById("input2").value);
+    document.getElementById("input3").disabled = false;
   }
   function onButton3Click(e) {
     setButton4Visible(true);
     setButton3Visible(false);
     document.getElementById("input3").disabled = true;
-    console.log(document.getElementById("input3").value);
+    document.getElementById("input4").disabled = false;
   }
   function onButton4Click(e) {
     submitGuess({ guess: "", isCorrect: true });
     setButton1Visible(true);
     setButton4Visible(false);
-    document.getElementById("input4").disabled;
+    document.getElementById("input4").disabled = true;
+    document.getElementById("input1").disabled = false;
+    document.getElementById("input1").value = "";
+    document.getElementById("input2").value = "";
+    document.getElementById("input3").value = "";
+    document.getElementById("input4").value = "";
   }
 
   const handleKeypress = (e) => {
@@ -114,7 +119,6 @@ export const FillBlank: React.FC<FillBlankProp> = ({
           type="number"
         ></input>
         {" " + parse().steps[1]}
-
         {button1Visible && (
           <Button
             label="Lock-in"
