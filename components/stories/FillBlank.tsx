@@ -5,6 +5,7 @@ import {
 import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
+import { Button } from "./Button";
 
 export interface FillBlankProp {
   displayQuestion: string;
@@ -23,6 +24,29 @@ export const FillBlank: React.FC<FillBlankProp> = ({
   ...props
 }) => {
   const [guess, setGuess] = useState("");
+  const [button1Visible, setButton1Visible] = useState(true);
+  const [button2Visible, setButton2Visible] = useState(false);
+  const [button3Visible, setButton3Visible] = useState(false);
+  const [button4Visible, setButton4Visible] = useState(false);
+
+  function onButton1Click(e) {
+    setButton2Visible(true);
+    setButton1Visible(false);
+  }
+  function onButton2Click(e) {
+    setButton3Visible(true);
+    setButton2Visible(false);
+  }
+  function onButton3Click(e) {
+    setButton4Visible(true);
+    setButton3Visible(false);
+  }
+  function onButton4Click(e) {
+    submitGuess({ guess: "", isCorrect: true });
+    setButton1Visible(true);
+    setButton4Visible(false);
+  }
+
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
@@ -82,34 +106,76 @@ export const FillBlank: React.FC<FillBlankProp> = ({
         {parse().steps[0]}
         <input
           spellCheck="false"
-          className="border py-0.5 px-0.5 text-grey-darkest p-8 w-8"
+          className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
+          type="number"
         ></input>
         {" " + parse().steps[1]}
+
+        {button1Visible && (
+          <Button
+            label="Lock-in"
+            onClick={onButton1Click}
+            textColor="white"
+            backgroundColor="red"
+          ></Button>
+        )}
       </p>
       <p>
         {" "}
         {parse().steps[2] + "("}
         <input
           spellCheck="false"
-          className="border py-0.5 px-0.5 text-grey-darkest p-8 w-8"
+          className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
+          type="number"
         ></input>
         {" " + parse().steps[3]}
+        {button2Visible && (
+          <Button
+            onClick={onButton2Click}
+            label="Lock-in"
+            textColor="white"
+            backgroundColor="red"
+          ></Button>
+        )}
       </p>
+
       <p>
         {" "}
         {parse().steps[4]}
         <input
           spellCheck="false"
-          className="border py-0.5 px-0.5 text-grey-darkest p-8 w-8"
+          className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
+          type="number"
         ></input>
+        {button3Visible && (
+
+          <Button
+            onClick={onButton3Click}
+            label="Lock-in"
+            textColor="white"
+            backgroundColor="red"
+          ></Button>
+
+        )}
       </p>
+
       <p>
         {" "}
         ={" "}
         <input
           spellCheck="false"
-          className="border py-0.5 px-0.5 text-grey-darkest p-8 w-8"
+          className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
+          type="number"
         ></input>{" "}
+        {button4Visible && (
+          <Button
+            onClick={onButton4Click}
+            label="Lock-in"
+            textColor="white"
+            backgroundColor="red"
+          ></Button>
+
+        )}
       </p>
     </div>
   );
