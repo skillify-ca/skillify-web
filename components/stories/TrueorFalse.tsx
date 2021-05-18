@@ -21,7 +21,6 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
   const [truthValue, setTruthValue] = useState(0);
   const [displayAns, setDisplayAns] = useState(0);
 
-
   useEffect(() => {
     const num1 = parseInt(parse().first);
     const num2 = parseInt(parse().second);
@@ -42,7 +41,6 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
     setTruthValue(randomize(0, 2));
     switch (truthValue) {
       case 0:
-
         setDisplayAns(ans + randomize(-2, 3));
         break;
       case 1:
@@ -70,7 +68,7 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
   return (
     <div className="flex flex-col items-center space-y-16">
       <p className="text-4xl">
-        {question.text} {value}
+        {question.text} {displayAns}
       </p>
       <div className="flex flex-row  item-center space-x-4 ">
         <Button
