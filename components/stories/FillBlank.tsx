@@ -1,3 +1,7 @@
+import {
+  SSL_OP_PKCS1_CHECK_1,
+  SSL_OP_SSLEAY_080_CLIENT_DH_BUG,
+} from "node:constants";
 import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
@@ -28,26 +32,19 @@ export const FillBlank: React.FC<FillBlankProp> = ({
   function onButton1Click(e) {
     setButton2Visible(true);
     setButton1Visible(false);
-    document.getElementById("input1").disabled = true;
-    console.log(document.getElementById("input1").value);
   }
   function onButton2Click(e) {
     setButton3Visible(true);
     setButton2Visible(false);
-    document.getElementById("input2").disabled = true;
-    console.log(document.getElementById("input2").value);
   }
   function onButton3Click(e) {
     setButton4Visible(true);
     setButton3Visible(false);
-    document.getElementById("input3").disabled = true;
-    console.log(document.getElementById("input3").value);
   }
   function onButton4Click(e) {
     submitGuess({ guess: "", isCorrect: true });
     setButton1Visible(true);
     setButton4Visible(false);
-    document.getElementById("input4").disabled;
   }
 
   const handleKeypress = (e) => {
@@ -108,7 +105,6 @@ export const FillBlank: React.FC<FillBlankProp> = ({
       <p>
         {parse().steps[0]}
         <input
-          id="input1"
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
           type="number"
@@ -128,7 +124,6 @@ export const FillBlank: React.FC<FillBlankProp> = ({
         {" "}
         {parse().steps[2] + "("}
         <input
-          id="input2"
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
           type="number"
@@ -148,13 +143,11 @@ export const FillBlank: React.FC<FillBlankProp> = ({
         {" "}
         {parse().steps[4]}
         <input
-          id="input3"
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
           type="number"
         ></input>
         {button3Visible && (
-
 
           <Button
             onClick={onButton3Click}
@@ -170,7 +163,6 @@ export const FillBlank: React.FC<FillBlankProp> = ({
         {" "}
         ={" "}
         <input
-          id="input4"
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
           type="number"
