@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
-import { MCOption, Question } from "../../pages/api/question";
-import { Button } from "./Button";
-import { Input } from "./Input";
+import { Question } from "../../pages/api/question";
 
 export interface FillBlankProp {
   displayQuestion: string;
