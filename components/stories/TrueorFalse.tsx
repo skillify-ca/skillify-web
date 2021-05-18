@@ -42,7 +42,7 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
     setTruthValue(randomize(0, 2));
     switch (truthValue) {
       case 0:
-        setValue(ans + randomize(-2, 2));
+        setValue(ans + randomize(-2, 3));
         break;
       case 1:
         setValue(ans);
