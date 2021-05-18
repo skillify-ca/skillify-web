@@ -20,7 +20,7 @@ export const getResultForSkill = (skill: Skill, results: DiagnosticState) => {
     (it) => it.guess === "Correct"
   );
   if (
-    correctGuesses.length / filteredQuestionsWithGuesses.length >
+    correctGuesses.length / filteredQuestionsWithGuesses.length >=
     PASSING_GRADE
   ) {
     return "Got it!";
