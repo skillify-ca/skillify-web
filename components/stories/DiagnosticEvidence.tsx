@@ -19,11 +19,11 @@ const DiagnosticEvidence = ({ results }: DiagnosticEvidenceProps) => {
   return (
     <>
       <p className="mb-12"> {"topic"} </p>
-      <div className="flex justify-between w-1/4 border-b border-black p-2">
+      <div className="flex justify-between sm:w-1/4 border-b border-black p-2">
         <span> I can... </span>
         <span className="pl-16"> Result </span>
       </div>
-      <div className="flex justify-between flex-row w-1/4 p-2">
+      <div className="flex justify-between flex-row sm:w-1/4 p-2">
         <div>
           {skills.map((skill) => (
             <div>{skill}</div>
