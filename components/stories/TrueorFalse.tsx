@@ -32,7 +32,7 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
       case "-":
         ans = num1 - num2;
         break;
-      case "*":
+      case "x":
         ans = num1 * num2;
         break;
       case "/":
