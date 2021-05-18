@@ -4,6 +4,7 @@ import {
   getResultForSkill,
   getSkillsForTopic,
 } from "../../pages/api/diagnostic/diagnosticGrader";
+import { Topic } from "../../pages/api/skill";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 
 type DiagnosticEvidenceProps = {
@@ -12,7 +13,7 @@ type DiagnosticEvidenceProps = {
 };
 
 const DiagnosticEvidence = ({ results }: DiagnosticEvidenceProps) => {
-  const topic = "Division";
+  const topic = Topic.DIVISION;
 
   const skills = getSkillsForTopic(topic);
   return (
