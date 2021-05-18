@@ -112,7 +112,12 @@ export const FillBlank: React.FC<FillBlankProp> = ({
         {" " + parse().steps[1]}
 
         {button1Visible && (
-          <Button label="Lock-in" onClick={onButton1Click}></Button>
+          <Button
+            label="Lock-in"
+            onClick={onButton1Click}
+            textColor="white"
+            backgroundColor="red"
+          ></Button>
         )}
       </p>
       <p>
@@ -125,7 +130,12 @@ export const FillBlank: React.FC<FillBlankProp> = ({
         ></input>
         {" " + parse().steps[3]}
         {button2Visible && (
-          <Button onClick={onButton2Click} label="Lock-in"></Button>
+          <Button
+            onClick={onButton2Click}
+            label="Lock-in"
+            textColor="white"
+            backgroundColor="red"
+          ></Button>
         )}
       </p>
 
@@ -138,7 +148,14 @@ export const FillBlank: React.FC<FillBlankProp> = ({
           type="number"
         ></input>
         {button3Visible && (
-          <Button onClick={onButton3Click} label="Lock-in"></Button>
+
+          <Button
+            onClick={onButton3Click}
+            label="Lock-in"
+            textColor="white"
+            backgroundColor="red"
+          ></Button>
+
         )}
       </p>
 
@@ -151,7 +168,13 @@ export const FillBlank: React.FC<FillBlankProp> = ({
           type="number"
         ></input>{" "}
         {button4Visible && (
-          <Button onClick={onButton4Click} label="Lock-in"></Button>
+          <Button
+            onClick={onButton4Click}
+            label="Lock-in"
+            textColor="white"
+            backgroundColor="red"
+          ></Button>
+
         )}
       </p>
     </div>
