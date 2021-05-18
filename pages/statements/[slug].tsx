@@ -1,23 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Modal, ModalTransition } from "react-simple-hook-modal";
-import apiData from "../api/practice.json";
+import React, { useEffect } from "react";
 import "react-simple-hook-modal/dist/styles.css";
 import Navbar from "../../components/Navbar";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { CREATE_GUESS } from "../../graphql/createGuess";
-import { useMutation, useQuery } from "@apollo/client";
-import { UPDATE_USER_SKILLS } from "../../graphql/updateUserSkills";
-import { FETCH_USER_SKILLS } from "../../graphql/fetchUserSkills";
-import { FETCH_USER_SKILL } from "../../graphql/fetchUserSkill";
-import { UNLOCK_NEXT_SKILL } from "../../graphql/unlockNextSkill";
-import { generateQuestions } from "../api/questionGenerator";
-import { v4 as uuidv4 } from "uuid";
-import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
-import Card from "../../components/stories/Card";
-import { Button } from "../../components/stories/Button";
-import { VerticalEquation } from "../../components/stories/VerticalEquation";
 import data from "../api/profile/data.json";
 import StatementRow from "../../components/stories/StatementRow";
 

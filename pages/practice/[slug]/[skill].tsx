@@ -1,17 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  generateAdditionPropertyQuestions,
-  generateAdditionQuestions,
-  generateDivisionQuestions,
-  generateMultiplicationQuestions,
-  generateSubtractionQuestions,
-} from "../../api/practiceQuestionGenerator";
 import QuestionSet from "../../../components/stories/QuestionSet";
 import { QuestionType } from "../../api/questionTypes";
 import { GuessData } from "../../api/guessData";
 import { AnswerType, Question } from "../../api/question";
 import Navbar from "../../../components/Navbar";
-import { Skill } from "../../api/questionGenerator";
+import { Skill } from "../../api/skill";
+import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGenerator";
 
 const PracticeQuiz = ({ slug, skill }) => {
   const [index, setIndex] = useState(0);
@@ -29,17 +23,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   const inputElement = useRef(null);
 
   useEffect(() => {
-    if (slug == "addition" && skill != "properties") {
-      setQuestionData(generateAdditionQuestions(skill));
-    } else if (slug == "addition" && skill == "properties") {
-      setQuestionData(generateAdditionPropertyQuestions());
-    } else if (slug == "subtraction") {
-      setQuestionData(generateSubtractionQuestions(skill));
-    } else if (slug == "multiplication") {
-      setQuestionData(generateMultiplicationQuestions(skill));
-    } else if (slug == "division") {
-      setQuestionData(generateDivisionQuestions(skill));
-    }
+    setQuestionData(generatePracticeQuestions(slug, skill))
   }, []);
 
   const submitGuess = (guess: GuessData) => {

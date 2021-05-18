@@ -1,6 +1,8 @@
 import Link from "next/link";
 import React from "react";
-import { Topic } from "../../pages/api/questionGenerator";
+import { getGradeLevelForTopic } from "../../pages/api/diagnostic/diagnosticGrader";
+import { Topic } from "../../pages/api/skill";
+import { DiagnosticState } from "../../redux/diagnosticSlice";
 import {
   AdditionWS,
   DivisionWS,
@@ -9,10 +11,16 @@ import {
   Worksheet,
 } from "./WorksheetsObj";
 type DiagnosticConclusionProps = {
-  topics: Array<Topic>;
+  results: DiagnosticState;
 };
 
-const DiagnosticConclusion = ({ topics }: DiagnosticConclusionProps) => {
+const DiagnosticConclusion = ({ results }: DiagnosticConclusionProps) => {
+  const topics = [
+    Topic.ADDITION,
+    Topic.SUBTRACTION,
+    Topic.MULTIPLICATION,
+    Topic.DIVISION,
+  ];
   const workSheets: Worksheet[] = topics.map((element) => {
     if (element == Topic.ADDITION) {
       return AdditionWS;
@@ -42,7 +50,9 @@ const DiagnosticConclusion = ({ topics }: DiagnosticConclusionProps) => {
         <div>
           {topics.map((it) => (
             <div>
-              <p className="border-blue-500 border-2 mb-2">Grade 3</p>
+              <p className="border-blue-500 border-2 mb-2">
+                {getGradeLevelForTopic(it, results)}
+              </p>
             </div>
           ))}
         </div>
