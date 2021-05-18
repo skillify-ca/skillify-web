@@ -24,27 +24,6 @@ export const MultipleChoiceSentence: React.FC<MultipleChoiceSentenceProp> = ({
   submitGuess,
   ...props
 }) => {
-  const parse = () => {
-    const arr = [option1, option2, option3, option4];
-    for (const option of arr) {
-      const qlen = option.text.length;
-      let i = 0;
-      while (i < qlen) {
-        if (option.text[i] == "(") {
-          break;
-        } else {
-          ++i;
-        }
-      }
-      if (option.text[i] == null) {
-        const part = option.text.split(" ");
-        return {
-          first: part[0],
-          third: part[3],
-        };
-      }
-    }
-  };
   return (
     <div className="flex flex-col items-center space-y-8">
       <h1 className="text-4m font-semibold text-center"> {displayQuestion} </h1>
