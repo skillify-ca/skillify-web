@@ -110,6 +110,7 @@ export const FillBlank: React.FC<FillBlankProp> = ({
           type="number"
         ></input>
         {" " + parse().steps[1]}
+
         {button1Visible && (
           <Button label="Lock-in" onClick={onButton1Click}></Button>
         )}

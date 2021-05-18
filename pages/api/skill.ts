@@ -1,9 +1,9 @@
 export enum Topic {
-  NUMBERS = "Numbers",
-  ADDITION = "Addition",
-  SUBTRACTION = "Subtraction",
-  MULTIPLICATION = "Multiplication",
-  DIVISION = "Division",
+  NUMBERS = "numbers",
+  ADDITION = "addition",
+  SUBTRACTION = "subtraction",
+  MULTIPLICATION = "multiplication",
+  DIVISION = "division",
 }
 
 export enum Skill {
