@@ -57,7 +57,7 @@ const DiagnosticConclusion = ({ results }: DiagnosticConclusionProps) => {
       }
     }
   });
-  var filterArr = [workSheets[0]];
+  let filterArr = [workSheets[0]];
   for (var i = 1; i < workSheets.length; i++) {
     if (workSheets[i] != workSheets[i - 1]) filterArr.push(workSheets[i]);
   }
