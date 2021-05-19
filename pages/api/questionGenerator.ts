@@ -3,7 +3,9 @@ import { QuestionType } from "./questionTypes";
 import { getRndInteger } from "./random";
 import { createWordProblemModel } from "./WordProblemModel";
 import { Skill } from "./skill";
+import { ArrayQMap, createArrayImage } from "./ArrayQMap";
 import { getRandomPropertyAdditionQuestion } from "./additionPropertyQuestionGenerator";
+import { tweleveMap } from "./factorsOfTwelveMap";
 
 export const generateQuestionForSkill = (skill: Skill): Question => {
   switch (skill) {
@@ -32,7 +34,7 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
     case Skill.EQUAL_SHARING_8_ITEMS:
       return getRandomDivisionQuestion(1, 5, skill);
     case Skill.DIVIDE_12_EQUALLY:
-      return getRandomDivisionQuestion(1, 7, skill);
+      return getRandomDivisionQuestion(1, 13, skill);
     case Skill.DIVIDE_100:
       return getRandomDivisionQuestion(1, 11, skill);
   }
@@ -110,22 +112,44 @@ function getRandomBinaryQuestion(
   answerFunction: (a: number, b: number) => number,
   skill: Skill
 ): Question {
-  const a = getRndInteger(min, max);
-  const b = getRndInteger(min, max);
-
-  const text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} =`;
   const types = [
-    QuestionType.VERTICAL_EQUATION,
     QuestionType.HORIZONTAL_EQUATION,
     QuestionType.BINARY_WORD_PROBLEM,
+    QuestionType.VERTICAL_EQUATION,
     QuestionType.TRUE_OR_FALSE_PROBLEM,
+    QuestionType.ARRAY_QUESTION,
   ];
-  const typeIndex = getRndInteger(0, types.length);
+  let typeIndex = getRndInteger(0, types.length);
+  while ((operator == "+" || operator == "-") && typeIndex == 4) {
+    typeIndex = getRndInteger(0, types.length);
+  }
+  let a = getRndInteger(min, max);
+  let b;
+  let text;
   const type = types[typeIndex];
+  if (type == QuestionType.ARRAY_QUESTION) {
+    let factor;
+    factor = Object.keys(tweleveMap[a]);
+    console.log (a+"product")
+    b = getRndInteger(1, factor.length);
+    console.log (b +"factor b")
+    a = a / b;
+    console.log (a +"factor a")
+    text = `${a} x ${b} =`;
+  }
+  else {
+    a = getRndInteger(min, max); 
+    b = getRndInteger(min, max);
+    text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} =`;
+  }
   let wordProblemModel;
+  let arrayImage;
   //condition for if it is wordProblem
   if (type === QuestionType.BINARY_WORD_PROBLEM) {
     wordProblemModel = createWordProblemModel(operator);
+  }
+  if (type === QuestionType.ARRAY_QUESTION) {
+    arrayImage = createArrayImage(a * b, b);
   }
 
   return {
@@ -139,5 +163,6 @@ function getRandomBinaryQuestion(
     operator: operator,
     wordProblem: wordProblemModel,
     skill: skill,
+    image: arrayImage,
   };
 }

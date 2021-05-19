@@ -15,6 +15,7 @@ import { MultipleChoiceSentence } from "./MultipleChoiceSentence";
 import { AdditionProperty } from "./MultipleChoiceTypes";
 import { MultipleChoiceWord } from "./MultipleChoiceWord";
 import { FillBlank } from "./FillBlank";
+import { MultiplicationArray } from "./MultiplicationArray";
 
 type QuestionSetProps = {
   title: string;
@@ -120,6 +121,17 @@ const QuestionSet = ({
           submitGuess={submitGuess}
         />
       );
+    } else if (
+      questionData[index].questionType === QuestionType.ARRAY_QUESTION
+    ) {
+      {
+        return (
+          <MultiplicationArray
+            question={questionData[index]}
+            submitGuess={submitGuess}
+          />
+        );
+      }
     }
 
     return (
