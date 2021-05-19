@@ -6,6 +6,10 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      backgroundImage: (theme) => ({
+        "hero-student":
+          "url('https://images.unsplash.com/photo-1596495578065-6e0763fa1178?crop=entropy&cs=srgb&fm=jpg&ixid=MXwxNDEzNDF8MHwxfHNlYXJjaHwxMDZ8fG1hdGh8ZW58MHx8fA&ixlib=rb-1.2.1&q=85&w=528&dpr=2')",
+      }),
       fontFamily: {
         sans: ["Lexend", ...defaultTheme.fontFamily.sans],
       },
@@ -21,6 +25,7 @@ module.exports = {
   },
   options: {
     safelist: [
+      "text-blue-400",
       "text-red-500",
       "text-purple-600",
       "text-green-600",

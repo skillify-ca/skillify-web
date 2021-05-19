@@ -106,9 +106,9 @@ export default function Outline() {
 
   const loggedOutComponent = (
     <div className="flex flex-col gap-8">
-      <div className="flex lg:flex-row flex-col gap-8">
-        <div className="flex flex-col gap-8">
-          <p className="text-6xl">Make math fun to practice</p>
+      <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-4 gap-8">
+        <div className="flex flex-col w-full sm:w-1/2 gap-8">
+          <p className="text-5xl">Make math fun to practice</p>
           <p className="text-xl">
             Learning with Math Champ is engaging and fun. Earn points for
             correct answers, play with friends and level up. Our
@@ -124,19 +124,19 @@ export default function Outline() {
           </div>
         </div>
         <img
-          className="w-full lg:w-1/2"
+          className="w-full sm:w-1/2 object-cover"
           alt="student-image"
           src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178?crop=entropy&cs=srgb&fm=jpg&ixid=MXwxNDEzNDF8MHwxfHNlYXJjaHwxMDZ8fG1hdGh8ZW58MHx8fA&ixlib=rb-1.2.1&q=85&w=528&dpr=2"
         />
       </div>
-      <div className="bg-blue-400 flex-col text-center p-8">
-        <p className="text-6xl text-white">K-12 Math Activities and Quizzes</p>
+      <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8">
+        <p className="text-5xl text-white">K-12 Math Activities and Quizzes</p>
         <p className="text-xl text-white">
           Help your students feel more confident with numbers with content
           aligned to the Canadian curriculum
         </p>
       </div>
-      <div className="bg-blue-400 flex md:flex-row flex-col text-center gap-8 p-8">
+      <div className="heropattern-dominos-blue-400 bg-blue-500 rounded-xl shadow-lg flex md:flex-row flex-col text-center gap-8 p-8">
         <div
           className={`flex flex-col justify-center items-center p-8 bg-white shadow-md rounded-xl max-w-screen-lg"`}
         >
@@ -169,7 +169,7 @@ export default function Outline() {
   );
 
   return (
-    <div className="flex flex-col gap-8 justify-between w-full col-span-2 items-center mb-4 p-16 mx-auto">
+    <div className="flex flex-col gap-8 justify-between w-full col-span-2 items-center mb-4 p-4 mx-auto">
       {session ? loggedInComponent : loggedOutComponent}
     </div>
   );
