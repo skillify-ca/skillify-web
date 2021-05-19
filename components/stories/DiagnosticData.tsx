@@ -5,7 +5,7 @@ import {
   getQuestionForSkill,
   getSkillsForTopic,
 } from "../../pages/api/diagnostic/diagnosticGrader";
-import { Skill, Topic } from "../../pages/api/skill";
+import { Skill, SkillDescription, Topic } from "../../pages/api/skill";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 
 type DiagnosticDataProps = {
@@ -16,10 +16,7 @@ type DiagnosticDataProps = {
 const DiagnosticData = ({ skill, results }: DiagnosticDataProps) => {
   return (
     <>
-      <p className="mb-12">
-        Diagnostic Report :{" "}
-        {skill && skill.charAt(0).toUpperCase() + skill.slice(1)}
-      </p>
+      <p className="mb-12">{SkillDescription(skill)}</p>
       <div className="flex justify-between w-1/4 border-b border-black p-2">
         <span> Question: </span>
         <span className="pl-4"> Guess: </span>
