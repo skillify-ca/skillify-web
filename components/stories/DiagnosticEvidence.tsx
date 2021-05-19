@@ -27,7 +27,12 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
       <div className="flex justify-between flex-row sm:w-1/4 p-2">
         <div>
           {skills.map((skill) => (
-            <div>{skill}</div>
+            <div>
+              {" "}
+              <Link href={"/diagnostic/data/".concat(skill.toString())}>
+                {skill}
+              </Link>
+            </div>
           ))}
         </div>
         <div>
@@ -36,13 +41,6 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
           ))}
         </div>
       </div>
-      {topic && (
-        <Link href={"/diagnostic/data/".concat(topic.toString())}>
-          <button className="mt-4 bg-blue-500 rounded p-3 text-white text-sm">
-            Go To Data
-          </button>
-        </Link>
-      )}
     </>
   );
 };
