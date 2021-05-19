@@ -25,29 +25,34 @@ export const FillBlank: React.FC<FillBlankProp> = ({
   const [button3Visible, setButton3Visible] = useState(false);
   const [button4Visible, setButton4Visible] = useState(false);
 
-  function onButton1Click(e) {
+  function onButton1Click() {
     setButton2Visible(true);
     setButton1Visible(false);
-    document.getElementById("input1").disabled = true;
-    console.log(document.getElementById("input1").value);
+    (document.getElementById("input1") as HTMLInputElement).disabled = true;
+    (document.getElementById("input2") as HTMLInputElement).disabled = false;
   }
-  function onButton2Click(e) {
+  function onButton2Click() {
     setButton3Visible(true);
     setButton2Visible(false);
-    document.getElementById("input2").disabled = true;
-    console.log(document.getElementById("input2").value);
+    (document.getElementById("input2") as HTMLInputElement).disabled = true;
+    (document.getElementById("input3") as HTMLInputElement).disabled = false;
   }
-  function onButton3Click(e) {
+  function onButton3Click() {
     setButton4Visible(true);
     setButton3Visible(false);
-    document.getElementById("input3").disabled = true;
-    console.log(document.getElementById("input3").value);
+    (document.getElementById("input3") as HTMLInputElement).disabled = true;
+    (document.getElementById("input4") as HTMLInputElement).disabled = false;
   }
-  function onButton4Click(e) {
+  function onButton4Click() {
     submitGuess({ guess: "", isCorrect: true });
     setButton1Visible(true);
     setButton4Visible(false);
-    document.getElementById("input4").disabled;
+    (document.getElementById("input4") as HTMLInputElement).disabled = true;
+    (document.getElementById("input1") as HTMLInputElement).disabled = false;
+    (document.getElementById("input1") as HTMLInputElement).value = "";
+    (document.getElementById("input2") as HTMLInputElement).value = "";
+    (document.getElementById("input3") as HTMLInputElement).value = "";
+    (document.getElementById("input4") as HTMLInputElement).value = "";
   }
 
   const handleKeypress = (e) => {
@@ -114,7 +119,6 @@ export const FillBlank: React.FC<FillBlankProp> = ({
           type="number"
         ></input>
         {" " + parse().steps[1]}
-
         {button1Visible && (
           <Button
             label="Lock-in"
@@ -154,15 +158,12 @@ export const FillBlank: React.FC<FillBlankProp> = ({
           type="number"
         ></input>
         {button3Visible && (
-
-
           <Button
             onClick={onButton3Click}
             label="Lock-in"
             textColor="white"
             backgroundColor="red"
           ></Button>
-
         )}
       </p>
 
@@ -182,7 +183,6 @@ export const FillBlank: React.FC<FillBlankProp> = ({
             textColor="white"
             backgroundColor="red"
           ></Button>
-
         )}
       </p>
     </div>
