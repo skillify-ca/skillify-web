@@ -10,7 +10,7 @@ const DiagnosticDataPage = ({ slug }) => {
   const diagnosticResults = useSelector(diagnosticSelector);
   return (
     <div>
-      <DiagnosticData topic={slug} results={diagnosticResults} />
+      <DiagnosticData skill={slug} results={diagnosticResults} />
     </div>
   );
 };
