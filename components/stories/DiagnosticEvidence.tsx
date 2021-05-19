@@ -4,7 +4,7 @@ import {
   getResultForSkill,
   getSkillsForTopic,
 } from "../../pages/api/diagnostic/diagnosticGrader";
-import { Topic } from "../../pages/api/skill";
+import { SkillDescription, Topic } from "../../pages/api/skill";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 
 type DiagnosticEvidenceProps = {
@@ -30,7 +30,7 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
             <div>
               {" "}
               <Link href={"/diagnostic/data/".concat(skill.toString())}>
-                {skill}
+                {SkillDescription(skill)}
               </Link>
             </div>
           ))}
