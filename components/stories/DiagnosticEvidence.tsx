@@ -14,7 +14,6 @@ type DiagnosticEvidenceProps = {
 
 const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
   const skills = getSkillsForTopic(topic);
-
   return (
     <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-300 bg-blue-200">
       <p className="mb-2 text-center font-black text-xl">
