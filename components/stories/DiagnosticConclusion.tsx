@@ -102,60 +102,82 @@ export const DiagnosticConclusion = ({
   if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 1") {
     gradeLevel = gradeLevel + 1;
   }
-  gradeLevel = gradeLevel / 4;
+  gradeLevel = Math.round(gradeLevel / 4);
+
+  const getBackgroundColorForTopic = (topic: Topic) => {
+    const grade = getGradeLevelForTopic(topic, results);
+    switch (grade) {
+      case "Grade 1":
+        return "bg-red-100";
+      case "Grade 2":
+        return "bg-yellow-100";
+      default:
+        return "bg-green-100";
+    }
+  };
+
   return (
-    <div>
-      <p className="mb-2 text-center font-black"> Conclusion </p>
-      <p> Report Card - Ontario Curriculum</p>
-      <p className="mb-2"> {"Average Grade Level - Grade " + gradeLevel} </p>
-      <div className="flex justify-between border-b border-black p-2">
-        <span> Topic: </span>
-        <span className="pr-4"> Grade Level: </span>
+    <div className="p-8 flex flex-col gap-8">
+      <p className="mb-2 text-center font-black text-2xl"> Report Card</p>
+
+      <div className="bg-white p-4">
+        <p className="font-bold text-xl">
+          {" "}
+          {"Average Ontario Grade Level - Grade " + gradeLevel}{" "}
+        </p>
       </div>
-      <div className="flex flex-row justify-between p-2">
-        <div>
+      <div className="bg-white p-4">
+        <p className="py-4">Select a topic to get a detailed breakdown</p>
+        <div className="grid grid-cols-2">
+          <p className="p-4 font-bold border-b border-black"> Topic </p>
+          <p className="p-4 font-bold border-b border-black"> Grade Level </p>
           <Link href="/diagnostic/evidence/addition">
-            <p className="border-green-400 border-2 mb-2">Addition</p>
+            <p className={`${getBackgroundColorForTopic(Topic.ADDITION)} p-4 border-b border-black`}>
+              Addition
+            </p>
           </Link>
-          <Link href="/diagnostic/evidence/subtraction">
-            <p className="border-green-400 border-2 mb-2">Subtraction</p>
-          </Link>
-          <Link href="/diagnostic/evidence/multiplication">
-            <p className="border-green-400 border-2 mb-2">Multiplication</p>
-          </Link>
-          <Link href="/diagnostic/evidence/division">
-            <p className="border-green-400 border-2 mb-2">Division</p>
-          </Link>
-        </div>
-        <div>
-          <div>
-            <p className="border-blue-500 border-2 mb-2">
+          <Link href="/diagnostic/evidence/addition">
+            <p className={`${getBackgroundColorForTopic(Topic.ADDITION)} p-4 border-b border-black`}>
               {getGradeLevelForTopic(Topic.ADDITION, results)}
             </p>
-            <p className="border-blue-500 border-2 mb-2">
-              {getGradeLevelForTopic(Topic.SUBTRACTION, results)}
+          </Link>
+          <Link href="/diagnostic/evidence/subtraction">
+            <p className={`${getBackgroundColorForTopic(Topic.SUBTRACTION)} p-4 border-b border-black`}>
+              Subtraction
             </p>
-            <p className="border-blue-500 border-2 mb-2">
-              {getGradeLevelForTopic(Topic.MULTIPLICATION, results)}
+          </Link>
+          <p className={`${getBackgroundColorForTopic(Topic.SUBTRACTION)} p-4 border-b border-black`}>
+            {getGradeLevelForTopic(Topic.SUBTRACTION, results)}
+          </p>
+          <Link href="/diagnostic/evidence/multiplication">
+            <p
+              className={`${getBackgroundColorForTopic(Topic.MULTIPLICATION)} p-4 border-b border-black`}
+            >
+              Multiplication
             </p>
-            <p className="border-blue-500 border-2 mb-2">
-              {getGradeLevelForTopic(Topic.DIVISION, results)}
+          </Link>
+          <p className={`${getBackgroundColorForTopic(Topic.MULTIPLICATION)} p-4 border-b border-black`}>
+            {getGradeLevelForTopic(Topic.MULTIPLICATION, results)}
+          </p>
+
+          <Link href="/diagnostic/evidence/division">
+            <p className={`${getBackgroundColorForTopic(Topic.DIVISION)} p-4 border-b border-black`}>
+              Division
             </p>
-          </div>
+          </Link>
+          <p className={`${getBackgroundColorForTopic(Topic.DIVISION)} p-4 border-b border-black`}>
+            {getGradeLevelForTopic(Topic.DIVISION, results)}
+          </p>
         </div>
       </div>
-      <div className="flex flex-col">
-        <span className="font-extrabold border-b border-black">
+      <div className="flex flex-col bg-white p-4">
+        <p className="p-4 font-extrabold border-b border-black">
           Worksheet Recommendations
-        </span>
+        </p>
         {filterArr.map(
           (it) =>
             it && (
-              <a
-                className="text-blue-500 border-2 mb-2"
-                href={it.pdf}
-                target="_blank"
-              >
+              <a className="text-blue-500 px-4" href={it.pdf} target="_blank">
                 {it.title}
               </a>
             )
