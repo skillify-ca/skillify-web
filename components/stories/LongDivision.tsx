@@ -30,7 +30,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
   const onSubmit = () => {
     setGuess("");
     submitGuess({ guess: guess, isCorrect: guess === question.answer });
-    document.getElementById("guess").value = "";
+    (document.getElementById("guess") as HTMLElement).value = "";
   };
 
   const parse = () => {
