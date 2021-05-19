@@ -130,11 +130,8 @@ function getRandomBinaryQuestion(
   if (type == QuestionType.ARRAY_QUESTION) {
     let factor;
     factor = Object.keys(tweleveMap[a]);
-    console.log (a+"product")
     b = getRndInteger(1, factor.length);
-    console.log (b +"factor b")
     a = a / b;
-    console.log (a +"factor a")
     text = `${a} x ${b} =`;
   }
   else {
