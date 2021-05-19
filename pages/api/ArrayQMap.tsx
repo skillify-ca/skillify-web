@@ -1,7 +1,4 @@
-export const tweleveMap = {
-  1: {},
-  2: {},
-  3: {},
+export const ArrayQMap = {
   4: {
     one: "1",
     "2X2": "/ArrayQ/2X2.png",
