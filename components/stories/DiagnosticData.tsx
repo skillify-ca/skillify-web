@@ -3,7 +3,6 @@ import React from "react";
 import {
   getAnswerForSkill,
   getQuestionForSkill,
-  getResultForSkill,
   getSkillsForTopic,
 } from "../../pages/api/diagnostic/diagnosticGrader";
 import { Topic } from "../../pages/api/skill";
@@ -13,6 +12,7 @@ type DiagnosticDataProps = {
   topic: Topic;
   results: DiagnosticState;
 };
+
 
 const DiagnosticData = ({ topic, results }: DiagnosticDataProps) => {
   const skills = getSkillsForTopic(topic);

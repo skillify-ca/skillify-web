@@ -13,14 +13,13 @@ export function randomize(min: number, max: number) {
 }
 
 let ans;
-let displayAns;
 export const TrueorFalse: React.FC<TrueorFalseProp> = ({
   question,
   submitGuess,
   ...props
 }) => {
   const [truthValue, setTruthValue] = useState(0);
-  const [value, setValue] = useState(0);
+  const [displayAns, setDisplayAns] = useState(0);
 
   useEffect(() => {
     const num1 = parseInt(parse().first);
@@ -42,10 +41,11 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
     setTruthValue(randomize(0, 2));
     switch (truthValue) {
       case 0:
-        setValue(ans + randomize(-2, 3));
+        setDisplayAns(ans + randomize(-2, 3));
         break;
       case 1:
-        setValue(ans);
+        setDisplayAns(ans);
+
         break;
     }
   }, []);
@@ -68,7 +68,7 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
   return (
     <div className="flex flex-col items-center space-y-16">
       <p className="text-4xl">
-        {question.text} {value}
+        {question.text} {displayAns}
       </p>
       <div className="flex flex-row  item-center space-x-4 ">
         <Button

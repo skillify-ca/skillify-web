@@ -1,7 +1,3 @@
-import {
-  SSL_OP_PKCS1_CHECK_1,
-  SSL_OP_SSLEAY_080_CLIENT_DH_BUG,
-} from "node:constants";
 import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
@@ -29,22 +25,34 @@ export const FillBlank: React.FC<FillBlankProp> = ({
   const [button3Visible, setButton3Visible] = useState(false);
   const [button4Visible, setButton4Visible] = useState(false);
 
-  function onButton1Click(e) {
+  function onButton1Click() {
     setButton2Visible(true);
     setButton1Visible(false);
+    (document.getElementById("input1") as HTMLInputElement).disabled = true;
+    (document.getElementById("input2") as HTMLInputElement).disabled = false;
   }
-  function onButton2Click(e) {
+  function onButton2Click() {
     setButton3Visible(true);
     setButton2Visible(false);
+    (document.getElementById("input2") as HTMLInputElement).disabled = true;
+    (document.getElementById("input3") as HTMLInputElement).disabled = false;
   }
-  function onButton3Click(e) {
+  function onButton3Click() {
     setButton4Visible(true);
     setButton3Visible(false);
+    (document.getElementById("input3") as HTMLInputElement).disabled = true;
+    (document.getElementById("input4") as HTMLInputElement).disabled = false;
   }
-  function onButton4Click(e) {
+  function onButton4Click() {
     submitGuess({ guess: "", isCorrect: true });
     setButton1Visible(true);
     setButton4Visible(false);
+    (document.getElementById("input4") as HTMLInputElement).disabled = true;
+    (document.getElementById("input1") as HTMLInputElement).disabled = false;
+    (document.getElementById("input1") as HTMLInputElement).value = "";
+    (document.getElementById("input2") as HTMLInputElement).value = "";
+    (document.getElementById("input3") as HTMLInputElement).value = "";
+    (document.getElementById("input4") as HTMLInputElement).value = "";
   }
 
   const handleKeypress = (e) => {
@@ -105,12 +113,12 @@ export const FillBlank: React.FC<FillBlankProp> = ({
       <p>
         {parse().steps[0]}
         <input
+          id="input1"
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
           type="number"
         ></input>
         {" " + parse().steps[1]}
-
         {button1Visible && (
           <Button
             label="Lock-in"
@@ -124,6 +132,7 @@ export const FillBlank: React.FC<FillBlankProp> = ({
         {" "}
         {parse().steps[2] + "("}
         <input
+          id="input2"
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
           type="number"
@@ -143,19 +152,18 @@ export const FillBlank: React.FC<FillBlankProp> = ({
         {" "}
         {parse().steps[4]}
         <input
+          id="input3"
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
           type="number"
         ></input>
         {button3Visible && (
-
           <Button
             onClick={onButton3Click}
             label="Lock-in"
             textColor="white"
             backgroundColor="red"
           ></Button>
-
         )}
       </p>
 
@@ -163,6 +171,7 @@ export const FillBlank: React.FC<FillBlankProp> = ({
         {" "}
         ={" "}
         <input
+          id="input4"
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
           type="number"
@@ -174,7 +183,6 @@ export const FillBlank: React.FC<FillBlankProp> = ({
             textColor="white"
             backgroundColor="red"
           ></Button>
-
         )}
       </p>
     </div>
