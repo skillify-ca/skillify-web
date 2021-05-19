@@ -57,15 +57,17 @@ export default function Outline() {
 
   const loggedInComponent = (
     <div className="max-w-screen-lg">
-      <Card size="large">
-        <div className="flex flex-col gap-8 items-center">
-          <p className="text-xl font-bold font-sans">Math Knowledge Tree</p>
-          <p className="text-sm">Practice different math-related skills</p>
-          <p className="flex justify-center items-center bg-purple-100 shadow-inner ring-blue-400 text-center rounded-full ring-8 w-16 h-16">
-            {getOverallProgress()}%
-          </p>
-        </div>
-      </Card>
+      <div className="flex justify-center mb-8 mt-4">
+        <Card size="large">
+          <div className="flex flex-col gap-8 items-center">
+            <p className="text-xl font-bold font-sans">Math Knowledge Tree</p>
+            <p className="text-sm">Practice different math-related skills</p>
+            <p className="flex justify-center items-center bg-purple-100 shadow-inner ring-blue-400 text-center rounded-full ring-8 w-16 h-16">
+              {getOverallProgress()}%
+            </p>
+          </div>
+        </Card>
+      </div>
       <div className="flex flex-wrap justify-center gap-8">
         {userSkillsData.loading && <p>Loading ...</p>}
         {unlockedSkills.map((skill, index) => (
@@ -142,8 +144,7 @@ export default function Outline() {
         >
           <p className="text-xl">Lesson Mode</p>
           <p>
-            Explore and watch different videos to get introduced to
-            a topic.
+            Explore and watch different videos to get introduced to a topic.
           </p>
         </div>
         <div
@@ -151,8 +152,7 @@ export default function Outline() {
         >
           <p className="text-xl">Practice Mode</p>
           <p>
-            Practice questions and reflect on their learning using
-            flashcards.
+            Practice questions and reflect on their learning using flashcards.
           </p>
         </div>
         <div
@@ -160,8 +160,8 @@ export default function Outline() {
         >
           <p className="text-xl">Quiz Mode</p>
           <p>
-            Complete formative and summative assessments to prove
-            their understanding.
+            Complete formative and summative assessments to prove their
+            understanding.
           </p>
         </div>
       </div>
