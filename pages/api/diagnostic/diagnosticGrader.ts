@@ -29,6 +29,30 @@ export const getResultForSkill = (skill: Skill, results: DiagnosticState) => {
   }
 };
 
+export const getQuestionForSkill = (skill: Skill, results: DiagnosticState) => {
+  const questionsWithGuesses: QuestionGuess[] = results.questions.map(
+    (it, index) => ({ question: it, guess: results.guessAns[index] })
+  );
+  const filteredQuestionsWithGuesses = questionsWithGuesses.filter(
+    (it) => it.question.skill === skill
+  );
+  const questions = filteredQuestionsWithGuesses.map(
+    (item) => item.question.text
+  );
+  return questions;
+};
+
+export const getAnswerForSkill = (skill: Skill, results: DiagnosticState) => {
+  const questionsWithGuesses: QuestionGuess[] = results.questions.map(
+    (it, index) => ({ question: it, guess: results.guessAns[index] })
+  );
+  const filteredQuestionsWithGuesses = questionsWithGuesses.filter(
+    (it) => it.question.skill === skill
+  );
+  const questionAns = filteredQuestionsWithGuesses.map((item) => item.guess);
+  return questionAns;
+};
+
 export const getGradeLevelForTopic = (
   topic: Topic,
   results: DiagnosticState
