@@ -49,10 +49,10 @@ export const FillBlank: React.FC<FillBlankProp> = ({
     setButton4Visible(false);
     (document.getElementById("input4") as HTMLInputElement).disabled = true;
     (document.getElementById("input1") as HTMLInputElement).disabled = false;
-    (document.getElementById("input1") as HTMLElement).value = "";
-    (document.getElementById("input2") as HTMLElement).value = "";
-    (document.getElementById("input3") as HTMLElement).value = "";
-    (document.getElementById("input4") as HTMLElement).value = "";
+    (document.getElementById("input1") as HTMLInputElement).value = "";
+    (document.getElementById("input2") as HTMLInputElement).value = "";
+    (document.getElementById("input3") as HTMLInputElement).value = "";
+    (document.getElementById("input4") as HTMLInputElement).value = "";
   }
 
   const handleKeypress = (e) => {
