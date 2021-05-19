@@ -14,6 +14,7 @@ import { MCModel, MCOption, Question } from "../../pages/api/question";
 import { MultipleChoiceSentence } from "./MultipleChoiceSentence";
 import { AdditionProperty } from "./MultipleChoiceTypes";
 import { MultipleChoiceWord } from "./MultipleChoiceWord";
+import { FillBlank } from "./FillBlank";
 
 type QuestionSetProps = {
   title: string;
@@ -47,6 +48,18 @@ const QuestionSet = ({
           option2={questionData[index].multipleChoice.options[1]}
           option3={questionData[index].multipleChoice.options[2]}
           option4={questionData[index].multipleChoice.options[3]}
+          submitGuess={submitGuess}
+        />
+      );
+    } else if (
+      questionData[index].questionType == QuestionType.FILL_IN_THE_BLANK_PROBLEM
+    ) {
+      return (
+        <FillBlank
+          displayQuestion={questionData[index].text}
+          step1={questionData[index].fillInTheBlank.options[0].text}
+          step2={questionData[index].fillInTheBlank.options[1].text}
+          step3={questionData[index].fillInTheBlank.options[2].text}
           submitGuess={submitGuess}
         />
       );
