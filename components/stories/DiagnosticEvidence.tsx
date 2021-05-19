@@ -14,13 +14,28 @@ type DiagnosticEvidenceProps = {
 
 const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
   const skills = getSkillsForTopic(topic);
+
+  const getBackgroundColorForTopic = (result: string) => {
+    const skillLevel = result;
+    switch (skillLevel) {
+      case "Not yet":
+        return "bg-red-100";
+      case "Got it!":
+        return "bg-green-100";
+      default:
+        return "bg-blue-100";
+    }
+  };
+
   return (
-    <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-300 bg-blue-200">
+    <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-300 bg-blue-200 h-screen">
       <p className="mb-2 text-center font-black text-xl">
         {topic && topic.charAt(0).toUpperCase() + topic.slice(1)}
       </p>
       <div className="bg-white p-4 rounded-lg">
-        <p className="pb-4">Select a topic to get a detailed breakdown</p>
+        <p className="pb-4">
+          Select a skill to view the questions your child did during the test
+        </p>
 
         <div className="grid grid-cols-2">
           <p className="p-4 font-bold border-b border-black"> I can... </p>
@@ -28,7 +43,11 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
 
           <div className="grid-cols-1">
             {skills.map((skill) => (
-              <p className="bg-red-100 p-4 border-b border-black">
+              <p
+                className={`${getBackgroundColorForTopic(
+                  getResultForSkill(skill, results)
+                )} p-4 border-b border-black`}
+              >
                 {" "}
                 <Link href={"/diagnostic/data/".concat(skill.toString())}>
                   {SkillDescription(skill)}
@@ -38,7 +57,11 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
           </div>
           <div className="grid-cols-2">
             {skills.map((skill) => (
-              <p className="bg-red-100 p-4 border-b border-black">
+              <p
+                className={`${getBackgroundColorForTopic(
+                  getResultForSkill(skill, results)
+                )} p-4 border-b border-black`}
+              >
                 {getResultForSkill(skill, results)}
               </p>
             ))}
