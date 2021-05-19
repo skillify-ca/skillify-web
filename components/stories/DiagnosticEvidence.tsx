@@ -16,32 +16,37 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
   const skills = getSkillsForTopic(topic);
 
   return (
-    <>
-      <p className="mb-12">
+    <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-300 bg-blue-200">
+      <p className="mb-2 text-center font-black text-xl">
         {topic && topic.charAt(0).toUpperCase() + topic.slice(1)}
       </p>
-      <div className="flex justify-between sm:w-1/4 border-b border-black p-2">
-        <span> I can... </span>
-        <span className="pl-16"> Result </span>
-      </div>
-      <div className="flex justify-between flex-row sm:w-1/4 p-2">
-        <div>
-          {skills.map((skill) => (
-            <div>
-              {" "}
-              <Link href={"/diagnostic/data/".concat(skill.toString())}>
-                {SkillDescription(skill)}
-              </Link>
-            </div>
-          ))}
+      <div className="bg-white p-4 rounded-lg">
+        <p className="pb-4">Select a topic to get a detailed breakdown</p>
+
+        <div className="grid grid-cols-2">
+          <p className="p-4 font-bold border-b border-black"> I can... </p>
+          <p className="p-4 font-bold border-b border-black"> Proficiency </p>
+
+          <div className="grid-cols-1">
+            {skills.map((skill) => (
+              <p className="bg-red-100 p-4 border-b border-black">
+                {" "}
+                <Link href={"/diagnostic/data/".concat(skill.toString())}>
+                  {SkillDescription(skill)}
+                </Link>
+              </p>
+            ))}
+          </div>
+          <div className="grid-cols-2">
+            {skills.map((skill) => (
+              <p className="bg-red-100 p-4 border-b border-black">
+                {getResultForSkill(skill, results)}
+              </p>
+            ))}
+          </div>
         </div>
-        <div>
-          {skills.map((skill) => (
-            <div>{getResultForSkill(skill, results)}</div>
-          ))}
-        </div>
       </div>
-    </>
+    </div>
   );
 };
 

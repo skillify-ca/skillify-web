@@ -15,7 +15,7 @@ type DiagnosticDataProps = {
 
 const DiagnosticData = ({ skill, results }: DiagnosticDataProps) => {
   return (
-    <>
+    <div>
       <p className="mb-12">{SkillDescription(skill)}</p>
       <div className="flex justify-between w-1/4 border-b border-black p-2">
         <span> Question: </span>
@@ -39,7 +39,7 @@ const DiagnosticData = ({ skill, results }: DiagnosticDataProps) => {
           Take Diagnostic Again
         </button>
       </Link>
-    </>
+    </div>
   );
 };
 
