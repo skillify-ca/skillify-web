@@ -28,27 +28,27 @@ export const FillBlank: React.FC<FillBlankProp> = ({
   function onButton1Click(e) {
     setButton2Visible(true);
     setButton1Visible(false);
-    (document.getElementById("input1") as HTMLElement).disabled = true;
-    (document.getElementById("input2") as HTMLElement).disabled = false;
+    (document.getElementById("input1") as HTMLInputElement).disabled = true;
+    (document.getElementById("input2") as HTMLInputElement).disabled = false;
   }
   function onButton2Click(e) {
     setButton3Visible(true);
     setButton2Visible(false);
-    (document.getElementById("input2") as HTMLElement).disabled = true;
-    (document.getElementById("input3") as HTMLElement).disabled = false;
+    (document.getElementById("input2") as HTMLInputElement).disabled = true;
+    (document.getElementById("input3") as HTMLInputElement).disabled = false;
   }
   function onButton3Click(e) {
     setButton4Visible(true);
     setButton3Visible(false);
-    (document.getElementById("input3") as HTMLElement).disabled = true;
-    (document.getElementById("input4") as HTMLElement).disabled = false;
+    (document.getElementById("input3") as HTMLInputElement).disabled = true;
+    (document.getElementById("input4") as HTMLInputElement).disabled = false;
   }
   function onButton4Click(e) {
     submitGuess({ guess: "", isCorrect: true });
     setButton1Visible(true);
     setButton4Visible(false);
-    (document.getElementById("input4") as HTMLElement).disabled = true;
-    (document.getElementById("input1") as HTMLElement).disabled = false;
+    (document.getElementById("input4") as HTMLInputElement).disabled = true;
+    (document.getElementById("input1") as HTMLInputElement).disabled = false;
     document.getElementById("input1").value = "";
     document.getElementById("input2").value = "";
     document.getElementById("input3").value = "";
