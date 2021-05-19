@@ -6,6 +6,8 @@ import {
 } from "../../pages/api/diagnostic/diagnosticGrader";
 import { Skill, Topic } from "../../pages/api/skill";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
+import { Button } from "./Button";
+import { Input } from "./Input";
 import {
   AdditionDoubleDigitWS,
   AdditionSingleDigitWS,
@@ -116,61 +118,116 @@ export const DiagnosticConclusion = ({
     }
   };
 
-  return (
-    <div className="p-8 flex flex-col gap-8">
-      <p className="mb-2 text-center font-black text-2xl"> Report Card</p>
+  const getSummaryText = () => {
+    switch (gradeLevel) {
+      case 3:
+        return "Amazing work! Your child has met the expectations of the Ontario curriculum. Encourage them to solve harder problems to keep them challenged.";
+      case 2:
+        return "Great work! Your child has nearly met the expectations of the Ontario curriculum. Provide them with supplemental resources to address their knowledge gaps.";
+      default:
+        return "Great effort! Your child requires extra practice to meet the expectations of the Ontario curriculum. Provide them with supplemental resources to address their knowledge gaps.";
+    }
+  };
 
-      <div className="bg-white p-4">
-        <p className="font-bold text-xl">
+  return (
+    <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-300 bg-blue-200">
+      <p className="mb-2 text-center font-black text-xl"> Report Card</p>
+
+      <div className="bg-white p-4 rounded-lg">
+        <p className="font-bold text-xl mb-4">
           {" "}
           {"Average Ontario Grade Level - Grade " + gradeLevel}{" "}
         </p>
+        <p>{getSummaryText()}</p>
       </div>
-      <div className="bg-white p-4">
-        <p className="py-4">Select a topic to get a detailed breakdown</p>
+      <div className="bg-white p-4 flex flex-col sm:flex-row gap-4 items-center rounded-lg">
+        <p className="font-bold">Enter your email to save this report</p>
+        <input
+          autoFocus
+          onFocus={(e) => (e.target.value = "")}
+          id="guess"
+          type="text"
+          autoComplete="off"
+          className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
+          placeholder="Email"
+        />
+        <Button backgroundColor="blue" textColor="white" label="Submit" />
+      </div>
+      <div className="bg-white p-4 rounded-lg">
+        <p className="pb-4">Select a topic to get a detailed breakdown</p>
         <div className="grid grid-cols-2">
           <p className="p-4 font-bold border-b border-black"> Topic </p>
           <p className="p-4 font-bold border-b border-black"> Grade Level </p>
           <Link href="/diagnostic/evidence/addition">
-            <p className={`${getBackgroundColorForTopic(Topic.ADDITION)} p-4 border-b border-black`}>
+            <p
+              className={`${getBackgroundColorForTopic(
+                Topic.ADDITION
+              )} p-4 border-b border-black`}
+            >
               Addition
             </p>
           </Link>
           <Link href="/diagnostic/evidence/addition">
-            <p className={`${getBackgroundColorForTopic(Topic.ADDITION)} p-4 border-b border-black`}>
+            <p
+              className={`${getBackgroundColorForTopic(
+                Topic.ADDITION
+              )} p-4 border-b border-black`}
+            >
               {getGradeLevelForTopic(Topic.ADDITION, results)}
             </p>
           </Link>
           <Link href="/diagnostic/evidence/subtraction">
-            <p className={`${getBackgroundColorForTopic(Topic.SUBTRACTION)} p-4 border-b border-black`}>
+            <p
+              className={`${getBackgroundColorForTopic(
+                Topic.SUBTRACTION
+              )} p-4 border-b border-black`}
+            >
               Subtraction
             </p>
           </Link>
-          <p className={`${getBackgroundColorForTopic(Topic.SUBTRACTION)} p-4 border-b border-black`}>
+          <p
+            className={`${getBackgroundColorForTopic(
+              Topic.SUBTRACTION
+            )} p-4 border-b border-black`}
+          >
             {getGradeLevelForTopic(Topic.SUBTRACTION, results)}
           </p>
           <Link href="/diagnostic/evidence/multiplication">
             <p
-              className={`${getBackgroundColorForTopic(Topic.MULTIPLICATION)} p-4 border-b border-black`}
+              className={`${getBackgroundColorForTopic(
+                Topic.MULTIPLICATION
+              )} p-4 border-b border-black`}
             >
               Multiplication
             </p>
           </Link>
-          <p className={`${getBackgroundColorForTopic(Topic.MULTIPLICATION)} p-4 border-b border-black`}>
+          <p
+            className={`${getBackgroundColorForTopic(
+              Topic.MULTIPLICATION
+            )} p-4 border-b border-black`}
+          >
             {getGradeLevelForTopic(Topic.MULTIPLICATION, results)}
           </p>
 
           <Link href="/diagnostic/evidence/division">
-            <p className={`${getBackgroundColorForTopic(Topic.DIVISION)} p-4 border-b border-black`}>
+            <p
+              className={`${getBackgroundColorForTopic(
+                Topic.DIVISION
+              )} p-4 border-b border-black`}
+            >
               Division
             </p>
           </Link>
-          <p className={`${getBackgroundColorForTopic(Topic.DIVISION)} p-4 border-b border-black`}>
+          <p
+            className={`${getBackgroundColorForTopic(
+              Topic.DIVISION
+            )} p-4 border-b border-black`}
+          >
             {getGradeLevelForTopic(Topic.DIVISION, results)}
           </p>
         </div>
       </div>
-      <div className="flex flex-col bg-white p-4">
+      <div className="flex flex-col bg-white p-4 rounded-lg">
         <p className="p-4 font-extrabold border-b border-black">
           Worksheet Recommendations
         </p>
@@ -183,13 +240,17 @@ export const DiagnosticConclusion = ({
             )
         )}
       </div>
-      <div className="w-1/2 flex-row content-evenly">
+      <div className="bg-white p-4 flex flex-col sm:flex-row gap-4 items-center rounded-lg">
+        <p className="font-bold">Make practice fun with Math Champ</p>
         <Link href="/">
-          <button className="items-end bg-green-500 rounded p-3 text-white text-sm">
-            Let's Practice
-          </button>
+          <Button
+            label="Let's Practice"
+            textColor="white"
+            backgroundColor="green"
+          />
         </Link>
       </div>
+      <div className="w-1/2 flex-row content-evenly"></div>
     </div>
   );
 };
