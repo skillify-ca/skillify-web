@@ -244,7 +244,7 @@ export const DiagnosticConclusion = ({
         <p className="font-bold">Make practice fun with Math Champ</p>
         <Link href="/">
           <Button
-            label="Let's Practice"
+            label="Sign Up"
             textColor="white"
             backgroundColor="green"
           />
