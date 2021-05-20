@@ -15,6 +15,7 @@ import Link from "next/link";
 import { useAppDispatch } from "../redux/store";
 import { Skill, Topic } from "./api/skill";
 import { generateQuestionsForDiagnostic } from "./api/diagnostic/diagnosticQuestionGenerator";
+import DiagnosticNavbar from "../components/DiagnosticNavbar";
 
 enum STAGE {
   CREATE,
@@ -85,6 +86,7 @@ const Diagnostic = () => {
           index={index}
           inputElement={inputElement}
           submitGuess={submitGuess}
+          score={correctGuesses}
         />
       );
       break;
@@ -95,9 +97,9 @@ const Diagnostic = () => {
       break;
   }
   return (
-    <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
-      <Navbar />
-      <div className="p-8 flex flex-col items-center justify-center">
+    <div className="flex flex-col justify-center overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
+      <DiagnosticNavbar />
+      <div className="p-4 flex flex-col items-center justify-center">
         {component}
       </div>
     </div>

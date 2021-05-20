@@ -10,6 +10,7 @@ import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGe
 const PracticeQuiz = ({ slug, skill }) => {
   const [index, setIndex] = useState(0);
   const [interval, setMyInterval] = useState(null);
+  const [correctGuess, setCorrectGuess] = useState(0);
   const [questionData, setQuestionData] = useState<Question[]>([
     {
       text: "",
@@ -28,7 +29,9 @@ const PracticeQuiz = ({ slug, skill }) => {
 
   const submitGuess = (guess: GuessData) => {
     if (index < questionData.length - 1) {
-      console.log("ERROR");
+      if (guess.isCorrect) {
+        setCorrectGuess(correctGuess + 1);
+      }
       setIndex(index + 1);
       if (inputElement.current) {
         inputElement.current.focus();
@@ -47,6 +50,7 @@ const PracticeQuiz = ({ slug, skill }) => {
         index={index}
         inputElement={inputElement}
         submitGuess={submitGuess}
+        score={correctGuess}
       />
     </div>
   );
