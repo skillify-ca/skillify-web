@@ -19,6 +19,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
   ...props
 }) => {
   const [guess, setGuess] = useState("");
+  const [guess2, setGuess2] = useState("");
 
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
@@ -34,22 +35,38 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
   };
 
   const parse = () => {
-    const parts = question.text.split(" ");
+    const parts = question.text && question.text.split(" ");
     return {
-      first: parts[0],
-      second: parts[2],
+      first: parts && parts[0],
+      second: parts && parts[2],
     };
+  };
+
+  const displayRemainder = () => {
+    return (
+      <>
+        R
+        <LongDivisionInput
+          id="remainder"
+          guess={guess2}
+          setGuess={setGuess2}
+          handleKeypress={handleKeypress}
+          width={width}
+        />
+      </>
+    );
   };
 
   const num1 = parseInt(parse().first);
   let width;
 
   if (num1 >= 10) {
-    width = 10;
-  } else {
     width = 8;
+  } else {
+    width = 6;
   }
 
+  let remainder = 0;
   return (
     <div>
       <div className="ml-4 flex flex-row">
@@ -57,12 +74,16 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
           {parse().second}&nbsp;
         </span>
         <div className="flex flex-col">
-          <LongDivisionInput
-            guess={guess}
-            setGuess={setGuess}
-            handleKeypress={handleKeypress}
-            width={width}
-          />
+          <div className="flex flex-row gap-2">
+            <LongDivisionInput
+              id="quotient"
+              guess={guess}
+              setGuess={setGuess}
+              handleKeypress={handleKeypress}
+              width={width}
+            />
+            {remainder > 0 ? displayRemainder() : ""}
+          </div>
           <span className="border-t-2 border-l-2 border-black text-lg">
             {parse().first}
           </span>

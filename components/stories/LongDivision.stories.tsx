@@ -7,9 +7,7 @@ import { LongDivision, LongDivisionProp } from "./LongDivision";
 export default {
   title: "Long Division",
   component: LongDivision,
-  argTypes: {
-  
-  },
+  argTypes: {},
 } as Meta;
 
 const Template: Story<LongDivisionProp> = (args) => <LongDivision {...args} />;
@@ -17,5 +15,5 @@ const Template: Story<LongDivisionProp> = (args) => <LongDivision {...args} />;
 export const Primary = Template.bind({});
 
 Primary.args = {
-  question: "1000 / 20"
+  question: { text: "30 / 4 =" },
 };
