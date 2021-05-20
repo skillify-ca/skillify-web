@@ -7,3 +7,9 @@ export function getRandomItemFromArray(arr: any[]) {
 export function getRndInteger(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
+
+export function getRndColour() {
+  let colourArray = ["red", "blue", "green", "yellow", "purple"]; 
+  let colour = getRandomItemFromArray(colourArray); 
+  return colour;
+}
