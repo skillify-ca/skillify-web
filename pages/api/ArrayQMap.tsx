@@ -53,7 +53,7 @@ export const ArrayQMap = {
     2: "/ArrayQ/2X6.png",
     3: "/ArrayQ/3X4.png",
     6: "/ArrayQ/2X3.png",
-    4: "/ArrayQ/2X3.png",
+    4: "/ArrayQ/3X4.png",
     1: "/ArrayQ/1X12.png",
     12: "/ArrayQ/1X12.png",
   },
