@@ -28,11 +28,11 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
   };
 
   return (
-    <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-300 bg-blue-200 h-screen">
+    <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100 h-screen">
       <p className="mb-2 text-center font-black text-xl">
         {topic && topic.charAt(0).toUpperCase() + topic.slice(1)}
       </p>
-      <div className="bg-white p-4 rounded-lg">
+      <div className="bg-white p-4 shadow-lg rounded-lg">
         <p className="pb-4">
           Select a skill to view the questions your child did during the test
         </p>
@@ -43,16 +43,16 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
 
           <div className="grid-cols-1">
             {skills.map((skill) => (
-              <p
-                className={`${getBackgroundColorForTopic(
-                  getResultForSkill(skill, results)
-                )} p-4 border-b border-black`}
-              >
-                {" "}
-                <Link href={"/diagnostic/data/".concat(skill.toString())}>
+              <Link href={"/diagnostic/data/".concat(skill.toString())}>
+                <p
+                  className={`${getBackgroundColorForTopic(
+                    getResultForSkill(skill, results)
+                  )} p-4 border-b border-black cursor-pointer hover:underline`}
+                >
+                  {" "}
                   {SkillDescription(skill)}
-                </Link>
-              </p>
+                </p>
+              </Link>
             ))}
           </div>
           <div className="grid-cols-2">

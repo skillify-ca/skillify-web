@@ -62,14 +62,14 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
           {itemContainer.singleTitle}?
         </p>
       </div>
-      <div className="text-2xl flex flex-wrap">
+      <div className="text-2xl flex flex-wrap justify-center w-full">
         <Input
           guess={guess}
           setGuess={setGuess}
           handleKeypress={handleKeypress}
         />
       </div>
-      <div className="flex flex-wrap mt-2">
+      <div className="flex flex-wrap mt-2 justify-center">
         <img src={noun1.image} width="60px" height="85px" />
         <img src={noun2.image} width="60px" height="85px" />
         <img src={noun1.image} width="60px" height="85px" />

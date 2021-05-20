@@ -121,20 +121,22 @@ export const DiagnosticConclusion = ({
   const getSummaryText = () => {
     switch (gradeLevel) {
       case 3:
-        return "Amazing work! Your child has met the expectations of the Ontario curriculum. Encourage them to solve harder problems to keep them challenged.";
+        return "Amazing work! Your child has met the expectations of the Ontario grade 3 curriculum. Encourage them to solve harder problems to keep them challenged.";
       case 2:
-        return "Great work! Your child has nearly met the expectations of the Ontario curriculum. Provide them with supplemental resources to address their knowledge gaps.";
+        return "Great work! Your child has nearly met the expectations of the Ontario grade 3 curriculum. Provide them with supplemental resources to address their knowledge gaps.";
       default:
-        return "Great effort! Your child requires extra practice to meet the expectations of the Ontario curriculum. Provide them with supplemental resources to address their knowledge gaps.";
+        return "Great effort! Your child requires extra practice to meet the expectations of the Ontario grade 3 curriculum. Provide them with supplemental resources to address their knowledge gaps.";
     }
   };
 
   return (
-    <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-300 bg-blue-200">
-      <p className="mb-2 text-center font-black text-xl"> Report Card</p>
-
+    <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100">
       <div className="bg-white p-4 rounded-lg">
-        <p className="font-bold text-xl mb-4">
+        <p className="mb-8 text-center font-black text-xl">
+          Math Champ Report Card
+        </p>
+
+        <p className="font-bold mb-2">
           {" "}
           {"Average Ontario Grade Level - Grade " + gradeLevel}{" "}
         </p>
@@ -149,7 +151,7 @@ export const DiagnosticConclusion = ({
             <p
               className={`${getBackgroundColorForTopic(
                 Topic.ADDITION
-              )} p-4 border-b border-black`}
+              )} p-4 border-b border-black hover:underline cursor-pointer`}
             >
               Addition
             </p>
@@ -167,7 +169,7 @@ export const DiagnosticConclusion = ({
             <p
               className={`${getBackgroundColorForTopic(
                 Topic.SUBTRACTION
-              )} p-4 border-b border-black`}
+              )} p-4 border-b border-black hover:underline cursor-pointer`}
             >
               Subtraction
             </p>
@@ -183,7 +185,7 @@ export const DiagnosticConclusion = ({
             <p
               className={`${getBackgroundColorForTopic(
                 Topic.MULTIPLICATION
-              )} p-4 border-b border-black`}
+              )} p-4 border-b border-black hover:underline cursor-pointer`}
             >
               Multiplication
             </p>
@@ -200,7 +202,7 @@ export const DiagnosticConclusion = ({
             <p
               className={`${getBackgroundColorForTopic(
                 Topic.DIVISION
-              )} p-4 border-b border-black`}
+              )} p-4 border-b border-black hover:underline cursor-pointer`}
             >
               Division
             </p>
@@ -228,14 +230,15 @@ export const DiagnosticConclusion = ({
         )}
       </div>
       <div className="bg-white p-4 flex flex-col sm:flex-row gap-4 items-center rounded-lg">
-        <p className="font-bold">Make practice fun with Math Champ</p>
-        <Link href="/">
-          <Button
-            label="Sign Up"
-            textColor="white"
-            backgroundColor="green"
-          />
-        </Link>
+        <p className="font-bold">Enter your email to save this report</p>
+        <input
+          id="guess"
+          type="text"
+          autoComplete="off"
+          className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
+          placeholder="Email"
+        />
+        <Button backgroundColor="blue" textColor="white" label="Submit" />
       </div>
       <div className="w-1/2 flex-row content-evenly"></div>
     </div>

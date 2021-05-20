@@ -19,9 +19,8 @@ export const LongDivisionInput: React.FC<LongDivisionInputProps> = ({
   return (
     <input
       autoFocus
-      onFocus={(e) => (e.target.value = "")}
       id="guess"
-      type="text"
+      type="number"
       autoComplete="off"
       value={guess}
       onChange={(e) => setGuess(e.target.value)}
