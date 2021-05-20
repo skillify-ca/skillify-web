@@ -54,8 +54,8 @@ const PracticeQuiz = ({ slug, skill }) => {
       }
       if (guess.isCorrect) {
         setCorrectGuess(correctGuess + 1);
-        if (index < questionData.length - 1) setNextQuestionButton(true);
       }
+      if (index < questionData.length - 1) setNextQuestionButton(true);
     }
   };
   return (
