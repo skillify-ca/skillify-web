@@ -6,9 +6,11 @@ import { AnswerType, Question } from "../../api/question";
 import Navbar from "../../../components/Navbar";
 import { Skill } from "../../api/skill";
 import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGenerator";
+import { Button } from "../../../components/stories/Button";
 
 const PracticeQuiz = ({ slug, skill }) => {
   const [index, setIndex] = useState(0);
+  const [nextQuestionButton, setNextQuestionButton] = useState(false);
   const [interval, setMyInterval] = useState(null);
   const [correctGuess, setCorrectGuess] = useState(0);
   const [questionData, setQuestionData] = useState<Question[]>([
@@ -27,11 +29,8 @@ const PracticeQuiz = ({ slug, skill }) => {
     setQuestionData(generatePracticeQuestions(slug, skill));
   }, []);
 
-  const submitGuess = (guess: GuessData) => {
+  const nextIndex = () => {
     if (index < questionData.length - 1) {
-      if (guess.isCorrect) {
-        setCorrectGuess(correctGuess + 1);
-      }
       setIndex(index + 1);
       if (inputElement.current) {
         inputElement.current.focus();
@@ -39,6 +38,13 @@ const PracticeQuiz = ({ slug, skill }) => {
     } else {
       clearInterval(interval);
       setMyInterval(null);
+    }
+  };
+
+  const submitGuess = (guess: GuessData) => {
+    if (guess.isCorrect) {
+      setCorrectGuess(correctGuess + 1);
+      setNextQuestionButton(true);
     }
   };
   return (
@@ -52,6 +58,11 @@ const PracticeQuiz = ({ slug, skill }) => {
         submitGuess={submitGuess}
         score={correctGuess}
       />
+      {nextQuestionButton ? (
+        <Button label="Next Question" onClick={nextIndex}></Button>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
