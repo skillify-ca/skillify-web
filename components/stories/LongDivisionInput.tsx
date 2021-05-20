@@ -20,11 +20,10 @@ export const LongDivisionInput: React.FC<LongDivisionInputProps> = ({
     <input
       autoFocus
       id="guess"
-      type="number"
       autoComplete="off"
       value={guess}
       onChange={(e) => setGuess(e.target.value)}
-      className={`text-left border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md w-${width}`}
+      className={`appearance-none text-left border rounded-md text-md lg:text-md w-${width}`}
       placeholder=""
       onKeyPress={handleKeypress}
     />
