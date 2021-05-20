@@ -131,7 +131,7 @@ const QuestionSet = ({
   };
 
   return (
-    <div className="flex flex-col justify-center items-center bg-gray-200 gap-8 pb-24">
+    <div className="flex flex-col justify-center items-centergap-8 pb-24">
       <div className="flex justify-between w-full p-4">
         <p className="text-xl font-bold">{title}</p>
         <p className="font-bold text-gray-400">
