@@ -70,8 +70,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   return (
     <div>
       <Navbar />
-      {console.log(guessAttempt)}
-      <div className="inline-block">
+      <div className=" flex-row">
         <QuestionSet
           title={slug}
           questionData={questionData}
@@ -80,20 +79,20 @@ const PracticeQuiz = ({ slug, skill }) => {
           submitGuess={submitGuess}
           score={correctGuess}
         />
-
-        {nextQuestionButton ? (
-          <Button label="Next Question" onClick={applyNextQuestion}></Button>
-        ) : (
-          ""
-        )}
-        {correctAnswer ? <p> Correct </p> : ""}
-
-        {wrongAnswer ? (
+        {correctAnswer ? (
+          <p> Correct </p>
+        ) : wrongAnswer ? (
           <div>
             The Correct Answer was {questionData[index].answer}
             <br></br>
             Your Answer was {guessAttempt}
           </div>
+        ) : (
+          ""
+        )}
+
+        {nextQuestionButton ? (
+          <Button label="Next Question" onClick={applyNextQuestion}></Button>
         ) : (
           ""
         )}
