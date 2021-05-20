@@ -86,6 +86,7 @@ const Diagnostic = () => {
           index={index}
           inputElement={inputElement}
           submitGuess={submitGuess}
+          score={correctGuesses}
         />
       );
       break;
@@ -97,7 +98,7 @@ const Diagnostic = () => {
   }
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
-      <DiagnosticNavbar />      
+      <DiagnosticNavbar />
       <div className="p-4 flex flex-col items-center justify-center">
         {component}
       </div>
