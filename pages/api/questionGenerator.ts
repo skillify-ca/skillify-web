@@ -106,8 +106,7 @@ function getRandomMultiplicationQuestion(
     const a = getRndInteger(1, 6);
     const b = getRndInteger(1, 6);
     return getArrayMultiplicationQuestion(a, b, skill);
-  }
-  if (skill == Skill.MULTIPLICATION_5 && randomPick === 2) {
+  } else if (skill == Skill.MULTIPLICATION_5 && randomPick === 2) {
     const a = getRndInteger(1, 6);
     const b = getRndInteger(1, 6);
     return getMultiplicationEqualGroups(a, b, skill);
