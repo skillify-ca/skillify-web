@@ -77,7 +77,22 @@ export function getArrayMultiplicationQuestion(
     answerType: AnswerType.NUMBER,
     questionType: QuestionType.ARRAY_QUESTION,
     operator: "x",
-    skill: skill, 
+    skill: skill,
+  };
+}
+export function getMultiplicationEqualGroups(
+  a: number,
+  b: number,
+  skill: Skill
+): Question {
+  let text = `${a} x ${b} =`;
+  return {
+    text: text,
+    answer: (a * b).toString(),
+    answerType: AnswerType.NUMBER,
+    questionType: QuestionType.MULTIPLICATION_EQUAL_GROUPS,
+    operator: "x",
+    skill: skill,
   };
 }
 function getRandomMultiplicationQuestion(
@@ -86,11 +101,15 @@ function getRandomMultiplicationQuestion(
   skill: Skill
 ) {
   const multiply = (a: number, b: number) => a * b;
-  const randomPick = getRndInteger(0, 2);
+  const randomPick = getRndInteger(0, 3);
   if (skill == Skill.MULTIPLICATION_5 && randomPick === 1) {
     const a = getRndInteger(1, 6);
     const b = getRndInteger(1, 6);
     return getArrayMultiplicationQuestion(a, b, skill);
+  } else if (skill == Skill.MULTIPLICATION_5 && randomPick === 2) {
+    const a = getRndInteger(1, 6);
+    const b = getRndInteger(1, 6);
+    return getMultiplicationEqualGroups(a, b, skill);
   }
 
   return getRandomBinaryQuestion(min, max, "x", multiply, skill);
