@@ -9,9 +9,9 @@ export interface MultiplicationEqualGroupsProp {
   question: Question;
   submitGuess: (guess: GuessData) => void;
 }
-/**
- * Primary UI component for user interaction
- */
+
+/* Multiplication by equal groups UI with 2 inputs */
+
 export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> = ({
   question,
   submitGuess,
@@ -38,8 +38,6 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
   //let horizontal = new Array;
   let groups = Array.from(Array(Number.parseInt(parse().first)).keys());
   let itemsInGroup = Array.from(Array(Number.parseInt(parse().second)).keys());
-  console.log(parse().first);
-  console.log(parse().second);
   return (
     <div>
       <div className="flex flex-row gap-1 justify-center items-center">

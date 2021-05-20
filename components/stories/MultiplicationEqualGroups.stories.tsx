@@ -18,5 +18,5 @@ const Template: Story<MultiplicationEqualGroupsProp> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  question: { text: "2 x 5", image: "/ArrayQ/2X3.png" },
+  question: { text: "2 x 5" },
 };

@@ -7,7 +7,7 @@ export interface EqualGroupsInputProps {
 }
 
 /**
- * Primary UI component for user interaction
+ * Input tag for Multiplication By Equal Group questions
  */
 export const EqualGroupsInput: React.FC<EqualGroupsInputProps> = ({
   guess,
@@ -17,7 +17,6 @@ export const EqualGroupsInput: React.FC<EqualGroupsInputProps> = ({
   return (
     <input
       autoFocus
-      onFocus={(e) => (e.target.value = "")}
       id="guess"
       type="number"
       value={guess}
