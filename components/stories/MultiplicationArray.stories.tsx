@@ -18,5 +18,5 @@ const Template: Story<MultiplicationArrayProp> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  question: { text: "5 x 5", image: "/ArrayQ/2X3.png" },
+  question: { text: "10 x 10" },
 };
