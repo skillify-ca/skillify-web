@@ -35,7 +35,7 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
       second: parts[2],
     };
   };
-  //let horizontal = new Array;
+
   let groups = Array.from(Array(Number.parseInt(parse().first)).keys());
   let itemsInGroup = Array.from(Array(Number.parseInt(parse().second)).keys());
   return (
@@ -49,7 +49,8 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
           </div>
         ))}
       </div>
-      <div className="flex flex-row gap-2 justify-center mt-4 text-lg">
+
+      <div className="flex flex-row gap-2 justify-center mt-4 text-xl">
         There are
         <EqualGroupsInput
           guess={guess}
@@ -62,6 +63,14 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
           setGuess={setGuess}
           handleKeypress={handleKeypress}
         />
+        <div className="text-sm ml-4">
+          <Button
+            onClick={onSubmit}
+            label="Submit"
+            backgroundColor="blue"
+            textColor="white"
+          />
+        </div>
       </div>
     </div>
   );
