@@ -4,7 +4,7 @@ import {
   getResultForSkill,
   getSkillsForTopic,
 } from "../../pages/api/diagnostic/diagnosticGrader";
-import { Topic } from "../../pages/api/skill";
+import { SkillDescription, Topic } from "../../pages/api/skill";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 
 type DiagnosticEvidenceProps = {
@@ -15,35 +15,60 @@ type DiagnosticEvidenceProps = {
 const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
   const skills = getSkillsForTopic(topic);
 
+  const getBackgroundColorForTopic = (result: string) => {
+    const skillLevel = result;
+    switch (skillLevel) {
+      case "Not yet":
+        return "bg-red-100";
+      case "Got it!":
+        return "bg-green-100";
+      default:
+        return "bg-blue-100";
+    }
+  };
+
   return (
-    <>
-      <p className="mb-12">
+    <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-300 bg-blue-200 h-screen">
+      <p className="mb-2 text-center font-black text-xl">
         {topic && topic.charAt(0).toUpperCase() + topic.slice(1)}
       </p>
-      <div className="flex justify-between sm:w-1/4 border-b border-black p-2">
-        <span> I can... </span>
-        <span className="pl-16"> Result </span>
-      </div>
-      <div className="flex justify-between flex-row sm:w-1/4 p-2">
-        <div>
-          {skills.map((skill) => (
-            <div>{skill}</div>
-          ))}
+      <div className="bg-white p-4 rounded-lg">
+        <p className="pb-4">
+          Select a skill to view the questions your child did during the test
+        </p>
+
+        <div className="grid grid-cols-2">
+          <p className="p-4 font-bold border-b border-black"> I can... </p>
+          <p className="p-4 font-bold border-b border-black"> Proficiency </p>
+
+          <div className="grid-cols-1">
+            {skills.map((skill) => (
+              <p
+                className={`${getBackgroundColorForTopic(
+                  getResultForSkill(skill, results)
+                )} p-4 border-b border-black`}
+              >
+                {" "}
+                <Link href={"/diagnostic/data/".concat(skill.toString())}>
+                  {SkillDescription(skill)}
+                </Link>
+              </p>
+            ))}
+          </div>
+          <div className="grid-cols-2">
+            {skills.map((skill) => (
+              <p
+                className={`${getBackgroundColorForTopic(
+                  getResultForSkill(skill, results)
+                )} p-4 border-b border-black`}
+              >
+                {getResultForSkill(skill, results)}
+              </p>
+            ))}
+          </div>
         </div>
-        <div>
-          {skills.map((skill) => (
-            <div>{getResultForSkill(skill, results)}</div>
-          ))}
-        </div>
       </div>
-      {topic && (
-        <Link href={"/diagnostic/data/".concat(topic.toString())}>
-          <button className="mt-4 bg-blue-500 rounded p-3 text-white text-sm">
-            Go To Data
-          </button>
-        </Link>
-      )}
-    </>
+    </div>
   );
 };
 
