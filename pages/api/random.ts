@@ -13,16 +13,3 @@ export function getRndColour() {
   let colour = getRandomItemFromArray(colourArray); 
   return colour;
 }
-
-
-/*
-  return red
-
-  return ["bg-red-500", "bg-red-200"]
-  return {
-    "background": "bg-red-500",
-    "hover": ...
-  }
-  "bg-${color}-500 hover:bg-${color}-200"
-*/
-//getranitem as helper
