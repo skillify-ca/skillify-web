@@ -10,6 +10,9 @@ import { Button } from "../../../components/stories/Button";
 
 const PracticeQuiz = ({ slug, skill }) => {
   const [index, setIndex] = useState(0);
+  const [guessAttempt, setGuessAttempt] = useState("");
+  const [correctAnswer, setCorrectAnswer] = useState(false);
+  const [wrongAnswer, setWrongAnswer] = useState(false);
   const [indexCap, setIndexCap] = useState(false);
   const [nextQuestionButton, setNextQuestionButton] = useState(false);
   const [interval, setMyInterval] = useState(null);
@@ -32,6 +35,8 @@ const PracticeQuiz = ({ slug, skill }) => {
 
   const applyNextQuestion = () => {
     setNextQuestionButton(false);
+    setCorrectAnswer(false);
+    setWrongAnswer(false);
     nextQuestion();
   };
 
@@ -49,11 +54,15 @@ const PracticeQuiz = ({ slug, skill }) => {
 
   const submitGuess = (guess: GuessData) => {
     if (index < questionData.length && !indexCap) {
+      setGuessAttempt(guess.guess);
       if (index == questionData.length - 1) {
         setIndexCap(true);
       }
       if (guess.isCorrect) {
         setCorrectGuess(correctGuess + 1);
+        setCorrectAnswer(true);
+      } else {
+        setWrongAnswer(true);
       }
       if (index < questionData.length - 1) setNextQuestionButton(true);
     }
@@ -61,19 +70,34 @@ const PracticeQuiz = ({ slug, skill }) => {
   return (
     <div>
       <Navbar />
-      <QuestionSet
-        title={slug}
-        questionData={questionData}
-        index={index}
-        inputElement={inputElement}
-        submitGuess={submitGuess}
-        score={correctGuess}
-      />
-      {nextQuestionButton ? (
-        <Button label="Next Question" onClick={applyNextQuestion}></Button>
-      ) : (
-        ""
-      )}
+      {console.log(guessAttempt)}
+      <div className="inline-block">
+        <QuestionSet
+          title={slug}
+          questionData={questionData}
+          index={index}
+          inputElement={inputElement}
+          submitGuess={submitGuess}
+          score={correctGuess}
+        />
+
+        {nextQuestionButton ? (
+          <Button label="Next Question" onClick={applyNextQuestion}></Button>
+        ) : (
+          ""
+        )}
+        {correctAnswer ? <p> Correct </p> : ""}
+
+        {wrongAnswer ? (
+          <div>
+            The Correct Answer was {questionData[index].answer}
+            <br></br>
+            Your Answer was {guessAttempt}
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };
