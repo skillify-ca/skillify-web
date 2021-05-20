@@ -72,6 +72,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   return (
     <div>
       <Navbar />
+
       <div className=" flex-row">
         <QuestionSet
           title={slug}
@@ -111,6 +112,7 @@ const PracticeQuiz = ({ slug, skill }) => {
           ""
         )}
       </div>
+
     </div>
   );
 };

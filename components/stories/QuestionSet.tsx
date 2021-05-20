@@ -15,6 +15,8 @@ import { MultipleChoiceSentence } from "./MultipleChoiceSentence";
 import { AdditionProperty } from "./MultipleChoiceTypes";
 import { MultipleChoiceWord } from "./MultipleChoiceWord";
 import { FillBlank } from "./FillBlank";
+import { MultiplicationArray } from "./MultiplicationArray";
+import { MultiplicationEqualGroups } from "./MultiplicationEqualGroups";
 
 type QuestionSetProps = {
   title: string;
@@ -124,6 +126,29 @@ const QuestionSet = ({
           submitGuess={submitGuess}
         />
       );
+    } else if (
+      questionData[index].questionType === QuestionType.ARRAY_QUESTION
+    ) {
+      {
+        return (
+          <MultiplicationArray
+            question={questionData[index]}
+            submitGuess={submitGuess}
+          />
+        );
+      }
+    } else if (
+      questionData[index].questionType ===
+      QuestionType.MULTIPLICATION_EQUAL_GROUPS
+    ) {
+      {
+        return (
+          <MultiplicationEqualGroups
+            question={questionData[index]}
+            submitGuess={submitGuess}
+          />
+        );
+      }
     }
 
     return (
@@ -144,6 +169,7 @@ const QuestionSet = ({
           {!quiz ? (
             <div>
               Score: {score} / {index + 1}
+
             </div>
           ) : (
             ""
