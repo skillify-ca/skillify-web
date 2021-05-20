@@ -140,19 +140,6 @@ export const DiagnosticConclusion = ({
         </p>
         <p>{getSummaryText()}</p>
       </div>
-      <div className="bg-white p-4 flex flex-col sm:flex-row gap-4 items-center rounded-lg">
-        <p className="font-bold">Enter your email to save this report</p>
-        <input
-          autoFocus
-          onFocus={(e) => (e.target.value = "")}
-          id="guess"
-          type="text"
-          autoComplete="off"
-          className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
-          placeholder="Email"
-        />
-        <Button backgroundColor="blue" textColor="white" label="Submit" />
-      </div>
       <div className="bg-white p-4 rounded-lg">
         <p className="pb-4">Select a topic to get a detailed breakdown</p>
         <div className="grid grid-cols-2">
@@ -244,7 +231,7 @@ export const DiagnosticConclusion = ({
         <p className="font-bold">Make practice fun with Math Champ</p>
         <Link href="/">
           <Button
-            label="Let's Practice"
+            label="Sign Up"
             textColor="white"
             backgroundColor="green"
           />
