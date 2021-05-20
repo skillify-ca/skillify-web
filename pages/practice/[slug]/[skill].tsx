@@ -81,6 +81,7 @@ const PracticeQuiz = ({ slug, skill }) => {
           inputElement={inputElement}
           submitGuess={submitGuess}
           score={correctGuess}
+          disabled={correctAnswer || wrongAnswer}
         />
         {correctAnswer ? (
           <p>
@@ -112,7 +113,6 @@ const PracticeQuiz = ({ slug, skill }) => {
           ""
         )}
       </div>
-
     </div>
   );
 };

@@ -26,6 +26,7 @@ type QuestionSetProps = {
   submitGuess: (guessData: GuessData) => void;
   score: number;
   quiz?: boolean;
+  disabled?: boolean;
 };
 
 const QuestionSet = ({
@@ -35,6 +36,7 @@ const QuestionSet = ({
   submitGuess,
   score,
   quiz,
+  disabled = false,
 }: QuestionSetProps) => {
   const questionComponent = () => {
     if (questionData[index].questionType === QuestionType.VERTICAL_EQUATION) {
@@ -169,14 +171,18 @@ const QuestionSet = ({
           {!quiz ? (
             <div>
               Score: {score} / {index + 1}
-
             </div>
           ) : (
             ""
           )}
         </p>
       </div>
-      <Card size="large">{questionData[index] && questionComponent()}</Card>
+      <div>
+        {disabled && (
+          <div className="bg-gray-500 bg-opacity-60 w-96 h-96 fixed z-10" />
+        )}
+        <Card size="large">{questionData[index] && questionComponent()}</Card>
+      </div>
     </div>
   );
 };
