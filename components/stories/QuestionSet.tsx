@@ -143,7 +143,7 @@ const QuestionSet = ({
           <br></br>
           {!quiz ? (
             <div>
-              Score: {score} / {questionData.length}
+              Score: {score} / {index + 1}
             </div>
           ) : (
             ""
