@@ -54,7 +54,9 @@ const PracticeQuiz = ({ slug, skill }) => {
 
   const submitGuess = (guess: GuessData) => {
     if (index < questionData.length && !indexCap) {
-      setGuessAttempt(guess.guess);
+      if (guess.guess != "") {
+        setGuessAttempt(guess.guess);
+      }
       if (index == questionData.length - 1) {
         setIndexCap(true);
       }
@@ -80,19 +82,31 @@ const PracticeQuiz = ({ slug, skill }) => {
           score={correctGuess}
         />
         {correctAnswer ? (
-          <p> Correct </p>
+          <p>
+            Correct,{" "}
+            <span className="font-bold text-green-400">{guessAttempt}</span> was
+            the answer
+          </p>
         ) : wrongAnswer ? (
           <div>
-            The Correct Answer was {questionData[index].answer}
+            The correct answer was{" "}
+            <span className="font-bold text-green-400">
+              {questionData[index].answer}
+            </span>
             <br></br>
-            Your Answer was {guessAttempt}
+            Your answer was{" "}
+            <span className="font-bold text-red-500"> {guessAttempt} </span>
           </div>
         ) : (
           ""
         )}
 
         {nextQuestionButton ? (
-          <Button label="Next Question" onClick={applyNextQuestion}></Button>
+          <Button
+            label="Next Question"
+            backgroundColor="yellow"
+            onClick={applyNextQuestion}
+          ></Button>
         ) : (
           ""
         )}
