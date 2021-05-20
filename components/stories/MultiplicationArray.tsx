@@ -36,15 +36,15 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
     };
   };
   //let horizontal = new Array;
-  let horizontal = Array.from(Array(Number.parseInt(parse().first)).keys());
-  let columns = Array.from(Array(Number.parseInt(parse().second)).keys());
+  let horizontal = Array.from(Array(Number.parseInt(parse().second)).keys());
+  let columns = Array.from(Array(Number.parseInt(parse().first)).keys());
   console.log(parse().first);
   console.log(parse().second);
   return (
     <div>
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 items-center">
         {horizontal.map((it) => (
-          <div className="flex flew-row gap-1 justify-items-center">
+          <div className="flex flew-row gap-1 ">
             {columns.map((it) => (
               <div className="bg-green-700 w-8 h-8 border-gray-50 border-1 hover:gap-1 hover:bg-green-400 hover:scale-125 transform"></div>
             ))}
@@ -52,7 +52,7 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
         ))}
       </div>
       <div className="flex flex-col gap-2">
-        <div className="text-8xl flex flex-col flex-end items-end border-b-8 border-green-900"></div>
+        <div className="mt-1 border-b-8 border-green-900"></div>
         <div className="text-3xl text-green-500 flex-col text-center">
           {parse().first} x {parse().second}
         </div>
