@@ -18,7 +18,6 @@ export type Question = {
   wordProblem?: WordProblemModel;
   multipleChoice?: MCModel;
   fillInTheBlank?: fillBlankModel;
-  image?: string;
 };
 
 export type MCOption = {

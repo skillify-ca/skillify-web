@@ -1,0 +1,22 @@
+import React from "react";
+import { Story, Meta } from "@storybook/react";
+
+import {
+  MultiplicationArray,
+  MultiplicationArrayProp,
+} from "./MultiplicationArray";
+
+export default {
+  title: "Multiplication Array",
+  component: MultiplicationArray,
+  argTypes: {},
+} as Meta;
+
+const Template: Story<MultiplicationArrayProp> = (args) => (
+  <MultiplicationArray {...args} />
+);
+
+export const Primary = Template.bind({});
+Primary.args = {
+  question: { text: "5 x 5", image: "/ArrayQ/2X3.png" },
+};

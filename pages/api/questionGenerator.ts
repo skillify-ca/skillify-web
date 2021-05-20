@@ -71,16 +71,13 @@ export function getArrayMultiplicationQuestion(
   skill: Skill
 ): Question {
   let text = `${a} x ${b} =`;
-  let arrayImage;
-  arrayImage = createArrayImage(a * b, b);
   return {
     text: text,
     answer: (a * b).toString(),
     answerType: AnswerType.NUMBER,
     questionType: QuestionType.ARRAY_QUESTION,
     operator: "x",
-    skill: skill,
-    image: arrayImage,
+    skill: skill, 
   };
 }
 function getRandomMultiplicationQuestion(
@@ -90,7 +87,7 @@ function getRandomMultiplicationQuestion(
 ) {
   const multiply = (a: number, b: number) => a * b;
   const randomPick = getRndInteger(0, 2);
-  if (skill === Skill.MULTIPLICATION_5 && randomPick === 1) {
+  if (skill == Skill.MULTIPLICATION_5 && randomPick === 1) {
     const a = getRndInteger(1, 6);
     const b = getRndInteger(1, 6);
     return getArrayMultiplicationQuestion(a, b, skill);
@@ -141,19 +138,14 @@ function getRandomBinaryQuestion(
     QuestionType.BINARY_WORD_PROBLEM,
     QuestionType.VERTICAL_EQUATION,
     QuestionType.TRUE_OR_FALSE_PROBLEM,
-    QuestionType.ARRAY_QUESTION,
   ];
   let typeIndex = getRndInteger(0, types.length);
-  while ((operator == "+" || operator == "-") && typeIndex == 4) {
-    typeIndex = getRndInteger(0, types.length);
-  }
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
   let text;
   const type = types[typeIndex];
   text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} =`;
   let wordProblemModel;
-  let arrayImage;
   //condition for if it is wordProblem
   if (type === QuestionType.BINARY_WORD_PROBLEM) {
     wordProblemModel = createWordProblemModel(operator);
@@ -170,6 +162,5 @@ function getRandomBinaryQuestion(
     operator: operator,
     wordProblem: wordProblemModel,
     skill: skill,
-    image: arrayImage,
   };
 }

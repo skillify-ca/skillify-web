@@ -10,5 +10,5 @@ test("generate Array Multiplication question", async () => {
     const question = getArrayMultiplicationQuestion(a, b, Skill.MULTIPLICATION_5);
   
     // Assert
-    expect(question.image).toBe("/ArrayQ/3X4.png");
+    expect(question.text).toBe("4 x 3");
   });
