@@ -9,9 +9,8 @@ export interface MultiplicationArrayProp {
   submitGuess: (guess: GuessData) => void;
 }
 
-/**
- * Primary UI component for user interaction
- */
+// Array Question type is a new way to visualize multiplication problem using squares
+// Size restriction is 5 x 5 for now
 export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
   question,
   submitGuess,
@@ -35,16 +34,13 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
       second: parts[2],
     };
   };
-  //let horizontal = new Array;
   let horizontal = Array.from(Array(Number.parseInt(parse().second)).keys());
   let columns = Array.from(Array(Number.parseInt(parse().first)).keys());
-  console.log(parse().first);
-  console.log(parse().second);
   return (
     <div>
-      <div className="flex flex-col gap-1 items-center">
+      <div className="flex flex-col gap-2 items-center">
         {horizontal.map((it) => (
-          <div className="flex flew-row gap-1 ">
+          <div className="flex flew-row gap-2">
             {columns.map((it) => (
               <div className="bg-green-700 w-8 h-8 border-gray-50 border-1 hover:gap-1 hover:bg-green-400 hover:scale-125 transform"></div>
             ))}
