@@ -96,11 +96,11 @@ export const SkillCard: React.FC<SkillCardProps> = ({
               </select>
 
               <div className="flex gap-4">
-                <Link href={"quiz/" + link + "?level=" + level}>
+                <Link href={"video/"}>
                   <Button
-                    backgroundColor="blue"
+                    backgroundColor="purple"
                     textColor="white"
-                    label="Quiz"
+                    label="Videos"
                   />
                 </Link>
                 <Link href={"statements/" + link + "?level=" + level}>
@@ -110,11 +110,11 @@ export const SkillCard: React.FC<SkillCardProps> = ({
                     label="Practice"
                   />
                 </Link>
-                <Link href={"video/"}>
+                <Link href={"quiz/" + link + "?level=" + level}>
                   <Button
-                    backgroundColor="purple"
+                    backgroundColor="blue"
                     textColor="white"
-                    label="Videos"
+                    label="Quiz"
                   />
                 </Link>
               </div>

@@ -35,7 +35,6 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
       second: parts[2],
     };
   };
-
   let groups = Array.from(Array(Number.parseInt(parse().first)).keys());
   let itemsInGroup = Array.from(Array(Number.parseInt(parse().second)).keys());
   return (

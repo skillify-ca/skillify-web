@@ -170,7 +170,7 @@ export default function Outline() {
 
   return (
     <div className="flex flex-col gap-8 justify-between w-full col-span-2 items-center mb-4 p-4 mx-auto">
-      {session ? loggedInComponent : loggedOutComponent}
+      {session || loading ? loggedInComponent : loggedOutComponent}
     </div>
   );
 }

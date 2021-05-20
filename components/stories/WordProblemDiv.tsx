@@ -25,8 +25,12 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
-      submitGuess(e);
+      onSubmit();
     }
+  };
+  const onSubmit = () => {
+    setGuess("");
+    submitGuess({ guess: guess, isCorrect: guess === question.answer });
   };
   const parse = () => {
     const parts = question.text.split(" ");
@@ -77,7 +81,7 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
         <img src={noun1.image} width="60px" height="85px" />
       </div>
       <Button
-        onClick={submitGuess}
+        onClick={onSubmit}
         label="Submit"
         backgroundColor="blue"
         textColor="white"
