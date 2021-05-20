@@ -17,6 +17,7 @@ export type Question = {
   operator?: string;
   wordProblem?: WordProblemModel;
   multipleChoice?: MCModel;
+  fillInTheBlank?: fillBlankModel;
   image?: string;
 };
 
@@ -26,4 +27,11 @@ export type MCOption = {
 };
 export type MCModel = {
   options: Array<MCOption>;
+};
+export type fillBlankModel = {
+  options: Array<FillOption>;
+};
+
+export type FillOption = {
+  text: string;
 };
