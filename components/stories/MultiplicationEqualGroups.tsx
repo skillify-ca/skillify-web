@@ -18,6 +18,7 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
   ...props
 }) => {
   const [guess, setGuess] = useState("");
+  const [guess2, setGuess2] = useState("");
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
@@ -26,7 +27,15 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
   };
   const onSubmit = () => {
     setGuess("");
-    submitGuess({ guess: guess, isCorrect: guess === question.answer });
+    const parts = question.text.split(" ");
+    submitGuess({
+      guess: guess + "," + guess2,
+      isCorrect:
+        guess === parts[0] &&
+        guess2 === parts[2] &&
+        (Number.parseInt(guess) * Number.parseInt(guess2)).toString() ===
+          question.answer,
+    });
   };
   const parse = () => {
     const parts = question.text.split(" ");
@@ -43,7 +52,7 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
         {groups.map((it) => (
           <div className="flex flew-row flex-wrap items-center justify-center gap-1 bg-blue-300 w-20 h-20 border-gray-50 border-1 hover:gap-1 hover:bg-green-400 hover:scale-125 transform">
             {itemsInGroup.map((it) => (
-              <div className="flex bg-purple-600 h-1/4 w-1/4 border-black"></div>
+              <div className="flex bg-purple-600 h-1/4 w-1/4 border-black rounded-3xl"></div>
             ))}
           </div>
         ))}
@@ -58,8 +67,8 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
         />
         groups of
         <EqualGroupsInput
-          guess={guess}
-          setGuess={setGuess}
+          guess={guess2}
+          setGuess={setGuess2}
           handleKeypress={handleKeypress}
         />
         <div className="text-sm ml-4">
