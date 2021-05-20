@@ -22,6 +22,7 @@ type QuestionSetProps = {
   index: number;
   inputElement: any;
   submitGuess: (guessData: GuessData) => void;
+  score: number;
 };
 
 const QuestionSet = ({
@@ -29,6 +30,7 @@ const QuestionSet = ({
   questionData,
   index,
   submitGuess,
+  score,
 }: QuestionSetProps) => {
   const questionComponent = () => {
     if (questionData[index].questionType === QuestionType.VERTICAL_EQUATION) {
@@ -136,6 +138,8 @@ const QuestionSet = ({
         <p className="text-xl font-bold">{title}</p>
         <p className="font-bold text-gray-400">
           Question: {index + 1} / {questionData.length}
+          <br></br>
+          Score: {score} / {questionData.length}
         </p>
       </div>
       <Card size="large">{questionData[index] && questionComponent()}</Card>
