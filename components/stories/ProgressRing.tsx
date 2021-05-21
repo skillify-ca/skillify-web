@@ -2,9 +2,10 @@ import React from "react";
 
 export interface ProgressRingProps {
   percentage: number;
+  radius: number;
 }
 
-const ProgressRing = ({ percentage }: ProgressRingProps) => {
+const ProgressRing = ({ percentage, radius }: ProgressRingProps) => {
   let progressRingColor;
   if (percentage >= 70) {
     progressRingColor = "green";
@@ -16,10 +17,10 @@ const ProgressRing = ({ percentage }: ProgressRingProps) => {
 
   return (
     <div
-      className={`ring-${progressRingColor}-500 rounded-full ring-8 ring-offset-2 w-32 h-32 mb-8`}
+      className={`ring-${progressRingColor}-500 rounded-full ring-8 ring-offset-2 w-${radius} h-${radius}`}
     >
       <p
-        className={`flex justify-center items-center bg-${progressRingColor}-200 shadow-inner ring-${progressRingColor}-500 text-center rounded-full ring-8 w-32 h-32 text-3xl font-semibold`}
+        className={`flex justify-center items-center bg-${progressRingColor}-200 shadow-inner ring-${progressRingColor}-500 text-center rounded-full ring-8 w-${radius} h-${radius} text-3xl font-semibold`}
       >
         {percentage}%
       </p>

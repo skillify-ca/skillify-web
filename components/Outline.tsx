@@ -7,6 +7,7 @@ import { INIT_USER_SKILLS } from "../graphql/initUserSkills";
 import { userId } from "../graphql/utils/constants";
 import Card from "./stories/Card";
 import { Button } from "./stories/Button";
+import ProgressRing from "./stories/ProgressRing";
 export default function Outline() {
   const skillsEndRef = useRef(null);
   const [session, loading] = useSession();
@@ -49,7 +50,6 @@ export default function Outline() {
   }, [userSkillsData, session]);
 
   const getOverallProgress = () => {
-    console.log(skills);
     if (skills && skills.length > 0) {
       return Math.floor((100 * (unlockedSkills.length - 1)) / skills.length);
     }
@@ -62,10 +62,10 @@ export default function Outline() {
         <Card size="large">
           <div className="flex flex-col gap-8 items-center">
             <p className="text-xl font-bold font-sans">Math Knowledge Tree</p>
-            <p className="text-sm">Practice different math-related skills</p>
-            <p className="flex justify-center items-center bg-purple-100 shadow-inner ring-blue-400 text-center rounded-full ring-8 w-16 h-16">
-              {getOverallProgress()}%
+            <p className="text-sm mb-4">
+              Practice different math-related skills
             </p>
+            <ProgressRing percentage={getOverallProgress()} radius={28} />
           </div>
         </Card>
       </div>

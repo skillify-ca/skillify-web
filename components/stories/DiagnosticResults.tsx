@@ -16,7 +16,7 @@ const DiagnosticResults = ({
   return (
     <div className="flex flex-col items-center bg-white w-full sm:w-3/4 p-16">
       <div className="text-2xl font-bold mb-12">Results</div>
-      <ProgressRing percentage={percentage} />
+      <ProgressRing percentage={percentage} radius={32} />
       <div className="text-xl mb-12">
         {" "}
         {correctGuesses}/{index} Correct{" "}
