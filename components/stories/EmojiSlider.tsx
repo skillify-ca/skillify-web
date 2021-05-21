@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Story, Meta } from "@storybook/react";
 
-export default {
-  title: "Emoji Slider",
-} as Meta;
-
-const Template: Story = () => {
+const EmojiSlider = () => {
   const [mood, setMood] = useState("😐");
   const [opinion, setOpinion] = useState("Satisfactory");
-
-  useEffect;
 
   function handleChange(e) {
     const val = e.target.value;
@@ -43,4 +37,4 @@ const Template: Story = () => {
   );
 };
 
-export const Primary = Template.bind({});
+export default EmojiSlider;
