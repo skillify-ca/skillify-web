@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
 import { Button } from "./Button";
@@ -19,7 +19,13 @@ export const FillBlank: React.FC<FillBlankProp> = ({
   submitGuess,
   ...props
 }) => {
-  const [guess, setGuess] = useState("");
+  useEffect(() => {
+    (document.getElementById("input1") as HTMLInputElement).disabled = false;
+    (document.getElementById("input2") as HTMLInputElement).disabled = true;
+    (document.getElementById("input3") as HTMLInputElement).disabled = true;
+    (document.getElementById("input4") as HTMLInputElement).disabled = true;
+  }, []);
+
   const [button1Visible, setButton1Visible] = useState(true);
   const [button2Visible, setButton2Visible] = useState(false);
   const [button3Visible, setButton3Visible] = useState(false);
@@ -47,24 +53,16 @@ export const FillBlank: React.FC<FillBlankProp> = ({
     submitGuess({ guess: "", isCorrect: true });
     setButton1Visible(true);
     setButton4Visible(false);
-    (document.getElementById("input4") as HTMLInputElement).disabled = true;
     (document.getElementById("input1") as HTMLInputElement).disabled = false;
+    (document.getElementById("input2") as HTMLInputElement).disabled = true;
+    (document.getElementById("input3") as HTMLInputElement).disabled = true;
+    (document.getElementById("input4") as HTMLInputElement).disabled = true;
     (document.getElementById("input1") as HTMLInputElement).value = "";
     (document.getElementById("input2") as HTMLInputElement).value = "";
     (document.getElementById("input3") as HTMLInputElement).value = "";
     (document.getElementById("input4") as HTMLInputElement).value = "";
   }
 
-  const handleKeypress = (e) => {
-    //it triggers by pressing the enter key
-    if (e.charCode === 13) {
-      onSubmit();
-    }
-  };
-  const onSubmit = () => {
-    setGuess("");
-    submitGuess({ guess: guess, isCorrect: guess === "33" });
-  };
   const parse = () => {
     let index1 = 0;
     let index2 = 0;
