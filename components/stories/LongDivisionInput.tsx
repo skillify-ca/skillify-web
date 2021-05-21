@@ -1,6 +1,7 @@
 import React from "react";
 
 export interface LongDivisionInputProps {
+  id: string;
   guess: string;
   setGuess: (string) => void;
   handleKeypress?: (e) => void;
@@ -11,6 +12,7 @@ export interface LongDivisionInputProps {
  * Input tag in which user inputs their quotient answer (width changes according to dividend's # of digits)
  */
 export const LongDivisionInput: React.FC<LongDivisionInputProps> = ({
+  id,
   guess,
   setGuess,
   handleKeypress,
@@ -19,7 +21,7 @@ export const LongDivisionInput: React.FC<LongDivisionInputProps> = ({
   return (
     <input
       autoFocus
-      id="guess"
+      id={id}
       autoComplete="off"
       value={guess}
       onChange={(e) => setGuess(e.target.value)}
