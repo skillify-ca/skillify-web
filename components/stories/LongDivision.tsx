@@ -8,6 +8,7 @@ import { LongDivisionInput } from "./LongDivisionInput";
 export interface LongDivisionProp {
   question: Question;
   submitGuess: (guess: GuessData) => void;
+  isRemainder?: "noRemainder" | "remainder";
 }
 
 /**
@@ -15,6 +16,7 @@ export interface LongDivisionProp {
  */
 export const LongDivision: React.FC<LongDivisionProp> = ({
   question,
+  isRemainder = "noRemainder",
   submitGuess,
   ...props
 }) => {
@@ -28,12 +30,6 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
     }
   };
 
-  const onSubmit = () => {
-    setGuess("");
-    submitGuess({ guess: guess, isCorrect: guess === question.answer });
-    (document.getElementById("guess") as HTMLInputElement).value = "";
-  };
-
   const parse = () => {
     const parts = question.text && question.text.split(" ");
     return {
@@ -42,19 +38,10 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
     };
   };
 
-  const displayRemainder = () => {
-    return (
-      <>
-        R
-        <LongDivisionInput
-          id="remainder"
-          guess={guess2}
-          setGuess={setGuess2}
-          handleKeypress={handleKeypress}
-          width={width}
-        />
-      </>
-    );
+  const onSubmit = () => {
+    setGuess("");
+    submitGuess({ guess: guess, isCorrect: guess === question.answer });
+    (document.getElementById("guess") as HTMLInputElement).value = "";
   };
 
   const num1 = parseInt(parse().first);
@@ -66,7 +53,27 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
     width = 6;
   }
 
-  let remainder = 0;
+  let remainderComponent;
+  switch (isRemainder) {
+    case "noRemainder":
+      " ";
+      break;
+    case "remainder":
+      remainderComponent = (
+        <div>
+          R&nbsp;
+          <LongDivisionInput
+            id="guess2"
+            guess={guess2}
+            setGuess={setGuess2}
+            handleKeypress={handleKeypress}
+            width={width}
+          />
+        </div>
+      );
+      break;
+  }
+
   return (
     <div>
       <div className="ml-4 flex flex-row">
@@ -76,13 +83,13 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
         <div className="flex flex-col">
           <div className="flex flex-row gap-2">
             <LongDivisionInput
-              id="quotient"
+              id="guess"
               guess={guess}
               setGuess={setGuess}
               handleKeypress={handleKeypress}
               width={width}
             />
-            {remainder > 0 ? displayRemainder() : ""}
+            {remainderComponent}
           </div>
           <span className="border-t-2 border-l-2 border-black text-lg">
             {parse().first}
