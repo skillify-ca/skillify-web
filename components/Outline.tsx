@@ -49,6 +49,7 @@ export default function Outline() {
   }, [userSkillsData, session]);
 
   const getOverallProgress = () => {
+    console.log(skills);
     if (skills && skills.length > 0) {
       return Math.floor((100 * (unlockedSkills.length - 1)) / skills.length);
     }
