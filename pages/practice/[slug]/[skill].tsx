@@ -10,7 +10,6 @@ import { Button } from "../../../components/stories/Button";
 import ReactCardFlip from "react-card-flip";
 import Card from "../../../components/stories/Card";
 
-
 const PracticeQuiz = ({ slug, skill }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [index, setIndex] = useState(0);
@@ -43,7 +42,6 @@ const PracticeQuiz = ({ slug, skill }) => {
 
   const applyNextQuestion = () => {
     toggleFlip();
-
 
     setNextQuestionButton(false);
     setCorrectAnswer(false);
@@ -85,8 +83,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   return (
     <div>
       <Navbar />
-
-      <div className="justify-items-end">
+      <div className=" flex flex-row-reverse justify-items-end">
         <p className="font-bold text-gray-400">
           Question: {index + 1} / {questionData.length}
           <br></br>
@@ -103,7 +100,6 @@ const PracticeQuiz = ({ slug, skill }) => {
             inputElement={inputElement}
             submitGuess={submitGuess}
             score={correctGuess}
-
             practice={true}
           />
         </div>
