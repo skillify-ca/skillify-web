@@ -7,8 +7,12 @@ import Navbar from "../../../components/Navbar";
 import { Skill } from "../../api/skill";
 import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGenerator";
 import { Button } from "../../../components/stories/Button";
+import ReactCardFlip from "react-card-flip";
+import Card from "../../../components/stories/Card";
+
 
 const PracticeQuiz = ({ slug, skill }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
   const [index, setIndex] = useState(0);
   const [guessAttempt, setGuessAttempt] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState(false);
@@ -29,11 +33,16 @@ const PracticeQuiz = ({ slug, skill }) => {
 
   const inputElement = useRef(null);
 
+  const handleClick = () => {
+    setIsFlipped(!isFlipped);
+  };
+
   useEffect(() => {
     setQuestionData(generatePracticeQuestions(slug, skill));
   }, []);
 
   const applyNextQuestion = () => {
+    handleClick();
     setNextQuestionButton(false);
     setCorrectAnswer(false);
     setWrongAnswer(false);
@@ -53,6 +62,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   };
 
   const submitGuess = (guess: GuessData) => {
+    handleClick();
     if (index < questionData.length && !indexCap) {
       if (guess.guess != "") {
         setGuessAttempt(guess.guess);
@@ -72,47 +82,49 @@ const PracticeQuiz = ({ slug, skill }) => {
   return (
     <div>
       <Navbar />
+      <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
+        <div className="justify-items-center align-middle w-50">
+          <QuestionSet
+            title={slug}
+            questionData={questionData}
+            index={index}
+            inputElement={inputElement}
+            submitGuess={submitGuess}
+            score={correctGuess}
+          />
+        </div>
+        <Card size="large">
+          {correctAnswer ? (
+            <p>
+              Correct,{" "}
+              <span className="font-bold text-green-400">{guessAttempt}</span>{" "}
+              was the answer
+            </p>
+          ) : wrongAnswer ? (
+            <div>
+              The correct answer was{" "}
+              <span className="font-bold text-green-400">
+                {questionData[index].answer}
+              </span>
+              <br></br>
+              Your answer was{" "}
+              <span className="font-bold text-red-500"> {guessAttempt} </span>
+            </div>
+          ) : (
+            ""
+          )}
 
-      <div className=" flex-row">
-        <QuestionSet
-          title={slug}
-          questionData={questionData}
-          index={index}
-          inputElement={inputElement}
-          submitGuess={submitGuess}
-          score={correctGuess}
-        />
-        {correctAnswer ? (
-          <p>
-            Correct,{" "}
-            <span className="font-bold text-green-400">{guessAttempt}</span> was
-            the answer
-          </p>
-        ) : wrongAnswer ? (
-          <div>
-            The correct answer was{" "}
-            <span className="font-bold text-green-400">
-              {questionData[index].answer}
-            </span>
-            <br></br>
-            Your answer was{" "}
-            <span className="font-bold text-red-500"> {guessAttempt} </span>
-          </div>
-        ) : (
-          ""
-        )}
-
-        {nextQuestionButton ? (
-          <Button
-            label="Next Question"
-            backgroundColor="yellow"
-            onClick={applyNextQuestion}
-          ></Button>
-        ) : (
-          ""
-        )}
-      </div>
-
+          {nextQuestionButton ? (
+            <Button
+              label="Next Question"
+              backgroundColor="yellow"
+              onClick={applyNextQuestion}
+            ></Button>
+          ) : (
+            ""
+          )}
+        </Card>
+      </ReactCardFlip>
     </div>
   );
 };
