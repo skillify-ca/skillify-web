@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
 import { Button } from "./Button";
@@ -19,10 +19,12 @@ export const FillBlank: React.FC<FillBlankProp> = ({
   submitGuess,
   ...props
 }) => {
-  // (document.getElementById("input1") as HTMLInputElement).disabled = false;
-  // (document.getElementById("input2") as HTMLInputElement).disabled = true;
-  // (document.getElementById("input3") as HTMLInputElement).disabled = true;
-  // (document.getElementById("input4") as HTMLInputElement).disabled = true;
+  useEffect(() => {
+    (document.getElementById("input1") as HTMLInputElement).disabled = false;
+    (document.getElementById("input2") as HTMLInputElement).disabled = true;
+    (document.getElementById("input3") as HTMLInputElement).disabled = true;
+    (document.getElementById("input4") as HTMLInputElement).disabled = true;
+  }, []);
 
   const [button1Visible, setButton1Visible] = useState(true);
   const [button2Visible, setButton2Visible] = useState(false);
