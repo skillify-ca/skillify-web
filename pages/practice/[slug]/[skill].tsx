@@ -114,7 +114,7 @@ const PracticeQuiz = ({ slug, skill }) => {
             <p className="font-bold text-gray-400 underline">
               Correct,{" "}
               <span className="font-bold text-green-400">{guessAttempt}</span>{" "}
-              was the answer
+              was the answer!
             </p>
           ) : wrongAnswer ? (
             <div>
@@ -129,6 +129,16 @@ const PracticeQuiz = ({ slug, skill }) => {
                 Your answer was{" "}
                 <span className="font-bold text-red-500"> {guessAttempt} </span>
               </p>
+=======
+            <div className="italic text-gray-400 font-bold space-y-16">
+              <p>The correct answer was </p>
+              <span className="font-bold text-green-400">
+                {questionData[index].answer}
+              </span>
+              <br></br>
+              <p>Your answer was </p>
+              <span className="font-bold text-red-500"> {guessAttempt} </span>
+
             </div>
           ) : (
             ""
