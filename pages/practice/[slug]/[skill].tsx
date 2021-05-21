@@ -91,13 +91,7 @@ const PracticeQuiz = ({ slug, skill }) => {
         </p>
       </div>
 
-
-      <ReactCardFlip
-        isFlipped={isFlipped}
-        flipDirection="vertical"
-        infinite={true}
-      >
-
+      <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
         <div className="justify-items-center align-middle w-50">
           <QuestionSet
             title={slug}
@@ -111,34 +105,20 @@ const PracticeQuiz = ({ slug, skill }) => {
         </div>
         <Card size="large">
           {correctAnswer ? (
-            <p className="font-bold text-gray-400 underline">
+            <p>
               Correct,{" "}
               <span className="font-bold text-green-400">{guessAttempt}</span>{" "}
-              was the answer!
+              was the answer
             </p>
           ) : wrongAnswer ? (
             <div>
-              <p className="font-bold text-gray-400 underline">
-                The correct answer was{" "}
-                <span className="font-bold text-green-400">
-                  {questionData[index].answer}
-                </span>
-              </p>
-              <br></br>
-              <p className="font-bold text-gray-400 underline">
-                Your answer was{" "}
-                <span className="font-bold text-red-500"> {guessAttempt} </span>
-              </p>
-=======
-            <div className="italic text-gray-400 font-bold space-y-16">
-              <p>The correct answer was </p>
+              The correct answer was{" "}
               <span className="font-bold text-green-400">
                 {questionData[index].answer}
               </span>
               <br></br>
-              <p>Your answer was </p>
+              Your answer was{" "}
               <span className="font-bold text-red-500"> {guessAttempt} </span>
-
             </div>
           ) : (
             ""
