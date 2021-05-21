@@ -10,7 +10,6 @@ import { Button } from "../../../components/stories/Button";
 import ReactCardFlip from "react-card-flip";
 import Card from "../../../components/stories/Card";
 
-
 const PracticeQuiz = ({ slug, skill }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [index, setIndex] = useState(0);
@@ -33,7 +32,7 @@ const PracticeQuiz = ({ slug, skill }) => {
 
   const inputElement = useRef(null);
 
-  const handleClick = () => {
+  const toggleFlip = () => {
     setIsFlipped(!isFlipped);
   };
 
@@ -42,7 +41,8 @@ const PracticeQuiz = ({ slug, skill }) => {
   }, []);
 
   const applyNextQuestion = () => {
-    handleClick();
+    toggleFlip();
+
     setNextQuestionButton(false);
     setCorrectAnswer(false);
     setWrongAnswer(false);
@@ -62,7 +62,8 @@ const PracticeQuiz = ({ slug, skill }) => {
   };
 
   const submitGuess = (guess: GuessData) => {
-    handleClick();
+    toggleFlip();
+
     if (index < questionData.length && !indexCap) {
       if (guess.guess != "") {
         setGuessAttempt(guess.guess);
@@ -82,6 +83,14 @@ const PracticeQuiz = ({ slug, skill }) => {
   return (
     <div>
       <Navbar />
+      <div className=" flex flex-row-reverse justify-items-end">
+        <p className="font-bold text-gray-400">
+          Question: {index + 1} / {questionData.length}
+          <br></br>
+          Score: {correctGuess} / {index + 1}
+        </p>
+      </div>
+
       <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
         <div className="justify-items-center align-middle w-50">
           <QuestionSet
@@ -91,6 +100,7 @@ const PracticeQuiz = ({ slug, skill }) => {
             inputElement={inputElement}
             submitGuess={submitGuess}
             score={correctGuess}
+            practice={true}
           />
         </div>
         <Card size="large">
