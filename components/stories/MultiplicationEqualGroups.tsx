@@ -50,7 +50,7 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
     <div>
       <div className="flex flex-row flex-wrap gap-1 justify-center items-center">
         {groups.map((it) => (
-          <div className="flex flew-row flex-wrap items-center justify-center gap-1 bg-blue-300 w-24 h-24 p-2 rounded-full">
+          <div className="flex flew-row flex-wrap items-center justify-center gap-1 bg-blue-300 w-24 h-24 p-4 rounded-full">
             {itemsInGroup.map((it) => (
               <div className="flex bg-purple-600 h-1/4 w-1/4 border-black rounded-3xl hover:gap-1 hover:bg-purple-400 hover:scale-125 transform"></div>
             ))}
