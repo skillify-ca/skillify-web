@@ -17,6 +17,7 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
   submitGuess,
   ...props
 }) => {
+  const [visibility, setVisibility] = useState(false);
   const [guess, setGuess] = useState("");
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key

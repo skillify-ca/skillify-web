@@ -160,8 +160,8 @@ const QuestionSet = ({
   };
 
   return (
-    <div className="flex flex-col justify-center items-centergap-8 pb-24">
-      <div className="flex justify-between w-full p-4">
+    <div className="flex flex-col justify-center items-center gap-8">
+      <div className="flex flex-row justify-between w-full p-4 bg-yellow-400">
         <p className="text-xl font-bold">{title}</p>
         <p className="font-bold text-gray-400">
           Question: {index + 1} / {questionData.length}
@@ -169,7 +169,6 @@ const QuestionSet = ({
           {!quiz ? (
             <div>
               Score: {score} / {index + 1}
-
             </div>
           ) : (
             ""

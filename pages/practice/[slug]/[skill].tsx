@@ -9,6 +9,7 @@ import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGe
 import { Button } from "../../../components/stories/Button";
 
 const PracticeQuiz = ({ slug, skill }) => {
+  const [visibility, setVisibility] = useState(false);
   const [index, setIndex] = useState(0);
   const [guessAttempt, setGuessAttempt] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState(false);
@@ -72,47 +73,62 @@ const PracticeQuiz = ({ slug, skill }) => {
   return (
     <div>
       <Navbar />
-
-      <div className=" flex-row">
-        <QuestionSet
-          title={slug}
-          questionData={questionData}
-          index={index}
-          inputElement={inputElement}
-          submitGuess={submitGuess}
-          score={correctGuess}
-        />
-        {correctAnswer ? (
-          <p>
-            Correct,{" "}
-            <span className="font-bold text-green-400">{guessAttempt}</span> was
-            the answer
-          </p>
-        ) : wrongAnswer ? (
-          <div>
-            The correct answer was{" "}
-            <span className="font-bold text-green-400">
-              {questionData[index].answer}
-            </span>
-            <br></br>
-            Your answer was{" "}
-            <span className="font-bold text-red-500"> {guessAttempt} </span>
+      <div className="flex justify-center">
+        <div className="flex flex-row w-1/2 items-end">
+          <div className="flex flex-row items-end justify-between gap-3">
+            <QuestionSet
+              title={slug}
+              questionData={questionData}
+              index={index}
+              inputElement={inputElement}
+              submitGuess={submitGuess}
+              score={correctGuess}
+            />
+            <div className="flex items-left">
+              <img
+                onMouseEnter={() => setVisibility(true)}
+                onMouseLeave={() => setVisibility(false)}
+                src="/images/hint.png"
+                className="w-40 h-30"
+              />
+              {visibility && (
+                <p className=" transform -translate-y-12 rounded-full py-3 px-6 border-4 border-white border-dashed bg-gray-400 text-white flex flex-start w-85 h-28">
+                  The hint is: 275 + 2 = 2 _ _
+                </p>
+              )}
+            </div>
           </div>
-        ) : (
-          ""
-        )}
+          {correctAnswer ? (
+            <p>
+              Correct,{" "}
+              <span className="font-bold text-green-400">{guessAttempt}</span>{" "}
+              was the answer
+            </p>
+          ) : wrongAnswer ? (
+            <div>
+              The correct answer was{" "}
+              <span className="font-bold text-green-400">
+                {questionData[index].answer}
+              </span>
+              <br></br>
+              Your answer was{" "}
+              <span className="font-bold text-red-500"> {guessAttempt} </span>
+            </div>
+          ) : (
+            ""
+          )}
 
-        {nextQuestionButton ? (
-          <Button
-            label="Next Question"
-            backgroundColor="yellow"
-            onClick={applyNextQuestion}
-          ></Button>
-        ) : (
-          ""
-        )}
+          {nextQuestionButton ? (
+            <Button
+              label="Next Question"
+              backgroundColor="yellow"
+              onClick={applyNextQuestion}
+            ></Button>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
-
     </div>
   );
 };
