@@ -6,9 +6,15 @@ import { AnswerType, Question } from "../../api/question";
 import Navbar from "../../../components/Navbar";
 import { Skill } from "../../api/skill";
 import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGenerator";
+import { Button } from "../../../components/stories/Button";
 
 const PracticeQuiz = ({ slug, skill }) => {
   const [index, setIndex] = useState(0);
+  const [guessAttempt, setGuessAttempt] = useState("");
+  const [correctAnswer, setCorrectAnswer] = useState(false);
+  const [wrongAnswer, setWrongAnswer] = useState(false);
+  const [indexCap, setIndexCap] = useState(false);
+  const [nextQuestionButton, setNextQuestionButton] = useState(false);
   const [interval, setMyInterval] = useState(null);
   const [correctGuess, setCorrectGuess] = useState(0);
   const [questionData, setQuestionData] = useState<Question[]>([
@@ -27,11 +33,15 @@ const PracticeQuiz = ({ slug, skill }) => {
     setQuestionData(generatePracticeQuestions(slug, skill));
   }, []);
 
-  const submitGuess = (guess: GuessData) => {
+  const applyNextQuestion = () => {
+    setNextQuestionButton(false);
+    setCorrectAnswer(false);
+    setWrongAnswer(false);
+    nextQuestion();
+  };
+
+  const nextQuestion = () => {
     if (index < questionData.length - 1) {
-      if (guess.isCorrect) {
-        setCorrectGuess(correctGuess + 1);
-      }
       setIndex(index + 1);
       if (inputElement.current) {
         inputElement.current.focus();
@@ -41,17 +51,68 @@ const PracticeQuiz = ({ slug, skill }) => {
       setMyInterval(null);
     }
   };
+
+  const submitGuess = (guess: GuessData) => {
+    if (index < questionData.length && !indexCap) {
+      if (guess.guess != "") {
+        setGuessAttempt(guess.guess);
+      }
+      if (index == questionData.length - 1) {
+        setIndexCap(true);
+      }
+      if (guess.isCorrect) {
+        setCorrectGuess(correctGuess + 1);
+        setCorrectAnswer(true);
+      } else {
+        setWrongAnswer(true);
+      }
+      if (index < questionData.length - 1) setNextQuestionButton(true);
+    }
+  };
   return (
     <div>
       <Navbar />
-      <QuestionSet
-        title={slug}
-        questionData={questionData}
-        index={index}
-        inputElement={inputElement}
-        submitGuess={submitGuess}
-        score={correctGuess}
-      />
+
+      <div className=" flex-row">
+        <QuestionSet
+          title={slug}
+          questionData={questionData}
+          index={index}
+          inputElement={inputElement}
+          submitGuess={submitGuess}
+          score={correctGuess}
+        />
+        {correctAnswer ? (
+          <p>
+            Correct,{" "}
+            <span className="font-bold text-green-400">{guessAttempt}</span> was
+            the answer
+          </p>
+        ) : wrongAnswer ? (
+          <div>
+            The correct answer was{" "}
+            <span className="font-bold text-green-400">
+              {questionData[index].answer}
+            </span>
+            <br></br>
+            Your answer was{" "}
+            <span className="font-bold text-red-500"> {guessAttempt} </span>
+          </div>
+        ) : (
+          ""
+        )}
+
+        {nextQuestionButton ? (
+          <Button
+            label="Next Question"
+            backgroundColor="yellow"
+            onClick={applyNextQuestion}
+          ></Button>
+        ) : (
+          ""
+        )}
+      </div>
+
     </div>
   );
 };
