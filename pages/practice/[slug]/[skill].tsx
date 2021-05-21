@@ -8,6 +8,7 @@ import { Skill } from "../../api/skill";
 import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGenerator";
 import { Button } from "../../../components/stories/Button";
 import ReactCardFlip from "react-card-flip";
+import Card from "../../../components/stories/Card";
 
 const PracticeQuiz = ({ slug, skill }) => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -80,7 +81,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   return (
     <div>
       <Navbar />
-      <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+      <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
         <div className=" flex-row">
           <QuestionSet
             title={slug}
@@ -91,7 +92,7 @@ const PracticeQuiz = ({ slug, skill }) => {
             score={correctGuess}
           />
         </div>
-        <div>
+        <Card size="large">
           {correctAnswer ? (
             <p>
               Correct,{" "}
@@ -121,7 +122,7 @@ const PracticeQuiz = ({ slug, skill }) => {
           ) : (
             ""
           )}
-        </div>
+        </Card>
       </ReactCardFlip>
     </div>
   );
