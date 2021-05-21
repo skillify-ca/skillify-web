@@ -81,8 +81,8 @@ const PracticeQuiz = ({ slug, skill }) => {
   return (
     <div>
       <Navbar />
-      <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
-        <div className=" flex-row">
+      <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+        <div className="justify-items-center align-middle w-50">
           <QuestionSet
             title={slug}
             questionData={questionData}
