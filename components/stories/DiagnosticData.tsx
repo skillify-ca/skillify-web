@@ -14,8 +14,20 @@ type DiagnosticDataProps = {
 };
 
 const DiagnosticData = ({ skill, results }: DiagnosticDataProps) => {
+  const getBackgroundColorForTopic = (result: string) => {
+    const skillLevel = result;
+    switch (skillLevel) {
+      case "Incorrect":
+        return "bg-red-100";
+      case "Correct":
+        return "bg-green-100";
+      default:
+        return "bg-white";
+    }
+  };
+
   return (
-    <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-300 bg-blue-200 h-screen">
+    <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100 h-screen">
       <p className="mb-2 text-center font-black text-xl">
         {SkillDescription(skill)}
       </p>
@@ -30,7 +42,13 @@ const DiagnosticData = ({ skill, results }: DiagnosticDataProps) => {
         </div>
         <div>
           {getAnswerForSkill(skill, results).map((item) => (
-            <p className="p-4 border-b border-black">{item}</p>
+            <p
+              className={`${getBackgroundColorForTopic(
+                item
+              )} p-4 border-b border-black`}
+            >
+              {item}
+            </p>
           ))}
         </div>
       </div>

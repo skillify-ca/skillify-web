@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
+import { getRndColour } from "../../pages/api/random";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
@@ -36,20 +37,27 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
   };
   let horizontal = Array.from(Array(Number.parseInt(parse().second)).keys());
   let columns = Array.from(Array(Number.parseInt(parse().first)).keys());
+  const colour = getRndColour();
+  let hoverColour = "hover:bg-" + colour + "-400";
+  let nonHoverColour = "bg-" + colour + "-700";
+  let borderColour = "border-" + colour + "-900";
+  let textColour = "text-" + colour + "-500";
   return (
     <div>
       <div className="flex flex-col gap-2 items-center">
         {horizontal.map((it) => (
           <div className="flex flew-row gap-2">
             {columns.map((it) => (
-              <div className="bg-green-700 w-8 h-8 border-gray-50 border-1 hover:gap-1 hover:bg-green-400 hover:scale-125 transform"></div>
+              <div
+                className={`w-8 h-8 border-gray-50 border-1 hover:gap-1 hover:scale-125 transform ${hoverColour} ${nonHoverColour}`}
+              ></div>
             ))}
           </div>
         ))}
       </div>
       <div className="flex flex-col gap-2">
-        <div className="mt-1 border-b-8 border-green-900"></div>
-        <div className="text-3xl text-green-500 flex-col text-center">
+        <div className={`mt-1 border-b-8 ${borderColour}`}></div>
+        <div className={`text-3xl flex-col text-center ${textColour}`}>
           {parse().first} x {parse().second}
         </div>
         <Input
