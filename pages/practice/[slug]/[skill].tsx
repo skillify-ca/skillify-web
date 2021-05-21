@@ -91,11 +91,13 @@ const PracticeQuiz = ({ slug, skill }) => {
         </p>
       </div>
 
+
       <ReactCardFlip
         isFlipped={isFlipped}
         flipDirection="vertical"
         infinite={true}
       >
+
         <div className="justify-items-center align-middle w-50">
           <QuestionSet
             title={slug}

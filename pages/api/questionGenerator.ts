@@ -101,14 +101,14 @@ function getRandomMultiplicationQuestion(
   skill: Skill
 ) {
   const multiply = (a: number, b: number) => a * b;
-  const randomPick = getRndInteger(0, 3);
+  const randomPick = getRndInteger(0, 2);
   if (skill == Skill.MULTIPLICATION_5 && randomPick === 1) {
     const a = getRndInteger(1, 6);
     const b = getRndInteger(1, 6);
     return getArrayMultiplicationQuestion(a, b, skill);
-  } else if (skill == Skill.MULTIPLICATION_5 && randomPick === 2) {
-    const a = getRndInteger(1, 6);
-    const b = getRndInteger(1, 6);
+  } else if (skill == Skill.EQUAL_GROUP_10_ITEMS) {
+    const a = getRndInteger(1, 7);
+    const b = getRndInteger(1, 11);
     return getMultiplicationEqualGroups(a, b, skill);
   }
 
