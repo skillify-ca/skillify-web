@@ -71,6 +71,26 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
       break;
   }
 
+  const isOrAre = (length: number) => {
+    let isOrAre;
+    if (length > 1) {
+      isOrAre = "are";
+    } else {
+      isOrAre = "is";
+    }
+    return <p> {isOrAre} </p>;
+  };
+
+  const singularPlural = (length: number) => {
+    let group;
+    if (length > 1) {
+      group = "groups";
+    } else {
+      group = "group";
+    }
+    return <p> {group} </p>;
+  };
+
   return (
     <div>
       <div className="flex flex-row flex-wrap gap-1 justify-center items-center">
@@ -87,14 +107,14 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
         ))}
       </div>
 
-      <div className="flex flex-row flex-wrap gap-2 justify-center mt-4 text-sm">
-        There are
+      <div className="flex flex-row flex-wrap gap-2 justify-center mt-4 text-md">
+        There {isOrAre(groups.map((it) => it).length)}
         <EqualGroupsInput
           guess={guess}
           setGuess={setGuess}
           handleKeypress={handleKeypress}
         />
-        groups of
+        {singularPlural(groups.map((it) => it).length)} of
         <EqualGroupsInput
           guess={guess2}
           setGuess={setGuess2}
