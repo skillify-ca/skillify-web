@@ -82,6 +82,7 @@ const DiagnosticTestForm = ({ onClick }: DiagnosticTestFormProps) => {
         </div>
         <div className="sm:w-1/2 m-4 p-4">
           <WordProblemAdd
+            autofocus={false}
             submitGuess={(it) => {
               onSubmit();
             }}

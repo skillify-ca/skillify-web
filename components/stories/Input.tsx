@@ -1,6 +1,7 @@
 import React from "react";
 
 export interface InputProps {
+  autoFocus?: boolean;
   guess: string;
   setGuess: (string) => void;
   handleKeypress?: (e) => void;
@@ -10,13 +11,14 @@ export interface InputProps {
  * Primary UI component for user interaction
  */
 export const Input: React.FC<InputProps> = ({
+  autoFocus = true,
   guess,
   setGuess,
   handleKeypress,
 }) => {
   return (
     <input
-      autoFocus
+      autoFocus={autoFocus}
       id="guess"
       type="number"
       autoComplete="off"

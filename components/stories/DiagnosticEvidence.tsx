@@ -37,33 +37,23 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
           Select a skill to view the questions your child did during the test
         </p>
 
-        <div className="grid grid-cols-2">
-          <p className="p-4 font-bold border-b border-black"> I can... </p>
-          <p className="p-4 font-bold border-b border-black"> Proficiency </p>
-
-          <div className="grid-cols-1">
+        <div className="flex flex-col w-full">
+          <div className="flex justify-between border-b border-black">
+            <p className="p-4 font-bold"> I can... </p>
+            <p className="p-4 font-bold"> Proficiency </p>
+          </div>
+          <div className="flex flex-col">
             {skills.map((skill) => (
               <Link href={"/diagnostic/data/".concat(skill.toString())}>
-                <p
+                <div
                   className={`${getBackgroundColorForTopic(
                     getResultForSkill(skill, results)
-                  )} p-4 border-b border-black cursor-pointer hover:underline`}
+                  )} p-4 border-b border-black cursor-pointer hover:underline flex justify-between`}
                 >
-                  {" "}
-                  {SkillDescription(skill)}
-                </p>
+                  <p className={``}> {SkillDescription(skill)}</p>
+                  <p className={``}>{getResultForSkill(skill, results)}</p>
+                </div>
               </Link>
-            ))}
-          </div>
-          <div className="grid-cols-2">
-            {skills.map((skill) => (
-              <p
-                className={`${getBackgroundColorForTopic(
-                  getResultForSkill(skill, results)
-                )} p-4 border-b border-black`}
-              >
-                {getResultForSkill(skill, results)}
-              </p>
             ))}
           </div>
         </div>
