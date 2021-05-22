@@ -10,7 +10,7 @@ import { Button } from "./Button";
 import { Input } from "./Input";
 
 export interface WordProblemAddProp {
-  autofocus: boolean;
+  autofocus?: boolean;
   submitGuess: (guess: GuessData) => void;
   question: Question;
 }
@@ -18,7 +18,7 @@ export interface WordProblemAddProp {
 /* Addition Word problems are made with a specific template. The template is as follows: (name) has an (itemContainer) of (itemType). 
 Inside there are [randomNumber1] (item1.title) and [randomNumber2] (item2.title). How many (itemType) are in the (itemContainer)? */
 export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
-  autofocus,
+  autofocus = true,
   submitGuess,
   question,
   ...props
@@ -66,7 +66,7 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
       </div>
       <div className="text-2xl flex flex-wrap justify-center w-full">
         <Input
-          autofocus={autofocus}
+          autoFocus={autofocus}
           guess={guess}
           setGuess={setGuess}
           handleKeypress={handleKeypress}
