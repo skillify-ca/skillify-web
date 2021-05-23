@@ -47,7 +47,7 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
   let groups = Array.from(Array(Number.parseInt(parse().first)).keys());
   let itemsInGroup = Array.from(Array(Number.parseInt(parse().second)).keys());
   return (
-    <div className="flex flex-col justify-around items-center w-full h-full">
+    <div className="flex flex-col justify-between items-center w-full h-full">
       <div className="flex flex-row w-full flex-wrap gap-1 justify-around items-center">
         {groups.map((it) => (
           <div className="flex flew-row flex-wrap items-center justify-center gap-1 bg-blue-300 w-24 h-24 p-4 rounded-full">
