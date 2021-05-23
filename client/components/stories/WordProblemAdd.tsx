@@ -1,4 +1,3 @@
-import { type } from "node:os";
 import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
