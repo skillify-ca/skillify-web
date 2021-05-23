@@ -3,7 +3,6 @@ import { INVALID_MOVE } from "boardgame.io/core";
 import TicTacToeBoard from "../../../components/ticTacToe/TicTacToeBoard";
 import { TARGET } from "./constants";
 
-
 export const TicTacToeGame = {
   setup: () => ({ cells: Array(9).fill(null), target: TARGET }),
   turn: {
@@ -27,6 +26,19 @@ export const TicTacToeGame = {
     if (IsDraw(G.cells)) {
       return { draw: true };
     }
+  },
+  ai: {
+    enumerate: (G, ctx) => {
+      let moves = [];
+      for (let i = 0; i < 9; i++) {
+        for (let j = 1; j <= 9; j++) {
+        if (G.cells[i] === null && !G.cells.includes(j)) {
+          moves.push({ move: "placeCell", args: [i, j] });
+        }
+      }
+      }
+      return moves;
+    },
   },
 };
 
