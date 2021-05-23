@@ -71,7 +71,7 @@ const GameBoard = () => {
       //   playerOne={playerOne}
       //   playerTwo={playerTwo}
       // />
-      <TicTacToeClient />
+      <TicTacToeClient playerID={playerOne} />
     ); // Game
   }
   return (
