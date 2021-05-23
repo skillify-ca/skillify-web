@@ -18,8 +18,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/ticTacToe/TicTacToeBoard.tsx",
-    "pages/index.tsx"
+    "../client/*",
   ],
   "exclude": ["node_modules"]
 }

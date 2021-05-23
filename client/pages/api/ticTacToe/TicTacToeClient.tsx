@@ -2,6 +2,7 @@ import { Client } from "boardgame.io/react";
 import { INVALID_MOVE } from "boardgame.io/core";
 import TicTacToeBoard from "../../../components/ticTacToe/TicTacToeBoard";
 import { TARGET } from "./constants";
+import { SocketIO } from "boardgame.io/multiplayer";
 
 export const TicTacToeGame = {
   setup: () => ({ cells: Array(9).fill(null), target: TARGET }),
@@ -32,10 +33,10 @@ export const TicTacToeGame = {
       let moves = [];
       for (let i = 0; i < 9; i++) {
         for (let j = 1; j <= 9; j++) {
-        if (G.cells[i] === null && !G.cells.includes(j)) {
-          moves.push({ move: "placeCell", args: [i, j] });
+          if (G.cells[i] === null && !G.cells.includes(j)) {
+            moves.push({ move: "placeCell", args: [i, j] });
+          }
         }
-      }
       }
       return moves;
     },
@@ -72,6 +73,10 @@ function IsDraw(cells) {
   return cells.filter((c) => c === null).length === 0;
 }
 
-const TicTacToeClient = Client({ game: TicTacToeGame, board: TicTacToeBoard });
+const TicTacToeClient = Client({
+  game: TicTacToeGame,
+  board: TicTacToeBoard,
+  multiplayer: SocketIO({ server: "localhost:8000" }),
+});
 
 export default TicTacToeClient;

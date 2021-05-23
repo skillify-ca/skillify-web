@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "serve": "node -r esm src/server.ts"
+  },
+  "dependencies": {
+    "boardgame.io": "^0.44.3"
+  }
+}
