@@ -3,6 +3,7 @@ import { Story, Meta } from "@storybook/react";
 
 import { VerticalEquation, VerticalEquationProp } from "./VerticalEquation";
 import { LongDivision, LongDivisionProp } from "./LongDivision";
+import Card from "./Card";
 
 export default {
   title: "Long Division",
@@ -10,7 +11,11 @@ export default {
   argTypes: {},
 } as Meta;
 
-const Template: Story<LongDivisionProp> = (args) => <LongDivision {...args} />;
+const Template: Story<LongDivisionProp> = (args) => (
+  <Card size="large">
+    <LongDivision {...args} />
+  </Card>
+);
 
 export const Primary = Template.bind({});
 

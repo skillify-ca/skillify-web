@@ -60,9 +60,10 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
       break;
     case "remainder":
       remainderComponent = (
-        <div>
-          R&nbsp;
+        <div className="flex items-end w-32">
+          <span className="text-2xl">R&nbsp;</span>
           <LongDivisionInput
+            autoFocus={false}
             id="guess2"
             guess={guess2}
             setGuess={setGuess2}
@@ -75,14 +76,16 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
   }
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-between h-full">
+      <div />
       <div className="ml-4 flex flex-row">
-        <span className="flex flex-col-reverse text-lg">
+        <span className="flex flex-col-reverse text-5xl">
           {parse().second}&nbsp;
         </span>
         <div className="flex flex-col">
-          <div className="flex flex-row gap-2">
+          <div className="flex flex-row gap-2 flex-grow">
             <LongDivisionInput
+              autoFocus={true}
               id="guess"
               guess={guess}
               setGuess={setGuess}
@@ -91,7 +94,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
             />
             {remainderComponent}
           </div>
-          <span className="border-t-2 border-l-2 border-black text-lg">
+          <span className="border-t-8 border-l-8 border-black text-5xl">
             {parse().first}
           </span>
         </div>
