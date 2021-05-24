@@ -6,12 +6,38 @@ export default function Tools(props) {
   const [practiceInput, setPracticeInput] = useState("");
   const [battleInput, setBattleInput] = useState("");
 
-  const notifyPracticeSignup = () => {
-    
-  }
-  const notifyBattleSignup = () => {
-    
-  }
+  const notifyPracticeSignup = async () => {
+    if (practiceInput.length > 0) {
+      const url = "api/notifications?product=practice";
+      const options = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+        body: JSON.stringify({
+          email: practiceInput,
+        }),
+      };
+      await fetch(url, options);
+    }
+  };
+  const notifyBattleSignup = async () => {
+    if (practiceInput.length > 0) {
+      const url = "api/notifications?product=battle";
+      const options = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+        body: JSON.stringify({
+          email: battleInput,
+        }),
+      };
+      await fetch(url, options);
+    }
+  };
 
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen ">
