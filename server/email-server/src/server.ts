@@ -1,12 +1,7 @@
-var koa = require("koa");
-var app = new koa();
+import app from './app';
 
-app.use(function* () {
-  this.body = "Hello world!";
-});
+// Process.env will always be comprised of strings, so we typecast the port to a
+// number.
+const PORT:number = Number(process.env.PORT) || 3001;
 
-app.listen(3000, function () {
-  console.log("Server running on https://localhost:3000");
-});
-
-export {};
+app.listen(PORT);
