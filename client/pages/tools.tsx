@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { Button } from "../components/stories/Button";
 
 export default function Tools(props) {
+  const [practiceInput, setPracticeInput] = useState("");
+  const [battleInput, setBattleInput] = useState("");
+
+  const notifyPracticeSignup = () => {
+    
+  }
+  const notifyBattleSignup = () => {
+    
+  }
+
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen ">
       <DiagnosticNavbar />
@@ -28,8 +38,10 @@ export default function Tools(props) {
               </p>
               <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
                 <input
-                  id="guess"
+                  id="practice"
                   type="text"
+                  value={practiceInput}
+                  onChange={(e) => setPracticeInput(e.target.value)}
                   autoComplete="off"
                   className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
                   placeholder="Email"
@@ -38,6 +50,7 @@ export default function Tools(props) {
                   backgroundColor="blue"
                   textColor="white"
                   label="Notify Me"
+                  onClick={notifyPracticeSignup}
                 />
               </div>
             </div>
@@ -52,8 +65,10 @@ export default function Tools(props) {
               </p>
               <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
                 <input
-                  id="guess"
+                  id="battle"
                   type="text"
+                  value={battleInput}
+                  onChange={(e) => setBattleInput(e.target.value)}
                   autoComplete="off"
                   className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
                   placeholder="Email"
@@ -62,6 +77,7 @@ export default function Tools(props) {
                   backgroundColor="blue"
                   textColor="white"
                   label="Notify Me"
+                  onClick={notifyBattleSignup}
                 />
               </div>
             </div>
