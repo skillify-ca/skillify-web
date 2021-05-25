@@ -107,19 +107,39 @@ const PracticeQuiz = ({ slug, skill }) => {
             score={correctGuess}
             practice={true}
           />
+          <div>
+            <img
+              onClick={() => setVisibility(true)}
+              //onClick={() => setVisibility(false)}
+              src="/images/hint.png"
+              className="w-40 h-30 flex flex-start"
+            />
+            {visibility && (
+              <p className=" overflow-y-auto transform -translate-y-36 translate-x-36 rounded-lg ring-4 ring-blue-200 bg-gray-400 text-white flex flex-start w-80 h-40">
+                The hint is: 275 + 2 = 2 _ _The hint is: 275 + 2 = 2 _ _The hint
+                is: 275 + 2 = 2 _ _The hint is: 275 + 2 = 2 _ _The hint is: 275
+                + 2 = 2 _ _The hint is: 275 + 2 = 2 _ _The hint is: 275 + 2 = 2
+                _ _The hint is: 275 + 2 = 2 _ _The hint is: 275 + 2 = 2 _ _The
+                hint is: 275 + 2 = 2 _ _The hint is: 275 + 2 = 2 _ _The hint is:
+                275 + 2 = 2 _ _The hint is: 275 + 2 = 2 _ _The hint is: 275 + 2
+                = 2 _ _The hint is: 275 + 2 = 2 _ _The hint is: 275 + 2 = 2 _
+                _The hint is: 275 + 2 = 2 _ _The hint is: 275 + 2 = 2 _ _The
+                hint is: 275 + 2 = 2 _ _The hint is: 275 + 2 = 2 _ _The hint is:
+                275 + 2 = 2 _ _The hint is: 275 + 2 = 2 _ _The hint is: 275 + 2
+                = 2 _ _The hint is: 275 + 2 = 2 _ _The hint is: 275 + 2 = 2 _
+                _The hint is: 275 + 2 = 2 _ _The hint is: 275 + 2 = 2 _ _The
+                hint is: 275 + 2 = 2 _ _The hint is: 275 + 2 = 2 _ _The hint is:
+                275 + 2 = 2 _ _The hint is: 275 + 2 = 2 _ _The hint is: 275 + 2
+                = 2 _ _The hint is: 275 + 2 = 2 _ _The hint is: 275 + 2 = 2 _
+                _The hint is: 275 + 2 = 2 _ _The hint is: 275 + 2 = 2 _ _The
+                hint is: 275 + 2 = 2 _ _The hint is: 275 + 2 = 2 _ _The hint is:
+                275 + 2 = 2 _ _The hint is: 275 + 2 = 2 _ _The hint is: 275 + 2
+                = 2 _ _The hint is: 275 + 2 = 2 _ _
+              </p>
+            )}
+          </div>
         </div>
         <div className="flex items-left">
-          <img
-            onMouseEnter={() => setVisibility(true)}
-            onMouseLeave={() => setVisibility(false)}
-            src="/images/hint.png"
-            className="w-40 h-30"
-          />
-          {visibility && (
-            <p className=" transform -translate-y-12 rounded-full py-3 px-6 border-4 border-white border-dashed bg-gray-400 text-white flex flex-start w-85 h-28">
-              The hint is: 275 + 2 = 2 _ _
-            </p>
-          )}
           <Card size="large">
             {correctAnswer ? (
               <p className="font-bold text-gray-400 underline">

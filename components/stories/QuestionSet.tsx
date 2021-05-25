@@ -17,6 +17,7 @@ import { MultipleChoiceWord } from "./MultipleChoiceWord";
 import { FillBlank } from "./FillBlank";
 import { MultiplicationArray } from "./MultiplicationArray";
 import { MultiplicationEqualGroups } from "./MultiplicationEqualGroups";
+import { Skill } from "../../pages/api/skill";
 
 type QuestionSetProps = {
   title: string;
@@ -27,7 +28,6 @@ type QuestionSetProps = {
   score: number;
   practice?: boolean;
 };
-
 const QuestionSet = ({
   title,
   questionData,
@@ -171,7 +171,6 @@ const QuestionSet = ({
       Score: {score} / {index + 1}
     </div>
   );
-
   return (
     <div className="flex flex-col justify-center items-center gap-8">
       <div className="flex flex-row justify-between w-full p-4 bg-yellow-400">
