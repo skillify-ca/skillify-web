@@ -9,6 +9,7 @@ import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGe
 import { Button } from "../../../components/stories/Button";
 import ReactCardFlip from "react-card-flip";
 import Card from "../../../components/stories/Card";
+import Hint from "../../../components/stories/Hint";
 
 const PracticeQuiz = ({ slug, skill }) => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -107,37 +108,40 @@ const PracticeQuiz = ({ slug, skill }) => {
             score={correctGuess}
             practice={true}
           />
+          <Hint skill={Skill.ADDITION_PROPERTIES}></Hint>
         </div>
         <Card size="large">
-          {correctAnswer ? (
-            <p className="font-bold text-gray-400 underline">
-              Correct,{" "}
-              <span className="font-bold text-green-400">{guessAttempt}</span>{" "}
-              was the answer!
-            </p>
-          ) : wrongAnswer ? (
-            <div className="italic text-gray-400 font-bold space-y-16">
-              <p>The correct answer was</p>
-              <span className="font-bold text-green-400">
-                {questionData[index].answer.toString()}
-              </span>
-              <br></br>
-              <p>Your answer was </p>
-              <span className="font-bold text-red-500"> {guessAttempt} </span>
-            </div>
-          ) : (
-            ""
-          )}
+          <div>
+            {correctAnswer ? (
+              <p className="font-bold text-gray-400 underline">
+                Correct,{" "}
+                <span className="font-bold text-green-400">{guessAttempt}</span>{" "}
+                was the answer!
+              </p>
+            ) : wrongAnswer ? (
+              <div className="italic text-gray-400 font-bold space-y-16">
+                <p>The correct answer was</p>
+                <span className="font-bold text-green-400">
+                  {questionData[index].answer.toString()}
+                </span>
+                <br></br>
+                <p>Your answer was </p>
+                <span className="font-bold text-red-500"> {guessAttempt} </span>
+              </div>
+            ) : (
+              ""
+            )}
 
-          {nextQuestionButton ? (
-            <Button
-              label="Next Question"
-              backgroundColor="yellow"
-              onClick={applyNextQuestion}
-            ></Button>
-          ) : (
-            ""
-          )}
+            {nextQuestionButton ? (
+              <Button
+                label="Next Question"
+                backgroundColor="yellow"
+                onClick={applyNextQuestion}
+              ></Button>
+            ) : (
+              ""
+            )}
+          </div>
         </Card>
       </ReactCardFlip>
     </div>
