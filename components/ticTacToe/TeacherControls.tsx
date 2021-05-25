@@ -47,17 +47,7 @@ const TeacherControls = ({ onClick }) => {
               value={playerOne}
               onChange={(e) => setPlayerOne(e.target.value)}
               className="appearance-none rounded-none relative block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              placeholder="Enter Name"
-            />
-            <label className="inline-flex">Player Two</label>
-            <input
-              id="player-two"
-              name="player-two"
-              type="text"
-              value={playerTwo}
-              onChange={(e) => setPlayerTwo(e.target.value)}
-              className="appearance-none rounded-none relative block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              placeholder="Enter Name"
+              placeholder="Type 0 or 1"
             />
           </div>
           <Button backgroundColor="blue" textColor="white" label="Create Game"

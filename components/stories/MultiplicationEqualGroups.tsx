@@ -92,8 +92,8 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
   };
 
   return (
-    <div>
-      <div className="flex flex-row flex-wrap gap-1 justify-center items-center">
+    <div className="flex flex-col justify-between items-center w-full h-full">
+      <div className="flex flex-row w-full flex-wrap gap-1 justify-around items-center">
         {groups.map((it) => (
           <div
             className={`flex flew-row flex-wrap items-center justify-center gap-1 bg-${groupColor}-300 w-24 h-24 p-4 rounded-full`}
@@ -120,14 +120,14 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
           setGuess={setGuess2}
           handleKeypress={handleKeypress}
         />
-        <div className="text-sm mt-4">
-          <Button
-            onClick={onSubmit}
-            label="Submit"
-            backgroundColor="blue"
-            textColor="white"
-          />
-        </div>
+      </div>
+      <div className="text-sm mt-4">
+        <Button
+          onClick={onSubmit}
+          label="Submit"
+          backgroundColor="blue"
+          textColor="white"
+        />
       </div>
     </div>
   );

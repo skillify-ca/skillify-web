@@ -88,7 +88,7 @@ export default function Navbar() {
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4">
                 <a
-                  href="/diagnostic"
+                  href="/"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Assessment
@@ -121,7 +121,7 @@ export default function Navbar() {
         <div className="px-2 pt-2 pb-3 space-y-1">
           {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
           <a
-            href="/diagnostic"
+            href="/"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Assessment

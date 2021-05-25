@@ -14,11 +14,10 @@ const DiagnosticResults = ({
 }: DiagnosticResultsProps) => {
   const percentage = Math.round((correctGuesses / index) * 100);
   return (
-    <div className="flex flex-col items-center bg-white w-full sm:w-3/4 p-16">
-      <div className="text-2xl font-bold mb-12">Results</div>
+    <div className="flex flex-col items-center justify-around bg-white rounded-lg shadow-lg h-96 w-full sm:w-3/4">
+      <div className="text-2xl font-bold">Results</div>
       <ProgressRing percentage={percentage} radius={32} />
-      <div className="text-xl mb-12">
-        {" "}
+      <div className="text-xl">
         {correctGuesses}/{index} Correct{" "}
       </div>
       <Link href={"/diagnostic/conclusion"}>
