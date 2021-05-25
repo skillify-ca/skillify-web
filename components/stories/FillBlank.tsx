@@ -26,6 +26,7 @@ export const FillBlank: React.FC<FillBlankProp> = ({
     (document.getElementById("input4") as HTMLInputElement).disabled = true;
   }, []);
 
+  const [guess, setGuess] = useState("");
   const [button1Visible, setButton1Visible] = useState(true);
   const [button2Visible, setButton2Visible] = useState(false);
   const [button3Visible, setButton3Visible] = useState(false);
