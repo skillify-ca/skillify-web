@@ -4,8 +4,7 @@ import { Button } from "../components/stories/Button";
 import LinkPreview from "@ashwamegh/react-link-preview";
 
 export default function Resources(props) {
-  function CustomComponent({ loading, preview }) {
-    console.log(preview);
+  function linkPreview({ loading, preview }) {
     return loading ? (
       <h1>Loading...</h1>
     ) : (
@@ -104,7 +103,7 @@ export default function Resources(props) {
                 <a href="https://www.educationnext.org/addressing-significant-learning-loss-in-mathematics-during-covid-19-and-beyond/">
                   <LinkPreview
                     url="https://www.educationnext.org/addressing-significant-learning-loss-in-mathematics-during-covid-19-and-beyond/"
-                    render={CustomComponent}
+                    render={linkPreview}
                   />
                 </a>
               </div>
