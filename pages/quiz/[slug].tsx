@@ -196,7 +196,7 @@ const Quiz = ({ slug }) => {
         inputElement={inputElement}
         submitGuess={submitGuess}
         score={correctGuesses}
-        quiz={true}
+        practice={false}
       />
       <Modal
         id="game-over-model"

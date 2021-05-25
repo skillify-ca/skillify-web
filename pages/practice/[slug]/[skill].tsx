@@ -33,7 +33,7 @@ const PracticeQuiz = ({ slug, skill }) => {
 
   const inputElement = useRef(null);
 
-  const handleClick = () => {
+  const toggleFlip = () => {
     setIsFlipped(!isFlipped);
   };
 
@@ -42,7 +42,8 @@ const PracticeQuiz = ({ slug, skill }) => {
   }, []);
 
   const applyNextQuestion = () => {
-    handleClick();
+    toggleFlip();
+
     setNextQuestionButton(false);
     setCorrectAnswer(false);
     setWrongAnswer(false);
@@ -62,7 +63,8 @@ const PracticeQuiz = ({ slug, skill }) => {
   };
 
   const submitGuess = (guess: GuessData) => {
-    handleClick();
+    toggleFlip();
+
     if (index < questionData.length && !indexCap) {
       if (guess.guess != "") {
         setGuessAttempt(guess.guess);
@@ -82,34 +84,45 @@ const PracticeQuiz = ({ slug, skill }) => {
   return (
     <div>
       <Navbar />
-      <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
+      <div className=" flex flex-row-reverse justify-items-end">
+        <p className="font-bold text-gray-400">
+          Question: {index + 1} / {questionData.length}
+          <br></br>
+          Score: {correctGuess} / {index + 1}
+        </p>
+      </div>
+
+      <ReactCardFlip
+        isFlipped={isFlipped}
+        flipDirection="vertical"
+        infinite={true}
+      >
         <div className="justify-items-center align-middle w-50">
-          <div className="flex flex-row items-end justify-between gap-3">
-            <QuestionSet
-              title={slug}
-              questionData={questionData}
-              index={index}
-              inputElement={inputElement}
-              submitGuess={submitGuess}
-              score={correctGuess}
-            />
-            <div className="flex items-left">
-              <img
-                onMouseEnter={() => setVisibility(true)}
-                onMouseLeave={() => setVisibility(false)}
-                src="/images/hint.png"
-                className="w-40 h-30"
-              />
-              {visibility && (
-                <p className=" transform -translate-y-12 rounded-full py-3 px-6 border-4 border-white border-dashed bg-gray-400 text-white flex flex-start w-85 h-28">
-                  The hint is: 275 + 2 = 2 _ _
-                </p>
-              )}
-            </div>
-          </div>
+          <QuestionSet
+            title={slug}
+            questionData={questionData}
+            index={index}
+            inputElement={inputElement}
+            submitGuess={submitGuess}
+            score={correctGuess}
+            practice={true}
+          />
+        </div>
+        <div className="flex items-left">
+          <img
+            onMouseEnter={() => setVisibility(true)}
+            onMouseLeave={() => setVisibility(false)}
+            src="/images/hint.png"
+            className="w-40 h-30"
+          />
+          {visibility && (
+            <p className=" transform -translate-y-12 rounded-full py-3 px-6 border-4 border-white border-dashed bg-gray-400 text-white flex flex-start w-85 h-28">
+              The hint is: 275 + 2 = 2 _ _
+            </p>
+          )}
           <Card size="large">
             {correctAnswer ? (
-              <p>
+              <p className="font-bold text-gray-400 underline">
                 Correct,{" "}
                 <span className="font-bold text-green-400">{guessAttempt}</span>{" "}
                 was the answer

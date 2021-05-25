@@ -25,7 +25,7 @@ type QuestionSetProps = {
   inputElement: any;
   submitGuess: (guessData: GuessData) => void;
   score: number;
-  quiz?: boolean;
+  practice?: boolean;
 };
 
 const QuestionSet = ({
@@ -34,7 +34,7 @@ const QuestionSet = ({
   index,
   submitGuess,
   score,
-  quiz,
+  practice,
 }: QuestionSetProps) => {
   const questionComponent = () => {
     if (questionData[index].questionType === QuestionType.VERTICAL_EQUATION) {
@@ -159,21 +159,25 @@ const QuestionSet = ({
     );
   };
 
+  const progressText = (
+    <p className="font-bold text-gray-400 ">
+      {" "}
+      Question: {index + 1} / {questionData.length}{" "}
+    </p>
+  );
+
+  const scoreText = (
+    <div>
+      Score: {score} / {index + 1}
+    </div>
+  );
+
   return (
     <div className="flex flex-col justify-center items-center gap-8">
       <div className="flex flex-row justify-between w-full p-4 bg-yellow-400">
         <p className="text-xl font-bold">{title}</p>
-        <p className="font-bold text-gray-400">
-          Question: {index + 1} / {questionData.length}
-          <br></br>
-          {!quiz ? (
-            <div>
-              Score: {score} / {index + 1}
-            </div>
-          ) : (
-            ""
-          )}
-        </p>
+        {progressText}
+        {!practice && scoreText}
       </div>
       <Card size="large">{questionData[index] && questionComponent()}</Card>
     </div>

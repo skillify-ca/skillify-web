@@ -75,8 +75,9 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
   }
 
   return (
-    <div>
-      <div className="ml-4 flex flex-row">
+    <div className="flex flex-col items-center justify-between h-full">
+      <div/>
+      <div className="flex flex-row">
         <span className="flex flex-col-reverse text-lg">
           {parse().second}&nbsp;
         </span>
@@ -96,7 +97,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
           </span>
         </div>
       </div>
-      <div className="mt-4">
+      <div className="">
         <Button
           onClick={onSubmit}
           label="Submit"
