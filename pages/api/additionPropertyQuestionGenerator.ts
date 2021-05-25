@@ -55,8 +55,8 @@ export function getFillBlankQuestion(
   const fillArray: fillBlankModel = { options: [step1, step2, step3] };
 
   return {
-    text: "Fill in the Blanks Using Properties",
-    answer: "80",
+    text: `Fill in the blanks using ${skill}`,
+    answer: `${a},${a},${a + c},${a + c + b}`,
     answerType: AnswerType.NUMBER,
     operator: operator,
     questionType: QuestionType.FILL_IN_THE_BLANK_PROBLEM,
