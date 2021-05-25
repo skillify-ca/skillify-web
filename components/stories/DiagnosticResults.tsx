@@ -1,5 +1,7 @@
 import Link from "next/link";
 import React, { useRef, useState } from "react";
+import { Button } from "./Button";
+import ProgressRing from "./ProgressRing";
 
 type DiagnosticResultsProps = {
   correctGuesses: number;
@@ -12,20 +14,14 @@ const DiagnosticResults = ({
 }: DiagnosticResultsProps) => {
   const percentage = Math.round((correctGuesses / index) * 100);
   return (
-    <div className="flex flex-col items-center bg-white w-2/4 bg-auto p-16">
-      <div className="text-lg font-medium mb-16">Results</div>
-      <div className=" bg-gray-300 h-32 w-32 flex items-center justify-center rounded-full mb-4 text-2xl">
-        {" "}
-        {percentage}%{" "}
-      </div>
-      <div className="text-lg mb-16">
-        {" "}
+    <div className="flex flex-col items-center justify-around bg-white rounded-lg shadow-lg h-96 w-full sm:w-3/4">
+      <div className="text-2xl font-bold">Results</div>
+      <ProgressRing percentage={percentage} radius={32} />
+      <div className="text-xl">
         {correctGuesses}/{index} Correct{" "}
       </div>
       <Link href={"/diagnostic/conclusion"}>
-        <button className="items-end bg-blue-500 rounded p-3 text-white text-sm">
-          Go To Conclusion
-        </button>
+        <Button backgroundColor="blue" textColor="white" label="Go To Report" />
       </Link>
     </div>
   );

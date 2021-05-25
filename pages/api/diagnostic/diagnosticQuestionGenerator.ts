@@ -2,7 +2,7 @@ import { Question } from "../question";
 import { generateQuestionForSkill } from "../questionGenerator";
 import { Skill } from "../skill";
 
-const NUM_QUESTIONS = 5;
+const NUM_QUESTIONS = 3;
 
 type Topic = {
   name: string;

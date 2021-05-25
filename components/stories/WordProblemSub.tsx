@@ -31,8 +31,12 @@ export const WordProblemSub: React.FC<WordProblemSubProp> = ({
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
-      submitGuess(e);
+      onSubmit();
     }
+  };
+  const onSubmit = () => {
+    setGuess("");
+    submitGuess({ guess: guess, isCorrect: guess === question.answer });
   };
   const parse = () => {
     const parts = question.text.split(" ");
@@ -57,9 +61,8 @@ export const WordProblemSub: React.FC<WordProblemSubProp> = ({
           <span className="border-2 border-black border-opacity-75 md:border-opacity-50 text-black font-extrabold">
             {parse().first}
           </span>
-          <span> </span>
           {noun1.type}. {name} takes out
-          <span className={noun1.colour}>{" " + parse().first + " "}</span>
+          <span className={noun1.colour}>{" " + parse().second + " "}</span>
           {title(noun1, parse().second)}. How many {noun1.type} are in the{" "}
           {itemContainer.singleTitle}?
         </p>
@@ -79,7 +82,7 @@ export const WordProblemSub: React.FC<WordProblemSubProp> = ({
         <img src={noun1.image} width="60px" height="85px" />
       </div>
       <Button
-        onClick={submitGuess}
+        onClick={onSubmit}
         label="Submit"
         backgroundColor="blue"
         textColor="white"

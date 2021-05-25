@@ -1,4 +1,3 @@
-import { type } from "node:os";
 import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
@@ -10,6 +9,7 @@ import { Button } from "./Button";
 import { Input } from "./Input";
 
 export interface WordProblemAddProp {
+  autofocus?: boolean;
   submitGuess: (guess: GuessData) => void;
   question: Question;
 }
@@ -17,6 +17,7 @@ export interface WordProblemAddProp {
 /* Addition Word problems are made with a specific template. The template is as follows: (name) has an (itemContainer) of (itemType). 
 Inside there are [randomNumber1] (item1.title) and [randomNumber2] (item2.title). How many (itemType) are in the (itemContainer)? */
 export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
+  autofocus = true,
   submitGuess,
   question,
   ...props
@@ -62,14 +63,15 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
           {itemContainer.singleTitle}?
         </p>
       </div>
-      <div className="text-2xl flex flex-wrap">
+      <div className="text-2xl flex flex-wrap justify-center w-full">
         <Input
+          autoFocus={autofocus}
           guess={guess}
           setGuess={setGuess}
           handleKeypress={handleKeypress}
         />
       </div>
-      <div className="flex flex-wrap mt-2">
+      <div className="flex flex-wrap mt-2 justify-center">
         <img src={noun1.image} width="60px" height="85px" />
         <img src={noun2.image} width="60px" height="85px" />
         <img src={noun1.image} width="60px" height="85px" />

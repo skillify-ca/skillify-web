@@ -1,57 +1,63 @@
 import Link from "next/link";
 import React from "react";
-import { Topic } from "../../pages/api/skill";
+import {
+  getAnswerForSkill,
+  getQuestionForSkill,
+  getSkillsForTopic,
+} from "../../pages/api/diagnostic/diagnosticGrader";
+import { Skill, SkillDescription, Topic } from "../../pages/api/skill";
+import { DiagnosticState } from "../../redux/diagnosticSlice";
 
 type DiagnosticDataProps = {
-  questions: Array<string>;
-  guessAns: Array<string>;
-  topics: Array<string>;
+  skill: Skill;
+  results: DiagnosticState;
 };
 
-const DiagnosticData = ({
-  questions,
-  guessAns,
-  topics,
-}: DiagnosticDataProps) => {
-  let skillTopic;
-  if (topics[0] == Topic.ADDITION) {
-    skillTopic = Topic.ADDITION.toString();
-  } else if (topics[0] == Topic.SUBTRACTION) {
-    skillTopic = Topic.SUBTRACTION.toString();
-  } else if (topics[0] == Topic.MULTIPLICATION) {
-    skillTopic = Topic.MULTIPLICATION.toString();
-  } else if (topics[0] == Topic.DIVISION) {
-    skillTopic = Topic.DIVISION.toString();
-  } else {
-    skillTopic = "";
-  }
+const DiagnosticData = ({ skill, results }: DiagnosticDataProps) => {
+  const getBackgroundColorForTopic = (result: string) => {
+    const skillLevel = result;
+    switch (skillLevel) {
+      case "Incorrect":
+        return "bg-red-100";
+      case "Correct":
+        return "bg-green-100";
+      default:
+        return "bg-white";
+    }
+  };
+
   return (
-    <>
-      <p className="mb-12"> Diagnostic Report : {skillTopic} </p>
-      <div className="flex justify-between w-1/4 border-b border-black p-2">
-        <span> Question: </span>
-        <span className="pr-6"> Guess: </span>
-      </div>
-      <div className="flex justify-between flex-row w-1/4 p-2">
-        <div>
-          {questions.map((q) => (
-            <div>{q}</div>
+    <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100 h-screen">
+      <p className="mb-2 text-center font-black text-xl">
+        {SkillDescription(skill)}
+      </p>
+      <div className="bg-white p-4 rounded-lg grid grid-cols-2">
+        <p className="p-4 font-bold border-b border-black"> Question: </p>
+        <p className="p-4 font-bold border-b border-black"> Guess: </p>
+
+        <div className="grid-cols-1">
+          {getQuestionForSkill(skill, results).map((item) => (
+            <p className="p-4 border-b border-black">{item}</p>
           ))}
         </div>
         <div>
-          {guessAns.map((ans) => (
-            <div>{ans}</div>
+          {getAnswerForSkill(skill, results).map((item) => (
+            <p
+              className={`${getBackgroundColorForTopic(
+                item
+              )} p-4 border-b border-black`}
+            >
+              {item}
+            </p>
           ))}
         </div>
       </div>
-      <div className="mt-3">
-        <Link href="/diagnostic">
-          <button className="items-end bg-blue-500 rounded p-3 text-white text-sm">
-            Take Diagnostic Again
-          </button>
-        </Link>
-      </div>
-    </>
+      <Link href="/diagnostic">
+        <button className="items-end bg-blue-500 rounded p-3 text-white text-sm">
+          Take Diagnostic Again
+        </button>
+      </Link>
+    </div>
   );
 };
 

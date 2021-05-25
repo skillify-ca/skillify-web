@@ -42,7 +42,7 @@ test("grade correct division 2", async () => {
   // Arrange
   const state: DiagnosticState = {
     questions: [dummyDivisionQuestion],
-    guessAns: ["Inorrect"],
+    guessAns: ["Incorrect"],
   };
 
   // Act

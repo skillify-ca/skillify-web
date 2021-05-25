@@ -2,7 +2,7 @@ import { DiagnosticState } from "../../../redux/diagnosticSlice";
 import { Question } from "../question";
 import { Skill, Topic } from "../skill";
 
-const PASSING_GRADE = 0.8;
+const PASSING_GRADE = 0.5;
 
 type QuestionGuess = {
   question: Question;
@@ -27,6 +27,38 @@ export const getResultForSkill = (skill: Skill, results: DiagnosticState) => {
   } else {
     return "Not yet";
   }
+};
+
+export const getQuestionForSkill = (skill: Skill, results: DiagnosticState) => {
+  const questionsWithGuesses: QuestionGuess[] = results.questions.map(
+    (it, index) => ({ question: it, guess: results.guessAns[index] })
+  );
+  const filteredQuestionsWithGuesses = questionsWithGuesses.filter(
+    (it) => it.question.skill === skill
+  );
+
+  const skillDescriptions = filteredQuestionsWithGuesses.filter(
+    (it) => it.question.skill === skill.toString()
+  );
+
+  const questions = skillDescriptions.map((item) => item.question.text);
+  return questions;
+};
+
+export const getAnswerForSkill = (skill: Skill, results: DiagnosticState) => {
+  const questionsWithGuesses: QuestionGuess[] = results.questions.map(
+    (it, index) => ({ question: it, guess: results.guessAns[index] })
+  );
+  const filteredQuestionsWithGuesses = questionsWithGuesses.filter(
+    (it) => it.question.skill === skill
+  );
+
+  const guessAnswers = filteredQuestionsWithGuesses.filter(
+    (it) => it.question.skill === skill.toString()
+  );
+
+  const questions = guessAnswers.map((item) => item.guess);
+  return questions;
 };
 
 export const getGradeLevelForTopic = (

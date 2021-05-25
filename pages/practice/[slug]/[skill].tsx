@@ -6,10 +6,21 @@ import { AnswerType, Question } from "../../api/question";
 import Navbar from "../../../components/Navbar";
 import { Skill } from "../../api/skill";
 import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGenerator";
+import { Button } from "../../../components/stories/Button";
+import ReactCardFlip from "react-card-flip";
+import Card from "../../../components/stories/Card";
+import Hint from "../../../components/stories/Hint";
 
 const PracticeQuiz = ({ slug, skill }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
   const [index, setIndex] = useState(0);
+  const [guessAttempt, setGuessAttempt] = useState("");
+  const [correctAnswer, setCorrectAnswer] = useState(false);
+  const [wrongAnswer, setWrongAnswer] = useState(false);
+  const [indexCap, setIndexCap] = useState(false);
+  const [nextQuestionButton, setNextQuestionButton] = useState(false);
   const [interval, setMyInterval] = useState(null);
+  const [correctGuess, setCorrectGuess] = useState(0);
   const [questionData, setQuestionData] = useState<Question[]>([
     {
       text: "",
@@ -22,13 +33,26 @@ const PracticeQuiz = ({ slug, skill }) => {
 
   const inputElement = useRef(null);
 
+  const toggleFlip = () => {
+    setIsFlipped(!isFlipped);
+  };
+
   useEffect(() => {
-    setQuestionData(generatePracticeQuestions(slug, skill))
+    setQuestionData(generatePracticeQuestions(slug, skill));
   }, []);
 
-  const submitGuess = (guess: GuessData) => {
+  const applyNextQuestion = () => {
+    toggleFlip();
+
+    setNextQuestionButton(false);
+    setGuessAttempt("");
+    setCorrectAnswer(false);
+    setWrongAnswer(false);
+    nextQuestion();
+  };
+
+  const nextQuestion = () => {
     if (index < questionData.length - 1) {
-      console.log("ERROR");
       setIndex(index + 1);
       if (inputElement.current) {
         inputElement.current.focus();
@@ -38,16 +62,88 @@ const PracticeQuiz = ({ slug, skill }) => {
       setMyInterval(null);
     }
   };
+
+  const submitGuess = (guess: GuessData) => {
+    toggleFlip();
+
+    if (index < questionData.length && !indexCap) {
+      if (guess.guess != "") {
+        setGuessAttempt(guess.guess);
+      }
+      if (index == questionData.length - 1) {
+        setIndexCap(true);
+      }
+      if (guess.isCorrect) {
+        setCorrectGuess(correctGuess + 1);
+        setCorrectAnswer(true);
+      } else {
+        setWrongAnswer(true);
+      }
+      if (index < questionData.length - 1) setNextQuestionButton(true);
+    }
+  };
   return (
     <div>
       <Navbar />
-      <QuestionSet
-        title={slug}
-        questionData={questionData}
-        index={index}
-        inputElement={inputElement}
-        submitGuess={submitGuess}
-      />
+      <div className=" flex flex-row-reverse justify-items-end">
+        <p className="font-bold text-gray-400">
+          Question: {index + 1} / {questionData.length}
+          <br></br>
+          Score: {correctGuess} / {index + 1}
+        </p>
+      </div>
+
+      <ReactCardFlip
+        isFlipped={isFlipped}
+        flipDirection="vertical"
+        infinite={true}
+      >
+        <div className="justify-items-center align-middle w-50">
+          <QuestionSet
+            title={slug}
+            questionData={questionData}
+            index={index}
+            inputElement={inputElement}
+            submitGuess={submitGuess}
+            score={correctGuess}
+            practice={true}
+          />
+          <Hint skill={Skill.ADDITION_PROPERTIES}></Hint>
+        </div>
+        <Card size="large">
+          <div>
+            {correctAnswer ? (
+              <p className="font-bold text-gray-400 underline">
+                Correct,{" "}
+                <span className="font-bold text-green-400">{guessAttempt}</span>{" "}
+                was the answer!
+              </p>
+            ) : wrongAnswer ? (
+              <div className="italic text-gray-400 font-bold space-y-16">
+                <p>The correct answer was</p>
+                <span className="font-bold text-green-400">
+                  {questionData[index].answer.toString()}
+                </span>
+                <br></br>
+                <p>Your answer was </p>
+                <span className="font-bold text-red-500"> {guessAttempt} </span>
+              </div>
+            ) : (
+              ""
+            )}
+
+            {nextQuestionButton ? (
+              <Button
+                label="Next Question"
+                backgroundColor="yellow"
+                onClick={applyNextQuestion}
+              ></Button>
+            ) : (
+              ""
+            )}
+          </div>
+        </Card>
+      </ReactCardFlip>
     </div>
   );
 };

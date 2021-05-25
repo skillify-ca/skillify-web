@@ -4,7 +4,7 @@ import {
   getResultForSkill,
   getSkillsForTopic,
 } from "../../pages/api/diagnostic/diagnosticGrader";
-import { Topic } from "../../pages/api/skill";
+import { SkillDescription, Topic } from "../../pages/api/skill";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 
 type DiagnosticEvidenceProps = {
@@ -14,31 +14,51 @@ type DiagnosticEvidenceProps = {
 
 const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
   const skills = getSkillsForTopic(topic);
+
+  const getBackgroundColorForTopic = (result: string) => {
+    const skillLevel = result;
+    switch (skillLevel) {
+      case "Not yet":
+        return "bg-red-100";
+      case "Got it!":
+        return "bg-green-100";
+      default:
+        return "bg-blue-100";
+    }
+  };
+
   return (
-    <>
-      <p className="mb-12"> {"topic"} </p>
-      <div className="flex justify-between sm:w-1/4 border-b border-black p-2">
-        <span> I can... </span>
-        <span className="pl-16"> Result </span>
-      </div>
-      <div className="flex justify-between flex-row sm:w-1/4 p-2">
-        <div>
-          {skills.map((skill) => (
-            <div>{skill}</div>
-          ))}
+    <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100 h-screen">
+      <p className="mb-2 text-center font-black text-xl">
+        {topic && topic.charAt(0).toUpperCase() + topic.slice(1)}
+      </p>
+      <div className="bg-white p-4 shadow-lg rounded-lg">
+        <p className="pb-4">
+          Select a skill to view the questions your child did during the test
+        </p>
+
+        <div className="flex flex-col w-full">
+          <div className="flex justify-between border-b border-black">
+            <p className="p-4 font-bold"> I can... </p>
+            <p className="p-4 font-bold"> Proficiency </p>
+          </div>
+          <div className="flex flex-col">
+            {skills.map((skill) => (
+              <Link href={"/diagnostic/data/".concat(skill.toString())}>
+                <div
+                  className={`${getBackgroundColorForTopic(
+                    getResultForSkill(skill, results)
+                  )} p-4 border-b border-black cursor-pointer hover:underline flex justify-between`}
+                >
+                  <p className={``}> {SkillDescription(skill)}</p>
+                  <p className={``}>{getResultForSkill(skill, results)}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
-        <div>
-          {skills.map((skill) => (
-            <div>{getResultForSkill(skill, results)}</div>
-          ))}
-        </div>
       </div>
-      <Link href="/diagnostic/data">
-        <button className="mt-4 bg-blue-500 rounded p-3 text-white text-sm">
-          Go To Data
-        </button>
-      </Link>
-    </>
+    </div>
   );
 };
 
