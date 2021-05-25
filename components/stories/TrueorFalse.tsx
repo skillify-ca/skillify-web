@@ -6,70 +6,25 @@ import { Button } from "./Button";
 export interface TrueorFalseProp {
   question: Question;
   submitGuess: (guess: GuessData) => void;
+  answer: string;
 }
 
-export function randomize(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
-let ans;
 export const TrueorFalse: React.FC<TrueorFalseProp> = ({
   question,
   submitGuess,
+  answer,
   ...props
 }) => {
-  const [truthValue, setTruthValue] = useState(0);
-  const [displayAns, setDisplayAns] = useState(0);
-
-  useEffect(() => {
-    const num1 = parseInt(parse().first);
-    const num2 = parseInt(parse().second);
-    switch (parse().operator) {
-      case "+":
-        ans = num1 + num2;
-        break;
-      case "-":
-        ans = num1 - num2;
-        break;
-      case "x":
-        ans = num1 * num2;
-        break;
-      case "/":
-        ans = num1 / num2;
-        break;
-    }
-    setTruthValue(randomize(0, 2));
-    switch (truthValue) {
-      case 0:
-        setDisplayAns(ans + randomize(-2, 3));
-        break;
-      case 1:
-        setDisplayAns(ans);
-
-        break;
-    }
-  }, []);
-
   const onSubmit = (guess: boolean) => {
     submitGuess({
       guess: guess.toString(),
-      isCorrect: guess === (ans === displayAns),
+      isCorrect: guess.toString() == answer.toString(),
     });
-  };
-  const parse = () => {
-    const part = question.text.split(" ");
-    return {
-      first: part[0],
-      operator: part[1],
-      second: part[2],
-    };
   };
 
   return (
     <div className="flex flex-col items-center space-y-16">
-      <p className="text-4xl">
-        {question.text} {displayAns}
-      </p>
+      <p className="text-4xl">{question.text}</p>
       <div className="flex flex-row  item-center space-x-4 ">
         <Button
           label="True"

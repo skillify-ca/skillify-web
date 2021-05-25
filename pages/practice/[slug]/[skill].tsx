@@ -45,6 +45,7 @@ const PracticeQuiz = ({ slug, skill }) => {
     toggleFlip();
 
     setNextQuestionButton(false);
+    setGuessAttempt("");
     setCorrectAnswer(false);
     setWrongAnswer(false);
     nextQuestion();
@@ -107,29 +108,28 @@ const PracticeQuiz = ({ slug, skill }) => {
             score={correctGuess}
             practice={true}
           />
-          <Hint skill={questionData.Skill}></Hint>
+          <Hint skill={Skill.ADDITION_PROPERTIES}></Hint>
         </div>
-        <div className="flex items-left">
-          <Card size="large">
-            {correctAnswer ? (
-              <p className="font-bold text-gray-400 underline">
-                Correct,{" "}
-                <span className="font-bold text-green-400">{guessAttempt}</span>{" "}
-                was the answer
-              </p>
-            ) : wrongAnswer ? (
-              <div>
-                The correct answer was{" "}
-                <span className="font-bold text-green-400">
-                  {questionData[index].answer}
-                </span>
-                <br></br>
-                Your answer was{" "}
-                <span className="font-bold text-red-500"> {guessAttempt} </span>
-              </div>
-            ) : (
-              ""
-            )}
+        <Card size="large">
+          {correctAnswer ? (
+            <p className="font-bold text-gray-400 underline">
+              Correct,{" "}
+              <span className="font-bold text-green-400">{guessAttempt}</span>{" "}
+              was the answer!
+            </p>
+          ) : wrongAnswer ? (
+            <div className="italic text-gray-400 font-bold space-y-16">
+              <p>The correct answer was</p>
+              <span className="font-bold text-green-400">
+                {questionData[index].answer.toString()}
+              </span>
+              <br></br>
+              <p>Your answer was </p>
+              <span className="font-bold text-red-500"> {guessAttempt} </span>
+            </div>
+          ) : (
+            ""
+          )}
 
             {nextQuestionButton ? (
               <Button

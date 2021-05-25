@@ -166,8 +166,6 @@ export const FillBlank: React.FC<FillBlankProp> = ({
       </p>
 
       <p>
-        {" "}
-        ={" "}
         <input
           id="input4"
           spellCheck="false"
