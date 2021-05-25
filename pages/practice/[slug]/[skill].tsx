@@ -111,25 +111,26 @@ const PracticeQuiz = ({ slug, skill }) => {
           <Hint skill={Skill.ADDITION_PROPERTIES}></Hint>
         </div>
         <Card size="large">
-          {correctAnswer ? (
-            <p className="italic font-bold text-gray-400">
-              Correct,{" "}
-              <span className="font-bold text-green-400">{guessAttempt}</span>{" "}
-              was the answer!
-            </p>
-          ) : wrongAnswer ? (
-            <div className="italic text-gray-400 font-bold space-y-16">
-              <p>The correct answer was </p>
-              <span className="font-bold text-green-400">
-                {questionData[index].answer}
-              </span>
-              <br></br>
-              <p>Your answer was </p>
-              <span className="font-bold text-red-500"> {guessAttempt} </span>
-            </div>
-          ) : (
-            ""
-          )}
+          <div>
+            {correctAnswer ? (
+              <p className="font-bold text-gray-400 underline">
+                Correct,{" "}
+                <span className="font-bold text-green-400">{guessAttempt}</span>{" "}
+                was the answer!
+              </p>
+            ) : wrongAnswer ? (
+              <div className="italic text-gray-400 font-bold space-y-16">
+                <p>The correct answer was</p>
+                <span className="font-bold text-green-400">
+                  {questionData[index].answer.toString()}
+                </span>
+                <br></br>
+                <p>Your answer was </p>
+                <span className="font-bold text-red-500"> {guessAttempt} </span>
+              </div>
+            ) : (
+              ""
+            )}
 
             {nextQuestionButton ? (
               <Button
