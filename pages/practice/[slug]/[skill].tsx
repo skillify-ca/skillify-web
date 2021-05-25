@@ -44,6 +44,7 @@ const PracticeQuiz = ({ slug, skill }) => {
     toggleFlip();
 
     setNextQuestionButton(false);
+    setGuessAttempt("");
     setCorrectAnswer(false);
     setWrongAnswer(false);
     nextQuestion();
@@ -116,9 +117,9 @@ const PracticeQuiz = ({ slug, skill }) => {
             </p>
           ) : wrongAnswer ? (
             <div className="italic text-gray-400 font-bold space-y-16">
-              <p>The correct answer was </p>
+              <p>The correct answer was</p>
               <span className="font-bold text-green-400">
-                {questionData[index].answer}
+                {questionData[index].answer.toString()}
               </span>
               <br></br>
               <p>Your answer was </p>
