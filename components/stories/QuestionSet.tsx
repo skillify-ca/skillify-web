@@ -114,7 +114,11 @@ const QuestionSet = ({
       questionData[index].questionType === QuestionType.TRUE_OR_FALSE_PROBLEM
     ) {
       return (
-        <TrueorFalse question={questionData[index]} submitGuess={submitGuess} />
+        <TrueorFalse
+          question={questionData[index]}
+          submitGuess={submitGuess}
+          answer={questionData[index].answer}
+        />
       );
     } else if (
       questionData[index].questionType === QuestionType.LONG_DIVISION_PROBLEM

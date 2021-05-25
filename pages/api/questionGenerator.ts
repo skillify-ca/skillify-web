@@ -144,6 +144,9 @@ function getRandomDivisionQuestion(
     skill: skill,
   };
 }
+export function randomize(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
 function getRandomBinaryQuestion(
   min: number,
@@ -162,8 +165,29 @@ function getRandomBinaryQuestion(
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
   let text;
+  let trueFalseAnswer;
   const type = types[typeIndex];
-  text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} =`;
+  if (type === QuestionType.TRUE_OR_FALSE_PROBLEM) {
+    const randomAns = randomize(0, 2);
+    switch (randomAns) {
+      case 0:
+        text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = 
+      ${answerFunction(Math.max(a, b), Math.min(a, b))}`;
+        trueFalseAnswer = true;
+
+      case 1:
+        let randomDisplacement = randomize(-3, 2);
+        while (randomDisplacement == 0) {
+          randomDisplacement = randomize(-3, 2);
+        }
+        text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = 
+      ${answerFunction(Math.max(a, b), Math.min(a, b)) + randomDisplacement}`;
+        trueFalseAnswer = false;
+    }
+  } else {
+    text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} =`;
+  }
+
   let wordProblemModel;
   //condition for if it is wordProblem
   if (type === QuestionType.BINARY_WORD_PROBLEM) {
@@ -172,7 +196,10 @@ function getRandomBinaryQuestion(
 
   return {
     text: text,
-    answer: answerFunction(Math.max(a, b), Math.min(a, b)).toString(),
+    answer:
+      type === QuestionType.TRUE_OR_FALSE_PROBLEM
+        ? trueFalseAnswer
+        : answerFunction(Math.max(a, b), Math.min(a, b)).toString(),
     answerType:
       type === QuestionType.TRUE_OR_FALSE_PROBLEM
         ? AnswerType.BOOLEAN

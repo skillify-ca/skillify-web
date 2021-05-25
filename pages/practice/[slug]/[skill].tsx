@@ -44,6 +44,7 @@ const PracticeQuiz = ({ slug, skill }) => {
     toggleFlip();
 
     setNextQuestionButton(false);
+    setGuessAttempt("");
     setCorrectAnswer(false);
     setWrongAnswer(false);
     nextQuestion();
@@ -91,13 +92,11 @@ const PracticeQuiz = ({ slug, skill }) => {
         </p>
       </div>
 
-
       <ReactCardFlip
         isFlipped={isFlipped}
         flipDirection="vertical"
         infinite={true}
       >
-
         <div className="justify-items-center align-middle w-50">
           <QuestionSet
             title={slug}
@@ -111,34 +110,20 @@ const PracticeQuiz = ({ slug, skill }) => {
         </div>
         <Card size="large">
           {correctAnswer ? (
-            <p className="font-bold text-gray-400 underline">
+            <p className="italic font-bold text-gray-400">
               Correct,{" "}
               <span className="font-bold text-green-400">{guessAttempt}</span>{" "}
               was the answer!
             </p>
           ) : wrongAnswer ? (
-            <div>
-              <p className="font-bold text-gray-400 underline">
-                The correct answer was{" "}
-                <span className="font-bold text-green-400">
-                  {questionData[index].answer}
-                </span>
-              </p>
-              <br></br>
-              <p className="font-bold text-gray-400 underline">
-                Your answer was{" "}
-                <span className="font-bold text-red-500"> {guessAttempt} </span>
-              </p>
-=======
             <div className="italic text-gray-400 font-bold space-y-16">
-              <p>The correct answer was </p>
+              <p>The correct answer was</p>
               <span className="font-bold text-green-400">
-                {questionData[index].answer}
+                {questionData[index].answer.toString()}
               </span>
               <br></br>
               <p>Your answer was </p>
               <span className="font-bold text-red-500"> {guessAttempt} </span>
-
             </div>
           ) : (
             ""
