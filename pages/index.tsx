@@ -59,6 +59,7 @@ const Diagnostic = () => {
         setDiagnostic({
           questions: questionData,
           guessAns: updateGuessAns,
+          grade: grade,
         })
       );
       setStage(STAGE.RESULTS);

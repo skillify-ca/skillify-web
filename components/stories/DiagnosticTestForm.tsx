@@ -22,7 +22,7 @@ const DiagnosticTestForm = ({ onClick }: DiagnosticTestFormProps) => {
   const onSubmit = () => {
     setWordProblem(createWordProblemModel("+"));
   };
-
+  console.log(grade);
   return (
     <div className="flex flex-col gap-8 w-full">
       <div className="flex flex-col items-center bg-white shadow-lg gap-8 rounded-lg p-4">
