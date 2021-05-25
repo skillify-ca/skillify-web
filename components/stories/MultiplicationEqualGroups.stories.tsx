@@ -5,6 +5,7 @@ import {
   MultiplicationEqualGroups,
   MultiplicationEqualGroupsProp,
 } from "./MultiplicationEqualGroups";
+import Card from "./Card";
 
 export default {
   title: "Multiplication Equal Groups",
@@ -13,7 +14,9 @@ export default {
 } as Meta;
 
 const Template: Story<MultiplicationEqualGroupsProp> = (args) => (
-  <MultiplicationEqualGroups {...args} />
+  <Card size="large">
+    <MultiplicationEqualGroups {...args} />
+  </Card>
 );
 
 export const Primary = Template.bind({});

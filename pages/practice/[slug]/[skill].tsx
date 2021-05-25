@@ -110,7 +110,7 @@ const PracticeQuiz = ({ slug, skill }) => {
         </div>
         <Card size="large">
           {correctAnswer ? (
-            <p className="italic font-bold text-gray-400">
+            <p className="font-bold text-gray-400 underline">
               Correct,{" "}
               <span className="font-bold text-green-400">{guessAttempt}</span>{" "}
               was the answer!
