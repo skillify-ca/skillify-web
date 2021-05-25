@@ -17,6 +17,7 @@ import { MultipleChoiceWord } from "./MultipleChoiceWord";
 import { FillBlank } from "./FillBlank";
 import { MultiplicationArray } from "./MultiplicationArray";
 import { MultiplicationEqualGroups } from "./MultiplicationEqualGroups";
+import { Skill } from "../../pages/api/skill";
 
 type QuestionSetProps = {
   title: string;
@@ -27,12 +28,12 @@ type QuestionSetProps = {
   score: number;
   practice?: boolean;
 };
-
 const QuestionSet = ({
   title,
   questionData,
   index,
   submitGuess,
+  score,
   practice,
 }: QuestionSetProps) => {
   const questionComponent = () => {
@@ -114,7 +115,11 @@ const QuestionSet = ({
       questionData[index].questionType === QuestionType.TRUE_OR_FALSE_PROBLEM
     ) {
       return (
-        <TrueorFalse question={questionData[index]} submitGuess={submitGuess} />
+        <TrueorFalse
+          question={questionData[index]}
+          submitGuess={submitGuess}
+          answer={questionData[index].answer}
+        />
       );
     } else if (
       questionData[index].questionType === QuestionType.LONG_DIVISION_PROBLEM
@@ -158,18 +163,24 @@ const QuestionSet = ({
     );
   };
 
+  const progressText = (
+    <p className="font-bold text-gray-400 ">
+      {" "}
+      Question: {index + 1} / {questionData.length}{" "}
+    </p>
+  );
+
+  const scoreText = (
+    <div>
+      Score: {score} / {index + 1}
+    </div>
+  );
   return (
-    <div className="flex flex-col justify-center items-centergap-8 pb-24">
-      <div className="flex justify-between w-full p-4">
+    <div className="flex flex-col justify-center items-center gap-8">
+      <div className="flex flex-row justify-between w-full p-4 bg-yellow-400">
         <p className="text-xl font-bold">{title}</p>
-        {!practice ? (
-          <p className="font-bold text-gray-400 ">
-            {" "}
-            Question: {index + 1} / {questionData.length}{" "}
-          </p>
-        ) : (
-          ""
-        )}
+        {progressText}
+        {!practice && scoreText}
       </div>
       <Card size="large">{questionData[index] && questionComponent()}</Card>
     </div>

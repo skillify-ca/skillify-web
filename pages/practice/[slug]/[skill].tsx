@@ -9,6 +9,7 @@ import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGe
 import { Button } from "../../../components/stories/Button";
 import ReactCardFlip from "react-card-flip";
 import Card from "../../../components/stories/Card";
+import Hint from "../../../components/stories/Hint";
 
 const PracticeQuiz = ({ slug, skill }) => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -44,6 +45,7 @@ const PracticeQuiz = ({ slug, skill }) => {
     toggleFlip();
 
     setNextQuestionButton(false);
+    setGuessAttempt("");
     setCorrectAnswer(false);
     setWrongAnswer(false);
     nextQuestion();
@@ -106,6 +108,7 @@ const PracticeQuiz = ({ slug, skill }) => {
             score={correctGuess}
             practice={true}
           />
+          <Hint skill={Skill.ADDITION_PROPERTIES}></Hint>
         </div>
         <Card size="large">
           {correctAnswer ? (
@@ -128,15 +131,16 @@ const PracticeQuiz = ({ slug, skill }) => {
             ""
           )}
 
-          {nextQuestionButton ? (
-            <Button
-              label="Next Question"
-              backgroundColor="yellow"
-              onClick={applyNextQuestion}
-            ></Button>
-          ) : (
-            ""
-          )}
+            {nextQuestionButton ? (
+              <Button
+                label="Next Question"
+                backgroundColor="yellow"
+                onClick={applyNextQuestion}
+              ></Button>
+            ) : (
+              ""
+            )}
+          </div>
         </Card>
       </ReactCardFlip>
     </div>
