@@ -1,8 +1,26 @@
 import React from "react";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { Button } from "../components/stories/Button";
+import LinkPreview from "@ashwamegh/react-link-preview";
 
 export default function Resources(props) {
+  function CustomComponent({ loading, preview }) {
+    console.log(preview);
+    return loading ? (
+      <h1>Loading...</h1>
+    ) : (
+      <div className="flex flex-col justify-center">
+        <p className="font-bold"> {preview.title}</p>
+        <p> {preview.description}</p>
+        <img
+          className="h-28 object-cover"
+          src={preview.img}
+          alt={preview.title}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
       <DiagnosticNavbar />
@@ -62,6 +80,33 @@ export default function Resources(props) {
                   allowTransparency={true}
                   allow="encrypted-media"
                 ></iframe>
+              </div>
+              <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
+                <input
+                  id="guess"
+                  type="text"
+                  autoComplete="off"
+                  className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
+                  placeholder="Email"
+                />
+                <Button
+                  backgroundColor="blue"
+                  textColor="white"
+                  label="Notify Me"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white shadow-lg rounded-lg w-full p-4">
+            <div className="flex flex-col gap-4">
+              <div>
+                <a href="https://www.educationnext.org/addressing-significant-learning-loss-in-mathematics-during-covid-19-and-beyond/">
+                  <LinkPreview
+                    url="https://www.educationnext.org/addressing-significant-learning-loss-in-mathematics-during-covid-19-and-beyond/"
+                    render={CustomComponent}
+                  />
+                </a>
               </div>
               <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
                 <input
