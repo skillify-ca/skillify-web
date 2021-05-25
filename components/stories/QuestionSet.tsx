@@ -65,6 +65,7 @@ const QuestionSet = ({
           step1={questionData[index].fillInTheBlank.options[0].text}
           step2={questionData[index].fillInTheBlank.options[1].text}
           step3={questionData[index].fillInTheBlank.options[2].text}
+          answer={questionData[index].answer}
           submitGuess={submitGuess}
         />
       );
