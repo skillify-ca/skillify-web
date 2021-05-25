@@ -8,7 +8,6 @@ export interface FillBlankProp {
   step1: string;
   step2: string;
   step3: string;
-  answer: string;
   submitGuess: (guess: GuessData) => void;
 }
 
@@ -17,25 +16,14 @@ export const FillBlank: React.FC<FillBlankProp> = ({
   step1,
   step2,
   step3,
-  answer,
   submitGuess,
   ...props
 }) => {
-  const [guess1, setGuess1] = useState("");
-  const [guess2, setGuess2] = useState("");
-  const [guess3, setGuess3] = useState("");
-  const [guess4, setGuess4] = useState("");
-
   useEffect(() => {
     (document.getElementById("input1") as HTMLInputElement).disabled = false;
     (document.getElementById("input2") as HTMLInputElement).disabled = true;
     (document.getElementById("input3") as HTMLInputElement).disabled = true;
     (document.getElementById("input4") as HTMLInputElement).disabled = true;
-    (document.getElementById("input4") as HTMLInputElement).disabled = true;
-    (document.getElementById("input1") as HTMLInputElement).value = "";
-    (document.getElementById("input2") as HTMLInputElement).value = "";
-    (document.getElementById("input3") as HTMLInputElement).value = "";
-    (document.getElementById("input4") as HTMLInputElement).value = "";
   }, []);
 
   const [guess, setGuess] = useState("");
@@ -63,7 +51,7 @@ export const FillBlank: React.FC<FillBlankProp> = ({
     (document.getElementById("input4") as HTMLInputElement).disabled = false;
   }
   function onButton4Click() {
-    const result = guess1 + "," + guess2 + "," + guess3 + "," + guess4;
+    submitGuess({ guess: "", isCorrect: true });
     setButton1Visible(true);
     setButton4Visible(false);
     (document.getElementById("input1") as HTMLInputElement).disabled = false;
@@ -74,7 +62,6 @@ export const FillBlank: React.FC<FillBlankProp> = ({
     (document.getElementById("input2") as HTMLInputElement).value = "";
     (document.getElementById("input3") as HTMLInputElement).value = "";
     (document.getElementById("input4") as HTMLInputElement).value = "";
-    submitGuess({ guess: result, isCorrect: result == answer });
   }
 
   const parse = () => {
@@ -129,8 +116,6 @@ export const FillBlank: React.FC<FillBlankProp> = ({
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
           type="number"
-          value={guess1}
-          onChange={(e) => setGuess1(e.target.value)}
         ></input>
         {" " + parse().steps[1]}
         {button1Visible && (
@@ -150,8 +135,6 @@ export const FillBlank: React.FC<FillBlankProp> = ({
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
           type="number"
-          value={guess2}
-          onChange={(e) => setGuess2(e.target.value)}
         ></input>
         {" " + parse().steps[3]}
         {button2Visible && (
@@ -172,8 +155,6 @@ export const FillBlank: React.FC<FillBlankProp> = ({
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
           type="number"
-          value={guess3}
-          onChange={(e) => setGuess3(e.target.value)}
         ></input>
         {button3Visible && (
           <Button
@@ -191,8 +172,6 @@ export const FillBlank: React.FC<FillBlankProp> = ({
           spellCheck="false"
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
           type="number"
-          value={guess4}
-          onChange={(e) => setGuess4(e.target.value)}
         ></input>{" "}
         {button4Visible && (
           <Button
