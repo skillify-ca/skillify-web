@@ -106,26 +106,53 @@ export const DiagnosticConclusion = ({
   }
   gradeLevel = Math.round(gradeLevel / 4);
 
+  const parse = (grades: string) => {
+    const parts = grades.split(" ");
+    return {
+      first: parts[0],
+      second: parts[1],
+    };
+  };
   const getBackgroundColorForTopic = (topic: Topic) => {
     const grade = getGradeLevelForTopic(topic, results);
-    switch (grade) {
-      case "Grade 1":
-        return "bg-red-100";
-      case "Grade 2":
-        return "bg-yellow-100";
-      default:
-        return "bg-green-100";
+    let resultGradeLevel = parseInt(parse(grade).second);
+    let inputGradeLevel = parseInt(parse(results.grade).second);
+    if (resultGradeLevel >= inputGradeLevel) {
+      return "bg-green-100";
+    } else if (inputGradeLevel - resultGradeLevel == 1) {
+      return "bg-yellow-100";
+    } else {
+      return "bg-red-100";
     }
   };
 
   const getSummaryText = () => {
-    switch (gradeLevel) {
-      case 3:
-        return "Amazing work! Your child has met the expectations of the Ontario grade 3 curriculum. Encourage them to solve harder problems to keep them challenged.";
-      case 2:
-        return "Great work! Your child has nearly met the expectations of the Ontario grade 3 curriculum. Provide them with supplemental resources to address their knowledge gaps.";
-      default:
-        return "Great effort! Your child requires extra practice to meet the expectations of the Ontario grade 3 curriculum. Provide them with supplemental resources to address their knowledge gaps.";
+    let inputGradeLevel = parseInt(parse(results.grade).second);
+    let difference = inputGradeLevel - gradeLevel;
+    if (difference == 0) {
+      return (
+        "Amazing work! Your child has met the expectations of the Ontario grade " +
+        inputGradeLevel +
+        " curriculum. Encourage them to solve harder problems to keep them challenged."
+      );
+    } else if (difference > 0) {
+      return (
+        "Truly impressive! Not only has your child met Ontario grade " +
+        inputGradeLevel +
+        " cirricullim but they have in fact exceeded expectations. Keep at the good work and welcome challeneges with open arms!"
+      );
+    } else if (difference == -1) {
+      return (
+        "Great work! Your child has nearly met the expectations of the Ontario grade " +
+        inputGradeLevel +
+        " curriculum. Provide them with supplemental resources to address their knowledge gaps."
+      );
+    } else {
+      return (
+        "Great effort! Your child requires extra practice to meet the expectations of the Ontario grade " +
+        inputGradeLevel +
+        " curriculum. Provide them with supplemental resources to address their knowledge gaps."
+      );
     }
   };
 

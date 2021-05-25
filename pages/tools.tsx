@@ -5,9 +5,13 @@ import { Button } from "../components/stories/Button";
 export default function Tools(props) {
   const [practiceInput, setPracticeInput] = useState("");
   const [battleInput, setBattleInput] = useState("");
+  const [practiceButtonEnabled, setPracticeButtonEnabled] = useState(true);
+  const [battleButtonEnabled, setBattleButtonEnabled] = useState(true);
 
   const notifyPracticeSignup = async () => {
     if (practiceInput.length > 0) {
+      setPracticeButtonEnabled(false)
+      setPracticeInput("")
       const url = "api/notifications?product=practice";
       const options = {
         method: "POST",
@@ -23,7 +27,9 @@ export default function Tools(props) {
     }
   };
   const notifyBattleSignup = async () => {
-    if (practiceInput.length > 0) {
+    if (battleInput.length > 0) {
+      setBattleButtonEnabled(false)
+      setBattleInput("")
       const url = "api/notifications?product=battle";
       const options = {
         method: "POST",
@@ -73,6 +79,7 @@ export default function Tools(props) {
                   placeholder="Email"
                 />
                 <Button
+                  disabled={!practiceButtonEnabled}
                   backgroundColor="blue"
                   textColor="white"
                   label="Notify Me"
@@ -100,6 +107,7 @@ export default function Tools(props) {
                   placeholder="Email"
                 />
                 <Button
+                  disabled={!battleButtonEnabled}
                   backgroundColor="blue"
                   textColor="white"
                   label="Notify Me"
