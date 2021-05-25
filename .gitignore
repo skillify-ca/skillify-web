@@ -8,6 +8,8 @@ server/email-server/node_modules
 /.pnp
 .pnp.js
 
+client/sendgrid.env
+
 # testing
 /coverage
 
