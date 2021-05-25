@@ -131,7 +131,7 @@ export const DiagnosticConclusion = ({
 
   return (
     <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100">
-      <div className="bg-white p-4 rounded-lg">
+      <div className="bg-white p-4 rounded-lg shadow-lg">
         <p className="mb-8 text-center font-black text-xl">
           Math Champ Report Card
         </p>
@@ -142,7 +142,7 @@ export const DiagnosticConclusion = ({
         </p>
         <p>{getSummaryText()}</p>
       </div>
-      <div className="bg-white p-4 rounded-lg">
+      <div className="bg-white p-4 rounded-lg shadow-lg">
         <p className="pb-4">Select a topic to get a detailed breakdown</p>
         <div className="grid grid-cols-2">
           <p className="p-4 font-bold border-b border-black"> Topic </p>
@@ -216,7 +216,7 @@ export const DiagnosticConclusion = ({
           </p>
         </div>
       </div>
-      <div className="flex flex-col bg-white p-4 rounded-lg">
+      <div className="flex flex-col bg-white p-4 shadow-lg rounded-lg">
         <p className="p-4 font-extrabold border-b border-black">
           Worksheet Recommendations
         </p>
@@ -229,7 +229,7 @@ export const DiagnosticConclusion = ({
             )
         )}
       </div>
-      <div className="bg-white p-4 flex flex-col sm:flex-row gap-4 items-center rounded-lg">
+      <div className="bg-white shadow-lg p-4 flex flex-col sm:flex-row gap-4 items-center rounded-lg">
         <p className="font-bold">Enter your email to save this report</p>
         <input
           id="guess"
