@@ -180,6 +180,7 @@ const PracticeQuiz = ({ slug, skill }) => {
             ></Button>
           </div>
         </div>
+
       )}
     </div>
   );
