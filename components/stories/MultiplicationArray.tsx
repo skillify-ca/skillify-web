@@ -43,26 +43,32 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
 
   //let hoverColour = "hover:bg-" + colour + "-400";
   let colorStyle;
+  let borderColour = "border-green-900";
+
   console.log(colour);
   
   switch (colour) {
     case "red":
       colorStyle = "hover:bg-red-400 bg-red-700";
+      borderColour = "border-red-900";
       break;
     case "purple":
       colorStyle = "hover:bg-purple-400 bg-purple-700";
+      borderColour = "border-purple-900";
       break;
     case "yellow":
       colorStyle = "hover:bg-yellow-400 bg-yellow-700";
+      borderColour = "border-yellow-900";
       break;
     case "blue":
       colorStyle = "hover:bg-blue-400 bg-blue-700";
+      borderColour = "border-blue-900";
       break;
     case "green":
       colorStyle = "hover:bg-green-400 bg-green-700";
+      borderColour = "border-green-900";
       break;
   }
-  let borderColour = "border-green-900";
   let textColour = "text-green-500";
   return (
     <div>
@@ -71,7 +77,7 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
           <div className="flex flew-row gap-2">
             {columns.map((it) => (
               <div
-                className={`w-8 h-8 border-gray-50 border-1 hover:gap-1 hover:scale-125 transform ${colorStyle}`}
+                className={`${colorStyle} w-8 h-8 border-gray-50 border-1 hover:gap-1 hover:scale-125 transform`}
               ></div>
             ))}
           </div>
