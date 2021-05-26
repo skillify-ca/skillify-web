@@ -6,11 +6,13 @@ import { RootState } from "./rootReducer";
 export interface DiagnosticState {
   questions: Array<Question>;
   guessAns: Array<string>;
+  grade: string;
 }
 
 const initialState: DiagnosticState = {
   questions: [],
   guessAns: [],
+  grade: "", 
 };
 
 export const diagnosticSlice: Slice = createSlice({
@@ -22,6 +24,7 @@ export const diagnosticSlice: Slice = createSlice({
         const newDiagnosticState = action.payload as DiagnosticState;
         state.questions = newDiagnosticState.questions;
         state.guessAns = newDiagnosticState.guessAns;
+        state.grade = newDiagnosticState.grade;
       }
     },
   },
