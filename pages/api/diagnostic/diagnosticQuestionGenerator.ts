@@ -51,12 +51,10 @@ export const generateQuestionsForDiagnostic = () => {
   for (let grade = 0; grade < 3; grade++) {
     for (let i = 0; i < topics.length; i++) {
       const topic = topics[i];
-      if (topic.name === "Multiplication") {
         const skill = topic.skills[grade];
         for (let j = 0; j < questionsPerSection; j++) {
           const question = generateQuestionForSkill(skill);
           questions.push(question);
-        }
       }
     }
   }
