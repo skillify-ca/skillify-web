@@ -131,16 +131,15 @@ const PracticeQuiz = ({ slug, skill }) => {
             ""
           )}
 
-            {nextQuestionButton ? (
-              <Button
-                label="Next Question"
-                backgroundColor="yellow"
-                onClick={applyNextQuestion}
-              ></Button>
-            ) : (
-              ""
-            )}
-          </div>
+          {nextQuestionButton ? (
+            <Button
+              label="Next Question"
+              backgroundColor="yellow"
+              onClick={applyNextQuestion}
+            ></Button>
+          ) : (
+            ""
+          )}
         </Card>
       </ReactCardFlip>
     </div>
