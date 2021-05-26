@@ -9,8 +9,8 @@ export default async function handler(
   res: NextApiResponse
 ) {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-  const pathToAttachment = `public/worksheets/addition_double_digit_worksheet.pdf`;
-  const data_base64 = base64_encode(pathToAttachment);
+
+  const skills = req.body.skills;
 
   const msg = {
     to: req.body.email, // Change to your recipient
@@ -18,14 +18,24 @@ export default async function handler(
     subject: "Your Math Champ Diagnostic Results",
     text: "and easy to do anywhere, even with Node.js", // for restrictive email clients
     html: "<strong>and easy to do anywhere, even with Node.js</strong>", // for email clients that can render CSS and HTML
-    attachments: [
-      {
-        filename: `addition_double_digit_worksheet.pdf`,
+    attachments: skills.map((it) => {
+      const pathToAttachment = `public/worksheets/${it}.pdf`;
+      const data_base64 = base64_encode(pathToAttachment);
+      return {
+        filename: `${it}.pdf`,
         content: data_base64,
         type: "application/pdf",
         disposition: "attachment",
-      },
-    ],
+      };
+    }),
+    // attachments: [
+    //   {
+    //     filename: `addition_double_digit_worksheet.pdf`,
+    //     content: data_base64,
+    //     type: "application/pdf",
+    //     disposition: "attachment",
+    //   },
+    // ],
   };
   sgMail
     .send(msg)
