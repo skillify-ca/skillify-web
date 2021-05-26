@@ -140,7 +140,7 @@ const QuestionSet = ({
           <MultiplicationArray
             question={questionData[index]}
             submitGuess={submitGuess}
-            color={getRndColour()}
+            colour={getRndColour()}
           />
         );
       }
