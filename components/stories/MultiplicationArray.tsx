@@ -41,40 +41,46 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
   let horizontal = Array.from(Array(Number.parseInt(parse().second)).keys());
   let columns = Array.from(Array(Number.parseInt(parse().first)).keys());
 
-  //let hoverColour = "hover:bg-" + colour + "-400";
   let colorStyle;
   let borderColour = "border-green-900";
   let textColour = "text-green-500";
+  let hoverColour = "hover:bg-green-400";
+
   console.log(colour);
-  
+
   switch (colour) {
     case "red":
       colorStyle = "bg-red-700";
       borderColour = "border-red-900";
       textColour = "text-red-500";
+      hoverColour = "hover:bg-red-400";
       break;
     case "purple":
       colorStyle = "bg-purple-700";
       borderColour = "border-purple-900";
       textColour = "text-purple-500";
+      hoverColour = "hover:bg-purple-400";
       break;
     case "yellow":
       colorStyle = "bg-yellow-700";
       borderColour = "border-yellow-900";
       textColour = "text-yellow-500";
+      hoverColour = "hover:bg-yellow-400";
       break;
     case "blue":
       colorStyle = "bg-blue-700";
       borderColour = "border-blue-900";
       textColour = "text-blue-500";
+      hoverColour = "hover:bg-blue-400";
       break;
     case "green":
       colorStyle = "bg-green-700";
       borderColour = "border-green-900";
       textColour = "text-green-500";
+      hoverColour = "hover:bg-green-400";
       break;
   }
-  
+
   return (
     <div>
       <div className="flex flex-col gap-2 items-center">

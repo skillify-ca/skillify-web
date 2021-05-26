@@ -22,6 +22,7 @@ module.exports = {
       borderWidth: ["active"],
       fontFamily: ["hover", "focus"],
       opacity: ['disabled'],
+      backgroundColor: ["hover"]
     },
   },
   options: {
