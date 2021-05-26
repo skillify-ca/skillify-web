@@ -154,11 +154,11 @@ export const DiagnosticConclusion = ({
         inputGradeLevel +
         " curriculum. Encourage them to solve harder problems to keep them challenged."
       );
-    } else if (difference > 0) {
+    } else if (difference < 0) {
       return (
         "Truly impressive! Not only has your child met Ontario grade " +
         inputGradeLevel +
-        " curricullum but they have in fact exceeded expectations. Keep at the good work and welcome challeneges with open arms!"
+        " curriculum but they have in fact exceeded expectations. Keep at the good work and welcome challeneges with open arms!"
       );
     } else if (difference == -1) {
       return (
