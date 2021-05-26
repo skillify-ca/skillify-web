@@ -45,9 +45,6 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
   let borderColour = "border-green-900";
   let textColour = "text-green-500";
   let hoverColour = "hover:bg-green-400";
-
-  console.log(colour);
-
   switch (colour) {
     case "red":
       colorStyle = "bg-red-700";
