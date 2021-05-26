@@ -38,9 +38,24 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
   };
   let horizontal = Array.from(Array(Number.parseInt(parse().second)).keys());
   let columns = Array.from(Array(Number.parseInt(parse().first)).keys());
+
   const colour = getRndColour();
   //let hoverColour = "hover:bg-" + colour + "-400";
-  let hoverColour = "hover:bg-green-400";
+  const hoverColourSelecter = (colour) => {
+    switch (colour) {
+      case "red":
+        return "hover:bg-red-400";
+      case "purple":
+        return "hover:bg-purple-400";
+      case "yellow":
+        return "hover:bg-yellow-400";
+      case "blue":
+        return "hover:bg-blue-400";
+      case "green":
+        return "hover:bg-green-400";
+    }
+  };
+  let hoverColour = hoverColourSelecter(colour);
   let nonHoverColour = "bg-green-700";
   let borderColour = "border-green-900";
   let textColour = "text-green-500";
