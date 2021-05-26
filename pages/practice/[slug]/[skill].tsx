@@ -132,14 +132,12 @@ const PracticeQuiz = ({ slug, skill }) => {
               ""
             )}
 
-            {nextQuestionButton ? (
+            {nextQuestionButton && (
               <Button
                 label="Next Question"
                 backgroundColor="yellow"
                 onClick={applyNextQuestion}
               ></Button>
-            ) : (
-              ""
             )}
           </Card>
         </div>
