@@ -142,6 +142,7 @@ const PracticeQuiz = ({ slug, skill }) => {
                 onClick={applyNextQuestion}
               ></Button>
             )}
+
             {continueButton && (
               <Button label="Continue" backgroundColor="green"></Button>
             )}
