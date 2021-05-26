@@ -1,27 +1,22 @@
-import React, { useRef, useState } from "react";
-import { AnswerType } from "../../pages/api/question";
-import { QuestionType } from "../../pages/api/questionTypes";
-import { Skill, Topic } from "../../pages/api/skill";
-import { createWordProblemModel } from "../../pages/api/WordProblemModel";
+import React, { useState } from "react";
 import { Button } from "./Button";
-import { Input } from "./Input";
-import Toggle from "./Toggle";
-import { WordProblemAdd } from "./WordProblemAdd";
 
 type DiagnosticTestFormProps = {
   onClick: (grade: string) => void;
+  email: string;
+  setEmail: (email: string) => void;
 };
 
-const DiagnosticTestForm = ({ onClick }: DiagnosticTestFormProps) => {
+const DiagnosticTestForm = ({
+  onClick,
+  email,
+  setEmail,
+}: DiagnosticTestFormProps) => {
   const [grade, setGrade] = useState("Grade 3");
-  const [wordProblem, setWordProblem] = useState(createWordProblemModel("+"));
   const onGradeChange = (e: any) => {
     setGrade(e.target.value);
   };
 
-  const onSubmit = () => {
-    setWordProblem(createWordProblemModel("+"));
-  };
   return (
     <div className="flex flex-col gap-8 w-full">
       <div className="flex flex-col items-center bg-white shadow-lg gap-8 rounded-lg p-4">
@@ -62,53 +57,24 @@ const DiagnosticTestForm = ({ onClick }: DiagnosticTestFormProps) => {
             </select>
           </div>
         </div>
-
+        <div className="flex flex-row items-center justify-center w-full gap-4">
+          <p className="font-bold">Enter your email</p>
+          <input
+            id="guess"
+            type="text"
+            autoComplete="off"
+            className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
         <Button
           backgroundColor="blue"
           label="Start"
           textColor="white"
           onClick={(e) => onClick(grade)}
         />
-      </div>
-      <div className="bg-white shadow-lg flex flex-col sm:flex-row justify-between rounded-lg">
-        <div className="flex flex-col gap-4 p-8 sm:w-1/2 bg-blue-50">
-          <p className="font-bold">Step 1</p>
-          <p className="font-bold text-xl">Take the Math Champ Assessment</p>
-          <p>
-            During this quick assessment, your child will answer 36 questions
-            from the Ontario curriculum.
-          </p>
-        </div>
-        <div className="sm:w-1/2 m-4 p-4">
-          <WordProblemAdd
-            autofocus={false}
-            submitGuess={(it) => {
-              onSubmit();
-            }}
-            question={{
-              text: "3 + 3",
-              answer: "6",
-              answerType: AnswerType.NUMBER,
-              questionType: QuestionType.BINARY_WORD_PROBLEM,
-              skill: Skill.ADDITION_SINGLE,
-              wordProblem: wordProblem,
-            }}
-          />
-        </div>
-      </div>
-      <div className="bg-blue-50 shadow-lg flex flex-col sm:flex-row justify-between rounded-lg">
-        <img
-          src="/diagnostic/diagnostic-sample-report.gif"
-          className="sm:w-1/2 sm:rounded-l-lg rounded-t-lg"
-        />{" "}
-        <div className="flex flex-col gap-4 p-8 sm:w-1/2">
-          <p className="font-bold">Step 2</p>
-          <p className="font-bold text-xl">Get Your Personalized Report</p>
-          <p>
-            Your customized Math Champ report will give you the insights and
-            supplemental worksheets you need for your child.
-          </p>
-        </div>
       </div>
     </div>
   );
