@@ -8,6 +8,7 @@ import { Input } from "./Input";
 export interface MultiplicationArrayProp {
   question: Question;
   submitGuess: (guess: GuessData) => void;
+  color?: string;
 }
 
 // Array Question type is a new way to visualize multiplication problem using squares
@@ -15,6 +16,7 @@ export interface MultiplicationArrayProp {
 export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
   question,
   submitGuess,
+  color = "green",
   ...props
 }) => {
   const [visibility, setVisibility] = useState(false);
@@ -41,21 +43,19 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
 
   const colour = getRndColour();
   //let hoverColour = "hover:bg-" + colour + "-400";
-  const hoverColourSelecter = (colour) => {
-    switch (colour) {
-      case "red":
-        return "bg-red-400";
-      case "purple":
-        return "bg-purple-400";
-      case "yellow":
-        return "bg-yellow-400";
-      case "blue":
-        return "bg-blue-400";
-      case "green":
-        return "bg-green-400";
-    }
-  };
-  let hoverColour = hoverColourSelecter(colour);
+  let hoverColour;
+  switch (colour) {
+    case "red":
+      hoverColour = "bg-red-400";
+    case "purple":
+      hoverColour = "bg-purple-400";
+    case "yellow":
+      hoverColour = "bg-yellow-400";
+    case "blue":
+      hoverColour = "bg-blue-400";
+    case "green":
+      hoverColour = "bg-green-400";
+  }
   let nonHoverColour = "bg-green-700";
   let borderColour = "border-green-900";
   let textColour = "text-green-500";
