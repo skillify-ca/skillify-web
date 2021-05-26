@@ -6,6 +6,7 @@ import {
   getResultForSkill,
 } from "../../pages/api/diagnostic/diagnosticGrader";
 import { Skill, Topic } from "../../pages/api/skill";
+import { getWorkSheets } from "../../pages/diagnostic";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 import { Button } from "./Button";
 import { Input } from "./Input";
@@ -31,45 +32,7 @@ type DiagnosticConclusionProps = {
 export const DiagnosticConclusion = ({
   results,
 }: DiagnosticConclusionProps) => {
-  const [email, setEmail] = useState("");
 
-  const workSheets: Worksheet[] = results.questions.map((element) => {
-    let skills = element.skill;
-    if (getResultForSkill(element.skill, results) === "Not yet") {
-      switch (skills) {
-        case Skill.ADDITION_SINGLE:
-          return AdditionSingleDigitWS;
-        case Skill.ADDITION_DOUBLE:
-          return AdditionDoubleDigitWS;
-        case Skill.ADDITION_TRIPLE:
-          return AdditionTripleDigitWS;
-        case Skill.SUBTRACTION_SINGLE:
-          return SubtractionSingleDigitWS;
-        case Skill.SUBTRACTION_DOUBLE:
-          return SubtractionDoubleDigitWS;
-        case Skill.SUBTRACTION_TRIPLE:
-          return SubtractionTripleDigitWS;
-        case Skill.MULTIPLICATION_5:
-          return MultiplicationEqualGroup10WS;
-        case Skill.MULTIPLICATION_10:
-          return MultiplicationTo5WS;
-        case Skill.EQUAL_GROUP_10_ITEMS:
-          return MultiplicationTo10WS;
-        case Skill.EQUAL_SHARING_8_ITEMS:
-          return DivisionEqualSharing8WS;
-        case Skill.DIVIDE_12_EQUALLY:
-          return Division12EquallyWS;
-        case Skill.DIVIDE_100:
-          return Division100WS;
-      }
-    }
-  });
-  let filterArr = [workSheets[0]];
-  for (var i = 1; i < workSheets.length; i++) {
-    if (workSheets[i] != workSheets[i - 1]) {
-      filterArr.push(workSheets[i]);
-    }
-  }
   let gradeLevel = 0;
   if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 3") {
     gradeLevel = gradeLevel + 3;
@@ -127,22 +90,6 @@ export const DiagnosticConclusion = ({
     } else {
       return "bg-red-100";
     }
-  };
-
-  const requestEmail = async () => {
-    const url = "/api/email";
-    const options = {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      },
-      body: JSON.stringify({
-        email: email,
-        skills: filterArr,
-      }),
-    };
-    await fetch(url, options);
   };
 
   const getSummaryText = () => {
@@ -266,7 +213,7 @@ export const DiagnosticConclusion = ({
         <p className="p-4 font-extrabold border-b border-black">
           Worksheet Recommendations
         </p>
-        {filterArr.map(
+        {getWorkSheets(results).map(
           (it) =>
             it && (
               <a className="text-blue-500 px-4" href={it.pdf} target="_blank">
@@ -274,24 +221,6 @@ export const DiagnosticConclusion = ({
               </a>
             )
         )}
-      </div>
-      <div className="bg-white shadow-lg p-4 flex flex-col sm:flex-row gap-4 items-center rounded-lg">
-        <p className="font-bold">Enter your email to save this report</p>
-        <input
-          id="guess"
-          type="text"
-          autoComplete="off"
-          className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <Button
-          backgroundColor="blue"
-          textColor="white"
-          label="Submit"
-          onClick={requestEmail}
-        />
       </div>
       <div className="w-1/2 flex-row content-evenly"></div>
     </div>
