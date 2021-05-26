@@ -4,6 +4,7 @@ import { useState } from "react";
 import {
   getGradeLevelForTopic,
   getResultForSkill,
+  getSummaryText,
 } from "../../pages/api/diagnostic/diagnosticGrader";
 import { Skill, Topic } from "../../pages/api/skill";
 import { getWorkSheets } from "../../pages/diagnostic";
@@ -32,7 +33,6 @@ type DiagnosticConclusionProps = {
 export const DiagnosticConclusion = ({
   results,
 }: DiagnosticConclusionProps) => {
-
   let gradeLevel = 0;
   if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 3") {
     gradeLevel = gradeLevel + 3;
@@ -92,36 +92,6 @@ export const DiagnosticConclusion = ({
     }
   };
 
-  const getSummaryText = () => {
-    let inputGradeLevel = parseInt(parse(results.grade).second);
-    let difference = inputGradeLevel - gradeLevel;
-    if (difference == 0) {
-      return (
-        "Amazing work! Your child has met the expectations of the Ontario grade " +
-        inputGradeLevel +
-        " curriculum. Encourage them to solve harder problems to keep them challenged."
-      );
-    } else if (difference < 0) {
-      return (
-        "Truly impressive! Not only has your child met Ontario grade " +
-        inputGradeLevel +
-        " curriculum but they have in fact exceeded expectations. Keep at the good work and welcome challeneges with open arms!"
-      );
-    } else if (difference == -1) {
-      return (
-        "Great work! Your child has nearly met the expectations of the Ontario grade " +
-        inputGradeLevel +
-        " curriculum. Provide them with supplemental resources to address their knowledge gaps."
-      );
-    } else {
-      return (
-        "Great effort! Your child requires extra practice to meet the expectations of the Ontario grade " +
-        inputGradeLevel +
-        " curriculum. Provide them with supplemental resources to address their knowledge gaps."
-      );
-    }
-  };
-
   return (
     <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100">
       <div className="bg-white p-4 rounded-lg shadow-lg">
@@ -133,7 +103,9 @@ export const DiagnosticConclusion = ({
           {" "}
           {"Average Ontario Grade Level - Grade " + gradeLevel}{" "}
         </p>
-        <p>{getSummaryText()}</p>
+        <p>
+          {getSummaryText(gradeLevel, parseInt(parse(results.grade).second))}
+        </p>
       </div>
       <div className="bg-white p-4 rounded-lg shadow-lg">
         <p className="pb-4">Select a topic to get a detailed breakdown</p>
