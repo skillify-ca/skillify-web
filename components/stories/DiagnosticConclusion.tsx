@@ -147,20 +147,22 @@ export const DiagnosticConclusion = ({
 
   const getSummaryText = () => {
     let inputGradeLevel = parseInt(parse(results.grade).second);
+    console.log(inputGradeLevel);
     let difference = inputGradeLevel - gradeLevel;
+    console.log(difference);
     if (difference == 0) {
       return (
         "Amazing work! Your child has met the expectations of the Ontario grade " +
         inputGradeLevel +
         " curriculum. Encourage them to solve harder problems to keep them challenged."
       );
-    } else if (difference > 0) {
+    } else if (difference <= -1) {
       return (
-        "Truly impressive! Not only has your child met Ontario grade " +
+        "Truly impressive! Not only has your child met the Ontario grade " +
         inputGradeLevel +
-        " cirricullim but they have in fact exceeded expectations. Keep at the good work and welcome challeneges with open arms!"
+        " curriculum standards, but they have exceeded the expectations as well. Keep up the good work and welcome challeneges with open arms!"
       );
-    } else if (difference == -1) {
+    } else if (difference == 1) {
       return (
         "Great work! Your child has nearly met the expectations of the Ontario grade " +
         inputGradeLevel +
