@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { useState } from "react";
 import {
   getGradeLevelForTopic,
   getResultForSkill,
@@ -30,6 +31,8 @@ type DiagnosticConclusionProps = {
 export const DiagnosticConclusion = ({
   results,
 }: DiagnosticConclusionProps) => {
+  const [email, setEmail] = useState("");
+
   const workSheets: Worksheet[] = results.questions.map((element) => {
     let skills = element.skill;
     if (getResultForSkill(element.skill, results) === "Not yet") {
@@ -124,6 +127,22 @@ export const DiagnosticConclusion = ({
     } else {
       return "bg-red-100";
     }
+  };
+
+  const requestEmail = async () => {
+    const url = "/api/pdf-generator";
+    const options = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      body: JSON.stringify({
+        email: email,
+        results: results,
+      }),
+    };
+    await fetch(url, options);
   };
 
   const getSummaryText = () => {
@@ -264,8 +283,15 @@ export const DiagnosticConclusion = ({
           autoComplete="off"
           className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
           placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <Button backgroundColor="blue" textColor="white" label="Submit" />
+        <Button
+          backgroundColor="blue"
+          textColor="white"
+          label="Submit"
+          onClick={requestEmail}
+        />
       </div>
       <div className="w-1/2 flex-row content-evenly"></div>
     </div>
