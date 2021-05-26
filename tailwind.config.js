@@ -21,6 +21,7 @@ module.exports = {
     extend: {
       borderWidth: ["active"],
       fontFamily: ["hover", "focus"],
+      opacity: ['disabled'],
     },
   },
   options: {
