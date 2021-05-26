@@ -88,7 +88,7 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
           <div className="flex flew-row gap-2">
             {columns.map((it) => (
               <div
-                className={`${colorStyle} w-8 h-8 border-gray-50 border-1 hover:gap-1 hover:scale-125 transform`}
+                className={`${colorStyle} ${hoverColour} w-8 h-8 border-gray-50 border-1 hover:gap-1 hover:scale-125 transform`}
               ></div>
             ))}
           </div>
