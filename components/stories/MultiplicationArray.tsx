@@ -43,6 +43,8 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
 
   //let hoverColour = "hover:bg-" + colour + "-400";
   let colorStyle;
+  console.log(colour);
+  
   switch (colour) {
     case "red":
       colorStyle = "hover:bg-red-400 bg-red-700";
