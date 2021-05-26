@@ -130,7 +130,7 @@ export const DiagnosticConclusion = ({
   };
 
   const requestEmail = async () => {
-    const url = "/api/pdf-generator";
+    const url = "/api/email";
     const options = {
       method: "POST",
       headers: {
@@ -139,7 +139,7 @@ export const DiagnosticConclusion = ({
       },
       body: JSON.stringify({
         email: email,
-        results: results,
+        skills: filterArr,
       }),
     };
     await fetch(url, options);
@@ -158,7 +158,7 @@ export const DiagnosticConclusion = ({
       return (
         "Truly impressive! Not only has your child met Ontario grade " +
         inputGradeLevel +
-        " cirricullim but they have in fact exceeded expectations. Keep at the good work and welcome challeneges with open arms!"
+        " curricullum but they have in fact exceeded expectations. Keep at the good work and welcome challeneges with open arms!"
       );
     } else if (difference == -1) {
       return (
