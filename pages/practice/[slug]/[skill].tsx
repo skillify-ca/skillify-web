@@ -10,9 +10,12 @@ import { Button } from "../../../components/stories/Button";
 import ReactCardFlip from "react-card-flip";
 import Card from "../../../components/stories/Card";
 import Hint from "../../../components/stories/Hint";
+import EmojiSlider from "../../../components/stories/EmojiSlider";
+import Link from "next/link";
 
 const PracticeQuiz = ({ slug, skill }) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [continuePage, setContinuePage] = useState(false);
   const [index, setIndex] = useState(0);
   const [guessAttempt, setGuessAttempt] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState(false);
@@ -40,6 +43,7 @@ const PracticeQuiz = ({ slug, skill }) => {
 
   useEffect(() => {
     setQuestionData(generatePracticeQuestions(slug, skill));
+    setContinuePage(false);
   }, []);
 
   const applyNextQuestion = () => {
@@ -113,44 +117,70 @@ const PracticeQuiz = ({ slug, skill }) => {
           />
         </div>
 
-        <div className="flex flex-col justify-center items-center gap-8">
-          <Card size="large">
-            {correctAnswer ? (
-              <p className="font-bold text-gray-400 underline">
-                Correct,{" "}
-                <span className="font-bold text-green-400">{guessAttempt}</span>{" "}
-                was the answer!
-              </p>
-            ) : wrongAnswer ? (
-              <div className="italic text-gray-400 font-bold space-y-16">
-                <p>The correct answer was</p>
-                <span className="font-bold text-green-400">
-                  {questionData[index].answer.toString()}
-                </span>
-                <br></br>
-                <p>Your answer was </p>
-                <span className="font-bold text-red-500"> {guessAttempt} </span>
-              </div>
-            ) : (
-              ""
-            )}
-
-            {nextQuestionButton && (
-              <Button
-                label="Next Question"
-                backgroundColor="yellow"
-                onClick={applyNextQuestion}
-              ></Button>
-            )}
-
-            {continueButton && (
-              <Button label="Continue" backgroundColor="green"></Button>
-            )}
-          </Card>
-        </div>
+        {!continuePage && (
+          <div className="flex flex-col justify-center items-center gap-8">
+            <Card size="large">
+              {correctAnswer ? (
+                <p className="font-bold text-gray-400 underline">
+                  Correct,
+                  <span className="font-bold text-green-400">
+                    {" " + guessAttempt + " "}
+                  </span>
+                  was the answer!
+                </p>
+              ) : wrongAnswer ? (
+                <div className="italic text-gray-400 font-bold space-y-16">
+                  <p>The correct answer was</p>
+                  <span className="font-bold text-green-400">
+                    {questionData[index].answer.toString()}
+                  </span>
+                  <br></br>
+                  <p>Your answer was </p>
+                  <span className="font-bold text-red-500">{guessAttempt}</span>
+                </div>
+              ) : (
+                ""
+              )}
+              {nextQuestionButton && (
+                <Button
+                  label="Next Question"
+                  backgroundColor="yellow"
+                  onClick={applyNextQuestion}
+                ></Button>
+              )}
+              {continueButton && (
+                <Button
+                  label="Continue"
+                  backgroundColor="green"
+                  onClick={() => setContinuePage(true)}
+                ></Button>
+              )}
+            </Card>
+          </div>
+        )}
       </ReactCardFlip>
       {!continueButton && !nextQuestionButton && (
         <Hint skill={Skill.ADDITION_PROPERTIES}></Hint>
+      )}
+      {continuePage && (
+        <div className=" grid-cols-1 grid justify-items-center space-y-8">
+          <p className="font-bold text-gray-400 ">
+            How Confident were you in these Practice Questions?
+          </p>
+
+          <EmojiSlider />
+          <div className="flex flex-row space-x-8 ">
+            <Link href={`/practice`}>
+              <Button label="Home" backgroundColor="purple"></Button>
+            </Link>
+            <Button
+              label="Retry Quiz"
+              backgroundColor="green"
+              onClick={() => window.location.reload()}
+            ></Button>
+          </div>
+        </div>
+
       )}
     </div>
   );
