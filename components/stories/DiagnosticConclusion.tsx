@@ -147,9 +147,7 @@ export const DiagnosticConclusion = ({
 
   const getSummaryText = () => {
     let inputGradeLevel = parseInt(parse(results.grade).second);
-    console.log(inputGradeLevel);
     let difference = inputGradeLevel - gradeLevel;
-    console.log(difference);
     if (difference == 0) {
       return (
         "Amazing work! Your child has met the expectations of the Ontario grade " +
