@@ -21,6 +21,12 @@ export const MultipleChoiceWord: React.FC<MultipleChoiceWordProp> = ({
   submitGuess,
   ...props
 }) => {
+  const onSubmit = (guess: string) => {
+    submitGuess({
+      guess,
+      isCorrect: guess == question.id,
+    });
+  };
   const parse = () => {
     const qlen = question.text.length;
     let i = 0;
@@ -67,17 +73,17 @@ export const MultipleChoiceWord: React.FC<MultipleChoiceWordProp> = ({
         <Button
           label="Associative"
           backgroundColor="red"
-          onClick={submitGuess}
+          onClick={() => onSubmit("Associative")}
         ></Button>
         <Button
           label="Commutative"
           backgroundColor="blue"
-          onClick={submitGuess}
+          onClick={() => onSubmit("Commutative")}
         ></Button>
         <Button
           label="Identity"
           backgroundColor="yellow"
-          onClick={submitGuess}
+          onClick={() => onSubmit("Identity")}
         ></Button>
       </div>
     </div>

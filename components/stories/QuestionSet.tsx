@@ -180,11 +180,14 @@ const QuestionSet = ({
   );
   return (
     <div className="flex flex-col justify-center items-center gap-8">
-      <div className="flex flex-row justify-between w-full p-4 bg-yellow-400">
-        <p className="text-xl font-bold">{title}</p>
-        {progressText}
-        {!practice && scoreText}
-      </div>
+      {!practice && (
+        <div className="flex flex-row justify-between w-full p-4 bg-yellow-400">
+          <p className="text-xl font-bold">{title}</p>
+          {progressText}
+          {scoreText}
+        </div>
+      )}
+
       <Card size="large">{questionData[index] && questionComponent()}</Card>
     </div>
   );
