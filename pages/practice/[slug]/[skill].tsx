@@ -110,6 +110,7 @@ const PracticeQuiz = ({ slug, skill }) => {
             practice={true}
           />
         </div>
+
         <div className="flex flex-col justify-center items-center gap-8">
           <Card size="large">
             {correctAnswer ? (
@@ -141,6 +142,7 @@ const PracticeQuiz = ({ slug, skill }) => {
             )}
           </Card>
         </div>
+
       </ReactCardFlip>
       <Hint skill={Skill.ADDITION_PROPERTIES}></Hint>
     </div>
