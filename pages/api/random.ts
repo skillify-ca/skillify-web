@@ -9,7 +9,7 @@ export function getRndInteger(min: number, max: number) {
 }
 
 export function getRndColour() {
-  let colourArray = ["red", "blue", "green", "yellow", "purple"]; 
+  let colourArray = ["red", "blue", "yellow", "purple"]; 
   let colour = getRandomItemFromArray(colourArray); 
   return colour;
 }
