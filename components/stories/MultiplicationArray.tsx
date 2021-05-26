@@ -38,10 +38,11 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
   let horizontal = Array.from(Array(Number.parseInt(parse().second)).keys());
   let columns = Array.from(Array(Number.parseInt(parse().first)).keys());
   const colour = getRndColour();
-  let hoverColour = "hover:bg-" + colour + "-400";
-  let nonHoverColour = "bg-" + colour + "-700";
-  let borderColour = "border-" + colour + "-900";
-  let textColour = "text-" + colour + "-500";
+  //let hoverColour = "hover:bg-" + colour + "-400";
+  let hoverColour = "hover:bg-green-400";
+  let nonHoverColour = "bg-green-700";
+  let borderColour = "border-green-900";
+  let textColour = "text-green-500";
   return (
     <div>
       <div className="flex flex-col gap-2 items-center">
