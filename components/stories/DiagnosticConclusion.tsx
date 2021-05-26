@@ -1,4 +1,3 @@
-import { filter } from "lodash";
 import Link from "next/link";
 import React from "react";
 import { useState } from "react";
@@ -159,7 +158,7 @@ export const DiagnosticConclusion = ({
       return (
         "Truly impressive! Not only has your child met Ontario grade " +
         inputGradeLevel +
-        " cirricullum but they have in fact exceeded expectations. Keep at the good work and welcome challeneges with open arms!"
+        " curricullum but they have in fact exceeded expectations. Keep at the good work and welcome challeneges with open arms!"
       );
     } else if (difference == -1) {
       return (
