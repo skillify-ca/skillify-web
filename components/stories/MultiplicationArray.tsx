@@ -8,7 +8,7 @@ import { Input } from "./Input";
 export interface MultiplicationArrayProp {
   question: Question;
   submitGuess: (guess: GuessData) => void;
-  colour?: string;
+  colour: string;
 }
 
 // Array Question type is a new way to visualize multiplication problem using squares
@@ -16,7 +16,7 @@ export interface MultiplicationArrayProp {
 export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
   question,
   submitGuess,
-  colour = "green",
+  colour,
   ...props
 }) => {
   const [visibility, setVisibility] = useState(false);
