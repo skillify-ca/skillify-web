@@ -130,7 +130,7 @@ export const DiagnosticConclusion = ({
   };
 
   const requestEmail = async () => {
-    const url = "/api/pdf-generator";
+    const url = "/api/email";
     const options = {
       method: "POST",
       headers: {
@@ -139,7 +139,7 @@ export const DiagnosticConclusion = ({
       },
       body: JSON.stringify({
         email: email,
-        results: results,
+        skills: filterArr,
       }),
     };
     await fetch(url, options);
