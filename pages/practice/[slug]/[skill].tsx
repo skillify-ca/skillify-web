@@ -19,6 +19,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   const [wrongAnswer, setWrongAnswer] = useState(false);
   const [indexCap, setIndexCap] = useState(false);
   const [nextQuestionButton, setNextQuestionButton] = useState(false);
+  const [continueButton, setContinueButton] = useState(false);
   const [interval, setMyInterval] = useState(null);
   const [correctGuess, setCorrectGuess] = useState(0);
   const [questionData, setQuestionData] = useState<Question[]>([
@@ -80,6 +81,7 @@ const PracticeQuiz = ({ slug, skill }) => {
         setWrongAnswer(true);
       }
       if (index < questionData.length - 1) setNextQuestionButton(true);
+      if (index == questionData.length - 1) setContinueButton(true);
     }
   };
   return (
@@ -140,11 +142,15 @@ const PracticeQuiz = ({ slug, skill }) => {
                 onClick={applyNextQuestion}
               ></Button>
             )}
+            {continueButton && (
+              <Button label="Continue" backgroundColor="green"></Button>
+            )}
           </Card>
         </div>
-
       </ReactCardFlip>
-      <Hint skill={Skill.ADDITION_PROPERTIES}></Hint>
+      {!continueButton && !nextQuestionButton && (
+        <Hint skill={Skill.ADDITION_PROPERTIES}></Hint>
+      )}
     </div>
   );
 };
