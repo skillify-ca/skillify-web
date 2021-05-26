@@ -38,7 +38,6 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
   let horizontal = Array.from(Array(Number.parseInt(parse().second)).keys());
   let columns = Array.from(Array(Number.parseInt(parse().first)).keys());
   const colour = getRndColour();
-  //hoverColour = "hover:bg-" + colour + "-400";
   let hoverColour = "hover:bg-" + colour + "-400";
   let nonHoverColour = "bg-" + colour + "-700";
   let borderColour = "border-" + colour + "-900";
