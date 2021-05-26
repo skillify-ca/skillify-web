@@ -61,7 +61,6 @@ module.exports = {
       "bg-purple-700",
       "bg-purple-600",
       "hover:bg-purple-400",
-      "hover:bg-purple-400",
       "bg-yellow-400",
       "bg-yellow-700",
       "hover:bg-yellow-400",
