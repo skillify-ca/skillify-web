@@ -158,7 +158,7 @@ export const DiagnosticConclusion = ({
       return (
         "Truly impressive! Not only has your child met the Ontario grade " +
         inputGradeLevel +
-        " curriculum standards, but they have exceeded the expectations as well. Keep up the good work and welcome challeneges with open arms!"
+        " curriculum standards, but they have exceeded the expectations as well. Keep up the good work and welcome challenges with open arms!"
       );
     } else if (difference == 1) {
       return (
