@@ -1,22 +1,9 @@
-import {
-  Worksheet,
-  AdditionSingleDigitWS,
-  AdditionDoubleDigitWS,
-  AdditionTripleDigitWS,
-  SubtractionSingleDigitWS,
-  SubtractionDoubleDigitWS,
-  SubtractionTripleDigitWS,
-  MultiplicationEqualGroup10WS,
-  MultiplicationTo5WS,
-  MultiplicationTo10WS,
-  DivisionEqualSharing8WS,
-  Division12EquallyWS,
-  Division100WS,
-} from "../components/stories/WorksheetsObj";
-import { DiagnosticState } from "../redux/diagnosticSlice";
-import { getResultForSkill } from "./api/diagnostic/diagnosticGrader";
-import { Question } from "./api/question";
-import { Skill } from "./api/skill";
+import { Worksheet, AdditionSingleDigitWS, AdditionDoubleDigitWS, AdditionTripleDigitWS, SubtractionSingleDigitWS, SubtractionDoubleDigitWS, SubtractionTripleDigitWS, MultiplicationEqualGroup10WS, MultiplicationTo5WS, MultiplicationTo10WS, DivisionEqualSharing8WS, Division12EquallyWS, Division100WS } from "../../components/stories/WorksheetsObj";
+import { DiagnosticState } from "../../redux/diagnosticSlice";
+import { getResultForSkill } from "./diagnostic/diagnosticGrader";
+import { Question } from "./question";
+import { Skill } from "./skill";
+
 
 export const getWorkSheets = (results: DiagnosticState): Worksheet[] => {
   const workSheets: Worksheet[] = results.questions

@@ -29,6 +29,8 @@ test("grade correct division", async () => {
   const state: DiagnosticState = {
     questions: [dummyDivisionQuestion],
     guessAns: ["Correct"],
+    email: "test@gmail.com",
+    grade: "Grade 2"
   };
 
   // Act
@@ -43,6 +45,8 @@ test("grade correct division 2", async () => {
   const state: DiagnosticState = {
     questions: [dummyDivisionQuestion],
     guessAns: ["Incorrect"],
+    email: "test@gmail.com",
+    grade: "Grade 2"
   };
 
   // Act

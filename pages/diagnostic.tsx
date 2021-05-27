@@ -10,23 +10,7 @@ import { useAppDispatch } from "../redux/store";
 import { Skill } from "./api/skill";
 import { generateQuestionsForDiagnostic } from "./api/diagnostic/diagnosticQuestionGenerator";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
-import {
-  AdditionDoubleDigitWS,
-  AdditionSingleDigitWS,
-  AdditionTripleDigitWS,
-  Division100WS,
-  Division12EquallyWS,
-  DivisionEqualSharing8WS,
-  MultiplicationEqualGroup10WS,
-  MultiplicationTo10WS,
-  MultiplicationTo5WS,
-  SubtractionDoubleDigitWS,
-  SubtractionSingleDigitWS,
-  SubtractionTripleDigitWS,
-  Worksheet,
-} from "../components/stories/WorksheetsObj";
-import { getResultForSkill } from "./api/diagnostic/diagnosticGrader";
-import { getWorkSheets } from "./worksheets";
+import { getWorkSheets } from "./api/worksheets";
 
 enum STAGE {
   CREATE,

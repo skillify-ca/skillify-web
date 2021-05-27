@@ -6,7 +6,7 @@ import {
   getResultForSkill,
 } from "../../pages/api/diagnostic/diagnosticGrader";
 import { Skill, Topic } from "../../pages/api/skill";
-import { getWorkSheets } from "../../pages/worksheets";
+import { getWorkSheets } from "../../pages/api/worksheets";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 import { Button } from "./Button";
 import { Input } from "./Input";

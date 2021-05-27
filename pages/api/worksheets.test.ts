@@ -1,8 +1,8 @@
 import "@testing-library/jest-dom/extend-expect";
-import { DiagnosticState } from "../redux/diagnosticSlice";
-import { AnswerType } from "./api/question";
-import { QuestionType } from "./api/questionTypes";
-import { Skill } from "./api/skill";
+import { DiagnosticState } from "../../redux/diagnosticSlice";
+import { AnswerType } from "./question";
+import { QuestionType } from "./questionTypes";
+import { Skill } from "./skill";
 import { getWorkSheets } from "./worksheets";
 
 test("test worksheets", async () => {
