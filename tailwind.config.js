@@ -48,6 +48,9 @@ module.exports = {
    * bg-green-500
    * bg-blue-500
    * bg-purple-500
+   * ring-green-500
+   * ring-blue-500
+   * ring-purple-500
    */
 
     safelist: [
