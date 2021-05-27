@@ -17,7 +17,7 @@ export default async function handler(
     text: "and easy to do anywhere, even with Node.js", // for restrictive email clients
     html: "<strong>and easy to do anywhere, even with Node.js</strong>", // for email clients that can render CSS and HTML
     attachments: worksheets.map((it) => {
-      const pathToAttachment = `public${it.pdf}`;
+      const pathToAttachment = `${process.env.ROOT_DIR}${it.pdf}`;
       const data_base64 = base64_encode(pathToAttachment);
       return {
         filename: `${it.title}`,

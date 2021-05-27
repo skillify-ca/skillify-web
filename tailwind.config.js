@@ -79,6 +79,7 @@ module.exports = {
       "bg-pink-600",
       "hover:bg-pink-400",
       "px-4",
+      "py-4",
       "px-16",
     ],
     blocklist: [/^debug-/],
