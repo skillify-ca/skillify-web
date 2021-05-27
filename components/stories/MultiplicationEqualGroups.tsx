@@ -49,6 +49,23 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
   let groups = Array.from(Array(Number.parseInt(parse().first)).keys());
   let itemsInGroup = Array.from(Array(Number.parseInt(parse().second)).keys());
 
+  /**
+   * PurgeCSS:
+   * bg-blue-300
+   * bg-yellow-300
+   * bg-green-300
+   * bg-pink-300
+   * bg-purple-600
+   * bg-pink-600
+   * bg-blue-600
+   * bg-purple-400
+   * bg-pink-400
+   * bg-blue-400
+   * hover:bg-purple-400
+   * hover:bg-pink-400
+   * hover:bg-blue-400
+   */
+
   let groupColor;
   let itemColor;
 
@@ -90,20 +107,6 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
     }
     return <p> {group} </p>;
   };
-
-  /**
-   * PurgeCSS:
-   * bg-blue-300
-   * bg-yellow-300
-   * bg-green-300
-   * bg-pink-300
-   * bg-purple-600
-   * bg-pink-600
-   * bg-blue-600
-   * hover:bg-purple-400
-   * hover:bg-pink-400
-   * hover:bg-blue-400
-   */
 
   return (
     <div className="flex flex-col justify-between items-center w-full h-full">
