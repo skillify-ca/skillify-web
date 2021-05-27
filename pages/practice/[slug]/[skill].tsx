@@ -12,10 +12,13 @@ import Card from "../../../components/stories/Card";
 import Hint from "../../../components/stories/Hint";
 import EmojiSlider from "../../../components/stories/EmojiSlider";
 import Link from "next/link";
+import { delay } from "lodash";
 
 const PracticeQuiz = ({ slug, skill }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [continuePage, setContinuePage] = useState(false);
+  const [display, setDisplay] = useState("flex");
+  const [continueFaded, setContinueFaded] = useState(0);
+  const [isFaded, setIsFaded] = useState(1);
   const [index, setIndex] = useState(0);
   const [guessAttempt, setGuessAttempt] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState(false);
@@ -43,7 +46,6 @@ const PracticeQuiz = ({ slug, skill }) => {
 
   useEffect(() => {
     setQuestionData(generatePracticeQuestions(slug, skill));
-    setContinuePage(false);
   }, []);
 
   const applyNextQuestion = () => {
@@ -54,6 +56,17 @@ const PracticeQuiz = ({ slug, skill }) => {
     setCorrectAnswer(false);
     setWrongAnswer(false);
     nextQuestion();
+  };
+
+  function delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  const applyContinuePage = async () => {
+    setIsFaded(0);
+    await delay(500);
+    setDisplay("hidden");
+    setContinueFaded(100);
   };
 
   const nextQuestion = () => {
@@ -99,7 +112,6 @@ const PracticeQuiz = ({ slug, skill }) => {
           Score: {correctGuess} / {index + 1}
         </p>
       </div>
-
       <ReactCardFlip
         isFlipped={isFlipped}
         flipDirection="horizontal"
@@ -116,9 +128,10 @@ const PracticeQuiz = ({ slug, skill }) => {
             practice={true}
           />
         </div>
-
-        {!continuePage && (
-          <div className="flex flex-col justify-center items-center gap-8">
+        <div
+          className={`${display} flex-col justify-center items-center gap-8 transition-opacity duration-500 ease-in-out opacity-${isFaded}`}
+        >
+          <div className={`flex flex-col justify-center items-center gap-8`}>
             <Card size="large">
               {correctAnswer ? (
                 <p className="font-bold text-gray-400 underline">
@@ -152,36 +165,36 @@ const PracticeQuiz = ({ slug, skill }) => {
                 <Button
                   label="Continue"
                   backgroundColor="green"
-                  onClick={() => setContinuePage(true)}
+                  onClick={applyContinuePage}
                 ></Button>
               )}
             </Card>
           </div>
-        )}
+        </div>
       </ReactCardFlip>
       {!continueButton && !nextQuestionButton && (
         <Hint skill={Skill.ADDITION_PROPERTIES}></Hint>
       )}
-      {continuePage && (
-        <div className=" grid-cols-1 grid justify-items-center space-y-8">
-          <p className="font-bold text-gray-400 ">
-            How Confident were you in these Practice Questions?
-          </p>
+      <div
+        className={`grid-cols-1 grid justify-items-center space-y-8 z-10 transition-opacity duration-500 ease-in opacity-${continueFaded} `}
+      >
+        <p className="font-bold text-gray-400 ">
+          How Confident were you in these Practice Questions?
+        </p>
 
-          <EmojiSlider />
-          <div className="flex flex-row space-x-8 ">
-            <Link href={`/practice`}>
-              <Button label="Home" backgroundColor="purple"></Button>
-            </Link>
-            <Button
-              label="Retry Quiz"
-              backgroundColor="green"
-              onClick={() => window.location.reload()}
-            ></Button>
-          </div>
+        <EmojiSlider />
+        <div className="flex flex-row space-x-8 ">
+          <Link href={`/practice`}>
+            <Button label="Home" backgroundColor="purple"></Button>
+          </Link>
+          <Button
+            label="Retry Quiz"
+            backgroundColor="green"
+            onClick={() => window.location.reload()}
+          ></Button>
         </div>
-
-      )}
+      </div>
+      )
     </div>
   );
 };
