@@ -86,15 +86,24 @@ function getRandomWordPropertyQuestion(
 
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
-  const commutativeOption = getCommutativeSentence(a, b, operator);
+  const commutativeOption: MCOption = {
+    text: getCommutativeSentence(a, b, operator),
+    id: "Commutative",
+  };
 
   const identityNum = getRndInteger(min, max);
-  const identityOption = getIdentitySentence(identityNum, operator);
+  const identityOption: MCOption = {
+    text: getIdentitySentence(identityNum, operator),
+    id: "Identity",
+  };
 
   const x = getRndInteger(min, max);
   const y = getRndInteger(min, max);
   const z = getRndInteger(min, max);
-  const associativeOption = getAssociativeSentence(x, y, z, operator);
+  const associativeOption: MCOption = {
+    text: getAssociativeSentence(x, y, z, operator),
+    id: "Associative",
+  };
 
   // answer array chooser
 
@@ -102,7 +111,10 @@ function getRandomWordPropertyQuestion(
   const correctIndex = getRndInteger(0, correctAnswers.length);
   const finalCorrectAnswer = correctAnswers[correctIndex];
 
-  const questionOption: MCOption = { text: finalCorrectAnswer, id: "a" };
+  const questionOption: MCOption = {
+    text: finalCorrectAnswer.text,
+    id: finalCorrectAnswer.id,
+  };
 
   const questionModel = [questionOption];
 
@@ -110,7 +122,7 @@ function getRandomWordPropertyQuestion(
 
   return {
     text: modelProperty.options[0].text,
-    answer: "a",
+    answer: modelProperty.options[0].id,
     answerType: AnswerType.STRING,
     operator: operator,
     questionType: QuestionType.MULTIPLE_CHOICE_WORD,

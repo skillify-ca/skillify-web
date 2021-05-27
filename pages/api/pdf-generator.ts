@@ -19,6 +19,10 @@ export default async function handler(
     .fontSize(25)
     .text("Some text with an embedded font!", 100, 100);
 
+  doc
+    .fontSize(25)
+    .text(JSON.stringify(req.body.results), 100, 100);
+
   // Add an image, constrain it to a given size, and center it vertically and horizontally
   doc.image("public/images/apple.jpeg", {
     fit: [250, 300],
