@@ -11,6 +11,7 @@ import { Skill } from "./api/skill";
 import { generateQuestionsForDiagnostic } from "./api/diagnostic/diagnosticQuestionGenerator";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { getWorkSheets } from "./api/worksheets";
+import { getCalculatedGrade } from "./api/diagnostic/diagnosticGrader";
 
 enum STAGE {
   CREATE,
@@ -50,6 +51,8 @@ const Diagnostic = () => {
       body: JSON.stringify({
         email: email,
         worksheets: workSheets,
+        inputGrade: grade,
+        calculatedGrade: getCalculatedGrade(results),
       }),
     };
     await fetch(url, options);

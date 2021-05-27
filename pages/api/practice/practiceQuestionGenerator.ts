@@ -32,19 +32,19 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
     }
   } else if (topic == "multiplication") {
     switch (skillStr) {
-      case "single-digit":
+      case "upto_5X5":
         skill = Skill.MULTIPLICATION_5;
         break;
-      case "double-digit":
+      case "upto_10X10":
         skill = Skill.MULTIPLICATION_10;
         break;
     }
   } else if (topic == "division") {
     switch (skillStr) {
-      case "single-digit":
+      case "12_items_equally":
         skill = Skill.DIVIDE_12_EQUALLY;
         break;
-      case "double-digit":
+      case "upto_100_divide_10":
         skill = Skill.DIVIDE_100;
         break;
     }
