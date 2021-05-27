@@ -167,21 +167,21 @@ const QuestionSet = ({
   };
 
   const progressText = (
-    <p className="font-bold text-gray-400 ">
+    <p className="font-semibold text-gray-500 ">
       {" "}
       Question: {index + 1} / {questionData.length}{" "}
     </p>
   );
 
   const scoreText = (
-    <div>
+    <p className="font-semibold">
       Score: {score} / {index + 1}
-    </div>
+    </p>
   );
   return (
     <div className="flex flex-col justify-center items-center gap-8">
       {!practice && (
-        <div className="flex flex-row justify-between w-full p-4 bg-yellow-400">
+        <div className="flex flex-row justify-between w-full p-4 bg-yellow-400 shadow-lg rounded-lg ">
           <p className="text-xl font-bold">{title}</p>
           {progressText}
           {scoreText}

@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { useState } from "react";
 import {
+  getCalculatedGrade,
   getGradeLevelForTopic,
   getResultForSkill,
   getSummaryText,
@@ -18,44 +19,7 @@ type DiagnosticConclusionProps = {
 export const DiagnosticConclusion = ({
   results,
 }: DiagnosticConclusionProps) => {
-  let gradeLevel = 0;
-  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 3") {
-    gradeLevel = gradeLevel + 3;
-  }
-  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 2") {
-    gradeLevel = gradeLevel + 2;
-  }
-  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 1") {
-    gradeLevel = gradeLevel + 1;
-  }
-  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 3") {
-    gradeLevel = gradeLevel + 3;
-  }
-  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 2") {
-    gradeLevel = gradeLevel + 2;
-  }
-  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 1") {
-    gradeLevel = gradeLevel + 1;
-  }
-  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 3") {
-    gradeLevel = gradeLevel + 3;
-  }
-  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 2") {
-    gradeLevel = gradeLevel + 2;
-  }
-  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 1") {
-    gradeLevel = gradeLevel + 1;
-  }
-  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 3") {
-    gradeLevel = gradeLevel + 3;
-  }
-  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 2") {
-    gradeLevel = gradeLevel + 2;
-  }
-  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 1") {
-    gradeLevel = gradeLevel + 1;
-  }
-  gradeLevel = Math.round(gradeLevel / 4);
+  const gradeLevel = getCalculatedGrade(results);
 
   const parse = (grades: string) => {
     const parts = grades.split(" ");
@@ -75,6 +39,23 @@ export const DiagnosticConclusion = ({
     } else {
       return "bg-red-100";
     }
+  };
+
+  const [practiceButtonEnabled, setPracticeButtonEnabled] = useState(true);
+  const notifyPracticeSignup = async () => {
+    setPracticeButtonEnabled(false);
+    const url = "api/notifications?product=practice";
+    const options = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      body: JSON.stringify({
+        email: results.email,
+      }),
+    };
+    await fetch(url, options);
   };
 
   return (
@@ -179,7 +160,26 @@ export const DiagnosticConclusion = ({
             )
         )}
       </div>
-      <div className="w-1/2 flex-row content-evenly"></div>
+      <div className="bg-white shadow-lg rounded-lg w-full p-4">
+        <div className="flex flex-col gap-4">
+          <p className="font-bold">Practice Tracker</p>
+          <p className="">
+            Our practice tracker will be launching soon! Your child will get
+            access to thousands of engaging math questions and you'll receive
+            weekly reports on their practice. Click below to be notified when we
+            go live. 
+          </p>
+          <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
+            <Button
+              disabled={!practiceButtonEnabled}
+              backgroundColor="blue"
+              textColor="white"
+              label="Notify Me"
+              onClick={notifyPracticeSignup}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

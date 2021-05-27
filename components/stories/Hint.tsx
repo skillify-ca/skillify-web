@@ -3,6 +3,7 @@ import { Skill } from "../../pages/api/skill";
 
 export interface HintProps {
   skill: Skill;
+  class?: string;
 }
 
 const Hint = ({ skill }: HintProps) => {
