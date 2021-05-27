@@ -20,7 +20,9 @@ const ProgressRing = ({ percentage, radius }: ProgressRingProps) => {
   }
 
   return (
-    <div>
+    <div
+      className={`${ringColor} rounded-full ring-8 ring-offset-2 w-${radius} h-${radius}`}
+    >
       <p
         className={`flex justify-center items-center ${innerCircleColor} shadow-inner ${ringColor} text-center rounded-full ring-8 w-${radius} h-${radius} text-3xl font-semibold`}
       >
