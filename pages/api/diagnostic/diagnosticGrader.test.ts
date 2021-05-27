@@ -63,6 +63,8 @@ test("grade correct division 2", async () => {
       dummyDivisionQuestion,
     ],
     guessAns: ["Correct", "Correct", "Correct", "Correct", "Incorrect"],
+    email: "test@gmail.com",
+    grade: "Grade 2"
   };
 
   // Act

@@ -33,48 +33,6 @@ enum STAGE {
   RESULTS,
 }
 
-export const getWorkSheets = (results: DiagnosticState): Worksheet[] => {
-  const workSheets = results.questions.map((element) => {
-    let skill = element.skill;
-    if (getResultForSkill(skill, results) === "Not yet") {
-      switch (skill) {
-        case Skill.ADDITION_SINGLE:
-          return AdditionSingleDigitWS;
-        case Skill.ADDITION_DOUBLE:
-          return AdditionDoubleDigitWS;
-        case Skill.ADDITION_TRIPLE:
-          return AdditionTripleDigitWS;
-        case Skill.SUBTRACTION_SINGLE:
-          return SubtractionSingleDigitWS;
-        case Skill.SUBTRACTION_DOUBLE:
-          return SubtractionDoubleDigitWS;
-        case Skill.SUBTRACTION_TRIPLE:
-          return SubtractionTripleDigitWS;
-        case Skill.MULTIPLICATION_5:
-          return MultiplicationEqualGroup10WS;
-        case Skill.MULTIPLICATION_10:
-          return MultiplicationTo5WS;
-        case Skill.EQUAL_GROUP_10_ITEMS:
-          return MultiplicationTo10WS;
-        case Skill.EQUAL_SHARING_8_ITEMS:
-          return DivisionEqualSharing8WS;
-        case Skill.DIVIDE_12_EQUALLY:
-          return Division12EquallyWS;
-        case Skill.DIVIDE_100:
-          return Division100WS;
-      }
-    }
-  });
-
-  let filterArr = [workSheets[0]];
-  for (var i = 1; i < workSheets.length; i++) {
-    if (workSheets[i] != workSheets[i - 1]) {
-      filterArr.push(workSheets[i]);
-    }
-  }
-  return filterArr;
-};
-
 const Diagnostic = () => {
   const dispatch = useAppDispatch();
   const [grade, setGrade] = useState("");

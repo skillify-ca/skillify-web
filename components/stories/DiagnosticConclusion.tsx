@@ -6,25 +6,10 @@ import {
   getResultForSkill,
 } from "../../pages/api/diagnostic/diagnosticGrader";
 import { Skill, Topic } from "../../pages/api/skill";
-import { getWorkSheets } from "../../pages/diagnostic";
+import { getWorkSheets } from "../../pages/worksheets";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 import { Button } from "./Button";
 import { Input } from "./Input";
-import {
-  AdditionDoubleDigitWS,
-  AdditionSingleDigitWS,
-  AdditionTripleDigitWS,
-  Division100WS,
-  Division12EquallyWS,
-  DivisionEqualSharing8WS,
-  MultiplicationEqualGroup10WS,
-  MultiplicationTo10WS,
-  MultiplicationTo5WS,
-  SubtractionDoubleDigitWS,
-  SubtractionSingleDigitWS,
-  SubtractionTripleDigitWS,
-  Worksheet,
-} from "./WorksheetsObj";
 type DiagnosticConclusionProps = {
   results: DiagnosticState;
 };
