@@ -138,3 +138,74 @@ export const getSkillsForTopic = (topic: Topic) => {
   }
   return [];
 };
+
+export const getSummaryText = (gradeLevel: number, inputGradeLevel: number) => {
+  let difference = inputGradeLevel - gradeLevel;
+  if (difference == 0) {
+    return (
+      "Amazing work! Your child has met the expectations of the Ontario grade " +
+      inputGradeLevel +
+      " curriculum. Encourage them to solve harder problems to keep them challenged."
+    );
+  } else if (difference < 0) {
+    return (
+      "Truly impressive! Not only has your child met Ontario grade " +
+      inputGradeLevel +
+      " curriculum but they have in fact exceeded expectations. Keep at the good work and welcome challeneges with open arms!"
+    );
+  } else if (difference == -1) {
+    return (
+      "Great work! Your child has nearly met the expectations of the Ontario grade " +
+      inputGradeLevel +
+      " curriculum. Provide them with supplemental resources to address their knowledge gaps."
+    );
+  } else {
+    return (
+      "Great effort! Your child requires extra practice to meet the expectations of the Ontario grade " +
+      inputGradeLevel +
+      " curriculum. Provide them with supplemental resources to address their knowledge gaps."
+    );
+  }
+};
+
+export const getCalculatedGrade = (results : DiagnosticState) => {
+  let gradeLevel = 0;
+  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 3") {
+    gradeLevel = gradeLevel + 3;
+  }
+  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 2") {
+    gradeLevel = gradeLevel + 2;
+  }
+  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 1") {
+    gradeLevel = gradeLevel + 1;
+  }
+  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 3") {
+    gradeLevel = gradeLevel + 3;
+  }
+  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 2") {
+    gradeLevel = gradeLevel + 2;
+  }
+  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 1") {
+    gradeLevel = gradeLevel + 1;
+  }
+  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 3") {
+    gradeLevel = gradeLevel + 3;
+  }
+  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 2") {
+    gradeLevel = gradeLevel + 2;
+  }
+  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 1") {
+    gradeLevel = gradeLevel + 1;
+  }
+  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 3") {
+    gradeLevel = gradeLevel + 3;
+  }
+  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 2") {
+    gradeLevel = gradeLevel + 2;
+  }
+  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 1") {
+    gradeLevel = gradeLevel + 1;
+  }
+  gradeLevel = Math.round(gradeLevel / 4);
+  return gradeLevel
+}

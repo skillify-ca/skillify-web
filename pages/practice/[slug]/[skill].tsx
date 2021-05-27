@@ -46,6 +46,7 @@ const PracticeQuiz = ({ slug, skill }) => {
 
   useEffect(() => {
     setQuestionData(generatePracticeQuestions(slug, skill));
+    setContinuePage(false);
   }, []);
 
   const applyNextQuestion = () => {
@@ -175,6 +176,7 @@ const PracticeQuiz = ({ slug, skill }) => {
       {!continueButton && !nextQuestionButton && (
         <Hint skill={Skill.ADDITION_PROPERTIES}></Hint>
       )}
+
       <div
         className={`grid-cols-1 grid justify-items-center space-y-8 z-10 transition-opacity duration-500 ease-in opacity-${continueFaded} `}
       >
@@ -195,6 +197,7 @@ const PracticeQuiz = ({ slug, skill }) => {
         </div>
       </div>
       )
+
     </div>
   );
 };
