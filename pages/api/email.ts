@@ -10,22 +10,22 @@ export default async function handler(
 ) {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   const worksheets = req.body.worksheets;
+  const markup = `
+<ul class="skills">
+    ${worksheets.map(worksheets => `<li><a href="mathchamp.ca/${worksheets.pdf}" target="_blank">
+    ${worksheets.title}
+  </a>
+  </li> 
+  `).join('')
+}
+</ul>
+`;
   const msg = {
     to: req.body.email, // Change to your recipient
     from: process.env.SENDGRID_SENDER, // Change to your verified sender
     subject: "Your Math Champ Diagnostic Results",
-    text: "and easy to do anywhere, even with Node.js", // for restrictive email clients
-    html: "<strong>and easy to do anywhere, even with Node.js</strong>", // for email clients that can render CSS and HTML
-    attachments: worksheets.map((it) => {
-      const pathToAttachment = `${process.env.ROOT_DIR}${it.pdf}`;
-      const data_base64 = base64_encode(pathToAttachment);
-      return {
-        filename: `${it.title}`,
-        content: data_base64,
-        type: "application/pdf",
-        disposition: "attachment",
-      };
-    }),
+    text: "and easy to do anywhere even with Node.js", // for restrictive email clients
+    html: `<strong>${markup}</strong>` // for email clients that can render CSS and HTML
   };
   sgMail
     .send(msg)

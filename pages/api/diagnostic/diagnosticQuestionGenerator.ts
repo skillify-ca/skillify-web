@@ -47,7 +47,6 @@ const topics: Topic[] = [
 export const generateQuestionsForDiagnostic = () => {
   let questionsPerSection = NUM_QUESTIONS;
   let questions: Question[] = [];
-
   for (let grade = 0; grade < 3; grade++) {
     for (let i = 0; i < topics.length; i++) {
       const topic = topics[i];
