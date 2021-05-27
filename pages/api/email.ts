@@ -33,7 +33,7 @@ export default async function handler(
       console.log("Email sent");
     })
     .catch((error) => {
-      res.status(500).send(error);
+      res.status(500).send(process.env.ROOT_DIR);
       console.error(error);
     });
   res.status(200).json({ status: "OK" });
