@@ -26,6 +26,25 @@ module.exports = {
     },
   },
   options: {
+
+  /**
+   * PurgeCSS:
+   * bg-blue-300
+   * bg-yellow-300
+   * bg-green-300
+   * bg-pink-300
+   * bg-purple-600
+   * bg-pink-600
+   * bg-blue-600
+   * bg-purple-400
+   * bg-pink-400
+   * bg-blue-400
+   * hover:bg-purple-400
+   * hover:bg-pink-400
+   * hover:bg-blue-400
+   */
+
+
     safelist: [
       "bg-blue-50",
       "bg-blue-100",
@@ -81,6 +100,7 @@ module.exports = {
       "bg-pink-300",
       "bg-pink-600",
       "hover:bg-pink-400",
+      "bg-pink-400",
       "px-4",
       "py-4",
       "px-16",
