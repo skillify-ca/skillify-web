@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { useState } from "react";
 import {
+  getCalculatedGrade,
   getGradeLevelForTopic,
   getResultForSkill,
   getSummaryText,
@@ -18,44 +19,7 @@ type DiagnosticConclusionProps = {
 export const DiagnosticConclusion = ({
   results,
 }: DiagnosticConclusionProps) => {
-  let gradeLevel = 0;
-  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 3") {
-    gradeLevel = gradeLevel + 3;
-  }
-  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 2") {
-    gradeLevel = gradeLevel + 2;
-  }
-  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 1") {
-    gradeLevel = gradeLevel + 1;
-  }
-  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 3") {
-    gradeLevel = gradeLevel + 3;
-  }
-  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 2") {
-    gradeLevel = gradeLevel + 2;
-  }
-  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 1") {
-    gradeLevel = gradeLevel + 1;
-  }
-  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 3") {
-    gradeLevel = gradeLevel + 3;
-  }
-  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 2") {
-    gradeLevel = gradeLevel + 2;
-  }
-  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 1") {
-    gradeLevel = gradeLevel + 1;
-  }
-  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 3") {
-    gradeLevel = gradeLevel + 3;
-  }
-  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 2") {
-    gradeLevel = gradeLevel + 2;
-  }
-  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 1") {
-    gradeLevel = gradeLevel + 1;
-  }
-  gradeLevel = Math.round(gradeLevel / 4);
+  const gradeLevel = getCalculatedGrade(results);
 
   const parse = (grades: string) => {
     const parts = grades.split(" ");
