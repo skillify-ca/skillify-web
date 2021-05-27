@@ -28,7 +28,7 @@ const LandingPage = () => {
           </p>
           <div className="flex gap-8">
             <Link href="/diagnostic">
-              <button className="text-white text-2xl from-blue-500 via-blue-500 to-blue-500 border-blue-900 hover:from-blue-400 bg-gradient-to-b py-4 px-16 font-bold border-b-4 rounded-xl active:border-b-2">
+              <button className="text-white text-2xl from-blue-500 via-blue-500 to-blue-500 border-blue-900 hover:from-blue-400 bg-gradient-to-b px-16 font-bold border-b-4 rounded-xl active:border-b-2">
                 Try Now
               </button>
             </Link>
