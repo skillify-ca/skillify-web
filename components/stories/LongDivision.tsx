@@ -26,7 +26,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
-      submitGuess(e);
+      onSubmit();
     }
   };
 
@@ -39,9 +39,9 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
   };
 
   const onSubmit = () => {
-    setGuess("");
     submitGuess({ guess: guess, isCorrect: guess === question.answer });
     (document.getElementById("guess") as HTMLInputElement).value = "";
+    setGuess("");
   };
 
   const num1 = parseInt(parse().first);
@@ -76,7 +76,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
 
   return (
     <div className="flex flex-col items-center justify-between h-full">
-      <div/>
+      <div />
       <div className="flex flex-row">
         <span className="flex flex-col-reverse text-lg">
           {parse().second}&nbsp;
