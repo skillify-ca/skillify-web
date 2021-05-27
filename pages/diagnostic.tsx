@@ -26,6 +26,7 @@ import {
   Worksheet,
 } from "../components/stories/WorksheetsObj";
 import { getResultForSkill } from "./api/diagnostic/diagnosticGrader";
+import { getWorkSheets } from "./worksheets";
 
 enum STAGE {
   CREATE,
