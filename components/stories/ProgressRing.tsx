@@ -6,19 +6,23 @@ export interface ProgressRingProps {
 }
 
 const ProgressRing = ({ percentage, radius }: ProgressRingProps) => {
-  let progressRingColor;
+  let innerCircleColor;
+  let ringColor;
   if (percentage >= 70) {
-    progressRingColor = "green";
+    innerCircleColor = "bg-green-200";
+    ringColor = "ring-green-500";
   } else if (percentage >= 50) {
-    progressRingColor = "blue";
+    innerCircleColor = "bg-blue-200";
+    ringColor = "ring-blue-500";
   } else if (percentage < 50) {
-    progressRingColor = "purple";
+    innerCircleColor = "bg-purple-200";
+    ringColor = "ring-purple-500";
   }
 
   return (
     <div>
       <p
-        className={`flex justify-center items-center bg-${progressRingColor}-200 shadow-inner ring-${progressRingColor}-500 text-center rounded-full ring-8 w-${radius} h-${radius} text-3xl font-semibold`}
+        className={`flex justify-center items-center ${innerCircleColor} shadow-inner ${ringColor} text-center rounded-full ring-8 w-${radius} h-${radius} text-3xl font-semibold`}
       >
         {percentage}%
       </p>
