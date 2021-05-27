@@ -116,7 +116,6 @@ const PracticeQuiz = ({ slug, skill }) => {
             practice={true}
           />
         </div>
-
         {!continuePage && (
           <div className="flex flex-col justify-center items-center gap-8">
             <Card size="large">
@@ -180,7 +179,6 @@ const PracticeQuiz = ({ slug, skill }) => {
             ></Button>
           </div>
         </div>
-
       )}
     </div>
   );

@@ -18,6 +18,7 @@ import { FillBlank } from "./FillBlank";
 import { MultiplicationArray } from "./MultiplicationArray";
 import { MultiplicationEqualGroups } from "./MultiplicationEqualGroups";
 import { Skill } from "../../pages/api/skill";
+import { getRndColour } from "../../pages/api/random";
 
 type QuestionSetProps = {
   title: string;
@@ -139,6 +140,7 @@ const QuestionSet = ({
           <MultiplicationArray
             question={questionData[index]}
             submitGuess={submitGuess}
+            colour={getRndColour()}
           />
         );
       }
