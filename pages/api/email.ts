@@ -64,11 +64,11 @@ function generatePDF(req) {
   doc.fontSize(25).text(JSON.stringify(req.body.email), 100, 100);
 
   // Add an image, constrain it to a given size, and center it vertically and horizontally
-  doc.image("public/images/apple.jpeg", {
-    fit: [250, 300],
-    align: "center",
-    valign: "center",
-  });
+  // doc.image("public/images/apple.jpeg", {
+  //   fit: [250, 300],
+  //   align: "center",
+  //   valign: "center",
+  // });
 
   // Add another page
   doc.addPage().fontSize(25).text("Here is some vector graphics...", 100, 100);
