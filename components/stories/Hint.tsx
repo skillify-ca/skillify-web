@@ -16,7 +16,7 @@ const Hint = ({ skill }: HintProps) => {
         className="w-40 h-30 flex flex-start"
       />
       {visibility && (
-        <div className=" overflow-y-scroll transform -translate-y-36 translate-x-36 rounded-lg ring-4 ring-blue-200 bg-gray-400 text-white flex flex-start w-80 h-40 flex-col">
+        <div className=" overflow-y-scroll transform -translate-y-36 translate-x-36 rounded-lg ring-4 ring-yellow-200 bg-gray-400 text-white flex flex-start w-80 h-40 flex-col">
           <span>
             I'm your trusty Barbarian at service. Let's work on this problem
             together shall we?
@@ -24,9 +24,9 @@ const Hint = ({ skill }: HintProps) => {
               Method 1: Counting with our fingers
             </p>
             Okay so let's start of with counting with our fingers since these
-            are small numbers. For 5 + 3 let's start with 5. If we put one
-            finger down we get ... 6. If we put two finger down we get ... 7.
-            And if we put three fingers down... TADA! We get 8!
+            are small numbers. For 5 + 3 let's start with 5 fingers up. If we
+            put one finger up we get ... 6. If we put two fingers up we get ...
+            7. And if we put three fingers up... TADA! We get 8!
             <br></br>
             But there still is another way!
             <br></br>

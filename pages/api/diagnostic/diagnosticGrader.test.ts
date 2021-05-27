@@ -2,7 +2,7 @@
 import React from "react";
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import { getGradeLevelForTopic } from "./diagnosticGrader";
+import { getGradeLevelForTopic, getSummaryText } from "./diagnosticGrader";
 import { Skill, Topic } from "../skill";
 import { DiagnosticState } from "../../../redux/diagnosticSlice";
 import { AnswerType } from "../question";
@@ -29,6 +29,8 @@ test("grade correct division", async () => {
   const state: DiagnosticState = {
     questions: [dummyDivisionQuestion],
     guessAns: ["Correct"],
+    email: "test@gmail.com",
+    grade: "Grade 2"
   };
 
   // Act
@@ -43,6 +45,8 @@ test("grade correct division 2", async () => {
   const state: DiagnosticState = {
     questions: [dummyDivisionQuestion],
     guessAns: ["Incorrect"],
+    email: "test@gmail.com",
+    grade: "Grade 2"
   };
 
   // Act
@@ -63,6 +67,8 @@ test("grade correct division 2", async () => {
       dummyDivisionQuestion,
     ],
     guessAns: ["Correct", "Correct", "Correct", "Correct", "Incorrect"],
+    email: "test@gmail.com",
+    grade: "Grade 2"
   };
 
   // Act
@@ -70,4 +76,46 @@ test("grade correct division 2", async () => {
 
   // Assert
   expect(grade).toBe("Grade 2");
+});
+
+test("test summary text for first grader earning a third grade level", async () => {
+  // Arrange
+  const inputGradeLevel = 1;
+  const diagnosticGradeLevel = 3;
+
+  // Act
+  const summary = getSummaryText(diagnosticGradeLevel, inputGradeLevel);
+
+  // Assert
+  expect(summary).toBe(
+    "Truly impressive! Not only has your child met Ontario grade 1 curriculum but they have in fact exceeded expectations. Keep at the good work and welcome challeneges with open arms!"
+  );
+});
+
+test("test summary text for first grader earning a second grade level", async () => {
+  // Arrange
+  const inputGradeLevel = 1;
+  const diagnosticGradeLevel = 2;
+
+  // Act
+  const summary = getSummaryText(diagnosticGradeLevel, inputGradeLevel);
+
+  // Assert
+  expect(summary).toBe(
+    "Truly impressive! Not only has your child met Ontario grade 1 curriculum but they have in fact exceeded expectations. Keep at the good work and welcome challeneges with open arms!"
+  );
+});
+
+test("test summary text for first grader earning a first grade level", async () => {
+  // Arrange
+  const inputGradeLevel = 1;
+  const diagnosticGradeLevel = 1;
+
+  // Act
+  const summary = getSummaryText(diagnosticGradeLevel, inputGradeLevel);
+
+  // Assert
+  expect(summary).toBe(
+    "Amazing work! Your child has met the expectations of the Ontario grade 1 curriculum. Encourage them to solve harder problems to keep them challenged."
+  );
 });

@@ -46,7 +46,6 @@ const PracticeQuiz = ({ slug, skill }) => {
 
   useEffect(() => {
     setQuestionData(generatePracticeQuestions(slug, skill));
-    //setContinueFaded was already deleted
   }, []);
 
   const applyNextQuestion = () => {

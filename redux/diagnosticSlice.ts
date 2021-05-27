@@ -7,12 +7,14 @@ export interface DiagnosticState {
   questions: Array<Question>;
   guessAns: Array<string>;
   grade: string;
+  email: string;
 }
 
 const initialState: DiagnosticState = {
   questions: [],
   guessAns: [],
   grade: "", 
+  email: "", 
 };
 
 export const diagnosticSlice: Slice = createSlice({
@@ -25,6 +27,7 @@ export const diagnosticSlice: Slice = createSlice({
         state.questions = newDiagnosticState.questions;
         state.guessAns = newDiagnosticState.guessAns;
         state.grade = newDiagnosticState.grade;
+        state.email = newDiagnosticState.email;
       }
     },
   },
