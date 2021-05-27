@@ -40,6 +40,24 @@ export const DiagnosticConclusion = ({
       return "bg-red-100";
     }
   };
+
+  const [practiceButtonEnabled, setPracticeButtonEnabled] = useState(true);
+  const notifyPracticeSignup = async () => {
+    setPracticeButtonEnabled(false);
+    const url = "api/notifications?product=practice";
+    const options = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      body: JSON.stringify({
+        email: results.email,
+      }),
+    };
+    await fetch(url, options);
+  };
+
   return (
     <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100">
       <div className="bg-white p-4 rounded-lg shadow-lg">
@@ -142,7 +160,26 @@ export const DiagnosticConclusion = ({
             )
         )}
       </div>
-      <div className="w-1/2 flex-row content-evenly"></div>
+      <div className="bg-white shadow-lg rounded-lg w-full p-4">
+        <div className="flex flex-col gap-4">
+          <p className="font-bold">Practice Tracker</p>
+          <p className="">
+            Our practice tracker will be launching soon! Your child will get
+            access to thousands of engaging math questions and you'll receive
+            weekly reports on their practice. Click below to be notified when we
+            go live. 
+          </p>
+          <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
+            <Button
+              disabled={!practiceButtonEnabled}
+              backgroundColor="blue"
+              textColor="white"
+              label="Notify Me"
+              onClick={notifyPracticeSignup}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
