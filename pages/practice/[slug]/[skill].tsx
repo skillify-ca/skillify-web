@@ -64,7 +64,7 @@ const PracticeQuiz = ({ slug, skill }) => {
 
   const applyContinuePage = async () => {
     setIsFaded(0);
-    await delay(500);
+    await delay(150);
     setDisplay("hidden");
     setContinueFaded(100);
   };
@@ -129,7 +129,7 @@ const PracticeQuiz = ({ slug, skill }) => {
           />
         </div>
         <div
-          className={`${display} flex-col justify-center items-center gap-8 transition-opacity duration-500 ease-in-out opacity-${isFaded}`}
+          className={`${display} flex-col justify-center items-center gap-8 transition-opacity duration-150 ease-in-out opacity-${isFaded}`}
         >
           <div className={`flex flex-col justify-center items-center gap-8`}>
             <Card size="large">
@@ -176,7 +176,7 @@ const PracticeQuiz = ({ slug, skill }) => {
         <Hint skill={Skill.ADDITION_PROPERTIES}></Hint>
       )}
       <div
-        className={`grid-cols-1 grid justify-items-center space-y-8 z-10 transition-opacity duration-500 ease-in opacity-${continueFaded} `}
+        className={`grid-cols-1 grid justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in opacity-${continueFaded} `}
       >
         <p className="font-bold text-gray-400 ">
           How Confident were you in these Practice Questions?
