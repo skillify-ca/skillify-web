@@ -42,8 +42,13 @@ module.exports = {
    * hover:bg-purple-400
    * hover:bg-pink-400
    * hover:bg-blue-400
+   * bg-green-200
+   * bg-blue-200
+   * bg-purple-200
+   * bg-green-500
+   * bg-blue-500
+   * bg-purple-500
    */
-
 
     safelist: [
       "bg-blue-50",
@@ -51,6 +56,7 @@ module.exports = {
       "bg-blue-200",
       "bg-blue-300",
       "bg-blue-400",
+      "bg-blue-500",
       "bg-blue-600",
       "bg-blue-700",
       "border-blue-900",
@@ -68,6 +74,7 @@ module.exports = {
       "bg-green-200",
       "bg-green-300",
       "bg-green-400",
+      "bg-green-500",
       "bg-green-700",
       "border-green-900",
       "hover:bg-green-400",
@@ -79,6 +86,7 @@ module.exports = {
       "text-green-700",
       "bg-purple-200",
       "bg-purple-400",
+      "bg-purple-500",
       "bg-purple-600",
       "bg-purple-700",
       "bg-purple-600",
@@ -114,3 +122,4 @@ module.exports = {
   },
   plugins: [require("tailwindcss-hero-patterns")],
 };
+
