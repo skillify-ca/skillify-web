@@ -32,7 +32,7 @@
     "immutability-helper": "^3.1.1",
     "lodash": "^4.17.21",
     "next": "latest",
-    "next-auth": "^3.13.1",
+    "next-auth": "^3.24.0",
     "pdfkit": "^0.12.1",
     "postcss": "^8.1.10",
     "react": "^17.0.1",

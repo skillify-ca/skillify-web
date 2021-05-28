@@ -65,7 +65,7 @@ export default function Outline() {
             <p className="text-sm mb-4">
               Practice different math-related skills
             </p>
-            <ProgressRing percentage={getOverallProgress()} radius={28} />
+            <ProgressRing percentage={getOverallProgress()} radius={24} />
           </div>
         </Card>
       </div>
