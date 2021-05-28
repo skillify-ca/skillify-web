@@ -185,7 +185,7 @@ const QuestionSet = ({
   return (
     <div className="flex flex-col justify-center items-center gap-4 m-8">
       {!practice && (
-        <div className="flex flex-row justify-between w-full p-4 bg-yellow-400 shadow-lg rounded-lg ">
+        <div className="flex flex-row justify-between w-full p-4 bg-blue-300 shadow-lg rounded-lg ">
           <p className="text-xl font-bold">{title}</p>
           {progressText}
           {scoreText}
