@@ -21,6 +21,7 @@ enum STAGE {
 
 const Diagnostic = () => {
   const dispatch = useAppDispatch();
+  const [opacity, setOpacity] = useState(1);
   const [grade, setGrade] = useState("");
   const [stage, setStage] = useState(STAGE.CREATE);
   const [index, setIndex] = useState(0);
@@ -41,7 +42,7 @@ const Diagnostic = () => {
   const requestEmail = async (results: DiagnosticState) => {
     const workSheets = getWorkSheets(results);
 
-    const url = "/api/email";
+    const url = "https://math-app-1.herokuapp.com/email";
     const options = {
       method: "POST",
       headers: {
@@ -58,9 +59,16 @@ const Diagnostic = () => {
     await fetch(url, options);
   };
 
-  const submitGuess = (guessData: GuessData) => {
+  function delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  const submitGuess = async (guessData: GuessData) => {
     if (index < questionData.length - 1) {
+      setOpacity(0);
+      await delay(150);
       setIndex(index + 1);
+      setOpacity(1);
     }
 
     let updateGuessAns;
@@ -112,6 +120,7 @@ const Diagnostic = () => {
           inputElement={inputElement}
           submitGuess={submitGuess}
           score={correctGuesses}
+          diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
         />
       );
       break;
@@ -122,7 +131,7 @@ const Diagnostic = () => {
       break;
   }
   return (
-    <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
+    <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen">
       <DiagnosticNavbar />
       <div className="p-4 flex flex-col items-center justify-center">
         {component}

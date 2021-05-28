@@ -28,6 +28,7 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
   };
   const onSubmit = () => {
     setGuess("");
+    setGuess2("");
     setColor(Math.floor(Math.random() * 4));
     const parts = question.text.split(" ");
     submitGuess({
@@ -54,20 +55,20 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
 
   switch (color) {
     case 0:
-      groupColor = "blue";
-      itemColor = "purple";
+      groupColor = "bg-blue-300";
+      itemColor = "bg-purple-600";
       break;
     case 1:
-      groupColor = "yellow";
-      itemColor = "pink";
+      groupColor = "bg-yellow-300";
+      itemColor = "bg-pink-600";
       break;
     case 2:
-      groupColor = "green";
-      itemColor = "blue";
+      groupColor = "bg-green-300";
+      itemColor = "bg-pink-600";
       break;
     case 3:
-      groupColor = "pink";
-      itemColor = "purple";
+      groupColor = "bg-pink-300";
+      itemColor = "bg-purple-600";
       break;
   }
 
@@ -96,11 +97,11 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
       <div className="flex flex-row w-full flex-wrap gap-1 justify-around items-center">
         {groups.map((it) => (
           <div
-            className={`flex flew-row flex-wrap items-center justify-center gap-1 bg-${groupColor}-300 w-24 h-24 p-4 rounded-full`}
+            className={`flex flew-row flex-wrap items-center justify-center gap-1 ${groupColor} w-24 h-24 p-4 rounded-full`}
           >
             {itemsInGroup.map((it) => (
               <div
-                className={`flex bg-${itemColor}-600 h-1/4 w-1/4 border-black rounded-3xl hover:gap-1 hover:bg-${itemColor}-400 hover:scale-125 transform`}
+                className={`flex ${itemColor} h-1/4 w-1/4 border-black rounded-3xl hover:gap-1 ${itemColor} hover:scale-125 transform`}
               ></div>
             ))}
           </div>

@@ -19,6 +19,7 @@ import { MultiplicationArray } from "./MultiplicationArray";
 import { MultiplicationEqualGroups } from "./MultiplicationEqualGroups";
 import { Skill } from "../../pages/api/skill";
 import { getRndColour } from "../../pages/api/random";
+import { opacity } from "pdfkit/js/mixins/color";
 
 type QuestionSetProps = {
   title: string;
@@ -28,6 +29,7 @@ type QuestionSetProps = {
   submitGuess: (guessData: GuessData) => void;
   score: number;
   practice?: boolean;
+  diagnostic?: { isDiagnostic: boolean; opacityVal: number };
 };
 const QuestionSet = ({
   title,
@@ -36,6 +38,7 @@ const QuestionSet = ({
   submitGuess,
   score,
   practice,
+  diagnostic,
 }: QuestionSetProps) => {
   const questionComponent = () => {
     if (questionData[index].questionType === QuestionType.VERTICAL_EQUATION) {
@@ -167,28 +170,37 @@ const QuestionSet = ({
   };
 
   const progressText = (
-    <p className="font-bold text-gray-400 ">
+    <p className="font-semibold text-gray-500 ">
       {" "}
       Question: {index + 1} / {questionData.length}{" "}
     </p>
   );
 
   const scoreText = (
-    <div>
-      Score: {score} / {index + 1}
-    </div>
+    <p className="font-semibold">
+      {" "}
+      Score: {score} / {index + 1}{" "}
+    </p>
   );
   return (
-    <div className="flex flex-col justify-center items-center gap-8">
+    <div className="flex flex-col justify-center items-center gap-4 m-8">
       {!practice && (
-        <div className="flex flex-row justify-between w-full p-4 bg-yellow-400">
+        <div className="flex flex-row justify-between w-full p-4 bg-blue-300 shadow-lg rounded-lg ">
           <p className="text-xl font-bold">{title}</p>
           {progressText}
           {scoreText}
         </div>
       )}
 
-      <Card size="large">{questionData[index] && questionComponent()}</Card>
+      <Card size="large">
+        <div
+          className={`transition-opacity duration-150 ease-in-out opacity-${
+            diagnostic?.isDiagnostic && diagnostic.opacityVal
+          }`}
+        >
+          {questionData[index] && questionComponent()}
+        </div>
+      </Card>
     </div>
   );
 };

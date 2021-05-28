@@ -20,15 +20,17 @@ const LandingPage = () => {
     <div className="flex flex-col gap-8 w-full">
       <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-4 gap-8">
         <div className="flex flex-col w-full sm:w-1/2 gap-8">
-          <p className="text-5xl">Make math fun to practice</p>
+          <p className="text-5xl">Math Champ Practice Tracker</p>
           <p className="text-xl">
-            Learning with the Math Champ Practice Tracker is engaging and fun.
-            Earn points for correct answers, play with friends and level up. Our
-            curriculum-based lessons are effective and efficient.
+            Make math fun to practice! Learning with Math Champ is
+            engaging and fun. Student will earn points for correct answers, play with friends
+            and level up. Our curriculum-based lessons are effective and
+            efficient. Start with our diagnostic test so we can meet your child
+            at their level.
           </p>
           <div className="flex gap-8">
             <Link href="/diagnostic">
-              <button className="text-white text-2xl from-blue-500 via-blue-500 to-blue-500 border-blue-900 hover:from-blue-400 bg-gradient-to-b px-16 font-bold border-b-4 rounded-xl active:border-b-2">
+              <button className="text-white text-2xl from-blue-500 via-blue-500 to-blue-500 border-blue-900 hover:from-blue-400 bg-gradient-to-b px-16 py-4 font-bold border-b-4 rounded-xl active:border-b-2">
                 Try Now
               </button>
             </Link>
@@ -89,10 +91,13 @@ const LandingPage = () => {
         </div>
         <div className="flex flex-col gap-4 p-8 sm:w-1/2">
           <p className="font-bold">Step 2</p>
-          <p className="font-bold text-xl">Enable your child's independence </p>
+          <p className="font-bold text-xl">
+            Support your child's independence{" "}
+          </p>
           <p>
-            Your child can select from various activities to help them learn,
-            practice, and self-assess on the Ontario curriculum.
+            Your child can select from various modes and activities to help them
+            learn, practice, and self-assess on the Ontario curriculum. Students
+            can work at their own pace as they unlock new skills and levels.
           </p>
         </div>
       </div>

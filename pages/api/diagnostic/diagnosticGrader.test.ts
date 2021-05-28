@@ -30,7 +30,7 @@ test("grade correct division", async () => {
     questions: [dummyDivisionQuestion],
     guessAns: ["Correct"],
     email: "test@gmail.com",
-    grade: "Grade 2"
+    grade: "Grade 2",
   };
 
   // Act
@@ -46,7 +46,7 @@ test("grade correct division 2", async () => {
     questions: [dummyDivisionQuestion],
     guessAns: ["Incorrect"],
     email: "test@gmail.com",
-    grade: "Grade 2"
+    grade: "Grade 2",
   };
 
   // Act
@@ -68,7 +68,7 @@ test("grade correct division 2", async () => {
     ],
     guessAns: ["Correct", "Correct", "Correct", "Correct", "Incorrect"],
     email: "test@gmail.com",
-    grade: "Grade 2"
+    grade: "Grade 2",
   };
 
   // Act
@@ -88,7 +88,7 @@ test("test summary text for first grader earning a third grade level", async () 
 
   // Assert
   expect(summary).toBe(
-    "Truly impressive! Not only has your child met Ontario grade 1 curriculum but they have in fact exceeded expectations. Keep at the good work and welcome challeneges with open arms!"
+    "Truly impressive! Your child has exceeded the expectations of the Ontario grade 1 curriculum. Keep up the good work and welcome challenges with open arms!"
   );
 });
 
@@ -102,7 +102,7 @@ test("test summary text for first grader earning a second grade level", async ()
 
   // Assert
   expect(summary).toBe(
-    "Truly impressive! Not only has your child met Ontario grade 1 curriculum but they have in fact exceeded expectations. Keep at the good work and welcome challeneges with open arms!"
+    "Truly impressive! Your child has exceeded the expectations of the Ontario grade 1 curriculum. Keep up the good work and welcome challenges with open arms!"
   );
 });
 
