@@ -185,6 +185,8 @@ export const getSummaryText = (gradeLevel: number, inputGradeLevel: number) => {
       inputGradeLevel +
       " curriculum. Keep up the good work and welcome challenges with open arms!"
     );
+  } else {
+    return "";
   }
 };
 
