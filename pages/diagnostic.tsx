@@ -42,7 +42,7 @@ const Diagnostic = () => {
   const requestEmail = async (results: DiagnosticState) => {
     const workSheets = getWorkSheets(results);
 
-    const url = "/api/email";
+    const url = "https://math-app-1.herokuapp.com/email";
     const options = {
       method: "POST",
       headers: {

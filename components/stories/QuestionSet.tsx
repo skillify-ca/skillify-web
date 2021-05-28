@@ -178,11 +178,12 @@ const QuestionSet = ({
 
   const scoreText = (
     <p className="font-semibold">
-      Score: {score} / {index + 1}
+      {" "}
+      Score: {score} / {index + 1}{" "}
     </p>
   );
   return (
-    <div className="flex flex-col justify-center items-center gap-8">
+    <div className="flex flex-col justify-center items-center gap-4 m-8">
       {!practice && (
         <div className="flex flex-row justify-between w-full p-4 bg-yellow-400 shadow-lg rounded-lg ">
           <p className="text-xl font-bold">{title}</p>

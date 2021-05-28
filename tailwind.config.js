@@ -27,6 +27,7 @@ module.exports = {
       ringColor: ["hover", "active"],
       ringOffsetWidth: ["hover", "active"],
       ringOffsetColor: ["hover", "active"],
+      maxWidth: ["hover", "active"],
     },
   },
   options: {
