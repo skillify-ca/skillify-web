@@ -27,7 +27,6 @@ export const LongDivisionInput: React.FC<LongDivisionInputProps> = ({
       onChange={(e) => setGuess(e.target.value)}
       className={`appearance-none text-left border border-gray-300 rounded-md text-6xl w-${width}`}
       placeholder=""
-      type="number"
       onKeyPress={handleKeypress}
     />
   );
