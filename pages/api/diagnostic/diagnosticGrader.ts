@@ -61,6 +61,26 @@ export const getAnswerForSkill = (skill: Skill, results: DiagnosticState) => {
   return questions;
 };
 
+let skillCount = 0;
+let summary = "";
+export const countCorrectAns = (result: Array<string>) => {
+  for (let i = 0; i < result.length; i++)
+    if (result[i] == "Correct") {
+      skillCount++;
+    }
+  return skillCount;
+};
+export const EvidenceSummaryText = (correctAns: number) => {
+  if (correctAns == 3) {
+    summary =
+      "Perfect! Your child has answered every question correctly and is ready to practice this skill at the third grade standard.";
+  } else {
+    summary =
+      "Great work, mistakes are part of the learning journey! Go over these questions with your child and have them re-take the diagnostic once they feel more confident.";
+  }
+  return summary;
+};
+
 export const getGradeLevelForTopic = (
   topic: Topic,
   results: DiagnosticState
@@ -168,7 +188,7 @@ export const getSummaryText = (gradeLevel: number, inputGradeLevel: number) => {
   }
 };
 
-export const getCalculatedGrade = (results : DiagnosticState) => {
+export const getCalculatedGrade = (results: DiagnosticState) => {
   let gradeLevel = 0;
   if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 3") {
     gradeLevel = gradeLevel + 3;
@@ -207,5 +227,5 @@ export const getCalculatedGrade = (results : DiagnosticState) => {
     gradeLevel = gradeLevel + 1;
   }
   gradeLevel = Math.round(gradeLevel / 4);
-  return gradeLevel
-}
+  return gradeLevel;
+};
