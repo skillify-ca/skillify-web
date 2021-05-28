@@ -191,13 +191,16 @@ const QuestionSet = ({
           {scoreText}
         </div>
       )}
-      <div
-        className={`transition-opacity duration-150 ease-in-out opacity-${
-          diagnostic?.isDiagnostic && diagnostic.opacityVal
-        }`}
-      >
-        <Card size="large">{questionData[index] && questionComponent()}</Card>
-      </div>
+
+      <Card size="large">
+        <div
+          className={`transition-opacity duration-150 ease-in-out opacity-${
+            diagnostic?.isDiagnostic && diagnostic.opacityVal
+          }`}
+        >
+          {questionData[index] && questionComponent()}
+        </div>
+      </Card>
     </div>
   );
 };
