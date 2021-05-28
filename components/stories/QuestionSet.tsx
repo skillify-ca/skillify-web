@@ -19,6 +19,7 @@ import { MultiplicationArray } from "./MultiplicationArray";
 import { MultiplicationEqualGroups } from "./MultiplicationEqualGroups";
 import { Skill } from "../../pages/api/skill";
 import { getRndColour } from "../../pages/api/random";
+import { opacity } from "pdfkit/js/mixins/color";
 
 type QuestionSetProps = {
   title: string;
@@ -28,6 +29,7 @@ type QuestionSetProps = {
   submitGuess: (guessData: GuessData) => void;
   score: number;
   practice?: boolean;
+  diagnostic?: { isDiagnostic: boolean; opacityVal: number };
 };
 const QuestionSet = ({
   title,
@@ -36,6 +38,7 @@ const QuestionSet = ({
   submitGuess,
   score,
   practice,
+  diagnostic,
 }: QuestionSetProps) => {
   const questionComponent = () => {
     if (questionData[index].questionType === QuestionType.VERTICAL_EQUATION) {
@@ -187,8 +190,11 @@ const QuestionSet = ({
           {scoreText}
         </div>
       )}
-
-      <Card size="large">{questionData[index] && questionComponent()}</Card>
+      <div
+        className={`transition-opacity duration-150 ease-in-out opacity-${diagnostic.opacityVal}`}
+      >
+        <Card size="large">{questionData[index] && questionComponent()}</Card>
+      </div>
     </div>
   );
 };
