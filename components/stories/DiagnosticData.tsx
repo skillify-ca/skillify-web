@@ -94,7 +94,7 @@ const DiagnosticData = ({ skill, results }: DiagnosticDataProps) => {
           Take Diagnostic Again
         </button>
       </Link>
-      <div className="flex m-auto items-center max-w-screen-md">
+      <div className="flex m-auto items-center max-w-screen-sm">
         <img src="/images/mathQuote.png"></img>
       </div>
     </div>
