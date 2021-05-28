@@ -32,8 +32,8 @@ const DiagnosticData = ({ skill, results }: DiagnosticDataProps) => {
     if (proficiency == 3) {
       return (
         <p>
-          Perfect! Your child has answered all the questions correctly and is
-          now ready to practice this skill at a third grade standard.
+          Perfect! Your child has answered every question correctly and is ready
+          to practice this skill at the third grade standard.
         </p>
       );
     } else {
