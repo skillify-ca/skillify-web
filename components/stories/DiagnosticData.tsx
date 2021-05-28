@@ -60,7 +60,7 @@ const DiagnosticData = ({ skill, results }: DiagnosticDataProps) => {
   };
 
   return (
-    <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100 h-screen">
+    <div className="p-2 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100 h-screen">
       <p className="mb-2 text-center font-black text-xl">
         {SkillDescription(skill)}
       </p>
@@ -94,6 +94,9 @@ const DiagnosticData = ({ skill, results }: DiagnosticDataProps) => {
           Take Diagnostic Again
         </button>
       </Link>
+      <div className="flex m-auto items-center max-w-lg">
+        <img src="/images/mathQuote.png"></img>
+      </div>
     </div>
   );
 };
