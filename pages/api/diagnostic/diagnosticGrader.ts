@@ -61,6 +61,26 @@ export const getAnswerForSkill = (skill: Skill, results: DiagnosticState) => {
   return questions;
 };
 
+let skillCount = 0;
+let summary = "";
+export const countCorrectAns = (result: Array<string>) => {
+  for (let i = 0; i < result.length; i++)
+    if (result[i] == "Correct") {
+      skillCount++;
+    }
+  return skillCount;
+};
+export const EvidenceSummaryText = (correctAns: number) => {
+  if (correctAns == 3) {
+    summary =
+      "Perfect! Your child has answered every question correctly and is ready to practice this skill at the third grade standard.";
+  } else {
+    summary =
+      "Great work, mistakes are part of the learning journey! Go over these questions with your child and have them re-take the diagnostic once they feel more confident.";
+  }
+  return summary;
+};
+
 export const getGradeLevelForTopic = (
   topic: Topic,
   results: DiagnosticState
@@ -147,28 +167,30 @@ export const getSummaryText = (gradeLevel: number, inputGradeLevel: number) => {
       inputGradeLevel +
       " curriculum. Encourage them to solve harder problems to keep them challenged."
     );
-  } else if (difference < 0) {
-    return (
-      "Truly impressive! Not only has your child met Ontario grade " +
-      inputGradeLevel +
-      " curriculum but they have in fact exceeded expectations. Keep at the good work and welcome challeneges with open arms!"
-    );
-  } else if (difference == -1) {
+  } else if (difference == 1) {
     return (
       "Great work! Your child has nearly met the expectations of the Ontario grade " +
       inputGradeLevel +
       " curriculum. Provide them with supplemental resources to address their knowledge gaps."
     );
-  } else {
+  } else if (difference >= 2) {
     return (
-      "Great effort! Your child requires extra practice to meet the expectations of the Ontario grade " +
+      "Good effort! Your child requires extra practice to meet the expectations of the Ontario grade " +
       inputGradeLevel +
       " curriculum. Provide them with supplemental resources to address their knowledge gaps."
     );
+  } else if (difference < 0) {
+    return (
+      "Truly impressive! Your child has exceeded the expectations of the Ontario grade " +
+      inputGradeLevel +
+      " curriculum. Keep up the good work and welcome challenges with open arms!"
+    );
+  } else {
+    return "";
   }
 };
 
-export const getCalculatedGrade = (results : DiagnosticState) => {
+export const getCalculatedGrade = (results: DiagnosticState) => {
   let gradeLevel = 0;
   if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 3") {
     gradeLevel = gradeLevel + 3;
@@ -207,5 +229,5 @@ export const getCalculatedGrade = (results : DiagnosticState) => {
     gradeLevel = gradeLevel + 1;
   }
   gradeLevel = Math.round(gradeLevel / 4);
-  return gradeLevel
-}
+  return gradeLevel;
+};

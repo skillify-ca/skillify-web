@@ -44,7 +44,7 @@ export const DiagnosticConclusion = ({
   const [practiceButtonEnabled, setPracticeButtonEnabled] = useState(true);
   const notifyPracticeSignup = async () => {
     setPracticeButtonEnabled(false);
-    const url = "api/notifications?product=practice";
+    const url = "https://math-app-1.herokuapp.com/notifications?product=practice";
     const options = {
       method: "POST",
       headers: {
