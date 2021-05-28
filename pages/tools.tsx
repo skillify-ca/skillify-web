@@ -12,7 +12,7 @@ export default function Tools(props) {
     if (practiceInput.length > 0) {
       setPracticeButtonEnabled(false)
       setPracticeInput("")
-      const url = "api/notifications?product=practice";
+      const url = "https://math-app-1.herokuapp.com/notifications?product=practice";
       const options = {
         method: "POST",
         headers: {
@@ -30,7 +30,7 @@ export default function Tools(props) {
     if (battleInput.length > 0) {
       setBattleButtonEnabled(false)
       setBattleInput("")
-      const url = "api/notifications?product=battle";
+      const url = "https://math-app-1.herokuapp.com/notifications?product=battle";
       const options = {
         method: "POST",
         headers: {

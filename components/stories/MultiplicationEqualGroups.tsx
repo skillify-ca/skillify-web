@@ -28,6 +28,7 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
   };
   const onSubmit = () => {
     setGuess("");
+    setGuess2("");
     setColor(Math.floor(Math.random() * 4));
     const parts = question.text.split(" ");
     submitGuess({
