@@ -47,9 +47,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
   const num1 = parseInt(parse().first);
   let width;
 
-  if (num1 >= 100) {
-    width = 28;
-  } else if (num1 >= 10) {
+  if (num1 >= 10) {
     width = 24;
   } else {
     width = 16;
@@ -80,7 +78,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
     <div className="flex flex-col items-center justify-between h-full">
       <div />
       <div className="flex flex-row">
-        <span className="flex flex-col-reverse text-7xl">
+        <span className="flex flex-col-reverse text-6xl">
           {parse().second}&nbsp;
         </span>
         <div className="flex flex-col">
@@ -94,7 +92,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
             />
             {remainderComponent}
           </div>
-          <span className="border-t-2 border-l-2 border-black text-7xl">
+          <span className="border-t-2 border-l-2 border-black text-6xl">
             {parse().first}
           </span>
         </div>

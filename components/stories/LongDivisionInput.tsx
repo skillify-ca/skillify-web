@@ -25,7 +25,7 @@ export const LongDivisionInput: React.FC<LongDivisionInputProps> = ({
       autoComplete="off"
       value={guess}
       onChange={(e) => setGuess(e.target.value)}
-      className={`appearance-none text-left border border-gray-300 rounded-md text-6xl w-${width}`}
+      className={`appearance-none text-left border border-gray-300 rounded-md text-5xl w-${width}`}
       placeholder=""
       onKeyPress={handleKeypress}
     />
