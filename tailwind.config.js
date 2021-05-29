@@ -121,6 +121,7 @@ module.exports = {
       "px-4",
       "py-4",
       "px-16",
+      "px-8",
       "ring-blue-500",
       "ring-green-500",
       "ring-purple-500",
