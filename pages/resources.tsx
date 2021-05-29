@@ -4,22 +4,6 @@ import { Button } from "../components/stories/Button";
 import LinkPreview from "@ashwamegh/react-link-preview";
 
 export default function Resources(props) {
-  function linkPreview({ loading, preview }) {
-    return loading ? (
-      <h1>Loading...</h1>
-    ) : (
-      <div className="flex flex-col justify-center">
-        <p className="font-bold mb-4"> {preview.title}</p>
-        <p className="text-sm"> {preview.description}</p>
-        <img
-          className="h-35 object-cover mt-4"
-          src={preview.img}
-          alt={preview.title}
-        />
-      </div>
-    );
-  }
-
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-full">
       <DiagnosticNavbar />
@@ -103,37 +87,57 @@ export default function Resources(props) {
                 {" "}
                 Students who have fallen far behind academically in 4th and 8th
                 grade have less than a one in three chance of being ready for
-                college or a career by the end of high school{" "}
+                college or a career by the end of high school.{" "}
               </p>
               <img src="https://ahchealthenewscdn.azureedge.net/wp-content/uploads/2014/03/140303362.jpg"></img>
             </a>
           </div>
         </div>
 
-        <div className="flex flex-row bg-white shadow-lg rounded-lg w-full p-4">
+        <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
           <div>
             <a
               href="https://www.educationnext.org/addressing-significant-learning-loss-in-mathematics-during-covid-19-and-beyond/"
               target="_blank"
             >
-              <LinkPreview
-                url="https://www.educationnext.org/addressing-significant-learning-loss-in-mathematics-during-covid-19-and-beyond/"
-                render={linkPreview}
-              />
+              <p className="font-bold mb-4">
+                {" "}
+                Addressing Significant Learning Loss in Mathematics During
+                Covid-19 and Beyond
+              </p>
+              <p className="text-sm mb-4">
+                {" "}
+                The pandemic has amplified existing skill gaps, but new
+                strategies and new tech could help{" "}
+              </p>
+              <img
+                height="300"
+                src="https://www.educationnext.org/wp-content/uploads/2021/01/jan21-blog-rose-math.png"
+              ></img>
             </a>
           </div>
         </div>
 
-        <div className="flex flex-row bg-white shadow-lg rounded-lg w-full p-4">
-          <div className="overflow-auto bg-scroll">
+        <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
+          <div>
             <a
-              href="https://www.educationnext.org/addressing-significant-learning-loss-in-mathematics-during-covid-19-and-beyond/"
+              href="https://www.edweek.org/teaching-learning/kids-are-behind-in-math-because-of-covid-19-heres-what-research-says-could-help/2020/12"
               target="_blank"
             >
-              <LinkPreview
-                url="https://www.edweek.org/teaching-learning/kids-are-behind-in-math-because-of-covid-19-heres-what-research-says-could-help/2020/12"
-                render={linkPreview}
-              />
+              <p className="font-bold mb-4">
+                {" "}
+                Addressing Significant Learning Loss in Mathematics During
+                Covid-19 and Beyond
+              </p>
+              <p className="text-sm mb-4">
+                {" "}
+                The pandemic has amplified existing skill gaps, but new
+                strategies and new tech could help{" "}
+              </p>
+              <img
+                height="300"
+                src="https://epe.brightspotcdn.com/dims4/default/7192e79/2147483647/strip/true/crop/1695x1150+7+0/resize/840x570!/format/webp/quality/90/?url=https%3A%2F%2Fepe-brightspot.s3.amazonaws.com%2F49%2F23%2F863695b641f897e4211cfa36c71e%2Fv40-15sr-math-research.jpg"
+              ></img>
             </a>
           </div>
         </div>
@@ -146,8 +150,8 @@ export default function Resources(props) {
             </p>
             <p className="text-sm">
               When families cultivate children’s natural curiosity about numbers
-              and shapes, they can help them develop a lifelong love of
-              math—which can lay the foundation for academic success
+              and shapes, they can help them develop a lifelong love of math—
+              laying the foundation for academic success
             </p>
             <iframe
               height="300"
@@ -159,6 +163,7 @@ export default function Resources(props) {
             ></iframe>
           </div>
         </div>
+
         <div className="bg-white shadow-lg rounded-lg p-4 w-full">
           <div className="h-96 overflow-scroll">
             <a
