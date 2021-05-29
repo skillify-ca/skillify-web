@@ -57,7 +57,6 @@ module.exports = {
    * ring-green-500
    * ring-blue-500
    * ring-purple-500
-   * w-32
    */
 
     safelist: [
@@ -125,7 +124,6 @@ module.exports = {
       "ring-blue-500",
       "ring-green-500",
       "ring-purple-500",
-      "w-32",
     ],
     blocklist: [/^debug-/],
     keyframes: true,

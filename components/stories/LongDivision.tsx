@@ -48,7 +48,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
   let width;
 
   if (num1 >= 100) {
-    width = 32;
+    width = 28;
   } else if (num1 >= 10) {
     width = 24;
   } else {
