@@ -47,10 +47,10 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
   const num1 = parseInt(parse().first);
   let width;
 
-  if (num1 >= 10) {
-    width = 24;
-  } else if (num1 >= 100) {
+  if (num1 >= 100) {
     width = 32;
+  } else if (num1 >= 10) {
+    width = 24;
   } else {
     width = 16;
   }
