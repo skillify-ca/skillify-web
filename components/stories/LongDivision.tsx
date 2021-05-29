@@ -49,6 +49,8 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
 
   if (num1 >= 10) {
     width = 24;
+  } else if (num1 >= 100) {
+    width = 28;
   } else {
     width = 16;
   }
@@ -97,7 +99,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
           </span>
         </div>
       </div>
-      <div className="">
+      <div className="mt-8">
         <Button
           onClick={onSubmit}
           label="Submit"
