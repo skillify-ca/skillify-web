@@ -52,8 +52,7 @@ const Diagnostic = () => {
       body: JSON.stringify({
         email: email,
         worksheets: workSheets,
-        inputGrade: grade,
-        calculatedGrade: getCalculatedGrade(results),
+        results: results,
       }),
     };
     await fetch(url, options);
