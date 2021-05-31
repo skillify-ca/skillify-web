@@ -66,7 +66,6 @@ const Diagnostic = () => {
         calculatedGrade: getCalculatedGrade(results)
       }),
     };
-    console.log(options.body);
     
     await fetch(url, options);
   };
