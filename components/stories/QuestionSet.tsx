@@ -58,6 +58,7 @@ const QuestionSet = ({
           option2={questionData[index].multipleChoice.options[1]}
           option3={questionData[index].multipleChoice.options[2]}
           option4={questionData[index].multipleChoice.options[3]}
+          answer={questionData[index].answer}
           submitGuess={submitGuess}
         />
       );
