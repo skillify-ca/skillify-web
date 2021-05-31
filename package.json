@@ -26,6 +26,7 @@
     "autoprefixer": "^10.0.4",
     "babel-jest": "^26.6.3",
     "boardgame.io": "^0.44.3",
+    "colyseus.js": "^0.14.12",
     "dangerously-set-html-content": "^1.0.8",
     "fetch-retry": "^4.1.1",
     "graphql": "^15.5.0",

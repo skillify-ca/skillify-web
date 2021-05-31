@@ -3,6 +3,7 @@ import { BoardSquare } from "./BoardSquare";
 import { ItemTypes } from "./ItemTypes";
 import { NumberTile } from "./NumberTile";
 import update from "immutability-helper";
+import { Button } from "../stories/Button";
 
 type BoxState = {
   name: string;
@@ -13,7 +14,7 @@ type BoxState = {
 export const TicTacToeBoard = (props) => {
   function isDropped(boxName: string) {
     const cells: number[] = props.G.cells;
-    return cells.includes(Number.parseInt(boxName))
+    return cells.includes(Number.parseInt(boxName));
   }
   const gameNumbers = "1,2,3,4,5,6,7,8,9";
   const [boxes] = useState<BoxState[]>(
@@ -42,8 +43,37 @@ export const TicTacToeBoard = (props) => {
     props.moves.placeCell(index, Number.parseInt(item.name));
   }, []);
 
+  const onResetClicked = () => {
+    props.reset()
+  };
+
+  const onExitClick = () => {
+    props.onExitClick()
+  };
+
   return (
     <div>
+      <div className="flex flex-col">
+        <h1 className="text-lg text-center mb-8">
+          Current Player: {props.playerID}
+        </h1>
+        <h1 className="text-lg text-center mb-8">Target Sum: {props.target}</h1>
+
+        <div className="flex flex-row space-x-4">
+          <Button
+            textColor="white"
+            backgroundColor="blue"
+            label="Exit"
+            onClick={onExitClick}
+          />
+          <Button
+            backgroundColor="green"
+            textColor="white"
+            label="Reset"
+            onClick={onResetClicked}
+          />
+        </div>
+      </div>
       <div className="flex flex-col gap-4">
         <div className="flex gap-4 w-96 justify-center">
           {props.G.cells.slice(0, 3).map((cell, index) => {
