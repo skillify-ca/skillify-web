@@ -131,7 +131,7 @@ const PracticeQuiz = ({ slug, skill }) => {
         <div
           className={`${display} flex-col justify-center items-center gap-8 transition-opacity duration-150 ease-in-out opacity-${isFaded}`}
         >
-          <div className={`flex flex-col justify-center items-center gap-8`}>
+          <div className={"justify-items-center align-middle w-50"}>
             <Card size="large">
               {correctAnswer ? (
                 <p className="font-bold text-gray-400 underline">

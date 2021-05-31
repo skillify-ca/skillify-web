@@ -176,9 +176,9 @@ function getRandomBinaryQuestion(
         trueFalseAnswer = true;
 
       case 1:
-        let randomDisplacement = randomize(-3, 2);
+        let randomDisplacement = randomize(-2, 3);
         while (randomDisplacement == 0) {
-          randomDisplacement = randomize(-3, 2);
+          randomDisplacement = randomize(-2, 3);
         }
         text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = 
       ${answerFunction(Math.max(a, b), Math.min(a, b)) + randomDisplacement}`;
