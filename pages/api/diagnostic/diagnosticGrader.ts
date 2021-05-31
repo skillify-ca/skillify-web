@@ -190,48 +190,6 @@ export const getSummaryText = (gradeLevel: number, inputGradeLevel: number) => {
   }
 };
 
-export const getCalculatedGrade = (results: DiagnosticState) => {
-  let gradeLevel = 0;
-  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 3") {
-    gradeLevel = gradeLevel + 3;
-  }
-  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 2") {
-    gradeLevel = gradeLevel + 2;
-  }
-  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 1") {
-    gradeLevel = gradeLevel + 1;
-  }
-  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 3") {
-    gradeLevel = gradeLevel + 3;
-  }
-  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 2") {
-    gradeLevel = gradeLevel + 2;
-  }
-  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 1") {
-    gradeLevel = gradeLevel + 1;
-  }
-  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 3") {
-    gradeLevel = gradeLevel + 3;
-  }
-  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 2") {
-    gradeLevel = gradeLevel + 2;
-  }
-  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 1") {
-    gradeLevel = gradeLevel + 1;
-  }
-  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 3") {
-    gradeLevel = gradeLevel + 3;
-  }
-  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 2") {
-    gradeLevel = gradeLevel + 2;
-  }
-  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 1") {
-    gradeLevel = gradeLevel + 1;
-  }
-  gradeLevel = Math.round(gradeLevel / 4);
-  return gradeLevel;
-};
-
 export const getCalculatedGrade = (results : DiagnosticState) => {
   let gradeLevel = 0;
   if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 3") {
