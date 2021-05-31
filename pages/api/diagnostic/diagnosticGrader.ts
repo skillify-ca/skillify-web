@@ -167,24 +167,26 @@ export const getSummaryText = (gradeLevel: number, inputGradeLevel: number) => {
       inputGradeLevel +
       " curriculum. Encourage them to solve harder problems to keep them challenged."
     );
-  } else if (difference < 0) {
-    return (
-      "Truly impressive! Not only has your child met Ontario grade " +
-      inputGradeLevel +
-      " curriculum but they have in fact exceeded expectations. Keep at the good work and welcome challeneges with open arms!"
-    );
-  } else if (difference == -1) {
+  } else if (difference == 1) {
     return (
       "Great work! Your child has nearly met the expectations of the Ontario grade " +
       inputGradeLevel +
       " curriculum. Provide them with supplemental resources to address their knowledge gaps."
     );
-  } else {
+  } else if (difference >= 2) {
     return (
-      "Great effort! Your child requires extra practice to meet the expectations of the Ontario grade " +
+      "Good effort! Your child requires extra practice to meet the expectations of the Ontario grade " +
       inputGradeLevel +
       " curriculum. Provide them with supplemental resources to address their knowledge gaps."
     );
+  } else if (difference < 0) {
+    return (
+      "Truly impressive! Your child has exceeded the expectations of the Ontario grade " +
+      inputGradeLevel +
+      " curriculum. Keep up the good work and welcome challenges with open arms!"
+    );
+  } else {
+    return "";
   }
 };
 
