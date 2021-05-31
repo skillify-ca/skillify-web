@@ -63,10 +63,11 @@ const Diagnostic = () => {
           getGradeLevelForTopic(Topic.MULTIPLICATION, results),
           getGradeLevelForTopic(Topic.DIVISION, results),
         ],
+        calculatedGrade: getCalculatedGrade(results)
       }),
     };
     console.log(options.body);
-
+    
     await fetch(url, options);
   };
 
