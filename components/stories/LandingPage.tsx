@@ -25,13 +25,13 @@ const LandingPage = () => {
             Make math fun to practice! Learning with Math Champ is
             engaging and fun. Student will earn points for correct answers, play with friends
             and level up. Our curriculum-based lessons are effective and
-            efficient. Start with our diagnostic test so we can meet your child
-            at their level.
+            efficient. Start with our diagnostic test so we can help your child learn
+            at whatever level they're at.
           </p>
           <div className="flex gap-8">
             <Link href="/diagnostic">
-              <button className="text-white text-2xl from-blue-500 via-blue-500 to-blue-500 border-blue-900 hover:from-blue-400 bg-gradient-to-b px-16 py-4 font-bold border-b-4 rounded-xl active:border-b-2">
-                Try Now
+              <button className="text-white text-xl from-blue-500 via-blue-500 to-blue-500 border-blue-900 hover:from-blue-400 bg-gradient-to-b px-8 py-4 font-bold border-b-4 rounded-xl active:border-b-2">
+                Try Now For FREE
               </button>
             </Link>
           </div>
