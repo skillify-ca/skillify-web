@@ -7,11 +7,15 @@ import { AnswerType, Question } from "./api/question";
 import { QuestionType } from "./api/questionTypes";
 import { DiagnosticState, setDiagnostic } from "../redux/diagnosticSlice";
 import { useAppDispatch } from "../redux/store";
-import { Skill } from "./api/skill";
+import { Skill, Topic } from "./api/skill";
 import { generateQuestionsForDiagnostic } from "./api/diagnostic/diagnosticQuestionGenerator";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { getWorkSheets } from "./api/worksheets";
-import { getCalculatedGrade } from "./api/diagnostic/diagnosticGrader";
+import {
+  getCalculatedGrade,
+  getGradeLevelForTopic,
+  getResultForSkill,
+} from "./api/diagnostic/diagnosticGrader";
 
 enum STAGE {
   CREATE,
@@ -41,8 +45,27 @@ const Diagnostic = () => {
 
   const requestEmail = async (results: DiagnosticState) => {
     const workSheets = getWorkSheets(results);
-
     const url = "https://math-app-1.herokuapp.com/email";
+    const topicGrades = [
+      getGradeLevelForTopic(Topic.ADDITION, results),
+      getGradeLevelForTopic(Topic.SUBTRACTION, results),
+      getGradeLevelForTopic(Topic.MULTIPLICATION, results),
+      getGradeLevelForTopic(Topic.DIVISION, results),
+    ];
+    const skillGrades = [
+      getResultForSkill(Skill.ADDITION_SINGLE, results),
+      getResultForSkill(Skill.ADDITION_DOUBLE, results),
+      getResultForSkill(Skill.ADDITION_TRIPLE, results),
+      getResultForSkill(Skill.SUBTRACTION_SINGLE, results),
+      getResultForSkill(Skill.SUBTRACTION_DOUBLE, results),
+      getResultForSkill(Skill.SUBTRACTION_TRIPLE, results),
+      getResultForSkill(Skill.EQUAL_GROUP_10_ITEMS, results),
+      getResultForSkill(Skill.MULTIPLICATION_5, results),
+      getResultForSkill(Skill.MULTIPLICATION_10, results),
+      getResultForSkill(Skill.EQUAL_SHARING_8_ITEMS, results),
+      getResultForSkill(Skill.DIVIDE_12_EQUALLY, results),
+      getResultForSkill(Skill.DIVIDE_100, results),
+    ];
     const options = {
       method: "POST",
       headers: {
@@ -52,6 +75,9 @@ const Diagnostic = () => {
       body: JSON.stringify({
         email: email,
         worksheets: workSheets,
+        calculatedGrade: getCalculatedGrade(results),
+        topicGrades: topicGrades,
+        skillGrades: skillGrades,
         results: results,
       }),
     };
