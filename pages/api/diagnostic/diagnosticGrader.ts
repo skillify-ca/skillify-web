@@ -203,7 +203,7 @@ export const getSummaryText = (gradeLevel: number, inputGradeLevel: number) => {
   }
 };
 
-export const getCalculatedGrade = (results: DiagnosticState) => {
+export const getCalculatedGrade = (results : DiagnosticState) => {
   let gradeLevel = 0;
   if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 3") {
     gradeLevel = gradeLevel + 3;
@@ -242,5 +242,5 @@ export const getCalculatedGrade = (results: DiagnosticState) => {
     gradeLevel = gradeLevel + 1;
   }
   gradeLevel = Math.round(gradeLevel / 4);
-  return gradeLevel;
-};
+  return gradeLevel
+}
