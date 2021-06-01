@@ -80,13 +80,6 @@ const Diagnostic = () => {
         topicGrades: topicGrades,
         skillGrades: skillGrades,
         results: results,
-        topicGrades: [
-          getGradeLevelForTopic(Topic.ADDITION, results),
-          getGradeLevelForTopic(Topic.SUBTRACTION, results),
-          getGradeLevelForTopic(Topic.MULTIPLICATION, results),
-          getGradeLevelForTopic(Topic.DIVISION, results),
-        ],
-        calculatedGrade: getCalculatedGrade(results),
       }),
     };
 
