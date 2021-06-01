@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import {
-  getAnswerForSkill,
+  getGradesForSkill,
   getQuestionForSkill,
   countCorrectAns,
   EvidenceSummaryText,
@@ -15,9 +15,8 @@ type DiagnosticDataProps = {
 };
 
 const DiagnosticData = ({ skill, results }: DiagnosticDataProps) => {
-  const getBackgroundColorForTopic = (result: string) => {
-    const skillLevel = result;
-    switch (skillLevel) {
+  const getBackgroundColorForQuestion = (result: string) => {
+    switch (result) {
       case "Incorrect":
         return "bg-red-100";
       case "Correct":
@@ -36,7 +35,9 @@ const DiagnosticData = ({ skill, results }: DiagnosticDataProps) => {
         <div className="flex flex-col gap-4 sm:max-w-2xl">
           <p>
             {EvidenceSummaryText(
-              countCorrectAns(getAnswerForSkill(skill, results))
+              countCorrectAns(
+                getGradesForSkill(skill, results).map((it) => it.grade)
+              )
             )}
           </p>
         </div>
@@ -50,13 +51,13 @@ const DiagnosticData = ({ skill, results }: DiagnosticDataProps) => {
           ))}
         </div>
         <div>
-          {getAnswerForSkill(skill, results).map((item) => (
+          {getGradesForSkill(skill, results).map((it) => (
             <p
-              className={`${getBackgroundColorForTopic(
-                item
+              className={`${getBackgroundColorForQuestion(
+                it.grade
               )} p-4 border-b border-black`}
             >
-              {item}
+              {`${it.guess} (${it.grade})`}
             </p>
           ))}
         </div>

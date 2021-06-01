@@ -171,18 +171,15 @@ function getRandomBinaryQuestion(
     const randomAns = randomize(0, 2);
     switch (randomAns) {
       case 0:
-        text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = 
-      ${answerFunction(Math.max(a, b), Math.min(a, b))}`;
+        text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${answerFunction(Math.max(a, b), Math.min(a, b))}`;
         trueFalseAnswer = true;
         break;
-
       case 1:
         let randomDisplacement = randomize(-2, 3);
         while (randomDisplacement == 0) {
           randomDisplacement = randomize(-2, 3);
         }
-        text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = 
-      ${answerFunction(Math.max(a, b), Math.min(a, b)) + randomDisplacement}`;
+        text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${answerFunction(Math.max(a, b), Math.min(a, b)) + randomDisplacement}`;
         trueFalseAnswer = false;
         break;
     }
