@@ -173,7 +173,7 @@ function getRandomBinaryQuestion(
       case 0:
         text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${answerFunction(Math.max(a, b), Math.min(a, b))}`;
         trueFalseAnswer = true;
-
+        break;
       case 1:
         let randomDisplacement = randomize(-2, 3);
         while (randomDisplacement == 0) {
@@ -181,6 +181,7 @@ function getRandomBinaryQuestion(
         }
         text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${answerFunction(Math.max(a, b), Math.min(a, b)) + randomDisplacement}`;
         trueFalseAnswer = false;
+        break;
     }
   } else {
     text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} =`;
