@@ -237,10 +237,24 @@ function getRandomSentencePropertyQuestion(
 
   const model: MCModel = { options: shuffle(optionarr) };
 
+  let answer;
+  switch (additionPropertyType) {
+    case "Commutative":
+      answer = option1.text;
+      break;
+    case "Identity":
+      answer = option2.text;
+      break;
+
+    case "Associative":
+      answer = option3.text;
+      break;
+  }
+
   return {
     text: text,
     answerType: AnswerType.STRING,
-    answer: additionPropertyType,
+    answer: answer,
     operator: operator,
     questionType: QuestionType.MULTIPLE_CHOICE_SENTENCE,
     multipleChoice: model,

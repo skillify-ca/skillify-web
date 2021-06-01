@@ -18,6 +18,7 @@ test("test worksheets", async () => {
   const state: DiagnosticState = {
     questions: Array(10).fill(dummyDivisionQuestion),
     guessAns: Array(10).fill("Correct"),
+    guesses: Array(10).fill("2"),
     email: "test@gmail.com",
     grade: "Grade 2",
   };
@@ -49,6 +50,7 @@ test("test worksheets2", async () => {
   const state: DiagnosticState = {
     questions: [dummyDivisionQuestion, dummyMultiplicationQuestion],
     guessAns: ["Correct", "Incorrect"],
+    guesses: ["2", "3"],
     email: "test@gmail.com",
     grade: "Grade 2",
   };

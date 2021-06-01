@@ -31,6 +31,7 @@ const Diagnostic = () => {
   const [index, setIndex] = useState(0);
   const [email, setEmail] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState(0);
+  const [guesses, setGuesses] = useState<Array<string>>([]);
   const [guessAns, setGuessAns] = useState<Array<string>>([]);
   const [questionData, setQuestionData] = useState<Question[]>([
     {
@@ -79,8 +80,16 @@ const Diagnostic = () => {
         topicGrades: topicGrades,
         skillGrades: skillGrades,
         results: results,
+        topicGrades: [
+          getGradeLevelForTopic(Topic.ADDITION, results),
+          getGradeLevelForTopic(Topic.SUBTRACTION, results),
+          getGradeLevelForTopic(Topic.MULTIPLICATION, results),
+          getGradeLevelForTopic(Topic.DIVISION, results),
+        ],
+        calculatedGrade: getCalculatedGrade(results),
       }),
     };
+
     await fetch(url, options);
   };
 
@@ -96,6 +105,7 @@ const Diagnostic = () => {
       setOpacity(1);
     }
 
+    // Save if they guessed the question correctly or not
     let updateGuessAns;
     if (guessData.isCorrect) {
       setCorrectGuesses(correctGuesses + 1);
@@ -104,10 +114,17 @@ const Diagnostic = () => {
       updateGuessAns = guessAns.concat("Incorrect");
     }
     setGuessAns(updateGuessAns);
+
+    // Save the actual guess for reporting
+    let updateGuess;
+    updateGuess = guesses.concat(guessData.guess);
+    setGuesses(updateGuess);
+
     if (index == questionData.length - 1) {
       const results: DiagnosticState = {
         questions: questionData,
         guessAns: updateGuessAns,
+        guesses: updateGuess,
         grade: grade,
         email: email,
       };
