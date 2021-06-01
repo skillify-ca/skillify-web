@@ -24,112 +24,101 @@ export default async function handler(
 </ul>
 `;
 const markup2 = `<div style="font-family: inherit; text-align: center">&nbsp;</div>
-<div style="font-family: inherit; text-align: center">We don't want to be stuck in tourist traps that isolate us from vibrant, local experiences. We want to discover the hidden gems and less-traveled roads of our next destination.</div>
+<div style="font-family: inherit; text-align: center">We don't want your child to be stuck doing boring worksheets all the time. Learning should be fun, motivating, and relavant. Join us to build an engaging learning enviorment for your child so that they strive for academic success in the future!</div>
 <div style="font-family: inherit; text-align: center">&nbsp;</div>
-<div style="font-family: inherit; text-align: center">Ready for your next authentic travel experience?</div><div></div></div></td>`;
-const markup3 = `<style type="text/css">
+<div style="font-family: inherit; text-align: center">Ready for your next challenge?</div><div></div></div></td>`;
+const styleMarkup = `<style type="text/css">
 body, p, div {
   font-family: courier, monospace;
   font-size: 16px;
+  color: #008B8B;
+  justify-content: center;
 }
-body {
-  color: #FFFFFF;
+h1{
+	font-family: fantasy;
+  font-size: 30px;
+  font-weight: bold;
+  color: #008B8B;
 }
-body a {
-  color: #fe5d61;
-  text-decoration: none;
+.background{
+	background: linear-gradient(to right, #4ca1af, #c4e0e5);
 }
-p { margin: 0; padding: 0; }
-table.wrapper {
-  width:100% !important;
-  table-layout: fixed;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
+.banner{
+  width:100%;
+  height: 100%;
+  	background-image: url("https://www.mathchamp.ca/images/logo.png");
+  		background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	background-position: center center;
 }
-img.max-width {
-  max-width: 100% !important;
+.navigation {
+	margin: auto;
+	padding: 25px;
+	flex-direction: row;
+	
 }
-.column.of-2 {
-  width: 50%;
+.navigation ul{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.column.of-3 {
-  width: 33.333%;
+.navigation ul li{
+	width: 30%;
+	margin-top: 10px;
+	padding: 10px 0;
+	padding-left: 5px;
+	background-color: #708090;
+	list-style: none;
+	border-radius: 25px;
+	border-color: #008B8B;
+	background-color: hsla(120deg,100%,75%,0.3);
+
 }
-.column.of-4 {
-  width: 25%;
+.navigation ul li a{
+	text-decoration: none;
+  justify-content: center;
+	color: #DAA520;
 }
-ul ul ul ul  {
-  list-style-type: disc !important;
+.navigation ul li::after{
+	content: '';
+	height: 3px;
+	width: 0;
+	background:#DAA520;
+	position: absolute;
+	left: 0;
+	bottom: -10px;
+	transition: 0.5s;
 }
-ol ol {
-  list-style-type: lower-roman !important;
-}
-ol ol ol {
-  list-style-type: lower-latin !important;
-}
-ol ol ol ol {
-  list-style-type: decimal !important;
-}
-@media screen and (max-width:480px) {
-  .preheader .rightColumnContent,
-  .footer .rightColumnContent {
-    text-align: left !important;
-  }
-  .preheader .rightColumnContent div,
-  .preheader .rightColumnContent span,
-  .footer .rightColumnContent div,
-  .footer .rightColumnContent span {
-    text-align: left !important;
-  }
-  .preheader .rightColumnContent,
-  .preheader .leftColumnContent {
-    font-size: 80% !important;
-    padding: 5px 0;
-  }
-  table.wrapper-mobile {
-    width: 100% !important;
-    table-layout: fixed;
-  }
-  img.max-width {
-    height: auto !important;
-    max-width: 100% !important;
-  }
-  a.bulletproof-button {
-    display: block !important;
-    width: auto !important;
-    font-size: 80%;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-  .columns {
-    width: 100% !important;
-  }
-  .column {
-    display: block !important;
-    width: 100% !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  .social-icon-column {
-    display: inline-block !important;
-  }
+.navigation ul li:hover::after {
+	width: 100%;
 }
 </style>`
   const msg = {
     to: req.body.email, // Change to your recipient
     from: process.env.SENDGRID_SENDER, // Change to your verified sender
     subject: "Your Math Champ Diagnostic Results",
-    text: "and easy to do anywhere even with Node.js", // for restrictive email clients
+    text: "Your Math Champ Diagnostic Results", // for restrictive email clients
     html: `<html>
-    <head>${markup3}</head>
-    <body>
-    <strong>${getSummaryText(inputGrade, calculatedGrade)}${markup}${markup2}</strong>
+    <head>${styleMarkup}</head>
+    <body>	
+    	<div class ="banner">
+    		<h1> Math Champ</h1>
+    		<div class="navigation">
+    			<div class = "message"> 
+    				<strong>${getSummaryText(inputGrade, calculatedGrade)}</strong>
+    			</div>
+    			<div class="worksheets">
+    				${markup}
+    			</div>
+    			<div class="closing">
+    				${markup2}
+    			</div>
+    		</div>
+    	</div>
     </body>
-    </html>
+</html>
     ` // for email clients that can render CSS and HTML
   };
   sgMail

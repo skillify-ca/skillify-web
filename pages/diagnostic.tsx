@@ -7,11 +7,15 @@ import { AnswerType, Question } from "./api/question";
 import { QuestionType } from "./api/questionTypes";
 import { DiagnosticState, setDiagnostic } from "../redux/diagnosticSlice";
 import { useAppDispatch } from "../redux/store";
-import { Skill } from "./api/skill";
+import { Skill, Topic } from "./api/skill";
 import { generateQuestionsForDiagnostic } from "./api/diagnostic/diagnosticQuestionGenerator";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { getWorkSheets } from "./api/worksheets";
-import { getCalculatedGrade } from "./api/diagnostic/diagnosticGrader";
+import {
+  getCalculatedGrade,
+  getGradeLevelForTopic,
+  getResultForSkill,
+} from "./api/diagnostic/diagnosticGrader";
 
 enum STAGE {
   CREATE,
@@ -27,6 +31,7 @@ const Diagnostic = () => {
   const [index, setIndex] = useState(0);
   const [email, setEmail] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState(0);
+  const [guesses, setGuesses] = useState<Array<string>>([]);
   const [guessAns, setGuessAns] = useState<Array<string>>([]);
   const [questionData, setQuestionData] = useState<Question[]>([
     {
@@ -41,8 +46,27 @@ const Diagnostic = () => {
 
   const requestEmail = async (results: DiagnosticState) => {
     const workSheets = getWorkSheets(results);
-
     const url = "https://math-app-1.herokuapp.com/email";
+    const topicGrades = [
+      getGradeLevelForTopic(Topic.ADDITION, results),
+      getGradeLevelForTopic(Topic.SUBTRACTION, results),
+      getGradeLevelForTopic(Topic.MULTIPLICATION, results),
+      getGradeLevelForTopic(Topic.DIVISION, results),
+    ];
+    const skillGrades = [
+      getResultForSkill(Skill.ADDITION_SINGLE, results),
+      getResultForSkill(Skill.ADDITION_DOUBLE, results),
+      getResultForSkill(Skill.ADDITION_TRIPLE, results),
+      getResultForSkill(Skill.SUBTRACTION_SINGLE, results),
+      getResultForSkill(Skill.SUBTRACTION_DOUBLE, results),
+      getResultForSkill(Skill.SUBTRACTION_TRIPLE, results),
+      getResultForSkill(Skill.EQUAL_GROUP_10_ITEMS, results),
+      getResultForSkill(Skill.MULTIPLICATION_5, results),
+      getResultForSkill(Skill.MULTIPLICATION_10, results),
+      getResultForSkill(Skill.EQUAL_SHARING_8_ITEMS, results),
+      getResultForSkill(Skill.DIVIDE_12_EQUALLY, results),
+      getResultForSkill(Skill.DIVIDE_100, results),
+    ];
     const options = {
       method: "POST",
       headers: {
@@ -52,9 +76,13 @@ const Diagnostic = () => {
       body: JSON.stringify({
         email: email,
         worksheets: workSheets,
+        calculatedGrade: getCalculatedGrade(results),
+        topicGrades: topicGrades,
+        skillGrades: skillGrades,
         results: results,
       }),
     };
+
     await fetch(url, options);
   };
 
@@ -70,6 +98,7 @@ const Diagnostic = () => {
       setOpacity(1);
     }
 
+    // Save if they guessed the question correctly or not
     let updateGuessAns;
     if (guessData.isCorrect) {
       setCorrectGuesses(correctGuesses + 1);
@@ -78,10 +107,17 @@ const Diagnostic = () => {
       updateGuessAns = guessAns.concat("Incorrect");
     }
     setGuessAns(updateGuessAns);
+
+    // Save the actual guess for reporting
+    let updateGuess;
+    updateGuess = guesses.concat(guessData.guess);
+    setGuesses(updateGuess);
+
     if (index == questionData.length - 1) {
       const results: DiagnosticState = {
         questions: questionData,
         guessAns: updateGuessAns,
+        guesses: updateGuess,
         grade: grade,
         email: email,
       };

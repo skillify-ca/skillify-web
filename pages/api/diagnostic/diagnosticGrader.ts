@@ -4,20 +4,25 @@ import { Skill, Topic } from "../skill";
 
 const PASSING_GRADE = 0.5;
 
-type QuestionGuess = {
+type GradedQuestion = {
   question: Question;
+  grade: string;
   guess: string;
 };
 
 export const getResultForSkill = (skill: Skill, results: DiagnosticState) => {
-  const questionsWithGuesses: QuestionGuess[] = results.questions.map(
-    (it, index) => ({ question: it, guess: results.guessAns[index] })
+  const questionsWithGuesses: GradedQuestion[] = results.questions.map(
+    (it, index) => ({
+      question: it,
+      grade: results.guessAns[index],
+      guess: results.guesses[index],
+    })
   );
   const filteredQuestionsWithGuesses = questionsWithGuesses.filter(
     (it) => it.question.skill === skill
   );
   const correctGuesses = filteredQuestionsWithGuesses.filter(
-    (it) => it.guess === "Correct"
+    (it) => it.grade === "Correct"
   );
   if (
     correctGuesses.length / filteredQuestionsWithGuesses.length >=
@@ -30,8 +35,12 @@ export const getResultForSkill = (skill: Skill, results: DiagnosticState) => {
 };
 
 export const getQuestionForSkill = (skill: Skill, results: DiagnosticState) => {
-  const questionsWithGuesses: QuestionGuess[] = results.questions.map(
-    (it, index) => ({ question: it, guess: results.guessAns[index] })
+  const questionsWithGuesses: GradedQuestion[] = results.questions.map(
+    (it, index) => ({
+      question: it,
+      grade: results.guessAns[index],
+      guess: results.guesses[index],
+    })
   );
   const filteredQuestionsWithGuesses = questionsWithGuesses.filter(
     (it) => it.question.skill === skill
@@ -45,20 +54,24 @@ export const getQuestionForSkill = (skill: Skill, results: DiagnosticState) => {
   return questions;
 };
 
-export const getAnswerForSkill = (skill: Skill, results: DiagnosticState) => {
-  const questionsWithGuesses: QuestionGuess[] = results.questions.map(
-    (it, index) => ({ question: it, guess: results.guessAns[index] })
+export const getGradesForSkill = (
+  skill: Skill,
+  results: DiagnosticState
+): GradedQuestion[] => {
+  const questionsWithGrades: GradedQuestion[] = results.questions.map(
+    (it, index) => ({
+      question: it,
+      grade: results.guessAns[index],
+      guess: results.guesses[index],
+    })
   );
-  const filteredQuestionsWithGuesses = questionsWithGuesses.filter(
+  const filteredQuestionsWithGrades = questionsWithGrades.filter(
     (it) => it.question.skill === skill
   );
 
-  const guessAnswers = filteredQuestionsWithGuesses.filter(
+  return filteredQuestionsWithGrades.filter(
     (it) => it.question.skill === skill.toString()
   );
-
-  const questions = guessAnswers.map((item) => item.guess);
-  return questions;
 };
 
 let skillCount = 0;
@@ -190,7 +203,7 @@ export const getSummaryText = (gradeLevel: number, inputGradeLevel: number) => {
   }
 };
 
-export const getCalculatedGrade = (results: DiagnosticState) => {
+export const getCalculatedGrade = (results : DiagnosticState) => {
   let gradeLevel = 0;
   if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 3") {
     gradeLevel = gradeLevel + 3;
@@ -229,5 +242,5 @@ export const getCalculatedGrade = (results: DiagnosticState) => {
     gradeLevel = gradeLevel + 1;
   }
   gradeLevel = Math.round(gradeLevel / 4);
-  return gradeLevel;
-};
+  return gradeLevel
+}

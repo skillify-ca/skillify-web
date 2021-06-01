@@ -53,7 +53,7 @@ export const WordProblemSub: React.FC<WordProblemSubProp> = ({
   };
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="text-2xl flex flex-wrap">
+      <div className="text-xl flex flex-wrap">
         <p className="align-left">
           {name} has a {itemContainer.singleTitle} of {noun1.type}. Inside,
           there are

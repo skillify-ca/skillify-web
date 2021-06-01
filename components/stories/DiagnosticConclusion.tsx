@@ -40,11 +40,11 @@ export const DiagnosticConclusion = ({
       return "bg-red-100";
     }
   };
-
   const [practiceButtonEnabled, setPracticeButtonEnabled] = useState(true);
   const notifyPracticeSignup = async () => {
     setPracticeButtonEnabled(false);
-    const url = "https://math-app-1.herokuapp.com/notifications?product=practice";
+    const url =
+      "https://math-app-1.herokuapp.com/notifications?product=practice";
     const options = {
       method: "POST",
       headers: {
@@ -167,7 +167,7 @@ export const DiagnosticConclusion = ({
             Our practice tracker will be launching soon! Your child will get
             access to thousands of engaging math questions and you'll receive
             weekly reports on their practice. Click below to be notified when we
-            go live. 
+            go live.
           </p>
           <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
             <Button
