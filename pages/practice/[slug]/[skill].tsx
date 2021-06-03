@@ -102,76 +102,80 @@ const PracticeQuiz = ({ slug, skill }) => {
     }
   };
   return (
-    <div>
+    <div className="bg-blue-100 heropattern-architect-blue-50">
       <Navbar />
-      <div className="flex flex-row w-full p-4 bg-yellow-400 justify-center gap-64">
-        <p className="font-bold text-gray-400">
-          Question: {index + 1} / {questionData.length}
-        </p>
-        <p className="font-bold text-gray-400">
-          Score: {correctGuess} / {index + 1}
-        </p>
-      </div>
-      <ReactCardFlip
-        isFlipped={isFlipped}
-        flipDirection="horizontal"
-        infinite={true}
-      >
-        <div className="justify-items-center align-middle w-50">
-          <QuestionSet
-            title={slug}
-            questionData={questionData}
-            index={index}
-            inputElement={inputElement}
-            submitGuess={submitGuess}
-            score={correctGuess}
-            practice={true}
-          />
+      <div className="flex flex-col justify-center items-center mt-8">
+        <div className="flex flex-row w-96 p-4 justify-between bg-gray-400 shadow-lg rounded-lg ">
+          <p className="font-semibold">
+            Question: {index + 1} / {questionData.length}
+          </p>
+          <p className="font-semibold">
+            Score: {correctGuess} / {index + 1}
+          </p>
         </div>
-        <div
-          className={`${display} flex-col justify-center items-center gap-8 transition-opacity duration-150 ease-in-out opacity-${isFaded}`}
+        <ReactCardFlip
+          isFlipped={isFlipped}
+          flipDirection="horizontal"
+          infinite={true}
         >
-          <div className={"justify-items-center align-middle w-50"}>
-            <Card size="large">
-              {correctAnswer ? (
-                <p className="font-bold text-gray-400 underline">
-                  Correct,
-                  <span className="font-bold text-green-400">
-                    {" " + guessAttempt + " "}
-                  </span>
-                  was the answer!
-                </p>
-              ) : wrongAnswer ? (
-                <div className="italic text-gray-400 font-bold space-y-16">
-                  <p>The correct answer was</p>
-                  <span className="font-bold text-green-400">
-                    {questionData[index].answer.toString()}
-                  </span>
-                  <br></br>
-                  <p>Your answer was </p>
-                  <span className="font-bold text-red-500">{guessAttempt}</span>
-                </div>
-              ) : (
-                ""
-              )}
-              {nextQuestionButton && (
-                <Button
-                  label="Next Question"
-                  backgroundColor="yellow"
-                  onClick={applyNextQuestion}
-                ></Button>
-              )}
-              {continueButton && (
-                <Button
-                  label="Continue"
-                  backgroundColor="green"
-                  onClick={applyContinuePage}
-                ></Button>
-              )}
-            </Card>
+          <div className="justify-items-center align-middle w-50">
+            <QuestionSet
+              title={slug}
+              questionData={questionData}
+              index={index}
+              inputElement={inputElement}
+              submitGuess={submitGuess}
+              score={correctGuess}
+              practice={true}
+            />
           </div>
-        </div>
-      </ReactCardFlip>
+          <div
+            className={`${display} flex-col justify-center items-center gap-8 transition-opacity duration-150 ease-in-out opacity-${isFaded}`}
+          >
+            <div className={"justify-items-center align-middle w-50"}>
+              <Card size="large">
+                {correctAnswer ? (
+                  <p className="font-bold text-gray-400 underline">
+                    Correct,
+                    <span className="font-bold text-green-400">
+                      {" " + guessAttempt + " "}
+                    </span>
+                    was the answer!
+                  </p>
+                ) : wrongAnswer ? (
+                  <div className="italic text-gray-400 font-bold space-y-16">
+                    <p>The correct answer was</p>
+                    <span className="font-bold text-green-400">
+                      {questionData[index].answer.toString()}
+                    </span>
+                    <br></br>
+                    <p>Your answer was </p>
+                    <span className="font-bold text-red-500">
+                      {guessAttempt}
+                    </span>
+                  </div>
+                ) : (
+                  ""
+                )}
+                {nextQuestionButton && (
+                  <Button
+                    label="Next Question"
+                    backgroundColor="yellow"
+                    onClick={applyNextQuestion}
+                  ></Button>
+                )}
+                {continueButton && (
+                  <Button
+                    label="Continue"
+                    backgroundColor="green"
+                    onClick={applyContinuePage}
+                  ></Button>
+                )}
+              </Card>
+            </div>
+          </div>
+        </ReactCardFlip>
+      </div>
       {!continueButton && !nextQuestionButton && (
         <Hint skill={Skill.ADDITION_PROPERTIES}></Hint>
       )}
