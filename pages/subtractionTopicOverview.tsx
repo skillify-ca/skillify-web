@@ -132,14 +132,14 @@ export default function divisionTopicOverview(props) {
                 ></img>
               </div>
             </div>
-            <div className="bg-white shadow-lg rounded-lg w-full p-4">
+            <div className="bg-white shadow-lg rounded-lg w-full p-4 h-full">
               <div>
                 <p className="font-bold mb-4">
                   {" "}
                   Subtracting Double Digit Numbers (Grade 2)
                 </p>
                 <img
-                  className="h-30 object-cover mt-40"
+                  className="h-full w-full object-cover"
                   src="https://i.pinimg.com/originals/3e/7b/2e/3e7b2efc82139dd2f7d73e87bf6d9c75.jpg"
                 ></img>
               </div>
