@@ -170,24 +170,32 @@ export default function divisionTopicOverview(props) {
               Time to Quiz Yourself{" "}
             </p>
           </div>
-          <div>
-            <div className="bg-white flex flex-wrap flex-col">
-              <img
-                className="h-30 object-cover"
-                src="https://teachablemath.com/wp-content/uploads/2016/05/Screenshot-2016-05-03-14.27.17-1.png"
-              ></img>
-              <p>
+          <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-4 gap-8">
+            <div className="flex flex-col w-full sm:w-1/2 gap-8">
+              <p className="text-5xl"> Quiz Time!</p>
+              <p className="text-xl">
                 Take a quiz to test out your Addition Skills. The topics we'll
                 cover will based on your grade level. So it's completly
                 personalized! You can take the quiz as many times as you wish to
                 perfect your skills. Good luck, you got this!
               </p>
+              <div className="flex gap-8">
+                <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
+                  <Link href={"quiz/?level="}>
+                    <Button
+                      backgroundColor="blue"
+                      textColor="white"
+                      label="Quiz Yourself"
+                    />
+                  </Link>
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="w-1/3 content-center">
-            <Link href={"quiz/?level="}>
-              <Button backgroundColor="blue" textColor="white" label="Quiz" />
-            </Link>
+            <img
+              className="w-full sm:w-1/2 object-cover"
+              alt="student-image"
+              src="https://knowledgeone.ca/wp-content/uploads/2018/11/online-readiness-01.jpg"
+            />
           </div>
         </div>
       </div>
