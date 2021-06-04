@@ -2,194 +2,283 @@ import React from "react";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { Button } from "../components/stories/Button";
 import LinkPreview from "@ashwamegh/react-link-preview";
-import Link from "next/link";
 
-export default function divisionTopicOverview(props) {
+export default function Resources(props) {
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
       <DiagnosticNavbar />
       <div className="p-4 flex flex-col items-center justify-center">
         <div className="flex flex-col gap-8 w-full">
           <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8">
-            <p className="text-5xl text-white">Addition Topic Overview</p>
+            <p className="text-5xl text-white">K-12 Free Math Resources</p>
             <p className="text-xl text-white">
-              Here are some insights of Addition. It will go through how
-              Addition will look like in the real world, a place where your
-              child can practice these essential skills, and finally an
-              enviornment where you can evaluate yourself on your understanding
-              of the material.
+              Take your child’s learning to the next level with excellent math
+              resources that you can incorporate in your child's everyday life.
             </p>
           </div>
-          <div className="bg-purple-300 shadow-inner flex-col p-2 grid-cols-none">
-            <p className="text-xl text-white bg-purple-700 text-center">
-              {" "}
-              A Look Into The Future{" "}
-            </p>
-          </div>
-          <div className="grid grid-cols-3 gap-8">
-            <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
-              <div>
-                <p className="font-bold mb-4"> Basic Addition</p>
-                <iframe
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/uONIJ5TQ2DA?start=19"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-
-                <img
-                  className="h-30 object-cover mt-12"
-                  src="https://www.theschoolrun.com/sites/theschoolrun.com/files/content-images/addition_column_method.png"
-                ></img>
-                <p className="text-sm mt-8 border-2 border-purple-400">
-                  Basic Additions is where it all starts! If you had 10 cookies
-                  and your mother gives you 4 more, we can use <b> Addition </b>{" "}
-                  to figure out how many cookies are left. Let's look at more
-                  examples in the video above!
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
-              <div>
-                <p className="font-bold mb-4"> Addition vs Multiplication </p>
-                <iframe
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/NVhA7avdTAw?start=5"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-                <img
-                  className="h-30 object-cover w-full"
-                  src="https://study.com/cimages/videopreview/videopreview-full/ul9t4di046.jpg"
-                ></img>
-                <p className="text-sm mt-8 border-2 border-purple-400">
-                  You may already have leraned multiplication before but if you
-                  haven't it's an upgraded verion of addition! The expression 2
-                  + 2 + 2 can now be written using multiplication as 2 x 3. This
-                  helps us reduce repetion in addition. Learn all the cool stuff
-                  you can do with multiplication in the video above!
-                </p>
-              </div>
-            </div>
-            <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
-              <div>
-                <p className="font-bold mb-4"> Order of Operations </p>
-                <iframe
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/tyrz0EJ0InQ"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-                <img
-                  className="h-30 object-cover mt-10"
-                  src="https://s3-eu-west-1.amazonaws.com/s2.thingpic.com/images/4q/oUoYhHgxAWmNdShqi3DHLa3L.png"
-                ></img>
-                <p className="text-sm mt-4 border-2 border-purple-400">
-                  What's does 2 + 3 x 4 = ? Did you get 20? Or did you get 14?
-                  That all depends on what operation you evaluated first. There
-                  is actually an order to follow when solving math problems with
-                  more than 1 operation. This conecpt is called{" "}
-                  <b> Order of Operations</b>. Learn more in the video above!
-                </p>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <Link href={"video/"}>
-                <Button
-                  backgroundColor="purple"
-                  textColor="white"
-                  label="Videos"
-                />
-              </Link>
-            </div>
-          </div>
-
-          <div className="bg-green-300 shadow-inner flex-col p-2 grid-cols-none">
-            <p className="text-xl text-white bg-green-700 text-center">
-              {" "}
-              Skills Catalog for Students{" "}
+          <div className="bg-blue-200 shadow-inner flex-col p-2">
+            <p className="text-lg text-black">
+              Engaging Math Games, Activities and Lessons
             </p>
           </div>
 
           <div className="grid grid-cols-3 gap-8">
-            <div className="bg-white shadow-lg rounded-lg w-full p-4">
+            <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
               <div>
-                <p className="font-bold mb-4">
-                  {" "}
-                  Adding Single Digit Numbers (Grade 1){" "}
-                </p>
-                <img
-                  className="h-30 object-cover"
-                  src="https://www.broadwater.w-sussex.sch.uk/_data/site/20/pg/366/8.jpg"
-                ></img>
+                <a href="https://www.khanacademy.org/" target="_blank">
+                  <p className="font-bold mb-4"> Khan Academy</p>
+
+                  <img
+                    className="h-30 object-cover"
+                    src="https://cdn.kastatic.org/ka-perseus-images/d88dc482590783505610904836bb14efa6859ac0.png"
+                  ></img>
+                  <p className="text-sm mt-4">
+                    Khan Academy offers an intensive library of videos that
+                    cover math topics in a way that is easy to understand. The
+                    videos are followed by practice questions to further enhance
+                    students' understanding.
+                  </p>
+                </a>
               </div>
             </div>
-            <div className="bg-white shadow-lg rounded-lg w-full p-4">
+
+            <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
               <div>
-                <p className="font-bold mb-4">
-                  {" "}
-                  Adding Double Digit Numbers (Grade 2)
-                </p>
-                <img
-                  className="h-30 object-cover"
-                  src="https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%202DIGITS.png"
-                ></img>
+                <a
+                  href="https://www.k5learning.com/free-math-worksheets"
+                  target="_blank"
+                >
+                  <p className="font-bold mb-4"> K5 Learning </p>
+
+                  <img
+                    className="h-30 object-cover"
+                    src="/images/k5learning.png"
+                  ></img>
+                  <p className="text-sm mt-4">
+                    K5 Learning offers numerous printable <b> worksheets</b> to
+                    support you and your child’s learning at home. Parents also
+                    have the option to track their child's progress.
+                  </p>
+                </a>
               </div>
             </div>
-            <div className="bg-white shadow-lg rounded-lg w-full p-4">
-              <div className="flex flex-col">
-                <p className="font-bold mb-4">
-                  {" "}
-                  Adding Triple Digit Numbers (Grade 3)
-                </p>
-                <img
-                  className="h-full w-full"
-                  src="https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%203DIGITS1.png"
-                ></img>
+
+            <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
+              <div>
+                <a href="https://www.prodigygame.com/main-en/" target="_blank">
+                  <p className="font-bold mb-4"> Prodigy</p>
+
+                  <img
+                    className="h-30 object-cover"
+                    src="https://i.pinimg.com/originals/60/47/3e/60473efd4ce21b4662fff6ad00cbb669.png"
+                  ></img>
+                  <p className="text-sm mt-4">
+                    Math helps us with real-world problem solving, helps our
+                    brains process information faster, and it helps us develop
+                    critical thinking skills.
+                  </p>
+                </a>
               </div>
             </div>
-            <Link href={"statements/?level="}>
-              <Button
-                backgroundColor="green"
-                textColor="white"
-                label="Practice"
-              />
-            </Link>
+            <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
+              <div>
+                <a href="https://www.knowledgehook.com/parent/" target="_blank">
+                  <p className="font-bold mb-4"> Knowledge Hook </p>
+
+                  <img
+                    className="h-30 object-cover"
+                    src="/images/Knowledgehook.png"
+                  ></img>
+                  <p className="text-sm mt-4">
+                    Knowledge hook engages students in grades 3-10 with
+                    immersive game-based activities designed to improve
+                    understanding.
+                  </p>
+                </a>
+              </div>
+            </div>
+
+            <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
+              <div>
+                <a
+                  href="https://www.coolmath4kids.com/math-games"
+                  target="_blank"
+                >
+                  <p className="font-bold mb-4"> Cool Math 4 Kids</p>
+                  <img
+                    className="h-30 object-cover"
+                    src="https://student-tutor.com/wp-content/uploads/2018/06/Screen-Shot-2018-06-13-at-5.09.21-PM-1024x553.png"
+                  ></img>
+                  <p className="text-sm mt-4">
+                    Cool Math 4 Kids has interactive math games for grades K-6
+                    that can be sorted by grade and topic. The site makes math
+                    more engaging with lessons, quizzes, brain teasers and
+                    manipulatives to play with.
+                  </p>
+                </a>
+              </div>
+            </div>
+
+            <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
+              <div>
+                <a href="https://www.abcya.com/" target="_blank">
+                  <p className="font-bold mb-4"> ABCya </p>
+
+                  <img
+                    className="h-30 object-cover"
+                    src="https://i.pinimg.com/originals/29/10/b5/2910b55524e0b540a2959a9a978f0264.png"
+                  ></img>
+                  <p className="text-sm mt-4">
+                    ABCya includes many games for grades K-5 covering math
+                    skills that align to classroom standards and has several
+                    videos that encourage hands-on arts and crafts activities at
+                    home
+                  </p>
+                </a>
+              </div>
+            </div>
           </div>
-          <div className="bg-blue-300 shadow-inner flex-col p-2">
-            <p className="text-xl text-white bg-blue-700 text-center">
+
+          <div className="bg-blue-200 shadow-inner flex-col p-2 grid-cols-none">
+            <p className="text-lg text-black">
               {" "}
-              Time to Quiz Yourself{" "}
+              Insightful Math Articles, Podcasts, and Videos{" "}
             </p>
           </div>
-          <div>
-            <div className="bg-white flex flex-wrap flex-col">
-              <img
-                className="h-30 object-cover"
-                src="https://teachablemath.com/wp-content/uploads/2016/05/Screenshot-2016-05-03-14.27.17-1.png"
-              ></img>
-              <p>
-                Take a Quiz for this Topic to proceed to the next Level
-                sdifjlkndshfjsdhjfhsdkfjsdhfjhdsfjhafjdshfakjsdhfsd
-                dsfkjsahfhjsdlfhl dskljfasdhf sdfksdlfjsfn dsfhsdfjlhnsd
-                dsjfhjskd dsifhsdj dsfnjds
-              </p>
+
+          <div className="grid grid-cols-3 gap-8">
+            <div className="bg-white shadow-lg rounded-lg p-4 w-full">
+              <div className="h-96 overflow-scroll">
+                <a
+                  className="twitter-timeline"
+                  href="https://twitter.com/MathChampCA?ref_src=twsrc%5Etfw"
+                >
+                  Tweets by MathChampCA
+                </a>{" "}
+                <script
+                  async
+                  src="https://platform.twitter.com/widgets.js"
+                  charSet="utf-8"
+                ></script>
+              </div>
             </div>
-          </div>
-          <div className="w-1/3 content-center">
-            <Link href={"quiz/?level="}>
-              <Button backgroundColor="blue" textColor="white" label="Quiz" />
-            </Link>
+            <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
+              <div>
+                <a
+                  href="https://www.mathnasium.ca/reasons-why-math-is-important-in-everyday-life"
+                  target="_blank"
+                >
+                  <p className="font-bold mb-4">
+                    {" "}
+                    4 Reasons Why Math Is Important For Everyday Life
+                  </p>
+                  <p className="text-sm mb-4">
+                    Math helps us with real-world problem solving, helps our
+                    brains process information faster, and it helps us develop
+                    critical thinking skills.
+                  </p>
+                  <img
+                    className="h-30 object-cover"
+                    src="https://s3.amazonaws.com/www.mathnasium.com/upload/798/images/Young%20girl%20doing%20math%20work%20on%20whiteboard.jpg"
+                  ></img>
+                </a>
+              </div>
+            </div>
+            <div className="bg-white shadow-lg rounded-lg w-full p-4">
+              <div className="h-80 flex flex-col">
+                <p className="font-bold mb-4">
+                  {" "}
+                  Why Diagnostics Should Drive Your Instruction - Making Math
+                  Moments That Matter{" "}
+                </p>
+                <p className="mb-4 italic text-sm">
+                  {" "}
+                  "Doing the diagnostics, you get to see who your kids are as
+                  individuals, how they think" - Kat Hendry{" "}
+                </p>
+                <iframe
+                  src="https://open.spotify.com/embed-podcast/episode/6GrIwaNhZZUoq1Xb7kfK4c"
+                  frameBorder="0"
+                  allowTransparency={true}
+                  allow="encrypted-media"
+                ></iframe>
+                <a
+                  href="https://makemathmoments.com/episode125/"
+                  target="_blank"
+                  className="mt-4 underline text-sm text-blue-500"
+                >
+                  {" "}
+                  Full Transcript
+                </a>
+              </div>
+            </div>
+
+            <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
+              <div>
+                <a
+                  href="https://www.edweek.org/education/students-who-struggle-early-rarely-catch-up-study-says/2012/12"
+                  target="_blank"
+                >
+                  <p className="font-bold mb-4">
+                    {" "}
+                    Students Who Struggle Early Rarely Catch Up, Study Says
+                  </p>
+                  <p className="text-sm mb-4">
+                    {" "}
+                    Students who have fallen far behind academically in 4th and
+                    8th grade have less than a one in three chance of being
+                    ready for college or a career by the end of high school.{" "}
+                  </p>
+                  <img src="https://ahchealthenewscdn.azureedge.net/wp-content/uploads/2014/03/140303362.jpg"></img>
+                </a>
+              </div>
+            </div>
+
+            <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
+              <div>
+                <a
+                  href="https://www.educationnext.org/addressing-significant-learning-loss-in-mathematics-during-covid-19-and-beyond/"
+                  target="_blank"
+                >
+                  <p className="font-bold mb-4">
+                    {" "}
+                    Addressing Significant Learning Loss in Mathematics During
+                    Covid-19 and Beyond
+                  </p>
+                  <p className="text-sm mb-4">
+                    {" "}
+                    The pandemic has amplified existing skill gaps, but new
+                    strategies and new tech could help{" "}
+                  </p>
+                  <img
+                    height="300"
+                    src="https://www.educationnext.org/wp-content/uploads/2021/01/jan21-blog-rose-math.png"
+                  ></img>
+                </a>
+              </div>
+            </div>
+
+            <div className="bg-white shadow-lg rounded-lg p-4 h-full">
+              <div className="flex flex-col gap-4">
+                <p className="font-bold">
+                  {" "}
+                  Two Strategies to Help Your Child Learn to Love Math
+                </p>
+                <p className="text-sm">
+                  When families cultivate children’s natural curiosity about
+                  numbers and shapes, they can help them develop a lifelong love
+                  of math— laying the foundation for academic success
+                </p>
+                <iframe
+                  height="300"
+                  src="https://www.youtube-nocookie.com/embed/Wpf1AwRRAR0"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
           </div>
         </div>
       </div>
