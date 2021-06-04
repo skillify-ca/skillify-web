@@ -174,8 +174,8 @@ export default function divisionTopicOverview(props) {
             <div className="flex flex-col w-full sm:w-1/2 gap-8">
               <p className="text-5xl"> Quiz Time!</p>
               <p className="text-xl">
-                Take a quiz to test out your Addition Skills. The topics we'll
-                cover will based on your grade level. So it's completly
+                Take a quiz to test out your Subtraction Skills. The topics
+                we'll cover will based on your grade level. So it's completly
                 personalized! You can take the quiz as many times as you wish to
                 perfect your skills. Good luck, you got this!
               </p>
