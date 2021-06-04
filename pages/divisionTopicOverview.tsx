@@ -146,8 +146,17 @@ export default function divisionTopicOverview(props) {
                   Divide equally to 12 (Grade 2)
                 </p>
                 <img
-                  className="h-30 object-cover mt-40"
+                  className="h-30 object-cover mt-10"
                   src="https://oercommons.s3.amazonaws.com/media/editor/60284/fullsizeoutput_2165.jpeg"
+                ></img>
+                <img
+                  className="h-30 object-cover mt-10"
+                  src="https://www.arcmath.in/wp-content/uploads/elementor/thumbs/Division-as-Equal-Sharing-and-Equal-Grouping-p4hyxm3n648ghz0jkber0rlhnfbdm7ywye9m9r4drg.png
+                  "
+                ></img>
+                <img
+                  className="h-30 object-cover mt-10"
+                  src=" https://www.tunstallsteachingtidbits.com/wp-content/uploads/2016/04/IMG_2402-800x533.jpg"
                 ></img>
               </div>
             </div>
