@@ -184,10 +184,10 @@ export default function divisionTopicOverview(props) {
                 src="https://teachablemath.com/wp-content/uploads/2016/05/Screenshot-2016-05-03-14.27.17-1.png"
               ></img>
               <p>
-                Take a Quiz for this Topic to proceed to the next Level
-                sdifjlkndshfjsdhjfhsdkfjsdhfjhdsfjhafjdshfakjsdhfsd
-                dsfkjsahfhjsdlfhl dskljfasdhf sdfksdlfjsfn dsfhsdfjlhnsd
-                dsjfhjskd dsifhsdj dsfnjds
+                Take a quiz to test out your Addition Skills. The topics we'll
+                cover will based on your grade level. So it's completly
+                personalized! You can take the quiz as many times as you wish to
+                perfect your skills. Good luck, you got this!
               </p>
             </div>
           </div>
