@@ -14,10 +14,9 @@ export default function divisionTopicOverview(props) {
             <p className="text-5xl text-white">Addition Topic Overview</p>
             <p className="text-xl text-white">
               Here are some insights of Addition. It will go through how
-              Addition will look like in the real world, a place where your
-              child can practice these essential skills, and finally an
-              enviornment where you can evaluate yourself on your understanding
-              of the material.
+              Addition will look like in the real world, a place where you can
+              practice these essential skills, and finally an enviornment where
+              you can evaluate yourself on your understanding of the material.
             </p>
           </div>
           <div className="bg-purple-300 shadow-inner flex-col p-2 grid-cols-none">
@@ -73,8 +72,8 @@ export default function divisionTopicOverview(props) {
                   You may already have leraned multiplication before but if you
                   haven't it's an upgraded verion of addition! The expression 2
                   + 2 + 2 can now be written using multiplication as 2 x 3. This
-                  helps us reduce repetion in addition. Learn all the cool stuff
-                  you can do with multiplication in the video above!
+                  helps us reduce repetition in addition. Learn all the cool
+                  stuff you can do with multiplication in the video above!
                 </p>
               </div>
             </div>
@@ -177,7 +176,7 @@ export default function divisionTopicOverview(props) {
               <p className="text-5xl"> Quiz Time!</p>
               <p className="text-xl">
                 Take a quiz to test out your Addition Skills. The topics we'll
-                cover will based on your grade level. So it's completly
+                cover are based on your grade level. So it's completly
                 personalized! You can take the quiz as many times as you wish to
                 perfect your skills. Good luck, you got this!
               </p>

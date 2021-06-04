@@ -13,11 +13,11 @@ export default function divisionTopicOverview(props) {
           <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8">
             <p className="text-5xl text-white">Multiplication Topic Overview</p>
             <p className="text-xl text-white">
-              Here are some insights of Multiplication. It will go through how
-              Multiplication will look like in the real world, a place where
-              your child can practice these essential skills, and finally an
-              enviornment where you can evaluate yourself on your understanding
-              of the material.
+              Here are some insights on Multiplication. It will go through how
+              Multiplication will look like in the real world, a place where you
+              can practice these essential skills, and finally an enviornment
+              where you can evaluate yourself on your understanding of the
+              material.
             </p>
           </div>
           <div className="bg-purple-300 shadow-inner flex-col p-2 grid-cols-none">
@@ -75,7 +75,7 @@ export default function divisionTopicOverview(props) {
                 ></img>
                 <p className="text-sm mt-8 border-2 border-purple-400">
                   Ever wonder how big a soccer field is? Well, I have and there
-                  is actually a way to find it! All we have to do is multiply
+                  is actually a way to find out! All we have to do is multiply
                   the length of the field by the width of the field. This is how
                   we find the <b> Area</b> of a Rectangle. We will run you
                   through this idea in the video above. Make sure to check it
@@ -180,7 +180,7 @@ export default function divisionTopicOverview(props) {
               <p className="text-5xl"> Quiz Time!</p>
               <p className="text-xl">
                 Take a quiz to test out your Multiplication Skills. The topics
-                we'll cover will based on your grade level. So it's completly
+                we'll cover are based on your grade level. So it's completly
                 personalized! You can take the quiz as many times as you wish to
                 perfect your skills. Good luck, you got this!
               </p>

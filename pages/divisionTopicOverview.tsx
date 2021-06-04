@@ -13,11 +13,10 @@ export default function divisionTopicOverview(props) {
           <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8">
             <p className="text-5xl text-white">Division Topic Overview</p>
             <p className="text-xl text-white">
-              Here are some insights of Divison. It will go through how Divison
-              will look like in the real world, a place where your child can
-              practice these essential skills, and finally an enviornment where
-              your child can be evaluated on their understanding of the
-              material.
+              Here are some insights on Divison. It will go through how Divison
+              will look like in the real world, a place where you can practice
+              these essential skills, and finally an enviornment where your
+              child can be evaluated on their understanding of the material.
             </p>
           </div>
           <div className="bg-purple-300 shadow-inner flex-col p-2 grid-cols-none">
@@ -79,7 +78,7 @@ export default function divisionTopicOverview(props) {
                   to to divide equally. We will have 1 cookie leftover. This
                   cookie leftover is what we call a <b> Remainder</b>. Check out
                   the video above to learn more about remainders and how they
-                  look!
+                  work!
                 </p>
               </div>
             </div>
@@ -191,7 +190,7 @@ export default function divisionTopicOverview(props) {
               <p className="text-5xl"> Quiz Time!</p>
               <p className="text-xl">
                 Take a quiz to test out your Division Skills. The topics we'll
-                cover will based on your grade level. So it's completly
+                cover are based on your grade level. So it's completly
                 personalized! You can take the quiz as many times as you wish to
                 perfect your skills. Good luck, you got this!
               </p>

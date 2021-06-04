@@ -13,11 +13,11 @@ export default function divisionTopicOverview(props) {
           <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8">
             <p className="text-5xl text-white">Subtraction Topic Overview</p>
             <p className="text-xl text-white">
-              Here are some insights of Subtraction. It will go through how
-              Subtraction will look like in the real world, a place where your
-              child can practice these essential skills, and finally an
-              enviornment where you can evaluate yourself on your understanding
-              of the material.
+              Here are some insights on Subtraction. It will go through how
+              Subtraction will look like in the real world, a place where you
+              can practice these essential skills, and finally an enviornment
+              where you can evaluate yourself on your understanding of the
+              material.
             </p>
           </div>
           <div className="bg-purple-300 shadow-inner flex-col p-2 grid-cols-none">
@@ -95,7 +95,7 @@ export default function divisionTopicOverview(props) {
                   src="https://study.com/cimages/multimages/16/3_squared.png"
                 ></img>
                 <p className="text-sm mt-4 border-2 border-purple-400">
-                  Ever wonder why Canada have a negative temperature in the
+                  Ever wonder why Canada have negative temperatures in the
                   winters? That's what we call <b>Negative Numbers</b> or
                   numbers that are less than 0. We can do very interesting
                   things with negative numbers and you'll see some in the video
@@ -148,7 +148,7 @@ export default function divisionTopicOverview(props) {
               <div className="flex flex-col">
                 <p className="font-bold mb-4">
                   {" "}
-                  Subtracting Triple Digit Numbers(Grade 3)
+                  Subtracting Triple Digit Numbers (Grade 3)
                 </p>
                 <img
                   className="h-full w-full"
@@ -175,7 +175,7 @@ export default function divisionTopicOverview(props) {
               <p className="text-5xl"> Quiz Time!</p>
               <p className="text-xl">
                 Take a quiz to test out your Subtraction Skills. The topics
-                we'll cover will based on your grade level. So it's completly
+                we'll cover are based on your grade level. So it's completly
                 personalized! You can take the quiz as many times as you wish to
                 perfect your skills. Good luck, you got this!
               </p>
