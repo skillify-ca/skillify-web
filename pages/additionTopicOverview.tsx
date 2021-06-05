@@ -4,6 +4,11 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 
 export default function additionTopicOverview(props) {
+  const cardStyle = (videoId) => {
+    return {
+      backgroundImage: `linear-gradient(rgba(143, 143, 143, 0.8), rgba(135, 80, 156, 0.8)), url(http://img.youtube.com/vi/${videoId}/hqdefault.jpg)`,
+    };
+  };
   const videoComponent = (
     <div>
       <div className="bg-purple-300 shadow-inner flex-col p-2 grid-cols-none">
@@ -13,86 +18,30 @@ export default function additionTopicOverview(props) {
         </p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-        <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
-          <div className="">
+        <Link href="lessons/addition/basic-addition">
+          <div
+            className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-64 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
+            style={cardStyle("uONIJ5TQ2DA")}
+          >
             <p className="font-bold mb-4"> Basic Addition</p>
-
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/uONIJ5TQ2DA?start=19"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            ></iframe>
-
-            <img
-              className="h-30 object-cover mt-12"
-              src="https://www.theschoolrun.com/sites/theschoolrun.com/files/content-images/addition_column_method.png"
-            ></img>
-            <p className="text-sm mt-8 border-2 border-purple-400">
-              Basic Additions is where it all starts! If you had 10 cookies and
-              your mother gives you 4 more, we can use <b> Addition </b> to
-              figure out how many cookies are left. Let's look at more examples
-              in the video above!
-            </p>
           </div>
-        </div>
-
-        <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
-          <div>
-            <p className="font-bold mb-4"> Addition vs Multiplication </p>
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/NVhA7avdTAw?start=5"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            ></iframe>
-            <img
-              className="h-30 object-cover w-full"
-              src="https://study.com/cimages/videopreview/videopreview-full/ul9t4di046.jpg"
-            ></img>
-            <p className="text-sm mt-8 border-2 border-purple-400">
-              You may already have leraned multiplication before but if you
-              haven't it's an upgraded verion of addition! The expression 2 + 2
-              + 2 can now be written using multiplication as 2 x 3. This helps
-              us reduce repetition in addition. Learn all the cool stuff you can
-              do with multiplication in the video above!
-            </p>
+        </Link>
+        <Link href="lessons/addition/addition-vs-multiplication">
+          <div
+            className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-64 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
+            style={cardStyle("NVhA7avdTAw")}
+          >
+            <p className="font-bold mb-4">Addition vs Multiplication</p>
           </div>
+        </Link>
+        <Link href="lessons/addition/order-of-operations">
+        <div
+          className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-64 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
+          style={cardStyle("tyrz0EJ0InQ")}
+        >
+          <p className="font-bold mb-4"> Order of Operations</p>
         </div>
-        <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
-          <div>
-            <p className="font-bold mb-4"> Order of Operations </p>
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/tyrz0EJ0InQ"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            ></iframe>
-            <img
-              className="h-30 object-cover mt-10"
-              src="https://s3-eu-west-1.amazonaws.com/s2.thingpic.com/images/4q/oUoYhHgxAWmNdShqi3DHLa3L.png"
-            ></img>
-            <p className="text-sm mt-4 border-2 border-purple-400">
-              What's does 2 + 3 x 4 = ? Did you get 20? Or did you get 14? That
-              all depends on what operation you evaluated first. There is
-              actually an order to follow when solving math problems with more
-              than 1 operation. This conecpt is called{" "}
-              <b> Order of Operations</b>. Learn more in the video above!
-            </p>
-          </div>
-        </div>
+        </Link>
       </div>
     </div>
   );
@@ -161,10 +110,7 @@ export default function additionTopicOverview(props) {
         <div className="bg-white shadow-lg rounded-lg w-full p-4 cursor-pointer">
           <Link href="/practice/addition/properties">
             <div className="flex flex-col justify-between h-full">
-              <p className="font-bold mb-4">
-                {" "}
-                Addition Properties (Grade 3)
-              </p>
+              <p className="font-bold mb-4"> Addition Properties (Grade 3)</p>
               <img
                 className="h-full w-full"
                 src="https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%203DIGITS1.png"
