@@ -132,10 +132,10 @@ const PracticeQuiz = ({ slug, skill }) => {
           <div
             className={`${display} flex-col justify-center items-center gap-8 transition-opacity duration-150 ease-in-out opacity-${isFaded}`}
           >
-            <div className={"justify-items-center align-middle w-50"}>
+            <div className={"justify-items-center align-middle w-50 mt-8"}>
               <Card size="large">
                 {correctAnswer ? (
-                  <p className="font-bold text-gray-400 underline">
+                  <p className="font-bold text-gray-400 text-xl">
                     Correct,
                     <span className="font-bold text-green-400">
                       {" " + guessAttempt + " "}
@@ -143,13 +143,14 @@ const PracticeQuiz = ({ slug, skill }) => {
                     was the answer!
                   </p>
                 ) : wrongAnswer ? (
-                  <div className="italic text-gray-400 font-bold space-y-16">
-                    <p>The correct answer was</p>
+                  <div className="italic text-gray-400 font-bold space-y-8">
+                    <span>The correct answer was </span>
                     <span className="font-bold text-green-400">
                       {questionData[index].answer.toString()}
                     </span>
                     <br></br>
-                    <p>Your answer was </p>
+                    <br></br>
+                    <span>Your answer was </span>
                     <span className="font-bold text-red-500">
                       {guessAttempt}
                     </span>
@@ -182,23 +183,26 @@ const PracticeQuiz = ({ slug, skill }) => {
       <div
         className={`grid-cols-1 grid justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in opacity-${continueFaded}`}
       >
-        <p className="font-bold mt-4">
+        <p className="font-bold mt-12">
           How confident were you with those practice questions?
         </p>
-
         <EmojiSlider />
-        <div className="flex flex-row space-x-8 ">
+        <div className="flex flex-row space-x-16">
           <Link href={`/practice`}>
             <Button label="Home" backgroundColor="purple"></Button>
           </Link>
           <Button
-            label="Retry Quiz"
+            label="Practice again"
             backgroundColor="green"
             onClick={() => window.location.reload()}
           ></Button>
         </div>
+        <div>
+          <img src="/images/goodWork.png" className="w-96 mt-12"></img>
+        </div>
+        <br></br>
+        <br></br>
       </div>
-      )
     </div>
   );
 };
