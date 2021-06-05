@@ -118,6 +118,9 @@ export default function additionTopicOverview(props) {
                 className="h-30 object-cover"
                 src="https://www.broadwater.w-sussex.sch.uk/_data/site/20/pg/366/8.jpg"
               ></img>
+              <div className="flex items-center">
+                Latest Confidence Rating: <span className="text-4xl">😄</span>
+              </div>
             </div>
           </Link>
         </div>
@@ -132,6 +135,9 @@ export default function additionTopicOverview(props) {
                 className="h-30 object-cover"
                 src="https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%202DIGITS.png"
               ></img>
+              <div className="flex items-center">
+                Latest Confidence Rating: <span className="text-4xl">😐</span>
+              </div>
             </div>
           </Link>
         </div>
@@ -146,6 +152,9 @@ export default function additionTopicOverview(props) {
                 className="h-full w-full"
                 src="https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%203DIGITS1.png"
               ></img>
+              <div className="flex items-center">
+                Latest Confidence Rating: <span className="text-4xl">❓</span>
+              </div>
             </div>
           </Link>
         </div>
