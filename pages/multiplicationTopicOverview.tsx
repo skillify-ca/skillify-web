@@ -1,10 +1,9 @@
 import React from "react";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { Button } from "../components/stories/Button";
-import LinkPreview from "@ashwamegh/react-link-preview";
 import Link from "next/link";
 
-export default function divisionTopicOverview(props) {
+export default function multiplicationTopicOverview(props) {
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
       <DiagnosticNavbar />

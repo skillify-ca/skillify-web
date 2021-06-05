@@ -1,8 +1,5 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import Modal from "react-modal";
-import DiagnosticNavbar from "./DiagnosticNavbar";
-import { Button } from "./stories/Button";
 import TopicItem from "./stories/TopicItem";
 
 export type SkillCardProps = {
@@ -33,7 +30,6 @@ export const SkillCard: React.FC<SkillCardProps> = ({
 }: SkillCardProps) => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [level, setLevel] = React.useState("1");
-
   return (
     <div className="">
       <Link href={`${title.toLocaleLowerCase()}TopicOverview`}>
