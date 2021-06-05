@@ -1,7 +1,6 @@
 import React from "react";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { Button } from "../components/stories/Button";
-import LinkPreview from "@ashwamegh/react-link-preview";
 import Link from "next/link";
 
 export default function divisionTopicOverview(props) {

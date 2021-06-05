@@ -1,8 +1,5 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import Modal from "react-modal";
-import DiagnosticNavbar from "./DiagnosticNavbar";
-import { Button } from "./stories/Button";
 import TopicItem from "./stories/TopicItem";
 
 export type SkillCardProps = {
