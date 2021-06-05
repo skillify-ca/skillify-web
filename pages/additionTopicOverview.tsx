@@ -107,45 +107,48 @@ export default function additionTopicOverview(props) {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-        <div className="bg-white shadow-lg rounded-lg w-full p-4">
-          <div>
-            <p className="font-bold mb-4">
-              {" "}
-              Adding Single Digit Numbers (Grade 1){" "}
-            </p>
-            <img
-              className="h-30 object-cover"
-              src="https://www.broadwater.w-sussex.sch.uk/_data/site/20/pg/366/8.jpg"
-            ></img>
-          </div>
+        <div className="bg-white shadow-lg rounded-lg w-full p-4 cursor-pointer">
+          <Link href="/practice/addition/single-digit">
+            <div className="flex flex-col justify-between h-full">
+              <p className="font-bold mb-4">
+                {" "}
+                Adding Single Digit Numbers (Grade 1){" "}
+              </p>
+              <img
+                className="h-30 object-cover"
+                src="https://www.broadwater.w-sussex.sch.uk/_data/site/20/pg/366/8.jpg"
+              ></img>
+            </div>
+          </Link>
         </div>
-        <div className="bg-white shadow-lg rounded-lg w-full p-4">
-          <div>
-            <p className="font-bold mb-4">
-              {" "}
-              Adding Double Digit Numbers (Grade 2)
-            </p>
-            <img
-              className="h-30 object-cover"
-              src="https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%202DIGITS.png"
-            ></img>
-          </div>
+        <div className="bg-white shadow-lg rounded-lg w-full p-4 cursor-pointer">
+          <Link href="/practice/addition/double-digit">
+            <div className="flex flex-col justify-between h-full">
+              <p className="font-bold mb-4">
+                {" "}
+                Adding Double Digit Numbers (Grade 2)
+              </p>
+              <img
+                className="h-30 object-cover"
+                src="https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%202DIGITS.png"
+              ></img>
+            </div>
+          </Link>
         </div>
-        <div className="bg-white shadow-lg rounded-lg w-full p-4">
-          <div className="flex flex-col">
-            <p className="font-bold mb-4">
-              {" "}
-              Adding Triple Digit Numbers (Grade 3)
-            </p>
-            <img
-              className="h-full w-full"
-              src="https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%203DIGITS1.png"
-            ></img>
-          </div>
+        <div className="bg-white shadow-lg rounded-lg w-full p-4 cursor-pointer">
+          <Link href="/practice/addition/triple-digit">
+            <div className="flex flex-col justify-between h-full">
+              <p className="font-bold mb-4">
+                {" "}
+                Adding Triple Digit Numbers (Grade 3)
+              </p>
+              <img
+                className="h-full w-full"
+                src="https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%203DIGITS1.png"
+              ></img>
+            </div>
+          </Link>
         </div>
-        <Link href={`statements/addition`}>
-          <Button backgroundColor="green" textColor="white" label="Practice" />
-        </Link>
       </div>
     </div>
   );
