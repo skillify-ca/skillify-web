@@ -30,9 +30,6 @@ const EmojiSlider = () => {
         </datalist>
       </div>
       <p className="text-4xl">{mood}</p>
-      <div className="flex flex-col">
-        <p className="text-xl"> {opinion} </p>
-      </div>
     </div>
   );
 };

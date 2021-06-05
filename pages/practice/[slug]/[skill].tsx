@@ -102,7 +102,7 @@ const PracticeQuiz = ({ slug, skill }) => {
     }
   };
   return (
-    <div className="bg-blue-100 heropattern-architect-blue-50">
+    <div className="bg-blue-100 heropattern-architect-blue-50 h-screen">
       <Navbar />
       <div className="flex flex-col justify-center items-center mt-8">
         <div className="flex flex-row w-96 p-4 justify-between bg-gray-400 shadow-lg rounded-lg ">
@@ -180,10 +180,10 @@ const PracticeQuiz = ({ slug, skill }) => {
         <Hint skill={Skill.ADDITION_PROPERTIES}></Hint>
       )}
       <div
-        className={`grid-cols-1 grid justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in opacity-${continueFaded} `}
+        className={`grid-cols-1 grid justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in opacity-${continueFaded}`}
       >
-        <p className="font-bold text-gray-400 ">
-          How Confident were you in these Practice Questions?
+        <p className="font-bold mt-4">
+          How confident were you with those practice questions?
         </p>
 
         <EmojiSlider />
