@@ -158,6 +158,23 @@ export default function additionTopicOverview(props) {
             </div>
           </Link>
         </div>
+        <div className="bg-white shadow-lg rounded-lg w-full p-4 cursor-pointer">
+          <Link href="/practice/addition/properties">
+            <div className="flex flex-col justify-between h-full">
+              <p className="font-bold mb-4">
+                {" "}
+                Addition Properties (Grade 3)
+              </p>
+              <img
+                className="h-full w-full"
+                src="https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%203DIGITS1.png"
+              ></img>
+              <div className="flex items-center">
+                Latest Confidence Rating: <span className="text-4xl">❓</span>
+              </div>
+            </div>
+          </Link>
+        </div>
       </div>
     </div>
   );
