@@ -16,13 +16,13 @@ export default function Resources(props) {
               resources that you can incorporate in your child's everyday life.
             </p>
           </div>
-          <div className="bg-blue-200 shadow-inner flex-col p-2">
+          <div className="bg-blue-200 shadow-inner flex-col p-2 rounded-lg">
             <p className="text-lg text-black">
               Engaging Math Games, Activities and Lessons
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
               <div>
                 <a href="https://www.khanacademy.org/" target="_blank">
@@ -139,14 +139,14 @@ export default function Resources(props) {
             </div>
           </div>
 
-          <div className="bg-blue-200 shadow-inner flex-col p-2 grid-cols-none">
+          <div className="bg-blue-200 shadow-inner rounded-lg flex-col p-2 grid-cols-none">
             <p className="text-lg text-black">
               {" "}
               Insightful Math Articles, Podcasts, and Videos{" "}
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             <div className="bg-white shadow-lg rounded-lg p-4 w-full">
               <div className="h-96 overflow-scroll">
                 <a
