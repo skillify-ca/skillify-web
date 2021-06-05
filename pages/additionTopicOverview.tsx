@@ -25,10 +25,11 @@ export default function divisionTopicOverview(props) {
               A Look Into The Future{" "}
             </p>
           </div>
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             <div className="bg-white shadow-lg rounded-lg w-full p-4 object-contain">
-              <div>
+              <div className="">
                 <p className="font-bold mb-4"> Basic Addition</p>
+
                 <iframe
                   width="560"
                   height="315"
@@ -37,6 +38,7 @@ export default function divisionTopicOverview(props) {
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                  className="w-full h-full"
                 ></iframe>
 
                 <img
@@ -63,6 +65,7 @@ export default function divisionTopicOverview(props) {
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                  className="w-full h-full"
                 ></iframe>
                 <img
                   className="h-30 object-cover w-full"
@@ -88,6 +91,7 @@ export default function divisionTopicOverview(props) {
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                  className="w-full h-full"
                 ></iframe>
                 <img
                   className="h-30 object-cover mt-10"
@@ -120,7 +124,7 @@ export default function divisionTopicOverview(props) {
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             <div className="bg-white shadow-lg rounded-lg w-full p-4">
               <div>
                 <p className="font-bold mb-4">
