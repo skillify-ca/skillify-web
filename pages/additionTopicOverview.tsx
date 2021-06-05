@@ -161,7 +161,7 @@ export default function divisionTopicOverview(props) {
                 ></img>
               </div>
             </div>
-            <Link href={"statements/?level="}>
+            <Link href={`statements/addition`}>
               <Button
                 backgroundColor="green"
                 textColor="white"
@@ -186,7 +186,7 @@ export default function divisionTopicOverview(props) {
               </p>
               <div className="flex gap-8">
                 <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
-                  <Link href={"quiz/?level="}>
+                  <Link href={"quiz/addition?level=1"}>
                     <Button
                       backgroundColor="blue"
                       textColor="white"
