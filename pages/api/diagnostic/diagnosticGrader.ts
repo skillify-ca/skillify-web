@@ -2,7 +2,7 @@ import { DiagnosticState } from "../../../redux/diagnosticSlice";
 import { Question } from "../question";
 import { Skill, Topic } from "../skill";
 
-const PASSING_GRADE = 0.5;
+const PASSING_GRADE = 1.0;
 
 type GradedQuestion = {
   question: Question;
