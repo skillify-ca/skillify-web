@@ -54,7 +54,7 @@ const LandingPage = () => {
           <p className="font-bold">Step 1</p>
           <p className="font-bold text-xl">Assess your child</p>
           <p>
-            During this quick assessment, your child will answer 36 questions
+            During this quick assessment, your child will answer 24 questions
             from the Ontario curriculum.
           </p>
         </div>
