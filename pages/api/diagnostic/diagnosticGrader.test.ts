@@ -8,11 +8,18 @@ import { DiagnosticState } from "../../../redux/diagnosticSlice";
 import { AnswerType } from "../question";
 import { QuestionType } from "../questionTypes";
 
-const dummyDivisionQuestion = {
+const dummyDivision12Question = {
   text: "4/2=",
   answer: "2",
   answerType: AnswerType.NUMBER,
   skill: Skill.DIVIDE_12_EQUALLY,
+  questionType: QuestionType.LONG_DIVISION_PROBLEM,
+};
+const dummyDivision100Question = {
+  text: "4/2=",
+  answer: "2",
+  answerType: AnswerType.NUMBER,
+  skill: Skill.DIVIDE_100,
   questionType: QuestionType.LONG_DIVISION_PROBLEM,
 };
 
@@ -27,7 +34,7 @@ const dummyMultiplicationQuestion = {
 test("grade correct division", async () => {
   // Arrange
   const state: DiagnosticState = {
-    questions: [dummyDivisionQuestion],
+    questions: [dummyDivision12Question],
     guessAns: ["Correct"],
     guesses: ["2"],
     email: "test@gmail.com",
@@ -44,7 +51,7 @@ test("grade correct division", async () => {
 test("grade correct division 2", async () => {
   // Arrange
   const state: DiagnosticState = {
-    questions: [dummyDivisionQuestion],
+    questions: [dummyDivision12Question],
     guessAns: ["Incorrect"],
     guesses: ["3"],
     email: "test@gmail.com",
@@ -58,18 +65,37 @@ test("grade correct division 2", async () => {
   expect(grade).toBe("Grade 1");
 });
 
-test("grade correct division 2", async () => {
+test("when student can divide up to 100 grade should be grade 3", async () => {
   // Arrange
   const state: DiagnosticState = {
     questions: [
-      dummyDivisionQuestion,
-      dummyDivisionQuestion,
-      dummyDivisionQuestion,
-      dummyDivisionQuestion,
-      dummyDivisionQuestion,
+      dummyDivision100Question,
+      dummyDivision100Question
     ],
-    guessAns: ["Correct", "Correct", "Correct", "Correct", "Incorrect"],
-    guesses: ["2", "2", "2", "2", "3"],
+    guessAns: ["Correct", "Correct"],
+    guesses: ["2", "2"],
+    email: "test@gmail.com",
+    grade: "Grade 2",
+  };
+
+  // Act
+  const grade = getGradeLevelForTopic(Topic.DIVISION, state);
+
+  // Assert
+  expect(grade).toBe("Grade 3");
+});
+
+test("when student can divide up to 12 but not 100 grade should be grade 2", async () => {
+  // Arrange
+  const state: DiagnosticState = {
+    questions: [
+      dummyDivision100Question,
+      dummyDivision100Question,
+      dummyDivision12Question,
+      dummyDivision12Question
+    ],
+    guessAns: ["Incorrect", "Correct", "Correct", "Correct"],
+    guesses: ["3", "2", "2", "2"],
     email: "test@gmail.com",
     grade: "Grade 2",
   };
@@ -79,6 +105,27 @@ test("grade correct division 2", async () => {
 
   // Assert
   expect(grade).toBe("Grade 2");
+});
+
+
+test("when student can't divide up to 12 grade should be grade 1", async () => {
+  // Arrange
+  const state: DiagnosticState = {
+    questions: [
+      dummyDivision12Question,
+      dummyDivision12Question
+    ],
+    guessAns: ["Incorrect", "Correct"],
+    guesses: ["3", "2"],
+    email: "test@gmail.com",
+    grade: "Grade 2",
+  };
+
+  // Act
+  const grade = getGradeLevelForTopic(Topic.DIVISION, state);
+
+  // Assert
+  expect(grade).toBe("Grade 1");
 });
 
 test("test summary text for first grader earning a third grade level", async () => {

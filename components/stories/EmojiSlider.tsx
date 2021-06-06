@@ -20,19 +20,15 @@ const EmojiSlider = () => {
   }
 
   return (
-    <div>
-      <div className="flex flex-row">
-        <input type="range" list="tickmarks" onChange={handleChange} />
-        <datalist>
-          <option value="sad" label="😔"></option>
-          <option value="ok" label="😐"></option>
-          <option value="happy" label="😄"></option>
-        </datalist>
-      </div>
+    <div className="flex flex-col">
+      <input type="range" onChange={handleChange} className="w-44" />
+      <datalist>
+        <option value="sad" label="😔"></option>
+        <option value="ok" label="😐"></option>
+        <option value="happy" label="😄"></option>
+      </datalist>
       <p className="text-4xl">{mood}</p>
-      <div className="flex flex-col">
-        <p className="text-xl"> {opinion} </p>
-      </div>
+      <p> {opinion} </p>
     </div>
   );
 };

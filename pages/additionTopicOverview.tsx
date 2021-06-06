@@ -218,7 +218,11 @@ export default function additionTopicOverview(props) {
 
             <span className={"tab-item-animate rounded-md bg-white"}></span>
           </div>
-
+          <p className="text-xl">
+            {stage == Stage.VIDEOS && "Watch videos to explore this topic"}
+            {stage == Stage.PRACTICE && "Practice skills and rate your confidence level"}
+            {stage == Stage.QUIZ && "Test your speed and accuracy"}
+          </p>
           {getComponentForStage()}
         </div>
       </div>
