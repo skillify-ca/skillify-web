@@ -149,7 +149,7 @@ export const DiagnosticConclusion = ({
       </div>
       <div className="flex flex-col bg-white p-4 shadow-lg rounded-lg">
         <p className="p-4 font-extrabold border-b border-black">
-          Worksheet Recommendations
+          Personalized Worksheets
         </p>
         {getWorkSheets(results).map(
           (it) =>
