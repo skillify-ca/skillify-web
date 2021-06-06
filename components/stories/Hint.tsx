@@ -9,7 +9,7 @@ export interface HintProps {
 const Hint = ({ skill }: HintProps) => {
   const [visibility, setVisibility] = useState(false);
   return (
-    <div className="bg-blue-100 heropattern-architect-blue-50 h-md">
+    <div>
       <img
         onClick={() => setVisibility(!visibility)}
         src="/images/brainHint.png"
