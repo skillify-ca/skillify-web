@@ -149,7 +149,7 @@ export const DiagnosticConclusion = ({
       </div>
       <div className="flex flex-col bg-white p-4 shadow-lg rounded-lg">
         <p className="p-4 font-extrabold border-b border-black">
-          Worksheet Recommendations
+          Personalized Worksheets
         </p>
         {getWorkSheets(results).map(
           (it) =>
@@ -170,13 +170,16 @@ export const DiagnosticConclusion = ({
             go live.
           </p>
           <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
-            <Button
-              disabled={!practiceButtonEnabled}
-              backgroundColor="blue"
-              textColor="white"
-              label="Notify Me"
-              onClick={notifyPracticeSignup}
-            />
+            {practiceButtonEnabled ? (
+              <Button
+                backgroundColor="blue"
+                textColor="white"
+                label="Notify Me"
+                onClick={notifyPracticeSignup}
+              />
+            ) : (
+              <p className="text-sm text-green-600">Thank you for signing up!</p>
+            )}
           </div>
         </div>
       </div>
