@@ -6,17 +6,11 @@ import Navbar from "../components/Navbar";
 export default function additionTopicOverview(props) {
   const cardStyle = (videoId) => {
     return {
-      backgroundImage: `linear-gradient(rgba(143, 143, 143, 0.8), rgba(135, 80, 156, 0.8)), url(http://img.youtube.com/vi/${videoId}/hqdefault.jpg)`,
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.75)), url(http://img.youtube.com/vi/${videoId}/hqdefault.jpg)`,
     };
   };
   const videoComponent = (
     <div>
-      <div className="bg-purple-300 shadow-inner flex-col p-2 grid-cols-none">
-        <p className="text-xl text-white bg-purple-700 text-center">
-          {" "}
-          A Look Into The Future{" "}
-        </p>
-      </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
         <Link href="lessons/addition/basic-addition">
           <div
@@ -48,13 +42,6 @@ export default function additionTopicOverview(props) {
 
   const practiceComponent = (
     <div>
-      <div className="bg-green-300 shadow-inner flex-col p-2 grid-cols-none">
-        <p className="text-xl text-white bg-green-700 text-center">
-          {" "}
-          Skills Catalog for Students{" "}
-        </p>
-      </div>
-
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
         <div className="bg-white shadow-lg rounded-lg w-full p-4 cursor-pointer">
           <Link href="/practice/addition/single-digit">
@@ -127,20 +114,14 @@ export default function additionTopicOverview(props) {
 
   const quizComponent = (
     <div>
-      <div className="bg-blue-300 shadow-inner flex-col p-2">
-        <p className="text-xl text-white bg-blue-700 text-center">
-          {" "}
-          Time to Quiz Yourself{" "}
-        </p>
-      </div>
       <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-4 gap-8">
         <div className="flex flex-col w-full sm:w-1/2 gap-8">
           <p className="text-5xl"> Quiz Time!</p>
           <p className="text-xl">
-            Take a quiz to test out your Addition Skills. The topics we'll cover
-            are based on your grade level. So it's completly personalized! You
-            can take the quiz as many times as you wish to perfect your skills.
-            Good luck, you got this!
+            Take a quiz to test out your Addition Skills. The quiz will cover
+            topics at your grade level so it's personalized for you! You can
+            take the quiz as many times as you wish to perfect your skills. Good
+            luck, you got this!
           </p>
           <div className="flex gap-8">
             <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
@@ -184,18 +165,19 @@ export default function additionTopicOverview(props) {
     }
   };
   return (
-    <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
+    <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen">
       <Navbar />
 
       <div className="p-4 flex flex-col items-center justify-center">
         <div className="flex flex-col gap-8 w-full">
           <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8">
-            <p className="text-5xl text-white">Addition Topic Overview</p>
+            <p className="text-5xl text-white mb-4">Addition</p>
             <p className="text-xl text-white">
-              Here are some insights of Addition. It will go through how
-              Addition will look like in the real world, a place where you can
-              practice these essential skills, and finally an enviornment where
-              you can evaluate yourself on your understanding of the material.
+              Addition is taking two or more numbers and adding them together!
+              Watch the videos on the explore tab to learn more and do the
+              practice questions to apply your knowledge. Once you feel
+              confident in your addition skills, take the quiz to evaluate your
+              understanding!
             </p>
           </div>
 
@@ -203,7 +185,7 @@ export default function additionTopicOverview(props) {
             <button
               className={
                 "tabs-item active relative z-10 p-4 my-2 ml-2 text-center rounded-md w-full text-sm cursor-pointer select-none focus:outline-none " +
-                (stage == Stage.VIDEOS ? "bg-purple-700 text-white" : "")
+                (stage == Stage.VIDEOS ? "bg-blue-500 text-white" : "")
               }
               onClick={() => {
                 setStage(Stage.VIDEOS);
@@ -214,7 +196,7 @@ export default function additionTopicOverview(props) {
             <button
               className={
                 "tabs-item w-full relative z-10 p-4 my-2 ml-2 text-center rounded-md  text-sm cursor-pointer select-none focus:outline-none " +
-                (stage == Stage.PRACTICE ? "bg-green-700 text-white" : "")
+                (stage == Stage.PRACTICE ? "bg-blue-500 text-white" : "")
               }
               onClick={() => {
                 setStage(Stage.PRACTICE);
@@ -225,7 +207,7 @@ export default function additionTopicOverview(props) {
             <button
               className={
                 "tabs-item w-full relative z-10 p-4 my-2 ml-2 text-center rounded-md text-sm cursor-pointer select-none focus:outline-none " +
-                (stage == Stage.QUIZ ? "bg-blue-700 text-white" : "")
+                (stage == Stage.QUIZ ? "bg-blue-500 text-white" : "")
               }
               onClick={() => {
                 setStage(Stage.QUIZ);
@@ -236,7 +218,11 @@ export default function additionTopicOverview(props) {
 
             <span className={"tab-item-animate rounded-md bg-white"}></span>
           </div>
-
+          <p className="text-xl">
+            {stage == Stage.VIDEOS && "Watch videos to explore this topic"}
+            {stage == Stage.PRACTICE && "Practice skills and rate your confidence level"}
+            {stage == Stage.QUIZ && "Test your speed and accuracy"}
+          </p>
           {getComponentForStage()}
         </div>
       </div>
