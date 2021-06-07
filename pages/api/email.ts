@@ -12,6 +12,7 @@ export default async function handler(
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   let inputGrade= req.body.inputGrade;
   let calculatedGrade = req.body.calculatedGrade;
+  let name = req.body.name;
   const worksheets = req.body.worksheets;
   const markup = `
 <ul class="skills">
@@ -107,7 +108,7 @@ h1{
     		<h1> Math Champ</h1>
     		<div class="navigation">
     			<div class = "message"> 
-    				<strong>${getSummaryText(inputGrade, calculatedGrade)}</strong>
+    				<strong>${getSummaryText(inputGrade, calculatedGrade, name)}</strong>
     			</div>
     			<div class="worksheets">
     				${markup}

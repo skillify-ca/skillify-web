@@ -53,6 +53,7 @@ export const DiagnosticConclusion = ({
       },
       body: JSON.stringify({
         email: results.email,
+        name: results.name,
       }),
     };
     await fetch(url, options);
