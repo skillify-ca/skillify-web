@@ -12,7 +12,6 @@ export default async function handler(
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   let inputGrade= req.body.inputGrade;
   let calculatedGrade = req.body.calculatedGrade;
-  let name = req.body.name;
   const worksheets = req.body.worksheets;
   const markup = `
 <ul class="skills">
