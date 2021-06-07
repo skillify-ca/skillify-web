@@ -61,6 +61,7 @@ const DiagnosticTestForm = ({
             </select>
           </div>
         </div>
+        <div className="flex flex-col"></div>
         <div className="flex flex-row items-center justify-center w-full gap-4">
           <p className="font-bold">Enter your email</p>
           <input
@@ -72,6 +73,9 @@ const DiagnosticTestForm = ({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+        </div>
+        <div className="flex flex-row items-center justify-center w-full gap-4">
+          <p className="font-bold">Enter student name</p>
           <input
             id="guess"
             type="text"
