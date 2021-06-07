@@ -5,12 +5,16 @@ type DiagnosticTestFormProps = {
   onClick: (grade: string) => void;
   email: string;
   setEmail: (email: string) => void;
+  name: string;
+  setName: (name: string) => void;
 };
 
 const DiagnosticTestForm = ({
   onClick,
   email,
   setEmail,
+  name,
+  setName,
 }: DiagnosticTestFormProps) => {
   const [grade, setGrade] = useState("Grade 3");
   const onGradeChange = (e: any) => {
@@ -57,6 +61,7 @@ const DiagnosticTestForm = ({
             </select>
           </div>
         </div>
+        <div className="flex flex-col"></div>
         <div className="flex flex-row items-center justify-center w-full gap-4">
           <p className="font-bold">Enter your email</p>
           <input
@@ -67,6 +72,18 @@ const DiagnosticTestForm = ({
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-row items-center justify-center w-full gap-4">
+          <p className="font-bold">Enter student name</p>
+          <input
+            id="guess"
+            type="text"
+            autoComplete="off"
+            className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <Button

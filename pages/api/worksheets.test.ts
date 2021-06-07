@@ -21,6 +21,7 @@ test("test worksheets", async () => {
     guesses: Array(10).fill("2"),
     email: "test@gmail.com",
     grade: "Grade 2",
+    name: "Lavan",
   };
 
   // Act
@@ -53,6 +54,7 @@ test("test worksheets2", async () => {
     guesses: ["2", "3"],
     email: "test@gmail.com",
     grade: "Grade 2",
+    name: "Vijaykumar"
   };
 
   // Act

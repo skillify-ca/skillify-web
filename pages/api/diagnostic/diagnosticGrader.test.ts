@@ -39,6 +39,7 @@ test("grade correct division", async () => {
     guesses: ["2"],
     email: "test@gmail.com",
     grade: "Grade 2",
+    name: "Lavan",
   };
 
   // Act
@@ -56,6 +57,7 @@ test("grade correct division 2", async () => {
     guesses: ["3"],
     email: "test@gmail.com",
     grade: "Grade 2",
+    name: "Lavan"
   };
 
   // Act
@@ -76,6 +78,7 @@ test("when student can divide up to 100 grade should be grade 3", async () => {
     guesses: ["2", "2"],
     email: "test@gmail.com",
     grade: "Grade 2",
+    name: "Lavan",
   };
 
   // Act
@@ -98,6 +101,7 @@ test("when student can divide up to 12 but not 100 grade should be grade 2", asy
     guesses: ["3", "2", "2", "2"],
     email: "test@gmail.com",
     grade: "Grade 2",
+    name: "Lavan",
   };
 
   // Act
@@ -119,6 +123,7 @@ test("when student can't divide up to 12 grade should be grade 1", async () => {
     guesses: ["3", "2"],
     email: "test@gmail.com",
     grade: "Grade 2",
+    name: "Lavan",
   };
 
   // Act
@@ -134,11 +139,11 @@ test("test summary text for first grader earning a third grade level", async () 
   const diagnosticGradeLevel = 3;
 
   // Act
-  const summary = getSummaryText(diagnosticGradeLevel, inputGradeLevel);
+  const summary = getSummaryText(diagnosticGradeLevel, inputGradeLevel, "Lavan");
 
   // Assert
   expect(summary).toBe(
-    "Truly impressive! Your child has exceeded the expectations of the Ontario grade 1 curriculum. Keep up the good work and welcome challenges with open arms!"
+    "Truly impressive! Lavan has exceeded the expectations of the Ontario grade 1 curriculum. Keep up the good work and welcome challenges with open arms!"
   );
 });
 
@@ -148,11 +153,11 @@ test("test summary text for first grader earning a second grade level", async ()
   const diagnosticGradeLevel = 2;
 
   // Act
-  const summary = getSummaryText(diagnosticGradeLevel, inputGradeLevel);
+  const summary = getSummaryText(diagnosticGradeLevel, inputGradeLevel, "Lavan");
 
   // Assert
   expect(summary).toBe(
-    "Truly impressive! Your child has exceeded the expectations of the Ontario grade 1 curriculum. Keep up the good work and welcome challenges with open arms!"
+    "Truly impressive! Lavan has exceeded the expectations of the Ontario grade 1 curriculum. Keep up the good work and welcome challenges with open arms!"
   );
 });
 
@@ -162,10 +167,10 @@ test("test summary text for first grader earning a first grade level", async () 
   const diagnosticGradeLevel = 1;
 
   // Act
-  const summary = getSummaryText(diagnosticGradeLevel, inputGradeLevel);
+  const summary = getSummaryText(diagnosticGradeLevel, inputGradeLevel, "Lavan");
 
   // Assert
   expect(summary).toBe(
-    "Amazing work! Your child has met the expectations of the Ontario grade 1 curriculum. Encourage them to solve harder problems to keep them challenged."
+    "Amazing work! Lavan has met the expectations of the Ontario grade 1 curriculum. Encourage them to solve harder problems to keep them challenged."
   );
 });
