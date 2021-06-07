@@ -70,7 +70,11 @@ export const DiagnosticConclusion = ({
           {"Average Ontario Grade Level - Grade " + gradeLevel}{" "}
         </p>
         <p>
-          {getSummaryText(gradeLevel, parseInt(parse(results.grade).second))}
+          {getSummaryText(
+            gradeLevel,
+            parseInt(parse(results.grade).second),
+            results.name
+          )}
         </p>
       </div>
       <div className="bg-white p-4 rounded-lg shadow-lg">
@@ -149,7 +153,7 @@ export const DiagnosticConclusion = ({
       </div>
       <div className="flex flex-col bg-white p-4 shadow-lg rounded-lg">
         <p className="p-4 font-extrabold border-b border-black">
-          Personalized Worksheets
+          {results.name}'s Personalized Worksheets
         </p>
         {getWorkSheets(results).map(
           (it) =>
@@ -178,7 +182,9 @@ export const DiagnosticConclusion = ({
                 onClick={notifyPracticeSignup}
               />
             ) : (
-              <p className="text-sm text-green-600">Thank you for signing up!</p>
+              <p className="text-sm text-green-600">
+                Thank you for signing up!
+              </p>
             )}
           </div>
         </div>
