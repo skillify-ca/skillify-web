@@ -31,7 +31,7 @@ export default function divisionTopicOverview(props) {
             className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-64 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
             style={cardStyle("KGMf314LUc0")}
           >
-            <p className="font-bold mb-4">Division with Reaminders</p>
+            <p className="font-bold mb-4">Division with Remainders</p>
           </div>
         </Link>
         <Link href="lessons/division/fractions">

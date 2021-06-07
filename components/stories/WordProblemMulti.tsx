@@ -57,11 +57,11 @@ export const WordProblemMulti: React.FC<WordProblemMultiProp> = ({
         <p className="align-left">
           {name} has
           <span> </span>
-          <span className="border-2 border-black border-opacity-75 md:border-opacity-50 text-black font-extrabold">
+          <span className="text-black font-bold">
             {" " + parse().first}
-          </span>
-          {" " + title(itemContainer, parse().first)}. Each{" "}
-          {itemContainer.singleTitle} has
+            {" " + title(itemContainer, parse().first)}.{" "}
+          </span>{" "}
+          Each {itemContainer.singleTitle} has
           <span className={noun1.colour}>
             {" " + parse().second + " "}
           </span>{" "}
