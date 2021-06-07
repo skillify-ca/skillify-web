@@ -24,6 +24,8 @@ enum STAGE {
 
 const Diagnostic = () => {
   const dispatch = useAppDispatch();
+  const [opacity, setOpacity] = useState(1);
+  const [active, setActive] = useState(false);
   const [grade, setGrade] = useState("");
   const [stage, setStage] = useState(STAGE.CREATE);
   const [index, setIndex] = useState(0);
@@ -38,10 +40,43 @@ const Diagnostic = () => {
       skill: Skill.ADDITION_SINGLE,
     },
   ]);
+
   const inputElement = useRef(null);
 
-  const submitGuess = (guessData: GuessData) => {
-    if (index < questionData.length - 1) {
+  const requestEmail = async (results: DiagnosticState) => {
+    const workSheets = getWorkSheets(results);
+
+    const url = "https://math-app-1.herokuapp.com/email";
+    const options = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      body: JSON.stringify({
+        email: email,
+        worksheets: workSheets,
+        results: results,
+      }),
+    };
+    await fetch(url, options);
+  };
+
+  function delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  const shakeCheck = () => {
+    setActive(true);
+  };
+
+  const submitGuess = async (guessData: GuessData) => {
+    console.log(guessData.guess);
+    if (guessData.guess == "") {
+      return shakeCheck;
+    } else if (index < questionData.length - 1) {
+      setOpacity(0);
+      await delay(150);
       setIndex(index + 1);
     }
 

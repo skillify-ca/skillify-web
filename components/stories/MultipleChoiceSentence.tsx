@@ -11,10 +11,6 @@ export interface MultipleChoiceSentenceProp {
   submitGuess: (e) => void;
 }
 
-export function randomize(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
 export const MultipleChoiceSentence: React.FC<MultipleChoiceSentenceProp> = ({
   displayQuestion,
   option1,
