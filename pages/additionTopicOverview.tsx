@@ -4,6 +4,25 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 
 export default function additionTopicOverview(props) {
+  const [grade, setGrade] = useState("Grade 3");
+  const onGradeChange = (e: any) => {
+    setGrade(e.target.value);
+  };
+  let gradeSet = (grade: string) => {
+    let gradeNum;
+    switch (grade) {
+      case "Grade 1":
+        gradeNum = 1;
+        break;
+      case "Grade 2":
+        gradeNum = 2;
+        break;
+      case "Grade 3":
+        gradeNum = 3;
+        break;
+    }
+    return gradeNum;
+  };
   const cardStyle = (videoId) => {
     return {
       backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.75)), url(http://img.youtube.com/vi/${videoId}/hqdefault.jpg)`,
@@ -124,8 +143,17 @@ export default function additionTopicOverview(props) {
             luck, you got this!
           </p>
           <div className="flex gap-8">
+            <select
+              value={grade}
+              onChange={onGradeChange}
+              className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+            >
+              <option>Grade 1</option>
+              <option>Grade 2</option>
+              <option>Grade 3</option>
+            </select>
             <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
-              <Link href={"quiz/addition?level=1"}>
+              <Link href={"quiz/addition?level=" + gradeSet(grade)}>
                 <Button
                   backgroundColor="blue"
                   textColor="white"
@@ -220,7 +248,8 @@ export default function additionTopicOverview(props) {
           </div>
           <p className="text-xl">
             {stage == Stage.VIDEOS && "Watch videos to explore this topic"}
-            {stage == Stage.PRACTICE && "Practice skills and rate your confidence level"}
+            {stage == Stage.PRACTICE &&
+              "Practice skills and rate your confidence level"}
             {stage == Stage.QUIZ && "Test your speed and accuracy"}
           </p>
           {getComponentForStage()}
