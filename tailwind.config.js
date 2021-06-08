@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        shake: "shake 1s relative infinite ease-in",
+        shake:  'shake 0.5s ease-in-out',
       },
       backgroundImage: (theme) => ({
         "hero-student":
@@ -15,6 +15,12 @@ module.exports = {
       }),
       fontFamily: {
         sans: ["Lexend", ...defaultTheme.fontFamily.sans],
+      },
+      keyframes: {
+        shake: {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
       },
       primary: "#4495f0",
       secondary: "#ff8e4f",

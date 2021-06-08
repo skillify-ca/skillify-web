@@ -26,7 +26,7 @@ enum STAGE {
 const Diagnostic = () => {
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState(1);
-  const [active, setActive] = useState(false);
+  const [isShaking, setIsShaking] = useState(false);
   const [grade, setGrade] = useState("");
   const [stage, setStage] = useState(STAGE.CREATE);
   const [index, setIndex] = useState(0);
@@ -94,14 +94,10 @@ const Diagnostic = () => {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  const shakeCheck = () => {
-    setActive(true);
-  };
-
   const submitGuess = async (guessData: GuessData) => {
-    console.log(guessData.guess);
     if (guessData.guess == "") {
-      return shakeCheck;
+      setIsShaking(true);
+      return;
     } else if (index < questionData.length - 1) {
       setOpacity(0);
       await delay(150);
@@ -162,15 +158,20 @@ const Diagnostic = () => {
       break;
     case STAGE.TEST:
       component = (
-        <QuestionSet
-          title=""
-          questionData={questionData}
-          index={index}
-          inputElement={inputElement}
-          submitGuess={submitGuess}
-          score={correctGuesses}
-          diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
-        />
+        <div
+          className={isShaking ? "animate-shake" : ""}
+          onAnimationEnd={() => setIsShaking(false)}
+        >
+          <QuestionSet
+            title=""
+            questionData={questionData}
+            index={index}
+            inputElement={inputElement}
+            submitGuess={submitGuess}
+            score={correctGuesses}
+            diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
+          />
+        </div>
       );
       break;
     case STAGE.RESULTS:
