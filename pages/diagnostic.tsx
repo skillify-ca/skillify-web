@@ -159,7 +159,7 @@ const Diagnostic = () => {
     case STAGE.TEST:
       component = (
         <div
-          className={isShaking ? "animate-wiggle" : ""}
+          className={isShaking ? "animate-shake" : ""}
           onAnimationEnd={() => setIsShaking(false)}
         >
           <QuestionSet

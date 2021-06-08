@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        wiggle: "wiggle 1s ease-in-out infinite",
+        shake: "shake 0.5s ease-in-out",
       },
       backgroundImage: (theme) => ({
         "hero-student":
@@ -17,8 +17,9 @@ module.exports = {
         sans: ["Lexend", ...defaultTheme.fontFamily.sans],
       },
       keyframes: {
-        wiggle: {
-          "0%, 100%": { transform: "rotate(-3deg)" },
+        shake: {
+          "0%, 100%": { transform: "rotate(0deg)" },
+          "25%, 75%": { transform: "rotate(-3deg)" },
           "50%": { transform: "rotate(3deg)" },
         },
       },
