@@ -23,11 +23,11 @@ export const DiagnosticConclusion = ({
   const badgeSelector = (grade: number) => {
     switch (grade) {
       case 1:
-        return "/images/grade3Badge.png";
+        return "/images/grade1Badge.png";
       case 2:
         return "/images/grade2Badge.png";
       case 3:
-        return "/images/grade1Badge.png";
+        return "/images/grade3Badge.png";
     }
   };
 
