@@ -1,4 +1,4 @@
-import { AnswerType, Question } from "./question";
+import { AnswerType, MCModel, MCOption, Question } from "./question";
 import { QuestionType } from "./questionTypes";
 import { getRndInteger } from "./random";
 import { createWordProblemModel } from "./WordProblemModel";
@@ -6,6 +6,8 @@ import { Skill } from "./skill";
 import { ArrayQMap, createArrayImage } from "./ArrayQMap";
 import { getRandomPropertyAdditionQuestion } from "./additionPropertyQuestionGenerator";
 import { tweleveMap } from "./factorsOfTwelveMap";
+import { MultipleChoice } from "../../components/stories/MultipleChoice";
+import { shuffle } from "lodash";
 
 export const generateQuestionForSkill = (skill: Skill): Question => {
   switch (skill) {
@@ -160,6 +162,7 @@ function getRandomBinaryQuestion(
     QuestionType.BINARY_WORD_PROBLEM,
     QuestionType.VERTICAL_EQUATION,
     QuestionType.TRUE_OR_FALSE_PROBLEM,
+    QuestionType.MULTIPLE_CHOICE,
   ];
   let typeIndex = getRndInteger(0, types.length);
   const a = getRndInteger(min, max);
@@ -167,11 +170,15 @@ function getRandomBinaryQuestion(
   let text;
   let trueFalseAnswer;
   const type = types[typeIndex];
+  let multipleChoiceModel;
   if (type === QuestionType.TRUE_OR_FALSE_PROBLEM) {
     const randomAns = randomize(0, 2);
     switch (randomAns) {
       case 0:
-        text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${answerFunction(Math.max(a, b), Math.min(a, b))}`;
+        text = `${Math.max(a, b)} ${operator} ${Math.min(
+          a,
+          b
+        )} = ${answerFunction(Math.max(a, b), Math.min(a, b))}`;
         trueFalseAnswer = true;
         break;
       case 1:
@@ -179,10 +186,39 @@ function getRandomBinaryQuestion(
         while (randomDisplacement == 0) {
           randomDisplacement = randomize(-2, 3);
         }
-        text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${answerFunction(Math.max(a, b), Math.min(a, b)) + randomDisplacement}`;
+        text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${
+          answerFunction(Math.max(a, b), Math.min(a, b)) + randomDisplacement
+        }`;
         trueFalseAnswer = false;
         break;
     }
+  } else if (type === QuestionType.MULTIPLE_CHOICE) {
+    let a = randomize(min, max);
+    let b = randomize(min, max);
+    let realAns = answerFunction(a, b);
+    let wrongAnsA = realAns + randomize(-2, 3);
+    let wrongA = wrongAnsA;
+    while (wrongA < 0 || wrongA == realAns) {
+      wrongA = wrongAnsA;
+      wrongA = realAns + randomize(-2, 3);
+    }
+    let wrongAnsB = realAns + randomize(-2, 3);
+    let wrongB = wrongAnsB;
+    while (wrongB < 0 || wrongB == wrongA || wrongB == realAns) {
+      wrongB = wrongAnsB;
+      wrongB = realAns + randomize(-2, 3);
+    }
+
+    text = `${a} ${operator} ${b}`;
+
+    const option1: MCOption = { text: wrongA.toString(), id: "a" };
+    const option2: MCOption = { text: wrongB.toString(), id: "b" };
+    const option3: MCOption = { text: realAns.toString(), id: "c" };
+
+    const optionArr = [option1, option2, option3];
+    multipleChoiceModel = { options: shuffle(optionArr) };
+
+    //  const option1: MCOption = { text: commutativeSentence, id: "a" };
   } else {
     text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} =`;
   }
@@ -206,6 +242,7 @@ function getRandomBinaryQuestion(
     questionType: type,
     operator: operator,
     wordProblem: wordProblemModel,
+    multipleChoice: multipleChoiceModel,
     skill: skill,
   };
 }
