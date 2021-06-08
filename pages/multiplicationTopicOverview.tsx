@@ -194,6 +194,7 @@ export default function multiplicationTopicOverview(props) {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-4 gap-8">
+            <p className="font-bold"> Select Grade:</p>
             <div className="flex gap-8">
               <select
                 value={grade}

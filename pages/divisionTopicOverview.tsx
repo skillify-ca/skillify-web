@@ -139,6 +139,7 @@ export default function divisionTopicOverview(props) {
             Good luck, you got this!
           </p>
           <div className="flex gap-8">
+            <p className="font-bold"> Select Grade:</p>
             <select
               value={grade}
               onChange={onGradeChange}
