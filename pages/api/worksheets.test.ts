@@ -159,7 +159,7 @@ test("when student correctly guess all questions then they should still recieve 
 
   // Assert
   expect(worksheets.length).toBe(3);
-  expect(worksheets[0].title).toBe("Triple Digit Addition with 3 Addends");
-  expect(worksheets[1].title).toBe("Quadruple Digit Subtraction");
+  expect(worksheets[1].title).toBe("Triple Digit Addition with 3 Addends");
+  expect(worksheets[0].title).toBe("Quadruple Digit Subtraction");
   expect(worksheets[2].title).toBe("Large Number Division");
 });
