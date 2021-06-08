@@ -52,24 +52,24 @@ export enum Grade {
 }
 
 export const getNextQuestion = (
-  selectedGrade: Grade,
   currentQuestion: Question,
   correctGuess: boolean,
   questionsLeftInTopic: number
 ): Question => {
-  if (questionsLeftInTopic == 0) {
+  let nextQuestion: Question;
+  if (questionsLeftInTopic <= 0) {
     const nextSkill = getSkillForNextTopic(currentQuestion.skill);
-    return generateQuestionForSkill(nextSkill);
+    nextQuestion = generateQuestionForSkill(nextSkill);
   } else {
     if (correctGuess) {
       const nextSkill = getHarderSkill(currentQuestion.skill);
-      return generateQuestionForSkill(nextSkill);
+      nextQuestion = generateQuestionForSkill(nextSkill);
     } else {
       const nextSkill = getEasierSkill(currentQuestion.skill);
-      return generateQuestionForSkill(nextSkill);
+      nextQuestion = generateQuestionForSkill(nextSkill);
     }
   }
-  return null;
+  return nextQuestion;
 };
 
 const getHarderSkill = (skill: Skill): Skill => {
@@ -136,10 +136,16 @@ const getEasierSkill = (skill: Skill): Skill => {
 
 const getSkillForNextTopic = (skill: Skill): Skill => {
   switch (skill) {
+    case Skill.ADDITION_SINGLE:
+    case Skill.ADDITION_DOUBLE:
     case Skill.ADDITION_TRIPLE:
       return Skill.SUBTRACTION_SINGLE;
+    case Skill.SUBTRACTION_SINGLE:
+    case Skill.SUBTRACTION_DOUBLE:
     case Skill.SUBTRACTION_TRIPLE:
       return Skill.EQUAL_GROUP_10_ITEMS;
+    case Skill.EQUAL_GROUP_10_ITEMS:
+    case Skill.MULTIPLICATION_5:
     case Skill.MULTIPLICATION_10:
       return Skill.EQUAL_SHARING_8_ITEMS;
     default:

@@ -26,7 +26,7 @@ const A3: Question = {
   answer: "333",
   answerType: AnswerType.NUMBER,
   questionType: QuestionType.VERTICAL_EQUATION,
-  skill: Skill.ADDITION_DOUBLE,
+  skill: Skill.ADDITION_TRIPLE,
 };
 const S1: Question = {
   text: "2 - 1 =",
@@ -45,7 +45,7 @@ const M1: Question = {
 
 test("When student answers single digit addition correctly, then next question should be double digit addition", async () => {
   // Act
-  const question = getNextQuestion(Grade.GRADE_THREE, A1, true, 3);
+  const question = getNextQuestion(A1, true, 3);
 
   // Assert
   expect(question.skill).toBe(Skill.ADDITION_DOUBLE);
@@ -53,7 +53,7 @@ test("When student answers single digit addition correctly, then next question s
 
 test("When student answers double digit addition correctly, then next question should be triple digit addition", async () => {
   // Act
-  const question = getNextQuestion(Grade.GRADE_THREE, A2, true, 3);
+  const question = getNextQuestion(A2, true, 3);
 
   // Assert
   expect(question.skill).toBe(Skill.ADDITION_TRIPLE);
@@ -61,7 +61,7 @@ test("When student answers double digit addition correctly, then next question s
 
 test("When student answers triple digit addition correctly, then next question should be triple digit addition", async () => {
   // Act
-  const question = getNextQuestion(Grade.GRADE_THREE, A3, true, 3);
+  const question = getNextQuestion(A3, true, 3);
 
   // Assert
   expect(question.skill).toBe(Skill.ADDITION_TRIPLE);
@@ -69,7 +69,7 @@ test("When student answers triple digit addition correctly, then next question s
 
 test("When student answers single digit addition incorrectly, then next question should be single digit addition", async () => {
   // Act
-  const question = getNextQuestion(Grade.GRADE_THREE, A1, false, 3);
+  const question = getNextQuestion(A1, false, 3);
 
   // Assert
   expect(question.skill).toBe(Skill.ADDITION_SINGLE);
@@ -77,7 +77,7 @@ test("When student answers single digit addition incorrectly, then next question
 
 test("When student answers double digit addition incorrectly, then next question should be single digit addition", async () => {
   // Act
-  const question = getNextQuestion(Grade.GRADE_THREE, A2, false, 3);
+  const question = getNextQuestion(A2, false, 3);
 
   // Assert
   expect(question.skill).toBe(Skill.ADDITION_SINGLE);
@@ -85,7 +85,7 @@ test("When student answers double digit addition incorrectly, then next question
 
 test("When student answers triple digit addition incorrectly, then next question should be double digit addition", async () => {
   // Act
-  const question = getNextQuestion(Grade.GRADE_THREE, A3, true, 3);
+  const question = getNextQuestion(A3, false, 3);
 
   // Assert
   expect(question.skill).toBe(Skill.ADDITION_DOUBLE);
@@ -93,7 +93,7 @@ test("When student answers triple digit addition incorrectly, then next question
 
 test("When student answers last addition question, then next question should be single digit subtraction", async () => {
   // Act
-  const question = getNextQuestion(Grade.GRADE_ONE, A3, true, 0);
+  const question = getNextQuestion(A3, true, 0);
 
   // Assert
   expect(question.skill).toBe(Skill.SUBTRACTION_SINGLE);
@@ -101,7 +101,7 @@ test("When student answers last addition question, then next question should be 
 
 test("When student answers last subtraction question, then next question should be equal groups", async () => {
   // Act
-  const question = getNextQuestion(Grade.GRADE_THREE, S1, true, 0);
+  const question = getNextQuestion(S1, true, 0);
 
   // Assert
   expect(question.skill).toBe(Skill.EQUAL_GROUP_10_ITEMS);
@@ -109,7 +109,7 @@ test("When student answers last subtraction question, then next question should 
 
 test("When student answers last multiplication question, then next question should be equal sharing", async () => {
   // Act
-  const question = getNextQuestion(Grade.GRADE_THREE, M1, true, 0);
+  const question = getNextQuestion(M1, true, 0);
 
   // Assert
   expect(question.skill).toBe(Skill.EQUAL_SHARING_8_ITEMS);

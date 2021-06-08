@@ -111,23 +111,26 @@ const Diagnostic = () => {
     let updateGuess;
     updateGuess = guesses.concat(guessData.guess);
     setGuesses(updateGuess);
-
-    setOpacity(0);
-    await delay(150);
-    setOpacity(1);
-
     const newAnsweredQuestions = [...answeredQuestions, currentQuestion];
     setAnsweredQuestions(newAnsweredQuestions);
 
-    const nextQuestion = getNextQuestion(
-      grade,
-      currentQuestion,
-      guessData.isCorrect,
-      questionsLeftInTopic
-    );
-    setCurrentQuestion(nextQuestion);
-    setQuestionsLeftInTopic(questionsLeftInTopic - 1);
+    if (newAnsweredQuestions.length < TOTAL_QUESTIONS) {
+      setOpacity(0);
+      await delay(150);
+      setOpacity(1);
 
+      const newQuestionsLeftInTopic =
+        questionsLeftInTopic == 0
+          ? QUESTIONS_PER_TOPIC - 1
+          : questionsLeftInTopic - 1;
+      const nextQuestion = getNextQuestion(
+        currentQuestion,
+        guessData.isCorrect,
+        newQuestionsLeftInTopic
+      );
+      setCurrentQuestion(nextQuestion);
+      setQuestionsLeftInTopic(newQuestionsLeftInTopic);
+    }
     if (newAnsweredQuestions.length >= TOTAL_QUESTIONS) {
       const results: DiagnosticState = {
         questions: answeredQuestions,
@@ -166,20 +169,28 @@ const Diagnostic = () => {
       break;
     case STAGE.TEST:
       component = (
-        <QuestionSet
-          title=""
-          questionData={[currentQuestion]}
-          index={0}
-          inputElement={inputElement}
-          submitGuess={submitGuess}
-          score={correctGuesses}
-          diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
-        />
+        <div>
+          <p className="font-semibold text-gray-500 pt-4 px-8">
+            Question: {answeredQuestions.length} / 12
+          </p>
+          <QuestionSet
+            title=""
+            questionData={[currentQuestion]}
+            index={0}
+            inputElement={inputElement}
+            submitGuess={submitGuess}
+            score={correctGuesses}
+            diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
+          />
+        </div>
       );
       break;
     case STAGE.RESULTS:
       component = (
-        <DiagnosticResults correctGuesses={correctGuesses} numberOfQuestions={TOTAL_QUESTIONS} />
+        <DiagnosticResults
+          correctGuesses={correctGuesses}
+          numberOfQuestions={TOTAL_QUESTIONS}
+        />
       );
       break;
   }
