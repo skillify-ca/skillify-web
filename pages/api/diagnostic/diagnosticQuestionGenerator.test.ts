@@ -28,6 +28,20 @@ const A3: Question = {
   questionType: QuestionType.VERTICAL_EQUATION,
   skill: Skill.ADDITION_DOUBLE,
 };
+const S1: Question = {
+  text: "2 - 1 =",
+  answer: "1",
+  answerType: AnswerType.NUMBER,
+  questionType: QuestionType.VERTICAL_EQUATION,
+  skill: Skill.SUBTRACTION_SINGLE,
+};
+const M1: Question = {
+  text: "2 * 1 =",
+  answer: "2",
+  answerType: AnswerType.NUMBER,
+  questionType: QuestionType.VERTICAL_EQUATION,
+  skill: Skill.EQUAL_GROUP_10_ITEMS,
+};
 
 test("When student answers single digit addition correctly, then next question should be double digit addition", async () => {
   // Act
@@ -77,7 +91,7 @@ test("When student answers triple digit addition incorrectly, then next question
   expect(question.skill).toBe(Skill.ADDITION_DOUBLE);
 });
 
-test("When grade 1 student answers last addition question, then next question should be single digit subtraction", async () => {
+test("When student answers last addition question, then next question should be single digit subtraction", async () => {
   // Act
   const question = getNextQuestion(Grade.GRADE_ONE, A3, true, 0);
 
@@ -85,10 +99,18 @@ test("When grade 1 student answers last addition question, then next question sh
   expect(question.skill).toBe(Skill.SUBTRACTION_SINGLE);
 });
 
-test("When grade 2 student answers last addition question, then next question should be double digit subtraction", async () => {
+test("When student answers last subtraction question, then next question should be equal groups", async () => {
   // Act
-  const question = getNextQuestion(Grade.GRADE_TWO, A3, true, 0);
+  const question = getNextQuestion(Grade.GRADE_THREE, S1, true, 0);
 
   // Assert
-  expect(question.skill).toBe(Skill.SUBTRACTION_DOUBLE);
+  expect(question.skill).toBe(Skill.EQUAL_GROUP_10_ITEMS);
+});
+
+test("When student answers last multiplication question, then next question should be equal sharing", async () => {
+  // Act
+  const question = getNextQuestion(Grade.GRADE_THREE, M1, true, 0);
+
+  // Assert
+  expect(question.skill).toBe(Skill.EQUAL_SHARING_8_ITEMS);
 });

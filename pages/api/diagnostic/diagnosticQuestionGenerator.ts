@@ -1,6 +1,7 @@
 import { Question } from "../question";
 import { generateQuestionForSkill } from "../questionGenerator";
 import { Skill } from "../skill";
+import { getQuestionForSkill } from "./diagnosticGrader";
 
 const NUM_QUESTIONS = 1;
 
@@ -56,7 +57,94 @@ export const getNextQuestion = (
   correctGuess: boolean,
   questionsLeftInTopic: number
 ): Question => {
-  return null
+  if (questionsLeftInTopic == 0) {
+    const nextSkill = getSkillForNextTopic(currentQuestion.skill);
+    return generateQuestionForSkill(nextSkill);
+  } else {
+    if (correctGuess) {
+      const nextSkill = getHarderSkill(currentQuestion.skill);
+      return generateQuestionForSkill(nextSkill);
+    } else {
+      const nextSkill = getEasierSkill(currentQuestion.skill);
+      return generateQuestionForSkill(nextSkill);
+    }
+  }
+  return null;
+};
+
+const getHarderSkill = (skill: Skill): Skill => {
+  switch (skill) {
+    case Skill.ADDITION_SINGLE:
+      return Skill.ADDITION_DOUBLE;
+    case Skill.ADDITION_DOUBLE:
+      return Skill.ADDITION_TRIPLE;
+    case Skill.ADDITION_TRIPLE:
+      return Skill.ADDITION_TRIPLE;
+    case Skill.SUBTRACTION_SINGLE:
+      return Skill.SUBTRACTION_DOUBLE;
+    case Skill.SUBTRACTION_DOUBLE:
+      return Skill.SUBTRACTION_TRIPLE;
+    case Skill.SUBTRACTION_TRIPLE:
+      return Skill.SUBTRACTION_TRIPLE;
+    case Skill.EQUAL_GROUP_10_ITEMS:
+      return Skill.MULTIPLICATION_5;
+    case Skill.MULTIPLICATION_5:
+      return Skill.MULTIPLICATION_10;
+    case Skill.MULTIPLICATION_10:
+      return Skill.MULTIPLICATION_10;
+    case Skill.EQUAL_SHARING_8_ITEMS:
+      return Skill.DIVIDE_12_EQUALLY;
+    case Skill.DIVIDE_12_EQUALLY:
+      return Skill.DIVIDE_100;
+    case Skill.DIVIDE_100:
+      return Skill.DIVIDE_100;
+    default:
+      return null;
+  }
+};
+
+const getEasierSkill = (skill: Skill): Skill => {
+  switch (skill) {
+    case Skill.ADDITION_SINGLE:
+      return Skill.ADDITION_SINGLE;
+    case Skill.ADDITION_DOUBLE:
+      return Skill.ADDITION_SINGLE;
+    case Skill.ADDITION_TRIPLE:
+      return Skill.ADDITION_DOUBLE;
+    case Skill.SUBTRACTION_SINGLE:
+      return Skill.SUBTRACTION_SINGLE;
+    case Skill.SUBTRACTION_DOUBLE:
+      return Skill.SUBTRACTION_SINGLE;
+    case Skill.SUBTRACTION_TRIPLE:
+      return Skill.SUBTRACTION_DOUBLE;
+    case Skill.EQUAL_GROUP_10_ITEMS:
+      return Skill.EQUAL_GROUP_10_ITEMS;
+    case Skill.MULTIPLICATION_5:
+      return Skill.EQUAL_GROUP_10_ITEMS;
+    case Skill.MULTIPLICATION_10:
+      return Skill.MULTIPLICATION_5;
+    case Skill.EQUAL_SHARING_8_ITEMS:
+      return Skill.EQUAL_SHARING_8_ITEMS;
+    case Skill.DIVIDE_12_EQUALLY:
+      return Skill.EQUAL_SHARING_8_ITEMS;
+    case Skill.DIVIDE_100:
+      return Skill.DIVIDE_12_EQUALLY;
+    default:
+      return null;
+  }
+};
+
+const getSkillForNextTopic = (skill: Skill): Skill => {
+  switch (skill) {
+    case Skill.ADDITION_TRIPLE:
+      return Skill.SUBTRACTION_SINGLE;
+    case Skill.SUBTRACTION_TRIPLE:
+      return Skill.EQUAL_GROUP_10_ITEMS;
+    case Skill.MULTIPLICATION_10:
+      return Skill.EQUAL_SHARING_8_ITEMS;
+    default:
+      return null;
+  }
 };
 
 export const generateQuestionsForDiagnostic = () => {
