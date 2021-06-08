@@ -8,20 +8,15 @@ export default function divisionTopicOverview(props) {
   const onGradeChange = (e: any) => {
     setGrade(e.target.value);
   };
-  let gradeSet = (grade: string) => {
-    let gradeNum;
+  let gradeNum = (grade: string) => {
     switch (grade) {
       case "Grade 1":
-        gradeNum = 1;
-        break;
+        return 1;
       case "Grade 2":
-        gradeNum = 2;
-        break;
+        return 2;
       case "Grade 3":
-        gradeNum = 3;
-        break;
+        return 3;
     }
-    return gradeNum;
   };
   const cardStyle = (videoId) => {
     return {
@@ -150,7 +145,7 @@ export default function divisionTopicOverview(props) {
               <option>Grade 3</option>
             </select>
             <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
-              <Link href={"quiz/division?level=" + gradeSet(grade)}>
+              <Link href={"quiz/division?level=" + gradeNum(grade)}>
                 <Button
                   backgroundColor="blue"
                   textColor="white"
