@@ -55,8 +55,8 @@ export function getFillBlankQuestion(
   const fillArray: fillBlankModel = { options: [step1, step2, step3] };
 
   return {
-    text: "Fill in the Blanks Using Properties",
-    answer: "80",
+    text: `Fill in the blanks using ${skill}`,
+    answer: `${a},${a},${a + c},${a + c + b}`,
     answerType: AnswerType.NUMBER,
     operator: operator,
     questionType: QuestionType.FILL_IN_THE_BLANK_PROBLEM,
@@ -86,15 +86,24 @@ function getRandomWordPropertyQuestion(
 
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
-  const commutativeOption = getCommutativeSentence(a, b, operator);
+  const commutativeOption: MCOption = {
+    text: getCommutativeSentence(a, b, operator),
+    id: "Commutative",
+  };
 
   const identityNum = getRndInteger(min, max);
-  const identityOption = getIdentitySentence(identityNum, operator);
+  const identityOption: MCOption = {
+    text: getIdentitySentence(identityNum, operator),
+    id: "Identity",
+  };
 
   const x = getRndInteger(min, max);
   const y = getRndInteger(min, max);
   const z = getRndInteger(min, max);
-  const associativeOption = getAssociativeSentence(x, y, z, operator);
+  const associativeOption: MCOption = {
+    text: getAssociativeSentence(x, y, z, operator),
+    id: "Associative",
+  };
 
   // answer array chooser
 
@@ -102,7 +111,10 @@ function getRandomWordPropertyQuestion(
   const correctIndex = getRndInteger(0, correctAnswers.length);
   const finalCorrectAnswer = correctAnswers[correctIndex];
 
-  const questionOption: MCOption = { text: finalCorrectAnswer, id: "a" };
+  const questionOption: MCOption = {
+    text: finalCorrectAnswer.text,
+    id: finalCorrectAnswer.id,
+  };
 
   const questionModel = [questionOption];
 
@@ -110,7 +122,7 @@ function getRandomWordPropertyQuestion(
 
   return {
     text: modelProperty.options[0].text,
-    answer: "a",
+    answer: modelProperty.options[0].id,
     answerType: AnswerType.STRING,
     operator: operator,
     questionType: QuestionType.MULTIPLE_CHOICE_WORD,
@@ -225,10 +237,24 @@ function getRandomSentencePropertyQuestion(
 
   const model: MCModel = { options: shuffle(optionarr) };
 
+  let answer;
+  switch (additionPropertyType) {
+    case "Commutative":
+      answer = option1.text;
+      break;
+    case "Identity":
+      answer = option2.text;
+      break;
+
+    case "Associative":
+      answer = option3.text;
+      break;
+  }
+
   return {
     text: text,
     answerType: AnswerType.STRING,
-    answer: additionPropertyType,
+    answer: answer,
     operator: operator,
     questionType: QuestionType.MULTIPLE_CHOICE_SENTENCE,
     multipleChoice: model,

@@ -31,8 +31,12 @@ export const WordProblemMulti: React.FC<WordProblemMultiProp> = ({
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
-      submitGuess(e);
+      onSubmit();
     }
+  };
+  const onSubmit = () => {
+    setGuess("");
+    submitGuess({ guess: guess, isCorrect: guess === question.answer });
   };
   const parse = () => {
     const parts = question.text.split(" ");
@@ -53,11 +57,11 @@ export const WordProblemMulti: React.FC<WordProblemMultiProp> = ({
         <p className="align-left">
           {name} has
           <span> </span>
-          <span className="border-2 border-black border-opacity-75 md:border-opacity-50 text-black font-extrabold">
+          <span className="text-black font-bold">
             {" " + parse().first}
-          </span>
-          {" " + title(itemContainer, parse().first)}. Each{" "}
-          {itemContainer.singleTitle} has
+            {" " + title(itemContainer, parse().first)}.{" "}
+          </span>{" "}
+          Each {itemContainer.singleTitle} has
           <span className={noun1.colour}>
             {" " + parse().second + " "}
           </span>{" "}
@@ -80,7 +84,7 @@ export const WordProblemMulti: React.FC<WordProblemMultiProp> = ({
         <img src={noun1.image} width="60px" height="85px" />
       </div>
       <Button
-        onClick={submitGuess}
+        onClick={onSubmit}
         label="Submit"
         backgroundColor="blue"
         textColor="white"

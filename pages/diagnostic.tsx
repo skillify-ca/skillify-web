@@ -1,20 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
-import Navbar from "../components/Navbar";
-import { Button } from "../components/stories/Button";
 import DiagnosticResults from "../components/stories/DiagnosticResults";
 import DiagnosticTestForm from "../components/stories/DiagnosticTestForm";
-import Dropdown from "../components/stories/Dropdown";
 import QuestionSet from "../components/stories/QuestionSet";
-import Toggle from "../components/stories/Toggle";
 import { GuessData } from "./api/guessData";
 import { AnswerType, Question } from "./api/question";
 import { QuestionType } from "./api/questionTypes";
-import { connect } from "react-redux";
-import { setDiagnostic } from "../redux/diagnosticSlice";
-import Link from "next/link";
+import { DiagnosticState, setDiagnostic } from "../redux/diagnosticSlice";
 import { useAppDispatch } from "../redux/store";
 import { Skill, Topic } from "./api/skill";
 import { generateQuestionsForDiagnostic } from "./api/diagnostic/diagnosticQuestionGenerator";
+import DiagnosticNavbar from "../components/DiagnosticNavbar";
+import { getWorkSheets } from "./api/worksheets";
+import {
+  getCalculatedGrade,
+  getGradeLevelForTopic,
+  getResultForSkill,
+} from "./api/diagnostic/diagnosticGrader";
 
 enum STAGE {
   CREATE,
@@ -29,7 +30,10 @@ const Diagnostic = () => {
   const [grade, setGrade] = useState("");
   const [stage, setStage] = useState(STAGE.CREATE);
   const [index, setIndex] = useState(0);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState(0);
+  const [guesses, setGuesses] = useState<Array<string>>([]);
   const [guessAns, setGuessAns] = useState<Array<string>>([]);
   const [questionData, setQuestionData] = useState<Question[]>([
     {
@@ -45,8 +49,27 @@ const Diagnostic = () => {
 
   const requestEmail = async (results: DiagnosticState) => {
     const workSheets = getWorkSheets(results);
-
     const url = "https://math-app-1.herokuapp.com/email";
+    const topicGrades = [
+      getGradeLevelForTopic(Topic.ADDITION, results),
+      getGradeLevelForTopic(Topic.SUBTRACTION, results),
+      getGradeLevelForTopic(Topic.MULTIPLICATION, results),
+      getGradeLevelForTopic(Topic.DIVISION, results),
+    ];
+    const skillGrades = [
+      getResultForSkill(Skill.ADDITION_SINGLE, results),
+      getResultForSkill(Skill.ADDITION_DOUBLE, results),
+      getResultForSkill(Skill.ADDITION_TRIPLE, results),
+      getResultForSkill(Skill.SUBTRACTION_SINGLE, results),
+      getResultForSkill(Skill.SUBTRACTION_DOUBLE, results),
+      getResultForSkill(Skill.SUBTRACTION_TRIPLE, results),
+      getResultForSkill(Skill.EQUAL_GROUP_10_ITEMS, results),
+      getResultForSkill(Skill.MULTIPLICATION_5, results),
+      getResultForSkill(Skill.MULTIPLICATION_10, results),
+      getResultForSkill(Skill.EQUAL_SHARING_8_ITEMS, results),
+      getResultForSkill(Skill.DIVIDE_12_EQUALLY, results),
+      getResultForSkill(Skill.DIVIDE_100, results),
+    ];
     const options = {
       method: "POST",
       headers: {
@@ -54,11 +77,16 @@ const Diagnostic = () => {
         "Content-Type": "application/json;charset=UTF-8",
       },
       body: JSON.stringify({
+        name: name,
         email: email,
         worksheets: workSheets,
+        calculatedGrade: getCalculatedGrade(results),
+        topicGrades: topicGrades,
+        skillGrades: skillGrades,
         results: results,
       }),
     };
+
     await fetch(url, options);
   };
 
@@ -78,8 +106,10 @@ const Diagnostic = () => {
       setOpacity(0);
       await delay(150);
       setIndex(index + 1);
+      setOpacity(1);
     }
 
+    // Save if they guessed the question correctly or not
     let updateGuessAns;
     if (guessData.isCorrect) {
       setCorrectGuesses(correctGuesses + 1);
@@ -88,13 +118,23 @@ const Diagnostic = () => {
       updateGuessAns = guessAns.concat("Incorrect");
     }
     setGuessAns(updateGuessAns);
+
+    // Save the actual guess for reporting
+    let updateGuess;
+    updateGuess = guesses.concat(guessData.guess);
+    setGuesses(updateGuess);
+
     if (index == questionData.length - 1) {
-      dispatch(
-        setDiagnostic({
-          questions: questionData,
-          guessAns: updateGuessAns,
-        })
-      );
+      const results: DiagnosticState = {
+        questions: questionData,
+        guessAns: updateGuessAns,
+        guesses: updateGuess,
+        grade: grade,
+        email: email,
+        name: name,
+      };
+      dispatch(setDiagnostic(results));
+      requestEmail(results);
       setStage(STAGE.RESULTS);
     }
   };
@@ -110,7 +150,15 @@ const Diagnostic = () => {
   let component;
   switch (stage) {
     case STAGE.CREATE:
-      component = <DiagnosticTestForm onClick={createDiagnostic} />;
+      component = (
+        <DiagnosticTestForm
+          onClick={createDiagnostic}
+          email={email}
+          setEmail={setEmail}
+          name={name}
+          setName={setName}
+        />
+      );
       break;
     case STAGE.TEST:
       component = (
@@ -120,6 +168,8 @@ const Diagnostic = () => {
           index={index}
           inputElement={inputElement}
           submitGuess={submitGuess}
+          score={correctGuesses}
+          diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
         />
       );
       break;
@@ -130,9 +180,9 @@ const Diagnostic = () => {
       break;
   }
   return (
-    <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
-      <Navbar />
-      <div className="p-8 flex flex-col items-center justify-center">
+    <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen">
+      <DiagnosticNavbar />
+      <div className="p-4 flex flex-col items-center justify-center">
         {component}
       </div>
     </div>

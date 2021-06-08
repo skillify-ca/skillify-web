@@ -13,5 +13,6 @@ const Template: Story<TrueorFalseProp> = (args) => <TrueorFalse {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  question: "3 + 3 = ",
+  question: { text: "3 + 3 = 6" },
+  answer: true,
 };

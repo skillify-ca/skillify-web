@@ -15,6 +15,6 @@ const Template: Story<VerticalEquationProp> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  question: "2 + 2",
+  question: {text: "2 + 2"},
   operator: "+",
 };

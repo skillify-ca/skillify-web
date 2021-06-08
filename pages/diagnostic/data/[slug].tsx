@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import DiagnosticNavbar from "../../../components/DiagnosticNavbar";
 import DiagnosticData from "../../../components/stories/DiagnosticData";
 
 import { diagnosticSelector } from "../../../redux/diagnosticSlice";
@@ -9,8 +10,11 @@ const DiagnosticDataPage = ({ slug }) => {
   console.log(slug);
   const diagnosticResults = useSelector(diagnosticSelector);
   return (
-    <div>
-      <DiagnosticData topic={slug} results={diagnosticResults} />
+    <div className="flex flex-col justify-center overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
+      <DiagnosticNavbar />
+      <div className="p-4 flex flex-col items-center justify-center">
+      <DiagnosticData skill={slug} results={diagnosticResults} />
+    </div>
     </div>
   );
 };
