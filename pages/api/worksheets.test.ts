@@ -62,9 +62,9 @@ test("test worksheets2", async () => {
 
   // Assert
   expect(worksheets.length).toBe(1);
-  expect(worksheets[0].title).toBe("Equal Groups to 10 Worksheet");
+  expect(worksheets[0].title).toBe("Multiplication To 5 Worksheet");
 });
-test("test worksheets2", async () => {
+test("test worksheets3", async () => {
   const dummyDivisionQuestion = {
     text: "4/2=",
     answer: "2",

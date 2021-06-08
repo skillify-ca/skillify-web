@@ -48,11 +48,11 @@ const getWorksheetForSkill = (skill: Skill): Worksheet => {
     case Skill.SUBTRACTION_TRIPLE:
       return SubtractionTripleDigitWS;
     case Skill.MULTIPLICATION_5:
-      return MultiplicationEqualGroup10WS;
-    case Skill.MULTIPLICATION_10:
       return MultiplicationTo5WS;
-    case Skill.EQUAL_GROUP_10_ITEMS:
+    case Skill.MULTIPLICATION_10:
       return MultiplicationTo10WS;
+    case Skill.EQUAL_GROUP_10_ITEMS:
+      return MultiplicationEqualGroup10WS;
     case Skill.EQUAL_SHARING_8_ITEMS:
       return DivisionEqualSharing8WS;
     case Skill.DIVIDE_12_EQUALLY:
