@@ -44,16 +44,31 @@ const topics: Topic[] = [
   },
 ];
 
+export enum Grade {
+  GRADE_ONE = "Grade 1",
+  GRADE_TWO = "Grade 2",
+  GRADE_THREE = "Grade 3",
+}
+
+export const getNextQuestion = (
+  selectedGrade: Grade,
+  currentQuestion: Question,
+  correctGuess: boolean,
+  questionsLeftInTopic: number
+): Question => {
+  return null
+};
+
 export const generateQuestionsForDiagnostic = () => {
   let questionsPerSection = NUM_QUESTIONS;
   let questions: Question[] = [];
   for (let grade = 0; grade < 3; grade++) {
     for (let i = 0; i < topics.length; i++) {
       const topic = topics[i];
-        const skill = topic.skills[grade];
-        for (let j = 0; j < questionsPerSection; j++) {
-          const question = generateQuestionForSkill(skill);
-          questions.push(question);
+      const skill = topic.skills[grade];
+      for (let j = 0; j < questionsPerSection; j++) {
+        const question = generateQuestionForSkill(skill);
+        questions.push(question);
       }
     }
   }
