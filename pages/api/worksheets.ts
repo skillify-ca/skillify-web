@@ -1,16 +1,34 @@
-import { Worksheet, AdditionSingleDigitWS, AdditionDoubleDigitWS, AdditionTripleDigitWS, SubtractionSingleDigitWS, SubtractionDoubleDigitWS, SubtractionTripleDigitWS, MultiplicationEqualGroup10WS, MultiplicationTo5WS, MultiplicationTo10WS, DivisionEqualSharing8WS, Division12EquallyWS, Division100WS } from "../../components/stories/WorksheetsObj";
+import {
+  Worksheet,
+  AdditionSingleDigitWS,
+  AdditionDoubleDigitWS,
+  AdditionTripleDigitWS,
+  SubtractionSingleDigitWS,
+  SubtractionDoubleDigitWS,
+  SubtractionTripleDigitWS,
+  MultiplicationEqualGroup10WS,
+  MultiplicationTo5WS,
+  MultiplicationTo10WS,
+  DivisionEqualSharing8WS,
+  Division12EquallyWS,
+  Division100WS,
+  Subtraction4DigitWS,
+  AdditionTripleAddendsWS,
+  DivisionTripleDigitDividendWS,
+} from "../../components/stories/WorksheetsObj";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 import { getResultForSkill } from "./diagnostic/diagnosticGrader";
 import { Question } from "./question";
 import { Skill } from "./skill";
-
 
 export const getWorkSheets = (results: DiagnosticState): Worksheet[] => {
   const workSheets: Worksheet[] = results.questions
     .map((it: Question) => it.skill)
     .filter((it: Skill) => getResultForSkill(it, results) === "Not yet")
     .map((it: Skill) => getWorksheetForSkill(it));
-
+  if (workSheets.length === 0) {
+    workSheets.push(Subtraction4DigitWS, AdditionTripleAddendsWS, DivisionTripleDigitDividendWS);
+  }
   const uniqueWorksheets = new Set(workSheets);
   return Array.from(uniqueWorksheets);
 };
