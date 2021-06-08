@@ -136,6 +136,7 @@ module.exports = {
       "ring-purple-500",
     ],
     blocklist: [/^debug-/],
+    keyframes: true,
     fontFace: true,
   },
   plugins: [require("tailwindcss-hero-patterns")],
