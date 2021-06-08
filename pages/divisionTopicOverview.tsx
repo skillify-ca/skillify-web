@@ -4,6 +4,20 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 
 export default function divisionTopicOverview(props) {
+  const [grade, setGrade] = useState("Grade 3");
+  const onGradeChange = (e: any) => {
+    setGrade(e.target.value);
+  };
+  let gradeNum = (grade: string) => {
+    switch (grade) {
+      case "Grade 1":
+        return 1;
+      case "Grade 2":
+        return 2;
+      case "Grade 3":
+        return 3;
+    }
+  };
   const cardStyle = (videoId) => {
     return {
       backgroundImage: `linear-gradient(rgba(143, 143, 143, 0.8), rgba(135, 80, 156, 0.8)), url(http://img.youtube.com/vi/${videoId}/hqdefault.jpg)`,
@@ -120,8 +134,18 @@ export default function divisionTopicOverview(props) {
             Good luck, you got this!
           </p>
           <div className="flex gap-8">
+            <p className="font-bold"> Select Grade:</p>
+            <select
+              value={grade}
+              onChange={onGradeChange}
+              className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+            >
+              <option>Grade 1</option>
+              <option>Grade 2</option>
+              <option>Grade 3</option>
+            </select>
             <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
-              <Link href={"quiz/addition?level=1"}>
+              <Link href={"quiz/division?level=" + gradeNum(grade)}>
                 <Button
                   backgroundColor="blue"
                   textColor="white"

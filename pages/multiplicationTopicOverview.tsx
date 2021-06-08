@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { Button } from "../components/stories/Button";
 import Link from "next/link";
 
 export default function multiplicationTopicOverview(props) {
+  const [grade, setGrade] = useState("Grade 3");
+  const onGradeChange = (e: any) => {
+    setGrade(e.target.value);
+  };
+  let gradeNum = (grade: string) => {
+    switch (grade) {
+      case "Grade 1":
+        return 1;
+      case "Grade 2":
+        return 2;
+      case "Grade 3":
+        return 3;
+    }
+  };
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
       <DiagnosticNavbar />
@@ -175,24 +189,25 @@ export default function multiplicationTopicOverview(props) {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-4 gap-8">
-            <div className="flex flex-col w-full sm:w-1/2 gap-8">
-              <p className="text-5xl"> Quiz Time!</p>
-              <p className="text-xl">
-                Take a quiz to test out your Multiplication Skills. The topics
-                we'll cover are based on your grade level. So it's completly
-                personalized! You can take the quiz as many times as you wish to
-                perfect your skills. Good luck, you got this!
-              </p>
-              <div className="flex gap-8">
-                <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
-                  <Link href={"quiz/?level="}>
-                    <Button
-                      backgroundColor="blue"
-                      textColor="white"
-                      label="Quiz Yourself"
-                    />
-                  </Link>
-                </div>
+            <p className="font-bold"> Select Grade:</p>
+            <div className="flex gap-8">
+              <select
+                value={grade}
+                onChange={onGradeChange}
+                className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+              >
+                <option>Grade 1</option>
+                <option>Grade 2</option>
+                <option>Grade 3</option>
+              </select>
+              <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
+                <Link href={"quiz/multiplication?level=" + gradeNum(grade)}>
+                  <Button
+                    backgroundColor="blue"
+                    textColor="white"
+                    label="Quiz Yourself"
+                  />
+                </Link>
               </div>
             </div>
             <img
