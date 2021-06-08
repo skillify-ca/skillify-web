@@ -64,7 +64,7 @@ test("test worksheets2", async () => {
   expect(worksheets.length).toBe(1);
   expect(worksheets[0].title).toBe("Multiplication To 5 Worksheet");
 });
-test("test worksheets3", async () => {
+test("when student incorrectly guess all questions then they should recieve 4 worksheets on the skills answered incorrectly", async () => {
   const dummyDivisionQuestion = {
     text: "4/2=",
     answer: "2",
@@ -113,4 +113,53 @@ test("test worksheets3", async () => {
   expect(worksheets[1].title).toBe("Multiplication To 5 Worksheet");
   expect(worksheets[2].title).toBe("Addition 3-digits Worksheet");
   expect(worksheets[3].title).toBe("Subtraction 1-digit Worksheet");
+});
+test("when student correctly guess all questions then they should still recieve 3 worksheets for grade 4 topics", async () => {
+  const dummyDivisionQuestion = {
+    text: "4/2=",
+    answer: "2",
+    answerType: AnswerType.NUMBER,
+    skill: Skill.DIVIDE_12_EQUALLY,
+    questionType: QuestionType.LONG_DIVISION_PROBLEM,
+  };
+  const dummyMultiplicationQuestion = {
+    text: "4*2=",
+    answer: "8",
+    answerType: AnswerType.NUMBER,
+    skill: Skill.MULTIPLICATION_5,
+    questionType: QuestionType.HORIZONTAL_EQUATION,
+  };
+  const dummyAdditionQuestion = {
+    text: "100+100=",
+    answer: "200",
+    answerType: AnswerType.NUMBER,
+    skill: Skill.ADDITION_TRIPLE,
+    questionType: QuestionType.HORIZONTAL_EQUATION,
+  };
+  const dummySubtractionQuestion = {
+    text: "4-2=",
+    answer: "2",
+    answerType: AnswerType.NUMBER,
+    skill: Skill.SUBTRACTION_SINGLE,
+    questionType: QuestionType.HORIZONTAL_EQUATION,
+  };
+
+  // Arrange
+  const state: DiagnosticState = {
+    questions: [dummyDivisionQuestion, dummyMultiplicationQuestion, dummyAdditionQuestion,dummySubtractionQuestion ],
+    guessAns: ["Correct", "Correct", "Correct", "Correct"],
+    guesses: ["2", "8","200", "2"],
+    email: "test@gmail.com",
+    grade: "Grade 2",
+    name: "Vijaykumar"
+  };
+
+  // Act
+  const worksheets = getWorkSheets(state);
+
+  // Assert
+  expect(worksheets.length).toBe(3);
+  expect(worksheets[0].title).toBe("Triple Digit Addition with 3 Addends");
+  expect(worksheets[1].title).toBe("Quadruple Digit Subtraction");
+  expect(worksheets[2].title).toBe("Large Number Division");
 });
