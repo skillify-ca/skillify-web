@@ -193,8 +193,6 @@ function getRandomBinaryQuestion(
         break;
     }
   } else if (type === QuestionType.MULTIPLE_CHOICE) {
-    let a = randomize(min, max);
-    let b = randomize(min, max);
     let realAns = answerFunction(a, b);
     let wrongAnsA = realAns + randomize(-2, 3);
     let wrongA = wrongAnsA;
