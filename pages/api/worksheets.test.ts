@@ -5,7 +5,7 @@ import { QuestionType } from "./questionTypes";
 import { Skill } from "./skill";
 import { getWorkSheets } from "./worksheets";
 
-test("test worksheets", async () => {
+test("If the student guesses the question wrong they should recieve a worksheet to re-enforce that skill", async () => {
   const dummyDivisionQuestion = {
     text: "4/2=",
     answer: "2",
@@ -31,7 +31,7 @@ test("test worksheets", async () => {
   expect(worksheets.length).toBe(3);
 });
 
-test("test worksheets2", async () => {
+test("If a student answers some questions correctly and some incorrectly they should only receive worksheets for the skills they answered incorrectly", async () => {
   const dummyDivisionQuestion = {
     text: "4/2=",
     answer: "2",
@@ -64,7 +64,7 @@ test("test worksheets2", async () => {
   expect(worksheets.length).toBe(1);
   expect(worksheets[0].title).toBe("Multiplication To 5 Worksheet");
 });
-test("when student incorrectly guess all questions then they should recieve 4 worksheets on the skills answered incorrectly", async () => {
+test("When student incorrectly guess all questions then they should recieve 4 worksheets on the skills answered incorrectly", async () => {
   const dummyDivisionQuestion = {
     text: "4/2=",
     answer: "2",
