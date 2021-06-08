@@ -21,6 +21,7 @@ import {
   getResultForSkill,
 } from "./api/diagnostic/diagnosticGrader";
 import { generateQuestionForSkill } from "./api/questionGenerator";
+import { Button } from "../components/stories/Button";
 
 enum STAGE {
   CREATE,
@@ -150,6 +151,14 @@ const Diagnostic = () => {
     setGrade(grade);
     setStage(STAGE.TEST);
   };
+
+  const onIDontKnowClick = () => {
+    submitGuess({
+      guess: "I don't know",
+      isCorrect: false
+    })
+  }
+
   useEffect(() => {
     setCurrentQuestion(generateQuestionForSkill(Skill.ADDITION_SINGLE));
   }, [grade]);
@@ -170,9 +179,14 @@ const Diagnostic = () => {
     case STAGE.TEST:
       component = (
         <div>
-          <p className="font-semibold text-gray-500 pt-4 px-8">
-            Question: {answeredQuestions.length} / 12
-          </p>
+          <div className="flex justify-between pt-4 px-8 items-center">
+            <p className="font-semibold text-gray-500 ">
+              Question: {answeredQuestions.length} / 12
+            </p>
+            <p onClick={onIDontKnowClick} className="bg-gray-200 hover:bg-blue-200 cursor-pointer p-2 rounded-xl shadow-md font-semibold text-gray-500 ">
+              I don't know 🤔
+            </p>
+          </div>
           <QuestionSet
             title=""
             questionData={[currentQuestion]}
