@@ -9,19 +9,10 @@ import { Button } from "./Button";
 import { Input } from "./Input";
 import Toggle from "./Toggle";
 import { WordProblemAdd } from "./WordProblemAdd";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 
 const LandingPage = () => {
   const [wordProblem, setWordProblem] = useState(createWordProblemModel("+"));
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
+
   const onSubmit = () => {
     setWordProblem(createWordProblemModel("+"));
   };
@@ -31,11 +22,11 @@ const LandingPage = () => {
         <div className="flex flex-col w-full sm:w-1/2 gap-8">
           <p className="text-5xl">Math Champ Practice Tracker</p>
           <p className="text-xl">
-            Make math fun to practice! Learning with Math Champ is engaging and
-            fun. Student will earn points for correct answers, play with friends
+            Make math fun to practice! Learning with Math Champ is
+            engaging and fun. Student will earn points for correct answers, play with friends
             and level up. Our curriculum-based lessons are effective and
-            efficient. Start with our diagnostic test so we can help your child
-            learn at whatever level they're at.
+            efficient. Start with our diagnostic test so we can help your child learn
+            at whatever level they're at.
           </p>
           <div className="flex gap-8">
             <Link href="/diagnostic">
@@ -68,29 +59,7 @@ const LandingPage = () => {
           </p>
         </div>
         <div className="sm:w-1/2 m-4 p-4">
-          <div>
-            <Slider {...settings}>
-              <div>
-                <h3>1</h3>
-              </div>
-              <div>
-                <h3>2</h3>
-              </div>
-              <div>
-                <h3>3</h3>
-              </div>
-              <div>
-                <h3>4</h3>
-              </div>
-              <div>
-                <h3>5</h3>
-              </div>
-              <div>
-                <h3>6</h3>
-              </div>
-            </Slider>
-          </div>
-          {/* <WordProblemAdd
+          <WordProblemAdd
             autofocus={false}
             submitGuess={(it) => {
               onSubmit();
@@ -103,7 +72,7 @@ const LandingPage = () => {
               skill: Skill.ADDITION_SINGLE,
               wordProblem: wordProblem,
             }}
-          /> */}
+          />
         </div>
       </div>
       <div className="bg-blue-50 shadow-lg flex flex-col sm:flex-row justify-between rounded-lg">
