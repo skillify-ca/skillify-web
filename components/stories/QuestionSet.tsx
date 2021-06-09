@@ -20,7 +20,6 @@ import { MultiplicationEqualGroups } from "./MultiplicationEqualGroups";
 import { Skill } from "../../pages/api/skill";
 import { getRndColour } from "../../pages/api/random";
 import { opacity } from "pdfkit/js/mixins/color";
-import { MultipleChoice } from "./MultipleChoice";
 
 type QuestionSetProps = {
   title: string;
@@ -84,19 +83,6 @@ const QuestionSet = ({
           displayQuestion="Which Property of Addition is shown?"
           question={questionData[index].multipleChoice.options[0]}
           submitGuess={submitGuess}
-        />
-      );
-    } else if (
-      questionData[index].questionType == QuestionType.MULTIPLE_CHOICE
-    ) {
-      return (
-        <MultipleChoice
-          displayQuestion={questionData[index].text}
-          option1={questionData[index].multipleChoice.options[0]}
-          option2={questionData[index].multipleChoice.options[1]}
-          option3={questionData[index].multipleChoice.options[2]}
-          submitGuess={submitGuess}
-          answer={questionData[index].answer}
         />
       );
     } else if (
