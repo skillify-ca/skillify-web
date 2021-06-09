@@ -3,9 +3,11 @@ import React from "react";
 import {
   getResultForSkill,
   getSkillsForTopic,
+  getGradesForSkill,
 } from "../../pages/api/diagnostic/diagnosticGrader";
 import { SkillDescription, Topic } from "../../pages/api/skill";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
+import DiagnosticData from "./DiagnosticData";
 
 type DiagnosticEvidenceProps = {
   topic: Topic;
@@ -13,6 +15,16 @@ type DiagnosticEvidenceProps = {
 };
 
 const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
+  const getBackgroundColorForQuestion = (result: string) => {
+    switch (result) {
+      case "Incorrect":
+        return "bg-red-100";
+      case "Correct":
+        return "bg-green-100";
+      default:
+        return "bg-white";
+    }
+  };
   const skills = getSkillsForTopic(topic);
   let skillCount = 0;
 
@@ -92,16 +104,14 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
           </div>
           <div className="flex flex-col">
             {skills.map((skill) => (
-              <Link href={"/diagnostic/data/".concat(skill.toString())}>
-                <div
-                  className={`${getBackgroundColorForTopic(
-                    getResultForSkill(skill, results)
-                  )} p-4 border-b border-black cursor-pointer hover:underline flex justify-between`}
-                >
-                  <p className={``}> {SkillDescription(skill)}</p>
-                  <p className={``}>{getResultForSkill(skill, results)}</p>
-                </div>
-              </Link>
+              <div
+                className={`${getBackgroundColorForTopic(
+                  getResultForSkill(skill, results)
+                )} p-4 border-b border-black cursor-pointer hover:underline flex justify-between`}
+              >
+                <p className={``}> {SkillDescription(skill)}</p>
+                <p className={``}>{getResultForSkill(skill, results)}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -115,6 +125,41 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
             content aimed at helping parents make math more engaging and fun for
             their child.{" "}
           </p>
+        </div>
+      </div>
+      <div className="p-2 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100 h-screen w-full">
+        <div className="bg-white p-4 rounded-lg">
+          <div className="flex flex-col w-full">
+            <div className="flex justify-between border-b border-black">
+              <p className="p-4 font-bold"> Question </p>
+              <p className="p-4 font-bold"> Guess </p>
+            </div>
+            <div className="flex flex-col">
+              <div
+                className={`p-4 border-b border-black cursor-pointer hover:underline flex justify-between`}
+              >
+                <DiagnosticData skill={skills[0]} results={results} />
+              </div>
+              <div
+                className={`p-4 border-b border-black cursor-pointer hover:underline flex justify-between`}
+              >
+                <DiagnosticData skill={skills[1]} results={results} />
+              </div>
+              <div
+                className={`p-4 border-b border-black cursor-pointer hover:underline flex justify-between`}
+              >
+                <DiagnosticData skill={skills[2]} results={results} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <Link href="/diagnostic/conclusion">
+          <button className="items-end bg-blue-500 rounded p-3 text-white text-sm">
+            Take me Back to Conclusions
+          </button>
+        </Link>
+        <div className="flex m-auto items-center max-w-screen-sm">
+          <img src="/images/mathQuote.png"></img>
         </div>
       </div>
     </div>
