@@ -195,7 +195,7 @@ export default function additionTopicOverview(props) {
       <div className="p-4 flex flex-col items-center justify-center">
         <div className="flex flex-col gap-8 w-full">
           <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8">
-            <p className="text-5xl text-white mb-4">Addition</p>
+            <p className="text-5xl text-white mb-4">Addition Topic Overview</p>
             <p className="text-xl text-white">
               Addition is taking two or more numbers and adding them together!
               Watch the videos on the explore tab to learn more and do the
