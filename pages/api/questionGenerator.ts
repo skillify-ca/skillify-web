@@ -196,16 +196,16 @@ function getRandomBinaryQuestion(
     let realAns = answerFunction(a, b);
     let wrongAnsA = realAns + randomize(-2, 3);
     let wrongA = wrongAnsA;
-    while (wrongA < 0 || wrongA == realAns) {
-      wrongA = wrongAnsA;
-      wrongA = realAns + randomize(-2, 3);
-    }
+    // while (wrongA < 0 || wrongA == realAns) {
+    //   wrongA = wrongAnsA;
+    //   wrongA = realAns + randomize(-2, 3);
+    // }
     let wrongAnsB = realAns + randomize(-2, 3);
     let wrongB = wrongAnsB;
-    while (wrongB < 0 || wrongB == wrongA || wrongB == realAns) {
-      wrongB = wrongAnsB;
-      wrongB = realAns + randomize(-2, 3);
-    }
+    // while (wrongB < 0 || wrongB == wrongA || wrongB == realAns) {
+    //   wrongB = wrongAnsB;
+    //   wrongB = realAns + randomize(-2, 3);
+    // }
 
     text = `${a} ${operator} ${b}`;
 
