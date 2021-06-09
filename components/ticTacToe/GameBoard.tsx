@@ -5,7 +5,6 @@ import GameOver from "./GameOver";
 import Rules from "./Rules";
 import TeacherControls from "./TeacherControls";
 import "react-simple-hook-modal/dist/styles.css";
-import TicTacToeClient from "../../pages/api/ticTacToe/TicTacToeClient";
 
 enum GameState {
   MENU,
@@ -63,15 +62,14 @@ const GameBoard = () => {
     );
   } else {
     component = (
-      // <Container
-      //   onExitClick={onExitClick}
-      //   onGameOver={onGameOver}
-      //   target={targetNumber}
-      //   gameNumbers={gameNumbers}
-      //   playerOne={playerOne}
-      //   playerTwo={playerTwo}
-      // />
-      <TicTacToeClient playerID={playerOne} />
+      <Container
+        onExitClick={onExitClick}
+        onGameOver={onGameOver}
+        target={targetNumber}
+        gameNumbers={gameNumbers}
+        playerOne={playerOne}
+        playerTwo={playerTwo}
+      />
     ); // Game
   }
   return (
