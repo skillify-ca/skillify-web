@@ -46,6 +46,7 @@
     "react-modal": "^3.12.1",
     "react-redux": "^7.2.4",
     "react-simple-hook-modal": "^1.1.0",
+    "react-slick": "^0.28.1",
     "react-youtube": "^7.13.1",
     "tailwindcss": "^2.0.2",
     "tailwindcss-hero-patterns": "0.0.1",
