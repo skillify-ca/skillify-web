@@ -79,10 +79,11 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
         {topic && topic.charAt(0).toUpperCase() + topic.slice(1)}
       </p>
       <div className="flex flex-col items-center bg-white shadow-lg gap-8 rounded-lg p-4">
-        <div className="flex flex-col gap-4 sm:max-w-2xl">
+        <div className="flex flex-col gap-4 sm:max-w-3xl">
           <p> {getSummaryText(topic)} </p>
         </div>
       </div>
+
       <div className="bg-white p-4 shadow-lg rounded-lg">
         <p className="font-black text-center">Skills Tested </p>
         <div className="flex flex-col w-full">
@@ -95,7 +96,7 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
               <div
                 className={`${getBackgroundColorForTopic(
                   getResultForSkill(skill, results)
-                )} p-4 border-b border-black cursor-pointer hover:underline flex justify-between`}
+                )} p-4 border-b border-black flex justify-between`}
               >
                 <p className={``}> {SkillDescription(skill)}</p>
                 <p className={``}>{getResultForSkill(skill, results)}</p>
@@ -104,17 +105,7 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center bg-white shadow-lg gap-8 rounded-lg p-4">
-        <div className="flex flex-col gap-4 sm:max-w-2xl">
-          <p>
-            {" "}
-            For additional practice, print out the worksheet recommendations on
-            the previous page and check out the Resources tab for math-based
-            content aimed at helping parents make math more engaging and fun for
-            their child.{" "}
-          </p>
-        </div>
-      </div>
+
       <div className="p-2 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100 h-screen w-full">
         <div className="bg-white p-4 rounded-lg">
           <div className="flex flex-col w-full">
@@ -126,12 +117,23 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
             <div className="flex flex-col">
               {skills.map((question) => (
                 <div
-                  className={`p-4 border-b border-black cursor-pointer hover:underline flex justify-between`}
+                  className={`p-4 border-b border-black flex justify-between`}
                 >
                   <DiagnosticData skill={question} results={results} />
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+        <div className="flex flex-col items-center bg-white shadow-lg gap-8 rounded-lg p-4">
+          <div className="flex flex-col gap-4 sm:max-w-3xl">
+            <p>
+              {" "}
+              For additional practice, print out the worksheet recommendations
+              on the previous page and check out the Resources tab for
+              math-based content aimed at helping parents make math more
+              engaging and fun for their child.{" "}
+            </p>
           </div>
         </div>
         <Link href="/diagnostic/conclusion">
