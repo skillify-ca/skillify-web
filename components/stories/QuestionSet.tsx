@@ -10,14 +10,12 @@ import { WordProblemSub } from "./WordProblemSub";
 import { WordProblemMulti } from "./WordProblemMulti";
 import { GuessData } from "../../pages/api/guessData";
 import { WordProblemDiv } from "./WordProblemDiv";
-import { MCModel, MCOption, Question } from "../../pages/api/question";
+import { Question } from "../../pages/api/question";
 import { MultipleChoiceSentence } from "./MultipleChoiceSentence";
-import { AdditionProperty } from "./MultipleChoiceTypes";
 import { MultipleChoiceWord } from "./MultipleChoiceWord";
 import { FillBlank } from "./FillBlank";
 import { MultiplicationArray } from "./MultiplicationArray";
 import { MultiplicationEqualGroups } from "./MultiplicationEqualGroups";
-import { Skill } from "../../pages/api/skill";
 import { getRndColour } from "../../pages/api/random";
 
 type QuestionSetProps = {
