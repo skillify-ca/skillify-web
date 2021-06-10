@@ -84,9 +84,7 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
         </div>
       </div>
       <div className="bg-white p-4 shadow-lg rounded-lg">
-        <p className="pb-4">
-          Select a skill to view the questions your child did during the test
-        </p>
+        <p className="font-black text-center">Skills Tested </p>
         <div className="flex flex-col w-full">
           <div className="flex justify-between border-b border-black">
             <p className="p-4 font-bold"> I can... </p>
@@ -120,6 +118,7 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
       <div className="p-2 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100 h-screen w-full">
         <div className="bg-white p-4 rounded-lg">
           <div className="flex flex-col w-full">
+            <p className="font-black text-center"> Questions Asked </p>
             <div className="flex justify-between border-b border-black">
               <p className="p-4 font-bold"> Question </p>
               <p className="p-4 font-bold"> Guess </p>
