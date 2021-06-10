@@ -96,21 +96,6 @@ const LandingPage = () => {
               </div>
             </Slider>
           </div>
-          {/* <WordProblemAdd
-             autofocus={false}
-             submitGuess={(it) => {
-               onSubmit();
-            }}
-            question={{
-              text: "3 + 3",
-              answer: "6",
-              answerType: AnswerType.NUMBER,
-              questionType: QuestionType.BINARY_WORD_PROBLEM,
-               skill: Skill.ADDITION_SINGLE,
-               wordProblem: wordProblem,
-             }}
-           />
-           /> */}
         </div>
       </div>
       <div className="bg-blue-50 shadow-lg flex flex-col sm:flex-row justify-between rounded-lg">
