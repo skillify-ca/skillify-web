@@ -50,3 +50,15 @@ export const Division100WS = {
   title: "Division To 100 Worksheet",
   pdf: "/worksheets/division_100_worksheet.pdf",
 };
+export const AdditionTripleAddendsWS = {
+  title: "Triple Digit Addition with 3 Addends",
+  pdf: "/worksheets/grade4_worksheet(1).pdf",
+};
+export const Subtraction4DigitWS = {
+  title: "Quadruple Digit Subtraction",
+  pdf: "/worksheets/grade4_worksheet(2).pdf",
+};
+export const DivisionTripleDigitDividendWS = {
+  title: "Large Number Division",
+  pdf: "/worksheets/grade4_worksheet(3).pdf",
+};

@@ -12,14 +12,14 @@ const Hint = ({ skill }: HintProps) => {
     <div>
       <img
         onClick={() => setVisibility(!visibility)}
-        src="/images/hint.png"
-        className="w-40 h-30 flex flex-start"
+        src="/images/brainHint.png"
+        className="w-72 transform -translate-y-24 translate-x-4 "
       />
       {visibility && (
-        <div className=" overflow-y-scroll transform -translate-y-36 translate-x-36 rounded-lg ring-4 ring-yellow-200 bg-gray-400 text-white flex flex-start w-80 h-40 flex-col">
+        <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
           <span>
-            I'm your trusty Barbarian at service. Let's work on this problem
-            together shall we?
+            Hey, it's Mr.Brainy at your service!
+            <p> There are different methods to solving addition problem</p>
             <p className="font-bold text-yellow-700">
               Method 1: Counting with our fingers
             </p>
