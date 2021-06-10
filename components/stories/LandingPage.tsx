@@ -25,6 +25,13 @@ const LandingPage = () => {
   const onSubmit = () => {
     setWordProblem(createWordProblemModel("+"));
   };
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <div className="flex flex-col gap-8 w-full">
       <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-4 gap-8">
