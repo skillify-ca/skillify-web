@@ -10,16 +10,11 @@ import { Input } from "./Input";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { WordProblemAdd } from "./WordProblemAdd";
 
 const LandingPage = () => {
   const [wordProblem, setWordProblem] = useState(createWordProblemModel("+"));
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
+
   const onSubmit = () => {
     setWordProblem(createWordProblemModel("+"));
   };
@@ -66,29 +61,7 @@ const LandingPage = () => {
           </p>
         </div>
         <div className="sm:w-1/2 m-4 p-4">
-          <div>
-            <Slider {...settings}>
-              <div>
-                <h3>1</h3>
-              </div>
-              <div>
-                <h3>2</h3>
-              </div>
-              <div>
-                <h3>3</h3>
-              </div>
-              <div>
-                <h3>4</h3>
-              </div>
-              <div>
-                <h3>5</h3>
-              </div>
-              <div>
-                <h3>6</h3>
-              </div>
-            </Slider>
-          </div>
-          {/* <WordProblemAdd
+          <WordProblemAdd
             autofocus={false}
             submitGuess={(it) => {
               onSubmit();
@@ -101,7 +74,7 @@ const LandingPage = () => {
               skill: Skill.ADDITION_SINGLE,
               wordProblem: wordProblem,
             }}
-          /> */}
+          />
         </div>
       </div>
       <div className="bg-blue-50 shadow-lg flex flex-col sm:flex-row justify-between rounded-lg">
