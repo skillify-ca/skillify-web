@@ -7,7 +7,9 @@ import { createWordProblemModel } from "../../pages/api/WordProblemModel";
 import SkillCard from "../SkillCard";
 import { Button } from "./Button";
 import { Input } from "./Input";
-import Toggle from "./Toggle";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 import { WordProblemAdd } from "./WordProblemAdd";
 
 const LandingPage = () => {
@@ -22,11 +24,11 @@ const LandingPage = () => {
         <div className="flex flex-col w-full sm:w-1/2 gap-8">
           <p className="text-5xl">Math Champ Practice Tracker</p>
           <p className="text-xl">
-            Make math fun to practice! Learning with Math Champ is
-            engaging and fun. Student will earn points for correct answers, play with friends
+            Make math fun to practice! Learning with Math Champ is engaging and
+            fun. Student will earn points for correct answers, play with friends
             and level up. Our curriculum-based lessons are effective and
-            efficient. Start with our diagnostic test so we can help your child learn
-            at whatever level they're at.
+            efficient. Start with our diagnostic test so we can help your child
+            learn at whatever level they're at.
           </p>
           <div className="flex gap-8">
             <Link href="/diagnostic">
@@ -54,7 +56,7 @@ const LandingPage = () => {
           <p className="font-bold">Step 1</p>
           <p className="font-bold text-xl">Assess your child</p>
           <p>
-            During this quick assessment, your child will answer 36 questions
+            During this quick assessment, your child will answer 12 questions
             from the Ontario curriculum.
           </p>
         </div>

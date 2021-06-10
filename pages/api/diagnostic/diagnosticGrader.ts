@@ -2,7 +2,7 @@ import { DiagnosticState } from "../../../redux/diagnosticSlice";
 import { Question } from "../question";
 import { Skill, Topic } from "../skill";
 
-const PASSING_GRADE = 0.5;
+const PASSING_GRADE = 1.0;
 
 type GradedQuestion = {
   question: Question;
@@ -172,29 +172,29 @@ export const getSkillsForTopic = (topic: Topic) => {
   return [];
 };
 
-export const getSummaryText = (gradeLevel: number, inputGradeLevel: number) => {
+export const getSummaryText = (gradeLevel: number, inputGradeLevel: number, name: string) => {
   let difference = inputGradeLevel - gradeLevel;
   if (difference == 0) {
     return (
-      "Amazing work! Your child has met the expectations of the Ontario grade " +
+      "Amazing work! " + name + " has met the expectations of the Ontario grade " +
       inputGradeLevel +
       " curriculum. Encourage them to solve harder problems to keep them challenged."
     );
   } else if (difference == 1) {
     return (
-      "Great work! Your child has nearly met the expectations of the Ontario grade " +
+      "Great work! "+ name + " has nearly met the expectations of the Ontario grade " +
       inputGradeLevel +
       " curriculum. Provide them with supplemental resources to address their knowledge gaps."
     );
   } else if (difference >= 2) {
     return (
-      "Good effort! Your child requires extra practice to meet the expectations of the Ontario grade " +
+      "Good effort! "+ name + " requires extra practice to meet the expectations of the Ontario grade " +
       inputGradeLevel +
       " curriculum. Provide them with supplemental resources to address their knowledge gaps."
     );
   } else if (difference < 0) {
     return (
-      "Truly impressive! Your child has exceeded the expectations of the Ontario grade " +
+      "Truly impressive! "+ name +" has exceeded the expectations of the Ontario grade " +
       inputGradeLevel +
       " curriculum. Keep up the good work and welcome challenges with open arms!"
     );

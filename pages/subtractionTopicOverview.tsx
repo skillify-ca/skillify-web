@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { Button } from "../components/stories/Button";
 import Link from "next/link";
 
 export default function subtractionTopicOverview(props) {
+  const [grade, setGrade] = useState("Grade 3");
+  const onGradeChange = (e: any) => {
+    setGrade(e.target.value);
+  };
+  let gradeNum = (grade: string) => {
+    switch (grade) {
+      case "Grade 1":
+        return 1;
+      case "Grade 2":
+        return 2;
+      case "Grade 3":
+        return 3;
+    }
+  };
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
       <DiagnosticNavbar />
@@ -179,8 +193,18 @@ export default function subtractionTopicOverview(props) {
                 perfect your skills. Good luck, you got this!
               </p>
               <div className="flex gap-8">
+                <p className="font-bold"> Select Grade:</p>
+                <select
+                  value={grade}
+                  onChange={onGradeChange}
+                  className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+                >
+                  <option>Grade 1</option>
+                  <option>Grade 2</option>
+                  <option>Grade 3</option>
+                </select>
                 <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
-                  <Link href={"quiz/?level="}>
+                  <Link href={"quiz/subtraction?level=" + gradeNum(grade)}>
                     <Button
                       backgroundColor="blue"
                       textColor="white"
@@ -189,12 +213,12 @@ export default function subtractionTopicOverview(props) {
                   </Link>
                 </div>
               </div>
+              <img
+                className="w-full sm:w-1/2 object-cover"
+                alt="student-image"
+                src="https://knowledgeone.ca/wp-content/uploads/2018/11/online-readiness-01.jpg"
+              />
             </div>
-            <img
-              className="w-full sm:w-1/2 object-cover"
-              alt="student-image"
-              src="https://knowledgeone.ca/wp-content/uploads/2018/11/online-readiness-01.jpg"
-            />
           </div>
         </div>
       </div>
