@@ -12,6 +12,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { WordProblemAdd } from "./WordProblemAdd";
+import { settings } from "node:cluster";
 
 const LandingPage = () => {
   const [wordProblem, setWordProblem] = useState(createWordProblemModel("+"));
@@ -62,6 +63,27 @@ const LandingPage = () => {
           </p>
         </div>
         <div className="sm:w-1/2 m-4 p-4">
+        <div>
+            <Slider {...settings}>
+            <div>
+                <h3>1</h3>
+              </div>
+              <div>
+                <h3>2</h3>
+              </div>
+              <div>
+                <h3>3</h3>
+              </div>
+              <div>
+                <h3>4</h3>
+              </div>
+              <div>
+                <h3>5</h3>
+              </div>
+              <div>
+                <h3>6</h3>
+              </div>
+            </Slider>
           <WordProblemAdd
             autofocus={false}
             submitGuess={(it) => {
