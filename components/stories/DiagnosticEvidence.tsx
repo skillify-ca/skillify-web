@@ -125,21 +125,13 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
               <p className="p-4 font-bold"> Guess </p>
             </div>
             <div className="flex flex-col">
-              <div
-                className={`p-4 border-b border-black cursor-pointer hover:underline flex justify-between`}
-              >
-                <DiagnosticData skill={skills[0]} results={results} />
-              </div>
-              <div
-                className={`p-4 border-b border-black cursor-pointer hover:underline flex justify-between`}
-              >
-                <DiagnosticData skill={skills[1]} results={results} />
-              </div>
-              <div
-                className={`p-4 border-b border-black cursor-pointer hover:underline flex justify-between`}
-              >
-                <DiagnosticData skill={skills[2]} results={results} />
-              </div>
+              {skills.map((question) => (
+                <div
+                  className={`p-4 border-b border-black cursor-pointer hover:underline flex justify-between`}
+                >
+                  <DiagnosticData skill={question} results={results} />
+                </div>
+              ))}
             </div>
           </div>
         </div>
