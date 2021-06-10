@@ -15,16 +15,6 @@ type DiagnosticEvidenceProps = {
 };
 
 const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
-  const getBackgroundColorForQuestion = (result: string) => {
-    switch (result) {
-      case "Incorrect":
-        return "bg-red-100";
-      case "Correct":
-        return "bg-green-100";
-      default:
-        return "bg-white";
-    }
-  };
   const skills = getSkillsForTopic(topic);
   let skillCount = 0;
 
