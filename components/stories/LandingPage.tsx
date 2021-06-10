@@ -18,6 +18,13 @@ const LandingPage = () => {
   const onSubmit = () => {
     setWordProblem(createWordProblemModel("+"));
   };
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <div className="flex flex-col gap-8 w-full">
       <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-4 gap-8">
@@ -61,20 +68,26 @@ const LandingPage = () => {
           </p>
         </div>
         <div className="sm:w-1/2 m-4 p-4">
-          <WordProblemAdd
-            autofocus={false}
-            submitGuess={(it) => {
-              onSubmit();
-            }}
-            question={{
-              text: "3 + 3",
-              answer: "6",
-              answerType: AnswerType.NUMBER,
-              questionType: QuestionType.BINARY_WORD_PROBLEM,
-              skill: Skill.ADDITION_SINGLE,
-              wordProblem: wordProblem,
-            }}
-          />
+          <Slider {...settings}>
+            <div>
+              <h3>1</h3>
+            </div>
+            <div>
+              <h3>2</h3>
+            </div>
+            <div>
+              <h3>3</h3>
+            </div>
+            <div>
+              <h3>4</h3>
+            </div>
+            <div>
+              <h3>5</h3>
+            </div>
+            <div>
+              <h3>6</h3>
+            </div>
+          </Slider>
         </div>
       </div>
       <div className="bg-blue-50 shadow-lg flex flex-col sm:flex-row justify-between rounded-lg">
