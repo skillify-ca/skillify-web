@@ -19,7 +19,6 @@ import { MultiplicationArray } from "./MultiplicationArray";
 import { MultiplicationEqualGroups } from "./MultiplicationEqualGroups";
 import { Skill } from "../../pages/api/skill";
 import { getRndColour } from "../../pages/api/random";
-import { opacity } from "pdfkit/js/mixins/color";
 
 type QuestionSetProps = {
   title: string;
