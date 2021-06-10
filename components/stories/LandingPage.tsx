@@ -10,6 +10,7 @@ import { Input } from "./Input";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { WordProblemAdd } from "./WordProblemAdd";
 
 const LandingPage = () => {
   const [wordProblem, setWordProblem] = useState(createWordProblemModel("+"));
