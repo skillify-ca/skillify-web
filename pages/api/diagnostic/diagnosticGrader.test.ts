@@ -32,24 +32,31 @@ const dummyMultiplicationQuestion = {
 };
 
 const dummyAdditionQuestion1 = {
-  text: "4 + 2=",
+  text: "4+2=",
   answer: "6",
   answerType: AnswerType.NUMBER,
   skill: Skill.ADDITION_SINGLE,
   questionType: QuestionType.HORIZONTAL_EQUATION,
 };
 const dummyAdditionQuestion2 = {
-  text: "6 + 2=",
+  text: "6+2=",
   answer: "8",
   answerType: AnswerType.NUMBER,
   skill: Skill.ADDITION_SINGLE,
   questionType: QuestionType.HORIZONTAL_EQUATION,
 };
 const dummyAdditionQuestion3 = {
-  text: "5 + 4=",
+  text: "5+4=",
   answer: "9",
   answerType: AnswerType.NUMBER,
   skill: Skill.ADDITION_SINGLE,
+  questionType: QuestionType.HORIZONTAL_EQUATION,
+};
+const dummyA2 = {
+  text: "16+2=",
+  answer: "18",
+  answerType: AnswerType.NUMBER,
+  skill: Skill.ADDITION_DOUBLE,
   questionType: QuestionType.HORIZONTAL_EQUATION,
 };
 
@@ -75,151 +82,20 @@ test("if students gets all the addition questions wrong, expect JK/SK for additi
   expect(grade).toBe("JK/SK");
 });
 
-test("grade correct division", async () => {
+test("if students gets A1 right but A2 wrong, expect Grade 1 for third question", async () => {
   // Arrange
   const state: DiagnosticState = {
-    questions: [dummyDivision12Question],
-    guessAns: ["Correct"],
-    guesses: ["2"],
+    questions: [dummyAdditionQuestion1, dummyA2, dummyAdditionQuestion3],
+    guessAns: ["Correct", "Incorrect", "Correct"],
+    guesses: ["6", "0", "9"],
     email: "test@gmail.com",
     grade: "Grade 2",
     name: "Lavan",
   };
 
   // Act
-  const grade = getGradeLevelForTopic(Topic.DIVISION, state);
-
-  // Assert
-  expect(grade).toBe("Grade 2");
-});
-
-test("grade correct division 2", async () => {
-  // Arrange
-  const state: DiagnosticState = {
-    questions: [dummyDivision12Question],
-    guessAns: ["Incorrect"],
-    guesses: ["3"],
-    email: "test@gmail.com",
-    grade: "Grade 2",
-    name: "Lavan",
-  };
-
-  // Act
-  const grade = getGradeLevelForTopic(Topic.DIVISION, state);
+  const grade = getGradeLevelForTopic(Topic.ADDITION, state);
 
   // Assert
   expect(grade).toBe("Grade 1");
-});
-
-test("when student can divide up to 100 grade should be grade 3", async () => {
-  // Arrange
-  const state: DiagnosticState = {
-    questions: [dummyDivision100Question, dummyDivision100Question],
-    guessAns: ["Correct", "Correct"],
-    guesses: ["2", "2"],
-    email: "test@gmail.com",
-    grade: "Grade 2",
-    name: "Lavan",
-  };
-
-  // Act
-  const grade = getGradeLevelForTopic(Topic.DIVISION, state);
-
-  // Assert
-  expect(grade).toBe("Grade 3");
-});
-
-test("when student can divide up to 12 but not 100 grade should be grade 2", async () => {
-  // Arrange
-  const state: DiagnosticState = {
-    questions: [
-      dummyDivision100Question,
-      dummyDivision100Question,
-      dummyDivision12Question,
-      dummyDivision12Question,
-    ],
-    guessAns: ["Incorrect", "Correct", "Correct", "Correct"],
-    guesses: ["3", "2", "2", "2"],
-    email: "test@gmail.com",
-    grade: "Grade 2",
-    name: "Lavan",
-  };
-
-  // Act
-  const grade = getGradeLevelForTopic(Topic.DIVISION, state);
-
-  // Assert
-  expect(grade).toBe("Grade 2");
-});
-
-test("when student can't divide up to 12 grade should be grade 1", async () => {
-  // Arrange
-  const state: DiagnosticState = {
-    questions: [dummyDivision12Question, dummyDivision12Question],
-    guessAns: ["Incorrect", "Correct"],
-    guesses: ["3", "2"],
-    email: "test@gmail.com",
-    grade: "Grade 2",
-    name: "Lavan",
-  };
-
-  // Act
-  const grade = getGradeLevelForTopic(Topic.DIVISION, state);
-
-  // Assert
-  expect(grade).toBe("Grade 1");
-});
-
-test("test summary text for first grader earning a third grade level", async () => {
-  // Arrange
-  const inputGradeLevel = 1;
-  const diagnosticGradeLevel = 3;
-
-  // Act
-  const summary = getSummaryText(
-    diagnosticGradeLevel,
-    inputGradeLevel,
-    "Lavan"
-  );
-
-  // Assert
-  expect(summary).toBe(
-    "Truly impressive! Lavan has exceeded the expectations of the Ontario grade 1 curriculum. Keep up the good work and welcome challenges with open arms!"
-  );
-});
-
-test("test summary text for first grader earning a second grade level", async () => {
-  // Arrange
-  const inputGradeLevel = 1;
-  const diagnosticGradeLevel = 2;
-
-  // Act
-  const summary = getSummaryText(
-    diagnosticGradeLevel,
-    inputGradeLevel,
-    "Lavan"
-  );
-
-  // Assert
-  expect(summary).toBe(
-    "Truly impressive! Lavan has exceeded the expectations of the Ontario grade 1 curriculum. Keep up the good work and welcome challenges with open arms!"
-  );
-});
-
-test("test summary text for first grader earning a first grade level", async () => {
-  // Arrange
-  const inputGradeLevel = 1;
-  const diagnosticGradeLevel = 1;
-
-  // Act
-  const summary = getSummaryText(
-    diagnosticGradeLevel,
-    inputGradeLevel,
-    "Lavan"
-  );
-
-  // Assert
-  expect(summary).toBe(
-    "Amazing work! Lavan has met the expectations of the Ontario grade 1 curriculum. Encourage them to solve harder problems to keep them challenged."
-  );
 });
