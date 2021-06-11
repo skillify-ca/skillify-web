@@ -189,5 +189,5 @@ test("When student answers last division question (Equal sharing), then next que
   const question = getNextQuestion(D1, true, 0);
 
   // Assert
-  expect(question.skill).toBe(Skill.EQUAL_SHARING_8_ITEMS);
+  expect(question).toBe(null);
 });
