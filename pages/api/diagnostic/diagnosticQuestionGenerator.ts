@@ -1,7 +1,6 @@
 import { Question } from "../question";
 import { generateQuestionForSkill } from "../questionGenerator";
 import { Skill } from "../skill";
-import { getQuestionForSkill } from "./diagnosticGrader";
 
 const NUM_QUESTIONS = 1;
 
