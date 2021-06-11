@@ -106,8 +106,12 @@ export const getGradeLevelForTopic = (
         getResultForSkill(Skill.ADDITION_DOUBLE, results) == "Got it!"
       ) {
         return "Grade 2";
-      } else {
+      } else if (
+        getResultForSkill(Skill.ADDITION_SINGLE, results) == "Got it!"
+      ) {
         return "Grade 1";
+      } else {
+        return "JK/SK";
       }
     case Topic.SUBTRACTION:
       if (getResultForSkill(Skill.SUBTRACTION_TRIPLE, results) == "Got it!") {
@@ -172,29 +176,41 @@ export const getSkillsForTopic = (topic: Topic) => {
   return [];
 };
 
-export const getSummaryText = (gradeLevel: number, inputGradeLevel: number, name: string) => {
+export const getSummaryText = (
+  gradeLevel: number,
+  inputGradeLevel: number,
+  name: string
+) => {
   let difference = inputGradeLevel - gradeLevel;
   if (difference == 0) {
     return (
-      "Amazing work! " + name + " has met the expectations of the Ontario grade " +
+      "Amazing work! " +
+      name +
+      " has met the expectations of the Ontario grade " +
       inputGradeLevel +
       " curriculum. Encourage them to solve harder problems to keep them challenged."
     );
   } else if (difference == 1) {
     return (
-      "Great work! "+ name + " has nearly met the expectations of the Ontario grade " +
+      "Great work! " +
+      name +
+      " has nearly met the expectations of the Ontario grade " +
       inputGradeLevel +
       " curriculum. Provide them with supplemental resources to address their knowledge gaps."
     );
   } else if (difference >= 2) {
     return (
-      "Good effort! "+ name + " requires extra practice to meet the expectations of the Ontario grade " +
+      "Good effort! " +
+      name +
+      " requires extra practice to meet the expectations of the Ontario grade " +
       inputGradeLevel +
       " curriculum. Provide them with supplemental resources to address their knowledge gaps."
     );
   } else if (difference < 0) {
     return (
-      "Truly impressive! "+ name +" has exceeded the expectations of the Ontario grade " +
+      "Truly impressive! " +
+      name +
+      " has exceeded the expectations of the Ontario grade " +
       inputGradeLevel +
       " curriculum. Keep up the good work and welcome challenges with open arms!"
     );
@@ -203,7 +219,7 @@ export const getSummaryText = (gradeLevel: number, inputGradeLevel: number, name
   }
 };
 
-export const getCalculatedGrade = (results : DiagnosticState) => {
+export const getCalculatedGrade = (results: DiagnosticState) => {
   let gradeLevel = 0;
   if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 3") {
     gradeLevel = gradeLevel + 3;
@@ -242,5 +258,5 @@ export const getCalculatedGrade = (results : DiagnosticState) => {
     gradeLevel = gradeLevel + 1;
   }
   gradeLevel = Math.round(gradeLevel / 4);
-  return gradeLevel
-}
+  return gradeLevel;
+};

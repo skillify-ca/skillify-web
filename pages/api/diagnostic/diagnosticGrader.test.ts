@@ -31,6 +31,50 @@ const dummyMultiplicationQuestion = {
   questionType: QuestionType.HORIZONTAL_EQUATION,
 };
 
+const dummyAdditionQuestion1 = {
+  text: "4 + 2=",
+  answer: "6",
+  answerType: AnswerType.NUMBER,
+  skill: Skill.ADDITION_SINGLE,
+  questionType: QuestionType.HORIZONTAL_EQUATION,
+};
+const dummyAdditionQuestion2 = {
+  text: "6 + 2=",
+  answer: "8",
+  answerType: AnswerType.NUMBER,
+  skill: Skill.ADDITION_SINGLE,
+  questionType: QuestionType.HORIZONTAL_EQUATION,
+};
+const dummyAdditionQuestion3 = {
+  text: "5 + 4=",
+  answer: "9",
+  answerType: AnswerType.NUMBER,
+  skill: Skill.ADDITION_SINGLE,
+  questionType: QuestionType.HORIZONTAL_EQUATION,
+};
+
+test("if students gets all the addition questions wrong, expect JK/SK for additiona grade level", async () => {
+  // Arrange
+  const state: DiagnosticState = {
+    questions: [
+      dummyAdditionQuestion1,
+      dummyAdditionQuestion2,
+      dummyAdditionQuestion3,
+    ],
+    guessAns: ["Incorrect", "Incorrect", "Incorrect"],
+    guesses: ["0", "0", "0"],
+    email: "test@gmail.com",
+    grade: "Grade 2",
+    name: "Lavan",
+  };
+
+  // Act
+  const grade = getGradeLevelForTopic(Topic.ADDITION, state);
+
+  // Assert
+  expect(grade).toBe("JK/SK");
+});
+
 test("grade correct division", async () => {
   // Arrange
   const state: DiagnosticState = {
@@ -57,7 +101,7 @@ test("grade correct division 2", async () => {
     guesses: ["3"],
     email: "test@gmail.com",
     grade: "Grade 2",
-    name: "Lavan"
+    name: "Lavan",
   };
 
   // Act
@@ -70,10 +114,7 @@ test("grade correct division 2", async () => {
 test("when student can divide up to 100 grade should be grade 3", async () => {
   // Arrange
   const state: DiagnosticState = {
-    questions: [
-      dummyDivision100Question,
-      dummyDivision100Question
-    ],
+    questions: [dummyDivision100Question, dummyDivision100Question],
     guessAns: ["Correct", "Correct"],
     guesses: ["2", "2"],
     email: "test@gmail.com",
@@ -95,7 +136,7 @@ test("when student can divide up to 12 but not 100 grade should be grade 2", asy
       dummyDivision100Question,
       dummyDivision100Question,
       dummyDivision12Question,
-      dummyDivision12Question
+      dummyDivision12Question,
     ],
     guessAns: ["Incorrect", "Correct", "Correct", "Correct"],
     guesses: ["3", "2", "2", "2"],
@@ -111,14 +152,10 @@ test("when student can divide up to 12 but not 100 grade should be grade 2", asy
   expect(grade).toBe("Grade 2");
 });
 
-
 test("when student can't divide up to 12 grade should be grade 1", async () => {
   // Arrange
   const state: DiagnosticState = {
-    questions: [
-      dummyDivision12Question,
-      dummyDivision12Question
-    ],
+    questions: [dummyDivision12Question, dummyDivision12Question],
     guessAns: ["Incorrect", "Correct"],
     guesses: ["3", "2"],
     email: "test@gmail.com",
@@ -139,7 +176,11 @@ test("test summary text for first grader earning a third grade level", async () 
   const diagnosticGradeLevel = 3;
 
   // Act
-  const summary = getSummaryText(diagnosticGradeLevel, inputGradeLevel, "Lavan");
+  const summary = getSummaryText(
+    diagnosticGradeLevel,
+    inputGradeLevel,
+    "Lavan"
+  );
 
   // Assert
   expect(summary).toBe(
@@ -153,7 +194,11 @@ test("test summary text for first grader earning a second grade level", async ()
   const diagnosticGradeLevel = 2;
 
   // Act
-  const summary = getSummaryText(diagnosticGradeLevel, inputGradeLevel, "Lavan");
+  const summary = getSummaryText(
+    diagnosticGradeLevel,
+    inputGradeLevel,
+    "Lavan"
+  );
 
   // Assert
   expect(summary).toBe(
@@ -167,7 +212,11 @@ test("test summary text for first grader earning a first grade level", async () 
   const diagnosticGradeLevel = 1;
 
   // Act
-  const summary = getSummaryText(diagnosticGradeLevel, inputGradeLevel, "Lavan");
+  const summary = getSummaryText(
+    diagnosticGradeLevel,
+    inputGradeLevel,
+    "Lavan"
+  );
 
   // Assert
   expect(summary).toBe(
