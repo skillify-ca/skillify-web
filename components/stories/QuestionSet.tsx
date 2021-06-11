@@ -10,17 +10,13 @@ import { WordProblemSub } from "./WordProblemSub";
 import { WordProblemMulti } from "./WordProblemMulti";
 import { GuessData } from "../../pages/api/guessData";
 import { WordProblemDiv } from "./WordProblemDiv";
-import { MCModel, MCOption, Question } from "../../pages/api/question";
+import { Question } from "../../pages/api/question";
 import { MultipleChoiceSentence } from "./MultipleChoiceSentence";
-import { AdditionProperty } from "./MultipleChoiceTypes";
 import { MultipleChoiceWord } from "./MultipleChoiceWord";
 import { FillBlank } from "./FillBlank";
 import { MultiplicationArray } from "./MultiplicationArray";
 import { MultiplicationEqualGroups } from "./MultiplicationEqualGroups";
-import { Skill } from "../../pages/api/skill";
 import { getRndColour } from "../../pages/api/random";
-import { opacity } from "pdfkit/js/mixins/color";
-import { MultipleChoice } from "./MultipleChoice";
 
 type QuestionSetProps = {
   title: string;
@@ -84,19 +80,6 @@ const QuestionSet = ({
           displayQuestion="Which Property of Addition is shown?"
           question={questionData[index].multipleChoice.options[0]}
           submitGuess={submitGuess}
-        />
-      );
-    } else if (
-      questionData[index].questionType == QuestionType.MULTIPLE_CHOICE
-    ) {
-      return (
-        <MultipleChoice
-          displayQuestion={questionData[index].text}
-          option1={questionData[index].multipleChoice.options[0]}
-          option2={questionData[index].multipleChoice.options[1]}
-          option3={questionData[index].multipleChoice.options[2]}
-          submitGuess={submitGuess}
-          answer={questionData[index].answer}
         />
       );
     } else if (
@@ -199,7 +182,7 @@ const QuestionSet = ({
   );
   return (
     <div className="flex flex-col justify-center items-center gap-4 m-8">
-      {!practice && (
+      {!practice && !diagnostic && (
         <div className="flex flex-row justify-between w-full p-4 bg-blue-300 shadow-lg rounded-lg ">
           {progressText}
           {scoreText}

@@ -22,6 +22,8 @@ module.exports = {
           "25%, 75%": { transform: "rotate(-3deg)" },
           "50%": { transform: "rotate(3deg)" },
         },
+      outline: {
+        black: "2px solid #000000",
       },
       primary: "#4495f0",
       secondary: "#ff8e4f",
