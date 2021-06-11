@@ -182,7 +182,7 @@ const QuestionSet = ({
   );
   return (
     <div className="flex flex-col justify-center items-center gap-4 m-8">
-      {!practice && (
+      {!practice && !diagnostic && (
         <div className="flex flex-row justify-between w-full p-4 bg-blue-300 shadow-lg rounded-lg ">
           {progressText}
           {scoreText}
