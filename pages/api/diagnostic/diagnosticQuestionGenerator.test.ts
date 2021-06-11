@@ -35,12 +35,34 @@ const S1: Question = {
   questionType: QuestionType.VERTICAL_EQUATION,
   skill: Skill.SUBTRACTION_SINGLE,
 };
+const S2: Question = {
+  text: "21 - 10 =",
+  answer: "11",
+  answerType: AnswerType.NUMBER,
+  questionType: QuestionType.VERTICAL_EQUATION,
+  skill: Skill.SUBTRACTION_SINGLE,
+};
+const S3: Question = {
+  text: "568 - 168 =",
+  answer: "400",
+  answerType: AnswerType.NUMBER,
+  questionType: QuestionType.VERTICAL_EQUATION,
+  skill: Skill.SUBTRACTION_SINGLE,
+};
+
 const M1: Question = {
   text: "2 * 1 =",
   answer: "2",
   answerType: AnswerType.NUMBER,
   questionType: QuestionType.VERTICAL_EQUATION,
   skill: Skill.EQUAL_GROUP_10_ITEMS,
+};
+const D1: Question = {
+  text: "2 / 1 =",
+  answer: "2",
+  answerType: AnswerType.NUMBER,
+  questionType: QuestionType.VERTICAL_EQUATION,
+  skill: Skill.EQUAL_SHARING_8_ITEMS,
 };
 
 test("When student answers single digit addition correctly, then next question should be double digit addition", async () => {
@@ -99,6 +121,13 @@ test("When student answers last addition question, then next question should be 
   expect(question.skill).toBe(Skill.SUBTRACTION_SINGLE);
 });
 
+test("When student answers double digit subtraction question incorrectly, then next question should be single digit subtraction", async () => {
+  // Act
+  const question = getNextQuestion(S2, false, 1);
+
+  // Assert
+  expect(question.skill).toBe(Skill.SUBTRACTION_DOUBLE);
+});
 test("When student answers last subtraction question, then next question should be equal groups", async () => {
   // Act
   const question = getNextQuestion(S1, true, 0);
@@ -106,10 +135,52 @@ test("When student answers last subtraction question, then next question should 
   // Assert
   expect(question.skill).toBe(Skill.EQUAL_GROUP_10_ITEMS);
 });
+test("When student answers single-digit subtraction question incorrectly, then next question should be single-digit subtraction ", async () => {
+  // Act
+  const question = getNextQuestion(S1, true, 3);
+
+  // Assert
+  expect(question.skill).toBe(Skill.SUBTRACTION_SINGLE);
+});
+test("When student answers triple digit subtraction question incorrectly, then next question should be double digit subtraction", async () => {
+  // Act
+  const question = getNextQuestion(S3, false, 2);
+
+  // Assert
+  expect(question.skill).toBe(Skill.SUBTRACTION_DOUBLE);
+});
 
 test("When student answers last multiplication question, then next question should be equal sharing", async () => {
   // Act
   const question = getNextQuestion(M1, true, 0);
+
+  // Assert
+  expect(question.skill).toBe(Skill.EQUAL_SHARING_8_ITEMS);
+});
+test("When student answers equal groups question incorrectly, then next question should be equal groups", async () => {
+  // Act
+  const question = getNextQuestion(M1, false, 3);
+
+  // Assert
+  expect(question.skill).toBe(Skill.EQUAL_SHARING_8_ITEMS);
+});
+test("When student answers equal groups question correctly, then next question should be equal groups", async () => {
+  // Act
+  const question = getNextQuestion(M1, true, 3);
+
+  // Assert
+  expect(question.skill).toBe(Skill.MULTIPLICATION_5);
+});
+test("When student answers equal sharing question correctly, then next question should be Divison to 12", async () => {
+  // Act
+  const question = getNextQuestion(D1, true, 3);
+
+  // Assert
+  expect(question.skill).toBe(Skill.DIVIDE_12_EQUALLY);
+});
+test("When student answers last division question (Equal sharing), then next question should be Equal sharing", async () => {
+  // Act
+  const question = getNextQuestion(D1, true, 0);
 
   // Assert
   expect(question.skill).toBe(Skill.EQUAL_SHARING_8_ITEMS);
