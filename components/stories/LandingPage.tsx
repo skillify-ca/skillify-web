@@ -15,8 +15,22 @@ import { WordProblemAdd } from "./WordProblemAdd";
 const LandingPage = () => {
   const [wordProblem, setWordProblem] = useState(createWordProblemModel("+"));
 
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   const onSubmit = () => {
     setWordProblem(createWordProblemModel("+"));
+  };
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
   };
   return (
     <div className="flex flex-col gap-8 w-full">
@@ -61,34 +75,40 @@ const LandingPage = () => {
           </p>
         </div>
         <div className="sm:w-1/2 m-4 p-4">
-          <WordProblemAdd
-            autofocus={false}
-            submitGuess={(it) => {
-              onSubmit();
-            }}
-            question={{
-              text: "3 + 3",
-              answer: "6",
-              answerType: AnswerType.NUMBER,
-              questionType: QuestionType.BINARY_WORD_PROBLEM,
-              skill: Skill.ADDITION_SINGLE,
-              wordProblem: wordProblem,
-            }}
-          />
+          <div>
+            <Slider {...settings}>
+              <div>
+                <img
+                  src="/images/wordProblem1.png"
+                  className="w-full sm:w-1/2 ml-40 appearance-none"
+                ></img>
+              </div>
+              <div>
+                <img
+                  src="/images/equalGroups.png"
+                  className="w-full sm:w-1/2 ml-40 appearance-none"
+                ></img>
+              </div>
+              <div>
+                <img
+                  src="/images/multiArrays.png"
+                  className="w-full sm:w-1/2 ml-40 appearance-none"
+                ></img>
+              </div>
+              <div>
+                <img
+                  src="/images/trueFalse.png"
+                  className="w-full sm:w-1/2 ml-40 appearance-none"
+                ></img>
+              </div>
+            </Slider>
+          </div>
         </div>
       </div>
       <div className="bg-blue-50 shadow-lg flex flex-col sm:flex-row justify-between rounded-lg">
         <div className="w-full sm:w-1/2 h-64 flex flex-col justify-center items-center gap-8 bg-white p-8">
-          <p className="text-xl font-bold">{"Addition"}</p>
-
-          <div className="flex gap-4">
-            <Button backgroundColor="purple" textColor="white" label="Videos" />
-            <Button
-              backgroundColor="green"
-              textColor="white"
-              label="Practice"
-            />
-            <Button backgroundColor="blue" textColor="white" label="Quiz" />
+          <div className="sm:w-96">
+            <img src="/images/step2.png" />
           </div>
         </div>
         <div className="flex flex-col gap-4 p-8 sm:w-1/2">

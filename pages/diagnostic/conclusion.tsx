@@ -1,10 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import DiagnosticNavbar from "../../components/DiagnosticNavbar";
-import DiagnosticConclusion from "../../components/stories/DiagnosticConclusion";
 
 import { diagnosticSelector } from "../../redux/diagnosticSlice";
 
+import dynamic from 'next/dynamic'
+
+const DiagnosticConclusion = dynamic(
+  () => import('../../components/stories/DiagnosticConclusion'),
+  { ssr: false }
+)
 const DiagnosticConclusionPage = () => {
   const diagnosticResults = useSelector(diagnosticSelector);
   return (

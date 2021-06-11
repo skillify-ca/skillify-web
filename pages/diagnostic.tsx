@@ -8,7 +8,11 @@ import { QuestionType } from "./api/questionTypes";
 import { DiagnosticState, setDiagnostic } from "../redux/diagnosticSlice";
 import { useAppDispatch } from "../redux/store";
 import { Skill, Topic } from "./api/skill";
-import { generateQuestionsForDiagnostic } from "./api/diagnostic/diagnosticQuestionGenerator";
+import {
+  generateQuestionsForDiagnostic,
+  getNextQuestion,
+  Grade,
+} from "./api/diagnostic/diagnosticQuestionGenerator";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { getWorkSheets } from "./api/worksheets";
 import {
@@ -16,6 +20,7 @@ import {
   getGradeLevelForTopic,
   getResultForSkill,
 } from "./api/diagnostic/diagnosticGrader";
+import { generateQuestionForSkill } from "./api/questionGenerator";
 
 enum STAGE {
   CREATE,
@@ -24,25 +29,24 @@ enum STAGE {
 }
 
 const Diagnostic = () => {
+  const TOTAL_QUESTIONS = 12;
+  const QUESTIONS_PER_TOPIC = 3;
+
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState(1);
-  const [grade, setGrade] = useState("");
+  const [grade, setGrade] = useState(Grade.GRADE_THREE);
   const [stage, setStage] = useState(STAGE.CREATE);
-  const [index, setIndex] = useState(0);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [guesses, setGuesses] = useState<Array<string>>([]);
   const [guessAns, setGuessAns] = useState<Array<string>>([]);
-  const [questionData, setQuestionData] = useState<Question[]>([
-    {
-      text: "",
-      answer: "",
-      answerType: AnswerType.NUMBER,
-      questionType: QuestionType.HORIZONTAL_EQUATION,
-      skill: Skill.ADDITION_SINGLE,
-    },
-  ]);
+  const [answeredQuestions, setAnsweredQuestions] = useState<Question[]>([]);
+
+  const [questionsLeftInTopic, setQuestionsLeftInTopic] = useState<number>(
+    QUESTIONS_PER_TOPIC
+  );
+  const [currentQuestion, setCurrentQuestion] = useState<Question>();
   const inputElement = useRef(null);
 
   const requestEmail = async (results: DiagnosticState) => {
@@ -93,13 +97,6 @@ const Diagnostic = () => {
   }
 
   const submitGuess = async (guessData: GuessData) => {
-    if (index < questionData.length - 1) {
-      setOpacity(0);
-      await delay(150);
-      setIndex(index + 1);
-      setOpacity(1);
-    }
-
     // Save if they guessed the question correctly or not
     let updateGuessAns;
     if (guessData.isCorrect) {
@@ -114,10 +111,29 @@ const Diagnostic = () => {
     let updateGuess;
     updateGuess = guesses.concat(guessData.guess);
     setGuesses(updateGuess);
+    const newAnsweredQuestions = [...answeredQuestions, currentQuestion];
+    setAnsweredQuestions(newAnsweredQuestions);
 
-    if (index == questionData.length - 1) {
+    if (newAnsweredQuestions.length < TOTAL_QUESTIONS) {
+      setOpacity(0);
+      await delay(150);
+      setOpacity(1);
+
+      const newQuestionsLeftInTopic =
+        questionsLeftInTopic == 0
+          ? QUESTIONS_PER_TOPIC - 1
+          : questionsLeftInTopic - 1;
+      const nextQuestion = getNextQuestion(
+        currentQuestion,
+        guessData.isCorrect,
+        newQuestionsLeftInTopic
+      );
+      setCurrentQuestion(nextQuestion);
+      setQuestionsLeftInTopic(newQuestionsLeftInTopic);
+    }
+    if (newAnsweredQuestions.length >= TOTAL_QUESTIONS) {
       const results: DiagnosticState = {
-        questions: questionData,
+        questions: answeredQuestions,
         guessAns: updateGuessAns,
         guesses: updateGuess,
         grade: grade,
@@ -130,12 +146,12 @@ const Diagnostic = () => {
     }
   };
 
-  const createDiagnostic = (grade: string) => {
+  const createDiagnostic = (grade: Grade) => {
     setGrade(grade);
     setStage(STAGE.TEST);
   };
   useEffect(() => {
-    setQuestionData(generateQuestionsForDiagnostic());
+    setCurrentQuestion(generateQuestionForSkill(Skill.ADDITION_SINGLE));
   }, [grade]);
 
   let component;
@@ -153,20 +169,28 @@ const Diagnostic = () => {
       break;
     case STAGE.TEST:
       component = (
-        <QuestionSet
-          title=""
-          questionData={questionData}
-          index={index}
-          inputElement={inputElement}
-          submitGuess={submitGuess}
-          score={correctGuesses}
-          diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
-        />
+        <div>
+          <p className="font-semibold text-gray-500 pt-4 px-8">
+            Question: {answeredQuestions.length} / 12
+          </p>
+          <QuestionSet
+            title=""
+            questionData={[currentQuestion]}
+            index={0}
+            inputElement={inputElement}
+            submitGuess={submitGuess}
+            score={correctGuesses}
+            diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
+          />
+        </div>
       );
       break;
     case STAGE.RESULTS:
       component = (
-        <DiagnosticResults correctGuesses={correctGuesses} index={index + 1} />
+        <DiagnosticResults
+          correctGuesses={correctGuesses}
+          numberOfQuestions={TOTAL_QUESTIONS}
+        />
       );
       break;
   }
