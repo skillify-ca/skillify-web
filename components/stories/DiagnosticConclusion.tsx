@@ -79,6 +79,11 @@ export const DiagnosticConclusion = ({
     displayGrade = "JK/SK";
   }
 
+  let displayName = results.name;
+  if (displayName == "") {
+    displayName = "Your Child";
+  }
+
   return (
     <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100">
       <div className="bg-white p-4 rounded-lg shadow-lg">
@@ -176,10 +181,7 @@ export const DiagnosticConclusion = ({
       </div>
       <div className="flex flex-col bg-white shadow-lg rounded-lg p-4">
         <div className="flex flex-col gap-4">
-          <p className="font-bold">
-            {" "}
-            {results.name}'s Personalized Worksheets{" "}
-          </p>
+          <p className="font-bold"> {displayName}'s Personalized Worksheets </p>
           <p className="mb-4">
             Stay ahead of your child’s development with these worksheets curated
             by Math Champ specifically for your child, based on their diagnostic
