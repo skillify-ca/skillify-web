@@ -23,7 +23,7 @@ const Dot = ({ exists = true, visible = true }: DotProps) => {
       <div
         className={`${visible ? "opacity-100" : "opacity-0"} 
           m-${margin}
-          rounded-full h-${displayLength} w-${displayLength}  bg-${colourDisplay}-400 border-black`}
+          rounded-full shadow-md h-${displayLength} w-${displayLength}  bg-${colourDisplay}-400 border-black`}
       ></div>
     )
   );
