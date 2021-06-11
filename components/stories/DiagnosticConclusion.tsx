@@ -82,17 +82,17 @@ export const DiagnosticConclusion = ({
   return (
     <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100">
       <div className="bg-white p-4 rounded-lg shadow-lg">
-        <p className="mb-8 text-center font-black text-xl">
+        <p className="mb-4 text-center font-black text-xl">
           Math Champ Report Card
         </p>
-        <div className="flex flex-col">
-          <p className="font-bold mb-2 items-center">
+        <div className=" flex flex-row object-contain justify-center">
+          <img className="max-h-24 mb-4 mr-4" src={badgeSelector(gradeLevel)} />
+          <p className="text-lg font-semibold mt-8 ">
             {" "}
-            {"Average Ontario Grade Level - Grade " + displayGrade}{" "}
+            Average Ontario Grade Level - {displayGrade}{" "}
           </p>
-          <img className="h-1/8 w-1/12 ml-6" src={badgeSelector(gradeLevel)} />
         </div>
-        <p>
+        <p className="flex justify-center">
           {getSummaryText(
             gradeLevel,
             parseInt(parse(results.grade).second),
@@ -174,14 +174,26 @@ export const DiagnosticConclusion = ({
           </p>
         </div>
       </div>
-      <div className="flex flex-col bg-white p-4 shadow-lg rounded-lg">
-        <p className="p-4 font-extrabold border-b border-black">
-          {results.name}'s Personalized Worksheets
-        </p>
+      <div className="flex flex-col bg-white shadow-lg rounded-lg p-4">
+        <div className="flex flex-col gap-4">
+          <p className="font-bold">
+            {" "}
+            {results.name}'s Personalized Worksheets{" "}
+          </p>
+          <p className="mb-4">
+            Stay ahead of your child’s development with these worksheets curated
+            by Math Champ specifically for your child, based on their diagnostic
+            test scores.
+          </p>
+        </div>
         {getWorkSheets(results).map(
           (it) =>
             it && (
-              <a className="text-blue-500 px-4" href={it.pdf} target="_blank">
+              <a
+                className="text-blue-500 px-4 hover:underline cursor-pointer"
+                href={it.pdf}
+                target="_blank"
+              >
                 {it.title}
               </a>
             )
