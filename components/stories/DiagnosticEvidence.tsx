@@ -3,9 +3,11 @@ import React from "react";
 import {
   getResultForSkill,
   getSkillsForTopic,
+  getGradesForSkill,
 } from "../../pages/api/diagnostic/diagnosticGrader";
 import { SkillDescription, Topic } from "../../pages/api/skill";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
+import DiagnosticData from "./DiagnosticData";
 
 type DiagnosticEvidenceProps = {
   topic: Topic;
@@ -77,14 +79,13 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
         {topic && topic.charAt(0).toUpperCase() + topic.slice(1)}
       </p>
       <div className="flex flex-col items-center bg-white shadow-lg gap-8 rounded-lg p-4">
-        <div className="flex flex-col gap-4 sm:max-w-2xl">
+        <div className="flex flex-col gap-4 sm:max-w-3xl">
           <p> {getSummaryText(topic)} </p>
         </div>
       </div>
+
       <div className="bg-white p-4 shadow-lg rounded-lg">
-        <p className="pb-4">
-          Select a skill to view the questions your child did during the test
-        </p>
+        <p className="font-black text-center">Skills Tested </p>
         <div className="flex flex-col w-full">
           <div className="flex justify-between border-b border-black">
             <p className="p-4 font-bold"> I can... </p>
@@ -92,29 +93,56 @@ const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
           </div>
           <div className="flex flex-col">
             {skills.map((skill) => (
-              <Link href={"/diagnostic/data/".concat(skill.toString())}>
-                <div
-                  className={`${getBackgroundColorForTopic(
-                    getResultForSkill(skill, results)
-                  )} p-4 border-b border-black cursor-pointer hover:underline flex justify-between`}
-                >
-                  <p className={``}> {SkillDescription(skill)}</p>
-                  <p className={``}>{getResultForSkill(skill, results)}</p>
-                </div>
-              </Link>
+              <div
+                className={`${getBackgroundColorForTopic(
+                  getResultForSkill(skill, results)
+                )} p-4 border-b border-black flex justify-between`}
+              >
+                <p className={``}> {SkillDescription(skill)}</p>
+                <p className={``}>{getResultForSkill(skill, results)}</p>
+              </div>
             ))}
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center bg-white shadow-lg gap-8 rounded-lg p-4">
-        <div className="flex flex-col gap-4 sm:max-w-2xl">
-          <p>
-            {" "}
-            For additional practice, print out the worksheet recommendations on
-            the previous page and check out the Resources tab for math-based
-            content aimed at helping parents make math more engaging and fun for
-            their child.{" "}
-          </p>
+
+      <div className="p-2 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100 h-screen w-full">
+        <div className="bg-white p-4 rounded-lg">
+          <div className="flex flex-col w-full">
+            <p className="font-black text-center"> Questions Asked </p>
+            <div className="flex justify-between border-b border-black">
+              <p className="p-4 font-bold"> Question </p>
+              <p className="p-4 font-bold"> Guess </p>
+            </div>
+            <div className="flex flex-col">
+              {skills.map((question) => (
+                <div
+                  className={`p-4 border-b border-black flex justify-between`}
+                >
+                  <DiagnosticData skill={question} results={results} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col items-center bg-white shadow-lg gap-8 rounded-lg p-4">
+          <div className="flex flex-col gap-4 sm:max-w-3xl">
+            <p>
+              {" "}
+              For additional practice, print out the worksheet recommendations
+              on the previous page and check out the Resources tab for
+              math-based content aimed at helping parents make math more
+              engaging and fun for their child.{" "}
+            </p>
+          </div>
+        </div>
+        <Link href="/diagnostic/conclusion">
+          <button className="items-end bg-blue-500 rounded p-3 text-white text-sm">
+            Take me Back to Conclusions
+          </button>
+        </Link>
+        <div className="flex m-auto items-center max-w-screen-sm">
+          <img src="/images/mathQuote.png"></img>
         </div>
       </div>
     </div>

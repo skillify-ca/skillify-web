@@ -178,7 +178,7 @@ const PracticeQuiz = ({ slug, skill }) => {
         </ReactCardFlip>
       </div>
       {!continueButton && !nextQuestionButton && (
-        <Hint skill={Skill.ADDITION_PROPERTIES}></Hint>
+        <Hint skill={questionData[index].skill}></Hint>
       )}
       <div
         className={`grid-cols-1 grid justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in opacity-${continueFaded}`}
