@@ -40,14 +40,14 @@ const S2: Question = {
   answer: "11",
   answerType: AnswerType.NUMBER,
   questionType: QuestionType.VERTICAL_EQUATION,
-  skill: Skill.SUBTRACTION_SINGLE,
+  skill: Skill.SUBTRACTION_DOUBLE,
 };
 const S3: Question = {
   text: "568 - 168 =",
   answer: "400",
   answerType: AnswerType.NUMBER,
   questionType: QuestionType.VERTICAL_EQUATION,
-  skill: Skill.SUBTRACTION_SINGLE,
+  skill: Skill.SUBTRACTION_TRIPLE,
 };
 
 const M1: Question = {
@@ -126,7 +126,7 @@ test("When student answers double digit subtraction question incorrectly, then n
   const question = getNextQuestion(S2, false, 1);
 
   // Assert
-  expect(question.skill).toBe(Skill.SUBTRACTION_DOUBLE);
+  expect(question.skill).toBe(Skill.SUBTRACTION_SINGLE);
 });
 
 test("When student answers last subtraction question, then next question should be equal groups", async () => {
@@ -139,7 +139,7 @@ test("When student answers last subtraction question, then next question should 
 
 test("When student answers single-digit subtraction question incorrectly, then next question should be single-digit subtraction ", async () => {
   // Act
-  const question = getNextQuestion(S1, true, 3);
+  const question = getNextQuestion(S1, false, 3);
 
   // Assert
   expect(question.skill).toBe(Skill.SUBTRACTION_SINGLE);
@@ -166,10 +166,9 @@ test("When student answers equal groups question incorrectly, then next question
   const question = getNextQuestion(M1, false, 3);
 
   // Assert
-  expect(question.skill).toBe(Skill.EQUAL_SHARING_8_ITEMS);
+  expect(question.skill).toBe(Skill.EQUAL_GROUP_10_ITEMS);
 });
-
-test("When student answers equal groups question correctly, then next question should be equal groups", async () => {
+test("When student answers equal groups question correctly, then next question should be Multiplication to 5 ", async () => {
   // Act
   const question = getNextQuestion(M1, true, 3);
 
