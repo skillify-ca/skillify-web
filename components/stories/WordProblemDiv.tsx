@@ -39,7 +39,10 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
       second: parts[2],
     };
   };
-  const title = (noun, number) => {
+  const title = (noun, number, closingQuanity) => {
+    if (number > 1 && closingQuanity === true) {
+      return noun.pluralTitle;
+    }
     if (number == "1") {
       return noun.singleTitle;
     }
@@ -52,16 +55,17 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
           {name} has
           <span className={noun1.colour}>
             {" " + parse().first}
-            {" " + title(noun1, parse().first) + " "}{" "}
+            {" " + title(noun1, parse().first, false) + " "}{" "}
           </span>
           <span> and </span>
           <span className="text-black font-extrabold">
             {parse().second + " friend(s)"}.
           </span>
-          {" " + name} wants to share the {title(noun1, parse().first) + " "}
+          {" " + name} wants to share the{" "}
+          {title(noun1, parse().first, false) + " "}
           equally between them. How many
           <span className={noun1.colour}>
-            {" " + title(noun1, parse().first) + " "}
+            {" " + title(noun1, parse().first, true) + " "}
           </span>
           will each friend have?
         </p>
