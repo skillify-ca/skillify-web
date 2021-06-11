@@ -18,6 +18,7 @@ export const getResultForSkill = (skill: Skill, results: DiagnosticState) => {
       guess: results.guesses[index],
     })
   );
+
   const filteredQuestionsWithGuesses = questionsWithGuesses.filter(
     (it) => it.question.skill === skill
   );
