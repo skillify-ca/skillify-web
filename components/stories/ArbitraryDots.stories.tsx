@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Story, Meta } from "@storybook/react";
-import TenFrame from "./tenFrame";
-import DiceDots, { DiceDotsProps } from "./DiceDots";
+import ArbitraryDots, { ArbitraryDotsProps } from "./ArbitraryDots";
 
 export default {
-  title: "Dice Dots",
-  component: DiceDots,
+  title: "Arbitrary Dots",
+  component: ArbitraryDots,
   argTypes: {},
 } as Meta;
 
-const Template: Story<DiceDotsProps> = (args) => <DiceDots {...args} />;
+const Template: Story<ArbitraryDotsProps> = (args) => (
+  <ArbitraryDots {...args} />
+);
 
 export const Primary = Template.bind({});
 Primary.args = { value: 8 };
