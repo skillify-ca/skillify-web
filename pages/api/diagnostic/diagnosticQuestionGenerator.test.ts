@@ -128,6 +128,7 @@ test("When student answers double digit subtraction question incorrectly, then n
   // Assert
   expect(question.skill).toBe(Skill.SUBTRACTION_DOUBLE);
 });
+
 test("When student answers last subtraction question, then next question should be equal groups", async () => {
   // Act
   const question = getNextQuestion(S1, true, 0);
@@ -135,6 +136,7 @@ test("When student answers last subtraction question, then next question should 
   // Assert
   expect(question.skill).toBe(Skill.EQUAL_GROUP_10_ITEMS);
 });
+
 test("When student answers single-digit subtraction question incorrectly, then next question should be single-digit subtraction ", async () => {
   // Act
   const question = getNextQuestion(S1, true, 3);
@@ -142,6 +144,7 @@ test("When student answers single-digit subtraction question incorrectly, then n
   // Assert
   expect(question.skill).toBe(Skill.SUBTRACTION_SINGLE);
 });
+
 test("When student answers triple digit subtraction question incorrectly, then next question should be double digit subtraction", async () => {
   // Act
   const question = getNextQuestion(S3, false, 2);
@@ -157,6 +160,7 @@ test("When student answers last multiplication question, then next question shou
   // Assert
   expect(question.skill).toBe(Skill.EQUAL_SHARING_8_ITEMS);
 });
+
 test("When student answers equal groups question incorrectly, then next question should be equal groups", async () => {
   // Act
   const question = getNextQuestion(M1, false, 3);
@@ -164,6 +168,7 @@ test("When student answers equal groups question incorrectly, then next question
   // Assert
   expect(question.skill).toBe(Skill.EQUAL_SHARING_8_ITEMS);
 });
+
 test("When student answers equal groups question correctly, then next question should be equal groups", async () => {
   // Act
   const question = getNextQuestion(M1, true, 3);
@@ -171,6 +176,7 @@ test("When student answers equal groups question correctly, then next question s
   // Assert
   expect(question.skill).toBe(Skill.MULTIPLICATION_5);
 });
+
 test("When student answers equal sharing question correctly, then next question should be Divison to 12", async () => {
   // Act
   const question = getNextQuestion(D1, true, 3);
@@ -178,6 +184,7 @@ test("When student answers equal sharing question correctly, then next question 
   // Assert
   expect(question.skill).toBe(Skill.DIVIDE_12_EQUALLY);
 });
+
 test("When student answers last division question (Equal sharing), then next question should be Equal sharing", async () => {
   // Act
   const question = getNextQuestion(D1, true, 0);

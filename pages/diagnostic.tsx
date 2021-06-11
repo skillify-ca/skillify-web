@@ -21,6 +21,7 @@ import {
   getResultForSkill,
 } from "./api/diagnostic/diagnosticGrader";
 import { generateQuestionForSkill } from "./api/questionGenerator";
+import { Button } from "../components/stories/Button";
 
 enum STAGE {
   CREATE,
@@ -34,6 +35,7 @@ const Diagnostic = () => {
 
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState(1);
+  const [isShaking, setIsShaking] = useState(false);
   const [grade, setGrade] = useState(Grade.GRADE_THREE);
   const [stage, setStage] = useState(STAGE.CREATE);
   const [email, setEmail] = useState("");
@@ -97,6 +99,11 @@ const Diagnostic = () => {
   }
 
   const submitGuess = async (guessData: GuessData) => {
+    if (guessData.guess == "") {
+      setIsShaking(true);
+      return;
+    }
+    
     // Save if they guessed the question correctly or not
     let updateGuessAns;
     if (guessData.isCorrect) {
@@ -133,7 +140,7 @@ const Diagnostic = () => {
     }
     if (newAnsweredQuestions.length >= TOTAL_QUESTIONS) {
       const results: DiagnosticState = {
-        questions: answeredQuestions,
+        questions: newAnsweredQuestions,
         guessAns: updateGuessAns,
         guesses: updateGuess,
         grade: grade,
@@ -150,6 +157,14 @@ const Diagnostic = () => {
     setGrade(grade);
     setStage(STAGE.TEST);
   };
+
+  const onIDontKnowClick = () => {
+    submitGuess({
+      guess: "I don't know",
+      isCorrect: false
+    })
+  }
+
   useEffect(() => {
     setCurrentQuestion(generateQuestionForSkill(Skill.ADDITION_SINGLE));
   }, [grade]);
@@ -168,11 +183,20 @@ const Diagnostic = () => {
       );
       break;
     case STAGE.TEST:
-      component = (
+      component = ( 
         <div>
-          <p className="font-semibold text-gray-500 pt-4 px-8">
-            Question: {answeredQuestions.length} / 12
-          </p>
+          <div className="flex justify-between pt-4 px-8 items-center">
+            <p className="font-semibold text-gray-500 ">
+              Question: {answeredQuestions.length} / 12
+            </p>
+            <p onClick={onIDontKnowClick} className="bg-gray-200 hover:bg-blue-200 cursor-pointer p-2 rounded-xl shadow-md font-semibold text-gray-500 ">
+              I don't know 🤔
+            </p>
+          </div>
+          <div
+            className={isShaking ? "animate-shake" : ""}
+            onAnimationEnd={() => setIsShaking(false)}
+          >     
           <QuestionSet
             title=""
             questionData={[currentQuestion]}
@@ -182,6 +206,7 @@ const Diagnostic = () => {
             score={correctGuesses}
             diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
           />
+          </div>
         </div>
       );
       break;
