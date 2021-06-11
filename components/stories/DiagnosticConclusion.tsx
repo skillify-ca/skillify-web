@@ -4,7 +4,6 @@ import { useState } from "react";
 import {
   getCalculatedGrade,
   getGradeLevelForTopic,
-  getResultForSkill,
   getSummaryText,
 } from "../../pages/api/diagnostic/diagnosticGrader";
 import { Skill, Topic } from "../../pages/api/skill";
