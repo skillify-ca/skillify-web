@@ -134,7 +134,7 @@ const Diagnostic = () => {
     }
     if (newAnsweredQuestions.length >= TOTAL_QUESTIONS) {
       const results: DiagnosticState = {
-        questions: answeredQuestions,
+        questions: newAnsweredQuestions,
         guessAns: updateGuessAns,
         guesses: updateGuess,
         grade: grade,
