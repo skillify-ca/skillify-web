@@ -97,6 +97,9 @@ const Diagnostic = () => {
   }
 
   const submitGuess = async (guessData: GuessData) => {
+    console.log("guessData", guessData.isCorrect);
+    console.log("question", answeredQuestions.length);
+    
     // Save if they guessed the question correctly or not
     let updateGuessAns;
     if (guessData.isCorrect) {
@@ -133,7 +136,7 @@ const Diagnostic = () => {
     }
     if (newAnsweredQuestions.length >= TOTAL_QUESTIONS) {
       const results: DiagnosticState = {
-        questions: answeredQuestions,
+        questions: newAnsweredQuestions,
         guessAns: updateGuessAns,
         guesses: updateGuess,
         grade: grade,
