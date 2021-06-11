@@ -49,7 +49,6 @@ const Diagnostic = () => {
     QUESTIONS_PER_TOPIC
   );
   const [currentQuestion, setCurrentQuestion] = useState<Question>();
-  
   const inputElement = useRef(null);
 
   const requestEmail = async (results: DiagnosticState) => {
