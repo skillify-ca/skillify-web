@@ -35,6 +35,7 @@ const Diagnostic = () => {
 
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState(1);
+  const [isShaking, setIsShaking] = useState(false);
   const [grade, setGrade] = useState(Grade.GRADE_THREE);
   const [stage, setStage] = useState(STAGE.CREATE);
   const [email, setEmail] = useState("");
@@ -48,6 +49,7 @@ const Diagnostic = () => {
     QUESTIONS_PER_TOPIC
   );
   const [currentQuestion, setCurrentQuestion] = useState<Question>();
+  
   const inputElement = useRef(null);
 
   const requestEmail = async (results: DiagnosticState) => {
@@ -98,6 +100,11 @@ const Diagnostic = () => {
   }
 
   const submitGuess = async (guessData: GuessData) => {
+    if (guessData.guess == "") {
+      setIsShaking(true);
+      return;
+    }
+    
     // Save if they guessed the question correctly or not
     let updateGuessAns;
     if (guessData.isCorrect) {
@@ -177,7 +184,7 @@ const Diagnostic = () => {
       );
       break;
     case STAGE.TEST:
-      component = (
+      component = ( 
         <div>
           <div className="flex justify-between pt-4 px-8 items-center">
             <p className="font-semibold text-gray-500 ">
@@ -187,6 +194,10 @@ const Diagnostic = () => {
               I don't know 🤔
             </p>
           </div>
+          <div
+            className={isShaking ? "animate-shake" : ""}
+            onAnimationEnd={() => setIsShaking(false)}
+          >     
           <QuestionSet
             title=""
             questionData={[currentQuestion]}
@@ -196,6 +207,7 @@ const Diagnostic = () => {
             score={correctGuesses}
             diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
           />
+          </div>
         </div>
       );
       break;
