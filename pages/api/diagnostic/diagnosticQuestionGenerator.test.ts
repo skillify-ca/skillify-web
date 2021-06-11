@@ -183,11 +183,3 @@ test("When student answers equal sharing question correctly, then next question 
   // Assert
   expect(question.skill).toBe(Skill.DIVIDE_12_EQUALLY);
 });
-
-test("When student answers last division question (Equal sharing), then next question should be Equal sharing", async () => {
-  // Act
-  const question = getNextQuestion(D1, true, 0);
-
-  // Assert
-  expect(question).toBe(null);
-});
