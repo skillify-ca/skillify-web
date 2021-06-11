@@ -21,7 +21,8 @@ module.exports = {
           "0%, 100%": { transform: "rotate(0deg)" },
           "25%, 75%": { transform: "rotate(-3deg)" },
           "50%": { transform: "rotate(3deg)" },
-        },
+        }
+      },
       outline: {
         black: "2px solid #000000",
       },
