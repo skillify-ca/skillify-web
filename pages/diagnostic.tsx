@@ -30,6 +30,7 @@ const Diagnostic = () => {
   const [stage, setStage] = useState(STAGE.CREATE);
   const [index, setIndex] = useState(0);
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [guesses, setGuesses] = useState<Array<string>>([]);
   const [guessAns, setGuessAns] = useState<Array<string>>([]);
@@ -74,6 +75,7 @@ const Diagnostic = () => {
         "Content-Type": "application/json;charset=UTF-8",
       },
       body: JSON.stringify({
+        name: name,
         email: email,
         worksheets: workSheets,
         calculatedGrade: getCalculatedGrade(results),
@@ -120,6 +122,7 @@ const Diagnostic = () => {
         guesses: updateGuess,
         grade: grade,
         email: email,
+        name: name,
       };
       dispatch(setDiagnostic(results));
       requestEmail(results);
@@ -143,6 +146,8 @@ const Diagnostic = () => {
           onClick={createDiagnostic}
           email={email}
           setEmail={setEmail}
+          name={name}
+          setName={setName}
         />
       );
       break;

@@ -20,6 +20,16 @@ export const DiagnosticConclusion = ({
   results,
 }: DiagnosticConclusionProps) => {
   const gradeLevel = getCalculatedGrade(results);
+  const badgeSelector = (grade: number) => {
+    switch (grade) {
+      case 1:
+        return "/images/grade1Badge.png";
+      case 2:
+        return "/images/grade2Badge.png";
+      case 3:
+        return "/images/grade3Badge.png";
+    }
+  };
 
   const parse = (grades: string) => {
     const parts = grades.split(" ");
@@ -53,6 +63,7 @@ export const DiagnosticConclusion = ({
       },
       body: JSON.stringify({
         email: results.email,
+        name: results.name,
       }),
     };
     await fetch(url, options);
@@ -64,13 +75,19 @@ export const DiagnosticConclusion = ({
         <p className="mb-8 text-center font-black text-xl">
           Math Champ Report Card
         </p>
-
-        <p className="font-bold mb-2">
-          {" "}
-          {"Average Ontario Grade Level - Grade " + gradeLevel}{" "}
-        </p>
+        <div className="flex flex-col">
+          <p className="font-bold mb-2 items-center">
+            {" "}
+            {"Average Ontario Grade Level - Grade " + gradeLevel}{" "}
+          </p>
+          <img className="h-1/8 w-1/12 ml-6" src={badgeSelector(gradeLevel)} />
+        </div>
         <p>
-          {getSummaryText(gradeLevel, parseInt(parse(results.grade).second))}
+          {getSummaryText(
+            gradeLevel,
+            parseInt(parse(results.grade).second),
+            results.name
+          )}
         </p>
       </div>
       <div className="bg-white p-4 rounded-lg shadow-lg">
@@ -149,7 +166,7 @@ export const DiagnosticConclusion = ({
       </div>
       <div className="flex flex-col bg-white p-4 shadow-lg rounded-lg">
         <p className="p-4 font-extrabold border-b border-black">
-          Personalized Worksheets
+          {results.name}'s Personalized Worksheets
         </p>
         {getWorkSheets(results).map(
           (it) =>
@@ -178,7 +195,9 @@ export const DiagnosticConclusion = ({
                 onClick={notifyPracticeSignup}
               />
             ) : (
-              <p className="text-sm text-green-600">Thank you for signing up!</p>
+              <p className="text-sm text-green-600">
+                Thank you for signing up!
+              </p>
             )}
           </div>
         </div>
