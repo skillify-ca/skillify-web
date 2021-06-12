@@ -163,7 +163,7 @@ function getRandomBinaryQuestion(
     QuestionType.TRUE_OR_FALSE_PROBLEM,
     QuestionType.MULTIPLE_CHOICE,
   ];
-  let typeIndex = 4; //getRndInteger(0, types.length);
+  let typeIndex = getRndInteger(0, types.length);
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
   let text;
