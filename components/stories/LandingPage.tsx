@@ -80,25 +80,25 @@ const LandingPage = () => {
               <div className="outline-none">
                 <img
                   src="/images/wordProblem1.png"
-                  className="w-full sm:w-1/2 ml-40"
+                  className="w-full sm:w-1/2 m-auto"
                 ></img>
               </div>
               <div className="outline-none">
                 <img
                   src="/images/equalGroups.png"
-                  className="w-full sm:w-1/2 ml-40 appearance-none"
+                  className="w-full sm:w-1/2 m-auto"
                 ></img>
               </div>
               <div className="outline-none">
                 <img
                   src="/images/multiArrays.png"
-                  className="w-full sm:w-1/2 ml-40 appearance-none"
+                  className="w-full sm:w-1/2 m-auto"
                 ></img>
               </div>
               <div className="outline-none">
                 <img
                   src="/images/trueFalse.png"
-                  className="w-full sm:w-1/2 ml-40 appearance-none"
+                  className="w-full sm:w-1/2 m-auto"
                 ></img>
               </div>
             </Slider>
