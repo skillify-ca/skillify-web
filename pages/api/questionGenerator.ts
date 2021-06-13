@@ -58,7 +58,7 @@ function getRandomNumbersQuestion(
     skill: skill,
   };
 }
-function getRandomAdditionQuestion(min: number, max: number, skill: Skill) {
+export function getRandomAdditionQuestion(min: number, max: number, skill: Skill) {
   const add = (a: number, b: number) => a + b;
   return getRandomBinaryQuestion(min, max, "+", add, skill);
 }
