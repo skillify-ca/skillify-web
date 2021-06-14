@@ -29,25 +29,25 @@ export default function additionTopicOverview(props) {
         <Link href="lessons/addition/basic-addition">
           <div
             className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-64 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
-            style={cardStyle("uONIJ5TQ2DA")}
+            style={cardStyle("-ou9VvyJNOY")}
           >
-            <p className="font-bold mb-4"> Basic Addition</p>
+            <p className="font-bold mb-4"> Single Digit Addition </p>
           </div>
         </Link>
         <Link href="lessons/addition/addition-vs-multiplication">
           <div
             className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-64 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
-            style={cardStyle("NVhA7avdTAw")}
+            style={cardStyle("Q9sLfMrH8_w")}
           >
-            <p className="font-bold mb-4">Addition vs Multiplication</p>
+            <p className="font-bold mb-4"> Double Digit Addition </p>
           </div>
         </Link>
         <Link href="lessons/addition/order-of-operations">
           <div
             className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-64 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
-            style={cardStyle("tyrz0EJ0InQ")}
+            style={cardStyle("HBa8XBHnJ4U")}
           >
-            <p className="font-bold mb-4"> Order of Operations</p>
+            <p className="font-bold mb-4"> Triple Digit Addition </p>
           </div>
         </Link>
       </div>
