@@ -91,7 +91,9 @@ const Diagnostic = () => {
       }),
     };
 
-    await fetch(url, options);
+    // await fetch(url, options);
+    console.log(options.body);
+    
   };
 
   function delay(ms: number) {

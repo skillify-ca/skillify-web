@@ -1,7 +1,6 @@
 import { Question } from "../question";
-import { generateQuestionForSkill } from "../questionGenerator";
+import { generateQuestionForSkill, getRandomAdditionQuestion } from "../questionGenerator";
 import { Skill } from "../skill";
-import { getQuestionForSkill } from "./diagnosticGrader";
 
 const NUM_QUESTIONS = 1;
 
@@ -63,7 +62,11 @@ export const getNextQuestion = (
   } else {
     if (correctGuess) {
       const nextSkill = getHarderSkill(currentQuestion.skill);
-      nextQuestion = generateQuestionForSkill(nextSkill);
+      if (nextSkill == Skill.ADDITION_TRIPLE) {
+        nextQuestion = getRandomAdditionQuestion(100, 401, nextSkill)
+      } else {
+        nextQuestion = generateQuestionForSkill(nextSkill);
+      }
     } else {
       const nextSkill = getEasierSkill(currentQuestion.skill);
       nextQuestion = generateQuestionForSkill(nextSkill);

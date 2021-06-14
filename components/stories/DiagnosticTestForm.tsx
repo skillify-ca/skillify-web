@@ -64,7 +64,7 @@ const DiagnosticTestForm = ({
               </div>
             </div>
           </div>
-          <div className="flex gap-8">
+          <div className="flex gap-8 flex-col sm:flex-row">
             <div>
               <p className="font-bold">Email</p>
               <input
