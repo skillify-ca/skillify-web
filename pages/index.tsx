@@ -11,6 +11,7 @@ const HomePage = () => {
       <div className="p-4 flex flex-col items-center justify-center">
         <LandingPage />
       </div>
+    </div>
   );
 };
 
