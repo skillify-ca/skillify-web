@@ -158,6 +158,7 @@ export default function additionTopicOverview(props) {
               </Link>
             </div>
           </div>
+          Best Attempt: 68%
         </div>
         <img
           className="w-full sm:w-1/2 object-cover"
