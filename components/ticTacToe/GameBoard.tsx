@@ -70,7 +70,6 @@ const GameBoard = () => {
         playerOne={playerOne}
         playerTwo={playerTwo}
       />
-      // <TicTacToeClient playerID={playerOne} onExitClick={onExitClick} />
     ); // Game
   }
   return (

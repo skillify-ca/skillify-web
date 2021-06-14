@@ -32,7 +32,7 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
     setColor(Math.floor(Math.random() * 4));
     const parts = question.text.split(" ");
     submitGuess({
-      guess: guess + "," + guess2,
+      guess: guess + " groups of " + guess2,
       isCorrect:
         guess === parts[0] &&
         guess2 === parts[2] &&

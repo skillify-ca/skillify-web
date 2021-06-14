@@ -2,22 +2,28 @@ import { DiagnosticState } from "../../../redux/diagnosticSlice";
 import { Question } from "../question";
 import { Skill, Topic } from "../skill";
 
-const PASSING_GRADE = 0.5;
+const PASSING_GRADE = 1.0;
 
-type QuestionGuess = {
+type GradedQuestion = {
   question: Question;
+  grade: string;
   guess: string;
 };
 
 export const getResultForSkill = (skill: Skill, results: DiagnosticState) => {
-  const questionsWithGuesses: QuestionGuess[] = results.questions.map(
-    (it, index) => ({ question: it, guess: results.guessAns[index] })
+  const questionsWithGuesses: GradedQuestion[] = results.questions.map(
+    (it, index) => ({
+      question: it,
+      grade: results.guessAns[index],
+      guess: results.guesses[index],
+    })
   );
+
   const filteredQuestionsWithGuesses = questionsWithGuesses.filter(
     (it) => it.question.skill === skill
   );
   const correctGuesses = filteredQuestionsWithGuesses.filter(
-    (it) => it.guess === "Correct"
+    (it) => it.grade === "Correct"
   );
   if (
     correctGuesses.length / filteredQuestionsWithGuesses.length >=
@@ -29,36 +35,23 @@ export const getResultForSkill = (skill: Skill, results: DiagnosticState) => {
   }
 };
 
-export const getQuestionForSkill = (skill: Skill, results: DiagnosticState) => {
-  const questionsWithGuesses: QuestionGuess[] = results.questions.map(
-    (it, index) => ({ question: it, guess: results.guessAns[index] })
+export const getGradedQuestionsForTopic = (
+  topic: Topic,
+  results: DiagnosticState
+): GradedQuestion[] => {
+  // All questions
+  const questionsWithGradedGuesses: GradedQuestion[] = results.questions.map(
+    (it, index) => ({
+      question: it,
+      grade: results.guessAns[index],
+      guess: results.guesses[index],
+    })
   );
-  const filteredQuestionsWithGuesses = questionsWithGuesses.filter(
-    (it) => it.question.skill === skill
+  const skills: Skill[] = getSkillsForTopic(topic);
+  const questionsForTopic: GradedQuestion[] = questionsWithGradedGuesses.filter(
+    (it) => skills.includes(it.question.skill)
   );
-
-  const skillDescriptions = filteredQuestionsWithGuesses.filter(
-    (it) => it.question.skill === skill.toString()
-  );
-
-  const questions = skillDescriptions.map((item) => item.question.text);
-  return questions;
-};
-
-export const getAnswerForSkill = (skill: Skill, results: DiagnosticState) => {
-  const questionsWithGuesses: QuestionGuess[] = results.questions.map(
-    (it, index) => ({ question: it, guess: results.guessAns[index] })
-  );
-  const filteredQuestionsWithGuesses = questionsWithGuesses.filter(
-    (it) => it.question.skill === skill
-  );
-
-  const guessAnswers = filteredQuestionsWithGuesses.filter(
-    (it) => it.question.skill === skill.toString()
-  );
-
-  const questions = guessAnswers.map((item) => item.guess);
-  return questions;
+  return questionsForTopic;
 };
 
 let skillCount = 0;
@@ -93,8 +86,12 @@ export const getGradeLevelForTopic = (
         getResultForSkill(Skill.ADDITION_DOUBLE, results) == "Got it!"
       ) {
         return "Grade 2";
-      } else {
+      } else if (
+        getResultForSkill(Skill.ADDITION_SINGLE, results) == "Got it!"
+      ) {
         return "Grade 1";
+      } else {
+        return "JK/SK";
       }
     case Topic.SUBTRACTION:
       if (getResultForSkill(Skill.SUBTRACTION_TRIPLE, results) == "Got it!") {
@@ -103,8 +100,12 @@ export const getGradeLevelForTopic = (
         getResultForSkill(Skill.SUBTRACTION_DOUBLE, results) == "Got it!"
       ) {
         return "Grade 2";
-      } else {
+      } else if (
+        getResultForSkill(Skill.SUBTRACTION_TRIPLE, results) == "Got it!"
+      ) {
         return "Grade 1";
+      } else {
+        return "JK/SK";
       }
     case Topic.MULTIPLICATION:
       if (getResultForSkill(Skill.MULTIPLICATION_10, results) == "Got it!") {
@@ -113,8 +114,12 @@ export const getGradeLevelForTopic = (
         getResultForSkill(Skill.MULTIPLICATION_5, results) == "Got it!"
       ) {
         return "Grade 2";
-      } else {
+      } else if (
+        getResultForSkill(Skill.EQUAL_GROUP_10_ITEMS, results) == "Got it!"
+      ) {
         return "Grade 1";
+      } else {
+        return "JK/SK";
       }
     case Topic.DIVISION:
       if (getResultForSkill(Skill.DIVIDE_100, results) == "Got it!") {
@@ -123,13 +128,17 @@ export const getGradeLevelForTopic = (
         getResultForSkill(Skill.DIVIDE_12_EQUALLY, results) == "Got it!"
       ) {
         return "Grade 2";
-      } else {
+      } else if (
+        getResultForSkill(Skill.EQUAL_SHARING_8_ITEMS, results) == "Got it!"
+      ) {
         return "Grade 1";
+      } else {
+        return "JK/SK";
       }
   }
 };
 
-export const getSkillsForTopic = (topic: Topic) => {
+export const getSkillsForTopic = (topic: Topic): Skill[] => {
   switch (topic) {
     case Topic.ADDITION:
       return [
@@ -159,29 +168,41 @@ export const getSkillsForTopic = (topic: Topic) => {
   return [];
 };
 
-export const getSummaryText = (gradeLevel: number, inputGradeLevel: number) => {
+export const getSummaryText = (
+  gradeLevel: number,
+  inputGradeLevel: number,
+  name: string
+) => {
   let difference = inputGradeLevel - gradeLevel;
   if (difference == 0) {
     return (
-      "Amazing work! Your child has met the expectations of the Ontario grade " +
+      "Amazing work! " +
+      name +
+      " has met the expectations of the Ontario grade " +
       inputGradeLevel +
       " curriculum. Encourage them to solve harder problems to keep them challenged."
     );
   } else if (difference == 1) {
     return (
-      "Great work! Your child has nearly met the expectations of the Ontario grade " +
+      "Great work! " +
+      name +
+      " has nearly met the expectations of the Ontario grade " +
       inputGradeLevel +
       " curriculum. Provide them with supplemental resources to address their knowledge gaps."
     );
   } else if (difference >= 2) {
     return (
-      "Good effort! Your child requires extra practice to meet the expectations of the Ontario grade " +
+      "Good effort! " +
+      name +
+      " requires extra practice to meet the expectations of the Ontario grade " +
       inputGradeLevel +
       " curriculum. Provide them with supplemental resources to address their knowledge gaps."
     );
   } else if (difference < 0) {
     return (
-      "Truly impressive! Your child has exceeded the expectations of the Ontario grade " +
+      "Truly impressive! " +
+      name +
+      " has exceeded the expectations of the Ontario grade " +
       inputGradeLevel +
       " curriculum. Keep up the good work and welcome challenges with open arms!"
     );
@@ -201,6 +222,9 @@ export const getCalculatedGrade = (results: DiagnosticState) => {
   if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 1") {
     gradeLevel = gradeLevel + 1;
   }
+  if (getGradeLevelForTopic(Topic.ADDITION, results) == "JK/SK") {
+    gradeLevel = gradeLevel + 0;
+  }
   if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 3") {
     gradeLevel = gradeLevel + 3;
   }
@@ -209,6 +233,9 @@ export const getCalculatedGrade = (results: DiagnosticState) => {
   }
   if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 1") {
     gradeLevel = gradeLevel + 1;
+  }
+  if (getGradeLevelForTopic(Topic.DIVISION, results) == "JK/SK") {
+    gradeLevel = gradeLevel + 0;
   }
   if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 3") {
     gradeLevel = gradeLevel + 3;
@@ -219,6 +246,9 @@ export const getCalculatedGrade = (results: DiagnosticState) => {
   if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 1") {
     gradeLevel = gradeLevel + 1;
   }
+  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "JK/SK") {
+    gradeLevel = gradeLevel + 0;
+  }
   if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 3") {
     gradeLevel = gradeLevel + 3;
   }
@@ -227,6 +257,9 @@ export const getCalculatedGrade = (results: DiagnosticState) => {
   }
   if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 1") {
     gradeLevel = gradeLevel + 1;
+  }
+  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "JK/SK") {
+    gradeLevel = gradeLevel + 0;
   }
   gradeLevel = Math.round(gradeLevel / 4);
   return gradeLevel;

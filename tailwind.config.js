@@ -6,12 +6,25 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      animation: {
+        shake: "shake 0.5s ease-in-out",
+      },
       backgroundImage: (theme) => ({
         "hero-student":
           "url('https://images.unsplash.com/photo-1596495578065-6e0763fa1178?crop=entropy&cs=srgb&fm=jpg&ixid=MXwxNDEzNDF8MHwxfHNlYXJjaHwxMDZ8fG1hdGh8ZW58MHx8fA&ixlib=rb-1.2.1&q=85&w=528&dpr=2')",
       }),
       fontFamily: {
         sans: ["Lexend", ...defaultTheme.fontFamily.sans],
+      },
+      keyframes: {
+        shake: {
+          "0%, 100%": { transform: "rotate(0deg)" },
+          "25%, 75%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        }
+      },
+      outline: {
+        black: "2px solid #000000",
       },
       primary: "#4495f0",
       secondary: "#ff8e4f",
@@ -21,7 +34,7 @@ module.exports = {
     extend: {
       borderWidth: ["active"],
       fontFamily: ["hover", "focus"],
-      opacity: ['disabled'],
+      opacity: ["disabled"],
       backgroundColor: ["hover"],
       ringWidth: ["hover", "active"],
       ringColor: ["hover", "active"],
@@ -32,32 +45,31 @@ module.exports = {
     },
   },
   options: {
-
-  /**
-   * PurgeCSS:
-   * bg-blue-300
-   * bg-yellow-300
-   * bg-green-300
-   * bg-pink-300
-   * bg-purple-600
-   * bg-pink-600
-   * bg-blue-600
-   * bg-purple-400
-   * bg-pink-400
-   * bg-blue-400
-   * hover:bg-purple-400
-   * hover:bg-pink-400
-   * hover:bg-blue-400
-   * bg-green-200
-   * bg-blue-200
-   * bg-purple-200
-   * bg-green-500
-   * bg-blue-500
-   * bg-purple-500
-   * ring-green-500
-   * ring-blue-500
-   * ring-purple-500
-   */
+    /**
+     * PurgeCSS:
+     * bg-blue-300
+     * bg-yellow-300
+     * bg-green-300
+     * bg-pink-300
+     * bg-purple-600
+     * bg-pink-600
+     * bg-blue-600
+     * bg-purple-400
+     * bg-pink-400
+     * bg-blue-400
+     * hover:bg-purple-400
+     * hover:bg-pink-400
+     * hover:bg-blue-400
+     * bg-green-200
+     * bg-blue-200
+     * bg-purple-200
+     * bg-green-500
+     * bg-blue-500
+     * bg-purple-500
+     * ring-green-500
+     * ring-blue-500
+     * ring-purple-500
+     */
 
     safelist: [
       "bg-blue-50",
@@ -132,4 +144,3 @@ module.exports = {
   },
   plugins: [require("tailwindcss-hero-patterns")],
 };
-

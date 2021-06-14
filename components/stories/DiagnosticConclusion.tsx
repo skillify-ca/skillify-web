@@ -4,7 +4,6 @@ import { useState } from "react";
 import {
   getCalculatedGrade,
   getGradeLevelForTopic,
-  getResultForSkill,
   getSummaryText,
 } from "../../pages/api/diagnostic/diagnosticGrader";
 import { Skill, Topic } from "../../pages/api/skill";
@@ -20,6 +19,19 @@ export const DiagnosticConclusion = ({
   results,
 }: DiagnosticConclusionProps) => {
   const gradeLevel = getCalculatedGrade(results);
+  const badgeSelector = (grade: number) => {
+    switch (grade) {
+      case 0:
+        //lavan's gonna get a badge for JK/SK
+        return "/images/grade1Badge.png";
+      case 1:
+        return "/images/grade1Badge.png";
+      case 2:
+        return "/images/grade2Badge.png";
+      case 3:
+        return "/images/grade3Badge.png";
+    }
+  };
 
   const parse = (grades: string) => {
     const parts = grades.split(" ");
@@ -31,6 +43,9 @@ export const DiagnosticConclusion = ({
   const getBackgroundColorForTopic = (topic: Topic) => {
     const grade = getGradeLevelForTopic(topic, results);
     let resultGradeLevel = parseInt(parse(grade).second);
+    if (grade == "JK/SK") {
+      resultGradeLevel = 0;
+    }
     let inputGradeLevel = parseInt(parse(results.grade).second);
     if (resultGradeLevel >= inputGradeLevel) {
       return "bg-green-100";
@@ -40,11 +55,11 @@ export const DiagnosticConclusion = ({
       return "bg-red-100";
     }
   };
-
   const [practiceButtonEnabled, setPracticeButtonEnabled] = useState(true);
   const notifyPracticeSignup = async () => {
     setPracticeButtonEnabled(false);
-    const url = "https://math-app-1.herokuapp.com/notifications?product=practice";
+    const url =
+      "https://math-app-1.herokuapp.com/notifications?product=practice";
     const options = {
       method: "POST",
       headers: {
@@ -53,10 +68,16 @@ export const DiagnosticConclusion = ({
       },
       body: JSON.stringify({
         email: results.email,
+        name: results.name,
       }),
     };
     await fetch(url, options);
   };
+
+  let displayGrade = gradeLevel.toString();
+  if (gradeLevel == 0) {
+    displayGrade = "JK/SK";
+  }
 
   return (
     <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100">
@@ -64,13 +85,19 @@ export const DiagnosticConclusion = ({
         <p className="mb-8 text-center font-black text-xl">
           Math Champ Report Card
         </p>
-
-        <p className="font-bold mb-2">
-          {" "}
-          {"Average Ontario Grade Level - Grade " + gradeLevel}{" "}
-        </p>
+        <div className="flex flex-col">
+          <p className="font-bold mb-2 items-center">
+            {" "}
+            {"Average Ontario Grade Level - Grade " + displayGrade}{" "}
+          </p>
+          <img className="h-1/8 w-1/12 ml-6" src={badgeSelector(gradeLevel)} />
+        </div>
         <p>
-          {getSummaryText(gradeLevel, parseInt(parse(results.grade).second))}
+          {getSummaryText(
+            gradeLevel,
+            parseInt(parse(results.grade).second),
+            results.name
+          )}
         </p>
       </div>
       <div className="bg-white p-4 rounded-lg shadow-lg">
@@ -149,7 +176,7 @@ export const DiagnosticConclusion = ({
       </div>
       <div className="flex flex-col bg-white p-4 shadow-lg rounded-lg">
         <p className="p-4 font-extrabold border-b border-black">
-          Worksheet Recommendations
+          {results.name}'s Personalized Worksheets
         </p>
         {getWorkSheets(results).map(
           (it) =>
@@ -167,16 +194,21 @@ export const DiagnosticConclusion = ({
             Our practice tracker will be launching soon! Your child will get
             access to thousands of engaging math questions and you'll receive
             weekly reports on their practice. Click below to be notified when we
-            go live. 
+            go live.
           </p>
           <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
-            <Button
-              disabled={!practiceButtonEnabled}
-              backgroundColor="blue"
-              textColor="white"
-              label="Notify Me"
-              onClick={notifyPracticeSignup}
-            />
+            {practiceButtonEnabled ? (
+              <Button
+                backgroundColor="blue"
+                textColor="white"
+                label="Notify Me"
+                onClick={notifyPracticeSignup}
+              />
+            ) : (
+              <p className="text-sm text-green-600">
+                Thank you for signing up!
+              </p>
+            )}
           </div>
         </div>
       </div>

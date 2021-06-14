@@ -53,17 +53,17 @@ export const WordProblemSub: React.FC<WordProblemSubProp> = ({
   };
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="text-2xl flex flex-wrap">
+      <div className="text-xl flex flex-wrap">
         <p className="align-left">
           {name} has a {itemContainer.singleTitle} of {noun1.type}. Inside,
           there are
           <span> </span>
-          <span className="border-2 border-black border-opacity-75 md:border-opacity-50 text-black font-extrabold">
-            {parse().first}
-          </span>
-          {noun1.type}. {name} takes out
+          <span className="text-black font-extrabold">
+            {parse().first} {noun1.type}.
+          </span>{" "}
+          {name} takes out
           <span className={noun1.colour}>{" " + parse().second + " "}</span>
-          {title(noun1, parse().second)}. How many {noun1.type} are in the{" "}
+          {title(noun1, parse().second)}. How many {noun1.type} are left in the{" "}
           {itemContainer.singleTitle}?
         </p>
       </div>
