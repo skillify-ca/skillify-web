@@ -4,7 +4,6 @@ import { AnswerType } from "../../pages/api/question";
 import { QuestionType } from "../../pages/api/questionTypes";
 import { Skill, Topic } from "../../pages/api/skill";
 import { createWordProblemModel } from "../../pages/api/WordProblemModel";
-import SkillCard from "../SkillCard";
 import { Button } from "./Button";
 import { Input } from "./Input";
 import "slick-carousel/slick/slick.css";
