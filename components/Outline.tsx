@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import SkillCard from "./SkillCard";
+import SkillCard, { PracticeTopic } from "./PracticeTopic";
 import { FETCH_USER_SKILLS } from "../graphql/fetchUserSkills";
 import { signIn, useSession } from "next-auth/client";
 import { INIT_USER_SKILLS } from "../graphql/initUserSkills";
@@ -8,6 +8,7 @@ import { userId } from "../graphql/utils/constants";
 import Card from "./stories/Card";
 import { Button } from "./stories/Button";
 import ProgressRing from "./stories/ProgressRing";
+import { lockedTopics, unlockedTopics } from "../pages/api/topics";
 export default function Outline() {
   const skillsEndRef = useRef(null);
   const [session, loading] = useSession();
@@ -71,19 +72,14 @@ export default function Outline() {
       </div>
       <div className="flex flex-wrap justify-center gap-8">
         {userSkillsData.loading && <p>Loading ...</p>}
-        {unlockedSkills.map((skill, index) => (
-          <div
-            key={skill.skill.title}
-            className={
-              index == unlockedSkills.length - 1 ? "animate-bounce" : ""
-            }
-          >
-            <SkillCard
-              key={skill.skill.title}
-              title={skill.skill.title}
-              image={skill.skill.image}
-              link={`${skill.skill.title.toLowerCase()}`}
-              rating={skill.stars}
+        {unlockedTopics.map((topic, index) => (
+          <div key={topic.title}>
+            <PracticeTopic
+              key={topic.title}
+              title={topic.title}
+              image={topic.image}
+              link={`${topic.title.toLowerCase()}`}
+              rating={0}
             />
           </div>
         ))}
@@ -92,17 +88,11 @@ export default function Outline() {
         <p className="text-xl text-center font-bold">{"Locked"}</p>
       </div>
       <div className="flex flex-wrap justify-center gap-4">
-        {skills
-          .filter((it) => it.locked == true)
-          .map((skill, index) => (
-            <div key={skill.skill.title}>
-              <SkillCard
-                key={skill.skill.title}
-                title={skill.skill.title}
-                disabled={true}
-              />
-            </div>
-          ))}
+        {lockedTopics.map((topic) => (
+          <div key={topic}>
+            <PracticeTopic key={topic} title={topic} disabled={true} />
+          </div>
+        ))}
       </div>
     </div>
   );
