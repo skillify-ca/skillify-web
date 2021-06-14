@@ -12,19 +12,7 @@ import Slider from "react-slick";
 import { WordProblemAdd } from "./WordProblemAdd";
 
 const LandingPagev2 = () => {
-  const [wordProblem, setWordProblem] = useState(createWordProblemModel("+"));
-
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-  const onSubmit = () => {
-    setWordProblem(createWordProblemModel("+"));
-  };
-  var settings = {
+  const settings = {
     dots: true,
     infinite: true,
     speed: 500,
