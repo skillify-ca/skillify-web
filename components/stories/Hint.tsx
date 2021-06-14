@@ -229,7 +229,6 @@ const Hint = ({ skill }: HintProps) => {
               1... And our Final answer is... 37!! So we found out that 78 - 41
               = 37! Great job!
             </span>
-
             <img
               src="https://media.nagwa.com/295158982161/en/thumbnail_l.jpeg"
               className="h-75"
@@ -273,7 +272,6 @@ const Hint = ({ skill }: HintProps) => {
             is equal to 1. So we will combine all of this together and our final
             answer is... Drum Roll Please... 106! So we can now say that 343 -
             237 = 106!
-            <strong> But there's still another way!</strong>
             <br></br>
             <br></br>
             <br></br>
@@ -284,6 +282,313 @@ const Hint = ({ skill }: HintProps) => {
           </div>
         );
         break;
+      case Skill.EQUAL_SHARING_8_ITEMS:
+        hintTag = (
+          <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+            Hey, it's Mr.Brainy at your service!
+            <p>
+              {" "}
+              There are different methods to solving triple digit subtraction
+              problem
+            </p>
+            <p className="font-bold text-yellow-700">
+              Method 1: Count the Groups and Count all Items
+            </p>
+            So in the picture below we can see that we have 3 friends so that
+            means we have 3 groups! But let's count how many sweets we have in
+            total. So let's see since we have 3 friends and each friend has 5
+            sweets we can figure out how many sweets we have in total by doing 5
+            + 5 + 5. And now we knwo that we have 15 sweets in total!
+            <img
+              src="https://www.theschoolrun.com/sites/theschoolrun.com/files/article_images/sharing_method_for_division.png"
+              className="h-52"
+            ></img>
+            <br></br>
+            <br></br>
+            <br></br>
+            <p className="font-bold">
+              You now have a diagram to solve the problem so give it a shot! You
+              got this Smarty!
+            </p>
+          </div>
+        );
+        break;
+      case Skill.DIVIDE_12_EQUALLY:
+        hintTag = (
+          <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+            Hey, it's Mr.Brainy at your service!
+            <p>
+              {" "}
+              There are different methods to solving triple digit subtraction
+              problem
+            </p>
+            <p className="font-bold text-yellow-700">
+              Method 1: Count the Groups and Count all Items
+            </p>
+            Getting started One of the problems students have with long division
+            problems is remembering all the steps. Here’s a trick to mastering
+            long division. Use the acronym DMSB, which stands for:
+            <ul>
+              <li>D = Divide</li>
+              <li>M = Multiply</li>
+              <li>S = Subtract</li>
+              <li>B = Bring down</li>
+            </ul>
+            This sequence of letters can be hard to remember, so think of the
+            acronym in the context of a family: Dracula, Must, Siuck, Blood.
+            Write D M S B in the corner of your worksheet to remember it's your
+            best friend!
+            <strong>So let's do 65 ÷ 5</strong>
+            <h1>Step 1: D for Division</h1>
+            How many times will 5 go into 65? That’s too hard to work out in
+            your head, so let’s break it down into smaller steps. The first
+            problem you’ll work out in this equation is how many times can you
+            divide 5 into 6. The answer is 1. So you put 1 on the quotient line.
+            <img
+              src="https://www.k5learning.com/sites/all/files/long-division-3.gif"
+              className="h-75 w-1/3"
+            ></img>
+            <h1>Step 2: M for Multiply</h1>
+            You multiply your answer from step 1 and your divisor: 1 x 5 = 5.
+            You write 5 under the 6.
+            <img
+              src="https://www.k5learning.com/sites/all/files/long-division-4.gif"
+              className="h-75 w-1/3"
+            ></img>
+            <h1>Step 3: S for Subtract</h1>
+            Next you subtract. In this case it will be 6 – 5 = 1.
+            <img
+              src="https://www.k5learning.com/sites/all/files/long-division-5.gif"
+              className="h-75 w-1/3"
+            ></img>
+            <h1>Step 4: B for Bring Down</h1>
+            The last step in the sequence is to bring down the next number from
+            the dividend, which in this case is 5. You write the 5 next to the
+            1, making the number 15.
+            <img
+              src="https://www.k5learning.com/sites/all/files/long-division-6.gif"
+              className="h-75 w-1/3"
+            ></img>
+            Now repeat the steps:
+            <h1>Step 1: D for Division</h1>
+            How many times can you divide 5 into 15. The answer is 3. So you put
+            3 on the quotient line.
+            <img
+              src="https://www.k5learning.com/sites/all/files/long-division-7.gif"
+              className="h-75 w-1/3"
+            ></img>
+            <h1>Step 2: M for Multiply</h1>
+            You multiply your answer from step 1 and your divisor: 3 x 5 = 15.
+            Write this underneath the 15.
+            <img
+              src="https://www.k5learning.com/sites/all/files/long-division-8.gif"
+              className="h-75 w-1/3"
+            ></img>
+            <h1>Step 3: S for Subtract</h1>
+            Now we subtract 15 from 15. 15 – 15 = 0.
+            <img
+              src="https://www.k5learning.com/sites/all/files/long-division-9.gif"
+              className="h-75 w-1/3"
+            ></img>
+            <p>
+              And now you're done! Awesome work! And always remember <b>D</b>
+              racula <b>M</b>ust <b>S</b>uck <b>B</b>lood
+            </p>
+            <br></br>
+            <br></br>
+            <br></br>
+            <p className="font-bold">
+              You now have a diagram to solve the problem so give it a shot! You
+              got this Smarty!
+            </p>
+          </div>
+        );
+        break;
+      case Skill.DIVIDE_100:
+        hintTag = (
+          <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+            Hey, it's Mr.Brainy at your service!
+            <p>
+              {" "}
+              There are different methods to solving triple digit subtraction
+              problem
+            </p>
+            <p className="font-bold text-yellow-700">
+              Method 1: Count the Groups and Count all Items
+            </p>
+            Getting started One of the problems students have with long division
+            problems is remembering all the steps. Here’s a trick to mastering
+            long division. Use the acronym DMSB, which stands for:
+            <ul>
+              <li>D = Divide</li>
+              <li>M = Multiply</li>
+              <li>S = Subtract</li>
+              <li>B = Bring down</li>
+            </ul>
+            This sequence of letters can be hard to remember, so think of the
+            acronym in the context of a family: Dracula, Must, Siuck, Blood.
+            Write D M S B in the corner of your worksheet to remember it's your
+            best friend!
+            <strong>So let's do 65 ÷ 5</strong>
+            <h1>Step 1: D for Division</h1>
+            How many times will 5 go into 65? That’s too hard to work out in
+            your head, so let’s break it down into smaller steps. The first
+            problem you’ll work out in this equation is how many times can you
+            divide 5 into 6. The answer is 1. So you put 1 on the quotient line.
+            <img
+              src="https://www.k5learning.com/sites/all/files/long-division-3.gif"
+              className="h-52"
+            ></img>
+            <h1>Step 2: M for Multiply</h1>
+            You multiply your answer from step 1 and your divisor: 1 x 5 = 5.
+            You write 5 under the 6.
+            <img
+              src="https://www.k5learning.com/sites/all/files/long-division-4.gif"
+              className="h-52"
+            ></img>
+            <h1>Step 3: S for Subtract</h1>
+            Next you subtract. In this case it will be 6 – 5 = 1.
+            <img
+              src="https://www.k5learning.com/sites/all/files/long-division-5.gif"
+              className="h-52"
+            ></img>
+            <h1>Step 4: B for Bring Down</h1>
+            The last step in the sequence is to bring down the next number from
+            the dividend, which in this case is 5. You write the 5 next to the
+            1, making the number 15.
+            <img
+              src="https://www.k5learning.com/sites/all/files/long-division-6.gif"
+              className="h-52"
+            ></img>
+            Now repeat the steps:
+            <h1>Step 1: D for Division</h1>
+            How many times can you divide 5 into 15. The answer is 3. So you put
+            3 on the quotient line.
+            <img
+              src="https://www.k5learning.com/sites/all/files/long-division-7.gif"
+              className="h-52"
+            ></img>
+            <h1>Step 2: M for Multiply</h1>
+            You multiply your answer from step 1 and your divisor: 3 x 5 = 15.
+            Write this underneath the 15.
+            <img
+              src="https://www.k5learning.com/sites/all/files/long-division-8.gif"
+              className="h-52"
+            ></img>
+            <h1>Step 3: S for Subtract</h1>
+            Now we subtract 15 from 15. 15 – 15 = 0.
+            <img
+              src="https://www.k5learning.com/sites/all/files/long-division-9.gif"
+              className="h-52"
+            ></img>
+            And now you're done! Awesome work!
+            <br></br>
+            <br></br>
+            <br></br>
+            <p className="font-bold">
+              You now have a diagram to solve the problem so give it a shot! You
+              got this Smarty!
+            </p>
+          </div>
+        );
+        break;
+      case Skill.EQUAL_GROUP_10_ITEMS:
+        hintTag = (
+          <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+            Hey, it's Mr.Brainy at your service!
+            <p>
+              {" "}
+              There are different methods to solving Equal Grouping Problem, but
+              here's one way!
+            </p>
+            <p className="font-bold text-yellow-700">
+              Method 1: Count the Groups then Count Inside the Groups
+            </p>
+            So in the picture below we can see that we have a beautiful picture
+            of groups of apples! Let's first count how many groups there are so
+            we can see there is not 1... not 2... But 3 groups of apples! Now
+            let's count inside the circle. Hmmm it looks like we have 1..2..3..4
+            apples in each circle. Finally we can say that we have 3 groups of 4
+            apples!
+            <img
+              src="https://mathskills4kids.com/content/images/three-groups-of-four-apples.png"
+              className="h-52"
+            ></img>
+            <br></br>
+            <br></br>
+            <br></br>
+            <p className="font-bold">
+              You now have a diagram to solve the problem so give it a shot! You
+              got this Smarty!
+            </p>
+          </div>
+        );
+        break;
+      case Skill.MULTIPLICATION_5:
+        hintTag = (
+          <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+            Hey, it's Mr.Brainy at your service!
+            <p>
+              {" "}
+              There are different methods to solving Multiplication problems,
+              but here's one way!
+            </p>
+            <p className="font-bold text-yellow-700">
+              Method 1: Repeated Addition
+            </p>
+            The Multiplication may sound new to many of us but here's a secret.
+            It's actually just repeated addition... Let's take the picture below
+            as an example. We see that we are doing 5 x 3. But all that really
+            means is we have to add 3 five times so it looks something like
+            this. 3 + 3 + 3 + 3 + 3 and we know that is equal to 15. So 5 x 3 is
+            15! Great job Smarty!
+            <img
+              src="https://www.assignmentpoint.com/wp-content/uploads/2017/08/qwe.jpg"
+              className="h-52"
+            ></img>
+            <br></br>
+            <br></br>
+            <br></br>
+            <p className="font-bold">
+              You now have a diagram to solve the problem so give it a shot! You
+              got this Smarty!
+            </p>
+          </div>
+        );
+        break;
+      case Skill.MULTIPLICATION_10:
+        hintTag = (
+          <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+            Hey, it's Mr.Brainy at your service!
+            <p>
+              {" "}
+              There are different methods to solving Multiplication problems,
+              but here's one way!
+            </p>
+            <p className="font-bold text-yellow-700">
+              Method 1: Repeated Addition
+            </p>
+            The Multiplication may sound new to many of us but here's a secret.
+            It's actually just repeated addition... Let's take the picture below
+            as an example. We see that we are doing 5 x 3. But all that really
+            means is we have to add 3 five times so it looks something like
+            this. 3 + 3 + 3 + 3 + 3 and we know that is equal to 15. So 5 x 3 is
+            15! Great job Smarty!
+            <img
+              src="https://www.assignmentpoint.com/wp-content/uploads/2017/08/qwe.jpg"
+              className="h-52"
+            ></img>
+            <br></br>
+            <br></br>
+            <br></br>
+            <p className="font-bold">
+              You now have a diagram to solve the problem so give it a shot! You
+              got this Smarty!
+            </p>
+          </div>
+        );
+        break;
+
       default: {
         <p>Hello I'm Brainy</p>;
         break;
