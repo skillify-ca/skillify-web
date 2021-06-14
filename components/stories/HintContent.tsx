@@ -182,7 +182,7 @@ export const getHintForTopic = (skill: Skill) => {
               problem
             </p>
             <p className="font-bold text-yellow-700">
-              Method 1: Adding the numbers by Coloumns
+              Method 1: Subtracting the numbers by Coloumns
             </p>
             Okay let's start off with the method we're most familiar with which
             is arranging them on top of each other. Make sure you put the big
@@ -236,7 +236,7 @@ export const getHintForTopic = (skill: Skill) => {
             problem
           </p>
           <p className="font-bold text-yellow-700">
-            Method 1: Adding the numbers by Coloumns
+            Method 1: Subtracting the numbers by Coloumns
           </p>
           Okay let's start off with the method we're most familiar with which is
           arranging them on top of each other. Make sure you put the big number
@@ -270,11 +270,7 @@ export const getHintForTopic = (skill: Skill) => {
       hintTag = (
         <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
           Hey, it's Mr.Brainy at your service!
-          <p>
-            {" "}
-            There are different methods to solving triple digit subtraction
-            problem
-          </p>
+          <p> There are different methods to solving Equal Sharing Problems</p>
           <p className="font-bold text-yellow-700">
             Method 1: Count the Groups and Count all Items
           </p>
@@ -301,11 +297,7 @@ export const getHintForTopic = (skill: Skill) => {
       hintTag = (
         <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
           Hey, it's Mr.Brainy at your service!
-          <p>
-            {" "}
-            There are different methods to solving triple digit subtraction
-            problem
-          </p>
+          <p> There are different methods to solving Long Division Questions</p>
           <p className="font-bold text-yellow-700">
             Method 1: Count the Groups and Count all Items
           </p>
@@ -394,7 +386,7 @@ export const getHintForTopic = (skill: Skill) => {
           Hey, it's Mr.Brainy at your service!
           <p>
             {" "}
-            There are different methods to solving triple digit subtraction
+            There are different methods to solving Long Division Questions
             problem
           </p>
           <p className="font-bold text-yellow-700">
@@ -573,7 +565,7 @@ export const getHintForTopic = (skill: Skill) => {
       break;
 
     default: {
-      <p>Hello I'm Brainy</p>;
+      <p>Alternative Topic</p>;
       break;
     }
   }
