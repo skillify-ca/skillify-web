@@ -12,7 +12,7 @@ enum GameState {
   GAME_OVER,
 }
 
-const GameBoard = () => {
+const GameBoard = ({ room }) => {
   const [gameState, setGameState] = useState(GameState.MENU);
   const [winner, setWinner] = useState(null);
   const [targetNumber, setTargetNumber] = useState(15);
@@ -63,6 +63,7 @@ const GameBoard = () => {
   } else {
     component = (
       <Container
+        room={room}
         onExitClick={onExitClick}
         onGameOver={onGameOver}
         target={targetNumber}

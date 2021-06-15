@@ -27,9 +27,9 @@ function TicTacToe() {
   //   console.log(room.name, "has new state:", state);
   // });
 
-  // room?.onMessage("message_type", (message) => {
-  //   console.log(client.auth._id, "received on", room.name, message);
-  // });
+  room?.onMessage("move", (message) => {
+    console.log(client.auth._id, "received on", room.name, message);
+  });
 
   // room?.onError((code, message) => {
   //   console.log(client.auth._id, "couldn't join", room.name);
@@ -44,7 +44,7 @@ function TicTacToe() {
       <Navbar />
       {room?.name}
       <div className="p-4">
-        <GameBoard />
+        <GameBoard room={room} />
       </div>
     </div>
   );

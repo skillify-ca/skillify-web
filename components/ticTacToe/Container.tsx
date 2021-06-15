@@ -33,6 +33,7 @@ export interface ContainerState {
 }
 
 export const Container = ({
+  room,
   onExitClick,
   onGameOver,
   target,
@@ -133,6 +134,8 @@ export const Container = ({
         setDroppedBoxNames(
           update(droppedBoxNames, name ? { $push: [name] } : { $push: [] })
         );
+        
+        room.send("move", name);
 
         const newBoardSquares = update(boardSquares, {
           [index]: {
@@ -171,9 +174,7 @@ export const Container = ({
         <h1 className="text-lg text-center mb-8">
           Current Player: {isPlayerOne ? playerOne : playerTwo}
         </h1>
-		<h1 className="text-lg text-center mb-8">
-          Target Sum: {target}
-        </h1>
+        <h1 className="text-lg text-center mb-8">Target Sum: {target}</h1>
 
         <div className="flex flex-row space-x-4">
           <Button
