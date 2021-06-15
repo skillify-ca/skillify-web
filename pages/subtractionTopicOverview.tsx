@@ -26,7 +26,7 @@ export default function subtractionTopicOverview(props) {
   const videoComponent = (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-        <Link href="lessons/addition/basic-addition">
+        <Link href="lessons/subtraction/single-digit">
           <div
             className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-64 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
             style={cardStyle("rqiu_xcvSk4")}
@@ -34,7 +34,7 @@ export default function subtractionTopicOverview(props) {
             <p className="font-bold mb-4"> Single Digit Subtraction </p>
           </div>
         </Link>
-        <Link href="lessons/addition/addition-vs-multiplication">
+        <Link href="lessons/subtraction/double-digit">
           <div
             className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-64 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
             style={cardStyle("qKxQ33KcRWQ")}
@@ -42,12 +42,12 @@ export default function subtractionTopicOverview(props) {
             <p className="font-bold mb-4"> Double Digit Subtraction</p>
           </div>
         </Link>
-        <Link href="lessons/addition/order-of-operations">
+        <Link href="lessons/subtraction/triple-digit">
           <div
             className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-64 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
-            style={cardStyle("tyrz0EJ0InQ")}
+            style={cardStyle("xF0LKqExY80")}
           >
-            <p className="font-bold mb-4"> Order of Operations</p>
+            <p className="font-bold mb-4"> Triple Digit Subtraction </p>
           </div>
         </Link>
       </div>
@@ -62,11 +62,11 @@ export default function subtractionTopicOverview(props) {
             <div className="flex flex-col justify-between h-full">
               <p className="font-bold mb-4">
                 {" "}
-                Adding Single Digit Numbers (Grade 1){" "}
+                I Can Subtract Single Digit Numbers (Grade 1){" "}
               </p>
               <img
                 className="h-30 object-cover"
-                src="https://www.broadwater.w-sussex.sch.uk/_data/site/20/pg/366/8.jpg"
+                src="/images/numberLineSub.png"
               ></img>
               <div className="flex items-center">
                 Latest Confidence Rating: <span className="text-4xl">😄</span>
@@ -79,7 +79,7 @@ export default function subtractionTopicOverview(props) {
             <div className="flex flex-col justify-between h-full">
               <p className="font-bold mb-4">
                 {" "}
-                Adding Double Digit Numbers (Grade 2)
+                I Can Subtract Double Digit Numbers (Grade 2)
               </p>
               <img
                 className="h-30 object-cover"
@@ -96,22 +96,8 @@ export default function subtractionTopicOverview(props) {
             <div className="flex flex-col justify-between h-full">
               <p className="font-bold mb-4">
                 {" "}
-                Adding Triple Digit Numbers (Grade 3)
+                I Can Subtract Triple Digit Numbers (Grade 3)
               </p>
-              <img
-                className="h-full w-full"
-                src="https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%203DIGITS1.png"
-              ></img>
-              <div className="flex items-center">
-                Latest Confidence Rating: <span className="text-4xl">❓</span>
-              </div>
-            </div>
-          </Link>
-        </div>
-        <div className="bg-white shadow-lg rounded-lg w-full p-4 cursor-pointer">
-          <Link href="/practice/addition/properties">
-            <div className="flex flex-col justify-between h-full">
-              <p className="font-bold mb-4"> Addition Properties (Grade 3)</p>
               <img
                 className="h-full w-full"
                 src="https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%203DIGITS1.png"
@@ -132,7 +118,7 @@ export default function subtractionTopicOverview(props) {
         <div className="flex flex-col w-full sm:w-1/2 gap-8">
           <p className="text-5xl"> Quiz Time!</p>
           <p className="text-xl">
-            Take a quiz to test out your Addition Skills. The quiz will cover
+            Take a quiz to test out your Subtraction Skills. The quiz will cover
             topics at your grade level so it's personalized for you! You can
             take the quiz as many times as you wish to perfect your skills. Good
             luck, you got this!
@@ -203,8 +189,8 @@ export default function subtractionTopicOverview(props) {
               Subtraction is taking one number away from another number to find
               the difference! Watch the videos on the explore tab to learn more
               and do the practice questions to apply your knowledge. Once you
-              feel confident in your addition skills, take the quiz to evaluate
-              your understanding!
+              feel confident in your subtraction skills, take the quiz to
+              evaluate your understanding!
             </p>
           </div>
 

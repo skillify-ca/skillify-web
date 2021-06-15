@@ -26,7 +26,7 @@ export default function additionTopicOverview(props) {
   const videoComponent = (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-        <Link href="lessons/addition/basic-addition">
+        <Link href="lessons/addition/single-digit">
           <div
             className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-64 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
             style={cardStyle("-ou9VvyJNOY")}
@@ -34,7 +34,7 @@ export default function additionTopicOverview(props) {
             <p className="font-bold mb-4"> Single Digit Addition </p>
           </div>
         </Link>
-        <Link href="lessons/addition/addition-vs-multiplication">
+        <Link href="lessons/addition/double-digit">
           <div
             className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-64 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
             style={cardStyle("Q9sLfMrH8_w")}
@@ -42,7 +42,7 @@ export default function additionTopicOverview(props) {
             <p className="font-bold mb-4"> Double Digit Addition </p>
           </div>
         </Link>
-        <Link href="lessons/addition/order-of-operations">
+        <Link href="lessons/addition/triple-digit">
           <div
             className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-64 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
             style={cardStyle("HBa8XBHnJ4U")}
