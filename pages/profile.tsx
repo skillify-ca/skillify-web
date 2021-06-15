@@ -42,41 +42,45 @@ export default function Profile(props) {
 
   console.log(userBadges);
   return (
-    <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
+    <div>
       <Navbar />
-      <div className="h-screen ">
-        <div className="col-span-2 p-8 m-4 bg-white shadow-lg rounded-3xl">
-          <div className="flex justify-between items-center">
-            <div className="flex flex-col">
-              <p className="text-xl">{session && session.user.name}</p>
-              <p className="text-sm">{session && session.user.email}</p>
-            </div>
-            <div className="flex flex-col gap-4 m-4">
-              <p className="text-sm">Progress</p>
-              <p className="flex justify-center items-center bg-purple-100 shadow-inner ring-blue-400 text-center rounded-full ring-8 w-16 h-16">
-                {progress()}%
-              </p>
+      <div className="overflow-auto bg-scroll h-screen bg-blue-50">
+        <div className="">
+          <div className="col-span-2 p-8 m-4 bg-white shadow-lg rounded-3xl">
+            <div className="flex justify-between items-center">
+              <div className="flex flex-col">
+                <p className="text-xl">{session && session.user.name}</p>
+                <p className="text-sm">{session && session.user.email}</p>
+              </div>
+              <div className="flex flex-col gap-4 m-4">
+                <p className="text-sm">Progress</p>
+                <p className="flex justify-center items-center bg-purple-100 shadow-inner ring-blue-400 text-center rounded-full ring-8 w-16 h-16">
+                  {progress()}%
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div>
-          {userBadges.map((badge) => {
-            return badge.locked ? (
-              "locked"
-            ) : (
-              <Link href={`/badges/${badge.badge.id}`}>
-                <img src={badge.badge.image} />
-              </Link>
-            );
-          })}
-        </div>
+          <div className="grid gap-x-8 gap-y-4 grid-cols-3 w-1/2 m-auto p-4">
+            {userBadges.map((badge) => {
+              return badge.locked ? (
+                <div className="">
+                  <img src="/images/lockedPic.png" className="w-32" />
+                </div>
+              ) : (
+                <Link href={`/badges/${badge.badge.id}`}>
+                  <img src={badge.badge.image} className="w-32" />
+                </Link>
+              );
+            })}
+          </div>
 
-        {/* <div>
+          {/* <div>
           {badges.map((badge) => (
             <p>{badge.title}</p>
           ))}
         </div> */}
+        </div>
       </div>
     </div>
   );
