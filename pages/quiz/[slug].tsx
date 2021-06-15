@@ -19,6 +19,10 @@ import { QuestionType } from "../api/questionTypes";
 import { GuessData } from "../api/guessData";
 import { AnswerType, Question } from "../api/question";
 import { Skill } from "../api/skill";
+import { UNLOCK_BADGE } from "../../graphql/unlockBadge";
+import { AdditionDoubleDigitWS } from "../../components/stories/WorksheetsObj";
+import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
+import { getBadgeId } from "../api/badgeHelper";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -107,6 +111,17 @@ const Quiz = ({ slug }) => {
     }
   );
 
+  const [unlockBadge, unlockBadgeData] = useMutation(UNLOCK_BADGE, {
+    refetchQueries: [
+      {
+        query: FETCH_USER_BADGES,
+        variables: {
+          userId: userId(session),
+        },
+      },
+    ],
+  });
+
   useEffect(() => {
     if (userSkillResult.data) {
       setStarsAlreadyEarnForSkill(userSkillResult.data.user_skills[0].stars);
@@ -137,6 +152,15 @@ const Quiz = ({ slug }) => {
       clearInterval(interval);
       setMyInterval(null);
       setGameOver(true);
+
+      if (correctGuesses / length >= 0.8) {
+        unlockBadge({
+          variables: {
+            userId: userId(session),
+            badgeId: getBadgeId(slug, currentLevel),
+          },
+        });
+      }
 
       // TODO make it harder to unlock a star
       // if pass unlock star

@@ -6,6 +6,8 @@ import { FETCH_USER_SKILLS } from "../graphql/fetchUserSkills";
 import Link from "next/link";
 import { userId } from "../graphql/utils/constants";
 import TopicItem from "../components/stories/TopicItem";
+import { FETCH_BADGE } from "../graphql/fetchBadges";
+import { FETCH_USER_BADGES } from "../graphql/fetchUserBadge";
 
 export default function Profile(props) {
   const [session, user] = useSession();
@@ -14,19 +16,31 @@ export default function Profile(props) {
       userId: userId(session),
     },
   });
+
+  const userBadgeData = useQuery(FETCH_USER_BADGES, {
+    variables: {
+      userId: userId(session),
+    },
+  });
+  let userBadges = [];
+  if (userBadgeData.data) {
+    userBadges = userBadgeData.data.user_badges;
+  }
+
   let skills = [];
   if (userSkillsData.data) {
     skills = userSkillsData.data.user_skills;
   }
   const progress = () => {
-    const mastered = skills.filter((it) => it.locked == false && it.stars == 3);
-    if (skills.length > 0) {
-      return Math.round((mastered.length * 100) / skills.length);
+    const unlockedBadges = userBadges.filter((it) => it.locked == false);
+    if (userBadges.length > 0) {
+      return Math.round((unlockedBadges.length * 100) / userBadges.length);
     } else {
       return 0;
     }
   };
 
+  console.log(userBadges);
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
       <Navbar />
@@ -46,36 +60,23 @@ export default function Profile(props) {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center items-center">
-          <ul className="flex justify-center flex-wrap">
-            {skills
-              .filter((it) => it.locked == false)
-              .map((it) => {
-				  const title: string = it.skill.title
-                return (
-                  <li className="gap-4 m-4" key={it.skill.title}>
-                    <Link href={"portfolio/" + title.toLowerCase()}>
-                      <TopicItem
-                        title={it.skill.title}
-                        image={it.skill.image}
-                        accessory={it.stars == 3 ? `completed` : `progress`}
-                      />
-                    </Link>
-                  </li>
-                );
-              })}
-            {skills
-              .filter((it) => it.locked == true)
-              .map((it) => (
-                <li
-                  key={it.skill.title}
-                  className="gap-4 flex justify-between m-4"
-                >
-                  <TopicItem title={it.skill.title} disabled={true} />
-                </li>
-              ))}
-          </ul>
+        <div>
+          {userBadges.map((badge) => {
+            return badge.locked ? (
+              "locked"
+            ) : (
+              <Link href={`/badges/${badge.badge.id}`}>
+                <img src={badge.badge.image} />
+              </Link>
+            );
+          })}
         </div>
+
+        {/* <div>
+          {badges.map((badge) => (
+            <p>{badge.title}</p>
+          ))}
+        </div> */}
       </div>
     </div>
   );
