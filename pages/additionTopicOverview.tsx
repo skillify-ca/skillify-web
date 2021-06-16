@@ -36,9 +36,9 @@ export default function additionTopicOverview(props) {
     userQuizzes = maxAcc.data.user_quizzes;
     accList = userQuizzes.map((it) => it.accuracy);
     if (accList.length == 0) {
-      maxAccuracy = 0;
+      maxAccuracy = "Not Attempted";
     } else {
-      maxAccuracy = Math.max(...accList);
+      maxAccuracy = Math.max(...accList) + "%";
     }
   }
 
@@ -182,7 +182,7 @@ export default function additionTopicOverview(props) {
               </Link>
             </div>
           </div>
-          Best Attempt: {maxAccuracy && maxAccuracy}%
+          Best Attempt: {maxAccuracy && maxAccuracy}
         </div>
         <img
           className="w-full sm:w-1/2 object-cover"
