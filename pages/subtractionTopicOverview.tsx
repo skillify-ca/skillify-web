@@ -23,22 +23,22 @@ export default function subtractionTopicOverview(props) {
         return 3;
     }
   };
-  const maxAcc = useQuery(FETCH_USER_QUIZZES, {
+  const userQuizzesQuery = useQuery(FETCH_USER_QUIZZES, {
     variables: {
       userId: userId(session),
       badgeId: gradeNum(grade) + 3,
     },
   });
   let userQuizzes;
-  let accList = [];
+  let accuracyList = [];
   let maxAccuracy;
-  if (maxAcc.data) {
-    userQuizzes = maxAcc.data.user_quizzes;
-    accList = userQuizzes.map((it) => it.accuracy);
-    if (accList.length == 0) {
+  if (userQuizzesQuery.data) {
+    userQuizzes = userQuizzesQuery.data.user_quizzes;
+    accuracyList = userQuizzes.map((it) => it.accuracy);
+    if (accuracyList.length == 0) {
       maxAccuracy = "Not Attempted";
     } else {
-      maxAccuracy = Math.max(...accList) + "%";
+      maxAccuracy = Math.max(...accuracyList) + "%";
     }
   }
   const cardStyle = (videoId) => {
