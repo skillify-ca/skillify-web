@@ -71,7 +71,7 @@ export default function divisionTopicOverview(props) {
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
         <div className="bg-white shadow-lg rounded-lg w-full p-4 cursor-pointer">
-          <Link href="/practice/addition/single-digit">
+          <Link href="/practice/division/single-digit">
             <div className="flex flex-col justify-between h-full">
               <p className="font-bold mb-4"> Equal Sharing to 12 (Grade 1) </p>
               <img
@@ -85,7 +85,7 @@ export default function divisionTopicOverview(props) {
           </Link>
         </div>
         <div className="bg-white shadow-lg rounded-lg w-full p-4 cursor-pointer">
-          <Link href="/practice/addition/double-digit">
+          <Link href="/practice/division/12_items_equally">
             <div className="flex flex-col justify-between h-full">
               <p className="font-bold mb-4"> Divide equally to 12 (Grade 2)</p>
               <img
