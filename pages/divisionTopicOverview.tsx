@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { Button } from "../components/stories/Button";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
+import { useQuery } from "@apollo/client";
+import { FETCH_USER_QUIZZES } from "../graphql/fetchUserQuiz";
+import { userId } from "../graphql/utils/constants";
+import { useSession } from "next-auth/client";
 
 export default function divisionTopicOverview(props) {
+  const [session] = useSession();
   const [grade, setGrade] = useState("Grade 3");
   const onGradeChange = (e: any) => {
     setGrade(e.target.value);
@@ -18,6 +23,24 @@ export default function divisionTopicOverview(props) {
         return 3;
     }
   };
+  const userQuizzesQuery = useQuery(FETCH_USER_QUIZZES, {
+    variables: {
+      userId: userId(session),
+      badgeId: gradeNum(grade) + 9,
+    },
+  });
+  let userQuizzes;
+  let accuracyList = [];
+  let maxAccuracy;
+  if (userQuizzesQuery.data) {
+    userQuizzes = userQuizzesQuery.data.user_quizzes;
+    accuracyList = userQuizzes.map((it) => it.accuracy);
+    if (accuracyList.length == 0) {
+      maxAccuracy = "Not Attempted";
+    } else {
+      maxAccuracy = Math.max(...accuracyList) + "%";
+    }
+  }
   const cardStyle = (videoId) => {
     return {
       backgroundImage: `linear-gradient(rgba(143, 143, 143, 0.8), rgba(135, 80, 156, 0.8)), url(http://img.youtube.com/vi/${videoId}/hqdefault.jpg)`,
@@ -154,6 +177,7 @@ export default function divisionTopicOverview(props) {
               </Link>
             </div>
           </div>
+          Best Attempt: {maxAccuracy && maxAccuracy}
         </div>
         <img
           className="w-full sm:w-1/2 object-cover"
