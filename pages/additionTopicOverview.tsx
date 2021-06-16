@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { Button } from "../components/stories/Button";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
+import { FETCH_USER_QUIZZES } from "../graphql/fetchUserQuiz";
+import { useQuery } from "@apollo/client";
+import { useSession } from "next-auth/client";
+import { userId } from "../graphql/utils/constants";
 
 export default function additionTopicOverview(props) {
+  const [session] = useSession();
   const [grade, setGrade] = useState("Grade 3");
   const onGradeChange = (e: any) => {
     setGrade(e.target.value);
@@ -18,6 +23,25 @@ export default function additionTopicOverview(props) {
         return 3;
     }
   };
+  const maxAcc = useQuery(FETCH_USER_QUIZZES, {
+    variables: {
+      userId: userId(session),
+      badgeId: gradeNum(grade),
+    },
+  });
+  let userQuizzes;
+  let accList = [];
+  let maxAccuracy;
+  if (maxAcc.data) {
+    userQuizzes = maxAcc.data.user_quizzes;
+    accList = userQuizzes.map((it) => it.accuracy);
+    if (accList.length == 0) {
+      maxAccuracy = "Not Attempted";
+    } else {
+      maxAccuracy = Math.max(...accList) + "%";
+    }
+  }
+
   const cardStyle = (videoId) => {
     return {
       backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.75)), url(http://img.youtube.com/vi/${videoId}/hqdefault.jpg)`,
@@ -158,7 +182,7 @@ export default function additionTopicOverview(props) {
               </Link>
             </div>
           </div>
-          Best Attempt: 68%
+          Best Attempt: {maxAccuracy && maxAccuracy}
         </div>
         <img
           className="w-full sm:w-1/2 object-cover"

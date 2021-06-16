@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { Button } from "../components/stories/Button";
 import Link from "next/link";
+import { useSession } from "next-auth/client";
+import { useQuery } from "@apollo/client";
+import { FETCH_USER_QUIZZES } from "../graphql/fetchUserQuiz";
+import { userId } from "../graphql/utils/constants";
 
 export default function multiplicationTopicOverview(props) {
+  const [session] = useSession();
   const [grade, setGrade] = useState("Grade 3");
   const onGradeChange = (e: any) => {
     setGrade(e.target.value);
@@ -18,6 +23,25 @@ export default function multiplicationTopicOverview(props) {
         return 3;
     }
   };
+  const maxAcc = useQuery(FETCH_USER_QUIZZES, {
+    variables: {
+      userId: userId(session),
+      badgeId: gradeNum(grade) + 3,
+    },
+  });
+  let userQuizzes;
+  let accList = [];
+  let maxAccuracy;
+  if (maxAcc.data) {
+    userQuizzes = maxAcc.data.user_quizzes;
+    accList = userQuizzes.map((it) => it.accuracy);
+    if (accList.length == 0) {
+      maxAccuracy = "Not Attempted";
+    } else {
+      maxAccuracy = Math.max(...accList) + "%";
+    }
+  }
+
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
       <DiagnosticNavbar />
@@ -209,6 +233,7 @@ export default function multiplicationTopicOverview(props) {
                   />
                 </Link>
               </div>
+              Best Attempt: {maxAccuracy && maxAccuracy}
             </div>
             <img
               className="w-full sm:w-1/2 object-cover"
