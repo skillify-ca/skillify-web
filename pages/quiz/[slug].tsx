@@ -46,6 +46,15 @@ const Quiz = ({ slug }) => {
     setStarsAlreadyEarnForSkill,
   ] = React.useState(0);
 
+  const [saveQuizData, setQuizData] = useMutation(UPDATE_USER_SKILLS, {
+    variables: {
+      userId: userId(session),
+      badgeId: 1,
+      accuracy: 87,
+      quizTitle: "Subtraction Grade 3",
+    },
+  });
+
   useEffect(() => {
     const level = Number.parseInt(query.level as string);
     setCurrentLevel(level);
@@ -107,11 +116,11 @@ const Quiz = ({ slug }) => {
     }
   );
 
-  useEffect(() => {
-    if (userSkillResult.data) {
-      setStarsAlreadyEarnForSkill(userSkillResult.data.user_skills[0].stars);
-    }
-  }, [session]);
+  // useEffect(() => {
+  //   if (userSkillResult.data) {
+  //     setStarsAlreadyEarnForSkill(userSkillResult.data.user_skills[0].stars);
+  //   }
+  // }, [session]);
 
   const submitGuess = (currentGuess: GuessData) => {
     if (currentGuess.isCorrect) {
@@ -138,34 +147,35 @@ const Quiz = ({ slug }) => {
       setMyInterval(null);
       setGameOver(true);
 
+      saveQuizData();
+
       // TODO make it harder to unlock a star
       // if pass unlock star
-      if (starsAlreadyEarnedForSkill < currentLevel) {
-        updateUserSkillStars({
-          variables: {
-            skillId: getSkillIdFromSlug(slug),
-            stars: currentLevel,
-            userId: userId(session),
-          },
-        });
-        if (currentLevel === 3) {
-          // unlock next skill
-          const lockedSkills = userSkillsResult.data.user_skills.filter(
-            (it) => it.locked == true
-          );
-          const unmasteredSkills = userSkillsResult.data.user_skills.filter(
-            (it) => it.locked == false && it.stars !== 3
-          );
-          if (unmasteredSkills.length < 1 && lockedSkills.length > 1) {
-            unlockNextSkill({
-              variables: {
-                skillId: lockedSkills[0].skill.id,
-                locked: false,
-                userId: userId(session),
-              },
-            });
-          }
-        }
+      // if (starsAlreadyEarnedForSkill < currentLevel) {
+      //   updateUserSkillStars({
+      //     variables: {
+      //       skillId: getSkillIdFromSlug(slug),
+      //       userId: userId(session),
+      //     },
+      //   });
+      if (currentLevel === 3) {
+        // unlock next skill
+        const lockedSkills = userSkillsResult.data.user_skills.filter(
+          (it) => it.locked == true
+        );
+        // const unmasteredSkills = userSkillsResult.data.user_skills.filter(
+        //   (it) => it.locked == false && it.stars !== 3
+        // );
+        //   if (unmasteredSkills.length < 1 && lockedSkills.length > 1) {
+        //     unlockNextSkill({
+        //       variables: {
+        //         skillId: lockedSkills[0].skill.id,
+        //         locked: false,
+        //         userId: userId(session),
+        //       },
+        //     });
+        //   }
+        // }
       }
     }
   };
