@@ -12,7 +12,7 @@ const Template: Story<PatternBlankProp> = (args) => <PatternBlank {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  displayQuestion: "Count backwards by 5 from47",
+  displayQuestion: "Count backwards by 5 from 47",
   startNumber: "47",
   answer: "47,47,80,139",
 };
