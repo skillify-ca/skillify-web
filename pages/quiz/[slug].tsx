@@ -23,6 +23,7 @@ import { UNLOCK_BADGE } from "../../graphql/unlockBadge";
 import { AdditionDoubleDigitWS } from "../../components/stories/WorksheetsObj";
 import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
 import { getBadgeId } from "../api/badgeHelper";
+import { CREATE_QUIZ_ATTEMPT } from "../../graphql/createUserQuizAttempt";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -46,14 +47,7 @@ const Quiz = ({ slug }) => {
   const length = questionData.length;
   const [sessionId, setSessionId] = React.useState("");
 
-  const [saveQuizData, setQuizData] = useMutation(UPDATE_USER_SKILLS, {
-    variables: {
-      userId: userId(session),
-      badgeId: 1,
-      accuracy: 87,
-      quizTitle: "Subtraction Grade 3",
-    },
-  });
+  const [saveQuizData, setQuizData] = useMutation(CREATE_QUIZ_ATTEMPT);
 
   useEffect(() => {
     const level = Number.parseInt(query.level as string);
@@ -138,7 +132,6 @@ const Quiz = ({ slug }) => {
       clearInterval(interval);
       setMyInterval(null);
       setGameOver(true);
-
       if (correctGuesses / length >= 0.8) {
         unlockBadge({
           variables: {
@@ -147,6 +140,14 @@ const Quiz = ({ slug }) => {
           },
         });
       }
+      saveQuizData({
+        variables: {
+          userId: userId(session),
+          badgeId: getBadgeId(slug, currentLevel),
+          accuracy: (correctGuesses / length) * 100,
+          quizTitle: "",
+        },
+      });
     }
   };
 
