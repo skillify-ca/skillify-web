@@ -144,7 +144,7 @@ const Quiz = ({ slug }) => {
         variables: {
           userId: userId(session),
           badgeId: getBadgeId(slug, currentLevel),
-          accuracy: (correctGuesses / length) * 100,
+          accuracy: Math.round((100 * correctGuesses) / length),
           quizTitle: "",
         },
       });
