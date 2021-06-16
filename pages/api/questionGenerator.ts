@@ -41,7 +41,7 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
   }
 };
 
-function getRandomNumbersQuestion(
+export function getRandomNumbersQuestion(
   min: number,
   max: number,
   skill: Skill
@@ -56,13 +56,13 @@ function getRandomNumbersQuestion(
   const b = getRndInteger(min, max);
   let text;
   let answer;
-  let startNum;
+  let startNum = getRndInteger(a, b);
 
   if (type == QuestionType.PATTERN_COUNT_BLANKS_PROBLEM) {
     let patternTypes = ["FORWARDS", "BACKWARDS"];
     let patternIndex = getRndInteger(0, patternTypes.length);
     let displayPattern = patternTypes[patternIndex];
-    startNum = getRndInteger(40, 100);
+
     let patternNum = getRndInteger(0, 10);
     text = `Count ${displayPattern} by ${patternNum} from ${startNum}`;
     if (displayPattern == "FORWARDS") {
