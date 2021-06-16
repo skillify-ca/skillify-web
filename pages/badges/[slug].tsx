@@ -2,10 +2,10 @@ import { useQuery } from "@apollo/client";
 import React from "react";
 import { useSelector } from "react-redux";
 import Navbar from "../../components/Navbar";
-import { FETCH_BADGE_INFO } from "../../graphql/fetchBadgeInfo";
+import { FETCH_BADGE } from "../../graphql/fetchBadge";
 
 const BadgeDetailsPage = ({ slug }) => {
-  const badgeDetailResults = useQuery(FETCH_BADGE_INFO, {
+  const badgeDetailResults = useQuery(FETCH_BADGE, {
     variables: {
       badgeId: slug,
     },

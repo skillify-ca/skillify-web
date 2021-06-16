@@ -177,7 +177,6 @@ const PracticeQuiz = ({ slug, skill }) => {
           </div>
         </ReactCardFlip>
       </div>
-      {console.log("hi" + questionData)}
       {!continueButton && !nextQuestionButton && (
         <Hint skill={questionData[index].skill}></Hint>
       )}

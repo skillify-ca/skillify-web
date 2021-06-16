@@ -6,7 +6,7 @@ import { FETCH_USER_SKILLS } from "../graphql/fetchUserSkills";
 import Link from "next/link";
 import { userId } from "../graphql/utils/constants";
 import TopicItem from "../components/stories/TopicItem";
-import { FETCH_BADGE } from "../graphql/fetchBadges";
+import { FETCH_BADGES } from "../graphql/fetchBadges";
 import { FETCH_USER_BADGES } from "../graphql/fetchUserBadge";
 
 export default function Profile(props) {
@@ -74,12 +74,6 @@ export default function Profile(props) {
               );
             })}
           </div>
-
-          {/* <div>
-          {badges.map((badge) => (
-            <p>{badge.title}</p>
-          ))}
-        </div> */}
         </div>
       </div>
     </div>
