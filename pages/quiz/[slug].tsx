@@ -45,10 +45,6 @@ const Quiz = ({ slug }) => {
   const inputElement = useRef(null);
   const length = questionData.length;
   const [sessionId, setSessionId] = React.useState("");
-  const [
-    starsAlreadyEarnedForSkill,
-    setStarsAlreadyEarnForSkill,
-  ] = React.useState(0);
 
   useEffect(() => {
     const level = Number.parseInt(query.level as string);
@@ -73,19 +69,6 @@ const Quiz = ({ slug }) => {
   }, []);
 
   const [createFlashcardGuess, createGuessData] = useMutation(CREATE_GUESS);
-  const [updateUserSkillStars, updateUserSkillsData] = useMutation(
-    UPDATE_USER_SKILLS,
-    {
-      refetchQueries: [
-        {
-          query: FETCH_USER_SKILLS,
-          variables: {
-            userId: userId(session), // TODO what if someone runs this with null
-          },
-        },
-      ], // whenever we update a skill, we should refetch
-    }
-  );
   const userSkillResult = useQuery(FETCH_USER_SKILL, {
     variables: {
       skillId: getSkillIdFromSlug(slug),
@@ -122,12 +105,6 @@ const Quiz = ({ slug }) => {
     ],
   });
 
-  useEffect(() => {
-    if (userSkillResult.data) {
-      setStarsAlreadyEarnForSkill(userSkillResult.data.user_skills[0].stars);
-    }
-  }, [session]);
-
   const submitGuess = (currentGuess: GuessData) => {
     if (currentGuess.isCorrect) {
       setCorrectGuesses(correctGuesses + 1);
@@ -160,36 +137,6 @@ const Quiz = ({ slug }) => {
             badgeId: getBadgeId(slug, currentLevel),
           },
         });
-      }
-
-      // TODO make it harder to unlock a star
-      // if pass unlock star
-      if (starsAlreadyEarnedForSkill < currentLevel) {
-        updateUserSkillStars({
-          variables: {
-            skillId: getSkillIdFromSlug(slug),
-            stars: currentLevel,
-            userId: userId(session),
-          },
-        });
-        if (currentLevel === 3) {
-          // unlock next skill
-          const lockedSkills = userSkillsResult.data.user_skills.filter(
-            (it) => it.locked == true
-          );
-          const unmasteredSkills = userSkillsResult.data.user_skills.filter(
-            (it) => it.locked == false && it.stars !== 3
-          );
-          if (unmasteredSkills.length < 1 && lockedSkills.length > 1) {
-            unlockNextSkill({
-              variables: {
-                skillId: lockedSkills[0].skill.id,
-                locked: false,
-                userId: userId(session),
-              },
-            });
-          }
-        }
       }
     }
   };
