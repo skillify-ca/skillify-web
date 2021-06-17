@@ -9,7 +9,7 @@ function TicTacToe() {
   const [room, setRoom] = useState<Colyseus.Room>();
   var client = new Colyseus.Client("ws://localhost:4001");
 
-  const [counter, setCount] = useState(10);
+  const [board, setBoard] = useState<number[]>([0, 0, 0, 0, 0, 0, 0, 0, 0]);
 
   useEffect(() => {
     client
@@ -23,12 +23,18 @@ function TicTacToe() {
       });
   }, []);
 
-  // room?.onStateChange((state) => {
-  //   console.log(room.name, "has new state:", state);
-  // });
+  room?.onStateChange((state) => {
+    // console.log(room.name, "has new state:", state);
+  });
 
   room?.onMessage("move", (message) => {
     console.log(client.auth._id, "received on", room.name, message);
+  });
+
+  room?.onMessage("fire", (message) => {
+    console.log(client.auth._id, "received fire on", room.name, message);
+
+    setBoard(message);
   });
 
   // room?.onError((code, message) => {
@@ -44,7 +50,7 @@ function TicTacToe() {
       <Navbar />
       {room?.name}
       <div className="p-4">
-        <GameBoard room={room} />
+        <GameBoard room={room} board={board} />
       </div>
     </div>
   );

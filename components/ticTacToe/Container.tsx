@@ -40,6 +40,7 @@ export const Container = ({
   gameNumbers,
   playerOne,
   playerTwo,
+  board,
 }) => {
   const TARGET = target;
   const INITIAL_GAME_DATA = [
@@ -127,23 +128,24 @@ export const Container = ({
         return;
       }
 
-      if (
-        !droppedBoxNames.includes(name) &&
-        boardSquares[index].lastDroppedItem == null
-      ) {
+      if (!droppedBoxNames.includes(name) && board[index] == 0) {
         setDroppedBoxNames(
           update(droppedBoxNames, name ? { $push: [name] } : { $push: [] })
         );
-        
-        room.send("move", name);
 
-        const newBoardSquares = update(boardSquares, {
-          [index]: {
-            lastDroppedItem: {
-              $set: Number.parseInt(name),
-            },
-          },
+        room.send("move", { tile: name, index });
+
+        const newBoardSquares = board.map((it) => {
+          return {
+            accepts: [ItemTypes.NUMBER_TILE],
+            lastDroppedItem:
+              Number.parseInt(it) == 0 ? null : Number.parseInt(it), // if the server sends a 0 then we should show it as null
+          };
         });
+
+        console.log("board", board);
+        console.log("newBoardSquares", newBoardSquares);
+
         setBoardSquares(newBoardSquares);
 
         const isGameOver = calculateGameOver(newBoardSquares);
@@ -160,7 +162,7 @@ export const Container = ({
         }
       }
     },
-    [droppedBoxNames, boardSquares, isPlayerOne]
+    [droppedBoxNames, board, isPlayerOne]
   );
 
   const onResetClicked = () => {
@@ -193,12 +195,15 @@ export const Container = ({
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex gap-4 w-96 justify-center">
-          {boardSquares
+          {board
             .slice(0, 3)
+            .map((it) => {
+              return {
+                accepts: [ItemTypes.NUMBER_TILE],
+                lastDroppedItem: it == 0 ? null : it,
+              };
+            })
             .map(({ accepts, lastDroppedItem }, index) => {
-              console.log("accepts", accepts);
-              console.log("lastDroppedItem", lastDroppedItem);
-              console.log("index", index);
               return (
                 <BoardSquare
                   accept={accepts}
@@ -210,12 +215,15 @@ export const Container = ({
             })}
         </div>
         <div className="flex gap-4 w-96 justify-center">
-          {boardSquares
+          {board
             .slice(3, 6)
+            .map((it) => {
+              return {
+                accepts: [ItemTypes.NUMBER_TILE],
+                lastDroppedItem: it == 0 ? null : it,
+              };
+            })
             .map(({ accepts, lastDroppedItem }, index) => {
-              console.log("accepts", accepts);
-              console.log("lastDroppedItem", lastDroppedItem);
-              console.log("index", index + 3);
               return (
                 <BoardSquare
                   accept={accepts}
@@ -227,12 +235,15 @@ export const Container = ({
             })}
         </div>
         <div className="flex gap-4 w-96 justify-center">
-          {boardSquares
+          {board
             .slice(6, 9)
+            .map((it) => {
+              return {
+                accepts: [ItemTypes.NUMBER_TILE],
+                lastDroppedItem: it == 0 ? null : it,
+              };
+            })
             .map(({ accepts, lastDroppedItem }, index) => {
-              console.log("accepts", accepts);
-              console.log("lastDroppedItem", lastDroppedItem);
-              console.log("index", index + 6);
               return (
                 <BoardSquare
                   accept={accepts}

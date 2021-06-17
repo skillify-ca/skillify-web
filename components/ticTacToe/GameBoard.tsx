@@ -12,7 +12,7 @@ enum GameState {
   GAME_OVER,
 }
 
-const GameBoard = ({ room }) => {
+const GameBoard = ({ room, board }) => {
   const [gameState, setGameState] = useState(GameState.MENU);
   const [winner, setWinner] = useState(null);
   const [targetNumber, setTargetNumber] = useState(15);
@@ -70,6 +70,7 @@ const GameBoard = ({ room }) => {
         gameNumbers={gameNumbers}
         playerOne={playerOne}
         playerTwo={playerTwo}
+        board={board}
       />
     ); // Game
   }
