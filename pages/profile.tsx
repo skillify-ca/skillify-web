@@ -1,23 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/client";
 import Navbar from "../components/Navbar";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { FETCH_USER_SKILLS } from "../graphql/fetchUserSkills";
 import Link from "next/link";
 import { userId } from "../graphql/utils/constants";
 import TopicItem from "../components/stories/TopicItem";
 import { FETCH_BADGES } from "../graphql/fetchBadges";
 import { FETCH_USER_BADGES } from "../graphql/fetchUserBadge";
+import { INIT_USER_BADGES } from "../graphql/initUserBadges";
 
 export default function Profile(props) {
   const [session, user] = useSession();
-  const userSkillsData = useQuery(FETCH_USER_SKILLS, {
-    variables: {
-      userId: userId(session),
-    },
-  });
-
-  const userBadgeData = useQuery(FETCH_USER_BADGES, {
+  const [initUserBadgeData, initUserBadgeMutation] = useMutation(
+    INIT_USER_BADGES,
+    {
+      variables: {
+        userId: userId(session),
+      },
+      refetchQueries: [
+        {
+          query: FETCH_USER_BADGES,
+          variables: {
+            userId: userId(session),
+          },
+        },
+      ],
+    }
+  );
+  let userBadgeData = useQuery(FETCH_USER_BADGES, {
     variables: {
       userId: userId(session),
     },
@@ -25,11 +36,11 @@ export default function Profile(props) {
   let userBadges = [];
   if (userBadgeData.data) {
     userBadges = userBadgeData.data.user_badges;
-  }
-
-  let skills = [];
-  if (userSkillsData.data) {
-    skills = userSkillsData.data.user_skills;
+    if (userBadges.length == 0) {
+      if (!initUserBadgeMutation.called) {
+        initUserBadgeData();
+      }
+    }
   }
   const progress = () => {
     const unlockedBadges = userBadges.filter((it) => it.locked == false);
@@ -39,8 +50,6 @@ export default function Profile(props) {
       return 0;
     }
   };
-
-  console.log(userBadges);
   return (
     <div>
       <Navbar />
