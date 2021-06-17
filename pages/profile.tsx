@@ -42,11 +42,6 @@ export default function Profile(props) {
       }
     }
   }
-
-  // let skills = [];
-  // if (userSkillsData.data) {
-  //   skills = userSkillsData.data.user_skills;
-  // }
   const progress = () => {
     const unlockedBadges = userBadges.filter((it) => it.locked == false);
     if (userBadges.length > 0) {
