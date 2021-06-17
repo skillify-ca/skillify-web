@@ -4,7 +4,7 @@ import { QuestionType } from "../../api/questionTypes";
 import { GuessData } from "../../api/guessData";
 import { AnswerType, Question } from "../../api/question";
 import Navbar from "../../../components/Navbar";
-import { Skill, skillIds } from "../../api/skill";
+import { Skill } from "../../api/skill";
 import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGenerator";
 import { Button } from "../../../components/stories/Button";
 import ReactCardFlip from "react-card-flip";
