@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/client";
 import Navbar from "../components/Navbar";
 import { useMutation, useQuery } from "@apollo/client";
-import { FETCH_USER_SKILLS } from "../graphql/fetchUserSkills";
 import Link from "next/link";
 import { userId } from "../graphql/utils/constants";
 import TopicItem from "../components/stories/TopicItem";

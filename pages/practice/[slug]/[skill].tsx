@@ -13,13 +13,19 @@ import Hint from "../../../components/stories/Hint";
 import EmojiSlider from "../../../components/stories/EmojiSlider";
 import Link from "next/link";
 import { delay } from "lodash";
+import { UPDATE_USER_SKILL_EMOJI } from "../../../graphql/updateUserEmoji";
+import { useMutation } from "@apollo/client";
+import { userId } from "../../../graphql/utils/constants";
+import { useSession } from "next-auth/client";
 
 const PracticeQuiz = ({ slug, skill }) => {
+  const [session, user] = useSession();
   const [isFlipped, setIsFlipped] = useState(false);
   const [display, setDisplay] = useState("flex");
   const [continueFaded, setContinueFaded] = useState(0);
   const [isFaded, setIsFaded] = useState(1);
   const [index, setIndex] = useState(0);
+  const [emoji, setEmoji] = useState(0);
   const [guessAttempt, setGuessAttempt] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState(false);
   const [wrongAnswer, setWrongAnswer] = useState(false);
@@ -37,7 +43,9 @@ const PracticeQuiz = ({ slug, skill }) => {
       skill: Skill.ADDITION_SINGLE,
     },
   ]);
-
+  const [updateUserEmoji, updateUserEmojiMutation] = useMutation(
+    UPDATE_USER_SKILL_EMOJI
+  );
   const inputElement = useRef(null);
 
   const toggleFlip = () => {
@@ -79,6 +87,22 @@ const PracticeQuiz = ({ slug, skill }) => {
       clearInterval(interval);
       setMyInterval(null);
     }
+  };
+
+  const saveEmoji = () => {
+
+    updateUserEmoji({
+      variables: {
+        userId: "google-oauth2|117552556186948975503", // TODO make this work for all users
+        skillId: 2, // TODO look up the right skill
+        emoji: emoji,
+      },
+    });
+  };
+
+  const setEmojiCallback = (val: number) => {
+
+    setEmoji(val);
   };
 
   const submitGuess = (guess: GuessData) => {
@@ -186,7 +210,7 @@ const PracticeQuiz = ({ slug, skill }) => {
         <p className="font-bold mt-12">
           How confident were you with those practice questions?
         </p>
-        <EmojiSlider />
+        <EmojiSlider callback={setEmojiCallback} />
         <div className="flex flex-row space-x-16">
           <Link href={`/practice`}>
             <Button label="Home" backgroundColor="purple"></Button>
@@ -195,6 +219,11 @@ const PracticeQuiz = ({ slug, skill }) => {
             label="Practice again"
             backgroundColor="green"
             onClick={() => window.location.reload()}
+          ></Button>
+          <Button
+            label="Save emoji"
+            backgroundColor="red"
+            onClick={saveEmoji}
           ></Button>
         </div>
         <div>
