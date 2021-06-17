@@ -6,7 +6,6 @@ export enum Topic {
   DIVISION = "division",
 }
 
-
 export enum Skill {
   NUMBERS_50 = "count-50",
   ADDITION_SINGLE = "add-one-digit",
