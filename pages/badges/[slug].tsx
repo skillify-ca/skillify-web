@@ -89,6 +89,3 @@ export async function getStaticPaths() {
 }
 
 export default BadgeDetailsPage;
-function gradeNum(grade: any): any {
-  throw new Error("Function not implemented.");
-}
