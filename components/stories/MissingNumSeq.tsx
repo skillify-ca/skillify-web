@@ -16,7 +16,11 @@ export const MissingNumSeq: React.FC<MissingNumSeqProp> = ({
   submitGuess,
   ...props
 }) => {
+  const [guess, setGuess] = useState("");
   let items = [];
+  function onSubmit() {
+    submitGuess({ guess: guess, isCorrect: guess == answer.toString() });
+  }
   for (const i of numSeq) {
     if (i != answer) {
       items.push(<div className="inline-flex">{i}, </div>);
@@ -26,6 +30,8 @@ export const MissingNumSeq: React.FC<MissingNumSeqProp> = ({
           <input
             className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
             type="number"
+            value={guess}
+            onChange={(e) => setGuess(e.target.value)}
           ></input>
           ,
         </div>
@@ -39,6 +45,12 @@ export const MissingNumSeq: React.FC<MissingNumSeqProp> = ({
         Enter the Missing Number in the Sequence{" "}
       </h1>
       <div className="flex flex-row space-x-8">{items}</div>
+      <Button
+        onClick={onSubmit}
+        label="Submit"
+        textColor="white"
+        backgroundColor="red"
+      ></Button>
     </div>
   );
 };
