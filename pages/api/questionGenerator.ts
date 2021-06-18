@@ -41,24 +41,61 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
   }
 };
 
-function getRandomNumbersQuestion(
+export function getRandomNumbersQuestion(
   min: number,
   max: number,
   skill: Skill
 ): Question {
+  const types = [
+    QuestionType.PATTERN_COUNT_BLANKS_PROBLEM,
+    QuestionType.COMPARISON_WORD_PROBLEM,
+  ];
+  let typeIndex = getRndInteger(0, types.length);
+  let type = types[typeIndex];
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
-  const text = `Which is bigger ${a} or ${b}?`;
+  let text;
+  let answer;
+  let startNum = getRndInteger(a, b);
+
+  if (type == QuestionType.PATTERN_COUNT_BLANKS_PROBLEM) {
+    let patternTypes = ["FORWARDS", "BACKWARDS"];
+    let patternIndex = getRndInteger(0, patternTypes.length);
+    let displayPattern = patternTypes[patternIndex];
+
+    let patternNum = getRndInteger(0, 10);
+    text = `Count ${displayPattern} by ${patternNum} from ${startNum}`;
+    if (displayPattern == "FORWARDS") {
+      answer = `${startNum},${startNum + patternNum},${
+        startNum + patternNum * 2
+      },${startNum + patternNum * 3}`;
+    } else {
+      answer = `${startNum},${startNum - patternNum},${
+        startNum - patternNum * 2
+      },${startNum - patternNum * 3}`;
+    }
+  } else {
+    text = `Which is bigger ${a} or ${b}?`;
+    answer = Math.max(a, b).toString();
+  }
 
   return {
     text: text,
-    answer: Math.max(a, b).toString(),
-    answerType: AnswerType.NUMBER,
-    questionType: QuestionType.COMPARISON_WORD_PROBLEM,
+    answer: answer,
+    answerType:
+      type == QuestionType.COMPARISON_WORD_PROBLEM
+        ? AnswerType.NUMBER
+        : AnswerType.STRING,
+    questionType: type,
     skill: skill,
+    placeholder: startNum.toString(),
   };
 }
-export function getRandomAdditionQuestion(min: number, max: number, skill: Skill) {
+export function getRandomAdditionQuestion(
+  min: number,
+  max: number,
+  skill: Skill
+) {
   const add = (a: number, b: number) => a + b;
   return getRandomBinaryQuestion(min, max, "+", add, skill);
 }

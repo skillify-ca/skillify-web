@@ -18,6 +18,7 @@ import { MultiplicationArray } from "./MultiplicationArray";
 import { MultiplicationEqualGroups } from "./MultiplicationEqualGroups";
 import { getRndColour } from "../../pages/api/random";
 import { MultipleChoice } from "./MultipleChoice";
+import { PatternBlank } from "./patternBlanks";
 
 type QuestionSetProps = {
   title: string;
@@ -69,6 +70,18 @@ const QuestionSet = ({
           step1={questionData[index].fillInTheBlank.options[0].text}
           step2={questionData[index].fillInTheBlank.options[1].text}
           step3={questionData[index].fillInTheBlank.options[2].text}
+          answer={questionData[index].answer}
+          submitGuess={submitGuess}
+        />
+      );
+    } else if (
+      questionData[index].questionType ==
+      QuestionType.PATTERN_COUNT_BLANKS_PROBLEM
+    ) {
+      return (
+        <PatternBlank
+          displayQuestion={questionData[index].text}
+          startNumber={questionData[index].placeholder}
           answer={questionData[index].answer}
           submitGuess={submitGuess}
         />
