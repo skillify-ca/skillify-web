@@ -154,7 +154,7 @@ const PracticeQuiz = ({ slug, skill }) => {
             />
           </div>
           <div
-            className={`${display} flex-col justify-center items-center gap-8 transition-opacity duration-150 ease-in-out opacity-${isFaded}`}
+            className={` flex-col justify-center items-center gap-8 transition-opacity duration-150 ease-in-out`}
           >
             <div className={"justify-items-center align-middle w-50 mt-8"}>
               <Card size="large">
@@ -204,8 +204,8 @@ const PracticeQuiz = ({ slug, skill }) => {
       {!continueButton && !nextQuestionButton && (
         <Hint skill={questionData[index].skill}></Hint>
       )}
-      <div
-        className={`grid-cols-1 grid justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in opacity-${continueFaded}`}
+      {/* <div
+        className={`${display} grid-cols-1 grid justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in opacity-${continueFaded}`}
       >
         <p className="font-bold mt-12">
           How confident were you with those practice questions?
@@ -231,7 +231,7 @@ const PracticeQuiz = ({ slug, skill }) => {
         </div>
         <br></br>
         <br></br>
-      </div>
+      </div> */}
     </div>
   );
 };

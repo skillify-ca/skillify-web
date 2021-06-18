@@ -1,5 +1,8 @@
 import { Question } from "../question";
-import { generateQuestionForSkill, getRandomAdditionQuestion } from "../questionGenerator";
+import {
+  generateQuestionForSkill,
+  getRandomAdditionQuestion,
+} from "../questionGenerator";
 import { Skill } from "../skill";
 
 const NUM_QUESTIONS = 1;
@@ -44,12 +47,6 @@ const topics: Topic[] = [
   },
 ];
 
-export enum Grade {
-  GRADE_ONE = "Grade 1",
-  GRADE_TWO = "Grade 2",
-  GRADE_THREE = "Grade 3",
-}
-
 export const getNextQuestion = (
   currentQuestion: Question,
   correctGuess: boolean,
@@ -63,7 +60,7 @@ export const getNextQuestion = (
     if (correctGuess) {
       const nextSkill = getHarderSkill(currentQuestion.skill);
       if (nextSkill == Skill.ADDITION_TRIPLE) {
-        nextQuestion = getRandomAdditionQuestion(100, 401, nextSkill)
+        nextQuestion = getRandomAdditionQuestion(100, 401, nextSkill);
       } else {
         nextQuestion = generateQuestionForSkill(nextSkill);
       }
