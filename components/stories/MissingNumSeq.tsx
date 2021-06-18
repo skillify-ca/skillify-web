@@ -19,7 +19,7 @@ export const MissingNumSeq: React.FC<MissingNumSeqProp> = ({
   let items = [];
   for (const i of numSeq) {
     if (i != answer) {
-      items.push(<div className="inline-flex">{i}</div>);
+      items.push(<div className="inline-flex">{i}, </div>);
     } else {
       items.push(
         <div className="inline space-x-4 items-center">
@@ -27,6 +27,7 @@ export const MissingNumSeq: React.FC<MissingNumSeqProp> = ({
             className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
             type="number"
           ></input>
+          ,
         </div>
       );
     }
@@ -37,7 +38,7 @@ export const MissingNumSeq: React.FC<MissingNumSeqProp> = ({
         {" "}
         Enter the Missing Number in the Sequence{" "}
       </h1>
-      {items}
+      <div className="flex flex-row space-x-8">{items}</div>
     </div>
   );
 };
