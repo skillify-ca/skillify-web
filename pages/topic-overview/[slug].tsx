@@ -82,14 +82,14 @@ const TopicOverviewPage = ({ slug }) => {
         <div className="flex flex-col w-full sm:w-1/2 gap-8">
           <p className="text-5xl"> Quiz Time!</p>
           <p className="text-xl">
-            Take a quiz to test out your Addition Skills. The quiz will cover
+            Take a quiz to test out your {slug} skills. The quiz will cover
             topics at your grade level so it's personalized for you! You can
             take the quiz as many times as you wish to perfect your skills. Good
             luck, you got this!
           </p>
           <div className="flex gap-8">
             <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
-              <Link href={"/quiz/addition?level=" + gradeNum(grade)}>
+              <Link href={`/quiz/${slug}?level= ` + gradeNum(grade)}>
                 <Button
                   backgroundColor="blue"
                   textColor="white"

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
-import { Topic } from "../../api/skill";
 import Navbar from "../../components/Navbar";
 import { getVideosForSkill } from "../api/videoHelper";
 
@@ -15,7 +14,7 @@ const SkillOverviewPage = ({ slug }) => {
     <div className="flex flex-col justify-center overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
       <Navbar />
       <div className="p-4 flex flex-col items-center justify-center">
-        <p>{slug}</p>
+        <p> Learn </p>
         {getVideosForSkill(slug).map((resource) => (
           <Link href={`/${resource.link}`}>
             <div
