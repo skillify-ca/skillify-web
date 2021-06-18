@@ -1,10 +1,14 @@
 import { useQuery } from "@apollo/client";
+import { useSession } from "next-auth/client";
 import React from "react";
 import { useSelector } from "react-redux";
 import Navbar from "../../components/Navbar";
 import { FETCH_BADGE } from "../../graphql/fetchBadge";
+import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
+import { userId } from "../../graphql/utils/constants";
 
 const BadgeDetailsPage = ({ slug }) => {
+  const [session] = useSession();
   const badgeDetailResults = useQuery(FETCH_BADGE, {
     variables: {
       badgeId: slug,
@@ -14,6 +18,24 @@ const BadgeDetailsPage = ({ slug }) => {
   let badgeDetail;
   if (badgeDetailResults.data) {
     badgeDetail = badgeDetailResults.data.badges[0];
+  }
+  const userQuizzesQuery = useQuery(FETCH_USER_QUIZZES, {
+    variables: {
+      userId: userId(session),
+      badgeId: slug,
+    },
+  });
+  let userQuizzes;
+  let accuracyList = [];
+  let maxAccuracy;
+  if (userQuizzesQuery.data) {
+    userQuizzes = userQuizzesQuery.data.user_quizzes;
+    accuracyList = userQuizzes.map((it) => it.accuracy);
+    if (accuracyList.length == 0) {
+      maxAccuracy = "Not Attempted";
+    } else {
+      maxAccuracy = Math.max(...accuracyList) + "%";
+    }
   }
 
   return (
@@ -28,6 +50,9 @@ const BadgeDetailsPage = ({ slug }) => {
             </p>
             <img src={badgeDetail.image} className="w-72 m-auto"></img>
             <p className="text-center mt-4"> {badgeDetail.description} </p>
+            <p className="text-center mt-4 font-bold">
+              Your Best Attempt is: {maxAccuracy}
+            </p>
           </div>
         )}
       </div>
