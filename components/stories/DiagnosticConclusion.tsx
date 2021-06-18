@@ -23,7 +23,7 @@ export const DiagnosticConclusion = ({
     switch (grade) {
       case 0:
         //lavan's gonna get a badge for JK/SK
-        return "/images/grade1Badge.png";
+        return "/images/JKSKBadge.png";
       case 1:
         return "/images/grade1Badge.png";
       case 2:
@@ -90,8 +90,14 @@ export const DiagnosticConclusion = ({
             {" "}
             {"Average Ontario Grade Level - Grade " + displayGrade}{" "}
           </p>
-          <img className="h-1/8 w-1/12 ml-6" src={badgeSelector(gradeLevel)} />
+          <div className="w-7/12 h-7/12">
+            <img
+              className="md:h-1/6 sm:h-1/6 sm:w-1/6 md:w-1/6 self-center"
+              src={badgeSelector(gradeLevel)}
+            />
+          </div>
         </div>
+
         <p>
           {getSummaryText(
             gradeLevel,
