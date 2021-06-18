@@ -112,16 +112,16 @@ const Quiz = ({ slug }) => {
           },
         });
       }
+      saveQuizData({
+        variables: {
+          userId: userId(session),
+          badgeId: getBadgeId(slug, currentLevel),
+          accuracy: Math.round((100 * correctGuesses) / length),
+          quizTitle: "",
+        },
+      });
     }
   };
-  saveQuizData({
-    variables: {
-      userId: userId(session),
-      badgeId: getBadgeId(slug, currentLevel),
-      accuracy: Math.round((100 * correctGuesses) / length),
-      quizTitle: "",
-    },
-  });
 
   const onCloseGameOver = () => {
     setIndex(0);
