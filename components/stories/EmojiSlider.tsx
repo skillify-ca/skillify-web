@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Story, Meta } from "@storybook/react";
 
-const EmojiSlider = () => {
+export interface EmojiSliderProps {
+  callback: (val: number) => void;
+}
+
+const EmojiSlider = ({ callback }: EmojiSliderProps) => {
   const [mood, setMood] = useState("😐");
   const [opinion, setOpinion] = useState("Satisfactory");
 
@@ -17,6 +21,8 @@ const EmojiSlider = () => {
       setMood("😄");
       setOpinion("Awesome");
     }
+
+    callback(val);
   }
 
   return (

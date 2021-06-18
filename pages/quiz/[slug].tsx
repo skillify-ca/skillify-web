@@ -6,10 +6,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { CREATE_GUESS } from "../../graphql/createGuess";
 import { useMutation, useQuery } from "@apollo/client";
-import { UPDATE_USER_SKILLS } from "../../graphql/updateUserSkills";
-import { FETCH_USER_SKILLS } from "../../graphql/fetchUserSkills";
-import { FETCH_USER_SKILL } from "../../graphql/fetchUserSkill";
-import { UNLOCK_NEXT_SKILL } from "../../graphql/unlockNextSkill";
 import { generateQuestions } from "../api/quiz/quizQuestionGenerator";
 import { v4 as uuidv4 } from "uuid";
 import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
@@ -72,30 +68,6 @@ const Quiz = ({ slug }) => {
   }, []);
 
   const [createFlashcardGuess, createGuessData] = useMutation(CREATE_GUESS);
-  const userSkillResult = useQuery(FETCH_USER_SKILL, {
-    variables: {
-      skillId: getSkillIdFromSlug(slug),
-      userId: userId(session),
-    },
-  });
-  const userSkillsResult = useQuery(FETCH_USER_SKILLS, {
-    variables: {
-      userId: userId(session),
-    },
-  });
-  const [unlockNextSkill, unlockNextSkillData] = useMutation(
-    UNLOCK_NEXT_SKILL,
-    {
-      refetchQueries: [
-        {
-          query: FETCH_USER_SKILLS,
-          variables: {
-            userId: userId(session),
-          },
-        },
-      ],
-    }
-  );
 
   const [unlockBadge, unlockBadgeData] = useMutation(UNLOCK_BADGE, {
     refetchQueries: [
@@ -195,7 +167,7 @@ const Quiz = ({ slug }) => {
           >
             Replay
           </button>
-          <Link href="/">
+          <Link href="/practice">
             <button className="group relative w-3/4 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               Home
             </button>
