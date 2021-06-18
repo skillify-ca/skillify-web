@@ -1,16 +1,18 @@
-import { useQuery } from "@apollo/client";
-import { session } from "next-auth/client";
+import { useMutation, useQuery } from "@apollo/client";
+import { session, useSession } from "next-auth/client";
 import Link from "next/link";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { Topic } from "../../api/skill";
 import Navbar from "../../components/Navbar";
 import { Button } from "../../components/stories/Button";
+import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
+import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
+import { INIT_USER_BADGES } from "../../graphql/initUserBadges";
 import { userId } from "../../graphql/utils/constants";
 import { getSkillsForTopicGrade, Grade } from "../api/skill";
 
 const TopicOverviewPage = ({ slug }) => {
+  const [session, user] = useSession();
   const [grade, setGrade] = useState(Grade.GRADE_3);
   const onGradeChange = (e: any) => {
     setGrade(e.target.value);
@@ -29,7 +31,7 @@ const TopicOverviewPage = ({ slug }) => {
   const userQuizzesQuery = useQuery(FETCH_USER_QUIZZES, {
     variables: {
       userId: userId(session),
-      badgeId: gradeNum(grade) + 9,
+      badgeId: gradeNum(grade),
     },
   });
   let userQuizzes;
@@ -43,6 +45,18 @@ const TopicOverviewPage = ({ slug }) => {
     } else {
       maxAccuracy = Math.max(...accuracyList) + "%";
     }
+  }
+
+  const skillBadgeQuery = useQuery(FETCH_USER_SKILL_BADGE, {
+    variables: {
+      userId: userId(session),
+      badgeId: gradeNum(grade),
+    },
+  });
+
+  let skillBadge = [];
+  if (skillBadgeQuery.data) {
+    skillBadge = skillBadgeQuery.data.user_badges;
   }
 
   const levelComponent = (
@@ -74,16 +88,6 @@ const TopicOverviewPage = ({ slug }) => {
             luck, you got this!
           </p>
           <div className="flex gap-8">
-            <p className="font-bold"> Select Grade:</p>
-            <select
-              value={grade}
-              onChange={onGradeChange}
-              className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
-            >
-              <option>Grade 1</option>
-              <option>Grade 2</option>
-              <option>Grade 3</option>
-            </select>
             <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
               <Link href={"/quiz/addition?level=" + gradeNum(grade)}>
                 <Button
@@ -105,27 +109,6 @@ const TopicOverviewPage = ({ slug }) => {
     </div>
   );
 
-  enum Stage {
-    VIDEOS,
-    PRACTICE,
-    QUIZ,
-  }
-
-  const [stage, setStage] = useState(Stage.VIDEOS);
-
-  const getComponentForStage = () => {
-    switch (stage) {
-      case Stage.VIDEOS:
-        return videoComponent;
-      case Stage.PRACTICE:
-        return practiceComponent;
-      case Stage.QUIZ:
-        return quizComponent;
-      default:
-        break;
-    }
-  };
-
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
       <Navbar />
@@ -138,6 +121,10 @@ const TopicOverviewPage = ({ slug }) => {
         ))}
         {quizComponent}
       </div>
+      badge pic:{" "}
+      {skillBadge.map((badge) => (
+        <img src={badge.badge.image} className="w-32" />
+      ))}
     </div>
   );
 };
