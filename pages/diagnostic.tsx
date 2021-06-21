@@ -99,7 +99,7 @@ const Diagnostic = () => {
   }
 
   const submitGuess = async (guessData: GuessData) => {
-    if (guessData.guess == "") {
+    if (guessData.guess == "" || guessData.guess == " groups of ") {
       setIsShaking(true);
       return;
     }
