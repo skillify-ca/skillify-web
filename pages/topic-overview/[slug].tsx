@@ -38,6 +38,8 @@ const TopicOverviewPage = ({ slug }) => {
   let accuracyList = [];
   let maxAccuracy;
   if (userQuizzesQuery.data) {
+    console.log("userQuizzesQuery.data", userQuizzesQuery.data);
+
     userQuizzes = userQuizzesQuery.data.user_quizzes;
     accuracyList = userQuizzes.map((it) => it.accuracy);
     if (accuracyList.length == 0) {

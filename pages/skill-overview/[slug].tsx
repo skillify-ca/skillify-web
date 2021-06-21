@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 import Navbar from "../../components/Navbar";
+import { Button } from "../../components/stories/Button";
 import { getPracticeCardForSkill, SkillDescription } from "../api/skill";
 import { getVideosForSkill } from "../api/videoHelper";
 import Resources from "../resources";
@@ -12,7 +13,13 @@ const SkillOverviewPage = ({ slug }) => {
       backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.75)), url(http://img.youtube.com/vi/${videoId}/hqdefault.jpg)`,
     };
   };
-  const practiceComponent = <div></div>;
+  const practiceComponent = getPracticeCardForSkill(slug)[0] && (
+    <div>
+      <Link href={`/practice/${getPracticeCardForSkill(slug)[0].link}`}>
+        <Button backgroundColor="blue" textColor="white" label="Practice Now" />
+      </Link>
+    </div>
+  );
 
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
@@ -36,6 +43,7 @@ const SkillOverviewPage = ({ slug }) => {
             </Link>
           ))}
         </div>
+        {getPracticeCardForSkill(slug)[0] && practiceComponent}
       </div>
     </div>
   );
