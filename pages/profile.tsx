@@ -4,8 +4,6 @@ import Navbar from "../components/Navbar";
 import { useMutation, useQuery } from "@apollo/client";
 import Link from "next/link";
 import { userId } from "../graphql/utils/constants";
-import TopicItem from "../components/stories/TopicItem";
-import { FETCH_BADGES } from "../graphql/fetchBadges";
 import { FETCH_USER_BADGES } from "../graphql/fetchUserBadge";
 import { INIT_USER_BADGES } from "../graphql/initUserBadges";
 

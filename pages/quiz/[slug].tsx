@@ -81,8 +81,10 @@ const Quiz = ({ slug }) => {
   });
 
   const submitGuess = (currentGuess: GuessData) => {
+    let newCorrectGuesses = correctGuesses;
     if (currentGuess.isCorrect) {
-      setCorrectGuesses(correctGuesses + 1);
+      newCorrectGuesses += 1;
+      setCorrectGuesses(newCorrectGuesses);
     }
     createFlashcardGuess({
       variables: {
@@ -104,22 +106,24 @@ const Quiz = ({ slug }) => {
       clearInterval(interval);
       setMyInterval(null);
       setGameOver(true);
-      if (correctGuesses / length >= 0.8) {
-        unlockBadge({
+      if (index == length - 1) {
+        if (correctGuesses / length >= 0.8) {
+          unlockBadge({
+            variables: {
+              userId: userId(session),
+              badgeId: getBadgeId(slug, currentLevel),
+            },
+          });
+        }
+        saveQuizData({
           variables: {
             userId: userId(session),
             badgeId: getBadgeId(slug, currentLevel),
+            accuracy: Math.round((100 * newCorrectGuesses) / length),
+            quizTitle: "",
           },
         });
       }
-      saveQuizData({
-        variables: {
-          userId: userId(session),
-          badgeId: getBadgeId(slug, currentLevel),
-          accuracy: Math.round((100 * correctGuesses) / length),
-          quizTitle: "",
-        },
-      });
     }
   };
 
