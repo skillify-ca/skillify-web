@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
-import { Question } from "../../pages/api/question";
 import { Button } from "./Button";
-import { PatternBlankProp } from "./patternBlanks";
 
 export interface MissingNumSeqProp {
   numSeq: Array<number>;
@@ -41,8 +39,7 @@ export const MissingNumSeq: React.FC<MissingNumSeqProp> = ({
   return (
     <div className=" flex flex-col items-center space-y-8">
       <h1 className="text-4m font-semibold text-center">
-        {" "}
-        Enter the Missing Number in the Sequence{" "}
+        Enter the Missing Number in the Sequence
       </h1>
       <div className="flex flex-row space-x-8">{items}</div>
       <Button
