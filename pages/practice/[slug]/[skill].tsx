@@ -90,6 +90,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   };
 
   const saveEmoji = () => {
+    
     updateUserEmoji({
       variables: {
         userId: "google-oauth2|117552556186948975503", // TODO make this work for all users
@@ -100,6 +101,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   };
 
   const setEmojiCallback = (val: number) => {
+    
     setEmoji(val);
   };
 
