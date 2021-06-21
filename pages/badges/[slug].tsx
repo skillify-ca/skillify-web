@@ -1,8 +1,6 @@
 import { useQuery } from "@apollo/client";
-import { findIndex } from "lodash";
 import { useSession } from "next-auth/client";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 import Navbar from "../../components/Navbar";
 import { FETCH_BADGE } from "../../graphql/fetchBadge";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
@@ -38,7 +36,6 @@ const BadgeDetailsPage = ({ slug }) => {
       maxAccuracy = Math.max(...accuracyList) + "%";
     }
   }
-  let index = 0;
 
   return (
     <div>
