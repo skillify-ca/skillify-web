@@ -43,7 +43,11 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
 };
 
 export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): Skill[] => {
-  if (topic == Topic.ADDITION) {
+  if (topic == Topic.NUMBERS) {
+    if (grade == Grade.GRADE_1) {
+      return [Skill.NUMBERS_50];
+    }
+  } else if (topic == Topic.ADDITION) {
     if (grade == Grade.GRADE_1) {
       return [Skill.ADDITION_SINGLE];
     } else if (grade == Grade.GRADE_2) {
@@ -128,9 +132,7 @@ export function SkillDescription(skill: Skill) {
   }
 }
 
-type DiagnosticState = {};
-
-type ResourceMetadata = {
+type PracticeCardMetadata = {
   link: string;
   practiceTitle?: string;
   imgSrc: string;
@@ -138,13 +140,15 @@ type ResourceMetadata = {
 };
 
 // emoji confidence rating is hardcoded right now but won't be later
-export const getPracticeCardForSkill = (skill: Skill): ResourceMetadata[] => {
+export const getPracticeCardForSkill = (
+  skill: Skill
+): PracticeCardMetadata[] => {
   switch (skill) {
     case Skill.ADDITION_SINGLE:
       return [
         {
           link: "addition/single-digit",
-          practiceTitle: "I Can Add Single Digit Numbers (Grade 1)",
+          practiceTitle: "I Can Add Single Digit Numbers",
           imgSrc:
             "https://www.broadwater.w-sussex.sch.uk/_data/site/20/pg/366/8.jpg",
           confidenceRating: "😄",

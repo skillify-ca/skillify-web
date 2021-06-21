@@ -124,10 +124,6 @@ const TopicOverviewPage = ({ slug }) => {
         ))}
         {quizComponent}
       </div>
-      badge pic:{" "}
-      {/* {skillBadge.map((badge) => (
-        <img src={badge.badge.image} className="w-32" />
-      ))} */}
       <div className="grid gap-x-8 gap-y-4 grid-cols-3 w-1/2 m-auto p-4">
         {skillBadge.map((badge) => {
           return badge.locked ? (

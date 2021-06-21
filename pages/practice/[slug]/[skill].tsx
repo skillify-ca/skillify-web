@@ -152,7 +152,7 @@ const PracticeQuiz = ({ slug, skill }) => {
             />
           </div>
           <div
-            className={`${display} flex-col justify-center items-center gap-8 transition-opacity duration-150 ease-in-out`}
+            className={`${display} flex-col justify-center items-center gap-8 transition-opacity duration-150 ease-in-out opacity-${isFaded}`}
           >
             <div className={"justify-items-center align-middle w-50 mt-8"}>
               <Card size="large">
