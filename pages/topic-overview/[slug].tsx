@@ -9,7 +9,7 @@ import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { INIT_USER_BADGES } from "../../graphql/initUserBadges";
 import { userId } from "../../graphql/utils/constants";
-import { getSkillsForTopicGrade, Grade } from "../api/skill";
+import { getSkillsForTopicGrade, Grade, SkillDescription } from "../api/skill";
 
 const TopicOverviewPage = ({ slug }) => {
   const [session, user] = useSession();
@@ -116,15 +116,29 @@ const TopicOverviewPage = ({ slug }) => {
         {levelComponent}
         {getSkillsForTopicGrade(slug, grade).map((skill) => (
           <Link href={`/skill-overview/${skill}`}>
-            <p className="border-blue-400 border-4"> Skills: {skill} </p>
+            <p className="border-blue-400 border-4">
+              {" "}
+              {SkillDescription(skill)}{" "}
+            </p>
           </Link>
         ))}
         {quizComponent}
       </div>
       badge pic:{" "}
-      {skillBadge.map((badge) => (
+      {/* {skillBadge.map((badge) => (
         <img src={badge.badge.image} className="w-32" />
-      ))}
+      ))} */}
+      <div className="grid gap-x-8 gap-y-4 grid-cols-3 w-1/2 m-auto p-4">
+        {skillBadge.map((badge) => {
+          return badge.locked ? (
+            <div className="">
+              <img src="/images/lockedPic.png" className="w-32" />
+            </div>
+          ) : (
+            <img src={badge.badge.image} className="w-32" />
+          );
+        })}
+      </div>
     </div>
   );
 };

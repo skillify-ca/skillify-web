@@ -7,6 +7,7 @@ export const FETCH_USER_SKILL_BADGE = gql`
       badge {
         image
       }
+      locked
     }
   }
 `;

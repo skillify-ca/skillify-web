@@ -51,6 +51,30 @@ export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): Skill[] => {
     } else {
       return [Skill.ADDITION_TRIPLE];
     }
+  } else if (topic == Topic.SUBTRACTION) {
+    if (grade == Grade.GRADE_1) {
+      return [Skill.SUBTRACTION_SINGLE];
+    } else if (grade == Grade.GRADE_2) {
+      return [Skill.SUBTRACTION_DOUBLE];
+    } else {
+      return [Skill.SUBTRACTION_TRIPLE];
+    }
+  } else if (topic == Topic.MULTIPLICATION) {
+    if (grade == Grade.GRADE_1) {
+      return [Skill.EQUAL_GROUP_10_ITEMS];
+    } else if (grade == Grade.GRADE_2) {
+      return [Skill.MULTIPLICATION_5];
+    } else {
+      return [Skill.MULTIPLICATION_10];
+    }
+  } else if (topic == Topic.DIVISION) {
+    if (grade == Grade.GRADE_1) {
+      return [Skill.EQUAL_SHARING_8_ITEMS];
+    } else if (grade == Grade.GRADE_2) {
+      return [Skill.DIVIDE_12_EQUALLY];
+    } else {
+      return [Skill.DIVIDE_100];
+    }
   }
   return [];
 };
@@ -105,3 +129,116 @@ export function SkillDescription(skill: Skill) {
 }
 
 type DiagnosticState = {};
+
+type ResourceMetadata = {
+  link: string;
+  practiceTitle?: string;
+  imgSrc: string;
+  confidenceRating: string;
+};
+
+// emoji confidence rating is hardcoded right now but won't be later
+export const getPracticeCardForSkill = (skill: Skill): ResourceMetadata[] => {
+  switch (skill) {
+    case Skill.ADDITION_SINGLE:
+      return [
+        {
+          link: "addition/single-digit",
+          practiceTitle: "I Can Add Single Digit Numbers (Grade 1)",
+          imgSrc:
+            "https://www.broadwater.w-sussex.sch.uk/_data/site/20/pg/366/8.jpg",
+          confidenceRating: "😄",
+        },
+      ];
+    case Skill.ADDITION_DOUBLE:
+      return [
+        {
+          link: "addition/double-digit",
+          practiceTitle: "I Can Add Double Digit Numbers (Grade 2)",
+          imgSrc:
+            "https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%202DIGITS.png",
+          confidenceRating: "😐",
+        },
+      ];
+    case Skill.ADDITION_TRIPLE:
+      return [
+        {
+          link: "addition/triple-digit",
+          practiceTitle: "I Can Add Triple Digit Numbers (Grade 3)",
+          imgSrc:
+            "https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%203DIGITS1.png",
+          confidenceRating: "❓",
+        },
+      ];
+    case Skill.ADDITION_PROPERTIES:
+      return [
+        {
+          link: "addition/propertiesC",
+          practiceTitle: "Addition Properties (Grade 3)",
+          imgSrc:
+            "https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%203DIGITS1.png",
+          confidenceRating: "❓",
+        },
+      ];
+    case Skill.SUBTRACTION_SINGLE:
+      return [
+        {
+          link: "subtraction/single-digit",
+          practiceTitle: "I Can Subtract Single Digit Numbers (Grade 1)",
+          imgSrc: "/images/numberLineSub.png",
+          confidenceRating: "😄",
+        },
+      ];
+    case Skill.SUBTRACTION_DOUBLE: //we need pictures for the following cards
+      return [
+        {
+          link: "subtraction/double-digit",
+          practiceTitle: "I Can Subtract Double Digit Numbers (Grade 2)",
+          imgSrc:
+            "https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%203DIGITS1.png",
+          confidenceRating: "😐",
+        },
+      ];
+    case Skill.SUBTRACTION_TRIPLE:
+      return [
+        {
+          link: "subtraction/triple-digit",
+          practiceTitle: "I Can Subtract Triple Digit Numbers (Grade 2)",
+          imgSrc:
+            "https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%203DIGITS1.png",
+          confidenceRating: "😐",
+        },
+      ];
+    case Skill.EQUAL_SHARING_8_ITEMS:
+      return [
+        {
+          link: "division/single-digit", //we should change this link
+          practiceTitle: "I Can Equally Share Up to 12 (Grade 1)",
+          imgSrc:
+            "https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%203DIGITS1.png",
+          confidenceRating: "😐",
+        },
+      ];
+    case Skill.DIVIDE_12_EQUALLY:
+      return [
+        {
+          link: "division/single-digit", //we should change this link
+          practiceTitle: "I Can Divide equally to 12 (Grade 2)",
+          imgSrc:
+            "https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%203DIGITS1.png",
+          confidenceRating: "😐",
+        },
+      ];
+    case Skill.DIVIDE_100:
+      return [
+        {
+          link: "division/single-digit", //we should change this link
+          practiceTitle: "I Can Divide equally to 100 (Grade 3)",
+          imgSrc:
+            "https://raw.githubusercontent.com/qknow/images/gh-pages/primary/MATHS/CLASS%203/numbers%20and%20numerals/ADDTION%20-%203DIGITS1.png",
+          confidenceRating: "😐",
+        },
+      ];
+  }
+  return [];
+};
