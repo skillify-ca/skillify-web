@@ -3,7 +3,9 @@ import { Skill, Topic } from "../skill";
 
 export const generatePracticeQuestions = (topic: string, skillStr: string) => {
   let skill: Skill;
-  if (topic == "addition") {
+  if (topic == "numbers") {
+    skill = Skill.NUMBERS_50;
+  } else if (topic == "addition") {
     switch (skillStr) {
       case "single-digit":
         skill = Skill.ADDITION_SINGLE;
