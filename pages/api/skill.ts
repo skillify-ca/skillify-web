@@ -144,6 +144,16 @@ export const getPracticeCardForSkill = (
   skill: Skill
 ): PracticeCardMetadata[] => {
   switch (skill) {
+    case Skill.NUMBERS_50:
+      return [
+        {
+          link: "numbers/count-50",
+          practiceTitle: "I Can Add Single Digit Numbers",
+          imgSrc:
+            "https://www.broadwater.w-sussex.sch.uk/_data/site/20/pg/366/8.jpg",
+          confidenceRating: "😄",
+        },
+      ];
     case Skill.ADDITION_SINGLE:
       return [
         {
