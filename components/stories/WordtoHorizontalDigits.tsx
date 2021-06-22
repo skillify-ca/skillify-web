@@ -66,6 +66,12 @@ export const WordtoHorizontalDigits: React.FC<WordtoHorizontalDigitsProp> = ({
         ></input>{" "}
         ones
       </div>
+      <Button
+        onClick={onSubmit}
+        label="Submit"
+        textColor="white"
+        backgroundColor="red"
+      ></Button>
     </div>
   );
 };
