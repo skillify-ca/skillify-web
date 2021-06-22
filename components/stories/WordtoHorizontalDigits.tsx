@@ -42,28 +42,28 @@ export const WordtoHorizontalDigits: React.FC<WordtoHorizontalDigitsProp> = ({
           type="number"
           value={guess1}
           onChange={(e) => setGuess1(e.target.value)}
-        ></input>{" "}
+        ></input>
         thousands +
         <input
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
           type="number"
           value={guess2}
           onChange={(e) => setGuess2(e.target.value)}
-        ></input>{" "}
+        ></input>
         hundreds +
         <input
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
           type="number"
           value={guess3}
           onChange={(e) => setGuess3(e.target.value)}
-        ></input>{" "}
+        ></input>
         tens +
         <input
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
           type="number"
           value={guess4}
           onChange={(e) => setGuess4(e.target.value)}
-        ></input>{" "}
+        ></input>
         ones
       </div>
       <Button
