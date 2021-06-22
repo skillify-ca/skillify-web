@@ -20,7 +20,7 @@ export const PracticeTopic: React.FC<PracticeTopicProps> = ({
   );
   const unlockedTopic = (
     <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
-      <Link href={`${title.toLocaleLowerCase()}TopicOverview`}>
+      <Link href={`topic-overview/${title.toLocaleLowerCase()}`}>
         <TopicItem disabled={disabled} image={image} title={title} rating={0} />
       </Link>
     </div>

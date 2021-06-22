@@ -20,6 +20,7 @@ import { AdditionDoubleDigitWS } from "../../components/stories/WorksheetsObj";
 import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
 import { getBadgeId } from "../api/badgeHelper";
 import { CREATE_QUIZ_ATTEMPT } from "../../graphql/createUserQuizAttempt";
+import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -43,7 +44,17 @@ const Quiz = ({ slug }) => {
   const length = questionData.length;
   const [sessionId, setSessionId] = React.useState("");
 
-  const [saveQuizData, setQuizData] = useMutation(CREATE_QUIZ_ATTEMPT);
+  const [saveQuizData, setQuizData] = useMutation(CREATE_QUIZ_ATTEMPT, {
+    refetchQueries: [
+      {
+        query: FETCH_USER_QUIZZES,
+        variables: {
+          userId: userId(session),
+          badgeId: getBadgeId(slug, currentLevel),
+        },
+      },
+    ],
+  });
 
   useEffect(() => {
     const level = Number.parseInt(query.level as string);
@@ -81,8 +92,10 @@ const Quiz = ({ slug }) => {
   });
 
   const submitGuess = (currentGuess: GuessData) => {
+    let newCorrectGuesses = correctGuesses;
     if (currentGuess.isCorrect) {
-      setCorrectGuesses(correctGuesses + 1);
+      newCorrectGuesses += 1;
+      setCorrectGuesses(newCorrectGuesses);
     }
     createFlashcardGuess({
       variables: {
@@ -104,22 +117,24 @@ const Quiz = ({ slug }) => {
       clearInterval(interval);
       setMyInterval(null);
       setGameOver(true);
-      if (correctGuesses / length >= 0.8) {
-        unlockBadge({
+      if (index == length - 1) {
+        if (correctGuesses / length >= 0.8) {
+          unlockBadge({
+            variables: {
+              userId: userId(session),
+              badgeId: getBadgeId(slug, currentLevel),
+            },
+          });
+        }
+        saveQuizData({
           variables: {
             userId: userId(session),
             badgeId: getBadgeId(slug, currentLevel),
+            accuracy: Math.round((100 * newCorrectGuesses) / length),
+            quizTitle: "",
           },
         });
       }
-      saveQuizData({
-        variables: {
-          userId: userId(session),
-          badgeId: getBadgeId(slug, currentLevel),
-          accuracy: Math.round((100 * correctGuesses) / length),
-          quizTitle: "",
-        },
-      });
     }
   };
 
