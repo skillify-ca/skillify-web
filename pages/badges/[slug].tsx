@@ -1,7 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useSession } from "next-auth/client";
 import React from "react";
-import { useSelector } from "react-redux";
 import Navbar from "../../components/Navbar";
 import { FETCH_BADGE } from "../../graphql/fetchBadge";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
@@ -55,6 +54,31 @@ const BadgeDetailsPage = ({ slug }) => {
             </p>
           </div>
         )}
+
+        <div className="flex flex-col justify-center w-1/2 ml-auto mr-auto mt-8 bg-white p-8 rounded-3xl">
+          <p className="text-center text-3xl mb-4 font-semibold">
+            {" "}
+            Quiz Attempts{" "}
+          </p>
+          <table className="border-b-2 text-center">
+            <tr className="border-b-2">
+              <th>Attempt</th>
+              <th>Score</th>
+              <th>Date</th>
+            </tr>
+            {userQuizzes &&
+              userQuizzes.map(
+                (it) =>
+                  it && (
+                    <tr>
+                      <td>{userQuizzes.indexOf(it)}</td>
+                      <td>{it.accuracy}</td>
+                      <td>{it.createdAt}</td>
+                    </tr>
+                  )
+              )}
+          </table>
+        </div>
       </div>
     </div>
   );

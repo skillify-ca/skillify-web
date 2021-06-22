@@ -7,11 +7,10 @@ import { AnswerType, Question } from "./api/question";
 import { QuestionType } from "./api/questionTypes";
 import { DiagnosticState, setDiagnostic } from "../redux/diagnosticSlice";
 import { useAppDispatch } from "../redux/store";
-import { Skill, Topic } from "./api/skill";
+import { Grade, Skill, Topic } from "./api/skill";
 import {
   generateQuestionsForDiagnostic,
   getNextQuestion,
-  Grade,
 } from "./api/diagnostic/diagnosticQuestionGenerator";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { getWorkSheets } from "./api/worksheets";
@@ -36,7 +35,7 @@ const Diagnostic = () => {
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState(1);
   const [isShaking, setIsShaking] = useState(false);
-  const [grade, setGrade] = useState(Grade.GRADE_THREE);
+  const [grade, setGrade] = useState(Grade.GRADE_3);
   const [stage, setStage] = useState(STAGE.CREATE);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -100,7 +99,7 @@ const Diagnostic = () => {
   }
 
   const submitGuess = async (guessData: GuessData) => {
-    if (guessData.guess == "") {
+    if (guessData.guess == "" || guessData.guess == " groups of ") {
       setIsShaking(true);
       return;
     }
