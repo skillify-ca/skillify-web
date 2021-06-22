@@ -53,10 +53,10 @@ const SkillOverviewPage = ({ slug }) => {
           I can {SkillDescription(slug) &&
             SkillDescription(slug).toLowerCase()}{" "}
         </span>
-        <span className="flex items-center gap-4">
-          <p className="text-xl font-medium text-blue-900">Confidence:</p>{" "}
+        <span className="flex flex-col items-center mr-8">
+          <p className="text-md font-bold text-gray-700 ">Confidence:</p>{" "}
           {getPracticeCardForSkill(slug).map((resource) => (
-            <span className="text-7xl"> {resource.confidenceRating} </span>
+            <p className="text-7xl"> {resource.confidenceRating} </p>
           ))}{" "}
         </span>
       </div>
