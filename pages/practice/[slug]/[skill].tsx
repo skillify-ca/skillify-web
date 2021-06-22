@@ -104,7 +104,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   };
 
   const submitGuess = (guess: GuessData) => {
-    toggleFlip();
+    toggleFlip(); //aa
 
     if (index < questionData.length && !indexCap) {
       if (guess.guess != "") {
