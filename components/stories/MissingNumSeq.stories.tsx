@@ -15,5 +15,5 @@ const Template: Story<MissingNumSeqProp> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {
   numSeq: [1, 2, 3, 4, 5],
-  answer: 2,
+  answer: 3,
 };

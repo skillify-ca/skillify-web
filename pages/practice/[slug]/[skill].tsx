@@ -90,7 +90,6 @@ const PracticeQuiz = ({ slug, skill }) => {
   };
 
   const saveEmoji = () => {
-    
     updateUserEmoji({
       variables: {
         userId: "google-oauth2|117552556186948975503", // TODO make this work for all users
@@ -101,16 +100,15 @@ const PracticeQuiz = ({ slug, skill }) => {
   };
 
   const setEmojiCallback = (val: number) => {
-    
     setEmoji(val);
   };
 
   const submitGuess = (guess: GuessData) => {
-    toggleFlip();
+    toggleFlip(); //aa
 
     if (index < questionData.length && !indexCap) {
       if (guess.guess != "") {
-        setGuessAttempt(guess.guess);
+        setGuessAttempt(guess.guess.toString());
       }
       if (index == questionData.length - 1) {
         setIndexCap(true);
