@@ -6,11 +6,12 @@ export enum AnswerType {
   NUMBER,
   BOOLEAN,
   STRING,
+  ARRAY,
 }
 
 export type Question = {
   text: string;
-  answer: string;
+  answer: string; // only accepts strings so Array<Num> doesn't work
   answerType: AnswerType;
   questionType: QuestionType;
   skill: Skill;
@@ -19,6 +20,7 @@ export type Question = {
   multipleChoice?: MCModel;
   fillInTheBlank?: fillBlankModel;
   placeholder?: string;
+  arrayAns?: Array<number>;
 };
 
 export type MCOption = {

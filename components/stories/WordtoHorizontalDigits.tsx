@@ -14,57 +14,59 @@ export const WordtoHorizontalDigits: React.FC<WordtoHorizontalDigitsProp> = ({
   submitGuess,
   ...props
 }) => {
+  const digitsArr = ["Thousands", "hundreds", "tens", "ones"];
   const [guess1, setGuess1] = useState("");
   const [guess2, setGuess2] = useState("");
   const [guess3, setGuess3] = useState("");
   const [guess4, setGuess4] = useState("");
-  let guessArr = [
-    parseInt(guess1),
-    parseInt(guess2),
-    parseInt(guess3),
-    parseInt(guess4),
-  ];
+  let guessArr = [parseInt(guess1), parseInt(guess2), parseInt(guess3)];
+  let guessValArr = [guess1, guess2, guess3, guess4];
+  function guessSetter(guessVal) {
+    if (guessVal == 0) {
+      return (e) => setGuess1(e.target.value);
+    } else if (guessVal == 1) {
+      return (e) => setGuess2(e.target.value);
+    } else if (guessVal == 2) {
+      return (e) => setGuess3(e.target.value);
+    } else if (guessVal == 3) {
+      return (e) => setGuess4(e.target.value);
+    }
+  }
+  let items = [];
+  let answerLen = answer.length;
+  for (let i = digitsArr.length - answerLen; i < digitsArr.length; ++i) {
+    items.push(
+      <div className="flex flex-row space-x-8">
+        {
+          <input
+            className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
+            type="number"
+            value={guessValArr[i]}
+            onChange={guessSetter(i)}
+          ></input>
+        }
+        <h1>{digitsArr[i]}</h1>
+        {digitsArr[i] != "ones" && <h1>+</h1>}
+      </div>
+    );
+  }
+
   function onSubmit() {
     submitGuess({
       guess: guessArr,
       isCorrect: guessArr == answer,
     });
   }
+
   return (
     <div className="flex flex-col items-center space-y-8">
       <h1 className="text-4m font-semibold text-center">
         Enter the Corresponding Digits
       </h1>
-      <div className="flex flex-row space-x-8">
-        {numString} =
-        <input
-          className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
-          type="number"
-          value={guess1}
-          onChange={(e) => setGuess1(e.target.value)}
-        ></input>
-        thousands +
-        <input
-          className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
-          type="number"
-          value={guess2}
-          onChange={(e) => setGuess2(e.target.value)}
-        ></input>
-        hundreds +
-        <input
-          className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
-          type="number"
-          value={guess3}
-          onChange={(e) => setGuess3(e.target.value)}
-        ></input>
-        tens +
-        <input
-          className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
-          type="number"
-          value={guess4}
-          onChange={(e) => setGuess4(e.target.value)}
-        ></input>
-        ones
+      <div className="flex flex-row space-x-4">
+        <h1 className="font-bold">{numString}</h1>
+        <h1>=</h1>
+        <div className="flex flex-col space-y-8">{items}</div>
       </div>
       <Button
         onClick={onSubmit}

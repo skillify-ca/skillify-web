@@ -17,6 +17,6 @@ const Template: Story<WordtoHorizontalDigitsProp> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  numString: "seven hundred sixty nine",
-  answer: [7, 6, 9],
+  numString: "three thousand seven hundred sixty nine",
+  answer: [3, 7, 6, 9],
 };
