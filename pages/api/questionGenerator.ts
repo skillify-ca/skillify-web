@@ -228,14 +228,14 @@ export function getRandomNumbersQuestion(
   }
   return {
     text: text,
-    answer: "answer",
+    answer: type == QuestionType.COMPARISON_WORD_PROBLEM ? answer : "answer",
     answerType:
       type == QuestionType.COMPARISON_WORD_PROBLEM
         ? AnswerType.NUMBER
         : AnswerType.ARRAY,
     questionType: type,
     skill: skill,
-    arrayAns: answer,
+    arrayAns: type == QuestionType.COMPARISON_WORD_PROBLEM ? "" : answer,
   };
 }
 export function getRandomAdditionQuestion(
