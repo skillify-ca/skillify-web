@@ -53,9 +53,9 @@ export function getRandomNumbersQuestion(
   const types = [
     QuestionType.PATTERN_COUNT_BLANKS_PROBLEM,
     QuestionType.WORD_TO_HORIZONTAL_DIGITS,
-    QuestionType.NUM_TO_VERITCAL_DIGITS,
-    QuestionType.VERTICAL_DIGITS_TO_NUM,
-    QuestionType.COMPARISON_WORD_PROBLEM,
+    // QuestionType.NUM_TO_VERITCAL_DIGITS,
+    // QuestionType.VERTICAL_DIGITS_TO_NUM, // commented until they are implemented
+    // QuestionType.COMPARISON_WORD_PROBLEM,
   ];
   let typeIndex = getRndInteger(0, types.length);
   let type = types[typeIndex];
