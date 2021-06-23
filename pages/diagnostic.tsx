@@ -52,7 +52,7 @@ const Diagnostic = () => {
 
   const requestEmail = async (results: DiagnosticState) => {
     const workSheets = getWorkSheets(results);
-    const url = "https://math-app-1.herokuapp.com/email";
+    const url = "http://localhost:4000/email";
     const topicGrades = [
       getGradeLevelForTopic(Topic.ADDITION, results),
       getGradeLevelForTopic(Topic.SUBTRACTION, results),
@@ -90,8 +90,7 @@ const Diagnostic = () => {
       }),
     };
 
-    // await fetch(url, options);
-    console.log(options.body);
+    await fetch(url, options);
   };
 
   function delay(ms: number) {
