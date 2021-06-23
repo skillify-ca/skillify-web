@@ -58,7 +58,7 @@ export function getRandomNumbersQuestion(
     QuestionType.COMPARISON_WORD_PROBLEM,
   ];
   let typeIndex = getRndInteger(0, types.length);
-  let type = types[1];
+  let type = types[typeIndex];
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
   let text;
