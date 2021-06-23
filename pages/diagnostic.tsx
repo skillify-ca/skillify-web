@@ -116,7 +116,7 @@ const Diagnostic = () => {
 
     // Save the actual guess for reporting
     let updateGuess;
-    updateGuess = guesses.concat(guessData.guess);
+    updateGuess = guesses.concat(guessData.guess.toString());
     setGuesses(updateGuess);
     const newAnsweredQuestions = [...answeredQuestions, currentQuestion];
     setAnsweredQuestions(newAnsweredQuestions);

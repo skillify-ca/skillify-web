@@ -178,10 +178,11 @@ const PracticeQuiz = ({ slug, skill }) => {
   };
 
   const submitGuess = (guess: GuessData) => {
-    toggleFlip();
+    toggleFlip(); //aa
+
     if (index < questionData.length && !indexCap) {
       if (guess.guess != "") {
-        setGuessAttempt(guess.guess);
+        setGuessAttempt(guess.guess.toString());
       }
       if (index >= questionData.length - 1) {
         setIndexCap(true);
@@ -267,9 +268,9 @@ const PracticeQuiz = ({ slug, skill }) => {
           </div>
         </ReactCardFlip>
       </div>
-      {/* {!continueButton && !nextQuestionButton && (
+      {!continueButton && !nextQuestionButton && (
         <Hint skill={questionData[index].skill}></Hint>
-      )} */}
+      )}
       <div
         className={`grid-cols-1 grid justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in opacity-${continueFaded}`}
       >
