@@ -25,6 +25,7 @@ export const WordtoHorizontalDigits: React.FC<WordtoHorizontalDigitsProp> = ({
   const [guess3, setGuess3] = useState("");
   const [guess4, setGuess4] = useState("");
   let guessValArr = [guess1, guess2, guess3, guess4];
+  const inputVals = ["input1", "input2", "input3", "input4"];
 
   guessString = guess2 + "," + guess3 + "," + guess4 + "," + guess1;
 
@@ -51,6 +52,7 @@ export const WordtoHorizontalDigits: React.FC<WordtoHorizontalDigitsProp> = ({
         {
           <input
             className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
+            id={inputVals[i]}
             type="number"
             value={guessValArr[i]}
             onChange={guessSetter(i)}
@@ -67,14 +69,12 @@ export const WordtoHorizontalDigits: React.FC<WordtoHorizontalDigitsProp> = ({
       guess: guessString,
       isCorrect: guessString == answerString,
     });
+    {
+    }
   }
 
   return (
     <div className="flex flex-col items-center space-y-8">
-      {/* {console.log(answer)} */}
-      {console.log("guess", guessString)}
-      {console.log("answer", answerString)}
-      {/* {console.log(answer)} */}
       <h1 className="text-4m font-semibold text-center">
         Enter the Corresponding Digits
       </h1>
