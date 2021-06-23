@@ -146,7 +146,6 @@ const PracticeQuiz = ({ slug, skill }) => {
     setDisplay("hidden");
     setContinueFaded(100);
     setStage(STAGE.END_SESSION);
-    getComponent();
   };
 
   const nextQuestion = () => {
@@ -198,7 +197,6 @@ const PracticeQuiz = ({ slug, skill }) => {
       } else {
         setNextQuestionButton(true);
         setStage(STAGE.EMOJI);
-        getComponent();
       }
     }
   };
