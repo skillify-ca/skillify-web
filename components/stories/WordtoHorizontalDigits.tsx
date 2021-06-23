@@ -1,3 +1,4 @@
+import { parse } from "@babel/core";
 import React, { useEffect, useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Button } from "./Button";
@@ -14,13 +15,23 @@ export const WordtoHorizontalDigits: React.FC<WordtoHorizontalDigitsProp> = ({
   submitGuess,
   ...props
 }) => {
+  let guessString;
+  let answerLen = answer.length;
+
+  let answerString = "";
   const digitsArr = ["Thousands", "hundreds", "tens", "ones"];
   const [guess1, setGuess1] = useState("");
   const [guess2, setGuess2] = useState("");
   const [guess3, setGuess3] = useState("");
   const [guess4, setGuess4] = useState("");
-  let guessArr = [parseInt(guess1), parseInt(guess2), parseInt(guess3)];
   let guessValArr = [guess1, guess2, guess3, guess4];
+
+  guessString = guess2 + "," + guess3 + "," + guess4 + "," + guess1;
+
+  for (let i = 0; i < answerLen; ++i) {
+    answerString += answer[i].toString() + ",";
+  }
+
   function guessSetter(guessVal) {
     if (guessVal == 0) {
       return (e) => setGuess1(e.target.value);
@@ -33,7 +44,7 @@ export const WordtoHorizontalDigits: React.FC<WordtoHorizontalDigitsProp> = ({
     }
   }
   let items = [];
-  let answerLen = answer.length;
+  answerLen = answer.length;
   for (let i = digitsArr.length - answerLen; i < digitsArr.length; ++i) {
     items.push(
       <div className="flex flex-row space-x-8">
@@ -53,13 +64,17 @@ export const WordtoHorizontalDigits: React.FC<WordtoHorizontalDigitsProp> = ({
 
   function onSubmit() {
     submitGuess({
-      guess: guessArr,
-      isCorrect: guessArr == answer,
+      guess: guessString,
+      isCorrect: guessString == answerString,
     });
   }
 
   return (
     <div className="flex flex-col items-center space-y-8">
+      {/* {console.log(answer)} */}
+      {console.log("guess", guessString)}
+      {console.log("answer", answerString)}
+      {/* {console.log(answer)} */}
       <h1 className="text-4m font-semibold text-center">
         Enter the Corresponding Digits
       </h1>

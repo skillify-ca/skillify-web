@@ -6,7 +6,7 @@ import { Skill } from "./skill";
 import { ArrayQMap, createArrayImage } from "./ArrayQMap";
 import { getRandomPropertyAdditionQuestion } from "./additionPropertyQuestionGenerator";
 import { tweleveMap } from "./factorsOfTwelveMap";
-import { shuffle, templateSettings } from "lodash";
+import { shuffle } from "lodash";
 
 export const generateQuestionForSkill = (skill: Skill): Question => {
   switch (skill) {
@@ -53,9 +53,9 @@ export function getRandomNumbersQuestion(
   const types = [
     QuestionType.PATTERN_COUNT_BLANKS_PROBLEM,
     QuestionType.WORD_TO_HORIZONTAL_DIGITS,
-    // QuestionType.NUM_TO_VERITCAL_DIGITS,
-    // QuestionType.VERTICAL_DIGITS_TO_NUM,
-    //QuestionType.COMPARISON_WORD_PROBLEM,
+    QuestionType.NUM_TO_VERITCAL_DIGITS,
+    QuestionType.VERTICAL_DIGITS_TO_NUM,
+    QuestionType.COMPARISON_WORD_PROBLEM,
   ];
   let typeIndex = getRndInteger(0, types.length);
   let type = types[1];
@@ -63,6 +63,7 @@ export function getRandomNumbersQuestion(
   const b = getRndInteger(min, max);
   let text;
   let answer;
+  let answerString;
   let startNum = getRndInteger(a, b);
   const onesColWord = [
     "Zero",
@@ -100,31 +101,29 @@ export function getRandomNumbersQuestion(
     "Ninety",
   ];
 
-  // may not be necessary
+  const hundredsColWord = [
+    "one hundred",
+    "two hundred",
+    "three hundred",
+    "four hundred",
+    "five hundred",
+    "six hundred",
+    "seven hundred",
+    "eight hundred",
+    "nine hundred",
+  ];
 
-  // const hundredsColWord = [
-  //   "one hundred",
-  //   "two hundred",
-  //   "three hundred",
-  //   "four hundred",
-  //   "five hundred",
-  //   "six hundred",
-  //   "seven hundred",
-  //   "eight hundred",
-  //   "nine hundred",
-  // ];
-
-  // const thousandscolWord = [
-  //   "one thousand",
-  //   "two thousand",
-  //   "three thousand",
-  //   "four thousand",
-  //   "five thousand",
-  //   "six thousand",
-  //   "seven thousand",
-  //   "eight thousand",
-  //   "nine thousand",
-  // ]
+  const thousandscolWord = [
+    "one thousand",
+    "two thousand",
+    "three thousand",
+    "four thousand",
+    "five thousand",
+    "six thousand",
+    "seven thousand",
+    "eight thousand",
+    "nine thousand",
+  ];
 
   if (type == QuestionType.PATTERN_COUNT_BLANKS_PROBLEM) {
     let patternTypes = ["FORWARDS", "BACKWARDS"];
@@ -132,6 +131,7 @@ export function getRandomNumbersQuestion(
     let displayPattern = patternTypes[patternIndex];
     let patternNum = getRndInteger(0, 10);
 
+    // prevents negative numbers appearing in pattern
     if (displayPattern == "BACKWARDS" && startNum - 3 * patternNum < 0) {
       displayPattern = "FORWARDS";
     }
@@ -197,29 +197,26 @@ export function getRandomNumbersQuestion(
       let tensString;
       let onesString;
 
-      if (hundredsString == null) {
-        if (answer[0] == 0) {
-          hundredsString = "";
-        } else {
-          hundredsString = onesColWord[answer[0]] + " " + "Hundred";
-        }
+      if (answer[0] == 0) {
+        hundredsString = "";
+      } else {
+        hundredsString = onesColWord[answer[0]] + " " + "Hundred";
       }
 
-      if (tensString == null) {
-        if (answer[1] == 0) {
-          tensString = "";
-        } else if (answer[1] == 1) {
-          if (answer[2] == 0) {
-            tensString = tensColWord[1];
-            onesString = "";
-          } else {
-            tensString = tensColWord[0][answer[2] - 1];
-            onesString = "";
-          }
+      if (answer[1] == 0) {
+        tensString = "";
+      } else if (answer[1] == 1) {
+        if (answer[2] == 0) {
+          tensString = tensColWord[1];
+          onesString = "";
         } else {
-          tensString = tensColWord[answer[1]];
+          tensString = tensColWord[0][answer[2] - 1];
+          onesString = "";
         }
+      } else {
+        tensString = tensColWord[answer[1]];
       }
+
       if (onesString == null) {
         if (answer[2] == 0) {
           onesString = "";
@@ -228,20 +225,18 @@ export function getRandomNumbersQuestion(
         }
       }
       text = hundredsString + " " + tensString + " " + onesString;
-      console.log(text);
     }
   }
   return {
     text: text,
     answer: "answer",
-    arrayAns: answer,
     answerType:
       type == QuestionType.COMPARISON_WORD_PROBLEM
         ? AnswerType.NUMBER
         : AnswerType.ARRAY,
     questionType: type,
     skill: skill,
-    placeholder: startNum.toString(),
+    arrayAns: answer,
   };
 }
 export function getRandomAdditionQuestion(

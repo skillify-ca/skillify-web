@@ -59,9 +59,7 @@ const Quiz = ({ slug }) => {
   useEffect(() => {
     const level = Number.parseInt(query.level as string);
     setCurrentLevel(level);
-    const questions = generateQuestions(slug, level);
-    setQuestionData(questions);
-    console.log("questions", questions);
+    setQuestionData(generateQuestions(slug, level));
     setSessionId(uuidv4());
   }, []);
 
