@@ -64,6 +64,58 @@ export function getRandomNumbersQuestion(
   let text;
   let answer;
   let startNum = getRndInteger(a, b);
+
+  if (type == QuestionType.PATTERN_COUNT_BLANKS_PROBLEM) {
+    let patternTypes = ["FORWARDS", "BACKWARDS"];
+    let patternIndex = getRndInteger(0, patternTypes.length);
+    let displayPattern = patternTypes[patternIndex];
+    let patternNum = getRndInteger(0, 10);
+
+    // prevents negative numbers appearing in pattern
+    if (displayPattern == "BACKWARDS" && startNum - 3 * patternNum < 0) {
+      displayPattern = "FORWARDS";
+    }
+
+    text = `Count ${displayPattern} by ${patternNum} from ${startNum}`;
+    if (displayPattern == "FORWARDS") {
+      answer = `${startNum},${startNum + patternNum},${
+        startNum + patternNum * 2
+      },${startNum + patternNum * 3}`;
+    } else {
+      answer = `${startNum},${startNum - patternNum},${
+        startNum - patternNum * 2
+      },${startNum - patternNum * 3}`;
+    }
+  } else if (type == QuestionType.WORD_TO_HORIZONTAL_DIGITS) {
+    if (skill == Skill.NUMBERS_200) {
+      answer = [
+        getRndInteger(0, 2),
+        getRndInteger(0, 10),
+        getRndInteger(0, 10),
+      ];
+    } else if ((skill = Skill.NUMBERS_1000)) {
+      answer = [
+        getRndInteger(0, 10),
+        getRndInteger(0, 10),
+        getRndInteger(0, 10),
+      ];
+    }
+    text = stringNumCalc(answer);
+  }
+
+  return {
+    text: text,
+    answer: type == QuestionType.COMPARISON_WORD_PROBLEM ? answer : "answer",
+    answerType:
+      type == QuestionType.COMPARISON_WORD_PROBLEM
+        ? AnswerType.NUMBER
+        : AnswerType.ARRAY,
+    questionType: type,
+    skill: skill,
+    arrayAns: type == QuestionType.COMPARISON_WORD_PROBLEM ? "" : answer,
+  };
+}
+export function stringNumCalc(answer: number[]): string {
   const onesColWord = [
     "Zero",
     "One",
@@ -124,119 +176,39 @@ export function getRandomNumbersQuestion(
     "nine thousand",
   ];
 
-  if (type == QuestionType.PATTERN_COUNT_BLANKS_PROBLEM) {
-    let patternTypes = ["FORWARDS", "BACKWARDS"];
-    let patternIndex = getRndInteger(0, patternTypes.length);
-    let displayPattern = patternTypes[patternIndex];
-    let patternNum = getRndInteger(0, 10);
+  let hundredsString;
+  let tensString;
+  let onesString;
 
-    // prevents negative numbers appearing in pattern
-    if (displayPattern == "BACKWARDS" && startNum - 3 * patternNum < 0) {
-      displayPattern = "FORWARDS";
-    }
+  if (answer[0] == 0) {
+    hundredsString = "";
+  } else {
+    hundredsString = onesColWord[answer[0]] + " " + "Hundred";
+  }
 
-    text = `Count ${displayPattern} by ${patternNum} from ${startNum}`;
-    if (displayPattern == "FORWARDS") {
-      answer = `${startNum},${startNum + patternNum},${
-        startNum + patternNum * 2
-      },${startNum + patternNum * 3}`;
+  if (tensString == null) {
+    if (answer[1] == 0) {
+      tensString = "";
+    } else if (answer[1] == 1) {
+      if (answer[2] == 0) {
+        tensString = tensColWord[1];
+        onesString = "";
+      } else {
+        tensString = tensColWord[0][answer[2] - 1];
+        onesString = "";
+      }
     } else {
-      answer = `${startNum},${startNum - patternNum},${
-        startNum - patternNum * 2
-      },${startNum - patternNum * 3}`;
-    }
-  } else if (type == QuestionType.WORD_TO_HORIZONTAL_DIGITS) {
-    if (skill == Skill.NUMBERS_200) {
-      answer = [
-        getRndInteger(0, 2),
-        getRndInteger(0, 10),
-        getRndInteger(0, 10),
-      ];
-
-      let hundredsString;
-      let tensString;
-      let onesString;
-
-      if (answer[0] == 0) {
-        hundredsString = "";
-      } else {
-        hundredsString = onesColWord[answer[0]] + " " + "Hundred";
-      }
-
-      if (tensString == null) {
-        if (answer[1] == 0) {
-          tensString = "";
-        } else if (answer[1] == 1) {
-          if (answer[2] == 0) {
-            tensString = tensColWord[1];
-            onesString = "";
-          } else {
-            tensString = tensColWord[0][answer[2] - 1];
-            onesString = "";
-          }
-        } else {
-          tensString = tensColWord[answer[1]];
-        }
-      }
-      if (onesString == null) {
-        if (answer[2] == 0) {
-          onesString = "";
-        } else {
-          onesString = onesColWord[answer[2]];
-        }
-      }
-      text = hundredsString + " " + tensString + " " + onesString;
-    } else if (skill == Skill.NUMBERS_1000) {
-      answer = [
-        getRndInteger(0, 10),
-        getRndInteger(0, 10),
-        getRndInteger(0, 10),
-      ];
-      let hundredsString;
-      let tensString;
-      let onesString;
-
-      if (answer[0] == 0) {
-        hundredsString = "";
-      } else {
-        hundredsString = onesColWord[answer[0]] + " " + "Hundred";
-      }
-
-      if (answer[1] == 0) {
-        tensString = "";
-      } else if (answer[1] == 1) {
-        if (answer[2] == 0) {
-          tensString = tensColWord[1];
-          onesString = "";
-        } else {
-          tensString = tensColWord[0][answer[2] - 1];
-          onesString = "";
-        }
-      } else {
-        tensString = tensColWord[answer[1]];
-      }
-
-      if (onesString == null) {
-        if (answer[2] == 0) {
-          onesString = "";
-        } else {
-          onesString = onesColWord[answer[2]];
-        }
-      }
-      text = hundredsString + " " + tensString + " " + onesString;
+      tensString = tensColWord[answer[1]];
     }
   }
-  return {
-    text: text,
-    answer: type == QuestionType.COMPARISON_WORD_PROBLEM ? answer : "answer",
-    answerType:
-      type == QuestionType.COMPARISON_WORD_PROBLEM
-        ? AnswerType.NUMBER
-        : AnswerType.ARRAY,
-    questionType: type,
-    skill: skill,
-    arrayAns: type == QuestionType.COMPARISON_WORD_PROBLEM ? "" : answer,
-  };
+  if (onesString == null) {
+    if (answer[2] == 0) {
+      onesString = "";
+    } else {
+      onesString = onesColWord[answer[2]];
+    }
+  }
+  return hundredsString + " " + tensString + " " + onesString;
 }
 export function getRandomAdditionQuestion(
   min: number,
