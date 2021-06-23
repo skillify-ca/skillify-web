@@ -90,8 +90,7 @@ const Diagnostic = () => {
       }),
     };
 
-    // await fetch(url, options);
-    console.log(options.body);
+    await fetch(url, options);
   };
 
   function delay(ms: number) {
