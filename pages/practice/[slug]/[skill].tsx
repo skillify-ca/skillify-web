@@ -19,6 +19,11 @@ import { userId } from "../../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
 
 const PracticeQuiz = ({ slug, skill }) => {
+  enum STAGE {
+    QUESTION,
+    EMOJI,
+    END_SESSION,
+  }
   const [session, user] = useSession();
   const [isFlipped, setIsFlipped] = useState(false);
   const [display, setDisplay] = useState("flex");
@@ -33,6 +38,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   const [nextQuestionButton, setNextQuestionButton] = useState(false);
   const [continueButton, setContinueButton] = useState(false);
   const [interval, setMyInterval] = useState(null);
+  const [stage, setStage] = useState(STAGE.QUESTION);
   const [correctGuess, setCorrectGuess] = useState(0);
   const [questionData, setQuestionData] = useState<Question[]>([
     {
@@ -43,10 +49,74 @@ const PracticeQuiz = ({ slug, skill }) => {
       skill: Skill.ADDITION_SINGLE,
     },
   ]);
+
   const [updateUserEmoji, updateUserEmojiMutation] = useMutation(
     UPDATE_USER_SKILL_EMOJI
   );
   const inputElement = useRef(null);
+
+  function getComponent() {
+    const sessionEnd = (
+      <div>
+        <div>
+          <img src="/images/goodWork.png" className="w-96 mt-12"></img>
+        </div>
+
+        <div className="flex flex-row space-x-16">
+          <Link href={`/practice`}>
+            <Button label="Home" backgroundColor="purple"></Button>
+          </Link>
+          <Button
+            label="Practice again"
+            backgroundColor="green"
+            onClick={() => window.location.reload()}
+          ></Button>
+        </div>
+      </div>
+    );
+
+    const emojiFeedback = (
+      <div>
+        <Card size="large">
+          <div
+            className={`grid-cols-1 grid justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in`}
+          >
+            <p className="font-bold mt-12">
+              How confident were you with those practice questions?
+            </p>
+            <EmojiSlider callback={setEmojiCallback} />
+            <Button
+              label="Submit"
+              backgroundColor="blue"
+              onClick={saveEmoji && applyContinuePage}
+            ></Button>
+          </div>
+        </Card>
+      </div>
+    );
+
+    const questionSet = (
+      <QuestionSet
+        title={slug}
+        questionData={questionData}
+        index={index}
+        inputElement={inputElement}
+        submitGuess={submitGuess}
+        score={correctGuess}
+        practice={true}
+      />
+    );
+    let stageLevel = stage;
+
+    switch (stageLevel) {
+      case STAGE.QUESTION:
+        return questionSet;
+      case STAGE.EMOJI:
+        return emojiFeedback;
+      case STAGE.END_SESSION:
+        return sessionEnd;
+    }
+  }
 
   const toggleFlip = () => {
     setIsFlipped(!isFlipped);
@@ -75,6 +145,7 @@ const PracticeQuiz = ({ slug, skill }) => {
     await delay(150);
     setDisplay("hidden");
     setContinueFaded(100);
+    setStage(STAGE.END_SESSION);
   };
 
   const nextQuestion = () => {
@@ -84,6 +155,7 @@ const PracticeQuiz = ({ slug, skill }) => {
         inputElement.current.focus();
       }
     } else {
+      setIndex(index + 1);
       clearInterval(interval);
       setMyInterval(null);
     }
@@ -97,6 +169,7 @@ const PracticeQuiz = ({ slug, skill }) => {
         emoji: emoji,
       },
     });
+    setStage(STAGE.END_SESSION);
   };
 
   const setEmojiCallback = (val: number) => {
@@ -110,7 +183,7 @@ const PracticeQuiz = ({ slug, skill }) => {
       if (guess.guess != "") {
         setGuessAttempt(guess.guess.toString());
       }
-      if (index == questionData.length - 1) {
+      if (index >= questionData.length - 1) {
         setIndexCap(true);
       }
       if (guess.isCorrect) {
@@ -119,8 +192,12 @@ const PracticeQuiz = ({ slug, skill }) => {
       } else {
         setWrongAnswer(true);
       }
-      if (index < questionData.length - 1) setNextQuestionButton(true);
-      if (index == questionData.length - 1) setContinueButton(true);
+      if (index < questionData.length - 1) {
+        setNextQuestionButton(true);
+      } else {
+        setNextQuestionButton(true);
+        setStage(STAGE.EMOJI);
+      }
     }
   };
   return (
@@ -132,7 +209,7 @@ const PracticeQuiz = ({ slug, skill }) => {
             Question: {index + 1} / {questionData.length}
           </p>
           <p className="font-semibold">
-            Score: {correctGuess} / {index + 1}
+            Score: {correctGuess} / {questionData.length}
           </p>
         </div>
         <ReactCardFlip
@@ -140,17 +217,7 @@ const PracticeQuiz = ({ slug, skill }) => {
           flipDirection="horizontal"
           infinite={true}
         >
-          <div className="justify-items-center align-middle w-50">
-            <QuestionSet
-              title={slug}
-              questionData={questionData}
-              index={index}
-              inputElement={inputElement}
-              submitGuess={submitGuess}
-              score={correctGuess}
-              practice={true}
-            />
-          </div>
+          <div className="align-middle w-50">{getComponent()}</div>
           <div
             className={`${display} flex-col justify-center items-center gap-8 transition-opacity duration-150 ease-in-out opacity-${isFaded}`}
           >
@@ -199,34 +266,12 @@ const PracticeQuiz = ({ slug, skill }) => {
           </div>
         </ReactCardFlip>
       </div>
-      {!continueButton && !nextQuestionButton && (
+      {!continueButton && !nextQuestionButton && stage == STAGE.QUESTION && (
         <Hint skill={questionData[index].skill}></Hint>
       )}
       <div
         className={`grid-cols-1 grid justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in opacity-${continueFaded}`}
       >
-        <p className="font-bold mt-12">
-          How confident were you with those practice questions?
-        </p>
-        <EmojiSlider callback={setEmojiCallback} />
-        <div className="flex flex-row space-x-16">
-          <Link href={`/practice`}>
-            <Button label="Home" backgroundColor="purple"></Button>
-          </Link>
-          <Button
-            label="Practice again"
-            backgroundColor="green"
-            onClick={() => window.location.reload()}
-          ></Button>
-          <Button
-            label="Save emoji"
-            backgroundColor="red"
-            onClick={saveEmoji}
-          ></Button>
-        </div>
-        <div>
-          <img src="/images/goodWork.png" className="w-96 mt-12"></img>
-        </div>
         <br></br>
         <br></br>
       </div>
