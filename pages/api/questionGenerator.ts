@@ -63,7 +63,6 @@ export function getRandomNumbersQuestion(
   const b = getRndInteger(min, max);
   let text;
   let answer;
-  let answerString;
   let startNum = getRndInteger(a, b);
   const onesColWord = [
     "Zero",
