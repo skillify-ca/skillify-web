@@ -69,8 +69,6 @@ export const WordtoHorizontalDigits: React.FC<WordtoHorizontalDigitsProp> = ({
       guess: guessString,
       isCorrect: guessString == answerString,
     });
-    {
-    }
   }
 
   return (
