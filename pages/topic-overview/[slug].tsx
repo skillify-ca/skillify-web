@@ -89,7 +89,7 @@ const TopicOverviewPage = ({ slug }) => {
           </p>
           <div className="flex gap-8">
             <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
-              <Link href={`/quiz/${slug}?level= ` + gradeNum(grade)}>
+              <Link href={`/quiz/${slug}?level=` + gradeNum(grade)}>
                 <Button
                   backgroundColor="blue"
                   textColor="white"
