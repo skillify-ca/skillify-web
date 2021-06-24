@@ -1,6 +1,6 @@
 import { DiagnosticState } from "../../../redux/diagnosticSlice";
 import { Question } from "../question";
-import { Skill, Topic } from "../skill";
+import { getSkillsForTopic, Skill, Topic } from "../skill";
 
 const PASSING_GRADE = 1.0;
 
@@ -136,36 +136,6 @@ export const getGradeLevelForTopic = (
         return "JK/SK";
       }
   }
-};
-
-export const getSkillsForTopic = (topic: Topic): Skill[] => {
-  switch (topic) {
-    case Topic.ADDITION:
-      return [
-        Skill.ADDITION_SINGLE,
-        Skill.ADDITION_DOUBLE,
-        Skill.ADDITION_TRIPLE,
-      ];
-    case Topic.SUBTRACTION:
-      return [
-        Skill.SUBTRACTION_SINGLE,
-        Skill.SUBTRACTION_DOUBLE,
-        Skill.SUBTRACTION_TRIPLE,
-      ];
-    case Topic.MULTIPLICATION:
-      return [
-        Skill.EQUAL_GROUP_10_ITEMS,
-        Skill.MULTIPLICATION_5,
-        Skill.MULTIPLICATION_10,
-      ];
-    case Topic.DIVISION:
-      return [
-        Skill.EQUAL_SHARING_8_ITEMS,
-        Skill.DIVIDE_12_EQUALLY,
-        Skill.DIVIDE_100,
-      ];
-  }
-  return [];
 };
 
 export const getSummaryText = (

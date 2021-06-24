@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { Button } from "../components/stories/Button";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
+import { FETCH_USER_QUIZZES } from "../graphql/fetchUserQuiz";
+import { useQuery } from "@apollo/client";
+import { useSession } from "next-auth/client";
+import { userId } from "../graphql/utils/constants";
 
 export default function additionTopicOverview(props) {
+  const [session] = useSession();
   const [grade, setGrade] = useState("Grade 3");
   const onGradeChange = (e: any) => {
     setGrade(e.target.value);
@@ -18,6 +23,25 @@ export default function additionTopicOverview(props) {
         return 3;
     }
   };
+  const userQuizzesQuery = useQuery(FETCH_USER_QUIZZES, {
+    variables: {
+      userId: userId(session),
+      badgeId: gradeNum(grade),
+    },
+  });
+  let userQuizzes;
+  let accuracyList = [];
+  let maxAccuracy;
+  if (userQuizzesQuery.data) {
+    userQuizzes = userQuizzesQuery.data.user_quizzes;
+    accuracyList = userQuizzes.map((it) => it.accuracy);
+    if (accuracyList.length == 0) {
+      maxAccuracy = "Not Attempted";
+    } else {
+      maxAccuracy = Math.max(...accuracyList) + "%";
+    }
+  }
+
   const cardStyle = (videoId) => {
     return {
       backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.75)), url(http://img.youtube.com/vi/${videoId}/hqdefault.jpg)`,
@@ -26,28 +50,28 @@ export default function additionTopicOverview(props) {
   const videoComponent = (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-        <Link href="lessons/addition/basic-addition">
+        <Link href="lessons/addition/single-digit">
           <div
             className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-64 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
-            style={cardStyle("uONIJ5TQ2DA")}
+            style={cardStyle("-ou9VvyJNOY")}
           >
-            <p className="font-bold mb-4"> Basic Addition</p>
+            <p className="font-bold mb-4"> Single Digit Addition </p>
           </div>
         </Link>
-        <Link href="lessons/addition/addition-vs-multiplication">
+        <Link href="lessons/addition/double-digit">
           <div
             className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-64 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
-            style={cardStyle("NVhA7avdTAw")}
+            style={cardStyle("Q9sLfMrH8_w")}
           >
-            <p className="font-bold mb-4">Addition vs Multiplication</p>
+            <p className="font-bold mb-4"> Double Digit Addition </p>
           </div>
         </Link>
-        <Link href="lessons/addition/order-of-operations">
+        <Link href="lessons/addition/triple-digit">
           <div
             className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-64 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
-            style={cardStyle("tyrz0EJ0InQ")}
+            style={cardStyle("HBa8XBHnJ4U")}
           >
-            <p className="font-bold mb-4"> Order of Operations</p>
+            <p className="font-bold mb-4"> Triple Digit Addition </p>
           </div>
         </Link>
       </div>
@@ -158,7 +182,7 @@ export default function additionTopicOverview(props) {
               </Link>
             </div>
           </div>
-          Best Attempt: 68%
+          Best Attempt: {maxAccuracy && maxAccuracy}
         </div>
         <img
           className="w-full sm:w-1/2 object-cover"

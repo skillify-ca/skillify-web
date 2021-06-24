@@ -3,7 +3,9 @@ import { Skill, Topic } from "../skill";
 
 export const generatePracticeQuestions = (topic: string, skillStr: string) => {
   let skill: Skill;
-  if (topic == "addition") {
+  if (topic == "numbers") {
+    skill = Skill.NUMBERS_50;
+  } else if (topic == "addition") {
     switch (skillStr) {
       case "single-digit":
         skill = Skill.ADDITION_SINGLE;
@@ -32,6 +34,9 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
     }
   } else if (topic == "multiplication") {
     switch (skillStr) {
+      case "single-digit": // we should rename this from single-digit to something else
+        skill = Skill.EQUAL_GROUP_10_ITEMS;
+        break;
       case "upto_5X5":
         skill = Skill.MULTIPLICATION_5;
         break;
@@ -41,6 +46,9 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
     }
   } else if (topic == "division") {
     switch (skillStr) {
+      case "single-digit": // we should rename this from single-digit to something else
+        skill = Skill.EQUAL_SHARING_8_ITEMS;
+        break;
       case "12_items_equally":
         skill = Skill.DIVIDE_12_EQUALLY;
         break;

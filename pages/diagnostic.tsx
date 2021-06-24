@@ -7,11 +7,10 @@ import { AnswerType, Question } from "./api/question";
 import { QuestionType } from "./api/questionTypes";
 import { DiagnosticState, setDiagnostic } from "../redux/diagnosticSlice";
 import { useAppDispatch } from "../redux/store";
-import { Skill, Topic } from "./api/skill";
+import { Grade, Skill, Topic } from "./api/skill";
 import {
   generateQuestionsForDiagnostic,
   getNextQuestion,
-  Grade,
 } from "./api/diagnostic/diagnosticQuestionGenerator";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { getWorkSheets } from "./api/worksheets";
@@ -36,7 +35,7 @@ const Diagnostic = () => {
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState(1);
   const [isShaking, setIsShaking] = useState(false);
-  const [grade, setGrade] = useState(Grade.GRADE_THREE);
+  const [grade, setGrade] = useState(Grade.GRADE_3);
   const [stage, setStage] = useState(STAGE.CREATE);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -91,9 +90,7 @@ const Diagnostic = () => {
       }),
     };
 
-    // await fetch(url, options);
-    console.log(options.body);
-    
+    await fetch(url, options);
   };
 
   function delay(ms: number) {
@@ -101,11 +98,11 @@ const Diagnostic = () => {
   }
 
   const submitGuess = async (guessData: GuessData) => {
-    if (guessData.guess == "") {
+    if (guessData.guess == "" || guessData.guess == " groups of ") {
       setIsShaking(true);
       return;
     }
-    
+
     // Save if they guessed the question correctly or not
     let updateGuessAns;
     if (guessData.isCorrect) {
@@ -118,7 +115,7 @@ const Diagnostic = () => {
 
     // Save the actual guess for reporting
     let updateGuess;
-    updateGuess = guesses.concat(guessData.guess);
+    updateGuess = guesses.concat(guessData.guess.toString());
     setGuesses(updateGuess);
     const newAnsweredQuestions = [...answeredQuestions, currentQuestion];
     setAnsweredQuestions(newAnsweredQuestions);
@@ -163,9 +160,9 @@ const Diagnostic = () => {
   const onIDontKnowClick = () => {
     submitGuess({
       guess: "I don't know",
-      isCorrect: false
-    })
-  }
+      isCorrect: false,
+    });
+  };
 
   useEffect(() => {
     setCurrentQuestion(generateQuestionForSkill(Skill.ADDITION_SINGLE));
@@ -185,29 +182,32 @@ const Diagnostic = () => {
       );
       break;
     case STAGE.TEST:
-      component = ( 
+      component = (
         <div>
           <div className="flex justify-between pt-4 px-8 items-center">
             <p className="font-semibold text-gray-500 ">
               Question: {answeredQuestions.length} / 12
             </p>
-            <p onClick={onIDontKnowClick} className="bg-gray-200 hover:bg-blue-200 cursor-pointer p-2 rounded-xl shadow-md font-semibold text-gray-500 ">
+            <p
+              onClick={onIDontKnowClick}
+              className="bg-gray-200 hover:bg-blue-200 cursor-pointer p-2 rounded-xl shadow-md font-semibold text-gray-500 "
+            >
               I don't know 🤔
             </p>
           </div>
           <div
             className={isShaking ? "animate-shake" : ""}
             onAnimationEnd={() => setIsShaking(false)}
-          >     
-          <QuestionSet
-            title=""
-            questionData={[currentQuestion]}
-            index={0}
-            inputElement={inputElement}
-            submitGuess={submitGuess}
-            score={correctGuesses}
-            diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
-          />
+          >
+            <QuestionSet
+              title=""
+              questionData={[currentQuestion]}
+              index={0}
+              inputElement={inputElement}
+              submitGuess={submitGuess}
+              score={correctGuesses}
+              diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
+            />
           </div>
         </div>
       );

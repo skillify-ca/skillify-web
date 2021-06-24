@@ -66,7 +66,7 @@ const DiagnosticTestForm = ({
           </div>
           <div className="flex gap-8 flex-col sm:flex-row">
             <div>
-              <p className="font-bold">Email</p>
+              <p className="font-bold">Adult's Email</p>
               <input
                 id="guess"
                 type="text"

@@ -7,7 +7,6 @@ import { diagnosticSelector } from "../../../redux/diagnosticSlice";
 import { Topic } from "../../api/skill";
 
 const DiagnosticEvidencePage = ({ slug }) => {
-  console.log(slug);
   const diagnosticResults = useSelector(diagnosticSelector);
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
