@@ -109,7 +109,7 @@ const TopicOverviewPage = ({ slug }) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="text-md font-bold text-blue-900 flex flex-col items-center">
             {" "}
             Confidence: <p className="text-6xl"> 😃 </p>{" "}
           </div>
@@ -148,7 +148,7 @@ const TopicOverviewPage = ({ slug }) => {
           {skillBadge.map((badge) => {
             return badge.locked ? (
               <>
-                <img src="/images/lockk.png" className="w-28" />
+                <img src="/images/lock.png" className="w-28" />
                 <p className="text-md -mt-4 flex items-center">
                   {"   "}
                   Badge: <b> &nbsp;Locked</b>{" "}
