@@ -15,7 +15,8 @@ mutation initUserSkills($userId: String = "") {
       { user_id: $userId,  skill_id: 38, emoji: null }
       { user_id: $userId, skill_id: 39, emoji: null }
       { user_id: $userId,  skill_id: 40, emoji: null }
-      { user_id: $userId, skill_id: 41, emoji: null }       
+      { user_id: $userId, skill_id: 41, emoji: null }  
+      { user_id: $userId, skill_id: 42, emoji: null }     
     ]
   ) {
     returning {

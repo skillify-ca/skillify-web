@@ -55,6 +55,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   );
   const inputElement = useRef(null);
   let getSkillId = (skill: Skill) => {
+    //Note: The skill Ids are determined based of the values save in the skills table with graphql
     switch (skill) {
       case Skill.ADDITION_SINGLE:
         return 1;
@@ -62,24 +63,26 @@ const PracticeQuiz = ({ slug, skill }) => {
         return 2;
       case Skill.ADDITION_TRIPLE:
         return 3;
-      case Skill.SUBTRACTION_SINGLE:
+      case Skill.ADDITION_PROPERTIES:
         return 4;
+      case Skill.SUBTRACTION_SINGLE:
+        return 34;
       case Skill.SUBTRACTION_DOUBLE:
-        return 5;
+        return 35;
       case Skill.SUBTRACTION_TRIPLE:
-        return 6;
+        return 36;
       case Skill.EQUAL_GROUP_10_ITEMS:
-        return 7;
+        return 37;
       case Skill.MULTIPLICATION_5:
-        return 8;
+        return 38;
       case Skill.MULTIPLICATION_10:
-        return 9;
-      case Skill.EQUAL_GROUP_10_ITEMS:
-        return 10;
+        return 39;
+      case Skill.EQUAL_SHARING_8_ITEMS:
+        return 40;
       case Skill.DIVIDE_12_EQUALLY:
-        return 11;
+        return 41;
       case Skill.DIVIDE_100:
-        return 12;
+        return 42;
     }
   };
 
@@ -193,7 +196,7 @@ const PracticeQuiz = ({ slug, skill }) => {
     updateUserEmoji({
       variables: {
         userId: userId(session),
-        skillId: getSkillId(skill), // TODO look up the right skill
+        skillId: getSkillId(skill),
         emoji: emoji,
       },
     });
