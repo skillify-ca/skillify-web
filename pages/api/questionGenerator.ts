@@ -125,6 +125,8 @@ export function getRandomNumbersQuestion(
   };
 }
 
+//converts number as a string into an array of numbers
+
 export function numtoDigitsArr(answer: string): number[] {
   const len = answer.length;
   let numArr = [];

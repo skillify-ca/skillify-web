@@ -42,12 +42,12 @@ export const NumbertoVerticalDigits: React.FC<NumbertoVerticalDigitsProp> = ({
     });
   }
 
-  // if (skill == Skill.NUMBERS_200) {
-  //   setgrade2Difficulty(true);
-  // } else if (skill == Skill.NUMBERS_1000) {
-  //   setgrade3Difficulty(true);
-  //   setgrade2Difficulty(true);
-  // }
+  if (skill == Skill.NUMBERS_200) {
+    setgrade2Difficulty(true);
+  } else if (skill == Skill.NUMBERS_1000) {
+    setgrade3Difficulty(true);
+    setgrade2Difficulty(true);
+  }
 
   return (
     <div className="flex flex-col items-center space-y-8">
