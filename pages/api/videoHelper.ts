@@ -13,6 +13,11 @@ export const getVideosForSkill = (skill: Skill): ResourceMetadata[] => {
         {
           link: "lessons/addition/single-digit",
           videoId: "-ou9VvyJNOY",
+          vidTitle: "Learning to add with Dinosaurs",
+        },
+        {
+          link: "lessons/addition/double-digit",
+          videoId: "k9IMztXsCAs",
           vidTitle: "Single Digit Addition",
         },
       ];
