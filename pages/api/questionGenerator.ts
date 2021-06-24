@@ -25,7 +25,7 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
     case Skill.ADDITION_PROPERTIES:
       return getRandomPropertyAdditionQuestion(1, 15, skill);
     case Skill.SUBTRACTION_SINGLE:
-      return getRandomSubtractionQuestion(1, 11, skill);
+      return getRandomSubtractionQuestion(2, 11, skill);
     case Skill.SUBTRACTION_DOUBLE:
       return getRandomSubtractionQuestion(10, 101, skill);
     case Skill.SUBTRACTION_TRIPLE:
@@ -357,8 +357,8 @@ function getRandomBinaryQuestion(
     QuestionType.MULTIPLE_CHOICE,
   ];
   let typeIndex = getRndInteger(0, types.length);
-  const a = getRndInteger(min, max);
-  const b = getRndInteger(min, max);
+  let a = getRndInteger(min, max);
+  let b = getRndInteger(min, max);
   let text;
   let trueFalseAnswer;
   const type = types[typeIndex];
@@ -386,6 +386,12 @@ function getRandomBinaryQuestion(
         break;
     }
   } else if (type === QuestionType.MULTIPLE_CHOICE) {
+    if (a < b) {
+      let temp = a;
+      a = b;
+      b = temp;
+    }
+
     let realAns = answerFunction(a, b);
     let wrongArr = [-2, -1, 1, 2];
     let wrongIndexA = randomize(0, wrongArr.length);
