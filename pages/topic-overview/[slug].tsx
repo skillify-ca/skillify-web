@@ -83,7 +83,7 @@ const TopicOverviewPage = ({ slug }) => {
         <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-8 m-12 mt-8 mb-4">
           <div className="mr-28">
             <div className="flex flex-col gap-4">
-              <img src="/images/lol.png" className="w-96" />
+              <img src="/images/learnPic.png" className="w-96" />
               <p className="text-2xl font-bold flex items-center justify-center bg-blue-200 rounded-2xl">
                 {" "}
                 {SkillDescription(skill)}{" "}
