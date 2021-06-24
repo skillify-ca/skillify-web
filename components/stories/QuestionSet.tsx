@@ -19,6 +19,8 @@ import { MultiplicationEqualGroups } from "./MultiplicationEqualGroups";
 import { getRndColour } from "../../pages/api/random";
 import { MultipleChoice } from "./MultipleChoice";
 import { PatternBlank } from "./patternBlanks";
+import { WordtoHorizontalDigits } from "./WordtoHorizontalDigits";
+import { NumbertoVerticalDigits } from "./NumbertoVerticalDigits";
 
 type QuestionSetProps = {
   title: string;
@@ -83,6 +85,27 @@ const QuestionSet = ({
           displayQuestion={questionData[index].text}
           startNumber={questionData[index].placeholder}
           answer={questionData[index].answer}
+          submitGuess={submitGuess}
+        />
+      );
+    } else if (
+      questionData[index].questionType == QuestionType.WORD_TO_HORIZONTAL_DIGITS
+    ) {
+      return (
+        <WordtoHorizontalDigits
+          numString={questionData[index].text}
+          answer={questionData[index].arrayAns}
+          submitGuess={submitGuess}
+        />
+      );
+    } else if (
+      questionData[index].questionType == QuestionType.NUM_TO_VERITCAL_DIGITS
+    ) {
+      return (
+        <NumbertoVerticalDigits
+          num={questionData[index].text}
+          skill={questionData[index].skill}
+          answer={questionData[index].arrayAns}
           submitGuess={submitGuess}
         />
       );

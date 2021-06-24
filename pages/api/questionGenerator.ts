@@ -12,6 +12,10 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
   switch (skill) {
     case Skill.NUMBERS_50:
       return getRandomNumbersQuestion(1, 51, skill);
+    case Skill.NUMBERS_200:
+      return getRandomNumbersQuestion(1, 201, skill);
+    case Skill.NUMBERS_1000:
+      return getRandomNumbersQuestion(1, 1001, skill);
     case Skill.ADDITION_SINGLE:
       return getRandomAdditionQuestion(1, 11, skill);
     case Skill.ADDITION_DOUBLE:
@@ -48,7 +52,10 @@ export function getRandomNumbersQuestion(
 ): Question {
   const types = [
     QuestionType.PATTERN_COUNT_BLANKS_PROBLEM,
-    QuestionType.COMPARISON_WORD_PROBLEM,
+    QuestionType.WORD_TO_HORIZONTAL_DIGITS,
+    QuestionType.NUM_TO_VERITCAL_DIGITS,
+    // QuestionType.VERTICAL_DIGITS_TO_NUM, // commented until they are implemented
+    // QuestionType.COMPARISON_WORD_PROBLEM,
   ];
   let typeIndex = getRndInteger(0, types.length);
   let type = types[typeIndex];
@@ -62,8 +69,13 @@ export function getRandomNumbersQuestion(
     let patternTypes = ["FORWARDS", "BACKWARDS"];
     let patternIndex = getRndInteger(0, patternTypes.length);
     let displayPattern = patternTypes[patternIndex];
-
     let patternNum = getRndInteger(0, 10);
+
+    // prevents negative numbers appearing in pattern
+    if (displayPattern == "BACKWARDS" && startNum - 3 * patternNum < 0) {
+      displayPattern = "FORWARDS";
+    }
+
     text = `Count ${displayPattern} by ${patternNum} from ${startNum}`;
     if (displayPattern == "FORWARDS") {
       answer = `${startNum},${startNum + patternNum},${
@@ -74,22 +86,150 @@ export function getRandomNumbersQuestion(
         startNum - patternNum * 2
       },${startNum - patternNum * 3}`;
     }
-  } else {
-    text = `Which is bigger ${a} or ${b}?`;
-    answer = Math.max(a, b).toString();
+  } else if (type == QuestionType.WORD_TO_HORIZONTAL_DIGITS) {
+    if (skill == Skill.NUMBERS_200) {
+      answer = [
+        getRndInteger(0, 2),
+        getRndInteger(0, 10),
+        getRndInteger(0, 10),
+      ];
+    } else if ((skill = Skill.NUMBERS_1000)) {
+      answer = [
+        getRndInteger(0, 10),
+        getRndInteger(0, 10),
+        getRndInteger(0, 10),
+      ];
+    }
+    text = stringNumCalc(answer);
+  } else if (type == QuestionType.NUM_TO_VERITCAL_DIGITS) {
+    if (skill == Skill.NUMBERS_200) {
+      text = getRndInteger(0, 201).toString();
+      answer = numtoDigitsArr(text);
+    } else if ((skill = Skill.NUMBERS_1000)) {
+      text = getRndInteger(0, 1001).toString();
+      answer = numtoDigitsArr(text);
+    }
   }
 
   return {
     text: text,
-    answer: answer,
+    answer: type == QuestionType.COMPARISON_WORD_PROBLEM ? answer : "answer",
     answerType:
       type == QuestionType.COMPARISON_WORD_PROBLEM
         ? AnswerType.NUMBER
-        : AnswerType.STRING,
+        : AnswerType.ARRAY,
     questionType: type,
     skill: skill,
+    arrayAns: type == QuestionType.COMPARISON_WORD_PROBLEM ? "" : answer,
     placeholder: startNum.toString(),
   };
+}
+
+//converts number as a string into an array of numbers
+
+export function numtoDigitsArr(answer: string): number[] {
+  const len = answer.length;
+  let numArr = [];
+  for (let i = 0; i < len; ++i) {
+    numArr[i] = parseInt(answer[i]);
+  }
+  return numArr;
+}
+
+export function stringNumCalc(answer: number[]): string {
+  const onesColWord = [
+    "Zero",
+    "One",
+    "Two",
+    "Three",
+    "Four",
+    "Five",
+    "Six",
+    "Seven",
+    "Eight",
+    "Nine",
+  ];
+
+  const tensColWord = [
+    [
+      "Eleven",
+      "Twelve",
+      "Thirteen",
+      "Fourteen",
+      "Fifteen",
+      "Sixteen",
+      "Seventeen",
+      "Eighteen",
+      "Nineteen",
+    ],
+    "Ten",
+    "Twenty",
+    "Thirty",
+    "Fourty",
+    "Fifty",
+    "Sixty",
+    "Seventy",
+    "Eighty",
+    "Ninety",
+  ];
+
+  const hundredsColWord = [
+    "one hundred",
+    "two hundred",
+    "three hundred",
+    "four hundred",
+    "five hundred",
+    "six hundred",
+    "seven hundred",
+    "eight hundred",
+    "nine hundred",
+  ];
+
+  const thousandscolWord = [
+    "one thousand",
+    "two thousand",
+    "three thousand",
+    "four thousand",
+    "five thousand",
+    "six thousand",
+    "seven thousand",
+    "eight thousand",
+    "nine thousand",
+  ];
+
+  let hundredsString;
+  let tensString;
+  let onesString;
+
+  if (answer[0] == 0) {
+    hundredsString = "";
+  } else {
+    hundredsString = onesColWord[answer[0]] + " " + "Hundred";
+  }
+
+  if (tensString == null) {
+    if (answer[1] == 0) {
+      tensString = "";
+    } else if (answer[1] == 1) {
+      if (answer[2] == 0) {
+        tensString = tensColWord[1];
+        onesString = "";
+      } else {
+        tensString = tensColWord[0][answer[2] - 1];
+        onesString = "";
+      }
+    } else {
+      tensString = tensColWord[answer[1]];
+    }
+  }
+  if (onesString == null) {
+    if (answer[2] == 0) {
+      onesString = "";
+    } else {
+      onesString = onesColWord[answer[2]];
+    }
+  }
+  return hundredsString + " " + tensString + " " + onesString;
 }
 export function getRandomAdditionQuestion(
   min: number,
