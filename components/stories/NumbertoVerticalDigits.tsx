@@ -18,9 +18,6 @@ export const NumbertoVerticalDigits: React.FC<NumbertoVerticalDigitsProp> = ({
   ...props
 }) => {
   // will use later when more grades are added
-  const [grade2Difficulty, setgrade2Difficulty] = useState(false);
-  const [grade3Difficulty, setgrade3Difficulty] = useState(false);
-
   const [guess1, setGuess1] = useState("");
   const [guess2, setGuess2] = useState("");
   const [guess3, setGuess3] = useState("");
@@ -40,13 +37,6 @@ export const NumbertoVerticalDigits: React.FC<NumbertoVerticalDigitsProp> = ({
       guess: guessStr,
       isCorrect: guessStr == answertoStringCalc(answer),
     });
-  }
-
-  if (skill == Skill.NUMBERS_200) {
-    setgrade2Difficulty(true);
-  } else if (skill == Skill.NUMBERS_1000) {
-    setgrade3Difficulty(true);
-    setgrade2Difficulty(true);
   }
 
   return (
