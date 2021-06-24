@@ -54,6 +54,34 @@ const PracticeQuiz = ({ slug, skill }) => {
     UPDATE_USER_SKILL_EMOJI
   );
   const inputElement = useRef(null);
+  let getSkillId = (skill: Skill) => {
+    switch (skill) {
+      case Skill.ADDITION_SINGLE:
+        return 1;
+      case Skill.ADDITION_DOUBLE:
+        return 2;
+      case Skill.ADDITION_TRIPLE:
+        return 3;
+      case Skill.SUBTRACTION_SINGLE:
+        return 4;
+      case Skill.SUBTRACTION_DOUBLE:
+        return 5;
+      case Skill.SUBTRACTION_TRIPLE:
+        return 6;
+      case Skill.EQUAL_GROUP_10_ITEMS:
+        return 7;
+      case Skill.MULTIPLICATION_5:
+        return 8;
+      case Skill.MULTIPLICATION_10:
+        return 9;
+      case Skill.EQUAL_GROUP_10_ITEMS:
+        return 10;
+      case Skill.DIVIDE_12_EQUALLY:
+        return 11;
+      case Skill.DIVIDE_100:
+        return 12;
+    }
+  };
 
   function getComponent() {
     const sessionEnd = (
@@ -164,8 +192,8 @@ const PracticeQuiz = ({ slug, skill }) => {
   const saveEmoji = () => {
     updateUserEmoji({
       variables: {
-        userId: "google-oauth2|117552556186948975503", // TODO make this work for all users
-        skillId: 2, // TODO look up the right skill
+        userId: userId(session),
+        skillId: getSkillId(skill), // TODO look up the right skill
         emoji: emoji,
       },
     });
