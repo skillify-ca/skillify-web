@@ -17,6 +17,6 @@ const Template: Story<VerticalDigitstoNumProp> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  numArr: [0, 1, 2, 3, 4],
-  answer: 1234,
+  numArr: [1, 2, 3],
+  answer: 123,
 };
