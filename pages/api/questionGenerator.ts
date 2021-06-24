@@ -25,7 +25,7 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
     case Skill.ADDITION_PROPERTIES:
       return getRandomPropertyAdditionQuestion(1, 15, skill);
     case Skill.SUBTRACTION_SINGLE:
-      return getRandomSubtractionQuestion(1, 11, skill);
+      return getRandomSubtractionQuestion(2, 11, skill);
     case Skill.SUBTRACTION_DOUBLE:
       return getRandomSubtractionQuestion(10, 101, skill);
     case Skill.SUBTRACTION_TRIPLE:
@@ -394,13 +394,16 @@ function getRandomBinaryQuestion(
 
     let realAns = answerFunction(a, b);
     let wrongArr = [-2, -1, 1, 2];
-    let wrongValA = wrongAnsGenerator(realAns, wrongArr);
-    let wrongValB = wrongAnsGenerator(realAns, wrongArr);
+    let wrongIndexA = randomize(0, wrongArr.length);
+    let wrongA = wrongArr[wrongIndexA] + realAns;
+    wrongArr.splice(wrongIndexA, 1);
+    let wrongIndexB = randomize(0, wrongArr.length);
+    let wrongB = wrongArr[wrongIndexB] + realAns;
 
     text = `${a} ${operator} ${b}`;
 
-    const option1: MCOption = { text: wrongValA.toString(), id: "a" };
-    const option2: MCOption = { text: wrongValB.toString(), id: "b" };
+    const option1: MCOption = { text: wrongA.toString(), id: "a" };
+    const option2: MCOption = { text: wrongB.toString(), id: "b" };
     const option3: MCOption = { text: realAns.toString(), id: "c" };
 
     const optionArr = [option1, option2, option3];
@@ -431,16 +434,4 @@ function getRandomBinaryQuestion(
     multipleChoice: multipleChoiceModel,
     skill: skill,
   };
-}
-
-export function wrongAnsGenerator(correctAns: number, arr: number[]): number {
-  let wrongIndex = randomize(0, arr.length);
-  let wrongAns = arr[wrongIndex] + correctAns;
-  while (wrongAns < 0) {
-    arr.splice(wrongIndex, 1);
-    wrongIndex = randomize(0, arr.length);
-    wrongAns = arr[wrongIndex] + correctAns;
-  }
-  arr.splice(wrongIndex, 1);
-  return wrongAns;
 }
