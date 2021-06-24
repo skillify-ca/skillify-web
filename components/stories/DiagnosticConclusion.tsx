@@ -96,12 +96,6 @@ export const DiagnosticConclusion = ({
             {" "}
             Average Ontario Grade Level - {displayGrade}{" "}
           </p>
-          <div className="w-7/12 h-7/12">
-            <img
-              className="md:h-1/6 sm:h-1/6 sm:w-1/6 md:w-1/6 self-center"
-              src={badgeSelector(gradeLevel)}
-            />
-          </div>
         </div>
 
         <p>
