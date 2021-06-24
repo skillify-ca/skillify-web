@@ -53,7 +53,7 @@ export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): Skill[] => {
     } else if (grade == Grade.GRADE_2) {
       return [Skill.ADDITION_DOUBLE];
     } else {
-      return [Skill.ADDITION_TRIPLE];
+      return [Skill.ADDITION_TRIPLE, Skill.ADDITION_PROPERTIES];
     }
   } else if (topic == Topic.SUBTRACTION) {
     if (grade == Grade.GRADE_1) {

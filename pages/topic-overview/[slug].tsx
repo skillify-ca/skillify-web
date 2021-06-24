@@ -60,12 +60,15 @@ const TopicOverviewPage = ({ slug }) => {
   }
 
   const levelComponent = (
-    <div>
-      <span className="font-bold m-4"> Select Level:</span>
+    <div className="flex flex-row">
+      <p className="flex items-center text-xl text-blue-900">
+        {" "}
+        Select a grade:{" "}
+      </p>
       <select
         value={grade}
         onChange={onGradeChange}
-        className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+        className="ml-4 w-56 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2"
       >
         <option>Grade 1</option>
         <option>Grade 2</option>
@@ -75,46 +78,52 @@ const TopicOverviewPage = ({ slug }) => {
   );
 
   const skillComponent = (
-    <div className="flex justify-center">
-      <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-4 gap-8 m-4 w-1/2 h-72">
-        <div className="flex flex-col w-full sm:w-1/2 gap-8">
-          {getSkillsForTopicGrade(slug, grade).map((skill) => (
-            <Link href={`/skill-overview/${skill}`}>
-              <p className="border-blue-400 border-4">
-                {" "}
-                {SkillDescription(skill)}{" "}
-              </p>
-            </Link>
-          ))}
-        </div>
-        <div className="">
-          {skillBadge.map((badge) => {
-            return badge.locked ? (
-              <div className="">
-                <img src="/images/lockedPic.png" className="w-32" />
+    <div>
+      {getSkillsForTopicGrade(slug, grade).map((skill) => (
+        <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-4 m-12 mt-8 mb-4">
+          <div className="flex flex-col gap-8 justify-center items-center bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 w-1/2 rounded-2xl mr-8 h-72">
+            <div className="">
+              <p className="text-3xl font-bold"> {SkillDescription(skill)} </p>
+            </div>
+          </div>
+
+          <div className="flex flex-col w-full sm:w-1/2 gap-4 justify-center">
+            <p className="text-4xl font-bold text-blue-900"> LEARN </p>
+            <p className="text-xl">
+              Learn to {SkillDescription(skill).toLowerCase()}
+              by watching engaging videos and strengthen your knowledge with
+              related math questions in Math Champ's Practice Tracker!
+            </p>
+            <div className="flex gap-8">
+              <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
+                <Link href={`/skill-overview/${skill}`}>
+                  <Button
+                    backgroundColor="blue"
+                    textColor="white"
+                    label="Go To Lesson"
+                  />
+                </Link>
               </div>
-            ) : (
-              <img src={badge.badge.image} className="w-32" />
-            );
-          })}
+            </div>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
   const quizComponent = (
     <div>
-      <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-4 gap-8 m-4">
-        <div className="flex flex-col w-full sm:w-1/2 gap-8">
-          <p className="text-5xl"> Quiz Time!</p>
+      <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl pl-4 gap-8 m-12 mt-8">
+        <div className="flex flex-col gap-4 justify-center w-2/3">
+          <p className="text-4xl font-bold text-blue-900"> QUIZ TIME! </p>
           <p className="text-xl">
             Take a quiz to test out your {slug} skills. The quiz will cover
-            topics at your grade level so it's personalized for you! You can
-            take the quiz as many times as you wish to perfect your skills. Good
-            luck, you got this!
+            topics at your grade level meaning it's personalized for you! You
+            can take this quiz as many times as you wish to perfect your skills.
+            Good luck!
           </p>
           <div className="flex gap-8">
             <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
-              <Link href={`/quiz/${slug}?level= ` + gradeNum(grade)}>
+              <Link href={`/quiz/${slug}?level=` + gradeNum(grade)}>
                 <Button
                   backgroundColor="blue"
                   textColor="white"
@@ -123,71 +132,61 @@ const TopicOverviewPage = ({ slug }) => {
               </Link>
             </div>
           </div>
-          Best Attempt: {maxAccuracy && maxAccuracy}
+          <p className="flex items-center text-lg">
+            {" "}
+            Best Attempt: {maxAccuracy && maxAccuracy}{" "}
+          </p>
         </div>
-        <img
-          className="w-full sm:w-1/2 object-cover"
+        {/* <img
+          className="w-full sm:w-1/3 object-cover rounded-xl"
           alt="student-image"
-          src="https://knowledgeone.ca/wp-content/uploads/2018/11/online-readiness-01.jpg"
-        />
+          src="/images/bruh.png"
+        /> */}
+        <div className="flex flex-col gap-8 w-1/3 justify-center items-center">
+          {skillBadge.map((badge) => {
+            return badge.locked ? (
+              <>
+                <img src="/images/lockk.png" className="w-28" />
+                <p className="text-md -mt-4 flex items-center">
+                  {"   "}
+                  Badge: <b> &nbsp;Locked</b>{" "}
+                </p>
+              </>
+            ) : (
+              <>
+                <img src={badge.badge.image} className="w-40" />
+                <p className="text-md -mt-4 flex items-center">
+                  {"   "}
+                  Badge: <b> &nbsp;Unlocked</b>{" "}
+                </p>
+              </>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
 
   return (
-    <div className="flex flex-col justify-center overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
+    <div className="flex flex-col justify-center overflow-auto bg-scroll  bg-blue-100">
       <Navbar />
-      <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8 m-4">
+      <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8 m-12 mt-8">
         <p className="text-5xl text-white mb-4">Addition Topic Overview</p>
-        <p className="text-xl text-white">
+        <p className="text-lg text-white">
           Addition is taking two or more numbers and adding them together! Watch
           the videos on the explore tab to learn more and do the practice
           questions to apply your knowledge. Once you feel confident in your
           addition skills, take the quiz to evaluate your understanding!
         </p>
       </div>
-      {levelComponent}
-      {skillComponent}
-      {quizComponent}
+      <div className="ml-12">{levelComponent}</div>
+      <div>
+        {skillComponent}
+        {quizComponent}
+      </div>
     </div>
   );
 };
-
-//   /* <div className="p-4 flex flex-col items-center justify-center">
-//         {levelComponent}
-//         <div className="">
-//           {skillBadge.map((badge) => {
-//             return badge.locked ? (
-//               <div className="">
-//                 <img src="/images/lockedPic.png" className="w-32" />
-//               </div>
-//             ) : (
-//               <img src={badge.badge.image} className="w-32" />
-//             );
-//           })}
-//         </div>
-//         {getSkillsForTopicGrade(slug, grade).map((skill) => (
-//           <Link href={`/skill-overview/${skill}`}>
-//             <p className="border-blue-400 border-4">
-//               {" "}
-//               {SkillDescription(skill)}{" "}
-//             </p>
-//           </Link>
-//         ))}
-//         {quizComponent}
-//       </div> */
-
-/* <div className="">
-{skillBadge.map((badge) => {
-  return badge.locked ? (
-    <div className="">
-      <img src="/images/lockedPic.png" className="w-32" />
-    </div>
-  ) : (
-    <img src={badge.badge.image} className="w-32" />
-  );
-})}
-</div> */
 
 export async function getStaticProps({ params }) {
   return {
