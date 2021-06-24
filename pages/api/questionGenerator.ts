@@ -357,8 +357,8 @@ function getRandomBinaryQuestion(
     QuestionType.MULTIPLE_CHOICE,
   ];
   let typeIndex = getRndInteger(0, types.length);
-  const a = getRndInteger(min, max);
-  const b = getRndInteger(min, max);
+  let a = getRndInteger(min, max);
+  let b = getRndInteger(min, max);
   let text;
   let trueFalseAnswer;
   const type = types[typeIndex];
@@ -386,18 +386,21 @@ function getRandomBinaryQuestion(
         break;
     }
   } else if (type === QuestionType.MULTIPLE_CHOICE) {
+    if (a < b) {
+      let temp = a;
+      a = b;
+      b = temp;
+    }
+
     let realAns = answerFunction(a, b);
     let wrongArr = [-2, -1, 1, 2];
-    let wrongIndexA = randomize(0, wrongArr.length);
-    let wrongA = wrongArr[wrongIndexA] + realAns;
-    wrongArr.splice(wrongIndexA, 1);
-    let wrongIndexB = randomize(0, wrongArr.length);
-    let wrongB = wrongArr[wrongIndexB] + realAns;
+    let wrongValA = wrongAnsGenerator(realAns, wrongArr);
+    let wrongValB = wrongAnsGenerator(realAns, wrongArr);
 
     text = `${a} ${operator} ${b}`;
 
-    const option1: MCOption = { text: wrongA.toString(), id: "a" };
-    const option2: MCOption = { text: wrongB.toString(), id: "b" };
+    const option1: MCOption = { text: wrongValA.toString(), id: "a" };
+    const option2: MCOption = { text: wrongValB.toString(), id: "b" };
     const option3: MCOption = { text: realAns.toString(), id: "c" };
 
     const optionArr = [option1, option2, option3];
@@ -428,4 +431,16 @@ function getRandomBinaryQuestion(
     multipleChoice: multipleChoiceModel,
     skill: skill,
   };
+}
+
+export function wrongAnsGenerator(correctAns: number, arr: number[]): number {
+  let wrongIndex = randomize(0, arr.length);
+  let wrongAns = arr[wrongIndex] + correctAns;
+  while (wrongAns < 0) {
+    arr.splice(wrongIndex, 1);
+    wrongIndex = randomize(0, arr.length);
+    wrongAns = arr[wrongIndex] + correctAns;
+  }
+  arr.splice(wrongIndex, 1);
+  return wrongAns;
 }
