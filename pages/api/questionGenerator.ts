@@ -54,7 +54,7 @@ export function getRandomNumbersQuestion(
     QuestionType.PATTERN_COUNT_BLANKS_PROBLEM,
     QuestionType.WORD_TO_HORIZONTAL_DIGITS,
     QuestionType.NUM_TO_VERITCAL_DIGITS,
-    // QuestionType.VERTICAL_DIGITS_TO_NUM, // commented until they are implemented
+    QuestionType.VERTICAL_DIGITS_TO_NUM, // commented until they are implemented
     // QuestionType.COMPARISON_WORD_PROBLEM,
   ];
   let typeIndex = getRndInteger(0, types.length);
@@ -108,6 +108,21 @@ export function getRandomNumbersQuestion(
     } else if ((skill = Skill.NUMBERS_1000)) {
       text = getRndInteger(0, 1001).toString();
       answer = numtoDigitsArr(text);
+    }
+  } else if (type == QuestionType.VERTICAL_DIGITS_TO_NUM) {
+    if (skill == Skill.NUMBERS_200) {
+      answer = [
+        getRndInteger(0, 2),
+        getRndInteger(0, 10),
+        getRndInteger(0, 10),
+      ];
+    } else if ((skill = Skill.NUMBERS_1000)) {
+      answer = [
+        getRndInteger(0, 10),
+        getRndInteger(0, 10),
+        getRndInteger(0, 10),
+      ];
+      text = answer.join("");
     }
   }
 
