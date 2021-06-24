@@ -80,18 +80,21 @@ const TopicOverviewPage = ({ slug }) => {
   const skillComponent = (
     <div>
       {getSkillsForTopicGrade(slug, grade).map((skill) => (
-        <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-4 m-12 mt-8 mb-4">
-          <div className="flex flex-col gap-8 justify-center items-center bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 w-1/2 rounded-2xl mr-8 h-72">
-            <div className="">
-              <p className="text-3xl font-bold"> {SkillDescription(skill)} </p>
+        <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-8 m-12 mt-8 mb-4">
+          <div className="mr-28">
+            <div className="flex flex-col gap-4">
+              <img src="/images/lol.png" className="w-96" />
+              <p className="text-2xl font-bold flex items-center justify-center bg-blue-200 rounded-2xl">
+                {" "}
+                {SkillDescription(skill)}{" "}
+              </p>
             </div>
           </div>
-
-          <div className="flex flex-col w-full sm:w-1/2 gap-4 justify-center">
+          <div className="flex flex-col sm:w-1/2 gap-4 justify-center mr-12">
             <p className="text-4xl font-bold text-blue-900"> LEARN </p>
             <p className="text-xl">
-              Learn to {SkillDescription(skill).toLowerCase()}
-              by watching engaging videos and strengthen your knowledge with
+              Learn to <b> {SkillDescription(skill).toLowerCase()}</b> by
+              watching engaging videos and strengthen your knowledge with
               related math questions in Math Champ's Practice Tracker!
             </p>
             <div className="flex gap-8">
@@ -106,13 +109,17 @@ const TopicOverviewPage = ({ slug }) => {
               </div>
             </div>
           </div>
+          <div className="flex flex-col items-center">
+            {" "}
+            Confidence: <p className="text-6xl"> 😃 </p>{" "}
+          </div>
         </div>
       ))}
     </div>
   );
   const quizComponent = (
     <div>
-      <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl pl-4 gap-8 m-12 mt-8">
+      <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-8 gap-8 m-12 mt-8">
         <div className="flex flex-col gap-4 justify-center w-2/3">
           <p className="text-4xl font-bold text-blue-900"> QUIZ TIME! </p>
           <p className="text-xl">
@@ -137,12 +144,7 @@ const TopicOverviewPage = ({ slug }) => {
             Best Attempt: {maxAccuracy && maxAccuracy}{" "}
           </p>
         </div>
-        {/* <img
-          className="w-full sm:w-1/3 object-cover rounded-xl"
-          alt="student-image"
-          src="/images/bruh.png"
-        /> */}
-        <div className="flex flex-col gap-8 w-1/3 justify-center items-center">
+        <div className="flex flex-col gap-8 justify-center items-center bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 w-1/2 rounded-2xl h-72">
           {skillBadge.map((badge) => {
             return badge.locked ? (
               <>
@@ -168,15 +170,17 @@ const TopicOverviewPage = ({ slug }) => {
   );
 
   return (
-    <div className="flex flex-col justify-center overflow-auto bg-scroll  bg-blue-100">
+    <div className="flex flex-col justify-center overflow-auto bg-scroll bg-blue-100 ">
       <Navbar />
       <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8 m-12 mt-8">
-        <p className="text-5xl text-white mb-4">Addition Topic Overview</p>
+        <p className="text-5xl text-white mb-4">
+          {" "}
+          {slug.charAt(0).toUpperCase() + slug.slice(1)} Topic Overview
+        </p>
         <p className="text-lg text-white">
-          Addition is taking two or more numbers and adding them together! Watch
-          the videos on the explore tab to learn more and do the practice
-          questions to apply your knowledge. Once you feel confident in your
-          addition skills, take the quiz to evaluate your understanding!
+          Watch the videos on the lesson page to learn more and do the practice
+          questions to apply your knowledge. Once you feel confident in your{" "}
+          {slug} skills, take the quiz to evaluate your understanding!
         </p>
       </div>
       <div className="ml-12">{levelComponent}</div>
