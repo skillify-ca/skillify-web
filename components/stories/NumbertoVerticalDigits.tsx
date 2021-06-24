@@ -51,8 +51,6 @@ export const NumbertoVerticalDigits: React.FC<NumbertoVerticalDigitsProp> = ({
 
   return (
     <div className="flex flex-col items-center space-y-8">
-      {console.log(answertoStringCalc(answer))}
-
       <h1 className="text-4m font-semibold text-center">
         Enter the Corresponding Digits
       </h1>
