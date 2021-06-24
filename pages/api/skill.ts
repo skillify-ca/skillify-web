@@ -85,6 +85,8 @@ export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): Skill[] => {
 
 export enum Skill {
   NUMBERS_50 = "count-50",
+  NUMBERS_200 = "count-200",
+  NUMBERS_1000 = "count-1000",
   ADDITION_SINGLE = "add-one-digit",
   ADDITION_DOUBLE = "add-two-digit",
   ADDITION_TRIPLE = "add-three-digit",
