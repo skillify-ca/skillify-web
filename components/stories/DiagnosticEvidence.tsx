@@ -2,10 +2,13 @@ import Link from "next/link";
 import React from "react";
 import {
   getResultForSkill,
-  getSkillsForTopic,
   getGradedQuestionsForTopic,
 } from "../../pages/api/diagnostic/diagnosticGrader";
-import { SkillDescription, Topic } from "../../pages/api/skill";
+import {
+  getSkillsForTopic,
+  SkillDescription,
+  Topic,
+} from "../../pages/api/skill";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 
 type DiagnosticEvidenceProps = {

@@ -17,6 +17,11 @@ import { FillBlank } from "./FillBlank";
 import { MultiplicationArray } from "./MultiplicationArray";
 import { MultiplicationEqualGroups } from "./MultiplicationEqualGroups";
 import { getRndColour } from "../../pages/api/random";
+import { MultipleChoice } from "./MultipleChoice";
+import { PatternBlank } from "./patternBlanks";
+import { WordtoHorizontalDigits } from "./WordtoHorizontalDigits";
+import { NumbertoVerticalDigits } from "./NumbertoVerticalDigits";
+import { VerticalDigitstoNum } from "./VerticalDigitstoNum";
 
 type QuestionSetProps = {
   title: string;
@@ -73,6 +78,49 @@ const QuestionSet = ({
         />
       );
     } else if (
+      questionData[index].questionType ==
+      QuestionType.PATTERN_COUNT_BLANKS_PROBLEM
+    ) {
+      return (
+        <PatternBlank
+          displayQuestion={questionData[index].text}
+          startNumber={questionData[index].placeholder}
+          answer={questionData[index].answer}
+          submitGuess={submitGuess}
+        />
+      );
+    } else if (
+      questionData[index].questionType == QuestionType.VERTICAL_DIGITS_TO_NUM
+    ) {
+      return (
+        <VerticalDigitstoNum
+          numArr={questionData[index].arrayAns}
+          answer={questionData[index].text}
+          submitGuess={submitGuess}
+        />
+      );
+    } else if (
+      questionData[index].questionType == QuestionType.WORD_TO_HORIZONTAL_DIGITS
+    ) {
+      return (
+        <WordtoHorizontalDigits
+          numString={questionData[index].text}
+          answer={questionData[index].arrayAns}
+          submitGuess={submitGuess}
+        />
+      );
+    } else if (
+      questionData[index].questionType == QuestionType.NUM_TO_VERITCAL_DIGITS
+    ) {
+      return (
+        <NumbertoVerticalDigits
+          num={questionData[index].text}
+          skill={questionData[index].skill}
+          answer={questionData[index].arrayAns}
+          submitGuess={submitGuess}
+        />
+      );
+    } else if (
       questionData[index].questionType == QuestionType.MULTIPLE_CHOICE_WORD
     ) {
       return (
@@ -80,6 +128,19 @@ const QuestionSet = ({
           displayQuestion="Which Property of Addition is shown?"
           question={questionData[index].multipleChoice.options[0]}
           submitGuess={submitGuess}
+        />
+      );
+    } else if (
+      questionData[index].questionType == QuestionType.MULTIPLE_CHOICE
+    ) {
+      return (
+        <MultipleChoice
+          displayQuestion={questionData[index].text}
+          option1={questionData[index].multipleChoice.options[0]}
+          option2={questionData[index].multipleChoice.options[1]}
+          option3={questionData[index].multipleChoice.options[2]}
+          submitGuess={submitGuess}
+          answer={questionData[index].answer}
         />
       );
     } else if (

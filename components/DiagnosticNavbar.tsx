@@ -85,7 +85,9 @@ export default function Navbar() {
                   src="/images/logo.png"
                   alt="Workflow"
                 />
+                <span className="text-white pl-2">Math Champ Practice Tracker</span>
               </div>
+
             </a>
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4">
