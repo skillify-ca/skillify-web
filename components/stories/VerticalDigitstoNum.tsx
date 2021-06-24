@@ -20,19 +20,24 @@ export const VerticalDigitstoNum: React.FC<VerticalDigitstoNumProp> = ({
   function onSubmit() {
     submitGuess({ guess: guess, isCorrect: guess == answer });
   }
-  for (let i = digitsArr.length - len; i < digitsArr.length; ++i) {
-    items.push(
-      <div className="flex flex-row space-x-4 items-center">
-        <h1 className="font-semibold">{numArr[i]}</h1>
-        <h1>{digitsArr[i]}</h1>
-      </div>
-    );
+
+  function getItems() {
+    for (let i = digitsArr.length - len; i < digitsArr.length; ++i) {
+      items.push(
+        <div className="flex flex-row space-x-4 items-center">
+          <h1 className="font-semibold">{numArr[i - 1]}</h1>
+          <h1>{digitsArr[i]}</h1>
+        </div>
+      );
+    }
+    return items;
   }
+
   return (
     <div className=" flex flex-col items-center space-y-8">
       <h1>Enter the Corresponding Number</h1>
       <div className="flex flex-row space-x-4 items-center">
-        <div className="flex flex-col items-center space-y-8">{items}</div>
+        <div className="flex flex-col items-center space-y-8">{getItems()}</div>
         <input
           className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
           type="number"

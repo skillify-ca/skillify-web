@@ -46,22 +46,25 @@ export const WordtoHorizontalDigits: React.FC<WordtoHorizontalDigitsProp> = ({
   }
   let items = [];
   answerLen = answer.length;
-  for (let i = digitsArr.length - answerLen; i < digitsArr.length; ++i) {
-    items.push(
-      <div className="flex flex-row space-x-8">
-        {
-          <input
-            className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
-            id={inputVals[i]}
-            type="number"
-            value={guessValArr[i]}
-            onChange={guessSetter(i)}
-          ></input>
-        }
-        <h1>{digitsArr[i]}</h1>
-        {digitsArr[i] != "ones" && <h1>+</h1>}
-      </div>
-    );
+  function getItems() {
+    for (let i = digitsArr.length - answerLen; i < digitsArr.length; ++i) {
+      items.push(
+        <div className="flex flex-row space-x-8">
+          {
+            <input
+              className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
+              id={inputVals[i]}
+              type="number"
+              value={guessValArr[i]}
+              onChange={guessSetter(i)}
+            ></input>
+          }
+          <h1>{digitsArr[i]}</h1>
+          {digitsArr[i] != "ones" && <h1>+</h1>}
+        </div>
+      );
+    }
+    return items;
   }
 
   function onSubmit() {
@@ -79,7 +82,7 @@ export const WordtoHorizontalDigits: React.FC<WordtoHorizontalDigitsProp> = ({
       <div className="flex flex-row space-x-4">
         <h1 className="font-bold">{numString}</h1>
         <h1>=</h1>
-        <div className="flex flex-col space-y-8">{items}</div>
+        <div className="flex flex-col space-y-8">{getItems()}</div>
       </div>
       <Button
         onClick={onSubmit}
