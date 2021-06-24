@@ -18,6 +18,7 @@ export const NumbertoVerticalDigits: React.FC<NumbertoVerticalDigitsProp> = ({
   ...props
 }) => {
   // will use later when more grades are added
+
   const [guess1, setGuess1] = useState("");
   const [guess2, setGuess2] = useState("");
   const [guess3, setGuess3] = useState("");
