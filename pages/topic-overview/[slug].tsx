@@ -175,7 +175,8 @@ const TopicOverviewPage = ({ slug }) => {
       <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8 m-12 mt-8">
         <p className="text-5xl text-white mb-4">
           {" "}
-          {slug.charAt(0).toUpperCase() + slug.slice(1)} Topic Overview
+          {slug.charAt(0) && slug.charAt(0).toUpperCase() + slug.slice(1)} Topic
+          Overview
         </p>
         <p className="text-lg text-white">
           Watch the videos on the lesson page to learn more and do the practice
