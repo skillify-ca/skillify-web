@@ -1,47 +1,65 @@
 import React, { useEffect, useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
+import { Skill } from "../../pages/api/skill";
 import { Button } from "./Button";
 
 export interface NumbertoVerticalDigitsProp {
-  num: number;
+  num: string;
+  skill: Skill;
   answer: Array<number>;
   submitGuess: (guess: GuessData) => void;
 }
 
 export const NumbertoVerticalDigits: React.FC<NumbertoVerticalDigitsProp> = ({
   num,
+  skill,
   answer,
   submitGuess,
   ...props
 }) => {
+  // will use later when more grades are added
+  const [grade2Difficulty, setgrade2Difficulty] = useState(false);
+  const [grade3Difficulty, setgrade3Difficulty] = useState(false);
+
   const [guess1, setGuess1] = useState("");
   const [guess2, setGuess2] = useState("");
   const [guess3, setGuess3] = useState("");
   const [guess4, setGuess4] = useState("");
   const [guess5, setGuess5] = useState("");
-  let guessArr = [
-    parseInt(guess1),
-    parseInt(guess2),
-    parseInt(guess3),
-    parseInt(guess4),
-    parseInt(guess5),
-  ];
+
+  function answertoStringCalc(answer: number[]): string {
+    let ansStr = "";
+    for (let i = 0; i < answer.length; ++i) {
+      ansStr += answer[i].toString() + ",";
+    }
+    return ansStr;
+  }
   function onSubmit() {
+    let guessStr = guess3 + "," + guess4 + "," + guess5 + ",";
     submitGuess({
-      guess: guessArr,
-      isCorrect: guessArr == answer,
+      guess: guessStr,
+      isCorrect: guessStr == answertoStringCalc(answer),
     });
   }
 
+  // if (skill == Skill.NUMBERS_200) {
+  //   setgrade2Difficulty(true);
+  // } else if (skill == Skill.NUMBERS_1000) {
+  //   setgrade3Difficulty(true);
+  //   setgrade2Difficulty(true);
+  // }
+
   return (
     <div className="flex flex-col items-center space-y-8">
+      {console.log(answertoStringCalc(answer))}
+
       <h1 className="text-4m font-semibold text-center">
         Enter the Corresponding Digits
       </h1>
       <h2 className="underline text-4xl">{num}</h2>
       <div className="flex flex-row space-x-8">
         <div className="flex flex-col items-center space-y-8">
-          <div className="flex flex-row space-x-8">
+          <div className={` flex-row space-x-8 hidden`}>
             <input
               className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
               type="number"
@@ -50,7 +68,7 @@ export const NumbertoVerticalDigits: React.FC<NumbertoVerticalDigitsProp> = ({
             ></input>{" "}
             <h1>ten thousands</h1>
           </div>
-          <div className="flex flex-row space-x-8">
+          <div className=" flex-row space-x-8 hidden">
             <input
               className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
               type="number"

@@ -53,7 +53,7 @@ export function getRandomNumbersQuestion(
   const types = [
     QuestionType.PATTERN_COUNT_BLANKS_PROBLEM,
     QuestionType.WORD_TO_HORIZONTAL_DIGITS,
-    // QuestionType.NUM_TO_VERITCAL_DIGITS,
+    QuestionType.NUM_TO_VERITCAL_DIGITS,
     // QuestionType.VERTICAL_DIGITS_TO_NUM, // commented until they are implemented
     // QuestionType.COMPARISON_WORD_PROBLEM,
   ];
@@ -101,6 +101,14 @@ export function getRandomNumbersQuestion(
       ];
     }
     text = stringNumCalc(answer);
+  } else if (type == QuestionType.NUM_TO_VERITCAL_DIGITS) {
+    if (skill == Skill.NUMBERS_200) {
+      text = getRndInteger(0, 201).toString();
+      answer = numtoDigitsArr(text);
+    } else if ((skill = Skill.NUMBERS_1000)) {
+      text = getRndInteger(0, 1001).toString();
+      answer = numtoDigitsArr(text);
+    }
   }
 
   return {
@@ -113,8 +121,19 @@ export function getRandomNumbersQuestion(
     questionType: type,
     skill: skill,
     arrayAns: type == QuestionType.COMPARISON_WORD_PROBLEM ? "" : answer,
+    placeholder: startNum.toString(),
   };
 }
+
+export function numtoDigitsArr(answer: string): number[] {
+  const len = answer.length;
+  let numArr = [];
+  for (let i = 0; i < len; ++i) {
+    numArr[i] = parseInt(answer[i]);
+  }
+  return numArr;
+}
+
 export function stringNumCalc(answer: number[]): string {
   const onesColWord = [
     "Zero",
