@@ -116,9 +116,9 @@ export default function Navbar() {
                 <div>
                   {!session && (
                     <>
-                      <button onClick={() => signIn()}>
-                        <p className="text-white">Sign in</p>
-                      </button>
+                      <Link href="/welcome">
+                        <p className="text-white cursor-pointer">Sign in</p>
+                        </Link>
                     </>
                   )}
                   {session && (
