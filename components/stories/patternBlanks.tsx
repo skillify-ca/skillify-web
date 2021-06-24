@@ -28,6 +28,7 @@ export const PatternBlank: React.FC<PatternBlankProp> = ({
 
   return (
     <div className="flex flex-col items-center space-y-8">
+      {console.log(answer)}
       <h1 className="text-4m font-semibold text-center"> {displayQuestion} </h1>
       <div className="flex flex-row space-x-4 items-center">
         {startNumber},

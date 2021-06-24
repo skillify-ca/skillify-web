@@ -113,10 +113,11 @@ export function getRandomNumbersQuestion(
 
   return {
     text: text,
-    answer: type == QuestionType.COMPARISON_WORD_PROBLEM ? answer : "answer",
+    answer:
+      type == QuestionType.PATTERN_COUNT_BLANKS_PROBLEM ? answer : "answer",
     answerType:
       type == QuestionType.COMPARISON_WORD_PROBLEM
-        ? AnswerType.NUMBER
+        ? AnswerType.STRING
         : AnswerType.ARRAY,
     questionType: type,
     skill: skill,
