@@ -69,7 +69,7 @@ export function getRandomNumbersQuestion(
     let patternTypes = ["FORWARDS", "BACKWARDS"];
     let patternIndex = getRndInteger(0, patternTypes.length);
     let displayPattern = patternTypes[patternIndex];
-    let patternNum = getRndInteger(0, 10);
+    let patternNum = getRndInteger(1, 10);
 
     // prevents negative numbers appearing in pattern
     if (displayPattern == "BACKWARDS" && startNum - 3 * patternNum < 0) {
