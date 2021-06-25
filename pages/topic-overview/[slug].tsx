@@ -6,16 +6,56 @@ import Navbar from "../../components/Navbar";
 import { Button } from "../../components/stories/Button";
 import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
 import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
+import { FETCH_USER_EMOJI } from "../../graphql/fetchUserEmoji";
+import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { INIT_USER_BADGES } from "../../graphql/initUserBadges";
 import { userId } from "../../graphql/utils/constants";
-import { getSkillsForTopicGrade, Grade, SkillDescription } from "../api/skill";
+import {
+  getSkillsForTopicGrade,
+  Grade,
+  Skill,
+  SkillDescription,
+} from "../api/skill";
 
 const TopicOverviewPage = ({ slug }) => {
   const [session, user] = useSession();
   const [grade, setGrade] = useState(Grade.GRADE_1);
   const onGradeChange = (e: any) => {
     setGrade(e.target.value);
+  };
+  let skill;
+  let getSkillId = (skill: Skill) => {
+    //Note: The skill Ids are determined based of the values save in the skills table with graph
+    switch (skill) {
+      case Skill.ADDITION_SINGLE:
+        return 1;
+      case Skill.ADDITION_DOUBLE:
+        return 2;
+      case Skill.ADDITION_TRIPLE:
+        return 3;
+      case Skill.ADDITION_PROPERTIES:
+        return 4;
+      case Skill.SUBTRACTION_SINGLE:
+        return 34;
+      case Skill.SUBTRACTION_DOUBLE:
+        return 35;
+      case Skill.SUBTRACTION_TRIPLE:
+        return 36;
+      case Skill.EQUAL_GROUP_10_ITEMS:
+        return 37;
+      case Skill.MULTIPLICATION_5:
+        return 38;
+      case Skill.MULTIPLICATION_10:
+        return 39;
+
+      case Skill.EQUAL_SHARING_8_ITEMS:
+        return 40;
+      case Skill.DIVIDE_12_EQUALLY:
+        return 41;
+      case Skill.DIVIDE_100:
+        return 42;
+    }
   };
   let gradeNum = (grade: string) => {
     switch (grade) {
@@ -25,6 +65,17 @@ const TopicOverviewPage = ({ slug }) => {
         return 2;
       case "Grade 3":
         return 3;
+    }
+  };
+  let getEmoji = (emojiNum: number | null) => {
+    if (emojiNum == null) {
+      return "❓";
+    } else if (emojiNum >= 0 && emojiNum <= 33) {
+      return "😔";
+    } else if (emojiNum >= 34 && emojiNum <= 66) {
+      return "😐";
+    } else {
+      return "😄";
     }
   };
 
@@ -45,6 +96,20 @@ const TopicOverviewPage = ({ slug }) => {
     } else {
       maxAccuracy = Math.max(...accuracyList) + "%";
     }
+  }
+  const userSkillsQuery = useQuery(FETCH_USER_EMOJIS, {
+    variables: {
+      userId: userId(session),
+      skillId: getSkillsForTopicGrade(slug, grade).map((it) => getSkillId(it)),
+    },
+  });
+  let userSkills = [];
+  if (userSkillsQuery.data) {
+    userSkills = userSkillsQuery.data.user_skills;
+    // console.log(
+    //   "hello",
+    //   userSkills.filter((it) => it.skillId == getSkillId(skill))[0].emoji
+    // );
   }
 
   const skillBadgeQuery = useQuery(FETCH_USER_SKILL_BADGE, {
@@ -76,7 +141,6 @@ const TopicOverviewPage = ({ slug }) => {
       </select>
     </div>
   );
-
   const skillComponent = (
     <div>
       {getSkillsForTopicGrade(slug, grade).map((skill) => (
@@ -111,7 +175,15 @@ const TopicOverviewPage = ({ slug }) => {
           </div>
           <div className="text-md font-bold text-blue-900 flex flex-col items-center">
             {" "}
-            Confidence: <p className="text-6xl"> 😃 </p>{" "}
+            Confidence:{" "}
+            <p className="text-6xl">
+              {" "}
+              {userSkills.length !== 0 &&
+                getEmoji(
+                  userSkills.filter((it) => it.skill_id == getSkillId(skill))[0]
+                    .emoji
+                )}{" "}
+            </p>{" "}
           </div>
         </div>
       ))}

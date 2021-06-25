@@ -6,6 +6,7 @@ import { FETCH_USER_QUIZZES } from "../graphql/fetchUserQuiz";
 import { useQuery } from "@apollo/client";
 import { useSession } from "next-auth/client";
 import { userId } from "../graphql/utils/constants";
+import { FETCH_USER_EMOJI } from "../graphql/fetchUserEmoji";
 
 export default function additionTopicOverview(props) {
   const [session] = useSession();
@@ -29,6 +30,18 @@ export default function additionTopicOverview(props) {
       badgeId: gradeNum(grade),
     },
   });
+  const userSkillsQuery = useQuery(FETCH_USER_EMOJI, {
+    variables: {
+      userId: userId(session),
+      skillId: gradeNum(grade),
+    },
+  });
+  let userSkills;
+  if (userSkillsQuery.data) {
+    userSkills = userSkillsQuery.data.user_skills;
+    userSkills = userSkills.emoji;
+  }
+  //
   let userQuizzes;
   let accuracyList = [];
   let maxAccuracy;
