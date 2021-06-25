@@ -41,6 +41,7 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
   }
   return [];
 };
+
 export function getEmoji(emojiNum: number | null) {
   if (emojiNum == null) {
     return "❓";
@@ -253,7 +254,7 @@ export const getPracticeCardForSkill = (
     case Skill.EQUAL_GROUP_10_ITEMS:
       return [
         {
-          link: "multiplication/total-items-equal-groups", //we should change this link
+          link: "multiplication/single-digit", //we should change this link
         },
       ];
     case Skill.MULTIPLICATION_5:

@@ -2,12 +2,14 @@ import { useMutation, useQuery } from "@apollo/client";
 import { session, useSession } from "next-auth/client";
 import Link from "next/link";
 import React, { useState } from "react";
+import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import Navbar from "../../components/Navbar";
 import { Button } from "../../components/stories/Button";
 import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
 import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { userId } from "../../graphql/utils/constants";
+import { getBadgeId } from "../api/badgeHelper";
 import {
   getEmoji,
   getSkillId,
@@ -193,7 +195,7 @@ const TopicOverviewPage = ({ slug }) => {
 
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-blue-100 ">
-      <Navbar />
+      <DiagnosticNavbar />
       <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8 m-12 mt-8">
         <p className="text-5xl text-white mb-4">
           {" "}
