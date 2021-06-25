@@ -297,9 +297,10 @@ const PracticeQuiz = ({ slug, skill }) => {
           </div>
         </ReactCardFlip>
       </div>
-      {!continueButton && !nextQuestionButton && stage == STAGE.QUESTION && (
-        <Hint skill={questionData[index].skill}></Hint>
-      )}
+      {!continueButton &&
+        !nextQuestionButton &&
+        stage == STAGE.QUESTION &&
+        questionData[index] && <Hint skill={questionData[index].skill}></Hint>}
       <div
         className={`grid-cols-1 grid justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in opacity-${continueFaded}`}
       >

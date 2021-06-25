@@ -9,6 +9,7 @@ import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { INIT_USER_BADGES } from "../../graphql/initUserBadges";
 import { userId } from "../../graphql/utils/constants";
+import { getBadgeId } from "../api/badgeHelper";
 import { getSkillsForTopicGrade, Grade, SkillDescription } from "../api/skill";
 
 const TopicOverviewPage = ({ slug }) => {
@@ -50,7 +51,7 @@ const TopicOverviewPage = ({ slug }) => {
   const skillBadgeQuery = useQuery(FETCH_USER_SKILL_BADGE, {
     variables: {
       userId: userId(session),
-      badgeId: gradeNum(grade),
+      badgeId: getBadgeId(slug, gradeNum(grade)),
     },
   });
 
@@ -84,7 +85,7 @@ const TopicOverviewPage = ({ slug }) => {
           <div className="mr-28">
             <div className="flex flex-col gap-4">
               <img src="/images/learnPic.png" className="w-96" />
-              <p className="text-2xl font-bold flex items-center justify-center bg-blue-200 rounded-2xl">
+              <p className="text-2xl text-center font-bold flex items-center justify-center bg-blue-200 rounded-2xl">
                 {" "}
                 {SkillDescription(skill)}{" "}
               </p>

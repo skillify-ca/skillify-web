@@ -34,7 +34,7 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
     }
   } else if (topic == "multiplication") {
     switch (skillStr) {
-      case "single-digit": // we should rename this from single-digit to something else
+      case "total-items-equal-groups": // we should rename this from single-digit to something else
         skill = Skill.EQUAL_GROUP_10_ITEMS;
         break;
       case "upto_5X5":

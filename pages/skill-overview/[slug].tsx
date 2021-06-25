@@ -13,7 +13,7 @@ const SkillOverviewPage = ({ slug }) => {
       backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.75)), url(http://img.youtube.com/vi/${videoId}/hqdefault.jpg)`,
     };
   };
-  const practiceComponent = getPracticeCardForSkill(slug)[0] && (
+  const practiceComponent = SkillDescription(slug) && (
     <div>
       <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl pl-4 gap-8 m-8">
         <div className="flex flex-col w-full sm:w-1/2 gap-4 justify-center">
@@ -53,12 +53,12 @@ const SkillOverviewPage = ({ slug }) => {
           I can {SkillDescription(slug) &&
             SkillDescription(slug).toLowerCase()}{" "}
         </span>
-        <span className="flex flex-col items-center mr-8">
+        {/* <span className="flex flex-col items-center mr-8">
           <p className="text-md font-bold text-gray-700 ">Confidence:</p>{" "}
           {getPracticeCardForSkill(slug).map((resource) => (
             <p className="text-7xl"> {resource.confidenceRating} </p>
           ))}{" "}
-        </span>
+        </span> */}
       </div>
       <div className="bg-white shadow-lg flex-col p-2 rounded-lg m-8">
         <p className="text-lg text-blue-900">Videos </p>
@@ -66,18 +66,17 @@ const SkillOverviewPage = ({ slug }) => {
       <div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mr-8 ml-8 items-center">
           {getVideosForSkill(slug).map((resource) => (
-            <Link href={`/${resource.link}`}>
+            <a target="_blank" href={`${resource.link}`}>
               <div
                 className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-72 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
                 style={cardStyle(resource.videoId)}
               >
                 <p className="font-bold m-4"> {resource.vidTitle} </p>
               </div>
-            </Link>
+            </a>
           ))}
         </div>
-
-        {getPracticeCardForSkill(slug)[0] && practiceComponent}
+        {practiceComponent}
       </div>
     </div>
   );
