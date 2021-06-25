@@ -8,5 +8,4 @@ mutation UpdateUserEmoji($skillId: Int = 0, $userId: String = "", $emoji: Int = 
     }
   }
 }
-
 `;
