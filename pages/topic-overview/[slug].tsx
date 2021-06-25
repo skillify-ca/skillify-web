@@ -17,45 +17,53 @@ import {
   Skill,
   SkillDescription,
 } from "../api/skill";
+export function getSkillId(skill: Skill) {
+  switch (skill) {
+    case Skill.ADDITION_SINGLE:
+      return 1;
+    case Skill.ADDITION_DOUBLE:
+      return 2;
+    case Skill.ADDITION_TRIPLE:
+      return 3;
+    case Skill.ADDITION_PROPERTIES:
+      return 4;
+    case Skill.SUBTRACTION_SINGLE:
+      return 34;
+    case Skill.SUBTRACTION_DOUBLE:
+      return 35;
+    case Skill.SUBTRACTION_TRIPLE:
+      return 36;
+    case Skill.EQUAL_GROUP_10_ITEMS:
+      return 37;
+    case Skill.MULTIPLICATION_5:
+      return 38;
+    case Skill.MULTIPLICATION_10:
+      return 39;
+    case Skill.EQUAL_SHARING_8_ITEMS:
+      return 40;
+    case Skill.DIVIDE_12_EQUALLY:
+      return 41;
+    case Skill.DIVIDE_100:
+      return 42;
+  }
+}
+export function getEmoji(emojiNum: number | null) {
+  if (emojiNum == null) {
+    return "❓";
+  } else if (emojiNum >= 0 && emojiNum <= 33) {
+    return "😔";
+  } else if (emojiNum >= 34 && emojiNum <= 66) {
+    return "😐";
+  } else {
+    return "😄";
+  }
+}
 
 const TopicOverviewPage = ({ slug }) => {
   const [session, user] = useSession();
   const [grade, setGrade] = useState(Grade.GRADE_1);
   const onGradeChange = (e: any) => {
     setGrade(e.target.value);
-  };
-  let skill;
-  let getSkillId = (skill: Skill) => {
-    //Note: The skill Ids are determined based of the values save in the skills table with graph
-    switch (skill) {
-      case Skill.ADDITION_SINGLE:
-        return 1;
-      case Skill.ADDITION_DOUBLE:
-        return 2;
-      case Skill.ADDITION_TRIPLE:
-        return 3;
-      case Skill.ADDITION_PROPERTIES:
-        return 4;
-      case Skill.SUBTRACTION_SINGLE:
-        return 34;
-      case Skill.SUBTRACTION_DOUBLE:
-        return 35;
-      case Skill.SUBTRACTION_TRIPLE:
-        return 36;
-      case Skill.EQUAL_GROUP_10_ITEMS:
-        return 37;
-      case Skill.MULTIPLICATION_5:
-        return 38;
-      case Skill.MULTIPLICATION_10:
-        return 39;
-
-      case Skill.EQUAL_SHARING_8_ITEMS:
-        return 40;
-      case Skill.DIVIDE_12_EQUALLY:
-        return 41;
-      case Skill.DIVIDE_100:
-        return 42;
-    }
   };
   let gradeNum = (grade: string) => {
     switch (grade) {
@@ -65,17 +73,6 @@ const TopicOverviewPage = ({ slug }) => {
         return 2;
       case "Grade 3":
         return 3;
-    }
-  };
-  let getEmoji = (emojiNum: number | null) => {
-    if (emojiNum == null) {
-      return "❓";
-    } else if (emojiNum >= 0 && emojiNum <= 33) {
-      return "😔";
-    } else if (emojiNum >= 34 && emojiNum <= 66) {
-      return "😐";
-    } else {
-      return "😄";
     }
   };
 

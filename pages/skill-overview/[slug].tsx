@@ -6,6 +6,7 @@ import { Button } from "../../components/stories/Button";
 import { getPracticeCardForSkill, SkillDescription } from "../api/skill";
 import { getVideosForSkill } from "../api/videoHelper";
 import Resources from "../resources";
+import { getEmoji, getSkillId } from "../topic-overview/[slug]";
 
 const SkillOverviewPage = ({ slug }) => {
   const cardStyle = (videoId) => {
@@ -55,9 +56,7 @@ const SkillOverviewPage = ({ slug }) => {
         </span>
         <span className="flex flex-col items-center mr-8">
           <p className="text-md font-bold text-gray-700 ">Confidence:</p>{" "}
-          {getPracticeCardForSkill(slug).map((resource) => (
-            <p className="text-7xl"> {resource.confidenceRating} </p>
-          ))}{" "}
+          <p className="text-7xl"> {getEmoji(getSkillId(slug))} </p>{" "}
         </span>
       </div>
       <div className="bg-white shadow-lg flex-col p-2 rounded-lg m-8">
