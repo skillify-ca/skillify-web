@@ -205,11 +205,6 @@ const PracticeQuiz = ({ slug, skill }) => {
   };
 
   const saveEmoji = () => {
-    console.log(emoji);
-    console.log(getSkillId(skill, slug));
-    console.log(userId(session));
-    console.log(skill);
-    console.log(slug);
     updateUserEmoji({
       variables: {
         userId: userId(session),

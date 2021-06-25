@@ -5,60 +5,17 @@ import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
 import { Button } from "../../components/stories/Button";
 import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
-import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
-import { FETCH_USER_EMOJI } from "../../graphql/fetchUserEmoji";
 import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
-import { INIT_USER_BADGES } from "../../graphql/initUserBadges";
 import { userId } from "../../graphql/utils/constants";
 import {
+  getEmoji,
+  getSkillId,
   getSkillsForTopicGrade,
   Grade,
   Skill,
   SkillDescription,
 } from "../api/skill";
-export function getSkillId(skill: Skill) {
-  switch (skill) {
-    case Skill.ADDITION_SINGLE:
-      return 1;
-    case Skill.ADDITION_DOUBLE:
-      return 2;
-    case Skill.ADDITION_TRIPLE:
-      return 3;
-    case Skill.ADDITION_PROPERTIES:
-      return 4;
-    case Skill.SUBTRACTION_SINGLE:
-      return 34;
-    case Skill.SUBTRACTION_DOUBLE:
-      return 35;
-    case Skill.SUBTRACTION_TRIPLE:
-      return 36;
-    case Skill.EQUAL_GROUP_10_ITEMS:
-      return 37;
-    case Skill.MULTIPLICATION_5:
-      return 38;
-    case Skill.MULTIPLICATION_10:
-      return 39;
-    case Skill.EQUAL_SHARING_8_ITEMS:
-      return 40;
-    case Skill.DIVIDE_12_EQUALLY:
-      return 41;
-    case Skill.DIVIDE_100:
-      return 42;
-  }
-}
-export function getEmoji(emojiNum: number | null) {
-  if (emojiNum == null) {
-    return "❓";
-  } else if (emojiNum >= 0 && emojiNum <= 33) {
-    return "😔";
-  } else if (emojiNum >= 34 && emojiNum <= 66) {
-    return "😐";
-  } else {
-    return "😄";
-  }
-}
-
 const TopicOverviewPage = ({ slug }) => {
   const [session, user] = useSession();
   const [grade, setGrade] = useState(Grade.GRADE_1);
@@ -103,10 +60,6 @@ const TopicOverviewPage = ({ slug }) => {
   let userSkills = [];
   if (userSkillsQuery.data) {
     userSkills = userSkillsQuery.data.user_skills;
-    // console.log(
-    //   "hello",
-    //   userSkills.filter((it) => it.skillId == getSkillId(skill))[0].emoji
-    // );
   }
 
   const skillBadgeQuery = useQuery(FETCH_USER_SKILL_BADGE, {

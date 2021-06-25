@@ -3,10 +3,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Navbar from "../../components/Navbar";
 import { Button } from "../../components/stories/Button";
-import { getPracticeCardForSkill, SkillDescription } from "../api/skill";
+import {
+  getEmoji,
+  getPracticeCardForSkill,
+  getSkillId,
+  SkillDescription,
+} from "../api/skill";
 import { getVideosForSkill } from "../api/videoHelper";
 import Resources from "../resources";
-import { getEmoji, getSkillId } from "../topic-overview/[slug]";
 
 const SkillOverviewPage = ({ slug }) => {
   const cardStyle = (videoId) => {
