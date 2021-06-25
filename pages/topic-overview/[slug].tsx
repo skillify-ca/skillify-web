@@ -5,13 +5,17 @@ import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
 import { Button } from "../../components/stories/Button";
 import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
-import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
+import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
-import { INIT_USER_BADGES } from "../../graphql/initUserBadges";
 import { userId } from "../../graphql/utils/constants";
-import { getBadgeId } from "../api/badgeHelper";
-import { getSkillsForTopicGrade, Grade, SkillDescription } from "../api/skill";
-
+import {
+  getEmoji,
+  getSkillId,
+  getSkillsForTopicGrade,
+  Grade,
+  Skill,
+  SkillDescription,
+} from "../api/skill";
 const TopicOverviewPage = ({ slug }) => {
   const [session, user] = useSession();
   const [grade, setGrade] = useState(Grade.GRADE_1);
@@ -47,6 +51,16 @@ const TopicOverviewPage = ({ slug }) => {
       maxAccuracy = Math.max(...accuracyList) + "%";
     }
   }
+  const userSkillsQuery = useQuery(FETCH_USER_EMOJIS, {
+    variables: {
+      userId: userId(session),
+      skillId: getSkillsForTopicGrade(slug, grade).map((it) => getSkillId(it)),
+    },
+  });
+  let userSkills = [];
+  if (userSkillsQuery.data) {
+    userSkills = userSkillsQuery.data.user_skills;
+  }
 
   const skillBadgeQuery = useQuery(FETCH_USER_SKILL_BADGE, {
     variables: {
@@ -77,7 +91,6 @@ const TopicOverviewPage = ({ slug }) => {
       </select>
     </div>
   );
-
   const skillComponent = (
     <div>
       {getSkillsForTopicGrade(slug, grade).map((skill) => (
@@ -112,7 +125,15 @@ const TopicOverviewPage = ({ slug }) => {
           </div>
           <div className="text-md font-bold text-blue-900 flex flex-col items-center">
             {" "}
-            Confidence: <p className="text-6xl"> 😃 </p>{" "}
+            Confidence:{" "}
+            <p className="text-6xl">
+              {" "}
+              {userSkills.length !== 0 &&
+                getEmoji(
+                  userSkills.filter((it) => it.skill_id == getSkillId(skill))[0]
+                    .emoji
+                )}{" "}
+            </p>{" "}
           </div>
         </div>
       ))}

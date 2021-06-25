@@ -3,7 +3,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Navbar from "../../components/Navbar";
 import { Button } from "../../components/stories/Button";
-import { getPracticeCardForSkill, SkillDescription } from "../api/skill";
+import {
+  getEmoji,
+  getPracticeCardForSkill,
+  getSkillId,
+  SkillDescription,
+} from "../api/skill";
 import { getVideosForSkill } from "../api/videoHelper";
 import Resources from "../resources";
 
@@ -53,12 +58,10 @@ const SkillOverviewPage = ({ slug }) => {
           I can {SkillDescription(slug) &&
             SkillDescription(slug).toLowerCase()}{" "}
         </span>
-        {/* <span className="flex flex-col items-center mr-8">
+        <span className="flex flex-col items-center mr-8">
           <p className="text-md font-bold text-gray-700 ">Confidence:</p>{" "}
-          {getPracticeCardForSkill(slug).map((resource) => (
-            <p className="text-7xl"> {resource.confidenceRating} </p>
-          ))}{" "}
-        </span> */}
+          <p className="text-7xl"> {getEmoji(getSkillId(slug))} </p>{" "}
+        </span>
       </div>
       <div className="bg-white shadow-lg flex-col p-2 rounded-lg m-8">
         <p className="text-lg text-blue-900">Videos </p>
