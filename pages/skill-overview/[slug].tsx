@@ -1,24 +1,41 @@
+import { useQuery } from "@apollo/client";
+import { session, useSession } from "next-auth/client";
 import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
+import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import Navbar from "../../components/Navbar";
 import { Button } from "../../components/stories/Button";
+import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
+import { userId } from "../../graphql/utils/constants";
 import {
   getEmoji,
   getPracticeCardForSkill,
   getSkillId,
+  getSkillsForTopicGrade,
   SkillDescription,
 } from "../api/skill";
 import { getVideosForSkill } from "../api/videoHelper";
 import Resources from "../resources";
 
 const SkillOverviewPage = ({ slug }) => {
+  const [session, loading] = useSession();
+  const userSkillsQuery = useQuery(FETCH_USER_EMOJIS, {
+    variables: {
+      userId: userId(session),
+      skillId: getSkillId(slug),
+    },
+  });
+  let userSkills = [];
+  if (userSkillsQuery.data) {
+    userSkills = userSkillsQuery.data.user_skills;
+  }
   const cardStyle = (videoId) => {
     return {
       backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.75)), url(http://img.youtube.com/vi/${videoId}/hqdefault.jpg)`,
     };
   };
-  const practiceComponent = getPracticeCardForSkill(slug)[0] && (
+  const practiceComponent = SkillDescription(slug) && (
     <div>
       <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl pl-4 gap-8 m-8">
         <div className="flex flex-col w-full sm:w-1/2 gap-4 justify-center">
@@ -51,7 +68,7 @@ const SkillOverviewPage = ({ slug }) => {
 
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-architect-blue-200 bg-blue-100 h-screen">
-      <Navbar />
+      <DiagnosticNavbar />
       <div className="flex flex-row justify-between mt-8 mr-8 ml-8">
         <span className="text-6xl font-semibold text-gray-700">
           {" "}
@@ -60,7 +77,14 @@ const SkillOverviewPage = ({ slug }) => {
         </span>
         <span className="flex flex-col items-center mr-8">
           <p className="text-md font-bold text-gray-700 ">Confidence:</p>{" "}
-          <p className="text-7xl"> {getEmoji(getSkillId(slug))} </p>{" "}
+          <p className="text-7xl">
+            {" "}
+            {userSkills.length !== 0 &&
+              getEmoji(
+                userSkills.filter((it) => it.skill_id == getSkillId(slug))[0]
+                  .emoji
+              )}{" "}
+          </p>{" "}
         </span>
       </div>
       <div className="bg-white shadow-lg flex-col p-2 rounded-lg m-8">
@@ -69,18 +93,27 @@ const SkillOverviewPage = ({ slug }) => {
       <div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mr-8 ml-8 items-center">
           {getVideosForSkill(slug).map((resource) => (
-            <Link href={`/${resource.link}`}>
-              <div
-                className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-72 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
-                style={cardStyle(resource.videoId)}
-              >
-                <p className="font-bold m-4"> {resource.vidTitle} </p>
-              </div>
-            </Link>
+            <iframe
+              width="560"
+              height="500"
+              src={`https://www.youtube.com/embed/${resource.videoId}`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full"
+            ></iframe>
+            // <a target="_blank" href={`${resource.link}`}>
+            //   <div
+            //     className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-72 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
+            //     style={cardStyle(resource.videoId)}
+            //   >
+            //     <p className="font-bold m-4"> {resource.vidTitle} </p>
+            //   </div>
+            // </a>
           ))}
         </div>
-
-        {getPracticeCardForSkill(slug)[0] && practiceComponent}
+        {practiceComponent}
       </div>
     </div>
   );
@@ -107,3 +140,6 @@ export async function getStaticPaths() {
 }
 
 export default SkillOverviewPage;
+function grade(slug: any, grade: any) {
+  throw new Error("Function not implemented.");
+}
