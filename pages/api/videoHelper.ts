@@ -4,6 +4,7 @@ type ResourceMetadata = {
   link: string;
   videoId?: string;
   vidTitle: string;
+  caption?: string;
 };
 
 export const getVideosForSkill = (skill: Skill): ResourceMetadata[] => {
@@ -82,10 +83,16 @@ export const getVideosForSkill = (skill: Skill): ResourceMetadata[] => {
           vidTitle: "Subtract 3 digit numbers",
         },
         {
+          link: "https://www.youtube.com/watch?v=hfzUdTePyJo",
+          videoId: "hfzUdTePyJo",
+          vidTitle: "Snakes and Ladders",
+          caption: "Tip: Pay attention from 4:00 to 9:00"
+        },
+        {
           link: "https://www.youtube.com/watch?v=gbZDcEaJer8",
           videoId: "xF0LKqExY80",
           vidTitle: "Subtraction: 3 Digit",
-        },
+        }
       ];
   }
   return [];
