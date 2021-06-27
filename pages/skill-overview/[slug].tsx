@@ -93,24 +93,19 @@ const SkillOverviewPage = ({ slug }) => {
       <div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mr-8 ml-8 items-center">
           {getVideosForSkill(slug).map((resource) => (
-            <iframe
-              width="560"
-              height="500"
-              src={`https://www.youtube.com/embed/${resource.videoId}`}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full"
-            ></iframe>
-            // <a target="_blank" href={`${resource.link}`}>
-            //   <div
-            //     className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-72 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
-            //     style={cardStyle(resource.videoId)}
-            //   >
-            //     <p className="font-bold m-4"> {resource.vidTitle} </p>
-            //   </div>
-            // </a>
+            <div>
+              <iframe
+                width="560"
+                height="500"
+                src={`https://www.youtube.com/embed/${resource.videoId}`}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full"
+              ></iframe>
+              {resource.caption && <p>{resource.caption}</p>}
+            </div>
           ))}
         </div>
         {practiceComponent}

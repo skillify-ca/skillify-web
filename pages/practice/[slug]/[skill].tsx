@@ -17,12 +17,18 @@ import { UPDATE_USER_SKILL_EMOJI } from "../../../graphql/updateUserEmoji";
 import { useMutation } from "@apollo/client";
 import { userId } from "../../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
+import Polypad from "../../../components/stories/Polypad";
 
 const PracticeQuiz = ({ slug, skill }) => {
   enum STAGE {
     QUESTION,
     EMOJI,
     END_SESSION,
+  }
+
+  enum Tab {
+    POLYPAD,
+    HINT,
   }
   const [session, user] = useSession();
   const [isFlipped, setIsFlipped] = useState(false);
@@ -40,6 +46,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   const [interval, setMyInterval] = useState(null);
   const [stage, setStage] = useState(STAGE.QUESTION);
   const [correctGuess, setCorrectGuess] = useState(0);
+  const [currentTab, setCurrentTab] = useState(Tab.POLYPAD);
   const [questionData, setQuestionData] = useState<Question[]>([
     {
       text: "",
@@ -244,81 +251,108 @@ const PracticeQuiz = ({ slug, skill }) => {
       }
     }
   };
+  const hintComponent = stage == STAGE.QUESTION && questionData[index] && (
+    <Hint skill={questionData[index].skill}></Hint>
+  );
+  const detailComponent =
+    currentTab == Tab.POLYPAD ? <Polypad /> : hintComponent;
   return (
     <div className="bg-blue-100 heropattern-architect-blue-50 h-md">
       <Navbar />
-      <div className="flex flex-col justify-center items-center mt-8">
-        <div className="flex flex-row w-96 p-4 justify-between bg-gray-400 shadow-lg rounded-lg ">
-          <p className="font-semibold">
-            Question: {index + 1} / {questionData.length}
-          </p>
-          <p className="font-semibold">
-            Score: {correctGuess} / {questionData.length}
-          </p>
-        </div>
-        <ReactCardFlip
-          isFlipped={isFlipped}
-          flipDirection="horizontal"
-          infinite={true}
-        >
-          <div className="align-middle w-50">{getComponent()}</div>
-          <div
-            className={`${display} flex-col justify-center items-center gap-8 transition-opacity duration-150 ease-in-out opacity-${isFaded}`}
-          >
-            <div className={"justify-items-center align-middle w-50 mt-8"}>
-              <Card size="large">
-                {correctAnswer ? (
-                  <p className="font-bold text-gray-400 text-xl">
-                    Correct,
-                    <span className="font-bold text-green-400">
-                      {" " + guessAttempt + " "}
-                    </span>
-                    was the answer!
-                  </p>
-                ) : wrongAnswer ? (
-                  <div className="italic text-gray-400 font-bold space-y-8">
-                    <span>The correct answer was </span>
-                    <span className="font-bold text-green-400">
-                      {questionData[index].answer.toString()}
-                    </span>
-                    <br></br>
-                    <br></br>
-                    <span>Your answer was </span>
-                    <span className="font-bold text-red-500">
-                      {guessAttempt}
-                    </span>
-                  </div>
-                ) : (
-                  ""
-                )}
-                {nextQuestionButton && (
-                  <Button
-                    label="Next Question"
-                    backgroundColor="yellow"
-                    onClick={applyNextQuestion}
-                  ></Button>
-                )}
-                {continueButton && (
-                  <Button
-                    label="Continue"
-                    backgroundColor="green"
-                    onClick={applyContinuePage}
-                  ></Button>
-                )}
-              </Card>
-            </div>
+      <div className="grid grid-cols-1 sm:grid-cols-12">
+        <div className="flex flex-col items-center mt-8 col-span-4 h-screen">
+          <div className="flex flex-row w-96 p-4 justify-between bg-blue-400 shadow-lg rounded-lg ">
+            <p className="font-semibold">
+              Question: {index + 1} / {questionData.length}
+            </p>
+            <p className="font-semibold">
+              Score: {correctGuess} / {questionData.length}
+            </p>
           </div>
-        </ReactCardFlip>
-      </div>
-      {!continueButton &&
-        !nextQuestionButton &&
-        stage == STAGE.QUESTION &&
-        questionData[index] && <Hint skill={questionData[index].skill}></Hint>}
-      <div
-        className={`grid-cols-1 grid justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in opacity-${continueFaded}`}
-      >
-        <br></br>
-        <br></br>
+          <ReactCardFlip
+            isFlipped={isFlipped}
+            flipDirection="horizontal"
+            infinite={true}
+          >
+            <div className="align-middle w-50">{getComponent()}</div>
+            <div
+              className={`${display} flex-col justify-center items-center gap-8 transition-opacity duration-150 ease-in-out opacity-${isFaded}`}
+            >
+              <div className={"justify-items-center align-middle w-50 mt-8"}>
+                <Card size="large">
+                  {correctAnswer ? (
+                    <p className="font-bold text-gray-400 text-xl">
+                      Correct,
+                      <span className="font-bold text-green-400">
+                        {" " + guessAttempt + " "}
+                      </span>
+                      was the answer!
+                    </p>
+                  ) : wrongAnswer ? (
+                    <div className="italic text-gray-400 font-bold space-y-8">
+                      <span>The correct answer was </span>
+                      <span className="font-bold text-green-400">
+                        {questionData[index].answer.toString()}
+                      </span>
+                      <br></br>
+                      <br></br>
+                      <span>Your answer was </span>
+                      <span className="font-bold text-red-500">
+                        {guessAttempt}
+                      </span>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  {nextQuestionButton && (
+                    <Button
+                      label="Next Question"
+                      backgroundColor="yellow"
+                      onClick={applyNextQuestion}
+                    ></Button>
+                  )}
+                  {continueButton && (
+                    <Button
+                      label="Continue"
+                      backgroundColor="green"
+                      onClick={applyContinuePage}
+                    ></Button>
+                  )}
+                </Card>
+              </div>
+            </div>
+          </ReactCardFlip>
+        </div>
+
+        <div className="flex flex-col col-span-8">
+        <div className="flex gap-8 my-4">
+            <Button
+              label="Polypad"
+              backgroundColor="purple"
+              onClick={() => setCurrentTab(Tab.POLYPAD)}
+            />
+            <Button
+              label="Hints"
+              backgroundColor="pink"
+              onClick={() => setCurrentTab(Tab.HINT)}
+            />
+          
+          </div>
+          <div
+            className={`w-full h-full p-8 heropattern-yyy-blue-300 ${
+              currentTab == Tab.POLYPAD ? "" : "hidden"
+            }`}
+          >
+            <Polypad />{" "}
+          </div>
+          <div
+            className={`bg-white p-8 h-full ${
+              currentTab == Tab.HINT ? "" : "hidden"
+            }`}
+          >
+            {hintComponent}
+          </div>
+        </div>
       </div>
     </div>
   );
