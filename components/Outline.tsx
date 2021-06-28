@@ -1,51 +1,51 @@
 import React, { useRef, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { PracticeTopic } from "./PracticeTopic";
-import { FETCH_USER_SKILLS } from "../graphql/fetchUserSkills";
 import { signIn, useSession } from "next-auth/client";
-import { INIT_USER_SKILLS } from "../graphql/initUserSkills";
 import { userId } from "../graphql/utils/constants";
 import Card from "./stories/Card";
 import { Button } from "./stories/Button";
 import ProgressRing from "./stories/ProgressRing";
 import { lockedTopics, unlockedTopics } from "../pages/api/topics";
 import LandingPage from "./stories/LandingPage";
+import { INIT_USER_SKILLS } from "../graphql/initUserSkills";
+import { FETCH_USER_EMOJIS } from "../graphql/fetchUserEmojis";
 export default function Outline() {
   const [session, loading] = useSession();
-
-  const userSkillsData = useQuery(FETCH_USER_SKILLS, {
-    variables: {
-      userId: userId(session),
-    },
-  });
-  const [initUserSkills, { data, error }] = useMutation(INIT_USER_SKILLS, {
-    refetchQueries: [
-      {
-        query: FETCH_USER_SKILLS,
-        variables: {
-          userId: userId(session),
-        },
-      },
-    ], // whenever we update a skill, we should refetch
-  });
-
-  useEffect(() => {
-    // Don't run if the session hasn't loaded yet
-    if (userSkillsData.data && userId(session) != "-1") {
-      if (false) {
-        // TODO new user doesn't have any unlocked badges. We should initialize them in GraphQL
-        initUserSkills({
-          variables: {
-            userId: userId(session),
-          },
-        });
-      }
-    }
-  }, [userSkillsData, session]);
 
   const getOverallProgress = () => {
     return 0; // TODO calculate progress based off unlocked badges / total badges
   };
+  const [initUserSkillsData, initUserSkillsMutation] = useMutation(
+    INIT_USER_SKILLS,
+    {
+      variables: {
+        userId: userId(session),
+      },
+      refetchQueries: [
+        {
+          query: FETCH_USER_EMOJIS,
+          variables: {
+            userId: userId(session),
+          },
+        },
+      ],
+    }
+  );
+  let userSkillsData = useQuery(FETCH_USER_EMOJIS, {
+    variables: {
+      userId: userId(session),
+    },
+  });
+  let userSkills = [];
+  if (userSkillsData.data) {
+    userSkills = userSkillsData.data.user_skills;
+    if (userSkills.length == 0) {
+      if (!initUserSkillsMutation.called) {
+        initUserSkillsData();
+      }
+    }
+  }
 
   const loggedInComponent = (
     <div className="max-w-screen-lg">
@@ -61,7 +61,6 @@ export default function Outline() {
         </Card>
       </div>
       <div className="flex flex-wrap justify-center gap-8">
-        {userSkillsData.loading && <p>Loading ...</p>}
         {unlockedTopics.map((topic, index) => (
           <div key={topic.title}>
             <PracticeTopic

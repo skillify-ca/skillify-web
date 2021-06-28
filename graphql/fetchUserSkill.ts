@@ -1,12 +1,11 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_USER_SKILL = gql`
-  query fetchUserSkill($userId: String, $skillId: uuid) {
-    user_skills(where: { userId: { _eq: $userId }, skillId: { _eq: $skillId } }) {
-      stars
-      skill {
-        title
-      }
+mutation MyMutation($userId: String = "", $skillId: Int = 0) {
+  insert_user_skills(objects: {skill_id: $skillId, user_id: $userId, emoji: null}) {
+    returning {
+      id
     }
   }
+}
 `;

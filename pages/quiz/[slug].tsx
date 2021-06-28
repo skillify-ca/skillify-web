@@ -6,10 +6,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { CREATE_GUESS } from "../../graphql/createGuess";
 import { useMutation, useQuery } from "@apollo/client";
-import { UPDATE_USER_SKILLS } from "../../graphql/updateUserSkills";
-import { FETCH_USER_SKILLS } from "../../graphql/fetchUserSkills";
-import { FETCH_USER_SKILL } from "../../graphql/fetchUserSkill";
-import { UNLOCK_NEXT_SKILL } from "../../graphql/unlockNextSkill";
 import { generateQuestions } from "../api/quiz/quizQuestionGenerator";
 import { v4 as uuidv4 } from "uuid";
 import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
@@ -19,6 +15,12 @@ import { QuestionType } from "../api/questionTypes";
 import { GuessData } from "../api/guessData";
 import { AnswerType, Question } from "../api/question";
 import { Skill } from "../api/skill";
+import { UNLOCK_BADGE } from "../../graphql/unlockBadge";
+import { AdditionDoubleDigitWS } from "../../components/stories/WorksheetsObj";
+import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
+import { getBadgeId } from "../api/badgeHelper";
+import { CREATE_QUIZ_ATTEMPT } from "../../graphql/createUserQuizAttempt";
+import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -41,10 +43,18 @@ const Quiz = ({ slug }) => {
   const inputElement = useRef(null);
   const length = questionData.length;
   const [sessionId, setSessionId] = React.useState("");
-  const [
-    starsAlreadyEarnedForSkill,
-    setStarsAlreadyEarnForSkill,
-  ] = React.useState(0);
+
+  const [saveQuizData, setQuizData] = useMutation(CREATE_QUIZ_ATTEMPT, {
+    refetchQueries: [
+      {
+        query: FETCH_USER_QUIZZES,
+        variables: {
+          userId: userId(session),
+          badgeId: getBadgeId(slug, currentLevel),
+        },
+      },
+    ],
+  });
 
   useEffect(() => {
     const level = Number.parseInt(query.level as string);
@@ -69,53 +79,23 @@ const Quiz = ({ slug }) => {
   }, []);
 
   const [createFlashcardGuess, createGuessData] = useMutation(CREATE_GUESS);
-  const [updateUserSkillStars, updateUserSkillsData] = useMutation(
-    UPDATE_USER_SKILLS,
-    {
-      refetchQueries: [
-        {
-          query: FETCH_USER_SKILLS,
-          variables: {
-            userId: userId(session), // TODO what if someone runs this with null
-          },
-        },
-      ], // whenever we update a skill, we should refetch
-    }
-  );
-  const userSkillResult = useQuery(FETCH_USER_SKILL, {
-    variables: {
-      skillId: getSkillIdFromSlug(slug),
-      userId: userId(session),
-    },
-  });
-  const userSkillsResult = useQuery(FETCH_USER_SKILLS, {
-    variables: {
-      userId: userId(session),
-    },
-  });
-  const [unlockNextSkill, unlockNextSkillData] = useMutation(
-    UNLOCK_NEXT_SKILL,
-    {
-      refetchQueries: [
-        {
-          query: FETCH_USER_SKILLS,
-          variables: {
-            userId: userId(session),
-          },
-        },
-      ],
-    }
-  );
 
-  useEffect(() => {
-    if (userSkillResult.data) {
-      setStarsAlreadyEarnForSkill(userSkillResult.data.user_skills[0].stars);
-    }
-  }, [session]);
+  const [unlockBadge, unlockBadgeData] = useMutation(UNLOCK_BADGE, {
+    refetchQueries: [
+      {
+        query: FETCH_USER_BADGES,
+        variables: {
+          userId: userId(session),
+        },
+      },
+    ],
+  });
 
   const submitGuess = (currentGuess: GuessData) => {
+    let newCorrectGuesses = correctGuesses;
     if (currentGuess.isCorrect) {
-      setCorrectGuesses(correctGuesses + 1);
+      newCorrectGuesses += 1;
+      setCorrectGuesses(newCorrectGuesses);
     }
     createFlashcardGuess({
       variables: {
@@ -137,35 +117,23 @@ const Quiz = ({ slug }) => {
       clearInterval(interval);
       setMyInterval(null);
       setGameOver(true);
-
-      // TODO make it harder to unlock a star
-      // if pass unlock star
-      if (starsAlreadyEarnedForSkill < currentLevel) {
-        updateUserSkillStars({
+      if (index == length - 1) {
+        if (correctGuesses / length >= 0.8) {
+          unlockBadge({
+            variables: {
+              userId: userId(session),
+              badgeId: getBadgeId(slug, currentLevel),
+            },
+          });
+        }
+        saveQuizData({
           variables: {
-            skillId: getSkillIdFromSlug(slug),
-            stars: currentLevel,
             userId: userId(session),
+            badgeId: getBadgeId(slug, currentLevel),
+            accuracy: Math.round((100 * newCorrectGuesses) / length),
+            quizTitle: "",
           },
         });
-        if (currentLevel === 3) {
-          // unlock next skill
-          const lockedSkills = userSkillsResult.data.user_skills.filter(
-            (it) => it.locked == true
-          );
-          const unmasteredSkills = userSkillsResult.data.user_skills.filter(
-            (it) => it.locked == false && it.stars !== 3
-          );
-          if (unmasteredSkills.length < 1 && lockedSkills.length > 1) {
-            unlockNextSkill({
-              variables: {
-                skillId: lockedSkills[0].skill.id,
-                locked: false,
-                userId: userId(session),
-              },
-            });
-          }
-        }
       }
     }
   };
@@ -214,7 +182,7 @@ const Quiz = ({ slug }) => {
           >
             Replay
           </button>
-          <Link href="/">
+          <Link href="/practice">
             <button className="group relative w-3/4 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               Home
             </button>
