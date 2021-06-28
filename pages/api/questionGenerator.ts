@@ -65,6 +65,10 @@ export function getRandomNumbersQuestion(
   let answer;
   let startNum = getRndInteger(a, b);
 
+  if (skill == Skill.NUMBERS_50) {
+    type = QuestionType.PATTERN_COUNT_BLANKS_PROBLEM;
+  }
+
   if (type == QuestionType.PATTERN_COUNT_BLANKS_PROBLEM) {
     let patternTypes = ["FORWARDS", "BACKWARDS"];
     let patternIndex = getRndInteger(0, patternTypes.length);
