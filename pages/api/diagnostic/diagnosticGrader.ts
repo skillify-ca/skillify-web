@@ -144,6 +144,9 @@ export const getSummaryText = (
   name: string
 ) => {
   let difference = inputGradeLevel - gradeLevel;
+  if (name == "") {
+    name = "Your child";
+  }
   if (difference == 0) {
     return (
       "Amazing work! " +

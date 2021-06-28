@@ -21,6 +21,7 @@ import { MultipleChoice } from "./MultipleChoice";
 import { PatternBlank } from "./patternBlanks";
 import { WordtoHorizontalDigits } from "./WordtoHorizontalDigits";
 import { NumbertoVerticalDigits } from "./NumbertoVerticalDigits";
+import { VerticalDigitstoNum } from "./VerticalDigitstoNum";
 
 type QuestionSetProps = {
   title: string;
@@ -85,6 +86,16 @@ const QuestionSet = ({
           displayQuestion={questionData[index].text}
           startNumber={questionData[index].placeholder}
           answer={questionData[index].answer}
+          submitGuess={submitGuess}
+        />
+      );
+    } else if (
+      questionData[index].questionType == QuestionType.VERTICAL_DIGITS_TO_NUM
+    ) {
+      return (
+        <VerticalDigitstoNum
+          numArr={questionData[index].arrayAns}
+          answer={questionData[index].text}
           submitGuess={submitGuess}
         />
       );
