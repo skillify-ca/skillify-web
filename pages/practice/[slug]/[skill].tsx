@@ -54,35 +54,47 @@ const PracticeQuiz = ({ slug, skill }) => {
     UPDATE_USER_SKILL_EMOJI
   );
   const inputElement = useRef(null);
-  let getSkillId = (skill: Skill) => {
-    //Note: The skill Ids are determined based of the values save in the skills table with graphql
-    switch (skill) {
-      case Skill.ADDITION_SINGLE:
-        return 1;
-      case Skill.ADDITION_DOUBLE:
-        return 2;
-      case Skill.ADDITION_TRIPLE:
-        return 3;
-      case Skill.ADDITION_PROPERTIES:
-        return 4;
-      case Skill.SUBTRACTION_SINGLE:
-        return 34;
-      case Skill.SUBTRACTION_DOUBLE:
-        return 35;
-      case Skill.SUBTRACTION_TRIPLE:
-        return 36;
-      case Skill.EQUAL_GROUP_10_ITEMS:
-        return 37;
-      case Skill.MULTIPLICATION_5:
-        return 38;
-      case Skill.MULTIPLICATION_10:
-        return 39;
-      case Skill.EQUAL_SHARING_8_ITEMS:
-        return 40;
-      case Skill.DIVIDE_12_EQUALLY:
-        return 41;
-      case Skill.DIVIDE_100:
-        return 42;
+  let getSkillId = (skill: any, slug: any) => {
+    //Note: The skill Ids are determined based of the values save in the skills table with graph
+    switch (slug) {
+      case "addition":
+        switch (skill) {
+          case "single-digit":
+            return 1;
+          case "double-digit":
+            return 2;
+          case "triple-digit":
+            return 3;
+          case "properties":
+            return 4;
+        }
+      case "subtraction":
+        switch (skill) {
+          case "single-digit":
+            return 34;
+          case "double-digit":
+            return 35;
+          case "triple-digit":
+            return 36;
+        }
+      case "multiplication":
+        switch (skill) {
+          case "single-digit":
+            return 37;
+          case "double-digit":
+            return 38;
+          case "triple-digit":
+            return 39;
+        }
+      case "division":
+        switch (skill) {
+          case "single-digit":
+            return 40;
+          case "double-digit":
+            return 41;
+          case "triple-digit":
+            return 42;
+        }
     }
   };
 
@@ -119,7 +131,7 @@ const PracticeQuiz = ({ slug, skill }) => {
             <Button
               label="Submit"
               backgroundColor="blue"
-              onClick={saveEmoji && applyContinuePage}
+              onClick={saveEmoji}
             ></Button>
           </div>
         </Card>
@@ -196,11 +208,12 @@ const PracticeQuiz = ({ slug, skill }) => {
     updateUserEmoji({
       variables: {
         userId: userId(session),
-        skillId: getSkillId(skill),
+        skillId: getSkillId(skill, slug),
         emoji: emoji,
       },
     });
     setStage(STAGE.END_SESSION);
+    applyContinuePage;
   };
 
   const setEmojiCallback = (val: number) => {
@@ -297,9 +310,10 @@ const PracticeQuiz = ({ slug, skill }) => {
           </div>
         </ReactCardFlip>
       </div>
-      {!continueButton && !nextQuestionButton && stage == STAGE.QUESTION && (
-        <Hint skill={questionData[index].skill}></Hint>
-      )}
+      {!continueButton &&
+        !nextQuestionButton &&
+        stage == STAGE.QUESTION &&
+        questionData[index] && <Hint skill={questionData[index].skill}></Hint>}
       <div
         className={`grid-cols-1 grid justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in opacity-${continueFaded}`}
       >
