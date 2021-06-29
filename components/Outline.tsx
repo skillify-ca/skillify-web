@@ -16,36 +16,6 @@ export default function Outline() {
   const getOverallProgress = () => {
     return 0; // TODO calculate progress based off unlocked badges / total badges
   };
-  const [initUserSkillsData, initUserSkillsMutation] = useMutation(
-    INIT_USER_SKILLS,
-    {
-      variables: {
-        userId: userId(session),
-      },
-      refetchQueries: [
-        {
-          query: FETCH_USER_EMOJIS,
-          variables: {
-            userId: userId(session),
-          },
-        },
-      ],
-    }
-  );
-  let userSkillsData = useQuery(FETCH_USER_EMOJIS, {
-    variables: {
-      userId: userId(session),
-    },
-  });
-  let userSkills = [];
-  if (userSkillsData.data) {
-    userSkills = userSkillsData.data.user_skills;
-    if (userSkills.length == 0) {
-      if (!initUserSkillsMutation.called) {
-        initUserSkillsData();
-      }
-    }
-  }
 
   const loggedInComponent = (
     <div className="max-w-screen-lg">

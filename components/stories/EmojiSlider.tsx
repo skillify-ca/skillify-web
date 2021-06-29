@@ -26,15 +26,17 @@ const EmojiSlider = ({ callback }: EmojiSliderProps) => {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col items-center">
       <input type="range" onChange={handleChange} className="w-44" />
-      <datalist>
-        <option value="sad" label="😔"></option>
-        <option value="ok" label="😐"></option>
-        <option value="happy" label="😄"></option>
-      </datalist>
-      <p className="text-4xl">{mood}</p>
-      <p> {opinion} </p>
+      <div className="items-center">
+        <datalist>
+          <option value="sad" label="😔"></option>
+          <option value="ok" label="😐"></option>
+          <option value="happy" label="😄"></option>
+        </datalist>
+        <p className="text-4xl items-center justify-items-center">{mood}</p>
+        <p className="font-bold"> {opinion} </p>
+      </div>
     </div>
   );
 };
