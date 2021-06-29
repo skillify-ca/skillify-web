@@ -232,6 +232,11 @@ const PracticeQuiz = ({ slug, skill }) => {
     setEmoji(val);
   };
 
+  const reviewPage = () => {
+    setStage(STAGE.EMOJI);
+    toggleFlip();
+  };
+
   const submitGuess = (guess: GuessData) => {
     toggleFlip(); //aa
 
@@ -251,8 +256,7 @@ const PracticeQuiz = ({ slug, skill }) => {
       if (index < questionData.length - 1) {
         setNextQuestionButton(true);
       } else {
-        setNextQuestionButton(true);
-        setStage(STAGE.EMOJI);
+        setContinueButton(true);
       }
     }
   };
@@ -295,9 +299,19 @@ const PracticeQuiz = ({ slug, skill }) => {
                     </span>
                     <br></br>
                     <br></br>
-                    <span>Your answer was </span>
-                    <span className="font-bold text-red-500">
-                      {guessAttempt}
+                    <span>
+                      {guessAttempt != "" ? (
+                        <span>
+                          <span>Your answer was </span>
+                          <span className="font-bold text-red-500">
+                            {guessAttempt}
+                          </span>
+                        </span>
+                      ) : (
+                        <span className="font-bold">
+                          Don't forget to answer next time!
+                        </span>
+                      )}
                     </span>
                   </div>
                 ) : (
@@ -314,7 +328,7 @@ const PracticeQuiz = ({ slug, skill }) => {
                   <Button
                     label="Continue"
                     backgroundColor="green"
-                    onClick={applyContinuePage}
+                    onClick={reviewPage}
                   ></Button>
                 )}
               </Card>
