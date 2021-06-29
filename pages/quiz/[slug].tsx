@@ -79,7 +79,7 @@ const Quiz = ({ slug }) => {
     return () => clearInterval(interval);
   }, []);
 
-  const [createFlashcardGuess, createGuessData] = useMutation(CREATE_GUESS);
+  // const [createFlashcardGuess, createGuessData] = useMutation(CREATE_GUESS);
 
   const [unlockBadge, unlockBadgeData] = useMutation(UNLOCK_BADGE, {
     refetchQueries: [
@@ -95,7 +95,7 @@ const Quiz = ({ slug }) => {
           userId: userId(session),
           badgeId: getBadgeId(slug, currentLevel),
         },
-      }
+      },
     ],
   });
 
@@ -105,17 +105,17 @@ const Quiz = ({ slug }) => {
       newCorrectGuesses += 1;
       setCorrectGuesses(newCorrectGuesses);
     }
-    createFlashcardGuess({
-      variables: {
-        userId: userId(session),
-        question: questionData[index].text,
-        guess: currentGuess.toString(),
-        timeTaken: 3,
-        sessionId: sessionId,
-        is_correct: currentGuess.isCorrect,
-        skillId: getSkillIdFromSlug(slug),
-      },
-    });
+    // createFlashcardGuess({
+    //   variables: {
+    //     userId: userId(session),
+    //     question: questionData[index].text,
+    //     guess: currentGuess.toString(),
+    //     timeTaken: 3,
+    //     sessionId: sessionId,
+    //     is_correct: currentGuess.isCorrect,
+    //     skillId: getSkillIdFromSlug(slug),
+    //   },
+    // });
     if (index < length - 1) {
       setIndex(index + 1);
       if (inputElement.current) {
@@ -126,7 +126,7 @@ const Quiz = ({ slug }) => {
       setMyInterval(null);
       setGameOver(true);
       if (index == length - 1) {
-        if (correctGuesses / length >= 0.8) {
+        if (newCorrectGuesses / length >= 0.8) {
           unlockBadge({
             variables: {
               userId: userId(session),

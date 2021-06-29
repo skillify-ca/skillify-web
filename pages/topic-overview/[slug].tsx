@@ -38,7 +38,7 @@ const TopicOverviewPage = ({ slug }) => {
   const userQuizzesQuery = useQuery(FETCH_USER_QUIZZES, {
     variables: {
       userId: userId(session),
-      badgeId: gradeNum(grade),
+      badgeId: getBadgeId(slug, gradeNum(grade)),
     },
   });
   let userQuizzes;
