@@ -2,15 +2,22 @@ import { useMutation, useQuery } from "@apollo/client";
 import { session, useSession } from "next-auth/client";
 import Link from "next/link";
 import React, { useState } from "react";
+import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import Navbar from "../../components/Navbar";
 import { Button } from "../../components/stories/Button";
 import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
-import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
+import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
-import { INIT_USER_BADGES } from "../../graphql/initUserBadges";
 import { userId } from "../../graphql/utils/constants";
-import { getSkillsForTopicGrade, Grade, SkillDescription } from "../api/skill";
-
+import { getBadgeId } from "../api/badgeHelper";
+import {
+  getEmoji,
+  getSkillId,
+  getSkillsForTopicGrade,
+  Grade,
+  Skill,
+  SkillDescription,
+} from "../api/skill";
 const TopicOverviewPage = ({ slug }) => {
   const [session, user] = useSession();
   const [grade, setGrade] = useState(Grade.GRADE_1);
@@ -46,11 +53,21 @@ const TopicOverviewPage = ({ slug }) => {
       maxAccuracy = Math.max(...accuracyList) + "%";
     }
   }
+  const userSkillsQuery = useQuery(FETCH_USER_EMOJIS, {
+    variables: {
+      userId: userId(session),
+      skillId: getSkillsForTopicGrade(slug, grade).map((it) => getSkillId(it)),
+    },
+  });
+  let userSkills = [];
+  if (userSkillsQuery.data) {
+    userSkills = userSkillsQuery.data.user_skills;
+  }
 
   const skillBadgeQuery = useQuery(FETCH_USER_SKILL_BADGE, {
     variables: {
       userId: userId(session),
-      badgeId: gradeNum(grade),
+      badgeId: getBadgeId(slug, gradeNum(grade)),
     },
   });
 
@@ -76,7 +93,6 @@ const TopicOverviewPage = ({ slug }) => {
       </select>
     </div>
   );
-
   const skillComponent = (
     <div>
       {getSkillsForTopicGrade(slug, grade).map((skill) => (
@@ -84,7 +100,7 @@ const TopicOverviewPage = ({ slug }) => {
           <div className="mr-28">
             <div className="flex flex-col gap-4">
               <img src="/images/learnPic.png" className="w-96" />
-              <p className="text-2xl font-bold flex items-center justify-center bg-blue-200 rounded-2xl">
+              <p className="text-2xl text-center font-bold flex items-center justify-center bg-blue-200 rounded-2xl">
                 {" "}
                 {SkillDescription(skill)}{" "}
               </p>
@@ -111,7 +127,15 @@ const TopicOverviewPage = ({ slug }) => {
           </div>
           <div className="text-md font-bold text-blue-900 flex flex-col items-center">
             {" "}
-            Confidence: <p className="text-6xl"> 😃 </p>{" "}
+            Confidence:{" "}
+            <p className="text-6xl">
+              {" "}
+              {userSkills.length !== 0 &&
+                getEmoji(
+                  userSkills.filter((it) => it.skill_id == getSkillId(skill))[0]
+                    .emoji
+                )}{" "}
+            </p>{" "}
           </div>
         </div>
       ))}
@@ -171,7 +195,7 @@ const TopicOverviewPage = ({ slug }) => {
 
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-blue-100 ">
-      <Navbar />
+      <DiagnosticNavbar />
       <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8 m-12 mt-8">
         <p className="text-5xl text-white mb-4">
           {" "}

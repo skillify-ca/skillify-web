@@ -1,12 +1,12 @@
 import Head from "next/head";
 import Outline from "../components/Outline";
-import Navbar from "../components/Navbar";
+import DiagnosticNavbar from "../components/DiagnosticNavbar";
 
 export default function Home() {
   return (
     <div className="flex flex-col h-screen">
       <div>
-        <Navbar />
+        <DiagnosticNavbar />
       </div>
       <div
         style={{
