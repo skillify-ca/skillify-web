@@ -41,7 +41,7 @@ export default function Outline() {
   if (userSkillsData.data) {
     userSkills = userSkillsData.data.user_skills;
     if (userSkills.length == 0) {
-      if (!initUserSkillsMutation.called) {
+      if (!initUserSkillsMutation.called && session) {
         initUserSkillsData();
       }
     }
