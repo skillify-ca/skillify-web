@@ -35,6 +35,7 @@ export default function Outline() {
   let userSkillsData = useQuery(FETCH_USER_EMOJIS, {
     variables: {
       userId: userId(session),
+      skillId: [1] // If the user has the addition skill, we can assume they have initialized their skills
     },
   });
   let userSkills = [];
