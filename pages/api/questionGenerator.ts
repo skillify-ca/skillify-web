@@ -73,7 +73,7 @@ export function getRandomNumbersQuestion(
     let patternTypes = ["FORWARDS", "BACKWARDS"];
     let patternIndex = getRndInteger(0, patternTypes.length);
     let displayPattern = patternTypes[patternIndex];
-    let patternNum = getRndInteger(0, 10);
+    let patternNum = getRndInteger(1, 10);
 
     // prevents negative numbers appearing in pattern
     if (displayPattern == "BACKWARDS" && startNum - 3 * patternNum < 0) {
@@ -132,15 +132,14 @@ export function getRandomNumbersQuestion(
 
   return {
     text: text,
-    answer:
-      type == QuestionType.PATTERN_COUNT_BLANKS_PROBLEM ? answer : "answer",
+    answer: answer.toString(),
     answerType:
       type == QuestionType.COMPARISON_WORD_PROBLEM
         ? AnswerType.STRING
         : AnswerType.ARRAY,
     questionType: type,
     skill: skill,
-    arrayAns: type == QuestionType.COMPARISON_WORD_PROBLEM ? "" : answer,
+    arrayAns: answer,
     placeholder: startNum.toString(),
   };
 }

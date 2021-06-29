@@ -17,6 +17,7 @@ import { UPDATE_USER_SKILL_EMOJI } from "../../../graphql/updateUserEmoji";
 import { useMutation } from "@apollo/client";
 import { userId } from "../../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
+import { FETCH_USER_EMOJIS } from "../../../graphql/fetchUserEmojis";
 
 const PracticeQuiz = ({ slug, skill }) => {
   enum STAGE {
@@ -50,10 +51,6 @@ const PracticeQuiz = ({ slug, skill }) => {
     },
   ]);
 
-  const [updateUserEmoji, updateUserEmojiMutation] = useMutation(
-    UPDATE_USER_SKILL_EMOJI
-  );
-  const inputElement = useRef(null);
   let getSkillId = (skill: any, slug: any) => {
     //Note: The skill Ids are determined based of the values save in the skills table with graph
     switch (slug) {
@@ -97,6 +94,21 @@ const PracticeQuiz = ({ slug, skill }) => {
         }
     }
   };
+  
+  const [updateUserEmoji, updateUserEmojiMutation] = useMutation(
+    UPDATE_USER_SKILL_EMOJI, {
+      refetchQueries: [
+        {
+          query: FETCH_USER_EMOJIS,
+          variables: {
+            userId: userId(session),
+            skillId: [getSkillId(skill, slug)]
+          },
+        },
+      ],
+    }
+  );
+  const inputElement = useRef(null);
 
   function getComponent() {
     const sessionEnd = (
@@ -220,6 +232,11 @@ const PracticeQuiz = ({ slug, skill }) => {
     setEmoji(val);
   };
 
+  const reviewPage = () => {
+    setStage(STAGE.EMOJI);
+    toggleFlip();
+  };
+
   const submitGuess = (guess: GuessData) => {
     toggleFlip(); //aa
 
@@ -239,8 +256,7 @@ const PracticeQuiz = ({ slug, skill }) => {
       if (index < questionData.length - 1) {
         setNextQuestionButton(true);
       } else {
-        setNextQuestionButton(true);
-        setStage(STAGE.EMOJI);
+        setContinueButton(true);
       }
     }
   };
@@ -283,9 +299,19 @@ const PracticeQuiz = ({ slug, skill }) => {
                     </span>
                     <br></br>
                     <br></br>
-                    <span>Your answer was </span>
-                    <span className="font-bold text-red-500">
-                      {guessAttempt}
+                    <span>
+                      {guessAttempt != "" ? (
+                        <span>
+                          <span>Your answer was </span>
+                          <span className="font-bold text-red-500">
+                            {guessAttempt}
+                          </span>
+                        </span>
+                      ) : (
+                        <span className="font-bold">
+                          Don't forget to answer next time!
+                        </span>
+                      )}
                     </span>
                   </div>
                 ) : (
@@ -302,7 +328,7 @@ const PracticeQuiz = ({ slug, skill }) => {
                   <Button
                     label="Continue"
                     backgroundColor="green"
-                    onClick={applyContinuePage}
+                    onClick={reviewPage}
                   ></Button>
                 )}
               </Card>
