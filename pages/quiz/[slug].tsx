@@ -21,6 +21,7 @@ import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
 import { getBadgeId } from "../api/badgeHelper";
 import { CREATE_QUIZ_ATTEMPT } from "../../graphql/createUserQuizAttempt";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
+import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -88,6 +89,13 @@ const Quiz = ({ slug }) => {
           userId: userId(session),
         },
       },
+      {
+        query: FETCH_USER_SKILL_BADGE,
+        variables: {
+          userId: userId(session),
+          badgeId: getBadgeId(slug, currentLevel),
+        },
+      }
     ],
   });
 

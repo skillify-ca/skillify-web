@@ -64,17 +64,12 @@ const TopicOverviewPage = ({ slug }) => {
     userSkills = userSkillsQuery.data.user_skills;
   }
 
-  const skillBadgeQuery = useQuery(FETCH_USER_SKILL_BADGE, {
+  const { loading, error, data } = useQuery(FETCH_USER_SKILL_BADGE, {
     variables: {
       userId: userId(session),
       badgeId: getBadgeId(slug, gradeNum(grade)),
     },
   });
-
-  let skillBadge = [];
-  if (skillBadgeQuery.data) {
-    skillBadge = skillBadgeQuery.data.user_badges;
-  }
 
   const levelComponent = (
     <div className="flex flex-row">
@@ -169,25 +164,26 @@ const TopicOverviewPage = ({ slug }) => {
           </p>
         </div>
         <div className="flex flex-col gap-8 justify-center items-center bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 w-1/2 rounded-2xl h-72">
-          {skillBadge.map((badge) => {
-            return badge.locked ? (
-              <>
-                <img src="/images/lock.png" className="w-28" />
-                <p className="text-md -mt-4 flex items-center">
-                  {"   "}
-                  Badge: <b> &nbsp;Locked</b>{" "}
-                </p>
-              </>
-            ) : (
-              <>
-                <img src={badge.badge.image} className="w-40" />
-                <p className="text-md -mt-4 flex items-center">
-                  {"   "}
-                  Badge: <b> &nbsp;Unlocked</b>{" "}
-                </p>
-              </>
-            );
-          })}
+          {!loading &&
+            data.user_badges.map((badge) => {
+              return badge.locked ? (
+                <>
+                  <img src="/images/lock.png" className="w-28" />
+                  <p className="text-md -mt-4 flex items-center">
+                    {"   "}
+                    Badge: <b> &nbsp;Locked</b>{" "}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <img src={badge.badge.image} className="w-40" />
+                  <p className="text-md -mt-4 flex items-center">
+                    {"   "}
+                    Badge: <b> &nbsp;Unlocked</b>{" "}
+                  </p>
+                </>
+              );
+            })}
         </div>
       </div>
     </div>
