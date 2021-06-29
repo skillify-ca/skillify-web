@@ -14,5 +14,4 @@ const MathBattle = () => {
     </div>
   );
 };
-
 export default MathBattle;
