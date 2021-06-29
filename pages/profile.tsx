@@ -9,40 +9,21 @@ import { INIT_USER_BADGES } from "../graphql/initUserBadges";
 
 export default function Profile(props) {
   const [session, user] = useSession();
-  const [initUserBadgeData, initUserBadgeMutation] = useMutation(
-    INIT_USER_BADGES,
-    {
-      variables: {
-        userId: userId(session),
-      },
-      refetchQueries: [
-        {
-          query: FETCH_USER_BADGES,
-          variables: {
-            userId: userId(session),
-          },
-        },
-      ],
-    }
-  );
-  let userBadgeData = useQuery(FETCH_USER_BADGES, {
+
+  let { loading, error, data } = useQuery(FETCH_USER_BADGES, {
     variables: {
       userId: userId(session),
     },
   });
-  let userBadges = [];
-  if (userBadgeData.data) {
-    userBadges = userBadgeData.data.user_badges;
-    if (userBadges.length == 0) {
-      if (!initUserBadgeMutation.called) {
-        initUserBadgeData();
-      }
-    }
-  }
+
   const progress = () => {
-    const unlockedBadges = userBadges.filter((it) => it.locked == false);
-    if (userBadges.length > 0) {
-      return Math.round((unlockedBadges.length * 100) / userBadges.length);
+    if (!loading && data.user_badges.length > 0) {
+      const unlockedBadges = data.user_badges.filter(
+        (it) => it.locked == false
+      );
+      return Math.round(
+        (unlockedBadges.length * 100) / data.user_badges.length
+      );
     } else {
       return 0;
     }
@@ -65,20 +46,6 @@ export default function Profile(props) {
                 </p>
               </div>
             </div>
-          </div>
-
-          <div className="grid gap-x-8 gap-y-4 grid-cols-3 w-1/2 m-auto p-4">
-            {userBadges.map((badge) => {
-              return badge.locked ? (
-                <div className="">
-                  <img src="/images/lockedPic.png" className="w-32" />
-                </div>
-              ) : (
-                <Link href={`/badges/${badge.badge.id}`}>
-                  <img src={badge.badge.image} className="w-32" />
-                </Link>
-              );
-            })}
           </div>
         </div>
       </div>
