@@ -220,6 +220,11 @@ const PracticeQuiz = ({ slug, skill }) => {
     setEmoji(val);
   };
 
+  const reviewPage = () => {
+    setStage(STAGE.EMOJI);
+    toggleFlip();
+  };
+
   const submitGuess = (guess: GuessData) => {
     toggleFlip(); //aa
 
@@ -239,8 +244,7 @@ const PracticeQuiz = ({ slug, skill }) => {
       if (index < questionData.length - 1) {
         setNextQuestionButton(true);
       } else {
-        setNextQuestionButton(true);
-        setStage(STAGE.EMOJI);
+        setContinueButton(true);
       }
     }
   };
@@ -312,7 +316,7 @@ const PracticeQuiz = ({ slug, skill }) => {
                   <Button
                     label="Continue"
                     backgroundColor="green"
-                    onClick={applyContinuePage}
+                    onClick={reviewPage}
                   ></Button>
                 )}
               </Card>
