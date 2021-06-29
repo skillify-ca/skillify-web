@@ -23,7 +23,7 @@ const SkillOverviewPage = ({ slug }) => {
   const userSkillsQuery = useQuery(FETCH_USER_EMOJIS, {
     variables: {
       userId: userId(session),
-      skillId: getSkillId(slug),
+      skillId: [getSkillId(slug)],
     },
   });
   let userSkills = [];
