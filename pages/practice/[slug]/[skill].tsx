@@ -17,6 +17,7 @@ import { UPDATE_USER_SKILL_EMOJI } from "../../../graphql/updateUserEmoji";
 import { useMutation } from "@apollo/client";
 import { userId } from "../../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
+import { FETCH_USER_EMOJIS } from "../../../graphql/fetchUserEmojis";
 
 const PracticeQuiz = ({ slug, skill }) => {
   enum STAGE {
@@ -50,53 +51,65 @@ const PracticeQuiz = ({ slug, skill }) => {
     },
   ]);
 
-  const [updateUserEmoji, updateUserEmojiMutation] = useMutation(
-    UPDATE_USER_SKILL_EMOJI
-  );
-  const inputElement = useRef(null);
   let getSkillId = (skill: any, slug: any) => {
     //Note: The skill Ids are determined based of the values save in the skills table with graph
     switch (slug) {
       case "addition":
         switch (skill) {
-          case "single-digit":
+          case "add-one-digit":
             return 1;
-          case "double-digit":
+          case "add-two-digit":
             return 2;
-          case "triple-digit":
+          case "add-three-digit":
             return 3;
-          case "properties":
+          case "addition-properties":
             return 4;
         }
       case "subtraction":
         switch (skill) {
-          case "single-digit":
+          case "subtract-single-digit":
             return 34;
-          case "double-digit":
+          case "subtract-double-digit":
             return 35;
-          case "triple-digit":
+          case "subtract-triple-digit":
             return 36;
         }
       case "multiplication":
         switch (skill) {
-          case "single-digit":
+          case "total-items-equal-groups":
             return 37;
-          case "double-digit":
+          case "multiply-5x5":
             return 38;
-          case "triple-digit":
+          case "multiply-10x10":
             return 39;
         }
       case "division":
         switch (skill) {
-          case "single-digit":
+          case "share-8-equally":
             return 40;
-          case "double-digit":
+          case "divide-12-equally":
             return 41;
-          case "triple-digit":
+          case "divide-100-equally":
             return 42;
         }
     }
   };
+
+  const [updateUserEmoji, updateUserEmojiMutation] = useMutation(
+    UPDATE_USER_SKILL_EMOJI,
+    {
+      refetchQueries: [
+        {
+          query: FETCH_USER_EMOJIS,
+          variables: {
+            userId: userId(session),
+            skillId: [getSkillId(skill, slug)],
+          },
+        },
+      ],
+    }
+  );
+  const inputElement = useRef(null);
 
   function getComponent() {
     const sessionEnd = (
@@ -220,6 +233,11 @@ const PracticeQuiz = ({ slug, skill }) => {
     setEmoji(val);
   };
 
+  const reviewPage = () => {
+    setStage(STAGE.EMOJI);
+    toggleFlip();
+  };
+
   const submitGuess = (guess: GuessData) => {
     toggleFlip(); //aa
 
@@ -239,8 +257,7 @@ const PracticeQuiz = ({ slug, skill }) => {
       if (index < questionData.length - 1) {
         setNextQuestionButton(true);
       } else {
-        setNextQuestionButton(true);
-        setStage(STAGE.EMOJI);
+        setContinueButton(true);
       }
     }
   };
@@ -283,9 +300,19 @@ const PracticeQuiz = ({ slug, skill }) => {
                     </span>
                     <br></br>
                     <br></br>
-                    <span>Your answer was </span>
-                    <span className="font-bold text-red-500">
-                      {guessAttempt}
+                    <span>
+                      {guessAttempt != "" ? (
+                        <span>
+                          <span>Your answer was </span>
+                          <span className="font-bold text-red-500">
+                            {guessAttempt}
+                          </span>
+                        </span>
+                      ) : (
+                        <span className="font-bold">
+                          Don't forget to answer next time!
+                        </span>
+                      )}
                     </span>
                   </div>
                 ) : (
@@ -302,7 +329,7 @@ const PracticeQuiz = ({ slug, skill }) => {
                   <Button
                     label="Continue"
                     backgroundColor="green"
-                    onClick={applyContinuePage}
+                    onClick={reviewPage}
                   ></Button>
                 )}
               </Card>
