@@ -3,7 +3,6 @@ import QuestionSet from "../../../components/stories/QuestionSet";
 import { QuestionType } from "../../api/questionTypes";
 import { GuessData } from "../../api/guessData";
 import { AnswerType, Question } from "../../api/question";
-import Navbar from "../../../components/Navbar";
 import { Skill } from "../../api/skill";
 import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGenerator";
 import { Button } from "../../../components/stories/Button";
@@ -18,6 +17,7 @@ import { useMutation } from "@apollo/client";
 import { userId } from "../../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
 import { FETCH_USER_EMOJIS } from "../../../graphql/fetchUserEmojis";
+import DiagnosticNavbar from "../../../components/DiagnosticNavbar";
 
 const PracticeQuiz = ({ slug, skill }) => {
   enum STAGE {
@@ -263,7 +263,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   };
   return (
     <div className="bg-blue-100 heropattern-architect-blue-50 h-md">
-      <Navbar />
+      <DiagnosticNavbar />
       <div className="flex flex-col justify-center items-center mt-8">
         <div className="flex flex-row w-96 p-4 justify-between bg-gray-400 shadow-lg rounded-lg ">
           <p className="font-semibold">
