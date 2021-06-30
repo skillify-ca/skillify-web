@@ -19,7 +19,7 @@ import { UNLOCK_BADGE } from "../../graphql/unlockBadge";
 import { AdditionDoubleDigitWS } from "../../components/stories/WorksheetsObj";
 import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
 import { getBadgeId } from "../api/badgeHelper";
-import { SAVE_USER_GUESSES } from "../../graphql/createUserQuizAttempt";
+import { SAVE_USER_GUESSES } from "../../graphql/saveUserGuesses";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
 import { SAVE_QUIZ_ATTEMPT } from "../../graphql/saveQuizAttempt";

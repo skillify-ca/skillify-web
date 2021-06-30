@@ -192,23 +192,8 @@ export const getPracticeCardForSkill = (
         },
       ];
     case Skill.ADDITION_SINGLE:
-      return [
-        {
-          link: `addition/${skill}`,
-        },
-      ];
     case Skill.ADDITION_DOUBLE:
-      return [
-        {
-          link: `addition/${skill}`,
-        },
-      ];
     case Skill.ADDITION_TRIPLE:
-      return [
-        {
-          link: `addition/${skill}`,
-        },
-      ];
     case Skill.ADDITION_PROPERTIES:
       return [
         {
@@ -216,17 +201,7 @@ export const getPracticeCardForSkill = (
         },
       ];
     case Skill.SUBTRACTION_SINGLE:
-      return [
-        {
-          link: `subtraction/${skill}`,
-        },
-      ];
-    case Skill.SUBTRACTION_DOUBLE: //we need pictures for the following cards
-      return [
-        {
-          link: `subtraction/${skill}`,
-        },
-      ];
+    case Skill.SUBTRACTION_DOUBLE:
     case Skill.SUBTRACTION_TRIPLE:
       return [
         {
@@ -234,35 +209,16 @@ export const getPracticeCardForSkill = (
         },
       ];
     case Skill.EQUAL_SHARING_8_ITEMS:
-      return [
-        {
-          link: `division/${skill}`,
-        },
-      ];
     case Skill.DIVIDE_12_EQUALLY:
-      return [
-        {
-          link: `division/${skill}`,
-        },
-      ];
     case Skill.DIVIDE_100:
       return [
         {
           link: `division/${skill}`,
         },
       ];
+
     case Skill.EQUAL_GROUP_10_ITEMS:
-      return [
-        {
-          link: `multiplication/${skill}`,
-        },
-      ];
     case Skill.MULTIPLICATION_5:
-      return [
-        {
-          link: `multiplication/${skill}`,
-        },
-      ];
     case Skill.MULTIPLICATION_10:
       return [
         {

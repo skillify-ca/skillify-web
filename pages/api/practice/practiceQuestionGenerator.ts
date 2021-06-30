@@ -46,7 +46,7 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
     }
   } else if (topic == "division") {
     switch (skillStr) {
-      case "share-8-equally": // we should rename this from single-digit to something else
+      case "share-8-equally":
         skill = Skill.EQUAL_SHARING_8_ITEMS;
         break;
       case "divide-12-equally":

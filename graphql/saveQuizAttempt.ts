@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const SAVE_QUIZ_ATTEMPT = gql`
-  mutation createQuizAttempt(
+  mutation saveQuizAttempt(
     $userId: String
     $badgeId: Int
     $accuracy: Int
