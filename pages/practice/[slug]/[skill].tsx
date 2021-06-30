@@ -76,11 +76,11 @@ const PracticeQuiz = ({ slug, skill }) => {
         }
       case "multiplication":
         switch (skill) {
-          case "single-digit":
+          case "total-items-equal-groups":
             return 37;
-          case "double-digit":
+          case "upto_5X5":
             return 38;
-          case "triple-digit":
+          case "upto_10X10":
             return 39;
         }
       case "division":
@@ -94,15 +94,16 @@ const PracticeQuiz = ({ slug, skill }) => {
         }
     }
   };
-  
+
   const [updateUserEmoji, updateUserEmojiMutation] = useMutation(
-    UPDATE_USER_SKILL_EMOJI, {
+    UPDATE_USER_SKILL_EMOJI,
+    {
       refetchQueries: [
         {
           query: FETCH_USER_EMOJIS,
           variables: {
             userId: userId(session),
-            skillId: [getSkillId(skill, slug)]
+            skillId: [getSkillId(skill, slug)],
           },
         },
       ],
