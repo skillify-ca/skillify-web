@@ -56,40 +56,40 @@ const PracticeQuiz = ({ slug, skill }) => {
     switch (slug) {
       case "addition":
         switch (skill) {
-          case "single-digit":
+          case "add-one-digit":
             return 1;
-          case "double-digit":
+          case "add-two-digit":
             return 2;
-          case "triple-digit":
+          case "add-three-digit":
             return 3;
-          case "properties":
+          case "addition-properties":
             return 4;
         }
       case "subtraction":
         switch (skill) {
-          case "single-digit":
+          case "subtract-single-digit":
             return 34;
-          case "double-digit":
+          case "subtract-double-digit":
             return 35;
-          case "triple-digit":
+          case "subtract-triple-digit":
             return 36;
         }
       case "multiplication":
         switch (skill) {
           case "total-items-equal-groups":
             return 37;
-          case "upto_5X5":
+          case "multiply-5x5":
             return 38;
-          case "upto_10X10":
+          case "multiply-10x10":
             return 39;
         }
       case "division":
         switch (skill) {
-          case "single-digit":
+          case "share-8-equally":
             return 40;
-          case "double-digit":
+          case "divide-12-equally":
             return 41;
-          case "triple-digit":
+          case "divide-100-equally":
             return 42;
         }
     }

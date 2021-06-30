@@ -7,28 +7,28 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
     skill = Skill.NUMBERS_50;
   } else if (topic == "addition") {
     switch (skillStr) {
-      case "single-digit":
+      case "add-one-digit":
         skill = Skill.ADDITION_SINGLE;
         break;
-      case "double-digit":
+      case "add-two-digit":
         skill = Skill.ADDITION_DOUBLE;
         break;
-      case "triple-digit":
+      case "add-three-digit":
         skill = Skill.ADDITION_TRIPLE;
         break;
-      case "properties":
+      case "addition-properties":
         skill = Skill.ADDITION_PROPERTIES;
         break;
     }
   } else if (topic == "subtraction") {
     switch (skillStr) {
-      case "single-digit":
+      case "subtract-single-digit":
         skill = Skill.SUBTRACTION_SINGLE;
         break;
-      case "double-digit":
+      case "subtract-double-digit":
         skill = Skill.SUBTRACTION_DOUBLE;
         break;
-      case "triple-digit":
+      case "subtract-triple-digit":
         skill = Skill.SUBTRACTION_TRIPLE;
         break;
     }
@@ -37,22 +37,22 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
       case "total-items-equal-groups":
         skill = Skill.EQUAL_GROUP_10_ITEMS;
         break;
-      case "upto_5X5":
+      case "multiply-5x5":
         skill = Skill.MULTIPLICATION_5;
         break;
-      case "upto_10X10":
+      case "multiply-10x10":
         skill = Skill.MULTIPLICATION_10;
         break;
     }
   } else if (topic == "division") {
     switch (skillStr) {
-      case "single-digit": // we should rename this from single-digit to something else
+      case "share-8-equally": // we should rename this from single-digit to something else
         skill = Skill.EQUAL_SHARING_8_ITEMS;
         break;
-      case "12_items_equally":
+      case "divide-12-equally":
         skill = Skill.DIVIDE_12_EQUALLY;
         break;
-      case "upto_100_divide_10":
+      case "divide-100-equally":
         skill = Skill.DIVIDE_100;
         break;
     }
