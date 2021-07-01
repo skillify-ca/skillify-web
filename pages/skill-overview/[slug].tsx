@@ -103,14 +103,6 @@ const SkillOverviewPage = ({ slug }) => {
               allowFullScreen
               className="w-full rounded-2xl"
             ></iframe>
-            // <a target="_blank" href={`${resource.link}`}>
-            //   <div
-            //     className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-72 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
-            //     style={cardStyle(resource.videoId)}
-            //   >
-            //     <p className="font-bold m-4"> {resource.vidTitle} </p>
-            //   </div>
-            // </a>
           ))}
         </div>
         {practiceComponent}
