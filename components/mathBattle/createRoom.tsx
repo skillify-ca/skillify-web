@@ -1,35 +1,15 @@
 import React, { useState } from "react";
 import { Button } from "../stories/Button";
 import * as Colyseus from "colyseus.js";
+import Link from "next/link";
+import { Player } from "../../pages/games/MathBattle";
 
-const CreateRoom = () => {
-  const [room, setRoom] = useState<Colyseus.Room>();
-  const [players, setPlayers] = useState([]);
-  var client = new Colyseus.Client("ws://localhost:4001");
-  const onCreateClick = () => {
-    client
-      .joinOrCreate("tictactoe")
-      .then((room) => {
-        console.log(room.sessionId, "joined", room.name);
-        setRoom(room);
-        room.send("join", { name: "Lavan" }); //Dyanmic Name
-      })
-      .catch((e) => {
-        console.log("JOIN ERROR", e);
-      });
-  };
-  room?.onMessage("joinResponse", (message) => {
-    console.log(client.auth._id, "received fire on", room.name, message);
-    let playerArr = [];
-    for (const [key, value] of Object.entries(message)) {
-      console.log(key, value);
-      playerArr.push(value["name"]);
-    }
-    console.log(playerArr);
+export interface CreateRoomProps {
+  onCreateClick: () => void;
+  players: Player[];
+}
 
-    setPlayers([playerArr]);
-  });
-
+const CreateRoom = ({ onCreateClick, players }: CreateRoomProps) => {
   return (
     <div className="mr-10 ml-10">
       <div className="bg-white rounded-lg gap-4 flex flex-col md:flex-row">
@@ -51,9 +31,6 @@ const CreateRoom = () => {
               textColor="white"
               backgroundColor="blue"
             ></Button>
-            {players.map((it) => (
-              <p>{it}</p>
-            ))}
           </div>
         </div>
       </div>
