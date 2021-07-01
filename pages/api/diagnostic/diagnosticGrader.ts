@@ -101,7 +101,7 @@ export const getGradeLevelForTopic = (
       ) {
         return "Grade 2";
       } else if (
-        getResultForSkill(Skill.SUBTRACTION_TRIPLE, results) == "Got it!"
+        getResultForSkill(Skill.SUBTRACTION_SINGLE, results) == "Got it!"
       ) {
         return "Grade 1";
       } else {
