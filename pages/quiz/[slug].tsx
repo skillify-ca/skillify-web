@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Modal, ModalTransition } from "react-simple-hook-modal";
 import "react-simple-hook-modal/dist/styles.css";
-import Navbar from "../../components/Navbar";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { CREATE_GUESS } from "../../graphql/createGuess";
@@ -23,6 +22,7 @@ import { SAVE_USER_GUESSES } from "../../graphql/saveUserGuesses";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
 import { SAVE_QUIZ_ATTEMPT } from "../../graphql/saveQuizAttempt";
+import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -181,7 +181,7 @@ const Quiz = ({ slug }) => {
 
   return (
     <div>
-      <Navbar />
+      <DiagnosticNavbar />
       <QuestionSet
         title={slug}
         questionData={questionData}
