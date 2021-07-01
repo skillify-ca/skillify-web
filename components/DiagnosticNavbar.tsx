@@ -102,6 +102,26 @@ export default function Navbar() {
                 >
                   Assessment
                 </a>
+                <div>
+                  {!session && (
+                    <>
+                      <Link href="/welcome">
+                        <p className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
+                          Practice
+                        </p>
+                      </Link>
+                    </>
+                  )}
+                  {session && (
+                    <>
+                      <Link href="/practice">
+                        <p className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
+                          Practice
+                        </p>
+                      </Link>
+                    </>
+                  )}
+                </div>
                 <a
                   href="/resources"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
