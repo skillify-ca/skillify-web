@@ -32,9 +32,10 @@ export default function SignInPage() {
             </div>
             <button
               onClick={() => signIn("google")}
-              className="bg-white border border-black rounded-2xl p-4 w-64 hover:bg-gray-100 shadow-lg"
+              className="flex justify-between items-center bg-white border border-black rounded-2xl p-4 w-64 hover:bg-gray-100 shadow-lg"
             >
               Sign in with Google
+              <img className="w-8" src="/images/googleLogo.png" />
             </button>
           </div>
           <div className="w-1/2">
