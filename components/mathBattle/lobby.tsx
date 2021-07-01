@@ -13,7 +13,6 @@ const Lobby = ({ players }: CreateRoomProps) => {
   if (players && players.length > 0) {
     return <p>{players[0]}</p>;
   }
-  console.log("Empty");
-  return "Hello";
+  return <p> Do you see this </p>;
 };
 export default Lobby;
