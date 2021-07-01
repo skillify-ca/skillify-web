@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/client";
-import Navbar from "../components/Navbar";
 import { useMutation, useQuery } from "@apollo/client";
 import Link from "next/link";
 import { userId } from "../graphql/utils/constants";
 import { FETCH_USER_BADGES } from "../graphql/fetchUserBadge";
 import { INIT_USER_BADGES } from "../graphql/initUserBadges";
+import DiagnosticNavbar from "../components/DiagnosticNavbar";
 
 export default function Profile(props) {
   const [session, user] = useSession();
@@ -30,7 +30,7 @@ export default function Profile(props) {
   };
   return (
     <div>
-      <Navbar />
+      <DiagnosticNavbar />
       <div className="overflow-auto bg-scroll h-screen bg-blue-50">
         <div className="">
           <div className="col-span-2 p-8 m-4 bg-white shadow-lg rounded-3xl">
@@ -46,6 +46,20 @@ export default function Profile(props) {
                 </p>
               </div>
             </div>
+          </div>
+          <div className="grid gap-x-8 gap-y-4 grid-cols-3 w-1/2 m-auto p-4">
+            {data &&
+              data.user_badges.map((badge) => {
+                return badge.locked ? (
+                  <div className="">
+                    <img src="/images/lockedPic.png" className="w-32" />
+                  </div>
+                ) : (
+                  <Link href={`/badges/${badge.badge.id}`}>
+                    <img src={badge.badge.image} className="w-32" />
+                  </Link>
+                );
+              })}
           </div>
         </div>
       </div>

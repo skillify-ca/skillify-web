@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { useSession } from "next-auth/client";
 import React from "react";
-import Navbar from "../../components/Navbar";
+import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import { FETCH_BADGE } from "../../graphql/fetchBadge";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { userId } from "../../graphql/utils/constants";
@@ -39,7 +39,7 @@ const BadgeDetailsPage = ({ slug }) => {
 
   return (
     <div>
-      <Navbar />
+      <DiagnosticNavbar />
       <div className="overflow-auto bg-scroll heropattern-hideout-blue-100 bg-gray-100 h-screen">
         {badgeDetail && (
           <div className="flex flex-col justify-center w-1/2 ml-auto mr-auto mt-8 bg-white p-8 rounded-3xl">
