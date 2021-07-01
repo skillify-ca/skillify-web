@@ -65,6 +65,10 @@ export function getRandomNumbersQuestion(
   let answer;
   let startNum = getRndInteger(a, b);
 
+  if (skill == Skill.NUMBERS_50) {
+    type = QuestionType.PATTERN_COUNT_BLANKS_PROBLEM;
+  }
+
   if (type == QuestionType.PATTERN_COUNT_BLANKS_PROBLEM) {
     let patternTypes = ["FORWARDS", "BACKWARDS"];
     let patternIndex = getRndInteger(0, patternTypes.length);
@@ -128,15 +132,14 @@ export function getRandomNumbersQuestion(
 
   return {
     text: text,
-    answer:
-      type == QuestionType.PATTERN_COUNT_BLANKS_PROBLEM ? answer : "answer",
+    answer: answer.toString(),
     answerType:
       type == QuestionType.COMPARISON_WORD_PROBLEM
         ? AnswerType.STRING
         : AnswerType.ARRAY,
     questionType: type,
     skill: skill,
-    arrayAns: type == QuestionType.COMPARISON_WORD_PROBLEM ? "" : answer,
+    arrayAns: answer,
     placeholder: startNum.toString(),
   };
 }
