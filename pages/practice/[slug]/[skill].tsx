@@ -3,7 +3,6 @@ import QuestionSet from "../../../components/stories/QuestionSet";
 import { QuestionType } from "../../api/questionTypes";
 import { GuessData } from "../../api/guessData";
 import { AnswerType, Question } from "../../api/question";
-import Navbar from "../../../components/Navbar";
 import { Skill } from "../../api/skill";
 import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGenerator";
 import { Button } from "../../../components/stories/Button";
@@ -18,6 +17,7 @@ import { useMutation } from "@apollo/client";
 import { userId } from "../../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
 import { FETCH_USER_EMOJIS } from "../../../graphql/fetchUserEmojis";
+import DiagnosticNavbar from "../../../components/DiagnosticNavbar";
 
 const PracticeQuiz = ({ slug, skill }) => {
   enum STAGE {
@@ -239,31 +239,38 @@ const PracticeQuiz = ({ slug, skill }) => {
   };
 
   const submitGuess = (guess: GuessData) => {
-    toggleFlip(); //aa
-
-    if (index < questionData.length && !indexCap) {
-      if (guess.guess != "") {
-        setGuessAttempt(guess.guess.toString());
-      }
-      if (index >= questionData.length - 1) {
-        setIndexCap(true);
-      }
-      if (guess.isCorrect) {
-        setCorrectGuess(correctGuess + 1);
-        setCorrectAnswer(true);
+    if (isFlipped && index <= questionData.length - 1) {
+      if (index == questionData.length - 1) {
+        reviewPage();
       } else {
-        setWrongAnswer(true);
+        applyNextQuestion();
       }
-      if (index < questionData.length - 1) {
-        setNextQuestionButton(true);
-      } else {
-        setContinueButton(true);
+    } else {
+      toggleFlip();
+      if (index < questionData.length && !indexCap) {
+        if (guess.guess != "") {
+          setGuessAttempt(guess.guess.toString());
+        }
+        if (index >= questionData.length - 1) {
+          setIndexCap(true);
+        }
+        if (guess.isCorrect) {
+          setCorrectGuess(correctGuess + 1);
+          setCorrectAnswer(true);
+        } else {
+          setWrongAnswer(true);
+        }
+        if (index < questionData.length - 1) {
+          setNextQuestionButton(true);
+        } else {
+          setContinueButton(true);
+        }
       }
     }
   };
   return (
-    <div className="bg-blue-100 heropattern-architect-blue-50 h-screen overflow-y-scroll">
-      <Navbar />
+    <div className="bg-blue-100 heropattern-architect-blue-50 h-md">
+      <DiagnosticNavbar />
       <div className="flex flex-col justify-center items-center mt-8">
         <div className="flex flex-row w-96 p-4 justify-between bg-gray-400 shadow-lg rounded-lg ">
           <p className="font-semibold">
@@ -336,10 +343,12 @@ const PracticeQuiz = ({ slug, skill }) => {
           </div>
         </ReactCardFlip>
       </div>
-      {!continueButton &&
+      {/* {!continueButton &&
         !nextQuestionButton &&
         stage == STAGE.QUESTION &&
         questionData[index] && <Hint skill={questionData[index].skill}></Hint>}
+    </div> */}
+      {/* might be useful later */}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import CreateRoom from "../../components/mathBattle/createRoom";
-import Navbar from "../../components/Navbar";
 import { Button } from "../../components/stories/Button";
 import * as Colyseus from "colyseus.js";
 import Lobby from "../../components/mathBattle/lobby";
@@ -48,7 +48,7 @@ const MathBattle = () => {
 
   return (
     <div>
-      <Navbar />
+      <DiagnosticNavbar />
       <div className="p-4">
         {" "}
         {stage == STAGE.JOIN_SESSION && (

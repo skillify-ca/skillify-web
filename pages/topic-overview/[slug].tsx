@@ -3,7 +3,6 @@ import { session, useSession } from "next-auth/client";
 import Link from "next/link";
 import React, { useState } from "react";
 import DiagnosticNavbar from "../../components/DiagnosticNavbar";
-import Navbar from "../../components/Navbar";
 import { Button } from "../../components/stories/Button";
 import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
 import { FETCH_TOPIC_OVERVIEW } from "../../graphql/fetchTopicOverview";
