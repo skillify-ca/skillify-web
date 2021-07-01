@@ -239,25 +239,32 @@ const PracticeQuiz = ({ slug, skill }) => {
   };
 
   const submitGuess = (guess: GuessData) => {
-    toggleFlip(); //aa
-
-    if (index < questionData.length && !indexCap) {
-      if (guess.guess != "") {
-        setGuessAttempt(guess.guess.toString());
-      }
-      if (index >= questionData.length - 1) {
-        setIndexCap(true);
-      }
-      if (guess.isCorrect) {
-        setCorrectGuess(correctGuess + 1);
-        setCorrectAnswer(true);
+    if (isFlipped && index <= questionData.length - 1) {
+      if (index == questionData.length - 1) {
+        reviewPage();
       } else {
-        setWrongAnswer(true);
+        applyNextQuestion();
       }
-      if (index < questionData.length - 1) {
-        setNextQuestionButton(true);
-      } else {
-        setContinueButton(true);
+    } else {
+      toggleFlip();
+      if (index < questionData.length && !indexCap) {
+        if (guess.guess != "") {
+          setGuessAttempt(guess.guess.toString());
+        }
+        if (index >= questionData.length - 1) {
+          setIndexCap(true);
+        }
+        if (guess.isCorrect) {
+          setCorrectGuess(correctGuess + 1);
+          setCorrectAnswer(true);
+        } else {
+          setWrongAnswer(true);
+        }
+        if (index < questionData.length - 1) {
+          setNextQuestionButton(true);
+        } else {
+          setContinueButton(true);
+        }
       }
     }
   };
@@ -336,10 +343,12 @@ const PracticeQuiz = ({ slug, skill }) => {
           </div>
         </ReactCardFlip>
       </div>
-      {!continueButton &&
+      {/* {!continueButton &&
         !nextQuestionButton &&
         stage == STAGE.QUESTION &&
         questionData[index] && <Hint skill={questionData[index].skill}></Hint>}
+    </div> */}
+      {/* might be useful later */}
     </div>
   );
 };
