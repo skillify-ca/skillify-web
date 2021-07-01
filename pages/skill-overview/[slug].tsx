@@ -101,7 +101,7 @@ const SkillOverviewPage = ({ slug }) => {
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              className="w-full"
+              className="w-full rounded-2xl"
             ></iframe>
             // <a target="_blank" href={`${resource.link}`}>
             //   <div
