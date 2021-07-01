@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { session, useSession } from "next-auth/client";
-import Navbar from "../../components/Navbar";
 import initializeApollo from "../../lib/apollo";
 import { gql, useQuery } from "@apollo/client";
 import { FETCH_FLASHCARD_GUESSES } from "../../graphql/fetchFlashcardGuesses";
@@ -11,6 +10,7 @@ import Card from "../../components/stories/Card";
 import data from "../api/profile/data.json";
 import StatementRow from "../../components/stories/StatementRow";
 import TopicItem from "../../components/stories/TopicItem";
+import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 
 const Portfolio = ({ slug }) => {
   const [session, loading] = useSession();
@@ -101,7 +101,7 @@ const Portfolio = ({ slug }) => {
 
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
-      <Navbar />
+      <DiagnosticNavbar />
       <div className="h-screen flex flex-col p-4 gap-8">
         <h1 className="text-lg font-bold">Quiz Attempts - {slug}</h1>
         <div>

@@ -4,7 +4,6 @@ import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 import DiagnosticNavbar from "../../components/DiagnosticNavbar";
-import Navbar from "../../components/Navbar";
 import { Button } from "../../components/stories/Button";
 import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { userId } from "../../graphql/utils/constants";
@@ -23,7 +22,7 @@ const SkillOverviewPage = ({ slug }) => {
   const userSkillsQuery = useQuery(FETCH_USER_EMOJIS, {
     variables: {
       userId: userId(session),
-      skillId: getSkillId(slug),
+      skillId: [getSkillId(slug)],
     },
   });
   let userSkills = [];
