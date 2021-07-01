@@ -262,7 +262,7 @@ const PracticeQuiz = ({ slug, skill }) => {
     }
   };
   return (
-    <div className="bg-blue-100 heropattern-architect-blue-50 h-md">
+    <div className="bg-blue-100 heropattern-architect-blue-50 h-screen overflow-y-scroll">
       <Navbar />
       <div className="flex flex-col justify-center items-center mt-8">
         <div className="flex flex-row w-96 p-4 justify-between bg-gray-400 shadow-lg rounded-lg ">
@@ -296,10 +296,9 @@ const PracticeQuiz = ({ slug, skill }) => {
                   <div className="italic text-gray-400 font-bold space-y-8">
                     <span>The correct answer was </span>
                     <span className="font-bold text-green-400">
-                      {questionData[index].answer.toString()}
+                      {questionData[index].answer.toString()}&nbsp;
                     </span>
-                    <br></br>
-                    <br></br>
+
                     <span>
                       {guessAttempt != "" ? (
                         <span>
@@ -341,12 +340,6 @@ const PracticeQuiz = ({ slug, skill }) => {
         !nextQuestionButton &&
         stage == STAGE.QUESTION &&
         questionData[index] && <Hint skill={questionData[index].skill}></Hint>}
-      <div
-        className={`grid-cols-1 grid justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in opacity-${continueFaded}`}
-      >
-        <br></br>
-        <br></br>
-      </div>
     </div>
   );
 };
@@ -362,22 +355,19 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { slug: "addition", skill: "single-digit" } },
-      { params: { slug: "addition", skill: "double-digit" } },
-      { params: { slug: "addition", skill: "triple-digit" } },
-      { params: { slug: "addition", skill: "properties" } },
-      { params: { slug: "subtraction", skill: "single-digit" } },
-      { params: { slug: "subtraction", skill: "double-digit" } },
-      { params: { slug: "subtraction", skill: "triple-digit" } },
-      { params: { slug: "subtraction", skill: "properties" } },
-      { params: { slug: "multiplication", skill: "single-digit" } },
-      { params: { slug: "multiplication", skill: "double-digit" } },
-      { params: { slug: "multiplication", skill: "triple-digit" } },
-      { params: { slug: "multiplication", skill: "properties" } },
-      { params: { slug: "division", skill: "single-digit" } },
-      { params: { slug: "division", skill: "double-digit" } },
-      { params: { slug: "division", skill: "triple-digit" } },
-      { params: { slug: "division", skill: "properties" } },
+      { params: { slug: "addition", skill: "add-one-digit" } },
+      { params: { slug: "addition", skill: "add-two-digit" } },
+      { params: { slug: "addition", skill: "add-three-digit" } },
+      { params: { slug: "addition", skill: "addition-properties" } },
+      { params: { slug: "subtraction", skill: "subtract-single-digit" } },
+      { params: { slug: "subtraction", skill: "subtract-double-digit" } },
+      { params: { slug: "subtraction", skill: "subtract-triple-digit" } },
+      { params: { slug: "multiplication", skill: "total-items-equal-groups" } },
+      { params: { slug: "multiplication", skill: "multiply-5x5" } },
+      { params: { slug: "multiplication", skill: "multiply-10x10" } },
+      { params: { slug: "division", skill: "share-8-equally" } },
+      { params: { slug: "division", skill: "divide-12-equally" } },
+      { params: { slug: "division", skill: "divide-100-equally" } },
     ],
     fallback: true,
   };
