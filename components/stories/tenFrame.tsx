@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Story, Meta } from "@storybook/react";
 
-const TenFrame = () => {
+export interface TenFrameProp {
+  circleNum: number;
+}
+
+export const TenFrame: React.FC<TenFrameProp> = ({ circleNum, ...props }) => {
+  let row1 = [];
+  let row2 = [];
+
   return (
     <div>
       <div className="inline-flex border-8 m-0 space-x-4 relative">
