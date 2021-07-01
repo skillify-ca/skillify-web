@@ -336,10 +336,12 @@ const PracticeQuiz = ({ slug, skill }) => {
           </div>
         </ReactCardFlip>
       </div>
-      {!continueButton &&
+      {/* {!continueButton &&
         !nextQuestionButton &&
         stage == STAGE.QUESTION &&
         questionData[index] && <Hint skill={questionData[index].skill}></Hint>}
+    </div> */}
+      {/* might be useful later */}
     </div>
   );
 };
