@@ -30,14 +30,14 @@ const LandingPagev2 = () => {
           className="flex flex-col sm:flex-row bg-white shadow-lg p-4 gap-8 rounded-2xl"
         >
           <div className="flex flex-col w-full sm:w-1/2 gap-8 sm:p-4">
-            <h1 className="text-5xl ">
+            <h1 className="text-5xl font-medium">
               Math Champ helps parents motivate their children
             </h1>
             <div className="flex flex-col sm:flex-row gap-4">
-              <h2 className="text-2xl flex-1 pr-4">
-                Make math fun to practice! Learning with Math Champ is engaging
-                and fun. Have your child take a <b>FREE</b> diagnostic to see
-                where they stand
+              <h2 className="text-xl flex-1 pr-4">
+                Make math fun to practice and motivate students at all levels
+                with Math Champ's Practice Tracker! Have your child take a{" "}
+                <b>FREE</b> diagnostic to see where they stand.
               </h2>
             </div>
             <Link href="/diagnostic">
@@ -70,7 +70,7 @@ const LandingPagev2 = () => {
         >
           <div id="step1" className="bg-white rounded-lg p-8 shadow-lg">
             {/* <p className="font-bold"></p> */}
-            <p className="font-bold text-xl">Step 1: Assess your child</p>
+            <p className="font-bold  text-lg mb-4">Step 1: Assess your child</p>
             <p>
               During this quick assessment, your child will answer 12 questions
               from the Ontario curriculum.
@@ -78,16 +78,16 @@ const LandingPagev2 = () => {
             <div className="justify-center items-center bg-white p-8">
               <div className="">
                 <Slider {...settings}>
-                  <div className="justify-center items-center">
+                  <div className="justify-center items-center outline-none">
                     <img src="/images/wordProblem1.png"></img>
                   </div>
-                  <div>
+                  <div className="justify-center items-center outline-none">
                     <img src="/images/equalGroups.png"></img>
                   </div>
-                  <div>
+                  <div className="justify-center items-center outline-none">
                     <img src="/images/multiArrays.png"></img>
                   </div>
-                  <div>
+                  <div className="justify-center items-center outline-none">
                     <img src="/images/trueFalse.png"></img>
                   </div>
                 </Slider>
@@ -96,25 +96,24 @@ const LandingPagev2 = () => {
           </div>
           <div id="step2" className="bg-white rounded-lg p-8 shadow-lg">
             {/* <p className="font-bold"></p> */}
-            <p className="font-bold text-xl">
+            <p className="font-bold text-lg mb-4">
               Step 2: Support your child's independence{" "}
             </p>
             <p>
-              Your child can select from various modes and activities to help
-              them learn, practice, and self-assess on the Ontario curriculum.
-              Students can work at their own pace as they unlock new skills and
-              levels.
+              Your child can select from various modes and activities aligned
+              with the Ontario curriculum to help them learn, practice, and
+              self-assess.
             </p>
-            <div className="flex flex-col justify-center items-center bg-white p-8">
-              <div className="sm:w-96">
+            <div className="flex flex-col justify-center items-center bg-white p-8 ">
+              <div className="mt-12">
                 <img src="/images/step2.png" />
               </div>
             </div>
           </div>
           <div id="step3" className="bg-white rounded-lg p-8 shadow-lg">
             {/* <p className="font-bold"></p> */}
-            <p className="font-bold text-xl">
-              Step 3: Get Your Personalized Reports
+            <p className="font-bold  text-lg mb-4">
+              Step 3: Get your personalized reports
             </p>
             <p>
               Your customized Math Champ report will give you weekly insights
