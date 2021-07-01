@@ -6,6 +6,7 @@ import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import Navbar from "../../components/Navbar";
 import { Button } from "../../components/stories/Button";
 import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
+import { FETCH_TOPIC_OVERVIEW } from "../../graphql/fetchTopicOverview";
 import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { userId } from "../../graphql/utils/constants";
@@ -35,41 +36,27 @@ const TopicOverviewPage = ({ slug }) => {
     }
   };
 
-  const userQuizzesQuery = useQuery(FETCH_USER_QUIZZES, {
+  let { loading, error, data } = useQuery(FETCH_TOPIC_OVERVIEW, {
     variables: {
       userId: userId(session),
       badgeId: getBadgeId(slug, gradeNum(grade)),
+      skillId: getSkillsForTopicGrade(slug, grade).map((it) => getSkillId(it)),
     },
   });
-  let userQuizzes;
-  let accuracyList = [];
-  let maxAccuracy;
-  if (userQuizzesQuery.data) {
-    userQuizzes = userQuizzesQuery.data.user_quizzes;
+
+  const getMaxAccuracy = (userQuizzes) => {
+    let accuracyList = [];
+    let maxAccuracy;
+
     accuracyList = userQuizzes.map((it) => it.accuracy);
     if (accuracyList.length == 0) {
       maxAccuracy = "Not Attempted";
     } else {
       maxAccuracy = Math.max(...accuracyList) + "%";
     }
-  }
-  const userSkillsQuery = useQuery(FETCH_USER_EMOJIS, {
-    variables: {
-      userId: userId(session),
-      skillId: getSkillsForTopicGrade(slug, grade).map((it) => getSkillId(it)),
-    },
-  });
-  let userSkills = [];
-  if (userSkillsQuery.data) {
-    userSkills = userSkillsQuery.data.user_skills;
-  }
 
-  const { loading, error, data } = useQuery(FETCH_USER_SKILL_BADGE, {
-    variables: {
-      userId: userId(session),
-      badgeId: getBadgeId(slug, gradeNum(grade)),
-    },
-  });
+    return maxAccuracy;
+  };
 
   const levelComponent = (
     <div className="flex flex-row">
@@ -125,10 +112,12 @@ const TopicOverviewPage = ({ slug }) => {
             Confidence:{" "}
             <p className="text-6xl">
               {" "}
-              {userSkills.length !== 0 &&
+              {!loading &&
+                data.user_skills.length !== 0 &&
                 getEmoji(
-                  userSkills.filter((it) => it.skill_id == getSkillId(skill))[0]
-                    .emoji
+                  data.user_skills.filter(
+                    (it) => it.skill_id == getSkillId(skill)
+                  )[0].emoji
                 )}{" "}
             </p>{" "}
           </div>
@@ -160,7 +149,7 @@ const TopicOverviewPage = ({ slug }) => {
           </div>
           <p className="flex items-center text-lg">
             {" "}
-            Best Attempt: {maxAccuracy && maxAccuracy}{" "}
+            Best Attempt: {!loading && getMaxAccuracy(data.user_quizzes)}{" "}
           </p>
         </div>
         <div className="flex flex-col gap-8 justify-center items-center bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 w-1/2 rounded-2xl h-72">

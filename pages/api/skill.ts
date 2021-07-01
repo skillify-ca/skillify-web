@@ -188,85 +188,41 @@ export const getPracticeCardForSkill = (
     case Skill.NUMBERS_50:
       return [
         {
-          link: "numbers/count-50",
+          link: `numbers/${skill}`,
         },
       ];
     case Skill.ADDITION_SINGLE:
-      return [
-        {
-          link: "addition/single-digit",
-        },
-      ];
     case Skill.ADDITION_DOUBLE:
-      return [
-        {
-          link: "addition/double-digit",
-        },
-      ];
     case Skill.ADDITION_TRIPLE:
-      return [
-        {
-          link: "addition/triple-digit",
-        },
-      ];
     case Skill.ADDITION_PROPERTIES:
       return [
         {
-          link: "addition/propertiesC",
+          link: `addition/${skill}`,
         },
       ];
     case Skill.SUBTRACTION_SINGLE:
-      return [
-        {
-          link: "subtraction/single-digit",
-        },
-      ];
-    case Skill.SUBTRACTION_DOUBLE: //we need pictures for the following cards
-      return [
-        {
-          link: "subtraction/double-digit",
-        },
-      ];
+    case Skill.SUBTRACTION_DOUBLE:
     case Skill.SUBTRACTION_TRIPLE:
       return [
         {
-          link: "subtraction/triple-digit",
+          link: `subtraction/${skill}`,
         },
       ];
     case Skill.EQUAL_SHARING_8_ITEMS:
-      return [
-        {
-          link: "division/single-digit", //we should change this link
-        },
-      ];
     case Skill.DIVIDE_12_EQUALLY:
-      return [
-        {
-          link: "division/12_items_equally",
-        },
-      ];
     case Skill.DIVIDE_100:
       return [
         {
-          link: "division/upto_100_divide_10",
+          link: `division/${skill}`,
         },
       ];
+
     case Skill.EQUAL_GROUP_10_ITEMS:
-      return [
-        {
-          link: "multiplication/single-digit", //we should change this link
-        },
-      ];
     case Skill.MULTIPLICATION_5:
-      return [
-        {
-          link: "multiplication/upto_5X5",
-        },
-      ];
     case Skill.MULTIPLICATION_10:
       return [
         {
-          link: "multiplication/upto_10X10",
+          link: `multiplication/${skill}`,
         },
       ];
   }

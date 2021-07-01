@@ -14,14 +14,15 @@ import QuestionSet from "../../components/stories/QuestionSet";
 import { QuestionType } from "../api/questionTypes";
 import { GuessData } from "../api/guessData";
 import { AnswerType, Question } from "../api/question";
-import { Skill } from "../api/skill";
+import { getSkillId, Skill } from "../api/skill";
 import { UNLOCK_BADGE } from "../../graphql/unlockBadge";
 import { AdditionDoubleDigitWS } from "../../components/stories/WorksheetsObj";
 import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
 import { getBadgeId } from "../api/badgeHelper";
-import { CREATE_QUIZ_ATTEMPT } from "../../graphql/createUserQuizAttempt";
+import { SAVE_USER_GUESSES } from "../../graphql/saveUserGuesses";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
+import { SAVE_QUIZ_ATTEMPT } from "../../graphql/saveQuizAttempt";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -42,10 +43,28 @@ const Quiz = ({ slug }) => {
   ]);
   const [currentLevel, setCurrentLevel] = React.useState(0);
   const inputElement = useRef(null);
+  const [guesses, setGuesses] = useState([]);
   const length = questionData.length;
   const [sessionId, setSessionId] = React.useState("");
+  const [saveQuizGuesses, saveQuizGuessesMutation] = useMutation(
+    SAVE_USER_GUESSES
+  );
 
-  const [saveQuizData, setQuizData] = useMutation(CREATE_QUIZ_ATTEMPT, {
+  const [saveQuizData, saveQuizDataMutation] = useMutation(SAVE_QUIZ_ATTEMPT, {
+    onCompleted: (data) => {
+      const quizId = data.insert_user_quizzes.returning[0].id;
+      // new user quiz saved
+      saveQuizGuesses({
+        variables: {
+          guessesArray: guesses.map((it) => {
+            it.quizId = quizId;
+            it.userId = userId(session);
+            it.timeTaken = 3;
+            return it;
+          }),
+        },
+      });
+    },
     refetchQueries: [
       {
         query: FETCH_USER_QUIZZES,
@@ -79,8 +98,6 @@ const Quiz = ({ slug }) => {
     return () => clearInterval(interval);
   }, []);
 
-  // const [createFlashcardGuess, createGuessData] = useMutation(CREATE_GUESS);
-
   const [unlockBadge, unlockBadgeData] = useMutation(UNLOCK_BADGE, {
     refetchQueries: [
       {
@@ -105,17 +122,16 @@ const Quiz = ({ slug }) => {
       newCorrectGuesses += 1;
       setCorrectGuesses(newCorrectGuesses);
     }
-    // createFlashcardGuess({
-    //   variables: {
-    //     userId: userId(session),
-    //     question: questionData[index].text,
-    //     guess: currentGuess.toString(),
-    //     timeTaken: 3,
-    //     sessionId: sessionId,
-    //     is_correct: currentGuess.isCorrect,
-    //     skillId: getSkillIdFromSlug(slug),
-    //   },
-    // });
+
+    // Save current guess to guesses array
+    const guess = {
+      is_correct: currentGuess.isCorrect,
+      question: questionData[index].text,
+      guess: currentGuess.guess,
+      skillId: getSkillId(questionData[index].skill).toString(),
+    };
+    const newGuesses = [...guesses, guess];
+    setGuesses(newGuesses);
     if (index < length - 1) {
       setIndex(index + 1);
       if (inputElement.current) {
@@ -156,6 +172,7 @@ const Quiz = ({ slug }) => {
       setSecondsElapsed((secondsElapsed) => secondsElapsed + 1);
     }, 1000);
     setMyInterval(newInterval);
+    setGuesses([]);
   };
 
   const getAccuracy = () => {
