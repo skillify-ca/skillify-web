@@ -1,10 +1,16 @@
 import { useQuery } from "@apollo/client";
 import { useSession } from "next-auth/client";
-import React from "react";
+import React, { useRef } from "react";
 import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import { FETCH_BADGE } from "../../graphql/fetchBadge";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { userId } from "../../graphql/utils/constants";
+import { Canvas, useFrame, useLoader } from "react-three-fiber";
+import * as THREE from "three";
+import { OrbitControls, Preload, useTexture } from "@react-three/drei";
+import dynamic from "next/dynamic";
+
+const Box = dynamic(() => import('../../components/stories/Box'))
 
 const BadgeDetailsPage = ({ slug }) => {
   const [session] = useSession();
@@ -36,6 +42,7 @@ const BadgeDetailsPage = ({ slug }) => {
       maxAccuracy = Math.max(...accuracyList) + "%";
     }
   }
+  const mesh = useRef(null);
 
   return (
     <div>
@@ -47,7 +54,22 @@ const BadgeDetailsPage = ({ slug }) => {
               {" "}
               {badgeDetail.title}{" "}
             </p>
-            <img src={badgeDetail.image} className="w-72 m-auto"></img>
+            <div className="bg-blue-400 h-64">
+            <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
+            <Preload all />
+            <group>
+              <mesh
+                receiveShadow
+                rotation={[-Math.PI / 2, 0, 0]}
+                position={[0, -3, 0]}
+              >
+                <planeBufferGeometry attach="geometry" args={[100, 100]} />
+                <shadowMaterial attach="material" />
+              </mesh>
+              <Box url={badgeDetail ? "/images/Addition1_bg.png" : "/images/lock.png"} />
+            </group>
+          </Canvas>
+          </div>
             <p className="text-center mt-4"> {badgeDetail.description} </p>
             <p className="text-center mt-4 font-bold">
               Your Best Attempt is: {maxAccuracy}
