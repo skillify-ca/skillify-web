@@ -7,7 +7,7 @@ export interface BoxProps {
   url: string;
 }
 
-
+/** A 3D Image Box that rotates every frame */
 const Box = ({url}: BoxProps) => {
   const mesh = useRef(null);
   useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));

@@ -7,7 +7,7 @@ import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { userId } from "../../graphql/utils/constants";
 import { Canvas, useFrame, useLoader } from "react-three-fiber";
 import * as THREE from "three";
-import { OrbitControls, Preload, useTexture } from "@react-three/drei";
+import { OrbitControls, Preload, Stars, useTexture } from "@react-three/drei";
 import dynamic from "next/dynamic";
 
 const Box = dynamic(() => import('../../components/stories/Box'))
@@ -54,19 +54,12 @@ const BadgeDetailsPage = ({ slug }) => {
               {" "}
               {badgeDetail.title}{" "}
             </p>
-            <div className="bg-blue-400 h-64">
+            <div className="bg-blue-900 h-64">
             <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
             <Preload all />
             <group>
-              <mesh
-                receiveShadow
-                rotation={[-Math.PI / 2, 0, 0]}
-                position={[0, -3, 0]}
-              >
-                <planeBufferGeometry attach="geometry" args={[100, 100]} />
-                <shadowMaterial attach="material" />
-              </mesh>
               <Box url={badgeDetail ? "/images/Addition1_bg.png" : "/images/lock.png"} />
+              <Stars />
             </group>
           </Canvas>
           </div>
