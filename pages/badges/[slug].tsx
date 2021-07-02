@@ -5,10 +5,11 @@ import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import { FETCH_BADGE } from "../../graphql/fetchBadge";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { userId } from "../../graphql/utils/constants";
-import { Canvas, useFrame, useLoader } from "react-three-fiber";
+import { Canvas, extend, useFrame, useLoader } from "react-three-fiber";
 import * as THREE from "three";
-import { OrbitControls, Preload, Stars, useTexture } from "@react-three/drei";
+import { Preload, Stars, useTexture } from "@react-three/drei";
 import dynamic from "next/dynamic";
+import { OrbitControls } from '@react-three/drei'
 
 const Box = dynamic(() => import('../../components/stories/Box'))
 
@@ -58,7 +59,8 @@ const BadgeDetailsPage = ({ slug }) => {
             <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
             <Preload all />
             <group>
-              <Box url={badgeDetail ? "/images/Addition1_bg.png" : "/images/lock.png"} />
+              <Box url={badgeDetail ? badgeDetail.image : "/images/lock.png"} />
+              <OrbitControls />
               <Stars />
             </group>
           </Canvas>
