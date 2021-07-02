@@ -60,7 +60,7 @@ const BadgeDetailsPage = ({ slug }) => {
             <Preload all />
             <group>
               <Box url={badgeDetail ? badgeDetail.image : "/images/lock.png"} />
-              <OrbitControls />
+              <OrbitControls hasEventListener={false} removeEventListener={() => {}} addEventListener={() => {}} dispatchEvent={() => {}} />
               <Stars />
             </group>
           </Canvas>
