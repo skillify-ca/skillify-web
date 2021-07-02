@@ -6,11 +6,19 @@ import { userId } from "../graphql/utils/constants";
 import { FETCH_USER_BADGES } from "../graphql/fetchUserBadge";
 import { INIT_USER_BADGES } from "../graphql/initUserBadges";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
+import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
+import { getEmoji } from "./api/skill";
 
 export default function Profile(props) {
   const [session, user] = useSession();
 
-  let { loading, error, data } = useQuery(FETCH_USER_BADGES, {
+  enum Stage {
+    BADGES,
+    SKILLS
+  }
+  const [stage, setStage] = useState(Stage.BADGES)
+
+  let { loading, error, data } = useQuery(FETCH_USER_PROFILE, {
     variables: {
       userId: userId(session),
     },
@@ -47,7 +55,32 @@ export default function Profile(props) {
               </div>
             </div>
           </div>
-          <div className="grid gap-x-8 gap-y-4 grid-cols-3 md:w-1/2 m-auto p-8">
+          <div className="flex mt-2 rounded-md bg-gray-100 relative tabs">
+            <button
+              className={
+                "tabs-item active relative z-10 p-4 my-2 ml-2 text-center rounded-md w-full text-sm cursor-pointer select-none focus:outline-none " +
+                (stage == Stage.BADGES ? "bg-blue-500 text-white" : "")
+              }
+              onClick={() => {
+                setStage(Stage.BADGES);
+              }}
+            >
+              Badges
+            </button>
+            <button
+              className={
+                "transition duration-200 ease-in-out tabs-item w-full relative z-10 p-4 my-2 ml-2 text-center rounded-md  text-sm cursor-pointer select-none focus:outline-none " +
+                (stage == Stage.SKILLS ? "bg-blue-500 text-white" : "")
+              }
+              onClick={() => {
+                setStage(Stage.SKILLS);
+              }}
+            >
+              Skill Inventory
+            </button>
+            <span className={"transition duration-200 ease-in-out tab-item-animate rounded-md bg-white"}></span>
+          </div>
+          {stage == Stage.BADGES && <div className="grid gap-x-8 gap-y-4 grid-cols-3 md:w-1/2 m-auto p-8">
             {data &&
               data.user_badges.map((badge) => {
                 return badge.locked ? (
@@ -60,7 +93,16 @@ export default function Profile(props) {
                   </Link>
                 );
               })}
-          </div>
+          </div>}
+          {stage == Stage.SKILLS && <div className="flex flex-col items-center gap-8 p-8">
+            {data &&
+              data.user_skills.map((skill) => 
+                  <div className="flex gap-8">
+                    <p className="text-xl">{skill.skill.title}</p>
+                    <p className="text-3xl">{getEmoji(skill.emoji)}</p>
+                  </div>
+              )}
+          </div>}
         </div>
       </div>
     </div>
