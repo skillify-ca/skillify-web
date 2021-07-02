@@ -7,11 +7,10 @@ import { FETCH_USER_BADGES } from "../graphql/fetchUserBadge";
 import { INIT_USER_BADGES } from "../graphql/initUserBadges";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
-import { getEmoji } from "./api/skill";
+import { EMOJI_MASTERY, getEmoji } from "./api/skill";
 
 export default function Profile(props) {
   const [session, user] = useSession();
-  const EMOJI_MASTERY = 66;
 
   enum Stage {
     BADGES,
