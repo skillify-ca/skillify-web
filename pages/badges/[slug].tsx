@@ -1,10 +1,17 @@
 import { useQuery } from "@apollo/client";
 import { useSession } from "next-auth/client";
-import React from "react";
+import React, { useRef } from "react";
 import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import { FETCH_BADGE } from "../../graphql/fetchBadge";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { userId } from "../../graphql/utils/constants";
+import { Canvas, extend, useFrame, useLoader } from "react-three-fiber";
+import * as THREE from "three";
+import { Preload, Stars, useTexture } from "@react-three/drei";
+import dynamic from "next/dynamic";
+import { OrbitControls } from '@react-three/drei'
+
+const Box = dynamic(() => import('../../components/stories/Box'))
 
 const BadgeDetailsPage = ({ slug }) => {
   const [session] = useSession();
@@ -36,6 +43,7 @@ const BadgeDetailsPage = ({ slug }) => {
       maxAccuracy = Math.max(...accuracyList) + "%";
     }
   }
+  const mesh = useRef(null);
 
   return (
     <div>
@@ -47,7 +55,16 @@ const BadgeDetailsPage = ({ slug }) => {
               {" "}
               {badgeDetail.title}{" "}
             </p>
-            <img src={badgeDetail.image} className="w-72 m-auto"></img>
+            <div className="bg-blue-900 h-64">
+            <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
+            <Preload all />
+            <group>
+              <Box url={badgeDetail ? badgeDetail.image : "/images/lock.png"} />
+              <OrbitControls hasEventListener={false} removeEventListener={() => {}} addEventListener={() => {}} dispatchEvent={() => {}} />
+              <Stars />
+            </group>
+          </Canvas>
+          </div>
             <p className="text-center mt-4"> {badgeDetail.description} </p>
             <p className="text-center mt-4 font-bold">
               Your Best Attempt is: {maxAccuracy}
