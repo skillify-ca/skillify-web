@@ -43,14 +43,18 @@ const BadgeDetailsPage = ({ slug }) => {
       maxAccuracy = Math.max(...accuracyList) + "%";
     }
   }
-  const mesh = useRef(null);
+    
+  const formatDate = (date: string) => {
+    const d = new Date(date);
+    return d.toLocaleDateString("en")
+  }
 
   return (
     <div>
       <DiagnosticNavbar />
-      <div className="overflow-auto bg-scroll heropattern-hideout-blue-100 bg-gray-100 h-screen">
+      <div className="heropattern-hideout-blue-100 bg-gray-100 h-screen p-4">
         {badgeDetail && (
-          <div className="flex flex-col justify-center w-1/2 ml-auto mr-auto mt-8 bg-white p-8 rounded-3xl">
+          <div className="flex flex-col justify-center md:w-1/2 ml-auto mr-auto bg-white p-8 rounded-3xl">
             <p className="text-center text-3xl mb-4 font-semibold">
               {" "}
               {badgeDetail.title}{" "}
@@ -72,7 +76,7 @@ const BadgeDetailsPage = ({ slug }) => {
           </div>
         )}
 
-        <div className="flex flex-col justify-center w-1/2 ml-auto mr-auto mt-8 bg-white p-8 rounded-3xl">
+        <div className="flex flex-col justify-center md:w-1/2 ml-auto mr-auto mt-8 bg-white p-8 rounded-3xl">
           <p className="text-center text-3xl mb-4 font-semibold">
             {" "}
             Quiz Attempts{" "}
@@ -88,9 +92,9 @@ const BadgeDetailsPage = ({ slug }) => {
                 (it) =>
                   it && (
                     <tr>
-                      <td>{userQuizzes.indexOf(it)}</td>
+                      <td>{userQuizzes.indexOf(it) + 1}</td>
                       <td>{it.accuracy}</td>
-                      <td>{it.createdAt}</td>
+                      <td>{formatDate(it.createdAt)}</td>
                     </tr>
                   )
               )}
