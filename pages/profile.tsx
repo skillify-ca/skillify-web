@@ -47,7 +47,7 @@ export default function Profile(props) {
               </div>
             </div>
           </div>
-          <div className="grid gap-x-8 gap-y-4 grid-cols-3 w-1/2 m-auto p-4">
+          <div className="grid gap-x-8 gap-y-4 grid-cols-3 md:w-1/2 m-auto p-8">
             {data &&
               data.user_badges.map((badge) => {
                 return badge.locked ? (
