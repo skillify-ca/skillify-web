@@ -42,12 +42,13 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
   return [];
 };
 
+export const EMOJI_MASTERY = 66;
 export function getEmoji(emojiNum: number | null) {
   if (emojiNum == null) {
     return "❓";
   } else if (emojiNum >= 0 && emojiNum <= 33) {
     return "😔";
-  } else if (emojiNum >= 34 && emojiNum <= 66) {
+  } else if (emojiNum >= 34 && emojiNum <= EMOJI_MASTERY) {
     return "😐";
   } else {
     return "😄";
