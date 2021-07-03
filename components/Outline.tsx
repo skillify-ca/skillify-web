@@ -42,7 +42,7 @@ export default function Outline() {
           <div className="flex flex-col gap-8 items-center">
             <p className="text-xl font-bold font-sans">Math Knowledge Tree</p>
             <p className="text-sm mb-4">
-              Practice different math-related skills
+              Practice skills to increase your math confidence. Then ace your quizzes to unlock badges!
             </p>
             <ProgressRing percentage={progress()} radius={24} />
           </div>
@@ -74,11 +74,9 @@ export default function Outline() {
     </div>
   );
 
-  const loggedOutComponent = <LandingPage />;
-
   return (
     <div className="flex flex-col gap-8 justify-between w-full col-span-2 items-center mb-4 p-4 mx-auto">
-      {session ? loggedInComponent : loggedOutComponent}
+      {loggedInComponent}
     </div>
   );
 }

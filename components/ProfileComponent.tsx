@@ -47,8 +47,8 @@ const ProfileComponent = () => {
     <div className="overflow-auto bg-scroll h-screen bg-blue-50">
       <div className="flex flex-col gap-8 p-8">
         <div className="col-span-2 p-8 bg-white shadow-lg rounded-3xl">
-          <div className="flex justify-between items-center">
-            <div className="flex flex-col">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex flex-col items-center">
               <p className="text-xl">{session && session.user.name}</p>
               <p className="text-sm">{session && session.user.email}</p>
             </div>
