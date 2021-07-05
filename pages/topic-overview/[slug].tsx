@@ -75,11 +75,11 @@ const TopicOverviewPage = ({ slug }) => {
     </div>
   );
   const skillComponent = (
-    <div>
+    <div className="flex flex-col gap-8">
       {getSkillsForTopicGrade(slug, grade).map((skill) => (
-        <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-8 m-12 mt-8 mb-4">
-          <div className="mr-28">
-            <div className="flex flex-col gap-4">
+        <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-8 gap-8">
+          <div className="">
+            <div className="flex flex-col gap-8">
               <img src="/images/learnPic.png" className="w-96" />
               <p className="text-2xl text-center font-bold flex items-center justify-center bg-blue-200 rounded-2xl">
                 {" "}
@@ -87,7 +87,7 @@ const TopicOverviewPage = ({ slug }) => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col sm:w-1/2 gap-4 justify-center mr-12">
+          <div className="flex flex-col sm:w-1/2 gap-8 justify-center">
             <p className="text-4xl font-bold text-blue-900"> LEARN </p>
             <p className="text-xl">
               Learn to <b> {SkillDescription(skill).toLowerCase()}</b> by
@@ -126,8 +126,8 @@ const TopicOverviewPage = ({ slug }) => {
   );
   const quizComponent = (
     <div>
-      <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-8 gap-8 m-12 mt-8">
-        <div className="flex flex-col gap-4 justify-center w-2/3">
+      <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-8 gap-8 mt-8">
+        <div className="flex flex-col gap-4 justify-center md:w-2/3">
           <p className="text-4xl font-bold text-blue-900"> QUIZ TIME! </p>
           <p className="text-xl">
             Take a quiz to test out your {slug} skills. The quiz will cover
@@ -151,7 +151,7 @@ const TopicOverviewPage = ({ slug }) => {
             Best Attempt: {!loading && getMaxAccuracy(data.user_quizzes)}{" "}
           </p>
         </div>
-        <div className="flex flex-col gap-8 justify-center items-center bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 w-1/2 rounded-2xl h-72">
+        <div className="flex flex-col gap-8 justify-center items-center bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 sm:w-1/2 rounded-2xl h-72">
           {!loading &&
             data.user_badges.map((badge) => {
               return badge.locked ? (
@@ -180,7 +180,8 @@ const TopicOverviewPage = ({ slug }) => {
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-blue-100 ">
       <DiagnosticNavbar />
-      <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8 m-12 mt-8">
+      <div className="p-4 flex flex-col gap-8">
+      <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8">
         <p className="text-5xl text-white mb-4">
           {" "}
           {slug && slug.charAt(0).toUpperCase() + slug.slice(1)} Topic Overview
@@ -191,11 +192,12 @@ const TopicOverviewPage = ({ slug }) => {
           {slug} skills, take the quiz to evaluate your understanding!
         </p>
       </div>
-      <div className="ml-12">{levelComponent}</div>
+      <div className="">{levelComponent}</div>
       <div>
         {skillComponent}
         {quizComponent}
       </div>
+    </div>
     </div>
   );
 };

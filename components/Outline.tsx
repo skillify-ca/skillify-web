@@ -1,22 +1,40 @@
 import React, { useRef, useEffect } from "react";
-import { useMutation, useQuery } from "@apollo/client";
 import { PracticeTopic } from "./PracticeTopic";
 import { signIn, useSession } from "next-auth/client";
 import { userId } from "../graphql/utils/constants";
 import Card from "./stories/Card";
-import { Button } from "./stories/Button";
 import ProgressRing from "./stories/ProgressRing";
 import { lockedTopics, unlockedTopics } from "../pages/api/topics";
 import LandingPage from "./stories/LandingPage";
-import { INIT_USER_SKILLS } from "../graphql/initUserSkills";
-import { FETCH_USER_EMOJIS } from "../graphql/fetchUserEmojis";
+import { EMOJI_MASTERY } from "../pages/api/skill";
+import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
+import { useQuery } from "@apollo/client";
 export default function Outline() {
-  const [session, loading] = useSession();
+  const [session] = useSession();
 
-  const getOverallProgress = () => {
-    return 0; // TODO calculate progress based off unlocked badges / total badges
+  let { loading, data } = useQuery(FETCH_USER_PROFILE, {
+    variables: {
+      userId: userId(session),
+    },
+  });
+
+  const progress = () => {
+    if (!loading && data.user_badges.length > 0 && data.user_skills.length > 0) {
+      const unlockedBadges = data.user_badges.filter(
+        (it) => it.locked == false
+      );
+      const masteredSkills = data.user_skills.filter(
+        (it) => it.emoji > EMOJI_MASTERY
+      );
+      
+      return Math.round(
+        ((unlockedBadges.length + masteredSkills.length) * 100) / (data.user_badges.length + data.user_skills.length)
+      );
+    } else {
+      return 0;
+    }
   };
-
+  
   const loggedInComponent = (
     <div className="max-w-screen-lg">
       <div className="flex justify-center mb-8 mt-4">
@@ -24,9 +42,9 @@ export default function Outline() {
           <div className="flex flex-col gap-8 items-center">
             <p className="text-xl font-bold font-sans">Math Knowledge Tree</p>
             <p className="text-sm mb-4">
-              Practice different math-related skills
+              Practice skills to increase your math confidence. Then ace your quizzes to unlock badges!
             </p>
-            <ProgressRing percentage={getOverallProgress()} radius={24} />
+            <ProgressRing percentage={progress()} radius={24} />
           </div>
         </Card>
       </div>
@@ -56,11 +74,9 @@ export default function Outline() {
     </div>
   );
 
-  const loggedOutComponent = <LandingPage />;
-
   return (
     <div className="flex flex-col gap-8 justify-between w-full col-span-2 items-center mb-4 p-4 mx-auto">
-      {session || loading ? loggedInComponent : loggedOutComponent}
+      {loggedInComponent}
     </div>
   );
 }

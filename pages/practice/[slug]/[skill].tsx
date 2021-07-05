@@ -305,6 +305,7 @@ const PracticeQuiz = ({ slug, skill }) => {
                     <span className="font-bold text-green-400">
                       {questionData[index].answer.toString()}&nbsp;
                     </span>
+                    <br></br>
 
                     <span>
                       {guessAttempt != "" ? (
