@@ -8,8 +8,14 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
 
-
+- tailwind css
+- grades vs topic vs skill
 - react components
 - storybook
+- show a demo question type
 - graphQL queries/mutations
+- hasura
 - Different stages of the assessment (INPUT, TEST, CONCLUSIONS)
+- adaptive difficulty
+- practice tracker
+- how the question generator
