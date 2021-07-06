@@ -7,9 +7,16 @@ import { Player } from "../../pages/games/MathBattle";
 export interface CreateRoomProps {
   onCreateClick: () => void;
   players: Player[];
+  name: string;
+  setName: (name: string) => void;
 }
 
-const CreateRoom = ({ onCreateClick, players }: CreateRoomProps) => {
+const CreateRoom = ({
+  onCreateClick,
+  players,
+  name,
+  setName,
+}: CreateRoomProps) => {
   return (
     <div className="mr-10 ml-10">
       <div className="bg-white rounded-lg gap-4 flex flex-col md:flex-row">
@@ -23,8 +30,17 @@ const CreateRoom = ({ onCreateClick, players }: CreateRoomProps) => {
             Player Mode. You will be racing with eachother to see who can get
             the most correct answers and who can complete it the fastest. So
             let's see who will come up top!
-          </p>
+          </p>{" "}
           <div className="w-1/2 sm:items-center md:self-start">
+            <input
+              id="guess"
+              type="text"
+              autoComplete="off"
+              className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
+              placeholder="Enter your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
             <Button
               onClick={onCreateClick}
               label="Join Game"

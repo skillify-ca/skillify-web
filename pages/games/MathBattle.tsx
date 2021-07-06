@@ -20,6 +20,7 @@ const MathBattle = () => {
 
   const [stage, setStage] = useState(STAGE.JOIN_SESSION);
   const [room, setRoom] = useState<Colyseus.Room>();
+  const [name, setName] = useState("");
   var client = new Colyseus.Client("ws://localhost:4001");
   const onCreateClick = () => {
     client
@@ -27,7 +28,7 @@ const MathBattle = () => {
       .then((room) => {
         console.log(room.sessionId, "joined", room.name);
         setRoom(room);
-        room.send("join", { name: "Lavan" }); //Dyanmic Name
+        room.send("join", { name: name }); //Dyanmic Name
         setStage(STAGE.LOBBY);
       })
       .catch((e) => {
@@ -39,11 +40,11 @@ const MathBattle = () => {
     let playerArr = [];
     for (const [key, value] of Object.entries(message)) {
       console.log(key, value);
-      playerArr.push(value["name"]);
+      playerArr.push(value);
     }
     console.log(playerArr);
 
-    setPlayers([playerArr]);
+    setPlayers(playerArr);
   });
 
   return (
@@ -52,7 +53,12 @@ const MathBattle = () => {
       <div className="p-4">
         {" "}
         {stage == STAGE.JOIN_SESSION && (
-          <CreateRoom players={players} onCreateClick={onCreateClick} />
+          <CreateRoom
+            players={players}
+            onCreateClick={onCreateClick}
+            name={name}
+            setName={setName}
+          />
         )}
         {stage == STAGE.LOBBY && <Lobby players={players} />}
       </div>
