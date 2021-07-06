@@ -21,7 +21,7 @@ const Lobby = ({ players }: CreateRoomProps) => {
           {players.map((it) => (
             <h1 className="text-xl border-b">{it.name}</h1>
           ))}
-          <img width="10px" height="10px" src="" />
+          <p className="bg-gray-500 text-white font-bold">Code: BMWX</p>
         </div>
       </div>
     );
