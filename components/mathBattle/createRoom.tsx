@@ -6,16 +6,21 @@ import { Player } from "../../pages/games/MathBattle";
 
 export interface CreateRoomProps {
   onCreateClick: () => void;
+  onJoinClick: () => void;
   players: Player[];
   name: string;
   setName: (name: string) => void;
+  code: string;
+  setCode: (code: string) => void;
 }
 
 const CreateRoom = ({
   onCreateClick,
-  players,
+  onJoinClick,
   name,
   setName,
+  code,
+  setCode,
 }: CreateRoomProps) => {
   return (
     <div>
@@ -81,9 +86,11 @@ const CreateRoom = ({
                 autoComplete="off"
                 className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
                 placeholder="Enter the Room Code"
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
               />
               <Button
-                onClick={onCreateClick}
+                onClick={onJoinClick}
                 label="Join Game"
                 textColor="white"
                 backgroundColor="blue"

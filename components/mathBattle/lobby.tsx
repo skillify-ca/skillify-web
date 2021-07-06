@@ -6,9 +6,10 @@ import { Player } from "../../pages/games/MathBattle";
 
 export interface CreateRoomProps {
   players: Player[];
+  code: string;
 }
 
-const Lobby = ({ players }: CreateRoomProps) => {
+const Lobby = ({ players, code }: CreateRoomProps) => {
   console.log("player", players);
 
   if (players && players.length > 0) {
@@ -21,7 +22,7 @@ const Lobby = ({ players }: CreateRoomProps) => {
           {players.map((it) => (
             <h1 className="text-xl border-b">{it.name}</h1>
           ))}
-          <p className="bg-gray-500 text-white font-bold">Code: BMWX</p>
+          <p className="bg-gray-500 text-white font-bold">Code: {code}</p>
         </div>
       </div>
     );
