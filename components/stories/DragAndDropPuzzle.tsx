@@ -8,7 +8,26 @@ export interface DragAndDropPuzzleProps {
   question: string;
 }
 
+type QuestionData = {
+  parts: string[];
+};
+type PuzzleData = {
+  questions: QuestionData[];
+};
+
 const DragAndDropPuzzle = ({ question }: DragAndDropPuzzleProps) => {
+  const puzzleData: PuzzleData = {
+    questions: [
+      { parts: ["8 x 4 = ", "[3]", " 2"] },
+      { parts: ["[5],", " x 8 = 4", "[0]"] },
+      { parts: ["8 x 6 = ", "[4]", "8"] },
+      { parts: ["[8]", " x 8 = 64"] },
+      { parts: ["8 x ", "[9]", " = 7", "[2]"] },
+      { parts: ["2 x 8 = ", "[1]", "6"] },
+      { parts: ["[7]", " x 8 = 5", "[6]"] },
+    ],
+  };
+
   const [droppedTiles, setDroppedTiles] = useState([null]);
 
   const [boxes] = useState<BoxState[]>(
@@ -21,6 +40,28 @@ const DragAndDropPuzzle = ({ question }: DragAndDropPuzzleProps) => {
       return boxState;
     })
   );
+
+  const parseQuestionData = (question: QuestionData) => {
+    return (
+      <div className="flex items-center">
+        {question.parts.map((it) => parsePart(it))}
+      </div>
+    );
+  };
+
+  const parsePart = (part: string) => {
+    if (part.startsWith("[")) {
+      return (
+        <BoardSquare
+          accept={[ItemTypes.NUMBER_TILE]}
+          lastDroppedItem={droppedTiles[0]}
+          onDrop={(item) => handleDrop(0, item)}
+        />
+      );
+    } else {
+      return <p className="text-5xl whitespace-pre">{part}</p>;
+    }
+  };
 
   function isDropped(numberTile: string) {
     return droppedTiles.includes(Number.parseInt(numberTile));
@@ -41,16 +82,9 @@ const DragAndDropPuzzle = ({ question }: DragAndDropPuzzleProps) => {
         items-center p-8 bg-white shadow-md 
         rounded-xl max-w-screen-lg`}
     >
-      <div className="flex items-center">
-        <p className="text-5xl">8 x 4 =</p>
-        <div className="ml-4">
-          <BoardSquare
-          accept={[ItemTypes.NUMBER_TILE]}
-          lastDroppedItem={droppedTiles[0]}
-          onDrop={(item) => handleDrop(0, item)}
-        />
-        </div>
-        <p className="text-5xl">2</p>
+      <div className="grid grid-cols-2 gap-8">
+
+      {puzzleData.questions.map((it) => parseQuestionData(it))}
       </div>
 
       <div className="flex gap-4 flex-wrap w-96 sm:px-0 px-8 justify-center">
