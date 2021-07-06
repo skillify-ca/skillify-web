@@ -18,7 +18,7 @@ type PuzzleData = {
 const DragAndDropPuzzle = ({ question }: DragAndDropPuzzleProps) => {
   const puzzleData: PuzzleData = {
     questions: [
-      { parts: ["8 x 4 = ", "[3]", " 2"] },
+      { parts: ["8 x 4 = ", "[3]", "2"] },
       { parts: ["[5],", " x 8 = 4", "[0]"] },
       { parts: ["8 x 6 = ", "[4]", "8"] },
       { parts: ["[8]", " x 8 = 64"] },
