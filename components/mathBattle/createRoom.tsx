@@ -73,7 +73,7 @@ const CreateRoom = ({
                 className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
                 placeholder="Enter your name"
                 value={name}
-                onChange={(n) => setName(n.target.value)}
+                onChange={(e) => setName(e.target.value)}
               />
               <input
                 id="guess"
