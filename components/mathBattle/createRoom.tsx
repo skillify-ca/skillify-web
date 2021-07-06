@@ -1,35 +1,22 @@
 import React, { useState } from "react";
 import { Button } from "../stories/Button";
 import * as Colyseus from "colyseus.js";
+import Link from "next/link";
+import { Player } from "../../pages/games/MathBattle";
 
-const CreateRoom = () => {
-  const [room, setRoom] = useState<Colyseus.Room>();
-  const [players, setPlayers] = useState([]);
-  var client = new Colyseus.Client("ws://localhost:4001");
-  const onCreateClick = () => {
-    client
-      .joinOrCreate("tictactoe")
-      .then((room) => {
-        console.log(room.sessionId, "joined", room.name);
-        setRoom(room);
-        room.send("join", { name: "Lavan" }); //Dyanmic Name
-      })
-      .catch((e) => {
-        console.log("JOIN ERROR", e);
-      });
-  };
-  room?.onMessage("joinResponse", (message) => {
-    console.log(client.auth._id, "received fire on", room.name, message);
-    let playerArr = [];
-    for (const [key, value] of Object.entries(message)) {
-      console.log(key, value);
-      playerArr.push(value["name"]);
-    }
-    console.log(playerArr);
+export interface CreateRoomProps {
+  onCreateClick: () => void;
+  players: Player[];
+  name: string;
+  setName: (name: string) => void;
+}
 
-    setPlayers([playerArr]);
-  });
-
+const CreateRoom = ({
+  onCreateClick,
+  players,
+  name,
+  setName,
+}: CreateRoomProps) => {
   return (
     <div className="mr-10 ml-10">
       <div className="bg-white rounded-lg gap-4 flex flex-col md:flex-row">
@@ -43,17 +30,23 @@ const CreateRoom = () => {
             Player Mode. You will be racing with eachother to see who can get
             the most correct answers and who can complete it the fastest. So
             let's see who will come up top!
-          </p>
+          </p>{" "}
           <div className="w-1/2 sm:items-center md:self-start">
+            <input
+              id="guess"
+              type="text"
+              autoComplete="off"
+              className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
+              placeholder="Enter your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
             <Button
               onClick={onCreateClick}
               label="Join Game"
               textColor="white"
               backgroundColor="blue"
             ></Button>
-            {players.map((it) => (
-              <p>{it}</p>
-            ))}
           </div>
         </div>
       </div>
