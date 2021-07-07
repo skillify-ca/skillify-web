@@ -5,6 +5,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import { Button } from "../../components/stories/Button";
+import DragAndDropPuzzle from "../../components/stories/DragAndDropPuzzle";
 import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { userId } from "../../graphql/utils/constants";
 import {
@@ -18,6 +19,7 @@ import { getVideosForSkill } from "../api/videoHelper";
 import Resources from "../resources";
 
 const SkillOverviewPage = ({ slug }) => {
+  const SHOULD_SHOW_PUZZLES = false;
   const [session, loading] = useSession();
   const userSkillsQuery = useQuery(FETCH_USER_EMOJIS, {
     variables: {
@@ -65,6 +67,65 @@ const SkillOverviewPage = ({ slug }) => {
     </div>
   );
 
+  const puzzleId = "8";
+  const puzzleSection = (
+    <div>
+      <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl pl-4 gap-8 m-8">
+        <img
+          className="w-full sm:w-1/2 object-cover rounded-xl"
+          alt="student-image"
+          src="/images/practiceAdd.png"
+        />
+        <div className="flex flex-col w-full sm:w-1/2 gap-4 justify-center">
+          <p className="text-4xl font-bold text-blue-900"> PUZZLES </p>
+          <p className="text-xl">Solve this puzzle to learn math</p>
+          <div className="flex gap-8 flex-wrap text-white text-xl border-blue-900 font-bold rounded-xl">
+            <Link href={`/puzzle/${puzzleId}`}>
+              <button className="disabled:opacity-50 bg-gradient-to-b  border-b-4 rounded-xl active:border-b-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 border border-blue-700 ">
+                Puzzle 5
+              </button>
+            </Link>
+            <Link href={`/puzzle/${puzzleId}`}>
+              <button className="disabled:opacity-50 bg-gradient-to-b  border-b-4 rounded-xl active:border-b-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 border border-blue-700 ">
+                Puzzle 2
+              </button>
+            </Link>
+            <Link href={`/puzzle/${puzzleId}`}>
+              <button className="disabled:opacity-50 bg-gradient-to-b  border-b-4 rounded-xl active:border-b-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 border border-blue-700 ">
+                Puzzle 4
+              </button>
+            </Link>
+            <Link href={`/puzzle/${puzzleId}`}>
+              <button className="disabled:opacity-50 bg-gradient-to-b  border-b-4 rounded-xl active:border-b-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 border border-blue-700 ">
+                Puzzle 8
+              </button>
+            </Link>
+            <Link href={`/puzzle/${puzzleId}`}>
+              <button className="disabled:opacity-50 bg-gradient-to-b  border-b-4 rounded-xl active:border-b-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 border border-blue-700 ">
+                Puzzle 3
+              </button>
+            </Link>
+            <Link href={`/puzzle/${puzzleId}`}>
+              <button className="disabled:opacity-50 bg-gradient-to-b  border-b-4 rounded-xl active:border-b-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 border border-blue-700 ">
+                Puzzle 6
+              </button>
+            </Link>
+            <Link href={`/puzzle/${puzzleId}`}>
+              <button className="disabled:opacity-50 bg-gradient-to-b  border-b-4 rounded-xl active:border-b-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 border border-blue-700 ">
+                Puzzle 9
+              </button>
+            </Link>
+            <Link href={`/puzzle/${puzzleId}`}>
+              <button className="disabled:opacity-50 bg-gradient-to-b  border-b-4 rounded-xl active:border-b-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 border border-blue-700 ">
+                Puzzle 7
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-architect-blue-200 bg-blue-100 h-screen">
       <DiagnosticNavbar />
@@ -104,6 +165,8 @@ const SkillOverviewPage = ({ slug }) => {
             ></iframe>
           ))}
         </div>
+        {/* Hide the puzzle section until it's ready to launch */}
+        {SHOULD_SHOW_PUZZLES && puzzleSection}
         {practiceComponent}
       </div>
     </div>

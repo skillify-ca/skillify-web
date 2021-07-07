@@ -69,11 +69,14 @@ const MathBattle = () => {
           <CreateRoom
             players={players}
             onCreateClick={onCreateClick}
+            onJoinClick={onJoinClick}
             name={name}
             setName={setName}
+            code={code}
+            setCode={setCode}
           />
         )}
-        {stage == STAGE.LOBBY && <Lobby players={players} />}
+        {stage == STAGE.LOBBY && <Lobby players={players} code={code} />}
       </div>
     </div>
   );
