@@ -10,6 +10,7 @@ export enum Grade {
   GRADE_1 = "Grade 1",
   GRADE_2 = "Grade 2",
   GRADE_3 = "Grade 3",
+  Grade_4 = "Grade 4",
 }
 
 export const getSkillsForTopic = (topic: Topic): Skill[] => {
@@ -96,8 +97,10 @@ export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): Skill[] => {
       return [Skill.ADDITION_SINGLE];
     } else if (grade == Grade.GRADE_2) {
       return [Skill.ADDITION_DOUBLE];
-    } else {
+    } else if (grade == Grade.GRADE_3) {
       return [Skill.ADDITION_TRIPLE, Skill.ADDITION_PROPERTIES];
+    } else {
+      return [Skill.ADDITION_4_DIGIT];
     }
   } else if (topic == Topic.SUBTRACTION) {
     if (grade == Grade.GRADE_1) {

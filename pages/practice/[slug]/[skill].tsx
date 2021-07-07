@@ -64,6 +64,8 @@ const PracticeQuiz = ({ slug, skill }) => {
             return 3;
           case "addition-properties":
             return 4;
+          case "additiom-four-digit":
+            return 43;
         }
       case "subtraction":
         switch (skill) {
@@ -368,6 +370,7 @@ export async function getStaticPaths() {
       { params: { slug: "addition", skill: "add-one-digit" } },
       { params: { slug: "addition", skill: "add-two-digit" } },
       { params: { slug: "addition", skill: "add-three-digit" } },
+      { params: { slug: "addition", skill: "add-four-digit" } },
       { params: { slug: "addition", skill: "addition-properties" } },
       { params: { slug: "subtraction", skill: "subtract-single-digit" } },
       { params: { slug: "subtraction", skill: "subtract-double-digit" } },
