@@ -6,16 +6,16 @@ export interface TenFrameProp {
 }
 
 export const TenFrame: React.FC<TenFrameProp> = ({ num, ...props }) => {
-  const [circle1, setCircle1] = useState("bg-white");
-  const [circle2, setCircle2] = useState("bg-white");
-  const [circle3, setCircle3] = useState("bg-white");
-  const [circle4, setCircle4] = useState("bg-white");
-  const [circle5, setCircle5] = useState("bg-white");
-  const [circle6, setCircle6] = useState("bg-white");
-  const [circle7, setCircle7] = useState("bg-white");
-  const [circle8, setCircle8] = useState("bg-white");
-  const [circle9, setCircle9] = useState("bg-white");
-  const [circle10, setCircle10] = useState("bg-white");
+  const [circle1, setCircle1] = useState("bg-transparent");
+  const [circle2, setCircle2] = useState("bg-transparent");
+  const [circle3, setCircle3] = useState("bg-transparent");
+  const [circle4, setCircle4] = useState("bg-transparent");
+  const [circle5, setCircle5] = useState("bg-transparent");
+  const [circle6, setCircle6] = useState("bg-transparent");
+  const [circle7, setCircle7] = useState("bg-transparent");
+  const [circle8, setCircle8] = useState("bg-transparent");
+  const [circle9, setCircle9] = useState("bg-transparent");
+  const [circle10, setCircle10] = useState("bg-transparent");
 
   const colourSetterArr = [
     setCircle1,
