@@ -161,8 +161,8 @@ const DragAndDropPuzzle = ({ onSubmit }: DragAndDropPuzzleProps) => {
         {puzzleData.questions.map((it, index) => parseQuestionData(it, index))}
       </div>
 
-      <div className="flex justify-between gap-16">
-        <div className="flex gap-4 flex-wrap w-96 sm:px-0 px-8 justify-center">
+      <div className="flex flex-col items-center justify-between gap-8">
+        <div className="flex gap-4">
           {boxes
             .filter(({ name }) => !isDropped(name))
             .map(({ name, value, type }, index) => (
@@ -175,7 +175,7 @@ const DragAndDropPuzzle = ({ onSubmit }: DragAndDropPuzzleProps) => {
               />
             ))}
         </div>
-        <div className="flex flex-col justify-between">
+        <div className="flex gap-16 justify-between">
           <Button
             disabled={!shouldEnableSubmitButton()}
             label="Submit"
@@ -196,15 +196,3 @@ const DragAndDropPuzzle = ({ onSubmit }: DragAndDropPuzzleProps) => {
   );
 };
 export default DragAndDropPuzzle;
-
-/*
-Example puzzle:
-8 x 4 = [3]2
-[5] x 8 = 4[0]
-8 x 6 = [4]8
-[8] x 8 = 64
-
-8 x [9] = 7[2] 
-2 x 8 = [1]6
-[7] x 8 = 5[6]
-*/
