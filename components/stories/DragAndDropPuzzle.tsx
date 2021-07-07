@@ -127,6 +127,13 @@ const DragAndDropPuzzle = ({ question }: DragAndDropPuzzleProps) => {
     });
   }, []);
 
+  const shouldEnableSubmitButton = () => {
+    return boxes.filter((it) => isDropped(it.name)).length === boxes.length;
+  };
+  const shouldEnableResetButton = () => {
+    return boxes.filter((it) => isDropped(it.name)).length > 0;
+  };
+
   return (
     <div
       className={`
@@ -138,21 +145,35 @@ const DragAndDropPuzzle = ({ question }: DragAndDropPuzzleProps) => {
         {puzzleData.questions.map((it, index) => parseQuestionData(it, index))}
       </div>
 
-      <div className="flex gap-4 flex-wrap w-96 sm:px-0 px-8 justify-center">
-        {boxes
-          .filter(({ name }) => !isDropped(name))
-          .map(({ name, value, type }, index) => (
-            <NumberTile
-              name={name}
-              value={value}
-              type={type}
-              isDropped={isDropped(name)}
-              key={index}
-            />
-          ))}
+      <div className="flex justify-between gap-16">
+        <div className="flex gap-4 flex-wrap w-96 sm:px-0 px-8 justify-center">
+          {boxes
+            .filter(({ name }) => !isDropped(name))
+            .map(({ name, value, type }, index) => (
+              <NumberTile
+                name={name}
+                value={value}
+                type={type}
+                isDropped={isDropped(name)}
+                key={index}
+              />
+            ))}
+        </div>
+        <div className="flex flex-col justify-between">
+          <Button
+            disabled={!shouldEnableSubmitButton()}
+            label="Submit"
+            backgroundColor="blue"
+            textColor="white"
+          />
+          <Button
+            disabled={!shouldEnableResetButton()}
+            label="Reset"
+            backgroundColor="green"
+            textColor="white"
+          />
+        </div>
       </div>
-      <Button label="Submit" backgroundColor="blue" textColor="white" />
-      <Button label="Reset" backgroundColor="green" textColor="white" />
     </div>
   );
 };
