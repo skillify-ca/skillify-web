@@ -1,4 +1,5 @@
 import React, { ReactNode, useCallback, useState } from "react";
+import { GuessData } from "../../pages/api/guessData";
 import { BoardSquare } from "../ticTacToe/BoardSquare";
 import { ItemTypes } from "../ticTacToe/ItemTypes";
 import { NumberTile } from "../ticTacToe/NumberTile";
@@ -6,12 +7,11 @@ import { BoxState } from "../ticTacToe/TicTacToeBoard";
 import { Button } from "./Button";
 
 export interface DragAndDropPuzzleProps {
-  question: string;
+  onSubmit: (guess: GuessData) => void;
 }
 
 type TileData = {
   type: string;
-  answer: number;
   index: number;
 };
 type QuestionPart = {
@@ -22,65 +22,67 @@ type QuestionData = {
   parts: QuestionPart[];
 };
 type PuzzleData = {
+  answer: string;
   questions: QuestionData[];
 };
 
-const DragAndDropPuzzle = ({ question }: DragAndDropPuzzleProps) => {
+const DragAndDropPuzzle = ({ onSubmit }: DragAndDropPuzzleProps) => {
   const puzzleData: PuzzleData = {
+    answer: "3,5,0,4,8,9,2,1,7,6",
     questions: [
       {
         parts: [
           { text: "8 x 4 = " },
-          { tileData: { type: "tile", answer: 3, index: 0 } },
+          { tileData: { type: "tile", index: 0 } },
           { text: "2" },
         ],
       },
       {
         parts: [
-          { tileData: { type: "tile", answer: 5, index: 1 } },
+          { tileData: { type: "tile", index: 1 } },
           { text: " x 8 = 4" },
-          { tileData: { type: "tile", answer: 0, index: 2 } },
+          { tileData: { type: "tile", index: 2 } },
         ],
       },
       {
         parts: [
           { text: "8 x 6 = " },
-          { tileData: { type: "tile", answer: 4, index: 3 } },
+          { tileData: { type: "tile", index: 3 } },
           { text: "8" },
         ],
       },
       {
         parts: [
-          { tileData: { type: "tile", answer: 8, index: 4 } },
+          { tileData: { type: "tile", index: 4 } },
           { text: " x 8 = 64" },
         ],
       },
       {
         parts: [
           { text: "8 x " },
-          { tileData: { type: "tile", answer: 9, index: 5 } },
+          { tileData: { type: "tile", index: 5 } },
           { text: " = 7" },
-          { tileData: { type: "tile", answer: 2, index: 6 } },
+          { tileData: { type: "tile", index: 6 } },
         ],
       },
       {
         parts: [
           { text: "2 x 8 = " },
-          { tileData: { type: "tile", answer: 1, index: 7 } },
+          { tileData: { type: "tile", index: 7 } },
           { text: "6" },
         ],
       },
       {
         parts: [
-          { tileData: { type: "tile", answer: 7, index: 8 } },
+          { tileData: { type: "tile", index: 8 } },
           { text: " x 8 = 5" },
-          { tileData: { type: "tile", answer: 6, index: 9 } },
+          { tileData: { type: "tile", index: 9 } },
         ],
       },
     ],
   };
 
-  const [droppedTiles, setDroppedTiles] = useState([]);
+  const [droppedTiles, setDroppedTiles] = useState<number[]>([]);
 
   const [boxes] = useState<BoxState[]>(
     "0,1,2,3,4,5,6,7,8,9".split(",").map((it) => {
@@ -134,8 +136,19 @@ const DragAndDropPuzzle = ({ question }: DragAndDropPuzzleProps) => {
     return boxes.filter((it) => isDropped(it.name)).length > 0;
   };
   const onResetClicked = () => {
-    setDroppedTiles([])
+    setDroppedTiles([]);
+  };
+  const gradeGuess = () => {
+    return droppedTiles.map(it => it.toString()).join(",") === puzzleData.answer
   }
+  const onSubmitClicked = () => {
+    const guessData: GuessData = {
+      isCorrect: gradeGuess(),
+      guess: droppedTiles.map(it => it.toString()).join(",")
+    };
+
+    onSubmit(guessData);
+  };
 
   return (
     <div
@@ -168,6 +181,7 @@ const DragAndDropPuzzle = ({ question }: DragAndDropPuzzleProps) => {
             label="Submit"
             backgroundColor="blue"
             textColor="white"
+            onClick={onSubmitClicked}
           />
           <Button
             disabled={!shouldEnableResetButton()}

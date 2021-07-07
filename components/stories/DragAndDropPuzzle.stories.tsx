@@ -15,7 +15,7 @@ export default {
 const Template: Story<DragAndDropPuzzleProps> = (args) => {
   return (
     <DndProvider backend={HTML5Backend}>
-      <DragAndDropPuzzle {...args} />
+      <DragAndDropPuzzle {...args} onSubmit={(it) => console.log(it)} />
     </DndProvider>
   );
 };
