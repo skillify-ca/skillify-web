@@ -133,6 +133,9 @@ const DragAndDropPuzzle = ({ question }: DragAndDropPuzzleProps) => {
   const shouldEnableResetButton = () => {
     return boxes.filter((it) => isDropped(it.name)).length > 0;
   };
+  const onResetClicked = () => {
+    setDroppedTiles([])
+  }
 
   return (
     <div
@@ -171,6 +174,7 @@ const DragAndDropPuzzle = ({ question }: DragAndDropPuzzleProps) => {
             label="Reset"
             backgroundColor="green"
             textColor="white"
+            onClick={onResetClicked}
           />
         </div>
       </div>
