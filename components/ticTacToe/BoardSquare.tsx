@@ -50,11 +50,11 @@ export const BoardSquare: React.FC<BoardSquareProps> = ({
   return (
     <div
       ref={drop}
-      className="w-24 h-24 bg-blue-200 border-blue-800 border-2 flex justify-center items-center"
+      className="w-16 h-16 bg-blue-200 border-blue-800 border-2 flex justify-center items-center"
     >
       {isActive ? "Release to drop" : ``}
 
-      {lastDroppedItem && (
+      {lastDroppedItem !== undefined && (
         <NumberTile
           name={lastDroppedItem}
           value={Number.parseInt(lastDroppedItem)}
