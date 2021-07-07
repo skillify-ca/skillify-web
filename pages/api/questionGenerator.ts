@@ -32,6 +32,8 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
       return getRandomSubtractionQuestion(10, 101, skill);
     case Skill.SUBTRACTION_TRIPLE:
       return getRandomSubtractionQuestion(100, 1001, skill);
+    case Skill.SUBTRACTION_4_DIGIT:
+      return getRandomSubtractionQuestion(1000, 10001, skill);
     case Skill.EQUAL_GROUP_10_ITEMS:
       return getRandomMultiplicationQuestion(1, 11, skill);
     case Skill.MULTIPLICATION_5:

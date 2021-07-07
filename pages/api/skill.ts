@@ -89,6 +89,10 @@ export function getSkillId(skill: Skill) {
       return 43;
     case Skill.ADDITION_TENTHS:
       return 44;
+    case Skill.SUBTRACTION_4_DIGIT:
+      return 45;
+    case Skill.SUBTRACTION_TENTHS:
+      return 46;
   }
 }
 
@@ -112,8 +116,10 @@ export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): Skill[] => {
       return [Skill.SUBTRACTION_SINGLE];
     } else if (grade == Grade.GRADE_2) {
       return [Skill.SUBTRACTION_DOUBLE];
-    } else {
+    } else if (grade == Grade.GRADE_3) {
       return [Skill.SUBTRACTION_TRIPLE];
+    } else {
+      return [Skill.SUBTRACTION_4_DIGIT, Skill.SUBTRACTION_TENTHS];
     }
   } else if (topic == Topic.MULTIPLICATION) {
     if (grade == Grade.GRADE_1) {
@@ -154,6 +160,8 @@ export enum Skill {
   DIVIDE_100 = "divide-100-equally",
   ADDITION_4_DIGIT = "add-four-digit",
   ADDITION_TENTHS = "add-tenths",
+  SUBTRACTION_4_DIGIT = "subtract-four-digit",
+  SUBTRACTION_TENTHS = "subtract-tenths",
 }
 
 export function SkillDescription(skill: Skill) {
@@ -177,6 +185,10 @@ export function SkillDescription(skill: Skill) {
     return "Subtract double digit numbers";
   } else if (skill == Skill.SUBTRACTION_TRIPLE) {
     return "Subtract triple digit numbers";
+  } else if (skill == Skill.SUBTRACTION_4_DIGIT) {
+    return "Subtract four digit numbers";
+  } else if (skill == Skill.SUBTRACTION_TENTHS) {
+    return "Subtract tenths from each other";
   } else if (skill == Skill.EQUAL_GROUP_10_ITEMS) {
     return "Identify total items in equal groups";
   } else if (skill == Skill.MULTIPLICATION_5) {
@@ -221,6 +233,8 @@ export const getPracticeCardForSkill = (
     case Skill.SUBTRACTION_SINGLE:
     case Skill.SUBTRACTION_DOUBLE:
     case Skill.SUBTRACTION_TRIPLE:
+    case Skill.SUBTRACTION_4_DIGIT:
+    case Skill.SUBTRACTION_TENTHS:
       return [
         {
           link: `subtraction/${skill}`,

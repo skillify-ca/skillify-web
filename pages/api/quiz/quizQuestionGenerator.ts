@@ -47,6 +47,9 @@ export const generateQuestions = (slug: string, currentLevel: number) => {
         case 3:
           skill = Skill.SUBTRACTION_TRIPLE;
           break;
+        case 4:
+          skill = Skill.SUBTRACTION_4_DIGIT;
+          break;
       }
       return generateQuestionsForSkill(NUM_QUESTIONS, skill);
     } else if (slug.toLowerCase() == "multiplication") {
