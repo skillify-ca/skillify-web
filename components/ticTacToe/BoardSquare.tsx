@@ -54,7 +54,7 @@ export const BoardSquare: React.FC<BoardSquareProps> = ({
     >
       {isActive ? "Release to drop" : ``}
 
-      {lastDroppedItem && (
+      {lastDroppedItem !== undefined && (
         <NumberTile
           name={lastDroppedItem}
           value={Number.parseInt(lastDroppedItem)}
