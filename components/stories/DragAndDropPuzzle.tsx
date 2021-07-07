@@ -8,6 +8,7 @@ import { Button } from "./Button";
 
 export interface DragAndDropPuzzleProps {
   onSubmit: (guess: GuessData) => void;
+  onReset: () => void;
 }
 
 type TileData = {
@@ -26,7 +27,7 @@ type PuzzleData = {
   questions: QuestionData[];
 };
 
-const DragAndDropPuzzle = ({ onSubmit }: DragAndDropPuzzleProps) => {
+const DragAndDropPuzzle = ({ onSubmit, onReset }: DragAndDropPuzzleProps) => {
   const puzzleData: PuzzleData = {
     answer: "3,5,0,4,8,9,2,1,7,6",
     questions: [
@@ -137,14 +138,17 @@ const DragAndDropPuzzle = ({ onSubmit }: DragAndDropPuzzleProps) => {
   };
   const onResetClicked = () => {
     setDroppedTiles([]);
+    onReset()
   };
   const gradeGuess = () => {
-    return droppedTiles.map(it => it.toString()).join(",") === puzzleData.answer
-  }
+    return (
+      droppedTiles.map((it) => it.toString()).join(",") === puzzleData.answer
+    );
+  };
   const onSubmitClicked = () => {
     const guessData: GuessData = {
       isCorrect: gradeGuess(),
-      guess: droppedTiles.map(it => it.toString()).join(",")
+      guess: droppedTiles.map((it) => it.toString()).join(","),
     };
 
     onSubmit(guessData);
