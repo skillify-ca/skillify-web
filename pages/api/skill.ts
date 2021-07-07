@@ -19,6 +19,7 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
         Skill.ADDITION_SINGLE,
         Skill.ADDITION_DOUBLE,
         Skill.ADDITION_TRIPLE,
+        Skill.ADDITION_4_DIGIT,
       ];
     case Topic.SUBTRACTION:
       return [
@@ -143,6 +144,7 @@ export enum Skill {
   EQUAL_SHARING_8_ITEMS = "share-8-equally",
   DIVIDE_12_EQUALLY = "divide-12-equally",
   DIVIDE_100 = "divide-100-equally",
+  ADDITION_4_DIGIT = "add-four-digit",
 }
 
 export function SkillDescription(skill: Skill) {
@@ -154,6 +156,8 @@ export function SkillDescription(skill: Skill) {
     return "Add two digit numbers";
   } else if (skill == Skill.ADDITION_TRIPLE) {
     return "Add three digit numbers";
+  } else if (skill == Skill.ADDITION_4_DIGIT) {
+    return "Add four digit numbers";
   } else if (skill == Skill.ADDITION_PROPERTIES) {
     return "Add using addition properties";
   } else if (skill == Skill.SUBTRACTION_SINGLE) {
@@ -195,6 +199,7 @@ export const getPracticeCardForSkill = (
     case Skill.ADDITION_SINGLE:
     case Skill.ADDITION_DOUBLE:
     case Skill.ADDITION_TRIPLE:
+    case Skill.ADDITION_4_DIGIT:
     case Skill.ADDITION_PROPERTIES:
       return [
         {

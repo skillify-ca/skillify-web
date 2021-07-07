@@ -30,7 +30,7 @@ enum STAGE {
 
 const Diagnostic = () => {
   const TOTAL_QUESTIONS = 12;
-  const QUESTIONS_PER_TOPIC = 3;
+  const QUESTIONS_PER_TOPIC = 4;
 
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState(1);

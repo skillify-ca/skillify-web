@@ -21,7 +21,20 @@ const MathBattle = () => {
   const [stage, setStage] = useState(STAGE.JOIN_SESSION);
   const [room, setRoom] = useState<Colyseus.Room>();
   const [name, setName] = useState("");
+  const [code, setCode] = useState("");
   var client = new Colyseus.Client("ws://localhost:4001");
+  const onJoinClick = () => {
+    client
+      .joinById(code)
+      .then((room) => {
+        setRoom(room);
+        room.send("join", { name: name }); //Dyanmic Name
+        setStage(STAGE.LOBBY);
+      })
+      .catch((e) => {
+        console.log("JOIN ERROR", e);
+      });
+  };
   const onCreateClick = () => {
     client
       .joinOrCreate("tictactoe")

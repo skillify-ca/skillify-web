@@ -22,6 +22,8 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
       return getRandomAdditionQuestion(10, 101, skill);
     case Skill.ADDITION_TRIPLE:
       return getRandomAdditionQuestion(100, 1001, skill);
+    case Skill.ADDITION_4_DIGIT:
+      return getRandomAdditionQuestion(1000, 10001, skill);
     case Skill.ADDITION_PROPERTIES:
       return getRandomPropertyAdditionQuestion(1, 15, skill);
     case Skill.SUBTRACTION_SINGLE:

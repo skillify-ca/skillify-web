@@ -19,6 +19,7 @@ const topics: Topic[] = [
       Skill.ADDITION_SINGLE,
       Skill.ADDITION_DOUBLE,
       Skill.ADDITION_TRIPLE,
+      Skill.ADDITION_4_DIGIT,
     ],
   },
   {

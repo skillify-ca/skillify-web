@@ -16,6 +16,9 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
       case "add-three-digit":
         skill = Skill.ADDITION_TRIPLE;
         break;
+      case "add-four-digit":
+        skill = Skill.ADDITION_4_DIGIT;
+        break;
       case "addition-properties":
         skill = Skill.ADDITION_PROPERTIES;
         break;
