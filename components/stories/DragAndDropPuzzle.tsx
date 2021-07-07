@@ -8,6 +8,15 @@ export interface DragAndDropPuzzleProps {
   question: string;
 }
 
+type TileData = {
+  type: string;
+  answer: number;
+  index: number;
+};
+type QuestionPart = {
+  text?: string;
+  tileData?: TileData;
+};
 type QuestionData = {
   parts: string[];
 };
