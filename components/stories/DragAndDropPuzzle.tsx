@@ -83,7 +83,7 @@ const DragAndDropPuzzle = ({ question }: DragAndDropPuzzleProps) => {
   const [droppedTiles, setDroppedTiles] = useState([null]);
 
   const [boxes] = useState<BoxState[]>(
-    "0,1,2,3,4,5,6,7,8,9".split(",").map((it) => {
+    "1,2,3,4,5,6,7,8,9".split(",").map((it) => {
       const boxState: BoxState = {
         name: it.toString(),
         value: Number.parseInt(it),
