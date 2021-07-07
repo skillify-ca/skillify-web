@@ -155,7 +155,7 @@ const DragAndDropPuzzle = ({ onSubmit }: DragAndDropPuzzleProps) => {
       className={`
         flex flex-col justify-center space-y-16 
         items-center p-8 bg-white shadow-md 
-        rounded-xl max-w-screen-lg`}
+        rounded-xl max-w-screen-lg min-w-full`}
     >
       <div className="grid grid-cols-2 gap-8">
         {puzzleData.questions.map((it, index) => parseQuestionData(it, index))}
