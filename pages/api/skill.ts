@@ -10,6 +10,7 @@ export enum Grade {
   GRADE_1 = "Grade 1",
   GRADE_2 = "Grade 2",
   GRADE_3 = "Grade 3",
+  Grade_4 = "Grade 4",
 }
 
 export const getSkillsForTopic = (topic: Topic): Skill[] => {
@@ -19,6 +20,8 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
         Skill.ADDITION_SINGLE,
         Skill.ADDITION_DOUBLE,
         Skill.ADDITION_TRIPLE,
+        Skill.ADDITION_4_DIGIT,
+        Skill.ADDITION_TENTHS,
       ];
     case Topic.SUBTRACTION:
       return [
@@ -82,6 +85,10 @@ export function getSkillId(skill: Skill) {
       return 41;
     case Skill.DIVIDE_100:
       return 42;
+    case Skill.ADDITION_4_DIGIT:
+      return 43;
+    case Skill.ADDITION_TENTHS:
+      return 44;
   }
 }
 
@@ -95,8 +102,10 @@ export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): Skill[] => {
       return [Skill.ADDITION_SINGLE];
     } else if (grade == Grade.GRADE_2) {
       return [Skill.ADDITION_DOUBLE];
-    } else {
+    } else if (grade == Grade.GRADE_3) {
       return [Skill.ADDITION_TRIPLE, Skill.ADDITION_PROPERTIES];
+    } else {
+      return [Skill.ADDITION_4_DIGIT, Skill.ADDITION_TENTHS];
     }
   } else if (topic == Topic.SUBTRACTION) {
     if (grade == Grade.GRADE_1) {
@@ -143,6 +152,8 @@ export enum Skill {
   EQUAL_SHARING_8_ITEMS = "share-8-equally",
   DIVIDE_12_EQUALLY = "divide-12-equally",
   DIVIDE_100 = "divide-100-equally",
+  ADDITION_4_DIGIT = "add-four-digit",
+  ADDITION_TENTHS = "add-tenths",
 }
 
 export function SkillDescription(skill: Skill) {
@@ -156,6 +167,10 @@ export function SkillDescription(skill: Skill) {
     return "Add three digit numbers";
   } else if (skill == Skill.ADDITION_PROPERTIES) {
     return "Add using addition properties";
+  } else if (skill == Skill.ADDITION_4_DIGIT) {
+    return "Add four digit numbers";
+  } else if (skill == Skill.ADDITION_TENTHS) {
+    return "Add tenths together";
   } else if (skill == Skill.SUBTRACTION_SINGLE) {
     return "Subtract single digit numbers";
   } else if (skill == Skill.SUBTRACTION_DOUBLE) {
@@ -196,6 +211,8 @@ export const getPracticeCardForSkill = (
     case Skill.ADDITION_DOUBLE:
     case Skill.ADDITION_TRIPLE:
     case Skill.ADDITION_PROPERTIES:
+    case Skill.ADDITION_4_DIGIT:
+    case Skill.ADDITION_TENTHS:
       return [
         {
           link: `addition/${skill}`,

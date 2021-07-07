@@ -79,6 +79,7 @@ const Quiz = ({ slug }) => {
   useEffect(() => {
     const level = Number.parseInt(query.level as string);
     setCurrentLevel(level);
+    console.log("level", level);
     setQuestionData(generateQuestions(slug, level));
     setSessionId(uuidv4());
   }, []);
@@ -168,6 +169,7 @@ const Quiz = ({ slug }) => {
     setGameOver(false);
     setSecondsElapsed(0);
     setQuestionData(generateQuestions(slug, currentLevel));
+    console.log(currentLevel);
     var newInterval = setInterval(() => {
       setSecondsElapsed((secondsElapsed) => secondsElapsed + 1);
     }, 1000);
