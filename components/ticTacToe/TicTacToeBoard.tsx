@@ -4,7 +4,7 @@ import { ItemTypes } from "./ItemTypes";
 import { NumberTile } from "./NumberTile";
 import update from "immutability-helper";
 
-type BoxState = {
+export type BoxState = {
   name: string;
   value: number;
   type: string;
