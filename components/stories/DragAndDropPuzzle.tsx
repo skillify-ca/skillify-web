@@ -3,6 +3,7 @@ import { BoardSquare } from "../ticTacToe/BoardSquare";
 import { ItemTypes } from "../ticTacToe/ItemTypes";
 import { NumberTile } from "../ticTacToe/NumberTile";
 import { BoxState } from "../ticTacToe/TicTacToeBoard";
+import { Button } from "./Button";
 
 export interface DragAndDropPuzzleProps {
   question: string;
@@ -18,7 +19,7 @@ type QuestionPart = {
   tileData?: TileData;
 };
 type QuestionData = {
-  parts: string[];
+  parts: QuestionPart[];
 };
 type PuzzleData = {
   questions: QuestionData[];
@@ -27,13 +28,55 @@ type PuzzleData = {
 const DragAndDropPuzzle = ({ question }: DragAndDropPuzzleProps) => {
   const puzzleData: PuzzleData = {
     questions: [
-      { parts: ["8 x 4 = ", "[3]", "2"] },
-      { parts: ["[5],", " x 8 = 4", "[0]"] },
-      { parts: ["8 x 6 = ", "[4]", "8"] },
-      { parts: ["[8]", " x 8 = 64"] },
-      { parts: ["8 x ", "[9]", " = 7", "[2]"] },
-      { parts: ["2 x 8 = ", "[1]", "6"] },
-      { parts: ["[7]", " x 8 = 5", "[6]"] },
+      {
+        parts: [
+          { text: "8 x 4 = " },
+          { tileData: { type: "tile", answer: 3, index: 0 } },
+          { text: "2" },
+        ],
+      },
+      {
+        parts: [
+          { tileData: { type: "tile", answer: 5, index: 1 } },
+          { text: " x 8 = 4" },
+          { tileData: { type: "tile", answer: 0, index: 2 } },
+        ],
+      },
+      {
+        parts: [
+          { text: "8 x 6 = " },
+          { tileData: { type: "tile", answer: 4, index: 3 } },
+          { text: "8" },
+        ],
+      },
+      {
+        parts: [
+          { tileData: { type: "tile", answer: 8, index: 4 } },
+          { text: " x 8 = 64" },
+        ],
+      },
+      {
+        parts: [
+          { text: "8 x " },
+          { tileData: { type: "tile", answer: 9, index: 5 } },
+          { text: " = 7" },
+          { tileData: { type: "tile", answer: 2, index: 6 } },
+        ],
+      },
+      {
+        parts: [
+          { text: "2 x 8 = " },
+          { tileData: { type: "tile", answer: 1, index: 7 } },
+          { text: "6" },
+        ],
+      },
+      {
+        parts: [
+          { tileData: { type: "tile", answer: 7, index: 8 } },
+          { text: " x 8 = 5" },
+          { tileData: { type: "tile", answer: 6, index: 9 } },
+        ],
+      },
     ],
   };
 
@@ -50,25 +93,25 @@ const DragAndDropPuzzle = ({ question }: DragAndDropPuzzleProps) => {
     })
   );
 
-  const parseQuestionData = (question: QuestionData) => {
+  const parseQuestionData = (question: QuestionData, index: number) => {
     return (
-      <div className="flex items-center">
+      <div className="flex items-center" key={index}>
         {question.parts.map((it) => parsePart(it))}
       </div>
     );
   };
 
-  const parsePart = (part: string) => {
-    if (part.startsWith("[")) {
+  const parsePart = (part: QuestionPart) => {
+    if (part.tileData) {
       return (
         <BoardSquare
           accept={[ItemTypes.NUMBER_TILE]}
-          lastDroppedItem={droppedTiles[0]}
-          onDrop={(item) => handleDrop(0, item)}
+          lastDroppedItem={droppedTiles[part.tileData.index]}
+          onDrop={(item) => handleDrop(part.tileData.index, item)}
         />
       );
     } else {
-      return <p className="text-5xl whitespace-pre">{part}</p>;
+      return <p className="text-5xl whitespace-pre">{part.text}</p>;
     }
   };
 
@@ -92,8 +135,7 @@ const DragAndDropPuzzle = ({ question }: DragAndDropPuzzleProps) => {
         rounded-xl max-w-screen-lg`}
     >
       <div className="grid grid-cols-2 gap-8">
-
-      {puzzleData.questions.map((it) => parseQuestionData(it))}
+        {puzzleData.questions.map((it, index) => parseQuestionData(it, index))}
       </div>
 
       <div className="flex gap-4 flex-wrap w-96 sm:px-0 px-8 justify-center">
@@ -109,6 +151,8 @@ const DragAndDropPuzzle = ({ question }: DragAndDropPuzzleProps) => {
             />
           ))}
       </div>
+      <Button label="Submit" backgroundColor="blue" textColor="white" />
+      <Button label="Reset" backgroundColor="green" textColor="white" />
     </div>
   );
 };
