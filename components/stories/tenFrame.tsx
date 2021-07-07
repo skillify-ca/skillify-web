@@ -35,47 +35,47 @@ export const TenFrame: React.FC<TenFrameProp> = ({ num, ...props }) => {
   }, []);
 
   return (
-    <div>
-      <div className="inline-flex border-8 m-0 space-x-4 relative">
+    <div className="flex flex-col gap-0">
+      <div className="inline-flex border-4 m-0 relative">
         <div
-          className={`rounded-full h-24 w-24 flex items-center justify-center ${circle1} border-black relative`}
+          className={`rounded-full h-6 w-6 flex items-center justify-center ${circle1} border-black relative`}
         ></div>
-        <div className="border-r-8"></div>
+        <div className="border-r-2"></div>
         <div
-          className={`rounded-full h-24 w-24 flex items-center justify-center ${circle2} border-black `}
+          className={`rounded-full h-6 w-6 flex items-center justify-center ${circle2} border-black `}
         ></div>
-        <div className="border-r-8"></div>
+        <div className="border-r-2"></div>
         <div
-          className={`rounded-full h-24 w-24 flex items-center justify-center ${circle3} border-black `}
+          className={`rounded-full h-6 w-6 flex items-center justify-center ${circle3} border-black `}
         ></div>
-        <div className="border-r-8"></div>
+        <div className="border-r-2"></div>
         <div
-          className={`rounded-full h-24 w-24 flex items-center justify-center ${circle4} border-black `}
+          className={`rounded-full h-6 w-6 flex items-center justify-center ${circle4} border-black `}
         ></div>
-        <div className="border-r-8"></div>
+        <div className="border-r-2"></div>
         <div
-          className={`rounded-full h-24 w-24 flex items-center justify-center ${circle5} border-black `}
+          className={`rounded-full h-6 w-6 flex items-center justify-center ${circle5} border-black `}
         ></div>
       </div>
-      <div className="inline-flex border-8 m-0 space-x-4">
+      <div className="inline-flex border-4 m-0">
         <div
-          className={`rounded-full h-24 w-24 flex items-center justify-center ${circle6} border-black relative`}
+          className={`rounded-full h-6 w-6 flex items-center justify-center ${circle6} border-black relative`}
         ></div>
-        <div className="border-r-8"></div>
+        <div className="border-r-2"></div>
         <div
-          className={`rounded-full h-24 w-24 flex items-center justify-center ${circle7} border-black `}
+          className={`rounded-full h-6 w-6 flex items-center justify-center ${circle7} border-black `}
         ></div>{" "}
-        <div className="border-r-8"></div>
+        <div className="border-r-2"></div>
         <div
-          className={`rounded-full h-24 w-24 flex items-center justify-center ${circle8} border-black `}
+          className={`rounded-full h-6 w-6 flex items-center justify-center ${circle8} border-black `}
         ></div>{" "}
-        <div className="border-r-8"></div>
+        <div className="border-r-2"></div>
         <div
-          className={`rounded-full h-24 w-24 flex items-center justify-center ${circle9} border-black `}
+          className={`rounded-full h-6 w-6 flex items-center justify-center ${circle9} border-black `}
         ></div>{" "}
-        <div className="border-r-8"></div>
+        <div className="border-r-2"></div>
         <div
-          className={`rounded-full h-24 w-24 flex items-center justify-center ${circle10} border-black `}
+          className={`rounded-full h-6 w-6 flex items-center justify-center ${circle10} border-black `}
         ></div>{" "}
       </div>
     </div>
