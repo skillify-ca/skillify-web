@@ -61,6 +61,12 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
       case "multiply-single-and-triple-digit":
         skill = Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT;
         break;
+      case "multiply-double-digit-by-10":
+        skill = Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT;
+        break;
+      case "multiply-triple-digit-by-10":
+        skill = Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT;
+        break;
     }
   } else if (topic == "division") {
     switch (skillStr) {

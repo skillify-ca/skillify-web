@@ -38,6 +38,8 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
         Skill.MULTIPLICATION_10,
         Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT,
         Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT,
+        Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT,
+        Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT,
       ];
     case Topic.DIVISION:
       return [
@@ -101,6 +103,10 @@ export function getSkillId(skill: Skill) {
       return 47;
     case Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT:
       return 48;
+    case Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT:
+      return 49;
+    case Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT:
+      return 50;
   }
 }
 
@@ -140,6 +146,8 @@ export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): Skill[] => {
       return [
         Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT,
         Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT,
+        Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT,
+        Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT,
       ];
     }
   } else if (topic == Topic.DIVISION) {
@@ -177,6 +185,8 @@ export enum Skill {
   SUBTRACTION_TENTHS = "subtract-tenths",
   MULTIPLY_ONE_DIGIT_X_TWO_DIGIT = "multiply-single-and-double-digit",
   MULTIPLY_ONE_DIGIT_X_THREE_DIGIT = "multiply-single-and-triple-digit",
+  MULTIPLICATION_10_BY_DOUBLE_DIGIT = "multiply-double-digit-by-10",
+  MULTIPLICATION_10_BY_TRIPLE_DIGIT = "multiply-triple-digit-by-10",
 }
 
 export function SkillDescription(skill: Skill) {
@@ -220,6 +230,10 @@ export function SkillDescription(skill: Skill) {
     return "Multiply single digit numbers with double digit numbers";
   } else if (skill == Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT) {
     return "Multiply single digit numbers with triple digit numbers";
+  } else if (skill == Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT) {
+    return "Multiply double digit numbers with 10";
+  } else if (skill == Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT) {
+    return "Multiply triple digit numbers with 10";
   }
 }
 
@@ -273,6 +287,8 @@ export const getPracticeCardForSkill = (
     case Skill.MULTIPLICATION_10:
     case Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT:
     case Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT:
+    case Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT:
+    case Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT:
       return [
         {
           link: `multiplication/${skill}`,

@@ -45,9 +45,13 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
     case Skill.MULTIPLICATION_10:
       return getRandomMultiplicationQuestion(6, 10, skill);
     case Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT:
-      return getRandomMultiplicationQuestion(1, 100, skill);
+      return getRandomMultiplicationQuestion(10, 100, skill);
     case Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT:
-      return getRandomMultiplicationQuestion(1, 1000, skill);
+      return getRandomMultiplicationQuestion(100, 1000, skill);
+    case Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT:
+      return getRandomMultiplicationQuestion(10, 100, skill);
+    case Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT:
+      return getRandomMultiplicationQuestion(100, 1000, skill);
     case Skill.EQUAL_SHARING_8_ITEMS:
       return getRandomDivisionQuestion(1, 5, skill);
     case Skill.DIVIDE_12_EQUALLY:
@@ -319,10 +323,6 @@ function getRandomMultiplicationQuestion(
     const a = getRndInteger(1, 7);
     const b = getRndInteger(1, 11);
     return getMultiplicationEqualGroups(a, b, skill);
-  } else if (skill == Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT) {
-    const a = getRndInteger(1, 10);
-    const b = getRndInteger(11, 100);
-    return getRandomBinaryQuestion(a, b, "x", multiply, skill);
   }
   return getRandomBinaryQuestion(min, max, "x", multiply, skill);
 }
@@ -382,6 +382,18 @@ function getRandomBinaryQuestion(
     b = getRndDecimal(min, max);
     console.log(a);
     console.log(b);
+  } else if (skill == Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT) {
+    a = 10;
+    b = getRndInteger(min, max);
+  } else if (skill == Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT) {
+    a = 10;
+    b = getRndInteger(min, max);
+  } else if (skill == Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT) {
+    a = getRndInteger(1, 10);
+    b = getRndInteger(min, max);
+  } else if (skill == Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT) {
+    a = getRndInteger(1, 10);
+    b = getRndInteger(min, max);
   }
   let text;
   let trueFalseAnswer;
