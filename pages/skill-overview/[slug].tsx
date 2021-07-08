@@ -5,7 +5,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import { Button } from "../../components/stories/Button";
-import DragAndDropPuzzle from "../../components/stories/DragAndDropPuzzle";
 import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { userId } from "../../graphql/utils/constants";
 import {
@@ -85,7 +84,7 @@ const SkillOverviewPage = ({ slug }) => {
                 Puzzle 5
               </button>
             </Link>
-            <Link href={`/puzzle/${puzzleId}`}>
+            <Link href={`/puzzle/2`}>
               <button className="disabled:opacity-50 bg-gradient-to-b  border-b-4 rounded-xl active:border-b-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 border border-blue-700 ">
                 Puzzle 2
               </button>
@@ -95,7 +94,7 @@ const SkillOverviewPage = ({ slug }) => {
                 Puzzle 4
               </button>
             </Link>
-            <Link href={`/puzzle/${puzzleId}`}>
+            <Link href={`/puzzle/8`}>
               <button className="disabled:opacity-50 bg-gradient-to-b  border-b-4 rounded-xl active:border-b-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 border border-blue-700 ">
                 Puzzle 8
               </button>

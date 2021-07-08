@@ -21,7 +21,11 @@ const PuzzlePage = ({ slug }) => {
       <div className="flex flex-col justify-between mt-8 mr-8 ml-8">
         <p className="text-4xl font-bold">Puzzle</p>
         <p className="">Use each number once to complete the puzzle</p>
-        <DragAndDropPuzzle onReset={onReset} onSubmit={onSubmit} />
+        <DragAndDropPuzzle
+          onReset={onReset}
+          onSubmit={onSubmit}
+          puzzleId={slug}
+        />
         {isGraded && isCorrect && (
           <p className="text-4xl text-green-400 font-bold text-center m-8">
             Correct
