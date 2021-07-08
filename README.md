@@ -25,7 +25,6 @@ Math Champ has a library of UI components that make up the website. They're cate
 - practice tracker
 - how the question generator
 - Software testing
-- 
 
 ## Important libraries that we ue
 
