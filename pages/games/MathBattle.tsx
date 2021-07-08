@@ -107,7 +107,7 @@ const MathBattle = () => {
           />
         )}
         {stage == STAGE.LOBBY && <Lobby players={players} code={code} startGame={onStartGameRequested} />}
-        {stage == STAGE.GAME && <BattleComponent questions={questionData} />}
+        {stage == STAGE.GAME && <BattleComponent questions={questionData} room={room} />}
       </div>
     </div>
   );

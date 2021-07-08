@@ -11,29 +11,46 @@ import { Skill } from "../../pages/api/skill";
 import { GuessData } from "../../pages/api/guessData";
 
 export interface BattleComponentProps {
-  questions: Question[]
+  questions: Question[];
+  room: Colyseus.Room;
 }
 
-const BattleComponent = ({questions }: BattleComponentProps) => {
+const BattleComponent = ({ questions, room }: BattleComponentProps) => {
   const [index, setIndex] = useState(0);
   const inputElement = useRef(null);
+  const [winnerId, setWinnerId] = useState("");
 
   const submitGuess = (currentGuess: GuessData) => {
     console.log("currentGuess", currentGuess);
-    setIndex(index + 1)
-    // notify colyseus that this player submitted a guess
-    
-  }
-  return <div>
-      <QuestionSet
-        title={"Battle"}
-        questionData={questions}
-        index={index}
-        inputElement={inputElement}
-        submitGuess={submitGuess}
-        score={1}
-        practice={false}
-      />
-    </div>;
+    if (index + 1 < questions.length) {
+      setIndex(index + 1);
+      // notify colyseus that this player submitted a guess
+    } else {
+      // TODO currently whoever calls this is declared the winner
+      room.send("requestGameOver", room.sessionId);
+    }
+  };
+  room.onMessage("showGameOver", (message) => {
+    setWinnerId(message);
+  });
+  return (
+    <div>
+      {winnerId === "" ? (
+        <QuestionSet
+          title={"Battle"}
+          questionData={questions}
+          index={index}
+          inputElement={inputElement}
+          submitGuess={submitGuess}
+          score={1}
+          practice={false}
+        />
+      ) : winnerId === room.sessionId ? (
+        "Winner"
+      ) : (
+        "Loser"
+      )}
+    </div>
+  );
 };
 export default BattleComponent;
