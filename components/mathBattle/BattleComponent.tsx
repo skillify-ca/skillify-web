@@ -11,26 +11,13 @@ import { Skill } from "../../pages/api/skill";
 import { GuessData } from "../../pages/api/guessData";
 
 export interface BattleComponentProps {
+  questions: Question[]
 }
 
-const BattleComponent = ({ }: BattleComponentProps) => {
+const BattleComponent = ({questions }: BattleComponentProps) => {
   const [index, setIndex] = useState(0);
   const inputElement = useRef(null);
 
-  const [questionData, setQuestionData] = useState<Question[]>([
-    {
-      text: "",
-      answer: "",
-      answerType: AnswerType.NUMBER,
-      questionType: QuestionType.HORIZONTAL_EQUATION,
-      skill: Skill.ADDITION_SINGLE,
-    },
-  ]);
-  useEffect(() => {
-    // only generate questions if you're the game host
-    setQuestionData(generateQuestions("addition", 1));
-    // notify colyseus that questions were generated
-  }, []);
   const submitGuess = (currentGuess: GuessData) => {
     console.log("currentGuess", currentGuess);
     setIndex(index + 1)
@@ -40,7 +27,7 @@ const BattleComponent = ({ }: BattleComponentProps) => {
   return <div>
       <QuestionSet
         title={"Battle"}
-        questionData={questionData}
+        questionData={questions}
         index={index}
         inputElement={inputElement}
         submitGuess={submitGuess}
