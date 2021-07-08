@@ -52,10 +52,8 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { slug: "addition" } },
-      { params: { slug: "subtraction" } },
-      { params: { slug: "multiplication" } },
-      { params: { slug: "division" } },
+      { params: { slug: "8" } },
+      { params: { slug: "2" } },
     ],
     fallback: true,
   };
