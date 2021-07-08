@@ -32,7 +32,7 @@ export const TenFrame: React.FC<TenFrameProp> = ({ num, ...props }) => {
 
   useEffect(() => {
     colourSetter(colourSetterArr, num);
-  }, []);
+  }, [num]);
 
   return (
     <div className="flex flex-col gap-0">
@@ -83,8 +83,13 @@ export const TenFrame: React.FC<TenFrameProp> = ({ num, ...props }) => {
 };
 
 export function colourSetter(colourArr, num) {
-  for (let i = 0; i < num; ++i) {
+  let i = 0;
+  for (i = 0; i < num; ++i) {
     colourArr[i]("bg-red-400");
+    console.log(i);
+  }
+  for (i; i < 10; ++i) {
+    colourArr[i]("bg-transparent");
     console.log(i);
   }
 }

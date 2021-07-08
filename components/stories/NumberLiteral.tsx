@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Story, Meta } from "@storybook/react";
 import { randomize } from "../../pages/api/questionGenerator";
 
-export interface TenFrameProp {
+export interface NumberLiteralProp {
   num: number;
 }
 
 const colourArr = ["pink", "green", "blue", "purple"];
 
-export const NumberLiteral: React.FC<TenFrameProp> = ({ num, ...props }) => {
+export const NumberLiteral: React.FC<NumberLiteralProp> = ({
+  num,
+  ...props
+}) => {
   const [colour, setColour] = useState("black");
   let colourIndex;
   useEffect(() => {
