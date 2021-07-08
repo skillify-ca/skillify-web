@@ -111,7 +111,7 @@ const DragAndDropPuzzle = ({ onSubmit, onReset, puzzleId }: DragAndDropPuzzlePro
         rounded-xl max-w-screen-lg min-w-full`}
     >
       <div className="grid grid-cols-2 gap-8">
-        {puzzleData.questions.map((it, index) => parseQuestionData(it, index))}
+        {puzzleData && puzzleData.questions.map((it, index) => parseQuestionData(it, index))}
       </div>
 
       <div className="flex flex-col items-center justify-between gap-8">
