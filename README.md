@@ -24,9 +24,13 @@ Math Champ has a library of UI components that make up the website. They're cate
 - adaptive difficulty
 - practice tracker
 - how the question generator
+- Software testing
+- 
 
 ## Important libraries that we ue
 
 - [Tailwind + NextJS Starter](https://tailwindcss.com/docs/guides/nextjs)
 - [Tailwind CSS](https://tailwindcss.com/) (v2)
 - [Storybook](https://storybook.js.org/)
+- [Apollo](https://www.apollographql.com/docs/react/)
+- [Colyseus](https://docs.colyseus.io/getting-started/javascript-client/)
