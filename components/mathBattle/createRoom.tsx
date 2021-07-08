@@ -49,7 +49,7 @@ const CreateRoom = ({
               />
               <Button
                 onClick={onCreateClick}
-                label="Join Game"
+                label="Create Game"
                 textColor="white"
                 backgroundColor="blue"
               ></Button>

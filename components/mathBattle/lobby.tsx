@@ -7,9 +7,10 @@ import { Player } from "../../pages/games/MathBattle";
 export interface CreateRoomProps {
   players: Player[];
   code: string;
+  startGame: () => void;
 }
 
-const Lobby = ({ players, code }: CreateRoomProps) => {
+const Lobby = ({ players, code, startGame }: CreateRoomProps) => {
   console.log("player", players);
 
   if (players && players.length > 0) {
@@ -24,6 +25,18 @@ const Lobby = ({ players, code }: CreateRoomProps) => {
           ))}
           <p className="bg-gray-500 text-white font-bold">Code: {code}</p>
         </div>
+        {players.length === 2 ? (
+          <div>
+            <Button
+              label="Play"
+              backgroundColor="blue"
+              textColor="white"
+              onClick={startGame}
+            />
+          </div>
+        ) : (
+          <p>Waiting for all players</p>
+        )}
       </div>
     );
   }

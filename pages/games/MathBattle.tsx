@@ -4,6 +4,7 @@ import CreateRoom from "../../components/mathBattle/createRoom";
 import { Button } from "../../components/stories/Button";
 import * as Colyseus from "colyseus.js";
 import Lobby from "../../components/mathBattle/lobby";
+import BattleComponent from "../../components/mathBattle/BattleComponent";
 
 export type Player = {
   seat: number;
@@ -62,6 +63,16 @@ const MathBattle = () => {
 
     setPlayers(playerArr);
   });
+  room?.onMessage("goToStage", (message) => {
+    if (message === "battle") {
+      setStage(STAGE.GAME)
+    }
+  });
+
+  const onStartGameRequested = () => {
+    // setStage(STAGE.GAME)
+    room.send("startGameRequested")
+  }
 
   return (
     <div>
@@ -79,7 +90,8 @@ const MathBattle = () => {
             setCode={setCode}
           />
         )}
-        {stage == STAGE.LOBBY && <Lobby players={players} code={code} />}
+        {stage == STAGE.LOBBY && <Lobby players={players} code={code} startGame={onStartGameRequested} />}
+        {stage == STAGE.GAME && <BattleComponent/>}
       </div>
     </div>
   );
