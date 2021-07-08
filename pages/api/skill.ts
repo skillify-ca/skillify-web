@@ -46,6 +46,8 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
         Skill.EQUAL_SHARING_8_ITEMS,
         Skill.DIVIDE_12_EQUALLY,
         Skill.DIVIDE_100,
+        Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT,
+        Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT,
       ];
   }
   return [];
@@ -107,6 +109,10 @@ export function getSkillId(skill: Skill) {
       return 49;
     case Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT:
       return 50;
+    case Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT:
+      return 51;
+    case Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT:
+      return 52;
   }
 }
 
@@ -187,6 +193,8 @@ export enum Skill {
   MULTIPLY_ONE_DIGIT_X_THREE_DIGIT = "multiply-single-and-triple-digit",
   MULTIPLICATION_10_BY_DOUBLE_DIGIT = "multiply-double-digit-by-10",
   MULTIPLICATION_10_BY_TRIPLE_DIGIT = "multiply-triple-digit-by-10",
+  DIVISION_TWO_DIGIT_BY_ONE_DIGIT = "divide-double-digit-by-single-digit",
+  DIVISION_THREE_DIGIT_BY_ONE_DIGIT = "divide-triple-digit-by-single-digit",
 }
 
 export function SkillDescription(skill: Skill) {
@@ -234,6 +242,10 @@ export function SkillDescription(skill: Skill) {
     return "Multiply double digit numbers with 10";
   } else if (skill == Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT) {
     return "Multiply triple digit numbers with 10";
+  } else if (skill == Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT) {
+    return "Divide double digit numbers by single digit numbers";
+  } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT) {
+    return "Divide triple digit numbers by single digit numbers";
   }
 }
 
@@ -276,6 +288,8 @@ export const getPracticeCardForSkill = (
     case Skill.EQUAL_SHARING_8_ITEMS:
     case Skill.DIVIDE_12_EQUALLY:
     case Skill.DIVIDE_100:
+    case Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT:
+    case Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT:
       return [
         {
           link: `division/${skill}`,

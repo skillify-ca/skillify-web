@@ -8,7 +8,7 @@ import { LongDivisionInput } from "./LongDivisionInput";
 export interface LongDivisionProp {
   question: Question;
   submitGuess: (guess: GuessData) => void;
-  isRemainder?: "noRemainder" | "remainder";
+  isRemainder?: boolean;
 }
 
 /**
@@ -16,7 +16,7 @@ export interface LongDivisionProp {
  */
 export const LongDivision: React.FC<LongDivisionProp> = ({
   question,
-  isRemainder = "noRemainder",
+  isRemainder,
   submitGuess,
   ...props
 }) => {
@@ -55,10 +55,10 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
 
   let remainderComponent;
   switch (isRemainder) {
-    case "noRemainder":
+    case false:
       " ";
       break;
-    case "remainder":
+    case true:
       remainderComponent = (
         <div>
           R&nbsp;

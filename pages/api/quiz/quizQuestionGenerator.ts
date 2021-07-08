@@ -81,6 +81,8 @@ export const generateQuestions = (slug: string, currentLevel: number) => {
         case 3:
           skill = Skill.DIVIDE_100;
           break;
+        case 4:
+          skill = Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT;
       }
       return generateQuestionsForSkill(NUM_QUESTIONS, skill);
     }

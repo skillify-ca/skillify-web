@@ -58,6 +58,8 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
       return getRandomDivisionQuestion(1, 13, skill);
     case Skill.DIVIDE_100:
       return getRandomDivisionQuestion(1, 11, skill);
+    case Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT:
+      return getRandomDivisionQuestion(10, 100, skill);
   }
 };
 
@@ -331,6 +333,24 @@ function getRandomDivisionQuestion(
   max: number,
   skill: Skill
 ): Question {
+  if ((skill = Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT)) {
+    const a = getRndInteger(1, 10);
+    const b = getRndInteger(10, 100);
+    const type = QuestionType.LONG_DIVISION_PROBLEM;
+    const text = `${b} / ${a} =`;
+    let quotient = b / a;
+    let remainder = b % a;
+    const answer = `${quotient}, ${remainder}`;
+    return {
+      text: text,
+      answer: answer,
+      answerType: AnswerType.STRING,
+      questionType: type,
+      operator: "÷",
+      skill: skill,
+    };
+  }
+
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
   const product = a * b;
@@ -343,6 +363,7 @@ function getRandomDivisionQuestion(
   ];
   const type = types[getRndInteger(0, types.length)];
   let wordProblemModel;
+
   if (type == QuestionType.BINARY_WORD_PROBLEM) {
     wordProblemModel = createWordProblemModel("÷");
   }
