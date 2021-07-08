@@ -64,6 +64,9 @@ export const generateQuestions = (slug: string, currentLevel: number) => {
         case 3:
           skill = Skill.MULTIPLICATION_10;
           break;
+        case 4:
+          skill = Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT;
+          break;
       }
       return generateQuestionsForSkill(NUM_QUESTIONS, skill);
     } else if (slug.toLowerCase() == "division") {

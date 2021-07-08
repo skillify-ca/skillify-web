@@ -1,6 +1,6 @@
 import { AnswerType, MCOption, Question } from "./question";
 import { QuestionType } from "./questionTypes";
-import { getRndInteger } from "./random";
+import { getRndDecimal, getRndInteger } from "./random";
 import { createWordProblemModel } from "./WordProblemModel";
 import { Skill } from "./skill";
 import { ArrayQMap, createArrayImage } from "./ArrayQMap";
@@ -22,6 +22,8 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
       return getRandomAdditionQuestion(10, 101, skill);
     case Skill.ADDITION_TRIPLE:
       return getRandomAdditionQuestion(100, 1001, skill);
+    case Skill.ADDITION_TENTHS:
+      return getRandomAdditionQuestion(0.1, 0.9, skill);
     case Skill.ADDITION_4_DIGIT:
       return getRandomAdditionQuestion(1000, 10001, skill);
     case Skill.ADDITION_PROPERTIES:
@@ -34,12 +36,18 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
       return getRandomSubtractionQuestion(100, 1001, skill);
     case Skill.SUBTRACTION_4_DIGIT:
       return getRandomSubtractionQuestion(1000, 10001, skill);
+    case Skill.SUBTRACTION_TENTHS:
+      return getRandomSubtractionQuestion(0.1, 0.9, skill);
     case Skill.EQUAL_GROUP_10_ITEMS:
       return getRandomMultiplicationQuestion(1, 11, skill);
     case Skill.MULTIPLICATION_5:
       return getRandomMultiplicationQuestion(1, 6, skill);
     case Skill.MULTIPLICATION_10:
       return getRandomMultiplicationQuestion(6, 10, skill);
+    case Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT:
+      return getRandomMultiplicationQuestion(1, 100, skill);
+    case Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT:
+      return getRandomMultiplicationQuestion(1, 1000, skill);
     case Skill.EQUAL_SHARING_8_ITEMS:
       return getRandomDivisionQuestion(1, 5, skill);
     case Skill.DIVIDE_12_EQUALLY:
@@ -311,8 +319,11 @@ function getRandomMultiplicationQuestion(
     const a = getRndInteger(1, 7);
     const b = getRndInteger(1, 11);
     return getMultiplicationEqualGroups(a, b, skill);
+  } else if (skill == Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT) {
+    const a = getRndInteger(1, 10);
+    const b = getRndInteger(11, 100);
+    return getRandomBinaryQuestion(a, b, "x", multiply, skill);
   }
-
   return getRandomBinaryQuestion(min, max, "x", multiply, skill);
 }
 function getRandomDivisionQuestion(
@@ -366,6 +377,12 @@ function getRandomBinaryQuestion(
   let typeIndex = getRndInteger(0, types.length);
   let a = getRndInteger(min, max);
   let b = getRndInteger(min, max);
+  if (skill == Skill.ADDITION_TENTHS) {
+    a = getRndDecimal(min, max);
+    b = getRndDecimal(min, max);
+    console.log(a);
+    console.log(b);
+  }
   let text;
   let trueFalseAnswer;
   const type = types[typeIndex];

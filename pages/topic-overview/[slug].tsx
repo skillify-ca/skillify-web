@@ -77,6 +77,7 @@ const TopicOverviewPage = ({ slug }) => {
       </select>
     </div>
   );
+  console.log(getSkillsForTopicGrade(slug, grade));
   const skillComponent = (
     <div className="flex flex-col gap-8">
       {getSkillsForTopicGrade(slug, grade).map((skill) => (

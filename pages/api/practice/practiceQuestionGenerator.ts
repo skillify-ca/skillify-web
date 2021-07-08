@@ -19,6 +19,12 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
       case "addition-properties":
         skill = Skill.ADDITION_PROPERTIES;
         break;
+      case "add-four-digit":
+        skill = Skill.ADDITION_4_DIGIT;
+        break;
+      case "add-tenths":
+        skill = Skill.ADDITION_TENTHS;
+        break;
     }
   } else if (topic == "subtraction") {
     switch (skillStr) {
@@ -31,6 +37,12 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
       case "subtract-triple-digit":
         skill = Skill.SUBTRACTION_TRIPLE;
         break;
+      case "subtract-four-digit":
+        skill = Skill.SUBTRACTION_4_DIGIT;
+        break;
+      case "subtract-tenths":
+        skill = Skill.SUBTRACTION_TENTHS;
+        break;
     }
   } else if (topic == "multiplication") {
     switch (skillStr) {
@@ -42,6 +54,12 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
         break;
       case "multiply-10x10":
         skill = Skill.MULTIPLICATION_10;
+        break;
+      case "multiply-single-and-double-digit":
+        skill = Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT;
+        break;
+      case "multiply-single-and-triple-digit":
+        skill = Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT;
         break;
     }
   } else if (topic == "division") {

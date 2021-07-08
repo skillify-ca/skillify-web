@@ -28,12 +28,16 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
         Skill.SUBTRACTION_SINGLE,
         Skill.SUBTRACTION_DOUBLE,
         Skill.SUBTRACTION_TRIPLE,
+        Skill.SUBTRACTION_4_DIGIT,
+        Skill.SUBTRACTION_TENTHS,
       ];
     case Topic.MULTIPLICATION:
       return [
         Skill.EQUAL_GROUP_10_ITEMS,
         Skill.MULTIPLICATION_5,
         Skill.MULTIPLICATION_10,
+        Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT,
+        Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT,
       ];
     case Topic.DIVISION:
       return [
@@ -93,6 +97,10 @@ export function getSkillId(skill: Skill) {
       return 45;
     case Skill.SUBTRACTION_TENTHS:
       return 46;
+    case Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT:
+      return 47;
+    case Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT:
+      return 48;
   }
 }
 
@@ -126,8 +134,13 @@ export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): Skill[] => {
       return [Skill.EQUAL_GROUP_10_ITEMS];
     } else if (grade == Grade.GRADE_2) {
       return [Skill.MULTIPLICATION_5];
-    } else {
+    } else if (grade == Grade.GRADE_3) {
       return [Skill.MULTIPLICATION_10];
+    } else {
+      return [
+        Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT,
+        Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT,
+      ];
     }
   } else if (topic == Topic.DIVISION) {
     if (grade == Grade.GRADE_1) {
@@ -162,6 +175,8 @@ export enum Skill {
   ADDITION_TENTHS = "add-tenths",
   SUBTRACTION_4_DIGIT = "subtract-four-digit",
   SUBTRACTION_TENTHS = "subtract-tenths",
+  MULTIPLY_ONE_DIGIT_X_TWO_DIGIT = "multiply-single-and-double-digit",
+  MULTIPLY_ONE_DIGIT_X_THREE_DIGIT = "multiply-single-and-triple-digit",
 }
 
 export function SkillDescription(skill: Skill) {
@@ -201,6 +216,10 @@ export function SkillDescription(skill: Skill) {
     return "Divide numbers up to 12 equally";
   } else if (skill == Skill.DIVIDE_100) {
     return "Divide numbers up to 100 equally";
+  } else if (skill == Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT) {
+    return "Multiply single digit numbers with double digit numbers";
+  } else if (skill == Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT) {
+    return "Multiply single digit numbers with triple digit numbers";
   }
 }
 
@@ -252,6 +271,8 @@ export const getPracticeCardForSkill = (
     case Skill.EQUAL_GROUP_10_ITEMS:
     case Skill.MULTIPLICATION_5:
     case Skill.MULTIPLICATION_10:
+    case Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT:
+    case Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT:
       return [
         {
           link: `multiplication/${skill}`,
