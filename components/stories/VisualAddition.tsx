@@ -21,18 +21,47 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
   question,
   ...props
 }) => {
+  const parse = () => {
+    const parts = question.text && question.text.split(" ");
+    return {
+      first: parts && parts[0],
+      second: parts && parts[2],
+    };
+  };
+
+  const [guess, setGuess] = useState("");
+  const handleKeypress = (e) => {
+    //it triggers by pressing the enter key
+    if (e.charCode === 13) {
+      onSubmit();
+    }
+  };
+  const onSubmit = () => {
+    submitGuess({
+      guess: guess,
+      isCorrect: guess === question.answer,
+    });
+    setGuess("");
+  };
   return (
-    <div className="flex flex-row items-center gap-4">
-      <div className="flex flex-col items-center gap-4">
-        <TenFrame num={3} />
-        {/* <DiceDots value={3} /> */}
-        <NumberLiteral />
+    <div className="flex flex-col gap-8 items-center">
+      <div className="flex flex-row items-center gap-4">
+        <div className="flex flex-col items-center gap-4">
+          <TenFrame num={parseInt(parse().first)} />
+          {/* <DiceDots value={3} /> */}
+          <NumberLiteral num={parseInt(parse().first)} />
+        </div>
+        <p className="text-5xl font-bold">+</p>
+        <div className="flex flex-col items-center gap-4">
+          <TenFrame num={parseInt(parse().second)} />
+          <NumberLiteral num={parseInt(parse().second)} />
+        </div>
       </div>
-      <p className="text-5xl font-bold">+</p>
-      <div className="flex flex-col items-center gap-4">
-        <TenFrame num={3} />
-        <NumberLiteral />
-      </div>
+      <Input
+        guess={guess}
+        setGuess={setGuess}
+        handleKeypress={handleKeypress}
+      />
     </div>
   );
 };
