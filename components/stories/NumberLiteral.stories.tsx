@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Story, Meta } from "@storybook/react";
-import NumberLiteral from "./NumberLiteral";
+import NumberLiteral, { NumberLiteralProp } from "./NumberLiteral";
 
 export default {
   title: "Number Literal",
@@ -8,7 +8,11 @@ export default {
   argTypes: {},
 } as Meta;
 
-const Template: Story = (args) => <NumberLiteral {...args} />;
+const Template: Story<NumberLiteralProp> = (args) => (
+  <NumberLiteral {...args} />
+);
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  num: 3,
+};
