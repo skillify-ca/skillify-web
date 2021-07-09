@@ -102,17 +102,17 @@ export function getSkillId(skill: Skill) {
     case Skill.SUBTRACTION_TENTHS:
       return 46;
     case Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT:
-      return 47;
-    case Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT:
-      return 48;
-    case Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT:
-      return 49;
-    case Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT:
-      return 50;
-    case Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT:
       return 51;
-    case Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT:
+    case Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT:
       return 52;
+    case Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT:
+      return 47;
+    case Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT:
+      return 48;
+    case Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT:
+      return 49;
+    case Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT:
+      return 50;
   }
 }
 
