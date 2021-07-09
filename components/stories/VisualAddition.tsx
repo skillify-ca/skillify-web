@@ -48,7 +48,6 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
       <div className="flex flex-row items-center gap-4">
         <div className="flex flex-col items-center gap-4">
           <TenFrame num={parseInt(parse(question).first)} />
-          {/* <DiceDots value={3} /> */}
           <NumberLiteral num={parseInt(parse(question).first)} />
         </div>
         <p className="text-5xl font-bold">+</p>

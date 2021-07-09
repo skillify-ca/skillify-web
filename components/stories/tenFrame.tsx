@@ -86,11 +86,9 @@ export function colourSetter(colourArr, num) {
   let i = 0;
   for (i = 0; i < num; ++i) {
     colourArr[i]("bg-red-400");
-    console.log(i);
   }
   for (i; i < 10; ++i) {
     colourArr[i]("bg-transparent");
-    console.log(i);
   }
 }
 
