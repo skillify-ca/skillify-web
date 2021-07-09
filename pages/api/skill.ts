@@ -164,7 +164,10 @@ export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): Skill[] => {
     } else if (grade == Grade.GRADE_3) {
       return [Skill.DIVIDE_100];
     } else {
-      return [Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT];
+      return [
+        Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT,
+        Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT,
+      ];
     }
   }
   return [];

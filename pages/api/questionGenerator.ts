@@ -60,6 +60,8 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
       return getRandomDivisionQuestion(1, 11, skill);
     case Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT:
       return getRandomDivisionQuestion(10, 100, skill);
+    case Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT:
+      return getRandomDivisionQuestion(100, 1000, skill);
   }
 };
 
@@ -333,9 +335,17 @@ function getRandomDivisionQuestion(
   max: number,
   skill: Skill
 ): Question {
-  if ((skill = Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT)) {
+  if (
+    skill == Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT ||
+    skill == Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT
+  ) {
     const a = getRndInteger(1, 10);
-    const b = getRndInteger(10, 100);
+    let b = 0;
+    if (skill == Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT) {
+      b = getRndInteger(10, 100);
+    } else {
+      b = getRndInteger(100, 1000);
+    }
     const type = QuestionType.LONG_DIVISION_PROBLEM;
     const text = `${b} / ${a} =`;
     let quotient = Math.floor(b / a);
