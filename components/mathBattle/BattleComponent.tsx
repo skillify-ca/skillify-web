@@ -17,17 +17,31 @@ export interface BattleComponentProps {
 
 const BattleComponent = ({ questions, room }: BattleComponentProps) => {
   const [index, setIndex] = useState(0);
+  const [time, setTime] = useState(0);
   const inputElement = useRef(null);
   const [winnerId, setWinnerId] = useState("");
 
+  React.useEffect(() => {
+    let interval = null;
+    interval = setInterval(() => {
+      setTime((time) => time + 10);
+    }, 10);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   const submitGuess = (currentGuess: GuessData) => {
     console.log("currentGuess", currentGuess);
+    if (!currentGuess.isCorrect) {
+      setTime((time) => time + 10000);
+    }
     if (index + 1 < questions.length) {
       setIndex(index + 1);
       // notify colyseus that this player submitted a guess
     } else {
       // TODO currently whoever calls this is declared the winner
-      room.send("requestGameOver", room.sessionId);
+      room.send("requestGameOver", { id: room.sessionId, score: time });
     }
   };
   room.onMessage("showGameOver", (message) => {
@@ -50,6 +64,7 @@ const BattleComponent = ({ questions, room }: BattleComponentProps) => {
       ) : (
         "Loser"
       )}
+      <p>{time}</p>
     </div>
   );
 };
