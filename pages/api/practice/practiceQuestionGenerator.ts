@@ -79,6 +79,9 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
       case "divide-100-equally":
         skill = Skill.DIVIDE_100;
         break;
+      case "divide-double-digit-by-single-digit":
+        skill = Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT;
+        break;
     }
   }
 

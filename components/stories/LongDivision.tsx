@@ -42,6 +42,11 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
     submitGuess({ guess: guess, isCorrect: guess === question.answer });
     (document.getElementById("guess") as HTMLInputElement).value = "";
     setGuess("");
+    setGuess2("");
+    submitGuess({
+      guess: guess + "," + guess2,
+      isCorrect: guess + "," + guess2 === question.answer,
+    });
   };
 
   const num1 = parseInt(parse().first);

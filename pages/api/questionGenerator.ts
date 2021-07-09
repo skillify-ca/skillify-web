@@ -338,9 +338,9 @@ function getRandomDivisionQuestion(
     const b = getRndInteger(10, 100);
     const type = QuestionType.LONG_DIVISION_PROBLEM;
     const text = `${b} / ${a} =`;
-    let quotient = b / a;
+    let quotient = Math.floor(b / a);
     let remainder = b % a;
-    const answer = `${quotient}, ${remainder}`;
+    const answer = `${quotient},${remainder}`;
     return {
       text: text,
       answer: answer,

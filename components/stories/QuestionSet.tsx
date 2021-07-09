@@ -22,6 +22,7 @@ import { PatternBlank } from "./patternBlanks";
 import { WordtoHorizontalDigits } from "./WordtoHorizontalDigits";
 import { NumbertoVerticalDigits } from "./NumbertoVerticalDigits";
 import { VerticalDigitstoNum } from "./VerticalDigitstoNum";
+import { Skill } from "../../pages/api/skill";
 
 type QuestionSetProps = {
   title: string;
@@ -188,10 +189,13 @@ const QuestionSet = ({
     } else if (
       questionData[index].questionType === QuestionType.LONG_DIVISION_PROBLEM
     ) {
+      const skill = questionData[index].skill;
+
       return (
         <LongDivision
           question={questionData[index]}
           submitGuess={submitGuess}
+          isRemainder={skill === Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT}
         />
       );
     } else if (

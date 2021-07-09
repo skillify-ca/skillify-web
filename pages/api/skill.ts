@@ -10,7 +10,7 @@ export enum Grade {
   GRADE_1 = "Grade 1",
   GRADE_2 = "Grade 2",
   GRADE_3 = "Grade 3",
-  Grade_4 = "Grade 4",
+  GRADE_4 = "Grade 4",
 }
 
 export const getSkillsForTopic = (topic: Topic): Skill[] => {
@@ -161,8 +161,10 @@ export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): Skill[] => {
       return [Skill.EQUAL_SHARING_8_ITEMS];
     } else if (grade == Grade.GRADE_2) {
       return [Skill.DIVIDE_12_EQUALLY];
-    } else {
+    } else if (grade == Grade.GRADE_3) {
       return [Skill.DIVIDE_100];
+    } else {
+      return [Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT];
     }
   }
   return [];
