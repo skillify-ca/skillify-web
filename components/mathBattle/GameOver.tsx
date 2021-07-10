@@ -1,11 +1,5 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import * as Colyseus from "colyseus.js";
-import QuestionSet from "../stories/QuestionSet";
-import { Question } from "../../pages/api/question";
-import { getEmoji } from "../../pages/api/skill";
-import { GuessData } from "../../pages/api/guessData";
-import ProgressRing from "../ui/ProgressRing";
-import ButtonStories from "../ui/Button.stories";
 import { Button } from "../ui/Button";
 
 export interface GameOverProps {
