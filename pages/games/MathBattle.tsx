@@ -106,13 +106,15 @@ const MathBattle = () => {
             setCode={setCode}
           />
         )}
-        {stage == STAGE.GAME && <BattleComponent questions={questionData} room={room} />}
         {stage == STAGE.LOBBY && (
           <Lobby
             players={players}
             code={code}
             startGame={onStartGameRequested}
           />
+        )}
+        {stage == STAGE.GAME && (
+          <BattleComponent questions={questionData} room={room} />
         )}
       </div>
     </div>
