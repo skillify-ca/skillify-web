@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Story, Meta } from "@storybook/react";
-import TenFrame, { TenFrameProp } from "./TenFrame";
+import TenFrame, { TenFrameProp } from "./TenFrames";
 
 export default {
   title: "Dots/Ten Frame",
