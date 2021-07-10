@@ -22,6 +22,8 @@ import { PatternBlank } from "./patternBlanks";
 import { WordtoHorizontalDigits } from "./WordtoHorizontalDigits";
 import { NumbertoVerticalDigits } from "./NumbertoVerticalDigits";
 import { VerticalDigitstoNum } from "./VerticalDigitstoNum";
+import TenFrame from "./tenFrame";
+import { VisualAddition } from "./VisualAddition";
 
 type QuestionSetProps = {
   title: string;
@@ -149,6 +151,17 @@ const QuestionSet = ({
       if (questionData[index].operator == "+") {
         return (
           <WordProblemAdd
+            question={questionData[index]}
+            submitGuess={submitGuess}
+          />
+        );
+      }
+    } else if (
+      questionData[index].questionType == QuestionType.VISUAL_TYPE_PROBLEM
+    ) {
+      if (questionData[index].operator == "+") {
+        return (
+          <VisualAddition
             question={questionData[index]}
             submitGuess={submitGuess}
           />

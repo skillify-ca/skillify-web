@@ -255,8 +255,23 @@ export function getRandomAdditionQuestion(
   max: number,
   skill: Skill
 ) {
-  const add = (a: number, b: number) => a + b;
-  return getRandomBinaryQuestion(min, max, "+", add, skill);
+  let rndQuestionType = getRndInteger(0, 2);
+  if (rndQuestionType == 0) {
+    const add = (a: number, b: number) => a + b;
+    return getRandomBinaryQuestion(min, max, "+", add, skill);
+  } else {
+    let a = getRndInteger(min, max);
+    let b = getRndInteger(min, max);
+    let text = `${a} + ${b} =`;
+    return {
+      text: text,
+      answer: (a + b).toString(),
+      answerType: AnswerType.STRING,
+      questionType: QuestionType.VISUAL_TYPE_PROBLEM,
+      operator: "+",
+      skill: skill,
+    };
+  }
 }
 function getRandomSubtractionQuestion(min: number, max: number, skill: Skill) {
   const subtract = (a: number, b: number) => a - b;

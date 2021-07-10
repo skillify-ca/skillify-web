@@ -39,7 +39,7 @@ const MathBattle = () => {
       skill: Skill.ADDITION_SINGLE,
     },
   ]);
-  var client = new Colyseus.Client("ws://localhost:4001");
+  var client = new Colyseus.Client("wss://math-game-server.herokuapp.com");
   const onJoinClick = () => {
     client
       .joinById(code)
@@ -105,8 +105,9 @@ const MathBattle = () => {
   });
 
   const onStartGameRequested = () => {
-    // setStage(STAGE.GAME)
-    room.send("startGameRequested");
+    setStage(STAGE.BATTLE);
+    const questions = generateQuestions("addition", 1);
+    room.send("startGameRequested", questions);
   };
 
   useEffect(() => {
