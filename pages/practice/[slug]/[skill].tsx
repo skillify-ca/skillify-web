@@ -159,7 +159,7 @@ const PracticeQuiz = ({ slug, skill }) => {
         inputElement={inputElement}
         submitGuess={submitGuess}
         score={correctGuess}
-        practice={true}
+        HUDEnabled={false}
       />
     );
     let stageLevel = stage;

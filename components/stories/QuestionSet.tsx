@@ -25,21 +25,21 @@ import { VerticalDigitstoNum } from "./VerticalDigitstoNum";
 
 type QuestionSetProps = {
   title: string;
+  HUDEnabled?: boolean;
   questionData: Question[];
   index: number;
   inputElement: any;
   submitGuess: (guessData: GuessData) => void;
   score: number;
-  practice?: boolean;
   diagnostic?: { isDiagnostic: boolean; opacityVal: number };
 };
 const QuestionSet = ({
   title,
+  HUDEnabled = true,
   questionData,
   index,
   submitGuess,
   score,
-  practice,
   diagnostic,
 }: QuestionSetProps) => {
   const questionComponent = () => {
@@ -243,7 +243,7 @@ const QuestionSet = ({
   );
   return (
     <div className="flex flex-col justify-center items-center gap-4 m-8">
-      {!practice && !diagnostic && (
+      {HUDEnabled && (
         <div className="flex flex-row justify-between w-full p-4 bg-blue-300 shadow-lg rounded-lg ">
           {progressText}
           {scoreText}
