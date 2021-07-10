@@ -112,7 +112,11 @@ const MathBattle = () => {
   room?.onMessage("showGameOver", (message) => {
     console.log("mes", message);
 
-    setWinnerId(message.id);
+    // There is no message for coop
+    if (message) {
+      setWinnerId(message.id);
+    }
+
     if (stage === STAGE.BATTLE) {
       setStage(STAGE.GAME_OVER);
     } else if (stage === STAGE.COOP) {
