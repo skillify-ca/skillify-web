@@ -25,7 +25,6 @@ const BattleComponent = ({ questions, room }: BattleComponentProps) => {
   }, []);
 
   const submitGuess = (currentGuess: GuessData) => {
-    console.log("currentGuessv", currentGuess);
     if (!currentGuess.isCorrect) {
       setTime((time) => time + 10000);
     }

@@ -112,7 +112,9 @@ const MathBattle = () => {
     setStage(STAGE.COOP);
   });
   room?.onMessage("showGameOver", (message) => {
-    setWinnerId(message);
+    console.log("mes", message);
+
+    setWinnerId(message.id);
     if (stage === STAGE.BATTLE) {
       setStage(STAGE.GAME_OVER);
     } else if (stage === STAGE.COOP) {
@@ -160,7 +162,9 @@ const MathBattle = () => {
         {stage == STAGE.COOP && (
           <CoopBattleComponent questions={questionData} room={room} />
         )}
-        {stage == STAGE.GAME_OVER && <GameOver isWinner={true} room={room} />}
+        {stage == STAGE.GAME_OVER && (
+          <GameOver winnerId={winnerId} room={room} />
+        )}
         {stage == STAGE.COOP_GAME_OVER && (
           <CoopGameOver
             room={room}

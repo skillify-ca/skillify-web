@@ -22,8 +22,18 @@ const CoopGameOver = ({ room, goToLobby }: CoopGameOverProps) => {
           "Amazing work! You and your team took down the monster using your math skills!"
         }
       </p>
-      <Button label="Rematch" backgroundColor="blue" textColor="white" onClick={onRematchClick} />
-      <Button label="Go Home" backgroundColor="green" textColor="white" onClick={onHomeClick} />
+      <Button
+        label="Rematch"
+        backgroundColor="blue"
+        textColor="white"
+        onClick={onRematchClick}
+      />
+      <Button
+        label="Go Home"
+        backgroundColor="green"
+        textColor="white"
+        onClick={onHomeClick}
+      />
     </div>
   );
 };
