@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
 import NumberLiteral from "../dots/NumberLiteral";
-import TenFrame from "../dots/tenFrame";
+import { TenFrame } from "../dots/TenFrame";
 import { Input } from "../ui/Input";
 
 export interface VisualAdditionProp {

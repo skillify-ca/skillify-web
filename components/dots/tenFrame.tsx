@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Story, Meta } from "@storybook/react";
 
 export interface TenFrameProp {
   num: number;
