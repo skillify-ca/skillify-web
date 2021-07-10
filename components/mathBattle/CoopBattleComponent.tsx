@@ -4,7 +4,7 @@ import QuestionSet from "../stories/QuestionSet";
 import { Question } from "../../pages/api/question";
 import { getEmoji } from "../../pages/api/skill";
 import { GuessData } from "../../pages/api/guessData";
-import ProgressRing from "../stories/ProgressRing";
+import ProgressRing from "../ui/ProgressRing";
 
 export interface CoopBattleComponentProps {
   questions: Question[];

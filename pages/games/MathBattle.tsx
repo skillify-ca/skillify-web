@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import CreateRoom from "../../components/mathBattle/createRoom";
-import { Button } from "../../components/stories/Button";
 import * as Colyseus from "colyseus.js";
 import Lobby from "../../components/mathBattle/lobby";
 import BattleComponent from "../../components/mathBattle/BattleComponent";

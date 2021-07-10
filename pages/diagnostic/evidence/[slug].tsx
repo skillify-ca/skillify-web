@@ -1,10 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import DiagnosticEvidence from "../../../components/assessment/DiagnosticEvidence";
 import DiagnosticNavbar from "../../../components/DiagnosticNavbar";
-import DiagnosticEvidence from "../../../components/stories/DiagnosticEvidence";
 
 import { diagnosticSelector } from "../../../redux/diagnosticSlice";
-import { Topic } from "../../api/skill";
 
 const DiagnosticEvidencePage = ({ slug }) => {
   const diagnosticResults = useSelector(diagnosticSelector);

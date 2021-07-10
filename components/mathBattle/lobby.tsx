@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "../stories/Button";
+import { Button } from "../ui/Button";
 import * as Colyseus from "colyseus.js";
 import Link from "next/link";
 import { Player } from "../../pages/games/MathBattle";

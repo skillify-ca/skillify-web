@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { Button } from "../stories/Button";
-import * as Colyseus from "colyseus.js";
-import Link from "next/link";
+import React from "react";
+import { Button } from "../ui/Button";
 import { Player } from "../../pages/games/MathBattle";
 
 export interface CreateRoomProps {
