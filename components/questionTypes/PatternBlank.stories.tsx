@@ -1,6 +1,6 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
-import { PatternBlank, PatternBlankProp } from "./PatternBlanks";
+import { PatternBlank, PatternBlankProp } from "./PatternBlank";
 import Card from "../ui/Card";
 
 export default {
