@@ -12,7 +12,7 @@ import { MultipleChoiceWord } from "../questionTypes/MultipleChoiceWord";
 import { MultiplicationArray } from "../questionTypes/MultiplicationArray";
 import { MultiplicationEqualGroups } from "../questionTypes/MultiplicationEqualGroups";
 import { NumbertoVerticalDigits } from "../questionTypes/NumbertoVerticalDigits";
-import { PatternBlank } from "../questionTypes/patternBlanks";
+import { PatternBlank } from "../questionTypes/PatternBlanks";
 import { TrueorFalse } from "../questionTypes/TrueorFalse";
 import { VerticalDigitstoNum } from "../questionTypes/VerticalDigitstoNum";
 import { VerticalEquation } from "../questionTypes/VerticalEquation";
