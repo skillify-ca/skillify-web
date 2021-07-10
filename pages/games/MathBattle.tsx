@@ -53,7 +53,6 @@ const MathBattle = () => {
         console.log("JOIN ERROR", e);
       });
   };
-
   const onCreateCoopClick = () => {
     client
       .create("coop")
