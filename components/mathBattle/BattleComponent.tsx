@@ -13,7 +13,6 @@ const BattleComponent = ({ questions, room }: BattleComponentProps) => {
   const [index, setIndex] = useState(0);
   const [time, setTime] = useState(0);
   const inputElement = useRef(null);
-  const [winnerId, setWinnerId] = useState("");
 
   React.useEffect(() => {
     let interval = null;
@@ -26,7 +25,7 @@ const BattleComponent = ({ questions, room }: BattleComponentProps) => {
   }, []);
 
   const submitGuess = (currentGuess: GuessData) => {
-    console.log("currentGuess", currentGuess);
+    console.log("currentGuessv", currentGuess);
     if (!currentGuess.isCorrect) {
       setTime((time) => time + 10000);
     }
@@ -38,25 +37,16 @@ const BattleComponent = ({ questions, room }: BattleComponentProps) => {
       room.send("requestGameOver", { id: room.sessionId, score: time });
     }
   };
-  room.onMessage("showGameOver", (message) => {
-    setWinnerId(message);
-  });
   return (
     <div>
-      {winnerId === "" ? (
-        <QuestionSet
-          title={"Battle"}
-          questionData={questions}
-          index={index}
-          inputElement={inputElement}
-          submitGuess={submitGuess}
-          score={1}
-        />
-      ) : winnerId === room.sessionId ? (
-        "Winner"
-      ) : (
-        "Loser"
-      )}
+      <QuestionSet
+        title={"Battle"}
+        questionData={questions}
+        index={index}
+        inputElement={inputElement}
+        submitGuess={submitGuess}
+        score={1}
+      />
       <p>{time}</p>
     </div>
   );

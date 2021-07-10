@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
 import * as Colyseus from "colyseus.js";
-import QuestionSet from "../stories/QuestionSet";
-import { Question } from "../../pages/api/question";
-import { getEmoji } from "../../pages/api/skill";
-import { GuessData } from "../../pages/api/guessData";
-import ProgressRing from "../ui/ProgressRing";
+import QuestionSet from "../../stories/QuestionSet";
+import { Question } from "../../../pages/api/question";
+import { getEmoji } from "../../../pages/api/skill";
+import { GuessData } from "../../../pages/api/guessData";
+import ProgressRing from "../../ui/ProgressRing";
 
 export interface CoopBattleComponentProps {
   questions: Question[];
@@ -17,18 +17,21 @@ const CoopBattleComponent = ({ questions, room }: CoopBattleComponentProps) => {
   const [health, setHealth] = useState(100);
 
   room?.onMessage("nextHealth", (message) => {
-    setHealth(Number.parseInt(message));
+    const nextHealth = Number.parseInt(message);
+    setHealth(nextHealth);
+    if (nextHealth <= 0) {
+      room.send("requestGameOver");
+    }
   });
 
   const submitGuess = (currentGuess: GuessData) => {
-    console.log("currentGuess", currentGuess);
     if (index + 1 < questions.length) {
       setIndex(index + 1);
       // notify colyseus that this player submitted a correct guess
       if (currentGuess.isCorrect) {
         room.send("correct");
       }
-    } 
+    }
   };
 
   return (
