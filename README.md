@@ -14,6 +14,13 @@ Math Champ has a library of UI components that make up the website. They're cate
 
 `npm run storybook` 
 
+## How to add a new skill
+
+Math Champ is continuously adding more skills and questions types. If you want to create a new skill you must follow these steps:
+- Copy this PR https://github.com/vithushan19/math/pull/297
+- Insert a new row in the user_skills table in Hasura for all users with this new skill
+- Update the [user sync method](https://github.com/vithushan19/math/blob/8f4c2fa05760515cf9237921850ecb9a748e78ba/pages/api/auth/%5B...nextauth%5D.js#L33) with your new skill so new users will get the skill initialized
+
 ## Topics
 - grades vs topic vs skill
 - react components

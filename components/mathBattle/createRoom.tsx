@@ -6,6 +6,7 @@ import { Player } from "../../pages/games/MathBattle";
 
 export interface CreateRoomProps {
   onCreateClick: () => void;
+  onCreateCoopClick: () => void;
   onJoinClick: () => void;
   players: Player[];
   name: string;
@@ -16,6 +17,7 @@ export interface CreateRoomProps {
 
 const CreateRoom = ({
   onCreateClick,
+  onCreateCoopClick,
   onJoinClick,
   name,
   setName,
@@ -37,7 +39,7 @@ const CreateRoom = ({
               get the most correct answers and who can complete it the fastest.
               So let's see who will come up top!
             </p>{" "}
-            <div className="w-1/2 sm:items-center md:self-start">
+            <div className="flex gap-4 sm:items-center md:self-start">
               <input
                 id="guess"
                 type="text"
@@ -52,6 +54,12 @@ const CreateRoom = ({
                 label="Create Game"
                 textColor="white"
                 backgroundColor="blue"
+              ></Button>
+             <Button
+                onClick={onCreateCoopClick}
+                label="Create Coop Game"
+                textColor="white"
+                backgroundColor="green"
               ></Button>
             </div>
           </div>
