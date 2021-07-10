@@ -77,18 +77,18 @@ const MathBattle = () => {
     setPlayers(playerArr);
   });
   room?.onMessage("goToBattle", (message) => {
-      setStage(STAGE.GAME)
-      const questions = message
-      console.log(questions);
-      setQuestionData(questions)
-      
+    setStage(STAGE.GAME);
+    const questions = message;
+    console.log(questions);
+    setQuestionData(questions);
   });
 
   const onStartGameRequested = () => {
     // setStage(STAGE.GAME)
     const questions = generateQuestions("addition", 1);
-    room.send("startGameRequested", questions)
-  }
+    room.send("startGameRequested", questions);
+  };
+
 
   return (
     <div>
@@ -106,8 +106,14 @@ const MathBattle = () => {
             setCode={setCode}
           />
         )}
-        {stage == STAGE.LOBBY && <Lobby players={players} code={code} startGame={onStartGameRequested} />}
         {stage == STAGE.GAME && <BattleComponent questions={questionData} room={room} />}
+        {stage == STAGE.LOBBY && (
+          <Lobby
+            players={players}
+            code={code}
+            startGame={onStartGameRequested}
+          />
+        )}
       </div>
     </div>
   );
