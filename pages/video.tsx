@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import dynamic from "next/dynamic";
-import { Button } from "../components/stories/Button";
+import { Button } from "../components/ui/Button";
 
 const TikTok = dynamic(
   () => {

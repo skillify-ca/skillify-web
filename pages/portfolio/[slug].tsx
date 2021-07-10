@@ -1,15 +1,12 @@
 import React, { useEffect } from "react";
-import { session, useSession } from "next-auth/client";
-import initializeApollo from "../../lib/apollo";
-import { gql, useQuery } from "@apollo/client";
+import { useSession } from "next-auth/client";
+import { useQuery } from "@apollo/client";
 import { FETCH_FLASHCARD_GUESSES } from "../../graphql/fetchFlashcardGuesses";
 import _ from "lodash";
 import Link from "next/link";
 import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
-import Card from "../../components/stories/Card";
+import Card from "../../components/ui/Card";
 import data from "../api/profile/data.json";
-import StatementRow from "../../components/stories/StatementRow";
-import TopicItem from "../../components/stories/TopicItem";
 import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 
 const Portfolio = ({ slug }) => {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "../stories/Button";
+import { Button } from "../ui/Button";
 import Rules from "./Rules";
 
 const TeacherControls = ({ onClick }) => {

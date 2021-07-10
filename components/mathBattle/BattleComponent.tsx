@@ -1,13 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Button } from "../stories/Button";
+import React, { useRef, useState } from "react";
 import * as Colyseus from "colyseus.js";
-import Link from "next/link";
-import { Player } from "../../pages/games/MathBattle";
 import QuestionSet from "../stories/QuestionSet";
-import { AnswerType, Question } from "../../pages/api/question";
-import { QuestionType } from "../../pages/api/questionTypes";
-import { generateQuestions } from "../../pages/api/quiz/quizQuestionGenerator";
-import { Skill } from "../../pages/api/skill";
+import { Question } from "../../pages/api/question";
 import { GuessData } from "../../pages/api/guessData";
 
 export interface BattleComponentProps {

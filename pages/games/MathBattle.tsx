@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import DiagnosticNavbar from "../../components/DiagnosticNavbar";
-import CreateRoom from "../../components/mathBattle/createRoom";
-import { Button } from "../../components/stories/Button";
 import * as Colyseus from "colyseus.js";
-import Lobby from "../../components/mathBattle/lobby";
 import BattleComponent from "../../components/mathBattle/BattleComponent";
 import { generateQuestions } from "../api/quiz/quizQuestionGenerator";
 import { Question, AnswerType } from "../api/question";
@@ -11,6 +8,8 @@ import { QuestionType } from "../api/questionTypes";
 import { Skill } from "../api/skill";
 import CoopBattleComponent from "../../components/mathBattle/CoopBattleComponent";
 import { useEffect } from "react";
+import CreateRoom from "../../components/mathBattle/CreateRooms";
+import Lobby from "../../components/mathBattle/PlayerLobby";
 
 export type Player = {
   seat: number;
