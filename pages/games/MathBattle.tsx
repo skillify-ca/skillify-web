@@ -11,9 +11,7 @@ import { useEffect } from "react";
 import CreateRoom from "../../components/mathBattle/CreateRooms";
 import Lobby from "../../components/mathBattle/PlayerLobby";
 import GameOver from "../../components/mathBattle/GameOver";
-import CoopGameOver, {
-  CoopGameOverProps,
-} from "../../components/mathBattle/coop/CoopGameOver";
+import CoopGameOver from "../../components/mathBattle/coop/CoopGameOver";
 
 export type Player = {
   seat: number;
@@ -163,7 +161,11 @@ const MathBattle = () => {
           <CoopBattleComponent questions={questionData} room={room} />
         )}
         {stage == STAGE.GAME_OVER && (
-          <GameOver winnerId={winnerId} room={room} />
+          <GameOver
+            goToLobby={() => setStage(STAGE.JOIN_SESSION)}
+            winnerId={winnerId}
+            room={room}
+          />
         )}
         {stage == STAGE.COOP_GAME_OVER && (
           <CoopGameOver
