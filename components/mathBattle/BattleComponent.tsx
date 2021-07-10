@@ -57,7 +57,6 @@ const BattleComponent = ({ questions, room }: BattleComponentProps) => {
           inputElement={inputElement}
           submitGuess={submitGuess}
           score={1}
-          practice={false}
         />
       ) : winnerId === room.sessionId ? (
         "Winner"

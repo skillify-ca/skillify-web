@@ -9,6 +9,8 @@ import { generateQuestions } from "../api/quiz/quizQuestionGenerator";
 import { Question, AnswerType } from "../api/question";
 import { QuestionType } from "../api/questionTypes";
 import { Skill } from "../api/skill";
+import CoopBattleComponent from "../../components/mathBattle/CoopBattleComponent";
+import { useEffect } from "react";
 
 export type Player = {
   seat: number;
@@ -20,7 +22,8 @@ const MathBattle = () => {
   enum STAGE {
     JOIN_SESSION,
     LOBBY,
-    GAME,
+    BATTLE,
+    COOP
   }
 
   const [stage, setStage] = useState(STAGE.JOIN_SESSION);
@@ -42,6 +45,21 @@ const MathBattle = () => {
       .joinById(code)
       .then((room) => {
         console.log(room.sessionId, "joined", room.name);
+        setRoom(room);
+        room.send("join", { name: name }); //Dyanmic Name
+        setStage(STAGE.LOBBY);
+      })
+      .catch((e) => {
+        console.log("JOIN ERROR", e);
+      });
+  };
+  
+  const onCreateCoopClick = () => {
+    client
+      .create("coop")
+      .then((room) => {
+        setCode(room.id);
+        console.log(room.sessionId, "joined", room.id, room.name);
         setRoom(room);
         room.send("join", { name: name }); //Dyanmic Name
         setStage(STAGE.LOBBY);
@@ -77,17 +95,24 @@ const MathBattle = () => {
     setPlayers(playerArr);
   });
   room?.onMessage("goToBattle", (message) => {
-    setStage(STAGE.GAME);
+    setStage(STAGE.BATTLE);
     const questions = message;
     console.log(questions);
     setQuestionData(questions);
   });
+  room?.onMessage("goToCoop", (message) => {
+    setStage(STAGE.COOP);
+  });
 
   const onStartGameRequested = () => {
-    setStage(STAGE.GAME);
+    setStage(STAGE.BATTLE);
     const questions = generateQuestions("addition", 1);
     room.send("startGameRequested", questions);
   };
+
+  useEffect(() => {
+    setQuestionData(generateQuestions("addition", 1, 100));
+  }, []);
 
   return (
     <div>
@@ -98,6 +123,7 @@ const MathBattle = () => {
           <CreateRoom
             players={players}
             onCreateClick={onCreateClick}
+            onCreateCoopClick={onCreateCoopClick}
             onJoinClick={onJoinClick}
             name={name}
             setName={setName}
@@ -112,8 +138,11 @@ const MathBattle = () => {
             startGame={onStartGameRequested}
           />
         )}
-        {stage == STAGE.GAME && (
+        {stage == STAGE.BATTLE && (
           <BattleComponent questions={questionData} room={room} />
+        )}
+        {stage == STAGE.COOP && (
+          <CoopBattleComponent questions={questionData} room={room} />
         )}
       </div>
     </div>

@@ -3,9 +3,14 @@ import React from "react";
 export interface ProgressRingProps {
   percentage: number;
   radius: number;
+  unit?: string;
 }
 
-const ProgressRing = ({ percentage, radius }: ProgressRingProps) => {
+const ProgressRing = ({
+  percentage,
+  radius,
+  unit = "%",
+}: ProgressRingProps) => {
   let innerCircleColor;
   let ringColor;
   if (percentage >= 70) {
@@ -26,7 +31,7 @@ const ProgressRing = ({ percentage, radius }: ProgressRingProps) => {
       <p
         className={`flex justify-center items-center ${innerCircleColor} shadow-inner ${ringColor} text-center rounded-full ring-8 w-${radius} h-${radius} text-3xl font-semibold`}
       >
-        {percentage}%
+        {percentage}{unit}
       </p>
     </div>
   );
