@@ -8,8 +8,8 @@ import { QuestionType } from "../api/questionTypes";
 import { Skill } from "../api/skill";
 import CoopBattleComponent from "../../components/mathBattle/CoopBattleComponent";
 import { useEffect } from "react";
-import CreateRoom from "../../components/mathBattle/CreateRoom";
-import Lobby from "../../components/mathBattle/Lobby";
+import CreateRoom from "../../components/mathBattle/CreateRooms";
+import Lobby from "../../components/mathBattle/PlayerLobby";
 
 export type Player = {
   seat: number;
