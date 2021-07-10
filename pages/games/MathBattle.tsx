@@ -126,7 +126,7 @@ const MathBattle = () => {
 
   const onStartGameRequested = () => {
     setStage(STAGE.BATTLE);
-    const questions = generateQuestions("addition", 1);
+    const questions = generateQuestions("addition", 10);
     room.send("startGameRequested", questions);
   };
 
