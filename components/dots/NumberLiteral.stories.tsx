@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import NumberLiteral, { NumberLiteralProp } from "./NumberLiteral";
 
 export default {
-  title: "Number Literal",
+  title: "Dots/Number Literal",
   component: NumberLiteral,
   argTypes: {},
 } as Meta;

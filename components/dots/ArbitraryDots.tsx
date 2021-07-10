@@ -266,10 +266,12 @@ const getDotProps = (id: number, value: number) => {
     ], // Dot 11
   ];
   if (
-    existanceMap[id][value]["exists"] == null ||
-    existanceMap[id][value]["exists"] == undefined
-  )
+    existanceMap[id][value] !== null &&
+    existanceMap[id][value] !== undefined
+  ) {
     return existanceMap[value][id];
+
+  }
 };
 
 const isVisible = (id: number, value: number) => {

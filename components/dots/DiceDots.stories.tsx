@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import DiceDots, { DiceDotsProps } from "./DiceDots";
 
 export default {
-  title: "Dice Dots",
+  title: "Dots/Dice Dots",
   component: DiceDots,
   argTypes: {},
 } as Meta;

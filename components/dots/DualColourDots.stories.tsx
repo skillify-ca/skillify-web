@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import DualColourDots, { DualColourProps } from "./DualColourDots";
 
 export default {
-  title: "Dual Colour Dots",
+  title: "Dots/Dual Colour Dots",
   component: DualColourDots,
   argTypes: {},
 } as Meta;

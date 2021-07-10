@@ -1,6 +1,7 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
-import { PatternBlank, PatternBlankProp } from "./patternBlanks";
+import { PatternBlank, PatternBlankProp } from "./PatternBlanks";
+import Card from "../ui/Card";
 
 export default {
   title: "Pattern Blanks",
@@ -8,7 +9,11 @@ export default {
   argTypes: {},
 } as Meta;
 
-const Template: Story<PatternBlankProp> = (args) => <PatternBlank {...args} />;
+const Template: Story<PatternBlankProp> = (args) => (
+  <Card size="large">
+    <PatternBlank {...args} />
+  </Card>
+);
 
 export const Primary = Template.bind({});
 Primary.args = {

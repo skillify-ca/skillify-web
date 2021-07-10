@@ -2,6 +2,7 @@ import React from "react";
 import { Story, Meta } from "@storybook/react";
 
 import { VerticalEquation, VerticalEquationProp } from "./VerticalEquation";
+import Card from "../ui/Card";
 
 export default {
   title: "Vertical Equation",
@@ -10,11 +11,13 @@ export default {
 } as Meta;
 
 const Template: Story<VerticalEquationProp> = (args) => (
-  <VerticalEquation {...args} />
+  <Card size="large">
+    <VerticalEquation {...args} />
+  </Card>
 );
 
 export const Primary = Template.bind({});
 Primary.args = {
-  question: {text: "2 + 2"},
+  question: { text: "2 + 2" },
   operator: "+",
 };

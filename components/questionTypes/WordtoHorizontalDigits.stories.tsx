@@ -4,6 +4,7 @@ import {
   WordtoHorizontalDigits,
   WordtoHorizontalDigitsProp,
 } from "./WordtoHorizontalDigits";
+import Card from "../ui/Card";
 
 export default {
   title: "Word to Horizontal Digits",
@@ -12,7 +13,9 @@ export default {
 } as Meta;
 
 const Template: Story<WordtoHorizontalDigitsProp> = (args) => (
-  <WordtoHorizontalDigits {...args} />
+  <Card size="large">
+    <WordtoHorizontalDigits {...args} />
+  </Card>
 );
 
 export const Primary = Template.bind({});

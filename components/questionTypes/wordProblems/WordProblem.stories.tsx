@@ -6,6 +6,7 @@ import { createWordProblemModel } from "../../../pages/api/WordProblemModel";
 import { AnswerType } from "../../../pages/api/question";
 import { QuestionType } from "../../../pages/api/questionTypes";
 import { Skill } from "../../../pages/api/skill";
+import Card from "../../ui/Card";
 
 export default {
   title: "Word Problem Simple",
@@ -19,7 +20,11 @@ type WordProblemStoryProp = {
 };
 
 const Template: Story<WordProblemAddProp> = (args) => {
-  return <WordProblemAdd {...args} />;
+  return (
+    <Card size="large">
+      <WordProblemAdd {...args} />
+    </Card>
+  );
 };
 
 export const Primary = Template.bind({});

@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import { Input, InputProps } from "./Input";
 
 export default {
-  title: "Example/Input",
+  title: "UI/Input",
   component: Input,
   argTypes: {
     backgroundColor: {

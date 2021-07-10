@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import TenFrame, { TenFrameProp } from "./tenFrame";
 
 export default {
-  title: "Ten Frame",
+  title: "Dots/Ten Frame",
   component: TenFrame,
   argTypes: {},
 } as Meta;

@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import ArbitraryDots, { ArbitraryDotsProps } from "./ArbitraryDots";
 
 export default {
-  title: "Arbitrary Dots",
+  title: "Dots/Arbitrary Dots",
   component: ArbitraryDots,
   argTypes: {},
 } as Meta;

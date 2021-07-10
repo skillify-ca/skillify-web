@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import EmojiSlider from "./EmojiSlider";
 
 export default {
-  title: "Emoji Slider",
+  title: "UI/Emoji Slider",
   component: EmojiSlider,
   argTypes: {},
 } as Meta;
