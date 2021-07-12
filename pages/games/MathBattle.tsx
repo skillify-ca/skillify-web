@@ -4,6 +4,11 @@ import CreateRoom from "../../components/mathBattle/createRoom";
 import { Button } from "../../components/stories/Button";
 import * as Colyseus from "colyseus.js";
 import Lobby from "../../components/mathBattle/lobby";
+import BattleComponent from "../../components/mathBattle/BattleComponent";
+import { generateQuestions } from "../api/quiz/quizQuestionGenerator";
+import { Question, AnswerType } from "../api/question";
+import { QuestionType } from "../api/questionTypes";
+import { Skill } from "../api/skill";
 
 export type Player = {
   seat: number;
@@ -22,6 +27,15 @@ const MathBattle = () => {
   const [room, setRoom] = useState<Colyseus.Room>();
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
+  const [questionData, setQuestionData] = useState<Question[]>([
+    {
+      text: "",
+      answer: "",
+      answerType: AnswerType.NUMBER,
+      questionType: QuestionType.HORIZONTAL_EQUATION,
+      skill: Skill.ADDITION_SINGLE,
+    },
+  ]);
   var client = new Colyseus.Client("ws://localhost:4001");
   const onJoinClick = () => {
     client
@@ -62,6 +76,18 @@ const MathBattle = () => {
 
     setPlayers(playerArr);
   });
+  room?.onMessage("goToBattle", (message) => {
+    setStage(STAGE.GAME);
+    const questions = message;
+    console.log(questions);
+    setQuestionData(questions);
+  });
+
+  const onStartGameRequested = () => {
+    setStage(STAGE.GAME);
+    const questions = generateQuestions("addition", 1);
+    room.send("startGameRequested", questions);
+  };
 
   return (
     <div>
@@ -79,7 +105,16 @@ const MathBattle = () => {
             setCode={setCode}
           />
         )}
-        {stage == STAGE.LOBBY && <Lobby players={players} code={code} />}
+        {stage == STAGE.LOBBY && (
+          <Lobby
+            players={players}
+            code={code}
+            startGame={onStartGameRequested}
+          />
+        )}
+        {stage == STAGE.GAME && (
+          <BattleComponent questions={questionData} room={room} />
+        )}
       </div>
     </div>
   );

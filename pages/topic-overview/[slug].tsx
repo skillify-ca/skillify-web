@@ -110,8 +110,8 @@ const TopicOverviewPage = ({ slug }) => {
             {" "}
             Confidence:{" "}
             <p className="text-6xl">
-              {" "}
               {!loading &&
+                data &&
                 data.user_skills.length !== 0 &&
                 getEmoji(
                   data.user_skills.filter(
@@ -148,11 +148,13 @@ const TopicOverviewPage = ({ slug }) => {
           </div>
           <p className="flex items-center text-lg">
             {" "}
-            Best Attempt: {!loading && getMaxAccuracy(data.user_quizzes)}{" "}
+            Best Attempt:{" "}
+            {!loading && data && getMaxAccuracy(data.user_quizzes)}{" "}
           </p>
         </div>
         <div className="flex flex-col gap-8 justify-center items-center bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 sm:w-1/2 rounded-2xl h-72">
           {!loading &&
+            data &&
             data.user_badges.map((badge) => {
               return badge.locked ? (
                 <>
@@ -181,23 +183,24 @@ const TopicOverviewPage = ({ slug }) => {
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-blue-100 ">
       <DiagnosticNavbar />
       <div className="p-4 flex flex-col gap-8">
-      <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8">
-        <p className="text-5xl text-white mb-4">
-          {" "}
-          {slug && slug.charAt(0).toUpperCase() + slug.slice(1)} Topic Overview
-        </p>
-        <p className="text-lg text-white">
-          Watch the videos on the lesson page to learn more and do the practice
-          questions to apply your knowledge. Once you feel confident in your{" "}
-          {slug} skills, take the quiz to evaluate your understanding!
-        </p>
+        <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8">
+          <p className="text-5xl text-white mb-4">
+            {" "}
+            {slug && slug.charAt(0).toUpperCase() + slug.slice(1)} Topic
+            Overview
+          </p>
+          <p className="text-lg text-white">
+            Watch the videos on the lesson page to learn more and do the
+            practice questions to apply your knowledge. Once you feel confident
+            in your {slug} skills, take the quiz to evaluate your understanding!
+          </p>
+        </div>
+        <div className="">{levelComponent}</div>
+        <div>
+          {skillComponent}
+          {quizComponent}
+        </div>
       </div>
-      <div className="">{levelComponent}</div>
-      <div>
-        {skillComponent}
-        {quizComponent}
-      </div>
-    </div>
     </div>
   );
 };
@@ -213,6 +216,7 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   return {
     paths: [
+      { params: { slug: "numbers" } },
       { params: { slug: "addition" } },
       { params: { slug: "subtraction" } },
       { params: { slug: "multiplication" } },

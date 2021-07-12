@@ -89,6 +89,10 @@ export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): Skill[] => {
   if (topic == Topic.NUMBERS) {
     if (grade == Grade.GRADE_1) {
       return [Skill.NUMBERS_50];
+    } else if (grade == Grade.GRADE_2) {
+      return [Skill.NUMBERS_200];
+    } else {
+      return [Skill.NUMBERS_1000];
     }
   } else if (topic == Topic.ADDITION) {
     if (grade == Grade.GRADE_1) {

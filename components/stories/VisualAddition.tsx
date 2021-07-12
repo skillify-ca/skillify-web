@@ -7,6 +7,7 @@ import {
 } from "../../pages/api/WordProblemModelObjects";
 import { Button } from "./Button";
 import DiceDots from "./DiceDots";
+import DualColourDots from "./DualColourDots";
 import { Input } from "./Input";
 import NumberLiteral from "./NumberLiteral";
 import TenFrame from "./tenFrame";
@@ -48,13 +49,15 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
       <div className="flex flex-row items-center gap-4">
         <div className="flex flex-col items-center gap-4">
           {/* <TenFrame num={parseInt(parse(question).first)} /> */}
-          <DiceDots value={parseInt(parse(question).first)} />
+          {/* <DiceDots value={parseInt(parse(question).first)} /> */}
+          <DualColourDots value={parseInt(parse(question).first)} />
+
           <NumberLiteral num={parseInt(parse(question).first)} />
         </div>
         <p className="text-5xl font-bold">+</p>
         <div className="flex flex-col items-center gap-4">
-          <DiceDots value={parseInt(parse(question).second)} />
-
+          {/* <DiceDots value={parseInt(parse(question).second)} /> */}
+          <DualColourDots value={parseInt(parse(question).second)} />
           {/* <TenFrame num={parseInt(parse(question).second)} /> */}
           <NumberLiteral num={parseInt(parse(question).second)} />
         </div>
