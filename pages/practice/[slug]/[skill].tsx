@@ -62,6 +62,10 @@ const PracticeQuiz = ({ slug, skill }) => {
             return 3;
           case "addition-properties":
             return 4;
+          case "add-four-digit":
+            return 43;
+          case "add-tenths":
+            return 44;
         }
       case "subtraction":
         switch (skill) {
@@ -71,6 +75,10 @@ const PracticeQuiz = ({ slug, skill }) => {
             return 35;
           case "subtract-triple-digit":
             return 36;
+          case "subttract-four-digit":
+            return 45;
+          case "subtract-tenths":
+            return 46;
         }
       case "multiplication":
         switch (skill) {
@@ -80,6 +88,14 @@ const PracticeQuiz = ({ slug, skill }) => {
             return 38;
           case "multiply-10x10":
             return 39;
+          case "multiply-double-digit-by-10":
+            return 47;
+          case "multiply-triple-digit-by-10":
+            return 48;
+          case "multiply-single-and-double-digit":
+            return 51;
+          case "multiply-single-and-triple-digit":
+            return 52;
         }
       case "division":
         switch (skill) {
@@ -89,6 +105,10 @@ const PracticeQuiz = ({ slug, skill }) => {
             return 41;
           case "divide-100-equally":
             return 42;
+          case "divide-double-digit-by-single-digit":
+            return 49;
+          case "divide-triple-digit-by-single-digit":
+            return 50;
         }
     }
   };

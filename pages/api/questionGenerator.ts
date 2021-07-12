@@ -274,7 +274,11 @@ export function getRandomAdditionQuestion(
   skill: Skill
 ) {
   let rndQuestionType = getRndInteger(0, 2);
-  if (rndQuestionType == 0 || skill == Skill.ADDITION_4_DIGIT) {
+  if (
+    rndQuestionType == 0 ||
+    skill == Skill.ADDITION_4_DIGIT ||
+    skill == Skill.ADDITION_TENTHS
+  ) {
     const add = (a: number, b: number) => a + b;
     return getRandomBinaryQuestion(min, max, "+", add, skill);
   } else {
@@ -424,8 +428,6 @@ function getRandomBinaryQuestion(
   if (skill == Skill.ADDITION_TENTHS) {
     a = getRndDecimal(min, max);
     b = getRndDecimal(min, max);
-    console.log(a);
-    console.log(b);
   } else if (skill == Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT) {
     a = 10;
     b = getRndInteger(min, max);
