@@ -415,13 +415,18 @@ function getRandomBinaryQuestion(
   answerFunction: (a: number, b: number) => number,
   skill: Skill
 ): Question {
-  const types = [
+  let types = [
     QuestionType.HORIZONTAL_EQUATION,
     QuestionType.BINARY_WORD_PROBLEM,
     QuestionType.VERTICAL_EQUATION,
     QuestionType.TRUE_OR_FALSE_PROBLEM,
     QuestionType.MULTIPLE_CHOICE,
   ];
+  //Temporarily Disables True ann False, MC, and Word Problems for G4 Add and Subtract
+  //TODO Redesign the logic for MC Question generator and T or F Questions
+  if (skill == Skill.ADDITION_TENTHS || skill == Skill.SUBTRACTION_TENTHS) {
+    types = [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
+  }
   let typeIndex = getRndInteger(0, types.length);
   let a = getRndInteger(min, max);
   let b = getRndInteger(min, max);
