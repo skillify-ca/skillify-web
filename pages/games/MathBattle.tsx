@@ -103,7 +103,6 @@ const MathBattle = () => {
   room?.onMessage("goToBattle", (message) => {
     setStage(STAGE.BATTLE);
     const questions = message;
-    console.log(questions);
     setQuestionData(questions);
   });
   room?.onMessage("goToCoop", (message) => {
@@ -126,7 +125,7 @@ const MathBattle = () => {
 
   const onStartGameRequested = () => {
     setStage(STAGE.BATTLE);
-    const questions = generateQuestions("addition", 10);
+    const questions = generateQuestions("addition", 1, 10);
     room.send("startGameRequested", questions);
   };
 
