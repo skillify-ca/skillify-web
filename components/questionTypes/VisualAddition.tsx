@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
+import { getRndInteger } from "../../pages/api/random";
+import ArbitraryDots from "../dots/ArbitraryDots";
+import DiceDots from "../dots/DiceDots";
 import DualColourDots from "../dots/DualColourDots";
 import NumberLiteral from "../dots/NumberLiteral";
 import { TenFrame } from "../dots/TenFrames";
@@ -24,6 +27,8 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
     };
   };
 
+  const visualDisplay = getRndInteger(0, 4);
+
   const [guess, setGuess] = useState("");
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
@@ -42,17 +47,30 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
     <div className="flex flex-col gap-8 items-center">
       <div className="flex flex-row items-center gap-4">
         <div className="flex flex-col items-center gap-4">
-          {/* <TenFrame num={parseInt(parse(question).first)} /> */}
-          {/* <DiceDots value={parseInt(parse(question).first)} /> */}
-          <DualColourDots value={parseInt(parse(question).first)} />
+          {visualDisplay == 0 ? (
+            <TenFrame num={parseInt(parse(question).first)} />
+          ) : visualDisplay == 1 ? (
+            <DiceDots value={parseInt(parse(question).first)} />
+          ) : visualDisplay == 2 ? (
+            <DualColourDots value={parseInt(parse(question).first)} />
+          ) : (
+            <ArbitraryDots value={parseInt(parse(question).first)} />
+          )}
 
           <NumberLiteral num={parseInt(parse(question).first)} />
         </div>
         <p className="text-5xl font-bold">+</p>
         <div className="flex flex-col items-center gap-4">
-          {/* <DiceDots value={parseInt(parse(question).second)} /> */}
-          <DualColourDots value={parseInt(parse(question).second)} />
-          {/* <TenFrame num={parseInt(parse(question).second)} /> */}
+          {visualDisplay == 0 ? (
+            <TenFrame num={parseInt(parse(question).second)} />
+          ) : visualDisplay == 1 ? (
+            <DiceDots value={parseInt(parse(question).second)} />
+          ) : visualDisplay == 2 ? (
+            <DualColourDots value={parseInt(parse(question).second)} />
+          ) : (
+            <ArbitraryDots value={parseInt(parse(question).second)} />
+          )}
+
           <NumberLiteral num={parseInt(parse(question).second)} />
         </div>
       </div>
