@@ -1,7 +1,4 @@
-import Link from "next/link";
-import React, { useState } from "react";
-import { Button } from "./Button";
-import StarRating from "./Rating";
+import React from "react";
 
 export type StatementRowProps = {
   text: string;

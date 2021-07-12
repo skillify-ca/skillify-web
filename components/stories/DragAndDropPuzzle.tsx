@@ -4,7 +4,7 @@ import { BoardSquare } from "../ticTacToe/BoardSquare";
 import { ItemTypes } from "../ticTacToe/ItemTypes";
 import { NumberTile } from "../ticTacToe/NumberTile";
 import { BoxState } from "../ticTacToe/TicTacToeBoard";
-import { Button } from "./Button";
+import { Button } from "../ui/Button";
 
 export interface DragAndDropPuzzleProps {
   onSubmit: (guess: GuessData) => void;

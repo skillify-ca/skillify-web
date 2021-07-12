@@ -3,7 +3,11 @@ import { generateQuestionForSkill } from "../questionGenerator";
 
 const NUM_QUESTIONS = 5;
 
-export const generateQuestions = (slug: string, currentLevel: number) => {
+export const generateQuestions = (
+  slug: string,
+  currentLevel: number,
+  numberOfQuestions: number = NUM_QUESTIONS
+) => {
   if (slug != null) {
     let skill;
     if (slug.toLowerCase() == "numbers") {
@@ -18,7 +22,7 @@ export const generateQuestions = (slug: string, currentLevel: number) => {
           skill = Skill.NUMBERS_1000;
           break;
       }
-      return generateQuestionsForSkill(NUM_QUESTIONS, skill);
+      return generateQuestionsForSkill(numberOfQuestions, skill);
     } else if (slug.toLowerCase() == "addition") {
       switch (currentLevel) {
         case 1:
@@ -34,7 +38,7 @@ export const generateQuestions = (slug: string, currentLevel: number) => {
           skill = Skill.ADDITION_4_DIGIT;
           break;
       }
-      return generateQuestionsForSkill(NUM_QUESTIONS, skill);
+      return generateQuestionsForSkill(numberOfQuestions, skill);
     } else if (slug.toLowerCase() == "subtraction") {
       let skill;
       switch (currentLevel) {
@@ -51,7 +55,7 @@ export const generateQuestions = (slug: string, currentLevel: number) => {
           skill = Skill.SUBTRACTION_4_DIGIT;
           break;
       }
-      return generateQuestionsForSkill(NUM_QUESTIONS, skill);
+      return generateQuestionsForSkill(numberOfQuestions, skill);
     } else if (slug.toLowerCase() == "multiplication") {
       let skill;
       switch (currentLevel) {
@@ -68,7 +72,7 @@ export const generateQuestions = (slug: string, currentLevel: number) => {
           skill = Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT;
           break;
       }
-      return generateQuestionsForSkill(NUM_QUESTIONS, skill);
+      return generateQuestionsForSkill(numberOfQuestions, skill);
     } else if (slug.toLowerCase() == "division") {
       let skill;
       switch (currentLevel) {
@@ -84,7 +88,7 @@ export const generateQuestions = (slug: string, currentLevel: number) => {
         case 4:
           skill = Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT;
       }
-      return generateQuestionsForSkill(NUM_QUESTIONS, skill);
+      return generateQuestionsForSkill(numberOfQuestions, skill);
     }
   }
   return [];
