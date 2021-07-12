@@ -7,7 +7,7 @@ import { diagnosticSelector } from "../../redux/diagnosticSlice";
 import dynamic from 'next/dynamic'
 
 const DiagnosticConclusion = dynamic(
-  () => import('../../components/stories/DiagnosticConclusion'),
+  () => import('../../components/assessment/DiagnosticConclusion'),
   { ssr: false }
 )
 const DiagnosticConclusionPage = () => {

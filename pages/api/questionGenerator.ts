@@ -3,9 +3,7 @@ import { QuestionType } from "./questionTypes";
 import { getRndInteger } from "./random";
 import { createWordProblemModel } from "./WordProblemModel";
 import { Skill } from "./skill";
-import { ArrayQMap, createArrayImage } from "./ArrayQMap";
 import { getRandomPropertyAdditionQuestion } from "./additionPropertyQuestionGenerator";
-import { tweleveMap } from "./factorsOfTwelveMap";
 import { shuffle } from "lodash";
 
 export const generateQuestionForSkill = (skill: Skill): Question => {

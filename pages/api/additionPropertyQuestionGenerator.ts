@@ -1,5 +1,4 @@
 import { shuffle } from "lodash";
-import { AdditionProperty } from "../../components/stories/MultipleChoiceTypes";
 import {
   Question,
   MCOption,
@@ -11,7 +10,7 @@ import {
 import { Skill } from "./skill";
 import { QuestionType } from "./questionTypes";
 import { getRandomItemFromArray, getRndInteger } from "./random";
-import { FillBlank } from "../../components/stories/FillBlank";
+import { AdditionProperty } from "./additionProperty";
 
 export function getRandomPropertyAdditionQuestion(
   min: number,

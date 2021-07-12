@@ -5,19 +5,17 @@ import { GuessData } from "../../api/guessData";
 import { AnswerType, Question } from "../../api/question";
 import { Skill } from "../../api/skill";
 import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGenerator";
-import { Button } from "../../../components/stories/Button";
 import ReactCardFlip from "react-card-flip";
-import Card from "../../../components/stories/Card";
-import Hint from "../../../components/stories/Hint";
-import EmojiSlider from "../../../components/stories/EmojiSlider";
 import Link from "next/link";
-import { delay } from "lodash";
 import { UPDATE_USER_SKILL_EMOJI } from "../../../graphql/updateUserEmoji";
 import { useMutation } from "@apollo/client";
 import { userId } from "../../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
 import { FETCH_USER_EMOJIS } from "../../../graphql/fetchUserEmojis";
 import DiagnosticNavbar from "../../../components/DiagnosticNavbar";
+import { Button } from "../../../components/ui/Button";
+import Card from "../../../components/ui/Card";
+import EmojiSlider from "../../../components/ui/EmojiSlider";
 
 const PracticeQuiz = ({ slug, skill }) => {
   enum STAGE {
@@ -159,7 +157,7 @@ const PracticeQuiz = ({ slug, skill }) => {
         inputElement={inputElement}
         submitGuess={submitGuess}
         score={correctGuess}
-        practice={true}
+        HUDEnabled={false}
       />
     );
     let stageLevel = stage;

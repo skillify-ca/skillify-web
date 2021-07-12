@@ -3,11 +3,8 @@ import { session, useSession } from "next-auth/client";
 import Link from "next/link";
 import React, { useState } from "react";
 import DiagnosticNavbar from "../../components/DiagnosticNavbar";
-import { Button } from "../../components/stories/Button";
-import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
+import { Button } from "../../components/ui/Button";
 import { FETCH_TOPIC_OVERVIEW } from "../../graphql/fetchTopicOverview";
-import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
-import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { userId } from "../../graphql/utils/constants";
 import { getBadgeId } from "../api/badgeHelper";
 import {
