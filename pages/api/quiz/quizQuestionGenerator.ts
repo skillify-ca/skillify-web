@@ -34,6 +34,9 @@ export const generateQuestions = (
         case 3:
           skill = Skill.ADDITION_TRIPLE;
           break;
+        case 4:
+          skill = Skill.ADDITION_4_DIGIT;
+          break;
       }
       return generateQuestionsForSkill(numberOfQuestions, skill);
     } else if (slug.toLowerCase() == "subtraction") {
@@ -47,6 +50,9 @@ export const generateQuestions = (
           break;
         case 3:
           skill = Skill.SUBTRACTION_TRIPLE;
+          break;
+        case 4:
+          skill = Skill.SUBTRACTION_4_DIGIT;
           break;
       }
       return generateQuestionsForSkill(numberOfQuestions, skill);
@@ -62,6 +68,9 @@ export const generateQuestions = (
         case 3:
           skill = Skill.MULTIPLICATION_10;
           break;
+        case 4:
+          skill = Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT;
+          break;
       }
       return generateQuestionsForSkill(numberOfQuestions, skill);
     } else if (slug.toLowerCase() == "division") {
@@ -76,6 +85,8 @@ export const generateQuestions = (
         case 3:
           skill = Skill.DIVIDE_100;
           break;
+        case 4:
+          skill = Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT;
       }
       return generateQuestionsForSkill(numberOfQuestions, skill);
     }

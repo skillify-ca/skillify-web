@@ -176,7 +176,6 @@ const Quiz = ({ slug }) => {
   const getAccuracy = () => {
     return Math.round((100 * correctGuesses) / length);
   };
-
   return (
     <div>
       <DiagnosticNavbar />

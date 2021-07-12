@@ -19,6 +19,12 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
       case "addition-properties":
         skill = Skill.ADDITION_PROPERTIES;
         break;
+      case "add-four-digit":
+        skill = Skill.ADDITION_4_DIGIT;
+        break;
+      case "add-tenths":
+        skill = Skill.ADDITION_TENTHS;
+        break;
     }
   } else if (topic == "subtraction") {
     switch (skillStr) {
@@ -30,6 +36,12 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
         break;
       case "subtract-triple-digit":
         skill = Skill.SUBTRACTION_TRIPLE;
+        break;
+      case "subtract-four-digit":
+        skill = Skill.SUBTRACTION_4_DIGIT;
+        break;
+      case "subtract-tenths":
+        skill = Skill.SUBTRACTION_TENTHS;
         break;
     }
   } else if (topic == "multiplication") {
@@ -43,6 +55,18 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
       case "multiply-10x10":
         skill = Skill.MULTIPLICATION_10;
         break;
+      case "multiply-single-and-double-digit":
+        skill = Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT;
+        break;
+      case "multiply-single-and-triple-digit":
+        skill = Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT;
+        break;
+      case "multiply-double-digit-by-10":
+        skill = Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT;
+        break;
+      case "multiply-triple-digit-by-10":
+        skill = Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT;
+        break;
     }
   } else if (topic == "division") {
     switch (skillStr) {
@@ -54,6 +78,12 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
         break;
       case "divide-100-equally":
         skill = Skill.DIVIDE_100;
+        break;
+      case "divide-double-digit-by-single-digit":
+        skill = Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT;
+        break;
+      case "divide-triple-digit-by-single-digit":
+        skill = Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT;
         break;
     }
   }

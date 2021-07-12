@@ -83,11 +83,16 @@ export const TenFrame: React.FC<TenFrameProp> = ({ num, ...props }) => {
 
 export function colourSetter(colourArr, num) {
   let i = 0;
+
   for (i = 0; i < num; ++i) {
-    colourArr[i]("bg-red-400");
+    if (colourArr[i] !== null) {
+      colourArr[i]("bg-red-400");
+    }
   }
   for (i; i < 10; ++i) {
-    colourArr[i]("bg-transparent");
+    if (colourArr[i] !== null) {
+      colourArr[i]("bg-transparent");
+    }
   }
 }
 

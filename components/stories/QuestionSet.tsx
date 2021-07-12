@@ -3,6 +3,7 @@ import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
 import { QuestionType } from "../../pages/api/questionTypes";
 import { getRndColour } from "../../pages/api/random";
+import { Skill } from "../../pages/api/skill";
 import { FillBlank } from "../questionTypes/FillBlank";
 import { HorizontalEquation } from "../questionTypes/HorizontalEquation";
 import { LongDivision } from "../questionTypes/LongDivision";
@@ -201,10 +202,13 @@ const QuestionSet = ({
     } else if (
       questionData[index].questionType === QuestionType.LONG_DIVISION_PROBLEM
     ) {
+      const skill = questionData[index].skill;
+
       return (
         <LongDivision
           question={questionData[index]}
           submitGuess={submitGuess}
+          isRemainder={skill === Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT}
         />
       );
     } else if (
