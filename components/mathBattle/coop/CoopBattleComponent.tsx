@@ -14,7 +14,7 @@ export interface CoopBattleComponentProps {
 const CoopBattleComponent = ({ questions, room }: CoopBattleComponentProps) => {
   const [index, setIndex] = useState(0);
   const inputElement = useRef(null);
-  const [health, setHealth] = useState(100);
+  const [health, setHealth] = useState(20);
 
   room?.onMessage("nextHealth", (message) => {
     const nextHealth = Number.parseInt(message);
