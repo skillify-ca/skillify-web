@@ -256,7 +256,7 @@ export function getRandomAdditionQuestion(
   skill: Skill
 ) {
   let rndQuestionType = getRndInteger(0, 2);
-  if (rndQuestionType == 0) {
+  if (false && rndQuestionType == 0) {
     const add = (a: number, b: number) => a + b;
     return getRandomBinaryQuestion(min, max, "+", add, skill);
   } else {
