@@ -120,6 +120,10 @@ export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): Skill[] => {
   if (topic == Topic.NUMBERS) {
     if (grade == Grade.GRADE_1) {
       return [Skill.NUMBERS_50];
+    } else if (grade == Grade.GRADE_2) {
+      return [Skill.NUMBERS_200];
+    } else {
+      return [Skill.NUMBERS_1000];
     }
   } else if (topic == Topic.ADDITION) {
     if (grade == Grade.GRADE_1) {
@@ -205,6 +209,10 @@ export enum Skill {
 export function SkillDescription(skill: Skill) {
   if (skill == Skill.NUMBERS_50) {
     return "Count to 50";
+  } else if (skill == Skill.NUMBERS_200) {
+    return "Count to 200";
+  } else if (skill == Skill.NUMBERS_1000) {
+    return "Count to 1000";
   } else if (skill == Skill.ADDITION_SINGLE) {
     return "Add one digit numbers";
   } else if (skill == Skill.ADDITION_DOUBLE) {
@@ -264,6 +272,8 @@ export const getPracticeCardForSkill = (
 ): PracticeCardMetadata[] => {
   switch (skill) {
     case Skill.NUMBERS_50:
+    case Skill.NUMBERS_200:
+    case Skill.NUMBERS_1000:
       return [
         {
           link: `numbers/${skill}`,

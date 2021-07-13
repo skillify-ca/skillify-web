@@ -8,9 +8,9 @@ export interface DotProps {
 }
 
 const Dot = ({ exists = true, visible = true }: DotProps) => {
-  const margin = randomize(-5, 4);
+  const margin = randomize(-4, 3);
 
-  let possibleLengths = [4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 20, 24];
+  let possibleLengths = [3, 4, 5, 6, 7, 8];
   let randomLengthIndex = randomize(0, possibleLengths.length);
   let displayLength = possibleLengths[randomLengthIndex];
 
@@ -270,7 +270,6 @@ const getDotProps = (id: number, value: number) => {
     existanceMap[id][value] !== undefined
   ) {
     return existanceMap[value][id];
-
   }
 };
 

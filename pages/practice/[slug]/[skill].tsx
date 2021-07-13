@@ -52,6 +52,15 @@ const PracticeQuiz = ({ slug, skill }) => {
   let getSkillId = (skill: any, slug: any) => {
     //Note: The skill Ids are determined based of the values save in the skills table with graph
     switch (slug) {
+      case "numbers":
+        switch (skill) {
+          case "count-50":
+            return 53;
+          case "count-200":
+            return 54;
+          case "count-1000":
+            return 55;
+        }
       case "addition":
         switch (skill) {
           case "add-one-digit":

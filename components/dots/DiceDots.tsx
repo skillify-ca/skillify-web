@@ -12,7 +12,7 @@ const Dot = ({ exists = true, visible = true }: DotProps) => {
       <div
         className={`${
           visible ? "opacity-100" : "opacity-0"
-        } rounded-full h-24 w-24 flex items-center justify-center bg-red-400 border-black`}
+        } rounded-full h-8 w-8 flex items-center justify-center bg-red-400 border-black`}
       ></div>
     )
   );
