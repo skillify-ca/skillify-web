@@ -12,6 +12,7 @@ import CreateRoom from "../../components/mathBattle/CreateRooms";
 import Lobby from "../../components/mathBattle/PlayerLobby";
 import GameOver from "../../components/mathBattle/GameOver";
 import CoopGameOver from "../../components/mathBattle/coop/CoopGameOver";
+import CoopBattleIntro from "../../components/mathBattle/coop/CoopBattleIntro";
 
 export type Player = {
   seat: number;
@@ -161,7 +162,7 @@ const MathBattle = () => {
           <BattleComponent questions={questionData} room={room} />
         )}
         {stage == STAGE.COOP && (
-          <CoopBattleComponent questions={questionData} room={room} />
+          <CoopBattleIntro questions={questionData} room={room} />
         )}
         {stage == STAGE.GAME_OVER && (
           <GameOver
