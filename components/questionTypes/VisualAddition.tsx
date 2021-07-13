@@ -12,18 +12,20 @@ import { Input } from "../ui/Input";
 export interface VisualAdditionProp {
   submitGuess: (guess: GuessData) => void;
   question: Question;
+  visualDisplay: number;
 }
 
 export const VisualAddition: React.FC<VisualAdditionProp> = ({
   submitGuess,
   question,
+  visualDisplay,
   ...props
 }) => {
-  const [visualDisplay, setVisualDisplay] = useState(0);
+  // const [visualDisplay, setVisualDisplay] = useState(0);
 
-  useEffect(() => {
-    setVisualDisplay(getRndInteger(0, 3));
-  }, []);
+  // useEffect(() => {
+  //   setVisualDisplay(getRndInteger(0, 3));
+  // }, []);
 
   const parse = (question) => {
     const parts = question.text && question.text.split(" ");
@@ -46,11 +48,10 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
       isCorrect: guess === question.answer,
     });
     setGuess("");
-    setVisualDisplay(getRndInteger(0, 3));
+    // setVisualDisplay(getRndInteger(0, 3));
   };
   return (
     <div className="flex flex-col gap-8 items-center">
-      {console.log(visualDisplay)}
       <div className="flex flex-row items-center gap-4">
         <div className="flex flex-col items-center gap-4">
           {visualDisplay == 0 ? (

@@ -276,7 +276,7 @@ export function getRandomAdditionQuestion(
 ) {
   let rndQuestionType = getRndInteger(0, 2);
   if (
-    rndQuestionType == 0 ||
+    (false && rndQuestionType == 0) ||
     skill == Skill.ADDITION_4_DIGIT ||
     skill == Skill.ADDITION_TENTHS
   ) {
@@ -286,6 +286,7 @@ export function getRandomAdditionQuestion(
     let a = getRndInteger(min, max);
     let b = getRndInteger(min, max);
     let text = `${a} + ${b} =`;
+
     return {
       text: text,
       answer: (a + b).toString(),
@@ -293,6 +294,7 @@ export function getRandomAdditionQuestion(
       questionType: QuestionType.VISUAL_TYPE_PROBLEM,
       operator: "+",
       skill: skill,
+      displayNum: getRndInteger(0, 3),
     };
   }
 }
