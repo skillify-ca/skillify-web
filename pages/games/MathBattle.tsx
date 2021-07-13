@@ -24,6 +24,7 @@ export enum STAGE {
   LOBBY,
   BATTLE,
   COOP,
+  COOP_INTRO,
   GAME_OVER,
   COOP_GAME_OVER,
 }
@@ -107,7 +108,7 @@ const MathBattle = () => {
     setQuestionData(questions);
   });
   room?.onMessage("goToCoop", (message) => {
-    setStage(STAGE.COOP);
+    setStage(STAGE.COOP_INTRO);
   });
   room?.onMessage("showGameOver", (message) => {
     console.log("mes", message);
@@ -161,8 +162,15 @@ const MathBattle = () => {
         {stage == STAGE.BATTLE && (
           <BattleComponent questions={questionData} room={room} />
         )}
+        {stage == STAGE.COOP_INTRO && (
+          <CoopBattleIntro
+            startGame={() => {
+              setStage(STAGE.COOP);
+            }}
+          />
+        )}
         {stage == STAGE.COOP && (
-          <CoopBattleIntro questions={questionData} room={room} />
+          <CoopBattleComponent questions={questionData} room={room} />
         )}
         {stage == STAGE.GAME_OVER && (
           <GameOver

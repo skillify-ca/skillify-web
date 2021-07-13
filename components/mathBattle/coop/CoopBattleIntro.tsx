@@ -9,8 +9,7 @@ import Card from "../../ui/Card";
 import CoopBattleComponent from "./CoopBattleComponent";
 
 export interface CoopBattleIntroComponentProps {
-  questions: Question[];
-  room: Colyseus.Room;
+  startGame: () => void;
 }
 export enum STAGE {
   INTRO,
@@ -18,10 +17,8 @@ export enum STAGE {
 }
 
 const CoopBattleIntroComponent = ({
-  questions,
-  room,
+  startGame,
 }: CoopBattleIntroComponentProps) => {
-  const [stage, setStage] = useState(STAGE.INTRO);
   const [time, setTime] = useState(0);
   React.useEffect(() => {
     let interval = null;
@@ -40,19 +37,10 @@ const CoopBattleIntroComponent = ({
     } else if (time / 1000.0 <= 3) {
       return <ProgressRing percentage={1} radius={24} unit={""} />;
     } else {
-      setStage(STAGE.GAME);
+      startGame();
     }
   };
 
-  return (
-    <div className="heropattern-boxes-green-400 bg-gray-900">
-      <div className="flex flex-row gap-8 items-start justify-center h-36 bg-green-200 w-1/3">
-        {stage == STAGE.INTRO && timer(time)}
-        {stage == STAGE.GAME && (
-          <CoopBattleComponent questions={questions} room={room} />
-        )}
-      </div>
-    </div>
-  );
+  return <div>{timer(time)}</div>;
 };
 export default CoopBattleIntroComponent;
