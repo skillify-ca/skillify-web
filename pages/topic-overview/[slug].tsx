@@ -29,6 +29,8 @@ const TopicOverviewPage = ({ slug }) => {
         return 2;
       case "Grade 3":
         return 3;
+      case "Grade 4":
+        return 4;
     }
   };
 
@@ -68,9 +70,11 @@ const TopicOverviewPage = ({ slug }) => {
         <option>Grade 1</option>
         <option>Grade 2</option>
         <option>Grade 3</option>
+        <option>Grade 4</option>
       </select>
     </div>
   );
+  console.log(getSkillsForTopicGrade(slug, grade));
   const skillComponent = (
     <div className="flex flex-col gap-8">
       {getSkillsForTopicGrade(slug, grade).map((skill) => (
