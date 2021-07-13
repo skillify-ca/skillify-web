@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
 import { getRndInteger } from "../../pages/api/random";
@@ -19,6 +19,12 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
   question,
   ...props
 }) => {
+  const [visualDisplay, setVisualDisplay] = useState(0);
+
+  useEffect(() => {
+    setVisualDisplay(getRndInteger(0, 3));
+  }, []);
+
   const parse = (question) => {
     const parts = question.text && question.text.split(" ");
     return {
@@ -26,8 +32,6 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
       second: parts && parts[2],
     };
   };
-
-  const visualDisplay = getRndInteger(0, 4);
 
   const [guess, setGuess] = useState("");
   const handleKeypress = (e) => {
@@ -42,9 +46,11 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
       isCorrect: guess === question.answer,
     });
     setGuess("");
+    setVisualDisplay(getRndInteger(0, 3));
   };
   return (
     <div className="flex flex-col gap-8 items-center">
+      {console.log(visualDisplay)}
       <div className="flex flex-row items-center gap-4">
         <div className="flex flex-col items-center gap-4">
           {visualDisplay == 0 ? (
@@ -54,7 +60,8 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
           ) : visualDisplay == 2 ? (
             <DualColourDots value={parseInt(parse(question).first)} />
           ) : (
-            <ArbitraryDots value={parseInt(parse(question).first)} />
+            // <ArbitraryDots value={parseInt(parse(question).first)} /> //error generating
+            ""
           )}
 
           <NumberLiteral num={parseInt(parse(question).first)} />
@@ -68,7 +75,8 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
           ) : visualDisplay == 2 ? (
             <DualColourDots value={parseInt(parse(question).second)} />
           ) : (
-            <ArbitraryDots value={parseInt(parse(question).second)} />
+            // <ArbitraryDots value={parseInt(parse(question).second)} /> //error generatings
+            ""
           )}
 
           <NumberLiteral num={parseInt(parse(question).second)} />

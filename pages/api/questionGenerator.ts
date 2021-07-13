@@ -48,6 +48,7 @@ export function getRandomNumbersQuestion(
   max: number,
   skill: Skill
 ): Question {
+  console.log(skill);
   const types = [
     QuestionType.PATTERN_COUNT_BLANKS_PROBLEM,
     QuestionType.WORD_TO_HORIZONTAL_DIGITS,

@@ -152,6 +152,10 @@ export enum Skill {
 export function SkillDescription(skill: Skill) {
   if (skill == Skill.NUMBERS_50) {
     return "Count to 50";
+  } else if (skill == Skill.NUMBERS_200) {
+    return "Count to 200";
+  } else if (skill == Skill.NUMBERS_1000) {
+    return "Count to 1000";
   } else if (skill == Skill.ADDITION_SINGLE) {
     return "Add one digit numbers";
   } else if (skill == Skill.ADDITION_DOUBLE) {
@@ -191,6 +195,8 @@ export const getPracticeCardForSkill = (
 ): PracticeCardMetadata[] => {
   switch (skill) {
     case Skill.NUMBERS_50:
+    case Skill.NUMBERS_200:
+    case Skill.NUMBERS_1000:
       return [
         {
           link: `numbers/${skill}`,
