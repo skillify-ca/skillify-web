@@ -223,6 +223,7 @@ const PracticeQuiz = ({ slug, skill }) => {
         userId: userId(session),
         skillId: getSkillId(skill, slug),
         emoji: emoji,
+        questions_practiced: questionData.length,
       },
     });
     setStage(STAGE.END_SESSION);

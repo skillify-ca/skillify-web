@@ -112,6 +112,7 @@ const TopicOverviewPage = ({ slug }) => {
             <p className="text-6xl">
               {" "}
               {!loading &&
+                data &&
                 data.user_skills.length !== 0 &&
                 getEmoji(
                   data.user_skills.filter(
@@ -181,23 +182,24 @@ const TopicOverviewPage = ({ slug }) => {
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-blue-100 ">
       <DiagnosticNavbar />
       <div className="p-4 flex flex-col gap-8">
-      <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8">
-        <p className="text-5xl text-white mb-4">
-          {" "}
-          {slug && slug.charAt(0).toUpperCase() + slug.slice(1)} Topic Overview
-        </p>
-        <p className="text-lg text-white">
-          Watch the videos on the lesson page to learn more and do the practice
-          questions to apply your knowledge. Once you feel confident in your{" "}
-          {slug} skills, take the quiz to evaluate your understanding!
-        </p>
+        <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8">
+          <p className="text-5xl text-white mb-4">
+            {" "}
+            {slug && slug.charAt(0).toUpperCase() + slug.slice(1)} Topic
+            Overview
+          </p>
+          <p className="text-lg text-white">
+            Watch the videos on the lesson page to learn more and do the
+            practice questions to apply your knowledge. Once you feel confident
+            in your {slug} skills, take the quiz to evaluate your understanding!
+          </p>
+        </div>
+        <div className="">{levelComponent}</div>
+        <div>
+          {skillComponent}
+          {quizComponent}
+        </div>
       </div>
-      <div className="">{levelComponent}</div>
-      <div>
-        {skillComponent}
-        {quizComponent}
-      </div>
-    </div>
     </div>
   );
 };
