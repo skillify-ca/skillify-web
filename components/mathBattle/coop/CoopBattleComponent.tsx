@@ -23,6 +23,10 @@ const CoopBattleComponent = ({ questions, room }: CoopBattleComponentProps) => {
       room.send("requestGameOver");
     }
   });
+  room?.onMessage("regenerateHealth", (message) => {
+    const nextHealth = Number.parseInt(message);
+    setHealth(nextHealth);
+  });
 
   const submitGuess = (currentGuess: GuessData) => {
     if (index + 1 < questions.length) {
