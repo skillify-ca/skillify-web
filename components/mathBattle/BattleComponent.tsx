@@ -38,15 +38,18 @@ const BattleComponent = ({ questions, room }: BattleComponentProps) => {
   };
   return (
     <div>
+      <div className="h-3 relative max-w-xl rounded-full overflow-hidden">
+        <div className="w-full h-full bg-gray-200 absolute"></div>
+      </div>
       <QuestionSet
         title={"Battle"}
         questionData={questions}
         index={index}
         inputElement={inputElement}
         submitGuess={submitGuess}
-        score={1}
+        score={0}
       />
-      <p>{time}</p>
+      <p>{parseInt((time / 1000).toString())}</p>
     </div>
   );
 };
