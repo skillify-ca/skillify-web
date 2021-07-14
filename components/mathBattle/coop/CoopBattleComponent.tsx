@@ -22,7 +22,6 @@ const CoopBattleComponent = ({ questions, room }: CoopBattleComponentProps) => {
     const nextHealth = Number.parseInt(message);
     setHealth(nextHealth);
     setTrasnparent(false);
-    console.log("transparency", transparent);
     if (nextHealth <= 0) {
       room.send("requestGameOver");
     }
@@ -44,7 +43,6 @@ const CoopBattleComponent = ({ questions, room }: CoopBattleComponentProps) => {
     }
     return "opacity-100";
   };
-  console.log(transparent);
   return (
     <div className="heropattern-boxes-green-400 bg-gray-900">
       <div className="flex flex-row items-start justify-center h-36 bg-green-200 w-1/3 gap-8">
