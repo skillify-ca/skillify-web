@@ -16,10 +16,12 @@ const CoopBattleComponent = ({ questions, room }: CoopBattleComponentProps) => {
   const [index, setIndex] = useState(0);
   const inputElement = useRef(null);
   const [health, setHealth] = useState(200);
+  const [transparent, setTrasnparent] = useState(true);
 
   room?.onMessage("nextHealth", (message) => {
     const nextHealth = Number.parseInt(message);
     setHealth(nextHealth);
+    setTrasnparent(false);
     if (nextHealth <= 0) {
       room.send("requestGameOver");
     }
@@ -35,15 +37,28 @@ const CoopBattleComponent = ({ questions, room }: CoopBattleComponentProps) => {
     }
   };
 
+  const opacity = (transparent: boolean) => {
+    if (transparent == true) {
+      return "opacity-0";
+    }
+    setTrasnparent(true);
+    return "opacity-100";
+  };
+  console.log(transparent);
   return (
     <div className="heropattern-boxes-green-400 bg-gray-900">
-      <div className="flex flex-row gap-8 items-start justify-center h-36 bg-green-200 w-1/3">
+      <div className="flex flex-row items-start justify-center h-36 bg-green-200 w-1/3 gap-8">
         <div className="flex flex-col items-center gap-4">
           <ProgressRing percentage={health} radius={24} unit={""} />
           <p className="text-xl font-bold mb-8">Health</p>
         </div>
         <div className="h-16">
-          <img className="h-36" src="/images/CoopCartoon.jpeg" />
+          <img className="h-36" src="/images/CoopCartoon.jpeg " />
+        </div>
+        <div className="h-16 animate-hit z-15">
+          <div className={opacity(transparent)}>
+            <img className="h-20 rotate-90" src="/images/punch.png" />
+          </div>
         </div>
       </div>
       <QuestionSet
