@@ -10,9 +10,10 @@ export default function Tools(props) {
 
   const notifyPracticeSignup = async () => {
     if (practiceInput.length > 0) {
-      setPracticeButtonEnabled(false)
-      setPracticeInput("")
-      const url = "https://math-app-1.herokuapp.com/notifications?product=practice";
+      setPracticeButtonEnabled(false);
+      setPracticeInput("");
+      const url =
+        "https://math-app-1.herokuapp.com/notifications?product=practice";
       const options = {
         method: "POST",
         headers: {
@@ -28,9 +29,10 @@ export default function Tools(props) {
   };
   const notifyBattleSignup = async () => {
     if (battleInput.length > 0) {
-      setBattleButtonEnabled(false)
-      setBattleInput("")
-      const url = "https://math-app-1.herokuapp.com/notifications?product=battle";
+      setBattleButtonEnabled(false);
+      setBattleInput("");
+      const url =
+        "https://math-app-1.herokuapp.com/notifications?product=battle";
       const options = {
         method: "POST",
         headers: {
@@ -62,34 +64,6 @@ export default function Tools(props) {
         <div className="flex flex-col sm:flex-row gap-8">
           <div className="bg-white shadow-lg rounded-lg w-full p-4">
             <div className="flex flex-col gap-4">
-              <p className="font-bold">Practice Tracker</p>
-              <p className="">
-                Math Practice Made Fun! Enable students to work independently at
-                their own pace. Parents receive weekly reports on their child's
-                progress. Aligned to the new Ontario curriculum.
-              </p>
-              <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
-                <input
-                  id="practice"
-                  type="text"
-                  value={practiceInput}
-                  onChange={(e) => setPracticeInput(e.target.value)}
-                  autoComplete="off"
-                  className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
-                  placeholder="Email"
-                />
-                <Button
-                  disabled={!practiceButtonEnabled}
-                  backgroundColor="blue"
-                  textColor="white"
-                  label="Notify Me"
-                  onClick={notifyPracticeSignup}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="bg-white shadow-lg rounded-lg w-full p-4">
-            <div className="flex flex-col gap-4">
               <p className="font-bold">Math Battle</p>
               <p className="">
                 Math Battle is a competitive multiplayer game where students
@@ -112,6 +86,33 @@ export default function Tools(props) {
                   textColor="white"
                   label="Notify Me"
                   onClick={notifyBattleSignup}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="bg-white shadow-lg rounded-lg w-full p-4">
+            <div className="flex flex-col gap-4">
+              <p className="font-bold">Cooperative Game Mode</p>
+              <p className="">
+                Make math more fun with a cooperative game mode where a team of
+                4 play together to defeat the monster!
+              </p>
+              <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
+                <input
+                  id="practice"
+                  type="text"
+                  value={practiceInput}
+                  onChange={(e) => setPracticeInput(e.target.value)}
+                  autoComplete="off"
+                  className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
+                  placeholder="Email"
+                />
+                <Button
+                  disabled={!practiceButtonEnabled}
+                  backgroundColor="blue"
+                  textColor="white"
+                  label="Notify Me"
+                  onClick={notifyPracticeSignup}
                 />
               </div>
             </div>
