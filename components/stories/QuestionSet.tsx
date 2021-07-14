@@ -2,7 +2,7 @@ import React from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
 import { QuestionType } from "../../pages/api/questionTypes";
-import { getRndColour } from "../../pages/api/random";
+import { getRndColour, getRndInteger } from "../../pages/api/random";
 import { Skill } from "../../pages/api/skill";
 import { FillBlank } from "../questionTypes/FillBlank";
 import { HorizontalEquation } from "../questionTypes/HorizontalEquation";
@@ -165,6 +165,7 @@ const QuestionSet = ({
           <VisualAddition
             question={questionData[index]}
             submitGuess={submitGuess}
+            visualDisplay={questionData[index].displayNum}
           />
         );
       } else if (questionData[index].operator == "-") {

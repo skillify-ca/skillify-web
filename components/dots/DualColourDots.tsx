@@ -21,7 +21,7 @@ const Dot = ({ colour }: DotProps) => {
 
   return (
     <div
-      className={`rounded-full shadow-md h-16 w-16  ${displayColour} border-black`}
+      className={`rounded-full shadow-md h-4 w-4  ${displayColour} border-black`}
     ></div>
   );
 };

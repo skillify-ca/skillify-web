@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
+import { getRndInteger } from "../../pages/api/random";
+import ArbitraryDots from "../dots/ArbitraryDots";
+import DiceDots from "../dots/DiceDots";
+import DualColourDots from "../dots/DualColourDots";
 import NumberLiteral from "../dots/NumberLiteral";
 import { TenFrame } from "../dots/TenFrames";
 import { Input } from "../ui/Input";
@@ -8,13 +12,21 @@ import { Input } from "../ui/Input";
 export interface VisualAdditionProp {
   submitGuess: (guess: GuessData) => void;
   question: Question;
+  visualDisplay: number;
 }
 
 export const VisualAddition: React.FC<VisualAdditionProp> = ({
   submitGuess,
   question,
+  visualDisplay,
   ...props
 }) => {
+  // const [visualDisplay, setVisualDisplay] = useState(0);
+
+  // useEffect(() => {
+  //   setVisualDisplay(getRndInteger(0, 3));
+  // }, []);
+
   const parse = (question) => {
     const parts = question.text && question.text.split(" ");
     return {
@@ -36,17 +48,38 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
       isCorrect: guess === question.answer,
     });
     setGuess("");
+    // setVisualDisplay(getRndInteger(0, 3));
   };
   return (
     <div className="flex flex-col gap-8 items-center">
       <div className="flex flex-row items-center gap-4">
         <div className="flex flex-col items-center gap-4">
-          <TenFrame num={parseInt(parse(question).first)} />
+          {visualDisplay == 0 ? (
+            <TenFrame num={parseInt(parse(question).first)} />
+          ) : visualDisplay == 1 ? (
+            <DiceDots value={parseInt(parse(question).first)} />
+          ) : visualDisplay == 2 ? (
+            <DualColourDots value={parseInt(parse(question).first)} />
+          ) : (
+            // <ArbitraryDots value={parseInt(parse(question).first)} /> //error generating
+            ""
+          )}
+
           <NumberLiteral num={parseInt(parse(question).first)} />
         </div>
         <p className="text-5xl font-bold">+</p>
         <div className="flex flex-col items-center gap-4">
-          <TenFrame num={parseInt(parse(question).second)} />
+          {visualDisplay == 0 ? (
+            <TenFrame num={parseInt(parse(question).second)} />
+          ) : visualDisplay == 1 ? (
+            <DiceDots value={parseInt(parse(question).second)} />
+          ) : visualDisplay == 2 ? (
+            <DualColourDots value={parseInt(parse(question).second)} />
+          ) : (
+            // <ArbitraryDots value={parseInt(parse(question).second)} /> //error generatings
+            ""
+          )}
+
           <NumberLiteral num={parseInt(parse(question).second)} />
         </div>
       </div>

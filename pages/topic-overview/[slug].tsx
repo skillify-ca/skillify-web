@@ -111,8 +111,8 @@ const TopicOverviewPage = ({ slug }) => {
             {" "}
             Confidence:{" "}
             <p className="text-6xl">
-              {" "}
               {!loading &&
+                data &&
                 data.user_skills.length !== 0 &&
                 getEmoji(
                   data.user_skills.filter(
@@ -149,11 +149,13 @@ const TopicOverviewPage = ({ slug }) => {
           </div>
           <p className="flex items-center text-lg">
             {" "}
-            Best Attempt: {!loading && getMaxAccuracy(data.user_quizzes)}{" "}
+            Best Attempt:{" "}
+            {!loading && data && getMaxAccuracy(data.user_quizzes)}{" "}
           </p>
         </div>
         <div className="flex flex-col gap-8 justify-center items-center bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 sm:w-1/2 rounded-2xl h-72">
           {!loading &&
+            data &&
             data.user_badges.map((badge) => {
               return badge.locked ? (
                 <>
@@ -215,6 +217,7 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   return {
     paths: [
+      { params: { slug: "numbers" } },
       { params: { slug: "addition" } },
       { params: { slug: "subtraction" } },
       { params: { slug: "multiplication" } },
