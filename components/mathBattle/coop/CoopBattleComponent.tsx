@@ -22,6 +22,7 @@ const CoopBattleComponent = ({ questions, room }: CoopBattleComponentProps) => {
     const nextHealth = Number.parseInt(message);
     setHealth(nextHealth);
     setTrasnparent(false);
+    console.log("transparency", transparent);
     if (nextHealth <= 0) {
       room.send("requestGameOver");
     }
@@ -41,7 +42,6 @@ const CoopBattleComponent = ({ questions, room }: CoopBattleComponentProps) => {
     if (transparent == true) {
       return "opacity-0";
     }
-    setTrasnparent(true);
     return "opacity-100";
   };
   console.log(transparent);
@@ -55,7 +55,11 @@ const CoopBattleComponent = ({ questions, room }: CoopBattleComponentProps) => {
         <div className="h-16">
           <img className="h-36" src="/images/CoopCartoon.jpeg " />
         </div>
-        <div className="h-16 animate-hit z-15">
+
+        <div
+          className={!transparent ? "h-16 animate-hit" : ""}
+          onAnimationEnd={() => setTrasnparent(true)}
+        >
           <div className={opacity(transparent)}>
             <img className="h-20 rotate-90" src="/images/punch.png" />
           </div>

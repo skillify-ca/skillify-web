@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       animation: {
         shake: "shake 0.5s ease-in-out",
-        hit: "hit 0.5s ease-in-out infinite",
+        hit: "hit 1s ease-in-out",
       },
       backgroundImage: (theme) => ({
         "hero-student":
@@ -24,9 +24,9 @@ module.exports = {
           "50%": { transform: "rotate(3deg)" },
         },
         hit: {
-          "0%, 100%": { transform: "scale(1)" },
-          "25%, 75%": { transform: "scale(1.25)" },
-          "50%": { transform: "scale(1.5)" },
+          "0%, 100%": { transform: "scale(1) translate(0px, 0px)" },
+          "25%, 75%": { transform: "scale(1.25) translate(-30px, 0px)" },
+          "50%": { transform: "scale(1.5) translate(-75px, 0px)" },
         }
       },
       outline: {
