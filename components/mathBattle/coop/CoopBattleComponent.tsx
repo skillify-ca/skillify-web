@@ -16,12 +16,15 @@ const CoopBattleComponent = ({ questions, room }: CoopBattleComponentProps) => {
   const [index, setIndex] = useState(0);
   const inputElement = useRef(null);
   const [health, setHealth] = useState(200);
-  const [transparent, setTrasnparent] = useState(true);
+  const [
+    punchingAnimationVisibility,
+    setPunchingAnimationVisibility,
+  ] = useState(false);
 
   room?.onMessage("nextHealth", (message) => {
     const nextHealth = Number.parseInt(message);
     setHealth(nextHealth);
-    setTrasnparent(false);
+    setPunchingAnimationVisibility(false);
     if (nextHealth <= 0) {
       room.send("requestGameOver");
     }
@@ -36,13 +39,6 @@ const CoopBattleComponent = ({ questions, room }: CoopBattleComponentProps) => {
       }
     }
   };
-
-  const opacity = (transparent: boolean) => {
-    if (transparent == true) {
-      return "opacity-0";
-    }
-    return "opacity-100";
-  };
   return (
     <div className="heropattern-boxes-green-400 bg-gray-900">
       <div className="flex flex-row items-start justify-center h-36 bg-green-200 w-1/3 gap-8">
@@ -55,10 +51,14 @@ const CoopBattleComponent = ({ questions, room }: CoopBattleComponentProps) => {
         </div>
 
         <div
-          className={!transparent ? "h-16 animate-hit" : ""}
-          onAnimationEnd={() => setTrasnparent(true)}
+          className={!punchingAnimationVisibility ? "h-16 animate-hit" : ""}
+          onAnimationEnd={() => setPunchingAnimationVisibility(true)}
         >
-          <div className={opacity(transparent)}>
+          <div
+            className={
+              !punchingAnimationVisibility ? "opacity-100" : "opacity-0"
+            }
+          >
             <img className="h-20 rotate-90" src="/images/punch.png" />
           </div>
         </div>

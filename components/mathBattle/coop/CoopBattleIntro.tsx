@@ -11,11 +11,6 @@ import CoopBattleComponent from "./CoopBattleComponent";
 export interface CoopBattleIntroComponentProps {
   startGame: () => void;
 }
-export enum STAGE {
-  INTRO,
-  GAME,
-}
-
 const CoopBattleIntroComponent = ({
   startGame,
 }: CoopBattleIntroComponentProps) => {
