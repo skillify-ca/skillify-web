@@ -26,7 +26,7 @@ const Lobby = ({ players, code, startGame }: CreateRoomProps) => {
           <p className="bg-gray-500 text-white font-bold">Code: {code}</p>
         </div>
         {players.length === 1 ? (
-          <p>Waiting for all players</p>
+          <p>Waiting for all players...</p>
         ) : (
           <div>
             <Button
