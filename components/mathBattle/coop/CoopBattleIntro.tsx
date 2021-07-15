@@ -27,51 +27,63 @@ const CoopBattleIntroComponent = ({
   let timer = function (time: number) {
     if (time / 1000.0 <= 2) {
       return (
-        <div className="bg-white font-semibold text-green-300 rounded-lg justify-center">
-          <h1 className="animate-fadeIn text-8xl">
-            There once was a scientist...
-          </h1>
+        <div className="bg-yellow-400 w-full h-full">
+          <div className="bg-white font-semibold text-green-500 rounded-lg justify-center">
+            <h1 className="animate-fadeIn lgtext-8xl md:text-5xl">
+              There once was a scientist...
+            </h1>
+          </div>
         </div>
       );
     } else if (time / 1000.0 <= 4) {
       return (
-        <div className="bg-white font-semibold text-green-300 rounded-lg justify-center">
-          <h1 className="animate-fadeIn text-8xl">
-            That mixed Frankinite and Steinium...{" "}
-          </h1>
+        <div className="bg-yellow-400 w-full h-full">
+          <div className="bg-white font-semibold text-green-500 rounded-lg justify-center">
+            <h1 className="animate-fadeIn lg:text-8xl md:text-5xl">
+              That mixed Frankinite and Steinium...{" "}
+            </h1>
+          </div>
         </div>
       );
     } else if (time / 1000.0 <= 6) {
       return (
-        <div className="bg-white font-semibold text-green-300 rounded-lg justify-center">
-          <h1 className="animate-fadeIn text-8xl">
-            This was the creation of the Horrific Frankenstien...{" "}
-          </h1>
+        <div className="bg-yellow-400 w-full h-full">
+          <div className="bg-white font-semibold text-green-500 rounded-lg justify-center">
+            <h1 className="animate-fadeIn lg:text-8xl md:text-5xl">
+              This was the creation of the Horrific Frankenstien...{" "}
+            </h1>
+          </div>
         </div>
       );
     } else if (time / 1000.0 <= 8) {
       return (
-        <div className="bg-white font-semibold text-green-300 rounded-lg justify-center">
-          <h1 className="animate-fadeIn text-8xl">
-            You have teamed up to take down this Monster with your genius Math
-            Skills{" "}
-          </h1>
+        <div className="bg-yellow-400 w-full h-full">
+          <div className="bg-white font-semibold text-green-500 rounded-lg justify-center">
+            <h1 className="animate-fadeIn lg:text-8xl md:text-5xl">
+              You have teamed up to take down this Monster with your genius Math
+              Skills{" "}
+            </h1>
+          </div>
         </div>
       );
     } else if (time / 1000.0 <= 10) {
       return (
-        <div className="bg-white font-semibold text-green-300 rounded-lg justify-center">
-          <h1 className="animate-fadeIn text-8xl">
-            Answer the Questions Correctly and Defeat the Monster{" "}
-          </h1>
+        <div className="bg-yellow-400 w-full h-full">
+          <div className="bg-white font-semibold text-green-500 rounded-lg justify-center">
+            <h1 className="animate-fadeIn lg:text-8xl md:text-5xl">
+              Answer the Questions Correctly and Defeat the Monster{" "}
+            </h1>
+          </div>
         </div>
       );
     } else if (time / 1000.0 <= 12) {
       return (
-        <div className="bg-white font-semibold text-green-300 rounded-lg justify-center">
-          <h1 className="animate-fadeIn text-8xl">
-            We can save the world together{" "}
-          </h1>
+        <div className="bg-yellow-400 w-full h-full">
+          <div className="bg-white font-semibold text-green-500 rounded-lg justify-center">
+            <h1 className="animate-fadeIn lg:text-8xl md:text-5xl">
+              We can save the world together{" "}
+            </h1>
+          </div>
         </div>
       );
     } else if (time / 1000.0 <= 14) {
