@@ -3,6 +3,7 @@ import * as Colyseus from "colyseus.js";
 import QuestionSet from "../stories/QuestionSet";
 import { Question } from "../../pages/api/question";
 import { GuessData } from "../../pages/api/guessData";
+import ProgressBar from "../ProgressBar";
 
 export interface BattleComponentProps {
   questions: Question[];
@@ -10,6 +11,7 @@ export interface BattleComponentProps {
 }
 
 const BattleComponent = ({ questions, room }: BattleComponentProps) => {
+  const [opponentProgress, setOpponentProgress] = useState(0);
   const [index, setIndex] = useState(0);
   const [time, setTime] = useState(0);
   const inputElement = useRef(null);
@@ -24,7 +26,13 @@ const BattleComponent = ({ questions, room }: BattleComponentProps) => {
     };
   }, []);
 
+  room?.onMessage("incrementProgress", (message) => {
+    console.log("data", message);
+    setOpponentProgress(opponentProgress + 1);
+  });
+
   const submitGuess = (currentGuess: GuessData) => {
+    room.send("nextQuestion", { id: room.sessionId, data: index });
     if (!currentGuess.isCorrect) {
       setTime((time) => time + 10000);
     }
@@ -36,11 +44,9 @@ const BattleComponent = ({ questions, room }: BattleComponentProps) => {
       room.send("requestGameOver", { id: room.sessionId, score: time });
     }
   };
+
   return (
     <div>
-      <div className="h-3 relative max-w-xl rounded-full overflow-hidden">
-        <div className="w-full h-full bg-gray-200 absolute"></div>
-      </div>
       <QuestionSet
         title={"Battle"}
         questionData={questions}
@@ -50,6 +56,13 @@ const BattleComponent = ({ questions, room }: BattleComponentProps) => {
         score={0}
       />
       <p>{parseInt((time / 1000).toString())}</p>
+      <div className="w-96 items-center ">
+        <ProgressBar
+          max={10}
+          value={opponentProgress}
+          color="red"
+        ></ProgressBar>
+      </div>
     </div>
   );
 };

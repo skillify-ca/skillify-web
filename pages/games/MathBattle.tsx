@@ -45,7 +45,7 @@ const MathBattle = () => {
       skill: Skill.ADDITION_SINGLE,
     },
   ]);
-  var client = new Colyseus.Client("wss://math-game-server.herokuapp.com");
+  var client = new Colyseus.Client("ws://localhost:4001");
   const onJoinClick = () => {
     client
       .joinById(code)

@@ -276,7 +276,7 @@ export function getRandomAdditionQuestion(
 ) {
   let rndQuestionType = getRndInteger(0, 2);
   if (
-    (false && rndQuestionType == 0) ||
+    rndQuestionType == 0 ||
     skill == Skill.ADDITION_4_DIGIT ||
     skill == Skill.ADDITION_TENTHS
   ) {
