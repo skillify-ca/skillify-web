@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Colyseus from "colyseus.js";
 import { Button } from "../ui/Button";
+import BattleComponent from "./BattleComponent";
+import { generateQuestions } from "../../pages/api/quiz/quizQuestionGenerator";
+import { Question, AnswerType } from "../../pages/api/question";
+import { QuestionType } from "../../pages/api/questionTypes";
+import { Skill } from "../../pages/api/skill";
 
 export interface GameOverProps {
   room: Colyseus.Room;
@@ -9,8 +14,24 @@ export interface GameOverProps {
 }
 
 const GameOver = ({ room, winnerId, goToLobby }: GameOverProps) => {
+  const [questionData, setQuestionData] = useState<Question[]>([
+    {
+      text: "",
+      answer: "",
+      answerType: AnswerType.NUMBER,
+      questionType: QuestionType.HORIZONTAL_EQUATION,
+      skill: Skill.ADDITION_SINGLE,
+    },
+  ]);
+
   const onRematchClick = () => {
-    goToLobby();
+    const questions = generateQuestions("addition", 1, 10);
+    room.send("startGameRequested", questions);
+    room?.onMessage("goToBattle", (message) => {
+      const questions = message;
+      setQuestionData(questions);
+    });
+    return <BattleComponent questions={questionData} room={room} />;
   };
   const onHomeClick = () => {
     goToLobby();
