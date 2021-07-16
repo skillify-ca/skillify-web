@@ -18,12 +18,16 @@ const Lobby = ({ leader, players, code, startGame }: CreateRoomProps) => {
   if (players && players.length > 0) {
     return (
       <div>
-        <div className="relative flex flex-col justify-center text-center bg-white w-1/2 ">
-          <h1 className="text-3xl font-bold text-blue-400 border-b">
+        <div className="relative flex flex-col justify-center text-center bg-gray-100 w-1/2 ">
+          <h1 className="text-3xl font-bold text-blue-400 border-b ">
             Lobby Room
-          </h1>{" "}
+          </h1>
           {players.map((it) => (
-            <h1 className="text-xl border-b">{it.name}</h1>
+            <div className="bg-blue-400 opacity-75	">
+              <h1 className="text-xl font-bold border-b opacity-100">
+                {it.name}
+              </h1>
+            </div>
           ))}
           <p className="bg-gray-500 text-white font-bold">Code: {code}</p>
         </div>

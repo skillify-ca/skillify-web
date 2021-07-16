@@ -46,6 +46,7 @@ const CreateRoom = ({
                 placeholder="Enter your name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                maxLength={10}
               />
               <Button
                 onClick={onCreateClick}
@@ -53,7 +54,7 @@ const CreateRoom = ({
                 textColor="white"
                 backgroundColor="blue"
               ></Button>
-             <Button
+              <Button
                 onClick={onCreateCoopClick}
                 label="Create Coop Game"
                 textColor="white"
@@ -85,6 +86,7 @@ const CreateRoom = ({
                 placeholder="Enter your name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                maxLength={10}
               />
               <input
                 id="guess"
