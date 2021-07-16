@@ -5,12 +5,14 @@ import Link from "next/link";
 import { Player } from "../../pages/games/MathBattle";
 
 export interface CreateRoomProps {
+  leader: boolean;
   players: Player[];
   code: string;
   startGame: () => void;
 }
 
-const Lobby = ({ players, code, startGame }: CreateRoomProps) => {
+const Lobby = ({ leader, players, code, startGame }: CreateRoomProps) => {
+  console.log("leader", leader);
   console.log("player", players);
 
   if (players && players.length > 0) {
@@ -29,12 +31,16 @@ const Lobby = ({ players, code, startGame }: CreateRoomProps) => {
           <p>Waiting for all players</p>
         ) : (
           <div>
-            <Button
-              label="Play"
-              backgroundColor="blue"
-              textColor="white"
-              onClick={startGame}
-            />
+            {leader ? (
+              <Button
+                label="Play"
+                backgroundColor="blue"
+                textColor="white"
+                onClick={startGame}
+              />
+            ) : (
+              <p>Waiting for leader to Start Game</p>
+            )}
           </div>
         )}
       </div>

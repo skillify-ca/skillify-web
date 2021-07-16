@@ -30,6 +30,7 @@ export enum STAGE {
 const MathBattle = () => {
   const [players, setPlayers] = useState([]);
 
+  const [leader, setLeader] = useState(false);
   const [stage, setStage] = useState(STAGE.JOIN_SESSION);
   const [room, setRoom] = useState<Colyseus.Room>();
   const [name, setName] = useState("");
@@ -78,11 +79,13 @@ const MathBattle = () => {
     client
       .create("tictactoe")
       .then((room) => {
+        setLeader(true);
         setCode(room.id);
         console.log(room.id);
         console.log(room.sessionId, "joined", room.name);
         setRoom(room);
         room.send("join", { name: name }); //Dyanmic Name
+        console.log("nametime", name);
         setStage(STAGE.LOBBY);
       })
       .catch((e) => {
@@ -155,6 +158,7 @@ const MathBattle = () => {
             players={players}
             code={code}
             startGame={onStartGameRequested}
+            leader={leader}
           />
         )}
         {stage == STAGE.BATTLE && (
