@@ -51,43 +51,43 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
     // setVisualDisplay(getRndInteger(0, 3));
   };
   return (
-    <div className="flex flex-col gap-8 items-center">
-      <div className="flex flex-row items-center gap-4">
-        <div className="flex flex-col items-center gap-4">
-          {visualDisplay == 0 ? (
-            <TenFrame num={parseInt(parse(question).first)} />
-          ) : visualDisplay == 1 ? (
-            <DiceDots value={parseInt(parse(question).first)} />
-          ) : visualDisplay == 2 ? (
-            <DualColourDots value={parseInt(parse(question).first)} />
-          ) : (
-            // <ArbitraryDots value={parseInt(parse(question).first)} /> //error generating
-            ""
-          )}
+    <div className="flex flex-col gap-4 items-center p-8">
+      <div className="flex flex-row items-center p-2">
+        {visualDisplay == 0 ? (
+          <TenFrame num={parseInt(parse(question).first)} />
+        ) : visualDisplay == 1 ? (
+          <DiceDots value={parseInt(parse(question).first)} />
+        ) : visualDisplay == 2 ? (
+          <DualColourDots value={parseInt(parse(question).first)} />
+        ) : (
+          // <ArbitraryDots value={parseInt(parse(question).first)} /> //error generating
+          ""
+        )}
 
-          <NumberLiteral num={parseInt(parse(question).first)} />
-        </div>
-        <p className="text-5xl font-bold">+</p>
-        <div className="flex flex-col items-center gap-4">
-          {visualDisplay == 0 ? (
-            <TenFrame num={parseInt(parse(question).second)} />
-          ) : visualDisplay == 1 ? (
-            <DiceDots value={parseInt(parse(question).second)} />
-          ) : visualDisplay == 2 ? (
-            <DualColourDots value={parseInt(parse(question).second)} />
-          ) : (
-            // <ArbitraryDots value={parseInt(parse(question).second)} /> //error generatings
-            ""
-          )}
-
-          <NumberLiteral num={parseInt(parse(question).second)} />
-        </div>
+        <p className="text-5xl font-bold p-4">+</p>
+        {visualDisplay == 0 ? (
+          <TenFrame num={parseInt(parse(question).second)} />
+        ) : visualDisplay == 1 ? (
+          <DiceDots value={parseInt(parse(question).second)} />
+        ) : visualDisplay == 2 ? (
+          <DualColourDots value={parseInt(parse(question).second)} />
+        ) : (
+          // <ArbitraryDots value={parseInt(parse(question).second)} /> //error generatings
+          ""
+        )}
       </div>
-      <Input
-        guess={guess}
-        setGuess={setGuess}
-        handleKeypress={handleKeypress}
-      />
+      <div className="flex flex-row gap-32">
+        <NumberLiteral num={parseInt(parse(question).first)} />
+
+        <NumberLiteral num={parseInt(parse(question).second)} />
+      </div>
+      <div className="p-4">
+        <Input
+          guess={guess}
+          setGuess={setGuess}
+          handleKeypress={handleKeypress}
+        />
+      </div>
     </div>
   );
 };

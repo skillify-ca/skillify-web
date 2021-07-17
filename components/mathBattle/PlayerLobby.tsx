@@ -12,18 +12,15 @@ export interface CreateRoomProps {
 }
 
 const Lobby = ({ leader, players, code, startGame }: CreateRoomProps) => {
-  console.log("playersaaaa", players);
-  console.log("leader1", leader);
-
   if (players && players.length > 0) {
     return (
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center ">
         <div className="relative flex flex-col justify-center  bg-gray-100 w-1/2 ">
           <h1 className="text-3xl font-bold text-blue-400 border-b ">
             Lobby Room
           </h1>
           {players.map((it) => (
-            <div className="bg-blue-400 opacity-75 text-center	items-center">
+            <div className="bg-blue-400 opacity-75 text-center items-center">
               <h1 className="text-xl font-bold border-b opacity-100">
                 {console.log("leader", leader)}
                 {console.log("id", it.sessionId)}
@@ -32,7 +29,7 @@ const Lobby = ({ leader, players, code, startGame }: CreateRoomProps) => {
                 {leader == it.sessionId && (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 text-center"
+                    className="h-5  w-5 text-center"
                     viewBox="0 0 20 20"
                     fill="red"
                   >
