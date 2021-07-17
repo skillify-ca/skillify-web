@@ -46,7 +46,7 @@ const BattleComponent = ({ questions, room }: BattleComponentProps) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col justify-center items-center">
       <QuestionSet
         title={"Battle"}
         questionData={questions}
@@ -56,7 +56,7 @@ const BattleComponent = ({ questions, room }: BattleComponentProps) => {
         score={0}
       />
       <p>{parseInt((time / 1000).toString())}</p>
-      <div className="w-96 justify-center items-center">
+      <div className="w-96 ">
         <ProgressBar max={10} value={index} color="blue"></ProgressBar>
         <ProgressBar
           max={10}

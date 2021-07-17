@@ -15,7 +15,7 @@ import CoopGameOver from "../../components/mathBattle/coop/CoopGameOver";
 
 export type Player = {
   seat: number;
-  sessionID: string;
+  sessionId: string;
   name: string;
 };
 export enum STAGE {
@@ -30,10 +30,11 @@ export enum STAGE {
 const MathBattle = () => {
   const [players, setPlayers] = useState([]);
 
-  const [leader, setLeader] = useState(false);
+  const [leader, setLeader] = useState("");
   const [stage, setStage] = useState(STAGE.JOIN_SESSION);
   const [room, setRoom] = useState<Colyseus.Room>();
   const [name, setName] = useState("");
+  const [joinName, setJoinName] = useState("");
   const [code, setCode] = useState("");
   const [winnerId, setWinnerId] = useState("");
 
@@ -53,7 +54,15 @@ const MathBattle = () => {
       .then((room) => {
         console.log(room.sessionId, "joined", room.name);
         setRoom(room);
-        room.send("join", { name: name }); //Dyanmic Name
+        console.log("initial", name);
+
+        console.log("joininitial", joinName);
+
+        console.log("fakename", name);
+
+        console.log("final", name);
+
+        room.send("join", { name: joinName }); //Dyanmic Name
         setStage(STAGE.LOBBY);
       })
       .catch((e) => {
@@ -79,13 +88,11 @@ const MathBattle = () => {
     client
       .create("tictactoe")
       .then((room) => {
-        setLeader(true);
+        setLeader(room.sessionId);
         setCode(room.id);
-        console.log(room.id);
         console.log(room.sessionId, "joined", room.name);
         setRoom(room);
-        room.send("join", { name: name }); //Dyanmic Name
-        console.log("nametime", name);
+        room.send("join", { id: room.sessionId, name: name }); //Dyanmic Name
         setStage(STAGE.LOBBY);
       })
       .catch((e) => {
@@ -94,15 +101,23 @@ const MathBattle = () => {
   };
   room?.onMessage("joinResponse", (message) => {
     console.log(client.auth._id, "received fire on", room.name, message);
+    console.log("messageresponse", message);
     let playerArr = [];
     for (const [key, value] of Object.entries(message)) {
       console.log(key, value);
       playerArr.push(value);
     }
     console.log(playerArr);
+    room.send("leader", leader);
 
     setPlayers(playerArr);
   });
+
+  room?.onMessage("leaderResponse", (message) => {
+    console.log("messagetime", message);
+    setLeader(message);
+  });
+
   room?.onMessage("goToBattle", (message) => {
     setStage(STAGE.BATTLE);
     const questions = message;
@@ -140,7 +155,6 @@ const MathBattle = () => {
     <div>
       <DiagnosticNavbar />
       <div className="p-4">
-        {" "}
         {stage == STAGE.JOIN_SESSION && (
           <CreateRoom
             players={players}
@@ -149,6 +163,8 @@ const MathBattle = () => {
             onJoinClick={onJoinClick}
             name={name}
             setName={setName}
+            joinName={joinName}
+            setJoinName={setJoinName}
             code={code}
             setCode={setCode}
           />
