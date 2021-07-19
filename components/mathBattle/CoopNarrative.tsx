@@ -10,11 +10,8 @@ const CoopStoryComponent = ({ goToIntro }: CoopStoryComponentProps) => {
     console.log("Current page: " + e.data);
   }, []);
   return (
-    <div>
-      <HTMLFlipBook onFlip={onFlip} width={500} height={500}>
-        <div>
-          <div></div>
-        </div>
+    <div className="flex justify-center">
+      <HTMLFlipBook onFlip={onFlip} width={500} height={600} showCover={true}>
         <div className="heropattern-skulls-green-400 bg-gray-900">
           <div className="border-l-8 border-black  text-white font-bold text-8xl text-center items-center  flex min-h-full">
             {" "}
@@ -31,7 +28,7 @@ const CoopStoryComponent = ({ goToIntro }: CoopStoryComponentProps) => {
             {" "}
             A Scientist by the name of Franklin was conducting a terrifying
             experiment in science history. He created his own chemical called
-            FrankSteinium that was said to grant him super strength,
+            Franksteinium that was said to grant him super strength,
             mind-controllling screams, and tremedous height.{" "}
           </div>
           <div className="flex flex-row">
@@ -44,7 +41,7 @@ const CoopStoryComponent = ({ goToIntro }: CoopStoryComponentProps) => {
         <div className="bg-gradient-to-r from-yellow-600  to-yellow-200 border-2 border-black border-r-8">
           <div className="bg-yellow-100 m-5 mt-10 rounded pl-2">
             {" "}
-            Frankjlin believed that he could use Franksteinium to save the world
+            Franklin believed that he could use Franksteinium to save the world
             from evil. He believed if he drank this potion he could be the hero
             of the century. But one thing Franklin missed on his calulation was
             that the potion was radioactive.{" "}
@@ -57,10 +54,10 @@ const CoopStoryComponent = ({ goToIntro }: CoopStoryComponentProps) => {
         <div className="bg-gradient-to-l from-yellow-600 to-yellow-200 border-r-4 border-2 border-black border-l-8">
           <div className="bg-yellow-100 m-5 rounded pl-2">
             {" "}
-            Unknowingly, Franlin still drank the potion and the side effects
+            Unknowingly, Franklin still drank the potion and the side effects
             were unexpected. His skin turned green, his head became enormous,
             and worst of all, he lost his ability to think logically. He became
-            a monster! This Monster started stealing candy from kids. Door by
+            a monster! This monster started stealing candy from kids. Door by
             door, with fear in the families eyes. Franklin has now became
             Frankinstein.{" "}
           </div>
