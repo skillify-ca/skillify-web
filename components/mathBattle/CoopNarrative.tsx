@@ -11,7 +11,13 @@ const CoopStoryComponent = ({ goToIntro }: CoopStoryComponentProps) => {
   }, []);
   return (
     <div className="flex justify-center">
-      <HTMLFlipBook onFlip={onFlip} width={500} height={600} showCover={true}>
+      <HTMLFlipBook
+        onFlip={onFlip}
+        width={400}
+        height={500}
+        showCover={true}
+        showPageCorners={true}
+      >
         <div className="heropattern-skulls-green-400 bg-gray-900">
           <div className="border-l-8 border-black  text-white font-bold text-8xl text-center items-center  flex min-h-full">
             {" "}
