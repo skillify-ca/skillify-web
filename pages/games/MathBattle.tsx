@@ -39,6 +39,7 @@ const MathBattle = () => {
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [winnerId, setWinnerId] = useState("");
+  const [error, setError] = useState(false);
 
   const [questionData, setQuestionData] = useState<Question[]>([
     {
@@ -61,6 +62,8 @@ const MathBattle = () => {
       })
       .catch((e) => {
         console.log("JOIN ERROR", e);
+        console.log("error", error);
+        setError(true);
       });
   };
 
@@ -76,6 +79,7 @@ const MathBattle = () => {
       })
       .catch((e) => {
         console.log("JOIN ERROR", e);
+        setError(true);
       });
   };
   const onCreateClick = () => {
@@ -91,6 +95,7 @@ const MathBattle = () => {
       })
       .catch((e) => {
         console.log("JOIN ERROR", e);
+        setError(true);
       });
   };
   room?.onMessage("joinResponse", (message) => {
@@ -152,6 +157,7 @@ const MathBattle = () => {
             setName={setName}
             code={code}
             setCode={setCode}
+            error={error}
           />
         )}
         {stage == STAGE.LOBBY && (

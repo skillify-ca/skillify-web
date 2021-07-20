@@ -11,6 +11,7 @@ export interface CreateRoomProps {
   setName: (name: string) => void;
   code: string;
   setCode: (code: string) => void;
+  error: boolean;
 }
 
 const CreateRoom = ({
@@ -21,7 +22,9 @@ const CreateRoom = ({
   setName,
   code,
   setCode,
+  error,
 }: CreateRoomProps) => {
+  console.log(error);
   return (
     <div>
       <div className="mr-10 ml-10 mb-10">
@@ -53,7 +56,7 @@ const CreateRoom = ({
                 textColor="white"
                 backgroundColor="blue"
               ></Button>
-             <Button
+              <Button
                 onClick={onCreateCoopClick}
                 label="Create Coop Game"
                 textColor="white"
@@ -101,6 +104,13 @@ const CreateRoom = ({
                 textColor="white"
                 backgroundColor="blue"
               ></Button>
+            </div>
+            <div>
+              {error == true && (
+                <div>
+                  <p>Hello do you see this message</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
