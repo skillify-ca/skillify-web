@@ -12,28 +12,28 @@ const CoopStoryComponent = ({ goToIntro }: CoopStoryComponentProps) => {
   return (
     <div className="flex justify-center">
       <HTMLFlipBook
-        // size={"fixed"}
-        // drawShadow={false}
-        // usePortrait={false}
-        // useMouseEvents={false}
-        // flippingTime={2}
-        // autoSize={false}
-        // startZIndex={0}
-        // mobileScrollSupport={true}
-        // maxShadowOpacity={4}
-        // swipeDistance={2}
-        // disableFlipByClick={true}
-        // showPageCorners={true}
-        // clickEventForward={false}
+        size={"fixed"}
+        drawShadow={true}
+        usePortrait={null}
+        useMouseEvents={true}
+        flippingTime={1000}
+        autoSize={null}
+        startZIndex={null}
+        mobileScrollSupport={null}
+        maxShadowOpacity={0.7}
+        swipeDistance={null}
+        disableFlipByClick={null}
+        showPageCorners={true}
+        clickEventForward={null}
         onFlip={onFlip}
         width={500}
         height={600}
         showCover={true}
-        startPage={1}
-        // minHeight={600}
-        // maxHeight={600}
-        // minWidth={500}
-        // maxWidth={500}
+        startPage={0}
+        minHeight={null}
+        maxHeight={null}
+        minWidth={null}
+        maxWidth={null}
         className={null}
         style={null}
       >
