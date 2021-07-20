@@ -34,6 +34,8 @@ const CoopStoryComponent = ({ goToIntro }: CoopStoryComponentProps) => {
         maxHeight={600}
         minWidth={500}
         maxWidth={500}
+        className={null}
+        style={null}
       >
         <div className="heropattern-skulls-green-400 bg-gray-900">
           <div className="border-l-8 border-black  text-white font-bold text-8xl text-center items-center  flex min-h-full prx-2">
