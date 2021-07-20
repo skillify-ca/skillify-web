@@ -13,6 +13,7 @@ import Lobby from "../../components/mathBattle/PlayerLobby";
 import GameOver from "../../components/mathBattle/GameOver";
 import CoopGameOver from "../../components/mathBattle/coop/CoopGameOver";
 import CoopBattleIntro from "../../components/mathBattle/coop/CoopBattleIntro";
+import CoopStoryComponent from "../../components/mathBattle/CoopNarrative";
 
 export type Player = {
   seat: number;
@@ -24,6 +25,7 @@ export enum STAGE {
   LOBBY,
   BATTLE,
   COOP,
+  COOP_STORY,
   COOP_INTRO,
   GAME_OVER,
   COOP_GAME_OVER,
@@ -108,7 +110,7 @@ const MathBattle = () => {
     setQuestionData(questions);
   });
   room?.onMessage("goToCoop", (message) => {
-    setStage(STAGE.COOP_INTRO);
+    setStage(STAGE.COOP_STORY);
   });
   room?.onMessage("showGameOver", (message) => {
     console.log("mes", message);
@@ -161,6 +163,13 @@ const MathBattle = () => {
         )}
         {stage == STAGE.BATTLE && (
           <BattleComponent questions={questionData} room={room} />
+        )}
+        {stage == STAGE.COOP_STORY && (
+          <CoopStoryComponent
+            goToIntro={() => {
+              setStage(STAGE.COOP_INTRO);
+            }}
+          />
         )}
         {stage == STAGE.COOP_INTRO && (
           <CoopBattleIntro
