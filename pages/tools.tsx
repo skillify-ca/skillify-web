@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { Button } from "../components/ui/Button";
+import intialQuestionSet from "./api/initialQuestionSet";
 
 export default function Tools(props) {
   const [practiceInput, setPracticeInput] = useState("");
@@ -10,9 +11,10 @@ export default function Tools(props) {
 
   const notifyPracticeSignup = async () => {
     if (practiceInput.length > 0) {
-      setPracticeButtonEnabled(false)
-      setPracticeInput("")
-      const url = "https://math-app-1.herokuapp.com/notifications?product=practice";
+      setPracticeButtonEnabled(false);
+      setPracticeInput("");
+      const url =
+        "https://math-app-1.herokuapp.com/notifications?product=practice";
       const options = {
         method: "POST",
         headers: {
@@ -28,9 +30,10 @@ export default function Tools(props) {
   };
   const notifyBattleSignup = async () => {
     if (battleInput.length > 0) {
-      setBattleButtonEnabled(false)
-      setBattleInput("")
-      const url = "https://math-app-1.herokuapp.com/notifications?product=battle";
+      setBattleButtonEnabled(false);
+      setBattleInput("");
+      const url =
+        "https://math-app-1.herokuapp.com/notifications?product=battle";
       const options = {
         method: "POST",
         headers: {
@@ -114,6 +117,7 @@ export default function Tools(props) {
                   onClick={notifyBattleSignup}
                 />
               </div>
+              <div>{intialQuestionSet()}</div>
             </div>
           </div>
         </div>
