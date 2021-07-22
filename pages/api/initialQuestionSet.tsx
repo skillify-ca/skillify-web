@@ -7,7 +7,7 @@ import { AnswerType, Question } from "./question";
 import { QuestionType } from "./questionTypes";
 
 const intialQuestionSet = () => {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(1);
   const [nextQuestionButton, setNextQuestionButton] = useState(false);
   const [continueButton, setContinueButton] = useState(false);
   const [questionData, setQuestionData] = useState<Question[]>([
