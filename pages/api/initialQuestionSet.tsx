@@ -109,13 +109,19 @@ const intialQuestionSet = () => {
   useEffect(() => {
     setQuestionData(questionSetGenerator());
   }, []);
-
+  console.log(questionData);
   return (
     <div>
       {" "}
-      {questionData.map((it) => (
-        <p>{it.text}</p>
-      ))}{" "}
+      {questionData &&
+        questionData.map((it) => (
+          <div className="bg-blue-200 mt-3 border-b-2">
+            <p>Question: {it.text}</p>
+            <p>Question Type: {it.questionType}</p>
+            <p>Answer: {it.answer}</p>
+            <p> Skill: {it.skill}</p>
+          </div>
+        ))}{" "}
     </div>
   );
 };

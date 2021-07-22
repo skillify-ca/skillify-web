@@ -117,11 +117,11 @@ export default function Tools(props) {
                   onClick={notifyBattleSignup}
                 />
               </div>
-              <div>{intialQuestionSet()}</div>
             </div>
           </div>
         </div>
       </div>
+      <div className="m-3">{intialQuestionSet()}</div>
     </div>
   );
 }
