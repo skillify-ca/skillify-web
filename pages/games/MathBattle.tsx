@@ -5,7 +5,7 @@ import BattleComponent from "../../components/mathBattle/BattleComponent";
 import { generateQuestions } from "../api/quiz/quizQuestionGenerator";
 import { Question, AnswerType } from "../api/question";
 import { QuestionType } from "../api/questionTypes";
-import { Skill } from "../api/skill";
+import { questionSetGenerator, Skill } from "../api/skill";
 import CoopBattleComponent from "../../components/mathBattle/coop/CoopBattleComponent";
 import { useEffect } from "react";
 import CreateRoom from "../../components/mathBattle/CreateRooms";
@@ -134,7 +134,7 @@ const MathBattle = () => {
   };
 
   useEffect(() => {
-    setQuestionData(generateQuestions("addition", 1, 100));
+    setQuestionData(questionSetGenerator(20));
   }, []);
 
   return (
