@@ -34,7 +34,7 @@ const LandingPagev2 = () => {
               </h2>
             </div>
             <Link href="/diagnostic">
-              <button className="w-72 flex-shrink text-xl text-white from-blue-500 via-blue-500 to-blue-500 border-blue-900 hover:from-blue-400 bg-gradient-to-b px-8 py-4 font-bold border-b-4 rounded-xl active:border-b-2">
+              <button className="w-72 flex-shrink text-xl text-red-50 from-blue-500 via-blue-500 to-blue-500 border-blue-900 hover:from-blue-400 bg-gradient-to-b px-9 py-8 font-bold border-b-4 rounded-xl active:border-b-2">
                 Take the First Step
               </button>
             </Link>
