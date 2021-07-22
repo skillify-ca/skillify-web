@@ -275,14 +275,7 @@ export function getRandomAdditionQuestion(
   skill: Skill
 ) {
   let rndQuestionType = getRndInteger(0, 2);
-  if (
-    (false && rndQuestionType == 0) ||
-    skill == Skill.ADDITION_4_DIGIT ||
-    skill == Skill.ADDITION_TENTHS
-  ) {
-    const add = (a: number, b: number) => a + b;
-    return getRandomBinaryQuestion(min, max, "+", add, skill);
-  } else {
+  if (rndQuestionType > 0 && skill == Skill.ADDITION_SINGLE) {
     let a = getRndInteger(min, max);
     let b = getRndInteger(min, max);
     let text = `${a} + ${b} =`;
@@ -297,6 +290,8 @@ export function getRandomAdditionQuestion(
       displayNum: getRndInteger(0, 3),
     };
   }
+  const add = (a: number, b: number) => a + b;
+  return getRandomBinaryQuestion(min, max, "+", add, skill);
 }
 function getRandomSubtractionQuestion(min: number, max: number, skill: Skill) {
   const subtract = (a: number, b: number) => a - b;
@@ -433,7 +428,7 @@ function getRandomBinaryQuestion(
   let typeIndex = getRndInteger(0, types.length);
   let a = getRndInteger(min, max);
   let b = getRndInteger(min, max);
-  if (skill == Skill.ADDITION_TENTHS) {
+  if (skill == Skill.ADDITION_TENTHS || skill == Skill.SUBTRACTION_TENTHS) {
     a = getRndDecimal(min, max);
     b = getRndDecimal(min, max);
   } else if (skill == Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT) {
