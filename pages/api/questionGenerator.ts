@@ -428,7 +428,7 @@ function getRandomBinaryQuestion(
   let typeIndex = getRndInteger(0, types.length);
   let a = getRndInteger(min, max);
   let b = getRndInteger(min, max);
-  if (skill == Skill.ADDITION_TENTHS || Skill.SUBTRACTION_TENTHS) {
+  if (skill == Skill.ADDITION_TENTHS || skill == Skill.SUBTRACTION_TENTHS) {
     a = getRndDecimal(min, max);
     b = getRndDecimal(min, max);
   } else if (skill == Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT) {
