@@ -38,6 +38,8 @@ export const getBadgeId = (slug: string, currentLevel: number) => {
         case 2:
           return 9;
         case 3:
+          return 10;
+        case 4:
           return 44;
       }
     } else if (slug.toLowerCase() == "division") {
@@ -47,6 +49,8 @@ export const getBadgeId = (slug: string, currentLevel: number) => {
         case 2:
           return 12;
         case 3:
+          return 13;
+        case 4:
           return 45;
       }
     }
