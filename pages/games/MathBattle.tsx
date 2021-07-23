@@ -10,11 +10,13 @@ import CoopBattleComponent from "../../components/mathBattle/coop/CoopBattleComp
 import { useEffect } from "react";
 import CreateRoom from "../../components/mathBattle/CreateRooms";
 import Lobby from "../../components/mathBattle/PlayerLobby";
+import PostGameLobby from "../../components/mathBattle/PostGameLobby";
 import GameOver from "../../components/mathBattle/GameOver";
 import CoopGameOver from "../../components/mathBattle/coop/CoopGameOver";
 
 export type Player = {
   seat: number;
+  score: number;
   sessionId: string;
   name: string;
 };
@@ -23,6 +25,7 @@ export enum STAGE {
   LOBBY,
   BATTLE,
   COOP,
+  POSTGAME_LOBBY,
   GAME_OVER,
   COOP_GAME_OVER,
 }
@@ -118,6 +121,16 @@ const MathBattle = () => {
     setLeader(message);
   });
 
+  room?.onMessage("postGame", (message) => {
+    let playerArr = [];
+    for (const [key, value] of Object.entries(message)) {
+      playerArr.push(value);
+    }
+    setPlayers(playerArr);
+    console.log("postgame");
+    setStage(STAGE.POSTGAME_LOBBY);
+  });
+
   room?.onMessage("goToBattle", (message) => {
     setStage(STAGE.BATTLE);
     const questions = message;
@@ -135,7 +148,7 @@ const MathBattle = () => {
     }
 
     if (stage === STAGE.BATTLE) {
-      setStage(STAGE.GAME_OVER);
+      setStage(STAGE.POSTGAME_LOBBY);
     } else if (stage === STAGE.COOP) {
       setStage(STAGE.COOP_GAME_OVER);
     }
@@ -183,6 +196,7 @@ const MathBattle = () => {
         {stage == STAGE.COOP && (
           <CoopBattleComponent questions={questionData} room={room} />
         )}
+        {stage == STAGE.POSTGAME_LOBBY && <PostGameLobby players={players} />}
         {stage == STAGE.GAME_OVER && (
           <GameOver
             goToLobby={() => setStage(STAGE.JOIN_SESSION)}

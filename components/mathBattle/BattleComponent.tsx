@@ -4,6 +4,7 @@ import QuestionSet from "../stories/QuestionSet";
 import { Question } from "../../pages/api/question";
 import { GuessData } from "../../pages/api/guessData";
 import ProgressBar from "../ProgressBar";
+import { PLAYER_ONE } from "../../pages/api/ticTacToe/constants";
 
 export interface BattleComponentProps {
   questions: Question[];
@@ -11,6 +12,7 @@ export interface BattleComponentProps {
 }
 
 const BattleComponent = ({ questions, room }: BattleComponentProps) => {
+  const [opacity, setOpacity] = useState(0);
   const [opponentProgress, setOpponentProgress] = useState(0);
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [index, setIndex] = useState(0);
@@ -27,15 +29,22 @@ const BattleComponent = ({ questions, room }: BattleComponentProps) => {
     };
   }, []);
 
+  function delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
   room?.onMessage("incrementProgress", (message) => {
     console.log("data", message);
     setOpponentProgress(opponentProgress + 1);
   });
 
-  const submitGuess = (currentGuess: GuessData) => {
+  const submitGuess = async (currentGuess: GuessData) => {
     room.send("nextQuestion", { id: room.sessionId, data: index });
     if (!currentGuess.isCorrect) {
+      setOpacity(1);
       setTime((time) => time + 10000);
+      await delay(650);
+      setOpacity(0);
     } else {
       setCorrectGuesses(correctGuesses + 1);
     }
@@ -45,6 +54,7 @@ const BattleComponent = ({ questions, room }: BattleComponentProps) => {
     } else {
       // TODO currently whoever calls this is declared the winner
       room.send("requestGameOver", { id: room.sessionId, score: time });
+      console.log("requestGameover");
     }
   };
 
@@ -58,6 +68,7 @@ const BattleComponent = ({ questions, room }: BattleComponentProps) => {
         submitGuess={submitGuess}
         score={correctGuesses}
       />
+
       <div className="flex flex-row">
         <p className="text-xl font-bold">
           {parseInt((time / 1000).toString())}
@@ -74,6 +85,13 @@ const BattleComponent = ({ questions, room }: BattleComponentProps) => {
             clipRule="evenodd"
           />
         </svg>
+        <div className="flex flex-row gap-8">
+          <p
+            className={`transition-opacity duration-650 ease-in-out opacity-${opacity} text-red-500 text-s font-bold`}
+          >
+            +10
+          </p>
+        </div>
       </div>
       <div className="w-96 ">
         <ProgressBar max={10} value={index} color="blue"></ProgressBar>
