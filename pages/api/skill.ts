@@ -116,6 +116,12 @@ export function getSkillId(skill: Skill) {
       return 49;
     case Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT:
       return 50;
+    case Skill.NUMBERS_50:
+      return 53;
+    case Skill.NUMBERS_200:
+      return 54;
+    case Skill.NUMBERS_1000:
+      return 55;
   }
 }
 
