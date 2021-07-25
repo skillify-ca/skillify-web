@@ -1,45 +1,48 @@
 import React from "react";
-import { QuestionType } from "../../pages/api/questionTypes";
-import Card from "./Card";
-import { HorizontalEquation } from "./HorizontalEquation";
-import { LongDivision } from "./LongDivision";
-import { TrueorFalse } from "./TrueorFalse";
-import { VerticalEquation } from "./VerticalEquation";
-import { WordProblemAdd } from "./WordProblemAdd";
-import { WordProblemSub } from "./WordProblemSub";
-import { WordProblemMulti } from "./WordProblemMulti";
 import { GuessData } from "../../pages/api/guessData";
-import { WordProblemDiv } from "./WordProblemDiv";
 import { Question } from "../../pages/api/question";
-import { MultipleChoiceSentence } from "./MultipleChoiceSentence";
-import { MultipleChoiceWord } from "./MultipleChoiceWord";
-import { FillBlank } from "./FillBlank";
-import { MultiplicationArray } from "./MultiplicationArray";
-import { MultiplicationEqualGroups } from "./MultiplicationEqualGroups";
-import { getRndColour } from "../../pages/api/random";
-import { MultipleChoice } from "./MultipleChoice";
-import { PatternBlank } from "./patternBlanks";
-import { WordtoHorizontalDigits } from "./WordtoHorizontalDigits";
-import { NumbertoVerticalDigits } from "./NumbertoVerticalDigits";
-import { VerticalDigitstoNum } from "./VerticalDigitstoNum";
+import { QuestionType } from "../../pages/api/questionTypes";
+import { getRndColour, getRndInteger } from "../../pages/api/random";
+import { Skill } from "../../pages/api/skill";
+import { FillBlank } from "../questionTypes/FillBlank";
+import { HorizontalEquation } from "../questionTypes/HorizontalEquation";
+import { LongDivision } from "../questionTypes/LongDivision";
+import { MultipleChoice } from "../questionTypes/MultipleChoice";
+import { MultipleChoiceSentence } from "../questionTypes/MultipleChoiceSentence";
+import { MultipleChoiceWord } from "../questionTypes/MultipleChoiceWord";
+import { MultiplicationArray } from "../questionTypes/MultiplicationArray";
+import { MultiplicationEqualGroups } from "../questionTypes/MultiplicationEqualGroups";
+import { NumbertoVerticalDigits } from "../questionTypes/NumbertoVerticalDigits";
+import { PatternBlank } from "../questionTypes/PatternBlank";
+import { TrueorFalse } from "../questionTypes/TrueorFalse";
+import { VerticalDigitstoNum } from "../questionTypes/VerticalDigitstoNum";
+import { VerticalEquation } from "../questionTypes/VerticalEquation";
+
+import { VisualAddition } from "../questionTypes/VisualAddition";
+import { WordProblemAdd } from "../questionTypes/wordProblems/WordProblemAdd";
+import { WordProblemDiv } from "../questionTypes/wordProblems/WordProblemDiv";
+import { WordProblemMulti } from "../questionTypes/wordProblems/WordProblemMulti";
+import { WordProblemSub } from "../questionTypes/wordProblems/WordProblemSub";
+import { WordtoHorizontalDigits } from "../questionTypes/WordtoHorizontalDigits";
+import Card from "../ui/Card";
 
 type QuestionSetProps = {
   title: string;
+  HUDEnabled?: boolean;
   questionData: Question[];
   index: number;
   inputElement: any;
   submitGuess: (guessData: GuessData) => void;
   score: number;
-  practice?: boolean;
   diagnostic?: { isDiagnostic: boolean; opacityVal: number };
 };
 const QuestionSet = ({
   title,
+  HUDEnabled = true,
   questionData,
   index,
   submitGuess,
   score,
-  practice,
   diagnostic,
 }: QuestionSetProps) => {
   const questionComponent = () => {
@@ -153,6 +156,18 @@ const QuestionSet = ({
             submitGuess={submitGuess}
           />
         );
+      }
+    } else if (
+      questionData[index].questionType == QuestionType.VISUAL_TYPE_PROBLEM
+    ) {
+      if (questionData[index].operator == "+") {
+        return (
+          <VisualAddition
+            question={questionData[index]}
+            submitGuess={submitGuess}
+            visualDisplay={questionData[index].displayNum}
+          />
+        );
       } else if (questionData[index].operator == "-") {
         return (
           <WordProblemSub
@@ -188,10 +203,13 @@ const QuestionSet = ({
     } else if (
       questionData[index].questionType === QuestionType.LONG_DIVISION_PROBLEM
     ) {
+      const skill = questionData[index].skill;
+
       return (
         <LongDivision
           question={questionData[index]}
           submitGuess={submitGuess}
+          isRemainder={skill === Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT}
         />
       );
     } else if (
@@ -243,7 +261,7 @@ const QuestionSet = ({
   );
   return (
     <div className="flex flex-col justify-center items-center gap-4 m-8">
-      {!practice && !diagnostic && (
+      {HUDEnabled && (
         <div className="flex flex-row justify-between w-full p-4 bg-blue-300 shadow-lg rounded-lg ">
           {progressText}
           {scoreText}

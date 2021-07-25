@@ -5,7 +5,7 @@ import { gql, useQuery } from "@apollo/client";
 import _ from "lodash";
 import { FETCH_FLASHCARD_GUESSES_BY_SESSION } from "../../graphql/fetchFlashcardGuessBySession";
 import { userId, USER_ID } from "../../graphql/utils/constants";
-import Card from "../../components/stories/Card";
+import Card from "../../components/ui/Card";
 import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 
 export default function SessionDetails({ slug }) {

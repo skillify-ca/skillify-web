@@ -19,7 +19,8 @@ export type Question = {
   wordProblem?: WordProblemModel;
   multipleChoice?: MCModel;
   fillInTheBlank?: fillBlankModel;
-  placeholder?: string;
+  placeholder?: string; // placeholder value for fill in the blanks
+  displayNum?: number; //randomizes visualnumber type
   arrayAns?: Array<number>;
 };
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
-import { Button } from "../components/stories/Button";
+import { Button } from "../components/ui/Button";
 
 export default function Tools(props) {
   const [practiceInput, setPracticeInput] = useState("");

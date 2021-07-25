@@ -1,6 +1,4 @@
-import Link from "next/link";
-import React, { useState } from "react";
-import { Button } from "./Button";
+import React from "react";
 import StarRating from "./Rating";
 
 export type TopicItemProps = {

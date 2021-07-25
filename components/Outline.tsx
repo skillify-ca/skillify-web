@@ -1,11 +1,10 @@
-import React, { useRef, useEffect } from "react";
+import React, {  } from "react";
 import { PracticeTopic } from "./PracticeTopic";
-import { signIn, useSession } from "next-auth/client";
+import { useSession } from "next-auth/client";
 import { userId } from "../graphql/utils/constants";
-import Card from "./stories/Card";
-import ProgressRing from "./stories/ProgressRing";
+import Card from "./ui/Card";
+import ProgressRing from "./ui/ProgressRing";
 import { lockedTopics, unlockedTopics } from "../pages/api/topics";
-import LandingPage from "./stories/LandingPage";
 import { EMOJI_MASTERY } from "../pages/api/skill";
 import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
 import { useQuery } from "@apollo/client";
