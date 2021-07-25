@@ -51,7 +51,7 @@ export const Button: React.FC<ButtonProps> = ({
       break;
     case "red":
       backgroundStyles =
-        "from-red-300 via-red-400 to-red-500 border-red-900 border-8 hover:from-red-200";
+        "from-red-300 via-red-400 to-red-500 border-red-900 hover:from-red-200";
       break;
     case "purple":
       backgroundStyles =
