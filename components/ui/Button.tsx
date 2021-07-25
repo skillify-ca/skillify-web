@@ -59,7 +59,7 @@ export const Button: React.FC<ButtonProps> = ({
       break;
     case "pink":
       backgroundStyles =
-        "from-pink-300 via-pink-400 to-pink-500 border-pink-900 hover:from-pink-200 ";
+        "from-pink-300 via-pink-400 to-pink-500 border-pink-900 hover:from-pink-200";
       break;
     case "yellow":
       backgroundStyles =
@@ -74,7 +74,7 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       type="button"
       onClick={disabled ? null : onClick}
-      className={`bg-gradient-to-b px-16 py-16 text-5xl font-bold border-b-4 rounded-xl 
+      className={`bg-gradient-to-b px-4 py-2 font-bold border-b-4 rounded-xl 
       ${disabled ? "bg-gray-400" : backgroundStyles}
       ${disabled ? "" : "active:border-b-2"}
       ${disabled ? "cursor-default" : "cursor-pointer"}
