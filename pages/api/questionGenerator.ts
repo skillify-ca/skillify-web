@@ -432,8 +432,6 @@ function getRandomBinaryQuestion(
   if (skill == Skill.ADDITION_TENTHS || skill == Skill.SUBTRACTION_TENTHS) {
     a = getRndDecimal(min, max);
     b = getRndDecimal(min, max);
-    console.log("a", a);
-    console.log("b", b);
   } else if (skill == Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT) {
     a = 10;
     b = getRndInteger(min, max);
