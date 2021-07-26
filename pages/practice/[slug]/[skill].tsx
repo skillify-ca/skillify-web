@@ -295,6 +295,10 @@ const PracticeQuiz = ({ slug, skill }) => {
       }
     }
   };
+  if (questionData[index]) {
+    console.log(questionData[index].answer);
+  }
+
   return (
     <div className="bg-blue-100 heropattern-architect-blue-50 h-md">
       <DiagnosticNavbar />
