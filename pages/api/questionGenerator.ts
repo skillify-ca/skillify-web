@@ -420,6 +420,7 @@ function getRandomBinaryQuestion(
     QuestionType.TRUE_OR_FALSE_PROBLEM,
     QuestionType.MULTIPLE_CHOICE,
   ];
+
   //Temporarily Disables True ann False, MC, and Word Problems for G4 Add and Subtract
   //TODO Redesign the logic for MC Question generator and T or F Questions
   if (skill == Skill.ADDITION_TENTHS || skill == Skill.SUBTRACTION_TENTHS) {
@@ -502,13 +503,16 @@ function getRandomBinaryQuestion(
   if (type === QuestionType.BINARY_WORD_PROBLEM) {
     wordProblemModel = createWordProblemModel(operator);
   }
+  let ans;
+  if (skill == Skill.ADDITION_TENTHS || skill == Skill.SUBTRACTION_TENTHS) {
+    ans = answerFunction(Math.max(a, b), Math.min(a, b)).toFixed(1);
+  } else {
+    ans = answerFunction(Math.max(a, b), Math.min(a, b)).toString();
+  }
 
   return {
     text: text,
-    answer:
-      type === QuestionType.TRUE_OR_FALSE_PROBLEM
-        ? trueFalseAnswer
-        : answerFunction(Math.max(a, b), Math.min(a, b)).toString(),
+    answer: type === QuestionType.TRUE_OR_FALSE_PROBLEM ? trueFalseAnswer : ans,
     answerType:
       type === QuestionType.TRUE_OR_FALSE_PROBLEM
         ? AnswerType.BOOLEAN

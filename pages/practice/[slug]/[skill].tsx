@@ -295,6 +295,7 @@ const PracticeQuiz = ({ slug, skill }) => {
       }
     }
   };
+
   return (
     <div className="bg-blue-100 heropattern-architect-blue-50 h-md">
       <DiagnosticNavbar />
