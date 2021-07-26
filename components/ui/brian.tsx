@@ -5,8 +5,8 @@ export interface BrianProps {
   size: "small" | "large";
   bgColour: "Blue" | "Red";
 }
-/*justify-center items-center*/
-const Card = ({ children, size, bgColour }: BrianProps) => {
+
+const Brian = ({ children, size, bgColour }: BrianProps) => {
   return (
     <div
       className={`flex flex-col space-y-16 justify-center p-8 bg-white shadow-md rounded-xl max-w-screen-lg
@@ -26,27 +26,5 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
     </div>
   );
 };
-export default Card;
-
-
-
-
-/*import { ReactNode } from "react";
-
-export interface BrianProps {
-  children: ReactNode;
-  size: "small" | "large";
-}
-
-const Brian = ({ children, size }: BrianProps) => {
-  return (
-    <div
-      className={`flex flex-col justify-center space-y-16 items-center p-8 bg-grey shadow-md rounded-xl max-w-screen-lg
-       ${size === "large" ? " w-100 h-100" : "w-48 h-24"}`}
-    >
-      {children}
-    </div>
-  );
-};
 export default Brian;
-*/
+
