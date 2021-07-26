@@ -7,7 +7,7 @@ export default {
   title: "UI/Brian",
   component: Brian,
   argTypes: {
-    size: {
+    bgColour: {
       control: {
         type: "radio",
         options: ["small", "large"],
@@ -15,7 +15,13 @@ export default {
     bgColour: {
       control:{
         type:"radio",
-        options: ["Blue","Red"]
+        options: ["Blue","Red"],
+      },
+    },
+    image: {
+      control:{
+        type:"radio",
+        options: ["Protoss","Zerg", "Terran"],
       },
     },
   },
@@ -28,4 +34,5 @@ export const Primary = Template.bind({});
 Primary.args = {
   size: "large",
   bgColour: "Blue",
+  image: "Protoss",
 };
