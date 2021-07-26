@@ -54,6 +54,9 @@ const userSync = async (token) => {
         { userId: $userId, locked: true, badgeId: 11 }
         { userId: $userId, locked: true, badgeId: 12 }
         { userId: $userId, locked: true, badgeId: 13 }
+        { userId: $userId, locked: true, badgeId: 40 }
+        { userId: $userId, locked: true, badgeId: 41 }
+        { userId: $userId, locked: true, badgeId: 42 }
         { userId: $userId, locked: true, badgeId: 43 }
         { userId: $userId, locked: true, badgeId: 44 }
         { userId: $userId, locked: true, badgeId: 45 }
