@@ -1,11 +1,11 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 
-import Brian, { BrianProps } from "./brian";
+import BLBudgetRules, {RulesProps } from "./BLBudgetRules";
 
 export default {
   title: "UI/Brian",
-  component: Brian,
+  component: BLBudgetRules,
   argTypes: {
     bgColour: {
       control: {
@@ -28,7 +28,7 @@ export default {
 },
 } as Meta;
 
-const Template: Story<BrianProps> = (args) => <Brian {...args}/>;
+const Template: Story<RulesProps> = (args) => <BLBudgetRules {...args}/>;
 
 export const Primary = Template.bind({});
 Primary.args = {

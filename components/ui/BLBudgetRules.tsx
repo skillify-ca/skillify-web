@@ -1,34 +1,40 @@
 import { ReactNode } from "react";
 
-export interface BrianProps {
+export interface RulesProps {
   children: ReactNode;
   size: "small" | "large";
   bgColour: "Blue" | "Red";
   image: "Protoss" | "Zerg" | "Terran"
 }
 
-const Brian = ({ children, size, bgColour, image }: BrianProps) => {
- /* let img; 
-  if(image==="Protoss"){
-    img = <img src="https://liquipedia.net/commons/images/0/01/Zealot_SC_Remastered_Art1.jpg" alt="Protoss Picture"  width="200px" height="100px"/>;
-  } else if(image ==="Zerg"){
-    img = <img src= "https://liquipedia.net/commons/images/2/26/Hydralisk_SC1_Art2.jpg" alt="Zerg Picture" width="150px" height="100px"/>;
-  } else{
-    img = <img src= "https://www.sideshow.com/wp/wp-content/uploads/2015/01/100181_press02.jpg" alt="Zerg Picture" width="150px" height="100px"/>;
-  }*/
+const BLBudgetRules = ({ children, size, bgColour, image }: RulesProps) => {
+
 
   return (
     <div
-      className={`flex flex-col space-y-16 justify-center p-8 bg-white shadow-md rounded-xl max-w-screen-lg
-      --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) w-80 h-160`}
+      className={`bg-white w-80 h-160`}
     > 
+    <div className="grid grid-cols-3 gap-1">
+      <div className="...">1</div>
+      <div className="col-span-2...">2</div>
+      <div className="...">3</div>
+      <div className="col-span-2...">4</div>
+      <div className="...">5</div>
+      <div className="col-span-2 ...">6</div>
+      <div className="...">7</div>
+      <div className="col-span-2...">8</div>
+      <div className="...">9</div>
+      <div className="col-span-2...">10</div>
+      <div className="...">11</div>
+      <div className="col-span-2...">12</div>
+</div>
     <div
-      className={'flex justify-center'}
-    > <p>Gradient Can end either "Blue" Or "Red"</p>
+      className={'pl-2 bg-black w-10 h-4 place-items-start'}
+    > <h1 className="text-lg justify-center text-white">Rules</h1>
       
     </div>
     </div>
   );
 };
-export default Brian;
+export default BLBudgetRules;
 
