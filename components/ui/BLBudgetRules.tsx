@@ -12,27 +12,27 @@ const BLBudgetRules = ({ children, size, bgColour, image }: RulesProps) => {
 
   return (
     <div
-      className={`bg-white w-80 h-160`}
+      className={`bg-white w-120 h-480 border-4 border-black`}
     > 
-    <div className="grid grid-cols-3 gap-1">
-      <div className="...">1</div>
-      <div className="col-span-2...">2</div>
-      <div className="...">3</div>
-      <div className="col-span-2...">4</div>
-      <div className="...">5</div>
-      <div className="col-span-2 ...">6</div>
-      <div className="...">7</div>
-      <div className="col-span-2...">8</div>
-      <div className="...">9</div>
-      <div className="col-span-2...">10</div>
-      <div className="...">11</div>
-      <div className="col-span-2...">12</div>
+
+    <div className="grid grid-cols-3 gap-3 align-middle">
+    <div className={'ml-64 mt-1 bg-black w-25 h-10 inset-x top-0 place-content-center justify-center'}>
+    <h1 className=" col-span-3 col-start-0 text-lg align-middle text-center text-white text-3xl font-mono">Rules</h1></div> 
+        <div className="col-span-3 col-start-0"></div>
+        <div className="... text-3xl text-right font-mono">Buy a Home:</div>
+        <div className="col-span-2 col-start-0"> Your home must be big enough for your family. Two parents can share a room, but each child must have his or her own room. You must also pay for gas, electricity, and water in  your home.</div>
+        <div className="... text-3xl text-right font-mono"> Buy a Car:</div>
+        <div className="col-span-2 col-start-0">You can choose to buy a new or used car. Each family must have at least one car. You may buy a car for each parent if you choose. Children may not have a car. All cars must have insurance, and each car also must have gasoline.</div>
+        <div className="... text-3xl text-right font-mono">Buy TV and Internet:</div>
+        <div className="col-span-2 col-start-0"> You can purchase TV/Internet service; however, it is NOT required.</div>
+        <div className="... text-3xl text-right font-mono">Buy a Phone:</div>
+        <div className="col-span-2 col-start-0">All adults must have a phone. It is not necessary for children to have phones, but you may buy one for your children if you choose to do so.</div>
+        <div className="... text-3xl text-right font-mono">Buy Groceries:</div>
+        <div className="col-span-2 col-start-0"> Use the chart to determine how much food will cost for each person in your family</div>
+        <div className="... text-3xl text-right font-mono"> The Extras:</div>
+        <div className="col-span-2 col-start-0">Be careful to budget carefully! You might have to pay for something unexpectedly!</div>
 </div>
-    <div
-      className={'pl-2 bg-black w-10 h-4 place-items-start'}
-    > <h1 className="text-lg justify-center text-white">Rules</h1>
-      
-    </div>
+ 
     </div>
   );
 };

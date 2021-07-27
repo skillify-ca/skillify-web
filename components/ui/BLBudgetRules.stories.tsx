@@ -4,7 +4,7 @@ import { Story, Meta } from "@storybook/react";
 import BLBudgetRules, {RulesProps } from "./BLBudgetRules";
 
 export default {
-  title: "UI/Brian",
+  title: "UI/BLBudgetRules",
   component: BLBudgetRules,
   argTypes: {
     bgColour: {
