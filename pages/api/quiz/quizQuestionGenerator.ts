@@ -38,7 +38,7 @@ export const generateQuestions = (
           skill = [Skill.ADDITION_4_DIGIT, Skill.ADDITION_TENTHS];
           break;
         case 5:
-          skill = [Skill.SUBTRACTION_5_DIGIT, Skill.ADDITION_HUNDREDTHS];
+          skill = [Skill.ADDITION_5_DIGIT, Skill.ADDITION_HUNDREDTHS];
           break;
       }
       return generateQuestionsForSkillArr(numberOfQuestions, skill);
