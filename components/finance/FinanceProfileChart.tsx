@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
-import ChartLine, {ChartLineProps} from "./ChartLine";
+import FinanceProfileChartLine, {FinanceProfileChartLineProps} from "./FinanceProfileChartLine";
 //child component
 
-export interface ChartProps {
+export interface FinanceProfileChartProps {
     individualOccupation,
     individualSalary,
     maritalStatus,
@@ -12,31 +12,30 @@ export interface ChartProps {
 }
 
 
-export const Chart: React.FC<ChartProps> = ({
+export const FinanceProfileChart = ({
     individualOccupation,
     individualSalary,
     maritalStatus,
     numberOfChildren,
     spouseOccupation,
     spouseSalary,
-    ...props
-  }) => {
+  }: FinanceProfileChartProps) => {
     return (
      <div className={"flex flex-col flex-nowrap justify-center items-center bg-white shadow-md rounded-xl max-w-screen-l border-black	w-4/12"}>
             
-            <div className={"flex justify-center h-16 bg-gray-50	w-full text-2xl"}>-My Life-</div>
+            <div className={"flex justify-center h-16 bg-gray-50 w-full text-2xl"}>-My Life-</div>
             <h1 className={"space-y-16 "}>- Occupation -</h1>
-            <ChartLine text={individualOccupation} />
+            <FinanceProfileChartLine text={individualOccupation} />
             <h1>- Monthly Salary -</h1>
-            <ChartLine text={individualSalary} />
+            <FinanceProfileChartLine text={individualSalary} />
             <h1>- Marital Status -</h1>
-            <ChartLine text={maritalStatus}/>
+            <FinanceProfileChartLine text={maritalStatus}/>
             <h1>- Number of Children -</h1>
-            <ChartLine text={numberOfChildren} />
+            <FinanceProfileChartLine text={numberOfChildren} />
             <h1>- Spouse's Occupation -</h1>
-            <ChartLine text={spouseOccupation} />
+            <FinanceProfileChartLine text={spouseOccupation} />
             <h1>- Spouse's Monthly Salary -</h1>
-            <ChartLine text={spouseSalary} />
+            <FinanceProfileChartLine text={spouseSalary} />
 
 
      </div>

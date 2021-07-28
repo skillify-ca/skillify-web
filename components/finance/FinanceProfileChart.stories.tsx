@@ -1,15 +1,15 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 
-import  {Chart, ChartProps} from "../finance/Chart"
+import  {FinanceProfileChart, FinanceProfileChartProps} from "./FinanceProfileChart"
 
 export default {
-  title: "UI/Chart",
-  component: Chart,
+  title: "UI/FinanceProfileChart",
+  component: FinanceProfileChart,
   
 } as Meta;
 
-const Template: Story<ChartProps> = (args) => <Chart {...args} />;
+const Template: Story<FinanceProfileChartProps> = (args) => <FinanceProfileChart {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
