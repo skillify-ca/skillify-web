@@ -3,10 +3,10 @@ import { ReactNode } from "react";
 export interface DanielProps {
   size: "small" | "large";
   word: "live" | "laugh" | "love";
-  colour: "red" | "blue";
+  bgcolour: "red" | "blue";
 }
 
-const Daniel = ({ size, word, colour }: DanielProps) => {
+const Daniel = ({ size, word, bgcolour }: DanielProps) => {
 
   let text;
 
@@ -20,10 +20,10 @@ const Daniel = ({ size, word, colour }: DanielProps) => {
   
   return (
     <div
-      className={`flex flex-col justify-center space-y-16 items-center p-8 bg-white shadow-md rounded-xl max-w-screen-lg
-       ${size === "large" ? "w-96 h-96" : "w-48 h-24"}`}
+      className={`flex flex-col justify-center space-y-16 items-center p-8 shadow-md rounded-xl max-w-screen-lg
+       ${size === "large" ? "w-96 h-96" : "w-48 h-24"} ${bgcolour === "red" ? "bg-red-600" : "bg-blue-600"}`}
     >
-     <p className={`${colour === "red" ? "text-red-600" : "text-blue-600"}`}>{text}</p>
+     <p>{text}</p>
     </div>
   );
 };
