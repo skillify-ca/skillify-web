@@ -1,25 +1,16 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 
-import { Button, ButtonProps } from "./Button";
+import Daniel, { DanielProps } from "./Daniel";
 
 export default {
-  title: "UI/Button",
-  component: Button,
+  title: "UI/Daniel",
+  component: Daniel,
   argTypes: {
-    backgroundColor: {
-      control: {
-        type: "radio",
-        options: ["blue", "green", "yellow", "purple", "red", "pink"],
-      },
-    },
   },
 } as Meta;
 
-const Template: Story<ButtonProps> = (args) => <Button {...args} />;
+const Template: Story<DanielProps> = (args) => <Daniel {...args} />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  backgroundColor: "blue",
-  label: "Button",
-};
+
