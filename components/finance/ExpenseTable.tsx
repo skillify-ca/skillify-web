@@ -2,16 +2,30 @@ import { ReactNode } from "react";
 
 const ExpenseTable = ({}) => {
   return (
-    <div className={`bg-white border-2 border-black`}>
-      <div className="grid grid-cols-3 gap-x-20 gap-y-5 border-1 border-black">
-        <div className="">1</div>
-        <div className="">2</div>
-        <div className="">3 </div>
-        <div className="">4</div>
-        <div className="">5</div>
-        <div className="">6:</div>
-      </div>
-    </div>
+    <table className="table-fixed w-auto border-collapse">
+      <thead>
+        <tr>
+          <th className="w-1/2"></th>
+          <th className="w-1/2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td className="border border-black"> Your Monthly Income</td>
+          <td className="border border-black">A.</td>
+        </tr>
+        <tr>
+          <td className="border border-black">Your Spouses Monthly Income</td>
+          <td className="border border-black">B.</td>
+        </tr>
+        <tr>
+          <td className="border border-black bg-gray-300">
+            Total Monthly Income
+          </td>
+          <td className="border border-black">C.</td>
+        </tr>
+      </tbody>
+    </table>
   );
 };
 export default ExpenseTable;
