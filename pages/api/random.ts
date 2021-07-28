@@ -1,3 +1,5 @@
+import { Skill } from "./skill";
+
 export function getRandomItemFromArray(arr: any[]) {
   const randomIndex = getRndInteger(0, arr.length);
   return arr[randomIndex];
@@ -7,9 +9,17 @@ export function getRandomItemFromArray(arr: any[]) {
 export function getRndInteger(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
-export function getRndDecimal(min: number, max: number) {
-  const decimal = (Math.random() * (max - min) + min).toFixed(1);
-  return parseFloat(decimal);
+export function getRndDecimal(min: number, max: number, skill: Skill) {
+  if (
+    skill == Skill.ADDITION_HUNDREDTHS ||
+    skill == Skill.SUBTRACTION_HUNDREDTHS
+  ) {
+    const decimal = (Math.random() * (max - min) + min).toFixed(2);
+    return parseFloat(decimal);
+  } else {
+    const decimal = (Math.random() * (max - min) + min).toFixed(1);
+    return parseFloat(decimal);
+  }
 }
 
 export function getRndColour() {

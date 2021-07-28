@@ -37,6 +37,9 @@ export const generateQuestions = (
         case 4:
           skill = [Skill.ADDITION_4_DIGIT, Skill.ADDITION_TENTHS];
           break;
+        case 5:
+          skill = [Skill.SUBTRACTION_5_DIGIT, Skill.ADDITION_HUNDREDTHS];
+          break;
       }
       return generateQuestionsForSkillArr(numberOfQuestions, skill);
     } else if (slug.toLowerCase() == "subtraction") {
@@ -54,6 +57,8 @@ export const generateQuestions = (
         case 4:
           skill = [Skill.SUBTRACTION_4_DIGIT, Skill.SUBTRACTION_TENTHS];
           break;
+        case 5:
+          skill = [Skill.SUBTRACTION_5_DIGIT, Skill.SUBTRACTION_HUNDREDTHS];
       }
       return generateQuestionsForSkillArr(numberOfQuestions, skill);
     } else if (slug.toLowerCase() == "multiplication") {
@@ -76,6 +81,12 @@ export const generateQuestions = (
             Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT,
           ];
           break;
+        case 5:
+          skill = [
+            Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT,
+            Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT,
+          ];
+          break;
       }
       return generateQuestionsForSkillArr(numberOfQuestions, skill);
     } else if (slug.toLowerCase() == "division") {
@@ -95,6 +106,9 @@ export const generateQuestions = (
             Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT,
             Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT,
           ];
+          break;
+        case 5:
+          skill = [Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT];
       }
       return generateQuestionsForSkillArr(numberOfQuestions, skill);
     }
