@@ -23,7 +23,7 @@ const ProfileComponent = () => {
 
   const progress = () => {
     if (
-      !loading &&
+      !loading && data && 
       data.user_badges.length > 0 &&
       data.user_skills.length > 0
     ) {

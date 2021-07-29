@@ -9,9 +9,14 @@ import initializeApollo from "../lib/apollo";
 import { ApolloProvider } from "@apollo/client";
 import { Provider as ReduxProvider } from "react-redux";
 import store from "../redux/store";
-import { signIn, useSession } from "next-auth/client";
-import React, { useEffect } from "react";
-import { useRouter } from "next/router";
+
+import { ThemeProvider } from "@magiclabs/ui";
+import React, { useEffect, useState } from "react";
+
+import { UserContext } from "../lib/UserContext";
+import Router from "next/router";
+import { magic } from "../lib/magic";
+import "@magiclabs/ui/dist/cjs/index.css";
 
 function MyApp({ Component, pageProps }) {
   const client = initializeApollo();
@@ -20,6 +25,22 @@ function MyApp({ Component, pageProps }) {
   if (typeof window !== "undefined") {
     isMobile = window.innerWidth < 600;
   }
+
+  const [user, setUser] = useState();
+
+  // If isLoggedIn is true, set the UserContext with user data
+  // Otherwise, redirect to /login and set UserContext to { user: null }
+  useEffect(() => {
+    setUser({ loading: true });
+    magic.user.isLoggedIn().then((isLoggedIn) => {
+      if (isLoggedIn) {
+        magic.user.getMetadata().then((userData) => setUser(userData));
+      } else {
+        Router.push("/login");
+        setUser({ user: null });
+      }
+    });
+  }, []);
 
   return (
     <ApolloProvider client={client}>
