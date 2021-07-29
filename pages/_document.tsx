@@ -1,16 +1,23 @@
-import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document'
-import React, { CSSProperties } from 'react'
+import Document, {
+  DocumentContext,
+  Head,
+  Html,
+  Main,
+  NextScript,
+} from "next/document";
+import React, { CSSProperties } from "react";
+import { DEFAULT_THEME, getThemeVariables } from "@magiclabs/ui";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx)
+    const initialProps = await Document.getInitialProps(ctx);
 
-    return initialProps
+    return initialProps;
   }
 
   bodyStyle: CSSProperties = {
-    backgroundColor: '#E5E7EB'
-  }
+    backgroundColor: "#E5E7EB",
+  };
 
   render() {
     return (
@@ -29,14 +36,20 @@ class MyDocument extends Document {
             as="font"
             crossOrigin=""
           />
+          <style
+            type="text/css"
+            dangerouslySetInnerHTML={{
+              __html: getThemeVariables(DEFAULT_THEME).toCSS(),
+            }}
+          />
         </Head>
         <body style={this.bodyStyle}>
           <Main />
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default MyDocument
+export default MyDocument;
