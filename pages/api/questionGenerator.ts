@@ -1,6 +1,11 @@
 import { AnswerType, MCOption, Question } from "./question";
 import { QuestionType } from "./questionTypes";
-import { getRndDecimal, getRndInteger } from "./random";
+import {
+  getRndDecimal,
+  getRndHundredthsDecimal,
+  getRndInteger,
+  getRndTenthsDecimal,
+} from "./random";
 import { createWordProblemModel } from "./WordProblemModel";
 import { Skill } from "./skill";
 import { getRandomPropertyAdditionQuestion } from "./additionPropertyQuestionGenerator";
@@ -449,14 +454,15 @@ function getRandomBinaryQuestion(
   let typeIndex = getRndInteger(0, types.length);
   let a = getRndInteger(min, max);
   let b = getRndInteger(min, max);
-  if (
-    skill == Skill.ADDITION_TENTHS ||
-    skill == Skill.SUBTRACTION_TENTHS ||
+  if (skill == Skill.ADDITION_TENTHS || skill == Skill.SUBTRACTION_TENTHS) {
+    a = getRndTenthsDecimal(min, max);
+    b = getRndTenthsDecimal(min, max);
+  } else if (
     skill == Skill.ADDITION_HUNDREDTHS ||
     skill == Skill.SUBTRACTION_HUNDREDTHS
   ) {
-    a = getRndDecimal(min, max, skill);
-    b = getRndDecimal(min, max, skill);
+    a = getRndHundredthsDecimal(min, max);
+    b = getRndHundredthsDecimal(min, max);
   } else if (skill == Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT) {
     a = 10;
     b = getRndInteger(min, max);
