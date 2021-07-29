@@ -14,6 +14,7 @@ export enum Grade {
   GRADE_2 = "Grade 2",
   GRADE_3 = "Grade 3",
   GRADE_4 = "Grade 4",
+  GRADE_5 = "Grade 5",
 }
 
 export const getSkillsForTopic = (topic: Topic): Skill[] => {
@@ -25,6 +26,8 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
         Skill.ADDITION_TRIPLE,
         Skill.ADDITION_4_DIGIT,
         Skill.ADDITION_TENTHS,
+        Skill.ADDITION_5_DIGIT,
+        Skill.ADDITION_HUNDREDTHS,
       ];
     case Topic.SUBTRACTION:
       return [
@@ -33,6 +36,8 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
         Skill.SUBTRACTION_TRIPLE,
         Skill.SUBTRACTION_4_DIGIT,
         Skill.SUBTRACTION_TENTHS,
+        Skill.SUBTRACTION_5_DIGIT,
+        Skill.SUBTRACTION_HUNDREDTHS,
       ];
     case Topic.MULTIPLICATION:
       return [
@@ -43,6 +48,8 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
         Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT,
         Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT,
         Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT,
+        Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT,
+        Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT,
       ];
     case Topic.DIVISION:
       return [
@@ -51,6 +58,7 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
         Skill.DIVIDE_100,
         Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT,
         Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT,
+        Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT,
       ];
   }
   return [];
@@ -122,6 +130,20 @@ export function getSkillId(skill: Skill) {
       return 54;
     case Skill.NUMBERS_1000:
       return 55;
+    case Skill.ADDITION_5_DIGIT:
+      return 56;
+    case Skill.ADDITION_HUNDREDTHS:
+      return 57;
+    case Skill.SUBTRACTION_5_DIGIT:
+      return 58;
+    case Skill.SUBTRACTION_HUNDREDTHS:
+      return 59;
+    case Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT:
+      return 60;
+    case Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT:
+      return 61;
+    case Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT:
+      return 62;
   }
 }
 
@@ -141,8 +163,10 @@ export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): Skill[] => {
       return [Skill.ADDITION_DOUBLE];
     } else if (grade == Grade.GRADE_3) {
       return [Skill.ADDITION_TRIPLE, Skill.ADDITION_PROPERTIES];
-    } else {
+    } else if (grade == Grade.GRADE_4) {
       return [Skill.ADDITION_4_DIGIT, Skill.ADDITION_TENTHS];
+    } else {
+      return [Skill.ADDITION_5_DIGIT, Skill.ADDITION_HUNDREDTHS];
     }
   } else if (topic == Topic.SUBTRACTION) {
     if (grade == Grade.GRADE_1) {
@@ -151,8 +175,10 @@ export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): Skill[] => {
       return [Skill.SUBTRACTION_DOUBLE];
     } else if (grade == Grade.GRADE_3) {
       return [Skill.SUBTRACTION_TRIPLE];
-    } else {
+    } else if (grade == Grade.GRADE_4) {
       return [Skill.SUBTRACTION_4_DIGIT, Skill.SUBTRACTION_TENTHS];
+    } else {
+      return [Skill.SUBTRACTION_5_DIGIT, Skill.SUBTRACTION_HUNDREDTHS];
     }
   } else if (topic == Topic.MULTIPLICATION) {
     if (grade == Grade.GRADE_1) {
@@ -161,12 +187,17 @@ export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): Skill[] => {
       return [Skill.MULTIPLICATION_5];
     } else if (grade == Grade.GRADE_3) {
       return [Skill.MULTIPLICATION_10];
-    } else {
+    } else if (grade == Grade.GRADE_4) {
       return [
         Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT,
         Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT,
         Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT,
         Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT,
+      ];
+    } else {
+      return [
+        Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT,
+        Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT,
       ];
     }
   } else if (topic == Topic.DIVISION) {
@@ -176,11 +207,13 @@ export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): Skill[] => {
       return [Skill.DIVIDE_12_EQUALLY];
     } else if (grade == Grade.GRADE_3) {
       return [Skill.DIVIDE_100];
-    } else {
+    } else if (grade == Grade.GRADE_4) {
       return [
         Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT,
         Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT,
       ];
+    } else {
+      return [Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT];
     }
   }
   return [];
@@ -213,6 +246,13 @@ export enum Skill {
   MULTIPLICATION_10_BY_TRIPLE_DIGIT = "multiply-triple-digit-by-10",
   DIVISION_TWO_DIGIT_BY_ONE_DIGIT = "divide-double-digit-by-single-digit",
   DIVISION_THREE_DIGIT_BY_ONE_DIGIT = "divide-triple-digit-by-single-digit",
+  MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT = "multiply-double-and-double-digit",
+  MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT = "multiply-double-and-triple-digit",
+  ADDITION_5_DIGIT = "add-five-digit",
+  ADDITION_HUNDREDTHS = "add-hundredths",
+  SUBTRACTION_5_DIGIT = "subtract-five-digit",
+  SUBTRACTION_HUNDREDTHS = "subtract-hundredths",
+  DIVISION_THREE_DIGIT_BY_TWO_DIGIT = "divide-triple-digit-by-double-digit",
 }
 
 export function SkillDescription(skill: Skill) {
@@ -268,6 +308,20 @@ export function SkillDescription(skill: Skill) {
     return "Divide double digit numbers by single digit numbers";
   } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT) {
     return "Divide triple digit numbers by single digit numbers";
+  } else if (skill == Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT) {
+    return "Multiply double digit numbers with double digit numbers";
+  } else if (skill == Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT) {
+    return "Multiply double digit numbers with triple digit numbers";
+  } else if (skill == Skill.ADDITION_5_DIGIT) {
+    return "Add five digit numbers";
+  } else if (skill == Skill.ADDITION_HUNDREDTHS) {
+    return "Add hundreths together";
+  } else if (skill == Skill.SUBTRACTION_5_DIGIT) {
+    return "Subtract five digit numbers";
+  } else if (skill == Skill.SUBTRACTION_HUNDREDTHS) {
+    return "Subtract hundreths together";
+  } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT) {
+    return "Divide triple digit numbers by double digit numbers";
   }
 }
 
@@ -380,6 +434,8 @@ export const getPracticeCardForSkill = (
     case Skill.ADDITION_PROPERTIES:
     case Skill.ADDITION_4_DIGIT:
     case Skill.ADDITION_TENTHS:
+    case Skill.ADDITION_5_DIGIT:
+    case Skill.ADDITION_HUNDREDTHS:
       return [
         {
           link: `addition/${skill}`,
@@ -390,6 +446,8 @@ export const getPracticeCardForSkill = (
     case Skill.SUBTRACTION_TRIPLE:
     case Skill.SUBTRACTION_4_DIGIT:
     case Skill.SUBTRACTION_TENTHS:
+    case Skill.SUBTRACTION_5_DIGIT:
+    case Skill.SUBTRACTION_HUNDREDTHS:
       return [
         {
           link: `subtraction/${skill}`,
@@ -400,6 +458,7 @@ export const getPracticeCardForSkill = (
     case Skill.DIVIDE_100:
     case Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT:
     case Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT:
+    case Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT:
       return [
         {
           link: `division/${skill}`,
@@ -413,6 +472,8 @@ export const getPracticeCardForSkill = (
     case Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT:
     case Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT:
     case Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT:
+    case Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT:
+    case Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT:
       return [
         {
           link: `multiplication/${skill}`,
