@@ -1,7 +1,6 @@
 import { AnswerType, MCOption, Question } from "./question";
 import { QuestionType } from "./questionTypes";
 import {
-  getRndDecimal,
   getRndHundredthsDecimal,
   getRndInteger,
   getRndTenthsDecimal,
@@ -448,7 +447,12 @@ function getRandomBinaryQuestion(
 
   //Temporarily Disables True ann False, MC, and Word Problems for G4 Add and Subtract
   //TODO Redesign the logic for MC Question generator and T or F Questions
-  if (skill == Skill.ADDITION_TENTHS || skill == Skill.SUBTRACTION_TENTHS) {
+  if (
+    skill == Skill.ADDITION_TENTHS ||
+    skill == Skill.SUBTRACTION_TENTHS ||
+    skill == Skill.SUBTRACTION_HUNDREDTHS ||
+    skill == Skill.ADDITION_HUNDREDTHS
+  ) {
     types = [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
   }
   let typeIndex = getRndInteger(0, types.length);
