@@ -1,8 +1,6 @@
 import { ReactNode } from "react";
 import { SingleQuestionInput } from "../ui/SingleQuestionInput";
-import { TrueFalse, TrueFalseProps } from "../ui/TrueFalseInput";
-
-//child component
+import { TrueFalse } from "../ui/TrueFalseInput";
 
 export interface SectionOneInputProps {
   married: boolean;
