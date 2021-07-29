@@ -35,6 +35,12 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
       case "add-tenths":
         skill = Skill.ADDITION_TENTHS;
         break;
+      case "add-five-digit":
+        skill = Skill.ADDITION_5_DIGIT;
+        break;
+      case "add-hundredths":
+        skill = Skill.ADDITION_HUNDREDTHS;
+        break;
     }
   } else if (topic == "subtraction") {
     switch (skillStr) {
@@ -52,6 +58,12 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
         break;
       case "subtract-tenths":
         skill = Skill.SUBTRACTION_TENTHS;
+        break;
+      case "subtract-five-digit":
+        skill = Skill.SUBTRACTION_5_DIGIT;
+        break;
+      case "subtract-hundredths":
+        skill = Skill.SUBTRACTION_HUNDREDTHS;
         break;
     }
   } else if (topic == "multiplication") {
@@ -77,6 +89,12 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
       case "multiply-triple-digit-by-10":
         skill = Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT;
         break;
+      case "multiply-double-and-double-digit":
+        skill = Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT;
+        break;
+      case "multiply-double-and-triple-digit":
+        skill = Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT;
+        break;
     }
   } else if (topic == "division") {
     switch (skillStr) {
@@ -94,6 +112,9 @@ export const generatePracticeQuestions = (topic: string, skillStr: string) => {
         break;
       case "divide-triple-digit-by-single-digit":
         skill = Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT;
+        break;
+      case "divide-triple-digit-by-double-digit":
+        skill = Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT;
         break;
     }
   }

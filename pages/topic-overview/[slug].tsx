@@ -31,6 +31,8 @@ const TopicOverviewPage = ({ slug }) => {
         return 3;
       case "Grade 4":
         return 4;
+      case "Grade 5":
+        return 5;
     }
   };
 
@@ -71,6 +73,7 @@ const TopicOverviewPage = ({ slug }) => {
         <option>Grade 2</option>
         <option>Grade 3</option>
         <option>Grade 4</option>
+        <option>Grade 5</option>
       </select>
     </div>
   );
