@@ -11,9 +11,15 @@ export interface GameOverProps {
   room: Colyseus.Room;
   winnerId: string;
   goToLobby: () => void;
+  gotoPostGameLobby: () => void;
 }
 
-const GameOver = ({ room, winnerId, goToLobby }: GameOverProps) => {
+const GameOver = ({
+  room,
+  winnerId,
+  goToLobby,
+  gotoPostGameLobby,
+}: GameOverProps) => {
   const [questionData, setQuestionData] = useState<Question[]>([
     {
       text: "",
@@ -31,7 +37,13 @@ const GameOver = ({ room, winnerId, goToLobby }: GameOverProps) => {
       const questions = message;
       setQuestionData(questions);
     });
-    return <BattleComponent questions={questionData} room={room} />;
+    return (
+      <BattleComponent
+        questions={questionData}
+        room={room}
+        gotoPostGameLobby={gotoPostGameLobby}
+      />
+    );
   };
   const onHomeClick = () => {
     goToLobby();

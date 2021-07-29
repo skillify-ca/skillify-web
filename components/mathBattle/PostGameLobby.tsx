@@ -11,6 +11,7 @@ export interface CreateRoomProps {
 }
 
 const PostGameLobby = ({ players }: CreateRoomProps) => {
+  console.log("playersTotal", players);
   if (players && players.length == 1) {
     return (
       <div className="flex flex-col items-center ">
@@ -32,7 +33,6 @@ const PostGameLobby = ({ players }: CreateRoomProps) => {
       </div>
     );
   }
-  return;
-  <p>Do you see this</p>;
+  return <p>Do you see this</p>;
 };
 export default PostGameLobby;

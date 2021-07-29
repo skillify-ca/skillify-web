@@ -19,6 +19,7 @@ export type Player = {
   score: number;
   sessionId: string;
   name: string;
+  finished: boolean;
 };
 export enum STAGE {
   JOIN_SESSION,
@@ -122,10 +123,12 @@ const MathBattle = () => {
   });
 
   room?.onMessage("postGame", (message) => {
+    console.log("message", message);
     let playerArr = [];
     for (const [key, value] of Object.entries(message)) {
       playerArr.push(value);
     }
+    console.log("players", playerArr);
     setPlayers(playerArr);
     console.log("postgame");
     setStage(STAGE.POSTGAME_LOBBY);
@@ -191,7 +194,11 @@ const MathBattle = () => {
           />
         )}
         {stage == STAGE.BATTLE && (
-          <BattleComponent questions={questionData} room={room} />
+          <BattleComponent
+            questions={questionData}
+            room={room}
+            gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
+          />
         )}
         {stage == STAGE.COOP && (
           <CoopBattleComponent questions={questionData} room={room} />
@@ -200,6 +207,7 @@ const MathBattle = () => {
         {stage == STAGE.GAME_OVER && (
           <GameOver
             goToLobby={() => setStage(STAGE.JOIN_SESSION)}
+            gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
             winnerId={winnerId}
             room={room}
           />

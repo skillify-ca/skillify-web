@@ -9,9 +9,14 @@ import { PLAYER_ONE } from "../../pages/api/ticTacToe/constants";
 export interface BattleComponentProps {
   questions: Question[];
   room: Colyseus.Room;
+  gotoPostGameLobby: () => void;
 }
 
-const BattleComponent = ({ questions, room }: BattleComponentProps) => {
+const BattleComponent = ({
+  questions,
+  room,
+  gotoPostGameLobby,
+}: BattleComponentProps) => {
   const [opacity, setOpacity] = useState(0);
   const [opponentProgress, setOpponentProgress] = useState(0);
   const [correctGuesses, setCorrectGuesses] = useState(0);
@@ -53,8 +58,7 @@ const BattleComponent = ({ questions, room }: BattleComponentProps) => {
       // notify colyseus that this player submitted a guess
     } else {
       // TODO currently whoever calls this is declared the winner
-      room.send("requestGameOver", { id: room.sessionId, score: time });
-      console.log("requestGameover");
+      gotoPostGameLobby();
     }
   };
 
