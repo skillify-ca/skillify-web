@@ -1,8 +1,9 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import StatementRow from "../stories/StatementRow";
 import { Input } from "../ui/Input";
 
 const IncomeTable = ({}) => {
+  const [count, setCount] = useState("");
   return (
     <div>
       {" "}
@@ -20,11 +21,18 @@ const IncomeTable = ({}) => {
         </thead>
         <tbody>
           <tr>
-            <td className="border border-black "> Your Monthly Income </td>
+            <td className="border border-black ">
+              {" "}
+              <p className={"mx-2"}> Your Monthly Income</p>{" "}
+            </td>
             <td className="border border-black flex flex-nowrap">
               A.
               <div className={"ml-2"}>
-                <input></input>
+                <input
+                  value={count}
+                  onChange={(e) => setCount(e.target.value)}
+                  placeholder="Type in here"
+                ></input>
               </div>
             </td>
           </tr>
@@ -51,6 +59,7 @@ const IncomeTable = ({}) => {
         </tbody>
       </table>
       <p className={"ml-64 text-xs"}> **Put this amount in section 7**</p>
+      <p>"A cell = {count}</p>
     </div>
   );
 };
