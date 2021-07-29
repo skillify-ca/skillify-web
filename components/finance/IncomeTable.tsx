@@ -20,19 +20,19 @@ const IncomeTable = ({}) => {
         </thead>
         <tbody>
           <tr>
-            <td className="border border-black"> Your Monthly Income</td>
-            <td className="border border-black">
+            <td className="border border-black "> Your Monthly Income </td>
+            <td className="border border-black flex flex-nowrap">
               A.
-              <div>
+              <div className={"ml-2"}>
                 <input></input>
               </div>
             </td>
           </tr>
           <tr>
             <td className="border border-black">Your Spouses Monthly Income</td>
-            <td className="border border-black">
+            <td className="border border-black flex flex-nowrap">
               B.{" "}
-              <div>
+              <div className={"ml-2"}>
                 <input></input>
               </div>
             </td>
@@ -41,9 +41,9 @@ const IncomeTable = ({}) => {
             <td className="border border-black bg-gray-300">
               Total Monthly Income
             </td>
-            <td className="border border-black">
+            <td className="border border-black flex flex-nowrap">
               C.
-              <div>
+              <div className={"ml-2"}>
                 <input></input>
               </div>
             </td>
