@@ -203,7 +203,9 @@ const MathBattle = () => {
         {stage == STAGE.COOP && (
           <CoopBattleComponent questions={questionData} room={room} />
         )}
-        {stage == STAGE.POSTGAME_LOBBY && <PostGameLobby players={players} />}
+        {stage == STAGE.POSTGAME_LOBBY && (
+          <PostGameLobby players={players} room={room} />
+        )}
         {stage == STAGE.GAME_OVER && (
           <GameOver
             goToLobby={() => setStage(STAGE.JOIN_SESSION)}

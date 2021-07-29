@@ -9,7 +9,7 @@ import { PLAYER_ONE } from "../../pages/api/ticTacToe/constants";
 export interface BattleComponentProps {
   questions: Question[];
   room: Colyseus.Room;
-  gotoPostGameLobby: () => void;
+  gotoPostGameLobby: (room: Colyseus.Room) => void;
 }
 
 const BattleComponent = ({
@@ -58,7 +58,8 @@ const BattleComponent = ({
       // notify colyseus that this player submitted a guess
     } else {
       // TODO currently whoever calls this is declared the winner
-      gotoPostGameLobby();
+      room.send("playerScore", time);
+      gotoPostGameLobby(room);
     }
   };
 
