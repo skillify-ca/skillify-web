@@ -17,7 +17,6 @@ const FinanceProfile = () => {
         spouseOccupation="Mailman"
         spouseSalary="3500"
       />
-
       <div className={"mt-8"}>
         <IncomeTable
           value={yourMonthlyIncome}
@@ -28,10 +27,10 @@ const FinanceProfile = () => {
           setValue3={setTotalMonthlyIncome}
         />
       </div>
-      {yourMonthlyIncome}
-      {spouseMonthlyIncome}
-      {totalMonthlyIncome}
-      {totalMonthlyIncome === "" ? "TRUE" : "FALSE"}
+      <p>Checking If Addition was done right:</p>
+      {+yourMonthlyIncome + +spouseMonthlyIncome === +totalMonthlyIncome
+        ? "TRUE"
+        : "FALSE"}
     </div>
   );
 };
