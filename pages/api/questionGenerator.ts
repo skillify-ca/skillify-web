@@ -377,9 +377,9 @@ function getRandomDivisionQuestion(
     let b = 0;
     if (skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT) {
       a = getRndInteger(10, 100);
-    } else {
-      b = getRndInteger(min, max);
     }
+    b = getRndInteger(min, max);
+
     const type = QuestionType.LONG_DIVISION_PROBLEM;
     const text = `${b} / ${a} =`;
     let quotient = Math.floor(b / a);
