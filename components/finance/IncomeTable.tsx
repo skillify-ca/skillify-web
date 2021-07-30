@@ -2,8 +2,12 @@ import { ReactNode, useState } from "react";
 import StatementRow from "../stories/StatementRow";
 import { Input } from "../ui/Input";
 
-const IncomeTable = ({}) => {
-  const [count, setCount] = useState("");
+export interface incomeTableProps {
+  value: string;
+  setValue: (value: string) => void;
+}
+
+const IncomeTable = ({ value, setValue }: incomeTableProps) => {
   return (
     <div>
       {" "}
@@ -29,8 +33,8 @@ const IncomeTable = ({}) => {
               A.
               <div className={"ml-2"}>
                 <input
-                  value={count}
-                  onChange={(e) => setCount(e.target.value)}
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
                   placeholder="Type in here"
                 ></input>
               </div>
@@ -59,7 +63,7 @@ const IncomeTable = ({}) => {
         </tbody>
       </table>
       <p className={"ml-64 text-xs"}> **Put this amount in section 7**</p>
-      <p>"A cell = {count}</p>
+      <p>"A cell = {value}</p>
     </div>
   );
 };
