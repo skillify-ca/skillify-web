@@ -374,14 +374,9 @@ function getRandomDivisionQuestion(
     skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT
   ) {
     let a = getRndInteger(1, 10);
-    if (skill == Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT) {
-      a = getRndInteger(10, 100);
-    }
     let b = 0;
-    if (skill == Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT) {
-      b = getRndInteger(10, 100);
-    } else if ((skill = Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT)) {
-      b = getRndInteger(100, 1000);
+    if (skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT) {
+      a = getRndInteger(10, 100);
     } else {
       b = getRndInteger(min, max);
     }
@@ -398,33 +393,33 @@ function getRandomDivisionQuestion(
       operator: "÷",
       skill: skill,
     };
+  } else {
+    const a = getRndInteger(min, max);
+    const b = getRndInteger(min, max);
+    const product = a * b;
+
+    const text = `${product} / ${b} =`;
+    const types = [
+      QuestionType.LONG_DIVISION_PROBLEM,
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+    ];
+    const type = types[getRndInteger(0, types.length)];
+    let wordProblemModel;
+
+    if (type == QuestionType.BINARY_WORD_PROBLEM) {
+      wordProblemModel = createWordProblemModel("÷");
+    }
+    return {
+      text: text,
+      answer: a.toString(),
+      answerType: AnswerType.NUMBER,
+      questionType: type,
+      operator: "÷",
+      wordProblem: wordProblemModel,
+      skill: skill,
+    };
   }
-
-  const a = getRndInteger(min, max);
-  const b = getRndInteger(min, max);
-  const product = a * b;
-
-  const text = `${product} / ${b} =`;
-  const types = [
-    QuestionType.LONG_DIVISION_PROBLEM,
-    QuestionType.HORIZONTAL_EQUATION,
-    QuestionType.BINARY_WORD_PROBLEM,
-  ];
-  const type = types[getRndInteger(0, types.length)];
-  let wordProblemModel;
-
-  if (type == QuestionType.BINARY_WORD_PROBLEM) {
-    wordProblemModel = createWordProblemModel("÷");
-  }
-  return {
-    text: text,
-    answer: a.toString(),
-    answerType: AnswerType.NUMBER,
-    questionType: type,
-    operator: "÷",
-    wordProblem: wordProblemModel,
-    skill: skill,
-  };
 }
 export function randomize(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
