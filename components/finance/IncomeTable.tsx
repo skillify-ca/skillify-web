@@ -1,3 +1,4 @@
+import { sum } from "lodash";
 import { ReactNode, useState } from "react";
 import StatementRow from "../stories/StatementRow";
 import { Input } from "../ui/Input";
@@ -9,6 +10,7 @@ export interface incomeTableProps {
   setValue2: (value2: string) => void; //Line B
   value3: string;
   setValue3: (value3: string) => void; //Line C
+  sumValidation: boolean;
 }
 
 const IncomeTable = ({
@@ -18,6 +20,7 @@ const IncomeTable = ({
   setValue2,
   value3,
   setValue3,
+  sumValidation,
 }: incomeTableProps) => {
   return (
     <div>
@@ -72,9 +75,15 @@ const IncomeTable = ({
               C.
               <div className={"ml-2"}>
                 <input
+                  className={
+                    'IncomeTable ${sumValidation=true ? "bg-green-200"}'
+                  }
                   value={value3}
                   onChange={(e) => setValue3(e.target.value)}
                   placeholder="Type numbers only"
+                  {...(+value + +value2 === +value3
+                    ? (sumValidation = true)
+                    : (sumValidation = false))}
                 ></input>
               </div>
             </td>

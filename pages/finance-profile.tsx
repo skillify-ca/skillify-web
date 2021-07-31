@@ -25,9 +25,10 @@ const FinanceProfile = () => {
           setValue2={setSpouseMounthlyIncome}
           value3={totalMonthlyIncome}
           setValue3={setTotalMonthlyIncome}
+          sumValidation
         />
       </div>
-      <p>Checking If Addition was done right:</p>
+      <p>Checking If Addition was Done :</p>
       {+yourMonthlyIncome + +spouseMonthlyIncome === +totalMonthlyIncome
         ? "TRUE"
         : "FALSE"}
