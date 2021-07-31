@@ -1,25 +1,97 @@
 import React, { useRef, useState } from "react";
 import * as Colyseus from "colyseus.js";
 import QuestionSet from "../stories/QuestionSet";
-import { Question } from "../../pages/api/question";
+import { AnswerType, Question } from "../../pages/api/question";
 import { GuessData } from "../../pages/api/guessData";
 import ProgressBar from "../ProgressBar";
 import { Player } from "../../pages/games/MathBattle";
+import Card from "../ui/Card";
+import ReactCardFlip from "react-card-flip";
+import { Button } from "../ui/Button";
+import BattleComponent from "./BattleComponent";
+import { generateQuestions } from "../../pages/api/quiz/quizQuestionGenerator";
+import { QuestionType } from "../../pages/api/questionTypes";
+import { Skill } from "../../pages/api/skill";
 
 export interface CreateRoomProps {
-  players: Player[];
   room: Colyseus.Room;
+  goToLobby: () => void;
+  gotoPostGameLobby: () => void;
 }
 
-const PostGameLobby = ({ players, room }: CreateRoomProps) => {
+const PostGameLobby = ({
+  goToLobby,
+  gotoPostGameLobby,
+  room,
+}: CreateRoomProps) => {
+  const [players, setPlayers] = useState([]);
+  const [isFlipped, setIsFlipped] = useState(false);
   const [playerLength, setPlayerLength] = useState(0);
+
+  const [questionData, setQuestionData] = useState<Question[]>([
+    {
+      text: "",
+      answer: "",
+      answerType: AnswerType.NUMBER,
+      questionType: QuestionType.HORIZONTAL_EQUATION,
+      skill: Skill.ADDITION_SINGLE,
+    },
+  ]);
+
   room?.onMessage("sendToLobby", (message) => {
-    setPlayerLength(message);
+    setPlayerLength(message.finishedPlayers);
+
+    let playerArr = [];
+    for (const [key, value] of Object.entries(message.players)) {
+      console.log(key, value);
+      playerArr.push(value);
+    }
+
+    console.log(playerArr);
+
+    setPlayers(playerArr);
+
+    console.log(message.players);
+    console.log("players", players);
   });
+
+  const toggleFlip = () => {
+    setIsFlipped(!isFlipped);
+  };
+
+  const onHomeClick = () => {
+    goToLobby();
+  };
+
+  const onRematchClick = () => {
+    const questions = generateQuestions("addition", 1, 10);
+    setPlayerLength(0);
+    console.log("rematch", playerLength);
+    room.send("startGameRequested", questions);
+    room?.onMessage("goToBattle", (message) => {
+      const questions = message;
+      setQuestionData(questions);
+    });
+    return (
+      <BattleComponent
+        questions={questionData}
+        room={room}
+        gotoPostGameLobby={gotoPostGameLobby}
+      />
+    );
+  };
+
+  let scoreArr = [];
+  let scoreWin = 0;
+
+  players.map((it) => scoreArr.push(it.score));
+
+  scoreWin = Math.min(...scoreArr);
 
   if (playerLength != 2) {
     return (
-      <div className="flex flex-col gap-8 w-full min-h-screen">
+      <div className="flex flex-col gap-8 w-screen place-items-center text-center">
+        {console.log("playerLength", playerLength)}
         <p className="font-bold text-xl text-blue-400 items-center text-center ">
           Waiting for All Players
         </p>
@@ -34,18 +106,74 @@ const PostGameLobby = ({ players, room }: CreateRoomProps) => {
     );
   }
   return (
-    <div>
-      {players.map((it) => (
-        <div className="bg-blue-400 opacity-75 text-center items-center">
-          <h1 className="text-xl font-bold border-b opacity-100">
-            {it.name}
-            {console.log(it.score)}
-            {console.log(it.sessionId)}
-            <h2>{it.score}</h2>
-          </h1>
-        </div>
-      ))}
+    <div className="flex flex-col gap-16">
+      {console.log("playerLengthEnd", playerLength)}
+      <div className="flex flex-row gap-8 items-center text-center">
+        {players.map((it) => (
+          <ReactCardFlip
+            isFlipped={isFlipped}
+            flipDirection="horizontal"
+            infinite={true}
+          >
+            <div onClick={toggleFlip}>
+              <Card size="large">
+                <div className="flex flex-col">
+                  <h1
+                    className={`text-3xl font-bold  ${
+                      it.score == scoreWin ? "text-yellow-400" : "text-gray-400"
+                    }`}
+                  >
+                    {it.name}
+                    {it.score == scoreWin ? (
+                      <img
+                        src="/images/goldMedal.svg"
+                        width="300"
+                        height="300"
+                      />
+                    ) : (
+                      <img
+                        src="/images/silverMedal.svg"
+                        width="300"
+                        height="300"
+                      />
+                    )}
+                  </h1>
+                </div>
+              </Card>
+            </div>
+            <div onClick={toggleFlip}>
+              <Card size="large">
+                <div className=" flex flex-col">
+                  <p className="text-3xl font-bold">Score</p>
+                  {it.score}
+                </div>
+              </Card>
+            </div>
+          </ReactCardFlip>
+        ))}
+      </div>
+      <Button
+        label="Stats"
+        backgroundColor="red"
+        textColor="white"
+        onClick={toggleFlip}
+      ></Button>
+      <Button
+        label="Rematch"
+        backgroundColor="blue"
+        textColor="white"
+        onClick={onRematchClick}
+      />
+      <Button
+        label="Go Home"
+        backgroundColor="green"
+        textColor="white"
+        onClick={onHomeClick}
+      />
     </div>
   );
 };
 export default PostGameLobby;
+function setQuestionData(questions: any) {
+  throw new Error("Function not implemented.");
+}
