@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export const BuyAHomeTable1 = () => {
+export const FarmHouseTable = () => {
     return (
         <table className="shadow-md bg-white">
             <thead>
@@ -37,7 +37,7 @@ export const BuyAHomeTable1 = () => {
 };
 
 
-export const BuyAHomeTable2 = () => {
+export const SuburbHouseTable = () => {
     return (
         <table className="shadow-md bg-white">
             <thead>
@@ -73,4 +73,4 @@ export const BuyAHomeTable2 = () => {
     );
 };
 
-export default BuyAHomeTable1;
+export default FarmHouseTable;

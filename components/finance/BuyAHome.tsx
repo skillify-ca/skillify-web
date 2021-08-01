@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import BuyAHomeTable1, {BuyAHomeTable2} from "./BuyAHomeTable";
+import FarmHouseTable, {SuburbHouseTable} from "./BuyAHomeTables";
 
 const BuyAHome = ({}) => {
     return (
@@ -17,7 +17,7 @@ const BuyAHome = ({}) => {
                 
                 <div className="row-start-2 col-start-2 col-span-1">
                     <p className="pt-4 pb-1 text-center text-2xl">Farm House</p>
-                    <BuyAHomeTable1 />
+                    <FarmHouseTable />
                 </div>
 
                 <div className="row-start-2 col-start-1 col-span-1">
@@ -26,7 +26,7 @@ const BuyAHome = ({}) => {
 
                 <div className="row-start-3 col-start-1 col-span-1">
                     <p className="text-center text-2xl pb-1 pt-1">House in the Suburbs</p>
-                    <BuyAHomeTable2 />
+                    <SuburbHouseTable />
                 </div>
 
                 <div>
