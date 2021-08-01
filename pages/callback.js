@@ -4,26 +4,17 @@ import { magic } from "../lib/magic";
 import { UserContext } from "../lib/UserContext";
 
 const Callback = () => {
-  const router = useRouter();
   const [user, setUser] = useContext(UserContext);
 
   // The redirect contains a `provider` query param if the user is logging in with a social provider
   useEffect(() => {
-    router.query.provider ? finishSocialLogin() : finishEmailRedirectLogin();
-  }, [router.query]);
+    finishSocialLogin();
+  }, []);
 
   // `getRedirectResult()` returns an object with user data from Magic and the social provider
   const finishSocialLogin = async () => {
     let result = await magic.oauth.getRedirectResult();
     authenticateWithServer(result.magic.idToken);
-  };
-
-  // `loginWithCredential()` returns a didToken for the user logging in
-  const finishEmailRedirectLogin = () => {
-    if (router.query.magic_credential)
-      magic.auth
-        .loginWithCredential()
-        .then((didToken) => authenticateWithServer(didToken));
   };
 
   // Send token to server to validate

@@ -5,7 +5,7 @@ import { UserContext } from "../lib/UserContext";
 import SocialLogins from "../components/social-logins";
 
 const Login = () => {
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
 
   // Redirec to /profile if the user is logged in
   useEffect(() => {

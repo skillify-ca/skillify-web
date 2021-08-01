@@ -1,17 +1,19 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 import { signIn, useSession } from "next-auth/client";
 import { userId } from "../graphql/utils/constants";
 import { EMOJI_MASTERY, getEmoji } from "../pages/api/skill";
 import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
+import { UserContext } from "../lib/UserContext";
 
 const ProfileComponent = () => {
-  const [session] = useSession();
+  // const [session] = useSession();
+  const [user] = useContext(UserContext);
 
   let { loading, data } = useQuery(FETCH_USER_PROFILE, {
     variables: {
-      userId: userId(session),
+      userId: user ? user.email : "",
     },
   });
 
@@ -23,7 +25,8 @@ const ProfileComponent = () => {
 
   const progress = () => {
     if (
-      !loading && data && 
+      !loading &&
+      data &&
       data.user_badges.length > 0 &&
       data.user_skills.length > 0
     ) {
@@ -49,8 +52,8 @@ const ProfileComponent = () => {
         <div className="col-span-2 p-8 bg-white shadow-lg rounded-3xl">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex flex-col items-center">
-              <p className="text-xl">{session && session.user.name}</p>
-              <p className="text-sm">{session && session.user.email}</p>
+              {/* <p className="text-xl">{session && session.user.name}</p> */}
+              <p className="text-sm">{user && user.email}</p>
             </div>
             <div className="flex flex-col gap-4 m-4">
               <p className="text-sm">Progress</p>
@@ -124,6 +127,6 @@ const ProfileComponent = () => {
       </div>
     </div>
   );
-}
+};
 
 export default ProfileComponent;

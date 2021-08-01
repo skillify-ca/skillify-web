@@ -1,11 +1,14 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { signIn, useSession } from "next-auth/client";
+import { UserContext } from "../lib/UserContext";
+import { magic } from "../lib/magic";
 
 export default function Navbar() {
   const [active, setActive] = useState(false);
   const [profieMenuActive, setProfileMenuActive] = useState(false);
   const [session, loading] = useSession();
+  const [user] = useContext(UserContext);
 
   const handleClick = () => {
     setActive(!active);
@@ -13,6 +16,10 @@ export default function Navbar() {
 
   const handleProfileClick = () => {
     setProfileMenuActive(!profieMenuActive);
+  };
+
+  const logout = () => {
+    magic.user.logout();
   };
 
   return (
@@ -123,12 +130,16 @@ export default function Navbar() {
             <div className="ml-3 relative">
               <div>
                 <div>
-                  {!session && (
-                    <>
-                      <Link href="/welcome">
-                        <p className="text-white cursor-pointer">Sign in</p>
-                      </Link>
-                    </>
+                  {user?.loading ? (
+                    "Loading..."
+                  ) : user?.issuer ? (
+                    <p className="text-white cursor-pointer" onClick={logout}>
+                      Sign out
+                    </p>
+                  ) : (
+                    <Link href="/login">
+                      <p className="text-white cursor-pointer">Sign in</p>
+                    </Link>
                   )}
                   {session && (
                     <button

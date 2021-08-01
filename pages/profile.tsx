@@ -1,27 +1,37 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import ProfileComponent from "../components/ProfileComponent";
+import { magic } from "../lib/magic";
 
 import { UserContext } from "../lib/UserContext";
 
 const Profile = () => {
   const [user] = useContext(UserContext);
+
+  useEffect(() => {
+    async function fetchProfile() {
+      // let result = await magic.oauth.getRedirectResult();
+      console.log("OAUTH", magic.oauth);
+      console.log("USER", magic.user);
+      console.log("AUTH", magic.auth);
+    }
+
+    fetchProfile();
+  }, []);
   return (
     <div>
       <DiagnosticNavbar />
-      {user?.loading ? (
-        "Loading..."
-      ) : (
-        user?.issuer && (
-          <>
-            <div className="label">Email</div>
-            <div className="profile-info">{user.email}</div>
+      {user?.loading
+        ? "Loading..."
+        : user?.issuer && (
+            <>
+              <div className="label">Email</div>
+              <div className="profile-info">{user.email}</div>
 
-            <div className="label">User Id</div>
-            <div className="profile-info">{user.issuer}</div>
-          </>
-        )
-      )}
+              <div className="label">User Id</div>
+              <div className="profile-info">{user.issuer}</div>
+            </>
+          )}
       <style jsx>{`
         .label {
           font-size: 12px;
