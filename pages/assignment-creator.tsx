@@ -3,6 +3,7 @@ import { useAppDispatch } from "../redux/store";
 import { Grade, Skill, Topic } from "./api/skill";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import AssignmentCreationForm from "../components/assignment-creator/assignmentCreationForm";
+import AssignmentQuestions from "../components/assignment-creator/assignmentQuestions";
 
 enum STAGE {
   CREATE,
@@ -30,7 +31,7 @@ const Diagnostic = () => {
       );
       break;
     case STAGE.REVIEW:
-      <div> hi </div>;
+      component = <AssignmentQuestions selectedQuestions={selectedQuestions} />;
       break;
     case STAGE.CONFIRM:
       break;
