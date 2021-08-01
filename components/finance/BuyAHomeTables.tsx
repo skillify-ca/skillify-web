@@ -73,4 +73,76 @@ export const SuburbHouseTable = () => {
     );
 };
 
+export const ApartmentTable = () => {
+    return (
+        <table className="shadow-md bg-white">
+            <thead>
+            <tr>
+                <th className="bg-green-300 border border-black text-center w-40">Bedrooms</th>
+                <th className="bg-green-300 border border-black text-center w-40">Bathrooms</th>
+                <th className="bg-green-300 border border-black text-center w-40">Cost Per Month</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td className="border border-black text-center">1</td>
+                <td className="border border-black text-center">1</td>
+                <td className="border border-black text-center">$550</td>
+            </tr>
+            <tr>
+                <td className="border border-black text-center">2</td>
+                <td className="border border-black text-center">1</td>
+                <td className="border border-black text-center">$700</td>
+            </tr>
+            <tr>
+                <td className="border border-black text-center">3</td>
+                <td className="border border-black text-center">2</td>
+                <td className="border border-black text-center">$850</td>
+            </tr>
+            <tr>
+                <td className="border border-black text-center">4</td>
+                <td className="border border-black text-center">3</td>
+                <td className="border border-black text-center">$1100</td>
+            </tr>
+            </tbody>
+        </table>
+    );
+};
+
+export const CityLoftTable = () => {
+    return (
+        <table className="shadow-md bg-white">
+            <thead>
+            <tr>
+                <th className="bg-green-300 border border-black text-center w-40">Bedrooms</th>
+                <th className="bg-green-300 border border-black text-center w-40">Bathrooms</th>
+                <th className="bg-green-300 border border-black text-center w-40">Cost Per Month</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td className="border border-black text-center">1</td>
+                <td className="border border-black text-center">1</td>
+                <td className="border border-black text-center">$700</td>
+            </tr>
+            <tr>
+                <td className="border border-black text-center">2</td>
+                <td className="border border-black text-center">1</td>
+                <td className="border border-black text-center">$1000</td>
+            </tr>
+            <tr>
+                <td className="border border-black text-center">3</td>
+                <td className="border border-black text-center">2</td>
+                <td className="border border-black text-center">$1500</td>
+            </tr>
+            <tr>
+                <td className="border border-black text-center">4</td>
+                <td className="border border-black text-center">3</td>
+                <td className="border border-black text-center">$1800</td>
+            </tr>
+            </tbody>
+        </table>
+    );
+};
+
 export default FarmHouseTable;
