@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
-import FarmHouseTable, {SuburbHouseTable} from "./BuyAHomeTables";
+import FarmHouseTable, {ApartmentTable, CityLoftTable, SuburbHouseTable} from "./BuyAHomeTables";
 
 const BuyAHome = ({}) => {
     return (
-            <div className="grid grid-cols-2 grid-rows-3 border-8 border-black p-3 max-w-3xl">
+            <div className="grid grid-cols-2 grid-rows-4 border-8 border-black p-3 max-w-3xl">
                 
                 <div className="row-start-1 border-b-8 border-black">
                     <h1 className="text-5xl col-span-3 pb-4">Buy a Home</h1>
@@ -13,6 +13,7 @@ const BuyAHome = ({}) => {
                         in section 3 of your recording sheet. 
                     </p>
                 </div>
+                
                 <img className="col-start-2 col-span-1 border-b-8 border-black pt-6" src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/15152/house-home-residence-clipart-md.png" alt="House"/>
                 
                 <div className="row-start-2 col-start-2 col-span-1">
@@ -31,6 +32,24 @@ const BuyAHome = ({}) => {
 
                 <div>
                     <img className="pl-3" src="https://t3.ftcdn.net/jpg/01/27/07/32/360_F_127073215_s5f2FWtPSGt6i5kmaScVKB4AuVbjRuM9.jpg" alt="House in the Suburb" />
+                </div>
+
+                <div className="row-start-4 col-start-2 col-span-1">
+                    <p className="text-center text-2xl pb-1 pt-1">Apartment</p>
+                    <ApartmentTable />
+                </div>
+
+                <div>
+                    <img src="https://www.freepnglogos.com/uploads/building-png/download-building-png-image-pngimg-6.png" alt="Apartment" width="95%" height="auto"/>
+                </div>
+
+                <div className="row-start-5 col-start-1 col-span-1">
+                    <p className="text-center text-2xl pb-1 pt-1">City Loft</p>
+                    <CityLoftTable />
+                </div>
+
+                <div>
+                    <img src="https://st2.depositphotos.com/4923421/7586/v/450/depositphotos_75865639-stock-illustration-brick-townhouse.jpg" alt="City Loft" />
                 </div>
             </div>
     )
