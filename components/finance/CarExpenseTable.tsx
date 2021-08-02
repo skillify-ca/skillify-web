@@ -4,32 +4,80 @@ import StatementRow from "../stories/StatementRow";
 import { Input } from "../ui/Input";
 
 export interface CarExpenseTableProps {
-  monthlyIncome: string;
-  setmonthlyIncome: (value: string) => void; //Line A
-  spouseMonthlyIncome: string;
-  setspouseMonthlyIncome: (spouseMonthlyIncome: string) => void; //Line B
-  totalMonthlyIncome: string;
-  settotalMonthlyIncome: (totalMonthlyIncome: string) => void; //Line C
-  sumValidation: string;
-  setsumValidation: (sumValidation: string) => void;
+  carPayment1: string;
+  setcarPayment1: (carPayment1: string) => void; //Line I
+  carPayment2: string;
+  setcarPayment2: (carPayment2: string) => void; //Line J
+  insuranceCar: string;
+  setinsuranceCar: (insuranceCar: string) => void; //Line K
+  gasoline: string;
+  setgasoline: (gasoline: string) => void; //Line L
+  totalCarCosts: string;
+  settotalCarCosts: (totalCarCosts: string) => void; //Line C
+  sumValidationCar: string;
+  setsumValidationCar: (sumValidationCar: string) => void;
 }
 
 const CarExpenseTable = ({
-  monthlyIncome,
-  setmonthlyIncome,
-  spouseMonthlyIncome,
-  setspouseMonthlyIncome,
-  totalMonthlyIncome,
-  settotalMonthlyIncome,
-  sumValidation,
+  carPayment1,
+  setcarPayment1,
+  carPayment2,
+  setcarPayment2,
+  insuranceCar,
+  setinsuranceCar,
+  gasoline,
+  setgasoline,
+  totalCarCosts,
+  settotalCarCosts,
+  sumValidationCar,
+  setsumValidationCar,
 }: CarExpenseTableProps) => {
   return (
     <div>
       {" "}
-      <h1 className={"mb-2"}>Section 2: Income</h1>
-      <p>If married, add up your incomes in this section and put the</p>
-      <p className={"mb-1"}>
-        total in Box C. If you are single, you will only have one income.
+      <h1 className={"mb-2"}>Section 4: Car Expenses</h1>
+      <table className="table-fixed w-auto border-collapse">
+        <thead>
+          <tr>
+            <th className="w-1/4"></th>
+            <th className="w-1/4"></th>
+            <th className="w-1/4"></th>
+            <th className="w-1/4"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {" "}
+              <p className={"mx-2"}>Which car(s) did you buy?</p>
+            </td>
+            <td className={"border-b-2 border-black"}>
+              <input placeholder="Name of Car"></input>
+            </td>
+            <td>
+              {" "}
+              <p className={"mx-2"}>New or Used?</p>
+            </td>
+            <td className={"border-b-2 border-black"}>
+              <input placeholder="Select"></input>{" "}
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td className={"border-b-2 border-black"}>
+              <input placeholder="Name of Car"></input>
+            </td>
+            <td>
+              <p className={"mx-2"}>New or Used?</p>
+            </td>
+            <td className={"border-b-2 border-black"}>
+              <input placeholder="Select"></input>{" "}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p className={"mt-6 mb-6"}>
+        Add up your expenses in this section and put the total in Box M.
       </p>
       <table className="table-fixed w-auto border-collapse">
         <thead>
@@ -42,27 +90,62 @@ const CarExpenseTable = ({
           <tr>
             <td className="border border-black ">
               {" "}
-              <p className={"mx-2"}> Your Monthly Income</p>{" "}
+              <p className={"mx-2"}> Car Payment #1</p>{" "}
             </td>
             <td className="border border-black flex flex-nowrap">
-              A.
+              I.
               <div className={"ml-2"}>
                 <input
-                  value={monthlyIncome}
-                  onChange={(e) => setmonthlyIncome(e.target.value)}
+                  value={carPayment1}
+                  onChange={(e) => setcarPayment2(e.target.value)}
                   placeholder="Type numbers only"
                 ></input>
               </div>
             </td>
           </tr>
           <tr>
-            <td className="border border-black">Your Spouses Monthly Income</td>
+            <td className="border border-black">
+              {" "}
+              <p className={"mx-2"}>Car Payment #2</p>
+            </td>
             <td className="border border-black flex flex-nowrap">
-              B.{" "}
+              J.{" "}
               <div className={"ml-2"}>
                 <input
-                  value={spouseMonthlyIncome}
-                  onChange={(e) => setspouseMonthlyIncome(e.target.value)}
+                  value={carPayment2}
+                  onChange={(e) => setcarPayment2(e.target.value)}
+                  placeholder="Type numbers only"
+                ></input>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td className="border border-black">
+              {" "}
+              <p className={"mx-2"}>Insurance</p>
+            </td>
+            <td className="border border-black flex flex-wrap">
+              K.
+              <div className={"ml-2"}>
+                <input
+                  value={insuranceCar}
+                  onChange={(e) => setinsuranceCar(e.target.value)}
+                  placeholder="Type numbers only"
+                ></input>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td className="border border-black">
+              {" "}
+              <p className={"mx-2"}>Gasoline</p>
+            </td>
+            <td className="border border-black flex flex-wrap">
+              L.
+              <div className={"ml-2"}>
+                <input
+                  value={gasoline}
+                  onChange={(e) => setgasoline(e.target.value)}
                   placeholder="Type numbers only"
                 ></input>
               </div>
@@ -70,27 +153,34 @@ const CarExpenseTable = ({
           </tr>
           <tr>
             <td className="border border-black bg-gray-300">
-              Total Monthly Income
+              <p className={"mx-2"}>Total Monthly Income</p>
             </td>
             <td className="border border-black flex flex-nowrap">
               C.
               <div className={"ml-2"}>
                 <input
-                  value={totalMonthlyIncome}
-                  onChange={(e) => settotalMonthlyIncome(e.target.value)}
+                  value={totalCarCosts}
+                  onChange={(e) => settotalCarCosts(e.target.value)}
                   placeholder="Type numbers only"
-                  {...(+monthlyIncome + +spouseMonthlyIncome === 0
-                    ? (sumValidation = "")
-                    : +monthlyIncome + +spouseMonthlyIncome ===
-                      +totalMonthlyIncome
-                    ? (sumValidation = "Correct")
-                    : (sumValidation = "Wrong"))}
+                  {...(+carPayment1 +
+                    +carPayment2 +
+                    +insuranceCar +
+                    +gasoline ===
+                  0
+                    ? (sumValidationCar = "")
+                    : +carPayment1 +
+                        +carPayment2 +
+                        +insuranceCar +
+                        +gasoline ===
+                      +totalCarCosts
+                    ? (sumValidationCar = "Correct")
+                    : (sumValidationCar = "Wrong"))}
                   className={
-                    sumValidation === ""
+                    sumValidationCar === ""
                       ? "bg-white"
-                      : sumValidation === "Correct"
+                      : sumValidationCar === "Correct"
                       ? "bg-green-200"
-                      : sumValidation === "Wrong"
+                      : sumValidationCar === "Wrong"
                       ? "bg-red-200"
                       : "bg-white"
                   }
@@ -100,7 +190,7 @@ const CarExpenseTable = ({
           </tr>
         </tbody>
       </table>
-      <p className={"ml-64 text-xs"}> **Put this amount in section 7**</p>
+      <p className={"ml-64 text-xs"}> **Put this amount in section 6**</p>
     </div>
   );
 };
