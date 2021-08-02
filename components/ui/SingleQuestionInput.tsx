@@ -1,28 +1,28 @@
 import { ReactNode } from "react";
 
 export interface SingleQuestionInputProps {
-  question: string;
-  answer: string;
+  answer;
+  type: string;
+  name: string;
 }
 
 export const SingleQuestionInput = ({
-  question,
   answer,
+  type,
+  name,
 }: SingleQuestionInputProps) => {
   return (
     <div>
-      <div className={"flex flex-nowrap gap-x-2"}>
-        {question}
+      <div className={"flex flex-nowrap gap-x-2 rounded-xl"}>
         <div className={"flex gap-x-2 "}>
-          <div>
-            <label>
-              <input
-                type="text"
-                value={answer}
-                className={"gap-x-2 bg-gray-50"}
-              />
-            </label>
-          </div>
+          <label>
+            <input
+              type={type}
+              value={answer}
+              name={name}
+              className={"gap-x-2 bg-gray-100"}
+            />
+          </label>
         </div>
       </div>
     </div>

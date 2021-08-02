@@ -16,6 +16,4 @@ const Template: Story<SingleQuestionInputProps> = (args) => (
 );
 
 export const Primary = Template.bind({});
-Primary.args = {
-  question: "Are you married?",
-};
+Primary.args = {};
