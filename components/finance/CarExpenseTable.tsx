@@ -3,7 +3,7 @@ import { ReactNode, useState } from "react";
 import StatementRow from "../stories/StatementRow";
 import { Input } from "../ui/Input";
 
-export interface incomeTableProps {
+export interface CarExpenseTableProps {
   monthlyIncome: string;
   setmonthlyIncome: (value: string) => void; //Line A
   spouseMonthlyIncome: string;
@@ -14,7 +14,7 @@ export interface incomeTableProps {
   setsumValidation: (sumValidation: string) => void;
 }
 
-const IncomeTable = ({
+const CarExpenseTable = ({
   monthlyIncome,
   setmonthlyIncome,
   spouseMonthlyIncome,
@@ -22,7 +22,7 @@ const IncomeTable = ({
   totalMonthlyIncome,
   settotalMonthlyIncome,
   sumValidation,
-}: incomeTableProps) => {
+}: CarExpenseTableProps) => {
   return (
     <div>
       {" "}
@@ -105,4 +105,4 @@ const IncomeTable = ({
   );
 };
 
-export default IncomeTable;
+export default CarExpenseTable;
