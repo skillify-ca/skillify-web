@@ -4,22 +4,23 @@ import StatementRow from "../stories/StatementRow";
 import { Input } from "../ui/Input";
 
 export interface incomeTableProps {
-  value: string;
-  setValue: (value: string) => void; //Line A
-  value2: string;
-  setValue2: (value2: string) => void; //Line B
-  value3: string;
-  setValue3: (value3: string) => void; //Line C
-  sumValidation: boolean;
+  monthlyIncome: string;
+  setmonthlyIncome: (value: string) => void; //Line A
+  spouseMonthlyIncome: string;
+  setspouseMonthlyIncome: (spouseMonthlyIncome: string) => void; //Line B
+  totalMonthlyIncome: string;
+  settotalMonthlyIncome: (totalMonthlyIncome: string) => void; //Line C
+  sumValidation: string;
+  setsumValidation: (sumValidation: string) => void;
 }
 
 const IncomeTable = ({
-  value,
-  setValue,
-  value2,
-  setValue2,
-  value3,
-  setValue3,
+  monthlyIncome,
+  setmonthlyIncome,
+  spouseMonthlyIncome,
+  setspouseMonthlyIncome,
+  totalMonthlyIncome,
+  settotalMonthlyIncome,
   sumValidation,
 }: incomeTableProps) => {
   return (
@@ -28,7 +29,7 @@ const IncomeTable = ({
       <h1 className={"mb-2"}>Section 2: Income</h1>
       <p>If married, add up your incomes in this section and put the</p>
       <p className={"mb-1"}>
-        total in Box C. If you are single, you will only have on income.
+        total in Box C. If you are single, you will only have one income.
       </p>
       <table className="table-fixed w-auto border-collapse">
         <thead>
@@ -47,8 +48,8 @@ const IncomeTable = ({
               A.
               <div className={"ml-2"}>
                 <input
-                  value={value}
-                  onChange={(e) => setValue(e.target.value)}
+                  value={monthlyIncome}
+                  onChange={(e) => setmonthlyIncome(e.target.value)}
                   placeholder="Type numbers only"
                 ></input>
               </div>
@@ -60,8 +61,8 @@ const IncomeTable = ({
               B.{" "}
               <div className={"ml-2"}>
                 <input
-                  value={value2}
-                  onChange={(e) => setValue2(e.target.value)}
+                  value={spouseMonthlyIncome}
+                  onChange={(e) => setspouseMonthlyIncome(e.target.value)}
                   placeholder="Type numbers only"
                 ></input>
               </div>
@@ -75,15 +76,24 @@ const IncomeTable = ({
               C.
               <div className={"ml-2"}>
                 <input
-                  className={
-                    'IncomeTable ${sumValidation=true ? "bg-green-200"}'
-                  }
-                  value={value3}
-                  onChange={(e) => setValue3(e.target.value)}
+                  value={totalMonthlyIncome}
+                  onChange={(e) => settotalMonthlyIncome(e.target.value)}
                   placeholder="Type numbers only"
-                  {...(+value + +value2 === +value3
-                    ? (sumValidation = true)
-                    : (sumValidation = false))}
+                  {...(+monthlyIncome + +spouseMonthlyIncome === 0
+                    ? (sumValidation = "")
+                    : +monthlyIncome + +spouseMonthlyIncome ===
+                      +totalMonthlyIncome
+                    ? (sumValidation = "Correct")
+                    : (sumValidation = "Wrong"))}
+                  className={
+                    sumValidation === ""
+                      ? "bg-white"
+                      : sumValidation === "Correct"
+                      ? "bg-green-200"
+                      : sumValidation === "Wrong"
+                      ? "bg-red-200"
+                      : "bg-white"
+                  }
                 ></input>
               </div>
             </td>
@@ -91,10 +101,6 @@ const IncomeTable = ({
         </tbody>
       </table>
       <p className={"ml-64 text-xs"}> **Put this amount in section 7**</p>
-      <p>A cell = {value}</p>
-      <p>B cell = {value2} </p>
-      <p>c cell = {value3}</p>
-      <p>Cell C CORRECT answer is ={+value + +value2}</p>
     </div>
   );
 };
