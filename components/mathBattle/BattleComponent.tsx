@@ -58,6 +58,7 @@ const BattleComponent = ({
     } else {
       newCorrectGuesses = correctGuesses + 1;
       setCorrectGuesses(newCorrectGuesses);
+
     }
     if (index + 1 < questions.length) {
       setIndex(index + 1);
