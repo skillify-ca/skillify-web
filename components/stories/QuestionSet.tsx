@@ -209,7 +209,11 @@ const QuestionSet = ({
         <LongDivision
           question={questionData[index]}
           submitGuess={submitGuess}
-          isRemainder={skill === Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT}
+          isRemainder={
+            skill === Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT ||
+            skill === Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT ||
+            skill === Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT
+          }
         />
       );
     } else if (
