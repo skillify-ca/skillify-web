@@ -61,6 +61,10 @@ const userSync = async (token) => {
         { userId: $userId, locked: true, badgeId: 44 }
         { userId: $userId, locked: true, badgeId: 45 }
         { userId: $userId, locked: true, badgeId: 46 }
+        { userId: $userId, locked: true, badgeId: 47 }
+        { userId: $userId, locked: true, badgeId: 48 }
+        { userId: $userId, locked: true, badgeId: 49 }
+        { userId: $userId, locked: true, badgeId: 50 }
       ]
     ) {
       returning {
@@ -92,6 +96,16 @@ const userSync = async (token) => {
       { user_id: $userId, skill_id: 50, emoji: null }  
       { user_id: $userId, skill_id: 51, emoji: null }    
       { user_id: $userId, skill_id: 52, emoji: null }  
+      { user_id: $userId, skill_id: 53, emoji: null }
+      { user_id: $userId,  skill_id: 54, emoji: null }
+      { user_id: $userId,  skill_id: 55, emoji: null }
+      { user_id: $userId,  skill_id: 56, emoji: null }
+      { user_id: $userId, skill_id: 57, emoji: null }
+      { user_id: $userId,  skill_id: 58, emoji: null }
+      { user_id: $userId, skill_id: 59, emoji: null }  
+      { user_id: $userId, skill_id: 60, emoji: null }    
+      { user_id: $userId, skill_id: 61, emoji: null } 
+      { user_id: $userId, skill_id: 62, emoji: null } 
     ]
   ) {
     returning {
