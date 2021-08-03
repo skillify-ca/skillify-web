@@ -27,6 +27,8 @@ const PostGameLobby = ({
   const [players, setPlayers] = useState([]);
   const [isFlipped, setIsFlipped] = useState(false);
   const [playerLength, setPlayerLength] = useState(0);
+  const [rematchButton, setRematchButton] = useState("Request Rematch");
+  const [buttonDisable, setButtonDisable] = useState(false);
 
   const [questionData, setQuestionData] = useState<Question[]>([
     {
@@ -55,6 +57,10 @@ const PostGameLobby = ({
     console.log("players", players);
   });
 
+  room?.onMessage("goToRematch", (message) => {
+    setRematchButton(message);
+  });
+
   const toggleFlip = () => {
     setIsFlipped(!isFlipped);
   };
@@ -64,10 +70,15 @@ const PostGameLobby = ({
   // };
 
   const onRematchClick = () => {
-    const questions = generateQuestions("addition", 1, 10);
-    setPlayerLength(0);
-    console.log("rematch", playerLength);
-    room.send("rematchRequested", questions);
+    if (rematchButton == "Request Rematch") {
+      console.log("rematch", playerLength);
+      room.send("rematchRequested");
+      setButtonDisable(true);
+    } else {
+      const questions = generateQuestions("addition", 1, 10);
+      setPlayerLength(0);
+      room.send("rematchAccepted", questions);
+    }
   };
 
   let scoreArr = [];
@@ -153,10 +164,11 @@ const PostGameLobby = ({
         onClick={toggleFlip}
       ></Button>
       <Button
-        label="Rematch"
+        label={rematchButton}
         backgroundColor="blue"
         textColor="white"
         onClick={onRematchClick}
+        disabled={buttonDisable}
       />
       <Button
         label="Go Home"
