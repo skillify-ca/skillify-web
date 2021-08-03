@@ -55,10 +55,8 @@ const BattleComponent = ({
     }
     if (index + 1 < questions.length) {
       setIndex(index + 1);
-      // notify colyseus that this player submitted a guess
     } else {
-      // TODO currently whoever calls this is declared the winner
-      room.send("playerScore", time);
+      room.send("playerScore", { time: time, accuracy: correctGuesses });
       gotoPostGameLobby(room);
     }
   };

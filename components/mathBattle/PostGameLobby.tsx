@@ -59,9 +59,9 @@ const PostGameLobby = ({
     setIsFlipped(!isFlipped);
   };
 
-  const onHomeClick = () => {
-    goToLobby();
-  };
+  // const onHomeClick = () => {
+  //   goToLobby();
+  // };
 
   const onRematchClick = () => {
     const questions = generateQuestions("addition", 1, 10);
@@ -134,7 +134,12 @@ const PostGameLobby = ({
               <Card size="large">
                 <div className=" flex flex-col">
                   <p className="text-3xl font-bold">Score</p>
-                  {it.score}
+                  {parseInt((it.score / 1000).toString())} seconds
+                </div>
+                <hr></hr>
+                <div className=" flex flex-col">
+                  <p className="text-3xl font-bold">Accuracy</p>
+                  {it.accuracy}/10
                 </div>
               </Card>
             </div>
@@ -157,7 +162,7 @@ const PostGameLobby = ({
         label="Go Home"
         backgroundColor="green"
         textColor="white"
-        onClick={onHomeClick}
+        onClick={() => window.location.reload()}
       />
     </div>
   );
