@@ -5,7 +5,7 @@ import BattleComponent from "../../components/mathBattle/BattleComponent";
 import { generateQuestions } from "../api/quiz/quizQuestionGenerator";
 import { Question, AnswerType } from "../api/question";
 import { QuestionType } from "../api/questionTypes";
-import { Skill } from "../api/skill";
+import { questionSetGenerator, Skill } from "../api/skill";
 import CoopBattleComponent from "../../components/mathBattle/coop/CoopBattleComponent";
 import { useEffect } from "react";
 import CreateRoom from "../../components/mathBattle/CreateRooms";
@@ -13,6 +13,8 @@ import Lobby from "../../components/mathBattle/PlayerLobby";
 import PostGameLobby from "../../components/mathBattle/PostGameLobby";
 import GameOver from "../../components/mathBattle/GameOver";
 import CoopGameOver from "../../components/mathBattle/coop/CoopGameOver";
+import CoopBattleIntro from "../../components/mathBattle/coop/CoopBattleIntro";
+import CoopStoryComponent from "../../components/mathBattle/CoopNarrative";
 
 export type Player = {
   seat: number;
@@ -27,6 +29,8 @@ export enum STAGE {
   BATTLE,
   COOP,
   POSTGAME_LOBBY,
+  COOP_STORY,
+  COOP_INTRO,
   GAME_OVER,
   COOP_GAME_OVER,
 }
@@ -140,7 +144,7 @@ const MathBattle = () => {
     setQuestionData(questions);
   });
   room?.onMessage("goToCoop", (message) => {
-    setStage(STAGE.COOP);
+    setStage(STAGE.COOP_STORY);
   });
   room?.onMessage("showGameOver", (message) => {
     console.log("mes", message);
@@ -164,7 +168,7 @@ const MathBattle = () => {
   };
 
   useEffect(() => {
-    setQuestionData(generateQuestions("addition", 1, 100));
+    setQuestionData(questionSetGenerator(20));
   }, []);
 
   return (
@@ -198,6 +202,20 @@ const MathBattle = () => {
             questions={questionData}
             room={room}
             gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
+          />
+        )}
+        {stage == STAGE.COOP_STORY && (
+          <CoopStoryComponent
+            goToIntro={() => {
+              setStage(STAGE.COOP_INTRO);
+            }}
+          />
+        )}
+        {stage == STAGE.COOP_INTRO && (
+          <CoopBattleIntro
+            startGame={() => {
+              setStage(STAGE.COOP);
+            }}
           />
         )}
         {stage == STAGE.COOP && (

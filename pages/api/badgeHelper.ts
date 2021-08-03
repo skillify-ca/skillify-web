@@ -19,6 +19,8 @@ export const getBadgeId = (slug: string, currentLevel: number) => {
           return 3;
         case 4:
           return 43;
+        case 5:
+          return 47;
       }
     } else if (slug.toLowerCase() == "subtraction") {
       switch (currentLevel) {
@@ -30,6 +32,8 @@ export const getBadgeId = (slug: string, currentLevel: number) => {
           return 7;
         case 4:
           return 46;
+        case 5:
+          return 48;
       }
     } else if (slug.toLowerCase() == "multiplication") {
       switch (currentLevel) {
@@ -38,7 +42,11 @@ export const getBadgeId = (slug: string, currentLevel: number) => {
         case 2:
           return 9;
         case 3:
+          return 10;
+        case 4:
           return 44;
+        case 5:
+          return 49;
       }
     } else if (slug.toLowerCase() == "division") {
       switch (currentLevel) {
@@ -47,7 +55,11 @@ export const getBadgeId = (slug: string, currentLevel: number) => {
         case 2:
           return 12;
         case 3:
+          return 13;
+        case 4:
           return 45;
+        case 5:
+          return 50;
       }
     }
   }

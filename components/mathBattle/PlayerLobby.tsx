@@ -49,6 +49,7 @@ const Lobby = ({ leader, players, code, startGame }: CreateRoomProps) => {
           <div>
             <p>Waiting for all players</p>
           </div>
+
         ) : (
           <div>
             {players.length == 2 ? (
