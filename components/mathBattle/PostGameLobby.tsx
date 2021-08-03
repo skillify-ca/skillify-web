@@ -67,18 +67,7 @@ const PostGameLobby = ({
     const questions = generateQuestions("addition", 1, 10);
     setPlayerLength(0);
     console.log("rematch", playerLength);
-    room.send("startGameRequested", questions);
-    room?.onMessage("goToBattle", (message) => {
-      const questions = message;
-      setQuestionData(questions);
-    });
-    return (
-      <BattleComponent
-        questions={questionData}
-        room={room}
-        gotoPostGameLobby={gotoPostGameLobby}
-      />
-    );
+    room.send("rematchRequested", questions);
   };
 
   let scoreArr = [];
