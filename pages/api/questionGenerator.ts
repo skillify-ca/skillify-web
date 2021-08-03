@@ -293,7 +293,14 @@ export function getRandomAdditionQuestion(
   skill: Skill
 ) {
   let rndQuestionType = getRndInteger(0, 2);
-  if (rndQuestionType > 0 && skill == Skill.ADDITION_SINGLE) {
+  if (
+    rndQuestionType == 0 ||
+    skill == Skill.ADDITION_4_DIGIT ||
+    skill == Skill.ADDITION_TENTHS
+  ) {
+    const add = (a: number, b: number) => a + b;
+    return getRandomBinaryQuestion(min, max, "+", add, skill);
+  } else {
     let a = getRndInteger(min, max);
     let b = getRndInteger(min, max);
     let text = `${a} + ${b} =`;
