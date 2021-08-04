@@ -1,7 +1,10 @@
 import { useMutation, useQuery } from "@apollo/client";
+import { Preload, OrbitControls, Stars } from "@react-three/drei";
 import { session, useSession } from "next-auth/client";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import React, { useState } from "react";
+import { Canvas } from "react-three-fiber";
 import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import { Button } from "../../components/ui/Button";
 import { FETCH_TOPIC_OVERVIEW } from "../../graphql/fetchTopicOverview";
@@ -15,6 +18,9 @@ import {
   Skill,
   SkillDescription,
 } from "../api/skill";
+
+const Box = dynamic(() => import("../../components/stories/Box"));
+
 const TopicOverviewPage = ({ slug }) => {
   const [session, user] = useSession();
   const [grade, setGrade] = useState(Grade.GRADE_1);
@@ -170,7 +176,25 @@ const TopicOverviewPage = ({ slug }) => {
                 </>
               ) : (
                 <>
-                  <img src={badge.badge.image} className="w-40" />
+                  <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
+                    <Preload all />
+                    <group>
+                      <Box
+                        url={
+                          badge.badge.image
+                            ? badge.badge.image
+                            : "/images/lock.png"
+                        }
+                      />
+                      <OrbitControls
+                        hasEventListener={false}
+                        removeEventListener={() => {}}
+                        addEventListener={() => {}}
+                        dispatchEvent={() => {}}
+                      />
+                      <Stars />
+                    </group>
+                  </Canvas>
                   <p className="text-md -mt-4 flex items-center">
                     {"   "}
                     Badge: <b> &nbsp;Unlocked</b>{" "}
