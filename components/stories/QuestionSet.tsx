@@ -212,7 +212,8 @@ const QuestionSet = ({
           isRemainder={
             skill === Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT ||
             skill === Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT ||
-            skill === Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT
+            skill === Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT ||
+            skill === Skill.DIVISION_THREE_DIGIT_BY_TENTH
           }
         />
       );
