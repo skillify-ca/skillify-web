@@ -50,9 +50,7 @@ const FinanceProfile = () => {
         spouseSalary={spouseSalary}
         setSpouseSalary={setSpouseSalary}
       />
-      {isMarried}
-      {individualOccupation}
-      {individualSalary}
+
       <div className={"mt-8"}>
         <IncomeTable
           value={yourMonthlyIncome}
