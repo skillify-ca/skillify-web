@@ -6,11 +6,11 @@ import FinanceProfileChartLine, {
 
 export interface FinanceProfileChartProps {
   individualOccupation: string;
-  individualSalary: string;
+  individualSalary: number;
   maritalStatus: string;
-  numberOfChildren: string;
+  numberOfChildren: number;
   spouseOccupation: string;
-  spouseSalary: string;
+  spouseSalary: number;
 }
 
 export const FinanceProfileChart = ({

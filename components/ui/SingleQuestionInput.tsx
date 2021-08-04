@@ -1,15 +1,17 @@
 import { ReactNode } from "react";
 
 export interface SingleQuestionInputProps {
-  answer;
+  value: number | string;
   type: string;
   name: string;
+  onChange: (e: any) => void;
 }
 
 export const SingleQuestionInput = ({
-  answer,
+  value,
   type,
   name,
+  onChange,
 }: SingleQuestionInputProps) => {
   return (
     <div>
@@ -18,9 +20,10 @@ export const SingleQuestionInput = ({
           <label>
             <input
               type={type}
-              value={answer}
+              value={value}
               name={name}
               className={"gap-x-2 bg-gray-100"}
+              onChange={onChange}
             />
           </label>
         </div>

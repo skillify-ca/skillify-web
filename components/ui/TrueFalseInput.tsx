@@ -4,9 +4,16 @@ export interface TrueFalseProps {
   option1: string; // Yes, True or Optional
   option2: string; // No, False or Optional
   name: string;
+  value: boolean;
+  onChange: (e: any) => void;
 }
 
-export const TrueFalse = ({ option1, option2, name }: TrueFalseProps) => {
+export const TrueFalse = ({
+  option1,
+  option2,
+  name,
+  onChange,
+}: TrueFalseProps) => {
   return (
     <div>
       {/*Q1 Radio */}
@@ -19,6 +26,7 @@ export const TrueFalse = ({ option1, option2, name }: TrueFalseProps) => {
                 value={option1}
                 className={"gap-x-2"}
                 name={name}
+                onChange={onChange}
               />
               {option1}
             </label>
@@ -30,6 +38,7 @@ export const TrueFalse = ({ option1, option2, name }: TrueFalseProps) => {
                 value={option2}
                 className={"gap-x-2"}
                 name={name}
+                onChange={onChange}
               />
               {option2}
             </label>
