@@ -80,7 +80,8 @@ id
 8. Now click play again and click insert_user_skills
 9. Now click play again and click insert_user_badges
 10. Now cut the query variable again and click run and My_Query
-11. Repeat this process until you intialize all the users
+11. Paste the Query varibale and replace the id with the next id recieved from the query
+12. Repeat this process (steps 7 - 11) until you intialize all the users
 
 ### New User Intialization
 
