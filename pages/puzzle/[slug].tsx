@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { useState } from "react";
 import ReactCardFlip from "react-card-flip";
@@ -7,6 +8,7 @@ import { Button } from "../../components/ui/Button";
 import { GuessData } from "../api/guessData";
 
 const PuzzlePage = ({ slug }) => {
+  const router = useRouter();
   const [isShaking, setIsShaking] = useState(false);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const toggleFlip = () => {
@@ -17,7 +19,7 @@ const PuzzlePage = ({ slug }) => {
     if (guess.isCorrect) {
       toggleFlip();
     } else {
-      setIsShaking(true)
+      setIsShaking(true);
     }
   };
   const onReset = () => {
@@ -56,12 +58,20 @@ const PuzzlePage = ({ slug }) => {
             <p className="text-4xl text-green-400 font-bold text-center m-8">
               Correct
             </p>
-            <Button
-              backgroundColor="blue"
-              textColor="white"
-              label="See Solution"
-              onClick={onSeeSolutionClicked}
-            />
+            <div className="flex gap-8">
+              <Button
+                backgroundColor="blue"
+                textColor="white"
+                label="See Solution"
+                onClick={onSeeSolutionClicked}
+              />
+              <Button
+                backgroundColor="green"
+                textColor="white"
+                label="Exit"
+                onClick={(e) => router.back()}
+              />
+            </div>
           </div>
         </ReactCardFlip>
       </div>
