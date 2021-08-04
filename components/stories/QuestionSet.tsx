@@ -2,7 +2,7 @@ import React from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
 import { QuestionType } from "../../pages/api/questionTypes";
-import { getRndColour, getRndInteger } from "../../pages/api/random";
+import { getRandomItemFromArray, getRndColour, getRndInteger } from "../../pages/api/random";
 import { Skill } from "../../pages/api/skill";
 import { FillBlank } from "../questionTypes/FillBlank";
 import { HorizontalEquation } from "../questionTypes/HorizontalEquation";
@@ -243,6 +243,7 @@ const QuestionSet = ({
           <MultiplicationEqualGroups
             question={questionData[index]}
             submitGuess={submitGuess}
+            color={getRandomItemFromArray([0,1,2,3])}
           />
         );
       }
