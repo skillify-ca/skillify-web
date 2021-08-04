@@ -95,7 +95,7 @@ const SkillOverviewPage = ({ slug }) => {
                 Puzzle 8
               </button>
             </Link>
-            <Link href={`/puzzle/${puzzleId}`}>
+            <Link href={`/puzzle/3`}>
               <button className="disabled:opacity-50 bg-gradient-to-b  border-b-4 rounded-xl active:border-b-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 border border-blue-700 ">
                 Puzzle 3
               </button>
