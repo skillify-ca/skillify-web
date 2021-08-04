@@ -38,34 +38,34 @@ const DualColourDots = ({ value = 0 }: DualColourProps) => {
   return (
     <div className="flex gap-4">
       <div className="flex flex-col gap-4">
-        <Dot dotType={getDotType(0, value)} />
-        <Dot dotType={getDotType(1, value)} />
-        <Dot dotType={getDotType(2, value)} />
-        <Dot dotType={getDotType(3, value)} />
+        <Dot dotType={getDotType(value, 0)} />
+        <Dot dotType={getDotType(value, 1)} />
+        <Dot dotType={getDotType(value, 2)} />
+        <Dot dotType={getDotType(value, 3)} />
       </div>
       <div className="flex flex-col gap-4">
-        <Dot dotType={getDotType(4, value)} />
-        <Dot dotType={getDotType(5, value)} />
-        <Dot dotType={getDotType(6, value)} />
-        <Dot dotType={getDotType(7, value)} />
+        <Dot dotType={getDotType(value, 4)} />
+        <Dot dotType={getDotType(value, 5)} />
+        <Dot dotType={getDotType(value, 6)} />
+        <Dot dotType={getDotType(value, 7)} />
       </div>
       <div className="flex flex-col gap-4">
-        <Dot dotType={getDotType(8, value)} />
-        <Dot dotType={getDotType(9, value)} />
-        <Dot dotType={getDotType(10, value)} />
-        <Dot dotType={getDotType(11, value)} />
+        <Dot dotType={getDotType(value, 8)} />
+        <Dot dotType={getDotType(value, 9)} />
+        <Dot dotType={getDotType(value, 10)} />
+        <Dot dotType={getDotType(value, 11)} />
       </div>
       <div className="flex flex-col gap-4">
-        <Dot dotType={getDotType(12, value)} />
-        <Dot dotType={getDotType(13, value)} />
-        <Dot dotType={getDotType(14, value)} />
-        <Dot dotType={getDotType(15, value)} />
+        <Dot dotType={getDotType(value, 12)} />
+        <Dot dotType={getDotType(value, 13)} />
+        <Dot dotType={getDotType(value, 14)} />
+        <Dot dotType={getDotType(value, 15)} />
       </div>
     </div>
   );
 };
 
-const getDotType = (id: number, value: number) => {
+const getDotType = (value: number, id: number) => {
   const existanceMap = [
     [
       DotTypes.INVISIBLE,
@@ -84,7 +84,7 @@ const getDotType = (id: number, value: number) => {
       DotTypes.INVISIBLE,
       DotTypes.INVISIBLE,
       DotTypes.INVISIBLE,
-    ], // Dot 0
+    ], // 0 dots
     [
       DotTypes.INVISIBLE,
       DotTypes.INVISIBLE,
@@ -102,7 +102,7 @@ const getDotType = (id: number, value: number) => {
       DotTypes.INVISIBLE,
       DotTypes.INVISIBLE,
       DotTypes.INVISIBLE,
-    ], // Dot 1
+    ], // 1 dot
     [
       DotTypes.TOPCOLOUR,
       DotTypes.INVISIBLE,
@@ -356,7 +356,6 @@ const getDotType = (id: number, value: number) => {
       DotTypes.TOPCOLOUR,
     ], // Dot 15
   ];
-
   return existanceMap[value][id];
 };
 

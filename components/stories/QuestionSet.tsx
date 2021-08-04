@@ -257,28 +257,8 @@ const QuestionSet = ({
     );
   };
 
-  const progressText = (
-    <p className="font-semibold text-gray-500 ">
-      {" "}
-      Question: {index + 1} / {questionData.length}{" "}
-    </p>
-  );
-
-  const scoreText = (
-    <p className="font-semibold">
-      {" "}
-      Score: {score} / {index + 1}{" "}
-    </p>
-  );
   return (
     <div className="flex flex-col justify-center items-center gap-4 m-8">
-      {HUDEnabled && (
-        <div className="flex flex-row justify-between w-full p-4 bg-blue-300 shadow-lg rounded-lg ">
-          {progressText}
-          {scoreText}
-        </div>
-      )}
-
       <Card size="large">
         <div
           className={`transition-opacity duration-150 ease-in-out opacity-${
