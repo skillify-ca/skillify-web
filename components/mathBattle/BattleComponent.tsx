@@ -44,19 +44,26 @@ const BattleComponent = ({
   });
 
   const submitGuess = async (currentGuess: GuessData) => {
+    let newCorrectGuesses = correctGuesses;
+    let newTime = time;
+
     room.send("nextQuestion", { id: room.sessionId, data: index });
     if (!currentGuess.isCorrect) {
+      newTime = time + 10000;
+
       setOpacity(1);
-      setTime((time) => time + 10000);
+      setTime(newTime);
       await delay(650);
       setOpacity(0);
     } else {
-      setCorrectGuesses(correctGuesses + 1);
+      newCorrectGuesses = correctGuesses + 1;
+      setCorrectGuesses(newCorrectGuesses);
+
     }
     if (index + 1 < questions.length) {
       setIndex(index + 1);
     } else {
-      room.send("playerScore", { time: time, accuracy: correctGuesses });
+      room.send("playerScore", { time: newTime, accuracy: newCorrectGuesses });
       gotoPostGameLobby(room);
     }
   };
