@@ -1,10 +1,12 @@
-import React, { useRef, useEffect, useState } from "react";
-import { signIn, useSession } from "next-auth/client";
+import React, { useState } from "react";
+import { useSession } from "next-auth/client";
 import { userId } from "../graphql/utils/constants";
 import { EMOJI_MASTERY, getEmoji } from "../pages/api/skill";
 import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
+import ReactCardFlip from "react-card-flip";
+import LockedBadge from "./LockedBadge";
 
 const ProfileComponent = () => {
   const [session] = useSession();
@@ -95,9 +97,7 @@ const ProfileComponent = () => {
               {data &&
                 data.user_badges.map((badge) => {
                   return badge.locked ? (
-                    <div className="">
-                      <img src="/images/lockedPic.png" className="w-32" />
-                    </div>
+                    <LockedBadge title={badge.badge.title} />
                   ) : (
                     <Link href={`/badges/${badge.badge.id}`}>
                       <img
@@ -124,6 +124,6 @@ const ProfileComponent = () => {
       </div>
     </div>
   );
-}
+};
 
 export default ProfileComponent;

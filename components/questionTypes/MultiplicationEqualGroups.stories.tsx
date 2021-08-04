@@ -10,7 +10,13 @@ import Card from "../ui/Card";
 export default {
   title: "Multiplication Equal Groups",
   component: MultiplicationEqualGroups,
-  argTypes: {},
+  argTypes: {
+    color: {
+      control: {
+        type: "number",
+      },
+    },
+  },
 } as Meta;
 
 const Template: Story<MultiplicationEqualGroupsProp> = (args) => (
@@ -22,4 +28,5 @@ const Template: Story<MultiplicationEqualGroupsProp> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {
   question: { text: "2 x 5" },
+  color: 3,
 };

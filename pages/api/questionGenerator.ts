@@ -301,7 +301,7 @@ export function getRandomAdditionQuestion(
   skill: Skill
 ) {
   let rndQuestionType = getRndInteger(0, 2);
-  if (rndQuestionType > 0 && skill == Skill.ADDITION_SINGLE) {
+  if (rndQuestionType == 0 && skill == Skill.ADDITION_SINGLE) {
     let a = getRndInteger(min, max);
     let b = getRndInteger(min, max);
     let text = `${a} + ${b} =`;

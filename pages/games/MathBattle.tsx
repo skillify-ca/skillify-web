@@ -10,6 +10,7 @@ import CoopBattleComponent from "../../components/mathBattle/coop/CoopBattleComp
 import { useEffect } from "react";
 import CreateRoom from "../../components/mathBattle/CreateRooms";
 import Lobby from "../../components/mathBattle/PlayerLobby";
+import PostGameLobby from "../../components/mathBattle/PostGameLobby";
 import GameOver from "../../components/mathBattle/GameOver";
 import CoopGameOver from "../../components/mathBattle/coop/CoopGameOver";
 import CoopBattleIntro from "../../components/mathBattle/coop/CoopBattleIntro";
@@ -17,14 +18,17 @@ import CoopStoryComponent from "../../components/mathBattle/CoopNarrative";
 
 export type Player = {
   seat: number;
-  sessionID: string;
+  score: number;
+  sessionId: string;
   name: string;
+  finished: boolean;
 };
 export enum STAGE {
   JOIN_SESSION,
   LOBBY,
   BATTLE,
   COOP,
+  POSTGAME_LOBBY,
   COOP_STORY,
   COOP_INTRO,
   GAME_OVER,
@@ -34,9 +38,11 @@ export enum STAGE {
 const MathBattle = () => {
   const [players, setPlayers] = useState([]);
 
+  const [leader, setLeader] = useState("");
   const [stage, setStage] = useState(STAGE.JOIN_SESSION);
   const [room, setRoom] = useState<Colyseus.Room>();
   const [name, setName] = useState("");
+  const [joinName, setJoinName] = useState("");
   const [code, setCode] = useState("");
   const [winnerId, setWinnerId] = useState("");
 
@@ -49,6 +55,7 @@ const MathBattle = () => {
       skill: Skill.ADDITION_SINGLE,
     },
   ]);
+
   var client = new Colyseus.Client("wss://math-game-server.herokuapp.com");
   const onJoinClick = () => {
     client
@@ -56,7 +63,15 @@ const MathBattle = () => {
       .then((room) => {
         console.log(room.sessionId, "joined", room.name);
         setRoom(room);
-        room.send("join", { name: name }); //Dyanmic Name
+        console.log("initial", name);
+
+        console.log("joininitial", joinName);
+
+        console.log("fakename", name);
+
+        console.log("final", name);
+
+        room.send("join", { name: joinName }); //Dyanmic Name
         setStage(STAGE.LOBBY);
       })
       .catch((e) => {
@@ -82,11 +97,11 @@ const MathBattle = () => {
     client
       .create("tictactoe")
       .then((room) => {
+        setLeader(room.sessionId);
         setCode(room.id);
-        console.log(room.id);
         console.log(room.sessionId, "joined", room.name);
         setRoom(room);
-        room.send("join", { name: name }); //Dyanmic Name
+        room.send("join", { id: room.sessionId, name: name }); //Dyanmic Name
         setStage(STAGE.LOBBY);
       })
       .catch((e) => {
@@ -95,15 +110,35 @@ const MathBattle = () => {
   };
   room?.onMessage("joinResponse", (message) => {
     console.log(client.auth._id, "received fire on", room.name, message);
+    console.log("messageresponse", message);
     let playerArr = [];
     for (const [key, value] of Object.entries(message)) {
       console.log(key, value);
       playerArr.push(value);
     }
     console.log(playerArr);
+    room.send("leader", leader);
 
     setPlayers(playerArr);
   });
+
+  room?.onMessage("leaderResponse", (message) => {
+    console.log("messagetime", message);
+    setLeader(message);
+  });
+
+  room?.onMessage("postGame", (message) => {
+    console.log("message", message);
+    let playerArr = [];
+    for (const [key, value] of Object.entries(message)) {
+      playerArr.push(value);
+    }
+    console.log("players", playerArr);
+    setPlayers(playerArr);
+    console.log("postgame");
+    setStage(STAGE.POSTGAME_LOBBY);
+  });
+
   room?.onMessage("goToBattle", (message) => {
     setStage(STAGE.BATTLE);
     const questions = message;
@@ -121,7 +156,7 @@ const MathBattle = () => {
     }
 
     if (stage === STAGE.BATTLE) {
-      setStage(STAGE.GAME_OVER);
+      setStage(STAGE.POSTGAME_LOBBY);
     } else if (stage === STAGE.COOP) {
       setStage(STAGE.COOP_GAME_OVER);
     }
@@ -141,7 +176,6 @@ const MathBattle = () => {
     <div>
       <DiagnosticNavbar />
       <div className="p-4">
-        {" "}
         {stage == STAGE.JOIN_SESSION && (
           <CreateRoom
             players={players}
@@ -150,6 +184,8 @@ const MathBattle = () => {
             onJoinClick={onJoinClick}
             name={name}
             setName={setName}
+            joinName={joinName}
+            setJoinName={setJoinName}
             code={code}
             setCode={setCode}
           />
@@ -159,10 +195,15 @@ const MathBattle = () => {
             players={players}
             code={code}
             startGame={onStartGameRequested}
+            leader={leader}
           />
         )}
         {stage == STAGE.BATTLE && (
-          <BattleComponent questions={questionData} room={room} />
+          <BattleComponent
+            questions={questionData}
+            room={room}
+            gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
+          />
         )}
         {stage == STAGE.COOP_STORY && (
           <CoopStoryComponent
@@ -181,9 +222,17 @@ const MathBattle = () => {
         {stage == STAGE.COOP && (
           <CoopBattleComponent questions={questionData} room={room} />
         )}
+        {stage == STAGE.POSTGAME_LOBBY && (
+          <PostGameLobby
+            goToLobby={() => setStage(STAGE.LOBBY)}
+            gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
+            room={room}
+          />
+        )}
         {stage == STAGE.GAME_OVER && (
           <GameOver
             goToLobby={() => setStage(STAGE.JOIN_SESSION)}
+            gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
             winnerId={winnerId}
             room={room}
           />
