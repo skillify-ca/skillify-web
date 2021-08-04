@@ -2,7 +2,6 @@ import React, { useCallback, useState } from "react";
 import { BoardSquare } from "./BoardSquare";
 import { ItemTypes } from "./ItemTypes";
 import { NumberTile } from "./NumberTile";
-import update from "immutability-helper";
 
 export type BoxState = {
   name: string;

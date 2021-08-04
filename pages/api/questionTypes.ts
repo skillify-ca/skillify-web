@@ -15,4 +15,5 @@ export enum QuestionType {
   MULTIPLE_CHOICE_WORD, // Addition Property with words as mc options
   MULTIPLE_CHOICE_SENTENCE, // Addition Property with numbers as mc options
   MULTIPLE_CHOICE, // Multiple choice answer to a binary question
+  VISUAL_TYPE_PROBLEM, // visual number types
 }

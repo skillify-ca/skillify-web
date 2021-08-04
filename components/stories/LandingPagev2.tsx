@@ -1,15 +1,8 @@
 import Link from "next/link";
-import React, { useRef, useState } from "react";
-import { AnswerType } from "../../pages/api/question";
-import { QuestionType } from "../../pages/api/questionTypes";
-import { Skill, Topic } from "../../pages/api/skill";
-import { createWordProblemModel } from "../../pages/api/WordProblemModel";
-import { Button } from "./Button";
-import { Input } from "./Input";
+import React, {  } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { WordProblemAdd } from "./WordProblemAdd";
 
 const LandingPagev2 = () => {
   const settings = {

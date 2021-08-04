@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import SignInPage from "../components/SignInPage";
 
 const Welcome = () => {

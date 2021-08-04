@@ -2,20 +2,16 @@ import { useQuery } from "@apollo/client";
 import { session, useSession } from "next-auth/client";
 import Link from "next/link";
 import React from "react";
-import { useSelector } from "react-redux";
 import DiagnosticNavbar from "../../components/DiagnosticNavbar";
-import { Button } from "../../components/stories/Button";
 import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { userId } from "../../graphql/utils/constants";
 import {
   getEmoji,
   getPracticeCardForSkill,
   getSkillId,
-  getSkillsForTopicGrade,
   SkillDescription,
 } from "../api/skill";
 import { getVideosForSkill } from "../api/videoHelper";
-import Resources from "../resources";
 
 const SkillOverviewPage = ({ slug }) => {
   const SHOULD_SHOW_PUZZLES = false;

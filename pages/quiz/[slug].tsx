@@ -3,11 +3,10 @@ import { Modal, ModalTransition } from "react-simple-hook-modal";
 import "react-simple-hook-modal/dist/styles.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { CREATE_GUESS } from "../../graphql/createGuess";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { generateQuestions } from "../api/quiz/quizQuestionGenerator";
 import { v4 as uuidv4 } from "uuid";
-import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
+import { userId } from "../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
 import QuestionSet from "../../components/stories/QuestionSet";
 import { QuestionType } from "../api/questionTypes";
@@ -15,7 +14,6 @@ import { GuessData } from "../api/guessData";
 import { AnswerType, Question } from "../api/question";
 import { getSkillId, Skill } from "../api/skill";
 import { UNLOCK_BADGE } from "../../graphql/unlockBadge";
-import { AdditionDoubleDigitWS } from "../../components/stories/WorksheetsObj";
 import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
 import { getBadgeId } from "../api/badgeHelper";
 import { SAVE_USER_GUESSES } from "../../graphql/saveUserGuesses";
@@ -178,7 +176,6 @@ const Quiz = ({ slug }) => {
   const getAccuracy = () => {
     return Math.round((100 * correctGuesses) / length);
   };
-
   return (
     <div>
       <DiagnosticNavbar />
@@ -189,7 +186,6 @@ const Quiz = ({ slug }) => {
         inputElement={inputElement}
         submitGuess={submitGuess}
         score={correctGuesses}
-        practice={false}
       />
       <Modal
         id="game-over-model"
