@@ -391,11 +391,17 @@ function getRandomDivisionQuestion(
     }
     b = getRndInteger(min, max);
 
-    const type = QuestionType.LONG_DIVISION_PROBLEM;
-    const text = `${b} / ${a} =`;
+    let type = QuestionType.LONG_DIVISION_PROBLEM;
     let quotient = Math.floor(b / a);
     let remainder = b % a;
-    const answer = `${quotient},${remainder}`;
+    let answer;
+    if (skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH) {
+      type = QuestionType.HORIZONTAL_EQUATION;
+      answer = `${quotient}`;
+    } else {
+      answer = `${quotient},${remainder}`;
+    }
+    const text = `${b} / ${a} =`;
     return {
       text: text,
       answer: answer,

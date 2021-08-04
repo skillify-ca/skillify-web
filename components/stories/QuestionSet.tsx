@@ -2,7 +2,11 @@ import React from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
 import { QuestionType } from "../../pages/api/questionTypes";
-import { getRandomItemFromArray, getRndColour, getRndInteger } from "../../pages/api/random";
+import {
+  getRandomItemFromArray,
+  getRndColour,
+  getRndInteger,
+} from "../../pages/api/random";
 import { Skill } from "../../pages/api/skill";
 import { FillBlank } from "../questionTypes/FillBlank";
 import { HorizontalEquation } from "../questionTypes/HorizontalEquation";
@@ -218,8 +222,7 @@ const QuestionSet = ({
           isRemainder={
             skill === Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT ||
             skill === Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT ||
-            skill === Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT ||
-            skill === Skill.DIVISION_THREE_DIGIT_BY_TENTH
+            skill === Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT
           }
         />
       );
@@ -244,7 +247,7 @@ const QuestionSet = ({
           <MultiplicationEqualGroups
             question={questionData[index]}
             submitGuess={submitGuess}
-            color={getRandomItemFromArray([0,1,2,3])}
+            color={getRandomItemFromArray([0, 1, 2, 3])}
           />
         );
       }
