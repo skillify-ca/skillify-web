@@ -296,7 +296,9 @@ export function getRandomAdditionQuestion(
   if (
     rndQuestionType == 0 ||
     skill == Skill.ADDITION_4_DIGIT ||
-    skill == Skill.ADDITION_TENTHS
+    skill == Skill.ADDITION_TENTHS ||
+    skill == Skill.ADDITION_DOUBLE ||
+    skill == Skill.ADDITION_TRIPLE
   ) {
     const add = (a: number, b: number) => a + b;
     return getRandomBinaryQuestion(min, max, "+", add, skill);
