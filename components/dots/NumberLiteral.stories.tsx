@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  } from "react";
 import { Story, Meta } from "@storybook/react";
 import NumberLiteral, { NumberLiteralProp } from "./NumberLiteral";
 

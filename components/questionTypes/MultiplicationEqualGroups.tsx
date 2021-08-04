@@ -6,18 +6,18 @@ import { EqualGroupsInput } from "./EqualGroupsInput";
 
 export interface MultiplicationEqualGroupsProp {
   question: Question;
+  color: 0 | 1 | 2 | 3; // color is a random number between 0 - 3
   submitGuess: (guess: GuessData) => void;
 }
 
 /* Multiplication by equal groups UI with 2 inputs */
 export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> = ({
   question,
+  color,
   submitGuess,
-  ...props
 }) => {
   const [guess, setGuess] = useState("");
   const [guess2, setGuess2] = useState("");
-  const [color, setColor] = useState(Math.floor(Math.random() * 4));
 
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
@@ -28,7 +28,6 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
   const onSubmit = () => {
     setGuess("");
     setGuess2("");
-    setColor(Math.floor(Math.random() * 4));
     const parts = question.text.split(" ");
     submitGuess({
       guess: guess + " groups of " + guess2,
@@ -49,27 +48,30 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
   let groups = Array.from(Array(Number.parseInt(parse().first)).keys());
   let itemsInGroup = Array.from(Array(Number.parseInt(parse().second)).keys());
 
-  let groupColor;
-  let itemColor;
+  const getColors = (color) => {
+    let groupColor;
+    let itemColor;
 
-  switch (color) {
-    case 0:
-      groupColor = "bg-blue-300";
-      itemColor = "bg-purple-600";
-      break;
-    case 1:
-      groupColor = "bg-yellow-300";
-      itemColor = "bg-pink-600";
-      break;
-    case 2:
-      groupColor = "bg-green-300";
-      itemColor = "bg-pink-600";
-      break;
-    case 3:
-      groupColor = "bg-pink-300";
-      itemColor = "bg-purple-600";
-      break;
-  }
+    switch (color) {
+      case 0:
+        groupColor = "bg-blue-300";
+        itemColor = "bg-purple-600";
+        break;
+      case 1:
+        groupColor = "bg-yellow-300";
+        itemColor = "bg-pink-600";
+        break;
+      case 2:
+        groupColor = "bg-green-300";
+        itemColor = "bg-pink-600";
+        break;
+      case 3:
+        groupColor = "bg-pink-300";
+        itemColor = "bg-purple-600";
+        break;
+    }
+    return { groupColor, itemColor };
+  };
 
   const isOrAre = (length: number) => {
     let isOrAre;
@@ -96,11 +98,17 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
       <div className="flex flex-row w-full flex-wrap gap-1 justify-around items-center">
         {groups.map((it) => (
           <div
-            className={`flex flew-row flex-wrap items-center justify-center gap-1 ${groupColor} w-24 h-24 p-4 rounded-full`}
+            className={`flex flew-row flex-wrap items-center justify-center gap-1 ${
+              getColors(color).groupColor
+            } w-24 h-24 p-4 rounded-full`}
           >
             {itemsInGroup.map((it) => (
               <div
-                className={`flex ${itemColor} h-1/4 w-1/4 border-black rounded-3xl hover:gap-1 ${itemColor} hover:scale-125 transform`}
+                className={`flex ${
+                  getColors(color).itemColor
+                } h-1/4 w-1/4 border-black rounded-3xl hover:gap-1 ${
+                  getColors(color).itemColor
+                } hover:scale-125 transform`}
               ></div>
             ))}
           </div>
@@ -110,12 +118,14 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
       <div className="flex flex-row flex-wrap gap-2 justify-center mt-4 text-md">
         There {isOrAre(groups.map((it) => it).length)}
         <EqualGroupsInput
+          autofocus={true}
           guess={guess}
           setGuess={setGuess}
           handleKeypress={handleKeypress}
         />
         {singularPlural(groups.map((it) => it).length)} of
         <EqualGroupsInput
+          autofocus={false}
           guess={guess2}
           setGuess={setGuess2}
           handleKeypress={handleKeypress}

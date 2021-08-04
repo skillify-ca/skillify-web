@@ -14,7 +14,7 @@ import {
 import { getVideosForSkill } from "../api/videoHelper";
 
 const SkillOverviewPage = ({ slug }) => {
-  const SHOULD_SHOW_PUZZLES = false;
+  const SHOULD_SHOW_PUZZLES = true;
   const [session, loading] = useSession();
   const userSkillsQuery = useQuery(FETCH_USER_EMOJIS, {
     variables: {
