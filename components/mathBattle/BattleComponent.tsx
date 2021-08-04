@@ -4,7 +4,6 @@ import QuestionSet from "../stories/QuestionSet";
 import { Question } from "../../pages/api/question";
 import { GuessData } from "../../pages/api/guessData";
 import ProgressBar from "../ProgressBar";
-import { PLAYER_ONE } from "../../pages/api/ticTacToe/constants";
 
 export interface BattleComponentProps {
   questions: Question[];
