@@ -27,63 +27,63 @@ const DiceDots = ({ value = 0 }: DiceDotsProps) => {
     <div className="flex gap-4">
       <div className="flex flex-col gap-4">
         <Dot
-          exists={getDotProps(0, value).exists}
-          visible={getDotProps(0, value).visible}
+          exists={getDotProps(value, 0).exists}
+          visible={getDotProps(value, 0).visible}
         />
         <Dot
-          exists={getDotProps(1, value).exists}
-          visible={getDotProps(1, value).visible}
+          exists={getDotProps(value, 1).exists}
+          visible={getDotProps(value, 1).visible}
         />
         <Dot
-          exists={getDotProps(2, value).exists}
-          visible={getDotProps(2, value).visible}
+          exists={getDotProps(value, 2).exists}
+          visible={getDotProps(value, 2).visible}
         />
         <Dot
-          exists={getDotProps(3, value).exists}
-          visible={getDotProps(3, value).visible}
-        />
-      </div>
-      <div className="flex flex-col gap-4">
-        <Dot
-          exists={getDotProps(4, value).exists}
-          visible={getDotProps(4, value).visible}
-        />
-        <Dot
-          exists={getDotProps(5, value).exists}
-          visible={getDotProps(5, value).visible}
-        />
-        <Dot
-          exists={getDotProps(6, value).exists}
-          visible={getDotProps(6, value).visible}
-        />
-        <Dot
-          exists={getDotProps(7, value).exists}
-          visible={getDotProps(7, value).visible}
+          exists={getDotProps(value, 3).exists}
+          visible={getDotProps(value, 3).visible}
         />
       </div>
       <div className="flex flex-col gap-4">
         <Dot
-          exists={getDotProps(8, value).exists}
-          visible={getDotProps(8, value).visible}
+          exists={getDotProps(value, 4).exists}
+          visible={getDotProps(value, 4).visible}
         />
         <Dot
-          exists={getDotProps(9, value).exists}
-          visible={getDotProps(9, value).visible}
+          exists={getDotProps(value, 5).exists}
+          visible={getDotProps(value, 5).visible}
         />
         <Dot
-          exists={getDotProps(10, value).exists}
-          visible={getDotProps(10, value).visible}
+          exists={getDotProps(value, 6).exists}
+          visible={getDotProps(value, 6).visible}
         />
         <Dot
-          exists={getDotProps(11, value).exists}
-          visible={getDotProps(11, value).visible}
+          exists={getDotProps(value, 7).exists}
+          visible={getDotProps(value, 7).visible}
+        />
+      </div>
+      <div className="flex flex-col gap-4">
+        <Dot
+          exists={getDotProps(value, 8).exists}
+          visible={getDotProps(value, 8).visible}
+        />
+        <Dot
+          exists={getDotProps(value, 9).exists}
+          visible={getDotProps(value, 9).visible}
+        />
+        <Dot
+          exists={getDotProps(value, 10).exists}
+          visible={getDotProps(value, 10).visible}
+        />
+        <Dot
+          exists={getDotProps(value, 11).exists}
+          visible={getDotProps(value, 11).visible}
         />
       </div>
     </div>
   );
 };
 
-const getDotProps = (id: number, value: number) => {
+const getDotProps = (value: number, id: number) => {
   const existanceMap = [
     [
       { visible: false, exists: false },
@@ -254,18 +254,6 @@ const getDotProps = (id: number, value: number) => {
       { visible: true, exists: true },
     ], // Dot 11
   ];
-  if (
-    existanceMap[id][value]["exists"] == null ||
-    existanceMap[id][value]["exists"] == undefined
-  ) {
-    console.log("id", id, "value", value, "exists", existanceMap[id][value]);
-  }
-
   return existanceMap[value][id];
 };
-
-const isVisible = (id: number, value: number) => {
-  return false;
-};
-
 export default DiceDots;
