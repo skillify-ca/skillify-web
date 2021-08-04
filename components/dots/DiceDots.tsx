@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Story, Meta } from "@storybook/react";
+import React from "react";
 
 export interface DotProps {
   exists: boolean;

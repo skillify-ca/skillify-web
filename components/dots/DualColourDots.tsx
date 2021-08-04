@@ -1,27 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { Story, Meta } from "@storybook/react";
-import { randomize } from "../../pages/api/questionGenerator";
+import React from "react";
 import { DotTypes } from "./DotTypes";
 
 export interface DotProps {
-  colour: DotTypes;
+  dotType: DotTypes;
 }
 
-const Dot = ({ colour }: DotProps) => {
-  let topDotColour = "bg-red-400";
-  let bottomDotColour = "bg-blue-400";
-  let displayColour;
-  if (colour == DotTypes.TOPCOLOUR) {
-    displayColour = topDotColour;
-  } else if (colour == DotTypes.BOTTOMCOLOUR) {
-    displayColour = bottomDotColour;
-  } else {
-    displayColour = "opacity-0";
-  }
+const Dot = ({ dotType }: DotProps) => {
+  const getDisplayColor = (dotType: DotTypes) => {
+    const topDotColour = "bg-red-400";
+    const bottomDotColour = "bg-blue-400";
+    let displayColour;
+    if (dotType == DotTypes.TOPCOLOUR) {
+      displayColour = topDotColour;
+    } else if (dotType == DotTypes.BOTTOMCOLOUR) {
+      displayColour = bottomDotColour;
+    } else {
+      displayColour = "opacity-0";
+    }
+
+    return displayColour;
+  };
 
   return (
     <div
-      className={`rounded-full shadow-md h-4 w-4  ${displayColour} border-black`}
+      className={`rounded-full shadow-md h-4 w-4  ${getDisplayColor(
+        dotType
+      )} border-black`}
     ></div>
   );
 };
@@ -34,34 +38,34 @@ const DualColourDots = ({ value = 0 }: DualColourProps) => {
   return (
     <div className="flex gap-4">
       <div className="flex flex-col gap-4">
-        <Dot colour={getDotProps(0, value)} />
-        <Dot colour={getDotProps(1, value)} />
-        <Dot colour={getDotProps(2, value)} />
-        <Dot colour={getDotProps(3, value)} />
+        <Dot dotType={getDotType(0, value)} />
+        <Dot dotType={getDotType(1, value)} />
+        <Dot dotType={getDotType(2, value)} />
+        <Dot dotType={getDotType(3, value)} />
       </div>
       <div className="flex flex-col gap-4">
-        <Dot colour={getDotProps(4, value)} />
-        <Dot colour={getDotProps(5, value)} />
-        <Dot colour={getDotProps(6, value)} />
-        <Dot colour={getDotProps(7, value)} />
+        <Dot dotType={getDotType(4, value)} />
+        <Dot dotType={getDotType(5, value)} />
+        <Dot dotType={getDotType(6, value)} />
+        <Dot dotType={getDotType(7, value)} />
       </div>
       <div className="flex flex-col gap-4">
-        <Dot colour={getDotProps(8, value)} />
-        <Dot colour={getDotProps(9, value)} />
-        <Dot colour={getDotProps(10, value)} />
-        <Dot colour={getDotProps(11, value)} />
+        <Dot dotType={getDotType(8, value)} />
+        <Dot dotType={getDotType(9, value)} />
+        <Dot dotType={getDotType(10, value)} />
+        <Dot dotType={getDotType(11, value)} />
       </div>
       <div className="flex flex-col gap-4">
-        <Dot colour={getDotProps(12, value)} />
-        <Dot colour={getDotProps(13, value)} />
-        <Dot colour={getDotProps(14, value)} />
-        <Dot colour={getDotProps(15, value)} />
+        <Dot dotType={getDotType(12, value)} />
+        <Dot dotType={getDotType(13, value)} />
+        <Dot dotType={getDotType(14, value)} />
+        <Dot dotType={getDotType(15, value)} />
       </div>
     </div>
   );
 };
 
-const getDotProps = (id: number, value: number) => {
+const getDotType = (id: number, value: number) => {
   const existanceMap = [
     [
       DotTypes.INVISIBLE,

@@ -128,10 +128,16 @@ const QuestionSet = ({
     ) {
       return (
         <MultipleChoiceWord
-          displayQuestion="Which Property of Addition is shown?"
-          question={questionData[index].multipleChoice.options[0]}
+          options={questionData[index].multipleChoice.options}
+          answer={questionData[index].answer}
           submitGuess={submitGuess}
-        />
+        >
+          <h1 className="text-4l underline font-bold">
+            {" "}
+            {questionData[index].multipleChoice.title}{" "}
+          </h1>
+          <p className="text-2xl">{questionData[index].text}</p>
+        </MultipleChoiceWord>
       );
     } else if (
       questionData[index].questionType == QuestionType.MULTIPLE_CHOICE

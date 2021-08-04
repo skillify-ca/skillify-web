@@ -18,7 +18,6 @@ export const MultipleChoice: React.FC<MultipleChoiceProp> = ({
   option3,
   answer,
   submitGuess,
-  ...props
 }) => {
   const onSubmit = (guess: string) => {
     submitGuess({
