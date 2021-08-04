@@ -1,5 +1,6 @@
 import React, { ReactNode, useCallback, useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
+import { PUZZLE_DATA } from "../../pages/api/puzzle";
 import { BoardSquare } from "../ticTacToe/BoardSquare";
 import { ItemTypes } from "../ticTacToe/ItemTypes";
 import { NumberTile } from "../ticTacToe/NumberTile";
@@ -9,6 +10,7 @@ import { Button } from "../ui/Button";
 export interface DragAndDropPuzzleProps {
   onSubmit: (guess: GuessData) => void;
   onReset: () => void;
+  puzzleId: string;
 }
 
 type TileData = {
@@ -27,61 +29,8 @@ type PuzzleData = {
   questions: QuestionData[];
 };
 
-const DragAndDropPuzzle = ({ onSubmit, onReset }: DragAndDropPuzzleProps) => {
-  const puzzleData: PuzzleData = {
-    answer: "3,5,0,4,8,9,2,1,7,6",
-    questions: [
-      {
-        parts: [
-          { text: "8 x 4 = " },
-          { tileData: { type: "tile", index: 0 } },
-          { text: "2" },
-        ],
-      },
-      {
-        parts: [
-          { tileData: { type: "tile", index: 1 } },
-          { text: " x 8 = 4" },
-          { tileData: { type: "tile", index: 2 } },
-        ],
-      },
-      {
-        parts: [
-          { text: "8 x 6 = " },
-          { tileData: { type: "tile", index: 3 } },
-          { text: "8" },
-        ],
-      },
-      {
-        parts: [
-          { tileData: { type: "tile", index: 4 } },
-          { text: " x 8 = 64" },
-        ],
-      },
-      {
-        parts: [
-          { text: "8 x " },
-          { tileData: { type: "tile", index: 5 } },
-          { text: " = 7" },
-          { tileData: { type: "tile", index: 6 } },
-        ],
-      },
-      {
-        parts: [
-          { text: "2 x 8 = " },
-          { tileData: { type: "tile", index: 7 } },
-          { text: "6" },
-        ],
-      },
-      {
-        parts: [
-          { tileData: { type: "tile", index: 8 } },
-          { text: " x 8 = 5" },
-          { tileData: { type: "tile", index: 9 } },
-        ],
-      },
-    ],
-  };
+const DragAndDropPuzzle = ({ onSubmit, onReset, puzzleId }: DragAndDropPuzzleProps) => {
+  const puzzleData: PuzzleData = PUZZLE_DATA[puzzleId];
 
   const [droppedTiles, setDroppedTiles] = useState<number[]>([]);
 
@@ -162,7 +111,7 @@ const DragAndDropPuzzle = ({ onSubmit, onReset }: DragAndDropPuzzleProps) => {
         rounded-xl max-w-screen-lg min-w-full`}
     >
       <div className="grid grid-cols-2 gap-8">
-        {puzzleData.questions.map((it, index) => parseQuestionData(it, index))}
+        {puzzleData && puzzleData.questions.map((it, index) => parseQuestionData(it, index))}
       </div>
 
       <div className="flex flex-col items-center justify-between gap-8">
