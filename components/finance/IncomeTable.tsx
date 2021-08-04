@@ -5,24 +5,41 @@ import { Input } from "../ui/Input";
 
 export interface incomeTableProps {
   monthlyIncome: string;
-  setmonthlyIncome: (value: string) => void; //Line A
+  setMonthlyIncome: (monthlyIncome: string) => void; //Line A
   spouseMonthlyIncome: string;
-  setspouseMonthlyIncome: (spouseMonthlyIncome: string) => void; //Line B
+  setSpouseMonthlyIncome: (spouseMonthlyIncome: string) => void; //Line B
   totalMonthlyIncome: string;
-  settotalMonthlyIncome: (totalMonthlyIncome: string) => void; //Line C
+  setTotalMonthlyIncome: (totalMonthlyIncome: string) => void; //Line C
   sumValidation: string;
-  setsumValidation: (sumValidation: string) => void;
+  setSumValidation: (sumValidation: string) => void;
 }
 
 const IncomeTable = ({
   monthlyIncome,
-  setmonthlyIncome,
+  setMonthlyIncome,
   spouseMonthlyIncome,
-  setspouseMonthlyIncome,
+  setSpouseMonthlyIncome,
   totalMonthlyIncome,
-  settotalMonthlyIncome,
+  setTotalMonthlyIncome,
   sumValidation,
+  setSumValidation,
 }: incomeTableProps) => {
+  const getBackgroundColour = () => {
+    {
+      Number.parseInt(monthlyIncome) + Number.parseInt(spouseMonthlyIncome) ===
+      Number.parseInt(totalMonthlyIncome)
+        ? setSumValidation("Correct")
+        : setSumValidation("Wrong");
+    }
+  };
+  const resetValidation = () => {
+    {
+      Number.parseInt(monthlyIncome) + Number.parseInt(spouseMonthlyIncome) ===
+      Number.parseInt(totalMonthlyIncome)
+        ? setSumValidation("Correct")
+        : setSumValidation("");
+    }
+  };
   return (
     <div>
       {" "}
@@ -49,7 +66,10 @@ const IncomeTable = ({
               <div className={"ml-2"}>
                 <input
                   value={monthlyIncome}
-                  onChange={(e) => setmonthlyIncome(e.target.value)}
+                  onChange={(e) => {
+                    setMonthlyIncome(e.target.value);
+                    resetValidation();
+                  }}
                   placeholder="Type numbers only"
                 ></input>
               </div>
@@ -62,7 +82,10 @@ const IncomeTable = ({
               <div className={"ml-2"}>
                 <input
                   value={spouseMonthlyIncome}
-                  onChange={(e) => setspouseMonthlyIncome(e.target.value)}
+                  onChange={(e) => {
+                    setSpouseMonthlyIncome(e.target.value);
+                    resetValidation();
+                  }}
                   placeholder="Type numbers only"
                 ></input>
               </div>
@@ -77,14 +100,11 @@ const IncomeTable = ({
               <div className={"ml-2"}>
                 <input
                   value={totalMonthlyIncome}
-                  onChange={(e) => settotalMonthlyIncome(e.target.value)}
+                  onChange={(e) => {
+                    setTotalMonthlyIncome(e.target.value);
+                    getBackgroundColour();
+                  }}
                   placeholder="Type numbers only"
-                  {...(+monthlyIncome + +spouseMonthlyIncome === 0
-                    ? (sumValidation = "")
-                    : +monthlyIncome + +spouseMonthlyIncome ===
-                      +totalMonthlyIncome
-                    ? (sumValidation = "Correct")
-                    : (sumValidation = "Wrong"))}
                   className={
                     sumValidation === ""
                       ? "bg-white"
@@ -101,6 +121,12 @@ const IncomeTable = ({
         </tbody>
       </table>
       <p className={"ml-64 text-xs"}> **Put this amount in section 7**</p>
+      <p>sumValidation = {sumValidation}</p>
+      <p>
+        {" "}
+        A= {monthlyIncome} B={spouseMonthlyIncome} C={totalMonthlyIncome}{" "}
+        sumvalidation = {sumValidation}
+      </p>
     </div>
   );
 };

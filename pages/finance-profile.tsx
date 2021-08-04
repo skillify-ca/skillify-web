@@ -6,7 +6,7 @@ const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
   const [spouseMonthlyIncome, setSpouseMounthlyIncome] = useState("");
   const [totalMonthlyIncome, setTotalMonthlyIncome] = useState("");
-  const [sumValidation, setsumValidation] = useState("");
+  const [sumValidation, setSumValidation] = useState("");
 
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
@@ -21,13 +21,13 @@ const FinanceProfile = () => {
       <div className={"mt-8"}>
         <IncomeTable
           monthlyIncome={yourMonthlyIncome}
-          setmonthlyIncome={setYourMonthlyIncome}
+          setMonthlyIncome={setYourMonthlyIncome}
           spouseMonthlyIncome={spouseMonthlyIncome}
-          setspouseMonthlyIncome={setSpouseMounthlyIncome}
+          setSpouseMonthlyIncome={setSpouseMounthlyIncome}
           totalMonthlyIncome={totalMonthlyIncome}
-          settotalMonthlyIncome={setTotalMonthlyIncome}
+          setTotalMonthlyIncome={setTotalMonthlyIncome}
           sumValidation={sumValidation}
-          setsumValidation={setsumValidation}
+          setSumValidation={setSumValidation}
         />
       </div>
     </div>
