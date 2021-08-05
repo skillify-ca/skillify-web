@@ -6,7 +6,6 @@ const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
   const [spouseMonthlyIncome, setSpouseMounthlyIncome] = useState("");
   const [totalMonthlyIncome, setTotalMonthlyIncome] = useState("");
-  const [sumValidation, setSumValidation] = useState("");
   const [backgroundColour, getBackgroundColour] = useState("bg-white");
 
   return (
@@ -27,8 +26,6 @@ const FinanceProfile = () => {
           setSpouseMonthlyIncome={setSpouseMounthlyIncome}
           totalMonthlyIncome={totalMonthlyIncome}
           setTotalMonthlyIncome={setTotalMonthlyIncome}
-          sumValidation={sumValidation}
-          setSumValidation={setSumValidation}
           backgroundColour={backgroundColour}
           getBackgroundColour={getBackgroundColour}
         />
