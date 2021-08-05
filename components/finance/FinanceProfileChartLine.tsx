@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 //child component
 
 export interface FinanceProfileChartLineProps {
-  text;
+  text: string | number;
 }
 
 const FinanceProfileChartLine = ({ text }: FinanceProfileChartLineProps) => {

@@ -1,33 +1,33 @@
 import { min } from "lodash";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
 import IncomeTable from "../components/finance/IncomeTable";
 import { SectionOneInput } from "../components/finance/SectionOneInput";
 import { financialProfileData } from "./api/finance/profile";
 import { getRndInteger } from "./api/random";
 
-const randomProfile = getRndInteger(0, 12);
-
 const FinanceProfile = () => {
-  /// Add useState here
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
   const [spouseMonthlyIncome, setSpouseMounthlyIncome] = useState("");
   const [totalMonthlyIncome, setTotalMonthlyIncome] = useState("");
   const [isMarried, setMarriage] = useState(false);
   const [hasChildren, setChildren] = useState(false);
-  // const [numberOfChildren, setNumberOfChildren] = useState("");
-  //const [childrenAge, setChildrenAge] = useState(""); <- awaiting build of dynamic showcase of children ages
+
   const [individualOccupation, setIndividualOccupation] = useState("");
   const [individualSalary, setIndividualSalary] = useState(0);
   const [spouseOccupation, setSpouseOccupation] = useState("");
   const [spouseSalary, setSpouseSalary] = useState(0);
+  const [profileData, setProfileData] = useState({}); //profileData used for Validation in child components
 
+  useEffect(() => {
+    // Update the document title using the browser API
+    const randomProfile = getRndInteger(0, 12);
+    setProfileData(financialProfileData[randomProfile]);
+  }, []);
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
       <FinanceProfileChart
-        individualOccupation={
-          financialProfileData[randomProfile].individualOccupation
-        }
+        individualOccupation={profileData.individualOccupation}
         individualSalary={financialProfileData[randomProfile].individualSalary}
         maritalStatus={financialProfileData[randomProfile].maritalStatus}
         numberOfChildren={financialProfileData[randomProfile].numberOfChildren}
