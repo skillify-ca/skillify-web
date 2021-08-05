@@ -230,6 +230,49 @@ const MULTIPLICATION_SIX = {
     },
   ],
 };
+const MULTIPLICATION_SEVEN = {
+  answer: "7, 4, 8, 9, 6, 2, 0, 3, 1, 5",
+  questions: [
+    {
+      parts: [
+        { text: "7 x " },
+        { tileData: { type: "tile", index: 0 } },
+        { text: " = 49" },
+      ],
+    },
+    {
+      parts: [{ text: "7 x 2 = 1" }, { tileData: { type: "tile", index: 1 } }],
+    },
+    {
+      parts: [{ text: "7 x 4 = 2" }, { tileData: { type: "tile", index: 2 } }],
+    },
+    {
+      parts: [{ tileData: { type: "tile", index: 3 } }, { text: " x 7 = 63" }],
+    },
+    {
+      parts: [
+        { text: "7 x " },
+        { tileData: { type: "tile", index: 4 } },
+        { text: " = 4" },
+        { tileData: { type: "tile", index: 5 } },
+      ],
+    },
+    {
+      parts: [{ text: "7 x 10 = 7" }, { tileData: { type: "tile", index: 6 } }],
+    },
+    {
+      parts: [
+        { text: "7 x " },
+        { tileData: { type: "tile", index: 7 } },
+        { text: " = 2" },
+        { tileData: { type: "tile", index: 8 } },
+      ],
+    },
+    {
+      parts: [{ text: "5 x 7 = 3" }, { tileData: { type: "tile", index: 9 } }],
+    },
+  ],
+};
 
 const MULTIPLICATION_EIGHT = {
   answer: "3,5,0,4,8,9,2,1,7,6",
@@ -288,6 +331,7 @@ export const PUZZLE_DATA = {
   "3": MULTIPLICATION_THREE,
   "4": MULTIPLICATION_FOUR,
   "5": MULTIPLICATION_FIVE,
-  "6": MULTIPLICATION_FIVE,
+  "6": MULTIPLICATION_SIX,
+  "7": MULTIPLICATION_SEVEN,
   "8": MULTIPLICATION_EIGHT,
 };
