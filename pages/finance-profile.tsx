@@ -9,6 +9,7 @@ import {
   MaritalStatus,
 } from "./api/finance/profile";
 import { getRndInteger } from "./api/random";
+import HouseExpensesTable from "../components/finance/HouseExpensesTable";
 
 const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
@@ -16,6 +17,11 @@ const FinanceProfile = () => {
   const [totalMonthlyIncome, setTotalMonthlyIncome] = useState("");
   const [isMarried, setMarriage] = useState(MaritalStatus.SINGLE);
   const [hasChildren, setChildren] = useState(false);
+  const [housePayment, setHousePayment] = useState("");
+  const [electricBill, setElectricBill] = useState("");
+  const [gasBill, setGasBill] = useState("");
+  const [waterBill, setWaterBill] = useState("");
+  const [totalHousingCost, setTotalHousingCost] = useState("");
 
   const [individualOccupation, setIndividualOccupation] = useState("");
   const [individualSalary, setIndividualSalary] = useState(0);
@@ -65,10 +71,20 @@ const FinanceProfile = () => {
           setValue3={setTotalMonthlyIncome}
         />
       </div>
-      <p>Checking If Addition was done right:</p>
-      {+yourMonthlyIncome + +spouseMonthlyIncome === +totalMonthlyIncome
-        ? "TRUE"
-        : "FALSE"}
+      <div>
+        <HouseExpensesTable
+          housePayment={housePayment}
+          setHousePayment={setHousePayment}
+          electricBill={electricBill}
+          setElectricBill={setElectricBill}
+          gasBill={gasBill}
+          setGasBill={setGasBill}
+          waterBill={waterBill}
+          setWaterBill={setWaterBill}
+          totalHousingCost={totalHousingCost}
+          setTotalHousingCost={setTotalHousingCost}
+        />
+      </div>
     </div>
   );
 };
