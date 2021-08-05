@@ -95,7 +95,7 @@ const MathBattle = () => {
   };
   const onCreateClick = () => {
     client
-      .create("battle")
+      .create("tictactoe")
       .then((room) => {
         setLeader(room.sessionId);
         setCode(room.id);
