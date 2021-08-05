@@ -6,8 +6,8 @@ const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
   const [spouseMonthlyIncome, setSpouseMounthlyIncome] = useState("");
   const [totalMonthlyIncome, setTotalMonthlyIncome] = useState("");
-  const [backgroundColour, getBackgroundColour] = useState("bg-white");
-
+  const [backgroundColour, setBackgroundColour] = useState("");
+  const [valueTest, setValueTest] = useState("");
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
       <FinanceProfileChart
@@ -27,7 +27,9 @@ const FinanceProfile = () => {
           totalMonthlyIncome={totalMonthlyIncome}
           setTotalMonthlyIncome={setTotalMonthlyIncome}
           backgroundColour={backgroundColour}
-          getBackgroundColour={getBackgroundColour}
+          setBackgroundColour={setBackgroundColour}
+          valueTest={valueTest}
+          setValueTest={setValueTest}
         />
       </div>
     </div>

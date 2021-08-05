@@ -12,7 +12,9 @@ export interface incomeTableProps {
   setTotalMonthlyIncome: (totalMonthlyIncome: string) => void; //Line C
 
   backgroundColour: string;
-  getBackgroundColour: (backgroundColour: string) => void;
+  setBackgroundColour: (backgroundColour: string) => void;
+  valueTest: string;
+  setValueTest: (valueTest: string) => void;
 }
 
 const IncomeTable = ({
@@ -23,7 +25,23 @@ const IncomeTable = ({
   totalMonthlyIncome,
   setTotalMonthlyIncome,
   backgroundColour,
+  setBackgroundColour,
+  valueTest,
+  setValueTest,
 }: incomeTableProps) => {
+  const validate = (newTotalMonthlyIncome: string) => {
+    setValueTest(newTotalMonthlyIncome);
+
+    newTotalMonthlyIncome === ""
+      ? setBackgroundColour("")
+      : Number.parseInt(monthlyIncome) +
+          Number.parseInt(spouseMonthlyIncome) ===
+        Number.parseInt(newTotalMonthlyIncome)
+      ? setBackgroundColour("Correct")
+      : monthlyIncome + spouseMonthlyIncome === ""
+      ? setBackgroundColour("")
+      : setBackgroundColour("Wrong");
+  };
   return (
     <div>
       {" "}
@@ -83,18 +101,11 @@ const IncomeTable = ({
                 <input
                   value={totalMonthlyIncome}
                   onChange={(e) => {
-                    setTotalMonthlyIncome(e.target.value);
+                    const newTotalMonthlyIncome = e.target.value;
+                    setTotalMonthlyIncome(newTotalMonthlyIncome);
+                    validate(newTotalMonthlyIncome);
                   }}
                   placeholder="Type numbers only"
-                  {...(totalMonthlyIncome === ""
-                    ? (backgroundColour = "")
-                    : Number.parseInt(monthlyIncome) +
-                        Number.parseInt(spouseMonthlyIncome) ===
-                      Number.parseInt(totalMonthlyIncome)
-                    ? (backgroundColour = "Correct")
-                    : monthlyIncome + spouseMonthlyIncome === ""
-                    ? (backgroundColour = "")
-                    : (backgroundColour = "Wrong"))}
                   className={
                     backgroundColour === ""
                       ? "bg-white"
