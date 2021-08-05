@@ -79,6 +79,8 @@ const PracticeQuiz = ({ slug, skill }) => {
             return 56;
           case "add-hundredths":
             return 57;
+          case "add-six-digit":
+            return 63;
         }
       case "subtraction":
         switch (skill) {
@@ -96,6 +98,8 @@ const PracticeQuiz = ({ slug, skill }) => {
             return 58;
           case "subtract-hundredths":
             return 59;
+          case "subtract-six-digit":
+            return 64;
         }
       case "multiplication":
         switch (skill) {
@@ -117,6 +121,8 @@ const PracticeQuiz = ({ slug, skill }) => {
             return 60;
           case "multiply-double-and-triple-digit":
             return 61;
+          case "multiply-triple-digit-by-tenths":
+            return 65;
         }
       case "division":
         switch (skill) {
@@ -132,6 +138,8 @@ const PracticeQuiz = ({ slug, skill }) => {
             return 50;
           case "divide-triple-digit-by-double-digit":
             return 62;
+          case "divide-triple-digit-by-tenths":
+            return 66;
         }
     }
   };

@@ -9,6 +9,8 @@ export interface CreateRoomProps {
   players: Player[];
   name: string;
   setName: (name: string) => void;
+  joinName: string;
+  setJoinName: (name: string) => void;
   code: string;
   setCode: (code: string) => void;
 }
@@ -19,6 +21,8 @@ const CreateRoom = ({
   onJoinClick,
   name,
   setName,
+  joinName,
+  setJoinName,
   code,
   setCode,
 }: CreateRoomProps) => {
@@ -46,6 +50,7 @@ const CreateRoom = ({
                 placeholder="Enter your name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                maxLength={10}
               />
               <Button
                 onClick={onCreateClick}
@@ -53,7 +58,7 @@ const CreateRoom = ({
                 textColor="white"
                 backgroundColor="blue"
               ></Button>
-             <Button
+              <Button
                 onClick={onCreateCoopClick}
                 label="Create Coop Game"
                 textColor="white"
@@ -83,8 +88,9 @@ const CreateRoom = ({
                 autoComplete="off"
                 className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
                 placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={joinName}
+                onChange={(e) => setJoinName(e.target.value)}
+                maxLength={10}
               />
               <input
                 id="guess"

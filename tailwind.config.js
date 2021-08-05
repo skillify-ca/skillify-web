@@ -24,6 +24,7 @@ module.exports = {
           "25%, 75%": { transform: "rotate(-3deg)" },
           "50%": { transform: "rotate(3deg)" },
         },
+
         hit: {
           "0%, 100%": { transform: "scale(1) translate(0px, 0px)" },
           "25%, 75%": { transform: "scale(1.25) translate(-30px, 0px)" },
@@ -37,6 +38,7 @@ module.exports = {
           "100%": { opacity: "1" },
 
         }
+
       },
       outline: {
         black: "2px solid #000000",
