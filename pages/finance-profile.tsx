@@ -7,6 +7,7 @@ const FinanceProfile = () => {
   const [spouseMonthlyIncome, setSpouseMounthlyIncome] = useState("");
   const [totalMonthlyIncome, setTotalMonthlyIncome] = useState("");
   const [sumValidation, setSumValidation] = useState("");
+  const [backgroundColour, getBackgroundColour] = useState("bg-white");
 
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
@@ -28,6 +29,8 @@ const FinanceProfile = () => {
           setTotalMonthlyIncome={setTotalMonthlyIncome}
           sumValidation={sumValidation}
           setSumValidation={setSumValidation}
+          backgroundColour={backgroundColour}
+          getBackgroundColour={getBackgroundColour}
         />
       </div>
     </div>

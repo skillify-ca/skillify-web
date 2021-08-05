@@ -12,6 +12,8 @@ export interface incomeTableProps {
   setTotalMonthlyIncome: (totalMonthlyIncome: string) => void; //Line C
   sumValidation: string;
   setSumValidation: (sumValidation: string) => void;
+  backgroundColour: string;
+  getBackgroundColour: (backgroundColour: string) => void;
 }
 
 const IncomeTable = ({
@@ -23,13 +25,12 @@ const IncomeTable = ({
   setTotalMonthlyIncome,
   sumValidation,
   setSumValidation,
+  backgroundColour,
 }: incomeTableProps) => {
   const getBackgroundColour = () => {
     {
-      Number.parseInt(monthlyIncome) + Number.parseInt(spouseMonthlyIncome) ===
-      Number.parseInt(totalMonthlyIncome)
-        ? setSumValidation("Correct")
-        : setSumValidation("Wrong");
+      setSumValidation(backgroundColour);
+      backgroundColour = sumValidation;
     }
   };
   const resetValidation = () => {
@@ -105,12 +106,17 @@ const IncomeTable = ({
                     getBackgroundColour();
                   }}
                   placeholder="Type numbers only"
+                  {...(Number.parseInt(monthlyIncome) +
+                    Number.parseInt(spouseMonthlyIncome) ===
+                  Number.parseInt(totalMonthlyIncome)
+                    ? (backgroundColour = "Correct")
+                    : (backgroundColour = "Wrong"))}
                   className={
-                    sumValidation === ""
+                    backgroundColour === ""
                       ? "bg-white"
-                      : sumValidation === "Correct"
+                      : backgroundColour === "Correct"
                       ? "bg-green-200"
-                      : sumValidation === "Wrong"
+                      : backgroundColour === "Wrong"
                       ? "bg-red-200"
                       : "bg-white"
                   }
@@ -124,8 +130,9 @@ const IncomeTable = ({
       <p>sumValidation = {sumValidation}</p>
       <p>
         {" "}
-        A= {monthlyIncome} B={spouseMonthlyIncome} C={totalMonthlyIncome}{" "}
-        sumvalidation = {sumValidation}
+        background = {backgroundColour} A= {monthlyIncome} B=
+        {spouseMonthlyIncome} C={totalMonthlyIncome} sumvalidation ={" "}
+        {sumValidation}
       </p>
     </div>
   );
