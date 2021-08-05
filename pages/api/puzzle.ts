@@ -1,4 +1,5 @@
 const MULTIPLICATION_TWO = {
+  title: "Two Times Table",
   answer: "2,4,8,3,7,5,0,6,9,1",
   questions: [
     {
@@ -44,6 +45,7 @@ const MULTIPLICATION_TWO = {
 };
 
 const MULTIPLICATION_THREE = {
+  title: "Three Times Table",
   answer: "5,4,9,7,2,1,6,8,3,0",
   questions: [
     {
@@ -85,6 +87,7 @@ const MULTIPLICATION_THREE = {
 };
 
 const MULTIPLICATION_EIGHT = {
+  title: "Eight Times Table",
   answer: "3,5,0,4,8,9,2,1,7,6",
   questions: [
     {
@@ -141,3 +144,4 @@ export const PUZZLE_DATA = {
   "3": MULTIPLICATION_THREE,
   "8": MULTIPLICATION_EIGHT,
 };
+
