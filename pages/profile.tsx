@@ -3,18 +3,14 @@ import React from "react";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import ProfileComponent from "../components/ProfileComponent";
 
-const Profile = () => {
-  const [session, loading] = useSession();
-
+export default function Profile({session}) {
   return (
     <div>
       <DiagnosticNavbar />
       <ProfileComponent session={session} />
     </div>
   );
-};
-
-export default Profile;
+}
 
 Profile.auth = true;
 
