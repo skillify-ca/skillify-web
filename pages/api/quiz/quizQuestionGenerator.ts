@@ -1,7 +1,7 @@
 import { Skill } from "../skill";
 import { generateQuestionForSkill } from "../questionGenerator";
 
-const NUM_QUESTIONS = 20;
+const NUM_QUESTIONS = 12;
 
 export const generateQuestions = (
   slug: string,
