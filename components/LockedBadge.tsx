@@ -16,10 +16,13 @@ const LockedBadge = ({ title }: LockedBadgeProps) => {
       flipDirection="vertical"
       infinite={true}
     >
-      <div onClick={toggleFlip}>
+      <div onClick={toggleFlip} className="cursor-pointer">
         <img src="/images/lockedPic.png" className="w-32" />
       </div>
-      <div onClick={toggleFlip} className="w-32 h-32 rounded-xl bg-gray-500 flex justify-center items-center">
+      <div
+        onClick={toggleFlip}
+        className="cursor-pointer w-32 h-32 rounded-xl bg-gray-500 flex justify-center items-center"
+      >
         <p className="text-white font-bold text-center">{title}</p>
       </div>
     </ReactCardFlip>
