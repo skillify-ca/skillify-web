@@ -1,6 +1,36 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 
-const HouseExpensesTable = () => {
+export interface HouseExpensesProps {
+    housePayment: string;
+    setHousePayment: (housePayment: string) => void;
+    electricBill: string;
+    setElectricBill: (electricBill: string) => void;
+    gasBill: string;
+    setGasBill: (setGasBill: string) => void;
+    waterBill: string;
+    setWaterBill: (waterBill: string) => void;
+    totalHousingCost: string;
+    setTotalHousingCost: (totalHousingCost: string) => void;
+
+}
+
+const HouseExpensesTable = ({
+
+    housePayment,
+    setHousePayment,
+    electricBill,
+    setElectricBill,
+    gasBill,
+    setGasBill,
+    waterBill,
+    setWaterBill,
+    totalHousingCost,
+    setTotalHousingCost
+
+}: HouseExpensesProps) => {
+
+    const [bgColour, setBgColour] = useState("bg-green-100")
+
     return (
         <div>
            <div>
@@ -22,26 +52,53 @@ const HouseExpensesTable = () => {
                <tbody>
                    <tr>
                        <td className="border border-black pl-1">House Payment</td>
-                       <td className="border border-black pl-1">D. <input type="text" /></td>
+                       <td className="border border-black pl-1">D. 
+                       <input 
+                        value = {housePayment}
+                        onChange= {(e) => setHousePayment(e.target.value)}
+                        placeholder= "Enter amount"
+                        /></td>
                    </tr>
                    <tr>
                        <td className="border border-black pl-1">Electric Bill</td>
-                       <td className="border border-black pl-1">E. <input type="text" /></td>
+                       <td className="border border-black pl-1">E. 
+                       <input
+                       value = {electricBill}
+                       onChange = {(e) => setElectricBill(e.target.value)} 
+                       placeholder = "Enter amount"/></td>
                    </tr>
                    <tr>
                        <td className="border border-black pl-1">Gas Bill</td>
-                       <td className="border border-black pl-1">F. <input type="text" /></td>
+                       <td className="border border-black pl-1">F. 
+                       <input 
+                       value = {gasBill} 
+                       onChange = {(e) => setGasBill(e.target.value)}
+                       placeholder = "Enter amount"/></td>
                    </tr>
                    <tr>
                        <td className="border border-black pl-1">Water Bill</td>
-                       <td className="border border-black pl-1">G. <input type="text" /></td>
+                       <td className="border border-black pl-1">G. 
+                       <input
+                       value = {waterBill}
+                       onChange = {(e) => setWaterBill(e.target.value)}
+                       placeholder = "Enter amount"/></td>
                    </tr>
                    <tr>
                        <td className="border border-black font-bold pl-1 bg-green-300">Total Housing Costs</td>
-                       <td className="border border-black pl-1">H. <input type="text" /></td>
+                       <td className="border border-black pl-1">H. 
+                       <input
+
+                       className= {bgColour}
+                       value = {totalHousingCost}
+                       onChange = {(e) => {
+                        setTotalHousingCost(e.target.value)
+                       }
+                        }
+                       placeholder = "Enter amount"/></td>
                    </tr>
                </tbody>
                </table>
+               <p>gas bill = {gasBill}</p>
            </div>
            <p className="text-xs ml-72 pl-4">**Put this amount in section 6**</p>
         </div>   

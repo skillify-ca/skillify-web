@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
 import IncomeTable from "../components/finance/IncomeTable";
+import HouseExpensesTable from "../components/finance/HouseExpensesTable";
 
 const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
   const [spouseMonthlyIncome, setSpouseMounthlyIncome] = useState("");
   const [totalMonthlyIncome, setTotalMonthlyIncome] = useState("");
+  const [housePayment, setHousePayment] = useState("");
+  const [electricBill, setElectricBill] = useState("");
+  const [gasBill, setGasBill] = useState("");
+  const [waterBill, setWaterBill] = useState("");
+  const [totalHousingCost, setTotalHousingCost] = useState("");
 
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
@@ -27,10 +33,20 @@ const FinanceProfile = () => {
           setValue3={setTotalMonthlyIncome}
         />
       </div>
-      <p>Checking If Addition was done right:</p>
-      {+yourMonthlyIncome + +spouseMonthlyIncome === +totalMonthlyIncome
-        ? "TRUE"
-        : "FALSE"}
+      <div>
+        <HouseExpensesTable
+          housePayment = {housePayment}
+          setHousePayment = {setHousePayment}
+          electricBill = {electricBill}
+          setElectricBill = {setElectricBill}
+          gasBill = {gasBill}
+          setGasBill = {setGasBill}
+          waterBill = {waterBill}
+          setWaterBill = {setWaterBill}
+          totalHousingCost = {totalHousingCost}
+          setTotalHousingCost = {setTotalHousingCost}
+        />
+      </div>
     </div>
   );
 };
