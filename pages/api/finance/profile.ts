@@ -1,6 +1,6 @@
 import { EnumTypeDefinitionNode, SingleFieldSubscriptionsRule } from "graphql";
 
-export interface FinanceProfile {
+export interface FinanceProfileType {
  
   key:string;
   maritalStatus: MaritalStatus;
@@ -18,7 +18,7 @@ export enum MaritalStatus {
   MARRIED,
 }
 
-export const financialProfileData:FinanceProfile[] = [
+export const financialProfileData:FinanceProfileType[] = [
 
     {
       key: "profile1",

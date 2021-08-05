@@ -4,7 +4,7 @@ import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
 import IncomeTable from "../components/finance/IncomeTable";
 import { SectionOneInput } from "../components/finance/SectionOneInput";
 import {
-  FinanceProfile,
+  FinanceProfileType,
   financialProfileData,
   MaritalStatus,
 } from "./api/finance/profile";
@@ -21,7 +21,7 @@ const FinanceProfile = () => {
   const [individualSalary, setIndividualSalary] = useState(0);
   const [spouseOccupation, setSpouseOccupation] = useState("");
   const [spouseSalary, setSpouseSalary] = useState(0);
-  const [profileData, setProfileData] = useState<FinanceProfile>(); //profileData used for Validation in child components
+  const [profileData, setProfileData] = useState<FinanceProfileType>(); //profileData used for Validation in child components
 
   useEffect(() => {
     // Update the document title using the browser API
