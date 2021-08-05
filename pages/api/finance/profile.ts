@@ -8,7 +8,7 @@ export interface FinanceProfile {
   individualOccupation: string;
   spouseSalary: number;
   spouseOccupation: string;
-  numberOfCHildren: number;
+  numberOfChildren: number;
 
 
 }
@@ -18,7 +18,7 @@ export enum MaritalStatus {
   MARRIED,
 }
 
-export const financialProfileData = [
+export const financialProfileData:FinanceProfile[] = [
 
     {
       key: "profile1",

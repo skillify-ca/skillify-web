@@ -3,21 +3,25 @@ import React, { useEffect, useState } from "react";
 import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
 import IncomeTable from "../components/finance/IncomeTable";
 import { SectionOneInput } from "../components/finance/SectionOneInput";
-import { financialProfileData } from "./api/finance/profile";
+import {
+  FinanceProfile,
+  financialProfileData,
+  MaritalStatus,
+} from "./api/finance/profile";
 import { getRndInteger } from "./api/random";
 
 const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
   const [spouseMonthlyIncome, setSpouseMounthlyIncome] = useState("");
   const [totalMonthlyIncome, setTotalMonthlyIncome] = useState("");
-  const [isMarried, setMarriage] = useState(false);
+  const [isMarried, setMarriage] = useState(MaritalStatus.SINGLE);
   const [hasChildren, setChildren] = useState(false);
 
   const [individualOccupation, setIndividualOccupation] = useState("");
   const [individualSalary, setIndividualSalary] = useState(0);
   const [spouseOccupation, setSpouseOccupation] = useState("");
   const [spouseSalary, setSpouseSalary] = useState(0);
-  const [profileData, setProfileData] = useState({}); //profileData used for Validation in child components
+  const [profileData, setProfileData] = useState<FinanceProfile>(); //profileData used for Validation in child components
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -28,13 +32,13 @@ const FinanceProfile = () => {
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
       <FinanceProfileChart
         individualOccupation={profileData.individualOccupation}
-        individualSalary={financialProfileData[randomProfile].individualSalary}
-        maritalStatus={financialProfileData[randomProfile].maritalStatus}
-        numberOfChildren={financialProfileData[randomProfile].numberOfChildren}
-        spouseOccupation={financialProfileData[randomProfile].spouseOccupation}
-        spouseSalary={financialProfileData[randomProfile].spouseSalary}
+        individualSalary={profileData.individualSalary}
+        maritalStatus={profileData.maritalStatus}
+        numberOfChildren={profileData.numberOfChildren}
+        spouseOccupation={profileData.spouseOccupation}
+        spouseSalary={profileData.spouseSalary}
       />
-      <div>text</div>
+      <div> </div>
 
       <SectionOneInput
         isMarried={isMarried}
