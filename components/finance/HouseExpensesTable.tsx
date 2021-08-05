@@ -57,7 +57,8 @@ const HouseExpensesTable = ({
                                     value={housePayment}
                                     onChange={(e) => setHousePayment(e.target.value)}
                                     placeholder="Enter amount"
-                                /></td>
+                                />
+                            </td>
                         </tr>
                         <tr>
                             <td className="border border-black pl-1">Electric Bill</td>
@@ -73,7 +74,9 @@ const HouseExpensesTable = ({
                                 <input
                                     value={gasBill}
                                     onChange={(e) => setGasBill(e.target.value)}
-                                    placeholder="Enter amount" /></td>
+                                    placeholder="Enter amount" 
+                                />
+                            </td>
                         </tr>
                         <tr>
                             <td className="border border-black pl-1">Water Bill</td>
@@ -81,7 +84,9 @@ const HouseExpensesTable = ({
                                 <input
                                     value={waterBill}
                                     onChange={(e) => setWaterBill(e.target.value)}
-                                    placeholder="Enter amount" /></td>
+                                    placeholder="Enter amount" 
+                                />
+                            </td>
                         </tr>
                         <tr>
                             <td className="border border-black font-bold pl-1 bg-green-300">Total Housing Costs</td>
@@ -93,7 +98,9 @@ const HouseExpensesTable = ({
                                         setTotalHousingCost(e.target.value)
                                     }
                                     }
-                                    placeholder="Enter amount" /></td>
+                                    placeholder="Enter amount"
+                                />
+                            </td>
                         </tr>
                     </tbody>
                 </table>
