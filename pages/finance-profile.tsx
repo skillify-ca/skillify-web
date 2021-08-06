@@ -36,14 +36,18 @@ const FinanceProfile = () => {
   }, []);
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
-      <FinanceProfileChart
-        individualOccupation={profileData.individualOccupation}
-        individualSalary={profileData.individualSalary}
-        maritalStatus={profileData.maritalStatus}
-        numberOfChildren={profileData.numberOfChildren}
-        spouseOccupation={profileData.spouseOccupation}
-        spouseSalary={profileData.spouseSalary}
-      />
+      <div>
+        {profileData && (
+          <FinanceProfileChart
+            individualOccupation={profileData.individualOccupation}
+            individualSalary={profileData.individualSalary}
+            maritalStatus={profileData.maritalStatus}
+            numberOfChildren={profileData.numberOfChildren}
+            spouseOccupation={profileData.spouseOccupation}
+            spouseSalary={profileData.spouseSalary}
+          />
+        )}
+      </div>
       <div> </div>
 
       <SectionOneInput
