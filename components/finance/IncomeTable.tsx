@@ -30,8 +30,6 @@ const IncomeTable = ({
   setValueTest,
 }: incomeTableProps) => {
   const validate = (newTotalMonthlyIncome: string) => {
-    setValueTest(newTotalMonthlyIncome);
-
     newTotalMonthlyIncome === ""
       ? setBackgroundColour("")
       : Number.parseInt(monthlyIncome) +
