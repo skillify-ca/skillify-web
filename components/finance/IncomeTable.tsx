@@ -1,7 +1,4 @@
 import { sum } from "lodash";
-import { ReactNode, useState } from "react";
-import StatementRow from "../stories/StatementRow";
-import { Input } from "../ui/Input";
 
 export interface incomeTableProps {
   monthlyIncome: string;
@@ -40,6 +37,7 @@ const IncomeTable = ({
       ? setBackgroundColour("")
       : setBackgroundColour("Wrong");
   };
+
   return (
     <div>
       {" "}

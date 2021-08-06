@@ -1,27 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { Story, Meta } from "@storybook/react";
-import { randomize } from "../../pages/api/questionGenerator";
+import React from "react";
 import { DotTypes } from "./DotTypes";
 
 export interface DotProps {
-  colour: DotTypes;
+  dotType: DotTypes;
 }
 
-const Dot = ({ colour }: DotProps) => {
-  let topDotColour = "bg-red-400";
-  let bottomDotColour = "bg-blue-400";
-  let displayColour;
-  if (colour == DotTypes.TOPCOLOUR) {
-    displayColour = topDotColour;
-  } else if (colour == DotTypes.BOTTOMCOLOUR) {
-    displayColour = bottomDotColour;
-  } else {
-    displayColour = "opacity-0";
-  }
+const Dot = ({ dotType }: DotProps) => {
+  const getDisplayColor = (dotType: DotTypes) => {
+    const topDotColour = "bg-red-400";
+    const bottomDotColour = "bg-blue-400";
+    let displayColour;
+    if (dotType == DotTypes.TOPCOLOUR) {
+      displayColour = topDotColour;
+    } else if (dotType == DotTypes.BOTTOMCOLOUR) {
+      displayColour = bottomDotColour;
+    } else {
+      displayColour = "opacity-0";
+    }
+
+    return displayColour;
+  };
 
   return (
     <div
-      className={`rounded-full shadow-md h-4 w-4  ${displayColour} border-black`}
+      className={`rounded-full shadow-md h-4 w-4  ${getDisplayColor(
+        dotType
+      )} border-black`}
     ></div>
   );
 };
@@ -34,34 +38,34 @@ const DualColourDots = ({ value = 0 }: DualColourProps) => {
   return (
     <div className="flex gap-4">
       <div className="flex flex-col gap-4">
-        <Dot colour={getDotProps(0, value)} />
-        <Dot colour={getDotProps(1, value)} />
-        <Dot colour={getDotProps(2, value)} />
-        <Dot colour={getDotProps(3, value)} />
+        <Dot dotType={getDotType(value, 0)} />
+        <Dot dotType={getDotType(value, 1)} />
+        <Dot dotType={getDotType(value, 2)} />
+        <Dot dotType={getDotType(value, 3)} />
       </div>
       <div className="flex flex-col gap-4">
-        <Dot colour={getDotProps(4, value)} />
-        <Dot colour={getDotProps(5, value)} />
-        <Dot colour={getDotProps(6, value)} />
-        <Dot colour={getDotProps(7, value)} />
+        <Dot dotType={getDotType(value, 4)} />
+        <Dot dotType={getDotType(value, 5)} />
+        <Dot dotType={getDotType(value, 6)} />
+        <Dot dotType={getDotType(value, 7)} />
       </div>
       <div className="flex flex-col gap-4">
-        <Dot colour={getDotProps(8, value)} />
-        <Dot colour={getDotProps(9, value)} />
-        <Dot colour={getDotProps(10, value)} />
-        <Dot colour={getDotProps(11, value)} />
+        <Dot dotType={getDotType(value, 8)} />
+        <Dot dotType={getDotType(value, 9)} />
+        <Dot dotType={getDotType(value, 10)} />
+        <Dot dotType={getDotType(value, 11)} />
       </div>
       <div className="flex flex-col gap-4">
-        <Dot colour={getDotProps(12, value)} />
-        <Dot colour={getDotProps(13, value)} />
-        <Dot colour={getDotProps(14, value)} />
-        <Dot colour={getDotProps(15, value)} />
+        <Dot dotType={getDotType(value, 12)} />
+        <Dot dotType={getDotType(value, 13)} />
+        <Dot dotType={getDotType(value, 14)} />
+        <Dot dotType={getDotType(value, 15)} />
       </div>
     </div>
   );
 };
 
-const getDotProps = (id: number, value: number) => {
+const getDotType = (value: number, id: number) => {
   const existanceMap = [
     [
       DotTypes.INVISIBLE,
@@ -80,7 +84,7 @@ const getDotProps = (id: number, value: number) => {
       DotTypes.INVISIBLE,
       DotTypes.INVISIBLE,
       DotTypes.INVISIBLE,
-    ], // Dot 0
+    ], // 0 dots
     [
       DotTypes.INVISIBLE,
       DotTypes.INVISIBLE,
@@ -98,7 +102,7 @@ const getDotProps = (id: number, value: number) => {
       DotTypes.INVISIBLE,
       DotTypes.INVISIBLE,
       DotTypes.INVISIBLE,
-    ], // Dot 1
+    ], // 1 dot
     [
       DotTypes.TOPCOLOUR,
       DotTypes.INVISIBLE,
@@ -352,7 +356,6 @@ const getDotProps = (id: number, value: number) => {
       DotTypes.TOPCOLOUR,
     ], // Dot 15
   ];
-
   return existanceMap[value][id];
 };
 
