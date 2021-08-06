@@ -37,16 +37,16 @@ export const SectionOneInput = ({
 }: SectionOneInputProps) => {
   return (
     <div>
-      <div className="shadow-md bg-transparent rounded-xl bg-white">
+      <div className="shadow-md bg-transparent rounded-xl bg-white w-3/4">
         <div className="font-bold p-4 bg-green-300 text-white rounded-xl">
           Section 1: My Personal Information
         </div>
         <div
           className={
-            "grid grid-cols-2 auto-cols-min items-center justify-center gap-y-1 border-2 rounded-xl"
+            "grid grid-cols-2 auto-cols-fr items-center justify-center gap-y-1 border-2 rounded-xl"
           }
         >
-          <label className=" flex flex-row justify-center">
+          <label className=" flex flex-row justify-center text-center">
             Are you married?
           </label>
           <TrueFalse
@@ -62,7 +62,9 @@ export const SectionOneInput = ({
               )
             }
           />
-          <label className="flex justify-center">Do you have children?</label>
+          <label className="flex justify-center text-center">
+            Do you have children?
+          </label>
           <TrueFalse
             name="children"
             option1="Yes"
@@ -73,11 +75,11 @@ export const SectionOneInput = ({
             }
           />
 
-          <label className="flex justify-center ">
+          <label className="flex text-center justify-center ">
             What is your occupation?
           </label>
           <select
-            className="bg-gray-100"
+            className="bg-gray-100 w-2/4 rounded-lg"
             name="select"
             id="select"
             value={individualOccupation}
@@ -91,11 +93,11 @@ export const SectionOneInput = ({
                 </option>
               ))}
           </select>
-          <label className=" flex justify-center">
+          <label className=" flex text-center justify-center">
             What is your spouse's occupation?
           </label>
           <select
-            className="bg-gray-100"
+            className="bg-gray-100 w-2/4 rounded-lg"
             name="select"
             id="select"
             value={spouseOccupation}
