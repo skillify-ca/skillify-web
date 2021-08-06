@@ -4,7 +4,7 @@ export const UNLOCK_BADGE = gql`
   mutation unlockBadge($userId: String = "", $badgeId: Int = 0) {
     update_user_badges(
       where: { userId: { _eq: $userId }, badgeId: { _eq: $badgeId } }
-      _set: { locked: false }
+      _set: { locked: false, updated_at: "now()" }
     ) {
       returning {
         badgeId
