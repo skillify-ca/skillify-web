@@ -1,14 +1,14 @@
 import { ReactNode } from "react";
+import { MaritalStatus } from "../../pages/api/finance/profile";
 import FinanceProfileChartLine, {
   FinanceProfileChartLineProps,
 } from "./FinanceProfileChartLine";
-//child component
 
 export interface FinanceProfileChartProps {
   individualOccupation: string;
   individualSalary: number;
-  maritalStatus: string;
-  numberOfChildren: string;
+  maritalStatus: MaritalStatus;
+  numberOfChildren: number;
   spouseOccupation: string;
   spouseSalary: number;
 }
@@ -34,9 +34,11 @@ export const FinanceProfileChart = ({
       <FinanceProfileChartLine text={individualOccupation} />
       <h1 className="text-center ">- Monthly Salary -</h1>
       <FinanceProfileChartLine text={individualSalary} />
-      <h1 className="text-center ">- Marital Status -</h1>
-      <FinanceProfileChartLine text={maritalStatus} />
-      <h1 className="text-center ">- Number of Children -</h1>
+      <h1>- Marital Status -</h1>
+      <FinanceProfileChartLine
+        text={maritalStatus == MaritalStatus.MARRIED ? "Married" : "Single"}
+      />
+      <h1>- Number of Children -</h1>
       <FinanceProfileChartLine text={numberOfChildren} />
       {spouseOccupation.length > 1 && (
         <div className="w-full">

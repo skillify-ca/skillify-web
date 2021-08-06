@@ -29,6 +29,7 @@ export type MCOption = {
   text: string;
 };
 export type MCModel = {
+  title?: string;
   options: Array<MCOption>;
 };
 export type fillBlankModel = {
