@@ -1,5 +1,6 @@
 const MULTIPLICATION_TWO = {
   title: "Two Times Table",
+  id: 2,
   answer: "2,4,8,3,7,5,0,6,9,1",
   questions: [
     {
@@ -46,6 +47,7 @@ const MULTIPLICATION_TWO = {
 
 const MULTIPLICATION_THREE = {
   title: "Three Times Table",
+  id: 3,
   answer: "5,4,9,7,2,1,6,8,3,0",
   questions: [
     {
@@ -87,6 +89,8 @@ const MULTIPLICATION_THREE = {
 };
 
 const MULTIPLICATION_FOUR = {
+  title: "Four Times Table",
+  id: 4,
   answer: "7,1,3,2,8,4,9,6,5,0",
   questions: [
     {
@@ -136,6 +140,8 @@ const MULTIPLICATION_FOUR = {
   ],
 };
 const MULTIPLICATION_FIVE = {
+  title: "Five Times Table",
+  id: 5,
   answer: "1, 8, 0, 2, 9, 6, 3, 4, 7, 5",
   questions: [
     {
@@ -189,6 +195,8 @@ const MULTIPLICATION_FIVE = {
 };
 
 const MULTIPLICATION_SIX = {
+  title: "Six Times Table",
+  id: 6,
   answer: "2, 3, 1, 7, 9, 5, 6, 4, 8, 0",
   questions: [
     {
@@ -233,6 +241,8 @@ const MULTIPLICATION_SIX = {
   ],
 };
 const MULTIPLICATION_SEVEN = {
+  title: "Seven Times Table",
+  id: 7,
   answer: "7, 4, 8, 9, 6, 2, 0, 3, 1, 5",
   questions: [
     {
@@ -278,6 +288,7 @@ const MULTIPLICATION_SEVEN = {
 
 const MULTIPLICATION_EIGHT = {
   title: "Eight Times Table",
+  id: 8,
   answer: "3,5,0,4,8,9,2,1,7,6",
   questions: [
     {
@@ -330,6 +341,8 @@ const MULTIPLICATION_EIGHT = {
 };
 
 const MULTIPLICATION_NINE = {
+  title: "Nine Times Table",
+  id: 9,
   answer: "5, 0, 6, 4, 9, 1, 3, 8, 7, 2",
   questions: [
     {
