@@ -1,16 +1,16 @@
 import { ReactNode } from "react";
+import { MaritalStatus } from "../../pages/api/finance/profile";
 import FinanceProfileChartLine, {
   FinanceProfileChartLineProps,
 } from "./FinanceProfileChartLine";
-//child component
 
 export interface FinanceProfileChartProps {
   individualOccupation: string;
-  individualSalary: string;
-  maritalStatus: string;
-  numberOfChildren: string;
+  individualSalary: number;
+  maritalStatus: MaritalStatus;
+  numberOfChildren: number;
   spouseOccupation: string;
-  spouseSalary: string;
+  spouseSalary: number;
 }
 
 export const FinanceProfileChart = ({
@@ -35,7 +35,9 @@ export const FinanceProfileChart = ({
       <h1>- Monthly Salary -</h1>
       <FinanceProfileChartLine text={individualSalary} />
       <h1>- Marital Status -</h1>
-      <FinanceProfileChartLine text={maritalStatus} />
+      <FinanceProfileChartLine
+        text={maritalStatus == MaritalStatus.MARRIED ? "Married" : "Single"}
+      />
       <h1>- Number of Children -</h1>
       <FinanceProfileChartLine text={numberOfChildren} />
       <h1>- Spouse's Occupation -</h1>
