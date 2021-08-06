@@ -24,15 +24,15 @@ export const FinanceProfileChart = ({
   return (
     <div
       className={
-        "flex flex-col flex-nowrap justify-center items-center bg-white shadow-md rounded-xl max-w-screen-l border-black	w-4/12"
+        "flex flex-col flex-nowrap justify-center items-center bg-white shadow-md rounded-xl max-w-screen-l border-black	w-6/12"
       }
     >
       <div className={"flex justify-center h-16 bg-gray-50 w-full text-2xl"}>
         -My Life-
       </div>
-      <h1 className={"space-y-16 "}>- Occupation -</h1>
+      <h1 className={"space-y-16 text-center "}>- Occupation -</h1>
       <FinanceProfileChartLine text={individualOccupation} />
-      <h1>- Monthly Salary -</h1>
+      <h1 className="text-center ">- Monthly Salary -</h1>
       <FinanceProfileChartLine text={individualSalary} />
       <h1>- Marital Status -</h1>
       <FinanceProfileChartLine
@@ -40,10 +40,18 @@ export const FinanceProfileChart = ({
       />
       <h1>- Number of Children -</h1>
       <FinanceProfileChartLine text={numberOfChildren} />
-      <h1>- Spouse's Occupation -</h1>
-      <FinanceProfileChartLine text={spouseOccupation} />
-      <h1>- Spouse's Monthly Salary -</h1>
-      <FinanceProfileChartLine text={spouseSalary} />
+      {spouseOccupation.length > 1 && (
+        <div className="w-full">
+          <h1 className="text-center ">- Spouse's Occupation -</h1>
+          <FinanceProfileChartLine text={spouseOccupation} />
+        </div>
+      )}
+      {spouseSalary > 0 && (
+        <div className="w-full">
+          <h1 className="text-center ">- Spouse's Monthly Salary -</h1>
+          <FinanceProfileChartLine text={spouseSalary} />
+        </div>
+      )}
     </div>
   );
 };
