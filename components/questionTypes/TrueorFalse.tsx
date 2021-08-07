@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
 import { Button } from "../ui/Button";

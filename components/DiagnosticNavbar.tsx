@@ -110,10 +110,10 @@ export default function Navbar() {
                   Resources
                 </a>
                 <a
-                  href="/tools"
+                  href="/puzzles"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Tools
+                  Puzzles
                 </a>
               </div>
             </div>
@@ -221,10 +221,10 @@ export default function Navbar() {
             Resources
           </a>
           <a
-            href="/tools"
+            href="/puzzles"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Tools
+            Puzzles
           </a>
         </div>
       </div>

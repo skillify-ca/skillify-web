@@ -1,7 +1,10 @@
 import { useMutation, useQuery } from "@apollo/client";
+import { Preload, OrbitControls, Stars } from "@react-three/drei";
 import { session, useSession } from "next-auth/client";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import React, { useState } from "react";
+import { Canvas } from "react-three-fiber";
 import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import { Button } from "../../components/ui/Button";
 import { FETCH_TOPIC_OVERVIEW } from "../../graphql/fetchTopicOverview";
@@ -15,6 +18,9 @@ import {
   Skill,
   SkillDescription,
 } from "../api/skill";
+
+const Box = dynamic(() => import("../../components/stories/Box"));
+
 const TopicOverviewPage = ({ slug }) => {
   const [session, user] = useSession();
   const [grade, setGrade] = useState(Grade.GRADE_1);
@@ -33,6 +39,8 @@ const TopicOverviewPage = ({ slug }) => {
         return 4;
       case "Grade 5":
         return 5;
+      case "Grade 6":
+        return 6;
     }
   };
 
@@ -74,6 +82,7 @@ const TopicOverviewPage = ({ slug }) => {
         <option>Grade 3</option>
         <option>Grade 4</option>
         <option>Grade 5</option>
+        <option>Grade 6</option>
       </select>
     </div>
   );
@@ -170,7 +179,25 @@ const TopicOverviewPage = ({ slug }) => {
                 </>
               ) : (
                 <>
-                  <img src={badge.badge.image} className="w-40" />
+                  <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
+                    <Preload all />
+                    <group>
+                      <Box
+                        url={
+                          badge.badge.image
+                            ? badge.badge.image
+                            : "/images/lock.png"
+                        }
+                      />
+                      <OrbitControls
+                        hasEventListener={false}
+                        removeEventListener={() => {}}
+                        addEventListener={() => {}}
+                        dispatchEvent={() => {}}
+                      />
+                      <Stars />
+                    </group>
+                  </Canvas>
                   <p className="text-md -mt-4 flex items-center">
                     {"   "}
                     Badge: <b> &nbsp;Unlocked</b>{" "}
