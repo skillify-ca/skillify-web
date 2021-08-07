@@ -1,4 +1,4 @@
-import { min } from "lodash";
+import _, { min } from "lodash";
 import React, { useEffect, useState } from "react";
 import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
 import IncomeTable from "../components/finance/IncomeTable";
@@ -10,6 +10,7 @@ import {
 } from "./api/finance/profile";
 import { getRndInteger } from "./api/random";
 import HouseExpensesTable from "../components/finance/HouseExpensesTable";
+import CarExpenseTable from "../components/finance/CarExpenseTable";
 
 const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
@@ -32,6 +33,13 @@ const FinanceProfile = () => {
   const [spouseOccupation, setSpouseOccupation] = useState("");
   const [spouseSalary, setSpouseSalary] = useState(0);
   const [profileData, setProfileData] = useState<FinanceProfileType>(); //profileData used for Validation in child components
+
+  const [carPayment1, setCarPayment1] = useState("");
+  const [carPayment2, setCarPayment2] = useState("");
+  const [carInsurance, setCarInsurance] = useState("");
+  const [gasoline, setGasoline] = useState("");
+  const [totalCarCosts, setTotalCarCosts] = useState("");
+  const [sumValidationCar, setSumValidationCar] = useState("");
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -96,6 +104,23 @@ const FinanceProfile = () => {
           setWaterBill={setWaterBill}
           totalHousingCost={totalHousingCost}
           setTotalHousingCost={setTotalHousingCost}
+        />
+      </div>
+
+      <div>
+        <CarExpenseTable
+          carPayment1={carPayment1}
+          setCarPayment1={setCarPayment1}
+          carPayment2={carPayment2}
+          setCarPayment2={setCarPayment2}
+          carInsurance={carInsurance}
+          setCarInsurance={setCarInsurance}
+          gasoline={gasoline}
+          setGasoline={setGasoline}
+          totalCarCosts={totalCarCosts}
+          setTotalCarCosts={setTotalCarCosts}
+          sumValidationCar={sumValidationCar}
+          setSumValidationCar={setSumValidationCar}
         />
       </div>
     </div>

@@ -5,33 +5,44 @@ import { Input } from "../ui/Input";
 
 export interface CarExpenseTableProps {
   carPayment1: string;
-  setcarPayment1: (carPayment1: string) => void; //Line I
+  setCarPayment1: (carPayment1: string) => void; //Line I
   carPayment2: string;
-  setcarPayment2: (carPayment2: string) => void; //Line J
-  insuranceCar: string;
-  setinsuranceCar: (insuranceCar: string) => void; //Line K
+  setCarPayment2: (carPayment2: string) => void; //Line J
+  carInsurance: string;
+  setCarInsurance: (carInsurance: string) => void; //Line K
   gasoline: string;
-  setgasoline: (gasoline: string) => void; //Line L
+  setGasoline: (gasoline: string) => void; //Line L
   totalCarCosts: string;
-  settotalCarCosts: (totalCarCosts: string) => void; //Line C
+  setTotalCarCosts: (totalCarCosts: string) => void; //Line C
   sumValidationCar: string;
-  setsumValidationCar: (sumValidationCar: string) => void;
+  setSumValidationCar: (sumValidationCar: string) => void;
 }
 
 const CarExpenseTable = ({
   carPayment1,
-  setcarPayment1,
+  setCarPayment1,
   carPayment2,
-  setcarPayment2,
-  insuranceCar,
-  setinsuranceCar,
+  setCarPayment2,
+  carInsurance,
+  setCarInsurance,
   gasoline,
-  setgasoline,
+  setGasoline,
   totalCarCosts,
-  settotalCarCosts,
+  setTotalCarCosts,
   sumValidationCar,
-  setsumValidationCar,
+  setSumValidationCar,
 }: CarExpenseTableProps) => {
+  const validate = (newTotalCarCosts: string) => {
+    carPayment1 + carPayment2 + carInsurance + gasoline === ""
+      ? setSumValidationCar("")
+      : Number.parseInt(carPayment1) +
+          Number.parseInt(carPayment2) +
+          Number.parseInt(carInsurance) +
+          Number.parseInt(gasoline) ===
+        Number.parseInt(newTotalCarCosts)
+      ? setSumValidationCar("Correct")
+      : setSumValidationCar("Wrong");
+  };
   return (
     <div>
       {" "}
@@ -82,11 +93,11 @@ const CarExpenseTable = ({
       <table className="table-fixed w-auto border-collapse">
         <thead>
           <tr>
-            <th className="w-1/2 font-bold text-center bg-gray-200 border border-black">
+            <th className="w-1/2 font-bold text-center bg-green-300 border border-black">
               {" "}
               Expense
             </th>
-            <th className="w-1/2 font-bold text-cetner bg-gray-200 border border-black">
+            <th className="w-1/2 font-bold text-cetner bg-green-300 border border-black">
               {" "}
               Cost Per Month
             </th>
@@ -103,7 +114,7 @@ const CarExpenseTable = ({
               <div className={"ml-2"}>
                 <input
                   value={carPayment1}
-                  onChange={(e) => setcarPayment2(e.target.value)}
+                  onChange={(e) => setCarPayment1(e.target.value)}
                   placeholder="Type numbers only"
                 ></input>
               </div>
@@ -119,7 +130,7 @@ const CarExpenseTable = ({
               <div className={"ml-2"}>
                 <input
                   value={carPayment2}
-                  onChange={(e) => setcarPayment2(e.target.value)}
+                  onChange={(e) => setCarPayment2(e.target.value)}
                   placeholder="Type numbers only"
                 ></input>
               </div>
@@ -134,8 +145,8 @@ const CarExpenseTable = ({
               <p className={"mx-2"}>K.</p>
               <div className={"ml-2"}>
                 <input
-                  value={insuranceCar}
-                  onChange={(e) => setinsuranceCar(e.target.value)}
+                  value={carInsurance}
+                  onChange={(e) => setCarInsurance(e.target.value)}
                   placeholder="Type numbers only"
                 ></input>
               </div>
@@ -151,14 +162,14 @@ const CarExpenseTable = ({
               <div className={"ml-2"}>
                 <input
                   value={gasoline}
-                  onChange={(e) => setgasoline(e.target.value)}
+                  onChange={(e) => setGasoline(e.target.value)}
                   placeholder="Type numbers only"
                 ></input>
               </div>
             </td>
           </tr>
           <tr>
-            <td className="border border-black bg-gray-300">
+            <td className="border border-black bg-green-300">
               <p className={"mx-2 font-bold"}>Total Monthly Income</p>
             </td>
             <td className="border border-black flex flex-nowrap">
@@ -166,21 +177,12 @@ const CarExpenseTable = ({
               <div className={"ml-2"}>
                 <input
                   value={totalCarCosts}
-                  onChange={(e) => settotalCarCosts(e.target.value)}
+                  onChange={(e) => {
+                    const newTotalCarCosts = e.target.value;
+                    setTotalCarCosts(newTotalCarCosts);
+                    validate(newTotalCarCosts);
+                  }}
                   placeholder="Type numbers only"
-                  {...(+carPayment1 +
-                    +carPayment2 +
-                    +insuranceCar +
-                    +gasoline ===
-                  0
-                    ? (sumValidationCar = "")
-                    : +carPayment1 +
-                        +carPayment2 +
-                        +insuranceCar +
-                        +gasoline ===
-                      +totalCarCosts
-                    ? (sumValidationCar = "Correct")
-                    : (sumValidationCar = "Wrong"))}
                   className={
                     sumValidationCar === ""
                       ? "bg-white"
