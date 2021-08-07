@@ -15,6 +15,10 @@ const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
   const [spouseMonthlyIncome, setSpouseMounthlyIncome] = useState("");
   const [totalMonthlyIncome, setTotalMonthlyIncome] = useState("");
+
+  const [backgroundColour, setBackgroundColour] = useState("");
+  const [valueTest, setValueTest] = useState("");
+
   const [isMarried, setMarriage] = useState(MaritalStatus.SINGLE);
   const [hasChildren, setChildren] = useState(false);
   const [housePayment, setHousePayment] = useState("");
@@ -34,6 +38,7 @@ const FinanceProfile = () => {
     const randomProfile = getRndInteger(0, 12);
     setProfileData(financialProfileData[randomProfile]);
   }, []);
+
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
       <div>
@@ -67,13 +72,17 @@ const FinanceProfile = () => {
 
       <div className={"mt-8"}>
         <IncomeTable
-          value={yourMonthlyIncome}
-          setValue={setYourMonthlyIncome}
-          value2={spouseMonthlyIncome}
-          setValue2={setSpouseMounthlyIncome}
-          value3={totalMonthlyIncome}
-          setValue3={setTotalMonthlyIncome}
-        />
+          monthlyIncome={yourMonthlyIncome}
+          setMonthlyIncome={setYourMonthlyIncome}
+          spouseMonthlyIncome={spouseMonthlyIncome}
+          setSpouseMonthlyIncome={setSpouseMounthlyIncome}
+          totalMonthlyIncome={totalMonthlyIncome}
+          setTotalMonthlyIncome={setTotalMonthlyIncome}
+          backgroundColour={backgroundColour}
+          setBackgroundColour={setBackgroundColour}
+          valueTest={valueTest}
+          setValueTest={setValueTest}
+        ></IncomeTable>
       </div>
       <div>
         <HouseExpensesTable
