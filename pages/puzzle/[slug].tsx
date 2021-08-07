@@ -1,37 +1,79 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { useState } from "react";
+import ReactCardFlip from "react-card-flip";
 import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import DragAndDropPuzzle from "../../components/stories/DragAndDropPuzzle";
+import { Button } from "../../components/ui/Button";
 import { GuessData } from "../api/guessData";
 
 const PuzzlePage = ({ slug }) => {
-  const [isGraded, setIsGraded] = useState(false);
-  const [isCorrect, setIsCorrect] = useState(false);
+  const router = useRouter();
+  const [isShaking, setIsShaking] = useState(false);
+  const [isFlipped, setIsFlipped] = useState<boolean>(false);
+  const toggleFlip = () => {
+    setIsFlipped(!isFlipped);
+  };
+
   const onSubmit = (guess: GuessData) => {
-    setIsGraded(true);
-    setIsCorrect(guess.isCorrect);
+    if (guess.isCorrect) {
+      toggleFlip();
+    } else {
+      setIsShaking(true);
+    }
   };
   const onReset = () => {
-    setIsGraded(false);
-    setIsCorrect(false);
+    setIsShaking(true);
+  };
+  const onSeeSolutionClicked = () => {
+    toggleFlip();
   };
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-architect-blue-200 bg-blue-100 h-screen">
       <DiagnosticNavbar />
-      <div className="flex flex-col justify-between mt-8 mr-8 ml-8">
+      <div className="flex flex-col justify-between p-8">
         <p className="text-4xl font-bold">Puzzle</p>
         <p className="">Use each number once to complete the puzzle</p>
-        <DragAndDropPuzzle onReset={onReset} onSubmit={onSubmit} />
-        {isGraded && isCorrect && (
-          <p className="text-4xl text-green-400 font-bold text-center m-8">
-            Correct
-          </p>
-        )}
-        {isGraded && !isCorrect && (
-          <p className="text-4xl text-red-400 font-bold text-center m-8">
-            Incorrect
-          </p>
-        )}
+        <ReactCardFlip
+          isFlipped={isFlipped}
+          flipDirection="horizontal"
+          infinite={true}
+        >
+          <div
+            className={isShaking ? "animate-shake" : ""}
+            onAnimationEnd={() => setIsShaking(false)}
+          >
+            <DragAndDropPuzzle
+              onReset={onReset}
+              onSubmit={onSubmit}
+              puzzleId={slug}
+            />
+          </div>
+          <div
+            className={`
+        flex flex-col justify-center space-y-16 
+        items-center p-8 bg-white shadow-md 
+        rounded-xl max-w-screen-lg min-w-full`}
+          >
+            <p className="text-4xl text-green-400 font-bold text-center m-8">
+              Correct
+            </p>
+            <div className="flex gap-8">
+              <Button
+                backgroundColor="blue"
+                textColor="white"
+                label="See Solution"
+                onClick={onSeeSolutionClicked}
+              />
+              <Button
+                backgroundColor="green"
+                textColor="white"
+                label="Exit"
+                onClick={(e) => router.back()}
+              />
+            </div>
+          </div>
+        </ReactCardFlip>
       </div>
     </div>
   );
@@ -47,12 +89,7 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   return {
-    paths: [
-      { params: { slug: "addition" } },
-      { params: { slug: "subtraction" } },
-      { params: { slug: "multiplication" } },
-      { params: { slug: "division" } },
-    ],
+    paths: [{ params: { slug: "8" } }, { params: { slug: "2" } }],
     fallback: true,
   };
 }

@@ -32,6 +32,8 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
       return getRandomPropertyAdditionQuestion(1, 15, skill);
     case Skill.ADDITION_5_DIGIT:
       return getRandomAdditionQuestion(10000, 100001, skill);
+    case Skill.ADDITION_6_DIGIT:
+      return getRandomAdditionQuestion(100000, 1000001, skill);
     case Skill.ADDITION_HUNDREDTHS:
       return getRandomAdditionQuestion(0.01, 0.99, skill);
     case Skill.SUBTRACTION_SINGLE:
@@ -46,6 +48,8 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
       return getRandomSubtractionQuestion(0.1, 0.9, skill);
     case Skill.SUBTRACTION_5_DIGIT:
       return getRandomSubtractionQuestion(10000, 100001, skill);
+    case Skill.SUBTRACTION_6_DIGIT:
+      return getRandomSubtractionQuestion(100000, 1000001, skill);
     case Skill.SUBTRACTION_TENTHS:
       return getRandomSubtractionQuestion(0.01, 0.99, skill);
     case Skill.EQUAL_GROUP_10_ITEMS:
@@ -66,6 +70,8 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
       return getRandomMultiplicationQuestion(10, 100, skill);
     case Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT:
       return getRandomMultiplicationQuestion(100, 1000, skill);
+    case Skill.MULTIPLY_THREE_DIGIT_BY_TENTH:
+      return getRandomMultiplicationQuestion(100, 1001, skill);
     case Skill.EQUAL_SHARING_8_ITEMS:
       return getRandomDivisionQuestion(1, 5, skill);
     case Skill.DIVIDE_12_EQUALLY:
@@ -78,6 +84,8 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
       return getRandomDivisionQuestion(100, 1000, skill);
     case Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT:
       return getRandomDivisionQuestion(100, 1000, skill);
+    case Skill.DIVISION_THREE_DIGIT_BY_TENTH:
+      return getRandomDivisionQuestion(100, 1001, skill);
   }
 };
 
@@ -293,7 +301,7 @@ export function getRandomAdditionQuestion(
   skill: Skill
 ) {
   let rndQuestionType = getRndInteger(0, 2);
-  if (rndQuestionType > 0 && skill == Skill.ADDITION_SINGLE) {
+  if (rndQuestionType == 0 && skill == Skill.ADDITION_SINGLE) {
     let a = getRndInteger(min, max);
     let b = getRndInteger(min, max);
     let text = `${a} + ${b} =`;
@@ -371,25 +379,29 @@ function getRandomDivisionQuestion(
   if (
     skill == Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT ||
     skill == Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT ||
-    skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT
+    skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT ||
+    skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH
   ) {
     let a = getRndInteger(1, 10);
-    if (skill == Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT) {
-      a = getRndInteger(10, 100);
-    }
     let b = 0;
-    if (skill == Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT) {
-      b = getRndInteger(10, 100);
-    } else if ((skill = Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT)) {
-      b = getRndInteger(100, 1000);
-    } else {
-      b = getRndInteger(min, max);
+    if (skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT) {
+      a = getRndInteger(10, 100);
+    } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH) {
+      a = getRndTenthsDecimal(0.1, 0.9);
     }
-    const type = QuestionType.LONG_DIVISION_PROBLEM;
-    const text = `${b} / ${a} =`;
+    b = getRndInteger(min, max);
+
+    let type = QuestionType.LONG_DIVISION_PROBLEM;
     let quotient = Math.floor(b / a);
     let remainder = b % a;
-    const answer = `${quotient},${remainder}`;
+    let answer;
+    if (skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH) {
+      type = QuestionType.HORIZONTAL_EQUATION;
+      answer = `${quotient}`;
+    } else {
+      answer = `${quotient},${remainder}`;
+    }
+    const text = `${b} / ${a} =`;
     return {
       text: text,
       answer: answer,
@@ -398,33 +410,33 @@ function getRandomDivisionQuestion(
       operator: "÷",
       skill: skill,
     };
+  } else {
+    const a = getRndInteger(min, max);
+    const b = getRndInteger(min, max);
+    const product = a * b;
+
+    const text = `${product} / ${b} =`;
+    const types = [
+      QuestionType.LONG_DIVISION_PROBLEM,
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+    ];
+    const type = types[getRndInteger(0, types.length)];
+    let wordProblemModel;
+
+    if (type == QuestionType.BINARY_WORD_PROBLEM) {
+      wordProblemModel = createWordProblemModel("÷");
+    }
+    return {
+      text: text,
+      answer: a.toString(),
+      answerType: AnswerType.NUMBER,
+      questionType: type,
+      operator: "÷",
+      wordProblem: wordProblemModel,
+      skill: skill,
+    };
   }
-
-  const a = getRndInteger(min, max);
-  const b = getRndInteger(min, max);
-  const product = a * b;
-
-  const text = `${product} / ${b} =`;
-  const types = [
-    QuestionType.LONG_DIVISION_PROBLEM,
-    QuestionType.HORIZONTAL_EQUATION,
-    QuestionType.BINARY_WORD_PROBLEM,
-  ];
-  const type = types[getRndInteger(0, types.length)];
-  let wordProblemModel;
-
-  if (type == QuestionType.BINARY_WORD_PROBLEM) {
-    wordProblemModel = createWordProblemModel("÷");
-  }
-  return {
-    text: text,
-    answer: a.toString(),
-    answerType: AnswerType.NUMBER,
-    questionType: type,
-    operator: "÷",
-    wordProblem: wordProblemModel,
-    skill: skill,
-  };
 }
 export function randomize(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -451,13 +463,17 @@ function getRandomBinaryQuestion(
     skill == Skill.ADDITION_TENTHS ||
     skill == Skill.SUBTRACTION_TENTHS ||
     skill == Skill.SUBTRACTION_HUNDREDTHS ||
-    skill == Skill.ADDITION_HUNDREDTHS
+    skill == Skill.ADDITION_HUNDREDTHS ||
+    skill == Skill.MULTIPLY_THREE_DIGIT_BY_TENTH
   ) {
     types = [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
   }
   let typeIndex = getRndInteger(0, types.length);
   let a = getRndInteger(min, max);
   let b = getRndInteger(min, max);
+  if (skill == Skill.MULTIPLY_THREE_DIGIT_BY_TENTH) {
+    b = getRndTenthsDecimal(0.1, 0.9);
+  }
   if (skill == Skill.ADDITION_TENTHS || skill == Skill.SUBTRACTION_TENTHS) {
     a = getRndTenthsDecimal(min, max);
     b = getRndTenthsDecimal(min, max);
@@ -549,6 +565,11 @@ function getRandomBinaryQuestion(
     skill == Skill.ADDITION_HUNDREDTHS
   ) {
     ans = answerFunction(Math.max(a, b), Math.min(a, b)).toFixed(2);
+  } else if (
+    skill == Skill.MULTIPLY_THREE_DIGIT_BY_TENTH ||
+    skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH
+  ) {
+    ans = answerFunction(Math.max(a, b), Math.min(a, b)).toFixed(1);
   } else {
     ans = answerFunction(Math.max(a, b), Math.min(a, b)).toString();
   }

@@ -9,7 +9,12 @@ export interface NumberTileProps {
   isDropped: boolean;
 }
 
-export const NumberTile: React.FC<NumberTileProps> = ({ name, value, type, isDropped }) => {
+export const NumberTile: React.FC<NumberTileProps> = ({
+  name,
+  value,
+  type,
+  isDropped,
+}) => {
   const [{ opacity }, drag] = useDrag({
     item: { name, type },
     collect: (monitor) => ({
