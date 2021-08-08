@@ -12,6 +12,9 @@ import { getRndInteger } from "./api/random";
 import HouseExpensesTable from "../components/finance/HouseExpensesTable";
 import CarExpenseTable from "../components/finance/CarExpenseTable";
 
+import AdditionalTable from "../components/finance/AdditionalExpense";
+
+
 const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
   const [spouseMonthlyIncome, setSpouseMounthlyIncome] = useState("");
@@ -40,6 +43,13 @@ const FinanceProfile = () => {
   const [gasoline, setGasoline] = useState("");
   const [totalCarCosts, setTotalCarCosts] = useState("");
   const [sumValidationCar, setSumValidationCar] = useState("");
+
+
+  const [tvInternet, setTvInternet] = useState("");
+  const [phone, setPhone] = useState("");
+  const [grocery, setGrocery] = useState("");
+  const [totalAdditional, setTotalAdditional] = useState("");
+  const [sumAddValidation, setSumAddValidation] = useState("");
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -123,6 +133,23 @@ const FinanceProfile = () => {
           setSumValidationCar={setSumValidationCar}
         />
       </div>
+
+
+      <div>
+        <AdditionalTable
+          tvInternet={tvInternet}
+          setTvInternet={setTvInternet}
+          phone={phone}
+          setPhone={setPhone}
+          grocery={grocery}
+          setGrocery={setGrocery}
+          totalAdditional={totalAdditional}
+          setTotalAdditional={setTotalAdditional}
+          sumAddValidation={sumAddValidation}
+          setSumAddValidation={setSumAddValidation}
+        />
+      </div>
+
     </div>
   );
 };
