@@ -93,7 +93,8 @@ export const SectionOneInput = ({
               }
             />
             <div className="w-1/4">
-              {hasChildren == profileData.numberOfChildren ? (
+              {hasChildren ==
+              (profileData.numberOfChildren > 0 ? true : false) ? (
                 <img src={"/images/checked-checkbox-16.png"} />
               ) : (
                 <img src={"/images/gray-checked-checkbox-16.png"} />
