@@ -28,6 +28,7 @@ const FinanceProfile = () => {
   const [spouseOccupation, setSpouseOccupation] = useState("");
   const [spouseSalary, setSpouseSalary] = useState(0);
   const [profileData, setProfileData] = useState<FinanceProfileType>(); //profileData used for Validation in child components
+  const [sectionOneValidation, setSectionOneValidation] = useState(false);
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -48,8 +49,7 @@ const FinanceProfile = () => {
           />
         )}
       </div>
-      <div> </div>
-
+      <div>1</div>
       <SectionOneInput
         isMarried={isMarried}
         setMarriage={setMarriage}
@@ -63,7 +63,25 @@ const FinanceProfile = () => {
         setSpouseOccupation={setSpouseOccupation}
         spouseSalary={spouseSalary}
         setSpouseSalary={setSpouseSalary}
+        profileData={profileData}
+        sectionOneValidation={sectionOneValidation}
+        setSectionOneValidation={setSectionOneValidation}
       />
+      <div>
+        {sectionOneValidation ? (
+          <div className="flex flex-nowrap">
+            {" "}
+            Great Job!  
+            <img src={"/images/checked-checkbox-16.png"} />
+          </div>
+        ) : (
+          <div className="flex flex-nowrap">
+            {" "}
+            Lets take a look back at your work!  
+            <img src={"/images/warning-2-16.png"} />
+          </div>
+        )}
+      </div>
 
       <div className={"mt-8"}>
         <IncomeTable
