@@ -8,7 +8,7 @@ export interface FinanceProfileChartProps {
   individualOccupation: string;
   individualSalary: number;
   maritalStatus: MaritalStatus;
-  numberOfChildren: number;
+  numberOfChildren: boolean;
   spouseOccupation: string;
   spouseSalary: number;
 }
@@ -38,8 +38,12 @@ export const FinanceProfileChart = ({
       <FinanceProfileChartLine
         text={maritalStatus == MaritalStatus.MARRIED ? "Married" : "Single"}
       />
-      <h1>- Number of Children -</h1>
-      <FinanceProfileChartLine text={numberOfChildren} />
+      {numberOfChildren == true && (
+        <div>
+          <h1>- Number of Children -</h1>
+          <FinanceProfileChartLine text={numberOfChildren} />
+        </div>
+      )}
       {spouseOccupation.length > 1 && (
         <div className="w-full">
           <h1 className="text-center ">- Spouse's Occupation -</h1>
