@@ -12,6 +12,7 @@ import { getRndInteger } from "./api/random";
 import HouseExpensesTable from "../components/finance/HouseExpensesTable";
 import CarExpenseTable from "../components/finance/CarExpenseTable";
 import AdditionalTable from "../components/finance/AdditionalExpense";
+
 import MoneyRemainingTable from "../components/finance/MoneyRemaining";
 
 const FinanceProfile = () => {
@@ -35,6 +36,20 @@ const FinanceProfile = () => {
   const [spouseOccupation, setSpouseOccupation] = useState("");
   const [spouseSalary, setSpouseSalary] = useState(0);
   const [profileData, setProfileData] = useState<FinanceProfileType>(); //profileData used for Validation in child components
+  const [sectionOneValidation, setSectionOneValidation] = useState(false);
+
+  const [carPayment1, setCarPayment1] = useState("");
+  const [carPayment2, setCarPayment2] = useState("");
+  const [carInsurance, setCarInsurance] = useState("");
+  const [gasoline, setGasoline] = useState("");
+  const [totalCarCosts, setTotalCarCosts] = useState("");
+  const [sumValidationCar, setSumValidationCar] = useState("");
+
+  const [tvInternet, setTvInternet] = useState("");
+  const [phone, setPhone] = useState("");
+  const [grocery, setGrocery] = useState("");
+  const [totalAdditional, setTotalAdditional] = useState("");
+  const [sumAddValidation, setSumAddValidation] = useState("");
 
   const [carPayment1, setCarPayment1] = useState("");
   const [carPayment2, setCarPayment2] = useState("");
@@ -79,6 +94,7 @@ const FinanceProfile = () => {
         )}
       </div>
 
+
       <SectionOneInput
         isMarried={isMarried}
         setMarriage={setMarriage}
@@ -92,7 +108,25 @@ const FinanceProfile = () => {
         setSpouseOccupation={setSpouseOccupation}
         spouseSalary={spouseSalary}
         setSpouseSalary={setSpouseSalary}
+        profileData={profileData}
+        sectionOneValidation={sectionOneValidation}
+        setSectionOneValidation={setSectionOneValidation}
       />
+      <div>
+        {sectionOneValidation ? (
+          <div className="flex flex-nowrap">
+            {" "}
+            Great Job!  
+            <img src={"/images/checked-checkbox-16.png"} />
+          </div>
+        ) : (
+          <div className="flex flex-nowrap">
+            {" "}
+            Lets take a look back at your work!  
+            <img src={"/images/warning-2-16.png"} />
+          </div>
+        )}
+      </div>
 
       <div className={"mt-8"}>
         <IncomeTable
@@ -154,6 +188,7 @@ const FinanceProfile = () => {
           setSumAddValidation={setSumAddValidation}
         />
       </div>
+
       <div>
         <MoneyRemainingTable
           totalMonthlySection7={totalMonthlySection7}
@@ -175,6 +210,9 @@ const FinanceProfile = () => {
         />
       </div>
     </div> //This is for Section 7
+
+    </div>
+
   );
 };
 
