@@ -157,7 +157,7 @@ const FinanceProfile = () => {
       <MoneyRemainingTable
         totalMonthlySection7={totalMonthlySection7}
         setTotalMonthlySection7={setTotalMonthlysection7}
-        totalExpensesSection7={totalMonthlySection7}
+        totalExpensesSection7={totalExpensesSection7}
         setTotalExpensesSection7={setTotalExpensesSection7}
         totalMoneyRemaining={totalMoneyRemaining}
         setTotalMoneyRemaining={setTotalMoneyRemaining}

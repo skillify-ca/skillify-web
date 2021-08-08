@@ -1,3 +1,5 @@
+import FinanceProfile from "../../pages/finance-profile";
+
 export interface MoneyRemainingTableProps {
   totalMonthlySection7: string;
   setTotalMonthlySection7: (totalMonthlySection7: string) => void;
@@ -146,6 +148,7 @@ const MoneyRemainingTable = ({
         </tbody>
       </table>
       <p className={"ml-60 text-xs"}>**Put this amount in section 6** </p>
+      <p>Test = </p>
     </div>
   );
 };
