@@ -12,6 +12,7 @@ import { getRndInteger } from "./api/random";
 import HouseExpensesTable from "../components/finance/HouseExpensesTable";
 import CarExpenseTable from "../components/finance/CarExpenseTable";
 import AdditionalTable from "../components/finance/AdditionalExpense";
+import MoneyRemainingTable from "../components/finance/MoneyRemaining";
 
 const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
@@ -47,6 +48,14 @@ const FinanceProfile = () => {
   const [grocery, setGrocery] = useState("");
   const [totalAdditional, setTotalAdditional] = useState("");
   const [sumAddValidation, setSumAddValidation] = useState("");
+
+  //for section 7
+  const [totalMonthlySection7, setTotalMonthlysection7] = useState("");
+  const [totalExpensesSection7, setTotalExpensesSection7] = useState("");
+  const [totalMoneyRemaining, setTotalMoneyRemaining] = useState("");
+  const [monthlyIncomeValidation, setMonthlyIncomeValidation] = useState("");
+  const [totalExpenseValidation, setTotalExpenseValidation] = useState("");
+  const [moneyRemainingValidation, setMoneyRemainingValidation] = useState("");
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -145,7 +154,21 @@ const FinanceProfile = () => {
           setSumAddValidation={setSumAddValidation}
         />
       </div>
-    </div>
+      <MoneyRemainingTable
+        totalMonthlySection7={totalMonthlySection7}
+        setTotalMonthlySection7={setTotalMonthlysection7}
+        totalExpensesSection7={totalMonthlySection7}
+        setTotalExpensesSection7={setTotalExpensesSection7}
+        totalMoneyRemaining={totalMoneyRemaining}
+        setTotalMoneyRemaining={setTotalMoneyRemaining}
+        monthlyIncomeValidation={monthlyIncomeValidation}
+        setMonthlyIncomeValidation={setMonthlyIncomeValidation}
+        totalExpenseValidation={totalExpenseValidation}
+        setTotalExpenseValidation={setTotalExpenseValidation}
+        moneyRemainingValidation={moneyRemainingValidation}
+        setMoneyRemaningVlidation={setMoneyRemainingValidation}
+      />
+    </div> //This is for Section 7
   );
 };
 

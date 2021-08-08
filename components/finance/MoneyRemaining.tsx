@@ -1,32 +1,48 @@
 export interface MoneyRemainingTableProps {
   totalMonthlySection7: string;
   setTotalMonthlySection7: (totalMonthlySection7: string) => void;
-  grocery: string;
-  setGrocery: (grocery: string) => void;
-  totalAdditional: string;
-  setTotalAdditional: (totalAdditional: string) => void;
-  sumAddValidation: string;
-  setSumAddValidation: (sumAddValidation: string) => void;
+  totalExpensesSection7: string;
+  setTotalExpensesSection7: (totalExpensesSection7: string) => void;
+  totalMoneyRemaining: string;
+  setTotalMoneyRemaining: (totalMoneyRemaining: string) => void;
+  monthlyIncomeValidation: String;
+  setMonthlyIncomeValidation: (monthlyIncomeValidation: string) => void;
+  totalExpenseValidation: string;
+  setTotalExpenseValidation: (totalExpenseValidation: string) => void;
+  moneyRemainingValidation: string;
+  setMoneyRemaningVlidation: (moneyRemainingValidation: string) => void;
 }
 
 const MoneyRemainingTable = ({
   totalMonthlySection7,
   setTotalMonthlySection7,
-  grocery,
-  setGrocery,
-  totalAdditional,
-  setTotalAdditional,
-  sumAddValidation,
-  setSumAddValidation,
+  totalExpensesSection7,
+  setTotalExpensesSection7,
+  totalMoneyRemaining,
+  setTotalMoneyRemaining,
+  monthlyIncomeValidation,
+  setMonthlyIncomeValidation,
+  totalExpenseValidation,
+  setTotalExpenseValidation,
+  moneyRemainingValidation,
+  setMoneyRemaningVlidation,
 }: MoneyRemainingTableProps) => {
   const validateTotalIncome = (newTotalMonthlySection7) => {
-    newTotalMonthlySection7 + grocery === ""
-      ? setSumAddValidation("")
-      : Number.parseInt(newTotalMonthlySection7) + Number.parseInt(grocery) ===
+    newTotalMonthlySection7 + totalMonthlySection7 === ""
+      ? setMonthlyIncomeValidation("")
+      : Number.parseInt(newTotalMonthlySection7) +
+          Number.parseInt(totalMonthlySection7) ===
         Number.parseInt(newTotalMonthlySection7)
-      ? setSumAddValidation("Correct")
-      : setSumAddValidation("Wrong");
+      ? setMonthlyIncomeValidation("Correct")
+      : setMonthlyIncomeValidation("Wrong");
   };
+  const validateTotalExpenses = (newTotalExpensesSection7) => {
+    newTotalExpensesSection7;
+  };
+  const validateTotalMoneyRemaining = (newTotalMoneyRemaining) => {
+    newTotalMoneyRemaining;
+  };
+
   return (
     <div>
       <h1 className={"font-bold"}>
@@ -56,6 +72,15 @@ const MoneyRemainingTable = ({
                     validateTotalIncome(newTotalMonthlySection7);
                   }}
                   placeholder="Type numbers only"
+                  className={
+                    monthlyIncomeValidation === ""
+                      ? "bg-white"
+                      : monthlyIncomeValidation === "Correct"
+                      ? "bg-green-200"
+                      : monthlyIncomeValidation === "Wrong"
+                      ? "bg-red-200"
+                      : "bg-white"
+                  }
                 ></input>
               </div>
             </td>
@@ -69,9 +94,22 @@ const MoneyRemainingTable = ({
               <p className={"mx-2"}>R.</p>
               <div>
                 <input
-                  value={grocery}
-                  onChange={(e) => setGrocery(e.target.value)}
+                  value={totalExpensesSection7}
+                  onChange={(e) => {
+                    const newTotalExpensesSection7 = e.target.value;
+                    setTotalExpensesSection7(newTotalExpensesSection7);
+                    validateTotalExpenses(newTotalExpensesSection7);
+                  }}
                   placeholder="Type numbers only"
+                  className={
+                    totalExpenseValidation === ""
+                      ? "bg-white"
+                      : totalExpenseValidation === "Correct"
+                      ? "bg-green-200"
+                      : totalExpenseValidation === "Wrong"
+                      ? "bg-red-200"
+                      : "bg-white"
+                  }
                 ></input>
               </div>
             </td>
@@ -85,18 +123,19 @@ const MoneyRemainingTable = ({
               <p className={"mx-2"}>S.</p>
               <div>
                 <input
-                  value={totalAdditional}
+                  value={totalMoneyRemaining}
                   onChange={(e) => {
-                    const newTotalAddition = e.target.value;
-                    setTotalAdditional(newTotalAddition);
+                    const newTotalMoneyRemaining = e.target.value;
+                    setTotalMoneyRemaining(newTotalMoneyRemaining);
+                    validateTotalMoneyRemaining(newTotalMoneyRemaining);
                   }}
                   placeholder="Type numbers only"
                   className={
-                    sumAddValidation === ""
+                    moneyRemainingValidation === ""
                       ? "bg-white"
-                      : sumAddValidation === "Correct"
+                      : moneyRemainingValidation === "Correct"
                       ? "bg-green-200"
-                      : sumAddValidation === "Wrong"
+                      : moneyRemainingValidation === "Wrong"
                       ? "bg-red-200"
                       : "bg-white"
                   }
