@@ -188,7 +188,7 @@ export const SectionOneInput = ({
       {profileData &&
         setSectionOneValidation(
           isMarried == profileData.maritalStatus &&
-            hasChildren == profileData.numberOfChildren &&
+            hasChildren == (profileData.numberOfChildren > 0 ? true : false) &&
             spouseOccupation == profileData.spouseOccupation &&
             individualOccupation == profileData.individualOccupation &&
             individualSalary == profileData.individualSalary &&
