@@ -1,4 +1,6 @@
+import { useState } from "@storybook/client-api";
 import FinanceProfile from "../../pages/finance-profile";
+import IncomeTable from "./IncomeTable";
 
 export interface MoneyRemainingTableProps {
   totalMonthlySection7: string;
@@ -11,8 +13,12 @@ export interface MoneyRemainingTableProps {
   setMonthlyIncomeValidation: (monthlyIncomeValidation: string) => void;
   totalExpenseValidation: string;
   setTotalExpenseValidation: (totalExpenseValidation: string) => void;
-  moneyRemainingValidation: string;
-  setMoneyRemaningVlidation: (moneyRemainingValidation: string) => void;
+  moneyRemValidation: string;
+  setMoneyRemValidation: (moneyRemValidation: string) => void;
+  totalMonthlyIncome: string;
+  setTotalMonthlyIncome: (totalMonthlyIncome: string) => void;
+  totalExpenses: string;
+  setTotalExpenses: (totalExpenses: string) => void;
 }
 
 const MoneyRemainingTable = ({
@@ -26,23 +32,37 @@ const MoneyRemainingTable = ({
   setMonthlyIncomeValidation,
   totalExpenseValidation,
   setTotalExpenseValidation,
-  moneyRemainingValidation,
-  setMoneyRemaningVlidation,
+  moneyRemValidation,
+  setMoneyRemValidation,
+  totalMonthlyIncome,
+  setTotalMonthlyIncome,
+  totalExpenses,
+  setTotalExpenses,
 }: MoneyRemainingTableProps) => {
   const validateTotalIncome = (newTotalMonthlySection7) => {
-    newTotalMonthlySection7 + totalMonthlySection7 === ""
+    newTotalMonthlySection7 === ""
       ? setMonthlyIncomeValidation("")
-      : Number.parseInt(newTotalMonthlySection7) +
-          Number.parseInt(totalMonthlySection7) ===
-        Number.parseInt(newTotalMonthlySection7)
+      : totalMonthlyIncome === newTotalMonthlySection7
       ? setMonthlyIncomeValidation("Correct")
       : setMonthlyIncomeValidation("Wrong");
   };
   const validateTotalExpenses = (newTotalExpensesSection7) => {
-    newTotalExpensesSection7;
+    newTotalExpensesSection7 === ""
+      ? setTotalExpenseValidation("")
+      : totalExpenses === newTotalExpensesSection7
+      ? setTotalExpenseValidation("Correct")
+      : setTotalExpenseValidation("Wrong");
   };
   const validateTotalMoneyRemaining = (newTotalMoneyRemaining) => {
-    newTotalMoneyRemaining;
+    newTotalMoneyRemaining === ""
+      ? setMoneyRemValidation("")
+      : totalMonthlySection7 + totalExpensesSection7 === ""
+      ? setMoneyRemValidation("")
+      : Number.parseInt(totalMonthlySection7) +
+          Number.parseInt(totalExpensesSection7) ===
+        Number.parseInt(newTotalMoneyRemaining)
+      ? setMoneyRemValidation("Correct")
+      : setMoneyRemValidation("Wrong");
   };
 
   return (
@@ -133,11 +153,11 @@ const MoneyRemainingTable = ({
                   }}
                   placeholder="Type numbers only"
                   className={
-                    moneyRemainingValidation === ""
+                    moneyRemValidation === ""
                       ? "bg-white"
-                      : moneyRemainingValidation === "Correct"
+                      : moneyRemValidation === "Correct"
                       ? "bg-green-200"
-                      : moneyRemainingValidation === "Wrong"
+                      : moneyRemValidation === "Wrong"
                       ? "bg-red-200"
                       : "bg-white"
                   }
@@ -148,9 +168,8 @@ const MoneyRemainingTable = ({
         </tbody>
       </table>
       <p className={"ml-60 text-xs"}>**Put this amount in section 6** </p>
-      <p>Test = </p>
+      <p>Test = {monthlyIncomeValidation} </p>
     </div>
   );
 };
-
 export default MoneyRemainingTable;

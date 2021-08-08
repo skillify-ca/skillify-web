@@ -49,13 +49,14 @@ const FinanceProfile = () => {
   const [totalAdditional, setTotalAdditional] = useState("");
   const [sumAddValidation, setSumAddValidation] = useState("");
 
-  //for section 7
+  const [totalExpenses, setTotalExpenses] = useState("200"); //Set for Section 6
+
   const [totalMonthlySection7, setTotalMonthlysection7] = useState("");
   const [totalExpensesSection7, setTotalExpensesSection7] = useState("");
   const [totalMoneyRemaining, setTotalMoneyRemaining] = useState("");
   const [monthlyIncomeValidation, setMonthlyIncomeValidation] = useState("");
   const [totalExpenseValidation, setTotalExpenseValidation] = useState("");
-  const [moneyRemainingValidation, setMoneyRemainingValidation] = useState("");
+  const [moneyRemValidation, setMoneyRemValidation] = useState("");
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -77,7 +78,6 @@ const FinanceProfile = () => {
           />
         )}
       </div>
-      <div> </div>
 
       <SectionOneInput
         isMarried={isMarried}
@@ -154,20 +154,26 @@ const FinanceProfile = () => {
           setSumAddValidation={setSumAddValidation}
         />
       </div>
-      <MoneyRemainingTable
-        totalMonthlySection7={totalMonthlySection7}
-        setTotalMonthlySection7={setTotalMonthlysection7}
-        totalExpensesSection7={totalExpensesSection7}
-        setTotalExpensesSection7={setTotalExpensesSection7}
-        totalMoneyRemaining={totalMoneyRemaining}
-        setTotalMoneyRemaining={setTotalMoneyRemaining}
-        monthlyIncomeValidation={monthlyIncomeValidation}
-        setMonthlyIncomeValidation={setMonthlyIncomeValidation}
-        totalExpenseValidation={totalExpenseValidation}
-        setTotalExpenseValidation={setTotalExpenseValidation}
-        moneyRemainingValidation={moneyRemainingValidation}
-        setMoneyRemaningVlidation={setMoneyRemainingValidation}
-      />
+      <div>
+        <MoneyRemainingTable
+          totalMonthlySection7={totalMonthlySection7}
+          setTotalMonthlySection7={setTotalMonthlysection7}
+          totalExpensesSection7={totalExpensesSection7}
+          setTotalExpensesSection7={setTotalExpensesSection7}
+          totalMoneyRemaining={totalMoneyRemaining}
+          setTotalMoneyRemaining={setTotalMoneyRemaining}
+          monthlyIncomeValidation={monthlyIncomeValidation}
+          setMonthlyIncomeValidation={setMonthlyIncomeValidation}
+          totalExpenseValidation={totalExpenseValidation}
+          setTotalExpenseValidation={setTotalExpenseValidation}
+          moneyRemValidation={moneyRemValidation}
+          setMoneyRemValidation={setMoneyRemValidation}
+          totalMonthlyIncome={totalMonthlyIncome}
+          setTotalMonthlyIncome={setTotalMonthlyIncome}
+          totalExpenses={totalExpenses}
+          setTotalExpenses={setTotalExpenses}
+        />
+      </div>
     </div> //This is for Section 7
   );
 };
