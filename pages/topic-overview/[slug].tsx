@@ -72,21 +72,34 @@ const TopicOverviewPage = ({ slug }) => {
         {" "}
         Select a grade:{" "}
       </p>
-      <select
-        value={grade}
-        onChange={onGradeChange}
-        className="ml-4 w-56 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2"
-      >
-        <option>Grade 1</option>
-        <option>Grade 2</option>
-        <option>Grade 3</option>
-        <option>Grade 4</option>
-        <option>Grade 5</option>
-        <option>Grade 6</option>
-      </select>
+
+      {slug == "numbers" ? (
+        <select
+          value={grade}
+          onChange={onGradeChange}
+          className="ml-4 w-56 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2"
+        >
+          <option>Grade 1</option>
+          <option>Grade 2</option>
+          <option>Grade 3</option>
+        </select>
+      ) : (
+        <select
+          value={grade}
+          onChange={onGradeChange}
+          className="ml-4 w-56 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2"
+        >
+          <option>Grade 1</option>
+          <option>Grade 2</option>
+          <option>Grade 3</option>
+          <option>Grade 4</option>
+          <option>Grade 5</option>
+          <option>Grade 6</option>
+        </select>
+      )}
     </div>
   );
-  console.log(getSkillsForTopicGrade(slug, grade));
+  console.log(slug);
   const skillComponent = (
     <div className="flex flex-col gap-8">
       {getSkillsForTopicGrade(slug, grade).map((skill) => (
