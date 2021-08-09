@@ -43,6 +43,15 @@ const TopicOverviewPage = ({ slug }) => {
         return 6;
     }
   };
+  const getColourForAccuracy = (accuracy: any) => {
+    if (accuracy >= 75) {
+      return "text-green-500";
+    } else if (accuracy >= 50) {
+      return "text-yellow-500";
+    } else {
+      return "text-red-500";
+    }
+  };
 
   let { loading, error, data } = useQuery(FETCH_TOPIC_OVERVIEW, {
     variables: {
@@ -60,7 +69,7 @@ const TopicOverviewPage = ({ slug }) => {
     if (accuracyList.length == 0) {
       maxAccuracy = "Not Attempted";
     } else {
-      maxAccuracy = Math.max(...accuracyList) + "%";
+      maxAccuracy = Math.max(...accuracyList);
     }
 
     return maxAccuracy;
@@ -171,11 +180,21 @@ const TopicOverviewPage = ({ slug }) => {
               </Link>
             </div>
           </div>
-          <p className="flex items-center text-lg">
-            {" "}
-            Best Attempt:{" "}
-            {!loading && data && getMaxAccuracy(data.user_quizzes)}{" "}
-          </p>
+          <div className="flex items-center text-lg flex-row bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 border-2 rounded-xl pl-3">
+            <p className="text-xl font-bold text-blue-900"> Best Attempt: </p>
+            <p
+              className={`${getColourForAccuracy(
+                data && !loading && getMaxAccuracy(data.user_quizzes)
+              )} p-4 text-2xl font-extrabold`}
+            >
+              {!loading && data && getMaxAccuracy(data.user_quizzes)}
+              {data &&
+              !loading &&
+              getMaxAccuracy(data.user_quizzes) != "Not Attempted"
+                ? "%"
+                : ""}
+            </p>
+          </div>
         </div>
         <div className="flex flex-col gap-8 justify-center items-center bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 sm:w-1/2 rounded-2xl h-72">
           {!loading &&
