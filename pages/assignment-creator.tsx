@@ -2,18 +2,24 @@ import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "../redux/store";
 import { Grade, Skill, Topic } from "./api/skill";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
-import AssignmentCreationForm from "../components/assignment-creator/assignmentCreationForm";
+import AssignmentCreationForm, {
+  QuestionTypeForSkill,
+} from "../components/assignment-creator/assignmentCreationForm";
 import AssignmentQuestions from "../components/assignment-creator/assignmentQuestions";
 
 enum STAGE {
-  CREATE,
+  CHOOSE_TOPICS,
+  CUSTOMIZE,
   REVIEW,
   CONFIRM,
 }
 
 const Diagnostic = () => {
-  const [stage, setStage] = useState(STAGE.CREATE);
+  const [stage, setStage] = useState(STAGE.CHOOSE_TOPICS);
   const [selectedQuestions, setSelectedQuestions] = useState<Skill[]>([]);
+  const [selectedQuestionTypes, setSelectedQuestionTypes] = useState<
+    QuestionTypeForSkill[]
+  >([]);
 
   const createAssignment = () => {
     setStage(STAGE.REVIEW);
@@ -21,7 +27,7 @@ const Diagnostic = () => {
 
   let component;
   switch (stage) {
-    case STAGE.CREATE:
+    case STAGE.CHOOSE_TOPICS:
       component = (
         <AssignmentCreationForm
           onClick={createAssignment}
@@ -31,7 +37,13 @@ const Diagnostic = () => {
       );
       break;
     case STAGE.REVIEW:
-      component = <AssignmentQuestions selectedQuestions={selectedQuestions} />;
+      component = (
+        <AssignmentQuestions
+          selectedQuestions={selectedQuestions}
+          selectedQuestionTypes={selectedQuestionTypes}
+          setSelectedQuestionTypes={setSelectedQuestionTypes}
+        />
+      );
       break;
     case STAGE.CONFIRM:
       break;

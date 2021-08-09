@@ -325,6 +325,92 @@ export function SkillDescription(skill: Skill) {
   }
 }
 
+export function getQuestionTypesForSkill(skill: Skill) {
+  if (skill == Skill.ADDITION_SINGLE) {
+    return [
+      "horizontal equation",
+      "vertical equation",
+      "word problem",
+      "true or false",
+      "multiple choice",
+    ];
+  } else if (skill == Skill.ADDITION_DOUBLE) {
+    return [
+      "horizontal equation",
+      "vertical equation",
+      "word problem",
+      "true or false",
+      "multiple choice",
+    ];
+  } else if (skill == Skill.ADDITION_TRIPLE) {
+    return [
+      "horizontal equation",
+      "vertical equation",
+      "word problem",
+      "true or false",
+      "multiple choice",
+    ];
+  } else if (skill == Skill.ADDITION_PROPERTIES) {
+    return ["something else"];
+  } else if (skill == Skill.ADDITION_4_DIGIT) {
+    return [
+      "horizontal equation",
+      "vertical equation",
+      "word problem",
+      "true or false",
+      "multiple choice",
+    ];
+  } else if (skill == Skill.ADDITION_TENTHS) {
+    return ["horizontal equation", "vertical equation"];
+  } else if (skill == Skill.ADDITION_5_DIGIT) {
+    return [
+      "horizontal equation",
+      "vertical equation",
+      "word problem",
+      "true or false",
+      "multiple choice",
+    ];
+  } else if (skill == Skill.ADDITION_HUNDREDTHS) {
+    return ["horizontal equation", "vertical equation"];
+  } else if (skill == Skill.SUBTRACTION_SINGLE) {
+    return [
+      "horizontal equation",
+      "vertical equation",
+      "word problem",
+      "true or false",
+      "multiple choice",
+    ];
+  } else if (skill == Skill.SUBTRACTION_DOUBLE) {
+    return [
+      "horizontal equation",
+      "vertical equation",
+      "word problem",
+      "true or false",
+      "multiple choice",
+    ];
+  } else if (skill == Skill.SUBTRACTION_TRIPLE) {
+    return [
+      "horizontal equation",
+      "vertical equation",
+      "word problem",
+      "true or false",
+      "multiple choice",
+    ];
+  } else if (skill == Skill.SUBTRACTION_4_DIGIT) {
+    return [
+      "horizontal equation",
+      "vertical equation",
+      "word problem",
+      "true or false",
+      "multiple choice",
+    ];
+  } else if (skill == Skill.SUBTRACTION_TENTHS) {
+    return ["horizontal equation", "vertical equation"];
+  } else {
+    return ["hey"];
+  }
+}
+
 type PracticeCardMetadata = {
   link: string;
 };
