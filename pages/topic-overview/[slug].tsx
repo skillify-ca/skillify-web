@@ -184,11 +184,13 @@ const TopicOverviewPage = ({ slug }) => {
             <p className="text-xl font-bold text-blue-900"> Best Attempt: </p>
             <p
               className={`${getColourForAccuracy(
-                data && getMaxAccuracy(data.user_quizzes)
+                data && !loading && getMaxAccuracy(data.user_quizzes)
               )} p-4 text-2xl font-extrabold`}
             >
               {!loading && data && getMaxAccuracy(data.user_quizzes)}
-              {data && getMaxAccuracy(data.user_quizzes) != "Not Attempted"
+              {data &&
+              !loading &&
+              getMaxAccuracy(data.user_quizzes) != "Not Attempted"
                 ? "%"
                 : ""}
             </p>
