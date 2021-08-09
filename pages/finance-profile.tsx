@@ -12,6 +12,7 @@ const FinanceProfile = () => {
   const [gasBill, setGasBill] = useState("");
   const [waterBill, setWaterBill] = useState("");
   const [totalHousingCost, setTotalHousingCost] = useState("");
+  const [homeType, setHomeType] = useState("");
 
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
@@ -45,6 +46,8 @@ const FinanceProfile = () => {
           setWaterBill = {setWaterBill}
           totalHousingCost = {totalHousingCost}
           setTotalHousingCost = {setTotalHousingCost}
+          homeType = {homeType}
+          setHomeType = {setHomeType}
         />
       </div>
     </div>

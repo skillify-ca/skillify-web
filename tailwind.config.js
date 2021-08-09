@@ -52,13 +52,14 @@ module.exports = {
       borderWidth: ["active"],
       fontFamily: ["hover", "focus"],
       opacity: ["disabled"],
-      backgroundColor: ["hover"],
+      backgroundColor: ["hover", "active"],
       ringWidth: ["hover", "active"],
       ringColor: ["hover", "active"],
       ringOffsetWidth: ["hover", "active"],
       ringOffsetColor: ["hover", "active"],
       maxWidth: ["hover", "active"],
       width: ["hover", "active"],
+      translate: ["active"]
     },
   },
   options: {
