@@ -1,7 +1,12 @@
 import { generateQuestionForSkill } from "../../pages/api/questionGenerator";
+import { QuestionType } from "../../pages/api/questionTypes";
 import { Skill } from "../../pages/api/skill";
 
-export const generateAssignmentQuestions = (skillStr: string) => {
+export const generateAssignmentQuestions = (
+  skillStr: string,
+  questionType?: QuestionType
+) => {
+  console.log("question type passed in:", questionType);
   let skill: Skill;
   if (skillStr == "add-one-digit") {
     skill = Skill.ADDITION_SINGLE;
@@ -68,8 +73,7 @@ export const generateAssignmentQuestions = (skillStr: string) => {
   } else if (skillStr == "divide-triple-digit-by-double-digit") {
     skill = Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT;
   }
-  console.log(skill);
-  let question = generateQuestionForSkill(skill).text;
 
+  let question = generateQuestionForSkill(skill, questionType);
   return question;
 };

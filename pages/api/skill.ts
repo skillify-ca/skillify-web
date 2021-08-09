@@ -1,4 +1,6 @@
+import { QuestionTypeForSkill } from "../../components/assignment-creator/assignmentCreationForm";
 import { generateQuestionForSkill } from "./questionGenerator";
+import { QuestionType } from "./questionTypes";
 import { getRndInteger } from "./random";
 
 export enum Topic {
@@ -325,89 +327,99 @@ export function SkillDescription(skill: Skill) {
   }
 }
 
-export function getQuestionTypesForSkill(skill: Skill) {
+export function getQuestionTypesForSkill(skill: Skill): QuestionType[] {
   if (skill == Skill.ADDITION_SINGLE) {
     return [
-      "horizontal equation",
-      "vertical equation",
-      "word problem",
-      "true or false",
-      "multiple choice",
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
     ];
   } else if (skill == Skill.ADDITION_DOUBLE) {
     return [
-      "horizontal equation",
-      "vertical equation",
-      "word problem",
-      "true or false",
-      "multiple choice",
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
     ];
   } else if (skill == Skill.ADDITION_TRIPLE) {
     return [
-      "horizontal equation",
-      "vertical equation",
-      "word problem",
-      "true or false",
-      "multiple choice",
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
     ];
   } else if (skill == Skill.ADDITION_PROPERTIES) {
-    return ["something else"];
+    return [QuestionType.MULTIPLE_CHOICE_WORD];
   } else if (skill == Skill.ADDITION_4_DIGIT) {
     return [
-      "horizontal equation",
-      "vertical equation",
-      "word problem",
-      "true or false",
-      "multiple choice",
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
     ];
   } else if (skill == Skill.ADDITION_TENTHS) {
-    return ["horizontal equation", "vertical equation"];
+    return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
   } else if (skill == Skill.ADDITION_5_DIGIT) {
     return [
-      "horizontal equation",
-      "vertical equation",
-      "word problem",
-      "true or false",
-      "multiple choice",
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
     ];
   } else if (skill == Skill.ADDITION_HUNDREDTHS) {
-    return ["horizontal equation", "vertical equation"];
+    return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
   } else if (skill == Skill.SUBTRACTION_SINGLE) {
     return [
-      "horizontal equation",
-      "vertical equation",
-      "word problem",
-      "true or false",
-      "multiple choice",
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
     ];
   } else if (skill == Skill.SUBTRACTION_DOUBLE) {
     return [
-      "horizontal equation",
-      "vertical equation",
-      "word problem",
-      "true or false",
-      "multiple choice",
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
     ];
   } else if (skill == Skill.SUBTRACTION_TRIPLE) {
     return [
-      "horizontal equation",
-      "vertical equation",
-      "word problem",
-      "true or false",
-      "multiple choice",
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
     ];
   } else if (skill == Skill.SUBTRACTION_4_DIGIT) {
     return [
-      "horizontal equation",
-      "vertical equation",
-      "word problem",
-      "true or false",
-      "multiple choice",
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.SUBTRACTION_5_DIGIT) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
     ];
   } else if (skill == Skill.SUBTRACTION_TENTHS) {
-    return ["horizontal equation", "vertical equation"];
+    return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
+  } else if (skill == Skill.SUBTRACTION_HUNDREDTHS) {
+    return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
   } else {
-    return ["hey"];
+    return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
   }
 }
 

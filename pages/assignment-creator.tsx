@@ -6,6 +6,7 @@ import AssignmentCreationForm, {
   QuestionTypeForSkill,
 } from "../components/assignment-creator/assignmentCreationForm";
 import AssignmentQuestions from "../components/assignment-creator/assignmentQuestions";
+import DisplayAssignmentQuestions from "../components/assignment-creator/displayAssignmentQuestions";
 
 enum STAGE {
   CHOOSE_TOPICS,
@@ -17,11 +18,15 @@ enum STAGE {
 const Diagnostic = () => {
   const [stage, setStage] = useState(STAGE.CHOOSE_TOPICS);
   const [selectedQuestions, setSelectedQuestions] = useState<Skill[]>([]);
-  const [selectedQuestionTypes, setSelectedQuestionTypes] = useState<
-    QuestionTypeForSkill[]
-  >([]);
+  const [selectedSkills, setSelectedSkills] = useState<QuestionTypeForSkill[]>(
+    []
+  );
 
   const createAssignment = () => {
+    setStage(STAGE.CUSTOMIZE);
+  };
+
+  const customizeAssignment = () => {
     setStage(STAGE.REVIEW);
   };
 
@@ -36,13 +41,19 @@ const Diagnostic = () => {
         />
       );
       break;
-    case STAGE.REVIEW:
+    case STAGE.CUSTOMIZE:
       component = (
         <AssignmentQuestions
           selectedQuestions={selectedQuestions}
-          selectedQuestionTypes={selectedQuestionTypes}
-          setSelectedQuestionTypes={setSelectedQuestionTypes}
+          selectedSkills={selectedSkills}
+          setSelectedSkills={setSelectedSkills}
+          onClick={customizeAssignment}
         />
+      );
+      break;
+    case STAGE.REVIEW:
+      component = (
+        <DisplayAssignmentQuestions selectedSkills={selectedSkills} />
       );
       break;
     case STAGE.CONFIRM:

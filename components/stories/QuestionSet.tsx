@@ -206,11 +206,18 @@ const QuestionSet = ({
       const skill = questionData[index].skill;
 
       return (
-        <LongDivision
-          question={questionData[index]}
-          submitGuess={submitGuess}
-          isRemainder={skill === Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT}
-        />
+        <div>
+          <LongDivision
+            question={questionData[index]}
+            submitGuess={submitGuess}
+            isRemainder={
+              skill === Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT ||
+              skill === Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT ||
+              skill === Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT
+            }
+          />
+          {skill}
+        </div>
       );
     } else if (
       questionData[index].questionType === QuestionType.ARRAY_QUESTION

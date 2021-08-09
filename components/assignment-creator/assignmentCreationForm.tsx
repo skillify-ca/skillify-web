@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { QuestionType } from "../../pages/api/questionTypes";
 import {
   getQuestionTypesForSkill,
   getSkillsForTopic,
@@ -11,7 +12,7 @@ import { Button } from "../ui/Button";
 import Checkbox from "../ui/Checkbox";
 
 export type QuestionTypeForSkill = {
-  questionType: string;
+  questionType: QuestionType;
   skill: Skill;
 };
 

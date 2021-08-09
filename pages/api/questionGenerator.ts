@@ -10,7 +10,10 @@ import { Skill } from "./skill";
 import { getRandomPropertyAdditionQuestion } from "./additionPropertyQuestionGenerator";
 import { shuffle } from "lodash";
 
-export const generateQuestionForSkill = (skill: Skill): Question => {
+export const generateQuestionForSkill = (
+  skill: Skill,
+  questionType?: QuestionType
+): Question => {
   switch (skill) {
     case Skill.NUMBERS_50:
       return getRandomNumbersQuestion(1, 51, skill);
@@ -19,35 +22,35 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
     case Skill.NUMBERS_1000:
       return getRandomNumbersQuestion(1, 1001, skill);
     case Skill.ADDITION_SINGLE:
-      return getRandomAdditionQuestion(1, 11, skill);
+      return getRandomAdditionQuestion(1, 11, skill, questionType);
     case Skill.ADDITION_DOUBLE:
-      return getRandomAdditionQuestion(10, 101, skill);
+      return getRandomAdditionQuestion(10, 101, skill, questionType);
     case Skill.ADDITION_TRIPLE:
-      return getRandomAdditionQuestion(100, 1001, skill);
+      return getRandomAdditionQuestion(100, 1001, skill, questionType);
     case Skill.ADDITION_TENTHS:
-      return getRandomAdditionQuestion(0.1, 0.9, skill);
+      return getRandomAdditionQuestion(0.1, 0.9, skill, questionType);
     case Skill.ADDITION_4_DIGIT:
-      return getRandomAdditionQuestion(1000, 10001, skill);
+      return getRandomAdditionQuestion(1000, 10001, skill, questionType);
     case Skill.ADDITION_PROPERTIES:
       return getRandomPropertyAdditionQuestion(1, 15, skill);
     case Skill.ADDITION_5_DIGIT:
-      return getRandomAdditionQuestion(10000, 100001, skill);
+      return getRandomAdditionQuestion(10000, 100001, skill, questionType);
     case Skill.ADDITION_HUNDREDTHS:
-      return getRandomAdditionQuestion(0.01, 0.99, skill);
+      return getRandomAdditionQuestion(0.01, 0.99, skill, questionType);
     case Skill.SUBTRACTION_SINGLE:
-      return getRandomSubtractionQuestion(2, 11, skill);
+      return getRandomSubtractionQuestion(2, 11, skill, questionType);
     case Skill.SUBTRACTION_DOUBLE:
-      return getRandomSubtractionQuestion(10, 101, skill);
+      return getRandomSubtractionQuestion(10, 101, skill, questionType);
     case Skill.SUBTRACTION_TRIPLE:
-      return getRandomSubtractionQuestion(100, 1001, skill);
+      return getRandomSubtractionQuestion(100, 1001, skill, questionType);
     case Skill.SUBTRACTION_4_DIGIT:
-      return getRandomSubtractionQuestion(1000, 10001, skill);
+      return getRandomSubtractionQuestion(1000, 10001, skill, questionType);
     case Skill.SUBTRACTION_TENTHS:
-      return getRandomSubtractionQuestion(0.1, 0.9, skill);
+      return getRandomSubtractionQuestion(0.1, 0.9, skill, questionType);
     case Skill.SUBTRACTION_5_DIGIT:
-      return getRandomSubtractionQuestion(10000, 100001, skill);
-    case Skill.SUBTRACTION_TENTHS:
-      return getRandomSubtractionQuestion(0.01, 0.99, skill);
+      return getRandomSubtractionQuestion(10000, 100001, skill, questionType);
+    case Skill.SUBTRACTION_HUNDREDTHS:
+      return getRandomSubtractionQuestion(0.01, 0.99, skill, questionType);
     case Skill.EQUAL_GROUP_10_ITEMS:
       return getRandomMultiplicationQuestion(1, 11, skill);
     case Skill.MULTIPLICATION_5:
@@ -290,7 +293,8 @@ export function stringNumCalc(answer: number[]): string {
 export function getRandomAdditionQuestion(
   min: number,
   max: number,
-  skill: Skill
+  skill: Skill,
+  questionType?: QuestionType
 ) {
   let rndQuestionType = getRndInteger(0, 2);
   if (rndQuestionType > 0 && skill == Skill.ADDITION_SINGLE) {
@@ -302,18 +306,26 @@ export function getRandomAdditionQuestion(
       text: text,
       answer: (a + b).toString(),
       answerType: AnswerType.STRING,
-      questionType: QuestionType.VISUAL_TYPE_PROBLEM,
+      questionType: questionType
+        ? questionType
+        : QuestionType.VISUAL_TYPE_PROBLEM,
       operator: "+",
       skill: skill,
       displayNum: getRndInteger(0, 3),
     };
   }
   const add = (a: number, b: number) => a + b;
-  return getRandomBinaryQuestion(min, max, "+", add, skill);
+  return getRandomBinaryQuestion(min, max, "+", add, skill, questionType);
 }
-function getRandomSubtractionQuestion(min: number, max: number, skill: Skill) {
+
+function getRandomSubtractionQuestion(
+  min: number,
+  max: number,
+  skill: Skill,
+  questionType?: QuestionType
+) {
   const subtract = (a: number, b: number) => a - b;
-  return getRandomBinaryQuestion(min, max, "-", subtract, skill);
+  return getRandomBinaryQuestion(min, max, "-", subtract, skill, questionType);
 }
 export function getArrayMultiplicationQuestion(
   a: number,
@@ -435,7 +447,8 @@ function getRandomBinaryQuestion(
   max: number,
   operator: string,
   answerFunction: (a: number, b: number) => number,
-  skill: Skill
+  skill: Skill,
+  questionType?: QuestionType
 ): Question {
   let types = [
     QuestionType.HORIZONTAL_EQUATION,
@@ -455,6 +468,7 @@ function getRandomBinaryQuestion(
   ) {
     types = [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
   }
+
   let typeIndex = getRndInteger(0, types.length);
   let a = getRndInteger(min, max);
   let b = getRndInteger(min, max);
@@ -485,7 +499,8 @@ function getRandomBinaryQuestion(
   }
   let text;
   let trueFalseAnswer;
-  const type = types[typeIndex];
+  //if type is passed
+  const type = questionType ? questionType : types[typeIndex];
   let multipleChoiceModel;
 
   if (type === QuestionType.TRUE_OR_FALSE_PROBLEM) {
