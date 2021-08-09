@@ -1,31 +1,50 @@
-import { ReactNode, useState } from "react";
-import StatementRow from "../stories/StatementRow";
-import { Input } from "../ui/Input";
+import { sum } from "lodash";
 
 export interface incomeTableProps {
-  value: string;
-  setValue: (value: string) => void; //Line A
-  value2: string;
-  setValue2: (value2: string) => void; //Line B
-  value3: string;
-  setValue3: (value3: string) => void; //Line C
+  monthlyIncome: string;
+  setMonthlyIncome: (monthlyIncome: string) => void; //Line A
+  spouseMonthlyIncome: string;
+  setSpouseMonthlyIncome: (spouseMonthlyIncome: string) => void; //Line B
+  totalMonthlyIncome: string;
+  setTotalMonthlyIncome: (totalMonthlyIncome: string) => void; //Line C
+
+  backgroundColour: string;
+  setBackgroundColour: (backgroundColour: string) => void;
+  valueTest: string;
+  setValueTest: (valueTest: string) => void;
 }
 
 const IncomeTable = ({
-  value,
-  setValue,
-  value2,
-  setValue2,
-  value3,
-  setValue3,
+  monthlyIncome,
+  setMonthlyIncome,
+  spouseMonthlyIncome,
+  setSpouseMonthlyIncome,
+  totalMonthlyIncome,
+  setTotalMonthlyIncome,
+  backgroundColour,
+  setBackgroundColour,
+  valueTest,
+  setValueTest,
 }: incomeTableProps) => {
+  const validate = (newTotalMonthlyIncome: string) => {
+    newTotalMonthlyIncome === ""
+      ? setBackgroundColour("")
+      : Number.parseInt(monthlyIncome) +
+          Number.parseInt(spouseMonthlyIncome) ===
+        Number.parseInt(newTotalMonthlyIncome)
+      ? setBackgroundColour("Correct")
+      : monthlyIncome + spouseMonthlyIncome === ""
+      ? setBackgroundColour("")
+      : setBackgroundColour("Wrong");
+  };
+
   return (
     <div>
       {" "}
       <h1 className={"mb-2"}>Section 2: Income</h1>
       <p>If married, add up your incomes in this section and put the</p>
       <p className={"mb-1"}>
-        total in Box C. If you are single, you will only have on income.
+        total in Box C. If you are single, you will only have one income.
       </p>
       <table className="table-fixed w-auto border-collapse">
         <thead>
@@ -44,8 +63,10 @@ const IncomeTable = ({
               A.
               <div className={"ml-2"}>
                 <input
-                  value={value}
-                  onChange={(e) => setValue(e.target.value)}
+                  value={monthlyIncome}
+                  onChange={(e) => {
+                    setMonthlyIncome(e.target.value);
+                  }}
                   placeholder="Type numbers only"
                 ></input>
               </div>
@@ -57,8 +78,10 @@ const IncomeTable = ({
               B.{" "}
               <div className={"ml-2"}>
                 <input
-                  value={value2}
-                  onChange={(e) => setValue2(e.target.value)}
+                  value={spouseMonthlyIncome}
+                  onChange={(e) => {
+                    setSpouseMonthlyIncome(e.target.value);
+                  }}
                   placeholder="Type numbers only"
                 ></input>
               </div>
@@ -72,9 +95,22 @@ const IncomeTable = ({
               C.
               <div className={"ml-2"}>
                 <input
-                  value={value3}
-                  onChange={(e) => setValue3(e.target.value)}
+                  value={totalMonthlyIncome}
+                  onChange={(e) => {
+                    const newTotalMonthlyIncome = e.target.value;
+                    setTotalMonthlyIncome(newTotalMonthlyIncome);
+                    validate(newTotalMonthlyIncome);
+                  }}
                   placeholder="Type numbers only"
+                  className={
+                    backgroundColour === ""
+                      ? "bg-white"
+                      : backgroundColour === "Correct"
+                      ? "bg-green-200"
+                      : backgroundColour === "Wrong"
+                      ? "bg-red-200"
+                      : "bg-white"
+                  }
                 ></input>
               </div>
             </td>
@@ -82,10 +118,6 @@ const IncomeTable = ({
         </tbody>
       </table>
       <p className={"ml-64 text-xs"}> **Put this amount in section 7**</p>
-      <p>A cell = {value}</p>
-      <p>B cell = {value2} </p>
-      <p>c cell = {value3}</p>
-      <p>Cell C CORRECT answer is ={+value + +value2}</p>
     </div>
   );
 };

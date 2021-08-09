@@ -27,7 +27,7 @@ export const TrueFalse = ({
               <input
                 type="radio"
                 value={option1}
-                className={"gap-x-2"}
+                className={"gap-x-2 "}
                 name={name}
                 onChange={onChange}
               />

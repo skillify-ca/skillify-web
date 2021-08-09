@@ -38,8 +38,12 @@ export const FinanceProfileChart = ({
       <FinanceProfileChartLine
         text={maritalStatus == MaritalStatus.MARRIED ? "Married" : "Single"}
       />
-      <h1>- Number of Children -</h1>
-      <FinanceProfileChartLine text={numberOfChildren} />
+      {numberOfChildren > 0 && (
+        <div className="w-full">
+          <h1 className="text-center ">- Number of Children -</h1>
+          <FinanceProfileChartLine text={numberOfChildren} />
+        </div>
+      )}
       {spouseOccupation.length > 1 && (
         <div className="w-full">
           <h1 className="text-center ">- Spouse's Occupation -</h1>
