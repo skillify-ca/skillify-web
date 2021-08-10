@@ -1,5 +1,3 @@
-export {};
-
 import _, { min } from "lodash";
 import React, { useEffect, useState } from "react";
 import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
@@ -53,19 +51,6 @@ const FinanceProfile = () => {
   const [totalAdditional, setTotalAdditional] = useState("");
   const [sumAddValidation, setSumAddValidation] = useState("");
 
-  const [carPayment1, setCarPayment1] = useState("");
-  const [carPayment2, setCarPayment2] = useState("");
-  const [carInsurance, setCarInsurance] = useState("");
-  const [gasoline, setGasoline] = useState("");
-  const [totalCarCosts, setTotalCarCosts] = useState("");
-  const [sumValidationCar, setSumValidationCar] = useState("");
-
-  const [tvInternet, setTvInternet] = useState("");
-  const [phone, setPhone] = useState("");
-  const [grocery, setGrocery] = useState("");
-  const [totalAdditional, setTotalAdditional] = useState("");
-  const [sumAddValidation, setSumAddValidation] = useState("");
-
   const [totalExpenses, setTotalExpenses] = useState("200"); //Set for Section 6
 
   const [totalMonthlySection7, setTotalMonthlysection7] = useState("");
@@ -95,7 +80,6 @@ const FinanceProfile = () => {
           />
         )}
       </div>
-
 
       <SectionOneInput
         isMarried={isMarried}
@@ -212,9 +196,6 @@ const FinanceProfile = () => {
         />
       </div>
     </div> //This is for Section 7
-
-    </div>
-
   );
 };
 
