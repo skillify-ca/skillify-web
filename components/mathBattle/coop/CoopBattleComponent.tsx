@@ -14,6 +14,7 @@ export interface CoopBattleComponentProps {
 
 const CoopBattleComponent = ({ questions, room }: CoopBattleComponentProps) => {
   const [index, setIndex] = useState(0);
+  const [correctGuesses, setCorrectGuesses] = useState(0);
   const inputElement = useRef(null);
   const [health, setHealth] = useState(200);
   const [
@@ -41,6 +42,8 @@ const CoopBattleComponent = ({ questions, room }: CoopBattleComponentProps) => {
       if (currentGuess.isCorrect) {
         room.send("correct");
       }
+    } else {
+      room.send("requestGameOver");
     }
   };
   return (

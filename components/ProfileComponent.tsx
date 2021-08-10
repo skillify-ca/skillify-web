@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { useSession } from "next-auth/client";
 import { userId } from "../graphql/utils/constants";
 import { EMOJI_MASTERY, getEmoji } from "../pages/api/skill";
 import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
-import ReactCardFlip from "react-card-flip";
 import LockedBadge from "./LockedBadge";
+import { Session } from "next-auth";
 
-const ProfileComponent = () => {
-  const [session] = useSession();
+interface ProfileComponentProps {
+  session: Session;
+}
 
+const ProfileComponent = ({ session }: ProfileComponentProps) => {
   let { loading, data } = useQuery(FETCH_USER_PROFILE, {
     variables: {
       userId: userId(session),

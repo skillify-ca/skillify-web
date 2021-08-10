@@ -15,6 +15,7 @@ export interface HouseExpensesProps {
     homeType: string,
     setHomeType: (homeType: string) => void;
 
+
 }
 
 const HouseExpensesTable = ({
@@ -157,7 +158,7 @@ const HouseExpensesTable = ({
                         </tr>
                     </tbody>
                 </table>
-            </div>
+                </div>
             <p className="text-xs ml-72 pl-4">**Put this amount in section 6**</p>
         </div>
     )
