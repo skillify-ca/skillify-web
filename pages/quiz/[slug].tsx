@@ -22,6 +22,24 @@ import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
 import { SAVE_QUIZ_ATTEMPT } from "../../graphql/saveQuizAttempt";
 import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 
+export function getGradeLevel(score: number) {
+  if (score <= 50) {
+    return "F";
+  } else if (score <= 60) {
+    return "D";
+  } else if (score <= 70) {
+    return "C";
+  } else if (score <= 80) {
+    return "B";
+  } else if (score <= 90) {
+    return "A";
+  } else if (score < 100) {
+    return "A+";
+  } else {
+    return "A++";
+  }
+}
+
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
   const [session] = useSession();
@@ -39,6 +57,7 @@ const Quiz = ({ slug }) => {
       skill: Skill.ADDITION_SINGLE,
     },
   ]);
+
   const [currentLevel, setCurrentLevel] = React.useState(0);
   const inputElement = useRef(null);
   const [guesses, setGuesses] = useState([]);
@@ -193,6 +212,9 @@ const Quiz = ({ slug }) => {
         transition={ModalTransition.SCALE}
       >
         <div className="py-16 m-8 space-y-8 bg-white flex flex-col justify-center items-center">
+          <p className="text-2xl">
+            Grade Level: {getGradeLevel(getAccuracy())}
+          </p>
           <p className="text-2xl">Speed </p> {secondsElapsed} seconds
           <p className="text-2xl">Accuracy</p>
           {getAccuracy()}%
