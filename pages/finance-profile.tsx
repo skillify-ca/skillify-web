@@ -1,3 +1,5 @@
+export {};
+
 import _, { min } from "lodash";
 import React, { useEffect, useState } from "react";
 import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
