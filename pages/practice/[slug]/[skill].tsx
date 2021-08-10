@@ -428,6 +428,77 @@ export async function getStaticPaths() {
       { params: { slug: "division", skill: "share-8-equally" } },
       { params: { slug: "division", skill: "divide-12-equally" } },
       { params: { slug: "division", skill: "divide-100-equally" } },
+      { params: { slug: "addition", skill: "add-four-digit" } },
+      { params: { slug: "addition", skill: "add-five-digit" } },
+      { params: { slug: "addition", skill: "add-six-digit" } },
+      { params: { slug: "addition", skill: "add-tenths" } },
+      { params: { slug: "addition", skill: "add-hundredths" } },
+      { params: { slug: "subtraction", skill: "subtract-four-digit" } },
+      { params: { slug: "subtraction", skill: "subtract-tenths" } },
+      { params: { slug: "subtraction", skill: "subtract-five-digit" } },
+      { params: { slug: "subtraction", skill: "subtract-hundredths" } },
+      { params: { slug: "subtraction", skill: "subtract-six-digit" } },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-single-and-double-digit",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-single-and-triple-digit",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-double-digit-by-10",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-triple-digit-by-10",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-double-and-double-digit",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-double-and-triple-digit",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-triple-digit-by-tenths",
+        },
+      },
+      {
+        params: {
+          slug: "division",
+          skill: "divide-double-digit-by-single-digit",
+        },
+      },
+      {
+        params: {
+          slug: "division",
+          skill: "divide-triple-digit-by-single-digit",
+        },
+      },
+      {
+        params: {
+          slug: "division",
+          skill: "divide-triple-digit-by-double-digit",
+        },
+      },
+      { params: { slug: "division", skill: "divide-triple-digit-by-tenths" } },
     ],
     fallback: true,
   };

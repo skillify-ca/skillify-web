@@ -1,4 +1,4 @@
-import { min } from "lodash";
+import _, { min } from "lodash";
 import React, { useEffect, useState } from "react";
 import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
 import IncomeTable from "../components/finance/IncomeTable";
@@ -10,6 +10,8 @@ import {
 } from "./api/finance/profile";
 import { getRndInteger } from "./api/random";
 import HouseExpensesTable from "../components/finance/HouseExpensesTable";
+import CarExpenseTable from "../components/finance/CarExpenseTable";
+import AdditionalTable from "../components/finance/AdditionalExpense";
 
 const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
@@ -32,6 +34,20 @@ const FinanceProfile = () => {
   const [spouseOccupation, setSpouseOccupation] = useState("");
   const [spouseSalary, setSpouseSalary] = useState(0);
   const [profileData, setProfileData] = useState<FinanceProfileType>(); //profileData used for Validation in child components
+  const [sectionOneValidation, setSectionOneValidation] = useState(false);
+
+  const [carPayment1, setCarPayment1] = useState("");
+  const [carPayment2, setCarPayment2] = useState("");
+  const [carInsurance, setCarInsurance] = useState("");
+  const [gasoline, setGasoline] = useState("");
+  const [totalCarCosts, setTotalCarCosts] = useState("");
+  const [sumValidationCar, setSumValidationCar] = useState("");
+
+  const [tvInternet, setTvInternet] = useState("");
+  const [phone, setPhone] = useState("");
+  const [grocery, setGrocery] = useState("");
+  const [totalAdditional, setTotalAdditional] = useState("");
+  const [sumAddValidation, setSumAddValidation] = useState("");
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -53,8 +69,7 @@ const FinanceProfile = () => {
           />
         )}
       </div>
-      <div> </div>
-
+      <div>1</div>
       <SectionOneInput
         isMarried={isMarried}
         setMarriage={setMarriage}
@@ -68,7 +83,25 @@ const FinanceProfile = () => {
         setSpouseOccupation={setSpouseOccupation}
         spouseSalary={spouseSalary}
         setSpouseSalary={setSpouseSalary}
+        profileData={profileData}
+        sectionOneValidation={sectionOneValidation}
+        setSectionOneValidation={setSectionOneValidation}
       />
+      <div>
+        {sectionOneValidation ? (
+          <div className="flex flex-nowrap">
+            {" "}
+            Great Job!  
+            <img src={"/images/checked-checkbox-16.png"} />
+          </div>
+        ) : (
+          <div className="flex flex-nowrap">
+            {" "}
+            Lets take a look back at your work!  
+            <img src={"/images/warning-2-16.png"} />
+          </div>
+        )}
+      </div>
 
       <div className={"mt-8"}>
         <IncomeTable
@@ -96,6 +129,38 @@ const FinanceProfile = () => {
           setWaterBill={setWaterBill}
           totalHousingCost={totalHousingCost}
           setTotalHousingCost={setTotalHousingCost}
+        />
+      </div>
+
+      <div>
+        <CarExpenseTable
+          carPayment1={carPayment1}
+          setCarPayment1={setCarPayment1}
+          carPayment2={carPayment2}
+          setCarPayment2={setCarPayment2}
+          carInsurance={carInsurance}
+          setCarInsurance={setCarInsurance}
+          gasoline={gasoline}
+          setGasoline={setGasoline}
+          totalCarCosts={totalCarCosts}
+          setTotalCarCosts={setTotalCarCosts}
+          sumValidationCar={sumValidationCar}
+          setSumValidationCar={setSumValidationCar}
+        />
+      </div>
+
+      <div>
+        <AdditionalTable
+          tvInternet={tvInternet}
+          setTvInternet={setTvInternet}
+          phone={phone}
+          setPhone={setPhone}
+          grocery={grocery}
+          setGrocery={setGrocery}
+          totalAdditional={totalAdditional}
+          setTotalAdditional={setTotalAdditional}
+          sumAddValidation={sumAddValidation}
+          setSumAddValidation={setSumAddValidation}
         />
       </div>
     </div>
