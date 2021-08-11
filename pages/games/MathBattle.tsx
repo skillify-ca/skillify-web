@@ -55,7 +55,7 @@ const MathBattle = () => {
     },
   ]);
 
-  var client = new Colyseus.Client("ws://localhost:4001");
+  var client = new Colyseus.Client("wss://math-game-server.herokuapp.com");
   const onJoinClick = () => {
     client
       .joinById(code)
@@ -117,17 +117,10 @@ const MathBattle = () => {
       console.log(key, value);
       playerArr.push(value);
     }
-    console.log(playerArr);
-    // room.send("leader", leader);
 
     setPlayers(playerArr);
     setLeader(message.leader);
   });
-
-  // room?.onMessage("leaderResponse", (message) => {
-  //   console.log("messagetime", message);
-  //   setLeader(message);
-  // });
 
   room?.onMessage("postGame", (message) => {
     console.log("message", message);
