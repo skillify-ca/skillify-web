@@ -11,7 +11,6 @@ import { useEffect } from "react";
 import CreateRoom from "../../components/mathBattle/CreateRooms";
 import Lobby from "../../components/mathBattle/PlayerLobby";
 import PostGameLobby from "../../components/mathBattle/PostGameLobby";
-import GameOver from "../../components/mathBattle/GameOver";
 import CoopGameOver from "../../components/mathBattle/coop/CoopGameOver";
 import CoopBattleIntro from "../../components/mathBattle/coop/CoopBattleIntro";
 import CoopStoryComponent from "../../components/mathBattle/CoopNarrative";
@@ -233,14 +232,6 @@ const MathBattle = () => {
             gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
             room={room}
             length={players.length}
-          />
-        )}
-        {stage == STAGE.GAME_OVER && (
-          <GameOver
-            goToLobby={() => setStage(STAGE.JOIN_SESSION)}
-            gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
-            winnerId={winnerId}
-            room={room}
           />
         )}
         {stage == STAGE.COOP_GAME_OVER && (
