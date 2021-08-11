@@ -91,6 +91,12 @@ export default function Navbar() {
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4">
                 <a
+                  href="/games/MathBattle"
+                  className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+                >
+                  Games
+                </a>
+                <a
                   href="/diagnostic"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
@@ -114,6 +120,12 @@ export default function Navbar() {
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Puzzles
+                </a>
+                <a
+                  href="/contact"
+                  className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Contact
                 </a>
               </div>
             </div>
@@ -200,7 +212,12 @@ export default function Navbar() {
 
       <div className={`${active ? "block" : "hidden"} sm:hidden`}>
         <div className="px-2 pt-2 pb-3 space-y-1">
-          {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
+          <a
+            href="/games/MathBattle"
+            className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Games
+          </a>
           <div>
             <Link href="/practice">
               <p className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
@@ -225,6 +242,12 @@ export default function Navbar() {
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Puzzles
+          </a>
+          <a
+            href="/contact"
+            className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Contact
           </a>
         </div>
       </div>
