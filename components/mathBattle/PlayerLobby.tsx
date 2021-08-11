@@ -5,16 +5,17 @@ import Link from "next/link";
 import { Player } from "../../pages/games/MathBattle";
 
 export interface CreateRoomProps {
+  room: Colyseus.Room;
   leader: string;
   players: Player[];
   code: string;
   startGame: () => void;
 }
 
-const Lobby = ({ leader, players, code, startGame }: CreateRoomProps) => {
+const Lobby = ({ room, leader, players, code, startGame }: CreateRoomProps) => {
   if (players && players.length > 0) {
     return (
-      <div className="flex flex-col items-center ">
+      <div className="flex flex-col items-center gap-8 ">
         <div className="relative flex flex-col justify-center  bg-gray-100 w-1/2 ">
           <h1 className="text-3xl font-bold text-blue-400 border-b ">
             Lobby Room
@@ -24,7 +25,6 @@ const Lobby = ({ leader, players, code, startGame }: CreateRoomProps) => {
               <h1 className="text-xl font-bold border-b opacity-100">
                 {console.log("leader", leader)}
                 {console.log("id", it.sessionId)}
-
                 {it.name}
                 {leader == it.sessionId && (
                   <div>
@@ -44,15 +44,26 @@ const Lobby = ({ leader, players, code, startGame }: CreateRoomProps) => {
             </div>
           ))}
           <p className="bg-gray-500 text-white font-bold">Code: {code}</p>
+          <p className="bg-gray-500 text-white font-bold">
+            Lobby Capacity: {players.length}/4
+          </p>
         </div>
         {players.length === 1 ? (
-          <div>
-            <p>Waiting for all players</p>
+          <div className="flex flex-col gap-4">
+            <p className="font-bold text-blue-400 text-xl">
+              Waiting for more Players
+            </p>
+            <div className=" flex justify-center items-center ">
+              <div className="loader bg-white p-5 rounded-full flex space-x-3">
+                <div className="w-5 h-5 bg-blue-400 shadow-sm rounded-full animate-bounce"></div>
+                <div className="w-5 h-5 bg-blue-400 shadow-sm  rounded-full animate-bounce"></div>
+                <div className="w-5 h-5 bg-blue-400  shadow-sm rounded-full animate-bounce"></div>
+              </div>
+            </div>
           </div>
-
         ) : (
           <div>
-            {players.length == 2 ? (
+            {leader == room.sessionId && players.length >= 2 ? (
               <Button
                 label="Play"
                 backgroundColor="blue"
@@ -60,7 +71,18 @@ const Lobby = ({ leader, players, code, startGame }: CreateRoomProps) => {
                 onClick={startGame}
               />
             ) : (
-              <p>Waiting for Lobby Leader to Start Game</p>
+              <div className="flex flex-col gap-4">
+                <p className="font-bold text-blue-400 text-xl">
+                  Waiting for Lobby Leader to Start Game
+                </p>
+                <div className=" flex justify-center items-center ">
+                  <div className="loader bg-white p-5 rounded-full flex space-x-3">
+                    <div className="w-5 h-5 bg-blue-400 shadow-sm rounded-full animate-bounce"></div>
+                    <div className="w-5 h-5 bg-blue-400 shadow-sm  rounded-full animate-bounce"></div>
+                    <div className="w-5 h-5 bg-blue-400  shadow-sm rounded-full animate-bounce"></div>
+                  </div>
+                </div>
+              </div>
             )}
           </div>
         )}
