@@ -13,6 +13,7 @@ import { getRndInteger } from "./api/random";
 import HouseExpensesTable from "../components/finance/HouseExpensesTable";
 import CarExpenseTable from "../components/finance/CarExpenseTable";
 import AdditionalTable from "../components/finance/AdditionalExpense";
+import MoneyRemainingTable from "../components/finance/MoneyRemaining";
 
 
 const FinanceProfile = () => {
@@ -52,6 +53,15 @@ const FinanceProfile = () => {
   const [totalAdditional, setTotalAdditional] = useState("");
   const [sumAddValidation, setSumAddValidation] = useState("");
 
+  const [totalExpenses, setTotalExpenses] = useState("200"); //Set for Section 6
+
+  const [totalMonthlySection7, setTotalMonthlysection7] = useState("");
+  const [totalExpensesSection7, setTotalExpensesSection7] = useState("");
+  const [totalMoneyRemaining, setTotalMoneyRemaining] = useState("");
+  const [monthlyIncomeValidation, setMonthlyIncomeValidation] = useState("");
+  const [totalExpenseValidation, setTotalExpenseValidation] = useState("");
+  const [moneyRemValidation, setMoneyRemValidation] = useState("");
+
   useEffect(() => {
     // Update the document title using the browser API
     const randomProfile = getRndInteger(0, 12);
@@ -72,7 +82,7 @@ const FinanceProfile = () => {
           />
         )}
       </div>
-      <div>1</div>
+
       <SectionOneInput
         isMarried={isMarried}
         setMarriage={setMarriage}
@@ -169,7 +179,28 @@ const FinanceProfile = () => {
           setSumAddValidation={setSumAddValidation}
         />
       </div>
-    </div>
+
+      <div>
+        <MoneyRemainingTable
+          totalMonthlySection7={totalMonthlySection7}
+          setTotalMonthlySection7={setTotalMonthlysection7}
+          totalExpensesSection7={totalExpensesSection7}
+          setTotalExpensesSection7={setTotalExpensesSection7}
+          totalMoneyRemaining={totalMoneyRemaining}
+          setTotalMoneyRemaining={setTotalMoneyRemaining}
+          monthlyIncomeValidation={monthlyIncomeValidation}
+          setMonthlyIncomeValidation={setMonthlyIncomeValidation}
+          totalExpenseValidation={totalExpenseValidation}
+          setTotalExpenseValidation={setTotalExpenseValidation}
+          moneyRemValidation={moneyRemValidation}
+          setMoneyRemValidation={setMoneyRemValidation}
+          totalMonthlyIncome={totalMonthlyIncome}
+          setTotalMonthlyIncome={setTotalMonthlyIncome}
+          totalExpenses={totalExpenses}
+          setTotalExpenses={setTotalExpenses}
+        />
+      </div>
+    </div> //This is for Section 7
   );
 };
 
