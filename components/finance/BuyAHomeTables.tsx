@@ -301,3 +301,95 @@ export const DishAndSpoonNetwork = () => {
     </div>
   );
 };
+
+export const VintageWireless = () => {
+  return (
+    <div>
+      <div className="text-lg">Vintage Wireless</div>
+      <table className="shadow-l bg-white ">
+        <thead>
+          <tr>
+            <th className="bg-green-300 border border-black text-center text-white w-40">
+              Number of Phones
+            </th>
+            <th className="bg-green-300 border border-black text-center text-white w-40">
+              Talk Only
+            </th>
+            <th className="bg-green-300 border border-black text-center text-white w-40">
+              Talk and Text
+            </th>
+            <th className="bg-green-300 border border-black text-center text-white w-40">
+              Talk, Text and Data (internet)
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className="border border-black text-center">1</td>
+            <td className="border border-black text-center">$39.00</td>
+            <td className="border border-black text-center">$59.00</td>
+            <td className="border border-black text-center">$69.00</td>
+          </tr>
+          <tr>
+            <td className="border border-black text-center">2</td>
+            <td className="border border-black text-center">$59.00</td>
+            <td className="border border-black text-center">$79.00</td>
+            <td className="border border-black text-center">$89.00</td>
+          </tr>
+          <tr>
+            <td className="border border-black text-center">3 or More</td>
+            <td className="border border-black text-center">$69.00</td>
+            <td className="border border-black text-center">$89.00</td>
+            <td className="border border-black text-center">$99.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export const SpeedyWireless = () => {
+  return (
+    <div>
+      <div className="text-lg">Speedy Wireless</div>
+      <table className="shadow-l bg-white ">
+        <thead>
+          <tr>
+            <th className="bg-green-300 border border-black text-center text-white w-40">
+              Package
+            </th>
+            <th className="bg-green-300 border border-black text-center text-white w-40">
+              Number of Channels
+            </th>
+            <th className="bg-green-300 border border-black text-center text-white w-40">
+              Cost Per Month
+            </th>
+            <th className="bg-green-300 border border-black text-center text-white w-40">
+              Cost Per Month
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className="border border-black text-center">1</td>
+            <td className="border border-black text-center">$45.00</td>
+            <td className="border border-black text-center">$65.00</td>
+            <td className="border border-black text-center">$83.00</td>
+          </tr>
+          <tr>
+            <td className="border border-black text-center">2</td>
+            <td className="border border-black text-center">$55.00</td>
+            <td className="border border-black text-center">$75.00</td>
+            <td className="border border-black text-center">$93.00</td>
+          </tr>
+          <tr>
+            <td className="border border-black text-center">3 or More</td>
+            <td className="border border-black text-center">$65.00</td>
+            <td className="border border-black text-center">$85.00</td>
+            <td className="border border-black text-center">$103.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+};
