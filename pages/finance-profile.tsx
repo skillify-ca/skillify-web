@@ -2,6 +2,7 @@ import _, { min } from "lodash";
 import React, { useEffect, useState } from "react";
 import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
 import IncomeTable from "../components/finance/IncomeTable";
+
 import { SectionOneInput } from "../components/finance/SectionOneInput";
 import {
   FinanceProfileType,
@@ -12,24 +13,25 @@ import { getRndInteger } from "./api/random";
 import HouseExpensesTable from "../components/finance/HouseExpensesTable";
 import CarExpenseTable from "../components/finance/CarExpenseTable";
 import AdditionalTable from "../components/finance/AdditionalExpense";
-
 import MoneyRemainingTable from "../components/finance/MoneyRemaining";
+
 
 const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
   const [spouseMonthlyIncome, setSpouseMounthlyIncome] = useState("");
   const [totalMonthlyIncome, setTotalMonthlyIncome] = useState("");
+  const [housePayment, setHousePayment] = useState("");
+  const [electricBill, setElectricBill] = useState("");
+  const [gasBill, setGasBill] = useState("");
+  const [waterBill, setWaterBill] = useState("");
+  const [totalHousingCost, setTotalHousingCost] = useState("");
+  const [homeType, setHomeType] = useState("");
 
   const [backgroundColour, setBackgroundColour] = useState("");
   const [valueTest, setValueTest] = useState("");
 
   const [isMarried, setMarriage] = useState(MaritalStatus.SINGLE);
   const [hasChildren, setChildren] = useState(false);
-  const [housePayment, setHousePayment] = useState("");
-  const [electricBill, setElectricBill] = useState("");
-  const [gasBill, setGasBill] = useState("");
-  const [waterBill, setWaterBill] = useState("");
-  const [totalHousingCost, setTotalHousingCost] = useState("");
 
   const [individualOccupation, setIndividualOccupation] = useState("");
   const [individualSalary, setIndividualSalary] = useState(0);
@@ -128,18 +130,21 @@ const FinanceProfile = () => {
           setValueTest={setValueTest}
         ></IncomeTable>
       </div>
+      
       <div>
         <HouseExpensesTable
-          housePayment={housePayment}
-          setHousePayment={setHousePayment}
-          electricBill={electricBill}
-          setElectricBill={setElectricBill}
-          gasBill={gasBill}
-          setGasBill={setGasBill}
-          waterBill={waterBill}
-          setWaterBill={setWaterBill}
-          totalHousingCost={totalHousingCost}
-          setTotalHousingCost={setTotalHousingCost}
+          housePayment = {housePayment}
+          setHousePayment = {setHousePayment}
+          electricBill = {electricBill}
+          setElectricBill = {setElectricBill}
+          gasBill = {gasBill}
+          setGasBill = {setGasBill}
+          waterBill = {waterBill}
+          setWaterBill = {setWaterBill}
+          totalHousingCost = {totalHousingCost}
+          setTotalHousingCost = {setTotalHousingCost}
+          homeType = {homeType}
+          setHomeType = {setHomeType}
         />
       </div>
 
