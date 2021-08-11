@@ -1,3 +1,21 @@
+type TileData = {
+  type: string;
+  index: number;
+};
+type QuestionPart = {
+  text: string;
+  tileData: TileData;
+};
+type PuzzleQuestion = {
+  parts: QuestionPart[];
+};
+
+export type Puzzle = {
+  title: string;
+  id: number;
+  answer: string;
+  questions: PuzzleQuestion[];
+};
 const MULTIPLICATION_TWO = {
   title: "Two Times Table",
   id: 2,
@@ -394,4 +412,3 @@ export const PUZZLE_DATA = {
   "8": MULTIPLICATION_EIGHT,
   "9": MULTIPLICATION_NINE,
 };
-
