@@ -1,10 +1,7 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 
-import BudgetRules, { incomeTableProps } from "./IncomeTable";
-import ExpenseTable from "./IncomeTable";
-import IncomeTable from "./IncomeTable";
-import { values } from "lodash";
+import IncomeTable, { incomeTableProps } from "./IncomeTable";
 
 export default {
   title: "finance/IncomeTable",
