@@ -11,7 +11,6 @@ import { useEffect } from "react";
 import CreateRoom from "../../components/mathBattle/CreateRooms";
 import Lobby from "../../components/mathBattle/PlayerLobby";
 import PostGameLobby from "../../components/mathBattle/PostGameLobby";
-import GameOver from "../../components/mathBattle/GameOver";
 import CoopGameOver from "../../components/mathBattle/coop/CoopGameOver";
 import CoopBattleIntro from "../../components/mathBattle/coop/CoopBattleIntro";
 import CoopStoryComponent from "../../components/mathBattle/CoopNarrative";
@@ -119,21 +118,17 @@ const MathBattle = () => {
   };
   room?.onMessage("joinResponse", (message) => {
     console.log(client.auth._id, "received fire on", room.name, message);
-    console.log("messageresponse", message);
+    console.log("messageresponse", message.players);
+    console.log("leaderMEssage", message.leader);
+
     let playerArr = [];
-    for (const [key, value] of Object.entries(message)) {
+    for (const [key, value] of Object.entries(message.players)) {
       console.log(key, value);
       playerArr.push(value);
     }
-    console.log(playerArr);
-    room.send("leader", leader);
 
     setPlayers(playerArr);
-  });
-
-  room?.onMessage("leaderResponse", (message) => {
-    console.log("messagetime", message);
-    setLeader(message);
+    setLeader(message.leader);
   });
 
   room?.onMessage("postGame", (message) => {
@@ -150,7 +145,7 @@ const MathBattle = () => {
 
   room?.onMessage("goToBattle", (message) => {
     setStage(STAGE.BATTLE);
-    const questions = message;
+    const questions = message.battleQuestions;
     setQuestionData(questions);
   });
   room?.onMessage("goToCoop", (message) => {
@@ -174,7 +169,7 @@ const MathBattle = () => {
   const onStartGameRequested = () => {
     setStage(STAGE.BATTLE);
     const questions = generateQuestions("addition", 1, 10);
-    room.send("startGameRequested", questions);
+    room.send("startGameRequested", { questions: questions, players: players });
   };
 
   useEffect(() => {
@@ -201,6 +196,7 @@ const MathBattle = () => {
             )}
         {stage == STAGE.LOBBY && (
           <Lobby
+            room={room}
             players={players}
             code={code}
             startGame={onStartGameRequested}
@@ -211,6 +207,7 @@ const MathBattle = () => {
         {stage == STAGE.BATTLE && (
           <BattleComponent
             questions={questionData}
+            players={players}
             room={room}
             gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
           />
@@ -237,14 +234,7 @@ const MathBattle = () => {
             goToLobby={() => setStage(STAGE.LOBBY)}
             gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
             room={room}
-          />
-        )}
-        {stage == STAGE.GAME_OVER && (
-          <GameOver
-            goToLobby={() => setStage(STAGE.JOIN_SESSION)}
-            gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
-            winnerId={winnerId}
-            room={room}
+            length={players.length}
           />
         )}
         {stage == STAGE.COOP_GAME_OVER && (
