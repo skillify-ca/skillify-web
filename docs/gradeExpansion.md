@@ -14,7 +14,7 @@
 4. Go to getSkillsForTopic function and add the skills for your grade under the apporiate topic
 5. Refer to the skills table on Hausura
 6. Go to getSkillId function and add your skills under the switch condition and the return value for the switch case should match the id of the skill on the Hausura skills table
-7. Go to SkillDescription function and create a condtitiopn for each of your added skills and give each a description which will be displayed on the Topic Overview page
+7. Go to SkillDescription function and create a condtition for each of your added skills and give each a description which will be displayed on the Topic Overview page
 8. Change to the practiceQuestionGenerator.ts file
 9. Go to generatePracticeQuestions function and under the appropriate topic add the stringfied Skill as a switch condition and assign skill to the Skill enum that reperesnts that string
 
@@ -87,5 +87,9 @@ id
 
 1. Go to [...nextauth].js
 2. Find the insert_user_skills and insert_user_badges mutations and under objects add in the rows required for your grade skills with the appropriate skillIds and badgeIds
+
+### Bonus Insights
+
+1. Under the practice/[slug].tsx file go to export async function getStaticPaths() and add the apporiate fields. This is very important as it allows the user to retry the quiz after they complete it. If these fields are not added then the quiz page will crash out
 
 To see the general process of adding a grade refer to: https://github.com/vithushan19/math/pull/332
