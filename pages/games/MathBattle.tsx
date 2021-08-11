@@ -220,7 +220,11 @@ const MathBattle = () => {
           />
         )}
         {stage == STAGE.COOP && (
-          <CoopBattleComponent questions={questionData} room={room} />
+          <CoopBattleComponent
+            questions={questionData}
+            room={room}
+            goToGameOver={() => setStage(STAGE.COOP_GAME_OVER)}
+          />
         )}
         {stage == STAGE.POSTGAME_LOBBY && (
           <PostGameLobby
