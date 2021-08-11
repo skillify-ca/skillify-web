@@ -120,6 +120,23 @@ const FinanceProfile = () => {
           setValueTest={setValueTest}
         ></IncomeTable>
       </div>
+      
+      <div>
+        <HouseExpensesTable
+          housePayment = {housePayment}
+          setHousePayment = {setHousePayment}
+          electricBill = {electricBill}
+          setElectricBill = {setElectricBill}
+          gasBill = {gasBill}
+          setGasBill = {setGasBill}
+          waterBill = {waterBill}
+          setWaterBill = {setWaterBill}
+          totalHousingCost = {totalHousingCost}
+          setTotalHousingCost = {setTotalHousingCost}
+          homeType = {homeType}
+          setHomeType = {setHomeType}
+        />
+      </div>
 
       <div>
         <CarExpenseTable
@@ -152,23 +169,6 @@ const FinanceProfile = () => {
           setSumAddValidation={setSumAddValidation}
         />
       </div>
-      <div>
-        <HouseExpensesTable
-          housePayment = {housePayment}
-          setHousePayment = {setHousePayment}
-          electricBill = {electricBill}
-          setElectricBill = {setElectricBill}
-          gasBill = {gasBill}
-          setGasBill = {setGasBill}
-          waterBill = {waterBill}
-          setWaterBill = {setWaterBill}
-          totalHousingCost = {totalHousingCost}
-          setTotalHousingCost = {setTotalHousingCost}
-          homeType = {homeType}
-          setHomeType = {setHomeType}
-        />
-      </div>
-
     </div>
   );
 };
