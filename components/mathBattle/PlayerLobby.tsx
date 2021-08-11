@@ -32,13 +32,9 @@ const Lobby = ({
         {players.map((it) => (
           <div className="bg-blue-400 opacity-75 text-center items-center">
             <h1 className="text-xl font-bold border-b opacity-100">
-              {console.log("leader", leader)}
-              {console.log("id", it.sessionId)}
               {it.name}
               {leader == it.sessionId && (
                 <div>
-                  {console.log("leader1", leader)}
-                  {console.log("id", it.sessionId)}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5  w-5 text-center"
