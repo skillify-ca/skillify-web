@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DiagnosticNavbar from "../components/DiagnosticNavbar";
-import { Button } from "../components/stories/Button";
+import { Button } from "../components/ui/Button";
 
 export default function Contact(props) {
   const [teacherInput, setTeacherInput] = useState("");
@@ -53,19 +53,20 @@ export default function Contact(props) {
           <p className="text-xl font-bold">Join our contact list</p>
           <div className="flex flex-col gap-4 sm:max-w-2xl">
             <p>
-              Math Champ is COMING SOON with a suite of online math activities
-              and games to help your child become better at math. Enter your
-              email to be notified when we go live.
+              Math Champ is a platform  with of online math activities
+              and games to help your child become better at math. Learn more about our offerings by providing your email below.
             </p>
           </div>
         </div>
         <div className="flex flex-col sm:flex-row gap-8">
           <div className="bg-white shadow-lg rounded-lg w-full p-4">
             <div className="flex flex-col gap-4">
-              <p className="font-bold">Teacher Tools</p>
+              <p className="font-bold">Tools for Educators</p>
               <p className="">
-                If you are a math educator we would love to hear from you. We are always looking for passionate teachers to partner with. We work with K-12 educators to design fun digital resources for online learning. 
-                If you have ideas for assignments or lessons that you'd like for us to build please reach out!
+              We are always looking for passionate teachers to partner with. If you are a math educator we would love to hear from you!
+              </p>
+              <p className="">
+                Please reach out if you have ideas for fun resources that you'd like us to build for your classroom!
               </p>
               <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
                 <input
@@ -91,9 +92,10 @@ export default function Contact(props) {
             <div className="flex flex-col gap-4">
               <p className="font-bold">Learn to code</p>
               <p className="">
-                If you are interested in learning how to code then enter your email to get notified when our next cohort-based program will be launching. 
-                We offer small class sizes and a personalized curriculum and assignments to train you into a software developer with no experience necessary. 
-                You will learn to code by building educational content and tools for math teachers, but you can apply the concepts and theory to build any other project that you've always been dreaming of!
+                Get access to our personalized curriculum and assignments as well as live support from our roster of Teacher Advisors.    
+              </p>
+              <p className="">
+                Enter your email below to learn more about our course and program! No experience necessary!
               </p>
               <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
                 <input
