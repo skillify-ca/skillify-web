@@ -2,6 +2,7 @@ import React from "react";
 
 export interface EqualGroupsInputProps {
   guess: string;
+  autofocus: boolean;
   setGuess: (string) => void;
   handleKeypress?: (e) => void;
 }
@@ -11,12 +12,13 @@ export interface EqualGroupsInputProps {
  */
 export const EqualGroupsInput: React.FC<EqualGroupsInputProps> = ({
   guess,
+  autofocus,
   setGuess,
   handleKeypress,
 }) => {
   return (
     <input
-      autoFocus
+      autoFocus={autofocus}
       id="guess"
       type="number"
       value={guess}

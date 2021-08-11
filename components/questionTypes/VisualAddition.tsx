@@ -1,8 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
-import { getRndInteger } from "../../pages/api/random";
-import ArbitraryDots from "../dots/ArbitraryDots";
 import DiceDots from "../dots/DiceDots";
 import DualColourDots from "../dots/DualColourDots";
 import NumberLiteral from "../dots/NumberLiteral";
@@ -19,14 +17,7 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
   submitGuess,
   question,
   visualDisplay,
-  ...props
 }) => {
-  // const [visualDisplay, setVisualDisplay] = useState(0);
-
-  // useEffect(() => {
-  //   setVisualDisplay(getRndInteger(0, 3));
-  // }, []);
-
   const parse = (question) => {
     const parts = question.text && question.text.split(" ");
     return {
@@ -48,7 +39,6 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
       isCorrect: guess === question.answer,
     });
     setGuess("");
-    // setVisualDisplay(getRndInteger(0, 3));
   };
   return (
     <div className="flex flex-col gap-4 items-center p-8">

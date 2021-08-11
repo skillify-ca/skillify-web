@@ -1,90 +1,54 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { MCOption } from "../../pages/api/question";
 import { Button } from "../ui/Button";
-import { AdditionProperty } from "../../pages/api/additionProperty";
 
 export interface MultipleChoiceWordProp {
-  displayQuestion?: string;
-  question?: MCOption;
+  options: MCOption[];
+  answer: string;
   submitGuess: (e) => void;
+  children: ReactNode;
 }
 
 export function randomize(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-let ans;
-let displayAns;
 export const MultipleChoiceWord: React.FC<MultipleChoiceWordProp> = ({
-  displayQuestion,
-  question,
+  options,
+  answer,
   submitGuess,
-  ...props
+  children,
 }) => {
   const onSubmit = (guess: string) => {
     submitGuess({
       guess,
-      isCorrect: guess == question.id,
+      isCorrect: guess == answer,
     });
   };
-  const parse = () => {
-    const qlen = question.text.length;
-    let i = 0;
-    while (i < qlen) {
-      if (question[i] == "(") {
-        ans = AdditionProperty.ASSOCIATIVE;
-        break;
-      } else {
-        ++i;
-      }
-    }
 
-    const part = question.text.split(" ");
-    return {
-      first: part[0],
-      third: part[3],
-    };
-  };
-  switch (parse().third) {
-    case "0":
-      ans = AdditionProperty.IDENTITY;
-      break;
-    default:
-      ans = AdditionProperty.IDENTITY;
-      break;
-  }
-  const MCValue = randomize(0, 3);
-  switch (MCValue) {
-    case 0:
-      displayAns = AdditionProperty.ASSOCIATIVE;
-      break;
-    case 1:
-      displayAns = AdditionProperty.COMMUTATIVE;
-      break;
-    case 2:
-      displayAns = AdditionProperty.IDENTITY;
-      break;
-  }
   return (
     <div className="flex flex-col items-center space-y-16">
-      <h1 className="text-4l underline font-bold"> {displayQuestion} </h1>
-      <p className="text-2xl">{question.text}</p>
+      {children}
       <div className="flex flex-row  item-center space-x-4 ">
         <Button
-          label="Associative"
+          label={options[0].text}
           backgroundColor="red"
-          onClick={() => onSubmit("Associative")}
+          onClick={() => onSubmit(options[0].id)}
         ></Button>
-        <Button
-          label="Commutative"
-          backgroundColor="blue"
-          onClick={() => onSubmit("Commutative")}
-        ></Button>
-        <Button
-          label="Identity"
-          backgroundColor="yellow"
-          onClick={() => onSubmit("Identity")}
-        ></Button>
+        {options[1] && (
+          <Button
+            label={options[1].text}
+            backgroundColor="blue"
+            onClick={() => onSubmit(options[1].id)}
+          ></Button>
+        )}
+        {options[2] && (
+          <Button
+            label={options[2].text}
+            backgroundColor="yellow"
+            onClick={() => onSubmit(options[2].id)}
+          ></Button>
+        )}
       </div>
     </div>
   );

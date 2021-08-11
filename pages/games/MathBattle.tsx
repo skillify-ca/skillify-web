@@ -56,7 +56,7 @@ const MathBattle = () => {
     },
   ]);
 
-  var client = new Colyseus.Client("wss://math-game-server.herokuapp.com");
+  var client = new Colyseus.Client("ws://localhost:4001");
   const onJoinClick = () => {
     client
       .joinById(code)
@@ -95,7 +95,7 @@ const MathBattle = () => {
   };
   const onCreateClick = () => {
     client
-      .create("tictactoe")
+      .create("battle")
       .then((room) => {
         setLeader(room.sessionId);
         setCode(room.id);
@@ -110,22 +110,25 @@ const MathBattle = () => {
   };
   room?.onMessage("joinResponse", (message) => {
     console.log(client.auth._id, "received fire on", room.name, message);
-    console.log("messageresponse", message);
+    console.log("messageresponse", message.players);
+    console.log("leaderMEssage", message.leader);
+
     let playerArr = [];
-    for (const [key, value] of Object.entries(message)) {
+    for (const [key, value] of Object.entries(message.players)) {
       console.log(key, value);
       playerArr.push(value);
     }
     console.log(playerArr);
-    room.send("leader", leader);
+    // room.send("leader", leader);
 
     setPlayers(playerArr);
+    setLeader(message.leader);
   });
 
-  room?.onMessage("leaderResponse", (message) => {
-    console.log("messagetime", message);
-    setLeader(message);
-  });
+  // room?.onMessage("leaderResponse", (message) => {
+  //   console.log("messagetime", message);
+  //   setLeader(message);
+  // });
 
   room?.onMessage("postGame", (message) => {
     console.log("message", message);
@@ -141,7 +144,7 @@ const MathBattle = () => {
 
   room?.onMessage("goToBattle", (message) => {
     setStage(STAGE.BATTLE);
-    const questions = message;
+    const questions = message.battleQuestions;
     setQuestionData(questions);
   });
   room?.onMessage("goToCoop", (message) => {
@@ -165,7 +168,7 @@ const MathBattle = () => {
   const onStartGameRequested = () => {
     setStage(STAGE.BATTLE);
     const questions = generateQuestions("addition", 1, 10);
-    room.send("startGameRequested", questions);
+    room.send("startGameRequested", { questions: questions, players: players });
   };
 
   useEffect(() => {
@@ -192,6 +195,7 @@ const MathBattle = () => {
         )}
         {stage == STAGE.LOBBY && (
           <Lobby
+            room={room}
             players={players}
             code={code}
             startGame={onStartGameRequested}
@@ -201,6 +205,7 @@ const MathBattle = () => {
         {stage == STAGE.BATTLE && (
           <BattleComponent
             questions={questionData}
+            players={players}
             room={room}
             gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
           />
@@ -227,6 +232,7 @@ const MathBattle = () => {
             goToLobby={() => setStage(STAGE.LOBBY)}
             gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
             room={room}
+            length={players.length}
           />
         )}
         {stage == STAGE.GAME_OVER && (
