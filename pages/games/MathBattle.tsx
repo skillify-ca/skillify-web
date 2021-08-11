@@ -39,6 +39,7 @@ const MathBattle = () => {
   const [players, setPlayers] = useState([]);
 
   const [leader, setLeader] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [stage, setStage] = useState(STAGE.JOIN_SESSION);
   const [room, setRoom] = useState<Colyseus.Room>();
   const [name, setName] = useState("");
@@ -80,6 +81,9 @@ const MathBattle = () => {
   };
 
   const onCreateCoopClick = () => {
+    setStage(STAGE.LOBBY);
+    setIsLoading(true);
+
     client
       .create("coop")
       .then((room) => {
@@ -87,13 +91,17 @@ const MathBattle = () => {
         console.log(room.sessionId, "joined", room.id, room.name);
         setRoom(room);
         room.send("join", { name: name }); //Dyanmic Name
-        setStage(STAGE.LOBBY);
+        setIsLoading(false);
       })
       .catch((e) => {
+        setIsLoading(false);
         console.log("JOIN ERROR", e);
       });
   };
   const onCreateClick = () => {
+    setStage(STAGE.LOBBY);
+    setIsLoading(true);
+
     client
       .create("battle")
       .then((room) => {
@@ -102,9 +110,10 @@ const MathBattle = () => {
         console.log(room.sessionId, "joined", room.name);
         setRoom(room);
         room.send("join", { id: room.sessionId, name: name }); //Dyanmic Name
-        setStage(STAGE.LOBBY);
+        setIsLoading(false);
       })
       .catch((e) => {
+        setIsLoading(false);
         console.log("JOIN ERROR", e);
       });
   };
@@ -177,25 +186,26 @@ const MathBattle = () => {
       <DiagnosticNavbar />
       <div className="p-4">
         {stage == STAGE.JOIN_SESSION && (
-          <CreateRoom
-            players={players}
-            onCreateClick={onCreateClick}
-            onCreateCoopClick={onCreateCoopClick}
-            onJoinClick={onJoinClick}
-            name={name}
-            setName={setName}
-            joinName={joinName}
-            setJoinName={setJoinName}
-            code={code}
-            setCode={setCode}
-          />
-        )}
+              <CreateRoom
+                players={players}
+                onCreateClick={onCreateClick}
+                onCreateCoopClick={onCreateCoopClick}
+                onJoinClick={onJoinClick}
+                name={name}
+                setName={setName}
+                joinName={joinName}
+                setJoinName={setJoinName}
+                code={code}
+                setCode={setCode}
+              />
+            )}
         {stage == STAGE.LOBBY && (
           <Lobby
             players={players}
             code={code}
             startGame={onStartGameRequested}
             leader={leader}
+            isLoading={isLoading}
           />
         )}
         {stage == STAGE.BATTLE && (
