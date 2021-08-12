@@ -7,8 +7,10 @@ export interface CreateRoomProps {
   onCreateCoopClick: () => void;
   onJoinClick: () => void;
   players: Player[];
-  name: string;
-  setName: (name: string) => void;
+  battleName: string;
+  setBattleName: (name: string) => void;
+  coopName: string;
+  setCoopName: (name: string) => void;
   joinName: string;
   setJoinName: (name: string) => void;
   code: string;
@@ -19,8 +21,10 @@ const CreateRoom = ({
   onCreateClick,
   onCreateCoopClick,
   onJoinClick,
-  name,
-  setName,
+  battleName,
+  setBattleName,
+  coopName,
+  setCoopName,
   joinName,
   setJoinName,
   code,
@@ -28,87 +32,103 @@ const CreateRoom = ({
 }: CreateRoomProps) => {
   return (
     <div>
-      <div className="mr-10 ml-10 mb-10">
-        <div className="bg-white rounded-lg gap-4 flex flex-col md:flex-row">
-          <div className="items-center content-around">
-            <img src="/images/PVPIconBackground.png" width="300" height="300" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div className="flex flex-col bg-white items-center gap-8 p-8 shadow-lg rounded-lg">
+          <div className="flex ">
+            <img
+              src="/images/PVPIconBackground.png"
+              className="h-24 w-24"
+              width="300"
+              height="300"
+            />            
           </div>
-          <div className="flex flex-col p-6">
-            <h1 className="text-5xl text-blue-600 font-bold">Create Room</h1>
-            <p className="text-2xl mt-4 mb-3">
-              To go head to head with another Math Champ in this heated Player
-              Vs Player Mode. You will be racing with eachother to see who can
-              get the most correct answers and who can complete it the fastest.
-              So let's see who will come up top!
-            </p>{" "}
-            <div className="flex gap-4 sm:items-center md:self-start">
-              <input
-                id="guess"
-                type="text"
-                autoComplete="off"
-                className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
-                placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                maxLength={10}
-              />
-              <Button
-                onClick={onCreateClick}
-                label="Create Game"
-                textColor="white"
-                backgroundColor="blue"
-              ></Button>
-              <Button
-                onClick={onCreateCoopClick}
-                label="Create Coop Game"
-                textColor="white"
-                backgroundColor="green"
-              ></Button>
-            </div>
-          </div>
+          <h1 className="text-5xl text-blue-600 font-bold">Math Battle</h1>
+          <p className="text-xl mt-4 mb-3">
+            Up to four players can go head to head against other Math Champs in
+            this heated Versus Mode. Race each other to see who can get the most
+            correct answers in the fastest time.
+          </p>{" "}
+          <input
+            id="battleName"
+            type="text"
+            autoComplete="off"
+            className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
+            placeholder="Enter your name"
+            value={battleName}
+            onChange={(e) => setBattleName(e.target.value)}
+          />
+          <Button
+            onClick={onCreateClick}
+            label="Create Game"
+            textColor="white"
+            backgroundColor="blue"
+          ></Button>
         </div>
-      </div>
-      <div className="mr-10 ml-10">
-        <div className="bg-white rounded-lg gap-4 flex flex-col md:flex-row">
+        <div className="flex flex-col bg-white items-center justify-center gap-8 p-8 shadow-lg rounded-lg">
           <div className="items-center content-around">
-            <img src="/images/PVPIconBackground.png" width="300" height="300" />
+            <img
+              src="/images/PVPIconBackground.png"
+              className="h-24 w-24"
+              width="300"
+              height="300"
+            />
           </div>
-          <div className="flex flex-col p-6">
+          <h1 className="text-5xl text-blue-600 font-bold">Zombies</h1>
+          <p className="text-xl mt-4 mb-3">
+            Up to four players can play as a team to take down the zombie. The
+            more questions you answer correctly as a team, the faster the
+            zombie's health decreases.
+          </p>{" "}
+          <input
+            id="coopName"
+            type="text"
+            autoComplete="off"
+            className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
+            placeholder="Enter your name"
+            value={coopName}
+            onChange={(e) => setCoopName(e.target.value)}
+          />
+          <Button
+            onClick={onCreateCoopClick}
+            label="Create Game"
+            textColor="white"
+            backgroundColor="green"
+          ></Button>
+        </div>
+        <div className="flex flex-col bg-white p-8 shadow-lg rounded-lg col-span-1 sm:col-span-2 justify-center items-center gap-8">
+          <div className="flex items-center gap-8">
+            <img
+              src="/images/PVPIconBackground.png"
+              className="h-24 w-24"
+              width="300"
+              height="300"
+            />
             <h1 className="text-5xl text-blue-600 font-bold">Join Room</h1>
-            <p className="text-2xl mt-4 mb-3">
-              To go head to head with another Math Champ in this heated Player
-              Vs Player Mode. You will be racing with eachother to see who can
-              get the most correct answers and who can complete it the fastest.
-              So let's see who will come up top!
-            </p>{" "}
-            <div className="w-1/2 sm:items-center md:self-start">
-              <input
-                id="guess"
-                type="text"
-                autoComplete="off"
-                className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
-                placeholder="Enter your name"
-                value={joinName}
-                onChange={(e) => setJoinName(e.target.value)}
-                maxLength={10}
-              />
-              <input
-                id="guess"
-                type="text"
-                autoComplete="off"
-                className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
-                placeholder="Enter the Room Code"
-                value={code}
-                onChange={(e) => setCode(e.target.value)}
-              />
-              <Button
-                onClick={onJoinClick}
-                label="Join Game"
-                textColor="white"
-                backgroundColor="blue"
-              ></Button>
-            </div>
           </div>
+          <input
+            id="guess"
+            type="text"
+            autoComplete="off"
+            className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
+            placeholder="Enter your name"
+            value={joinName}
+            onChange={(e) => setJoinName(e.target.value)}
+          />
+          <input
+            id="guess"
+            type="text"
+            autoComplete="off"
+            className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
+            placeholder="Enter the Room Code"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+          />
+          <Button
+            onClick={onJoinClick}
+            label="Join Game"
+            textColor="white"
+            backgroundColor="blue"
+          ></Button>
         </div>
       </div>
     </div>
