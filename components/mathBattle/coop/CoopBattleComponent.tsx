@@ -2,32 +2,40 @@ import React, { useRef, useState } from "react";
 import * as Colyseus from "colyseus.js";
 import QuestionSet from "../../stories/QuestionSet";
 import { Question } from "../../../pages/api/question";
-import { getEmoji } from "../../../pages/api/skill";
 import { GuessData } from "../../../pages/api/guessData";
 import ProgressRing from "../../ui/ProgressRing";
-import Card from "../../ui/Card";
 
 export interface CoopBattleComponentProps {
   questions: Question[];
   room: Colyseus.Room;
+  goToGameOver: () => void;
 }
 
-const CoopBattleComponent = ({ questions, room }: CoopBattleComponentProps) => {
+const CoopBattleComponent = ({
+  questions,
+  room,
+  goToGameOver,
+}: CoopBattleComponentProps) => {
   const [index, setIndex] = useState(0);
+  const [correctGuesses, setCorrectGuesses] = useState(0);
   const inputElement = useRef(null);
   const [health, setHealth] = useState(200);
   const [
     punchingAnimationVisibility,
     setPunchingAnimationVisibility,
   ] = useState(false);
-
   room?.onMessage("nextHealth", (message) => {
     const nextHealth = Number.parseInt(message);
     setHealth(nextHealth);
     setPunchingAnimationVisibility(false);
     if (nextHealth <= 0) {
       room.send("requestGameOver");
+      goToGameOver();
     }
+  });
+
+  room?.onMessage("postCoopGame", (message) => {
+    goToGameOver();
   });
   room?.onMessage("regenerateHealth", (message) => {
     const nextHealth = Number.parseInt(message);
@@ -41,6 +49,9 @@ const CoopBattleComponent = ({ questions, room }: CoopBattleComponentProps) => {
       if (currentGuess.isCorrect) {
         room.send("correct");
       }
+    } else {
+      room.send("requestGameOver");
+      goToGameOver();
     }
   };
   return (

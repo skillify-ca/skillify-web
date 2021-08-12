@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Story, Meta } from "@storybook/react";
 import { randomize } from "../../pages/api/questionGenerator";
 
 export interface DotProps {
@@ -8,15 +7,20 @@ export interface DotProps {
 }
 
 const Dot = ({ exists = true, visible = true }: DotProps) => {
-  const margin = randomize(-4, 3);
-
-  let possibleLengths = [3, 4, 5, 6, 7, 8];
-  let randomLengthIndex = randomize(0, possibleLengths.length);
-  let displayLength = possibleLengths[randomLengthIndex];
+  const [displayLength, setDisplayLength] = useState(3);
+  const [colourDisplay, setColourDisplay] = useState("");
+  const [margin, setMargin] = useState(0);
 
   const colourArr = ["pink", "green", "blue", "purple", "red"];
-  let colourIndex = randomize(0, colourArr.length);
-  let colourDisplay = colourArr[colourIndex];
+
+  useEffect(() => {
+    const possibleLengths = [3, 4, 5, 6, 7, 8];
+    const randomLengthIndex = randomize(0, possibleLengths.length);
+    setDisplayLength(possibleLengths[randomLengthIndex]);
+    const colourIndex = randomize(0, colourArr.length);
+    setColourDisplay(colourArr[colourIndex]);
+    setMargin(randomize(-4, 3));
+  }, []);
 
   return (
     exists && (
@@ -271,10 +275,6 @@ const getDotProps = (id: number, value: number) => {
   ) {
     return existanceMap[value][id];
   }
-};
-
-const isVisible = (id: number, value: number) => {
-  return false;
 };
 
 export default ArbitraryDots;

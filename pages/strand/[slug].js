@@ -21,9 +21,6 @@ const Strand = () => {
 
   return (
     <div>
-      <div>
-        <Navbar />
-      </div>
       <div className="text-xl text-center p-4">{data.title}</div>
       <div className="p-4">
           <div className="grid grid-cols-2 gap-4">

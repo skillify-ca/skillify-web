@@ -12,7 +12,6 @@ import { useMutation } from "@apollo/client";
 import { userId } from "../../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
 import { FETCH_USER_EMOJIS } from "../../../graphql/fetchUserEmojis";
-import DiagnosticNavbar from "../../../components/DiagnosticNavbar";
 import { Button } from "../../../components/ui/Button";
 import Card from "../../../components/ui/Card";
 import EmojiSlider from "../../../components/ui/EmojiSlider";
@@ -79,6 +78,8 @@ const PracticeQuiz = ({ slug, skill }) => {
             return 56;
           case "add-hundredths":
             return 57;
+          case "add-six-digit":
+            return 63;
         }
       case "subtraction":
         switch (skill) {
@@ -96,6 +97,8 @@ const PracticeQuiz = ({ slug, skill }) => {
             return 58;
           case "subtract-hundredths":
             return 59;
+          case "subtract-six-digit":
+            return 64;
         }
       case "multiplication":
         switch (skill) {
@@ -117,6 +120,8 @@ const PracticeQuiz = ({ slug, skill }) => {
             return 60;
           case "multiply-double-and-triple-digit":
             return 61;
+          case "multiply-triple-digit-by-tenths":
+            return 65;
         }
       case "division":
         switch (skill) {
@@ -132,6 +137,8 @@ const PracticeQuiz = ({ slug, skill }) => {
             return 50;
           case "divide-triple-digit-by-double-digit":
             return 62;
+          case "divide-triple-digit-by-tenths":
+            return 66;
         }
     }
   };
@@ -312,7 +319,6 @@ const PracticeQuiz = ({ slug, skill }) => {
 
   return (
     <div className="bg-blue-100 heropattern-architect-blue-50 h-md">
-      <DiagnosticNavbar />
       <div className="flex flex-col justify-center items-center mt-8">
         <div className="flex flex-row w-96 p-4 justify-between bg-gray-400 shadow-lg rounded-lg ">
           <p className="font-semibold">
@@ -420,6 +426,77 @@ export async function getStaticPaths() {
       { params: { slug: "division", skill: "share-8-equally" } },
       { params: { slug: "division", skill: "divide-12-equally" } },
       { params: { slug: "division", skill: "divide-100-equally" } },
+      { params: { slug: "addition", skill: "add-four-digit" } },
+      { params: { slug: "addition", skill: "add-five-digit" } },
+      { params: { slug: "addition", skill: "add-six-digit" } },
+      { params: { slug: "addition", skill: "add-tenths" } },
+      { params: { slug: "addition", skill: "add-hundredths" } },
+      { params: { slug: "subtraction", skill: "subtract-four-digit" } },
+      { params: { slug: "subtraction", skill: "subtract-tenths" } },
+      { params: { slug: "subtraction", skill: "subtract-five-digit" } },
+      { params: { slug: "subtraction", skill: "subtract-hundredths" } },
+      { params: { slug: "subtraction", skill: "subtract-six-digit" } },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-single-and-double-digit",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-single-and-triple-digit",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-double-digit-by-10",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-triple-digit-by-10",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-double-and-double-digit",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-double-and-triple-digit",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-triple-digit-by-tenths",
+        },
+      },
+      {
+        params: {
+          slug: "division",
+          skill: "divide-double-digit-by-single-digit",
+        },
+      },
+      {
+        params: {
+          slug: "division",
+          skill: "divide-triple-digit-by-single-digit",
+        },
+      },
+      {
+        params: {
+          slug: "division",
+          skill: "divide-triple-digit-by-double-digit",
+        },
+      },
+      { params: { slug: "division", skill: "divide-triple-digit-by-tenths" } },
     ],
     fallback: true,
   };

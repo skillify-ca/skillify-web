@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import * as Colyseus from "colyseus.js";
 import BattleComponent from "../../components/mathBattle/BattleComponent";
 import { generateQuestions } from "../api/quiz/quizQuestionGenerator";
@@ -10,21 +9,24 @@ import CoopBattleComponent from "../../components/mathBattle/coop/CoopBattleComp
 import { useEffect } from "react";
 import CreateRoom from "../../components/mathBattle/CreateRooms";
 import Lobby from "../../components/mathBattle/PlayerLobby";
-import GameOver from "../../components/mathBattle/GameOver";
+import PostGameLobby from "../../components/mathBattle/PostGameLobby";
 import CoopGameOver from "../../components/mathBattle/coop/CoopGameOver";
 import CoopBattleIntro from "../../components/mathBattle/coop/CoopBattleIntro";
 import CoopStoryComponent from "../../components/mathBattle/CoopNarrative";
 
 export type Player = {
   seat: number;
-  sessionID: string;
+  score: number;
+  sessionId: string;
   name: string;
+  finished: boolean;
 };
 export enum STAGE {
   JOIN_SESSION,
   LOBBY,
   BATTLE,
   COOP,
+  POSTGAME_LOBBY,
   COOP_STORY,
   COOP_INTRO,
   GAME_OVER,
@@ -34,9 +36,12 @@ export enum STAGE {
 const MathBattle = () => {
   const [players, setPlayers] = useState([]);
 
+  const [leader, setLeader] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [stage, setStage] = useState(STAGE.JOIN_SESSION);
   const [room, setRoom] = useState<Colyseus.Room>();
   const [name, setName] = useState("");
+  const [joinName, setJoinName] = useState("");
   const [code, setCode] = useState("");
   const [winnerId, setWinnerId] = useState("");
 
@@ -49,6 +54,7 @@ const MathBattle = () => {
       skill: Skill.ADDITION_SINGLE,
     },
   ]);
+
   var client = new Colyseus.Client("wss://math-game-server.herokuapp.com");
   const onJoinClick = () => {
     client
@@ -56,7 +62,15 @@ const MathBattle = () => {
       .then((room) => {
         console.log(room.sessionId, "joined", room.name);
         setRoom(room);
-        room.send("join", { name: name }); //Dyanmic Name
+        console.log("initial", name);
+
+        console.log("joininitial", joinName);
+
+        console.log("fakename", name);
+
+        console.log("final", name);
+
+        room.send("join", { name: joinName }); //Dyanmic Name
         setStage(STAGE.LOBBY);
       })
       .catch((e) => {
@@ -65,6 +79,9 @@ const MathBattle = () => {
   };
 
   const onCreateCoopClick = () => {
+    setStage(STAGE.LOBBY);
+    setIsLoading(true);
+
     client
       .create("coop")
       .then((room) => {
@@ -72,41 +89,62 @@ const MathBattle = () => {
         console.log(room.sessionId, "joined", room.id, room.name);
         setRoom(room);
         room.send("join", { name: name }); //Dyanmic Name
-        setStage(STAGE.LOBBY);
+        setIsLoading(false);
       })
       .catch((e) => {
+        setIsLoading(false);
         console.log("JOIN ERROR", e);
       });
   };
   const onCreateClick = () => {
+    setStage(STAGE.LOBBY);
+    setIsLoading(true);
+
     client
-      .create("tictactoe")
+      .create("battle")
       .then((room) => {
+        setLeader(room.sessionId);
         setCode(room.id);
-        console.log(room.id);
         console.log(room.sessionId, "joined", room.name);
         setRoom(room);
-        room.send("join", { name: name }); //Dyanmic Name
-        setStage(STAGE.LOBBY);
+        room.send("join", { id: room.sessionId, name: name }); //Dyanmic Name
+        setIsLoading(false);
       })
       .catch((e) => {
+        setIsLoading(false);
         console.log("JOIN ERROR", e);
       });
   };
   room?.onMessage("joinResponse", (message) => {
     console.log(client.auth._id, "received fire on", room.name, message);
+    console.log("messageresponse", message.players);
+    console.log("leaderMEssage", message.leader);
+
     let playerArr = [];
-    for (const [key, value] of Object.entries(message)) {
+    for (const [key, value] of Object.entries(message.players)) {
       console.log(key, value);
       playerArr.push(value);
     }
-    console.log(playerArr);
 
     setPlayers(playerArr);
+    setLeader(message.leader);
   });
+
+  room?.onMessage("postGame", (message) => {
+    console.log("message", message);
+    let playerArr = [];
+    for (const [key, value] of Object.entries(message)) {
+      playerArr.push(value);
+    }
+    console.log("players", playerArr);
+    setPlayers(playerArr);
+    console.log("postgame");
+    setStage(STAGE.POSTGAME_LOBBY);
+  });
+
   room?.onMessage("goToBattle", (message) => {
     setStage(STAGE.BATTLE);
-    const questions = message;
+    const questions = message.battleQuestions;
     setQuestionData(questions);
   });
   room?.onMessage("goToCoop", (message) => {
@@ -121,7 +159,7 @@ const MathBattle = () => {
     }
 
     if (stage === STAGE.BATTLE) {
-      setStage(STAGE.GAME_OVER);
+      setStage(STAGE.POSTGAME_LOBBY);
     } else if (stage === STAGE.COOP) {
       setStage(STAGE.COOP_GAME_OVER);
     }
@@ -130,7 +168,7 @@ const MathBattle = () => {
   const onStartGameRequested = () => {
     setStage(STAGE.BATTLE);
     const questions = generateQuestions("addition", 1, 10);
-    room.send("startGameRequested", questions);
+    room.send("startGameRequested", { questions: questions, players: players });
   };
 
   useEffect(() => {
@@ -138,63 +176,74 @@ const MathBattle = () => {
   }, []);
 
   return (
-    <div>
-      <DiagnosticNavbar />
-      <div className="p-4">
-        {" "}
-        {stage == STAGE.JOIN_SESSION && (
-          <CreateRoom
-            players={players}
-            onCreateClick={onCreateClick}
-            onCreateCoopClick={onCreateCoopClick}
-            onJoinClick={onJoinClick}
-            name={name}
-            setName={setName}
-            code={code}
-            setCode={setCode}
-          />
-        )}
-        {stage == STAGE.LOBBY && (
-          <Lobby
-            players={players}
-            code={code}
-            startGame={onStartGameRequested}
-          />
-        )}
-        {stage == STAGE.BATTLE && (
-          <BattleComponent questions={questionData} room={room} />
-        )}
-        {stage == STAGE.COOP_STORY && (
-          <CoopStoryComponent
-            goToIntro={() => {
-              setStage(STAGE.COOP_INTRO);
-            }}
-          />
-        )}
-        {stage == STAGE.COOP_INTRO && (
-          <CoopBattleIntro
-            startGame={() => {
-              setStage(STAGE.COOP);
-            }}
-          />
-        )}
-        {stage == STAGE.COOP && (
-          <CoopBattleComponent questions={questionData} room={room} />
-        )}
-        {stage == STAGE.GAME_OVER && (
-          <GameOver
-            goToLobby={() => setStage(STAGE.JOIN_SESSION)}
-            winnerId={winnerId}
-            room={room}
-          />
-        )}
-        {stage == STAGE.COOP_GAME_OVER && (
-          <CoopGameOver
-            room={room}
-            goToLobby={() => setStage(STAGE.JOIN_SESSION)}
-          />
-        )}
-      </div>
+    <div className="p-4">
+      {stage == STAGE.JOIN_SESSION && (
+        <CreateRoom
+          players={players}
+          onCreateClick={onCreateClick}
+          onCreateCoopClick={onCreateCoopClick}
+          onJoinClick={onJoinClick}
+          name={name}
+          setName={setName}
+          joinName={joinName}
+          setJoinName={setJoinName}
+          code={code}
+          setCode={setCode}
+        />
+      )}
+      {stage == STAGE.LOBBY && (
+        <Lobby
+          room={room}
+          players={players}
+          code={code}
+          startGame={onStartGameRequested}
+          leader={leader}
+          isLoading={isLoading}
+        />
+      )}
+      {stage == STAGE.BATTLE && (
+        <BattleComponent
+          questions={questionData}
+          players={players}
+          room={room}
+          gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
+        />
+      )}
+      {stage == STAGE.COOP_STORY && (
+        <CoopStoryComponent
+          goToIntro={() => {
+            setStage(STAGE.COOP_INTRO);
+          }}
+        />
+      )}
+      {stage == STAGE.COOP_INTRO && (
+        <CoopBattleIntro
+          startGame={() => {
+            setStage(STAGE.COOP);
+          }}
+        />
+      )}
+      {stage == STAGE.COOP && (
+        <CoopBattleComponent
+          questions={questionData}
+          room={room}
+          goToGameOver={() => setStage(STAGE.COOP_GAME_OVER)}
+        />
+      )}
+      {stage == STAGE.POSTGAME_LOBBY && (
+        <PostGameLobby
+          goToLobby={() => setStage(STAGE.LOBBY)}
+          gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
+          room={room}
+          length={players.length}
+        />
+      )}
+      {stage == STAGE.COOP_GAME_OVER && (
+        <CoopGameOver
+          room={room}
+          goToLobby={() => setStage(STAGE.JOIN_SESSION)}
+        />
+      )}
     </div>
   );
 };

@@ -1,14 +1,17 @@
-import React, { useRef, useEffect, useState } from "react";
-import { signIn, useSession } from "next-auth/client";
+import React, { useState } from "react";
 import { userId } from "../graphql/utils/constants";
 import { EMOJI_MASTERY, getEmoji } from "../pages/api/skill";
 import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
+import LockedBadge from "./LockedBadge";
+import { Session } from "next-auth";
 
-const ProfileComponent = () => {
-  const [session] = useSession();
+interface ProfileComponentProps {
+  session: Session;
+}
 
+const ProfileComponent = ({ session }: ProfileComponentProps) => {
   let { loading, data } = useQuery(FETCH_USER_PROFILE, {
     variables: {
       userId: userId(session),
@@ -89,31 +92,33 @@ const ProfileComponent = () => {
             }
           ></span>
         </div>
-        <div className="bg-white shadow-lg rounded-xl">
+        <div className="">
           {stage == Stage.BADGES && (
-            <div className="grid gap-x-8 gap-y-4 grid-cols-3 md:w-1/2 m-auto p-8">
+            <div className="grid gap-8 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 p-8 bg-white shadow-lg rounded-xl">
               {data &&
                 data.user_badges.map((badge) => {
                   return badge.locked ? (
-                    <div className="">
-                      <img src="/images/lockedPic.png" className="w-32" />
+                    <div className="flex justify-center items-center">
+                      <LockedBadge title={badge.badge.title} />
                     </div>
                   ) : (
                     <Link href={`/badges/${badge.badge.id}`}>
-                      <img
-                        src={badge.badge.image}
-                        className="w-32 cursor-pointer transition duration-500 ease-in-out transform hover:scale-110"
-                      />
+                      <div className="flex justify-center items-center">
+                        <img
+                          src={badge.badge.image}
+                          className="w-32 cursor-pointer transition duration-500 ease-in-out transform hover:scale-110"
+                        />
+                      </div>
                     </Link>
                   );
                 })}
             </div>
           )}
           {stage == Stage.SKILLS && (
-            <div className="flex flex-col items-center gap-8 p-8">
+            <div className="grid grid-cols-3 gap-8 p-8">
               {data &&
                 data.user_skills.map((skill) => (
-                  <div className="flex gap-8">
+                  <div className="flex gap-8 bg-white rounded-xl shadow-xl p-12 justify-center items-center">
                     <p className="text-xl">{skill.skill.title}</p>
                     <p className="text-3xl">{getEmoji(skill.emoji)}</p>
                   </div>
@@ -124,6 +129,6 @@ const ProfileComponent = () => {
       </div>
     </div>
   );
-}
+};
 
 export default ProfileComponent;

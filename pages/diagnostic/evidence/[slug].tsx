@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import DiagnosticEvidence from "../../../components/assessment/DiagnosticEvidence";
-import DiagnosticNavbar from "../../../components/DiagnosticNavbar";
 
 import { diagnosticSelector } from "../../../redux/diagnosticSlice";
 
@@ -9,7 +8,6 @@ const DiagnosticEvidencePage = ({ slug }) => {
   const diagnosticResults = useSelector(diagnosticSelector);
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
-      <DiagnosticNavbar />
       <div className="p-4 flex flex-col items-center justify-center">
         <DiagnosticEvidence topic={slug} results={diagnosticResults} />
       </div>
