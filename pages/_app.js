@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }) {
           <ModalProvider>
             <ReduxProvider store={store}>
               <div>
-                <DiagnosticNavbar />
+                <DiagnosticNavbar session={pageProps.session} />
                 {Component.auth ? (
                   <Auth>
                     <Component {...pageProps} />
