@@ -8,9 +8,6 @@ export default function Home() {
 
   return (
     <div className="flex flex-col h-screen">
-      <div>
-        <DiagnosticNavbar />
-      </div>
       <div
         style={{
           backgroundColor: "#E5E7EB",

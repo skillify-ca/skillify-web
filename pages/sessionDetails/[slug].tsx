@@ -1,12 +1,10 @@
 import React from "react";
-import { session, useSession } from "next-auth/client";
-import initializeApollo from "../../lib/apollo";
-import { gql, useQuery } from "@apollo/client";
+import { useSession } from "next-auth/client";
+import { useQuery } from "@apollo/client";
 import _ from "lodash";
 import { FETCH_FLASHCARD_GUESSES_BY_SESSION } from "../../graphql/fetchFlashcardGuessBySession";
-import { userId, USER_ID } from "../../graphql/utils/constants";
+import { userId } from "../../graphql/utils/constants";
 import Card from "../../components/ui/Card";
-import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 
 export default function SessionDetails({ slug }) {
   const [session] = useSession();
@@ -21,7 +19,7 @@ export default function SessionDetails({ slug }) {
 
   return (
     <div className="flex flex-col bg-gray-200">
-      <DiagnosticNavbar />
+      < />
       <div className="p-4 flex flex-col gap-4">
         <div className="flex justify-between">
           <h1 className="text-lg font-bold">Numbers</h1>

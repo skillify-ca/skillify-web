@@ -2,7 +2,6 @@ import { useQuery } from "@apollo/client";
 import { session, useSession } from "next-auth/client";
 import Link from "next/link";
 import React from "react";
-import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { userId } from "../../graphql/utils/constants";
 import {
@@ -63,7 +62,6 @@ const SkillOverviewPage = ({ slug }) => {
 
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-architect-blue-200 bg-blue-100 h-screen">
-      <DiagnosticNavbar />
       <div className="flex flex-row justify-between mt-8 mr-8 ml-8">
         <span className="text-6xl font-semibold text-gray-700">
           {" "}

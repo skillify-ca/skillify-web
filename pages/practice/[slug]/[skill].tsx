@@ -12,7 +12,6 @@ import { useMutation } from "@apollo/client";
 import { userId } from "../../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
 import { FETCH_USER_EMOJIS } from "../../../graphql/fetchUserEmojis";
-import DiagnosticNavbar from "../../../components/DiagnosticNavbar";
 import { Button } from "../../../components/ui/Button";
 import Card from "../../../components/ui/Card";
 import EmojiSlider from "../../../components/ui/EmojiSlider";
@@ -320,7 +319,7 @@ const PracticeQuiz = ({ slug, skill }) => {
 
   return (
     <div className="bg-blue-100 heropattern-architect-blue-50 h-md">
-      <DiagnosticNavbar />
+      < />
       <div className="flex flex-col justify-center items-center mt-8">
         <div className="flex flex-row w-96 p-4 justify-between bg-gray-400 shadow-lg rounded-lg ">
           <p className="font-semibold">
