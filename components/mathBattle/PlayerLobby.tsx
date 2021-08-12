@@ -23,9 +23,9 @@ const Lobby = ({
   return isLoading ? (
     <p className="text-center text-2xl">Loading...</p>
   ) : (
-    <div className="flex flex-col items-center gap-8 ">
-      <div className="relative flex flex-col justify-center  bg-gray-100 w-1/2 ">
-        <h1 className="text-3xl font-bold text-blue-400 border-b ">
+    <div className="flex flex-col items-center gap-8">
+      <div className="relative flex flex-col justify-center  bg-gray-100 w-full sm:w-1/2">
+        <h1 className="text-3xl font-bold text-blue-400 border-b p-4">
           Lobby Room
         </h1>
         <div className="bg-blue-400 opacity-75 text-center items-center">
