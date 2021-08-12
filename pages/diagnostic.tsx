@@ -8,7 +8,6 @@ import { DiagnosticState, setDiagnostic } from "../redux/diagnosticSlice";
 import { useAppDispatch } from "../redux/store";
 import { Grade, Skill, Topic } from "./api/skill";
 import { getNextQuestion } from "./api/diagnostic/diagnosticQuestionGenerator";
-import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { getWorkSheets } from "./api/worksheets";
 import {
   getCalculatedGrade,

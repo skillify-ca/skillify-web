@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Outline from "../components/Outline";
-import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { getSession, useSession } from "next-auth/client";
 
 export default function Home() {

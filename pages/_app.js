@@ -22,20 +22,22 @@ function MyApp({ Component, pageProps }) {
     isMobile = window.innerWidth < 600;
   }
 
-  const component = (
-    <div>
-      <DiagnosticNavbar />
-      <Component {...pageProps} />
-    </div>
-  );
-
   return (
     <ApolloProvider client={client}>
       <Provider session={pageProps.session}>
         <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
           <ModalProvider>
             <ReduxProvider store={store}>
-              {Component.auth ? <Auth>{component}</Auth> : component}
+              <div>
+                <DiagnosticNavbar />
+                {Component.auth ? (
+                  <Auth>
+                    <Component {...pageProps} />
+                  </Auth>
+                ) : (
+                  <Component {...pageProps} />
+                )}
+              </div>
             </ReduxProvider>
           </ModalProvider>
         </DndProvider>

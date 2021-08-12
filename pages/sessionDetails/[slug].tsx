@@ -19,7 +19,6 @@ export default function SessionDetails({ slug }) {
 
   return (
     <div className="flex flex-col bg-gray-200">
-      < />
       <div className="p-4 flex flex-col gap-4">
         <div className="flex justify-between">
           <h1 className="text-lg font-bold">Numbers</h1>

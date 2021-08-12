@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { Button } from "../components/ui/Button";
 
 export default function Contact(props) {
