@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import TopicItem from "./stories/TopicItem";
 
-export type PracticeTopicProps = {
+export type UnitCardProps = {
   title: string;
   image?: string;
   disabled?: boolean;
@@ -10,11 +10,11 @@ export type PracticeTopicProps = {
   rating?: number;
 };
 
-export const PracticeTopic: React.FC<PracticeTopicProps> = ({
+export const UnitCard: React.FC<UnitCardProps> = ({
   title,
   image,
   disabled,
-}: PracticeTopicProps) => {
+}: UnitCardProps) => {
   const lockedTopic = (
     <TopicItem disabled={true} image={image} title={title} rating={0} />
   );
@@ -29,4 +29,4 @@ export const PracticeTopic: React.FC<PracticeTopicProps> = ({
   return disabled ? lockedTopic : unlockedTopic;
 };
 
-export default PracticeTopic;
+export default UnitCard;
