@@ -5,6 +5,14 @@ export interface BuyANewCarData {
   Cost: number;
 }
 
+export interface BuyAUsedCarData {
+  Year: number;
+  Make: string;
+  Model: string;
+  Doors: number;
+  Cost: number;
+}
+
 export const BuyANewCarTable: BuyANewCarData[] = [
   {
     Make: "Chevrolet",
@@ -119,28 +127,132 @@ export const BuyANewCarTable: BuyANewCarData[] = [
   },
 ];
 
-/*<table className={"table-fixed w-full border-collapse"}>
-      <thead>
-        <tr>
-          <th className={"w-1/4 border border-black bg-gray-200"}>Make</th>
-          <th className={"w-1/4 border border-black bg-gray-200"}>Model</th>
-          <th className={"w-1/4 border border-black bg-gray-200"}>
-            {" "}
-            2-door/4-door
-          </th>
-          <th className={"w-1/4 border border-black bg-gray-200"}>
-            Cost per Month
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {NewCar.map(() => (
-          <tr>
-            <td>{Make[0]}</td>
-            <td>{Model[0]}</td>
-            <td>{Doors[0]}</td>
-            <td>{Cost[0]}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>*/
+export const BuyAUsedCarTable: BuyAUsedCarData[] = [
+  {
+    Year: 2010,
+    Make: "Chevrolet",
+    Model: "Cobalt",
+    Doors: 4,
+    Cost: 168,
+  },
+
+  {
+    Year: 2008,
+    Make: "Chevrolet",
+    Model: "Tahoe",
+    Doors: 4,
+    Cost: 208,
+  },
+
+  {
+    Year: 2005,
+    Make: "Dodge",
+    Model: "Ram Truck",
+    Doors: 4,
+    Cost: 130,
+  },
+
+  {
+    Year: 2005,
+    Make: "Dodge",
+    Model: "Viper",
+    Doors: 2,
+    Cost: 665,
+  },
+
+  {
+    Year: 1998,
+    Make: "Dodge",
+    Model: "Dakota",
+    Doors: 4,
+    Cost: 85,
+  },
+
+  {
+    Year: 2010,
+    Make: "Ford",
+    Model: "Explorer",
+    Doors: 4,
+    Cost: 183,
+  },
+
+  {
+    Year: 2013,
+    Make: "Ford",
+    Model: "F150",
+    Doors: 4,
+    Cost: 156,
+  },
+
+  {
+    Year: 2011,
+    Make: "Ford",
+    Model: "Ranger",
+    Doors: 2,
+    Cost: 195,
+  },
+
+  {
+    Year: 2014,
+    Make: "Honda",
+    Model: "Accord",
+    Doors: 4,
+    Cost: 260,
+  },
+
+  {
+    Year: 2003,
+    Make: "Mazda",
+    Model: "Protoge",
+    Doors: 4,
+    Cost: 94,
+  },
+
+  {
+    Year: 1978,
+    Make: "Rolls Royce",
+    Model: "Silver Shadow",
+    Doors: 4,
+    Cost: 719,
+  },
+
+  {
+    Year: 2012,
+    Make: "Toyota",
+    Model: "Tundra",
+    Doors: 4,
+    Cost: 458,
+  },
+
+  {
+    Year: 2007,
+    Make: "Toyota",
+    Model: "4 Runner",
+    Doors: 4,
+    Cost: 201,
+  },
+
+  {
+    Year: 2002,
+    Make: "Toyota",
+    Model: "Camry",
+    Doors: 2,
+    Cost: 72,
+  },
+
+  {
+    Year: 2015,
+    Make: "Voltswagen",
+    Model: "Jetta",
+    Doors: 4,
+    Cost: 198,
+  },
+
+  {
+    Year: 2017,
+    Make: "Voltswagen",
+    Model: "Beetle",
+    Doors: 2,
+    Cost: 396,
+  },
+];
