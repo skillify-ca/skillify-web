@@ -22,7 +22,7 @@ export const ServiceHeader = ({
       <div>
         <img
           src={imgHeader}
-          className="grid row-end-1 place-items-end pl-40 py-6"
+          className="grid row-end-1 place-items-end pl-40 py-6 w-5/6"
         />
       </div>
     </div>
