@@ -12,7 +12,7 @@ import Lobby from "../../components/mathBattle/PlayerLobby";
 import PostGameLobby from "../../components/mathBattle/PostGameLobby";
 import CoopGameOver from "../../components/mathBattle/coop/CoopGameOver";
 import CoopBattleIntro from "../../components/mathBattle/coop/CoopBattleIntro";
-import CoopStoryComponent from "../../components/mathBattle/CoopNarrative";
+import CoopStoryComponent from "../../components/mathBattle/coop/CoopNarrative";
 
 export type Player = {
   seat: number;
@@ -192,13 +192,6 @@ const MathBattle = () => {
           players={players}
           room={room}
           gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
-        />
-      )}
-      {stage == STAGE.COOP_STORY && (
-        <CoopStoryComponent
-          goToIntro={() => {
-            setStage(STAGE.COOP_INTRO);
-          }}
         />
       )}
       {stage == STAGE.COOP_INTRO && (
