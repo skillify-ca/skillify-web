@@ -57,7 +57,7 @@ export default function Outline({ session }: OutlineProps) {
           </div>
         </Card>
       </div>
-      <div className="flex flex-wrap justify-center gap-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 justify-center gap-8">
         {unlockedTopics.map((topic, index) => (
           <div key={topic.title}>
             <PracticeTopic
