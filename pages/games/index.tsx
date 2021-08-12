@@ -109,7 +109,7 @@ const MathBattle = () => {
   };
   room?.onMessage("joinResponse", (message) => {
     let playerArr = [];
-    for (const [key, value] of Object.entries(message)) {
+    for (const [key, value] of Object.entries(message.players)) {
       playerArr.push(value);
     }
 

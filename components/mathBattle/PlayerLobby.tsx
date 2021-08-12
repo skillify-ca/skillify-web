@@ -29,11 +29,11 @@ const Lobby = ({
         <h1 className="text-3xl font-bold text-blue-400 border-b ">
           Lobby Room
         </h1>
-        {players.map((it) => (
+        {players.map((player) => (
           <div className="bg-blue-400 opacity-75 text-center items-center">
             <h1 className="text-xl font-bold border-b opacity-100">
-              {it.name}
-              {leader == it.sessionId && (
+              {player.name}
+              {leader == player.sessionId && (
                 <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
