@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "react-simple-hook-modal/dist/styles.css";
-import Navbar from "../../components/Navbar";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useSession } from "next-auth/client";
@@ -24,7 +23,6 @@ const Practice = ({ slug }) => {
 
   return (
     <div>
-      <Navbar />
       <div className="p-4">
         <h1 className="text-gray-800 font-bold">
           Select an I can statement to practice it

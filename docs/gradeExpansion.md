@@ -88,4 +88,8 @@ id
 1. Go to [...nextauth].js
 2. Find the insert_user_skills and insert_user_badges mutations and under objects add in the rows required for your grade skills with the appropriate skillIds and badgeIds
 
+### Bonus Insights
+
+1. Under the practice/[slug].tsx file go to export async function getStaticPaths() and add the apporiate fields. This is very important as it allows the user to retry the quiz after they complete it. If these fields are not added then the quiz page will crash out
+
 To see the general process of adding a grade refer to: https://github.com/vithushan19/math/pull/332
