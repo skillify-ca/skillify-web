@@ -4,7 +4,7 @@ import QuestionSet from "../stories/QuestionSet";
 import { Question } from "../../pages/api/question";
 import { GuessData } from "../../pages/api/guessData";
 import ProgressBar from "../ProgressBar";
-import { Player } from "../../pages/games/MathBattle";
+import { Player } from "../../pages/games";
 
 export interface BattleComponentProps {
   questions: Question[];
