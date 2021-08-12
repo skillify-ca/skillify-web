@@ -1,54 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { useSession } from "next-auth/client";
-import Navbar from "../components/Navbar";
-import { useMutation, useQuery } from "@apollo/client";
-import Link from "next/link";
-import { userId } from "../graphql/utils/constants";
-import { FETCH_USER_BADGES } from "../graphql/fetchUserBadge";
-import { INIT_USER_BADGES } from "../graphql/initUserBadges";
+import { getSession, useSession } from "next-auth/client";
+import React from "react";
+import ProfileComponent from "../components/ProfileComponent";
 
-export default function Profile(props) {
-  const [session, user] = useSession();
+const Profile = () => {
+  const [session, loading] = useSession();
 
-  let { loading, error, data } = useQuery(FETCH_USER_BADGES, {
-    variables: {
-      userId: userId(session),
-    },
-  });
-
-  const progress = () => {
-    if (!loading && data.user_badges.length > 0) {
-      const unlockedBadges = data.user_badges.filter(
-        (it) => it.locked == false
-      );
-      return Math.round(
-        (unlockedBadges.length * 100) / data.user_badges.length
-      );
-    } else {
-      return 0;
-    }
-  };
   return (
     <div>
-      <Navbar />
-      <div className="overflow-auto bg-scroll h-screen bg-blue-50">
-        <div className="">
-          <div className="col-span-2 p-8 m-4 bg-white shadow-lg rounded-3xl">
-            <div className="flex justify-between items-center">
-              <div className="flex flex-col">
-                <p className="text-xl">{session && session.user.name}</p>
-                <p className="text-sm">{session && session.user.email}</p>
-              </div>
-              <div className="flex flex-col gap-4 m-4">
-                <p className="text-sm">Progress</p>
-                <p className="flex justify-center items-center bg-purple-100 shadow-inner ring-blue-400 text-center rounded-full ring-8 w-16 h-16">
-                  {progress()}%
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ProfileComponent session={session} />
     </div>
   );
+};
+
+export default Profile;
+
+Profile.auth = true;
+
+// Export the `session` prop to use sessions with Server Side Rendering
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      session: await getSession(context),
+    },
+  };
 }

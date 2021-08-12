@@ -3,21 +3,18 @@ import QuestionSet from "../../../components/stories/QuestionSet";
 import { QuestionType } from "../../api/questionTypes";
 import { GuessData } from "../../api/guessData";
 import { AnswerType, Question } from "../../api/question";
-import Navbar from "../../../components/Navbar";
 import { Skill } from "../../api/skill";
 import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGenerator";
-import { Button } from "../../../components/stories/Button";
 import ReactCardFlip from "react-card-flip";
-import Card from "../../../components/stories/Card";
-import Hint from "../../../components/stories/Hint";
-import EmojiSlider from "../../../components/stories/EmojiSlider";
 import Link from "next/link";
-import { delay } from "lodash";
 import { UPDATE_USER_SKILL_EMOJI } from "../../../graphql/updateUserEmoji";
 import { useMutation } from "@apollo/client";
 import { userId } from "../../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
 import { FETCH_USER_EMOJIS } from "../../../graphql/fetchUserEmojis";
+import { Button } from "../../../components/ui/Button";
+import Card from "../../../components/ui/Card";
+import EmojiSlider from "../../../components/ui/EmojiSlider";
 
 const PracticeQuiz = ({ slug, skill }) => {
   enum STAGE {
@@ -54,6 +51,15 @@ const PracticeQuiz = ({ slug, skill }) => {
   let getSkillId = (skill: any, slug: any) => {
     //Note: The skill Ids are determined based of the values save in the skills table with graph
     switch (slug) {
+      case "numbers":
+        switch (skill) {
+          case "count-50":
+            return 53;
+          case "count-200":
+            return 54;
+          case "count-1000":
+            return 55;
+        }
       case "addition":
         switch (skill) {
           case "add-one-digit":
@@ -64,6 +70,16 @@ const PracticeQuiz = ({ slug, skill }) => {
             return 3;
           case "addition-properties":
             return 4;
+          case "add-four-digit":
+            return 43;
+          case "add-tenths":
+            return 44;
+          case "add-five-digit":
+            return 56;
+          case "add-hundredths":
+            return 57;
+          case "add-six-digit":
+            return 63;
         }
       case "subtraction":
         switch (skill) {
@@ -73,6 +89,16 @@ const PracticeQuiz = ({ slug, skill }) => {
             return 35;
           case "subtract-triple-digit":
             return 36;
+          case "subttract-four-digit":
+            return 45;
+          case "subtract-tenths":
+            return 46;
+          case "subtract-five-digit":
+            return 58;
+          case "subtract-hundredths":
+            return 59;
+          case "subtract-six-digit":
+            return 64;
         }
       case "multiplication":
         switch (skill) {
@@ -82,6 +108,20 @@ const PracticeQuiz = ({ slug, skill }) => {
             return 38;
           case "multiply-10x10":
             return 39;
+          case "multiply-double-digit-by-10":
+            return 47;
+          case "multiply-triple-digit-by-10":
+            return 48;
+          case "multiply-single-and-double-digit":
+            return 51;
+          case "multiply-single-and-triple-digit":
+            return 52;
+          case "multiply-double-and-double-digit":
+            return 60;
+          case "multiply-double-and-triple-digit":
+            return 61;
+          case "multiply-triple-digit-by-tenths":
+            return 65;
         }
       case "division":
         switch (skill) {
@@ -91,6 +131,14 @@ const PracticeQuiz = ({ slug, skill }) => {
             return 41;
           case "divide-100-equally":
             return 42;
+          case "divide-double-digit-by-single-digit":
+            return 49;
+          case "divide-triple-digit-by-single-digit":
+            return 50;
+          case "divide-triple-digit-by-double-digit":
+            return 62;
+          case "divide-triple-digit-by-tenths":
+            return 66;
         }
     }
   };
@@ -159,7 +207,7 @@ const PracticeQuiz = ({ slug, skill }) => {
         inputElement={inputElement}
         submitGuess={submitGuess}
         score={correctGuess}
-        practice={true}
+        HUDEnabled={false}
       />
     );
     let stageLevel = stage;
@@ -239,31 +287,38 @@ const PracticeQuiz = ({ slug, skill }) => {
   };
 
   const submitGuess = (guess: GuessData) => {
-    toggleFlip(); //aa
-
-    if (index < questionData.length && !indexCap) {
-      if (guess.guess != "") {
-        setGuessAttempt(guess.guess.toString());
-      }
-      if (index >= questionData.length - 1) {
-        setIndexCap(true);
-      }
-      if (guess.isCorrect) {
-        setCorrectGuess(correctGuess + 1);
-        setCorrectAnswer(true);
+    if (isFlipped && index <= questionData.length - 1) {
+      if (index == questionData.length - 1) {
+        reviewPage();
       } else {
-        setWrongAnswer(true);
+        applyNextQuestion();
       }
-      if (index < questionData.length - 1) {
-        setNextQuestionButton(true);
-      } else {
-        setContinueButton(true);
+    } else {
+      toggleFlip();
+      if (index < questionData.length && !indexCap) {
+        if (guess.guess != "") {
+          setGuessAttempt(guess.guess.toString());
+        }
+        if (index >= questionData.length - 1) {
+          setIndexCap(true);
+        }
+        if (guess.isCorrect) {
+          setCorrectGuess(correctGuess + 1);
+          setCorrectAnswer(true);
+        } else {
+          setWrongAnswer(true);
+        }
+        if (index < questionData.length - 1) {
+          setNextQuestionButton(true);
+        } else {
+          setContinueButton(true);
+        }
       }
     }
   };
+
   return (
-    <div className="bg-blue-100 heropattern-architect-blue-50 h-screen overflow-y-scroll">
-      <Navbar />
+    <div className="bg-blue-100 heropattern-architect-blue-50 h-md">
       <div className="flex flex-col justify-center items-center mt-8">
         <div className="flex flex-row w-96 p-4 justify-between bg-gray-400 shadow-lg rounded-lg ">
           <p className="font-semibold">
@@ -298,6 +353,7 @@ const PracticeQuiz = ({ slug, skill }) => {
                     <span className="font-bold text-green-400">
                       {questionData[index].answer.toString()}&nbsp;
                     </span>
+                    <br></br>
 
                     <span>
                       {guessAttempt != "" ? (
@@ -336,10 +392,12 @@ const PracticeQuiz = ({ slug, skill }) => {
           </div>
         </ReactCardFlip>
       </div>
-      {!continueButton &&
+      {/* {!continueButton &&
         !nextQuestionButton &&
         stage == STAGE.QUESTION &&
         questionData[index] && <Hint skill={questionData[index].skill}></Hint>}
+    </div> */}
+      {/* might be useful later */}
     </div>
   );
 };
@@ -368,6 +426,77 @@ export async function getStaticPaths() {
       { params: { slug: "division", skill: "share-8-equally" } },
       { params: { slug: "division", skill: "divide-12-equally" } },
       { params: { slug: "division", skill: "divide-100-equally" } },
+      { params: { slug: "addition", skill: "add-four-digit" } },
+      { params: { slug: "addition", skill: "add-five-digit" } },
+      { params: { slug: "addition", skill: "add-six-digit" } },
+      { params: { slug: "addition", skill: "add-tenths" } },
+      { params: { slug: "addition", skill: "add-hundredths" } },
+      { params: { slug: "subtraction", skill: "subtract-four-digit" } },
+      { params: { slug: "subtraction", skill: "subtract-tenths" } },
+      { params: { slug: "subtraction", skill: "subtract-five-digit" } },
+      { params: { slug: "subtraction", skill: "subtract-hundredths" } },
+      { params: { slug: "subtraction", skill: "subtract-six-digit" } },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-single-and-double-digit",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-single-and-triple-digit",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-double-digit-by-10",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-triple-digit-by-10",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-double-and-double-digit",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-double-and-triple-digit",
+        },
+      },
+      {
+        params: {
+          slug: "multiplication",
+          skill: "multiply-triple-digit-by-tenths",
+        },
+      },
+      {
+        params: {
+          slug: "division",
+          skill: "divide-double-digit-by-single-digit",
+        },
+      },
+      {
+        params: {
+          slug: "division",
+          skill: "divide-triple-digit-by-single-digit",
+        },
+      },
+      {
+        params: {
+          slug: "division",
+          skill: "divide-triple-digit-by-double-digit",
+        },
+      },
+      { params: { slug: "division", skill: "divide-triple-digit-by-tenths" } },
     ],
     fallback: true,
   };

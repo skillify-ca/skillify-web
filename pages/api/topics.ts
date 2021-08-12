@@ -10,6 +10,8 @@ export const lockedTopics = [
   "Data",
   "Variables",
   "Stats",
+  "Numbers",
+  "Fractions",
 ];
 
 export const unlockedTopics = [
@@ -18,5 +20,4 @@ export const unlockedTopics = [
   { title: "Subtraction", image: "/images/skills/subtraction.png" },
   { title: "Multiplication", image: "/images/skills/multiplication.png" },
   { title: "Division", image: "/images/skills/division.png" },
-  { title: "Fractions", image: "" },
 ];

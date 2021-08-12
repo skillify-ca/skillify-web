@@ -4,7 +4,7 @@ import { Story, Meta } from "@storybook/react";
 import { TopicItem, TopicItemProps } from "./TopicItem";
 
 export default {
-  title: "Example/TopicItem",
+  title: "UI/TopicItem",
   component: TopicItem,
   argTypes: {
     disabled: {

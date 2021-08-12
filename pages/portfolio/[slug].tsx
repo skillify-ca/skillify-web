@@ -1,16 +1,12 @@
 import React, { useEffect } from "react";
-import { session, useSession } from "next-auth/client";
-import Navbar from "../../components/Navbar";
-import initializeApollo from "../../lib/apollo";
-import { gql, useQuery } from "@apollo/client";
+import { useSession } from "next-auth/client";
+import { useQuery } from "@apollo/client";
 import { FETCH_FLASHCARD_GUESSES } from "../../graphql/fetchFlashcardGuesses";
 import _ from "lodash";
 import Link from "next/link";
 import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
-import Card from "../../components/stories/Card";
+import Card from "../../components/ui/Card";
 import data from "../api/profile/data.json";
-import StatementRow from "../../components/stories/StatementRow";
-import TopicItem from "../../components/stories/TopicItem";
 
 const Portfolio = ({ slug }) => {
   const [session, loading] = useSession();
@@ -101,7 +97,6 @@ const Portfolio = ({ slug }) => {
 
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
-      <Navbar />
       <div className="h-screen flex flex-col p-4 gap-8">
         <h1 className="text-lg font-bold">Quiz Attempts - {slug}</h1>
         <div>

@@ -2,21 +2,15 @@ import { useQuery } from "@apollo/client";
 import { session, useSession } from "next-auth/client";
 import Link from "next/link";
 import React from "react";
-import { useSelector } from "react-redux";
-import DiagnosticNavbar from "../../components/DiagnosticNavbar";
-import Navbar from "../../components/Navbar";
-import { Button } from "../../components/stories/Button";
 import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { userId } from "../../graphql/utils/constants";
 import {
   getEmoji,
   getPracticeCardForSkill,
   getSkillId,
-  getSkillsForTopicGrade,
   SkillDescription,
 } from "../api/skill";
 import { getVideosForSkill } from "../api/videoHelper";
-import Resources from "../resources";
 
 const SkillOverviewPage = ({ slug }) => {
   const [session, loading] = useSession();
@@ -68,7 +62,6 @@ const SkillOverviewPage = ({ slug }) => {
 
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-architect-blue-200 bg-blue-100 h-screen">
-      <DiagnosticNavbar />
       <div className="flex flex-row justify-between mt-8 mr-8 ml-8">
         <span className="text-6xl font-semibold text-gray-700">
           {" "}
@@ -101,16 +94,8 @@ const SkillOverviewPage = ({ slug }) => {
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              className="w-full"
+              className="w-full rounded-2xl"
             ></iframe>
-            // <a target="_blank" href={`${resource.link}`}>
-            //   <div
-            //     className="bg-white shadow-lg cursor-pointer rounded-lg w-full h-72 object-contain bg-cover bg-center flex justify-center items-center text-2xl text-white"
-            //     style={cardStyle(resource.videoId)}
-            //   >
-            //     <p className="font-bold m-4"> {resource.vidTitle} </p>
-            //   </div>
-            // </a>
           ))}
         </div>
         {practiceComponent}

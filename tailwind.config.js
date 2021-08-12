@@ -2,12 +2,15 @@ const { backgroundColor } = require("tailwindcss/defaultTheme");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
+  mode: 'jit',
   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       animation: {
         shake: "shake 0.5s ease-in-out",
+        hit: "hit 1s ease-in-out",
+        fadeIn: "fadeIn 2s ease-in-out",
       },
       backgroundImage: (theme) => ({
         "hero-student":
@@ -21,7 +24,22 @@ module.exports = {
           "0%, 100%": { transform: "rotate(0deg)" },
           "25%, 75%": { transform: "rotate(-3deg)" },
           "50%": { transform: "rotate(3deg)" },
+        },
+
+        hit: {
+          "0%, 100%": { transform: "scale(1) translate(0px, 0px)" },
+          "25%, 75%": { transform: "scale(1.25) translate(-30px, 0px)" },
+          "50%": { transform: "scale(1.5) translate(-75px, 0px)" },
+        },
+        fadeIn: {
+          "0%": { opacity: "0.1" },
+          "25%": { opacity: "0.25" },
+          "50%": { opacity: "0.5" },
+          "75%": { opacity: "0.75" },
+          "100%": { opacity: "1" },
+
         }
+
       },
       outline: {
         black: "2px solid #000000",

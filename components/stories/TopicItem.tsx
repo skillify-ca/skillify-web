@@ -1,6 +1,5 @@
-import Link from "next/link";
-import React, { useState } from "react";
-import { Button } from "./Button";
+import React from "react";
+import Card from "../ui/Card";
 import StarRating from "./Rating";
 
 export type TopicItemProps = {
@@ -14,7 +13,7 @@ export type TopicItemProps = {
 
 export const TopicItem: React.FC<TopicItemProps> = ({
   title,
-  accessory = "rating",
+  accessory,
   image,
   disabled,
   rating,
@@ -37,23 +36,20 @@ export const TopicItem: React.FC<TopicItemProps> = ({
       break;
   }
   return (
-    <div className="w-72">
-      <div
-        className={`gap-0 flex justify-between rounded-full items-center h-16 w-72 ${
-          disabled ? "bg-gray-300" : "bg-white shadow-md "
-        } p-4 text-center rounded-xl`}
-        onClick={onClick}
-      >
-        <div className="w-8 h-8 bg-purple-100 rounded-full p-1 ring-2 ring-blue-300">
-          {disabled ? (
-            <img src="/images/skills/lock.png" alt="" />
-          ) : (
-            image && <img src={image} alt="" />
-          )}
-        </div>
-        <p className="mx-4">{title}</p>
+    <div className="" onClick={onClick}>
+      <div className="bg-white shadow-md rounded-xl p-8">
+        <div className="flex flex-col justify-center items-center gap-4">
+          <div className="w-16 h-16 bg-purple-100 rounded-full p-1 ring-2 ring-blue-300">
+            {disabled ? (
+              <img src="/images/skills/lock.png" alt="" />
+            ) : (
+              image && <img src={image} alt="" />
+            )}
+          </div>
+          <p className="mx-4 text-center text-2xl">{title}</p>
 
-        {accessoryComponent}
+          {accessory && accessoryComponent}
+        </div>
       </div>
     </div>
   );

@@ -1,18 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import DiagnosticResults from "../components/stories/DiagnosticResults";
-import DiagnosticTestForm from "../components/stories/DiagnosticTestForm";
+import DiagnosticResults from "../components/assessment/DiagnosticResults";
+import DiagnosticTestForm from "../components/assessment/DiagnosticTestForm";
 import QuestionSet from "../components/stories/QuestionSet";
 import { GuessData } from "./api/guessData";
-import { AnswerType, Question } from "./api/question";
-import { QuestionType } from "./api/questionTypes";
+import { Question } from "./api/question";
 import { DiagnosticState, setDiagnostic } from "../redux/diagnosticSlice";
 import { useAppDispatch } from "../redux/store";
 import { Grade, Skill, Topic } from "./api/skill";
-import {
-  generateQuestionsForDiagnostic,
-  getNextQuestion,
-} from "./api/diagnostic/diagnosticQuestionGenerator";
-import DiagnosticNavbar from "../components/DiagnosticNavbar";
+import { getNextQuestion } from "./api/diagnostic/diagnosticQuestionGenerator";
 import { getWorkSheets } from "./api/worksheets";
 import {
   getCalculatedGrade,
@@ -20,7 +15,6 @@ import {
   getResultForSkill,
 } from "./api/diagnostic/diagnosticGrader";
 import { generateQuestionForSkill } from "./api/questionGenerator";
-import { Button } from "../components/stories/Button";
 
 enum STAGE {
   CREATE,
@@ -223,7 +217,6 @@ const Diagnostic = () => {
   }
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen">
-      <DiagnosticNavbar />
       <div className="p-4 flex flex-col items-center justify-center">
         {component}
       </div>

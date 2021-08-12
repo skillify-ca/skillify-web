@@ -1,12 +1,8 @@
 import React from "react";
-import DiagnosticNavbar from "../components/DiagnosticNavbar";
-import { Button } from "../components/stories/Button";
-import LinkPreview from "@ashwamegh/react-link-preview";
 
 export default function Resources(props) {
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
-      <DiagnosticNavbar />
       <div className="p-4 flex flex-col items-center justify-center">
         <div className="flex flex-col gap-8 w-full">
           <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8">

@@ -1,0 +1,205 @@
+import React, { useEffect, useState } from "react";
+import { GuessData } from "../../pages/api/guessData";
+import { Button } from "../ui/Button";
+
+export interface FillBlankProp {
+  displayQuestion: string;
+  step1: string;
+  step2: string;
+  step3: string;
+  answer: string;
+  submitGuess: (guess: GuessData) => void;
+}
+
+export const FillBlank: React.FC<FillBlankProp> = ({
+  displayQuestion,
+  step1,
+  step2,
+  step3,
+  answer,
+  submitGuess,
+}) => {
+  const [guess1, setGuess1] = useState("");
+  const [guess2, setGuess2] = useState("");
+  const [guess3, setGuess3] = useState("");
+  const [guess4, setGuess4] = useState("");
+
+  useEffect(() => {
+    (document.getElementById("input1") as HTMLInputElement).disabled = false;
+    (document.getElementById("input2") as HTMLInputElement).disabled = true;
+    (document.getElementById("input3") as HTMLInputElement).disabled = true;
+    (document.getElementById("input4") as HTMLInputElement).disabled = true;
+    (document.getElementById("input4") as HTMLInputElement).disabled = true;
+    (document.getElementById("input1") as HTMLInputElement).value = "";
+    (document.getElementById("input2") as HTMLInputElement).value = "";
+    (document.getElementById("input3") as HTMLInputElement).value = "";
+    (document.getElementById("input4") as HTMLInputElement).value = "";
+  }, []);
+
+  const [button1Visible, setButton1Visible] = useState(true);
+  const [button2Visible, setButton2Visible] = useState(false);
+  const [button3Visible, setButton3Visible] = useState(false);
+  const [button4Visible, setButton4Visible] = useState(false);
+
+  function onButton1Click() {
+    setButton2Visible(true);
+    setButton1Visible(false);
+    (document.getElementById("input1") as HTMLInputElement).disabled = true;
+    (document.getElementById("input2") as HTMLInputElement).disabled = false;
+  }
+  function onButton2Click() {
+    setButton3Visible(true);
+    setButton2Visible(false);
+    (document.getElementById("input2") as HTMLInputElement).disabled = true;
+    (document.getElementById("input3") as HTMLInputElement).disabled = false;
+  }
+  function onButton3Click() {
+    setButton4Visible(true);
+    setButton3Visible(false);
+    (document.getElementById("input3") as HTMLInputElement).disabled = true;
+    (document.getElementById("input4") as HTMLInputElement).disabled = false;
+  }
+  function onButton4Click() {
+    const result = guess1 + "," + guess2 + "," + guess3 + "," + guess4;
+    setButton1Visible(true);
+    setButton4Visible(false);
+    (document.getElementById("input1") as HTMLInputElement).disabled = false;
+    (document.getElementById("input2") as HTMLInputElement).disabled = true;
+    (document.getElementById("input3") as HTMLInputElement).disabled = true;
+    (document.getElementById("input4") as HTMLInputElement).disabled = true;
+    (document.getElementById("input1") as HTMLInputElement).value = "";
+    (document.getElementById("input2") as HTMLInputElement).value = "";
+    (document.getElementById("input3") as HTMLInputElement).value = "";
+    (document.getElementById("input4") as HTMLInputElement).value = "";
+    submitGuess({ guess: result, isCorrect: result == answer });
+  }
+
+  const parse = () => {
+    let index1 = 0;
+    let index2 = 0;
+    let index3 = 0;
+    let step1first = "";
+    let step1second = "";
+    let step2first = "";
+    let step2second = "";
+    let step3first = "";
+
+    const step1parts = step1.split(" ");
+    const step2parts = step2.split(" ");
+    const step3parts = step3.split(" ");
+
+    for (index1 = 0; index1 < 8; ++index1) {
+      step1first += step1parts[index1] + " ";
+    }
+    for (index1 = 9; index1 < 11; ++index1) {
+      step1second += step1parts[index1] + " ";
+    }
+    for (index2 = 0; index2 < 3; ++index2) {
+      step2first += step2parts[index2] + " ";
+    }
+
+    for (index2 = 4; index2 < 6; ++index2) {
+      step2second += step2parts[index2] + " ";
+    }
+    for (index3 = 0; index3 < 3; ++index3) {
+      step3first += step3parts[index3] + " ";
+    }
+    const stepArray = [
+      step1first,
+      step1second,
+      step2first,
+      step2second,
+      step3first,
+    ];
+    return {
+      steps: stepArray,
+    };
+  };
+
+  return (
+    <div className="flex flex-col items-center space-y-8">
+      <h1 className="text-4m font-semibold text-center"> {displayQuestion} </h1>
+      <p>
+        {parse().steps[0]}
+        <input
+          id="input1"
+          spellCheck="false"
+          className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
+          type="number"
+          value={guess1}
+          onChange={(e) => setGuess1(e.target.value)}
+        ></input>
+        {" " + parse().steps[1]}
+        {button1Visible && (
+          <Button
+            label="Lock-in"
+            onClick={onButton1Click}
+            textColor="white"
+            backgroundColor="red"
+          ></Button>
+        )}
+      </p>
+      <p>
+        {" "}
+        {parse().steps[2] + "("}
+        <input
+          id="input2"
+          spellCheck="false"
+          className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
+          type="number"
+          value={guess2}
+          onChange={(e) => setGuess2(e.target.value)}
+        ></input>
+        {" " + parse().steps[3]}
+        {button2Visible && (
+          <Button
+            onClick={onButton2Click}
+            label="Lock-in"
+            textColor="white"
+            backgroundColor="red"
+          ></Button>
+        )}
+      </p>
+
+      <p>
+        {" "}
+        {parse().steps[4]}
+        <input
+          id="input3"
+          spellCheck="false"
+          className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
+          type="number"
+          value={guess3}
+          onChange={(e) => setGuess3(e.target.value)}
+        ></input>
+        {button3Visible && (
+          <Button
+            onClick={onButton3Click}
+            label="Lock-in"
+            textColor="white"
+            backgroundColor="red"
+          ></Button>
+        )}
+      </p>
+
+      <p>
+        <input
+          id="input4"
+          spellCheck="false"
+          className="border py-0.5 px-0.5 text-grey-darkest p-8 w-10"
+          type="number"
+          value={guess4}
+          onChange={(e) => setGuess4(e.target.value)}
+        ></input>{" "}
+        {button4Visible && (
+          <Button
+            onClick={onButton4Click}
+            label="Lock-in"
+            textColor="white"
+            backgroundColor="red"
+          ></Button>
+        )}
+      </p>
+    </div>
+  );
+};

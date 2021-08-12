@@ -1,5 +1,4 @@
 import { shuffle } from "lodash";
-import { AdditionProperty } from "../../components/stories/MultipleChoiceTypes";
 import {
   Question,
   MCOption,
@@ -11,7 +10,7 @@ import {
 import { Skill } from "./skill";
 import { QuestionType } from "./questionTypes";
 import { getRandomItemFromArray, getRndInteger } from "./random";
-import { FillBlank } from "../../components/stories/FillBlank";
+import { AdditionProperty } from "./additionProperty";
 
 export function getRandomPropertyAdditionQuestion(
   min: number,
@@ -86,43 +85,35 @@ function getRandomWordPropertyQuestion(
 
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
-  const commutativeOption: MCOption = {
-    text: getCommutativeSentence(a, b, operator),
-    id: "Commutative",
-  };
+  const commutativeQuestion = getCommutativeSentence(a, b, operator)
 
   const identityNum = getRndInteger(min, max);
-  const identityOption: MCOption = {
-    text: getIdentitySentence(identityNum, operator),
-    id: "Identity",
-  };
+  const identityQuestion = getIdentitySentence(identityNum, operator)
 
   const x = getRndInteger(min, max);
   const y = getRndInteger(min, max);
   const z = getRndInteger(min, max);
-  const associativeOption: MCOption = {
-    text: getAssociativeSentence(x, y, z, operator),
-    id: "Associative",
+  const associativeQuestion = getAssociativeSentence(x, y, z, operator)
+
+  // question chooser
+  const possibleQuestions = [commutativeQuestion, identityQuestion, associativeQuestion];
+  const randomIndex = getRndInteger(0, possibleQuestions.length);
+  const question = possibleQuestions[randomIndex];
+
+  const options = [
+    { id: "Associative", text: "Associative" },
+    { id: "Commutative", text: "Commutative" },
+    { id: "Identity", text: "Identity" },
+  ];
+
+  const modelProperty: MCModel = {
+    options: options,
+    title: "Which Property of Addition is shown?",
   };
-
-  // answer array chooser
-
-  const correctAnswers = [commutativeOption, identityOption, associativeOption];
-  const correctIndex = getRndInteger(0, correctAnswers.length);
-  const finalCorrectAnswer = correctAnswers[correctIndex];
-
-  const questionOption: MCOption = {
-    text: finalCorrectAnswer.text,
-    id: finalCorrectAnswer.id,
-  };
-
-  const questionModel = [questionOption];
-
-  const modelProperty: MCModel = { options: questionModel };
 
   return {
-    text: modelProperty.options[0].text,
-    answer: modelProperty.options[0].id,
+    text: question,
+    answer: question,
     answerType: AnswerType.STRING,
     operator: operator,
     questionType: QuestionType.MULTIPLE_CHOICE_WORD,
