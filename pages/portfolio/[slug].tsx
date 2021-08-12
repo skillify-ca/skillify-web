@@ -7,7 +7,6 @@ import Link from "next/link";
 import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
 import Card from "../../components/ui/Card";
 import data from "../api/profile/data.json";
-import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 
 const Portfolio = ({ slug }) => {
   const [session, loading] = useSession();
@@ -98,7 +97,6 @@ const Portfolio = ({ slug }) => {
 
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-gray-200">
-      <DiagnosticNavbar />
       <div className="h-screen flex flex-col p-4 gap-8">
         <h1 className="text-lg font-bold">Quiz Attempts - {slug}</h1>
         <div>

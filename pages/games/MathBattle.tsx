@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import * as Colyseus from "colyseus.js";
 import BattleComponent from "../../components/mathBattle/BattleComponent";
 import { generateQuestions } from "../api/quiz/quizQuestionGenerator";
@@ -177,77 +176,74 @@ const MathBattle = () => {
   }, []);
 
   return (
-    <div>
-      <DiagnosticNavbar />
-      <div className="p-4">
-        {stage == STAGE.JOIN_SESSION && (
-              <CreateRoom
-                players={players}
-                onCreateClick={onCreateClick}
-                onCreateCoopClick={onCreateCoopClick}
-                onJoinClick={onJoinClick}
-                name={name}
-                setName={setName}
-                joinName={joinName}
-                setJoinName={setJoinName}
-                code={code}
-                setCode={setCode}
-              />
-            )}
-        {stage == STAGE.LOBBY && (
-          <Lobby
-            room={room}
-            players={players}
-            code={code}
-            startGame={onStartGameRequested}
-            leader={leader}
-            isLoading={isLoading}
-          />
-        )}
-        {stage == STAGE.BATTLE && (
-          <BattleComponent
-            questions={questionData}
-            players={players}
-            room={room}
-            gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
-          />
-        )}
-        {stage == STAGE.COOP_STORY && (
-          <CoopStoryComponent
-            goToIntro={() => {
-              setStage(STAGE.COOP_INTRO);
-            }}
-          />
-        )}
-        {stage == STAGE.COOP_INTRO && (
-          <CoopBattleIntro
-            startGame={() => {
-              setStage(STAGE.COOP);
-            }}
-          />
-        )}
-        {stage == STAGE.COOP && (
-          <CoopBattleComponent
-            questions={questionData}
-            room={room}
-            goToGameOver={() => setStage(STAGE.COOP_GAME_OVER)}
-          />
-        )}
-        {stage == STAGE.POSTGAME_LOBBY && (
-          <PostGameLobby
-            goToLobby={() => setStage(STAGE.LOBBY)}
-            gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
-            room={room}
-            length={players.length}
-          />
-        )}
-        {stage == STAGE.COOP_GAME_OVER && (
-          <CoopGameOver
-            room={room}
-            goToLobby={() => setStage(STAGE.JOIN_SESSION)}
-          />
-        )}
-      </div>
+    <div className="p-4">
+      {stage == STAGE.JOIN_SESSION && (
+        <CreateRoom
+          players={players}
+          onCreateClick={onCreateClick}
+          onCreateCoopClick={onCreateCoopClick}
+          onJoinClick={onJoinClick}
+          name={name}
+          setName={setName}
+          joinName={joinName}
+          setJoinName={setJoinName}
+          code={code}
+          setCode={setCode}
+        />
+      )}
+      {stage == STAGE.LOBBY && (
+        <Lobby
+          room={room}
+          players={players}
+          code={code}
+          startGame={onStartGameRequested}
+          leader={leader}
+          isLoading={isLoading}
+        />
+      )}
+      {stage == STAGE.BATTLE && (
+        <BattleComponent
+          questions={questionData}
+          players={players}
+          room={room}
+          gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
+        />
+      )}
+      {stage == STAGE.COOP_STORY && (
+        <CoopStoryComponent
+          goToIntro={() => {
+            setStage(STAGE.COOP_INTRO);
+          }}
+        />
+      )}
+      {stage == STAGE.COOP_INTRO && (
+        <CoopBattleIntro
+          startGame={() => {
+            setStage(STAGE.COOP);
+          }}
+        />
+      )}
+      {stage == STAGE.COOP && (
+        <CoopBattleComponent
+          questions={questionData}
+          room={room}
+          goToGameOver={() => setStage(STAGE.COOP_GAME_OVER)}
+        />
+      )}
+      {stage == STAGE.POSTGAME_LOBBY && (
+        <PostGameLobby
+          goToLobby={() => setStage(STAGE.LOBBY)}
+          gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
+          room={room}
+          length={players.length}
+        />
+      )}
+      {stage == STAGE.COOP_GAME_OVER && (
+        <CoopGameOver
+          room={room}
+          goToLobby={() => setStage(STAGE.JOIN_SESSION)}
+        />
+      )}
     </div>
   );
 };
