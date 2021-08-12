@@ -3,7 +3,6 @@ import React, { useState } from "react";
 export default function singleDigit(props) {
   return (
     <div>
-      <Navbar />
       <div className="overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen">
         <div className="bg-white shadow-lg rounded-lg p-4 ml-auto mr-auto mt-4 max-w-5xl">
           <p className="font-bold mb-4">Single Digit Addition</p>
