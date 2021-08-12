@@ -4,7 +4,7 @@ import QuestionSet from "../stories/QuestionSet";
 import { AnswerType, Question } from "../../pages/api/question";
 import { GuessData } from "../../pages/api/guessData";
 import ProgressBar from "../ProgressBar";
-import { Player } from "../../pages/games/MathBattle";
+import { Player } from "../../pages/games";
 import Card from "../ui/Card";
 import ReactCardFlip from "react-card-flip";
 import { Button } from "../ui/Button";
