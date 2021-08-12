@@ -1,6 +1,6 @@
 import React from "react";
+import { Player } from "../../pages/games";
 import { Button } from "../ui/Button";
-import { Player } from "../../pages/games/MathBattle";
 
 export interface CreateRoomProps {
   onCreateClick: () => void;
