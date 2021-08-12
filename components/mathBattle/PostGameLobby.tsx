@@ -1,14 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import * as Colyseus from "colyseus.js";
-import QuestionSet from "../stories/QuestionSet";
 import { AnswerType, Question } from "../../pages/api/question";
-import { GuessData } from "../../pages/api/guessData";
-import ProgressBar from "../ProgressBar";
-import { Player } from "../../pages/games/MathBattle";
 import Card from "../ui/Card";
 import ReactCardFlip from "react-card-flip";
 import { Button } from "../ui/Button";
-import BattleComponent from "./BattleComponent";
 import { generateQuestions } from "../../pages/api/quiz/quizQuestionGenerator";
 import { QuestionType } from "../../pages/api/questionTypes";
 import { Skill } from "../../pages/api/skill";
