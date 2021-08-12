@@ -20,7 +20,6 @@ import { SAVE_USER_GUESSES } from "../../graphql/saveUserGuesses";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
 import { SAVE_QUIZ_ATTEMPT } from "../../graphql/saveQuizAttempt";
-import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -178,7 +177,6 @@ const Quiz = ({ slug }) => {
   };
   return (
     <div>
-      <DiagnosticNavbar />
       <QuestionSet
         title={slug}
         questionData={questionData}

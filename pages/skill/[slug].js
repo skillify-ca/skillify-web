@@ -12,12 +12,7 @@ const Skill = () => {
   const skill = apiData["skills"][slug];
 
   if (skill === undefined) {
-    return (
-      <div>
-        <Navbar />
-        <div className="bg-yellow-500 p-4">Coming Soon</div>
-      </div>
-    );
+    return <div className="bg-yellow-500 p-4">Coming Soon</div>;
   }
 
   const opts = {
@@ -29,13 +24,10 @@ const Skill = () => {
     },
   };
 
-  const _onReady = () => {
-
-  }
+  const _onReady = () => {};
 
   return (
     <div>
-      <Navbar />
       <div className="bg-yellow-500 p-4">
         <h1 className="text-xl text-center p-4">{skill.title}</h1>
         <h1 className="text-base text-center p-4">{skill.description}</h1>

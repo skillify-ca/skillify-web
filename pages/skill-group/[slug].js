@@ -11,20 +11,14 @@ const SkillGroup = () => {
   const data = initialData["skillGroups"][slug];
   if (data === undefined) {
     return (
-      <div>
-        <Navbar />
-        <div className="flex justify-center p-16 bg-purple-500 text-white text-center text-xl">
-          Coming Soon
-        </div>
+      <div className="flex justify-center p-16 bg-purple-500 text-white text-center text-xl">
+        Coming Soon
       </div>
     );
   }
 
   return (
     <div>
-      <div>
-        <Navbar />
-      </div>
       <div className="text-xl text-center p-4">{data.title}</div>
       <div className="p-4">
         <div className="grid grid-cols-1 gap-4">
