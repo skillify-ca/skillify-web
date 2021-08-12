@@ -179,7 +179,7 @@ const TopicOverviewPage = ({ slug }) => {
               </Link>
             </div>
           </div>
-          <div className="flex items-center text-lg flex-row bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 border-2 rounded-xl pl-3">
+          <div className="flex items-center text-lg flex-row">
             <p className="text-xl font-bold text-blue-900"> Best Attempt: </p>
             <p
               className={`${getColourForAccuracy(

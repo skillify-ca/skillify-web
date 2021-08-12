@@ -1,5 +1,5 @@
 import React from "react";
-import { PracticeTopic } from "./PracticeTopic";
+import { UnitCard } from "./UnitCard";
 import { useSession } from "next-auth/client";
 import { userId } from "../graphql/utils/constants";
 import Card from "./ui/Card";
@@ -57,10 +57,10 @@ export default function Outline({ session }: OutlineProps) {
           </div>
         </Card>
       </div>
-      <div className="flex flex-wrap justify-center gap-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 justify-center gap-8">
         {unlockedTopics.map((topic, index) => (
           <div key={topic.title}>
-            <PracticeTopic
+            <UnitCard
               key={topic.title}
               title={topic.title}
               image={topic.image}
@@ -70,13 +70,13 @@ export default function Outline({ session }: OutlineProps) {
           </div>
         ))}
       </div>
-      <div className="col-span-2 my-8">
+      <div className="col-span-4 my-8">
         <p className="text-xl text-center font-bold">{"Locked"}</p>
       </div>
       <div className="flex flex-wrap justify-center gap-4">
         {lockedTopics.map((topic) => (
           <div key={topic}>
-            <PracticeTopic key={topic} title={topic} disabled={true} />
+            <UnitCard key={topic} title={topic} disabled={true} />
           </div>
         ))}
       </div>

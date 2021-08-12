@@ -12,7 +12,7 @@ import store from "../redux/store";
 import { signIn, useSession } from "next-auth/client";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import DiagnosticNavbar from "../components/DiagnosticNavbar";
+import Navbar from "../components/Navbar";
 
 function MyApp({ Component, pageProps }) {
   const client = initializeApollo();
@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }) {
           <ModalProvider>
             <ReduxProvider store={store}>
               <div>
-                <DiagnosticNavbar />
+                <Navbar />
                 {Component.auth ? (
                   <Auth>
                     <Component {...pageProps} />
