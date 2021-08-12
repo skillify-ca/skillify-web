@@ -14,7 +14,7 @@ import HouseExpensesTable from "../components/finance/HouseExpensesTable";
 import CarExpenseTable from "../components/finance/CarExpenseTable";
 import AdditionalTable from "../components/finance/AdditionalExpense";
 import MoneyRemainingTable from "../components/finance/MoneyRemaining";
-
+import TotalExpensesTable from "../components/finance/TotalExpensesTable";
 
 const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
@@ -53,7 +53,10 @@ const FinanceProfile = () => {
   const [totalAdditional, setTotalAdditional] = useState("");
   const [sumAddValidation, setSumAddValidation] = useState("");
 
-  const [totalExpenses, setTotalExpenses] = useState("200"); //Set for Section 6
+  const [totalHousingCost6, setTotalHousingCost6] = useState("")
+  const [totalCarCosts6, setTotalCarCosts6] = useState("")
+  const [totalAdditional6, setTotalAdditional6] = useState("")
+  const [totalExpenses, setTotalExpenses] = useState(""); //Set for Section 6
 
   const [totalMonthlySection7, setTotalMonthlysection7] = useState("");
   const [totalExpensesSection7, setTotalExpensesSection7] = useState("");
@@ -177,6 +180,25 @@ const FinanceProfile = () => {
           setTotalAdditional={setTotalAdditional}
           sumAddValidation={sumAddValidation}
           setSumAddValidation={setSumAddValidation}
+        />
+      </div>
+
+      <div>
+        <TotalExpensesTable 
+        totalHousingCost6 = {totalHousingCost6}
+        setTotalHousingCost6 = {setTotalHousingCost6}
+        totalCarCosts6 = {totalCarCosts6}
+        setTotalCarCosts6 = {setTotalCarCosts6}
+        totalAdditional6 = {totalAdditional6}
+        setTotalAdditional6 = {setTotalAdditional6}
+        totalHousingCost = {totalHousingCost}
+        setTotalHousingCost = {setTotalHousingCost}
+        totalCarCosts = {totalCarCosts}
+        setTotalCarCosts = {setTotalCarCosts}
+        totalAdditional = {totalAdditional}
+        setTotalAdditional = {setTotalAdditional}
+        totalExpenses = {totalExpenses}
+        setTotalExpenses = {setTotalExpenses}
         />
       </div>
 

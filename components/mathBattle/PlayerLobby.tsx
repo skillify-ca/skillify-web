@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "../ui/Button";
 import * as Colyseus from "colyseus.js";
 import Link from "next/link";
-import { Player } from "../../pages/games";
+import { Player } from "../../pages/games/MathBattle";
 
 export interface CreateRoomProps {
   room: Colyseus.Room;
