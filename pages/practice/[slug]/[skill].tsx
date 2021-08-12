@@ -319,7 +319,6 @@ const PracticeQuiz = ({ slug, skill }) => {
 
   return (
     <div className="bg-blue-100 heropattern-architect-blue-50 h-md">
-      < />
       <div className="flex flex-col justify-center items-center mt-8">
         <div className="flex flex-row w-96 p-4 justify-between bg-gray-400 shadow-lg rounded-lg ">
           <p className="font-semibold">
