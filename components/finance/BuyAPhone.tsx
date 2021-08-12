@@ -7,7 +7,7 @@ export const BuyAPhone = ({}: BuyAPhoneProps) => {
     <div>
       <ServiceHeader
         mainHeader="Buy a Phone"
-        imgHeader="/images/clip-art-5500678_1280.png"
+        imgHeader="/images/smartphone_large.png"
         subHeader="All adults must have a phone. Your children do not need phones, but you can buy a service plan for them if you want. All phones must have a service plan. Your expenses go in section 5 of your recording sheet.
 "
       />
@@ -20,10 +20,7 @@ export const BuyAPhone = ({}: BuyAPhoneProps) => {
         <div className="flex flex-wrap justify-center p-3 gap-x-4 gap-y-4">
           <VintageWireless />
           <SpeedyWireless />
-          <img
-            className="w-3/12 h-1/6"
-            src="/images/kisspng-feature-phone-smartphone-cartoon-blue-phone-5aae69934912e3.9473406315213797312993 (1).png"
-          />
+          <img className="w-3/12 h-1/6" src="/images/smartphone_small.png" />
         </div>
       </div>
     </div>
