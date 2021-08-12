@@ -24,7 +24,11 @@ const BuyACar = ({
   setCost,
 }: BuyACarProps) => {
   return (
-    <div className={"grid grid-cols-2 grid-rows-4 border-2 border-black m-8"}>
+    <div
+      className={
+        "grid grid-auto-rows grid-cols-2 grid-rows-4 border-2 border-black m-8"
+      }
+    >
       <div className={"mt-8 ml-20"}>
         <h1
           className={
