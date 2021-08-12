@@ -2,6 +2,7 @@ import _, { min } from "lodash";
 import React, { useEffect, useState } from "react";
 import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
 import IncomeTable from "../components/finance/IncomeTable";
+
 import { SectionOneInput } from "../components/finance/SectionOneInput";
 import {
   FinanceProfileType,
@@ -12,24 +13,25 @@ import { getRndInteger } from "./api/random";
 import HouseExpensesTable from "../components/finance/HouseExpensesTable";
 import CarExpenseTable from "../components/finance/CarExpenseTable";
 import AdditionalTable from "../components/finance/AdditionalExpense";
-
 import MoneyRemainingTable from "../components/finance/MoneyRemaining";
+import TotalExpensesTable from "../components/finance/TotalExpensesTable";
 
 const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
   const [spouseMonthlyIncome, setSpouseMounthlyIncome] = useState("");
   const [totalMonthlyIncome, setTotalMonthlyIncome] = useState("");
+  const [housePayment, setHousePayment] = useState("");
+  const [electricBill, setElectricBill] = useState("");
+  const [gasBill, setGasBill] = useState("");
+  const [waterBill, setWaterBill] = useState("");
+  const [totalHousingCost, setTotalHousingCost] = useState("");
+  const [homeType, setHomeType] = useState("");
 
   const [backgroundColour, setBackgroundColour] = useState("");
   const [valueTest, setValueTest] = useState("");
 
   const [isMarried, setMarriage] = useState(MaritalStatus.SINGLE);
   const [hasChildren, setChildren] = useState(false);
-  const [housePayment, setHousePayment] = useState("");
-  const [electricBill, setElectricBill] = useState("");
-  const [gasBill, setGasBill] = useState("");
-  const [waterBill, setWaterBill] = useState("");
-  const [totalHousingCost, setTotalHousingCost] = useState("");
 
   const [individualOccupation, setIndividualOccupation] = useState("");
   const [individualSalary, setIndividualSalary] = useState(0);
@@ -51,7 +53,10 @@ const FinanceProfile = () => {
   const [totalAdditional, setTotalAdditional] = useState("");
   const [sumAddValidation, setSumAddValidation] = useState("");
 
-  const [totalExpenses, setTotalExpenses] = useState("200"); //Set for Section 6
+  const [totalHousingCost6, setTotalHousingCost6] = useState("")
+  const [totalCarCosts6, setTotalCarCosts6] = useState("")
+  const [totalAdditional6, setTotalAdditional6] = useState("")
+  const [totalExpenses, setTotalExpenses] = useState(""); //Set for Section 6
 
   const [totalMonthlySection7, setTotalMonthlysection7] = useState("");
   const [totalExpensesSection7, setTotalExpensesSection7] = useState("");
@@ -128,18 +133,21 @@ const FinanceProfile = () => {
           setValueTest={setValueTest}
         ></IncomeTable>
       </div>
+      
       <div>
         <HouseExpensesTable
-          housePayment={housePayment}
-          setHousePayment={setHousePayment}
-          electricBill={electricBill}
-          setElectricBill={setElectricBill}
-          gasBill={gasBill}
-          setGasBill={setGasBill}
-          waterBill={waterBill}
-          setWaterBill={setWaterBill}
-          totalHousingCost={totalHousingCost}
-          setTotalHousingCost={setTotalHousingCost}
+          housePayment = {housePayment}
+          setHousePayment = {setHousePayment}
+          electricBill = {electricBill}
+          setElectricBill = {setElectricBill}
+          gasBill = {gasBill}
+          setGasBill = {setGasBill}
+          waterBill = {waterBill}
+          setWaterBill = {setWaterBill}
+          totalHousingCost = {totalHousingCost}
+          setTotalHousingCost = {setTotalHousingCost}
+          homeType = {homeType}
+          setHomeType = {setHomeType}
         />
       </div>
 
@@ -172,6 +180,25 @@ const FinanceProfile = () => {
           setTotalAdditional={setTotalAdditional}
           sumAddValidation={sumAddValidation}
           setSumAddValidation={setSumAddValidation}
+        />
+      </div>
+
+      <div>
+        <TotalExpensesTable 
+        totalHousingCost6 = {totalHousingCost6}
+        setTotalHousingCost6 = {setTotalHousingCost6}
+        totalCarCosts6 = {totalCarCosts6}
+        setTotalCarCosts6 = {setTotalCarCosts6}
+        totalAdditional6 = {totalAdditional6}
+        setTotalAdditional6 = {setTotalAdditional6}
+        totalHousingCost = {totalHousingCost}
+        setTotalHousingCost = {setTotalHousingCost}
+        totalCarCosts = {totalCarCosts}
+        setTotalCarCosts = {setTotalCarCosts}
+        totalAdditional = {totalAdditional}
+        setTotalAdditional = {setTotalAdditional}
+        totalExpenses = {totalExpenses}
+        setTotalExpenses = {setTotalExpenses}
         />
       </div>
 
