@@ -22,13 +22,11 @@ export type Player = {
   finished: boolean;
 };
 export enum STAGE {
-  JOIN_SESSION,
+  CREATE_JOIN_GAME,
   LOBBY,
   BATTLE,
   COOP,
   POSTGAME_LOBBY,
-  COOP_STORY,
-  COOP_INTRO,
   GAME_OVER,
   COOP_GAME_OVER,
 }
@@ -38,7 +36,7 @@ const MathBattle = () => {
 
   const [leader, setLeader] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [stage, setStage] = useState(STAGE.JOIN_SESSION);
+  const [stage, setStage] = useState(STAGE.CREATE_JOIN_GAME);
   const [room, setRoom] = useState<Colyseus.Room>();
   const [battleName, setBattleName] = useState("");
   const [coopName, setCoopName] = useState("");
@@ -133,7 +131,7 @@ const MathBattle = () => {
     setQuestionData(questions);
   });
   room?.onMessage("goToCoop", (message) => {
-    setStage(STAGE.COOP_STORY);
+    setStage(STAGE.COOP);
   });
   room?.onMessage("showGameOver", (message) => {
     // There is no message for coop
@@ -149,7 +147,6 @@ const MathBattle = () => {
   });
 
   const onStartGameRequested = () => {
-    setStage(STAGE.BATTLE);
     const questions = generateQuestions("addition", 1, 10);
     room.send("startGameRequested", { questions: questions, players: players });
   };
@@ -160,7 +157,7 @@ const MathBattle = () => {
 
   return (
     <div className="p-4">
-      {stage == STAGE.JOIN_SESSION && (
+      {stage == STAGE.CREATE_JOIN_GAME && (
         <CreateRoom
           players={players}
           onCreateClick={onCreateClick}
@@ -194,13 +191,6 @@ const MathBattle = () => {
           gotoPostGameLobby={() => setStage(STAGE.POSTGAME_LOBBY)}
         />
       )}
-      {stage == STAGE.COOP_INTRO && (
-        <CoopBattleIntro
-          startGame={() => {
-            setStage(STAGE.COOP);
-          }}
-        />
-      )}
       {stage == STAGE.COOP && (
         <CoopBattleComponent
           questions={questionData}
@@ -219,7 +209,7 @@ const MathBattle = () => {
       {stage == STAGE.COOP_GAME_OVER && (
         <CoopGameOver
           room={room}
-          goToLobby={() => setStage(STAGE.JOIN_SESSION)}
+          goToLobby={() => setStage(STAGE.CREATE_JOIN_GAME)}
         />
       )}
     </div>
