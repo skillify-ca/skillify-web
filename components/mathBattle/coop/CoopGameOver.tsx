@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import * as Colyseus from "colyseus.js";
 import { Button } from "../../ui/Button";
-import { STAGE } from "../../../pages/games";
+import { STAGE } from "../../../pages/games/MathBattle";
 
 export interface CoopGameOverProps {
   room: Colyseus.Room;

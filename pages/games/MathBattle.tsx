@@ -13,7 +13,6 @@ import PostGameLobby from "../../components/mathBattle/PostGameLobby";
 import CoopGameOver from "../../components/mathBattle/coop/CoopGameOver";
 import CoopBattleIntro from "../../components/mathBattle/coop/CoopBattleIntro";
 import CoopStoryComponent from "../../components/mathBattle/CoopNarrative";
-import { useSession } from "next-auth/client";
 
 export type Player = {
   seat: number;
@@ -36,12 +35,13 @@ export enum STAGE {
 
 const MathBattle = () => {
   const [players, setPlayers] = useState([]);
-  const [session] = useSession();
+
   const [leader, setLeader] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [stage, setStage] = useState(STAGE.JOIN_SESSION);
   const [room, setRoom] = useState<Colyseus.Room>();
-  const [name, setName] = useState("Player");
+  const [name, setName] = useState("");
+  const [joinName, setJoinName] = useState("");
   const [code, setCode] = useState("");
   const [winnerId, setWinnerId] = useState("");
 
@@ -62,7 +62,15 @@ const MathBattle = () => {
       .then((room) => {
         console.log(room.sessionId, "joined", room.name);
         setRoom(room);
-        room.send("join", { name: name }); //Dyanmic Name
+        console.log("initial", name);
+
+        console.log("joininitial", joinName);
+
+        console.log("fakename", name);
+
+        console.log("final", name);
+
+        room.send("join", { name: joinName }); //Dyanmic Name
         setStage(STAGE.LOBBY);
       })
       .catch((e) => {
@@ -108,8 +116,13 @@ const MathBattle = () => {
       });
   };
   room?.onMessage("joinResponse", (message) => {
+    console.log(client.auth._id, "received fire on", room.name, message);
+    console.log("messageresponse", message.players);
+    console.log("leaderMEssage", message.leader);
+
     let playerArr = [];
-    for (const [key, value] of Object.entries(message)) {
+    for (const [key, value] of Object.entries(message.players)) {
+      console.log(key, value);
       playerArr.push(value);
     }
 
@@ -118,11 +131,14 @@ const MathBattle = () => {
   });
 
   room?.onMessage("postGame", (message) => {
+    console.log("message", message);
     let playerArr = [];
     for (const [key, value] of Object.entries(message)) {
       playerArr.push(value);
     }
+    console.log("players", playerArr);
     setPlayers(playerArr);
+    console.log("postgame");
     setStage(STAGE.POSTGAME_LOBBY);
   });
 
@@ -135,6 +151,8 @@ const MathBattle = () => {
     setStage(STAGE.COOP_STORY);
   });
   room?.onMessage("showGameOver", (message) => {
+    console.log("mes", message);
+
     // There is no message for coop
     if (message) {
       setWinnerId(message.id);
@@ -156,20 +174,19 @@ const MathBattle = () => {
   useEffect(() => {
     setQuestionData(questionSetGenerator(20));
   }, []);
-  useEffect(() => {
-    if (session && session.user) {
-      setName(session.user.name);
-    }
-  }, [session]);
 
   return (
-    <div className="p-4 heropattern-yyy-blue-200">
+    <div className="p-4">
       {stage == STAGE.JOIN_SESSION && (
         <CreateRoom
           players={players}
           onCreateClick={onCreateClick}
           onCreateCoopClick={onCreateCoopClick}
           onJoinClick={onJoinClick}
+          name={name}
+          setName={setName}
+          joinName={joinName}
+          setJoinName={setJoinName}
           code={code}
           setCode={setCode}
         />
