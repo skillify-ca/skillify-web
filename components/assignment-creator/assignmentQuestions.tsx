@@ -21,13 +21,20 @@ const AssignmentQuestions = ({
   onClick,
 }: assignmentQuestionsProps) => {
   useEffect(() => {
+    console.log(selectedQuestions);
+
     // initialize dropdowns
     const initialArray: QuestionTypeForSkill[] = [];
     const initialQuestionTypes: QuestionTypeForSkill[] = selectedQuestions.map(
-      (skill) => {
+      (skill, index) => {
+        console.log(
+          "getQuestionTypesForSkill",
+          getQuestionTypesForSkill(skill)[0]
+        );
         return {
           questionType: getQuestionTypesForSkill(skill)[0],
           skill: skill,
+          id: index,
         };
       }
     );
@@ -35,39 +42,46 @@ const AssignmentQuestions = ({
     setSelectedSkills(initialArray);
   }, []);
 
+  console.log(selectedSkills);
   // just updates questiontype for the skill you changed in the array, not the other ones
   const onQuestionTypeChange = (
     newQuestionType: QuestionType,
-    skill: Skill
+    skill: Skill,
+    index: number
   ) => {
     const updatedArray = selectedSkills.map((item) => {
-      if (item.skill === skill) {
-        return { questionType: newQuestionType, skill: skill };
+      console.log("hi", index, item.id);
+      if (item.id === index) {
+        return { questionType: newQuestionType, skill: skill, id: index };
       } else {
         return item;
       }
     });
+    console.log("updatedArray", updatedArray);
+
     setSelectedSkills(updatedArray);
   };
 
-  const getQuestionTypeForSkill = (skill) => {
+  const getQuestionTypeForSkill = (skill, index) => {
     if (selectedSkills.length == 0) {
       return "";
     } else {
+      console.log("hello");
       return selectedSkills.filter((it) => it.skill === skill)[0].questionType;
     }
   };
 
   return (
     <div className="flex flex-col gap-8 w-full">
-      {selectedQuestions.map((skill) => (
+      {selectedQuestions.map((skill, index) => (
         <div>
           {" "}
           {skill}
+          {index}
           <select
-            value={getQuestionTypeForSkill(skill)}
+            value={selectedSkills[index].questionType}
             onChange={(e) =>
-              onQuestionTypeChange(e.target.value as QuestionType, skill)
+              onQuestionTypeChange(e.target.value as QuestionType, skill, index)
             }
             multiple={false}
             className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"

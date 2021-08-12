@@ -18,6 +18,7 @@ enum STAGE {
 const Diagnostic = () => {
   const [stage, setStage] = useState(STAGE.CHOOSE_TOPICS);
   const [selectedQuestions, setSelectedQuestions] = useState<Skill[]>([]);
+  const [numberOfQuestions, setNumberOfQuestions] = useState([]);
   const [selectedSkills, setSelectedSkills] = useState<QuestionTypeForSkill[]>(
     []
   );
@@ -60,7 +61,7 @@ const Diagnostic = () => {
       break;
   }
   return (
-    <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen">
+    <div className="flex flex-col overflow-auto bg-scroll bg-blue-100 h-screen">
       <DiagnosticNavbar />
       <div className="p-4 flex flex-col items-center justify-center">
         {component}

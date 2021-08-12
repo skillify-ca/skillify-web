@@ -6,7 +6,8 @@ import { Input } from "../ui/Input";
 
 export interface VerticalEquationProp {
   question: Question;
-  submitGuess: (guess: GuessData) => void;
+  submitGuess?: (guess: GuessData) => void;
+  showSubmitButton?: boolean;
 }
 
 /**
@@ -15,6 +16,7 @@ export interface VerticalEquationProp {
 export const VerticalEquation: React.FC<VerticalEquationProp> = ({
   question,
   submitGuess,
+  showSubmitButton = true,
   ...props
 }) => {
   const [guess, setGuess] = useState("");
@@ -49,12 +51,14 @@ export const VerticalEquation: React.FC<VerticalEquationProp> = ({
         setGuess={setGuess}
         handleKeypress={handleKeypress}
       />
-      <Button
-        onClick={onSubmit}
-        label="Submit"
-        backgroundColor="blue"
-        textColor="white"
-      />
+      {showSubmitButton && (
+        <Button
+          onClick={onSubmit}
+          label="Submit"
+          backgroundColor="blue"
+          textColor="white"
+        />
+      )}
     </div>
   );
 };
