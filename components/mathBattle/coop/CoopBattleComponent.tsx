@@ -2,10 +2,8 @@ import React, { useRef, useState } from "react";
 import * as Colyseus from "colyseus.js";
 import QuestionSet from "../../stories/QuestionSet";
 import { Question } from "../../../pages/api/question";
-import { getEmoji } from "../../../pages/api/skill";
 import { GuessData } from "../../../pages/api/guessData";
 import ProgressRing from "../../ui/ProgressRing";
-import Card from "../../ui/Card";
 
 export interface CoopBattleComponentProps {
   questions: Question[];
