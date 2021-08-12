@@ -15,7 +15,6 @@ export interface HouseExpensesProps {
     homeType: string,
     setHomeType: (homeType: string) => void;
 
-
 }
 
 const HouseExpensesTable = ({
