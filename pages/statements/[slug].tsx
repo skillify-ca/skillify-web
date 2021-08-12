@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "react-simple-hook-modal/dist/styles.css";
-import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useSession } from "next-auth/client";
