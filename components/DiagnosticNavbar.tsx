@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { useState } from "react";
 import { signIn, useSession } from "next-auth/client";
+import { Session } from "next-auth";
 
 export default function Navbar() {
+  const [session, loading] = useSession();
   const [active, setActive] = useState(false);
   const [profieMenuActive, setProfileMenuActive] = useState(false);
-  const [session, loading] = useSession();
 
   const handleClick = () => {
     setActive(!active);
@@ -135,7 +136,7 @@ export default function Navbar() {
             <div className="ml-3 relative">
               <div>
                 <div>
-                  {!session && (
+                  {loading ? "" : !session && (
                     <>
                       <Link href="/welcome">
                         <p className="text-white cursor-pointer">Sign in</p>
