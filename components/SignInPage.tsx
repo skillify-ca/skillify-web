@@ -1,7 +1,5 @@
-import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import { signIn, useSession } from "next-auth/client";
-import DiagnosticNavbar from "./DiagnosticNavbar";
 
 export default function SignInPage() {
   const [session, loading] = useSession();

@@ -1,7 +1,6 @@
 import { getSession, useSession } from "next-auth/client";
 import Link from "next/link";
 import React from "react";
-import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { Button } from "../components/ui/Button";
 import { Puzzle, PUZZLE_DATA } from "./api/puzzle";
 
@@ -9,7 +8,6 @@ export default function Puzzles({ puzzleData }) {
   const [session, loading] = useSession();
   return (
     <div>
-      <DiagnosticNavbar />
       <div>
         <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-8 m-8">
           <div className="flex flex-col w-full sm:w-1/2 gap-8 justify-center">

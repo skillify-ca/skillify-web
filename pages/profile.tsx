@@ -1,6 +1,5 @@
 import { getSession, useSession } from "next-auth/client";
 import React from "react";
-import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import ProfileComponent from "../components/ProfileComponent";
 
 const Profile = () => {
@@ -8,7 +7,6 @@ const Profile = () => {
 
   return (
     <div>
-      <DiagnosticNavbar />
       <ProfileComponent session={session} />
     </div>
   );

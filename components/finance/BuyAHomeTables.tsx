@@ -393,3 +393,53 @@ export const SpeedyWireless = () => {
     </div>
   );
 };
+
+export const GroceryTable = () => {
+  return (
+    <div>
+      <div className="text-lg">Shop Mart</div>
+      <table className="shadow-l bg-white ">
+        <thead>
+          <tr>
+            <th className="bg-green-300 border border-black text-center text-white w-40">
+              Family Member
+            </th>
+            <th className="bg-green-300 border border-black text-center text-white w-40">
+              Age
+            </th>
+            <th className="bg-green-300 border border-black text-center text-white w-40">
+              Cost Per Month
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className="border border-black text-center">Baby - Toddler</td>
+            <td className="border border-black text-center">0-4 Years</td>
+            <td className="border border-black text-center">$90.00</td>
+          </tr>
+          <tr>
+            <td className="border border-black text-center">Child (Female)</td>
+            <td className="border border-black text-center">5-15 Years</td>
+            <td className="border border-black text-center">$100.00</td>
+          </tr>
+          <tr>
+            <td className="border border-black text-center">Child (Male)</td>
+            <td className="border border-black text-center">5-15 Years</td>
+            <td className="border border-black text-center">$110.00</td>
+          </tr>
+          <tr>
+            <td className="border border-black text-center">Adult (Male)</td>
+            <td className="border border-black text-center">16+ Years</td>
+            <td className="border border-black text-center">$120.00</td>
+          </tr>
+          <tr>
+            <td className="border border-black text-center">Adult (Female)</td>
+            <td className="border border-black text-center">16+ Years</td>
+            <td className="border border-black text-center">$130.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+};

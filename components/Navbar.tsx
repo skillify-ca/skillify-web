@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { useState } from "react";
 import { signIn, useSession } from "next-auth/client";
+import { Session } from "next-auth";
 
 export default function Navbar() {
+  const [session, loading] = useSession();
   const [active, setActive] = useState(false);
   const [profieMenuActive, setProfileMenuActive] = useState(false);
-  const [session, loading] = useSession();
 
   const handleClick = () => {
     setActive(!active);
@@ -73,38 +74,59 @@ export default function Navbar() {
             </button>
           </div>
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex-shrink-0 flex items-center">
-              <img
-                className="block lg:hidden h-8 w-auto"
-                src="/images/logo.png"
-                alt="Workflow"
-              />
-              <img
-                className="hidden lg:block h-8 w-auto"
-                src="/images/logo.png"
-                alt="Workflow"
-              />
-            </div>
+            <a href="/">
+              <div className="flex-shrink-0 flex items-center">
+                <img
+                  className="block lg:hidden h-8 w-auto"
+                  src="/images/logo.png"
+                  alt="Workflow"
+                />
+                <img
+                  className="hidden lg:block h-8 w-auto"
+                  src="/images/logo.png"
+                  alt="Workflow"
+                />
+                <span className="text-white pl-2">Math Champ</span>
+              </div>
+            </a>
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4">
-                {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
                 <a
-                  href="/practice"
-                  className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                  href="/games"
+                  className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
-                  Knowledge Tree
+                  Games
                 </a>
                 <a
-                  href="/"
+                  href="/diagnostic"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Diagnostic
+                  Placement Test
+                </a>
+                <div>
+                  <Link href="/practice">
+                    <p className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
+                      Practice Tracker
+                    </p>
+                  </Link>
+                </div>
+                <a
+                  href="/resources"
+                  className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Resources
                 </a>
                 <a
-                  href="/games/TicTacToe"
+                  href="/puzzles"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Tic Tac Toe
+                  Puzzles
+                </a>
+                <a
+                  href="/contact"
+                  className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Contact
                 </a>
               </div>
             </div>
@@ -114,13 +136,15 @@ export default function Navbar() {
             <div className="ml-3 relative">
               <div>
                 <div>
-                  {!session && (
-                    <>
-                      <Link href="/welcome">
-                        <p className="text-white cursor-pointer">Sign in</p>
-                        </Link>
-                    </>
-                  )}
+                  {loading
+                    ? ""
+                    : !session && (
+                        <>
+                          <Link href="/welcome">
+                            <p className="text-white cursor-pointer">Sign in</p>
+                          </Link>
+                        </>
+                      )}
                   {session && (
                     <button
                       className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
@@ -148,9 +172,7 @@ export default function Navbar() {
                   From: "transform opacity-100 scale-100"
                   To: "transform opacity-0 scale-95"
               --> */}
-              <div
-                className={`${profieMenuActive ? "block" : "hidden"} `}
-              >
+              <div className={`${profieMenuActive ? "block" : "hidden"} `}>
                 <div
                   className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
                   role="menu"
@@ -193,18 +215,42 @@ export default function Navbar() {
 
       <div className={`${active ? "block" : "hidden"} sm:hidden`}>
         <div className="px-2 pt-2 pb-3 space-y-1">
-          {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
           <a
-            href="/practice"
+            href="/games"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Knowledge Tree
+            Games
+          </a>
+          <div>
+            <Link href="/practice">
+              <p className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
+                Practice Tracker
+              </p>
+            </Link>
+          </div>
+          <a
+            href="/diagnostic"
+            className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Placement Test
           </a>
           <a
-            href="/"
+            href="/resources"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Diagnostic
+            Resources
+          </a>
+          <a
+            href="/puzzles"
+            className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Puzzles
+          </a>
+          <a
+            href="/contact"
+            className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Contact
           </a>
         </div>
       </div>

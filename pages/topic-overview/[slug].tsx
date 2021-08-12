@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import React, { useState } from "react";
 import { Canvas } from "react-three-fiber";
-import DiagnosticNavbar from "../../components/DiagnosticNavbar";
 import { Button } from "../../components/ui/Button";
 import { FETCH_TOPIC_OVERVIEW } from "../../graphql/fetchTopicOverview";
 import { userId } from "../../graphql/utils/constants";
@@ -180,7 +179,7 @@ const TopicOverviewPage = ({ slug }) => {
               </Link>
             </div>
           </div>
-          <div className="flex items-center text-lg flex-row bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 border-2 rounded-xl pl-3">
+          <div className="flex items-center text-lg flex-row">
             <p className="text-xl font-bold text-blue-900"> Best Attempt: </p>
             <p
               className={`${getColourForAccuracy(
@@ -243,7 +242,6 @@ const TopicOverviewPage = ({ slug }) => {
 
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-blue-100 ">
-      <DiagnosticNavbar />
       <div className="p-4 flex flex-col gap-8">
         <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8">
           <p className="text-5xl text-white mb-4">

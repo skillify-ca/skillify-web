@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Outline from "../components/Outline";
-import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { getSession, useSession } from "next-auth/client";
 
 export default function Home() {
@@ -8,9 +7,6 @@ export default function Home() {
 
   return (
     <div className="flex flex-col h-screen">
-      <div>
-        <DiagnosticNavbar />
-      </div>
       <div
         style={{
           backgroundColor: "#E5E7EB",
