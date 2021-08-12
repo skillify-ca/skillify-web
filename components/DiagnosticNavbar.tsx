@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { useState } from "react";
 import { signIn, useSession } from "next-auth/client";
+import { Session } from "next-auth";
 
 export default function Navbar() {
+  const [session, loading] = useSession();
   const [active, setActive] = useState(false);
   const [profieMenuActive, setProfileMenuActive] = useState(false);
-  const [session, loading] = useSession();
 
   const handleClick = () => {
     setActive(!active);
@@ -91,6 +92,12 @@ export default function Navbar() {
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4">
                 <a
+                  href="/games/MathBattle"
+                  className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+                >
+                  Games
+                </a>
+                <a
                   href="/diagnostic"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
@@ -115,6 +122,12 @@ export default function Navbar() {
                 >
                   Puzzles
                 </a>
+                <a
+                  href="/contact"
+                  className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Contact
+                </a>
               </div>
             </div>
           </div>
@@ -123,7 +136,7 @@ export default function Navbar() {
             <div className="ml-3 relative">
               <div>
                 <div>
-                  {!session && (
+                  {loading ? "" : !session && (
                     <>
                       <Link href="/welcome">
                         <p className="text-white cursor-pointer">Sign in</p>
@@ -200,7 +213,12 @@ export default function Navbar() {
 
       <div className={`${active ? "block" : "hidden"} sm:hidden`}>
         <div className="px-2 pt-2 pb-3 space-y-1">
-          {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
+          <a
+            href="/games/MathBattle"
+            className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Games
+          </a>
           <div>
             <Link href="/practice">
               <p className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
@@ -225,6 +243,12 @@ export default function Navbar() {
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Puzzles
+          </a>
+          <a
+            href="/contact"
+            className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Contact
           </a>
         </div>
       </div>
