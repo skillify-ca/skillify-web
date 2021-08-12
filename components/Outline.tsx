@@ -70,7 +70,7 @@ export default function Outline({ session }: OutlineProps) {
           </div>
         ))}
       </div>
-      <div className="col-span-2 my-8">
+      <div className="col-span-4 my-8">
         <p className="text-xl text-center font-bold">{"Locked"}</p>
       </div>
       <div className="flex flex-wrap justify-center gap-4">
