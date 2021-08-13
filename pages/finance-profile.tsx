@@ -15,6 +15,12 @@ import CarExpenseTable from "../components/finance/CarExpenseTable";
 import AdditionalTable from "../components/finance/AdditionalExpense";
 import MoneyRemainingTable from "../components/finance/MoneyRemaining";
 import TotalExpensesTable from "../components/finance/TotalExpensesTable";
+import BuyACar from "../components/finance/BuyACar";
+import BuyAHome from "../components/finance/BuyAHome";
+import { BuyAPhone } from "../components/finance/BuyAPhone";
+import { BuyGroceries } from "../components/finance/BuyGroceries";
+import { SurpriseCard } from "./api/finance/surprise";
+import { SurpriseComponent } from "../components/finance/SurpriseComponent";
 
 const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
@@ -53,9 +59,9 @@ const FinanceProfile = () => {
   const [totalAdditional, setTotalAdditional] = useState("");
   const [sumAddValidation, setSumAddValidation] = useState("");
 
-  const [totalHousingCost6, setTotalHousingCost6] = useState("")
-  const [totalCarCosts6, setTotalCarCosts6] = useState("")
-  const [totalAdditional6, setTotalAdditional6] = useState("")
+  const [totalHousingCost6, setTotalHousingCost6] = useState("");
+  const [totalCarCosts6, setTotalCarCosts6] = useState("");
+  const [totalAdditional6, setTotalAdditional6] = useState("");
   const [totalExpenses, setTotalExpenses] = useState(""); //Set for Section 6
 
   const [totalMonthlySection7, setTotalMonthlysection7] = useState("");
@@ -65,6 +71,12 @@ const FinanceProfile = () => {
   const [totalExpenseValidation, setTotalExpenseValidation] = useState("");
   const [moneyRemValidation, setMoneyRemValidation] = useState("");
 
+  const [Make, setMake] = useState("");
+  const [Model, setModel] = useState("");
+  const [Doors, setDoors] = useState("");
+  const [Cost, setCost] = useState("");
+  const [Year, setYear] = useState("");
+
   useEffect(() => {
     // Update the document title using the browser API
     const randomProfile = getRndInteger(0, 12);
@@ -72,8 +84,8 @@ const FinanceProfile = () => {
   }, []);
 
   return (
-    <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
-      <div>
+    <div className="h-screen grid grid-cols-2 gap-6 bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
+      <div className={"h-full overflow-scroll col-start-1 col-end-2"}>
         {profileData && (
           <FinanceProfileChart
             individualOccupation={profileData.individualOccupation}
@@ -84,26 +96,43 @@ const FinanceProfile = () => {
             spouseSalary={profileData.spouseSalary}
           />
         )}
+        <BuyAHome />
+        <BuyACar
+          Make={Make}
+          setMake={setMake}
+          Model={Model}
+          setModel={setModel}
+          Doors={Doors}
+          setDoors={setDoors}
+          Cost={Cost}
+          setCost={setCost}
+          Year={Year}
+          setYear={setYear}
+        />
+        <BuyAPhone />
+        <BuyGroceries />
+        <SurpriseComponent />
       </div>
 
-      <SectionOneInput
-        isMarried={isMarried}
-        setMarriage={setMarriage}
-        hasChildren={hasChildren}
-        setChildren={setChildren}
-        individualOccupation={individualOccupation}
-        setIndividualOccupation={setIndividualOccupation}
-        individualSalary={individualSalary}
-        setIndividualSalary={setIndividualSalary}
-        spouseOccupation={spouseOccupation}
-        setSpouseOccupation={setSpouseOccupation}
-        spouseSalary={spouseSalary}
-        setSpouseSalary={setSpouseSalary}
-        profileData={profileData}
-        sectionOneValidation={sectionOneValidation}
-        setSectionOneValidation={setSectionOneValidation}
-      />
-      <div>
+      <div className={"h-full overflow-scroll col-start-2 col-end-3 mt-8"}>
+        <SectionOneInput
+          isMarried={isMarried}
+          setMarriage={setMarriage}
+          hasChildren={hasChildren}
+          setChildren={setChildren}
+          individualOccupation={individualOccupation}
+          setIndividualOccupation={setIndividualOccupation}
+          individualSalary={individualSalary}
+          setIndividualSalary={setIndividualSalary}
+          spouseOccupation={spouseOccupation}
+          setSpouseOccupation={setSpouseOccupation}
+          spouseSalary={spouseSalary}
+          setSpouseSalary={setSpouseSalary}
+          profileData={profileData}
+          sectionOneValidation={sectionOneValidation}
+          setSectionOneValidation={setSectionOneValidation}
+        />
+
         {sectionOneValidation ? (
           <div className="flex flex-nowrap">
             {" "}
@@ -117,9 +146,6 @@ const FinanceProfile = () => {
             <img src={"/images/warning-2-16.png"} />
           </div>
         )}
-      </div>
-
-      <div className={"mt-8"}>
         <IncomeTable
           monthlyIncome={yourMonthlyIncome}
           setMonthlyIncome={setYourMonthlyIncome}
@@ -132,26 +158,22 @@ const FinanceProfile = () => {
           valueTest={valueTest}
           setValueTest={setValueTest}
         ></IncomeTable>
-      </div>
-      
-      <div>
-        <HouseExpensesTable
-          housePayment = {housePayment}
-          setHousePayment = {setHousePayment}
-          electricBill = {electricBill}
-          setElectricBill = {setElectricBill}
-          gasBill = {gasBill}
-          setGasBill = {setGasBill}
-          waterBill = {waterBill}
-          setWaterBill = {setWaterBill}
-          totalHousingCost = {totalHousingCost}
-          setTotalHousingCost = {setTotalHousingCost}
-          homeType = {homeType}
-          setHomeType = {setHomeType}
-        />
-      </div>
 
-      <div>
+        <HouseExpensesTable
+          housePayment={housePayment}
+          setHousePayment={setHousePayment}
+          electricBill={electricBill}
+          setElectricBill={setElectricBill}
+          gasBill={gasBill}
+          setGasBill={setGasBill}
+          waterBill={waterBill}
+          setWaterBill={setWaterBill}
+          totalHousingCost={totalHousingCost}
+          setTotalHousingCost={setTotalHousingCost}
+          homeType={homeType}
+          setHomeType={setHomeType}
+        />
+
         <CarExpenseTable
           carPayment1={carPayment1}
           setCarPayment1={setCarPayment1}
@@ -166,9 +188,7 @@ const FinanceProfile = () => {
           sumValidationCar={sumValidationCar}
           setSumValidationCar={setSumValidationCar}
         />
-      </div>
 
-      <div>
         <AdditionalTable
           tvInternet={tvInternet}
           setTvInternet={setTvInternet}
@@ -181,28 +201,22 @@ const FinanceProfile = () => {
           sumAddValidation={sumAddValidation}
           setSumAddValidation={setSumAddValidation}
         />
-      </div>
-
-      <div>
-        <TotalExpensesTable 
-        totalHousingCost6 = {totalHousingCost6}
-        setTotalHousingCost6 = {setTotalHousingCost6}
-        totalCarCosts6 = {totalCarCosts6}
-        setTotalCarCosts6 = {setTotalCarCosts6}
-        totalAdditional6 = {totalAdditional6}
-        setTotalAdditional6 = {setTotalAdditional6}
-        totalHousingCost = {totalHousingCost}
-        setTotalHousingCost = {setTotalHousingCost}
-        totalCarCosts = {totalCarCosts}
-        setTotalCarCosts = {setTotalCarCosts}
-        totalAdditional = {totalAdditional}
-        setTotalAdditional = {setTotalAdditional}
-        totalExpenses = {totalExpenses}
-        setTotalExpenses = {setTotalExpenses}
+        <TotalExpensesTable
+          totalHousingCost6={totalHousingCost6}
+          setTotalHousingCost6={setTotalHousingCost6}
+          totalCarCosts6={totalCarCosts6}
+          setTotalCarCosts6={setTotalCarCosts6}
+          totalAdditional6={totalAdditional6}
+          setTotalAdditional6={setTotalAdditional6}
+          totalHousingCost={totalHousingCost}
+          setTotalHousingCost={setTotalHousingCost}
+          totalCarCosts={totalCarCosts}
+          setTotalCarCosts={setTotalCarCosts}
+          totalAdditional={totalAdditional}
+          setTotalAdditional={setTotalAdditional}
+          totalExpenses={totalExpenses}
+          setTotalExpenses={setTotalExpenses}
         />
-      </div>
-
-      <div>
         <MoneyRemainingTable
           totalMonthlySection7={totalMonthlySection7}
           setTotalMonthlySection7={setTotalMonthlysection7}
@@ -222,7 +236,7 @@ const FinanceProfile = () => {
           setTotalExpenses={setTotalExpenses}
         />
       </div>
-    </div> //This is for Section 7
+    </div>
   );
 };
 
