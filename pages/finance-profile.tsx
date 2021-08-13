@@ -19,8 +19,8 @@ import BuyACar from "../components/finance/BuyACar";
 import BuyAHome from "../components/finance/BuyAHome";
 import { BuyAPhone } from "../components/finance/BuyAPhone";
 import { BuyGroceries } from "../components/finance/BuyGroceries";
-import { SurpriseCard } from "./api/finance/surprise";
 import { SurpriseComponent } from "../components/finance/SurpriseComponent";
+import { TvChart } from "../components/finance/TvChart";
 
 const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
@@ -109,6 +109,7 @@ const FinanceProfile = () => {
           Year={Year}
           setYear={setYear}
         />
+        <TvChart />
         <BuyAPhone />
         <BuyGroceries />
         <SurpriseComponent />

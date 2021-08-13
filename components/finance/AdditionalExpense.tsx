@@ -35,7 +35,7 @@ const AdditionalTable = ({
   };
   return (
     <div>
-      <h1 className={"font-bold"}>Section 5: Additional Expenses</h1>
+      <h1 className={"font-bold mt-10"}>Section 5: Additional Expenses</h1>
       <p> Add up your expenses in this section and put the total in Box Q</p>
       <table className={"fixed-width w-auto border-collapse"}>
         <thead>

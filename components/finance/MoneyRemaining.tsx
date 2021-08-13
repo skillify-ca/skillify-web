@@ -67,7 +67,7 @@ const MoneyRemainingTable = ({
 
   return (
     <div>
-      <h1 className={"font-bold"}>
+      <h1 className={"font-bold mt-10"}>
         Section 7: Money remaining after expenses are paid
       </h1>
       <p> Subtract your total expenses from your total monthly income.</p>

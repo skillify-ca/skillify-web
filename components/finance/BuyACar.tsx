@@ -25,7 +25,7 @@ const BuyACar = ({
 }: BuyACarProps) => {
   return (
     <div
-      className={"grid grid-cols-2 border-collapse  border-2 border-black m-8"}
+      className={"grid grid-cols-2 border-collapse  border-4 border-black m-8"}
     >
       <div className={"col-start-1 col-end-2 mt-8 ml-20 mb-8"}>
         <h1 className={"text-center text-6xl ml-24"}> Buy a Car</h1>
