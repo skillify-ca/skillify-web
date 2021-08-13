@@ -168,7 +168,6 @@ const MoneyRemainingTable = ({
         </tbody>
       </table>
       <p className={"ml-60 text-xs"}>**Put this amount in section 6** </p>
-      <p>Test = {monthlyIncomeValidation} </p>
     </div>
   );
 };
