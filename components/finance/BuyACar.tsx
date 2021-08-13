@@ -5,12 +5,12 @@ export interface BuyACarProps {
   setMake: (Make: string) => void;
   Model: string;
   setModel: (setModel: string) => void;
-  Doors: number;
-  setDoors: (Doors: number) => void;
-  Cost: number;
-  setCost: (Cost: number) => void;
-  Year: number;
-  setYear: (Year: number) => void;
+  Doors: string;
+  setDoors: (Doors: string) => void;
+  Cost: string;
+  setCost: (Cost: string) => void;
+  Year: string;
+  setYear: (Year: string) => void;
 }
 
 const BuyACar = ({
