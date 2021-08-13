@@ -16,9 +16,9 @@ test("generate Array Multiplication question", async () => {
 
   // Assert
   expect(question.text).toBe("4 x 3 =");
-
-  //Remainder Divison Tests
 });
+//Division with Remainder Tests
+/* Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT Tests */
 test("If we generate Two digit by One digit Divison where divisor is 1 then quotient should equal the dividend with no remainder", async () => {
   // Arrange
   let a = 1;
@@ -89,9 +89,10 @@ test("If we generate a Two Digit by One Digit Division question where the diviso
   expect(question.questionType).toBe(QuestionType.LONG_DIVISION_PROBLEM);
 });
 
+/* Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT Tests*/
 test("If we generate a Three Digit by One Digit Division question where the divisor evenly divides the dividend then the remainder is expected to be 0", async () => {
   // Arrange
-  let a = 10;
+  let a = 5;
   let b = 900;
 
   // Act
@@ -102,8 +103,8 @@ test("If we generate a Three Digit by One Digit Division question where the divi
   );
 
   // Assert
-  expect(question.text).toBe("900 / 10 =");
-  expect(question.answer).toBe("90,0");
+  expect(question.text).toBe("900 / 5 =");
+  expect(question.answer).toBe("180,0");
   expect(question.questionType).toBe(QuestionType.LONG_DIVISION_PROBLEM);
 });
 test("If we generate Three digit by One digit Divison question where division is uneven then there should be a quoitient and a whole number remainder", async () => {
@@ -162,7 +163,7 @@ test("If we generate Three digit by One digit Divison where divisor is 1 then qu
 
   //Remainder Divison Tests
 });
-
+/* Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT Tests*/
 test("If we generate a Three digit by Two digit Divison question where division is uneven then there should be a positive remainder and quotient", async () => {
   // Arrange
   let a = 16;
@@ -233,3 +234,6 @@ test("If we generate a Three digit by Two digit Divison question where division 
   expect(question.answer).toBe("10,9");
   expect(question.questionType).toBe(QuestionType.LONG_DIVISION_PROBLEM);
 });
+
+//Decimal Skills Tests
+/* Skill.ADDITION_TENTHS */
