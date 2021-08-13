@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { Modal, ModalTransition } from "react-simple-hook-modal";
+import "react-simple-hook-modal/dist/styles.css";
 import { Player } from "../../pages/games";
 import { Button } from "../ui/Button";
+import CoopNarrative from "./coop/CoopNarrative";
 
 export interface CreateRoomProps {
   onCreateClick: () => void;
@@ -30,6 +33,11 @@ const CreateRoom = ({
   code,
   setCode,
 }: CreateRoomProps) => {
+  const [isCoopRulesModalShowing, setIsCoopRulesModalShowing] = useState(false);
+
+  const onRulesClick = () => {
+    setIsCoopRulesModalShowing((prev) => !prev);
+  };
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
@@ -40,7 +48,7 @@ const CreateRoom = ({
               className="h-24 w-24"
               width="300"
               height="300"
-            />            
+            />
           </div>
           <h1 className="text-5xl text-blue-600 font-bold">Math Battle</h1>
           <p className="text-xl mt-4 mb-3">
@@ -74,10 +82,16 @@ const CreateRoom = ({
             />
           </div>
           <h1 className="text-5xl text-blue-600 font-bold">Zombies</h1>
+          <Button
+            backgroundColor="white"
+            label="Rules"
+            onClick={onRulesClick}
+            textColor="black"
+          />
           <p className="text-xl mt-4 mb-3">
-            Up to four players can play as a team to take down the zombie. The
-            more questions you answer correctly as a team, the faster the
-            zombie's health decreases.
+            Up to four players can play as a team to take down Frankenstein. The
+            more questions you answer correctly as a team, the faster his health
+            decreases.
           </p>{" "}
           <input
             id="coopName"
@@ -131,6 +145,14 @@ const CreateRoom = ({
           ></Button>
         </div>
       </div>
+      <Modal
+        id="game-over-model"
+        isOpen={isCoopRulesModalShowing}
+        transition={ModalTransition.SCALE}
+        onBackdropClick={onRulesClick}
+      >
+        <CoopNarrative close={onRulesClick} />
+      </Modal>
     </div>
   );
 };
