@@ -23,17 +23,17 @@ const Lobby = ({
   return isLoading ? (
     <p className="text-center text-2xl">Loading...</p>
   ) : (
-    <div className="flex flex-col items-center gap-8 ">
-      <div className="relative flex flex-col justify-center  bg-gray-100 w-1/2 ">
-        <h1 className="text-3xl font-bold text-blue-400 border-b ">
+    <div className="flex flex-col items-center gap-8">
+      <div className="relative flex flex-col justify-center  bg-gray-100 w-full sm:w-1/2">
+        <h1 className="text-3xl font-bold text-blue-400 border-b p-4">
           Lobby Room
         </h1>
-        {players.map((it) => (
-          <div className="bg-blue-400 opacity-75 text-center items-center">
-            <h1 className="text-xl font-bold border-b opacity-100">
-              {it.name}
-              {leader == it.sessionId && (
-                <div>
+        <div className="bg-blue-400 opacity-75 text-center items-center">
+          {players.map((it) => (
+            <div className="text-xl font-bold border-b opacity-100 flex items-center justify-center p-4">
+              <h1>{it.name}</h1>
+              {leader && leader == it.sessionId && (
+                <div className="ml-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5  w-5 text-center"
@@ -44,11 +44,12 @@ const Lobby = ({
                   </svg>
                 </div>
               )}
-            </h1>
-          </div>
-        ))}
-        <p className="bg-gray-500 text-white font-bold">Code: {code}</p>
-        <p className="bg-gray-500 text-white font-bold">
+            </div>
+          ))}
+        </div>
+
+        <p className="bg-gray-500 text-white font-bold p-2">Code: {code}</p>
+        <p className="bg-gray-500 text-white font-bold p-2">
           Lobby Capacity: {players.length}/4
         </p>
       </div>
