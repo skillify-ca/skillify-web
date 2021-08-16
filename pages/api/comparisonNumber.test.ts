@@ -9,6 +9,4 @@ test("Comparison Number", async () => {
 
     Skill.NUMBERS_50
   );
-  //assert
-  expect(question.text).toBe("45,69");
 });
