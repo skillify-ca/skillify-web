@@ -47,6 +47,19 @@ const AssignmentQuestionSet = ({
         />
       </Card>
     );
+  } else if (
+    questionData[index].questionType == QuestionType.BINARY_WORD_PROBLEM
+  ) {
+    if (questionData[index].operator == "+") {
+      return (
+        <Card size="large">
+          <WordProblemAdd
+            question={questionData[index]}
+            showSubmitButton={false}
+          />
+        </Card>
+      );
+    }
   }
 
   return <div> </div>;

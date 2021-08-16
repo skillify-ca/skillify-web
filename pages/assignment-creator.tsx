@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "../redux/store";
 import { Grade, Skill, Topic } from "./api/skill";
-import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import AssignmentCreationForm, {
   QuestionTypeForSkill,
 } from "../components/assignment-creator/assignmentCreationForm";
 import AssignmentQuestions from "../components/assignment-creator/assignmentQuestions";
 import DisplayAssignmentQuestions from "../components/assignment-creator/displayAssignmentQuestions";
+import Navbar from "../components/Navbar";
 
 enum STAGE {
   CHOOSE_TOPICS,
@@ -61,8 +61,7 @@ const Diagnostic = () => {
       break;
   }
   return (
-    <div className="flex flex-col overflow-auto bg-scroll bg-blue-100 h-screen">
-      <DiagnosticNavbar />
+    <div className="flex flex-col bg-scroll bg-blue-100 h-screen overflow-auto">
       <div className="p-4 flex flex-col items-center justify-center">
         {component}
       </div>

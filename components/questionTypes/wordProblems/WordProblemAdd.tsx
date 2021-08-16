@@ -10,8 +10,9 @@ import { Input } from "../../ui/Input";
 
 export interface WordProblemAddProp {
   autofocus?: boolean;
-  submitGuess: (guess: GuessData) => void;
+  submitGuess?: (guess: GuessData) => void;
   question: Question;
+  showSubmitButton?: boolean;
 }
 
 /* Addition Word problems are made with a specific template. The template is as follows: (name) has an (itemContainer) of (itemType). 
@@ -20,9 +21,10 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
   autofocus = true,
   submitGuess,
   question,
+  showSubmitButton = true,
   ...props
 }) => {
-  const name = question.wordProblem.name;
+  const name = question.wordProblem && question.wordProblem.name;
   const itemContainer: ItemContainerObj = question.wordProblem.itemContainer;
   const noun1: Noun = question.wordProblem.item1;
   const noun2: Noun = question.wordProblem.item2;
@@ -78,12 +80,14 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
         <img src={noun2.image} width="60px" height="85px" />
         <img src={noun1.image} width="60px" height="85px" />
       </div>
-      <Button
-        onClick={onSubmit}
-        label="Submit"
-        backgroundColor="blue"
-        textColor="white"
-      />
+      {showSubmitButton && (
+        <Button
+          onClick={onSubmit}
+          label="Submit"
+          backgroundColor="blue"
+          textColor="white"
+        />
+      )}
     </div>
   );
 };

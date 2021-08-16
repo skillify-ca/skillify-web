@@ -79,7 +79,7 @@ const AssignmentQuestions = ({
           {skill}
           {index}
           <select
-            value={selectedSkills[index].questionType}
+            value={selectedSkills[index] && selectedSkills[index].questionType}
             onChange={(e) =>
               onQuestionTypeChange(e.target.value as QuestionType, skill, index)
             }
