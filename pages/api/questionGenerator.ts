@@ -132,6 +132,8 @@ export function getRandomNumbersQuestion(
       displayPattern = "FORWARDS";
     }
 
+    //
+
     text = `Count ${displayPattern} by ${patternNum} from ${startNum}`;
     if (displayPattern == "FORWARDS") {
       answer = `${startNum},${startNum + patternNum},${
