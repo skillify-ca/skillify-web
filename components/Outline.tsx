@@ -24,6 +24,9 @@ export default function Outline({ session }: OutlineProps) {
   const progress = () => {
     if (
       !loading &&
+      data &&
+      data.user_badges &&
+      data.user_skills &&
       data.user_badges.length > 0 &&
       data.user_skills.length > 0
     ) {
@@ -46,18 +49,20 @@ export default function Outline({ session }: OutlineProps) {
   const loggedInComponent = (
     <div className="max-w-screen-lg">
       <div className="flex justify-center mb-8 mt-4">
-        <Card size="large">
-          <div className="flex flex-col gap-8 items-center">
-            <p className="text-xl font-bold font-sans">Math Knowledge Tree</p>
-            <p className="text-sm mb-4">
-              Practice skills to increase your math confidence. Then ace your
-              quizzes to unlock badges!
-            </p>
+        <div className="flex flex-col justify-center space-y-8 items-center pl-8 pr-8 bg-white shadow-md rounded-xl max-w-screen-lg w-96 h-96">
+          <p className="font-bold text-2xl"> Knowledge Tree </p>
+
+          <div className="flex flex-col items-center">
             <ProgressRing percentage={progress()} radius={24} />
           </div>
-        </Card>
+          <p className="text-center text-sm">
+            {" "}
+            Practice skills to increase your math confidence and ace the quizzes
+            to unlock badges!{" "}
+          </p>
+        </div>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 justify-center gap-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 justify-center gap-8 items-center">
         {unlockedTopics.map((topic, index) => (
           <div key={topic.title}>
             <UnitCard
@@ -73,11 +78,20 @@ export default function Outline({ session }: OutlineProps) {
       <div className="col-span-4 my-8">
         <p className="text-xl text-center font-bold">{"Locked"}</p>
       </div>
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 justify-center gap-4 items-center">
         {lockedTopics.map((topic) => (
-          <div key={topic}>
-            <UnitCard key={topic} title={topic} disabled={true} />
+          <div className="bg-white shadow-md rounded-full p-2">
+            <div className="flex flex-row justify-center items-center gap-4">
+              <div className="w-12">
+                <img src="/images/skills/lock.png" alt="" />
+              </div>
+              <p className="text-center text-sm">{topic}</p>
+            </div>
           </div>
+
+          // <div key={topic}>
+          //   <UnitCard key={topic} title={topic} disabled={true} />
+          // </div>
         ))}
       </div>
     </div>
