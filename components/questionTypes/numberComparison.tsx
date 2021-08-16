@@ -4,19 +4,24 @@ import { Skill } from "../../pages/api/skill";
 import { Button } from "../ui/Button";
 
 export interface NumberComparisonProp {
-  val1: number;
-  val2: number;
+  valueText: string;
   answer: string;
   submitGuess: (guess: GuessData) => void;
 }
 
 export const NumberComparison: React.FC<NumberComparisonProp> = ({
-  val1,
-  val2,
+  valueText,
   answer,
   submitGuess,
   ...props
 }) => {
+  const parse = () => {
+    const parts = valueText.split(",");
+    return {
+      val1: parts[0],
+      val2: parts[1],
+    };
+  };
   function onSubmit(val: string) {
     submitGuess({
       guess: val,
@@ -32,13 +37,14 @@ export const NumberComparison: React.FC<NumberComparisonProp> = ({
         <Button
           backgroundColor="blue"
           textColor="white"
-          label={val1.toString()}
-          onClick={(e) => onSubmit(val1.toString())}
+          label={parse().val1}
+          onClick={(e) => onSubmit(parse().val1)}
         ></Button>
         <Button
           backgroundColor="red"
           textColor="white"
-          label={val2.toString()}
+          label={parse().val2}
+          onClick={(e) => onSubmit(parse().val2)}
         ></Button>
       </div>
     </div>

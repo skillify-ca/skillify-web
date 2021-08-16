@@ -15,7 +15,6 @@ const Template: Story<NumberComparisonProp> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  val1: 1,
-  val2: 8,
+  valueText: "1,8",
   answer: "8",
 };
