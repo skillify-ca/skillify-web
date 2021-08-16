@@ -3,6 +3,7 @@ import {
   getArrayMultiplicationQuestion,
   getRandomDivisionQuestion,
   getDivisionQuestion,
+  getBinaryQuestion,
 } from "./questionGenerator";
 import { QuestionType } from "./questionTypes";
 import { Skill } from "./skill";
@@ -237,3 +238,101 @@ test("If we generate a Three digit by Two digit Divison question where division 
 
 //Decimal Skills Tests
 /* Skill.ADDITION_TENTHS */
+const add = (a: number, b: number) => a + b;
+const subtract = (a: number, b: number) => a - b;
+
+test("If we genrate an addition tenths question with the lowest possible edge case the answer should result in 0.2", async () => {
+  // Arrange
+  let a = 0.1;
+  let b = 0.1;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "+",
+    QuestionType.VERTICAL_EQUATION,
+    add,
+    Skill.ADDITION_TENTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.1 + 0.1 =");
+  expect(question.answer).toBe("0.2");
+});
+test("If we genrate an addition tenths question with the highest possible edge case the answer should result in 1.8", async () => {
+  // Arrange
+  let a = 0.9;
+  let b = 0.9;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "+",
+    QuestionType.VERTICAL_EQUATION,
+    add,
+    Skill.ADDITION_TENTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.9 + 0.9 =");
+  expect(question.answer).toBe("1.8");
+});
+test("If we genrate an addition tenths question that equals 1 then the answer should be displayed as 1 and not 1.0", async () => {
+  // Arrange
+  let a = 0.7;
+  let b = 0.3;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "+",
+    QuestionType.HORIZONTAL_EQUATION,
+    add,
+    Skill.ADDITION_TENTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.7 + 0.3 =");
+  expect(question.answer).toBe("1.0");
+});
+test("If we genrate an addition tenths question that equals 1 then the answer should be displayed as 1 and not 1.0", async () => {
+  // Arrange
+  let a = 0.5;
+  let b = 0.5;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "+",
+    QuestionType.HORIZONTAL_EQUATION,
+    add,
+    Skill.ADDITION_TENTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.5 + 0.5 =");
+  expect(question.answer).toBe("1.0");
+});
+test("If we genrate an addition tenths question that uses the highest and lowest possible values the answer should result in 1", async () => {
+  // Arrange
+  let a = 0.1;
+  let b = 0.9;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "+",
+    QuestionType.HORIZONTAL_EQUATION,
+    add,
+    Skill.ADDITION_TENTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.9 + 0.1 =");
+  expect(question.answer).toBe("1.0");
+});
