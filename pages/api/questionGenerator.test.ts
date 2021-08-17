@@ -162,8 +162,6 @@ test("If we generate Three digit by One digit Divison where divisor is 1 then qu
   expect(question.text).toBe("144 / 1 =");
   expect(question.answer).toBe("144,0");
   expect(question.questionType).toBe(QuestionType.LONG_DIVISION_PROBLEM);
-
-  //Remainder Divison Tests
 });
 /* Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT Tests*/
 test("If we generate a Three digit by Two digit Divison question where division is uneven then there should be a positive remainder and quotient", async () => {
@@ -241,6 +239,7 @@ test("If we generate a Three digit by Two digit Divison question where division 
 /* Skill.SUBTRACTION_TENTHS */
 const add = (a: number, b: number) => a + b;
 const subtract = (a: number, b: number) => a - b;
+const multiply = (a: number, b: number) => a * b;
 
 test("If we genrate an addition tenths question with the lowest possible edge case the answer should result in 0.0", async () => {
   // Arrange
@@ -772,4 +771,139 @@ test("If a Division Question with the dividend value of 772 and the divisor of 0
   expect(question.text).toBe("772 / 0.6 =");
   expect(question.answer).toBe("1286");
   expect(question.questionType).toBe(QuestionType.HORIZONTAL_EQUATION);
+});
+
+/* Skill.MULTIPLY_THREE_DIGIT_BY_TENTH */
+test("If we genrate a multiplication triple digit by tenth question with a being the lowest possible value (100) and b being the lowest value (0.1) the output answer will be 10.0", async () => {
+  // Arrange
+  let a = 100;
+  let b = 0.1;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "x",
+    QuestionType.VERTICAL_EQUATION,
+    multiply,
+    Skill.MULTIPLY_THREE_DIGIT_BY_TENTH
+  );
+
+  // Assert
+  expect(question.text).toBe("100 x 0.1 =");
+  expect(question.answer).toBe("10.0");
+});
+test("If we genrate a multiplication triple digit by tenth question with a being the highest possible value (999) and b being the lowest value (0.1) the output answer will be 99.9", async () => {
+  // Arrange
+  let a = 999;
+  let b = 0.1;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "x",
+    QuestionType.VERTICAL_EQUATION,
+    multiply,
+    Skill.MULTIPLY_THREE_DIGIT_BY_TENTH
+  );
+
+  // Assert
+  expect(question.text).toBe("999 x 0.1 =");
+  expect(question.answer).toBe("99.9");
+});
+test("If we genrate a multiplication triple digit by tenth question with a being the highest possible value (999) and b being the highest value (0.9) the output answer will be 899.1", async () => {
+  // Arrange
+  let a = 999;
+  let b = 0.9;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "x",
+    QuestionType.HORIZONTAL_EQUATION,
+    multiply,
+    Skill.MULTIPLY_THREE_DIGIT_BY_TENTH
+  );
+
+  // Assert
+  expect(question.text).toBe("999 x 0.9 =");
+  expect(question.answer).toBe("899.1");
+});
+test("If we genrate a multiplication triple digit by tenth question with a being the lowest possible value (100) and b being the hightest value (0.9) the output answer will be 90", async () => {
+  // Arrange
+  let a = 100;
+  let b = 0.9;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "x",
+    QuestionType.HORIZONTAL_EQUATION,
+    multiply,
+    Skill.MULTIPLY_THREE_DIGIT_BY_TENTH
+  );
+
+  // Assert
+  expect(question.text).toBe("100 x 0.9 =");
+  expect(question.answer).toBe("90.0");
+});
+test("If we generate an multiplication question with the inputs of 982 and 0.7 that output question answer should be 687.4", async () => {
+  // Arrange
+  let a = 982;
+  let b = 0.7;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "x",
+    QuestionType.HORIZONTAL_EQUATION,
+    multiply,
+    Skill.MULTIPLY_THREE_DIGIT_BY_TENTH
+  );
+
+  // Assert
+  expect(question.text).toBe("982 x 0.7 =");
+  expect(question.answer).toBe("687.4");
+});
+test("If we generate an multiplication question with the inputs of 216 and 0.8 that output question answer should be 75.8 ", async () => {
+  // Arrange
+  let a = 216;
+  let b = 0.8;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "x",
+    QuestionType.HORIZONTAL_EQUATION,
+    multiply,
+    Skill.MULTIPLY_THREE_DIGIT_BY_TENTH
+  );
+
+  // Assert
+  expect(question.text).toBe("216 x 0.8 =");
+  expect(question.answer).toBe("172.8");
+});
+test("If we generate an multiplication question with the inputs of 379 and 0.2 that output question answer should be 75.8", async () => {
+  // Arrange
+  let a = 379;
+  let b = 0.2;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "x",
+    QuestionType.HORIZONTAL_EQUATION,
+    multiply,
+    Skill.MULTIPLY_THREE_DIGIT_BY_TENTH
+  );
+
+  // Assert
+  expect(question.text).toBe("379 x 0.2 =");
+  expect(question.answer).toBe("75.8");
 });
