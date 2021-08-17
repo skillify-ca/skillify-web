@@ -533,3 +533,244 @@ test("If we genrate an addition hundredths question that uses the highest and lo
   expect(question.text).toBe("0.99 + 0.01 =");
   expect(question.answer).toBe("1.00");
 });
+
+/* Skill.SUBTRACTION_HUNDREDTHS */
+
+test("If we genrate an addition tenths question with the lowest possible edge case the answer should result in 0.00", async () => {
+  // Arrange
+  let a = 0.01;
+  let b = 0.01;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "-",
+    QuestionType.VERTICAL_EQUATION,
+    subtract,
+    Skill.SUBTRACTION_HUNDREDTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.01 - 0.01 =");
+  expect(question.answer).toBe("0.00");
+});
+test("If we genrate an addition tenths question with the highest possible edge case input the answer should result in 0.00", async () => {
+  // Arrange
+  let a = 0.99;
+  let b = 0.99;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "-",
+    QuestionType.VERTICAL_EQUATION,
+    subtract,
+    Skill.SUBTRACTION_HUNDREDTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.99 - 0.99 =");
+  expect(question.answer).toBe("0.00");
+});
+test("If we genrate a subtraction tenths question the highest possible output should be 0.98", async () => {
+  // Arrange
+  let a = 0.99;
+  let b = 0.01;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "-",
+    QuestionType.HORIZONTAL_EQUATION,
+    subtract,
+    Skill.SUBTRACTION_HUNDREDTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.99 - 0.01 =");
+  expect(question.answer).toBe("0.98");
+});
+test("If we genrate a subtraction tenths question with the inputs of 0.87 and 0.56 the out answer should be 0.2", async () => {
+  // Arrange
+  let a = 0.87;
+  let b = 0.56;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "-",
+    QuestionType.HORIZONTAL_EQUATION,
+    subtract,
+    Skill.SUBTRACTION_HUNDREDTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.87 - 0.56 =");
+  expect(question.answer).toBe("0.31");
+});
+test("If we generate an subtraction tenths question that inputs 0.44 and 0.43 that output question answer should be 0.9 ", async () => {
+  // Arrange
+  let a = 0.44;
+  let b = 0.43;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "-",
+    QuestionType.HORIZONTAL_EQUATION,
+    subtract,
+    Skill.SUBTRACTION_HUNDREDTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.44 - 0.43 =");
+  expect(question.answer).toBe("0.01");
+});
+
+/* Skill.DIVISION_THREE_DIGIT_BY_TENTH */
+test("If we generate Two digit by One digit Divison where divisor is 1 then quotient should equal the dividend with no remainder", async () => {
+  // Arrange
+  let a = 0.01;
+  let b = 100;
+
+  // Act
+  const question = getDivisionQuestion(
+    a,
+    b,
+    Skill.DIVISION_THREE_DIGIT_BY_TENTH
+  );
+
+  // Assert
+  expect(question.text).toBe("100 / 0.01 =");
+  expect(question.answer).toBe("10000");
+  expect(question.questionType).toBe(QuestionType.HORIZONTAL_EQUATION);
+});
+test("If we generate Two digit by One digit Divison where division is uneven then there should be a quoitient and a whole number remainder", async () => {
+  // Arrange
+  let a = 0.1;
+  let b = 999;
+
+  // Act
+  const question = getDivisionQuestion(
+    a,
+    b,
+    Skill.DIVISION_THREE_DIGIT_BY_TENTH
+  );
+
+  // Assert
+  expect(question.text).toBe("999 / 0.1 =");
+  expect(question.answer).toBe("9990");
+
+  expect(question.questionType).toBe(QuestionType.HORIZONTAL_EQUATION);
+});
+test("If we generate Two digit by One digit Divison question where division is uneven then there should be a quoitient and a whole number remainder", async () => {
+  // Arrange
+  let a = 0.9;
+  let b = 100;
+
+  // Act
+  const question = getDivisionQuestion(
+    a,
+    b,
+    Skill.DIVISION_THREE_DIGIT_BY_TENTH
+  );
+
+  // Assert
+  expect(question.text).toBe("100 / 0.9 =");
+  expect(question.answer).toBe("111");
+  expect(question.questionType).toBe(QuestionType.HORIZONTAL_EQUATION);
+});
+test("If we generate a Two Digit by One Digit Division question where the divisor evenly divides the dividend then the remainder is expected to be 0", async () => {
+  // Arrange
+  let a = 0.9;
+  let b = 999;
+
+  // Act
+  const question = getDivisionQuestion(
+    a,
+    b,
+    Skill.DIVISION_THREE_DIGIT_BY_TENTH
+  );
+
+  // Assert
+  expect(question.text).toBe("999 / 0.9 =");
+  expect(question.answer).toBe("1110");
+  expect(question.questionType).toBe(QuestionType.HORIZONTAL_EQUATION);
+});
+
+test("If we generate a Three Digit by One Digit Division question where the divisor evenly divides the dividend then the remainder is expected to be 0", async () => {
+  // Arrange
+  let a = 0.5;
+  let b = 600;
+
+  // Act
+  const question = getDivisionQuestion(
+    a,
+    b,
+    Skill.DIVISION_THREE_DIGIT_BY_TENTH
+  );
+
+  // Assert
+  expect(question.text).toBe("600 / 0.5 =");
+  expect(question.answer).toBe("1200");
+  expect(question.questionType).toBe(QuestionType.HORIZONTAL_EQUATION);
+});
+test("If we generate Three digit by One digit Divison question where division is uneven then there should be a quoitient and a whole number remainder", async () => {
+  // Arrange
+  let a = 0.2;
+  let b = 883;
+
+  // Act
+  const question = getDivisionQuestion(
+    a,
+    b,
+    Skill.DIVISION_THREE_DIGIT_BY_TENTH
+  );
+
+  // Assert
+  expect(question.text).toBe("883 / 0.2 =");
+  expect(question.answer).toBe("4415");
+
+  expect(question.questionType).toBe(QuestionType.HORIZONTAL_EQUATION);
+});
+test("If we generate Three digit by One digit Divison where division is uneven then there should be a quoitient and a whole number remainder", async () => {
+  // Arrange
+  let a = 0.3;
+  let b = 200;
+
+  // Act
+  const question = getDivisionQuestion(
+    a,
+    b,
+    Skill.DIVISION_THREE_DIGIT_BY_TENTH
+  );
+
+  // Assert
+  expect(question.text).toBe("200 / 0.3 =");
+  expect(question.answer).toBe("666");
+
+  expect(question.questionType).toBe(QuestionType.HORIZONTAL_EQUATION);
+});
+
+test("If we generate Three digit by One digit Divison where divisor is 1 then quotient should equal the dividend with no remainder", async () => {
+  // Arrange
+  let a = 0.6;
+  let b = 772;
+
+  // Act
+  const question = getDivisionQuestion(
+    a,
+    b,
+    Skill.DIVISION_THREE_DIGIT_BY_TENTH
+  );
+
+  // Assert
+  expect(question.text).toBe("772 / 0.6 =");
+  expect(question.answer).toBe("1286");
+  expect(question.questionType).toBe(QuestionType.HORIZONTAL_EQUATION);
+});
