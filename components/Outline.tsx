@@ -24,6 +24,9 @@ export default function Outline({ session }: OutlineProps) {
   const progress = () => {
     if (
       !loading &&
+      data &&
+      data.user_badges &&
+      data.user_skills &&
       data.user_badges.length > 0 &&
       data.user_skills.length > 0
     ) {
@@ -43,21 +46,27 @@ export default function Outline({ session }: OutlineProps) {
     }
   };
 
-  const loggedInComponent = (
-    <div className="max-w-screen-lg">
-      <div className="flex justify-center mb-8 mt-4">
-        <Card size="large">
-          <div className="flex flex-col gap-8 items-center">
-            <p className="text-xl font-bold font-sans">Math Knowledge Tree</p>
-            <p className="text-sm mb-4">
-              Practice skills to increase your math confidence. Then ace your
-              quizzes to unlock badges!
-            </p>
+  return (
+    <div className="max-w-screen-lg flex flex-col gap-8 justify-between w-full col-span-2 items-center mb-4 p-4 mx-auto">
+      <div className="grid grid-cols-2 gap-8 bg-blue-50 rounded-lg shadow-lg p-4">
+        <div className="flex flex-col gap-4">
+          <p className="font-bold text-2xl"> Knowledge Tree </p>
+
+          <p className="">
+            {" "}
+            Practice skills to increase your math confidence and ace the quizzes
+            to unlock badges!{" "}
+          </p>
+        </div>
+        <div className="flex flex-col gap-4 items-end pr-8">
+          <p className="font-bold text-lg"> Overall Progress</p>
+          <div className="p-4">
             <ProgressRing percentage={progress()} radius={24} />
           </div>
-        </Card>
+        </div>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 justify-center gap-8">
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 justify-center gap-8 items-center">
         {unlockedTopics.map((topic, index) => (
           <div key={topic.title}>
             <UnitCard
@@ -69,23 +78,12 @@ export default function Outline({ session }: OutlineProps) {
             />
           </div>
         ))}
-      </div>
-      <div className="col-span-4 my-8">
-        <p className="text-xl text-center font-bold">{"Locked"}</p>
-      </div>
-      <div className="flex flex-wrap justify-center gap-4">
         {lockedTopics.map((topic) => (
           <div key={topic}>
             <UnitCard key={topic} title={topic} disabled={true} />
           </div>
         ))}
       </div>
-    </div>
-  );
-
-  return (
-    <div className="flex flex-col gap-8 justify-between w-full col-span-2 items-center mb-4 p-4 mx-auto">
-      {loggedInComponent}
     </div>
   );
 }
