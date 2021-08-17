@@ -340,7 +340,7 @@ test("If we generate an subtraction tenths question that inputs 0.4 and 0.5 that
 
 /* Skill.ADDITION_TENTHS */
 
-test("If we genrate an addition tenths question with the lowest possible edge case the answer should result in 0.2", async () => {
+test("If we genrate an addition tenths question with the lowest possible edge case (0.1) the answer should result in 0.2", async () => {
   // Arrange
   let a = 0.1;
   let b = 0.1;
@@ -359,7 +359,7 @@ test("If we genrate an addition tenths question with the lowest possible edge ca
   expect(question.text).toBe("0.1 + 0.1 =");
   expect(question.answer).toBe("0.2");
 });
-test("If we genrate an addition tenths question with the highest possible edge case the answer should result in 1.8", async () => {
+test("If we genrate an addition tenths question with the highest possible edge case input (0.9) the answer should result in 1.8", async () => {
   // Arrange
   let a = 0.9;
   let b = 0.9;
@@ -378,7 +378,7 @@ test("If we genrate an addition tenths question with the highest possible edge c
   expect(question.text).toBe("0.9 + 0.9 =");
   expect(question.answer).toBe("1.8");
 });
-test("If we genrate an addition tenths question that equals 1 then the answer should be displayed as 1 and not 1.0", async () => {
+test("If we genrate an addition tenths question that equals 1 then the answer should be displayed as 1.0", async () => {
   // Arrange
   let a = 0.7;
   let b = 0.3;
@@ -397,7 +397,7 @@ test("If we genrate an addition tenths question that equals 1 then the answer sh
   expect(question.text).toBe("0.7 + 0.3 =");
   expect(question.answer).toBe("1.0");
 });
-test("If we genrate an addition tenths question that equals 1 then the answer should be displayed as 1 and not 1.0", async () => {
+test("If we genrate an addition tenths question that equals 1 then the answer should be displayed as 1.0", async () => {
   // Arrange
   let a = 0.5;
   let b = 0.5;
@@ -416,7 +416,7 @@ test("If we genrate an addition tenths question that equals 1 then the answer sh
   expect(question.text).toBe("0.5 + 0.5 =");
   expect(question.answer).toBe("1.0");
 });
-test("If we genrate an addition tenths question that uses the highest and lowest possible values the answer should result in 1", async () => {
+test("If we genrate an addition tenths question that uses the highest (0.9) and lowest (0.1) possible values the answer should result in 1.0", async () => {
   // Arrange
   let a = 0.1;
   let b = 0.9;
@@ -437,8 +437,7 @@ test("If we genrate an addition tenths question that uses the highest and lowest
 });
 
 /* Skill.ADDITION_HUNDREDTHS */
-
-test("If we genrate an addition hundredths question with the lowest possible edge case the answer should result in 0.02", async () => {
+test("If we genrate an addition hundredths question with the lowest possible edge case input (0.01) the answer should result in 0.02", async () => {
   // Arrange
   let a = 0.01;
   let b = 0.01;
@@ -457,7 +456,7 @@ test("If we genrate an addition hundredths question with the lowest possible edg
   expect(question.text).toBe("0.01 + 0.01 =");
   expect(question.answer).toBe("0.02");
 });
-test("If we genrate an addition hundredths question with the highest possible edge case the answer should result in 1.98", async () => {
+test("If we genrate an addition hundredths question with the highest possible edge case input (0.99) the answer should result in 1.98", async () => {
   // Arrange
   let a = 0.99;
   let b = 0.99;
@@ -476,7 +475,7 @@ test("If we genrate an addition hundredths question with the highest possible ed
   expect(question.text).toBe("0.99 + 0.99 =");
   expect(question.answer).toBe("1.98");
 });
-test("If we genrate an addition hundredths question that equals 1 then the answer should be displayed as 1 and not 1.00", async () => {
+test("If we genrate an addition hundredths question that equals 1 then the answer should be displayed as 1.00", async () => {
   // Arrange
   let a = 0.45;
   let b = 0.55;
@@ -495,7 +494,7 @@ test("If we genrate an addition hundredths question that equals 1 then the answe
   expect(question.text).toBe("0.55 + 0.45 =");
   expect(question.answer).toBe("1.00");
 });
-test("If we genrate an addition hundredths question that equals 1 then the answer should be displayed as 1 and not 1.00", async () => {
+test("If we genrate an addition hundredths question that equals 1 then the answer should be displayed as 1.00", async () => {
   // Arrange
   let a = 0.76;
   let b = 0.24;
@@ -514,7 +513,7 @@ test("If we genrate an addition hundredths question that equals 1 then the answe
   expect(question.text).toBe("0.76 + 0.24 =");
   expect(question.answer).toBe("1.00");
 });
-test("If we genrate an addition hundredths question that uses the highest and lowest possible values the answer should result in 1.00", async () => {
+test("If we genrate an addition hundredths question that uses the highest(0.99) and lowest(0.01) possible values the answer should result in 1.00", async () => {
   // Arrange
   let a = 0.01;
   let b = 0.99;
@@ -536,7 +535,7 @@ test("If we genrate an addition hundredths question that uses the highest and lo
 
 /* Skill.SUBTRACTION_HUNDREDTHS */
 
-test("If we genrate an addition tenths question with the lowest possible edge case the answer should result in 0.00", async () => {
+test("If we genrate an addition tenths question with the lowest possible edge case input (0.01) the answer should result in 0.00", async () => {
   // Arrange
   let a = 0.01;
   let b = 0.01;
@@ -555,7 +554,7 @@ test("If we genrate an addition tenths question with the lowest possible edge ca
   expect(question.text).toBe("0.01 - 0.01 =");
   expect(question.answer).toBe("0.00");
 });
-test("If we genrate an addition tenths question with the highest possible edge case input the answer should result in 0.00", async () => {
+test("If we genrate an addition hundredths question with the highest possible edge case input(0.99) the answer should result in 0.00", async () => {
   // Arrange
   let a = 0.99;
   let b = 0.99;
@@ -574,7 +573,7 @@ test("If we genrate an addition tenths question with the highest possible edge c
   expect(question.text).toBe("0.99 - 0.99 =");
   expect(question.answer).toBe("0.00");
 });
-test("If we genrate a subtraction tenths question the highest possible output should be 0.98", async () => {
+test("If we genrate a subtraction hundredths question the highest possible value for a (0.99) and the lowest possible value for b (0.01)output should be 0.98", async () => {
   // Arrange
   let a = 0.99;
   let b = 0.01;
@@ -593,7 +592,7 @@ test("If we genrate a subtraction tenths question the highest possible output sh
   expect(question.text).toBe("0.99 - 0.01 =");
   expect(question.answer).toBe("0.98");
 });
-test("If we genrate a subtraction tenths question with the inputs of 0.87 and 0.56 the out answer should be 0.2", async () => {
+test("If we genrate a subtraction hundredths question with the inputs of 0.87 and 0.56 the out answer should be 0.31", async () => {
   // Arrange
   let a = 0.87;
   let b = 0.56;
@@ -612,7 +611,7 @@ test("If we genrate a subtraction tenths question with the inputs of 0.87 and 0.
   expect(question.text).toBe("0.87 - 0.56 =");
   expect(question.answer).toBe("0.31");
 });
-test("If we generate an subtraction tenths question that inputs 0.44 and 0.43 that output question answer should be 0.9 ", async () => {
+test("If we generate an subtraction hundredths question that inputs 0.44 and 0.43 that output question answer should be 0.01 ", async () => {
   // Arrange
   let a = 0.44;
   let b = 0.43;
@@ -633,7 +632,7 @@ test("If we generate an subtraction tenths question that inputs 0.44 and 0.43 th
 });
 
 /* Skill.DIVISION_THREE_DIGIT_BY_TENTH */
-test("If we generate Two digit by One digit Divison where divisor is 1 then quotient should equal the dividend with no remainder", async () => {
+test("If a Division Question with the lowest possible dividend value of 100 and the lowest possible divisor of 0.1 is generated the answer for the question should be 10000", async () => {
   // Arrange
   let a = 0.01;
   let b = 100;
@@ -650,7 +649,7 @@ test("If we generate Two digit by One digit Divison where divisor is 1 then quot
   expect(question.answer).toBe("10000");
   expect(question.questionType).toBe(QuestionType.HORIZONTAL_EQUATION);
 });
-test("If we generate Two digit by One digit Divison where division is uneven then there should be a quoitient and a whole number remainder", async () => {
+test("If a Division Question with the highest possible dividend value of 999 and the divisor of 0.1 is generated the answer for the question should be 9990", async () => {
   // Arrange
   let a = 0.1;
   let b = 999;
@@ -668,7 +667,7 @@ test("If we generate Two digit by One digit Divison where division is uneven the
 
   expect(question.questionType).toBe(QuestionType.HORIZONTAL_EQUATION);
 });
-test("If we generate Two digit by One digit Divison question where division is uneven then there should be a quoitient and a whole number remainder", async () => {
+test("If a Division Question with the lowest possible dividend value of 100 and the highest possible divisor of 0.9 is generated the answer for the question should be 111", async () => {
   // Arrange
   let a = 0.9;
   let b = 100;
@@ -685,7 +684,7 @@ test("If we generate Two digit by One digit Divison question where division is u
   expect(question.answer).toBe("111");
   expect(question.questionType).toBe(QuestionType.HORIZONTAL_EQUATION);
 });
-test("If we generate a Two Digit by One Digit Division question where the divisor evenly divides the dividend then the remainder is expected to be 0", async () => {
+test("If a Division Question with the highest possible dividend value of 999 and the hisghest possible divisor of 0.9 is generated the answer for the question should be 1100", async () => {
   // Arrange
   let a = 0.9;
   let b = 999;
@@ -703,7 +702,7 @@ test("If we generate a Two Digit by One Digit Division question where the diviso
   expect(question.questionType).toBe(QuestionType.HORIZONTAL_EQUATION);
 });
 
-test("If we generate a Three Digit by One Digit Division question where the divisor evenly divides the dividend then the remainder is expected to be 0", async () => {
+test("If a Division Question with the dividend value of 600 and the divisor of 0.5 is generated the answer for the question should be 1200", async () => {
   // Arrange
   let a = 0.5;
   let b = 600;
@@ -720,7 +719,7 @@ test("If we generate a Three Digit by One Digit Division question where the divi
   expect(question.answer).toBe("1200");
   expect(question.questionType).toBe(QuestionType.HORIZONTAL_EQUATION);
 });
-test("If we generate Three digit by One digit Divison question where division is uneven then there should be a quoitient and a whole number remainder", async () => {
+test("If a Division Question with the dividend value of 883 and the divisor of 0.2 is generated the answer for the question should be 4415", async () => {
   // Arrange
   let a = 0.2;
   let b = 883;
@@ -738,7 +737,7 @@ test("If we generate Three digit by One digit Divison question where division is
 
   expect(question.questionType).toBe(QuestionType.HORIZONTAL_EQUATION);
 });
-test("If we generate Three digit by One digit Divison where division is uneven then there should be a quoitient and a whole number remainder", async () => {
+test("If a Division Question with the dividend value of 200 and the divisor of 0.3 is generated the answer for the question should be 666", async () => {
   // Arrange
   let a = 0.3;
   let b = 200;
@@ -757,7 +756,7 @@ test("If we generate Three digit by One digit Divison where division is uneven t
   expect(question.questionType).toBe(QuestionType.HORIZONTAL_EQUATION);
 });
 
-test("If we generate Three digit by One digit Divison where divisor is 1 then quotient should equal the dividend with no remainder", async () => {
+test("If a Division Question with the dividend value of 772 and the divisor of 0.6 is generated the answer for the question should be 1286", async () => {
   // Arrange
   let a = 0.6;
   let b = 772;
