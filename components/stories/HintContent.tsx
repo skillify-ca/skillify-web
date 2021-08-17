@@ -5,7 +5,7 @@ export const getHintForTopic = (skill: Skill) => {
   switch (skill) {
     case Skill.ADDITION_SINGLE:
       hintTag = (
-        <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+        <div className="overflow-y-scroll rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md  flex-col">
           <span>
             Hey, it's Mr.Brainy at your service!
             <p> There are different methods to solving addition problem</p>
@@ -34,7 +34,7 @@ export const getHintForTopic = (skill: Skill) => {
       break;
     case Skill.ADDITION_DOUBLE:
       hintTag = (
-        <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+        <div className="overflow-y-scroll rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md  flex-col">
           <span>
             Hey, it's Mr.Brainy at your service!
             <p>
@@ -83,7 +83,7 @@ export const getHintForTopic = (skill: Skill) => {
       break;
     case Skill.ADDITION_TRIPLE:
       hintTag = (
-        <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+        <div className="overflow-y-scroll rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md  flex-col">
           <span>
             Hey, it's Mr.Brainy at your service!
             <p>
@@ -137,7 +137,7 @@ export const getHintForTopic = (skill: Skill) => {
       break;
     case Skill.SUBTRACTION_SINGLE:
       hintTag = (
-        <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+        <div className="overflow-y-scroll rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md  flex-col">
           <span>
             Hey, it's Mr.Brainy at your service!
             <p> There are different methods to solving subtraction problems</p>
@@ -173,7 +173,7 @@ export const getHintForTopic = (skill: Skill) => {
       break;
     case Skill.SUBTRACTION_DOUBLE:
       hintTag = (
-        <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+        <div className="overflow-y-scroll rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md  flex-col">
           <span>
             Hey, it's Mr.Brainy at your service!
             <p>
@@ -228,7 +228,7 @@ export const getHintForTopic = (skill: Skill) => {
       break;
     case Skill.SUBTRACTION_TRIPLE:
       hintTag = (
-        <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+        <div className="overflow-y-scroll rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md  flex-col">
           Hey, it's Mr.Brainy at your service!
           <p>
             {" "}
@@ -268,7 +268,7 @@ export const getHintForTopic = (skill: Skill) => {
       break;
     case Skill.EQUAL_SHARING_8_ITEMS:
       hintTag = (
-        <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+        <div className="overflow-y-scroll rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md  flex-col">
           Hey, it's Mr.Brainy at your service!
           <p> There are different methods to solving Equal Sharing Problems</p>
           <p className="font-bold text-yellow-700">
@@ -295,7 +295,7 @@ export const getHintForTopic = (skill: Skill) => {
       break;
     case Skill.DIVIDE_12_EQUALLY:
       hintTag = (
-        <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+        <div className="overflow-y-scroll rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md  flex-col">
           Hey, it's Mr.Brainy at your service!
           <p> There are different methods to solving Long Division Questions</p>
           <p className="font-bold text-yellow-700">
@@ -382,7 +382,7 @@ export const getHintForTopic = (skill: Skill) => {
       break;
     case Skill.DIVIDE_100:
       hintTag = (
-        <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+        <div className="overflow-y-scroll rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md  flex-col">
           Hey, it's Mr.Brainy at your service!
           <p>
             {" "}
@@ -470,7 +470,7 @@ export const getHintForTopic = (skill: Skill) => {
       break;
     case Skill.EQUAL_GROUP_10_ITEMS:
       hintTag = (
-        <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+        <div className="overflow-y-scroll rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md  flex-col">
           Hey, it's Mr.Brainy at your service!
           <p>
             {" "}
@@ -501,7 +501,7 @@ export const getHintForTopic = (skill: Skill) => {
       break;
     case Skill.MULTIPLICATION_5:
       hintTag = (
-        <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+        <div className="overflow-y-scroll rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md  flex-col">
           Hey, it's Mr.Brainy at your service!
           <p>
             {" "}
@@ -533,7 +533,7 @@ export const getHintForTopic = (skill: Skill) => {
       break;
     case Skill.MULTIPLICATION_10:
       hintTag = (
-        <div className="overflow-y-scroll transform -translate-y-64 translate-x-72 rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md max-h-72 flex-col">
+        <div className="overflow-y-scroll rounded-lg shadow-2xl p-4 ring-4 ring-gray-500 bg-gray-100 flex flex-start max-w-screen-md  flex-col">
           Hey, it's Mr.Brainy at your service!
           <p>
             {" "}

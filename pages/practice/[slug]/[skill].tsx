@@ -15,12 +15,18 @@ import { FETCH_USER_EMOJIS } from "../../../graphql/fetchUserEmojis";
 import { Button } from "../../../components/ui/Button";
 import Card from "../../../components/ui/Card";
 import EmojiSlider from "../../../components/ui/EmojiSlider";
+import Polypad from "../../../components/stories/Polypad";
 
 const PracticeQuiz = ({ slug, skill }) => {
   enum STAGE {
     QUESTION,
     EMOJI,
     END_SESSION,
+  }
+
+  enum Tab {
+    POLYPAD,
+    HINT,
   }
   const [session, user] = useSession();
   const [isFlipped, setIsFlipped] = useState(false);
@@ -38,6 +44,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   const [interval, setMyInterval] = useState(null);
   const [stage, setStage] = useState(STAGE.QUESTION);
   const [correctGuess, setCorrectGuess] = useState(0);
+  const [currentTab, setCurrentTab] = useState(Tab.POLYPAD);
   const [questionData, setQuestionData] = useState<Question[]>([
     {
       text: "",
@@ -328,14 +335,25 @@ const PracticeQuiz = ({ slug, skill }) => {
             Score: {correctGuess} / {questionData.length}
           </p>
         </div>
-        <ReactCardFlip
-          isFlipped={isFlipped}
-          flipDirection="horizontal"
-          infinite={true}
-        >
-          <div className="align-middle w-50">{getComponent()}</div>
+
+        <div className="flex flex-col col-span-8">
+        <div className="flex gap-8 my-4">
+            <Button
+              label="Polypad"
+              backgroundColor="purple"
+              onClick={() => setCurrentTab(Tab.POLYPAD)}
+            />
+            <Button
+              label="Hints"
+              backgroundColor="pink"
+              onClick={() => setCurrentTab(Tab.HINT)}
+            />
+          
+          </div>
           <div
-            className={`${display} flex-col justify-center items-center gap-8 transition-opacity duration-150 ease-in-out opacity-${isFaded}`}
+            className={`w-full h-full p-8 heropattern-yyy-blue-300 ${
+              currentTab == Tab.POLYPAD ? "" : "hidden"
+            }`}
           >
             <div className={"justify-items-center align-middle w-50 mt-8"}>
               <Card size="large">
@@ -392,12 +410,6 @@ const PracticeQuiz = ({ slug, skill }) => {
           </div>
         </ReactCardFlip>
       </div>
-      {/* {!continueButton &&
-        !nextQuestionButton &&
-        stage == STAGE.QUESTION &&
-        questionData[index] && <Hint skill={questionData[index].skill}></Hint>}
-    </div> */}
-      {/* might be useful later */}
     </div>
   );
 };

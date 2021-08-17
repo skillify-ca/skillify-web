@@ -2,7 +2,9 @@ import { Skill, Topic } from "./skill";
 
 type ResourceMetadata = {
   link: string;
-  videoId: string;
+  videoId?: string;
+  vidTitle?: string;
+  caption?: string;
 };
 
 export const getVideosForSkill = (skill: Skill): ResourceMetadata[] => {
@@ -90,6 +92,12 @@ export const getVideosForSkill = (skill: Skill): ResourceMetadata[] => {
         {
           link: "https://www.youtube.com/watch?v=A6QUX4BYDR8",
           videoId: "A6QUX4BYDR8",
+        },
+        {
+          link: "https://www.youtube.com/watch?v=hfzUdTePyJo",
+          videoId: "hfzUdTePyJo",
+          vidTitle: "Snakes and Ladders",
+          caption: "Tip: Pay attention from 4:00 to 9:00",
         },
         {
           link: "https://www.youtube.com/watch?v=gbZDcEaJer8",
