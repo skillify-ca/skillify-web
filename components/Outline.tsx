@@ -46,22 +46,26 @@ export default function Outline({ session }: OutlineProps) {
     }
   };
 
-  const loggedInComponent = (
-    <div className="max-w-screen-lg">
-      <div className="flex justify-center mb-8 mt-4">
-        <div className="flex flex-col justify-center space-y-8 items-center pl-8 pr-8 bg-white shadow-md rounded-xl max-w-screen-lg w-96 h-96">
+  return (
+    <div className="max-w-screen-lg flex flex-col gap-8 justify-between w-full col-span-2 items-center mb-4 p-4 mx-auto">
+      <div className="grid grid-cols-2 gap-8 bg-blue-50 rounded-lg shadow-lg p-4">
+        <div className="flex flex-col gap-4">
           <p className="font-bold text-2xl"> Knowledge Tree </p>
 
-          <div className="flex flex-col items-center">
-            <ProgressRing percentage={progress()} radius={24} />
-          </div>
-          <p className="text-center text-sm">
+          <p className="">
             {" "}
             Practice skills to increase your math confidence and ace the quizzes
             to unlock badges!{" "}
           </p>
         </div>
+        <div className="flex flex-col gap-4 items-end pr-8">
+          <p className="font-bold text-lg"> Overall Progress</p>
+          <div className="p-4">
+            <ProgressRing percentage={progress()} radius={24} />
+          </div>
+        </div>
       </div>
+
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 justify-center gap-8 items-center">
         {unlockedTopics.map((topic, index) => (
           <div key={topic.title}>
@@ -74,32 +78,12 @@ export default function Outline({ session }: OutlineProps) {
             />
           </div>
         ))}
-      </div>
-      <div className="col-span-4 my-8">
-        <p className="text-xl text-center font-bold">{"Locked"}</p>
-      </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 justify-center gap-4 items-center">
         {lockedTopics.map((topic) => (
-          <div className="bg-white shadow-md rounded-full p-2">
-            <div className="flex flex-row justify-center items-center gap-4">
-              <div className="w-12">
-                <img src="/images/skills/lock.png" alt="" />
-              </div>
-              <p className="text-center text-sm">{topic}</p>
-            </div>
+          <div key={topic}>
+            <UnitCard key={topic} title={topic} disabled={true} />
           </div>
-
-          // <div key={topic}>
-          //   <UnitCard key={topic} title={topic} disabled={true} />
-          // </div>
         ))}
       </div>
-    </div>
-  );
-
-  return (
-    <div className="flex flex-col gap-8 justify-between w-full col-span-2 items-center mb-4 p-4 mx-auto">
-      {loggedInComponent}
     </div>
   );
 }
