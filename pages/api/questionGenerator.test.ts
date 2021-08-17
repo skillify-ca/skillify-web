@@ -1,4 +1,5 @@
 import "@testing-library/jest-dom/extend-expect";
+import { Subtraction4DigitWS } from "../../components/stories/WorksheetsObj";
 import {
   getArrayMultiplicationQuestion,
   getRandomDivisionQuestion,
@@ -237,9 +238,107 @@ test("If we generate a Three digit by Two digit Divison question where division 
 });
 
 //Decimal Skills Tests
-/* Skill.ADDITION_TENTHS */
+/* Skill.SUBTRACTION_TENTHS */
 const add = (a: number, b: number) => a + b;
 const subtract = (a: number, b: number) => a - b;
+
+test("If we genrate an addition tenths question with the lowest possible edge case the answer should result in 0.0", async () => {
+  // Arrange
+  let a = 0.1;
+  let b = 0.1;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "-",
+    QuestionType.VERTICAL_EQUATION,
+    subtract,
+    Skill.SUBTRACTION_TENTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.1 - 0.1 =");
+  expect(question.answer).toBe("0.0");
+});
+test("If we genrate an addition tenths question with the highest possible edge case input the answer should result in 0.0", async () => {
+  // Arrange
+  let a = 0.9;
+  let b = 0.9;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "-",
+    QuestionType.VERTICAL_EQUATION,
+    subtract,
+    Skill.SUBTRACTION_TENTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.9 - 0.9 =");
+  expect(question.answer).toBe("0.0");
+});
+test("If we genrate a subtraction tenths question the highest possible output should be 0.8", async () => {
+  // Arrange
+  let a = 0.7;
+  let b = 0.3;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "-",
+    QuestionType.HORIZONTAL_EQUATION,
+    subtract,
+    Skill.SUBTRACTION_TENTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.7 - 0.3 =");
+  expect(question.answer).toBe("0.4");
+});
+test("If we genrate a subtraction tenths question with the inputs of 0.3 and 0.1 the out answer should be 0.2", async () => {
+  // Arrange
+  let a = 0.1;
+  let b = 0.3;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "-",
+    QuestionType.HORIZONTAL_EQUATION,
+    subtract,
+    Skill.SUBTRACTION_TENTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.3 - 0.1 =");
+  expect(question.answer).toBe("0.2");
+});
+test("If we generate an subtraction tenths question that inputs 0.4 and 0.5 that output question answer should be 0.9 ", async () => {
+  // Arrange
+  let a = 0.5;
+  let b = 0.6;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "-",
+    QuestionType.HORIZONTAL_EQUATION,
+    subtract,
+    Skill.SUBTRACTION_TENTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.6 - 0.5 =");
+  expect(question.answer).toBe("0.1");
+});
+
+/* Skill.ADDITION_TENTHS */
 
 test("If we genrate an addition tenths question with the lowest possible edge case the answer should result in 0.2", async () => {
   // Arrange
