@@ -435,3 +435,101 @@ test("If we genrate an addition tenths question that uses the highest and lowest
   expect(question.text).toBe("0.9 + 0.1 =");
   expect(question.answer).toBe("1.0");
 });
+
+/* Skill.ADDITION_HUNDREDTHS */
+
+test("If we genrate an addition hundredths question with the lowest possible edge case the answer should result in 0.02", async () => {
+  // Arrange
+  let a = 0.01;
+  let b = 0.01;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "+",
+    QuestionType.VERTICAL_EQUATION,
+    add,
+    Skill.ADDITION_HUNDREDTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.01 + 0.01 =");
+  expect(question.answer).toBe("0.02");
+});
+test("If we genrate an addition hundredths question with the highest possible edge case the answer should result in 1.98", async () => {
+  // Arrange
+  let a = 0.99;
+  let b = 0.99;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "+",
+    QuestionType.VERTICAL_EQUATION,
+    add,
+    Skill.ADDITION_HUNDREDTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.99 + 0.99 =");
+  expect(question.answer).toBe("1.98");
+});
+test("If we genrate an addition hundredths question that equals 1 then the answer should be displayed as 1 and not 1.00", async () => {
+  // Arrange
+  let a = 0.45;
+  let b = 0.55;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "+",
+    QuestionType.HORIZONTAL_EQUATION,
+    add,
+    Skill.ADDITION_HUNDREDTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.55 + 0.45 =");
+  expect(question.answer).toBe("1.00");
+});
+test("If we genrate an addition hundredths question that equals 1 then the answer should be displayed as 1 and not 1.00", async () => {
+  // Arrange
+  let a = 0.76;
+  let b = 0.24;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "+",
+    QuestionType.HORIZONTAL_EQUATION,
+    add,
+    Skill.ADDITION_HUNDREDTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.76 + 0.24 =");
+  expect(question.answer).toBe("1.00");
+});
+test("If we genrate an addition hundredths question that uses the highest and lowest possible values the answer should result in 1.00", async () => {
+  // Arrange
+  let a = 0.01;
+  let b = 0.99;
+
+  // Act
+  const question = getBinaryQuestion(
+    a,
+    b,
+    "+",
+    QuestionType.HORIZONTAL_EQUATION,
+    add,
+    Skill.ADDITION_HUNDREDTHS
+  );
+
+  // Assert
+  expect(question.text).toBe("0.99 + 0.01 =");
+  expect(question.answer).toBe("1.00");
+});
