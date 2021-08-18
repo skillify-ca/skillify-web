@@ -86,8 +86,6 @@ const FinanceProfile = () => {
   const onSubmit = () => {
     if (moneyRemValidation === "Correct") {
       setIsSubmitModalShowing((e) => !e);
-    } else {
-      null
     }
   }
 
@@ -282,3 +280,7 @@ const FinanceProfile = () => {
 };
 
 export default FinanceProfile;
+
+// when surprise is generated, add number to total money remaining
+// if negative (after surprise), disable submit button
+// if positive (after surprise), user can select submit again go to final page
