@@ -5,6 +5,7 @@ import {
   getGradedQuestionsForTopic,
 } from "../../pages/api/diagnostic/diagnosticGrader";
 import {
+  getSkillsForDiagnosticUnit,
   getSkillsForTopic,
   SkillDescription,
   Topic,
@@ -17,7 +18,7 @@ type DiagnosticEvidenceProps = {
 };
 
 const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
-  const skills = getSkillsForTopic(topic);
+  const skills = getSkillsForDiagnosticUnit(topic);
   let skillCount = 0;
 
   const countSkills = (result: Array<string>) => {
