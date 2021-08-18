@@ -15,6 +15,11 @@ import { FETCH_USER_EMOJIS } from "../../../graphql/fetchUserEmojis";
 import { Button } from "../../../components/ui/Button";
 import Card from "../../../components/ui/Card";
 import EmojiSlider from "../../../components/ui/EmojiSlider";
+import dynamic from "next/dynamic";
+
+const Polypad = dynamic(() => import("../../../components/ui/Polypad"), {
+  ssr: false,
+});
 
 const PracticeQuiz = ({ slug, skill }) => {
   enum STAGE {
@@ -318,7 +323,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   };
 
   return (
-    <div className="bg-blue-100 heropattern-architect-blue-50 h-md">
+    <div className="bg-blue-100 heropattern-architect-blue-50 h-md flex justify-around">
       <div className="flex flex-col justify-center items-center mt-8">
         <div className="flex flex-row w-96 p-4 justify-between bg-gray-400 shadow-lg rounded-lg ">
           <p className="font-semibold">
@@ -335,7 +340,7 @@ const PracticeQuiz = ({ slug, skill }) => {
         >
           <div className="align-middle w-50">{getComponent()}</div>
           <div
-            className={`${display} flex-col justify-center items-center gap-8 transition-opacity duration-150 ease-in-out opacity-${isFaded}`}
+            className={`${display} flex-col justify-center items-center gap-8 mb-8 transition-opacity duration-150 ease-in-out opacity-${isFaded}`}
           >
             <div className={"justify-items-center align-middle w-50 mt-8"}>
               <Card size="large">
@@ -391,6 +396,9 @@ const PracticeQuiz = ({ slug, skill }) => {
             </div>
           </div>
         </ReactCardFlip>
+      </div>
+      <div className="hidden sm:flex">
+        <Polypad />
       </div>
       {/* {!continueButton &&
         !nextQuestionButton &&
