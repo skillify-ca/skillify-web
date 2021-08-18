@@ -27,12 +27,16 @@ export const getWorkSheets = (results: DiagnosticState): Worksheet[] => {
     .filter((it: Skill) => getResultForSkill(it, results) === "Not yet")
     .map((it: Skill) => getWorksheetForSkill(it));
   if (workSheets.length === 0) {
-    workSheets.push(Subtraction4DigitWS, AdditionTripleAddendsWS, DivisionTripleDigitDividendWS);
+    workSheets.push(
+      Subtraction4DigitWS,
+      AdditionTripleAddendsWS,
+      DivisionTripleDigitDividendWS
+    );
   }
   const uniqueWorksheets = new Set(workSheets);
   return Array.from(uniqueWorksheets);
 };
-
+//Returns a worksheet object based on the skill that the user must improve on
 const getWorksheetForSkill = (skill: Skill): Worksheet => {
   switch (skill) {
     case Skill.ADDITION_SINGLE:
