@@ -43,8 +43,11 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
     setGuess("");
     setGuess2("");
     submitGuess({
-      guess: guess + "," + guess2,
-      isCorrect: guess + "," + guess2 === question.answer,
+      guess: guess2 !== "" ? guess + "," + guess2 : guess,
+      isCorrect:
+        guess2 !== ""
+          ? guess + "," + guess2 === question.answer
+          : guess == question.answer,
     });
   };
 
