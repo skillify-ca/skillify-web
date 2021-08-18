@@ -517,9 +517,41 @@ function getRandomBinaryQuestion(
     a = getRndInteger(10, 100);
     b = getRndInteger(min, max);
   }
+  const type = types[typeIndex];
+
+  return getBinaryQuestion(a, b, operator, type, answerFunction, skill);
+}
+
+export function getBinaryQuestion(
+  a: number,
+  b: number,
+  operator: string,
+  questionType: QuestionType,
+  answerFunction: (a: number, b: number) => number,
+  skill: Skill
+): Question {
+  let types = [
+    QuestionType.HORIZONTAL_EQUATION,
+    QuestionType.BINARY_WORD_PROBLEM,
+    QuestionType.VERTICAL_EQUATION,
+    QuestionType.TRUE_OR_FALSE_PROBLEM,
+    QuestionType.MULTIPLE_CHOICE,
+  ];
+
+  //Temporarily Disables True ann False, MC, and Word Problems for G4 Add and Subtract
+  //TODO Redesign the logic for MC Question generator and T or F Questions
+  if (
+    skill == Skill.ADDITION_TENTHS ||
+    skill == Skill.SUBTRACTION_TENTHS ||
+    skill == Skill.SUBTRACTION_HUNDREDTHS ||
+    skill == Skill.ADDITION_HUNDREDTHS ||
+    skill == Skill.MULTIPLY_THREE_DIGIT_BY_TENTH
+  ) {
+    types = [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
+  }
   let text;
   let trueFalseAnswer;
-  const type = types[typeIndex];
+  const type = questionType;
   let multipleChoiceModel;
 
   if (type === QuestionType.TRUE_OR_FALSE_PROBLEM) {
@@ -569,7 +601,6 @@ function getRandomBinaryQuestion(
   } else {
     text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} =`;
   }
-
   let wordProblemModel;
   //condition for if it is wordProblem
   if (type === QuestionType.BINARY_WORD_PROBLEM) {
