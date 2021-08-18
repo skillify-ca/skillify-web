@@ -7,6 +7,10 @@ import AssignmentCreationForm, {
 import AssignmentQuestions from "../components/assignment-creator/assignmentQuestions";
 import DisplayAssignmentQuestions from "../components/assignment-creator/displayAssignmentQuestions";
 import Navbar from "../components/Navbar";
+import { Question } from "./api/question";
+import { CREATE_ASSIGNMENT } from "../graphql/createAssignment";
+import { useMutation } from "@apollo/client";
+import AssignmentConfirmation from "../components/assignment-creator/assignmentConfirmation";
 
 enum STAGE {
   CHOOSE_TOPICS,
@@ -22,6 +26,8 @@ const Diagnostic = () => {
   const [selectedSkills, setSelectedSkills] = useState<QuestionTypeForSkill[]>(
     []
   );
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [assignmentId, setAssignmentId] = useState<number>();
 
   const createAssignment = () => {
     setStage(STAGE.CUSTOMIZE);
@@ -29,6 +35,22 @@ const Diagnostic = () => {
 
   const customizeAssignment = () => {
     setStage(STAGE.REVIEW);
+  };
+
+  const [insertAssignment, updateCreateAssignmentMutation] = useMutation(
+    CREATE_ASSIGNMENT
+  );
+
+  const confirmAssignment = () => {
+    console.log("questions", JSON.stringify(questions));
+    insertAssignment({
+      variables: {
+        questions,
+      },
+    }).then((it) =>
+      setAssignmentId(it.data.insert_assignments.returning[0].id)
+    );
+    setStage(STAGE.CONFIRM);
   };
 
   let component;
@@ -54,10 +76,17 @@ const Diagnostic = () => {
       break;
     case STAGE.REVIEW:
       component = (
-        <DisplayAssignmentQuestions selectedSkills={selectedSkills} />
+        <DisplayAssignmentQuestions
+          selectedSkills={selectedSkills}
+          onSubmit={confirmAssignment}
+          questions={questions}
+          setQuestions={setQuestions}
+        />
       );
       break;
     case STAGE.CONFIRM:
+      component = <AssignmentConfirmation assignmentId={assignmentId} />;
+
       break;
   }
   return (
