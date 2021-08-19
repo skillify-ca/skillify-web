@@ -27,7 +27,7 @@ const LandingPagev2 = () => {
     {
       name: "Practice Tracker",
       description:
-        "Practice skills from our infinite set of questions. Unlock badges to prove",
+        "Practice skills from our infinite set of questions. Prove mastery by unlocking badges.",
       icon: GlobeAltIcon,
     },
     {
