@@ -16,6 +16,7 @@ import { MultipleChoiceSentence } from "../questionTypes/MultipleChoiceSentence"
 import { MultipleChoiceWord } from "../questionTypes/MultipleChoiceWord";
 import { MultiplicationArray } from "../questionTypes/MultiplicationArray";
 import { MultiplicationEqualGroups } from "../questionTypes/MultiplicationEqualGroups";
+import { NumberComparison } from "../questionTypes/numberComparison";
 import { NumbertoVerticalDigits } from "../questionTypes/NumbertoVerticalDigits";
 import { PatternBlank } from "../questionTypes/PatternBlank";
 import { TrueorFalse } from "../questionTypes/TrueorFalse";
@@ -92,6 +93,16 @@ const QuestionSet = ({
         <PatternBlank
           displayQuestion={questionData[index].text}
           startNumber={questionData[index].placeholder}
+          answer={questionData[index].answer}
+          submitGuess={submitGuess}
+        />
+      );
+    } else if (
+      questionData[index].questionType == QuestionType.COMPARISON_NUMBER_PROBLEM
+    ) {
+      return (
+        <NumberComparison
+          valueText={questionData[index].text}
           answer={questionData[index].answer}
           submitGuess={submitGuess}
         />
