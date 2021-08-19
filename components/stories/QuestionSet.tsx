@@ -166,18 +166,6 @@ const QuestionSet = ({
             submitGuess={submitGuess}
           />
         );
-      }
-    } else if (
-      questionData[index].questionType == QuestionType.VISUAL_TYPE_PROBLEM
-    ) {
-      if (questionData[index].operator == "+") {
-        return (
-          <VisualAddition
-            question={questionData[index]}
-            submitGuess={submitGuess}
-            visualDisplay={questionData[index].displayNum}
-          />
-        );
       } else if (questionData[index].operator == "-") {
         return (
           <WordProblemSub
@@ -197,6 +185,18 @@ const QuestionSet = ({
           <WordProblemDiv
             question={questionData[index]}
             submitGuess={submitGuess}
+          />
+        );
+      }
+    } else if (
+      questionData[index].questionType == QuestionType.VISUAL_TYPE_PROBLEM
+    ) {
+      if (questionData[index].operator == "+") {
+        return (
+          <VisualAddition
+            question={questionData[index]}
+            submitGuess={submitGuess}
+            visualDisplay={questionData[index].displayNum}
           />
         );
       }

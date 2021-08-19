@@ -54,21 +54,21 @@ export const generateQuestionForSkill = (
     case Skill.EQUAL_GROUP_10_ITEMS:
       return getRandomMultiplicationQuestion(1, 11, skill);
     case Skill.MULTIPLICATION_5:
-      return getRandomMultiplicationQuestion(1, 6, skill);
+      return getRandomMultiplicationQuestion(1, 6, skill, questionType);
     case Skill.MULTIPLICATION_10:
-      return getRandomMultiplicationQuestion(6, 10, skill);
+      return getRandomMultiplicationQuestion(6, 10, skill, questionType);
     case Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT:
-      return getRandomMultiplicationQuestion(10, 100, skill);
+      return getRandomMultiplicationQuestion(10, 100, skill, questionType);
     case Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT:
-      return getRandomMultiplicationQuestion(100, 1000, skill);
+      return getRandomMultiplicationQuestion(100, 1000, skill, questionType);
     case Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT:
-      return getRandomMultiplicationQuestion(10, 100, skill);
+      return getRandomMultiplicationQuestion(10, 100, skill, questionType);
     case Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT:
-      return getRandomMultiplicationQuestion(100, 1000, skill);
+      return getRandomMultiplicationQuestion(100, 1000, skill, questionType);
     case Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT:
-      return getRandomMultiplicationQuestion(10, 100, skill);
+      return getRandomMultiplicationQuestion(10, 100, skill, questionType);
     case Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT:
-      return getRandomMultiplicationQuestion(100, 1000, skill);
+      return getRandomMultiplicationQuestion(100, 1000, skill, questionType);
     case Skill.EQUAL_SHARING_8_ITEMS:
       return getRandomDivisionQuestion(1, 5, skill);
     case Skill.DIVIDE_12_EQUALLY:
@@ -397,7 +397,7 @@ function getRandomDivisionQuestion(
     } else {
       b = getRndInteger(min, max);
     }
-    const type = QuestionType.LONG_DIVISION_PROBLEM;
+    const type = QuestionType.LONG_DIVISION_PROBLEM; //type
     const text = `${b} / ${a} =`;
     let quotient = Math.floor(b / a);
     let remainder = b % a;
@@ -450,6 +450,7 @@ function getRandomBinaryQuestion(
   skill: Skill,
   questionType?: QuestionType
 ): Question {
+  console.log("qtypee", questionType);
   let types = [
     QuestionType.HORIZONTAL_EQUATION,
     QuestionType.BINARY_WORD_PROBLEM,

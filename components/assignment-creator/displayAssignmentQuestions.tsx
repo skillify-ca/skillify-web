@@ -8,13 +8,17 @@ import { generateAssignmentQuestions } from "./assignmentQuestionGenerator";
 
 type displayAssignmentQuestionsProps = {
   selectedSkills: QuestionTypeForSkill[];
+  questions: Question[];
+  setQuestions: (questions: Question[]) => void;
+  onSubmit: (grade: string) => void;
 };
 
 const DisplayAssignmentQuestions = ({
   selectedSkills,
+  questions,
+  setQuestions,
+  onSubmit,
 }: displayAssignmentQuestionsProps) => {
-  console.log(selectedSkills);
-  const [questions, setQuestions] = useState<Question[]>([]);
   useEffect(() => {
     const newQuestions = [];
     for (let i = 0; i < selectedSkills.length; i++) {
@@ -28,39 +32,25 @@ const DisplayAssignmentQuestions = ({
     setQuestions(newQuestions);
   }, []);
 
-  const displayQuestions = (questions: Question[]) => {
-    for (let i = 0; i < questions.length; i++) {
-      console.log(i);
-      return (
-        <div>
-          {" "}
-          hi <AssignmentQuestionSet questionData={questions} index={i} />{" "}
-        </div>
-      );
-    }
-  };
-
   return (
-    <div className="flex flex-col gap-8 w-full">
-      {questions.map((question, index) => (
-        <div>
-          <p className="text-xl"> {question.skill}</p>
-          <p> {question.questionType}</p>
-          <AssignmentQuestionSet questionData={questions} index={index} />
-        </div>
-      ))}
-
-      {/* <AssignmentQuestionSet questionData={questions} index={1} />
-      <AssignmentQuestionSet questionData={questions} index={2} />
-      <AssignmentQuestionSet questionData={questions} index={3} />
-      <AssignmentQuestionSet questionData={questions} index={4} />
-      <AssignmentQuestionSet questionData={questions} index={5} /> */}
-
-      <Button
-        backgroundColor="blue"
-        label="Generate Worksheet"
-        textColor="white"
-      />
+    <div className="">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 justify-center gap-8">
+        {questions.map((question, index) => (
+          <div>
+            <p className="text-xl"> {question.skill}</p>
+            <p> {question.questionType}</p>
+            <AssignmentQuestionSet questionData={questions} index={index} />
+          </div>
+        ))}
+      </div>
+      <div className="flex">
+        <Button
+          backgroundColor="blue"
+          label="Generate Assignment"
+          textColor="white"
+          onClick={onSubmit}
+        />
+      </div>
     </div>
   );
 };

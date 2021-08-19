@@ -8,6 +8,10 @@ type assignmentConfirmationProps = {
 const AssignmentConfirmation = ({
   assignmentId,
 }: assignmentConfirmationProps) => {
+  console.log("assignmentId passed in", assignmentId);
+  const getAssignmentId = () => {
+    return assignmentId;
+  };
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
       <Script
@@ -17,7 +21,7 @@ const AssignmentConfirmation = ({
       <div
         className="g-sharetoclassroom"
         data-size="32"
-        data-url={`https://www.mathchamp.ca/assignments/${assignmentId}`}
+        data-url={`https://www.mathchamp.ca/assignments/${getAssignmentId()}`}
       ></div>
     </div>
   );

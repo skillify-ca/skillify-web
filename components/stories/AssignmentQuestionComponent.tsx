@@ -28,10 +28,12 @@ import Card from "../ui/Card";
 type AssignmentQuestionSetProps = {
   questionData: Question[];
   index: number;
+  submitGuess: (guessData: GuessData) => void;
 };
 const AssignmentQuestionSet = ({
   questionData,
   index,
+  submitGuess,
 }: AssignmentQuestionSetProps) => {
   console.log(questionData);
   if (
@@ -43,7 +45,7 @@ const AssignmentQuestionSet = ({
       <Card size="large">
         <VerticalEquation
           question={questionData[index]}
-          showSubmitButton={false}
+          submitGuess={submitGuess}
         />
       </Card>
     );
@@ -55,7 +57,34 @@ const AssignmentQuestionSet = ({
         <Card size="large">
           <WordProblemAdd
             question={questionData[index]}
-            showSubmitButton={false}
+            submitGuess={submitGuess}
+          />
+        </Card>
+      );
+    } else if (questionData[index].operator == "-") {
+      return (
+        <Card size="large">
+          <WordProblemSub
+            question={questionData[index]}
+            submitGuess={submitGuess}
+          />
+        </Card>
+      );
+    } else if (questionData[index].operator == "x") {
+      return (
+        <Card size="large">
+          <WordProblemMulti
+            question={questionData[index]}
+            submitGuess={submitGuess}
+          />
+        </Card>
+      );
+    } else if (questionData[index].operator == "÷") {
+      return (
+        <Card size="large">
+          <WordProblemDiv
+            question={questionData[index]}
+            submitGuess={submitGuess}
           />
         </Card>
       );

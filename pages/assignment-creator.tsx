@@ -4,13 +4,13 @@ import { Grade, Skill, Topic } from "./api/skill";
 import AssignmentCreationForm, {
   QuestionTypeForSkill,
 } from "../components/assignment-creator/assignmentCreationForm";
-import AssignmentQuestions from "../components/assignment-creator/assignmentQuestions";
-import DisplayAssignmentQuestions from "../components/assignment-creator/displayAssignmentQuestions";
 import Navbar from "../components/Navbar";
 import { Question } from "./api/question";
-import { CREATE_ASSIGNMENT } from "../graphql/createAssignment";
 import { useMutation } from "@apollo/client";
 import AssignmentConfirmation from "../components/assignment-creator/assignmentConfirmation";
+import { CREATE_ASSIGNMENT } from "../graphql/createAssignment";
+import AssignmentQuestions from "../components/assignment-creator/assignmentQuestions";
+import DisplayAssignmentQuestions from "../components/assignment-creator/displayAssignmentQuestions";
 
 enum STAGE {
   CHOOSE_TOPICS,
@@ -47,10 +47,10 @@ const Diagnostic = () => {
       variables: {
         questions,
       },
-    }).then((it) =>
-      setAssignmentId(it.data.insert_assignments.returning[0].id)
-    );
-    setStage(STAGE.CONFIRM);
+    }).then((it) => {
+      setAssignmentId(it.data.insert_assignments.returning[0].id);
+      setStage(STAGE.CONFIRM);
+    });
   };
 
   let component;
@@ -85,6 +85,7 @@ const Diagnostic = () => {
       );
       break;
     case STAGE.CONFIRM:
+      console.log("assignmentId", assignmentId);
       component = <AssignmentConfirmation assignmentId={assignmentId} />;
 
       break;
