@@ -24,11 +24,11 @@ import { SAVE_QUIZ_ATTEMPT } from "../../graphql/saveQuizAttempt";
 export function getGradeLevel(score: number) {
   if (score <= 60) {
     return "1";
-  } else if (score <= 70) {
+  } else if (score < 70) {
     return "2";
-  } else if (score <= 80) {
+  } else if (score < 80) {
     return "3";
-  } else if (score <= 90) {
+  } else if (score < 90) {
     return "4";
   } else if (score < 100) {
     return "4+";
