@@ -371,9 +371,38 @@ function getRandomMultiplicationQuestion(
   }
   return getRandomBinaryQuestion(min, max, "x", multiply, skill);
 }
-function getRandomDivisionQuestion(
+export function getRandomDivisionQuestion(
   min: number,
   max: number,
+  skill: Skill
+): Question {
+  let a;
+  let b;
+  if (
+    skill == Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT ||
+    skill == Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT ||
+    skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT ||
+    skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH
+  ) {
+    a = getRndInteger(1, 10);
+    b = 0;
+    if (skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT) {
+      a = getRndInteger(10, 100);
+    } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH) {
+      a = getRndTenthsDecimal(0.1, 0.9);
+    }
+    b = getRndInteger(min, max);
+  } else {
+    a = getRndInteger(min, max);
+    b = getRndInteger(min, max);
+  }
+  return getDivisionQuestion(a, b, skill);
+}
+
+// getDivisionQuestion
+export function getDivisionQuestion(
+  a: number,
+  b: number,
   skill: Skill
 ): Question {
   if (
@@ -382,15 +411,6 @@ function getRandomDivisionQuestion(
     skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT ||
     skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH
   ) {
-    let a = getRndInteger(1, 10);
-    let b = 0;
-    if (skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT) {
-      a = getRndInteger(10, 100);
-    } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH) {
-      a = getRndTenthsDecimal(0.1, 0.9);
-    }
-    b = getRndInteger(min, max);
-
     let type = QuestionType.LONG_DIVISION_PROBLEM;
     let quotient = Math.floor(b / a);
     let remainder = b % a;
@@ -411,8 +431,6 @@ function getRandomDivisionQuestion(
       skill: skill,
     };
   } else {
-    const a = getRndInteger(min, max);
-    const b = getRndInteger(min, max);
     const product = a * b;
 
     const text = `${product} / ${b} =`;
@@ -499,9 +517,41 @@ function getRandomBinaryQuestion(
     a = getRndInteger(10, 100);
     b = getRndInteger(min, max);
   }
+  const type = types[typeIndex];
+
+  return getBinaryQuestion(a, b, operator, type, answerFunction, skill);
+}
+
+export function getBinaryQuestion(
+  a: number,
+  b: number,
+  operator: string,
+  questionType: QuestionType,
+  answerFunction: (a: number, b: number) => number,
+  skill: Skill
+): Question {
+  let types = [
+    QuestionType.HORIZONTAL_EQUATION,
+    QuestionType.BINARY_WORD_PROBLEM,
+    QuestionType.VERTICAL_EQUATION,
+    QuestionType.TRUE_OR_FALSE_PROBLEM,
+    QuestionType.MULTIPLE_CHOICE,
+  ];
+
+  //Temporarily Disables True ann False, MC, and Word Problems for G4 Add and Subtract
+  //TODO Redesign the logic for MC Question generator and T or F Questions
+  if (
+    skill == Skill.ADDITION_TENTHS ||
+    skill == Skill.SUBTRACTION_TENTHS ||
+    skill == Skill.SUBTRACTION_HUNDREDTHS ||
+    skill == Skill.ADDITION_HUNDREDTHS ||
+    skill == Skill.MULTIPLY_THREE_DIGIT_BY_TENTH
+  ) {
+    types = [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
+  }
   let text;
   let trueFalseAnswer;
-  const type = types[typeIndex];
+  const type = questionType;
   let multipleChoiceModel;
 
   if (type === QuestionType.TRUE_OR_FALSE_PROBLEM) {
@@ -551,7 +601,6 @@ function getRandomBinaryQuestion(
   } else {
     text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} =`;
   }
-
   let wordProblemModel;
   //condition for if it is wordProblem
   if (type === QuestionType.BINARY_WORD_PROBLEM) {

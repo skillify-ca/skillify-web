@@ -1,8 +1,10 @@
 import React from "react";
+import Navbar from "../components/Navbar";
 
 export default function Resources(props) {
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
+      <Navbar />
       <div className="p-4 flex flex-col items-center justify-center">
         <div className="flex flex-col gap-8 w-full">
           <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8">
