@@ -1,7 +1,7 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 import { PatternBlank, PatternBlankProp } from "./PatternBlank";
-import Card from "../ui/Card";
+import Card from "../../ui/Card";
 
 export default {
   title: "Pattern Blanks",
