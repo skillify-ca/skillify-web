@@ -68,15 +68,7 @@ const HomePage = () => {
                 </nav>
               </div>
 
-              <Transition
-                as={Fragment}
-                enter="duration-150 ease-out"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="duration-100 ease-in"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
+              <div>
                 <Popover.Panel
                   focus
                   className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
@@ -86,7 +78,7 @@ const HomePage = () => {
                       <div>
                         <img
                           className="h-8 w-auto"
-                          src="https://tailwindui.com/img/logos/workflow-mark-blue-600.svg"
+                          src="/images/logo.png"
                           alt=""
                         />
                       </div>
@@ -116,7 +108,7 @@ const HomePage = () => {
                     </a>
                   </div>
                 </Popover.Panel>
-              </Transition>
+              </div>
             </Popover>
 
             <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
