@@ -84,8 +84,21 @@ const FinanceProfile = () => {
   }, []);
 
   return (
-    <div className="h-screen grid grid-cols-2 gap-6 bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
+    <div className="h-screen grid grid-cols-2 gap-6 bg-scroll bg-white">
       <div className={"h-full overflow-scroll col-start-1 col-end-2"}>
+        <header
+          className={
+            "flex items-center justify-center h-screen mb-12 bg-fixed bg-center bg-cover bg-finance-life"
+          }
+        >
+          <div
+            className={
+              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+            }
+          >
+            Here is your Life Card
+          </div>
+        </header>
         {profileData && (
           <FinanceProfileChart
             individualOccupation={profileData.individualOccupation}
@@ -96,7 +109,36 @@ const FinanceProfile = () => {
             spouseSalary={profileData.spouseSalary}
           />
         )}
+        <section
+          className={
+            "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-center bg-cover bg-home"
+          }
+        >
+          <div
+            className={
+              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+            }
+          >
+            {" "}
+            Your Home
+          </div>
+        </section>
         <BuyAHome />
+        <section
+          className={
+            "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-centerx bg-car bg-contain"
+          }
+        >
+          <div
+            className={
+              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+            }
+          >
+            {" "}
+            Your Ride
+          </div>
+        </section>
+
         <BuyACar
           Make={Make}
           setMake={setMake}
@@ -109,6 +151,21 @@ const FinanceProfile = () => {
           Year={Year}
           setYear={setYear}
         />
+        <section
+          className={
+            "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-left bg-cover bg-no-repeat bg-essentials"
+          }
+        >
+          <div
+            className={
+              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+            }
+          >
+            {" "}
+            Your Essentials
+          </div>
+        </section>
+
         <BuyAPhone />
         <BuyGroceries />
         <SurpriseComponent />
@@ -146,6 +203,7 @@ const FinanceProfile = () => {
             <img src={"/images/warning-2-16.png"} />
           </div>
         )}
+
         <IncomeTable
           monthlyIncome={yourMonthlyIncome}
           setMonthlyIncome={setYourMonthlyIncome}
