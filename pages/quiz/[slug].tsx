@@ -21,8 +21,9 @@ import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
 import { SAVE_QUIZ_ATTEMPT } from "../../graphql/saveQuizAttempt";
 
+//
 export function getGradeLevel(score: number) {
-  if (score <= 60) {
+  if (score < 60) {
     return "1";
   } else if (score < 70) {
     return "2";
