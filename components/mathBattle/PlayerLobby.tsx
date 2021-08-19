@@ -53,6 +53,11 @@ const Lobby = ({
           Lobby Capacity: {players.length}/4
         </p>
       </div>
+      <Button
+        label="Instructions"
+        backgroundColor="green"
+        textColor="White"
+      ></Button>
       {players.length === 1 ? (
         <div className="flex flex-col gap-4">
           <p className="font-bold text-blue-400 text-xl">
