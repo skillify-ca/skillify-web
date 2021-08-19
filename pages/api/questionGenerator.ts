@@ -76,7 +76,7 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
     case Skill.EQUAL_SHARING_8_ITEMS:
       return getRandomDivisionQuestion(1, 5, skill);
     case Skill.DIVIDE_12_EQUALLY:
-      return getRandomDivisionQuestion(1, 13, skill);
+      return getRandomDivisionQuestion(1, 6, skill);
     case Skill.DIVIDE_100:
       return getRandomDivisionQuestion(1, 11, skill);
     //All division questions min and maxs are in respect to the dividend
