@@ -136,11 +136,10 @@ export const SectionOneInput = ({
               onChange={(e) => setSpouseOccupation(e.target.value)}
             >
               {financialProfileData
-                .filter((profile) => profile.spouseOccupation != "")
-                .map((profile) => (
-                  <option value={profile.spouseOccupation}>
-                    {profile.spouseOccupation}
-                  </option>
+                .map((profile) => profile.spouseOccupation)
+                .filter((v, i, a) => a.indexOf(v) === i)
+                .map((spouseOccupation) => (
+                  <option value={spouseOccupation}>{spouseOccupation}</option>
                 ))}
             </select>
             <div className="w-1/4">

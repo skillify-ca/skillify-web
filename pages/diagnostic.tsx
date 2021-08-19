@@ -8,7 +8,6 @@ import { DiagnosticState, setDiagnostic } from "../redux/diagnosticSlice";
 import { useAppDispatch } from "../redux/store";
 import { Grade, Skill, Topic } from "./api/skill";
 import { getNextQuestion } from "./api/diagnostic/diagnosticQuestionGenerator";
-import DiagnosticNavbar from "../components/DiagnosticNavbar";
 import { getWorkSheets } from "./api/worksheets";
 import {
   getCalculatedGrade,
@@ -16,6 +15,7 @@ import {
   getResultForSkill,
 } from "./api/diagnostic/diagnosticGrader";
 import { generateQuestionForSkill } from "./api/questionGenerator";
+import Navbar from "../components/Navbar";
 
 enum STAGE {
   CREATE,
@@ -218,7 +218,7 @@ const Diagnostic = () => {
   }
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen">
-      <DiagnosticNavbar />
+      <Navbar />
       <div className="p-4 flex flex-col items-center justify-center">
         {component}
       </div>

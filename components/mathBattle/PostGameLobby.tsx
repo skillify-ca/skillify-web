@@ -1,33 +1,32 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import * as Colyseus from "colyseus.js";
-import QuestionSet from "../stories/QuestionSet";
 import { AnswerType, Question } from "../../pages/api/question";
-import { GuessData } from "../../pages/api/guessData";
-import ProgressBar from "../ProgressBar";
-import { Player } from "../../pages/games/MathBattle";
 import Card from "../ui/Card";
 import ReactCardFlip from "react-card-flip";
 import { Button } from "../ui/Button";
-import BattleComponent from "./BattleComponent";
 import { generateQuestions } from "../../pages/api/quiz/quizQuestionGenerator";
 import { QuestionType } from "../../pages/api/questionTypes";
 import { Skill } from "../../pages/api/skill";
 
 export interface CreateRoomProps {
   room: Colyseus.Room;
+  length: number;
   goToLobby: () => void;
   gotoPostGameLobby: () => void;
 }
 
 const PostGameLobby = ({
+  length,
   goToLobby,
   gotoPostGameLobby,
   room,
 }: CreateRoomProps) => {
   const [players, setPlayers] = useState([]);
+  const [stats, setStats] = useState("Stats");
   const [isFlipped, setIsFlipped] = useState(false);
   const [playerLength, setPlayerLength] = useState(0);
   const [rematchButton, setRematchButton] = useState("Request Rematch");
+  const [rematchCounter, setRematchCounter] = useState(0);
   const [buttonDisable, setButtonDisable] = useState(false);
 
   const [questionData, setQuestionData] = useState<Question[]>([
@@ -61,8 +60,17 @@ const PostGameLobby = ({
     setRematchButton(message);
   });
 
+  room?.onMessage("rematchCounter", (message) => {
+    setRematchCounter(message);
+  });
+
   const toggleFlip = () => {
     setIsFlipped(!isFlipped);
+    if (stats == "Stats") {
+      setStats("Placements");
+    } else {
+      setStats("Stats");
+    }
   };
 
   // const onHomeClick = () => {
@@ -70,9 +78,9 @@ const PostGameLobby = ({
   // };
 
   const onRematchClick = () => {
-    if (rematchButton == "Request Rematch") {
+    if (rematchButton != "Play Again") {
       console.log("rematch", playerLength);
-      room.send("rematchRequested");
+      room.send("rematchRequested", playerLength);
       setButtonDisable(true);
     } else {
       const questions = generateQuestions("addition", 1, 10);
@@ -88,7 +96,7 @@ const PostGameLobby = ({
 
   scoreWin = Math.min(...scoreArr);
 
-  if (playerLength != 2) {
+  if (playerLength != length) {
     return (
       <div className="flex flex-col gap-8 w-screen place-items-center text-center">
         {console.log("playerLength", playerLength)}
@@ -106,9 +114,9 @@ const PostGameLobby = ({
     );
   }
   return (
-    <div className="flex flex-col gap-16">
+    <div className="flex flex-col gap-16 justify-items-center items-center">
       {console.log("playerLengthEnd", playerLength)}
-      <div className="flex flex-row gap-8 items-center text-center">
+      <div className="flex flex-row items-center justify-items-center gap-4 text-center">
         {players.map((it) => (
           <ReactCardFlip
             isFlipped={isFlipped}
@@ -116,7 +124,7 @@ const PostGameLobby = ({
             infinite={true}
           >
             <div onClick={toggleFlip}>
-              <Card size="large">
+              <Card size="medium">
                 <div className="flex flex-col">
                   <h1
                     className={`text-3xl font-bold  ${
@@ -127,14 +135,14 @@ const PostGameLobby = ({
                     {it.score == scoreWin ? (
                       <img
                         src="/images/goldMedal.svg"
-                        width="300"
-                        height="300"
+                        width="200"
+                        height="200"
                       />
                     ) : (
                       <img
                         src="/images/silverMedal.svg"
-                        width="300"
-                        height="300"
+                        width="200"
+                        height="200"
                       />
                     )}
                   </h1>
@@ -142,12 +150,11 @@ const PostGameLobby = ({
               </Card>
             </div>
             <div onClick={toggleFlip}>
-              <Card size="large">
+              <Card size="medium">
                 <div className=" flex flex-col">
-                  <p className="text-3xl font-bold">Score</p>
+                  <h1 className="text-3xl font-bold">Score</h1>
                   {parseInt((it.score / 1000).toString())} seconds
                 </div>
-                <hr></hr>
                 <div className=" flex flex-col">
                   <p className="text-3xl font-bold">Accuracy</p>
                   {it.accuracy}/10
@@ -158,7 +165,7 @@ const PostGameLobby = ({
         ))}
       </div>
       <Button
-        label="Stats"
+        label={stats}
         backgroundColor="red"
         textColor="white"
         onClick={toggleFlip}

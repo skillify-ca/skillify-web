@@ -4,24 +4,33 @@ import QuestionSet from "../stories/QuestionSet";
 import { Question } from "../../pages/api/question";
 import { GuessData } from "../../pages/api/guessData";
 import ProgressBar from "../ProgressBar";
+import { Player } from "../../pages/games";
 
 export interface BattleComponentProps {
   questions: Question[];
+  players: Player[];
   room: Colyseus.Room;
   gotoPostGameLobby: (room: Colyseus.Room) => void;
 }
 
 const BattleComponent = ({
   questions,
+  players,
   room,
   gotoPostGameLobby,
 }: BattleComponentProps) => {
+  const [player1, setPlayer1] = useState(0);
+  const [player2, setPlayer2] = useState(0);
+  const [player3, setPlayer3] = useState(0);
+  const [player4, setPlayer4] = useState(0);
+
   const [opacity, setOpacity] = useState(0);
-  const [opponentProgress, setOpponentProgress] = useState(0);
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [index, setIndex] = useState(0);
   const [time, setTime] = useState(0);
   const inputElement = useRef(null);
+
+  const colourArr = ["blue", "red", "green", "yellow"];
 
   React.useEffect(() => {
     let interval = null;
@@ -37,16 +46,36 @@ const BattleComponent = ({
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
+  function getPlayerProgress(seat: number) {
+    if (seat == 1) {
+      return player1;
+    } else if (seat == 2) {
+      return player2;
+    } else if (seat == 3) {
+      return player3;
+    } else {
+      return player4;
+    }
+  }
+
   room?.onMessage("incrementProgress", (message) => {
     console.log("data", message);
-    setOpponentProgress(opponentProgress + 1);
+    if (message.seat == 1) {
+      setPlayer1(message.index.data);
+    } else if (message.seat == 2) {
+      setPlayer2(message.index.data);
+    } else if (message.seat == 3) {
+      setPlayer3(message.index.data);
+    } else {
+      setPlayer4(message.index.data);
+    }
   });
 
   const submitGuess = async (currentGuess: GuessData) => {
     let newCorrectGuesses = correctGuesses;
     let newTime = time;
-
-    room.send("nextQuestion", { id: room.sessionId, data: index });
+    console.log("dataIndex", index);
+    room.send("nextQuestion", { id: room.sessionId, data: index + 1 });
     if (!currentGuess.isCorrect) {
       newTime = time + 10000;
 
@@ -57,7 +86,6 @@ const BattleComponent = ({
     } else {
       newCorrectGuesses = correctGuesses + 1;
       setCorrectGuesses(newCorrectGuesses);
-
     }
     if (index + 1 < questions.length) {
       setIndex(index + 1);
@@ -102,13 +130,20 @@ const BattleComponent = ({
           </p>
         </div>
       </div>
-      <div className="w-96 ">
-        <ProgressBar max={10} value={index} color="blue"></ProgressBar>
-        <ProgressBar
-          max={10}
-          value={opponentProgress}
-          color="red"
-        ></ProgressBar>
+      <div>
+        {players.map((it) => (
+          <div className="flex flex-row">
+            <div className="gap-4 w-96">
+              <ProgressBar
+                id={it.sessionId}
+                max={10}
+                value={getPlayerProgress(it.seat)}
+                color={colourArr[it.seat - 1]}
+              ></ProgressBar>
+            </div>
+            <p className="font-bold text-xl"> {it.name}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
