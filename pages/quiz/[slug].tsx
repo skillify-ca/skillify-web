@@ -22,20 +22,18 @@ import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
 import { SAVE_QUIZ_ATTEMPT } from "../../graphql/saveQuizAttempt";
 
 export function getGradeLevel(score: number) {
-  if (score <= 50) {
-    return "F";
-  } else if (score <= 60) {
-    return "D";
+  if (score <= 60) {
+    return "1";
   } else if (score <= 70) {
-    return "C";
+    return "2";
   } else if (score <= 80) {
-    return "B";
+    return "3";
   } else if (score <= 90) {
-    return "A";
+    return "4";
   } else if (score < 100) {
-    return "A+";
+    return "4+";
   } else {
-    return "A++";
+    return "4++";
   }
 }
 
