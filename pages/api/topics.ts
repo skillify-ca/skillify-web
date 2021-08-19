@@ -1,4 +1,4 @@
-export const lockedTopics = ["Mixed Operations", "Fractions", "Time", "Money"];
+export const lockedTopics = ["Fractions", "Time", "Money"];
 
 export const unlockedTopics = [
   { title: "Numbers", image: "/images/skills/numbers.png" },
