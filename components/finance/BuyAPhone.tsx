@@ -17,15 +17,8 @@ export const BuyAPhone = ({}: BuyAPhoneProps) => {
       <VintageWireless />
       <SpeedyWireless />
       <div
-        className={"flex justify-center items-center border-b-8 border-black"}
-      >
-        <img
-          className={""}
-          src="/images/smartphone_small.png"
-          width="25%"
-          height="auto"
-        />
-      </div>
+        className={"flex justify-center items-center mb-10 border-black"}
+      ></div>
     </div>
   );
 };

@@ -17,11 +17,11 @@ export const ServiceHeader = ({
           <div className="grid row-start-2  text-base">{subHeader}</div>
         </div>
       </div>
-      <div className={"flex justify-center items-center"}>
+      <div className={"flex justify-center items-center mb-10"}>
         <img
           src={imgHeader}
           className="grid row-end-1 place-items-end"
-          width="75%"
+          width="60%"
           height="auto"
         />
       </div>

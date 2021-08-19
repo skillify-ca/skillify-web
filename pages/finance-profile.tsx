@@ -159,6 +159,23 @@ const FinanceProfile = () => {
         </div>
         <section
           className={
+            "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-left bg-contain bg-no-repeat bg-phone"
+          }
+        >
+          <div
+            className={
+              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+            }
+          >
+            {" "}
+            Your Cell
+          </div>
+        </section>
+        <div className={"flex items-center justify-center pl-28"}>
+          <BuyAPhone />
+        </div>
+        <section
+          className={
             "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-left bg-cover bg-no-repeat bg-essentials"
           }
         >
@@ -168,16 +185,13 @@ const FinanceProfile = () => {
             }
           >
             {" "}
-            Your Essentials
+            Your Food
           </div>
         </section>
-        <div className={"flex items-center justify-center pl-28"}>
-          <BuyAPhone />
-        </div>
-        <div className={"flex items-center justify-center pl-28"}>
+        <div className={"flex items-center justify-center pl-28 mt-10"}>
           <BuyGroceries />
         </div>
-        <div className={"flex items-center justify-center pt-6"}>
+        <div className={"flex items-center justify-center pt-6 mt-10"}>
           <SurpriseComponent />
         </div>
       </div>
