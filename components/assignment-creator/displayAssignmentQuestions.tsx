@@ -31,7 +31,7 @@ const DisplayAssignmentQuestions = ({
     }
     setQuestions(newQuestions);
   }, []);
-
+  console.log(questions);
   return (
     <div className="">
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 justify-center gap-8">
@@ -39,7 +39,7 @@ const DisplayAssignmentQuestions = ({
           <div>
             <p className="text-xl"> {question.skill}</p>
             <p> {question.questionType}</p>
-            <AssignmentQuestionSet questionData={questions} index={index} />
+            <QuestionSet questionData={questions} index={index} />
           </div>
         ))}
       </div>

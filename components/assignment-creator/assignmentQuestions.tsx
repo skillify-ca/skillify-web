@@ -42,7 +42,6 @@ const AssignmentQuestions = ({
     setSelectedSkills(initialArray);
   }, []);
 
-  console.log(selectedSkills);
   // just updates questiontype for the skill you changed in the array, not the other ones
   const onQuestionTypeChange = (
     newQuestionType: QuestionType,
@@ -60,15 +59,6 @@ const AssignmentQuestions = ({
     console.log("updatedArray", updatedArray);
 
     setSelectedSkills(updatedArray);
-  };
-
-  const getQuestionTypeForSkill = (skill, index) => {
-    if (selectedSkills.length == 0) {
-      return "";
-    } else {
-      console.log("hello");
-      return selectedSkills.filter((it) => it.skill === skill)[0].questionType;
-    }
   };
 
   return (

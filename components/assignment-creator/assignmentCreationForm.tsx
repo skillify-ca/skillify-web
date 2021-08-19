@@ -26,6 +26,7 @@ const AssignmentCreationForm = ({
   selectedQuestions,
   setSelectedQuestions,
 }: assignmentCreationFormProps) => {
+  console.log(selectedQuestions);
   return (
     <div className="w-screen pt-4 pl-8 pr-8">
       <div className="bg-gray-500  rounded-xl shadow-lg flex-col text-center p-8 mb-4">

@@ -31,13 +31,13 @@ import { WordtoHorizontalDigits } from "../questionTypes/WordtoHorizontalDigits"
 import Card from "../ui/Card";
 
 type QuestionSetProps = {
-  title: string;
+  title?: string;
   HUDEnabled?: boolean;
   questionData: Question[];
   index: number;
-  inputElement: any;
-  submitGuess: (guessData: GuessData) => void;
-  score: number;
+  inputElement?: any;
+  submitGuess?: (guessData: GuessData) => void;
+  score?: number;
   diagnostic?: { isDiagnostic: boolean; opacityVal: number };
 };
 const QuestionSet = ({
@@ -252,7 +252,6 @@ const QuestionSet = ({
         );
       }
     }
-
     return (
       <HorizontalEquation
         question={questionData[index]}

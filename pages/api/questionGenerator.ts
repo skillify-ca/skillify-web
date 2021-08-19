@@ -52,7 +52,7 @@ export const generateQuestionForSkill = (
     case Skill.SUBTRACTION_HUNDREDTHS:
       return getRandomSubtractionQuestion(0.01, 0.99, skill, questionType);
     case Skill.EQUAL_GROUP_10_ITEMS:
-      return getRandomMultiplicationQuestion(1, 11, skill);
+      return getRandomMultiplicationQuestion(1, 11, skill, questionType);
     case Skill.MULTIPLICATION_5:
       return getRandomMultiplicationQuestion(1, 6, skill, questionType);
     case Skill.MULTIPLICATION_10:
@@ -357,10 +357,12 @@ export function getMultiplicationEqualGroups(
     skill: skill,
   };
 }
+
 function getRandomMultiplicationQuestion(
   min: number,
   max: number,
-  skill: Skill
+  skill: Skill,
+  questionType?: QuestionType
 ) {
   const multiply = (a: number, b: number) => a * b;
   const randomPick = getRndInteger(0, 2);
@@ -397,7 +399,7 @@ function getRandomDivisionQuestion(
     } else {
       b = getRndInteger(min, max);
     }
-    const type = QuestionType.LONG_DIVISION_PROBLEM; //type
+    const type = QuestionType.LONG_DIVISION_PROBLEM;
     const text = `${b} / ${a} =`;
     let quotient = Math.floor(b / a);
     let remainder = b % a;
@@ -469,7 +471,6 @@ function getRandomBinaryQuestion(
   ) {
     types = [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
   }
-
   let typeIndex = getRndInteger(0, types.length);
   let a = getRndInteger(min, max);
   let b = getRndInteger(min, max);

@@ -13,16 +13,15 @@ import AssignmentQuestions from "../components/assignment-creator/assignmentQues
 import DisplayAssignmentQuestions from "../components/assignment-creator/displayAssignmentQuestions";
 
 enum STAGE {
-  CHOOSE_TOPICS,
-  CUSTOMIZE,
+  CHOOSE_SKILLS,
+  CHOOSE_QUESTION_TYPES,
   REVIEW,
   CONFIRM,
 }
 
 const Diagnostic = () => {
-  const [stage, setStage] = useState(STAGE.CHOOSE_TOPICS);
+  const [stage, setStage] = useState(STAGE.CHOOSE_SKILLS);
   const [selectedQuestions, setSelectedQuestions] = useState<Skill[]>([]);
-  const [numberOfQuestions, setNumberOfQuestions] = useState([]);
   const [selectedSkills, setSelectedSkills] = useState<QuestionTypeForSkill[]>(
     []
   );
@@ -30,7 +29,7 @@ const Diagnostic = () => {
   const [assignmentId, setAssignmentId] = useState<number>();
 
   const createAssignment = () => {
-    setStage(STAGE.CUSTOMIZE);
+    setStage(STAGE.CHOOSE_QUESTION_TYPES);
   };
 
   const customizeAssignment = () => {
@@ -55,7 +54,7 @@ const Diagnostic = () => {
 
   let component;
   switch (stage) {
-    case STAGE.CHOOSE_TOPICS:
+    case STAGE.CHOOSE_SKILLS:
       component = (
         <AssignmentCreationForm
           onClick={createAssignment}
@@ -64,7 +63,7 @@ const Diagnostic = () => {
         />
       );
       break;
-    case STAGE.CUSTOMIZE:
+    case STAGE.CHOOSE_QUESTION_TYPES:
       component = (
         <AssignmentQuestions
           selectedQuestions={selectedQuestions}
