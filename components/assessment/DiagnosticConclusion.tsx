@@ -9,7 +9,6 @@ import {
 import { Topic } from "../../pages/api/skill";
 import { getWorkSheets } from "../../pages/api/worksheets";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
-import { Button } from "../ui/Button";
 
 type DiagnosticConclusionProps = {
   results: DiagnosticState;
@@ -202,28 +201,21 @@ export const DiagnosticConclusion = ({
             )
         )}
       </div>
-      <div className="bg-white shadow-lg rounded-lg w-full p-4">
-        <div className="flex flex-col gap-4">
-          <p className="font-bold">Practice Tracker</p>
-          <p className="">
-            Our practice tracker will be launching soon! Your child will get
-            access to thousands of engaging math questions and you'll receive
-            weekly reports on their practice. Click below to be notified when we
-            go live.
-          </p>
-          <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
-            {practiceButtonEnabled ? (
-              <Button
-                backgroundColor="blue"
-                textColor="white"
-                label="Notify Me"
-                onClick={notifyPracticeSignup}
-              />
-            ) : (
-              <p className="text-sm text-green-600">
-                Thank you for signing up!
-              </p>
-            )}
+      <div className="bg-white shadow-lg rounded-lg">
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-around">
+          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+            <span className="block">Ready to improve your math?</span>
+            <span className="block text-blue-600">Get started today.</span>
+          </h2>
+          <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+            <div className="inline-flex rounded-md shadow">
+              <a
+                href="#"
+                className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+              >
+                Get started
+              </a>
+            </div>
           </div>
         </div>
       </div>
