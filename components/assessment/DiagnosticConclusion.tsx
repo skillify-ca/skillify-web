@@ -9,7 +9,6 @@ import {
 import { Topic } from "../../pages/api/skill";
 import { getWorkSheets } from "../../pages/api/worksheets";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
-import { Button } from "../ui/Button";
 
 type DiagnosticConclusionProps = {
   results: DiagnosticState;
