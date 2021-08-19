@@ -47,7 +47,7 @@ export const SectionOneInput = ({
     <div>
       {profileData && (
         <div className="shadow-md bg-transparent rounded-xl bg-white">
-          <div className="font-bold p-4 bg-green-300 text-white rounded-xl mb-5">
+          <div className="sticky top-0 font-bold p-4 bg-green-300 text-white rounded-xl mb-5">
             Section 1: My Personal Information
           </div>
           <div

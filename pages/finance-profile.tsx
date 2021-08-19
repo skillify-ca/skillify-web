@@ -201,6 +201,17 @@ const FinanceProfile = () => {
           "h-full overflow-scroll col-start-4 col-end-6 mt-8 bg-gray-100 px-8"
         }
       >
+        <div className={"mb-20 border-4 border-black p-6"}>
+          <h1 className={"text-5xl font-bold mb-5"}>
+            Welcome to the Finance Budget Sheet
+          </h1>
+          <p>
+            Use the budget cards on the left column to manage your monthly
+            budget! Scroll on the left side of the page to find each section.
+            There are 7 sections to completing your monthly budget. Go ahead and
+            get started!
+          </p>
+        </div>
         <SectionOneInput
           isMarried={isMarried}
           setMarriage={setMarriage}
@@ -232,7 +243,7 @@ const FinanceProfile = () => {
             <img src={"/images/warning-2-16.png"} />
           </div>
         )}
-        <div className={"mb-20"}>
+        <div className={"mb-40"}>
           <IncomeTable
             monthlyIncome={yourMonthlyIncome}
             setMonthlyIncome={setYourMonthlyIncome}
@@ -246,7 +257,7 @@ const FinanceProfile = () => {
             setValueTest={setValueTest}
           ></IncomeTable>
         </div>
-        <div className={"mb-20"}>
+        <div className={"mb-40"}>
           <HouseExpensesTable
             housePayment={housePayment}
             setHousePayment={setHousePayment}
@@ -262,7 +273,7 @@ const FinanceProfile = () => {
             setHomeType={setHomeType}
           />
         </div>
-        <div className={"mb-20"}>
+        <div className={"mb-40"}>
           <CarExpenseTable
             carPayment1={carPayment1}
             setCarPayment1={setCarPayment1}
@@ -278,7 +289,7 @@ const FinanceProfile = () => {
             setSumValidationCar={setSumValidationCar}
           />
         </div>
-        <div className={"mb-20"}>
+        <div className={"mb-40"}>
           <AdditionalTable
             tvInternet={tvInternet}
             setTvInternet={setTvInternet}
@@ -292,7 +303,7 @@ const FinanceProfile = () => {
             setSumAddValidation={setSumAddValidation}
           />
         </div>
-        <div className={"mb-20"}>
+        <div className={"mb-40"}>
           <TotalExpensesTable
             totalHousingCost6={totalHousingCost6}
             setTotalHousingCost6={setTotalHousingCost6}
@@ -310,7 +321,7 @@ const FinanceProfile = () => {
             setTotalExpenses={setTotalExpenses}
           />
         </div>
-        <div className={"mb-20"}>
+        <div className={"mb-40"}>
           <MoneyRemainingTable
             totalMonthlySection7={totalMonthlySection7}
             setTotalMonthlySection7={setTotalMonthlysection7}

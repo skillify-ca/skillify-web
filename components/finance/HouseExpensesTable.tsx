@@ -46,7 +46,7 @@ const HouseExpensesTable = ({
   return (
     <div>
       <div>
-        <div className="font-bold p-4 bg-green-300 text-white rounded-xl mb-5">
+        <div className="sticky top-0 font-bold p-4 bg-green-300 text-white rounded-xl mb-5">
           Section 3: Housing Expenses
         </div>
         <p className="pb-1">
