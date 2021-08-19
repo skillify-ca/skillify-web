@@ -2,6 +2,8 @@ import { useQuery } from "@apollo/client";
 import { session, useSession } from "next-auth/client";
 import Link from "next/link";
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { userId } from "../../graphql/utils/constants";
 import {
@@ -13,22 +15,21 @@ import {
 import { getVideosForSkill } from "../api/videoHelper";
 
 const SkillOverviewPage = ({ slug }) => {
-  const [session, loading] = useSession();
-  const userSkillsQuery = useQuery(FETCH_USER_EMOJIS, {
+  const [session] = useSession();
+  const { loading, data } = useQuery(FETCH_USER_EMOJIS, {
     variables: {
       userId: userId(session),
       skillId: [getSkillId(slug)],
     },
   });
-  let userSkills = [];
-  if (userSkillsQuery.data) {
-    userSkills = userSkillsQuery.data.user_skills;
-  }
-  const cardStyle = (videoId) => {
-    return {
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.75)), url(http://img.youtube.com/vi/${videoId}/hqdefault.jpg)`,
-    };
-  };
+  const [userSkills, setUserSkills] = useState([]);
+
+  useEffect(() => {
+    if (!loading && data) {
+      setUserSkills(data.user_skills);
+    }
+  }, [data]);
+
   const practiceComponent = SkillDescription(slug) && (
     <div>
       <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl pl-4 gap-8 m-8">
@@ -125,6 +126,3 @@ export async function getStaticPaths() {
 }
 
 export default SkillOverviewPage;
-function grade(slug: any, grade: any) {
-  throw new Error("Function not implemented.");
-}

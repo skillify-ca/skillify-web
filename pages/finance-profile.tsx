@@ -2,14 +2,15 @@ import _, { min } from "lodash";
 import React, { useEffect, useState } from "react";
 import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
 import IncomeTable from "../components/finance/IncomeTable";
-
+import { Modal, ModalTransition, useModal } from "react-simple-hook-modal";
+import "react-simple-hook-modal/dist/styles.css";
 import { SectionOneInput } from "../components/finance/SectionOneInput";
 import {
   FinanceProfileType,
   financialProfileData,
   MaritalStatus,
 } from "./api/finance/profile";
-import { getRndInteger } from "./api/random";
+import { getRandomItemFromArray, getRndInteger } from "./api/random";
 import HouseExpensesTable from "../components/finance/HouseExpensesTable";
 import CarExpenseTable from "../components/finance/CarExpenseTable";
 import AdditionalTable from "../components/finance/AdditionalExpense";
@@ -19,8 +20,10 @@ import BuyACar from "../components/finance/BuyACar";
 import BuyAHome from "../components/finance/BuyAHome";
 import { BuyAPhone } from "../components/finance/BuyAPhone";
 import { BuyGroceries } from "../components/finance/BuyGroceries";
-import { SurpriseCard } from "./api/finance/surprise";
+import { SurpriseCard, SurpriseCardType } from "./api/finance/surprise";
 import { SurpriseComponent } from "../components/finance/SurpriseComponent";
+import { Button } from "../components/ui/Button";
+import { userId } from "../graphql/utils/constants";
 
 const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
@@ -62,7 +65,7 @@ const FinanceProfile = () => {
   const [totalHousingCost6, setTotalHousingCost6] = useState("");
   const [totalCarCosts6, setTotalCarCosts6] = useState("");
   const [totalAdditional6, setTotalAdditional6] = useState("");
-  const [totalExpenses, setTotalExpenses] = useState(""); //Set for Section 6
+  const [totalExpenses, setTotalExpenses] = useState("");
 
   const [totalMonthlySection7, setTotalMonthlysection7] = useState("");
   const [totalExpensesSection7, setTotalExpensesSection7] = useState("");
@@ -76,6 +79,22 @@ const FinanceProfile = () => {
   const [Doors, setDoors] = useState("");
   const [Cost, setCost] = useState("");
   const [Year, setYear] = useState("");
+
+  const [isSubmitModalShowing, setIsSubmitModalShowing] = useState(false);
+  const [surpriseData, setSurpriseData] = useState<SurpriseCardType>()
+
+  const onSubmit = () => {
+    if (moneyRemValidation === "Correct") {
+      setIsSubmitModalShowing((e) => !e);
+    }
+  }
+
+  // create new state variable for submit button for isButtonDisabled
+
+  useEffect(() => {
+    const randomSurprise: SurpriseCardType = getRandomItemFromArray(SurpriseCard);
+    setSurpriseData(randomSurprise);
+  }, []);
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -101,6 +120,10 @@ const FinanceProfile = () => {
         </header>
         {profileData && (
           <div className={"flex items-center justify-center p-20"}>
+    <div>
+      <div className="h-screen grid grid-cols-2 gap-6 bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
+        <div className={"h-full overflow-scroll col-start-1 col-end-2"}>
+          {profileData && (
             <FinanceProfileChart
               individualOccupation={profileData.individualOccupation}
               individualSalary={profileData.individualSalary}
@@ -144,6 +167,8 @@ const FinanceProfile = () => {
           </div>
         </section>
         <div className={"flex items-center justify-center p-6"}>
+          )}
+          <BuyAHome />
           <BuyACar
             Make={Make}
             setMake={setMake}
@@ -340,10 +365,158 @@ const FinanceProfile = () => {
             totalExpenses={totalExpenses}
             setTotalExpenses={setTotalExpenses}
           />
+          <BuyAPhone />
+          <BuyGroceries />
+        </div>
+
+        <div className={"h-full overflow-scroll col-start-2 col-end-3 mt-8"}>
+          <SectionOneInput
+            isMarried={isMarried}
+            setMarriage={setMarriage}
+            hasChildren={hasChildren}
+            setChildren={setChildren}
+            individualOccupation={individualOccupation}
+            setIndividualOccupation={setIndividualOccupation}
+            individualSalary={individualSalary}
+            setIndividualSalary={setIndividualSalary}
+            spouseOccupation={spouseOccupation}
+            setSpouseOccupation={setSpouseOccupation}
+            spouseSalary={spouseSalary}
+            setSpouseSalary={setSpouseSalary}
+            profileData={profileData}
+            sectionOneValidation={sectionOneValidation}
+            setSectionOneValidation={setSectionOneValidation}
+          />
+
+          {sectionOneValidation ? (
+            <div className="flex flex-nowrap">
+              {" "}
+              Great Job!
+              <img src={"/images/checked-checkbox-16.png"} />
+            </div>
+          ) : (
+            <div className="flex flex-nowrap">
+              {" "}
+              Lets take a look back at your work!
+              <img src={"/images/warning-2-16.png"} />
+            </div>
+          )}
+          <IncomeTable
+            monthlyIncome={yourMonthlyIncome}
+            setMonthlyIncome={setYourMonthlyIncome}
+            spouseMonthlyIncome={spouseMonthlyIncome}
+            setSpouseMonthlyIncome={setSpouseMounthlyIncome}
+            totalMonthlyIncome={totalMonthlyIncome}
+            setTotalMonthlyIncome={setTotalMonthlyIncome}
+            backgroundColour={backgroundColour}
+            setBackgroundColour={setBackgroundColour}
+            valueTest={valueTest}
+            setValueTest={setValueTest}
+          ></IncomeTable>
+
+          <HouseExpensesTable
+            housePayment={housePayment}
+            setHousePayment={setHousePayment}
+            electricBill={electricBill}
+            setElectricBill={setElectricBill}
+            gasBill={gasBill}
+            setGasBill={setGasBill}
+            waterBill={waterBill}
+            setWaterBill={setWaterBill}
+            totalHousingCost={totalHousingCost}
+            setTotalHousingCost={setTotalHousingCost}
+            homeType={homeType}
+            setHomeType={setHomeType}
+          />
+
+          <CarExpenseTable
+            carPayment1={carPayment1}
+            setCarPayment1={setCarPayment1}
+            carPayment2={carPayment2}
+            setCarPayment2={setCarPayment2}
+            carInsurance={carInsurance}
+            setCarInsurance={setCarInsurance}
+            gasoline={gasoline}
+            setGasoline={setGasoline}
+            totalCarCosts={totalCarCosts}
+            setTotalCarCosts={setTotalCarCosts}
+            sumValidationCar={sumValidationCar}
+            setSumValidationCar={setSumValidationCar}
+          />
+
+          <AdditionalTable
+            tvInternet={tvInternet}
+            setTvInternet={setTvInternet}
+            phone={phone}
+            setPhone={setPhone}
+            grocery={grocery}
+            setGrocery={setGrocery}
+            totalAdditional={totalAdditional}
+            setTotalAdditional={setTotalAdditional}
+            sumAddValidation={sumAddValidation}
+            setSumAddValidation={setSumAddValidation}
+          />
+          <TotalExpensesTable
+            totalHousingCost6={totalHousingCost6}
+            setTotalHousingCost6={setTotalHousingCost6}
+            totalCarCosts6={totalCarCosts6}
+            setTotalCarCosts6={setTotalCarCosts6}
+            totalAdditional6={totalAdditional6}
+            setTotalAdditional6={setTotalAdditional6}
+            totalHousingCost={totalHousingCost}
+            setTotalHousingCost={setTotalHousingCost}
+            totalCarCosts={totalCarCosts}
+            setTotalCarCosts={setTotalCarCosts}
+            totalAdditional={totalAdditional}
+            setTotalAdditional={setTotalAdditional}
+            totalExpenses={totalExpenses}
+            setTotalExpenses={setTotalExpenses}
+          />
+          <MoneyRemainingTable
+            totalMonthlySection7={totalMonthlySection7}
+            setTotalMonthlySection7={setTotalMonthlysection7}
+            totalExpensesSection7={totalExpensesSection7}
+            setTotalExpensesSection7={setTotalExpensesSection7}
+            totalMoneyRemaining={totalMoneyRemaining}
+            setTotalMoneyRemaining={setTotalMoneyRemaining}
+            monthlyIncomeValidation={monthlyIncomeValidation}
+            setMonthlyIncomeValidation={setMonthlyIncomeValidation}
+            totalExpenseValidation={totalExpenseValidation}
+            setTotalExpenseValidation={setTotalExpenseValidation}
+            moneyRemValidation={moneyRemValidation}
+            setMoneyRemValidation={setMoneyRemValidation}
+            totalMonthlyIncome={totalMonthlyIncome}
+            setTotalMonthlyIncome={setTotalMonthlyIncome}
+            totalExpenses={totalExpenses}
+            setTotalExpenses={setTotalExpenses}
+          />
+
+          <div className="pt-4">
+            <Button
+              label="Submit"
+              backgroundColor="green"
+              textColor="white"
+              onClick={onSubmit}
+            >
+            </Button>
+          </div>
         </div>
       </div>
+      <Modal
+        id="surprise-modal"
+        isOpen={isSubmitModalShowing}
+        transition={ModalTransition.SCALE}
+      >
+        <SurpriseComponent
+          close={onSubmit}
+          surpriseData={surpriseData} />
+      </Modal>
     </div>
   );
 };
 
 export default FinanceProfile;
+
+// when surprise is generated, add number to total money remaining
+// if negative (after surprise), disable submit button
+// if positive (after surprise), user can select submit again go to final page
