@@ -154,11 +154,7 @@ const HomePage = () => {
           />
         </div>
       </div>
-      <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
-        <div className="flex flex-col items-center justify-center">
-          <LandingPagev2 />
-        </div>
-      </div>
+      <LandingPagev2 />
     </div>
   );
 };
