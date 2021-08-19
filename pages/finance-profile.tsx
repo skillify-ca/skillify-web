@@ -202,7 +202,7 @@ const FinanceProfile = () => {
         }
       >
         <div className={"mb-20 border-4 border-black p-6"}>
-          <h1 className={"text-5xl font-bold mb-5"}>
+          <h1 className={"text-xl font-bold mb-5"}>
             Welcome to the Finance Budget Sheet
           </h1>
           <p>
@@ -212,37 +212,40 @@ const FinanceProfile = () => {
             get started!
           </p>
         </div>
-        <SectionOneInput
-          isMarried={isMarried}
-          setMarriage={setMarriage}
-          hasChildren={hasChildren}
-          setChildren={setChildren}
-          individualOccupation={individualOccupation}
-          setIndividualOccupation={setIndividualOccupation}
-          individualSalary={individualSalary}
-          setIndividualSalary={setIndividualSalary}
-          spouseOccupation={spouseOccupation}
-          setSpouseOccupation={setSpouseOccupation}
-          spouseSalary={spouseSalary}
-          setSpouseSalary={setSpouseSalary}
-          profileData={profileData}
-          sectionOneValidation={sectionOneValidation}
-          setSectionOneValidation={setSectionOneValidation}
-        />
+        <div>
+          <html>scroll-bahavior:smooth</html>
+          <SectionOneInput
+            isMarried={isMarried}
+            setMarriage={setMarriage}
+            hasChildren={hasChildren}
+            setChildren={setChildren}
+            individualOccupation={individualOccupation}
+            setIndividualOccupation={setIndividualOccupation}
+            individualSalary={individualSalary}
+            setIndividualSalary={setIndividualSalary}
+            spouseOccupation={spouseOccupation}
+            setSpouseOccupation={setSpouseOccupation}
+            spouseSalary={spouseSalary}
+            setSpouseSalary={setSpouseSalary}
+            profileData={profileData}
+            sectionOneValidation={sectionOneValidation}
+            setSectionOneValidation={setSectionOneValidation}
+          />
 
-        {sectionOneValidation ? (
-          <div className="flex flex-nowrap">
-            {" "}
-            Great Job!  
-            <img src={"/images/checked-checkbox-16.png"} />
-          </div>
-        ) : (
-          <div className="flex flex-nowrap mb-20">
-            {" "}
-            Lets take a look back at your work!  
-            <img src={"/images/warning-2-16.png"} />
-          </div>
-        )}
+          {sectionOneValidation ? (
+            <div className="flex flex-nowrap">
+              {" "}
+              Great Job!  
+              <img src={"/images/checked-checkbox-16.png"} />
+            </div>
+          ) : (
+            <div className="flex flex-nowrap mb-20">
+              {" "}
+              Lets take a look back at your work!  
+              <img src={"/images/warning-2-16.png"} />
+            </div>
+          )}
+        </div>
         <div className={"mb-40"}>
           <IncomeTable
             monthlyIncome={yourMonthlyIncome}
