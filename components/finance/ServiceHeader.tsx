@@ -10,19 +10,19 @@ export const ServiceHeader = ({
   subHeader,
 }: ServiceHeaderProps) => {
   return (
-    <div className="grid grid-cols-2  border-4 border-black w-5/6 rounded-xl 	">
-      <div className="text-center text-5xl py-4 row-span-1 pl-2">
-        {mainHeader}
+    <div className="grid grid-cols-2 ">
+      <div className="text-left text-4xl row-span-1 mb-10">
+        <div className={"mb-5"}>{mainHeader}</div>
         <div>
-          <div className="grid row-start-2 text-center  text-xl pb-4 pl-4 py-6">
-            {subHeader}
-          </div>
+          <div className="grid row-start-2  text-base">{subHeader}</div>
         </div>
       </div>
-      <div>
+      <div className={"flex justify-center items-center"}>
         <img
           src={imgHeader}
-          className="grid row-end-1 place-items-end pl-40 py-6 w-5/6"
+          className="grid row-end-1 place-items-end"
+          width="75%"
+          height="auto"
         />
       </div>
     </div>
