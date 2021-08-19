@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import React, { useState } from "react";
 import { Canvas } from "react-three-fiber";
+import Navbar from "../../components/Navbar";
 import { Button } from "../../components/ui/Button";
 import { FETCH_TOPIC_OVERVIEW } from "../../graphql/fetchTopicOverview";
 import { userId } from "../../graphql/utils/constants";
@@ -242,6 +243,7 @@ const TopicOverviewPage = ({ slug }) => {
 
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-blue-100 ">
+      <Navbar />
       <div className="p-4 flex flex-col gap-8">
         <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8">
           <p className="text-5xl text-white mb-4">

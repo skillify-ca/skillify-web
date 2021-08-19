@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { GuessData } from "../../pages/api/guessData";
-import { Skill } from "../../pages/api/skill";
-import { Button } from "../ui/Button";
+import { GuessData } from "../../../pages/api/guessData";
+import { Skill } from "../../../pages/api/skill";
+import { Button } from "../../ui/Button";
 
 export interface NumbertoVerticalDigitsProp {
   num: string;
@@ -33,10 +33,16 @@ export const NumbertoVerticalDigits: React.FC<NumbertoVerticalDigitsProp> = ({
   }
   function onSubmit() {
     let guessStr = guess3 + "," + guess4 + "," + guess5 + ",";
+
     submitGuess({
       guess: guessStr,
       isCorrect: guessStr == answertoStringCalc(answer),
     });
+
+    setGuess1("");
+    setGuess1("");
+    setGuess3("");
+    setGuess4("");
   }
 
   return (
