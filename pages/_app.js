@@ -35,9 +35,9 @@ function MyApp({ Component, pageProps }) {
           <ModalProvider>
             <ReduxProvider store={store}>
               <div>
-                <Navbar />
                 {Component.auth ? (
                   <Auth>
+                    <Navbar />
                     <Component {...pageProps} />
                   </Auth>
                 ) : (

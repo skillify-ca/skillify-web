@@ -118,7 +118,6 @@ const userSync = async (token) => {
 `;
   // TODO if user was already in the user table, then update the last seen column
   // If the user was newly added to the user table, then initialize their skills, and badges
-  // Then we can remove the initialization checks in the profile and knowledge tree
   const graphqlReq = {
     query: upsertUserQuery,
     variables: { userId: userId, name: nickname },
