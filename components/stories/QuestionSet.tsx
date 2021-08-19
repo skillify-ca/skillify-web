@@ -17,10 +17,11 @@ import { MultipleChoiceWord } from "../questionTypes/MultipleChoiceWord";
 import { MultiplicationArray } from "../questionTypes/MultiplicationArray";
 import { MultiplicationEqualGroups } from "../questionTypes/MultiplicationEqualGroups";
 import { NumberComparison } from "../questionTypes/numberComparison";
-import { NumbertoVerticalDigits } from "../questionTypes/NumbertoVerticalDigits";
+import { NumbertoVerticalDigits } from "../questionTypes/numbers/NumbertoVerticalDigits";
+import { VerticalDigitstoNum } from "../questionTypes/numbers/VerticalDigitstoNum";
+import { WordtoHorizontalDigits } from "../questionTypes/numbers/WordtoHorizontalDigits";
 import { PatternBlank } from "../questionTypes/PatternBlank";
 import { TrueorFalse } from "../questionTypes/TrueorFalse";
-import { VerticalDigitstoNum } from "../questionTypes/VerticalDigitstoNum";
 import { VerticalEquation } from "../questionTypes/VerticalEquation";
 
 import { VisualAddition } from "../questionTypes/VisualAddition";
@@ -28,7 +29,6 @@ import { WordProblemAdd } from "../questionTypes/wordProblems/WordProblemAdd";
 import { WordProblemDiv } from "../questionTypes/wordProblems/WordProblemDiv";
 import { WordProblemMulti } from "../questionTypes/wordProblems/WordProblemMulti";
 import { WordProblemSub } from "../questionTypes/wordProblems/WordProblemSub";
-import { WordtoHorizontalDigits } from "../questionTypes/WordtoHorizontalDigits";
 import Card from "../ui/Card";
 
 type QuestionSetProps = {
