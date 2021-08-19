@@ -18,9 +18,9 @@ import { MultiplicationArray } from "../questionTypes/MultiplicationArray";
 import { MultiplicationEqualGroups } from "../questionTypes/MultiplicationEqualGroups";
 import { NumberComparison } from "../questionTypes/numberComparison";
 import { NumbertoVerticalDigits } from "../questionTypes/numbers/NumbertoVerticalDigits";
+import { PatternBlank } from "../questionTypes/numbers/PatternBlank";
 import { VerticalDigitstoNum } from "../questionTypes/numbers/VerticalDigitstoNum";
 import { WordtoHorizontalDigits } from "../questionTypes/numbers/WordtoHorizontalDigits";
-import { PatternBlank } from "../questionTypes/PatternBlank";
 import { TrueorFalse } from "../questionTypes/TrueorFalse";
 import { VerticalEquation } from "../questionTypes/VerticalEquation";
 

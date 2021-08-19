@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { GuessData } from "../../pages/api/guessData";
-import { Button } from "../ui/Button";
+import { GuessData } from "../../../pages/api/guessData";
+import { Button } from "../../ui/Button";
 
 export interface PatternBlankProp {
   displayQuestion: string;
@@ -23,6 +23,9 @@ export const PatternBlank: React.FC<PatternBlankProp> = ({
   function onSubmit() {
     const result = startNumber + "," + guess1 + "," + guess2 + "," + guess3;
     submitGuess({ guess: result, isCorrect: result == answer });
+    setGuess1("");
+    setGuess2("");
+    setGuess3("");
   }
 
   return (
