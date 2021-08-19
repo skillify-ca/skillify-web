@@ -102,6 +102,8 @@ export function getRandomNumbersQuestion(
     QuestionType.WORD_TO_HORIZONTAL_DIGITS,
     QuestionType.NUM_TO_VERITCAL_DIGITS,
     QuestionType.VERTICAL_DIGITS_TO_NUM,
+    QuestionType.PATTERN_COUNT_BLANKS_PROBLEM,
+
     // QuestionType.COMPARISON_WORD_PROBLEM,
   ];
   let typeIndex = getRndInteger(0, types.length);
@@ -113,7 +115,12 @@ export function getRandomNumbersQuestion(
   let startNum = getRndInteger(a, b);
 
   if (skill == Skill.NUMBERS_50) {
-    type = QuestionType.PATTERN_COUNT_BLANKS_PROBLEM;
+    const typeArr = [
+      QuestionType.PATTERN_COUNT_BLANKS_PROBLEM,
+      QuestionType.COMPARISON_NUMBER_PROBLEM,
+    ];
+    let typeIndex = getRndInteger(0, typeArr.length);
+    type = typeArr[typeIndex];
   }
 
   if (type == QuestionType.PATTERN_COUNT_BLANKS_PROBLEM) {
@@ -126,6 +133,8 @@ export function getRandomNumbersQuestion(
     if (displayPattern == "BACKWARDS" && startNum - 3 * patternNum < 0) {
       displayPattern = "FORWARDS";
     }
+
+    //
 
     text = `Count ${displayPattern} by ${patternNum} from ${startNum}`;
     if (displayPattern == "FORWARDS") {
@@ -175,6 +184,9 @@ export function getRandomNumbersQuestion(
       ];
       text = answer.join("");
     }
+  } else if (type == QuestionType.COMPARISON_NUMBER_PROBLEM) {
+    answer = Math.max(a, b);
+    text = `${a},${b}`;
   }
 
   return {
