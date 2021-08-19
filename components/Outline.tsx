@@ -141,14 +141,8 @@ export default function Outline({ session }: OutlineProps) {
           <p className="">Master your multiplication facts with our puzzles</p>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 bg-white shadow-lg rounded-xl p-8 m-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 bg-white shadow-lg rounded-xl p-8">
         <div className="flex flex-col gap-8 justify-center">
-          <p className="text-2xl font-bold text-blue-900">
-            MULTIPLICATION PUZZLES{" "}
-          </p>
-          <p className="text-xl">
-            Solve these puzzles to learn multiplication facts
-          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {Object.values(PUZZLE_DATA).map((p) => {
               const puzzle = p as Puzzle;
