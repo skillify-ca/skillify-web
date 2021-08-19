@@ -84,8 +84,8 @@ const FinanceProfile = () => {
   }, []);
 
   return (
-    <div className="h-screen grid grid-cols-2 gap-6 bg-scroll bg-white">
-      <div className={"h-full overflow-scroll col-start-1 col-end-2"}>
+    <div className="h-screen grid grid-cols-5 bg-scroll bg-white">
+      <div className={"h-full overflow-scroll col-start-1 col-end-4"}>
         <header
           className={
             "flex items-center justify-center h-screen mb-12 bg-fixed bg-center bg-cover bg-finance-life"
@@ -100,7 +100,7 @@ const FinanceProfile = () => {
           </div>
         </header>
         {profileData && (
-          <div className={"flex items-center justify-center p-6"}>
+          <div className={"flex items-center justify-center p-20"}>
             <FinanceProfileChart
               individualOccupation={profileData.individualOccupation}
               individualSalary={profileData.individualSalary}
@@ -196,7 +196,11 @@ const FinanceProfile = () => {
         </div>
       </div>
 
-      <div className={"h-full overflow-scroll col-start-2 col-end-3 mt-8"}>
+      <div
+        className={
+          "h-full overflow-scroll col-start-4 col-end-6 mt-8 bg-gray-100 px-8"
+        }
+      >
         <SectionOneInput
           isMarried={isMarried}
           setMarriage={setMarriage}
@@ -222,102 +226,110 @@ const FinanceProfile = () => {
             <img src={"/images/checked-checkbox-16.png"} />
           </div>
         ) : (
-          <div className="flex flex-nowrap">
+          <div className="flex flex-nowrap mb-20">
             {" "}
             Lets take a look back at your work!  
             <img src={"/images/warning-2-16.png"} />
           </div>
         )}
-
-        <IncomeTable
-          monthlyIncome={yourMonthlyIncome}
-          setMonthlyIncome={setYourMonthlyIncome}
-          spouseMonthlyIncome={spouseMonthlyIncome}
-          setSpouseMonthlyIncome={setSpouseMounthlyIncome}
-          totalMonthlyIncome={totalMonthlyIncome}
-          setTotalMonthlyIncome={setTotalMonthlyIncome}
-          backgroundColour={backgroundColour}
-          setBackgroundColour={setBackgroundColour}
-          valueTest={valueTest}
-          setValueTest={setValueTest}
-        ></IncomeTable>
-
-        <HouseExpensesTable
-          housePayment={housePayment}
-          setHousePayment={setHousePayment}
-          electricBill={electricBill}
-          setElectricBill={setElectricBill}
-          gasBill={gasBill}
-          setGasBill={setGasBill}
-          waterBill={waterBill}
-          setWaterBill={setWaterBill}
-          totalHousingCost={totalHousingCost}
-          setTotalHousingCost={setTotalHousingCost}
-          homeType={homeType}
-          setHomeType={setHomeType}
-        />
-
-        <CarExpenseTable
-          carPayment1={carPayment1}
-          setCarPayment1={setCarPayment1}
-          carPayment2={carPayment2}
-          setCarPayment2={setCarPayment2}
-          carInsurance={carInsurance}
-          setCarInsurance={setCarInsurance}
-          gasoline={gasoline}
-          setGasoline={setGasoline}
-          totalCarCosts={totalCarCosts}
-          setTotalCarCosts={setTotalCarCosts}
-          sumValidationCar={sumValidationCar}
-          setSumValidationCar={setSumValidationCar}
-        />
-
-        <AdditionalTable
-          tvInternet={tvInternet}
-          setTvInternet={setTvInternet}
-          phone={phone}
-          setPhone={setPhone}
-          grocery={grocery}
-          setGrocery={setGrocery}
-          totalAdditional={totalAdditional}
-          setTotalAdditional={setTotalAdditional}
-          sumAddValidation={sumAddValidation}
-          setSumAddValidation={setSumAddValidation}
-        />
-        <TotalExpensesTable
-          totalHousingCost6={totalHousingCost6}
-          setTotalHousingCost6={setTotalHousingCost6}
-          totalCarCosts6={totalCarCosts6}
-          setTotalCarCosts6={setTotalCarCosts6}
-          totalAdditional6={totalAdditional6}
-          setTotalAdditional6={setTotalAdditional6}
-          totalHousingCost={totalHousingCost}
-          setTotalHousingCost={setTotalHousingCost}
-          totalCarCosts={totalCarCosts}
-          setTotalCarCosts={setTotalCarCosts}
-          totalAdditional={totalAdditional}
-          setTotalAdditional={setTotalAdditional}
-          totalExpenses={totalExpenses}
-          setTotalExpenses={setTotalExpenses}
-        />
-        <MoneyRemainingTable
-          totalMonthlySection7={totalMonthlySection7}
-          setTotalMonthlySection7={setTotalMonthlysection7}
-          totalExpensesSection7={totalExpensesSection7}
-          setTotalExpensesSection7={setTotalExpensesSection7}
-          totalMoneyRemaining={totalMoneyRemaining}
-          setTotalMoneyRemaining={setTotalMoneyRemaining}
-          monthlyIncomeValidation={monthlyIncomeValidation}
-          setMonthlyIncomeValidation={setMonthlyIncomeValidation}
-          totalExpenseValidation={totalExpenseValidation}
-          setTotalExpenseValidation={setTotalExpenseValidation}
-          moneyRemValidation={moneyRemValidation}
-          setMoneyRemValidation={setMoneyRemValidation}
-          totalMonthlyIncome={totalMonthlyIncome}
-          setTotalMonthlyIncome={setTotalMonthlyIncome}
-          totalExpenses={totalExpenses}
-          setTotalExpenses={setTotalExpenses}
-        />
+        <div className={"mb-20"}>
+          <IncomeTable
+            monthlyIncome={yourMonthlyIncome}
+            setMonthlyIncome={setYourMonthlyIncome}
+            spouseMonthlyIncome={spouseMonthlyIncome}
+            setSpouseMonthlyIncome={setSpouseMounthlyIncome}
+            totalMonthlyIncome={totalMonthlyIncome}
+            setTotalMonthlyIncome={setTotalMonthlyIncome}
+            backgroundColour={backgroundColour}
+            setBackgroundColour={setBackgroundColour}
+            valueTest={valueTest}
+            setValueTest={setValueTest}
+          ></IncomeTable>
+        </div>
+        <div className={"mb-20"}>
+          <HouseExpensesTable
+            housePayment={housePayment}
+            setHousePayment={setHousePayment}
+            electricBill={electricBill}
+            setElectricBill={setElectricBill}
+            gasBill={gasBill}
+            setGasBill={setGasBill}
+            waterBill={waterBill}
+            setWaterBill={setWaterBill}
+            totalHousingCost={totalHousingCost}
+            setTotalHousingCost={setTotalHousingCost}
+            homeType={homeType}
+            setHomeType={setHomeType}
+          />
+        </div>
+        <div className={"mb-20"}>
+          <CarExpenseTable
+            carPayment1={carPayment1}
+            setCarPayment1={setCarPayment1}
+            carPayment2={carPayment2}
+            setCarPayment2={setCarPayment2}
+            carInsurance={carInsurance}
+            setCarInsurance={setCarInsurance}
+            gasoline={gasoline}
+            setGasoline={setGasoline}
+            totalCarCosts={totalCarCosts}
+            setTotalCarCosts={setTotalCarCosts}
+            sumValidationCar={sumValidationCar}
+            setSumValidationCar={setSumValidationCar}
+          />
+        </div>
+        <div className={"mb-20"}>
+          <AdditionalTable
+            tvInternet={tvInternet}
+            setTvInternet={setTvInternet}
+            phone={phone}
+            setPhone={setPhone}
+            grocery={grocery}
+            setGrocery={setGrocery}
+            totalAdditional={totalAdditional}
+            setTotalAdditional={setTotalAdditional}
+            sumAddValidation={sumAddValidation}
+            setSumAddValidation={setSumAddValidation}
+          />
+        </div>
+        <div className={"mb-20"}>
+          <TotalExpensesTable
+            totalHousingCost6={totalHousingCost6}
+            setTotalHousingCost6={setTotalHousingCost6}
+            totalCarCosts6={totalCarCosts6}
+            setTotalCarCosts6={setTotalCarCosts6}
+            totalAdditional6={totalAdditional6}
+            setTotalAdditional6={setTotalAdditional6}
+            totalHousingCost={totalHousingCost}
+            setTotalHousingCost={setTotalHousingCost}
+            totalCarCosts={totalCarCosts}
+            setTotalCarCosts={setTotalCarCosts}
+            totalAdditional={totalAdditional}
+            setTotalAdditional={setTotalAdditional}
+            totalExpenses={totalExpenses}
+            setTotalExpenses={setTotalExpenses}
+          />
+        </div>
+        <div className={"mb-20"}>
+          <MoneyRemainingTable
+            totalMonthlySection7={totalMonthlySection7}
+            setTotalMonthlySection7={setTotalMonthlysection7}
+            totalExpensesSection7={totalExpensesSection7}
+            setTotalExpensesSection7={setTotalExpensesSection7}
+            totalMoneyRemaining={totalMoneyRemaining}
+            setTotalMoneyRemaining={setTotalMoneyRemaining}
+            monthlyIncomeValidation={monthlyIncomeValidation}
+            setMonthlyIncomeValidation={setMonthlyIncomeValidation}
+            totalExpenseValidation={totalExpenseValidation}
+            setTotalExpenseValidation={setTotalExpenseValidation}
+            moneyRemValidation={moneyRemValidation}
+            setMoneyRemValidation={setMoneyRemValidation}
+            totalMonthlyIncome={totalMonthlyIncome}
+            setTotalMonthlyIncome={setTotalMonthlyIncome}
+            totalExpenses={totalExpenses}
+            setTotalExpenses={setTotalExpenses}
+          />
+        </div>
       </div>
     </div>
   );

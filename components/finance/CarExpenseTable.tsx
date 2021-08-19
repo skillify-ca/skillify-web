@@ -46,7 +46,9 @@ const CarExpenseTable = ({
   return (
     <div>
       {" "}
-      <h1 className={"mb-2 font-bold"}>Section 4: Car Expenses</h1>
+      <h1 className="font-bold p-4 bg-green-300 text-white rounded-xl mb-5">
+        Section 4: Car Expenses
+      </h1>
       <table className="table-fixed border-collapse w-1/3">
         <thead>
           <tr>
