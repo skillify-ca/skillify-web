@@ -100,14 +100,16 @@ const FinanceProfile = () => {
           </div>
         </header>
         {profileData && (
-          <FinanceProfileChart
-            individualOccupation={profileData.individualOccupation}
-            individualSalary={profileData.individualSalary}
-            maritalStatus={profileData.maritalStatus}
-            numberOfChildren={profileData.numberOfChildren}
-            spouseOccupation={profileData.spouseOccupation}
-            spouseSalary={profileData.spouseSalary}
-          />
+          <div className={"flex items-center justify-center p-6"}>
+            <FinanceProfileChart
+              individualOccupation={profileData.individualOccupation}
+              individualSalary={profileData.individualSalary}
+              maritalStatus={profileData.maritalStatus}
+              numberOfChildren={profileData.numberOfChildren}
+              spouseOccupation={profileData.spouseOccupation}
+              spouseSalary={profileData.spouseSalary}
+            />
+          </div>
         )}
         <section
           className={
@@ -123,7 +125,10 @@ const FinanceProfile = () => {
             Your Home
           </div>
         </section>
-        <BuyAHome />
+
+        <div className={"flex items-center justify-center p-6"}>
+          <BuyAHome />
+        </div>
         <section
           className={
             "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-centerx bg-car bg-contain"
@@ -138,19 +143,20 @@ const FinanceProfile = () => {
             Your Ride
           </div>
         </section>
-
-        <BuyACar
-          Make={Make}
-          setMake={setMake}
-          Model={Model}
-          setModel={setModel}
-          Doors={Doors}
-          setDoors={setDoors}
-          Cost={Cost}
-          setCost={setCost}
-          Year={Year}
-          setYear={setYear}
-        />
+        <div className={"flex items-center justify-center p-6"}>
+          <BuyACar
+            Make={Make}
+            setMake={setMake}
+            Model={Model}
+            setModel={setModel}
+            Doors={Doors}
+            setDoors={setDoors}
+            Cost={Cost}
+            setCost={setCost}
+            Year={Year}
+            setYear={setYear}
+          />
+        </div>
         <section
           className={
             "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-left bg-cover bg-no-repeat bg-essentials"
@@ -165,10 +171,15 @@ const FinanceProfile = () => {
             Your Essentials
           </div>
         </section>
-
-        <BuyAPhone />
-        <BuyGroceries />
-        <SurpriseComponent />
+        <div className={"flex items-center justify-center pl-28"}>
+          <BuyAPhone />
+        </div>
+        <div className={"flex items-center justify-center pl-28"}>
+          <BuyGroceries />
+        </div>
+        <div className={"flex items-center justify-center pt-6"}>
+          <SurpriseComponent />
+        </div>
       </div>
 
       <div className={"h-full overflow-scroll col-start-2 col-end-3 mt-8"}>
