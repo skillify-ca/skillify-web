@@ -115,7 +115,7 @@ export const DiagnosticConclusion = ({
             <p
               className={`${getBackgroundColorForTopic(
                 Topic.ADDITION
-              )} p-4 border-b border-black hover:underline cursor-pointer`}
+              )} p-4 border-b border-black sm:no-underline underline hover:underline cursor-pointer`}
             >
               Addition
             </p>
@@ -133,7 +133,7 @@ export const DiagnosticConclusion = ({
             <p
               className={`${getBackgroundColorForTopic(
                 Topic.SUBTRACTION
-              )} p-4 border-b border-black hover:underline cursor-pointer`}
+              )} p-4 border-b border-black sm:no-underline underline hover:underline cursor-pointer`}
             >
               Subtraction
             </p>
@@ -149,7 +149,7 @@ export const DiagnosticConclusion = ({
             <p
               className={`${getBackgroundColorForTopic(
                 Topic.MULTIPLICATION
-              )} p-4 border-b border-black hover:underline cursor-pointer`}
+              )} p-4 border-b border-black sm:no-underline underline hover:underline cursor-pointer`}
             >
               Multiplication
             </p>
@@ -166,7 +166,7 @@ export const DiagnosticConclusion = ({
             <p
               className={`${getBackgroundColorForTopic(
                 Topic.DIVISION
-              )} p-4 border-b border-black hover:underline cursor-pointer`}
+              )} p-4 border-b border-black sm:no-underline underline hover:underline cursor-pointer`}
             >
               Division
             </p>
