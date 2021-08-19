@@ -7,12 +7,6 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      width: {
-        "108": "27rem"
-      },
-      height: {
-        "108": "27rem"
-      },
       animation: {
         shake: "shake 0.5s ease-in-out",
         hit: "hit 1s ease-in-out",

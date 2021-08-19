@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
 import { Button } from "../components/ui/Button";
 
 export default function Contact(props) {
@@ -49,7 +48,6 @@ export default function Contact(props) {
 
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen ">
-      <Navbar/>
       <div className="p-4 flex flex-col items-center justify-center gap-8">
         <div className="flex flex-col items-center bg-white shadow-lg gap-8 rounded-lg p-4">
           <p className="text-xl font-bold">Join our contact list</p>

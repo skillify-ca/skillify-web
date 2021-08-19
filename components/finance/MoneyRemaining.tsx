@@ -58,7 +58,7 @@ const MoneyRemainingTable = ({
       ? setMoneyRemValidation("")
       : totalMonthlySection7 + totalExpensesSection7 === ""
       ? setMoneyRemValidation("")
-      : Number.parseInt(totalMonthlySection7) -
+      : Number.parseInt(totalMonthlySection7) +
           Number.parseInt(totalExpensesSection7) ===
         Number.parseInt(newTotalMoneyRemaining)
       ? setMoneyRemValidation("Correct")
@@ -169,7 +169,6 @@ const MoneyRemainingTable = ({
         </tbody>
       </table>
       <p className={"ml-60 text-xs"}>**Put this amount in section 6** </p>
-
     </div>
   );
 };

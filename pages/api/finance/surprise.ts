@@ -4,6 +4,8 @@ export interface SurpriseCardType {
     surpriseValue:number;
 }
 
+
+
 export const SurpriseCard:SurpriseCardType[] = [
     {
         key:"surprise1",

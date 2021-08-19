@@ -4,10 +4,16 @@ import Providers from "next-auth/providers";
 export default NextAuth({
   // Configure one or more authentication providers
   providers: [
+    Providers.Auth0({
+      clientId: process.env.AUTH0_CLIENT_ID,
+      clientSecret: process.env.AUTH0_CLIENT_SECRET,
+      domain: process.env.AUTH0_DOMAIN,
+    }),
     Providers.Google({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
+    // ...add more providers here
   ],
   callbacks: {
     session: async (session, user) => {
@@ -118,6 +124,7 @@ const userSync = async (token) => {
 `;
   // TODO if user was already in the user table, then update the last seen column
   // If the user was newly added to the user table, then initialize their skills, and badges
+  // Then we can remove the initialization checks in the profile and knowledge tree
   const graphqlReq = {
     query: upsertUserQuery,
     variables: { userId: userId, name: nickname },

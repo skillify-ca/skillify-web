@@ -24,20 +24,14 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ApolloProvider client={client}>
-      <Provider
-        session={pageProps.session}
-        options={{
-          clientMaxAge: 0,
-          keepAlive: 5 * 60,
-        }}
-      >
+      <Provider session={pageProps.session}>
         <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
           <ModalProvider>
             <ReduxProvider store={store}>
               <div>
+                <Navbar />
                 {Component.auth ? (
                   <Auth>
-                    <Navbar />
                     <Component {...pageProps} />
                   </Auth>
                 ) : (

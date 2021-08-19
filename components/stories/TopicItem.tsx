@@ -39,14 +39,14 @@ export const TopicItem: React.FC<TopicItemProps> = ({
     <div className="" onClick={onClick}>
       <div className="bg-white shadow-md rounded-xl p-8">
         <div className="flex flex-col justify-center items-center gap-4">
-          <div className="w-16 h-16 bg-purple-100 rounded-full p-1 ring-2 ring-blue-300 flex">
+          <div className="w-16 h-16 bg-purple-100 rounded-full p-1 ring-2 ring-blue-300">
             {disabled ? (
               <img src="/images/skills/lock.png" alt="" />
             ) : (
               image && <img src={image} alt="" />
             )}
           </div>
-          <p className="mx-4 text-center text-xl">{title}</p>
+          <p className="mx-4 text-center text-2xl">{title}</p>
 
           {accessory && accessoryComponent}
         </div>

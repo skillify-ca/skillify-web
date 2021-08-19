@@ -1,9 +1,23 @@
-export const lockedTopics = ["Fractions", "Time", "Money"];
+export const lockedTopics = [
+  "Mixed Operations",
+  "Geometry",
+  "Decimals",
+  "Time",
+  "Money",
+  "Patterns",
+  "Logic",
+  "Estimation",
+  "Data",
+  "Variables",
+  "Stats",
+  "Numbers",
+  "Fractions",
+];
 
 export const unlockedTopics = [
   { title: "Numbers", image: "/images/skills/numbers.png" },
-  { title: "Addition", image: "/images/skills/add.png" },
-  { title: "Subtraction", image: "/images/skills/sub.png" },
-  { title: "Multiplication", image: "/images/skills/multi.png" },
-  { title: "Division", image: "/images/skills/div.png" },
+  { title: "Addition", image: "/images/skills/addition.png" },
+  { title: "Subtraction", image: "/images/skills/subtraction.png" },
+  { title: "Multiplication", image: "/images/skills/multiplication.png" },
+  { title: "Division", image: "/images/skills/division.png" },
 ];

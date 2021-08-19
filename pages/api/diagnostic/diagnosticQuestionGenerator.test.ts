@@ -2,7 +2,7 @@
 import React from "react";
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import { getNextQuestion } from "./diagnosticQuestionGenerator";
+import { getNextQuestion, Grade } from "./diagnosticQuestionGenerator";
 import { AnswerType, Question } from "../question";
 import { QuestionType } from "../questionTypes";
 import { Skill } from "../skill";

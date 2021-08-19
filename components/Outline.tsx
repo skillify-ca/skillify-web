@@ -9,11 +9,7 @@ import { EMOJI_MASTERY } from "../pages/api/skill";
 import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
 import { useQuery } from "@apollo/client";
 import { Session } from "next-auth";
-import Link from "next/link";
-import TopicItem from "./stories/TopicItem";
-import Image from "next/image";
-import { Puzzle, PUZZLE_DATA } from "../pages/api/puzzle";
-import { Button } from "./ui/Button";
+
 interface OutlineProps {
   session: Session;
 }
@@ -28,9 +24,6 @@ export default function Outline({ session }: OutlineProps) {
   const progress = () => {
     if (
       !loading &&
-      data &&
-      data.user_badges &&
-      data.user_skills &&
       data.user_badges.length > 0 &&
       data.user_skills.length > 0
     ) {
@@ -50,27 +43,21 @@ export default function Outline({ session }: OutlineProps) {
     }
   };
 
-  return (
-    <div className="max-w-screen-lg flex flex-col gap-8 justify-between w-full col-span-2 items-center mb-4 p-4 mx-auto">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 bg-blue-50 rounded-lg shadow-lg p-4">
-        <div className="flex flex-col gap-4">
-          <p className="font-bold text-2xl">Practice Tracker</p>
-
-          <p className="">
-            {" "}
-            Practice skills to increase your math confidence and ace the quizzes
-            to unlock badges!{" "}
-          </p>
-        </div>
-        <div className="flex flex-col items-center sm:items-end gap-4 sm:pr-8">
-          <p className="font-bold text-lg"> Overall Progress</p>
-          <div className="p-4">
+  const loggedInComponent = (
+    <div className="max-w-screen-lg">
+      <div className="flex justify-center mb-8 mt-4">
+        <Card size="large">
+          <div className="flex flex-col gap-8 items-center">
+            <p className="text-xl font-bold font-sans">Math Knowledge Tree</p>
+            <p className="text-sm mb-4">
+              Practice skills to increase your math confidence. Then ace your
+              quizzes to unlock badges!
+            </p>
             <ProgressRing percentage={progress()} radius={24} />
           </div>
-        </div>
+        </Card>
       </div>
-
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 justify-center gap-8 items-center">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 justify-center gap-8">
         {unlockedTopics.map((topic, index) => (
           <div key={topic.title}>
             <UnitCard
@@ -82,88 +69,23 @@ export default function Outline({ session }: OutlineProps) {
             />
           </div>
         ))}
+      </div>
+      <div className="col-span-4 my-8">
+        <p className="text-xl text-center font-bold">{"Locked"}</p>
+      </div>
+      <div className="flex flex-wrap justify-center gap-4">
         {lockedTopics.map((topic) => (
           <div key={topic}>
             <UnitCard key={topic} title={topic} disabled={true} />
           </div>
         ))}
       </div>
-      <div className="w-full bg-blue-50 rounded-lg shadow-lg p-4">
-        <div className="flex flex-col gap-4">
-          <p className="font-bold text-2xl">Multiplayer Games</p>
+    </div>
+  );
 
-          <p className="">Play math games online with your friends</p>
-        </div>
-      </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 justify-center gap-8 items-center">
-        <Link href={`/games`}>
-          <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
-            <Card size="medium">
-              <div className="flex flex-col justify-center items-center gap-4">
-                <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300">
-                  <img src="/images/PVPIconBackground.png" alt="" />
-                </div>
-                <p className="mx-4 text-center text-xl">Math Battle</p>
-              </div>
-            </Card>
-          </div>
-        </Link>
-
-        <Card size="medium">
-          <div className="flex flex-col justify-center items-center gap-4">
-            <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
-            <p className="mx-4 text-center text-xl">Zombies</p>
-          </div>
-        </Card>
-        <Card size="medium">
-          <div className="flex flex-col justify-center items-center gap-4">
-            <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
-            <p className="mx-4 text-center text-xl">Tic Tac Toe</p>
-          </div>
-        </Card>
-        <Card size="medium">
-          <div className="flex flex-col justify-center items-center gap-4">
-            <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
-            <p className="mx-4 text-center text-xl">Connect 4</p>
-          </div>
-        </Card>
-      </div>
-      <div className="w-full bg-blue-50 rounded-lg shadow-lg p-4">
-        <div className="flex flex-col gap-4">
-          <p className="font-bold text-2xl">Puzzles</p>
-
-          <p className="">Master your multiplication facts with our puzzles</p>
-        </div>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 bg-white shadow-lg rounded-xl p-8">
-        <div className="flex flex-col gap-8 justify-center">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {Object.values(PUZZLE_DATA).map((p) => {
-              const puzzle = p as Puzzle;
-              return (
-                <Link href={`/puzzle/${puzzle.id}`}>
-                  <Button
-                    label={puzzle.title}
-                    backgroundColor="blue"
-                    textColor="white"
-                  />
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-        <img
-          className="object-cover rounded-xl"
-          alt="student-image"
-          src="/images/practiceAdd.png"
-        />
-      </div>
+  return (
+    <div className="flex flex-col gap-8 justify-between w-full col-span-2 items-center mb-4 p-4 mx-auto">
+      {loggedInComponent}
     </div>
   );
 }
