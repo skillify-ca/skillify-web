@@ -24,15 +24,10 @@ const DiagnosticTestForm = ({
   return (
     <div>
       {" "}
-      <h1 className="text-3xl font-bold p-4">Placement Test</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="flex flex-col items-center bg-white shadow-lg gap-8 rounded-lg p-4">
           <div className="flex flex-col gap-4 sm:max-w-2xl">
-            <p>
-              This summative assessment helps you discover your child's level in
-              math. Find out exactly where they have gaps in the Ontario
-              curriculum (if any).
-            </p>
+            <h1 className="text-3xl font-bold">Diagnostic Test</h1>
             <p>
               At the end of the test we provide you with personalized resources
               to help your child get better at math no matter what level they
