@@ -1,9 +1,8 @@
 import _, { min } from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
 import IncomeTable from "../components/finance/IncomeTable";
-import { Modal, ModalTransition, useModal } from "react-simple-hook-modal";
-import "react-simple-hook-modal/dist/styles.css";
+
 import { SectionOneInput } from "../components/finance/SectionOneInput";
 import {
   FinanceProfileType,
@@ -23,7 +22,7 @@ import { BuyGroceries } from "../components/finance/BuyGroceries";
 import { SurpriseCard, SurpriseCardType } from "./api/finance/surprise";
 import { SurpriseComponent } from "../components/finance/SurpriseComponent";
 import { Button } from "../components/ui/Button";
-import { userId } from "../graphql/utils/constants";
+import { Modal, ModalTransition } from "react-simple-hook-modal";
 
 const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
@@ -65,7 +64,7 @@ const FinanceProfile = () => {
   const [totalHousingCost6, setTotalHousingCost6] = useState("");
   const [totalCarCosts6, setTotalCarCosts6] = useState("");
   const [totalAdditional6, setTotalAdditional6] = useState("");
-  const [totalExpenses, setTotalExpenses] = useState("");
+  const [totalExpenses, setTotalExpenses] = useState(""); //Set for Section 6
 
   const [totalMonthlySection7, setTotalMonthlysection7] = useState("");
   const [totalExpensesSection7, setTotalExpensesSection7] = useState("");
@@ -80,67 +79,81 @@ const FinanceProfile = () => {
   const [Cost, setCost] = useState("");
   const [Year, setYear] = useState("");
 
+  const homeRef = useRef(null);
+  const carRef = useRef(null);
+
   const [isSubmitModalShowing, setIsSubmitModalShowing] = useState(false);
-  const [surpriseData, setSurpriseData] = useState<SurpriseCardType>()
-  const [isSurpriseVisible, setIsSurpriseVisible] = useState(false)
+  const [surpriseData, setSurpriseData] = useState<SurpriseCardType>();
+  const [isSurpriseVisible, setIsSurpriseVisible] = useState(false);
 
   const validateTotalMoneyRemaining = (newTotalMoneyRemaining) => {
     if (newTotalMoneyRemaining === "") {
-      setMoneyRemValidation("")
+      setMoneyRemValidation("");
     } else {
       if (totalMonthlySection7 + totalExpensesSection7 === "") {
-        setMoneyRemValidation("")
+        setMoneyRemValidation("");
       } else {
         if (isSurpriseVisible) {
-          if (Number.parseInt(totalMonthlySection7) -
-            Number.parseInt(totalExpensesSection7) +
-            surpriseData.surpriseValue ===
-            Number.parseInt(newTotalMoneyRemaining)) {
-            setMoneyRemValidation("Correct")
-          } else { setMoneyRemValidation("Wrong") }
+          if (
+            Number.parseInt(totalMonthlySection7) -
+              Number.parseInt(totalExpensesSection7) +
+              surpriseData.surpriseValue ===
+            Number.parseInt(newTotalMoneyRemaining)
+          ) {
+            setMoneyRemValidation("Correct");
+          } else {
+            setMoneyRemValidation("Wrong");
+          }
         } else {
-          if (Number.parseInt(totalMonthlySection7) -
-            Number.parseInt(totalExpensesSection7) ===
-            Number.parseInt(newTotalMoneyRemaining)) {
-            setMoneyRemValidation("Correct")
-          } else { setMoneyRemValidation("Wrong") }
+          if (
+            Number.parseInt(totalMonthlySection7) -
+              Number.parseInt(totalExpensesSection7) ===
+            Number.parseInt(newTotalMoneyRemaining)
+          ) {
+            setMoneyRemValidation("Correct");
+          } else {
+            setMoneyRemValidation("Wrong");
+          }
         }
       }
     }
   };
 
   const onSubmit = () => {
-    if (moneyRemValidation === "Correct" && Number.parseInt(totalMoneyRemaining) > 0) {
+    if (
+      moneyRemValidation === "Correct" &&
+      Number.parseInt(totalMoneyRemaining) > 0
+    ) {
       setIsSubmitModalShowing((e) => !e);
     }
-  }
+  };
 
   const onModalClose = () => {
-
-    const surpriseMoneyRemaining = Number.parseInt(totalMoneyRemaining) + surpriseData.surpriseValue
+    const surpriseMoneyRemaining =
+      Number.parseInt(totalMoneyRemaining) + surpriseData.surpriseValue;
 
     if (isSubmitModalShowing) {
-      setTotalMoneyRemaining(surpriseMoneyRemaining.toString())
-      setIsSurpriseVisible(true)
-      setIsSubmitModalShowing((e) => !e)
+      setTotalMoneyRemaining(surpriseMoneyRemaining.toString());
+      setIsSurpriseVisible(true);
+      setIsSubmitModalShowing((e) => !e);
 
-      validateTotalMoneyRemaining(surpriseMoneyRemaining)
+      validateTotalMoneyRemaining(surpriseMoneyRemaining);
     }
-  }
+  };
 
   const finalSubmit = () => {
-
-    const surpriseMoneyRemaining = Number.parseInt(totalMoneyRemaining) + surpriseData.surpriseValue
+    const surpriseMoneyRemaining =
+      Number.parseInt(totalMoneyRemaining) + surpriseData.surpriseValue;
 
     if (surpriseMoneyRemaining > 0) {
-
     } else if (surpriseMoneyRemaining < 0) {
-
     }
-  }
+  };
 
   useEffect(() => {
-    const randomSurprise: SurpriseCardType = getRandomItemFromArray(SurpriseCard);
+    const randomSurprise: SurpriseCardType = getRandomItemFromArray(
+      SurpriseCard
+    );
     setSurpriseData(randomSurprise);
   }, []);
 
@@ -150,11 +163,33 @@ const FinanceProfile = () => {
     setProfileData(financialProfileData[randomProfile]);
   }, []);
 
+  const scrollToHomeSection = () => {
+    console.log("ARE WE SCROLLING????");
+    homeRef.current.scrollIntoView();
+  };
+
+  const scrollToCarSection = () => {
+    carRef.current.scrollIntoView();
+  };
+
   return (
-    <div>
-      <div className="h-screen grid grid-cols-2 gap-6 bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
-        <div className={"h-full overflow-scroll col-start-1 col-end-2"}>
-          {profileData && (
+    <div className="h-screen grid grid-cols-5 bg-scroll bg-white">
+      <div className={"h-full overflow-scroll col-start-1 col-end-4"}>
+        <header
+          className={
+            "flex items-center justify-center h-screen mb-12 bg-fixed bg-center bg-cover bg-finance-life"
+          }
+        >
+          <div
+            className={
+              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+            }
+          >
+            Here is your Life Card
+          </div>
+        </header>
+        {profileData && (
+          <div className={"flex items-center justify-center p-20"}>
             <FinanceProfileChart
               individualOccupation={profileData.individualOccupation}
               individualSalary={profileData.individualSalary}
@@ -163,8 +198,47 @@ const FinanceProfile = () => {
               spouseOccupation={profileData.spouseOccupation}
               spouseSalary={profileData.spouseSalary}
             />
-          )}
+          </div>
+        )}
+        <section
+          className={
+            "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-center bg-cover bg-home"
+          }
+        >
+          <div
+            className={
+              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+            }
+          >
+            {" "}
+            Your Home
+          </div>
+        </section>
+
+        <div
+          className={"flex items-center justify-center p-6"}
+          onMouseEnter={scrollToHomeSection}
+        >
           <BuyAHome />
+        </div>
+        <section
+          className={
+            "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-centerx bg-car bg-contain"
+          }
+        >
+          <div
+            className={
+              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+            }
+          >
+            {" "}
+            Your Ride
+          </div>
+        </section>
+        <div
+          className={"flex items-center justify-center p-6"}
+          onMouseEnter={scrollToCarSection}
+        >
           <BuyACar
             Make={Make}
             setMake={setMake}
@@ -177,11 +251,63 @@ const FinanceProfile = () => {
             Year={Year}
             setYear={setYear}
           />
+        </div>
+        <section
+          className={
+            "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-left bg-contain bg-no-repeat bg-phone"
+          }
+        >
+          <div
+            className={
+              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+            }
+          >
+            {" "}
+            Your Cell
+          </div>
+        </section>
+        <div className={"flex items-center justify-center"}>
           <BuyAPhone />
+        </div>
+        <section
+          className={
+            "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-left bg-cover bg-no-repeat bg-essentials"
+          }
+        >
+          <div
+            className={
+              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+            }
+          >
+            {" "}
+            Your Food
+          </div>
+        </section>
+        <div className={"flex items-center justify-center pl-28 mt-10"}>
           <BuyGroceries />
         </div>
+        <div className={"flex items-center justify-center pt-6 mt-10"}>
+          <SurpriseComponent />
+        </div>
+      </div>
 
-        <div className={"h-full overflow-scroll col-start-2 col-end-3 mt-8"}>
+      <div
+        className={
+          "h-full overflow-scroll col-start-4 col-end-6 mt-8 bg-gray-100 px-8"
+        }
+      >
+        <div className={"mb-20 border-4 border-black p-6"}>
+          <h1 className={"text-xl font-bold mb-5"}>
+            Welcome to the Finance Budget Sheet
+          </h1>
+          <p>
+            Use the budget cards on the left column to manage your monthly
+            budget! Scroll on the left side of the page to find each section.
+            There are 7 sections to completing your monthly budget. Go ahead and
+            get started!
+          </p>
+        </div>
+        <div>
           <SectionOneInput
             isMarried={isMarried}
             setMarriage={setMarriage}
@@ -203,16 +329,18 @@ const FinanceProfile = () => {
           {sectionOneValidation ? (
             <div className="flex flex-nowrap">
               {" "}
-              Great Job!
+              Great Job!  
               <img src={"/images/checked-checkbox-16.png"} />
             </div>
           ) : (
-            <div className="flex flex-nowrap">
+            <div className="flex flex-nowrap mb-20">
               {" "}
-              Lets take a look back at your work!
+              Lets take a look back at your work!  
               <img src={"/images/warning-2-16.png"} />
             </div>
           )}
+        </div>
+        <div className={"mb-40"}>
           <IncomeTable
             monthlyIncome={yourMonthlyIncome}
             setMonthlyIncome={setYourMonthlyIncome}
@@ -225,7 +353,8 @@ const FinanceProfile = () => {
             valueTest={valueTest}
             setValueTest={setValueTest}
           ></IncomeTable>
-
+        </div>
+        <div className={"mb-40"} ref={homeRef}>
           <HouseExpensesTable
             housePayment={housePayment}
             setHousePayment={setHousePayment}
@@ -240,7 +369,8 @@ const FinanceProfile = () => {
             homeType={homeType}
             setHomeType={setHomeType}
           />
-
+        </div>
+        <div className={"mb-40"} ref={carRef}>
           <CarExpenseTable
             carPayment1={carPayment1}
             setCarPayment1={setCarPayment1}
@@ -255,7 +385,8 @@ const FinanceProfile = () => {
             sumValidationCar={sumValidationCar}
             setSumValidationCar={setSumValidationCar}
           />
-
+        </div>
+        <div className={"mb-40"}>
           <AdditionalTable
             tvInternet={tvInternet}
             setTvInternet={setTvInternet}
@@ -268,6 +399,8 @@ const FinanceProfile = () => {
             sumAddValidation={sumAddValidation}
             setSumAddValidation={setSumAddValidation}
           />
+        </div>
+        <div className={"mb-40"}>
           <TotalExpensesTable
             totalHousingCost6={totalHousingCost6}
             setTotalHousingCost6={setTotalHousingCost6}
@@ -284,6 +417,8 @@ const FinanceProfile = () => {
             totalExpenses={totalExpenses}
             setTotalExpenses={setTotalExpenses}
           />
+        </div>
+        <div className={"mb-40"}>
           <MoneyRemainingTable
             totalMonthlySection7={totalMonthlySection7}
             setTotalMonthlySection7={setTotalMonthlysection7}
@@ -303,12 +438,8 @@ const FinanceProfile = () => {
             setTotalExpenses={setTotalExpenses}
             isSurpriseVisible={isSurpriseVisible}
             setIsSurpriseVisible={setIsSurpriseVisible}
-            surpriseValue={
-              surpriseData ? surpriseData.surpriseValue : 0
-            }
+            surpriseValue={surpriseData ? surpriseData.surpriseValue : 0}
             validateTotalMoneyRemaining={validateTotalMoneyRemaining}
-
-
           />
           {isSurpriseVisible ? "TRUE" : "FALSE"}
           <div className="pt-4">
@@ -317,9 +448,8 @@ const FinanceProfile = () => {
               backgroundColor="green"
               textColor="white"
               onClick={onSubmit}
-            // disabled={Number.parseInt(totalMoneyRemaining) < 0}
-            >
-            </Button>
+              // disabled={Number.parseInt(totalMoneyRemaining) < 0}
+            ></Button>
           </div>
         </div>
       </div>
@@ -329,12 +459,12 @@ const FinanceProfile = () => {
         transition={ModalTransition.SCALE}
       >
         <SurpriseComponent
-          close={onModalClose}
-          surpriseData={surpriseData} />
+        //close={onModalClose}
+        // surpriseData={surpriseData}
+        />
       </Modal>
     </div>
   );
 };
 
 export default FinanceProfile;
-

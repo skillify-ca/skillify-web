@@ -350,7 +350,7 @@ export const VintageWireless = () => {
 
 export const SpeedyWireless = () => {
   return (
-    <div>
+    <div className={"mt-12"}>
       <div className="text-lg">Speedy Wireless</div>
       <table className="shadow-l bg-white ">
         <thead>
