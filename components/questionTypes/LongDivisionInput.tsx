@@ -22,6 +22,7 @@ export const LongDivisionInput: React.FC<LongDivisionInputProps> = ({
     <input
       autoFocus
       id={id}
+      type="number"
       autoComplete="off"
       value={guess}
       onChange={(e) => setGuess(e.target.value)}
