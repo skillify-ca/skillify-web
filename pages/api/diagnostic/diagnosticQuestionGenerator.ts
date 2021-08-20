@@ -72,6 +72,8 @@ export const getNextQuestion = (
   return nextQuestion;
 };
 
+//Function is used for when the student correctly answers a Diagnostic question
+//and is used to determine the next question for adaptive difficulty
 const getHarderSkill = (skill: Skill): Skill => {
   switch (skill) {
     case Skill.ADDITION_SINGLE:
@@ -102,7 +104,8 @@ const getHarderSkill = (skill: Skill): Skill => {
       return null;
   }
 };
-
+//Function is used for when the student incorrectly answers a Diagnostic question
+//and is used to determine the next question for adaptive difficulty
 const getEasierSkill = (skill: Skill): Skill => {
   switch (skill) {
     case Skill.ADDITION_SINGLE:
@@ -134,6 +137,7 @@ const getEasierSkill = (skill: Skill): Skill => {
   }
 };
 
+//This function is used to switch to the next skill in the Diagnostic test
 const getSkillForNextTopic = (skill: Skill): Skill => {
   switch (skill) {
     case Skill.ADDITION_SINGLE:
@@ -153,6 +157,8 @@ const getSkillForNextTopic = (skill: Skill): Skill => {
   }
 };
 
+// Function that generates the Diagnostic Test Questions
+// Currently only applies to grades 1 - 3
 export const generateQuestionsForDiagnostic = () => {
   let questionsPerSection = NUM_QUESTIONS;
   let questions: Question[] = [];
