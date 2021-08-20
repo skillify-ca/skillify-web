@@ -92,36 +92,18 @@ export default function Navbar() {
             <div className="hidden lg:block lg:ml-6">
               <div className="flex space-x-4">
                 <a
-                  href="/games"
-                  className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Games
-                </a>
-                <a
-                  href="/diagnostic"
+                  href="/practice"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Placement Test
+                  Student Portal
                 </a>
-                <div>
-                  <Link href="/practice">
-                    <p className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
-                      Practice Tracker
-                    </p>
-                  </Link>
-                </div>
                 <a
                   href="/resources"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Resources
+                  For Educators
                 </a>
-                <a
-                  href="/puzzles"
-                  className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Puzzles
-                </a>
+
                 <a
                   href="/contact"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -216,35 +198,16 @@ export default function Navbar() {
       <div className={`${active ? "block" : "hidden"} lg:hidden`}>
         <div className="px-2 pt-2 pb-3 space-y-1">
           <a
-            href="/games"
+            href="/practice"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Games
-          </a>
-          <div>
-            <Link href="/practice">
-              <p className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
-                Practice Tracker
-              </p>
-            </Link>
-          </div>
-          <a
-            href="/diagnostic"
-            className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-          >
-            Placement Test
+            Student Portal
           </a>
           <a
             href="/resources"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Resources
-          </a>
-          <a
-            href="/puzzles"
-            className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-          >
-            Puzzles
+            For Educators
           </a>
           <a
             href="/contact"
