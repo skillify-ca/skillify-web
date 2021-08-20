@@ -1,23 +1,16 @@
-import Document, {
-  DocumentContext,
-  Head,
-  Html,
-  Main,
-  NextScript,
-} from "next/document";
-import React, { CSSProperties } from "react";
+import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document'
+import React, { CSSProperties } from 'react'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx);
+    const initialProps = await Document.getInitialProps(ctx)
 
-    return initialProps;
+    return initialProps
   }
 
   bodyStyle: CSSProperties = {
-    backgroundColor: "#E5E7EB",
-    scrollBehavior: "smooth",
-  };
+    backgroundColor: '#E5E7EB'
+  }
 
   render() {
     return (
@@ -42,8 +35,8 @@ class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    );
+    )
   }
 }
 
-export default MyDocument;
+export default MyDocument 

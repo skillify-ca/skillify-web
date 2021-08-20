@@ -47,61 +47,41 @@ export const NumbertoVerticalDigits: React.FC<NumbertoVerticalDigitsProp> = ({
 
   return (
     <div className="flex flex-col items-center space-y-8">
-      <h1 className="text-4m font-semibold text-center">
-        Enter the Corresponding Digits
-      </h1>
-      <h2 className="underline text-4xl">{num}</h2>
-      <div className="flex flex-row space-x-8">
-        <div className="flex flex-col items-center space-y-8">
-          <div className={` flex-row space-x-8 hidden`}>
-            <input
-              className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
-              type="number"
-              value={guess1}
-              onChange={(e) => setGuess1(e.target.value)}
-            ></input>{" "}
-            <h1>ten thousands</h1>
-          </div>
-          <div className=" flex-row space-x-8 hidden">
-            <input
-              className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
-              type="number"
-              value={guess2}
-              onChange={(e) => setGuess2(e.target.value)}
-            ></input>{" "}
-            <h1>thousands</h1>
-          </div>
-          <div className="flex flex-row space-x-8">
-            <input
-              className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
-              type="number"
-              value={guess3}
-              onChange={(e) => setGuess3(e.target.value)}
-            ></input>{" "}
-            <h1>hundreds </h1>
-          </div>
+      <h2 className="text-xl">
+        {" "}
+        Write <b className="text-2xl">{num} </b>in expanded form{" "}
+      </h2>
+      <div className="flex flex-row">
+        <div className="flex flex-row">
+          <input
+            className="border py-0.5 px-0.5 text-grey-darkest p-8 w-12"
+            type="number"
+            value={guess3}
+            onChange={(e) => setGuess3(e.target.value)}
+          ></input>{" "}
+          <h1>&nbsp;hundreds +&nbsp; </h1>
         </div>
-        <div className="flex flex-col items-center space-y-8">
-          <div className="flex flex-row space-x-8">
-            <input
-              className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
-              type="number"
-              value={guess4}
-              onChange={(e) => setGuess4(e.target.value)}
-            ></input>{" "}
-            <h1>tens</h1>
-          </div>
-          <div className="flex flex-row space-x-8">
-            <input
-              className="border py-0.5 px-0.5 text-grey-darkest p-8 w-20"
-              type="number"
-              value={guess5}
-              onChange={(e) => setGuess5(e.target.value)}
-            ></input>{" "}
-            <h1> ones </h1>
-          </div>
+
+        <div className="flex flex-row">
+          <input
+            className="border py-0.5 px-0.5 text-grey-darkest p-8 w-12"
+            type="number"
+            value={guess4}
+            onChange={(e) => setGuess4(e.target.value)}
+          ></input>{" "}
+          <h1>&nbsp;tens +&nbsp;</h1>
+        </div>
+        <div className="flex flex-row">
+          <input
+            className="border py-0.5 px-0.5 text-grey-darkest p-8 w-12"
+            type="number"
+            value={guess5}
+            onChange={(e) => setGuess5(e.target.value)}
+          ></input>{" "}
+          <h1> &nbsp;ones&nbsp; </h1>
         </div>
       </div>
+
       <Button
         onClick={onSubmit}
         label="Submit"

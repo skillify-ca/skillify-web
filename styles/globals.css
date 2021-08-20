@@ -2,21 +2,17 @@
 @tailwind components;
 
 @font-face {
-  font-family: "Lexend";
-  font-style: normal;
-  font-weight: 400;
-  src: url("/fonts/Lexend/Lexend-Regular.ttf");
+	font-family: 'Lexend';
+	font-style: normal;
+	font-weight: 400;
+	src: url('/fonts/Lexend/Lexend-Regular.ttf');
 }
 
 @font-face {
-  font-family: "Lexend";
-  font-style: normal;
-  font-weight: 700;
-  src: url("/fonts/Lexend/Lexend-Bold.ttf");
+	font-family: 'Lexend';
+	font-style: normal;
+	font-weight: 700;
+	src: url('/fonts/Lexend/Lexend-Bold.ttf');
 }
 
 @tailwind utilities;
-
-html {
-  scroll-behavior: smooth;
-}
