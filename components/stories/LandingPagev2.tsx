@@ -9,7 +9,6 @@ import {
   LightningBoltIcon,
   ScaleIcon,
 } from "@heroicons/react/outline";
-import practiceTrackerImg from "../../public/images/landingPage/practiceTracker.png";
 import Image from "next/dist/client/image";
 
 const LandingPagev2 = () => {
