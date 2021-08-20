@@ -4,7 +4,7 @@ import {
   WordtoHorizontalDigits,
   WordtoHorizontalDigitsProp,
 } from "./WordtoHorizontalDigits";
-import Card from "../ui/Card";
+import Card from "../../ui/Card";
 
 export default {
   title: "Word to Horizontal Digits",
