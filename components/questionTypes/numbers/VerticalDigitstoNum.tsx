@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { GuessData } from "../../pages/api/guessData";
-import { Button } from "../ui/Button";
+import { GuessData } from "../../../pages/api/guessData";
+import { Button } from "../../ui/Button";
+
 
 export interface VerticalDigitstoNumProp {
   numArr: Array<number>;
@@ -19,6 +20,7 @@ export const VerticalDigitstoNum: React.FC<VerticalDigitstoNumProp> = ({
   const len = numArr.length;
   function onSubmit() {
     submitGuess({ guess: guess, isCorrect: guess == answer });
+    setGuess("");
   }
 
   function getItems() {

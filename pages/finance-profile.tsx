@@ -9,7 +9,7 @@ import {
   financialProfileData,
   MaritalStatus,
 } from "./api/finance/profile";
-import { getRndInteger } from "./api/random";
+import { getRandomItemFromArray, getRndInteger } from "./api/random";
 import HouseExpensesTable from "../components/finance/HouseExpensesTable";
 import CarExpenseTable from "../components/finance/CarExpenseTable";
 import AdditionalTable from "../components/finance/AdditionalExpense";
@@ -19,8 +19,10 @@ import BuyACar from "../components/finance/BuyACar";
 import BuyAHome from "../components/finance/BuyAHome";
 import { BuyAPhone } from "../components/finance/BuyAPhone";
 import { BuyGroceries } from "../components/finance/BuyGroceries";
-import { SurpriseCard } from "./api/finance/surprise";
+import { SurpriseCard, SurpriseCardType } from "./api/finance/surprise";
 import { SurpriseComponent } from "../components/finance/SurpriseComponent";
+import { Button } from "../components/ui/Button";
+import { Modal, ModalTransition } from "react-simple-hook-modal";
 
 const FinanceProfile = () => {
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
@@ -76,8 +78,84 @@ const FinanceProfile = () => {
   const [Doors, setDoors] = useState("");
   const [Cost, setCost] = useState("");
   const [Year, setYear] = useState("");
+
   const homeRef = useRef(null);
   const carRef = useRef(null);
+
+  const [isSubmitModalShowing, setIsSubmitModalShowing] = useState(false);
+  const [surpriseData, setSurpriseData] = useState<SurpriseCardType>();
+  const [isSurpriseVisible, setIsSurpriseVisible] = useState(false);
+
+  const validateTotalMoneyRemaining = (newTotalMoneyRemaining) => {
+    if (newTotalMoneyRemaining === "") {
+      setMoneyRemValidation("");
+    } else {
+      if (totalMonthlySection7 + totalExpensesSection7 === "") {
+        setMoneyRemValidation("");
+      } else {
+        if (isSurpriseVisible) {
+          if (
+            Number.parseInt(totalMonthlySection7) -
+              Number.parseInt(totalExpensesSection7) +
+              surpriseData.surpriseValue ===
+            Number.parseInt(newTotalMoneyRemaining)
+          ) {
+            setMoneyRemValidation("Correct");
+          } else {
+            setMoneyRemValidation("Wrong");
+          }
+        } else {
+          if (
+            Number.parseInt(totalMonthlySection7) -
+              Number.parseInt(totalExpensesSection7) ===
+            Number.parseInt(newTotalMoneyRemaining)
+          ) {
+            setMoneyRemValidation("Correct");
+          } else {
+            setMoneyRemValidation("Wrong");
+          }
+        }
+      }
+    }
+  };
+
+  const onSubmit = () => {
+    if (
+      moneyRemValidation === "Correct" &&
+      Number.parseInt(totalMoneyRemaining) > 0
+    ) {
+      setIsSubmitModalShowing((e) => !e);
+    }
+  };
+
+  const onModalClose = () => {
+    const surpriseMoneyRemaining =
+      Number.parseInt(totalMoneyRemaining) + surpriseData.surpriseValue;
+
+    if (isSubmitModalShowing) {
+      setTotalMoneyRemaining(surpriseMoneyRemaining.toString());
+      setIsSurpriseVisible(true);
+      setIsSubmitModalShowing((e) => !e);
+
+      validateTotalMoneyRemaining(surpriseMoneyRemaining);
+    }
+  };
+
+  const finalSubmit = () => {
+    const surpriseMoneyRemaining =
+      Number.parseInt(totalMoneyRemaining) + surpriseData.surpriseValue;
+
+    if (surpriseMoneyRemaining > 0) {
+    } else if (surpriseMoneyRemaining < 0) {
+    }
+  };
+
+  useEffect(() => {
+    const randomSurprise: SurpriseCardType = getRandomItemFromArray(
+      SurpriseCard
+    );
+    setSurpriseData(randomSurprise);
+  }, []);
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -358,9 +436,33 @@ const FinanceProfile = () => {
             setTotalMonthlyIncome={setTotalMonthlyIncome}
             totalExpenses={totalExpenses}
             setTotalExpenses={setTotalExpenses}
+            isSurpriseVisible={isSurpriseVisible}
+            setIsSurpriseVisible={setIsSurpriseVisible}
+            surpriseValue={surpriseData ? surpriseData.surpriseValue : 0}
+            validateTotalMoneyRemaining={validateTotalMoneyRemaining}
           />
+          {isSurpriseVisible ? "TRUE" : "FALSE"}
+          <div className="pt-4">
+            <Button
+              label="Submit"
+              backgroundColor="green"
+              textColor="white"
+              onClick={onSubmit}
+              // disabled={Number.parseInt(totalMoneyRemaining) < 0}
+            ></Button>
+          </div>
         </div>
       </div>
+      <Modal
+        id="surprise-modal"
+        isOpen={isSubmitModalShowing}
+        transition={ModalTransition.SCALE}
+      >
+        <SurpriseComponent
+        //close={onModalClose}
+        // surpriseData={surpriseData}
+        />
+      </Modal>
     </div>
   );
 };

@@ -19,6 +19,10 @@ export interface MoneyRemainingTableProps {
   setTotalMonthlyIncome: (totalMonthlyIncome: string) => void;
   totalExpenses: string;
   setTotalExpenses: (totalExpenses: string) => void;
+  isSurpriseVisible: boolean;
+  setIsSurpriseVisible: (isSurpriseVisible: boolean) => void;
+  surpriseValue: number;
+  validateTotalMoneyRemaining: (totalMoneyRemaining: string) => void;
 }
 
 const MoneyRemainingTable = ({
@@ -38,6 +42,10 @@ const MoneyRemainingTable = ({
   setTotalMonthlyIncome,
   totalExpenses,
   setTotalExpenses,
+  isSurpriseVisible,
+  setIsSurpriseVisible,
+  surpriseValue,
+  validateTotalMoneyRemaining,
 }: MoneyRemainingTableProps) => {
   const validateTotalIncome = (newTotalMonthlySection7) => {
     newTotalMonthlySection7 === ""
@@ -52,17 +60,6 @@ const MoneyRemainingTable = ({
       : totalExpenses === newTotalExpensesSection7
       ? setTotalExpenseValidation("Correct")
       : setTotalExpenseValidation("Wrong");
-  };
-  const validateTotalMoneyRemaining = (newTotalMoneyRemaining) => {
-    newTotalMoneyRemaining === ""
-      ? setMoneyRemValidation("")
-      : totalMonthlySection7 + totalExpensesSection7 === ""
-      ? setMoneyRemValidation("")
-      : Number.parseInt(totalMonthlySection7) +
-          Number.parseInt(totalExpensesSection7) ===
-        Number.parseInt(newTotalMoneyRemaining)
-      ? setMoneyRemValidation("Correct")
-      : setMoneyRemValidation("Wrong");
   };
 
   return (
@@ -137,13 +134,23 @@ const MoneyRemainingTable = ({
               </div>
             </td>
           </tr>
+          {isSurpriseVisible === true && (
+            <tr>
+              <td className={"border border-black"}>
+                <p className={"mx-2"}>Surprise Amount</p>
+              </td>
+              <td className={"border border-black"}>
+                <p className={"mx-2"}>{surpriseValue}</p>
+              </td>
+            </tr>
+          )}
           <tr>
             <td className={"border border-black bg-green-300 font-bold"}>
               {" "}
               <p className={"mx-2"}>Total Money Remaining</p>
             </td>
             <td className={"border border-black flex flex-nowrap"}>
-              <p className={"mx-2"}>S.</p>
+              <p className={"mx-2"}>R.</p>
               <div>
                 <input
                   value={totalMoneyRemaining}
