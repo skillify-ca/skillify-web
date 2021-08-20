@@ -2,7 +2,7 @@ import { DiagnosticState } from "../../../redux/diagnosticSlice";
 import { Question } from "../question";
 import { getSkillsForTopic, Skill, Topic } from "../skill";
 
-const PASSING_GRADE = 1.0;
+const PASSING_GRADE = 0.75;
 
 type GradedQuestion = {
   question: Question;
@@ -62,16 +62,6 @@ export const countCorrectAns = (result: Array<string>) => {
       skillCount++;
     }
   return skillCount;
-};
-export const EvidenceSummaryText = (correctAns: number) => {
-  if (correctAns == 3) {
-    summary =
-      "Perfect! Your child has answered every question correctly and is ready to practice this skill at the third grade standard.";
-  } else {
-    summary =
-      "Great work, mistakes are part of the learning journey! Go over these questions with your child and have them re-take the diagnostic once they feel more confident.";
-  }
-  return summary;
 };
 
 export const getGradeLevelForTopic = (
@@ -138,6 +128,7 @@ export const getGradeLevelForTopic = (
   }
 };
 
+//Summary Text is displayed at the end of the Diagnostic Test and success is relative to the user's grade level
 export const getSummaryText = (
   gradeLevel: number,
   inputGradeLevel: number,
@@ -234,6 +225,7 @@ export const getCalculatedGrade = (results: DiagnosticState) => {
   if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "JK/SK") {
     gradeLevel = gradeLevel + 0;
   }
+  //Takes the average grade level for all the topics (addition, subtraction, multiplication, division)
   gradeLevel = Math.round(gradeLevel / 4);
   return gradeLevel;
 };
