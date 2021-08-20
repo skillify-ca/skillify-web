@@ -4,7 +4,7 @@ export interface BuyAPhoneProps {}
 
 export const BuyAPhone = ({}: BuyAPhoneProps) => {
   return (
-    <div className={"mr-24"}>
+    <div className={""}>
       <ServiceHeader
         mainHeader="Buy a Phone"
         imgHeader="/images/smartphone_large.png"

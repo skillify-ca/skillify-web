@@ -1,5 +1,5 @@
 import _, { min } from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
 import IncomeTable from "../components/finance/IncomeTable";
 
@@ -76,12 +76,23 @@ const FinanceProfile = () => {
   const [Doors, setDoors] = useState("");
   const [Cost, setCost] = useState("");
   const [Year, setYear] = useState("");
+  const homeRef = useRef(null);
+  const carRef = useRef(null);
 
   useEffect(() => {
     // Update the document title using the browser API
     const randomProfile = getRndInteger(0, 12);
     setProfileData(financialProfileData[randomProfile]);
   }, []);
+
+  const scrollToHomeSection = () => {
+    console.log("ARE WE SCROLLING????");
+    homeRef.current.scrollIntoView();
+  };
+
+  const scrollToCarSection = () => {
+    carRef.current.scrollIntoView();
+  };
 
   return (
     <div className="h-screen grid grid-cols-5 bg-scroll bg-white">
@@ -126,7 +137,10 @@ const FinanceProfile = () => {
           </div>
         </section>
 
-        <div className={"flex items-center justify-center p-6"}>
+        <div
+          className={"flex items-center justify-center p-6"}
+          onMouseEnter={scrollToHomeSection}
+        >
           <BuyAHome />
         </div>
         <section
@@ -143,7 +157,10 @@ const FinanceProfile = () => {
             Your Ride
           </div>
         </section>
-        <div className={"flex items-center justify-center p-6"}>
+        <div
+          className={"flex items-center justify-center p-6"}
+          onMouseEnter={scrollToCarSection}
+        >
           <BuyACar
             Make={Make}
             setMake={setMake}
@@ -171,7 +188,7 @@ const FinanceProfile = () => {
             Your Cell
           </div>
         </section>
-        <div className={"flex items-center justify-center pl-28"}>
+        <div className={"flex items-center justify-center"}>
           <BuyAPhone />
         </div>
         <section
@@ -213,7 +230,6 @@ const FinanceProfile = () => {
           </p>
         </div>
         <div>
-          <html>scroll-bahavior:smooth</html>
           <SectionOneInput
             isMarried={isMarried}
             setMarriage={setMarriage}
@@ -260,7 +276,7 @@ const FinanceProfile = () => {
             setValueTest={setValueTest}
           ></IncomeTable>
         </div>
-        <div className={"mb-40"}>
+        <div className={"mb-40"} ref={homeRef}>
           <HouseExpensesTable
             housePayment={housePayment}
             setHousePayment={setHousePayment}
@@ -276,7 +292,7 @@ const FinanceProfile = () => {
             setHomeType={setHomeType}
           />
         </div>
-        <div className={"mb-40"}>
+        <div className={"mb-40"} ref={carRef}>
           <CarExpenseTable
             carPayment1={carPayment1}
             setCarPayment1={setCarPayment1}

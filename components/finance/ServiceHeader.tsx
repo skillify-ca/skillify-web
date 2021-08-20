@@ -10,7 +10,7 @@ export const ServiceHeader = ({
   subHeader,
 }: ServiceHeaderProps) => {
   return (
-    <div className="grid grid-cols-2 ">
+    <div className="grid grid-cols-2  ">
       <div className="text-left text-4xl row-span-1 mb-10">
         <div className={"mb-5"}>{mainHeader}</div>
         <div>
