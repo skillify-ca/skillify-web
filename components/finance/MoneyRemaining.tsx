@@ -64,7 +64,7 @@ const MoneyRemainingTable = ({
 
   return (
     <div>
-      <h1 className="sticky top-0 font-bold p-4 bg-green-300 text-white rounded-xl mb-5">
+      <h1 className="sticky top-0 font-bold p-4 bg-green-300 text-white rounded-xl mb-4">
         Section 7: Money remaining after expenses are paid
       </h1>
 

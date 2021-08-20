@@ -11,13 +11,13 @@ export const ServiceHeader = ({
 }: ServiceHeaderProps) => {
   return (
     <div className="grid grid-cols-2  ">
-      <div className="text-left text-4xl row-span-1 mb-10">
-        <div className={"mb-5"}>{mainHeader}</div>
+      <div className="text-left text-4xl row-span-1 mb-12">
+        <div className={"mb-4"}>{mainHeader}</div>
         <div>
           <div className="grid row-start-2  text-base">{subHeader}</div>
         </div>
       </div>
-      <div className={"flex justify-center items-center mb-10"}>
+      <div className={"flex justify-center items-center mb-12"}>
         <img
           src={imgHeader}
           className="grid row-end-1 place-items-end"
