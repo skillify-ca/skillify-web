@@ -82,14 +82,62 @@ const FinanceProfile = () => {
 
   const [isSubmitModalShowing, setIsSubmitModalShowing] = useState(false);
   const [surpriseData, setSurpriseData] = useState<SurpriseCardType>()
+  const [isSurpriseVisible, setIsSurpriseVisible] = useState(false)
+
+  const validateTotalMoneyRemaining = (newTotalMoneyRemaining) => {
+    if (newTotalMoneyRemaining === "") {
+      setMoneyRemValidation("")
+    } else {
+      if (totalMonthlySection7 + totalExpensesSection7 === "") {
+        setMoneyRemValidation("")
+      } else {
+        if (isSurpriseVisible) {
+          if (Number.parseInt(totalMonthlySection7) -
+            Number.parseInt(totalExpensesSection7) +
+            surpriseData.surpriseValue ===
+            Number.parseInt(newTotalMoneyRemaining)) {
+            setMoneyRemValidation("Correct")
+          } else { setMoneyRemValidation("Wrong") }
+        } else {
+          if (Number.parseInt(totalMonthlySection7) -
+            Number.parseInt(totalExpensesSection7) ===
+            Number.parseInt(newTotalMoneyRemaining)) {
+            setMoneyRemValidation("Correct")
+          } else { setMoneyRemValidation("Wrong") }
+        }
+      }
+    }
+  };
 
   const onSubmit = () => {
-    if (moneyRemValidation === "Correct") {
+    if (moneyRemValidation === "Correct" && Number.parseInt(totalMoneyRemaining) > 0) {
       setIsSubmitModalShowing((e) => !e);
     }
   }
 
-  // create new state variable for submit button for isButtonDisabled
+  const onModalClose = () => {
+
+    const surpriseMoneyRemaining = Number.parseInt(totalMoneyRemaining) + surpriseData.surpriseValue
+
+    if (isSubmitModalShowing) {
+      setTotalMoneyRemaining(surpriseMoneyRemaining.toString())
+      setIsSurpriseVisible(true)
+      setIsSubmitModalShowing((e) => !e)
+
+      validateTotalMoneyRemaining(surpriseMoneyRemaining)
+    }
+  }
+
+  const finalSubmit = () => {
+
+    const surpriseMoneyRemaining = Number.parseInt(totalMoneyRemaining) + surpriseData.surpriseValue
+
+    if (surpriseMoneyRemaining > 0) {
+
+    } else if (surpriseMoneyRemaining < 0) {
+
+    }
+  }
 
   useEffect(() => {
     const randomSurprise: SurpriseCardType = getRandomItemFromArray(SurpriseCard);
@@ -253,14 +301,23 @@ const FinanceProfile = () => {
             setTotalMonthlyIncome={setTotalMonthlyIncome}
             totalExpenses={totalExpenses}
             setTotalExpenses={setTotalExpenses}
-          />
+            isSurpriseVisible={isSurpriseVisible}
+            setIsSurpriseVisible={setIsSurpriseVisible}
+            surpriseValue={
+              surpriseData ? surpriseData.surpriseValue : 0
+            }
+            validateTotalMoneyRemaining={validateTotalMoneyRemaining}
 
+
+          />
+          {isSurpriseVisible ? "TRUE" : "FALSE"}
           <div className="pt-4">
             <Button
               label="Submit"
               backgroundColor="green"
               textColor="white"
               onClick={onSubmit}
+            // disabled={Number.parseInt(totalMoneyRemaining) < 0}
             >
             </Button>
           </div>
@@ -272,7 +329,7 @@ const FinanceProfile = () => {
         transition={ModalTransition.SCALE}
       >
         <SurpriseComponent
-          close={onSubmit}
+          close={onModalClose}
           surpriseData={surpriseData} />
       </Modal>
     </div>
@@ -281,6 +338,3 @@ const FinanceProfile = () => {
 
 export default FinanceProfile;
 
-// when surprise is generated, add number to total money remaining
-// if negative (after surprise), disable submit button
-// if positive (after surprise), user can select submit again go to final page

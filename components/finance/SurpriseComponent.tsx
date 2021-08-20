@@ -51,11 +51,3 @@ export const SurpriseComponent = ({
     </div>
   );
 };
-
-// make submit button disabled until total money remaining amount if positive
-
-
-// create function that randomly pulls surprise from table in surprise.ts file
-// store the randomly generated value
-// If new total money remaining is negative -> submit button should be disabled
-// if new total is still positive -> user clicks submit again and goes to next stage
