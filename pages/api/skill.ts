@@ -77,6 +77,7 @@ export function getEmoji(emojiNum: number | null) {
     return "😄";
   }
 }
+//SkillIds must match the ids found in the Skills table on Hasura
 export function getSkillId(skill: Skill) {
   switch (skill) {
     case Skill.ADDITION_SINGLE:
