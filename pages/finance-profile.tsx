@@ -174,7 +174,7 @@ const FinanceProfile = () => {
 
   return (
     <div className="h-screen grid grid-cols-5 bg-scroll bg-white">
-      <div className={"h-full overflow-scroll col-start-1 col-end-4"}>
+      <div className={"overflow-scroll col-start-1 col-end-4"}>
         <header
           className={
             "flex items-center justify-center h-screen mb-12 bg-fixed bg-center bg-cover bg-finance-life"
@@ -207,7 +207,7 @@ const FinanceProfile = () => {
         >
           <div
             className={
-              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+              "h-full w-full flex justify-center items-center p-4 text-2xl text-white bg-purple-400 bg-opacity-30 rounded-xl"
             }
           >
             {" "}
@@ -228,7 +228,7 @@ const FinanceProfile = () => {
         >
           <div
             className={
-              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+              "h-full w-full flex justify-center items-center p-4 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
             }
           >
             {" "}
@@ -294,7 +294,7 @@ const FinanceProfile = () => {
       <div
         style={{ scrollBehavior: "smooth" }}
         className={
-          "h-full overflow-scroll col-start-4 col-end-6 mt-8 bg-gray-100 px-8"
+          "overflow-scroll col-start-4 col-end-6 mt-8 bg-gray-100 px-8"
         }
       >
         <div className={"mb-20 border-4 border-black p-6"}>
