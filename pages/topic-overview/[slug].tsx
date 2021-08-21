@@ -10,20 +10,13 @@ import { Button } from "../../components/ui/Button";
 import { FETCH_TOPIC_OVERVIEW } from "../../graphql/fetchTopicOverview";
 import { userId } from "../../graphql/utils/constants";
 import { getBadgeId } from "../api/badgeHelper";
-import {
-  getEmoji,
-  getSkillId,
-  getSkillsForTopicGrade,
-  Grade,
-  Skill,
-  SkillDescription,
-} from "../api/skill";
+import { getEmoji, getSkillsForTopicGrade, Grade, Unit } from "../api/skill";
 
 const Box = dynamic(() => import("../../components/stories/Box"));
 
-const TopicOverviewPage = ({ slug }) => {
+const TopicOverviewPage = ({}) => {
+  let unit: Unit;
   const [session, user] = useSession();
-  const [grade, setGrade] = useState(Grade.GRADE_1);
   const onGradeChange = (e: any) => {
     setGrade(e.target.value);
   };
@@ -57,7 +50,7 @@ const TopicOverviewPage = ({ slug }) => {
     variables: {
       userId: userId(session),
       badgeId: getBadgeId(slug, gradeNum(grade)),
-      skillId: getSkillsForTopicGrade(slug, grade).map((it) => getSkillId(it)),
+      skillId: unit.skills.map((it) => getSkillId(it)),
     },
   });
 
@@ -110,23 +103,23 @@ const TopicOverviewPage = ({ slug }) => {
   );
   const skillComponent = (
     <div className="flex flex-col gap-8">
-      {getSkillsForTopicGrade(slug, grade).map((skill) => (
+      {unit.skills.map((skill) => (
         <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-8 gap-8">
           <div className="">
             <div className="flex flex-col gap-8">
               <img src="/images/learnPic.png" className="w-96" />
               <p className="text-2xl text-center font-bold flex items-center justify-center bg-blue-200 rounded-2xl">
                 {" "}
-                {SkillDescription(skill)}{" "}
+                {skill.description}
               </p>
             </div>
           </div>
           <div className="flex flex-col sm:w-1/2 gap-8 justify-center">
             <p className="text-4xl font-bold text-blue-900"> LEARN </p>
             <p className="text-xl">
-              Learn to <b> {SkillDescription(skill).toLowerCase()}</b> by
-              watching engaging videos and strengthen your knowledge with
-              related math questions in Math Champ's Practice Tracker!
+              Learn to <b> {skill.description.toLowerCase()}</b> by watching
+              engaging videos and strengthen your knowledge with related math
+              questions in Math Champ's Practice Tracker!
             </p>
             <div className="flex gap-8">
               <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
@@ -149,7 +142,7 @@ const TopicOverviewPage = ({ slug }) => {
                 data.user_skills.length !== 0 &&
                 getEmoji(
                   data.user_skills.filter(
-                    (it) => it.skill_id == getSkillId(skill)
+                    (it) => it.skill_id == skill.id
                   )[0].emoji
                 )}{" "}
             </p>{" "}
