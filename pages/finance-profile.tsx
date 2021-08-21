@@ -292,6 +292,7 @@ const FinanceProfile = () => {
       </div>
 
       <div
+        style={{ scrollBehavior: "smooth" }}
         className={
           "h-full overflow-scroll col-start-4 col-end-6 mt-8 bg-gray-100 px-8"
         }
