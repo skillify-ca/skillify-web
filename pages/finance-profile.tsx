@@ -79,8 +79,10 @@ const FinanceProfile = () => {
   const [Cost, setCost] = useState("");
   const [Year, setYear] = useState("");
 
+  const lifeRef = useRef(null);
   const homeRef = useRef(null);
   const carRef = useRef(null);
+  const additionalRef = useRef(null);
 
   const [isSubmitModalShowing, setIsSubmitModalShowing] = useState(false);
   const [surpriseData, setSurpriseData] = useState<SurpriseCardType>();
@@ -163,6 +165,10 @@ const FinanceProfile = () => {
     setProfileData(financialProfileData[randomProfile]);
   }, []);
 
+  const scrollToLifeSection = () => {
+    lifeRef.current.scrollIntoView();
+  };
+
   const scrollToHomeSection = () => {
     console.log("ARE WE SCROLLING????");
     homeRef.current.scrollIntoView();
@@ -170,6 +176,10 @@ const FinanceProfile = () => {
 
   const scrollToCarSection = () => {
     carRef.current.scrollIntoView();
+  };
+
+  const scrollToAdditionalSection = () => {
+    additionalRef.current.scrollIntoView();
   };
 
   return (
@@ -189,7 +199,10 @@ const FinanceProfile = () => {
           </div>
         </header>
         {profileData && (
-          <div className={"flex items-center justify-center p-20"}>
+          <div
+            className={"flex items-center justify-center p-20"}
+            onMouseEnter={scrollToLifeSection}
+          >
             <FinanceProfileChart
               individualOccupation={profileData.individualOccupation}
               individualSalary={profileData.individualSalary}
@@ -266,7 +279,10 @@ const FinanceProfile = () => {
             Your Cell
           </div>
         </section>
-        <div className={"flex items-center justify-center"}>
+        <div
+          className={"flex items-center justify-center"}
+          onMouseEnter={scrollToAdditionalSection}
+        >
           <BuyAPhone />
         </div>
         <section
@@ -283,7 +299,10 @@ const FinanceProfile = () => {
             Your Food
           </div>
         </section>
-        <div className={"flex items-center justify-center pl-28 mt-10"}>
+        <div
+          className={"flex items-center justify-center pl-28 mt-10"}
+          onMouseEnter={scrollToAdditionalSection}
+        >
           <BuyGroceries />
         </div>
         <div className={"flex items-center justify-center pt-6 mt-10"}>
@@ -307,7 +326,7 @@ const FinanceProfile = () => {
             get started!
           </p>
         </div>
-        <div>
+        <div ref={lifeRef}>
           <SectionOneInput
             isMarried={isMarried}
             setMarriage={setMarriage}
@@ -386,7 +405,7 @@ const FinanceProfile = () => {
             setSumValidationCar={setSumValidationCar}
           />
         </div>
-        <div className={"mb-40"}>
+        <div className={"mb-40"} ref={additionalRef}>
           <AdditionalTable
             tvInternet={tvInternet}
             setTvInternet={setTvInternet}
