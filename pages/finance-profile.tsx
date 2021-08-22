@@ -83,6 +83,7 @@ const FinanceProfile = () => {
   const homeRef = useRef(null);
   const carRef = useRef(null);
   const additionalRef = useRef(null);
+  const groceryRef = useRef(null);
 
   const [isSubmitModalShowing, setIsSubmitModalShowing] = useState(false);
   const [surpriseData, setSurpriseData] = useState<SurpriseCardType>();
@@ -166,20 +167,35 @@ const FinanceProfile = () => {
   }, []);
 
   const scrollToLifeSection = () => {
-    lifeRef.current.scrollIntoView({ behavior: "smooth" });
+    lifeRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
   };
 
   const scrollToHomeSection = () => {
-    console.log("ARE WE SCROLLING????");
-    homeRef.current.scrollIntoView({ behavior: "smooth" });
+    homeRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
   };
 
   const scrollToCarSection = () => {
-    carRef.current.scrollIntoView({ behavior: "smooth" });
+    carRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
   };
 
   const scrollToAdditionalSection = () => {
-    additionalRef.current.scrollIntoView({ behavior: "smooth" });
+    additionalRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
   };
 
   return (
@@ -358,20 +374,21 @@ const FinanceProfile = () => {
               <img src={"/images/warning-2-16.png"} />
             </div>
           )}
-        </div>
-        <div className={"mb-40"}>
-          <IncomeTable
-            monthlyIncome={yourMonthlyIncome}
-            setMonthlyIncome={setYourMonthlyIncome}
-            spouseMonthlyIncome={spouseMonthlyIncome}
-            setSpouseMonthlyIncome={setSpouseMounthlyIncome}
-            totalMonthlyIncome={totalMonthlyIncome}
-            setTotalMonthlyIncome={setTotalMonthlyIncome}
-            backgroundColour={backgroundColour}
-            setBackgroundColour={setBackgroundColour}
-            valueTest={valueTest}
-            setValueTest={setValueTest}
-          ></IncomeTable>
+
+          <div className={"mb-40"}>
+            <IncomeTable
+              monthlyIncome={yourMonthlyIncome}
+              setMonthlyIncome={setYourMonthlyIncome}
+              spouseMonthlyIncome={spouseMonthlyIncome}
+              setSpouseMonthlyIncome={setSpouseMounthlyIncome}
+              totalMonthlyIncome={totalMonthlyIncome}
+              setTotalMonthlyIncome={setTotalMonthlyIncome}
+              backgroundColour={backgroundColour}
+              setBackgroundColour={setBackgroundColour}
+              valueTest={valueTest}
+              setValueTest={setValueTest}
+            ></IncomeTable>
+          </div>
         </div>
         <div className={"mb-40"} ref={homeRef}>
           <HouseExpensesTable
