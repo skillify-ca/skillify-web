@@ -81,6 +81,8 @@ const FinanceProfile = () => {
 
   const homeRef = useRef(null);
   const carRef = useRef(null);
+  const phoneRef = useRef(null);
+  const groceryRef = useRef(null);
 
   const [isSubmitModalShowing, setIsSubmitModalShowing] = useState(false);
   const [surpriseData, setSurpriseData] = useState<SurpriseCardType>();
@@ -164,12 +166,19 @@ const FinanceProfile = () => {
   }, []);
 
   const scrollToHomeSection = () => {
-    console.log("ARE WE SCROLLING????");
     homeRef.current.scrollIntoView();
   };
 
   const scrollToCarSection = () => {
     carRef.current.scrollIntoView();
+  };
+
+  const scrollToPhoneSection = () => {
+    phoneRef.current.scrollIntoView();
+  };
+
+  const scrollToGrocerySection = () => {
+    groceryRef.current.scrollIntoView();
   };
 
   return (
@@ -266,7 +275,10 @@ const FinanceProfile = () => {
             Your Cell
           </div>
         </section>
-        <div className={"flex items-center justify-center"}>
+        <div
+          className={"flex items-center justify-center"}
+          onMouseEnter={scrollToPhoneSection}
+        >
           <BuyAPhone />
         </div>
         <section
@@ -283,7 +295,10 @@ const FinanceProfile = () => {
             Your Food
           </div>
         </section>
-        <div className={"flex items-center justify-center pl-28 mt-10"}>
+        <div
+          className={"flex items-center justify-center pl-28 mt-10"}
+          onMouseEnter={scrollToGrocerySection}
+        >
           <BuyGroceries />
         </div>
         <div className={"flex items-center justify-center pt-6 mt-10"}>
@@ -386,7 +401,8 @@ const FinanceProfile = () => {
             setSumValidationCar={setSumValidationCar}
           />
         </div>
-        <div className={"mb-40"}>
+        <div className={"mb-40"} ref={phoneRef}>
+          <div ref={groceryRef}></div>{" "}
           <AdditionalTable
             tvInternet={tvInternet}
             setTvInternet={setTvInternet}
