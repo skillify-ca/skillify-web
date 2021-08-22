@@ -41,7 +41,9 @@ const IncomeTable = ({
   return (
     <div>
       {" "}
-      <h1 className={"mb-2"}>Section 2: Income</h1>
+      <h1 className="sticky top-0 font-bold p-4 bg-green-300 text-white rounded-xl mb-5">
+        Section 2: Income
+      </h1>
       <p>If married, add up your incomes in this section and put the</p>
       <p className={"mb-1"}>
         total in Box C. If you are single, you will only have one income.
