@@ -166,20 +166,20 @@ const FinanceProfile = () => {
   }, []);
 
   const scrollToLifeSection = () => {
-    lifeRef.current.scrollIntoView();
+    lifeRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const scrollToHomeSection = () => {
     console.log("ARE WE SCROLLING????");
-    homeRef.current.scrollIntoView();
+    homeRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const scrollToCarSection = () => {
-    carRef.current.scrollIntoView();
+    carRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const scrollToAdditionalSection = () => {
-    additionalRef.current.scrollIntoView();
+    additionalRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
