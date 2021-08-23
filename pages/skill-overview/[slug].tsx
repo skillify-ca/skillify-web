@@ -5,8 +5,9 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import Navbar from "../../components/Navbar";
+import { FETCH_SKILL_DESCRIPTION } from "../../graphql/fetchSkillDescription";
 import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
-import { userId } from "../../graphql/utils/constants";
+import { SKILLS, userId } from "../../graphql/utils/constants";
 import {
   getEmoji,
   getPracticeCardForSkill,
@@ -15,7 +16,7 @@ import {
 } from "../api/skill";
 import { getVideosForSkill } from "../api/videoHelper";
 
-const SkillOverviewPage = ({ slug }) => {
+const SkillOverviewPage = ({ slug, description }) => {
   const [session] = useSession();
   const { loading, data } = useQuery(FETCH_USER_EMOJIS, {
     variables: {
@@ -31,17 +32,16 @@ const SkillOverviewPage = ({ slug }) => {
     }
   }, [data]);
 
-  const practiceComponent = SkillDescription(slug) && (
+  const practiceComponent = description && (
     <div>
       <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl pl-4 gap-8 m-8">
         <div className="flex flex-col w-full sm:w-1/2 gap-4 justify-center">
           <p className="text-4xl font-bold text-blue-900"> PRACTICE TIME </p>
           <p className="text-xl">
             Solidify your knowledge by doing the practice questions to see if
-            you can {SkillDescription(slug).toLowerCase()}! You can do the
-            practice as many times as you wish to perfect this skill. If you're
-            stuck on a question, watch the videos above or click on a hint to
-            help you out.
+            you can {description.toLowerCase()}! You can do the practice as many
+            times as you wish to perfect this skill. If you're stuck on a
+            question, watch the videos above or click on a hint to help you out.
           </p>
           <div className="flex gap-8">
             <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
@@ -64,7 +64,7 @@ const SkillOverviewPage = ({ slug }) => {
 
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-architect-blue-200 bg-blue-100 h-screen">
-      <Navbar/>
+      <Navbar />
       <div className="flex flex-row justify-between mt-8 mr-8 ml-8">
         <span className="text-6xl font-semibold text-gray-700">
           {" "}
@@ -124,6 +124,25 @@ export async function getStaticPaths() {
       { params: { slug: "division" } },
     ],
     fallback: true,
+  };
+}
+
+export async function fetchSkillDescription(skillId, description) {
+  const { loading, data } = useQuery(FETCH_SKILL_DESCRIPTION, {
+    variables: {
+      description: description,
+      id: skillId,
+    },
+  });
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    description, // will be passed to the page component as props
   };
 }
 
