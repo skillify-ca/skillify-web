@@ -448,6 +448,19 @@ export function getQuestionTypesForSkill(skill: Skill): QuestionType[] {
     return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
   } else if (skill == Skill.SUBTRACTION_HUNDREDTHS) {
     return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
+  } else if (skill == Skill.MULTIPLICATION_5) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.ARRAY_QUESTION,
+    ];
+  } else if (skill == Skill.DIVIDE_12_EQUALLY) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.LONG_DIVISION_PROBLEM,
+      QuestionType.BINARY_WORD_PROBLEM,
+    ];
   } else {
     return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
   }
