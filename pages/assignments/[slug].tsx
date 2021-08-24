@@ -11,7 +11,6 @@ import dynamic from "next/dynamic";
 import { OrbitControls } from "@react-three/drei";
 import { FETCH_ASSIGNMENT } from "../../graphql/fetchAssignment";
 import QuestionSet from "../../components/stories/QuestionSet";
-import AssignmentQuestionSet from "../../components/stories/AssignmentQuestionComponent";
 import { useRouter } from "next/router";
 
 const Assignment = () => {

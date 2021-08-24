@@ -10,18 +10,16 @@ import { Input } from "../../ui/Input";
 
 export interface WordProblemAddProp {
   autofocus?: boolean;
-  submitGuess?: (guess: GuessData) => void;
   question: Question;
-  showSubmitButton?: boolean;
+  submitGuess?: (guess: GuessData) => void;
 }
 
 /* Addition Word problems are made with a specific template. The template is as follows: (name) has an (itemContainer) of (itemType). 
 Inside there are [randomNumber1] (item1.title) and [randomNumber2] (item2.title). How many (itemType) are in the (itemContainer)? */
 export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
   autofocus = true,
-  submitGuess,
   question,
-  showSubmitButton = true,
+  submitGuess,
   ...props
 }) => {
   const name = question.wordProblem && question.wordProblem.name;
@@ -80,14 +78,12 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
         <img src={noun2.image} width="60px" height="85px" />
         <img src={noun1.image} width="60px" height="85px" />
       </div>
-      {showSubmitButton && (
-        <Button
-          onClick={onSubmit}
-          label="Submit"
-          backgroundColor="blue"
-          textColor="white"
-        />
-      )}
+      <Button
+        onClick={onSubmit}
+        label="Submit"
+        backgroundColor="blue"
+        textColor="white"
+      />
     </div>
   );
 };
