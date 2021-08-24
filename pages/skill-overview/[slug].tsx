@@ -15,9 +15,10 @@ import {
   SkillDescription,
 } from "../api/skill";
 import { getVideosForSkill } from "../api/videoHelper";
-import { GetServerSideProps } from "next";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 const SkillOverviewPage = ({ slug, description }) => {
+  console.log("description", description);
   const [session] = useSession();
   const { loading, data } = useQuery(FETCH_USER_EMOJIS, {
     variables: {
@@ -40,13 +41,14 @@ const SkillOverviewPage = ({ slug, description }) => {
           <p className="text-4xl font-bold text-blue-900"> PRACTICE TIME </p>
           <p className="text-xl">
             Solidify your knowledge by doing the practice questions to see if
-            you can {description.toLowerCase()}! You can do the practice as many
-            times as you wish to perfect this skill. If you're stuck on a
-            question, watch the videos above or click on a hint to help you out.
+            you can {description.skills[0].description}! You can do the practice
+            as many times as you wish to perfect this skill. If you're stuck on
+            a question, watch the videos above or click on a hint to help you
+            out.
           </p>
           <div className="flex gap-8">
             <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
-              <Link href={`/practice/${getPracticeCardForSkill(slug)[0].link}`}>
+              <Link href={`/practice/`}>
                 <button className="disabled:opacity-50 bg-gradient-to-b  border-b-4 rounded-xl active:border-b-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 border border-blue-700 ">
                   Practice Now
                 </button>
@@ -108,46 +110,38 @@ const SkillOverviewPage = ({ slug, description }) => {
   );
 };
 
-export async function getStaticProps({ params }) {
-  return {
-    props: {
-      slug: params.slug,
-    },
-  };
-}
-
 export async function getStaticPaths() {
+  const ids = Array.from(Array(100).keys()).map((element) => {
+    return { params: { slug: element.toString() } };
+  });
+
   return {
-    paths: [
-      { params: { slug: "addition" } },
-      { params: { slug: "subtraction" } },
-      { params: { slug: "multiplication" } },
-      { params: { slug: "division" } },
-    ],
+    paths: ids, //can i use a map function here?? } } // See the "paths" section below
+
     fallback: true,
   };
 }
 
-export interface getServerSideProps {
-  description: string;
-}
-
-export const getServerSideProps = async (skillId, description) => {
-  const { loading, data } = useQuery(FETCH_SKILL_DESCRIPTION, {
-    variables: {
-      id: skillId,
-    },
+export async function getStaticProps({ params }) {
+  const client = new ApolloClient({
+    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
+    cache: new InMemoryCache(),
   });
 
+  const { data } = await client.query({
+    query: FETCH_SKILL_DESCRIPTION,
+    variables: {
+      skillId: params.slug,
+      //how did you know its slug??
+    },
+  });
   if (!data) {
     return {
       notFound: true,
     };
   }
 
-  return {
-    description: { data },
-  };
-};
+  return { props: { description: data } };
+}
 
 export default SkillOverviewPage;
