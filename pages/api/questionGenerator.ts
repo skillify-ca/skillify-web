@@ -556,7 +556,7 @@ function getRandomBinaryQuestion(
     a = getRndInteger(10, 100);
     b = getRndInteger(min, max);
   }
-  const type = types[typeIndex];
+  const type = questionType ? questionType : types[typeIndex];
   return getBinaryQuestion(a, b, operator, type, answerFunction, skill);
 }
 
