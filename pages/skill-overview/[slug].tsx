@@ -15,6 +15,7 @@ import {
   SkillDescription,
 } from "../api/skill";
 import { getVideosForSkill } from "../api/videoHelper";
+import { GetServerSideProps } from "next";
 
 const SkillOverviewPage = ({ slug, description }) => {
   const [session] = useSession();
@@ -127,10 +128,13 @@ export async function getStaticPaths() {
   };
 }
 
-export async function fetchSkillDescription(skillId, description) {
+export interface getServerSideProps {
+  description: string;
+}
+
+export const getServerSideProps = async (skillId, description) => {
   const { loading, data } = useQuery(FETCH_SKILL_DESCRIPTION, {
     variables: {
-      description: description,
       id: skillId,
     },
   });
@@ -142,8 +146,8 @@ export async function fetchSkillDescription(skillId, description) {
   }
 
   return {
-    description, // will be passed to the page component as props
+    description: { data },
   };
-}
+};
 
 export default SkillOverviewPage;
