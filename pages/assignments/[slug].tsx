@@ -40,7 +40,7 @@ const Assignment = () => {
     <div>
       <div className="heropattern-hideout-blue-100 bg-gray-100 h-screen p-4">
         {assignmentResult && assignmentResult.data && (
-          <AssignmentQuestionSet
+          <QuestionSet
             questionData={assignmentResult.data.assignments[0].questions}
             index={index}
             submitGuess={submitGuess}

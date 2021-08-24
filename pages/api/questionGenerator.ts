@@ -396,6 +396,7 @@ function getRandomMultiplicationQuestion(
   }
   return getRandomBinaryQuestion(min, max, "x", multiply, skill);
 }
+
 export function getRandomDivisionQuestion(
   min: number,
   max: number,
