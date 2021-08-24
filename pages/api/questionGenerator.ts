@@ -444,11 +444,9 @@ export function getDivisionQuestion(
       //Answer consists of both the quotient and remainder
       answer = `${quotient},${remainder}`;
     }
-    const type = QuestionType.LONG_DIVISION_PROBLEM;
+
     const text = `${b} / ${a} =`;
-    let quotient = Math.floor(b / a);
-    let remainder = b % a;
-    const answer = `${quotient},${remainder}`;
+   
     return {
       text: text,
       answer: answer,
@@ -470,28 +468,21 @@ export function getDivisionQuestion(
     //undefined unless the QuestionType is BINARY_WORD_PROBLEM
     let wordProblemModel;
 
-  const text = `${product} / ${b} =`;
-  const types = [
-    QuestionType.LONG_DIVISION_PROBLEM,
-    QuestionType.HORIZONTAL_EQUATION,
-    QuestionType.BINARY_WORD_PROBLEM,
-  ];
-  const type = types[getRndInteger(0, types.length)];
-  let wordProblemModel;
+    if (type == QuestionType.BINARY_WORD_PROBLEM) {
+      wordProblemModel = createWordProblemModel("÷");
+    }
+    return {
+      text: text,
+      answer: a.toString(),
+      answerType: AnswerType.NUMBER,
+      questionType: type,
+      operator: "÷",
+      wordProblem: wordProblemModel,
+      skill: skill,
+    };
 
-  if (type == QuestionType.BINARY_WORD_PROBLEM) {
-    wordProblemModel = createWordProblemModel("÷");
+
   }
-  return {
-    text: text,
-    answer: a.toString(),
-    answerType: AnswerType.NUMBER,
-    questionType: type,
-    operator: "÷",
-    wordProblem: wordProblemModel,
-    skill: skill,
-  };
-}
 export function randomize(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -505,7 +496,7 @@ function getRandomBinaryQuestion(
   skill: Skill,
   questionType?: QuestionType
 ): Question {
-  console.log("qtypee", questionType);
+    //Default possible Question Types
   let types = [
     QuestionType.HORIZONTAL_EQUATION,
     QuestionType.BINARY_WORD_PROBLEM,
@@ -520,7 +511,8 @@ function getRandomBinaryQuestion(
     skill == Skill.ADDITION_TENTHS ||
     skill == Skill.SUBTRACTION_TENTHS ||
     skill == Skill.SUBTRACTION_HUNDREDTHS ||
-    skill == Skill.ADDITION_HUNDREDTHS
+    skill == Skill.ADDITION_HUNDREDTHS ||
+    skill == Skill.MULTIPLY_THREE_DIGIT_BY_TENTH
   ) {
     //Binary Word problems don't make much sense for deciaml word problems
     types = [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
@@ -529,6 +521,9 @@ function getRandomBinaryQuestion(
   let typeIndex = getRndInteger(0, types.length);
   let a = getRndInteger(min, max);
   let b = getRndInteger(min, max);
+  if (skill == Skill.MULTIPLY_THREE_DIGIT_BY_TENTH) {
+    b = getRndTenthsDecimal(0.1, 0.9);
+  } 
   if (skill == Skill.ADDITION_TENTHS || skill == Skill.SUBTRACTION_TENTHS) {
     a = getRndTenthsDecimal(min, max);
     b = getRndTenthsDecimal(min, max);
@@ -554,6 +549,7 @@ function getRandomBinaryQuestion(
     a = getRndInteger(10, 100);
     b = getRndInteger(min, max);
   }
+
   const type = types[typeIndex];
   return getBinaryQuestion(a, b, operator, type, answerFunction, skill);
 }
@@ -633,6 +629,11 @@ export function getBinaryQuestion(
     skill == Skill.ADDITION_HUNDREDTHS
   ) {
     ans = answerFunction(Math.max(a, b), Math.min(a, b)).toFixed(2);
+  } else if (
+    skill == Skill.MULTIPLY_THREE_DIGIT_BY_TENTH ||
+    skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH
+  ) {
+     ans = answerFunction(Math.max(a, b), Math.min(a, b)).toFixed(1);
   } else {
     ans = answerFunction(Math.max(a, b), Math.min(a, b)).toString();
   }
