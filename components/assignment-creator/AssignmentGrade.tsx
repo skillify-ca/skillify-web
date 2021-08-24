@@ -1,0 +1,28 @@
+import React from "react";
+import Script from "next/script";
+import { GuessData } from "../../pages/api/guessData";
+
+type AssignmentGradeProps = {
+  guesses: GuessData[];
+  questions: any[];
+};
+
+const AssignmentGrade = ({ guesses, questions }: AssignmentGradeProps) => {
+  return (
+    <div className="grid grid-cols-3 overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
+      <p className="font-bold">Question</p>
+      <p className="font-bold">Guess</p>
+      <p className="font-bold">Answer</p>
+
+      {questions.map((question, index) => (
+        <div className="">
+          <p>{question.text}</p>
+          <p>{question.answer}</p>
+          <p>{guesses[index].guess}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default AssignmentGrade;

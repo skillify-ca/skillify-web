@@ -12,6 +12,8 @@ import { OrbitControls } from "@react-three/drei";
 import { FETCH_ASSIGNMENT } from "../../graphql/fetchAssignment";
 import QuestionSet from "../../components/stories/QuestionSet";
 import { useRouter } from "next/router";
+import { GuessData } from "../api/guessData";
+import AssignmentGrade from "../../components/assignment-creator/AssignmentGrade";
 
 const Assignment = () => {
   const router = useRouter();
@@ -19,6 +21,7 @@ const Assignment = () => {
   console.log("slug", slug);
 
   const [index, setIndex] = useState(0);
+  const [guesses, setGuesses] = useState<GuessData[]>([]);
 
   let assignmentResult = useQuery(FETCH_ASSIGNMENT, {
     variables: {
@@ -31,18 +34,30 @@ const Assignment = () => {
     questions = assignmentResult.data.assignments[0];
   }
 
-  const submitGuess = () => {
+  const submitGuess = (guessData: GuessData) => {
     setIndex(index + 1);
+    console.log(guessData);
+    const newGuesses: GuessData[] = [...guesses];
+    newGuesses.push(guessData);
+    setGuesses(newGuesses);
   };
 
   return (
     <div>
       <div className="heropattern-hideout-blue-100 bg-gray-100 h-screen p-4">
-        {assignmentResult && assignmentResult.data && (
-          <QuestionSet
-            questionData={assignmentResult.data.assignments[0].questions}
-            index={index}
-            submitGuess={submitGuess}
+        {assignmentResult &&
+          assignmentResult.data &&
+          index < assignmentResult.data.assignments[0].questions.length && (
+            <QuestionSet
+              questionData={assignmentResult.data.assignments[0].questions}
+              index={index}
+              submitGuess={submitGuess}
+            />
+          )}
+        {index === assignmentResult.data.assignments[0].questions.length && (
+          <AssignmentGrade
+            guesses={guesses}
+            questions={assignmentResult.data.assignments[0].questions}
           />
         )}
       </div>
