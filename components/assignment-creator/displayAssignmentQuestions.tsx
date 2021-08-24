@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Question } from "../../pages/api/question";
-import AssignmentQuestionSet from "../stories/AssignmentQuestionComponent";
 import QuestionSet from "../stories/QuestionSet";
 import { Button } from "../ui/Button";
 import { QuestionTypeForSkill } from "./assignmentCreationForm";
