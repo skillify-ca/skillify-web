@@ -187,7 +187,7 @@ export function getRandomNumbersQuestion(
     text: text,
     answer: answer.toString(),
     answerType:
-      type == QuestionType.COMPARISON_WORD_PROBLEM
+      type == QuestionType.COMPARISON_NUMBER_PROBLEM
         ? AnswerType.STRING
         : AnswerType.ARRAY,
     questionType: type,
@@ -407,14 +407,15 @@ export function getRandomDivisionQuestion(
     skill == Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT ||
     skill == Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT ||
     skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT ||
-     skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH
+    skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH
   ) {
     a = getRndInteger(1, 10);
     b = getRndInteger(min, max);
     if (skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT) {
       a = getRndInteger(10, 100);
-    }  else if (skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH) {
+    } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH) {
       a = getRndTenthsDecimal(0.1, 0.9);
+    }
   } else {
     a = getRndInteger(min, max);
     b = getRndInteger(min, max);
@@ -448,7 +449,7 @@ export function getDivisionQuestion(
     }
 
     const text = `${b} / ${a} =`;
-   
+
     return {
       text: text,
       answer: answer,
@@ -482,8 +483,6 @@ export function getDivisionQuestion(
       wordProblem: wordProblemModel,
       skill: skill,
     };
-
-
   }
 }
 export function randomize(min: number, max: number) {
@@ -499,7 +498,7 @@ function getRandomBinaryQuestion(
   skill: Skill,
   questionType?: QuestionType
 ): Question {
-    //Default possible Question Types
+  //Default possible Question Types
   let types = [
     QuestionType.HORIZONTAL_EQUATION,
     QuestionType.BINARY_WORD_PROBLEM,
@@ -526,7 +525,7 @@ function getRandomBinaryQuestion(
   let b = getRndInteger(min, max);
   if (skill == Skill.MULTIPLY_THREE_DIGIT_BY_TENTH) {
     b = getRndTenthsDecimal(0.1, 0.9);
-  } 
+  }
   if (skill == Skill.ADDITION_TENTHS || skill == Skill.SUBTRACTION_TENTHS) {
     a = getRndTenthsDecimal(min, max);
     b = getRndTenthsDecimal(min, max);
@@ -635,7 +634,7 @@ export function getBinaryQuestion(
     skill == Skill.MULTIPLY_THREE_DIGIT_BY_TENTH ||
     skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH
   ) {
-     ans = answerFunction(Math.max(a, b), Math.min(a, b)).toFixed(1);
+    ans = answerFunction(Math.max(a, b), Math.min(a, b)).toFixed(1);
   } else {
     ans = answerFunction(Math.max(a, b), Math.min(a, b)).toString();
   }

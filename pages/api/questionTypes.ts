@@ -2,7 +2,7 @@ export enum QuestionType {
   HORIZONTAL_EQUATION = "horizantal equation",
   VERTICAL_EQUATION = "vertical equation",
   BINARY_WORD_PROBLEM = "word problem",
-  COMPARISON_WORD_PROBLEM = "comparison word problem", // rename
+  COMPARISON_NUMBER_PROBLEM = "comparison word problem", // rename
   LONG_DIVISION_PROBLEM = "long division",
   TRUE_OR_FALSE_PROBLEM = "true or false",
   FILL_IN_THE_BLANK_PROBLEM = "fill in the blanks",
