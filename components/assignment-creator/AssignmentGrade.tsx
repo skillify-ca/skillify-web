@@ -16,9 +16,9 @@ const AssignmentGrade = ({ guesses, questions }: AssignmentGradeProps) => {
 
       {questions.map((question, index) => (
         <div className="">
-          <p>{question.text}</p>
-          <p>{question.answer}</p>
-          <p>{guesses[index].guess}</p>
+          <p className="text-red-400">{question.text}</p>
+          <p className="text-blue-400">{guesses[index].guess}</p>
+          <p className="text-green-400">{question.answer}</p>
         </div>
       ))}
     </div>

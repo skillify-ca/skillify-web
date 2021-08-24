@@ -54,12 +54,14 @@ const Assignment = () => {
               submitGuess={submitGuess}
             />
           )}
-        {index === assignmentResult.data.assignments[0].questions.length && (
-          <AssignmentGrade
-            guesses={guesses}
-            questions={assignmentResult.data.assignments[0].questions}
-          />
-        )}
+        {assignmentResult &&
+          assignmentResult.data &&
+          index === assignmentResult.data.assignments[0].questions.length && (
+            <AssignmentGrade
+              guesses={guesses}
+              questions={assignmentResult.data.assignments[0].questions}
+            />
+          )}
       </div>
     </div>
   );
