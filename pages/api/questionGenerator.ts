@@ -70,18 +70,18 @@ export const generateQuestionForSkill = (
     case Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT:
       return getRandomMultiplicationQuestion(100, 1000, skill, questionType);
     case Skill.EQUAL_SHARING_8_ITEMS:
-      return getRandomDivisionQuestion(1, 5, skill);
+      return getRandomDivisionQuestion(1, 5, skill, questionType);
     case Skill.DIVIDE_12_EQUALLY:
-      return getRandomDivisionQuestion(1, 6, skill);
+      return getRandomDivisionQuestion(1, 6, skill, questionType);
     case Skill.DIVIDE_100:
-      return getRandomDivisionQuestion(1, 11, skill);
+      return getRandomDivisionQuestion(1, 11, skill, questionType);
     //All division questions min and maxs are in respect to the dividend
     case Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT:
-      return getRandomDivisionQuestion(10, 100, skill);
+      return getRandomDivisionQuestion(10, 100, skill, questionType);
     case Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT:
-      return getRandomDivisionQuestion(100, 1000, skill);
+      return getRandomDivisionQuestion(100, 1000, skill, questionType);
     case Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT:
-      return getRandomDivisionQuestion(100, 1000, skill);
+      return getRandomDivisionQuestion(100, 1000, skill, questionType);
   }
 };
 
@@ -382,7 +382,10 @@ function getRandomMultiplicationQuestion(
 ) {
   //This function can be used to determine the product of the two numbers passed in as arguments
   const multiply = (a: number, b: number) => a * b;
-  const randomPick = getRndInteger(0, 2);
+  let randomPick = getRndInteger(0, 2);
+  if (questionType === QuestionType.ARRAY_QUESTION) {
+    randomPick = 1;
+  }
   //Conditional to generate Array Multiplication questions
   if (skill == Skill.MULTIPLICATION_5 && randomPick === 1) {
     const a = getRndInteger(1, 6);
@@ -394,13 +397,14 @@ function getRandomMultiplicationQuestion(
     const b = getRndInteger(1, 11);
     return getMultiplicationEqualGroups(a, b, skill);
   }
-  return getRandomBinaryQuestion(min, max, "x", multiply, skill);
+  return getRandomBinaryQuestion(min, max, "x", multiply, skill, questionType);
 }
 
 export function getRandomDivisionQuestion(
   min: number,
   max: number,
-  skill: Skill
+  skill: Skill,
+  questionType?: QuestionType
 ): Question {
   let a;
   let b;
@@ -421,13 +425,14 @@ export function getRandomDivisionQuestion(
     a = getRndInteger(min, max);
     b = getRndInteger(min, max);
   }
-  return getDivisionQuestion(a, b, skill);
+  return getDivisionQuestion(a, b, skill, questionType);
 }
 
 export function getDivisionQuestion(
   a: number,
   b: number,
-  skill: Skill
+  skill: Skill,
+  questionType?: QuestionType
 ): Question {
   if (
     skill == Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT ||
@@ -461,7 +466,6 @@ export function getDivisionQuestion(
     };
   } else {
     const product = a * b;
-
     const text = `${product} / ${b} =`;
     const types = [
       QuestionType.LONG_DIVISION_PROBLEM,
@@ -479,7 +483,7 @@ export function getDivisionQuestion(
       text: text,
       answer: a.toString(),
       answerType: AnswerType.NUMBER,
-      questionType: type,
+      questionType: questionType ? questionType : type,
       operator: "÷",
       wordProblem: wordProblemModel,
       skill: skill,
@@ -552,7 +556,7 @@ function getRandomBinaryQuestion(
     a = getRndInteger(10, 100);
     b = getRndInteger(min, max);
   }
-  const type = types[typeIndex];
+  const type = questionType ? questionType : types[typeIndex];
   return getBinaryQuestion(a, b, operator, type, answerFunction, skill);
 }
 
