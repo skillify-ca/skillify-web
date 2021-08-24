@@ -22,21 +22,25 @@ const DiagnosticTestForm = ({
   };
 
   return (
-    <div className="flex flex-col gap-8 w-full">
-      <div className="flex flex-col items-center bg-white shadow-lg gap-8 rounded-lg p-4">
-        <p className="text-xl font-bold">Math Champ Assessment</p>
-        <div className="flex flex-col gap-4 sm:max-w-2xl">
-          <p>
-            This summative assessment helps you discover your child's level in
-            math. Find out exactly where they have gaps in the Ontario
-            curriculum (if any).
-          </p>
-          <p>
-            At the end of the test we provide you with personalized resources to
-            help your child get better at math no matter what level they are at.
-          </p>
+    <div>
+      {" "}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="flex flex-col items-center bg-white shadow-lg gap-8 rounded-lg p-4">
+          <div className="flex flex-col gap-4 sm:max-w-2xl">
+            <h1 className="text-3xl font-bold">Diagnostic Test</h1>
+            <p>
+              At the end of the test we provide you with personalized resources
+              to help your child get better at math no matter what level they
+              are at.
+            </p>
+            <img
+              className="w-full sm:w-1/2 object-cover rounded-xl"
+              alt="student-image"
+              src="/images/learnPic.png"
+            />
+          </div>
         </div>
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 p-8 items-center justify-center bg-blue-50 shadow-lg rounded-lg">
           <div className="flex flex-col justify-center items-center">
             <p className="font-bold text-gray-700">Grade</p>
             <div className="flex flex-row items-center justify-center w-full gap-4">
@@ -64,39 +68,37 @@ const DiagnosticTestForm = ({
               </div>
             </div>
           </div>
-          <div className="flex gap-8 flex-col sm:flex-row">
-            <div>
-              <p className="font-bold">Adult's Email</p>
-              <input
-                id="guess"
-                type="text"
-                autoComplete="off"
-                className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <p className="font-bold">Student's Name</p>
-              <input
-                id="guess"
-                type="text"
-                autoComplete="off"
-                className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
-                placeholder="First Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
+          <div>
+            <p className="font-bold">Adult's Email</p>
+            <input
+              id="guess"
+              type="text"
+              autoComplete="off"
+              className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
+          <div>
+            <p className="font-bold">Student's Name</p>
+            <input
+              id="guess"
+              type="text"
+              autoComplete="off"
+              className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
+              placeholder="First Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <Button
+            backgroundColor="blue"
+            label="Start"
+            textColor="white"
+            onClick={(e) => onClick(grade)}
+          />
         </div>
-        <Button
-          backgroundColor="blue"
-          label="Start"
-          textColor="white"
-          onClick={(e) => onClick(grade)}
-        />
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "../ui/Button";
 import * as Colyseus from "colyseus.js";
 import { Player } from "../../pages/games";
+import { Modal, ModalTransition } from "react-simple-hook-modal";
 
 export interface CreateRoomProps {
   room: Colyseus.Room;
@@ -20,20 +21,35 @@ const Lobby = ({
   startGame,
   isLoading,
 }: CreateRoomProps) => {
+  const [instructionsPage, setInstructionsPage] = useState(false);
+
+  const onReturnInstructions = () => {
+    setInstructionsPage(true);
+    console.log("hu", instructionsPage);
+  };
+
   return isLoading ? (
-    <p className="text-center text-2xl">Loading...</p>
+    <div className=" flex flex-col justify-center items-center gap-4">
+      <p className="text-center text-2xl">Loading...</p>
+
+      <div className="loader bg-white p-5 rounded-full flex space-x-3">
+        <div className="w-5 h-5 bg-blue-400 shadow-sm rounded-full animate-bounce"></div>
+        <div className="w-5 h-5 bg-blue-400 shadow-sm  rounded-full animate-bounce"></div>
+        <div className="w-5 h-5 bg-blue-400  shadow-sm rounded-full animate-bounce"></div>
+      </div>
+    </div>
   ) : (
-    <div className="flex flex-col items-center gap-8 ">
-      <div className="relative flex flex-col justify-center  bg-gray-100 w-1/2 ">
-        <h1 className="text-3xl font-bold text-blue-400 border-b ">
+    <div className="flex flex-col items-center gap-8">
+      <div className="relative flex flex-col justify-center  bg-gray-100 w-full sm:w-1/2">
+        <h1 className="text-3xl font-bold text-blue-400 border-b p-4">
           Lobby Room
         </h1>
-        {players.map((it) => (
-          <div className="bg-blue-400 opacity-75 text-center items-center">
-            <h1 className="text-xl font-bold border-b opacity-100">
-              {it.name}
-              {leader == it.sessionId && (
-                <div>
+        <div className="bg-blue-400 opacity-75 text-center items-center">
+          {players.map((it) => (
+            <div className="text-xl font-bold border-b opacity-100 flex items-center justify-center p-4">
+              <h1>{it.name}</h1>
+              {leader && leader == it.sessionId && (
+                <div className="ml-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5  w-5 text-center"
@@ -44,14 +60,21 @@ const Lobby = ({
                   </svg>
                 </div>
               )}
-            </h1>
-          </div>
-        ))}
-        <p className="bg-gray-500 text-white font-bold">Code: {code}</p>
-        <p className="bg-gray-500 text-white font-bold">
+            </div>
+          ))}
+        </div>
+
+        <p className="bg-gray-500 text-white font-bold p-2">Code: {code}</p>
+        <p className="bg-gray-500 text-white font-bold p-2">
           Lobby Capacity: {players.length}/4
         </p>
       </div>
+      <Button
+        label="Instructions"
+        backgroundColor="green"
+        textColor="White"
+        onClick={onReturnInstructions}
+      ></Button>
       {players.length === 1 ? (
         <div className="flex flex-col gap-4">
           <p className="font-bold text-blue-400 text-xl">
@@ -90,7 +113,43 @@ const Lobby = ({
           )}
         </div>
       )}
+      <Modal
+        id="game-over-model"
+        isOpen={instructionsPage}
+        transition={ModalTransition.SCALE}
+      >
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-row-reverse">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              onClick={() => setInstructionsPage(false)}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
+          <div className="flex flex-col">
+            <p className="font-bold text-xl text-green-400 text-center">
+              Instructions
+            </p>
+          </div>
+          <p className="mt-2 text-xl leading-8  tracking-tight text-gray-900 ">
+            Battle Against your Friends by displaying your Math Skills to see
+            who has the better time! But be careful, there is a time penalty for
+            wrongly answered Questions!
+          </p>
+        </div>
+      </Modal>
     </div>
   );
 };
+
 export default Lobby;

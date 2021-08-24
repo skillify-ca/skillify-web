@@ -11,6 +11,7 @@ export const generateQuestions = (
   if (slug != null) {
     let skill = [];
     if (slug.toLowerCase() == "numbers") {
+      //Currently there are no skills for the Numbers topic for grades 4-6
       switch (currentLevel) {
         case 1:
           skill = [Skill.NUMBERS_50];
@@ -80,6 +81,7 @@ export const generateQuestions = (
           skill = [Skill.MULTIPLICATION_10];
           break;
         case 4:
+          //Grade 4 multiplication has 4 skills and the quiz must consist all of them
           skill = [
             Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT,
             Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT,

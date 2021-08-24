@@ -55,38 +55,37 @@ const CoopBattleComponent = ({
     }
   };
   return (
-    <div className="heropattern-boxes-green-400 bg-gray-900">
-      <div className="flex flex-row items-start justify-center h-36 bg-green-200 w-1/3 gap-8">
-        <div className="flex flex-col items-center gap-4">
-          <ProgressRing percentage={health} radius={24} unit={""} />
-          <p className="text-xl font-bold mb-8">Health</p>
-        </div>
-        <div className="h-16">
-          <img className="h-36" src="/images/CoopCartoon.jpeg " />
-        </div>
-
+    <div className="heropattern-boxes-green-800 bg-gray-300 grid grid-cols-1 sm:grid-cols-2">
+      <div className="flex flex-wrap justify-content items-center bg-green-200 gap-8 p-8">
         <div
-          className={!punchingAnimationVisibility ? "h-16 animate-hit" : ""}
+          className={!punchingAnimationVisibility ? "animate-shake" : ""}
           onAnimationEnd={() => setPunchingAnimationVisibility(true)}
         >
-          <div
-            className={
-              !punchingAnimationVisibility ? "opacity-100" : "opacity-0"
-            }
-          >
-            <img className="h-20 rotate-90" src="/images/punch.png" />
+          <div className="flex flex-col items-center gap-4 bg-white rounded-xl shadow-xl p-8">
+            <ProgressRing percentage={health} radius={24} unit={""} />
+            <p className="text-xl font-bold mb-8">Health</p>
+          </div>
+        </div>
+        <div
+          className={!punchingAnimationVisibility ? "animate-shake" : ""}
+          onAnimationEnd={() => setPunchingAnimationVisibility(true)}
+        >
+          <div className="flex items-center gap-4 bg-white rounded-xl shadow-xl p-8">
+            <img className="h-36" src="/images/CoopCartoon.jpeg " />
           </div>
         </div>
       </div>
-      <QuestionSet
-        title={"Battle"}
-        HUDEnabled={false}
-        questionData={questions}
-        index={index}
-        inputElement={inputElement}
-        submitGuess={submitGuess}
-        score={1}
-      />
+      <div className="col-span-1">
+        <QuestionSet
+          title={"Battle"}
+          HUDEnabled={false}
+          questionData={questions}
+          index={index}
+          inputElement={inputElement}
+          submitGuess={submitGuess}
+          score={1}
+        />
+      </div>
     </div>
   );
 };
