@@ -12,13 +12,13 @@ import {
   getEmoji,
   getPracticeCardForSkill,
   getSkillId,
+  Skill,
   SkillDescription,
 } from "../api/skill";
 import { getVideosForSkill } from "../api/videoHelper";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
-const SkillOverviewPage = ({ slug, description }) => {
-  console.log("description", description);
+const SkillOverviewPage = ({ slug, description, videos }) => {
   const [session] = useSession();
   const { loading, data } = useQuery(FETCH_USER_EMOJIS, {
     variables: {
@@ -89,9 +89,10 @@ const SkillOverviewPage = ({ slug, description }) => {
       <div className="bg-white shadow-lg flex-col p-2 rounded-lg m-8">
         <p className="text-lg text-blue-900">Videos </p>
       </div>
+
       <div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mr-8 ml-8 items-center">
-          {getVideosForSkill(slug).map((resource) => (
+          {videos.map((resource) => (
             <iframe
               width="560"
               height="500"
@@ -128,6 +129,8 @@ export async function getStaticProps({ params }) {
     cache: new InMemoryCache(),
   });
 
+  const videos = getVideosForSkill(Number.parseInt(params.slug));
+
   const { data } = await client.query({
     query: FETCH_SKILL_DESCRIPTION,
     variables: {
@@ -141,7 +144,7 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  return { props: { description: data } };
+  return { props: { description: data, videos: videos } };
 }
 
 export default SkillOverviewPage;
