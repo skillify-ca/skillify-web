@@ -406,13 +406,15 @@ export function getRandomDivisionQuestion(
   if (
     skill == Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT ||
     skill == Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT ||
-    skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT
+    skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT ||
+     skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH
   ) {
     a = getRndInteger(1, 10);
     b = getRndInteger(min, max);
     if (skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT) {
       a = getRndInteger(10, 100);
-    }
+    }  else if (skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH) {
+      a = getRndTenthsDecimal(0.1, 0.9);
   } else {
     a = getRndInteger(min, max);
     b = getRndInteger(min, max);
@@ -483,6 +485,7 @@ export function getDivisionQuestion(
 
 
   }
+}
 export function randomize(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -549,7 +552,6 @@ function getRandomBinaryQuestion(
     a = getRndInteger(10, 100);
     b = getRndInteger(min, max);
   }
-
   const type = types[typeIndex];
   return getBinaryQuestion(a, b, operator, type, answerFunction, skill);
 }
