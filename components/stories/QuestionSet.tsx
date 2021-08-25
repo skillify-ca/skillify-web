@@ -272,7 +272,7 @@ const QuestionSet = ({
   };
 
   return (
-    <div className="flex flex-col justify-center items-center gap-4 m-8">
+    <div className="flex flex-col justify-center items-center gap-4">
       <Card size="large">
         <div
           className={`transition-opacity duration-150 ease-in-out opacity-${

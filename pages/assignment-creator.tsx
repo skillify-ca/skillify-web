@@ -84,6 +84,8 @@ const Diagnostic = () => {
           onSubmit={confirmAssignment}
           questions={questions}
           setQuestions={setQuestions}
+          selectedSkills={selectedSkills}
+          setSelectedSkills={setSelectedSkills}
         />
       );
       break;
@@ -93,11 +95,7 @@ const Diagnostic = () => {
 
       break;
   }
-  return (
-    <div className="bg-blue-100">
-      {component}
-    </div>
-  );
+  return <div className="bg-blue-100">{component}</div>;
 };
 
 export default Diagnostic;
