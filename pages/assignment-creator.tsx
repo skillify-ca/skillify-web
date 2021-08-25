@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "../redux/store";
-import { Grade, Skill, Topic } from "./api/skill";
+import { getSkillFromId, Grade, Skill, Topic } from "./api/skill";
 import AssignmentCreationForm, {
+  QuestionCount,
   QuestionTypeForSkill,
 } from "../components/assignment-creator/assignmentCreationForm";
 import Navbar from "../components/Navbar";
@@ -28,7 +29,16 @@ const Diagnostic = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [assignmentId, setAssignmentId] = useState<number>();
 
-  const createAssignment = () => {
+  const createAssignment = (questionCounts: QuestionCount[]) => {
+    const newQuestions: Skill[] = [];
+    for (let index = 0; index < questionCounts.length; index++) {
+      const element = questionCounts[index];
+      for (let y = 0; y < element.value; y++) {
+        const skill = getSkillFromId(element.key);
+        newQuestions.push(skill);
+      }
+    }
+    setSelectedQuestions(newQuestions);
     setStage(STAGE.CHOOSE_QUESTION_TYPES);
   };
 
@@ -55,13 +65,7 @@ const Diagnostic = () => {
   let component;
   switch (stage) {
     case STAGE.CHOOSE_SKILLS:
-      component = (
-        <AssignmentCreationForm
-          onClick={createAssignment}
-          selectedQuestions={selectedQuestions}
-          setSelectedQuestions={setSelectedQuestions}
-        />
-      );
+      component = <AssignmentCreationForm onClick={createAssignment} />;
       break;
     case STAGE.CHOOSE_QUESTION_TYPES:
       component = (
@@ -90,10 +94,8 @@ const Diagnostic = () => {
       break;
   }
   return (
-    <div className="flex flex-col bg-scroll bg-blue-100 h-screen overflow-auto">
-      <div className="p-4 flex flex-col items-center justify-center">
-        {component}
-      </div>
+    <div className="bg-blue-100">
+      {component}
     </div>
   );
 };

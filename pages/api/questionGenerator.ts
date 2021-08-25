@@ -569,7 +569,7 @@ export function getBinaryQuestion(
   skill: Skill
 ): Question {
   let text;
-  let trueFalseAnswer;
+  let trueFalseAnswer: string;
   const type = questionType;
   let multipleChoiceModel;
 
@@ -582,7 +582,7 @@ export function getBinaryQuestion(
           a,
           b
         )} = ${answerFunction(Math.max(a, b), Math.min(a, b))}`;
-        trueFalseAnswer = true;
+        trueFalseAnswer = "true";
         break;
       case 1:
         let randomDisplacement = randomize(-2, 3);
@@ -592,7 +592,7 @@ export function getBinaryQuestion(
         text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${
           answerFunction(Math.max(a, b), Math.min(a, b)) + randomDisplacement
         }`;
-        trueFalseAnswer = false;
+        trueFalseAnswer = "false";
         break;
     }
   } // MC question Generation logic

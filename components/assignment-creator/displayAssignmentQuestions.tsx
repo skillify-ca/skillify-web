@@ -33,7 +33,7 @@ const DisplayAssignmentQuestions = ({
   console.log(questions);
   return (
     <div className="">
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 justify-center gap-8">
+      <div className="flex flex-wrap justify-center gap-8">
         {questions.map((question, index) => (
           <div>
             <p className="text-xl"> {question.skill}</p>
