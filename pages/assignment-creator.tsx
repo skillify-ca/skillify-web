@@ -74,8 +74,6 @@ const Diagnostic = () => {
           selectedSkills={selectedSkills}
           setSelectedSkills={setSelectedSkills}
           onClick={customizeAssignment}
-          questions={questions}
-          setQuestions={setQuestions}
         />
       );
       break;
