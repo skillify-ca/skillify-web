@@ -1,3 +1,4 @@
+import { Question } from "../../pages/api/question";
 import { generateQuestionForSkill } from "../../pages/api/questionGenerator";
 import { QuestionType } from "../../pages/api/questionTypes";
 import { Skill } from "../../pages/api/skill";
@@ -5,7 +6,7 @@ import { Skill } from "../../pages/api/skill";
 export const generateAssignmentQuestions = (
   skillStr: string,
   questionType?: QuestionType
-) => {
+): Question => {
   let skill: Skill;
   if (skillStr == "add-one-digit") {
     skill = Skill.ADDITION_SINGLE;
