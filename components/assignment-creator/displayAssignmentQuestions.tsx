@@ -93,8 +93,8 @@ const DisplayAssignmentQuestions = ({
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
         {questions.map((question, index) => (
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col">
+          <div className="flex flex-col gap-4 bg-blue-200 p-4">
+            <div className="flex flex-col items-center">
               <p className="font-bold">Question #{index + 1}:</p>
               <p className="text-lg">
                 I can {SkillDescription(question.skill)}
@@ -102,24 +102,24 @@ const DisplayAssignmentQuestions = ({
             </div>
             <div className="flex justify-between items-center">
               <div id="dropdown" className="flex flex-col">
-                  <select
-                    value={questionTypes[index] && questionTypes[index]}
-                    onChange={(e) =>
-                      onQuestionTypeChange(
-                        e.target.value as QuestionType,
-                        question.skill,
-                        index
-                      )
-                    }
-                    multiple={false}
-                    className="border border-gray-300 rounded-full text-gray-600 h-10 px-4 bg-white hover:border-gray-400 focus:outline-none appearance-none"
-                  >
-                    {getQuestionTypesForSkill(question.skill).map(
-                      (questionType) => (
-                        <option>{questionType}</option>
-                      )
-                    )}
-                  </select>
+                <select
+                  value={questionTypes[index] && questionTypes[index]}
+                  onChange={(e) =>
+                    onQuestionTypeChange(
+                      e.target.value as QuestionType,
+                      question.skill,
+                      index
+                    )
+                  }
+                  multiple={false}
+                  className="border border-gray-300 rounded-full text-gray-600 h-10 px-4 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+                >
+                  {getQuestionTypesForSkill(question.skill).map(
+                    (questionType) => (
+                      <option>{questionType}</option>
+                    )
+                  )}
+                </select>
               </div>
               <div className="cursor-pointer p-2 rounded-xl text-white bg-blue-600 hover:bg-blue-700">
                 <div className="flex gap-4 items-center">
@@ -138,13 +138,11 @@ const DisplayAssignmentQuestions = ({
                 </div>
               </div>
             </div>{" "}
-            <div className="grid grid-cols-1 sm:grid-cols-2 py-4 gap-4">
-              <QuestionSet
-                questionData={questions}
-                index={index}
-                submitGuess={() => {}}
-              />
-            </div>
+            <QuestionSet
+              questionData={questions}
+              index={index}
+              submitGuess={() => {}}
+            />
           </div>
         ))}
       </div>
