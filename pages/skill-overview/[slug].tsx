@@ -48,7 +48,7 @@ const SkillOverviewPage = ({ slug, description }) => {
           </p>
           <div className="flex gap-8">
             <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
-              <Link href={`/practice/`}>
+            <Link href={`/practice/${slug}`}>
                 <button className="disabled:opacity-50 bg-gradient-to-b  border-b-4 rounded-xl active:border-b-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 border border-blue-700 ">
                   Practice Now
                 </button>
@@ -141,7 +141,7 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  return { props: { description: data } };
+  return { props: { description: data,  slug: params.slug} };
 }
 
 export default SkillOverviewPage;
