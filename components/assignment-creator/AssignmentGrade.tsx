@@ -8,17 +8,27 @@ type AssignmentGradeProps = {
 };
 
 const AssignmentGrade = ({ guesses, questions }: AssignmentGradeProps) => {
+  const getTextColour = (answer, guess) => {
+    if (answer === guess) {
+      return "text-green-400";
+    } else {
+      return "text-red-400";
+    }
+  };
   return (
-    <div className="grid grid-cols-3 overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
-      <p className="font-bold">Question</p>
-      <p className="font-bold">Guess</p>
-      <p className="font-bold">Answer</p>
-
+    <div className="bg-white grid grid-cols-3">
+      <div className="p-4 col-span-3 grid grid-cols-3 border-b-2">
+        <p className="font-bold">Question</p>
+        <p className="font-bold">Guess</p>
+        <p className="font-bold">Answer</p>
+      </div>
       {questions.map((question, index) => (
         <div className="m-4 col-span-3 grid grid-cols-3">
-          <p className="text-red-400">{question.text}</p>
+          <p className="">{question.text}</p>
           <p className="text-blue-400">{guesses[index].guess}</p>
-          <p className="text-green-400">{question.answer}</p>
+          <p className={getTextColour(question.answer, guesses[index].guess)}>
+            {question.answer}
+          </p>
         </div>
       ))}
     </div>
