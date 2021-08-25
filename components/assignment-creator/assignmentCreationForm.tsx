@@ -11,7 +11,8 @@ import {
   Topic,
 } from "../../pages/api/skill";
 import { Button } from "../ui/Button";
-import Checkbox from "../ui/Checkbox";
+import Image from "next/image";
+import GoogleClassroomImage from ".././../public/images/assignments/google-classroom.svg";
 
 export type QuestionTypeForSkill = {
   questionType: QuestionType;
@@ -78,8 +79,11 @@ const AssignmentCreationForm = ({
     <div className="">
       <div className="heropattern-jigsaw-blue-700 bg-blue-900 shadow-lg flex-col text-center p-8">
         <p className="text-5xl text-white">Assignment Generator</p>
-        <p className="text-xl text-white">
-          Create customizable assignments for your Google Classroom.
+        <p className="text-xl text-white flex gap-4 items-center justify-center">
+          Create customizable assignments for your Google Classroom{" "}
+          <span className="items-center flex flex-col">
+            <Image src={GoogleClassroomImage} height="24" width="24" />
+          </span>
         </p>
       </div>
       <div className="gap-4 mb-4">
