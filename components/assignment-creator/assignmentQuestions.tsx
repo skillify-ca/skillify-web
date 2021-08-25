@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { generateQuestionForSkill } from "../../pages/api/questionGenerator";
 import { QuestionType } from "../../pages/api/questionTypes";
-import { getQuestionTypesForSkill, Skill } from "../../pages/api/skill";
+import { getQuestionTypesForSkill, Skill, SkillDescription } from "../../pages/api/skill";
 import { Button } from "../ui/Button";
 import Checkbox from "../ui/Checkbox";
 import { QuestionTypeForSkill } from "./assignmentCreationForm";
@@ -64,10 +64,10 @@ const AssignmentQuestions = ({
   return (
     <div className="flex flex-col gap-8 w-full">
       {selectedQuestions.map((skill, index) => (
-        <div>
+        <div className="flex flex-col">
           {" "}
-          {skill}
-          {index}
+          <p>Question #{index}:{" "}</p>
+          {SkillDescription(skill)}
           <select
             value={selectedSkills[index] && selectedSkills[index].questionType}
             onChange={(e) =>
