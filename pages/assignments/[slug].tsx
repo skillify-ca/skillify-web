@@ -14,6 +14,7 @@ import QuestionSet from "../../components/stories/QuestionSet";
 import { useRouter } from "next/router";
 import { GuessData } from "../api/guessData";
 import AssignmentGrade from "../../components/assignment-creator/AssignmentGrade";
+import Navbar from "../../components/Navbar";
 
 const Assignment = () => {
   const router = useRouter();
@@ -44,6 +45,7 @@ const Assignment = () => {
 
   return (
     <div>
+      <Navbar/>
       <div className="heropattern-hideout-blue-100 bg-gray-100 h-screen p-4">
         {assignmentResult &&
           assignmentResult.data &&
