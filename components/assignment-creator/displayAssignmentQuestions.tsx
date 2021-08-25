@@ -51,6 +51,20 @@ const DisplayAssignmentQuestions = ({
     setQuestions(newQuestions);
   }, []);
 
+  const refreshQuestion = (index) => {
+    const newQuestions: Question[] = questions.map((it, i) => {
+      if (index === i) {
+        return generateAssignmentQuestions(
+          assignmentSkills[i],
+          questionTypes[i]
+        );
+      } else {
+        return it;
+      }
+    });
+    setQuestions(newQuestions);
+  };
+
   // just updates questiontype for the skill you changed in the array, not the other ones
   const onQuestionTypeChange = (
     newQuestionType: QuestionType,
@@ -121,7 +135,10 @@ const DisplayAssignmentQuestions = ({
                   )}
                 </select>
               </div>
-              <div className="cursor-pointer p-2 rounded-xl text-white bg-blue-600 hover:bg-blue-700">
+              <div
+                onClick={(e) => refreshQuestion(index)}
+                className="cursor-pointer p-2 rounded-xl text-white bg-blue-600 hover:bg-blue-700"
+              >
                 <div className="flex gap-4 items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
