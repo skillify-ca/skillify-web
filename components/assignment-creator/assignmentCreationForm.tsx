@@ -86,8 +86,8 @@ const AssignmentCreationForm = ({
           </span>
         </p>
       </div>
-      <div className="gap-4 mb-4">
-        <div className="flex flex-col gap-4 bg-white shadow-lg p-4">
+      <div className="gap-4">
+        <div className="flex flex-col gap-8 bg-white shadow-lg p-4">
           <div className="flex flex-col justify-center items-center">
             <p className="font-bold text-xl text-gray-700">Grade</p>
             <div className="flex flex-row items-center justify-center w-full gap-4">
@@ -125,7 +125,7 @@ const AssignmentCreationForm = ({
           </p>
           <div className="grid grid-cols-2 gap-4">
             {unitData.map((it) => (
-              <div className={`p-4 ${it.backgroundColour}`}>
+              <div className={`p-4 shadow-md ${it.backgroundColour}`}>
                 <p className="font-bold">{it.title}</p>
                 <div className="flex flex-col gap-4">
                   {getSkillsForTopicGrade(it.unit, grade as Grade).map(
@@ -135,7 +135,7 @@ const AssignmentCreationForm = ({
                           <p>I can {SkillDescription(skill)}</p>
                           <input
                             type={"number"}
-                            className={"p-2 bg-gray-100 rounded-md w-full"}
+                            className={"p-2 bg-white rounded-md w-full"}
                             value={
                               questionCounts.filter(
                                 (it) => it.key === getSkillId(skill)
@@ -156,15 +156,15 @@ const AssignmentCreationForm = ({
               </div>
             ))}
           </div>
+          <div className="flex flex-col items-center">
+            <Button
+              backgroundColor="blue"
+              label="Randomize Questions"
+              textColor="white"
+              onClick={(e) => onClick(questionCounts)}
+            />
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col items-center">
-        <Button
-          backgroundColor="blue"
-          label="Randomize Questions"
-          textColor="white"
-          onClick={(e) => onClick(questionCounts)}
-        />
       </div>
     </div>
   );

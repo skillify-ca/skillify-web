@@ -366,7 +366,7 @@ export function getMultiplicationEqualGroups(
   let text = `${a} x ${b} =`;
   return {
     text: text,
-    answer: (a * b).toString(),
+    answer: `${a} groups of ${b}`,
     answerType: AnswerType.NUMBER,
     questionType: QuestionType.MULTIPLICATION_EQUAL_GROUPS,
     operator: "x",
