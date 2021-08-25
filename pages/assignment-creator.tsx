@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "../redux/store";
-import { getSkillFromId, Grade, Skill, Topic } from "./api/skill";
+import { getSkillFromId, getSkillId, Grade, Skill, Topic } from "./api/skill";
 import AssignmentCreationForm, {
   QuestionCount,
   QuestionTypeForSkill,
@@ -10,45 +10,53 @@ import { Question } from "./api/question";
 import { useMutation } from "@apollo/client";
 import AssignmentConfirmation from "../components/assignment-creator/assignmentConfirmation";
 import { CREATE_ASSIGNMENT } from "../graphql/createAssignment";
-import AssignmentQuestions from "../components/assignment-creator/assignmentQuestions";
 import DisplayAssignmentQuestions from "../components/assignment-creator/displayAssignmentQuestions";
+import { QuestionType } from "./api/questionTypes";
 
 enum STAGE {
   CHOOSE_SKILLS,
   CHOOSE_QUESTION_TYPES,
-  REVIEW,
   CONFIRM,
 }
 
 const Diagnostic = () => {
   const [stage, setStage] = useState(STAGE.CHOOSE_SKILLS);
-  const [selectedQuestions, setSelectedQuestions] = useState<Skill[]>([]);
-  const [selectedSkills, setSelectedSkills] = useState<QuestionTypeForSkill[]>(
-    []
-  );
+  const [skills, setSkills] = useState<Skill[]>([]);
+  const [questionTypes, setQuestionTypes] = useState<QuestionType[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [assignmentId, setAssignmentId] = useState<number>();
+  const getInitialQuestionCounts = () => {
+    const skills = Object.values(Skill).map((skill) => {
+      return { key: getSkillId(skill), value: 0 };
+    });
+
+    return skills;
+  };
+  const [questionCounts, setQuestionCounts] = useState<QuestionCount[]>(
+    getInitialQuestionCounts()
+  );
 
   const createAssignment = (questionCounts: QuestionCount[]) => {
-    const newQuestions: Skill[] = [];
+    const skills: Skill[] = [];
     for (let index = 0; index < questionCounts.length; index++) {
       const element = questionCounts[index];
       for (let y = 0; y < element.value; y++) {
         const skill = getSkillFromId(element.key);
-        newQuestions.push(skill);
+        skills.push(skill);
       }
     }
-    setSelectedQuestions(newQuestions);
+    setQuestionCounts(questionCounts);
+    setSkills(skills);
     setStage(STAGE.CHOOSE_QUESTION_TYPES);
-  };
-
-  const customizeAssignment = () => {
-    setStage(STAGE.REVIEW);
   };
 
   const [insertAssignment, updateCreateAssignmentMutation] = useMutation(
     CREATE_ASSIGNMENT
   );
+
+  const gotoChooseSkills = () => {
+    setStage(STAGE.CHOOSE_SKILLS);
+  };
 
   const confirmAssignment = () => {
     console.log("questions", JSON.stringify(questions));
@@ -65,27 +73,25 @@ const Diagnostic = () => {
   let component;
   switch (stage) {
     case STAGE.CHOOSE_SKILLS:
-      component = <AssignmentCreationForm onClick={createAssignment} />;
-      break;
-    case STAGE.CHOOSE_QUESTION_TYPES:
       component = (
-        <AssignmentQuestions
-          selectedQuestions={selectedQuestions}
-          selectedSkills={selectedSkills}
-          setSelectedSkills={setSelectedSkills}
-          onClick={customizeAssignment}
+        <AssignmentCreationForm
+          onClick={createAssignment}
+          questionCounts={questionCounts}
+          setQuestionCounts={setQuestionCounts}
         />
       );
       break;
-    case STAGE.REVIEW:
+    case STAGE.CHOOSE_QUESTION_TYPES:
       component = (
         <DisplayAssignmentQuestions
-          selectedSkills={selectedSkills}
+          assignmentSkills={skills}
+          setAssignmentSkills={setSkills}
+          questionTypes={questionTypes}
+          setQuestionTypes={setQuestionTypes}
           onSubmit={confirmAssignment}
           questions={questions}
           setQuestions={setQuestions}
-          selectedSkills={selectedSkills}
-          setSelectedSkills={setSelectedSkills}
+          onBackClick={gotoChooseSkills}
         />
       );
       break;
@@ -95,7 +101,12 @@ const Diagnostic = () => {
 
       break;
   }
-  return <div className="bg-blue-100">{component}</div>;
+  return (
+    <div className="bg-gray-100">
+      <Navbar />
+      {component}
+    </div>
+  );
 };
 
 export default Diagnostic;

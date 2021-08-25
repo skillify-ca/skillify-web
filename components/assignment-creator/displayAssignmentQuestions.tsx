@@ -12,27 +12,39 @@ import { QuestionTypeForSkill } from "./assignmentCreationForm";
 import { generateAssignmentQuestions } from "./assignmentQuestionGenerator";
 
 type displayAssignmentQuestionsProps = {
-  selectedSkills: QuestionTypeForSkill[];
-  setSelectedSkills: (selectedQuestions: QuestionTypeForSkill[]) => void;
+  assignmentSkills: Skill[];
+  setAssignmentSkills: (skills: Skill[]) => void;
+  questionTypes: QuestionType[];
+  setQuestionTypes: (questionTypes: QuestionType[]) => void;
   questions: Question[];
   setQuestions: (questions: Question[]) => void;
   onSubmit: (grade: string) => void;
+  onBackClick: () => void;
 };
 
 const DisplayAssignmentQuestions = ({
-  selectedSkills,
-  setSelectedSkills,
+  assignmentSkills,
+  setAssignmentSkills,
+  questionTypes,
+  setQuestionTypes,
   questions,
   setQuestions,
   onSubmit,
+  onBackClick,
 }: displayAssignmentQuestionsProps) => {
   useEffect(() => {
+    // initialize dropdowns
+    const initialQuestionTypes: QuestionType[] = assignmentSkills.map(
+      (skill) => getQuestionTypesForSkill(skill)[0]
+    );
+    setQuestionTypes(initialQuestionTypes);
+
     const newQuestions = [];
-    for (let i = 0; i < selectedSkills.length; i++) {
+    for (let i = 0; i < initialQuestionTypes.length; i++) {
       newQuestions.push(
         generateAssignmentQuestions(
-          selectedSkills[i].skill,
-          selectedSkills[i].questionType
+          assignmentSkills[i],
+          initialQuestionTypes[i]
         )
       );
     }
@@ -45,16 +57,14 @@ const DisplayAssignmentQuestions = ({
     skill: Skill,
     index: number
   ) => {
-    const updatedArray = selectedSkills.map((item) => {
-      if (item.id === index) {
-        return { questionType: newQuestionType, skill: skill, id: index };
+    const updatedArray = assignmentSkills.map((item, i) => {
+      if (i === index) {
+        return newQuestionType;
       } else {
-        return item;
+        return questionTypes[i];
       }
     });
-    console.log("updatedArray", updatedArray);
-
-    setSelectedSkills(updatedArray);
+    setQuestionTypes(updatedArray);
 
     const newQuestions = questions.map((it, i) => {
       if (i === index) {
@@ -67,54 +77,58 @@ const DisplayAssignmentQuestions = ({
   };
   return (
     <div className="">
-      <div className="flex flex-col p-4 gap-4">
-        {questions.map((question, index) => (
-          <div>
-            <p className="text-xl">I can {SkillDescription(question.skill)}</p>
-            <div className="relative inline-flex">
-              <svg
-                className="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 412 232"
-              >
-                <path
-                  d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
-                  fill="#648299"
-                  fill-rule="nonzero"
-                />
-              </svg>
-              <select
-                value={
-                  selectedSkills[index] && selectedSkills[index].questionType
-                }
-                onChange={(e) =>
-                  onQuestionTypeChange(
-                    e.target.value as QuestionType,
-                    question.skill,
-                    index
-                  )
-                }
-                multiple={false}
-                className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
-              >
-                {getQuestionTypesForSkill(question.skill).map(
-                  (questionType) => (
-                    <option>{questionType}</option>
-                  )
-                )}
-              </select>
-            </div>
-            <QuestionSet questionData={questions} index={index} />
-          </div>
-        ))}
-      </div>
-      <div className="flex">
+      <div className="p-4 flex justify-between bg-white shadow-lg sticky top-0">
+        <Button
+          onClick={onBackClick}
+          label="Back"
+          backgroundColor="white"
+          textColor="blue-600"
+        />
         <Button
           backgroundColor="blue"
           label="Generate Assignment"
           textColor="white"
           onClick={onSubmit}
         />
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
+        {questions.map((question, index) => (
+          <div className="grid grid-cols-2 bg-blue-200 shadow-md p-4 gap-4">
+            <div className="flex flex-col">
+            <p className="font-bold">Question #{index + 1}:</p>
+            <p className="text-xl">I can {SkillDescription(question.skill)}</p>
+            </div>
+            <div className="flex justify-end">
+              <div className="">
+                <select
+                  value={questionTypes[index] && questionTypes[index]}
+                  onChange={(e) =>
+                    onQuestionTypeChange(
+                      e.target.value as QuestionType,
+                      question.skill,
+                      index
+                    )
+                  }
+                  multiple={false}
+                  className="border border-gray-300 rounded-full text-gray-600 h-10 px-8 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+                >
+                  {getQuestionTypesForSkill(question.skill).map(
+                    (questionType) => (
+                      <option>{questionType}</option>
+                    )
+                  )}
+                </select>
+              </div>
+            </div>{" "}
+            <div className="col-span-2">
+              <QuestionSet
+                questionData={questions}
+                index={index}
+                submitGuess={() => {}}
+              />
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

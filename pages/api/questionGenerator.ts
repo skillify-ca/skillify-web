@@ -476,7 +476,10 @@ export function getDivisionQuestion(
     //undefined unless the QuestionType is BINARY_WORD_PROBLEM
     let wordProblemModel;
 
-    if (type == QuestionType.BINARY_WORD_PROBLEM) {
+    if (
+      type == QuestionType.BINARY_WORD_PROBLEM ||
+      questionType === QuestionType.BINARY_WORD_PROBLEM
+    ) {
       wordProblemModel = createWordProblemModel("÷");
     }
     return {

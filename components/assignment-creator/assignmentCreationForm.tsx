@@ -21,6 +21,8 @@ export type QuestionTypeForSkill = {
 
 type assignmentCreationFormProps = {
   onClick: (questionCounts: QuestionCount[]) => void;
+  questionCounts: QuestionCount[];
+  setQuestionCounts: (counts: QuestionCount[]) => void;
 };
 
 export type QuestionCount = {
@@ -30,6 +32,8 @@ export type QuestionCount = {
 
 const AssignmentCreationForm = ({
   onClick,
+  questionCounts,
+  setQuestionCounts,
 }: assignmentCreationFormProps) => {
   const unitData = [
     { title: "Addition", unit: Topic.ADDITION, backgroundColour: "bg-red-100" },
@@ -50,16 +54,6 @@ const AssignmentCreationForm = ({
     },
   ];
   const [grade, setGrade] = useState("Grade 3");
-  const getInitialQuestionCounts = () => {
-    const skills = Object.values(Skill).map((skill) => {
-      return { key: getSkillId(skill), value: 0 };
-    });
-
-    return skills;
-  };
-  const [questionCounts, setQuestionCounts] = useState<QuestionCount[]>(
-    getInitialQuestionCounts()
-  );
 
   const onGradeChange = (e: any) => {
     setGrade(e.target.value);
@@ -73,9 +67,6 @@ const AssignmentCreationForm = ({
         return it;
       }
     });
-    console.log("OLD", questionCounts);
-    console.log("NEW", newQuestionCounts);
-
     setQuestionCounts(newQuestionCounts);
   };
 
@@ -164,12 +155,12 @@ const AssignmentCreationForm = ({
         </div>
       </div>
       <div className="flex flex-col items-center">
-      <Button
-        backgroundColor="blue"
-        label="Randomize Questions"
-        textColor="white"
-        onClick={e => onClick(questionCounts)}
-      />
+        <Button
+          backgroundColor="blue"
+          label="Randomize Questions"
+          textColor="white"
+          onClick={(e) => onClick(questionCounts)}
+        />
       </div>
     </div>
   );
