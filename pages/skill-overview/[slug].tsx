@@ -10,7 +10,6 @@ import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { SKILLS, userId } from "../../graphql/utils/constants";
 import {
   getEmoji,
-  getPracticeCardForSkill,
   getSkillId,
   Skill,
   SkillDescription,
