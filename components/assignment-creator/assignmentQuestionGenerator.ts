@@ -6,7 +6,6 @@ export const generateAssignmentQuestions = (
   skillStr: string,
   questionType?: QuestionType
 ) => {
-  console.log("question type passed in:", questionType);
   let skill: Skill;
   if (skillStr == "add-one-digit") {
     skill = Skill.ADDITION_SINGLE;
