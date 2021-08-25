@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Question } from "../../pages/api/question";
 import { QuestionType } from "../../pages/api/questionTypes";
+import { getRandomItemFromArray } from "../../pages/api/random";
 import {
   getQuestionTypesForSkill,
   Skill,
@@ -34,8 +35,8 @@ const DisplayAssignmentQuestions = ({
 }: displayAssignmentQuestionsProps) => {
   useEffect(() => {
     // initialize dropdowns
-    const initialQuestionTypes: QuestionType[] = assignmentSkills.map(
-      (skill) => getQuestionTypesForSkill(skill)[0]
+    const initialQuestionTypes: QuestionType[] = assignmentSkills.map((skill) =>
+      getRandomItemFromArray(getQuestionTypesForSkill(skill))
     );
     setQuestionTypes(initialQuestionTypes);
 
