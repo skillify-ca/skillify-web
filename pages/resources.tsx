@@ -35,9 +35,6 @@ export default function Resources(props) {
         <div className="flex flex-col w-full">
           <div className="flex justify-between items-center border-b-4 border-blue-800">
             <p className="text-2xl font-bold p-4">Math Champ Picks</p>
-            <p className="text-sm text-blue-500 hover:underline cursor-pointer">
-              See More
-            </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 p-8">
             {resources.slice(0, 3).map((resource) => (
@@ -59,9 +56,6 @@ export default function Resources(props) {
 
           <div className="flex justify-between items-center border-b-4 border-blue-800">
             <p className="text-2xl font-bold p-4">Research and News</p>
-            <p className="text-sm text-blue-500 hover:underline cursor-pointer">
-              See More
-            </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 p-8">

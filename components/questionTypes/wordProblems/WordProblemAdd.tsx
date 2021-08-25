@@ -72,11 +72,11 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
         />
       </div>
       <div className="flex flex-wrap mt-2 justify-center">
-        <img src={noun1.image} width="60px" height="85px" />
-        <img src={noun2.image} width="60px" height="85px" />
-        <img src={noun1.image} width="60px" height="85px" />
-        <img src={noun2.image} width="60px" height="85px" />
-        <img src={noun1.image} width="60px" height="85px" />
+        <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
+        <img src={noun2.image} className="w-12 h-12 sm:w-16 sm:h-16" />
+        <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
+        <img src={noun2.image} className="w-12 h-12 sm:w-16 sm:h-16" />
+        <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
       </div>
       <Button
         onClick={onSubmit}
