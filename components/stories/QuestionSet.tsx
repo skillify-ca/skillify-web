@@ -32,13 +32,13 @@ import { WordProblemSub } from "../questionTypes/wordProblems/WordProblemSub";
 import Card from "../ui/Card";
 
 type QuestionSetProps = {
-  title: string;
+  title?: string;
   HUDEnabled?: boolean;
   questionData: Question[];
   index: number;
-  inputElement: any;
-  submitGuess: (guessData: GuessData) => void;
-  score: number;
+  inputElement?: any;
+  submitGuess?: (guessData: GuessData) => void;
+  score?: number;
   diagnostic?: { isDiagnostic: boolean; opacityVal: number };
 };
 const QuestionSet = ({
@@ -177,18 +177,6 @@ const QuestionSet = ({
             submitGuess={submitGuess}
           />
         );
-      }
-    } else if (
-      questionData[index].questionType == QuestionType.VISUAL_TYPE_PROBLEM
-    ) {
-      if (questionData[index].operator == "+") {
-        return (
-          <VisualAddition
-            question={questionData[index]}
-            submitGuess={submitGuess}
-            visualDisplay={questionData[index].displayNum}
-          />
-        );
       } else if (questionData[index].operator == "-") {
         return (
           <WordProblemSub
@@ -208,6 +196,18 @@ const QuestionSet = ({
           <WordProblemDiv
             question={questionData[index]}
             submitGuess={submitGuess}
+          />
+        );
+      }
+    } else if (
+      questionData[index].questionType == QuestionType.VISUAL_TYPE_PROBLEM
+    ) {
+      if (questionData[index].operator == "+") {
+        return (
+          <VisualAddition
+            question={questionData[index]}
+            submitGuess={submitGuess}
+            visualDisplay={questionData[index].displayNum}
           />
         );
       }
@@ -263,7 +263,6 @@ const QuestionSet = ({
         );
       }
     }
-
     return (
       <HorizontalEquation
         question={questionData[index]}
@@ -273,7 +272,7 @@ const QuestionSet = ({
   };
 
   return (
-    <div className="flex flex-col justify-center items-center gap-4 m-8">
+    <div className="flex justify-center items-center gap-4">
       <Card size="large">
         <div
           className={`transition-opacity duration-150 ease-in-out opacity-${
