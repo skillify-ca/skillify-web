@@ -238,11 +238,7 @@ export const getSkillFromId = (skillId: number) => {
   }
 };
 
-// TODO changes these to numerical skill ids
-export const getSkillsForTopicGrade = (
-  topic: Topic,
-  grade: Grade
-): number[] => {
+export const getSkillsForTopicGrade = (topic: Topic, grade: Grade): number[] => {
   if (topic == Topic.NUMBERS) {
     if (grade == Grade.GRADE_1) {
       return [53];
