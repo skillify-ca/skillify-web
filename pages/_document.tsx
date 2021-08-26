@@ -36,15 +36,18 @@ class MyDocument extends Document {
             as="font"
             crossOrigin=""
           />
-          <Script src="https://www.googletagmanager.com/gtag/js?id=G-FJLNTHHN4G" />
-          <Script
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-FJLNTHHN4G"
+          />
+
+          <script
             dangerouslySetInnerHTML={{
               __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-            
-              gtag('config', 'G-FJLNTHHN4G');
+              gtag('config', 'G-FJLNTHHN4G', { page_path: window.location.pathname });
             `,
             }}
           />
