@@ -148,9 +148,7 @@ const TopicOverviewPage = ({ slug }) => {
                 data &&
                 data.user_skills.length !== 0 &&
                 getEmoji(
-                  data.user_skills.filter(
-                    (it) => it.skill_id == getSkillId(skill)
-                  )[0].emoji
+                  data.user_skills.filter((it) => it.skill_id == skill)[0].emoji
                 )}{" "}
             </p>{" "}
           </div>
@@ -267,10 +265,50 @@ const TopicOverviewPage = ({ slug }) => {
   );
 };
 
+/*
+export async function getStaticPaths() {
+  const ids = Array.from(Array(100).keys()).map((element) => {
+    return { params: { slug: element.toString() } };
+  });
+
+  return {
+    paths: ids, //can i use a map function here?? } } // See the "paths" section below
+
+    fallback: true,
+  };
+}
+/*
 export async function getStaticProps({ params }) {
+  const client = new ApolloClient({
+    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
+    cache: new InMemoryCache(),
+  });
+
+  const videos = getVideosForSkill(Number.parseInt(params.slug));
+
+  const { data } = await client.query({
+    query: FETCH_SKILL_DESCRIPTION,
+    variables: {
+      skillId: params.slug,i
+      //how did you know its slug??
+    },
+  });
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return { props: { description: data, videos: videos } };
+}
+*/
+export async function getStaticProps({ params }) {
+  const skillIds: number[] = getSkillsForTopicGrade(params.slug, Grade.GRADE_1);
+
   return {
     props: {
       slug: params.slug,
+      skillIds: skillIds,
     },
   };
 }

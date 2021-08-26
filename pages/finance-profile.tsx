@@ -79,8 +79,11 @@ const FinanceProfile = () => {
   const [Cost, setCost] = useState("");
   const [Year, setYear] = useState("");
 
+  const lifeRef = useRef(null);
   const homeRef = useRef(null);
   const carRef = useRef(null);
+  const additionalRef = useRef(null);
+  const groceryRef = useRef(null);
 
   const [isSubmitModalShowing, setIsSubmitModalShowing] = useState(false);
   const [surpriseData, setSurpriseData] = useState<SurpriseCardType>();
@@ -163,13 +166,36 @@ const FinanceProfile = () => {
     setProfileData(financialProfileData[randomProfile]);
   }, []);
 
+  const scrollToLifeSection = () => {
+    lifeRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
+
   const scrollToHomeSection = () => {
-    console.log("ARE WE SCROLLING????");
-    homeRef.current.scrollIntoView();
+    homeRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
   };
 
   const scrollToCarSection = () => {
-    carRef.current.scrollIntoView();
+    carRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
+
+  const scrollToAdditionalSection = () => {
+    additionalRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
   };
 
   return (
@@ -189,7 +215,10 @@ const FinanceProfile = () => {
           </div>
         </header>
         {profileData && (
-          <div className={"flex items-center justify-center p-20"}>
+          <div
+            className={"flex items-center justify-center p-20"}
+            onMouseEnter={scrollToLifeSection}
+          >
             <FinanceProfileChart
               individualOccupation={profileData.individualOccupation}
               individualSalary={profileData.individualSalary}
@@ -266,7 +295,10 @@ const FinanceProfile = () => {
             Your Cell
           </div>
         </section>
-        <div className={"flex items-center justify-center"}>
+        <div
+          className={"flex items-center justify-center"}
+          onMouseEnter={scrollToAdditionalSection}
+        >
           <BuyAPhone />
         </div>
         <section
@@ -283,7 +315,10 @@ const FinanceProfile = () => {
             Your Food
           </div>
         </section>
-        <div className={"flex items-center justify-center pl-28 mt-10"}>
+        <div
+          className={"flex items-center justify-center pl-28 mt-10"}
+          onMouseEnter={scrollToAdditionalSection}
+        >
           <BuyGroceries />
         </div>
         <div className={"flex items-center justify-center pt-6 mt-10"}>
@@ -307,7 +342,7 @@ const FinanceProfile = () => {
             get started!
           </p>
         </div>
-        <div>
+        <div ref={lifeRef}>
           <SectionOneInput
             isMarried={isMarried}
             setMarriage={setMarriage}
@@ -339,20 +374,21 @@ const FinanceProfile = () => {
               <img src={"/images/warning-2-16.png"} />
             </div>
           )}
-        </div>
-        <div className={"mb-40"}>
-          <IncomeTable
-            monthlyIncome={yourMonthlyIncome}
-            setMonthlyIncome={setYourMonthlyIncome}
-            spouseMonthlyIncome={spouseMonthlyIncome}
-            setSpouseMonthlyIncome={setSpouseMounthlyIncome}
-            totalMonthlyIncome={totalMonthlyIncome}
-            setTotalMonthlyIncome={setTotalMonthlyIncome}
-            backgroundColour={backgroundColour}
-            setBackgroundColour={setBackgroundColour}
-            valueTest={valueTest}
-            setValueTest={setValueTest}
-          ></IncomeTable>
+
+          <div className={"mb-40"}>
+            <IncomeTable
+              monthlyIncome={yourMonthlyIncome}
+              setMonthlyIncome={setYourMonthlyIncome}
+              spouseMonthlyIncome={spouseMonthlyIncome}
+              setSpouseMonthlyIncome={setSpouseMounthlyIncome}
+              totalMonthlyIncome={totalMonthlyIncome}
+              setTotalMonthlyIncome={setTotalMonthlyIncome}
+              backgroundColour={backgroundColour}
+              setBackgroundColour={setBackgroundColour}
+              valueTest={valueTest}
+              setValueTest={setValueTest}
+            ></IncomeTable>
+          </div>
         </div>
         <div className={"mb-40"} ref={homeRef}>
           <HouseExpensesTable
@@ -386,7 +422,7 @@ const FinanceProfile = () => {
             setSumValidationCar={setSumValidationCar}
           />
         </div>
-        <div className={"mb-40"}>
+        <div className={"mb-40"} ref={additionalRef}>
           <AdditionalTable
             tvInternet={tvInternet}
             setTvInternet={setTvInternet}
