@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-const BudgetRules = ({}) => {
+const BudgetRules = ({ }) => {
   return (
     <div className={`bg-white border-4 border-black`}>
       <div className="grid grid-cols-3 gap-x-20 gap-y-5 align-middle">
@@ -39,7 +39,7 @@ const BudgetRules = ({}) => {
           Use the chart to determine how much food will cost for each person in
           your family
         </div>
-        <div className="text-3xl text-right "> The Extras:</div>
+        <div className="text-3xl text-right pb-5"> The Extras:</div>
         <div className="col-span-2 col-start-0">
           Be careful to budget carefully! You might have to pay for something
           unexpectedly!
