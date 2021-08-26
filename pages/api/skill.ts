@@ -1,4 +1,6 @@
+import { QuestionTypeForSkill } from "../../components/assignment-creator/assignmentCreationForm";
 import { generateQuestionForSkill } from "./questionGenerator";
+import { QuestionType } from "./questionTypes";
 import { getRndInteger } from "./random";
 
 export enum Topic {
@@ -424,6 +426,190 @@ export function SkillDescription(skill: Skill) {
     return "Multiply triple digit numbers by tenths";
   } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH) {
     return "Divide triple digit numbers by tenths";
+  }
+}
+
+export function getQuestionTypesForSkill(skill: Skill): QuestionType[] {
+  if (skill == Skill.ADDITION_SINGLE) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.ADDITION_DOUBLE) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.ADDITION_TRIPLE) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.ADDITION_PROPERTIES) {
+    return [QuestionType.MULTIPLE_CHOICE_WORD];
+  } else if (skill == Skill.ADDITION_4_DIGIT) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.ADDITION_TENTHS) {
+    return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
+  } else if (skill == Skill.ADDITION_5_DIGIT) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.ADDITION_HUNDREDTHS) {
+    return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
+  } else if (skill == Skill.SUBTRACTION_SINGLE) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.SUBTRACTION_DOUBLE) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.SUBTRACTION_TRIPLE) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.SUBTRACTION_4_DIGIT) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.SUBTRACTION_5_DIGIT) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.SUBTRACTION_TENTHS) {
+    return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
+  } else if (skill == Skill.SUBTRACTION_HUNDREDTHS) {
+    return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
+  } else if (skill == Skill.EQUAL_GROUP_10_ITEMS) {
+    return [QuestionType.MULTIPLICATION_EQUAL_GROUPS];
+  } else if (skill == Skill.MULTIPLICATION_5) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.ARRAY_QUESTION,
+    ];
+  } else if (skill == Skill.MULTIPLICATION_10) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (skill == Skill.EQUAL_SHARING_8_ITEMS) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.LONG_DIVISION_PROBLEM,
+      QuestionType.BINARY_WORD_PROBLEM,
+    ];
+  } else if (skill == Skill.DIVIDE_12_EQUALLY) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.LONG_DIVISION_PROBLEM,
+      QuestionType.BINARY_WORD_PROBLEM,
+    ];
+  } else if (skill == Skill.DIVIDE_100) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.LONG_DIVISION_PROBLEM,
+      QuestionType.BINARY_WORD_PROBLEM,
+    ];
+  } else if (skill == Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT) {
+    return [QuestionType.LONG_DIVISION_PROBLEM];
+  } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT) {
+    return [QuestionType.LONG_DIVISION_PROBLEM];
+  } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT) {
+    return [QuestionType.LONG_DIVISION_PROBLEM];
+  } else {
+    return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
   }
 }
 
