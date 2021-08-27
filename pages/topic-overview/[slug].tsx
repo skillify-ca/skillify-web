@@ -269,29 +269,48 @@ const TopicOverviewPage = ({ slug }) => {
   );
 };
 
-export async function getStaticProps({ params, grade }) {
+export async function getStaticProps({ params }) {
+  let gradeNum = (grade: string) => {
+    switch (grade) {
+      case "Grade 1":
+        return 1;
+      case "Grade 2":
+        return 2;
+      case "Grade 3":
+        return 3;
+      case "Grade 4":
+        return 4;
+      case "Grade 5":
+        return 5;
+      case "Grade 6":
+        return 6;
+    }
   const skillIds: number[] = getSkillsForTopicGrade(
     params.slug as Topic,
     Grade.GRADE_1
   );
+
+  const skillId1: Skill = getSkillId(skill)
+
 
   const client = new ApolloClient({
     uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
     cache: new InMemoryCache(),
   });
 
+  //let badgeId = getBadgeId(params.slug, gradeNum(grade));
+
   const { data } = await client.query({
     query: FETCH_TOPIC_OVERVIEW,
     variables: {
       userId: userId(session),
-      badgeId: getBadgeId(params.slug, gradeNum(grade)),
-      skillId: getSkillsForTopicGrade(params.slug, grade).map((it) =>
-        getSkillId(it)
-      ),
+  
     },
 
     //how did you know its slug??
   });
+
+
   if (!data) {
     return {
       notFound: true,
@@ -302,7 +321,9 @@ export async function getStaticProps({ params, grade }) {
     props: {
       slug: params.slug,
       skillIds: skillIds,
-    },
+      badgeId: badgeId,
+
+    }
   };
 }
 
@@ -318,8 +339,4 @@ export async function getStaticPaths() {
     fallback: true,
   };
 }
-
-export default TopicOverviewPage;
-function gradeNum(grade: any): number {
-  throw new Error("Function not implemented.");
-}
+//
