@@ -25,7 +25,6 @@ import { FETCH_SKILL_ARRAY } from "../../graphql/fetchSkillArray";
 const Box = dynamic(() => import("../../components/stories/Box"));
 
 const TopicOverviewPage = ({ slug, description }) => {
-  console.log("description", description);
   const [session, user] = useSession();
   const [grade, setGrade] = useState(Grade.GRADE_1);
   const onGradeChange = (e: any) => {

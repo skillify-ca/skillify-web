@@ -65,8 +65,9 @@ const SkillOverviewPage = ({ slug, description, videos }) => {
       <div className="flex flex-row justify-between mt-8 mr-8 ml-8">
         <span className="text-6xl font-semibold text-gray-700">
           {" "}
-          I can {SkillDescription(slug) &&
-            SkillDescription(slug).toLowerCase()}{" "}
+          I can{" "}
+          {description.skills[0].description &&
+            description.skills[0].description}{" "}
         </span>
         <span className="flex flex-col items-center mr-8">
           <p className="text-md font-bold text-gray-700 ">Confidence:</p>{" "}
@@ -108,14 +109,35 @@ const SkillOverviewPage = ({ slug, description, videos }) => {
 export async function getStaticPaths() {
   const ids = Array.from(Array(100).keys()).map((element) => {
     return { params: { slug: element.toString() } };
-    //maps all slugs between 1-100 as they correspond with skillId
   });
-
+  //creates paths from 1-100
   return {
     paths: ids,
-
     fallback: true,
   };
+}
+
+export async function getStaticProps({ params }) {
+  const client = new ApolloClient({
+    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
+    cache: new InMemoryCache(),
+  });
+
+  const videos = getVideosForSkill(Number.parseInt(params.slug));
+
+  const { data } = await client.query({
+    query: FETCH_SKILL_DESCRIPTION,
+    variables: {
+      skillId: params.slug,
+    },
+  });
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return { props: { description: data, videos: videos, slug: params.slug } };
 }
 
 export default SkillOverviewPage;
