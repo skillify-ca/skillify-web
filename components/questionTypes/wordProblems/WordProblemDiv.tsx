@@ -78,11 +78,11 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
         />
       </div>
       <div className="flex flex-wrap mt-2">
-        <img src={noun1.image} width="60px" height="85px" />
-        <img src={noun1.image} width="60px" height="85px" />
-        <img src={noun1.image} width="60px" height="85px" />
-        <img src={noun1.image} width="60px" height="85px" />
-        <img src={noun1.image} width="60px" height="85px" />
+        <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
+        <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
+        <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
+        <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
+        <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
       </div>
       <Button
         onClick={onSubmit}

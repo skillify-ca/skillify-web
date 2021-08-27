@@ -6,7 +6,7 @@ import { Input } from "../ui/Input";
 
 export interface VerticalEquationProp {
   question: Question;
-  submitGuess: (guess: GuessData) => void;
+  submitGuess?: (guess: GuessData) => void;
 }
 
 /**
