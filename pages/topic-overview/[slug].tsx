@@ -12,20 +12,20 @@ import { userId } from "../../graphql/utils/constants";
 import { getBadgeId } from "../api/badgeHelper";
 import {
   getEmoji,
+  getSkillFromId,
   getSkillId,
   getSkillsForTopicGrade,
   Grade,
   Skill,
   SkillDescription,
-  Topic,
 } from "../api/skill";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import { FETCH_SKILL_DESCRIPTION } from "../../graphql/fetchSkillDescription";
-import { getVideosForSkill } from "../api/videoHelper";
+import { FETCH_SKILL_ARRAY } from "../../graphql/fetchSkillArray";
 
 const Box = dynamic(() => import("../../components/stories/Box"));
 
-const TopicOverviewPage = ({ slug }) => {
+const TopicOverviewPage = ({ slug, description }) => {
+  console.log("description", description);
   const [session, user] = useSession();
   const [grade, setGrade] = useState(Grade.GRADE_1);
   const onGradeChange = (e: any) => {
@@ -61,7 +61,6 @@ const TopicOverviewPage = ({ slug }) => {
     variables: {
       userId: userId(session),
       badgeId: getBadgeId(slug, gradeNum(grade)),
-      skillId: getSkillsForTopicGrade(slug, grade).map((it) => getSkillId(it)),
     },
   });
 
@@ -121,15 +120,15 @@ const TopicOverviewPage = ({ slug }) => {
               <img src="/images/learnPic.png" className="w-96" />
               <p className="text-2xl text-center font-bold flex items-center justify-center bg-blue-200 rounded-2xl">
                 {" "}
-                {SkillDescription(skill)}{" "}
+                {description.skills[0].description}
               </p>
             </div>
           </div>
           <div className="flex flex-col sm:w-1/2 gap-8 justify-center">
             <p className="text-4xl font-bold text-blue-900"> LEARN </p>
             <p className="text-xl">
-              Learn to <b> {SkillDescription(skill).toLowerCase()}</b> by
-              watching engaging videos and strengthen your knowledge with
+              Learn to <b> {description.skills[0].description.toLowerCase()}</b>{" "}
+              by watching engaging videos and strengthen your knowledge with
               related math questions in Math Champ's Practice Tracker!
             </p>
             <div className="flex gap-8">
@@ -270,61 +269,26 @@ const TopicOverviewPage = ({ slug }) => {
 };
 
 export async function getStaticProps({ params }) {
-  let gradeNum = (grade: string) => {
-    switch (grade) {
-      case "Grade 1":
-        return 1;
-      case "Grade 2":
-        return 2;
-      case "Grade 3":
-        return 3;
-      case "Grade 4":
-        return 4;
-      case "Grade 5":
-        return 5;
-      case "Grade 6":
-        return 6;
-    }
-  const skillIds: number[] = getSkillsForTopicGrade(
-    params.slug as Topic,
-    Grade.GRADE_1
-  );
-
-  const skillId1: Skill = getSkillId(skill)
-
-
   const client = new ApolloClient({
     uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
     cache: new InMemoryCache(),
   });
 
-  //let badgeId = getBadgeId(params.slug, gradeNum(grade));
+  const skillIds = getSkillsForTopicGrade(params.slug, Grade.GRADE_1);
 
   const { data } = await client.query({
-    query: FETCH_TOPIC_OVERVIEW,
+    query: FETCH_SKILL_ARRAY,
     variables: {
-      userId: userId(session),
-  
+      skillId: skillIds,
     },
-
-    //how did you know its slug??
   });
-
-
   if (!data) {
     return {
       notFound: true,
     };
   }
-
-  return {
-    props: {
-      slug: params.slug,
-      skillIds: skillIds,
-      badgeId: badgeId,
-
-    }
-  };
+  //return multiple descriptions,
+  return { props: { description: data, slug: params.slug } };
 }
 
 export async function getStaticPaths() {
@@ -339,4 +303,5 @@ export async function getStaticPaths() {
     fallback: true,
   };
 }
-//
+
+export default TopicOverviewPage;

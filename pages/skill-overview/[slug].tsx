@@ -8,12 +8,7 @@ import Navbar from "../../components/Navbar";
 import { FETCH_SKILL_DESCRIPTION } from "../../graphql/fetchSkillDescription";
 import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { SKILLS, userId } from "../../graphql/utils/constants";
-import {
-  getEmoji,
-  getSkillId,
-  Skill,
-  SkillDescription,
-} from "../api/skill";
+import { getEmoji, getSkillId, Skill, SkillDescription } from "../api/skill";
 import { getVideosForSkill } from "../api/videoHelper";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
@@ -113,37 +108,14 @@ const SkillOverviewPage = ({ slug, description, videos }) => {
 export async function getStaticPaths() {
   const ids = Array.from(Array(100).keys()).map((element) => {
     return { params: { slug: element.toString() } };
+    //maps all slugs between 1-100 as they correspond with skillId
   });
 
   return {
-    paths: ids, //can i use a map function here?? } } // See the "paths" section below
+    paths: ids,
 
     fallback: true,
   };
-}
-
-export async function getStaticProps({ params }) {
-  const client = new ApolloClient({
-    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
-    cache: new InMemoryCache(),
-  });
-
-  const videos = getVideosForSkill(Number.parseInt(params.slug));
-
-  const { data } = await client.query({
-    query: FETCH_SKILL_DESCRIPTION,
-    variables: {
-      skillId: params.slug,
-      //how did you know its slug??
-    },
-  });
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return { props: { description: data, videos: videos, slug: params.slug } };
 }
 
 export default SkillOverviewPage;
