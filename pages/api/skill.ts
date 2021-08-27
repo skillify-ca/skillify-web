@@ -18,6 +18,7 @@ export enum Grade {
   GRADE_4 = "Grade 4",
   GRADE_5 = "Grade 5",
   GRADE_6 = "Grade 6",
+  GRADE_Finance = "Grade Finance"
 }
 
 export const getSkillsForTopic = (topic: Topic): Skill[] => {

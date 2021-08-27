@@ -69,6 +69,11 @@ export const getBadgeId = (slug: string, currentLevel: number) => {
         case 6:
           return 54;
       }
+    } else if (slug.toLowerCase() == "finance") {
+      switch(currentLevel) {
+        case 1:
+          return; // Waiting for Harusu ID
+      }
     }
   }
   return 0;
