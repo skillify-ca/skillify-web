@@ -1,17 +1,20 @@
-import { ReactNode } from "react"
+import React, { ReactNode } from "react"
 import { Button } from "../ui/Button"
-import React from 'react'
 import useWindowSize from "../../hooks/UseWindowSizeHook"
 import Confetti from 'react-confetti'
-import { RulesSession } from "./RulesSession"
 
-export const EndSession = () => {
+export interface EndSessionProps {
+
+    onClick: () => void
+}
+
+export const EndSession = ({
+
+    onClick
+
+}: EndSessionProps) => {
 
     const { width, height } = useWindowSize()
-
-    // const playAgain = () => {
-    //     <RulesSession />
-    // }
 
     return (
         <div className="pt-64 bg-white min-h-screen max-w-screen">
@@ -31,19 +34,19 @@ export const EndSession = () => {
                         label="Play Again"
                         backgroundColor="green"
                         textColor="white"
-                    // onClick={playAgain}
+                        onClick={(e) => onClick()}
                     />
                 </div>
                 <div>
-                    <Button
-                        label="Go Home"
-                        backgroundColor="green"
-                        textColor="white"
-                    />
+                    <a href="https://www.mathchamp.ca/practice#">
+                        <Button
+                            label="Go Home"
+                            backgroundColor="green"
+                            textColor="white"
+                        />
+                    </a>
                 </div>
             </div>
         </div>
     )
 }
-
-

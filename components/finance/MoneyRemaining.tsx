@@ -134,7 +134,7 @@ const MoneyRemainingTable = ({
               </div>
             </td>
           </tr>
-          {isSurpriseVisible === true && (
+          {isSurpriseVisible && (
             <tr>
               <td className={"border border-black"}>
                 <p className={"mx-2"}>Surprise Amount</p>

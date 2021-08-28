@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import BudgetRules from "./BudgetRules";
 import { Button } from "../ui/Button";
-import FinanceProfile from "../../pages/finance-profile";
 
 export interface RulesSessionProps {
     onClick: () => void;
@@ -12,10 +11,6 @@ export const RulesSession = ({
     onClick
 
 }: RulesSessionProps) => {
-
-    const start = () => {
-        <FinanceProfile />
-    }
 
     return (
         <div>
