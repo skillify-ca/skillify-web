@@ -20,6 +20,7 @@ import { SAVE_USER_GUESSES } from "../../graphql/saveUserGuesses";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
 import { SAVE_QUIZ_ATTEMPT } from "../../graphql/saveQuizAttempt";
+import Navbar from "../../components/Navbar";
 
 //
 export function getGradeLevel(score: number) {
@@ -195,6 +196,7 @@ const Quiz = ({ slug }) => {
   };
   return (
     <div>
+      <Navbar/>
       <QuestionSet
         title={slug}
         questionData={questionData}

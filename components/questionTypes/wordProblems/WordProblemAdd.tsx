@@ -10,19 +10,19 @@ import { Input } from "../../ui/Input";
 
 export interface WordProblemAddProp {
   autofocus?: boolean;
-  submitGuess: (guess: GuessData) => void;
   question: Question;
+  submitGuess?: (guess: GuessData) => void;
 }
 
 /* Addition Word problems are made with a specific template. The template is as follows: (name) has an (itemContainer) of (itemType). 
 Inside there are [randomNumber1] (item1.title) and [randomNumber2] (item2.title). How many (itemType) are in the (itemContainer)? */
 export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
   autofocus = true,
-  submitGuess,
   question,
+  submitGuess,
   ...props
 }) => {
-  const name = question.wordProblem.name;
+  const name = question.wordProblem && question.wordProblem.name;
   const itemContainer: ItemContainerObj = question.wordProblem.itemContainer;
   const noun1: Noun = question.wordProblem.item1;
   const noun2: Noun = question.wordProblem.item2;
@@ -72,11 +72,11 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
         />
       </div>
       <div className="flex flex-wrap mt-2 justify-center">
-        <img src={noun1.image} width="60px" height="85px" />
-        <img src={noun2.image} width="60px" height="85px" />
-        <img src={noun1.image} width="60px" height="85px" />
-        <img src={noun2.image} width="60px" height="85px" />
-        <img src={noun1.image} width="60px" height="85px" />
+        <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
+        <img src={noun2.image} className="w-12 h-12 sm:w-16 sm:h-16" />
+        <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
+        <img src={noun2.image} className="w-12 h-12 sm:w-16 sm:h-16" />
+        <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
       </div>
       <Button
         onClick={onSubmit}
