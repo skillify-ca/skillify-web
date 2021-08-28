@@ -38,7 +38,7 @@ export const EndSession = ({
                     />
                 </div>
                 <div>
-                    <a href="https://www.mathchamp.ca/practice#">
+                    <a href="/practice">
                         <Button
                             label="Go Home"
                             backgroundColor="green"

@@ -24,6 +24,7 @@ export const RulesSession = ({
                         backgroundColor="green"
                         textColor="white"
                         label="Randomize"
+                    // no functionality yet
                     />
                 </div>
                 <div>

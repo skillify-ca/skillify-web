@@ -149,15 +149,6 @@ const AssignmentSession = ({
         }
     };
 
-    const finalSubmit = () => {
-        const surpriseMoneyRemaining =
-            Number.parseInt(totalMoneyRemaining) + surpriseData.surpriseValue;
-
-        if (surpriseMoneyRemaining > 0) {
-
-        }
-    };
-
     const onModalClose = () => {
         const surpriseMoneyRemaining =
             Number.parseInt(totalMoneyRemaining) + surpriseData.surpriseValue;
