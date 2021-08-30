@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useState } from "react";
 import ReactCardFlip from "react-card-flip";
+import Navbar from "../../components/Navbar";
 import DragAndDropPuzzle from "../../components/stories/DragAndDropPuzzle";
 import { Button } from "../../components/ui/Button";
 import { GuessData } from "../api/guessData";
@@ -29,7 +30,8 @@ const PuzzlePage = ({ slug }) => {
   };
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-architect-blue-200 bg-blue-100 h-screen">
-      <div className="flex flex-col justify-between p-8">
+      <Navbar/>
+      <div className="flex flex-col justify-between p-4 gap-4">
         <p className="text-4xl font-bold">Puzzle</p>
         <p className="">Use each number once to complete the puzzle</p>
         <ReactCardFlip

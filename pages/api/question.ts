@@ -15,8 +15,8 @@ export type Question = {
   answerType: AnswerType;
   questionType: QuestionType;
   skill: Skill;
-  operator?: string;
-  wordProblem?: WordProblemModel;
+  operator?: string; //Numbers topic does not have a operator
+  wordProblem?: WordProblemModel; //value is only stored if QuestionType is wordProblem
   multipleChoice?: MCModel;
   fillInTheBlank?: fillBlankModel;
   placeholder?: string; // placeholder value for fill in the blanks

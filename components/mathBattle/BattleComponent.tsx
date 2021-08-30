@@ -141,7 +141,7 @@ const BattleComponent = ({
                 color={colourArr[it.seat - 1]}
               ></ProgressBar>
             </div>
-            <p className="font-bold text-xl"> {it.name}</p>
+            <p className="font-bold text-xl "> {it.name}</p>
           </div>
         ))}
       </div>

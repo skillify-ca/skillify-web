@@ -10,7 +10,10 @@ import { Skill } from "./skill";
 import { getRandomPropertyAdditionQuestion } from "./additionPropertyQuestionGenerator";
 import { shuffle } from "lodash";
 
-export const generateQuestionForSkill = (skill: Skill): Question => {
+export const generateQuestionForSkill = (
+  skill: Skill,
+  questionType?: QuestionType
+): Question => {
   switch (skill) {
     case Skill.NUMBERS_50:
       return getRandomNumbersQuestion(1, 51, skill);
@@ -19,73 +22,66 @@ export const generateQuestionForSkill = (skill: Skill): Question => {
     case Skill.NUMBERS_1000:
       return getRandomNumbersQuestion(1, 1001, skill);
     case Skill.ADDITION_SINGLE:
-      return getRandomAdditionQuestion(1, 11, skill);
+      return getRandomAdditionQuestion(1, 11, skill, questionType);
     case Skill.ADDITION_DOUBLE:
-      return getRandomAdditionQuestion(10, 101, skill);
+      return getRandomAdditionQuestion(10, 101, skill, questionType);
     case Skill.ADDITION_TRIPLE:
-      return getRandomAdditionQuestion(100, 1001, skill);
+      return getRandomAdditionQuestion(100, 1001, skill, questionType);
     case Skill.ADDITION_TENTHS:
-      return getRandomAdditionQuestion(0.1, 0.9, skill);
+      return getRandomAdditionQuestion(0.1, 0.9, skill, questionType);
     case Skill.ADDITION_4_DIGIT:
-      return getRandomAdditionQuestion(1000, 10001, skill);
+      return getRandomAdditionQuestion(1000, 10001, skill, questionType);
     case Skill.ADDITION_PROPERTIES:
       return getRandomPropertyAdditionQuestion(1, 15, skill);
     case Skill.ADDITION_5_DIGIT:
-      return getRandomAdditionQuestion(10000, 100001, skill);
-    case Skill.ADDITION_6_DIGIT:
-      return getRandomAdditionQuestion(100000, 1000001, skill);
+      return getRandomAdditionQuestion(10000, 100001, skill, questionType);
     case Skill.ADDITION_HUNDREDTHS:
-      return getRandomAdditionQuestion(0.01, 0.99, skill);
+      return getRandomAdditionQuestion(0.01, 0.99, skill, questionType);
     case Skill.SUBTRACTION_SINGLE:
-      return getRandomSubtractionQuestion(2, 11, skill);
+      return getRandomSubtractionQuestion(2, 11, skill, questionType);
     case Skill.SUBTRACTION_DOUBLE:
-      return getRandomSubtractionQuestion(10, 101, skill);
+      return getRandomSubtractionQuestion(10, 101, skill, questionType);
     case Skill.SUBTRACTION_TRIPLE:
-      return getRandomSubtractionQuestion(100, 1001, skill);
+      return getRandomSubtractionQuestion(100, 1001, skill, questionType);
     case Skill.SUBTRACTION_4_DIGIT:
-      return getRandomSubtractionQuestion(1000, 10001, skill);
+      return getRandomSubtractionQuestion(1000, 10001, skill, questionType);
     case Skill.SUBTRACTION_TENTHS:
-      return getRandomSubtractionQuestion(0.1, 0.9, skill);
+      return getRandomSubtractionQuestion(0.1, 0.9, skill, questionType);
     case Skill.SUBTRACTION_5_DIGIT:
-      return getRandomSubtractionQuestion(10000, 100001, skill);
-    case Skill.SUBTRACTION_6_DIGIT:
-      return getRandomSubtractionQuestion(100000, 1000001, skill);
-    case Skill.SUBTRACTION_TENTHS:
-      return getRandomSubtractionQuestion(0.01, 0.99, skill);
+      return getRandomSubtractionQuestion(10000, 100001, skill, questionType);
+    case Skill.SUBTRACTION_HUNDREDTHS:
+      return getRandomSubtractionQuestion(0.01, 0.99, skill, questionType);
     case Skill.EQUAL_GROUP_10_ITEMS:
-      return getRandomMultiplicationQuestion(1, 11, skill);
+      return getRandomMultiplicationQuestion(1, 11, skill, questionType);
     case Skill.MULTIPLICATION_5:
-      return getRandomMultiplicationQuestion(1, 6, skill);
+      return getRandomMultiplicationQuestion(1, 6, skill, questionType);
     case Skill.MULTIPLICATION_10:
-      return getRandomMultiplicationQuestion(6, 10, skill);
+      return getRandomMultiplicationQuestion(6, 10, skill, questionType);
     case Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT:
-      return getRandomMultiplicationQuestion(10, 100, skill);
+      return getRandomMultiplicationQuestion(10, 100, skill, questionType);
     case Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT:
-      return getRandomMultiplicationQuestion(100, 1000, skill);
+      return getRandomMultiplicationQuestion(100, 1000, skill, questionType);
     case Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT:
-      return getRandomMultiplicationQuestion(10, 100, skill);
+      return getRandomMultiplicationQuestion(10, 100, skill, questionType);
     case Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT:
-      return getRandomMultiplicationQuestion(100, 1000, skill);
+      return getRandomMultiplicationQuestion(100, 1000, skill, questionType);
     case Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT:
-      return getRandomMultiplicationQuestion(10, 100, skill);
+      return getRandomMultiplicationQuestion(10, 100, skill, questionType);
     case Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT:
-      return getRandomMultiplicationQuestion(100, 1000, skill);
-    case Skill.MULTIPLY_THREE_DIGIT_BY_TENTH:
-      return getRandomMultiplicationQuestion(100, 1001, skill);
+      return getRandomMultiplicationQuestion(100, 1000, skill, questionType);
     case Skill.EQUAL_SHARING_8_ITEMS:
-      return getRandomDivisionQuestion(1, 5, skill);
+      return getRandomDivisionQuestion(1, 5, skill, questionType);
     case Skill.DIVIDE_12_EQUALLY:
-      return getRandomDivisionQuestion(1, 13, skill);
+      return getRandomDivisionQuestion(1, 6, skill, questionType);
     case Skill.DIVIDE_100:
-      return getRandomDivisionQuestion(1, 11, skill);
+      return getRandomDivisionQuestion(1, 11, skill, questionType);
+    //All division questions min and maxs are in respect to the dividend
     case Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT:
-      return getRandomDivisionQuestion(10, 100, skill);
+      return getRandomDivisionQuestion(10, 100, skill, questionType);
     case Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT:
-      return getRandomDivisionQuestion(100, 1000, skill);
+      return getRandomDivisionQuestion(100, 1000, skill, questionType);
     case Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT:
-      return getRandomDivisionQuestion(100, 1000, skill);
-    case Skill.DIVISION_THREE_DIGIT_BY_TENTH:
-      return getRandomDivisionQuestion(100, 1001, skill);
+      return getRandomDivisionQuestion(100, 1000, skill, questionType);
   }
 };
 
@@ -100,6 +96,8 @@ export function getRandomNumbersQuestion(
     QuestionType.WORD_TO_HORIZONTAL_DIGITS,
     QuestionType.NUM_TO_VERITCAL_DIGITS,
     QuestionType.VERTICAL_DIGITS_TO_NUM,
+    QuestionType.PATTERN_COUNT_BLANKS_PROBLEM,
+
     // QuestionType.COMPARISON_WORD_PROBLEM,
   ];
   let typeIndex = getRndInteger(0, types.length);
@@ -111,7 +109,12 @@ export function getRandomNumbersQuestion(
   let startNum = getRndInteger(a, b);
 
   if (skill == Skill.NUMBERS_50) {
-    type = QuestionType.PATTERN_COUNT_BLANKS_PROBLEM;
+    const typeArr = [
+      QuestionType.PATTERN_COUNT_BLANKS_PROBLEM,
+      QuestionType.COMPARISON_NUMBER_PROBLEM,
+    ];
+    let typeIndex = getRndInteger(0, typeArr.length);
+    type = typeArr[typeIndex];
   }
 
   if (type == QuestionType.PATTERN_COUNT_BLANKS_PROBLEM) {
@@ -124,6 +127,8 @@ export function getRandomNumbersQuestion(
     if (displayPattern == "BACKWARDS" && startNum - 3 * patternNum < 0) {
       displayPattern = "FORWARDS";
     }
+
+    //
 
     text = `Count ${displayPattern} by ${patternNum} from ${startNum}`;
     if (displayPattern == "FORWARDS") {
@@ -173,13 +178,16 @@ export function getRandomNumbersQuestion(
       ];
       text = answer.join("");
     }
+  } else if (type == QuestionType.COMPARISON_NUMBER_PROBLEM) {
+    answer = Math.max(a, b);
+    text = `${a},${b}`;
   }
 
   return {
     text: text,
     answer: answer.toString(),
     answerType:
-      type == QuestionType.COMPARISON_WORD_PROBLEM
+      type == QuestionType.COMPARISON_NUMBER_PROBLEM
         ? AnswerType.STRING
         : AnswerType.ARRAY,
     questionType: type,
@@ -298,9 +306,12 @@ export function stringNumCalc(answer: number[]): string {
 export function getRandomAdditionQuestion(
   min: number,
   max: number,
-  skill: Skill
+  skill: Skill,
+  questionType?: QuestionType
 ) {
   let rndQuestionType = getRndInteger(0, 2);
+  //Conditional for visual question types to be generated
+  //Visual number types are only applied to Grade 1 Addition questions
   if (rndQuestionType == 0 && skill == Skill.ADDITION_SINGLE) {
     let a = getRndInteger(min, max);
     let b = getRndInteger(min, max);
@@ -310,18 +321,27 @@ export function getRandomAdditionQuestion(
       text: text,
       answer: (a + b).toString(),
       answerType: AnswerType.STRING,
-      questionType: QuestionType.VISUAL_TYPE_PROBLEM,
+      questionType: questionType
+        ? questionType
+        : QuestionType.VISUAL_TYPE_PROBLEM,
       operator: "+",
       skill: skill,
       displayNum: getRndInteger(0, 3),
     };
   }
+  //This function can be used to determine the sum of the two numbers passed in as arguments
   const add = (a: number, b: number) => a + b;
-  return getRandomBinaryQuestion(min, max, "+", add, skill);
+  return getRandomBinaryQuestion(min, max, "+", add, skill, questionType);
 }
-function getRandomSubtractionQuestion(min: number, max: number, skill: Skill) {
+
+function getRandomSubtractionQuestion(
+  min: number,
+  max: number,
+  skill: Skill,
+  questionType?: QuestionType
+) {
   const subtract = (a: number, b: number) => a - b;
-  return getRandomBinaryQuestion(min, max, "-", subtract, skill);
+  return getRandomBinaryQuestion(min, max, "-", subtract, skill, questionType);
 }
 export function getArrayMultiplicationQuestion(
   a: number,
@@ -346,35 +366,45 @@ export function getMultiplicationEqualGroups(
   let text = `${a} x ${b} =`;
   return {
     text: text,
-    answer: (a * b).toString(),
+    answer: `${a} groups of ${b}`,
     answerType: AnswerType.NUMBER,
     questionType: QuestionType.MULTIPLICATION_EQUAL_GROUPS,
     operator: "x",
     skill: skill,
   };
 }
+
 function getRandomMultiplicationQuestion(
   min: number,
   max: number,
-  skill: Skill
+  skill: Skill,
+  questionType?: QuestionType
 ) {
+  //This function can be used to determine the product of the two numbers passed in as arguments
   const multiply = (a: number, b: number) => a * b;
-  const randomPick = getRndInteger(0, 2);
+  let randomPick = getRndInteger(0, 2);
+  if (questionType === QuestionType.ARRAY_QUESTION) {
+    randomPick = 1;
+  }
+  //Conditional to generate Array Multiplication questions
   if (skill == Skill.MULTIPLICATION_5 && randomPick === 1) {
     const a = getRndInteger(1, 6);
     const b = getRndInteger(1, 6);
     return getArrayMultiplicationQuestion(a, b, skill);
+    //Conditional to generate Equal Groups Multiplication questions
   } else if (skill == Skill.EQUAL_GROUP_10_ITEMS) {
     const a = getRndInteger(1, 7);
     const b = getRndInteger(1, 11);
     return getMultiplicationEqualGroups(a, b, skill);
   }
-  return getRandomBinaryQuestion(min, max, "x", multiply, skill);
+  return getRandomBinaryQuestion(min, max, "x", multiply, skill, questionType);
 }
+
 export function getRandomDivisionQuestion(
   min: number,
   max: number,
-  skill: Skill
+  skill: Skill,
+  questionType?: QuestionType
 ): Question {
   let a;
   let b;
@@ -385,25 +415,24 @@ export function getRandomDivisionQuestion(
     skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH
   ) {
     a = getRndInteger(1, 10);
-    b = 0;
+    b = getRndInteger(min, max);
     if (skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT) {
       a = getRndInteger(10, 100);
     } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH) {
       a = getRndTenthsDecimal(0.1, 0.9);
     }
-    b = getRndInteger(min, max);
   } else {
     a = getRndInteger(min, max);
     b = getRndInteger(min, max);
   }
-  return getDivisionQuestion(a, b, skill);
+  return getDivisionQuestion(a, b, skill, questionType);
 }
 
-// getDivisionQuestion
 export function getDivisionQuestion(
   a: number,
   b: number,
-  skill: Skill
+  skill: Skill,
+  questionType?: QuestionType
 ): Question {
   if (
     skill == Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT ||
@@ -416,12 +445,17 @@ export function getDivisionQuestion(
     let remainder = b % a;
     let answer;
     if (skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH) {
+      // Skill.DIVISION_THREE_DIGIT_BY_TENTH only allows for one QuestionType
       type = QuestionType.HORIZONTAL_EQUATION;
+      //Answer only requires the quotient
       answer = `${quotient}`;
     } else {
+      //Answer consists of both the quotient and remainder
       answer = `${quotient},${remainder}`;
     }
+
     const text = `${b} / ${a} =`;
+
     return {
       text: text,
       answer: answer,
@@ -432,7 +466,6 @@ export function getDivisionQuestion(
     };
   } else {
     const product = a * b;
-
     const text = `${product} / ${b} =`;
     const types = [
       QuestionType.LONG_DIVISION_PROBLEM,
@@ -440,16 +473,20 @@ export function getDivisionQuestion(
       QuestionType.BINARY_WORD_PROBLEM,
     ];
     const type = types[getRndInteger(0, types.length)];
+    //undefined unless the QuestionType is BINARY_WORD_PROBLEM
     let wordProblemModel;
 
-    if (type == QuestionType.BINARY_WORD_PROBLEM) {
+    if (
+      type == QuestionType.BINARY_WORD_PROBLEM ||
+      questionType === QuestionType.BINARY_WORD_PROBLEM
+    ) {
       wordProblemModel = createWordProblemModel("÷");
     }
     return {
       text: text,
       answer: a.toString(),
       answerType: AnswerType.NUMBER,
-      questionType: type,
+      questionType: questionType ? questionType : type,
       operator: "÷",
       wordProblem: wordProblemModel,
       skill: skill,
@@ -460,13 +497,16 @@ export function randomize(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+//function is used to generate addition, subtraction, and multiplication questions
 function getRandomBinaryQuestion(
   min: number,
   max: number,
   operator: string,
   answerFunction: (a: number, b: number) => number,
-  skill: Skill
+  skill: Skill,
+  questionType?: QuestionType
 ): Question {
+  //Default possible Question Types
   let types = [
     QuestionType.HORIZONTAL_EQUATION,
     QuestionType.BINARY_WORD_PROBLEM,
@@ -475,7 +515,7 @@ function getRandomBinaryQuestion(
     QuestionType.MULTIPLE_CHOICE,
   ];
 
-  //Temporarily Disables True ann False, MC, and Word Problems for G4 Add and Subtract
+  //Temporarily Disables True and False, MC, and Word Problems for Grade 4 and above for Add and Subtract topics
   //TODO Redesign the logic for MC Question generator and T or F Questions
   if (
     skill == Skill.ADDITION_TENTHS ||
@@ -484,8 +524,10 @@ function getRandomBinaryQuestion(
     skill == Skill.ADDITION_HUNDREDTHS ||
     skill == Skill.MULTIPLY_THREE_DIGIT_BY_TENTH
   ) {
+    //Binary Word problems don't make much sense for deciaml word problems
     types = [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
   }
+  //Randomizes QuestionType
   let typeIndex = getRndInteger(0, types.length);
   let a = getRndInteger(min, max);
   let b = getRndInteger(min, max);
@@ -517,8 +559,7 @@ function getRandomBinaryQuestion(
     a = getRndInteger(10, 100);
     b = getRndInteger(min, max);
   }
-  const type = types[typeIndex];
-
+  const type = questionType ? questionType : types[typeIndex];
   return getBinaryQuestion(a, b, operator, type, answerFunction, skill);
 }
 
@@ -530,30 +571,12 @@ export function getBinaryQuestion(
   answerFunction: (a: number, b: number) => number,
   skill: Skill
 ): Question {
-  let types = [
-    QuestionType.HORIZONTAL_EQUATION,
-    QuestionType.BINARY_WORD_PROBLEM,
-    QuestionType.VERTICAL_EQUATION,
-    QuestionType.TRUE_OR_FALSE_PROBLEM,
-    QuestionType.MULTIPLE_CHOICE,
-  ];
-
-  //Temporarily Disables True ann False, MC, and Word Problems for G4 Add and Subtract
-  //TODO Redesign the logic for MC Question generator and T or F Questions
-  if (
-    skill == Skill.ADDITION_TENTHS ||
-    skill == Skill.SUBTRACTION_TENTHS ||
-    skill == Skill.SUBTRACTION_HUNDREDTHS ||
-    skill == Skill.ADDITION_HUNDREDTHS ||
-    skill == Skill.MULTIPLY_THREE_DIGIT_BY_TENTH
-  ) {
-    types = [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
-  }
   let text;
-  let trueFalseAnswer;
+  let trueFalseAnswer: string;
   const type = questionType;
   let multipleChoiceModel;
 
+  // T or F Question generation logic
   if (type === QuestionType.TRUE_OR_FALSE_PROBLEM) {
     const randomAns = randomize(0, 2);
     switch (randomAns) {
@@ -562,7 +585,7 @@ export function getBinaryQuestion(
           a,
           b
         )} = ${answerFunction(Math.max(a, b), Math.min(a, b))}`;
-        trueFalseAnswer = true;
+        trueFalseAnswer = "true";
         break;
       case 1:
         let randomDisplacement = randomize(-2, 3);
@@ -572,10 +595,11 @@ export function getBinaryQuestion(
         text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${
           answerFunction(Math.max(a, b), Math.min(a, b)) + randomDisplacement
         }`;
-        trueFalseAnswer = false;
+        trueFalseAnswer = "false";
         break;
     }
-  } else if (type === QuestionType.MULTIPLE_CHOICE) {
+  } // MC question Generation logic
+  else if (type === QuestionType.MULTIPLE_CHOICE) {
     if (a < b) {
       let temp = a;
       a = b;
