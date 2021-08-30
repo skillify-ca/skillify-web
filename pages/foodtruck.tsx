@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 import BuildAFoodTruck from "../components/foodtruck/BuildAFoodTruck";
-import PickALocation from "../components/foodtruck/PickALocation";
+import ChooseFoodType from "../components/foodtruck/ChooseFoodType";
+import ChooseNumWorkers from "../components/foodtruck/ChooseNumWorkers";
+import ChooseTruckType from "../components/foodtruck/ChooseTruckType";
+import { hotDog, smallTruck, Truck } from "./api/foodtruck/food";
 
-export enum TruckType {
-  smallTruck = "small",
-  mediumTruck = "medium",
-  largeTruck = "large",
-}
-
-export default function Bakery(props) {
+export default function FoodTruck(props) {
   const [userName, setUserName] = useState("");
   const [truckName, setTruckName] = useState("");
   const [truckSlogan, setTruckSlogan] = useState("");
   const [dollarAmount, setDollarAmount] = useState("");
-  const [numWorkers, setNumWorkers] = useState("");
-  const [truckType, setTruckType] = useState(TruckType.smallTruck);
+  const [truck, setTruck] = useState(smallTruck);
+  const [food, setFood] = useState(hotDog);
+  const [numWorkers, setNumWorkers] = useState("1");
 
+  const onSelectedTruckChanged = (truck: Truck) => {
+    setTruck(truck);
+    setFood(hotDog);
+  };
   return (
     <div>
       <div className="flex flex-cols-3 border-2 border-bottom border-dashed border-black p-12">
@@ -26,7 +28,7 @@ export default function Bakery(props) {
           }
         />
         <h1 className="p-8 text-black bold text-6xl">
-          Let's Build Your Own Fucking Food Truck!!!
+          Let's Build Your Own Food Truck!!!
         </h1>
         <img
           className="object-right object-contain h-28 invert"
@@ -56,15 +58,18 @@ export default function Bakery(props) {
           setTruckSlogan={setTruckSlogan}
           dollarAmount={dollarAmount}
           setDollarAmount={setDollarAmount}
+        />
+
+        <ChooseTruckType truck={truck} setTruck={onSelectedTruckChanged} />
+        <ChooseFoodType
+          selectedFood={food}
+          setSelectedFood={setFood}
+          selectedTruck={truck}
+        />
+        <ChooseNumWorkers
           numWorkers={numWorkers}
           setNumWorkers={setNumWorkers}
         />
-
-        <PickALocation truckType={truckType} setTruckType={setTruckType} />
-        <PickALocation truckType={truckType} setTruckType={setTruckType} />
-        <PickALocation truckType={truckType} setTruckType={setTruckType} />
-        <PickALocation truckType={truckType} setTruckType={setTruckType} />
-        <PickALocation truckType={truckType} setTruckType={setTruckType} />
       </div>
     </div>
   );

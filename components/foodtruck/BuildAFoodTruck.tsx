@@ -9,8 +9,6 @@ export interface BuildAFoodTruckProps {
   setTruckSlogan: (truckSlogan: string) => void;
   dollarAmount: string;
   setDollarAmount: (dollarAmount: string) => void;
-  numWorkers: string;
-  setNumWorkers: (numWorkers: string) => void;
 }
 
 const BuildAFoodTruck = ({
@@ -22,8 +20,6 @@ const BuildAFoodTruck = ({
   setTruckSlogan,
   dollarAmount,
   setDollarAmount,
-  numWorkers,
-  setNumWorkers,
 }: BuildAFoodTruckProps) => {
   return (
     <div className="flex flex-col border-2 border-dashed border-black p-4">
@@ -54,7 +50,7 @@ const BuildAFoodTruck = ({
         className="border-2 border-black p-4 text-grey-darkest max-w-sm"
         value={truckSlogan}
         onChange={(e) => setTruckSlogan(e.target.value)}
-        placeholder="ex: Tikka so good, you'll scream TIKKA!"
+        placeholder="ex: Best Tikka This Side of the Mississippi"
       />
 
       <label className="py-4">4) How much money did you save?</label>
@@ -64,28 +60,6 @@ const BuildAFoodTruck = ({
         onChange={(e) => setDollarAmount(e.target.value)}
         placeholder="ex: 1000"
       />
-      <h2 className="text-2xl py-4 pb-4 text-black bold">
-        Let's see what we have so far:
-      </h2>
-      <p>
-        Ok {userName === "" ? "Praveen" : userName}, your food truck will be
-        named:
-        <p className="font-bold text-2xl p-4">
-          {truckName === "" ? "Praveen's Tittilating Tikka" : truckName}
-        </p>
-        Your food truck's slogan is:
-        <p className="font-bold text-2xl p-4">
-          "
-          {truckSlogan === ""
-            ? "Tikka so good, you'll scream TIKKA!"
-            : truckSlogan}
-          "
-        </p>
-        You have saved ${dollarAmount === "" ? "1000" : dollarAmount} and with
-        that money you will try to employ $
-        {numWorkers === "" ? "69" : numWorkers} workers. <br />
-        Good luck! You're going to need it.
-      </p>
     </div>
   );
 };
