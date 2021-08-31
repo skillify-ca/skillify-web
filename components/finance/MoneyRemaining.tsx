@@ -51,15 +51,15 @@ const MoneyRemainingTable = ({
     newTotalMonthlySection7 === ""
       ? setMonthlyIncomeValidation("")
       : totalMonthlyIncome === newTotalMonthlySection7
-      ? setMonthlyIncomeValidation("Correct")
-      : setMonthlyIncomeValidation("Wrong");
+        ? setMonthlyIncomeValidation("Correct")
+        : setMonthlyIncomeValidation("Wrong");
   };
   const validateTotalExpenses = (newTotalExpensesSection7) => {
     newTotalExpensesSection7 === ""
       ? setTotalExpenseValidation("")
       : totalExpenses === newTotalExpensesSection7
-      ? setTotalExpenseValidation("Correct")
-      : setTotalExpenseValidation("Wrong");
+        ? setTotalExpenseValidation("Correct")
+        : setTotalExpenseValidation("Wrong");
   };
 
   return (
@@ -96,10 +96,10 @@ const MoneyRemainingTable = ({
                     monthlyIncomeValidation === ""
                       ? "bg-white"
                       : monthlyIncomeValidation === "Correct"
-                      ? "bg-green-200"
-                      : monthlyIncomeValidation === "Wrong"
-                      ? "bg-red-200"
-                      : "bg-white"
+                        ? "bg-green-200"
+                        : monthlyIncomeValidation === "Wrong"
+                          ? "bg-red-200"
+                          : "bg-white"
                   }
                 ></input>
               </div>
@@ -125,16 +125,16 @@ const MoneyRemainingTable = ({
                     totalExpenseValidation === ""
                       ? "bg-white"
                       : totalExpenseValidation === "Correct"
-                      ? "bg-green-200"
-                      : totalExpenseValidation === "Wrong"
-                      ? "bg-red-200"
-                      : "bg-white"
+                        ? "bg-green-200"
+                        : totalExpenseValidation === "Wrong"
+                          ? "bg-red-200"
+                          : "bg-white"
                   }
                 ></input>
               </div>
             </td>
           </tr>
-          {isSurpriseVisible === true && (
+          {isSurpriseVisible && (
             <tr>
               <td className={"border border-black"}>
                 <p className={"mx-2"}>Surprise Amount</p>
@@ -164,10 +164,10 @@ const MoneyRemainingTable = ({
                     moneyRemValidation === ""
                       ? "bg-white"
                       : moneyRemValidation === "Correct"
-                      ? "bg-green-200"
-                      : moneyRemValidation === "Wrong"
-                      ? "bg-red-200"
-                      : "bg-white"
+                        ? "bg-green-200"
+                        : moneyRemValidation === "Wrong"
+                          ? "bg-red-200"
+                          : "bg-white"
                   }
                 ></input>
               </div>
@@ -175,7 +175,7 @@ const MoneyRemainingTable = ({
           </tr>
         </tbody>
       </table>
-      <p className={"ml-60 text-xs"}>**Put this amount in section 6** </p>
+      <p className={"ml-60 text-xs"}>**Put this amount in section 6**</p>
     </div>
   );
 };
