@@ -13,6 +13,8 @@ import {
 import { Button } from "../ui/Button";
 import Image from "next/image";
 import GoogleClassroomImage from ".././../public/images/assignments/google-classroom.svg";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import { FETCH_SKILL_DESCRIPTION_AND_GRADE } from "../../graphql/fetchSkillDescriptionAndGrade";
 
 export type QuestionTypeForSkill = {
   questionType: QuestionType;
@@ -30,7 +32,6 @@ export type QuestionCount = {
   key: number;
   value: number;
 };
-
 const AssignmentCreationForm = ({
   onClick,
   questionCounts,
@@ -60,9 +61,9 @@ const AssignmentCreationForm = ({
     setGrade(e.target.value);
   };
 
-  const onQuestionCountChange = (skill: Skill, value: number) => {
+  const onQuestionCountChange = (skillId: number, value: number) => {
     const newQuestionCounts = questionCounts.map((it) => {
-      if (it.key === getSkillId(skill)) {
+      if (it.key === skillId) {
         return { key: it.key, value: value };
       } else {
         return it;
@@ -129,21 +130,21 @@ const AssignmentCreationForm = ({
                 <p className="font-bold">{it.title}</p>
                 <div className="flex flex-col gap-4">
                   {getSkillsForTopicGrade(it.unit, grade as Grade).map(
-                    (skill) => (
+                    (skillId) => (
                       <div className="w-full">
                         <label className="">
-                          <p>I can {SkillDescription(skill)}</p>
+                          <p>I can SKILLDESCRIPTION GOES HERE )#(!*(*$#</p>
                           <input
                             type={"number"}
                             className={"p-2 bg-white rounded-md w-full"}
                             value={
                               questionCounts.filter(
-                                (it) => it.key === getSkillId(skill)
+                                (it) => it.key === skillId
                               )[0].value
                             }
                             onChange={(e) =>
                               onQuestionCountChange(
-                                skill,
+                                skillId,
                                 Number.parseInt(e.target.value)
                               )
                             }
@@ -170,4 +171,27 @@ const AssignmentCreationForm = ({
   );
 };
 
+export async function getServerSideProps() {
+  const client = new ApolloClient({
+    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
+    cache: new InMemoryCache(),
+  });
+
+  const { data } = await client.query({
+    query: FETCH_SKILL_DESCRIPTION_AND_GRADE,
+  });
+
+  if (!data) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: data, // will be passed to the page component as props
+  };
+}
 export default AssignmentCreationForm;
