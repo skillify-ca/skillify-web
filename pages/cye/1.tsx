@@ -4,9 +4,16 @@ import Image from "next/image";
 import { Button } from "../../components/ui/Button";
 import "katex/dist/katex.min.css";
 import TeX from "@matejmazur/react-katex";
+import bedmasRulesImg from "../../public/images/cye/rules.png";
+
+enum Stage {
+  RULES,
+  ASSIGNMENT,
+}
 
 export default function Resources(props) {
   const [guess, setGuess] = useState("");
+  const [stage, setStage] = useState(Stage.RULES);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   const onNextQuestion = () => {
@@ -15,7 +22,14 @@ export default function Resources(props) {
     );
   };
   const onPreviousQuestion = () => {
-    setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1));
+    if (currentQuestionIndex == 0) {
+      setStage(Stage.RULES);
+    } else {
+      setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1));
+    }
+  };
+  const onStartAssignment = () => {
+    setStage(Stage.ASSIGNMENT);
   };
 
   const questions = [
@@ -42,34 +56,47 @@ export default function Resources(props) {
       <Navbar />
       <div className="grid grid-cols-12">
         <div className="col-span-8 col-start-3">
-          <div className="flex flex-col gap-4 items-center min-w-max bg-blue-300 p-8">
-            <p>Question #{currentQuestionIndex}</p>
-            <div className="font-bold text-xl">
-              <TeX block>{questions[currentQuestionIndex]}</TeX>
-            </div>
-            <label>
-              Evaluate without the use of a calculator. Show all your work
-            </label>
-            <textarea
-              className="w-2/3 h-36"
-              value={guess}
-              onChange={(e) => setGuess(e.target.value)}
-            ></textarea>
-            <div className="flex gap-8">
+          {stage == Stage.RULES && (
+            <div className="flex flex-col gap-8">
+              <Image src={bedmasRulesImg} objectFit="contain" alt="Bedmas Rules" width="300" height="600" />
               <Button
-                label="Previous"
-                onClick={onPreviousQuestion}
-                backgroundColor="white"
-                textColor="blue-600"
-              />
-              <Button
-                label="Next"
-                onClick={onNextQuestion}
+                label="Start"
                 backgroundColor="blue"
                 textColor="white"
+                onClick={onStartAssignment}
               />
             </div>
-          </div>
+          )}
+          {stage == Stage.ASSIGNMENT && (
+            <div className="flex flex-col gap-4 items-center min-w-max bg-blue-300 p-8">
+              <p>Question #{currentQuestionIndex}</p>
+              <div className="font-bold text-xl">
+                <TeX block>{questions[currentQuestionIndex]}</TeX>
+              </div>
+              <label>
+                Evaluate without the use of a calculator. Show all your work
+              </label>
+              <textarea
+                className="w-2/3 h-36"
+                value={guess}
+                onChange={(e) => setGuess(e.target.value)}
+              ></textarea>
+              <div className="flex gap-8">
+                <Button
+                  label="Previous"
+                  onClick={onPreviousQuestion}
+                  backgroundColor="white"
+                  textColor="blue-600"
+                />
+                <Button
+                  label="Next"
+                  onClick={onNextQuestion}
+                  backgroundColor="blue"
+                  textColor="white"
+                />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
