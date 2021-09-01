@@ -144,6 +144,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   };
 
   const [updateUserEmoji, updateUserEmojiMutation] = useMutation(
+    //Mutation for updating a user emoji value after a practice
     UPDATE_USER_SKILL_EMOJI,
     {
       refetchQueries: [
@@ -212,6 +213,7 @@ const PracticeQuiz = ({ slug, skill }) => {
     );
     let stageLevel = stage;
 
+    //Controlling the stages of the practice session
     switch (stageLevel) {
       case STAGE.QUESTION:
         return questionSet;

@@ -25,7 +25,7 @@ export const NumberTile: React.FC<NumberTileProps> = ({
   return (
     <div ref={drag} style={{ opacity }}>
       <div className="bg-purple-400 cursor-move w-16 h-16 flex items-center justify-center text-5xl">
-        {value}
+        <p className="select-none">{value}</p>
       </div>
     </div>
   );

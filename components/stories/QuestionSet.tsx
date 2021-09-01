@@ -16,10 +16,12 @@ import { MultipleChoiceSentence } from "../questionTypes/MultipleChoiceSentence"
 import { MultipleChoiceWord } from "../questionTypes/MultipleChoiceWord";
 import { MultiplicationArray } from "../questionTypes/MultiplicationArray";
 import { MultiplicationEqualGroups } from "../questionTypes/MultiplicationEqualGroups";
-import { NumbertoVerticalDigits } from "../questionTypes/NumbertoVerticalDigits";
-import { PatternBlank } from "../questionTypes/PatternBlank";
+import { NumberComparison } from "../questionTypes/numberComparison";
+import { NumbertoVerticalDigits } from "../questionTypes/numbers/NumbertoVerticalDigits";
+import { PatternBlank } from "../questionTypes/numbers/PatternBlank";
+import { VerticalDigitstoNum } from "../questionTypes/numbers/VerticalDigitstoNum";
+import { WordtoHorizontalDigits } from "../questionTypes/numbers/WordtoHorizontalDigits";
 import { TrueorFalse } from "../questionTypes/TrueorFalse";
-import { VerticalDigitstoNum } from "../questionTypes/VerticalDigitstoNum";
 import { VerticalEquation } from "../questionTypes/VerticalEquation";
 
 import { VisualAddition } from "../questionTypes/VisualAddition";
@@ -27,17 +29,16 @@ import { WordProblemAdd } from "../questionTypes/wordProblems/WordProblemAdd";
 import { WordProblemDiv } from "../questionTypes/wordProblems/WordProblemDiv";
 import { WordProblemMulti } from "../questionTypes/wordProblems/WordProblemMulti";
 import { WordProblemSub } from "../questionTypes/wordProblems/WordProblemSub";
-import { WordtoHorizontalDigits } from "../questionTypes/WordtoHorizontalDigits";
 import Card from "../ui/Card";
 
 type QuestionSetProps = {
-  title: string;
+  title?: string;
   HUDEnabled?: boolean;
   questionData: Question[];
   index: number;
-  inputElement: any;
-  submitGuess: (guessData: GuessData) => void;
-  score: number;
+  inputElement?: any;
+  submitGuess?: (guessData: GuessData) => void;
+  score?: number;
   diagnostic?: { isDiagnostic: boolean; opacityVal: number };
 };
 const QuestionSet = ({
@@ -92,6 +93,16 @@ const QuestionSet = ({
         <PatternBlank
           displayQuestion={questionData[index].text}
           startNumber={questionData[index].placeholder}
+          answer={questionData[index].answer}
+          submitGuess={submitGuess}
+        />
+      );
+    } else if (
+      questionData[index].questionType == QuestionType.COMPARISON_NUMBER_PROBLEM
+    ) {
+      return (
+        <NumberComparison
+          valueText={questionData[index].text}
           answer={questionData[index].answer}
           submitGuess={submitGuess}
         />
@@ -166,18 +177,6 @@ const QuestionSet = ({
             submitGuess={submitGuess}
           />
         );
-      }
-    } else if (
-      questionData[index].questionType == QuestionType.VISUAL_TYPE_PROBLEM
-    ) {
-      if (questionData[index].operator == "+") {
-        return (
-          <VisualAddition
-            question={questionData[index]}
-            submitGuess={submitGuess}
-            visualDisplay={questionData[index].displayNum}
-          />
-        );
       } else if (questionData[index].operator == "-") {
         return (
           <WordProblemSub
@@ -197,6 +196,18 @@ const QuestionSet = ({
           <WordProblemDiv
             question={questionData[index]}
             submitGuess={submitGuess}
+          />
+        );
+      }
+    } else if (
+      questionData[index].questionType == QuestionType.VISUAL_TYPE_PROBLEM
+    ) {
+      if (questionData[index].operator == "+") {
+        return (
+          <VisualAddition
+            question={questionData[index]}
+            submitGuess={submitGuess}
+            visualDisplay={questionData[index].displayNum}
           />
         );
       }
@@ -252,7 +263,6 @@ const QuestionSet = ({
         );
       }
     }
-
     return (
       <HorizontalEquation
         question={questionData[index]}
@@ -262,7 +272,7 @@ const QuestionSet = ({
   };
 
   return (
-    <div className="flex flex-col justify-center items-center gap-4 m-8">
+    <div className="flex justify-center items-center gap-4">
       <Card size="large">
         <div
           className={`transition-opacity duration-150 ease-in-out opacity-${

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { GuessData } from "../../pages/api/guessData";
-import { Button } from "../ui/Button";
+import { GuessData } from "../../../pages/api/guessData";
+import { Button } from "../../ui/Button";
 
 export interface WordtoHorizontalDigitsProp {
   numString: string;

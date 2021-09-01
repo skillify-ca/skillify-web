@@ -15,6 +15,21 @@ import { useRouter } from "next/router";
 import Navbar from "../components/Navbar";
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+
+  const handleRouteChange = (url) => {
+    window.gtag("config", "G-FJLNTHHN4G", {
+      page_path: url,
+    });
+  };
+
+  useEffect(() => {
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
+
   const client = initializeApollo();
 
   let isMobile = false;
@@ -35,9 +50,9 @@ function MyApp({ Component, pageProps }) {
           <ModalProvider>
             <ReduxProvider store={store}>
               <div>
-                <Navbar />
                 {Component.auth ? (
                   <Auth>
+                    <Navbar />
                     <Component {...pageProps} />
                   </Auth>
                 ) : (

@@ -8,7 +8,10 @@ import {
 
 const BuyAHome = ({}) => {
   return (
-    <div className="grid grid-cols-2 grid-rows-4 border-8 border-black p-3 max-w-3xl">
+    <div
+      className="grid grid-cols-2 grid-rows-4 
+     p-4 max-w-3xl"
+    >
       <div className="row-start-1 border-b-8 border-black">
         <h1 className="text-5xl col-span-3 pb-4">Buy a Home</h1>
         <p>

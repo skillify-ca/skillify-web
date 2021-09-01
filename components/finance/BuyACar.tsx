@@ -24,11 +24,9 @@ const BuyACar = ({
   setCost,
 }: BuyACarProps) => {
   return (
-    <div
-      className={"grid grid-cols-2 border-collapse  border-2 border-black m-8"}
-    >
-      <div className={"col-start-1 col-end-2 mt-8 ml-20 mb-8"}>
-        <h1 className={"text-center text-6xl ml-24"}> Buy a Car</h1>
+    <div className={"grid grid-cols-2 border-collapse  m-4"}>
+      <div className={"col-start-1 col-end-2 mt-8 mb-10"}>
+        <h1 className={"text-left text-6xl "}> Buy a Car</h1>
         <p className={"text-left mt-10"}>
           You can choose to buy a new or used car. Your family must have at
           least one car. You may buy a car for each parent if you choose.
@@ -38,13 +36,15 @@ const BuyACar = ({
         </p>
       </div>
       <div className={"col-start-2 col-end-3"}>
-        <img
-          className={"mb-3 ml-16"}
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2EKx8p_hGU9mKTylqObmeLK1dncuZOypUta8sKG4UrHAkXq9vPiXO7lOqenW9eQjDi_Y&usqp=CAU"
-          alt="car header"
-          width="50%"
-          height="auto"
-        />
+        <div className={"flex items-center justify-center"}>
+          <img
+            className={""}
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2EKx8p_hGU9mKTylqObmeLK1dncuZOypUta8sKG4UrHAkXq9vPiXO7lOqenW9eQjDi_Y&usqp=CAU"
+            alt="car header"
+            width="75%"
+            height="auto"
+          />
+        </div>
       </div>
       <div
         className={
@@ -138,14 +138,21 @@ const BuyACar = ({
           </tbody>
         </table>
       </div>
+
       <div
         className={
-          "col-start-1 col-end-2 border-t-8 border-collapse border-black mb-20"
+          "col-start-1 col-end-3 border-t-8 border-collapse border-black mb-5"
         }
       >
-        <p className={"text-left text-3xl mb-4 mt-10 ml-6"}>Car Expense</p>
-        <p className={"text-center col-end-1 text-2xl ml-6"}>Gasoline</p>
-        <table className={"mx-40"}>
+        <p className={"flex justify-center text-left text-3xl mt-10"}>
+          Car Expense
+        </p>
+      </div>
+      <div className={"col-start-1 col-end-2 "}>
+        <p className={"text-center col-end-2 text-1xl font-bold mb-2"}>
+          Gasoline
+        </p>
+        <table className={"flex justify-center items-center"}>
           <thead>
             <tr>
               <th className={"text-center bg-green-300 border border-black"}>
@@ -172,13 +179,10 @@ const BuyACar = ({
           </thead>
         </table>
       </div>
-      <div
-        className={
-          "col-start-2 col-end-3 border-t-8 border-collapse border-black mb-20"
-        }
-      >
-        <p className={"text-center text-2xl mb-4 mt-16 ml-6"}>Car Insurance</p>
-        <table className={"col-start-2 ml-36"}>
+      <div className={"col-start-2 col-end-3 "}>
+        <p className={"text-center text-1xl font-bold mb-2"}>Car Insurance</p>
+
+        <table className={"flex items-center justify-center"}>
           <thead>
             <tr>
               <th className={"text-center bg-green-300 border border-black"}>

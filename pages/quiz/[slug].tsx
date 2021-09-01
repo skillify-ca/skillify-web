@@ -20,6 +20,24 @@ import { SAVE_USER_GUESSES } from "../../graphql/saveUserGuesses";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
 import { SAVE_QUIZ_ATTEMPT } from "../../graphql/saveQuizAttempt";
+import Navbar from "../../components/Navbar";
+
+//
+export function getGradeLevel(score: number) {
+  if (score < 60) {
+    return "1";
+  } else if (score < 70) {
+    return "2";
+  } else if (score < 80) {
+    return "3";
+  } else if (score < 90) {
+    return "4";
+  } else if (score < 100) {
+    return "4+";
+  } else {
+    return "4++";
+  }
+}
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
@@ -38,6 +56,7 @@ const Quiz = ({ slug }) => {
       skill: Skill.ADDITION_SINGLE,
     },
   ]);
+
   const [currentLevel, setCurrentLevel] = React.useState(0);
   const inputElement = useRef(null);
   const [guesses, setGuesses] = useState([]);
@@ -177,6 +196,7 @@ const Quiz = ({ slug }) => {
   };
   return (
     <div>
+      <Navbar/>
       <QuestionSet
         title={slug}
         questionData={questionData}
@@ -191,6 +211,9 @@ const Quiz = ({ slug }) => {
         transition={ModalTransition.SCALE}
       >
         <div className="py-16 m-8 space-y-8 bg-white flex flex-col justify-center items-center">
+          <p className="text-2xl">
+            Grade Level: {getGradeLevel(getAccuracy())}
+          </p>
           <p className="text-2xl">Speed </p> {secondsElapsed} seconds
           <p className="text-2xl">Accuracy</p>
           {getAccuracy()}%

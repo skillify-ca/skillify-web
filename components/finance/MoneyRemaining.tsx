@@ -19,6 +19,10 @@ export interface MoneyRemainingTableProps {
   setTotalMonthlyIncome: (totalMonthlyIncome: string) => void;
   totalExpenses: string;
   setTotalExpenses: (totalExpenses: string) => void;
+  isSurpriseVisible: boolean;
+  setIsSurpriseVisible: (isSurpriseVisible: boolean) => void;
+  surpriseValue: number;
+  validateTotalMoneyRemaining: (totalMoneyRemaining: string) => void;
 }
 
 const MoneyRemainingTable = ({
@@ -38,38 +42,32 @@ const MoneyRemainingTable = ({
   setTotalMonthlyIncome,
   totalExpenses,
   setTotalExpenses,
+  isSurpriseVisible,
+  setIsSurpriseVisible,
+  surpriseValue,
+  validateTotalMoneyRemaining,
 }: MoneyRemainingTableProps) => {
   const validateTotalIncome = (newTotalMonthlySection7) => {
     newTotalMonthlySection7 === ""
       ? setMonthlyIncomeValidation("")
       : totalMonthlyIncome === newTotalMonthlySection7
-      ? setMonthlyIncomeValidation("Correct")
-      : setMonthlyIncomeValidation("Wrong");
+        ? setMonthlyIncomeValidation("Correct")
+        : setMonthlyIncomeValidation("Wrong");
   };
   const validateTotalExpenses = (newTotalExpensesSection7) => {
     newTotalExpensesSection7 === ""
       ? setTotalExpenseValidation("")
       : totalExpenses === newTotalExpensesSection7
-      ? setTotalExpenseValidation("Correct")
-      : setTotalExpenseValidation("Wrong");
-  };
-  const validateTotalMoneyRemaining = (newTotalMoneyRemaining) => {
-    newTotalMoneyRemaining === ""
-      ? setMoneyRemValidation("")
-      : totalMonthlySection7 + totalExpensesSection7 === ""
-      ? setMoneyRemValidation("")
-      : Number.parseInt(totalMonthlySection7) -
-          Number.parseInt(totalExpensesSection7) ===
-        Number.parseInt(newTotalMoneyRemaining)
-      ? setMoneyRemValidation("Correct")
-      : setMoneyRemValidation("Wrong");
+        ? setTotalExpenseValidation("Correct")
+        : setTotalExpenseValidation("Wrong");
   };
 
   return (
     <div>
-      <h1 className={"font-bold"}>
+      <h1 className="sticky top-0 font-bold p-4 bg-green-300 text-white rounded-xl mb-4">
         Section 7: Money remaining after expenses are paid
       </h1>
+
       <p> Subtract your total expenses from your total monthly income.</p>
       <table className={"fixed-width w-auto border-collapse"}>
         <thead>
@@ -98,10 +96,10 @@ const MoneyRemainingTable = ({
                     monthlyIncomeValidation === ""
                       ? "bg-white"
                       : monthlyIncomeValidation === "Correct"
-                      ? "bg-green-200"
-                      : monthlyIncomeValidation === "Wrong"
-                      ? "bg-red-200"
-                      : "bg-white"
+                        ? "bg-green-200"
+                        : monthlyIncomeValidation === "Wrong"
+                          ? "bg-red-200"
+                          : "bg-white"
                   }
                 ></input>
               </div>
@@ -127,22 +125,32 @@ const MoneyRemainingTable = ({
                     totalExpenseValidation === ""
                       ? "bg-white"
                       : totalExpenseValidation === "Correct"
-                      ? "bg-green-200"
-                      : totalExpenseValidation === "Wrong"
-                      ? "bg-red-200"
-                      : "bg-white"
+                        ? "bg-green-200"
+                        : totalExpenseValidation === "Wrong"
+                          ? "bg-red-200"
+                          : "bg-white"
                   }
                 ></input>
               </div>
             </td>
           </tr>
+          {isSurpriseVisible && (
+            <tr>
+              <td className={"border border-black"}>
+                <p className={"mx-2"}>Surprise Amount</p>
+              </td>
+              <td className={"border border-black"}>
+                <p className={"mx-2"}>{surpriseValue}</p>
+              </td>
+            </tr>
+          )}
           <tr>
             <td className={"border border-black bg-green-300 font-bold"}>
               {" "}
               <p className={"mx-2"}>Total Money Remaining</p>
             </td>
             <td className={"border border-black flex flex-nowrap"}>
-              <p className={"mx-2"}>S.</p>
+              <p className={"mx-2"}>R.</p>
               <div>
                 <input
                   value={totalMoneyRemaining}
@@ -156,10 +164,10 @@ const MoneyRemainingTable = ({
                     moneyRemValidation === ""
                       ? "bg-white"
                       : moneyRemValidation === "Correct"
-                      ? "bg-green-200"
-                      : moneyRemValidation === "Wrong"
-                      ? "bg-red-200"
-                      : "bg-white"
+                        ? "bg-green-200"
+                        : moneyRemValidation === "Wrong"
+                          ? "bg-red-200"
+                          : "bg-white"
                   }
                 ></input>
               </div>
@@ -167,6 +175,7 @@ const MoneyRemainingTable = ({
           </tr>
         </tbody>
       </table>
+      <p className={"ml-60 text-xs"}>**Put this amount in section 6**</p>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { GuessData } from "../../pages/api/guessData";
-import { Button } from "../ui/Button";
+import { GuessData } from "../../../pages/api/guessData";
+import { Button } from "../../ui/Button";
 
 export interface MissingNumSeqProp {
   numSeq: Array<number>;
@@ -16,6 +16,7 @@ export const MissingNumSeq: React.FC<MissingNumSeqProp> = ({
   const [guess, setGuess] = useState("");
   function onSubmit() {
     submitGuess({ guess: guess, isCorrect: guess == answer.toString() });
+    setGuess("");
   }
 
   return (

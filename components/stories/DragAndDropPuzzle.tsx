@@ -47,7 +47,7 @@ const DragAndDropPuzzle = ({ onSubmit, onReset, puzzleId }: DragAndDropPuzzlePro
 
   const parseQuestionData = (question: QuestionData, index: number) => {
     return (
-      <div className="flex items-center" key={index}>
+      <div className="flex items-center justify-center gap-1" key={index}>
         {question.parts.map((it) => parsePart(it))}
       </div>
     );
@@ -107,15 +107,15 @@ const DragAndDropPuzzle = ({ onSubmit, onReset, puzzleId }: DragAndDropPuzzlePro
     <div
       className={`
         flex flex-col justify-center space-y-16 
-        items-center p-8 bg-white shadow-md 
+        items-center p-4 bg-white shadow-md 
         rounded-xl max-w-screen-lg min-w-full`}
     >
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {puzzleData && puzzleData.questions.map((it, index) => parseQuestionData(it, index))}
       </div>
 
       <div className="flex flex-col items-center justify-between gap-8">
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-wrap">
           {boxes
             .filter(({ name }) => !isDropped(name))
             .map(({ name, value, type }, index) => (
