@@ -68,15 +68,15 @@ export default function Resources(props) {
     <div className="flex flex-col bg-blue-50">
       <Navbar />
       <div className="grid grid-cols-12">
-        <div className="col-span-8 col-start-3">
+        <div className="col-span-12 p-4">
           {stage == Stage.RULES && (
             <div className="flex flex-col gap-8">
               <Image
                 src={bedmasRulesImg}
                 objectFit="contain"
                 alt="Bedmas Rules"
-                width="300"
-                height="600"
+                className="w-full h-full"
+                
               />
               <Button
                 label="Start"
@@ -87,7 +87,7 @@ export default function Resources(props) {
             </div>
           )}
           {stage == Stage.ASSIGNMENT && (
-            <div className="flex flex-col gap-4 items-center min-w-max bg-blue-300 p-8">
+            <div className="flex flex-col gap-4 w-full overflow-auto p-4 bg-blue-300">
               <p>Question #{currentQuestionIndex + 1}</p>
               <div className="font-bold text-xl">
                 <TeX block>{questions[currentQuestionIndex]}</TeX>
