@@ -23,6 +23,7 @@ export type QuestionTypeForSkill = {
 };
 
 type assignmentCreationFormProps = {
+  data: any;
   onClick: (questionCounts: QuestionCount[]) => void;
   questionCounts: QuestionCount[];
   setQuestionCounts: (counts: QuestionCount[]) => void;
@@ -33,6 +34,7 @@ export type QuestionCount = {
   value: number;
 };
 const AssignmentCreationForm = ({
+  data,
   onClick,
   questionCounts,
   setQuestionCounts,
@@ -89,6 +91,7 @@ const AssignmentCreationForm = ({
       </div>
       <div className="gap-4">
         <div className="flex flex-col gap-8 bg-white shadow-lg p-4">
+          <p>{JSON.stringify(data)}</p>
           <div className="flex flex-col justify-center items-center">
             <p className="font-bold text-xl text-gray-700">Grade</p>
             <div className="flex flex-row items-center justify-center w-full gap-4">
@@ -171,27 +174,4 @@ const AssignmentCreationForm = ({
   );
 };
 
-export async function getServerSideProps() {
-  const client = new ApolloClient({
-    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
-    cache: new InMemoryCache(),
-  });
-
-  const { data } = await client.query({
-    query: FETCH_SKILL_DESCRIPTION_AND_GRADE,
-  });
-
-  if (!data) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: data, // will be passed to the page component as props
-  };
-}
 export default AssignmentCreationForm;
