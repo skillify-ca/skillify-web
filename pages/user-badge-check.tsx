@@ -4,8 +4,8 @@ import React from "react";
 import { FETCH_BADGE_ON_USERID } from "../graphql/fetchBadgeOnUserID";
 import { userId } from "../graphql/utils/constants";
 
-export default async function userbadge() {
-  const client = new ApolloClient({
+const userbadge = () => {
+  /*const client = new ApolloClient({
     uri: "https://talented-duckling-40.hasura.app/v1/graphql",
     cache: new InMemoryCache(),
   });
@@ -16,6 +16,9 @@ export default async function userbadge() {
       userId: "116309327098433793664",
     },
   });
-
+*/
   console.log("data", data);
-}
+  return <div> hello world </div>;
+};
+
+export default userbadge;
