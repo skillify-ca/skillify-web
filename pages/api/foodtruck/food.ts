@@ -1,7 +1,4 @@
-import { List } from "lodash"
-
-
-// define Food and Truck interfaces 
+// define Food, Truck, Workforce interfaces 
 
 export interface Food {
     name: string 
@@ -18,6 +15,11 @@ export interface Truck {
     variableCost: number 
     maxWorkers: number
     allowedItems: Array<Food>
+    imageUrl: string
+}
+
+export interface Workforce {
+    size: number 
     imageUrl: string
 }
 
@@ -50,6 +52,8 @@ export const tikka: Food = {
     qtyProducedPerWorkerHour: 8
 }
 
+export const allFoods = [hotDog, soupDumplings, tikka]
+
 // define each instance of Truck interface
 
 export const smallTruck: Truck = {
@@ -79,6 +83,7 @@ export const largeTruck: Truck = {
     imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/1795498/food-truck-clipart.svg'
 }
 
+export const allTrucks = [smallTruck, mediumTruck, largeTruck]
 
 // define functions to get properties from Truck and Food interfaces
 export const getTruck = (model: string) => {
@@ -108,3 +113,7 @@ export const getFood = (name: string) => {
         return tikka
     }
 }
+
+
+
+

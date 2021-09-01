@@ -3,7 +3,15 @@ import BuildAFoodTruck from "../components/foodtruck/BuildAFoodTruck";
 import ChooseFoodType from "../components/foodtruck/ChooseFoodType";
 import ChooseNumWorkers from "../components/foodtruck/ChooseNumWorkers";
 import ChooseTruckType from "../components/foodtruck/ChooseTruckType";
-import { hotDog, smallTruck, Truck } from "./api/foodtruck/food";
+import FoodReferenceTable from "../components/foodtruck/FoodReferenceTable";
+import TruckReferenceTable from "../components/foodtruck/TruckReferenceTable";
+import {
+  hotDog,
+  largeTruck,
+  mediumTruck,
+  smallTruck,
+  Truck,
+} from "./api/foodtruck/food";
 
 export default function FoodTruck(props) {
   const [userName, setUserName] = useState("");
@@ -70,6 +78,12 @@ export default function FoodTruck(props) {
           numWorkers={numWorkers}
           setNumWorkers={setNumWorkers}
         />
+        <div className="p-16">
+          <TruckReferenceTable truck={truck} />{" "}
+        </div>
+        <div className="p-16">
+          <FoodReferenceTable food={food} />
+        </div>
       </div>
     </div>
   );

@@ -23,9 +23,9 @@ const ChooseNumWorkers = ({
           checked={numWorkers === "1"}
           onChange={(e) => setNumWorkers(e.target.value)}
         />
-        <div className="flex flex-row">
+        <div className="flex flex-row h-24">
           <img
-            className="object-contain h-48 w-60 px-8"
+            className="object-contain h-full w-full px-8"
             src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
           />
         </div>
@@ -38,13 +38,13 @@ const ChooseNumWorkers = ({
           checked={numWorkers === "2"}
           onChange={(e) => setNumWorkers(e.target.value)}
         />
-        <div className="flex flex-row">
+        <div className="flex flex-row h-24">
           <img
-            className="object-contain h-48 w-60 px-8"
+            className="object-contain h-full w-full px-8"
             src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
           />
           <img
-            className="object-contain h-48 w-60 px-8"
+            className="object-contain h-full w-full px-8"
             src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
           />
         </div>
@@ -57,17 +57,17 @@ const ChooseNumWorkers = ({
           checked={numWorkers === "3"}
           onChange={(e) => setNumWorkers(e.target.value)}
         />
-        <div className="flex flex-row object-contain h-48 w-60">
+        <div className="flex flex-row h-24 w-24">
           <img
-            className="object-contain h-48 w-60 px-8"
+            className="object-contain h-full w-full px-8"
             src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
           />
           <img
-            className="object-contain h-48 w-60 px-8"
+            className="object-contain h-full w-full px-8"
             src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
           />
           <img
-            className="object-contain h-48 w-60 px-8"
+            className="object-contain h-full w-full px-8"
             src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
           />
         </div>
@@ -80,23 +80,25 @@ const ChooseNumWorkers = ({
           checked={numWorkers === "4"}
           onChange={(e) => setNumWorkers(e.target.value)}
         />
-        <div className="flex flex-row">
-          <img
-            className="object-contain h-48 w-60 px-8"
-            src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
-          />
-          <img
-            className="object-contain h-48 w-60 px-8"
-            src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
-          />
-          <img
-            className="object-contain h-48 w-60 px-8"
-            src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
-          />
-          <img
-            className="object-contain h-48 w-60 px-8"
-            src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
-          />
+        <div className="grid grid-cols-3">
+          <div className="grid grid-cols-2">
+            <img
+              className="object-contain h-1/2 w-1/2"
+              src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
+            />
+            <img
+              className="object-contain h-1/2 w-1/2"
+              src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
+            />
+            <img
+              className="object-contain h-1/2 w-1/2"
+              src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
+            />
+            <img
+              className="object-contain h-1/2 w-1/2"
+              src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
+            />
+          </div>
         </div>
       </label>
     </div>
