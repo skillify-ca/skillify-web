@@ -1,11 +1,5 @@
-import React, { ReactNode } from "react";
-import {
-  getTruck,
-  largeTruck,
-  mediumTruck,
-  smallTruck,
-  Truck,
-} from "../../pages/api/foodtruck/food";
+import React from "react";
+import { getTruck, Truck, allTrucks } from "../../pages/api/foodtruck/food";
 
 export interface ChooseTruckTypeProps {
   truck: Truck;
@@ -13,13 +7,12 @@ export interface ChooseTruckTypeProps {
 }
 
 const ChooseTruckType = ({ truck, setTruck }: ChooseTruckTypeProps) => {
-  const trucks = [smallTruck, mediumTruck, largeTruck];
   return (
     <div className="flex flex-col border-2 border-black border-dashed p-4">
       <h1 className="text-4xl text-black bold p-4">
         What kind of truck do you want to buy?
       </h1>
-      {trucks.map((t) => {
+      {allTrucks.map((t) => {
         return (
           <label className="flex flex-row space-x-8 items-center p-4">
             <input

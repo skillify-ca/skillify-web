@@ -1,15 +1,14 @@
 import React, { ReactNode } from "react";
 
 export interface ChooseNumWorkersProps {
-  numWorkers: string;
-  setNumWorkers: (truck: string) => void;
+  selectedNumWorkers: string;
+  setSelectedNumWorkers: (selectedNumWorkers: string) => void;
 }
 
 const ChooseNumWorkers = ({
-  numWorkers,
-  setNumWorkers,
+  selectedNumWorkers,
+  setSelectedNumWorkers,
 }: ChooseNumWorkersProps) => {
-  const workers = ["1", "2", "3", "4"];
   return (
     <div className="flex flex-col border-2 border-black border-dashed p-4">
       <h1 className="text-4xl text-black bold p-4">
@@ -20,8 +19,8 @@ const ChooseNumWorkers = ({
           className="form-radio h-8 w-8"
           type="radio"
           value="1"
-          checked={numWorkers === "1"}
-          onChange={(e) => setNumWorkers(e.target.value)}
+          checked={selectedNumWorkers === "1"}
+          onChange={(e) => setSelectedNumWorkers(e.target.value)}
         />
         <div className="flex flex-row h-24">
           <img
@@ -35,8 +34,8 @@ const ChooseNumWorkers = ({
           className="form-radio h-8 w-8"
           type="radio"
           value="2"
-          checked={numWorkers === "2"}
-          onChange={(e) => setNumWorkers(e.target.value)}
+          checked={selectedNumWorkers === "2"}
+          onChange={(e) => setSelectedNumWorkers(e.target.value)}
         />
         <div className="flex flex-row h-24">
           <img
@@ -54,8 +53,8 @@ const ChooseNumWorkers = ({
           className="form-radio h-8 w-8"
           type="radio"
           value="3"
-          checked={numWorkers === "3"}
-          onChange={(e) => setNumWorkers(e.target.value)}
+          checked={selectedNumWorkers === "3"}
+          onChange={(e) => setSelectedNumWorkers(e.target.value)}
         />
         <div className="flex flex-row h-24 w-24">
           <img
@@ -77,8 +76,8 @@ const ChooseNumWorkers = ({
           className="form-radio h-8 w-8"
           type="radio"
           value="4"
-          checked={numWorkers === "4"}
-          onChange={(e) => setNumWorkers(e.target.value)}
+          checked={selectedNumWorkers === "4"}
+          onChange={(e) => setSelectedNumWorkers(e.target.value)}
         />
         <div className="grid grid-cols-3">
           <div className="grid grid-cols-2">

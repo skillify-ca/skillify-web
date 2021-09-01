@@ -1,5 +1,7 @@
 // define Food, Truck, Workforce interfaces 
 
+export const minWage = 20
+
 export interface Food {
     name: string 
     unitCost: number
