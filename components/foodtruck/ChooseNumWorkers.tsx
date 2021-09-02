@@ -1,15 +1,14 @@
 import React, { ReactNode } from "react";
 
 export interface ChooseNumWorkersProps {
-  numWorkers: string;
-  setNumWorkers: (truck: string) => void;
+  selectedNumWorkers: string;
+  setSelectedNumWorkers: (selectedNumWorkers: string) => void;
 }
 
 const ChooseNumWorkers = ({
-  numWorkers,
-  setNumWorkers,
+  selectedNumWorkers,
+  setSelectedNumWorkers,
 }: ChooseNumWorkersProps) => {
-  const workers = ["1", "2", "3", "4"];
   return (
     <div className="flex flex-col border-2 border-black border-dashed p-4">
       <h1 className="text-4xl text-black bold p-4">
@@ -20,12 +19,12 @@ const ChooseNumWorkers = ({
           className="form-radio h-8 w-8"
           type="radio"
           value="1"
-          checked={numWorkers === "1"}
-          onChange={(e) => setNumWorkers(e.target.value)}
+          checked={selectedNumWorkers === "1"}
+          onChange={(e) => setSelectedNumWorkers(e.target.value)}
         />
-        <div className="flex flex-row">
+        <div className="flex flex-row h-24">
           <img
-            className="object-contain h-48 w-60 px-8"
+            className="object-contain h-full w-full px-8"
             src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
           />
         </div>
@@ -35,16 +34,16 @@ const ChooseNumWorkers = ({
           className="form-radio h-8 w-8"
           type="radio"
           value="2"
-          checked={numWorkers === "2"}
-          onChange={(e) => setNumWorkers(e.target.value)}
+          checked={selectedNumWorkers === "2"}
+          onChange={(e) => setSelectedNumWorkers(e.target.value)}
         />
-        <div className="flex flex-row">
+        <div className="flex flex-row h-24">
           <img
-            className="object-contain h-48 w-60 px-8"
+            className="object-contain h-full w-full px-8"
             src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
           />
           <img
-            className="object-contain h-48 w-60 px-8"
+            className="object-contain h-full w-full px-8"
             src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
           />
         </div>
@@ -54,20 +53,20 @@ const ChooseNumWorkers = ({
           className="form-radio h-8 w-8"
           type="radio"
           value="3"
-          checked={numWorkers === "3"}
-          onChange={(e) => setNumWorkers(e.target.value)}
+          checked={selectedNumWorkers === "3"}
+          onChange={(e) => setSelectedNumWorkers(e.target.value)}
         />
-        <div className="flex flex-row object-contain h-48 w-60">
+        <div className="flex flex-row h-24 w-24">
           <img
-            className="object-contain h-48 w-60 px-8"
+            className="object-contain h-full w-full px-8"
             src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
           />
           <img
-            className="object-contain h-48 w-60 px-8"
+            className="object-contain h-full w-full px-8"
             src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
           />
           <img
-            className="object-contain h-48 w-60 px-8"
+            className="object-contain h-full w-full px-8"
             src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
           />
         </div>
@@ -77,26 +76,28 @@ const ChooseNumWorkers = ({
           className="form-radio h-8 w-8"
           type="radio"
           value="4"
-          checked={numWorkers === "4"}
-          onChange={(e) => setNumWorkers(e.target.value)}
+          checked={selectedNumWorkers === "4"}
+          onChange={(e) => setSelectedNumWorkers(e.target.value)}
         />
-        <div className="flex flex-row">
-          <img
-            className="object-contain h-48 w-60 px-8"
-            src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
-          />
-          <img
-            className="object-contain h-48 w-60 px-8"
-            src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
-          />
-          <img
-            className="object-contain h-48 w-60 px-8"
-            src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
-          />
-          <img
-            className="object-contain h-48 w-60 px-8"
-            src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
-          />
+        <div className="grid grid-cols-3">
+          <div className="grid grid-cols-2">
+            <img
+              className="object-contain h-1/2 w-1/2"
+              src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
+            />
+            <img
+              className="object-contain h-1/2 w-1/2"
+              src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
+            />
+            <img
+              className="object-contain h-1/2 w-1/2"
+              src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
+            />
+            <img
+              className="object-contain h-1/2 w-1/2"
+              src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
+            />
+          </div>
         </div>
       </label>
     </div>
