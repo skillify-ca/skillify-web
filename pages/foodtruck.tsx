@@ -81,10 +81,10 @@ export default function FoodTruck(props) {
           setSelectedNumWorkers={setSelectedNumWorkers}
         />
         <div className="p-16">
-          <TruckReferenceTable truck={truck} />{" "}
+          <TruckReferenceTable />{" "}
         </div>
         <div className="p-16">
-          <FoodReferenceTable food={food} />
+          <FoodReferenceTable />
         </div>
         <div className="p-16">
           <OverviewOfSelections
