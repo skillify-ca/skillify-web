@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import {
   Food,
   getFood,
@@ -7,7 +7,6 @@ import {
   tikka,
   Truck,
 } from "../../pages/api/foodtruck/food";
-import FoodTruck from "../../pages/foodtruck";
 
 export interface ChooseFoodTypeProps {
   selectedFood: Food;
