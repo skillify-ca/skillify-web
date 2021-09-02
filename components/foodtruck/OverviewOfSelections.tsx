@@ -4,7 +4,7 @@ export interface OverviewOfSelectionsProps {
   selectedTruck: Truck;
   selectedFood: Food;
   selectedNumWorkers: string;
-  setSelectedNumWorkers: string;
+  setSelectedNumWorkers: (selectedNumWorkers: string) => void;
   minWage: number;
 }
 
@@ -32,9 +32,8 @@ const OverviewOfSelections = ({
           <figcaption className="text-center">{selectedTruck.model}</figcaption>
         </figure>
         <p>
-          This will cost you ${selectedTruck.fixedCost} per month to rent.{" "}
-          <br /> It will also cost ${selectedTruck.variableCost} per day to
-          operate{" "}
+          This will cost you ${selectedTruck.fixedCost} per month to rent. It
+          will also cost ${selectedTruck.variableCost} per day to operate{" "}
         </p>
         <span className="px-8">Food Type: </span>
         <figure>

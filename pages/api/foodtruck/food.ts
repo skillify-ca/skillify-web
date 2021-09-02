@@ -115,7 +115,3 @@ export const getFood = (name: string) => {
         return tikka
     }
 }
-
-
-
-

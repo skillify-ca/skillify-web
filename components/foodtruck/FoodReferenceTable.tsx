@@ -1,11 +1,7 @@
 import React from "react";
-import { Food, allFoods } from "../../pages/api/foodtruck/food";
+import { allFoods } from "../../pages/api/foodtruck/food";
 
-export interface FoodReferenceTableProps {
-  food: Food;
-}
-
-const FoodReferenceTable = ({}: FoodReferenceTableProps) => {
+const FoodReferenceTable = () => {
   return (
     <table className="shadow-md bg-white">
       <thead>
