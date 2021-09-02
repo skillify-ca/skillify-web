@@ -5,6 +5,7 @@ import { Button } from "../../components/ui/Button";
 import "katex/dist/katex.min.css";
 import TeX from "@matejmazur/react-katex";
 import bedmasRulesImg from "../../public/images/cye/rules.png";
+import { useEffect } from "react";
 
 enum Stage {
   RULES,
@@ -12,7 +13,7 @@ enum Stage {
 }
 
 export default function Resources(props) {
-  const [guess, setGuess] = useState("");
+  const [guesses, setGuesses] = useState<string[]>([]);
   const [stage, setStage] = useState(Stage.RULES);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
@@ -31,6 +32,16 @@ export default function Resources(props) {
   const onStartAssignment = () => {
     setStage(Stage.ASSIGNMENT);
   };
+  const onGuessChanged = (currentGuess: string) => {
+    const newGuesses = guesses.map((guess, index) => {
+      if (index === currentQuestionIndex) {
+        return currentGuess;
+      } else {
+        return guess;
+      }
+    });
+    setGuesses(newGuesses);
+  };
 
   const questions = [
     "[(3 - 2)(2 - 3)]3[(—4) - 2)] + (+6)(2) - (-3)",
@@ -48,17 +59,25 @@ export default function Resources(props) {
     "\\frac{[(—4+3)(3+1)]^2—8(6—2)}{(4)(-2)(-3)}",
     "3 - 2(4 + 2) + 5(-2 - 3) - \\frac{2^3(3^3)}{(2)(3)}",
   ];
-  let latexString =
-    "This is inline $$int_{a}^{b} f(x)dx = F(b) - F(a)$$ latex string";
+
+  useEffect(() => {
+    setGuesses(["", "", "", "", "", "", "", "", "", "", "", "", "", ""]);
+  }, []);
 
   return (
     <div className="flex flex-col bg-blue-50">
       <Navbar />
       <div className="grid grid-cols-12">
-        <div className="col-span-8 col-start-3">
+        <div className="col-span-12 p-4">
           {stage == Stage.RULES && (
             <div className="flex flex-col gap-8">
-              <Image src={bedmasRulesImg} objectFit="contain" alt="Bedmas Rules" width="300" height="600" />
+              <Image
+                src={bedmasRulesImg}
+                objectFit="contain"
+                alt="Bedmas Rules"
+                className="w-full h-full"
+                
+              />
               <Button
                 label="Start"
                 backgroundColor="blue"
@@ -68,8 +87,8 @@ export default function Resources(props) {
             </div>
           )}
           {stage == Stage.ASSIGNMENT && (
-            <div className="flex flex-col gap-4 items-center min-w-max bg-blue-300 p-8">
-              <p>Question #{currentQuestionIndex}</p>
+            <div className="flex flex-col gap-4 w-full overflow-auto p-4 bg-blue-300">
+              <p>Question #{currentQuestionIndex + 1}</p>
               <div className="font-bold text-xl">
                 <TeX block>{questions[currentQuestionIndex]}</TeX>
               </div>
@@ -78,8 +97,8 @@ export default function Resources(props) {
               </label>
               <textarea
                 className="w-2/3 h-36"
-                value={guess}
-                onChange={(e) => setGuess(e.target.value)}
+                value={guesses[currentQuestionIndex]}
+                onChange={(e) => onGuessChanged(e.target.value)}
               ></textarea>
               <div className="flex gap-8">
                 <Button
