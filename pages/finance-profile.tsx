@@ -8,6 +8,7 @@ import { userId } from "../graphql/utils/constants";
 import { FETCH_BADGE_ON_USERID } from "../graphql/fetchBadgeOnUserID";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { data } from "browserslist";
+import { useQuery } from "@apollo/client";
 
 enum STAGES {
   START,
@@ -28,16 +29,18 @@ const FinanceProfile = () => {
     setStage(STAGES.START);
   };
 
-  function Outline({ session }: OutlineProps) {
-    let { loading, data } = useQuery(FETCH_BADGE_ON_USERID, {
-      variables: {
-        userID: userId(session),
-      },
-    });
-  }
+  let { data } = useQuery(FETCH_BADGE_ON_USERID, {
+    variables: {
+      userId: "116309327098433793664",
+    },
+  });
 
   return (
     <div>
+      {data &&
+        data.user_badges.map((userbadge) => (
+          <img src={userbadge.badge.image} />
+        ))}
       {stage === STAGES.START && <RulesSession onClick={routeAssignment} />}
       {stage === STAGES.ASSIGNMENT && <AssignmentSession onClick={routeEnd} />}
       {stage === STAGES.END && <EndSession onClick={routeStart} />}
@@ -46,10 +49,3 @@ const FinanceProfile = () => {
 };
 
 export default FinanceProfile;
-
-/*export default function Outline({ session }: OutlineProps) {
-  let { loading, data } = useQuery(FETCH_USER_PROFILE, {
-    variables: {
-      userId: userId(session),
-    },
-  });*/ //add this below the return. Do it on the parent, create a variable and pass it into the stages page
