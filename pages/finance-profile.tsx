@@ -16,8 +16,8 @@ enum STAGES {
   END,
 }
 export interface badgeImageProp {
-  badgeImage: [];
-  setBadgeImage: (badgeImage: []) => void;
+  badgeImage: string;
+  setBadgeImage: (badgeImage: string) => void;
 }
 
 const FinanceProfile = ({
@@ -50,10 +50,7 @@ const FinanceProfile = ({
 
   return (
     <div>
-      {data &&
-        data.user_badges.map((userbadge) => (
-          <img src={userbadge.badge.image} />
-        ))}
+      
       {stage === STAGES.START && data && (
         <RulesSession
           onClick={() => {
@@ -69,4 +66,10 @@ const FinanceProfile = ({
 };
 
 export default FinanceProfile;
+/*{data &&
+data.user_badges.map((userbadge) => (
+  <img src={userbadge.badge.image} />
+))}*/
+
+
 //badgeImage={data....}  V's old code
