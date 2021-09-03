@@ -3,7 +3,17 @@ import BuildAFoodTruck from "../components/foodtruck/BuildAFoodTruck";
 import ChooseFoodType from "../components/foodtruck/ChooseFoodType";
 import ChooseNumWorkers from "../components/foodtruck/ChooseNumWorkers";
 import ChooseTruckType from "../components/foodtruck/ChooseTruckType";
-import { hotDog, smallTruck, Truck } from "./api/foodtruck/food";
+import FoodReferenceTable from "../components/foodtruck/FoodReferenceTable";
+import TruckReferenceTable from "../components/foodtruck/TruckReferenceTable";
+import OverviewOfSelections from "../components/foodtruck/OverviewOfSelections";
+import {
+  hotDog,
+  largeTruck,
+  mediumTruck,
+  minWage,
+  smallTruck,
+  Truck,
+} from "./api/foodtruck/food";
 
 export default function FoodTruck(props) {
   const [userName, setUserName] = useState("");
@@ -12,7 +22,7 @@ export default function FoodTruck(props) {
   const [dollarAmount, setDollarAmount] = useState("");
   const [truck, setTruck] = useState(smallTruck);
   const [food, setFood] = useState(hotDog);
-  const [numWorkers, setNumWorkers] = useState("1");
+  const [selectedNumWorkers, setSelectedNumWorkers] = useState("1");
 
   const onSelectedTruckChanged = (truck: Truck) => {
     setTruck(truck);
@@ -67,9 +77,24 @@ export default function FoodTruck(props) {
           selectedTruck={truck}
         />
         <ChooseNumWorkers
-          numWorkers={numWorkers}
-          setNumWorkers={setNumWorkers}
+          selectedNumWorkers={selectedNumWorkers}
+          setSelectedNumWorkers={setSelectedNumWorkers}
         />
+        <div className="p-16">
+          <TruckReferenceTable />{" "}
+        </div>
+        <div className="p-16">
+          <FoodReferenceTable />
+        </div>
+        <div className="p-16">
+          <OverviewOfSelections
+            selectedNumWorkers={selectedNumWorkers}
+            setSelectedNumWorkers={setSelectedNumWorkers}
+            selectedTruck={truck}
+            selectedFood={food}
+            minWage={minWage}
+          />
+        </div>
       </div>
     </div>
   );
