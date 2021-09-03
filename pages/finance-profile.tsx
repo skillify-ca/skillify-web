@@ -20,10 +20,7 @@ export interface badgeImageProp {
   setBadgeImage: (badgeImage: string) => void;
 }
 
-const FinanceProfile = ({
-  badgeImage,
-  setBadgeImage,
-}: badgeImageProp) => {
+const FinanceProfile = ({ badgeImage, setBadgeImage }: badgeImageProp) => {
   const [stage, setStage] = useState(STAGES.START);
 
   const routeAssignment = () => {
@@ -36,12 +33,6 @@ const FinanceProfile = ({
     setStage(STAGES.START);
   };
 
-  const badgeImageIs = () => {
-    {
-      badgeImage={data.userbadges.map((userbadge) => <img src={userbadge.badge.image} />)};
-    }
-  };
-
   let { data } = useQuery(FETCH_BADGE_ON_USERID, {
     variables: {
       userId: "116309327098433793664",
@@ -50,14 +41,11 @@ const FinanceProfile = ({
 
   return (
     <div>
-      
       {stage === STAGES.START && data && (
-        <RulesSession
-          onClick={() => {
-            routeAssignment;
-            badgeImageIs;
-          }}
-        />
+        <RulesSession onClick={routeAssignment} />
+        badgeImage = {(data.user_badges.map((userbadge) => (
+          <img src={userbadge.badge.image} />)))}
+      
       )}
       {stage === STAGES.ASSIGNMENT && <AssignmentSession onClick={routeEnd} />}
       {stage === STAGES.END && <EndSession onClick={routeStart} />}
@@ -70,6 +58,5 @@ export default FinanceProfile;
 data.user_badges.map((userbadge) => (
   <img src={userbadge.badge.image} />
 ))}*/
-
 
 //badgeImage={data....}  V's old code
