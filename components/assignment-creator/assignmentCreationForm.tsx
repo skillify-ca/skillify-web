@@ -13,8 +13,6 @@ import {
 import { Button } from "../ui/Button";
 import Image from "next/image";
 import GoogleClassroomImage from ".././../public/images/assignments/google-classroom.svg";
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import { FETCH_SKILL_DESCRIPTION_AND_GRADE } from "../../graphql/fetchSkillDescriptionAndGrade";
 
 export type QuestionTypeForSkill = {
   questionType: QuestionType;
@@ -26,6 +24,7 @@ type assignmentCreationFormProps = {
   onClick: (questionCounts: QuestionCount[]) => void;
   questionCounts: QuestionCount[];
   setQuestionCounts: (counts: QuestionCount[]) => void;
+  data: any;
 };
 
 export type QuestionCount = {
@@ -36,6 +35,7 @@ const AssignmentCreationForm = ({
   onClick,
   questionCounts,
   setQuestionCounts,
+  data,
 }: assignmentCreationFormProps) => {
   const unitData = [
     { title: "Addition", unit: Topic.ADDITION, backgroundColour: "bg-red-100" },
@@ -133,7 +133,11 @@ const AssignmentCreationForm = ({
                     (skillId) => (
                       <div className="w-full">
                         <label className="">
-                          <p>I can SKILLDESCRIPTION GOES HERE )#(!*(*$#</p>
+                          {
+                            data.skills.filter(
+                              (element) => element.id == skillId
+                            ).description
+                          }
                           <input
                             type={"number"}
                             className={"p-2 bg-white rounded-md w-full"}
@@ -171,27 +175,4 @@ const AssignmentCreationForm = ({
   );
 };
 
-export async function getServerSideProps() {
-  const client = new ApolloClient({
-    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
-    cache: new InMemoryCache(),
-  });
-
-  const { data } = await client.query({
-    query: FETCH_SKILL_DESCRIPTION_AND_GRADE,
-  });
-
-  if (!data) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: data, // will be passed to the page component as props
-  };
-}
 export default AssignmentCreationForm;
