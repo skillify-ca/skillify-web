@@ -2,15 +2,16 @@ import { ReactNode } from "react";
 import React, { useState } from "react";
 import BudgetRules from "./BudgetRules";
 import { Button } from "../ui/Button";
-import FinanceProfile from "/Users/brianlee/Documents/GitHub/math/pages/finance-profile";
+import badgeImage from "/Users/brianlee/Documents/GitHub/math/pages/finance-profile";
+import userbadge from "../../pages/user-badge-check";
+import { FETCH_BADGE_ON_USERID } from "/Users/brianlee/Documents/GitHub/math/graphql/fetchBadgeOnUserID";
 
 export interface RulesSessionProps {
   onClick: () => void;
+  badgeImage: any;
 }
 
 export const RulesSession = ({ onClick }: RulesSessionProps) => {
-  const [badgeImage, setBadgeImage] = useState("");
-
   return (
     <div>
       <p className="text-center text-4xl pb-8">Balancing a Budget</p>
@@ -35,9 +36,12 @@ export const RulesSession = ({ onClick }: RulesSessionProps) => {
           />
         </div>
       </div>
-      <div>
-        <FinanceProfile badgeImage={badgeImage} setBadgeImage={setBadgeImage} />
-      </div>
+      <div>{JSON.stringify(badgeImage)}</div>
     </div>
   );
 };
+
+/*{data &&
+data.user_badges.map((userbadge) => (
+  <img src={userbadge.badge.image} />
+))}*/

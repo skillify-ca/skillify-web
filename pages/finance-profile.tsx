@@ -15,12 +15,8 @@ enum STAGES {
   ASSIGNMENT,
   END,
 }
-export interface badgeImageProp {
-  badgeImage: string;
-  setBadgeImage: (badgeImage: string) => void;
-}
 
-const FinanceProfile = ({ badgeImage, setBadgeImage }: badgeImageProp) => {
+const FinanceProfile = () => {
   const [stage, setStage] = useState(STAGES.START);
 
   const routeAssignment = () => {
@@ -42,10 +38,7 @@ const FinanceProfile = ({ badgeImage, setBadgeImage }: badgeImageProp) => {
   return (
     <div>
       {stage === STAGES.START && data && (
-        <RulesSession onClick={routeAssignment} />
-        badgeImage = {(data.user_badges.map((userbadge) => (
-          <img src={userbadge.badge.image} />)))}
-      
+        <RulesSession onClick={routeAssignment} badgeImage={data} />
       )}
       {stage === STAGES.ASSIGNMENT && <AssignmentSession onClick={routeEnd} />}
       {stage === STAGES.END && <EndSession onClick={routeStart} />}
