@@ -21,15 +21,13 @@ import { getRandomItemFromArray, getRndInteger } from "../../pages/api/random";
 
 export interface FinanceProfileProps {
     onClick: () => void
-    profileData: any
-    setProfileData: (profileData: any) => void
+    profileData: FinanceProfileType
 }
 
 const AssignmentSession = ({
 
     onClick,
-    profileData,
-    setProfileData
+    profileData
 
 }: FinanceProfileProps) => {
 

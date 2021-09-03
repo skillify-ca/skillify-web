@@ -18,7 +18,6 @@ const FinanceProfile = () => {
   const [profileData, setProfileData] = useState<FinanceProfileType>()
 
   useEffect(() => {
-    // Update the document title using the browser API
     const randomProfile = getRndInteger(0, 12);
     setProfileData(financialProfileData[randomProfile]);
   }, []);
@@ -40,7 +39,6 @@ const FinanceProfile = () => {
       {stage === STAGES.ASSIGNMENT &&
         <AssignmentSession
           profileData={profileData}
-          setProfileData={setProfileData}
           onClick={routeEnd}
         />}
       {stage === STAGES.END && <EndSession onClick={routeStart} />}
