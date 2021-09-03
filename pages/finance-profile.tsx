@@ -15,8 +15,15 @@ enum STAGES {
   ASSIGNMENT,
   END,
 }
+export interface badgeImageProp {
+  badgeImage: [];
+  setBadgeImage: (badgeImage: []) => void;
+}
 
-const FinanceProfile = () => {
+const FinanceProfile = ({
+  badgeImage,
+  setBadgeImage,
+}: badgeImageProp) => {
   const [stage, setStage] = useState(STAGES.START);
 
   const routeAssignment = () => {
@@ -27,6 +34,12 @@ const FinanceProfile = () => {
   };
   const routeStart = () => {
     setStage(STAGES.START);
+  };
+
+  const badgeImageIs = () => {
+    {
+      badgeImage={data.userbadges.map((userbadge) => <img src={userbadge.badge.image} />)};
+    }
   };
 
   let { data } = useQuery(FETCH_BADGE_ON_USERID, {
@@ -41,7 +54,14 @@ const FinanceProfile = () => {
         data.user_badges.map((userbadge) => (
           <img src={userbadge.badge.image} />
         ))}
-      {stage === STAGES.START && <RulesSession onClick={routeAssignment} />}
+      {stage === STAGES.START && data && (
+        <RulesSession
+          onClick={() => {
+            routeAssignment;
+            badgeImageIs;
+          }}
+        />
+      )}
       {stage === STAGES.ASSIGNMENT && <AssignmentSession onClick={routeEnd} />}
       {stage === STAGES.END && <EndSession onClick={routeStart} />}
     </div>
@@ -49,3 +69,4 @@ const FinanceProfile = () => {
 };
 
 export default FinanceProfile;
+//badgeImage={data....}  V's old code
