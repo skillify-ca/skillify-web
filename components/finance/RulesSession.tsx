@@ -1,16 +1,28 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import BudgetRules from "./BudgetRules";
 import { Button } from "../ui/Button";
+import { FinanceProfileChart, FinanceProfileChartProps } from "./FinanceProfileChart";
+import { FinanceProfileType, financialProfileData, MaritalStatus } from "../../pages/api/finance/profile";
+import { getRndInteger } from "../../pages/api/random";
 
 export interface RulesSessionProps {
-    onClick: () => void;
+    onClick: () => void
+    profileData: any
+    setProfileData: (profileData: any) => void;
 }
 
 export const RulesSession = ({
 
-    onClick
+    onClick,
+    profileData,
+    setProfileData
 
 }: RulesSessionProps) => {
+
+    const randomize = () => {
+        const randomProfile = getRndInteger(0, 12);
+        setProfileData(financialProfileData[randomProfile]);
+    }
 
     return (
         <div>
@@ -18,13 +30,29 @@ export const RulesSession = ({
             <div className="pb-8">
                 <BudgetRules />
             </div>
+            <p className="text-center pb-5">
+                Choose a profile to begin your journey:
+            </p>
+            {profileData && (
+                <div className="flex justify-center pb-6">
+                    <FinanceProfileChart
+                        individualOccupation={profileData.individualOccupation}
+                        individualSalary={profileData.individualSalary}
+                        maritalStatus={profileData.maritalStatus}
+                        numberOfChildren={profileData.numberOfChildren}
+                        spouseOccupation={profileData.spouseOccupation}
+                        spouseSalary={profileData.spouseSalary}
+                    />
+                </div>)}
+            <div>
+            </div>
             <div className="flex flex-nowrap justify-center">
                 <div className="pr-5">
                     <Button
                         backgroundColor="green"
                         textColor="white"
                         label="Randomize"
-                    // no functionality yet
+                        onClick={randomize}
                     />
                 </div>
                 <div>
@@ -39,3 +67,4 @@ export const RulesSession = ({
         </div>
     )
 }
+
