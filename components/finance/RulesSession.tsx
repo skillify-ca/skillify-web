@@ -5,6 +5,7 @@ import { Button } from "../ui/Button";
 import badgeImage from "/Users/brianlee/Documents/GitHub/math/pages/finance-profile";
 import userbadge from "../../pages/user-badge-check";
 import { FETCH_BADGE_ON_USERID } from "/Users/brianlee/Documents/GitHub/math/graphql/fetchBadgeOnUserID";
+import { data } from "autoprefixer";
 
 export interface RulesSessionProps {
   onClick: () => void;

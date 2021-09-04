@@ -37,8 +37,15 @@ const FinanceProfile = () => {
 
   return (
     <div>
+      {" "}
+      {data && JSON.stringify(data)}
       {stage === STAGES.START && data && (
-        <RulesSession onClick={routeAssignment} badgeImage={data} />
+        <RulesSession
+          onClick={routeAssignment}
+          badgeImage={data.user_badges.map((userbadge) => (
+            <img src={userbadge.badge.image} />
+          ))}
+        />
       )}
       {stage === STAGES.ASSIGNMENT && <AssignmentSession onClick={routeEnd} />}
       {stage === STAGES.END && <EndSession onClick={routeStart} />}
