@@ -9,6 +9,7 @@ import { FETCH_BADGE_ON_USERID } from "../graphql/fetchBadgeOnUserID";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { data } from "browserslist";
 import { useQuery } from "@apollo/client";
+import { useSession } from "next-auth/client";
 
 enum STAGES {
   START,
@@ -18,6 +19,7 @@ enum STAGES {
 
 const FinanceProfile = () => {
   const [stage, setStage] = useState(STAGES.START);
+  const [session, loading] = useSession();
 
   const routeAssignment = () => {
     setStage(STAGES.ASSIGNMENT);
@@ -31,7 +33,7 @@ const FinanceProfile = () => {
 
   let { data } = useQuery(FETCH_BADGE_ON_USERID, {
     variables: {
-      userId: "116309327098433793664",
+      userId: userId(session) /*"116309327098433793664"*/,
       badgeId: 50,
       badgeId2: 44,
     },
