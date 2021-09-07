@@ -32,6 +32,8 @@ const FinanceProfile = () => {
   let { data } = useQuery(FETCH_BADGE_ON_USERID, {
     variables: {
       userId: "116309327098433793664",
+      badgeId: 50,
+      badgeId2: 44,
     },
   });
 

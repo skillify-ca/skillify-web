@@ -38,10 +38,9 @@ export const RulesSession = ({ onClick, badgeImage }: RulesSessionProps) => {
         </div>
       </div>
       <div>
-        {badgeImage &&
-          badgeImage.user_badges.map((userbadge) => (
-            <img src={userbadge.badge.image} />
-          ))}
+        {badgeImage.user_badges.map((userbadge) => (
+          <img src={userbadge.badge.image} />
+        ))}
       </div>
     </div>
   );
