@@ -6,10 +6,11 @@ import { Stage } from "@react-three/drei";
 import AssignmentSession from "../components/finance/AssignmentSession";
 import { userId } from "../graphql/utils/constants";
 import { FETCH_BADGE_ON_USERID } from "../graphql/fetchBadgeOnUserID";
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache, useMutation } from "@apollo/client";
 import { data } from "browserslist";
 import { useQuery } from "@apollo/client";
 import { useSession } from "next-auth/client";
+import { UNLOCK_BADGE } from "/Users/brianlee/Documents/GitHub/math/graphql/unlockBadge";
 
 enum STAGES {
   START,
@@ -20,12 +21,19 @@ enum STAGES {
 const FinanceProfile = () => {
   const [stage, setStage] = useState(STAGES.START);
   const [session, loading] = useSession();
+  const [unlockbadge, unlockBadgeData] = useMutation(UNLOCK_BADGE, {});
 
   const routeAssignment = () => {
     setStage(STAGES.ASSIGNMENT);
   };
   const routeEnd = () => {
     setStage(STAGES.END);
+    unlockbadge({
+      variables: {
+        userId: userId(session),
+        badgeId: 56,
+      },
+    });
   };
   const routeStart = () => {
     setStage(STAGES.START);
