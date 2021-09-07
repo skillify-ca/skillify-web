@@ -12,7 +12,7 @@ export interface RulesSessionProps {
   badgeImage: any;
 }
 
-export const RulesSession = ({ onClick }: RulesSessionProps) => {
+export const RulesSession = ({ onClick, badgeImage }: RulesSessionProps) => {
   return (
     <div>
       <p className="text-center text-4xl pb-8">Balancing a Budget</p>
@@ -37,7 +37,12 @@ export const RulesSession = ({ onClick }: RulesSessionProps) => {
           />
         </div>
       </div>
-      <div>{JSON.stringify(badgeImage)}</div>
+      <div>
+        {badgeImage &&
+          badgeImage.user_badges.map((userbadge) => (
+            <img src={userbadge.badge.image} />
+          ))}
+      </div>
     </div>
   );
 };
