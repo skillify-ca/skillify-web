@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { render } from "react-dom";
 import { Stage, Layer, Line, Text } from "react-konva";
@@ -6,8 +7,10 @@ import useWindowSize from "../../hooks/UseWindowSizeHook";
 import { Button } from "./Button";
 
 interface FreeDrawingProps {
-    lines: LineData[],
-    setLines: (lines: LineData[]) => void
+  lines: LineData[];
+  setLines: (lines: LineData[]) => void;
+  historyStep: number;
+  setHistoryStep: (step: number) => void;
 }
 
 export type LineData = {
@@ -15,12 +18,15 @@ export type LineData = {
   points: number[];
 };
 
-const FreeDrawing = ({lines, setLines}: FreeDrawingProps) => {
+const FreeDrawing = ({
+  lines,
+  setLines,
+  historyStep,
+  setHistoryStep,
+}: FreeDrawingProps) => {
   const [tool, setTool] = React.useState("black");
   const isDrawing = React.useRef(false);
   const { width, height } = useWindowSize();
-  const [historyStep, setHistoryStep] = React.useState(0);
-
   const handleUndo = () => {
     console.log("UNDO");
 
@@ -93,6 +99,9 @@ const FreeDrawing = ({lines, setLines}: FreeDrawingProps) => {
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
+        onTouchStart={handleMouseDown}
+        onTouchMove={handleMouseMove}
+        onTouchEnd={handleMouseUp}
       >
         <Layer>
           <Text

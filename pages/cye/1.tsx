@@ -20,6 +20,9 @@ export default function cye(props) {
   const [guesses, setGuesses] = useState<string[]>([]);
   const [stage, setStage] = useState(Stage.RULES);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [historyStepForQuestions, setHistoryStepForQuestions] = useState<
+    number[]
+  >([]);
   const [linesForQuestions, setLinesForQuestions] = React.useState<
     LineData[][]
   >([]);
@@ -61,6 +64,17 @@ export default function cye(props) {
     setLinesForQuestions(newLines);
   };
 
+  const setHistoryForCurrentQuestion = (historyStep: number) => {
+    const newHistory = historyStepForQuestions.map((h, index) => {
+      if (index === currentQuestionIndex) {
+        return historyStep;
+      } else {
+        return h;
+      }
+    });
+    setHistoryStepForQuestions(newHistory);
+  };
+
   const questions = [
     "[(3 - 2)(2 - 3)]3[(—4) - 2)] + (+6)(2) - (-3)",
     "-[(6-3)(8-4)] + (-5)(-2) + 1 - (2)",
@@ -80,7 +94,23 @@ export default function cye(props) {
 
   useEffect(() => {
     setGuesses(["", "", "", "", "", "", "", "", "", "", "", "", "", ""]);
-    setLinesForQuestions([[], [], [], [], [], [], [], [], [], [], [], [], [], []]);
+    setLinesForQuestions([
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+    ]);
+    setHistoryStepForQuestions([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   }, []);
 
   return (
@@ -135,6 +165,8 @@ export default function cye(props) {
               <FreeDrawing
                 lines={linesForQuestions[currentQuestionIndex]}
                 setLines={setLinesForCurrentQuestion}
+                historyStep={historyStepForQuestions[currentQuestionIndex]}
+                setHistoryStep={setHistoryForCurrentQuestion}
               />
             </div>
           )}
