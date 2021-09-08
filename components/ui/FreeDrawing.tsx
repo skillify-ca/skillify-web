@@ -94,6 +94,7 @@ const FreeDrawing = ({
         <Button label="Redo" onClick={handleRedo} backgroundColor="white" />
       </div>
       <Stage
+        style={{ touchAction: "none" }}
         width={width}
         height={height}
         onMouseDown={handleMouseDown}
