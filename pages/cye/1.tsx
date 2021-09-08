@@ -9,7 +9,9 @@ import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import { LineData } from "../../components/ui/FreeDrawing";
 
-const FreeDrawing = dynamic(() => import("../../components/ui/FreeDrawing"));
+const FreeDrawing = dynamic(() => import("../../components/ui/FreeDrawing"), {
+  ssr: false,
+});
 
 enum Stage {
   RULES,
