@@ -24,7 +24,7 @@ export default function djacobs(props) {
     setStage(Stage.QUIZ);
   };
 
-  const backToMainPage = () => {
+  const backToStartPage = () => {
     setStage(Stage.START);
   };
 
@@ -65,7 +65,7 @@ export default function djacobs(props) {
                 label="Back to Main Page"
                 backgroundColor="blue"
                 textColor="white"
-                onClick={backToMainPage}
+                onClick={backToStartPage}
               />
             </div>
           </div>
