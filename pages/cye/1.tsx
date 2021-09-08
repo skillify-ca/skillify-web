@@ -6,6 +6,9 @@ import "katex/dist/katex.min.css";
 import TeX from "@matejmazur/react-katex";
 import bedmasRulesImg from "../../public/images/cye/rules.png";
 import { useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const FreeDrawing = dynamic(() => import("../../components/ui/FreeDrawing"));
 
 enum Stage {
   RULES,
@@ -76,7 +79,6 @@ export default function Resources(props) {
                 objectFit="contain"
                 alt="Bedmas Rules"
                 className="w-full h-full"
-                
               />
               <Button
                 label="Start"
@@ -100,6 +102,7 @@ export default function Resources(props) {
                 value={guesses[currentQuestionIndex]}
                 onChange={(e) => onGuessChanged(e.target.value)}
               ></textarea>
+              <FreeDrawing />
               <div className="flex gap-8">
                 <Button
                   label="Previous"
