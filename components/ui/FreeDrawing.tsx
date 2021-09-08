@@ -5,9 +5,18 @@ import { Stage, Layer, Line, Text } from "react-konva";
 import useWindowSize from "../../hooks/UseWindowSizeHook";
 import { Button } from "./Button";
 
-const FreeDrawing = () => {
-  const [tool, setTool] = React.useState("pen");
-  const [lines, setLines] = React.useState([]);
+interface FreeDrawingProps {
+    lines: LineData[],
+    setLines: (lines: LineData[]) => void
+}
+
+export type LineData = {
+  tool: string;
+  points: number[];
+};
+
+const FreeDrawing = ({lines, setLines}: FreeDrawingProps) => {
+  const [tool, setTool] = React.useState("black");
   const isDrawing = React.useRef(false);
   const { width, height } = useWindowSize();
   const [historyStep, setHistoryStep] = React.useState(0);
@@ -86,20 +95,22 @@ const FreeDrawing = () => {
         onMouseUp={handleMouseUp}
       >
         <Layer>
-          <Text text="Just start drawing" x={5} y={30} />
+          <Text
+            text="Evaluate without the use of a calculate. Show all your work."
+            x={5}
+            y={30}
+          />
           {lines
             .filter((_, index) => index + 1 <= historyStep)
             .map((line, i) => (
               <Line
                 key={i}
                 points={line.points}
-                stroke="#df4b26"
+                stroke={tool === "black" ? "#000" : "#264bdf"}
                 strokeWidth={5}
                 tension={0.5}
                 lineCap="round"
-                globalCompositeOperation={
-                  line.tool === "eraser" ? "destination-out" : "source-over"
-                }
+                globalCompositeOperation={"source-over"}
               />
             ))}
         </Layer>
@@ -110,8 +121,8 @@ const FreeDrawing = () => {
           setTool(e.target.value);
         }}
       >
-        <option value="pen">Pen</option>
-        <option value="eraser">Eraser</option>
+        <option value="black">Black</option>
+        <option value="blue">Blue</option>
       </select>
     </div>
   );
