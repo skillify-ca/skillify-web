@@ -6,34 +6,33 @@ import { resources } from "./api/resources";
 import { MultipleChoice } from "../components/questionTypes/MultipleChoice";
 import { GuessData } from "./api/guessData";
 import { Button } from "../components/ui/Button";
+import { stages } from "konva/lib/Stage";
 
 enum Stage {
-  MAINPAGE,
-  FORM,
+  START,
+  QUIZ,
 }
 
 export default function djacobs(props) {
-  const [count, setCount] = useState(0);
-
   const onSubmit = (guess: GuessData) => {
     console.log(guess);
   };
 
-  const [s, setStage] = useState(Stage.MAINPAGE);
+  const [stage, setStage] = useState(Stage.START);
 
   const onStartQuiz = () => {
-    setStage(Stage.FORM);
+    setStage(Stage.QUIZ);
   };
 
   const backToMainPage = () => {
-    setStage(Stage.MAINPAGE);
+    setStage(Stage.START);
   };
 
   return (
     <div className="flex flex-col overflow-auto bg-scroll bg-blue-50">
       <Navbar />
       <div id="Form">
-        {s == Stage.MAINPAGE && (
+        {stage == Stage.START && (
           <div className="flex flex-col gap-8">
             <p className="text-2xl text-center bg-blue-400">Giza Form</p>
             <div className="flex flex-col items-center">
@@ -46,7 +45,7 @@ export default function djacobs(props) {
             </div>
           </div>
         )}
-        {s == Stage.FORM && (
+        {stage == Stage.QUIZ && (
           <div id="QuizForm" className="flex flex-col gap-8">
             <div id="FormHeader">
               <p className="text-2xl text-center bg-blue-400">Giza Form</p>
