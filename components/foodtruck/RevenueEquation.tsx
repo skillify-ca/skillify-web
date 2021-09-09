@@ -34,14 +34,14 @@ const RevenueEquation = ({
   revEquationTwoBoxThree,
   setRevEquationTwoBoxThree,
 }: RevenueEquationProps) => {
-  const validateInputs = () => {
+  const validateQuestionOneInputs = () => {
     return equationBoxOne ===
       selectedFood.qtyProducedPerWorkerHour.toString() &&
       equationBoxTwo === selectedNumWorkers
       ? "Correct Inputs"
       : "Incorrect Inputs";
   };
-  const validateAnswer = () => {
+  const validateQuestionOneAnswer = () => {
     return Number.parseInt(equationBoxThree) ===
       selectedFood.qtyProducedPerWorkerHour *
         Number.parseInt(selectedNumWorkers)
@@ -67,7 +67,7 @@ const RevenueEquation = ({
   };
 
   const validateComponent = () => {
-    return validateAnswer() === "Correct Answer" &&
+    return validateQuestionOneAnswer() === "Correct Answer" &&
       validateQuestionTwoAnswer() === "Correct Answer"
       ? "Complete!"
       : "Incomplete";
@@ -128,7 +128,7 @@ const RevenueEquation = ({
           placeholder="2"
         />
         <p className="border-double border-4 border-black text-center col-start-5 mt-4">
-          {validateInputs()} {validateAnswer()}
+          {validateQuestionOneInputs()} {validateQuestionOneAnswer()}
         </p>
       </div>
 

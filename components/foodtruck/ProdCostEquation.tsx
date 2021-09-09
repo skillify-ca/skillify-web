@@ -70,7 +70,8 @@ const ProdCostEquation = ({
   };
 
   const validateQuestionTwoAnswer = () => {
-    return Number.parseInt(prodCostEquationTwoBoxFour) === 69
+    return Number.parseInt(prodCostEquationTwoBoxFour) ===
+      selectedTruck.fixedCost / 30 + (selectedTruck.variableCost / 6) * 6
       ? "Correct Answer"
       : "Incorrect Answer";
   };
