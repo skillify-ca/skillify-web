@@ -6,16 +6,28 @@ import "katex/dist/katex.min.css";
 import TeX from "@matejmazur/react-katex";
 import bedmasRulesImg from "../../public/images/cye/rules.png";
 import { useEffect } from "react";
+import dynamic from "next/dynamic";
+import { LineData } from "../../components/ui/FreeDrawing";
+
+const FreeDrawing = dynamic(() => import("../../components/ui/FreeDrawing"), {
+  ssr: false,
+});
 
 enum Stage {
   RULES,
   ASSIGNMENT,
 }
 
-export default function Resources(props) {
+export default function cye(props) {
   const [guesses, setGuesses] = useState<string[]>([]);
   const [stage, setStage] = useState(Stage.RULES);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [historyStepForQuestions, setHistoryStepForQuestions] = useState<
+    number[]
+  >([]);
+  const [linesForQuestions, setLinesForQuestions] = React.useState<
+    LineData[][]
+  >([]);
 
   const onNextQuestion = () => {
     setCurrentQuestionIndex(
@@ -43,10 +55,32 @@ export default function Resources(props) {
     setGuesses(newGuesses);
   };
 
+  const setLinesForCurrentQuestion = (lines: LineData[]) => {
+    const newLines = linesForQuestions.map((l, index) => {
+      if (index === currentQuestionIndex) {
+        return lines;
+      } else {
+        return l;
+      }
+    });
+    setLinesForQuestions(newLines);
+  };
+
+  const setHistoryForCurrentQuestion = (historyStep: number) => {
+    const newHistory = historyStepForQuestions.map((h, index) => {
+      if (index === currentQuestionIndex) {
+        return historyStep;
+      } else {
+        return h;
+      }
+    });
+    setHistoryStepForQuestions(newHistory);
+  };
+
   const questions = [
     "[(3 - 2)(2 - 3)]3[(—4) - 2)] + (+6)(2) - (-3)",
     "-[(6-3)(8-4)] + (-5)(-2) + 1 - (2)",
-    "[(\\frac{(-5)(-8) - (4)(5)}{(8)-(-2)})^2]^3",
+    "\\left[\\left(\\frac{(-5)(-8) - (4)(5)}{(8)-(-2)}\\right)^2\\right]^3",
     "\\frac{(6)(-5) + (-3)-(2)}{(-4)(-2)+1}",
     "[(2)(—2)+2—4][(2)—2]",
     "\\frac{(4)(4)+4-(2)2^3}{3}",
@@ -62,6 +96,23 @@ export default function Resources(props) {
 
   useEffect(() => {
     setGuesses(["", "", "", "", "", "", "", "", "", "", "", "", "", ""]);
+    setLinesForQuestions([
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+    ]);
+    setHistoryStepForQuestions([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   }, []);
 
   return (
@@ -76,7 +127,6 @@ export default function Resources(props) {
                 objectFit="contain"
                 alt="Bedmas Rules"
                 className="w-full h-full"
-                
               />
               <Button
                 label="Start"
@@ -87,26 +137,16 @@ export default function Resources(props) {
             </div>
           )}
           {stage == Stage.ASSIGNMENT && (
-            <div className="flex flex-col gap-4 w-full overflow-auto p-4 bg-blue-300">
-              <p>Question #{currentQuestionIndex + 1}</p>
-              <div className="font-bold text-xl">
-                <TeX block>{questions[currentQuestionIndex]}</TeX>
-              </div>
-              <label>
-                Evaluate without the use of a calculator. Show all your work
-              </label>
-              <textarea
-                className="w-2/3 h-36"
-                value={guesses[currentQuestionIndex]}
-                onChange={(e) => onGuessChanged(e.target.value)}
-              ></textarea>
-              <div className="flex gap-8">
+            <div className="flex flex-col items-center gap-4 w-full overflow-auto p-4 bg-blue-300">
+              <div className="flex gap-8 w-full items-center justify-between">
                 <Button
                   label="Previous"
                   onClick={onPreviousQuestion}
                   backgroundColor="white"
                   textColor="blue-600"
                 />
+                <p>Question #{currentQuestionIndex + 1}</p>
+
                 <Button
                   label="Next"
                   onClick={onNextQuestion}
@@ -114,6 +154,22 @@ export default function Resources(props) {
                   textColor="white"
                 />
               </div>
+              <div className="font-bold text-xl">
+                <TeX block>{questions[currentQuestionIndex]}</TeX>
+              </div>
+              <label>Final Answer</label>
+              <input
+                className="p-4 text-lg"
+                placeholder="eg. 3/8"
+                value={guesses[currentQuestionIndex]}
+                onChange={(e) => onGuessChanged(e.target.value)}
+              ></input>
+              <FreeDrawing
+                lines={linesForQuestions[currentQuestionIndex]}
+                setLines={setLinesForCurrentQuestion}
+                historyStep={historyStepForQuestions[currentQuestionIndex]}
+                setHistoryStep={setHistoryForCurrentQuestion}
+              />
             </div>
           )}
         </div>

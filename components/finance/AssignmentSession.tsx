@@ -21,11 +21,13 @@ import { getRandomItemFromArray, getRndInteger } from "../../pages/api/random";
 
 export interface FinanceProfileProps {
     onClick: () => void
+    profileData: FinanceProfileType
 }
 
 const AssignmentSession = ({
 
-    onClick
+    onClick,
+    profileData
 
 }: FinanceProfileProps) => {
 
@@ -55,7 +57,6 @@ const AssignmentSession = ({
     const [individualSalary, setIndividualSalary] = useState(0);
     const [spouseOccupation, setSpouseOccupation] = useState("");
     const [spouseSalary, setSpouseSalary] = useState(0);
-    const [profileData, setProfileData] = useState<FinanceProfileType>(); //profileData used for Validation in child components
     const [sectionOneValidation, setSectionOneValidation] = useState(false);
 
     const [carPayment1, setCarPayment1] = useState("");
@@ -99,13 +100,6 @@ const AssignmentSession = ({
         );
         setSurpriseData(randomSurprise);
     }, []);
-
-    useEffect(() => {
-        // Update the document title using the browser API
-        const randomProfile = getRndInteger(0, 12);
-        setProfileData(financialProfileData[randomProfile]);
-    }, []);
-
 
     const validateTotalMoneyRemaining = (newTotalMoneyRemaining) => {
         if (newTotalMoneyRemaining === "") {
