@@ -29,8 +29,8 @@ export interface Workforce {
 
 export const hotDog: Food = {
     name: "Hot Dog", 
-    unitCost: .25,
-    unitRevenue: 2,
+    unitCost: 1,
+    unitRevenue: 3,
     imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/emojis/57508/hot-dog-emoji-clipart-original.svg',
     prepTime: 1,
     qtyProducedPerWorkerHour: 20
@@ -38,8 +38,8 @@ export const hotDog: Food = {
 
 export const soupDumplings: Food = {
     name: "Soup Dumplings", 
-    unitCost: .5,
-    unitRevenue: 5,
+    unitCost: 2,
+    unitRevenue: 6,
     imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3390805/xiaolongbao-food-clipart.svg',
     prepTime: 4,
     qtyProducedPerWorkerHour: 12
@@ -60,8 +60,8 @@ export const allFoods = [hotDog, soupDumplings, tikka]
 
 export const smallTruck: Truck = {
     model: "Small Food Cart", 
-    fixedCost: 100,
-    variableCost: 5,
+    fixedCost: 150,
+    variableCost: 60,
     maxWorkers: 1,
     allowedItems: [hotDog],
     imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/25675/222-1033-traditional-culinary-vector-up-clipart.svg'
@@ -69,8 +69,8 @@ export const smallTruck: Truck = {
 
 export const mediumTruck: Truck = {
     model: "Medium Sized Van", 
-    fixedCost: 200,
-    variableCost: 100,
+    fixedCost: 300,
+    variableCost: 120,
     maxWorkers: 2,
     allowedItems: [hotDog, soupDumplings],
     imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/69034/food-truck-clipart-xl.png'
@@ -78,8 +78,8 @@ export const mediumTruck: Truck = {
 
 export const largeTruck: Truck = {
     model: "Real Food Truck", 
-    fixedCost: 500,
-    variableCost: 250,
+    fixedCost: 600,
+    variableCost: 180,
     maxWorkers: 4,
     allowedItems: [hotDog, soupDumplings, tikka],
     imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/1795498/food-truck-clipart.svg'
