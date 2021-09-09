@@ -41,7 +41,7 @@ const FinanceProfile = () => {
 
   let { data } = useQuery(FETCH_BADGE_ON_USERID, {
     variables: {
-      userId: userId(session) /*"116309327098433793664"*/,
+      userId: /*userId(session)*/ "116309327098433793664",
       badgeId: 50,
       badgeId2: 44,
     },
@@ -51,7 +51,7 @@ const FinanceProfile = () => {
     <div>
       {" "}
       {stage === STAGES.START && data && (
-        <RulesSession onClick={routeAssignment} badgeImage={data} />
+        <RulesSession onClick={routeAssignment} badgeData={data} />
       )}
       {stage === STAGES.ASSIGNMENT && <AssignmentSession onClick={routeEnd} />}
       {stage === STAGES.END && <EndSession onClick={routeStart} />}
@@ -65,4 +65,4 @@ data.user_badges.map((userbadge) => (
   <img src={userbadge.badge.image} />
 ))}*/
 
-//badgeImage={data....}  V's old code
+//badgeData={data....}  V's old code
