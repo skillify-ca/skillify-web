@@ -11,6 +11,7 @@ import { SKILLS, userId } from "../../graphql/utils/constants";
 import { getEmoji, getSkillId, Skill, SkillDescription } from "../api/skill";
 import { getVideosForSkill } from "../api/videoHelper";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import { FETCH_SKILLS } from "../../graphql/fetchSkills";
 
 const SkillOverviewPage = ({ slug, description, videos }) => {
   const [session] = useSession();
@@ -107,10 +108,17 @@ const SkillOverviewPage = ({ slug, description, videos }) => {
 };
 
 export async function getStaticPaths() {
-  const ids = Array.from(Array(100).keys()).map((element) => {
-    return { params: { slug: element.toString() } };
+  const client = new ApolloClient({
+    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
+    cache: new InMemoryCache(),
   });
-  //creates paths from 1-100
+  const { data } = await client.query({
+    query: FETCH_SKILLS,
+  });
+
+  const ids = data.skills.map((element) => {
+    return { params: { slug: element.id.toString() } };
+  });
   return {
     paths: ids,
     fallback: true,
