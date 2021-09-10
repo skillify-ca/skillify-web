@@ -67,7 +67,7 @@ const SkillOverviewPage = ({ slug, description, videos }) => {
         <span className="text-6xl font-semibold text-gray-700">
           {" "}
           I can{" "}
-          {description.skills[0].description &&
+          {description && description.skills[0] &&
             description.skills[0].description}{" "}
         </span>
         <span className="flex flex-col items-center mr-8">
@@ -88,7 +88,7 @@ const SkillOverviewPage = ({ slug, description, videos }) => {
 
       <div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mr-8 ml-8 items-center">
-          {videos.map((resource) => (
+          {videos && videos.map((resource) => (
             <iframe
               width="560"
               height="500"

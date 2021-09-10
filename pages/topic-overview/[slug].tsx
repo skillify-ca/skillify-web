@@ -274,7 +274,6 @@ export async function getStaticProps({ params }) {
   });
 
   const skillIds = getSkillsForTopicGrade(params.slug, Grade.GRADE_1);
-
   const { data } = await client.query({
     query: FETCH_SKILL_DESCRIPTION_ARRAY,
     variables: {
