@@ -136,7 +136,7 @@ const AssignmentCreationForm = ({
                           {
                             data.skills.filter(
                               (element) => element.id == skillId
-                            ).description
+                            )[0].description
                           }
                           <input
                             type={"number"}

@@ -20,7 +20,7 @@ import {
   SkillDescription,
 } from "../api/skill";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import { FETCH_SKILL_ARRAY } from "../../graphql/fetchSkillArray";
+import { FETCH_SKILL_DESCRIPTION_ARRAY } from "../../graphql/fetchSkillDescriptionArray";
 
 const Box = dynamic(() => import("../../components/stories/Box"));
 
@@ -276,7 +276,7 @@ export async function getStaticProps({ params }) {
   const skillIds = getSkillsForTopicGrade(params.slug, Grade.GRADE_1);
 
   const { data } = await client.query({
-    query: FETCH_SKILL_ARRAY,
+    query: FETCH_SKILL_DESCRIPTION_ARRAY,
     variables: {
       skillId: skillIds,
     },

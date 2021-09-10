@@ -21,7 +21,7 @@ enum STAGE {
   CONFIRM,
 }
 
-const Diagnostic = (data) => {
+const AssignmentCreator = (data) => {
   const [stage, setStage] = useState(STAGE.CHOOSE_SKILLS);
   const [skills, setSkills] = useState<Skill[]>([]);
   const [questionTypes, setQuestionTypes] = useState<QuestionType[]>([]);
@@ -136,4 +136,4 @@ export async function getServerSideProps() {
   };
 }
 
-export default Diagnostic;
+export default AssignmentCreator;
