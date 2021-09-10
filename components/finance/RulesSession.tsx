@@ -23,9 +23,38 @@ export const RulesSession = ({ onClick, badgeData }: RulesSessionProps) => {
     rightBadges = true;
   }
 
+  const validate = (rightBadges) => {
+    if ((rightBadges = true)) {
+      {
+        badgeData.user_badges.map((userbadge) => (
+          <div className={"flex justify-center"}>
+            <img src={userbadge.badge.image} className={"h-16 w-auto"} />{" "}
+          </div>
+        ));
+      }
+    } else {
+      <div className={"flex justify-center"}> Hellow rol</div>;
+    }
+  };
+
   return (
     <div>
       <p className="text-center text-4xl pb-8">Balancing a Budget</p>
+      <div className="mt-8 bg-white border-4 border-black">
+        <h2 className="flex items-center justify-center text text-2xl mt-8 mb-4">
+          Before you start, we recommend that you complete Addition Level 1 and
+          Subtraction Level 1
+        </h2>
+        <div className="grid grid-cols-2 mt-8">
+          {rightBadges &&
+            badgeData.user_badges.map((userbadge) => (
+              <div className={"flex justify-center"}>
+                <img src={userbadge.badge.image} className={"h-16 w-auto"} />{" "}
+              </div>
+            ))}
+        </div>
+      </div>
+
       <div className="pb-8">
         <BudgetRules />
       </div>
@@ -45,20 +74,6 @@ export const RulesSession = ({ onClick, badgeData }: RulesSessionProps) => {
             label="Start"
             onClick={(e) => onClick()}
           />
-        </div>
-      </div>
-      <div className="mt-8 bg-white border-4 border-black">
-        <h2 className="flex items-center justify-center text text-2xl mt-8 mb-4">
-          Before you start, we recommend that you complete Addition Level 1 and
-          Subtraction Level 1
-        </h2>
-        <div className="grid grid-cols-2 mt-8">
-          {rightBadges &&
-            badgeData.user_badges.map((userbadge) => (
-              <div className={"flex justify-center"}>
-                <img src={userbadge.badge.image} className={"h-16 w-auto"} />{" "}
-              </div>
-            ))}
         </div>
       </div>
     </div>
