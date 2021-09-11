@@ -116,31 +116,24 @@ export default function djacobs(props) {
     questionType: QuestionType.TRUE_OR_FALSE_PROBLEM,
     skill: Skill.NUMBERS_50,
   };
+
   const Q3 = (
     <React.Fragment>
       <TrueorFalse question={Q3Data} answer="Yes" submitGuess={nextQuestion} />
     </React.Fragment>
   );
 
+  const Q4Data: Question = {
+    text: questionData[3],
+    answer: "True",
+    answerType: AnswerType.BOOLEAN,
+    questionType: QuestionType.TRUE_OR_FALSE_PROBLEM,
+    skill: Skill.NUMBERS_50,
+  };
+
   const Q4 = (
     <React.Fragment>
-      <MultipleChoice
-        displayQuestion={questionData[3]}
-        option1={{
-          id: "option1",
-          text: "Yes",
-        }}
-        option2={{
-          id: "option2",
-          text: "No",
-        }}
-        option3={{
-          id: "option3",
-          text: "N/A",
-        }}
-        answer="Yes"
-        submitGuess={nextQuestion}
-      />
+      <TrueorFalse question={Q4Data} answer="Yes" submitGuess={nextQuestion} />
     </React.Fragment>
   );
 
