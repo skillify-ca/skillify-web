@@ -11,6 +11,7 @@ import { SKILLS, userId } from "../../graphql/utils/constants";
 import { getEmoji, getSkillId, Skill, SkillDescription } from "../api/skill";
 import { getVideosForSkill } from "../api/videoHelper";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import { FETCH_SKILLS } from "../../graphql/fetchSkills";
 
 const SkillOverviewPage = ({ slug, description, videos }) => {
   const [session] = useSession();
@@ -66,7 +67,7 @@ const SkillOverviewPage = ({ slug, description, videos }) => {
         <span className="text-6xl font-semibold text-gray-700">
           {" "}
           I can{" "}
-          {description.skills[0].description &&
+          {description && description.skills[0] &&
             description.skills[0].description}{" "}
         </span>
         <span className="flex flex-col items-center mr-8">
@@ -87,7 +88,7 @@ const SkillOverviewPage = ({ slug, description, videos }) => {
 
       <div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mr-8 ml-8 items-center">
-          {videos.map((resource) => (
+          {videos && videos.map((resource) => (
             <iframe
               width="560"
               height="500"
@@ -107,10 +108,17 @@ const SkillOverviewPage = ({ slug, description, videos }) => {
 };
 
 export async function getStaticPaths() {
-  const ids = Array.from(Array(100).keys()).map((element) => {
-    return { params: { slug: element.toString() } };
+  const client = new ApolloClient({
+    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
+    cache: new InMemoryCache(),
   });
-  //creates paths from 1-100
+  const { data } = await client.query({
+    query: FETCH_SKILLS,
+  });
+
+  const ids = data.skills.map((element) => {
+    return { params: { slug: element.id.toString() } };
+  });
   return {
     paths: ids,
     fallback: true,

@@ -1,4 +1,4 @@
-import { useMutation } from "@apollo/client";
+import { ApolloClient, InMemoryCache, useMutation } from "@apollo/client";
 import { useSession } from "next-auth/client";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
@@ -7,6 +7,7 @@ import QuestionSet from "../../components/stories/QuestionSet";
 import { Button } from "../../components/ui/Button";
 import Card from "../../components/ui/Card";
 import EmojiSlider from "../../components/ui/EmojiSlider";
+import { FETCH_SKILLS } from "../../graphql/fetchSkills";
 import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { UPDATE_USER_SKILL_EMOJI } from "../../graphql/updateUserEmoji";
 import { userId } from "../../graphql/utils/constants";
@@ -310,8 +311,16 @@ const PracticeQuiz = ({ skill }) => {
 };
 
 export async function getStaticPaths() {
-  const ids = Array.from(Array(100).keys()).map((element) => {
-    return { params: { skill: element.toString() } };
+  const client = new ApolloClient({
+    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
+    cache: new InMemoryCache(),
+  });
+  const { data } = await client.query({
+    query: FETCH_SKILLS,
+  });
+
+  const ids = data.skills.map((element) => {
+    return { params: { skill: element.id.toString() } };
   });
 
   return {
