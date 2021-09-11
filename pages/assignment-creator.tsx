@@ -12,6 +12,8 @@ import AssignmentConfirmation from "../components/assignment-creator/assignmentC
 import { CREATE_ASSIGNMENT } from "../graphql/createAssignment";
 import DisplayAssignmentQuestions from "../components/assignment-creator/displayAssignmentQuestions";
 import { QuestionType } from "./api/questionTypes";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import { FETCH_SKILL_DESCRIPTION_AND_GRADE } from "../graphql/fetchSkillDescriptionAndGrade";
 
 enum STAGE {
   CHOOSE_SKILLS,
@@ -19,7 +21,7 @@ enum STAGE {
   CONFIRM,
 }
 
-const Diagnostic = () => {
+const AssignmentCreator = (data) => {
   const [stage, setStage] = useState(STAGE.CHOOSE_SKILLS);
   const [skills, setSkills] = useState<Skill[]>([]);
   const [questionTypes, setQuestionTypes] = useState<QuestionType[]>([]);
@@ -78,6 +80,7 @@ const Diagnostic = () => {
           onClick={createAssignment}
           questionCounts={questionCounts}
           setQuestionCounts={setQuestionCounts}
+          data={data}
         />
       );
       break;
@@ -109,4 +112,28 @@ const Diagnostic = () => {
   );
 };
 
-export default Diagnostic;
+export async function getServerSideProps() {
+  const client = new ApolloClient({
+    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
+    cache: new InMemoryCache(),
+  });
+
+  const { data } = await client.query({
+    query: FETCH_SKILL_DESCRIPTION_AND_GRADE,
+  });
+
+  if (!data) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: data, // will be passed to the page component as props
+  };
+}
+
+export default AssignmentCreator;
