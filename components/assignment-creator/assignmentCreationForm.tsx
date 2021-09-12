@@ -24,17 +24,18 @@ type assignmentCreationFormProps = {
   onClick: (questionCounts: QuestionCount[]) => void;
   questionCounts: QuestionCount[];
   setQuestionCounts: (counts: QuestionCount[]) => void;
+  data: any;
 };
 
 export type QuestionCount = {
   key: number;
   value: number;
 };
-
 const AssignmentCreationForm = ({
   onClick,
   questionCounts,
   setQuestionCounts,
+  data,
 }: assignmentCreationFormProps) => {
   const unitData = [
     { title: "Addition", unit: Topic.ADDITION, backgroundColour: "bg-red-100" },
@@ -60,9 +61,9 @@ const AssignmentCreationForm = ({
     setGrade(e.target.value);
   };
 
-  const onQuestionCountChange = (skill: Skill, value: number) => {
+  const onQuestionCountChange = (skillId: number, value: number) => {
     const newQuestionCounts = questionCounts.map((it) => {
-      if (it.key === getSkillId(skill)) {
+      if (it.key === skillId) {
         return { key: it.key, value: value };
       } else {
         return it;
@@ -129,21 +130,25 @@ const AssignmentCreationForm = ({
                 <p className="font-bold">{it.title}</p>
                 <div className="flex flex-col gap-4">
                   {getSkillsForTopicGrade(it.unit, grade as Grade).map(
-                    (skill) => (
+                    (skillId) => (
                       <div className="w-full">
                         <label className="">
-                          <p>I can {SkillDescription(skill)}</p>
+                          {
+                            data.skills.filter(
+                              (element) => element.id == skillId
+                            )[0].description
+                          }
                           <input
                             type={"number"}
                             className={"p-2 bg-white rounded-md w-full"}
                             value={
                               questionCounts.filter(
-                                (it) => it.key === getSkillId(skill)
+                                (it) => it.key === skillId
                               )[0].value
                             }
                             onChange={(e) =>
                               onQuestionCountChange(
-                                skill,
+                                skillId,
                                 Number.parseInt(e.target.value)
                               )
                             }
