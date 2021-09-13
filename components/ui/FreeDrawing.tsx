@@ -21,7 +21,7 @@ const FreeDrawing = ({
   setLines,
   historyStep,
   setHistoryStep,
-  saveImage
+  saveImage,
 }: FreeDrawingProps) => {
   const stageRef = React.useRef(null);
 
@@ -89,6 +89,9 @@ const FreeDrawing = ({
         <Button label="Undo" onClick={handleUndo} backgroundColor="white" />
         <Button label="Redo" onClick={handleRedo} backgroundColor="white" />
       </div>
+      <p className="p-4">
+        Evaluate without the use of a calculate. Show all your work.
+      </p>
       <Stage
         style={{ touchAction: "none" }}
         ref={stageRef}
@@ -102,11 +105,6 @@ const FreeDrawing = ({
         onTouchEnd={handleMouseUp}
       >
         <Layer>
-          <Text
-            text="Evaluate without the use of a calculate. Show all your work."
-            x={5}
-            y={30}
-          />
           {lines
             .filter((_, index) => index + 1 <= historyStep)
             .map((line, i) => (

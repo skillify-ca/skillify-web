@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { session, useSession } from "next-auth/client";
 import Link from "next/link";
 import React from "react";
@@ -11,19 +11,55 @@ import Navbar from "../../../components/Navbar";
 import { questions } from "../../api/teachers/cye";
 import TeX from "@matejmazur/react-katex";
 import "katex/dist/katex.min.css";
+import { FETCH_ASSIGNMENT } from "../../../graphql/fetchAssignment";
+import { UPDATE_SOLUTIONS_RELEASED_FOR_ASSIGNMENT } from "../../../graphql/userAssignments/updateSolutionsReleasedForAssignment";
 
 const TeacherDashboardPage = ({ data }) => {
   const [session] = useSession();
   const [currentStudentIndex, setCurrentStudentIndex] = useState(0);
+  const [solutionsReleased, setSolutionsReleased] = useState(false);
+  const { loading, data: assignmentFetchData } = useQuery(FETCH_ASSIGNMENT, {
+    variables: {
+      assignmentId: "cye1",
+    },
+    onCompleted: (data) => {
+      if (data && data.assignments && data.assignments[0]) {
 
+        setSolutionsReleased(data.assignments[0].solutions_released);
+      }
+    },
+  });
+  const [updateSolutionsReleased] = useMutation(
+    UPDATE_SOLUTIONS_RELEASED_FOR_ASSIGNMENT
+  );
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-architect-blue-200 bg-blue-100 h-screen">
       <Navbar />
       {data && data.user_assignments && data.user_assignments[0] && (
-        <div className="flex flex-col">
+        <div className="flex flex-col items-center">
           <h1 className="text-center font-bold text-xl p-4">
             Assignment Id: {data.user_assignments[0].assignment_id}
           </h1>
+          {assignmentFetchData &&
+            assignmentFetchData.assignments &&
+            assignmentFetchData.assignments[0] && (
+              <div className="flex gap-4 p-4">
+                <p>Release Solutions</p>
+                <input
+                  type="checkbox"
+                  onChange={(e) => {
+                    updateSolutionsReleased({
+                      variables: {
+                        solutions_released: e.target.checked,
+                        assignment_id: "cye1",
+                      },
+                    });
+                    setSolutionsReleased(e.target.checked);
+                  }}
+                  checked={solutionsReleased}
+                />
+              </div>
+            )}
           <div className="bg-white mb-4 mx-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
             <select
               value={currentStudentIndex}

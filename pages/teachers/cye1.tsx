@@ -14,7 +14,7 @@ import { userId } from "../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
 import { CREATE_USER_ASSIGNMENT } from "../../graphql/userAssignments/createUserAssignment";
 import { UPDATE_USER_ASSIGNMENT } from "../../graphql/userAssignments/updateUserAssignment";
-import { questions } from "../api/teachers/cye";
+import { questions, solutions } from "../api/teachers/cye";
 import { UPDATE_USER_ASSIGNMENT_IMAGES } from "../../graphql/userAssignments/updateUserAssignmentImages";
 
 const FreeDrawing = dynamic(() => import("../../components/ui/FreeDrawing"), {
@@ -38,6 +38,7 @@ export default function cye1(props) {
   const [linesForQuestions, setLinesForQuestions] = React.useState<
     LineData[][]
   >([]);
+  const [showSolutions, setShowSolutions] = useState(false);
   const [session] = useSession();
 
   const { loading, data: userAssignmentFetchData } = useQuery(
@@ -51,6 +52,11 @@ export default function cye1(props) {
         console.log("data", data);
         if (data.user_assignments.length > 0) {
           setGuesses(data.user_assignments[0].user_solution);
+          if (data.user_assignments[0].assignment) {
+            setShowSolutions(
+              data.user_assignments[0].assignment.solutions_released
+            );
+          }
           if (data.user_assignments[0].user_images) {
             setImages(data.user_assignments[0].user_images);
           } else {
@@ -151,6 +157,15 @@ export default function cye1(props) {
         assignment_id: "cye1",
         user_images: newImages,
       },
+      refetchQueries: [
+        {
+          query: FETCH_USER_ASSIGNMENT,
+          variables: {
+            userId: userId(session),
+            assignment_id: "cye1",
+          },
+        },
+      ],
     });
   };
 
@@ -299,20 +314,39 @@ export default function cye1(props) {
               <div className="font-bold text-xl">
                 <TeX block>{questions[currentQuestionIndex]}</TeX>
               </div>
-              <label>Final Answer</label>
-              <input
-                className="p-4 text-lg"
-                placeholder="eg. 3/8"
-                value={guesses[currentQuestionIndex]}
-                onChange={(e) => onGuessChanged(e.target.value)}
-              ></input>
-              <FreeDrawing
-                saveImage={updateImage}
-                lines={linesForQuestions[currentQuestionIndex]}
-                setLines={setLinesForCurrentQuestion}
-                historyStep={historyStepForQuestions[currentQuestionIndex]}
-                setHistoryStep={setHistoryForCurrentQuestion}
-              />
+              <div className="flex gap-4 items-center">
+                <label>Final Answer</label>
+                <input
+                  className="p-4 text-lg"
+                  placeholder="eg. 3/8"
+                  value={guesses[currentQuestionIndex]}
+                  onChange={(e) => onGuessChanged(e.target.value)}
+                ></input>
+              </div>
+              {showSolutions ? (
+                <div className="grid grid-cols-2 w-full">
+                  <p>Your Solution</p>
+                  <p>Teacher's Solution</p>
+                  <div className="bg-white rounded-l-xl w-full">
+                    <img src={images[currentQuestionIndex]} />
+                  </div>
+                  <div className="flex flex-col items-center justify-center bg-gray-100 rounded-r-xl">
+                    {solutions[currentQuestionIndex].map((step) => (
+                      <TeX block>{step}</TeX>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                linesForQuestions[currentQuestionIndex] && (
+                  <FreeDrawing
+                    saveImage={updateImage}
+                    lines={linesForQuestions[currentQuestionIndex]}
+                    setLines={setLinesForCurrentQuestion}
+                    historyStep={historyStepForQuestions[currentQuestionIndex]}
+                    setHistoryStep={setHistoryForCurrentQuestion}
+                  />
+                )
+              )}
             </div>
           )}
         </div>
