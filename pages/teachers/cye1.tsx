@@ -15,6 +15,7 @@ import { useSession } from "next-auth/client";
 import { CREATE_USER_ASSIGNMENT } from "../../graphql/userAssignments/createUserAssignment";
 import { UPDATE_USER_ASSIGNMENT } from "../../graphql/userAssignments/updateUserAssignment";
 import { questions } from "../api/teachers/cye";
+import { UPDATE_USER_ASSIGNMENT_IMAGES } from "../../graphql/userAssignments/updateUserAssignmentImages";
 
 const FreeDrawing = dynamic(() => import("../../components/ui/FreeDrawing"), {
   ssr: false,
@@ -56,14 +57,12 @@ export default function cye1(props) {
             setImages(EMPTY_ARRAY);
           }
           if (data.user_assignments[0].user_drawn_lines) {
-
             setLinesForQuestions(data.user_assignments[0].user_drawn_lines);
             const historySteps = data.user_assignments[0].user_drawn_lines.map(
               (lines) => lines.length
             );
             setHistoryStepForQuestions(historySteps);
           } else {
-
             setLinesForQuestions([
               [],
               [],
@@ -104,6 +103,9 @@ export default function cye1(props) {
 
   const [createUserAssignment] = useMutation(CREATE_USER_ASSIGNMENT);
   const [updateUserAssignment] = useMutation(UPDATE_USER_ASSIGNMENT);
+  const [updateUserAssignmentImages] = useMutation(
+    UPDATE_USER_ASSIGNMENT_IMAGES
+  );
 
   // on page load query the user assignment, and create it if doesn't exist
   useEffect(() => {
@@ -143,6 +145,13 @@ export default function cye1(props) {
       }
     });
     setImages(newImages);
+    updateUserAssignmentImages({
+      variables: {
+        user_id: userId(session),
+        assignment_id: "cye1",
+        user_images: newImages,
+      },
+    });
   };
 
   const clearFutureHistoryForCurrentQuestion = () => {
@@ -172,7 +181,6 @@ export default function cye1(props) {
         user_id: userId(session),
         assignment_id: "cye1",
         user_solution: guesses,
-        user_images: images,
         user_drawn_lines: linesForQuestions,
       },
       refetchQueries: [
@@ -196,7 +204,6 @@ export default function cye1(props) {
         user_id: userId(session),
         assignment_id: "cye1",
         user_solution: guesses,
-        user_images: images,
         user_drawn_lines: linesForQuestions,
       },
       refetchQueries: [

@@ -1,11 +1,10 @@
 import { gql } from "@apollo/client";
 
-export const UPDATE_USER_ASSIGNMENT = gql`
-  mutation updateUserAssignment(
+export const UPDATE_USER_ASSIGNMENT_IMAGES = gql`
+  mutation updateUserAssignmentImages(
     $user_id: String
-    $user_solution: jsonb
-    $user_drawn_lines: jsonb
     $assignment_id: String
+    $user_images: jsonb
   ) {
     update_user_assignments(
       where: {
@@ -13,14 +12,12 @@ export const UPDATE_USER_ASSIGNMENT = gql`
         user_id: { _eq: $user_id }
       }
       _set: {
-        user_solution: $user_solution
-        user_drawn_lines: $user_drawn_lines
+        user_images: $user_images
       }
     ) {
       returning {
         id
-        user_solution
-        user_drawn_lines
+        user_images
       }
     }
   }
