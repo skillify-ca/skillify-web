@@ -14,6 +14,7 @@ import { userId } from "../../graphql/utils/constants";
 import { useSession } from "next-auth/client";
 import { CREATE_USER_ASSIGNMENT } from "../../graphql/userAssignments/createUserAssignment";
 import { UPDATE_USER_ASSIGNMENT } from "../../graphql/userAssignments/updateUserAssignment";
+import { questions } from "../api/teachers/cye";
 
 const FreeDrawing = dynamic(() => import("../../components/ui/FreeDrawing"), {
   ssr: false,
@@ -42,7 +43,7 @@ export default function cye1(props) {
     {
       variables: {
         user_id: userId(session),
-        assignment_id: "cye-1",
+        assignment_id: "cye1",
       },
       onCompleted: (data: any) => {
         console.log("data", data);
@@ -61,18 +62,17 @@ export default function cye1(props) {
       userAssignmentFetchData &&
       userAssignmentFetchData.user_assignments.length === 0
     ) {
-
       const result = createUserAssignment({
         variables: {
           user_id: userId(session),
-          assignment_id: "cye-1",
+          assignment_id: "cye1",
         },
         refetchQueries: [
           {
             query: FETCH_USER_ASSIGNMENT,
             variables: {
               userId: userId(session),
-              assignment_id: "cye-1",
+              assignment_id: "cye1",
             },
           },
         ],
@@ -167,23 +167,6 @@ export default function cye1(props) {
     });
     setHistoryStepForQuestions(newHistory);
   };
-
-  const questions = [
-    "[(3 - 2)(2 - 3)]3[(—4) - 2)] + (+6)(2) - (-3)",
-    "-[(6-3)(8-4)] + (-5)(-2) + 1 - (2)",
-    "\\left[\\left(\\frac{(-5)(-8) - (4)(5)}{(8)-(-2)}\\right)^2\\right]^3",
-    "\\frac{(6)(-5) + (-3)-(2)}{(-4)(-2)+1}",
-    "[(2)(—2)+2—4][(2)—2]",
-    "\\frac{(4)(4)+4-(2)2^3}{3}",
-    "(7)(2) — 4(2 — 4) + 6(—1)(—2)",
-    "(4-1)^2 + 2(3-4)^3 + 6^2 - (8)(—3)",
-    "(—2)(—4)(—3) + 4(—3) - 2(4)",
-    "12 - (-4) + 6(-2) - \\frac{1-4}{3}",
-    "[(4-2)+(3+2)][—2(4)+(5+8)-2]+4",
-    "(4-1)^2 + 2(3-4)^3 + 6^2 - (8)(—3)",
-    "\\frac{[(—4+3)(3+1)]^2—8(6—2)}{(4)(-2)(-3)}",
-    "3 - 2(4 + 2) + 5(-2 - 3) - \\frac{2^3(3^3)}{(2)(3)}",
-  ];
 
   useEffect(() => {
     setGuesses(["", "", "", "", "", "", "", "", "", "", "", "", "", ""]);
