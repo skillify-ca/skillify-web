@@ -12,6 +12,7 @@ export const FETCH_USER_ASSIGNMENT = gql`
       user_id
       assignment_id
       user_solution
+      user_drawn_lines
     }
   }
 `;
