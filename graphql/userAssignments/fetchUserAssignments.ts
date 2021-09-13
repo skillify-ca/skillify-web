@@ -6,6 +6,7 @@ export const FETCH_USER_ASSIGNMENTS = gql`
     user_assignments(where: { assignment_id: { _eq: $assignment_id } }) {
       assignment_id
       user_solution
+      user_images
       user {
         name
       }
