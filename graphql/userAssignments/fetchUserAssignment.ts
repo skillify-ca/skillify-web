@@ -14,6 +14,9 @@ export const FETCH_USER_ASSIGNMENT = gql`
       user_images
       user_solution
       user_drawn_lines
+      assignment {
+        solutions_released
+      }
     }
   }
 `;
