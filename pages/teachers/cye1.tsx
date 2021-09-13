@@ -314,3 +314,5 @@ export default function cye1(props) {
     </div>
   );
 }
+
+cye1.auth = true;
