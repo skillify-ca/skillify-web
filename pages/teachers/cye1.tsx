@@ -253,7 +253,6 @@ export default function cye1(props) {
 
   return (
     <div className="flex flex-col bg-blue-50">
-      <Navbar />
       <div className="grid grid-cols-12">
         <div className="col-span-12 p-4">
           {stage == Stage.RULES && (
