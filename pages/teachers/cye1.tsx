@@ -47,6 +47,9 @@ export default function cye1(props) {
       },
       onCompleted: (data: any) => {
         console.log("data", data);
+        if (data.user_assignments.length > 0) {
+          setGuesses(data.user_assignments[0].user_solution);
+        }
       },
     }
   );
@@ -66,6 +69,7 @@ export default function cye1(props) {
         variables: {
           user_id: userId(session),
           assignment_id: "cye1",
+          user_solution: ["", "", "", "", "", "", "", "", "", "", "", "", "", ""]
         },
         refetchQueries: [
           {
@@ -77,12 +81,6 @@ export default function cye1(props) {
           },
         ],
       });
-    } else if (
-      session &&
-      userAssignmentFetchData &&
-      userAssignmentFetchData.user_assignments.length > 0
-    ) {
-      setGuesses(userAssignmentFetchData.user_assignments[0].user_solution);
     }
   }, [userAssignmentFetchData]);
 
@@ -91,7 +89,7 @@ export default function cye1(props) {
     updateUserAssignment({
       variables: {
         user_id: userId(session),
-        assignment_id: "cye-1",
+        assignment_id: "cye1",
         user_solution: guesses,
       },
       refetchQueries: [
@@ -99,7 +97,7 @@ export default function cye1(props) {
           query: FETCH_USER_ASSIGNMENT,
           variables: {
             userId: userId(session),
-            assignment_id: "cye-1",
+            assignment_id: "cye1",
           },
         },
       ],
@@ -113,7 +111,7 @@ export default function cye1(props) {
     updateUserAssignment({
       variables: {
         user_id: userId(session),
-        assignment_id: "cye-1",
+        assignment_id: "cye1",
         user_solution: guesses,
       },
       refetchQueries: [
@@ -121,7 +119,7 @@ export default function cye1(props) {
           query: FETCH_USER_ASSIGNMENT,
           variables: {
             userId: userId(session),
-            assignment_id: "cye-1",
+            assignment_id: "cye1",
           },
         },
       ],

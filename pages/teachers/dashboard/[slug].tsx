@@ -19,21 +19,34 @@ const TeacherDashboardPage = ({ data }) => {
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-architect-blue-200 bg-blue-100 h-screen">
       <Navbar />
-      {JSON.stringify(data)}
       {data && data.user_assignments && data.user_assignments[0] && (
-        <div className="bg-white m-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
-          <p className="font-bold">{data.user_assignments[0].user.name}</p>
-          {data.user_assignments[0].user_solution.map((guess, index) => (
-            <div className="flex flex-col gap-2 p-4 items-center border-b-4 border-blue-400">
-              <p className="">Question #{index}</p>
-              <div>
-                <TeX block>{questions[index]}</TeX>
-              </div>
-              <p>
-                Student's Answer: <span className="font-bold">{guess}</span>
-              </p>
-            </div>
-          ))}
+        <div className="flex flex-col">
+          <h1 className="text-center font-bold text-xl p-4">Assignment Id: {data.user_assignments[0].assignment_id}</h1>
+          <div className="bg-white mb-4 mx-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
+            <select
+              value={currentStudentIndex}
+              onChange={(e) =>
+                setCurrentStudentIndex(Number.parseInt(e.target.value))
+              }
+            >
+              {data.user_assignments.map((student, index) => (
+                <option value={index}>{student.user.name}</option>
+              ))}
+            </select>
+            {data.user_assignments[currentStudentIndex].user_solution.map(
+              (guess, index) => (
+                <div className="flex flex-col gap-2 p-4 items-center border-b-4 border-blue-400">
+                  <p className="">Question #{index}</p>
+                  <div>
+                    <TeX block>{questions[index]}</TeX>
+                  </div>
+                  <p>
+                    Student's Answer: <span className="font-bold">{guess}</span>
+                  </p>
+                </div>
+              )
+            )}
+          </div>
         </div>
       )}
     </div>
