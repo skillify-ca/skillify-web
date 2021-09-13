@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+// Fetch a single students attempt at a specific assignment
 export const FETCH_USER_ASSIGNMENT = gql`
   query fetchUserAssignment($assignment_id: String, $user_id: String) {
     user_assignments(
