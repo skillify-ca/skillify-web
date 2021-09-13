@@ -1,7 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { render } from "react-dom";
 import { Stage, Layer, Line, Text } from "react-konva";
 import useWindowSize from "../../hooks/UseWindowSizeHook";
 import { Button } from "./Button";
@@ -11,6 +8,7 @@ interface FreeDrawingProps {
   setLines: (lines: LineData[]) => void;
   historyStep: number;
   setHistoryStep: (step: number) => void;
+  saveImage: (image: string) => void;
 }
 
 export type LineData = {
@@ -23,7 +21,10 @@ const FreeDrawing = ({
   setLines,
   historyStep,
   setHistoryStep,
+  saveImage
 }: FreeDrawingProps) => {
+  const stageRef = React.useRef(null);
+
   const [tool, setTool] = React.useState("black");
   const isDrawing = React.useRef(false);
   const { width, height } = useWindowSize();
@@ -85,6 +86,7 @@ const FreeDrawing = ({
 
   const handleMouseUp = () => {
     isDrawing.current = false;
+    saveImage(stageRef.current.toDataURL());
   };
 
   return (
@@ -95,6 +97,7 @@ const FreeDrawing = ({
       </div>
       <Stage
         style={{ touchAction: "none" }}
+        ref={stageRef}
         width={width}
         height={height}
         onMouseDown={handleMouseDown}

@@ -26,7 +26,9 @@ enum Stage {
 }
 
 export default function cye1(props) {
+  const EMPTY_ARRAY = ["", "", "", "", "", "", "", "", "", "", "", "", "", ""];
   const [guesses, setGuesses] = useState<string[]>([]);
+  const [images, setImages] = useState<string[]>([]);
   const [stage, setStage] = useState(Stage.RULES);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [historyStepForQuestions, setHistoryStepForQuestions] = useState<
@@ -35,7 +37,6 @@ export default function cye1(props) {
   const [linesForQuestions, setLinesForQuestions] = React.useState<
     LineData[][]
   >([]);
-  const [userSolution, setUserSolution] = useState({});
   const [session] = useSession();
 
   const { loading, data: userAssignmentFetchData } = useQuery(
@@ -49,6 +50,11 @@ export default function cye1(props) {
         console.log("data", data);
         if (data.user_assignments.length > 0) {
           setGuesses(data.user_assignments[0].user_solution);
+          if (data.user_assignments[0].user_images) {
+            setImages(data.user_assignments[0].user_images);
+          } else {
+            setImages(EMPTY_ARRAY);
+          }
         }
       },
     }
@@ -69,7 +75,8 @@ export default function cye1(props) {
         variables: {
           user_id: userId(session),
           assignment_id: "cye1",
-          user_solution: ["", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+          user_solution: EMPTY_ARRAY,
+          user_images: EMPTY_ARRAY,
         },
         refetchQueries: [
           {
@@ -84,6 +91,17 @@ export default function cye1(props) {
     }
   }, [userAssignmentFetchData]);
 
+  const updateImage = (uri: string) => {
+    const newImages = images.map((image, index) => {
+      if (index === currentQuestionIndex) {
+        return uri;
+      } else {
+        return image;
+      }
+    });
+    setImages(newImages);
+  };
+
   const onNextQuestion = () => {
     // update user assignment and cache the returned assignment
     updateUserAssignment({
@@ -91,6 +109,7 @@ export default function cye1(props) {
         user_id: userId(session),
         assignment_id: "cye1",
         user_solution: guesses,
+        user_images: images,
       },
       refetchQueries: [
         {
@@ -113,6 +132,7 @@ export default function cye1(props) {
         user_id: userId(session),
         assignment_id: "cye1",
         user_solution: guesses,
+        user_images: images,
       },
       refetchQueries: [
         {
@@ -167,7 +187,6 @@ export default function cye1(props) {
   };
 
   useEffect(() => {
-    setGuesses(["", "", "", "", "", "", "", "", "", "", "", "", "", ""]);
     setLinesForQuestions([
       [],
       [],
@@ -237,6 +256,7 @@ export default function cye1(props) {
                 onChange={(e) => onGuessChanged(e.target.value)}
               ></input>
               <FreeDrawing
+                saveImage={updateImage}
                 lines={linesForQuestions[currentQuestionIndex]}
                 setLines={setLinesForCurrentQuestion}
                 historyStep={historyStepForQuestions[currentQuestionIndex]}
