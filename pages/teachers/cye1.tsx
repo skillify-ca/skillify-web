@@ -24,7 +24,7 @@ enum Stage {
   ASSIGNMENT,
 }
 
-export default function cye(props) {
+export default function cye1(props) {
   const [guesses, setGuesses] = useState<string[]>([]);
   const [stage, setStage] = useState(Stage.RULES);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
