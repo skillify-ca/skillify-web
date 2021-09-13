@@ -1,0 +1,16 @@
+import { gql } from "@apollo/client";
+
+export const FETCH_USER_ASSIGNMENT = gql`
+  query fetchUserAssignment($assignment_id: String, $user_id: String) {
+    user_assignments(
+      where: {
+        assignment_id: { _eq: $assignment_id }
+        user_id: { _eq: $user_id }
+      }
+    ) {
+      user_id
+      assignment_id
+      user_solution
+    }
+  }
+`;

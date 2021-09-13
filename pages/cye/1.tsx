@@ -8,6 +8,12 @@ import bedmasRulesImg from "../../public/images/cye/rules.png";
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import { LineData } from "../../components/ui/FreeDrawing";
+import { FETCH_USER_ASSIGNMENT } from "../../graphql/userAssignments/fetchUserAssignment";
+import { useMutation, useQuery } from "@apollo/client";
+import { userId } from "../../graphql/utils/constants";
+import { useSession } from "next-auth/client";
+import { CREATE_USER_ASSIGNMENT } from "../../graphql/userAssignments/createUserAssignment";
+import { UPDATE_USER_ASSIGNMENT } from "../../graphql/userAssignments/updateUserAssignment";
 
 const FreeDrawing = dynamic(() => import("../../components/ui/FreeDrawing"), {
   ssr: false,
@@ -28,13 +34,98 @@ export default function cye(props) {
   const [linesForQuestions, setLinesForQuestions] = React.useState<
     LineData[][]
   >([]);
+  const [userSolution, setUserSolution] = useState({});
+  const [session] = useSession();
+
+  const { loading, data: userAssignmentFetchData } = useQuery(
+    FETCH_USER_ASSIGNMENT,
+    {
+      variables: {
+        user_id: userId(session),
+        assignment_id: "cye-1",
+      },
+      onCompleted: (data: any) => {
+        console.log("data", data);
+      },
+    }
+  );
+
+  const [createUserAssignment] = useMutation(CREATE_USER_ASSIGNMENT);
+  const [updateUserAssignment] = useMutation(UPDATE_USER_ASSIGNMENT);
+
+  // on page load query the user assignment, and create it if doesn't exist
+  useEffect(() => {
+    console.log("effect", userAssignmentFetchData);
+    if (
+      session &&
+      userAssignmentFetchData &&
+      userAssignmentFetchData.user_assignments.length === 0
+    ) {
+
+      const result = createUserAssignment({
+        variables: {
+          user_id: userId(session),
+          assignment_id: "cye-1",
+        },
+        refetchQueries: [
+          {
+            query: FETCH_USER_ASSIGNMENT,
+            variables: {
+              userId: userId(session),
+              assignment_id: "cye-1",
+            },
+          },
+        ],
+      });
+    } else if (
+      session &&
+      userAssignmentFetchData &&
+      userAssignmentFetchData.user_assignments.length > 0
+    ) {
+      setGuesses(userAssignmentFetchData.user_assignments[0].user_solution);
+    }
+  }, [userAssignmentFetchData]);
 
   const onNextQuestion = () => {
+    // update user assignment and cache the returned assignment
+    updateUserAssignment({
+      variables: {
+        user_id: userId(session),
+        assignment_id: "cye-1",
+        user_solution: guesses,
+      },
+      refetchQueries: [
+        {
+          query: FETCH_USER_ASSIGNMENT,
+          variables: {
+            userId: userId(session),
+            assignment_id: "cye-1",
+          },
+        },
+      ],
+    });
+    // TODO only udpate if user assignment is different from the cached assignment
     setCurrentQuestionIndex(
       Math.min(questions.length - 1, currentQuestionIndex + 1)
     );
   };
   const onPreviousQuestion = () => {
+    updateUserAssignment({
+      variables: {
+        user_id: userId(session),
+        assignment_id: "cye-1",
+        user_solution: guesses,
+      },
+      refetchQueries: [
+        {
+          query: FETCH_USER_ASSIGNMENT,
+          variables: {
+            userId: userId(session),
+            assignment_id: "cye-1",
+          },
+        },
+      ],
+    });
     if (currentQuestionIndex == 0) {
       setStage(Stage.RULES);
     } else {
