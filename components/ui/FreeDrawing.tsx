@@ -46,7 +46,6 @@ const FreeDrawing = ({
   };
 
   const handleMouseDown = (e) => {
-    console.log("Mouse Down");
     isDrawing.current = true;
 
     const isLatestStep = historyStep === lines.length;
@@ -57,14 +56,9 @@ const FreeDrawing = ({
       newLines = lines.slice(0, historyStep);
     }
 
-    console.log("Mouse Down 2", historyStep);
-
     setHistoryStep(historyStep + 1);
-    console.log("Mouse Down 3", historyStep);
-
     const pos = e.target.getStage().getPointerPosition();
     setLines([...newLines, { tool, points: [pos.x, pos.y] }]);
-    console.log("Mouse Down 4");
   };
 
   const handleMouseMove = (e) => {

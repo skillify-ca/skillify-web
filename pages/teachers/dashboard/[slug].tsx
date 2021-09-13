@@ -21,7 +21,9 @@ const TeacherDashboardPage = ({ data }) => {
       <Navbar />
       {data && data.user_assignments && data.user_assignments[0] && (
         <div className="flex flex-col">
-          <h1 className="text-center font-bold text-xl p-4">Assignment Id: {data.user_assignments[0].assignment_id}</h1>
+          <h1 className="text-center font-bold text-xl p-4">
+            Assignment Id: {data.user_assignments[0].assignment_id}
+          </h1>
           <div className="bg-white mb-4 mx-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
             <select
               value={currentStudentIndex}
@@ -43,6 +45,13 @@ const TeacherDashboardPage = ({ data }) => {
                   <p>
                     Student's Answer: <span className="font-bold">{guess}</span>
                   </p>
+                  <img
+                    src={
+                      data.user_assignments[currentStudentIndex].user_images[
+                        index
+                      ]
+                    }
+                  />
                 </div>
               )
             )}
