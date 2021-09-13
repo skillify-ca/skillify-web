@@ -55,6 +55,48 @@ export default function cye1(props) {
           } else {
             setImages(EMPTY_ARRAY);
           }
+          if (data.user_assignments[0].user_drawn_lines) {
+
+            setLinesForQuestions(data.user_assignments[0].user_drawn_lines);
+            const historySteps = data.user_assignments[0].user_drawn_lines.map(
+              (lines) => lines.length
+            );
+            setHistoryStepForQuestions(historySteps);
+          } else {
+
+            setLinesForQuestions([
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+            ]);
+            setHistoryStepForQuestions([
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+            ]);
+          }
         }
       },
     }
@@ -77,6 +119,7 @@ export default function cye1(props) {
           assignment_id: "cye1",
           user_solution: EMPTY_ARRAY,
           user_images: EMPTY_ARRAY,
+          user_drawn_lines: [],
         },
         refetchQueries: [
           {
@@ -102,7 +145,27 @@ export default function cye1(props) {
     setImages(newImages);
   };
 
+  const clearFutureHistoryForCurrentQuestion = () => {
+    const isLatestStep =
+      historyStepForQuestions[currentQuestionIndex] ===
+      linesForQuestions[currentQuestionIndex].length;
+
+    if (!isLatestStep) {
+      //  clear all lines in the future
+      const newLines = linesForQuestions[currentQuestionIndex].slice(
+        0,
+        historyStepForQuestions[currentQuestionIndex]
+      );
+      setHistoryForCurrentQuestion(
+        historyStepForQuestions[currentQuestionIndex] + 1
+      );
+      setLinesForCurrentQuestion(newLines);
+    }
+  };
+
   const onNextQuestion = () => {
+    clearFutureHistoryForCurrentQuestion();
+
     // update user assignment and cache the returned assignment
     updateUserAssignment({
       variables: {
@@ -110,6 +173,7 @@ export default function cye1(props) {
         assignment_id: "cye1",
         user_solution: guesses,
         user_images: images,
+        user_drawn_lines: linesForQuestions,
       },
       refetchQueries: [
         {
@@ -133,6 +197,7 @@ export default function cye1(props) {
         assignment_id: "cye1",
         user_solution: guesses,
         user_images: images,
+        user_drawn_lines: linesForQuestions,
       },
       refetchQueries: [
         {
@@ -185,26 +250,6 @@ export default function cye1(props) {
     });
     setHistoryStepForQuestions(newHistory);
   };
-
-  useEffect(() => {
-    setLinesForQuestions([
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-    ]);
-    setHistoryStepForQuestions([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-  }, []);
 
   return (
     <div className="flex flex-col bg-blue-50">
