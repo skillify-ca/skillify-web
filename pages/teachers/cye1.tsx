@@ -37,7 +37,7 @@ export default function cye1(props) {
   >([]);
   const [linesForQuestions, setLinesForQuestions] = React.useState<
     LineData[][]
-  >([]);
+  >([[]]);
   const [showSolutions, setShowSolutions] = useState(false);
   const [session] = useSession();
 
