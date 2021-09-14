@@ -18,7 +18,7 @@ export const RulesSession = ({ onClick, badgeData }: RulesSessionProps) => {
     (userbadge) => userbadge.badge.id
   );
 
-  if (badgeIds.includes(50) || badgeIds.includes(44)) {
+  if (badgeIds.includes(49) || badgeIds.includes(43)) {
     //some variable (boolean) = true
     rightBadges = true;
   }
@@ -26,26 +26,47 @@ export const RulesSession = ({ onClick, badgeData }: RulesSessionProps) => {
   const validate = () => {
     if (rightBadges === true) {
       {
-        console.log("hello baby");
-        {
-          badgeData.user_badges.map((userbadge) => (
-            <div className={"flex justify-center"}>
-              <img src={userbadge.badge.image} className={"h-16 w-auto"} />{" "}
-            </div>
-          ));
-        }
+        return badgeData.user_badges.map((userbadge) => (
+          <div className={"flex justify-center"}>
+            <img src={userbadge.badge.image} className={"h-16 w-auto"} />{" "}
+          </div>
+        ));
       }
     } else {
-      <div className={"flex justify-center opacity-20"}>
-        <div>
-          Looks like you haven't completed Addition 1 and Subtraction 1. We
-          recommend you complete those before attempting this worksheet.
-        </div>
-        <div>
-          <img src={"/images/Addition1.png"} />
-          <img src={"/images/Subtraction1.png"} />
-        </div>
-      </div>;
+      {
+        return (
+          <div className={"col-span-2"}>
+            <div className={"flex justify-center text-red-400 text-xl"}>
+              Looks like you haven't completed Addition 1 and Subtraction 1. We
+              recommend you complete those before attempting this worksheet.{" "}
+            </div>
+            <div className="grid grid-cols-2 mt-8">
+              <div className={"col-start-1"}>
+                <div className={"flex justify-center"}>
+                  <img
+                    src={"/images/Addition1.png"}
+                    className={"h-16 w-auto opacity-20"}
+                  />{" "}
+                </div>
+                <div className={"flex justify-center font-bold"}>
+                  Additiona Level 1 Badge
+                </div>
+              </div>
+              <div className={"col-start-2"}>
+                <div className={"flex justify-center"}>
+                  <img
+                    src={"/images/Subtraction1.png"}
+                    className={"h-16 w-auto opacity-20"}
+                  />{" "}
+                </div>
+                <div className={"flex justify-center font-bold"}>
+                  Subtraction Level 1 Badge
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
     }
   };
 
