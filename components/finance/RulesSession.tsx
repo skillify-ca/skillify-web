@@ -26,6 +26,7 @@ export const RulesSession = ({ onClick, badgeData }: RulesSessionProps) => {
   const validate = (rightBadges) => {
     if ((rightBadges = true)) {
       {
+        console.log(rightBadges);
         badgeData.user_badges.map((userbadge) => (
           <div className={"flex justify-center"}>
             <img src={userbadge.badge.image} className={"h-16 w-auto"} />{" "}
@@ -33,7 +34,7 @@ export const RulesSession = ({ onClick, badgeData }: RulesSessionProps) => {
         ));
       }
     } else {
-      <div className={"flex justify-center"}> Hellow rol</div>;
+      console.log("hello else");
     }
   };
 
@@ -45,14 +46,7 @@ export const RulesSession = ({ onClick, badgeData }: RulesSessionProps) => {
           Before you start, we recommend that you complete Addition Level 1 and
           Subtraction Level 1
         </h2>
-        <div className="grid grid-cols-2 mt-8">
-          {rightBadges &&
-            badgeData.user_badges.map((userbadge) => (
-              <div className={"flex justify-center"}>
-                <img src={userbadge.badge.image} className={"h-16 w-auto"} />{" "}
-              </div>
-            ))}
-        </div>
+        <div className="grid grid-cols-2 mt-8">hello {validate}</div>
       </div>
 
       <div className="pb-8">
