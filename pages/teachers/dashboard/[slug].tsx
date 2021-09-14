@@ -13,6 +13,14 @@ import TeX from "@matejmazur/react-katex";
 import "katex/dist/katex.min.css";
 import { FETCH_ASSIGNMENT } from "../../../graphql/fetchAssignment";
 import { UPDATE_SOLUTIONS_RELEASED_FOR_ASSIGNMENT } from "../../../graphql/userAssignments/updateSolutionsReleasedForAssignment";
+import dynamic from "next/dynamic";
+
+const FreeDrawing = dynamic(
+  () => import("../../../components/ui/FreeDrawing"),
+  {
+    ssr: false,
+  }
+);
 
 const TeacherDashboardPage = ({ data }) => {
   const [session] = useSession();
@@ -24,7 +32,6 @@ const TeacherDashboardPage = ({ data }) => {
     },
     onCompleted: (data) => {
       if (data && data.assignments && data.assignments[0]) {
-
         setSolutionsReleased(data.assignments[0].solutions_released);
       }
     },
@@ -62,6 +69,7 @@ const TeacherDashboardPage = ({ data }) => {
             )}
           <div className="bg-white mb-4 mx-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
             <select
+            className="border-blue-400 border-2 p-4"
               value={currentStudentIndex}
               onChange={(e) =>
                 setCurrentStudentIndex(Number.parseInt(e.target.value))
@@ -81,13 +89,24 @@ const TeacherDashboardPage = ({ data }) => {
                   <p>
                     Student's Answer: <span className="font-bold">{guess}</span>
                   </p>
-                  <img
-                    src={
-                      data.user_assignments[currentStudentIndex].user_images[
-                        index
-                      ]
-                    }
-                  />
+                  <div className="grid grid-cols-12">
+                    <div className="col-start-4 col-span-4">
+                      <FreeDrawing
+                        saveImage={() => {}}
+                        lines={
+                          data.user_assignments[currentStudentIndex]
+                            .user_drawn_lines[index]
+                        }
+                        setLines={() => {}}
+                        historyStep={
+                          data.user_assignments[currentStudentIndex]
+                            .user_drawn_lines[index].length
+                        }
+                        setHistoryStep={() => {}}
+                        disabled={true}
+                      />
+                    </div>
+                  </div>
                 </div>
               )
             )}

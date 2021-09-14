@@ -127,7 +127,22 @@ export default function cye1(props) {
           assignment_id: "cye1",
           user_solution: EMPTY_ARRAY,
           user_images: EMPTY_ARRAY,
-          user_drawn_lines: [],
+          user_drawn_lines: [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+          ],
         },
         refetchQueries: [
           {

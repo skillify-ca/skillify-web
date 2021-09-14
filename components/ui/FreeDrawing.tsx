@@ -9,6 +9,7 @@ interface FreeDrawingProps {
   historyStep: number;
   setHistoryStep: (step: number) => void;
   saveImage: (image: string) => void;
+  disabled?: boolean;
 }
 
 export type LineData = {
@@ -22,6 +23,7 @@ const FreeDrawing = ({
   historyStep,
   setHistoryStep,
   saveImage,
+  disabled = false,
 }: FreeDrawingProps) => {
   const stageRef = React.useRef(null);
 
@@ -85,24 +87,28 @@ const FreeDrawing = ({
 
   return (
     <div className="bg-white w-full">
-      <div className="flex gap-4 p-4">
-        <Button label="Undo" onClick={handleUndo} backgroundColor="white" />
-        <Button label="Redo" onClick={handleRedo} backgroundColor="white" />
-      </div>
-      <p className="p-4">
-        Evaluate without the use of a calculate. Show all your work.
-      </p>
+      {!disabled && (
+        <div className="flex gap-4 p-4">
+          <Button label="Undo" onClick={handleUndo} backgroundColor="white" />
+          <Button label="Redo" onClick={handleRedo} backgroundColor="white" />
+        </div>
+      )}
+      {!disabled && (
+        <p className="p-4">
+          Evaluate without the use of a calculate. Show all your work.
+        </p>
+      )}
       <Stage
         style={{ touchAction: "none" }}
         ref={stageRef}
         width={width}
         height={height}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onTouchStart={handleMouseDown}
-        onTouchMove={handleMouseMove}
-        onTouchEnd={handleMouseUp}
+        onMouseDown={!disabled && handleMouseDown}
+        onMouseMove={!disabled && handleMouseMove}
+        onMouseUp={!disabled && handleMouseUp}
+        onTouchStart={!disabled && handleMouseDown}
+        onTouchMove={!disabled && handleMouseMove}
+        onTouchEnd={!disabled && handleMouseUp}
       >
         <Layer>
           {lines
@@ -120,15 +126,17 @@ const FreeDrawing = ({
             ))}
         </Layer>
       </Stage>
-      <select
-        value={tool}
-        onChange={(e) => {
-          setTool(e.target.value);
-        }}
-      >
-        <option value="black">Black</option>
-        <option value="blue">Blue</option>
-      </select>
+      {!disabled && (
+        <select
+          value={tool}
+          onChange={(e) => {
+            setTool(e.target.value);
+          }}
+        >
+          <option value="black">Black</option>
+          <option value="blue">Blue</option>
+        </select>
+      )}
     </div>
   );
 };
