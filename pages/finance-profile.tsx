@@ -41,8 +41,8 @@ const FinanceProfile = () => {
 
   let { data } = useQuery(FETCH_BADGE_ON_USERID, {
     variables: {
-      userId: /*userId(session)*/ "116309327098433793664",
-      badgeId: 50,
+      userId: userId(session),
+      badgeId: 56,
       badgeId2: 44,
     },
   });
@@ -60,9 +60,3 @@ const FinanceProfile = () => {
 };
 
 export default FinanceProfile;
-/*{data &&
-data.user_badges.map((userbadge) => (
-  <img src={userbadge.badge.image} />
-))}*/
-
-//badgeData={data....}  V's old code

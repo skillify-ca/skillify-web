@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import BudgetRules from "./BudgetRules";
 import { Button } from "../ui/Button";
 import badgeData from "/Users/brianlee/Documents/GitHub/math/pages/finance-profile";
-import userbadge from "../../pages/user-badge-check";
 import { FETCH_BADGE_ON_USERID } from "/Users/brianlee/Documents/GitHub/math/graphql/fetchBadgeOnUserID";
 import { data } from "autoprefixer";
 
@@ -18,8 +17,8 @@ export const RulesSession = ({ onClick, badgeData }: RulesSessionProps) => {
     (userbadge) => userbadge.badge.id
   );
 
-  if (badgeIds.includes(49) || badgeIds.includes(43)) {
-    //some variable (boolean) = true
+  if (badgeIds.includes(56) || badgeIds.includes(44)) {
+    //some variable (boolean) = true 50,44
     rightBadges = true;
   }
 
@@ -105,8 +104,3 @@ export const RulesSession = ({ onClick, badgeData }: RulesSessionProps) => {
     </div>
   );
 };
-
-/*{data &&
-data.user_badges.map((userbadge) => (
-  <img src={userbadge.badge.image} />
-))}*/
