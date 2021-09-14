@@ -336,6 +336,7 @@ export default function cye1(props) {
                   placeholder="eg. 3/8"
                   value={guesses[currentQuestionIndex]}
                   onChange={(e) => onGuessChanged(e.target.value)}
+                  disabled={showSolutions}
                 ></input>
               </div>
               {showSolutions ? (
@@ -359,6 +360,7 @@ export default function cye1(props) {
                     setLines={setLinesForCurrentQuestion}
                     historyStep={historyStepForQuestions[currentQuestionIndex]}
                     setHistoryStep={setHistoryForCurrentQuestion}
+                    disabled={showSolutions}
                   />
                 )
               )}
