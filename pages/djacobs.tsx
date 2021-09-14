@@ -20,6 +20,23 @@ import { QuestionType } from "./api/questionTypes";
 import { react } from "@babel/types";
 import { TrueorFalse } from "../components/questionTypes/TrueorFalse";
 import { Skill } from "./api/skill";
+import Q1 from "../components/giza/Q1";
+import Q2 from "../components/giza/Q2";
+import Q3 from "../components/giza/Q3";
+import next from "next";
+import Q4 from "../components/giza/Q4";
+import Q5 from "../components/giza/Q5";
+import Q6 from "../components/giza/Q6";
+import Q7 from "../components/giza/Q7";
+import Q8 from "../components/giza/Q8";
+import Q9 from "../components/giza/Q9";
+import Q10 from "../components/giza/Q10";
+import Q11 from "../components/giza/Q11";
+import Q12 from "../components/giza/Q12";
+import Q13 from "../components/giza/Q13";
+import Q14 from "../components/giza/Q14";
+import Q15 from "../components/giza/Q15";
+import Q16 from "../components/giza/Q16";
 
 enum Stage {
   START,
@@ -79,382 +96,24 @@ export default function djacobs(props) {
     console.log(currentQuestionIndex + 1);
   };
 
-  const Q1 = (
-    <React.Fragment>
-      <MultipleChoice
-        displayQuestion={questionData[0]}
-        option1={{
-          id: "option1",
-          text: "90",
-        }}
-        option2={{
-          id: "option2",
-          text: "180",
-        }}
-        option3={{
-          id: "option3",
-          text: "360",
-        }}
-        answer="120"
-        submitGuess={nextQuestion}
-      />
-    </React.Fragment>
-  );
-
-  const Q2 = (
-    <React.Fragment>
-      <p className="text-2xl text-center">{questionData[1]}</p>
-      <div className="text-center">
-        <label>Final Answer</label>
-        <input className="p-4 text-lg" placeholder="Any degree" />
-      </div>
-      <div className="flex flex-col items-center">
-        <Button
-          label="Submit"
-          backgroundColor="blue"
-          textColor="white"
-          onClick={nextQuestion}
-        />
-      </div>
-    </React.Fragment>
-  );
-
-  const Q3 = (
-    <React.Fragment>
-      <MultipleChoice
-        displayQuestion={questionData[0]}
-        option1={{
-          id: "option1",
-          text: "<1 + <2 + <3",
-        }}
-        option2={{
-          id: "option2",
-          text: "<2 + <3 + <4",
-        }}
-        option3={{
-          id: "option3",
-          text: "<3 + <4 + <5",
-        }}
-        answer="<3 + <4 + <5"
-        submitGuess={nextQuestion}
-      />
-    </React.Fragment>
-  );
-
-  const Q4Data: Question = {
-    text: questionData[3],
-    answer: "False",
-    answerType: AnswerType.BOOLEAN,
-    questionType: QuestionType.TRUE_OR_FALSE_PROBLEM,
-    skill: Skill.NUMBERS_50,
-  };
-
-  const Q4 = (
-    <React.Fragment>
-      <TrueorFalse
-        question={Q4Data}
-        answer="False"
-        submitGuess={nextQuestion}
-      />
-    </React.Fragment>
-  );
-
-  const Q5 = (
-    <React.Fragment>
-      <MultipleChoice
-        displayQuestion={questionData[4]}
-        option1={{
-          id: "option1",
-          text: "J",
-        }}
-        option2={{
-          id: "option2",
-          text: "K",
-        }}
-        option3={{
-          id: "option3",
-          text: "L",
-        }}
-        answer="L"
-        submitGuess={nextQuestion}
-      />
-    </React.Fragment>
-  );
-
-  const Q6 = (
-    <React.Fragment>
-      <MultipleChoice
-        displayQuestion={questionData[5]}
-        option1={{
-          id: "option1",
-          text: "60 degrees + 60 degrees + 60 degrees",
-        }}
-        option2={{
-          id: "option2",
-          text: "65 degrees + 65 degrees + 50 degrees",
-        }}
-        option3={{
-          id: "option3",
-          text: "90 degrees + 40 degrees + 50 degrees",
-        }}
-        answer="60 degrees + 60 degrees + 60 degrees"
-        submitGuess={nextQuestion}
-      />
-    </React.Fragment>
-  );
-  /*
-  Acute Isosceles Triangle
-  Obtuse Scalene Triangle
-  Obtuse Isosceles Triangle
-  Acute Scalene Triangle
-  */
-  const Q7 = (
-    <React.Fragment>
-      <MultipleChoice
-        displayQuestion={questionData[6]}
-        option1={{
-          id: "option1",
-          text: "Acute Isosceles Triangle",
-        }}
-        option2={{
-          id: "option2",
-          text: "Acute Scalene Triangle",
-        }}
-        option3={{
-          id: "option3",
-          text: "Obtuse Isosceles Triangle",
-        }}
-        answer="Obtuse Isosceles Triangle"
-        submitGuess={nextQuestion}
-      />
-    </React.Fragment>
-  );
-  //PINKYELLOWBLUEPURPLEGREEN
-  const Q8 = (
-    <React.Fragment>
-      <p className="text-2xl text-center">{questionData[7]}</p>
-      <div className="text-center">
-        <label>Final Answer</label>
-        <input className="p-4 text-lg" placeholder="Any degree" />
-      </div>
-      <div className="flex flex-col items-center">
-        <Button
-          label="Submit"
-          backgroundColor="blue"
-          textColor="white"
-          onClick={nextQuestion}
-        />
-      </div>
-    </React.Fragment>
-  );
-  //DGFH
-  const Q9 = (
-    <React.Fragment>
-      <p className="text-2xl text-center">{questionData[8]}</p>
-      <div className="text-center">
-        <label>Final Answer</label>
-        <input className="p-4 text-lg" placeholder="Any degree" />
-      </div>
-      <div className="flex flex-col items-center">
-        <Button
-          label="Submit"
-          backgroundColor="blue"
-          textColor="white"
-          onClick={nextQuestion}
-        />
-      </div>
-    </React.Fragment>
-  );
-  /*
-  115 degrees
-  295 degrees
-  65 degrees - right answer
-  15 degrees
-  */
-  const Q10 = (
-    <React.Fragment>
-      <MultipleChoice
-        displayQuestion={questionData[9]}
-        option1={{
-          id: "option1",
-          text: "115 degrees",
-        }}
-        option2={{
-          id: "option2",
-          text: "65 degrees",
-        }}
-        option3={{
-          id: "option3",
-          text: "15 degrees",
-        }}
-        answer="65 degrees"
-        submitGuess={nextQuestion}
-      />
-    </React.Fragment>
-  );
-  /*
-  <a
-  <b - Right answer
-  <c
-  None of the above.
-  */
-  const Q11 = (
-    <React.Fragment>
-      <MultipleChoice
-        displayQuestion={questionData[10]}
-        option1={{
-          id: "option1",
-          text: "<a",
-        }}
-        option2={{
-          id: "option2",
-          text: "<b",
-        }}
-        option3={{
-          id: "option3",
-          text: "<c",
-        }}
-        answer="<b"
-        submitGuess={nextQuestion}
-      />
-    </React.Fragment>
-  );
-  /* 
- 107 degrees
-287 degrees
-17 degrees
-None of the above
- */
-  const Q12 = (
-    <React.Fragment>
-      <MultipleChoice
-        displayQuestion={questionData[11]}
-        option1={{
-          id: "option1",
-          text: "107 degrees",
-        }}
-        option2={{
-          id: "option2",
-          text: "287 degrees",
-        }}
-        option3={{
-          id: "option3",
-          text: "17 degrees",
-        }}
-        answer="107 degrees"
-        submitGuess={nextQuestion}
-      />
-    </React.Fragment>
-  );
-  /*
-  They all have at least one right angle.
-  Their interior angles add up to 360 degrees.
-  Their interior angles add up to 180 degrees.
-  They all have at least one obtuse angle.
-  */
-  const Q13 = (
-    <React.Fragment>
-      <MultipleChoice
-        displayQuestion={questionData[12]}
-        option1={{
-          id: "option1",
-          text: "They all have at least one right angle.",
-        }}
-        option2={{
-          id: "option2",
-          text: "Their interior angles add up to 360 degrees.",
-        }}
-        option3={{
-          id: "option3",
-          text: "They all have at least one obtuse angle.",
-        }}
-        answer="Their interior angles add up to 360 degrees."
-        submitGuess={nextQuestion}
-      />
-    </React.Fragment>
-  );
-  //76
-  const Q14 = (
-    <React.Fragment>
-      <p className="text-2xl text-center">{questionData[13]}</p>
-      <div className="text-center">
-        <label>Final Answer</label>
-        <input className="p-4 text-lg" placeholder="Any degree" />
-      </div>
-      <div className="flex flex-col items-center">
-        <Button
-          label="Submit"
-          backgroundColor="blue"
-          textColor="white"
-          onClick={nextQuestion}
-        />
-      </div>
-    </React.Fragment>
-  );
-  /*
-  90 degrees
-  100 degrees
-  95 degrees
-  105 degrees
-  */
-  const Q15 = (
-    <React.Fragment>
-      <MultipleChoice
-        displayQuestion={questionData[14]}
-        option1={{
-          id: "option1",
-          text: "90 degrees",
-        }}
-        option2={{
-          id: "option2",
-          text: "100 degrees",
-        }}
-        option3={{
-          id: "option3",
-          text: "95 degrees",
-        }}
-        answer="Their interior angles add up to 360 degrees."
-        submitGuess={nextQuestion}
-      />
-    </React.Fragment>
-  );
-  //426573
-  const Q16 = (
-    <React.Fragment>
-      <p className="text-2xl text-center">{questionData[15]}</p>
-      <div className="text-center">
-        <label>Final Answer</label>
-        <input className="p-4 text-lg" placeholder="Any degree" />
-      </div>
-      <div className="flex flex-col items-center">
-        <Button
-          label="Submit"
-          backgroundColor="blue"
-          textColor="white"
-          onClick={nextQuestion}
-        />
-      </div>
-    </React.Fragment>
-  );
-
   // End of Quiz: YOU MADE IT OUT! Head back to main session to collect your prize!
   const questionComponent = [
-    Q1,
-    Q2,
-    Q3,
-    Q4,
-    Q5,
-    Q6,
-    Q7,
-    Q8,
-    Q9,
-    Q10,
-    Q11,
-    Q12,
-    Q13,
-    Q14,
-    Q15,
-    Q16,
+    Q1(questionData[0], nextQuestion),
+    Q2(questionData[1], nextQuestion),
+    Q3(questionData[2], nextQuestion),
+    Q4(questionData[3], nextQuestion),
+    Q5(questionData[4], nextQuestion),
+    Q6(questionData[5], nextQuestion),
+    Q7(questionData[6], nextQuestion),
+    Q8(questionData[7], nextQuestion),
+    Q9(questionData[8], nextQuestion),
+    Q10(questionData[9], nextQuestion),
+    Q11(questionData[10], nextQuestion),
+    Q12(questionData[11], nextQuestion),
+    Q13(questionData[12], nextQuestion),
+    Q14(questionData[13], nextQuestion),
+    Q15(questionData[14], nextQuestion),
+    Q16(questionData[15], nextQuestion),
   ];
 
   return (
