@@ -27,11 +27,13 @@ export const RulesSession = ({ onClick, badgeData }: RulesSessionProps) => {
     if (rightBadges === true) {
       {
         console.log("hello baby");
-        badgeData.user_badges.map((userbadge) => (
-          <div className={"flex justify-center"}>
-            <img src={userbadge.badge.image} className={"h-16 w-auto"} />{" "}
-          </div>
-        ));
+        {
+          badgeData.user_badges.map((userbadge) => (
+            <div className={"flex justify-center"}>
+              <img src={userbadge.badge.image} className={"h-16 w-auto"} />{" "}
+            </div>
+          ));
+        }
       }
     } else {
       <div className={"flex justify-center opacity-20"}>
