@@ -37,7 +37,7 @@ export default function cye1(props) {
   >([]);
   const [linesForQuestions, setLinesForQuestions] = React.useState<
     LineData[][]
-  >([[]]);
+  >([[], [], [], [], [], [], [], [], [], [], [], [], [], []]);
   const [showSolutions, setShowSolutions] = useState(false);
   const [session] = useSession();
 
@@ -49,63 +49,50 @@ export default function cye1(props) {
         assignment_id: "cye1",
       },
       onCompleted: (data: any) => {
-        console.log("data", data);
         if (data.user_assignments.length > 0) {
-          setGuesses(data.user_assignments[0].user_solution);
-          if (data.user_assignments[0].assignment) {
-            setShowSolutions(
-              data.user_assignments[0].assignment.solutions_released
-            );
-          }
-          if (data.user_assignments[0].user_images) {
-            setImages(data.user_assignments[0].user_images);
-          } else {
-            setImages(EMPTY_ARRAY);
-          }
-          if (data.user_assignments[0].user_drawn_lines) {
-            setLinesForQuestions(data.user_assignments[0].user_drawn_lines);
-            const historySteps = data.user_assignments[0].user_drawn_lines.map(
-              (lines) => lines.length
-            );
-            setHistoryStepForQuestions(historySteps);
-          } else {
-            setLinesForQuestions([
-              [],
-              [],
-              [],
-              [],
-              [],
-              [],
-              [],
-              [],
-              [],
-              [],
-              [],
-              [],
-              [],
-              [],
-            ]);
-            setHistoryStepForQuestions([
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-            ]);
-          }
+          initUI(data.user_assignments[0]);
         }
       },
     }
   );
+
+  const initUI = (assignmentData: any) => {
+    console.log("data", assignmentData);
+    setGuesses(assignmentData.user_solution);
+    if (assignmentData.assignment) {
+      setShowSolutions(assignmentData.assignment.solutions_released);
+    }
+    if (assignmentData.user_images) {
+      setImages(assignmentData.user_images);
+    } else {
+      setImages(EMPTY_ARRAY);
+    }
+    if (assignmentData.user_drawn_lines) {
+      setLinesForQuestions(assignmentData.user_drawn_lines);
+      const historySteps = assignmentData.user_drawn_lines.map(
+        (lines) => lines.length
+      );
+      setHistoryStepForQuestions(historySteps);
+    } else {
+      setLinesForQuestions([
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+      ]);
+      setHistoryStepForQuestions([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    }
+  };
 
   const [createUserAssignment] = useMutation(CREATE_USER_ASSIGNMENT);
   const [updateUserAssignment] = useMutation(UPDATE_USER_ASSIGNMENT);
@@ -153,6 +140,8 @@ export default function cye1(props) {
             },
           },
         ],
+      }).then((data) => {
+        initUI(data["data"]["insert_user_assignments"]["returning"][0]);
       });
     }
   }, [userAssignmentFetchData]);
