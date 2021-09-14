@@ -29,7 +29,7 @@ const FinanceProfile = () => {
   const routeStart = () => { setStage(STAGES.START) }
 
   return (
-    <div>
+    <div className="p-4">
       {stage === STAGES.START &&
         <RulesSession
           profileData={profileData}
