@@ -1,22 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
-import QuestionSet from "../../../components/stories/QuestionSet";
-import { QuestionType } from "../../api/questionTypes";
-import { GuessData } from "../../api/guessData";
-import { AnswerType, Question } from "../../api/question";
-import { Skill } from "../../api/skill";
-import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGenerator";
-import ReactCardFlip from "react-card-flip";
-import Link from "next/link";
-import { UPDATE_USER_SKILL_EMOJI } from "../../../graphql/updateUserEmoji";
-import { useMutation } from "@apollo/client";
-import { userId } from "../../../graphql/utils/constants";
+import { ApolloClient, InMemoryCache, useMutation } from "@apollo/client";
 import { useSession } from "next-auth/client";
-import { FETCH_USER_EMOJIS } from "../../../graphql/fetchUserEmojis";
-import { Button } from "../../../components/ui/Button";
-import Card from "../../../components/ui/Card";
-import EmojiSlider from "../../../components/ui/EmojiSlider";
+import Link from "next/link";
+import React, { useEffect, useRef, useState } from "react";
+import ReactCardFlip from "react-card-flip";
+import QuestionSet from "../../components/stories/QuestionSet";
+import { Button } from "../../components/ui/Button";
+import Card from "../../components/ui/Card";
+import EmojiSlider from "../../components/ui/EmojiSlider";
+import { FETCH_SKILLS } from "../../graphql/fetchSkills";
+import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
+import { UPDATE_USER_SKILL_EMOJI } from "../../graphql/updateUserEmoji";
+import { userId } from "../../graphql/utils/constants";
+import { GuessData } from "../api/guessData";
+import { generatePracticeQuestions } from "../api/practice/practiceQuestionGenerator";
+import { Question, AnswerType } from "../api/question";
+import { QuestionType } from "../api/questionTypes";
+import { Skill } from "../api/skill";
 
-const PracticeQuiz = ({ slug, skill }) => {
+const PracticeQuiz = ({ skill }) => {
   enum STAGE {
     QUESTION,
     EMOJI,
@@ -48,101 +49,6 @@ const PracticeQuiz = ({ slug, skill }) => {
     },
   ]);
 
-  let getSkillId = (skill: any, slug: any) => {
-    //Note: The skill Ids are determined based of the values save in the skills table with graph
-    switch (slug) {
-      case "numbers":
-        switch (skill) {
-          case "count-50":
-            return 53;
-          case "count-200":
-            return 54;
-          case "count-1000":
-            return 55;
-        }
-      case "addition":
-        switch (skill) {
-          case "add-one-digit":
-            return 1;
-          case "add-two-digit":
-            return 2;
-          case "add-three-digit":
-            return 3;
-          case "addition-properties":
-            return 4;
-          case "add-four-digit":
-            return 43;
-          case "add-tenths":
-            return 44;
-          case "add-five-digit":
-            return 56;
-          case "add-hundredths":
-            return 57;
-          case "add-six-digit":
-            return 63;
-        }
-      case "subtraction":
-        switch (skill) {
-          case "subtract-single-digit":
-            return 34;
-          case "subtract-double-digit":
-            return 35;
-          case "subtract-triple-digit":
-            return 36;
-          case "subttract-four-digit":
-            return 45;
-          case "subtract-tenths":
-            return 46;
-          case "subtract-five-digit":
-            return 58;
-          case "subtract-hundredths":
-            return 59;
-          case "subtract-six-digit":
-            return 64;
-        }
-      case "multiplication":
-        switch (skill) {
-          case "total-items-equal-groups":
-            return 37;
-          case "multiply-5x5":
-            return 38;
-          case "multiply-10x10":
-            return 39;
-          case "multiply-double-digit-by-10":
-            return 47;
-          case "multiply-triple-digit-by-10":
-            return 48;
-          case "multiply-single-and-double-digit":
-            return 51;
-          case "multiply-single-and-triple-digit":
-            return 52;
-          case "multiply-double-and-double-digit":
-            return 60;
-          case "multiply-double-and-triple-digit":
-            return 61;
-          case "multiply-triple-digit-by-tenths":
-            return 65;
-        }
-      case "division":
-        switch (skill) {
-          case "share-8-equally":
-            return 40;
-          case "divide-12-equally":
-            return 41;
-          case "divide-100-equally":
-            return 42;
-          case "divide-double-digit-by-single-digit":
-            return 49;
-          case "divide-triple-digit-by-single-digit":
-            return 50;
-          case "divide-triple-digit-by-double-digit":
-            return 62;
-          case "divide-triple-digit-by-tenths":
-            return 66;
-        }
-    }
-  };
-
   const [updateUserEmoji, updateUserEmojiMutation] = useMutation(
     //Mutation for updating a user emoji value after a practice
     UPDATE_USER_SKILL_EMOJI,
@@ -152,7 +58,7 @@ const PracticeQuiz = ({ slug, skill }) => {
           query: FETCH_USER_EMOJIS,
           variables: {
             userId: userId(session),
-            skillId: [getSkillId(skill, slug)],
+            skillId: [Number.parseInt(skill)],
           },
         },
       ],
@@ -202,7 +108,7 @@ const PracticeQuiz = ({ slug, skill }) => {
 
     const questionSet = (
       <QuestionSet
-        title={slug}
+        title={"Practice"} // TODO
         questionData={questionData}
         index={index}
         inputElement={inputElement}
@@ -229,7 +135,7 @@ const PracticeQuiz = ({ slug, skill }) => {
   };
 
   useEffect(() => {
-    setQuestionData(generatePracticeQuestions(slug, skill));
+    setQuestionData(generatePracticeQuestions(Number.parseInt(skill)));
   }, []);
 
   const applyNextQuestion = () => {
@@ -271,7 +177,7 @@ const PracticeQuiz = ({ slug, skill }) => {
     updateUserEmoji({
       variables: {
         userId: userId(session),
-        skillId: getSkillId(skill, slug),
+        skillId: Number.parseInt(skill),
         emoji: emoji,
       },
     });
@@ -403,104 +309,31 @@ const PracticeQuiz = ({ slug, skill }) => {
     </div>
   );
 };
-export async function getStaticProps({ params }) {
+
+export async function getStaticPaths() {
+  const client = new ApolloClient({
+    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
+    cache: new InMemoryCache(),
+  });
+  const { data } = await client.query({
+    query: FETCH_SKILLS,
+  });
+
+  const ids = data.skills.map((element) => {
+    return { params: { skill: element.id.toString() } };
+  });
+
   return {
-    props: {
-      slug: params.slug,
-      skill: params.skill,
-    },
+    paths: ids,
+    fallback: true,
   };
 }
 
-export async function getStaticPaths() {
+export async function getStaticProps({ params }) {
   return {
-    paths: [
-      { params: { slug: "addition", skill: "add-one-digit" } },
-      { params: { slug: "addition", skill: "add-two-digit" } },
-      { params: { slug: "addition", skill: "add-three-digit" } },
-      { params: { slug: "addition", skill: "addition-properties" } },
-      { params: { slug: "subtraction", skill: "subtract-single-digit" } },
-      { params: { slug: "subtraction", skill: "subtract-double-digit" } },
-      { params: { slug: "subtraction", skill: "subtract-triple-digit" } },
-      { params: { slug: "multiplication", skill: "total-items-equal-groups" } },
-      { params: { slug: "multiplication", skill: "multiply-5x5" } },
-      { params: { slug: "multiplication", skill: "multiply-10x10" } },
-      { params: { slug: "division", skill: "share-8-equally" } },
-      { params: { slug: "division", skill: "divide-12-equally" } },
-      { params: { slug: "division", skill: "divide-100-equally" } },
-      { params: { slug: "addition", skill: "add-four-digit" } },
-      { params: { slug: "addition", skill: "add-five-digit" } },
-      { params: { slug: "addition", skill: "add-six-digit" } },
-      { params: { slug: "addition", skill: "add-tenths" } },
-      { params: { slug: "addition", skill: "add-hundredths" } },
-      { params: { slug: "subtraction", skill: "subtract-four-digit" } },
-      { params: { slug: "subtraction", skill: "subtract-tenths" } },
-      { params: { slug: "subtraction", skill: "subtract-five-digit" } },
-      { params: { slug: "subtraction", skill: "subtract-hundredths" } },
-      { params: { slug: "subtraction", skill: "subtract-six-digit" } },
-      {
-        params: {
-          slug: "multiplication",
-          skill: "multiply-single-and-double-digit",
-        },
-      },
-      {
-        params: {
-          slug: "multiplication",
-          skill: "multiply-single-and-triple-digit",
-        },
-      },
-      {
-        params: {
-          slug: "multiplication",
-          skill: "multiply-double-digit-by-10",
-        },
-      },
-      {
-        params: {
-          slug: "multiplication",
-          skill: "multiply-triple-digit-by-10",
-        },
-      },
-      {
-        params: {
-          slug: "multiplication",
-          skill: "multiply-double-and-double-digit",
-        },
-      },
-      {
-        params: {
-          slug: "multiplication",
-          skill: "multiply-double-and-triple-digit",
-        },
-      },
-      {
-        params: {
-          slug: "multiplication",
-          skill: "multiply-triple-digit-by-tenths",
-        },
-      },
-      {
-        params: {
-          slug: "division",
-          skill: "divide-double-digit-by-single-digit",
-        },
-      },
-      {
-        params: {
-          slug: "division",
-          skill: "divide-triple-digit-by-single-digit",
-        },
-      },
-      {
-        params: {
-          slug: "division",
-          skill: "divide-triple-digit-by-double-digit",
-        },
-      },
-      { params: { slug: "division", skill: "divide-triple-digit-by-tenths" } },
-    ],
-    fallback: true,
+    props: {
+      skill: params.skill,
+    },
   };
 }
 

@@ -12,16 +12,19 @@ import { userId } from "../../graphql/utils/constants";
 import { getBadgeId } from "../api/badgeHelper";
 import {
   getEmoji,
+  getSkillFromId,
   getSkillId,
   getSkillsForTopicGrade,
   Grade,
   Skill,
   SkillDescription,
 } from "../api/skill";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import { FETCH_SKILL_DESCRIPTION_ARRAY } from "../../graphql/fetchSkillDescriptionArray";
 
 const Box = dynamic(() => import("../../components/stories/Box"));
 
-const TopicOverviewPage = ({ slug }) => {
+const TopicOverviewPage = ({ slug, description }) => {
   const [session, user] = useSession();
   const [grade, setGrade] = useState(Grade.GRADE_1);
   const onGradeChange = (e: any) => {
@@ -57,7 +60,6 @@ const TopicOverviewPage = ({ slug }) => {
     variables: {
       userId: userId(session),
       badgeId: getBadgeId(slug, gradeNum(grade)),
-      skillId: getSkillsForTopicGrade(slug, grade).map((it) => getSkillId(it)),
     },
   });
 
@@ -117,15 +119,15 @@ const TopicOverviewPage = ({ slug }) => {
               <img src="/images/learnPic.png" className="w-96" />
               <p className="text-2xl text-center font-bold flex items-center justify-center bg-blue-200 rounded-2xl">
                 {" "}
-                {SkillDescription(skill)}{" "}
+                {description.skills[0].description}
               </p>
             </div>
           </div>
           <div className="flex flex-col sm:w-1/2 gap-8 justify-center">
             <p className="text-4xl font-bold text-blue-900"> LEARN </p>
             <p className="text-xl">
-              Learn to <b> {SkillDescription(skill).toLowerCase()}</b> by
-              watching engaging videos and strengthen your knowledge with
+              Learn to <b> {description.skills[0].description.toLowerCase()}</b>{" "}
+              by watching engaging videos and strengthen your knowledge with
               related math questions in Math Champ's Practice Tracker!
             </p>
             <div className="flex gap-8">
@@ -148,9 +150,7 @@ const TopicOverviewPage = ({ slug }) => {
                 data &&
                 data.user_skills.length !== 0 &&
                 getEmoji(
-                  data.user_skills.filter(
-                    (it) => it.skill_id == getSkillId(skill)
-                  )[0].emoji
+                  data.user_skills.filter((it) => it.skill_id == skill)[0].emoji
                 )}{" "}
             </p>{" "}
           </div>
@@ -268,11 +268,25 @@ const TopicOverviewPage = ({ slug }) => {
 };
 
 export async function getStaticProps({ params }) {
-  return {
-    props: {
-      slug: params.slug,
+  const client = new ApolloClient({
+    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
+    cache: new InMemoryCache(),
+  });
+
+  const skillIds = getSkillsForTopicGrade(params.slug, Grade.GRADE_1);
+  const { data } = await client.query({
+    query: FETCH_SKILL_DESCRIPTION_ARRAY,
+    variables: {
+      skillId: skillIds,
     },
-  };
+  });
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+  //return multiple descriptions,
+  return { props: { description: data, slug: params.slug } };
 }
 
 export async function getStaticPaths() {

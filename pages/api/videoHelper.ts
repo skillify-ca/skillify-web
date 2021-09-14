@@ -5,9 +5,9 @@ type ResourceMetadata = {
   videoId: string;
 };
 
-export const getVideosForSkill = (skill: Skill): ResourceMetadata[] => {
+export const getVideosForSkill = (skill: number): ResourceMetadata[] => {
   switch (skill) {
-    case Skill.NUMBERS_50:
+    case 53:
       return [
         {
           link: "https://www.youtube.com/watch?v=GddAGHgH1IM",
@@ -18,7 +18,7 @@ export const getVideosForSkill = (skill: Skill): ResourceMetadata[] => {
           videoId: "hQSBGyWOjNs",
         },
       ];
-    case Skill.ADDITION_SINGLE:
+    case 1:
       return [
         {
           link: "https://www.youtube.com/watch?v=-ou9VvyJNOY",
@@ -29,7 +29,7 @@ export const getVideosForSkill = (skill: Skill): ResourceMetadata[] => {
           videoId: "k9IMztXsCAs",
         },
       ];
-    case Skill.ADDITION_DOUBLE:
+    case 2:
       return [
         {
           link: "https://www.youtube.com/watch?v=Q9sLfMrH8_w&t=1s",
@@ -40,7 +40,7 @@ export const getVideosForSkill = (skill: Skill): ResourceMetadata[] => {
           videoId: "ayFAh4VNMFA",
         },
       ];
-    case Skill.ADDITION_TRIPLE:
+    case 3:
       return [
         {
           link: "https://www.youtube.com/watch?v=HBa8XBHnJ4U",
@@ -51,7 +51,7 @@ export const getVideosForSkill = (skill: Skill): ResourceMetadata[] => {
           videoId: "5MaXPXVfETo",
         },
       ];
-    case Skill.ADDITION_PROPERTIES:
+    case 4:
       return [
         {
           link: "https://www.youtube.com/watch?v=njfx1sDb45Y",
@@ -62,7 +62,7 @@ export const getVideosForSkill = (skill: Skill): ResourceMetadata[] => {
           videoId: "81NfQ350vw8",
         },
       ];
-    case Skill.SUBTRACTION_SINGLE:
+    case 34:
       return [
         {
           link: "https://www.youtube.com/watch?v=rqiu_xcvSk4",
@@ -73,7 +73,7 @@ export const getVideosForSkill = (skill: Skill): ResourceMetadata[] => {
           videoId: "-BLNxW2Ya5M",
         },
       ];
-    case Skill.SUBTRACTION_DOUBLE:
+    case 35:
       return [
         {
           link:
@@ -85,7 +85,7 @@ export const getVideosForSkill = (skill: Skill): ResourceMetadata[] => {
           videoId: "gbZDcEaJer8",
         },
       ];
-    case Skill.SUBTRACTION_TRIPLE:
+    case 36:
       return [
         {
           link: "https://www.youtube.com/watch?v=A6QUX4BYDR8",
@@ -96,14 +96,14 @@ export const getVideosForSkill = (skill: Skill): ResourceMetadata[] => {
           videoId: "xF0LKqExY80",
         },
       ];
-    case Skill.EQUAL_GROUP_10_ITEMS:
+    case 37:
       return [
         {
           link: "https://www.youtube.com/watch?v=K50zMUFvafE&t=58s",
           videoId: "K50zMUFvafE",
         },
       ];
-    case Skill.MULTIPLICATION_5:
+    case 38:
       return [
         {
           link: "https://www.youtube.com/watch?v=a1zBdLQgNZ4",
@@ -114,21 +114,21 @@ export const getVideosForSkill = (skill: Skill): ResourceMetadata[] => {
           videoId: "h0RF0N5TOPE",
         },
       ];
-    case Skill.MULTIPLICATION_10:
+    case 39:
       return [
         {
           link: "https://www.youtube.com/watch?v=A6QUX4BYDR8",
           videoId: "A6QUX4BYDR8",
         },
       ];
-    case Skill.EQUAL_SHARING_8_ITEMS:
+    case 40:
       return [
         {
           link: "https://www.youtube.com/watch?v=nBa0wftKUJg",
           videoId: "nBa0wftKUJg",
         },
       ];
-    case Skill.DIVIDE_12_EQUALLY:
+    case 41:
       return [
         {
           link: "https://www.youtube.com/watch?v=MNykrb5G2hU",
@@ -139,7 +139,7 @@ export const getVideosForSkill = (skill: Skill): ResourceMetadata[] => {
           videoId: "oF2fITujB4c",
         },
       ];
-    case Skill.DIVIDE_100:
+    case 42:
       return [
         {
           link: "https://www.youtube.com/watch?v=7nsfneMa64U",
