@@ -23,10 +23,10 @@ export const RulesSession = ({ onClick, badgeData }: RulesSessionProps) => {
     rightBadges = true;
   }
 
-  const validate = (rightBadges) => {
-    if ((rightBadges = true)) {
+  const validate = () => {
+    if (rightBadges === true) {
       {
-        console.log(rightBadges);
+        console.log("hello baby");
         badgeData.user_badges.map((userbadge) => (
           <div className={"flex justify-center"}>
             <img src={userbadge.badge.image} className={"h-16 w-auto"} />{" "}
@@ -34,7 +34,16 @@ export const RulesSession = ({ onClick, badgeData }: RulesSessionProps) => {
         ));
       }
     } else {
-      console.log("hello else");
+      <div className={"flex justify-center opacity-20"}>
+        <div>
+          Looks like you haven't completed Addition 1 and Subtraction 1. We
+          recommend you complete those before attempting this worksheet.
+        </div>
+        <div>
+          <img src={"/images/Addition1.png"} />
+          <img src={"/images/Subtraction1.png"} />
+        </div>
+      </div>;
     }
   };
 
@@ -46,7 +55,7 @@ export const RulesSession = ({ onClick, badgeData }: RulesSessionProps) => {
           Before you start, we recommend that you complete Addition Level 1 and
           Subtraction Level 1
         </h2>
-        <div className="grid grid-cols-2 mt-8">hello {validate}</div>
+        <div className="grid grid-cols-2 mt-8"> {validate()} </div>
       </div>
 
       <div className="pb-8">
