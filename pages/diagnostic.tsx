@@ -16,6 +16,7 @@ import {
 } from "./api/diagnostic/diagnosticGrader";
 import { generateQuestionForSkill } from "./api/questionGenerator";
 import Navbar from "../components/Navbar";
+import getQuestion from "./api/diagnostic/juniorDiagnosticQuestionGenerator";
 
 enum STAGE {
   CREATE,
@@ -38,6 +39,8 @@ const Diagnostic = () => {
   const [guesses, setGuesses] = useState<Array<string>>([]);
   const [guessAns, setGuessAns] = useState<Array<string>>([]);
   const [answeredQuestions, setAnsweredQuestions] = useState<Question[]>([]);
+
+  const [gradeRange, setGradeRange] = useState("Junior");
 
   const [questionsLeftInTopic, setQuestionsLeftInTopic] = useState<number>(
     QUESTIONS_PER_TOPIC
@@ -173,6 +176,8 @@ const Diagnostic = () => {
           setEmail={setEmail}
           name={name}
           setName={setName}
+          gradeRange={gradeRange}
+          setGradeRange={setGradeRange}
         />
       );
       break;
@@ -194,7 +199,7 @@ const Diagnostic = () => {
             className={isShaking ? "animate-shake" : ""}
             onAnimationEnd={() => setIsShaking(false)}
           >
-            <QuestionSet
+            {gradeRange == "Primary" && <QuestionSet
               title=""
               questionData={[currentQuestion]}
               index={0}
@@ -202,7 +207,7 @@ const Diagnostic = () => {
               submitGuess={submitGuess}
               score={correctGuesses}
               diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
-            />
+            /> || gradeRange == "Junior" && getQuestion} {/*this is where I call the function for the list of questions*/}
           </div>
         </div>
       );
