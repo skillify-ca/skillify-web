@@ -14,6 +14,8 @@ import {
   smallTruck,
   Truck,
 } from "./api/foodtruck/food";
+import RevenueEquation from "../components/foodtruck/RevenueEquation";
+import ProdCostEquation from "../components/foodtruck/ProdCostEquation";
 
 export default function FoodTruck(props) {
   const [userName, setUserName] = useState("");
@@ -23,6 +25,43 @@ export default function FoodTruck(props) {
   const [truck, setTruck] = useState(smallTruck);
   const [food, setFood] = useState(hotDog);
   const [selectedNumWorkers, setSelectedNumWorkers] = useState("1");
+
+  // revenue equation one
+  const [equationBoxOne, setEquationBoxOne] = useState("");
+  const [equationBoxTwo, setEquationBoxTwo] = useState("");
+  const [equationBoxThree, setEquationBoxThree] = useState("");
+
+  // revenue equation two
+  const [revEquationTwoBoxOne, setRevEquationTwoBoxOne] = useState("");
+  const [revEquationTwoBoxTwo, setRevEquationTwoBoxTwo] = useState("");
+  const [revEquationTwoBoxThree, setRevEquationTwoBoxThree] = useState("");
+
+  // prodCost equation one
+  const [prodCostEquationOneBoxOne, setProdCostEquationOneBoxOne] = useState(
+    ""
+  );
+  const [prodCostEquationOneBoxTwo, setProdCostEquationOneBoxTwo] = useState(
+    ""
+  );
+  const [
+    prodCostEquationOneBoxThree,
+    setProdCostEquationOneBoxThree,
+  ] = useState("");
+
+  // prodCost equation two
+  const [prodCostEquationTwoBoxOne, setProdCostEquationTwoBoxOne] = useState(
+    ""
+  );
+  const [prodCostEquationTwoBoxTwo, setProdCostEquationTwoBoxTwo] = useState(
+    ""
+  );
+  const [
+    prodCostEquationTwoBoxThree,
+    setProdCostEquationTwoBoxThree,
+  ] = useState("");
+  const [prodCostEquationTwoBoxFour, setProdCostEquationTwoBoxFour] = useState(
+    ""
+  );
 
   const onSelectedTruckChanged = (truck: Truck) => {
     setTruck(truck);
@@ -93,6 +132,45 @@ export default function FoodTruck(props) {
             selectedTruck={truck}
             selectedFood={food}
             minWage={minWage}
+          />
+        </div>
+        <div className="p-16">
+          <RevenueEquation
+            selectedNumWorkers={selectedNumWorkers}
+            selectedFood={food}
+            equationBoxOne={equationBoxOne}
+            setEquationBoxOne={setEquationBoxOne}
+            equationBoxTwo={equationBoxTwo}
+            setEquationBoxTwo={setEquationBoxTwo}
+            equationBoxThree={equationBoxThree}
+            setEquationBoxThree={setEquationBoxThree}
+            revEquationTwoBoxOne={revEquationTwoBoxOne}
+            setRevEquationTwoBoxOne={setRevEquationTwoBoxOne}
+            revEquationTwoBoxTwo={revEquationTwoBoxTwo}
+            setRevEquationTwoBoxTwo={setRevEquationTwoBoxTwo}
+            revEquationTwoBoxThree={revEquationTwoBoxThree}
+            setRevEquationTwoBoxThree={setRevEquationTwoBoxThree}
+          />
+        </div>
+        <div className="p-16">
+          <ProdCostEquation
+            selectedFood={food}
+            selectedTruck={truck}
+            selectedNumWorkers={selectedNumWorkers}
+            prodCostEquationOneBoxOne={prodCostEquationOneBoxOne}
+            setProdCostEquationOneBoxOne={setProdCostEquationOneBoxOne}
+            prodCostEquationOneBoxTwo={prodCostEquationOneBoxTwo}
+            setProdCostEquationOneBoxTwo={setProdCostEquationOneBoxTwo}
+            prodCostEquationOneBoxThree={prodCostEquationOneBoxThree}
+            setProdCostEquationOneBoxThree={setProdCostEquationOneBoxThree}
+            prodCostEquationTwoBoxOne={prodCostEquationTwoBoxOne}
+            setProdCostEquationTwoBoxOne={setProdCostEquationTwoBoxOne}
+            prodCostEquationTwoBoxTwo={prodCostEquationTwoBoxTwo}
+            setProdCostEquationTwoBoxTwo={setProdCostEquationTwoBoxTwo}
+            prodCostEquationTwoBoxThree={prodCostEquationTwoBoxThree}
+            setProdCostEquationTwoBoxThree={setProdCostEquationTwoBoxThree}
+            prodCostEquationTwoBoxFour={prodCostEquationTwoBoxFour}
+            setProdCostEquationTwoBoxFour={setProdCostEquationTwoBoxFour}
           />
         </div>
       </div>
