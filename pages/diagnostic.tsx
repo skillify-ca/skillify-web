@@ -16,7 +16,7 @@ import {
 } from "./api/diagnostic/diagnosticGrader";
 import { generateQuestionForSkill } from "./api/questionGenerator";
 import Navbar from "../components/Navbar";
-import getQuestion from "./api/diagnostic/juniorDiagnosticQuestionGenerator";
+import getQuestion, { skillsArray } from "./api/diagnostic/juniorDiagnosticQuestionGenerator";
 
 enum STAGE {
   CREATE,
@@ -39,6 +39,7 @@ const Diagnostic = () => {
   const [guesses, setGuesses] = useState<Array<string>>([]);
   const [guessAns, setGuessAns] = useState<Array<string>>([]);
   const [answeredQuestions, setAnsweredQuestions] = useState<Question[]>([]);
+  const [juniorDiagnosticQuestions, setJuniorDiagnosticQuestions] = useState<Question[]>([]);
 
   const [gradeRange, setGradeRange] = useState("Junior");
 
@@ -163,6 +164,10 @@ const Diagnostic = () => {
   };
 
   useEffect(() => {
+    setJuniorDiagnosticQuestions(getQuestion)
+  }, [skillsArray]);
+
+  useEffect(() => {
     setCurrentQuestion(generateQuestionForSkill(Skill.ADDITION_SINGLE));
   }, [grade]);
 
@@ -207,7 +212,14 @@ const Diagnostic = () => {
               submitGuess={submitGuess}
               score={correctGuesses}
               diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
-            /> || gradeRange == "Junior" && getQuestion} {/*this is where I call the function for the list of questions*/}
+            /> || gradeRange == "Junior" && <QuestionSet
+              title=""
+              questionData={juniorDiagnosticQuestions}
+              index={0}
+              inputElement={inputElement}
+              submitGuess={submitGuess}
+              score={correctGuesses}
+              diagnostic={{ isDiagnostic: true, opacityVal: opacity }} />}
           </div>
         </div>
       );
