@@ -27,7 +27,7 @@ export const RulesSession = ({
     return (
         <div>
             <p className="text-center text-4xl pb-8">Balancing a Budget</p>
-            <div className="pb-8">
+            <div className="pb-8 flex flex-col items-center">
                 <BudgetRules />
             </div>
             <p className="text-center pb-5">
