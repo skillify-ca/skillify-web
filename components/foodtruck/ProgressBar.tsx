@@ -40,8 +40,3 @@ const ProgressBar = ({
   return RevEquationHTML;
 };
 export default ProgressBar;
-
-// return (
-//   // staging logic
-//   true ? RevEquationHTML : CostEquationHTML
-// );
