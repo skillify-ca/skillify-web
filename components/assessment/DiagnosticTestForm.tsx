@@ -7,6 +7,8 @@ type DiagnosticTestFormProps = {
   setEmail: (email: string) => void;
   name: string;
   setName: (name: string) => void;
+  gradeRange: string;
+  setGradeRange: (gradeRange: string) => void;
 };
 
 const DiagnosticTestForm = ({
@@ -15,10 +17,11 @@ const DiagnosticTestForm = ({
   setEmail,
   name,
   setName,
+  gradeRange,
+  setGradeRange
 }: DiagnosticTestFormProps) => {
-  const [grade, setGrade] = useState("Grade 3");
   const onGradeChange = (e: any) => {
-    setGrade(e.target.value);
+    setGradeRange(e.target.value);
   };
 
   return (
@@ -57,13 +60,12 @@ const DiagnosticTestForm = ({
                   />
                 </svg>
                 <select
-                  value={grade}
+                  value={gradeRange}
                   onChange={onGradeChange}
                   className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
                 >
-                  <option>Grade 1</option>
-                  <option>Grade 2</option>
-                  <option>Grade 3</option>
+                  <option>Primary</option>
+                  <option>Junior</option>
                 </select>
               </div>
             </div>
@@ -96,7 +98,7 @@ const DiagnosticTestForm = ({
             backgroundColor="blue"
             label="Start"
             textColor="white"
-            onClick={(e) => onClick(grade)}
+            onClick={(e) => onClick(gradeRange)}
           />
         </div>
       </div>
