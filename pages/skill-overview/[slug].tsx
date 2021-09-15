@@ -8,7 +8,7 @@ import Navbar from "../../components/Navbar";
 import { FETCH_SKILL_DESCRIPTION } from "../../graphql/fetchSkillDescription";
 import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { SKILLS, userId } from "../../graphql/utils/constants";
-import { getEmoji, getSkillId, Skill, SkillDescription } from "../api/skill";
+import { getEmoji, getSkillId } from "../api/skill";
 import { getVideosForSkill } from "../api/videoHelper";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { FETCH_SKILLS } from "../../graphql/fetchSkills";
@@ -67,7 +67,8 @@ const SkillOverviewPage = ({ slug, description, videos }) => {
         <span className="text-6xl font-semibold text-gray-700">
           {" "}
           I can{" "}
-          {description && description.skills[0] &&
+          {description &&
+            description.skills[0] &&
             description.skills[0].description}{" "}
         </span>
         <span className="flex flex-col items-center mr-8">
@@ -88,18 +89,19 @@ const SkillOverviewPage = ({ slug, description, videos }) => {
 
       <div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mr-8 ml-8 items-center">
-          {videos && videos.map((resource) => (
-            <iframe
-              width="560"
-              height="500"
-              src={`https://www.youtube.com/embed/${resource.videoId}`}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full rounded-2xl"
-            ></iframe>
-          ))}
+          {videos &&
+            videos.map((resource) => (
+              <iframe
+                width="560"
+                height="500"
+                src={`https://www.youtube.com/embed/${resource.videoId}`}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full rounded-2xl"
+              ></iframe>
+            ))}
         </div>
         {practiceComponent}
       </div>

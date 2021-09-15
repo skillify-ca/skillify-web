@@ -1,26 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import DiagnosticEvidence from "../../../components/assessment/DiagnosticEvidence";
 import Navbar from "../../../components/Navbar";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 import { diagnosticSelector } from "../../../redux/diagnosticSlice";
+import { FETCH_SKILLS_AND_DESCRIPTION } from "../../../graphql/fetchSkillsAndDescription";
 
-const DiagnosticEvidencePage = ({ slug }) => {
+const DiagnosticEvidencePage = ({ slug, data }) => {
   const diagnosticResults = useSelector(diagnosticSelector);
+  const [skillDescription] = useState([data]);
+
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
       <Navbar />
       <div className="p-4 flex flex-col items-center justify-center">
-        <DiagnosticEvidence topic={slug} results={diagnosticResults} />
+        <DiagnosticEvidence
+          topic={slug}
+          results={diagnosticResults}
+          skillDescription={skillDescription}
+        />
       </div>
     </div>
   );
 };
 
+// query skilldescription and pass down as prop
+
 export async function getStaticProps({ params }) {
+  const client = new ApolloClient({
+    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
+    cache: new InMemoryCache(),
+  });
+  const { data } = await client.query({
+    query: FETCH_SKILLS_AND_DESCRIPTION,
+  });
+
   return {
     props: {
       slug: params.slug,
+      data: data,
     },
   };
 }
