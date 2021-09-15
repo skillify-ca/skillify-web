@@ -20,6 +20,23 @@ import { QuestionType } from "./api/questionTypes";
 import { react } from "@babel/types";
 import { TrueorFalse } from "../components/questionTypes/TrueorFalse";
 import { Skill } from "./api/skill";
+import Q1 from "../components/giza/Q1";
+import Q2 from "../components/giza/Q2";
+import Q3 from "../components/giza/Q3";
+import next from "next";
+import Q4 from "../components/giza/Q4";
+import Q5 from "../components/giza/Q5";
+import Q6 from "../components/giza/Q6";
+import Q7 from "../components/giza/Q7";
+import Q8 from "../components/giza/Q8";
+import Q9 from "../components/giza/Q9";
+import Q10 from "../components/giza/Q10";
+import Q11 from "../components/giza/Q11";
+import Q12 from "../components/giza/Q12";
+import Q13 from "../components/giza/Q13";
+import Q14 from "../components/giza/Q14";
+import Q15 from "../components/giza/Q15";
+import Q16 from "../components/giza/Q16";
 
 enum Stage {
   START,
@@ -41,8 +58,18 @@ export default function djacobs(props) {
     "Which 3 angles add up to 180 degrees?",
     "A triangle has 2 angles that are 50 degrees. Is it possible for the last angle to be obtuse?",
     "Which of the following letters has a right- angle in it?",
+    "Use your protractor for this question! Which of the following are the interior angles of this pyramid?",
+    "How would you classify this triangle?",
+    "In the space provided, write a secret password (using UPPER CASE LETTERS* and NO spaces) using the triangle colours in the photo. Here is your clue: isosceles, scalene, right, equilateral, scalene.",
+    "You're almost at the end of the tunnel! In the space provided, determine the secret password using the triangles provided (use UPPER CASE LETTERS and no spaces) Here is the clue: right- isosceles, small equilateral, large equilateral, obtuse- scalene.",
+    "If <a is 65 degrees, what is <b?",
+    "Which angle is 40 degrees?",
+    "Your group comes across an ancient Egyptian sundial. If <b is 73 degrees, solve what <a is.",
+    "What do all of these shapes have in common?",
+    "What is the missing angle? Use your knowledge of complementary, supplementary, or opposite angles to help you. Tip: Only type the number.",
+    "You're almost out! Using your knowledge of supplementary angles, what is <d?",
+    "LAST QUESTION before you escape the clutches of the mummy! In the space provided, write a secret password by figuring out the missing angles of the triangle (the grey circles). Your secret password needs to be in numerical order with NO spaces (e.x. 1234567).",
   ];
-
   const onSubmit = (guess: GuessData) => {
     console.log(guess);
   };
@@ -69,97 +96,25 @@ export default function djacobs(props) {
     console.log(currentQuestionIndex + 1);
   };
 
-  const Q1 = (
-    <React.Fragment>
-      <MultipleChoice
-        displayQuestion={questionData[0]}
-        option1={{
-          id: "option1",
-          text: "90",
-        }}
-        option2={{
-          id: "option2",
-          text: "180",
-        }}
-        option3={{
-          id: "option3",
-          text: "360",
-        }}
-        answer="120"
-        submitGuess={nextQuestion}
-      />
-    </React.Fragment>
-  );
-
-  const Q2 = (
-    <React.Fragment>
-      <p className="text-2xl text-center">{questionData[1]}</p>
-      <div className="text-center">
-        <label>Final Answer</label>
-        <input className="p-4 text-lg" placeholder="Any degree" />
-      </div>
-      <div className="flex flex-col items-center">
-        <Button
-          label="Submit"
-          backgroundColor="blue"
-          textColor="white"
-          onClick={nextQuestion}
-        />
-      </div>
-    </React.Fragment>
-  );
-
-  const Q3Data: Question = {
-    text: questionData[2],
-    answer: "True",
-    answerType: AnswerType.BOOLEAN,
-    questionType: QuestionType.TRUE_OR_FALSE_PROBLEM,
-    skill: Skill.NUMBERS_50,
-  };
-
-  const Q3 = (
-    <React.Fragment>
-      <TrueorFalse question={Q3Data} answer="Yes" submitGuess={nextQuestion} />
-    </React.Fragment>
-  );
-
-  const Q4Data: Question = {
-    text: questionData[3],
-    answer: "True",
-    answerType: AnswerType.BOOLEAN,
-    questionType: QuestionType.TRUE_OR_FALSE_PROBLEM,
-    skill: Skill.NUMBERS_50,
-  };
-
-  const Q4 = (
-    <React.Fragment>
-      <TrueorFalse question={Q4Data} answer="Yes" submitGuess={nextQuestion} />
-    </React.Fragment>
-  );
-
-  const Q5 = (
-    <React.Fragment>
-      <MultipleChoice
-        displayQuestion={questionData[4]}
-        option1={{
-          id: "option1",
-          text: "J",
-        }}
-        option2={{
-          id: "option2",
-          text: "K",
-        }}
-        option3={{
-          id: "option3",
-          text: "L",
-        }}
-        answer="L"
-        submitGuess={nextQuestion}
-      />
-    </React.Fragment>
-  );
-
-  const questionComponent = [Q1, Q2, Q3, Q4, Q5];
+  // End of Quiz: YOU MADE IT OUT! Head back to main session to collect your prize!
+  const questionComponent = [
+    Q1(questionData[0], nextQuestion),
+    Q2(questionData[1], nextQuestion),
+    Q3(questionData[2], nextQuestion),
+    Q4(questionData[3], nextQuestion),
+    Q5(questionData[4], nextQuestion),
+    Q6(questionData[5], nextQuestion),
+    Q7(questionData[6], nextQuestion),
+    Q8(questionData[7], nextQuestion),
+    Q9(questionData[8], nextQuestion),
+    Q10(questionData[9], nextQuestion),
+    Q11(questionData[10], nextQuestion),
+    Q12(questionData[11], nextQuestion),
+    Q13(questionData[12], nextQuestion),
+    Q14(questionData[13], nextQuestion),
+    Q15(questionData[14], nextQuestion),
+    Q16(questionData[15], nextQuestion),
+  ];
 
   return (
     <div className="flex flex-col overflow-auto bg-scroll bg-blue-50">

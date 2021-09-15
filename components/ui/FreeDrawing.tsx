@@ -1,7 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { render } from "react-dom";
 import { Stage, Layer, Line, Text } from "react-konva";
 import useWindowSize from "../../hooks/UseWindowSizeHook";
 import { Button } from "./Button";
@@ -11,6 +8,8 @@ interface FreeDrawingProps {
   setLines: (lines: LineData[]) => void;
   historyStep: number;
   setHistoryStep: (step: number) => void;
+  saveImage: (image: string) => void;
+  disabled?: boolean;
 }
 
 export type LineData = {
@@ -23,7 +22,11 @@ const FreeDrawing = ({
   setLines,
   historyStep,
   setHistoryStep,
+  saveImage,
+  disabled = false,
 }: FreeDrawingProps) => {
+  const stageRef = React.useRef(null);
+
   const [tool, setTool] = React.useState("black");
   const isDrawing = React.useRef(false);
   const { width, height } = useWindowSize();
@@ -45,7 +48,6 @@ const FreeDrawing = ({
   };
 
   const handleMouseDown = (e) => {
-    console.log("Mouse Down");
     isDrawing.current = true;
 
     const isLatestStep = historyStep === lines.length;
@@ -56,14 +58,9 @@ const FreeDrawing = ({
       newLines = lines.slice(0, historyStep);
     }
 
-    console.log("Mouse Down 2", historyStep);
-
     setHistoryStep(historyStep + 1);
-    console.log("Mouse Down 3", historyStep);
-
     const pos = e.target.getStage().getPointerPosition();
     setLines([...newLines, { tool, points: [pos.x, pos.y] }]);
-    console.log("Mouse Down 4");
   };
 
   const handleMouseMove = (e) => {
@@ -85,31 +82,35 @@ const FreeDrawing = ({
 
   const handleMouseUp = () => {
     isDrawing.current = false;
+    saveImage(stageRef.current.toDataURL());
   };
 
   return (
     <div className="bg-white w-full">
-      <div className="flex gap-4 p-4">
-        <Button label="Undo" onClick={handleUndo} backgroundColor="white" />
-        <Button label="Redo" onClick={handleRedo} backgroundColor="white" />
-      </div>
+      {!disabled && (
+        <div className="flex gap-4 p-4">
+          <Button label="Undo" onClick={handleUndo} backgroundColor="white" />
+          <Button label="Redo" onClick={handleRedo} backgroundColor="white" />
+        </div>
+      )}
+      {!disabled && (
+        <p className="p-4">
+          Evaluate without the use of a calculate. Show all your work.
+        </p>
+      )}
       <Stage
         style={{ touchAction: "none" }}
+        ref={stageRef}
         width={width}
         height={height}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onTouchStart={handleMouseDown}
-        onTouchMove={handleMouseMove}
-        onTouchEnd={handleMouseUp}
+        onMouseDown={!disabled && handleMouseDown}
+        onMouseMove={!disabled && handleMouseMove}
+        onMouseUp={!disabled && handleMouseUp}
+        onTouchStart={!disabled && handleMouseDown}
+        onTouchMove={!disabled && handleMouseMove}
+        onTouchEnd={!disabled && handleMouseUp}
       >
         <Layer>
-          <Text
-            text="Evaluate without the use of a calculate. Show all your work."
-            x={5}
-            y={30}
-          />
           {lines
             .filter((_, index) => index + 1 <= historyStep)
             .map((line, i) => (
@@ -125,15 +126,17 @@ const FreeDrawing = ({
             ))}
         </Layer>
       </Stage>
-      <select
-        value={tool}
-        onChange={(e) => {
-          setTool(e.target.value);
-        }}
-      >
-        <option value="black">Black</option>
-        <option value="blue">Blue</option>
-      </select>
+      {!disabled && (
+        <select
+          value={tool}
+          onChange={(e) => {
+            setTool(e.target.value);
+          }}
+        >
+          <option value="black">Black</option>
+          <option value="blue">Blue</option>
+        </select>
+      )}
     </div>
   );
 };
