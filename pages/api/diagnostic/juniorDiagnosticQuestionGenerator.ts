@@ -27,3 +27,5 @@ const getQuestion = () => {
 }
 
 export default getQuestion;
+
+// 6 addition, 6 substraction, 3 by tenth, 

@@ -40,6 +40,7 @@ const Diagnostic = () => {
   const [guessAns, setGuessAns] = useState<Array<string>>([]);
   const [answeredQuestions, setAnsweredQuestions] = useState<Question[]>([]);
   const [juniorDiagnosticQuestions, setJuniorDiagnosticQuestions] = useState<Question[]>([]);
+  const [currentJuniorQuestion, setCurrentJuniorQuestion] = useState<number>(0)
 
   const [gradeRange, setGradeRange] = useState("Junior");
 
@@ -119,23 +120,31 @@ const Diagnostic = () => {
     const newAnsweredQuestions = [...answeredQuestions, currentQuestion];
     setAnsweredQuestions(newAnsweredQuestions);
 
+    // If user is not at the end of the test
     if (newAnsweredQuestions.length < TOTAL_QUESTIONS) {
       setOpacity(0);
       await delay(150);
       setOpacity(1);
 
-      const newQuestionsLeftInTopic =
-        questionsLeftInTopic == 0
-          ? QUESTIONS_PER_TOPIC - 1
-          : questionsLeftInTopic - 1;
-      const nextQuestion = getNextQuestion(
-        currentQuestion,
-        guessData.isCorrect,
-        newQuestionsLeftInTopic
-      );
-      setCurrentQuestion(nextQuestion);
-      setQuestionsLeftInTopic(newQuestionsLeftInTopic);
+      if (gradeRange == "Junior") {
+        setCurrentJuniorQuestion(currentJuniorQuestion + 1)
+      } else {
+        // Primary grades questions
+        const newQuestionsLeftInTopic =
+          questionsLeftInTopic == 0
+            ? QUESTIONS_PER_TOPIC - 1
+            : questionsLeftInTopic - 1;
+        const nextQuestion = getNextQuestion(
+          currentQuestion,
+          guessData.isCorrect,
+          newQuestionsLeftInTopic
+        );
+        setCurrentQuestion(nextQuestion);
+        setQuestionsLeftInTopic(newQuestionsLeftInTopic);
+      }
     }
+
+    // If user is at the end of the test
     if (newAnsweredQuestions.length >= TOTAL_QUESTIONS) {
       const results: DiagnosticState = {
         questions: newAnsweredQuestions,
@@ -164,8 +173,8 @@ const Diagnostic = () => {
   };
 
   useEffect(() => {
-    setJuniorDiagnosticQuestions(getQuestion)
-  }, [skillsArray]);
+    setJuniorDiagnosticQuestions(getQuestion())
+  }, []);
 
   useEffect(() => {
     setCurrentQuestion(generateQuestionForSkill(Skill.ADDITION_SINGLE));
@@ -215,7 +224,7 @@ const Diagnostic = () => {
             /> || gradeRange == "Junior" && <QuestionSet
               title=""
               questionData={juniorDiagnosticQuestions}
-              index={0}
+              index={currentJuniorQuestion}
               inputElement={inputElement}
               submitGuess={submitGuess}
               score={correctGuesses}
