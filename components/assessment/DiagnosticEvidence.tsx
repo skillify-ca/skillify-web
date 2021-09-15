@@ -14,9 +14,14 @@ import { DiagnosticState } from "../../redux/diagnosticSlice";
 type DiagnosticEvidenceProps = {
   topic: Topic;
   results: DiagnosticState;
+  skillDescription: any; // TODO change this to a real type
 };
 
-const DiagnosticEvidence = ({ topic, results }: DiagnosticEvidenceProps) => {
+const DiagnosticEvidence = ({
+  topic,
+  results,
+  skillDescription,
+}: DiagnosticEvidenceProps) => {
   const skills = getSkillsForTopic(topic);
   let skillCount = 0;
 

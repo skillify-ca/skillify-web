@@ -9,7 +9,6 @@ import { FETCH_SKILLS_AND_DESCRIPTION } from "../../../graphql/fetchSkillsAndDes
 
 const DiagnosticEvidencePage = ({ slug, data }) => {
   const diagnosticResults = useSelector(diagnosticSelector);
-  const [skillDescription] = useState([data]);
 
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
@@ -18,7 +17,7 @@ const DiagnosticEvidencePage = ({ slug, data }) => {
         <DiagnosticEvidence
           topic={slug}
           results={diagnosticResults}
-          skillDescription={skillDescription}
+          skillDescription={data}
         />
       </div>
     </div>
