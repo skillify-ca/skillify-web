@@ -1,5 +1,5 @@
 import _, { min } from "lodash";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { EndSession } from "../components/finance/EndSession";
 import { RulesSession } from "../components/finance/RulesSession";
 import { Stage } from "@react-three/drei";
@@ -10,7 +10,9 @@ import { ApolloClient, InMemoryCache, useMutation } from "@apollo/client";
 import { data } from "browserslist";
 import { useQuery } from "@apollo/client";
 import { useSession } from "next-auth/client";
-import { UNLOCK_BADGE } from "/Users/brianlee/Documents/GitHub/math/graphql/unlockBadge";
+import { FinanceProfileType, financialProfileData } from "./api/finance/profile";
+import { getRndInteger } from "./api/random";
+import { UNLOCK_BADGE } from "../graphql/unlockBadge";
 
 enum STAGES {
   START,
@@ -19,6 +21,14 @@ enum STAGES {
 }
 
 const FinanceProfile = () => {
+
+  const [profileData, setProfileData] = useState<FinanceProfileType>()
+
+  useEffect(() => {
+    const randomProfile = getRndInteger(0, 12);
+    setProfileData(financialProfileData[randomProfile]);
+  }, []);
+
   const [stage, setStage] = useState(STAGES.START);
   const [session, loading] = useSession();
   const [unlockbadge, unlockBadgeData] = useMutation(UNLOCK_BADGE, {});
@@ -48,12 +58,19 @@ const FinanceProfile = () => {
   });
 
   return (
-    <div>
-      {" "}
-      {stage === STAGES.START && data && (
-        <RulesSession onClick={routeAssignment} badgeData={data} />
-      )}
-      {stage === STAGES.ASSIGNMENT && <AssignmentSession onClick={routeEnd} />}
+    <div className="p-4">
+      {stage === STAGES.START &&
+        <RulesSession
+          profileData={profileData}
+          setProfileData={setProfileData}
+          onClick={routeAssignment}
+          badgeData={data}
+        />}
+      {stage === STAGES.ASSIGNMENT &&
+        <AssignmentSession
+          profileData={profileData}
+          onClick={routeEnd}
+        />}
       {stage === STAGES.END && <EndSession onClick={routeStart} />}
     </div>
   );

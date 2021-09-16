@@ -14,7 +14,7 @@ export type Question = {
   answer: string; // only accepts strings so Array<Num> doesn't work
   answerType: AnswerType;
   questionType: QuestionType;
-  skill: Skill;
+  skill?: Skill;
   operator?: string; //Numbers topic does not have a operator
   wordProblem?: WordProblemModel; //value is only stored if QuestionType is wordProblem
   multipleChoice?: MCModel;

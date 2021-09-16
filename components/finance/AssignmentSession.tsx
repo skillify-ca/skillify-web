@@ -28,9 +28,10 @@ import { getRandomItemFromArray, getRndInteger } from "../../pages/api/random";
 
 export interface FinanceProfileProps {
   onClick: () => void;
+  profileData: FinanceProfileType;
 }
 
-const AssignmentSession = ({ onClick }: FinanceProfileProps) => {
+const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
   const lifeRef = useRef(null);
   const homeRef = useRef(null);
   const carRef = useRef(null);
@@ -57,7 +58,6 @@ const AssignmentSession = ({ onClick }: FinanceProfileProps) => {
   const [individualSalary, setIndividualSalary] = useState(0);
   const [spouseOccupation, setSpouseOccupation] = useState("");
   const [spouseSalary, setSpouseSalary] = useState(0);
-  const [profileData, setProfileData] = useState<FinanceProfileType>(); //profileData used for Validation in child components
   const [sectionOneValidation, setSectionOneValidation] = useState(false);
 
   const [carPayment1, setCarPayment1] = useState("");
@@ -102,41 +102,18 @@ const AssignmentSession = ({ onClick }: FinanceProfileProps) => {
     setSurpriseData(randomSurprise);
   }, []);
 
-  useEffect(() => {
-    // Update the document title using the browser API
-    const randomProfile = getRndInteger(0, 12);
-    setProfileData(financialProfileData[randomProfile]);
-  }, []);
-
   const validateTotalMoneyRemaining = (newTotalMoneyRemaining) => {
     if (newTotalMoneyRemaining === "") {
       setMoneyRemValidation("");
     } else {
-      if (totalMonthlySection7 + totalExpensesSection7 === "") {
-        setMoneyRemValidation("");
+      if (
+        Number.parseInt(totalMonthlySection7) -
+          Number.parseInt(totalExpensesSection7) ===
+        Number.parseInt(newTotalMoneyRemaining)
+      ) {
+        setMoneyRemValidation("Correct");
       } else {
-        if (isSurpriseVisible) {
-          if (
-            Number.parseInt(totalMonthlySection7) -
-              Number.parseInt(totalExpensesSection7) +
-              surpriseData.surpriseValue ===
-            Number.parseInt(newTotalMoneyRemaining)
-          ) {
-            setMoneyRemValidation("Correct");
-          } else {
-            setMoneyRemValidation("Wrong");
-          }
-        } else {
-          if (
-            Number.parseInt(totalMonthlySection7) -
-              Number.parseInt(totalExpensesSection7) ===
-            Number.parseInt(newTotalMoneyRemaining)
-          ) {
-            setMoneyRemValidation("Correct");
-          } else {
-            setMoneyRemValidation("Wrong");
-          }
-        }
+        setMoneyRemValidation("Wrong");
       }
     }
   };
