@@ -53,7 +53,7 @@ export const RulesSession = ({
         <div className={"col-span-2"}>
           <div className={"flex justify-center text-red-400 text-xl"}>
             Looks like you haven't completed Addition 1 and Subtraction 1. We
-            recommend you complete those before attempting this worksheet.{" "}
+            recommend you complete those before attempting this worksheet.
           </div>
           <div className="grid grid-cols-2 mt-8">
             <div className={"col-start-1"}>

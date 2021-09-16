@@ -43,7 +43,7 @@ const FinanceProfile = () => {
     unlockbadge({
       variables: {
         userId: userId(session),
-        badgeId: 56,
+        badgeId: 56, //Badge ID for Finance Badge (in DB)
       },
     });
   };
@@ -54,8 +54,8 @@ const FinanceProfile = () => {
   let { data } = useQuery(FETCH_BADGE_ON_USERID, {
     variables: {
       userId: userId(session),
-      badgeId: 1,
-      badgeId2: 4,
+      badgeId: 1, //Addition Level 1 Badge
+      badgeId2: 4, //Subtraction Level 1 Badge
     },
   });
 
