@@ -31,8 +31,7 @@ export const RulesSession = ({
     (userbadge) => userbadge.badge.id
   );
 
-  if (badgeIds.includes(56) || badgeIds.includes(44)) {
-    //some variable (boolean) = true 50,44
+  if (badgeIds.includes(1) || badgeIds.includes(4)) {
     rightBadges = true;
   }
   const randomize = () => {
@@ -45,7 +44,11 @@ export const RulesSession = ({
       {
         return badgeData.user_badges.map((userbadge) => (
           <div className={"flex justify-center"}>
-            <img src={userbadge.badge.image} className={"h-16 w-auto"} />{" "}
+            <img src={userbadge.badge.image} className={"h-16 w-auto"} />
+            <div className={"flex justif-center items-center ml-2 font-bold"}>
+              {" "}
+              Badge Completed!
+            </div>{" "}
           </div>
         ));
       }
@@ -65,7 +68,7 @@ export const RulesSession = ({
                 />{" "}
               </div>
               <div className={"flex justify-center font-bold"}>
-                Additiona Level 1 Badge
+                Addition Level 1 Badge
               </div>
             </div>
             <div className={"col-start-2"}>

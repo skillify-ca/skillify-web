@@ -54,14 +54,14 @@ const FinanceProfile = () => {
   let { data } = useQuery(FETCH_BADGE_ON_USERID, {
     variables: {
       userId: userId(session),
-      badgeId: 56,
-      badgeId2: 44,
+      badgeId: 1,
+      badgeId2: 4,
     },
   });
 
   return (
     <div className="p-4">
-      {stage === STAGES.START && (
+      {stage === STAGES.START && data && (
         <RulesSession
           profileData={profileData}
           setProfileData={setProfileData}
