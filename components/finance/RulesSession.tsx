@@ -2,10 +2,6 @@ import React from "react";
 import BudgetRules from "./BudgetRules";
 import { Button } from "../ui/Button";
 
-import badgeData from "/Users/brianlee/Documents/GitHub/math/pages/finance-profile";
-import { FETCH_BADGE_ON_USERID } from "/Users/brianlee/Documents/GitHub/math/graphql/fetchBadgeOnUserID";
-import { data } from "autoprefixer";
-
 import { FinanceProfileChart } from "./FinanceProfileChart";
 import {
   FinanceProfileType,
