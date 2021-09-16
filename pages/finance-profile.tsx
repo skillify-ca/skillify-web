@@ -10,7 +10,10 @@ import { ApolloClient, InMemoryCache, useMutation } from "@apollo/client";
 import { data } from "browserslist";
 import { useQuery } from "@apollo/client";
 import { useSession } from "next-auth/client";
-import { FinanceProfileType, financialProfileData } from "./api/finance/profile";
+import {
+  FinanceProfileType,
+  financialProfileData,
+} from "./api/finance/profile";
 import { getRndInteger } from "./api/random";
 import { UNLOCK_BADGE } from "../graphql/unlockBadge";
 
@@ -21,8 +24,7 @@ enum STAGES {
 }
 
 const FinanceProfile = () => {
-
-  const [profileData, setProfileData] = useState<FinanceProfileType>()
+  const [profileData, setProfileData] = useState<FinanceProfileType>();
 
   useEffect(() => {
     const randomProfile = getRndInteger(0, 12);
@@ -59,18 +61,17 @@ const FinanceProfile = () => {
 
   return (
     <div className="p-4">
-      {stage === STAGES.START &&
+      {stage === STAGES.START && (
         <RulesSession
           profileData={profileData}
           setProfileData={setProfileData}
           onClick={routeAssignment}
           badgeData={data}
-        />}
-      {stage === STAGES.ASSIGNMENT &&
-        <AssignmentSession
-          profileData={profileData}
-          onClick={routeEnd}
-        />}
+        />
+      )}
+      {stage === STAGES.ASSIGNMENT && (
+        <AssignmentSession profileData={profileData} onClick={routeEnd} />
+      )}
       {stage === STAGES.END && <EndSession onClick={routeStart} />}
     </div>
   );
