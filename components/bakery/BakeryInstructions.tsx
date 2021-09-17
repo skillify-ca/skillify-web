@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 
 const bakeryInstructions = () => {
   return (
-    <div className={"grid grid-cols-2 bg-white min-h-screen"}>
+    <div className={"grid grid-cols-2 bg-white"}>
       <div>
         <div
           className={

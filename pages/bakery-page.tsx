@@ -4,7 +4,7 @@ import BuildingABakeryA from "../components/bakery/BuildingABakeryA";
 
 const BakeryPage = () => {
   return (
-    <div>
+    <div className={"bg-white"}>
       <BakeryInstructions />
       <BuildingABakeryA />;
     </div>
