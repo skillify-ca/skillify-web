@@ -9,12 +9,17 @@ export interface ChooseTruckTypeProps {
 const ChooseTruckType = ({ truck, setTruck }: ChooseTruckTypeProps) => {
   return (
     <div className="flex flex-col border-2 border-black border-dashed p-4">
-      <h1 className="text-4xl text-black bold p-4">
+      <h1 className="text-4xl text-black bold p-4 mb-8">
         What kind of truck do you want to buy?
       </h1>
+      <div className="grid grid-cols-5">
+        <p className="col-start-3 text-2xl">Truck Type</p>
+        <p className="col-start-4 text-2xl">Price</p>
+        <p className="col-start-5 text-2xl">Allowed Items</p>
+      </div>
       {allTrucks.map((t) => {
         return (
-          <label className="flex flex-row space-x-8 items-center p-4">
+          <label className="grid grid-cols-5 items-center">
             <input
               className="form-radio h-8 w-8"
               type="radio"
