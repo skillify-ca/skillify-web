@@ -22,7 +22,6 @@ const DiagnosticEvidence = ({
   results,
   skillDescription,
 }: DiagnosticEvidenceProps) => {
-  const skills = getSkillsForTopic(topic);
   let skillCount = 0;
 
   const countSkills = (result: Array<string>) => {
@@ -35,7 +34,9 @@ const DiagnosticEvidence = ({
 
   const getSummaryText = (topic: string) => {
     let proficiency = countSkills(
-      skills.map((skill) => getResultForSkill(skill, results))
+      skillDescription.diagnostic.map((skill) =>
+        getResultForSkill(skill.description, results)
+      )
     );
     if (proficiency == 3) {
       return (
@@ -109,16 +110,20 @@ const DiagnosticEvidence = ({
             <p className="p-4 font-bold"> Proficiency </p>
           </div>
           <div className="flex flex-col">
-            {skills.map((skill) => (
-              <div
-                className={`${getBackgroundColorForTopic(
-                  getResultForSkill(skill, results)
-                )} p-4 border-b border-black flex justify-between`}
-              >
-                <p className={``}> {SkillDescription(skill)}</p>
-                <p className={``}>{getResultForSkill(skill, results)}</p>
-              </div>
-            ))}
+            {skillDescription.diagnostic
+              .filter((skill, idx) => idx < 3)
+              .map((skill, index) => (
+                <div
+                  className={`${getBackgroundColorForTopic(
+                    getResultForSkill(skill, results)
+                  )} p-4 border-b border-black flex justify-between`}
+                >
+                  <p className={``}>
+                    {skillDescription.diagnostic[index].description}
+                  </p>
+                  <p className={``}>{getResultForSkill(skill, results)}</p>
+                </div>
+              ))}
           </div>
         </div>
       </div>

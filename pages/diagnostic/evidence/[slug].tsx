@@ -5,7 +5,8 @@ import Navbar from "../../../components/Navbar";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 import { diagnosticSelector } from "../../../redux/diagnosticSlice";
-import { FETCH_SKILLS_AND_DESCRIPTION } from "../../../graphql/fetchSkillsAndDescription";
+import { FETCH_SKILLS_AND_DESCRIPTION_ON_UNIT } from "../../../graphql/fetchSkillsAndDescriptionOnUnit";
+import { FETCH_DIAGNOSTIC_DESCRIPTION_ON_UNIT } from "../../../graphql/fetchDiagnosticDescriptionsOnUnit";
 
 const DiagnosticEvidencePage = ({ slug, data }) => {
   const diagnosticResults = useSelector(diagnosticSelector);
@@ -24,17 +25,18 @@ const DiagnosticEvidencePage = ({ slug, data }) => {
   );
 };
 
-// query skilldescription and pass down as prop
-
 export async function getStaticProps({ params }) {
   const client = new ApolloClient({
     uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
     cache: new InMemoryCache(),
   });
   const { data } = await client.query({
-    query: FETCH_SKILLS_AND_DESCRIPTION,
+    //TODO WRITE new query that pulls from diagnostic
+    query: FETCH_DIAGNOSTIC_DESCRIPTION_ON_UNIT,
+    variables: {
+      unit: params.slug,
+    },
   });
-
   return {
     props: {
       slug: params.slug,
