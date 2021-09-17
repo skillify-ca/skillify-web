@@ -32,7 +32,7 @@ const BuildAFoodTruck = ({
         className="border-2 border-black p-4 text-grey-darkest max-w-sm"
         value={userName}
         onChange={(e) => setUserName(e.target.value)}
-        placeholder="ex: Praveen"
+        placeholder="ex: Raveen"
       />
       <label className="py-4">
         2) What do you want to call your food truck?
@@ -42,7 +42,7 @@ const BuildAFoodTruck = ({
         className="border-2 border-black p-4 text-grey-darkest max-w-sm"
         value={truckName}
         onChange={(e) => setTruckName(e.target.value)}
-        placeholder="ex: Praveen's Titilating Tikka"
+        placeholder="ex: Raveen's Tikka Truck"
       />
 
       <label className="py-4">3) What's your food truck's slogan?</label>

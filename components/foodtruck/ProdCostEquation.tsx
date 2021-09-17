@@ -92,14 +92,16 @@ const ProdCostEquation = ({
   return (
     <div className="flex flex-col border-2 border-dashed border-black p-4">
       <div className="flex flex-cols-2 items-center">
-        <h1 className="w-5/6 text-4xl text-center p-4">
+        <h1 className="w-5/6 text-4xl p-4">
           How much will it cost us every day to sell {selectedFood.name}
           {selectedFood.name === "Hot Dog" ? "s" : ""}?
         </h1>
         <span className={progressContainerCSS()}>{validateComponent()}</span>
       </div>
       <h1 className="text-2xl p-4">
-        First - how much do the ingredients for {selectedFood.name} cost?
+        First - let's figure out how much the ingredients cost to make{" "}
+        {selectedFood.name}
+        {selectedFood.name === "Hot Dog" ? "s" : ""}
       </h1>
       <h1 className="text-2xl font-bold p-4">Equation 1:</h1>
       <div className="grid grid-cols-7 items-center justify-center py-4">

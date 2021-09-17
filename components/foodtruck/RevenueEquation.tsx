@@ -81,7 +81,7 @@ const RevenueEquation = ({
   return (
     <div className="flex flex-col border-2 border-dashed border-black p-4">
       <div className="flex flex-cols-2 items-center">
-        <h1 className="w-5/6 text-4xl text-center p-4">
+        <h1 className="w-5/6 text-4xl p-4">
           How much money can we make every day selling {selectedFood.name}
           {selectedFood.name === "Hot Dog" ? "s" : ""}?
         </h1>
@@ -89,11 +89,11 @@ const RevenueEquation = ({
       </div>
 
       <h1 className="text-2xl p-4">
-        First - how many plates of{" "}
+        First - let's figure out how many plates of{" "}
         {selectedFood.name === "Hot Dog"
           ? selectedFood.name + "s"
           : selectedFood.name}{" "}
-        can we make in an hour?
+        we can make in an hour
       </h1>
       <h1 className="text-2xl font-bold p-4">Equation 1:</h1>
       <div className="grid grid-cols-5 items-center justify-center py-4">
