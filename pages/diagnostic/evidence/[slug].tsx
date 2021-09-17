@@ -14,13 +14,15 @@ const DiagnosticEvidencePage = ({ slug, data }) => {
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100">
       <Navbar />
-      <div className="p-4 flex flex-col items-center justify-center">
-        <DiagnosticEvidence
-          topic={slug}
-          results={diagnosticResults}
-          skillDescription={data}
-        />
-      </div>
+      {data && (
+        <div className="p-4 flex flex-col items-center justify-center">
+          <DiagnosticEvidence
+            topic={slug}
+            results={diagnosticResults}
+            skillDescription={data}
+          />
+        </div>
+      )}
     </div>
   );
 };
