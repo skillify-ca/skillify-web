@@ -12,7 +12,7 @@ const bakeryInstructions = () => {
           Buliding a Bakery
         </div>
         <div className={"flex justify-center text-xl mx-8 my-8"}>
-          Hooray! Your dreams are coming true, and you are buildilng your very
+          Hooray! Your dreams are coming true, and you are building your very
           own bakery. You are going to have a blast exploring the ins and outs
           of your new bakery. Before the flour gets flying and you fire up the
           ovens, we must find the perfect place to call home.
