@@ -70,15 +70,22 @@ export default function djacobs(props) {
     "You're almost out! Using your knowledge of supplementary angles, what is <d?",
     "LAST QUESTION before you escape the clutches of the mummy! In the space provided, write a secret password by figuring out the missing angles of the triangle (the grey circles). Your secret password needs to be in numerical order with NO spaces (e.x. 1234567).",
   ];
+
+  const [stage, setStage] = useState(Stage.START);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [groupName, setGroupName] = useState<string>();
+
   const onSubmit = (guess: GuessData) => {
     console.log(guess);
   };
 
-  const [stage, setStage] = useState(Stage.START);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
   const onStartQuiz = () => {
     setStage(Stage.QUIZ);
+  };
+
+  const onGroupNameChange = (currentGroupName: string) => {
+    const GN = currentGroupName;
+    setGroupName(GN);
   };
 
   const backToPrevious = () => {
@@ -126,7 +133,11 @@ export default function djacobs(props) {
             <div className="flex flex-col items-center col gap-8">
               <div className="text-center">
                 <label>Group Name</label>
-                <input className="p-4 text-lg" />
+                <input
+                  className="p-4 text-lg"
+                  value={groupName}
+                  onChange={(e) => onGroupNameChange(e.target.value)}
+                />
               </div>
               <Button
                 label="Start"
