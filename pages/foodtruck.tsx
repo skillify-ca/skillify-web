@@ -3,8 +3,7 @@ import BuildAFoodTruck from "../components/foodtruck/BuildAFoodTruck";
 import ChooseFoodType from "../components/foodtruck/ChooseFoodType";
 import ChooseNumWorkers from "../components/foodtruck/ChooseNumWorkers";
 import ChooseTruckType from "../components/foodtruck/ChooseTruckType";
-import FoodReferenceTable from "../components/foodtruck/FoodReferenceTable";
-import TruckReferenceTable from "../components/foodtruck/TruckReferenceTable";
+
 import OverviewOfSelections from "../components/foodtruck/OverviewOfSelections";
 import {
   hotDog,
@@ -17,7 +16,36 @@ import {
 import RevenueEquation from "../components/foodtruck/RevenueEquation";
 import ProdCostEquation from "../components/foodtruck/ProdCostEquation";
 
+import { Button } from "../components/ui/Button";
+
+// set up stage flows
+
 export default function FoodTruck(props) {
+  enum STAGE {
+    ChooseTruck,
+    ChooseFood,
+    SelectNumWorkers,
+    OverviewOfSelections,
+    RevenueEquation,
+    ProdCostEquation,
+  }
+
+  const [stage, setStage] = useState(STAGE.ChooseTruck);
+
+  const previousStage = () => {
+    if (stage > STAGE.ChooseTruck) {
+      setStage(stage - 1);
+    }
+  };
+
+  const nextStage = () => {
+    if (stage < STAGE.ProdCostEquation) {
+      setStage(stage + 1);
+    }
+  };
+
+  // declare child component variables
+
   const [userName, setUserName] = useState("");
   const [truckName, setTruckName] = useState("");
   const [truckSlogan, setTruckSlogan] = useState("");
@@ -67,9 +95,173 @@ export default function FoodTruck(props) {
     setTruck(truck);
     setFood(hotDog);
   };
+
+  const getLeftComponent = (stage: STAGE) => {
+    if (stage == STAGE.ChooseFood) {
+      return (
+        <ChooseFoodType
+          selectedFood={food}
+          setSelectedFood={setFood}
+          selectedTruck={truck}
+        />
+      );
+    } else if (stage == STAGE.ChooseTruck) {
+      return (
+        <ChooseTruckType truck={truck} setTruck={onSelectedTruckChanged} />
+      );
+    } else if (stage == STAGE.SelectNumWorkers) {
+      return (
+        <ChooseNumWorkers
+          selectedNumWorkers={selectedNumWorkers}
+          setSelectedNumWorkers={setSelectedNumWorkers}
+        />
+      );
+    } else if (stage == STAGE.OverviewOfSelections) {
+      return (
+        <OverviewOfSelections
+          selectedNumWorkers={selectedNumWorkers}
+          setSelectedNumWorkers={setSelectedNumWorkers}
+          selectedTruck={truck}
+          selectedFood={food}
+          minWage={minWage}
+        />
+      );
+    } else if (stage == STAGE.RevenueEquation) {
+      return (
+        <RevenueEquation
+          selectedNumWorkers={selectedNumWorkers}
+          selectedFood={food}
+          equationBoxOne={equationBoxOne}
+          setEquationBoxOne={setEquationBoxOne}
+          equationBoxTwo={equationBoxTwo}
+          setEquationBoxTwo={setEquationBoxTwo}
+          equationBoxThree={equationBoxThree}
+          setEquationBoxThree={setEquationBoxThree}
+          revEquationTwoBoxOne={revEquationTwoBoxOne}
+          setRevEquationTwoBoxOne={setRevEquationTwoBoxOne}
+          revEquationTwoBoxTwo={revEquationTwoBoxTwo}
+          setRevEquationTwoBoxTwo={setRevEquationTwoBoxTwo}
+          revEquationTwoBoxThree={revEquationTwoBoxThree}
+          setRevEquationTwoBoxThree={setRevEquationTwoBoxThree}
+        />
+      );
+    } else if (stage == STAGE.ProdCostEquation) {
+      return (
+        <ProdCostEquation
+          selectedFood={food}
+          selectedTruck={truck}
+          selectedNumWorkers={selectedNumWorkers}
+          prodCostEquationOneBoxOne={prodCostEquationOneBoxOne}
+          setProdCostEquationOneBoxOne={setProdCostEquationOneBoxOne}
+          prodCostEquationOneBoxTwo={prodCostEquationOneBoxTwo}
+          setProdCostEquationOneBoxTwo={setProdCostEquationOneBoxTwo}
+          prodCostEquationOneBoxThree={prodCostEquationOneBoxThree}
+          setProdCostEquationOneBoxThree={setProdCostEquationOneBoxThree}
+          prodCostEquationTwoBoxOne={prodCostEquationTwoBoxOne}
+          setProdCostEquationTwoBoxOne={setProdCostEquationTwoBoxOne}
+          prodCostEquationTwoBoxTwo={prodCostEquationTwoBoxTwo}
+          setProdCostEquationTwoBoxTwo={setProdCostEquationTwoBoxTwo}
+          prodCostEquationTwoBoxThree={prodCostEquationTwoBoxThree}
+          setProdCostEquationTwoBoxThree={setProdCostEquationTwoBoxThree}
+          prodCostEquationTwoBoxFour={prodCostEquationTwoBoxFour}
+          setProdCostEquationTwoBoxFour={setProdCostEquationTwoBoxFour}
+        />
+      );
+    }
+  };
+
+  const getProgressComponent = (stage: STAGE) => {
+    if (
+      stage == STAGE.ChooseFood ||
+      stage == STAGE.ChooseTruck ||
+      stage == STAGE.SelectNumWorkers ||
+      stage == STAGE.OverviewOfSelections
+    ) {
+      return (
+        <div className="flex flex-col p-8">
+          <h1 className="text-4xl mb-12">Progress</h1>
+          <div className="grid grid-cols-2 text-2xl text-center">
+            <p>Selected Truck:</p>
+            <p>{truck.model}</p>
+            <p>Selected Food:</p>
+            <p>{food.name}</p>
+            <p>Number of Workers:</p>
+            <p>{selectedNumWorkers}</p>
+          </div>
+        </div>
+      );
+    } else if (stage == STAGE.RevenueEquation) {
+      return (
+        <div className="flex flex-col p-8">
+          <h1 className="text-4xl mb-8">Useful Inputs</h1>
+          <div className="grid grid-cols-2 text-2xl text-center">
+            <p>Number of Workers:</p>
+            <p>{selectedNumWorkers}</p>
+            <p>Qty Produced per Hour:</p>
+            <p>{food.qtyProducedPerWorkerHour}</p>
+            <p>Sale Price:</p>
+            <p>{food.unitRevenue}</p>
+          </div>
+          <h1 className="text-4xl mb-8 pt-8">Equation Progress</h1>
+          <div className="grid grid-cols-2 text-2xl text-center">
+            <p>Plates per Hour:</p>
+            <p>{equationBoxThree}</p>
+            <p>Revenue per Hour:</p>
+            <p>{revEquationTwoBoxThree}</p>
+          </div>
+        </div>
+      );
+    } else if (stage == STAGE.ProdCostEquation) {
+      return (
+        <div className="flex flex-col p-8">
+          <h1 className="text-4xl mb-8">Useful Inputs</h1>
+          <div className="grid grid-cols-2 text-2xl text-center">
+            <p>Plates per Hour:</p>
+            <p>{equationBoxThree}</p>
+            <p>Cost per Plate:</p>
+            <p>{food.unitCost}</p>
+            <p>Daily Rental Cost:</p>
+            <p>{truck.fixedCost / 30}</p>
+            <p>Hourly Operating Cost:</p>
+            <p>{truck.variableCost / 6}</p>
+            <p>Hours Working per Day:</p>
+            <p>6</p>
+          </div>
+          <h1 className="text-4xl mb-8 pt-8">Equation Progress</h1>
+          <div className="grid grid-cols-2 text-2xl text-center">
+            <p>Ingredient Cost per Hour:</p>
+            <p>{prodCostEquationOneBoxThree}</p>
+            <p>Truck Cost per Hour:</p>
+            <p>{prodCostEquationTwoBoxFour}</p>
+          </div>
+          <h1 className="text-4xl mb-8 pt-8">Money per Day</h1>
+          <div className="grid grid-cols-2 text-2xl text-center">
+            <p>Ingredient Cost per Day:</p>
+            <p>{Number.parseInt(prodCostEquationOneBoxThree) * 6}</p>
+            <p>Truck Cost per Day:</p>
+            <p>{prodCostEquationTwoBoxFour}</p>
+            <p>Operating Costs per Day:</p>
+            <p>
+              {Number.parseInt(prodCostEquationOneBoxThree) * 6 +
+                Number.parseInt(prodCostEquationTwoBoxFour)}
+            </p>
+            <p>Revenue per Day:</p>
+            <p>{Number.parseInt(revEquationTwoBoxThree) * 6}</p>
+            <p>Profit per Day:</p>
+            <p>
+              {Number.parseInt(revEquationTwoBoxThree) * 6 -
+                (Number.parseInt(prodCostEquationOneBoxThree) * 6 +
+                  Number.parseInt(prodCostEquationTwoBoxFour))}
+            </p>
+          </div>
+        </div>
+      );
+    }
+  };
+
   return (
-    <div>
-      <div className="flex flex-cols-3 border-2 border-bottom border-dashed border-black p-12">
+    <div className="flex flex-col p-12">
+      <div className="flex justify-evenly border-2 border-bottom border-dashed border-black p-12">
         <img
           className="object-left object-contain h-28"
           src={
@@ -86,93 +278,26 @@ export default function FoodTruck(props) {
           }
         />
       </div>
-
-      <div className="grid grid-cols-2 p-4">
-        <div className="flex items-center">
-          <p className="col-span-3 text-black text-2xl">
-            You have been saving money for several years in hopes of starting
-            your very own food truck. Let's walk through all the things you'll
-            need to start your new food truck business and see whether you have
-            saved enough money!
-          </p>
+      <div className="flex flex-row">
+        <div className="w-2/3">{getLeftComponent(stage)}</div>
+        <div className="w-1/3 border-8 border-pink-600">
+          {getProgressComponent(stage)}
         </div>
       </div>
-      <div className="grid grid-cols-2">
-        <BuildAFoodTruck
-          userName={userName}
-          setUserName={setUserName}
-          truckName={truckName}
-          setTruckName={setTruckName}
-          truckSlogan={truckSlogan}
-          setTruckSlogan={setTruckSlogan}
-          dollarAmount={dollarAmount}
-          setDollarAmount={setDollarAmount}
+      <div className="w-3/4 flex flex-row space-x-8 justify-center p-12">
+        <Button
+          backgroundColor="pink"
+          textColor="white"
+          label="Previous"
+          onClick={previousStage}
         />
 
-        <ChooseTruckType truck={truck} setTruck={onSelectedTruckChanged} />
-        <ChooseFoodType
-          selectedFood={food}
-          setSelectedFood={setFood}
-          selectedTruck={truck}
+        <Button
+          backgroundColor="pink"
+          textColor="white"
+          label="Next"
+          onClick={nextStage}
         />
-        <ChooseNumWorkers
-          selectedNumWorkers={selectedNumWorkers}
-          setSelectedNumWorkers={setSelectedNumWorkers}
-        />
-        <div className="p-16">
-          <TruckReferenceTable />{" "}
-        </div>
-        <div className="p-16">
-          <FoodReferenceTable />
-        </div>
-        <div className="p-16">
-          <OverviewOfSelections
-            selectedNumWorkers={selectedNumWorkers}
-            setSelectedNumWorkers={setSelectedNumWorkers}
-            selectedTruck={truck}
-            selectedFood={food}
-            minWage={minWage}
-          />
-        </div>
-        <div className="p-16">
-          <RevenueEquation
-            selectedNumWorkers={selectedNumWorkers}
-            selectedFood={food}
-            equationBoxOne={equationBoxOne}
-            setEquationBoxOne={setEquationBoxOne}
-            equationBoxTwo={equationBoxTwo}
-            setEquationBoxTwo={setEquationBoxTwo}
-            equationBoxThree={equationBoxThree}
-            setEquationBoxThree={setEquationBoxThree}
-            revEquationTwoBoxOne={revEquationTwoBoxOne}
-            setRevEquationTwoBoxOne={setRevEquationTwoBoxOne}
-            revEquationTwoBoxTwo={revEquationTwoBoxTwo}
-            setRevEquationTwoBoxTwo={setRevEquationTwoBoxTwo}
-            revEquationTwoBoxThree={revEquationTwoBoxThree}
-            setRevEquationTwoBoxThree={setRevEquationTwoBoxThree}
-          />
-        </div>
-        <div className="p-16">
-          <ProdCostEquation
-            selectedFood={food}
-            selectedTruck={truck}
-            selectedNumWorkers={selectedNumWorkers}
-            prodCostEquationOneBoxOne={prodCostEquationOneBoxOne}
-            setProdCostEquationOneBoxOne={setProdCostEquationOneBoxOne}
-            prodCostEquationOneBoxTwo={prodCostEquationOneBoxTwo}
-            setProdCostEquationOneBoxTwo={setProdCostEquationOneBoxTwo}
-            prodCostEquationOneBoxThree={prodCostEquationOneBoxThree}
-            setProdCostEquationOneBoxThree={setProdCostEquationOneBoxThree}
-            prodCostEquationTwoBoxOne={prodCostEquationTwoBoxOne}
-            setProdCostEquationTwoBoxOne={setProdCostEquationTwoBoxOne}
-            prodCostEquationTwoBoxTwo={prodCostEquationTwoBoxTwo}
-            setProdCostEquationTwoBoxTwo={setProdCostEquationTwoBoxTwo}
-            prodCostEquationTwoBoxThree={prodCostEquationTwoBoxThree}
-            setProdCostEquationTwoBoxThree={setProdCostEquationTwoBoxThree}
-            prodCostEquationTwoBoxFour={prodCostEquationTwoBoxFour}
-            setProdCostEquationTwoBoxFour={setProdCostEquationTwoBoxFour}
-          />
-        </div>
       </div>
     </div>
   );

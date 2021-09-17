@@ -11,7 +11,7 @@ const ChooseNumWorkers = ({
 }: ChooseNumWorkersProps) => {
   return (
     <div className="flex flex-col border-2 border-black border-dashed p-4">
-      <h1 className="text-4xl text-black bold p-4">
+      <h1 className="text-4xl text-black bold p-4 mb-8">
         How many workers do you want to employ?
       </h1>
       <label className="flex flex-row space-x-8 items-center p-4">

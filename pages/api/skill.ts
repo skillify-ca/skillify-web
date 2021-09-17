@@ -9,6 +9,7 @@ export enum Topic {
   SUBTRACTION = "subtraction",
   MULTIPLICATION = "multiplication",
   DIVISION = "division",
+  FINANCE = "finance",
 }
 
 export enum Grade {
