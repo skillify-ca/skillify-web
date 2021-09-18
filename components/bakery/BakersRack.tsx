@@ -34,7 +34,7 @@ const BakersRack = () => {
           fraction that is equivalent.
         </div>
       </div>
-      <table className={"table-fixed mx-16"}>
+      <table className={"table-fixed mx-16 text-xl"}>
         <thead
           className={
             "border border-collapse border-black bg-green-200 text-center"
@@ -58,22 +58,142 @@ const BakersRack = () => {
           </th>
         </thead>
         <tbody className={"text-center border border-collapse border-black"}>
-          <tr className={"border border-black"}>
+          <tr className={"border border-black h-12"}>
             <td className={"border border-black"}> CUPCAKES </td>
             <td className={"border border-black"}> 24/126</td>
-            <td className={"grid grid-cols-12"}>
-              <input
-                className={
-                  "flex justify-center col-start-4 col-span-2 bg-yellow-100 "
-                }
-              ></input>
-              <div className={"col-start-7 col-span-1  text-center "}>/</div>
-              <input
-                className={
-                  "flex justify-centern col-start-9 col-span-2 bg-yellow-100  "
-                }
-              ></input>
+            <td>
+              <div className={"grid grid-cols-12"}>
+                <input
+                  className={
+                    "flex justify-center col-start-4 col-span-2 bg-yellow-100 "
+                  }
+                ></input>
+                <div className={"col-start-7 col-span-1  text-center "}>/</div>
+                <input
+                  className={
+                    "flex justify-centern col-start-9 col-span-2 bg-yellow-100  "
+                  }
+                ></input>
+              </div>
             </td>
+            <td className={"border border-black"}>
+              <div className={"grid grid-cols-12"}>
+                <input
+                  className={"col-start-4 col-span-2 bg-yellow-100"}
+                ></input>
+                <div className={"col-start-7 col-span-1  text-center "}>/</div>
+                <input
+                  className={
+                    "flex justify-centern col-start-9 col-span-2 bg-yellow-100  "
+                  }
+                ></input>
+              </div>
+            </td>
+          </tr>
+          <tr className={"border border-black h-12"}>
+            <td className={"border border-black"}> BREAD </td>
+            <td className={"border border-black"}> 6/126</td>
+            <td>
+              <div className={"grid grid-cols-12"}>
+                <input
+                  className={
+                    "flex justify-center col-start-4 col-span-2 bg-yellow-100 "
+                  }
+                ></input>
+                <div className={"col-start-7 col-span-1  text-center "}>/</div>
+                <input
+                  className={
+                    "flex justify-centern col-start-9 col-span-2 bg-yellow-100  "
+                  }
+                ></input>
+              </div>
+            </td>
+            <td className={"border border-black"}>
+              <div className={"grid grid-cols-12"}>
+                <input
+                  className={"col-start-4 col-span-2 bg-yellow-100"}
+                ></input>
+                <div className={"col-start-7 col-span-1  text-center "}>/</div>
+                <input
+                  className={
+                    "flex justify-centern col-start-9 col-span-2 bg-yellow-100  "
+                  }
+                ></input>
+              </div>
+            </td>
+          </tr>
+          <tr className={"border border-black h-12"}>
+            <td className={"border border-black"}> PIE </td>
+            <td className={"border border-black"}> 12/126</td>
+            <td>
+              <div className={"grid grid-cols-12"}>
+                <input
+                  className={
+                    "flex justify-center col-start-4 col-span-2 bg-yellow-100 "
+                  }
+                ></input>
+                <div className={"col-start-7 col-span-1  text-center "}>/</div>
+                <input
+                  className={
+                    "flex justify-centern col-start-9 col-span-2 bg-yellow-100  "
+                  }
+                ></input>
+              </div>
+            </td>
+            <td className={"border border-black"}>
+              <div className={"grid grid-cols-12"}>
+                <input
+                  className={"col-start-4 col-span-2 bg-yellow-100"}
+                ></input>
+                <div className={"col-start-7 col-span-1  text-center "}>/</div>
+                <input
+                  className={
+                    "flex justify-centern col-start-9 col-span-2 bg-yellow-100  "
+                  }
+                ></input>
+              </div>
+            </td>
+          </tr>
+          <tr className={"border border-black h-12"}>
+            <td className={"border border-black"}> BROWNIES </td>
+            <td className={"border border-black"}> /126</td>
+            <td className={"border border-black"}> 2/7</td>
+            <td className={"border border-black"}>
+              <div className={"grid grid-cols-12"}>
+                <input
+                  className={"col-start-4 col-span-2 bg-yellow-100"}
+                ></input>
+                <div className={"col-start-7 col-span-1  text-center "}>/</div>
+                <input
+                  className={
+                    "flex justify-centern col-start-9 col-span-2 bg-yellow-100  "
+                  }
+                ></input>
+              </div>
+            </td>
+          </tr>
+          <tr className={"border border-black h-12"}>
+            <td className={"border border-black"}> CAKES </td>
+            <td className={"border border-black"}> /126</td>
+            <td className={"border border-black"}> 1/21</td>
+            <td className={"border border-black"}>
+              <div className={"grid grid-cols-12"}>
+                <input
+                  className={"col-start-4 col-span-2 bg-yellow-100"}
+                ></input>
+                <div className={"col-start-7 col-span-1  text-center "}>/</div>
+                <input
+                  className={
+                    "flex justify-centern col-start-9 col-span-2 bg-yellow-100  "
+                  }
+                ></input>
+              </div>
+            </td>
+          </tr>
+          <tr className={"border border-black h-12"}>
+            <td className={"border border-black"}> COOKIES </td>
+            <td className={"border border-black"}> /126</td>
+            <td className={"border border-black"}> 1/3</td>
             <td className={"border border-black"}>
               <div className={"grid grid-cols-12"}>
                 <input
