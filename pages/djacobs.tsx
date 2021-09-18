@@ -74,6 +74,7 @@ export default function djacobs(props) {
   const [stage, setStage] = useState(Stage.START);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [groupName, setGroupName] = useState<string>();
+  const [studentName, setStudentName] = useState<string>();
 
   const onSubmit = (guess: GuessData) => {
     console.log(guess);
@@ -86,6 +87,11 @@ export default function djacobs(props) {
   const onGroupNameChange = (currentGroupName: string) => {
     const GN = currentGroupName;
     setGroupName(GN);
+  };
+
+  const onStudentNameChange = (currentStudentName: string) => {
+    const SN = currentStudentName;
+    setStudentName(SN);
   };
 
   const backToPrevious = () => {
@@ -137,6 +143,15 @@ export default function djacobs(props) {
                   className="p-4 text-lg"
                   value={groupName}
                   onChange={(e) => onGroupNameChange(e.target.value)}
+                />
+              </div>
+              <div className="text-center">
+                <label>Student Names</label>
+                <input
+                  className="p-4 text-lg"
+                  placeholder="(seperate by ,)"
+                  value={studentName}
+                  onChange={(e) => onStudentNameChange(e.target.value)}
                 />
               </div>
               <Button
