@@ -95,6 +95,7 @@ const AssignmentCreator = (data) => {
           questions={questions}
           setQuestions={setQuestions}
           onBackClick={gotoChooseSkills}
+          data={data}
         />
       );
       break;

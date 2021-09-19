@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const BuildingABakeryA = () => {
   return (
-    <div className={"mt-8"}>
+    <div className={"mt-8 mb-16"}>
       <div
         className={
           "flex justify-center font-bold text-red-200 text-6xl border-collapse"
