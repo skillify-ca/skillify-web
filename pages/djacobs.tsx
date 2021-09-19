@@ -75,6 +75,7 @@ export default function djacobs(props) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [groupName, setGroupName] = useState<string>();
   const [studentName, setStudentName] = useState<string>();
+  const [guesses, setGuess] = useState<GuessData[]>([]);
 
   const onSubmit = (guess: GuessData) => {
     console.log(guess);
@@ -101,7 +102,7 @@ export default function djacobs(props) {
       setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1));
     }
   };
-
+  //Future thing: Use this function to add the guessData from each question page into the guessDataArray
   const nextQuestion = () => {
     setCurrentQuestionIndex(
       Math.min(questionData.length - 1, currentQuestionIndex + 1)
