@@ -86,7 +86,7 @@ const BakersRackB = () => {
             *Challenge: Use only the numbers from the "Equivalent Fractions"*
           </div>
           <div className={"grid grid-cols-2 mt-4"}>
-            <div className={"col-start-1 col-span-1"}>
+            <div className={"col-start-1 col-span-1 mx-16"}>
               <div className={"text-red-300 ml-4 text-left text-xl mt-8"}>
                 {" "}
                 Pie + Bread =
@@ -108,7 +108,7 @@ const BakersRackB = () => {
               </div>
               <input className={"bg-yellow-100"}></input>
             </div>
-            <div className={"col-start-2 col-span-1"}>
+            <div className={"col-start-2 col-span-1 mx-16"}>
               {" "}
               <div className={"col-start-1 col-span-1"}>
                 <div className={"text-red-300 ml-4 text-left text-xl mt-8"}>
