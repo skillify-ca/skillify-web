@@ -3,23 +3,28 @@ import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Button } from "../ui/Button";
 
+//Future component, name: TypeAnswerQuestion
 const Q2 = (displayQuestion, nextQuestion) => {
   const [guessString, setGuessString] = useState<string>("");
+
+  const answer = "60";
 
   const onGuessChanged = (currentGuess: string) => {
     const newGuess = currentGuess;
     setGuessString(newGuess);
   };
 
-  /*
-  Want to create a guessType object here based off the guessString where if the answer is right, will switch the isCorrect to true and false if incorrect
-  This will be used in the future by nextQuestion function, which will add the guessData to the guessDataArray in djacobs.tsx
-  And do this for all further questions as well
-  const guessData : GuessData = (guess: String, isCorrect: null){
-    guessData.guess = guess
-    guessData.isCorrect 
-  }
-  */
+  const onSubmit = () => {
+    const guess: GuessData = {
+      guess: guessString,
+      isCorrect: guessString == answer,
+    };
+    console.log(guess);
+    //Pass this guessData object into nextQuestion
+    nextQuestion();
+  };
+
+  //nextQuestion
 
   return (
     <React.Fragment>
@@ -38,7 +43,7 @@ const Q2 = (displayQuestion, nextQuestion) => {
           label="Submit"
           backgroundColor="blue"
           textColor="white"
-          onClick={nextQuestion}
+          onClick={onSubmit}
         />
       </div>
     </React.Fragment>

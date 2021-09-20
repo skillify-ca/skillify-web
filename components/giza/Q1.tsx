@@ -6,7 +6,7 @@ const Q1 = (displayQuestion, nextQuestion) => {
   const onSubmit = (guess: GuessData) => {
     console.log(guess);
     //Pass this guessData object into nextQuestion
-    nextQuestion;
+    nextQuestion();
   };
   return (
     <React.Fragment>

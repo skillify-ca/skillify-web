@@ -104,6 +104,8 @@ export default function djacobs(props) {
   };
   //Future thing: Use this function to add the guessData from each question page into the guessDataArray
   const nextQuestion = () => {
+    //guesses[currentQuestionIndex] = guess
+    //another function to count the amounts of trues / total question length
     setCurrentQuestionIndex(
       Math.min(questionData.length - 1, currentQuestionIndex + 1)
     );
