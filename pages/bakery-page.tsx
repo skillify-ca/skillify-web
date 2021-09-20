@@ -5,17 +5,64 @@ import BakersRack from "../components/bakery/BakersRack";
 
 import BakingGma from "../components/bakery/BakingGma";
 import BakersRackB from "../components/bakery/BakersRackB";
+import { STAGE } from "./games";
+import { Button } from "../components/ui/Button";
 
-const BakeryPage = () => {
+export default function Bakery(props) {
+  enum STAGE {
+    BakeryInstructions,
+    BuildingABakeryA,
+    BakersRack,
+    BakersRackB,
+    BakingGma,
+  }
+
+  const [stage, setStage] = useState(STAGE.BakeryInstructions);
+
+  const previousStage = () => {
+    if (stage > STAGE.BakeryInstructions) {
+      setStage(stage - 1);
+    }
+  };
+
+  const nextStage = () => {
+    if (stage < STAGE.BakingGma) {
+      setStage(stage + 1);
+    }
+  };
+
+  const getComponent = (stage: STAGE) => {
+    if (stage == STAGE.BakeryInstructions) {
+      return <BakeryInstructions />;
+    } else if ((stage = STAGE.BuildingABakeryA)) {
+      return <BuildingABakeryA />;
+    } else if ((stage = STAGE.BakersRack)) {
+      return <BakersRack />;
+    } else if ((stage = STAGE.BakersRackB)) {
+      return <BakersRackB />;
+    } else if ((stage = STAGE.BakingGma)) {
+      return <BakingGma />;
+    }
+  };
+
   return (
     <div className={"bg-white"}>
-      <BakeryInstructions />
-      <BuildingABakeryA />
-      <BakersRack />
-      <BakersRackB />
-      <BakingGma />;
+      <div>{getComponent(stage)}</div>
+      <div className="w-3/4 flex flex-row space-x-8 justify-center p-12">
+        <Button
+          backgroundColor="pink"
+          textColor="white"
+          label="Previous"
+          onClick={previousStage}
+        />
+
+        <Button
+          backgroundColor="pink"
+          textColor="white"
+          label="Next"
+          onClick={nextStage}
+        />
+      </div>
     </div>
   );
-};
-
-export default BakeryPage;
+}
