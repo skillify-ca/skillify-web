@@ -1,31 +1,63 @@
 import { generateQuestionForSkill } from "../questionGenerator"
 import { Skill } from "../skill"
 
-export const skillsArray = [
-
+export const fourthGradeSkills = [
     Skill.ADDITION_4_DIGIT,
-    Skill.ADDITION_5_DIGIT,
-    Skill.ADDITION_6_DIGIT,
+    Skill.ADDITION_4_DIGIT,
+    Skill.ADDITION_4_DIGIT,
     Skill.SUBTRACTION_4_DIGIT,
-    Skill.SUBTRACTION_5_DIGIT,
-    Skill.SUBTRACTION_6_DIGIT,
-    Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT,
-    Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT,
-    Skill.MULTIPLY_THREE_DIGIT_BY_TENTH,
-    Skill.DIVISION_THREE_DIGIT_BY_TENTH,
-    Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT,
-    Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT
-
+    Skill.SUBTRACTION_4_DIGIT,
+    Skill.SUBTRACTION_4_DIGIT,
 ]
 
-const getQuestion = () => {
+export const getFourthGradeQuestion = () => {
 
-    const questions = skillsArray.map((skill) => (generateQuestionForSkill(skill)))
+    const fourthGradeQuestions = fourthGradeSkills.map((skill) => (generateQuestionForSkill(skill)))
 
-    return questions
+    return fourthGradeQuestions
 
 }
 
-export default getQuestion;
+export const fifthGradeSkills = [
+    Skill.ADDITION_5_DIGIT,
+    Skill.ADDITION_5_DIGIT,
+    Skill.ADDITION_5_DIGIT,
+    Skill.SUBTRACTION_5_DIGIT,
+    Skill.SUBTRACTION_5_DIGIT,
+    Skill.SUBTRACTION_5_DIGIT
+]
 
-// 6 addition, 6 substraction, 3 by tenth, 
+export const getFifthGradeQuestion = () => {
+
+    const fifthGradeQuestions = fifthGradeSkills.map((skill) => (generateQuestionForSkill(skill)))
+
+    return fifthGradeQuestions
+}
+
+export const sixthGradeSkills = [
+    Skill.ADDITION_6_DIGIT,
+    Skill.ADDITION_6_DIGIT,
+    Skill.ADDITION_6_DIGIT,
+    Skill.SUBTRACTION_6_DIGIT,
+    Skill.SUBTRACTION_6_DIGIT,
+    Skill.SUBTRACTION_6_DIGIT
+]
+
+export const getSixthGradeQuestion = () => {
+
+    const sixthGradeQuestions = sixthGradeSkills.map((skill) => (generateQuestionForSkill(skill)))
+
+    return sixthGradeQuestions
+}
+
+export default getFourthGradeQuestion;
+
+// FOR VITHUSHAN: I'm sure I can include the arrays in one functional component, but I thought about trying something here
+
+
+// PSUEDO CODE
+
+// student starts off with the Grade 4 array - check
+// if that student answers the questions correctly, they move to grade 5, up until grade 6
+// if that student answers the question incorrectly, they stay on grade 4, if not, they move down a grade
+// if that student finishes the addition section, they go back to grade 4 for next type of questions

@@ -16,7 +16,7 @@ import {
 } from "./api/diagnostic/diagnosticGrader";
 import { generateQuestionForSkill } from "./api/questionGenerator";
 import Navbar from "../components/Navbar";
-import getQuestion, { skillsArray } from "./api/diagnostic/juniorDiagnosticQuestionGenerator";
+import getFourthGradeQuestion, { getFifthGradeQuestion, getSixthGradeQuestion, fourthGradeSkills, fifthGradeSkills, sixthGradeSkills } from "./api/diagnostic/juniorDiagnosticQuestionGenerator";
 
 enum STAGE {
   CREATE,
@@ -126,8 +126,15 @@ const Diagnostic = () => {
       await delay(150);
       setOpacity(1);
 
+      // FOR VITHUSHAN: this is where I expect the conditional rendering to take place, but please let me know how I should proceed. I'm hitting a block.
+
       if (gradeRange == "Junior") {
         setCurrentJuniorQuestion(currentJuniorQuestion + 1)
+
+        if (getFourthGradeQuestion && guessData.isCorrect) {
+          setJuniorDiagnosticQuestions(getFifthGradeQuestion)
+        }
+
       } else {
         // Primary grades questions
         const newQuestionsLeftInTopic =
@@ -173,7 +180,7 @@ const Diagnostic = () => {
   };
 
   useEffect(() => {
-    setJuniorDiagnosticQuestions(getQuestion())
+    setJuniorDiagnosticQuestions(getFourthGradeQuestion)
   }, []);
 
   useEffect(() => {
