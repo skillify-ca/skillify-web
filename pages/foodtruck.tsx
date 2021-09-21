@@ -415,3 +415,5 @@ export default function FoodTruck(props) {
     </div>
   );
 }
+
+FoodTruck.auth = true;
