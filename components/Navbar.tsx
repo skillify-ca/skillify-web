@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-import { signIn, useSession } from "next-auth/react";
-import { Session } from "next-auth";
+import { useSession } from "next-auth/react";
 
 export default function Navbar() {
   const { data: session, status } = useSession()
