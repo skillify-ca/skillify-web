@@ -77,4 +77,6 @@ const FinanceProfile = () => {
   );
 };
 
+FinanceProfile.auth = true;
+
 export default FinanceProfile;
