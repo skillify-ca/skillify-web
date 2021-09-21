@@ -6,5 +6,4 @@ export const unlockedTopics = [
   { title: "Subtraction", image: "/images/skills/sub.png" },
   { title: "Multiplication", image: "/images/skills/multi.png" },
   { title: "Division", image: "/images/skills/div.png" },
-  { title: "Money", image: "/images/skills/graph.png" },
 ];
