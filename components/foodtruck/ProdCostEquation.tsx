@@ -46,91 +46,47 @@ const ProdCostEquation = ({
   prodCostEquationTwoBoxFour,
   setProdCostEquationTwoBoxFour,
 }: ProdCostEquationProps) => {
-  const validateProdCostEquationOneBoxOne = () => {
-    return {
-      isCorrect:
-        Number.parseInt(prodCostEquationOneBoxOne) ===
-        selectedFood.qtyProducedPerWorkerHour *
-          Number.parseInt(selectedNumWorkers),
-      value:
-        selectedFood.qtyProducedPerWorkerHour *
-        Number.parseInt(selectedNumWorkers),
-    };
-  };
+  // Equation 1
+  const platesPerHour =
+    selectedFood.qtyProducedPerWorkerHour * Number.parseInt(selectedNumWorkers);
+  const costPerPlate = selectedFood.unitCost;
+  const totalIngredientCostPerDay =
+    platesPerHour * costPerPlate * operatingHours;
 
-  const validateProdCostEquationOneBoxTwo = () => {
-    return {
-      isCorrect:
-        Number.parseInt(prodCostEquationOneBoxTwo) === selectedFood.unitCost,
-      value: selectedFood.unitCost,
-    };
-  };
+  // Equation 2
+  const dailyRentalCost = selectedTruck.fixedCost;
+  const hourlyOperatingCost = selectedTruck.variableCost;
+  const truckCostPerDay =
+    dailyRentalCost + hourlyOperatingCost * operatingHours;
 
-  const validateProdCostEquationOneBoxThree = () => {
-    return {
-      isCorrect:
-        Number.parseInt(prodCostEquationOneBoxThree) === operatingHours,
-      value: operatingHours,
-    };
-  };
+  const validateProdCostEquationOneBoxOne = () =>
+    Number.parseInt(prodCostEquationOneBoxOne) === platesPerHour;
 
-  const validateProdCostEquationOneAnswer = () => {
-    return {
-      isCorrect:
-        Number.parseInt(prodCostEquationOneBoxFour) ===
-        validateProdCostEquationOneBoxOne().value *
-          validateProdCostEquationOneBoxTwo().value *
-          validateProdCostEquationOneBoxThree().value,
-      value:
-        validateProdCostEquationOneBoxOne().value *
-        validateProdCostEquationOneBoxTwo().value *
-        validateProdCostEquationOneBoxThree().value,
-    };
-  };
+  const validateProdCostEquationOneBoxTwo = () =>
+    Number.parseInt(prodCostEquationOneBoxTwo) === costPerPlate;
 
-  const validateProdCostEquationTwoBoxOne = () => {
-    return {
-      isCorrect:
-        Number.parseInt(prodCostEquationTwoBoxOne) === selectedTruck.fixedCost,
-      value: selectedTruck.fixedCost,
-    };
-  };
+  const validateProdCostEquationOneBoxThree = () =>
+    Number.parseInt(prodCostEquationOneBoxThree) === operatingHours;
 
-  const validateProdCostEquationTwoBoxTwo = () => {
-    return {
-      isCorrect:
-        Number.parseInt(prodCostEquationTwoBoxTwo) ===
-        selectedTruck.variableCost,
-      value: selectedTruck.variableCost,
-    };
-  };
+  const validateProdCostEquationOneAnswer = () =>
+    Number.parseInt(prodCostEquationOneBoxFour) === totalIngredientCostPerDay;
 
-  const validateProdCostEquationTwoBoxThree = () => {
-    return {
-      isCorrect:
-        Number.parseInt(prodCostEquationTwoBoxThree) === operatingHours,
-      value: operatingHours,
-    };
-  };
+  const validateProdCostEquationTwoBoxOne = () =>
+    Number.parseInt(prodCostEquationTwoBoxOne) === dailyRentalCost;
 
-  const validateProdCostEquationTwoAnswer = () => {
-    return {
-      isCorrect:
-        Number.parseInt(prodCostEquationTwoBoxFour) ===
-        validateProdCostEquationTwoBoxOne().value +
-          validateProdCostEquationTwoBoxTwo().value *
-            validateProdCostEquationTwoBoxThree().value,
-      value:
-        validateProdCostEquationTwoBoxOne().value +
-        validateProdCostEquationTwoBoxTwo().value *
-          validateProdCostEquationTwoBoxThree().value,
-    };
-  };
+  const validateProdCostEquationTwoBoxTwo = () =>
+    Number.parseInt(prodCostEquationTwoBoxTwo) === hourlyOperatingCost;
+
+  const validateProdCostEquationTwoBoxThree = () =>
+    Number.parseInt(prodCostEquationTwoBoxThree) === operatingHours;
+
+  const validateProdCostEquationTwoAnswer = () =>
+    Number.parseInt(prodCostEquationTwoBoxFour) === truckCostPerDay;
 
   const validateComponent = () => {
     return (
-      validateProdCostEquationOneAnswer().isCorrect &&
-      validateProdCostEquationTwoAnswer().isCorrect
+      validateProdCostEquationOneAnswer() &&
+      validateProdCostEquationTwoAnswer()
     );
   };
 
@@ -183,7 +139,7 @@ const ProdCostEquation = ({
         <input
           className={equationContainerCSS(
             prodCostEquationOneBoxOne,
-            validateProdCostEquationOneBoxOne().isCorrect
+            validateProdCostEquationOneBoxOne()
           )}
           value={prodCostEquationOneBoxOne}
           onChange={(e) => {
@@ -196,7 +152,7 @@ const ProdCostEquation = ({
         <input
           className={equationContainerCSS(
             prodCostEquationOneBoxTwo,
-            validateProdCostEquationOneBoxTwo().isCorrect
+            validateProdCostEquationOneBoxTwo()
           )}
           value={prodCostEquationOneBoxTwo}
           onChange={(e) => setProdCostEquationOneBoxTwo(e.target.value)}
@@ -206,7 +162,7 @@ const ProdCostEquation = ({
         <input
           className={equationContainerCSS(
             prodCostEquationOneBoxThree,
-            validateProdCostEquationOneBoxThree().isCorrect
+            validateProdCostEquationOneBoxThree()
           )}
           value={prodCostEquationOneBoxThree}
           onChange={(e) => setProdCostEquationOneBoxThree(e.target.value)}
@@ -216,7 +172,7 @@ const ProdCostEquation = ({
         <input
           className={equationContainerCSS(
             prodCostEquationOneBoxFour,
-            validateProdCostEquationOneAnswer().isCorrect
+            validateProdCostEquationOneAnswer()
           )}
           value={prodCostEquationOneBoxFour}
           onChange={(e) => setProdCostEquationOneBoxFour(e.target.value)}
@@ -239,7 +195,7 @@ const ProdCostEquation = ({
         <input
           className={equationContainerCSS(
             prodCostEquationTwoBoxOne,
-            validateProdCostEquationTwoBoxOne().isCorrect
+            validateProdCostEquationTwoBoxOne()
           )}
           value={prodCostEquationTwoBoxOne}
           onChange={(e) => {
@@ -252,7 +208,7 @@ const ProdCostEquation = ({
         <input
           className={equationContainerCSS(
             prodCostEquationTwoBoxTwo,
-            validateProdCostEquationTwoBoxTwo().isCorrect
+            validateProdCostEquationTwoBoxTwo()
           )}
           value={prodCostEquationTwoBoxTwo}
           onChange={(e) => setProdCostEquationTwoBoxTwo(e.target.value)}
@@ -262,7 +218,7 @@ const ProdCostEquation = ({
         <input
           className={equationContainerCSS(
             prodCostEquationTwoBoxThree,
-            validateProdCostEquationTwoBoxThree().isCorrect
+            validateProdCostEquationTwoBoxThree()
           )}
           value={prodCostEquationTwoBoxThree}
           onChange={(e) => setProdCostEquationTwoBoxThree(e.target.value)}
@@ -272,7 +228,7 @@ const ProdCostEquation = ({
         <input
           className={equationContainerCSS(
             prodCostEquationTwoBoxFour,
-            validateProdCostEquationTwoAnswer().isCorrect
+            validateProdCostEquationTwoAnswer()
           )}
           value={prodCostEquationTwoBoxFour}
           onChange={(e) => setProdCostEquationTwoBoxFour(e.target.value)}
