@@ -55,97 +55,49 @@ const LaborCostEquation = ({
   laborCostEquationTwoBoxFour,
   setLaborCostEquationTwoBoxFour,
 }: LaborCostEquationProps) => {
-  const validateLaborCostEquationOneBoxOne = () => {
-    return {
-      isCorrect:
-        Number.parseInt(laborCostEquationOneBoxOne) ===
-        Number.parseInt(selectedNumWorkers),
-      value: Number.parseInt(selectedNumWorkers),
-    };
-  };
+  // Equation 1
+  const numberOfWorkers = Number.parseInt(selectedNumWorkers);
+  const totalWagesPerDay = numberOfWorkers * minimumWage * operatingHours;
 
-  const validateLaborCostEquationOneBoxTwo = () => {
-    return {
-      isCorrect: Number.parseInt(laborCostEquationOneBoxTwo) === minimumWage,
-      value: minimumWage,
-    };
-  };
+  // Equation 2
+  const dailyIngredientCost =
+    selectedFood.qtyProducedPerWorkerHour *
+    Number.parseInt(selectedNumWorkers) *
+    operatingHours *
+    selectedFood.unitCost;
+  const dailyTruckCost =
+    selectedTruck.fixedCost + selectedTruck.variableCost * operatingHours;
+  const totalCostsPerDay =
+    dailyIngredientCost + dailyTruckCost + totalWagesPerDay;
 
-  const validateLaborCostEquationOneBoxThree = () => {
-    return {
-      isCorrect:
-        Number.parseInt(laborCostEquationOneBoxThree) === operatingHours,
-      value: operatingHours,
-    };
-  };
+  const validateLaborCostEquationOneBoxOne = () =>
+    Number.parseInt(laborCostEquationOneBoxOne) === numberOfWorkers;
 
-  const validateLaborCostEquationOneAnswer = () => {
-    return {
-      isCorrect:
-        Number.parseInt(laborCostEquationOneBoxFour) ===
-        validateLaborCostEquationOneBoxOne().value *
-          validateLaborCostEquationOneBoxTwo().value *
-          validateLaborCostEquationOneBoxThree().value,
-      value:
-        validateLaborCostEquationOneBoxOne().value *
-        validateLaborCostEquationOneBoxTwo().value *
-        validateLaborCostEquationOneBoxThree().value,
-    };
-  };
+  const validateLaborCostEquationOneBoxTwo = () =>
+    Number.parseInt(laborCostEquationOneBoxTwo) === minimumWage;
 
-  const validateLaborCostEquationTwoBoxOne = () => {
-    return {
-      isCorrect:
-        Number.parseInt(laborCostEquationTwoBoxOne) ===
-        selectedFood.qtyProducedPerWorkerHour *
-          Number.parseInt(selectedNumWorkers) *
-          operatingHours *
-          selectedFood.unitCost,
-      value:
-        selectedFood.qtyProducedPerWorkerHour *
-        Number.parseInt(selectedNumWorkers) *
-        operatingHours *
-        selectedFood.unitCost,
-    };
-  };
+  const validateLaborCostEquationOneBoxThree = () =>
+    Number.parseInt(laborCostEquationOneBoxThree) === operatingHours;
 
-  const validateLaborCostEquationTwoBoxTwo = () => {
-    return {
-      isCorrect:
-        Number.parseInt(laborCostEquationTwoBoxTwo) ===
-        selectedTruck.fixedCost + selectedTruck.variableCost * operatingHours,
-      value:
-        selectedTruck.fixedCost + selectedTruck.variableCost * operatingHours,
-    };
-  };
+  const validateLaborCostEquationOneAnswer = () =>
+    Number.parseInt(laborCostEquationOneBoxFour) === totalWagesPerDay;
 
-  const validateLaborCostEquationTwoBoxThree = () => {
-    return {
-      isCorrect:
-        Number.parseInt(laborCostEquationTwoBoxThree) ===
-        validateLaborCostEquationOneAnswer().value,
-      value: validateLaborCostEquationOneAnswer().value,
-    };
-  };
+  const validateLaborCostEquationTwoBoxOne = () =>
+    Number.parseInt(laborCostEquationTwoBoxOne) === dailyIngredientCost;
 
-  const validateLaborCostEquationTwoAnswer = () => {
-    return {
-      isCorrect:
-        Number.parseInt(laborCostEquationTwoBoxFour) ===
-        validateLaborCostEquationTwoBoxOne().value +
-          validateLaborCostEquationTwoBoxTwo().value +
-          validateLaborCostEquationTwoBoxThree().value,
-      value:
-        validateLaborCostEquationTwoBoxOne().value +
-        validateLaborCostEquationTwoBoxTwo().value +
-        validateLaborCostEquationTwoBoxThree().value,
-    };
-  };
+  const validateLaborCostEquationTwoBoxTwo = () =>
+    Number.parseInt(laborCostEquationTwoBoxTwo) === dailyTruckCost;
+
+  const validateLaborCostEquationTwoBoxThree = () =>
+    Number.parseInt(laborCostEquationTwoBoxThree) === totalWagesPerDay;
+
+  const validateLaborCostEquationTwoAnswer = () =>
+    Number.parseInt(laborCostEquationTwoBoxFour) === totalCostsPerDay;
 
   const validateComponent = () => {
     return (
-      validateLaborCostEquationOneAnswer().isCorrect &&
-      validateLaborCostEquationTwoAnswer().isCorrect
+      validateLaborCostEquationOneAnswer() &&
+      validateLaborCostEquationTwoAnswer()
     );
   };
 
@@ -196,7 +148,7 @@ const LaborCostEquation = ({
         <input
           className={equationContainerCSS(
             laborCostEquationOneBoxOne,
-            validateLaborCostEquationOneBoxOne().isCorrect
+            validateLaborCostEquationOneBoxOne()
           )}
           value={laborCostEquationOneBoxOne}
           onChange={(e) => {
@@ -209,7 +161,7 @@ const LaborCostEquation = ({
         <input
           className={equationContainerCSS(
             laborCostEquationOneBoxTwo,
-            validateLaborCostEquationOneBoxTwo().isCorrect
+            validateLaborCostEquationOneBoxTwo()
           )}
           value={laborCostEquationOneBoxTwo}
           onChange={(e) => setLaborCostEquationOneBoxTwo(e.target.value)}
@@ -219,7 +171,7 @@ const LaborCostEquation = ({
         <input
           className={equationContainerCSS(
             laborCostEquationOneBoxThree,
-            validateLaborCostEquationOneBoxThree().isCorrect
+            validateLaborCostEquationOneBoxThree()
           )}
           value={laborCostEquationOneBoxThree}
           onChange={(e) => setLaborCostEquationOneBoxThree(e.target.value)}
@@ -229,7 +181,7 @@ const LaborCostEquation = ({
         <input
           className={equationContainerCSS(
             laborCostEquationOneBoxFour,
-            validateLaborCostEquationOneAnswer().isCorrect
+            validateLaborCostEquationOneAnswer()
           )}
           value={laborCostEquationOneBoxFour}
           onChange={(e) => setLaborCostEquationOneBoxFour(e.target.value)}
@@ -249,7 +201,7 @@ const LaborCostEquation = ({
         <input
           className={equationContainerCSS(
             laborCostEquationTwoBoxOne,
-            validateLaborCostEquationTwoBoxOne().isCorrect
+            validateLaborCostEquationTwoBoxOne()
           )}
           value={laborCostEquationTwoBoxOne}
           onChange={(e) => {
@@ -262,7 +214,7 @@ const LaborCostEquation = ({
         <input
           className={equationContainerCSS(
             laborCostEquationTwoBoxTwo,
-            validateLaborCostEquationTwoBoxTwo().isCorrect
+            validateLaborCostEquationTwoBoxTwo()
           )}
           value={laborCostEquationTwoBoxTwo}
           onChange={(e) => setLaborCostEquationTwoBoxTwo(e.target.value)}
@@ -272,7 +224,7 @@ const LaborCostEquation = ({
         <input
           className={equationContainerCSS(
             laborCostEquationTwoBoxThree,
-            validateLaborCostEquationTwoBoxThree().isCorrect
+            validateLaborCostEquationTwoBoxThree()
           )}
           value={laborCostEquationTwoBoxThree}
           onChange={(e) => setLaborCostEquationTwoBoxThree(e.target.value)}
@@ -282,7 +234,7 @@ const LaborCostEquation = ({
         <input
           className={equationContainerCSS(
             laborCostEquationTwoBoxFour,
-            validateLaborCostEquationTwoAnswer().isCorrect
+            validateLaborCostEquationTwoAnswer()
           )}
           value={laborCostEquationTwoBoxFour}
           onChange={(e) => setLaborCostEquationTwoBoxFour(e.target.value)}
