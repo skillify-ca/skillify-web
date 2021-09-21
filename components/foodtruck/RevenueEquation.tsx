@@ -38,11 +38,10 @@ const RevenueEquation = ({
   revEquationTwoBoxFour,
   setRevEquationTwoBoxFour,
 }: RevenueEquationProps) => {
-
   // Equation 1
   const platesPerWorkerPerHour = selectedFood.qtyProducedPerWorkerHour;
   const numberOfWorkers = Number.parseInt(selectedNumWorkers);
-  
+
   // Equation 1 and 2
   const platesPerHour = platesPerWorkerPerHour * numberOfWorkers;
 
@@ -51,59 +50,32 @@ const RevenueEquation = ({
   const hoursPerDay = operatingHours;
   const revenuePerDay = platesPerHour * pricePerPlate * hoursPerDay;
 
-  const validateRevEquationOneBoxOne = () => {
-    return {
-      isCorrect:
-        Number.parseInt(revEquationOneBoxOne) ===
-        selectedFood.qtyProducedPerWorkerHour,
-    };
-  };
+  const validateRevEquationOneBoxOne = () =>
+    Number.parseInt(revEquationOneBoxOne) ===
+    selectedFood.qtyProducedPerWorkerHour;
 
-  const validateRevEquationOneBoxTwo = () => {
-    return {
-      isCorrect:
-        Number.parseInt(revEquationOneBoxTwo) ===
-        Number.parseInt(selectedNumWorkers),
-    };
-  };
+  const validateRevEquationOneBoxTwo = () =>
+    Number.parseInt(revEquationOneBoxTwo) ===
+    Number.parseInt(selectedNumWorkers);
 
-  const validateQuestionOneAnswer = () => {
-    return {
-      isCorrect:
-        Number.parseInt(revEquationOneBoxThree) ===
-        platesPerWorkerPerHour * numberOfWorkers,
-    };
-  };
+  const validateQuestionOneAnswer = () =>
+    Number.parseInt(revEquationOneBoxThree) ===
+    platesPerWorkerPerHour * numberOfWorkers;
 
-  const validateRevEquationTwoBoxOne = () => {
-    return {
-      isCorrect: Number.parseInt(revEquationTwoBoxOne) === platesPerHour,
-    };
-  };
+  const validateRevEquationTwoBoxOne = () =>
+    Number.parseInt(revEquationTwoBoxOne) === platesPerHour;
 
-  const validateRevEquationTwoBoxTwo = () => {
-    return {
-      isCorrect: Number.parseInt(revEquationTwoBoxTwo) === pricePerPlate,
-    };
-  };
+  const validateRevEquationTwoBoxTwo = () =>
+    Number.parseInt(revEquationTwoBoxTwo) === pricePerPlate;
 
-  const validateRevEquationTwoBoxThree = () => {
-    return {
-      isCorrect: Number.parseInt(revEquationTwoBoxThree) === hoursPerDay,
-    };
-  };
+  const validateRevEquationTwoBoxThree = () =>
+    Number.parseInt(revEquationTwoBoxThree) === hoursPerDay;
 
-  const validateQuestionTwoAnswer = () => {
-    return {
-      isCorrect: Number.parseInt(revEquationTwoBoxFour) === revenuePerDay,
-    };
-  };
+  const validateQuestionTwoAnswer = () =>
+    Number.parseInt(revEquationTwoBoxFour) === revenuePerDay;
 
   const validateComponent = () => {
-    return (
-      validateQuestionOneAnswer().isCorrect &&
-      validateQuestionTwoAnswer().isCorrect
-    );
+    return validateQuestionOneAnswer() && validateQuestionTwoAnswer();
   };
 
   const equationContainerCSS = (
@@ -154,7 +126,7 @@ const RevenueEquation = ({
         <input
           className={equationContainerCSS(
             revEquationOneBoxOne,
-            validateRevEquationOneBoxOne().isCorrect
+            validateRevEquationOneBoxOne()
           )}
           value={revEquationOneBoxOne}
           onChange={(e) => {
@@ -167,7 +139,7 @@ const RevenueEquation = ({
         <input
           className={equationContainerCSS(
             revEquationOneBoxTwo,
-            validateRevEquationOneBoxTwo().isCorrect
+            validateRevEquationOneBoxTwo()
           )}
           value={revEquationOneBoxTwo}
           onChange={(e) => setRevEquationOneBoxTwo(e.target.value)}
@@ -177,7 +149,7 @@ const RevenueEquation = ({
         <input
           className={equationContainerCSS(
             revEquationOneBoxThree,
-            validateQuestionOneAnswer().isCorrect
+            validateQuestionOneAnswer()
           )}
           value={revEquationOneBoxThree}
           onChange={(e) => setRevEquationOneBoxThree(e.target.value)}
@@ -201,7 +173,7 @@ const RevenueEquation = ({
         <input
           className={equationContainerCSS(
             revEquationTwoBoxOne,
-            validateRevEquationTwoBoxOne().isCorrect
+            validateRevEquationTwoBoxOne()
           )}
           value={revEquationTwoBoxOne}
           onChange={(e) => {
@@ -214,7 +186,7 @@ const RevenueEquation = ({
         <input
           className={equationContainerCSS(
             revEquationTwoBoxTwo,
-            validateRevEquationTwoBoxTwo().isCorrect
+            validateRevEquationTwoBoxTwo()
           )}
           value={revEquationTwoBoxTwo}
           onChange={(e) => setRevEquationTwoBoxTwo(e.target.value)}
@@ -224,7 +196,7 @@ const RevenueEquation = ({
         <input
           className={equationContainerCSS(
             revEquationTwoBoxThree,
-            validateRevEquationTwoBoxThree().isCorrect
+            validateRevEquationTwoBoxThree()
           )}
           value={revEquationTwoBoxThree}
           onChange={(e) => setRevEquationTwoBoxThree(e.target.value)}
@@ -234,7 +206,7 @@ const RevenueEquation = ({
         <input
           className={equationContainerCSS(
             revEquationTwoBoxFour,
-            validateQuestionTwoAnswer().isCorrect
+            validateQuestionTwoAnswer()
           )}
           value={revEquationTwoBoxFour}
           onChange={(e) => setRevEquationTwoBoxFour(e.target.value)}
