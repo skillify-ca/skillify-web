@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { Preload, OrbitControls, Stars } from "@react-three/drei";
-import { session, useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -10,22 +10,14 @@ import { Button } from "../../components/ui/Button";
 import { FETCH_TOPIC_OVERVIEW } from "../../graphql/fetchTopicOverview";
 import { userId } from "../../graphql/utils/constants";
 import { getBadgeId } from "../api/badgeHelper";
-import {
-  getEmoji,
-  getSkillFromId,
-  getSkillId,
-  getSkillsForTopicGrade,
-  Grade,
-  Skill,
-  SkillDescription,
-} from "../api/skill";
+import { getEmoji, getSkillsForTopicGrade, Grade } from "../api/skill";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { FETCH_SKILL_DESCRIPTION_ARRAY } from "../../graphql/fetchSkillDescriptionArray";
 
 const Box = dynamic(() => import("../../components/stories/Box"));
 
 const TopicOverviewPage = ({ slug, description }) => {
-  const [session, user] = useSession();
+  const { data: session, status } = useSession();
   const [grade, setGrade] = useState(Grade.GRADE_1);
   const onGradeChange = (e: any) => {
     setGrade(e.target.value);

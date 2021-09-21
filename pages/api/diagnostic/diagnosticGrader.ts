@@ -10,7 +10,10 @@ type GradedQuestion = {
   guess: string;
 };
 
-export const getResultForSkill = (skill: Skill, results: DiagnosticState) => {
+export const getResultForSkill = (
+  skill: Skill,
+  results: DiagnosticState
+): string => {
   const questionsWithGuesses: GradedQuestion[] = results.questions.map(
     (it, index) => ({
       question: it,

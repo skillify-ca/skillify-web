@@ -21,6 +21,7 @@ type displayAssignmentQuestionsProps = {
   setQuestions: (questions: Question[]) => void;
   onSubmit: (grade: string) => void;
   onBackClick: () => void;
+  data: any;
 };
 
 const DisplayAssignmentQuestions = ({
@@ -32,6 +33,7 @@ const DisplayAssignmentQuestions = ({
   setQuestions,
   onSubmit,
   onBackClick,
+  data,
 }: displayAssignmentQuestionsProps) => {
   useEffect(() => {
     // initialize dropdowns

@@ -69,7 +69,7 @@ export const getBadgeId = (slug: string, currentLevel: number) => {
         case 6:
           return 54;
       }
-    }
+    } 
   }
   return 0;
 };

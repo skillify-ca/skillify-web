@@ -1,6 +1,5 @@
 import React from "react";
 import { UnitCard } from "./UnitCard";
-import { useSession } from "next-auth/client";
 import { userId } from "../graphql/utils/constants";
 import Card from "./ui/Card";
 import ProgressRing from "./ui/ProgressRing";
@@ -10,8 +9,6 @@ import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
 import { useQuery } from "@apollo/client";
 import { Session } from "next-auth";
 import Link from "next/link";
-import TopicItem from "./stories/TopicItem";
-import Image from "next/image";
 import { Puzzle, PUZZLE_DATA } from "../pages/api/puzzle";
 import { Button } from "./ui/Button";
 interface OutlineProps {

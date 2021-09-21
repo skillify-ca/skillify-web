@@ -1,24 +1,24 @@
 import NextAuth from "next-auth";
-import Providers from "next-auth/providers";
+import GoogleProvider from "next-auth/providers/google";
 
 export default NextAuth({
   // Configure one or more authentication providers
   providers: [
-    Providers.Google({
+    GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
   callbacks: {
-    session: async (session, user) => {
-      session.userId = user.sub;
-      return Promise.resolve(session);
+    async session({ session, user, token }) {
+      session.user.id = token.sub;
+      return session;
     },
-    async redirect(url, baseUrl) {
+    async redirect({ url, baseUrl }) {
       return baseUrl + "/practice";
     },
-    async jwt(token, user, account, profile, isNewUser) {
-      userSync(token)
+    async jwt({ token, user, account, profile, isNewUser }) {
+      userSync(token);
       return token;
     },
   },
@@ -130,5 +130,5 @@ const userSync = async (token) => {
       "x-hasura-admin-secret": process.env.HASURA_ADMIN_SECRET,
     },
     body: JSON.stringify(graphqlReq),
-  })
+  });
 };
