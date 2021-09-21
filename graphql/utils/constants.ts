@@ -89,7 +89,7 @@ export const getSkillIdFromSlug = (slug: string) => {
 
 export const userId = (session) => {
   if (session) {
-    return session["userId"];
+    return session.user.id;
   }
   return "-1";
 };

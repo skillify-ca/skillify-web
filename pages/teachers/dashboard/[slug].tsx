@@ -1,12 +1,8 @@
 import { useQuery, useMutation } from "@apollo/client";
-import { session, useSession } from "next-auth/client";
-import Link from "next/link";
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { FETCH_USER_ASSIGNMENTS } from "../../../graphql/userAssignments/fetchUserAssignments";
-import { userId } from "../../../graphql/utils/constants";
 import Navbar from "../../../components/Navbar";
 import { questions } from "../../api/teachers/cye";
 import TeX from "@matejmazur/react-katex";
@@ -23,7 +19,6 @@ const FreeDrawing = dynamic(
 );
 
 const TeacherDashboardPage = ({ data }) => {
-  const [session] = useSession();
   const [currentStudentIndex, setCurrentStudentIndex] = useState(0);
   const [solutionsReleased, setSolutionsReleased] = useState(false);
   const { loading, data: assignmentFetchData } = useQuery(FETCH_ASSIGNMENT, {
@@ -69,7 +64,7 @@ const TeacherDashboardPage = ({ data }) => {
             )}
           <div className="bg-white mb-4 mx-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
             <select
-            className="border-blue-400 border-2 p-4"
+              className="border-blue-400 border-2 p-4"
               value={currentStudentIndex}
               onChange={(e) =>
                 setCurrentStudentIndex(Number.parseInt(e.target.value))

@@ -1,5 +1,5 @@
 import React from "react";
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import { useQuery } from "@apollo/client";
 import _ from "lodash";
 import { FETCH_FLASHCARD_GUESSES_BY_SESSION } from "../../graphql/fetchFlashcardGuessBySession";
@@ -7,7 +7,7 @@ import { userId } from "../../graphql/utils/constants";
 import Card from "../../components/ui/Card";
 
 export default function SessionDetails({ slug }) {
-  const [session] = useSession();
+  const { data: session, status } = useSession();
   const guessesResult = useQuery(FETCH_FLASHCARD_GUESSES_BY_SESSION, {
     variables: { session_id: slug, userId: userId(session) },
   });

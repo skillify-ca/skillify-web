@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { session, useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 import { useEffect } from "react";
@@ -14,7 +14,7 @@ import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { FETCH_SKILLS } from "../../graphql/fetchSkills";
 
 const SkillOverviewPage = ({ slug, description, videos }) => {
-  const [session] = useSession();
+  const { data: session, status } = useSession();
   const { loading, data } = useQuery(FETCH_USER_EMOJIS, {
     variables: {
       userId: userId(session),

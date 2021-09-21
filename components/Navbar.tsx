@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { useState } from "react";
-import { signIn, useSession } from "next-auth/client";
+import { signIn, useSession } from "next-auth/react";
 import { Session } from "next-auth";
 
 export default function Navbar() {
-  const [session, loading] = useSession();
+  const { data: session, status } = useSession()
   const [active, setActive] = useState(false);
   const [profieMenuActive, setProfileMenuActive] = useState(false);
 
@@ -118,7 +118,7 @@ export default function Navbar() {
             <div className="ml-3 relative">
               <div>
                 <div>
-                  {loading
+                  {status === "loading"
                     ? ""
                     : !session && (
                         <>
