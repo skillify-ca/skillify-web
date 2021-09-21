@@ -38,12 +38,24 @@ const RevenueEquation = ({
   revEquationTwoBoxFour,
   setRevEquationTwoBoxFour,
 }: RevenueEquationProps) => {
+
+  // Equation 1
+  const platesPerWorkerPerHour = selectedFood.qtyProducedPerWorkerHour;
+  const numberOfWorkers = Number.parseInt(selectedNumWorkers);
+  
+  // Equation 1 and 2
+  const platesPerHour = platesPerWorkerPerHour * numberOfWorkers;
+
+  // Equation 2
+  const pricePerPlate = selectedFood.unitRevenue;
+  const hoursPerDay = operatingHours;
+  const revenuePerDay = platesPerHour * pricePerPlate * hoursPerDay;
+
   const validateRevEquationOneBoxOne = () => {
     return {
       isCorrect:
         Number.parseInt(revEquationOneBoxOne) ===
         selectedFood.qtyProducedPerWorkerHour,
-      value: selectedFood.qtyProducedPerWorkerHour,
     };
   };
 
@@ -52,7 +64,6 @@ const RevenueEquation = ({
       isCorrect:
         Number.parseInt(revEquationOneBoxTwo) ===
         Number.parseInt(selectedNumWorkers),
-      value: Number.parseInt(selectedNumWorkers),
     };
   };
 
@@ -60,49 +71,31 @@ const RevenueEquation = ({
     return {
       isCorrect:
         Number.parseInt(revEquationOneBoxThree) ===
-        validateRevEquationOneBoxOne().value *
-          validateRevEquationOneBoxTwo().value,
-      value:
-        validateRevEquationOneBoxOne().value *
-        validateRevEquationOneBoxTwo().value,
+        platesPerWorkerPerHour * numberOfWorkers,
     };
   };
 
   const validateRevEquationTwoBoxOne = () => {
     return {
-      isCorrect:
-        Number.parseInt(revEquationTwoBoxOne) ===
-        validateQuestionOneAnswer().value,
-      value: validateQuestionOneAnswer().value,
+      isCorrect: Number.parseInt(revEquationTwoBoxOne) === platesPerHour,
     };
   };
 
   const validateRevEquationTwoBoxTwo = () => {
     return {
-      isCorrect:
-        Number.parseInt(revEquationTwoBoxTwo) === selectedFood.unitRevenue,
-      value: selectedFood.unitRevenue,
+      isCorrect: Number.parseInt(revEquationTwoBoxTwo) === pricePerPlate,
     };
   };
 
   const validateRevEquationTwoBoxThree = () => {
     return {
-      isCorrect: Number.parseInt(revEquationTwoBoxThree) === operatingHours,
-      value: operatingHours,
+      isCorrect: Number.parseInt(revEquationTwoBoxThree) === hoursPerDay,
     };
   };
 
   const validateQuestionTwoAnswer = () => {
     return {
-      isCorrect:
-        Number.parseInt(revEquationTwoBoxFour) ===
-        validateRevEquationTwoBoxOne().value *
-          validateRevEquationTwoBoxTwo().value *
-          validateRevEquationTwoBoxThree().value,
-      value:
-        validateRevEquationTwoBoxOne().value *
-        validateRevEquationTwoBoxTwo().value *
-        validateRevEquationTwoBoxThree().value,
+      isCorrect: Number.parseInt(revEquationTwoBoxFour) === revenuePerDay,
     };
   };
 
