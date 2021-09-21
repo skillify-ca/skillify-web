@@ -1,7 +1,5 @@
 // define Food, Truck, Workforce interfaces 
 
-export const minWage = 20
-
 export interface Food {
     name: string 
     unitCost: number
@@ -30,28 +28,28 @@ export interface Workforce {
 export const hotDog: Food = {
     name: "Hot Dog", 
     unitCost: 1,
-    unitRevenue: 3,
+    unitRevenue: 4,
     imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/emojis/57508/hot-dog-emoji-clipart-original.svg',
     prepTime: 1,
-    qtyProducedPerWorkerHour: 20
+    qtyProducedPerWorkerHour: 30
 }
 
 export const soupDumplings: Food = {
     name: "Soup Dumplings", 
-    unitCost: 2,
-    unitRevenue: 6,
+    unitCost: 3,
+    unitRevenue: 10,
     imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3390805/xiaolongbao-food-clipart.svg',
     prepTime: 4,
-    qtyProducedPerWorkerHour: 12
+    qtyProducedPerWorkerHour: 15
 }
 
 export const tikka: Food = {
     name: "Tikka", 
-    unitCost: 1,
-    unitRevenue: 10,
+    unitCost: 4,
+    unitRevenue: 15,
     imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/36257/cooking-curry-clipart.svg',
     prepTime: 6,
-    qtyProducedPerWorkerHour: 8
+    qtyProducedPerWorkerHour: 10
 }
 
 export const allFoods = [hotDog, soupDumplings, tikka]
@@ -60,8 +58,8 @@ export const allFoods = [hotDog, soupDumplings, tikka]
 
 export const smallTruck: Truck = {
     model: "Small Food Cart", 
-    fixedCost: 150,
-    variableCost: 60,
+    fixedCost: 50,
+    variableCost: 10,
     maxWorkers: 1,
     allowedItems: [hotDog],
     imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/25675/222-1033-traditional-culinary-vector-up-clipart.svg'
@@ -69,8 +67,8 @@ export const smallTruck: Truck = {
 
 export const mediumTruck: Truck = {
     model: "Medium Sized Van", 
-    fixedCost: 300,
-    variableCost: 120,
+    fixedCost: 150,
+    variableCost: 30,
     maxWorkers: 2,
     allowedItems: [hotDog, soupDumplings],
     imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/69034/food-truck-clipart-xl.png'
@@ -78,14 +76,19 @@ export const mediumTruck: Truck = {
 
 export const largeTruck: Truck = {
     model: "Real Food Truck", 
-    fixedCost: 600,
-    variableCost: 180,
+    fixedCost: 300,
+    variableCost: 60,
     maxWorkers: 4,
     allowedItems: [hotDog, soupDumplings, tikka],
     imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/1795498/food-truck-clipart.svg'
 }
 
 export const allTrucks = [smallTruck, mediumTruck, largeTruck]
+
+// define global constants for simulation
+
+export const minimumWage = 20
+export const operatingHours = 8
 
 // define functions to get properties from Truck and Food interfaces
 export const getTruck = (model: string) => {
@@ -115,3 +118,4 @@ export const getFood = (name: string) => {
         return tikka
     }
 }
+
