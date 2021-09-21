@@ -1,6 +1,23 @@
 import React, { useEffect, useState } from "react";
 
-const BuildingABakeryA = () => {
+export interface BuildingABakeryAProps {
+  monthlyRentQ1: string;
+  setMonthlyRentQ1: (monthlyRentQ1: string) => void;
+  q1Correct: String;
+  setQ1Correct: (q1Correct: string) => void;
+}
+
+const BuildingABakeryA = ({
+  monthlyRentQ1,
+  setMonthlyRentQ1,
+  q1Correct,
+  setQ1Correct,
+}: BuildingABakeryAProps) => {
+  const validateQ1 = (newMonthlyRentQ1: string) => {
+    if (newMonthlyRentQ1 === "250") {
+      setQ1Correct("true");
+    }
+  };
   return (
     <div className={"mt-8 mb-16"}>
       <div
@@ -27,7 +44,17 @@ const BuildingABakeryA = () => {
               <div className={"col-start-1 col-span-2 "}> Equation:</div>
               <div className={"col-start-3 col-span-1 "}> Answer:</div>
               <input
-                className={"bg-yellow-100 col-start-1 col-span-2 h-20"}
+                className={
+                  q1Correct === "true"
+                    ? "bg-green-100 col-start-1 col-span-2 h-20"
+                    : "bg-yellow-100 col-start-1 col-span-2 h-20"
+                }
+                value={monthlyRentQ1}
+                onChange={(e) => {
+                  const newMonthlyRentQ1 = e.target.value;
+                  setMonthlyRentQ1(newMonthlyRentQ1);
+                  validateQ1(newMonthlyRentQ1);
+                }}
               ></input>
               <input
                 className={"bg-yellow-100 col-start-3 col-span-1 h-20"}

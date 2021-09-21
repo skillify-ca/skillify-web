@@ -18,6 +18,8 @@ export default function Bakery(props) {
   }
 
   const [stage, setStage] = useState(STAGE.BakeryInstructions);
+  const [monthlyRentQ1, setMonthlyRentQ1] = useState("");
+  const [q1Correct, setQ1Correct] = useState("");
 
   const previousStage = () => {
     if (stage > STAGE.BakeryInstructions) {
@@ -34,13 +36,20 @@ export default function Bakery(props) {
   const getComponent = (stage: STAGE) => {
     if (stage == STAGE.BakeryInstructions) {
       return <BakeryInstructions />;
-    } else if ((stage = STAGE.BuildingABakeryA)) {
-      return <BuildingABakeryA />;
-    } else if ((stage = STAGE.BakersRack)) {
+    } else if (stage == STAGE.BuildingABakeryA) {
+      return (
+        <BuildingABakeryA
+          monthlyRentQ1={monthlyRentQ1}
+          setMonthlyRentQ1={setMonthlyRentQ1}
+          q1Correct={q1Correct}
+          setQ1Correct={setQ1Correct}
+        />
+      );
+    } else if (stage == STAGE.BakersRack) {
       return <BakersRack />;
-    } else if ((stage = STAGE.BakersRackB)) {
+    } else if (stage == STAGE.BakersRackB) {
       return <BakersRackB />;
-    } else if ((stage = STAGE.BakingGma)) {
+    } else if (stage == STAGE.BakingGma) {
       return <BakingGma />;
     }
   };
@@ -48,7 +57,7 @@ export default function Bakery(props) {
   return (
     <div className={"bg-white"}>
       <div>{getComponent(stage)}</div>
-      <div className="w-3/4 flex flex-row space-x-8 justify-center p-12">
+      <div className="flex flex-row space-x-8 justify-center p-12">
         <Button
           backgroundColor="pink"
           textColor="white"
