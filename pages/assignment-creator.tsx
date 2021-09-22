@@ -12,7 +12,6 @@ import AssignmentConfirmation from "../components/assignment-creator/assignmentC
 import { CREATE_ASSIGNMENT } from "../graphql/createAssignment";
 import DisplayAssignmentQuestions, {
   FetchDescriptionAndSkillData,
-  FetchDescriptionAndSkillResult,
 } from "../components/assignment-creator/displayAssignmentQuestions";
 import { QuestionType } from "./api/questionTypes";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";

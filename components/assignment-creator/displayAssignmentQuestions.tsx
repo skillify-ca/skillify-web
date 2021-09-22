@@ -4,6 +4,7 @@ import { QuestionType } from "../../pages/api/questionTypes";
 import { getRandomItemFromArray } from "../../pages/api/random";
 import {
   getQuestionTypesForSkill,
+  getSkillId,
   Skill,
   SkillDescription,
 } from "../../pages/api/skill";
@@ -21,7 +22,7 @@ type displayAssignmentQuestionsProps = {
   setQuestions: (questions: Question[]) => void;
   onSubmit: (grade: string) => void;
   onBackClick: () => void;
-  result: FetchDescriptionAndSkillData;
+  data: FetchDescriptionAndSkillData;
 };
 
 export type FetchDescriptionAndSkillData = {
@@ -42,7 +43,7 @@ const DisplayAssignmentQuestions = ({
   setQuestions,
   onSubmit,
   onBackClick,
-  result,
+  data,
 }: displayAssignmentQuestionsProps) => {
   useEffect(() => {
     // initialize dropdowns
@@ -117,16 +118,18 @@ const DisplayAssignmentQuestions = ({
           onClick={onSubmit}
         />
       </div>
-      {"HELLO"}
-      {JSON.stringify(result.skills[0])}
       <div className="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
         {questions.map((question, index) => (
           <div className="flex flex-col gap-4 bg-blue-200 p-4">
             <div className="flex flex-col items-center">
               <p className="font-bold">Question #{index + 1}:</p>
               <p className="text-lg">
-                {/* I can {result.data.skills[0].description} */}
-                {/* TODO: USE .FIND function from query and return skill = question.skill */}
+                I can {data.skills[0].description}
+                {data.skills.find((element) =>
+                  element.id === getSkillId(question.skill)
+                    ? element.description
+                    : "empty"
+                )}
               </p>
             </div>
             <div className="flex justify-between items-center">
