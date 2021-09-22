@@ -1,6 +1,5 @@
 import React from "react";
 import { UnitCard } from "./UnitCard";
-import { useSession } from "next-auth/client";
 import { userId } from "../graphql/utils/constants";
 import Card from "./ui/Card";
 import ProgressRing from "./ui/ProgressRing";
@@ -10,8 +9,6 @@ import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
 import { useQuery } from "@apollo/client";
 import { Session } from "next-auth";
 import Link from "next/link";
-import TopicItem from "./stories/TopicItem";
-import Image from "next/image";
 import { Puzzle, PUZZLE_DATA } from "../pages/api/puzzle";
 import { Button } from "./ui/Button";
 interface OutlineProps {
@@ -88,6 +85,36 @@ export default function Outline({ session }: OutlineProps) {
           </div>
         ))}
       </div>
+      <div className="w-full bg-blue-50 rounded-lg shadow-lg p-4">
+        <div className="flex flex-col gap-4">
+          <p className="font-bold text-2xl">Interactive Lessons</p>
+
+          <p className="">Complete these lessons to unlock extra badges.</p>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 md:grid-cols-4 justify-center gap-8 items-center">
+        <Link href={`/finance-profile`}>
+          <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
+            <Card size="medium">
+              <div className="flex flex-col justify-center items-center gap-4">
+                <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300 heropattern-formalinvitation-green-500"></div>
+                <p className="mx-4 text-center text-xl">Balance a Budget</p>
+              </div>
+            </Card>
+          </div>
+        </Link>
+        <Link href={`/foodtruck`}>
+          <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
+            <Card size="medium">
+              <div className="flex flex-col justify-center items-center gap-4">
+                <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300 heropattern-jupiter-yellow-500"></div>
+                <p className="mx-4 text-center text-xl">Food Truck</p>
+              </div>
+            </Card>
+          </div>
+        </Link>
+      </div>
+
       <div className="w-full bg-blue-50 rounded-lg shadow-lg p-4">
         <div className="flex flex-col gap-4">
           <p className="font-bold text-2xl">Multiplayer Games</p>

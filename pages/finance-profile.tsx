@@ -7,9 +7,8 @@ import AssignmentSession from "../components/finance/AssignmentSession";
 import { userId } from "../graphql/utils/constants";
 import { FETCH_BADGE_ON_USERID } from "../graphql/fetchBadgeOnUserID";
 import { ApolloClient, InMemoryCache, useMutation } from "@apollo/client";
-import { data } from "browserslist";
 import { useQuery } from "@apollo/client";
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import {
   FinanceProfileType,
   financialProfileData,
@@ -32,7 +31,8 @@ const FinanceProfile = () => {
   }, []);
 
   const [stage, setStage] = useState(STAGES.START);
-  const [session, loading] = useSession();
+  const { data: session, status } = useSession();
+
   const [unlockbadge, unlockBadgeData] = useMutation(UNLOCK_BADGE, {});
 
   const routeAssignment = () => {
@@ -60,7 +60,7 @@ const FinanceProfile = () => {
   });
 
   return (
-    <div className="p-4">
+    <div className="">
       {stage === STAGES.START && data && (
         <RulesSession
           profileData={profileData}
@@ -76,5 +76,7 @@ const FinanceProfile = () => {
     </div>
   );
 };
+
+FinanceProfile.auth = true;
 
 export default FinanceProfile;
