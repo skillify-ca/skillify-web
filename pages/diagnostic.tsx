@@ -16,7 +16,9 @@ import {
 } from "./api/diagnostic/diagnosticGrader";
 import { generateQuestionForSkill } from "./api/questionGenerator";
 import Navbar from "../components/Navbar";
-import getQuestion, { skillsArray } from "./api/diagnostic/juniorDiagnosticQuestionGenerator";
+import getQuestion, {
+  skillsArray,
+} from "./api/diagnostic/juniorDiagnosticQuestionGenerator";
 
 enum STAGE {
   CREATE,
@@ -39,8 +41,10 @@ const Diagnostic = () => {
   const [guesses, setGuesses] = useState<Array<string>>([]);
   const [guessAns, setGuessAns] = useState<Array<string>>([]);
   const [answeredQuestions, setAnsweredQuestions] = useState<Question[]>([]);
-  const [juniorDiagnosticQuestions, setJuniorDiagnosticQuestions] = useState<Question[]>([]);
-  const [currentJuniorQuestion, setCurrentJuniorQuestion] = useState<number>(0)
+  const [juniorDiagnosticQuestions, setJuniorDiagnosticQuestions] = useState<
+    Question[]
+  >([]);
+  const [currentJuniorQuestion, setCurrentJuniorQuestion] = useState<number>(0);
 
   const [gradeRange, setGradeRange] = useState("Junior");
 
@@ -127,7 +131,7 @@ const Diagnostic = () => {
       setOpacity(1);
 
       if (gradeRange == "Junior") {
-        setCurrentJuniorQuestion(currentJuniorQuestion + 1)
+        setCurrentJuniorQuestion(currentJuniorQuestion + 1);
       } else {
         // Primary grades questions
         const newQuestionsLeftInTopic =
@@ -173,7 +177,7 @@ const Diagnostic = () => {
   };
 
   useEffect(() => {
-    setJuniorDiagnosticQuestions(getQuestion())
+    setJuniorDiagnosticQuestions(getQuestion());
   }, []);
 
   useEffect(() => {
@@ -213,22 +217,28 @@ const Diagnostic = () => {
             className={isShaking ? "animate-shake" : ""}
             onAnimationEnd={() => setIsShaking(false)}
           >
-            {gradeRange == "Primary" && <QuestionSet
-              title=""
-              questionData={[currentQuestion]}
-              index={0}
-              inputElement={inputElement}
-              submitGuess={submitGuess}
-              score={correctGuesses}
-              diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
-            /> || gradeRange == "Junior" && <QuestionSet
-              title=""
-              questionData={juniorDiagnosticQuestions}
-              index={currentJuniorQuestion}
-              inputElement={inputElement}
-              submitGuess={submitGuess}
-              score={correctGuesses}
-              diagnostic={{ isDiagnostic: true, opacityVal: opacity }} />}
+            {(gradeRange == "Primary" && (
+              <QuestionSet
+                title=""
+                questionData={[currentQuestion]}
+                index={0}
+                inputElement={inputElement}
+                submitGuess={submitGuess}
+                score={correctGuesses}
+                diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
+              />
+            )) ||
+              (gradeRange == "Junior" && (
+                <QuestionSet
+                  title=""
+                  questionData={juniorDiagnosticQuestions}
+                  index={currentJuniorQuestion}
+                  inputElement={inputElement}
+                  submitGuess={submitGuess}
+                  score={correctGuesses}
+                  diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
+                />
+              ))}
           </div>
         </div>
       );
@@ -243,7 +253,7 @@ const Diagnostic = () => {
       break;
   }
   return (
-    <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen">
+    <div className="flex flex-col overflow-auto bg-scroll bg-blue-50 h-screen">
       <Navbar />
       <div className="p-4 flex flex-col items-center justify-center">
         {component}
