@@ -21,14 +21,10 @@ type displayAssignmentQuestionsProps = {
   setQuestions: (questions: Question[]) => void;
   onSubmit: (grade: string) => void;
   onBackClick: () => void;
-  data: FetchDescriptionAndSkillResult;
+  result: FetchDescriptionAndSkillData;
 };
 
-export type FetchDescriptionAndSkillResult = {
-  data: FetchDescriptionAndSkillData;
-};
-
-type FetchDescriptionAndSkillData = {
+export type FetchDescriptionAndSkillData = {
   skills: SkillData[];
 };
 
@@ -46,7 +42,7 @@ const DisplayAssignmentQuestions = ({
   setQuestions,
   onSubmit,
   onBackClick,
-  data,
+  result,
 }: displayAssignmentQuestionsProps) => {
   useEffect(() => {
     // initialize dropdowns
@@ -121,13 +117,15 @@ const DisplayAssignmentQuestions = ({
           onClick={onSubmit}
         />
       </div>
+      {"HELLO"}
+      {JSON.stringify(result.skills[0])}
       <div className="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
         {questions.map((question, index) => (
           <div className="flex flex-col gap-4 bg-blue-200 p-4">
             <div className="flex flex-col items-center">
               <p className="font-bold">Question #{index + 1}:</p>
               <p className="text-lg">
-                I can {SkillDescription(question.skill)}
+                {/* I can {result.data.skills[0].description} */}
                 {/* TODO: USE .FIND function from query and return skill = question.skill */}
               </p>
             </div>

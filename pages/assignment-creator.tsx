@@ -11,6 +11,7 @@ import { useMutation } from "@apollo/client";
 import AssignmentConfirmation from "../components/assignment-creator/assignmentConfirmation";
 import { CREATE_ASSIGNMENT } from "../graphql/createAssignment";
 import DisplayAssignmentQuestions, {
+  FetchDescriptionAndSkillData,
   FetchDescriptionAndSkillResult,
 } from "../components/assignment-creator/displayAssignmentQuestions";
 import { QuestionType } from "./api/questionTypes";
@@ -23,7 +24,7 @@ enum STAGE {
   CONFIRM,
 }
 
-const AssignmentCreator = (data: FetchDescriptionAndSkillResult) => {
+const AssignmentCreator = (data: FetchDescriptionAndSkillData) => {
   const [stage, setStage] = useState(STAGE.CHOOSE_SKILLS);
   const [skills, setSkills] = useState<Skill[]>([]);
   const [questionTypes, setQuestionTypes] = useState<QuestionType[]>([]);
