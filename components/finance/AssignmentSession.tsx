@@ -177,7 +177,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
       <div className={"h-full overflow-scroll col-start-1 col-end-4"}>
         <header
           className={
-            "flex items-center justify-center h-screen mb-12 bg-fixed bg-center bg-cover bg-finance-life"
+            "flex items-center justify-center h-108 mb-12 bg-fixed bg-center bg-cover bg-finance-life"
           }
         >
           <div
@@ -205,7 +205,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         )}
         <section
           className={
-            "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-center bg-cover bg-home"
+            "container flex items-center justify-center h-108 m-auto mb-12 bg-fixed bg-center bg-cover bg-home"
           }
         >
           <div
@@ -226,7 +226,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         </div>
         <section
           className={
-            "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-centerx bg-car bg-contain"
+            "container flex items-center justify-center h-108 m-auto mb-12 bg-fixed bg-centerx bg-car bg-contain"
           }
         >
           <div
@@ -257,7 +257,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         </div>
         <section
           className={
-            "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-left bg-contain bg-no-repeat bg-phone"
+            "container flex items-center justify-center h-108 m-auto mb-12 bg-fixed bg-left bg-contain bg-no-repeat bg-phone"
           }
         >
           <div
@@ -277,7 +277,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         </div>
         <section
           className={
-            "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-left bg-cover bg-no-repeat bg-essentials"
+            "container flex items-center justify-center h-108 m-auto mb-12 bg-fixed bg-left bg-cover bg-no-repeat bg-essentials"
           }
         >
           <div
@@ -290,7 +290,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
           </div>
         </section>
         <div
-          className={"flex items-center justify-center pl-28 mt-10"}
+          className={"flex items-center justify-center p-4 mt-10"}
           onMouseEnter={scrollToAdditionalSection}
         >
           <BuyGroceries />
