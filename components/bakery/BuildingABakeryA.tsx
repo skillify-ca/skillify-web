@@ -27,7 +27,7 @@ const BuildingABakeryA = ({
       >
         Building A Bakery
       </div>
-      <div className={"grid grid-col-2 border-collapse"}>
+      <div className={"grid grid-col-1 sm:grid-cols-2 border-collapse"}>
         <div
           className={
             "flex justify-center  col-span-1 col-start-1 border-4 border-red-200 mt-8 ml-16"
@@ -42,7 +42,10 @@ const BuildingABakeryA = ({
             </div>
             <div className={"grid grid-col-3 gap-4 mt-4 mb-4 mx-4 "}>
               <div className={"col-start-1 col-span-2 "}> Equation:</div>
-              <div className={"col-start-3 col-span-1 "}> Answer:</div>
+              <div className={"col-start-3 col-span-1 "}>
+                {" "}
+                Answer: {q1Correct}
+              </div>
               <input
                 className={
                   q1Correct === "true"
