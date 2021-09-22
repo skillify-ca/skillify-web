@@ -1,11 +1,10 @@
 import React from "react";
-import { Food, Truck, minWage } from "../../pages/api/foodtruck/food";
+import { Food, Truck, minimumWage } from "../../pages/api/foodtruck/food";
 export interface OverviewOfSelectionsProps {
   selectedTruck: Truck;
   selectedFood: Food;
   selectedNumWorkers: string;
   setSelectedNumWorkers: (selectedNumWorkers: string) => void;
-  minWage: number;
 }
 
 const OverviewOfSelections = ({
@@ -13,10 +12,9 @@ const OverviewOfSelections = ({
   selectedFood,
   selectedNumWorkers,
   setSelectedNumWorkers,
-  minWage,
 }: OverviewOfSelectionsProps) => {
-  const dailyWage = minWage * parseInt(selectedNumWorkers) * 8;
-  const monthlyWage = minWage * parseInt(selectedNumWorkers) * 8 * 5 * 4;
+  const dailyWage = minimumWage * parseInt(selectedNumWorkers) * 8;
+  const monthlyWage = minimumWage * parseInt(selectedNumWorkers) * 8 * 5 * 4;
   return (
     <div className="flex flex-col border-2 border-dashed border-black p-4">
       <h1 className="text-4xl text-black bold">Overview of your Selections</h1>

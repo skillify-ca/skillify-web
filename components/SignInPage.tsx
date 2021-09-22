@@ -1,9 +1,7 @@
 import React from "react";
-import { signIn, useSession } from "next-auth/client";
+import { signIn } from "next-auth/react";
 
 export default function SignInPage() {
-  const [session, loading] = useSession();
-
   return (
     <div>
       <div className="flex flex-col justify-center items-center">
@@ -31,13 +29,15 @@ export default function SignInPage() {
                   Math Champ makes math fun and engaging.{" "}
                 </p>{" "}
                 <p>
-                Help your students feel more confident with numbers and
-                questions aligned to the Canadian curriculum{" "}
+                  Help your students feel more confident with numbers and
+                  questions aligned to the Canadian curriculum{" "}
                 </p>
               </p>
             </div>
             <button
-              onClick={() => signIn("google")}
+              onClick={() =>
+                signIn("google", { callbackUrl: "/practice" })
+              }
               className="flex justify-between items-center bg-white border border-black rounded-2xl p-4 w-64 hover:bg-gray-100 shadow-lg"
             >
               Sign in with Google

@@ -1,83 +1,100 @@
 import React from "react";
-import { Food } from "../../pages/api/foodtruck/food";
+import { Food, operatingHours } from "../../pages/api/foodtruck/food";
 
 export interface RevenueEquationProps {
   selectedFood: Food;
   selectedNumWorkers: string;
-  equationBoxOne: string;
-  setEquationBoxOne: (equationBoxOne: string) => void;
-  equationBoxTwo: string;
-  setEquationBoxTwo: (equationBoxTwo: string) => void;
-  equationBoxThree: string;
-  setEquationBoxThree: (equationBoxThree: string) => void;
+  revEquationOneBoxOne: string;
+  setRevEquationOneBoxOne: (revEquationOneBoxOne: string) => void;
+  revEquationOneBoxTwo: string;
+  setRevEquationOneBoxTwo: (revEquationOneBoxTwo: string) => void;
+  revEquationOneBoxThree: string;
+  setRevEquationOneBoxThree: (revEquationOneBoxThree: string) => void;
   revEquationTwoBoxOne: string;
   setRevEquationTwoBoxOne: (revEquationTwoBoxTwo: string) => void;
   revEquationTwoBoxTwo: string;
   setRevEquationTwoBoxTwo: (revEquationTwoBoxTwo: string) => void;
   revEquationTwoBoxThree: string;
   setRevEquationTwoBoxThree: (revEquationTwoBoxThree: string) => void;
+  revEquationTwoBoxFour: string;
+  setRevEquationTwoBoxFour: (revEquationTwoBoxFour: string) => void;
 }
 
 const RevenueEquation = ({
   selectedFood,
   selectedNumWorkers,
-  equationBoxOne,
-  setEquationBoxOne,
-  equationBoxTwo,
-  setEquationBoxTwo,
-  equationBoxThree,
-  setEquationBoxThree,
+  revEquationOneBoxOne,
+  setRevEquationOneBoxOne,
+  revEquationOneBoxTwo,
+  setRevEquationOneBoxTwo,
+  revEquationOneBoxThree,
+  setRevEquationOneBoxThree,
   revEquationTwoBoxOne,
   setRevEquationTwoBoxOne,
   revEquationTwoBoxTwo,
   setRevEquationTwoBoxTwo,
   revEquationTwoBoxThree,
   setRevEquationTwoBoxThree,
+  revEquationTwoBoxFour,
+  setRevEquationTwoBoxFour,
 }: RevenueEquationProps) => {
-  const validateQuestionOneInputs = () => {
-    return equationBoxOne ===
-      selectedFood.qtyProducedPerWorkerHour.toString() &&
-      equationBoxTwo === selectedNumWorkers
-      ? "Correct Inputs"
-      : "Incorrect Inputs";
-  };
-  const validateQuestionOneAnswer = () => {
-    return Number.parseInt(equationBoxThree) ===
-      selectedFood.qtyProducedPerWorkerHour *
-        Number.parseInt(selectedNumWorkers)
-      ? "Correct Answer"
-      : "Incorrect Answer";
-  };
-  const validateQuestionTwoInputs = () => {
-    return Number.parseInt(revEquationTwoBoxOne) ===
-      selectedFood.qtyProducedPerWorkerHour *
-        Number.parseInt(selectedNumWorkers) &&
-      Number.parseInt(revEquationTwoBoxTwo) === selectedFood.unitRevenue
-      ? "Correct Inputs"
-      : "Incorrect Inputs";
-  };
+  // Equation 1
+  const platesPerWorkerPerHour = selectedFood.qtyProducedPerWorkerHour;
+  const numberOfWorkers = Number.parseInt(selectedNumWorkers);
 
-  const validateQuestionTwoAnswer = () => {
-    return Number.parseInt(revEquationTwoBoxThree) ===
-      selectedFood.qtyProducedPerWorkerHour *
-        Number.parseInt(selectedNumWorkers) *
-        selectedFood.unitRevenue
-      ? "Correct Answer"
-      : "Incorrect Answer";
-  };
+  // Equation 1 and 2
+  const platesPerHour = platesPerWorkerPerHour * numberOfWorkers;
+
+  // Equation 2
+  const pricePerPlate = selectedFood.unitRevenue;
+  const hoursPerDay = operatingHours;
+  const revenuePerDay = platesPerHour * pricePerPlate * hoursPerDay;
+
+  const validateRevEquationOneBoxOne = () =>
+    Number.parseInt(revEquationOneBoxOne) ===
+    selectedFood.qtyProducedPerWorkerHour;
+
+  const validateRevEquationOneBoxTwo = () =>
+    Number.parseInt(revEquationOneBoxTwo) ===
+    Number.parseInt(selectedNumWorkers);
+
+  const validateQuestionOneAnswer = () =>
+    Number.parseInt(revEquationOneBoxThree) ===
+    platesPerWorkerPerHour * numberOfWorkers;
+
+  const validateRevEquationTwoBoxOne = () =>
+    Number.parseInt(revEquationTwoBoxOne) === platesPerHour;
+
+  const validateRevEquationTwoBoxTwo = () =>
+    Number.parseInt(revEquationTwoBoxTwo) === pricePerPlate;
+
+  const validateRevEquationTwoBoxThree = () =>
+    Number.parseInt(revEquationTwoBoxThree) === hoursPerDay;
+
+  const validateQuestionTwoAnswer = () =>
+    Number.parseInt(revEquationTwoBoxFour) === revenuePerDay;
 
   const validateComponent = () => {
-    return validateQuestionOneAnswer() === "Correct Answer" &&
-      validateQuestionTwoAnswer() === "Correct Answer"
-      ? "Complete!"
-      : "Incomplete";
+    return validateQuestionOneAnswer() && validateQuestionTwoAnswer();
+  };
+
+  const equationContainerCSS = (
+    inputBox: string,
+    validateFunction: boolean
+  ) => {
+    if (inputBox.length === 0) {
+      return "border-2 border-black p-4 text-grey-darkest max-w-sm";
+    } else if (validateFunction) {
+      return "border-8 border-green-500 p-4 text-grey-darkest max-w-sm";
+    } else return "border-8 border-red-500 p-4 text-grey-darkest max-w-sm";
   };
 
   const progressContainerCSS = () => {
-    return validateComponent() === "Complete!"
+    return validateComponent()
       ? "bg-green-300 w-1/6 text-center border-2 border-black border-double p-4"
       : "bg-yellow-300 w-1/6 text-center border-2 border-black border-double p-4";
   };
+
   return (
     <div className="flex flex-col border-2 border-dashed border-black p-4">
       <div className="flex flex-cols-2 items-center">
@@ -85,7 +102,9 @@ const RevenueEquation = ({
           How much money can we make every day selling {selectedFood.name}
           {selectedFood.name === "Hot Dog" ? "s" : ""}?
         </h1>
-        <span className={progressContainerCSS()}>{validateComponent()}</span>
+        <span className={progressContainerCSS()}>
+          {validateComponent() === true ? "Correct" : "Incorrect"}
+        </span>
       </div>
 
       <h1 className="text-2xl p-4">
@@ -105,31 +124,37 @@ const RevenueEquation = ({
       </div>
       <div className="grid grid-cols-5 items-center justify-center pt-8">
         <input
-          className="border-2 border-black p-4 text-grey-darkest max-w-sm"
-          value={equationBoxOne}
+          className={equationContainerCSS(
+            revEquationOneBoxOne,
+            validateRevEquationOneBoxOne()
+          )}
+          value={revEquationOneBoxOne}
           onChange={(e) => {
-            setEquationBoxOne(e.target.value);
+            setRevEquationOneBoxOne(e.target.value);
           }}
           placeholder="1"
         />
 
         <p className="text-4xl text-center">x</p>
         <input
-          className="border-2 border-black p-4 text-grey-darkest max-w-sm"
-          value={equationBoxTwo}
-          onChange={(e) => setEquationBoxTwo(e.target.value)}
+          className={equationContainerCSS(
+            revEquationOneBoxTwo,
+            validateRevEquationOneBoxTwo()
+          )}
+          value={revEquationOneBoxTwo}
+          onChange={(e) => setRevEquationOneBoxTwo(e.target.value)}
           placeholder="2"
         />
         <p className="text-4xl text-center">=</p>
         <input
-          className="border-2 border-black p-4 text-grey-darkest max-w-sm"
-          value={equationBoxThree}
-          onChange={(e) => setEquationBoxThree(e.target.value)}
+          className={equationContainerCSS(
+            revEquationOneBoxThree,
+            validateQuestionOneAnswer()
+          )}
+          value={revEquationOneBoxThree}
+          onChange={(e) => setRevEquationOneBoxThree(e.target.value)}
           placeholder="2"
         />
-        <p className="border-double border-4 border-black text-center col-start-5 mt-4">
-          {validateQuestionOneInputs()} {validateQuestionOneAnswer()}
-        </p>
       </div>
 
       <h1 className="text-2xl pt-8">
@@ -137,14 +162,19 @@ const RevenueEquation = ({
       </h1>
 
       <h1 className="text-2xl font-bold pt-8 pl-4">Equation 2:</h1>
-      <div className="grid grid-cols-5 items-center justify-center pt-4">
+      <div className="grid grid-cols-7 items-center justify-center pt-4">
         <p className="text-2xl text-center m-4">Plates per Hour</p>
         <p className="text-4xl text-center m-4">x</p>
         <p className="text-2xl text-center m-4">Price per Plate</p>
+        <p className="text-4xl text-center m-4">x</p>
+        <p className="text-2xl text-center m-4">Hours per Day</p>
         <p className="text-4xl text-center m-4">=</p>
-        <p className="text-2xl text-center m-4">$$$ per Hour</p>
+        <p className="text-2xl text-center m-4">$$$ per Day</p>
         <input
-          className="border-2 border-black p-4 text-grey-darkest max-w-sm"
+          className={equationContainerCSS(
+            revEquationTwoBoxOne,
+            validateRevEquationTwoBoxOne()
+          )}
           value={revEquationTwoBoxOne}
           onChange={(e) => {
             setRevEquationTwoBoxOne(e.target.value);
@@ -154,21 +184,34 @@ const RevenueEquation = ({
 
         <p className="text-4xl text-center">x</p>
         <input
-          className="border-2 border-black p-4 text-grey-darkest max-w-sm"
+          className={equationContainerCSS(
+            revEquationTwoBoxTwo,
+            validateRevEquationTwoBoxTwo()
+          )}
           value={revEquationTwoBoxTwo}
           onChange={(e) => setRevEquationTwoBoxTwo(e.target.value)}
           placeholder="2"
         />
-        <p className="text-4xl text-center">=</p>
+        <p className="text-4xl text-center">x</p>
         <input
-          className="border-2 border-black p-4 text-grey-darkest max-w-sm"
+          className={equationContainerCSS(
+            revEquationTwoBoxThree,
+            validateRevEquationTwoBoxThree()
+          )}
           value={revEquationTwoBoxThree}
           onChange={(e) => setRevEquationTwoBoxThree(e.target.value)}
           placeholder="2"
         />
-        <p className="border-double border-4 border-black text-center col-start-5 mt-4">
-          {validateQuestionTwoInputs()} {validateQuestionTwoAnswer()}
-        </p>
+        <p className="text-4xl text-center">=</p>
+        <input
+          className={equationContainerCSS(
+            revEquationTwoBoxFour,
+            validateQuestionTwoAnswer()
+          )}
+          value={revEquationTwoBoxFour}
+          onChange={(e) => setRevEquationTwoBoxFour(e.target.value)}
+          placeholder="2"
+        />
       </div>
     </div>
   );

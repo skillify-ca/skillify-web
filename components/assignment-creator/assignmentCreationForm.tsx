@@ -2,12 +2,9 @@ import { initial } from "lodash";
 import React, { useEffect, useState } from "react";
 import { QuestionType } from "../../pages/api/questionTypes";
 import {
-  getSkillId,
-  getSkillsForTopic,
   getSkillsForTopicGrade,
   Grade,
   Skill,
-  SkillDescription,
   Topic,
 } from "../../pages/api/skill";
 import { Button } from "../ui/Button";

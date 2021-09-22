@@ -46,6 +46,7 @@ const DisplayAssignmentQuestions = ({
   setQuestions,
   onSubmit,
   onBackClick,
+  data,
 }: displayAssignmentQuestionsProps) => {
   useEffect(() => {
     // initialize dropdowns

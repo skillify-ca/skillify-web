@@ -57,25 +57,25 @@ export const RulesSession = ({
           </div>
           <div className="grid grid-cols-2 mt-8">
             <div className={"col-start-1"}>
-              <div className={"flex justify-center"}>
+              <div className={"flex flex-col items-center justify-center"}>
                 <img
                   src={"/images/Addition1.png"}
                   className={"h-16 w-auto opacity-20"}
                 />{" "}
-              </div>
-              <div className={"flex justify-center font-bold"}>
-                Addition Level 1 Badge
+                <div className={"text-center font-bold"}>
+                  Addition Level 1 Badge
+                </div>
               </div>
             </div>
             <div className={"col-start-2"}>
-              <div className={"flex justify-center"}>
+              <div className={"flex flex-col items-center justify-center"}>
                 <img
                   src={"/images/Subtraction1.png"}
                   className={"h-16 w-auto opacity-20"}
                 />{" "}
-              </div>
-              <div className={"flex justify-center font-bold"}>
-                Subtraction Level 1 Badge
+                <div className={"text-center font-bold"}>
+                  Subtraction Level 1 Badge
+                </div>
               </div>
             </div>
           </div>
@@ -87,14 +87,14 @@ export const RulesSession = ({
   return (
     <div>
       <p className="text-center text-4xl pb-8">Balancing a Budget</p>
-      <div className="mt-8 bg-white border-4 border-black">
-        <h2 className="flex items-center justify-center text text-2xl mt-8 mb-4">
+      <div className="bg-white border-4 border-black p-4">
+        <h2 className="flex items-center justify-center text text-2xl">
           Before you start, we recommend that you complete Addition Level 1 and
           Subtraction Level 1
         </h2>
         <div className="grid grid-cols-2 mt-8"> {validate()} </div>
       </div>
-      <div className="pb-8 flex flex-col items-center">
+      <div className="py-8">
         <BudgetRules />
       </div>
       <p className="text-center pb-5">
@@ -113,24 +113,20 @@ export const RulesSession = ({
         </div>
       )}
       <div></div>
-      <div className="flex flex-nowrap justify-center">
-        <div className="pr-5">
-          <Button
-            backgroundColor="green"
-            textColor="white"
-            label="Randomize"
-            onClick={randomize}
-          />
+      <div className="flex gap-8 justify-center">
+        <Button
+          backgroundColor="green"
+          textColor="white"
+          label="Randomize"
+          onClick={randomize}
+        />
 
-          <div>
-            <Button
-              backgroundColor="green"
-              textColor="white"
-              label="Start"
-              onClick={(e) => onClick()}
-            />
-          </div>
-        </div>
+        <Button
+          backgroundColor="green"
+          textColor="white"
+          label="Start"
+          onClick={(e) => onClick()}
+        />
       </div>
     </div>
   );

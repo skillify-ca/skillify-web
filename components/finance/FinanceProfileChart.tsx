@@ -24,7 +24,7 @@ export const FinanceProfileChart = ({
   return (
     <div
       className={
-        "flex flex-col flex-nowrap justify-center items-center bg-white shadow-md rounded-xl max-w-screen-l border-black	w-6/12"
+        "flex flex-col flex-nowrap justify-center items-center bg-white shadow-md rounded-xl max-w-screen-l border-black w-full	sm:w-6/12"
       }
     >
       <div className={"flex justify-center h-16 bg-gray-50 w-full text-2xl"}>

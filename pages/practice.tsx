@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Outline from "../components/Outline";
-import { getSession, useSession } from "next-auth/client";
+import { getSession, useSession } from "next-auth/react";
 
 export default function Home() {
-  const [session, loading] = useSession();
+  const { data: session, status } = useSession()
 
   return (
     <div className="flex flex-col h-screen">

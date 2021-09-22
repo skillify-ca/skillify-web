@@ -70,15 +70,29 @@ export default function djacobs(props) {
     "You're almost out! Using your knowledge of supplementary angles, what is <d?",
     "LAST QUESTION before you escape the clutches of the mummy! In the space provided, write a secret password by figuring out the missing angles of the triangle (the grey circles). Your secret password needs to be in numerical order with NO spaces (e.x. 1234567).",
   ];
+
+  const [stage, setStage] = useState(Stage.START);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [groupName, setGroupName] = useState<string>();
+  const [studentName, setStudentName] = useState<string>();
+  const [guesses, setGuess] = useState<GuessData[]>([]);
+
   const onSubmit = (guess: GuessData) => {
     console.log(guess);
   };
 
-  const [stage, setStage] = useState(Stage.START);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
   const onStartQuiz = () => {
     setStage(Stage.QUIZ);
+  };
+
+  const onGroupNameChange = (currentGroupName: string) => {
+    const GN = currentGroupName;
+    setGroupName(GN);
+  };
+
+  const onStudentNameChange = (currentStudentName: string) => {
+    const SN = currentStudentName;
+    setStudentName(SN);
   };
 
   const backToPrevious = () => {
@@ -88,8 +102,10 @@ export default function djacobs(props) {
       setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1));
     }
   };
-
+  //Future thing: Use this function to add the guessData from each question page into the guessDataArray
   const nextQuestion = () => {
+    //guesses[currentQuestionIndex] = guess
+    //another function to count the amounts of trues / total question length
     setCurrentQuestionIndex(
       Math.min(questionData.length - 1, currentQuestionIndex + 1)
     );
@@ -126,7 +142,20 @@ export default function djacobs(props) {
             <div className="flex flex-col items-center col gap-8">
               <div className="text-center">
                 <label>Group Name</label>
-                <input className="p-4 text-lg" />
+                <input
+                  className="p-4 text-lg"
+                  value={groupName}
+                  onChange={(e) => onGroupNameChange(e.target.value)}
+                />
+              </div>
+              <div className="text-center">
+                <label>Student Names</label>
+                <input
+                  className="p-4 text-lg"
+                  placeholder="(seperate by ,)"
+                  value={studentName}
+                  onChange={(e) => onStudentNameChange(e.target.value)}
+                />
               </div>
               <Button
                 label="Start"
