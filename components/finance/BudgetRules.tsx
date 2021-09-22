@@ -12,7 +12,7 @@ const BudgetRules = ({}) => {
     slidesToScroll: 1,
   };
   return (
-    <div className={`bg-green-300 border-4 border-black w-2/3`}>
+    <div className={`bg-green-300 border-4 border-black w-full sm:w-2/3`}>
       <h1 className="bg-green-800 align-middle text-center text-white text-3xl ">
         -Rules-
       </h1>
