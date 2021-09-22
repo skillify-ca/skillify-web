@@ -63,7 +63,7 @@ const BudgetRules = ({}) => {
             </div>
           </div>
           <div className="p-4">
-            <div className="text-3xl mb-8 ">Buy a Phone</div>
+            <div className="text-3xl mb-8">Buy a Phone</div>
             <img
               className="w-64 h-64 align-middle mx-auto mb-8"
               src="https://www.pngitem.com/pimgs/m/210-2103810_phone-vector-png-mobile-phone-clipart-transparent-png.png"

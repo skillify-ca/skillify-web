@@ -4,7 +4,7 @@ export interface BuyGroceriesProps {}
 
 export const BuyGroceries = ({}: BuyGroceriesProps) => {
   return (
-    <div className={"mr-24"}>
+    <div className={""}>
       <ServiceHeader
         mainHeader="Buy Groceries"
         imgHeader="/images/groceries.png"
