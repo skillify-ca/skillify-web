@@ -89,9 +89,7 @@ const BuildingABakeryA = ({
       <div className={"grid grid-col-1 sm:grid-cols-2 border-collapse"}>
         {/* use sm:grid-cols-2 for large screens*/}
         <div
-          className={
-            "flex justify-center  col-span-1 col-start-1 border-4 border-red-200 mt-8 ml-16"
-          }
+          className={"flex justify-center border-4 border-red-200 mt-8 ml-16"}
         >
           <div>
             {" "}
@@ -101,21 +99,16 @@ const BuildingABakeryA = ({
               How much was the other bakery per month?
             </div>
             <div className={"grid grid-col-3 gap-4 mt-4 mb-4 mx-4 "}>
-              <div className={"col-start-1 col-span-2 "}> Equation:</div>
-              <div className={"col-start-3 col-span-1 "}>
-                {" "}
-                Answer: {q1Correct}
-              </div>
+              <div className={" col-span-2 "}> Equation:</div>
+              <div className={"col-start-3  "}> Answer: {q1Correct}</div>
               <input
-                className={
-                  "bg-yellow-100 col-start-1 col-span-2 h-20 text-center"
-                }
+                className={"bg-yellow-100 col-span-2 h-20 text-center"}
               ></input>
               <input
                 className={
                   q1Correct === "Correct"
-                    ? "bg-green-100 col-start-3 col-span-1 h-20 text-center"
-                    : "bg-yellow-100 col-start-3 col-span-1 h-20 text-center"
+                    ? "bg-green-100 col-start-3  h-20 text-center"
+                    : "bg-yellow-100 col-start-3  h-20 text-center"
                 }
                 value={monthlyRentQ1}
                 onChange={(e) => {
@@ -129,7 +122,7 @@ const BuildingABakeryA = ({
         </div>
         <div
           className={
-            "flex justify-center col-span-1 col-start-2 border-4 border-red-200 mt-8 mr-16"
+            "flex justify-center  col-start-2 border-4 border-red-200 mt-8 mr-16"
           }
         >
           <div>
@@ -139,21 +132,16 @@ const BuildingABakeryA = ({
               1/10 of that space. How many square feet is your bakery?
             </div>
             <div className={"grid grid-col-3 gap-4 mt-4 mb-4 mx-4 "}>
-              <div className={"col-start-1 col-span-2 "}> Equation:</div>
-              <div className={"col-start-3 col-span-1 "}>
-                {" "}
-                Answer: {q2Correct}
-              </div>
+              <div className={" col-span-2 "}> Equation:</div>
+              <div className={"col-start-3  "}> Answer: {q2Correct}</div>
               <input
-                className={
-                  "bg-yellow-100 col-start-1 col-span-2 h-20 text-center"
-                }
+                className={"bg-yellow-100  col-span-2 h-20 text-center"}
               ></input>
               <input
                 className={
                   q2Correct === "Correct"
-                    ? "bg-green-100 col-start-3 col-span-1 h-20 text-center"
-                    : "bg-yellow-100 col-start-3 col-span-1 h-20 text-center"
+                    ? "bg-green-100 col-start-3  h-20 text-center"
+                    : "bg-yellow-100 col-start-3  h-20 text-center"
                 }
                 value={bakerySpaceQ2}
                 onChange={(e) => {
@@ -165,11 +153,7 @@ const BuildingABakeryA = ({
             </div>
           </div>
         </div>
-        <div
-          className={
-            "flex justify-center col-span-1 col-start-1 border-4 border-red-200 ml-16"
-          }
-        >
+        <div className={"flex justify-center border-4 border-red-200 ml-16"}>
           <div>
             <div className={"flex flex-wrap px-4 justify-center"}>
               There is an ice cream & candy shop next door that is the same size
@@ -177,8 +161,8 @@ const BuildingABakeryA = ({
               (think Equivalent Fractions)
             </div>
             <div className={"grid grid-col-3 gap-4 mt-4 mb-4 mx-4 "}>
-              <div className={"col-start-1 col-span-2 "}> Equation:</div>
-              <div className={"col-start-3 col-span-1 "}>
+              <div className={" col-span-2 "}> Equation:</div>
+              <div className={"col-start-3  "}>
                 {" "}
                 Answer:
                 {numeratorQ3 / denominatorQ3 === 0.1
@@ -187,9 +171,7 @@ const BuildingABakeryA = ({
                 {q3Correct}
               </div>
               <input
-                className={
-                  "bg-yellow-100 col-start-1 col-span-2 h-20 text-center"
-                }
+                className={"bg-yellow-100  col-span-2 h-20 text-center"}
               ></input>
               <div className={"grid grid-rows-2 gap-2"}>
                 <input
@@ -224,7 +206,7 @@ const BuildingABakeryA = ({
         </div>
         <div
           className={
-            "flex justify-center col-span-1 col-start-2 border-4 border-red-200 mr-16"
+            "flex justify-center  col-start-2 border-4 border-red-200 mr-16"
           }
         >
           <div>
@@ -235,8 +217,8 @@ const BuildingABakeryA = ({
               will be for storage and baking?
             </div>
             <div className={"grid grid-col-3 gap-4 mt-4 mb-4 mx-4 "}>
-              <div className={"col-start-1 col-span-2 "}> Equation:</div>
-              <div className={"col-start-3 col-span-1 "}>
+              <div className={" col-span-2 "}> Equation:</div>
+              <div className={"col-start-3  "}>
                 {" "}
                 Answer:
                 {numeratorQ4 === "5" && denominatorQ4 == "9"
@@ -245,9 +227,7 @@ const BuildingABakeryA = ({
                 {q4Correct}
               </div>
               <input
-                className={
-                  "bg-yellow-100 col-start-1 col-span-2 h-20 text-center"
-                }
+                className={"bg-yellow-100  col-span-2 h-20 text-center"}
               ></input>
               <div className={"grid grid-rows-2 gap-2"}>
                 <input
