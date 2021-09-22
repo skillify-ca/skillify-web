@@ -60,7 +60,7 @@ const FinanceProfile = () => {
   });
 
   return (
-    <div className="p-4">
+    <div className="">
       {stage === STAGES.START && data && (
         <RulesSession
           profileData={profileData}

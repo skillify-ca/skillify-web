@@ -182,7 +182,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         >
           <div
             className={
-              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+              "flex justify-center items-center text-2xl text-white bg-blue-400 bg-opacity-30 w-full h-full"
             }
           >
             Here is your Life Card
@@ -190,7 +190,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         </header>
         {profileData && (
           <div
-            className={"flex items-center justify-center p-20"}
+            className={"flex items-center justify-center my-4"}
             onMouseEnter={scrollToLifeSection}
           >
             <FinanceProfileChart
@@ -210,7 +210,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         >
           <div
             className={
-              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+              "flex items-center justify-center text-2xl text-white bg-purple-400 w-full h-full bg-opacity-30"
             }
           >
             {" "}
@@ -219,7 +219,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         </section>
 
         <div
-          className={"flex items-center justify-center p-6"}
+          className={"flex items-center justify-center"}
           onMouseEnter={scrollToHomeSection}
         >
           <BuyAHome />
@@ -231,7 +231,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         >
           <div
             className={
-              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+              "flex justify-center items-center text-2xl text-white bg-blue-400 bg-opacity-30 w-full h-full"
             }
           >
             {" "}
@@ -239,7 +239,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
           </div>
         </section>
         <div
-          className={"flex items-center justify-center p-6"}
+          className={"flex items-center justify-center"}
           onMouseEnter={scrollToCarSection}
         >
           <BuyACar
@@ -262,7 +262,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         >
           <div
             className={
-              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+              "flex justify-center items-center text-2xl text-white bg-green-400 bg-opacity-30 w-full h-full"
             }
           >
             {" "}
@@ -282,7 +282,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         >
           <div
             className={
-              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+              "flex justify-center items-center text-2xl text-white bg-purple-400 bg-opacity-30 w-full h-full"
             }
           >
             {" "}
@@ -299,7 +299,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
 
       <div
         className={
-          "h-full overflow-scroll col-start-4 col-end-6 mt-8 bg-gray-100 px-8"
+          "h-full overflow-scroll col-start-4 col-end-6 bg-gray-100 px-8"
         }
       >
         <div className={"mb-20 border-4 border-black p-6"}>
