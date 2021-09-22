@@ -97,17 +97,6 @@ export default function Bakery(props) {
           onClick={nextStage}
         />
       </div>
-
-
-const BakeryPage = () => {
-  return (
-    <div className={"bg-white"}>
-      <BakeryInstructions />
-      <BuildingABakeryA />
-      <BakersRack />
-      <BakersRackB />
-      <BakingGma />;
-
     </div>
   );
 }
