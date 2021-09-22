@@ -6,11 +6,9 @@ import {
   getQuestionTypesForSkill,
   getSkillId,
   Skill,
-  SkillDescription,
 } from "../../pages/api/skill";
 import QuestionSet from "../stories/QuestionSet";
 import { Button } from "../ui/Button";
-import { QuestionTypeForSkill } from "./assignmentCreationForm";
 import { generateAssignmentQuestions } from "./assignmentQuestionGenerator";
 
 type displayAssignmentQuestionsProps = {
@@ -124,12 +122,12 @@ const DisplayAssignmentQuestions = ({
             <div className="flex flex-col items-center">
               <p className="font-bold">Question #{index + 1}:</p>
               <p className="text-lg">
-                I can {data.skills[0].description}
-                {data.skills.find((element) =>
-                  element.id === getSkillId(question.skill)
-                    ? element.description
-                    : "empty"
-                )}
+                I can 
+                {
+                  data.skills.find(
+                    (element) => element.id === getSkillId(question.skill)
+                  ).description
+                }
               </p>
             </div>
             <div className="flex justify-between items-center">
