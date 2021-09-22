@@ -24,7 +24,7 @@ type assignmentCreationFormProps = {
   onClick: (questionCounts: QuestionCount[]) => void;
   questionCounts: QuestionCount[];
   setQuestionCounts: (counts: QuestionCount[]) => void;
-  data: any;
+  data: any; //TODO DEFINE TYPE
 };
 
 export type QuestionCount = {

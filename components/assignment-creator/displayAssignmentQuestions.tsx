@@ -21,8 +21,22 @@ type displayAssignmentQuestionsProps = {
   setQuestions: (questions: Question[]) => void;
   onSubmit: (grade: string) => void;
   onBackClick: () => void;
+  data: FetchDescriptionAndSkillResult;
 };
 
+export type FetchDescriptionAndSkillResult = {
+  data: FetchDescriptionAndSkillData;
+};
+
+type FetchDescriptionAndSkillData = {
+  skills: SkillData[];
+};
+
+type SkillData = {
+  grade: number;
+  id: number;
+  description: string;
+};
 const DisplayAssignmentQuestions = ({
   assignmentSkills,
   setAssignmentSkills,
@@ -113,6 +127,7 @@ const DisplayAssignmentQuestions = ({
               <p className="font-bold">Question #{index + 1}:</p>
               <p className="text-lg">
                 I can {SkillDescription(question.skill)}
+                {/* TODO: USE .FIND function from query and return skill = question.skill */}
               </p>
             </div>
             <div className="flex justify-between items-center">
