@@ -1,5 +1,5 @@
 import { ApolloClient, InMemoryCache, useMutation } from "@apollo/client";
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import ReactCardFlip from "react-card-flip";
@@ -23,7 +23,7 @@ const PracticeQuiz = ({ skill }) => {
     EMOJI,
     END_SESSION,
   }
-  const [session, user] = useSession();
+  const { data: session, status } = useSession();
   const [isFlipped, setIsFlipped] = useState(false);
   const [display, setDisplay] = useState("flex");
   const [continueFaded, setContinueFaded] = useState(0);

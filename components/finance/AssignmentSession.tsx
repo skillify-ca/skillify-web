@@ -177,12 +177,12 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
       <div className={"h-full overflow-scroll col-start-1 col-end-4"}>
         <header
           className={
-            "flex items-center justify-center h-screen mb-12 bg-fixed bg-center bg-cover bg-finance-life"
+            "flex items-center justify-center h-108 mb-12 bg-fixed bg-center bg-cover bg-finance-life"
           }
         >
           <div
             className={
-              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+              "flex justify-center items-center text-2xl text-white bg-blue-400 bg-opacity-30 w-full h-full"
             }
           >
             Here is your Life Card
@@ -190,7 +190,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         </header>
         {profileData && (
           <div
-            className={"flex items-center justify-center p-20"}
+            className={"flex items-center justify-center my-4"}
             onMouseEnter={scrollToLifeSection}
           >
             <FinanceProfileChart
@@ -205,12 +205,12 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         )}
         <section
           className={
-            "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-center bg-cover bg-home"
+            "container flex items-center justify-center h-108 m-auto mb-12 bg-fixed bg-center bg-cover bg-home"
           }
         >
           <div
             className={
-              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+              "flex items-center justify-center text-2xl text-white bg-purple-400 w-full h-full bg-opacity-30"
             }
           >
             {" "}
@@ -219,19 +219,19 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         </section>
 
         <div
-          className={"flex items-center justify-center p-6"}
+          className={"flex items-center justify-center"}
           onMouseEnter={scrollToHomeSection}
         >
           <BuyAHome />
         </div>
         <section
           className={
-            "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-centerx bg-car bg-contain"
+            "container flex items-center justify-center h-108 m-auto mb-12 bg-fixed bg-centerx bg-car bg-contain"
           }
         >
           <div
             className={
-              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+              "flex justify-center items-center text-2xl text-white bg-blue-400 bg-opacity-30 w-full h-full"
             }
           >
             {" "}
@@ -239,7 +239,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
           </div>
         </section>
         <div
-          className={"flex items-center justify-center p-6"}
+          className={"flex items-center justify-center"}
           onMouseEnter={scrollToCarSection}
         >
           <BuyACar
@@ -257,12 +257,12 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         </div>
         <section
           className={
-            "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-left bg-contain bg-no-repeat bg-phone"
+            "container flex items-center justify-center h-108 m-auto mb-12 bg-fixed bg-left bg-contain bg-no-repeat bg-phone"
           }
         >
           <div
             className={
-              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+              "flex justify-center items-center text-2xl text-white bg-green-400 bg-opacity-30 w-full h-full"
             }
           >
             {" "}
@@ -277,12 +277,12 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         </div>
         <section
           className={
-            "container flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-left bg-cover bg-no-repeat bg-essentials"
+            "container flex items-center justify-center h-108 m-auto mb-12 bg-fixed bg-left bg-cover bg-no-repeat bg-essentials"
           }
         >
           <div
             className={
-              "p-5 text-2xl text-white bg-purple-400 bg-opacity-50 rounded-xl"
+              "flex justify-center items-center text-2xl text-white bg-purple-400 bg-opacity-30 w-full h-full"
             }
           >
             {" "}
@@ -290,7 +290,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
           </div>
         </section>
         <div
-          className={"flex items-center justify-center pl-28 mt-10"}
+          className={"flex items-center justify-center p-4 mt-10"}
           onMouseEnter={scrollToAdditionalSection}
         >
           <BuyGroceries />
@@ -299,7 +299,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
 
       <div
         className={
-          "h-full overflow-scroll col-start-4 col-end-6 mt-8 bg-gray-100 px-8"
+          "h-full overflow-scroll col-start-4 col-end-6 bg-gray-100 px-8"
         }
       >
         <div className={"mb-20 border-4 border-black p-6"}>

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import { useQuery } from "@apollo/client";
 import { FETCH_FLASHCARD_GUESSES } from "../../graphql/fetchFlashcardGuesses";
 import _ from "lodash";
@@ -9,7 +9,7 @@ import Card from "../../components/ui/Card";
 import data from "../api/profile/data.json";
 
 const Portfolio = ({ slug }) => {
-  const [session, loading] = useSession();
+  const { data: session, status } = useSession();
   const guessesResult = useQuery(FETCH_FLASHCARD_GUESSES, {
     variables: {
       userId: userId(session),

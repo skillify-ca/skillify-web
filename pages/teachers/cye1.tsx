@@ -11,7 +11,7 @@ import { LineData } from "../../components/ui/FreeDrawing";
 import { FETCH_USER_ASSIGNMENT } from "../../graphql/userAssignments/fetchUserAssignment";
 import { useMutation, useQuery } from "@apollo/client";
 import { userId } from "../../graphql/utils/constants";
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import { CREATE_USER_ASSIGNMENT } from "../../graphql/userAssignments/createUserAssignment";
 import { UPDATE_USER_ASSIGNMENT } from "../../graphql/userAssignments/updateUserAssignment";
 import { questions, solutions } from "../api/teachers/cye";
@@ -39,7 +39,7 @@ export default function cye1(props) {
     LineData[][]
   >([[], [], [], [], [], [], [], [], [], [], [], [], [], []]);
   const [showSolutions, setShowSolutions] = useState(false);
-  const [session] = useSession();
+  const { data: session } = useSession();
 
   const { loading, data: userAssignmentFetchData } = useQuery(
     FETCH_USER_ASSIGNMENT,

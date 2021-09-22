@@ -1,13 +1,11 @@
-import { getSession, useSession } from "next-auth/client";
+import { getSession, useSession } from "next-auth/react";
 import React from "react";
 import ProfileComponent from "../components/ProfileComponent";
 
 const Profile = () => {
-  const [session, loading] = useSession();
-
   return (
     <div>
-      <ProfileComponent session={session} />
+      <ProfileComponent />
     </div>
   );
 };

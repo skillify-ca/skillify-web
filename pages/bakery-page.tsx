@@ -5,6 +5,7 @@ import BakersRack from "../components/bakery/BakersRack";
 
 import BakingGma from "../components/bakery/BakingGma";
 import BakersRackB from "../components/bakery/BakersRackB";
+
 import { STAGE } from "./games";
 import { Button } from "../components/ui/Button";
 
@@ -96,6 +97,17 @@ export default function Bakery(props) {
           onClick={nextStage}
         />
       </div>
+
+
+const BakeryPage = () => {
+  return (
+    <div className={"bg-white"}>
+      <BakeryInstructions />
+      <BuildingABakeryA />
+      <BakersRack />
+      <BakersRackB />
+      <BakingGma />;
+
     </div>
   );
 }

@@ -1,7 +1,13 @@
 import React from "react";
+import { GuessData } from "../../pages/api/guessData";
 import { MultipleChoice } from "../questionTypes/MultipleChoice";
 
 const Q1 = (displayQuestion, nextQuestion) => {
+  const onSubmit = (guess: GuessData) => {
+    console.log(guess);
+    //Pass this guessData object into nextQuestion
+    nextQuestion();
+  };
   return (
     <React.Fragment>
       <MultipleChoice
@@ -18,8 +24,8 @@ const Q1 = (displayQuestion, nextQuestion) => {
           id: "option3",
           text: "360",
         }}
-        answer="120"
-        submitGuess={nextQuestion}
+        answer="180"
+        submitGuess={onSubmit}
       />
     </React.Fragment>
   );

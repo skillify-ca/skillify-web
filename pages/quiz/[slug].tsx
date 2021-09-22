@@ -7,7 +7,7 @@ import { useMutation } from "@apollo/client";
 import { generateQuestions } from "../api/quiz/quizQuestionGenerator";
 import { v4 as uuidv4 } from "uuid";
 import { userId } from "../../graphql/utils/constants";
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import QuestionSet from "../../components/stories/QuestionSet";
 import { QuestionType } from "../api/questionTypes";
 import { GuessData } from "../api/guessData";
@@ -41,7 +41,7 @@ export function getGradeLevel(score: number) {
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
-  const [session] = useSession();
+  const { data: session, status } = useSession();
   const [index, setIndex] = useState(0);
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [isGameOver, setGameOver] = useState(false);
@@ -196,7 +196,7 @@ const Quiz = ({ slug }) => {
   };
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <QuestionSet
         title={slug}
         questionData={questionData}
