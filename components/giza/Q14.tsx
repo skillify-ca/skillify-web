@@ -6,7 +6,7 @@ import { Button } from "../ui/Button";
 const Q14 = (displayQuestion, nextQuestion) => {
   const [guessString, setGuessString] = useState<string>("");
 
-  const answer = "60";
+  const answer = "76";
 
   const onGuessChanged = (currentGuess: string) => {
     const newGuess = currentGuess;
