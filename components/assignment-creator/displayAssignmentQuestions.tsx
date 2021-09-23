@@ -7,6 +7,7 @@ import {
   getSkillId,
   Skill,
 } from "../../pages/api/skill";
+import { FetchDescriptionAndSkillData } from "../../pages/assignment-creator";
 import QuestionSet from "../stories/QuestionSet";
 import { Button } from "../ui/Button";
 import { generateAssignmentQuestions } from "./assignmentQuestionGenerator";
@@ -23,15 +24,6 @@ type displayAssignmentQuestionsProps = {
   data: FetchDescriptionAndSkillData;
 };
 
-export type FetchDescriptionAndSkillData = {
-  skills: SkillData[];
-};
-
-type SkillData = {
-  grade: number;
-  id: number;
-  description: string;
-};
 const DisplayAssignmentQuestions = ({
   assignmentSkills,
   setAssignmentSkills,

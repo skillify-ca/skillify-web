@@ -10,9 +10,7 @@ import { Question } from "./api/question";
 import { useMutation } from "@apollo/client";
 import AssignmentConfirmation from "../components/assignment-creator/assignmentConfirmation";
 import { CREATE_ASSIGNMENT } from "../graphql/createAssignment";
-import DisplayAssignmentQuestions, {
-  FetchDescriptionAndSkillData,
-} from "../components/assignment-creator/displayAssignmentQuestions";
+import DisplayAssignmentQuestions from "../components/assignment-creator/displayAssignmentQuestions";
 import { QuestionType } from "./api/questionTypes";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { FETCH_SKILL_DESCRIPTION_AND_GRADE } from "../graphql/fetchSkillDescriptionAndGrade";
@@ -22,6 +20,16 @@ enum STAGE {
   CHOOSE_QUESTION_TYPES,
   CONFIRM,
 }
+
+export type FetchDescriptionAndSkillData = {
+  skills: SkillData[];
+};
+
+export type SkillData = {
+  grade: number;
+  id: number;
+  description: string;
+};
 
 const AssignmentCreator = (data: FetchDescriptionAndSkillData) => {
   const [stage, setStage] = useState(STAGE.CHOOSE_SKILLS);
