@@ -264,7 +264,7 @@ export async function getStaticProps({ params }) {
     uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
     cache: new InMemoryCache(),
   });
-
+  // TODO MAKE GRADE DYNAMIC: MOVE BUTTON TO STUDENT PORTAL, PASS PROP TO QUERY AND RETURN APPROPRIATE SKILL DESCRIPTIONS
   const skillIds = getSkillsForTopicGrade(params.slug, Grade.GRADE_1);
   const { data } = await client.query({
     query: FETCH_SKILL_DESCRIPTION_ARRAY,

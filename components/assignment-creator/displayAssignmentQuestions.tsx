@@ -4,12 +4,12 @@ import { QuestionType } from "../../pages/api/questionTypes";
 import { getRandomItemFromArray } from "../../pages/api/random";
 import {
   getQuestionTypesForSkill,
+  getSkillId,
   Skill,
-  SkillDescription,
 } from "../../pages/api/skill";
+import { FetchDescriptionAndSkillData } from "../../pages/assignment-creator";
 import QuestionSet from "../stories/QuestionSet";
 import { Button } from "../ui/Button";
-import { QuestionTypeForSkill } from "./assignmentCreationForm";
 import { generateAssignmentQuestions } from "./assignmentQuestionGenerator";
 
 type displayAssignmentQuestionsProps = {
@@ -21,7 +21,7 @@ type displayAssignmentQuestionsProps = {
   setQuestions: (questions: Question[]) => void;
   onSubmit: (grade: string) => void;
   onBackClick: () => void;
-  data: any;
+  data: FetchDescriptionAndSkillData;
 };
 
 const DisplayAssignmentQuestions = ({
@@ -114,7 +114,12 @@ const DisplayAssignmentQuestions = ({
             <div className="flex flex-col items-center">
               <p className="font-bold">Question #{index + 1}:</p>
               <p className="text-lg">
-                I can {SkillDescription(question.skill)}
+                I can 
+                {
+                  data.skills.find(
+                    (element) => element.id === getSkillId(question.skill)
+                  ).description
+                }
               </p>
             </div>
             <div className="flex justify-between items-center">

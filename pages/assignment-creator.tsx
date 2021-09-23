@@ -21,7 +21,17 @@ enum STAGE {
   CONFIRM,
 }
 
-const AssignmentCreator = (data) => {
+export type FetchDescriptionAndSkillData = {
+  skills: SkillData[];
+};
+
+export type SkillData = {
+  grade: number;
+  id: number;
+  description: string;
+};
+
+const AssignmentCreator = (data: FetchDescriptionAndSkillData) => {
   const [stage, setStage] = useState(STAGE.CHOOSE_SKILLS);
   const [skills, setSkills] = useState<Skill[]>([]);
   const [questionTypes, setQuestionTypes] = useState<QuestionType[]>([]);
