@@ -52,6 +52,7 @@ const TopicOverviewPage = ({ slug, description }) => {
     variables: {
       userId: userId(session),
       badgeId: getBadgeId(slug, gradeNum(grade)),
+      skillId: getSkillsForTopicGrade(slug, grade),
     },
   });
 
@@ -136,7 +137,7 @@ const TopicOverviewPage = ({ slug, description }) => {
           </div>
           <div className="text-md font-bold text-blue-900 flex flex-col items-center">
             {" "}
-            Confidence:{" "}
+            Confidence:
             <p className="text-6xl">
               {!loading &&
                 data &&
