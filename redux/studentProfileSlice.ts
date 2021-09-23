@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
+import { Grade } from "../pages/api/skill";
 import { RootState } from "./rootReducer";
 
 export interface StudentProfileState {
@@ -6,7 +7,7 @@ export interface StudentProfileState {
 }
 
 const initialState: StudentProfileState = {
-  grade: "",
+  grade: Grade.GRADE_1,
 };
 
 export const studentProfileSlice: Slice = createSlice({

@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { UnitCard } from "./UnitCard";
 import { userId } from "../graphql/utils/constants";
 import Card from "./ui/Card";
 import ProgressRing from "./ui/ProgressRing";
 import { lockedTopics, unlockedTopics } from "../pages/api/topics";
-import { EMOJI_MASTERY } from "../pages/api/skill";
+import { EMOJI_MASTERY, Grade } from "../pages/api/skill";
 import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
 import { useQuery } from "@apollo/client";
 import { Session } from "next-auth";
 import Link from "next/link";
 import { Puzzle, PUZZLE_DATA } from "../pages/api/puzzle";
 import { Button } from "./ui/Button";
+import {
+  StudentProfileState,
+  setStudentProfile,
+} from "../redux/studentProfileSlice";
+import { useAppDispatch } from "../redux/store";
+
 interface OutlineProps {
   session: Session;
 }
@@ -22,6 +28,16 @@ export default function Outline({ session }: OutlineProps) {
     },
   });
 
+  const [grade, setGrade] = useState(Grade.GRADE_1);
+  const dispatch = useAppDispatch();
+
+  const onGradeChange = (newGrade) => {
+    const updatedState: StudentProfileState = {
+      grade: newGrade,
+    };
+    dispatch(setStudentProfile(updatedState));
+    setGrade(newGrade);
+  };
   const progress = () => {
     if (
       !loading &&
@@ -71,7 +87,11 @@ export default function Outline({ session }: OutlineProps) {
             Set your grade:{" "}
           </p>
 
-          <select className="ml-4 w-56 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2">
+          <select
+            value={grade}
+            onChange={(e) => onGradeChange(e.target.value)}
+            className="ml-4 w-56 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2"
+          >
             <option>Grade 1</option>
             <option>Grade 2</option>
             <option>Grade 3</option>

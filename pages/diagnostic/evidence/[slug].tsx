@@ -5,7 +5,6 @@ import Navbar from "../../../components/Navbar";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 import { diagnosticSelector } from "../../../redux/diagnosticSlice";
-import { FETCH_SKILLS_AND_DESCRIPTION_ON_UNIT } from "../../../graphql/fetchSkillsAndDescriptionOnUnit";
 import { FETCH_DIAGNOSTIC_DESCRIPTION_ON_UNIT } from "../../../graphql/fetchDiagnosticDescriptionsOnUnit";
 
 const DiagnosticEvidencePage = ({ slug, data }) => {

@@ -13,12 +13,16 @@ import { getBadgeId } from "../api/badgeHelper";
 import { getEmoji, getSkillsForTopicGrade, Grade } from "../api/skill";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { FETCH_SKILL_DESCRIPTION_ARRAY } from "../../graphql/fetchSkillDescriptionArray";
+import { useSelector } from "react-redux";
+import { studentProfileSelector } from "../../redux/studentProfileSlice";
 
 const Box = dynamic(() => import("../../components/stories/Box"));
 
 const TopicOverviewPage = ({ slug, description }) => {
   const { data: session, status } = useSession();
   const [grade, setGrade] = useState(Grade.GRADE_1);
+  const studentGrade = useSelector(studentProfileSelector);
+
   const onGradeChange = (e: any) => {
     setGrade(e.target.value);
   };
@@ -72,11 +76,11 @@ const TopicOverviewPage = ({ slug, description }) => {
 
   const levelComponent = (
     <div className="flex flex-row">
+      {"GRADE" + JSON.stringify(studentGrade)}
       <p className="flex items-center text-xl text-blue-900">
         {" "}
         Select a grade:{" "}
       </p>
-
       {slug == "numbers" ? (
         <select
           value={grade}
