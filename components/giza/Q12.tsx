@@ -10,9 +10,9 @@ const Q12 = (displayQuestion, nextQuestion) => {
     None of the above
  */
   const onSubmit = (guess: GuessData) => {
-    console.log(guess);
+    //console.log(guess);
     //Pass this guessData object into nextQuestion
-    nextQuestion();
+    nextQuestion(guess);
   };
   return (
     <React.Fragment>

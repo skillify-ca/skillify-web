@@ -11,9 +11,9 @@ import { MultipleChoice } from "../questionTypes/MultipleChoice";
 
 const Q13 = (displayQuestion, nextQuestion) => {
   const onSubmit = (guess: GuessData) => {
-    console.log(guess);
+    //console.log(guess);
     //Pass this guessData object into nextQuestion
-    nextQuestion();
+    nextQuestion(guess);
   };
   return (
     <React.Fragment>
