@@ -65,6 +65,21 @@ export default function Outline({ session }: OutlineProps) {
             <ProgressRing percentage={progress()} radius={24} />
           </div>
         </div>
+        <div className="flex flex-row">
+          <p className="flex items-center text-xl text-blue-900">
+            {" "}
+            Select a grade:{" "}
+          </p>
+
+          <select className="ml-4 w-56 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2">
+            <option>Grade 1</option>
+            <option>Grade 2</option>
+            <option>Grade 3</option>
+            <option>Grade 4</option>
+            <option>Grade 5</option>
+            <option>Grade 6</option>
+          </select>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 justify-center gap-8 items-center">
