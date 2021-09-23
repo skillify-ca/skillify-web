@@ -68,7 +68,7 @@ export default function Outline({ session }: OutlineProps) {
         <div className="flex flex-row">
           <p className="flex items-center text-xl text-blue-900">
             {" "}
-            Select a grade:{" "}
+            Set your grade:{" "}
           </p>
 
           <select className="ml-4 w-56 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2">
