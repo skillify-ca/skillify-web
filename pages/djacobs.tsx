@@ -6,17 +6,6 @@ import { resources } from "./api/resources";
 import { MultipleChoice } from "../components/questionTypes/MultipleChoice";
 import { GuessData } from "./api/guessData";
 import { Button } from "../components/ui/Button";
-import { stages } from "konva/lib/Stage";
-import TeX from "@matejmazur/react-katex";
-import {
-  Question,
-  MCOption,
-  MCModel,
-  AnswerType,
-  FillOption,
-  fillBlankModel,
-} from "../pages/api/question";
-import { QuestionType } from "./api/questionTypes";
 import { react } from "@babel/types";
 import { TrueorFalse } from "../components/questionTypes/TrueorFalse";
 import { Skill } from "./api/skill";
