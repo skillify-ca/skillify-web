@@ -10,7 +10,7 @@ import {
 import { Button } from "../ui/Button";
 import Image from "next/image";
 import GoogleClassroomImage from ".././../public/images/assignments/google-classroom.svg";
-import { FetchDescriptionAndSkillData } from "./displayAssignmentQuestions";
+import { FetchDescriptionAndSkillData } from "../../pages/assignment-creator";
 
 export type QuestionTypeForSkill = {
   questionType: QuestionType;
