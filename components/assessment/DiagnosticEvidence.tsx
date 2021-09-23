@@ -4,11 +4,7 @@ import {
   getResultForSkill,
   getGradedQuestionsForTopic,
 } from "../../pages/api/diagnostic/diagnosticGrader";
-import {
-  getSkillsForTopic,
-  SkillDescription,
-  Topic,
-} from "../../pages/api/skill";
+import { Topic } from "../../pages/api/skill";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 
 type DiagnosticEvidenceProps = {

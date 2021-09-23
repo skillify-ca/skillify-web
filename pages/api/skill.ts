@@ -352,84 +352,6 @@ export enum Skill {
   DIVISION_THREE_DIGIT_BY_TENTH = "divide-triple-digit-by-tenths",
 }
 
-export function SkillDescription(skill: Skill) {
-  if (skill == Skill.NUMBERS_50) {
-    return "Count to 50";
-  } else if (skill == Skill.NUMBERS_200) {
-    return "Count to 200";
-  } else if (skill == Skill.NUMBERS_1000) {
-    return "Count to 1000";
-  } else if (skill == Skill.ADDITION_SINGLE) {
-    return "Add one digit numbers";
-  } else if (skill == Skill.ADDITION_DOUBLE) {
-    return "Add two digit numbers";
-  } else if (skill == Skill.ADDITION_TRIPLE) {
-    return "Add three digit numbers";
-  } else if (skill == Skill.ADDITION_PROPERTIES) {
-    return "Add using addition properties";
-  } else if (skill == Skill.ADDITION_4_DIGIT) {
-    return "Add four digit numbers";
-  } else if (skill == Skill.ADDITION_TENTHS) {
-    return "Add tenths together";
-  } else if (skill == Skill.SUBTRACTION_SINGLE) {
-    return "Subtract single digit numbers";
-  } else if (skill == Skill.SUBTRACTION_DOUBLE) {
-    return "Subtract double digit numbers";
-  } else if (skill == Skill.SUBTRACTION_TRIPLE) {
-    return "Subtract triple digit numbers";
-  } else if (skill == Skill.SUBTRACTION_4_DIGIT) {
-    return "Subtract four digit numbers";
-  } else if (skill == Skill.SUBTRACTION_TENTHS) {
-    return "Subtract tenths from each other";
-  } else if (skill == Skill.EQUAL_GROUP_10_ITEMS) {
-    return "Identify total items in equal groups";
-  } else if (skill == Skill.MULTIPLICATION_5) {
-    return "Multiply numbers up to 5x5";
-  } else if (skill == Skill.MULTIPLICATION_10) {
-    return "Multiply numbers up to 10x10";
-  } else if (skill == Skill.EQUAL_SHARING_8_ITEMS) {
-    return "Share up to 8 items equally";
-  } else if (skill == Skill.DIVIDE_12_EQUALLY) {
-    return "Divide numbers up to 12 equally";
-  } else if (skill == Skill.DIVIDE_100) {
-    return "Divide numbers up to 100 equally";
-  } else if (skill == Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT) {
-    return "Multiply single digit numbers with double digit numbers";
-  } else if (skill == Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT) {
-    return "Multiply single digit numbers with triple digit numbers";
-  } else if (skill == Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT) {
-    return "Multiply double digit numbers with 10";
-  } else if (skill == Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT) {
-    return "Multiply triple digit numbers with 10";
-  } else if (skill == Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT) {
-    return "Divide double digit numbers by single digit numbers";
-  } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT) {
-    return "Divide triple digit numbers by single digit numbers";
-  } else if (skill == Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT) {
-    return "Multiply double digit numbers with double digit numbers";
-  } else if (skill == Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT) {
-    return "Multiply double digit numbers with triple digit numbers";
-  } else if (skill == Skill.ADDITION_5_DIGIT) {
-    return "Add five digit numbers";
-  } else if (skill == Skill.ADDITION_HUNDREDTHS) {
-    return "Add hundreths together";
-  } else if (skill == Skill.SUBTRACTION_5_DIGIT) {
-    return "Subtract five digit numbers";
-  } else if (skill == Skill.SUBTRACTION_HUNDREDTHS) {
-    return "Subtract hundreths together";
-  } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT) {
-    return "Divide triple digit numbers by double digit numbers";
-  } else if (skill == Skill.ADDITION_6_DIGIT) {
-    return "Add six digit numbers together";
-  } else if (skill == Skill.SUBTRACTION_6_DIGIT) {
-    return "Subtract six digit numbers together";
-  } else if (skill == Skill.MULTIPLY_THREE_DIGIT_BY_TENTH) {
-    return "Multiply triple digit numbers by tenths";
-  } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH) {
-    return "Divide triple digit numbers by tenths";
-  }
-}
-
 export function getQuestionTypesForSkill(skill: Skill): QuestionType[] {
   if (skill == Skill.ADDITION_SINGLE) {
     return [
@@ -677,4 +599,3 @@ export const questionSetGenerator = (quantity: number) => {
   }
   return questions;
 };
-
