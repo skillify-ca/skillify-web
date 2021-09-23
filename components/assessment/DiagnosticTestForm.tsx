@@ -1,8 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "../ui/Button";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 
 type DiagnosticTestFormProps = {
   onClick: (grade: string) => void;
@@ -25,16 +22,6 @@ const DiagnosticTestForm = ({
 }: DiagnosticTestFormProps) => {
   const onGradeChange = (e: any) => {
     setGradeRange(e.target.value);
-  };
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    pauseOnHover: false,
   };
   return (
     <div className="flex flex-col">
