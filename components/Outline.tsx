@@ -30,7 +30,6 @@ export default function Outline({ session }: OutlineProps) {
     },
   });
 
-  const [grade, setGrade] = useState(Grade.GRADE_1);
   const dispatch = useAppDispatch();
 
   const onGradeChange = (newGrade) => {
@@ -38,7 +37,6 @@ export default function Outline({ session }: OutlineProps) {
       grade: newGrade,
     };
     dispatch(setStudentProfile(updatedState));
-    setGrade(newGrade);
   };
   const studentGrade = useSelector(studentProfileSelector);
 
