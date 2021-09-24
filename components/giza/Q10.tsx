@@ -10,9 +10,8 @@ const Q10 = (displayQuestion, nextQuestion) => {
     15 degrees
   */
   const onSubmit = (guess: GuessData) => {
-    console.log(guess);
     //Pass this guessData object into nextQuestion
-    nextQuestion();
+    nextQuestion(guess);
   };
   return (
     <React.Fragment>
