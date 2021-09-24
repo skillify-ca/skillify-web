@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import Navbar from "./Navbar";
 import { Button } from "./ui/Button";
 
-const Contact = (props) => {
+const ContactForms = (props) => {
   const [teacherInput, setTeacherInput] = useState("");
   const [bootcamperInput, setBootcamperInput] = useState("");
   const [teacherButtonEnabled, setTeacherButtonEnabled] = useState(true);
@@ -119,4 +118,4 @@ const Contact = (props) => {
   );
 };
 
-export default Contact;
+export default ContactForms;
