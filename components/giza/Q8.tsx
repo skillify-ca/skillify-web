@@ -18,7 +18,6 @@ const Q8 = (displayQuestion, nextQuestion) => {
       guess: guessString,
       isCorrect: guessString == answer,
     };
-    //console.log(guess);
     //Pass this guessData object into nextQuestion
     nextQuestion(guess);
   };
