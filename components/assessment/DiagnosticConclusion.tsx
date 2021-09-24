@@ -54,24 +54,6 @@ export const DiagnosticConclusion = ({
       return "bg-red-100";
     }
   };
-  const [practiceButtonEnabled, setPracticeButtonEnabled] = useState(true);
-  const notifyPracticeSignup = async () => {
-    setPracticeButtonEnabled(false);
-    const url =
-      "https://math-app-1.herokuapp.com/notifications?product=practice";
-    const options = {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      },
-      body: JSON.stringify({
-        email: results.email,
-        name: results.firstName + " " + results.lastName,
-      }),
-    };
-    await fetch(url, options);
-  };
 
   let displayGrade = gradeLevel.toString();
   if (gradeLevel == 0) {
