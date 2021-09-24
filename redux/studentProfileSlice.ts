@@ -14,7 +14,7 @@ export const studentProfileSlice: Slice = createSlice({
   initialState,
   reducers: {
     setStudentProfile: (state, action: PayloadAction<StudentProfileState>) => {
-      if (action.type == "diagnostic/setDiagnostic") {
+      if (action.type == "studentProfile/setProfile") {
         const newStudentProfileState = action.payload as StudentProfileState;
         state.grade = newStudentProfileState.grade;
       }

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 
 export default function Navbar() {
-  const { data: session, status } = useSession()
+  const { data: session, status } = useSession();
   const [active, setActive] = useState(false);
   const [profieMenuActive, setProfileMenuActive] = useState(false);
 
@@ -18,7 +18,7 @@ export default function Navbar() {
   return (
     // <!-- This example requires Tailwind CSS v2.0+ -->
     <nav className="bg-gray-800">
-      <div className="mx-auto px-2 lg:px-6 lg:px-8">
+      <div className="mx-auto px-2 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
             {/* <!-- Mobile menu button--> */}
