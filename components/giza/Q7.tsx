@@ -9,7 +9,6 @@ import { MultipleChoice } from "../questionTypes/MultipleChoice";
 */
 const Q7 = (displayQuestion, nextQuestion) => {
   const onSubmit = (guess: GuessData) => {
-    //console.log(guess);
     //Pass this guessData object into nextQuestion
     nextQuestion(guess);
   };

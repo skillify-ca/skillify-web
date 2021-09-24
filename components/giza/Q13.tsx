@@ -10,7 +10,6 @@ const Q13 = (displayQuestion, nextQuestion) => {
     They all have at least one obtuse angle.
   */
   const onSubmit = (guess: GuessData) => {
-    //console.log(guess);
     //Pass this guessData object into nextQuestion
     nextQuestion(guess);
   };
