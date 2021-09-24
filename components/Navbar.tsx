@@ -104,10 +104,10 @@ export default function Navbar() {
                 </a>
 
                 <a
-                  href="/contact"
+                  href="/about"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Contact
+                  About
                 </a>
               </div>
             </div>
@@ -209,10 +209,10 @@ export default function Navbar() {
             For Educators
           </a>
           <a
-            href="/contact"
+            href="/about"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Contact
+            About
           </a>
         </div>
       </div>
