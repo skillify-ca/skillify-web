@@ -67,7 +67,7 @@ export const DiagnosticConclusion = ({
       },
       body: JSON.stringify({
         email: results.email,
-        name: results.name,
+        name: results.firstName + " " + results.lastName,
       }),
     };
     await fetch(url, options);
@@ -78,7 +78,7 @@ export const DiagnosticConclusion = ({
     displayGrade = "JK/SK";
   }
 
-  let displayName = results.name;
+  let displayName = results.firstName;
   if (displayName == "") {
     displayName = "Your Child";
   }
@@ -101,7 +101,7 @@ export const DiagnosticConclusion = ({
           {getSummaryText(
             gradeLevel,
             parseInt(parse(results.grade).second),
-            results.name
+            results.firstName
           )}
         </p>
       </div>
