@@ -86,22 +86,14 @@ export default function Outline({ session }: OutlineProps) {
         <div className="flex flex-row">
           <p className="flex items-center text-xl text-blue-900">
             {" "}
-<<<<<<< HEAD
             Set your grade:
           </p>
-
           <select
             value={studentGrade.grade}
             defaultValue={studentGrade.grade}
             onChange={(e) => onGradeChange(e.target.value)}
             className="ml-4 w-56 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2"
           >
-=======
-            Set your grade:{" "}
-          </p>
-
-          <select className="ml-4 w-56 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2">
->>>>>>> 7114b1eec87ab73aaf73b68801a346df8655e1f7
             <option>Grade 1</option>
             <option>Grade 2</option>
             <option>Grade 3</option>
