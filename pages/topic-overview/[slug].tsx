@@ -3,7 +3,7 @@ import { Preload, OrbitControls, Stars } from "@react-three/drei";
 import { useSession } from "next-auth/react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Canvas } from "react-three-fiber";
 import Navbar from "../../components/Navbar";
 import { Button } from "../../components/ui/Button";
@@ -20,12 +20,8 @@ const Box = dynamic(() => import("../../components/stories/Box"));
 
 const TopicOverviewPage = ({ slug, description }) => {
   const { data: session, status } = useSession();
-  const [grade, setGrade] = useState(Grade.GRADE_1);
   const studentGrade = useSelector(studentProfileSelector);
-
-  const onGradeChange = (e: any) => {
-    setGrade(e.target.value);
-  };
+  const grade = studentGrade.grade;
   let gradeNum = (grade: string) => {
     switch (grade) {
       case "Grade 1":
@@ -74,38 +70,6 @@ const TopicOverviewPage = ({ slug, description }) => {
     return maxAccuracy;
   };
 
-  const levelComponent = (
-    <div className="flex flex-row">
-      <p className="flex items-center text-xl text-blue-900">
-        {" "}
-        Select a grade:{" "}
-      </p>
-      {slug == "numbers" ? (
-        <select
-          value={grade}
-          onChange={onGradeChange}
-          className="ml-4 w-56 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2"
-        >
-          <option>Grade 1</option>
-          <option>Grade 2</option>
-          <option>Grade 3</option>
-        </select>
-      ) : (
-        <select
-          value={grade}
-          onChange={onGradeChange}
-          className="ml-4 w-56 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2"
-        >
-          <option>Grade 1</option>
-          <option>Grade 2</option>
-          <option>Grade 3</option>
-          <option>Grade 4</option>
-          <option>Grade 5</option>
-          <option>Grade 6</option>
-        </select>
-      )}
-    </div>
-  );
   const skillComponent = (
     <div className="flex flex-col gap-8">
       {getSkillsForTopicGrade(slug, grade).map((skill) => (
@@ -159,6 +123,7 @@ const TopicOverviewPage = ({ slug, description }) => {
       <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-8 gap-8 mt-8">
         <div className="flex flex-col gap-4 justify-center md:w-2/3">
           <p className="text-4xl font-bold text-blue-900"> QUIZ TIME! </p>
+          {studentGrade.grade}
           <p className="text-xl">
             Take a quiz to test out your {slug} skills. The quiz will cover
             topics at your grade level meaning it's personalized for you! You
@@ -253,7 +218,6 @@ const TopicOverviewPage = ({ slug, description }) => {
             in your {slug} skills, take the quiz to evaluate your understanding!
           </p>
         </div>
-        <div className="">{levelComponent}</div>
         <div>
           {skillComponent}
           {quizComponent}
@@ -269,7 +233,10 @@ export async function getStaticProps({ params }) {
     cache: new InMemoryCache(),
   });
   // TODO MAKE GRADE DYNAMIC: MOVE BUTTON TO STUDENT PORTAL, PASS PROP TO QUERY AND RETURN APPROPRIATE SKILL DESCRIPTIONS
-  const skillIds = getSkillsForTopicGrade(params.slug, Grade.GRADE_1);
+  const skillIds = getSkillsForTopicGrade(
+    params.slug,
+    /*fill student.grade */ "Grade 1"
+  );
   const { data } = await client.query({
     query: FETCH_SKILL_DESCRIPTION_ARRAY,
     variables: {
@@ -282,7 +249,7 @@ export async function getStaticProps({ params }) {
     };
   }
   //return multiple descriptions,
-  return { props: { description: data, slug: params.slug } };
+  return { props: { description: data, slug: params.slug } }; // TODO ASSIGN DESCRIPTION TYPE
 }
 
 export async function getStaticPaths() {
