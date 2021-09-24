@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
-import { Button } from "../components/ui/Button";
+import { Button } from "./ui/Button";
 
-export default function Contact(props) {
+const ContactForms = (props) => {
   const [teacherInput, setTeacherInput] = useState("");
   const [bootcamperInput, setBootcamperInput] = useState("");
   const [teacherButtonEnabled, setTeacherButtonEnabled] = useState(true);
@@ -48,30 +47,25 @@ export default function Contact(props) {
   };
 
   return (
-    <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen ">
-      <Navbar/>
+    <div className="flex flex-col ">
+      <div className="lg:text-center">
+        <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">
+          Contact Us
+        </h2>
+      </div>
       <div className="p-4 flex flex-col items-center justify-center gap-8">
-        <div className="flex flex-col items-center bg-white shadow-lg gap-8 rounded-lg p-4">
-          <p className="text-xl font-bold">Join our contact list</p>
-          <div className="flex flex-col gap-4 sm:max-w-2xl">
-            <p>
-              Math Champ is a platform with of online math activities and games
-              to help your child become better at math. Learn more about our
-              offerings by providing your email below.
-            </p>
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-8">
-          <div className="bg-white shadow-lg rounded-lg w-full p-4">
+        <div className="md:grid md:grid-cols-2 gap-8">
+          <div className="bg-white rounded-lg w-full p-4">
             <div className="flex flex-col gap-4">
-              <p className="font-bold">Tools for Educators</p>
+              <p className="font-bold">Are you an educator?</p>
               <p className="">
                 We are always looking for passionate teachers to partner with.
-                If you are a math educator we would love to hear from you!
+                If you are a math educator we would love to digitize your
+                resources for free!
               </p>
               <p className="">
-                Please reach out if you have ideas for fun resources that you'd
-                like us to build for your classroom!
+                Please reach out if you want us to convert your resources into
+                digital mini games.
               </p>
               <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
                 <input
@@ -87,18 +81,19 @@ export default function Contact(props) {
                   disabled={!teacherButtonEnabled}
                   backgroundColor="blue"
                   textColor="white"
-                  label="Notify Me"
+                  label="Learn More"
                   onClick={notifyTeacherSignup}
                 />
               </div>
             </div>
           </div>
-          <div className="bg-white shadow-lg rounded-lg w-full p-4">
+          <div className="bg-white rounded-lg w-full p-4">
             <div className="flex flex-col gap-4">
-              <p className="font-bold">Learn to code</p>
+              <p className="font-bold">Do you want to learn to code?</p>
               <p className="">
-                Get access to our personalized curriculum and assignments as
-                well as live support from our roster of Teacher Advisors.
+                Gain real world experience by building educational resources for
+                teachers. Become a hirable front-end developer in just four
+                months.
               </p>
               <p className="">
                 Enter your email below to learn more about our course and
@@ -118,7 +113,7 @@ export default function Contact(props) {
                   disabled={!bootcamperButtonEnabled}
                   backgroundColor="blue"
                   textColor="white"
-                  label="Notify Me"
+                  label="Learn More"
                   onClick={notifyBootcamperSignup}
                 />
               </div>
@@ -128,4 +123,6 @@ export default function Contact(props) {
       </div>
     </div>
   );
-}
+};
+
+export default ContactForms;

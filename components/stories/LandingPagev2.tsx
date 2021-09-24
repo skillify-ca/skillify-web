@@ -6,7 +6,7 @@ import {
   LightningBoltIcon,
   ScaleIcon,
 } from "@heroicons/react/outline";
-import Image from "next/dist/client/image";
+import ContactForms from "../ContactForms";
 
 const LandingPagev2 = () => {
   const settings = {
@@ -82,6 +82,9 @@ const LandingPagev2 = () => {
                 </div>
               ))}
             </dl>
+          </div>
+          <div className="mt-10">
+            <ContactForms />
           </div>
         </div>
       </div>
