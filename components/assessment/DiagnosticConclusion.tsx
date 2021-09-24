@@ -101,7 +101,7 @@ export const DiagnosticConclusion = ({
           {getSummaryText(
             gradeLevel,
             parseInt(parse(results.grade).second),
-            results.name
+            results.firstName
           )}
         </p>
       </div>
