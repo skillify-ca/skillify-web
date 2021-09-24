@@ -18,9 +18,9 @@ const Q9 = (displayQuestion, nextQuestion) => {
       guess: guessString,
       isCorrect: guessString == answer,
     };
-    console.log(guess);
+    //console.log(guess);
     //Pass this guessData object into nextQuestion
-    nextQuestion();
+    nextQuestion(guess);
   };
 
   return (
