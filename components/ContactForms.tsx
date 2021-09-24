@@ -57,7 +57,7 @@ const ContactForms = (props) => {
         <div className="md:grid md:grid-cols-2 gap-8">
           <div className="bg-white rounded-lg w-full p-4">
             <div className="flex flex-col gap-4">
-              <p className="font-bold">Are you an educator?</p>
+              <p className="font-bold">Are You An Educator?</p>
               <p className="">
                 We are always looking for passionate teachers to partner with.
                 If you are a math educator we would love to digitize your
@@ -89,7 +89,7 @@ const ContactForms = (props) => {
           </div>
           <div className="bg-white rounded-lg w-full p-4">
             <div className="flex flex-col gap-4">
-              <p className="font-bold">Do you want to learn to code?</p>
+              <p className="font-bold">Are You Looking To Learn How To Code?</p>
               <p className="">
                 Gain real world experience by building educational resources for
                 teachers. Become a hirable front-end developer in just four
