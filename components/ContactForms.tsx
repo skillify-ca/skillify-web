@@ -48,18 +48,24 @@ const ContactForms = (props) => {
 
   return (
     <div className="flex flex-col ">
+      <div className="lg:text-center">
+        <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">
+          Contact Us
+        </h2>
+      </div>
       <div className="p-4 flex flex-col items-center justify-center gap-8">
-        <div className="flex flex-col sm:flex-row gap-8">
-          <div className="bg-white shadow-lg rounded-lg w-full p-4">
+        <div className="md:grid md:grid-cols-2 gap-8">
+          <div className="bg-white rounded-lg w-full p-4">
             <div className="flex flex-col gap-4">
-              <p className="font-bold">Tools for Educators</p>
+              <p className="font-bold">Are you an educator?</p>
               <p className="">
                 We are always looking for passionate teachers to partner with.
-                If you are a math educator we would love to hear from you!
+                If you are a math educator we would love to digitize your
+                resources for free!
               </p>
               <p className="">
-                Please reach out if you have ideas for fun resources that you'd
-                like us to build for your classroom!
+                Please reach out if you want us to convert your resources into
+                digital mini games.
               </p>
               <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
                 <input
@@ -75,18 +81,19 @@ const ContactForms = (props) => {
                   disabled={!teacherButtonEnabled}
                   backgroundColor="blue"
                   textColor="white"
-                  label="Notify Me"
+                  label="Learn More"
                   onClick={notifyTeacherSignup}
                 />
               </div>
             </div>
           </div>
-          <div className="bg-white shadow-lg rounded-lg w-full p-4">
+          <div className="bg-white rounded-lg w-full p-4">
             <div className="flex flex-col gap-4">
-              <p className="font-bold">Learn to code</p>
+              <p className="font-bold">Do you want to learn to code?</p>
               <p className="">
-                Get access to our personalized curriculum and assignments as
-                well as live support from our roster of Teacher Advisors.
+                Gain real world experience by building educational resources for
+                teachers. Become a hirable front-end developer in just four
+                months.
               </p>
               <p className="">
                 Enter your email below to learn more about our course and
@@ -106,7 +113,7 @@ const ContactForms = (props) => {
                   disabled={!bootcamperButtonEnabled}
                   backgroundColor="blue"
                   textColor="white"
-                  label="Notify Me"
+                  label="Learn More"
                   onClick={notifyBootcamperSignup}
                 />
               </div>

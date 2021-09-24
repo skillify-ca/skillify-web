@@ -83,7 +83,9 @@ const LandingPagev2 = () => {
               ))}
             </dl>
           </div>
-          <ContactForms />
+          <div className="mt-10">
+            <ContactForms />
+          </div>
         </div>
       </div>
     </div>

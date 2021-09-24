@@ -1,12 +1,11 @@
 import React from "react";
 import LandingPagev2 from "../components/stories/LandingPagev2";
-import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
 const navigation = [
   { name: "For Educators", href: "/resources" },
-  { name: "Contact", href: "/contact" },
+  { name: "About", href: "/about" },
 ];
 
 const HomePage = () => {
