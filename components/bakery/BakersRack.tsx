@@ -5,6 +5,27 @@ export interface BakersRackProps {
   setCupNum1: (cumNum1: any) => void;
   cupDen1: any;
   setCupDen1: (cupDen1: any) => void;
+  cupNum1Correct: string;
+  setCupNum1Correct: (cupNum1Correct: string) => void;
+  cupDen1Correct: string;
+  setCupDen1Correct: (cupDen1Correct: string) => void;
+  cupNum2: string;
+  setCupNum2: (cupNum2: string) => void;
+  cupDen2: string;
+  setCupDen2: (cupDen2: string) => void;
+  cupNum2Correct: any;
+  setCupNum2Correct: (cupNum2Correct: any) => void;
+  cupDen2Correct: any;
+  setCupDen2Correct: (cupDen2Correct: any) => void;
+  breadNum1: string;
+  setBreadNum1: (breadNum1: string) => void;
+  breadDen1: string;
+  setBreadDen1: (breadDen1: string) => void;
+
+  breadNum2: any;
+  setBreadNum2: (breadNum2: any) => void;
+  breadDen2: any;
+  setBreadDen2: (setBreadDen2: any) => void;
 }
 
 const BakersRack = ({
@@ -12,15 +33,48 @@ const BakersRack = ({
   setCupNum1,
   cupDen1,
   setCupDen1,
+  cupNum1Correct,
+  setCupNum1Correct,
+  cupDen1Correct,
+  setCupDen1Correct,
+  cupNum2,
+  setCupNum2,
+  cupDen2,
+  setCupDen2,
+  cupNum2Correct,
+  setCupNum2Correct,
+  cupDen2Correct,
+  setCupDen2Correct,
+  breadNum1,
+  setBreadNum1,
+  breadDen1,
+  setBreadDen1,
+  breadNum2,
+  setBreadNum2,
+  breadDen2,
+  setBreadDen2,
 }: BakersRackProps) => {
+  const validateCupNum1 = (newCupNum1: string) => {
+    if (newCupNum1 === "12") {
+      setCupNum1Correct("Correct");
+    } else {
+      setCupNum1Correct("");
+    }
+  };
+  const validateCupDen1 = (newCupDen1: string) => {
+    if (newCupDen1 === "63") {
+      setCupDen1Correct("Correct");
+    } else {
+      setCupDen1Correct("");
+    }
+  };
 
-  const validateCupNum1 = (newCupNum1:string) =>{
-    setCupNum1(newCupNum1);
-  }
-  const validateCupDen1 = (newCupDen1:string) =>{
-    setCupDen1(newCupDen1);
-  }
-
+  const validateCupNum2 = (newCupNum2: string) => {
+    setCupNum2Correct(newCupNum2);
+  };
+  const validateCupDen2 = (newCupDen2: string) => {
+    setCupDen2Correct(newCupDen2);
+  };
   return (
     <div>
       <div className={"grid grid-cols-2 mx-12"}>
@@ -84,24 +138,30 @@ const BakersRack = ({
             <td>
               <div className={"grid grid-cols-12"}>
                 <input
-                  className={{ cupNum1 ==="12" && cupDen1 === "63"? 
-                    "flex justify-center col-start-4 col-span-2 bg-green-100 text-center": "flex justify-center col-start-4 col-span-2 bg-yellow-100 text-center"
+                  className={
+                    cupNum1Correct === "Correct" && cupDen1Correct === "Correct"
+                      ? "flex justify-center col-start-4 col-span-2 bg-green-100 text-center"
+                      : "flex justify-center col-start-4 col-span-2 bg-yellow-100 text-center"
                   }
                   value={cupNum1}
                   onChange={(e) => {
                     const newCupNum1 = e.target.value;
-                    setCupNum1(newCupNum1); validateCupNum1(newCupNum1)
+                    setCupNum1(newCupNum1);
+                    validateCupNum1(newCupNum1);
                   }}
                 ></input>
                 <div className={"col-start-7 col-span-1  text-center "}>/</div>
                 <input
                   className={
-                    "flex justify-centern col-start-9 col-span-2 bg-yellow-100 text-center  "
+                    cupNum1Correct === "Correct" && cupDen1Correct === "Correct"
+                      ? "flex justify-centern col-start-9 col-span-2 bg-green-100 text-center  "
+                      : "flex justify-centern col-start-9 col-span-2 bg-yellow-100 text-center  "
                   }
                   value={cupDen1}
                   onChange={(e) => {
                     const newCupDen1 = e.target.value;
-                    setCupDen1(newCupDen1); validateCupDen1(newCupDen1)
+                    setCupDen1(newCupDen1);
+                    validateCupDen1(newCupDen1);
                   }}
                 ></input>
               </div>
@@ -109,13 +169,31 @@ const BakersRack = ({
             <td className={"border border-black"}>
               <div className={"grid grid-cols-12"}>
                 <input
-                  className={"col-start-4 col-span-2 bg-yellow-100"}
+                  className={
+                    cupNum2Correct / cupDen2Correct === 12 / 63
+                      ? "col-start-4 col-span-2 bg-green-100 text-center"
+                      : "col-start-4 col-span-2 bg-yellow-100 text-center"
+                  }
+                  value={cupNum2}
+                  onChange={(e) => {
+                    const newCupNum2 = e.target.value;
+                    setCupNum2(newCupNum2);
+                    validateCupNum2(newCupNum2);
+                  }}
                 ></input>
-                <div className={"col-start-7 col-span-1  text-center "}>/</div>
+                <div className={"col-start-7 col-span-1  text-center "}>/ </div>
                 <input
                   className={
-                    "flex justify-centern col-start-9 col-span-2 bg-yellow-100  "
+                    cupNum2Correct / cupDen2Correct === 12 / 63
+                      ? "flex justify-centern col-start-9 col-span-2 bg-green-100 text-center  "
+                      : "flex justify-centern col-start-9 col-span-2 bg-yellow-100 text-center  "
                   }
+                  value={cupDen2}
+                  onChange={(e) => {
+                    const newCupDen2 = e.target.value;
+                    setCupDen2(newCupDen2);
+                    validateCupDen2(newCupDen2);
+                  }}
                 ></input>
               </div>
             </td>
@@ -127,27 +205,57 @@ const BakersRack = ({
               <div className={"grid grid-cols-12"}>
                 <input
                   className={
-                    "flex justify-center col-start-4 col-span-2 bg-yellow-100 "
+                    breadNum1 === "1" && breadDen1 === "21"
+                      ? "flex justify-center col-start-4 col-span-2 bg-green-100 text-center"
+                      : "flex justify-center col-start-4 col-span-2 bg-yellow-100 text-center"
                   }
+                  value={breadNum1}
+                  onChange={(e) => {
+                    const newBreadNum1 = e.target.value;
+                    setBreadNum1(newBreadNum1);
+                  }}
                 ></input>
                 <div className={"col-start-7 col-span-1  text-center "}>/</div>
                 <input
                   className={
-                    "flex justify-centern col-start-9 col-span-2 bg-yellow-100  "
+                    breadNum1 === "1" && breadDen1 === "21"
+                      ? "flex justify-centern col-start-9 col-span-2 bg-green-100 text-center"
+                      : "flex justify-centern col-start-9 col-span-2 bg-yellow-100 text-center"
                   }
+                  value={breadDen1}
+                  onChange={(e) => {
+                    const newBreadDen1 = e.target.value;
+                    setBreadDen1(newBreadDen1);
+                  }}
                 ></input>
               </div>
             </td>
             <td className={"border border-black"}>
               <div className={"grid grid-cols-12"}>
                 <input
-                  className={"col-start-4 col-span-2 bg-yellow-100"}
+                  className={
+                    breadNum2 / breadDen2 === 1 / 21
+                      ? "col-start-4 col-span-2 bg-green-100 text-center"
+                      : "col-start-4 col-span-2 bg-yellow-100 text-center"
+                  }
+                  value={breadNum2}
+                  onChange={(e) => {
+                    const newBreadNum2 = e.target.value;
+                    setBreadNum2(newBreadNum2);
+                  }}
                 ></input>
                 <div className={"col-start-7 col-span-1  text-center "}>/</div>
                 <input
                   className={
-                    "flex justify-centern col-start-9 col-span-2 bg-yellow-100  "
+                    breadNum2 / breadDen2 === 1 / 21
+                      ? "flex justify-centern col-start-9 col-span-2 bg-green-100 text-center"
+                      : "flex justify-centern col-start-9 col-span-2 bg-yellow-100 text-center"
                   }
+                  value={breadDen2}
+                  onChange={(e) => {
+                    const newBreadDen2 = e.target.value;
+                    setBreadDen2(newBreadDen2);
+                  }}
                 ></input>
               </div>
             </td>

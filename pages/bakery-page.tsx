@@ -31,6 +31,16 @@ export default function Bakery(props) {
   const [q4Correct, setQ4Correct] = useState("");
   const [cupNum1, setCupNum1] = useState("");
   const [cupDen1, setCupDen1] = useState("");
+  const [cupNum1Correct, setCupNum1Correct] = useState("");
+  const [cupDen1Correct, setCupDen1Correct] = useState("");
+  const [cupNum2, setCupNum2] = useState("");
+  const [cupDen2, setCupDen2] = useState("");
+  const [cupNum2Correct, setCupNum2Correct] = useState("");
+  const [cupDen2Correct, setCupDen2Correct] = useState("");
+  const [breadNum1, setBreadNum1] = useState("");
+  const [breadDen1, setBreadDen1] = useState("");
+  const [breadNum2, setBreadNum2] = useState("");
+  const [breadDen2, setBreadDen2] = useState("");
 
   const previousStage = () => {
     if (stage > STAGE.BakeryInstructions) {
@@ -79,6 +89,26 @@ export default function Bakery(props) {
           setCupNum1={setCupNum1}
           cupDen1={cupDen1}
           setCupDen1={setCupDen1}
+          cupNum1Correct={cupNum1Correct}
+          setCupNum1Correct={setCupNum1Correct}
+          cupDen1Correct={cupDen1Correct}
+          setCupDen1Correct={setCupDen1Correct}
+          cupNum2={cupNum2}
+          setCupNum2={setCupNum2}
+          cupDen2={cupDen2}
+          setCupDen2={setCupDen2}
+          cupNum2Correct={cupNum2Correct}
+          setCupNum2Correct={setCupNum2Correct}
+          cupDen2Correct={cupDen2Correct}
+          setCupDen2Correct={setCupDen2Correct}
+          breadNum1={breadNum1}
+          setBreadNum1={setBreadNum1}
+          breadDen1={breadDen1}
+          setBreadDen1={setBreadDen1}
+          breadNum2={breadNum2}
+          setBreadNum2={setBreadNum2}
+          breadDen2={breadDen2}
+          setBreadDen2={setBreadDen2}
         />
       );
     } else if (stage == STAGE.BakersRackB) {
