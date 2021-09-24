@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
-import { Button } from "../components/ui/Button";
+import Navbar from "./Navbar";
+import { Button } from "./ui/Button";
 
-export default function Contact(props) {
+const Contact = (props) => {
   const [teacherInput, setTeacherInput] = useState("");
   const [bootcamperInput, setBootcamperInput] = useState("");
   const [teacherButtonEnabled, setTeacherButtonEnabled] = useState(true);
@@ -48,19 +48,8 @@ export default function Contact(props) {
   };
 
   return (
-    <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen ">
-      <Navbar/>
+    <div className="flex flex-col ">
       <div className="p-4 flex flex-col items-center justify-center gap-8">
-        <div className="flex flex-col items-center bg-white shadow-lg gap-8 rounded-lg p-4">
-          <p className="text-xl font-bold">Join our contact list</p>
-          <div className="flex flex-col gap-4 sm:max-w-2xl">
-            <p>
-              Math Champ is a platform with of online math activities and games
-              to help your child become better at math. Learn more about our
-              offerings by providing your email below.
-            </p>
-          </div>
-        </div>
         <div className="flex flex-col sm:flex-row gap-8">
           <div className="bg-white shadow-lg rounded-lg w-full p-4">
             <div className="flex flex-col gap-4">
@@ -128,4 +117,6 @@ export default function Contact(props) {
       </div>
     </div>
   );
-}
+};
+
+export default Contact;

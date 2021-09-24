@@ -7,6 +7,7 @@ import {
   ScaleIcon,
 } from "@heroicons/react/outline";
 import Image from "next/dist/client/image";
+import Contact from "../contact";
 
 const LandingPagev2 = () => {
   const settings = {
@@ -83,6 +84,7 @@ const LandingPagev2 = () => {
               ))}
             </dl>
           </div>
+          <Contact />
         </div>
       </div>
     </div>
