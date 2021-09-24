@@ -21,6 +21,23 @@ enum STAGES {
   ASSIGNMENT,
   END,
 }
+/**
+TODO fix these issues before launching the budget assignment
+
+- center the rules slider on the first page
+- sepearate the rules from profile generation
+- even if profile has 0 children show it it the profile card
+- show the full occupations by widening the dropdown (they're getting cut off)
+- remove the empty option for spouse occupation
+- add outline to salary text inputs
+- section 1 checkbox and warning image is stretched
+- missing sections: electric bill, gas and water bill, TV
+- there is no validation that the inputs are correct. Validation only checks that two numbers are the sum. if you type 1 + 1 = 2, it shows green, even when 1 and 1 are not the right inputs
+- the user is able to select a 2 bed and 2 bath, even though that is not a valid selection from the left column
+- there is overlapping text for car expenses on the right column
+- users reported the auto-scrolling to be jarring and confusing (consider removing it)
+- rename the page to budget instead of finance-profile (rename the component name too)
+ */
 
 const FinanceProfile = () => {
   const [profileData, setProfileData] = useState<FinanceProfileType>();

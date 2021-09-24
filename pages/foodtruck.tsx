@@ -19,8 +19,20 @@ import ProfitEquation from "../components/foodtruck/ProfitEquation";
 
 import { Button } from "../components/ui/Button";
 
-// set up stage flows
+/*
+TODO fix these issues before make it obvious when food items are not selectable
+Add available foods to the right progress bar
+Add better spacing on the right progress bar
+select worker images not showing for 3 and 4
+You will sell each Hot Dog for $4. Each Hot Dog will cost $1 per plate (change wording to say it will cost you $1 to make/manufacture)
+Plates per Worker per Hour (change wording to say number of plates) (use slashes instead of per)
+Add hours to the right progress bar
+revenue component
+Plates per Hour (use slashes) and the word number
+hide buttons on the last stage
+*/
 
+// set up stage flows
 export default function FoodTruck(props) {
   enum STAGE {
     ChooseTruck,

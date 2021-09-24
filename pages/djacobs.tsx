@@ -6,17 +6,6 @@ import { resources } from "./api/resources";
 import { MultipleChoice } from "../components/questionTypes/MultipleChoice";
 import { GuessData } from "./api/guessData";
 import { Button } from "../components/ui/Button";
-import { stages } from "konva/lib/Stage";
-import TeX from "@matejmazur/react-katex";
-import {
-  Question,
-  MCOption,
-  MCModel,
-  AnswerType,
-  FillOption,
-  fillBlankModel,
-} from "../pages/api/question";
-import { QuestionType } from "./api/questionTypes";
 import { react } from "@babel/types";
 import { TrueorFalse } from "../components/questionTypes/TrueorFalse";
 import { Skill } from "./api/skill";
@@ -103,8 +92,9 @@ export default function djacobs(props) {
     }
   };
   //Future thing: Use this function to add the guessData from each question page into the guessDataArray
-  const nextQuestion = () => {
-    //guesses[currentQuestionIndex] = guess
+  const nextQuestion = (guess: GuessData) => {
+    guesses[currentQuestionIndex] = guess;
+    console.log(guesses[currentQuestionIndex]);
     //another function to count the amounts of trues / total question length
     setCurrentQuestionIndex(
       Math.min(questionData.length - 1, currentQuestionIndex + 1)
