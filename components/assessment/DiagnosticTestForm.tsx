@@ -47,17 +47,18 @@ const DiagnosticTestForm = ({
       </div>
 
       <div>
-        <div className="flex flex-row sm:flex-row bg-white shadow-lg rounded-xl p-8 gap-40 mt-8 items-center justify-center">
-          <div className="flex flex-col gap-4 md:w-1/2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white shadow-lg rounded-xl p-8 mt-8 items-center justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-1 w-full gap-4">
             <p className="text-lg">
               Once your child completes the assessment, we will provide you with{" "}
               <b> personalized </b>
               resources to help your child become better at math - no matter
               what level they are at.
             </p>
-            <div className="flex flex-row items-center">
+
+            <div className="grid grid-cols-2 items-center ">
               <p className="font-bold  mr-4">Grade</p>
-              <div className="flex flex-row items-center justify-center gap-4">
+              <div className="flex flex-row items-center gap-4">
                 <div className="relative inline-flex">
                   <svg
                     className="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none"
@@ -85,54 +86,55 @@ const DiagnosticTestForm = ({
                 </div>
               </div>
             </div>
-            <div className="flex flex-row items-center">
+            <div className="grid grid-cols-2 items-center ">
               <p className="font-bold mr-4">Parent/Guardian Email</p>
               <input
                 id="guess"
                 type="text"
                 autoComplete="off"
-                className={`outline-none focus:outline-none border border-solid border-black text-left p-2 text-md lg:text-md rounded-xl`}
+                className={`w-full outline-none focus:outline-none border border-solid border-black text-left p-2 text-md lg:text-md rounded-xl`}
                 placeholder="jdoe@gmail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="flex flex-row items-center">
+            <div className="grid grid-cols-2 items-center ">
               <p className="font-bold mr-4">Student First Name</p>
               <input
                 id="guess"
                 type="text"
                 autoComplete="off"
-                className={`outline-none focus:outline-none border border-solid border-black text-left p-2 text-md lg:text-md rounded-xl`}
+                className={`w-full outline-none focus:outline-none border border-solid border-black text-left p-2 text-md lg:text-md rounded-xl`}
                 placeholder="First Name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
-            <div className="flex flex-row items-center">
+            <div className="grid grid-cols-2 items-center">
               <p className="font-bold mr-4">Student Last Name</p>
               <input
                 id="guess"
                 type="text"
                 autoComplete="off"
-                className={`outline-none focus:outline-none border border-solid border-black text-left p-2 text-md lg:text-md rounded-xl`}
+                className={`w-full outline-none focus:outline-none border border-solid border-black text-left p-2 text-md lg:text-md rounded-xl`}
                 placeholder="Last Name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
             </div>
-
-            <Button
-              backgroundColor="blue"
-              label="Start"
-              textColor="white"
-              onClick={(e) => onClick(grade)}
-            />
+            <div className="grid grid-cols-1 items-center ">
+              <Button
+                backgroundColor="blue"
+                label="Start"
+                textColor="white"
+                onClick={(e) => onClick(grade)}
+              />
+            </div>
           </div>
 
-          <div className="">
+          <div className="flex justify-center">
             {" "}
-            <img src="/images/studyingPic.png" className="w-108" />
+            <img src="/images/studyingPic.png" className="w-full" />
           </div>
         </div>
       </div>
