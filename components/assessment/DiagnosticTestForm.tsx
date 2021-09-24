@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Grade } from "../../pages/api/skill";
 import { Button } from "../ui/Button";
 
 type DiagnosticTestFormProps = {
@@ -7,8 +8,8 @@ type DiagnosticTestFormProps = {
   setEmail: (email: string) => void;
   name: string;
   setName: (name: string) => void;
-  gradeRange: string;
-  setGradeRange: (gradeRange: string) => void;
+  grade: string;
+  setGrade: (gradeRange: Grade) => void;
 };
 
 const DiagnosticTestForm = ({
@@ -17,11 +18,11 @@ const DiagnosticTestForm = ({
   setEmail,
   name,
   setName,
-  gradeRange,
-  setGradeRange
+  grade,
+  setGrade,
 }: DiagnosticTestFormProps) => {
   const onGradeChange = (e: any) => {
-    setGradeRange(e.target.value);
+    setGrade(e.target.value);
   };
 
   return (
@@ -60,12 +61,16 @@ const DiagnosticTestForm = ({
                   />
                 </svg>
                 <select
-                  value={gradeRange}
+                  value={grade}
                   onChange={onGradeChange}
                   className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
                 >
-                  <option>Primary</option>
-                  <option>Junior</option>
+                  <option>Grade 1</option>
+                  <option>Grade 2</option>
+                  <option>Grade 3</option>
+                  <option>Grade 4</option>
+                  <option>Grade 5</option>
+                  <option>Grade 6</option>
                 </select>
               </div>
             </div>
@@ -98,7 +103,7 @@ const DiagnosticTestForm = ({
             backgroundColor="blue"
             label="Start"
             textColor="white"
-            onClick={(e) => onClick(gradeRange)}
+            onClick={(e) => onClick(grade)}
           />
         </div>
       </div>
