@@ -37,6 +37,7 @@ const Diagnostic = () => {
   const [stage, setStage] = useState(STAGE.CREATE);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [guesses, setGuesses] = useState<Array<string>>([]);
   const [guessAns, setGuessAns] = useState<Array<string>>([]);
@@ -91,7 +92,7 @@ const Diagnostic = () => {
         "Content-Type": "application/json;charset=UTF-8",
       },
       body: JSON.stringify({
-        name: name,
+        name: name + " " + lastName,
         email: email,
         worksheets: workSheets,
         calculatedGrade: getCalculatedGrade(results),
@@ -163,7 +164,8 @@ const Diagnostic = () => {
         guesses: updateGuess,
         grade: grade,
         email: email,
-        name: name,
+        firstName: name,
+        lastName: lastName,
       };
       dispatch(setDiagnostic(results));
       requestEmail(results);
@@ -199,8 +201,10 @@ const Diagnostic = () => {
           onClick={createDiagnostic}
           email={email}
           setEmail={setEmail}
-          name={name}
-          setName={setName}
+          firstName={name}
+          setFirstName={setName}
+          lastName={lastName}
+          setLastName={setLastName}
           grade={grade}
           setGrade={setGrade}
         />
@@ -260,7 +264,7 @@ const Diagnostic = () => {
       break;
   }
   return (
-    <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen">
+    <div className="flex flex-col overflow-auto bg-scroll bg-blue-50 h-screen">
       <Navbar />
       <div className="p-4 flex flex-col items-center justify-center">
         {component}
