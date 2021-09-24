@@ -76,7 +76,6 @@ const TopicOverviewPage = ({ slug, description }) => {
 
   const levelComponent = (
     <div className="flex flex-row">
-      {"GRADE" + JSON.stringify(studentGrade.grade)}
       <p className="flex items-center text-xl text-blue-900">
         {" "}
         Select a grade:{" "}

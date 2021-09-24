@@ -14,8 +14,10 @@ import { Button } from "./ui/Button";
 import {
   StudentProfileState,
   setStudentProfile,
+  studentProfileSelector,
 } from "../redux/studentProfileSlice";
 import { useAppDispatch } from "../redux/store";
+import { useSelector } from "react-redux";
 
 interface OutlineProps {
   session: Session;
@@ -38,6 +40,8 @@ export default function Outline({ session }: OutlineProps) {
     dispatch(setStudentProfile(updatedState));
     setGrade(newGrade);
   };
+  const studentGrade = useSelector(studentProfileSelector);
+
   const progress = () => {
     if (
       !loading &&
@@ -84,11 +88,12 @@ export default function Outline({ session }: OutlineProps) {
         <div className="flex flex-row">
           <p className="flex items-center text-xl text-blue-900">
             {" "}
-            Set your grade:{" "}
+            Set your grade:
           </p>
 
           <select
-            value={grade}
+            value={studentGrade.grade}
+            defaultValue={studentGrade.grade}
             onChange={(e) => onGradeChange(e.target.value)}
             className="ml-4 w-56 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2"
           >
