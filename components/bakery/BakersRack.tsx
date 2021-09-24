@@ -1,6 +1,26 @@
 import ReactCardFlip from "react";
 
-const BakersRack = () => {
+export interface BakersRackProps {
+  cupNum1: any;
+  setCupNum1: (cumNum1: any) => void;
+  cupDen1: any;
+  setCupDen1: (cupDen1: any) => void;
+}
+
+const BakersRack = ({
+  cupNum1,
+  setCupNum1,
+  cupDen1,
+  setCupDen1,
+}: BakersRackProps) => {
+
+  const validateCupNum1 = (newCupNum1:string) =>{
+    setCupNum1(newCupNum1);
+  }
+  const validateCupDen1 = (newCupDen1:string) =>{
+    setCupDen1(newCupDen1);
+  }
+
   return (
     <div>
       <div className={"grid grid-cols-2 mx-12"}>
@@ -64,15 +84,25 @@ const BakersRack = () => {
             <td>
               <div className={"grid grid-cols-12"}>
                 <input
-                  className={
-                    "flex justify-center col-start-4 col-span-2 bg-yellow-100 "
+                  className={{ cupNum1 ==="12" && cupDen1 === "63"? 
+                    "flex justify-center col-start-4 col-span-2 bg-green-100 text-center": "flex justify-center col-start-4 col-span-2 bg-yellow-100 text-center"
                   }
+                  value={cupNum1}
+                  onChange={(e) => {
+                    const newCupNum1 = e.target.value;
+                    setCupNum1(newCupNum1); validateCupNum1(newCupNum1)
+                  }}
                 ></input>
                 <div className={"col-start-7 col-span-1  text-center "}>/</div>
                 <input
                   className={
-                    "flex justify-centern col-start-9 col-span-2 bg-yellow-100  "
+                    "flex justify-centern col-start-9 col-span-2 bg-yellow-100 text-center  "
                   }
+                  value={cupDen1}
+                  onChange={(e) => {
+                    const newCupDen1 = e.target.value;
+                    setCupDen1(newCupDen1); validateCupDen1(newCupDen1)
+                  }}
                 ></input>
               </div>
             </td>

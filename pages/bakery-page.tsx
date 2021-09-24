@@ -29,6 +29,8 @@ export default function Bakery(props) {
   const [numeratorQ4, setNumeratorQ4] = useState("");
   const [denominatorQ4, setDenominatorQ4] = useState("");
   const [q4Correct, setQ4Correct] = useState("");
+  const [cupNum1, setCupNum1] = useState("");
+  const [cupDen1, setCupDen1] = useState("");
 
   const previousStage = () => {
     if (stage > STAGE.BakeryInstructions) {
@@ -71,7 +73,14 @@ export default function Bakery(props) {
         />
       );
     } else if (stage == STAGE.BakersRack) {
-      return <BakersRack />;
+      return (
+        <BakersRack
+          cupNum1={cupNum1}
+          setCupNum1={setCupNum1}
+          cupDen1={cupDen1}
+          setCupDen1={setCupDen1}
+        />
+      );
     } else if (stage == STAGE.BakersRackB) {
       return <BakersRackB />;
     } else if (stage == STAGE.BakingGma) {
