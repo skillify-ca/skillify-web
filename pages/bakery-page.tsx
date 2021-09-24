@@ -29,6 +29,28 @@ export default function Bakery(props) {
   const [numeratorQ4, setNumeratorQ4] = useState("");
   const [denominatorQ4, setDenominatorQ4] = useState("");
   const [q4Correct, setQ4Correct] = useState("");
+  const [cupNum1, setCupNum1] = useState("");
+  const [cupDen1, setCupDen1] = useState("");
+  const [cupNum1Correct, setCupNum1Correct] = useState("");
+  const [cupDen1Correct, setCupDen1Correct] = useState("");
+  const [cupNum2, setCupNum2] = useState("");
+  const [cupDen2, setCupDen2] = useState("");
+  const [cupNum2Correct, setCupNum2Correct] = useState("");
+  const [cupDen2Correct, setCupDen2Correct] = useState("");
+  const [breadNum1, setBreadNum1] = useState("");
+  const [breadDen1, setBreadDen1] = useState("");
+  const [breadNum2, setBreadNum2] = useState("");
+  const [breadDen2, setBreadDen2] = useState("");
+  const [pieNum1, setPieNum1] = useState("");
+  const [pieDen1, setPieDen1] = useState("");
+  const [pieNum2, setPieNum2] = useState("");
+  const [pieDen2, setPieDen2] = useState("");
+  const [brownNum2, setBrownNum2] = useState("");
+  const [brownDen2, setBrownDen2] = useState("");
+  const [cakeNum2, setCakeNum2] = useState("");
+  const [cakeDen2, setCakeDen2] = useState("");
+  const [cookNum2, setCookNum2] = useState("");
+  const [cookDen2, setCookDen2] = useState("");
 
   const previousStage = () => {
     if (stage > STAGE.BakeryInstructions) {
@@ -71,7 +93,54 @@ export default function Bakery(props) {
         />
       );
     } else if (stage == STAGE.BakersRack) {
-      return <BakersRack />;
+      return (
+        <BakersRack
+          cupNum1={cupNum1}
+          setCupNum1={setCupNum1}
+          cupDen1={cupDen1}
+          setCupDen1={setCupDen1}
+          cupNum1Correct={cupNum1Correct}
+          setCupNum1Correct={setCupNum1Correct}
+          cupDen1Correct={cupDen1Correct}
+          setCupDen1Correct={setCupDen1Correct}
+          cupNum2={cupNum2}
+          setCupNum2={setCupNum2}
+          cupDen2={cupDen2}
+          setCupDen2={setCupDen2}
+          cupNum2Correct={cupNum2Correct}
+          setCupNum2Correct={setCupNum2Correct}
+          cupDen2Correct={cupDen2Correct}
+          setCupDen2Correct={setCupDen2Correct}
+          breadNum1={breadNum1}
+          setBreadNum1={setBreadNum1}
+          breadDen1={breadDen1}
+          setBreadDen1={setBreadDen1}
+          breadNum2={breadNum2}
+          setBreadNum2={setBreadNum2}
+          breadDen2={breadDen2}
+          setBreadDen2={setBreadDen2}
+          pieNum1={pieNum1}
+          setPieNum1={setPieNum1}
+          pieDen1={pieDen1}
+          setPieDen1={setPieDen1}
+          pieNum2={pieNum2}
+          setPieNum2={setPieNum2}
+          pieDen2={pieDen2}
+          setPieDen2={setPieDen2}
+          brownNum2={brownNum2}
+          setBrownNum2={setBrownNum2}
+          brownDen2={brownDen2}
+          setBrownDen2={setBrownDen2}
+          cakeNum2={cakeNum2}
+          setCakeNum2={setCakeNum2}
+          cakeDen2={cakeDen2}
+          setCakeDen2={setCakeDen2}
+          cookNum2={cookNum2}
+          setCookNum2={setCookNum2}
+          cookDen2={cookDen2}
+          setCookDen2={setCookDen2}
+        />
+      );
     } else if (stage == STAGE.BakersRackB) {
       return <BakersRackB />;
     } else if (stage == STAGE.BakingGma) {
