@@ -1,27 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import { Grade } from "../../pages/api/skill";
 import { Button } from "../ui/Button";
 
 type DiagnosticTestFormProps = {
   onClick: (grade: string) => void;
   email: string;
   setEmail: (email: string) => void;
-  name: string;
-  setName: (name: string) => void;
-  gradeRange: string;
-  setGradeRange: (gradeRange: string) => void;
+  firstName: string;
+  setFirstName: (name: string) => void;
+  lastName: string;
+  setLastName: (name: string) => void;
+  grade: string;
+  setGrade: (gradeRange: Grade) => void;
 };
 
 const DiagnosticTestForm = ({
   onClick,
   email,
   setEmail,
-  name,
-  setName,
-  gradeRange,
-  setGradeRange,
+  firstName,
+  setFirstName,
+  lastName,
+  setLastName,
+  grade,
+  setGrade,
 }: DiagnosticTestFormProps) => {
   const onGradeChange = (e: any) => {
-    setGradeRange(e.target.value);
+    setGrade(e.target.value);
   };
   return (
     <div className="flex flex-col">
@@ -54,39 +59,66 @@ const DiagnosticTestForm = ({
               <p className="font-bold  mr-4">Grade</p>
               <div className="flex flex-row items-center justify-center gap-4">
                 <div className="relative inline-flex">
-                  <select
-                    value={gradeRange}
-                    onChange={onGradeChange}
-                    className="p-4 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2"
+                  <svg
+                    className="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 412 232"
                   >
-                    <option>Primary</option>
-                    <option>Junior</option>
+                    <path
+                      d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                      fill="#648299"
+                      fill-rule="nonzero"
+                    />
+                  </svg>
+                  <select
+                    value={grade}
+                    onChange={onGradeChange}
+                    className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+                  >
+                    <option>Grade 1</option>
+                    <option>Grade 2</option>
+                    <option>Grade 3</option>
+                    <option>Grade 4</option>
+                    <option>Grade 5</option>
+                    <option>Grade 6</option>
                   </select>
                 </div>
               </div>
             </div>
             <div className="flex flex-row items-center">
-              <p className="font-bold mr-4">Adult's Email</p>
+              <p className="font-bold mr-4">Parent/Guardian Email</p>
               <input
                 id="guess"
                 type="text"
                 autoComplete="off"
                 className={`outline-none focus:outline-none border border-solid border-black text-left p-2 text-md lg:text-md rounded-xl`}
-                placeholder="Enter your email"
+                placeholder="jdoe@gmail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="flex flex-row items-center">
-              <p className="font-bold mr-4">Student's Name</p>
+              <p className="font-bold mr-4">Student First Name</p>
               <input
                 id="guess"
                 type="text"
                 autoComplete="off"
                 className={`outline-none focus:outline-none border border-solid border-black text-left p-2 text-md lg:text-md rounded-xl`}
                 placeholder="First Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </div>
+            <div className="flex flex-row items-center">
+              <p className="font-bold mr-4">Student Last Name</p>
+              <input
+                id="guess"
+                type="text"
+                autoComplete="off"
+                className={`outline-none focus:outline-none border border-solid border-black text-left p-2 text-md lg:text-md rounded-xl`}
+                placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
               />
             </div>
 
@@ -94,7 +126,7 @@ const DiagnosticTestForm = ({
               backgroundColor="blue"
               label="Start"
               textColor="white"
-              onClick={(e) => onClick(gradeRange)}
+              onClick={(e) => onClick(grade)}
             />
           </div>
 

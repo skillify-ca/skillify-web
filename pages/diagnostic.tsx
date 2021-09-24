@@ -33,10 +33,11 @@ const Diagnostic = () => {
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState(1);
   const [isShaking, setIsShaking] = useState(false);
-  const [grade, setGrade] = useState(Grade.GRADE_3);
+  const [grade, setGrade] = useState(Grade.GRADE_1);
   const [stage, setStage] = useState(STAGE.CREATE);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [guesses, setGuesses] = useState<Array<string>>([]);
   const [guessAns, setGuessAns] = useState<Array<string>>([]);
@@ -46,7 +47,14 @@ const Diagnostic = () => {
   >([]);
   const [currentJuniorQuestion, setCurrentJuniorQuestion] = useState<number>(0);
 
-  const [gradeRange, setGradeRange] = useState("Junior");
+  const getGradeRange: () => string = () => {
+    return "Primary";
+
+    // TODO (Daniel) uncomment this to develop the junior test
+    // return [Grade.GRADE_1, Grade.GRADE_2, Grade.GRADE_3].includes(grade)
+    //   ? "Primary"
+    //   : "Junior";
+  };
 
   const [questionsLeftInTopic, setQuestionsLeftInTopic] = useState<number>(
     QUESTIONS_PER_TOPIC
@@ -84,7 +92,7 @@ const Diagnostic = () => {
         "Content-Type": "application/json;charset=UTF-8",
       },
       body: JSON.stringify({
-        name: name,
+        name: name + " " + lastName,
         email: email,
         worksheets: workSheets,
         calculatedGrade: getCalculatedGrade(results),
@@ -130,7 +138,7 @@ const Diagnostic = () => {
       await delay(150);
       setOpacity(1);
 
-      if (gradeRange == "Junior") {
+      if (getGradeRange() == "Junior") {
         setCurrentJuniorQuestion(currentJuniorQuestion + 1);
       } else {
         // Primary grades questions
@@ -156,7 +164,8 @@ const Diagnostic = () => {
         guesses: updateGuess,
         grade: grade,
         email: email,
-        name: name,
+        firstName: name,
+        lastName: lastName,
       };
       dispatch(setDiagnostic(results));
       requestEmail(results);
@@ -192,10 +201,12 @@ const Diagnostic = () => {
           onClick={createDiagnostic}
           email={email}
           setEmail={setEmail}
-          name={name}
-          setName={setName}
-          gradeRange={gradeRange}
-          setGradeRange={setGradeRange}
+          firstName={name}
+          setFirstName={setName}
+          lastName={lastName}
+          setLastName={setLastName}
+          grade={grade}
+          setGrade={setGrade}
         />
       );
       break;
@@ -217,7 +228,7 @@ const Diagnostic = () => {
             className={isShaking ? "animate-shake" : ""}
             onAnimationEnd={() => setIsShaking(false)}
           >
-            {(gradeRange == "Primary" && (
+            {(getGradeRange() == "Primary" && (
               <QuestionSet
                 title=""
                 questionData={[currentQuestion]}
@@ -228,7 +239,7 @@ const Diagnostic = () => {
                 diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
               />
             )) ||
-              (gradeRange == "Junior" && (
+              (getGradeRange() == "Junior" && (
                 <QuestionSet
                   title=""
                   questionData={juniorDiagnosticQuestions}

@@ -7,9 +7,8 @@ import { TrueorFalse } from "../questionTypes/TrueorFalse";
 
 const Q4 = (displayQuestion, nextQuestion) => {
   const onSubmit = (guess: GuessData) => {
-    console.log(guess);
     //Pass this guessData object into nextQuestion
-    nextQuestion();
+    nextQuestion(guess);
   };
   const Q4Data: Question = {
     text: displayQuestion,

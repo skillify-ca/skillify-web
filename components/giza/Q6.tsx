@@ -4,9 +4,8 @@ import { MultipleChoice } from "../questionTypes/MultipleChoice";
 
 const Q6 = (displayQuestion, nextQuestion) => {
   const onSubmit = (guess: GuessData) => {
-    console.log(guess);
     //Pass this guessData object into nextQuestion
-    nextQuestion();
+    nextQuestion(guess);
   };
   return (
     <React.Fragment>
