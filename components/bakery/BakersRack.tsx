@@ -36,6 +36,21 @@ export interface BakersRackProps {
   setPieNum2: (pieNum2: any) => void;
   pieDen2: any;
   setPieDen2: (pieDen2: any) => void;
+
+  brownNum2: any;
+  setBrownNum2: (brownNum2: any) => void;
+  brownDen2: any;
+  setBrownDen2: (brownDen2: any) => void;
+
+  cakeNum2: any;
+  setCakeNum2: (cakeNum2: any) => void;
+  cakeDen2: any;
+  setCakeDen2: (cakeDen2: any) => void;
+
+  cookNum2: any;
+  setCookNum2: (setCookNum2: any) => void;
+  cookDen2: any;
+  setCookDen2: (cookDen2: any) => void;
 }
 
 const BakersRack = ({
@@ -71,6 +86,19 @@ const BakersRack = ({
   setPieNum2,
   pieDen2,
   setPieDen2,
+
+  brownNum2,
+  setBrownNum2,
+  brownDen2,
+  setBrownDen2,
+  cakeNum2,
+  setCakeNum2,
+  cakeDen2,
+  setCakeDen2,
+  cookNum2,
+  setCookNum2,
+  cookDen2,
+  setCookDen2,
 }: BakersRackProps) => {
   const validateCupNum1 = (newCupNum1: string) => {
     if (newCupNum1 === "12") {
@@ -347,13 +375,29 @@ const BakersRack = ({
             <td className={"border border-black"}>
               <div className={"grid grid-cols-12"}>
                 <input
-                  className={"col-start-4 col-span-2 bg-yellow-100"}
+                  className={
+                    brownNum2 / brownDen2 === 2 / 7
+                      ? "col-start-4 col-span-2 bg-green-100 text-center"
+                      : "col-start-4 col-span-2 bg-yellow-100 text-center"
+                  }
+                  value={brownNum2}
+                  onChange={(e) => {
+                    const newBrownNum2 = e.target.value;
+                    setBrownNum2(newBrownNum2);
+                  }}
                 ></input>
                 <div className={"col-start-7 col-span-1  text-center "}>/</div>
                 <input
                   className={
-                    "flex justify-centern col-start-9 col-span-2 bg-yellow-100  "
+                    brownNum2 / brownDen2 === 2 / 7
+                      ? "flex justify-centern col-start-9 col-span-2 bg-green-100 text-center "
+                      : "flex justify-centern col-start-9 col-span-2 bg-yellow-100 text-center "
                   }
+                  value={brownDen2}
+                  onChange={(e) => {
+                    const newBrownDen2 = e.target.value;
+                    setBrownDen2(newBrownDen2);
+                  }}
                 ></input>
               </div>
             </td>
@@ -365,13 +409,29 @@ const BakersRack = ({
             <td className={"border border-black"}>
               <div className={"grid grid-cols-12"}>
                 <input
-                  className={"col-start-4 col-span-2 bg-yellow-100"}
+                  className={
+                    cakeNum2 / cakeDen2 === 1 / 21
+                      ? "col-start-4 col-span-2 bg-green-100 text-center"
+                      : "col-start-4 col-span-2 bg-yellow-100 text-center"
+                  }
+                  value={cakeNum2}
+                  onChange={(e) => {
+                    const newCakeNum2 = e.target.value;
+                    setCakeNum2(newCakeNum2);
+                  }}
                 ></input>
                 <div className={"col-start-7 col-span-1  text-center "}>/</div>
                 <input
                   className={
-                    "flex justify-centern col-start-9 col-span-2 bg-yellow-100  "
+                    cakeNum2 / cakeDen2 === 1 / 21
+                      ? "flex justify-centern col-start-9 col-span-2 bg-green-100 text-center "
+                      : "flex justify-centern col-start-9 col-span-2 bg-yellow-100 text-center "
                   }
+                  value={cakeDen2}
+                  onChange={(e) => {
+                    const newCakeDen2 = e.target.value;
+                    setCakeDen2(newCakeDen2);
+                  }}
                 ></input>
               </div>
             </td>
@@ -383,13 +443,29 @@ const BakersRack = ({
             <td className={"border border-black"}>
               <div className={"grid grid-cols-12"}>
                 <input
-                  className={"col-start-4 col-span-2 bg-yellow-100"}
+                  className={
+                    cookNum2 / cookDen2 === 1 / 3
+                      ? "col-start-4 col-span-2 bg-green-100 text-center"
+                      : "col-start-4 col-span-2 bg-yellow-100 text-center"
+                  }
+                  value={cookNum2}
+                  onChange={(e) => {
+                    const newCookNum2 = e.target.value;
+                    setCookNum2(newCookNum2);
+                  }}
                 ></input>
                 <div className={"col-start-7 col-span-1  text-center "}>/</div>
                 <input
                   className={
-                    "flex justify-centern col-start-9 col-span-2 bg-yellow-100  "
+                    cookNum2 / cookDen2 === 1 / 3
+                      ? "flex justify-centern col-start-9 col-span-2 bg-green-100 text-center "
+                      : "flex justify-centern col-start-9 col-span-2 bg-yellow-100 text-center "
                   }
+                  value={cookDen2}
+                  onChange={(e) => {
+                    const newCookDen2 = e.target.value;
+                    setCookDen2(newCookDen2);
+                  }}
                 ></input>
               </div>
             </td>
