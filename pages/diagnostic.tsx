@@ -16,7 +16,7 @@ import {
 } from "./api/diagnostic/diagnosticGrader";
 import { generateQuestionForSkill } from "./api/questionGenerator";
 import Navbar from "../components/Navbar";
-import getFourthGradeQuestion, { getFifthGradeQuestion, getSixthGradeQuestion, fourthGradeSkills, fifthGradeSkills, sixthGradeSkills } from "./api/diagnostic/juniorDiagnosticQuestionGenerator";
+import getFourthGradeQuestion, { getFifthGradeQuestion, getSixthGradeQuestion } from "./api/diagnostic/juniorDiagnosticQuestionGenerator";
 
 enum STAGE {
   CREATE,
@@ -41,6 +41,7 @@ const Diagnostic = () => {
   const [answeredQuestions, setAnsweredQuestions] = useState<Question[]>([]);
   const [juniorDiagnosticQuestions, setJuniorDiagnosticQuestions] = useState<Question[]>([]);
   const [currentJuniorQuestion, setCurrentJuniorQuestion] = useState<number>(0)
+  const [gradeLevel, setGradeLevel] = useState<number>(0) // 0 - 4th grade list, 1 - 5th grade list, 2 - 6th grade list
 
   const [gradeRange, setGradeRange] = useState("Junior");
 
@@ -97,6 +98,27 @@ const Diagnostic = () => {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
+  // looks at gradeLevel and returns questions
+  const GradeList = (gradeLevel) => {
+    if (gradeLevel == 0) {
+      return getFourthGradeQuestion()
+    } else if (gradeLevel == 1) {
+      return getFifthGradeQuestion()
+    } else if (gradeLevel == 2) {
+      return getSixthGradeQuestion()
+    }
+  }
+
+  // Tells us whether we need to move to the next topic
+  const shouldMoveToNextTopic = () => {
+    const lastQuestionsInTopic = [2, 5, 8];
+    if (lastQuestionsInTopic.includes(currentJuniorQuestion)) {
+      return true;
+    } else {
+      return false
+    }
+  }
+
   const submitGuess = async (guessData: GuessData) => {
     if (guessData.guess == "" || guessData.guess == " groups of ") {
       setIsShaking(true);
@@ -126,13 +148,18 @@ const Diagnostic = () => {
       await delay(150);
       setOpacity(1);
 
-      // FOR VITHUSHAN: this is where I expect the conditional rendering to take place, but please let me know how I should proceed. I'm hitting a block.
-
       if (gradeRange == "Junior") {
         setCurrentJuniorQuestion(currentJuniorQuestion + 1)
 
-        if (getFourthGradeQuestion && guessData.isCorrect) {
-          setJuniorDiagnosticQuestions(getFifthGradeQuestion)
+        if (guessData.isCorrect) {
+          const newGradeLevel = gradeLevel + 1 // because they got it right move them up a grade
+          const newQuestions = GradeList(newGradeLevel) // get questions for new grade level
+          setJuniorDiagnosticQuestions(newQuestions) // set new questions
+          setGradeLevel(newGradeLevel)
+        } else if (!guessData.isCorrect && juniorDiagnosticQuestions == getFifthGradeQuestion() || !shouldMoveToNextTopic()) {
+          setJuniorDiagnosticQuestions(getFourthGradeQuestion())
+        } else if (shouldMoveToNextTopic()) {
+          setJuniorDiagnosticQuestions(getFourthGradeQuestion())
         }
 
       } else {
@@ -180,7 +207,7 @@ const Diagnostic = () => {
   };
 
   useEffect(() => {
-    setJuniorDiagnosticQuestions(getFourthGradeQuestion)
+    setJuniorDiagnosticQuestions(getFourthGradeQuestion())
   }, []);
 
   useEffect(() => {
@@ -252,6 +279,9 @@ const Diagnostic = () => {
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen">
       <Navbar />
+      {/* What question they are on */}
+      {currentJuniorQuestion}
+      {/* Which list are they are on */}
       <div className="p-4 flex flex-col items-center justify-center">
         {component}
       </div>
