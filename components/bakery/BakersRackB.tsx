@@ -31,13 +31,25 @@ export interface BakersRackB {
   setCookMinCakeNum: (cookMinCakeNum: any) => void;
   cookMinCakeDen: any;
   setCookMinCakeDen: (cookMinCakeDen: any) => void;
-
   browMinBread: string;
   setBrowMinBread: (browMinBread: string) => void;
   browMinBreadNum: any;
   setBrowMinBreadNum: (browMinBreadNum: any) => void;
   browMinBreadDen: any;
   setBrowMinBreadDen: (browMinBreadDen: any) => void;
+  cupMinPie: string;
+  setCupMinPie: (cupMinPie: string) => void;
+  cupMinPieNum: any;
+  setCupMinPieNum: (cupMinPie: any) => void;
+  cupMinPieDen: any;
+  setCupMinPieDen: (cupMinPieDen: any) => void;
+
+  breadMinCake: string;
+  setBreadMinCake: (breadMinCake: string) => void;
+  breadMinCakeNum: any;
+  setBreadMinCakeNum: (breadMinCakeNum: any) => void;
+  breadMinCakeDen: any;
+  setBreadMinCakeDen: (breadMinCake: any) => void;
 }
 
 const BakersRackB = ({
@@ -77,6 +89,18 @@ const BakersRackB = ({
   setBrowMinBreadNum,
   browMinBreadDen,
   setBrowMinBreadDen,
+  cupMinPie,
+  setCupMinPie,
+  cupMinPieNum,
+  setCupMinPieNum,
+  cupMinPieDen,
+  setCupMinPieDen,
+  breadMinCake,
+  setBreadMinCake,
+  breadMinCakeNum,
+  setBreadMinCakeNum,
+  breadMinCakeDen,
+  setBreadMinCakeDen,
 }: BakersRackB) => {
   const valPPB = (newPiePlusBread) => {
     const valPPBArr = newPiePlusBread.split("/");
@@ -112,6 +136,18 @@ const BakersRackB = ({
     const valBMBArr = newBrowMinBread.split("/");
     setBrowMinBreadNum(valBMBArr[0]);
     setBrowMinBreadDen(valBMBArr[1]);
+  };
+
+  const valCMP = (newCupMinPie) => {
+    const valCMPArr = newCupMinPie.split("/");
+    setCupMinPieNum(valCMPArr[0]);
+    setCupMinPieDen(valCMPArr[1]);
+  };
+
+  const valBMC = (newBreadMinCake) => {
+    const valBMCArr = newBreadMinCake.split("/");
+    setBreadMinCakeNum(valBMCArr[0]);
+    setBreadMinCakeDen(valBMCArr[1]);
   };
 
   return (
@@ -197,6 +233,11 @@ const BakersRackB = ({
           <div className={"font-bold"}>
             {" "}
             *Challenge: Use only the numbers from the "Equivalent Fractions"*{" "}
+          </div>
+          <div className={"text-red-400 font-bold mt-4"}>
+            {" "}
+            NOTE: Please put answers in the format of [numerator] /
+            [denominator]. Example: 4/10
           </div>
           <div className={"grid grid-cols-2 mt-4"}>
             <div className={"col-start-1 col-span-1 mx-16"}>
@@ -310,12 +351,36 @@ const BakersRackB = ({
                   {" "}
                   Cupcake - Pie =
                 </div>
-                <input className={"bg-yellow-100"}></input>
+                <input
+                  className={
+                    cupMinPieNum / cupMinPieDen === 6 / 63
+                      ? "bg-green-100 text-center"
+                      : "bg-yellow-100 text-center"
+                  }
+                  value={cupMinPie}
+                  onChange={(e) => {
+                    const newCupMinPie = e.target.value;
+                    setCupMinPie(newCupMinPie);
+                    valCMP(newCupMinPie);
+                  }}
+                ></input>
                 <div className={"text-red-300 ml-4 text-left text-xl mt-8"}>
                   {" "}
                   Bread - Cake =
                 </div>
-                <input className={"bg-yellow-100"}></input>
+                <input
+                  className={
+                    breadMinCakeNum / breadMinCakeDen === 0
+                      ? "bg-green-100 text-center"
+                      : "bg-yellow-100 text-center"
+                  }
+                  value={breadMinCake}
+                  onChange={(e) => {
+                    const newBreadMinCake = e.target.value;
+                    setBreadMinCake(newBreadMinCake);
+                    valBMC(newBreadMinCake);
+                  }}
+                ></input>
               </div>{" "}
             </div>
           </div>
