@@ -25,6 +25,13 @@ export interface BakersRackB {
   setPiePlusCookNum: (piePlusCookNum: any) => void;
   piePlusCookDen: any;
   setPiePlusCookDen: (piePlusCookDen: any) => void;
+
+  cookMinCake: string;
+  setCookMinCake: (cookMinCake: string) => void;
+  cookMinCakeNum: any;
+  setCookMinCakeNum: (cookMinCakeNum: any) => void;
+  cookMinCakeDen: any;
+  setCookMinCakeDen: (cookMinCakeDen: any) => void;
 }
 
 const BakersRackB = ({
@@ -52,6 +59,12 @@ const BakersRackB = ({
   setPiePlusCookNum,
   piePlusCookDen,
   setPiePlusCookDen,
+  cookMinCake,
+  setCookMinCake,
+  cookMinCakeNum,
+  setCookMinCakeNum,
+  cookMinCakeDen,
+  setCookMinCakeDen,
 }: BakersRackB) => {
   const valPPB = (newPiePlusBread) => {
     const valPPBArr = newPiePlusBread.split("/");
@@ -75,6 +88,12 @@ const BakersRackB = ({
     const valPPCArr = newPiePlusCook.split("/");
     setPiePlusCookNum(valPPCArr[0]);
     setPiePlusCookDen(valPPCArr[1]);
+  };
+
+  const valCMC = (newCookMinCake) => {
+    const valCMCArr = newCookMinCake.split("/");
+    setCookMinCakeNum(valCMCArr[0]);
+    setCookMinCakeDen(valCMCArr[1]);
   };
 
   return (
@@ -159,7 +178,7 @@ const BakersRackB = ({
           </div>
           <div className={"font-bold"}>
             {" "}
-            *Challenge: Use only the numbers from the "Equivalent Fractions"*
+            *Challenge: Use only the numbers from the "Equivalent Fractions"*{" "}
           </div>
           <div className={"grid grid-cols-2 mt-4"}>
             <div className={"col-start-1 col-span-1 mx-16"}>
@@ -239,7 +258,19 @@ const BakersRackB = ({
                   {" "}
                   Cookies - Cake =
                 </div>
-                <input className={"bg-yellow-100"}></input>
+                <input
+                  className={
+                    cookMinCakeNum / cookMinCakeDen === 6 / 21
+                      ? "bg-green-100 text-center"
+                      : "bg-yellow-100 text-center"
+                  }
+                  value={cookMinCake}
+                  onChange={(e) => {
+                    const newCookMinCake = e.target.value;
+                    setCookMinCake(newCookMinCake);
+                    valCMC(newCookMinCake);
+                  }}
+                ></input>
                 <div className={"text-red-300 ml-4 text-left text-xl mt-8"}>
                   {" "}
                   Brownies - Bread =
