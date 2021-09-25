@@ -7,6 +7,18 @@ export interface BakersRackB {
   setPiePlusBreadNum: (piePlusBreadNum: any) => void;
   piePlusBreadDen: any;
   setPiePlusBreadDen: (piePlusBreadDen: any) => void;
+  cupPlusCook: string;
+  setCupPlusCook: (cupPlusCook: string) => void;
+  cupPlusCookNum: any;
+  setCupPlusCookNum: (cupPlusCookNum: any) => void;
+  cupPlusCookDen: any;
+  setCupPlusCookDen: (cupPlusCookDen: any) => void;
+  browPlusCake: string;
+  setBrowPlusCake: (browPlusCake: string) => void;
+  browPlusCakeNum: any;
+  setBrowPlusCakeNum: (browPlusCakeNum: any) => void;
+  browPlusCakeDen: any;
+  setBrowPlusCakeDen: (browPlusCakeDen: any) => void;
 }
 
 const BakersRackB = ({
@@ -16,12 +28,37 @@ const BakersRackB = ({
   setPiePlusBreadNum,
   piePlusBreadDen,
   setPiePlusBreadDen,
+  cupPlusCook,
+  setCupPlusCook,
+  cupPlusCookNum,
+  setCupPlusCookNum,
+  cupPlusCookDen,
+  setCupPlusCookDen,
+  browPlusCake,
+  setBrowPlusCake,
+  browPlusCakeNum,
+  setBrowPlusCakeNum,
+  browPlusCakeDen,
+  setBrowPlusCakeDen,
 }: BakersRackB) => {
   const valPPB = (newPiePlusBread) => {
     const valPPBArr = newPiePlusBread.split("/");
     setPiePlusBreadNum(valPPBArr[0]);
     setPiePlusBreadDen(valPPBArr[1]);
   };
+
+  const valCPC = (newCupPlusCook) => {
+    const valCPCArr = newCupPlusCook.split("/");
+    setCupPlusCookNum(valCPCArr[0]);
+    setCupPlusCookDen(valCPCArr[1]);
+  };
+
+  const valBPC = (newBrowPlusCake) => {
+    const valBPCArr = newBrowPlusCake.split("/");
+    setBrowPlusCakeNum(valBPCArr[0]);
+    setBrowPlusCakeDen(valBPCArr[1]);
+  };
+
   return (
     <div>
       {" "}
@@ -129,12 +166,36 @@ const BakersRackB = ({
                 {" "}
                 Cupcakes + Cookies =
               </div>
-              <input className={"bg-yellow-100"}></input>
+              <input
+                className={
+                  cupPlusCookNum / cupPlusCookDen === 33 / 63
+                    ? "bg-green-100 text-center"
+                    : "bg-yellow-100 text-center"
+                }
+                value={cupPlusCook}
+                onChange={(e) => {
+                  const newCupPlusCook = e.target.value;
+                  setCupPlusCook(newCupPlusCook);
+                  valCPC(newCupPlusCook);
+                }}
+              ></input>
               <div className={"text-red-300 ml-4 text-left text-xl mt-8"}>
                 {" "}
                 Brownies + Cake =
               </div>
-              <input className={"bg-yellow-100"}></input>
+              <input
+                className={
+                  browPlusCakeNum / browPlusCakeDen === 7 / 21
+                    ? "bg-green-100 text-center"
+                    : "bg-yellow-100 text-center"
+                }
+                value={browPlusCake}
+                onChange={(e) => {
+                  const newBrowPlusCake = e.target.value;
+                  setBrowPlusCake(newBrowPlusCake);
+                  valBPC(newBrowPlusCake);
+                }}
+              ></input>
               <div className={"text-red-300 ml-4 text-left text-xl mt-8"}>
                 {" "}
                 Pie + Cookies =
