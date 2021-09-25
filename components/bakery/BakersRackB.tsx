@@ -25,13 +25,19 @@ export interface BakersRackB {
   setPiePlusCookNum: (piePlusCookNum: any) => void;
   piePlusCookDen: any;
   setPiePlusCookDen: (piePlusCookDen: any) => void;
-
   cookMinCake: string;
   setCookMinCake: (cookMinCake: string) => void;
   cookMinCakeNum: any;
   setCookMinCakeNum: (cookMinCakeNum: any) => void;
   cookMinCakeDen: any;
   setCookMinCakeDen: (cookMinCakeDen: any) => void;
+
+  browMinBread: string;
+  setBrowMinBread: (browMinBread: string) => void;
+  browMinBreadNum: any;
+  setBrowMinBreadNum: (browMinBreadNum: any) => void;
+  browMinBreadDen: any;
+  setBrowMinBreadDen: (browMinBreadDen: any) => void;
 }
 
 const BakersRackB = ({
@@ -65,6 +71,12 @@ const BakersRackB = ({
   setCookMinCakeNum,
   cookMinCakeDen,
   setCookMinCakeDen,
+  browMinBread,
+  setBrowMinBread,
+  browMinBreadNum,
+  setBrowMinBreadNum,
+  browMinBreadDen,
+  setBrowMinBreadDen,
 }: BakersRackB) => {
   const valPPB = (newPiePlusBread) => {
     const valPPBArr = newPiePlusBread.split("/");
@@ -94,6 +106,12 @@ const BakersRackB = ({
     const valCMCArr = newCookMinCake.split("/");
     setCookMinCakeNum(valCMCArr[0]);
     setCookMinCakeDen(valCMCArr[1]);
+  };
+
+  const valBMB = (newBrowMinBread) => {
+    const valBMBArr = newBrowMinBread.split("/");
+    setBrowMinBreadNum(valBMBArr[0]);
+    setBrowMinBreadDen(valBMBArr[1]);
   };
 
   return (
@@ -275,7 +293,19 @@ const BakersRackB = ({
                   {" "}
                   Brownies - Bread =
                 </div>
-                <input className={"bg-yellow-100"}></input>
+                <input
+                  className={
+                    browMinBreadNum / browMinBreadDen === 5 / 21
+                      ? "bg-green-100 text-center"
+                      : "bg-yellow-100 text-center"
+                  }
+                  value={browMinBread}
+                  onChange={(e) => {
+                    const newBrowMinBread = e.target.value;
+                    setBrowMinBread(newBrowMinBread);
+                    valBMB(newBrowMinBread);
+                  }}
+                ></input>
                 <div className={"text-red-300 ml-4 text-left text-xl mt-8"}>
                   {" "}
                   Cupcake - Pie =

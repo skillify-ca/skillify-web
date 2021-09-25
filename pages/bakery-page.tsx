@@ -66,6 +66,9 @@ export default function Bakery(props) {
   const [cookMinCake, setCookMinCake] = useState("");
   const [cookMinCakeNum, setCookMinCakeNum] = useState("");
   const [cookMinCakeDen, setCookMinCakeDen] = useState("");
+  const [browMinbread, setBrowMinBread] = useState("");
+  const [browMinBreadNum, setBrowMinBreadNum] = useState("");
+  const [browMinBreadDen, setBrowMinBreadDen] = useState("");
 
   const previousStage = () => {
     if (stage > STAGE.BakeryInstructions) {
@@ -189,6 +192,12 @@ export default function Bakery(props) {
           setCookMinCakeNum={setCookMinCakeNum}
           cookMinCakeDen={cookMinCakeDen}
           setCookMinCakeDen={setCookMinCakeDen}
+          browMinBread={browMinbread}
+          setBrowMinBread={setBrowMinBread}
+          browMinBreadNum={browMinBreadNum}
+          setBrowMinBreadNum={setBrowMinBreadNum}
+          browMinBreadDen={browMinBreadDen}
+          setBrowMinBreadDen={setBrowMinBreadDen}
         />
       );
     } else if (stage == STAGE.BakingGma) {
