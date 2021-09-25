@@ -1,6 +1,27 @@
 import react from "react";
 
-const BakersRackB = () => {
+export interface BakersRackB {
+  piePlusBread: string;
+  setPiePlusBread: (piePlusBread: string) => void;
+  piePlusBreadNum: any;
+  setPiePlusBreadNum: (piePlusBreadNum: any) => void;
+  piePlusBreadDen: any;
+  setPiePlusBreadDen: (piePlusBreadDen: any) => void;
+}
+
+const BakersRackB = ({
+  piePlusBread,
+  setPiePlusBread,
+  piePlusBreadNum,
+  setPiePlusBreadNum,
+  piePlusBreadDen,
+  setPiePlusBreadDen,
+}: BakersRackB) => {
+  const valPPB = (newPiePlusBread) => {
+    const valPPBArr = newPiePlusBread.split("/");
+    setPiePlusBreadNum(valPPBArr[0]);
+    setPiePlusBreadDen(valPPBArr[1]);
+  };
   return (
     <div>
       {" "}
@@ -91,7 +112,19 @@ const BakersRackB = () => {
                 {" "}
                 Pie + Bread =
               </div>
-              <input className={"bg-yellow-100"}></input>
+              <input
+                className={
+                  piePlusBreadNum / piePlusBreadDen === 3 / 21
+                    ? "bg-green-100 text-center"
+                    : "bg-yellow-100 text-center"
+                }
+                value={piePlusBread}
+                onChange={(e) => {
+                  const newPiePlusBread = e.target.value;
+                  setPiePlusBread(newPiePlusBread);
+                  valPPB(newPiePlusBread);
+                }}
+              ></input>
               <div className={"text-red-300 ml-4 text-left text-xl mt-8"}>
                 {" "}
                 Cupcakes + Cookies =

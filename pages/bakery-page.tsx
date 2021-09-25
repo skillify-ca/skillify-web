@@ -51,6 +51,9 @@ export default function Bakery(props) {
   const [cakeDen2, setCakeDen2] = useState("");
   const [cookNum2, setCookNum2] = useState("");
   const [cookDen2, setCookDen2] = useState("");
+  const [piePlusBread, setPiePlusBread] = useState("");
+  const [piePlusBreadNum, setPiePlusBreadNum] = useState("");
+  const [piePlusBreadDen, setPiePlusBreadDen] = useState("");
 
   const previousStage = () => {
     if (stage > STAGE.BakeryInstructions) {
@@ -142,7 +145,16 @@ export default function Bakery(props) {
         />
       );
     } else if (stage == STAGE.BakersRackB) {
-      return <BakersRackB />;
+      return (
+        <BakersRackB
+          piePlusBread={piePlusBread}
+          setPiePlusBread={setPiePlusBread}
+          piePlusBreadNum={piePlusBreadNum}
+          setPiePlusBreadNum={setPiePlusBreadNum}
+          piePlusBreadDen={piePlusBreadDen}
+          setPiePlusBreadDen={setPiePlusBreadDen}
+        />
+      );
     } else if (stage == STAGE.BakingGma) {
       return <BakingGma />;
     }
