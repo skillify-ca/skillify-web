@@ -19,6 +19,12 @@ export interface BakersRackB {
   setBrowPlusCakeNum: (browPlusCakeNum: any) => void;
   browPlusCakeDen: any;
   setBrowPlusCakeDen: (browPlusCakeDen: any) => void;
+  piePlusCook: string;
+  setPiePlusCook: (piePlusCook: string) => void;
+  piePlusCookNum: any;
+  setPiePlusCookNum: (piePlusCookNum: any) => void;
+  piePlusCookDen: any;
+  setPiePlusCookDen: (piePlusCookDen: any) => void;
 }
 
 const BakersRackB = ({
@@ -40,6 +46,12 @@ const BakersRackB = ({
   setBrowPlusCakeNum,
   browPlusCakeDen,
   setBrowPlusCakeDen,
+  piePlusCook,
+  setPiePlusCook,
+  piePlusCookNum,
+  setPiePlusCookNum,
+  piePlusCookDen,
+  setPiePlusCookDen,
 }: BakersRackB) => {
   const valPPB = (newPiePlusBread) => {
     const valPPBArr = newPiePlusBread.split("/");
@@ -57,6 +69,12 @@ const BakersRackB = ({
     const valBPCArr = newBrowPlusCake.split("/");
     setBrowPlusCakeNum(valBPCArr[0]);
     setBrowPlusCakeDen(valBPCArr[1]);
+  };
+
+  const valPPC = (newPiePlusCook) => {
+    const valPPCArr = newPiePlusCook.split("/");
+    setPiePlusCookNum(valPPCArr[0]);
+    setPiePlusCookDen(valPPCArr[1]);
   };
 
   return (
@@ -200,7 +218,19 @@ const BakersRackB = ({
                 {" "}
                 Pie + Cookies =
               </div>
-              <input className={"bg-yellow-100"}></input>
+              <input
+                className={
+                  piePlusCookNum / piePlusCookDen === 9 / 21
+                    ? "bg-green-100 text-center"
+                    : "bg-yellow-100 text-center"
+                }
+                value={piePlusCook}
+                onChange={(e) => {
+                  const newPiePlusCook = e.target.value;
+                  setPiePlusCook(newPiePlusCook);
+                  valPPC(newPiePlusCook);
+                }}
+              ></input>
             </div>
             <div className={"col-start-2 col-span-1 mx-16"}>
               {" "}
