@@ -233,12 +233,12 @@ const Diagnostic = () => {
       component = (
         <div>
           <div className="flex justify-between pt-4 px-8 items-center">
-            <p className="font-semibold text-gray-500 ">
+            <p className="font-semibold text-gray-500">
               Question: {answeredQuestions.length} / 12
             </p>
             <p
               onClick={onIDontKnowClick}
-              className="bg-gray-200 hover:bg-blue-200 cursor-pointer p-2 rounded-xl shadow-md font-semibold text-gray-500 "
+              className="bg-gray-200 hover:bg-blue-200 cursor-pointer p-2 rounded-xl shadow-md font-semibold text-gray-500"
             >
               I don't know 🤔
             </p>
@@ -279,9 +279,6 @@ const Diagnostic = () => {
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen">
       <Navbar />
-      {/* What question they are on */}
-      {currentJuniorQuestion}
-      {/* Which list are they are on */}
       <div className="p-4 flex flex-col items-center justify-center">
         {component}
       </div>
