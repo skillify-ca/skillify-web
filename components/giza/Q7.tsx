@@ -1,4 +1,5 @@
 import React from "react";
+import { GuessData } from "../../pages/api/guessData";
 import { MultipleChoice } from "../questionTypes/MultipleChoice";
 /*
   Acute Isosceles Triangle
@@ -7,6 +8,10 @@ import { MultipleChoice } from "../questionTypes/MultipleChoice";
   Acute Scalene Triangle
 */
 const Q7 = (displayQuestion, nextQuestion) => {
+  const onSubmit = (guess: GuessData) => {
+    //Pass this guessData object into nextQuestion
+    nextQuestion(guess);
+  };
   return (
     <React.Fragment>
       <MultipleChoice
@@ -24,7 +29,7 @@ const Q7 = (displayQuestion, nextQuestion) => {
           text: "Obtuse Isosceles Triangle",
         }}
         answer="Obtuse Isosceles Triangle"
-        submitGuess={nextQuestion}
+        submitGuess={onSubmit}
       />
     </React.Fragment>
   );

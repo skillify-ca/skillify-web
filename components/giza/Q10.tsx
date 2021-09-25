@@ -1,4 +1,5 @@
 import React from "react";
+import { GuessData } from "../../pages/api/guessData";
 import { MultipleChoice } from "../questionTypes/MultipleChoice";
 
 const Q10 = (displayQuestion, nextQuestion) => {
@@ -8,6 +9,10 @@ const Q10 = (displayQuestion, nextQuestion) => {
     65 degrees - right answer
     15 degrees
   */
+  const onSubmit = (guess: GuessData) => {
+    //Pass this guessData object into nextQuestion
+    nextQuestion(guess);
+  };
   return (
     <React.Fragment>
       <MultipleChoice
@@ -25,7 +30,7 @@ const Q10 = (displayQuestion, nextQuestion) => {
           text: "15 degrees",
         }}
         answer="65 degrees"
-        submitGuess={nextQuestion}
+        submitGuess={onSubmit}
       />
     </React.Fragment>
   );

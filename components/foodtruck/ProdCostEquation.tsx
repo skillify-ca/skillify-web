@@ -1,5 +1,5 @@
 import React from "react";
-import { Food, Truck } from "../../pages/api/foodtruck/food";
+import { Food, operatingHours, Truck } from "../../pages/api/foodtruck/food";
 
 export interface ProdCostEquationProps {
   selectedFood: Food;
@@ -12,6 +12,8 @@ export interface ProdCostEquationProps {
   setProdCostEquationOneBoxTwo: (prodCostEquationOneBoxTwo: string) => void;
   prodCostEquationOneBoxThree: string;
   setProdCostEquationOneBoxThree: (prodCostEquationOneBoxThree: string) => void;
+  prodCostEquationOneBoxFour: string;
+  setProdCostEquationOneBoxFour: (prodCostEquationOneBoxFour: string) => void;
 
   prodCostEquationTwoBoxOne: string;
   setProdCostEquationTwoBoxOne: (prodCostEquationTwoBoxOne: string) => void;
@@ -33,6 +35,8 @@ const ProdCostEquation = ({
   setProdCostEquationOneBoxTwo,
   prodCostEquationOneBoxThree,
   setProdCostEquationOneBoxThree,
+  prodCostEquationOneBoxFour,
+  setProdCostEquationOneBoxFour,
   prodCostEquationTwoBoxOne,
   setProdCostEquationTwoBoxOne,
   prodCostEquationTwoBoxTwo,
@@ -42,49 +46,63 @@ const ProdCostEquation = ({
   prodCostEquationTwoBoxFour,
   setProdCostEquationTwoBoxFour,
 }: ProdCostEquationProps) => {
-  const validateQuestionOneInputs = () => {
-    return Number.parseInt(prodCostEquationOneBoxOne) ===
-      selectedFood.qtyProducedPerWorkerHour *
-        Number.parseInt(selectedNumWorkers) &&
-      Number.parseInt(prodCostEquationOneBoxTwo) === selectedFood.unitCost
-      ? "Correct Inputs"
-      : "Incorrect Inputs";
-  };
-  const validateQuestionOneAnswer = () => {
-    return Number.parseInt(prodCostEquationOneBoxThree) ===
-      selectedFood.qtyProducedPerWorkerHour *
-        Number.parseInt(selectedNumWorkers) *
-        selectedFood.unitCost
-      ? "Correct Answer"
-      : "Incorrect Answer";
-  };
+  // Equation 1
+  const platesPerHour =
+    selectedFood.qtyProducedPerWorkerHour * Number.parseInt(selectedNumWorkers);
+  const costPerPlate = selectedFood.unitCost;
+  const totalIngredientCostPerDay =
+    platesPerHour * costPerPlate * operatingHours;
 
-  const validateQuestionTwoInputs = () => {
-    return Number.parseInt(prodCostEquationTwoBoxOne) ===
-      selectedTruck.fixedCost / 30 &&
-      Number.parseInt(prodCostEquationTwoBoxTwo) ===
-        selectedTruck.variableCost / 6 &&
-      Number.parseInt(prodCostEquationTwoBoxThree) === 6
-      ? "Correct Inputs"
-      : "Incorrect Inputs";
-  };
+  // Equation 2
+  const dailyRentalCost = selectedTruck.fixedCost;
+  const hourlyOperatingCost = selectedTruck.variableCost;
+  const truckCostPerDay =
+    dailyRentalCost + hourlyOperatingCost * operatingHours;
 
-  const validateQuestionTwoAnswer = () => {
-    return Number.parseInt(prodCostEquationTwoBoxFour) ===
-      selectedTruck.fixedCost / 30 + (selectedTruck.variableCost / 6) * 6
-      ? "Correct Answer"
-      : "Incorrect Answer";
-  };
+  const validateProdCostEquationOneBoxOne = () =>
+    Number.parseInt(prodCostEquationOneBoxOne) === platesPerHour;
+
+  const validateProdCostEquationOneBoxTwo = () =>
+    Number.parseInt(prodCostEquationOneBoxTwo) === costPerPlate;
+
+  const validateProdCostEquationOneBoxThree = () =>
+    Number.parseInt(prodCostEquationOneBoxThree) === operatingHours;
+
+  const validateProdCostEquationOneAnswer = () =>
+    Number.parseInt(prodCostEquationOneBoxFour) === totalIngredientCostPerDay;
+
+  const validateProdCostEquationTwoBoxOne = () =>
+    Number.parseInt(prodCostEquationTwoBoxOne) === dailyRentalCost;
+
+  const validateProdCostEquationTwoBoxTwo = () =>
+    Number.parseInt(prodCostEquationTwoBoxTwo) === hourlyOperatingCost;
+
+  const validateProdCostEquationTwoBoxThree = () =>
+    Number.parseInt(prodCostEquationTwoBoxThree) === operatingHours;
+
+  const validateProdCostEquationTwoAnswer = () =>
+    Number.parseInt(prodCostEquationTwoBoxFour) === truckCostPerDay;
 
   const validateComponent = () => {
-    return validateQuestionOneAnswer() === "Correct Answer" &&
-      validateQuestionTwoAnswer() === "Correct Answer"
-      ? "Complete!"
-      : "Incomplete";
+    return (
+      validateProdCostEquationOneAnswer() &&
+      validateProdCostEquationTwoAnswer()
+    );
+  };
+
+  const equationContainerCSS = (
+    inputBox: string,
+    validateFunction: boolean
+  ) => {
+    if (inputBox.length === 0) {
+      return "border-2 border-black p-4 text-grey-darkest max-w-sm";
+    } else if (validateFunction) {
+      return "border-8 border-green-500 p-4 text-grey-darkest max-w-sm";
+    } else return "border-8 border-red-500 p-4 text-grey-darkest max-w-sm";
   };
 
   const progressContainerCSS = () => {
-    return validateComponent() === "Complete!"
+    return validateComponent()
       ? "bg-green-300 w-1/6 text-center border-2 border-black border-double p-4"
       : "bg-yellow-300 w-1/6 text-center border-2 border-black border-double p-4";
   };
@@ -92,13 +110,15 @@ const ProdCostEquation = ({
   return (
     <div className="flex flex-col border-2 border-dashed border-black p-4">
       <div className="flex flex-cols-2 items-center">
-        <h1 className="w-5/6 text-4xl p-4">
+        <h1 className="w-5/6 text-4xl py-4">
           How much will it cost us every day to sell {selectedFood.name}
           {selectedFood.name === "Hot Dog" ? "s" : ""}?
         </h1>
-        <span className={progressContainerCSS()}>{validateComponent()}</span>
+        <span className={progressContainerCSS()}>
+          {validateComponent() === true ? "Correct!" : "Incorrect"}
+        </span>
       </div>
-      <h1 className="text-2xl p-4">
+      <h1 className="text-2xl mt-8">
         First - let's figure out how much the ingredients cost to make{" "}
         {selectedFood.name}
         {selectedFood.name === "Hot Dog" ? "s" : ""}
@@ -108,14 +128,19 @@ const ProdCostEquation = ({
         <p className="text-2xl text-center">Plates per Hour</p>
         <p className="text-4xl text-center">x</p>
         <p className="text-2xl text-center">Cost per Plate</p>
+        <p className="text-4xl text-center">x</p>
+        <p className="text-2xl text-center">Operating Hours</p>
         <p className="text-4xl text-center">=</p>
-        <p className="text-2xl text-center">Total Ingredient Cost per Hour</p>
+        <p className="text-2xl text-center">Total Ingredient Cost per Day</p>
         <p></p>
         <p></p>
       </div>
       <div className="grid grid-cols-7 items-center justify-center pt-8">
         <input
-          className="border-2 border-black p-4 text-grey-darkest max-w-sm"
+          className={equationContainerCSS(
+            prodCostEquationOneBoxOne,
+            validateProdCostEquationOneBoxOne()
+          )}
           value={prodCostEquationOneBoxOne}
           onChange={(e) => {
             setProdCostEquationOneBoxOne(e.target.value);
@@ -125,25 +150,36 @@ const ProdCostEquation = ({
 
         <p className="text-4xl text-center">x</p>
         <input
-          className="border-2 border-black p-4 text-grey-darkest max-w-sm"
+          className={equationContainerCSS(
+            prodCostEquationOneBoxTwo,
+            validateProdCostEquationOneBoxTwo()
+          )}
           value={prodCostEquationOneBoxTwo}
           onChange={(e) => setProdCostEquationOneBoxTwo(e.target.value)}
           placeholder="2"
         />
-        <p className="text-4xl text-center">=</p>
+        <p className="text-4xl text-center">x</p>
         <input
-          className="border-2 border-black p-4 text-grey-darkest max-w-sm"
+          className={equationContainerCSS(
+            prodCostEquationOneBoxThree,
+            validateProdCostEquationOneBoxThree()
+          )}
           value={prodCostEquationOneBoxThree}
           onChange={(e) => setProdCostEquationOneBoxThree(e.target.value)}
           placeholder="2"
         />
-        <p className="border-double border-4 border-black text-center col-start-5 mt-4">
-          {validateQuestionOneInputs()} {validateQuestionOneAnswer()}
-        </p>
-        <p></p>
-        <p></p>
+        <p className="text-4xl text-center">=</p>
+        <input
+          className={equationContainerCSS(
+            prodCostEquationOneBoxFour,
+            validateProdCostEquationOneAnswer()
+          )}
+          value={prodCostEquationOneBoxFour}
+          onChange={(e) => setProdCostEquationOneBoxFour(e.target.value)}
+          placeholder="2"
+        />
       </div>
-      <h1 className="text-2xl p-4">
+      <h1 className="text-2xl mt-12">
         Next - how much does our {selectedTruck.model} cost to operate daily?
       </h1>
       <h1 className="text-2xl font-bold pt-8 pl-4">Equation 2:</h1>
@@ -157,7 +193,10 @@ const ProdCostEquation = ({
         <p className="text-2xl text-center m-4">Truck Cost per Day</p>
 
         <input
-          className="border-2 border-black p-4 text-grey-darkest max-w-sm"
+          className={equationContainerCSS(
+            prodCostEquationTwoBoxOne,
+            validateProdCostEquationTwoBoxOne()
+          )}
           value={prodCostEquationTwoBoxOne}
           onChange={(e) => {
             setProdCostEquationTwoBoxOne(e.target.value);
@@ -167,31 +206,34 @@ const ProdCostEquation = ({
 
         <p className="text-4xl text-center">+</p>
         <input
-          className="border-2 border-black p-4 text-grey-darkest max-w-sm"
+          className={equationContainerCSS(
+            prodCostEquationTwoBoxTwo,
+            validateProdCostEquationTwoBoxTwo()
+          )}
           value={prodCostEquationTwoBoxTwo}
           onChange={(e) => setProdCostEquationTwoBoxTwo(e.target.value)}
           placeholder="2"
         />
         <p className="text-4xl text-center">x</p>
         <input
-          className="border-2 border-black p-4 text-grey-darkest max-w-sm"
+          className={equationContainerCSS(
+            prodCostEquationTwoBoxThree,
+            validateProdCostEquationTwoBoxThree()
+          )}
           value={prodCostEquationTwoBoxThree}
           onChange={(e) => setProdCostEquationTwoBoxThree(e.target.value)}
           placeholder="2"
         />
         <p className="text-4xl text-center">=</p>
         <input
-          className="border-2 border-black p-4 text-grey-darkest max-w-sm"
+          className={equationContainerCSS(
+            prodCostEquationTwoBoxFour,
+            validateProdCostEquationTwoAnswer()
+          )}
           value={prodCostEquationTwoBoxFour}
           onChange={(e) => setProdCostEquationTwoBoxFour(e.target.value)}
           placeholder="2"
         />
-        <p className="text-center col-start-1">(hint: monthly cost / 30)</p>
-        <p className="text-center col-start-3">(hint: daily cost / 6)</p>
-        <p className="text-center col-start-5">(hint: 6 hours per day)</p>
-        <p className="border-double border-4 border-black text-center col-start-7 mt-4">
-          {validateQuestionTwoInputs()} {validateQuestionTwoAnswer()}
-        </p>
       </div>
     </div>
   );

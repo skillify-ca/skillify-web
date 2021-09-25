@@ -7,19 +7,32 @@ import ChooseTruckType from "../components/foodtruck/ChooseTruckType";
 import OverviewOfSelections from "../components/foodtruck/OverviewOfSelections";
 import {
   hotDog,
-  largeTruck,
-  mediumTruck,
-  minWage,
+  operatingHours,
+  minimumWage,
   smallTruck,
   Truck,
 } from "./api/foodtruck/food";
 import RevenueEquation from "../components/foodtruck/RevenueEquation";
 import ProdCostEquation from "../components/foodtruck/ProdCostEquation";
+import LaborCostEquation from "../components/foodtruck/LaborCostEquation";
+import ProfitEquation from "../components/foodtruck/ProfitEquation";
 
 import { Button } from "../components/ui/Button";
 
-// set up stage flows
+/*
+TODO fix these issues before make it obvious when food items are not selectable
+Add available foods to the right progress bar
+Add better spacing on the right progress bar
+select worker images not showing for 3 and 4
+You will sell each Hot Dog for $4. Each Hot Dog will cost $1 per plate (change wording to say it will cost you $1 to make/manufacture)
+Plates per Worker per Hour (change wording to say number of plates) (use slashes instead of per)
+Add hours to the right progress bar
+revenue component
+Plates per Hour (use slashes) and the word number
+hide buttons on the last stage
+*/
 
+// set up stage flows
 export default function FoodTruck(props) {
   enum STAGE {
     ChooseTruck,
@@ -28,6 +41,8 @@ export default function FoodTruck(props) {
     OverviewOfSelections,
     RevenueEquation,
     ProdCostEquation,
+    LaborCostEquation,
+    ProfitEquation,
   }
 
   const [stage, setStage] = useState(STAGE.ChooseTruck);
@@ -39,7 +54,7 @@ export default function FoodTruck(props) {
   };
 
   const nextStage = () => {
-    if (stage < STAGE.ProdCostEquation) {
+    if (stage < STAGE.ProfitEquation) {
       setStage(stage + 1);
     }
   };
@@ -55,14 +70,15 @@ export default function FoodTruck(props) {
   const [selectedNumWorkers, setSelectedNumWorkers] = useState("1");
 
   // revenue equation one
-  const [equationBoxOne, setEquationBoxOne] = useState("");
-  const [equationBoxTwo, setEquationBoxTwo] = useState("");
-  const [equationBoxThree, setEquationBoxThree] = useState("");
+  const [revEquationOneBoxOne, setRevEquationOneBoxOne] = useState("");
+  const [revEquationOneBoxTwo, setRevEquationOneBoxTwo] = useState("");
+  const [revEquationOneBoxThree, setRevEquationOneBoxThree] = useState("");
 
   // revenue equation two
   const [revEquationTwoBoxOne, setRevEquationTwoBoxOne] = useState("");
   const [revEquationTwoBoxTwo, setRevEquationTwoBoxTwo] = useState("");
   const [revEquationTwoBoxThree, setRevEquationTwoBoxThree] = useState("");
+  const [revEquationTwoBoxFour, setRevEquationTwoBoxFour] = useState("");
 
   // prodCost equation one
   const [prodCostEquationOneBoxOne, setProdCostEquationOneBoxOne] = useState(
@@ -76,6 +92,10 @@ export default function FoodTruck(props) {
     setProdCostEquationOneBoxThree,
   ] = useState("");
 
+  const [prodCostEquationOneBoxFour, setProdCostEquationOneBoxFour] = useState(
+    ""
+  );
+
   // prodCost equation two
   const [prodCostEquationTwoBoxOne, setProdCostEquationTwoBoxOne] = useState(
     ""
@@ -88,6 +108,46 @@ export default function FoodTruck(props) {
     setProdCostEquationTwoBoxThree,
   ] = useState("");
   const [prodCostEquationTwoBoxFour, setProdCostEquationTwoBoxFour] = useState(
+    ""
+  );
+
+  // laborCost equation one
+  const [laborCostEquationOneBoxOne, setLaborCostEquationOneBoxOne] = useState(
+    ""
+  );
+  const [laborCostEquationOneBoxTwo, setLaborCostEquationOneBoxTwo] = useState(
+    ""
+  );
+  const [
+    laborCostEquationOneBoxThree,
+    setLaborCostEquationOneBoxThree,
+  ] = useState("");
+
+  const [
+    laborCostEquationOneBoxFour,
+    setLaborCostEquationOneBoxFour,
+  ] = useState("");
+
+  // laborCost equation two
+  const [laborCostEquationTwoBoxOne, setLaborCostEquationTwoBoxOne] = useState(
+    ""
+  );
+  const [laborCostEquationTwoBoxTwo, setLaborCostEquationTwoBoxTwo] = useState(
+    ""
+  );
+  const [
+    laborCostEquationTwoBoxThree,
+    setLaborCostEquationTwoBoxThree,
+  ] = useState("");
+  const [
+    laborCostEquationTwoBoxFour,
+    setLaborCostEquationTwoBoxFour,
+  ] = useState("");
+
+  // profit equation one
+  const [profitEquationOneBoxOne, setProfitEquationOneBoxOne] = useState("");
+  const [profitEquationOneBoxTwo, setProfitEquationOneBoxTwo] = useState("");
+  const [profitEquationOneBoxThree, setProfitEquationOneBoxThree] = useState(
     ""
   );
 
@@ -123,7 +183,6 @@ export default function FoodTruck(props) {
           setSelectedNumWorkers={setSelectedNumWorkers}
           selectedTruck={truck}
           selectedFood={food}
-          minWage={minWage}
         />
       );
     } else if (stage == STAGE.RevenueEquation) {
@@ -131,18 +190,20 @@ export default function FoodTruck(props) {
         <RevenueEquation
           selectedNumWorkers={selectedNumWorkers}
           selectedFood={food}
-          equationBoxOne={equationBoxOne}
-          setEquationBoxOne={setEquationBoxOne}
-          equationBoxTwo={equationBoxTwo}
-          setEquationBoxTwo={setEquationBoxTwo}
-          equationBoxThree={equationBoxThree}
-          setEquationBoxThree={setEquationBoxThree}
+          revEquationOneBoxOne={revEquationOneBoxOne}
+          setRevEquationOneBoxOne={setRevEquationOneBoxOne}
+          revEquationOneBoxTwo={revEquationOneBoxTwo}
+          setRevEquationOneBoxTwo={setRevEquationOneBoxTwo}
+          revEquationOneBoxThree={revEquationOneBoxThree}
+          setRevEquationOneBoxThree={setRevEquationOneBoxThree}
           revEquationTwoBoxOne={revEquationTwoBoxOne}
           setRevEquationTwoBoxOne={setRevEquationTwoBoxOne}
           revEquationTwoBoxTwo={revEquationTwoBoxTwo}
           setRevEquationTwoBoxTwo={setRevEquationTwoBoxTwo}
           revEquationTwoBoxThree={revEquationTwoBoxThree}
           setRevEquationTwoBoxThree={setRevEquationTwoBoxThree}
+          revEquationTwoBoxFour={revEquationTwoBoxFour}
+          setRevEquationTwoBoxFour={setRevEquationTwoBoxFour}
         />
       );
     } else if (stage == STAGE.ProdCostEquation) {
@@ -157,6 +218,8 @@ export default function FoodTruck(props) {
           setProdCostEquationOneBoxTwo={setProdCostEquationOneBoxTwo}
           prodCostEquationOneBoxThree={prodCostEquationOneBoxThree}
           setProdCostEquationOneBoxThree={setProdCostEquationOneBoxThree}
+          prodCostEquationOneBoxFour={prodCostEquationOneBoxFour}
+          setProdCostEquationOneBoxFour={setProdCostEquationOneBoxFour}
           prodCostEquationTwoBoxOne={prodCostEquationTwoBoxOne}
           setProdCostEquationTwoBoxOne={setProdCostEquationTwoBoxOne}
           prodCostEquationTwoBoxTwo={prodCostEquationTwoBoxTwo}
@@ -165,6 +228,44 @@ export default function FoodTruck(props) {
           setProdCostEquationTwoBoxThree={setProdCostEquationTwoBoxThree}
           prodCostEquationTwoBoxFour={prodCostEquationTwoBoxFour}
           setProdCostEquationTwoBoxFour={setProdCostEquationTwoBoxFour}
+        />
+      );
+    } else if (stage == STAGE.LaborCostEquation) {
+      return (
+        <LaborCostEquation
+          selectedFood={food}
+          selectedTruck={truck}
+          selectedNumWorkers={selectedNumWorkers}
+          laborCostEquationOneBoxOne={laborCostEquationOneBoxOne}
+          setLaborCostEquationOneBoxOne={setLaborCostEquationOneBoxOne}
+          laborCostEquationOneBoxTwo={laborCostEquationOneBoxTwo}
+          setLaborCostEquationOneBoxTwo={setLaborCostEquationOneBoxTwo}
+          laborCostEquationOneBoxThree={laborCostEquationOneBoxThree}
+          setLaborCostEquationOneBoxThree={setLaborCostEquationOneBoxThree}
+          laborCostEquationOneBoxFour={laborCostEquationOneBoxFour}
+          setLaborCostEquationOneBoxFour={setLaborCostEquationOneBoxFour}
+          laborCostEquationTwoBoxOne={laborCostEquationTwoBoxOne}
+          setLaborCostEquationTwoBoxOne={setLaborCostEquationTwoBoxOne}
+          laborCostEquationTwoBoxTwo={laborCostEquationTwoBoxTwo}
+          setLaborCostEquationTwoBoxTwo={setLaborCostEquationTwoBoxTwo}
+          laborCostEquationTwoBoxThree={laborCostEquationTwoBoxThree}
+          setLaborCostEquationTwoBoxThree={setLaborCostEquationTwoBoxThree}
+          laborCostEquationTwoBoxFour={laborCostEquationTwoBoxFour}
+          setLaborCostEquationTwoBoxFour={setLaborCostEquationTwoBoxFour}
+        />
+      );
+    } else if (stage == STAGE.ProfitEquation) {
+      return (
+        <ProfitEquation
+          selectedFood={food}
+          selectedTruck={truck}
+          selectedNumWorkers={selectedNumWorkers}
+          profitEquationOneBoxOne={profitEquationOneBoxOne}
+          setProfitEquationOneBoxOne={setProfitEquationOneBoxOne}
+          profitEquationOneBoxTwo={profitEquationOneBoxTwo}
+          setProfitEquationOneBoxTwo={setProfitEquationOneBoxTwo}
+          profitEquationOneBoxThree={profitEquationOneBoxThree}
+          setProfitEquationOneBoxThree={setProfitEquationOneBoxThree}
         />
       );
     }
@@ -205,7 +306,7 @@ export default function FoodTruck(props) {
           <h1 className="text-4xl mb-8 pt-8">Equation Progress</h1>
           <div className="grid grid-cols-2 text-2xl text-center">
             <p>Plates per Hour:</p>
-            <p>{equationBoxThree}</p>
+            <p>{revEquationOneBoxThree}</p>
             <p>Revenue per Hour:</p>
             <p>{revEquationTwoBoxThree}</p>
           </div>
@@ -217,42 +318,66 @@ export default function FoodTruck(props) {
           <h1 className="text-4xl mb-8">Useful Inputs</h1>
           <div className="grid grid-cols-2 text-2xl text-center">
             <p>Plates per Hour:</p>
-            <p>{equationBoxThree}</p>
+            <p>{revEquationOneBoxThree}</p>
             <p>Cost per Plate:</p>
             <p>{food.unitCost}</p>
             <p>Daily Rental Cost:</p>
-            <p>{truck.fixedCost / 30}</p>
+            <p>{truck.fixedCost}</p>
             <p>Hourly Operating Cost:</p>
-            <p>{truck.variableCost / 6}</p>
+            <p>{truck.variableCost}</p>
             <p>Hours Working per Day:</p>
-            <p>6</p>
+            <p>{operatingHours}</p>
           </div>
           <h1 className="text-4xl mb-8 pt-8">Equation Progress</h1>
           <div className="grid grid-cols-2 text-2xl text-center">
-            <p>Ingredient Cost per Hour:</p>
-            <p>{prodCostEquationOneBoxThree}</p>
-            <p>Truck Cost per Hour:</p>
+            <p>Total Daily Ingredient Cost:</p>
+            <p>{prodCostEquationOneBoxFour}</p>
+            <p>Total Daily Truck Cost:</p>
             <p>{prodCostEquationTwoBoxFour}</p>
           </div>
-          <h1 className="text-4xl mb-8 pt-8">Money per Day</h1>
+        </div>
+      );
+    } else if (stage === STAGE.LaborCostEquation) {
+      return (
+        <div className="flex flex-col p-8">
+          <h1 className="text-4xl mb-8">Useful Inputs</h1>
           <div className="grid grid-cols-2 text-2xl text-center">
-            <p>Ingredient Cost per Day:</p>
-            <p>{Number.parseInt(prodCostEquationOneBoxThree) * 6}</p>
-            <p>Truck Cost per Day:</p>
+            <p>Number of Workers:</p>
+            <p>{selectedNumWorkers}</p>
+            <p>Minumum Hourly Wage:</p>
+            <p>{minimumWage}</p>
+            <p>Hours Operating per Day:</p>
+            <p>{operatingHours}</p>
+            <p>Total Daily Ingredient Cost:</p>
+            <p>{prodCostEquationOneBoxFour}</p>
+            <p>Total Daily Truck Rental Cost:</p>
             <p>{prodCostEquationTwoBoxFour}</p>
-            <p>Operating Costs per Day:</p>
-            <p>
-              {Number.parseInt(prodCostEquationOneBoxThree) * 6 +
-                Number.parseInt(prodCostEquationTwoBoxFour)}
-            </p>
-            <p>Revenue per Day:</p>
-            <p>{Number.parseInt(revEquationTwoBoxThree) * 6}</p>
-            <p>Profit per Day:</p>
-            <p>
-              {Number.parseInt(revEquationTwoBoxThree) * 6 -
-                (Number.parseInt(prodCostEquationOneBoxThree) * 6 +
-                  Number.parseInt(prodCostEquationTwoBoxFour))}
-            </p>
+          </div>
+          <h1 className="text-4xl mb-8 pt-8">Equation Progress</h1>
+          <div className="grid grid-cols-2 text-2xl text-center">
+            <p>Total Wages per Day</p>
+            <p>{laborCostEquationOneBoxFour}</p>
+            <p>Total Costs per Day:</p>
+            <p>{laborCostEquationTwoBoxFour}</p>
+          </div>
+        </div>
+      );
+    } else if (stage === STAGE.ProfitEquation) {
+      return (
+        <div className="flex flex-col p-8">
+          <h1 className="text-4xl mb-8">Useful Inputs</h1>
+          <div className="grid grid-cols-2 text-2xl text-center">
+            <p>Total Daily Revenue:</p>
+            <p>${Number.parseInt(revEquationTwoBoxFour)}</p>
+            <p>Total Daily Costs:</p>
+            <p>${laborCostEquationTwoBoxFour}</p>
+          </div>
+          <h1 className="text-4xl mb-8 pt-8">Equation Progress</h1>
+          <div className="grid grid-cols-2 text-2xl text-center">
+            <p>Total Revenue per Day</p>
+            <p>{profitEquationOneBoxOne}</p>
+            <p>Total Costs per Day:</p>
+            <p>{profitEquationOneBoxTwo}</p>
           </div>
         </div>
       );
@@ -280,7 +405,7 @@ export default function FoodTruck(props) {
       </div>
       <div className="flex flex-row">
         <div className="w-2/3">{getLeftComponent(stage)}</div>
-        <div className="w-1/3 border-8 border-pink-600">
+        <div className="w-1/3 border-4 border-black">
           {getProgressComponent(stage)}
         </div>
       </div>
@@ -302,3 +427,5 @@ export default function FoodTruck(props) {
     </div>
   );
 }
+
+FoodTruck.auth = true;

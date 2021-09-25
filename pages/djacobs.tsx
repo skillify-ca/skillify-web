@@ -6,17 +6,6 @@ import { resources } from "./api/resources";
 import { MultipleChoice } from "../components/questionTypes/MultipleChoice";
 import { GuessData } from "./api/guessData";
 import { Button } from "../components/ui/Button";
-import { stages } from "konva/lib/Stage";
-import TeX from "@matejmazur/react-katex";
-import {
-  Question,
-  MCOption,
-  MCModel,
-  AnswerType,
-  FillOption,
-  fillBlankModel,
-} from "../pages/api/question";
-import { QuestionType } from "./api/questionTypes";
 import { react } from "@babel/types";
 import { TrueorFalse } from "../components/questionTypes/TrueorFalse";
 import { Skill } from "./api/skill";
@@ -41,6 +30,7 @@ import Q16 from "../components/giza/Q16";
 enum Stage {
   START,
   QUIZ,
+  END,
 }
 
 export default function djacobs(props) {
@@ -70,15 +60,30 @@ export default function djacobs(props) {
     "You're almost out! Using your knowledge of supplementary angles, what is <d?",
     "LAST QUESTION before you escape the clutches of the mummy! In the space provided, write a secret password by figuring out the missing angles of the triangle (the grey circles). Your secret password needs to be in numerical order with NO spaces (e.x. 1234567).",
   ];
+
+  const [stage, setStage] = useState(Stage.START);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [groupName, setGroupName] = useState<string>();
+  const [studentName, setStudentName] = useState<string>();
+  const [guesses, setGuess] = useState<GuessData[]>([]);
+  const [score, setScore] = useState<Number>();
+
   const onSubmit = (guess: GuessData) => {
     console.log(guess);
   };
 
-  const [stage, setStage] = useState(Stage.START);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
   const onStartQuiz = () => {
     setStage(Stage.QUIZ);
+  };
+
+  const onGroupNameChange = (currentGroupName: string) => {
+    const GN = currentGroupName;
+    setGroupName(GN);
+  };
+
+  const onStudentNameChange = (currentStudentName: string) => {
+    const SN = currentStudentName;
+    setStudentName(SN);
   };
 
   const backToPrevious = () => {
@@ -88,12 +93,23 @@ export default function djacobs(props) {
       setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1));
     }
   };
-
-  const nextQuestion = () => {
+  //Future thing: Use this function to add the guessData from each question page into the guessDataArray
+  const nextQuestion = (guess: GuessData) => {
+    guesses[currentQuestionIndex] = guess;
+    //another method to count the amounts of trues / total question length
     setCurrentQuestionIndex(
       Math.min(questionData.length - 1, currentQuestionIndex + 1)
     );
-    console.log(currentQuestionIndex + 1);
+    if (currentQuestionIndex == questionData.length - 1) {
+      setScore(
+        Math.round(
+          (guesses.filter((guess) => guess.isCorrect == true).length /
+            questionData.length) *
+            100
+        )
+      );
+      setStage(Stage.END);
+    }
   };
 
   // End of Quiz: YOU MADE IT OUT! Head back to main session to collect your prize!
@@ -124,9 +140,28 @@ export default function djacobs(props) {
           <div className="flex flex-col gap-8">
             <p className="text-2xl text-center bg-blue-400">Giza Form</p>
             <div className="flex flex-col items-center col gap-8">
-              <div className="text-center">
-                <label>Group Name</label>
-                <input className="p-4 text-lg" />
+              <div id="GroupNameLayout">
+                <div className="flex flex-row gap-8 text-center">
+                  <div className="text-center">
+                    <label>Group Name</label>
+                  </div>
+                  <input
+                    className="p-4 text-lg"
+                    value={groupName}
+                    onChange={(e) => onGroupNameChange(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div id="StudentNameLayout">
+                <div className="flex flex-row gap-3">
+                  <label>Student Names</label>
+                  <input
+                    className="p-4 text-lg"
+                    placeholder="(seperate by ,)"
+                    value={studentName}
+                    onChange={(e) => onStudentNameChange(e.target.value)}
+                  />
+                </div>
               </div>
               <Button
                 label="Start"
@@ -152,6 +187,32 @@ export default function djacobs(props) {
                 textColor="white"
                 onClick={backToPrevious}
               />
+            </div>
+          </div>
+        )}
+        {stage == Stage.END && (
+          <div id="Result" className="flex flex-col gap-8">
+            <div id="FormHeader">
+              <p className="text-2xl text-center bg-blue-400">Giza Form</p>
+            </div>
+            <div id="FormBody" className="flex flex-col gap-8">
+              <p className="text-2xl text-center">
+                Your group {groupName} have scored {score} percent!
+              </p>
+            </div>
+            <div id="FormEnd" className="flex flex-col items-center">
+              <div id="ButtonLayout" className="flex flex-row gap-8">
+                <Button
+                  label="Continue"
+                  backgroundColor="blue"
+                  textColor="white"
+                />
+                <Button
+                  label="Retry"
+                  backgroundColor="blue"
+                  textColor="white"
+                />
+              </div>
             </div>
           </div>
         )}

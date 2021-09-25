@@ -54,31 +54,13 @@ export const DiagnosticConclusion = ({
       return "bg-red-100";
     }
   };
-  const [practiceButtonEnabled, setPracticeButtonEnabled] = useState(true);
-  const notifyPracticeSignup = async () => {
-    setPracticeButtonEnabled(false);
-    const url =
-      "https://math-app-1.herokuapp.com/notifications?product=practice";
-    const options = {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      },
-      body: JSON.stringify({
-        email: results.email,
-        name: results.name,
-      }),
-    };
-    await fetch(url, options);
-  };
 
   let displayGrade = gradeLevel.toString();
   if (gradeLevel == 0) {
     displayGrade = "JK/SK";
   }
 
-  let displayName = results.name;
+  let displayName = results.firstName;
   if (displayName == "") {
     displayName = "Your Child";
   }
@@ -101,7 +83,7 @@ export const DiagnosticConclusion = ({
           {getSummaryText(
             gradeLevel,
             parseInt(parse(results.grade).second),
-            results.name
+            results.firstName
           )}
         </p>
       </div>
@@ -210,7 +192,7 @@ export const DiagnosticConclusion = ({
           <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
             <div className="inline-flex rounded-md shadow">
               <a
-                href="#"
+                href="/practice"
                 className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
               >
                 Get started

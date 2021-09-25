@@ -4,17 +4,16 @@ import { DndProvider } from "react-dnd";
 import { TouchBackend } from "react-dnd-touch-backend";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { ModalProvider } from "react-simple-hook-modal";
-import { Provider } from "next-auth/client";
 import initializeApollo from "../lib/apollo";
 import { ApolloProvider } from "@apollo/client";
 import { Provider as ReduxProvider } from "react-redux";
 import store from "../redux/store";
-import { signIn, useSession } from "next-auth/client";
+import { useSession, SessionProvider } from "next-auth/react";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../components/Navbar";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const router = useRouter();
 
   const handleRouteChange = (url) => {
@@ -39,13 +38,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ApolloProvider client={client}>
-      <Provider
-        session={pageProps.session}
-        options={{
-          clientMaxAge: 0,
-          keepAlive: 5 * 60,
-        }}
-      >
+      <SessionProvider session={session}>
         <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
           <ModalProvider>
             <ReduxProvider store={store}>
@@ -62,7 +55,7 @@ function MyApp({ Component, pageProps }) {
             </ReduxProvider>
           </ModalProvider>
         </DndProvider>
-      </Provider>
+      </SessionProvider>
     </ApolloProvider>
   );
 }
@@ -70,14 +63,14 @@ function MyApp({ Component, pageProps }) {
 export default MyApp;
 
 function Auth({ children }) {
-  const [session, loading] = useSession();
+  const { data: session, status } = useSession();
   const isUser = !!session?.user;
   const router = useRouter();
 
   React.useEffect(() => {
-    if (loading) return; // Do nothing while loading
+    if (status === "loading") return; // Do nothing while loading
     if (!isUser) router.push("/welcome"); // If not authenticated, force log in
-  }, [isUser, loading]);
+  }, [isUser, status]);
 
   if (isUser) {
     return children;

@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { UnitCard } from "./UnitCard";
-import { useSession } from "next-auth/client";
 import { userId } from "../graphql/utils/constants";
 import Card from "./ui/Card";
 import ProgressRing from "./ui/ProgressRing";
 import { lockedTopics, unlockedTopics } from "../pages/api/topics";
-import { EMOJI_MASTERY } from "../pages/api/skill";
+import { EMOJI_MASTERY, Grade } from "../pages/api/skill";
 import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
 import { useQuery } from "@apollo/client";
 import { Session } from "next-auth";
 import Link from "next/link";
-import TopicItem from "./stories/TopicItem";
-import Image from "next/image";
 import { Puzzle, PUZZLE_DATA } from "../pages/api/puzzle";
 import { Button } from "./ui/Button";
+import {
+  StudentProfileState,
+  setStudentProfile,
+  studentProfileSelector,
+} from "../redux/studentProfileSlice";
+import { useAppDispatch } from "../redux/store";
+import { useSelector } from "react-redux";
+
 interface OutlineProps {
   session: Session;
 }
@@ -24,6 +29,16 @@ export default function Outline({ session }: OutlineProps) {
       userId: userId(session),
     },
   });
+
+  const dispatch = useAppDispatch();
+
+  const onGradeChange = (newGrade) => {
+    const updatedState: StudentProfileState = {
+      grade: newGrade,
+    };
+    dispatch(setStudentProfile(updatedState));
+  };
+  const studentGrade = useSelector(studentProfileSelector);
 
   const progress = () => {
     if (
@@ -68,6 +83,25 @@ export default function Outline({ session }: OutlineProps) {
             <ProgressRing percentage={progress()} radius={24} />
           </div>
         </div>
+        <div className="flex flex-row">
+          <p className="flex items-center text-xl text-blue-900">
+            {" "}
+            Set your grade:
+          </p>
+          <select
+            value={studentGrade.grade}
+            defaultValue={studentGrade.grade}
+            onChange={(e) => onGradeChange(e.target.value)}
+            className="ml-4 w-56 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2"
+          >
+            <option>Grade 1</option>
+            <option>Grade 2</option>
+            <option>Grade 3</option>
+            <option>Grade 4</option>
+            <option>Grade 5</option>
+            <option>Grade 6</option>
+          </select>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 justify-center gap-8 items-center">
@@ -88,6 +122,40 @@ export default function Outline({ session }: OutlineProps) {
           </div>
         ))}
       </div>
+
+      {false && (
+        <div className="w-full bg-blue-50 rounded-lg shadow-lg p-4">
+          <div className="flex flex-col gap-4">
+            <p className="font-bold text-2xl">Interactive Lessons</p>
+
+            <p className="">Complete these lessons to unlock extra badges.</p>
+          </div>
+        </div>
+      )}
+      {false && (
+        <div className="grid grid-cols-2 md:grid-cols-4 justify-center gap-8 items-center">
+          <Link href={`/finance-profile`}>
+            <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
+              <Card size="medium">
+                <div className="flex flex-col justify-center items-center gap-4">
+                  <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300 heropattern-formalinvitation-green-500"></div>
+                  <p className="mx-4 text-center text-xl">Balance a Budget</p>
+                </div>
+              </Card>
+            </div>
+          </Link>
+          <Link href={`/foodtruck`}>
+            <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
+              <Card size="medium">
+                <div className="flex flex-col justify-center items-center gap-4">
+                  <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300 heropattern-jupiter-yellow-500"></div>
+                  <p className="mx-4 text-center text-xl">Food Truck</p>
+                </div>
+              </Card>
+            </div>
+          </Link>
+        </div>
+      )}
       <div className="w-full bg-blue-50 rounded-lg shadow-lg p-4">
         <div className="flex flex-col gap-4">
           <p className="font-bold text-2xl">Multiplayer Games</p>

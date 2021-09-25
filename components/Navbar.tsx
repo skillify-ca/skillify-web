@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { useState } from "react";
-import { signIn, useSession } from "next-auth/client";
-import { Session } from "next-auth";
+import { useSession } from "next-auth/react";
 
 export default function Navbar() {
-  const [session, loading] = useSession();
+  const { data: session, status } = useSession();
   const [active, setActive] = useState(false);
   const [profieMenuActive, setProfileMenuActive] = useState(false);
 
@@ -105,10 +104,10 @@ export default function Navbar() {
                 </a>
 
                 <a
-                  href="/contact"
+                  href="/about"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Contact
+                  About
                 </a>
               </div>
             </div>
@@ -118,7 +117,7 @@ export default function Navbar() {
             <div className="ml-3 relative">
               <div>
                 <div>
-                  {loading
+                  {status === "loading"
                     ? ""
                     : !session && (
                       <>
@@ -210,10 +209,10 @@ export default function Navbar() {
             For Educators
           </a>
           <a
-            href="/contact"
+            href="/about"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Contact
+            About
           </a>
         </div>
       </div>

@@ -1,14 +1,10 @@
 import React, { useEffect } from "react";
 import "react-simple-hook-modal/dist/styles.css";
-import { useRouter } from "next/router";
 import Link from "next/link";
-import { useSession } from "next-auth/client";
 import data from "../api/profile/data.json";
 import StatementRow from "../../components/stories/StatementRow";
 
 const Practice = ({ slug }) => {
-  const { query } = useRouter();
-  const [session] = useSession();
   const [statements, setStatements] = React.useState([]);
 
   useEffect(() => {

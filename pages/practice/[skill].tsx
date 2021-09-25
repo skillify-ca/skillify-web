@@ -1,5 +1,5 @@
 import { ApolloClient, InMemoryCache, useMutation } from "@apollo/client";
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import ReactCardFlip from "react-card-flip";
@@ -23,7 +23,7 @@ const PracticeQuiz = ({ skill }) => {
     EMOJI,
     END_SESSION,
   }
-  const [session, user] = useSession();
+  const { data: session, status } = useSession();
   const [isFlipped, setIsFlipped] = useState(false);
   const [display, setDisplay] = useState("flex");
   const [continueFaded, setContinueFaded] = useState(0);
@@ -227,7 +227,7 @@ const PracticeQuiz = ({ skill }) => {
 
   return (
     <div className="bg-blue-100 heropattern-architect-blue-50 h-md">
-      <div className="flex flex-col justify-center items-center mt-8">
+      <div className="flex flex-col justify-center items-center pt-8 gap-8">
         <div className="flex flex-row w-96 p-4 justify-between bg-gray-400 shadow-lg rounded-lg ">
           <p className="font-semibold">
             Question: {index + 1} / {questionData.length}
@@ -245,7 +245,7 @@ const PracticeQuiz = ({ skill }) => {
           <div
             className={`${display} flex-col justify-center items-center gap-8 transition-opacity duration-150 ease-in-out opacity-${isFaded}`}
           >
-            <div className={"justify-items-center align-middle w-50 mt-8"}>
+            <div className={"justify-items-center align-middle w-50"}>
               <Card size="large">
                 {correctAnswer ? (
                   <p className="font-bold text-gray-400 text-xl">
@@ -300,12 +300,6 @@ const PracticeQuiz = ({ skill }) => {
           </div>
         </ReactCardFlip>
       </div>
-      {/* {!continueButton &&
-        !nextQuestionButton &&
-        stage == STAGE.QUESTION &&
-        questionData[index] && <Hint skill={questionData[index].skill}></Hint>}
-    </div> */}
-      {/* might be useful later */}
     </div>
   );
 };

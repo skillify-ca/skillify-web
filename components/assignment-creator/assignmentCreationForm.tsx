@@ -2,17 +2,15 @@ import { initial } from "lodash";
 import React, { useEffect, useState } from "react";
 import { QuestionType } from "../../pages/api/questionTypes";
 import {
-  getSkillId,
-  getSkillsForTopic,
   getSkillsForTopicGrade,
   Grade,
   Skill,
-  SkillDescription,
   Topic,
 } from "../../pages/api/skill";
 import { Button } from "../ui/Button";
 import Image from "next/image";
 import GoogleClassroomImage from ".././../public/images/assignments/google-classroom.svg";
+import { FetchDescriptionAndSkillData } from "../../pages/assignment-creator";
 
 export type QuestionTypeForSkill = {
   questionType: QuestionType;
@@ -24,7 +22,7 @@ type assignmentCreationFormProps = {
   onClick: (questionCounts: QuestionCount[]) => void;
   questionCounts: QuestionCount[];
   setQuestionCounts: (counts: QuestionCount[]) => void;
-  data: any;
+  data: FetchDescriptionAndSkillData;
 };
 
 export type QuestionCount = {
