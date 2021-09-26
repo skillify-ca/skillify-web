@@ -16,9 +16,7 @@ import {
 } from "./api/diagnostic/diagnosticGrader";
 import { generateQuestionForSkill } from "./api/questionGenerator";
 import Navbar from "../components/Navbar";
-
 import getFourthGradeQuestion, { getFifthGradeQuestion, getSixthGradeQuestion } from "./api/diagnostic/juniorDiagnosticQuestionGenerator";
-
 
 enum STAGE {
   CREATE,
@@ -33,19 +31,25 @@ const Diagnostic = () => {
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState(1);
   const [isShaking, setIsShaking] = useState(false);
-  const [grade, setGrade] = useState(Grade.GRADE_1);
+  const [grade, setGrade] = useState(Grade.GRADE_3);
   const [stage, setStage] = useState(STAGE.CREATE);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [guesses, setGuesses] = useState<Array<string>>([]);
   const [guessAns, setGuessAns] = useState<Array<string>>([]);
   const [answeredQuestions, setAnsweredQuestions] = useState<Question[]>([]);
-
   const [juniorDiagnosticQuestions, setJuniorDiagnosticQuestions] = useState<Question[]>([]);
   const [currentJuniorQuestion, setCurrentJuniorQuestion] = useState<number>(0)
   const [gradeLevel, setGradeLevel] = useState<number>(0) // 0 - 4th grade list, 1 - 5th grade list, 2 - 6th grade list
+
+  const getGradeRange: () => string = () => {
+
+    return [Grade.GRADE_1, Grade.GRADE_2, Grade.GRADE_3].includes(grade)
+      ? "Primary"
+      : "Junior";
+
+  };
 
   const [questionsLeftInTopic, setQuestionsLeftInTopic] = useState<number>(
     QUESTIONS_PER_TOPIC
@@ -83,7 +87,7 @@ const Diagnostic = () => {
         "Content-Type": "application/json;charset=UTF-8",
       },
       body: JSON.stringify({
-        name: name + " " + lastName,
+        name: name,
         email: email,
         worksheets: workSheets,
         calculatedGrade: getCalculatedGrade(results),
@@ -150,8 +154,7 @@ const Diagnostic = () => {
       await delay(150);
       setOpacity(1);
 
-
-      if (gradeRange == "Junior") {
+      if (getGradeRange() == "Junior") {
         setCurrentJuniorQuestion(currentJuniorQuestion + 1)
 
         if (guessData.isCorrect) {
@@ -190,7 +193,7 @@ const Diagnostic = () => {
         grade: grade,
         email: email,
         firstName: name,
-        lastName: lastName,
+        lastName: ""
       };
       dispatch(setDiagnostic(results));
       requestEmail(results);
@@ -228,11 +231,10 @@ const Diagnostic = () => {
           setEmail={setEmail}
           firstName={name}
           setFirstName={setName}
-          lastName={lastName}
-          setLastName={setLastName}
           grade={grade}
-          setGrade={setGrade}
-        />
+          setGrade={setGrade} lastName={""} setLastName={function (name: string): void {
+            throw new Error("Function not implemented.");
+          }} />
       );
       break;
     case STAGE.TEST:
@@ -253,28 +255,22 @@ const Diagnostic = () => {
             className={isShaking ? "animate-shake" : ""}
             onAnimationEnd={() => setIsShaking(false)}
           >
-            {(getGradeRange() == "Primary" && (
-              <QuestionSet
-                title=""
-                questionData={[currentQuestion]}
-                index={0}
-                inputElement={inputElement}
-                submitGuess={submitGuess}
-                score={correctGuesses}
-                diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
-              />
-            )) ||
-              (getGradeRange() == "Junior" && (
-                <QuestionSet
-                  title=""
-                  questionData={juniorDiagnosticQuestions}
-                  index={currentJuniorQuestion}
-                  inputElement={inputElement}
-                  submitGuess={submitGuess}
-                  score={correctGuesses}
-                  diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
-                />
-              ))}
+            {getGradeRange() == "Junior" && <QuestionSet
+              title=""
+              questionData={[currentQuestion]}
+              index={0}
+              inputElement={inputElement}
+              submitGuess={submitGuess}
+              score={correctGuesses}
+              diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
+            /> || getGradeRange() == "Junior" && <QuestionSet
+              title=""
+              questionData={juniorDiagnosticQuestions}
+              index={currentJuniorQuestion}
+              inputElement={inputElement}
+              submitGuess={submitGuess}
+              score={correctGuesses}
+              diagnostic={{ isDiagnostic: true, opacityVal: opacity }} />}
           </div>
         </div>
       );
@@ -289,7 +285,7 @@ const Diagnostic = () => {
       break;
   }
   return (
-    <div className="flex flex-col overflow-auto bg-scroll bg-blue-50 h-screen">
+    <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen">
       <Navbar />
       <div className="p-4 flex flex-col items-center justify-center">
         {component}
