@@ -35,6 +35,7 @@ const Diagnostic = () => {
   const [stage, setStage] = useState(STAGE.CREATE);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [guesses, setGuesses] = useState<Array<string>>([]);
   const [guessAns, setGuessAns] = useState<Array<string>>([]);
@@ -193,7 +194,7 @@ const Diagnostic = () => {
         grade: grade,
         email: email,
         firstName: name,
-        lastName: ""
+        lastName: lastName,
       };
       dispatch(setDiagnostic(results));
       requestEmail(results);
@@ -231,10 +232,11 @@ const Diagnostic = () => {
           setEmail={setEmail}
           firstName={name}
           setFirstName={setName}
+          lastName={lastName}
+          setLastName={setLastName}
           grade={grade}
-          setGrade={setGrade} lastName={""} setLastName={function (name: string): void {
-            throw new Error("Function not implemented.");
-          }} />
+          setGrade={setGrade}
+        />
       );
       break;
     case STAGE.TEST:
