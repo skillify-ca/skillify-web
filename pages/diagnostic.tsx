@@ -257,22 +257,26 @@ const Diagnostic = () => {
             className={isShaking ? "animate-shake" : ""}
             onAnimationEnd={() => setIsShaking(false)}
           >
-            {getGradeRange() == "Junior" && <QuestionSet
-              title=""
-              questionData={[currentQuestion]}
-              index={0}
-              inputElement={inputElement}
-              submitGuess={submitGuess}
-              score={correctGuesses}
-              diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
-            /> || getGradeRange() == "Junior" && <QuestionSet
-              title=""
-              questionData={juniorDiagnosticQuestions}
-              index={currentJuniorQuestion}
-              inputElement={inputElement}
-              submitGuess={submitGuess}
-              score={correctGuesses}
-              diagnostic={{ isDiagnostic: true, opacityVal: opacity }} />}
+            {(getGradeRange() == "Primary" && (
+              <QuestionSet
+                title=""
+                questionData={[currentQuestion]}
+                index={0}
+                inputElement={inputElement}
+                submitGuess={submitGuess}
+                score={correctGuesses}
+                diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
+              />)) ||
+              (getGradeRange() == "Junior" && (
+                <QuestionSet
+                  title=""
+                  questionData={juniorDiagnosticQuestions}
+                  index={currentJuniorQuestion}
+                  inputElement={inputElement}
+                  submitGuess={submitGuess}
+                  score={correctGuesses}
+                  diagnostic={{ isDiagnostic: true, opacityVal: opacity }} />
+              ))}
           </div>
         </div>
       );
