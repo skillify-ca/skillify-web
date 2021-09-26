@@ -51,6 +51,30 @@ export default function Bakery(props) {
   const [cakeDen2, setCakeDen2] = useState("");
   const [cookNum2, setCookNum2] = useState("");
   const [cookDen2, setCookDen2] = useState("");
+  const [piePlusBread, setPiePlusBread] = useState("");
+  const [piePlusBreadNum, setPiePlusBreadNum] = useState("");
+  const [piePlusBreadDen, setPiePlusBreadDen] = useState("");
+  const [cupPlusCook, setCupPlusCook] = useState("");
+  const [cupPlusCookNum, setCupPlusCookNum] = useState("");
+  const [cupPlusCookDen, setCupPlusCookDen] = useState("");
+  const [browPlusCake, setBrowPlusCake] = useState("");
+  const [browPlusCakeNum, setBrowPlusCakeNum] = useState("");
+  const [browPlusCakeDen, setBrowPlusCakeDen] = useState("");
+  const [piePlusCook, setPiePlusCook] = useState("");
+  const [piePlusCookNum, setPiePlusCookNum] = useState("");
+  const [piePlusCookDen, setPiePlusCookDen] = useState("");
+  const [cookMinCake, setCookMinCake] = useState("");
+  const [cookMinCakeNum, setCookMinCakeNum] = useState("");
+  const [cookMinCakeDen, setCookMinCakeDen] = useState("");
+  const [browMinbread, setBrowMinBread] = useState("");
+  const [browMinBreadNum, setBrowMinBreadNum] = useState("");
+  const [browMinBreadDen, setBrowMinBreadDen] = useState("");
+  const [cupMinPie, setCupMinPie] = useState("");
+  const [cupMinPieNum, setCupMinPieNum] = useState("");
+  const [cupMinPieDen, setCupMinPieDen] = useState("");
+  const [breadMinCake, setBreadMinCake] = useState("");
+  const [breadMinCakeNum, setBreadMinCakeNum] = useState("");
+  const [breadMinCakeDen, setBreadMinCakeDen] = useState("");
 
   const previousStage = () => {
     if (stage > STAGE.BakeryInstructions) {
@@ -142,7 +166,58 @@ export default function Bakery(props) {
         />
       );
     } else if (stage == STAGE.BakersRackB) {
-      return <BakersRackB />;
+      return (
+        <BakersRackB
+          piePlusBread={piePlusBread}
+          setPiePlusBread={setPiePlusBread}
+          piePlusBreadNum={piePlusBreadNum}
+          setPiePlusBreadNum={setPiePlusBreadNum}
+          piePlusBreadDen={piePlusBreadDen}
+          setPiePlusBreadDen={setPiePlusBreadDen}
+          cupPlusCook={cupPlusCook}
+          setCupPlusCook={setCupPlusCook}
+          cupPlusCookNum={cupPlusCookNum}
+          setCupPlusCookNum={setCupPlusCookNum}
+          cupPlusCookDen={cupPlusCookDen}
+          setCupPlusCookDen={setCupPlusCookDen}
+          browPlusCake={browPlusCake}
+          setBrowPlusCake={setBrowPlusCake}
+          browPlusCakeNum={browPlusCakeNum}
+          setBrowPlusCakeNum={setBrowPlusCakeNum}
+          browPlusCakeDen={browPlusCakeDen}
+          setBrowPlusCakeDen={setBrowPlusCakeDen}
+          piePlusCook={piePlusCook}
+          setPiePlusCook={setPiePlusCook}
+          piePlusCookNum={piePlusCookNum}
+          setPiePlusCookNum={setPiePlusCookNum}
+          piePlusCookDen={piePlusCookDen}
+          setPiePlusCookDen={setPiePlusCookDen}
+          cookMinCake={cookMinCake}
+          setCookMinCake={setCookMinCake}
+          cookMinCakeNum={cookMinCakeNum}
+          setCookMinCakeNum={setCookMinCakeNum}
+          cookMinCakeDen={cookMinCakeDen}
+          setCookMinCakeDen={setCookMinCakeDen}
+          browMinBread={browMinbread}
+          setBrowMinBread={setBrowMinBread}
+          browMinBreadNum={browMinBreadNum}
+          setBrowMinBreadNum={setBrowMinBreadNum}
+          browMinBreadDen={browMinBreadDen}
+          setBrowMinBreadDen={setBrowMinBreadDen}
+          cupMinPie={cupMinPie}
+          setCupMinPie={setCupMinPie}
+          cupMinPieNum={cupMinPieNum}
+          setCupMinPieNum={setCupMinPieNum}
+          cupMinPieDen={cupMinPieDen}
+          setCupMinPieDen={setCupMinPieDen}
+          breadMinCake={breadMinCake}
+          setBreadMinCake={setBreadMinCake}
+          breadMinCakeNum={breadMinCakeNum}
+          setBreadMinCakeNum={setBreadMinCakeNum}
+          breadMinCakeDen={breadMinCakeDen}
+          setBreadMinCakeDen={setBreadMinCakeDen}
+        />
+      );
     } else if (stage == STAGE.BakingGma) {
       return <BakingGma />;
     }
