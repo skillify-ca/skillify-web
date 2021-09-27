@@ -52,6 +52,7 @@ const QuestionSet = ({
   score,
   diagnostic,
 }: QuestionSetProps) => {
+  const arrayQuestionColour = getRndColour();
   const questionComponent = () => {
     if (questionData[index].questionType === QuestionType.VERTICAL_EQUATION) {
       return (
@@ -242,6 +243,7 @@ const QuestionSet = ({
             skill === Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT ||
             skill === Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT
           }
+          isReadOnly={isReadOnly}
         />
       );
     } else if (
@@ -253,7 +255,7 @@ const QuestionSet = ({
             isReadOnly={isReadOnly}
             question={questionData[index]}
             submitGuess={submitGuess}
-            colour={getRndColour()}
+            colour={arrayQuestionColour}
           />
         );
       }
