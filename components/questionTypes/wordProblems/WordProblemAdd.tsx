@@ -12,6 +12,7 @@ export interface WordProblemAddProp {
   autofocus?: boolean;
   question: Question;
   submitGuess?: (guess: GuessData) => void;
+  isReadOnly?: boolean;
 }
 
 /* Addition Word problems are made with a specific template. The template is as follows: (name) has an (itemContainer) of (itemType). 
@@ -20,6 +21,7 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
   autofocus = true,
   question,
   submitGuess,
+  isReadOnly = false,
   ...props
 }) => {
   const name = question.wordProblem && question.wordProblem.name;
@@ -63,14 +65,16 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
           {itemContainer.singleTitle}?
         </p>
       </div>
-      <div className="text-2xl flex flex-wrap justify-center w-full">
-        <Input
-          autoFocus={autofocus}
-          guess={guess}
-          setGuess={setGuess}
-          handleKeypress={handleKeypress}
-        />
-      </div>
+      {!isReadOnly && (
+        <div className="text-2xl flex flex-wrap justify-center w-full">
+          <Input
+            autoFocus={autofocus}
+            guess={guess}
+            setGuess={setGuess}
+            handleKeypress={handleKeypress}
+          />
+        </div>
+      )}
       <div className="flex flex-wrap mt-2 justify-center">
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         <img src={noun2.image} className="w-12 h-12 sm:w-16 sm:h-16" />
@@ -78,12 +82,14 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
         <img src={noun2.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
       </div>
-      <Button
-        onClick={onSubmit}
-        label="Submit"
-        backgroundColor="blue"
-        textColor="white"
-      />
+      {!isReadOnly && (
+        <Button
+          onClick={onSubmit}
+          label="Submit"
+          backgroundColor="blue"
+          textColor="white"
+        />
+      )}
     </div>
   );
 };

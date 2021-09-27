@@ -7,6 +7,7 @@ import { Input } from "../ui/Input";
 export interface HorizontalEquationProp {
   question: Question;
   submitGuess: (guess: GuessData) => void;
+  isReadOnly?: boolean;
 }
 
 /**
@@ -15,6 +16,7 @@ export interface HorizontalEquationProp {
 export const HorizontalEquation: React.FC<HorizontalEquationProp> = ({
   question,
   submitGuess,
+  isReadOnly = false,
   ...props
 }) => {
   const [guess, setGuess] = useState("");
@@ -49,17 +51,21 @@ export const HorizontalEquation: React.FC<HorizontalEquationProp> = ({
         {" " + parse().operation + " "}
         {parse().second}
       </p>
-      <Input
-        guess={guess}
-        setGuess={setGuess}
-        handleKeypress={handleKeypress}
-      />
-      <Button
-        onClick={onSubmit}
-        label="Submit"
-        backgroundColor="blue"
-        textColor="white"
-      />
+      {!isReadOnly && (
+        <Input
+          guess={guess}
+          setGuess={setGuess}
+          handleKeypress={handleKeypress}
+        />
+      )}
+      {!isReadOnly && (
+        <Button
+          onClick={onSubmit}
+          label="Submit"
+          backgroundColor="blue"
+          textColor="white"
+        />
+      )}
     </div>
   );
 };

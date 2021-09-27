@@ -8,6 +8,7 @@ export interface MultiplicationEqualGroupsProp {
   question: Question;
   color: 0 | 1 | 2 | 3; // color is a random number between 0 - 3
   submitGuess: (guess: GuessData) => void;
+  isReadOnly?: boolean;
 }
 
 /* Multiplication by equal groups UI with 2 inputs */
@@ -15,6 +16,7 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
   question,
   color,
   submitGuess,
+  isReadOnly = false,
 }) => {
   const [guess, setGuess] = useState("");
   const [guess2, setGuess2] = useState("");

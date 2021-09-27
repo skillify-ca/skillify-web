@@ -178,6 +178,7 @@ const DisplayAssignmentQuestions = ({
               </div>
             </div>{" "}
             <QuestionSet
+            isReadOnly={true}
               questionData={questions}
               index={index}
               submitGuess={() => {}}

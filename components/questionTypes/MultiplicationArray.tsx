@@ -8,6 +8,7 @@ export interface MultiplicationArrayProp {
   question: Question;
   submitGuess: (guess: GuessData) => void;
   colour: "red" | "purple" | "blue" | "green" | "yellow";
+  isReadOnly?: boolean;
 }
 
 // Array Question type is a new way to visualize multiplication problem using squares
@@ -16,6 +17,7 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
   question,
   submitGuess,
   colour,
+  isReadOnly = false,
 }) => {
   const [guess, setGuess] = useState("");
   const handleKeypress = (e) => {
@@ -104,17 +106,17 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
         >
           {parse().first} x {parse().second}
         </div>
-        <Input
+        {!isReadOnly && <Input
           guess={guess}
           setGuess={setGuess}
           handleKeypress={handleKeypress}
-        />
-        <Button
+        />}
+        {!isReadOnly && <Button
           onClick={onSubmit}
           label="Submit"
           backgroundColor="blue"
           textColor="white"
-        />
+        />}
       </div>
     </div>
   );
