@@ -8,6 +8,7 @@ export interface LongDivisionProp {
   question: Question;
   submitGuess: (guess: GuessData) => void;
   isRemainder?: boolean;
+  isReadOnly?: boolean;
 }
 
 /**
@@ -17,6 +18,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
   question,
   isRemainder,
   submitGuess,
+  isReadOnly = false,
   ...props
 }) => {
   const [guess, setGuess] = useState("");
@@ -86,7 +88,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
           {parse().second}&nbsp;
         </span>
         <div className="flex flex-col">
-          <div className="flex flex-row gap-2">
+          {!isReadOnly && <div className="flex flex-row gap-2">
             <LongDivisionInput
               id="guess"
               guess={guess}
@@ -95,7 +97,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
               width={width}
             />
             {remainderComponent}
-          </div>
+          </div>}
           <span className="border-t-2 border-l-2 border-black text-6xl">
             {parse().first}
           </span>

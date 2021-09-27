@@ -11,6 +11,7 @@ import { Input } from "../../ui/Input";
 export interface WordProblemSubProp {
   submitGuess: (guess: GuessData) => void;
   question: Question;
+  isReadOnly?: boolean;
 }
 
 /**
@@ -21,6 +22,7 @@ export interface WordProblemSubProp {
 export const WordProblemSub: React.FC<WordProblemSubProp> = ({
   submitGuess,
   question,
+  isReadOnly = false,
   ...props
 }) => {
   const name = question.wordProblem.name;
@@ -67,13 +69,13 @@ export const WordProblemSub: React.FC<WordProblemSubProp> = ({
           {itemContainer.singleTitle}?
         </p>
       </div>
-      <div className="text-2xl flex flex-wrap">
+      {!isReadOnly && <div className="text-2xl flex flex-wrap">
         <Input
           guess={guess}
           setGuess={setGuess}
           handleKeypress={handleKeypress}
         />
-      </div>
+      </div>}
       <div className="flex flex-wrap mt-2">
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
@@ -81,12 +83,12 @@ export const WordProblemSub: React.FC<WordProblemSubProp> = ({
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
       </div>
-      <Button
+      {!isReadOnly && <Button
         onClick={onSubmit}
         label="Submit"
         backgroundColor="blue"
         textColor="white"
-      />
+      />}
     </div>
   );
 };

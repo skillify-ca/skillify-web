@@ -11,6 +11,7 @@ import { Input } from "../../ui/Input";
 export interface WordProblemMultiProp {
   submitGuess: (guess: GuessData) => void;
   question: Question;
+  isReadOnly?: boolean;
 }
 
 /**
@@ -21,6 +22,7 @@ export interface WordProblemMultiProp {
 export const WordProblemMulti: React.FC<WordProblemMultiProp> = ({
   submitGuess,
   question,
+  isReadOnly = false,
   ...props
 }) => {
   const name = question.wordProblem.name;
@@ -69,13 +71,15 @@ export const WordProblemMulti: React.FC<WordProblemMultiProp> = ({
           {name} have in total?
         </p>
       </div>
-      <div className="text-2xl flex flex-wrap">
-        <Input
-          guess={guess}
-          setGuess={setGuess}
-          handleKeypress={handleKeypress}
-        />
-      </div>
+      {!isReadOnly && (
+        <div className="text-2xl flex flex-wrap">
+          <Input
+            guess={guess}
+            setGuess={setGuess}
+            handleKeypress={handleKeypress}
+          />
+        </div>
+      )}
       <div className="flex flex-wrap mt-2">
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
@@ -83,12 +87,14 @@ export const WordProblemMulti: React.FC<WordProblemMultiProp> = ({
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
       </div>
-      <Button
-        onClick={onSubmit}
-        label="Submit"
-        backgroundColor="blue"
-        textColor="white"
-      />
+      {!isReadOnly && (
+        <Button
+          onClick={onSubmit}
+          label="Submit"
+          backgroundColor="blue"
+          textColor="white"
+        />
+      )}
     </div>
   );
 };
