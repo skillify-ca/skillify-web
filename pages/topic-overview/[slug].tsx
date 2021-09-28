@@ -12,20 +12,16 @@ import { userId } from "../../graphql/utils/constants";
 import { getBadgeId } from "../api/badgeHelper";
 import { getEmoji, getSkillsForTopicGrade, Grade } from "../api/skill";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import { FETCH_SKILL_DESCRIPTION_ARRAY } from "../../graphql/fetchSkillDescriptionArray";
 import { useSelector } from "react-redux";
 import { studentProfileSelector } from "../../redux/studentProfileSlice";
+import { FETCH_SKILL_DESCRIPTION_GRADE_AND_UNIT } from "../../graphql/fetchSkillDescriptionAndGrade";
 
 const Box = dynamic(() => import("../../components/stories/Box"));
 
-const TopicOverviewPage = ({ slug, description }) => {
+const TopicOverviewPage = ({ slug, skillData }) => {
   const { data: session, status } = useSession();
-  const [grade, setGrade] = useState(Grade.GRADE_1);
   const studentGrade = useSelector(studentProfileSelector);
 
-  const onGradeChange = (e: any) => {
-    setGrade(e.target.value);
-  };
   let gradeNum = (grade: string) => {
     switch (grade) {
       case "Grade 1":
@@ -55,8 +51,7 @@ const TopicOverviewPage = ({ slug, description }) => {
   let { loading, error, data } = useQuery(FETCH_TOPIC_OVERVIEW, {
     variables: {
       userId: userId(session),
-      badgeId: getBadgeId(slug, gradeNum(grade)),
-      skillId: getSkillsForTopicGrade(slug, grade),
+      badgeId: getBadgeId(slug, gradeNum(studentGrade.grade)),
     },
   });
 
@@ -74,84 +69,59 @@ const TopicOverviewPage = ({ slug, description }) => {
     return maxAccuracy;
   };
 
-  const levelComponent = (
-    <div className="flex flex-row">
-      <p className="flex items-center text-xl text-blue-900">
-        {" "}
-        Select a grade:{" "}
-      </p>
-      {slug == "numbers" ? (
-        <select
-          value={grade}
-          onChange={onGradeChange}
-          className="ml-4 w-56 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2"
-        >
-          <option>Grade 1</option>
-          <option>Grade 2</option>
-          <option>Grade 3</option>
-        </select>
-      ) : (
-        <select
-          value={grade}
-          onChange={onGradeChange}
-          className="ml-4 w-56 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2"
-        >
-          <option>Grade 1</option>
-          <option>Grade 2</option>
-          <option>Grade 3</option>
-          <option>Grade 4</option>
-          <option>Grade 5</option>
-          <option>Grade 6</option>
-        </select>
-      )}
-    </div>
-  );
   const skillComponent = (
     <div className="flex flex-col gap-8">
-      {getSkillsForTopicGrade(slug, grade).map((skill) => (
-        <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-8 gap-8">
-          <div className="">
-            <div className="flex flex-col gap-8">
-              <img src="/images/learnPic.png" className="w-96" />
-              <p className="text-2xl text-center font-bold flex items-center justify-center bg-blue-200 rounded-2xl">
+      {skillData &&
+        skillData.skills
+          .filter(
+            (skill) =>
+              skill.unit == slug && skill.grade == gradeNum(studentGrade.grade)
+          )
+          .map((skill, index) => (
+            <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-8 gap-8">
+              <div className="">
+                <div className="flex flex-col gap-8">
+                  <img src="/images/learnPic.png" className="w-96" />
+                  <p className="text-2xl text-center font-bold flex items-center justify-center bg-blue-200 rounded-2xl">
+                    {" "}
+                    {skill.description}
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-col sm:w-1/2 gap-8 justify-center">
+                <p className="text-4xl font-bold text-blue-900"> LEARN </p>
+                <p className="text-xl">
+                  Learn to <b> {skill.description.toLowerCase()}</b> by watching
+                  engaging videos and strengthen your knowledge with related
+                  math questions in Math Champ's Practice Tracker!
+                </p>
+                <div className="flex gap-8">
+                  <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
+                    <Link href={`/skill-overview/${skill.id}`}>
+                      <Button
+                        backgroundColor="blue"
+                        textColor="white"
+                        label="Go To Lesson"
+                      />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className="text-md font-bold text-blue-900 flex flex-col items-center">
                 {" "}
-                {description.skills[0].description}
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-col sm:w-1/2 gap-8 justify-center">
-            <p className="text-4xl font-bold text-blue-900"> LEARN </p>
-            <p className="text-xl">
-              Learn to <b> {description.skills[0].description.toLowerCase()}</b>{" "}
-              by watching engaging videos and strengthen your knowledge with
-              related math questions in Math Champ's Practice Tracker!
-            </p>
-            <div className="flex gap-8">
-              <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
-                <Link href={`/skill-overview/${skill}`}>
-                  <Button
-                    backgroundColor="blue"
-                    textColor="white"
-                    label="Go To Lesson"
-                  />
-                </Link>
+                Confidence:
+                <p className="text-6xl">
+                  {!loading &&
+                    data &&
+                    data.user_skills.length !== 0 &&
+                    getEmoji(
+                      data.user_skills.filter((it) => it.skill_id == skill)[0]
+                        .emoji
+                    )}{" "}
+                </p>{" "}
               </div>
             </div>
-          </div>
-          <div className="text-md font-bold text-blue-900 flex flex-col items-center">
-            {" "}
-            Confidence:
-            <p className="text-6xl">
-              {!loading &&
-                data &&
-                data.user_skills.length !== 0 &&
-                getEmoji(
-                  data.user_skills.filter((it) => it.skill_id == skill)[0].emoji
-                )}{" "}
-            </p>{" "}
-          </div>
-        </div>
-      ))}
+          ))}
     </div>
   );
   const quizComponent = (
@@ -167,7 +137,9 @@ const TopicOverviewPage = ({ slug, description }) => {
           </p>
           <div className="flex gap-8">
             <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
-              <Link href={`/quiz/${slug}?level=` + gradeNum(grade)}>
+              <Link
+                href={`/quiz/${slug}?level=` + gradeNum(studentGrade.grade)}
+              >
                 <Button
                   backgroundColor="blue"
                   textColor="white"
@@ -253,7 +225,6 @@ const TopicOverviewPage = ({ slug, description }) => {
             in your {slug} skills, take the quiz to evaluate your understanding!
           </p>
         </div>
-        <div className="">{levelComponent}</div>
         <div>
           {skillComponent}
           {quizComponent}
@@ -262,19 +233,13 @@ const TopicOverviewPage = ({ slug, description }) => {
     </div>
   );
 };
-
 export async function getStaticProps({ params }) {
   const client = new ApolloClient({
     uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
     cache: new InMemoryCache(),
   });
-  // TODO MAKE GRADE DYNAMIC: MOVE BUTTON TO STUDENT PORTAL, PASS PROP TO QUERY AND RETURN APPROPRIATE SKILL DESCRIPTIONS
-  const skillIds = getSkillsForTopicGrade(params.slug, Grade.GRADE_1);
   const { data } = await client.query({
-    query: FETCH_SKILL_DESCRIPTION_ARRAY,
-    variables: {
-      skillId: skillIds,
-    },
+    query: FETCH_SKILL_DESCRIPTION_GRADE_AND_UNIT,
   });
   if (!data) {
     return {
@@ -282,7 +247,7 @@ export async function getStaticProps({ params }) {
     };
   }
   //return multiple descriptions,
-  return { props: { description: data, slug: params.slug } };
+  return { props: { skillData: data, slug: params.slug } };
 }
 
 export async function getStaticPaths() {

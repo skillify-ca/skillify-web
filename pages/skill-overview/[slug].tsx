@@ -33,13 +33,13 @@ const SkillOverviewPage = ({ slug, description, videos }) => {
     <div>
       <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl pl-4 gap-8 m-8">
         <div className="flex flex-col w-full sm:w-1/2 gap-4 justify-center">
-          <p className="text-4xl font-bold text-blue-900"> PRACTICE TIME </p>
+          <p className="text-4xl font-bold text-blue-900"> Practice Time </p>
           <p className="text-xl">
             Solidify your knowledge by doing the practice questions to see if
-            you can {description.skills[0].description}! You can do the practice
-            as many times as you wish to perfect this skill. If you're stuck on
-            a question, watch the videos above or click on a hint to help you
-            out.
+            you can {description.skills[0].description.toLowerCase()}! You can
+            do the practice as many times as you wish to perfect this skill. If
+            you're stuck on a question, watch the videos above or click on a
+            hint to help you out.
           </p>
           <div className="flex gap-8">
             <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
