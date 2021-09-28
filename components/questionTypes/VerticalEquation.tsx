@@ -7,6 +7,7 @@ import { Input } from "../ui/Input";
 export interface VerticalEquationProp {
   question: Question;
   submitGuess?: (guess: GuessData) => void;
+  isReadOnly?: boolean;
 }
 
 /**
@@ -15,6 +16,7 @@ export interface VerticalEquationProp {
 export const VerticalEquation: React.FC<VerticalEquationProp> = ({
   question,
   submitGuess,
+  isReadOnly = false,
   ...props
 }) => {
   const [guess, setGuess] = useState("");
@@ -44,17 +46,21 @@ export const VerticalEquation: React.FC<VerticalEquationProp> = ({
           <p>{parse().second}</p>
         </div>
       </div>
-      <Input
-        guess={guess}
-        setGuess={setGuess}
-        handleKeypress={handleKeypress}
-      />
-      <Button
-        onClick={onSubmit}
-        label="Submit"
-        backgroundColor="blue"
-        textColor="white"
-      />
+      {!isReadOnly && (
+        <Input
+          guess={guess}
+          setGuess={setGuess}
+          handleKeypress={handleKeypress}
+        />
+      )}
+      {!isReadOnly && (
+        <Button
+          onClick={onSubmit}
+          label="Submit"
+          backgroundColor="blue"
+          textColor="white"
+        />
+      )}
     </div>
   );
 };

@@ -90,6 +90,7 @@ const DisplayAssignmentQuestions = ({
         return it;
       }
     });
+
     setQuestions(newQuestions);
   };
   return (
@@ -178,6 +179,7 @@ const DisplayAssignmentQuestions = ({
               </div>
             </div>{" "}
             <QuestionSet
+              isReadOnly={true}
               questionData={questions}
               index={index}
               submitGuess={() => {}}
