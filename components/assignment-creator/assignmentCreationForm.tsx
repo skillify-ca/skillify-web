@@ -1,12 +1,7 @@
 import { initial } from "lodash";
 import React, { useEffect, useState } from "react";
 import { QuestionType } from "../../pages/api/questionTypes";
-import {
-  getSkillsForTopicGrade,
-  Grade,
-  Skill,
-  Topic,
-} from "../../pages/api/skill";
+import { Skill, Topic } from "../../pages/api/skill";
 import { Button } from "../ui/Button";
 import Image from "next/image";
 import GoogleClassroomImage from ".././../public/images/assignments/google-classroom.svg";
@@ -57,6 +52,22 @@ const AssignmentCreationForm = ({
 
   const onGradeChange = (e: any) => {
     setGrade(e.target.value);
+  };
+  let gradeNum = (grade: string) => {
+    switch (grade) {
+      case "Grade 1":
+        return 1;
+      case "Grade 2":
+        return 2;
+      case "Grade 3":
+        return 3;
+      case "Grade 4":
+        return 4;
+      case "Grade 5":
+        return 5;
+      case "Grade 6":
+        return 6;
+    }
   };
 
   const onQuestionCountChange = (skillId: number, value: number) => {
@@ -127,13 +138,17 @@ const AssignmentCreationForm = ({
               <div className={`p-4 shadow-md ${it.backgroundColour}`}>
                 <p className="font-bold">{it.title}</p>
                 <div className="flex flex-col gap-4">
-                  {getSkillsForTopicGrade(it.unit, grade as Grade).map(
-                    (skillId) => (
+                  {data.skills
+                    .filter(
+                      (skill) =>
+                        skill.unit == it.unit && skill.grade == gradeNum(grade)
+                    )
+                    .map((skillId) => (
                       <div className="w-full">
                         <label className="">
                           {
                             data.skills.filter(
-                              (element) => element.id == skillId
+                              (element) => element.id == skillId.id
                             )[0].description
                           }
                           <input
@@ -141,20 +156,19 @@ const AssignmentCreationForm = ({
                             className={"p-2 bg-white rounded-md w-full"}
                             value={
                               questionCounts.filter(
-                                (it) => it.key === skillId
+                                (it) => it.key === skillId.id
                               )[0].value
                             }
                             onChange={(e) =>
                               onQuestionCountChange(
-                                skillId,
+                                skillId.id,
                                 Number.parseInt(e.target.value)
                               )
                             }
                           />
                         </label>
                       </div>
-                    )
-                  )}
+                    ))}
                 </div>
               </div>
             ))}

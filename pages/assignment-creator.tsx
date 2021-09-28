@@ -29,6 +29,7 @@ export type SkillData = {
   grade: number;
   id: number;
   description: string;
+  unit: string;
 };
 
 const AssignmentCreator = (data: FetchDescriptionAndSkillData) => {

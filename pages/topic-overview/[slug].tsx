@@ -10,7 +10,7 @@ import { Button } from "../../components/ui/Button";
 import { FETCH_TOPIC_OVERVIEW } from "../../graphql/fetchTopicOverview";
 import { userId } from "../../graphql/utils/constants";
 import { getBadgeId } from "../api/badgeHelper";
-import { getEmoji, getSkillsForTopicGrade, Grade } from "../api/skill";
+import { getEmoji } from "../api/skill";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { useSelector } from "react-redux";
 import { studentProfileSelector } from "../../redux/studentProfileSlice";
