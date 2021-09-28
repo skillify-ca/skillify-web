@@ -12,13 +12,13 @@ const ChooseNumWorkers = ({
   const numWorkerArray = ["1", "2", "3", "4"];
 
   const renderWorkerImagesHTML = (n: string) => {
-    return [Array(Number.parseInt(n))].map((e, i) => (
-      <span className="flex flex-cols" key={i}>
+    return [...Array(Number.parseInt(n))].map((_, i) => (
+      <div className="flex flex-cols" key={i}>
         <img
           className="object-contain h-full w-full px-8"
           src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
         />
-      </span>
+      </div>
     ));
   };
 
