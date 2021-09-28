@@ -13,25 +13,30 @@ const Q7 = (displayQuestion, nextQuestion) => {
     nextQuestion(guess);
   };
   return (
-    <React.Fragment>
-      <MultipleChoice
-        displayQuestion={displayQuestion}
-        option1={{
-          id: "option1",
-          text: "Acute Isosceles Triangle",
-        }}
-        option2={{
-          id: "option2",
-          text: "Acute Scalene Triangle",
-        }}
-        option3={{
-          id: "option3",
-          text: "Obtuse Isosceles Triangle",
-        }}
-        answer="Obtuse Isosceles Triangle"
-        submitGuess={onSubmit}
-      />
-    </React.Fragment>
+    <div className="flex flex-col gap-8 items-center">
+      <div id="quizImage">
+        <img src="../../images/giza/MathQuestionImage27.png"></img>
+      </div>
+      <React.Fragment>
+        <MultipleChoice
+          displayQuestion={displayQuestion}
+          option1={{
+            id: "option1",
+            text: "Acute Isosceles Triangle",
+          }}
+          option2={{
+            id: "option2",
+            text: "Acute Scalene Triangle",
+          }}
+          option3={{
+            id: "option3",
+            text: "Obtuse Isosceles Triangle",
+          }}
+          answer="Obtuse Isosceles Triangle"
+          submitGuess={onSubmit}
+        />
+      </React.Fragment>
+    </div>
   );
 };
 

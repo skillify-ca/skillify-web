@@ -191,9 +191,16 @@ export default function djacobs(props) {
           </div>
         )}
         {stage == Stage.END && (
-          <div id="Result" className="flex flex-col gap-8">
+          <div id="Result" className="flex flex-col gap-8 items-center">
             <div id="FormHeader">
               <p className="text-2xl text-center bg-blue-400">Giza Form</p>
+            </div>
+            <div id="EndImage">
+              <img
+                src="../../images/giza/EndImage.png"
+                width="500"
+                height="500"
+              ></img>
             </div>
             <div id="FormBody" className="flex flex-col gap-8">
               <p className="text-2xl text-center">

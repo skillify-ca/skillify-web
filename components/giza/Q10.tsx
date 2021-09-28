@@ -15,23 +15,28 @@ const Q10 = (displayQuestion, nextQuestion) => {
   };
   return (
     <React.Fragment>
-      <MultipleChoice
-        displayQuestion={displayQuestion}
-        option1={{
-          id: "option1",
-          text: "115 degrees",
-        }}
-        option2={{
-          id: "option2",
-          text: "65 degrees",
-        }}
-        option3={{
-          id: "option3",
-          text: "15 degrees",
-        }}
-        answer="65 degrees"
-        submitGuess={onSubmit}
-      />
+      <div className="flex flex-col gap-8 items-center">
+        <div id="quizImage">
+          <img src="../../images/giza/MathQuestionImage3.png"></img>
+        </div>
+        <MultipleChoice
+          displayQuestion={displayQuestion}
+          option1={{
+            id: "option1",
+            text: "115 degrees",
+          }}
+          option2={{
+            id: "option2",
+            text: "65 degrees",
+          }}
+          option3={{
+            id: "option3",
+            text: "15 degrees",
+          }}
+          answer="65 degrees"
+          submitGuess={onSubmit}
+        />
+      </div>
     </React.Fragment>
   );
 };
