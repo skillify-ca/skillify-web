@@ -22,8 +22,8 @@ const ChooseFoodType = ({
   selectedTruck,
 }: ChooseFoodTypeProps) => {
   const foods = [hotDog, soupDumplings, tikka];
-  const imageCSS = (x: boolean) => {
-    return x
+  const imageCSS = (isDisabled: boolean) => {
+    return isDisabled
       ? "object-contain h-48 w-60 px-8 filter grayscale"
       : "object-contain h-48 w-60 px-8";
   };
