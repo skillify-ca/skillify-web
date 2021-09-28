@@ -1,12 +1,7 @@
 import { initial } from "lodash";
 import React, { useEffect, useState } from "react";
 import { QuestionType } from "../../pages/api/questionTypes";
-import {
-  getSkillsForTopicGrade,
-  Grade,
-  Skill,
-  Topic,
-} from "../../pages/api/skill";
+import { Skill, Topic } from "../../pages/api/skill";
 import { Button } from "../ui/Button";
 import Image from "next/image";
 import GoogleClassroomImage from ".././../public/images/assignments/google-classroom.svg";
