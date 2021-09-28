@@ -22,6 +22,11 @@ const ChooseFoodType = ({
   selectedTruck,
 }: ChooseFoodTypeProps) => {
   const foods = [hotDog, soupDumplings, tikka];
+  const imageCSS = (x: boolean) => {
+    return x
+      ? "object-contain h-48 w-60 px-8 filter grayscale"
+      : "object-contain h-48 w-60 px-8";
+  };
   return (
     <div className="flex flex-col border-2 border-black border-dashed p-4">
       <h1 className="text-4xl text-black bold p-4 mb-8">
@@ -42,7 +47,10 @@ const ChooseFoodType = ({
               disabled={!selectedTruck.allowedItems.includes(f)}
               onChange={(e) => setSelectedFood(getFood(e.target.value) as Food)}
             />
-            <img className="object-contain h-48 w-60 px-8" src={f.imageUrl} />
+            <img
+              className={imageCSS(!selectedTruck.allowedItems.includes(f))}
+              src={f.imageUrl}
+            />
             <span className="text-2xl">{f.name}</span>
             <span className="text-2xl">${f.unitRevenue}</span>
           </label>
