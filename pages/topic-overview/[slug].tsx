@@ -51,6 +51,14 @@ const TopicOverviewPage = ({ slug, skillData }) => {
   let { loading, error, data } = useQuery(FETCH_TOPIC_OVERVIEW, {
     variables: {
       userId: userId(session),
+      skillId:
+        skillData &&
+        skillData.skills
+          .filter(
+            (skill) =>
+              skill.unit == slug && skill.grade == gradeNum(studentGrade.grade)
+          )
+          .map((skill) => skill.id),
       badgeId: getBadgeId(slug, gradeNum(studentGrade.grade)),
     },
   });
@@ -115,8 +123,9 @@ const TopicOverviewPage = ({ slug, skillData }) => {
                     data &&
                     data.user_skills.length !== 0 &&
                     getEmoji(
-                      data.user_skills.filter((it) => it.skill_id == skill)[0]
-                        .emoji
+                      data.user_skills.filter(
+                        (it) => it.skill_id == skill.id
+                      )[0].emoji
                     )}{" "}
                 </p>{" "}
               </div>
