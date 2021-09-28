@@ -106,7 +106,7 @@ const Diagnostic = () => {
   }
 
   // looks at gradeLevel and returns questions
-  const GradeList = (gradeLevel) => {
+  const getGradeList = (gradeLevel) => {
     if (gradeLevel == 0) {
       return getFourthGradeQuestion()
     } else if (gradeLevel == 1) {
@@ -160,13 +160,12 @@ const Diagnostic = () => {
 
         if (guessData.isCorrect) {
           const newGradeLevel = gradeLevel + 1 // because they got it right move them up a grade
-          const newQuestions = GradeList(newGradeLevel) // get questions for new grade level
+          const newQuestions = getGradeList(newGradeLevel) // get questions for new grade level
           setJuniorDiagnosticQuestions(newQuestions) // set new questions
           setGradeLevel(newGradeLevel)
-        } else if (!guessData.isCorrect && juniorDiagnosticQuestions == getFifthGradeQuestion() || !shouldMoveToNextTopic()) {
+        } else if (!guessData.isCorrect && juniorDiagnosticQuestions == getFifthGradeQuestion() || shouldMoveToNextTopic()) {
           setJuniorDiagnosticQuestions(getFourthGradeQuestion())
-        } else if (shouldMoveToNextTopic()) {
-          setJuniorDiagnosticQuestions(getFourthGradeQuestion())
+          setGradeLevel(0)
         }
 
       } else {
@@ -275,8 +274,8 @@ const Diagnostic = () => {
                   inputElement={inputElement}
                   submitGuess={submitGuess}
                   score={correctGuesses}
-                  diagnostic={{ isDiagnostic: true, opacityVal: opacity }} />
-              ))}
+                  diagnostic={{ isDiagnostic: true, opacityVal: opacity }}
+                />))}
           </div>
         </div>
       );
