@@ -1,12 +1,9 @@
 import react from "react";
+import { Provider, useSelector } from "react-redux";
+import { bakersRackBSelector, setPiePlusBread } from "../../redux/bakerBSlice";
+import { useAppDispatch } from "../../redux/store";
 
 export interface BakersRackB {
-  piePlusBread: string;
-  setPiePlusBread: (piePlusBread: string) => void;
-  piePlusBreadNum: any;
-  setPiePlusBreadNum: (piePlusBreadNum: any) => void;
-  piePlusBreadDen: any;
-  setPiePlusBreadDen: (piePlusBreadDen: any) => void;
   cupPlusCook: string;
   setCupPlusCook: (cupPlusCook: string) => void;
   cupPlusCookNum: any;
@@ -53,12 +50,6 @@ export interface BakersRackB {
 }
 
 const BakersRackB = ({
-  piePlusBread,
-  setPiePlusBread,
-  piePlusBreadNum,
-  setPiePlusBreadNum,
-  piePlusBreadDen,
-  setPiePlusBreadDen,
   cupPlusCook,
   setCupPlusCook,
   cupPlusCookNum,
@@ -102,10 +93,18 @@ const BakersRackB = ({
   breadMinCakeDen,
   setBreadMinCakeDen,
 }: BakersRackB) => {
+  const piePlusBread = useSelector(bakersRackBSelector).piePlusBread;
+  const piePlusBreadNum = useSelector(bakersRackBSelector).piePlusBreadNum;
+  const piePlusBreadDen = useSelector(bakersRackBSelector).piePlusBreadDen;
+
+  const dispatch = useAppDispatch();
+
   const valPPB = (newPiePlusBread) => {
     const valPPBArr = newPiePlusBread.split("/");
-    setPiePlusBreadNum(valPPBArr[0]);
-    setPiePlusBreadDen(valPPBArr[1]);
+    console.log("TEST", valPPBArr);
+
+    piePlusBreadNum(valPPBArr[0]); //get this into redux then auto val will work
+    piePlusBreadDen(valPPBArr[1]);
   };
 
   const valCPC = (newCupPlusCook) => {
@@ -254,7 +253,7 @@ const BakersRackB = ({
                 value={piePlusBread}
                 onChange={(e) => {
                   const newPiePlusBread = e.target.value;
-                  setPiePlusBread(newPiePlusBread);
+                  dispatch(setPiePlusBread(newPiePlusBread));
                   valPPB(newPiePlusBread);
                 }}
               ></input>

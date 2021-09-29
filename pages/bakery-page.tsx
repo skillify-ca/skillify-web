@@ -51,9 +51,6 @@ export default function Bakery(props) {
   const [cakeDen2, setCakeDen2] = useState("");
   const [cookNum2, setCookNum2] = useState("");
   const [cookDen2, setCookDen2] = useState("");
-  const [piePlusBread, setPiePlusBread] = useState("");
-  const [piePlusBreadNum, setPiePlusBreadNum] = useState("");
-  const [piePlusBreadDen, setPiePlusBreadDen] = useState("");
   const [cupPlusCook, setCupPlusCook] = useState("");
   const [cupPlusCookNum, setCupPlusCookNum] = useState("");
   const [cupPlusCookDen, setCupPlusCookDen] = useState("");
@@ -168,12 +165,6 @@ export default function Bakery(props) {
     } else if (stage == STAGE.BakersRackB) {
       return (
         <BakersRackB
-          piePlusBread={piePlusBread}
-          setPiePlusBread={setPiePlusBread}
-          piePlusBreadNum={piePlusBreadNum}
-          setPiePlusBreadNum={setPiePlusBreadNum}
-          piePlusBreadDen={piePlusBreadDen}
-          setPiePlusBreadDen={setPiePlusBreadDen}
           cupPlusCook={cupPlusCook}
           setCupPlusCook={setCupPlusCook}
           cupPlusCookNum={cupPlusCookNum}
