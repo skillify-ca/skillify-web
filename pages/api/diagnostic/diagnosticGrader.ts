@@ -11,7 +11,7 @@ type GradedQuestion = {
 };
 
 export const getResultForSkill = (
-  skill: Skill,
+  skill: string,
   results: DiagnosticState
 ): string => {
   const questionsWithGuesses: GradedQuestion[] = results.questions.map(
@@ -51,7 +51,7 @@ export const getGradedQuestionsForTopic = (
       guess: results.guesses[index],
     })
   );
-  const skills: Skill[] = skillDescription.description;
+  const skills: Skill[] = skillDescription.diagnostic.map((e) => e.description);
   const questionsForTopic: GradedQuestion[] = questionsWithGradedGuesses.filter(
     (it) => skills.includes(it.question.skill)
   );

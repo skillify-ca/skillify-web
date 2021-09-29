@@ -5,12 +5,13 @@ import {
   getGradedQuestionsForTopic,
 } from "../../pages/api/diagnostic/diagnosticGrader";
 import { Topic } from "../../pages/api/skill";
+import { FetchDescriptionOnUnit } from "../../pages/diagnostic/evidence/[slug]";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 
 type DiagnosticEvidenceProps = {
   topic: Topic;
   results: DiagnosticState;
-  skillDescription: any; // TODO change this to a real type
+  skillDescription: FetchDescriptionOnUnit; // TODO change this to a real type
 };
 
 const DiagnosticEvidence = ({
@@ -30,7 +31,7 @@ const DiagnosticEvidence = ({
 
   const getSummaryText = (topic: string) => {
     let proficiency = countSkills(
-      skillDescription.diagnostic.map((skill) =>
+      skillDescription.diagnostics.map((skill) =>
         getResultForSkill(skill.description, results)
       )
     );
@@ -106,18 +107,20 @@ const DiagnosticEvidence = ({
             <p className="p-4 font-bold"> Proficiency </p>
           </div>
           <div className="flex flex-col">
-            {skillDescription.diagnostic
+            {skillDescription.diagnostics
               .filter((skill, idx) => idx < 3)
               .map((skill, index) => (
                 <div
                   className={`${getBackgroundColorForTopic(
-                    getResultForSkill(skill, results)
+                    getResultForSkill(skill.description, results)
                   )} p-4 border-b border-black flex justify-between`}
                 >
                   <p className={``}>
-                    {skillDescription.diagnostic[index].description}
+                    {skillDescription.diagnostics[index].description}
                   </p>
-                  <p className={``}>{getResultForSkill(skill, results)}</p>
+                  <p className={``}>
+                    {getResultForSkill(skill.description, results)}
+                  </p>
                 </div>
               ))}
           </div>
