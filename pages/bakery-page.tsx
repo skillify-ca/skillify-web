@@ -51,15 +51,7 @@ export default function Bakery(props) {
   const [cakeDen2, setCakeDen2] = useState("");
   const [cookNum2, setCookNum2] = useState("");
   const [cookDen2, setCookDen2] = useState("");
-  const [cupPlusCook, setCupPlusCook] = useState("");
-  const [cupPlusCookNum, setCupPlusCookNum] = useState("");
-  const [cupPlusCookDen, setCupPlusCookDen] = useState("");
-  const [browPlusCake, setBrowPlusCake] = useState("");
-  const [browPlusCakeNum, setBrowPlusCakeNum] = useState("");
-  const [browPlusCakeDen, setBrowPlusCakeDen] = useState("");
-  const [piePlusCook, setPiePlusCook] = useState("");
-  const [piePlusCookNum, setPiePlusCookNum] = useState("");
-  const [piePlusCookDen, setPiePlusCookDen] = useState("");
+
   const [cookMinCake, setCookMinCake] = useState("");
   const [cookMinCakeNum, setCookMinCakeNum] = useState("");
   const [cookMinCakeDen, setCookMinCakeDen] = useState("");
@@ -165,24 +157,6 @@ export default function Bakery(props) {
     } else if (stage == STAGE.BakersRackB) {
       return (
         <BakersRackB
-          cupPlusCook={cupPlusCook}
-          setCupPlusCook={setCupPlusCook}
-          cupPlusCookNum={cupPlusCookNum}
-          setCupPlusCookNum={setCupPlusCookNum}
-          cupPlusCookDen={cupPlusCookDen}
-          setCupPlusCookDen={setCupPlusCookDen}
-          browPlusCake={browPlusCake}
-          setBrowPlusCake={setBrowPlusCake}
-          browPlusCakeNum={browPlusCakeNum}
-          setBrowPlusCakeNum={setBrowPlusCakeNum}
-          browPlusCakeDen={browPlusCakeDen}
-          setBrowPlusCakeDen={setBrowPlusCakeDen}
-          piePlusCook={piePlusCook}
-          setPiePlusCook={setPiePlusCook}
-          piePlusCookNum={piePlusCookNum}
-          setPiePlusCookNum={setPiePlusCookNum}
-          piePlusCookDen={piePlusCookDen}
-          setPiePlusCookDen={setPiePlusCookDen}
           cookMinCake={cookMinCake}
           setCookMinCake={setCookMinCake}
           cookMinCakeNum={cookMinCakeNum}
