@@ -2,12 +2,21 @@ import react from "react";
 import { Provider, useSelector } from "react-redux";
 import {
   bakersRackBSelector,
+  setBreadMinCake,
+  setBreadMinCakeDen,
+  setBreadMinCakeNum,
+  setBrowMinBread,
+  setBrowMinBreadDen,
+  setBrowMinBreadNum,
   setBrowPlusCake,
   setBrowPlusCakeDen,
   setBrowPlusCakeNum,
   setCookMinCake,
   setCookMinCakeDen,
   setCookMinCakeNum,
+  setCupMinPie,
+  setCupMinPieDen,
+  setCupMinPieNum,
   setCupPlusCook,
   setCupPlusCookDen,
   setCupPlusCookNum,
@@ -21,48 +30,9 @@ import {
 import { useAppDispatch } from "../../redux/store";
 import CoopStoryComponent from "../mathBattle/coop/CoopNarrative";
 
-export interface BakersRackB {
-  browMinBread: string;
-  setBrowMinBread: (browMinBread: string) => void;
-  browMinBreadNum: any;
-  setBrowMinBreadNum: (browMinBreadNum: any) => void;
-  browMinBreadDen: any;
-  setBrowMinBreadDen: (browMinBreadDen: any) => void;
-  cupMinPie: string;
-  setCupMinPie: (cupMinPie: string) => void;
-  cupMinPieNum: any;
-  setCupMinPieNum: (cupMinPie: any) => void;
-  cupMinPieDen: any;
-  setCupMinPieDen: (cupMinPieDen: any) => void;
+export interface BakersRackB {}
 
-  breadMinCake: string;
-  setBreadMinCake: (breadMinCake: string) => void;
-  breadMinCakeNum: any;
-  setBreadMinCakeNum: (breadMinCakeNum: any) => void;
-  breadMinCakeDen: any;
-  setBreadMinCakeDen: (breadMinCake: any) => void;
-}
-
-const BakersRackB = ({
-  browMinBread,
-  setBrowMinBread,
-  browMinBreadNum,
-  setBrowMinBreadNum,
-  browMinBreadDen,
-  setBrowMinBreadDen,
-  cupMinPie,
-  setCupMinPie,
-  cupMinPieNum,
-  setCupMinPieNum,
-  cupMinPieDen,
-  setCupMinPieDen,
-  breadMinCake,
-  setBreadMinCake,
-  breadMinCakeNum,
-  setBreadMinCakeNum,
-  breadMinCakeDen,
-  setBreadMinCakeDen,
-}: BakersRackB) => {
+const BakersRackB = ({}: BakersRackB) => {
   const piePlusBread = useSelector(bakersRackBSelector).piePlusBread;
   const piePlusBreadNum = useSelector(bakersRackBSelector).piePlusBreadNum;
   const piePlusBreadDen = useSelector(bakersRackBSelector).piePlusBreadDen;
@@ -78,6 +48,15 @@ const BakersRackB = ({
   const cookMinCake = useSelector(bakersRackBSelector).cookMinCake;
   const cookMinCakeNum = useSelector(bakersRackBSelector).cookMinCakeNum;
   const cookMinCakeDen = useSelector(bakersRackBSelector).cookMinCakeDen;
+  const browMinBread = useSelector(bakersRackBSelector).browMinBread;
+  const browMinBreadNum = useSelector(bakersRackBSelector).browMinBreadNum;
+  const browMinBreadDen = useSelector(bakersRackBSelector).browMinBreadDen;
+  const cupMinPie = useSelector(bakersRackBSelector).cupMinPie;
+  const cupMinPieNum = useSelector(bakersRackBSelector).cupMinPieNum;
+  const cupMinPieDen = useSelector(bakersRackBSelector).cupMinPieDen;
+  const breadMinCake = useSelector(bakersRackBSelector).breadMinCake;
+  const breadMinCakeNum = useSelector(bakersRackBSelector).breadMinCakeNum;
+  const breadMinCakeDen = useSelector(bakersRackBSelector).breadMinCakeDen;
 
   const dispatch = useAppDispatch();
 
@@ -115,20 +94,20 @@ const BakersRackB = ({
 
   const valBMB = (newBrowMinBread) => {
     const valBMBArr = newBrowMinBread.split("/");
-    setBrowMinBreadNum(valBMBArr[0]);
-    setBrowMinBreadDen(valBMBArr[1]);
+    dispatch(setBrowMinBreadNum(valBMBArr[0]));
+    dispatch(setBrowMinBreadDen(valBMBArr[1]));
   };
 
   const valCMP = (newCupMinPie) => {
     const valCMPArr = newCupMinPie.split("/");
-    setCupMinPieNum(valCMPArr[0]);
-    setCupMinPieDen(valCMPArr[1]);
+    dispatch(setCupMinPieNum(valCMPArr[0]));
+    dispatch(setCupMinPieDen(valCMPArr[1]));
   };
 
   const valBMC = (newBreadMinCake) => {
     const valBMCArr = newBreadMinCake.split("/");
-    setBreadMinCakeNum(valBMCArr[0]);
-    setBreadMinCakeDen(valBMCArr[1]);
+    dispatch(setBreadMinCakeNum(valBMCArr[0]));
+    dispatch(setBreadMinCakeDen(valBMCArr[1]));
   };
 
   return (
@@ -324,7 +303,7 @@ const BakersRackB = ({
                   value={browMinBread}
                   onChange={(e) => {
                     const newBrowMinBread = e.target.value;
-                    setBrowMinBread(newBrowMinBread);
+                    dispatch(setBrowMinBread(newBrowMinBread));
                     valBMB(newBrowMinBread);
                   }}
                 ></input>
@@ -341,7 +320,7 @@ const BakersRackB = ({
                   value={cupMinPie}
                   onChange={(e) => {
                     const newCupMinPie = e.target.value;
-                    setCupMinPie(newCupMinPie);
+                    dispatch(setCupMinPie(newCupMinPie));
                     valCMP(newCupMinPie);
                   }}
                 ></input>
@@ -351,14 +330,14 @@ const BakersRackB = ({
                 </div>
                 <input
                   className={
-                    breadMinCakeNum / breadMinCakeDen === 0
+                    breadMinCakeNum / breadMinCakeDen === 0 / 1
                       ? "bg-green-100 text-center"
                       : "bg-yellow-100 text-center"
                   }
                   value={breadMinCake}
                   onChange={(e) => {
                     const newBreadMinCake = e.target.value;
-                    setBreadMinCake(newBreadMinCake);
+                    dispatch(setBreadMinCake(newBreadMinCake));
                     valBMC(newBreadMinCake);
                   }}
                 ></input>

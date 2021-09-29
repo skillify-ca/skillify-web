@@ -15,10 +15,10 @@ export interface BakersRackBState{
     piePlusCook: string;
     piePlusCookNum: any;
     piePlusCookDen: any;
-    cookMinCake:String;
+    cookMinCake:string;
     cookMinCakeNum:any;
     cookMinCakeDen:any;
-    /*browMinBread:string;
+    browMinBread:string;
     browMinBreadNum:any;
     browMinBreadDen:any;
     cupMinPie: string;
@@ -26,7 +26,7 @@ export interface BakersRackBState{
     cupMinPieDen:any;
     breadMinCake:string;
     breadMinCakeNum:any;
-    breadMinCakeDen:any;*/
+    breadMinCakeDen:any;
 
 
 }
@@ -51,7 +51,7 @@ const initialState: BakersRackBState={
     cookMinCake: "",
     cookMinCakeNum:"",
     cookMinCakeDen:"",
-    /*browMinBread:"",
+    browMinBread:"",
     browMinBreadNum:"",
     browMinBreadDen:"",
     cupMinPie: "",
@@ -59,7 +59,7 @@ const initialState: BakersRackBState={
     cupMinPieDen: "",
     breadMinCake:"",
     breadMinCakeNum:"",
-    breadMinCakeDen:"",*/
+    breadMinCakeDen:"",
 
 
 };
@@ -158,6 +158,60 @@ export const bakersRackBSlice: Slice = createSlice({
                 const newCookMinCakeDen = action.payload as any;
                 state.cookMinCakeDen= newCookMinCakeDen;
             }
+        },
+        setBrowMinBread:(state:BakersRackBState,action:PayloadAction<string>)=>{
+            if(action.type == "bakersRackB/setbrowMinBread"){
+                const newBrowMinBread = action.payload as string;
+                state.browMinBread = newBrowMinBread
+            }
+        },
+        setBrowMinBreadNum:(state:BakersRackBState,action:PayloadAction<Array<any>>)=>{
+            if(action.type=="bakersRackB/setBrowMinBreadNum"){
+                const newBrowMinBreadNum = action.payload as any;
+                state.browMinBreadNum = newBrowMinBreadNum;
+            }
+        },
+        setBrowMinBreadDen:(state:BakersRackBState,action:PayloadAction<Array<any>>)=>{
+            if(action.type == "bakersRackB/setBrowMinBreadDen"){
+                const newBrowMinBreadDen = action.payload as any;
+                state.browMinBreadDen = newBrowMinBreadDen;
+            }
+        },
+        setCupMinPie:(state:BakersRackBState,action:PayloadAction<string>)=>{
+            if(action.type == "bakersRackB/setCupMinPie"){
+                const newCupMinPie = action.payload as any;
+                state.cupMinPie = newCupMinPie;
+            }
+        },
+        setCupMinPieNum:(state:BakersRackBState,action:PayloadAction<Array<any>>) =>{
+            if(action.type =="bakersRackB/setCupMinPieNum"){
+                const newCupMinPieNum = action.payload as any;
+                state.cupMinPieNum = newCupMinPieNum;
+            }
+        },
+        setCupMinPieDen:(state:BakersRackBState,action:PayloadAction<Array<any>>)=>{
+            if(action.type =="bakersRackB/setCupMinPieDen"){
+                const newCupMinPieDen = action.payload as any;
+                state.cupMinPieDen = newCupMinPieDen;
+            }
+        },
+        setBreadMinCake:(state:BakersRackBState,action:PayloadAction<string>)=>{
+            if(action.type == "bakersRackB/setBreadMinCake"){
+                const newBreadMinCake = action.payload as string;
+                state.breadMinCake = newBreadMinCake; 
+            }
+        },
+        setBreadMinCakeNum:(state:BakersRackBState,action:PayloadAction<Array<any>>)=>{
+            if(action.type == "bakersRackB/setBreadMinCakeNum"){
+                const newBreadMinCakeNum = action.payload as any;
+                state.breadMinCakeNum = newBreadMinCakeNum;
+            }
+        },
+        setBreadMinCakeDen:(state:BakersRackBState,action:PayloadAction<Array<any>>)=>{
+            if(action.type=="bakersRackB/setBreadMinCakeDen"){
+                const newBreadMinCakeDen = action.payload as any;
+                state.breadMinCakeDen = newBreadMinCakeDen;
+            }
         }
 
     }
@@ -178,7 +232,15 @@ export const {setPiePlusCookDen} = bakersRackBSlice.actions;
 export const {setCookMinCake} = bakersRackBSlice.actions;
 export const {setCookMinCakeNum} =bakersRackBSlice.actions;
 export const {setCookMinCakeDen} = bakersRackBSlice.actions;
-
+export const {setBrowMinBread} = bakersRackBSlice.actions;
+export const {setBrowMinBreadNum} =bakersRackBSlice.actions;
+export const {setBrowMinBreadDen} = bakersRackBSlice.actions;
+export const {setCupMinPie} = bakersRackBSlice.actions;
+export const {setCupMinPieNum} =bakersRackBSlice.actions;
+export const {setCupMinPieDen} = bakersRackBSlice.actions;
+export const {setBreadMinCake} = bakersRackBSlice.actions;
+export const {setBreadMinCakeNum} =bakersRackBSlice.actions;
+export const {setBreadMinCakeDen} = bakersRackBSlice.actions;
 
 export const bakersRackBSelector = (state:RootState) => state.bakersBRack;
  

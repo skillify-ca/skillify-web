@@ -52,19 +52,6 @@ export default function Bakery(props) {
   const [cookNum2, setCookNum2] = useState("");
   const [cookDen2, setCookDen2] = useState("");
 
-  const [cookMinCake, setCookMinCake] = useState("");
-  const [cookMinCakeNum, setCookMinCakeNum] = useState("");
-  const [cookMinCakeDen, setCookMinCakeDen] = useState("");
-  const [browMinbread, setBrowMinBread] = useState("");
-  const [browMinBreadNum, setBrowMinBreadNum] = useState("");
-  const [browMinBreadDen, setBrowMinBreadDen] = useState("");
-  const [cupMinPie, setCupMinPie] = useState("");
-  const [cupMinPieNum, setCupMinPieNum] = useState("");
-  const [cupMinPieDen, setCupMinPieDen] = useState("");
-  const [breadMinCake, setBreadMinCake] = useState("");
-  const [breadMinCakeNum, setBreadMinCakeNum] = useState("");
-  const [breadMinCakeDen, setBreadMinCakeDen] = useState("");
-
   const previousStage = () => {
     if (stage > STAGE.BakeryInstructions) {
       setStage(stage - 1);
@@ -155,34 +142,7 @@ export default function Bakery(props) {
         />
       );
     } else if (stage == STAGE.BakersRackB) {
-      return (
-        <BakersRackB
-          cookMinCake={cookMinCake}
-          setCookMinCake={setCookMinCake}
-          cookMinCakeNum={cookMinCakeNum}
-          setCookMinCakeNum={setCookMinCakeNum}
-          cookMinCakeDen={cookMinCakeDen}
-          setCookMinCakeDen={setCookMinCakeDen}
-          browMinBread={browMinbread}
-          setBrowMinBread={setBrowMinBread}
-          browMinBreadNum={browMinBreadNum}
-          setBrowMinBreadNum={setBrowMinBreadNum}
-          browMinBreadDen={browMinBreadDen}
-          setBrowMinBreadDen={setBrowMinBreadDen}
-          cupMinPie={cupMinPie}
-          setCupMinPie={setCupMinPie}
-          cupMinPieNum={cupMinPieNum}
-          setCupMinPieNum={setCupMinPieNum}
-          cupMinPieDen={cupMinPieDen}
-          setCupMinPieDen={setCupMinPieDen}
-          breadMinCake={breadMinCake}
-          setBreadMinCake={setBreadMinCake}
-          breadMinCakeNum={breadMinCakeNum}
-          setBreadMinCakeNum={setBreadMinCakeNum}
-          breadMinCakeDen={breadMinCakeDen}
-          setBreadMinCakeDen={setBreadMinCakeDen}
-        />
-      );
+      return <BakersRackB />;
     } else if (stage == STAGE.BakingGma) {
       return <BakingGma />;
     }
