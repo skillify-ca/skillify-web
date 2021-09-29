@@ -30,7 +30,7 @@ const Q2 = (displayQuestion, nextQuestion) => {
       <div className="flex flex-col gap-8 items-center">
         <p className="text-2xl text-center">{displayQuestion}</p>
         <div id="quizImage">
-          <img src="../../images/giza/MathQuestionImage11.png"></img>
+          <img src="/images/giza/MathQuestionImage11.png"></img>
         </div>
         <div className="text-center">
           <label>Final Answer</label>
