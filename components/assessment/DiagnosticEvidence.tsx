@@ -133,7 +133,7 @@ const DiagnosticEvidence = ({
               <p className="p-4 font-bold"> Guess </p>
             </div>
             <div className="flex flex-col">
-              {getGradedQuestionsForTopic(topic, results).map(
+              {getGradedQuestionsForTopic(topic, results, skillDescription).map(
                 (gradedQuestion) => (
                   <div
                     className={`p-4 border-b border-black flex justify-between`}

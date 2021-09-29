@@ -32,7 +32,6 @@ export async function getStaticProps({ params }) {
     cache: new InMemoryCache(),
   });
   const { data } = await client.query({
-    //TODO WRITE new query that pulls from diagnostic
     query: FETCH_DIAGNOSTIC_DESCRIPTION_ON_UNIT,
     variables: {
       unit: params.slug,
