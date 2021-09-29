@@ -5,13 +5,13 @@ import {
   getGradedQuestionsForTopic,
 } from "../../pages/api/diagnostic/diagnosticGrader";
 import { Topic } from "../../pages/api/skill";
-import { FetchDescriptionOnUnit } from "../../pages/diagnostic/evidence/[slug]";
+//import { FetchDescriptionOnUnit } from "../../pages/diagnostic/evidence/[slug]";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 
 type DiagnosticEvidenceProps = {
   topic: Topic;
   results: DiagnosticState;
-  skillDescription: FetchDescriptionOnUnit; // TODO change this to a real type
+  skillDescription: any; //FetchDescriptionOnUnit;
 };
 
 const DiagnosticEvidence = ({
@@ -31,7 +31,7 @@ const DiagnosticEvidence = ({
 
   const getSummaryText = (topic: string) => {
     let proficiency = countSkills(
-      skillDescription.diagnostics.map((skill) =>
+      skillDescription.diagnostic.map((skill) =>
         getResultForSkill(skill.description, results)
       )
     );
@@ -107,7 +107,7 @@ const DiagnosticEvidence = ({
             <p className="p-4 font-bold"> Proficiency </p>
           </div>
           <div className="flex flex-col">
-            {skillDescription.diagnostics
+            {skillDescription.diagnostic
               .filter((skill, idx) => idx < 3)
               .map((skill, index) => (
                 <div
@@ -116,7 +116,7 @@ const DiagnosticEvidence = ({
                   )} p-4 border-b border-black flex justify-between`}
                 >
                   <p className={``}>
-                    {skillDescription.diagnostics[index].description}
+                    {skillDescription.diagnostic[index].description}
                   </p>
                   <p className={``}>
                     {getResultForSkill(skill.description, results)}
@@ -136,22 +136,23 @@ const DiagnosticEvidence = ({
               <p className="p-4 font-bold"> Guess </p>
             </div>
             <div className="flex flex-col">
-              {getGradedQuestionsForTopic(topic, results, skillDescription).map(
-                (gradedQuestion) => (
-                  <div
-                    className={`p-4 border-b border-black flex justify-between`}
-                  >
-                    <p>{gradedQuestion.question.text}</p>
-                    <p
-                      className={`${getBackgroundColorForQuestion(
-                        gradedQuestion.grade
-                      )}`}
+              {skillDescription &&
+                getGradedQuestionsForTopic(results, skillDescription).map(
+                  (gradedQuestion) => (
+                    <div
+                      className={`p-4 border-b border-black flex justify-between`}
                     >
-                      {`${gradedQuestion.guess} (${gradedQuestion.grade})`}
-                    </p>
-                  </div>
-                )
-              )}
+                      <p>{gradedQuestion.question.text}</p>
+                      <p
+                        className={`${getBackgroundColorForQuestion(
+                          gradedQuestion.grade
+                        )}`}
+                      >
+                        {`${gradedQuestion.guess} (${gradedQuestion.grade})`}
+                      </p>
+                    </div>
+                  )
+                )}
             </div>
           </div>
         </div>
