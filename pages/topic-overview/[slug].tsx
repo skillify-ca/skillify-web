@@ -15,7 +15,6 @@ import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { useSelector } from "react-redux";
 import { studentProfileSelector } from "../../redux/studentProfileSlice";
 import { FETCH_SKILL_DESCRIPTION_GRADE_AND_UNIT } from "../../graphql/fetchSkillDescriptionAndGrade";
-import { getVideosForSkill, ResourceMetadata } from "../api/videoHelper";
 
 const Box = dynamic(() => import("../../components/stories/Box"));
 
@@ -107,7 +106,7 @@ const TopicOverviewPage = ({ slug, skillData }) => {
             <p className="text-4xl font-bold text-blue-900">QUIZ LOCKED</p>
           )}
           {isQuizLocked() && (
-            <p className="text-xl">
+            <p className="text">
               To unlock the quiz you must be confident with all of this unit's
               skills. Practice questions from above and rate each skill confidence with{" "}
               <span className="text-3xl">😄</span>
@@ -117,7 +116,7 @@ const TopicOverviewPage = ({ slug, skillData }) => {
             <p className="text-4xl font-bold text-blue-900"> QUIZ TIME! </p>
           )}
           {!isQuizLocked() && (
-            <p className="text-xl">
+            <p className="text">
               Take a quiz to test out your {slug} skills. The quiz will cover
               topics at your grade level meaning it's personalized for you! You
               can take this quiz as many times as you wish to perfect your
@@ -217,7 +216,7 @@ const TopicOverviewPage = ({ slug, skillData }) => {
         <div className="flex flex-col items-center justify-center bg-white shadow-lg rounded-xl gap-8">
           <div>
             <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl gap-8">
-              <div className="flex flex-col w-full sm:w-1/2 gap-8 py-8 ml-8">
+              <div className="flex flex-col w-full sm:w-1/2 gap-8 p-4 sm:p-8">
                 <div className="flex flex-col gap-4">
                   <p className="text-4xl font-bold text-blue-900 capitalize">
                     {" "}
