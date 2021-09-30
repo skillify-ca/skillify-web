@@ -20,6 +20,7 @@ import getFourthGradeQuestion, {
   getFifthGradeQuestion,
   getSixthGradeQuestion,
 } from "./api/diagnostic/juniorDiagnosticQuestionGenerator";
+import Head from "next/head";
 
 enum STAGE {
   CREATE,
@@ -299,6 +300,9 @@ const Diagnostic = () => {
   }
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-piefactory-blue-100 bg-gray-100 h-screen">
+      <Head>
+        <title>Diagnostic Test</title>
+      </Head>
       <Navbar />
       <div className="p-4 flex flex-col items-center justify-center">
         {component}
