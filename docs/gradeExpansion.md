@@ -11,10 +11,10 @@
 1. Go to skill.ts and find the Skill enum
 2. Add desired skills as a new skill under the skills enum
 3. Go to Grade enum and add your desired grade
-4. Go to getSkillsForTopic function and add the skills for your grade under the apporiate unit
+4. Go to getSkillsForUnit function and add the skills for your grade under the apporiate unit
 5. Refer to the skills table on Hausura
 6. Go to getSkillId function and add your skills under the switch condition and the return value for the switch case should match the id of the skill on the Hasura skills table
-7. Go to SkillDescription function and create a condtition for each of your added skills and give each a description which will be displayed on the Topic Overview page
+7. Go to SkillDescription function and create a condtition for each of your added skills and give each a description which will be displayed on the Unit Overview page
 8. Change to the practiceQuestionGenerator.ts file
 9. Go to generatePracticeQuestions function and under the appropriate unit add the stringfied Skill as a switch condition and assign skill to the Skill enum that reperesnts that string
 
