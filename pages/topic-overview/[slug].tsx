@@ -10,11 +10,12 @@ import { Button } from "../../components/ui/Button";
 import { FETCH_TOPIC_OVERVIEW } from "../../graphql/fetchTopicOverview";
 import { userId } from "../../graphql/utils/constants";
 import { getBadgeId } from "../api/badgeHelper";
-import { getEmoji } from "../api/skill";
+import { EMOJI_MASTERY, getEmoji } from "../api/skill";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { useSelector } from "react-redux";
 import { studentProfileSelector } from "../../redux/studentProfileSlice";
 import { FETCH_SKILL_DESCRIPTION_GRADE_AND_UNIT } from "../../graphql/fetchSkillDescriptionAndGrade";
+import { getVideosForSkill, ResourceMetadata } from "../api/videoHelper";
 
 const Box = dynamic(() => import("../../components/stories/Box"));
 
@@ -48,6 +49,12 @@ const TopicOverviewPage = ({ slug, skillData }) => {
     }
   };
 
+  const unitSkills = (skillData) =>
+    skillData.skills.filter(
+      (skill) =>
+        skill.unit == slug && skill.grade == gradeNum(studentGrade.grade)
+    );
+
   let { loading, error, data } = useQuery(FETCH_TOPIC_OVERVIEW, {
     variables: {
       userId: userId(session),
@@ -77,104 +84,83 @@ const TopicOverviewPage = ({ slug, skillData }) => {
     return maxAccuracy;
   };
 
-  const skillComponent = (
-    <div className="flex flex-col gap-8">
-      {skillData &&
-        skillData.skills
-          .filter(
-            (skill) =>
-              skill.unit == slug && skill.grade == gradeNum(studentGrade.grade)
-          )
-          .map((skill, index) => (
-            <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-8 gap-8">
-              <div className="">
-                <div className="flex flex-col gap-8">
-                  <img src="/images/learnPic.png" className="w-96" />
-                  <p className="text-2xl text-center font-bold flex items-center justify-center bg-blue-200 rounded-2xl">
-                    {" "}
-                    {skill.description}
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col sm:w-1/2 gap-8 justify-center">
-                <p className="text-4xl font-bold text-blue-900"> LEARN </p>
-                <p className="text-xl">
-                  Learn to <b> {skill.description.toLowerCase()}</b> by watching
-                  engaging videos and strengthen your knowledge with related
-                  math questions in Math Champ's Practice Tracker!
-                </p>
-                <div className="flex gap-8">
-                  <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
-                    <Link href={`/skill-overview/${skill.id}`}>
-                      <Button
-                        backgroundColor="blue"
-                        textColor="white"
-                        label="Go To Lesson"
-                      />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <div className="text-md font-bold text-blue-900 flex flex-col items-center">
-                {" "}
-                Confidence:
-                <p className="text-6xl">
-                  {!loading &&
-                    data &&
-                    data.user_skills.length !== 0 &&
-                    getEmoji(
-                      data.user_skills.filter(
-                        (it) => it.skill_id == skill.id
-                      )[0].emoji
-                    )}{" "}
-                </p>{" "}
-              </div>
-            </div>
-          ))}
-    </div>
-  );
+  const isQuizLocked = () => {
+    if (!loading && data && data.user_skills.length !== 0) {
+      const unmasteredSkills = unitSkills(skillData)
+        .map(
+          (skill) =>
+            data.user_skills.filter((it) => it.skill_id == skill.id)[0].emoji
+        )
+        .filter((emojiVal) => !emojiVal || emojiVal <= EMOJI_MASTERY);
+
+      return unmasteredSkills.length > 0;
+    }
+
+    return false;
+  };
+
   const quizComponent = (
     <div>
-      <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-8 gap-8 mt-8">
+      <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-8 gap-8">
         <div className="flex flex-col gap-4 justify-center md:w-2/3">
-          <p className="text-4xl font-bold text-blue-900"> QUIZ TIME! </p>
-          <p className="text-xl">
-            Take a quiz to test out your {slug} skills. The quiz will cover
-            topics at your grade level meaning it's personalized for you! You
-            can take this quiz as many times as you wish to perfect your skills.
-            Good luck!
-          </p>
-          <div className="flex gap-8">
-            <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
-              <Link
-                href={`/quiz/${slug}?level=` + gradeNum(studentGrade.grade)}
-              >
-                <Button
-                  backgroundColor="blue"
-                  textColor="white"
-                  label="Quiz Yourself"
-                />
-              </Link>
-            </div>
-          </div>
-          <div className="flex items-center text-lg flex-row">
-            <p className="text-xl font-bold text-blue-900"> Best Attempt: </p>
-            <p
-              className={`${getColourForAccuracy(
-                data && !loading && getMaxAccuracy(data.user_quizzes)
-              )} p-4 text-2xl font-extrabold`}
-            >
-              {!loading && data && getMaxAccuracy(data.user_quizzes)}
-              {data &&
-              !loading &&
-              getMaxAccuracy(data.user_quizzes) != "Not Attempted"
-                ? "%"
-                : ""}
+          {isQuizLocked() && (
+            <p className="text-4xl font-bold text-blue-900">QUIZ LOCKED</p>
+          )}
+          {isQuizLocked() && (
+            <p className="text-xl">
+              To unlock the quiz you must be confident with all of this unit's
+              skills. Practice questions from above and rate each skill confidence with{" "}
+              <span className="text-3xl">😄</span>
             </p>
-          </div>
+          )}
+          {!isQuizLocked() && (
+            <p className="text-4xl font-bold text-blue-900"> QUIZ TIME! </p>
+          )}
+          {!isQuizLocked() && (
+            <p className="text-xl">
+              Take a quiz to test out your {slug} skills. The quiz will cover
+              topics at your grade level meaning it's personalized for you! You
+              can take this quiz as many times as you wish to perfect your
+              skills. Good luck!
+            </p>
+          )}
+          {!isQuizLocked() && (
+            <div className="flex gap-8">
+              <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
+                <Link
+                  href={`/quiz/${slug}?level=` + gradeNum(studentGrade.grade)}
+                >
+                  <Button
+                    backgroundColor="blue"
+                    textColor="white"
+                    label="Quiz Yourself"
+                  />
+                </Link>
+              </div>
+            </div>
+          )}
+          {!isQuizLocked() && (
+            <div className="flex items-center text-lg flex-row">
+              <p className="text-xl font-bold text-blue-900"> Best Attempt: </p>
+              <p
+                className={`${getColourForAccuracy(
+                  data && !loading && getMaxAccuracy(data.user_quizzes)
+                )} p-4 text-2xl font-extrabold`}
+              >
+                {!loading && data && getMaxAccuracy(data.user_quizzes)}
+                {data &&
+                !loading &&
+                getMaxAccuracy(data.user_quizzes) != "Not Attempted"
+                  ? "%"
+                  : ""}
+              </p>
+            </div>
+          )}
         </div>
         <div className="flex flex-col gap-8 justify-center items-center bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 sm:w-1/2 rounded-2xl h-72">
-          {!loading &&
+          {isQuizLocked() && <img src="/images/lock.png" className="w-28" />}
+          {!isQuizLocked() &&
+            !loading &&
             data &&
             data.user_badges.map((badge) => {
               return badge.locked ? (
@@ -222,22 +208,64 @@ const TopicOverviewPage = ({ slug, skillData }) => {
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-blue-100 ">
       <Navbar />
       <div className="p-4 flex flex-col gap-8">
-        <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-8">
-          <p className="text-5xl text-white mb-4">
-            {" "}
-            {slug && slug.charAt(0).toUpperCase() + slug.slice(1)} Topic
-            Overview
-          </p>
-          <p className="text-lg text-white">
-            Watch the videos on the lesson page to learn more and do the
-            practice questions to apply your knowledge. Once you feel confident
-            in your {slug} skills, take the quiz to evaluate your understanding!
+        <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-4">
+          <p className="text-2xl text-white">
+            {slug && slug.charAt(0).toUpperCase() + slug.slice(1)} Overview
           </p>
         </div>
-        <div>
-          {skillComponent}
-          {quizComponent}
+
+        <div className="flex flex-col items-center justify-center bg-white shadow-lg rounded-xl gap-8">
+          <div>
+            <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl gap-8">
+              <div className="flex flex-col w-full sm:w-1/2 gap-8 py-8 ml-8">
+                <div className="flex flex-col gap-4">
+                  <p className="text-4xl font-bold text-blue-900 capitalize">
+                    {" "}
+                    PRACTICE TIME
+                  </p>
+                  <p className="text">
+                    Select a skill to practice questions. You can practice as
+                    many times as you wish. At the end, you'll be asked to rate
+                    your skill confidence.
+                  </p>
+                </div>
+
+                <div>
+                  <div className="grid grid-cols-2 items-center">
+                    <p className="font-bold text-center">Skill</p>
+                    <p className="font-bold text-center">Skill Confidence</p>
+                  </div>
+                  {skillData && unitSkills(skillData).map((skill) => (
+                    <Link href={`/practice/${skill.id}`}>
+                      <div className="grid grid-cols-2 cursor-pointer items-center transform transition duration-200 hover:scale-110">
+                        {" "}
+                        <p className="text p-1 text-center flex items-center justify-center bg-blue-200 rounded-2xl">
+                          {`I can ${skill.description}`}
+                        </p>
+                        <p className="text-5xl text-center">
+                          {!loading &&
+                            data &&
+                            data.user_skills.length !== 0 &&
+                            getEmoji(
+                              data.user_skills.filter(
+                                (it) => it.skill_id == skill.id
+                              )[0].emoji
+                            )}{" "}
+                        </p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              <img
+                className="w-full sm:w-1/2 object-cover rounded-xl"
+                alt="student-image"
+                src="/images/practiceAdd.png"
+              />
+            </div>
+          </div>
         </div>
+        <div>{quizComponent}</div>
       </div>
     </div>
   );
