@@ -12,7 +12,7 @@ export const resources: Resource[] = [
     imageUrl:
       "https://cdn.kastatic.org/ka-perseus-images/d88dc482590783505610904836bb14efa6859ac0.png",
     description:
-      "Khan Academy offers an intensive library of videos that cover math topics in a way that is easy to understand. The videos are followed by practice questions to further enhance students' understanding.",
+      "Khan Academy offers an intensive library of videos that cover math units in a way that is easy to understand. The videos are followed by practice questions to further enhance students' understanding.",
   },
   {
     title: "Prodigy",
@@ -42,7 +42,7 @@ export const resources: Resource[] = [
     imageUrl:
       "https://student-tutor.com/wp-content/uploads/2018/06/Screen-Shot-2018-06-13-at-5.09.21-PM-1024x553.png",
     description:
-      "Cool Math 4 Kids has interactive math games for grades K-6 that can be sorted by grade and topic. The site makes math more engaging with lessons, quizzes, brain teasers and manipulatives to play with.",
+      "Cool Math 4 Kids has interactive math games for grades K-6 that can be sorted by grade and unit. The site makes math more engaging with lessons, quizzes, brain teasers and manipulatives to play with.",
   },
   {
     title: "ABCya",

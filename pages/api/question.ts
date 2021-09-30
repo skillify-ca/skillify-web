@@ -15,7 +15,7 @@ export type Question = {
   answerType: AnswerType;
   questionType: QuestionType;
   skill?: Skill;
-  operator?: string; //Numbers topic does not have a operator
+  operator?: string; //Numbers unit does not have a operator
   wordProblem?: WordProblemModel; //value is only stored if QuestionType is wordProblem
   multipleChoice?: MCModel;
   fillInTheBlank?: fillBlankModel;

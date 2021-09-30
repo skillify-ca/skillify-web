@@ -11,7 +11,7 @@ export const generateQuestions = (
   if (slug != null) {
     let skill = [];
     if (slug.toLowerCase() == "numbers") {
-      //Currently there are no skills for the Numbers topic for grades 4-6
+      //Currently there are no skills for the Numbers unit for grades 4-6
       switch (currentLevel) {
         case 1:
           skill = [Skill.NUMBERS_50];
