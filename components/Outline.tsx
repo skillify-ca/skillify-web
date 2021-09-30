@@ -3,7 +3,7 @@ import { UnitCard } from "./UnitCard";
 import { userId } from "../graphql/utils/constants";
 import Card from "./ui/Card";
 import ProgressRing from "./ui/ProgressRing";
-import { lockedTopics, unlockedTopics } from "../pages/api/topics";
+import { lockedUnits, unlockedUnits } from "../pages/api/units";
 import { EMOJI_MASTERY, Grade } from "../pages/api/skill";
 import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
 import { useQuery } from "@apollo/client";
@@ -105,20 +105,20 @@ export default function Outline({ session }: OutlineProps) {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 justify-center gap-8 items-center">
-        {unlockedTopics.map((topic, index) => (
-          <div key={topic.title}>
+        {unlockedUnits.map((unit, index) => (
+          <div key={unit.title}>
             <UnitCard
-              key={topic.title}
-              title={topic.title}
-              image={topic.image}
-              link={`${topic.title.toLowerCase()}`}
+              key={unit.title}
+              title={unit.title}
+              image={unit.image}
+              link={`${unit.title.toLowerCase()}`}
               rating={0}
             />
           </div>
         ))}
-        {lockedTopics.map((topic) => (
-          <div key={topic}>
-            <UnitCard key={topic} title={topic} disabled={true} />
+        {lockedUnits.map((unit) => (
+          <div key={unit}>
+            <UnitCard key={unit} title={unit} disabled={true} />
           </div>
         ))}
       </div>

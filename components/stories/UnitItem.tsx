@@ -2,7 +2,7 @@ import React from "react";
 import Card from "../ui/Card";
 import StarRating from "./Rating";
 
-export type TopicItemProps = {
+export type UnitItemProps = {
   title: string;
   accessory?: "rating" | "completed" | "progress";
   image?: string;
@@ -11,14 +11,14 @@ export type TopicItemProps = {
   onClick?: () => void;
 };
 
-export const TopicItem: React.FC<TopicItemProps> = ({
+export const UnitItem: React.FC<UnitItemProps> = ({
   title,
   accessory,
   image,
   disabled,
   rating,
   onClick,
-}: TopicItemProps) => {
+}: UnitItemProps) => {
   let accessoryComponent;
   switch (accessory) {
     case "rating":
@@ -55,4 +55,4 @@ export const TopicItem: React.FC<TopicItemProps> = ({
   );
 };
 
-export default TopicItem;
+export default UnitItem;

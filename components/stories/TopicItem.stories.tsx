@@ -1,11 +1,11 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 
-import { TopicItem, TopicItemProps } from "./TopicItem";
+import { UnitItem, UnitItemProps } from "./UnitItem";
 
 export default {
-  title: "UI/TopicItem",
-  component: TopicItem,
+  title: "UI/UnitItem",
+  component: UnitItem,
   argTypes: {
     disabled: {
       control: {
@@ -16,7 +16,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<TopicItemProps> = (args) => <TopicItem {...args} />;
+const Template: Story<UnitItemProps> = (args) => <UnitItem {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

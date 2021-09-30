@@ -1,6 +1,6 @@
-export const lockedTopics = ["Fractions", "Time", "Money"];
+export const lockedUnits = ["Fractions", "Coding", "Money"];
 
-export const unlockedTopics = [
+export const unlockedUnits = [
   { title: "Numbers", image: "/images/skills/numbers.png" },
   { title: "Addition", image: "/images/skills/add.png" },
   { title: "Subtraction", image: "/images/skills/sub.png" },
