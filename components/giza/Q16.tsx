@@ -26,7 +26,10 @@ const Q16 = (displayQuestion, nextQuestion) => {
     <React.Fragment>
       <div className="flex flex-col gap-8 items-center">
         <div id="quizImage">
-          <img src="../../images/giza/MathQuestionImage10.png"></img>
+          <img
+            className="animate-fadeIn"
+            src="/images/giza/MathQuestionImage10.png"
+          ></img>
         </div>
         <p className="text-2xl text-center">{displayQuestion}</p>
         <div className="text-center">

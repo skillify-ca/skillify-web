@@ -11,7 +11,10 @@ const Q6 = (displayQuestion, nextQuestion) => {
     <React.Fragment>
       <div className="flex flex-col gap-8 items-center">
         <div id="quizImage">
-          <img src="/images/giza/MathQuestionImage13.jpeg"></img>
+          <img
+            className="animate-fadeIn"
+            src="/images/giza/MathQuestionImage13.jpeg"
+          ></img>
         </div>
         <MultipleChoice
           displayQuestion={displayQuestion}
