@@ -109,8 +109,8 @@ const UnitOverviewPage = ({ slug, skillData }) => {
           {isQuizLocked() && (
             <p className="text">
               To unlock the quiz you must be confident with all of this unit's
-              skills. Practice questions from above and rate each skill confidence with{" "}
-              <span className="text-3xl">😄</span>
+              skills. Practice questions from above and rate each skill
+              confidence with <span className="text-3xl">😄</span>
             </p>
           )}
           {!isQuizLocked() && (
@@ -118,10 +118,9 @@ const UnitOverviewPage = ({ slug, skillData }) => {
           )}
           {!isQuizLocked() && (
             <p className="text">
-              Take a quiz to test out your {slug} skills. The quiz will cover
-              topics at your grade level meaning it's personalized for you! You
-              can take this quiz as many times as you wish to perfect your
-              skills. Good luck!
+              Take a quiz to test out your {slug} skills. Get at least a Level 4
+              to unlock a badge. You can take this quiz as many times as you
+              wish to perfect your skills. Good luck!
             </p>
           )}
           {!isQuizLocked() && (
@@ -235,26 +234,27 @@ const UnitOverviewPage = ({ slug, skillData }) => {
                     <p className="font-bold text-center">Skill</p>
                     <p className="font-bold text-center">Skill Confidence</p>
                   </div>
-                  {skillData && unitSkills(skillData).map((skill) => (
-                    <Link href={`/practice/${skill.id}`}>
-                      <div className="grid grid-cols-2 cursor-pointer items-center transform transition duration-200 hover:scale-110">
-                        {" "}
-                        <p className="text p-1 text-center flex items-center justify-center bg-blue-200 rounded-2xl">
-                          {`I can ${skill.description}`}
-                        </p>
-                        <p className="text-5xl text-center">
-                          {!loading &&
-                            data &&
-                            data.user_skills.length !== 0 &&
-                            getEmoji(
-                              data.user_skills.filter(
-                                (it) => it.skill_id == skill.id
-                              )[0].emoji
-                            )}{" "}
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
+                  {skillData &&
+                    unitSkills(skillData).map((skill) => (
+                      <Link href={`/practice/${skill.id}`}>
+                        <div className="grid grid-cols-2 cursor-pointer items-center transform transition duration-200 hover:bg-blue-200">
+                          {" "}
+                          <p className="text p-1 text-center flex items-center justify-center  rounded-2xl">
+                            {`I can ${skill.description}`}
+                          </p>
+                          <p className="text-5xl text-center">
+                            {!loading &&
+                              data &&
+                              data.user_skills.length !== 0 &&
+                              getEmoji(
+                                data.user_skills.filter(
+                                  (it) => it.skill_id == skill.id
+                                )[0].emoji
+                              )}{" "}
+                          </p>
+                        </div>
+                      </Link>
+                    ))}
                 </div>
               </div>
               <img
