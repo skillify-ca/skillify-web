@@ -100,7 +100,8 @@ test("if students gets all the addition questions wrong, expect JK/SK for additi
     guesses: ["0", "0", "0"],
     email: "test@gmail.com",
     grade: "Grade 2",
-    name: "Lavan",
+    firstName: "Lavan",
+    lastName: "test",
   };
 
   // Act
@@ -118,7 +119,8 @@ test("if students gets first 2 questions right, but last question wrong, grade l
     guesses: ["6", "18", "0"],
     email: "test@gmail.com",
     grade: "Grade 2",
-    name: "Lavan",
+    firstName: "Lavan",
+    lastName: "test",
   };
 
   // Act
@@ -136,7 +138,8 @@ test("if students gets first question right, but second wrong and third question
     guesses: ["6", "0", "9"],
     email: "test@gmail.com",
     grade: "Grade 2",
-    name: "Lavan",
+    firstName: "Lavan",
+    lastName: "test",
   };
 
   // Act
@@ -154,7 +157,8 @@ test("if students gets first 2 questions wrong and last question right, they sho
     guesses: ["5", "0", "2"],
     email: "test@gmail.com",
     grade: "Grade 2",
-    name: "Lavan",
+    firstName: "Lavan",
+    lastName: "test",
   };
 
   // Act
