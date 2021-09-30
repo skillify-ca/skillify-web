@@ -2,8 +2,8 @@
 import React from "react";
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import { getGradeLevelForTopic, getSummaryText } from "./diagnosticGrader";
-import { Skill, Topic } from "../skill";
+import { getGradeLevelForUnit, getSummaryText } from "./diagnosticGrader";
+import { Skill, Unit } from "../skill";
 import { DiagnosticState } from "../../../redux/diagnosticSlice";
 import { AnswerType } from "../question";
 import { QuestionType } from "../questionTypes";
@@ -100,11 +100,12 @@ test("if students gets all the addition questions wrong, expect JK/SK for additi
     guesses: ["0", "0", "0"],
     email: "test@gmail.com",
     grade: "Grade 2",
-    name: "Lavan",
+    firstName: "Lavan",
+    lastName: "test",
   };
 
   // Act
-  const grade = getGradeLevelForTopic(Topic.ADDITION, state);
+  const grade = getGradeLevelForUnit(Unit.ADDITION, state);
 
   // Assert
   expect(grade).toBe("JK/SK");
@@ -118,11 +119,12 @@ test("if students gets first 2 questions right, but last question wrong, grade l
     guesses: ["6", "18", "0"],
     email: "test@gmail.com",
     grade: "Grade 2",
-    name: "Lavan",
+    firstName: "Lavan",
+    lastName: "test",
   };
 
   // Act
-  const grade = getGradeLevelForTopic(Topic.ADDITION, state);
+  const grade = getGradeLevelForUnit(Unit.ADDITION, state);
 
   // Assert
   expect(grade).toBe("Grade 2");
@@ -136,11 +138,12 @@ test("if students gets first question right, but second wrong and third question
     guesses: ["6", "0", "9"],
     email: "test@gmail.com",
     grade: "Grade 2",
-    name: "Lavan",
+    firstName: "Lavan",
+    lastName: "test",
   };
 
   // Act
-  const grade = getGradeLevelForTopic(Topic.ADDITION, state);
+  const grade = getGradeLevelForUnit(Unit.ADDITION, state);
 
   // Assert
   expect(grade).toBe("Grade 1");
@@ -154,11 +157,12 @@ test("if students gets first 2 questions wrong and last question right, they sho
     guesses: ["5", "0", "2"],
     email: "test@gmail.com",
     grade: "Grade 2",
-    name: "Lavan",
+    firstName: "Lavan",
+    lastName: "test",
   };
 
   // Act
-  const grade = getGradeLevelForTopic(Topic.SUBTRACTION, state);
+  const grade = getGradeLevelForUnit(Unit.SUBTRACTION, state);
 
   // Assert
   expect(grade).toBe("JK/SK");

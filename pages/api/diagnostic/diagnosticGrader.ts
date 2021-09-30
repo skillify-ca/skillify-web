@@ -1,6 +1,6 @@
 import { DiagnosticState } from "../../../redux/diagnosticSlice";
 import { Question } from "../question";
-import { getSkillsForTopic, Skill, Topic } from "../skill";
+import { getSkillsForUnit, Skill, Unit } from "../skill";
 
 const PASSING_GRADE = 0.75;
 
@@ -38,8 +38,8 @@ export const getResultForSkill = (
   }
 };
 
-export const getGradedQuestionsForTopic = (
-  topic: Topic,
+export const getGradedQuestionsForUnit = (
+  unit: Unit,
   results: DiagnosticState
 ): GradedQuestion[] => {
   // All questions
@@ -50,11 +50,11 @@ export const getGradedQuestionsForTopic = (
       guess: results.guesses[index],
     })
   );
-  const skills: Skill[] = getSkillsForTopic(topic);
-  const questionsForTopic: GradedQuestion[] = questionsWithGradedGuesses.filter(
+  const skills: Skill[] = getSkillsForUnit(unit);
+  const questionsForUnit: GradedQuestion[] = questionsWithGradedGuesses.filter(
     (it) => skills.includes(it.question.skill)
   );
-  return questionsForTopic;
+  return questionsForUnit;
 };
 
 let skillCount = 0;
@@ -67,12 +67,9 @@ export const countCorrectAns = (result: Array<string>) => {
   return skillCount;
 };
 
-export const getGradeLevelForTopic = (
-  topic: Topic,
-  results: DiagnosticState
-) => {
-  switch (topic) {
-    case Topic.ADDITION:
+export const getGradeLevelForUnit = (unit: Unit, results: DiagnosticState) => {
+  switch (unit) {
+    case Unit.ADDITION:
       if (getResultForSkill(Skill.ADDITION_TRIPLE, results) == "Got it!") {
         return "Grade 3";
       } else if (
@@ -86,7 +83,7 @@ export const getGradeLevelForTopic = (
       } else {
         return "JK/SK";
       }
-    case Topic.SUBTRACTION:
+    case Unit.SUBTRACTION:
       if (getResultForSkill(Skill.SUBTRACTION_TRIPLE, results) == "Got it!") {
         return "Grade 3";
       } else if (
@@ -100,7 +97,7 @@ export const getGradeLevelForTopic = (
       } else {
         return "JK/SK";
       }
-    case Topic.MULTIPLICATION:
+    case Unit.MULTIPLICATION:
       if (getResultForSkill(Skill.MULTIPLICATION_10, results) == "Got it!") {
         return "Grade 3";
       } else if (
@@ -114,7 +111,7 @@ export const getGradeLevelForTopic = (
       } else {
         return "JK/SK";
       }
-    case Topic.DIVISION:
+    case Unit.DIVISION:
       if (getResultForSkill(Skill.DIVIDE_100, results) == "Got it!") {
         return "Grade 3";
       } else if (
@@ -180,55 +177,55 @@ export const getSummaryText = (
 
 export const getCalculatedGrade = (results: DiagnosticState) => {
   let gradeLevel = 0;
-  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 3") {
+  if (getGradeLevelForUnit(Unit.ADDITION, results) == "Grade 3") {
     gradeLevel = gradeLevel + 3;
   }
-  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 2") {
+  if (getGradeLevelForUnit(Unit.ADDITION, results) == "Grade 2") {
     gradeLevel = gradeLevel + 2;
   }
-  if (getGradeLevelForTopic(Topic.ADDITION, results) == "Grade 1") {
+  if (getGradeLevelForUnit(Unit.ADDITION, results) == "Grade 1") {
     gradeLevel = gradeLevel + 1;
   }
-  if (getGradeLevelForTopic(Topic.ADDITION, results) == "JK/SK") {
+  if (getGradeLevelForUnit(Unit.ADDITION, results) == "JK/SK") {
     gradeLevel = gradeLevel + 0;
   }
-  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 3") {
+  if (getGradeLevelForUnit(Unit.DIVISION, results) == "Grade 3") {
     gradeLevel = gradeLevel + 3;
   }
-  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 2") {
+  if (getGradeLevelForUnit(Unit.DIVISION, results) == "Grade 2") {
     gradeLevel = gradeLevel + 2;
   }
-  if (getGradeLevelForTopic(Topic.DIVISION, results) == "Grade 1") {
+  if (getGradeLevelForUnit(Unit.DIVISION, results) == "Grade 1") {
     gradeLevel = gradeLevel + 1;
   }
-  if (getGradeLevelForTopic(Topic.DIVISION, results) == "JK/SK") {
+  if (getGradeLevelForUnit(Unit.DIVISION, results) == "JK/SK") {
     gradeLevel = gradeLevel + 0;
   }
-  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 3") {
+  if (getGradeLevelForUnit(Unit.MULTIPLICATION, results) == "Grade 3") {
     gradeLevel = gradeLevel + 3;
   }
-  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 2") {
+  if (getGradeLevelForUnit(Unit.MULTIPLICATION, results) == "Grade 2") {
     gradeLevel = gradeLevel + 2;
   }
-  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "Grade 1") {
+  if (getGradeLevelForUnit(Unit.MULTIPLICATION, results) == "Grade 1") {
     gradeLevel = gradeLevel + 1;
   }
-  if (getGradeLevelForTopic(Topic.MULTIPLICATION, results) == "JK/SK") {
+  if (getGradeLevelForUnit(Unit.MULTIPLICATION, results) == "JK/SK") {
     gradeLevel = gradeLevel + 0;
   }
-  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 3") {
+  if (getGradeLevelForUnit(Unit.SUBTRACTION, results) == "Grade 3") {
     gradeLevel = gradeLevel + 3;
   }
-  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 2") {
+  if (getGradeLevelForUnit(Unit.SUBTRACTION, results) == "Grade 2") {
     gradeLevel = gradeLevel + 2;
   }
-  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "Grade 1") {
+  if (getGradeLevelForUnit(Unit.SUBTRACTION, results) == "Grade 1") {
     gradeLevel = gradeLevel + 1;
   }
-  if (getGradeLevelForTopic(Topic.SUBTRACTION, results) == "JK/SK") {
+  if (getGradeLevelForUnit(Unit.SUBTRACTION, results) == "JK/SK") {
     gradeLevel = gradeLevel + 0;
   }
-  //Takes the average grade level for all the topics (addition, subtraction, multiplication, division)
+  //Takes the average grade level for all the units (addition, subtraction, multiplication, division)
   gradeLevel = Math.round(gradeLevel / 4);
   return gradeLevel;
 };

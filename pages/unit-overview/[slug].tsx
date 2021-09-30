@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import { Canvas } from "react-three-fiber";
 import Navbar from "../../components/Navbar";
 import { Button } from "../../components/ui/Button";
-import { FETCH_TOPIC_OVERVIEW } from "../../graphql/fetchTopicOverview";
+import { FETCH_UNIT_OVERVIEW } from "../../graphql/fetchUnitOverview";
 import { userId } from "../../graphql/utils/constants";
 import { getBadgeId } from "../api/badgeHelper";
 import { EMOJI_MASTERY, getEmoji } from "../api/skill";
@@ -55,7 +55,7 @@ const UnitOverviewPage = ({ slug, skillData }) => {
         skill.unit == slug && skill.grade == gradeNum(studentGrade.grade)
     );
 
-  let { loading, error, data } = useQuery(FETCH_TOPIC_OVERVIEW, {
+  let { loading, error, data } = useQuery(FETCH_UNIT_OVERVIEW, {
     variables: {
       userId: userId(session),
       skillId:
