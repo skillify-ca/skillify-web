@@ -1,5 +1,5 @@
 import { DiagnosticState } from "../../../redux/diagnosticSlice";
-import { FetchDescriptionOnUnit } from "../../diagnostic/evidence/[slug]";
+//import { FetchDescriptionOnUnit } from "../../diagnostic/evidence/[slug]";
 import { Question } from "../question";
 import { getSkillsForTopic, Skill, Topic } from "../skill";
 
@@ -41,7 +41,7 @@ export const getResultForSkill = (
 
 export const getGradedQuestionsForTopic = (
   results: DiagnosticState,
-  skillDescription: FetchDescriptionOnUnit
+  skillDescription: any //FetchDescriptionOnUnit
 ): GradedQuestion[] => {
   // All questions
   const questionsWithGradedGuesses: GradedQuestion[] = results.questions.map(
