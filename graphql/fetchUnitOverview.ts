@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_UNIT_OVERVIEW = gql`
-  query fetchTopicOverview(
+  query fetchUnitOverview(
     $userId: String = ""
     $badgeId: Int = 0
     $skillId: [Int!]! = []

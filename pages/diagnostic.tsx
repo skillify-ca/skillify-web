@@ -29,7 +29,7 @@ enum STAGE {
 
 const Diagnostic = () => {
   const TOTAL_QUESTIONS = 12;
-  const QUESTIONS_PER_TOPIC = 3;
+  const QUESTIONS_PER_UNIT = 3;
 
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState(1);
@@ -56,7 +56,7 @@ const Diagnostic = () => {
   };
 
   const [questionsLeftInUnit, setQuestionsLeftInUnit] = useState<number>(
-    QUESTIONS_PER_TOPIC
+    QUESTIONS_PER_UNIT
   );
   const [currentQuestion, setCurrentQuestion] = useState<Question>();
   const inputElement = useRef(null);
@@ -178,7 +178,7 @@ const Diagnostic = () => {
         // Primary grades questions
         const newQuestionsLeftInUnit =
           questionsLeftInUnit == 0
-            ? QUESTIONS_PER_TOPIC - 1
+            ? QUESTIONS_PER_UNIT - 1
             : questionsLeftInUnit - 1;
         const nextQuestion = getNextQuestion(
           currentQuestion,
