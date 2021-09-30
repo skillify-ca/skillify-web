@@ -108,8 +108,8 @@ const TopicOverviewPage = ({ slug, skillData }) => {
           )}
           {isQuizLocked() && (
             <p className="text-xl">
-              To unlock the quiz you must be confident with all of this unit's skills.
-              Practice questions and rate each skill confidence with{" "}
+              To unlock the quiz you must be confident with all of this unit's
+              skills. Practice questions from above and rate each skill confidence with{" "}
               <span className="text-3xl">😄</span>
             </p>
           )}
@@ -213,43 +213,15 @@ const TopicOverviewPage = ({ slug, skillData }) => {
             {slug && slug.charAt(0).toUpperCase() + slug.slice(1)} Overview
           </p>
         </div>
-        <div className="flex flex-col bg-white shadow-lg rounded-xl p-4">
-          <p className="text-3xl font-bold text-blue-900">Learn </p>
-          <p>Watch videos to learn new skills</p>
 
-          <div className="flex flex-row h-72 overflow-scroll items-center gap-8">
-            {unitSkills(skillData)
-              .flatMap((skill) => getVideosForSkill(skill.id))
-              .map((video: ResourceMetadata) => (
-                <iframe
-                  width="560"
-                  height="200"
-                  src={`https://www.youtube.com/embed/${video.videoId}`}
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-5/6 sm:w-64 rounded-2xl flex-shrink-0"
-                ></iframe>
-              ))}
-          </div>
-          <div>
-            <Button
-              disabled
-              backgroundColor="blue"
-              label="
-            Mark as Completed"
-            />
-          </div>
-        </div>
         <div className="flex flex-col items-center justify-center bg-white shadow-lg rounded-xl gap-8">
           <div>
             <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl gap-8">
-              <div className="flex flex-col w-full sm:w-1/2 gap-8 p-8">
-                <div className="flex flex-col">
-                  <p className="text-3xl font-bold text-blue-900 capitalize">
+              <div className="flex flex-col w-full sm:w-1/2 gap-8 py-8 ml-8">
+                <div className="flex flex-col gap-4">
+                  <p className="text-4xl font-bold text-blue-900 capitalize">
                     {" "}
-                    Practice Time{" "}
+                    PRACTICE TIME
                   </p>
                   <p className="text">
                     Select a skill to practice questions. You can practice as
@@ -265,12 +237,12 @@ const TopicOverviewPage = ({ slug, skillData }) => {
                   </div>
                   {unitSkills(skillData).map((skill) => (
                     <Link href={`/practice/${skill.id}`}>
-                      <div className="grid grid-cols-2 cursor-pointer items-center hover:bg-blue-200">
+                      <div className="grid grid-cols-2 cursor-pointer items-center transform transition duration-200 hover:scale-110">
                         {" "}
                         <p className="text p-1 text-center flex items-center justify-center bg-blue-200 rounded-2xl">
                           {`I can ${skill.description}`}
                         </p>
-                        <p className="text-3xl text-center">
+                        <p className="text-5xl text-center">
                           {!loading &&
                             data &&
                             data.user_skills.length !== 0 &&
