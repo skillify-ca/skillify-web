@@ -16,7 +16,7 @@ module.exports = {
       animation: {
         shake: "shake 0.5s ease-in-out",
         hit: "hit 1s ease-in-out",
-        fadeIn: "fadeIn 2s ease-in-out",
+        fadeIn: "fadeIn 1s ease-in-out",
       },
       backgroundImage: (theme) => ({
         "hero-student":
