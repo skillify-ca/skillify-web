@@ -18,7 +18,7 @@ import { FETCH_SKILL_DESCRIPTION_GRADE_AND_UNIT } from "../../graphql/fetchSkill
 
 const Box = dynamic(() => import("../../components/stories/Box"));
 
-const TopicOverviewPage = ({ slug, skillData }) => {
+const UnitOverviewPage = ({ slug, skillData }) => {
   const { data: session, status } = useSession();
   const studentGrade = useSelector(studentProfileSelector);
 
@@ -299,4 +299,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default TopicOverviewPage;
+export default UnitOverviewPage;
