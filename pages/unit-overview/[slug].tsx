@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { studentProfileSelector } from "../../redux/studentProfileSlice";
 import { FETCH_SKILL_DESCRIPTION_GRADE_AND_UNIT } from "../../graphql/fetchSkillDescriptionAndGrade";
 import { getVideosForSkill, ResourceMetadata } from "../api/videoHelper";
+import Head from "next/head";
 
 const Box = dynamic(() => import("../../components/stories/Box"));
 
@@ -205,6 +206,11 @@ const UnitOverviewPage = ({ slug, skillData }) => {
 
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-blue-100 ">
+      <Head>
+        <title>
+          {slug && slug.charAt(0).toUpperCase() + slug.slice(1)} Overview
+        </title>
+      </Head>
       <Navbar />
       <div className="p-4 flex flex-col gap-8">
         <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-4">

@@ -3,10 +3,13 @@ import Outline from "../components/Outline";
 import { getSession, useSession } from "next-auth/react";
 
 export default function Home() {
-  const { data: session, status } = useSession()
+  const { data: session, status } = useSession();
 
   return (
     <div className="flex flex-col h-screen">
+      <Head>
+        <title>Student Portal</title>
+      </Head>
       <div
         style={{
           backgroundColor: "#E5E7EB",
