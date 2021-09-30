@@ -235,7 +235,7 @@ const TopicOverviewPage = ({ slug, skillData }) => {
                     <p className="font-bold text-center">Skill</p>
                     <p className="font-bold text-center">Skill Confidence</p>
                   </div>
-                  {unitSkills(skillData).map((skill) => (
+                  {skillData && unitSkills(skillData).map((skill) => (
                     <Link href={`/practice/${skill.id}`}>
                       <div className="grid grid-cols-2 cursor-pointer items-center transform transition duration-200 hover:scale-110">
                         {" "}
