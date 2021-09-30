@@ -7,12 +7,12 @@ import { Skill } from "../skill";
 
 const NUM_QUESTIONS = 1;
 
-type Topic = {
+type Unit = {
   name: string;
   skills: Skill[];
 };
 
-const topics: Topic[] = [
+const units: Unit[] = [
   {
     name: "Addition",
     skills: [
@@ -50,11 +50,11 @@ const topics: Topic[] = [
 export const getNextQuestion = (
   currentQuestion: Question,
   correctGuess: boolean,
-  questionsLeftInTopic: number
+  questionsLeftInUnit: number
 ): Question => {
   let nextQuestion: Question;
-  if (questionsLeftInTopic <= 0) {
-    const nextSkill = getSkillForNextTopic(currentQuestion.skill);
+  if (questionsLeftInUnit <= 0) {
+    const nextSkill = getSkillForNextUnit(currentQuestion.skill);
     nextQuestion = generateQuestionForSkill(nextSkill);
   } else {
     if (correctGuess) {
@@ -138,7 +138,7 @@ const getEasierSkill = (skill: Skill): Skill => {
 };
 
 //This function is used to switch to the next skill in the Diagnostic test
-const getSkillForNextTopic = (skill: Skill): Skill => {
+const getSkillForNextUnit = (skill: Skill): Skill => {
   switch (skill) {
     case Skill.ADDITION_SINGLE:
     case Skill.ADDITION_DOUBLE:
@@ -163,9 +163,9 @@ export const generateQuestionsForDiagnostic = () => {
   let questionsPerSection = NUM_QUESTIONS;
   let questions: Question[] = [];
   for (let grade = 0; grade < 3; grade++) {
-    for (let i = 0; i < topics.length; i++) {
-      const topic = topics[i];
-      const skill = topic.skills[grade];
+    for (let i = 0; i < units.length; i++) {
+      const unit = units[i];
+      const skill = unit.skills[grade];
       for (let j = 0; j < questionsPerSection; j++) {
         const question = generateQuestionForSkill(skill);
         questions.push(question);

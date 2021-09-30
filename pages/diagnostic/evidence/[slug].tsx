@@ -16,7 +16,7 @@ const DiagnosticEvidencePage = ({ slug, data }) => {
       {data && (
         <div className="p-4 flex flex-col items-center justify-center">
           <DiagnosticEvidence
-            topic={slug}
+            unit={slug}
             results={diagnosticResults}
             skillDescription={data}
           />

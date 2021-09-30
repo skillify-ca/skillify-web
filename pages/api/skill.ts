@@ -3,7 +3,7 @@ import { generateQuestionForSkill } from "./questionGenerator";
 import { QuestionType } from "./questionTypes";
 import { getRndInteger } from "./random";
 
-export enum Topic {
+export enum Unit {
   NUMBERS = "numbers",
   ADDITION = "addition",
   SUBTRACTION = "subtraction",
@@ -21,9 +21,9 @@ export enum Grade {
   GRADE_6 = "Grade 6",
 }
 
-export const getSkillsForTopic = (topic: Topic): Skill[] => {
-  switch (topic) {
-    case Topic.ADDITION:
+export const getSkillsForUnit = (unit: Unit): Skill[] => {
+  switch (unit) {
+    case Unit.ADDITION:
       return [
         Skill.ADDITION_SINGLE,
         Skill.ADDITION_DOUBLE,
@@ -33,7 +33,7 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
         Skill.ADDITION_5_DIGIT,
         Skill.ADDITION_HUNDREDTHS,
       ];
-    case Topic.SUBTRACTION:
+    case Unit.SUBTRACTION:
       return [
         Skill.SUBTRACTION_SINGLE,
         Skill.SUBTRACTION_DOUBLE,
@@ -43,7 +43,7 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
         Skill.SUBTRACTION_5_DIGIT,
         Skill.SUBTRACTION_HUNDREDTHS,
       ];
-    case Topic.MULTIPLICATION:
+    case Unit.MULTIPLICATION:
       return [
         Skill.EQUAL_GROUP_10_ITEMS,
         Skill.MULTIPLICATION_5,
@@ -55,7 +55,7 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
         Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT,
         Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT,
       ];
-    case Topic.DIVISION:
+    case Unit.DIVISION:
       return [
         Skill.EQUAL_SHARING_8_ITEMS,
         Skill.DIVIDE_12_EQUALLY,

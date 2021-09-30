@@ -2,19 +2,19 @@ import Link from "next/link";
 import React from "react";
 import {
   getResultForSkill,
-  getGradedQuestionsForTopic,
+  getGradedQuestionsForUnit,
 } from "../../pages/api/diagnostic/diagnosticGrader";
-import { Topic } from "../../pages/api/skill";
+import { Unit } from "../../pages/api/skill";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 
 type DiagnosticEvidenceProps = {
-  topic: Topic;
+  unit: Unit;
   results: DiagnosticState;
   skillDescription: any; // TODO change this to a real type
 };
 
 const DiagnosticEvidence = ({
-  topic,
+  unit,
   results,
   skillDescription,
 }: DiagnosticEvidenceProps) => {
@@ -28,7 +28,7 @@ const DiagnosticEvidence = ({
     return skillCount;
   };
 
-  const getSummaryText = (topic: string) => {
+  const getSummaryText = (unit: string) => {
     let proficiency = countSkills(
       skillDescription.diagnostic.map((skill) =>
         getResultForSkill(skill.description, results)
@@ -39,7 +39,7 @@ const DiagnosticEvidence = ({
         <p>
           {" "}
           Excellent! Your child is confident with the material covered in the{" "}
-          {topic} topic for their grade level! They are ready to start learning
+          {unit} unit for their grade level! They are ready to start learning
           more and further challenge themselves.{" "}
         </p>
       );
@@ -48,7 +48,7 @@ const DiagnosticEvidence = ({
         <p>
           {" "}
           Your child is on the right track! With some more practice, they will
-          be able to do questions pertaining to all the {topic} topics below. Go
+          be able to do questions pertaining to all the {unit} units below. Go
           over the questions with your child and have them re-do the ones they
           got wrong.{" "}
         </p>
@@ -65,7 +65,7 @@ const DiagnosticEvidence = ({
     }
   };
 
-  const getBackgroundColorForTopic = (result: string) => {
+  const getBackgroundColorForUnit = (result: string) => {
     const skillLevel = result;
     switch (skillLevel) {
       case "Not yet":
@@ -90,11 +90,11 @@ const DiagnosticEvidence = ({
   return (
     <div className="p-8 flex flex-col gap-4 heropattern-piefactory-blue-100 bg-gray-100 h-screen">
       <p className="mb-2 text-center font-black text-xl">
-        {topic && topic.charAt(0).toUpperCase() + topic.slice(1)}
+        {unit && unit.charAt(0).toUpperCase() + unit.slice(1)}
       </p>
       <div className="flex flex-col items-center bg-white shadow-lg gap-8 rounded-lg p-4">
         <div className="flex flex-col gap-4 sm:max-w-3xl">
-          <p> {getSummaryText(topic)} </p>
+          <p> {getSummaryText(unit)} </p>
         </div>
       </div>
 
@@ -110,7 +110,7 @@ const DiagnosticEvidence = ({
               .filter((skill, idx) => idx < 3)
               .map((skill, index) => (
                 <div
-                  className={`${getBackgroundColorForTopic(
+                  className={`${getBackgroundColorForUnit(
                     getResultForSkill(skill, results)
                   )} p-4 border-b border-black flex justify-between`}
                 >
@@ -133,7 +133,7 @@ const DiagnosticEvidence = ({
               <p className="p-4 font-bold"> Guess </p>
             </div>
             <div className="flex flex-col">
-              {getGradedQuestionsForTopic(topic, results).map(
+              {getGradedQuestionsForUnit(unit, results).map(
                 (gradedQuestion) => (
                   <div
                     className={`p-4 border-b border-black flex justify-between`}

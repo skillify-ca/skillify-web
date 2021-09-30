@@ -11,19 +11,19 @@
 1. Go to skill.ts and find the Skill enum
 2. Add desired skills as a new skill under the skills enum
 3. Go to Grade enum and add your desired grade
-4. Go to getSkillsForTopic function and add the skills for your grade under the apporiate topic
+4. Go to getSkillsForUnit function and add the skills for your grade under the apporiate unit
 5. Refer to the skills table on Hausura
 6. Go to getSkillId function and add your skills under the switch condition and the return value for the switch case should match the id of the skill on the Hasura skills table
-7. Go to SkillDescription function and create a condtition for each of your added skills and give each a description which will be displayed on the Topic Overview page
+7. Go to SkillDescription function and create a condtition for each of your added skills and give each a description which will be displayed on the Unit Overview page
 8. Change to the practiceQuestionGenerator.ts file
-9. Go to generatePracticeQuestions function and under the appropriate topic add the stringfied Skill as a switch condition and assign skill to the Skill enum that reperesnts that string
+9. Go to generatePracticeQuestions function and under the appropriate unit add the stringfied Skill as a switch condition and assign skill to the Skill enum that reperesnts that string
 
 ### Intialization of new badges
 
 1. Refer to the badges table on Hausura
-2. Click insert row and add a badge for each topic covered in the new grade (e.g Grade 1 has 4 badges: Grade 1 Addition, Grade 1 Subtraction, Grade 1 Multiplication, and Grade 1 Division)
+2. Click insert row and add a badge for each unit covered in the new grade (e.g Grade 1 has 4 badges: Grade 1 Addition, Grade 1 Subtraction, Grade 1 Multiplication, and Grade 1 Division)
 3. Go to badgeHelper.ts file and find getBadgeId function
-4. Under the appropriate topic add a case for whatever grade you are currently adding and return the id for the badge you added on the Hausura table
+4. Under the appropriate unit add a case for whatever grade you are currently adding and return the id for the badge you added on the Hausura table
 
 ### Intialization of new skills and badges for each user
 

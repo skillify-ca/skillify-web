@@ -1,7 +1,7 @@
 import { initial } from "lodash";
 import React, { useEffect, useState } from "react";
 import { QuestionType } from "../../pages/api/questionTypes";
-import { Skill, Topic } from "../../pages/api/skill";
+import { Skill, Unit } from "../../pages/api/skill";
 import { Button } from "../ui/Button";
 import Image from "next/image";
 import GoogleClassroomImage from ".././../public/images/assignments/google-classroom.svg";
@@ -31,20 +31,20 @@ const AssignmentCreationForm = ({
   data,
 }: assignmentCreationFormProps) => {
   const unitData = [
-    { title: "Addition", unit: Topic.ADDITION, backgroundColour: "bg-red-100" },
+    { title: "Addition", unit: Unit.ADDITION, backgroundColour: "bg-red-100" },
     {
       title: "Subtraction",
-      unit: Topic.SUBTRACTION,
+      unit: Unit.SUBTRACTION,
       backgroundColour: "bg-green-100",
     },
     {
       title: "Multiplication",
-      unit: Topic.MULTIPLICATION,
+      unit: Unit.MULTIPLICATION,
       backgroundColour: "bg-blue-100",
     },
     {
       title: "Division",
-      unit: Topic.DIVISION,
+      unit: Unit.DIVISION,
       backgroundColour: "bg-yellow-100",
     },
   ];
