@@ -1,4 +1,5 @@
 import { DiagnosticState } from "../../../redux/diagnosticSlice";
+import { FetchDescriptionOnUnit } from "../../diagnostic/evidence/[slug]";
 import { Question } from "../question";
 import { getSkillsForUnit, Skill, Unit } from "../skill";
 
@@ -11,7 +12,7 @@ type GradedQuestion = {
 };
 
 export const getResultForSkill = (
-  skill: Skill,
+  skill: string,
   results: DiagnosticState
 ): string => {
   const questionsWithGuesses: GradedQuestion[] = results.questions.map(
@@ -39,8 +40,8 @@ export const getResultForSkill = (
 };
 
 export const getGradedQuestionsForUnit = (
-  unit: Unit,
-  results: DiagnosticState
+  results: DiagnosticState,
+  skillDescription: FetchDescriptionOnUnit
 ): GradedQuestion[] => {
   // All questions
   const questionsWithGradedGuesses: GradedQuestion[] = results.questions.map(
@@ -50,7 +51,8 @@ export const getGradedQuestionsForUnit = (
       guess: results.guesses[index],
     })
   );
-  const skills: Skill[] = getSkillsForUnit(unit);
+  const skills = skillDescription.diagnostics.map((e) => e.description);
+
   const questionsForUnit: GradedQuestion[] = questionsWithGradedGuesses.filter(
     (it) => skills.includes(it.question.skill)
   );

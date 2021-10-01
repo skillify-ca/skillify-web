@@ -4,13 +4,15 @@ import {
   getResultForSkill,
   getGradedQuestionsForUnit,
 } from "../../pages/api/diagnostic/diagnosticGrader";
+import { FetchDescriptionOnUnit } from "../../pages/diagnostic/evidence/[slug]";
+
 import { Unit } from "../../pages/api/skill";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 
 type DiagnosticEvidenceProps = {
   unit: Unit;
   results: DiagnosticState;
-  skillDescription: any; // TODO change this to a real type
+  skillDescription: FetchDescriptionOnUnit;
 };
 
 const DiagnosticEvidence = ({
@@ -30,7 +32,7 @@ const DiagnosticEvidence = ({
 
   const getSummaryText = (unit: string) => {
     let proficiency = countSkills(
-      skillDescription.diagnostic.map((skill) =>
+      skillDescription.diagnostics.map((skill) =>
         getResultForSkill(skill.description, results)
       )
     );
@@ -106,18 +108,20 @@ const DiagnosticEvidence = ({
             <p className="p-4 font-bold"> Proficiency </p>
           </div>
           <div className="flex flex-col">
-            {skillDescription.diagnostic
+            {skillDescription.diagnostics
               .filter((skill, idx) => idx < 3)
               .map((skill, index) => (
                 <div
                   className={`${getBackgroundColorForUnit(
-                    getResultForSkill(skill, results)
+                    getResultForSkill(skill.description, results)
                   )} p-4 border-b border-black flex justify-between`}
                 >
                   <p className={``}>
-                    {skillDescription.diagnostic[index].description}
+                    {skillDescription.diagnostics[index].description}
                   </p>
-                  <p className={``}>{getResultForSkill(skill, results)}</p>
+                  <p className={``}>
+                    {getResultForSkill(skill.description, results)}
+                  </p>
                 </div>
               ))}
           </div>
@@ -133,7 +137,7 @@ const DiagnosticEvidence = ({
               <p className="p-4 font-bold"> Guess </p>
             </div>
             <div className="flex flex-col">
-              {getGradedQuestionsForUnit(unit, results).map(
+              {getGradedQuestionsForUnit(results, skillDescription).map(
                 (gradedQuestion) => (
                   <div
                     className={`p-4 border-b border-black flex justify-between`}
