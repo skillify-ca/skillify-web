@@ -8,6 +8,7 @@ export interface MultiplicationEqualGroupsProp {
   question: Question;
   color: 0 | 1 | 2 | 3; // color is a random number between 0 - 3
   submitGuess: (guess: GuessData) => void;
+  isReadOnly?: boolean;
 }
 
 /* Multiplication by equal groups UI with 2 inputs */
@@ -15,6 +16,7 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
   question,
   color,
   submitGuess,
+  isReadOnly = false,
 }) => {
   const [guess, setGuess] = useState("");
   const [guess2, setGuess2] = useState("");
@@ -118,6 +120,7 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
       <div className="flex flex-row flex-wrap gap-2 justify-center mt-4 text-md">
         There {isOrAre(groups.map((it) => it).length)}
         <EqualGroupsInput
+          disabled={isReadOnly}
           autofocus={true}
           guess={guess}
           setGuess={setGuess}
@@ -125,20 +128,21 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
         />
         {singularPlural(groups.map((it) => it).length)} of
         <EqualGroupsInput
+          disabled={isReadOnly}
           autofocus={false}
           guess={guess2}
           setGuess={setGuess2}
           handleKeypress={handleKeypress}
         />
       </div>
-      <div className="text-sm mt-4">
+      {!isReadOnly && <div className="text-sm mt-4">
         <Button
           onClick={onSubmit}
           label="Submit"
           backgroundColor="blue"
           textColor="white"
         />
-      </div>
+      </div>}
     </div>
   );
 };

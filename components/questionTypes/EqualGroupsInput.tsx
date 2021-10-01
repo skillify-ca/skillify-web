@@ -5,6 +5,7 @@ export interface EqualGroupsInputProps {
   autofocus: boolean;
   setGuess: (string) => void;
   handleKeypress?: (e) => void;
+  disabled?: boolean;
 }
 
 /**
@@ -15,10 +16,12 @@ export const EqualGroupsInput: React.FC<EqualGroupsInputProps> = ({
   autofocus,
   setGuess,
   handleKeypress,
+  disabled = false,
 }) => {
   return (
     <input
       autoFocus={autofocus}
+      disabled={disabled}
       id="guess"
       type="number"
       value={guess}

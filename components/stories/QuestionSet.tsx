@@ -34,6 +34,7 @@ import Card from "../ui/Card";
 type QuestionSetProps = {
   title?: string;
   HUDEnabled?: boolean;
+  isReadOnly?: boolean;
   questionData: Question[];
   index: number;
   inputElement?: any;
@@ -44,16 +45,19 @@ type QuestionSetProps = {
 const QuestionSet = ({
   title,
   HUDEnabled = true,
+  isReadOnly = false,
   questionData,
   index,
   submitGuess,
   score,
   diagnostic,
 }: QuestionSetProps) => {
+  const arrayQuestionColour = getRndColour();
   const questionComponent = () => {
     if (questionData[index].questionType === QuestionType.VERTICAL_EQUATION) {
       return (
         <VerticalEquation
+          isReadOnly={isReadOnly}
           question={questionData[index]}
           submitGuess={submitGuess}
         />
@@ -173,6 +177,7 @@ const QuestionSet = ({
       if (questionData[index].operator == "+") {
         return (
           <WordProblemAdd
+            isReadOnly={isReadOnly}
             question={questionData[index]}
             submitGuess={submitGuess}
           />
@@ -180,6 +185,7 @@ const QuestionSet = ({
       } else if (questionData[index].operator == "-") {
         return (
           <WordProblemSub
+            isReadOnly={isReadOnly}
             question={questionData[index]}
             submitGuess={submitGuess}
           />
@@ -187,6 +193,7 @@ const QuestionSet = ({
       } else if (questionData[index].operator == "x") {
         return (
           <WordProblemMulti
+            isReadOnly={isReadOnly}
             question={questionData[index]}
             submitGuess={submitGuess}
           />
@@ -194,6 +201,7 @@ const QuestionSet = ({
       } else if (questionData[index].operator == "÷") {
         return (
           <WordProblemDiv
+            isReadOnly={isReadOnly}
             question={questionData[index]}
             submitGuess={submitGuess}
           />
@@ -235,6 +243,7 @@ const QuestionSet = ({
             skill === Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT ||
             skill === Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT
           }
+          isReadOnly={isReadOnly}
         />
       );
     } else if (
@@ -243,9 +252,10 @@ const QuestionSet = ({
       {
         return (
           <MultiplicationArray
+            isReadOnly={isReadOnly}
             question={questionData[index]}
             submitGuess={submitGuess}
-            colour={getRndColour()}
+            colour={arrayQuestionColour}
           />
         );
       }
@@ -256,6 +266,7 @@ const QuestionSet = ({
       {
         return (
           <MultiplicationEqualGroups
+            isReadOnly={isReadOnly}
             question={questionData[index]}
             submitGuess={submitGuess}
             color={getRandomItemFromArray([0, 1, 2, 3])}
@@ -265,6 +276,7 @@ const QuestionSet = ({
     }
     return (
       <HorizontalEquation
+        isReadOnly={isReadOnly}
         question={questionData[index]}
         submitGuess={submitGuess}
       />
