@@ -7,15 +7,15 @@ import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { diagnosticSelector } from "../../../redux/diagnosticSlice";
 import { FETCH_DIAGNOSTIC_DESCRIPTION_ON_UNIT } from "../../../graphql/fetchDiagnosticDescriptionsOnUnit";
 
-// export type FetchDescriptionOnUnit = {
-//   diagnostics: DiagnosticData[];
-// };
+export type FetchDescriptionOnUnit = {
+  diagnostics: DiagnosticData[];
+};
 
-// export type DiagnosticData = {
-//   description: string;
-//   grade: number;
-//   id: number;
-// };
+export type DiagnosticData = {
+  description: string;
+  grade: number;
+  id: number;
+};
 const DiagnosticEvidencePage = ({ slug, data }) => {
   const diagnosticResults = useSelector(diagnosticSelector);
 
