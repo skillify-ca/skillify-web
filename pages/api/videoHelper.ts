@@ -1,6 +1,4 @@
-import { Skill, Topic } from "./skill";
-
-type ResourceMetadata = {
+export type ResourceMetadata = {
   link: string;
   videoId: string;
 };

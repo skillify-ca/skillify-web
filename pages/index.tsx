@@ -2,6 +2,7 @@ import React from "react";
 import LandingPagev2 from "../components/stories/LandingPagev2";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import Head from "next/head";
 
 const navigation = [
   { name: "For Educators", href: "/resources" },
@@ -11,6 +12,9 @@ const navigation = [
 const HomePage = () => {
   return (
     <div>
+      <Head>
+        <title>Math Champ</title>
+      </Head>
       <div className="relative bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">

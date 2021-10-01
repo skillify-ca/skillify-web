@@ -1,10 +1,14 @@
 import { getSession, useSession } from "next-auth/react";
+import Head from "next/head";
 import React from "react";
 import ProfileComponent from "../components/ProfileComponent";
 
 const Profile = () => {
   return (
     <div>
+      <Head>
+        <title>Profile</title>
+      </Head>
       <ProfileComponent />
     </div>
   );

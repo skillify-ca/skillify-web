@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "../redux/store";
-import { getSkillFromId, getSkillId, Grade, Skill, Topic } from "./api/skill";
+import { getSkillFromId, getSkillId, Skill } from "./api/skill";
 import AssignmentCreationForm, {
   QuestionCount,
-  QuestionTypeForSkill,
 } from "../components/assignment-creator/assignmentCreationForm";
 import Navbar from "../components/Navbar";
 import { Question } from "./api/question";

@@ -26,6 +26,7 @@ import Q13 from "../components/giza/Q13";
 import Q14 from "../components/giza/Q14";
 import Q15 from "../components/giza/Q15";
 import Q16 from "../components/giza/Q16";
+import MiddleOfQuiz from "../components/giza/MiddleOfQuiz";
 
 enum Stage {
   START,
@@ -49,6 +50,7 @@ export default function djacobs(props) {
     "A triangle has 2 angles that are 50 degrees. Is it possible for the last angle to be obtuse?",
     "Which of the following letters has a right- angle in it?",
     "Use your protractor for this question! Which of the following are the interior angles of this pyramid?",
+    "Your group has found a secret tunnel! Put on your thinking caps, the questions are getting harder!",
     "How would you classify this triangle?",
     "In the space provided, write a secret password (using UPPER CASE LETTERS* and NO spaces) using the triangle colours in the photo. Here is your clue: isosceles, scalene, right, equilateral, scalene.",
     "You're almost at the end of the tunnel! In the space provided, determine the secret password using the triangles provided (use UPPER CASE LETTERS and no spaces) Here is the clue: right- isosceles, small equilateral, large equilateral, obtuse- scalene.",
@@ -104,12 +106,18 @@ export default function djacobs(props) {
       setScore(
         Math.round(
           (guesses.filter((guess) => guess.isCorrect == true).length /
-            questionData.length) *
+            (questionData.length - 1)) *
             100
         )
       );
       setStage(Stage.END);
     }
+  };
+
+  const nextQuestionfromMiddle = () => {
+    setCurrentQuestionIndex(
+      Math.min(questionData.length - 1, currentQuestionIndex + 1)
+    );
   };
 
   // End of Quiz: YOU MADE IT OUT! Head back to main session to collect your prize!
@@ -120,16 +128,17 @@ export default function djacobs(props) {
     Q4(questionData[3], nextQuestion),
     Q5(questionData[4], nextQuestion),
     Q6(questionData[5], nextQuestion),
-    Q7(questionData[6], nextQuestion),
-    Q8(questionData[7], nextQuestion),
-    Q9(questionData[8], nextQuestion),
-    Q10(questionData[9], nextQuestion),
-    Q11(questionData[10], nextQuestion),
-    Q12(questionData[11], nextQuestion),
-    Q13(questionData[12], nextQuestion),
-    Q14(questionData[13], nextQuestion),
-    Q15(questionData[14], nextQuestion),
-    Q16(questionData[15], nextQuestion),
+    MiddleOfQuiz(questionData[6], nextQuestionfromMiddle),
+    Q7(questionData[7], nextQuestion),
+    Q8(questionData[8], nextQuestion),
+    Q9(questionData[9], nextQuestion),
+    Q10(questionData[10], nextQuestion),
+    Q11(questionData[11], nextQuestion),
+    Q12(questionData[12], nextQuestion),
+    Q13(questionData[13], nextQuestion),
+    Q14(questionData[14], nextQuestion),
+    Q15(questionData[15], nextQuestion),
+    Q16(questionData[16], nextQuestion),
   ];
 
   return (
@@ -138,8 +147,15 @@ export default function djacobs(props) {
       <div id="Form">
         {stage == Stage.START && (
           <div className="flex flex-col gap-8">
-            <p className="text-2xl text-center bg-blue-400">Giza Form</p>
+            <p className="text-2xl text-center bg-blue-400">Escape From Giza</p>
             <div className="flex flex-col items-center col gap-8">
+              <div id="Description" className="text-center">
+                <p className="text-base">
+                  You and your group are trapped in a pyramid. Together you must
+                  solve a variety of questions about angles, triangles, and some
+                  quadrilaterals to help you escape. GOOD LUCK!
+                </p>
+              </div>
               <div id="GroupNameLayout">
                 <div className="flex flex-row gap-8 text-center">
                   <div className="text-center">
