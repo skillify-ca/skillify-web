@@ -10,7 +10,7 @@ import {
 type State = {
   diagnostic: DiagnosticState;
   studentProfile: StudentProfileState;
-  bakersBRack: BakersRackBState;
+  bakersRackB: BakersRackBState;
 
 };
 const diagnosticReducer: Reducer = diagnosticSlice.reducer;

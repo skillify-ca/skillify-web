@@ -217,30 +217,7 @@ export const bakersRackBSlice: Slice = createSlice({
     }
 })
 
-export const {setPiePlusBread} = bakersRackBSlice.actions;
-export const {setPiePlusBreadNum} = bakersRackBSlice.actions;
-export const {setPiePlusBreadDen} = bakersRackBSlice.actions;
-export const {setCupPlusCook} = bakersRackBSlice.actions;
-export const {setCupPlusCookNum} = bakersRackBSlice.actions;
-export const {setCupPlusCookDen} = bakersRackBSlice.actions;
-export const {setBrowPlusCake}= bakersRackBSlice.actions;
-export const {setBrowPlusCakeNum}= bakersRackBSlice.actions;
-export const {setBrowPlusCakeDen} = bakersRackBSlice.actions;
-export const {setPiePlusCook} = bakersRackBSlice.actions;
-export const {setPiePlusCookNum} =bakersRackBSlice.actions;
-export const {setPiePlusCookDen} = bakersRackBSlice.actions;
-export const {setCookMinCake} = bakersRackBSlice.actions;
-export const {setCookMinCakeNum} =bakersRackBSlice.actions;
-export const {setCookMinCakeDen} = bakersRackBSlice.actions;
-export const {setBrowMinBread} = bakersRackBSlice.actions;
-export const {setBrowMinBreadNum} =bakersRackBSlice.actions;
-export const {setBrowMinBreadDen} = bakersRackBSlice.actions;
-export const {setCupMinPie} = bakersRackBSlice.actions;
-export const {setCupMinPieNum} =bakersRackBSlice.actions;
-export const {setCupMinPieDen} = bakersRackBSlice.actions;
-export const {setBreadMinCake} = bakersRackBSlice.actions;
-export const {setBreadMinCakeNum} =bakersRackBSlice.actions;
-export const {setBreadMinCakeDen} = bakersRackBSlice.actions;
+export const {setPiePlusBread,setPiePlusBreadNum,setPiePlusBreadDen,setCupPlusCook,setCupPlusCookNum,setCupPlusCookDen,setBrowPlusCake,setBrowPlusCakeNum,setBrowPlusCakeDen,setPiePlusCook,setPiePlusCookNum,setPiePlusCookDen,setCookMinCake,setCookMinCakeNum,setCookMinCakeDen,setBrowMinBread,setBrowMinBreadNum,setBrowMinBreadDen,setCupMinPie,setCupMinPieNum,setCupMinPieDen,setBreadMinCake,setBreadMinCakeNum,setBreadMinCakeDen} = bakersRackBSlice.actions;
 
-export const bakersRackBSelector = (state:RootState) => state.bakersBRack;
+export const bakersRackBSelector = (state:RootState) => state.bakersRackB;
  
