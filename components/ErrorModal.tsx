@@ -1,11 +1,11 @@
 import React from "react";
 import { Button } from "./ui/Button";
 
-export interface AssignmentModalProps {
+export interface ErrorModalProps {
   errorMessage: string;
 }
 
-export const AssignmentModal = ({ errorMessage }: AssignmentModalProps) => {
+export const ErrorModal = ({ errorMessage }: ErrorModalProps) => {
   return (
     <div className="flex-nowrap  h-1/3 w-1/3 shadow-lg rounded-xl bg-gray-50">
       <div className="flex justify-center">
