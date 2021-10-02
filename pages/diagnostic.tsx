@@ -158,18 +158,18 @@ const Diagnostic = () => {
       if (getGradeRange() == "Junior") {
         setCurrentJuniorQuestion(currentJuniorQuestion + 1)
 
-        // if (shouldMoveToNextTopic()) {
-        //   setJuniorDiagnosticQuestions(getFourthGradeQuestion())
-        //   setGradeLevel(0)
-        // } else if (guessData.isCorrect) {
-        //   const newGradeLevel = gradeLevel + 1 // because they got it right move them up a grade
-        //   const newQuestions = getGradeList(newGradeLevel) // get questions for new grade level
-        //   setJuniorDiagnosticQuestions(newQuestions) // set new questions
-        //   setGradeLevel(newGradeLevel)
-        // } else if (!guessData.isCorrect && juniorDiagnosticQuestions == getFifthGradeQuestion()) {
-        //   setJuniorDiagnosticQuestions(getFourthGradeQuestion())
-        //   setGradeLevel(0)
-        // }
+        if (shouldMoveToNextTopic()) {
+          setJuniorDiagnosticQuestions(getFourthGradeQuestion())
+          setGradeLevel(0)
+        } else if (guessData.isCorrect) {
+          const newGradeLevel = gradeLevel + 1 // because they got it right move them up a grade
+          const newQuestions = getGradeList(newGradeLevel) // get questions for new grade level
+          setJuniorDiagnosticQuestions(newQuestions) // set new questions
+          setGradeLevel(newGradeLevel)
+        } else if (!guessData.isCorrect && juniorDiagnosticQuestions == getFifthGradeQuestion()) {
+          setJuniorDiagnosticQuestions(getFourthGradeQuestion())
+          setGradeLevel(0)
+        }
 
       } else {
         // Primary grades questions
@@ -217,7 +217,7 @@ const Diagnostic = () => {
   };
 
   useEffect(() => {
-    setJuniorDiagnosticQuestions(getFifthGradeQuestion())
+    setJuniorDiagnosticQuestions(getFourthGradeQuestion())
   }, []);
 
   useEffect(() => {
