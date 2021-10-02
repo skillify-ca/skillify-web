@@ -1,4 +1,5 @@
 import React from "react";
+import { SKILLS } from "../../graphql/utils/constants";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
 import { QuestionType } from "../../pages/api/questionTypes";
@@ -241,7 +242,8 @@ const QuestionSet = ({
           isRemainder={
             skill === Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT ||
             skill === Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT ||
-            skill === Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT
+            skill === Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT ||
+            skill === Skill.DIVISION_THREE_DIGIT_BY_TENTH
           }
           isReadOnly={isReadOnly}
         />
@@ -287,9 +289,8 @@ const QuestionSet = ({
     <div className="flex justify-center items-center gap-4">
       <Card size="large">
         <div
-          className={`transition-opacity duration-150 ease-in-out opacity-${
-            diagnostic?.isDiagnostic && diagnostic.opacityVal
-          }`}
+          className={`transition-opacity duration-150 ease-in-out opacity-${diagnostic?.isDiagnostic && diagnostic.opacityVal
+            }`}
         >
           {questionData[index] && questionComponent()}
         </div>

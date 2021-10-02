@@ -35,6 +35,8 @@ export const generateQuestionForSkill = (
       return getRandomPropertyAdditionQuestion(1, 15, skill);
     case Skill.ADDITION_5_DIGIT:
       return getRandomAdditionQuestion(10000, 100001, skill, questionType);
+    case Skill.ADDITION_6_DIGIT:
+      return getRandomAdditionQuestion(100000, 1000001, skill, questionType);
     case Skill.ADDITION_HUNDREDTHS:
       return getRandomAdditionQuestion(0.01, 0.99, skill, questionType);
     case Skill.SUBTRACTION_SINGLE:
@@ -49,6 +51,8 @@ export const generateQuestionForSkill = (
       return getRandomSubtractionQuestion(0.1, 0.9, skill, questionType);
     case Skill.SUBTRACTION_5_DIGIT:
       return getRandomSubtractionQuestion(10000, 100001, skill, questionType);
+    case Skill.SUBTRACTION_6_DIGIT:
+      return getRandomSubtractionQuestion(100000, 1000001, skill, questionType);
     case Skill.SUBTRACTION_HUNDREDTHS:
       return getRandomSubtractionQuestion(0.01, 0.99, skill, questionType);
     case Skill.EQUAL_GROUP_10_ITEMS:
@@ -69,6 +73,8 @@ export const generateQuestionForSkill = (
       return getRandomMultiplicationQuestion(10, 100, skill, questionType);
     case Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT:
       return getRandomMultiplicationQuestion(100, 1000, skill, questionType);
+    case Skill.MULTIPLY_THREE_DIGIT_BY_TENTH:
+      return getRandomMultiplicationQuestion(100, 1000, skill, questionType)
     case Skill.EQUAL_SHARING_8_ITEMS:
       return getRandomDivisionQuestion(1, 5, skill, questionType);
     case Skill.DIVIDE_12_EQUALLY:
@@ -82,6 +88,8 @@ export const generateQuestionForSkill = (
       return getRandomDivisionQuestion(100, 1000, skill, questionType);
     case Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT:
       return getRandomDivisionQuestion(100, 1000, skill, questionType);
+    case Skill.DIVISION_THREE_DIGIT_BY_TENTH:
+      return getRandomDivisionQuestion(100, 1000, skill, questionType)
   }
 };
 
@@ -132,13 +140,11 @@ export function getRandomNumbersQuestion(
 
     text = `Count ${displayPattern} by ${patternNum} from ${startNum}`;
     if (displayPattern == "FORWARDS") {
-      answer = `${startNum},${startNum + patternNum},${
-        startNum + patternNum * 2
-      },${startNum + patternNum * 3}`;
+      answer = `${startNum},${startNum + patternNum},${startNum + patternNum * 2
+        },${startNum + patternNum * 3}`;
     } else {
-      answer = `${startNum},${startNum - patternNum},${
-        startNum - patternNum * 2
-      },${startNum - patternNum * 3}`;
+      answer = `${startNum},${startNum - patternNum},${startNum - patternNum * 2
+        },${startNum - patternNum * 3}`;
     }
   } else if (type == QuestionType.WORD_TO_HORIZONTAL_DIGITS) {
     if (skill == Skill.NUMBERS_200) {
@@ -592,9 +598,8 @@ export function getBinaryQuestion(
         while (randomDisplacement == 0) {
           randomDisplacement = randomize(-2, 3);
         }
-        text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${
-          answerFunction(Math.max(a, b), Math.min(a, b)) + randomDisplacement
-        }`;
+        text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${answerFunction(Math.max(a, b), Math.min(a, b)) + randomDisplacement
+          }`;
         trueFalseAnswer = "false";
         break;
     }

@@ -11,6 +11,13 @@ export const getFourthGradeQuestion = () => {
         Skill.SUBTRACTION_4_DIGIT,
         Skill.SUBTRACTION_4_DIGIT,
         Skill.SUBTRACTION_4_DIGIT,
+        Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT,
+        Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT,
+        Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT,
+        Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT,
+        Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT,
+        Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT
+
     ]
 
     const fourthGradeQuestions = fourthGradeSkills.map((skill) => (generateQuestionForSkill(skill)))
@@ -27,7 +34,14 @@ export const getFifthGradeQuestion = () => {
         Skill.ADDITION_5_DIGIT,
         Skill.SUBTRACTION_5_DIGIT,
         Skill.SUBTRACTION_5_DIGIT,
-        Skill.SUBTRACTION_5_DIGIT
+        Skill.SUBTRACTION_5_DIGIT,
+        Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT,
+        Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT,
+        Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT,
+        Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT,
+        Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT,
+        Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT
+
     ]
 
     const fifthGradeQuestions = fifthGradeSkills.map((skill) => (generateQuestionForSkill(skill)))
@@ -38,12 +52,19 @@ export const getFifthGradeQuestion = () => {
 export const getSixthGradeQuestion = () => {
 
     const sixthGradeSkills = [
-        Skill.ADDITION_PROPERTIES,
-        Skill.ADDITION_PROPERTIES,
-        Skill.ADDITION_PROPERTIES,
+        Skill.ADDITION_6_DIGIT,
+        Skill.ADDITION_6_DIGIT,
+        Skill.ADDITION_6_DIGIT,
         Skill.SUBTRACTION_6_DIGIT,
         Skill.SUBTRACTION_6_DIGIT,
-        Skill.SUBTRACTION_6_DIGIT
+        Skill.SUBTRACTION_6_DIGIT,
+        Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT,
+        Skill.MULTIPLY_THREE_DIGIT_BY_TENTH,
+        Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT,
+        Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT,
+        Skill.DIVISION_THREE_DIGIT_BY_TENTH,
+        Skill.DIVISION_THREE_DIGIT_BY_TENTH
+
     ]
 
     const sixthGradeQuestions = sixthGradeSkills.map((skill) => (generateQuestionForSkill(skill)))
