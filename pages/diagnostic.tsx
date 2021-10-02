@@ -160,7 +160,7 @@ const Diagnostic = () => {
 
       if (getGradeRange() == "Junior") {
         setCurrentJuniorQuestion(currentJuniorQuestion + 1);
-
+        setGradeLevel(Grade.GRADE_4)
         if (shouldMoveToNextUnit()) {
           setJuniorDiagnosticQuestions(getFourthGradeQuestion())
         } else if (guessData.isCorrect) {
@@ -175,6 +175,7 @@ const Diagnostic = () => {
           }
         } else if (!guessData.isCorrect && juniorDiagnosticQuestions == getFifthGradeQuestion()) {
           setJuniorDiagnosticQuestions(getFourthGradeQuestion())
+          setGradeLevel(Grade.GRADE_4)
         }
       } else {
         // Primary grades questions
