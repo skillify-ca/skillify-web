@@ -3,7 +3,7 @@ import { generateQuestionForSkill } from "./questionGenerator";
 import { QuestionType } from "./questionTypes";
 import { getRndInteger } from "./random";
 
-export enum Topic {
+export enum Unit {
   NUMBERS = "numbers",
   ADDITION = "addition",
   SUBTRACTION = "subtraction",
@@ -21,9 +21,9 @@ export enum Grade {
   GRADE_6 = "Grade 6",
 }
 
-export const getSkillsForTopic = (topic: Topic): Skill[] => {
-  switch (topic) {
-    case Topic.ADDITION:
+export const getSkillsForUnit = (unit: Unit): Skill[] => {
+  switch (unit) {
+    case Unit.ADDITION:
       return [
         Skill.ADDITION_SINGLE,
         Skill.ADDITION_DOUBLE,
@@ -34,7 +34,7 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
         Skill.ADDITION_HUNDREDTHS,
         Skill.ADDITION_6_DIGIT
       ];
-    case Topic.SUBTRACTION:
+    case Unit.SUBTRACTION:
       return [
         Skill.SUBTRACTION_SINGLE,
         Skill.SUBTRACTION_DOUBLE,
@@ -45,7 +45,7 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
         Skill.SUBTRACTION_HUNDREDTHS,
         Skill.SUBTRACTION_6_DIGIT
       ];
-    case Topic.MULTIPLICATION:
+    case Unit.MULTIPLICATION:
       return [
         Skill.EQUAL_GROUP_10_ITEMS,
         Skill.MULTIPLICATION_5,
@@ -58,7 +58,7 @@ export const getSkillsForTopic = (topic: Topic): Skill[] => {
         Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT,
         Skill.MULTIPLY_THREE_DIGIT_BY_TENTH
       ];
-    case Topic.DIVISION:
+    case Unit.DIVISION:
       return [
         Skill.EQUAL_SHARING_8_ITEMS,
         Skill.DIVIDE_12_EQUALLY,
@@ -241,79 +241,6 @@ export const getSkillFromId = (skillId: number) => {
     case 66:
       return Skill.DIVISION_THREE_DIGIT_BY_TENTH;
   }
-};
-
-// TODO changes these to numerical skill ids
-export const getSkillsForTopicGrade = (
-  topic: Topic,
-  grade: Grade
-): number[] => {
-  if (topic == Topic.NUMBERS) {
-    if (grade == Grade.GRADE_1) {
-      return [53];
-    } else if (grade == Grade.GRADE_2) {
-      return [54];
-    } else {
-      return [55];
-    }
-  } else if (topic == Topic.ADDITION) {
-    if (grade == Grade.GRADE_1) {
-      return [1];
-    } else if (grade == Grade.GRADE_2) {
-      return [2];
-    } else if (grade == Grade.GRADE_3) {
-      return [3, 4];
-    } else if (grade == Grade.GRADE_4) {
-      return [43, 44];
-    } else if (grade == Grade.GRADE_5) {
-      return [56, 57];
-    } else {
-      return [63];
-    }
-  } else if (topic == Topic.SUBTRACTION) {
-    if (grade == Grade.GRADE_1) {
-      return [34];
-    } else if (grade == Grade.GRADE_2) {
-      return [35];
-    } else if (grade == Grade.GRADE_3) {
-      return [36];
-    } else if (grade == Grade.GRADE_4) {
-      return [45, 46];
-    } else if (grade == Grade.GRADE_5) {
-      return [58, 59];
-    } else {
-      return [64];
-    }
-  } else if (topic == Topic.MULTIPLICATION) {
-    if (grade == Grade.GRADE_1) {
-      return [37];
-    } else if (grade == Grade.GRADE_2) {
-      return [38];
-    } else if (grade == Grade.GRADE_3) {
-      return [39];
-    } else if (grade == Grade.GRADE_4) {
-      return [51, 52, 47, 48];
-    } else if (grade == Grade.GRADE_5) {
-      return [60, 61];
-    } else {
-      return [65];
-    }
-  } else if (topic == Topic.DIVISION) {
-    if (grade == Grade.GRADE_1) {
-      return [40];
-    } else if (grade == Grade.GRADE_2) {
-      return [41];
-    } else if (grade == Grade.GRADE_3) {
-      return [42];
-    } else if (grade == Grade.GRADE_4) {
-      return [49, 50];
-    } else if (grade == Grade.GRADE_5) {
-      return [62];
-    } else {
-      return [66];
-    }
-  }
-  return [];
 };
 
 export enum Skill {

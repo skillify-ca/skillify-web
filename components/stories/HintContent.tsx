@@ -1,6 +1,6 @@
 import { Skill } from "../../pages/api/skill";
 
-export const getHintForTopic = (skill: Skill) => {
+export const getHintForUnit = (skill: Skill) => {
   let hintTag;
   switch (skill) {
     case Skill.ADDITION_SINGLE:
@@ -565,7 +565,7 @@ export const getHintForTopic = (skill: Skill) => {
       break;
 
     default: {
-      <p>Alternative Topic</p>;
+      <p>Alternative Unit</p>;
       break;
     }
   }

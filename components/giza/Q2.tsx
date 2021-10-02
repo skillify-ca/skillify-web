@@ -27,23 +27,31 @@ const Q2 = (displayQuestion, nextQuestion) => {
 
   return (
     <React.Fragment>
-      <p className="text-2xl text-center">{displayQuestion}</p>
-      <div className="text-center">
-        <label>Final Answer</label>
-        <input
-          className="p-4 text-lg"
-          placeholder="Any degree"
-          value={guessString}
-          onChange={(e) => onGuessChanged(e.target.value)}
-        />
-      </div>
-      <div className="flex flex-col items-center">
-        <Button
-          label="Submit"
-          backgroundColor="blue"
-          textColor="white"
-          onClick={onSubmit}
-        />
+      <div className="flex flex-col gap-8 items-center">
+        <p className="text-2xl text-center">{displayQuestion}</p>
+        <div id="quizImage">
+          <img
+            className="animate-fadeIn"
+            src="/images/giza/MathQuestionImage11.png"
+          ></img>
+        </div>
+        <div className="text-center">
+          <label>Final Answer</label>
+          <input
+            className="p-4 text-lg"
+            placeholder="Any degree"
+            value={guessString}
+            onChange={(e) => onGuessChanged(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col items-center">
+          <Button
+            label="Submit"
+            backgroundColor="blue"
+            textColor="white"
+            onClick={onSubmit}
+          />
+        </div>
       </div>
     </React.Fragment>
   );
