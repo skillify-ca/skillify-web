@@ -521,7 +521,7 @@ function getRandomBinaryQuestion(
     QuestionType.MULTIPLE_CHOICE,
   ];
 
-  //Temporarily Disables True and False, MC, and Word Problems for Grade 4 and above for Add and Subtract topics
+  //Temporarily Disables True and False, MC, and Word Problems for Grade 4 and above for Add and Subtract units
   //TODO Redesign the logic for MC Question generator and T or F Questions
   if (
     skill == Skill.ADDITION_TENTHS ||

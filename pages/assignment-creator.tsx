@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "../redux/store";
-import { getSkillFromId, getSkillId, Grade, Skill, Topic } from "./api/skill";
+import { getSkillFromId, getSkillId, Skill } from "./api/skill";
 import AssignmentCreationForm, {
   QuestionCount,
-  QuestionTypeForSkill,
 } from "../components/assignment-creator/assignmentCreationForm";
 import Navbar from "../components/Navbar";
 import { Question } from "./api/question";
@@ -13,7 +12,7 @@ import { CREATE_ASSIGNMENT } from "../graphql/createAssignment";
 import DisplayAssignmentQuestions from "../components/assignment-creator/displayAssignmentQuestions";
 import { QuestionType } from "./api/questionTypes";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import { FETCH_SKILL_DESCRIPTION_AND_GRADE } from "../graphql/fetchSkillDescriptionAndGrade";
+import { FETCH_SKILL_DESCRIPTION_GRADE_AND_UNIT } from "../graphql/fetchSkillDescriptionAndGrade";
 
 enum STAGE {
   CHOOSE_SKILLS,
@@ -29,6 +28,7 @@ export type SkillData = {
   grade: number;
   id: number;
   description: string;
+  unit: string;
 };
 
 const AssignmentCreator = (data: FetchDescriptionAndSkillData) => {
@@ -130,7 +130,7 @@ export async function getServerSideProps() {
   });
 
   const { data } = await client.query({
-    query: FETCH_SKILL_DESCRIPTION_AND_GRADE,
+    query: FETCH_SKILL_DESCRIPTION_GRADE_AND_UNIT,
   });
 
   if (!data) {

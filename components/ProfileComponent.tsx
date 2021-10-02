@@ -112,7 +112,7 @@ const ProfileComponent = () => {
             </div>
           )}
           {stage == Stage.SKILLS && (
-            <div className="grid grid-cols-3 gap-8 p-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 p-8">
               {data &&
                 data.user_skills.map((skill) => (
                   <div className="flex gap-8 bg-white rounded-xl shadow-xl p-12 justify-center items-center">

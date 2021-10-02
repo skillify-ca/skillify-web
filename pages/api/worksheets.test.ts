@@ -54,7 +54,7 @@ test("If a student answers some questions correctly and some incorrectly they sh
     guesses: ["2", "3"],
     email: "test@gmail.com",
     grade: "Grade 2",
-    name: "Vijaykumar"
+    name: "Vijaykumar",
   };
 
   // Act
@@ -96,12 +96,17 @@ test("When student incorrectly guess all questions then they should recieve 4 wo
 
   // Arrange
   const state: DiagnosticState = {
-    questions: [dummyDivisionQuestion, dummyMultiplicationQuestion, dummyAdditionQuestion,dummySubtractionQuestion ],
+    questions: [
+      dummyDivisionQuestion,
+      dummyMultiplicationQuestion,
+      dummyAdditionQuestion,
+      dummySubtractionQuestion,
+    ],
     guessAns: ["Incorrect", "Incorrect", "Incorrect", "Incorrect"],
-    guesses: ["1", "3","5", "7"],
+    guesses: ["1", "3", "5", "7"],
     email: "test@gmail.com",
     grade: "Grade 2",
-    name: "Vijaykumar"
+    name: "Vijaykumar",
   };
 
   // Act
@@ -114,7 +119,7 @@ test("When student incorrectly guess all questions then they should recieve 4 wo
   expect(worksheets[2].title).toBe("Addition 3-digits Worksheet");
   expect(worksheets[3].title).toBe("Subtraction 1-digit Worksheet");
 });
-test("when student correctly guess all questions then they should still recieve 3 worksheets for grade 4 topics", async () => {
+test("when student correctly guess all questions then they should still recieve 3 worksheets for grade 4 units", async () => {
   const dummyDivisionQuestion = {
     text: "4/2=",
     answer: "2",
@@ -146,12 +151,17 @@ test("when student correctly guess all questions then they should still recieve 
 
   // Arrange
   const state: DiagnosticState = {
-    questions: [dummyDivisionQuestion, dummyMultiplicationQuestion, dummyAdditionQuestion,dummySubtractionQuestion ],
+    questions: [
+      dummyDivisionQuestion,
+      dummyMultiplicationQuestion,
+      dummyAdditionQuestion,
+      dummySubtractionQuestion,
+    ],
     guessAns: ["Correct", "Correct", "Correct", "Correct"],
-    guesses: ["2", "8","200", "2"],
+    guesses: ["2", "8", "200", "2"],
     email: "test@gmail.com",
     grade: "Grade 2",
-    name: "Vijaykumar"
+    name: "Vijaykumar",
   };
 
   // Act

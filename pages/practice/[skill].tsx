@@ -247,54 +247,56 @@ const PracticeQuiz = ({ skill }) => {
           >
             <div className={"justify-items-center align-middle w-50"}>
               <Card size="large">
-                {correctAnswer ? (
-                  <p className="font-bold text-gray-400 text-xl">
-                    Correct,
-                    <span className="font-bold text-green-400">
-                      {" " + guessAttempt + " "}
-                    </span>
-                    was the answer!
-                  </p>
-                ) : wrongAnswer ? (
-                  <div className="italic text-gray-400 font-bold space-y-8">
-                    <span>The correct answer was </span>
-                    <span className="font-bold text-green-400">
-                      {questionData[index].answer.toString()}&nbsp;
-                    </span>
-                    <br></br>
+                <div className="flex flex-col justify-around h-full">
+                  {correctAnswer ? (
+                    <p className="font-bold text-gray-400 text-xl">
+                      Correct,
+                      <span className="font-bold text-green-400">
+                        {" " + guessAttempt + " "}
+                      </span>
+                      was the answer!
+                    </p>
+                  ) : wrongAnswer ? (
+                    <div className="text-lg text-gray-400 font-bold space-y-8">
+                      <span>The correct answer was </span>
+                      <span className="font-bold text-green-400">
+                        {questionData[index].answer.toString()}&nbsp;
+                      </span>
+                      <br></br>
 
-                    <span>
-                      {guessAttempt != "" ? (
-                        <span>
-                          <span>Your answer was </span>
-                          <span className="font-bold text-red-500">
-                            {guessAttempt}
+                      <span>
+                        {guessAttempt != "" ? (
+                          <span>
+                            <span>Your answer was </span>
+                            <span className="font-bold text-red-500">
+                              {guessAttempt}
+                            </span>
                           </span>
-                        </span>
-                      ) : (
-                        <span className="font-bold">
-                          Don't forget to answer next time!
-                        </span>
-                      )}
-                    </span>
-                  </div>
-                ) : (
-                  ""
-                )}
-                {nextQuestionButton && (
-                  <Button
-                    label="Next Question"
-                    backgroundColor="yellow"
-                    onClick={applyNextQuestion}
-                  ></Button>
-                )}
-                {continueButton && (
-                  <Button
-                    label="Continue"
-                    backgroundColor="green"
-                    onClick={reviewPage}
-                  ></Button>
-                )}
+                        ) : (
+                          <span className="font-bold">
+                            Don't forget to answer next time!
+                          </span>
+                        )}
+                      </span>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  {nextQuestionButton && (
+                    <Button
+                      label="Next Question"
+                      backgroundColor="yellow"
+                      onClick={applyNextQuestion}
+                    ></Button>
+                  )}
+                  {continueButton && (
+                    <Button
+                      label="Continue"
+                      backgroundColor="green"
+                      onClick={reviewPage}
+                    ></Button>
+                  )}
+                </div>
               </Card>
             </div>
           </div>

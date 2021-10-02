@@ -3,10 +3,10 @@ import React from "react";
 import { useState } from "react";
 import {
   getCalculatedGrade,
-  getGradeLevelForTopic,
+  getGradeLevelForUnit,
   getSummaryText,
 } from "../../pages/api/diagnostic/diagnosticGrader";
-import { Topic } from "../../pages/api/skill";
+import { Unit } from "../../pages/api/skill";
 import { getWorkSheets } from "../../pages/api/worksheets";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 
@@ -39,8 +39,8 @@ export const DiagnosticConclusion = ({
       second: parts[1],
     };
   };
-  const getBackgroundColorForTopic = (topic: Topic) => {
-    const grade = getGradeLevelForTopic(topic, results);
+  const getBackgroundColorForUnit = (unit: Unit) => {
+    const grade = getGradeLevelForUnit(unit, results);
     let resultGradeLevel = parseInt(parse(grade).second);
     if (grade == "JK/SK") {
       resultGradeLevel = 0;
@@ -88,14 +88,14 @@ export const DiagnosticConclusion = ({
         </p>
       </div>
       <div className="bg-white p-4 rounded-lg shadow-lg">
-        <p className="pb-4">Select a topic to get a detailed breakdown</p>
+        <p className="pb-4">Select a unit to get a detailed breakdown</p>
         <div className="grid grid-cols-2">
-          <p className="p-4 font-bold border-b border-black"> Topic </p>
+          <p className="p-4 font-bold border-b border-black"> Unit </p>
           <p className="p-4 font-bold border-b border-black"> Grade Level </p>
           <Link href="/diagnostic/evidence/addition">
             <p
-              className={`${getBackgroundColorForTopic(
-                Topic.ADDITION
+              className={`${getBackgroundColorForUnit(
+                Unit.ADDITION
               )} p-4 border-b border-black sm:no-underline underline hover:underline cursor-pointer`}
             >
               Addition
@@ -103,61 +103,61 @@ export const DiagnosticConclusion = ({
           </Link>
           <Link href="/diagnostic/evidence/addition">
             <p
-              className={`${getBackgroundColorForTopic(
-                Topic.ADDITION
+              className={`${getBackgroundColorForUnit(
+                Unit.ADDITION
               )} p-4 border-b border-black`}
             >
-              {getGradeLevelForTopic(Topic.ADDITION, results)}
+              {getGradeLevelForUnit(Unit.ADDITION, results)}
             </p>
           </Link>
           <Link href="/diagnostic/evidence/subtraction">
             <p
-              className={`${getBackgroundColorForTopic(
-                Topic.SUBTRACTION
+              className={`${getBackgroundColorForUnit(
+                Unit.SUBTRACTION
               )} p-4 border-b border-black sm:no-underline underline hover:underline cursor-pointer`}
             >
               Subtraction
             </p>
           </Link>
           <p
-            className={`${getBackgroundColorForTopic(
-              Topic.SUBTRACTION
+            className={`${getBackgroundColorForUnit(
+              Unit.SUBTRACTION
             )} p-4 border-b border-black`}
           >
-            {getGradeLevelForTopic(Topic.SUBTRACTION, results)}
+            {getGradeLevelForUnit(Unit.SUBTRACTION, results)}
           </p>
           <Link href="/diagnostic/evidence/multiplication">
             <p
-              className={`${getBackgroundColorForTopic(
-                Topic.MULTIPLICATION
+              className={`${getBackgroundColorForUnit(
+                Unit.MULTIPLICATION
               )} p-4 border-b border-black sm:no-underline underline hover:underline cursor-pointer`}
             >
               Multiplication
             </p>
           </Link>
           <p
-            className={`${getBackgroundColorForTopic(
-              Topic.MULTIPLICATION
+            className={`${getBackgroundColorForUnit(
+              Unit.MULTIPLICATION
             )} p-4 border-b border-black`}
           >
-            {getGradeLevelForTopic(Topic.MULTIPLICATION, results)}
+            {getGradeLevelForUnit(Unit.MULTIPLICATION, results)}
           </p>
 
           <Link href="/diagnostic/evidence/division">
             <p
-              className={`${getBackgroundColorForTopic(
-                Topic.DIVISION
+              className={`${getBackgroundColorForUnit(
+                Unit.DIVISION
               )} p-4 border-b border-black sm:no-underline underline hover:underline cursor-pointer`}
             >
               Division
             </p>
           </Link>
           <p
-            className={`${getBackgroundColorForTopic(
-              Topic.DIVISION
+            className={`${getBackgroundColorForUnit(
+              Unit.DIVISION
             )} p-4 border-b border-black`}
           >
-            {getGradeLevelForTopic(Topic.DIVISION, results)}
+            {getGradeLevelForUnit(Unit.DIVISION, results)}
           </p>
         </div>
       </div>

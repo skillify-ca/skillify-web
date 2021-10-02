@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import TopicItem from "./stories/TopicItem";
+import UnitItem from "./stories/UnitItem";
 
 export type UnitCardProps = {
   title: string;
@@ -15,18 +15,18 @@ export const UnitCard: React.FC<UnitCardProps> = ({
   image,
   disabled,
 }: UnitCardProps) => {
-  const lockedTopic = (
-    <TopicItem disabled={true} image={image} title={title} rating={0} />
+  const lockedunit = (
+    <UnitItem disabled={true} image={image} title={title} rating={0} />
   );
-  const unlockedTopic = (
+  const unlockedunit = (
     <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
-      <Link href={`topic-overview/${title.toLocaleLowerCase()}`}>
-        <TopicItem disabled={disabled} image={image} title={title} rating={0} />
+      <Link href={`unit-overview/${title.toLocaleLowerCase()}`}>
+        <UnitItem disabled={disabled} image={image} title={title} rating={0} />
       </Link>
     </div>
   );
 
-  return disabled ? lockedTopic : unlockedTopic;
+  return disabled ? lockedunit : unlockedunit;
 };
 
 export default UnitCard;
