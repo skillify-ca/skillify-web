@@ -44,11 +44,9 @@ const Diagnostic = () => {
   const [guesses, setGuesses] = useState<Array<string>>([]);
   const [guessAns, setGuessAns] = useState<Array<string>>([]);
   const [answeredQuestions, setAnsweredQuestions] = useState<Question[]>([]);
-  const [juniorDiagnosticQuestions, setJuniorDiagnosticQuestions] = useState<
-    Question[]
-  >([]);
-  const [currentJuniorQuestion, setCurrentJuniorQuestion] = useState<number>(0);
-  const [gradeLevel, setGradeLevel] = useState<number>(0); // 0 - 4th grade list, 1 - 5th grade list, 2 - 6th grade list
+  const [juniorDiagnosticQuestions, setJuniorDiagnosticQuestions] = useState<Question[]>([]);
+  const [currentJuniorQuestion, setCurrentJuniorQuestion] = useState<number>(0)
+  const [gradeLevel, setGradeLevel] = useState(Grade.GRADE_4) // 0 - 4th grade list, 1 - 5th grade list, 2 - 6th grade list
 
   const getGradeRange: () => string = () => {
     return [Grade.GRADE_1, Grade.GRADE_2, Grade.GRADE_3].includes(grade)
@@ -111,12 +109,13 @@ const Diagnostic = () => {
 
   // looks at gradeLevel and returns questions
   const getGradeList = (gradeLevel) => {
-    if (gradeLevel == 0) {
-      return getFourthGradeQuestion();
-    } else if (gradeLevel == 1) {
-      return getFifthGradeQuestion();
-    } else if (gradeLevel == 2) {
-      return getSixthGradeQuestion();
+
+    if (gradeLevel == Grade.GRADE_4) {
+      return getFourthGradeQuestion()
+    } else if (gradeLevel == Grade.GRADE_5) {
+      return getFifthGradeQuestion()
+    } else if (gradeLevel == Grade.GRADE_6) {
+      return getSixthGradeQuestion()
     }
   };
 
@@ -162,18 +161,20 @@ const Diagnostic = () => {
       if (getGradeRange() == "Junior") {
         setCurrentJuniorQuestion(currentJuniorQuestion + 1);
 
-        if (guessData.isCorrect) {
-          const newGradeLevel = gradeLevel + 1; // because they got it right move them up a grade
-          const newQuestions = getGradeList(newGradeLevel); // get questions for new grade level
-          setJuniorDiagnosticQuestions(newQuestions); // set new questions
-          setGradeLevel(newGradeLevel);
-        } else if (
-          (!guessData.isCorrect &&
-            juniorDiagnosticQuestions == getFifthGradeQuestion()) ||
-          shouldMoveToNextUnit()
-        ) {
-          setJuniorDiagnosticQuestions(getFourthGradeQuestion());
-          setGradeLevel(0);
+        if (shouldMoveToNextUnit()) {
+          setJuniorDiagnosticQuestions(getFourthGradeQuestion())
+        } else if (guessData.isCorrect) {
+          if (gradeLevel == Grade.GRADE_4) {
+            const fifthGradeList = getGradeList(Grade.GRADE_5)
+            setJuniorDiagnosticQuestions(fifthGradeList)
+            setGradeLevel(Grade.GRADE_5)
+          } else if (gradeLevel == Grade.GRADE_5) {
+            const sixthGradeList = getGradeList(Grade.GRADE_6)
+            setJuniorDiagnosticQuestions(sixthGradeList)
+            setGradeLevel(Grade.GRADE_6)
+          }
+        } else if (!guessData.isCorrect && juniorDiagnosticQuestions == getFifthGradeQuestion()) {
+          setJuniorDiagnosticQuestions(getFourthGradeQuestion())
         }
       } else {
         // Primary grades questions
