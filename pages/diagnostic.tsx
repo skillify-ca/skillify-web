@@ -42,7 +42,7 @@ const Diagnostic = () => {
   const [answeredQuestions, setAnsweredQuestions] = useState<Question[]>([]);
   const [juniorDiagnosticQuestions, setJuniorDiagnosticQuestions] = useState<Question[]>([]);
   const [currentJuniorQuestion, setCurrentJuniorQuestion] = useState<number>(0)
-  const [gradeLevel, setGradeLevel] = useState<number>(0) // 0 - 4th grade list, 1 - 5th grade list, 2 - 6th grade list
+  const [gradeLevel, setGradeLevel] = useState(Grade.GRADE_4) // 0 - 4th grade list, 1 - 5th grade list, 2 - 6th grade list
 
   const getGradeRange: () => string = () => {
 
@@ -105,13 +105,16 @@ const Diagnostic = () => {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
+  const juniorGrades = [Grade.GRADE_4, Grade.GRADE_5, Grade.GRADE_6]
+
   // looks at gradeLevel and returns questions
   const getGradeList = (gradeLevel) => {
-    if (gradeLevel == 0) {
+
+    if (gradeLevel == Grade.GRADE_4) {
       return getFourthGradeQuestion()
-    } else if (gradeLevel == 1) {
+    } else if (gradeLevel == Grade.GRADE_5) {
       return getFifthGradeQuestion()
-    } else if (gradeLevel == 2) {
+    } else if (gradeLevel == Grade.GRADE_6) {
       return getSixthGradeQuestion()
     }
   }
@@ -160,15 +163,16 @@ const Diagnostic = () => {
 
         if (shouldMoveToNextTopic()) {
           setJuniorDiagnosticQuestions(getFourthGradeQuestion())
-          setGradeLevel(0)
+          setGradeLevel(Grade.GRADE_4)
         } else if (guessData.isCorrect) {
-          const newGradeLevel = gradeLevel + 1 // because they got it right move them up a grade
+          const newGradeLevel = juniorGrades[juniorGrades.indexOf(Grade.GRADE_4) + 1] // because they got it right move them up a grade
           const newQuestions = getGradeList(newGradeLevel) // get questions for new grade level
           setJuniorDiagnosticQuestions(newQuestions) // set new questions
           setGradeLevel(newGradeLevel)
+          console.log(newGradeLevel)
         } else if (!guessData.isCorrect && juniorDiagnosticQuestions == getFifthGradeQuestion()) {
           setJuniorDiagnosticQuestions(getFourthGradeQuestion())
-          setGradeLevel(0)
+          setGradeLevel(Grade.GRADE_4)
         }
 
       } else {
