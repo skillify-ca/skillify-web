@@ -105,8 +105,6 @@ const Diagnostic = () => {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  const juniorGrades = [Grade.GRADE_4, Grade.GRADE_5, Grade.GRADE_6]
-
   // looks at gradeLevel and returns questions
   const getGradeList = (gradeLevel) => {
 
@@ -163,16 +161,18 @@ const Diagnostic = () => {
 
         if (shouldMoveToNextTopic()) {
           setJuniorDiagnosticQuestions(getFourthGradeQuestion())
-          setGradeLevel(Grade.GRADE_4)
         } else if (guessData.isCorrect) {
-          const newGradeLevel = juniorGrades[juniorGrades.indexOf(Grade.GRADE_4) + 1] // because they got it right move them up a grade
-          const newQuestions = getGradeList(newGradeLevel) // get questions for new grade level
-          setJuniorDiagnosticQuestions(newQuestions) // set new questions
-          setGradeLevel(newGradeLevel)
-          console.log(newGradeLevel)
+          if (gradeLevel == Grade.GRADE_4) {
+            const fifthGradeList = getGradeList(Grade.GRADE_5)
+            setJuniorDiagnosticQuestions(fifthGradeList)
+            setGradeLevel(Grade.GRADE_5)
+          } else if (gradeLevel == Grade.GRADE_5) {
+            const sixthGradeList = getGradeList(Grade.GRADE_6)
+            setJuniorDiagnosticQuestions(sixthGradeList)
+            setGradeLevel(Grade.GRADE_6)
+          }
         } else if (!guessData.isCorrect && juniorDiagnosticQuestions == getFifthGradeQuestion()) {
           setJuniorDiagnosticQuestions(getFourthGradeQuestion())
-          setGradeLevel(Grade.GRADE_4)
         }
 
       } else {
