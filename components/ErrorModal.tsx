@@ -12,7 +12,7 @@ export const ErrorModal = ({ errorMessage, close }: ErrorModalProps) => {
       <div className="flex justify-center">
         <img src="./images/uhoh.png" className=" w-1/3 h-1/3 " />
       </div>
-      <div className="text-center bg-gray-50 py-4">{errorMessage}</div>
+      <div className="text-center py-4">{errorMessage}</div>
       <div className="text-center py-2">
         <Button
           label="Go Back"
