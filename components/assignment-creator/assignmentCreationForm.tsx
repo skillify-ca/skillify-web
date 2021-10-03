@@ -38,9 +38,7 @@ const AssignmentCreationForm = ({
   setIsErrorModalShowing,
 }: assignmentCreationFormProps) => {
   const onModalClose = () => {
-    if (isErrorModalShowing) {
-      setIsErrorModalShowing((e) => !e);
-    }
+    setIsErrorModalShowing(false);
   };
 
   const onAssignmentSubmission = () => {
