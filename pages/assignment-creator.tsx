@@ -73,6 +73,7 @@ const AssignmentCreator = (data: FetchDescriptionAndSkillData) => {
 
   const gotoChooseSkills = () => {
     setStage(STAGE.CHOOSE_SKILLS);
+    setIsErrorModalShowing(false);
   };
 
   const confirmAssignment = () => {
