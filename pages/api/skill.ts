@@ -32,6 +32,7 @@ export const getSkillsForUnit = (unit: Unit): Skill[] => {
         Skill.ADDITION_TENTHS,
         Skill.ADDITION_5_DIGIT,
         Skill.ADDITION_HUNDREDTHS,
+        Skill.ADDITION_6_DIGIT
       ];
     case Unit.SUBTRACTION:
       return [
@@ -42,6 +43,7 @@ export const getSkillsForUnit = (unit: Unit): Skill[] => {
         Skill.SUBTRACTION_TENTHS,
         Skill.SUBTRACTION_5_DIGIT,
         Skill.SUBTRACTION_HUNDREDTHS,
+        Skill.SUBTRACTION_6_DIGIT
       ];
     case Unit.MULTIPLICATION:
       return [
@@ -54,6 +56,7 @@ export const getSkillsForUnit = (unit: Unit): Skill[] => {
         Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT,
         Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT,
         Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT,
+        Skill.MULTIPLY_THREE_DIGIT_BY_TENTH
       ];
     case Unit.DIVISION:
       return [
@@ -63,6 +66,7 @@ export const getSkillsForUnit = (unit: Unit): Skill[] => {
         Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT,
         Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT,
         Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT,
+        Skill.DIVISION_THREE_DIGIT_BY_TENTH,
       ];
   }
   return [];
@@ -324,7 +328,16 @@ export function getQuestionTypesForSkill(skill: Skill): QuestionType[] {
       QuestionType.TRUE_OR_FALSE_PROBLEM,
       QuestionType.MULTIPLE_CHOICE,
     ];
-  } else if (skill == Skill.ADDITION_HUNDREDTHS) {
+  } else if (skill == Skill.ADDITION_6_DIGIT) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  }
+  else if (skill == Skill.ADDITION_HUNDREDTHS) {
     return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
   } else if (skill == Skill.SUBTRACTION_SINGLE) {
     return [
@@ -359,6 +372,14 @@ export function getQuestionTypesForSkill(skill: Skill): QuestionType[] {
       QuestionType.MULTIPLE_CHOICE,
     ];
   } else if (skill == Skill.SUBTRACTION_5_DIGIT) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
+  } else if (Skill.SUBTRACTION_6_DIGIT) {
     return [
       QuestionType.HORIZONTAL_EQUATION,
       QuestionType.VERTICAL_EQUATION,
@@ -426,6 +447,14 @@ export function getQuestionTypesForSkill(skill: Skill): QuestionType[] {
       QuestionType.TRUE_OR_FALSE_PROBLEM,
       QuestionType.MULTIPLE_CHOICE,
     ];
+  } else if (skill == Skill.MULTIPLY_THREE_DIGIT_BY_TENTH) {
+    return [
+      QuestionType.HORIZONTAL_EQUATION,
+      QuestionType.VERTICAL_EQUATION,
+      QuestionType.BINARY_WORD_PROBLEM,
+      QuestionType.TRUE_OR_FALSE_PROBLEM,
+      QuestionType.MULTIPLE_CHOICE,
+    ];
   } else if (skill == Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT) {
     return [
       QuestionType.HORIZONTAL_EQUATION,
@@ -457,6 +486,8 @@ export function getQuestionTypesForSkill(skill: Skill): QuestionType[] {
   } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT) {
     return [QuestionType.LONG_DIVISION_PROBLEM];
   } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT) {
+    return [QuestionType.LONG_DIVISION_PROBLEM];
+  } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH) {
     return [QuestionType.LONG_DIVISION_PROBLEM];
   } else {
     return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];

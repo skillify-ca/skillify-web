@@ -8,7 +8,7 @@ export interface ErrorModalProps {
 
 export const ErrorModal = ({ errorMessage, close }: ErrorModalProps) => {
   return (
-    <div className="flex-nowrap py-12 shadow-lg rounded-xl bg-gray-50">
+    <div className="flex-nowrap  shadow-lg rounded-xl bg-gray-50">
       <div className="flex justify-center">
         <img src="./images/uhoh.png" className=" w-1/3 h-1/3 " />
       </div>
