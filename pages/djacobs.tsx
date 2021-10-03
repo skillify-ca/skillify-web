@@ -69,6 +69,9 @@ export default function djacobs(props) {
   const [studentName, setStudentName] = useState<string>();
   const [guesses, setGuess] = useState<GuessData[]>([]);
   const [score, setScore] = useState<Number>();
+  const [isVisible, setIsVisible] = useState<Boolean>();
+  const [guessHistoryforQ1, setGuessQ1] = useState<GuessData[]>([]);
+  const [counter, setCounter] = useState(0);
 
   const onSubmit = (guess: GuessData) => {
     console.log(guess);
@@ -114,6 +117,18 @@ export default function djacobs(props) {
     }
   };
 
+  const isWrong = (check: Boolean, guess: GuessData) => {
+    guessHistoryforQ1[counter] = guess;
+    setCounter(counter + 1);
+    if (check == false) {
+      return (
+        <React.Fragment>
+          <p className="animate-fadeIn text-red-600">Wrong Answer</p>
+        </React.Fragment>
+      );
+    }
+  };
+
   const nextQuestionfromMiddle = () => {
     setCurrentQuestionIndex(
       Math.min(questionData.length - 1, currentQuestionIndex + 1)
@@ -122,7 +137,7 @@ export default function djacobs(props) {
 
   // End of Quiz: YOU MADE IT OUT! Head back to main session to collect your prize!
   const questionComponent = [
-    Q1(questionData[0], nextQuestion),
+    Q1(questionData[0], nextQuestion, isWrong),
     Q2(questionData[1], nextQuestion),
     Q3(questionData[2], nextQuestion),
     Q4(questionData[3], nextQuestion),
@@ -191,9 +206,12 @@ export default function djacobs(props) {
         {stage == Stage.QUIZ && (
           <div id="QuizForm" className="flex flex-col gap-8">
             <div id="FormHeader">
-              <p className="text-2xl text-center bg-blue-400">Giza Form</p>
+              <p className="text-2xl text-center bg-blue-400">
+                Escape From Giza
+              </p>
             </div>
             <div id="FormBody" className="flex flex-col gap-8">
+              {isWrong}
               {questionComponent[currentQuestionIndex]}
             </div>
             <div id="FormEnd" className="flex flex-col items-center">
@@ -209,7 +227,9 @@ export default function djacobs(props) {
         {stage == Stage.END && (
           <div id="Result" className="flex flex-col gap-8">
             <div id="FormHeader">
-              <p className="text-2xl text-center bg-blue-400">Giza Form</p>
+              <p className="text-2xl text-center bg-blue-400">
+                Escape From Giza
+              </p>
             </div>
             <div id="FormBody" className="flex flex-col gap-8">
               <p className="text-2xl text-center">
