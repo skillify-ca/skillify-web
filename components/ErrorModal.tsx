@@ -3,11 +3,12 @@ import { Button } from "./ui/Button";
 
 export interface ErrorModalProps {
   errorMessage: string;
+  close: () => void;
 }
 
-export const ErrorModal = ({ errorMessage }: ErrorModalProps) => {
+export const ErrorModal = ({ errorMessage, close }: ErrorModalProps) => {
   return (
-    <div className="flex-nowrap  h-1/3 w-1/3 shadow-lg rounded-xl bg-gray-50">
+    <div className="flex-nowrap py-12 shadow-lg rounded-xl bg-gray-50">
       <div className="flex justify-center">
         <img src="./images/uhoh.png" className=" w-1/3 h-1/3 " />
       </div>

@@ -6,6 +6,9 @@ import { Button } from "../ui/Button";
 import Image from "next/image";
 import GoogleClassroomImage from ".././../public/images/assignments/google-classroom.svg";
 import { FetchDescriptionAndSkillData } from "../../pages/assignment-creator";
+import { Modal, ModalTransition } from "react-simple-hook-modal";
+import "react-simple-hook-modal/dist/styles.css";
+import { ErrorModal } from "../ErrorModal";
 
 export type QuestionTypeForSkill = {
   questionType: QuestionType;
@@ -18,6 +21,8 @@ type assignmentCreationFormProps = {
   questionCounts: QuestionCount[];
   setQuestionCounts: (counts: QuestionCount[]) => void;
   data: FetchDescriptionAndSkillData;
+  isErrorModalShowing: boolean;
+  setIsErrorModalShowing: (e) => void;
 };
 
 export type QuestionCount = {
@@ -29,7 +34,19 @@ const AssignmentCreationForm = ({
   questionCounts,
   setQuestionCounts,
   data,
+  isErrorModalShowing,
+  setIsErrorModalShowing,
 }: assignmentCreationFormProps) => {
+  const onModalClose = () => {
+    if (isErrorModalShowing) {
+      setIsErrorModalShowing((e) => !e);
+    }
+  };
+
+  const onAssignmentSubmission = () => {
+    onClick(questionCounts);
+  };
+
   const unitData = [
     { title: "Addition", unit: Unit.ADDITION, backgroundColour: "bg-red-100" },
     {
@@ -178,9 +195,20 @@ const AssignmentCreationForm = ({
               backgroundColor="blue"
               label="Randomize Questions"
               textColor="white"
-              onClick={(e) => onClick(questionCounts)}
+              onClick={(e) => onAssignmentSubmission()}
             />
           </div>
+
+          <Modal
+            id="surprise-modal"
+            isOpen={isErrorModalShowing}
+            transition={ModalTransition.TOP_DOWN}
+          >
+            <ErrorModal
+              close={onModalClose}
+              errorMessage="It looks like you forgot to assign a question!"
+            />
+          </Modal>
         </div>
       </div>
     </div>

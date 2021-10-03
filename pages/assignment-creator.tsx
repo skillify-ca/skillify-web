@@ -47,6 +47,7 @@ const AssignmentCreator = (data: FetchDescriptionAndSkillData) => {
   const [questionCounts, setQuestionCounts] = useState<QuestionCount[]>(
     getInitialQuestionCounts()
   );
+  const [isErrorModalShowing, setIsErrorModalShowing] = useState(false);
 
   const createAssignment = (questionCounts: QuestionCount[]) => {
     const skills: Skill[] = [];
@@ -57,9 +58,13 @@ const AssignmentCreator = (data: FetchDescriptionAndSkillData) => {
         skills.push(skill);
       }
     }
-    setQuestionCounts(questionCounts);
-    setSkills(skills);
-    setStage(STAGE.CHOOSE_QUESTION_TYPES);
+
+    if (skills.length > 0) {
+      setQuestionCounts(questionCounts);
+      setSkills(skills);
+      setStage(STAGE.CHOOSE_QUESTION_TYPES);
+    }
+    setIsErrorModalShowing((e) => !e);
   };
 
   const [insertAssignment, updateCreateAssignmentMutation] = useMutation(
@@ -91,6 +96,8 @@ const AssignmentCreator = (data: FetchDescriptionAndSkillData) => {
           questionCounts={questionCounts}
           setQuestionCounts={setQuestionCounts}
           data={data}
+          isErrorModalShowing={isErrorModalShowing}
+          setIsErrorModalShowing={setIsErrorModalShowing}
         />
       );
       break;
