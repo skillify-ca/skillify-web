@@ -6,7 +6,7 @@ import { Button } from "../ui/Button";
 import Image from "next/image";
 import GoogleClassroomImage from ".././../public/images/assignments/google-classroom.svg";
 import { FetchDescriptionAndSkillData } from "../../pages/assignment-creator";
-import { Modal, ModalTransition } from "react-simple-hook-modal";
+import { Modal, ModalProvider, ModalTransition } from "react-simple-hook-modal";
 import "react-simple-hook-modal/dist/styles.css";
 import { ErrorModal } from "../ErrorModal";
 
@@ -197,16 +197,13 @@ const AssignmentCreationForm = ({
             />
           </div>
 
-          <Modal
-            id="error-modal"
-            isOpen={isErrorModalShowing}
-            transition={ModalTransition.TOP_DOWN}
-          >
+          <ModalProvider backdropClassName="bg-black">
             <ErrorModal
               close={onModalClose}
               errorMessage="It looks like you forgot to assign a question!"
+              isErrorModalShowing={isErrorModalShowing}
             />
-          </Modal>
+          </ModalProvider>
         </div>
       </div>
     </div>
