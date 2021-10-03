@@ -198,7 +198,7 @@ const AssignmentCreationForm = ({
           </div>
 
           <Modal
-            id="surprise-modal"
+            id="error-modal"
             isOpen={isErrorModalShowing}
             transition={ModalTransition.TOP_DOWN}
           >
