@@ -8,6 +8,7 @@ import { Canvas } from "react-three-fiber";
 import { Preload, Stars } from "@react-three/drei";
 import dynamic from "next/dynamic";
 import { OrbitControls } from "@react-three/drei";
+import TimeSeries from "../../components/TimeSeries";
 
 const Box = dynamic(() => import("../../components/stories/Box"));
 
@@ -96,7 +97,9 @@ const BadgeDetailsPage = ({ slug }) => {
             </div>
           </div>
         )}
-
+        <div className="m-8">
+          <TimeSeries />
+        </div>
         <div className="flex flex-col justify-center md:w-1/2 ml-auto mr-auto mt-8 bg-white p-8 rounded-3xl">
           <p className="text-center text-3xl mb-4 font-semibold">
             {" "}
