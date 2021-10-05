@@ -8,18 +8,19 @@ export interface ChooseTruckTypeProps {
 
 const ChooseTruckType = ({ truck, setTruck }: ChooseTruckTypeProps) => {
   return (
-    <div className="flex flex-col border-2 border-black border-dashed p-4">
-      <h1 className="text-5xl text-black bold p-4 mb-16">
+    <div className="flex flex-col p-4">
+      <h1 className="text-6xl text-black text-center bold p-4 mb-16">
         What kind of stand do you want to buy?
       </h1>
-      <div className="grid grid-cols-5">
-        <p className="col-start-3 text-3xl">Stand Type</p>
-        <p className="col-start-4 text-3xl">Price</p>
-        <p className="col-start-5 text-3xl">Allowed Items</p>
+      <div className="grid grid-cols-5 border-b-2 border-black border-dashed pb-8">
+        <p className="col-start-2 text-4xl">Stand Type</p>
+        <p className="col-start-3 text-4xl">Purchase Price</p>
+        <p className="col-start-4 text-4xl">Daily Cost</p>
+        <p className="col-start-5 text-4xl">Allowed Food</p>
       </div>
       {allTrucks.map((t) => {
         return (
-          <label className="grid grid-cols-5 items-center p-8">
+          <label className="grid grid-cols-5 items-center py-8 border-b-2 border-black border-dashed p-8">
             <input
               className="form-radio h-6 w-6"
               type="radio"
@@ -27,10 +28,15 @@ const ChooseTruckType = ({ truck, setTruck }: ChooseTruckTypeProps) => {
               checked={truck.model === t.model}
               onChange={(e) => setTruck(getTruck(e.target.value) as Truck)}
             />
-            <img className="object-contain h-48 w-60 px-8" src={t.imageUrl} />
-            <span className="px-4 text-xl">{t.model}</span>
-            <span className="px-4 text-2xl">${t.fixedCost}</span>
-            <ul className="px-4 text-2xl">
+            <figure>
+              <img className="object-contain h-48 w-60" src={t.imageUrl} />
+              <figcaption className="text-3xl text-justify">
+                {t.model}
+              </figcaption>
+            </figure>
+            <span className="px-4 text-3xl">${t.fixedCost}</span>
+            <span className="px-4 text-3xl">${t.variableCost}</span>
+            <ul className="px-4 text-3xl">
               {t.allowedItems.map((it) => (
                 <li>{it.name}</li>
               ))}
