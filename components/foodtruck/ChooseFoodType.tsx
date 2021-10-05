@@ -24,7 +24,6 @@ const ChooseFoodType = ({
   setSelectedFood,
   selectedTruck,
 }: ChooseFoodTypeProps) => {
-  // const foods = [hotDog, soupDumplings, tikka, kebab];
   const imageCSS = (isDisabled: boolean) => {
     return isDisabled
       ? "object-contain h-1/2 w-1/2 filter grayscale"
