@@ -19,7 +19,7 @@ const bakersRackBReducer = bakersRackBSlice.reducer;
 const rootReducer = combineReducers({
   diagnostic: diagnosticReducer,
   studentProfile: studentProfileReducer,
-  bakersBRack: bakersRackBReducer,
+  bakersRackB: bakersRackBReducer,
 });
 
 export type RootState = State;

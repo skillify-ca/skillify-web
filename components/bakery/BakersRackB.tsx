@@ -1,5 +1,6 @@
 import react from "react";
 import { Provider, useSelector } from "react-redux";
+import { useAppDispatch } from "../../redux/store";
 import {
   bakersRackBSelector,
   setBreadMinCake,
@@ -27,13 +28,13 @@ import {
   setPiePlusCookDen,
   setPiePlusCookNum,
 } from "../../redux/bakerBSlice";
-import { useAppDispatch } from "../../redux/store";
-import CoopStoryComponent from "../mathBattle/coop/CoopNarrative";
 
 export interface BakersRackB {}
 
 const BakersRackB = ({}: BakersRackB) => {
-  const piePlusBread = useSelector(bakersRackBSelector).piePlusBread;
+  const bakeryState = useSelector(bakersRackBSelector);
+
+  //const piePlusBread = useSelector(bakersRackBSelector).piePlusBread;
   const piePlusBreadNum = useSelector(bakersRackBSelector).piePlusBreadNum;
   const piePlusBreadDen = useSelector(bakersRackBSelector).piePlusBreadDen;
   const cupPlusCook = useSelector(bakersRackBSelector).cupPlusCook;
@@ -211,7 +212,7 @@ const BakersRackB = ({}: BakersRackB) => {
                     ? "bg-green-100 text-center"
                     : "bg-yellow-100 text-center"
                 }
-                value={piePlusBread}
+                value={bakeryState.piePlusBread}
                 onChange={(e) => {
                   const newPiePlusBread = e.target.value;
                   dispatch(setPiePlusBread(newPiePlusBread));
