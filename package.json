@@ -53,6 +53,7 @@
     "react-slick": "^0.28.1",
     "react-spring": "^9.2.3",
     "react-three-fiber": "^6.0.13",
+    "react-transition-group": "^4.4.2",
     "react-youtube": "^7.13.1",
     "redux-localstorage-simple": "^2.4.1",
     "slick-carousel": "^1.8.1",
