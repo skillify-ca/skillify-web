@@ -6,7 +6,6 @@ import { resources } from "./api/resources";
 import { MultipleChoice } from "../components/questionTypes/MultipleChoice";
 import { GuessData } from "./api/guessData";
 import { Button } from "../components/ui/Button";
-import { react } from "@babel/types";
 import { TrueorFalse } from "../components/questionTypes/TrueorFalse";
 import { Skill } from "./api/skill";
 import Q1 from "../components/giza/Q1";
@@ -148,7 +147,7 @@ export default function djacobs(props) {
         {stage == Stage.START && (
           <div className="flex flex-col gap-8">
             <p className="text-2xl text-center bg-blue-400">Escape From Giza</p>
-            <div className="flex flex-col items-center col gap-8">
+            <div className="flex flex-col items-center col gap-8 p-4">
               <div id="Description" className="text-center">
                 <p className="text-base">
                   You and your group are trapped in a pyramid. Together you must
@@ -184,6 +183,13 @@ export default function djacobs(props) {
                 backgroundColor="blue"
                 textColor="white"
                 onClick={onStartQuiz}
+              />
+              <Image
+                className="transform transition ease-in-out duration-500 hover:scale-110"
+                width={256}
+                height={256}
+                alt="Pyramid"
+                src="/images/giza/intro_pyramid.jpg"
               />
             </div>
           </div>
