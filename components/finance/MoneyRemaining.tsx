@@ -1,7 +1,3 @@
-import { useState } from "@storybook/client-api";
-import FinanceProfile from "../../pages/finance-profile";
-import IncomeTable from "./IncomeTable";
-
 export interface MoneyRemainingTableProps {
   totalMonthlySection7: string;
   setTotalMonthlySection7: (totalMonthlySection7: string) => void;

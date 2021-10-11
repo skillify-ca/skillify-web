@@ -1,16 +1,15 @@
 import React from "react";
-import LandingPagev2 from "../components/stories/LandingPagev2";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Head from "next/head";
+import LandingPagev2 from "../components/stories/LandingPagev2";
 
 const navigation = [
   { name: "For Educators", href: "/resources" },
   { name: "About", href: "/about" },
 ];
 
-const HomePage = () => {
-  return (
+const HomePage = () => (
     <div>
       <Head>
         <title>Math Champ</title>
@@ -152,6 +151,5 @@ const HomePage = () => {
       <LandingPagev2 />
     </div>
   );
-};
 
 export default HomePage;

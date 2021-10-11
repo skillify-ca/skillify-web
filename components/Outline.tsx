@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
+import { useQuery } from "@apollo/client";
+import { Session } from "next-auth";
+import Link from "next/link";
+import { useSelector } from "react-redux";
 import { UnitCard } from "./UnitCard";
 import { userId } from "../graphql/utils/constants";
 import Card from "./ui/Card";
 import ProgressRing from "./ui/ProgressRing";
 import { lockedUnits, unlockedUnits } from "../pages/api/units";
-import { EMOJI_MASTERY, Grade } from "../pages/api/skill";
+import { EMOJI_MASTERY } from "../pages/api/skill";
 import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
-import { useQuery } from "@apollo/client";
-import { Session } from "next-auth";
-import Link from "next/link";
 import { Puzzle, PUZZLE_DATA } from "../pages/api/puzzle";
 import { Button } from "./ui/Button";
 import {
@@ -17,14 +18,13 @@ import {
   studentProfileSelector,
 } from "../redux/studentProfileSlice";
 import { useAppDispatch } from "../redux/store";
-import { useSelector } from "react-redux";
 
 interface OutlineProps {
   session: Session;
 }
 
 export default function Outline({ session }: OutlineProps) {
-  let { loading, data } = useQuery(FETCH_USER_PROFILE, {
+  const { loading, data } = useQuery(FETCH_USER_PROFILE, {
     variables: {
       userId: userId(session),
     },
@@ -50,7 +50,7 @@ export default function Outline({ session }: OutlineProps) {
       data.user_skills.length > 0
     ) {
       const unlockedBadges = data.user_badges.filter(
-        (it) => it.locked == false
+        (it) => it.locked === false
       );
       const masteredSkills = data.user_skills.filter(
         (it) => it.emoji > EMOJI_MASTERY
@@ -60,9 +60,8 @@ export default function Outline({ session }: OutlineProps) {
         ((unlockedBadges.length + masteredSkills.length) * 100) /
           (data.user_badges.length + data.user_skills.length)
       );
-    } else {
-      return 0;
     }
+    return 0;
   };
 
   return (
@@ -105,7 +104,7 @@ export default function Outline({ session }: OutlineProps) {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 justify-center gap-8 items-center">
-        {unlockedUnits.map((unit, index) => (
+        {unlockedUnits.map((unit) => (
           <div key={unit.title}>
             <UnitCard
               key={unit.title}
@@ -118,7 +117,7 @@ export default function Outline({ session }: OutlineProps) {
         ))}
         {lockedUnits.map((unit) => (
           <div key={unit}>
-            <UnitCard key={unit} title={unit} disabled={true} />
+            <UnitCard key={unit} title={unit} disabled />
           </div>
         ))}
       </div>
@@ -134,21 +133,21 @@ export default function Outline({ session }: OutlineProps) {
       )}
       {false && (
         <div className="grid grid-cols-2 md:grid-cols-4 justify-center gap-8 items-center">
-          <Link href={`/finance-profile`}>
+          <Link href="/finance-profile">
             <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
               <Card size="medium">
                 <div className="flex flex-col justify-center items-center gap-4">
-                  <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300 heropattern-formalinvitation-green-500"></div>
+                  <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300 heropattern-formalinvitation-green-500" />
                   <p className="mx-4 text-center text-xl">Balance a Budget</p>
                 </div>
               </Card>
             </div>
           </Link>
-          <Link href={`/foodtruck`}>
+          <Link href="/foodtruck">
             <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
               <Card size="medium">
                 <div className="flex flex-col justify-center items-center gap-4">
-                  <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300 heropattern-jupiter-yellow-500"></div>
+                  <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300 heropattern-jupiter-yellow-500" />
                   <p className="mx-4 text-center text-xl">Food Truck</p>
                 </div>
               </Card>
@@ -164,7 +163,7 @@ export default function Outline({ session }: OutlineProps) {
         </div>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 justify-center gap-8 items-center">
-        <Link href={`/games`}>
+        <Link href="/games">
           <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
             <Card size="medium">
               <div className="flex flex-col justify-center items-center gap-4">
@@ -228,7 +227,7 @@ export default function Outline({ session }: OutlineProps) {
         </div>
         <img
           className="object-cover rounded-xl"
-          alt="student-image"
+          alt="Student"
           src="/images/practiceAdd.png"
         />
       </div>

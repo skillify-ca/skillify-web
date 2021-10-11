@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Modal, ModalTransition } from "react-simple-hook-modal";
 import IncomeTable from "./IncomeTable";
 import {
   SurpriseCard,
@@ -6,7 +7,6 @@ import {
 } from "../../pages/api/finance/surprise";
 import {
   FinanceProfileType,
-  financialProfileData,
   MaritalStatus,
 } from "../../pages/api/finance/profile";
 import { FinanceProfileChart } from "./FinanceProfileChart";
@@ -21,10 +21,9 @@ import CarExpenseTable from "./CarExpenseTable";
 import AdditionalTable from "./AdditionalExpense";
 import TotalExpensesTable from "./TotalExpensesTable";
 import MoneyRemainingTable from "./MoneyRemaining";
-import { Modal, ModalTransition } from "react-simple-hook-modal";
 import "react-simple-hook-modal/dist/styles.css";
 import { SurpriseComponent } from "./SurpriseComponent";
-import { getRandomItemFromArray, getRndInteger } from "../../pages/api/random";
+import { getRandomItemFromArray } from "../../pages/api/random";
 
 export interface FinanceProfileProps {
   onClick: () => void;
@@ -36,7 +35,6 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
   const homeRef = useRef(null);
   const carRef = useRef(null);
   const additionalRef = useRef(null);
-  const groceryRef = useRef(null);
 
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
   const [spouseMonthlyIncome, setSpouseMounthlyIncome] = useState("");
