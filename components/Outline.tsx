@@ -6,7 +6,6 @@ import { lockedUnits, unlockedUnits } from "../pages/api/units";
 import { EMOJI_MASTERY, Grade } from "../pages/api/skill";
 import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
 import { useQuery } from "@apollo/client";
-import { Session } from "next-auth";
 import Link from "next/link";
 import { Puzzle, PUZZLE_DATA } from "../pages/api/puzzle";
 import { Button } from "./ui/Button";
