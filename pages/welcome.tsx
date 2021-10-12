@@ -1,7 +1,5 @@
-import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import SignInPage from "../components/SignInPage";
-import { useAuth } from "../lib/authContext";
 
 const Welcome = () => {
   return (

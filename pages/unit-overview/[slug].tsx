@@ -172,6 +172,7 @@ const UnitOverviewPage = ({ slug, skillData }) => {
                 </>
               ) : (
                 <>
+                  {/* TODO fix importing react three fiber into this project */}
                   {/* <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
                     <Preload all />
                     <group>

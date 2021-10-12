@@ -43,16 +43,8 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
         <ModalProvider>
           <ReduxProvider store={store}>
             <AuthProvider>
-              <div>
-                {Component.auth ? (
-                  <Auth>
-                    <Navbar />
-                    <Component {...pageProps} />
-                  </Auth>
-                ) : (
-                  <Component {...pageProps} />
-                )}
-              </div>
+              <Navbar />
+              <Component {...pageProps} />
             </AuthProvider>
           </ReduxProvider>
         </ModalProvider>
@@ -62,19 +54,3 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
 }
 
 export default MyApp;
-
-function Auth({ children }) {
-  const { user, loading } = useAuth();
-
-  React.useEffect(() => {
-    if (loading) return; // Do nothing while loading
-  }, [user]);
-
-  if (user) {
-    return children;
-  }
-
-  // Session is being fetched, or no user.
-  // If no user, useEffect() will redirect.
-  return <div>Loading...</div>;
-}
