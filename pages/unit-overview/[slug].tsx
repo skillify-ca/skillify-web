@@ -1,6 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { Preload, OrbitControls, Stars } from "@react-three/drei";
-import { useSession } from "next-auth/react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -8,20 +7,20 @@ import { Canvas } from "react-three-fiber";
 import Navbar from "../../components/Navbar";
 import { Button } from "../../components/ui/Button";
 import { FETCH_UNIT_OVERVIEW } from "../../graphql/fetchUnitOverview";
-import { userId } from "../../graphql/utils/constants";
 import { getBadgeId } from "../api/badgeHelper";
 import { EMOJI_MASTERY, getEmoji } from "../api/skill";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { useSelector } from "react-redux";
 import { studentProfileSelector } from "../../redux/studentProfileSlice";
 import { FETCH_SKILL_DESCRIPTION_GRADE_AND_UNIT } from "../../graphql/fetchSkillDescriptionAndGrade";
-import { getVideosForSkill, ResourceMetadata } from "../api/videoHelper";
 import Head from "next/head";
+import { useAuth } from "../../lib/authContext";
 
 const Box = dynamic(() => import("../../components/stories/Box"));
 
 const UnitOverviewPage = ({ slug, skillData }) => {
-  const { data: session, status } = useSession();
+  const { user } = useAuth();
+
   const studentGrade = useSelector(studentProfileSelector);
 
   let gradeNum = (grade: string) => {
@@ -58,7 +57,7 @@ const UnitOverviewPage = ({ slug, skillData }) => {
 
   let { loading, error, data } = useQuery(FETCH_UNIT_OVERVIEW, {
     variables: {
-      userId: userId(session),
+      userId: user?.uid,
       skillId:
         skillData &&
         skillData.skills
@@ -173,7 +172,7 @@ const UnitOverviewPage = ({ slug, skillData }) => {
                 </>
               ) : (
                 <>
-                  <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
+                  {/* <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
                     <Preload all />
                     <group>
                       <Box
@@ -191,7 +190,8 @@ const UnitOverviewPage = ({ slug, skillData }) => {
                       />
                       <Stars />
                     </group>
-                  </Canvas>
+                  </Canvas> */}
+                  <img src={badge.badge.image} className="w-32" />
                   <p className="text-md -mt-4 flex items-center">
                     {"   "}
                     Badge: <b> &nbsp;Unlocked</b>{" "}
@@ -219,57 +219,59 @@ const UnitOverviewPage = ({ slug, skillData }) => {
           </p>
         </div>
 
-        <div className="flex flex-col items-center justify-center bg-white shadow-lg rounded-xl gap-8">
-          <div>
-            <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl gap-8">
-              <div className="flex flex-col w-full sm:w-1/2 gap-8 p-4 sm:p-8">
-                <div className="flex flex-col gap-4">
-                  <p className="text-4xl font-bold text-blue-900 capitalize">
-                    {" "}
-                    PRACTICE TIME
-                  </p>
-                  <p className="text">
-                    Select a skill to practice questions. You can practice as
-                    many times as you wish. At the end, you'll be asked to rate
-                    your skill confidence.
-                  </p>
-                </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 bg-white shadow-lg rounded-xl gap-8">
+          <div className="gap-8 p-4 sm:p-8">
+            <div className="flex flex-col gap-4">
+              <p className="text-4xl font-bold text-blue-900 capitalize">
+                {" "}
+                PRACTICE TIME
+              </p>
+              <p className="text">
+                Select a skill to practice questions. You can practice as many
+                times as you wish. At the end, you'll be asked to rate your
+                skill confidence.
+              </p>
+            </div>
 
-                <div>
-                  <div className="grid grid-cols-2 items-center">
-                    <p className="font-bold text-center">Skill</p>
-                    <p className="font-bold text-center">Skill Confidence</p>
-                  </div>
-                  {skillData &&
-                    unitSkills(skillData).map((skill) => (
-                      <Link href={`/practice/${skill.id}`}>
-                        <div className="grid grid-cols-2 cursor-pointer items-center transform transition duration-200 hover:bg-blue-200">
-                          {" "}
-                          <p className="text p-1 text-center flex items-center justify-center  rounded-2xl">
-                            {`I can ${skill.description}`}
-                          </p>
-                          <p className="text-5xl text-center">
-                            {!loading &&
-                              data &&
-                              data.user_skills.length !== 0 &&
-                              getEmoji(
-                                data.user_skills.filter(
-                                  (it) => it.skill_id == skill.id
-                                )[0].emoji
-                              )}{" "}
-                          </p>
-                        </div>
-                      </Link>
-                    ))}
-                </div>
+            <div className="my-8">
+              <div className="grid grid-cols-3 items-center">
+                <p className="font-bold text-center">Skill</p>
+                <p className="font-bold text-center">Skill Confidence</p>
+                <p className="font-bold text-center"></p>
               </div>
-              <img
-                className="w-full sm:w-1/2 object-cover rounded-xl"
-                alt="student-image"
-                src="/images/practiceAdd.png"
-              />
+              {skillData &&
+                unitSkills(skillData).map((skill) => (
+                  <Link href={`/practice/${skill.id}`}>
+                    <div className="grid grid-cols-3 cursor-pointer items-center transform transition duration-200 hover:bg-blue-200">
+                      {" "}
+                      <p className="text p-1 text-center flex items-center justify-center  rounded-2xl">
+                        {`I can ${skill.description}`}
+                      </p>
+                      <p className="text-5xl text-center">
+                        {!loading &&
+                          data &&
+                          data.user_skills.length !== 0 &&
+                          getEmoji(
+                            data.user_skills.filter(
+                              (it) => it.skill_id == skill.id
+                            )[0].emoji
+                          )}{" "}
+                      </p>
+                      <Button
+                        label="Practice Now"
+                        backgroundColor="blue"
+                        textColor="white"
+                      />
+                    </div>
+                  </Link>
+                ))}
             </div>
           </div>
+          <img
+            className="object-cover rounded-xl"
+            alt="student-image"
+            src="/images/practiceAdd.png"
+          />
         </div>
         <div>{quizComponent}</div>
       </div>

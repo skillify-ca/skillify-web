@@ -1,7 +1,9 @@
 import React from "react";
-import { signIn } from "next-auth/react";
+import { useAuth } from "../lib/authContext";
 
 export default function SignInPage() {
+  const { signIn, user } = useAuth();  
+  
   return (
     <div>
       <div className="flex flex-col justify-center items-center">
@@ -35,9 +37,7 @@ export default function SignInPage() {
               </p>
             </div>
             <button
-              onClick={() =>
-                signIn("google", { callbackUrl: "/practice" })
-              }
+              onClick={() => signIn()}
               className="flex justify-between items-center bg-white border border-black rounded-2xl p-4 w-64 hover:bg-gray-100 shadow-lg"
             >
               Sign in with Google

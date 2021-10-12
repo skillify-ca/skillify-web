@@ -10,12 +10,11 @@ import dynamic from "next/dynamic";
 import { LineData } from "../../components/ui/FreeDrawing";
 import { FETCH_USER_ASSIGNMENT } from "../../graphql/userAssignments/fetchUserAssignment";
 import { useMutation, useQuery } from "@apollo/client";
-import { userId } from "../../graphql/utils/constants";
-import { useSession } from "next-auth/react";
 import { CREATE_USER_ASSIGNMENT } from "../../graphql/userAssignments/createUserAssignment";
 import { UPDATE_USER_ASSIGNMENT } from "../../graphql/userAssignments/updateUserAssignment";
 import { questions, solutions } from "../api/teachers/cye";
 import { UPDATE_USER_ASSIGNMENT_IMAGES } from "../../graphql/userAssignments/updateUserAssignmentImages";
+import { useAuth } from "../../lib/authContext";
 
 const FreeDrawing = dynamic(() => import("../../components/ui/FreeDrawing"), {
   ssr: false,
@@ -39,13 +38,13 @@ export default function cye1(props) {
     LineData[][]
   >([[], [], [], [], [], [], [], [], [], [], [], [], [], []]);
   const [showSolutions, setShowSolutions] = useState(false);
-  const { data: session } = useSession();
+  const { signOut, user } = useAuth();
 
   const { loading, data: userAssignmentFetchData } = useQuery(
     FETCH_USER_ASSIGNMENT,
     {
       variables: {
-        user_id: userId(session),
+        user_id: user.uid,
         assignment_id: "cye1",
       },
       onCompleted: (data: any) => {
@@ -104,13 +103,13 @@ export default function cye1(props) {
   useEffect(() => {
     console.log("effect", userAssignmentFetchData);
     if (
-      session &&
+      user &&
       userAssignmentFetchData &&
       userAssignmentFetchData.user_assignments.length === 0
     ) {
       const result = createUserAssignment({
         variables: {
-          user_id: userId(session),
+          user_id: user.uid,
           assignment_id: "cye1",
           user_solution: EMPTY_ARRAY,
           user_images: EMPTY_ARRAY,
@@ -135,7 +134,7 @@ export default function cye1(props) {
           {
             query: FETCH_USER_ASSIGNMENT,
             variables: {
-              userId: userId(session),
+              userId: user.uid,
               assignment_id: "cye1",
             },
           },
@@ -157,7 +156,7 @@ export default function cye1(props) {
     setImages(newImages);
     updateUserAssignmentImages({
       variables: {
-        user_id: userId(session),
+        user_id: user.uid,
         assignment_id: "cye1",
         user_images: newImages,
       },
@@ -165,7 +164,7 @@ export default function cye1(props) {
         {
           query: FETCH_USER_ASSIGNMENT,
           variables: {
-            userId: userId(session),
+            userId: user.uid,
             assignment_id: "cye1",
           },
         },
@@ -197,7 +196,7 @@ export default function cye1(props) {
     // update user assignment and cache the returned assignment
     updateUserAssignment({
       variables: {
-        user_id: userId(session),
+        user_id: user.uid,
         assignment_id: "cye1",
         user_solution: guesses,
         user_drawn_lines: linesForQuestions,
@@ -206,7 +205,7 @@ export default function cye1(props) {
         {
           query: FETCH_USER_ASSIGNMENT,
           variables: {
-            userId: userId(session),
+            userId: user.uid,
             assignment_id: "cye1",
           },
         },
@@ -220,7 +219,7 @@ export default function cye1(props) {
   const onPreviousQuestion = () => {
     updateUserAssignment({
       variables: {
-        user_id: userId(session),
+        user_id: user.uid,
         assignment_id: "cye1",
         user_solution: guesses,
         user_drawn_lines: linesForQuestions,
@@ -229,7 +228,7 @@ export default function cye1(props) {
         {
           query: FETCH_USER_ASSIGNMENT,
           variables: {
-            userId: userId(session),
+            userId: user.uid,
             assignment_id: "cye1",
           },
         },
