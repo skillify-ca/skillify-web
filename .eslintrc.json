@@ -1,0 +1,4 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": { "react/jsx-key": "warn", "react/no-unknown-property": "warn" }
+}
