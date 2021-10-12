@@ -9,7 +9,6 @@ import EmojiSlider from "../../components/ui/EmojiSlider";
 import { FETCH_SKILLS } from "../../graphql/fetchSkills";
 import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { UPDATE_USER_SKILL_EMOJI } from "../../graphql/updateUserEmoji";
-import { userId } from "../../graphql/utils/constants";
 import { useAuth } from "../../lib/authContext";
 import { GuessData } from "../api/guessData";
 import { generatePracticeQuestions } from "../api/practice/practiceQuestionGenerator";

@@ -6,8 +6,6 @@ import Link from "next/link";
 import { useMutation } from "@apollo/client";
 import { generateQuestions } from "../api/quiz/quizQuestionGenerator";
 import { v4 as uuidv4 } from "uuid";
-import { userId } from "../../graphql/utils/constants";
-import { useSession } from "next-auth/react";
 import QuestionSet from "../../components/stories/QuestionSet";
 import { QuestionType } from "../api/questionTypes";
 import { GuessData } from "../api/guessData";
