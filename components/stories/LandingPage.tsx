@@ -8,17 +8,10 @@ import Slider from "react-slick";
 const LandingPage = () => {
   const [wordProblem, setWordProblem] = useState(createWordProblemModel("+"));
 
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
   const onSubmit = () => {
     setWordProblem(createWordProblemModel("+"));
   };
-  var settings = {
+  const settings = {
     dots: true,
     infinite: true,
     speed: 500,
@@ -107,7 +100,7 @@ const LandingPage = () => {
         <div className="flex flex-col gap-4 p-8 sm:w-1/2">
           <p className="font-bold">Step 2</p>
           <p className="font-bold text-xl">
-            Support your child's independence{" "}
+            Support your child&apos;s independence{" "}
           </p>
           <p>
             Your child can select from various modes and activities to help them

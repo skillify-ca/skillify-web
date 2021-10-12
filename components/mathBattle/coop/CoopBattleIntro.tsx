@@ -25,7 +25,9 @@ const CoopBattleIntroComponent = ({
       clearInterval(interval);
     };
   }, []);
-  React.useEffect(() => {});
+  React.useEffect(() => {
+    // empty
+  });
   let timer = function (time: number) {
     if (time / 1000.0 <= 1) {
       return <ProgressRing percentage={3} radius={24} unit={""} />;

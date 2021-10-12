@@ -1,27 +1,28 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
+  "env": {
+    "node": true,
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 13,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
-    ],
-    "rules": {
-      "prefer-const": "warn",
-      "react/jsx-key": "warn"
-    }
+    "ecmaVersion": 13,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "prefer-const": "warn",
+    "react/jsx-key": "warn",
+    "react/react-in-jsx-scope": "warn",
+    "react/prop-types": "warn",
+    "react/no-unescaped-entities": "warn"
+  }
 }
