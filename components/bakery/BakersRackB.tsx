@@ -30,9 +30,7 @@ import {
 import { useAppDispatch } from "../../redux/store";
 import CoopStoryComponent from "../mathBattle/coop/CoopNarrative";
 
-export interface BakersRackB {}
-
-const BakersRackB = ({}: BakersRackB) => {
+const BakersRackB = () => {
   const piePlusBread = useSelector(bakersRackBSelector).piePlusBread;
   const piePlusBreadNum = useSelector(bakersRackBSelector).piePlusBreadNum;
   const piePlusBreadDen = useSelector(bakersRackBSelector).piePlusBreadDen;

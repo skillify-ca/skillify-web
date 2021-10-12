@@ -6,7 +6,7 @@ import {
   FarmHouseTable,
 } from "./BuyAHomeTables";
 
-const BuyAHome = ({}) => {
+const BuyAHome = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 lg:max-w-3xl p-4">
       <div className="border-b-8 border-black">

@@ -22,7 +22,7 @@ export const RulesSession = ({
   profileData,
   setProfileData,
 }: RulesSessionProps) => {
-  let rightBadges: boolean = false;
+  let rightBadges = false;
   const badgeIds: number[] = badgeData.user_badges.map(
     (userbadge) => userbadge.badge.id
   );

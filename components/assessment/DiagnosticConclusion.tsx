@@ -177,6 +177,7 @@ export const DiagnosticConclusion = ({
                 className="text-blue-500 px-4 hover:underline cursor-pointer"
                 href={it.pdf}
                 target="_blank"
+                rel="noreferrer"
               >
                 {it.title}
               </a>
