@@ -9,7 +9,8 @@ export const Money: React.FC<MoneyProp> = ({}) => {
     <div className="flex flex-col items-center space-y-8">
       <h1>How much money is there?</h1>
       <img src="/images/money/nickle.jpeg" className="w-16" />
-      <img src="/images/money/loonie.jpeg" className="w-32" />
+      <img src="/images/money/loonie.jpeg" className="w-28" />
+      <img src="/images/money/toonie.jpeg" className="w-32" />
     </div>
   );
 };
