@@ -41,7 +41,7 @@ const Portfolio = ({ slug }) => {
       );
       setPracticeSessions(sessions);
     }
-  }, [guessesResult, session]);
+  }, [guessesResult]);
 
   const groupByPracticeSession = (guesses) => {
     const dict = _.groupBy(guesses, function (guess) {
