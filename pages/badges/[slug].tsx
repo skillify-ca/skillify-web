@@ -1,18 +1,18 @@
 import { useQuery } from "@apollo/client";
-import { useSession } from "next-auth/react";
 import React, { useRef } from "react";
 import { FETCH_BADGE } from "../../graphql/fetchBadge";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
-import { userId } from "../../graphql/utils/constants";
 import { Canvas } from "react-three-fiber";
 import { Preload, Stars } from "@react-three/drei";
 import dynamic from "next/dynamic";
 import { OrbitControls } from "@react-three/drei";
+import { useAuth } from "../../lib/authContext";
 
 const Box = dynamic(() => import("../../components/stories/Box"));
 
 const BadgeDetailsPage = ({ slug }) => {
-  const { data: session, status } = useSession();
+  const { user } = useAuth();
+
   const badgeDetailResults = useQuery(FETCH_BADGE, {
     variables: {
       badgeId: slug,
@@ -25,7 +25,7 @@ const BadgeDetailsPage = ({ slug }) => {
   }
   const userQuizzesQuery = useQuery(FETCH_USER_QUIZZES, {
     variables: {
-      userId: userId(session),
+      userId: user.uid,
       badgeId: slug,
     },
   });

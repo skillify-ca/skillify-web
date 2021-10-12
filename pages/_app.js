@@ -5,15 +5,15 @@ import { TouchBackend } from "react-dnd-touch-backend";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { ModalProvider } from "react-simple-hook-modal";
 import initializeApollo from "../lib/apollo";
+import { AuthProvider, useAuth } from "../lib/authContext";
 import { ApolloProvider } from "@apollo/client";
 import { Provider as ReduxProvider } from "react-redux";
 import store from "../redux/store";
-import { useSession, SessionProvider } from "next-auth/react";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../components/Navbar";
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+function MyApp({ Component, pageProps: { ...pageProps } }) {
   const router = useRouter();
 
   const handleRouteChange = (url) => {
@@ -36,47 +36,21 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     isMobile = window.innerWidth < 600;
   }
 
+  // TODO remove setting Component.Auth
   return (
     <ApolloProvider client={client}>
-      <SessionProvider session={session}>
-        <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
-          <ModalProvider>
-            <ReduxProvider store={store}>
-              <div>
-                {Component.auth ? (
-                  <Auth>
-                    <Navbar />
-                    <Component {...pageProps} />
-                  </Auth>
-                ) : (
-                  <Component {...pageProps} />
-                )}
-              </div>
-            </ReduxProvider>
-          </ModalProvider>
-        </DndProvider>
-      </SessionProvider>
+      <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
+        <ModalProvider>
+          <ReduxProvider store={store}>
+            <AuthProvider>
+              <Navbar />
+              <Component {...pageProps} />
+            </AuthProvider>
+          </ReduxProvider>
+        </ModalProvider>
+      </DndProvider>
     </ApolloProvider>
   );
 }
 
 export default MyApp;
-
-function Auth({ children }) {
-  const { data: session, status } = useSession();
-  const isUser = !!session?.user;
-  const router = useRouter();
-
-  React.useEffect(() => {
-    if (status === "loading") return; // Do nothing while loading
-    if (!isUser) router.push("/welcome"); // If not authenticated, force log in
-  }, [isUser, status]);
-
-  if (isUser) {
-    return children;
-  }
-
-  // Session is being fetched, or no user.
-  // If no user, useEffect() will redirect.
-  return <div>Loading...</div>;
-}
