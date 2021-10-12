@@ -9,7 +9,7 @@ export interface MoneyRemainingTableProps {
   setTotalExpensesSection7: (totalExpensesSection7: string) => void;
   totalMoneyRemaining: string;
   setTotalMoneyRemaining: (totalMoneyRemaining: string) => void;
-  monthlyIncomeValidation: String;
+  monthlyIncomeValidation: string;
   setMonthlyIncomeValidation: (monthlyIncomeValidation: string) => void;
   totalExpenseValidation: string;
   setTotalExpenseValidation: (totalExpenseValidation: string) => void;

@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
-import { BakersRackB } from "../components/bakery/BakersRackB";
 import { RootState } from "./rootReducer";
 
 export interface BakersRackBState{
