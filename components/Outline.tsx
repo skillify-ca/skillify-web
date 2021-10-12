@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { UnitCard } from "./UnitCard";
-import { userId } from "../graphql/utils/constants";
 import Card from "./ui/Card";
 import ProgressRing from "./ui/ProgressRing";
 import { lockedUnits, unlockedUnits } from "../pages/api/units";
 import { EMOJI_MASTERY, Grade } from "../pages/api/skill";
 import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
 import { useQuery } from "@apollo/client";
-import { Session } from "next-auth";
 import Link from "next/link";
 import { Puzzle, PUZZLE_DATA } from "../pages/api/puzzle";
 import { Button } from "./ui/Button";
@@ -18,15 +16,14 @@ import {
 } from "../redux/studentProfileSlice";
 import { useAppDispatch } from "../redux/store";
 import { useSelector } from "react-redux";
+import { useAuth } from "../lib/authContext";
 
-interface OutlineProps {
-  session: Session;
-}
+export default function Outline() {
+  const { user } = useAuth();
 
-export default function Outline({ session }: OutlineProps) {
   let { loading, data } = useQuery(FETCH_USER_PROFILE, {
     variables: {
-      userId: userId(session),
+      userId: user.uid,
     },
   });
 
