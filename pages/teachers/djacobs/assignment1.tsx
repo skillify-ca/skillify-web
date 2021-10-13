@@ -108,7 +108,7 @@ export default function djacobs1(props) {
       const result = createUserAssignment({
         variables: {
           user_id: user.uid,
-          assignment_id: "cye1",
+          assignment_id: "djacobs1",
           user_solution: EMPTY_ARRAY,
           user_images: EMPTY_ARRAY,
           user_drawn_lines: [
