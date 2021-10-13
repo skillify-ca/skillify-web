@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Image from "next/image";
 import googleClassroomImg from "../public/images/assignments/google-classroom.svg";
 import { resources } from "./api/resources";
+import ContactForms from "../components/ContactForms";
 
 export default function Resources(props) {
   return (
@@ -30,6 +31,9 @@ export default function Resources(props) {
             </div>
           </div>
         </div>
+      </div>
+      <div className="p-4">
+      <ContactForms />
       </div>
       <div className="flex flex-col items-center justify-center p-4">
         <div className="flex flex-col w-full">
