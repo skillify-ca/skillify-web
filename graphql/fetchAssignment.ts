@@ -5,6 +5,7 @@ export const FETCH_ASSIGNMENT = gql`
     assignments(where: { id: { _eq: $assignmentId } }) {
       questions
       solutions_released
+      title
     }
   }
 `;
