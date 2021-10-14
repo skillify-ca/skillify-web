@@ -3,6 +3,7 @@ import { Provider, useSelector } from "react-redux";
 import { useAppDispatch } from "../../redux/store";
 import {
   bakersRackBSelector,
+  isPieBreadValid,
   setBreadMinCake,
   setBreadMinCakeDen,
   setBreadMinCakeNum,
@@ -208,7 +209,7 @@ const BakersRackB = ({}: BakersRackB) => {
               </div>
               <input
                 className={
-                  bakeryState.piePlusBreadVal == "true"
+                  isPieBreadValid(bakeryState) === true
                     ? "bg-green-100 text-center"
                     : "bg-yellow-100 text-center"
                 }
@@ -219,7 +220,7 @@ const BakersRackB = ({}: BakersRackB) => {
                   valPPB(newPiePlusBread);
                 }}
               ></input>
-              {console.log("test3" + bakeryState.piePlusBreadVal)}
+              {console.log("test3" + isPieBreadValid(bakeryState))}
 
               <div className={"text-red-300 ml-4 text-left text-xl mt-8"}>
                 {" "}
