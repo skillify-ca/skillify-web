@@ -316,17 +316,17 @@ export default function djacobs1(props) {
                 >
                   {showSolutions ? (
                     <div className="grid grid-cols-2 w-full h-full">
-                      <div className="flex flex-col gap-8">
+                      <div className="flex flex-col gap-8 bg-yellow-400 items-center justify-center p-4">
                         <p>Your Solution</p>
 
                         <div className="bg-white h-full w-full">
                           <img src={images[currentQuestionIndex]} />
                         </div>
                       </div>
-                      <div className="flex flex-col gap-8">
+                      <div className="flex flex-col gap-8 bg-yellow-500 items-center justify-center p-4">
                         <p>Teacher's Solution</p>
 
-                        <div className="flex flex-col items-center justify-center bg-gray-100 h-full">
+                        <div className="flex flex-col items-center justify-center bg-gray-100 h-full w-full">
                           {solutions[currentQuestionIndex].map((step) => (
                             <TeX block>{step}</TeX>
                           ))}
