@@ -2,6 +2,7 @@ import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { BakersRackB } from "../components/bakery/BakersRackB";
 import { RootState } from "./rootReducer";
 
+
 export interface BakersRackBState{
     piePlusBread:string;
     piePlusBreadNum:any;
@@ -27,13 +28,18 @@ export interface BakersRackBState{
     breadMinCake:string;
     breadMinCakeNum:any;
     breadMinCakeDen:any;
-
-
+    piePlusBreadVal: any;
 }
 
-/*const isPieBreadValid = (state: BakersRackBState) => {
-    state.piePlusBreadDen / state.piePlusBreadNum === 3/21
-}*/
+const isPieBreadValid = (state: BakersRackBState) => {
+    if(state.piePlusBreadDen / state.piePlusBreadNum === 3/21){
+        state.piePlusBreadVal= "true"
+        console.log('test1'+ state.piePlusBreadVal)
+    } else { 
+    state.piePlusBreadVal = "booooga"
+console.log('test2'+state.piePlusBreadVal)}
+    
+}
 
 const initialState: BakersRackBState={
     piePlusBread: "",
@@ -60,6 +66,8 @@ const initialState: BakersRackBState={
     breadMinCake:"",
     breadMinCakeNum:"",
     breadMinCakeDen:"",
+    piePlusBreadVal:{isPieBreadValid},
+    
 
 
 };
@@ -212,7 +220,8 @@ export const bakersRackBSlice: Slice = createSlice({
                 const newBreadMinCakeDen = action.payload as any;
                 state.breadMinCakeDen = newBreadMinCakeDen;
             }
-        }
+        },
+        
 
     }
 })

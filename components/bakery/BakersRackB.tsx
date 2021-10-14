@@ -208,7 +208,7 @@ const BakersRackB = ({}: BakersRackB) => {
               </div>
               <input
                 className={
-                  piePlusBreadNum / piePlusBreadDen === 3 / 21
+                  bakeryState.piePlusBreadVal == "true"
                     ? "bg-green-100 text-center"
                     : "bg-yellow-100 text-center"
                 }
@@ -219,6 +219,8 @@ const BakersRackB = ({}: BakersRackB) => {
                   valPPB(newPiePlusBread);
                 }}
               ></input>
+              {console.log("test3" + bakeryState.piePlusBreadVal)}
+
               <div className={"text-red-300 ml-4 text-left text-xl mt-8"}>
                 {" "}
                 Cupcakes + Cookies =
