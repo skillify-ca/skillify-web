@@ -21,6 +21,9 @@ export const Money: React.FC<MoneyProp> = ({}) => {
         <p>$</p>
         <input type="text" className="border-2 border-red-600" />
       </div>
+      <div>
+        <Button label="Submit" backgroundColor="blue" textColor="white" />
+      </div>
     </div>
   );
 };
