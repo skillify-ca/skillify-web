@@ -212,7 +212,7 @@ export const bakersRackBSlice: Slice = createSlice({
             }
         },
         setBrowMinBread:(state:BakersRackBState,action:PayloadAction<string>)=>{
-            if(action.type == "bakersRackB/setbrowMinBread"){
+            if(action.type == "bakersRackB/setBrowMinBread"){
                 const newBrowMinBread = action.payload as string;
                 state.browMinBread = newBrowMinBread
             }
