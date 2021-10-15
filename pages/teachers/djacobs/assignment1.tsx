@@ -13,6 +13,8 @@ import { UPDATE_USER_ASSIGNMENT } from "../../../graphql/userAssignments/updateU
 import { questions, solutions } from "../../api/teachers/djacobs";
 import { UPDATE_USER_ASSIGNMENT_IMAGES } from "../../../graphql/userAssignments/updateUserAssignmentImages";
 import { useAuth } from "../../../lib/authContext";
+import SlideContainer from "../../../components/ui/SlideContainer";
+import { SwitchTransition, CSSTransition } from "react-transition-group";
 
 const FreeDrawing = dynamic(
   () => import("../../../components/ui/FreeDrawing"),
@@ -282,73 +284,105 @@ export default function djacobs1(props) {
                   textColor="white"
                 />
               </div>
-              <div className="grid grid-cols-12 h-full">
-                <div
-                  className={`${
-                    showSolutions ? "col-span-4" : "col-span-6"
-                  } bg-red-400`}
+              <style jsx>{`
+                .fade-enter {
+                  opacity: 0;
+                  transform: translateX(100%);
+                }
+                .fade-exit {
+                  opacity: 1;
+                  transform: translateX(0%);
+                }
+                .fade-enter-active {
+                  opacity: 1;
+                  transform: translateX(0%);
+                }
+                .fade-exit-active {
+                  opacity: 0;
+                  transform: translateX(-100%);
+                }
+                .fade-enter-active,
+                .fade-exit-active {
+                  transition: opacity 500ms, transform 500ms;
+                }
+              `}</style>
+              <SwitchTransition mode={"out-in"}>
+                <CSSTransition
+                  key={currentQuestionIndex}
+                  addEndListener={(node, done) => {
+                    node.addEventListener("transitionend", done, false);
+                  }}
+                  classNames="fade"
                 >
-                  <div className="flex flex-col gap-8 bg-blue-100 p-8 items-center h-108">
-                    <div className="flex gap-8 w-full items-center justify-center">
-                      <p className="text-center">
-                        Question #{currentQuestionIndex + 1}
-                      </p>
+                  <div className="grid grid-cols-12 h-full">
+                    <div
+                      className={`${
+                        showSolutions ? "col-span-4" : "col-span-6"
+                      } bg-red-400`}
+                    >
+                      <div className="flex flex-col gap-8 bg-blue-100 p-8 items-center h-108">
+                        <div className="flex gap-8 w-full items-center justify-center">
+                          <p className="text-center">
+                            Question #{currentQuestionIndex + 1}
+                          </p>
+                        </div>
+                        <div className="font-bold text-xl">
+                          <TeX block>{questions[currentQuestionIndex]}</TeX>
+                        </div>
+                        <div className="flex gap-4 items-center">
+                          <label>Guess</label>
+                          <input
+                            className="p-4 text-lg"
+                            placeholder="eg. 3/8"
+                            value={guesses[currentQuestionIndex]}
+                            onChange={(e) => onGuessChanged(e.target.value)}
+                            disabled={showSolutions}
+                          ></input>
+                        </div>
+                      </div>
                     </div>
-                    <div className="font-bold text-xl">
-                      <TeX block>{questions[currentQuestionIndex]}</TeX>
-                    </div>
-                    <div className="flex gap-4 items-center">
-                      <label>Guess</label>
-                      <input
-                        className="p-4 text-lg"
-                        placeholder="eg. 3/8"
-                        value={guesses[currentQuestionIndex]}
-                        onChange={(e) => onGuessChanged(e.target.value)}
-                        disabled={showSolutions}
-                      ></input>
+                    <div
+                      className={`${
+                        showSolutions ? "col-span-8" : "col-span-6"
+                      } bg-green-400 h-108 overflow-y-auto`}
+                    >
+                      {showSolutions ? (
+                        <div className="grid grid-cols-2 w-full h-full">
+                          <div className="flex flex-col gap-8 bg-yellow-400 items-center justify-center p-4">
+                            <p>Your Solution</p>
+
+                            <div className="bg-white h-full w-full">
+                              <img src={images[currentQuestionIndex]} />
+                            </div>
+                          </div>
+                          <div className="flex flex-col gap-8 bg-yellow-500 items-center justify-center p-4">
+                            <p>Teacher's Solution</p>
+
+                            <div className="flex flex-col items-center justify-center bg-gray-100 h-full w-full">
+                              {solutions[currentQuestionIndex].map((step) => (
+                                <TeX block>{step}</TeX>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        linesForQuestions[currentQuestionIndex] && (
+                          <FreeDrawing
+                            saveImage={updateImage}
+                            lines={linesForQuestions[currentQuestionIndex]}
+                            setLines={setLinesForCurrentQuestion}
+                            historyStep={
+                              historyStepForQuestions[currentQuestionIndex]
+                            }
+                            setHistoryStep={setHistoryForCurrentQuestion}
+                            disabled={showSolutions}
+                          />
+                        )
+                      )}
                     </div>
                   </div>
-                </div>
-                <div
-                  className={`${
-                    showSolutions ? "col-span-8" : "col-span-6"
-                  } bg-green-400 h-108 overflow-y-auto`}
-                >
-                  {showSolutions ? (
-                    <div className="grid grid-cols-2 w-full h-full">
-                      <div className="flex flex-col gap-8 bg-yellow-400 items-center justify-center p-4">
-                        <p>Your Solution</p>
-
-                        <div className="bg-white h-full w-full">
-                          <img src={images[currentQuestionIndex]} />
-                        </div>
-                      </div>
-                      <div className="flex flex-col gap-8 bg-yellow-500 items-center justify-center p-4">
-                        <p>Teacher's Solution</p>
-
-                        <div className="flex flex-col items-center justify-center bg-gray-100 h-full w-full">
-                          {solutions[currentQuestionIndex].map((step) => (
-                            <TeX block>{step}</TeX>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    linesForQuestions[currentQuestionIndex] && (
-                      <FreeDrawing
-                        saveImage={updateImage}
-                        lines={linesForQuestions[currentQuestionIndex]}
-                        setLines={setLinesForCurrentQuestion}
-                        historyStep={
-                          historyStepForQuestions[currentQuestionIndex]
-                        }
-                        setHistoryStep={setHistoryForCurrentQuestion}
-                        disabled={showSolutions}
-                      />
-                    )
-                  )}
-                </div>
-              </div>
+                </CSSTransition>
+              </SwitchTransition>
             </div>
           )}
         </div>
