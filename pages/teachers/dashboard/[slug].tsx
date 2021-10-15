@@ -38,7 +38,20 @@ const TeacherDashboardPage = ({ data }) => {
   const [selectedQuestion, setSelectedQuestion] = useState(0);
 
   const getGrade = () => {
-    return "58%";
+    const rightGuesses: boolean[] = data.user_assignments[
+      currentStudentIndex
+    ].user_solution.map((guess, index) => {
+      return Number.parseInt(guess) === answers[index];
+    });
+    const correctGuesses: number = rightGuesses.filter(
+      (it) => it === true
+    ).length;
+
+    const grade =
+      (correctGuesses * 100) /
+      data.user_assignments[currentStudentIndex].user_solution.length;
+
+    return grade + "%";
   };
   const getTimeSpent = () => {
     return "2 minutes and 33 seconds";
