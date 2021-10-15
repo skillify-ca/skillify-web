@@ -2,6 +2,16 @@ import react from "react";
 import { Provider, useSelector } from "react-redux";
 import { useAppDispatch } from "../../redux/store";
 import {
+  isPieBreadValid,
+  isCupCookValid,
+  isBrowCakeValid,
+  isPieCookValid,
+  isCookCakeValid,
+  isBrowBreadValid,
+  isCupPieValid,
+  isBreadCakeValid,
+} from "../../redux/bakerBSlice";
+import {
   bakersRackBSelector,
   setBreadMinCake,
   setBreadMinCakeDen,
@@ -208,7 +218,7 @@ const BakersRackB = ({}: BakersRackB) => {
               </div>
               <input
                 className={
-                  bakeryState.piePlusBreadVal == "true"
+                  isPieBreadValid(bakeryState) == true
                     ? "bg-green-100 text-center"
                     : "bg-yellow-100 text-center"
                 }
@@ -219,7 +229,6 @@ const BakersRackB = ({}: BakersRackB) => {
                   valPPB(newPiePlusBread);
                 }}
               ></input>
-              {console.log("test3" + bakeryState.piePlusBreadVal)}
 
               <div className={"text-red-300 ml-4 text-left text-xl mt-8"}>
                 {" "}
@@ -227,7 +236,7 @@ const BakersRackB = ({}: BakersRackB) => {
               </div>
               <input
                 className={
-                  cupPlusCookNum / cupPlusCookDen === 33 / 63
+                  isCupCookValid(bakeryState) == true
                     ? "bg-green-100 text-center"
                     : "bg-yellow-100 text-center"
                 }
@@ -244,7 +253,7 @@ const BakersRackB = ({}: BakersRackB) => {
               </div>
               <input
                 className={
-                  browPlusCakeNum / browPlusCakeDen === 7 / 21
+                  isBrowCakeValid(bakeryState) == true
                     ? "bg-green-100 text-center"
                     : "bg-yellow-100 text-center"
                 }
@@ -261,7 +270,7 @@ const BakersRackB = ({}: BakersRackB) => {
               </div>
               <input
                 className={
-                  piePlusCookNum / piePlusCookDen === 9 / 21
+                  isPieCookValid(bakeryState) == true
                     ? "bg-green-100 text-center"
                     : "bg-yellow-100 text-center"
                 }
@@ -282,7 +291,7 @@ const BakersRackB = ({}: BakersRackB) => {
                 </div>
                 <input
                   className={
-                    cookMinCakeNum / cookMinCakeDen === 6 / 21
+                    isCookCakeValid(bakeryState) == true
                       ? "bg-green-100 text-center"
                       : "bg-yellow-100 text-center"
                   }
@@ -299,7 +308,7 @@ const BakersRackB = ({}: BakersRackB) => {
                 </div>
                 <input
                   className={
-                    browMinBreadNum / browMinBreadDen === 5 / 21
+                    isBrowBreadValid(bakeryState) == true
                       ? "bg-green-100 text-center"
                       : "bg-yellow-100 text-center"
                   }
@@ -316,7 +325,7 @@ const BakersRackB = ({}: BakersRackB) => {
                 </div>
                 <input
                   className={
-                    cupMinPieNum / cupMinPieDen === 6 / 63
+                    isCupPieValid(bakeryState) == true
                       ? "bg-green-100 text-center"
                       : "bg-yellow-100 text-center"
                   }
@@ -333,7 +342,7 @@ const BakersRackB = ({}: BakersRackB) => {
                 </div>
                 <input
                   className={
-                    breadMinCakeNum / breadMinCakeDen === 0 / 1
+                    isBreadCakeValid(bakeryState) == true
                       ? "bg-green-100 text-center"
                       : "bg-yellow-100 text-center"
                   }

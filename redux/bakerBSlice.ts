@@ -28,17 +28,62 @@ export interface BakersRackBState{
     breadMinCake:string;
     breadMinCakeNum:any;
     breadMinCakeDen:any;
-    piePlusBreadVal: any;
 }
 
-const isPieBreadValid = (state: BakersRackBState) => {
-    if(state.piePlusBreadDen / state.piePlusBreadNum === 3/21){
-        state.piePlusBreadVal= "true"
-        console.log('test1'+ state.piePlusBreadVal)
+export const isPieBreadValid = (state: BakersRackBState) => {
+    if(state.piePlusBreadNum / state.piePlusBreadDen === 3/21){
+        return true;
     } else { 
-    state.piePlusBreadVal = "booooga"
-console.log('test2'+state.piePlusBreadVal)}
-    
+    return false;}
+}
+
+export const isCupCookValid = (state: BakersRackBState) => {
+    if(state.cupPlusCookNum / state.cupPlusCookDen === 33/63){
+        return true;
+    } else { 
+    return false;}
+}
+
+export const isBrowCakeValid = (state: BakersRackBState) => {
+    if(state.browPlusCakeNum / state.browPlusCakeDen === 7/21){
+        return true;
+    } else { 
+    return false;}
+}
+
+export const isPieCookValid = (state: BakersRackBState) => {
+    if(state.piePlusCookNum / state.piePlusCookDen === 9/21){
+        return true;
+    } else { 
+    return false;}
+}
+
+export const isCookCakeValid = (state: BakersRackBState) => {
+    if(state.cookMinCakeNum / state.cookMinCakeDen === 6/21){
+        return true;
+    } else { 
+    return false;}
+}
+
+export const isBrowBreadValid = (state: BakersRackBState) => {
+    if(state.browMinBreadNum / state.browMinBreadDen === 5/21){
+        return true;
+    } else { 
+    return false;}
+}
+
+export const isCupPieValid = (state: BakersRackBState) => {
+    if(state.cupMinPieNum / state.cupMinPieDen === 6/63){
+        return true;
+    } else { 
+    return false;}
+}
+
+export const isBreadCakeValid = (state: BakersRackBState) => {
+    if(state.breadMinCakeNum / state.breadMinCakeDen === 0/1){
+        return true;
+    } else { 
+    return false;}
 }
 
 const initialState: BakersRackBState={
@@ -66,7 +111,6 @@ const initialState: BakersRackBState={
     breadMinCake:"",
     breadMinCakeNum:"",
     breadMinCakeDen:"",
-    piePlusBreadVal:{isPieBreadValid},
     
 
 
@@ -229,4 +273,4 @@ export const bakersRackBSlice: Slice = createSlice({
 export const {setPiePlusBread,setPiePlusBreadNum,setPiePlusBreadDen,setCupPlusCook,setCupPlusCookNum,setCupPlusCookDen,setBrowPlusCake,setBrowPlusCakeNum,setBrowPlusCakeDen,setPiePlusCook,setPiePlusCookNum,setPiePlusCookDen,setCookMinCake,setCookMinCakeNum,setCookMinCakeDen,setBrowMinBread,setBrowMinBreadNum,setBrowMinBreadDen,setCupMinPie,setCupMinPieNum,setCupMinPieDen,setBreadMinCake,setBreadMinCakeNum,setBreadMinCakeDen} = bakersRackBSlice.actions;
 
 export const bakersRackBSelector = (state:RootState) => state.bakersRackB;
- 
+
