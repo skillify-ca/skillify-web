@@ -5,6 +5,11 @@ import { Button } from "../../ui/Button";
 export interface MoneyProp {}
 
 export const Money: React.FC<MoneyProp> = ({}) => {
+  const onButtonClick = () => {
+    // this will be called on every button click
+    console.log("HELLO WORLD");
+  };
+
   return (
     <div className="flex flex-col space-y-8">
       <h1>How much money is there?</h1>
@@ -22,7 +27,12 @@ export const Money: React.FC<MoneyProp> = ({}) => {
         <input type="text" className="border-2 border-red-600" />
       </div>
       <div>
-        <Button label="Submit" backgroundColor="blue" textColor="white" />
+        <Button
+          label="Submit"
+          backgroundColor="blue"
+          textColor="white"
+          onClick={onButtonClick}
+        />
       </div>
     </div>
   );
