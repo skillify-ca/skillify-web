@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
+import { useAuth } from "../lib/authContext";
 
 export default function Navbar() {
-  const { data: session, status } = useSession();
+  const { signOut, user } = useAuth();
+
   const [active, setActive] = useState(false);
   const [profieMenuActive, setProfileMenuActive] = useState(false);
 
@@ -119,14 +120,14 @@ export default function Navbar() {
                 <div>
                   {status === "loading"
                     ? ""
-                    : !session && (
-                      <>
-                        <Link href="/welcome">
-                          <p className="text-white cursor-pointer">Sign in</p>
-                        </Link>
-                      </>
-                    )}
-                  {session && (
+                    : !user && (
+                        <>
+                          <Link href="/welcome">
+                            <p className="text-white cursor-pointer">Sign in</p>
+                          </Link>
+                        </>
+                      )}
+                  {user && (
                     <button
                       className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                       id="user-menu"
@@ -136,7 +137,7 @@ export default function Navbar() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src={session.user.image}
+                        src={user.photoURL}
                         alt=""
                       />
                     </button>
@@ -174,13 +175,13 @@ export default function Navbar() {
                   >
                     Settings
                   </a>
-                  <a
-                    href="/api/auth/signout"
+                  <div
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={signOut}
                     role="menuitem"
                   >
                     Sign out
-                  </a>
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,10 +1,7 @@
 import Head from "next/head";
 import Outline from "../components/Outline";
-import { getSession, useSession } from "next-auth/react";
 
 export default function Home() {
-  const { data: session, status } = useSession();
-
   return (
     <div className="flex flex-col h-screen">
       <Head>
@@ -17,19 +14,10 @@ export default function Home() {
           )`,
         }}
       >
-        <Outline session={session} />
+        <Outline />
       </div>
     </div>
   );
 }
 
 Home.auth = true;
-
-// Export the `session` prop to use sessions with Server Side Rendering
-export async function getServerSideProps(context) {
-  return {
-    props: {
-      session: await getSession(context),
-    },
-  };
-}

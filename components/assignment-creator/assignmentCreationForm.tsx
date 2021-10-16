@@ -6,6 +6,9 @@ import { Button } from "../ui/Button";
 import Image from "next/image";
 import GoogleClassroomImage from ".././../public/images/assignments/google-classroom.svg";
 import { FetchDescriptionAndSkillData } from "../../pages/assignment-creator";
+import { Modal, ModalProvider, ModalTransition } from "react-simple-hook-modal";
+import "react-simple-hook-modal/dist/styles.css";
+import { ErrorModal } from "../ErrorModal";
 
 export type QuestionTypeForSkill = {
   questionType: QuestionType;
@@ -18,6 +21,8 @@ type assignmentCreationFormProps = {
   questionCounts: QuestionCount[];
   setQuestionCounts: (counts: QuestionCount[]) => void;
   data: FetchDescriptionAndSkillData;
+  isErrorModalShowing: boolean;
+  setIsErrorModalShowing: (e) => void;
 };
 
 export type QuestionCount = {
@@ -29,7 +34,17 @@ const AssignmentCreationForm = ({
   questionCounts,
   setQuestionCounts,
   data,
+  isErrorModalShowing,
+  setIsErrorModalShowing,
 }: assignmentCreationFormProps) => {
+  const onModalClose = () => {
+    setIsErrorModalShowing(false);
+  };
+
+  const onAssignmentSubmission = () => {
+    onClick(questionCounts);
+  };
+
   const unitData = [
     { title: "Addition", unit: Unit.ADDITION, backgroundColour: "bg-red-100" },
     {
@@ -110,7 +125,7 @@ const AssignmentCreationForm = ({
                   <path
                     d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
                     fill="#648299"
-                    fill-rule="nonzero"
+                    fillRule="nonzero"
                   />
                 </svg>
                 <select
@@ -178,9 +193,17 @@ const AssignmentCreationForm = ({
               backgroundColor="blue"
               label="Randomize Questions"
               textColor="white"
-              onClick={(e) => onClick(questionCounts)}
+              onClick={(e) => onAssignmentSubmission()}
             />
           </div>
+
+          <ModalProvider backdropClassName="bg-black">
+            <ErrorModal
+              close={onModalClose}
+              errorMessage="It looks like you forgot to assign a question!"
+              isErrorModalShowing={isErrorModalShowing}
+            />
+          </ModalProvider>
         </div>
       </div>
     </div>

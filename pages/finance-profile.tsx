@@ -2,19 +2,17 @@ import _, { min } from "lodash";
 import React, { useEffect, useState } from "react";
 import { EndSession } from "../components/finance/EndSession";
 import { RulesSession } from "../components/finance/RulesSession";
-import { Stage } from "@react-three/drei";
 import AssignmentSession from "../components/finance/AssignmentSession";
-import { userId } from "../graphql/utils/constants";
 import { FETCH_BADGE_ON_USERID } from "../graphql/fetchBadgeOnUserID";
 import { ApolloClient, InMemoryCache, useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
-import { useSession } from "next-auth/react";
 import {
   FinanceProfileType,
   financialProfileData,
 } from "./api/finance/profile";
 import { getRndInteger } from "./api/random";
 import { UNLOCK_BADGE } from "../graphql/unlockBadge";
+import { useAuth } from "../lib/authContext";
 
 enum STAGES {
   START,
@@ -48,7 +46,7 @@ const FinanceProfile = () => {
   }, []);
 
   const [stage, setStage] = useState(STAGES.START);
-  const { data: session, status } = useSession();
+  const { user } = useAuth();
 
   const [unlockbadge, unlockBadgeData] = useMutation(UNLOCK_BADGE, {});
 
@@ -59,7 +57,7 @@ const FinanceProfile = () => {
     setStage(STAGES.END);
     unlockbadge({
       variables: {
-        userId: userId(session),
+        userId: user.uid,
         badgeId: 56, //Badge ID for Finance Badge (in DB)
       },
     });
@@ -70,7 +68,7 @@ const FinanceProfile = () => {
 
   let { data } = useQuery(FETCH_BADGE_ON_USERID, {
     variables: {
-      userId: userId(session),
+      userId: user.uid,
       badgeId: 1, //Addition Level 1 Badge
       badgeId2: 4, //Subtraction Level 1 Badge
     },

@@ -45,6 +45,7 @@ const BakersRackB = ({}: BakersRackB) => {
   const bakeryState = useSelector(bakersRackBSelector);
 
   //const piePlusBread = useSelector(bakersRackBSelector).piePlusBread;
+
   const piePlusBreadNum = useSelector(bakersRackBSelector).piePlusBreadNum;
   const piePlusBreadDen = useSelector(bakersRackBSelector).piePlusBreadDen;
   const cupPlusCook = useSelector(bakersRackBSelector).cupPlusCook;

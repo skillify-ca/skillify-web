@@ -1,5 +1,4 @@
 import { ApolloClient, InMemoryCache, useMutation } from "@apollo/client";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import ReactCardFlip from "react-card-flip";
@@ -10,7 +9,7 @@ import EmojiSlider from "../../components/ui/EmojiSlider";
 import { FETCH_SKILLS } from "../../graphql/fetchSkills";
 import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
 import { UPDATE_USER_SKILL_EMOJI } from "../../graphql/updateUserEmoji";
-import { userId } from "../../graphql/utils/constants";
+import { useAuth } from "../../lib/authContext";
 import { GuessData } from "../api/guessData";
 import { generatePracticeQuestions } from "../api/practice/practiceQuestionGenerator";
 import { Question, AnswerType } from "../api/question";
@@ -23,7 +22,7 @@ const PracticeQuiz = ({ skill }) => {
     EMOJI,
     END_SESSION,
   }
-  const { data: session, status } = useSession();
+  const { user } = useAuth();
   const [isFlipped, setIsFlipped] = useState(false);
   const [display, setDisplay] = useState("flex");
   const [continueFaded, setContinueFaded] = useState(0);
@@ -57,7 +56,7 @@ const PracticeQuiz = ({ skill }) => {
         {
           query: FETCH_USER_EMOJIS,
           variables: {
-            userId: userId(session),
+            userId: user.uid,
             skillId: [Number.parseInt(skill)],
           },
         },
@@ -176,7 +175,7 @@ const PracticeQuiz = ({ skill }) => {
   const saveEmoji = () => {
     updateUserEmoji({
       variables: {
-        userId: userId(session),
+        userId: user.uid,
         skillId: Number.parseInt(skill),
         emoji: emoji,
       },

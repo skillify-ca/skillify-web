@@ -4,9 +4,8 @@ import {
   StreamingTvCompany,
   DishAndSpoonNetwork,
 } from "./BuyAHomeTables";
-export interface TvChartProps {}
 
-export const TvChart = ({}: TvChartProps) => {
+export const TvChart = () => {
   return (
     <div>
       <ServiceHeader

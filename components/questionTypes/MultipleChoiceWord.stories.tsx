@@ -16,7 +16,9 @@ const Template: Story<MultipleChoiceWordProp> = (args) => (
   <MultipleChoiceWord
     answer={args.answer}
     options={args.options}
-    submitGuess={() => {}} // empty function
+    submitGuess={() => {
+      // empty function
+    }} 
   >
     <h1>Which Property of Addition is Shown?</h1>
     <p>3 + 2 = 2 + 3</p>
