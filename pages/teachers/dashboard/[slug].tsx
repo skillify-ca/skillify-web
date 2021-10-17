@@ -88,6 +88,24 @@ const TeacherDashboardPage = ({ data }) => {
               </div>
             )}
           <div className="bg-blue-50 max-w-6xl mb-4 mx-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
+            <p className="font-bold text-2xl w-full">Ms. Jacob's Classroom</p>
+            <div className="grid grid-cols-12 gap-8 ">
+              <div className="col-span-4 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
+                <p className="text-2xl font-bold">Average Grade</p>{" "}
+                <p>{getGrade()}</p>
+              </div>
+              <div className="col-span-4 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
+                <p className="text-2xl font-bold">Hardest Question</p>{" "}
+                <p>Question 4</p>
+              </div>
+              <div className="col-span-4 bg-white hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 rounded-xl p-8 text-center flex flex-col gap-8">
+                <p className="text-2xl font-bold">Missing Assignments</p>{" "}
+                <p>0</p>
+              </div>
+            </div>
+          </div>
+          <div className="bg-blue-50 max-w-6xl mb-4 mx-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
+            <p className="font-bold text-2xl w-full">Students</p>
             <select
               className="border-blue-400 border-2 p-4"
               value={currentStudentIndex}
