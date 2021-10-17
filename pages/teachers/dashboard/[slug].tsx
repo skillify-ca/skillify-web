@@ -71,7 +71,7 @@ const TeacherDashboardPage = ({ data }) => {
               <div className="flex gap-4 p-4">
                 <Button
                   label={
-                    solutionsReleased ? "Lock Solutions" : "Release Solutions"
+                    solutionsReleased ? "Hide Solutions" : "Release Solutions"
                   }
                   backgroundColor="blue"
                   textColor="white"
