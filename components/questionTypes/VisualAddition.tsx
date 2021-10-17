@@ -42,7 +42,7 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
     setGuess("");
   };
   return (
-    <div className="flex flex-col gap-4 items-center p-8">
+    <div className="flex flex-col items-center p-8">
       <div className="flex flex-row items-center p-2">
         {visualDisplay == 0 ? (
           <TenFrame num={parseInt(parse(question).first)} />
