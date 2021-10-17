@@ -71,7 +71,7 @@ const TeacherDashboardPage = ({ data }) => {
               <div className="flex gap-4 p-4">
                 <Button
                   label={
-                    solutionsReleased ? "Lock Solutions" : "Release Solutions"
+                    solutionsReleased ? "Hide Solutions" : "Release Solutions"
                   }
                   backgroundColor="blue"
                   textColor="white"
@@ -87,7 +87,25 @@ const TeacherDashboardPage = ({ data }) => {
                 />
               </div>
             )}
-          <div className="bg-white max-w-6xl mb-4 mx-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
+          <div className="bg-blue-50 max-w-6xl mb-4 mx-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
+            <p className="font-bold text-2xl w-full">Ms. Jacob's Classroom</p>
+            <div className="grid grid-cols-12 gap-8 ">
+              <div className="col-span-4 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
+                <p className="text-2xl font-bold">Average Grade</p>{" "}
+                <p>{getGrade()}</p>
+              </div>
+              <div className="col-span-4 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
+                <p className="text-2xl font-bold">Hardest Question</p>{" "}
+                <p>Question 4</p>
+              </div>
+              <div className="col-span-4 bg-white hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 rounded-xl p-8 text-center flex flex-col gap-8">
+                <p className="text-2xl font-bold">Missing Assignments</p>{" "}
+                <p>0</p>
+              </div>
+            </div>
+          </div>
+          <div className="bg-blue-50 max-w-6xl mb-4 mx-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
+            <p className="font-bold text-2xl w-full">Students</p>
             <select
               className="border-blue-400 border-2 p-4"
               value={currentStudentIndex}
@@ -100,17 +118,17 @@ const TeacherDashboardPage = ({ data }) => {
               ))}
             </select>
             <div className="grid grid-cols-12 gap-8 ">
-              <div className="col-span-6 hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 rounded-xl p-8 text-center flex flex-col gap-8">
+              <div className="col-span-6 bg-white hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 rounded-xl p-8 text-center flex flex-col gap-8">
                 <p className="text-2xl font-bold">Grade</p> <p>{getGrade()}</p>
               </div>
-              <div className="col-span-6 hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
+              <div className="col-span-6 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
                 <p className="text-2xl font-bold">Time Spent</p>{" "}
                 <p>{getTimeSpent()}</p>
               </div>
             </div>
-            <div className="grid grid-cols-12 ">
-              <div className="col-span-5 bg-red-400">
-                <div className="grid grid-cols-12 font-bold items-center justify-between bg-yellow-600 py-4">
+            <div className="grid md:grid-cols-12 grid-cols-1 gap-8">
+              <div className="md:col-span-6 rounded-t-xl">
+                <div className="grid grid-cols-12 rounded-t-xl font-bold items-center justify-between bg-yellow-600 py-4">
                   <p className="col-span-2 text-center">#</p>
                   <p className="col-span-8 text-center">Question</p>
                   <p className="col-span-2 text-center">Guess</p>
@@ -123,7 +141,7 @@ const TeacherDashboardPage = ({ data }) => {
                         index === selectedQuestion
                           ? `bg-yellow-200 border-t-2 border-b-2 border-yellow-800`
                           : `bg-yellow-400`
-                      } hover:bg-yellow-200`}
+                      } hover:bg-yellow-200 overflow-visible`}
                     >
                       <p className="col-span-2 text-center">{index + 1}</p>
                       <div className="col-span-8">
@@ -149,9 +167,9 @@ const TeacherDashboardPage = ({ data }) => {
                   )
                 )}
               </div>
-              <div className="col-span-7 bg-green-400">
-                <div className="col-start-2 col-span-10 max-h-80 min-h-full overflow-scroll border-4 border-blue-500">
-                  <p className="font-bold text-center p-4">Their Work</p>
+              <div className="md:col-span-6 bg-green-400 rounded-t-xl">
+                <p className="font-bold w-full text-xl py-2 px-4">Their Work</p>
+                <div className="col-start-2 col-span-10 max-h-80 overflow-scroll">
                   <FreeDrawing
                     saveImage={() => {}}
                     lines={
