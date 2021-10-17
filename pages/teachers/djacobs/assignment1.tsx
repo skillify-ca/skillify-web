@@ -253,7 +253,7 @@ export default function djacobs1(props) {
   return (
     <div className="flex flex-col bg-blue-50 items-center">
       <div className="grid grid-cols-12 max-w-7xl">
-        <div className="col-span-12 p-4">
+        <div className="col-span-12">
           {stage == Stage.RULES && (
             <div className="flex flex-col gap-8 p-8">
               <p>
@@ -314,49 +314,59 @@ export default function djacobs1(props) {
                   }}
                   classNames="fade"
                 >
-                  <div className="grid grid-cols-12 h-full">
+                  <div className="grid grid-cols-1 gap-y-8 md:grid-cols-12 md:gap-8 h-full">
                     <div
-                      className={`${
-                        showSolutions ? "col-span-4" : "col-span-6"
-                      } bg-red-400`}
+                      className={`flex flex-col gap-8 bg-blue-100 items-center rounded-xl ${
+                        showSolutions ? "sm:col-span-4" : "col-span-6"
+                      }`}
                     >
-                      <div className="flex flex-col gap-8 bg-blue-100 p-8 items-center h-108">
-                        <div className="flex gap-8 w-full items-center justify-center">
-                          <p className="text-center">
-                            Question #{currentQuestionIndex + 1}
-                          </p>
-                        </div>
-                        <div className="font-bold text-xl">
-                          <TeX block>{questions[currentQuestionIndex]}</TeX>
-                        </div>
-                        <div className="flex gap-4 items-center">
-                          <label>Guess</label>
-                          <input
-                            className="p-4 text-lg"
-                            placeholder="eg. 3/8"
-                            value={guesses[currentQuestionIndex]}
-                            onChange={(e) => onGuessChanged(e.target.value)}
-                            disabled={showSolutions}
-                          ></input>
-                        </div>
+                      <p className="w-full bg-red-400 py-2 px-4 font-bold text-xl rounded-t-xl">
+                        Question #{currentQuestionIndex + 1}
+                      </p>
+                      <div className="flex gap-8 w-full items-center justify-center"></div>
+                      <div className="font-bold text-xl">
+                        <TeX block>{questions[currentQuestionIndex]}</TeX>
+                      </div>
+                      <div className="flex gap-4 items-center p-4">
+                        <label>Guess</label>
+                        <input
+                          className="p-4 text-lg w-full"
+                          placeholder="eg. 3/8"
+                          value={guesses[currentQuestionIndex]}
+                          onChange={(e) => onGuessChanged(e.target.value)}
+                          disabled={showSolutions}
+                        ></input>
                       </div>
                     </div>
                     <div
                       className={`${
                         showSolutions ? "col-span-8" : "col-span-6"
-                      } bg-green-400 h-108 overflow-y-auto`}
+                      } overflow-y-auto`}
                     >
                       {showSolutions ? (
-                        <div className="grid grid-cols-2 w-full h-full">
-                          <div className="flex flex-col gap-8 bg-yellow-400 items-center justify-center p-4">
-                            <p>Your Solution</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 w-full gap-8">
+                          <div className="flex flex-col bg-yellow-400 items-center justify-center rounded-xl">
+                            <p className="bg-green-300 w-full font-bold text-xl py-2 px-4 rounded-t-xl">
+                              Your Solution
+                            </p>
 
-                            <div className="bg-white h-full w-full">
-                              <img src={images[currentQuestionIndex]} />
+                            <div className="bg-white h-80 w-full overflow-auto">
+                              <FreeDrawing
+                                saveImage={() => {}}
+                                lines={linesForQuestions[currentQuestionIndex]}
+                                setLines={() => {}}
+                                historyStep={
+                                  historyStepForQuestions[currentQuestionIndex]
+                                }
+                                setHistoryStep={() => {}}
+                                disabled={true}
+                              />
                             </div>
                           </div>
-                          <div className="flex flex-col gap-8 bg-yellow-500 items-center justify-center p-4">
-                            <p>Teacher's Solution</p>
+                          <div className="flex flex-col bg-blue-100 items-center justify-center rounded-t-xl">
+                          <p className="bg-yellow-500 w-full font-bold text-xl py-2 px-4 rounded-t-xl">
+                              Teacher's Solution
+                            </p>
 
                             <div className="flex flex-col items-center justify-center bg-gray-100 h-full w-full">
                               {solutions[currentQuestionIndex].map((step) => (
