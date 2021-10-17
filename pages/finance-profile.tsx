@@ -13,9 +13,12 @@ import {
 import { getRndInteger } from "./api/random";
 import { UNLOCK_BADGE } from "../graphql/unlockBadge";
 import { useAuth } from "../lib/authContext";
+import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
+import { Button } from "../components/ui/Button";
 
 enum STAGES {
   START,
+  PROFILE,
   ASSIGNMENT,
   END,
 }
@@ -50,6 +53,9 @@ const FinanceProfile = () => {
 
   const [unlockbadge, unlockBadgeData] = useMutation(UNLOCK_BADGE, {});
 
+  const routeProfile = () => {
+    setStage(STAGES.PROFILE);
+  };
   const routeAssignment = () => {
     setStage(STAGES.ASSIGNMENT);
   };
@@ -73,6 +79,10 @@ const FinanceProfile = () => {
       badgeId2: 4, //Subtraction Level 1 Badge
     },
   });
+  const randomize = () => {
+    const randomProfile = getRndInteger(0, 12);
+    setProfileData(financialProfileData[randomProfile]);
+  };
 
   return (
     <div className="">
@@ -80,9 +90,42 @@ const FinanceProfile = () => {
         <RulesSession
           profileData={profileData}
           setProfileData={setProfileData}
-          onClick={routeAssignment}
+          onClick={routeProfile}
           badgeData={data}
         />
+      )}
+      {stage == STAGES.PROFILE && profileData && (
+        <div>
+          <p className="text-center pb-5">
+            Choose a profile to begin your journey:
+          </p>
+
+          <div className="flex justify-center pb-6">
+            <FinanceProfileChart
+              individualOccupation={profileData.individualOccupation}
+              individualSalary={profileData.individualSalary}
+              maritalStatus={profileData.maritalStatus}
+              numberOfChildren={profileData.numberOfChildren}
+              spouseOccupation={profileData.spouseOccupation}
+              spouseSalary={profileData.spouseSalary}
+            />
+          </div>
+          <div className="flex gap-8 justify-center">
+            <Button
+              backgroundColor="green"
+              textColor="white"
+              label="Randomize"
+              onClick={randomize}
+            />
+
+            <Button
+              backgroundColor="green"
+              textColor="white"
+              label="Start"
+              onClick={(e) => routeAssignment()}
+            />
+          </div>
+        </div>
       )}
       {stage === STAGES.ASSIGNMENT && (
         <AssignmentSession profileData={profileData} onClick={routeEnd} />
