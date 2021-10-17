@@ -5,6 +5,7 @@ import DiceDots from "../dots/DiceDots";
 import DualColourDots from "../dots/DualColourDots";
 import NumberLiteral from "../dots/NumberLiteral";
 import { TenFrame } from "../dots/TenFrames";
+import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 
 export interface VisualAdditionProp {
@@ -71,11 +72,17 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
 
         <NumberLiteral num={parseInt(parse(question).second)} />
       </div>
-      <div className="p-4">
+      <div className="p-4 flex flex-col gap-4">
         <Input
           guess={guess}
           setGuess={setGuess}
           handleKeypress={handleKeypress}
+        />
+        <Button
+          label="Submit"
+          backgroundColor="blue"
+          textColor="white"
+          onClick={onSubmit}
         />
       </div>
     </div>
