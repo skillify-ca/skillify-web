@@ -382,7 +382,7 @@ export default function FoodTruck(props) {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="flex-grow-0 bg-gray-100 sticky top-0 grid grid-cols-12 justify-evenly items-center border-black border-b-2 p-4">
+      <div className="flex-grow-0 bg-gradient-to-b from-gray-200 to-pink-100 sticky top-0 grid grid-cols-12 justify-evenly items-center border-black border-b-2 p-4">
         <div className="col-span-2 flex flex-col items-center gap-4">
           <img
             className="object-left object-contain h-16"
@@ -420,10 +420,10 @@ export default function FoodTruck(props) {
         <EndSession onClick={() => {setStage(STAGE.ChooseTruck)}} />
       ) : (
         <div className="flex-grow grid grid-cols-12">
-          <div className="col-span-8 overflow-y-auto">
+          <div className="col-span-8 overflow-y-auto bg-blue-100">
             {getLeftComponent(stage)}
           </div>
-          <div className="col-span-4">{getProgressComponent(stage)}</div>
+          <div className="col-span-4 bg-purple-200 h-full">{getProgressComponent(stage)}</div>
         </div>
       )}
     </div>
