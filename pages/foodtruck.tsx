@@ -18,6 +18,7 @@ import LaborCostEquation from "../components/foodtruck/LaborCostEquation";
 import ProfitEquation from "../components/foodtruck/ProfitEquation";
 
 import { Button } from "../components/ui/Button";
+import { EndSession } from "../components/finance/EndSession";
 
 /*
 TODO fix these issues before make it obvious when food items are not selectable
@@ -42,6 +43,7 @@ export default function FoodTruck(props) {
     ProdCostEquation,
     LaborCostEquation,
     ProfitEquation,
+    SessionEnd,
   }
 
   const [stage, setStage] = useState(STAGE.ChooseTruck);
@@ -53,7 +55,7 @@ export default function FoodTruck(props) {
   };
 
   const nextStage = () => {
-    if (stage < STAGE.ProfitEquation) {
+    if (stage < STAGE.SessionEnd) {
       setStage(stage + 1);
     }
   };
@@ -368,9 +370,9 @@ export default function FoodTruck(props) {
           </div>
           <h1 className="text-6xl my-12">Equation Progress</h1>
           <div className="grid grid-cols-12 text-3xl space-y-2">
-            <p className="col-span-10">Total Revenue / Day</p>
+            <p className="col-span-10">Total Revenue per Day</p>
             <p className="col-span-2">{profitEquationOneBoxOne}</p>
-            <p className="col-span-10">Total Costs / Day:</p>
+            <p className="col-span-10">Total Costs per Day:</p>
             <p className="col-span-2">{profitEquationOneBoxTwo}</p>
           </div>
         </div>
@@ -414,12 +416,16 @@ export default function FoodTruck(props) {
           />
         </div>
       </div>
-      <div className="flex-grow grid grid-cols-12">
-        <div className="col-span-8 overflow-y-auto">
-          {getLeftComponent(stage)}
+      {stage === STAGE.SessionEnd ? (
+        <EndSession onClick={() => {setStage(STAGE.ChooseTruck)}} />
+      ) : (
+        <div className="flex-grow grid grid-cols-12">
+          <div className="col-span-8 overflow-y-auto">
+            {getLeftComponent(stage)}
+          </div>
+          <div className="col-span-4">{getProgressComponent(stage)}</div>
         </div>
-        <div className="col-span-4">{getProgressComponent(stage)}</div>
-      </div>
+      )}
     </div>
   );
 }
