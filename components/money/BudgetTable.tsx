@@ -1,4 +1,6 @@
 import React, { ReactNode, useState } from "react";
+import { Button } from "../ui/Button";
+
 
 const BudgetTable = () => {
 
@@ -12,7 +14,7 @@ const BudgetTable = () => {
      <p>Cassie has $1.50. Does she have enough to buy a roll of electrical tape and a light bulb?</p>
       <p className="italic">Do not round.</p>
 
-      <table className="bg">
+      <table className="even:bg-green-300 odd:bg-green-800">
         <tr>
           <td>brass clip</td>
           <td>$0.15</td>
@@ -35,8 +37,9 @@ const BudgetTable = () => {
         </tr>
       </table>
       <div className="btn-container">
-        <button className="btn" onClick={displayAnswer()}>Yes</button>
-        <button className="btn" onClick={displayAnswer()}>No</button>
+        <Button backgroundColor="blue" textColor="white" label="Yes"/>
+        <Button backgroundColor="blue" textColor="white" label="No"/>
+      
       </div>
 
       <div className="answer">
