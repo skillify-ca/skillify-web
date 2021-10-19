@@ -36,7 +36,7 @@ const BudgetTable = () => {
           <td>$0.62</td>
         </tr>
       </table>
-      <div className="btn-container">
+      <div className="flex gap-8 flex-col">
         <Button backgroundColor="blue" textColor="white" label="Yes"/>
         <Button backgroundColor="blue" textColor="white" label="No"/>
       
