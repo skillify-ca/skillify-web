@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { GuessData } from "../../../pages/api/guessData";
+import { getRndInteger } from "../../../pages/api/random";
 import { Button } from "../../ui/Button";
 
 export interface MoneyProp {}
@@ -8,6 +9,7 @@ export const Money: React.FC<MoneyProp> = ({}) => {
   const [count, setCount] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const isCorrect = inputValue === "5";
+  const [coinNumber, setCoinNumber] = useState(6);
   const onButtonClick = () => {
     // this will be called on every button click
     setCount(count + 1);
@@ -17,17 +19,35 @@ export const Money: React.FC<MoneyProp> = ({}) => {
     // this gets called when the input changes
   };
 
+  const foo = () => {
+    getRndInteger(1, 7);
+  };
+
   return (
     <div className="flex flex-col space-y-8">
       <h1>How much money is there?</h1>
       <div className="flex flex-wrap w-108">
-        <img src="/images/money/nickle.jpeg" className="w-16 h-16" />
-        <img src="/images/money/nickle.jpeg" className="w-16 h-16" />
-        <img src="/images/money/loonie.jpeg" className="w-24" />
-        <img src="/images/money/loonie.jpeg" className="w-24" />
-        <img src="/images/money/toonie.jpeg" className="w-28" />
-        <img src="/images/money/dime.jpeg" className="w-16 h-16" />
-        <img src="/images/money/dime.jpeg" className="w-16 h-16" />
+        {coinNumber >= 1 && (
+          <img src="/images/money/nickle.jpeg" className="w-16 h-16" />
+        )}
+        {coinNumber >= 2 && (
+          <img src="/images/money/nickle.jpeg" className="w-16 h-16" />
+        )}
+        {coinNumber >= 3 && (
+          <img src="/images/money/loonie.jpeg" className="w-24" />
+        )}
+        {coinNumber >= 4 && (
+          <img src="/images/money/loonie.jpeg" className="w-24" />
+        )}
+        {coinNumber >= 5 && (
+          <img src="/images/money/toonie.jpeg" className="w-28" />
+        )}
+        {coinNumber >= 6 && (
+          <img src="/images/money/dime.jpeg" className="w-16 h-16" />
+        )}
+        {coinNumber >= 7 && (
+          <img src="/images/money/dime.jpeg" className="w-16 h-16" />
+        )}
       </div>
       <div className="flex flex-start">
         <p>$</p>
