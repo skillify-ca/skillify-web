@@ -3,22 +3,10 @@ import { Button } from "../ui/Button";
 import { ItemDataTable } from "./BudgetTableData";
 
 export interface ItemProps {
-  item: string;
-  setItem: (item: string) => void;
-  cost: number;
-  setCost: (cost: number) => void;
   budget: number;
-  setBudget: (budget: number) => void;
 }
 
-const BudgetTable = ({
-  item,
-  setItem,
-  cost,
-  setCost,
-  budget,
-  setBudget,
-}) => {
+const BudgetTable = ({ budget }) => {
 
   const [ isCorrect, setIsCorrect ] = useState(false);
   const displayAnswer = () => {
@@ -29,7 +17,7 @@ const BudgetTable = ({
   return (
     <div>
       <h3 className="font-bold">Question:</h3>
-      <p>Cassie has $1.50. Does she have enough to buy a roll of electrical tape and a light bulb?</p>
+      <p>Cassie has ${budget}. Does she have enough to buy a roll of electrical tape and a light bulb?</p>
       <p className="italic mb-4">Do not round.</p>
 
       <div className="bg-green-300 mb-8">
@@ -46,7 +34,7 @@ const BudgetTable = ({
         <Button backgroundColor="blue" textColor="white" label="No"/>
       </div>
 
-      <div className="answer">
+      <div className="">
         <h1></h1>
       </div>
     </div>
