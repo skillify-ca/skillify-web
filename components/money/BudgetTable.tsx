@@ -32,11 +32,11 @@ const BudgetTable = ({
       <p>Cassie has $1.50. Does she have enough to buy a roll of electrical tape and a light bulb?</p>
       <p className="italic mb-4">Do not round.</p>
 
-      <div className="bg-green-300 mb-8 ">
+      <div className="bg-green-300 mb-8">
         {ItemDataTable.map((ItemData, index) => (
-          <div className="grid grid-cols-3 odd:bg-green-200">
-            <div key={index} className="col-span-2">{ItemData.item}</div>
-            <div className="">${ItemData.cost}</div>
+          <div className="grid grid-cols-2 odd:bg-green-200">
+            <div key={index} className="pl-4">{ItemData.item}</div>
+            <div className="text-right pr-4">${ItemData.cost}</div>
           </div>
         ))}
       </div>
