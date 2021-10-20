@@ -5,9 +5,16 @@ import { Button } from "../../ui/Button";
 export interface MoneyProp {}
 
 export const Money: React.FC<MoneyProp> = ({}) => {
+  const [count, setCount] = useState(0);
+  const [inputValue, setInputValue] = useState("");
+  const isCorrect = inputValue === "5";
   const onButtonClick = () => {
     // this will be called on every button click
-    console.log("HELLO WORLD");
+    setCount(count + 1);
+  };
+  const onInputChange = (value) => {
+    setInputValue(value);
+    // this gets called when the input changes
   };
 
   return (
@@ -24,7 +31,14 @@ export const Money: React.FC<MoneyProp> = ({}) => {
       </div>
       <div className="flex flex-start">
         <p>$</p>
-        <input type="text" className="border-2 border-red-600" />
+        <input
+          type="text"
+          className={`border-2 ${
+            isCorrect ? "border-green-600" : "border-red-600"
+          } `}
+          value={inputValue}
+          onChange={(e) => onInputChange(e.target.value)}
+        />
       </div>
       <div>
         <Button
@@ -34,6 +48,7 @@ export const Money: React.FC<MoneyProp> = ({}) => {
           onClick={onButtonClick}
         />
       </div>
+      {count > 0 && <p>You clicked {count} times</p>}
     </div>
   );
 };
