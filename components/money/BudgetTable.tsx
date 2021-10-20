@@ -2,7 +2,23 @@ import React, { useState } from "react";
 import { Button } from "../ui/Button";
 import { ItemDataTable } from "./BudgetTableData";
 
-const BudgetTable = () => {
+export interface ItemProps {
+  item: string;
+  setItem: (item: string) => void;
+  cost: number;
+  setCost: (cost: number) => void;
+  budget: number;
+  setBudget: (budget: number) => void;
+}
+
+const BudgetTable = ({
+  item,
+  setItem,
+  cost,
+  setCost,
+  budget,
+  setBudget,
+}) => {
 
   const [ isCorrect, setIsCorrect ] = useState(false);
   const displayAnswer = () => {
