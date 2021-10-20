@@ -5,6 +5,10 @@ export interface RevenueEquationProps {
   selectedFood: Food;
   selectedNumWorkers: string;
   revEquationOneBoxOne: string;
+  revenueComponentComplete: boolean;
+
+  setRevenueComponentComplete: (revenueComponentComplete: boolean) => void;
+
   setRevEquationOneBoxOne: (revEquationOneBoxOne: string) => void;
   revEquationOneBoxTwo: string;
   setRevEquationOneBoxTwo: (revEquationOneBoxTwo: string) => void;
@@ -23,6 +27,8 @@ export interface RevenueEquationProps {
 const RevenueEquation = ({
   selectedFood,
   selectedNumWorkers,
+  revenueComponentComplete,
+  setRevenueComponentComplete,
   revEquationOneBoxOne,
   setRevEquationOneBoxOne,
   revEquationOneBoxTwo,
@@ -76,6 +82,10 @@ const RevenueEquation = ({
 
   const validateComponent = () => {
     return validateQuestionOneAnswer() && validateQuestionTwoAnswer();
+  };
+
+  const passRevenueComponent = () => {
+    setRevenueComponentComplete(validateComponent());
   };
 
   const equationContainerCSS = (
@@ -213,7 +223,10 @@ const RevenueEquation = ({
             validateQuestionTwoAnswer()
           )}
           value={revEquationTwoBoxFour}
-          onChange={(e) => setRevEquationTwoBoxFour(e.target.value)}
+          onChange={(e) => {
+            setRevEquationTwoBoxFour(e.target.value);
+            passRevenueComponent();
+          }}
           placeholder="2"
         />
       </div>
