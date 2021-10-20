@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import { Button } from "../ui/Button";
-
+import { ItemDataTable } from "./BudgetTableData";
 
 const BudgetTable = () => {
 

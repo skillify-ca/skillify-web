@@ -12,3 +12,4 @@ const Template: Story = (args) => <BudgetTable {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {};
+
