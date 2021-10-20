@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { Button } from "../ui/Button";
 import { ItemDataTable } from "./BudgetTableData";
 
@@ -13,6 +13,13 @@ const BudgetTable = ({ budget }) => {
 
   }
 
+  const math = () => {
+    if( budget >= 1.56 ) {
+      setIsCorrect(true)
+    } else {
+      setIsCorrect(false)
+    }
+  }
 
   return (
     <div>
@@ -30,13 +37,10 @@ const BudgetTable = ({ budget }) => {
       </div>
 
       <div className="flex gap-8 flex-col">
-        <Button backgroundColor="blue" textColor="white" label="Yes"/>
-        <Button backgroundColor="blue" textColor="white" label="No"/>
+        <Button backgroundColor="blue" textColor="white" label="Yes" onClick={ math }/>
+        <Button backgroundColor="blue" textColor="white" label="No" onClick={ math }/>
       </div>
 
-      <div className="">
-        <h1></h1>
-      </div>
     </div>
   );
 };
