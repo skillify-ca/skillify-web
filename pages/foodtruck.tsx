@@ -19,6 +19,8 @@ import ProfitEquation from "../components/foodtruck/ProfitEquation";
 
 import { Button } from "../components/ui/Button";
 import { EndSession } from "../components/finance/EndSession";
+import { useMutation } from "@apollo/client";
+import { UNLOCK_BADGE } from "../graphql/unlockBadge";
 
 /*
 TODO fix these issues before make it obvious when food items are not selectable
@@ -46,6 +48,18 @@ export default function FoodTruck(props) {
     SessionEnd,
   }
 
+  const disableNextStage = (stage: STAGE) => {
+    if (stage == STAGE.RevenueEquation) {
+      return !revenueComponentComplete;
+    } else if (stage == STAGE.ProdCostEquation) {
+      return !prodCostComponentComplete;
+    } else if (stage == STAGE.LaborCostEquation) {
+      return !laborCostComponentComplete;
+    } else {
+      return false;
+    }
+  };
+
   const [stage, setStage] = useState(STAGE.ChooseTruck);
 
   const previousStage = () => {
@@ -59,6 +73,8 @@ export default function FoodTruck(props) {
       setStage(stage + 1);
     }
   };
+
+  const [unlockbadge, unlockBadgeData] = useMutation(UNLOCK_BADGE);
 
   const renderWorkerImagesHTML = (n: string) => {
     return [...Array(Number.parseInt(n))].map((_, i) => (
@@ -80,6 +96,15 @@ export default function FoodTruck(props) {
   const [truck, setTruck] = useState(smallTruck);
   const [food, setFood] = useState(hotDog);
   const [selectedNumWorkers, setSelectedNumWorkers] = useState("1");
+  const [revenueComponentComplete, setRevenueComponentComplete] = useState(
+    false
+  );
+  const [prodCostComponentComplete, setProdCostComponentComplete] = useState(
+    false
+  );
+  const [laborCostComponentComplete, setLaborCostComponentComplete] = useState(
+    false
+  );
 
   // revenue equation one
   const [revEquationOneBoxOne, setRevEquationOneBoxOne] = useState("");
@@ -93,52 +118,75 @@ export default function FoodTruck(props) {
   const [revEquationTwoBoxFour, setRevEquationTwoBoxFour] = useState("");
 
   // prodCost equation one
-  const [prodCostEquationOneBoxOne, setProdCostEquationOneBoxOne] =
-    useState("");
-  const [prodCostEquationOneBoxTwo, setProdCostEquationOneBoxTwo] =
-    useState("");
-  const [prodCostEquationOneBoxThree, setProdCostEquationOneBoxThree] =
-    useState("");
+  const [prodCostEquationOneBoxOne, setProdCostEquationOneBoxOne] = useState(
+    ""
+  );
+  const [prodCostEquationOneBoxTwo, setProdCostEquationOneBoxTwo] = useState(
+    ""
+  );
+  const [
+    prodCostEquationOneBoxThree,
+    setProdCostEquationOneBoxThree,
+  ] = useState("");
 
-  const [prodCostEquationOneBoxFour, setProdCostEquationOneBoxFour] =
-    useState("");
+  const [prodCostEquationOneBoxFour, setProdCostEquationOneBoxFour] = useState(
+    ""
+  );
 
   // prodCost equation two
-  const [prodCostEquationTwoBoxOne, setProdCostEquationTwoBoxOne] =
-    useState("");
-  const [prodCostEquationTwoBoxTwo, setProdCostEquationTwoBoxTwo] =
-    useState("");
-  const [prodCostEquationTwoBoxThree, setProdCostEquationTwoBoxThree] =
-    useState("");
-  const [prodCostEquationTwoBoxFour, setProdCostEquationTwoBoxFour] =
-    useState("");
+  const [prodCostEquationTwoBoxOne, setProdCostEquationTwoBoxOne] = useState(
+    ""
+  );
+  const [prodCostEquationTwoBoxTwo, setProdCostEquationTwoBoxTwo] = useState(
+    ""
+  );
+  const [
+    prodCostEquationTwoBoxThree,
+    setProdCostEquationTwoBoxThree,
+  ] = useState("");
+  const [prodCostEquationTwoBoxFour, setProdCostEquationTwoBoxFour] = useState(
+    ""
+  );
 
   // laborCost equation one
-  const [laborCostEquationOneBoxOne, setLaborCostEquationOneBoxOne] =
-    useState("");
-  const [laborCostEquationOneBoxTwo, setLaborCostEquationOneBoxTwo] =
-    useState("");
-  const [laborCostEquationOneBoxThree, setLaborCostEquationOneBoxThree] =
-    useState("");
+  const [laborCostEquationOneBoxOne, setLaborCostEquationOneBoxOne] = useState(
+    ""
+  );
+  const [laborCostEquationOneBoxTwo, setLaborCostEquationOneBoxTwo] = useState(
+    ""
+  );
+  const [
+    laborCostEquationOneBoxThree,
+    setLaborCostEquationOneBoxThree,
+  ] = useState("");
 
-  const [laborCostEquationOneBoxFour, setLaborCostEquationOneBoxFour] =
-    useState("");
+  const [
+    laborCostEquationOneBoxFour,
+    setLaborCostEquationOneBoxFour,
+  ] = useState("");
 
   // laborCost equation two
-  const [laborCostEquationTwoBoxOne, setLaborCostEquationTwoBoxOne] =
-    useState("");
-  const [laborCostEquationTwoBoxTwo, setLaborCostEquationTwoBoxTwo] =
-    useState("");
-  const [laborCostEquationTwoBoxThree, setLaborCostEquationTwoBoxThree] =
-    useState("");
-  const [laborCostEquationTwoBoxFour, setLaborCostEquationTwoBoxFour] =
-    useState("");
+  const [laborCostEquationTwoBoxOne, setLaborCostEquationTwoBoxOne] = useState(
+    ""
+  );
+  const [laborCostEquationTwoBoxTwo, setLaborCostEquationTwoBoxTwo] = useState(
+    ""
+  );
+  const [
+    laborCostEquationTwoBoxThree,
+    setLaborCostEquationTwoBoxThree,
+  ] = useState("");
+  const [
+    laborCostEquationTwoBoxFour,
+    setLaborCostEquationTwoBoxFour,
+  ] = useState("");
 
   // profit equation one
   const [profitEquationOneBoxOne, setProfitEquationOneBoxOne] = useState("");
   const [profitEquationOneBoxTwo, setProfitEquationOneBoxTwo] = useState("");
-  const [profitEquationOneBoxThree, setProfitEquationOneBoxThree] =
-    useState("");
+  const [profitEquationOneBoxThree, setProfitEquationOneBoxThree] = useState(
+    ""
+  );
 
   const onSelectedTruckChanged = (truck: Truck) => {
     setTruck(truck);
@@ -170,6 +218,8 @@ export default function FoodTruck(props) {
         <RevenueEquation
           selectedNumWorkers={selectedNumWorkers}
           selectedFood={food}
+          revenueComponentComplete={revenueComponentComplete}
+          setRevenueComponentComplete={setRevenueComponentComplete}
           revEquationOneBoxOne={revEquationOneBoxOne}
           setRevEquationOneBoxOne={setRevEquationOneBoxOne}
           revEquationOneBoxTwo={revEquationOneBoxTwo}
@@ -191,6 +241,8 @@ export default function FoodTruck(props) {
         <ProdCostEquation
           selectedFood={food}
           selectedTruck={truck}
+          prodCostComponentComplete={prodCostComponentComplete}
+          setProdCostComponentComplete={setProdCostComponentComplete}
           selectedNumWorkers={selectedNumWorkers}
           prodCostEquationOneBoxOne={prodCostEquationOneBoxOne}
           setProdCostEquationOneBoxOne={setProdCostEquationOneBoxOne}
@@ -216,6 +268,8 @@ export default function FoodTruck(props) {
           selectedFood={food}
           selectedTruck={truck}
           selectedNumWorkers={selectedNumWorkers}
+          laborCostComponentComplete={laborCostComponentComplete}
+          setLaborCostComponentComplete={setLaborCostComponentComplete}
           laborCostEquationOneBoxOne={laborCostEquationOneBoxOne}
           setLaborCostEquationOneBoxOne={setLaborCostEquationOneBoxOne}
           laborCostEquationOneBoxTwo={laborCostEquationOneBoxTwo}
@@ -413,17 +467,24 @@ export default function FoodTruck(props) {
             textColor="white"
             label="Next"
             onClick={nextStage}
+            disabled={disableNextStage(stage)}
           />
         </div>
       </div>
       {stage === STAGE.SessionEnd ? (
-        <EndSession onClick={() => {setStage(STAGE.ChooseTruck)}} />
+        <EndSession
+          onClick={() => {
+            setStage(STAGE.ChooseTruck);
+          }}
+        />
       ) : (
         <div className="flex-grow grid grid-cols-12">
           <div className="col-span-8 overflow-y-auto bg-blue-100">
             {getLeftComponent(stage)}
           </div>
-          <div className="col-span-4 bg-purple-200 h-full">{getProgressComponent(stage)}</div>
+          <div className="col-span-4 bg-purple-200 h-full">
+            {getProgressComponent(stage)}
+          </div>
         </div>
       )}
     </div>
