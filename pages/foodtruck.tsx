@@ -86,6 +86,9 @@ export default function FoodTruck(props) {
 
   const nextStage = () => {
     if (stage < STAGE.SessionEnd) {
+      if (stage === STAGE.ProfitEquation) {
+        awardBadge();
+      }
       setStage(stage + 1);
     }
   };
@@ -491,14 +494,6 @@ export default function FoodTruck(props) {
       </div>
       {stage === STAGE.SessionEnd ? (
         <div>
-          <Button
-            backgroundColor="pink"
-            textColor="white"
-            label="Earn your Badge!"
-            //put write badge function here
-            onClick={awardBadge}
-            disabled={disableNextStage(stage)}
-          />
           <EndSession
             onClick={() => {
               setStage(STAGE.ChooseTruck);
