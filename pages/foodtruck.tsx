@@ -21,6 +21,7 @@ import { Button } from "../components/ui/Button";
 import { EndSession } from "../components/finance/EndSession";
 import { useMutation } from "@apollo/client";
 import { UNLOCK_BADGE } from "../graphql/unlockBadge";
+import { useAuth } from "../lib/authContext";
 
 /*
 TODO fix these issues before make it obvious when food items are not selectable
@@ -55,6 +56,8 @@ export default function FoodTruck(props) {
       return !prodCostComponentComplete;
     } else if (stage == STAGE.LaborCostEquation) {
       return !laborCostComponentComplete;
+    } else if (stage == STAGE.ProfitEquation) {
+      return !profitComponentComplete;
     } else {
       return false;
     }
@@ -68,13 +71,27 @@ export default function FoodTruck(props) {
     }
   };
 
+  const [unlockbadge, unlockBadgeData] = useMutation(UNLOCK_BADGE);
+
+  const { user } = useAuth();
+
+  const awardBadge = () => {
+    unlockbadge({
+      variables: {
+        userId: user.uid,
+        badgeId: 57, //Badge ID for Food Truck Badge (in DB)
+      },
+    });
+  };
+
   const nextStage = () => {
     if (stage < STAGE.SessionEnd) {
+      if (stage === STAGE.ProfitEquation) {
+        awardBadge();
+      }
       setStage(stage + 1);
     }
   };
-
-  const [unlockbadge, unlockBadgeData] = useMutation(UNLOCK_BADGE);
 
   const renderWorkerImagesHTML = (n: string) => {
     return [...Array(Number.parseInt(n))].map((_, i) => (
@@ -105,6 +122,7 @@ export default function FoodTruck(props) {
   const [laborCostComponentComplete, setLaborCostComponentComplete] = useState(
     false
   );
+  const [profitComponentComplete, setProfitComponentComplete] = useState(false);
 
   // revenue equation one
   const [revEquationOneBoxOne, setRevEquationOneBoxOne] = useState("");
@@ -294,6 +312,8 @@ export default function FoodTruck(props) {
           selectedFood={food}
           selectedTruck={truck}
           selectedNumWorkers={selectedNumWorkers}
+          profitComponentComplete={profitComponentComplete}
+          setProfitComponentComplete={setProfitComponentComplete}
           profitEquationOneBoxOne={profitEquationOneBoxOne}
           setProfitEquationOneBoxOne={setProfitEquationOneBoxOne}
           profitEquationOneBoxTwo={profitEquationOneBoxTwo}
@@ -465,18 +485,21 @@ export default function FoodTruck(props) {
           <Button
             backgroundColor="pink"
             textColor="white"
-            label="Next"
+            label={stage == STAGE.ProfitEquation ? "Finish!" : "Next"}
+            //put write badge function here
             onClick={nextStage}
             disabled={disableNextStage(stage)}
           />
         </div>
       </div>
       {stage === STAGE.SessionEnd ? (
-        <EndSession
-          onClick={() => {
-            setStage(STAGE.ChooseTruck);
-          }}
-        />
+        <div>
+          <EndSession
+            onClick={() => {
+              setStage(STAGE.ChooseTruck);
+            }}
+          />
+        </div>
       ) : (
         <div className="flex-grow grid grid-cols-12">
           <div className="col-span-8 overflow-y-auto bg-blue-100">
