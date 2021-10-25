@@ -59,7 +59,7 @@ export default function djacobs(props) {
   const [guessHistory, setGuessHistory] = useState<Map<String, GuessData>>(
     new Map()
   );
-  const [guessCounter, setguessCounter] = useState(1);
+  const [guessCounter, setGuessCounter] = useState(1);
   const [wrongAnswerCheck, setWrongAnswerCheck] = useState<Boolean>(true);
   const [shouldAnimate, setShouldAnimate] = useState<Boolean>(true);
   const [questionCounter, setQuestionCounter] = useState(1);
@@ -94,6 +94,7 @@ export default function djacobs(props) {
     guesses[currentQuestionIndex] = guess;
     setWrongAnswerCheck(true);
     setQuestionCounter(questionCounter + 1);
+    setGuessCounter(1);
     //another method to count the amounts of trues / total question length
     setCurrentQuestionIndex(
       Math.min(questionData.length - 1, currentQuestionIndex + 1)
@@ -113,7 +114,7 @@ export default function djacobs(props) {
   const isWrong = (check: Boolean, guess: GuessData) => {
     guessHistory.set("Question" + questionCounter + "." + guessCounter, guess);
     console.log(guessHistory);
-    setguessCounter(guessCounter + 1);
+    setGuessCounter(guessCounter + 1);
     setWrongAnswerCheck(check);
     setShouldAnimate(true);
   };
