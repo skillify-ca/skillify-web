@@ -11,6 +11,9 @@ export interface LaborCostEquationProps {
   selectedTruck: Truck;
   selectedNumWorkers: string;
 
+  laborCostComponentComplete: boolean;
+  setLaborCostComponentComplete: (laborCostComponentComplete: boolean) => void;
+
   laborCostEquationOneBoxOne: string;
   setLaborCostEquationOneBoxOne: (laborCostEquationOneBoxOne: string) => void;
   laborCostEquationOneBoxTwo: string;
@@ -38,6 +41,8 @@ const LaborCostEquation = ({
   selectedFood,
   selectedTruck,
   selectedNumWorkers,
+  laborCostComponentComplete,
+  setLaborCostComponentComplete,
   laborCostEquationOneBoxOne,
   setLaborCostEquationOneBoxOne,
   laborCostEquationOneBoxTwo,
@@ -99,6 +104,10 @@ const LaborCostEquation = ({
       validateLaborCostEquationOneAnswer() &&
       validateLaborCostEquationTwoAnswer()
     );
+  };
+
+  const passLaborCostComponent = () => {
+    setLaborCostComponentComplete(validateComponent());
   };
 
   const equationContainerCSS = (
@@ -239,7 +248,10 @@ const LaborCostEquation = ({
             validateLaborCostEquationTwoAnswer()
           )}
           value={laborCostEquationTwoBoxFour}
-          onChange={(e) => setLaborCostEquationTwoBoxFour(e.target.value)}
+          onChange={(e) => {
+            setLaborCostEquationTwoBoxFour(e.target.value);
+            passLaborCostComponent();
+          }}
           placeholder="2"
         />
       </div>

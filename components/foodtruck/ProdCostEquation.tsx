@@ -1,3 +1,4 @@
+import { validate } from "graphql";
 import React from "react";
 import { Food, operatingHours, Truck } from "../../pages/api/foodtruck/food";
 
@@ -5,7 +6,8 @@ export interface ProdCostEquationProps {
   selectedFood: Food;
   selectedTruck: Truck;
   selectedNumWorkers: string;
-
+  prodCostComponentComplete: boolean;
+  setProdCostComponentComplete: (prodCostComponent: boolean) => void;
   prodCostEquationOneBoxOne: string;
   setProdCostEquationOneBoxOne: (prodCostEquationOneBoxOne: string) => void;
   prodCostEquationOneBoxTwo: string;
@@ -29,6 +31,8 @@ const ProdCostEquation = ({
   selectedFood,
   selectedTruck,
   selectedNumWorkers,
+  prodCostComponentComplete,
+  setProdCostComponentComplete,
   prodCostEquationOneBoxOne,
   setProdCostEquationOneBoxOne,
   prodCostEquationOneBoxTwo,
@@ -87,6 +91,10 @@ const ProdCostEquation = ({
     return (
       validateProdCostEquationOneAnswer() && validateProdCostEquationTwoAnswer()
     );
+  };
+
+  const passProdCostComponent = () => {
+    setProdCostComponentComplete(validateComponent());
   };
 
   const equationContainerCSS = (
@@ -233,7 +241,10 @@ const ProdCostEquation = ({
             validateProdCostEquationTwoAnswer()
           )}
           value={prodCostEquationTwoBoxFour}
-          onChange={(e) => setProdCostEquationTwoBoxFour(e.target.value)}
+          onChange={(e) => {
+            setProdCostEquationTwoBoxFour(e.target.value);
+            passProdCostComponent();
+          }}
           placeholder="2"
         />
       </div>
