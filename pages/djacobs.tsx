@@ -59,9 +59,8 @@ export default function djacobs(props) {
   const [guessHistory, setGuessHistory] = useState<Map<String, GuessData>>(
     new Map()
   );
-  //const [guessHistory, setGuessHistory] = useState<GuessData[]>([]);
   const [guessCounter, setguessCounter] = useState(1);
-  const [check, setCheck] = useState<Boolean>(true);
+  const [wrongAnswerCheck, setWrongAnswerCheck] = useState<Boolean>(true);
   const [shouldAnimate, setShouldAnimate] = useState<Boolean>(true);
   const [questionCounter, setQuestionCounter] = useState(1);
 
@@ -93,7 +92,7 @@ export default function djacobs(props) {
   //Future thing: Use this function to add the guessData from each question page into the guessDataArray
   const nextQuestion = (guess: GuessData) => {
     guesses[currentQuestionIndex] = guess;
-    setCheck(true);
+    setWrongAnswerCheck(true);
     setQuestionCounter(questionCounter + 1);
     //another method to count the amounts of trues / total question length
     setCurrentQuestionIndex(
@@ -112,32 +111,11 @@ export default function djacobs(props) {
   };
 
   const isWrong = (check: Boolean, guess: GuessData) => {
-    //guessHistory[guessCounter] = (1, guess);
     guessHistory.set("Question" + questionCounter + "." + guessCounter, guess);
     console.log(guessHistory);
     setguessCounter(guessCounter + 1);
-    setCheck(check);
+    setWrongAnswerCheck(check);
     setShouldAnimate(true);
-  };
-
-  //"animate-fadeIn text-center text-red-600">
-  const displayWrong = (displayCheck: Boolean) => {
-    if (displayCheck == false) {
-      return (
-        <React.Fragment>
-          <p
-            className={
-              shouldAnimate
-                ? "animate-fadeIn text-center text-red-600"
-                : "visibility: hidden"
-            }
-            onAnimationEnd={(e) => setShouldAnimate(false)}
-          >
-            Wrong Answer
-          </p>
-        </React.Fragment>
-      );
-    }
   };
 
   const nextQuestionfromMiddle = () => {
@@ -255,7 +233,18 @@ export default function djacobs(props) {
                 {stage == Stage.QUIZ && (
                   <div id="QuizForm" className="flex flex-col gap-8 p-4">
                     <div id="FormBody" className="flex flex-col gap-8">
-                      {displayWrong(check)}
+                      {!wrongAnswerCheck && (
+                        <p
+                          className={
+                            shouldAnimate
+                              ? "animate-fadeIn delay-1000 text-center text-red-600"
+                              : "visibility: hidden"
+                          }
+                          onAnimationEnd={(e) => setShouldAnimate(false)}
+                        >
+                          Wrong Answer
+                        </p>
+                      )}
                       {questionComponent[currentQuestionIndex]}
                     </div>
                     <div id="FormEnd" className="flex flex-col items-center">
