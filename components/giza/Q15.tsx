@@ -9,10 +9,14 @@ import { MultipleChoice } from "../questionTypes/MultipleChoice";
   105 degrees
 */
 
-const Q13 = (displayQuestion, nextQuestion) => {
+const Q13 = (displayQuestion, nextQuestion, isWrong) => {
   const onSubmit = (guess: GuessData) => {
     //Pass this guessData object into nextQuestion
-    nextQuestion(guess);
+    if (guess.isCorrect == false) {
+      isWrong(guess.isCorrect, guess);
+    } else {
+      nextQuestion(guess);
+    }
   };
   return (
     <React.Fragment>

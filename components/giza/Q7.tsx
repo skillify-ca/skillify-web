@@ -7,10 +7,14 @@ import { MultipleChoice } from "../questionTypes/MultipleChoice";
   Obtuse Isosceles Triangle - Right answer
   Acute Scalene Triangle
 */
-const Q7 = (displayQuestion, nextQuestion) => {
+const Q7 = (displayQuestion, nextQuestion, isWrong) => {
   const onSubmit = (guess: GuessData) => {
     //Pass this guessData object into nextQuestion
-    nextQuestion(guess);
+    if (guess.isCorrect == false) {
+      isWrong(guess.isCorrect, guess);
+    } else {
+      nextQuestion(guess);
+    }
   };
   return (
     <React.Fragment>
