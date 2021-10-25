@@ -35,14 +35,6 @@ enum Stage {
 }
 
 export default function djacobs(props) {
-  /*
-    Extra questions
-    "What is the measurement of <a? (Tip: Just write the number.) ",
-    "A triangle has 2 angles that are 50 degrees. Is it possible for the last angle to be obtuse?",
-    "Which of the following letters has a right- angle in it?",
-    "Use your protractor for this question! Which of the following are the interior angles of this pyramid?"
-  */
-
   const questionData = [
     "The sum of the interior (inside) angles of a triangle add up to what?",
     "What is the measurement of <a? (Tip: Just write the number.) ",
@@ -70,10 +62,14 @@ export default function djacobs(props) {
   const [guesses, setGuess] = useState<GuessData[]>([]);
   const [score, setScore] = useState<Number>();
   const [isVisible, setIsVisible] = useState<Boolean>();
-  const [guessHistoryforQ1, setGuessQ1] = useState<GuessData[]>([]);
-  const [counter, setCounter] = useState(0);
+  const [guessHistory, setGuessHistory] = useState<Map<String, GuessData>>(
+    new Map()
+  );
+  //const [guessHistory, setGuessHistory] = useState<GuessData[]>([]);
+  const [guessCounter, setguessCounter] = useState(1);
   const [check, setCheck] = useState<Boolean>(true);
   const [shouldAnimate, setShouldAnimate] = useState<Boolean>(true);
+  const [questionCounter, setQuestionCounter] = useState(1);
 
   const onSubmit = (guess: GuessData) => {
     console.log(guess);
@@ -104,6 +100,7 @@ export default function djacobs(props) {
   const nextQuestion = (guess: GuessData) => {
     guesses[currentQuestionIndex] = guess;
     setCheck(true);
+    setQuestionCounter(questionCounter + 1);
     //another method to count the amounts of trues / total question length
     setCurrentQuestionIndex(
       Math.min(questionData.length - 1, currentQuestionIndex + 1)
@@ -121,8 +118,10 @@ export default function djacobs(props) {
   };
 
   const isWrong = (check: Boolean, guess: GuessData) => {
-    guessHistoryforQ1[counter] = guess;
-    setCounter(counter + 1);
+    //guessHistory[guessCounter] = (1, guess);
+    guessHistory.set("Question" + questionCounter + "." + guessCounter, guess);
+    console.log(guessHistory);
+    setguessCounter(guessCounter + 1);
     setCheck(check);
     setShouldAnimate(true);
   };
