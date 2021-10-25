@@ -98,17 +98,6 @@ export default function FoodTruck(props) {
     });
   };
 
-  // const saveResult = (profit: number, time_taken: string) => {
-  //   savefoodtruckresult({
-  //     variables: {
-  //       userId: user.uid,
-  //       badgeId: 57,
-  //       profit: profit,
-  //       time_taken: time_taken,
-  //     },
-  //   });
-  // };
-
   const nextStage = () => {
     if (stage < STAGE.SessionEnd) {
       if (stage === STAGE.ProfitEquation) {
