@@ -67,7 +67,7 @@ module.exports = {
       borderWidth: ["active"],
       fontFamily: ["hover", "focus"],
       opacity: ["disabled"],
-      backgroundColor: ["hover"],
+      backgroundColor: ["hover", "even", "odd"],
       ringWidth: ["hover", "active"],
       ringColor: ["hover", "active"],
       ringOffsetWidth: ["hover", "active"],
