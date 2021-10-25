@@ -22,6 +22,7 @@ import { EndSession } from "../components/finance/EndSession";
 import { useMutation } from "@apollo/client";
 import { UNLOCK_BADGE } from "../graphql/unlockBadge";
 import { useAuth } from "../lib/authContext";
+import { SAVE_FOOD_TRUCK_RESULT } from "../graphql/saveFoodTruckResult";
 
 /*
 TODO fix these issues before make it obvious when food items are not selectable
@@ -73,6 +74,10 @@ export default function FoodTruck(props) {
 
   const [unlockbadge, unlockBadgeData] = useMutation(UNLOCK_BADGE);
 
+  const [savefoodtruckresult, saveFoodTruckResultData] = useMutation(
+    SAVE_FOOD_TRUCK_RESULT
+  );
+
   const { user } = useAuth();
 
   const awardBadge = () => {
@@ -80,6 +85,15 @@ export default function FoodTruck(props) {
       variables: {
         userId: user.uid,
         badgeId: 57, //Badge ID for Food Truck Badge (in DB)
+      },
+    });
+
+    savefoodtruckresult({
+      variables: {
+        userId: user.uid,
+        badgeId: 57,
+        profit: Number.parseInt(profitEquationOneBoxThree),
+        timeTaken: "1:04",
       },
     });
   };
