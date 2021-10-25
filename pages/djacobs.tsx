@@ -128,7 +128,7 @@ export default function djacobs(props) {
   // End of Quiz: YOU MADE IT OUT! Head back to main session to collect your prize!
   const questionComponent = [
     Q1(questionData[0], nextQuestion, isWrong),
-    Q2(questionData[1], nextQuestion),
+    Q2(questionData[1], nextQuestion, isWrong),
     Q3(questionData[2], nextQuestion, isWrong),
     Q4(questionData[3], nextQuestion),
     Q5(questionData[4], nextQuestion),
