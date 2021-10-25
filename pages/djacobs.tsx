@@ -129,7 +129,7 @@ export default function djacobs(props) {
   const questionComponent = [
     Q1(questionData[0], nextQuestion, isWrong),
     Q2(questionData[1], nextQuestion, isWrong),
-    Q3(questionData[2], nextQuestion),
+    Q3(questionData[2], nextQuestion, isWrong),
     Q4(questionData[3], nextQuestion),
     Q5(questionData[4], nextQuestion),
     Q6(questionData[5], nextQuestion),
