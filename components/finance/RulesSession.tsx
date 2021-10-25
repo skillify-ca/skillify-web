@@ -16,13 +16,8 @@ export interface RulesSessionProps {
   setProfileData: (profileData: FinanceProfileType) => void;
 }
 
-export const RulesSession = ({
-  onClick,
-  badgeData,
-  profileData,
-  setProfileData,
-}: RulesSessionProps) => {
-  let rightBadges: boolean = false;
+export const RulesSession = ({ onClick, badgeData }: RulesSessionProps) => {
+  let rightBadges = false;
   const badgeIds: number[] = badgeData.user_badges.map(
     (userbadge) => userbadge.badge.id
   );
@@ -30,10 +25,6 @@ export const RulesSession = ({
   if (badgeIds.includes(1) || badgeIds.includes(4)) {
     rightBadges = true;
   }
-  const randomize = () => {
-    const randomProfile = getRndInteger(0, 12);
-    setProfileData(financialProfileData[randomProfile]);
-  };
 
   const validate = () => {
     if (rightBadges === true) {
@@ -85,49 +76,31 @@ export const RulesSession = ({
   };
 
   return (
-    <div>
-      <p className="text-center text-4xl pb-8">Balancing a Budget</p>
+    <div className="flex flex-col items-center">
+      <p className="text-center text-4xl py-4">Balancing a Budget</p>
       <div className="bg-white border-4 border-black p-4">
-        <h2 className="flex items-center justify-center text text-2xl">
-          Before you start, we recommend that you complete Addition Level 1 and
-          Subtraction Level 1
-        </h2>
+        {rightBadges ? (
+          <p className="flex items-center justify-center text text-2xl">
+            You have completed the badges required to unlock this lesson.
+          </p>
+        ) : (
+          <h2 className="flex items-center justify-center text text-2xl">
+            Before you start, we recommend that you complete Addition Level 1
+            and Subtraction Level 1
+          </h2>
+        )}
         <div className="grid grid-cols-2 mt-8"> {validate()} </div>
       </div>
-      <div className="py-8">
+      <div className="py-8 w-full flex justify-center">
         <BudgetRules />
       </div>
-      <p className="text-center pb-5">
-        Choose a profile to begin your journey:
-      </p>
-      {profileData && (
-        <div className="flex justify-center pb-6">
-          <FinanceProfileChart
-            individualOccupation={profileData.individualOccupation}
-            individualSalary={profileData.individualSalary}
-            maritalStatus={profileData.maritalStatus}
-            numberOfChildren={profileData.numberOfChildren}
-            spouseOccupation={profileData.spouseOccupation}
-            spouseSalary={profileData.spouseSalary}
-          />
-        </div>
-      )}
-      <div></div>
-      <div className="flex gap-8 justify-center">
-        <Button
-          backgroundColor="green"
-          textColor="white"
-          label="Randomize"
-          onClick={randomize}
-        />
 
-        <Button
-          backgroundColor="green"
-          textColor="white"
-          label="Start"
-          onClick={(e) => onClick()}
-        />
-      </div>
+      <Button
+        backgroundColor="green"
+        textColor="white"
+        label="Start"
+        onClick={(e) => onClick()}
+      />
     </div>
   );
 };

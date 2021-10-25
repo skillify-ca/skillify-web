@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { UnitCard } from "./UnitCard";
-import { userId } from "../graphql/utils/constants";
 import Card from "./ui/Card";
 import ProgressRing from "./ui/ProgressRing";
 import { lockedUnits, unlockedUnits } from "../pages/api/units";
 import { EMOJI_MASTERY, Grade } from "../pages/api/skill";
 import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
 import { useQuery } from "@apollo/client";
-import { Session } from "next-auth";
 import Link from "next/link";
 import { Puzzle, PUZZLE_DATA } from "../pages/api/puzzle";
 import { Button } from "./ui/Button";
@@ -18,15 +16,14 @@ import {
 } from "../redux/studentProfileSlice";
 import { useAppDispatch } from "../redux/store";
 import { useSelector } from "react-redux";
+import { useAuth } from "../lib/authContext";
 
-interface OutlineProps {
-  session: Session;
-}
+export default function Outline() {
+  const { user } = useAuth();
 
-export default function Outline({ session }: OutlineProps) {
   let { loading, data } = useQuery(FETCH_USER_PROFILE, {
     variables: {
-      userId: userId(session),
+      userId: user.uid,
     },
   });
 
@@ -123,39 +120,49 @@ export default function Outline({ session }: OutlineProps) {
         ))}
       </div>
 
-      {false && (
-        <div className="w-full bg-blue-50 rounded-lg shadow-lg p-4">
-          <div className="flex flex-col gap-4">
-            <p className="font-bold text-2xl">Interactive Lessons</p>
+      <div className="w-full bg-blue-50 rounded-lg shadow-lg p-4">
+        <div className="flex flex-col gap-4">
+          <p className="font-bold text-2xl">Interactive Lessons</p>
 
-            <p className="">Complete these lessons to unlock extra badges.</p>
+          <p className="">Complete these lessons to unlock extra badges.</p>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 md:grid-cols-4 justify-center gap-8 items-center">
+        <Link href={`/foodtruck`}>
+          <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
+            <Card size="medium">
+              <div className="flex flex-col justify-center items-center gap-4">
+                <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300 heropattern-jupiter-yellow-500"></div>
+                <p className="mx-4 text-center text-xl">Food Truck Frenzy</p>
+              </div>
+            </Card>
           </div>
-        </div>
-      )}
-      {false && (
-        <div className="grid grid-cols-2 md:grid-cols-4 justify-center gap-8 items-center">
-          <Link href={`/finance-profile`}>
-            <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
-              <Card size="medium">
-                <div className="flex flex-col justify-center items-center gap-4">
-                  <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300 heropattern-formalinvitation-green-500"></div>
-                  <p className="mx-4 text-center text-xl">Balance a Budget</p>
-                </div>
-              </Card>
+        </Link>
+        <Card size="medium">
+          <div className="flex flex-col justify-center items-center gap-4">
+            <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300">
+              <img src="/images/skills/lock.png" alt="" />
             </div>
-          </Link>
-          <Link href={`/foodtruck`}>
-            <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
-              <Card size="medium">
-                <div className="flex flex-col justify-center items-center gap-4">
-                  <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300 heropattern-jupiter-yellow-500"></div>
-                  <p className="mx-4 text-center text-xl">Food Truck</p>
-                </div>
-              </Card>
+            <p className="mx-4 text-center text-xl">Balance the Budget</p>
+          </div>
+        </Card>
+        <Card size="medium">
+          <div className="flex flex-col justify-center items-center gap-4">
+            <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300">
+              <img src="/images/skills/lock.png" alt="" />
             </div>
-          </Link>
-        </div>
-      )}
+            <p className="mx-4 text-center text-xl">Escape from Giza</p>
+          </div>
+        </Card>
+        <Card size="medium">
+          <div className="flex flex-col justify-center items-center gap-4">
+            <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300">
+              <img src="/images/skills/lock.png" alt="" />
+            </div>
+            <p className="mx-4 text-center text-xl">Building a Bakery</p>
+          </div>
+        </Card>
+      </div>
       <div className="w-full bg-blue-50 rounded-lg shadow-lg p-4">
         <div className="flex flex-col gap-4">
           <p className="font-bold text-2xl">Multiplayer Games</p>

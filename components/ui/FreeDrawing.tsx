@@ -1,5 +1,5 @@
 import React from "react";
-// import { Stage, Layer, Line, Text } from "react-konva"; Restore when konva can work again
+import { Stage, Layer, Line, Text } from "react-konva";
 import useWindowSize from "../../hooks/UseWindowSizeHook";
 import { Button } from "./Button";
 
@@ -98,7 +98,7 @@ const FreeDrawing = ({
           Evaluate without the use of a calculate. Show all your work.
         </p>
       )}
-      {/* <Stage
+      <Stage
         style={{ touchAction: "none" }}
         ref={stageRef}
         width={width}
@@ -125,7 +125,7 @@ const FreeDrawing = ({
               />
             ))}
         </Layer>
-      </Stage> */}
+      </Stage>
       {!disabled && (
         <select
           value={tool}

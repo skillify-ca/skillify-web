@@ -2,22 +2,23 @@ import _, { min } from "lodash";
 import React, { useEffect, useState } from "react";
 import { EndSession } from "../components/finance/EndSession";
 import { RulesSession } from "../components/finance/RulesSession";
-import { Stage } from "@react-three/drei";
 import AssignmentSession from "../components/finance/AssignmentSession";
-import { userId } from "../graphql/utils/constants";
 import { FETCH_BADGE_ON_USERID } from "../graphql/fetchBadgeOnUserID";
 import { ApolloClient, InMemoryCache, useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
-import { useSession } from "next-auth/react";
 import {
   FinanceProfileType,
   financialProfileData,
 } from "./api/finance/profile";
 import { getRndInteger } from "./api/random";
 import { UNLOCK_BADGE } from "../graphql/unlockBadge";
+import { useAuth } from "../lib/authContext";
+import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
+import { Button } from "../components/ui/Button";
 
 enum STAGES {
   START,
+  PROFILE,
   ASSIGNMENT,
   END,
 }
@@ -48,10 +49,13 @@ const FinanceProfile = () => {
   }, []);
 
   const [stage, setStage] = useState(STAGES.START);
-  const { data: session, status } = useSession();
+  const { user } = useAuth();
 
   const [unlockbadge, unlockBadgeData] = useMutation(UNLOCK_BADGE, {});
 
+  const routeProfile = () => {
+    setStage(STAGES.PROFILE);
+  };
   const routeAssignment = () => {
     setStage(STAGES.ASSIGNMENT);
   };
@@ -59,7 +63,7 @@ const FinanceProfile = () => {
     setStage(STAGES.END);
     unlockbadge({
       variables: {
-        userId: userId(session),
+        userId: user.uid,
         badgeId: 56, //Badge ID for Finance Badge (in DB)
       },
     });
@@ -70,11 +74,15 @@ const FinanceProfile = () => {
 
   let { data } = useQuery(FETCH_BADGE_ON_USERID, {
     variables: {
-      userId: userId(session),
+      userId: user.uid,
       badgeId: 1, //Addition Level 1 Badge
       badgeId2: 4, //Subtraction Level 1 Badge
     },
   });
+  const randomize = () => {
+    const randomProfile = getRndInteger(0, 12);
+    setProfileData(financialProfileData[randomProfile]);
+  };
 
   return (
     <div className="">
@@ -82,9 +90,42 @@ const FinanceProfile = () => {
         <RulesSession
           profileData={profileData}
           setProfileData={setProfileData}
-          onClick={routeAssignment}
+          onClick={routeProfile}
           badgeData={data}
         />
+      )}
+      {stage == STAGES.PROFILE && profileData && (
+        <div>
+          <p className="text-center pb-5">
+            Choose a profile to begin your journey:
+          </p>
+
+          <div className="flex justify-center pb-6">
+            <FinanceProfileChart
+              individualOccupation={profileData.individualOccupation}
+              individualSalary={profileData.individualSalary}
+              maritalStatus={profileData.maritalStatus}
+              numberOfChildren={profileData.numberOfChildren}
+              spouseOccupation={profileData.spouseOccupation}
+              spouseSalary={profileData.spouseSalary}
+            />
+          </div>
+          <div className="flex gap-8 justify-center">
+            <Button
+              backgroundColor="green"
+              textColor="white"
+              label="Randomize"
+              onClick={randomize}
+            />
+
+            <Button
+              backgroundColor="green"
+              textColor="white"
+              label="Start"
+              onClick={(e) => routeAssignment()}
+            />
+          </div>
+        </div>
       )}
       {stage === STAGES.ASSIGNMENT && (
         <AssignmentSession profileData={profileData} onClick={routeEnd} />

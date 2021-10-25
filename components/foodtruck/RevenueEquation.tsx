@@ -5,6 +5,10 @@ export interface RevenueEquationProps {
   selectedFood: Food;
   selectedNumWorkers: string;
   revEquationOneBoxOne: string;
+  revenueComponentComplete: boolean;
+
+  setRevenueComponentComplete: (revenueComponentComplete: boolean) => void;
+
   setRevEquationOneBoxOne: (revEquationOneBoxOne: string) => void;
   revEquationOneBoxTwo: string;
   setRevEquationOneBoxTwo: (revEquationOneBoxTwo: string) => void;
@@ -23,6 +27,8 @@ export interface RevenueEquationProps {
 const RevenueEquation = ({
   selectedFood,
   selectedNumWorkers,
+  revenueComponentComplete,
+  setRevenueComponentComplete,
   revEquationOneBoxOne,
   setRevEquationOneBoxOne,
   revEquationOneBoxTwo,
@@ -78,6 +84,10 @@ const RevenueEquation = ({
     return validateQuestionOneAnswer() && validateQuestionTwoAnswer();
   };
 
+  const passRevenueComponent = () => {
+    setRevenueComponentComplete(validateComponent());
+  };
+
   const equationContainerCSS = (
     inputBox: string,
     validateFunction: boolean
@@ -96,10 +106,14 @@ const RevenueEquation = ({
   };
 
   return (
-    <div className="flex flex-col border-2 border-dashed border-black p-4">
-      <div className="flex flex-cols-2 items-center">
-        <h1 className="w-5/6 text-4xl p-4">
-          How much money can we make every day selling {selectedFood.name}
+    <div className="flex flex-col border-r-2 border-dashed border-black p-4">
+      <h1 className="text-xl mb-8">
+        Great Work! Will your business be a success?
+      </h1>
+
+      <div className="flex flex-cols-2 items-center mb-8 ">
+        <h1 className="w-5/6 text-4xl py-4 ">
+          How much money can you make every day selling {selectedFood.name}
           {selectedFood.name === "Hot Dog" ? "s" : ""}?
         </h1>
         <span className={progressContainerCSS()}>
@@ -107,22 +121,22 @@ const RevenueEquation = ({
         </span>
       </div>
 
-      <h1 className="text-2xl p-4">
+      <h1 className="text-3xl py-8 border-t-2 border-dashed border-black ">
         First - let's figure out how many plates of{" "}
         {selectedFood.name === "Hot Dog"
           ? selectedFood.name + "s"
           : selectedFood.name}{" "}
-        we can make in an hour
+        you can make in an hour
       </h1>
-      <h1 className="text-2xl font-bold p-4">Equation 1:</h1>
+      <h1 className="text-3xl font-bold p-4">Equation 1:</h1>
       <div className="grid grid-cols-5 items-center justify-center py-4">
-        <p className="text-2xl text-center">Plates per Worker per Hour</p>
+        <p className="text-3xl text-center"># Plates per Hour</p>
         <p className="text-4xl text-center">x</p>
-        <p className="text-2xl text-center"># of Workers</p>
+        <p className="text-3xl text-center"># of Workers</p>
         <p className="text-4xl text-center">=</p>
-        <p className="text-2xl text-center">Plates per Hour</p>
+        <p className="text-3xl text-center">Total Plates per Hour</p>
       </div>
-      <div className="grid grid-cols-5 items-center justify-center pt-8">
+      <div className="grid grid-cols-5 items-center justify-center py-4">
         <input
           className={equationContainerCSS(
             revEquationOneBoxOne,
@@ -157,19 +171,19 @@ const RevenueEquation = ({
         />
       </div>
 
-      <h1 className="text-2xl pt-8">
+      <h1 className="text-3xl pt-8 border-t-2 border-black border-dashed mt-8">
         Now - let's figure out how much money we can make in an hour
       </h1>
 
-      <h1 className="text-2xl font-bold pt-8 pl-4">Equation 2:</h1>
+      <h1 className="text-3xl font-bold pt-8 pl-4">Equation 2:</h1>
       <div className="grid grid-cols-7 items-center justify-center pt-4">
-        <p className="text-2xl text-center m-4">Plates per Hour</p>
+        <p className="text-3xl text-center m-4">Total Plates per Hour</p>
         <p className="text-4xl text-center m-4">x</p>
-        <p className="text-2xl text-center m-4">Price per Plate</p>
+        <p className="text-3xl text-center m-4">Price per Plate</p>
         <p className="text-4xl text-center m-4">x</p>
-        <p className="text-2xl text-center m-4">Hours per Day</p>
+        <p className="text-3xl text-center m-4">Hours per Day</p>
         <p className="text-4xl text-center m-4">=</p>
-        <p className="text-2xl text-center m-4">$$$ per Day</p>
+        <p className="text-3xl text-center m-4">Revenue per Day</p>
         <input
           className={equationContainerCSS(
             revEquationTwoBoxOne,
@@ -209,7 +223,10 @@ const RevenueEquation = ({
             validateQuestionTwoAnswer()
           )}
           value={revEquationTwoBoxFour}
-          onChange={(e) => setRevEquationTwoBoxFour(e.target.value)}
+          onChange={(e) => {
+            setRevEquationTwoBoxFour(e.target.value);
+            passRevenueComponent();
+          }}
           placeholder="2"
         />
       </div>

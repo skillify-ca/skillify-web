@@ -32,12 +32,6 @@ export interface FinanceProfileProps {
 }
 
 const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
-  const lifeRef = useRef(null);
-  const homeRef = useRef(null);
-  const carRef = useRef(null);
-  const additionalRef = useRef(null);
-  const groceryRef = useRef(null);
-
   const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
   const [spouseMonthlyIncome, setSpouseMounthlyIncome] = useState("");
   const [totalMonthlyIncome, setTotalMonthlyIncome] = useState("");
@@ -96,9 +90,8 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
   const [isSurpriseVisible, setIsSurpriseVisible] = useState(false);
 
   useEffect(() => {
-    const randomSurprise: SurpriseCardType = getRandomItemFromArray(
-      SurpriseCard
-    );
+    const randomSurprise: SurpriseCardType =
+      getRandomItemFromArray(SurpriseCard);
     setSurpriseData(randomSurprise);
   }, []);
 
@@ -140,38 +133,6 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
     }
   };
 
-  const scrollToLifeSection = () => {
-    lifeRef.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "nearest",
-    });
-  };
-
-  const scrollToHomeSection = () => {
-    homeRef.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "nearest",
-    });
-  };
-
-  const scrollToCarSection = () => {
-    carRef.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "nearest",
-    });
-  };
-
-  const scrollToAdditionalSection = () => {
-    additionalRef.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "nearest",
-    });
-  };
-
   return (
     <div className="h-screen grid grid-cols-5 bg-scroll bg-white">
       <div className={"h-full overflow-scroll col-start-1 col-end-4"}>
@@ -189,10 +150,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
           </div>
         </header>
         {profileData && (
-          <div
-            className={"flex items-center justify-center my-4"}
-            onMouseEnter={scrollToLifeSection}
-          >
+          <div className={"flex items-center justify-center my-4"}>
             <FinanceProfileChart
               individualOccupation={profileData.individualOccupation}
               individualSalary={profileData.individualSalary}
@@ -218,10 +176,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
           </div>
         </section>
 
-        <div
-          className={"flex items-center justify-center"}
-          onMouseEnter={scrollToHomeSection}
-        >
+        <div className={"flex items-center justify-center"}>
           <BuyAHome />
         </div>
         <section
@@ -238,10 +193,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
             Your Ride
           </div>
         </section>
-        <div
-          className={"flex items-center justify-center"}
-          onMouseEnter={scrollToCarSection}
-        >
+        <div className={"flex items-center justify-center"}>
           <BuyACar
             Make={Make}
             setMake={setMake}
@@ -269,10 +221,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
             Your Cell
           </div>
         </section>
-        <div
-          className={"flex items-center justify-center"}
-          onMouseEnter={scrollToAdditionalSection}
-        >
+        <div className={"flex items-center justify-center"}>
           <BuyAPhone />
         </div>
         <section
@@ -289,10 +238,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
             Your Food
           </div>
         </section>
-        <div
-          className={"flex items-center justify-center p-4 mt-10"}
-          onMouseEnter={scrollToAdditionalSection}
-        >
+        <div className={"flex items-center justify-center p-4 mt-10"}>
           <BuyGroceries />
         </div>
       </div>
@@ -313,7 +259,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
             get started!
           </p>
         </div>
-        <div ref={lifeRef}>
+        <div>
           <SectionOneInput
             isMarried={isMarried}
             setMarriage={setMarriage}
@@ -360,7 +306,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
               setValueTest={setValueTest}
             ></IncomeTable>
           </div>
-          <div className={"mb-40"} ref={homeRef}>
+          <div className={"mb-40"}>
             <HouseExpensesTable
               housePayment={housePayment}
               setHousePayment={setHousePayment}
@@ -376,7 +322,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
               setHomeType={setHomeType}
             />
           </div>
-          <div className={"mb-40"} ref={carRef}>
+          <div className={"mb-40"}>
             <CarExpenseTable
               carPayment1={carPayment1}
               setCarPayment1={setCarPayment1}
@@ -392,7 +338,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
               setSumValidationCar={setSumValidationCar}
             />
           </div>
-          <div className={"mb-40"} ref={additionalRef}>
+          <div className={"mb-40"}>
             <AdditionalTable
               tvInternet={tvInternet}
               setTvInternet={setTvInternet}

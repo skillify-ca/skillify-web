@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
-import { useSession } from "next-auth/react";
 import { useQuery } from "@apollo/client";
 import { FETCH_FLASHCARD_GUESSES } from "../../graphql/fetchFlashcardGuesses";
 import _ from "lodash";
 import Link from "next/link";
-import { getSkillIdFromSlug, userId } from "../../graphql/utils/constants";
+import { getSkillIdFromSlug } from "../../graphql/utils/constants";
 import Card from "../../components/ui/Card";
 import data from "../api/profile/data.json";
+import { useAuth } from "../../lib/authContext";
 
 const Portfolio = ({ slug }) => {
-  const { data: session, status } = useSession();
+  const { user } = useAuth();
+
   const guessesResult = useQuery(FETCH_FLASHCARD_GUESSES, {
     variables: {
-      userId: userId(session),
+      userId: user.uid,
       skillId: getSkillIdFromSlug(slug),
     },
   });
@@ -31,7 +32,7 @@ const Portfolio = ({ slug }) => {
   }, []);
 
   useEffect(() => {
-    if (guessesResult.data && userId(session) != "-1") {
+    if (guessesResult.data && user) {
       console.log("guessesResult.data", guessesResult.data);
       console.log(getSkillIdFromSlug(slug));
       setGuesses(guessesResult.data.flashcard_guesses);
@@ -40,7 +41,7 @@ const Portfolio = ({ slug }) => {
       );
       setPracticeSessions(sessions);
     }
-  }, [guessesResult, session]);
+  }, [guessesResult]);
 
   const groupByPracticeSession = (guesses) => {
     const dict = _.groupBy(guesses, function (guess) {

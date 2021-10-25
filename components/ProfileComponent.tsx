@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { userId } from "../graphql/utils/constants";
 import { EMOJI_MASTERY, getEmoji } from "../pages/api/skill";
 import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import LockedBadge from "./LockedBadge";
-import { useSession } from "next-auth/react";
+import { useAuth } from "../lib/authContext";
 
 const ProfileComponent = () => {
-  const { data: session, status } = useSession();
+  const { user } = useAuth();
+
   let { loading, data, refetch } = useQuery(FETCH_USER_PROFILE, {
     variables: {
-      userId: userId(session),
+      userId: user.uid,
     },
   });
 
@@ -49,8 +49,8 @@ const ProfileComponent = () => {
         <div className="col-span-2 p-8 bg-white shadow-lg rounded-3xl">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex flex-col items-center">
-              <p className="text-xl">{session && session.user.name}</p>
-              <p className="text-sm">{session && session.user.email}</p>
+              <p className="text-xl">{user && user.displayName}</p>
+              <p className="text-sm">{user && user.email}</p>
             </div>
             <div className="flex flex-col gap-4 m-4">
               <p className="text-sm">Progress</p>

@@ -10,6 +10,8 @@ export interface ProfitEquationProps {
   selectedFood: Food;
   selectedTruck: Truck;
   selectedNumWorkers: string;
+  profitComponentComplete: boolean;
+  setProfitComponentComplete: (profitComponentComplete: boolean) => void;
   profitEquationOneBoxOne: string;
   setProfitEquationOneBoxOne: (profitEquationOneBoxOne: string) => void;
   profitEquationOneBoxTwo: string;
@@ -22,6 +24,8 @@ const ProfitEquation = ({
   selectedFood,
   selectedTruck,
   selectedNumWorkers,
+  profitComponentComplete,
+  setProfitComponentComplete,
   profitEquationOneBoxOne,
   setProfitEquationOneBoxOne,
   profitEquationOneBoxTwo,
@@ -79,6 +83,10 @@ const ProfitEquation = ({
     };
   };
 
+  const passProfitComponent = () => {
+    setProfitComponentComplete(validateProfitEquationAnswer().isCorrect);
+  };
+
   const equationContainerCSS = (
     inputBox: string,
     validateFunction: boolean
@@ -116,12 +124,11 @@ const ProfitEquation = ({
   );
 
   return (
-    <div className="flex flex-col border-2 border-dashed border-black p-4">
+    <div className="flex flex-col border-r-2 border-dashed border-black p-4">
       <div className="flex flex-cols-2 items-center">
-        <h1 className="w-5/6 text-4xl py-4">
-          Finally - lets find out if we will make any money selling{" "}
-          {selectedFood.name}
-          {selectedFood.name === "Hot Dog" ? "s" : ""}!
+        <h1 className="w-5/6 text-5xl py-4">
+          Finally - will we make any money selling {selectedFood.name}
+          {selectedFood.name === "Hot Dog" ? "s" : ""}?!
         </h1>
         <span className={progressContainerCSS()}>
           {validateProfitEquationAnswer().isCorrect === true
@@ -129,18 +136,18 @@ const ProfitEquation = ({
             : "Incorrect"}
         </span>
       </div>
-      <h1 className="text-2xl mt-8">
-        All we need to do now is subtract our costs from revenue...
+      <h1 className="text-4xl pt-8 border-t-2 border-black border-dashed mt-8">
+        Is our revenue greater than the costs?
       </h1>
-      <h1 className="text-2xl font-bold p-4">Equation 1:</h1>
+      <h1 className="text-3xl font-bold p-4 mt-8">Equation 1:</h1>
       <div className="grid grid-cols-5 items-center justify-center py-4">
-        <p className="text-2xl text-center">Total Revenue</p>
+        <p className="text-3xl text-center">Total Revenue</p>
         <p className="text-4xl text-center">-</p>
-        <p className="text-2xl text-center">Total Costs</p>
+        <p className="text-3xl text-center">Total Costs</p>
         <p className="text-4xl text-center">=</p>
-        <p className="text-2xl text-center">Profit</p>
+        <p className="text-3xl text-center">Profit</p>
       </div>
-      <div className="grid grid-cols-5 items-center justify-center pt-8">
+      <div className="grid grid-cols-5 items-center justify-center pt-4">
         <input
           className={equationContainerCSS(
             profitEquationOneBoxOne,
@@ -170,7 +177,10 @@ const ProfitEquation = ({
             validateProfitEquationAnswer().isCorrect
           )}
           value={profitEquationOneBoxThree}
-          onChange={(e) => setProfitEquationOneBoxThree(e.target.value)}
+          onChange={(e) => {
+            setProfitEquationOneBoxThree(e.target.value);
+            passProfitComponent();
+          }}
           placeholder="2"
         />
       </div>

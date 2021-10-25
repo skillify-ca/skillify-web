@@ -86,10 +86,3 @@ export const getSkillIdFromSlug = (slug: string) => {
   }
   return "";
 };
-
-export const userId = (session) => {
-  if (session) {
-    return session.user.id;
-  }
-  return "-1";
-};

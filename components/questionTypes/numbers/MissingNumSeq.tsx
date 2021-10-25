@@ -4,7 +4,7 @@ import { Button } from "../../ui/Button";
 
 export interface MissingNumSeqProp {
   numSeq: Array<number>;
-  answer: Number;
+  answer: number;
   submitGuess: (guess: GuessData) => void;
 }
 

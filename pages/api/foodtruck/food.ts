@@ -43,8 +43,8 @@ export const soupDumplings: Food = {
     qtyProducedPerWorkerHour: 15
 }
 
-export const tikka: Food = {
-    name: "Tikka", 
+export const curry: Food = {
+    name: "Curry", 
     unitCost: 4,
     unitRevenue: 15,
     imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/36257/cooking-curry-clipart.svg',
@@ -52,34 +52,52 @@ export const tikka: Food = {
     qtyProducedPerWorkerHour: 10
 }
 
-export const allFoods = [hotDog, soupDumplings, tikka]
+export const kebab: Food = {
+    name: "Kebabs", 
+    unitCost: 2,
+    unitRevenue: 6,
+    imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/35112/barbecue-barbeque-bbq-clipart.svg',
+    prepTime: 6,
+    qtyProducedPerWorkerHour: 30
+}
+
+export const okonomiyaki: Food = {
+    name: "Okonomiyaki", 
+    unitCost: 2,
+    unitRevenue: 12,
+    imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3386659/okonomiyaki-japanese-food-clipart.svg',
+    prepTime: 6,
+    qtyProducedPerWorkerHour: 20
+}
+
+export const allFoods = [hotDog, kebab, soupDumplings, okonomiyaki, curry]
 
 // define each instance of Truck interface
 
 export const smallTruck: Truck = {
-    model: "Small Food Cart", 
+    model: "Food Cart", 
     fixedCost: 50,
     variableCost: 10,
     maxWorkers: 1,
-    allowedItems: [hotDog],
+    allowedItems: [hotDog, kebab],
     imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/25675/222-1033-traditional-culinary-vector-up-clipart.svg'
 }
 
 export const mediumTruck: Truck = {
-    model: "Medium Sized Van", 
+    model: "Food Van", 
     fixedCost: 150,
     variableCost: 30,
     maxWorkers: 2,
-    allowedItems: [hotDog, soupDumplings],
-    imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/69034/food-truck-clipart-xl.png'
+    allowedItems: [hotDog, soupDumplings, kebab, okonomiyaki],
+    imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/840327/food-truck-clipart.svg'
 }
 
 export const largeTruck: Truck = {
-    model: "Real Food Truck", 
+    model: "Food Truck", 
     fixedCost: 300,
     variableCost: 60,
     maxWorkers: 4,
-    allowedItems: [hotDog, soupDumplings, tikka],
+    allowedItems: [hotDog, soupDumplings, curry, kebab, okonomiyaki],
     imageUrl: 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/1795498/food-truck-clipart.svg'
 }
 
@@ -92,15 +110,15 @@ export const operatingHours = 8
 
 // define functions to get properties from Truck and Food interfaces
 export const getTruck = (model: string) => {
-    if (model === 'Small Food Cart') {
+    if (model === 'Food Cart') {
         return smallTruck
     }
     
-    else if (model === 'Medium Sized Van') {
+    else if (model === 'Food Van') {
         return mediumTruck
     }
 
-    else if (model === 'Real Food Truck') {
+    else if (model === 'Food Truck') {
         return largeTruck
     }
 }
@@ -114,8 +132,16 @@ export const getFood = (name: string) => {
         return soupDumplings
     }
 
-    else if (name === 'Tikka') {
-        return tikka
+    else if (name === 'Curry') {
+        return curry
+    }
+
+    else if (name === 'Kebabs') {
+        return kebab
+    }
+
+    else if (name === 'Okonomiyaki') {
+        return okonomiyaki
     }
 }
 

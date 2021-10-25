@@ -1,8 +1,7 @@
 import { ServiceHeader, ServiceHeaderProps } from "./ServiceHeader";
 import { SpeedyWireless, VintageWireless } from "./BuyAHomeTables";
-export interface BuyAPhoneProps {}
 
-export const BuyAPhone = ({}: BuyAPhoneProps) => {
+export const BuyAPhone = () => {
   return (
     <div className={"mb-10 p-4"}>
       <ServiceHeader

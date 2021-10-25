@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 export interface BuildingABakeryAProps {
   monthlyRentQ1: string;
   setMonthlyRentQ1: (monthlyRentQ1: string) => void;
-  q1Correct: String;
+  q1Correct: string;
   setQ1Correct: (q1Correct: string) => void;
   bakerySpaceQ2: string;
   setBakerySpaceQ2: (bakerySpaceQ2: string) => void;
-  q2Correct: String;
+  q2Correct: string;
   setQ2Correct: (q2Correct: string) => void;
   numeratorQ3: any;
   setNumberatorQ3: (numberatorQ3: any) => void;

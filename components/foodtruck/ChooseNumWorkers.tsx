@@ -15,7 +15,7 @@ const ChooseNumWorkers = ({
     return [...Array(Number.parseInt(n))].map((_, i) => (
       <div className="flex flex-cols" key={i}>
         <img
-          className="object-contain h-full w-full px-8"
+          className="object-contain h-full w-full px-12"
           src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
         />
       </div>
@@ -23,14 +23,14 @@ const ChooseNumWorkers = ({
   };
 
   return (
-    <div className="flex flex-col border-2 border-black border-dashed p-4">
-      <h1 className="text-4xl text-black bold p-4 mb-8">
+    <div className="flex flex-col  p-4">
+      <h1 className="text-3xl text-black bold p-4">
         How many workers do you want to employ?
       </h1>
 
       {numWorkerArray.map((n) => {
         return (
-          <label className="flex flex-row space-x-8 items-center p-4">
+          <label className="flex flex-row space-x-8 space-y-12 items-center p-4">
             <input
               className="form-radio h-8 w-8"
               type="radio"

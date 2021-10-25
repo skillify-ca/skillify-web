@@ -1,18 +1,12 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Image from "next/image";
-import googleClassroomImg from "../public/images/assignments/google-classroom.svg";
-import { resources } from "./api/resources";
-import { MultipleChoice } from "../components/questionTypes/MultipleChoice";
+import { SwitchTransition, CSSTransition } from "react-transition-group";
 import { GuessData } from "./api/guessData";
 import { Button } from "../components/ui/Button";
-import { react } from "@babel/types";
-import { TrueorFalse } from "../components/questionTypes/TrueorFalse";
-import { Skill } from "./api/skill";
 import Q1 from "../components/giza/Q1";
 import Q2 from "../components/giza/Q2";
 import Q3 from "../components/giza/Q3";
-import next from "next";
 import Q4 from "../components/giza/Q4";
 import Q5 from "../components/giza/Q5";
 import Q6 from "../components/giza/Q6";
@@ -175,100 +169,132 @@ export default function djacobs(props) {
 
   return (
     <div className="flex flex-col overflow-auto bg-scroll bg-blue-50">
+      <style jsx>{`
+        .fade-enter {
+          opacity: 0;
+          transform: translateX(100%);
+        }
+        .fade-exit {
+          opacity: 1;
+          transform: translateX(0%);
+        }
+        .fade-enter-active {
+          opacity: 1;
+          transform: translateX(0%);
+        }
+        .fade-exit-active {
+          opacity: 0;
+          transform: translateX(-100%);
+        }
+        .fade-enter-active,
+        .fade-exit-active {
+          transition: opacity 500ms, transform 500ms;
+        }
+      `}</style>
       <Navbar />
       <div id="Form">
-        {stage == Stage.START && (
-          <div className="flex flex-col gap-8">
-            <p className="text-2xl text-center bg-blue-400">Escape From Giza</p>
-            <div className="flex flex-col items-center col gap-8">
-              <div id="Description" className="text-center">
-                <p className="text-base">
-                  You and your group are trapped in a pyramid. Together you must
-                  solve a variety of questions about angles, triangles, and some
-                  quadrilaterals to help you escape. GOOD LUCK!
-                </p>
-              </div>
-              <div id="GroupNameLayout">
-                <div className="flex flex-row gap-8 text-center">
-                  <div className="text-center">
-                    <label>Group Name</label>
+        <div className="flex flex-col gap-8">
+          <p className="text-2xl text-center bg-blue-400">Escape From Giza</p>
+          <SwitchTransition mode={"out-in"}>
+            <CSSTransition
+              key={stage + currentQuestionIndex}
+              addEndListener={(node, done) => {
+                node.addEventListener("transitionend", done, false);
+              }}
+              classNames="fade"
+            >
+              <div>
+                {stage == Stage.START && (
+                  <div className="flex flex-col items-center col gap-8 p-4">
+                    <div id="Description" className="text-center">
+                      <p className="text-base">
+                        You and your group are trapped in a pyramid. Together
+                        you must solve a variety of questions about angles,
+                        triangles, and some quadrilaterals to help you escape.
+                        GOOD LUCK!
+                      </p>
+                    </div>
+                    <div id="GroupNameLayout">
+                      <div className="flex flex-row gap-8 text-center">
+                        <div className="text-center">
+                          <label>Group Name</label>
+                        </div>
+                        <input
+                          className="p-4 text-lg"
+                          value={groupName}
+                          onChange={(e) => onGroupNameChange(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <div id="StudentNameLayout">
+                      <div className="flex flex-row gap-3">
+                        <label>Student Names</label>
+                        <input
+                          className="p-4 text-lg"
+                          placeholder="(seperate by ,)"
+                          value={studentName}
+                          onChange={(e) => onStudentNameChange(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <Button
+                      label="Start"
+                      backgroundColor="blue"
+                      textColor="white"
+                      onClick={onStartQuiz}
+                    />
+                    <Image
+                      className="transform transition ease-in-out duration-500 hover:scale-110"
+                      width={256}
+                      height={256}
+                      alt="Pyramid"
+                      src="/images/giza/intro_pyramid.jpg"
+                    />
                   </div>
-                  <input
-                    className="p-4 text-lg"
-                    value={groupName}
-                    onChange={(e) => onGroupNameChange(e.target.value)}
-                  />
-                </div>
+                )}
+                {stage == Stage.QUIZ && (
+                  <div id="QuizForm" className="flex flex-col gap-8 p-4">
+                    <div id="FormBody" className="flex flex-col gap-8">
+                      {displayWrong(check)}
+                      {questionComponent[currentQuestionIndex]}
+                    </div>
+                    <div id="FormEnd" className="flex flex-col items-center">
+                      <Button
+                        label="Back"
+                        backgroundColor="blue"
+                        textColor="white"
+                        onClick={backToPrevious}
+                      />
+                    </div>
+                  </div>
+                )}
+                {stage == Stage.END && (
+                  <div id="Result" className="flex flex-col gap-8 p-4">
+                    <div id="FormBody" className="flex flex-col gap-8">
+                      <p className="text-2xl text-center">
+                        Your group {groupName} have scored {score} percent!
+                      </p>
+                    </div>
+                    <div id="FormEnd" className="flex flex-col items-center">
+                      <div id="ButtonLayout" className="flex flex-row gap-8">
+                        <Button
+                          label="Continue"
+                          backgroundColor="blue"
+                          textColor="white"
+                        />
+                        <Button
+                          label="Retry"
+                          backgroundColor="blue"
+                          textColor="white"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-              <div id="StudentNameLayout">
-                <div className="flex flex-row gap-3">
-                  <label>Student Names</label>
-                  <input
-                    className="p-4 text-lg"
-                    placeholder="(seperate by ,)"
-                    value={studentName}
-                    onChange={(e) => onStudentNameChange(e.target.value)}
-                  />
-                </div>
-              </div>
-              <Button
-                label="Start"
-                backgroundColor="blue"
-                textColor="white"
-                onClick={onStartQuiz}
-              />
-            </div>
-          </div>
-        )}
-        {stage == Stage.QUIZ && (
-          <div id="QuizForm" className="flex flex-col gap-8">
-            <div id="FormHeader">
-              <p className="text-2xl text-center bg-blue-400">
-                Escape From Giza
-              </p>
-            </div>
-            <div id="FormBody" className="flex flex-col gap-8">
-              {displayWrong(check)}
-              {questionComponent[currentQuestionIndex]}
-            </div>
-            <div id="FormEnd" className="flex flex-col items-center">
-              <Button
-                label="Back"
-                backgroundColor="blue"
-                textColor="white"
-                onClick={backToPrevious}
-              />
-            </div>
-          </div>
-        )}
-        {stage == Stage.END && (
-          <div id="Result" className="flex flex-col gap-8">
-            <div id="FormHeader">
-              <p className="text-2xl text-center bg-blue-400">
-                Escape From Giza
-              </p>
-            </div>
-            <div id="FormBody" className="flex flex-col gap-8">
-              <p className="text-2xl text-center">
-                Your group {groupName} have scored {score} percent!
-              </p>
-            </div>
-            <div id="FormEnd" className="flex flex-col items-center">
-              <div id="ButtonLayout" className="flex flex-row gap-8">
-                <Button
-                  label="Continue"
-                  backgroundColor="blue"
-                  textColor="white"
-                />
-                <Button
-                  label="Retry"
-                  backgroundColor="blue"
-                  textColor="white"
-                />
-              </div>
-            </div>
-          </div>
-        )}
+            </CSSTransition>
+          </SwitchTransition>
+        </div>
       </div>
     </div>
   );
