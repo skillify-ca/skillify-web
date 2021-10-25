@@ -130,7 +130,7 @@ export default function djacobs(props) {
     Q1(questionData[0], nextQuestion, isWrong),
     Q2(questionData[1], nextQuestion),
     Q3(questionData[2], nextQuestion),
-    Q4(questionData[3], nextQuestion),
+    Q4(questionData[3], nextQuestion, isWrong),
     Q5(questionData[4], nextQuestion),
     Q6(questionData[5], nextQuestion),
     MiddleOfQuiz(questionData[6], nextQuestionfromMiddle),
