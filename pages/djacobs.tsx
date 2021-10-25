@@ -72,6 +72,8 @@ export default function djacobs(props) {
   const [isVisible, setIsVisible] = useState<Boolean>();
   const [guessHistoryforQ1, setGuessQ1] = useState<GuessData[]>([]);
   const [counter, setCounter] = useState(0);
+  const [check, setCheck] = useState<Boolean>(true);
+  const [shouldAnimate, setShouldAnimate] = useState<Boolean>(true);
 
   const onSubmit = (guess: GuessData) => {
     console.log(guess);
@@ -101,6 +103,7 @@ export default function djacobs(props) {
   //Future thing: Use this function to add the guessData from each question page into the guessDataArray
   const nextQuestion = (guess: GuessData) => {
     guesses[currentQuestionIndex] = guess;
+    setCheck(true);
     //another method to count the amounts of trues / total question length
     setCurrentQuestionIndex(
       Math.min(questionData.length - 1, currentQuestionIndex + 1)
@@ -120,10 +123,25 @@ export default function djacobs(props) {
   const isWrong = (check: Boolean, guess: GuessData) => {
     guessHistoryforQ1[counter] = guess;
     setCounter(counter + 1);
-    if (check == false) {
+    setCheck(check);
+    setShouldAnimate(true);
+  };
+
+  //"animate-fadeIn text-center text-red-600">
+  const displayWrong = (displayCheck: Boolean) => {
+    if (displayCheck == false) {
       return (
         <React.Fragment>
-          <p className="animate-fadeIn text-red-600">Wrong Answer</p>
+          <p
+            className={
+              shouldAnimate
+                ? "animate-fadeIn text-center text-red-600"
+                : "visibility: hidden"
+            }
+            onAnimationEnd={(e) => setShouldAnimate(false)}
+          >
+            Wrong Answer
+          </p>
         </React.Fragment>
       );
     }
@@ -211,7 +229,7 @@ export default function djacobs(props) {
               </p>
             </div>
             <div id="FormBody" className="flex flex-col gap-8">
-              {isWrong}
+              {displayWrong(check)}
               {questionComponent[currentQuestionIndex]}
             </div>
             <div id="FormEnd" className="flex flex-col items-center">
