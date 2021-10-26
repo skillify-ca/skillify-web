@@ -21,6 +21,8 @@ import Q14 from "../components/giza/Q14";
 import Q15 from "../components/giza/Q15";
 import Q16 from "../components/giza/Q16";
 import MiddleOfQuiz from "../components/giza/MiddleOfQuiz";
+import { start } from "repl";
+import { measureTime } from "./api/time";
 
 enum Stage {
   START,
@@ -63,12 +65,18 @@ export default function djacobs(props) {
   const [wrongAnswerCheck, setWrongAnswerCheck] = useState<Boolean>(true);
   const [shouldAnimate, setShouldAnimate] = useState<Boolean>(true);
   const [questionCounter, setQuestionCounter] = useState(1);
+  const [startTime, setStartTime] = useState<number>();
+  const [endTime, setEndTime] = useState<number>();
+  const [totalTimeMin, setTotalTimeMin] = useState<number>();
+  const [totalTimeSec, setTotalTimeSec] = useState<String>();
 
   const onSubmit = (guess: GuessData) => {
     console.log(guess);
   };
 
   const onStartQuiz = () => {
+    var sTime = new Date().getTime();
+    setStartTime(sTime);
     setStage(Stage.QUIZ);
   };
 
@@ -96,6 +104,8 @@ export default function djacobs(props) {
     setQuestionCounter(questionCounter + 1);
     setGuessCounter(1);
     //another method to count the amounts of trues / total question length
+    var eTime = new Date().getTime();
+    setEndTime(eTime);
     setCurrentQuestionIndex(
       Math.min(questionData.length - 1, currentQuestionIndex + 1)
     );
@@ -107,7 +117,11 @@ export default function djacobs(props) {
             100
         )
       );
+      var value = measureTime(startTime, eTime);
+      setTotalTimeMin(value.minutes);
+      setTotalTimeSec(value.secondsString);
       setStage(Stage.END);
+      //Your group {groupName} have scored {score} percent!
     }
   };
 
@@ -262,7 +276,8 @@ export default function djacobs(props) {
                   <div id="Result" className="flex flex-col gap-8 p-4">
                     <div id="FormBody" className="flex flex-col gap-8">
                       <p className="text-2xl text-center">
-                        Your group {groupName} have scored {score} percent!
+                        Congratulations! Your group {groupName} have made it out
+                        within {totalTimeMin} : {totalTimeSec} !
                       </p>
                     </div>
                     <div id="FormEnd" className="flex flex-col items-center">
