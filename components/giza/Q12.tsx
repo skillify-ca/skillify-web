@@ -2,7 +2,7 @@ import React from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { MultipleChoice } from "../questionTypes/MultipleChoice";
 
-const Q12 = (displayQuestion, nextQuestion) => {
+const Q12 = (displayQuestion, nextQuestion, isWrong) => {
   /* 
     107 degrees - right answer
     287 degrees
@@ -11,7 +11,11 @@ const Q12 = (displayQuestion, nextQuestion) => {
  */
   const onSubmit = (guess: GuessData) => {
     //Pass this guessData object into nextQuestion
-    nextQuestion(guess);
+    if (guess.isCorrect == false) {
+      isWrong(guess.isCorrect, guess);
+    } else {
+      nextQuestion(guess);
+    }
   };
   return (
     <React.Fragment>

@@ -29,14 +29,6 @@ enum Stage {
 }
 
 export default function djacobs(props) {
-  /*
-    Extra questions
-    "What is the measurement of <a? (Tip: Just write the number.) ",
-    "A triangle has 2 angles that are 50 degrees. Is it possible for the last angle to be obtuse?",
-    "Which of the following letters has a right- angle in it?",
-    "Use your protractor for this question! Which of the following are the interior angles of this pyramid?"
-  */
-
   const questionData = [
     "The sum of the interior (inside) angles of a triangle add up to what?",
     "What is the measurement of <a? (Tip: Just write the number.) ",
@@ -63,6 +55,14 @@ export default function djacobs(props) {
   const [studentName, setStudentName] = useState<string>();
   const [guesses, setGuess] = useState<GuessData[]>([]);
   const [score, setScore] = useState<Number>();
+  const [isVisible, setIsVisible] = useState<Boolean>();
+  const [guessHistory, setGuessHistory] = useState<Map<String, GuessData>>(
+    new Map()
+  );
+  const [guessCounter, setGuessCounter] = useState(1);
+  const [wrongAnswerCheck, setWrongAnswerCheck] = useState<Boolean>(true);
+  const [shouldAnimate, setShouldAnimate] = useState<Boolean>(true);
+  const [questionCounter, setQuestionCounter] = useState(1);
 
   const onSubmit = (guess: GuessData) => {
     console.log(guess);
@@ -92,6 +92,9 @@ export default function djacobs(props) {
   //Future thing: Use this function to add the guessData from each question page into the guessDataArray
   const nextQuestion = (guess: GuessData) => {
     guesses[currentQuestionIndex] = guess;
+    setWrongAnswerCheck(true);
+    setQuestionCounter(questionCounter + 1);
+    setGuessCounter(1);
     //another method to count the amounts of trues / total question length
     setCurrentQuestionIndex(
       Math.min(questionData.length - 1, currentQuestionIndex + 1)
@@ -108,6 +111,14 @@ export default function djacobs(props) {
     }
   };
 
+  const isWrong = (check: Boolean, guess: GuessData) => {
+    guessHistory.set("Question" + questionCounter + "." + guessCounter, guess);
+    console.log(guessHistory);
+    setGuessCounter(guessCounter + 1);
+    setWrongAnswerCheck(check);
+    setShouldAnimate(true);
+  };
+
   const nextQuestionfromMiddle = () => {
     setCurrentQuestionIndex(
       Math.min(questionData.length - 1, currentQuestionIndex + 1)
@@ -116,23 +127,23 @@ export default function djacobs(props) {
 
   // End of Quiz: YOU MADE IT OUT! Head back to main session to collect your prize!
   const questionComponent = [
-    Q1(questionData[0], nextQuestion),
-    Q2(questionData[1], nextQuestion),
-    Q3(questionData[2], nextQuestion),
-    Q4(questionData[3], nextQuestion),
-    Q5(questionData[4], nextQuestion),
-    Q6(questionData[5], nextQuestion),
+    Q1(questionData[0], nextQuestion, isWrong),
+    Q2(questionData[1], nextQuestion, isWrong),
+    Q3(questionData[2], nextQuestion, isWrong),
+    Q4(questionData[3], nextQuestion, isWrong),
+    Q5(questionData[4], nextQuestion, isWrong),
+    Q6(questionData[5], nextQuestion, isWrong),
     MiddleOfQuiz(questionData[6], nextQuestionfromMiddle),
-    Q7(questionData[7], nextQuestion),
-    Q8(questionData[8], nextQuestion),
-    Q9(questionData[9], nextQuestion),
-    Q10(questionData[10], nextQuestion),
-    Q11(questionData[11], nextQuestion),
-    Q12(questionData[12], nextQuestion),
-    Q13(questionData[13], nextQuestion),
-    Q14(questionData[14], nextQuestion),
-    Q15(questionData[15], nextQuestion),
-    Q16(questionData[16], nextQuestion),
+    Q7(questionData[7], nextQuestion, isWrong),
+    Q8(questionData[8], nextQuestion, isWrong),
+    Q9(questionData[9], nextQuestion, isWrong),
+    Q10(questionData[10], nextQuestion, isWrong),
+    Q11(questionData[11], nextQuestion, isWrong),
+    Q12(questionData[12], nextQuestion, isWrong),
+    Q13(questionData[13], nextQuestion, isWrong),
+    Q14(questionData[14], nextQuestion, isWrong),
+    Q15(questionData[15], nextQuestion, isWrong),
+    Q16(questionData[16], nextQuestion, isWrong),
   ];
 
   return (
@@ -223,6 +234,18 @@ export default function djacobs(props) {
                 {stage == Stage.QUIZ && (
                   <div id="QuizForm" className="flex flex-col gap-8 p-4">
                     <div id="FormBody" className="flex flex-col gap-8">
+                      {!wrongAnswerCheck && (
+                        <p
+                          className={
+                            shouldAnimate
+                              ? "animate-fadeIn delay-1000 text-center text-red-600"
+                              : "visibility: hidden"
+                          }
+                          onAnimationEnd={(e) => setShouldAnimate(false)}
+                        >
+                          Wrong Answer
+                        </p>
+                      )}
                       {questionComponent[currentQuestionIndex]}
                     </div>
                     <div id="FormEnd" className="flex flex-col items-center">
