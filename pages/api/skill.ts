@@ -68,6 +68,10 @@ export const getSkillsForUnit = (unit: Unit): Skill[] => {
         Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT,
         Skill.DIVISION_THREE_DIGIT_BY_TENTH,
       ];
+    case Unit.FINANCE:
+      return [
+        Skill.FINANCE_BUDGET,
+      ]
   }
   return [];
 };
@@ -161,6 +165,9 @@ export function getSkillId(skill: Skill) {
       return 65;
     case Skill.DIVISION_THREE_DIGIT_BY_TENTH:
       return 66;
+    case Skill.FINANCE_BUDGET:
+      return 67;
+        
   }
 }
 
@@ -240,6 +247,8 @@ export const getSkillFromId = (skillId: number) => {
       return Skill.MULTIPLY_THREE_DIGIT_BY_TENTH;
     case 66:
       return Skill.DIVISION_THREE_DIGIT_BY_TENTH;
+    case 67:
+      return Skill.FINANCE_BUDGET;
   }
 };
 
@@ -281,6 +290,7 @@ export enum Skill {
   SUBTRACTION_6_DIGIT = "subtract-six-digit",
   MULTIPLY_THREE_DIGIT_BY_TENTH = "multiply-triple-digit-by-tenths",
   DIVISION_THREE_DIGIT_BY_TENTH = "divide-triple-digit-by-tenths",
+  FINANCE_BUDGET = "budget-5-dollars"
 }
 
 export function getQuestionTypesForSkill(skill: Skill): QuestionType[] {
@@ -489,9 +499,12 @@ export function getQuestionTypesForSkill(skill: Skill): QuestionType[] {
     return [QuestionType.LONG_DIVISION_PROBLEM];
   } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH) {
     return [QuestionType.LONG_DIVISION_PROBLEM];
+  } else if (skill == Skill.FINANCE_BUDGET) {
+    return [QuestionType.FINANCE_PROBLEM];
+
   } else {
     return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
-  }
+  } 
 }
 
 type PracticeCardMetadata = {
