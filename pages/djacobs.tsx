@@ -124,11 +124,8 @@ export default function djacobs(props) {
 
   const measureTime = (timeStart: number, timeEnd: number) => {
     var secondsString = "";
-    console.log(timeStart);
-    console.log(timeEnd);
     var minutes = Math.floor((timeEnd - timeStart) / 60000);
     var seconds = Math.floor(((timeEnd - timeStart) % 60000) / 1000);
-    console.log(timeEnd - timeStart);
     if (seconds == 60) {
       minutes = minutes + 1;
       secondsString = "00";
@@ -138,8 +135,6 @@ export default function djacobs(props) {
     } else {
       secondsString = seconds.toString();
     }
-    console.log(minutes);
-    console.log(seconds);
     setTotalTimeMin(minutes);
     setTotalTimeSec(secondsString);
   };
