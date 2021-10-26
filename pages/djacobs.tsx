@@ -22,6 +22,7 @@ import Q15 from "../components/giza/Q15";
 import Q16 from "../components/giza/Q16";
 import MiddleOfQuiz from "../components/giza/MiddleOfQuiz";
 import { start } from "repl";
+import { measureTime } from "./api/time";
 
 enum Stage {
   START,
@@ -116,27 +117,12 @@ export default function djacobs(props) {
             100
         )
       );
-      measureTime(startTime, eTime);
+      var value = measureTime(startTime, eTime);
+      setTotalTimeMin(value.minutes);
+      setTotalTimeSec(value.secondsString);
       setStage(Stage.END);
       //Your group {groupName} have scored {score} percent!
     }
-  };
-
-  const measureTime = (timeStart: number, timeEnd: number) => {
-    var secondsString = "";
-    var minutes = Math.floor((timeEnd - timeStart) / 60000);
-    var seconds = Math.floor(((timeEnd - timeStart) % 60000) / 1000);
-    if (seconds == 60) {
-      minutes = minutes + 1;
-      secondsString = "00";
-    }
-    if (seconds < 10) {
-      secondsString = "0" + seconds;
-    } else {
-      secondsString = seconds.toString();
-    }
-    setTotalTimeMin(minutes);
-    setTotalTimeSec(secondsString);
   };
 
   const isWrong = (check: Boolean, guess: GuessData) => {
