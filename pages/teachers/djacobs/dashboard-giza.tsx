@@ -5,40 +5,6 @@ import { useState } from "react";
 import Navbar from "../../../components/Navbar";
 
 const GizaDashboardPage = () => {
-  /*
-    const [currentStudentIndex, setCurrentStudentIndex] = useState(0);
-    const [solutionsReleased, setSolutionsReleased] = useState(false);
-    const { loading, data: assignmentFetchData } = useQuery(FETCH_ASSIGNMENT, {
-      variables: {
-        assignmentId: "djacobs1",
-      },
-      onCompleted: (data) => {
-        if (data && data.assignments && data.assignments[0]) {
-          setSolutionsReleased(data.assignments[0].solutions_released);
-        }
-      },
-    });
-    const [updateSolutionsReleased] = useMutation(
-      UPDATE_SOLUTIONS_RELEASED_FOR_ASSIGNMENT
-    );
-    const [selectedQuestion, setSelectedQuestion] = useState(0);
-  
-    const getGrade = () => {
-      const rightGuesses: boolean[] = data.user_assignments[
-        currentStudentIndex
-      ].user_solution.map((guess, index) => {
-        return Number.parseInt(guess) === answers[index];
-      });
-      const correctGuesses: number = rightGuesses.filter((it) => it === true)
-        .length;
-  
-      const grade =
-        (correctGuesses * 100) /
-        data.user_assignments[currentStudentIndex].user_solution.length;
-  
-      return grade + "%";
-    };
-    */
   const getTimeSpent = () => {
     return "2 minutes and 33 seconds";
   };
