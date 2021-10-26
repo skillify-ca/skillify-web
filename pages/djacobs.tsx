@@ -21,6 +21,7 @@ import Q14 from "../components/giza/Q14";
 import Q15 from "../components/giza/Q15";
 import Q16 from "../components/giza/Q16";
 import MiddleOfQuiz from "../components/giza/MiddleOfQuiz";
+import { start } from "repl";
 
 enum Stage {
   START,
@@ -63,12 +64,18 @@ export default function djacobs(props) {
   const [wrongAnswerCheck, setWrongAnswerCheck] = useState<Boolean>(true);
   const [shouldAnimate, setShouldAnimate] = useState<Boolean>(true);
   const [questionCounter, setQuestionCounter] = useState(1);
+  const [startTime, setStartTime] = useState<number>();
+  const [endTime, setEndTime] = useState<number>();
+  const [totalTimeMin, setTotalTimeMin] = useState<number>();
+  const [totalTimeSec, setTotalTimeSec] = useState<String>();
 
   const onSubmit = (guess: GuessData) => {
     console.log(guess);
   };
 
   const onStartQuiz = () => {
+    var sTime = new Date().getTime();
+    setStartTime(sTime);
     setStage(Stage.QUIZ);
   };
 
@@ -96,6 +103,8 @@ export default function djacobs(props) {
     setQuestionCounter(questionCounter + 1);
     setGuessCounter(1);
     //another method to count the amounts of trues / total question length
+    var eTime = new Date().getTime();
+    setEndTime(eTime);
     setCurrentQuestionIndex(
       Math.min(questionData.length - 1, currentQuestionIndex + 1)
     );
@@ -107,8 +116,32 @@ export default function djacobs(props) {
             100
         )
       );
+      measureTime(startTime, eTime);
       setStage(Stage.END);
+      //Your group {groupName} have scored {score} percent!
     }
+  };
+
+  const measureTime = (timeStart: number, timeEnd: number) => {
+    var secondsString = "";
+    console.log(timeStart);
+    console.log(timeEnd);
+    var minutes = Math.floor((timeEnd - timeStart) / 60000);
+    var seconds = Math.floor(((timeEnd - timeStart) % 60000) / 1000);
+    console.log(timeEnd - timeStart);
+    if (seconds == 60) {
+      minutes = minutes + 1;
+      secondsString = "00";
+    }
+    if (seconds < 10) {
+      secondsString = "0" + seconds;
+    } else {
+      secondsString = seconds.toString();
+    }
+    console.log(minutes);
+    console.log(seconds);
+    setTotalTimeMin(minutes);
+    setTotalTimeSec(secondsString);
   };
 
   const isWrong = (check: Boolean, guess: GuessData) => {
@@ -262,7 +295,8 @@ export default function djacobs(props) {
                   <div id="Result" className="flex flex-col gap-8 p-4">
                     <div id="FormBody" className="flex flex-col gap-8">
                       <p className="text-2xl text-center">
-                        Your group {groupName} have scored {score} percent!
+                        Congratulations! Your group {groupName} have made it out
+                        within {totalTimeMin} : {totalTimeSec} !
                       </p>
                     </div>
                     <div id="FormEnd" className="flex flex-col items-center">
