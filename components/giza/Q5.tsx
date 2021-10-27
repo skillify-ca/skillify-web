@@ -2,10 +2,14 @@ import React from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { MultipleChoice } from "../questionTypes/MultipleChoice";
 
-const Q5 = (displayQuestion, nextQuestion) => {
+const Q5 = (displayQuestion, nextQuestion, isWrong) => {
   const onSubmit = (guess: GuessData) => {
     //Pass this guessData object into nextQuestion
-    nextQuestion(guess);
+    if (guess.isCorrect == false) {
+      isWrong(guess.isCorrect, guess);
+    } else {
+      nextQuestion(guess);
+    }
   };
   return (
     <React.Fragment>
