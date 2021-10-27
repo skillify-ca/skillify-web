@@ -49,12 +49,13 @@ const UnitOverviewPage = ({ slug, skillData }) => {
     }
   };
 
-  const unitSkills = (skillData) =>
+  const unitSkills = (skillData) => 
     skillData.skills.filter(
       (skill) =>
         skill.unit == slug && skill.grade == gradeNum(studentGrade.grade)
-    );
 
+    );
+  
   let { loading, error, data } = useQuery(FETCH_UNIT_OVERVIEW, {
     variables: {
       userId: user?.uid,
