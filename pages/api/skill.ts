@@ -561,6 +561,8 @@ const randomSkillSelector = () => {
       return Skill.NUMBERS_200;
     case 24:
       return Skill.NUMBERS_1000;
+    case 25:
+      return Skill.FINANCE_BUDGET;
   }
 };
 export const questionSetGenerator = (quantity: number) => {
