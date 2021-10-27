@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_GIZA_DATA = gql`
-  query MyQuery {
+  query fetch_giza_data {
     giza_student_grades(order_by: { id: asc }) {
       id
       student_name

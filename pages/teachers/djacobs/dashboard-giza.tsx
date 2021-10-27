@@ -114,7 +114,9 @@ const GizaDashboardPage = ({ data }) => {
                           <p>{questionData[index]}</p>
                         </div>
                         <div className="col-span-4">
-                          <p>{guessItem ? guessItem.guess : "EMPTY"}</p>
+                          <p>
+                            {guessItem ? guessItem.guess : "No Answer Provided"}
+                          </p>
                         </div>
                       </div>
                     )
