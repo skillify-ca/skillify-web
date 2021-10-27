@@ -43,9 +43,8 @@ const TeacherDashboardPage = ({ data }) => {
     ].user_solution.map((guess, index) => {
       return Number.parseInt(guess) === answers[index];
     });
-    const correctGuesses: number = rightGuesses.filter(
-      (it) => it === true
-    ).length;
+    const correctGuesses: number = rightGuesses.filter((it) => it === true)
+      .length;
 
     const grade =
       (correctGuesses * 100) /
@@ -203,7 +202,7 @@ export async function getServerSideProps({ params }) {
   const { data } = await client.query({
     query: FETCH_USER_ASSIGNMENTS,
     variables: {
-      assignment_id: params.slug,
+      assignment_id: "djacobs1",
     },
   });
   if (!data) {
