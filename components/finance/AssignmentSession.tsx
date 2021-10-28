@@ -134,7 +134,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
   };
 
   return (
-    <div className="h-screen grid grid-cols-5 bg-scroll bg-white">
+    <div className="h-screen w-full grid grid-cols-5 bg-scroll bg-white">
       <div className={"h-full overflow-scroll col-start-1 col-end-4"}>
         <header
           className={

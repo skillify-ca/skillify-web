@@ -15,8 +15,9 @@ import { UNLOCK_BADGE } from "../graphql/unlockBadge";
 import { useAuth } from "../lib/authContext";
 import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
 import { Button } from "../components/ui/Button";
+import { ProfileSelection } from "../components/finance/ProfileSelection";
 
-enum STAGES {
+export enum STAGES {
   START,
   PROFILE,
   ASSIGNMENT,
@@ -79,10 +80,6 @@ const FinanceProfile = () => {
       badgeId2: 4, //Subtraction Level 1 Badge
     },
   });
-  const randomize = () => {
-    const randomProfile = getRndInteger(0, 12);
-    setProfileData(financialProfileData[randomProfile]);
-  };
 
   return (
     <div className="">
@@ -95,37 +92,11 @@ const FinanceProfile = () => {
         />
       )}
       {stage == STAGES.PROFILE && profileData && (
-        <div>
-          <p className="text-center pb-5">
-            Choose a profile to begin your journey:
-          </p>
-
-          <div className="flex justify-center pb-6">
-            <FinanceProfileChart
-              individualOccupation={profileData.individualOccupation}
-              individualSalary={profileData.individualSalary}
-              maritalStatus={profileData.maritalStatus}
-              numberOfChildren={profileData.numberOfChildren}
-              spouseOccupation={profileData.spouseOccupation}
-              spouseSalary={profileData.spouseSalary}
-            />
-          </div>
-          <div className="flex gap-8 justify-center">
-            <Button
-              backgroundColor="green"
-              textColor="white"
-              label="Randomize"
-              onClick={randomize}
-            />
-
-            <Button
-              backgroundColor="green"
-              textColor="white"
-              label="Start"
-              onClick={(e) => routeAssignment()}
-            />
-          </div>
-        </div>
+        <ProfileSelection
+          profileData={profileData}
+          setProfileData={setProfileData}
+          onStartClick={routeAssignment}
+        />
       )}
       {stage === STAGES.ASSIGNMENT && (
         <AssignmentSession profileData={profileData} onClick={routeEnd} />
