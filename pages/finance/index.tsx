@@ -3,7 +3,6 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { BudgetPreview } from "../../components/finance/BudgetPreview";
 
-import { MultipleChoiceSentence } from "../../components/questionTypes/MultipleChoiceSentence";
 import { FETCH_BADGE_ON_USERID } from "../../graphql/fetchBadgeOnUserID";
 import { useAuth } from "../../lib/authContext";
 import {
