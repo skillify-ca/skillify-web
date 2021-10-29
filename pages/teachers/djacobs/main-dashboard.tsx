@@ -10,9 +10,6 @@ const MainDashboardPage = () => {
   const consolelog = () => {
     console.log(choiceIndex);
   };
-  const chooseDashboard = (i) => {
-    console.log(i);
-  };
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-architect-blue-200 bg-blue-100 h-screen">
       <Navbar />
