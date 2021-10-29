@@ -127,7 +127,42 @@ const GizaDashboardPage = ({ data }) => {
               <p className="font-bold w-full text-xl py-2 px-4">
                 Guess History
               </p>
-              <div className="col-start-2 col-span-10 max-h-80 overflow-scroll"></div>
+              <div className="md:col-span-12 rounded-t-xl">
+                <div className="grid grid-cols-12 rounded-t-xl font-bold items-center justify-between bg-green-400 py-4">
+                  <p className="col-span-6 text-center">Attempt #</p>
+                  <p className="col-span-6 text-center">Guess Attempt</p>
+                </div>
+                {data.giza_student_grades[currentStudentIndex].guess_history !==
+                  null &&
+                  data.giza_student_grades[
+                    currentStudentIndex
+                  ].guess_history.map(
+                    (guessHistoryItem, index) =>
+                      data.giza_student_grades[
+                        currentStudentIndex
+                      ].guess_history[index].key.startsWith(
+                        "Question" + (selectedQuestion + 1) + "."
+                      ) && (
+                        <div className="grid grid-cols-12 rounded-t-xl font-bold items-center justify-between bg-white py-4">
+                          <p className="col-span-6 text-center">
+                            {
+                              data.giza_student_grades[currentStudentIndex]
+                                .guess_history[index].key[
+                                data.giza_student_grades[currentStudentIndex]
+                                  .guess_history[index].key.length - 1
+                              ]
+                            }
+                          </p>
+                          <p className="col-span-6 text-center">
+                            {
+                              data.giza_student_grades[currentStudentIndex]
+                                .guess_history[index].value.guess
+                            }
+                          </p>
+                        </div>
+                      )
+                  )}
+              </div>
             </div>
           </div>
         </div>
