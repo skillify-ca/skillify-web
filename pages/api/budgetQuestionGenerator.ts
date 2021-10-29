@@ -3,8 +3,8 @@ import {
   AnswerType,
 } from "./question";
 import { QuestionType } from "./questionTypes";
-
-export function generateBudgetQuestion(): Question {
+export function generateBudgetQuestion(
+): Question {
 
   const question: Question = {
     text: "6",

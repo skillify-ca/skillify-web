@@ -92,7 +92,7 @@ export const generateQuestionForSkill = (
     case Skill.DIVISION_THREE_DIGIT_BY_TENTH:
       return getRandomDivisionQuestion(100, 1000, skill, questionType)
     case Skill.FINANCE_BUDGET:
-      return generateBudgetQuestion(5, skill)
+      return generateBudgetQuestion();
   }
 };
 
