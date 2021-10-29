@@ -1,16 +1,21 @@
 import React, { ReactNode, useState } from "react";
+import { GuessData } from "../../pages/api/guessData";
 import { Button } from "../ui/Button";
 import { ItemDataTable } from "./BudgetTableData";
 
 export interface ItemProps {
   budget: number;
+  submitGuess: (guess:GuessData) => void;
 }
 
-const BudgetTable = ({ budget }) => {
+const BudgetTable = ({ budget, submitGuess }) => {
 
   const [ isCorrect, setIsCorrect ] = useState(false);
 
   const calculateBudget = () => {
+    const guessData:GuessData = {isCorrect:true, guess:''}
+    submitGuess(guessData)
+
     if( budget >= 1.56 ) {
       setIsCorrect(true)
     } else {

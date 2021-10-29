@@ -9,6 +9,7 @@ import {
   getRndInteger,
 } from "../../pages/api/random";
 import { Skill } from "../../pages/api/skill";
+import BudgetTable from "../money/BudgetTable";
 import { FillBlank } from "../questionTypes/FillBlank";
 import { HorizontalEquation } from "../questionTypes/HorizontalEquation";
 import { LongDivision } from "../questionTypes/LongDivision";
@@ -272,6 +273,18 @@ const QuestionSet = ({
             question={questionData[index]}
             submitGuess={submitGuess}
             color={getRandomItemFromArray([0, 1, 2, 3])}
+          />
+        );
+      }
+    } else if ( 
+      questionData[index].questionType ===
+      QuestionType.FINANCE_PROBLEM
+    ) {
+      {
+        return (
+          <BudgetTable
+            budget={Number.parseInt(questionData[index].text)}
+            submitGuess={submitGuess}
           />
         );
       }
