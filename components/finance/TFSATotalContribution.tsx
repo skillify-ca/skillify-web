@@ -39,7 +39,7 @@ export default function TFSATotalContribution(props) {
         <h1 className="text-xl font-bold">
           How much can I contribute to my TFSA in total?
         </h1>
-        <div className="flex flex-col bg-gray-100 p-8 m-8 shadow-lg rounded-xl gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 bg-gray-100 p-8 shadow-lg rounded-xl gap-8">
           <div className="flex flex-col gap-8">
             <div className="flex flex-col">
               <p>What year were your born in?</p>
@@ -115,7 +115,7 @@ export default function TFSATotalContribution(props) {
             onAnimationEnd={() => setIsShaking(false)}
             className={`${
               isShaking ? "animate-shake" : ""
-            } bg-gray-100 shadow-lg rounded-xl p-8 m-8 h-108`}
+            } bg-gray-100 shadow-lg rounded-xl p-8 h-108`}
           >
             <MultipleChoiceSentence
               displayQuestion="What is the total contribution room for a Canadian born in 1992?"
