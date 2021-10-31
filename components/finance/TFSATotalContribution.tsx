@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import ReactCardFlip from "react-card-flip";
+import { GuessData } from "../../pages/api/guessData";
 
 import { MultipleChoiceSentence } from "../questionTypes/MultipleChoiceSentence";
 
@@ -18,8 +20,18 @@ export default function TFSATotalContribution(props) {
     { year: 2010, limit: 5000 },
     { year: 2009, limit: 5000 },
   ];
+  const [isShaking, setIsShaking] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
 
-  const [birthYear, setBirthYear] = useState(2001);
+  const submitGuess = (guessData: GuessData) => {
+    if (guessData.isCorrect) {
+      setIsFlipped(true);
+    } else {
+      setIsShaking(true);
+    }
+  };
+
+  const [birthYear, setBirthYear] = useState(1990);
 
   return (
     <div className={"flex flex-col items-center justify-center"}>
@@ -32,11 +44,13 @@ export default function TFSATotalContribution(props) {
             <div className="flex flex-col">
               <p>What year were your born in?</p>
               <input
-                className="border-yellow-600 border-4 p-4 text-lg w-64"
-                type="number"
-                value={birthYear}
+                type="range"
+                min={1990}
+                max={2004}
                 onChange={(e) => setBirthYear(Number.parseInt(e.target.value))}
+                className=""
               />
+              <p className="font-bold">{birthYear}</p>
             </div>
             <div className="flex flex-col">
               {18 + birthYear >= new Date().getFullYear() ? (
@@ -91,8 +105,47 @@ export default function TFSATotalContribution(props) {
               ))}
             </div>
           </div>
-          {/* TODO Add a question that asks them to calulate contribution room for someone born a year older than them */}
         </div>
+        <ReactCardFlip
+          isFlipped={isFlipped}
+          flipDirection="horizontal"
+          infinite={true}
+        >
+          <div
+            onAnimationEnd={() => setIsShaking(false)}
+            className={`${
+              isShaking ? "animate-shake" : ""
+            } bg-gray-100 shadow-lg rounded-xl p-8 m-8 h-108`}
+          >
+            <MultipleChoiceSentence
+              displayQuestion="What is the total contribution room for a Canadian born in 1992?"
+              option1={{
+                id: "a",
+                text: "$80500",
+              }}
+              option2={{
+                id: "b",
+                text: "$75500",
+              }}
+              option3={{
+                id: "c",
+                text: "$70500",
+              }}
+              option4={{
+                id: "d",
+                text: "$65500",
+              }}
+              answer="$70500"
+              submitGuess={submitGuess}
+            />
+          </div>
+          <div
+            className="bg-gray-100 shadow-lg rounded-xl p-8 m-8 h-108"
+            onClick={(e) => setIsFlipped(false)}
+          >
+            CORRECT
+          </div>
+        </ReactCardFlip>
       </div>
     </div>
   );

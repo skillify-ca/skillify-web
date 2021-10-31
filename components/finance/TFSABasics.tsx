@@ -1,8 +1,21 @@
 import React, { useEffect, useState } from "react";
+import ReactCardFlip from "react-card-flip";
+import { GuessData } from "../../pages/api/guessData";
 
 import { MultipleChoiceSentence } from "../questionTypes/MultipleChoiceSentence";
 
 export default function TFSABasics(props) {
+  const [isShaking, setIsShaking] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const submitGuess = (guessData: GuessData) => {
+    if (guessData.isCorrect) {
+      setIsFlipped(true);
+    } else {
+      setIsShaking(true);
+    }
+  };
+
   return (
     <div className={"flex flex-col items-center justify-center"}>
       <div className={"bg-white max-w-7xl p-8 flex flex-col gap-8"}>
@@ -20,29 +33,46 @@ export default function TFSABasics(props) {
             allowed to keep all the gains you make off of your investment and
             you don't have to give the government any of your profit.
           </p>
-          <div className="bg-gray-100 shadow-lg rounded-xl p-8 m-8">
-            <MultipleChoiceSentence
-              displayQuestion="What is a benefit of the Tax-Free Savings Account?"
-              option1={{
-                id: "a",
-                text: "Encourages more Candians to save for their retirement",
-              }}
-              option2={{
-                id: "b",
-                text: "Encourages more Candians to invest their money",
-              }}
-              option3={{
-                id: "c",
-                text: "Helps the government collect more taxes for public services",
-              }}
-              option4={{
-                id: "d",
-                text: "Helps you move into a lower tax bracket",
-              }}
-              answer="b"
-              submitGuess={() => {}} // TODO if they pick wrong, do a wiggle animation, if they pick right, flip the card and show a correct sign
-            />
-          </div>
+          <ReactCardFlip
+            isFlipped={isFlipped}
+            flipDirection="horizontal"
+            infinite={true}
+          >
+            <div
+              onAnimationEnd={() => setIsShaking(false)}
+              className={`${
+                isShaking ? "animate-shake" : ""
+              } bg-gray-100 shadow-lg rounded-xl p-8 m-8 h-108`}
+            >
+              <MultipleChoiceSentence
+                displayQuestion="What is a benefit of the Tax-Free Savings Account?"
+                option1={{
+                  id: "a",
+                  text: "Encourages more Candians to save for their retirement",
+                }}
+                option2={{
+                  id: "b",
+                  text: "Encourages more Candians to invest their money",
+                }}
+                option3={{
+                  id: "c",
+                  text: "Helps the government collect more taxes for public services",
+                }}
+                option4={{
+                  id: "d",
+                  text: "Helps you move into a lower tax bracket",
+                }}
+                answer="Encourages more Candians to invest their money"
+                submitGuess={submitGuess}
+              />
+            </div>
+            <div
+              className="bg-gray-100 shadow-lg rounded-xl p-8 m-8 h-108"
+              onClick={(e) => setIsFlipped(false)}
+            >
+              CORRECT
+            </div>
+          </ReactCardFlip>
         </div>
 
         <div className="flex flex-col">
