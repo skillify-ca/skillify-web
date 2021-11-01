@@ -4,7 +4,7 @@ import { GuessData } from "../../pages/api/guessData";
 import { Button } from "../ui/Button";
 
 //Future component, name: TypeAnswerQuestion
-const Q2 = (displayQuestion, nextQuestion) => {
+const Q2 = (displayQuestion, nextQuestion, isWrong) => {
   const [guessString, setGuessString] = useState<string>("");
 
   const answer = "60";
@@ -20,7 +20,11 @@ const Q2 = (displayQuestion, nextQuestion) => {
       isCorrect: guessString == answer,
     };
     //Pass this guessData object into nextQuestion
-    nextQuestion(guess);
+    if (guess.isCorrect == false) {
+      isWrong(guess.isCorrect, guess);
+    } else {
+      nextQuestion(guess);
+    }
   };
 
   //nextQuestion

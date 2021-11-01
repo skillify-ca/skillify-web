@@ -5,10 +5,14 @@ import { QuestionType } from "../../pages/api/questionTypes";
 import { Skill } from "../../pages/api/skill";
 import { TrueorFalse } from "../questionTypes/TrueorFalse";
 
-const Q4 = (displayQuestion, nextQuestion) => {
+const Q4 = (displayQuestion, nextQuestion, isWrong) => {
   const onSubmit = (guess: GuessData) => {
     //Pass this guessData object into nextQuestion
-    nextQuestion(guess);
+    if (guess.isCorrect == false) {
+      isWrong(guess.isCorrect, guess);
+    } else {
+      nextQuestion(guess);
+    }
   };
   const Q4Data: Question = {
     text: displayQuestion,
