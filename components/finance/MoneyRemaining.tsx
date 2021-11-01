@@ -1,5 +1,7 @@
 import { useState } from "@storybook/client-api";
+import { useSelector } from "react-redux";
 import FinanceProfile from "../../pages/finance-profile";
+import { assignmentSessionSelector } from "../../redux/assignmentSession";
 import IncomeTable from "./IncomeTable";
 
 export interface MoneyRemainingTableProps {
@@ -15,8 +17,6 @@ export interface MoneyRemainingTableProps {
   setTotalExpenseValidation: (totalExpenseValidation: string) => void;
   moneyRemValidation: string;
   setMoneyRemValidation: (moneyRemValidation: string) => void;
-  totalMonthlyIncome: string;
-  setTotalMonthlyIncome: (totalMonthlyIncome: string) => void;
   totalExpenses: string;
   setTotalExpenses: (totalExpenses: string) => void;
   isSurpriseVisible: boolean;
@@ -38,8 +38,6 @@ const MoneyRemainingTable = ({
   setTotalExpenseValidation,
   moneyRemValidation,
   setMoneyRemValidation,
-  totalMonthlyIncome,
-  setTotalMonthlyIncome,
   totalExpenses,
   setTotalExpenses,
   isSurpriseVisible,
@@ -47,10 +45,13 @@ const MoneyRemainingTable = ({
   surpriseValue,
   validateTotalMoneyRemaining,
 }: MoneyRemainingTableProps) => {
+
+  const assignmentSession = useSelector(assignmentSessionSelector)
+
   const validateTotalIncome = (newTotalMonthlySection7) => {
     newTotalMonthlySection7 === ""
       ? setMonthlyIncomeValidation("")
-      : totalMonthlyIncome === newTotalMonthlySection7
+      : assignmentSession.totalMonthlyIncome === newTotalMonthlySection7
         ? setMonthlyIncomeValidation("Correct")
         : setMonthlyIncomeValidation("Wrong");
   };
