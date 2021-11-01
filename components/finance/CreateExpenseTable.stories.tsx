@@ -1,7 +1,7 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 
-import CarExpenseTable, { CarExpenseTableProps } from "./CarExpenseTable";
+import CarExpenseTable from "./CarExpenseTable";
 
 export default {
   title: "finance/CarExpenseTable",
@@ -9,7 +9,7 @@ export default {
   argTypes: {},
 } as Meta;
 
-const Template: Story<CarExpenseTableProps> = (args) => (
+const Template: Story = (args) => (
   <CarExpenseTable {...args} />
 );
 

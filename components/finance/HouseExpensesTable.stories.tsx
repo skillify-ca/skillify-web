@@ -1,7 +1,7 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 
-import HouseExpensesTable, { HouseExpensesProps } from "./HouseExpensesTable";
+import HouseExpensesTable from "./HouseExpensesTable";
 
 export default {
 
@@ -11,7 +11,7 @@ export default {
 
 } as Meta
 
-const Template: Story<HouseExpensesProps> = (args) => <HouseExpensesTable{...args}/>
+const Template: Story = (args) => <HouseExpensesTable{...args} />
 
 export const Primary = Template.bind({});
 Primary.args = {};
