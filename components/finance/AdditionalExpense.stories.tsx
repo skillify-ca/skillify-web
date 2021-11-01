@@ -1,7 +1,7 @@
 import Reach from "react";
 import { Story, Meta } from "@storybook/react";
 
-import AdditionaExpense, { AdditionalTableProps } from "./AdditionalExpense";
+import AdditionaExpense from "./AdditionalExpense";
 import AdditionalTable from "./AdditionalExpense";
 
 export default {
@@ -10,7 +10,7 @@ export default {
   argTypes: {},
 } as Meta;
 
-const Template: Story<AdditionalTableProps> = (args) => (
+const Template: Story = (args) => (
   <AdditionalTable {...args} />
 );
 
