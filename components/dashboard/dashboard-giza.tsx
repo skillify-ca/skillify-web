@@ -58,7 +58,6 @@ const GizaDashboardPage = ({ data }) => {
 
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-architect-blue-200 bg-blue-100 h-screen">
-      <Navbar />
       <div className="flex flex-col items-center">
         <h1 className="text-center font-bold text-xl p-4">
           {"Giza Dashboard"}
@@ -166,22 +165,22 @@ const GizaDashboardPage = ({ data }) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
-  const client = new ApolloClient({
-    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
-    cache: new InMemoryCache(),
-  });
+// export async function getServerSideProps({ params }) {
+//   const client = new ApolloClient({
+//     uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
+//     cache: new InMemoryCache(),
+//   });
 
-  const { data } = await client.query({
-    query: FETCH_GIZA_DATA,
-  });
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
+//   const { data } = await client.query({
+//     query: FETCH_GIZA_DATA,
+//   });
+//   if (!data) {
+//     return {
+//       notFound: true,
+//     };
+//   }
 
-  return { props: { data: data } };
-}
+//   return { props: { data: data } };
+// }
 
 export default GizaDashboardPage;

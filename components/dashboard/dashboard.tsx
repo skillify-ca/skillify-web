@@ -34,6 +34,7 @@ const TeacherDashboardPage = ({ data }) => {
   const [selectedQuestion, setSelectedQuestion] = useState(0);
 
   const getGrade = () => {
+    console.log("Reaches here");
     const rightGuesses: boolean[] = data.user_assignments[
       currentStudentIndex
     ].user_solution.map((guess, index) => {
@@ -49,11 +50,11 @@ const TeacherDashboardPage = ({ data }) => {
     return grade + "%";
   };
   const getTimeSpent = () => {
+    console.log("Reaches here");
     return "2 minutes and 33 seconds";
   };
   return (
     <div className="flex flex-col overflow-auto bg-scroll heropattern-architect-blue-200 bg-blue-100 h-screen">
-      <Navbar />
       {data && data.user_assignments && data.user_assignments[0] && (
         <div className="flex flex-col items-center">
           <h1 className="text-center font-bold text-xl p-4">
