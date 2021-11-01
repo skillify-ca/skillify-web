@@ -34,7 +34,6 @@ const TeacherDashboardPage = ({ data }) => {
   const [selectedQuestion, setSelectedQuestion] = useState(0);
 
   const getGrade = () => {
-    console.log("Reaches here");
     const rightGuesses: boolean[] = data.user_assignments[
       currentStudentIndex
     ].user_solution.map((guess, index) => {
@@ -50,7 +49,6 @@ const TeacherDashboardPage = ({ data }) => {
     return grade + "%";
   };
   const getTimeSpent = () => {
-    console.log("Reaches here");
     return "2 minutes and 33 seconds";
   };
   return (

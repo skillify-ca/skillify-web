@@ -165,22 +165,4 @@ const GizaDashboardPage = ({ data }) => {
   );
 };
 
-// export async function getServerSideProps({ params }) {
-//   const client = new ApolloClient({
-//     uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
-//     cache: new InMemoryCache(),
-//   });
-
-//   const { data } = await client.query({
-//     query: FETCH_GIZA_DATA,
-//   });
-//   if (!data) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-
-//   return { props: { data: data } };
-// }
-
 export default GizaDashboardPage;
