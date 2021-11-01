@@ -4,7 +4,7 @@ import { GuessData } from "../../pages/api/guessData";
 import { Button } from "../ui/Button";
 
 //Future component, name: TypeAnswerQuestion
-const Q1 = (displayQuestion, nextQuestion, isWrongMultiple) => {
+const Q1 = (displayQuestion, nextQuestion, isWrong) => {
   const [guessStringA, setGuessStringA] = useState<string>("");
   const [guessStringB, setGuessStringB] = useState<string>("");
   const [guessStringC, setGuessStringC] = useState<string>("");
@@ -18,8 +18,6 @@ const Q1 = (displayQuestion, nextQuestion, isWrongMultiple) => {
   const answerD = "back";
   const answerE = "left side";
   const answerF = "right side";
-
-  const guessArray = [];
 
   const onGuessChangedA = (currentGuess: string) => {
     const newGuess = currentGuess;
@@ -52,43 +50,18 @@ const Q1 = (displayQuestion, nextQuestion, isWrongMultiple) => {
   };
 
   const onSubmit = () => {
-    const guessA: GuessData = {
-      guess: guessStringA,
-      isCorrect: guessStringA == answerA,
+    const guessString = `${guessStringA} , ${guessStringB} , ${guessStringC}, ${guessStringD}, ${guessStringE}, ${guessStringF}`;
+    const answerString = `${answerA} , ${answerB} , ${answerC}, ${answerD}, ${answerE}, ${answerF}`;
+    const guess: GuessData = {
+      guess: guessString,
+      isCorrect: guessString == answerString,
     };
-    const guessB: GuessData = {
-      guess: guessStringA,
-      isCorrect: guessStringA == answerB,
-    };
-    const guessC: GuessData = {
-      guess: guessStringA,
-      isCorrect: guessStringA == answerC,
-    };
-    const guessD: GuessData = {
-      guess: guessStringA,
-      isCorrect: guessStringA == answerD,
-    };
-    const guessE: GuessData = {
-      guess: guessStringA,
-      isCorrect: guessStringA == answerE,
-    };
-    const guessF: GuessData = {
-      guess: guessStringA,
-      isCorrect: guessStringA == answerF,
-    };
+
     //Pass this guessData object into nextQuestion
-    guessArray.push(guessA, guessB, guessC, guessD, guessE, guessF);
-    if (
-      guessA.isCorrect == false ||
-      guessB.isCorrect == false ||
-      guessC.isCorrect == false ||
-      guessD.isCorrect == false ||
-      guessE.isCorrect == false ||
-      guessF.isCorrect == false
-    ) {
-      isWrongMultiple(guessA.isCorrect, guessArray);
+    if (guess.isCorrect == false) {
+      isWrong(guess.isCorrect, guessString);
     } else {
-      nextQuestion(guessA);
+      nextQuestion(guess);
     }
   };
 

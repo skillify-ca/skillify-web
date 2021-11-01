@@ -58,6 +58,7 @@ export default function djacobs(props) {
   };
   //Future thing: Use this function to add the guessData from each question page into the guessDataArray
   const nextQuestion = (guess: GuessData) => {
+    console.log(guess);
     guesses[currentQuestionIndex] = guess;
     setWrongAnswerCheck(true);
     setQuestionCounter(questionCounter + 1);
@@ -83,37 +84,9 @@ export default function djacobs(props) {
       //Your group {groupName} have scored {score} percent!
     }
   };
-  /*
-  Want to store mutliple guesses or a single guess in guessArray object
-  const nextQuestionMultiple = (guess: GuessData[]) => {
-    guesses[currentQuestionIndex] = guess;
-    setWrongAnswerCheck(true);
-    setQuestionCounter(questionCounter + 1);
-    setGuessCounter(1);
-    //another method to count the amounts of trues / total question length
-    var eTime = new Date().getTime();
-    setEndTime(eTime);
-    setCurrentQuestionIndex(
-      Math.min(questionData.length - 1, currentQuestionIndex + 1)
-    );
-    if (currentQuestionIndex == questionData.length - 1) {
-      setScore(
-        Math.round(
-          (guesses.filter((guess) => guess.isCorrect == true).length /
-            (questionData.length - 1)) *
-            100
-        )
-      );
-      var value = measureTime(startTime, eTime);
-      setTotalTimeMin(value.minutes);
-      setTotalTimeSec(value.secondsString);
-      setStage(Stage.END);
-      //Your group {groupName} have scored {score} percent!
-    }
-  };
-  */
 
   const isWrong = (check: Boolean, guess: GuessData) => {
+    console.log(guess);
     guessHistory.set("Question" + questionCounter + "." + guessCounter, guess);
     console.log(guessHistory);
     setGuessCounter(guessCounter + 1);
@@ -121,27 +94,8 @@ export default function djacobs(props) {
     setShouldAnimate(true);
   };
 
-  const isWrongMultiple = (check: Boolean, guessArray: GuessData[]) => {
-    guessHistoryMultiple.set(
-      "Question" + questionCounter + "." + guessCounter,
-      guessArray
-    );
-    console.log(guessHistory);
-    setGuessCounter(guessCounter + 1);
-    setWrongAnswerCheck(check);
-    setShouldAnimate(true);
-  };
-
-  const nextQuestionfromMiddle = () => {
-    setCurrentQuestionIndex(
-      Math.min(questionData.length - 1, currentQuestionIndex + 1)
-    );
-  };
-
   // End of Quiz: YOU MADE IT OUT! Head back to main session to collect your prize!
-  const questionComponent = [
-    SA_Q1(questionData[0], nextQuestion, isWrongMultiple),
-  ];
+  const questionComponent = [SA_Q1(questionData[0], nextQuestion, isWrong)];
 
   return (
     <div className="flex flex-col overflow-auto bg-scroll bg-blue-50">
