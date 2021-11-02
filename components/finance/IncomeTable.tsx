@@ -1,41 +1,30 @@
 import { sum } from "lodash";
-
-export interface incomeTableProps {
-  monthlyIncome: string;
-  setMonthlyIncome: (monthlyIncome: string) => void; //Line A
-  spouseMonthlyIncome: string;
-  setSpouseMonthlyIncome: (spouseMonthlyIncome: string) => void; //Line B
-  totalMonthlyIncome: string;
-  setTotalMonthlyIncome: (totalMonthlyIncome: string) => void; //Line C
-
-  backgroundColour: string;
-  setBackgroundColour: (backgroundColour: string) => void;
-  valueTest: string;
-  setValueTest: (valueTest: string) => void;
-}
-
-const IncomeTable = ({
-  monthlyIncome,
-  setMonthlyIncome,
-  spouseMonthlyIncome,
-  setSpouseMonthlyIncome,
-  totalMonthlyIncome,
-  setTotalMonthlyIncome,
-  backgroundColour,
+import { useSelector } from "react-redux";
+import {
+  assignmentSessionSelector,
   setBackgroundColour,
-  valueTest,
-  setValueTest,
-}: incomeTableProps) => {
+  setSpouseMonthlyIncome,
+  setTotalMonthlyIncome,
+  setYourMonthlyIncome
+}
+  from "../../redux/assignmentSession";
+import { useAppDispatch } from "../../redux/store";
+
+const IncomeTable = () => {
+
+  const assignmentSession = useSelector(assignmentSessionSelector)
+  const dispatch = useAppDispatch()
+
   const validate = (newTotalMonthlyIncome: string) => {
     newTotalMonthlyIncome === ""
-      ? setBackgroundColour("")
-      : Number.parseInt(monthlyIncome) +
-          Number.parseInt(spouseMonthlyIncome) ===
+      ? dispatch(setBackgroundColour(""))
+      : Number.parseInt(assignmentSession.yourMonthlyIncome) +
+        Number.parseInt(assignmentSession.spouseMonthlyIncome) ===
         Number.parseInt(newTotalMonthlyIncome)
-      ? setBackgroundColour("Correct")
-      : monthlyIncome + spouseMonthlyIncome === ""
-      ? setBackgroundColour("")
-      : setBackgroundColour("Wrong");
+        ? dispatch(setBackgroundColour("Correct"))
+        : assignmentSession.yourMonthlyIncome + assignmentSession.spouseMonthlyIncome === ""
+          ? dispatch(setBackgroundColour(""))
+          : dispatch(setBackgroundColour("Wrong"));
   };
 
   return (
@@ -65,9 +54,10 @@ const IncomeTable = ({
               A.
               <div className={"ml-2"}>
                 <input
-                  value={monthlyIncome}
+                  value={assignmentSession.yourMonthlyIncome}
                   onChange={(e) => {
-                    setMonthlyIncome(e.target.value);
+                    const newYourMontlyIncome = e.target.value;
+                    dispatch(setYourMonthlyIncome(newYourMontlyIncome));
                   }}
                   placeholder="Type numbers only"
                 ></input>
@@ -80,9 +70,10 @@ const IncomeTable = ({
               B.{" "}
               <div className={"ml-2"}>
                 <input
-                  value={spouseMonthlyIncome}
+                  value={assignmentSession.spouseMonthlyIncome}
                   onChange={(e) => {
-                    setSpouseMonthlyIncome(e.target.value);
+                    const newSpouseMonthlyIncome = e.target.value;
+                    dispatch(setSpouseMonthlyIncome(newSpouseMonthlyIncome));
                   }}
                   placeholder="Type numbers only"
                 ></input>
@@ -97,21 +88,21 @@ const IncomeTable = ({
               C.
               <div className={"ml-2"}>
                 <input
-                  value={totalMonthlyIncome}
+                  value={assignmentSession.totalMonthlyIncome}
                   onChange={(e) => {
                     const newTotalMonthlyIncome = e.target.value;
-                    setTotalMonthlyIncome(newTotalMonthlyIncome);
+                    dispatch(setTotalMonthlyIncome(newTotalMonthlyIncome));
                     validate(newTotalMonthlyIncome);
                   }}
                   placeholder="Type numbers only"
                   className={
-                    backgroundColour === ""
+                    assignmentSession.backgroundColour === ""
                       ? "bg-white"
-                      : backgroundColour === "Correct"
-                      ? "bg-green-200"
-                      : backgroundColour === "Wrong"
-                      ? "bg-red-200"
-                      : "bg-white"
+                      : assignmentSession.backgroundColour === "Correct"
+                        ? "bg-green-200"
+                        : assignmentSession.backgroundColour === "Wrong"
+                          ? "bg-red-200"
+                          : "bg-white"
                   }
                 ></input>
               </div>
