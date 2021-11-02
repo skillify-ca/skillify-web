@@ -57,12 +57,16 @@ const Q1 = (displayQuestion, nextQuestion, isWrong) => {
       isCorrect: guessString == answerString,
     };
 
+    nextQuestion(guess);
+
     //Pass this guessData object into nextQuestion
-    if (guess.isCorrect == false) {
+    /*
+    if (false && guess.isCorrect == false) {
       isWrong(guess.isCorrect, guessString);
     } else {
-      nextQuestion(guess);
+      
     }
+    */
   };
 
   return (
