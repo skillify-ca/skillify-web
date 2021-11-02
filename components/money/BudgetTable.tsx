@@ -5,15 +5,16 @@ import { ItemDataTable } from "./BudgetTableData";
 
 export interface ItemProps {
   budget: number;
+  answer: number;
   submitGuess: (guess:GuessData) => void;
 }
 
-const BudgetTable = ({ budget, submitGuess }) => {
+const BudgetTable = ({ budget, submitGuess, answer }) => {
 
   const [ isCorrect, setIsCorrect ] = useState(false);
 
   const calculateBudget = () => {
-    const guessData:GuessData = {isCorrect:true, guess:`${budget}`}
+    const guessData:GuessData = {isCorrect:true, guess:`${budget} and ${answer}`}
     submitGuess(guessData)
  
     if( budget >= 5) {
