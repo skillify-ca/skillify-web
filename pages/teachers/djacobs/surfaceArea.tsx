@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { SwitchTransition, CSSTransition } from "react-transition-group";
 import Navbar from "../../../components/Navbar";
 import SA_Q1 from "../../../components/surfaceArea/SA_Q1";
+import SA_Q2 from "../../../components/surfaceArea/SA_Q2";
 import { Button } from "../../../components/ui/Button";
 import { GuessData } from "../../api/guessData";
 import { measureTime } from "../../api/time";
@@ -14,6 +16,7 @@ enum Stage {
 export default function djacobs(props) {
   const questionData = [
     "A net for the rectangular prism is shown on the grid. On the net, label each face of the prism. Each square on the grid represents 1cm^2.",
+    "Write a multiplication question for the area of each face for the rectangular prisms in question 1, image also provided from question 1. Then find the surface area of the prism",
   ];
 
   const [stage, setStage] = useState(Stage.START);
@@ -58,7 +61,6 @@ export default function djacobs(props) {
   };
   //Future thing: Use this function to add the guessData from each question page into the guessDataArray
   const nextQuestion = (guess: GuessData) => {
-    console.log(guess);
     guesses[currentQuestionIndex] = guess;
     setWrongAnswerCheck(true);
     setQuestionCounter(questionCounter + 1);
@@ -95,7 +97,10 @@ export default function djacobs(props) {
   };
 
   // End of Quiz: YOU MADE IT OUT! Head back to main session to collect your prize!
-  const questionComponent = [SA_Q1(questionData[0], nextQuestion, isWrong)];
+  const questionComponent = [
+    SA_Q1(questionData[0], nextQuestion, isWrong),
+    SA_Q2(questionData[1], nextQuestion, isWrong),
+  ];
 
   return (
     <div className="flex flex-col overflow-auto bg-scroll bg-blue-50">
@@ -125,86 +130,96 @@ export default function djacobs(props) {
       <div id="Form">
         <div className="flex flex-col gap-8">
           <p className="text-2xl text-center bg-blue-400">Escape From Giza</p>
-          <div>
-            {stage == Stage.START && (
-              <div className="flex flex-col items-center col gap-8 p-4">
-                <div id="Description" className="text-center">
-                  <p className="text-base">
-                    Welcome to the Surface Area Assignment! Please fill out your
-                    name in the name field below and begin!
-                  </p>
-                </div>
-                <div id="StudentNameLayout">
-                  <div className="flex flex-row gap-3">
-                    <label>Student Names</label>
-                    <input
-                      className="p-4 text-lg"
-                      placeholder="(seperate by ,)"
-                      value={studentName}
-                      onChange={(e) => onStudentNameChange(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <Button
-                  label="Start"
-                  backgroundColor="blue"
-                  textColor="white"
-                  onClick={onStartQuiz}
-                />
-              </div>
-            )}
-            {stage == Stage.QUIZ && (
-              <div id="QuizForm" className="flex flex-col gap-8 p-4">
-                <div id="FormBody" className="flex flex-col gap-8">
-                  {!wrongAnswerCheck && (
-                    <p
-                      className={
-                        shouldAnimate
-                          ? "animate-fadeIn delay-1000 text-center text-red-600"
-                          : "visibility: hidden"
-                      }
-                      onAnimationEnd={(e) => setShouldAnimate(false)}
-                    >
-                      Wrong Answer
-                    </p>
-                  )}
-                  {questionComponent[currentQuestionIndex]}
-                </div>
-                <div id="FormEnd" className="flex flex-col items-center">
-                  <Button
-                    label="Back"
-                    backgroundColor="blue"
-                    textColor="white"
-                    onClick={backToPrevious}
-                  />
-                </div>
-              </div>
-            )}
-            {stage == Stage.END && (
-              <div id="Result" className="flex flex-col gap-8 p-4">
-                <div id="FormBody" className="flex flex-col gap-8">
-                  <p className="text-2xl text-center">
-                    Congratulations! Your group {groupName} have made it out
-                    within {totalTimeMin} : {totalTimeSec} !
-                  </p>
-                </div>
-                <div id="FormEnd" className="flex flex-col items-center">
-                  <div id="ButtonLayout" className="flex flex-row gap-8">
+          <SwitchTransition mode={"out-in"}>
+            <CSSTransition
+              key={stage + currentQuestionIndex}
+              addEndListener={(node, done) => {
+                node.addEventListener("transitionend", done, false);
+              }}
+              classNames="fade"
+            >
+              <div>
+                {stage == Stage.START && (
+                  <div className="flex flex-col items-center col gap-8 p-4">
+                    <div id="Description" className="text-center">
+                      <p className="text-base">
+                        Welcome to the Surface Area Assignment! Please fill out
+                        your name in the name field below and begin!
+                      </p>
+                    </div>
+                    <div id="StudentNameLayout">
+                      <div className="flex flex-row gap-3">
+                        <label>Student Names</label>
+                        <input
+                          className="p-4 text-lg"
+                          placeholder="(seperate by ,)"
+                          value={studentName}
+                          onChange={(e) => onStudentNameChange(e.target.value)}
+                        />
+                      </div>
+                    </div>
                     <Button
-                      label="Continue"
+                      label="Start"
                       backgroundColor="blue"
                       textColor="white"
-                    />
-                    <Button
-                      label="Retry"
-                      backgroundColor="blue"
-                      textColor="white"
+                      onClick={onStartQuiz}
                     />
                   </div>
-                </div>
+                )}
+                {stage == Stage.QUIZ && (
+                  <div id="QuizForm" className="flex flex-col gap-8 p-4">
+                    <div id="FormBody" className="flex flex-col gap-8">
+                      {!wrongAnswerCheck && (
+                        <p
+                          className={
+                            shouldAnimate
+                              ? "animate-fadeIn delay-1000 text-center text-red-600"
+                              : "visibility: hidden"
+                          }
+                          onAnimationEnd={(e) => setShouldAnimate(false)}
+                        >
+                          Wrong Answer
+                        </p>
+                      )}
+                      {questionComponent[currentQuestionIndex]}
+                    </div>
+                    <div id="FormEnd" className="flex flex-col items-center">
+                      <Button
+                        label="Back"
+                        backgroundColor="blue"
+                        textColor="white"
+                        onClick={backToPrevious}
+                      />
+                    </div>
+                  </div>
+                )}
+                {stage == Stage.END && (
+                  <div id="Result" className="flex flex-col gap-8 p-4">
+                    <div id="FormBody" className="flex flex-col gap-8">
+                      <p className="text-2xl text-center">
+                        Congratulations! Your group {groupName} have made it out
+                        within {totalTimeMin} : {totalTimeSec} !
+                      </p>
+                    </div>
+                    <div id="FormEnd" className="flex flex-col items-center">
+                      <div id="ButtonLayout" className="flex flex-row gap-8">
+                        <Button
+                          label="Continue"
+                          backgroundColor="blue"
+                          textColor="white"
+                        />
+                        <Button
+                          label="Retry"
+                          backgroundColor="blue"
+                          textColor="white"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
+            </CSSTransition>
+          </SwitchTransition>
         </div>
       </div>
     </div>
