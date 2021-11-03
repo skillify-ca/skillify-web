@@ -4,7 +4,7 @@ import { GuessData } from "../../pages/api/guessData";
 import { Button } from "../ui/Button";
 
 //Future component, name: TypeAnswerQuestion
-const Q2 = (displayQuestion, nextQuestion, isWrong) => {
+const Q4 = (displayQuestion, nextQuestion, isWrong) => {
   //Part A useStates
   const [partAguessStringA, setpartAguessStringA] = useState<string>("");
   const [partAguessStringB, setpartAguessStringB] = useState<string>("");
@@ -269,4 +269,4 @@ const Q2 = (displayQuestion, nextQuestion, isWrong) => {
   );
 };
 
-export default Q2;
+export default Q4;
