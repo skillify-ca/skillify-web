@@ -1,4 +1,6 @@
 import { ReactNode, useState } from "react";
+import { useSelector } from "react-redux";
+import { assignmentSessionSelector } from "../../redux/assignmentSession";
 
 export interface TotalExpensesTableProps {
   totalHousingCost6: string;
@@ -7,12 +9,6 @@ export interface TotalExpensesTableProps {
   setTotalCarCosts6: (totalCarCosts6: string) => void;
   totalAdditional6: string;
   setTotalAdditional6: (totalAdditional6: string) => void;
-  totalHousingCost: string;
-  setTotalHousingCost: (totalHousingCost: string) => void;
-  totalCarCosts: string;
-  setTotalCarCosts: (totalCarCosts: string) => void;
-  totalAdditional: string;
-  setTotalAdditional: (totalAdditional: string) => void;
   totalExpenses: string;
   setTotalExpenses: (totalExpenses: string) => void;
 }
@@ -24,25 +20,20 @@ const TotalExpensesTable = ({
   setTotalCarCosts6,
   totalAdditional6,
   setTotalAdditional6,
-  totalHousingCost,
-  setTotalHousingCost,
-  totalCarCosts,
-  setTotalCarCosts,
-  totalAdditional,
-  setTotalAdditional,
   totalExpenses,
   setTotalExpenses,
 }: TotalExpensesTableProps) => {
-  const [totalHousingCostValidation, setTotalHousingCostValidation] = useState(
-    ""
-  );
+
+  const assignmentSession = useSelector(assignmentSessionSelector)
+
+  const [totalHousingCostValidation, setTotalHousingCostValidation] = useState("");
 
   const validateHousingCost = (newTotalHousingCost6) => {
     newTotalHousingCost6 === ""
       ? setTotalHousingCostValidation("")
-      : totalHousingCost === newTotalHousingCost6
-      ? setTotalHousingCostValidation("Correct")
-      : setTotalHousingCostValidation("Wrong");
+      : assignmentSession.totalHousingCost === newTotalHousingCost6
+        ? setTotalHousingCostValidation("Correct")
+        : setTotalHousingCostValidation("Wrong");
   };
 
   const [totalCarCostsValidation, setTotalCarCostsValidation] = useState("");
@@ -50,9 +41,9 @@ const TotalExpensesTable = ({
   const validateTotalCarCosts = (newTotalCarCosts6) => {
     newTotalCarCosts6 === ""
       ? setTotalCarCostsValidation("")
-      : totalCarCosts === newTotalCarCosts6
-      ? setTotalCarCostsValidation("Correct")
-      : setTotalCarCostsValidation("Wrong");
+      : assignmentSession.totalCarCosts === newTotalCarCosts6
+        ? setTotalCarCostsValidation("Correct")
+        : setTotalCarCostsValidation("Wrong");
   };
 
   const [totalAdditionalValidation, setTotalAdditionalValidation] = useState(
@@ -62,9 +53,9 @@ const TotalExpensesTable = ({
   const validateTotalAdditional = (newTotalAdditional6) => {
     newTotalAdditional6 === ""
       ? setTotalAdditionalValidation("")
-      : totalAdditional === newTotalAdditional6
-      ? setTotalAdditionalValidation("Correct")
-      : setTotalAdditionalValidation("Wrong");
+      : assignmentSession.totalAdditional === newTotalAdditional6
+        ? setTotalAdditionalValidation("Correct")
+        : setTotalAdditionalValidation("Wrong");
   };
 
   const [totalExpensesValidation, setTotalExpensesValidation] = useState("");
@@ -73,13 +64,13 @@ const TotalExpensesTable = ({
     newTotalExpenses === ""
       ? setTotalExpensesValidation("")
       : totalHousingCost6 + totalCarCosts6 + totalAdditional6 === ""
-      ? setTotalExpensesValidation("")
-      : Number.parseInt(totalHousingCost6) +
+        ? setTotalExpensesValidation("")
+        : Number.parseInt(totalHousingCost6) +
           Number.parseInt(totalCarCosts6) +
           Number.parseInt(totalAdditional6) ===
-        Number.parseInt(newTotalExpenses)
-      ? setTotalExpensesValidation("Correct")
-      : setTotalExpensesValidation("Wrong");
+          Number.parseInt(newTotalExpenses)
+          ? setTotalExpensesValidation("Correct")
+          : setTotalExpensesValidation("Wrong");
   };
 
   return (
@@ -120,10 +111,10 @@ const TotalExpensesTable = ({
                     totalHousingCostValidation === ""
                       ? "bg-white"
                       : totalHousingCostValidation === "Correct"
-                      ? "bg-green-100"
-                      : totalHousingCostValidation === "Wrong"
-                      ? "bg-red-100"
-                      : "bg-white"
+                        ? "bg-green-100"
+                        : totalHousingCostValidation === "Wrong"
+                          ? "bg-red-100"
+                          : "bg-white"
                   }
                 />
               </td>
@@ -146,10 +137,10 @@ const TotalExpensesTable = ({
                     totalCarCostsValidation === ""
                       ? "bg-white"
                       : totalCarCostsValidation === "Correct"
-                      ? "bg-green-100"
-                      : totalCarCostsValidation === "Wrong"
-                      ? "bg-red-100"
-                      : "bg-white"
+                        ? "bg-green-100"
+                        : totalCarCostsValidation === "Wrong"
+                          ? "bg-red-100"
+                          : "bg-white"
                   }
                 />
               </td>
@@ -173,10 +164,10 @@ const TotalExpensesTable = ({
                     totalAdditionalValidation === ""
                       ? "bg-white"
                       : totalAdditionalValidation === "Correct"
-                      ? "bg-green-100"
-                      : totalAdditionalValidation === "Wrong"
-                      ? "bg-red-100"
-                      : "bg-white"
+                        ? "bg-green-100"
+                        : totalAdditionalValidation === "Wrong"
+                          ? "bg-red-100"
+                          : "bg-white"
                   }
                 />
               </td>
@@ -199,10 +190,10 @@ const TotalExpensesTable = ({
                     totalExpensesValidation === ""
                       ? "bg-white"
                       : totalExpensesValidation === "Correct"
-                      ? "bg-green-100"
-                      : totalExpensesValidation === "Wrong"
-                      ? "bg-red-100"
-                      : "bg-white"
+                        ? "bg-green-100"
+                        : totalExpensesValidation === "Wrong"
+                          ? "bg-red-100"
+                          : "bg-white"
                   }
                 />
               </td>

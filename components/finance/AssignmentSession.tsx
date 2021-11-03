@@ -32,18 +32,6 @@ export interface FinanceProfileProps {
 }
 
 const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
-  const [yourMonthlyIncome, setYourMonthlyIncome] = useState("");
-  const [spouseMonthlyIncome, setSpouseMounthlyIncome] = useState("");
-  const [totalMonthlyIncome, setTotalMonthlyIncome] = useState("");
-  const [housePayment, setHousePayment] = useState("");
-  const [electricBill, setElectricBill] = useState("");
-  const [gasBill, setGasBill] = useState("");
-  const [waterBill, setWaterBill] = useState("");
-  const [totalHousingCost, setTotalHousingCost] = useState("");
-  const [homeType, setHomeType] = useState("");
-
-  const [backgroundColour, setBackgroundColour] = useState("");
-  const [valueTest, setValueTest] = useState("");
 
   const [isMarried, setMarriage] = useState(MaritalStatus.SINGLE);
   const [hasChildren, setChildren] = useState(false);
@@ -53,19 +41,6 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
   const [spouseOccupation, setSpouseOccupation] = useState("");
   const [spouseSalary, setSpouseSalary] = useState(0);
   const [sectionOneValidation, setSectionOneValidation] = useState(false);
-
-  const [carPayment1, setCarPayment1] = useState("");
-  const [carPayment2, setCarPayment2] = useState("");
-  const [carInsurance, setCarInsurance] = useState("");
-  const [gasoline, setGasoline] = useState("");
-  const [totalCarCosts, setTotalCarCosts] = useState("");
-  const [sumValidationCar, setSumValidationCar] = useState("");
-
-  const [tvInternet, setTvInternet] = useState("");
-  const [phone, setPhone] = useState("");
-  const [grocery, setGrocery] = useState("");
-  const [totalAdditional, setTotalAdditional] = useState("");
-  const [sumAddValidation, setSumAddValidation] = useState("");
 
   const [totalHousingCost6, setTotalHousingCost6] = useState("");
   const [totalCarCosts6, setTotalCarCosts6] = useState("");
@@ -101,7 +76,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
     } else {
       if (
         Number.parseInt(totalMonthlySection7) -
-          Number.parseInt(totalExpensesSection7) ===
+        Number.parseInt(totalExpensesSection7) ===
         Number.parseInt(newTotalMoneyRemaining)
       ) {
         setMoneyRemValidation("Correct");
@@ -112,12 +87,12 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
   };
 
   const onSubmit = () => {
-    // if (
-    //      moneyRemValidation === "Correct" &&
-    //     Number.parseInt(totalMoneyRemaining) > 0
-    // ) {
-    setIsSubmitModalShowing((e) => !e);
-    //}
+    if (
+      moneyRemValidation === "Correct" &&
+      Number.parseInt(totalMoneyRemaining) > 0
+    ) {
+      setIsSubmitModalShowing((e) => !e);
+    }
   };
 
   const onModalClose = () => {
@@ -293,64 +268,16 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
           )}
 
           <div className={"mb-40"}>
-            <IncomeTable
-              monthlyIncome={yourMonthlyIncome}
-              setMonthlyIncome={setYourMonthlyIncome}
-              spouseMonthlyIncome={spouseMonthlyIncome}
-              setSpouseMonthlyIncome={setSpouseMounthlyIncome}
-              totalMonthlyIncome={totalMonthlyIncome}
-              setTotalMonthlyIncome={setTotalMonthlyIncome}
-              backgroundColour={backgroundColour}
-              setBackgroundColour={setBackgroundColour}
-              valueTest={valueTest}
-              setValueTest={setValueTest}
-            ></IncomeTable>
+            <IncomeTable />
           </div>
           <div className={"mb-40"}>
-            <HouseExpensesTable
-              housePayment={housePayment}
-              setHousePayment={setHousePayment}
-              electricBill={electricBill}
-              setElectricBill={setElectricBill}
-              gasBill={gasBill}
-              setGasBill={setGasBill}
-              waterBill={waterBill}
-              setWaterBill={setWaterBill}
-              totalHousingCost={totalHousingCost}
-              setTotalHousingCost={setTotalHousingCost}
-              homeType={homeType}
-              setHomeType={setHomeType}
-            />
+            <HouseExpensesTable />
           </div>
           <div className={"mb-40"}>
-            <CarExpenseTable
-              carPayment1={carPayment1}
-              setCarPayment1={setCarPayment1}
-              carPayment2={carPayment2}
-              setCarPayment2={setCarPayment2}
-              carInsurance={carInsurance}
-              setCarInsurance={setCarInsurance}
-              gasoline={gasoline}
-              setGasoline={setGasoline}
-              totalCarCosts={totalCarCosts}
-              setTotalCarCosts={setTotalCarCosts}
-              sumValidationCar={sumValidationCar}
-              setSumValidationCar={setSumValidationCar}
-            />
+            <CarExpenseTable />
           </div>
           <div className={"mb-40"}>
-            <AdditionalTable
-              tvInternet={tvInternet}
-              setTvInternet={setTvInternet}
-              phone={phone}
-              setPhone={setPhone}
-              grocery={grocery}
-              setGrocery={setGrocery}
-              totalAdditional={totalAdditional}
-              setTotalAdditional={setTotalAdditional}
-              sumAddValidation={sumAddValidation}
-              setSumAddValidation={setSumAddValidation}
-            />
+            <AdditionalTable />
           </div>
           <div className={"mb-40"}>
             <TotalExpensesTable
@@ -360,12 +287,6 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
               setTotalCarCosts6={setTotalCarCosts6}
               totalAdditional6={totalAdditional6}
               setTotalAdditional6={setTotalAdditional6}
-              totalHousingCost={totalHousingCost}
-              setTotalHousingCost={setTotalHousingCost}
-              totalCarCosts={totalCarCosts}
-              setTotalCarCosts={setTotalCarCosts}
-              totalAdditional={totalAdditional}
-              setTotalAdditional={setTotalAdditional}
               totalExpenses={totalExpenses}
               setTotalExpenses={setTotalExpenses}
             />
@@ -384,8 +305,6 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
               setTotalExpenseValidation={setTotalExpenseValidation}
               moneyRemValidation={moneyRemValidation}
               setMoneyRemValidation={setMoneyRemValidation}
-              totalMonthlyIncome={totalMonthlyIncome}
-              setTotalMonthlyIncome={setTotalMonthlyIncome}
               totalExpenses={totalExpenses}
               setTotalExpenses={setTotalExpenses}
               isSurpriseVisible={isSurpriseVisible}
@@ -400,7 +319,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
                 textColor="white"
                 onClick={
                   isSurpriseVisible &&
-                  Number.parseInt(totalMoneyRemaining) +
+                    Number.parseInt(totalMoneyRemaining) +
                     surpriseData.surpriseValue >
                     0
                     ? (e) => onClick()
