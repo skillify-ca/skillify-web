@@ -137,115 +137,117 @@ const Q4 = (displayQuestion, nextQuestion, isWrong) => {
         <div className="grid md:grid-cols-12 grid-cols-1 gap-8">
           <div className="md:col-span-12 rounded-xl">
             <div className="grid grid-cols-12 rounded-xl font-bold items-center justify-between bg-yellow-600 p-4">
-              <p className="col-span-6 text-center">a)</p>
-              <p className="col-span-6 text-center">b)</p>
-              <div className="grid grid-cols-12 col-span-12 rounded-xl font-bold justify-between bg-white p-4">
-                <div className="col-span-6">
-                  <div className="flex gap-4 items-center">
+              <div className="grid grid-cols-12 col-span-12 sm:col-span-6 rounded-xl font-bold justify-between bg-white p-4">
+                <p className="col-span-12 text-center">a)</p>
+                <div className="col-span-12">
+                  <div className="flex gap-4 justify-between items-center">
                     <label>Base 1</label>
                     <input
-                      className="p-4 text-lg border-2 border-yellow-900"
+                      className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
                       placeholder=""
                       value={partAguessStringA}
                       onChange={(e) => onPartAGuessChangedA(e.target.value)}
                     />
                   </div>
-                  <div className="flex gap-4 items-center">
+                  <div className="flex gap-4 justify-between items-center">
                     <label>Base 2</label>
                     <input
-                      className="p-4 text-lg border-2 border-yellow-900"
+                      className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
                       placeholder=""
                       value={partAguessStringB}
                       onChange={(e) => onPartAGuessChangedB(e.target.value)}
                     />
                   </div>
-                  <div className="flex gap-4 items-center">
+                  <div className="flex gap-4 justify-between items-center">
                     <label>Face 1</label>
                     <input
-                      className="p-4 text-lg border-2 border-yellow-900"
+                      className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
                       placeholder=""
                       value={partAguessStringC}
                       onChange={(e) => onPartAGuessChangedC(e.target.value)}
                     />
                   </div>
-                  <div className="flex gap-4 items-center">
+                  <div className="flex gap-4 justify-between items-center">
                     <label>Face 2</label>
                     <input
-                      className="p-4 text-lg border-2 border-yellow-900"
+                      className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
                       placeholder=""
                       value={partAguessStringD}
                       onChange={(e) => onPartAGuessChangedD(e.target.value)}
                     />
                   </div>
-                  <div className="flex gap-4 items-center">
+                  <div className="flex gap-4 justify-between items-center">
                     <label>Face 3</label>
                     <input
-                      className="p-4 text-lg border-2 border-yellow-900"
+                      className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
                       placeholder=""
                       value={partAguessStringE}
                       onChange={(e) => onPartAGuessChangedE(e.target.value)}
                     />
                   </div>
-                  <div className="flex gap-4 items-center">
+                  <div className="flex gap-4 justify-between items-center">
                     <label>Surface Area</label>
                     <input
-                      className="p-4 text-lg border-2 border-yellow-900"
+                      className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
                       placeholder=""
                       value={partAguessStringSA}
                       onChange={(e) => onPartAGuessChangedSA(e.target.value)}
                     />
                   </div>
                 </div>
-                <div className="col-span-6">
-                  <div className="flex gap-4 items-center">
+              </div>
+              <div className="grid grid-cols-12 col-span-12 sm:col-span-6 rounded-xl font-bold justify-between bg-white p-4">
+                <p className="col-span-12 text-center">b)</p>
+                <div className="col-span-12">
+                  <div className="flex gap-4 justify-between items-center">
                     <label>Base 1</label>
                     <input
-                      className="p-4 text-lg border-2 border-yellow-900"
+                      className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
                       placeholder=""
                       value={partBguessStringA}
                       onChange={(e) => onPartBGuessChangedA(e.target.value)}
                     />
                   </div>
-                  <div className="flex gap-4 items-center">
+                  <div className="flex gap-4 justify-between items-center">
                     <label>Base 2</label>
                     <input
-                      className="p-4 text-lg border-2 border-yellow-900"
+                      className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
                       placeholder=""
                       value={partBguessStringB}
                       onChange={(e) => onPartBGuessChangedB(e.target.value)}
                     />
                   </div>
-                  <div className="flex gap-4 items-center">
+                  <div className="flex gap-4 justify-between items-center">
                     <label>Face 1</label>
                     <input
-                      className="p-4 text-lg border-2 border-yellow-900"
+                      className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
                       placeholder=""
                       value={partBguessStringC}
                       onChange={(e) => onPartBGuessChangedC(e.target.value)}
                     />
                   </div>
-                  <div className="flex gap-4 items-center">
+                  <div className="flex gap-4 justify-between items-center">
                     <label>Face 2</label>
                     <input
-                      className="p-4 text-lg border-2 border-yellow-900"
+                      className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
                       placeholder=""
                       value={partBguessStringD}
                       onChange={(e) => onPartBGuessChangedD(e.target.value)}
                     />
                   </div>
-                  <div className="flex gap-4 items-center">
+                  <div className="flex gap-4 justify-between items-center">
                     <label>Face 3</label>
                     <input
-                      className="p-4 text-lg border-2 border-yellow-900"
+                      className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
                       placeholder=""
                       value={partBguessStringE}
                       onChange={(e) => onPartBGuessChangedE(e.target.value)}
                     />
                   </div>
-                  <div className="flex gap-4 items-center">
+                  <div className="flex gap-4 justify-between items-center">
                     <label>Surface Area</label>
                     <input
-                      className="p-4 text-lg border-2 border-yellow-900"
+                      className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
                       placeholder=""
                       value={partBguessStringSA}
                       onChange={(e) => onPartBGuessChangedSA(e.target.value)}
@@ -254,15 +256,15 @@ const Q4 = (displayQuestion, nextQuestion, isWrong) => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col items-center">
-              <Button
-                label="Submit"
-                backgroundColor="blue"
-                textColor="white"
-                onClick={onSubmit}
-              />
-            </div>
           </div>
+        </div>
+        <div className="flex gap-4 flex-col items-center">
+          <Button
+            label="Submit"
+            backgroundColor="blue"
+            textColor="white"
+            onClick={onSubmit}
+          />
         </div>
       </div>
     </React.Fragment>
