@@ -58,7 +58,7 @@ const SolvingForVariablesDashboard = ({ data }) => {
       {data && data.user_assignments && data.user_assignments[0] && (
         <div className="flex flex-col items-center">
           <div className="bg-blue-50 m-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
-            <div className="flex flex-col justify-between items-center">
+            <div className="flex flex-col justify-between items-center sm:items-start gap-4">
               <div>
                 <p className="font-bold text-2xl w-full">
                   Solving for Variables
@@ -71,7 +71,7 @@ const SolvingForVariablesDashboard = ({ data }) => {
               {assignmentFetchData &&
                 assignmentFetchData.assignments &&
                 assignmentFetchData.assignments[0] && (
-                  <div className="flex gap-4 p-4">
+                  <div className="flex gap-4">
                     <Button
                       label={
                         solutionsReleased
