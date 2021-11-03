@@ -1,35 +1,38 @@
 import React, { useState } from "react";
 import Navbar from "../../../components/Navbar";
-import dashboard from "../../../components/dashboard/dashboard";
-import dashboard_giza from "../../../components/dashboard/dashboard-giza";
 import { ApolloClient, InMemoryCache, useQuery } from "@apollo/client";
 import { FETCH_USER_ASSIGNMENTS } from "../../../graphql/userAssignments/fetchUserAssignments";
 import { FETCH_GIZA_DATA } from "../../../graphql/fetchGizaData";
-import TeacherDashboardPage from "../../../components/dashboard/dashboard";
+import TeacherDashboardPage from "../../../components/dashboard/solving-for-variables-dashboard";
 import GizaDashboardPage from "../../../components/dashboard/dashboard-giza";
+import SolvingForVariablesDashboard from "../../../components/dashboard/solving-for-variables-dashboard";
 
 const MainDashboardPage = ({ data, giza_data }) => {
-  const choices = ["Dashboard", "Giza Dashboard"];
+  const choices = ["Solving for Variables", "Escape from Giza"];
   const [choiceIndex, setChoiceIndex] = useState(0);
   return (
-    <div className="flex flex-col overflow-auto bg-scroll heropattern-architect-blue-200 bg-blue-100 h-screen">
+    <div className="flex flex-col heropattern-architect-blue-200 bg-blue-100">
       <Navbar />
-      <h1 className="text-center font-bold text-xl p-4">
-        {"Dashboard Page for Ms.Jacobs"}
-      </h1>
-      <h2 className="text-center font-bold text-xl p-4">
-        {"Please select an assignment from the dropdown below"}
-      </h2>
-      <select
-        className="border-blue-400 border-2 p-4"
-        value={choiceIndex}
-        onChange={(e) => setChoiceIndex(Number.parseInt(e.target.value))}
-      >
-        <option value={0}>{choices[0]}</option>
-        <option value={1}>{choices[1]}</option>
-      </select>
+      <div className="flex flex-col sm:flex-row sm:justify-between justify-center bg-gray-700">
+        <div className="p-4 bg-gray-700">
+          <img src="/images/djacobs/logo.png" />
+        </div>
+        <div className="bg-gray-700 flex flex-col items-center p-4 gap-4">
+          <h2 className="text-center text-gray-50 font-bold">
+            {"Please select an assignment"}
+          </h2>
+          <select
+            className="border-blue-400 border-2 p-4 mx-8"
+            value={choiceIndex}
+            onChange={(e) => setChoiceIndex(Number.parseInt(e.target.value))}
+          >
+            <option value={0}>{choices[0]}</option>
+            <option value={1}>{choices[1]}</option>
+          </select>
+        </div>
+      </div>
       {choiceIndex == 0 ? (
-        <TeacherDashboardPage data={data} />
+        <SolvingForVariablesDashboard data={data} />
       ) : (
         <GizaDashboardPage data={giza_data} />
       )}

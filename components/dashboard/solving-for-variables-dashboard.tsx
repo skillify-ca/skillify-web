@@ -15,7 +15,7 @@ const FreeDrawing = dynamic(() => import("../ui/FreeDrawing"), {
   ssr: false,
 });
 
-const TeacherDashboardPage = ({ data }) => {
+const SolvingForVariablesDashboard = ({ data }) => {
   const [currentStudentIndex, setCurrentStudentIndex] = useState(0);
   const [solutionsReleased, setSolutionsReleased] = useState(false);
   const { loading, data: assignmentFetchData } = useQuery(FETCH_ASSIGNMENT, {
@@ -39,8 +39,9 @@ const TeacherDashboardPage = ({ data }) => {
     ].user_solution.map((guess, index) => {
       return Number.parseInt(guess) === answers[index];
     });
-    const correctGuesses: number = rightGuesses.filter((it) => it === true)
-      .length;
+    const correctGuesses: number = rightGuesses.filter(
+      (it) => it === true
+    ).length;
 
     const grade =
       (correctGuesses * 100) /
@@ -52,53 +53,61 @@ const TeacherDashboardPage = ({ data }) => {
     return "2 minutes and 33 seconds";
   };
   return (
-    <div className="flex flex-col overflow-auto bg-scroll heropattern-architect-blue-200 bg-blue-100 h-screen">
+    <div className="flex flex-col heropattern-architect-blue-100 bg-blue-300">
       {data && data.user_assignments && data.user_assignments[0] && (
         <div className="flex flex-col items-center">
-          <h1 className="text-center font-bold text-xl p-4">
-            {data.user_assignments[0].assignment.title}
-          </h1>
-
-          {assignmentFetchData &&
-            assignmentFetchData.assignments &&
-            assignmentFetchData.assignments[0] && (
-              <div className="flex gap-4 p-4">
-                <Button
-                  label={
-                    solutionsReleased ? "Hide Solutions" : "Release Solutions"
-                  }
-                  backgroundColor="blue"
-                  textColor="white"
-                  onClick={(e) => {
-                    updateSolutionsReleased({
-                      variables: {
-                        solutions_released: !solutionsReleased,
-                        assignment_id: "djacobs1",
-                      },
-                    });
-                    setSolutionsReleased(!solutionsReleased);
-                  }}
-                />
+          <div className="bg-blue-50 m-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
+            <div className="flex justify-between items-center">
+              <div>
+                <p className="font-bold text-2xl w-full">
+                  Solving for Variables
+                </p>
+                <p className="">
+                  A short quiz that assesses a studen't ability to solve for
+                  variables.
+                </p>
               </div>
-            )}
-          <div className="bg-blue-50 max-w-6xl mb-4 mx-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
-            <p className="font-bold text-2xl w-full">Ms. Jacob's Classroom</p>
+              {assignmentFetchData &&
+                assignmentFetchData.assignments &&
+                assignmentFetchData.assignments[0] && (
+                  <div className="flex gap-4 p-4">
+                    <Button
+                      label={
+                        solutionsReleased
+                          ? "Unrelease Solutions"
+                          : "Release Solutions to Students"
+                      }
+                      backgroundColor="blue"
+                      textColor="white"
+                      onClick={(e) => {
+                        updateSolutionsReleased({
+                          variables: {
+                            solutions_released: !solutionsReleased,
+                            assignment_id: "djacobs1",
+                          },
+                        });
+                        setSolutionsReleased(!solutionsReleased);
+                      }}
+                    />
+                  </div>
+                )}
+            </div>
             <div className="grid grid-cols-12 gap-8 ">
-              <div className="col-span-4 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
+              <div className="col-span-12 sm:col-span-4 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
                 <p className="text-2xl font-bold">Average Grade</p>{" "}
                 <p>{getGrade()}</p>
               </div>
-              <div className="col-span-4 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
+              <div className="col-span-12 sm:col-span-4 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
                 <p className="text-2xl font-bold">Hardest Question</p>{" "}
                 <p>Question 4</p>
               </div>
-              <div className="col-span-4 bg-white hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 rounded-xl p-8 text-center flex flex-col gap-8">
+              <div className="col-span-12 sm:col-span-4 bg-white hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 rounded-xl p-8 text-center flex flex-col gap-8">
                 <p className="text-2xl font-bold">Missing Assignments</p>{" "}
                 <p>0</p>
               </div>
             </div>
           </div>
-          <div className="bg-blue-50 max-w-6xl mb-4 mx-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
+          <div className="bg-blue-50 m-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
             <p className="font-bold text-2xl w-full">Students</p>
             <select
               className="border-blue-400 border-2 p-4"
@@ -209,4 +218,4 @@ export async function getServerSideProps({ params }) {
   return { props: { data: data } };
 }
 
-export default TeacherDashboardPage;
+export default SolvingForVariablesDashboard;

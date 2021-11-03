@@ -57,29 +57,31 @@ const GizaDashboardPage = ({ data }) => {
   };
 
   return (
-    <div className="flex flex-col overflow-auto bg-scroll heropattern-architect-blue-200 bg-blue-100 h-screen">
-      <div className="flex flex-col items-center">
-        <h1 className="text-center font-bold text-xl p-4">
-          {"Giza Dashboard"}
-        </h1>
-
-        <div className="bg-blue-50 max-w-6xl mb-4 mx-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
-          <p className="font-bold text-2xl w-full">Ms. Jacob's Classroom</p>
+    <div className="flex flex-col heropattern-architect-blue-100 bg-blue-300">
+      <div className="flex flex-col gap-8 p-8 items-center">
+        <div className="bg-blue-50 p-4 rounded-xl shadow-lg flex flex-col gap-8">
+          <div>
+            <p className="font-bold text-2xl w-full">Escape from Giza</p>
+            <p className="">
+              A virtual escape room that teaches students about geometry and
+              angles.
+            </p>
+          </div>
           <div className="grid grid-cols-12 gap-8 ">
-            <div className="col-span-4 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
+            <div className="col-span-12 sm:col-span-4 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
               <p className="text-2xl font-bold">Average Time Spent</p>{" "}
               <p>{getTimeSpentAvg()}</p>
             </div>
-            <div className="col-span-4 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
+            <div className="col-span-12 sm:col-span-4 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
               <p className="text-2xl font-bold">Hardest Question</p>{" "}
               <p>Question 16</p>
             </div>
-            <div className="col-span-4 bg-white hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 rounded-xl p-8 text-center flex flex-col gap-8">
+            <div className="col-span-12 sm:col-span-4 bg-white hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 rounded-xl p-8 text-center flex flex-col gap-8">
               <p className="text-2xl font-bold">Missing Assignments</p> <p>0</p>
             </div>
           </div>
         </div>
-        <div className="bg-blue-50 max-w-6xl mb-4 mx-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
+        <div className="bg-blue-50 p-4 rounded-xl shadow-lg flex flex-col gap-8">
           <p className="font-bold text-2xl w-full">Students</p>
           <select
             className="border-blue-400 border-2 p-4"
@@ -100,7 +102,7 @@ const GizaDashboardPage = ({ data }) => {
           </div>
           <div className="grid md:grid-cols-12 grid-cols-1 gap-8">
             <div className="md:col-span-12 rounded-t-xl">
-              <div className="grid grid-cols-12 rounded-t-xl font-bold items-center justify-between bg-yellow-600 py-4">
+              <div className="grid grid-cols-12 rounded-t-xl font-bold items-center justify-between bg-yellow-600 py-4 overflow-scroll">
                 <p className="col-span-2 text-center">#</p>
                 <p className="col-span-6 text-center">Question</p>
                 <p className="col-span-4 text-center">Answer</p>
@@ -121,7 +123,7 @@ const GizaDashboardPage = ({ data }) => {
                           <p>{questionData[index]}</p>
                         </div>
                         <div className="col-span-4">
-                          <p>
+                          <p className="w-full">
                             {guessItem ? guessItem.guess : "No Answer Provided"}
                           </p>
                         </div>
@@ -134,8 +136,8 @@ const GizaDashboardPage = ({ data }) => {
               <p className="font-bold w-full text-xl py-2 px-4">
                 Guess History
               </p>
-              <div className="md:col-span-12 rounded-t-xl">
-                <div className="grid grid-cols-12 rounded-t-xl font-bold items-center justify-between bg-green-400 py-4">
+              <div className="md:col-span-12">
+                <div className="grid grid-cols-12 font-bold items-center justify-between bg-green-400 py-4">
                   <p className="col-span-6 text-center">Attempt #</p>
                   <p className="col-span-6 text-center">Guess Attempt</p>
                 </div>
@@ -146,7 +148,7 @@ const GizaDashboardPage = ({ data }) => {
                       isSelectedQuestion(guessHistoryItem)
                     )
                     .map((guessHistoryItem) => (
-                      <div className="grid grid-cols-12 rounded-t-xl font-bold items-center justify-between bg-white py-4">
+                      <div className="grid grid-cols-12 font-bold items-center justify-between bg-white py-4">
                         <p className="col-span-6 text-center">
                           {getAttemptNumber(guessHistoryItem)}
                         </p>
