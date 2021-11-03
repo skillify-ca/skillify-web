@@ -1,47 +1,35 @@
 import { sum } from "lodash";
 import { ReactNode, useState } from "react";
+import { useSelector } from "react-redux";
+import {
+  assignmentSessionSelector,
+  setCarInsurance,
+  setCarPayment1,
+  setCarPayment2,
+  setGasoline,
+  setSumValidationCar,
+  setTotalCarCosts
+} from "../../redux/assignmentSession";
+import { useAppDispatch } from "../../redux/store";
 import StatementRow from "../stories/StatementRow";
 import { Input } from "../ui/Input";
 
-export interface CarExpenseTableProps {
-  carPayment1: string;
-  setCarPayment1: (carPayment1: string) => void; //Line I
-  carPayment2: string;
-  setCarPayment2: (carPayment2: string) => void; //Line J
-  carInsurance: string;
-  setCarInsurance: (carInsurance: string) => void; //Line K
-  gasoline: string;
-  setGasoline: (gasoline: string) => void; //Line L
-  totalCarCosts: string;
-  setTotalCarCosts: (totalCarCosts: string) => void; //Line C
-  sumValidationCar: string;
-  setSumValidationCar: (sumValidationCar: string) => void;
-}
+const CarExpenseTable = () => {
 
-const CarExpenseTable = ({
-  carPayment1,
-  setCarPayment1,
-  carPayment2,
-  setCarPayment2,
-  carInsurance,
-  setCarInsurance,
-  gasoline,
-  setGasoline,
-  totalCarCosts,
-  setTotalCarCosts,
-  sumValidationCar,
-  setSumValidationCar,
-}: CarExpenseTableProps) => {
-  const validate = (newTotalCarCosts: string) => {
-    carPayment1 + carPayment2 + carInsurance + gasoline === ""
-      ? setSumValidationCar("")
-      : Number.parseInt(carPayment1) +
-          Number.parseInt(carPayment2) +
-          Number.parseInt(carInsurance) +
-          Number.parseInt(gasoline) ===
+  const assignmentSession = useSelector(assignmentSessionSelector)
+  const dispatch = useAppDispatch()
+
+  const validate = (newTotalCarCosts) => {
+
+    assignmentSession.carPayment1 + assignmentSession.carPayment2 + assignmentSession.carInsurance + assignmentSession.gasoline === ""
+      ? dispatch(setSumValidationCar(""))
+      : Number.parseInt(assignmentSession.carPayment1) +
+        Number.parseInt(assignmentSession.carPayment2) +
+        Number.parseInt(assignmentSession.carInsurance) +
+        Number.parseInt(assignmentSession.gasoline) ===
         Number.parseInt(newTotalCarCosts)
-      ? setSumValidationCar("Correct")
-      : setSumValidationCar("Wrong");
+        ? dispatch(setSumValidationCar("Correct"))
+        : dispatch(setSumValidationCar("Wrong"));
   };
   return (
     <div>
@@ -115,8 +103,11 @@ const CarExpenseTable = ({
               <p className={"mx-2"}> I. </p>
               <div className={"ml-2"}>
                 <input
-                  value={carPayment1}
-                  onChange={(e) => setCarPayment1(e.target.value)}
+                  value={assignmentSession.carPayment1}
+                  onChange={(e) => {
+                    const newCarPayment1 = e.target.value;
+                    dispatch(setCarPayment1(newCarPayment1))
+                  }}
                   placeholder="Type numbers only"
                 ></input>
               </div>
@@ -131,8 +122,11 @@ const CarExpenseTable = ({
               <p className={"mx-2"}> J. </p>{" "}
               <div className={"ml-2"}>
                 <input
-                  value={carPayment2}
-                  onChange={(e) => setCarPayment2(e.target.value)}
+                  value={assignmentSession.carPayment2}
+                  onChange={(e) => {
+                    const newCarPayment2 = e.target.value;
+                    dispatch(setCarPayment2(e.target.value))
+                  }}
                   placeholder="Type numbers only"
                 ></input>
               </div>
@@ -147,8 +141,11 @@ const CarExpenseTable = ({
               <p className={"mx-2"}>K.</p>
               <div className={"ml-2"}>
                 <input
-                  value={carInsurance}
-                  onChange={(e) => setCarInsurance(e.target.value)}
+                  value={assignmentSession.carInsurance}
+                  onChange={(e) => {
+                    const newCarInsurance = e.target.value;
+                    dispatch(setCarInsurance(e.target.value))
+                  }}
                   placeholder="Type numbers only"
                 ></input>
               </div>
@@ -163,8 +160,11 @@ const CarExpenseTable = ({
               <p className={"mx-2"}>L.</p>
               <div className={"ml-2"}>
                 <input
-                  value={gasoline}
-                  onChange={(e) => setGasoline(e.target.value)}
+                  value={assignmentSession.gasoline}
+                  onChange={(e) => {
+                    const newGasoline = e.target.value;
+                    dispatch(setGasoline(e.target.value))
+                  }}
                   placeholder="Type numbers only"
                 ></input>
               </div>
@@ -172,27 +172,27 @@ const CarExpenseTable = ({
           </tr>
           <tr>
             <td className="border border-black bg-green-300">
-              <p className={"mx-2 font-bold"}>Total Monthly Income</p>
+              <p className={"mx-2 font-bold"}>Total Car Costs</p>
             </td>
             <td className="border border-black flex flex-nowrap">
               <p className={"mx-2"}>M.</p>
               <div className={"ml-2"}>
                 <input
-                  value={totalCarCosts}
+                  value={assignmentSession.totalCarCosts}
                   onChange={(e) => {
                     const newTotalCarCosts = e.target.value;
-                    setTotalCarCosts(newTotalCarCosts);
+                    dispatch(setTotalCarCosts(newTotalCarCosts));
                     validate(newTotalCarCosts);
                   }}
                   placeholder="Type numbers only"
                   className={
-                    sumValidationCar === ""
+                    assignmentSession.sumValidationCar === ""
                       ? "bg-white"
-                      : sumValidationCar === "Correct"
-                      ? "bg-green-200"
-                      : sumValidationCar === "Wrong"
-                      ? "bg-red-200"
-                      : "bg-white"
+                      : assignmentSession.sumValidationCar === "Correct"
+                        ? "bg-green-200"
+                        : assignmentSession.sumValidationCar === "Wrong"
+                          ? "bg-red-200"
+                          : "bg-white"
                   }
                 ></input>
               </div>

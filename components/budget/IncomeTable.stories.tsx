@@ -1,7 +1,7 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 
-import IncomeTable, { incomeTableProps } from "./IncomeTable";
+import IncomeTable from "./IncomeTable";
 
 export default {
   title: "finance/IncomeTable",
@@ -9,7 +9,7 @@ export default {
   argTypes: {},
 } as Meta;
 
-const Template: Story<incomeTableProps> = (args) => <IncomeTable {...args} />;
+const Template: Story = (args) => <IncomeTable {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {};
