@@ -10,6 +10,7 @@ import Navbar from "../Navbar";
 import { Button } from "../ui/Button";
 import { FETCH_USER_ASSIGNMENTS } from "../../graphql/userAssignments/fetchUserAssignments";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 const FreeDrawing = dynamic(() => import("../ui/FreeDrawing"), {
   ssr: false,
@@ -57,7 +58,7 @@ const SolvingForVariablesDashboard = ({ data }) => {
       {data && data.user_assignments && data.user_assignments[0] && (
         <div className="flex flex-col items-center">
           <div className="bg-blue-50 m-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col justify-between items-center">
               <div>
                 <p className="font-bold text-2xl w-full">
                   Solving for Variables
@@ -75,7 +76,7 @@ const SolvingForVariablesDashboard = ({ data }) => {
                       label={
                         solutionsReleased
                           ? "Unrelease Solutions"
-                          : "Release Solutions to Students"
+                          : "Release Solutions"
                       }
                       backgroundColor="blue"
                       textColor="white"
@@ -89,6 +90,13 @@ const SolvingForVariablesDashboard = ({ data }) => {
                         setSolutionsReleased(!solutionsReleased);
                       }}
                     />
+                    <Link href="/teachers/djacobs/solving-for-variables">
+                      <Button
+                        label="Preview Assignment"
+                        backgroundColor="white"
+                        textColor="blue-500"
+                      />
+                    </Link>
                   </div>
                 )}
             </div>

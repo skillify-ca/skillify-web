@@ -1,8 +1,10 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
+import Link from "next/link";
 import React, { useState } from "react";
 import { FETCH_GIZA_DATA } from "../../graphql/fetchGizaData";
 import { measureTime } from "../../pages/api/time";
 import Navbar from "../Navbar";
+import { Button } from "../ui/Button";
 
 const GizaDashboardPage = ({ data }) => {
   const [currentStudentIndex, setCurrentStudentIndex] = useState(0);
@@ -67,6 +69,13 @@ const GizaDashboardPage = ({ data }) => {
               angles.
             </p>
           </div>
+          <Link href="/teachers/djacobs/giza">
+            <Button
+              label="Preview Assignment"
+              backgroundColor="white"
+              textColor="blue-500"
+            />
+          </Link>
           <div className="grid grid-cols-12 gap-8 ">
             <div className="col-span-12 sm:col-span-4 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
               <p className="text-2xl font-bold">Average Time Spent</p>{" "}
