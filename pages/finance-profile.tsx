@@ -1,10 +1,7 @@
-import _, { min } from "lodash";
+import _ from "lodash";
 import React, { useEffect, useState } from "react";
-import { EndSession } from "../components/finance/EndSession";
-import { RulesSession } from "../components/finance/RulesSession";
-import AssignmentSession from "../components/finance/AssignmentSession";
 import { FETCH_BADGE_ON_USERID } from "../graphql/fetchBadgeOnUserID";
-import { ApolloClient, InMemoryCache, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import {
   FinanceProfileType,
@@ -13,8 +10,11 @@ import {
 import { getRndInteger } from "./api/random";
 import { UNLOCK_BADGE } from "../graphql/unlockBadge";
 import { useAuth } from "../lib/authContext";
-import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
 import { Button } from "../components/ui/Button";
+import AssignmentSession from "../components/budget/AssignmentSession";
+import { EndSession } from "../components/budget/EndSession";
+import { FinanceProfileChart } from "../components/budget/FinanceProfileChart";
+import { RulesSession } from "../components/budget/RulesSession";
 
 enum STAGES {
   START,
