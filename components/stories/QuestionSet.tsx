@@ -282,10 +282,11 @@ const QuestionSet = ({
     ) {
       {
         return (
-          <BudgetTable
-            budget={Number.parseInt(questionData[index].text)}
-            submitGuess={submitGuess}
-          />
+            <BudgetTable
+              question={questionData[index]}
+              answer={questionData[index].answer}
+              submitGuess={submitGuess}
+            />
         );
       }
     }

@@ -1,28 +1,28 @@
 export interface ItemData {
-  item: string;
+  title: string;
   cost: number;
 }
 
 export const ItemDataTable: ItemData[] = [
   
   {
-    item: "Brass Clip",
+    title: "Brass Clip",
     cost: 0.15
   },
   {
-    item: "Piece of Rope",
+    title: "Piece of Rope",
     cost: 0.73
   },
   {
-    item: "Roll of Electrical Tape",
+    title: "Roll of Electrical Tape",
     cost: 0.89
   },
   {
-    item: "Light Bulb",
+    title: "Light Bulb",
     cost: 0.67
   },
   {
-    item: "Ball of Twine",
+    title: "Ball of Twine",
     cost: 0.62
   },
   
