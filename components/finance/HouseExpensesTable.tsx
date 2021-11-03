@@ -1,46 +1,34 @@
 import { ReactNode, useState } from "react";
-
-export interface HouseExpensesProps {
-  housePayment: string;
-  setHousePayment: (housePayment: string) => void;
-  electricBill: string;
-  setElectricBill: (electricBill: string) => void;
-  gasBill: string;
-  setGasBill: (setGasBill: string) => void;
-  waterBill: string;
-  setWaterBill: (waterBill: string) => void;
-  totalHousingCost: string;
-  setTotalHousingCost: (totalHousingCost: string) => void;
-  homeType: string;
-  setHomeType: (homeType: string) => void;
-}
-
-const HouseExpensesTable = ({
-  housePayment,
-  setHousePayment,
-  electricBill,
-  setElectricBill,
-  gasBill,
-  setGasBill,
-  waterBill,
-  setWaterBill,
-  totalHousingCost,
-  setTotalHousingCost,
-  homeType,
+import { useSelector } from "react-redux";
+import {
+  assignmentSessionSelector,
   setHomeType,
-}: HouseExpensesProps) => {
+  setHousePayment,
+  setElectricBill,
+  setGasBill,
+  setWaterBill,
+  setTotalHousingCost
+}
+  from "../../redux/assignmentSession";
+import { useAppDispatch } from "../../redux/store";
+
+const HouseExpensesTable = () => {
+
+  const assignmentSession = useSelector(assignmentSessionSelector)
+  const dispatch = useAppDispatch()
+
   const [validateTotal, setValidateTotal] = useState("");
 
   const validate = (newTotalHousingCost) => {
-    housePayment + electricBill + gasBill + waterBill === ""
+    assignmentSession.housePayment + assignmentSession.electricBill + assignmentSession.gasBill + assignmentSession.waterBill === ""
       ? setValidateTotal("")
-      : Number.parseInt(housePayment) +
-          Number.parseInt(electricBill) +
-          Number.parseInt(gasBill) +
-          Number.parseInt(waterBill) ===
+      : Number.parseInt(assignmentSession.housePayment) +
+        Number.parseInt(assignmentSession.electricBill) +
+        Number.parseInt(assignmentSession.gasBill) +
+        Number.parseInt(assignmentSession.waterBill) ===
         Number.parseInt(newTotalHousingCost)
-      ? setValidateTotal("CORRECT")
-      : setValidateTotal("WRONG");
+        ? setValidateTotal("CORRECT")
+        : setValidateTotal("WRONG");
   };
 
   return (
@@ -55,8 +43,11 @@ const HouseExpensesTable = ({
             name="home type"
             id="home type"
             className="bg-blue-100 rounded-md w-36"
-            value={homeType}
-            onChange={(e) => setHomeType(e.target.value)}
+            value={assignmentSession.homeType}
+            onChange={(e) => {
+              const newHomeType = e.target.value;
+              dispatch(setHomeType(newHomeType))
+            }}
           >
             <option disabled selected>
               Home Type
@@ -104,8 +95,11 @@ const HouseExpensesTable = ({
                 D.
                 <div className="ml-2">
                   <input
-                    value={housePayment}
-                    onChange={(e) => setHousePayment(e.target.value)}
+                    value={assignmentSession.housePayment}
+                    onChange={(e) => {
+                      const newHousePayment = e.target.value;
+                      dispatch(setHousePayment(newHousePayment))
+                    }}
                     placeholder="Enter amount"
                   />
                 </div>
@@ -119,8 +113,11 @@ const HouseExpensesTable = ({
                 E.
                 <div className="ml-2">
                   <input
-                    value={electricBill}
-                    onChange={(e) => setElectricBill(e.target.value)}
+                    value={assignmentSession.electricBill}
+                    onChange={(e) => {
+                      const newElectricBill = e.target.value;
+                      dispatch(setElectricBill(newElectricBill))
+                    }}
                     placeholder="Enter amount"
                   />
                 </div>
@@ -132,8 +129,11 @@ const HouseExpensesTable = ({
                 F.
                 <div className="ml-2">
                   <input
-                    value={gasBill}
-                    onChange={(e) => setGasBill(e.target.value)}
+                    value={assignmentSession.gasBill}
+                    onChange={(e) => {
+                      const newGasBill = e.target.value;
+                      dispatch(setGasBill(newGasBill))
+                    }}
                     placeholder="Enter amount"
                   />
                 </div>
@@ -145,8 +145,11 @@ const HouseExpensesTable = ({
                 G.
                 <div className="ml-2">
                   <input
-                    value={waterBill}
-                    onChange={(e) => setWaterBill(e.target.value)}
+                    value={assignmentSession.waterBill}
+                    onChange={(e) => {
+                      const newWaterBill = e.target.value;
+                      dispatch(setWaterBill(e.target.value))
+                    }}
                     placeholder="Enter amount"
                   />
                 </div>
@@ -160,10 +163,10 @@ const HouseExpensesTable = ({
                 H.
                 <div className="ml-2">
                   <input
-                    value={totalHousingCost}
+                    value={assignmentSession.totalHousingCost}
                     onChange={(e) => {
                       const newTotalHousingCost = e.target.value;
-                      setTotalHousingCost(newTotalHousingCost);
+                      dispatch(setTotalHousingCost(newTotalHousingCost));
                       validate(newTotalHousingCost);
                     }}
                     placeholder="Enter amount"
@@ -172,10 +175,10 @@ const HouseExpensesTable = ({
                       validateTotal == ""
                         ? "bg-white"
                         : validateTotal == "CORRECT"
-                        ? "bg-green-100"
-                        : validateTotal == "WRONG"
-                        ? "bg-red-100"
-                        : "bg-white"
+                          ? "bg-green-100"
+                          : validateTotal == "WRONG"
+                            ? "bg-red-100"
+                            : "bg-white"
                     }
                   />
                 </div>

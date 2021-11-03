@@ -1,37 +1,21 @@
-export interface AdditionalTableProps {
-  tvInternet: string;
-  setTvInternet: (tvInternet: string) => void;
-  phone: string;
-  setPhone: (phone: string) => void;
-  grocery: string;
-  setGrocery: (grocery: string) => void;
-  totalAdditional: string;
-  setTotalAdditional: (totalAdditional: string) => void;
-  sumAddValidation: string;
-  setSumAddValidation: (sumAddValidation: string) => void;
-}
+import { useSelector } from "react-redux";
+import { assignmentSessionSelector, setGrocery, setPhone, setSumAddValidation, setTotalAdditional, setTvInternet } from "../../redux/assignmentSession";
+import { useAppDispatch } from "../../redux/store";
 
-const AdditionalTable = ({
-  tvInternet,
-  setTvInternet,
-  phone,
-  setPhone,
-  grocery,
-  setGrocery,
-  totalAdditional,
-  setTotalAdditional,
-  sumAddValidation,
-  setSumAddValidation,
-}: AdditionalTableProps) => {
+const AdditionalTable = () => {
+
+  const assignmentSession = useSelector(assignmentSessionSelector)
+  const dispatch = useAppDispatch()
+
   const validate = (newTotalAddition) => {
-    tvInternet + phone + grocery === ""
-      ? setSumAddValidation("")
-      : Number.parseFloat(tvInternet) +
-          Number.parseInt(phone) +
-          Number.parseInt(grocery) ===
+    assignmentSession.tvInternet + assignmentSession.phone + assignmentSession.grocery === ""
+      ? dispatch(setSumAddValidation(""))
+      : Number.parseFloat(assignmentSession.tvInternet) +
+        Number.parseInt(assignmentSession.phone) +
+        Number.parseInt(assignmentSession.grocery) ===
         Number.parseInt(newTotalAddition)
-      ? setSumAddValidation("Correct")
-      : setSumAddValidation("Wrong");
+        ? dispatch(setSumAddValidation("Correct"))
+        : dispatch(setSumAddValidation("Wrong"));
   };
   return (
     <div>
@@ -60,8 +44,11 @@ const AdditionalTable = ({
               <p className={"mx-2"}>N.</p>
               <div>
                 <input
-                  value={tvInternet}
-                  onChange={(e) => setTvInternet(e.target.value)}
+                  value={assignmentSession.tvInternet}
+                  onChange={(e) => {
+                    const newTvInternet = e.target.value;
+                    dispatch(setTvInternet(e.target.value))
+                  }}
                   placeholder="Type numbers only"
                 ></input>
               </div>
@@ -75,8 +62,11 @@ const AdditionalTable = ({
               <p className={"mx-2"}>O.</p>
               <div>
                 <input
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  value={assignmentSession.phone}
+                  onChange={(e) => {
+                    const newPhone = e.target.value;
+                    dispatch(setPhone(e.target.value))
+                  }}
                   placeholder="Type numbers only"
                 ></input>
               </div>
@@ -91,8 +81,11 @@ const AdditionalTable = ({
               <p className={"mx-2"}>P.</p>
               <div>
                 <input
-                  value={grocery}
-                  onChange={(e) => setGrocery(e.target.value)}
+                  value={assignmentSession.grocery}
+                  onChange={(e) => {
+                    const newGrocery = e.target.value;
+                    dispatch(setGrocery(e.target.value))
+                  }}
                   placeholder="Type numbers only"
                 ></input>
               </div>
@@ -107,21 +100,21 @@ const AdditionalTable = ({
               <p className={"mx-2"}>Q.</p>
               <div>
                 <input
-                  value={totalAdditional}
+                  value={assignmentSession.totalAdditional}
                   onChange={(e) => {
                     const newTotalAddition = e.target.value;
-                    setTotalAdditional(newTotalAddition);
+                    dispatch(setTotalAdditional(newTotalAddition));
                     validate(newTotalAddition);
                   }}
                   placeholder="Type numbers only"
                   className={
-                    sumAddValidation === ""
+                    assignmentSession.sumAddValidation === ""
                       ? "bg-white"
-                      : sumAddValidation === "Correct"
-                      ? "bg-green-200"
-                      : sumAddValidation === "Wrong"
-                      ? "bg-red-200"
-                      : "bg-white"
+                      : assignmentSession.sumAddValidation === "Correct"
+                        ? "bg-green-200"
+                        : assignmentSession.sumAddValidation === "Wrong"
+                          ? "bg-red-200"
+                          : "bg-white"
                   }
                 ></input>
               </div>
