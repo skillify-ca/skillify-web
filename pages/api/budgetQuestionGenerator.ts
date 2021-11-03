@@ -1,6 +1,7 @@
 import {
   Question,
   AnswerType,
+  ItemCostModel,
 } from "./question";
 import { QuestionType } from "./questionTypes";
 import { ItemDataTable } from '../../components/money/BudgetTableData';
@@ -10,26 +11,28 @@ export function generateBudgetQuestion(
   ): Question {
   let tape = getRndHundredthsDecimal(2,3);
   let bulb = getRndHundredthsDecimal(2,3);
-  let answer = tape + bulb;
+  let total = tape + bulb;
   let budget = 5;
 
-  ItemDataTable.map((item) => {
-    if (item.item === "Roll of Electrical Tape") {
-      return item.cost = tape;
+  let answer = budget >= total ? "Yes" : "No";
+
+  const PriceCostTable:ItemCostModel[] = ItemDataTable.map((item) => {
+    if (item.title === "Roll of Electrical Tape") {
+      return {title: item.title, cost: tape}
   
-    } else if (item.item ==="Light Bulb") {
-      return item.cost = bulb;
+    } else if (item.title ==="Light Bulb") {
+      return {title: item.title, cost: bulb}
     } else {
-      item.cost = getRndHundredthsDecimal(0,5);
+      return {title: item.title, cost: getRndHundredthsDecimal(0,5)}
     }
   })
-  console.table(ItemDataTable);
-  console.log(answer);
+  
   return {
     text: budget.toString(),
     answer: answer.toString(),
     answerType:AnswerType.STRING,
     questionType:QuestionType.FINANCE_PROBLEM,
+    budgetCostModel:PriceCostTable,
 
   };
 }
