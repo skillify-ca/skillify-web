@@ -6,9 +6,14 @@ import { FETCH_GIZA_DATA } from "../../../graphql/fetchGizaData";
 import TeacherDashboardPage from "../../../components/dashboard/solving-for-variables-dashboard";
 import GizaDashboardPage from "../../../components/dashboard/dashboard-giza";
 import SolvingForVariablesDashboard from "../../../components/dashboard/solving-for-variables-dashboard";
+import SurfaceAreaDashboardPage from "../../../components/dashboard/dashboard-surfaceArea";
 
 const MainDashboardPage = ({ data, giza_data }) => {
-  const choices = ["Solving for Variables", "Escape from Giza"];
+  const choices = [
+    "Solving for Variables",
+    "Escape from Giza",
+    "Surface Area Assignment",
+  ];
   const [choiceIndex, setChoiceIndex] = useState(0);
   return (
     <div className="flex flex-col heropattern-architect-blue-200 bg-blue-100">
@@ -28,14 +33,13 @@ const MainDashboardPage = ({ data, giza_data }) => {
           >
             <option value={0}>{choices[0]}</option>
             <option value={1}>{choices[1]}</option>
+            <option value={2}>{choices[2]}</option>
           </select>
         </div>
       </div>
-      {choiceIndex == 0 ? (
-        <SolvingForVariablesDashboard data={data} />
-      ) : (
-        <GizaDashboardPage data={giza_data} />
-      )}
+      {choiceIndex == 0 && <SolvingForVariablesDashboard data={data} />}
+      {choiceIndex == 1 && <GizaDashboardPage data={giza_data} />}
+      {choiceIndex == 2 && <SurfaceAreaDashboardPage data={giza_data} />}
     </div>
   );
 };
