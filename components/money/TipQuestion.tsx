@@ -20,7 +20,7 @@ const TipQuestion: React.FC<TipQuestionProps> = ({ question, submitGuess, answer
     <div className="flex flex-col max-h-96 py-4 overflow-y-hidden gap-4">
       <p>Estimate the amount of tip by rounding the bill to the nearest dollar before calculating.</p>
       {""}
-      <p className="pl-10">{question.text}% tip on a bill of $99.23</p>
+      <p className="pl-10">20% tip on a bill of $99.23</p>
       {""}
       <div className="max-w">
         <p className="py-4">The amount of the tip is approximately

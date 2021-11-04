@@ -8,7 +8,7 @@ export default {
   argTypes: {},
 } as Meta;
 
-const Template: Story = (args) => <TipQuestion {...args} />;
+const Template: Story<TipQuestionProps> = (args) => <TipQuestion {...args} />;
 
 
 export const Primary = Template.bind({});
