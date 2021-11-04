@@ -6,6 +6,7 @@ import SA_Q2 from "../../../components/surfaceArea/SA_Q2";
 import SA_Q3 from "../../../components/surfaceArea/SA_Q3";
 import SA_Q4 from "../../../components/surfaceArea/SA_Q4";
 import SA_Q5 from "../../../components/surfaceArea/SA_Q5";
+import SA_Q6 from "../../../components/surfaceArea/SA_Q6";
 import { Button } from "../../../components/ui/Button";
 import { GuessData } from "../../api/guessData";
 import { measureTime } from "../../api/time";
@@ -23,6 +24,7 @@ export default function djacobs(props) {
     "A net for the triangular prism is shown on the grid. On the net, label each face of the prism. Each square on the grid represents 1cm^2.",
     "Write a multiplication question for the area of each face for the triangular prisms in question 3, image also provided from question 3. Then find the surface area of the prism",
     "Explain how the net of a prism helps you find the surface area of a prism",
+    "Draw a net for the cube on the grid",
   ];
 
   const [stage, setStage] = useState(Stage.START);
@@ -109,6 +111,7 @@ export default function djacobs(props) {
     SA_Q3(questionData[2], nextQuestion, isWrong),
     SA_Q4(questionData[3], nextQuestion, isWrong),
     SA_Q5(questionData[4], nextQuestion, isWrong),
+    SA_Q6(questionData[5], nextQuestion, isWrong),
   ];
 
   return (
