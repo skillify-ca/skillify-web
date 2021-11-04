@@ -13,9 +13,7 @@ const Q6 = (displayQuestion, nextQuestion, isWrong) => {
   ]);
 
   const onSubmit = () => {
-    //console.log(JSON.stringify(positions));
     setGuessString(JSON.stringify(positions));
-    //console.log(guessString);
     const guessStringLocal = JSON.stringify(positions);
     const guess: GuessData = {
       guess: guessStringLocal,
@@ -165,13 +163,3 @@ const Q6 = (displayQuestion, nextQuestion, isWrong) => {
 };
 
 export default Q6;
-
-/*<style jsx>{`
-        h6 {
-          display: inline-block;
-          width: 30px;
-          height: 30px;
-          background-color: #ccc;
-          border: 1px solid #ff0000;
-        }
-      `}</style> */
