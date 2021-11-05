@@ -14,14 +14,13 @@ export function getRndBudgetQuestion(
     QuestionType.FINANCE_PROBLEM,
     QuestionType.FINANCE_TIP_PROBLEM
   ];
+  /** Cycle through QuestionTypes */
   let questionIndex = getRndInteger(0, types.length);
   let type = types[questionIndex];
 
   if (type === QuestionType.FINANCE_TIP_PROBLEM) {
     let tip = getRndInteger(10, 20);
     let bill = getRndHundredthsDecimal(50, 100);
-    console.log(tip);
-    console.log(bill);
     return getTipQuestion(tip, bill);
 
   } else if (type === QuestionType.FINANCE_PROBLEM) {
