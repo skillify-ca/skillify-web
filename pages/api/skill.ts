@@ -501,7 +501,7 @@ export function getQuestionTypesForSkill(skill: Skill): QuestionType[] {
     return [QuestionType.LONG_DIVISION_PROBLEM];
   } else if (skill == Skill.FINANCE_BUDGET) {
     return [
-      QuestionType.FINANCE_PROBLEM,
+      QuestionType.FINANCE_BUDGET_TABLE_PROBLEM,
       QuestionType.FINANCE_TIP_PROBLEM,
     ];
 
