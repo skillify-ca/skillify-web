@@ -500,7 +500,11 @@ export function getQuestionTypesForSkill(skill: Skill): QuestionType[] {
   } else if (skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH) {
     return [QuestionType.LONG_DIVISION_PROBLEM];
   } else if (skill == Skill.FINANCE_BUDGET) {
-    return [QuestionType.FINANCE_PROBLEM];
+    return [
+      QuestionType.FINANCE_PROBLEM,
+      QuestionType.FINANCE_TIP_PROBLEM,
+    ];
+
 
   } else {
     return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
