@@ -31,7 +31,7 @@ export function getRandomFinanceQuestion(
 
 }
 
-function getBudgetQuestion(
+export function getBudgetQuestion(
   tape: number,
   bulb: number,
 ):Question {
@@ -60,7 +60,7 @@ function getBudgetQuestion(
   };
 }
 
-function getTipQuestion(
+export function getTipQuestion(
   tip: number,
   bill:number,
 ): Question {
