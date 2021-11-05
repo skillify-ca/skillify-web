@@ -1,29 +1,17 @@
 import { ReactNode, useState } from "react";
 import { useSelector } from "react-redux";
-import { assignmentSessionSelector } from "../../redux/assignmentSession";
-
-export interface TotalExpensesTableProps {
-  totalHousingCost6: string;
-  setTotalHousingCost6: (TotalHousingCost: string) => void;
-  totalCarCosts6: string;
-  setTotalCarCosts6: (totalCarCosts6: string) => void;
-  totalAdditional6: string;
-  setTotalAdditional6: (totalAdditional6: string) => void;
-  totalExpenses: string;
-  setTotalExpenses: (totalExpenses: string) => void;
-}
-
-const TotalExpensesTable = ({
-  totalHousingCost6,
-  setTotalHousingCost6,
-  totalCarCosts6,
-  setTotalCarCosts6,
-  totalAdditional6,
+import {
+  assignmentSessionSelector,
   setTotalAdditional6,
-  totalExpenses,
-  setTotalExpenses,
-}: TotalExpensesTableProps) => {
+  setTotalCarCosts6,
+  setTotalHousingCost6,
+  setTotalExpenses
+} from "../../redux/assignmentSession";
+import { useAppDispatch } from "../../redux/store";
 
+const TotalExpensesTable = () => {
+
+  const dispatch = useAppDispatch()
   const assignmentSession = useSelector(assignmentSessionSelector)
 
   const [totalHousingCostValidation, setTotalHousingCostValidation] = useState("");
@@ -63,11 +51,11 @@ const TotalExpensesTable = ({
   const validateTotalExpenses = (newTotalExpenses) => {
     newTotalExpenses === ""
       ? setTotalExpensesValidation("")
-      : totalHousingCost6 + totalCarCosts6 + totalAdditional6 === ""
+      : assignmentSession.totalHousingCost6 + assignmentSession.totalCarCosts6 + assignmentSession.totalAdditional6 === ""
         ? setTotalExpensesValidation("")
-        : Number.parseInt(totalHousingCost6) +
-          Number.parseInt(totalCarCosts6) +
-          Number.parseInt(totalAdditional6) ===
+        : Number.parseInt(assignmentSession.totalHousingCost6) +
+          Number.parseInt(assignmentSession.totalCarCosts6) +
+          Number.parseInt(assignmentSession.totalAdditional6) ===
           Number.parseInt(newTotalExpenses)
           ? setTotalExpensesValidation("Correct")
           : setTotalExpensesValidation("Wrong");
@@ -100,10 +88,10 @@ const TotalExpensesTable = ({
               <td className="border border-black bg-white pl-1">
                 H.
                 <input
-                  value={totalHousingCost6}
+                  value={assignmentSession.totalHousingCost6}
                   onChange={(e) => {
                     const newTotalHousingCost6 = e.target.value;
-                    setTotalHousingCost6(newTotalHousingCost6);
+                    dispatch(setTotalHousingCost6(newTotalHousingCost6));
                     validateHousingCost(newTotalHousingCost6);
                   }}
                   placeholder="Type Numbers Only"
@@ -126,10 +114,10 @@ const TotalExpensesTable = ({
               <td className="border border-black bg-white pl-1">
                 M.
                 <input
-                  value={totalCarCosts6}
+                  value={assignmentSession.totalCarCosts6}
                   onChange={(e) => {
                     const newTotalCarCosts6 = e.target.value;
-                    setTotalCarCosts6(newTotalCarCosts6);
+                    dispatch(setTotalCarCosts6(newTotalCarCosts6));
                     validateTotalCarCosts(newTotalCarCosts6);
                   }}
                   placeholder="Type Numbers Only"
@@ -153,10 +141,10 @@ const TotalExpensesTable = ({
               <td className="border border-black bg-white pl-1">
                 Q.
                 <input
-                  value={totalAdditional6}
+                  value={assignmentSession.totalAdditional6}
                   onChange={(e) => {
                     const newTotalAdditional6 = e.target.value;
-                    setTotalAdditional6(newTotalAdditional6);
+                    dispatch(setTotalAdditional6(newTotalAdditional6));
                     validateTotalAdditional(newTotalAdditional6);
                   }}
                   placeholder="Type Numbers Only"
@@ -179,10 +167,10 @@ const TotalExpensesTable = ({
               <td className="border border-black bg-white pl-1">
                 R.
                 <input
-                  value={totalExpenses}
+                  value={assignmentSession.totalExpenses}
                   onChange={(e) => {
                     const newTotalExpenses = e.target.value;
-                    setTotalExpenses(newTotalExpenses);
+                    dispatch(setTotalExpenses(newTotalExpenses));
                     validateTotalExpenses(newTotalExpenses);
                   }}
                   placeholder="Type Numbers Only"

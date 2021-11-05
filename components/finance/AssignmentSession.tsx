@@ -25,6 +25,14 @@ import { Modal, ModalTransition } from "react-simple-hook-modal";
 import "react-simple-hook-modal/dist/styles.css";
 import { SurpriseComponent } from "./SurpriseComponent";
 import { getRandomItemFromArray, getRndInteger } from "../../pages/api/random";
+import { useAppDispatch } from "../../redux/store";
+import { useSelector } from "react-redux";
+import {
+  assignmentSessionSelector,
+  setMoneyRemValidation,
+  setTotalMoneyRemaining,
+  setIsSurpriseVisible
+} from "../../redux/assignmentSession";
 
 export interface FinanceProfileProps {
   onClick: () => void;
@@ -33,8 +41,10 @@ export interface FinanceProfileProps {
 
 const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
 
-  const [isMarried, setMarriage] = useState(MaritalStatus.SINGLE);
-  const [hasChildren, setChildren] = useState(false);
+  const dispatch = useAppDispatch()
+  const assignmentSession = useSelector(assignmentSessionSelector)
+
+  // const [isMarried, setMarriage] = useState(MaritalStatus.SINGLE);
 
   const [individualOccupation, setIndividualOccupation] = useState("");
   const [individualSalary, setIndividualSalary] = useState(0);
@@ -42,27 +52,8 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
   const [spouseSalary, setSpouseSalary] = useState(0);
   const [sectionOneValidation, setSectionOneValidation] = useState(false);
 
-  const [totalHousingCost6, setTotalHousingCost6] = useState("");
-  const [totalCarCosts6, setTotalCarCosts6] = useState("");
-  const [totalAdditional6, setTotalAdditional6] = useState("");
-  const [totalExpenses, setTotalExpenses] = useState(""); //Set for Section 6
-
-  const [totalMonthlySection7, setTotalMonthlysection7] = useState("");
-  const [totalExpensesSection7, setTotalExpensesSection7] = useState("");
-  const [totalMoneyRemaining, setTotalMoneyRemaining] = useState("");
-  const [monthlyIncomeValidation, setMonthlyIncomeValidation] = useState("");
-  const [totalExpenseValidation, setTotalExpenseValidation] = useState("");
-  const [moneyRemValidation, setMoneyRemValidation] = useState("");
-
-  const [Make, setMake] = useState("");
-  const [Model, setModel] = useState("");
-  const [Doors, setDoors] = useState("");
-  const [Cost, setCost] = useState("");
-  const [Year, setYear] = useState("");
-
   const [isSubmitModalShowing, setIsSubmitModalShowing] = useState(false);
   const [surpriseData, setSurpriseData] = useState<SurpriseCardType>();
-  const [isSurpriseVisible, setIsSurpriseVisible] = useState(false);
 
   useEffect(() => {
     const randomSurprise: SurpriseCardType =
@@ -72,24 +63,24 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
 
   const validateTotalMoneyRemaining = (newTotalMoneyRemaining) => {
     if (newTotalMoneyRemaining === "") {
-      setMoneyRemValidation("");
+      dispatch(setMoneyRemValidation(""));
     } else {
       if (
-        Number.parseInt(totalMonthlySection7) -
-        Number.parseInt(totalExpensesSection7) ===
+        Number.parseInt(assignmentSession.totalMonthlySection7) -
+        Number.parseInt(assignmentSession.totalExpensesSection7) ===
         Number.parseInt(newTotalMoneyRemaining)
       ) {
-        setMoneyRemValidation("Correct");
+        dispatch(setMoneyRemValidation("Correct"));
       } else {
-        setMoneyRemValidation("Wrong");
+        dispatch(setMoneyRemValidation("Wrong"));
       }
     }
   };
 
   const onSubmit = () => {
     if (
-      moneyRemValidation === "Correct" &&
-      Number.parseInt(totalMoneyRemaining) > 0
+      assignmentSession.moneyRemValidation === "Correct" &&
+      Number.parseInt(assignmentSession.totalMoneyRemaining) > 0
     ) {
       setIsSubmitModalShowing((e) => !e);
     }
@@ -97,11 +88,11 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
 
   const onModalClose = () => {
     const surpriseMoneyRemaining =
-      Number.parseInt(totalMoneyRemaining) + surpriseData.surpriseValue;
+      Number.parseInt(assignmentSession.totalMoneyRemaining) + surpriseData.surpriseValue;
 
     if (isSubmitModalShowing) {
-      setTotalMoneyRemaining(surpriseMoneyRemaining.toString());
-      setIsSurpriseVisible(true);
+      dispatch(setTotalMoneyRemaining(surpriseMoneyRemaining.toString()));
+      dispatch(setIsSurpriseVisible(true));
       setIsSubmitModalShowing((e) => !e);
 
       validateTotalMoneyRemaining(surpriseMoneyRemaining);
@@ -169,18 +160,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
           </div>
         </section>
         <div className={"flex items-center justify-center"}>
-          <BuyACar
-            Make={Make}
-            setMake={setMake}
-            Model={Model}
-            setModel={setModel}
-            Doors={Doors}
-            setDoors={setDoors}
-            Cost={Cost}
-            setCost={setCost}
-            Year={Year}
-            setYear={setYear}
-          />
+          <BuyACar />
         </div>
         <section
           className={
@@ -236,10 +216,8 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         </div>
         <div>
           <SectionOneInput
-            isMarried={isMarried}
-            setMarriage={setMarriage}
-            hasChildren={hasChildren}
-            setChildren={setChildren}
+            // isMarried={isMarried}
+            // setMarriage={setMarriage}
             individualOccupation={individualOccupation}
             setIndividualOccupation={setIndividualOccupation}
             individualSalary={individualSalary}
@@ -280,35 +258,10 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
             <AdditionalTable />
           </div>
           <div className={"mb-40"}>
-            <TotalExpensesTable
-              totalHousingCost6={totalHousingCost6}
-              setTotalHousingCost6={setTotalHousingCost6}
-              totalCarCosts6={totalCarCosts6}
-              setTotalCarCosts6={setTotalCarCosts6}
-              totalAdditional6={totalAdditional6}
-              setTotalAdditional6={setTotalAdditional6}
-              totalExpenses={totalExpenses}
-              setTotalExpenses={setTotalExpenses}
-            />
+            <TotalExpensesTable />
           </div>
           <div className={"mb-40"}>
             <MoneyRemainingTable
-              totalMonthlySection7={totalMonthlySection7}
-              setTotalMonthlySection7={setTotalMonthlysection7}
-              totalExpensesSection7={totalExpensesSection7}
-              setTotalExpensesSection7={setTotalExpensesSection7}
-              totalMoneyRemaining={totalMoneyRemaining}
-              setTotalMoneyRemaining={setTotalMoneyRemaining}
-              monthlyIncomeValidation={monthlyIncomeValidation}
-              setMonthlyIncomeValidation={setMonthlyIncomeValidation}
-              totalExpenseValidation={totalExpenseValidation}
-              setTotalExpenseValidation={setTotalExpenseValidation}
-              moneyRemValidation={moneyRemValidation}
-              setMoneyRemValidation={setMoneyRemValidation}
-              totalExpenses={totalExpenses}
-              setTotalExpenses={setTotalExpenses}
-              isSurpriseVisible={isSurpriseVisible}
-              setIsSurpriseVisible={setIsSurpriseVisible}
               surpriseValue={surpriseData ? surpriseData.surpriseValue : 0}
               validateTotalMoneyRemaining={validateTotalMoneyRemaining}
             />
@@ -318,8 +271,8 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
                 backgroundColor="green"
                 textColor="white"
                 onClick={
-                  isSurpriseVisible &&
-                    Number.parseInt(totalMoneyRemaining) +
+                  assignmentSession.isSurpriseVisible &&
+                    Number.parseInt(assignmentSession.totalMoneyRemaining) +
                     surpriseData.surpriseValue >
                     0
                     ? (e) => onClick()

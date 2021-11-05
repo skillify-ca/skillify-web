@@ -1,66 +1,43 @@
 import { useState } from "@storybook/client-api";
 import { useSelector } from "react-redux";
 import FinanceProfile from "../../pages/finance-profile";
-import { assignmentSessionSelector } from "../../redux/assignmentSession";
+import {
+  assignmentSessionSelector,
+  setTotalMonthlySection7,
+  setTotalExpensesSection7,
+  setTotalMoneyRemaining,
+  setMonthlyIncomeValidation,
+  setTotalExpenseValidation,
+} from "../../redux/assignmentSession";
+import { useAppDispatch } from "../../redux/store";
 import IncomeTable from "./IncomeTable";
 
 export interface MoneyRemainingTableProps {
-  totalMonthlySection7: string;
-  setTotalMonthlySection7: (totalMonthlySection7: string) => void;
-  totalExpensesSection7: string;
-  setTotalExpensesSection7: (totalExpensesSection7: string) => void;
-  totalMoneyRemaining: string;
-  setTotalMoneyRemaining: (totalMoneyRemaining: string) => void;
-  monthlyIncomeValidation: string;
-  setMonthlyIncomeValidation: (monthlyIncomeValidation: string) => void;
-  totalExpenseValidation: string;
-  setTotalExpenseValidation: (totalExpenseValidation: string) => void;
-  moneyRemValidation: string;
-  setMoneyRemValidation: (moneyRemValidation: string) => void;
-  totalExpenses: string;
-  setTotalExpenses: (totalExpenses: string) => void;
-  isSurpriseVisible: boolean;
-  setIsSurpriseVisible: (isSurpriseVisible: boolean) => void;
   surpriseValue: number;
   validateTotalMoneyRemaining: (totalMoneyRemaining: string) => void;
 }
 
 const MoneyRemainingTable = ({
-  totalMonthlySection7,
-  setTotalMonthlySection7,
-  totalExpensesSection7,
-  setTotalExpensesSection7,
-  totalMoneyRemaining,
-  setTotalMoneyRemaining,
-  monthlyIncomeValidation,
-  setMonthlyIncomeValidation,
-  totalExpenseValidation,
-  setTotalExpenseValidation,
-  moneyRemValidation,
-  setMoneyRemValidation,
-  totalExpenses,
-  setTotalExpenses,
-  isSurpriseVisible,
-  setIsSurpriseVisible,
   surpriseValue,
   validateTotalMoneyRemaining,
 }: MoneyRemainingTableProps) => {
 
+  const dispatch = useAppDispatch()
   const assignmentSession = useSelector(assignmentSessionSelector)
 
   const validateTotalIncome = (newTotalMonthlySection7) => {
     newTotalMonthlySection7 === ""
-      ? setMonthlyIncomeValidation("")
+      ? dispatch(setMonthlyIncomeValidation(""))
       : assignmentSession.totalMonthlyIncome === newTotalMonthlySection7
-        ? setMonthlyIncomeValidation("Correct")
-        : setMonthlyIncomeValidation("Wrong");
+        ? dispatch(setMonthlyIncomeValidation("Correct"))
+        : dispatch(setMonthlyIncomeValidation("Wrong"));
   };
   const validateTotalExpenses = (newTotalExpensesSection7) => {
     newTotalExpensesSection7 === ""
-      ? setTotalExpenseValidation("")
-      : totalExpenses === newTotalExpensesSection7
-        ? setTotalExpenseValidation("Correct")
-        : setTotalExpenseValidation("Wrong");
+      ? dispatch(setTotalExpenseValidation(""))
+      : assignmentSession.totalExpenses === newTotalExpensesSection7
+        ? dispatch(setTotalExpenseValidation("Correct"))
+        : dispatch(setTotalExpenseValidation("Wrong"));
   };
 
   return (
@@ -86,19 +63,19 @@ const MoneyRemainingTable = ({
               <p className={"mx-2"}>C.</p>
               <div>
                 <input
-                  value={totalMonthlySection7}
+                  value={assignmentSession.totalMonthlySection7}
                   onChange={(e) => {
                     const newTotalMonthlySection7 = e.target.value;
-                    setTotalMonthlySection7(newTotalMonthlySection7);
+                    dispatch(setTotalMonthlySection7(newTotalMonthlySection7));
                     validateTotalIncome(newTotalMonthlySection7);
                   }}
                   placeholder="Type numbers only"
                   className={
-                    monthlyIncomeValidation === ""
+                    assignmentSession.monthlyIncomeValidation === ""
                       ? "bg-white"
-                      : monthlyIncomeValidation === "Correct"
+                      : assignmentSession.monthlyIncomeValidation === "Correct"
                         ? "bg-green-200"
-                        : monthlyIncomeValidation === "Wrong"
+                        : assignmentSession.monthlyIncomeValidation === "Wrong"
                           ? "bg-red-200"
                           : "bg-white"
                   }
@@ -115,19 +92,19 @@ const MoneyRemainingTable = ({
               <p className={"mx-2"}>R.</p>
               <div>
                 <input
-                  value={totalExpensesSection7}
+                  value={assignmentSession.totalExpensesSection7}
                   onChange={(e) => {
                     const newTotalExpensesSection7 = e.target.value;
-                    setTotalExpensesSection7(newTotalExpensesSection7);
+                    dispatch(setTotalExpensesSection7(newTotalExpensesSection7));
                     validateTotalExpenses(newTotalExpensesSection7);
                   }}
                   placeholder="Type numbers only"
                   className={
-                    totalExpenseValidation === ""
+                    assignmentSession.totalExpenseValidation === ""
                       ? "bg-white"
-                      : totalExpenseValidation === "Correct"
+                      : assignmentSession.totalExpenseValidation === "Correct"
                         ? "bg-green-200"
-                        : totalExpenseValidation === "Wrong"
+                        : assignmentSession.totalExpenseValidation === "Wrong"
                           ? "bg-red-200"
                           : "bg-white"
                   }
@@ -135,7 +112,7 @@ const MoneyRemainingTable = ({
               </div>
             </td>
           </tr>
-          {isSurpriseVisible && (
+          {assignmentSession.isSurpriseVisible && (
             <tr>
               <td className={"border border-black"}>
                 <p className={"mx-2"}>Surprise Amount</p>
@@ -154,19 +131,19 @@ const MoneyRemainingTable = ({
               <p className={"mx-2"}>R.</p>
               <div>
                 <input
-                  value={totalMoneyRemaining}
+                  value={assignmentSession.totalMoneyRemaining}
                   onChange={(e) => {
                     const newTotalMoneyRemaining = e.target.value;
-                    setTotalMoneyRemaining(newTotalMoneyRemaining);
+                    dispatch(setTotalMoneyRemaining(newTotalMoneyRemaining));
                     validateTotalMoneyRemaining(newTotalMoneyRemaining);
                   }}
                   placeholder="Type numbers only"
                   className={
-                    moneyRemValidation === ""
+                    assignmentSession.moneyRemValidation === ""
                       ? "bg-white"
-                      : moneyRemValidation === "Correct"
+                      : assignmentSession.moneyRemValidation === "Correct"
                         ? "bg-green-200"
-                        : moneyRemValidation === "Wrong"
+                        : assignmentSession.moneyRemValidation === "Wrong"
                           ? "bg-red-200"
                           : "bg-white"
                   }

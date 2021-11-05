@@ -7,12 +7,19 @@ import {
   MaritalStatus,
 } from "../../pages/api/finance/profile";
 import { profile } from "console";
+import {
+  assignmentSessionSelector,
+  setIsMarried,
+  setHasChildren
+} from "../../redux/assignmentSession"
+import { useSelector } from "react-redux";
+import { useAppDispatch } from "../../redux/store";
 
 export interface SectionOneInputProps {
-  isMarried: MaritalStatus;
-  setMarriage: (setMarriage: MaritalStatus) => void;
-  hasChildren: boolean;
-  setChildren: (hasChildren: boolean) => void;
+  // isMarried: MaritalStatus;
+  // setMarriage: (setMarriage: MaritalStatus) => void;
+  // hasChildren: boolean;
+  // setChildren: (hasChildren: boolean) => void;
   individualOccupation: string;
   setIndividualOccupation: (individualOccupation: string) => void;
   individualSalary: number;
@@ -27,10 +34,8 @@ export interface SectionOneInputProps {
 }
 
 export const SectionOneInput = ({
-  isMarried,
-  setMarriage,
-  hasChildren,
-  setChildren,
+  // isMarried,
+  // setMarriage,
   individualOccupation,
   setIndividualOccupation,
   individualSalary,
@@ -43,6 +48,10 @@ export const SectionOneInput = ({
   sectionOneValidation,
   setSectionOneValidation,
 }: SectionOneInputProps) => {
+
+  const assignmentSession = useSelector(assignmentSessionSelector)
+  const dispatch = useAppDispatch()
+
   return (
     <div>
       {profileData && (
@@ -62,17 +71,17 @@ export const SectionOneInput = ({
               option1="Yes"
               option2="No"
               name="marriage"
-              value={isMarried}
+              value={assignmentSession.isMarried}
               onChange={(e) =>
-                setMarriage(
+                dispatch(setIsMarried(
                   e.target.value.toLowerCase() == "yes"
                     ? MaritalStatus.MARRIED
                     : MaritalStatus.SINGLE
-                )
+                ))
               }
             />
             <div className="w-1/4">
-              {isMarried == profileData.maritalStatus ? (
+              {assignmentSession.isMarried == profileData.maritalStatus ? (
                 <img src={"/images/checked-checkbox-16.png"} />
               ) : (
                 <img src={"/images/gray-checked-checkbox-16.png"} />
@@ -85,16 +94,16 @@ export const SectionOneInput = ({
               name="children"
               option1="Yes"
               option2="No"
-              value={hasChildren}
+              value={assignmentSession.hasChildren}
               onChange={(e) =>
-                setChildren(
+                dispatch(setHasChildren(
                   e.target.value.toLowerCase() == "yes" ? true : false
-                )
+                ))
               }
             />
             <div className="w-1/4">
-              {hasChildren ==
-              (profileData.numberOfChildren > 0 ? true : false) ? (
+              {assignmentSession.hasChildren ==
+                (profileData.numberOfChildren > 0 ? true : false) ? (
                 <img src={"/images/checked-checkbox-16.png"} />
               ) : (
                 <img src={"/images/gray-checked-checkbox-16.png"} />
@@ -186,8 +195,8 @@ export const SectionOneInput = ({
       )}
       {profileData &&
         setSectionOneValidation(
-          isMarried == profileData.maritalStatus &&
-            hasChildren == (profileData.numberOfChildren > 0 ? true : false) &&
+          assignmentSession.isMarried == profileData.maritalStatus &&
+            assignmentSession.hasChildren == (profileData.numberOfChildren > 0 ? true : false) &&
             spouseOccupation == profileData.spouseOccupation &&
             individualOccupation == profileData.individualOccupation &&
             individualSalary == profileData.individualSalary &&

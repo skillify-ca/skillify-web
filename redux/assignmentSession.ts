@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
+import { MaritalStatus } from "../pages/api/finance/profile";
 import { RootState } from "./rootReducer";
 
 export interface assignmentSessionState {
@@ -23,6 +24,22 @@ export interface assignmentSessionState {
     spouseMonthlyIncome: string,
     totalMonthlyIncome: string,
     backgroundColour: string,
+
+    totalHousingCost6: string,
+    totalCarCosts6: string,
+    totalAdditional6: string,
+    totalExpenses: string
+
+    totalMonthlySection7: string,
+    totalExpensesSection7: string,
+    totalMoneyRemaining: string,
+    monthlyIncomeValidation: string,
+    totalExpenseValidation: string,
+    moneyRemValidation: string,
+    isSurpriseVisible: boolean;
+
+    isMarried: MaritalStatus,
+    hasChildren: boolean
 }
 
 const initialState: assignmentSessionState = {
@@ -46,7 +63,23 @@ const initialState: assignmentSessionState = {
     yourMonthlyIncome: "",
     spouseMonthlyIncome: "",
     totalMonthlyIncome: "",
-    backgroundColour: ""
+    backgroundColour: "",
+
+    totalHousingCost6: "",
+    totalCarCosts6: "",
+    totalAdditional6: "",
+    totalExpenses: "",
+
+    totalMonthlySection7: "",
+    totalExpensesSection7: "",
+    totalMoneyRemaining: "",
+    monthlyIncomeValidation: "",
+    totalExpenseValidation: "",
+    moneyRemValidation: "",
+    isSurpriseVisible: false,
+
+    isMarried: MaritalStatus.SINGLE,
+    hasChildren: false
 }
 
 export const assignmentSessionSlice: Slice = createSlice({
@@ -178,10 +211,125 @@ export const assignmentSessionSlice: Slice = createSlice({
                 const newBackgroundColour = action.payload as string;
                 state.backgroundColour = newBackgroundColour;
             }
-        }
+        },
+        setTotalHousingCost6: (state: assignmentSessionState, action: PayloadAction<string>) => {
+            if (action.type == "assignmentSession/setTotalHousingCost6") {
+                const newTotalHousingCost6 = action.payload as string;
+                state.totalHousingCost6 = newTotalHousingCost6;
+            }
+        },
+        setTotalCarCosts6: (state: assignmentSessionState, action: PayloadAction<string>) => {
+            if (action.type == "assignmentSession/setTotalCarCosts6") {
+                const newTotalCarCosts6 = action.payload as string;
+                state.totalCarCosts6 = newTotalCarCosts6;
+            }
+        },
+        setTotalAdditional6: (state: assignmentSessionState, action: PayloadAction<string>) => {
+            if (action.type == "assignmentSession/setTotalAdditional6") {
+                const newTotalAdditional6 = action.payload as string;
+                state.totalAdditional6 = newTotalAdditional6;
+            }
+        },
+        setTotalExpenses: (state: assignmentSessionState, action: PayloadAction<string>) => {
+            if (action.type == "assignmentSession/setTotalExpenses") {
+                const newTotalExpenses = action.payload as string;
+                state.totalExpenses = newTotalExpenses;
+            }
+        },
+        setTotalMonthlySection7: (state: assignmentSessionState, action: PayloadAction<string>) => {
+            if (action.type == "assignmentSession/setTotalMonthlySection7") {
+                const newTotalMonthlySection7 = action.payload as string;
+                state.totalMonthlySection7 = newTotalMonthlySection7;
+            }
+        },
+        setTotalExpensesSection7: (state: assignmentSessionState, action: PayloadAction<string>) => {
+            if (action.type == "assignmentSession/setExpensesSection7") {
+                const newTotalExpensesSection7 = action.payload as string;
+                state.totalExpensesSection7 = newTotalExpensesSection7;
+            }
+        },
+        setTotalMoneyRemaining: (state: assignmentSessionState, action: PayloadAction<string>) => {
+            if (action.type == "assignmentSession/setTotalMoneyRemaining") {
+                const newTotalMoneyRemaining = action.payload as string;
+                state.totalMoneyRemaining = newTotalMoneyRemaining;
+            }
+        },
+        setMonthlyIncomeValidation: (state: assignmentSessionState, action: PayloadAction<string>) => {
+            if (action.type == "assignmentSession/setMonthlyIncomeValidation") {
+                const newMonthlyIncomeValidation = action.payload as string;
+                state.monthlyIncomeValidation = newMonthlyIncomeValidation;
+            }
+        },
+        setTotalExpenseValidation: (state: assignmentSessionState, action: PayloadAction<string>) => {
+            if (action.type == "assignmentSession/setTotalExpenseValidation") {
+                const newTotalExpenseValidation = action.payload as string;
+                state.totalExpenseValidation = newTotalExpenseValidation;
+            }
+        },
+        setMoneyRemValidation: (state: assignmentSessionState, action: PayloadAction<string>) => {
+            if (action.type == "assignmentSession/setMoneyRemValidation") {
+                const newMoneyRemValidation = action.payload as string;
+                state.moneyRemValidation = newMoneyRemValidation;
+            }
+        },
+        setIsSurpriseVisible: (state: assignmentSessionState, action: PayloadAction<boolean>) => {
+            if (action.type == "assignmentSession/setIsSurpriseVisible") {
+                const newIsSurpriseVisible = action.payload as boolean;
+                state.isSurpriseVisible = newIsSurpriseVisible;
+            }
+        },
+        setHasChildren: (state: assignmentSessionState, action: PayloadAction<boolean>) => {
+            if (action.type == "assignmentSession/setHasChildren") {
+                const newHasChildren = action.payload as boolean;
+                state.hasChildren = newHasChildren;
+            }
+        },
+        setIsMarried: (state: assignmentSessionState, action: PayloadAction<MaritalStatus>) => {
+            if (action.type == "assignmentSession/setHasChildren") {
+                const newIsMarried = action.payload as MaritalStatus;
+                state.isMarried = newIsMarried;
+            }
+        },
     }
 })
 
-export const { setTvInternet, setPhone, setGrocery, setTotalAdditional, setSumAddValidation, setCarPayment1, setCarPayment2, setCarInsurance, setGasoline, setTotalCarCosts, setSumValidationCar, setHousePayment, setElectricBill, setGasBill, setTotalHousingCost, setWaterBill, setHomeType, setYourMonthlyIncome, setSpouseMonthlyIncome, setTotalMonthlyIncome, setBackgroundColour } = assignmentSessionSlice.actions;
+export const {
+    setTvInternet,
+    setPhone,
+    setGrocery,
+    setTotalAdditional,
+    setSumAddValidation,
+    setCarPayment1,
+    setCarPayment2,
+    setCarInsurance,
+    setGasoline,
+    setTotalCarCosts,
+    setSumValidationCar,
+    setHousePayment,
+    setElectricBill,
+    setGasBill,
+    setTotalHousingCost,
+    setWaterBill,
+    setHomeType,
+    setYourMonthlyIncome,
+    setSpouseMonthlyIncome,
+    setTotalMonthlyIncome,
+    setBackgroundColour,
+    setTotalHousingCost6,
+    setTotalCarCosts6,
+    setTotalAdditional6,
+    setTotalExpenses,
+
+    setTotalMonthlySection7,
+    setTotalExpensesSection7,
+    setTotalMoneyRemaining,
+    setMonthlyIncomeValidation,
+    setTotalExpenseValidation,
+    setMoneyRemValidation,
+    setIsSurpriseVisible,
+
+    setIsMarried,
+    setHasChildren
+} = assignmentSessionSlice.actions;
 
 export const assignmentSessionSelector = (state: RootState) => state.assignmentSession;

@@ -1,28 +1,7 @@
 import { OpenDirOptions } from "fs";
 import { BuyANewCarTable, BuyAUsedCarTable } from "./BuyACarTable";
-export interface BuyACarProps {
-  Make: string;
-  setMake: (Make: string) => void;
-  Model: string;
-  setModel: (setModel: string) => void;
-  Doors: string;
-  setDoors: (Doors: string) => void;
-  Cost: string;
-  setCost: (Cost: string) => void;
-  Year: string;
-  setYear: (Year: string) => void;
-}
 
-const BuyACar = ({
-  Make,
-  setMake,
-  Model,
-  setModel,
-  Doors,
-  setDoors,
-  Cost,
-  setCost,
-}: BuyACarProps) => {
+const BuyACar = () => {
   return (
     <div className={"grid grid-cols-2 border-collapse  m-4"}>
       <div className={"col-start-1 col-end-2 mt-8 mb-10"}>
