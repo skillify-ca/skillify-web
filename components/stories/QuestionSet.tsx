@@ -10,6 +10,7 @@ import {
 } from "../../pages/api/random";
 import { Skill } from "../../pages/api/skill";
 import BudgetTable from "../money/BudgetTable";
+import TipQuestion from "../money/TipQuestion";
 import { FillBlank } from "../questionTypes/FillBlank";
 import { HorizontalEquation } from "../questionTypes/HorizontalEquation";
 import { LongDivision } from "../questionTypes/LongDivision";
@@ -278,7 +279,7 @@ const QuestionSet = ({
       }
     } else if ( 
       questionData[index].questionType ===
-      QuestionType.FINANCE_PROBLEM
+      QuestionType.FINANCE_BUDGET_TABLE_PROBLEM
     ) {
       {
         return (
@@ -287,6 +288,19 @@ const QuestionSet = ({
               answer={questionData[index].answer}
               submitGuess={submitGuess}
             />
+        );
+      }
+    } else if (
+      questionData[index].questionType ===
+      QuestionType.FINANCE_TIP_PROBLEM
+    ) {
+      {
+        return (
+          <TipQuestion
+            question={questionData[index]}
+            answer={questionData[index].answer}
+            submitGuess={submitGuess}
+          />
         );
       }
     }

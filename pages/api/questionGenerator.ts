@@ -9,7 +9,7 @@ import { createWordProblemModel } from "./WordProblemModel";
 import { Skill } from "./skill";
 import { getRandomPropertyAdditionQuestion } from "./additionPropertyQuestionGenerator";
 import { shuffle } from "lodash";
-import { generateBudgetQuestion } from "./budgetQuestionGenerator";
+import { getRandomFinanceQuestion } from "./budgetQuestionGenerator";
 
 export const generateQuestionForSkill = (
   skill: Skill,
@@ -92,7 +92,7 @@ export const generateQuestionForSkill = (
     case Skill.DIVISION_THREE_DIGIT_BY_TENTH:
       return getRandomDivisionQuestion(100, 1000, skill, questionType)
     case Skill.FINANCE_BUDGET:
-      return generateBudgetQuestion();
+      return getRandomFinanceQuestion();
   }
 };
 
