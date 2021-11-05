@@ -28,19 +28,21 @@ const TipQuestion: React.FC<TipQuestionProps> = ({
 
   return(
     <div className="flex flex-col max-h-96 py-4 overflow-y-hidden gap-4">
-      <p>Estimate the amount of tip by rounding the bill to the nearest dollar before calculating.</p>
+      <p>Estimate the amount of tip by rounding the bill to the nearest dollar <span className="italic">after</span> calculating.</p>
       {""}
-      <p className="pl-10">{question.text}% tip on a bill of ${question.displayNum}</p>
+      <p className="pl-10"><span className="font-bold">{question.text}%</span> tip on a bill of <span className="font-bold">${question.displayNum}</span></p>
       {""}
-      <div className="max-w">
+      <div>
         <p className="py-4">The amount of the tip is approximately
-          $<input 
-              id="input"
-              type="string"
-              value={guess}
-              className="border-2 border-gray-300 w-20"
-              onChange={(e) => setGuess(e.target.value)}
+          <div>
+            $<input 
+                id="input"
+                type="string"
+                value={guess}
+                className="border-2 border-gray-300 w-20 text-right font-bold"
+                onChange={(e) => setGuess(e.target.value)}
             ></input>.
+          </div>
         </p>
       </div>
       <Button backgroundColor="blue" textColor="white" label="Submit" onClick={()=> onSubmit(guess)}/>
