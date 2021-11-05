@@ -16,6 +16,6 @@ export enum QuestionType {
   MULTIPLE_CHOICE_SENTENCE = "multiple choice sentence", // Addition Property with numbers as mc options
   MULTIPLE_CHOICE = "multiple choice", // Multiple choice answer to a binary question
   VISUAL_TYPE_PROBLEM = "visual type", // visual number types
-  FINANCE_PROBLEM = "choose items under budget",
+  FINANCE_BUDGET_TABLE_PROBLEM = "choose items under budget",
   FINANCE_TIP_PROBLEM = "tip amount based on tip percentage"
 }

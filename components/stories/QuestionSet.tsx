@@ -279,7 +279,7 @@ const QuestionSet = ({
       }
     } else if ( 
       questionData[index].questionType ===
-      QuestionType.FINANCE_PROBLEM
+      QuestionType.FINANCE_BUDGET_TABLE_PROBLEM
     ) {
       {
         return (

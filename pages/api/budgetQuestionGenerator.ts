@@ -7,11 +7,11 @@ import { QuestionType } from "./questionTypes";
 import { ItemDataTable } from '../../components/money/BudgetTableData';
 import { getRndHundredthsDecimal, getRndInteger } from './random';
 
-export function getRndBudgetQuestion(
+export function getRandomFinanceQuestion(
 
 ): Question {
   const types = [
-    QuestionType.FINANCE_PROBLEM,
+    QuestionType.FINANCE_BUDGET_TABLE_PROBLEM,
     QuestionType.FINANCE_TIP_PROBLEM
   ];
   /** Cycle through QuestionTypes */
@@ -23,7 +23,7 @@ export function getRndBudgetQuestion(
     let bill = getRndHundredthsDecimal(50, 100);
     return getTipQuestion(tip, bill);
 
-  } else if (type === QuestionType.FINANCE_PROBLEM) {
+  } else if (type === QuestionType.FINANCE_BUDGET_TABLE_PROBLEM) {
     let tape = getRndHundredthsDecimal(2,3);
     let bulb = getRndHundredthsDecimal(2,3);
     return getBudgetQuestion(tape, bulb);
@@ -54,7 +54,7 @@ export function getBudgetQuestion(
     text: budget.toString(),
     answer: answer.toString(),
     answerType:AnswerType.STRING,
-    questionType:QuestionType.FINANCE_PROBLEM,
+    questionType:QuestionType.FINANCE_BUDGET_TABLE_PROBLEM,
     budgetCostModel:PriceCostTable,
 
   };
