@@ -8,7 +8,7 @@ import { ItemDataTable } from '../../components/money/BudgetTableData';
 import { getRndHundredthsDecimal, getRndInteger } from './random';
 
 export function getRndBudgetQuestion(
-  questionType?: QuestionType
+
 ): Question {
   const types = [
     QuestionType.FINANCE_PROBLEM,
@@ -17,19 +17,14 @@ export function getRndBudgetQuestion(
   let questionIndex = getRndInteger(0, types.length);
   let type = types[questionIndex];
 
-  if (questionType === QuestionType.FINANCE_TIP_PROBLEM) {
-    questionIndex = 1;
-  } else if (questionType === QuestionType.FINANCE_PROBLEM) {
-    questionIndex = 0;
-  }
-
-  if (questionIndex = 1) {
+  if (type === QuestionType.FINANCE_TIP_PROBLEM) {
     let tip = getRndInteger(10, 20);
     let bill = getRndHundredthsDecimal(50, 100);
     console.log(tip);
     console.log(bill);
     return getTipQuestion(tip, bill);
-  } else if (questionIndex = 0) {
+
+  } else if (type === QuestionType.FINANCE_PROBLEM) {
     let tape = getRndHundredthsDecimal(2,3);
     let bulb = getRndHundredthsDecimal(2,3);
     return getBudgetQuestion(tape, bulb);
