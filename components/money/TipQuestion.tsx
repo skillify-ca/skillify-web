@@ -33,16 +33,15 @@ const TipQuestion: React.FC<TipQuestionProps> = ({
       <p className="pl-10"><span className="font-bold">{question.text}%</span> tip on a bill of <span className="font-bold">${question.displayNum}</span></p>
       {""}
       <div>
-        <p className="py-4">The amount of the tip is approximately
-          <div>
-            $<input 
-                id="input"
-                type="string"
-                value={guess}
-                className="border-2 border-gray-300 w-20 text-right font-bold"
-                onChange={(e) => setGuess(e.target.value)}
-            ></input>.
-          </div>
+        <p className="mb-4">The amount of the tip is approximately</p>
+        <p className="mb-4">
+          $<input 
+            id="input"
+            type="string"
+            value={guess}
+            className="border-2 border-gray-300 w-20 text-right font-bold"
+            onChange={(e) => setGuess(e.target.value)}>
+          </input>.
         </p>
       </div>
       <Button backgroundColor="blue" textColor="white" label="Submit" onClick={()=> onSubmit(guess)}/>
