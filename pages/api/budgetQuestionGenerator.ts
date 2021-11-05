@@ -44,7 +44,7 @@ export function getBudgetQuestion(
   let total = tape + bulb;
   let budget = 5;
   let answer = budget >= total ? "Yes" : "No";
-  
+
   const PriceCostTable:ItemCostModel[] = ItemDataTable.map((item) => {
     if (item.title === "Roll of Electrical Tape") {
       return {title: item.title, cost: tape}
@@ -70,10 +70,10 @@ export function getTipQuestion(
   tip: number,
   bill:number,
 ): Question {
-
+  const percent = tip / 100;
   return {
     text: tip.toString(),
-    answer: Math.round(tip * bill).toString(),
+    answer: Math.round(bill * percent).toString(),
     answerType:AnswerType.STRING,
     questionType:QuestionType.FINANCE_TIP_PROBLEM,
     displayNum: bill,
