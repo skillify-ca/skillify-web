@@ -284,11 +284,11 @@ const QuestionSet = ({
     ) {
       {
         return (
-            <BudgetTable
-              question={questionData[index]}
-              answer={questionData[index].answer}
-              submitGuess={submitGuess}
-            />
+          <BudgetTable
+            question={questionData[index]}
+            answer={questionData[index].answer}
+            submitGuess={submitGuess}
+          />
         );
       }
     } else if (
