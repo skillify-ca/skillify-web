@@ -1,6 +1,7 @@
 import { DiagnosticState } from "../../../redux/diagnosticSlice";
 import { Question } from "../question";
-import { getSkillsForUnit, Skill, Unit } from "../skill";
+import { Skill, Unit } from "../skill";
+import { getSkillsForUnit } from "./helpers";
 
 const PASSING_GRADE = 0.75;
 
