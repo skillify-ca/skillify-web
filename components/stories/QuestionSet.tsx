@@ -9,6 +9,7 @@ import {
   getRndInteger,
 } from "../../pages/api/random";
 import { Skill } from "../../pages/api/skill";
+import BalanceBudget from "../money/BalanceBudgetTable";
 import BudgetTable from "../money/BudgetTable";
 import TipQuestion from "../money/TipQuestion";
 import { FillBlank } from "../questionTypes/FillBlank";
@@ -297,6 +298,19 @@ const QuestionSet = ({
       {
         return (
           <TipQuestion
+            question={questionData[index]}
+            answer={questionData[index].answer}
+            submitGuess={submitGuess}
+          />
+        );
+      }
+    } else if (
+      questionData[index].questionType ===
+      QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM
+    ) {
+      {
+        return (
+          <BalanceBudget
             question={questionData[index]}
             answer={questionData[index].answer}
             submitGuess={submitGuess}

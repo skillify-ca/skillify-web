@@ -457,6 +457,7 @@ export function getQuestionTypesForSkill(skill: Skill): QuestionType[] {
     return [
       QuestionType.FINANCE_BUDGET_TABLE_PROBLEM,
       QuestionType.FINANCE_TIP_PROBLEM,
+      QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM,
     ];
   } else {
     return [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];

@@ -12,7 +12,8 @@ export function getRandomFinanceQuestion(
 ): Question {
   const types = [
     QuestionType.FINANCE_BUDGET_TABLE_PROBLEM,
-    QuestionType.FINANCE_TIP_PROBLEM
+    QuestionType.FINANCE_TIP_PROBLEM,
+    QuestionType.FINANCE_BUDGET_TABLE_PROBLEM,
   ];
   /** Cycle through QuestionTypes */
   let questionIndex = getRndInteger(0, types.length);
@@ -27,6 +28,10 @@ export function getRandomFinanceQuestion(
     let tape = getRndHundredthsDecimal(2,3);
     let bulb = getRndHundredthsDecimal(2,3);
     return getBudgetQuestion(tape, bulb);
+  
+  } else if (type === QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM) {
+
+    return getBalanceBudgetQuestion();
   }
 
 }
@@ -71,5 +76,16 @@ function getTipQuestion(
     answerType:AnswerType.STRING,
     questionType:QuestionType.FINANCE_TIP_PROBLEM,
     displayNum: bill,
+  };
+}
+
+function getBalanceBudgetQuestion(
+ 
+):Question {
+  return {
+    text: "what",
+    answer: "this",
+    answerType:AnswerType.STRING,
+    questionType:QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM,
   };
 }
