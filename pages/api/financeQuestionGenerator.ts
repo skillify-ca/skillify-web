@@ -30,8 +30,15 @@ export function getRandomFinanceQuestion(
     return getBudgetQuestion(tape, bulb);
   
   } else if (type === QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM) {
-
-    return getBalanceBudgetQuestion();
+    const names = [
+      "Miranda",
+      "Vivian",
+      "Tiana",
+      "Destiny"
+    ];
+    let nameIndex = getRndInteger(0, names.length);
+    let name = names[nameIndex];
+    return getBalanceBudgetQuestion(name);
   }
 
 }
@@ -80,10 +87,12 @@ function getTipQuestion(
 }
 
 function getBalanceBudgetQuestion(
- 
+  name: string,
 ):Question {
+
+  console.log(name);
   return {
-    text: "what",
+    text: name,
     answer: "this",
     answerType:AnswerType.STRING,
     questionType:QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM,

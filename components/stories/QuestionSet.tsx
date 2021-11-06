@@ -305,7 +305,7 @@ const QuestionSet = ({
         );
       }
     } else if (
-      questionData[index].questionType ===
+      questionData[index].questionType === 
       QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM
     ) {
       {
