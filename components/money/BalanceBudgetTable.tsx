@@ -32,7 +32,7 @@ const BalanceBudget: React.FC<BalanceBudgetProps> = ({ question, submitGuess, an
 
       <div className="grid bg-blue-600 text-white border-b border-grey-500">
         <div className="flex justify-self-center">
-          <span className="">{question.text}'s March Budget</span>
+          <span className="">{question.text}'s {question.answer} Budget</span>
         </div>
       </div>
         <div className="grid grid-cols-2 bg-blue-300 text-white">

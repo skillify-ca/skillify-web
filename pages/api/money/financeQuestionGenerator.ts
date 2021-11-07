@@ -1,13 +1,12 @@
-import {
-  Question,
-  AnswerType,
-  ItemCostModel,
-} from "./question";
-import { QuestionType } from "./questionTypes";
-import { ItemDataTable } from '../../components/money/BudgetTableData';
-import { getRndHundredthsDecimal, getRndInteger } from './random';
-import { PersonDataTable } from "../../components/money/BalanceBudgetData";
-import { PersonData } from "./personData";
+import { Question } from "../question";
+import { QuestionType } from "../questionTypes";
+import { getRndHundredthsDecimal, getRndInteger } from '../random';
+
+import { getTipQuestion } from "./tipQuestion";
+import { getBudgetQuestion } from "./budgetQuestion";
+import { getBalanceBudgetQuestion } from "./balanceBudgetQuestion";
+import { PersonDataTable } from "../../../components/money/BalanceBudgetData";
+
 
 export function getRandomFinanceQuestion(
 
@@ -32,65 +31,9 @@ export function getRandomFinanceQuestion(
     return getBudgetQuestion(tape, bulb);
   
   } else if (type === QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM) {
-    return getBalanceBudgetQuestion();
+    let personIndex = getRndInteger(0, PersonDataTable.length);
+    let person = PersonDataTable[personIndex];
+    return getBalanceBudgetQuestion(person);
   }
 
-}
-
-function getBudgetQuestion(
-  tape: number,
-  bulb: number,
-):Question {
-  let total = tape + bulb;
-  let budget = 5;
-  let answer = budget >= total ? "Yes" : "No";
-
-  const PriceCostTable:ItemCostModel[] = ItemDataTable.map((item) => {
-    if (item.title === "Roll of Electrical Tape") {
-      return {title: item.title, cost: tape}
-  
-    } else if (item.title ==="Light Bulb") {
-      return {title: item.title, cost: bulb}
-    } else {
-      return {title: item.title, cost: getRndHundredthsDecimal(0,5)}
-    }
-  })
-  
-  return {
-    text: budget.toString(),
-    answer: answer.toString(),
-    answerType:AnswerType.STRING,
-    questionType:QuestionType.FINANCE_BUDGET_TABLE_PROBLEM,
-    budgetCostModel:PriceCostTable,
-
-  };
-}
-
-function getTipQuestion(
-  tip: number,
-  bill:number,
-): Question {
-  const percent = tip / 100;
-  return {
-    text: tip.toString(),
-    answer: Math.round(bill * percent).toString(),
-    answerType:AnswerType.STRING,
-    questionType:QuestionType.FINANCE_TIP_PROBLEM,
-    displayNum: bill,
-  };
-}
-
-function getBalanceBudgetQuestion(
-
-):Question {
-  let personIndex = getRndInteger(0, PersonDataTable.length);
-  let person = PersonDataTable[personIndex];
-  console.log(person);
-  return {
-    text: person.name,
-    answer: "name",
-    answerType:AnswerType.STRING,
-    questionType:QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM,
-    personDataModel:getPersonData,
-  };
 }
