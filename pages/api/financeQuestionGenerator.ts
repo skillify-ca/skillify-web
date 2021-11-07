@@ -6,7 +6,7 @@ import {
 import { QuestionType } from "./questionTypes";
 import { ItemDataTable } from '../../components/money/BudgetTableData';
 import { getRndHundredthsDecimal, getRndInteger } from './random';
-import { person } from "../../components/money/BalanceBudgetData";
+import { PersonDataTable } from "../../components/money/BalanceBudgetData";
 import { PersonData } from "./personData";
 
 export function getRandomFinanceQuestion(
@@ -83,8 +83,12 @@ function getTipQuestion(
 function getBalanceBudgetQuestion(
 
 ):Question {
-  const getPersonData:PersonData[] = person.map((person) => {
-    console.log(person.name);
+  let personIndex = getRndInteger(0, PersonDataTable.length);
+  let person = PersonDataTable[personIndex];
+  let newArray = [].push(person);
+  console.log(person);
+  const getPersonData: PersonData[] = newArray.map((item) => {
+
   })
   
   return {
