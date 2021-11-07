@@ -18,7 +18,6 @@ const BalanceBudget: React.FC<BalanceBudgetProps> = ({ question, submitGuess, an
     });
   }
   return(
-
     <div className="flex flex-col max-h-96 py-4 overflow-y-hidden">
       <p className="mb-4">
         This table shows Tiana's monthly budget.
@@ -37,7 +36,7 @@ const BalanceBudget: React.FC<BalanceBudgetProps> = ({ question, submitGuess, an
               </div>
           </div>
           <div className="flex justify-center">
-            <span className="">Expenses</span>
+            <span className="py-3">Expenses</span>
           </div>
         </div>
         <div className="grid grid-cols-2 mb-4 border border-grey-500">
