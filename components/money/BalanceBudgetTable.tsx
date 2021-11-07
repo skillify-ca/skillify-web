@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Button } from "../ui/Button";
 import { Question } from "../../pages/api/question";
@@ -17,10 +17,6 @@ const BalanceBudget: React.FC<BalanceBudgetProps> = ({ question, submitGuess, an
       isCorrect: guess.toString() == answer.toString()
     });
   }
-
-  const [ input1, setInput1 ] = useState("");
-  const [ totalIncome, setTotalIncome ] = useState("");
-  const [ totalExpense, setTotalExpense ] = useState("");
 
   return (
     <div className="flex flex-col max-h-96 py-4 overflow-y-hidden">
