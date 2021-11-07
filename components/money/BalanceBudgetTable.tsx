@@ -41,16 +41,16 @@ const BalanceBudget: React.FC<BalanceBudgetProps> = ({ question, submitGuess, an
         </div>
         <div className="grid grid-cols-2 mb-4 border border-grey-500">
           <div className="flex flex-col border-r border-grey-500">
-            <span className="py-3 border-b border-grey-500">Job at a flower shop: $140</span>
-            <span className="py-3 border-b border-grey-500">Tutoring: $<input className="border border-grey-500 text-black font-bold w-12 text-right"></input></span>
-            <span className="py-3 border-b border-grey-500">Gift from brother: $15</span>
-            <span className="py-3">Total: <input className="border border-grey-500 text-black font-bold w-12 text-right"></input></span>
+            <span className="p-3 border-b border-grey-500">Job at a flower shop: $140</span>
+            <span className="p-3 border-b border-grey-500">Tutoring: $<input className="border border-grey-500 text-black font-bold w-12 text-right"></input></span>
+            <span className="p-3 border-b border-grey-500">Gift from brother: $15</span>
+            <span className="p-3">Total: <input className="border border-grey-500 text-black font-bold w-12 text-right"></input></span>
           </div>
           <div className="flex flex-col">
-            <span className="py-3 border-b border-grey-500">Calculator: $75</span>
-            <span className="py-3 border-b border-grey-500">Haircut: $55</span>
-            <span className="py-3 border-b border-grey-500">Books: $65</span>
-            <span className="py-3">Total: <input className="border border-grey-500 text-black font-bold w-12 text-right"></input></span>
+            <span className="p-3 border-b border-grey-500">Calculator: $75</span>
+            <span className="p-3 border-b border-grey-500">Haircut: $55</span>
+            <span className="p-3 border-b border-grey-500">Books: $65</span>
+            <span className="p-3">Total: <input className="border border-grey-500 text-black font-bold w-12 text-right"></input></span>
           </div>
         </div>
         
