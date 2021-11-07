@@ -9,7 +9,7 @@ import { createWordProblemModel } from "./WordProblemModel";
 import { Skill } from "./skill";
 import { getRandomPropertyAdditionQuestion } from "./additionPropertyQuestionGenerator";
 import { shuffle } from "lodash";
-import { getRandomFinanceQuestion } from "./budgetQuestionGenerator";
+import { getRandomFinanceQuestion } from "./financeQuestionGenerator";
 
 export const generateQuestionForSkill = (
   skill: Skill,
