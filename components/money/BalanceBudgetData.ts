@@ -1,4 +1,4 @@
-import { PersonData } from "../../pages/api/personData";
+import { PersonData } from "../../pages/api/money/personData";
 
 export const PersonDataTable:PersonData[] = [
 	{

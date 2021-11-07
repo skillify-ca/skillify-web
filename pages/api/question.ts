@@ -1,4 +1,4 @@
-import { PersonData } from "./personData";
+import { ItemCostModel, PersonData } from "./money/personData";
 import { QuestionType } from "./questionTypes";
 import { Skill } from "./skill";
 import { WordProblemModel } from "./WordProblemModel";
@@ -42,9 +42,3 @@ export type fillBlankModel = {
 export type FillOption = {
   text: string;
 };
-
-export type ItemCostModel = {
-  title: string;
-  cost: number;
-}
-

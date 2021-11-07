@@ -85,14 +85,9 @@ function getBalanceBudgetQuestion(
 ):Question {
   let personIndex = getRndInteger(0, PersonDataTable.length);
   let person = PersonDataTable[personIndex];
-  let newArray = [].push(person);
   console.log(person);
-  const getPersonData: PersonData[] = newArray.map((item) => {
-
-  })
-  
   return {
-    text: "name",
+    text: person.name,
     answer: "name",
     answerType:AnswerType.STRING,
     questionType:QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM,
