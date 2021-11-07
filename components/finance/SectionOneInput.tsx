@@ -10,41 +10,26 @@ import { profile } from "console";
 import {
   assignmentSessionSelector,
   setIsMarried,
-  setHasChildren
+  setHasChildren,
+  setIndividualOccupation,
+  setIndividualSalary,
+  setSpouseOccupation,
+  setSpouseSalary,
+  setSectionOneValidation
 } from "../../redux/assignmentSession"
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../redux/store";
 
 export interface SectionOneInputProps {
-  // isMarried: MaritalStatus;
-  // setIsMarried: (setMarriage: MaritalStatus) => void;
-  individualOccupation: string;
-  setIndividualOccupation: (individualOccupation: string) => void;
-  individualSalary: number;
-  setIndividualSalary: (individualSalary: number) => void;
-  spouseOccupation: string;
-  setSpouseOccupation: (spouseOccupation: string) => void;
-  spouseSalary: number;
-  setSpouseSalary: (spouseSalary: number) => void;
   profileData: FinanceProfileType;
-  sectionOneValidation: boolean;
-  setSectionOneValidation: (sectionOneValidation: boolean) => void;
+  // sectionOneValidation: boolean;
+  // setSectionOneValidation: (sectionOneValidation: boolean) => void;
 }
 
 export const SectionOneInput = ({
-  // isMarried,
-  // setIsMarried,
-  individualOccupation,
-  setIndividualOccupation,
-  individualSalary,
-  setIndividualSalary,
-  spouseOccupation,
-  setSpouseOccupation,
-  spouseSalary,
-  setSpouseSalary,
   profileData,
-  sectionOneValidation,
-  setSectionOneValidation,
+  // sectionOneValidation,
+  // setSectionOneValidation,
 }: SectionOneInputProps) => {
 
   const assignmentSession = useSelector(assignmentSessionSelector)
@@ -114,8 +99,8 @@ export const SectionOneInput = ({
               className="bg-gray-100 w-4/6 rounded-lg"
               name="select"
               id="select"
-              value={individualOccupation}
-              onChange={(e) => setIndividualOccupation(e.target.value)}
+              value={assignmentSession.individualOccupation}
+              onChange={(e) => dispatch(setIndividualOccupation(e.target.value))}
             >
               {financialProfileData
                 .filter((profile) => profile.individualOccupation != "")
@@ -126,7 +111,7 @@ export const SectionOneInput = ({
                 ))}
             </select>
             <div className="w-1/4">
-              {individualOccupation == profileData.individualOccupation ? (
+              {assignmentSession.individualOccupation == profileData.individualOccupation ? (
                 <img src={"/images/checked-checkbox-16.png"} />
               ) : (
                 <img src={"/images/gray-checked-checkbox-16.png"} />
@@ -139,8 +124,8 @@ export const SectionOneInput = ({
               className="bg-gray-100 w-4/6 rounded-lg"
               name="select"
               id="select"
-              value={spouseOccupation}
-              onChange={(e) => setSpouseOccupation(e.target.value)}
+              value={assignmentSession.spouseOccupation}
+              onChange={(e) => dispatch(setSpouseOccupation(e.target.value))}
             >
               {financialProfileData
                 .map((profile) => profile.spouseOccupation)
@@ -150,7 +135,7 @@ export const SectionOneInput = ({
                 ))}
             </select>
             <div className="w-1/4">
-              {spouseOccupation == profileData.spouseOccupation ? (
+              {assignmentSession.spouseOccupation == profileData.spouseOccupation ? (
                 <img src={"/images/checked-checkbox-16.png"} />
               ) : (
                 <img src={"/images/gray-checked-checkbox-16.png"} />
@@ -162,11 +147,11 @@ export const SectionOneInput = ({
             <SingleQuestionInput
               type="number"
               name="salary"
-              value={individualSalary}
-              onChange={(e) => setIndividualSalary(e.target.value)}
+              value={assignmentSession.individualSalary}
+              onChange={(e) => dispatch(setIndividualSalary(e.target.value))}
             />
             <div className="w-1/4">
-              {individualSalary == profileData.individualSalary ? (
+              {assignmentSession.individualSalary == profileData.individualSalary ? (
                 <img src={"/images/checked-checkbox-16.png"} />
               ) : (
                 <img src={"/images/gray-checked-checkbox-16.png"} />
@@ -178,11 +163,11 @@ export const SectionOneInput = ({
             <SingleQuestionInput
               type="number"
               name="spousesalary"
-              value={spouseSalary}
-              onChange={(e) => setSpouseSalary(e.target.value)}
+              value={assignmentSession.spouseSalary}
+              onChange={(e) => dispatch(setSpouseSalary(e.target.value))}
             />
             <div className="w-1/4">
-              {spouseSalary == profileData.spouseSalary ? (
+              {assignmentSession.spouseSalary == profileData.spouseSalary ? (
                 <img src={"/images/checked-checkbox-16.png"} />
               ) : (
                 <img src={"/images/gray-checked-checkbox-16.png"} />
@@ -192,16 +177,16 @@ export const SectionOneInput = ({
         </div>
       )}
       {profileData &&
-        setSectionOneValidation(
+        dispatch(setSectionOneValidation(
           assignmentSession.isMarried == profileData.maritalStatus &&
             assignmentSession.hasChildren == (profileData.numberOfChildren > 0 ? true : false) &&
-            spouseOccupation == profileData.spouseOccupation &&
-            individualOccupation == profileData.individualOccupation &&
-            individualSalary == profileData.individualSalary &&
-            spouseSalary == profileData.spouseSalary
+            assignmentSession.spouseOccupation == profileData.spouseOccupation &&
+            assignmentSession.individualOccupation == profileData.individualOccupation &&
+            assignmentSession.individualSalary == profileData.individualSalary &&
+            assignmentSession.spouseSalary == profileData.spouseSalary
             ? true
             : false
-        )}
+        ))}
     </div>
   );
 };
