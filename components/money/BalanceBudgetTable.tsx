@@ -25,13 +25,13 @@ const BalanceBudget: React.FC<BalanceBudgetProps> = ({ question, submitGuess, an
   return (
     <div className="flex flex-col max-h-96 py-4 overflow-y-hidden">
       <p className="mb-4">
-        This table shows {question.text}'s monthly budget.
+        This table shows Tiana's monthly budget.
         How much money does she need to earn tutoring to balance her budget?
         Complete the table.
       </p>
       <div className="grid bg-blue-600 text-white border-b border-grey-500">
         <div className="flex justify-self-center">
-          <span className="">{question.text}'s March Budget</span>
+          <span className="">Tiana's March Budget</span>
         </div>
       </div>
         <div className="grid grid-cols-2 bg-blue-300 text-white">

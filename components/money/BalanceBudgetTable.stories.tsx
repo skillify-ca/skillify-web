@@ -12,7 +12,5 @@ const Template: Story<BalanceBudgetProps> = (args) => <BalanceBudget {...args} /
 
 
 export const Primary = Template.bind({});
-Primary.args = {
-  name: "",
-};
+Primary.args = {};
 
