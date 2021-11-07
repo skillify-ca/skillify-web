@@ -45,3 +45,12 @@ export type ItemCostModel = {
   title: string;
   cost: number;
 }
+
+export type personData = {
+  name: string,
+  month: string,
+  income: Array<ItemCostModel>,
+  expenses:Array<ItemCostModel>,
+  totalIncome: number,
+  totalExpenses: number,
+};
