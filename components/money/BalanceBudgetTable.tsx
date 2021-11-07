@@ -18,7 +18,8 @@ const BalanceBudget: React.FC<BalanceBudgetProps> = ({ question, submitGuess, an
     });
   }
 
-  return (
+  return(
+
     <div className="flex flex-col max-h-96 py-4 overflow-y-hidden">
       <p className="mb-4">
         This table shows Tiana's monthly budget.
