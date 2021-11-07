@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
-import { MaritalStatus } from "../pages/api/finance/profile";
+import { FinanceProfileType, MaritalStatus } from "../pages/api/finance/profile";
 import { RootState } from "./rootReducer";
 
 export interface assignmentSessionState {
@@ -46,6 +46,7 @@ export interface assignmentSessionState {
     spouseOccupation: string,
     spouseSalary: number,
     sectionOneValidation: boolean
+    // profileData: FinanceProfileType
 }
 
 const initialState: assignmentSessionState = {
@@ -91,7 +92,8 @@ const initialState: assignmentSessionState = {
     individualSalary: 0,
     spouseOccupation: "",
     spouseSalary: 0,
-    sectionOneValidation: false
+    sectionOneValidation: false,
+    // profileData: 
 }
 
 export const assignmentSessionSlice: Slice = createSlice({
