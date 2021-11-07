@@ -1,3 +1,4 @@
+import { PersonData } from "./personData";
 import { QuestionType } from "./questionTypes";
 import { Skill } from "./skill";
 import { WordProblemModel } from "./WordProblemModel";
@@ -23,6 +24,7 @@ export type Question = {
   displayNum?: number; //randomizes visualnumber type
   arrayAns?: Array<number>;
   budgetCostModel? :Array<ItemCostModel>;
+  personDataModel?: Array<PersonData>;
 };
 
 export type MCOption = {

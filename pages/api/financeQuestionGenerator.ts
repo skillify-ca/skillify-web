@@ -7,6 +7,7 @@ import { QuestionType } from "./questionTypes";
 import { ItemDataTable } from '../../components/money/BudgetTableData';
 import { getRndHundredthsDecimal, getRndInteger } from './random';
 import { person } from "../../components/money/BalanceBudgetData";
+import { PersonData } from "./personData";
 
 export function getRandomFinanceQuestion(
 
@@ -82,18 +83,15 @@ function getTipQuestion(
 function getBalanceBudgetQuestion(
 
 ):Question {
-  const names = [
-    "Miranda",
-    "Vivian",
-    "Tiana",
-    "Destiny"
-  ];
-  let nameIndex = getRndInteger(0, names.length);
-  let name = names[nameIndex];
+  const getPersonData:PersonData[] = person.map((person) => {
+    console.log(person.name);
+  })
+  
   return {
-    text: name,
-    answer: name,
+    text: "name",
+    answer: "name",
     answerType:AnswerType.STRING,
     questionType:QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM,
+    personDataModel:getPersonData,
   };
 }
