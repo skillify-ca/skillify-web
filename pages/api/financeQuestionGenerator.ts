@@ -13,9 +13,7 @@ export function getRandomFinanceQuestion(
   const types = [
     QuestionType.FINANCE_BUDGET_TABLE_PROBLEM,
     QuestionType.FINANCE_TIP_PROBLEM
-  
   ];
-
   /** Cycle through QuestionTypes */
   let questionIndex = getRndInteger(0, types.length);
   let type = types[questionIndex];
