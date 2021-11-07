@@ -17,9 +17,7 @@ import { useAppDispatch } from "../../redux/store";
 
 export interface SectionOneInputProps {
   // isMarried: MaritalStatus;
-  // setMarriage: (setMarriage: MaritalStatus) => void;
-  // hasChildren: boolean;
-  // setChildren: (hasChildren: boolean) => void;
+  // setIsMarried: (setMarriage: MaritalStatus) => void;
   individualOccupation: string;
   setIndividualOccupation: (individualOccupation: string) => void;
   individualSalary: number;
@@ -35,7 +33,7 @@ export interface SectionOneInputProps {
 
 export const SectionOneInput = ({
   // isMarried,
-  // setMarriage,
+  // setIsMarried,
   individualOccupation,
   setIndividualOccupation,
   individualSalary,

@@ -31,7 +31,7 @@ import {
   assignmentSessionSelector,
   setMoneyRemValidation,
   setTotalMoneyRemaining,
-  setIsSurpriseVisible
+  setIsSurpriseVisible,
 } from "../../redux/assignmentSession";
 
 export interface FinanceProfileProps {
@@ -44,7 +44,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
   const dispatch = useAppDispatch()
   const assignmentSession = useSelector(assignmentSessionSelector)
 
-  // const [isMarried, setMarriage] = useState(MaritalStatus.SINGLE);
+  // const [isMarried, setIsMarried] = useState(MaritalStatus.SINGLE);
 
   const [individualOccupation, setIndividualOccupation] = useState("");
   const [individualSalary, setIndividualSalary] = useState(0);
@@ -217,7 +217,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         <div>
           <SectionOneInput
             // isMarried={isMarried}
-            // setMarriage={setMarriage}
+            // setIsMarried={setIsMarried}
             individualOccupation={individualOccupation}
             setIndividualOccupation={setIndividualOccupation}
             individualSalary={individualSalary}
