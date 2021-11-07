@@ -6,7 +6,6 @@ import {
 import { QuestionType } from "./questionTypes";
 import { ItemDataTable } from '../../components/money/BudgetTableData';
 import { getRndHundredthsDecimal, getRndInteger } from './random';
-import { person } from "../../components/money/BalanceBudgetData";
 
 export function getRandomFinanceQuestion(
 
@@ -14,7 +13,6 @@ export function getRandomFinanceQuestion(
   const types = [
     QuestionType.FINANCE_BUDGET_TABLE_PROBLEM,
     QuestionType.FINANCE_TIP_PROBLEM,
-    QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM,
   ];
   /** Cycle through QuestionTypes */
   let questionIndex = getRndInteger(0, types.length);
@@ -29,10 +27,6 @@ export function getRandomFinanceQuestion(
     let tape = getRndHundredthsDecimal(2,3);
     let bulb = getRndHundredthsDecimal(2,3);
     return getBudgetQuestion(tape, bulb);
-  
-  } else if (type === QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM) {
-    return getBalanceBudgetQuestion();
-  }
 
 }
 
@@ -79,23 +73,4 @@ function getTipQuestion(
   };
 }
 
-function getBalanceBudgetQuestion(
-
-):Question {
-  const names = [
-    "Miranda",
-    "Vivian",
-    "Tiana",
-    "Destiny"
-  ];
-  let nameIndex = getRndInteger(0, names.length);
-  let name = names[nameIndex];
-  console.log(person);
-  console.log(name);
-  return {
-    text: name,
-    answer: name,
-    answerType:AnswerType.STRING,
-    questionType:QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM,
-  };
 }

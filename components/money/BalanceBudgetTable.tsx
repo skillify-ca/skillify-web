@@ -50,7 +50,7 @@ const BalanceBudget: React.FC<BalanceBudgetProps> = ({ question, submitGuess, an
             <span className="p-3 border-b border-grey-500">Calculator: $75</span>
             <span className="p-3 border-b border-grey-500">Haircut: $55</span>
             <span className="p-3 border-b border-grey-500">Books: $65</span>
-            <span className="p-3">Total: <input className="border border-grey-500 text-black font-bold w-12 text-right"></input></span>
+            <span className="p-3">Total: <input className="h-min border border-grey-500 text-black font-bold w-12 text-right"></input></span>
           </div>
         </div>
         
