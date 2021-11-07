@@ -282,41 +282,35 @@ const QuestionSet = ({
       questionData[index].questionType ===
       QuestionType.FINANCE_BUDGET_TABLE_PROBLEM
     ) {
-      {
-        return (
-          <BudgetTable
-            question={questionData[index]}
-            answer={questionData[index].answer}
-            submitGuess={submitGuess}
-          />
-        );
-      }
+      return (
+        <BudgetTable
+          question={questionData[index]}
+          answer={questionData[index].answer}
+          submitGuess={submitGuess}
+        />
+      );
     } else if (
       questionData[index].questionType ===
       QuestionType.FINANCE_TIP_PROBLEM
     ) {
-      {
-        return (
-          <TipQuestion
-            question={questionData[index]}
-            answer={questionData[index].answer}
-            submitGuess={submitGuess}
-          />
-        );
-      }
+      return (
+        <TipQuestion
+          question={questionData[index]}
+          answer={questionData[index].answer}
+          submitGuess={submitGuess}
+        />
+      );
     } else if (
       questionData[index].questionType === 
       QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM
     ) {
-      {
-        return (
-          <BalanceBudget
-            question={questionData[index]}
-            answer={questionData[index].answer}
-            submitGuess={submitGuess}
-          />
-        );
-      }
+      return (
+        <BalanceBudget
+          question={questionData[index]}
+          answer={questionData[index].answer}
+          submitGuess={submitGuess}
+        />
+      );
     }
     return (
       <HorizontalEquation

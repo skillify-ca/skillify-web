@@ -18,5 +18,5 @@ export enum QuestionType {
   VISUAL_TYPE_PROBLEM = "visual type", // visual number types
   FINANCE_BUDGET_TABLE_PROBLEM = "yes/no under budget problem",
   FINANCE_TIP_PROBLEM = "tip amount based on tip percentage",
-  FINANCE_BALANCE_BUDGET_PROBLEM = "income vs expenses problem"
+  FINANCE_BALANCE_BUDGET_PROBLEM = "income vs expenses problem",
 }

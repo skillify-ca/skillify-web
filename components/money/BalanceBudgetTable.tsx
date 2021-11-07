@@ -31,31 +31,31 @@ const BalanceBudget: React.FC<BalanceBudgetProps> = ({ question, submitGuess, an
       </p>
       <div className="grid bg-blue-600 text-white border-b border-grey-500">
         <div className="flex justify-self-center">
-          <span className="py-2">{question.text}'s March Budget</span>
+          <span className="">{question.text}'s March Budget</span>
         </div>
       </div>
         <div className="grid grid-cols-2 bg-blue-300 text-white">
           <div className="border-r border-grey-500">
               <div className="flex justify-center">
-                <span className="py-3">Income</span>
+                <span className="">Income</span>
               </div>
           </div>
           <div className="flex justify-center">
-            <span className="py-3">Expenses</span>
+            <span className="">Expenses</span>
           </div>
         </div>
-        <div className="grid grid-cols-2 mb-4 border border-grey-500">
+        <div className="grid grid-cols-2 border border-grey-500">
           <div className="flex flex-col border-r border-grey-500">
-            <span className="p-3 border-b border-grey-500">Job at a flower shop: $140</span>
-            <span className="p-3 border-b border-grey-500">Tutoring: $<input className="border border-grey-500 text-black font-bold w-12 text-right"></input></span>
-            <span className="p-3 border-b border-grey-500">Gift from brother: $15</span>
-            <span className="p-3">Total: <input className="border border-grey-500 text-black font-bold w-12 text-right"></input></span>
+            <span className="border-b border-grey-500">Job at a flower shop: $140</span>
+            <span className="border-b border-grey-500">Tutoring: $<input className="border border-grey-500 text-black font-bold w-12 text-right"></input></span>
+            <span className="border-b border-grey-500">Gift from brother: $15</span>
+            <span className="">Total: <input className="border border-grey-500 text-black font-bold w-12 text-right"></input></span>
           </div>
           <div className="flex flex-col">
-            <span className="p-3 border-b border-grey-500">Calculator: $75</span>
-            <span className="p-3 border-b border-grey-500">Haircut: $55</span>
-            <span className="p-3 border-b border-grey-500">Books: $65</span>
-            <span className="p-3">Total: <input className="border border-grey-500 text-black font-bold w-12 text-right"></input></span>
+            <span className="border-b border-grey-500">Calculator: $75</span>
+            <span className="border-b border-grey-500">Haircut: $55</span>
+            <span className="border-b border-grey-500">Books: $65</span>
+            <span className="">Total: <input className="border border-grey-500 text-black font-bold w-12 text-right"></input></span>
           </div>
         </div>
         
