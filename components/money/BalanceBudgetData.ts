@@ -1,6 +1,6 @@
-import { personData } from "../../pages/api/question";
+import { PersonData } from "../../pages/api/personData";
 
-export const person:personData[] = [
+export const person:PersonData[] = [
 	{
 		name: "Miranda",
 		month: "February",

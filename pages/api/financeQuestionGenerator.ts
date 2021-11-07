@@ -90,8 +90,6 @@ function getBalanceBudgetQuestion(
   ];
   let nameIndex = getRndInteger(0, names.length);
   let name = names[nameIndex];
-  console.log(person);
-  console.log(name);
   return {
     text: name,
     answer: name,
