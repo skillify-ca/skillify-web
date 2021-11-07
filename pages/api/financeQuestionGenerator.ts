@@ -13,7 +13,6 @@ export function getRandomFinanceQuestion(
   const types = [
     QuestionType.FINANCE_BUDGET_TABLE_PROBLEM,
     QuestionType.FINANCE_TIP_PROBLEM
-  
   ];
 
   /** Cycle through QuestionTypes */
@@ -30,6 +29,7 @@ export function getRandomFinanceQuestion(
     let bulb = getRndHundredthsDecimal(2,3);
     return getBudgetQuestion(tape, bulb);
   }
+
 }
 
 function getBudgetQuestion(
