@@ -12,8 +12,10 @@ export function getRandomFinanceQuestion(
 ): Question {
   const types = [
     QuestionType.FINANCE_BUDGET_TABLE_PROBLEM,
-    QuestionType.FINANCE_TIP_PROBLEM,
+    QuestionType.FINANCE_TIP_PROBLEM
+  
   ];
+
   /** Cycle through QuestionTypes */
   let questionIndex = getRndInteger(0, types.length);
   let type = types[questionIndex];
@@ -27,7 +29,7 @@ export function getRandomFinanceQuestion(
     let tape = getRndHundredthsDecimal(2,3);
     let bulb = getRndHundredthsDecimal(2,3);
     return getBudgetQuestion(tape, bulb);
-
+  }
 }
 
 function getBudgetQuestion(
@@ -71,6 +73,4 @@ function getTipQuestion(
     questionType:QuestionType.FINANCE_TIP_PROBLEM,
     displayNum: bill,
   };
-}
-
 }
