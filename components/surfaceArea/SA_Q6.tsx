@@ -12,9 +12,30 @@ const Q6 = (displayQuestion, nextQuestion, isWrong) => {
     [false, false, false, false],
   ]);
 
+  const [partBguessString, setpartBguessString] = useState<string>("");
+  const [partCguessString, setpartCguessString] = useState<string>("");
+
+  //Base 1
+  const partBanswer = "9 cm^2";
+  //Base 2
+  const partCanswer = "54 cm^2";
+
+  const onPartBGuessChanged = (currentGuess: string) => {
+    const newGuess = currentGuess;
+    setpartBguessString(newGuess);
+  };
+
+  const onPartCGuessChanged = (currentGuess: string) => {
+    const newGuess = currentGuess;
+    setpartCguessString(newGuess);
+  };
+
   const onSubmit = () => {
     setGuessString(JSON.stringify(positions));
-    const guessStringLocal = JSON.stringify(positions);
+    const guessStringLocal =
+      JSON.stringify(positions) + "," + "B," + partBguessString + ",";
+    "C," + partCguessString;
+    console.log(guessStringLocal);
     const guess: GuessData = {
       guess: guessStringLocal,
       isCorrect: true,
@@ -143,6 +164,45 @@ const Q6 = (displayQuestion, nextQuestion, isWrong) => {
                       }`}
                       onClick={() => setupPosition(3, 3)}
                     ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="grid md:grid-cols-12 grid-cols-1">
+          <div className="md:col-span-12 rounded-xl">
+            <div className="grid grid-cols-12 rounded-xl font-bold items-center justify-between bg-yellow-600 p-4">
+              <div className="grid grid-cols-12 col-span-12 sm:col-span-6 rounded-xl font-bold justify-between bg-white p-4">
+                <p className="col-span-12 text-center">
+                  b) If each side of a cube is 3m long, what is the area of one
+                  face of the cube
+                </p>
+                <div className="col-span-12">
+                  <div className="flex gap-4 justify-between items-center">
+                    <label>Answer</label>
+                    <input
+                      className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
+                      placeholder=""
+                      value={partBguessString}
+                      onChange={(e) => onPartBGuessChanged(e.target.value)}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-12 col-span-12 sm:col-span-6 rounded-xl font-bold justify-between bg-white p-4">
+                <p className="col-span-12 text-center">
+                  c) What is the surface area of the cube?
+                </p>
+                <div className="col-span-12">
+                  <div className="flex gap-4 justify-between items-center">
+                    <label>Answer</label>
+                    <input
+                      className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
+                      placeholder=""
+                      value={partCguessString}
+                      onChange={(e) => onPartCGuessChanged(e.target.value)}
+                    />
                   </div>
                 </div>
               </div>
