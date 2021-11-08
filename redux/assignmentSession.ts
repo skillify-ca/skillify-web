@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
-import { MaritalStatus } from "../pages/api/finance/profile";
+import { FinanceProfileType, MaritalStatus } from "../pages/api/finance/profile";
 import { RootState } from "./rootReducer";
 
 export interface assignmentSessionState {
@@ -40,6 +40,13 @@ export interface assignmentSessionState {
 
     isMarried: MaritalStatus,
     hasChildren: boolean
+
+    individualOccupation: string,
+    individualSalary: number,
+    spouseOccupation: string,
+    spouseSalary: number,
+    sectionOneValidation: boolean
+    // profileData: FinanceProfileType
 }
 
 const initialState: assignmentSessionState = {
@@ -79,7 +86,14 @@ const initialState: assignmentSessionState = {
     isSurpriseVisible: false,
 
     isMarried: MaritalStatus.SINGLE,
-    hasChildren: false
+    hasChildren: false,
+
+    individualOccupation: "",
+    individualSalary: 0,
+    spouseOccupation: "",
+    spouseSalary: 0,
+    sectionOneValidation: false,
+    // profileData: 
 }
 
 export const assignmentSessionSlice: Slice = createSlice({
@@ -285,9 +299,39 @@ export const assignmentSessionSlice: Slice = createSlice({
             }
         },
         setIsMarried: (state: assignmentSessionState, action: PayloadAction<MaritalStatus>) => {
-            if (action.type == "assignmentSession/setHasChildren") {
+            if (action.type == "assignmentSession/setIsMarried") {
                 const newIsMarried = action.payload as MaritalStatus;
                 state.isMarried = newIsMarried;
+            }
+        },
+        setIndividualOccupation: (state: assignmentSessionState, action: PayloadAction<string>) => {
+            if (action.type == "assignmentSession/setIndividualOccupation") {
+                const newIndividualOccupation = action.payload as string;
+                state.individualOccupation = newIndividualOccupation;
+            }
+        },
+        setIndividualSalary: (state: assignmentSessionState, action: PayloadAction<number>) => {
+            if (action.type == "assignmentSession/setIndividualSalary") {
+                const newIndividualSalary = action.payload as number;
+                state.individualSalary = newIndividualSalary;
+            }
+        },
+        setSpouseOccupation: (state: assignmentSessionState, action: PayloadAction<string>) => {
+            if (action.type == "assignmentSession/setSpouseOccupation") {
+                const newSpouseOccupation = action.payload as string;
+                state.spouseOccupation = newSpouseOccupation;
+            }
+        },
+        setSpouseSalary: (state: assignmentSessionState, action: PayloadAction<number>) => {
+            if (action.type == "assignmentSession/setSpouseSalary") {
+                const newSpouseSalary = action.payload as number;
+                state.spouseSalary = newSpouseSalary;
+            }
+        },
+        setSectionOneValidation: (state: assignmentSessionState, action: PayloadAction<boolean>) => {
+            if (action.type == "assignmentSession/setSectionOneValidation") {
+                const newSectionOneValidation = action.payload as boolean;
+                state.sectionOneValidation = newSectionOneValidation;
             }
         },
     }
@@ -329,7 +373,13 @@ export const {
     setIsSurpriseVisible,
 
     setIsMarried,
-    setHasChildren
+    setHasChildren,
+
+    setIndividualOccupation,
+    setIndividualSalary,
+    setSpouseOccupation,
+    setSpouseSalary,
+    setSectionOneValidation
 } = assignmentSessionSlice.actions;
 
 export const assignmentSessionSelector = (state: RootState) => state.assignmentSession;

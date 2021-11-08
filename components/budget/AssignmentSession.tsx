@@ -44,13 +44,7 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
   const dispatch = useAppDispatch()
   const assignmentSession = useSelector(assignmentSessionSelector)
 
-  // const [isMarried, setIsMarried] = useState(MaritalStatus.SINGLE);
-
-  const [individualOccupation, setIndividualOccupation] = useState("");
-  const [individualSalary, setIndividualSalary] = useState(0);
-  const [spouseOccupation, setSpouseOccupation] = useState("");
-  const [spouseSalary, setSpouseSalary] = useState(0);
-  const [sectionOneValidation, setSectionOneValidation] = useState(false);
+  // const [sectionOneValidation, setSectionOneValidation] = useState(false);
 
   const [isSubmitModalShowing, setIsSubmitModalShowing] = useState(false);
   const [surpriseData, setSurpriseData] = useState<SurpriseCardType>();
@@ -216,22 +210,12 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         </div>
         <div>
           <SectionOneInput
-            // isMarried={isMarried}
-            // setIsMarried={setIsMarried}
-            individualOccupation={individualOccupation}
-            setIndividualOccupation={setIndividualOccupation}
-            individualSalary={individualSalary}
-            setIndividualSalary={setIndividualSalary}
-            spouseOccupation={spouseOccupation}
-            setSpouseOccupation={setSpouseOccupation}
-            spouseSalary={spouseSalary}
-            setSpouseSalary={setSpouseSalary}
             profileData={profileData}
-            sectionOneValidation={sectionOneValidation}
-            setSectionOneValidation={setSectionOneValidation}
+          // sectionOneValidation={sectionOneValidation}
+          // setSectionOneValidation={setSectionOneValidation}
           />
 
-          {sectionOneValidation ? (
+          {assignmentSession.sectionOneValidation ? (
             <div className="flex flex-nowrap">
               {" "}
               Great Job!
