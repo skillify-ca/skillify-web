@@ -12,20 +12,14 @@ const Kaboom = () => {
   useEffect(() => {
     setK(
       kaboom({
-        width: 320,
-        height: 240,
-        font: "sinko",
         canvas: document.querySelector("#mycanvas"),
-        background: [0, 0, 255],
       })
     );
   }, []);
   return (
-    <div className="grid ">
-      <canvas id="mycanvas" className="w-full bg-red-400">
-        {k && <KaboomComponent k={k} />}
-      </canvas>
-    </div>
+    <canvas id="mycanvas" className="w-full bg-red-400 h-screen">
+      {k && <KaboomComponent k={k} />}
+    </canvas>
   );
 };
 
