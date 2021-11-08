@@ -246,7 +246,7 @@ const UnitOverviewPage = ({ slug, skillData }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 bg-white shadow-lg rounded-xl gap-8">
+        <div className="grid items-stretch grid-cols-1 sm:grid-cols-2 bg-white shadow-lg rounded-xl gap-8">
           <div className="gap-8 p-4 sm:p-8">
             <div className="flex flex-col gap-4">
               <p className="text-4xl font-bold text-blue-900 capitalize">
@@ -259,61 +259,61 @@ const UnitOverviewPage = ({ slug, skillData }) => {
                 skill confidence.
               </p>
             </div>
-            <div className="my-8 col-span-2 grid grid-cols-2 sm:grid-cols-3 p-4 gap-8">
-              {skillData &&
-                skillsForCurrentGrade(skillData).map((skill) => (
-                  <Link href={skill.published ? `/practice/${skill.id}` : ""}>
-                    <div
-                      className={`${
-                        !skill.published
-                          ? "opacity-50"
-                          : " cursor-pointer transform transition duration-200 hover:bg-blue-200"
-                      } bg-gray-200 flex flex-col items-center gap-4 rounded-xl shadow-lg`}
-                    >
-                      <img
-                        className="w-full h-32 object-cover rounded-t-xl"
-                        src={
-                          !skill.published
-                            ? "/images/skills/lock.png"
-                            : `https://placeimg.com/640/480/tech`
-                        }
-                      />
-
-                      <p className="text-center p-4 h-20 flex items-center justify-center">
-                        {`I can ${skill.description}`}
-                      </p>
-                      {skill.published && (
-                        <p className="text-4xl ">
-                          {!loading &&
-                            data &&
-                            getEmoji(getUserEmojiValue(skill.id))}{" "}
-                        </p>
-                      )}
-
-                      {skill.published && (
-                        <div className="flex justify-center p-4 gap-4">
-                          <Button
-                            label="Learn"
-                            backgroundColor="green"
-                            textColor="white"
-                          />
-                          <Button
-                            label="Practice"
-                            backgroundColor="blue"
-                            textColor="white"
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </Link>
-                ))}
-            </div>
           </div>
           <img
-            className="object-cover rounded-xl"
+            className="object-cover rounded-xl max-h-80"
             alt="student-image"
             src="/images/practiceAdd.png"
           />
+        </div>
+        <div className="col-span-2 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 sm:p-4 gap-8">
+          {skillData &&
+            skillsForCurrentGrade(skillData).map((skill) => (
+              <Link href={skill.published ? `/practice/${skill.id}` : ""}>
+                <div
+                  className={`${
+                    !skill.published
+                      ? "opacity-50"
+                      : " cursor-pointer transform transition duration-200 hover:bg-blue-200"
+                  } bg-white flex flex-col items-center rounded-xl shadow-lg`}
+                >
+                  <img
+                    className="w-full h-32 object-cover rounded-t-xl"
+                    src={
+                      !skill.published
+                        ? "/images/skills/lock.png"
+                        : `https://placeimg.com/640/480/tech`
+                    }
+                  />
+
+                  <p className="text-center p-4 h-16 flex items-center justify-center">
+                    {`I can ${skill.description}`}
+                  </p>
+                  {skill.published && (
+                    <p className="text-4xl mb-4">
+                      {!loading &&
+                        data &&
+                        getEmoji(getUserEmojiValue(skill.id))}{" "}
+                    </p>
+                  )}
+
+                  {skill.published && (
+                    <div className="flex flex-col md:flex-row justify-center p-4 gap-4">
+                      <Button
+                        label="Learn"
+                        backgroundColor="green"
+                        textColor="white"
+                      />
+                      <Button
+                        label="Practice"
+                        backgroundColor="blue"
+                        textColor="white"
+                      />
+                    </div>
+                  )}
+                </div>
+              </Link>
+            ))}
         </div>
         <div>{quizComponent}</div>
       </div>
