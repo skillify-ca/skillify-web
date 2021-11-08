@@ -33,9 +33,13 @@ const Q6 = (displayQuestion, nextQuestion, isWrong) => {
   const onSubmit = () => {
     setGuessString(JSON.stringify(positions));
     const guessStringLocal =
-      JSON.stringify(positions) + "," + "B," + partBguessString + ",";
-    "C," + partCguessString;
-    console.log(guessStringLocal);
+      JSON.stringify(positions) +
+      "," +
+      "B," +
+      partBguessString +
+      "," +
+      "C," +
+      partCguessString;
     const guess: GuessData = {
       guess: guessStringLocal,
       isCorrect: true,
