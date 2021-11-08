@@ -1,10 +1,14 @@
 // simple rpg style walk and talk
 import kaboom, { KaboomCtx, KaboomOpt, Key } from "kaboom";
 
-const run = (k: KaboomCtx) => {
+const run = (
+  k: KaboomCtx,
+  requestQuestion: any, // TODO add type
+  hideQuestionRequested: any
+) => {
   // simple rpg style walk and talk
 
-//   kaboom();
+  //   kaboom();
 
   loadSprite("bag", "/images/sprites/bag.png");
   loadSprite("ghosty", "/images/sprites/ghosty.png");
@@ -149,6 +153,7 @@ const run = (k: KaboomCtx) => {
     // talk on touch
     player.onCollide("character", (ch) => {
       dialog.say(ch.msg);
+      requestQuestion();
     });
 
     const dirs = {
@@ -161,11 +166,16 @@ const run = (k: KaboomCtx) => {
     for (const dir in dirs) {
       onKeyPress(dir as Key, () => {
         dialog.dismiss();
+        hideQuestionRequested();
       });
       onKeyDown(dir as Key, () => {
         player.move(dirs[dir].scale(SPEED));
       });
     }
+  });
+
+  scene("win", () => {
+    add([text("You Win!"), pos(width() / 2, height() / 2), k.origin("center")]);
   });
 
   go("main", 0);

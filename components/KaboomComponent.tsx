@@ -6,14 +6,20 @@ import run from "../pages/api/kaboom/rpg";
 
 type KaboomComponentProps = {
   k?: KaboomCtx;
+  requestQuestion: () => void;
+  hideQuestion: () => void;
 };
-const KaboomComponent = ({ k }: KaboomComponentProps) => {
+const KaboomComponent = ({
+  k,
+  requestQuestion,
+  hideQuestion,
+}: KaboomComponentProps) => {
   useEffect(() => {
     if (k) {
-      run(k);
+      run(k, requestQuestion, hideQuestion);
       //k.add([k.text("oh hi there"), k.pos(80, 40)]);
     }
-  });
+  }, []);
 
   return <div></div>;
 };
