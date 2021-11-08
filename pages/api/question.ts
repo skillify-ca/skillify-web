@@ -24,7 +24,7 @@ export type Question = {
   displayNum?: number; //randomizes visualnumber type
   arrayAns?: Array<number>;
   budgetCostModel? :Array<ItemCostModel>;
-  personDataModel? :Array<PersonData>;
+  personDataModel? :PersonData;
 };
 
 export type MCOption = {

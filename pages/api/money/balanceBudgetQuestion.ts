@@ -8,11 +8,14 @@ import { PersonData } from "./personData";
 export function getBalanceBudgetQuestion(
   person: PersonData,
   ):Question {
+
+
     return {
       text: person.name,
       answer: person.month,
       answerType:AnswerType.STRING,
       questionType:QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM,
+      personDataModel: person
     };
   }
 
