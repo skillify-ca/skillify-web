@@ -36,7 +36,6 @@ class MyDocument extends Document {
             as="font"
             crossOrigin=""
           />
-          <script async src="https://unpkg.com/kaboom/dist/kaboom.js" />
 
           <script
             async

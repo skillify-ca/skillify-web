@@ -7,12 +7,24 @@ import dynamic from "next/dynamic";
 const KaboomComponent = dynamic(() => import("../components/KaboomComponent"));
 
 const Kaboom = () => {
-  const [k, setK] = useState<KaboomCtx>(kaboom());
+  const [k, setK] = useState<KaboomCtx>();
 
+  useEffect(() => {
+    setK(
+      kaboom({
+        width: 320,
+        height: 240,
+        font: "sinko",
+        canvas: document.querySelector("#mycanvas"),
+        background: [0, 0, 255],
+      })
+    );
+  }, []);
   return (
-    <div className="grid grid-cols-2">
-      <div className="bg-blue-300">ONE</div>
-      <div className="bg-red-400">{k && <KaboomComponent k={k} />}</div>
+    <div className="grid ">
+      <canvas id="mycanvas" className="w-full bg-red-400">
+        {k && <KaboomComponent k={k} />}
+      </canvas>
     </div>
   );
 };
