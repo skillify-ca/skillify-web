@@ -10,7 +10,7 @@ import QuestionSet from "../../components/stories/QuestionSet";
 import { QuestionType } from "../api/questionTypes";
 import { GuessData } from "../api/guessData";
 import { AnswerType, Question } from "../api/question";
-import { getSkillId, Skill } from "../api/skill";
+import { Skill } from "../api/skill";
 import { UNLOCK_BADGE } from "../../graphql/unlockBadge";
 import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
 import { getBadgeId } from "../api/badgeHelper";
@@ -143,7 +143,7 @@ const Quiz = ({ slug }) => {
       is_correct: currentGuess.isCorrect,
       question: questionData[index].text,
       guess: currentGuess.guess,
-      skillId: getSkillId(questionData[index].skill).toString(),
+      skillId: questionData[index]?.skill?.toString(),
     };
     const newGuesses = [...guesses, guess];
     setGuesses(newGuesses);

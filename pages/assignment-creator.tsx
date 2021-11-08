@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "../redux/store";
-import { getSkillFromId, getSkillId, Skill } from "./api/skill";
+import { Skill } from "./api/skill";
 import AssignmentCreationForm, {
   QuestionCount,
 } from "../components/assignment-creator/assignmentCreationForm";
@@ -33,19 +33,19 @@ export type SkillData = {
 
 const AssignmentCreator = (data: FetchDescriptionAndSkillData) => {
   const [stage, setStage] = useState(STAGE.CHOOSE_SKILLS);
-  const [skills, setSkills] = useState<Skill[]>([]);
+  const [skills, setSkills] = useState<number[]>([]);
   const [questionTypes, setQuestionTypes] = useState<QuestionType[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [assignmentId, setAssignmentId] = useState<number>();
-  const getInitialQuestionCounts = () => {
-    const skills = Object.values(Skill).map((skill) => {
-      return { key: getSkillId(skill), value: 0 };
+  const getInitialQuestionCounts = Object.values(Skill)
+    .filter((value) => typeof value !== "string")
+    .map((value) => value as Skill)
+    .map((skill) => {
+      return { key: skill, value: 0 };
     });
 
-    return skills;
-  };
   const [questionCounts, setQuestionCounts] = useState<QuestionCount[]>(
-    getInitialQuestionCounts()
+    getInitialQuestionCounts
   );
   const [isErrorModalShowing, setIsErrorModalShowing] = useState(false);
 
@@ -54,7 +54,7 @@ const AssignmentCreator = (data: FetchDescriptionAndSkillData) => {
     for (let index = 0; index < questionCounts.length; index++) {
       const element = questionCounts[index];
       for (let y = 0; y < element.value; y++) {
-        const skill = getSkillFromId(element.key);
+        const skill = element.key;
         skills.push(skill);
       }
     }
@@ -67,9 +67,8 @@ const AssignmentCreator = (data: FetchDescriptionAndSkillData) => {
     setIsErrorModalShowing((e) => !e);
   };
 
-  const [insertAssignment, updateCreateAssignmentMutation] = useMutation(
-    CREATE_ASSIGNMENT
-  );
+  const [insertAssignment, updateCreateAssignmentMutation] =
+    useMutation(CREATE_ASSIGNMENT);
 
   const gotoChooseSkills = () => {
     setStage(STAGE.CHOOSE_SKILLS);
