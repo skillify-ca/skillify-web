@@ -10,7 +10,7 @@ import { generateAssignmentQuestions } from "./assignmentQuestionGenerator";
 
 type displayAssignmentQuestionsProps = {
   assignmentSkills: number[];
-  setAssignmentSkills: (skillIds: number[]) => void;
+  setAssignmentSkills: (skills: number[]) => void;
   questionTypes: QuestionType[];
   setQuestionTypes: (questionTypes: QuestionType[]) => void;
   questions: Question[];

@@ -12,94 +12,94 @@ import { shuffle } from "lodash";
 import { getRandomFinanceQuestion } from "./financeQuestionGenerator";
 
 export const generateQuestionForSkill = (
-  skillId: Skill,
+  skill: Skill,
   questionType?: QuestionType
 ): Question => {
   // Addition skills
-  switch (skillId) {
+  switch (skill) {
     case Skill.ADDITION_SINGLE:
-      return getRandomAdditionQuestion(1, 11, skillId, questionType);
+      return getRandomAdditionQuestion(1, 11, skill, questionType);
     case Skill.ADDITION_DOUBLE:
-      return getRandomAdditionQuestion(10, 101, skillId, questionType);
+      return getRandomAdditionQuestion(10, 101, skill, questionType);
     case Skill.ADDITION_TRIPLE:
-      return getRandomAdditionQuestion(100, 1001, skillId, questionType);
+      return getRandomAdditionQuestion(100, 1001, skill, questionType);
     case Skill.ADDITION_TENTHS:
-      return getRandomAdditionQuestion(0.1, 0.9, skillId, questionType);
+      return getRandomAdditionQuestion(0.1, 0.9, skill, questionType);
     case Skill.ADDITION_4_DIGIT:
-      return getRandomAdditionQuestion(1000, 10001, skillId, questionType);
+      return getRandomAdditionQuestion(1000, 10001, skill, questionType);
     case Skill.ADDITION_PROPERTIES:
-      return getRandomPropertyAdditionQuestion(1, 15, skillId);
+      return getRandomPropertyAdditionQuestion(1, 15, skill);
     case Skill.ADDITION_5_DIGIT:
-      return getRandomAdditionQuestion(10000, 100001, skillId, questionType);
+      return getRandomAdditionQuestion(10000, 100001, skill, questionType);
     case Skill.ADDITION_6_DIGIT:
-      return getRandomAdditionQuestion(100000, 1000001, skillId, questionType);
+      return getRandomAdditionQuestion(100000, 1000001, skill, questionType);
     case Skill.ADDITION_HUNDREDTHS:
-      return getRandomAdditionQuestion(0.01, 0.99, skillId, questionType);
+      return getRandomAdditionQuestion(0.01, 0.99, skill, questionType);
   }
 
-  switch (skillId) {
+  switch (skill) {
     case Skill.NUMBERS_50:
-      return getRandomNumbersQuestion(1, 51, skillId);
+      return getRandomNumbersQuestion(1, 51, skill);
     case Skill.NUMBERS_200:
-      return getRandomNumbersQuestion(1, 201, skillId);
+      return getRandomNumbersQuestion(1, 201, skill);
     case Skill.NUMBERS_1000:
-      return getRandomNumbersQuestion(1, 1001, skillId);
+      return getRandomNumbersQuestion(1, 1001, skill);
     case Skill.SUBTRACTION_SINGLE:
-      return getRandomSubtractionQuestion(2, 11, skillId, questionType);
+      return getRandomSubtractionQuestion(2, 11, skill, questionType);
     case Skill.SUBTRACTION_DOUBLE:
-      return getRandomSubtractionQuestion(10, 101, skillId, questionType);
+      return getRandomSubtractionQuestion(10, 101, skill, questionType);
     case Skill.SUBTRACTION_TRIPLE:
-      return getRandomSubtractionQuestion(100, 1001, skillId, questionType);
+      return getRandomSubtractionQuestion(100, 1001, skill, questionType);
     case Skill.SUBTRACTION_4_DIGIT:
-      return getRandomSubtractionQuestion(1000, 10001, skillId, questionType);
+      return getRandomSubtractionQuestion(1000, 10001, skill, questionType);
     case Skill.SUBTRACTION_TENTHS:
-      return getRandomSubtractionQuestion(0.1, 0.9, skillId, questionType);
+      return getRandomSubtractionQuestion(0.1, 0.9, skill, questionType);
     case Skill.SUBTRACTION_5_DIGIT:
-      return getRandomSubtractionQuestion(10000, 100001, skillId, questionType);
+      return getRandomSubtractionQuestion(10000, 100001, skill, questionType);
     case Skill.SUBTRACTION_6_DIGIT:
       return getRandomSubtractionQuestion(
         100000,
         1000001,
-        skillId,
+        skill,
         questionType
       );
     case Skill.SUBTRACTION_HUNDREDTHS:
-      return getRandomSubtractionQuestion(0.01, 0.99, skillId, questionType);
+      return getRandomSubtractionQuestion(0.01, 0.99, skill, questionType);
     case Skill.EQUAL_GROUP_10_ITEMS:
-      return getRandomMultiplicationQuestion(1, 11, skillId, questionType);
+      return getRandomMultiplicationQuestion(1, 11, skill, questionType);
     case Skill.MULTIPLICATION_5:
-      return getRandomMultiplicationQuestion(1, 6, skillId, questionType);
+      return getRandomMultiplicationQuestion(1, 6, skill, questionType);
     case Skill.MULTIPLICATION_10:
-      return getRandomMultiplicationQuestion(6, 10, skillId, questionType);
+      return getRandomMultiplicationQuestion(6, 10, skill, questionType);
     case Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT:
-      return getRandomMultiplicationQuestion(10, 100, skillId, questionType);
+      return getRandomMultiplicationQuestion(10, 100, skill, questionType);
     case Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT:
-      return getRandomMultiplicationQuestion(100, 1000, skillId, questionType);
+      return getRandomMultiplicationQuestion(100, 1000, skill, questionType);
     case Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT:
-      return getRandomMultiplicationQuestion(10, 100, skillId, questionType);
+      return getRandomMultiplicationQuestion(10, 100, skill, questionType);
     case Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT:
-      return getRandomMultiplicationQuestion(100, 1000, skillId, questionType);
+      return getRandomMultiplicationQuestion(100, 1000, skill, questionType);
     case Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT:
-      return getRandomMultiplicationQuestion(10, 100, skillId, questionType);
+      return getRandomMultiplicationQuestion(10, 100, skill, questionType);
     case Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT:
-      return getRandomMultiplicationQuestion(100, 1000, skillId, questionType);
+      return getRandomMultiplicationQuestion(100, 1000, skill, questionType);
     case Skill.MULTIPLY_THREE_DIGIT_BY_TENTH:
-      return getRandomMultiplicationQuestion(100, 1000, skillId, questionType);
+      return getRandomMultiplicationQuestion(100, 1000, skill, questionType);
     case Skill.EQUAL_SHARING_8_ITEMS:
-      return getRandomDivisionQuestion(1, 5, skillId, questionType);
+      return getRandomDivisionQuestion(1, 5, skill, questionType);
     case Skill.DIVIDE_12_EQUALLY:
-      return getRandomDivisionQuestion(1, 6, skillId, questionType);
+      return getRandomDivisionQuestion(1, 6, skill, questionType);
     case Skill.DIVIDE_100:
-      return getRandomDivisionQuestion(1, 11, skillId, questionType);
+      return getRandomDivisionQuestion(1, 11, skill, questionType);
     //All division questions min and maxs are in respect to the dividend
     case Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT:
-      return getRandomDivisionQuestion(10, 100, skillId, questionType);
+      return getRandomDivisionQuestion(10, 100, skill, questionType);
     case Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT:
-      return getRandomDivisionQuestion(100, 1000, skillId, questionType);
+      return getRandomDivisionQuestion(100, 1000, skill, questionType);
     case Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT:
-      return getRandomDivisionQuestion(100, 1000, skillId, questionType);
+      return getRandomDivisionQuestion(100, 1000, skill, questionType);
     case Skill.DIVISION_THREE_DIGIT_BY_TENTH:
-      return getRandomDivisionQuestion(100, 1000, skillId, questionType);
+      return getRandomDivisionQuestion(100, 1000, skill, questionType);
     case Skill.FINANCE_BUDGET:
       return getRandomFinanceQuestion();
   }
