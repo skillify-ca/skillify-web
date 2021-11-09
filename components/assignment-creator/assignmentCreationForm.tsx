@@ -26,7 +26,7 @@ type assignmentCreationFormProps = {
 };
 
 export type QuestionCount = {
-  key: number;
+  key: number; // skill id
   value: number;
 };
 const AssignmentCreationForm = ({

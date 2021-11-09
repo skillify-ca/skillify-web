@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Question } from "../../pages/api/question";
 import { QuestionType } from "../../pages/api/questionTypes";
 import { getRandomItemFromArray } from "../../pages/api/random";
-import {
-  getQuestionTypesForSkill,
-  getSkillId,
-  Skill,
-} from "../../pages/api/skill";
+import { getQuestionTypesForSkill } from "../../pages/api/skill";
 import { FetchDescriptionAndSkillData } from "../../pages/assignment-creator";
 import QuestionSet from "../stories/QuestionSet";
 import { Button } from "../ui/Button";
 import { generateAssignmentQuestions } from "./assignmentQuestionGenerator";
 
 type displayAssignmentQuestionsProps = {
-  assignmentSkills: Skill[];
-  setAssignmentSkills: (skills: Skill[]) => void;
+  assignmentSkills: number[];
+  setAssignmentSkills: (skills: number[]) => void;
   questionTypes: QuestionType[];
   setQuestionTypes: (questionTypes: QuestionType[]) => void;
   questions: Question[];
@@ -71,7 +67,7 @@ const DisplayAssignmentQuestions = ({
   // just updates questiontype for the skill you changed in the array, not the other ones
   const onQuestionTypeChange = (
     newQuestionType: QuestionType,
-    skill: Skill,
+    skillId: number,
     index: number
   ) => {
     const updatedArray = assignmentSkills.map((item, i) => {
@@ -85,7 +81,7 @@ const DisplayAssignmentQuestions = ({
 
     const newQuestions = questions.map((it, i) => {
       if (i === index) {
-        return generateAssignmentQuestions(skill, newQuestionType);
+        return generateAssignmentQuestions(skillId, newQuestionType);
       } else {
         return it;
       }
@@ -117,9 +113,8 @@ const DisplayAssignmentQuestions = ({
               <p className="text-lg">
                 I can 
                 {
-                  data.skills.find(
-                    (element) => element.id === getSkillId(question.skill)
-                  ).description
+                  data.skills.find((element) => element.id === question.skill)
+                    .description
                 }
               </p>
             </div>
