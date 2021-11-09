@@ -12,7 +12,6 @@ export function getBalanceBudgetQuestion(
     person.expenses.map((expense) => {
       answer += expense.cost;
     })
-
     return {
       text: person.name,
       answer: answer.toString(),

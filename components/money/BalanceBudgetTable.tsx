@@ -21,11 +21,11 @@ const BalanceBudget: React.FC<BalanceBudgetProps> = ({ question, submitGuess, an
 
   const validateGuess = ()=> {
     if ( totalIncome === totalExpense && totalExpense == answer ) {
-      setGuess(true);
+      setGuess(answer);
     }
   }
 
-  const [ guess, setGuess ] = useState(false);
+  const [ guess, setGuess ] = useState("");
   const [ input1, setInput1 ] = useState("");
   const [ totalIncome, setTotalIncome ] = useState("");
   const [ totalExpense, setTotalExpense ] = useState("");
