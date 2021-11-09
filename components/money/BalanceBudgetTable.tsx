@@ -12,12 +12,20 @@ export interface BalanceBudgetProps {
 
 const BalanceBudget: React.FC<BalanceBudgetProps> = ({ question, submitGuess, answer }) => {
   const onSubmit = (guess: string) => {
+    validateGuess();
     submitGuess({
       guess: guess,
       isCorrect: guess.toString() == answer.toString()
     });
   }
 
+  const validateGuess = ()=> {
+    if ( totalIncome === totalExpense && totalExpense == answer ) {
+      setGuess(true);
+    }
+  }
+
+  const [ guess, setGuess ] = useState(false);
   const [ input1, setInput1 ] = useState("");
   const [ totalIncome, setTotalIncome ] = useState("");
   const [ totalExpense, setTotalExpense ] = useState("");
@@ -25,14 +33,14 @@ const BalanceBudget: React.FC<BalanceBudgetProps> = ({ question, submitGuess, an
   return (
     <div className="flex flex-col max-h-96 py-4 overflow-y-hidden">
       <p className="mb-4">
-        This table shows {question.text}'s monthly budget.
+        This table shows {question.personDataModel.name}'s monthly budget.
         How much money does she need to earn tutoring to balance her budget?
         Complete the table.
       </p>
 
       <div className="grid bg-blue-600 text-white border-b border-grey-500">
         <div className="flex justify-self-center">
-          <span className="">{question.personDataModel.name}'s {question.personDataModel.income[0].title} Budget</span>
+          <span className="">{question.personDataModel.name}'s {question.personDataModel.month} Budget</span>
         </div>
       </div>
         <div className="grid grid-cols-2 bg-blue-300 text-white">
@@ -47,20 +55,51 @@ const BalanceBudget: React.FC<BalanceBudgetProps> = ({ question, submitGuess, an
         </div>
         <div className="grid grid-cols-2 border border-grey-500">
           <div className="flex flex-col border-r border-grey-500">
-            <span className="border-b border-grey-500">Job at a flower shop: $140</span>
-            <span className="border-b border-grey-500">Tutoring: $<input className="border border-grey-500 text-black font-bold w-12 text-right"></input></span>
-            <span className="border-b border-grey-500">Gift from brother: $15</span>
-            <span className="">Total: <input className="border border-grey-500 text-black font-bold w-12 text-right"></input></span>
+            {(question.personDataModel.income).map((income, index) => {
+              return (
+              (income.cost === 0)
+                ? 
+                <div key={index} className="border-b border-grey-500">
+                  {income.title}: 
+                  $<input 
+                    className="border border-grey-500 text-black font-bold w-12 text-right"
+                    value={input1}
+                    type="number"
+                    onChange={(e) => setInput1(e.target.value)}>
+                  </input>
+                </div>
+                :
+                <div key={index} className="border-b border-grey-500">{income.title}: ${income.cost}</div>
+              )
+            })}
+            <div>
+              Total: 
+              <input 
+                className="border border-grey-500 text-black font-bold w-12 text-right"
+                value={totalIncome}
+                type="number"
+                onChange={(e) => setTotalIncome(e.target.value)}>
+              </input>
+            </div>
           </div>
           <div className="flex flex-col">
-            <span className="border-b border-grey-500">Calculator: $75</span>
-            <span className="border-b border-grey-500">Haircut: $55</span>
-            <span className="border-b border-grey-500">Books: $65</span>
-            <span className="">Total: <input className="border border-grey-500 text-black font-bold w-12 text-right"></input></span>
+            {(question.personDataModel.expenses).map((expense, index) => {
+              return (
+                <div key={index} className="border-b border-grey-500">{expense.title}: ${expense.cost}</div>
+              )
+            })}
+            <div>
+              Total:
+              <input 
+                className="border border-grey-500 text-black font-bold w-12 text-right"
+                value={totalExpense}
+                type="number"
+                onChange={(e) => setTotalExpense(e.target.value)}>
+              </input>
+            </div>
           </div>
         </div>
-        
-        <Button backgroundColor="blue" textColor="white" label="Submit" onClick={()=> onSubmit("guess here")}/>
+        <Button backgroundColor="blue" textColor="white" label="Submit" onClick={()=> onSubmit(guess)}/>
     </div>
   );
 

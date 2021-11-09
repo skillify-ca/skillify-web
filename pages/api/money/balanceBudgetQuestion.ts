@@ -8,24 +8,16 @@ import { PersonData } from "./personData";
 export function getBalanceBudgetQuestion(
   person: PersonData,
   ):Question {
-
+    let answer = 0;
+    person.expenses.map((expense) => {
+      answer += expense.cost;
+    })
 
     return {
       text: person.name,
-      answer: person.month,
+      answer: answer.toString(),
       answerType:AnswerType.STRING,
       questionType:QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM,
       personDataModel: person
     };
   }
-
-  /** 
-   * Things to do
-   * 
-   * add up all income
-   * calculate net = totalincome - totalexpense
-   * (should be >= zero)
-   * 
-   * How do you ref properties from an array within an array?
-   * 
-   *  */
