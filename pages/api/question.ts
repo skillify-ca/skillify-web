@@ -1,4 +1,5 @@
-import { ItemCostModel, PersonData } from "./money/personData";
+import { PersonData } from "./money/personData";
+import { ItemCostModel } from "./money/itemCostModel";
 import { QuestionType } from "./questionTypes";
 import { Skill } from "./skill";
 import { WordProblemModel } from "./WordProblemModel";
