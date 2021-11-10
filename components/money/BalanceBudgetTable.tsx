@@ -12,21 +12,13 @@ export interface BalanceBudgetProps {
 
 const BalanceBudget: React.FC<BalanceBudgetProps> = ({ question, submitGuess, answer }) => {
   const onSubmit = (guess: string) => {
-    validateGuess();
     submitGuess({
       guess: guess,
       isCorrect: guess.toString() == answer.toString()
     });
   }
 
-  const validateGuess = ()=> {
-    if ( totalIncome === totalExpense && totalExpense == answer ) {
-      setGuess(answer);
-    }
-  }
-
   const [ guess, setGuess ] = useState("");
-  const [ input1, setInput1 ] = useState("");
   const [ totalIncome, setTotalIncome ] = useState("");
   const [ totalExpense, setTotalExpense ] = useState("");
 
@@ -63,9 +55,9 @@ const BalanceBudget: React.FC<BalanceBudgetProps> = ({ question, submitGuess, an
                   {income.title}: 
                   $<input 
                     className="border border-grey-500 text-black font-bold w-12 text-right"
-                    value={input1}
+                    value={guess}
                     type="number"
-                    onChange={(e) => setInput1(e.target.value)}>
+                    onChange={(e) => setGuess(e.target.value)}>
                   </input>
                 </div>
                 :
