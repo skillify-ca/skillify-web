@@ -16,19 +16,16 @@ export function getBalanceBudgetQuestion(
     person.expenses.map((expense) => {
       person.totalExpenses += expense.cost;
     })
-
-    /** use reduce method here too */
     person.income.map((element) => {
       person.totalIncome += element.cost;
     })
-
     /** 
      * The question asks how much the person needs to earn to balance their budget
      * isCorrect if (total income == total expense) && (total income - total expense == 0)
      * the answer is the difference
      */
     answer = person.totalExpenses - person.totalIncome;
-    console.log(answer);
+
     return {
       text: person.name,
       answer: answer.toString(),
