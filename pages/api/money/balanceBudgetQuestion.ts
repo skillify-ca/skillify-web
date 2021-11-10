@@ -24,9 +24,6 @@ export function getBalanceBudgetQuestion(
      * the answer is the difference
      */
     answer = person.totalExpenses - person.totalIncome;
-    console.log(person.totalExpenses);
-    console.log(person.totalIncome);
-    console.log(answer);
 
     return {
       text: person.name,
