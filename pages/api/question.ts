@@ -1,3 +1,5 @@
+import { PersonData } from "./money/personData";
+import { ItemCostModel } from "./money/itemCostModel";
 import { QuestionType } from "./questionTypes";
 import { Skill } from "./skill";
 import { WordProblemModel } from "./WordProblemModel";
@@ -23,6 +25,7 @@ export type Question = {
   displayNum?: number; //randomizes visualnumber type
   arrayAns?: Array<number>;
   budgetCostModel? :Array<ItemCostModel>;
+  personDataModel? :PersonData;
 };
 
 export type MCOption = {
@@ -40,9 +43,3 @@ export type fillBlankModel = {
 export type FillOption = {
   text: string;
 };
-
-export type ItemCostModel = {
-  title: string;
-  cost: number;
-}
-

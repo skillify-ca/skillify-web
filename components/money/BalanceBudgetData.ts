@@ -1,6 +1,6 @@
-import { PersonData } from "../../pages/api/personData";
+import { PersonData } from "../../pages/api/money/personData";
 
-export const person:PersonData[] = [
+export const personDataTable:PersonData[] = [
 	{
 		name: "Miranda",
 		month: "February",
