@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
-import { FinanceProfileType, MaritalStatus } from "../pages/api/finance/profile";
+import { FinanceProfileType, financialProfileData, MaritalStatus } from "../pages/api/finance/profile";
+import { getRndInteger } from "../pages/api/random";
 import { RootState } from "./rootReducer";
 
 export interface assignmentSessionState {
@@ -46,7 +47,7 @@ export interface assignmentSessionState {
     spouseOccupation: string,
     spouseSalary: number,
     sectionOneValidation: boolean
-    // profileData: FinanceProfileType
+    profileData: FinanceProfileType
 }
 
 const initialState: assignmentSessionState = {
@@ -93,7 +94,7 @@ const initialState: assignmentSessionState = {
     spouseOccupation: "",
     spouseSalary: 0,
     sectionOneValidation: false,
-    // profileData: 
+    profileData: financialProfileData[getRndInteger(0, 12)]
 }
 
 export const assignmentSessionSlice: Slice = createSlice({
@@ -334,6 +335,12 @@ export const assignmentSessionSlice: Slice = createSlice({
                 state.sectionOneValidation = newSectionOneValidation;
             }
         },
+        setProfileData: (state: assignmentSessionState, action: PayloadAction<FinanceProfileType>) => {
+            if (action.type == "assignmentSession/setSectionOneValidation") {
+                const newProfileData = action.payload as FinanceProfileType;
+                state.profileData = newProfileData;
+            }
+        },
     }
 })
 
@@ -379,7 +386,8 @@ export const {
     setIndividualSalary,
     setSpouseOccupation,
     setSpouseSalary,
-    setSectionOneValidation
+    setSectionOneValidation,
+    setProfileData
 } = assignmentSessionSlice.actions;
 
 export const assignmentSessionSelector = (state: RootState) => state.assignmentSession;

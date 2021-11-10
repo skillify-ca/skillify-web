@@ -15,6 +15,12 @@ import { UNLOCK_BADGE } from "../graphql/unlockBadge";
 import { useAuth } from "../lib/authContext";
 import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
 import { Button } from "../components/ui/Button";
+import { useSelector } from "react-redux";
+import {
+  setProfileData,
+  assignmentSessionSelector
+} from "../redux/assignmentSession";
+import { useAppDispatch } from "../redux/store";
 
 enum STAGES {
   START,
@@ -41,11 +47,14 @@ TODO fix these issues before launching the budget assignment
  */
 
 const FinanceProfile = () => {
-  const [profileData, setProfileData] = useState<FinanceProfileType>();
+  // const [profileData, setProfileData] = useState<FinanceProfileType>();
+
+  const assignmentSession = useSelector(assignmentSessionSelector)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
-    const randomProfile = getRndInteger(0, 12);
-    setProfileData(financialProfileData[randomProfile]);
+    // const randomProfile = getRndInteger(0, 12);
+    dispatch(setProfileData(assignmentSession.profileData));
   }, []);
 
   const [stage, setStage] = useState(STAGES.START);
@@ -80,21 +89,21 @@ const FinanceProfile = () => {
     },
   });
   const randomize = () => {
-    const randomProfile = getRndInteger(0, 12);
-    setProfileData(financialProfileData[randomProfile]);
+    // const randomProfile = getRndInteger(0, 12);
+    dispatch(setProfileData(assignmentSession.profileData));
   };
 
   return (
     <div className="">
       {stage === STAGES.START && data && (
         <RulesSession
-          profileData={profileData}
-          setProfileData={setProfileData}
+          // profileData={assignmentSession.profileData}
+          // setProfileData={setProfileData}
           onClick={routeProfile}
           badgeData={data}
         />
       )}
-      {stage == STAGES.PROFILE && profileData && (
+      {stage == STAGES.PROFILE && assignmentSession.profileData && (
         <div>
           <p className="text-center pb-5">
             Choose a profile to begin your journey:
@@ -102,12 +111,12 @@ const FinanceProfile = () => {
 
           <div className="flex justify-center pb-6">
             <FinanceProfileChart
-              individualOccupation={profileData.individualOccupation}
-              individualSalary={profileData.individualSalary}
-              maritalStatus={profileData.maritalStatus}
-              numberOfChildren={profileData.numberOfChildren}
-              spouseOccupation={profileData.spouseOccupation}
-              spouseSalary={profileData.spouseSalary}
+              individualOccupation={assignmentSession.profileData.individualOccupation}
+              individualSalary={assignmentSession.profileData.individualSalary}
+              maritalStatus={assignmentSession.profileData.maritalStatus}
+              numberOfChildren={assignmentSession.profileData.numberOfChildren}
+              spouseOccupation={assignmentSession.profileData.spouseOccupation}
+              spouseSalary={assignmentSession.profileData.spouseSalary}
             />
           </div>
           <div className="flex gap-8 justify-center">
@@ -128,7 +137,9 @@ const FinanceProfile = () => {
         </div>
       )}
       {stage === STAGES.ASSIGNMENT && (
-        <AssignmentSession profileData={profileData} onClick={routeEnd} />
+        <AssignmentSession
+          // profileData={profileData} 
+          onClick={routeEnd} />
       )}
       {stage === STAGES.END && <EndSession onClick={routeStart} />}
     </div>

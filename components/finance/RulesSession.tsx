@@ -12,8 +12,8 @@ import { getRndInteger } from "../../pages/api/random";
 export interface RulesSessionProps {
   onClick: () => void;
   badgeData: any;
-  profileData: FinanceProfileType;
-  setProfileData: (profileData: FinanceProfileType) => void;
+  // profileData: FinanceProfileType;
+  // setProfileData: (profileData: FinanceProfileType) => void;
 }
 
 export const RulesSession = ({ onClick, badgeData }: RulesSessionProps) => {

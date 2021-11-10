@@ -36,15 +36,18 @@ import {
 
 export interface FinanceProfileProps {
   onClick: () => void;
-  profileData: FinanceProfileType;
+  // profileData: FinanceProfileType;
 }
 
-const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
+const AssignmentSession = ({
+  onClick,
+  // profileData
+}: FinanceProfileProps) => {
 
   const dispatch = useAppDispatch()
   const assignmentSession = useSelector(assignmentSessionSelector)
 
-  // const [sectionOneValidation, setSectionOneValidation] = useState(false);
+  const [sectionOneValidation, setSectionOneValidation] = useState(false);
 
   const [isSubmitModalShowing, setIsSubmitModalShowing] = useState(false);
   const [surpriseData, setSurpriseData] = useState<SurpriseCardType>();
@@ -109,15 +112,15 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
             Here is your Life Card
           </div>
         </header>
-        {profileData && (
+        {assignmentSession.profileData && (
           <div className={"flex items-center justify-center my-4"}>
             <FinanceProfileChart
-              individualOccupation={profileData.individualOccupation}
-              individualSalary={profileData.individualSalary}
-              maritalStatus={profileData.maritalStatus}
-              numberOfChildren={profileData.numberOfChildren}
-              spouseOccupation={profileData.spouseOccupation}
-              spouseSalary={profileData.spouseSalary}
+              individualOccupation={assignmentSession.profileData.individualOccupation}
+              individualSalary={assignmentSession.profileData.individualSalary}
+              maritalStatus={assignmentSession.profileData.maritalStatus}
+              numberOfChildren={assignmentSession.profileData.numberOfChildren}
+              spouseOccupation={assignmentSession.profileData.spouseOccupation}
+              spouseSalary={assignmentSession.profileData.spouseSalary}
             />
           </div>
         )}
@@ -210,9 +213,9 @@ const AssignmentSession = ({ onClick, profileData }: FinanceProfileProps) => {
         </div>
         <div>
           <SectionOneInput
-            profileData={profileData}
-          // sectionOneValidation={sectionOneValidation}
-          // setSectionOneValidation={setSectionOneValidation}
+            sectionOneValidation={sectionOneValidation}
+            setSectionOneValidation={setSectionOneValidation}
+          // profileData={profileData}
           />
 
           {assignmentSession.sectionOneValidation ? (
