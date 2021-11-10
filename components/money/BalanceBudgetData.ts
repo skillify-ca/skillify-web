@@ -1,6 +1,6 @@
 import { PersonData } from "../../pages/api/money/personData";
 
-export const PersonDataTable:PersonData[] = [
+export const personDataTable:PersonData[] = [
 	{
 		name: "Miranda",
 		month: "February",

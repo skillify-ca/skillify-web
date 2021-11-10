@@ -5,7 +5,7 @@ import {
 import { QuestionType } from "../questionTypes";
 import { getRndHundredthsDecimal } from '../random';
 import { ItemDataTable } from '../../../components/money/BudgetTableData';
-import { ItemCostModel } from "./personData";
+import { ItemCostModel } from "./itemCostModel";
 
 export function getBudgetQuestion(
   tape: number,

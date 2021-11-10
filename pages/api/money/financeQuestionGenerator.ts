@@ -5,7 +5,7 @@ import { getRndHundredthsDecimal, getRndInteger } from '../random';
 import { getTipQuestion } from "./tipQuestion";
 import { getBudgetQuestion } from "./budgetQuestion";
 import { getBalanceBudgetQuestion } from "./balanceBudgetQuestion";
-import { PersonDataTable } from "../../../components/money/BalanceBudgetData";
+import { personDataTable } from "../../../components/money/BalanceBudgetData";
 
 
 export function getRandomFinanceQuestion(
@@ -31,8 +31,8 @@ export function getRandomFinanceQuestion(
     return getBudgetQuestion(tape, bulb);
   
   } else if (type === QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM) {
-    let personIndex = getRndInteger(0, PersonDataTable.length);
-    let person = PersonDataTable[personIndex];
+    let personIndex = getRndInteger(0, personDataTable.length);
+    let person = personDataTable[personIndex];
     return getBalanceBudgetQuestion(person);
   }
 
