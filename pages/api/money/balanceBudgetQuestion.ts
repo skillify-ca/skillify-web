@@ -12,19 +12,21 @@ export function getBalanceBudgetQuestion(
     person.totalExpenses = 0;
     person.totalIncome = 0;
 
-    /** Convert this using reduce method */
-    person.expenses.map((expense) => {
-      person.totalExpenses += expense.cost;
-    })
-    person.income.map((element) => {
-      person.totalIncome += element.cost;
-    })
+    person.totalExpenses = person.expenses.reduce((total, expense) => {
+      return total + expense.cost
+    }, 0);
+    person.totalIncome = person.income.reduce((total, income) => {
+      return total + income.cost
+    }, 0);
     /** 
      * The question asks how much the person needs to earn to balance their budget
      * isCorrect if (total income == total expense) && (total income - total expense == 0)
      * the answer is the difference
      */
     answer = person.totalExpenses - person.totalIncome;
+    console.log(person.totalExpenses);
+    console.log(person.totalIncome);
+    console.log(answer);
 
     return {
       text: person.name,
