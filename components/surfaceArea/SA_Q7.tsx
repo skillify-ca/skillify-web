@@ -49,8 +49,6 @@ const Q7 = (displayQuestion, nextQuestion, isWrong) => {
 
   const setLinesForCurrentQuestion = (lines: LineData[]) => {
     const newLines = linesForQuestions.map((l, index) => {
-      console.log("Line:" + typeof l);
-      console.log("Index:" + index);
       if (index === 0) {
         return lines;
       } else {
@@ -62,8 +60,6 @@ const Q7 = (displayQuestion, nextQuestion, isWrong) => {
 
   const setLinesForCurrentQuestion2 = (lines: LineData[]) => {
     const newLines = linesForQuestions.map((l, index) => {
-      console.log("Line:" + typeof l);
-      console.log("Index:" + index);
       if (index === 1) {
         return lines;
       } else {
@@ -75,8 +71,6 @@ const Q7 = (displayQuestion, nextQuestion, isWrong) => {
 
   const setLinesForCurrentQuestion3 = (lines: LineData[]) => {
     const newLines = linesForQuestions.map((l, index) => {
-      console.log("Line:" + typeof l);
-      console.log("Index:" + index);
       if (index === 2) {
         return lines;
       } else {
