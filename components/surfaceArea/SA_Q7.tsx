@@ -10,7 +10,9 @@ const FreeDrawing = dynamic(() => import("../ui/FreeDrawing"), {
 
 //Future component, name: TypeAnswerQuestion
 const Q7 = (displayQuestion, nextQuestion, isWrong) => {
-  const [guessString, setGuessString] = useState<string>("");
+  const [guessStringRectPrism, setGuessStringRectPrism] = useState<string>("");
+  const [guessStringCube, setGuessStringCube] = useState<string>("");
+  const [guessStringTriPrism, setGuessStringTriPrism] = useState<string>("");
   const EMPTY_ARRAY_OF_ARRAYS = [[], [], []];
   const [historyStepForQuestions, setHistoryStepForQuestions] = useState<
     number[]
@@ -19,14 +21,26 @@ const Q7 = (displayQuestion, nextQuestion, isWrong) => {
     LineData[][]
   >(EMPTY_ARRAY_OF_ARRAYS);
 
-  const onGuessChanged = (currentGuess: string) => {
+  const onGuessChangedRectPrism = (currentGuess: string) => {
     const newGuess = currentGuess;
-    setGuessString(newGuess);
+    setGuessStringRectPrism(newGuess);
+  };
+
+  const onGuessChangedCube = (currentGuess: string) => {
+    const newGuess = currentGuess;
+    setGuessStringCube(newGuess);
+  };
+
+  const onGuessChangedTriPrism = (currentGuess: string) => {
+    const newGuess = currentGuess;
+    setGuessStringTriPrism(newGuess);
   };
 
   const onSubmit = () => {
+    const guessStringLocal =
+      guessStringRectPrism + "," + guessStringCube + "," + guessStringTriPrism;
     const guess: GuessData = {
-      guess: guessString,
+      guess: guessStringLocal,
       isCorrect: true,
     };
     //Pass this guessData object into nextQuestion
@@ -82,7 +96,21 @@ const Q7 = (displayQuestion, nextQuestion, isWrong) => {
                         disabled={false}
                       />
                     )}
-                    <label>Answer</label>
+                    <div className="col-span-12">
+                      <div className="flex gap-4 justify-between items-center">
+                        <label>
+                          Find the surface area of the prism image above
+                        </label>
+                        <input
+                          className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
+                          placeholder=""
+                          value={guessStringRectPrism}
+                          onChange={(e) =>
+                            onGuessChangedRectPrism(e.target.value)
+                          }
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -106,7 +134,19 @@ const Q7 = (displayQuestion, nextQuestion, isWrong) => {
                         disabled={false}
                       />
                     )}
-                    <label>Answer</label>
+                    <div className="col-span-12">
+                      <div className="flex gap-4 justify-between items-center">
+                        <label>
+                          Find the surface area of the prism image above
+                        </label>
+                        <input
+                          className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
+                          placeholder=""
+                          value={guessStringCube}
+                          onChange={(e) => onGuessChangedCube(e.target.value)}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -130,7 +170,21 @@ const Q7 = (displayQuestion, nextQuestion, isWrong) => {
                         disabled={false}
                       />
                     )}
-                    <label>Answer</label>
+                    <div className="col-span-12">
+                      <div className="flex gap-4 justify-between items-center">
+                        <label>
+                          Find the surface area of the prism image above
+                        </label>
+                        <input
+                          className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
+                          placeholder=""
+                          value={guessStringTriPrism}
+                          onChange={(e) =>
+                            onGuessChangedTriPrism(e.target.value)
+                          }
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
