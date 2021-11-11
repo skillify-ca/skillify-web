@@ -9,6 +9,9 @@ import {
   getRndInteger,
 } from "../../pages/api/random";
 import { Skill } from "../../pages/api/skill";
+import BalanceBudget from "../money/BalanceBudgetTable";
+import BudgetTable from "../money/BudgetTable";
+import TipQuestion from "../money/TipQuestion";
 import { FillBlank } from "../questionTypes/FillBlank";
 import { HorizontalEquation } from "../questionTypes/HorizontalEquation";
 import { LongDivision } from "../questionTypes/LongDivision";
@@ -272,6 +275,45 @@ const QuestionSet = ({
             question={questionData[index]}
             submitGuess={submitGuess}
             color={getRandomItemFromArray([0, 1, 2, 3])}
+          />
+        );
+      }
+    } else if ( 
+      questionData[index].questionType ===
+      QuestionType.FINANCE_BUDGET_TABLE_PROBLEM
+    ) {
+      {
+        return (
+            <BudgetTable
+              question={questionData[index]}
+              answer={questionData[index].answer}
+              submitGuess={submitGuess}
+            />
+        );
+      }
+    } else if (
+      questionData[index].questionType ===
+      QuestionType.FINANCE_TIP_PROBLEM
+    ) {
+      {
+        return (
+          <TipQuestion
+            question={questionData[index]}
+            answer={questionData[index].answer}
+            submitGuess={submitGuess}
+          />
+        );
+      }
+    } else if (
+      questionData[index].questionType === 
+      QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM
+    ) {
+      {
+        return (
+          <BalanceBudget
+            question={questionData[index]}
+            answer={questionData[index].answer}
+            submitGuess={submitGuess}
           />
         );
       }

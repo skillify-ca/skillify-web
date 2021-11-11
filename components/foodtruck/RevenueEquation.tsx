@@ -5,6 +5,10 @@ export interface RevenueEquationProps {
   selectedFood: Food;
   selectedNumWorkers: string;
   revEquationOneBoxOne: string;
+  revenueComponentComplete: boolean;
+
+  setRevenueComponentComplete: (revenueComponentComplete: boolean) => void;
+
   setRevEquationOneBoxOne: (revEquationOneBoxOne: string) => void;
   revEquationOneBoxTwo: string;
   setRevEquationOneBoxTwo: (revEquationOneBoxTwo: string) => void;
@@ -23,6 +27,8 @@ export interface RevenueEquationProps {
 const RevenueEquation = ({
   selectedFood,
   selectedNumWorkers,
+  revenueComponentComplete,
+  setRevenueComponentComplete,
   revEquationOneBoxOne,
   setRevEquationOneBoxOne,
   revEquationOneBoxTwo,
@@ -78,6 +84,10 @@ const RevenueEquation = ({
     return validateQuestionOneAnswer() && validateQuestionTwoAnswer();
   };
 
+  const passRevenueComponent = () => {
+    setRevenueComponentComplete(validateComponent());
+  };
+
   const equationContainerCSS = (
     inputBox: string,
     validateFunction: boolean
@@ -97,7 +107,7 @@ const RevenueEquation = ({
 
   return (
     <div className="flex flex-col border-r-2 border-dashed border-black p-4">
-      <h1 className="text-6xl mb-8">
+      <h1 className="text-xl mb-8">
         Great Work! Will your business be a success?
       </h1>
 
@@ -120,11 +130,11 @@ const RevenueEquation = ({
       </h1>
       <h1 className="text-3xl font-bold p-4">Equation 1:</h1>
       <div className="grid grid-cols-5 items-center justify-center py-4">
-        <p className="text-3xl text-center"># Plates / Hour</p>
+        <p className="text-3xl text-center"># Plates per Hour</p>
         <p className="text-4xl text-center">x</p>
         <p className="text-3xl text-center"># of Workers</p>
         <p className="text-4xl text-center">=</p>
-        <p className="text-3xl text-center">Total Plates / Hour</p>
+        <p className="text-3xl text-center">Total Plates per Hour</p>
       </div>
       <div className="grid grid-cols-5 items-center justify-center py-4">
         <input
@@ -167,13 +177,13 @@ const RevenueEquation = ({
 
       <h1 className="text-3xl font-bold pt-8 pl-4">Equation 2:</h1>
       <div className="grid grid-cols-7 items-center justify-center pt-4">
-        <p className="text-3xl text-center m-4">Total Plates / Hour</p>
+        <p className="text-3xl text-center m-4">Total Plates per Hour</p>
         <p className="text-4xl text-center m-4">x</p>
-        <p className="text-3xl text-center m-4">Price / Plate</p>
+        <p className="text-3xl text-center m-4">Price per Plate</p>
         <p className="text-4xl text-center m-4">x</p>
-        <p className="text-3xl text-center m-4">Hours / Day</p>
+        <p className="text-3xl text-center m-4">Hours per Day</p>
         <p className="text-4xl text-center m-4">=</p>
-        <p className="text-3xl text-center m-4">$$$ / Day</p>
+        <p className="text-3xl text-center m-4">Revenue per Day</p>
         <input
           className={equationContainerCSS(
             revEquationTwoBoxOne,
@@ -213,7 +223,10 @@ const RevenueEquation = ({
             validateQuestionTwoAnswer()
           )}
           value={revEquationTwoBoxFour}
-          onChange={(e) => setRevEquationTwoBoxFour(e.target.value)}
+          onChange={(e) => {
+            setRevEquationTwoBoxFour(e.target.value);
+            passRevenueComponent();
+          }}
           placeholder="2"
         />
       </div>

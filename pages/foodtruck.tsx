@@ -18,6 +18,10 @@ import LaborCostEquation from "../components/foodtruck/LaborCostEquation";
 import ProfitEquation from "../components/foodtruck/ProfitEquation";
 
 import { Button } from "../components/ui/Button";
+import { useMutation } from "@apollo/client";
+import { UNLOCK_BADGE } from "../graphql/unlockBadge";
+import { useAuth } from "../lib/authContext";
+import { EndSession } from "../components/budget/EndSession";
 
 /*
 TODO fix these issues before make it obvious when food items are not selectable
@@ -42,7 +46,22 @@ export default function FoodTruck(props) {
     ProdCostEquation,
     LaborCostEquation,
     ProfitEquation,
+    SessionEnd,
   }
+
+  const disableNextStage = (stage: STAGE) => {
+    if (stage == STAGE.RevenueEquation) {
+      return !revenueComponentComplete;
+    } else if (stage == STAGE.ProdCostEquation) {
+      return !prodCostComponentComplete;
+    } else if (stage == STAGE.LaborCostEquation) {
+      return !laborCostComponentComplete;
+    } else if (stage == STAGE.ProfitEquation) {
+      return !profitComponentComplete;
+    } else {
+      return false;
+    }
+  };
 
   const [stage, setStage] = useState(STAGE.ChooseTruck);
 
@@ -52,8 +71,24 @@ export default function FoodTruck(props) {
     }
   };
 
+  const [unlockbadge, unlockBadgeData] = useMutation(UNLOCK_BADGE);
+
+  const { user } = useAuth();
+
+  const awardBadge = () => {
+    unlockbadge({
+      variables: {
+        userId: user.uid,
+        badgeId: 57, //Badge ID for Food Truck Badge (in DB)
+      },
+    });
+  };
+
   const nextStage = () => {
-    if (stage < STAGE.ProfitEquation) {
+    if (stage < STAGE.SessionEnd) {
+      if (stage === STAGE.ProfitEquation) {
+        awardBadge();
+      }
       setStage(stage + 1);
     }
   };
@@ -78,6 +113,16 @@ export default function FoodTruck(props) {
   const [truck, setTruck] = useState(smallTruck);
   const [food, setFood] = useState(hotDog);
   const [selectedNumWorkers, setSelectedNumWorkers] = useState("1");
+  const [revenueComponentComplete, setRevenueComponentComplete] = useState(
+    false
+  );
+  const [prodCostComponentComplete, setProdCostComponentComplete] = useState(
+    false
+  );
+  const [laborCostComponentComplete, setLaborCostComponentComplete] = useState(
+    false
+  );
+  const [profitComponentComplete, setProfitComponentComplete] = useState(false);
 
   // revenue equation one
   const [revEquationOneBoxOne, setRevEquationOneBoxOne] = useState("");
@@ -191,6 +236,8 @@ export default function FoodTruck(props) {
         <RevenueEquation
           selectedNumWorkers={selectedNumWorkers}
           selectedFood={food}
+          revenueComponentComplete={revenueComponentComplete}
+          setRevenueComponentComplete={setRevenueComponentComplete}
           revEquationOneBoxOne={revEquationOneBoxOne}
           setRevEquationOneBoxOne={setRevEquationOneBoxOne}
           revEquationOneBoxTwo={revEquationOneBoxTwo}
@@ -212,6 +259,8 @@ export default function FoodTruck(props) {
         <ProdCostEquation
           selectedFood={food}
           selectedTruck={truck}
+          prodCostComponentComplete={prodCostComponentComplete}
+          setProdCostComponentComplete={setProdCostComponentComplete}
           selectedNumWorkers={selectedNumWorkers}
           prodCostEquationOneBoxOne={prodCostEquationOneBoxOne}
           setProdCostEquationOneBoxOne={setProdCostEquationOneBoxOne}
@@ -237,6 +286,8 @@ export default function FoodTruck(props) {
           selectedFood={food}
           selectedTruck={truck}
           selectedNumWorkers={selectedNumWorkers}
+          laborCostComponentComplete={laborCostComponentComplete}
+          setLaborCostComponentComplete={setLaborCostComponentComplete}
           laborCostEquationOneBoxOne={laborCostEquationOneBoxOne}
           setLaborCostEquationOneBoxOne={setLaborCostEquationOneBoxOne}
           laborCostEquationOneBoxTwo={laborCostEquationOneBoxTwo}
@@ -261,6 +312,8 @@ export default function FoodTruck(props) {
           selectedFood={food}
           selectedTruck={truck}
           selectedNumWorkers={selectedNumWorkers}
+          profitComponentComplete={profitComponentComplete}
+          setProfitComponentComplete={setProfitComponentComplete}
           profitEquationOneBoxOne={profitEquationOneBoxOne}
           setProfitEquationOneBoxOne={setProfitEquationOneBoxOne}
           profitEquationOneBoxTwo={profitEquationOneBoxTwo}
@@ -279,22 +332,18 @@ export default function FoodTruck(props) {
       stage == STAGE.SelectNumWorkers
     ) {
       return (
-        <div className="flex flex-col p-8">
-          <h1 className="text-6xl text-center mb-12">Game Progress</h1>
-          <div className="grid grid-cols-2 space-y-12 text-4xl text-center items-center">
+        <div className="flex flex-col p-8 bg-purple-200 gap-8 h-full">
+          <h1 className="text-3xl text-center">Game Progress</h1>
+          <div className="grid grid-cols-2 text-xl text-center items-center gap-8">
             <p>Your Stand:</p>
             <figure>
-              <img className="object-contain h-48 w-60" src={truck.imageUrl} />
-              <figcaption className="text-3xl text-justify">
-                {truck.model}
-              </figcaption>
+              <img className="object-contain w-60" src={truck.imageUrl} />
+              <figcaption className="">{truck.model}</figcaption>
             </figure>
             <p>Your Food:</p>
             <figure>
-              <img className="object-contain h-48 w-60" src={food.imageUrl} />
-              <figcaption className="text-3xl text-justify">
-                {food.name}
-              </figcaption>
+              <img className="object-contain w-60" src={food.imageUrl} />
+              <figcaption className="">{food.name}</figcaption>
             </figure>
             <p>Number of Workers:</p>
             <div className="flex flex-cols">
@@ -305,28 +354,28 @@ export default function FoodTruck(props) {
       );
     } else if (stage == STAGE.RevenueEquation) {
       return (
-        <div className="flex flex-col p-8">
-          <h1 className="text-6xl mb-8">Useful Inputs</h1>
-          <div className="grid grid-cols-2 text-3xl text-justify space-y-2">
-            <p>Number of Workers:</p>
-            <p>{selectedNumWorkers}</p>
-            <p>Plates / Hour (1 worker):</p>
-            <p>{food.qtyProducedPerWorkerHour}</p>
-            <p>Sale Price:</p>
-            <p>${food.unitRevenue}</p>
-            <p>Hours / Day:</p>
-            <p>{operatingHours}</p>
+        <div className="flex flex-col p-8 items-center justify-center">
+          <h1 className="text-5xl mb-8 text-center">Useful Inputs</h1>
+          <div className="grid grid-cols-12 text-3xl space-y-2 w-full items-center">
+            <p className="col-span-10">Number of Workers:</p>
+            <p className="col-span-2">{selectedNumWorkers}</p>
+            <p className="col-span-10">Plates / Hour (per worker):</p>
+            <p className="col-span-2">{food.qtyProducedPerWorkerHour}</p>
+            <p className="col-span-10">Sale Price:</p>
+            <p className="col-span-2">${food.unitRevenue}</p>
+            <p className="col-span-10">Hours / Day:</p>
+            <p className="col-span-2">{operatingHours}</p>
           </div>
-          <h1 className="text-6xl my-12">Equation Progress</h1>
-          <div className="grid grid-cols-2 text-3xl text-justify space-y-2">
-            <p>
+          <h1 className="text-5xl my-12">Equation Progress</h1>
+          <div className="grid grid-cols-12 text-3xl w-full">
+            <p className="col-span-10">
               Total Plates/Hour ({selectedNumWorkers}{" "}
               {selectedNumWorkers == "1" ? "worker" : "workers"}):
             </p>
-            <p>{revEquationOneBoxThree}</p>
-            <p>Revenue / Hour:</p>
-            <p>${revEquationTwoBoxThree}</p>
-            <p>$$$ / Day:</p>
+            <p className="col-span-2">{revEquationOneBoxThree}</p>
+            <p className="col-span-10">Revenue / Hour:</p>
+            <p className="col-span-2">${revEquationTwoBoxThree}</p>
+            <p className="col-span-10">Revenue / Day:</p>
             <p>${revEquationTwoBoxFour}</p>
           </div>
         </div>
@@ -335,24 +384,24 @@ export default function FoodTruck(props) {
       return (
         <div className="flex flex-col p-8">
           <h1 className="text-6xl mb-8">Useful Inputs</h1>
-          <div className="grid grid-cols-2 text-3xl text-justify space-y-2">
-            <p>Plates / Hour:</p>
-            <p>{revEquationOneBoxThree}</p>
-            <p>Cost / Plate:</p>
-            <p>{food.unitCost}</p>
-            <p>Daily Rental Cost:</p>
-            <p>{truck.fixedCost}</p>
-            <p>Hourly Operating Cost:</p>
-            <p>{truck.variableCost}</p>
-            <p>Hours Working / Day:</p>
-            <p>{operatingHours}</p>
+          <div className="grid grid-cols-12 text-3xl w-full space-y-2">
+            <p className="col-span-10">Plates per Hour:</p>
+            <p className="col-span-2">{revEquationOneBoxThree}</p>
+            <p className="col-span-10">Cost per Plate:</p>
+            <p className="col-span-2">{food.unitCost}</p>
+            <p className="col-span-10">Daily Rental Cost:</p>
+            <p className="col-span-2">{truck.fixedCost}</p>
+            <p className="col-span-10">Hourly Operating Cost:</p>
+            <p className="col-span-2">{truck.variableCost}</p>
+            <p className="col-span-10">Hours Working per Day:</p>
+            <p className="col-span-2">{operatingHours}</p>
           </div>
           <h1 className="text-6xl my-12">Equation Progress</h1>
-          <div className="grid grid-cols-2 text-3xl text-justify space-y-2">
-            <p>Total Daily Ingredient Cost:</p>
-            <p>{prodCostEquationOneBoxFour}</p>
-            <p>Total Daily Truck Cost:</p>
-            <p>{prodCostEquationTwoBoxFour}</p>
+          <div className="grid grid-cols-12 text-3xl w-full space-y-2">
+            <p className="col-span-10">Total Daily Ingredient Cost:</p>
+            <p className="col-span-2">{prodCostEquationOneBoxFour}</p>
+            <p className="col-span-10">Total Daily Truck Cost:</p>
+            <p className="col-span-2">{prodCostEquationTwoBoxFour}</p>
           </div>
         </div>
       );
@@ -360,24 +409,24 @@ export default function FoodTruck(props) {
       return (
         <div className="flex flex-col p-8">
           <h1 className="text-6xl mb-8">Useful Inputs</h1>
-          <div className="grid grid-cols-2 text-3xl text-justify space-y-2">
-            <p>Number of Workers:</p>
-            <p>{selectedNumWorkers}</p>
-            <p>Minumum Hourly Wage:</p>
-            <p>{minimumWage}</p>
-            <p>Hours Operating / Day:</p>
-            <p>{operatingHours}</p>
-            <p>Total Daily Ingredient Cost:</p>
-            <p>{prodCostEquationOneBoxFour}</p>
-            <p>Total Daily Truck Rental Cost:</p>
-            <p>{prodCostEquationTwoBoxFour}</p>
+          <div className="grid grid-cols-12 text-3xl w-full space-y-2">
+            <p className="col-span-10">Number of Workers:</p>
+            <p className="col-span-2">{selectedNumWorkers}</p>
+            <p className="col-span-10">Minumum Hourly Wage:</p>
+            <p className="col-span-2">{minimumWage}</p>
+            <p className="col-span-10">Hours Operating / Day:</p>
+            <p className="col-span-2">{operatingHours}</p>
+            <p className="col-span-10">Total Daily Ingredient Cost:</p>
+            <p className="col-span-2">{prodCostEquationOneBoxFour}</p>
+            <p className="col-span-10">Total Daily Truck Rental Cost:</p>
+            <p className="col-span-2">{prodCostEquationTwoBoxFour}</p>
           </div>
           <h1 className="text-6xl my-12">Equation Progress</h1>
-          <div className="grid grid-cols-2 text-3xl text-justify space-y-2">
-            <p>Total Wages / Day</p>
-            <p>{laborCostEquationOneBoxFour}</p>
-            <p>Total Costs / Day:</p>
-            <p>{laborCostEquationTwoBoxFour}</p>
+          <div className="grid grid-cols-12 text-3xl w-full space-y-2">
+            <p className="col-span-10">Total Wages per Day:</p>
+            <p className="col-span-2">{laborCostEquationOneBoxFour}</p>
+            <p className="col-span-10">Total Costs per Day:</p>
+            <p className="col-span-2">{laborCostEquationTwoBoxFour}</p>
           </div>
         </div>
       );
@@ -385,18 +434,20 @@ export default function FoodTruck(props) {
       return (
         <div className="flex flex-col p-8">
           <h1 className="text-6xl mb-8">Useful Inputs</h1>
-          <div className="grid grid-cols-2 text-3xl text-justify space-y-2">
-            <p>Total Daily Revenue:</p>
-            <p>${Number.parseInt(revEquationTwoBoxFour)}</p>
-            <p>Total Daily Costs:</p>
-            <p>${laborCostEquationTwoBoxFour}</p>
+          <div className="grid grid-cols-12 text-3xl space-y-2">
+            <p className="col-span-10">Total Daily Revenue:</p>
+            <p className="col-span-2">
+              ${Number.parseInt(revEquationTwoBoxFour)}
+            </p>
+            <p className="col-span-10">Total Daily Costs:</p>
+            <p className="col-span-2">${laborCostEquationTwoBoxFour}</p>
           </div>
           <h1 className="text-6xl my-12">Equation Progress</h1>
-          <div className="grid grid-cols-2 text-3xl text-justify space-y-2">
-            <p>Total Revenue / Day</p>
-            <p>{profitEquationOneBoxOne}</p>
-            <p>Total Costs / Day:</p>
-            <p>{profitEquationOneBoxTwo}</p>
+          <div className="grid grid-cols-12 text-3xl space-y-2">
+            <p className="col-span-10">Total Revenue per Day</p>
+            <p className="col-span-2">{profitEquationOneBoxOne}</p>
+            <p className="col-span-10">Total Costs per Day:</p>
+            <p className="col-span-2">{profitEquationOneBoxTwo}</p>
           </div>
         </div>
       );
@@ -404,43 +455,61 @@ export default function FoodTruck(props) {
   };
 
   return (
-    <div className="flex flex-col p-12">
-      <div className="flex justify-evenly items-center border-black border-b-2 pb-12">
-        <img
-          className="object-left object-contain h-28"
-          src={
-            "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/77310/food-truck-clipart-md.png"
-          }
-        />
-        <h1 className="p-8 text-black bold text-8xl">
+    <div className="flex flex-col h-screen">
+      <div className="flex-grow-0 bg-gradient-to-b from-gray-200 to-pink-100 sticky top-0 grid grid-cols-12 justify-evenly items-center border-black border-b-2 p-4">
+        <div className="col-span-2 flex flex-col items-center gap-4">
+          <img
+            className="object-left object-contain h-16"
+            src={
+              "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/77310/food-truck-clipart-md.png"
+            }
+          />{" "}
+          <Button
+            backgroundColor="pink"
+            textColor="white"
+            label="Previous"
+            onClick={previousStage}
+          />
+        </div>
+
+        <h1 className="col-span-8 text-black bold text-center text-4xl p-4">
           Let's Build Your Own Food Stand!
         </h1>
-        <img
-          className="object-right object-contain h-28 invert"
-          src={
-            "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/77310/food-truck-clipart-md.png"
-          }
-        />
+        <div className="col-span-2 flex flex-col items-center gap-4">
+          <img
+            className="object-right object-contain h-16 invert"
+            src={
+              "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/77310/food-truck-clipart-md.png"
+            }
+          />{" "}
+          <Button
+            backgroundColor="pink"
+            textColor="white"
+            label={stage == STAGE.ProfitEquation ? "Finish!" : "Next"}
+            //put write badge function here
+            onClick={nextStage}
+            disabled={disableNextStage(stage)}
+          />
+        </div>
       </div>
-      <div className="flex flex-row">
-        <div className="w-2/3">{getLeftComponent(stage)}</div>
-        <div className="w-1/3">{getProgressComponent(stage)}</div>
-      </div>
-      <div className="w-3/4 flex flex-row space-x-8 justify-center p-12">
-        <Button
-          backgroundColor="pink"
-          textColor="white"
-          label="Previous"
-          onClick={previousStage}
-        />
-
-        <Button
-          backgroundColor="pink"
-          textColor="white"
-          label="Next"
-          onClick={nextStage}
-        />
-      </div>
+      {stage === STAGE.SessionEnd ? (
+        <div>
+          <EndSession
+            onClick={() => {
+              setStage(STAGE.ChooseTruck);
+            }}
+          />
+        </div>
+      ) : (
+        <div className="flex-grow grid grid-cols-12">
+          <div className="col-span-8 overflow-y-auto bg-blue-100">
+            {getLeftComponent(stage)}
+          </div>
+          <div className="col-span-4 bg-purple-200 h-full">
+            {getProgressComponent(stage)}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

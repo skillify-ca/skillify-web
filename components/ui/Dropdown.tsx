@@ -1,22 +1,17 @@
-import { Fragment, useState } from 'react'
-import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import { Fragment, useState } from "react";
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
-const Dropdown = ({testLengths, selected, setSelected}) => {
-
+const Dropdown = ({ testLengths, selected, setSelected }) => {
   const onChange = (e) => {
-    console.log("selected", selected);
-    
-    setSelected(e)
+    setSelected(e);
     // setTestLength(e.value)
-  	console.log("new", e);
+  };
 
-  }
-  
   return (
     <div className="flex items-center gap-4">
       <Listbox value={selected} onChange={setSelected}>
@@ -28,7 +23,10 @@ const Dropdown = ({testLengths, selected, setSelected}) => {
                   <span className="block truncate">{selected.name}</span>
                 </span>
                 <span className="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                  <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <SelectorIcon
+                    className="h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
                 </span>
               </Listbox.Button>
 
@@ -48,8 +46,8 @@ const Dropdown = ({testLengths, selected, setSelected}) => {
                       key={person.id}
                       className={({ active }) =>
                         classNames(
-                          active ? 'text-white bg-blue-600' : 'text-gray-900',
-                          'cursor-default select-none relative py-2 pl-3 pr-9'
+                          active ? "text-white bg-blue-600" : "text-gray-900",
+                          "cursor-default select-none relative py-2 pl-3 pr-9"
                         )
                       }
                       value={person}
@@ -58,7 +56,10 @@ const Dropdown = ({testLengths, selected, setSelected}) => {
                         <>
                           <div className="flex items-center">
                             <span
-                              className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}
+                              className={classNames(
+                                selected ? "font-semibold" : "font-normal",
+                                "ml-3 block truncate"
+                              )}
                             >
                               {person.name}
                             </span>
@@ -67,11 +68,14 @@ const Dropdown = ({testLengths, selected, setSelected}) => {
                           {selected ? (
                             <span
                               className={classNames(
-                                active ? 'text-white' : 'text-blue-600',
-                                'absolute inset-y-0 right-0 flex items-center pr-4'
+                                active ? "text-white" : "text-blue-600",
+                                "absolute inset-y-0 right-0 flex items-center pr-4"
                               )}
                             >
-                              <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                              <CheckIcon
+                                className="h-5 w-5"
+                                aria-hidden="true"
+                              />
                             </span>
                           ) : null}
                         </>

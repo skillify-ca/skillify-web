@@ -11,7 +11,7 @@ const Dot = ({ exists = true, visible = true }: DotProps) => {
       <div
         className={`${
           visible ? "opacity-100" : "opacity-0"
-        } rounded-full h-8 w-8 flex items-center justify-center bg-red-400 border-black`}
+        } rounded-full h-8 w-8 flex items-center justify-center bg-red-400 border-black transition transform hover:scale-110 hover:bg-red-300`}
       ></div>
     )
   );

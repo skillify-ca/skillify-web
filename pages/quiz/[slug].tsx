@@ -6,13 +6,11 @@ import Link from "next/link";
 import { useMutation } from "@apollo/client";
 import { generateQuestions } from "../api/quiz/quizQuestionGenerator";
 import { v4 as uuidv4 } from "uuid";
-import { userId } from "../../graphql/utils/constants";
-import { useSession } from "next-auth/react";
 import QuestionSet from "../../components/stories/QuestionSet";
 import { QuestionType } from "../api/questionTypes";
 import { GuessData } from "../api/guessData";
 import { AnswerType, Question } from "../api/question";
-import { getSkillId, Skill } from "../api/skill";
+import { Skill } from "../api/skill";
 import { UNLOCK_BADGE } from "../../graphql/unlockBadge";
 import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
 import { getBadgeId } from "../api/badgeHelper";
@@ -21,6 +19,7 @@ import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
 import { SAVE_QUIZ_ATTEMPT } from "../../graphql/saveQuizAttempt";
 import Navbar from "../../components/Navbar";
+import { useAuth } from "../../lib/authContext";
 
 //
 export function getGradeLevel(score: number) {
@@ -41,7 +40,8 @@ export function getGradeLevel(score: number) {
 
 const Quiz = ({ slug }) => {
   const { query } = useRouter();
-  const { data: session, status } = useSession();
+  const { user } = useAuth();
+
   const [index, setIndex] = useState(0);
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const [isGameOver, setGameOver] = useState(false);
@@ -62,9 +62,8 @@ const Quiz = ({ slug }) => {
   const [guesses, setGuesses] = useState([]);
   const length = questionData.length;
   const [sessionId, setSessionId] = React.useState("");
-  const [saveQuizGuesses, saveQuizGuessesMutation] = useMutation(
-    SAVE_USER_GUESSES
-  );
+  const [saveQuizGuesses, saveQuizGuessesMutation] =
+    useMutation(SAVE_USER_GUESSES);
 
   const [saveQuizData, saveQuizDataMutation] = useMutation(SAVE_QUIZ_ATTEMPT, {
     onCompleted: (data) => {
@@ -74,7 +73,7 @@ const Quiz = ({ slug }) => {
         variables: {
           guessesArray: guesses.map((it) => {
             it.quizId = quizId;
-            it.userId = userId(session);
+            it.userId = user.uid;
             it.timeTaken = 3;
             return it;
           }),
@@ -85,7 +84,7 @@ const Quiz = ({ slug }) => {
       {
         query: FETCH_USER_QUIZZES,
         variables: {
-          userId: userId(session),
+          userId: user.uid,
           badgeId: getBadgeId(slug, currentLevel),
         },
       },
@@ -119,13 +118,13 @@ const Quiz = ({ slug }) => {
       {
         query: FETCH_USER_BADGES,
         variables: {
-          userId: userId(session),
+          userId: user.uid,
         },
       },
       {
         query: FETCH_USER_SKILL_BADGE,
         variables: {
-          userId: userId(session),
+          userId: user.uid,
           badgeId: getBadgeId(slug, currentLevel),
         },
       },
@@ -144,7 +143,7 @@ const Quiz = ({ slug }) => {
       is_correct: currentGuess.isCorrect,
       question: questionData[index].text,
       guess: currentGuess.guess,
-      skillId: getSkillId(questionData[index].skill).toString(),
+      skillId: questionData[index]?.skill?.toString(),
     };
     const newGuesses = [...guesses, guess];
     setGuesses(newGuesses);
@@ -161,14 +160,14 @@ const Quiz = ({ slug }) => {
         if (newCorrectGuesses / length >= 0.8) {
           unlockBadge({
             variables: {
-              userId: userId(session),
+              userId: user.uid,
               badgeId: getBadgeId(slug, currentLevel),
             },
           });
         }
         saveQuizData({
           variables: {
-            userId: userId(session),
+            userId: user.uid,
             badgeId: getBadgeId(slug, currentLevel),
             accuracy: Math.round((100 * newCorrectGuesses) / length),
             quizTitle: "",

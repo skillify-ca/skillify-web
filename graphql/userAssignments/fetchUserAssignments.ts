@@ -11,6 +11,9 @@ export const FETCH_USER_ASSIGNMENTS = gql`
       user {
         name
       }
+      assignment {
+        title
+      }
     }
   }
 `;

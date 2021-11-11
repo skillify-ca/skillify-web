@@ -24,19 +24,6 @@ const ProgressBar = ({
       <p className="text-2xl text-center">Num Workers: {selectedNumWorkers}</p>
     </div>
   );
-
-  const CostEquationHTML = (
-    <div className="flex flex-col p-4">
-      <h1>Useful Inputs</h1>
-      <p className="text-lg text-center">Food Type: {selectedFood.name}</p>
-      <p className="text-lg text-center">
-        Food Price: {selectedFood.unitRevenue}
-      </p>
-      <p className="text-lg text-center">Num Workers: {selectedNumWorkers}</p>
-      <p>This is annoying</p>
-    </div>
-  );
-
   return RevEquationHTML;
 };
 export default ProgressBar;

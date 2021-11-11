@@ -24,7 +24,7 @@ const ChooseNumWorkers = ({
 
   return (
     <div className="flex flex-col  p-4">
-      <h1 className="text-6xl text-black bold p-4">
+      <h1 className="text-3xl text-black bold p-4">
         How many workers do you want to employ?
       </h1>
 

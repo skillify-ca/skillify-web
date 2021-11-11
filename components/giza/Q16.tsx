@@ -3,7 +3,7 @@ import { GuessData } from "../../pages/api/guessData";
 import { Button } from "../ui/Button";
 
 //426573
-const Q16 = (displayQuestion, nextQuestion) => {
+const Q16 = (displayQuestion, nextQuestion, isWrong) => {
   const [guessString, setGuessString] = useState<string>("");
 
   const answer = "426573";
@@ -19,7 +19,11 @@ const Q16 = (displayQuestion, nextQuestion) => {
       isCorrect: guessString == answer,
     };
     //Pass this guessData object into nextQuestion
-    nextQuestion(guess);
+    if (guess.isCorrect == false) {
+      isWrong(guess.isCorrect, guess);
+    } else {
+      nextQuestion(guess);
+    }
   };
 
   return (

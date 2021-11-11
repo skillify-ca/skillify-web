@@ -10,6 +10,8 @@ export interface ProfitEquationProps {
   selectedFood: Food;
   selectedTruck: Truck;
   selectedNumWorkers: string;
+  profitComponentComplete: boolean;
+  setProfitComponentComplete: (profitComponentComplete: boolean) => void;
   profitEquationOneBoxOne: string;
   setProfitEquationOneBoxOne: (profitEquationOneBoxOne: string) => void;
   profitEquationOneBoxTwo: string;
@@ -22,6 +24,8 @@ const ProfitEquation = ({
   selectedFood,
   selectedTruck,
   selectedNumWorkers,
+  profitComponentComplete,
+  setProfitComponentComplete,
   profitEquationOneBoxOne,
   setProfitEquationOneBoxOne,
   profitEquationOneBoxTwo,
@@ -77,6 +81,10 @@ const ProfitEquation = ({
         validateProfitEquationOneBoxOne().value -
         validateProfitEquationOneBoxTwo().value,
     };
+  };
+
+  const passProfitComponent = () => {
+    setProfitComponentComplete(validateProfitEquationAnswer().isCorrect);
   };
 
   const equationContainerCSS = (
@@ -169,7 +177,10 @@ const ProfitEquation = ({
             validateProfitEquationAnswer().isCorrect
           )}
           value={profitEquationOneBoxThree}
-          onChange={(e) => setProfitEquationOneBoxThree(e.target.value)}
+          onChange={(e) => {
+            setProfitEquationOneBoxThree(e.target.value);
+            passProfitComponent();
+          }}
           placeholder="2"
         />
       </div>

@@ -1,6 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { Preload, OrbitControls, Stars } from "@react-three/drei";
-import { useSession } from "next-auth/react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -8,20 +7,22 @@ import { Canvas } from "react-three-fiber";
 import Navbar from "../../components/Navbar";
 import { Button } from "../../components/ui/Button";
 import { FETCH_UNIT_OVERVIEW } from "../../graphql/fetchUnitOverview";
-import { userId } from "../../graphql/utils/constants";
 import { getBadgeId } from "../api/badgeHelper";
-import { EMOJI_MASTERY, getEmoji } from "../api/skill";
+import { EMOJI_MASTERY, getEmoji, SkillData } from "../api/skill";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { useSelector } from "react-redux";
 import { studentProfileSelector } from "../../redux/studentProfileSlice";
 import { FETCH_SKILL_DESCRIPTION_GRADE_AND_UNIT } from "../../graphql/fetchSkillDescriptionAndGrade";
-import { getVideosForSkill, ResourceMetadata } from "../api/videoHelper";
 import Head from "next/head";
+import { useAuth } from "../../lib/authContext";
+import { FETCH_SKILLS_FOR_UNIT } from "../../graphql/fetchSkillsForUnit";
+import Image from "next/image";
 
 const Box = dynamic(() => import("../../components/stories/Box"));
 
 const UnitOverviewPage = ({ slug, skillData }) => {
-  const { data: session, status } = useSession();
+  const { user } = useAuth();
+
   const studentGrade = useSelector(studentProfileSelector);
 
   let gradeNum = (grade: string) => {
@@ -50,26 +51,42 @@ const UnitOverviewPage = ({ slug, skillData }) => {
     }
   };
 
-  const unitSkills = (skillData) =>
+  type SkillDataResponse = {
+    skills: SkillData[];
+  };
+
+  const skillsForCurrentGrade = (skillData: SkillDataResponse) =>
     skillData.skills.filter(
-      (skill) =>
-        skill.unit == slug && skill.grade == gradeNum(studentGrade.grade)
+      (skill) => skill.grade == gradeNum(studentGrade.grade)
     );
 
-  let { loading, error, data } = useQuery(FETCH_UNIT_OVERVIEW, {
-    variables: {
-      userId: userId(session),
-      skillId:
-        skillData &&
-        skillData.skills
-          .filter(
-            (skill) =>
-              skill.unit == slug && skill.grade == gradeNum(studentGrade.grade)
-          )
-          .map((skill) => skill.id),
-      badgeId: getBadgeId(slug, gradeNum(studentGrade.grade)),
-    },
-  });
+  type UserSkillData = {
+    skill_id: number;
+    emoji: number | null;
+  };
+  type FetchUnitOverviewResponse = {
+    user_skills: UserSkillData[];
+    user_quizzes: any[];
+    user_badges: any[];
+  };
+  let { loading, error, data } = useQuery<FetchUnitOverviewResponse>(
+    FETCH_UNIT_OVERVIEW,
+    {
+      variables: {
+        userId: user?.uid,
+        skillId:
+          skillData &&
+          skillData.skills
+            .filter(
+              (skill) =>
+                skill.unit == slug &&
+                skill.grade == gradeNum(studentGrade.grade)
+            )
+            .map((skill) => skill.id),
+        badgeId: getBadgeId(slug, gradeNum(studentGrade.grade)),
+      },
+    }
+  );
 
   const getMaxAccuracy = (userQuizzes) => {
     let accuracyList = [];
@@ -85,13 +102,21 @@ const UnitOverviewPage = ({ slug, skillData }) => {
     return maxAccuracy;
   };
 
+  const getUserEmojiValue = (skillId: number) => {
+    const userSkillResults = data.user_skills.filter(
+      (it) => it.skill_id == skillId
+    );
+    if (userSkillResults.length > 0) {
+      return userSkillResults[0].emoji;
+    } else {
+      return undefined;
+    }
+  };
+
   const isQuizLocked = () => {
     if (!loading && data && data.user_skills.length !== 0) {
-      const unmasteredSkills = unitSkills(skillData)
-        .map(
-          (skill) =>
-            data.user_skills.filter((it) => it.skill_id == skill.id)[0].emoji
-        )
+      const unmasteredSkills = skillsForCurrentGrade(skillData)
+        .map((skill) => getUserEmojiValue(skill.id))
         .filter((emojiVal) => !emojiVal || emojiVal <= EMOJI_MASTERY);
 
       return unmasteredSkills.length > 0;
@@ -173,7 +198,8 @@ const UnitOverviewPage = ({ slug, skillData }) => {
                 </>
               ) : (
                 <>
-                  <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
+                  {/* TODO fix importing react three fiber into this project */}
+                  {/* <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
                     <Preload all />
                     <group>
                       <Box
@@ -191,7 +217,8 @@ const UnitOverviewPage = ({ slug, skillData }) => {
                       />
                       <Stars />
                     </group>
-                  </Canvas>
+                  </Canvas> */}
+                  <img src={badge.badge.image} className="w-32" />
                   <p className="text-md -mt-4 flex items-center">
                     {"   "}
                     Badge: <b> &nbsp;Unlocked</b>{" "}
@@ -219,57 +246,74 @@ const UnitOverviewPage = ({ slug, skillData }) => {
           </p>
         </div>
 
-        <div className="flex flex-col items-center justify-center bg-white shadow-lg rounded-xl gap-8">
-          <div>
-            <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl gap-8">
-              <div className="flex flex-col w-full sm:w-1/2 gap-8 p-4 sm:p-8">
-                <div className="flex flex-col gap-4">
-                  <p className="text-4xl font-bold text-blue-900 capitalize">
-                    {" "}
-                    PRACTICE TIME
-                  </p>
-                  <p className="text">
-                    Select a skill to practice questions. You can practice as
-                    many times as you wish. At the end, you'll be asked to rate
-                    your skill confidence.
-                  </p>
-                </div>
-
-                <div>
-                  <div className="grid grid-cols-2 items-center">
-                    <p className="font-bold text-center">Skill</p>
-                    <p className="font-bold text-center">Skill Confidence</p>
-                  </div>
-                  {skillData &&
-                    unitSkills(skillData).map((skill) => (
-                      <Link href={`/practice/${skill.id}`}>
-                        <div className="grid grid-cols-2 cursor-pointer items-center transform transition duration-200 hover:bg-blue-200">
-                          {" "}
-                          <p className="text p-1 text-center flex items-center justify-center  rounded-2xl">
-                            {`I can ${skill.description}`}
-                          </p>
-                          <p className="text-5xl text-center">
-                            {!loading &&
-                              data &&
-                              data.user_skills.length !== 0 &&
-                              getEmoji(
-                                data.user_skills.filter(
-                                  (it) => it.skill_id == skill.id
-                                )[0].emoji
-                              )}{" "}
-                          </p>
-                        </div>
-                      </Link>
-                    ))}
-                </div>
-              </div>
-              <img
-                className="w-full sm:w-1/2 object-cover rounded-xl"
-                alt="student-image"
-                src="/images/practiceAdd.png"
-              />
+        <div className="grid items-stretch grid-cols-1 sm:grid-cols-2 bg-white shadow-lg rounded-xl gap-8">
+          <div className="gap-8 p-4 sm:p-8">
+            <div className="flex flex-col gap-4">
+              <p className="text-4xl font-bold text-blue-900 capitalize">
+                {" "}
+                PRACTICE TIME
+              </p>
+              <p className="text">
+                Select a skill to practice questions. You can practice as many
+                times as you wish. At the end, you'll be asked to rate your
+                skill confidence.
+              </p>
             </div>
           </div>
+          <img
+            className="object-cover rounded-xl max-h-80"
+            alt="student-image"
+            src="/images/practiceAdd.png"
+          />
+        </div>
+        <div className="col-span-2 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 sm:p-4 gap-8">
+          {skillData &&
+            skillsForCurrentGrade(skillData).map((skill) => (
+              <Link href={skill.published ? `/practice/${skill.id}` : ""}>
+                <div
+                  className={`${
+                    !skill.published
+                      ? "opacity-50"
+                      : " cursor-pointer transform transition duration-200 hover:bg-blue-200"
+                  } bg-white flex flex-col items-center rounded-xl shadow-lg`}
+                >
+                  <img
+                    className="w-full h-32 object-cover rounded-t-xl"
+                    src={
+                      !skill.published
+                        ? "/images/skills/lock.png"
+                        : `https://placeimg.com/640/480/tech`
+                    }
+                  />
+
+                  <p className="text-center p-4 h-16 flex items-center justify-center">
+                    {`I can ${skill.description}`}
+                  </p>
+                  {skill.published && (
+                    <p className="text-4xl mb-4">
+                      {!loading &&
+                        data &&
+                        getEmoji(getUserEmojiValue(skill.id))}{" "}
+                    </p>
+                  )}
+
+                  {skill.published && (
+                    <div className="flex flex-col md:flex-row justify-center p-4 gap-4">
+                      <Button
+                        label="Learn"
+                        backgroundColor="green"
+                        textColor="white"
+                      />
+                      <Button
+                        label="Practice"
+                        backgroundColor="blue"
+                        textColor="white"
+                      />
+                    </div>
+                  )}
+                </div>
+              </Link>
+            ))}
         </div>
         <div>{quizComponent}</div>
       </div>
@@ -282,7 +326,10 @@ export async function getStaticProps({ params }) {
     cache: new InMemoryCache(),
   });
   const { data } = await client.query({
-    query: FETCH_SKILL_DESCRIPTION_GRADE_AND_UNIT,
+    query: FETCH_SKILLS_FOR_UNIT,
+    variables: {
+      unit: params.slug,
+    },
   });
   if (!data) {
     return {
@@ -301,6 +348,7 @@ export async function getStaticPaths() {
       { params: { slug: "subtraction" } },
       { params: { slug: "multiplication" } },
       { params: { slug: "division" } },
+      { params: { slug: "finance" } },
     ],
     fallback: true,
   };
