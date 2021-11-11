@@ -30,7 +30,7 @@ export default function djacobs(props) {
   ];
 
   const [stage, setStage] = useState(Stage.START);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(6);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [groupName, setGroupName] = useState<string>();
   const [studentName, setStudentName] = useState<string>();
   const [guesses, setGuess] = useState<GuessData[]>([]);
