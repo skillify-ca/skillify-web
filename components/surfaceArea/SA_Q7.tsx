@@ -49,7 +49,35 @@ const Q7 = (displayQuestion, nextQuestion, isWrong) => {
 
   const setLinesForCurrentQuestion = (lines: LineData[]) => {
     const newLines = linesForQuestions.map((l, index) => {
+      console.log("Line:" + typeof l);
+      console.log("Index:" + index);
       if (index === 0) {
+        return lines;
+      } else {
+        return l;
+      }
+    });
+    setLinesForQuestions(newLines);
+  };
+
+  const setLinesForCurrentQuestion2 = (lines: LineData[]) => {
+    const newLines = linesForQuestions.map((l, index) => {
+      console.log("Line:" + typeof l);
+      console.log("Index:" + index);
+      if (index === 1) {
+        return lines;
+      } else {
+        return l;
+      }
+    });
+    setLinesForQuestions(newLines);
+  };
+
+  const setLinesForCurrentQuestion3 = (lines: LineData[]) => {
+    const newLines = linesForQuestions.map((l, index) => {
+      console.log("Line:" + typeof l);
+      console.log("Index:" + index);
+      if (index === 2) {
         return lines;
       } else {
         return l;
@@ -69,6 +97,27 @@ const Q7 = (displayQuestion, nextQuestion, isWrong) => {
     setHistoryStepForQuestions(newHistory);
   };
 
+  const setHistoryForCurrentQuestion2 = (historyStep: number) => {
+    const newHistory = historyStepForQuestions.map((h, index) => {
+      if (index === 1) {
+        return historyStep;
+      } else {
+        return h;
+      }
+    });
+    setHistoryStepForQuestions(newHistory);
+  };
+
+  const setHistoryForCurrentQuestion3 = (historyStep: number) => {
+    const newHistory = historyStepForQuestions.map((h, index) => {
+      if (index === 2) {
+        return historyStep;
+      } else {
+        return h;
+      }
+    });
+    setHistoryStepForQuestions(newHistory);
+  };
   return (
     <React.Fragment>
       <div className="flex flex-col gap-8 items-center">
@@ -114,10 +163,10 @@ const Q7 = (displayQuestion, nextQuestion, isWrong) => {
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-12 col-span-12 rounded-xl font-bold justify-between bg-white p-4">
+              <div className="grid grid-cols-12 col-span-12 rounded-xl font-bold bg-white p-4">
                 <p className="col-span-12 text-center">b)</p>
                 <div className="col-span-12">
-                  <div className="items-center">
+                  <div className="col-span-12 items-center">
                     <img
                       className="animate-fadeIn"
                       src="/images/surfaceArea/SA_Q7_image_b.png"
@@ -128,9 +177,9 @@ const Q7 = (displayQuestion, nextQuestion, isWrong) => {
                       <FreeDrawing
                         saveImage={() => {}}
                         lines={linesForQuestions[1]}
-                        setLines={setLinesForCurrentQuestion}
+                        setLines={setLinesForCurrentQuestion2}
                         historyStep={historyStepForQuestions[1]}
-                        setHistoryStep={setHistoryForCurrentQuestion}
+                        setHistoryStep={setHistoryForCurrentQuestion2}
                         disabled={false}
                       />
                     )}
@@ -142,18 +191,20 @@ const Q7 = (displayQuestion, nextQuestion, isWrong) => {
                         <input
                           className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
                           placeholder=""
-                          value={guessStringCube}
-                          onChange={(e) => onGuessChangedCube(e.target.value)}
+                          value={guessStringRectPrism}
+                          onChange={(e) =>
+                            onGuessChangedRectPrism(e.target.value)
+                          }
                         />
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-12 col-span-12 rounded-xl font-bold justify-between bg-white p-4">
+              <div className="grid grid-cols-12 col-span-12 rounded-xl font-bold bg-white p-4">
                 <p className="col-span-12 text-center">c)</p>
                 <div className="col-span-12">
-                  <div className="items-center">
+                  <div className="col-span-12 items-center">
                     <img
                       className="animate-fadeIn"
                       src="/images/surfaceArea/SA_Q7_image_c.png"
@@ -164,9 +215,9 @@ const Q7 = (displayQuestion, nextQuestion, isWrong) => {
                       <FreeDrawing
                         saveImage={() => {}}
                         lines={linesForQuestions[2]}
-                        setLines={setLinesForCurrentQuestion}
+                        setLines={setLinesForCurrentQuestion3}
                         historyStep={historyStepForQuestions[2]}
-                        setHistoryStep={setHistoryForCurrentQuestion}
+                        setHistoryStep={setHistoryForCurrentQuestion3}
                         disabled={false}
                       />
                     )}
@@ -178,9 +229,9 @@ const Q7 = (displayQuestion, nextQuestion, isWrong) => {
                         <input
                           className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
                           placeholder=""
-                          value={guessStringTriPrism}
+                          value={guessStringRectPrism}
                           onChange={(e) =>
-                            onGuessChangedTriPrism(e.target.value)
+                            onGuessChangedRectPrism(e.target.value)
                           }
                         />
                       </div>
