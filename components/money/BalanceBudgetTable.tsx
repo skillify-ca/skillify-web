@@ -19,8 +19,6 @@ const BalanceBudget: React.FC<BalanceBudgetProps> = ({ question, submitGuess, an
   }
 
   const [ guess, setGuess ] = useState("");
-  const [ totalIncome, setTotalIncome ] = useState("");
-  const [ totalExpense, setTotalExpense ] = useState("");
 
   return (
     <div className="flex flex-col max-h-96 py-4 overflow-y-hidden">
