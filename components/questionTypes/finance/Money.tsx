@@ -4,9 +4,11 @@ import { getRndInteger } from "../../../pages/api/random";
 import { Button } from "../../ui/Button";
 import { Coin } from "./Coin";
 
-export interface MoneyProp {}
+export type MoneyProp = {
+  coinNumber: number;
+};
 
-export const Money: React.FC<MoneyProp> = ({}) => {
+export const Money: React.FC<MoneyProp> = ({ coinNumber }) => {
   const [count, setCount] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const [isCorrect, setIsCorrect] = useState(false);
@@ -30,8 +32,6 @@ export const Money: React.FC<MoneyProp> = ({}) => {
     return;
   };
 
-  // const isCorrect = inputValue === getAnswer();
-  const [coinNumber, setCoinNumber] = useState(1);
   const onButtonClick = () => {
     // this will be called on every button click
     setCount(count + 1);
@@ -44,20 +44,15 @@ export const Money: React.FC<MoneyProp> = ({}) => {
   };
 
   return (
-    <div className="flex flex-col space-y-8">
+    <div className="flex flex-col items-center space-y-8 bg-blue-400">
       <h1>How much money is there?</h1>
-      <div className="flex flex-wrap w-108">
+      <div className="flex flex-wrap justify-center w-108">
         {coinNumber >= 1 && <Coin coinType={4} />}
         {coinNumber >= 2 && <Coin coinType={1} />}
-
         {coinNumber >= 3 && <Coin coinType={2} />}
-
         {coinNumber >= 4 && <Coin coinType={2} />}
-
         {coinNumber >= 5 && <Coin coinType={3} />}
-
         {coinNumber >= 6 && <Coin coinType={4} />}
-
         {coinNumber >= 7 && <Coin coinType={4} />}
       </div>
       <div className="flex flex-start">
