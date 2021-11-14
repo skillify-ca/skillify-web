@@ -36,12 +36,12 @@ import {
 
 export interface FinanceProfileProps {
   onClick: () => void;
-  // profileData: FinanceProfileType;
+  profileData: FinanceProfileType;
 }
 
 const AssignmentSession = ({
   onClick,
-  // profileData
+  profileData
 }: FinanceProfileProps) => {
 
   const dispatch = useAppDispatch()
@@ -112,15 +112,15 @@ const AssignmentSession = ({
             Here is your Life Card
           </div>
         </header>
-        {assignmentSession.profileData && (
+        {profileData && (
           <div className={"flex items-center justify-center my-4"}>
             <FinanceProfileChart
-              individualOccupation={assignmentSession.profileData.individualOccupation}
-              individualSalary={assignmentSession.profileData.individualSalary}
-              maritalStatus={assignmentSession.profileData.maritalStatus}
-              numberOfChildren={assignmentSession.profileData.numberOfChildren}
-              spouseOccupation={assignmentSession.profileData.spouseOccupation}
-              spouseSalary={assignmentSession.profileData.spouseSalary}
+              individualOccupation={profileData.individualOccupation}
+              individualSalary={profileData.individualSalary}
+              maritalStatus={profileData.maritalStatus}
+              numberOfChildren={profileData.numberOfChildren}
+              spouseOccupation={profileData.spouseOccupation}
+              spouseSalary={profileData.spouseSalary}
             />
           </div>
         )}
@@ -213,6 +213,7 @@ const AssignmentSession = ({
         </div>
         <div>
           <SectionOneInput
+            profileData={profileData}
             sectionOneValidation={sectionOneValidation}
             setSectionOneValidation={setSectionOneValidation}
           // profileData={profileData}

@@ -1,7 +1,7 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 
-import BuyACar, { BuyACarProps } from "./BuyACar";
+import BuyACar from "./BuyACar";
 
 export default {
   title: "finance/BuyACar",
@@ -9,7 +9,7 @@ export default {
   argTypes: {},
 } as Meta;
 
-const Template: Story<BuyACarProps> = (args) => <BuyACar {...args} />;
+const Template: Story = (args) => <BuyACar {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {};

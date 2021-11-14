@@ -13,7 +13,7 @@ import { useAuth } from "../lib/authContext";
 import { Button } from "../components/ui/Button";
 import { useSelector } from "react-redux";
 import {
-  setProfileData,
+  // setProfileData,
   assignmentSessionSelector
 } from "../redux/assignmentSession";
 import { useAppDispatch } from "../redux/store";
@@ -47,14 +47,14 @@ TODO fix these issues before launching the budget assignment
  */
 
 const FinanceProfile = () => {
-  // const [profileData, setProfileData] = useState<FinanceProfileType>();
+  const [profileData, setProfileData] = useState<FinanceProfileType>();
 
   const assignmentSession = useSelector(assignmentSessionSelector)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     const randomProfile = getRndInteger(0, 12);
-    // dispatch(setProfileData(randomProfile));
+    setProfileData(financialProfileData[randomProfile]);
   }, []);
 
   const [stage, setStage] = useState(STAGES.START);
@@ -90,7 +90,7 @@ const FinanceProfile = () => {
   });
   const randomize = () => {
     const randomProfile = getRndInteger(0, 12);
-    // dispatch(setProfileData(randomProfile));
+    setProfileData(financialProfileData[randomProfile]);
   };
 
   return (
@@ -104,7 +104,7 @@ const FinanceProfile = () => {
         />
       )}
       {JSON.stringify(assignmentSession)}
-      {stage == STAGES.PROFILE && assignmentSession.profileData && (
+      {stage == STAGES.PROFILE && profileData && (
         <div>
           <p className="text-center pb-5">
             Choose a profile to begin your journey:
@@ -112,12 +112,12 @@ const FinanceProfile = () => {
 
           <div className="flex justify-center pb-6">
             <FinanceProfileChart
-              individualOccupation={assignmentSession.profileData.individualOccupation}
-              individualSalary={assignmentSession.profileData.individualSalary}
-              maritalStatus={assignmentSession.profileData.maritalStatus}
-              numberOfChildren={assignmentSession.profileData.numberOfChildren}
-              spouseOccupation={assignmentSession.profileData.spouseOccupation}
-              spouseSalary={assignmentSession.profileData.spouseSalary}
+              individualOccupation={profileData.individualOccupation}
+              individualSalary={profileData.individualSalary}
+              maritalStatus={profileData.maritalStatus}
+              numberOfChildren={profileData.numberOfChildren}
+              spouseOccupation={profileData.spouseOccupation}
+              spouseSalary={profileData.spouseSalary}
             />
           </div>
           <div className="flex gap-8 justify-center">
@@ -139,7 +139,7 @@ const FinanceProfile = () => {
       )}
       {stage === STAGES.ASSIGNMENT && (
         <AssignmentSession
-          // profileData={profileData} 
+          profileData={profileData}
           onClick={routeEnd} />
       )}
       {stage === STAGES.END && <EndSession onClick={routeStart} />}

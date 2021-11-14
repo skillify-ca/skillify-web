@@ -21,7 +21,7 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../redux/store";
 
 export interface SectionOneInputProps {
-  // profileData: FinanceProfileType;
+  profileData: FinanceProfileType;
   sectionOneValidation: boolean;
   setSectionOneValidation: (sectionOneValidation: boolean) => void;
 }
@@ -30,7 +30,7 @@ export const SectionOneInput = (
   {
     sectionOneValidation,
     setSectionOneValidation,
-    // profileData,
+    profileData,
   }: SectionOneInputProps
 
 ) => {
@@ -40,7 +40,7 @@ export const SectionOneInput = (
 
   return (
     <div>
-      {assignmentSession.profileData && (
+      {profileData && (
         <div className="shadow-md bg-transparent rounded-xl bg-white">
           <div className="sticky top-0 font-bold p-4 bg-green-300 text-white rounded-xl mb-5">
             Section 1: My Personal Information
@@ -67,7 +67,7 @@ export const SectionOneInput = (
               }
             />
             <div className="w-1/4">
-              {assignmentSession.isMarried == assignmentSession.profileData.maritalStatus ? (
+              {assignmentSession.isMarried == profileData.maritalStatus ? (
                 <img src={"/images/checked-checkbox-16.png"} />
               ) : (
                 <img src={"/images/gray-checked-checkbox-16.png"} />
@@ -89,7 +89,7 @@ export const SectionOneInput = (
             />
             <div className="w-1/4">
               {assignmentSession.hasChildren ==
-                (assignmentSession.profileData.numberOfChildren > 0 ? true : false) ? (
+                (profileData.numberOfChildren > 0 ? true : false) ? (
                 <img src={"/images/checked-checkbox-16.png"} />
               ) : (
                 <img src={"/images/gray-checked-checkbox-16.png"} />
@@ -114,7 +114,7 @@ export const SectionOneInput = (
                 ))}
             </select>
             <div className="w-1/4">
-              {assignmentSession.individualOccupation == assignmentSession.profileData.individualOccupation ? (
+              {assignmentSession.individualOccupation == profileData.individualOccupation ? (
                 <img src={"/images/checked-checkbox-16.png"} />
               ) : (
                 <img src={"/images/gray-checked-checkbox-16.png"} />
@@ -138,7 +138,7 @@ export const SectionOneInput = (
                 ))}
             </select>
             <div className="w-1/4">
-              {assignmentSession.spouseOccupation == assignmentSession.profileData.spouseOccupation ? (
+              {assignmentSession.spouseOccupation == profileData.spouseOccupation ? (
                 <img src={"/images/checked-checkbox-16.png"} />
               ) : (
                 <img src={"/images/gray-checked-checkbox-16.png"} />
@@ -154,7 +154,7 @@ export const SectionOneInput = (
               onChange={(e) => dispatch(setIndividualSalary(e.target.value))}
             />
             <div className="w-1/4">
-              {assignmentSession.individualSalary == assignmentSession.profileData.individualSalary ? (
+              {assignmentSession.individualSalary == profileData.individualSalary ? (
                 <img src={"/images/checked-checkbox-16.png"} />
               ) : (
                 <img src={"/images/gray-checked-checkbox-16.png"} />
@@ -172,7 +172,7 @@ export const SectionOneInput = (
               }
             />
             <div className="w-1/4">
-              {assignmentSession.spouseSalary == assignmentSession.profileData.spouseSalary ? (
+              {assignmentSession.spouseSalary == profileData.spouseSalary ? (
                 <img src={"/images/checked-checkbox-16.png"} />
               ) : (
                 <img src={"/images/gray-checked-checkbox-16.png"} />
