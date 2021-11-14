@@ -46,7 +46,7 @@ const Diagnostic = () => {
   const [answeredQuestions, setAnsweredQuestions] = useState<Question[]>([]);
   const [juniorDiagnosticQuestions, setJuniorDiagnosticQuestions] = useState<Question[]>([]);
   const [currentJuniorQuestion, setCurrentJuniorQuestion] = useState<number>(0)
-  const [gradeLevel, setGradeLevel] = useState(Grade.GRADE_4) // 0 - 4th grade list, 1 - 5th grade list, 2 - 6th grade list
+  const [gradeLevel, setGradeLevel] = useState(Grade.GRADE_4)
 
   const getGradeRange: () => string = () => {
     return [Grade.GRADE_1, Grade.GRADE_2, Grade.GRADE_3].includes(grade)
@@ -60,6 +60,8 @@ const Diagnostic = () => {
   const [currentQuestion, setCurrentQuestion] = useState<Question>();
   const inputElement = useRef(null);
 
+
+  // I think this is where I should incorporate Sendgrid 
   const requestEmail = async (results: DiagnosticState) => {
     const workSheets = getWorkSheets(results);
     const url = "https://math-app-1.herokuapp.com/email";

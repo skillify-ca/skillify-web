@@ -166,7 +166,7 @@ const DiagnosticEvidence = ({
       </div>
       <Link href="/diagnostic/conclusion">
         <button className="items-end bg-blue-500 rounded p-3 text-white text-sm">
-          Take me Back to Conclusions
+          Take me back to Conclusions
         </button>
       </Link>
       <div className="flex m-auto items-center max-w-screen-sm">
