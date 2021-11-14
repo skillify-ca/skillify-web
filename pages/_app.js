@@ -12,6 +12,7 @@ import store from "../redux/store";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../components/Navbar";
+import Script from "next/script";
 
 function MyApp({ Component, pageProps: { ...pageProps } }) {
   const router = useRouter();
@@ -39,6 +40,8 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
   // TODO remove setting Component.Auth
   return (
     <ApolloProvider client={client}>
+      <Script src="https://unpkg.com/kaboom/dist/kaboom.js" onLoad={() => {
+      }} />
       <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
         <ModalProvider>
           <ReduxProvider store={store}>
