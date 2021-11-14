@@ -181,17 +181,17 @@ export const SectionOneInput = (
           </div>
         </div>
       )}
-      {/* {assignmentSession.profileData &&
+      {profileData &&
         setSectionOneValidation(
-          assignmentSession.isMarried == assignmentSession.profileData.maritalStatus &&
-            assignmentSession.hasChildren == (assignmentSession.profileData.numberOfChildren > 0 ? true : false) &&
-            assignmentSession.spouseOccupation == assignmentSession.profileData.spouseOccupation &&
-            assignmentSession.individualOccupation == assignmentSession.profileData.individualOccupation &&
-            assignmentSession.individualSalary == assignmentSession.profileData.individualSalary &&
-            assignmentSession.spouseSalary == assignmentSession.profileData.spouseSalary
+          assignmentSession.isMarried == profileData.maritalStatus &&
+            assignmentSession.hasChildren == (profileData.numberOfChildren > 0 ? true : false) &&
+            assignmentSession.spouseOccupation == profileData.spouseOccupation &&
+            assignmentSession.individualOccupation == profileData.individualOccupation &&
+            assignmentSession.individualSalary == profileData.individualSalary &&
+            assignmentSession.spouseSalary == profileData.spouseSalary
             ? true
             : false
-        )} */}
+        )}
     </div>
   );
 };

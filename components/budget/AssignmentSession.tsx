@@ -219,7 +219,7 @@ const AssignmentSession = ({
           // profileData={profileData}
           />
 
-          {assignmentSession.sectionOneValidation ? (
+          {sectionOneValidation ? (
             <div className="flex flex-nowrap">
               {" "}
               Great Job!

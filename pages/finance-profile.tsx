@@ -50,7 +50,7 @@ const FinanceProfile = () => {
   const [profileData, setProfileData] = useState<FinanceProfileType>();
 
   const assignmentSession = useSelector(assignmentSessionSelector)
-  const dispatch = useAppDispatch()
+  // const dispatch = useAppDispatch()
 
   useEffect(() => {
     const randomProfile = getRndInteger(0, 12);
@@ -103,8 +103,7 @@ const FinanceProfile = () => {
           badgeData={data}
         />
       )}
-      {JSON.stringify(assignmentSession)}
-      {stage == STAGES.PROFILE && profileData && (
+      {stage == STAGES.PROFILE && (
         <div>
           <p className="text-center pb-5">
             Choose a profile to begin your journey:
