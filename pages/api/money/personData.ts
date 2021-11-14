@@ -1,4 +1,4 @@
-import { ItemCostModel } from "./question";
+import { ItemCostModel } from "./itemCostModel";
 
 export type PersonData = {
     name: string,
@@ -8,3 +8,5 @@ export type PersonData = {
     totalIncome: number,
     totalExpenses: number,
   };
+
+  

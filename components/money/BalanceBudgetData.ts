@@ -1,12 +1,12 @@
-import { PersonData } from "../../pages/api/personData";
+import { PersonData } from "../../pages/api/money/personData";
 
-export const person:PersonData[] = [
+export const personDataTable:PersonData[] = [
 	{
 		name: "Miranda",
 		month: "February",
 		income: [
 			{
-				title: "Job at the flower shop",
+				title: "Job at flower shop",
 				cost: 140,
 			},
 			{
@@ -72,29 +72,21 @@ export const person:PersonData[] = [
 		month: "March",
 		income: [
 			{
-				title: "Working at a bakery",
+				title: "Job at a bakery",
 				cost: 0,
 			},
 			{
 				title: "Babysitting",
 				cost: 55,
 			},
-			{	title: "Selling old video games",
+			{	title: "Selling old games",
 				cost: 20,
 			},
-			{
-				title: "Selling old clothes",
-				cost: 15,
-			}
 		],
 		totalIncome: 0,
 		expenses: [
 			{
-				title: "Spring clothes shopping",
-				cost: 100,
-			},
-			{
-				title: "Saving for a new purse",
+				title: "A new purse",
 				cost: 60,
 			},
 			{
@@ -113,11 +105,11 @@ export const person:PersonData[] = [
 		month: "April",
 		income: [
 			{
-				title: "Job at the smoothie shop",
+				title: "Job at smoothie shop",
 				cost: 0,
 			},
 			{
-				title: "Selling old dance shoes",
+				title: "Selling old shoes",
 				cost: 30,
 			},
 			{	title: "Gift from dad",

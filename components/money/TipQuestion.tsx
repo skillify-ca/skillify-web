@@ -37,7 +37,7 @@ const TipQuestion: React.FC<TipQuestionProps> = ({
         <p className="mb-4">
           $<input 
             id="input"
-            type="string"
+            type="number"
             value={guess}
             className="border-2 border-gray-300 w-20 text-right font-bold"
             onChange={(e) => setGuess(e.target.value)}>

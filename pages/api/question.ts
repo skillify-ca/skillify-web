@@ -1,3 +1,5 @@
+import { PersonData } from "./money/personData";
+import { ItemCostModel } from "./money/itemCostModel";
 import { QuestionType } from "./questionTypes";
 import { Skill } from "./skill";
 import { WordProblemModel } from "./WordProblemModel";
@@ -14,7 +16,7 @@ export type Question = {
   answer: string; // only accepts strings so Array<Num> doesn't work
   answerType: AnswerType;
   questionType: QuestionType;
-  skill?: Skill;
+  skill?: number;
   operator?: string; //Numbers unit does not have a operator
   wordProblem?: WordProblemModel; //value is only stored if QuestionType is wordProblem
   multipleChoice?: MCModel;
@@ -23,6 +25,7 @@ export type Question = {
   displayNum?: number; //randomizes visualnumber type
   arrayAns?: Array<number>;
   budgetCostModel? :Array<ItemCostModel>;
+  personDataModel? :PersonData;
 };
 
 export type MCOption = {
@@ -40,9 +43,3 @@ export type fillBlankModel = {
 export type FillOption = {
   text: string;
 };
-
-export type ItemCostModel = {
-  title: string;
-  cost: number;
-}
-

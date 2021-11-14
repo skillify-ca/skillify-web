@@ -138,6 +138,16 @@ export default function Outline() {
             </Card>
           </div>
         </Link>
+        <Link href={`/kaboom`}>
+          <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
+            <Card size="medium">
+              <div className="flex flex-col justify-center items-center gap-4">
+                <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300 heropattern-jupiter-yellow-500"></div>
+                <p className="mx-4 text-center text-xl">Kaboom</p>
+              </div>
+            </Card>
+          </div>
+        </Link>
         <Card size="medium">
           <div className="flex flex-col justify-center items-center gap-4">
             <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300">

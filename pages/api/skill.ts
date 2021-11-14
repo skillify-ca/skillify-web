@@ -32,7 +32,7 @@ export type SkillData = {
 export const EMOJI_MASTERY = 66;
 export function getEmoji(emojiNum: number | null) {
   if (emojiNum === undefined) {
-    console.error("Error getting emoji value.")
+    console.error("Error getting emoji value.");
     return "⁉️";
   } else if (emojiNum === null) {
     return "❓";
@@ -44,208 +44,46 @@ export function getEmoji(emojiNum: number | null) {
     return "😄";
   }
 }
-//SkillIds must match the ids found in the Skills table on Hasura
-export function getSkillId(skill: Skill) {
-  switch (skill) {
-    case Skill.ADDITION_SINGLE:
-      return 1;
-    case Skill.ADDITION_DOUBLE:
-      return 2;
-    case Skill.ADDITION_TRIPLE:
-      return 3;
-    case Skill.ADDITION_PROPERTIES:
-      return 4;
-    case Skill.SUBTRACTION_SINGLE:
-      return 34;
-    case Skill.SUBTRACTION_DOUBLE:
-      return 35;
-    case Skill.SUBTRACTION_TRIPLE:
-      return 36;
-    case Skill.EQUAL_GROUP_10_ITEMS:
-      return 37;
-    case Skill.MULTIPLICATION_5:
-      return 38;
-    case Skill.MULTIPLICATION_10:
-      return 39;
-    case Skill.EQUAL_SHARING_8_ITEMS:
-      return 40;
-    case Skill.DIVIDE_12_EQUALLY:
-      return 41;
-    case Skill.DIVIDE_100:
-      return 42;
-    case Skill.ADDITION_4_DIGIT:
-      return 43;
-    case Skill.ADDITION_TENTHS:
-      return 44;
-    case Skill.SUBTRACTION_4_DIGIT:
-      return 45;
-    case Skill.SUBTRACTION_TENTHS:
-      return 46;
-    case Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT:
-      return 51;
-    case Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT:
-      return 52;
-    case Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT:
-      return 47;
-    case Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT:
-      return 48;
-    case Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT:
-      return 49;
-    case Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT:
-      return 50;
-    case Skill.NUMBERS_50:
-      return 53;
-    case Skill.NUMBERS_200:
-      return 54;
-    case Skill.NUMBERS_1000:
-      return 55;
-    case Skill.ADDITION_5_DIGIT:
-      return 56;
-    case Skill.ADDITION_HUNDREDTHS:
-      return 57;
-    case Skill.SUBTRACTION_5_DIGIT:
-      return 58;
-    case Skill.SUBTRACTION_HUNDREDTHS:
-      return 59;
-    case Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT:
-      return 60;
-    case Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT:
-      return 61;
-    case Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT:
-      return 62;
-    case Skill.ADDITION_6_DIGIT:
-      return 63;
-    case Skill.SUBTRACTION_6_DIGIT:
-      return 64;
-    case Skill.MULTIPLY_THREE_DIGIT_BY_TENTH:
-      return 65;
-    case Skill.DIVISION_THREE_DIGIT_BY_TENTH:
-      return 66;
-    case Skill.FINANCE_BUDGET:
-      return 67;
-  }
-}
-
-export const getSkillFromId = (skillId: number) => {
-  switch (skillId) {
-    case 1:
-      return Skill.ADDITION_SINGLE;
-    case 2:
-      return Skill.ADDITION_DOUBLE;
-    case 3:
-      return Skill.ADDITION_TRIPLE;
-    case 4:
-      return Skill.ADDITION_PROPERTIES;
-    case 34:
-      return Skill.SUBTRACTION_SINGLE;
-    case 35:
-      return Skill.SUBTRACTION_DOUBLE;
-    case 36:
-      return Skill.SUBTRACTION_TRIPLE;
-    case 37:
-      return Skill.EQUAL_GROUP_10_ITEMS;
-    case 38:
-      return Skill.MULTIPLICATION_5;
-    case 39:
-      return Skill.MULTIPLICATION_10;
-    case 40:
-      return Skill.EQUAL_SHARING_8_ITEMS;
-    case 41:
-      return Skill.DIVIDE_12_EQUALLY;
-    case 42:
-      return Skill.DIVIDE_100;
-    case 43:
-      return Skill.ADDITION_4_DIGIT;
-    case 44:
-      return Skill.ADDITION_TENTHS;
-    case 45:
-      return Skill.SUBTRACTION_4_DIGIT;
-    case 46:
-      return Skill.SUBTRACTION_TENTHS;
-    case 51:
-      return Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT;
-    case 52:
-      return Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT;
-    case 47:
-      return Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT;
-    case 48:
-      return Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT;
-    case 49:
-      return Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT;
-    case 50:
-      return Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT;
-    case 53:
-      return Skill.NUMBERS_50;
-    case 54:
-      return Skill.NUMBERS_200;
-    case 55:
-      return Skill.NUMBERS_1000;
-    case 56:
-      return Skill.ADDITION_5_DIGIT;
-    case 57:
-      return Skill.ADDITION_HUNDREDTHS;
-    case 58:
-      return Skill.SUBTRACTION_5_DIGIT;
-    case 59:
-      return Skill.SUBTRACTION_HUNDREDTHS;
-    case 60:
-      return Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT;
-    case 61:
-      return Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT;
-    case 62:
-      return Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT;
-    case 63:
-      return Skill.ADDITION_6_DIGIT;
-    case 64:
-      return Skill.SUBTRACTION_6_DIGIT;
-    case 65:
-      return Skill.MULTIPLY_THREE_DIGIT_BY_TENTH;
-    case 66:
-      return Skill.DIVISION_THREE_DIGIT_BY_TENTH;
-    case 67:
-      return Skill.FINANCE_BUDGET;
-  }
-};
 
 export enum Skill {
-  NUMBERS_50 = "count-50",
-  NUMBERS_200 = "count-200",
-  NUMBERS_1000 = "count-1000",
-  ADDITION_SINGLE = "add-one-digit",
-  ADDITION_DOUBLE = "add-two-digit",
-  ADDITION_TRIPLE = "add-three-digit",
-  ADDITION_PROPERTIES = "addition-properties",
-  SUBTRACTION_SINGLE = "subtract-single-digit",
-  SUBTRACTION_DOUBLE = "subtract-double-digit",
-  SUBTRACTION_TRIPLE = "subtract-triple-digit",
-  EQUAL_GROUP_10_ITEMS = "total-items-equal-groups",
-  MULTIPLICATION_5 = "multiply-5x5",
-  MULTIPLICATION_10 = "multiply-10x10",
-  EQUAL_SHARING_8_ITEMS = "share-8-equally",
-  DIVIDE_12_EQUALLY = "divide-12-equally",
-  DIVIDE_100 = "divide-100-equally",
-  ADDITION_4_DIGIT = "add-four-digit",
-  ADDITION_TENTHS = "add-tenths",
-  SUBTRACTION_4_DIGIT = "subtract-four-digit",
-  SUBTRACTION_TENTHS = "subtract-tenths",
-  MULTIPLY_ONE_DIGIT_X_TWO_DIGIT = "multiply-single-and-double-digit",
-  MULTIPLY_ONE_DIGIT_X_THREE_DIGIT = "multiply-single-and-triple-digit",
-  MULTIPLICATION_10_BY_DOUBLE_DIGIT = "multiply-double-digit-by-10",
-  MULTIPLICATION_10_BY_TRIPLE_DIGIT = "multiply-triple-digit-by-10",
-  DIVISION_TWO_DIGIT_BY_ONE_DIGIT = "divide-double-digit-by-single-digit",
-  DIVISION_THREE_DIGIT_BY_ONE_DIGIT = "divide-triple-digit-by-single-digit",
-  MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT = "multiply-double-and-double-digit",
-  MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT = "multiply-double-and-triple-digit",
-  ADDITION_5_DIGIT = "add-five-digit",
-  ADDITION_HUNDREDTHS = "add-hundredths",
-  SUBTRACTION_5_DIGIT = "subtract-five-digit",
-  SUBTRACTION_HUNDREDTHS = "subtract-hundredths",
-  DIVISION_THREE_DIGIT_BY_TWO_DIGIT = "divide-triple-digit-by-double-digit",
-  ADDITION_6_DIGIT = "add-six-digit",
-  SUBTRACTION_6_DIGIT = "subtract-six-digit",
-  MULTIPLY_THREE_DIGIT_BY_TENTH = "multiply-triple-digit-by-tenths",
-  DIVISION_THREE_DIGIT_BY_TENTH = "divide-triple-digit-by-tenths",
-  FINANCE_BUDGET = "budget-5-dollars",
+  ADDITION_SINGLE = 1,
+  ADDITION_DOUBLE = 2,
+  ADDITION_TRIPLE = 3,
+  ADDITION_PROPERTIES = 4,
+  SUBTRACTION_SINGLE = 34,
+  SUBTRACTION_DOUBLE = 35,
+  SUBTRACTION_TRIPLE = 36,
+  EQUAL_GROUP_10_ITEMS = 37,
+  MULTIPLICATION_5 = 38,
+  MULTIPLICATION_10 = 39,
+  EQUAL_SHARING_8_ITEMS = 40,
+  DIVIDE_12_EQUALLY = 41,
+  DIVIDE_100 = 42,
+  ADDITION_4_DIGIT = 43,
+  ADDITION_TENTHS = 44,
+  SUBTRACTION_4_DIGIT = 45,
+  SUBTRACTION_TENTHS = 46,
+  MULTIPLY_ONE_DIGIT_X_TWO_DIGIT = 51,
+  MULTIPLY_ONE_DIGIT_X_THREE_DIGIT = 52,
+  NUMBERS_50 = 53,
+  NUMBERS_200 = 54,
+  NUMBERS_1000 = 55,
+  MULTIPLICATION_10_BY_DOUBLE_DIGIT = 47,
+  MULTIPLICATION_10_BY_TRIPLE_DIGIT = 48,
+  DIVISION_TWO_DIGIT_BY_ONE_DIGIT = 49,
+  DIVISION_THREE_DIGIT_BY_ONE_DIGIT = 50,
+  MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT = 60,
+  MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT = 61,
+  ADDITION_5_DIGIT = 56,
+  ADDITION_HUNDREDTHS = 57,
+  SUBTRACTION_5_DIGIT = 58,
+  SUBTRACTION_HUNDREDTHS = 59,
+  DIVISION_THREE_DIGIT_BY_TWO_DIGIT = 62,
+  ADDITION_6_DIGIT = 63,
+  SUBTRACTION_6_DIGIT = 64,
+  MULTIPLY_THREE_DIGIT_BY_TENTH = 65,
+  DIVISION_THREE_DIGIT_BY_TENTH = 66,
+  FINANCE_BUDGET = 67,
 }
 
 export function getQuestionTypesForSkill(skill: Skill): QuestionType[] {
