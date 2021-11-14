@@ -18,10 +18,10 @@ import LaborCostEquation from "../components/foodtruck/LaborCostEquation";
 import ProfitEquation from "../components/foodtruck/ProfitEquation";
 
 import { Button } from "../components/ui/Button";
-import { EndSession } from "../components/finance/EndSession";
 import { useMutation } from "@apollo/client";
 import { UNLOCK_BADGE } from "../graphql/unlockBadge";
 import { useAuth } from "../lib/authContext";
+import { EndSession } from "../components/budget/EndSession";
 
 /*
 TODO fix these issues before make it obvious when food items are not selectable

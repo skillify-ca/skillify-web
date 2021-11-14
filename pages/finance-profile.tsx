@@ -17,10 +17,10 @@ import {
   assignmentSessionSelector
 } from "../redux/assignmentSession";
 import { useAppDispatch } from "../redux/store";
-import AssignmentSession from "../components/finance/AssignmentSession";
-import { EndSession } from "../components/finance/EndSession";
-import { FinanceProfileChart } from "../components/finance/FinanceProfileChart";
-import { RulesSession } from "../components/finance/RulesSession";
+import AssignmentSession from "../components/budget/AssignmentSession";
+import { EndSession } from "../components/budget/EndSession";
+import { FinanceProfileChart } from "../components/budget/FinanceProfileChart";
+import { RulesSession } from "../components/budget/RulesSession";
 
 enum STAGES {
   START,
