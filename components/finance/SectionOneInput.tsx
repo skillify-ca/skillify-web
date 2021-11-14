@@ -181,7 +181,7 @@ export const SectionOneInput = (
           </div>
         </div>
       )}
-      {assignmentSession.profileData &&
+      {/* {assignmentSession.profileData &&
         setSectionOneValidation(
           assignmentSession.isMarried == assignmentSession.profileData.maritalStatus &&
             assignmentSession.hasChildren == (assignmentSession.profileData.numberOfChildren > 0 ? true : false) &&
@@ -191,7 +191,7 @@ export const SectionOneInput = (
             assignmentSession.spouseSalary == assignmentSession.profileData.spouseSalary
             ? true
             : false
-        )}
+        )} */}
     </div>
   );
 };

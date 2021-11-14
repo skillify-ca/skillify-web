@@ -94,7 +94,7 @@ const initialState: assignmentSessionState = {
     spouseOccupation: "",
     spouseSalary: 0,
     sectionOneValidation: false,
-    profileData: financialProfileData[getRndInteger(0, 12)]
+    profileData: financialProfileData[0]
 }
 
 export const assignmentSessionSlice: Slice = createSlice({
@@ -336,7 +336,7 @@ export const assignmentSessionSlice: Slice = createSlice({
             }
         },
         setProfileData: (state: assignmentSessionState, action: PayloadAction<FinanceProfileType>) => {
-            if (action.type == "assignmentSession/setSectionOneValidation") {
+            if (action.type == "assignmentSession/setProfileData") {
                 const newProfileData = action.payload as FinanceProfileType;
                 state.profileData = newProfileData;
             }

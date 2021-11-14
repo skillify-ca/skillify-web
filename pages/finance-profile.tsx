@@ -53,8 +53,8 @@ const FinanceProfile = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    // const randomProfile = getRndInteger(0, 12);
-    dispatch(setProfileData(assignmentSession.profileData));
+    const randomProfile = getRndInteger(0, 12);
+    // dispatch(setProfileData(randomProfile));
   }, []);
 
   const [stage, setStage] = useState(STAGES.START);
@@ -89,12 +89,12 @@ const FinanceProfile = () => {
     },
   });
   const randomize = () => {
-    // const randomProfile = getRndInteger(0, 12);
-    dispatch(setProfileData(assignmentSession.profileData));
+    const randomProfile = getRndInteger(0, 12);
+    // dispatch(setProfileData(randomProfile));
   };
 
   return (
-    <div className="">
+    <div className="" onClick={() => console.log(assignmentSession)}>
       {stage === STAGES.START && data && (
         <RulesSession
           // profileData={assignmentSession.profileData}
@@ -103,6 +103,7 @@ const FinanceProfile = () => {
           badgeData={data}
         />
       )}
+      {JSON.stringify(assignmentSession)}
       {stage == STAGES.PROFILE && assignmentSession.profileData && (
         <div>
           <p className="text-center pb-5">
