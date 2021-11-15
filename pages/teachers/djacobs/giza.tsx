@@ -127,7 +127,6 @@ export default function djacobs(props) {
 
   const isWrong = (check: Boolean, guess: GuessData) => {
     guessHistory.set("Question" + questionCounter + "." + guessCounter, guess);
-    console.log(guessHistory);
     setGuessCounter(guessCounter + 1);
     setWrongAnswerCheck(check);
     setShouldAnimate(true);
