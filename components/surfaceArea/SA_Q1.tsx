@@ -2,9 +2,16 @@ import { isBoolean } from "lodash";
 import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Button } from "../ui/Button";
+import MutliLineInput from "./MultiTextInput";
+
+type Q1Props = {
+  displayQuestion: string;
+  imagePath: string;
+  nextQuestion: (guess: GuessData) => void;
+};
 
 //Future component, name: TypeAnswerQuestion
-const Q1 = (displayQuestion, nextQuestion, isWrong) => {
+const Q1 = ({ displayQuestion, imagePath, nextQuestion }: Q1Props) => {
   const [guessStringA, setGuessStringA] = useState<string>("");
   const [guessStringB, setGuessStringB] = useState<string>("");
   const [guessStringC, setGuessStringC] = useState<string>("");
@@ -65,65 +72,22 @@ const Q1 = (displayQuestion, nextQuestion, isWrong) => {
       <div className="flex flex-col gap-8 items-center">
         <p className="text-2xl text-center">{displayQuestion}</p>
         <div id="quizImage">
-          <img
-            className="animate-fadeIn"
-            src="/images/surfaceArea/SA_Q1_image.png"
-          ></img>
+          <img className="animate-fadeIn" src={imagePath}></img>
         </div>
-        <div className="text-center">
-          <label>A</label>
-          <input
-            className="p-4 text-lg"
-            placeholder=""
-            value={guessStringA}
-            onChange={(e) => onGuessChangedA(e.target.value)}
-          />
-        </div>
-        <div className="text-center">
-          <label>B</label>
-          <input
-            className="p-4 text-lg"
-            placeholder=""
-            value={guessStringB}
-            onChange={(e) => onGuessChangedB(e.target.value)}
-          />
-        </div>
-        <div className="text-center">
-          <label>C</label>
-          <input
-            className="p-4 text-lg"
-            placeholder=""
-            value={guessStringC}
-            onChange={(e) => onGuessChangedC(e.target.value)}
-          />
-        </div>
-        <div className="text-center">
-          <label>D</label>
-          <input
-            className="p-4 text-lg"
-            placeholder=""
-            value={guessStringD}
-            onChange={(e) => onGuessChangedD(e.target.value)}
-          />
-        </div>
-        <div className="text-center">
-          <label>E</label>
-          <input
-            className="p-4 text-lg"
-            placeholder=""
-            value={guessStringE}
-            onChange={(e) => onGuessChangedE(e.target.value)}
-          />
-        </div>
-        <div className="text-center">
-          <label>F</label>
-          <input
-            className="p-4 text-lg"
-            placeholder=""
-            value={guessStringF}
-            onChange={(e) => onGuessChangedF(e.target.value)}
-          />
-        </div>
+        <MutliLineInput
+          guessStringA={guessStringA}
+          guessStringB={guessStringB}
+          guessStringC={guessStringC}
+          guessStringD={guessStringD}
+          guessStringE={guessStringE}
+          guessStringF={guessStringF}
+          onGuessChangedA={onGuessChangedA}
+          onGuessChangedB={onGuessChangedB}
+          onGuessChangedC={onGuessChangedC}
+          onGuessChangedD={onGuessChangedD}
+          onGuessChangedE={onGuessChangedE}
+          onGuessChangedF={onGuessChangedF}
+        />
         <div className="flex flex-col items-center">
           <Button
             label="Submit"

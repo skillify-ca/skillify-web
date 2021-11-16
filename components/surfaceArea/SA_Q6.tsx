@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Button } from "../ui/Button";
 
+type Q6Props = {
+  displayQuestion: string;
+  nextQuestion: (guess: GuessData) => void;
+};
+
 //Future component, name: TypeAnswerQuestion
-const Q6 = (displayQuestion, nextQuestion, isWrong) => {
+const Q6 = ({ displayQuestion, nextQuestion }: Q6Props) => {
   const [guessString, setGuessString] = useState<string>("");
   const [positions, setPositions] = useState<boolean[][]>([
     [false, false, false, false],
