@@ -10,11 +10,11 @@ export default function CreditCard(props) {
         DCWordProblem, //debit card word problem
         CCDCMulti, //multiple choice
         CardColorProblem, //credit debit both color problem
-
     }
 
+    //manages state 
     const [stage, setStage] = useState(STAGE.CreditDebitInfo);
-
+    
     const previousStage = () => {
         if (stage > STAGE.CreditDebitInfo) {
           setStage(stage - 1);
@@ -38,22 +38,22 @@ export default function CreditCard(props) {
 
     return (
         <div className={"bg-white"}>
-        <div>{getComponent(stage)}</div>
-        <div className="flex flex-row space-x-8 justify-center p-12">
-          <Button
-            backgroundColor="pink"
-            textColor="white"
-            label="Previous"
-            onClick={previousStage}
-          />
-  
-          <Button
-            backgroundColor="pink"
-            textColor="white"
-            label="Next"
-            onClick={nextStage}
-          />
-        </div>
+            <div>{getComponent(stage)}</div>
+            <div className="flex flex-row space-x-8 justify-center p-12">
+                <Button
+                    backgroundColor="red"
+                    textColor="white"
+                    label="Go Back"
+                    onClick={previousStage}
+                />
+        
+                <Button
+                    backgroundColor="blue"
+                    textColor="white"
+                    label="Next"
+                    onClick={nextStage}
+                />
+            </div>
       </div>
     )
 };
