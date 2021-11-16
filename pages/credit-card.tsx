@@ -41,7 +41,7 @@ export default function CreditCard(props) {
             <div>{getComponent(stage)}</div>
                 {(stage == STAGE.CreditDebitInfo)
                     ?
-                    <div className="flex flex-col min-w-full px-12 pb-4">
+                    <div className="flex flex-col min-w-full p-12">
                         <Button
                             backgroundColor="blue"
                             textColor="white"
