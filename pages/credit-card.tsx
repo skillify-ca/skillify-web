@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import CardColorProblem from '../components/credit-card/CardColorProblem';
+import CCDCMulti from '../components/credit-card/CCDCMulti';
 import CCWordProblem from '../components/credit-card/CCWordProblem';
 import CreditDebitInfo from '../components/credit-card/CreditDebitInfo';
+import DCWordProblem from '../components/credit-card/DCWordProblem';
 import { Button } from '../components/ui/Button';
 
 export default function CreditCard(props) {
@@ -33,6 +36,12 @@ export default function CreditCard(props) {
             return <CreditDebitInfo/>
         } else if (stage == STAGE.CCWordProblem) {
             return <CCWordProblem/>
+        } else if (stage == STAGE.DCWordProblem) {
+            return <DCWordProblem/>
+        } else if (stage == STAGE.CCDCMulti) {
+            return <CCDCMulti/>
+        } else if (stage == STAGE.CardColorProblem) {
+            return <CardColorProblem/>
         }
     }
 
