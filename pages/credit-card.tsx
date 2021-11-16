@@ -39,22 +39,35 @@ export default function CreditCard(props) {
     return (
         <div className={"bg-white"}>
             <div>{getComponent(stage)}</div>
-            <div className="flex flex-row space-x-8 justify-center p-12">
-                <Button
-                    backgroundColor="red"
-                    textColor="white"
-                    label="Go Back"
-                    onClick={previousStage}
-                />
+                {(stage == STAGE.CreditDebitInfo)
+                    ?
+                    <div className="flex flex-col min-w-full px-12 pb-4">
+                        <Button
+                            backgroundColor="blue"
+                            textColor="white"
+                            label="Start"
+                            onClick={nextStage}
+                        />
+                    </div>
+                    :
+                    <div className="flex flex-row space-x-8 justify-center p-12">
+                        <Button
+                            backgroundColor="red"
+                            textColor="white"
+                            label="Go Back"
+                            onClick={previousStage}
+                        />
         
-                <Button
-                    backgroundColor="blue"
-                    textColor="white"
-                    label="Next"
-                    onClick={nextStage}
-                />
-            </div>
-      </div>
+                        <Button
+                            backgroundColor="blue"
+                            textColor="white"
+                            label="Next"
+                            onClick={nextStage}
+                        />
+                    </div>
+                }
+            
+        </div>
     )
 };
 
