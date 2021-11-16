@@ -8,8 +8,14 @@ const FreeDrawing = dynamic(() => import("../ui/FreeDrawing"), {
   ssr: false,
 });
 
+type Q7Props = {
+  displayQuestion: string;
+  imagePath: string;
+  nextQuestion: (guess: GuessData) => void;
+};
+
 //Future component, name: TypeAnswerQuestion
-const Q7 = (displayQuestion, nextQuestion, isWrong) => {
+const Q7 = ({ displayQuestion, imagePath, nextQuestion }: Q7Props) => {
   const [guessStringRectPrism, setGuessStringRectPrism] = useState<string>("");
   const [guessStringCube, setGuessStringCube] = useState<string>("");
   const [guessStringTriPrism, setGuessStringTriPrism] = useState<string>("");
@@ -125,7 +131,7 @@ const Q7 = (displayQuestion, nextQuestion, isWrong) => {
                   <div className="col-span-12 items-center">
                     <img
                       className="animate-fadeIn"
-                      src="/images/surfaceArea/SA_Q7_image.png"
+                      src={imagePath}
                       width="1000"
                       height="400"
                     ></img>
