@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import CCWordProblem from '../components/credit-card/CCWordProblem';
+import CreditDebitInfo from '../components/credit-card/CreditDebitInfo';
+import { Button } from '../components/ui/Button';
 
 export default function CreditCard(props) {
     enum STAGE {
-        CreditDebitInfo, //intro w/ info
+        CreditDebitInfo, //intro with info
         CCWordProblem, //credit card word problem
         DCWordProblem, //debit card word problem
         CCDCMulti, //multiple choice
-        CardColorProblem, //credit debit both color
+        CardColorProblem, //credit debit both color problem
 
     }
 
@@ -27,16 +30,32 @@ export default function CreditCard(props) {
 
     const getComponent = (stage: STAGE) => {
         if (stage == STAGE.CreditDebitInfo) {
-            return 
-        } else {
-
-        return (
-            <div>
-                <h1>hello worl</h1>
-            </div>
-        )
+            return <CreditDebitInfo/>
+        } else if (stage == STAGE.CCWordProblem) {
+            return <CCWordProblem/>
         }
-    };
+    }
 
-}
+    return (
+        <div className={"bg-white"}>
+        <div>{getComponent(stage)}</div>
+        <div className="flex flex-row space-x-8 justify-center p-12">
+          <Button
+            backgroundColor="pink"
+            textColor="white"
+            label="Previous"
+            onClick={previousStage}
+          />
+  
+          <Button
+            backgroundColor="pink"
+            textColor="white"
+            label="Next"
+            onClick={nextStage}
+          />
+        </div>
+      </div>
+    )
+};
+
 
