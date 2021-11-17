@@ -11,7 +11,7 @@ const DCWordProblem = () => {
     </div>
     <div className="grid grid-cols-3 gap-4 mb-12">
         <span>The bank send your money to the store</span>
-        <span>insert image here ==></span>
+        <span>insert image here</span>
         <span>
             Money is deducted from your checking account
         </span>

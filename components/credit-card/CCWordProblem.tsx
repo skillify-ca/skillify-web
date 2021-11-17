@@ -11,7 +11,7 @@ const CCWordProblem = () => {
             </div>
             <div className="grid grid-cols-3 gap-4 mb-12">
                 <span>Credit card compony pays the store</span>
-                <span>insert image here ==></span>
+                <span>insert image here</span>
                 <span>
                     Credit card componay sends you a bil and you pay the credit
                     card company
