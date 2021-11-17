@@ -20,9 +20,12 @@ const DiagnosticResults = ({
       <div className="text-xl">
         {correctGuesses}/{numberOfQuestions} Correct{" "}
       </div>
-      <Link href={"/diagnostic/conclusion"}>
-        <Button backgroundColor="blue" textColor="white" label="Go To Report" />
+      <Link href={"/"}>
+        <Button backgroundColor="blue" textColor="white" label="Return to home page" />
       </Link>
+      {/* <Link href={"/diagnostic/conclusion"}>
+        <Button backgroundColor="blue" textColor="white" label="Go To Report" />
+      </Link> */}
     </div>
   );
 };
