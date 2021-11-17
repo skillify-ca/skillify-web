@@ -13,11 +13,11 @@ const CCDCMulti = () => {
         multiQuestionData.map((item, index) => (
           <div key={index} className="flex flex-col gap-4 p-4">
             <h3 className="text-purple-300 font-bold">{item.question}</h3>
-            {item.options.map((option) => (
-              <ul className="flex flex-col gap-4">
-                <li>{option.id}{") "}{option.answer}</li>
-              </ul>
-            ))}
+            <ul className="flex flex-col gap-4">
+              {item.options.map((option, index) => (
+                <li key={index}>{option.id}{") "}{option.answer}</li>
+              ))}
+            </ul>
           </div>
         ))
         }
