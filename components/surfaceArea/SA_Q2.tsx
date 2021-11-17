@@ -3,8 +3,14 @@ import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Button } from "../ui/Button";
 
+type Q2Props = {
+  displayQuestion: string;
+  imagePath: string;
+  nextQuestion: (guess: GuessData) => void;
+};
+
 //Future component, name: TypeAnswerQuestion
-const Q2 = (displayQuestion, nextQuestion, isWrong) => {
+const Q2 = ({ displayQuestion, imagePath, nextQuestion }: Q2Props) => {
   //Part A useStates
   const [partAguessStringA, setpartAguessStringA] = useState<string>("");
   const [partAguessStringB, setpartAguessStringB] = useState<string>("");
@@ -143,10 +149,7 @@ const Q2 = (displayQuestion, nextQuestion, isWrong) => {
       <div className="flex flex-col gap-8 items-center">
         <p className="text-2xl text-center">{displayQuestion}</p>
         <div id="quizImage">
-          <img
-            className="animate-fadeIn"
-            src="/images/surfaceArea/SA_Q1_image.png"
-          ></img>
+          <img className="animate-fadeIn" src={imagePath}></img>
         </div>
         <div className="grid md:grid-cols-12 grid-cols-1 gap-8">
           <div className="md:col-span-12 rounded-xl">

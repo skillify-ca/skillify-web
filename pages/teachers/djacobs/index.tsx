@@ -7,12 +7,14 @@ import TeacherDashboardPage from "../../../components/dashboard/solving-for-vari
 import GizaDashboardPage from "../../../components/dashboard/dashboard-giza";
 import SolvingForVariablesDashboard from "../../../components/dashboard/solving-for-variables-dashboard";
 import SurfaceAreaDashboardPage from "../../../components/dashboard/dashboard-surfaceArea";
+import TransformationDashboardPage from "../../../components/dashboard/dashboard-transformations";
 
 const MainDashboardPage = ({ data, giza_data }) => {
   const choices = [
     "Solving for Variables",
     "Escape from Giza",
     "Surface Area Assignment",
+    "Transformation Assignment",
   ];
   const [choiceIndex, setChoiceIndex] = useState(0);
   return (
@@ -34,12 +36,14 @@ const MainDashboardPage = ({ data, giza_data }) => {
             <option value={0}>{choices[0]}</option>
             <option value={1}>{choices[1]}</option>
             <option value={2}>{choices[2]}</option>
+            <option value={3}>{choices[3]}</option>
           </select>
         </div>
       </div>
       {choiceIndex == 0 && <SolvingForVariablesDashboard data={data} />}
       {choiceIndex == 1 && <GizaDashboardPage data={giza_data} />}
       {choiceIndex == 2 && <SurfaceAreaDashboardPage data={giza_data} />}
+      {choiceIndex == 3 && <TransformationDashboardPage data={giza_data} />}
     </div>
   );
 };
