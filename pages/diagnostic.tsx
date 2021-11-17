@@ -21,16 +21,12 @@ import getFourthGradeQuestion, {
   getSixthGradeQuestion,
 } from "./api/diagnostic/juniorDiagnosticQuestionGenerator";
 import Head from "next/head";
-import sendgrid from "@sendgrid/mail";
 
 enum STAGE {
   CREATE,
   TEST,
   RESULTS,
 }
-
-// const sgMail = require('@sendgrid/mail')
-// sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 const Diagnostic = () => {
   const TOTAL_QUESTIONS = 12;
