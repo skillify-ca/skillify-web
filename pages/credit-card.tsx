@@ -17,6 +17,12 @@ export default function CreditCard(props) {
 
     //manages state 
     const [stage, setStage] = useState(STAGE.CreditDebitInfo);
+
+    // CreditDebitInfo states
+    const [q1, setq1] = useState("");
+    const [a1, seta1] = useState("");
+
+    
     
     const previousStage = () => {
         if (stage > STAGE.CreditDebitInfo) {
