@@ -21,12 +21,16 @@ import getFourthGradeQuestion, {
   getSixthGradeQuestion,
 } from "./api/diagnostic/juniorDiagnosticQuestionGenerator";
 import Head from "next/head";
+import sendgrid from "@sendgrid/mail";
 
 enum STAGE {
   CREATE,
   TEST,
   RESULTS,
 }
+
+// const sgMail = require('@sendgrid/mail')
+// sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 const Diagnostic = () => {
   const TOTAL_QUESTIONS = 12;
@@ -60,49 +64,22 @@ const Diagnostic = () => {
   const [currentQuestion, setCurrentQuestion] = useState<Question>();
   const inputElement = useRef(null);
 
+  // create this in the backend and then call into the frontend
 
-  // I think this is where I should incorporate Sendgrid 
-  const requestEmail = async (results: DiagnosticState) => {
-    const workSheets = getWorkSheets(results);
+  const requestEmail = async () => {
+
     const url = "https://math-app-1.herokuapp.com/email";
-    const unitGrades = [
-      getGradeLevelForUnit(Unit.ADDITION, results),
-      getGradeLevelForUnit(Unit.SUBTRACTION, results),
-      getGradeLevelForUnit(Unit.MULTIPLICATION, results),
-      getGradeLevelForUnit(Unit.DIVISION, results),
-    ];
-    const skillGrades = [
-      getResultForSkill(Skill.ADDITION_SINGLE, results),
-      getResultForSkill(Skill.ADDITION_DOUBLE, results),
-      getResultForSkill(Skill.ADDITION_TRIPLE, results),
-      getResultForSkill(Skill.SUBTRACTION_SINGLE, results),
-      getResultForSkill(Skill.SUBTRACTION_DOUBLE, results),
-      getResultForSkill(Skill.SUBTRACTION_TRIPLE, results),
-      getResultForSkill(Skill.EQUAL_GROUP_10_ITEMS, results),
-      getResultForSkill(Skill.MULTIPLICATION_5, results),
-      getResultForSkill(Skill.MULTIPLICATION_10, results),
-      getResultForSkill(Skill.EQUAL_SHARING_8_ITEMS, results),
-      getResultForSkill(Skill.DIVIDE_12_EQUALLY, results),
-      getResultForSkill(Skill.DIVIDE_100, results),
-    ];
+
     const options = {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json;charset=UTF-8",
       },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        worksheets: workSheets,
-        calculatedGrade: getCalculatedGrade(results),
-        unitGrades: unitGrades,
-        skillGrades: skillGrades,
-        results: results,
-      }),
     };
 
     await fetch(url, options);
+
   };
 
   function delay(ms: number) {
@@ -206,7 +183,7 @@ const Diagnostic = () => {
         lastName: lastName,
       };
       dispatch(setDiagnostic(results));
-      requestEmail(results);
+      requestEmail();
       setStage(STAGE.RESULTS);
     }
   };
