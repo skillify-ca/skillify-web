@@ -107,15 +107,65 @@ export default function djacobs(props) {
   };
 
   // End of Quiz: YOU MADE IT OUT! Head back to main session to collect your prize!
-  const questionComponent = [
-    SA_Q1(questionData[0], nextQuestion, isWrong),
-    SA_Q2(questionData[1], nextQuestion, isWrong),
-    SA_Q3(questionData[2], nextQuestion, isWrong),
-    SA_Q4(questionData[3], nextQuestion, isWrong),
-    SA_Q5(questionData[4], nextQuestion, isWrong),
-    SA_Q6(questionData[5], nextQuestion, isWrong),
-    SA_Q7(questionData[6], nextQuestion, isWrong),
-  ];
+
+  const questionComponent = () => {
+    switch (currentQuestionIndex) {
+      case 0:
+        return (
+          <SA_Q1
+            displayQuestion={questionData[0]}
+            imagePath="/images/surfaceArea/SA_Q1_image.png"
+            nextQuestion={nextQuestion}
+          />
+        );
+      case 1:
+        return (
+          <SA_Q2
+            displayQuestion={questionData[1]}
+            imagePath="/images/surfaceArea/SA_Q1_image.png"
+            nextQuestion={nextQuestion}
+          />
+        );
+      case 2:
+        return (
+          <SA_Q3
+            displayQuestion={questionData[2]}
+            imagePath="/images/surfaceArea/SA_Q2_image.png"
+            nextQuestion={nextQuestion}
+          />
+        );
+      case 3:
+        return (
+          <SA_Q4
+            displayQuestion={questionData[3]}
+            imagePath="/images/surfaceArea/SA_Q2_image.png"
+            nextQuestion={nextQuestion}
+          />
+        );
+      case 4:
+        return (
+          <SA_Q5
+            displayQuestion={questionData[4]}
+            nextQuestion={nextQuestion}
+          />
+        );
+      case 5:
+        return (
+          <SA_Q6
+            displayQuestion={questionData[5]}
+            nextQuestion={nextQuestion}
+          />
+        );
+      case 6:
+        return (
+          <SA_Q7
+            displayQuestion={questionData[6]}
+            imagePath="/images/surfaceArea/SA_Q7_image.png"
+            nextQuestion={nextQuestion}
+          />
+        );
+    }
+  };
 
   return (
     <div className="flex flex-col overflow-auto bg-scroll bg-blue-50">
@@ -198,7 +248,7 @@ export default function djacobs(props) {
                           Wrong Answer
                         </p>
                       )}
-                      {questionComponent[currentQuestionIndex]}
+                      {questionComponent()}
                     </div>
                     <div id="FormEnd" className="flex flex-col items-center">
                       <Button

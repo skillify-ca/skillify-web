@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
+import Q1 from "../../../components/giza/Q1";
 import Navbar from "../../../components/Navbar";
 import SA_Q1 from "../../../components/surfaceArea/SA_Q1";
 import SA_Q2 from "../../../components/surfaceArea/SA_Q2";
@@ -102,15 +103,6 @@ export default function djacobs(props) {
     setShouldAnimate(true);
   };
 
-  // End of Quiz: YOU MADE IT OUT! Head back to main session to collect your prize!
-  const questionComponent = [
-    SA_Q1(questionData[0], nextQuestion, isWrong),
-    SA_Q2(questionData[1], nextQuestion, isWrong),
-    SA_Q3(questionData[2], nextQuestion, isWrong),
-    SA_Q4(questionData[3], nextQuestion, isWrong),
-    SA_Q5(questionData[4], nextQuestion, isWrong),
-  ];
-
   return (
     <div className="flex flex-col overflow-auto bg-scroll bg-blue-50">
       <style jsx>{`
@@ -197,7 +189,11 @@ export default function djacobs(props) {
                           Wrong Answer
                         </p>
                       )}
-                      {questionComponent[currentQuestionIndex]}
+                      <SA_Q1
+                        displayQuestion={questionData[currentQuestionIndex]}
+                        imagePath="/images/surfaceArea/SA_Q1_image.png"
+                        nextQuestion={nextQuestion}
+                      />
                     </div>
                     <div id="FormEnd" className="flex flex-col items-center">
                       <Button
