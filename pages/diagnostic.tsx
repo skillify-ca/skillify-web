@@ -46,7 +46,7 @@ const Diagnostic = () => {
   const [answeredQuestions, setAnsweredQuestions] = useState<Question[]>([]);
   const [juniorDiagnosticQuestions, setJuniorDiagnosticQuestions] = useState<Question[]>([]);
   const [currentJuniorQuestion, setCurrentJuniorQuestion] = useState<number>(0)
-  const [gradeLevel, setGradeLevel] = useState(Grade.GRADE_4) // 0 - 4th grade list, 1 - 5th grade list, 2 - 6th grade list
+  const [gradeLevel, setGradeLevel] = useState(Grade.GRADE_4)
 
   const getGradeRange: () => string = () => {
     return [Grade.GRADE_1, Grade.GRADE_2, Grade.GRADE_3].includes(grade)
@@ -60,47 +60,22 @@ const Diagnostic = () => {
   const [currentQuestion, setCurrentQuestion] = useState<Question>();
   const inputElement = useRef(null);
 
-  const requestEmail = async (results: DiagnosticState) => {
-    const workSheets = getWorkSheets(results);
+  // create this in the backend and then call into the frontend
+
+  const requestEmail = async () => {
+
     const url = "https://math-app-1.herokuapp.com/email";
-    const unitGrades = [
-      getGradeLevelForUnit(Unit.ADDITION, results),
-      getGradeLevelForUnit(Unit.SUBTRACTION, results),
-      getGradeLevelForUnit(Unit.MULTIPLICATION, results),
-      getGradeLevelForUnit(Unit.DIVISION, results),
-    ];
-    const skillGrades = [
-      getResultForSkill(Skill.ADDITION_SINGLE, results),
-      getResultForSkill(Skill.ADDITION_DOUBLE, results),
-      getResultForSkill(Skill.ADDITION_TRIPLE, results),
-      getResultForSkill(Skill.SUBTRACTION_SINGLE, results),
-      getResultForSkill(Skill.SUBTRACTION_DOUBLE, results),
-      getResultForSkill(Skill.SUBTRACTION_TRIPLE, results),
-      getResultForSkill(Skill.EQUAL_GROUP_10_ITEMS, results),
-      getResultForSkill(Skill.MULTIPLICATION_5, results),
-      getResultForSkill(Skill.MULTIPLICATION_10, results),
-      getResultForSkill(Skill.EQUAL_SHARING_8_ITEMS, results),
-      getResultForSkill(Skill.DIVIDE_12_EQUALLY, results),
-      getResultForSkill(Skill.DIVIDE_100, results),
-    ];
+
     const options = {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json;charset=UTF-8",
       },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        worksheets: workSheets,
-        calculatedGrade: getCalculatedGrade(results),
-        unitGrades: unitGrades,
-        skillGrades: skillGrades,
-        results: results,
-      }),
     };
 
     await fetch(url, options);
+
   };
 
   function delay(ms: number) {
@@ -204,7 +179,7 @@ const Diagnostic = () => {
         lastName: lastName,
       };
       dispatch(setDiagnostic(results));
-      requestEmail(results);
+      requestEmail();
       setStage(STAGE.RESULTS);
     }
   };
