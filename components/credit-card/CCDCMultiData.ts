@@ -1,14 +1,6 @@
-export interface multiQuestion {
-  question: string;
-  options: Array<questionOption>;
-}
+import { MultiQuestion } from "../../pages/api/credit-card/MultiQuestion";
 
-export interface questionOption {
-  id: string;
-  answer: string;
-}
-
-export const multiQuestionData: multiQuestion[] = [
+export const multiQuestionData: MultiQuestion[] = [
   {
     question: "Which of the following describes a credit card but not a debit card?",
     options: [
