@@ -25,12 +25,12 @@ type InteractiveLessonProps = {
 
 const interactiveLessosn = [
   { title: "Financial Literacy", link: "finance" },
+  { title: "Kaboom", link: "kaboom" },
   { title: "Escape from Giza", link: "teachers/djacobs/giza" },
   { title: "Surface Area Quiz", link: "teachers/djacobs/surfaceArea" },
-  { title: "Food Truck Frenzy", link: "foodtruck" },
-  { title: "Kaboom", link: "kaboom" },
-  { title: "Balance the Budget", link: "finance-profile" },
-  { title: "Building a Bakery", link: "bakery-page" },
+  { title: "Food Truck Frenzy", link: "lessons/foodtruck" },
+  { title: "Balance the Budget", link: "lessons/budget" },
+  { title: "Building a Bakery", link: "lessons/bakery" },
 ];
 const InteractiveLesson = ({ title, link }: InteractiveLessonProps) => {
   return (
