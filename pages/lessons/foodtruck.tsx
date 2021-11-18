@@ -1,27 +1,25 @@
 import React, { useState } from "react";
-import BuildAFoodTruck from "../components/foodtruck/BuildAFoodTruck";
-import ChooseFoodType from "../components/foodtruck/ChooseFoodType";
-import ChooseNumWorkers from "../components/foodtruck/ChooseNumWorkers";
-import ChooseTruckType from "../components/foodtruck/ChooseTruckType";
+import ChooseFoodType from "../../components/foodtruck/ChooseFoodType";
+import ChooseNumWorkers from "../../components/foodtruck/ChooseNumWorkers";
+import ChooseTruckType from "../../components/foodtruck/ChooseTruckType";
 
-import OverviewOfSelections from "../components/foodtruck/OverviewOfSelections";
 import {
   hotDog,
   operatingHours,
   minimumWage,
   smallTruck,
   Truck,
-} from "./api/foodtruck/food";
-import RevenueEquation from "../components/foodtruck/RevenueEquation";
-import ProdCostEquation from "../components/foodtruck/ProdCostEquation";
-import LaborCostEquation from "../components/foodtruck/LaborCostEquation";
-import ProfitEquation from "../components/foodtruck/ProfitEquation";
+} from "../api/foodtruck/food";
+import RevenueEquation from "../../components/foodtruck/RevenueEquation";
+import ProdCostEquation from "../../components/foodtruck/ProdCostEquation";
+import LaborCostEquation from "../../components/foodtruck/LaborCostEquation";
+import ProfitEquation from "../../components/foodtruck/ProfitEquation";
 
-import { Button } from "../components/ui/Button";
+import { Button } from "../../components/ui/Button";
 import { useMutation } from "@apollo/client";
-import { UNLOCK_BADGE } from "../graphql/unlockBadge";
-import { useAuth } from "../lib/authContext";
-import { EndSession } from "../components/budget/EndSession";
+import { UNLOCK_BADGE } from "../../graphql/unlockBadge";
+import { useAuth } from "../../lib/authContext";
+import { EndSession } from "../../components/budget/EndSession";
 
 /*
 TODO fix these issues before make it obvious when food items are not selectable
@@ -97,7 +95,7 @@ export default function FoodTruck(props) {
     return [...Array(Number.parseInt(n))].map((_, i) => (
       <div className="flex flex-cols" key={i}>
         <img
-          className="object-contain h-3/4 w-3/4"
+          className="object-contain w-3/4 h-3/4"
           src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/3226091/chef-clipart.svg"
         />
       </div>
@@ -113,15 +111,12 @@ export default function FoodTruck(props) {
   const [truck, setTruck] = useState(smallTruck);
   const [food, setFood] = useState(hotDog);
   const [selectedNumWorkers, setSelectedNumWorkers] = useState("1");
-  const [revenueComponentComplete, setRevenueComponentComplete] = useState(
-    false
-  );
-  const [prodCostComponentComplete, setProdCostComponentComplete] = useState(
-    false
-  );
-  const [laborCostComponentComplete, setLaborCostComponentComplete] = useState(
-    false
-  );
+  const [revenueComponentComplete, setRevenueComponentComplete] =
+    useState(false);
+  const [prodCostComponentComplete, setProdCostComponentComplete] =
+    useState(false);
+  const [laborCostComponentComplete, setLaborCostComponentComplete] =
+    useState(false);
   const [profitComponentComplete, setProfitComponentComplete] = useState(false);
 
   // revenue equation one
@@ -136,75 +131,52 @@ export default function FoodTruck(props) {
   const [revEquationTwoBoxFour, setRevEquationTwoBoxFour] = useState("");
 
   // prodCost equation one
-  const [prodCostEquationOneBoxOne, setProdCostEquationOneBoxOne] = useState(
-    ""
-  );
-  const [prodCostEquationOneBoxTwo, setProdCostEquationOneBoxTwo] = useState(
-    ""
-  );
-  const [
-    prodCostEquationOneBoxThree,
-    setProdCostEquationOneBoxThree,
-  ] = useState("");
+  const [prodCostEquationOneBoxOne, setProdCostEquationOneBoxOne] =
+    useState("");
+  const [prodCostEquationOneBoxTwo, setProdCostEquationOneBoxTwo] =
+    useState("");
+  const [prodCostEquationOneBoxThree, setProdCostEquationOneBoxThree] =
+    useState("");
 
-  const [prodCostEquationOneBoxFour, setProdCostEquationOneBoxFour] = useState(
-    ""
-  );
+  const [prodCostEquationOneBoxFour, setProdCostEquationOneBoxFour] =
+    useState("");
 
   // prodCost equation two
-  const [prodCostEquationTwoBoxOne, setProdCostEquationTwoBoxOne] = useState(
-    ""
-  );
-  const [prodCostEquationTwoBoxTwo, setProdCostEquationTwoBoxTwo] = useState(
-    ""
-  );
-  const [
-    prodCostEquationTwoBoxThree,
-    setProdCostEquationTwoBoxThree,
-  ] = useState("");
-  const [prodCostEquationTwoBoxFour, setProdCostEquationTwoBoxFour] = useState(
-    ""
-  );
+  const [prodCostEquationTwoBoxOne, setProdCostEquationTwoBoxOne] =
+    useState("");
+  const [prodCostEquationTwoBoxTwo, setProdCostEquationTwoBoxTwo] =
+    useState("");
+  const [prodCostEquationTwoBoxThree, setProdCostEquationTwoBoxThree] =
+    useState("");
+  const [prodCostEquationTwoBoxFour, setProdCostEquationTwoBoxFour] =
+    useState("");
 
   // laborCost equation one
-  const [laborCostEquationOneBoxOne, setLaborCostEquationOneBoxOne] = useState(
-    ""
-  );
-  const [laborCostEquationOneBoxTwo, setLaborCostEquationOneBoxTwo] = useState(
-    ""
-  );
-  const [
-    laborCostEquationOneBoxThree,
-    setLaborCostEquationOneBoxThree,
-  ] = useState("");
+  const [laborCostEquationOneBoxOne, setLaborCostEquationOneBoxOne] =
+    useState("");
+  const [laborCostEquationOneBoxTwo, setLaborCostEquationOneBoxTwo] =
+    useState("");
+  const [laborCostEquationOneBoxThree, setLaborCostEquationOneBoxThree] =
+    useState("");
 
-  const [
-    laborCostEquationOneBoxFour,
-    setLaborCostEquationOneBoxFour,
-  ] = useState("");
+  const [laborCostEquationOneBoxFour, setLaborCostEquationOneBoxFour] =
+    useState("");
 
   // laborCost equation two
-  const [laborCostEquationTwoBoxOne, setLaborCostEquationTwoBoxOne] = useState(
-    ""
-  );
-  const [laborCostEquationTwoBoxTwo, setLaborCostEquationTwoBoxTwo] = useState(
-    ""
-  );
-  const [
-    laborCostEquationTwoBoxThree,
-    setLaborCostEquationTwoBoxThree,
-  ] = useState("");
-  const [
-    laborCostEquationTwoBoxFour,
-    setLaborCostEquationTwoBoxFour,
-  ] = useState("");
+  const [laborCostEquationTwoBoxOne, setLaborCostEquationTwoBoxOne] =
+    useState("");
+  const [laborCostEquationTwoBoxTwo, setLaborCostEquationTwoBoxTwo] =
+    useState("");
+  const [laborCostEquationTwoBoxThree, setLaborCostEquationTwoBoxThree] =
+    useState("");
+  const [laborCostEquationTwoBoxFour, setLaborCostEquationTwoBoxFour] =
+    useState("");
 
   // profit equation one
   const [profitEquationOneBoxOne, setProfitEquationOneBoxOne] = useState("");
   const [profitEquationOneBoxTwo, setProfitEquationOneBoxTwo] = useState("");
-  const [profitEquationOneBoxThree, setProfitEquationOneBoxThree] = useState(
-    ""
-  );
+  const [profitEquationOneBoxThree, setProfitEquationOneBoxThree] =
+    useState("");
 
   const onSelectedTruckChanged = (truck: Truck) => {
     setTruck(truck);
@@ -332,9 +304,9 @@ export default function FoodTruck(props) {
       stage == STAGE.SelectNumWorkers
     ) {
       return (
-        <div className="flex flex-col p-8 bg-purple-200 gap-8 h-full">
+        <div className="flex flex-col h-full gap-8 p-8 bg-purple-200">
           <h1 className="text-3xl text-center">Game Progress</h1>
-          <div className="grid grid-cols-2 text-xl text-center items-center gap-8">
+          <div className="grid items-center grid-cols-2 gap-8 text-xl text-center">
             <p>Your Stand:</p>
             <figure>
               <img className="object-contain w-60" src={truck.imageUrl} />
@@ -354,9 +326,9 @@ export default function FoodTruck(props) {
       );
     } else if (stage == STAGE.RevenueEquation) {
       return (
-        <div className="flex flex-col p-8 items-center justify-center">
-          <h1 className="text-5xl mb-8 text-center">Useful Inputs</h1>
-          <div className="grid grid-cols-12 text-3xl space-y-2 w-full items-center">
+        <div className="flex flex-col items-center justify-center p-8">
+          <h1 className="mb-8 text-5xl text-center">Useful Inputs</h1>
+          <div className="grid items-center w-full grid-cols-12 space-y-2 text-3xl">
             <p className="col-span-10">Number of Workers:</p>
             <p className="col-span-2">{selectedNumWorkers}</p>
             <p className="col-span-10">Plates / Hour (per worker):</p>
@@ -366,8 +338,8 @@ export default function FoodTruck(props) {
             <p className="col-span-10">Hours / Day:</p>
             <p className="col-span-2">{operatingHours}</p>
           </div>
-          <h1 className="text-5xl my-12">Equation Progress</h1>
-          <div className="grid grid-cols-12 text-3xl w-full">
+          <h1 className="my-12 text-5xl">Equation Progress</h1>
+          <div className="grid w-full grid-cols-12 text-3xl">
             <p className="col-span-10">
               Total Plates/Hour ({selectedNumWorkers}{" "}
               {selectedNumWorkers == "1" ? "worker" : "workers"}):
@@ -383,8 +355,8 @@ export default function FoodTruck(props) {
     } else if (stage == STAGE.ProdCostEquation) {
       return (
         <div className="flex flex-col p-8">
-          <h1 className="text-6xl mb-8">Useful Inputs</h1>
-          <div className="grid grid-cols-12 text-3xl w-full space-y-2">
+          <h1 className="mb-8 text-6xl">Useful Inputs</h1>
+          <div className="grid w-full grid-cols-12 space-y-2 text-3xl">
             <p className="col-span-10">Plates per Hour:</p>
             <p className="col-span-2">{revEquationOneBoxThree}</p>
             <p className="col-span-10">Cost per Plate:</p>
@@ -396,8 +368,8 @@ export default function FoodTruck(props) {
             <p className="col-span-10">Hours Working per Day:</p>
             <p className="col-span-2">{operatingHours}</p>
           </div>
-          <h1 className="text-6xl my-12">Equation Progress</h1>
-          <div className="grid grid-cols-12 text-3xl w-full space-y-2">
+          <h1 className="my-12 text-6xl">Equation Progress</h1>
+          <div className="grid w-full grid-cols-12 space-y-2 text-3xl">
             <p className="col-span-10">Total Daily Ingredient Cost:</p>
             <p className="col-span-2">{prodCostEquationOneBoxFour}</p>
             <p className="col-span-10">Total Daily Truck Cost:</p>
@@ -408,8 +380,8 @@ export default function FoodTruck(props) {
     } else if (stage === STAGE.LaborCostEquation) {
       return (
         <div className="flex flex-col p-8">
-          <h1 className="text-6xl mb-8">Useful Inputs</h1>
-          <div className="grid grid-cols-12 text-3xl w-full space-y-2">
+          <h1 className="mb-8 text-6xl">Useful Inputs</h1>
+          <div className="grid w-full grid-cols-12 space-y-2 text-3xl">
             <p className="col-span-10">Number of Workers:</p>
             <p className="col-span-2">{selectedNumWorkers}</p>
             <p className="col-span-10">Minumum Hourly Wage:</p>
@@ -421,8 +393,8 @@ export default function FoodTruck(props) {
             <p className="col-span-10">Total Daily Truck Rental Cost:</p>
             <p className="col-span-2">{prodCostEquationTwoBoxFour}</p>
           </div>
-          <h1 className="text-6xl my-12">Equation Progress</h1>
-          <div className="grid grid-cols-12 text-3xl w-full space-y-2">
+          <h1 className="my-12 text-6xl">Equation Progress</h1>
+          <div className="grid w-full grid-cols-12 space-y-2 text-3xl">
             <p className="col-span-10">Total Wages per Day:</p>
             <p className="col-span-2">{laborCostEquationOneBoxFour}</p>
             <p className="col-span-10">Total Costs per Day:</p>
@@ -433,8 +405,8 @@ export default function FoodTruck(props) {
     } else if (stage === STAGE.ProfitEquation) {
       return (
         <div className="flex flex-col p-8">
-          <h1 className="text-6xl mb-8">Useful Inputs</h1>
-          <div className="grid grid-cols-12 text-3xl space-y-2">
+          <h1 className="mb-8 text-6xl">Useful Inputs</h1>
+          <div className="grid grid-cols-12 space-y-2 text-3xl">
             <p className="col-span-10">Total Daily Revenue:</p>
             <p className="col-span-2">
               ${Number.parseInt(revEquationTwoBoxFour)}
@@ -442,8 +414,8 @@ export default function FoodTruck(props) {
             <p className="col-span-10">Total Daily Costs:</p>
             <p className="col-span-2">${laborCostEquationTwoBoxFour}</p>
           </div>
-          <h1 className="text-6xl my-12">Equation Progress</h1>
-          <div className="grid grid-cols-12 text-3xl space-y-2">
+          <h1 className="my-12 text-6xl">Equation Progress</h1>
+          <div className="grid grid-cols-12 space-y-2 text-3xl">
             <p className="col-span-10">Total Revenue per Day</p>
             <p className="col-span-2">{profitEquationOneBoxOne}</p>
             <p className="col-span-10">Total Costs per Day:</p>
@@ -456,10 +428,10 @@ export default function FoodTruck(props) {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="flex-grow-0 bg-gradient-to-b from-gray-200 to-pink-100 sticky top-0 grid grid-cols-12 justify-evenly items-center border-black border-b-2 p-4">
-        <div className="col-span-2 flex flex-col items-center gap-4">
+      <div className="sticky top-0 grid items-center flex-grow-0 grid-cols-12 p-4 border-b-2 border-black bg-gradient-to-b from-gray-200 to-pink-100 justify-evenly">
+        <div className="flex flex-col items-center col-span-2 gap-4">
           <img
-            className="object-left object-contain h-16"
+            className="object-contain object-left h-16"
             src={
               "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/77310/food-truck-clipart-md.png"
             }
@@ -472,12 +444,12 @@ export default function FoodTruck(props) {
           />
         </div>
 
-        <h1 className="col-span-8 text-black bold text-center text-4xl p-4">
+        <h1 className="col-span-8 p-4 text-4xl text-center text-black bold">
           Let's Build Your Own Food Stand!
         </h1>
-        <div className="col-span-2 flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center col-span-2 gap-4">
           <img
-            className="object-right object-contain h-16 invert"
+            className="object-contain object-right h-16 invert"
             src={
               "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/77310/food-truck-clipart-md.png"
             }
@@ -501,11 +473,11 @@ export default function FoodTruck(props) {
           />
         </div>
       ) : (
-        <div className="flex-grow grid grid-cols-12">
+        <div className="grid flex-grow grid-cols-12">
           <div className="col-span-8 overflow-y-auto bg-blue-100">
             {getLeftComponent(stage)}
           </div>
-          <div className="col-span-4 bg-purple-200 h-full">
+          <div className="h-full col-span-4 bg-purple-200">
             {getProgressComponent(stage)}
           </div>
         </div>
