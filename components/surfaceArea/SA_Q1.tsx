@@ -49,19 +49,16 @@ const Q1 = ({
 
   const onGuessChangedA = (currentGuess: string) => {
     const newGuess = currentGuess;
-    console.log(newGuess);
     setGuessStringA(newGuess);
   };
 
   const onGuessChangedB = (currentGuess: string) => {
     const newGuess = currentGuess;
-    console.log(newGuess);
     setGuessStringB(newGuess);
   };
 
   const onGuessChangedC = (currentGuess: string) => {
     const newGuess = currentGuess;
-    console.log(newGuess);
     setGuessStringC(newGuess);
   };
 
