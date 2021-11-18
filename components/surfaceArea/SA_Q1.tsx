@@ -8,17 +8,38 @@ type Q1Props = {
   displayQuestion: string;
   imagePath: string;
   nextQuestion: (guess: GuessData) => void;
+  guessStringA: string;
+  setGuessStringA: (guessString: string) => void;
+  guessStringB: string;
+  setGuessStringB: (guessString: string) => void;
+  guessStringC: string;
+  setGuessStringC: (guessString: string) => void;
+  guessStringD: string;
+  setGuessStringD: (guessString: string) => void;
+  guessStringE: string;
+  setGuessStringE: (guessString: string) => void;
+  guessStringF: string;
+  setGuessStringF: (guessString: string) => void;
 };
 
 //Future component, name: TypeAnswerQuestion
-const Q1 = ({ displayQuestion, imagePath, nextQuestion }: Q1Props) => {
-  const [guessStringA, setGuessStringA] = useState<string>("");
-  const [guessStringB, setGuessStringB] = useState<string>("");
-  const [guessStringC, setGuessStringC] = useState<string>("");
-  const [guessStringD, setGuessStringD] = useState<string>("");
-  const [guessStringE, setGuessStringE] = useState<string>("");
-  const [guessStringF, setGuessStringF] = useState<string>("");
-
+const Q1 = ({
+  displayQuestion,
+  imagePath,
+  nextQuestion,
+  guessStringA,
+  setGuessStringA,
+  guessStringB,
+  setGuessStringB,
+  guessStringC,
+  setGuessStringC,
+  guessStringD,
+  setGuessStringD,
+  guessStringE,
+  setGuessStringE,
+  guessStringF,
+  setGuessStringF,
+}: Q1Props) => {
   const answerA = "top";
   const answerB = "front";
   const answerC = "bottom";

@@ -5,20 +5,28 @@ import { Button } from "../ui/Button";
 type Q6Props = {
   displayQuestion: string;
   nextQuestion: (guess: GuessData) => void;
+  positions: boolean[][];
+  setPositions: (positions: boolean[][]) => void;
+  partBguessString: string;
+  setpartBGuessString: (guessString: string) => void;
+  partCguessString: string;
+  setpartCGuessString: (guessString: string) => void;
+  setupPosition: (xposition: number, yposition: number) => void;
 };
 
 //Future component, name: TypeAnswerQuestion
-const Q6 = ({ displayQuestion, nextQuestion }: Q6Props) => {
+const Q6 = ({
+  displayQuestion,
+  nextQuestion,
+  positions,
+  setPositions,
+  partBguessString,
+  setpartBGuessString,
+  partCguessString,
+  setpartCGuessString,
+  setupPosition,
+}: Q6Props) => {
   const [guessString, setGuessString] = useState<string>("");
-  const [positions, setPositions] = useState<boolean[][]>([
-    [false, false, false, false],
-    [false, false, false, false],
-    [false, false, false, false],
-    [false, false, false, false],
-  ]);
-
-  const [partBguessString, setpartBguessString] = useState<string>("");
-  const [partCguessString, setpartCguessString] = useState<string>("");
 
   //Base 1
   const partBanswer = "9 cm^2";
@@ -27,12 +35,12 @@ const Q6 = ({ displayQuestion, nextQuestion }: Q6Props) => {
 
   const onPartBGuessChanged = (currentGuess: string) => {
     const newGuess = currentGuess;
-    setpartBguessString(newGuess);
+    setpartBGuessString(newGuess);
   };
 
   const onPartCGuessChanged = (currentGuess: string) => {
     const newGuess = currentGuess;
-    setpartCguessString(newGuess);
+    setpartCGuessString(newGuess);
   };
 
   const onSubmit = () => {
@@ -51,14 +59,6 @@ const Q6 = ({ displayQuestion, nextQuestion }: Q6Props) => {
     };
     //Pass this guessData object into nextQuestion
     nextQuestion(guess);
-  };
-
-  const setupPosition = (xposition: number, yposition: number) => {
-    setPositions((prev) => {
-      const next = [...prev];
-      next[xposition][yposition] = !next[xposition][yposition];
-      return next;
-    });
   };
 
   return (

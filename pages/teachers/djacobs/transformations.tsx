@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
-import Q1 from "../../../components/giza/Q1";
 import Navbar from "../../../components/Navbar";
-import SA_Q1 from "../../../components/surfaceArea/SA_Q1";
-import SA_Q2 from "../../../components/surfaceArea/SA_Q2";
-import SA_Q3 from "../../../components/surfaceArea/SA_Q3";
-import SA_Q4 from "../../../components/surfaceArea/SA_Q4";
-import SA_Q5 from "../../../components/surfaceArea/SA_Q5";
+import TQ from "../../../components/transformations/transformation_question_template";
 import { Button } from "../../../components/ui/Button";
 import { GuessData } from "../../api/guessData";
 import { measureTime } from "../../api/time";
@@ -47,6 +42,10 @@ export default function djacobs(props) {
   const [endTime, setEndTime] = useState<number>();
   const [totalTimeMin, setTotalTimeMin] = useState<number>();
   const [totalTimeSec, setTotalTimeSec] = useState<String>();
+  const [guessStringA, setGuessStringA] = useState<string>("");
+  const [guessStringB, setGuessStringB] = useState<string>("");
+  const [guessStringC, setGuessStringC] = useState<string>("");
+  const [guessStringD, setGuessStringD] = useState<string>("");
 
   const onStartQuiz = () => {
     var sTime = new Date().getTime();
@@ -101,6 +100,61 @@ export default function djacobs(props) {
     setGuessCounter(guessCounter + 1);
     setWrongAnswerCheck(check);
     setShouldAnimate(true);
+  };
+
+  const questionComponent = () => {
+    switch (currentQuestionIndex) {
+      case 0:
+        return (
+          <TQ
+            displayQuestion={questionData[0]}
+            imagePath="/images/surfaceArea/SA_Q1_image.png"
+            nextQuestion={nextQuestion}
+            guessString={guessStringA}
+            setGuessString={setGuessStringA}
+          />
+        );
+      case 1:
+        return (
+          <TQ
+            displayQuestion={questionData[1]}
+            imagePath="/images/surfaceArea/SA_Q1_image.png"
+            nextQuestion={nextQuestion}
+            guessString={guessStringB}
+            setGuessString={setGuessStringB}
+          />
+        );
+      case 2:
+        return (
+          <TQ
+            displayQuestion={questionData[2]}
+            imagePath="/images/surfaceArea/SA_Q2_image.png"
+            nextQuestion={nextQuestion}
+            guessString={guessStringC}
+            setGuessString={setGuessStringC}
+          />
+        );
+      case 3:
+        return (
+          <TQ
+            displayQuestion={questionData[3]}
+            imagePath="/images/surfaceArea/SA_Q2_image.png"
+            nextQuestion={nextQuestion}
+            guessString={guessStringD}
+            setGuessString={setGuessStringD}
+          />
+        );
+      case 4:
+        return (
+          <TQ
+            displayQuestion={questionData[3]}
+            imagePath="/images/surfaceArea/SA_Q2_image.png"
+            nextQuestion={nextQuestion}
+            guessString={guessStringD}
+            setGuessString={setGuessStringD}
+          />
+        );
+    }
   };
 
   return (
@@ -189,11 +243,7 @@ export default function djacobs(props) {
                           Wrong Answer
                         </p>
                       )}
-                      <SA_Q1
-                        displayQuestion={questionData[currentQuestionIndex]}
-                        imagePath="/images/surfaceArea/SA_Q1_image.png"
-                        nextQuestion={nextQuestion}
-                      />
+                      {questionComponent()}
                     </div>
                     <div id="FormEnd" className="flex flex-col items-center">
                       <Button
