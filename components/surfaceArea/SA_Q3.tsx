@@ -8,16 +8,34 @@ type Q3Props = {
   displayQuestion: string;
   imagePath: string;
   nextQuestion: (guess: GuessData) => void;
+  guessStringA: string;
+  setGuessStringA: (guessString: string) => void;
+  guessStringB: string;
+  setGuessStringB: (guessString: string) => void;
+  guessStringC: string;
+  setGuessStringC: (guessString: string) => void;
+  guessStringD: string;
+  setGuessStringD: (guessString: string) => void;
+  guessStringE: string;
+  setGuessStringE: (guessString: string) => void;
 };
 
 //Future component, name: TypeAnswerQuestion
-const Q3 = ({ displayQuestion, imagePath, nextQuestion }: Q3Props) => {
-  const [guessStringA, setGuessStringA] = useState<string>("");
-  const [guessStringB, setGuessStringB] = useState<string>("");
-  const [guessStringC, setGuessStringC] = useState<string>("");
-  const [guessStringD, setGuessStringD] = useState<string>("");
-  const [guessStringE, setGuessStringE] = useState<string>("");
-
+const Q3 = ({
+  displayQuestion,
+  imagePath,
+  nextQuestion,
+  guessStringA,
+  setGuessStringA,
+  guessStringB,
+  setGuessStringB,
+  guessStringC,
+  setGuessStringC,
+  guessStringD,
+  setGuessStringD,
+  guessStringE,
+  setGuessStringE,
+}: Q3Props) => {
   const answerA = "Base 1";
   const answerB = "Base 2";
   const answerC = "Face 1";

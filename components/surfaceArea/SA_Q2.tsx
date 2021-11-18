@@ -7,28 +7,70 @@ type Q2Props = {
   displayQuestion: string;
   imagePath: string;
   nextQuestion: (guess: GuessData) => void;
+  partAguessStringA: string;
+  setpartAGuessStringA: (guessString: string) => void;
+  partAguessStringB: string;
+  setpartAGuessStringB: (guessString: string) => void;
+  partAguessStringC: string;
+  setpartAGuessStringC: (guessString: string) => void;
+  partAguessStringD: string;
+  setpartAGuessStringD: (guessString: string) => void;
+  partAguessStringE: string;
+  setpartAGuessStringE: (guessString: string) => void;
+  partAguessStringF: string;
+  setpartAGuessStringF: (guessString: string) => void;
+  partAguessStringSA: string;
+  setpartAGuessStringSA: (guessString: string) => void;
+  partBguessStringA: string;
+  setpartBGuessStringA: (guessString: string) => void;
+  partBguessStringB: string;
+  setpartBGuessStringB: (guessString: string) => void;
+  partBguessStringC: string;
+  setpartBGuessStringC: (guessString: string) => void;
+  partBguessStringD: string;
+  setpartBGuessStringD: (guessString: string) => void;
+  partBguessStringE: string;
+  setpartBGuessStringE: (guessString: string) => void;
+  partBguessStringF: string;
+  setpartBGuessStringF: (guessString: string) => void;
+  partBguessStringSA: string;
+  setpartBGuessStringSA: (guessString: string) => void;
 };
 
 //Future component, name: TypeAnswerQuestion
-const Q2 = ({ displayQuestion, imagePath, nextQuestion }: Q2Props) => {
-  //Part A useStates
-  const [partAguessStringA, setpartAguessStringA] = useState<string>("");
-  const [partAguessStringB, setpartAguessStringB] = useState<string>("");
-  const [partAguessStringC, setpartAguessStringC] = useState<string>("");
-  const [partAguessStringD, setpartAguessStringD] = useState<string>("");
-  const [partAguessStringE, setpartAguessStringE] = useState<string>("");
-  const [partAguessStringF, setpartAguessStringF] = useState<string>("");
-  const [partAguessStringSA, setpartAguessStringSA] = useState<string>("");
-
-  //Part B useStates
-  const [partBguessStringA, setpartBguessStringA] = useState<string>("");
-  const [partBguessStringB, setpartBguessStringB] = useState<string>("");
-  const [partBguessStringC, setpartBguessStringC] = useState<string>("");
-  const [partBguessStringD, setpartBguessStringD] = useState<string>("");
-  const [partBguessStringE, setpartBguessStringE] = useState<string>("");
-  const [partBguessStringF, setpartBguessStringF] = useState<string>("");
-  const [partBguessStringSA, setpartBguessStringSA] = useState<string>("");
-
+const Q2 = ({
+  displayQuestion,
+  imagePath,
+  nextQuestion,
+  partAguessStringA,
+  setpartAGuessStringA,
+  partAguessStringB,
+  setpartAGuessStringB,
+  partAguessStringC,
+  setpartAGuessStringC,
+  partAguessStringD,
+  setpartAGuessStringD,
+  partAguessStringE,
+  setpartAGuessStringE,
+  partAguessStringF,
+  setpartAGuessStringF,
+  partAguessStringSA,
+  setpartAGuessStringSA,
+  partBguessStringA,
+  setpartBGuessStringA,
+  partBguessStringB,
+  setpartBGuessStringB,
+  partBguessStringC,
+  setpartBGuessStringC,
+  partBguessStringD,
+  setpartBGuessStringD,
+  partBguessStringE,
+  setpartBGuessStringE,
+  partBguessStringF,
+  setpartBGuessStringF,
+  partBguessStringSA,
+  setpartBGuessStringSA,
+}: Q2Props) => {
   //Part A Answers
   //Front
   const partAanswerA = "2 x 3 = 6 cm^2";
@@ -64,73 +106,73 @@ const Q2 = ({ displayQuestion, imagePath, nextQuestion }: Q2Props) => {
   //Part A Guess Tracking
   const onPartAGuessChangedA = (currentGuess: string) => {
     const newGuess = currentGuess;
-    setpartAguessStringA(newGuess);
+    setpartAGuessStringA(newGuess);
   };
 
   const onPartAGuessChangedB = (currentGuess: string) => {
     const newGuess = currentGuess;
-    setpartAguessStringB(newGuess);
+    setpartAGuessStringB(newGuess);
   };
 
   const onPartAGuessChangedC = (currentGuess: string) => {
     const newGuess = currentGuess;
-    setpartAguessStringC(newGuess);
+    setpartAGuessStringC(newGuess);
   };
 
   const onPartAGuessChangedD = (currentGuess: string) => {
     const newGuess = currentGuess;
-    setpartAguessStringD(newGuess);
+    setpartAGuessStringD(newGuess);
   };
 
   const onPartAGuessChangedE = (currentGuess: string) => {
     const newGuess = currentGuess;
-    setpartAguessStringE(newGuess);
+    setpartAGuessStringE(newGuess);
   };
 
   const onPartAGuessChangedF = (currentGuess: string) => {
     const newGuess = currentGuess;
-    setpartAguessStringF(newGuess);
+    setpartAGuessStringF(newGuess);
   };
 
   const onPartAGuessChangedSA = (currentGuess: string) => {
     const newGuess = currentGuess;
-    setpartAguessStringSA(newGuess);
+    setpartAGuessStringSA(newGuess);
   };
 
   //Part B Guess Tracking
   const onPartBGuessChangedA = (currentGuess: string) => {
     const newGuess = currentGuess;
-    setpartBguessStringA(newGuess);
+    setpartBGuessStringA(newGuess);
   };
 
   const onPartBGuessChangedB = (currentGuess: string) => {
     const newGuess = currentGuess;
-    setpartBguessStringB(newGuess);
+    setpartBGuessStringB(newGuess);
   };
 
   const onPartBGuessChangedC = (currentGuess: string) => {
     const newGuess = currentGuess;
-    setpartBguessStringC(newGuess);
+    setpartBGuessStringC(newGuess);
   };
 
   const onPartBGuessChangedD = (currentGuess: string) => {
     const newGuess = currentGuess;
-    setpartBguessStringD(newGuess);
+    setpartBGuessStringD(newGuess);
   };
 
   const onPartBGuessChangedE = (currentGuess: string) => {
     const newGuess = currentGuess;
-    setpartBguessStringE(newGuess);
+    setpartBGuessStringE(newGuess);
   };
 
   const onPartBGuessChangedF = (currentGuess: string) => {
     const newGuess = currentGuess;
-    setpartBguessStringF(newGuess);
+    setpartBGuessStringF(newGuess);
   };
 
   const onPartBGuessChangedSA = (currentGuess: string) => {
     const newGuess = currentGuess;
-    setpartBguessStringSA(newGuess);
+    setpartBGuessStringSA(newGuess);
   };
 
   const onSubmit = () => {
