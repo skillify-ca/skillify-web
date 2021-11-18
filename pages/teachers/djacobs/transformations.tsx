@@ -3,6 +3,7 @@ import { SwitchTransition, CSSTransition } from "react-transition-group";
 import Navbar from "../../../components/Navbar";
 import TQ from "../../../components/transformations/transformation_question_template";
 import { Button } from "../../../components/ui/Button";
+import { LineData } from "../../../components/ui/FreeDrawing";
 import { GuessData } from "../../api/guessData";
 import { measureTime } from "../../api/time";
 
@@ -14,11 +15,15 @@ enum Stage {
 
 export default function djacobs(props) {
   const questionData = [
-    "A net for the rectangular prism is shown on the grid. On the net, label each face of the prism. Each square on the grid represents 1cm^2.",
-    "Write a multiplication question for the area of each face for the rectangular prisms in question 1, image also provided from question 1. Then find the surface area of the prism",
-    "A net for the triangular prism is shown on the grid. On the net, label each face of the prism. Each square on the grid represents 1cm^2.",
-    "Write a multiplication question for the area of each face for the triangular prisms in question 3, image also provided from question 3. Then find the surface area of the prism",
-    "Explain how the net of a prism helps you find the surface area of a prism",
+    "1) On one quadrant, draw your original image by plotting four or more points and connecting them. This is your pre-image" +
+      "\n" +
+      "2) Use EACH of the other quadrants to perform a translation, then a reflection, and then a rotation" +
+      "\n" +
+      "3) For every transformation, describe and label each transformation with detail, ex. A translation 5 units left and 2 units down" +
+      "\n" +
+      "4) Colour your pre-image and transformations" +
+      "\n" +
+      "5) Label the x-axis and y-axis, include the coordinate points for each transformation underneath the drawings",
   ];
 
   const [stage, setStage] = useState(Stage.START);
@@ -59,6 +64,7 @@ export default function djacobs(props) {
   };
 
   const backToPrevious = () => {
+    console.log(currentQuestionIndex);
     if (currentQuestionIndex == 0) {
       setStage(Stage.START);
     } else {
@@ -102,56 +108,65 @@ export default function djacobs(props) {
     setShouldAnimate(true);
   };
 
+  //Q1 useStates
+  const EMPTY_ARRAY_OF_ARRAYSQ1 = [[], [], []];
+  const [historyStepForQuestionsQ1, setHistoryStepForQuestionsQ1] = useState<
+    number[]
+  >([0, 0, 0]);
+  const [linesForQuestionsQ1, setLinesForQuestionsQ1] = React.useState<
+    LineData[][]
+  >(EMPTY_ARRAY_OF_ARRAYSQ1);
+
+  //Q2 useStates
+  const EMPTY_ARRAY_OF_ARRAYSQ2 = [[], [], []];
+  const [historyStepForQuestionsQ2, setHistoryStepForQuestionsQ2] = useState<
+    number[]
+  >([0, 0, 0]);
+  const [linesForQuestionsQ2, setLinesForQuestionsQ2] = React.useState<
+    LineData[][]
+  >(EMPTY_ARRAY_OF_ARRAYSQ2);
+
+  //Q3 useStates
+  const EMPTY_ARRAY_OF_ARRAYSQ3 = [[], [], []];
+  const [historyStepForQuestionsQ3, setHistoryStepForQuestionsQ3] = useState<
+    number[]
+  >([0, 0, 0]);
+  const [linesForQuestionsQ3, setLinesForQuestionsQ3] = React.useState<
+    LineData[][]
+  >(EMPTY_ARRAY_OF_ARRAYSQ3);
+
+  //Q4 useStates
+  const EMPTY_ARRAY_OF_ARRAYSQ4 = [[], [], []];
+  const [historyStepForQuestionsQ4, setHistoryStepForQuestionsQ4] = useState<
+    number[]
+  >([0, 0, 0]);
+  const [linesForQuestionsQ4, setLinesForQuestionsQ4] = React.useState<
+    LineData[][]
+  >(EMPTY_ARRAY_OF_ARRAYSQ4);
+
+  //Q5 useStates
+  const EMPTY_ARRAY_OF_ARRAYSQ5 = [[], [], []];
+  const [historyStepForQuestionsQ5, setHistoryStepForQuestionsQ5] = useState<
+    number[]
+  >([0, 0, 0]);
+  const [linesForQuestionsQ5, setLinesForQuestionsQ5] = React.useState<
+    LineData[][]
+  >(EMPTY_ARRAY_OF_ARRAYSQ5);
+
   const questionComponent = () => {
     switch (currentQuestionIndex) {
       case 0:
         return (
           <TQ
             displayQuestion={questionData[0]}
-            imagePath="/images/surfaceArea/SA_Q1_image.png"
+            imagePath="/images/transformations/transformation_image.png"
             nextQuestion={nextQuestion}
             guessString={guessStringA}
             setGuessString={setGuessStringA}
-          />
-        );
-      case 1:
-        return (
-          <TQ
-            displayQuestion={questionData[1]}
-            imagePath="/images/surfaceArea/SA_Q1_image.png"
-            nextQuestion={nextQuestion}
-            guessString={guessStringB}
-            setGuessString={setGuessStringB}
-          />
-        );
-      case 2:
-        return (
-          <TQ
-            displayQuestion={questionData[2]}
-            imagePath="/images/surfaceArea/SA_Q2_image.png"
-            nextQuestion={nextQuestion}
-            guessString={guessStringC}
-            setGuessString={setGuessStringC}
-          />
-        );
-      case 3:
-        return (
-          <TQ
-            displayQuestion={questionData[3]}
-            imagePath="/images/surfaceArea/SA_Q2_image.png"
-            nextQuestion={nextQuestion}
-            guessString={guessStringD}
-            setGuessString={setGuessStringD}
-          />
-        );
-      case 4:
-        return (
-          <TQ
-            displayQuestion={questionData[3]}
-            imagePath="/images/surfaceArea/SA_Q2_image.png"
-            nextQuestion={nextQuestion}
-            guessString={guessStringD}
-            setGuessString={setGuessStringD}
+            linesForQuestions={linesForQuestionsQ1}
+            setLinesForQuestions={setLinesForQuestionsQ1}
+            historyStepForQuestions={historyStepForQuestionsQ1}
+            setHistoryStepForQuestions={setHistoryStepForQuestionsQ1}
           />
         );
     }
@@ -274,6 +289,14 @@ export default function djacobs(props) {
                           label="Retry"
                           backgroundColor="blue"
                           textColor="white"
+                        />
+                      </div>
+                      <div id="End" className="flex flex-col items-center">
+                        <Button
+                          label="Back"
+                          backgroundColor="blue"
+                          textColor="white"
+                          onClick={backToPrevious}
                         />
                       </div>
                     </div>
