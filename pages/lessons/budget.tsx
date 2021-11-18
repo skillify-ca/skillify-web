@@ -1,20 +1,20 @@
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
-import { FETCH_BADGE_ON_USERID } from "../graphql/fetchBadgeOnUserID";
+import { FETCH_BADGE_ON_USERID } from "../../graphql/fetchBadgeOnUserID";
 import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import {
   FinanceProfileType,
   financialProfileData,
-} from "./api/finance/profile";
-import { getRndInteger } from "./api/random";
-import { UNLOCK_BADGE } from "../graphql/unlockBadge";
-import { useAuth } from "../lib/authContext";
-import { Button } from "../components/ui/Button";
-import AssignmentSession from "../components/budget/AssignmentSession";
-import { EndSession } from "../components/budget/EndSession";
-import { FinanceProfileChart } from "../components/budget/FinanceProfileChart";
-import { RulesSession } from "../components/budget/RulesSession";
+} from "../api/finance/profile";
+import { getRndInteger } from "../api/random";
+import { UNLOCK_BADGE } from "../../graphql/unlockBadge";
+import { useAuth } from "../../lib/authContext";
+import { Button } from "../../components/ui/Button";
+import AssignmentSession from "../../components/budget/AssignmentSession";
+import { EndSession } from "../../components/budget/EndSession";
+import { FinanceProfileChart } from "../../components/budget/FinanceProfileChart";
+import { RulesSession } from "../../components/budget/RulesSession";
 
 enum STAGES {
   START,
@@ -96,7 +96,7 @@ const FinanceProfile = () => {
       )}
       {stage == STAGES.PROFILE && profileData && (
         <div>
-          <p className="text-center pb-5">
+          <p className="pb-5 text-center">
             Choose a profile to begin your journey:
           </p>
 
@@ -110,7 +110,7 @@ const FinanceProfile = () => {
               spouseSalary={profileData.spouseSalary}
             />
           </div>
-          <div className="flex gap-8 justify-center">
+          <div className="flex justify-center gap-8">
             <Button
               backgroundColor="green"
               textColor="white"

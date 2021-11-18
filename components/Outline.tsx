@@ -18,6 +18,48 @@ import { useAppDispatch } from "../redux/store";
 import { useSelector } from "react-redux";
 import { useAuth } from "../lib/authContext";
 
+type InteractiveLessonProps = {
+  title: string;
+  link: string;
+  author: string;
+};
+
+const interactiveLessosn = [
+  { title: "Financial Literacy", link: "finance", author: "Vithushan" },
+  { title: "Kaboom", link: "kaboom", author: "Vithushan" },
+  {
+    title: "Escape from Giza",
+    link: "teachers/djacobs/giza",
+    author: "Ajevan",
+  },
+  {
+    title: "Surface Area Quiz",
+    link: "teachers/djacobs/surfaceArea",
+    author: "Ajevan",
+  },
+  { title: "Food Truck Frenzy", link: "lessons/foodtruck", author: "Raveen" },
+  {
+    title: "Balance the Budget",
+    link: "lessons/budget",
+    author: "Brian, Daniel and Mayu",
+  },
+  { title: "Building a Bakery", link: "lessons/bakery", author: "Brian" },
+];
+const InteractiveLesson = ({ title, link, author }: InteractiveLessonProps) => {
+  return (
+    <Link href={`/${link}`}>
+      <div className="transition duration-500 ease-in-out transform cursor-pointer hover:scale-110">
+        <Card size="medium">
+          <div className="flex flex-col items-center justify-between w-full h-full gap-4">
+            <div className="flex w-16 h-16 p-1 bg-purple-100 rounded-full ring-2 ring-blue-300 heropattern-jupiter-yellow-500"></div>
+            <p className="text-xl">{title}</p>
+            <p className="w-full p-2 border-t-2">{author}</p>
+          </div>
+        </Card>
+      </div>
+    </Link>
+  );
+};
 export default function Outline() {
   const { user } = useAuth();
 
@@ -63,10 +105,10 @@ export default function Outline() {
   };
 
   return (
-    <div className="max-w-screen-lg flex flex-col gap-8 justify-between w-full col-span-2 items-center mb-4 p-4 mx-auto">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 bg-blue-50 rounded-lg shadow-lg p-4">
+    <div className="flex flex-col items-center justify-between w-full max-w-screen-lg col-span-2 gap-8 p-4 mx-auto mb-4">
+      <div className="grid grid-cols-1 gap-8 p-4 rounded-lg shadow-lg sm:grid-cols-2 bg-blue-50">
         <div className="flex flex-col gap-4">
-          <p className="font-bold text-2xl">Practice Tracker</p>
+          <p className="text-2xl font-bold">Practice Tracker</p>
 
           <p className="">
             {" "}
@@ -74,8 +116,8 @@ export default function Outline() {
             to unlock badges!{" "}
           </p>
         </div>
-        <div className="flex flex-col items-center sm:items-end gap-4 sm:pr-8">
-          <p className="font-bold text-lg"> Overall Progress</p>
+        <div className="flex flex-col items-center gap-4 sm:items-end sm:pr-8">
+          <p className="text-lg font-bold"> Overall Progress</p>
           <div className="p-4">
             <ProgressRing percentage={progress()} radius={24} />
           </div>
@@ -89,7 +131,7 @@ export default function Outline() {
             value={studentGrade.grade}
             defaultValue={studentGrade.grade}
             onChange={(e) => onGradeChange(e.target.value)}
-            className="ml-4 w-56 text-sm text-blue-900 outline-none focus:outline-none border border-solid border-black rounded-xl bg-transparent flex items-center py-2"
+            className="flex items-center w-56 py-2 ml-4 text-sm text-blue-900 bg-transparent border border-black border-solid outline-none focus:outline-none rounded-xl"
           >
             <option>Grade 1</option>
             <option>Grade 2</option>
@@ -101,7 +143,7 @@ export default function Outline() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 justify-center gap-8 items-center">
+      <div className="grid items-center justify-center grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4">
         {unlockedUnits.map((unit, index) => (
           <div key={unit.title}>
             <UnitCard
@@ -120,115 +162,78 @@ export default function Outline() {
         ))}
       </div>
 
-      <div className="w-full bg-blue-50 rounded-lg shadow-lg p-4">
+      <div className="w-full p-4 rounded-lg shadow-lg bg-blue-50">
         <div className="flex flex-col gap-4">
-          <p className="font-bold text-2xl">Interactive Lessons</p>
+          <p className="text-2xl font-bold">Interactive Lessons</p>
 
           <p className="">Complete these lessons to unlock extra badges.</p>
         </div>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 justify-center gap-8 items-center">
-        <Link href={`/foodtruck`}>
-          <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
-            <Card size="medium">
-              <div className="flex flex-col justify-center items-center gap-4">
-                <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300 heropattern-jupiter-yellow-500"></div>
-                <p className="mx-4 text-center text-xl">Food Truck Frenzy</p>
-              </div>
-            </Card>
-          </div>
-        </Link>
-        <Link href={`/kaboom`}>
-          <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
-            <Card size="medium">
-              <div className="flex flex-col justify-center items-center gap-4">
-                <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300 heropattern-jupiter-yellow-500"></div>
-                <p className="mx-4 text-center text-xl">Kaboom</p>
-              </div>
-            </Card>
-          </div>
-        </Link>
-        <Card size="medium">
-          <div className="flex flex-col justify-center items-center gap-4">
-            <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
-            <p className="mx-4 text-center text-xl">Balance the Budget</p>
-          </div>
-        </Card>
-        <Card size="medium">
-          <div className="flex flex-col justify-center items-center gap-4">
-            <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
-            <p className="mx-4 text-center text-xl">Escape from Giza</p>
-          </div>
-        </Card>
-        <Card size="medium">
-          <div className="flex flex-col justify-center items-center gap-4">
-            <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300">
-              <img src="/images/skills/lock.png" alt="" />
-            </div>
-            <p className="mx-4 text-center text-xl">Building a Bakery</p>
-          </div>
-        </Card>
+      <div className="grid items-center justify-center grid-cols-2 gap-8 md:grid-cols-4">
+        {interactiveLessosn.map((it) => (
+          <InteractiveLesson
+            title={it.title}
+            link={it.link}
+            author={it.author}
+          />
+        ))}
       </div>
-      <div className="w-full bg-blue-50 rounded-lg shadow-lg p-4">
+      <div className="w-full p-4 rounded-lg shadow-lg bg-blue-50">
         <div className="flex flex-col gap-4">
-          <p className="font-bold text-2xl">Multiplayer Games</p>
+          <p className="text-2xl font-bold">Multiplayer Games</p>
 
           <p className="">Play math games online with your friends</p>
         </div>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 justify-center gap-8 items-center">
+      <div className="grid items-center justify-center grid-cols-2 gap-8 md:grid-cols-4">
         <Link href={`/games`}>
-          <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
+          <div className="transition duration-500 ease-in-out transform cursor-pointer hover:scale-110">
             <Card size="medium">
-              <div className="flex flex-col justify-center items-center gap-4">
-                <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300">
+              <div className="flex flex-col items-center justify-center gap-4">
+                <div className="flex w-16 h-16 p-1 bg-purple-100 rounded-full ring-2 ring-blue-300">
                   <img src="/images/PVPIconBackground.png" alt="" />
                 </div>
-                <p className="mx-4 text-center text-xl">Math Battle</p>
+                <p className="mx-4 text-xl text-center">Math Battle</p>
               </div>
             </Card>
           </div>
         </Link>
 
         <Card size="medium">
-          <div className="flex flex-col justify-center items-center gap-4">
-            <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300">
+          <div className="flex flex-col items-center justify-center gap-4">
+            <div className="flex w-16 h-16 p-1 bg-purple-100 rounded-full ring-2 ring-blue-300">
               <img src="/images/skills/lock.png" alt="" />
             </div>
-            <p className="mx-4 text-center text-xl">Zombies</p>
+            <p className="mx-4 text-xl text-center">Zombies</p>
           </div>
         </Card>
         <Card size="medium">
-          <div className="flex flex-col justify-center items-center gap-4">
-            <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300">
+          <div className="flex flex-col items-center justify-center gap-4">
+            <div className="flex w-16 h-16 p-1 bg-purple-100 rounded-full ring-2 ring-blue-300">
               <img src="/images/skills/lock.png" alt="" />
             </div>
-            <p className="mx-4 text-center text-xl">Tic Tac Toe</p>
+            <p className="mx-4 text-xl text-center">Tic Tac Toe</p>
           </div>
         </Card>
         <Card size="medium">
-          <div className="flex flex-col justify-center items-center gap-4">
-            <div className="w-16 h-16 bg-purple-100 flex rounded-full p-1 ring-2 ring-blue-300">
+          <div className="flex flex-col items-center justify-center gap-4">
+            <div className="flex w-16 h-16 p-1 bg-purple-100 rounded-full ring-2 ring-blue-300">
               <img src="/images/skills/lock.png" alt="" />
             </div>
-            <p className="mx-4 text-center text-xl">Connect 4</p>
+            <p className="mx-4 text-xl text-center">Connect 4</p>
           </div>
         </Card>
       </div>
-      <div className="w-full bg-blue-50 rounded-lg shadow-lg p-4">
+      <div className="w-full p-4 rounded-lg shadow-lg bg-blue-50">
         <div className="flex flex-col gap-4">
-          <p className="font-bold text-2xl">Puzzles</p>
+          <p className="text-2xl font-bold">Puzzles</p>
 
           <p className="">Master your multiplication facts with our puzzles</p>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 bg-white shadow-lg rounded-xl p-8">
-        <div className="flex flex-col gap-8 justify-center">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 p-8 bg-white shadow-lg sm:grid-cols-2 rounded-xl">
+        <div className="flex flex-col justify-center gap-8">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
             {Object.values(PUZZLE_DATA).map((p) => {
               const puzzle = p as Puzzle;
               return (
