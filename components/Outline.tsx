@@ -50,10 +50,10 @@ const InteractiveLesson = ({ title, link, author }: InteractiveLessonProps) => {
     <Link href={`/${link}`}>
       <div className="transition duration-500 ease-in-out transform cursor-pointer hover:scale-110">
         <Card size="medium">
-          <div className="flex flex-col items-center justify-center gap-4">
+          <div className="flex flex-col items-center justify-between w-full h-full gap-4">
             <div className="flex w-16 h-16 p-1 bg-purple-100 rounded-full ring-2 ring-blue-300 heropattern-jupiter-yellow-500"></div>
-            <p className="mx-4 text-xl text-center">{title}</p>
-            <p className="mx-4 text-xl text-center">{author}</p>
+            <p className="text-xl">{title}</p>
+            <p className="w-full p-2 border-t-2">{author}</p>
           </div>
         </Card>
       </div>
@@ -171,7 +171,11 @@ export default function Outline() {
       </div>
       <div className="grid items-center justify-center grid-cols-2 gap-8 md:grid-cols-4">
         {interactiveLessosn.map((it) => (
-          <InteractiveLesson title={it.title} link={it.link} />
+          <InteractiveLesson
+            title={it.title}
+            link={it.link}
+            author={it.author}
+          />
         ))}
       </div>
       <div className="w-full p-4 rounded-lg shadow-lg bg-blue-50">
