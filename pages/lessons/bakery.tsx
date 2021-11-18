@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import BakeryInstructions from "../components/bakery/BakeryInstructions";
-import BuildingABakeryA from "../components/bakery/BuildingABakeryA";
-import BakersRack from "../components/bakery/BakersRack";
+import BakeryInstructions from "../../components/bakery/BakeryInstructions";
+import BuildingABakeryA from "../../components/bakery/BuildingABakeryA";
+import BakersRack from "../../components/bakery/BakersRack";
 
-import BakingGma from "../components/bakery/BakingGma";
-import BakersRackB from "../components/bakery/BakersRackB";
+import BakingGma from "../../components/bakery/BakingGma";
+import BakersRackB from "../../components/bakery/BakersRackB";
 
-import { STAGE } from "./games";
-import { Button } from "../components/ui/Button";
+import { STAGE } from "../games";
+import { Button } from "../../components/ui/Button";
 
 export default function Bakery(props) {
   enum STAGE {
@@ -151,7 +151,7 @@ export default function Bakery(props) {
   return (
     <div className={"bg-white"}>
       <div>{getComponent(stage)}</div>
-      <div className="flex flex-row space-x-8 justify-center p-12">
+      <div className="flex flex-row justify-center p-12 space-x-8">
         <Button
           backgroundColor="pink"
           textColor="white"
