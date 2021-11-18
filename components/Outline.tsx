@@ -21,18 +21,31 @@ import { useAuth } from "../lib/authContext";
 type InteractiveLessonProps = {
   title: string;
   link: string;
+  author: string;
 };
 
 const interactiveLessosn = [
-  { title: "Financial Literacy", link: "finance" },
-  { title: "Kaboom", link: "kaboom" },
-  { title: "Escape from Giza", link: "teachers/djacobs/giza" },
-  { title: "Surface Area Quiz", link: "teachers/djacobs/surfaceArea" },
-  { title: "Food Truck Frenzy", link: "lessons/foodtruck" },
-  { title: "Balance the Budget", link: "lessons/budget" },
-  { title: "Building a Bakery", link: "lessons/bakery" },
+  { title: "Financial Literacy", link: "finance", author: "Vithushan" },
+  { title: "Kaboom", link: "kaboom", author: "Vithushan" },
+  {
+    title: "Escape from Giza",
+    link: "teachers/djacobs/giza",
+    author: "Ajevan",
+  },
+  {
+    title: "Surface Area Quiz",
+    link: "teachers/djacobs/surfaceArea",
+    author: "Ajevan",
+  },
+  { title: "Food Truck Frenzy", link: "lessons/foodtruck", author: "Raveen" },
+  {
+    title: "Balance the Budget",
+    link: "lessons/budget",
+    author: "Brian, Daniel and Mayu",
+  },
+  { title: "Building a Bakery", link: "lessons/bakery", author: "Brian" },
 ];
-const InteractiveLesson = ({ title, link }: InteractiveLessonProps) => {
+const InteractiveLesson = ({ title, link, author }: InteractiveLessonProps) => {
   return (
     <Link href={`/${link}`}>
       <div className="transition duration-500 ease-in-out transform cursor-pointer hover:scale-110">
@@ -40,6 +53,7 @@ const InteractiveLesson = ({ title, link }: InteractiveLessonProps) => {
           <div className="flex flex-col items-center justify-center gap-4">
             <div className="flex w-16 h-16 p-1 bg-purple-100 rounded-full ring-2 ring-blue-300 heropattern-jupiter-yellow-500"></div>
             <p className="mx-4 text-xl text-center">{title}</p>
+            <p className="mx-4 text-xl text-center">{author}</p>
           </div>
         </Card>
       </div>
