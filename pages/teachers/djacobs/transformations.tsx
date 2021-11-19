@@ -65,7 +65,9 @@ export default function djacobs(props) {
 
   const backToPrevious = () => {
     console.log(currentQuestionIndex);
-    if (currentQuestionIndex == 0) {
+    if (stage == Stage.END) {
+      setStage(Stage.QUIZ);
+    } else if (currentQuestionIndex == 0) {
       setStage(Stage.START);
     } else {
       setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1));
