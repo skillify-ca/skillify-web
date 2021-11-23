@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const ADD_GIZA_DATA = gql`
-  mutation MyMutation(
+  mutation add_giza_data(
     $student_name: String
     $team_name: String
     $guesses: jsonb
