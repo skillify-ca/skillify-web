@@ -77,7 +77,7 @@ export default class DragDrop extends Component {
     return (
       <div className="flex flex-row">
         <div 
-          className="w-36 h-36"
+          className="w-36 h-full"
           onDragOver={(e)=>this.onDragOver(e)}
           onDrop={(e)=>{this.onDrop(e,"wordbank")}}>
           <span className="inline-block w-full bg-blue-200">Word Bank</span>

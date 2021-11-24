@@ -4,6 +4,7 @@ export const WordBankData: WordBank[] = [
   {
     id:"0",
     word: "borrow",
+    bgcolor: "pink",
   },
   {
     id:"1",

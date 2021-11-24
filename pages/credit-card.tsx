@@ -14,7 +14,7 @@ export default function CreditCard(props) {
         DCWordProblem, //debit card word problem
         CCDCMulti, //multiple choice
         CardColorProblem, //credit debit both color problem
-        TestCC,
+        TestComponent,
     }
 
     //manages state 
@@ -33,7 +33,7 @@ export default function CreditCard(props) {
       };
     
       const nextStage = () => {
-        if (stage < STAGE.TestCC) {
+        if (stage < STAGE.TestComponent) {
           setStage(stage + 1);
         }
       };
@@ -50,7 +50,7 @@ export default function CreditCard(props) {
             return <CCDCMulti/>
         } else if (stage == STAGE.CardColorProblem) {
             return <CardColorProblem/>
-        } else if (stage == STAGE.TestCC) {
+        } else if (stage == STAGE.TestComponent) {
             return <DragDrop/>
         }
     }
