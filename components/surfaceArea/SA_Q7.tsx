@@ -12,21 +12,34 @@ type Q7Props = {
   displayQuestion: string;
   imagePath: string;
   nextQuestion: (guess: GuessData) => void;
+  guessStringRectPrism: string;
+  setGuessStringRectPrism: (guessString: string) => void;
+  guessStringCube: string;
+  setGuessStringCube: (guessString: string) => void;
+  guessStringTriPrism: string;
+  setGuessStringTriPrism: (guessString: string) => void;
+  linesForQuestions: LineData[][];
+  setLinesForQuestions: (linesForQuestions: LineData[][]) => void;
+  historyStepForQuestions: number[];
+  setHistoryStepForQuestions: (historyStepForQuestions: number[]) => void;
 };
 
 //Future component, name: TypeAnswerQuestion
-const Q7 = ({ displayQuestion, imagePath, nextQuestion }: Q7Props) => {
-  const [guessStringRectPrism, setGuessStringRectPrism] = useState<string>("");
-  const [guessStringCube, setGuessStringCube] = useState<string>("");
-  const [guessStringTriPrism, setGuessStringTriPrism] = useState<string>("");
-  const EMPTY_ARRAY_OF_ARRAYS = [[], [], []];
-  const [historyStepForQuestions, setHistoryStepForQuestions] = useState<
-    number[]
-  >([0, 0, 0]);
-  const [linesForQuestions, setLinesForQuestions] = React.useState<
-    LineData[][]
-  >(EMPTY_ARRAY_OF_ARRAYS);
-
+const Q7 = ({
+  displayQuestion,
+  imagePath,
+  nextQuestion,
+  guessStringRectPrism,
+  setGuessStringRectPrism,
+  guessStringCube,
+  setGuessStringCube,
+  guessStringTriPrism,
+  setGuessStringTriPrism,
+  linesForQuestions,
+  setLinesForQuestions,
+  historyStepForQuestions,
+  setHistoryStepForQuestions,
+}: Q7Props) => {
   const onGuessChangedRectPrism = (currentGuess: string) => {
     const newGuess = currentGuess;
     setGuessStringRectPrism(newGuess);
@@ -191,10 +204,8 @@ const Q7 = ({ displayQuestion, imagePath, nextQuestion }: Q7Props) => {
                         <input
                           className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
                           placeholder=""
-                          value={guessStringRectPrism}
-                          onChange={(e) =>
-                            onGuessChangedRectPrism(e.target.value)
-                          }
+                          value={guessStringCube}
+                          onChange={(e) => onGuessChangedCube(e.target.value)}
                         />
                       </div>
                     </div>
@@ -229,9 +240,9 @@ const Q7 = ({ displayQuestion, imagePath, nextQuestion }: Q7Props) => {
                         <input
                           className="p-4 text-lg w-8/12 sm:w-full border-2 border-yellow-900"
                           placeholder=""
-                          value={guessStringRectPrism}
+                          value={guessStringTriPrism}
                           onChange={(e) =>
-                            onGuessChangedRectPrism(e.target.value)
+                            onGuessChangedTriPrism(e.target.value)
                           }
                         />
                       </div>

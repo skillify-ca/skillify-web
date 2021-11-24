@@ -5,12 +5,17 @@ import { Button } from "../ui/Button";
 type Q5Props = {
   displayQuestion: string;
   nextQuestion: (guess: GuessData) => void;
+  guessString: string;
+  setGuessString: (guessString: string) => void;
 };
 
 //Future component, name: TypeAnswerQuestion
-const Q5 = ({ displayQuestion, nextQuestion }: Q5Props) => {
-  const [guessString, setGuessString] = useState<string>("");
-
+const Q5 = ({
+  displayQuestion,
+  nextQuestion,
+  guessString,
+  setGuessString,
+}: Q5Props) => {
   const onGuessChanged = (currentGuess: string) => {
     const newGuess = currentGuess;
     setGuessString(newGuess);

@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
-import Q1 from "../../../components/giza/Q1";
 import Navbar from "../../../components/Navbar";
-import SA_Q1 from "../../../components/surfaceArea/SA_Q1";
-import SA_Q2 from "../../../components/surfaceArea/SA_Q2";
-import SA_Q3 from "../../../components/surfaceArea/SA_Q3";
-import SA_Q4 from "../../../components/surfaceArea/SA_Q4";
-import SA_Q5 from "../../../components/surfaceArea/SA_Q5";
+import TQ from "../../../components/transformations/transformation_question_template";
 import { Button } from "../../../components/ui/Button";
+import { LineData } from "../../../components/ui/FreeDrawing";
 import { GuessData } from "../../api/guessData";
 import { measureTime } from "../../api/time";
 
@@ -19,11 +15,15 @@ enum Stage {
 
 export default function djacobs(props) {
   const questionData = [
-    "A net for the rectangular prism is shown on the grid. On the net, label each face of the prism. Each square on the grid represents 1cm^2.",
-    "Write a multiplication question for the area of each face for the rectangular prisms in question 1, image also provided from question 1. Then find the surface area of the prism",
-    "A net for the triangular prism is shown on the grid. On the net, label each face of the prism. Each square on the grid represents 1cm^2.",
-    "Write a multiplication question for the area of each face for the triangular prisms in question 3, image also provided from question 3. Then find the surface area of the prism",
-    "Explain how the net of a prism helps you find the surface area of a prism",
+    "1) On one quadrant, draw your original image by plotting four or more points and connecting them. This is your pre-image" +
+      "\n" +
+      "2) Use EACH of the other quadrants to perform a translation, then a reflection, and then a rotation" +
+      "\n" +
+      "3) For every transformation, describe and label each transformation with detail, ex. A translation 5 units left and 2 units down" +
+      "\n" +
+      "4) Colour your pre-image and transformations" +
+      "\n" +
+      "5) Label the x-axis and y-axis, include the coordinate points for each transformation underneath the drawings",
   ];
 
   const [stage, setStage] = useState(Stage.START);
@@ -47,6 +47,10 @@ export default function djacobs(props) {
   const [endTime, setEndTime] = useState<number>();
   const [totalTimeMin, setTotalTimeMin] = useState<number>();
   const [totalTimeSec, setTotalTimeSec] = useState<String>();
+  const [guessStringA, setGuessStringA] = useState<string>("");
+  const [guessStringB, setGuessStringB] = useState<string>("");
+  const [guessStringC, setGuessStringC] = useState<string>("");
+  const [guessStringD, setGuessStringD] = useState<string>("");
 
   const onStartQuiz = () => {
     var sTime = new Date().getTime();
@@ -60,7 +64,10 @@ export default function djacobs(props) {
   };
 
   const backToPrevious = () => {
-    if (currentQuestionIndex == 0) {
+    console.log(currentQuestionIndex);
+    if (stage == Stage.END) {
+      setStage(Stage.QUIZ);
+    } else if (currentQuestionIndex == 0) {
       setStage(Stage.START);
     } else {
       setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1));
@@ -101,6 +108,70 @@ export default function djacobs(props) {
     setGuessCounter(guessCounter + 1);
     setWrongAnswerCheck(check);
     setShouldAnimate(true);
+  };
+
+  //Q1 useStates
+  const EMPTY_ARRAY_OF_ARRAYSQ1 = [[], [], []];
+  const [historyStepForQuestionsQ1, setHistoryStepForQuestionsQ1] = useState<
+    number[]
+  >([0, 0, 0]);
+  const [linesForQuestionsQ1, setLinesForQuestionsQ1] = React.useState<
+    LineData[][]
+  >(EMPTY_ARRAY_OF_ARRAYSQ1);
+
+  //Q2 useStates
+  const EMPTY_ARRAY_OF_ARRAYSQ2 = [[], [], []];
+  const [historyStepForQuestionsQ2, setHistoryStepForQuestionsQ2] = useState<
+    number[]
+  >([0, 0, 0]);
+  const [linesForQuestionsQ2, setLinesForQuestionsQ2] = React.useState<
+    LineData[][]
+  >(EMPTY_ARRAY_OF_ARRAYSQ2);
+
+  //Q3 useStates
+  const EMPTY_ARRAY_OF_ARRAYSQ3 = [[], [], []];
+  const [historyStepForQuestionsQ3, setHistoryStepForQuestionsQ3] = useState<
+    number[]
+  >([0, 0, 0]);
+  const [linesForQuestionsQ3, setLinesForQuestionsQ3] = React.useState<
+    LineData[][]
+  >(EMPTY_ARRAY_OF_ARRAYSQ3);
+
+  //Q4 useStates
+  const EMPTY_ARRAY_OF_ARRAYSQ4 = [[], [], []];
+  const [historyStepForQuestionsQ4, setHistoryStepForQuestionsQ4] = useState<
+    number[]
+  >([0, 0, 0]);
+  const [linesForQuestionsQ4, setLinesForQuestionsQ4] = React.useState<
+    LineData[][]
+  >(EMPTY_ARRAY_OF_ARRAYSQ4);
+
+  //Q5 useStates
+  const EMPTY_ARRAY_OF_ARRAYSQ5 = [[], [], []];
+  const [historyStepForQuestionsQ5, setHistoryStepForQuestionsQ5] = useState<
+    number[]
+  >([0, 0, 0]);
+  const [linesForQuestionsQ5, setLinesForQuestionsQ5] = React.useState<
+    LineData[][]
+  >(EMPTY_ARRAY_OF_ARRAYSQ5);
+
+  const questionComponent = () => {
+    switch (currentQuestionIndex) {
+      case 0:
+        return (
+          <TQ
+            displayQuestion={questionData[0]}
+            imagePath="/images/transformations/transformation_image.png"
+            nextQuestion={nextQuestion}
+            guessString={guessStringA}
+            setGuessString={setGuessStringA}
+            linesForQuestions={linesForQuestionsQ1}
+            setLinesForQuestions={setLinesForQuestionsQ1}
+            historyStepForQuestions={historyStepForQuestionsQ1}
+            setHistoryStepForQuestions={setHistoryStepForQuestionsQ1}
+          />
+        );
+    }
   };
 
   return (
@@ -189,11 +260,7 @@ export default function djacobs(props) {
                           Wrong Answer
                         </p>
                       )}
-                      <SA_Q1
-                        displayQuestion={questionData[currentQuestionIndex]}
-                        imagePath="/images/surfaceArea/SA_Q1_image.png"
-                        nextQuestion={nextQuestion}
-                      />
+                      {questionComponent()}
                     </div>
                     <div id="FormEnd" className="flex flex-col items-center">
                       <Button
@@ -224,6 +291,14 @@ export default function djacobs(props) {
                           label="Retry"
                           backgroundColor="blue"
                           textColor="white"
+                        />
+                      </div>
+                      <div id="End" className="flex flex-col items-center">
+                        <Button
+                          label="Back"
+                          backgroundColor="blue"
+                          textColor="white"
+                          onClick={backToPrevious}
                         />
                       </div>
                     </div>

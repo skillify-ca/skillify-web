@@ -9,6 +9,7 @@ import SA_Q5 from "../../../components/surfaceArea/SA_Q5";
 import SA_Q6 from "../../../components/surfaceArea/SA_Q6";
 import SA_Q7 from "../../../components/surfaceArea/SA_Q7";
 import { Button } from "../../../components/ui/Button";
+import { LineData } from "../../../components/ui/FreeDrawing";
 import { GuessData } from "../../api/guessData";
 import { measureTime } from "../../api/time";
 
@@ -50,6 +51,93 @@ export default function djacobs(props) {
   const [endTime, setEndTime] = useState<number>();
   const [totalTimeMin, setTotalTimeMin] = useState<number>();
   const [totalTimeSec, setTotalTimeSec] = useState<String>();
+
+  //Q1 states
+  const [guessStringAQ1, setGuessStringAQ1] = useState<string>("");
+  const [guessStringBQ1, setGuessStringBQ1] = useState<string>("");
+  const [guessStringCQ1, setGuessStringCQ1] = useState<string>("");
+  const [guessStringDQ1, setGuessStringDQ1] = useState<string>("");
+  const [guessStringEQ1, setGuessStringEQ1] = useState<string>("");
+  const [guessStringFQ1, setGuessStringFQ1] = useState<string>("");
+
+  //Q2 Part A useStates
+  const [partAguessStringAQ2, setpartAguessStringAQ2] = useState<string>("");
+  const [partAguessStringBQ2, setpartAguessStringBQ2] = useState<string>("");
+  const [partAguessStringCQ2, setpartAguessStringCQ2] = useState<string>("");
+  const [partAguessStringDQ2, setpartAguessStringDQ2] = useState<string>("");
+  const [partAguessStringEQ2, setpartAguessStringEQ2] = useState<string>("");
+  const [partAguessStringFQ2, setpartAguessStringFQ2] = useState<string>("");
+  const [partAguessStringSAQ2, setpartAguessStringSAQ2] = useState<string>("");
+
+  //Q2 Part B useStates
+  const [partBguessStringAQ2, setpartBguessStringAQ2] = useState<string>("");
+  const [partBguessStringBQ2, setpartBguessStringBQ2] = useState<string>("");
+  const [partBguessStringCQ2, setpartBguessStringCQ2] = useState<string>("");
+  const [partBguessStringDQ2, setpartBguessStringDQ2] = useState<string>("");
+  const [partBguessStringEQ2, setpartBguessStringEQ2] = useState<string>("");
+  const [partBguessStringFQ2, setpartBguessStringFQ2] = useState<string>("");
+  const [partBguessStringSAQ2, setpartBguessStringSAQ2] = useState<string>("");
+
+  //Q3 useStates
+  const [guessStringAQ3, setGuessStringAQ3] = useState<string>("");
+  const [guessStringBQ3, setGuessStringBQ3] = useState<string>("");
+  const [guessStringCQ3, setGuessStringCQ3] = useState<string>("");
+  const [guessStringDQ3, setGuessStringDQ3] = useState<string>("");
+  const [guessStringEQ3, setGuessStringEQ3] = useState<string>("");
+
+  //Q4 Part A useStates
+  const [partAguessStringAQ4, setpartAguessStringAQ4] = useState<string>("");
+  const [partAguessStringBQ4, setpartAguessStringBQ4] = useState<string>("");
+  const [partAguessStringCQ4, setpartAguessStringCQ4] = useState<string>("");
+  const [partAguessStringDQ4, setpartAguessStringDQ4] = useState<string>("");
+  const [partAguessStringEQ4, setpartAguessStringEQ4] = useState<string>("");
+  const [partAguessStringSAQ4, setpartAguessStringSAQ4] = useState<string>("");
+
+  //Q4 Part B useStates
+  const [partBguessStringAQ4, setpartBguessStringAQ4] = useState<string>("");
+  const [partBguessStringBQ4, setpartBguessStringBQ4] = useState<string>("");
+  const [partBguessStringCQ4, setpartBguessStringCQ4] = useState<string>("");
+  const [partBguessStringDQ4, setpartBguessStringDQ4] = useState<string>("");
+  const [partBguessStringEQ4, setpartBguessStringEQ4] = useState<string>("");
+  const [partBguessStringSAQ4, setpartBguessStringSAQ4] = useState<string>("");
+
+  //Q5 useStates
+  const [guessStringQ5, setGuessStringQ5] = useState<string>("");
+
+  //Q6 useStates
+  const [positions, setPositions] = useState<boolean[][]>([
+    [false, false, false, false],
+    [false, false, false, false],
+    [false, false, false, false],
+    [false, false, false, false],
+  ]);
+
+  const [partBguessStringQ6, setpartBguessStringQ6] = useState<string>("");
+  const [partCguessStringQ6, setpartCguessStringQ6] = useState<string>("");
+
+  const setupPosition = (xposition: number, yposition: number) => {
+    setPositions((prev) => {
+      const next = [...prev];
+      next[xposition][yposition] = !next[xposition][yposition];
+      return next;
+    });
+  };
+
+  //Q7 useStates
+  const [guessStringRectPrismQ7, setGuessStringRectPrismQ7] = useState<string>(
+    ""
+  );
+  const [guessStringCubeQ7, setGuessStringCubeQ7] = useState<string>("");
+  const [guessStringTriPrismQ7, setGuessStringTriPrismQ7] = useState<string>(
+    ""
+  );
+  const EMPTY_ARRAY_OF_ARRAYS = [[], [], []];
+  const [historyStepForQuestionsQ7, setHistoryStepForQuestionsQ7] = useState<
+    number[]
+  >([0, 0, 0]);
+  const [linesForQuestionsQ7, setLinesForQuestionsQ7] = React.useState<
+    LineData[][]
+  >(EMPTY_ARRAY_OF_ARRAYS);
 
   const onStartQuiz = () => {
     var sTime = new Date().getTime();
@@ -116,6 +204,18 @@ export default function djacobs(props) {
             displayQuestion={questionData[0]}
             imagePath="/images/surfaceArea/SA_Q1_image.png"
             nextQuestion={nextQuestion}
+            guessStringA={guessStringAQ1}
+            setGuessStringA={setGuessStringAQ1}
+            guessStringB={guessStringBQ1}
+            setGuessStringB={setGuessStringBQ1}
+            guessStringC={guessStringCQ1}
+            setGuessStringC={setGuessStringCQ1}
+            guessStringD={guessStringDQ1}
+            setGuessStringD={setGuessStringDQ1}
+            guessStringE={guessStringEQ1}
+            setGuessStringE={setGuessStringEQ1}
+            guessStringF={guessStringFQ1}
+            setGuessStringF={setGuessStringFQ1}
           />
         );
       case 1:
@@ -124,6 +224,34 @@ export default function djacobs(props) {
             displayQuestion={questionData[1]}
             imagePath="/images/surfaceArea/SA_Q1_image.png"
             nextQuestion={nextQuestion}
+            partAguessStringA={partAguessStringAQ2}
+            setpartAGuessStringA={setpartAguessStringAQ2}
+            partAguessStringB={partAguessStringBQ2}
+            setpartAGuessStringB={setpartAguessStringBQ2}
+            partAguessStringC={partAguessStringCQ2}
+            setpartAGuessStringC={setpartAguessStringCQ2}
+            partAguessStringD={partAguessStringDQ2}
+            setpartAGuessStringD={setpartAguessStringDQ2}
+            partAguessStringE={partAguessStringEQ2}
+            setpartAGuessStringE={setpartAguessStringEQ2}
+            partAguessStringF={partAguessStringFQ2}
+            setpartAGuessStringF={setpartAguessStringFQ2}
+            partAguessStringSA={partAguessStringSAQ2}
+            setpartAGuessStringSA={setpartAguessStringSAQ2}
+            partBguessStringA={partBguessStringAQ2}
+            setpartBGuessStringA={setpartBguessStringAQ2}
+            partBguessStringB={partBguessStringBQ2}
+            setpartBGuessStringB={setpartBguessStringBQ2}
+            partBguessStringC={partBguessStringCQ2}
+            setpartBGuessStringC={setpartBguessStringCQ2}
+            partBguessStringD={partBguessStringDQ2}
+            setpartBGuessStringD={setpartBguessStringDQ2}
+            partBguessStringE={partBguessStringEQ2}
+            setpartBGuessStringE={setpartBguessStringEQ2}
+            partBguessStringF={partBguessStringFQ2}
+            setpartBGuessStringF={setpartBguessStringFQ2}
+            partBguessStringSA={partBguessStringSAQ2}
+            setpartBGuessStringSA={setpartBguessStringSAQ2}
           />
         );
       case 2:
@@ -132,6 +260,16 @@ export default function djacobs(props) {
             displayQuestion={questionData[2]}
             imagePath="/images/surfaceArea/SA_Q2_image.png"
             nextQuestion={nextQuestion}
+            guessStringA={guessStringAQ3}
+            setGuessStringA={setGuessStringAQ3}
+            guessStringB={guessStringBQ3}
+            setGuessStringB={setGuessStringBQ3}
+            guessStringC={guessStringCQ3}
+            setGuessStringC={setGuessStringCQ3}
+            guessStringD={guessStringDQ3}
+            setGuessStringD={setGuessStringDQ3}
+            guessStringE={guessStringEQ3}
+            setGuessStringE={setGuessStringEQ3}
           />
         );
       case 3:
@@ -140,6 +278,30 @@ export default function djacobs(props) {
             displayQuestion={questionData[3]}
             imagePath="/images/surfaceArea/SA_Q2_image.png"
             nextQuestion={nextQuestion}
+            partAguessStringA={partAguessStringAQ4}
+            setpartAGuessStringA={setpartAguessStringAQ4}
+            partAguessStringB={partAguessStringBQ4}
+            setpartAGuessStringB={setpartAguessStringBQ4}
+            partAguessStringC={partAguessStringCQ4}
+            setpartAGuessStringC={setpartAguessStringCQ4}
+            partAguessStringD={partAguessStringDQ4}
+            setpartAGuessStringD={setpartAguessStringDQ4}
+            partAguessStringE={partAguessStringEQ4}
+            setpartAGuessStringE={setpartAguessStringEQ4}
+            partAguessStringSA={partAguessStringSAQ4}
+            setpartAGuessStringSA={setpartAguessStringSAQ4}
+            partBguessStringA={partBguessStringAQ4}
+            setpartBGuessStringA={setpartBguessStringAQ4}
+            partBguessStringB={partBguessStringBQ4}
+            setpartBGuessStringB={setpartBguessStringBQ4}
+            partBguessStringC={partBguessStringCQ4}
+            setpartBGuessStringC={setpartBguessStringCQ4}
+            partBguessStringD={partBguessStringDQ4}
+            setpartBGuessStringD={setpartBguessStringDQ4}
+            partBguessStringE={partBguessStringEQ4}
+            setpartBGuessStringE={setpartBguessStringEQ4}
+            partBguessStringSA={partBguessStringSAQ4}
+            setpartBGuessStringSA={setpartBguessStringSAQ4}
           />
         );
       case 4:
@@ -147,6 +309,8 @@ export default function djacobs(props) {
           <SA_Q5
             displayQuestion={questionData[4]}
             nextQuestion={nextQuestion}
+            guessString={guessStringQ5}
+            setGuessString={setGuessStringQ5}
           />
         );
       case 5:
@@ -154,6 +318,13 @@ export default function djacobs(props) {
           <SA_Q6
             displayQuestion={questionData[5]}
             nextQuestion={nextQuestion}
+            positions={positions}
+            setPositions={setPositions}
+            partBguessString={partBguessStringQ6}
+            setpartBGuessString={setpartBguessStringQ6}
+            partCguessString={partCguessStringQ6}
+            setpartCGuessString={setpartCguessStringQ6}
+            setupPosition={setupPosition}
           />
         );
       case 6:
@@ -162,6 +333,16 @@ export default function djacobs(props) {
             displayQuestion={questionData[6]}
             imagePath="/images/surfaceArea/SA_Q7_image.png"
             nextQuestion={nextQuestion}
+            guessStringRectPrism={guessStringRectPrismQ7}
+            setGuessStringRectPrism={setGuessStringRectPrismQ7}
+            guessStringCube={guessStringCubeQ7}
+            setGuessStringCube={setGuessStringCubeQ7}
+            guessStringTriPrism={guessStringTriPrismQ7}
+            setGuessStringTriPrism={setGuessStringTriPrismQ7}
+            linesForQuestions={linesForQuestionsQ7}
+            setLinesForQuestions={setLinesForQuestionsQ7}
+            historyStepForQuestions={historyStepForQuestionsQ7}
+            setHistoryStepForQuestions={setHistoryStepForQuestionsQ7}
           />
         );
     }
