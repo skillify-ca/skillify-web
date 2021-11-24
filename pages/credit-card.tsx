@@ -4,6 +4,7 @@ import CCDCMulti from '../components/credit-card/CCDCMulti';
 import CCWordProblem from '../components/credit-card/CCWordProblem';
 import CreditDebitInfo from '../components/credit-card/CreditDebitInfo';
 import DCWordProblem from '../components/credit-card/DCWordProblem';
+import DragDrop from '../components/credit-card/DragDrop';
 import { Button } from '../components/ui/Button';
 
 export default function CreditCard(props) {
@@ -13,6 +14,7 @@ export default function CreditCard(props) {
         DCWordProblem, //debit card word problem
         CCDCMulti, //multiple choice
         CardColorProblem, //credit debit both color problem
+        TestCC,
     }
 
     //manages state 
@@ -31,7 +33,7 @@ export default function CreditCard(props) {
       };
     
       const nextStage = () => {
-        if (stage < STAGE.CardColorProblem) {
+        if (stage < STAGE.TestCC) {
           setStage(stage + 1);
         }
       };
@@ -48,6 +50,8 @@ export default function CreditCard(props) {
             return <CCDCMulti/>
         } else if (stage == STAGE.CardColorProblem) {
             return <CardColorProblem/>
+        } else if (stage == STAGE.TestCC) {
+            return <DragDrop/>
         }
     }
 
