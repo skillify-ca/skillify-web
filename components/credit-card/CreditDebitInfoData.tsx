@@ -1,50 +1,65 @@
-import { WordBank } from "../../pages/api/credit-card/WordBank";
+interface WordBank {
+  category: string,
+  answer: string,
+  word: string,
+}
 
-export const WordBankData: WordBank[] = [
+
+export const wordBankData: WordBank[] = [
   {
-    id:"0",
-    word: "borrow",
-    bgcolor: "pink",
+    category: "credit",
+    answer: "borrow",
+    word: "lend",
   },
   {
-    id:"1",
-    word: "pay",
+    category:"credit",
+    answer: "pay",
+    word: "earn",
   },
   {
-    id:"2",
-    word: "spend",
+    category:"debit",
+    answer: "spend",
+    word: "save",
   },
   {
-    id:"3",
-    word: "deposited",
+    category:"debit",
+    answer: "deposited",
+    word: "withdraw",
   },
   {
-    id:"4",
-    word: "purchases",
+    category:"both",
+    answer: "purchases",
+    word: "sell",
   },
   {
-    id:"5",
-    word: "lost",
+    category:"both",
+    answer: "lost",
+    word: "find",
   },
   {
-    id:"6",
-    word: "stolen",
+    category:"both",
+    answer: "stolen",
+    word: "lend",
   },
   {
-    id:"7",
-    word: "plastic",
+    category:"both",
+    answer: "plastic",
+    word: "metal",
   },
   {
-    id:"8",
-    word: "magnetic",
+    category:"both",
+    answer: "magnetic",
+    word: "shiny",
   },
   {
-    id:"9",
-    word: "name",
+    category:"both",
+    answer: "name",
+    word: "age",
   },
   {
-    id:"10",
-    word: "expiration",
+    category:"both",
+    answer: "expiration",
+    word: "postal code",
   },
 
 ]

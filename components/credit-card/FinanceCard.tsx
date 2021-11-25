@@ -8,28 +8,24 @@ export interface FinanceCardProps {
 const FinanceCard = ({question, answer}: FinanceCardProps) => {
     const [color, setColor ] = useState("bg-gray-300")
     const [borderColor, setBorderColor ] = useState("border-gray-500")
-    const [cardTitle, setcardTitle ] = useState("Click to Change")
+    const [cardTitle, setCardTitle ] = useState("Click to Change")
     
     const onColorChangeRequested = () => {
-        if (color == "bg-gray-300") {
+        if (color === "bg-gray-300" || color === "bg-yellow-300") {
             setColor("bg-green-300")
             setBorderColor("border-green-500")
-            setcardTitle("debit")
+            setCardTitle("debit")
 
-        } else if (color == "bg-green-300") {
+        } else if (color === "bg-green-300") {
             setColor("bg-purple-300");
             setBorderColor("border-purple-500")
-            setcardTitle("credit")
+            setCardTitle("credit")
 
-        } else if (color == "bg-purple-300") {
+        } else if (color === "bg-purple-300") {
             setColor("bg-yellow-300")
             setBorderColor("border-yellow-500")
-            setcardTitle("both")
+            setCardTitle("both")
 
-        } else if (color == "bg-yellow-300") {
-            setColor("bg-green-300")
-            setBorderColor("border-green-500")
-            setcardTitle("debit")
         }
     }
 

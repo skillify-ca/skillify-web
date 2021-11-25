@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DCWordProblem = () => {
+const DebitCardWordProblem = () => {
   return (
     <div className="flex flex-col p-12">
         <div className="flex justify-center mb-12">
@@ -29,4 +29,4 @@ const DCWordProblem = () => {
   )
 }
 
-export default DCWordProblem
+export default DebitCardWordProblem
