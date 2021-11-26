@@ -23,6 +23,8 @@ import Q16 from "../../../components/giza/Q16";
 import MiddleOfQuiz from "../../../components/giza/MiddleOfQuiz";
 import { start } from "repl";
 import { measureTime } from "../../api/time";
+import { ADD_GIZA_DATA } from "../../../graphql/addGizaData";
+import { useMutation } from "@apollo/client";
 
 enum Stage {
   START,
@@ -31,6 +33,11 @@ enum Stage {
 }
 
 export default function djacobs(props) {
+  type GuessResponse = {
+    key: String;
+    value: GuessData;
+  };
+
   const questionData = [
     "The sum of the interior (inside) angles of a triangle add up to what?",
     "What is the measurement of <a? (Tip: Just write the number.) ",
@@ -58,12 +65,12 @@ export default function djacobs(props) {
   const [guesses, setGuess] = useState<GuessData[]>([]);
   const [score, setScore] = useState<Number>();
   const [isVisible, setIsVisible] = useState<Boolean>();
-  const [guessHistory, setGuessHistory] = useState<Map<String, GuessData>>(
-    new Map()
-  );
+  const [guessHistory, setGuessHistory] = useState<GuessResponse[]>([]);
   const [guessCounter, setGuessCounter] = useState(1);
   const [wrongAnswerCheck, setWrongAnswerCheck] = useState<Boolean>(true);
+  const [dataCheck, setDataCheck] = useState<Boolean>(true);
   const [shouldAnimate, setShouldAnimate] = useState<Boolean>(true);
+  const [shouldAnimateData, setShouldAnimateData] = useState<Boolean>(true);
   const [questionCounter, setQuestionCounter] = useState(1);
   const [startTime, setStartTime] = useState<number>();
   const [endTime, setEndTime] = useState<number>();
@@ -72,6 +79,47 @@ export default function djacobs(props) {
 
   const onSubmit = (guess: GuessData) => {
     console.log(guess);
+  };
+
+  const [insertGizaStudentData, insertGizaStudentDataMutation] = useMutation(
+    ADD_GIZA_DATA
+  );
+
+  const insertGizaStudentDataFunction = (
+    studentName: string,
+    groupName: string,
+    guesses: GuessData[],
+    guessHistory: GuessResponse[],
+    startTime: number,
+    endTime: number
+  ) => {
+    if (studentName.indexOf(",") > -1 && groupName != null) {
+      const studentNameArray = studentName.split(",");
+      guesses = guesses.filter((guess) => guess);
+      for (let i = 0; i < studentNameArray.length; i++) {
+        insertGizaStudentData({
+          variables: {
+            student_name: studentNameArray[i],
+            team_name: groupName,
+            guesses: guesses,
+            guess_history: guessHistory,
+            start_time: startTime,
+            end_time: endTime,
+          },
+        });
+      }
+    } else {
+      insertGizaStudentData({
+        variables: {
+          student_name: studentName,
+          team_name: groupName,
+          guesses: guesses,
+          guess_history: guessHistory,
+          start_time: startTime,
+          end_time: endTime,
+        },
+      });
+    }
   };
 
   const onStartQuiz = () => {
@@ -126,7 +174,9 @@ export default function djacobs(props) {
   };
 
   const isWrong = (check: Boolean, guess: GuessData) => {
-    guessHistory.set("Question" + questionCounter + "." + guessCounter, guess);
+    const questionString = "Question" + questionCounter + "." + guessCounter;
+    const guessHistoryObject = { key: questionString, value: guess };
+    guessHistory.push(guessHistoryObject);
     setGuessCounter(guessCounter + 1);
     setWrongAnswerCheck(check);
     setShouldAnimate(true);
@@ -279,12 +329,35 @@ export default function djacobs(props) {
                         within {totalTimeMin} : {totalTimeSec} !
                       </p>
                     </div>
+                    {!dataCheck && (
+                      <p
+                        className={
+                          shouldAnimateData
+                            ? "animate-fadeIn delay-1000 text-center text-red-600"
+                            : "visibility: hidden"
+                        }
+                        onAnimationEnd={(e) => setShouldAnimateData(false)}
+                      >
+                        Data entered is incorrect, please hit retry and start
+                        the assignment again
+                      </p>
+                    )}
                     <div id="FormEnd" className="flex flex-col items-center">
                       <div id="ButtonLayout" className="flex flex-row gap-8">
                         <Button
                           label="Continue"
                           backgroundColor="blue"
                           textColor="white"
+                          onClick={(e) =>
+                            insertGizaStudentDataFunction(
+                              studentName,
+                              groupName,
+                              guesses,
+                              guessHistory,
+                              startTime,
+                              endTime
+                            )
+                          }
                         />
                         <Button
                           label="Retry"
