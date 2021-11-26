@@ -54,26 +54,6 @@ export default function CreditCard(props) {
     return (
         <div className={"bg-white"}>
             <div>{getComponent(stage)}</div>
-<<<<<<< Updated upstream
-                {(stage == STAGE.CreditDebitInfo)
-                    ?
-                    <div className="flex flex-col min-w-full p-12">
-                        <Button
-                            backgroundColor="blue"
-                            textColor="white"
-                            label="Start"
-                            onClick={nextStage}
-                        />
-                    </div>
-                    :
-                    <div className="flex flex-row space-x-8 justify-center p-12">
-                        <Button
-                            backgroundColor="red"
-                            textColor="white"
-                            label="Go Back"
-                            onClick={previousStage}
-                        />
-=======
             <div className="flex flex-row space-x-8 justify-center">
                 <Button
                     label="submit"
@@ -107,17 +87,7 @@ export default function CreditCard(props) {
                     />
                 </div>
             }
->>>>>>> Stashed changes
         
-                        <Button
-                            backgroundColor="blue"
-                            textColor="white"
-                            label="Next"
-                            onClick={nextStage}
-                        />
-                    </div>
-                }
-            
         </div>
     )
 };
