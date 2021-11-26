@@ -82,16 +82,7 @@ export default function djacobs(props) {
   };
 
   const [insertGizaStudentData, insertGizaStudentDataMutation] = useMutation(
-    ADD_GIZA_DATA,
-    {
-      onCompleted: (data) => {
-        const ID = data.insert_giza_student_grades.returning[0].id;
-        const studentName =
-          data.insert_giza_student_grades.returning[0].student_name;
-        console.log(ID);
-        console.log(studentName);
-      },
-    }
+    ADD_GIZA_DATA
   );
 
   const insertGizaStudentDataFunction = (
@@ -102,8 +93,6 @@ export default function djacobs(props) {
     startTime: number,
     endTime: number
   ) => {
-    //console.log(studentName);
-
     if (studentName.indexOf(",") > -1 && groupName != null) {
       const studentNameArray = studentName.split(",");
       guesses = guesses.filter((guess) => guess);
@@ -120,8 +109,16 @@ export default function djacobs(props) {
         });
       }
     } else {
-      setDataCheck(false);
-      setShouldAnimate(true);
+      insertGizaStudentData({
+        variables: {
+          student_name: studentName,
+          team_name: groupName,
+          guesses: guesses,
+          guess_history: guessHistory,
+          start_time: startTime,
+          end_time: endTime,
+        },
+      });
     }
   };
 
@@ -177,7 +174,6 @@ export default function djacobs(props) {
   };
 
   const isWrong = (check: Boolean, guess: GuessData) => {
-    //"Question" + questionCounter + "." + guessCounter, guess
     const questionString = "Question" + questionCounter + "." + guessCounter;
     const guessHistoryObject = { key: questionString, value: guess };
     guessHistory.push(guessHistoryObject);
