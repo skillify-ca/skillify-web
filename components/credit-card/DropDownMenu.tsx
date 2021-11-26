@@ -7,7 +7,7 @@ export const DropDownMenu = ({words, value}: DropDownMenuProps) => {
     
 
     return (
-        <div className="inline-block">
+        <div className="inline-block border border-grey-500">
             <select>
                 <option selected>...</option>
                 {words
