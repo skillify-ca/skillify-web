@@ -108,12 +108,6 @@ export default function djacobs(props) {
       const studentNameArray = studentName.split(",");
       guesses = guesses.filter((guess) => guess);
       for (let i = 0; i < studentNameArray.length; i++) {
-        console.log(studentNameArray[i]);
-        console.log(groupName);
-        console.log(guesses);
-        console.log(guessHistory);
-        console.log(startTime);
-        console.log(endTime);
         insertGizaStudentData({
           variables: {
             student_name: studentNameArray[i],
