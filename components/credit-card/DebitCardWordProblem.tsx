@@ -14,23 +14,21 @@ const DebitCardWordProblem = () => {
             <div className="flex justify-center mb-12">
                 <span className="text-4xl">You <DropDownMenu value="" words={debitCardArray}/> a purchase to your debit card</span>
             </div>
-            <div className="flex flex-col md:flex-row-reverse justify-center items-center">
+            <div className="flex flex-col justify-center items-center">
                 <div className="px-12">
-                    <img className="" src="../../images/credit-card/debit-make-it-rain.svg"></img>
+                    <img className="" src="../../images/credit-card/debit-piggybank.svg"></img>
                 </div>
                 <div className="text-2xl">
                     <div className="flex justify-center p-8 bg-green-200 rounded-2xl mx-12">
                         <span>The <DropDownMenu value="" words={debitCardArray}/> send your <DropDownMenu value="" words={debitCardArray}/> to the store</span>
                     </div>
                     <div className="flex justify-center p-8 bg-green-300 rounded-2xl mx-12 my-4">
-                        <span>
-                            Money is <DropDownMenu value="" words={debitCardArray}/> from your <DropDownMenu value="" words={debitCardArray}/> account
-                        </span>
+                        <span>Money is <DropDownMenu value="" words={debitCardArray}/> from your <DropDownMenu value="" words={debitCardArray}/> account</span>
                     </div>
                 </div>
             </div>
         </div>
-        <div className="flex flex-col-reverse gap-12 items-center md:flex-row">
+        <div className="flex flex-col-reverse gap-12 items-center">
             <img className="max-w-sm p-4" src="../../images/credit-card/debit-wallet.svg"></img>
             <ul className="flex flex-col gap-8 p-12 text-2xl">
                 <li>Issued by a <DropDownMenu value="" words={debitCardArray}/> and linked to customer's <DropDownMenu value="" words={debitCardArray}/> account</li>
@@ -39,9 +37,9 @@ const DebitCardWordProblem = () => {
                 <li>Overdraft <DropDownMenu value="" words={debitCardArray}/> may be available</li>
                 <li>A <DropDownMenu value="" words={debitCardArray}/> is required to make a purchase or get money out of <DropDownMenu value="" words={debitCardArray}/></li>
             </ul>
+            <img className="max-w-sm p-4" src="../../images/credit-card/debit-vault.svg"></img>
         </div>
-
-</div>
+    </div>
   )
 }
 
