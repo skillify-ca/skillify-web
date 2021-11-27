@@ -36,7 +36,7 @@ const CreditDebitInfo = () => {
                 <div className="flex flex-col gap-4">
                     <div className="w-full p-12">
                         <div className="flex md:flex-row flex-col-reverse justify-center">
-                            <div className="flex flex-col justify-center bg-purple-200 p-12 mx-12">
+                            <div className="flex flex-col justify-center bg-purple-200 p-12 mx-12 rounded-2xl">
                                 <h2 className="text-4xl mb-4">Credit Cards</h2>
                                 <span className="text-2xl">
                                     Allow consumers to <DropDownMenu value="borrow" words={borrowArray}/>
@@ -49,7 +49,7 @@ const CreditDebitInfo = () => {
                     </div>
                     <div className="w-full p-12">
                         <div className="flex md:flex-row-reverse flex-col-reverse justify-center">
-                            <div className="flex flex-col justify-center bg-green-200 p-12 mx-12">
+                            <div className="flex flex-col justify-center bg-green-200 p-12 mx-12 rounded-2xl">
                                 <h2 className="text-4xl mb-4">Debit Cards</h2>
                                 <span className="text-2xl">
                                     Allow consumers to <DropDownMenu value="spend" words={spendArray}/> money they have <DropDownMenu value="deposit" words={depositArray}/> in their bank account
@@ -63,7 +63,7 @@ const CreditDebitInfo = () => {
             </div>
             <div className="flex md:flex-row-reverse flex-col justify-center px-12">
                 <img className=" max-w-md" src="../../images/credit-card/both-card-woman.svg"></img>
-                <div className=" flex flex-col justify-center bg-gray-200 p-12">
+                <div className=" flex flex-col justify-center bg-gray-200 p-12 mx-12 rounded-2xl">
                     <h2 className="text-4xl mb-12">So how are they similar?</h2>
                     <ul className="flex flex-col gap-4 text-2xl">
                         <li>Allow a person to make <DropDownMenu value="purchase" words={purchaseArray}/></li>
