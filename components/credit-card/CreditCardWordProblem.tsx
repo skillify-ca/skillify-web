@@ -56,7 +56,7 @@ const CreditCardWordProblem = () => {
                         <li><DropDownMenu value="" words={lateFeeArray}/> is billed not paid on time</li>
                     </ul>
                 </div>
-                <div className="flex flex-col-reverse md:flex-row bg-gray-100 rounded-2xl md:mx-12 m-12">
+                <div className="flex flex-col-reverse md:flex-row md:mx-12 m-12">
                     <img className="max-w-sm p-4" src="../../images/credit-card/credit-checklist.svg"></img>
                     <ul className="flex flex-col gap-8 p-12 text-2xl">
                         <li>Spending is limited by a <DropDownMenu value="" words={creditLimitArray}/></li>
