@@ -15,8 +15,24 @@ import {
 import { DropDownMenu } from './DropDownMenu';
 
 
-const CreditDebitInfo = () => {
+export interface DropDownMenuProps {
+    word: string,
+    answer: string,
+}
 
+export const DropDownMenu = ({word, answer}: DropDownMenuProps) => {
+    return (
+        <div className="inline-block">
+            <select>
+                <option value="" placeholder="Select">Select</option>
+                <option>{word}</option>
+                <option>{answer}</option>
+            </select>
+        </div>
+    )
+}
+
+const CreditDebitInfo = () => {
 
     return (
         <div className="flex flex-col p-12">
@@ -32,7 +48,6 @@ const CreditDebitInfo = () => {
                 <div className="mb-4 flex justify-center">
                     <h2 className="text-5xl">What's the difference?</h2>
                 </div>
-
                 <div className="flex flex-col gap-4">
                     <div className="w-full p-12">
                         <div className="flex md:flex-row flex-col-reverse justify-center">
@@ -72,7 +87,7 @@ const CreditDebitInfo = () => {
                         <li>Owner's <DropDownMenu value="name" words={nameArray}/> and an <DropDownMenu value="expiration" words={expirationArray}/> date on the card</li>
                     </ul>
                 </div>
-            </div>
+            </div>   
         </div>
     )
 }
