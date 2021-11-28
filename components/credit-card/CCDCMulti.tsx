@@ -22,7 +22,6 @@ const CCDCMulti = () => {
             key={index}
             question={item.question}
             options={item.options}
-            img={item.img}
           />
         ))
         }

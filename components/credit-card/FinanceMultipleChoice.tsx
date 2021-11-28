@@ -3,16 +3,14 @@ import React, { useState } from "react"
 interface FinanceMultipleChoiceProps {
     question:string;
     options: string[];
-    img?: string;
 } 
 
-export const FinanceMultipleChoice = ({ question, options, img}: FinanceMultipleChoiceProps) => {
+export const FinanceMultipleChoice = ({ question, options }: FinanceMultipleChoiceProps) => {
 
     const [ active, setActive ] = useState(false)
 
     const buttonHandler = (e) => {
             setActive(!active)
-            console.log(e.target.value)
     }
 
     return (
@@ -26,7 +24,8 @@ export const FinanceMultipleChoice = ({ question, options, img}: FinanceMultiple
                     <li 
                         className={`${active ? "font-extrabold" : "font-normal"} list-decimal text-2xl mb-12`}
                         onClick={buttonHandler}
-                        value={option}>
+                        value={option}
+                        key={option}>
                         {option}
                     </li>
                 )}
