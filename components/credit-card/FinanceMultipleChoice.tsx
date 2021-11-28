@@ -18,7 +18,7 @@ export const FinanceMultipleChoice = ({ question, options, img}: FinanceMultiple
     return (
         <div className="px-12 mb-12">
             <div className="flex text-center mb-12">
-                <img className="md:mr-4 hidden md:block w-12" src="../../images/credit-card/exclamation-mark.svg"></img>
+                <img className="md: mr-4 hidden md:block w-12" src="../../images/credit-card/exclamation-mark.svg"></img>
                 <span className="text-3xl text-purple-800 font-bold">{question}</span>
             </div>
             <ul className="px-12">
