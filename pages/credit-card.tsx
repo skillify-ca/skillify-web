@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CardColorProblem from '../components/credit-card/CardColorProblem';
-import CCDCMulti from '../components/credit-card/CCDCMulti';
+import MultipleChoiceWordProblem from '../components/credit-card/MultipleChoiceWordProblem';
 import CreditCardWordProblem from '../components/credit-card/CreditCardWordProblem';
 import CreditDebitInfo from '../components/credit-card/CreditDebitInfo';
 import DebitCardWordProblem from '../components/credit-card/DebitCardWordProblem';
@@ -11,7 +11,7 @@ export default function CreditCard(props) {
         CreditDebitInfo, //intro with info
         CreditCardWordProblem, //credit card word problem
         DebitCardWordProblem, //debit card word problem
-        CCDCMulti, //multiple choice
+        MultipleChoiceWordProblem, //multiple choice
         CardColorProblem, //credit debit both color problem
     }
 
@@ -22,32 +22,32 @@ export default function CreditCard(props) {
     const [q1, setq1] = useState("");
     const [a1, seta1] = useState("");
 
-    
-    
+
+
     const previousStage = () => {
         if (stage > STAGE.CreditDebitInfo) {
-          setStage(stage - 1);
+            setStage(stage - 1);
         }
-      };
-    
-      const nextStage = () => {
+    };
+
+    const nextStage = () => {
         if (stage < STAGE.CardColorProblem) {
-          setStage(stage + 1);
+            setStage(stage + 1);
         }
-      };
+    };
 
 
     const getComponent = (stage: STAGE) => {
         if (stage == STAGE.CreditDebitInfo) {
-            return <CreditDebitInfo/>
+            return <CreditDebitInfo />
         } else if (stage == STAGE.CreditCardWordProblem) {
-            return <CreditCardWordProblem/>
+            return <CreditCardWordProblem />
         } else if (stage == STAGE.DebitCardWordProblem) {
-            return <DebitCardWordProblem/>
-        } else if (stage == STAGE.CCDCMulti) {
-            return <CCDCMulti/>
+            return <DebitCardWordProblem />
+        } else if (stage == STAGE.MultipleChoiceWordProblem) {
+            return <MultipleChoiceWordProblem />
         } else if (stage == STAGE.CardColorProblem) {
-            return <CardColorProblem/>
+            return <CardColorProblem />
         }
     }
 
@@ -58,7 +58,7 @@ export default function CreditCard(props) {
                 <Button
                     label="submit"
                     backgroundColor="yellow"
-                    textColor="white"/>
+                    textColor="white" />
             </div>
             {(stage == STAGE.CreditDebitInfo)
                 ?
@@ -78,7 +78,7 @@ export default function CreditCard(props) {
                         label="Go Back"
                         onClick={previousStage}
                     />
-    
+
                     <Button
                         backgroundColor="green"
                         textColor="white"
@@ -87,7 +87,7 @@ export default function CreditCard(props) {
                     />
                 </div>
             }
-        
+
         </div>
     )
 };

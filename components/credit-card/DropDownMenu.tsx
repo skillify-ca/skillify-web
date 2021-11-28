@@ -1,19 +1,18 @@
 export interface DropDownMenuProps {
     words: string[];
-    value: string;
 }
 
-export const DropDownMenu = ({words, value}: DropDownMenuProps) => {
-    
+export const DropDownMenu = ({ words }: DropDownMenuProps) => {
+
 
     return (
         <div className="inline-block border border-grey-500">
-            <select defaultValue="...">
+            <select>
                 <option>...</option>
                 {words
-                    .map((word) => ({ word, sort: Math.random()}))
+                    .map((word) => ({ word, sort: Math.random() }))
                     .sort((a, b) => a.sort - b.sort)
-                    .map(({word,}) => ( <option key={word} value={value}>{word}</option>
+                    .map(({ word, }) => (<option key={word} value={word}>{word}</option>
                     ))
                 }
             </select>
