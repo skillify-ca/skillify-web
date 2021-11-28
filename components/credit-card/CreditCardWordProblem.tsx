@@ -15,7 +15,7 @@ import {
     payArray,
     responsibleArray,
     unpaidArray,
- } from './CreditCardWordProblemData'
+ } from '../../pages/api/credit-card/CreditCardWordProblemData'
 
 const CreditCardWordProblem = () => {
     return (

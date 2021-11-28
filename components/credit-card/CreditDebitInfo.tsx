@@ -11,7 +11,7 @@ import {
     magneticArray,
     nameArray,
     expirationArray,
- } from './CreditDebitInfoData';
+ } from '../../pages/api/credit-card/CreditDebitInfoData';
 import { DropDownMenu } from './DropDownMenu';
 
 

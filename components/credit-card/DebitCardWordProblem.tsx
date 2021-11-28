@@ -13,7 +13,7 @@ import {
     atmArray,
     checkingArray,
     bankArray3,
- } from './DebitCardWordProblemData'
+ } from '../../pages/api/credit-card/DebitCardWordProblemData'
 import { DropDownMenu } from './DropDownMenu'
 
 const DebitCardWordProblem = () => {

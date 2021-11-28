@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { multiQuestionData } from './CCDCMultiData'
+import { multiQuestionData } from '../../pages/api/credit-card/CCDCMultiData'
 import { FinanceMultipleChoice } from './FinanceMultipleChoice'
 
 const CCDCMulti = () => {
