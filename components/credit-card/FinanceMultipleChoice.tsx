@@ -7,10 +7,10 @@ interface FinanceMultipleChoiceProps {
 
 export const FinanceMultipleChoice = ({ question, options }: FinanceMultipleChoiceProps) => {
 
-    const [ active, setActive ] = useState(false)
+    const [ selectedOption, setSelectedOption ] = useState()
 
-    const buttonHandler = (e) => {
-            setActive(!active)
+    const buttonHandler = (index) => {
+            setSelectedOption(index)
     }
 
     return (
@@ -20,10 +20,10 @@ export const FinanceMultipleChoice = ({ question, options }: FinanceMultipleChoi
                 <span className="text-3xl text-purple-800 font-bold">{question}</span>
             </div>
             <ul className="px-12">
-                {options.map(option => 
+                {options.map((option, index) => 
                     <li 
-                        className={`${active ? "font-extrabold" : "font-normal"} list-decimal text-2xl mb-12`}
-                        onClick={buttonHandler}
+                        className={`${index === selectedOption ? "font-extrabold" : "font-normal"} list-decimal text-2xl mb-12`}
+                        onClick={_ => buttonHandler(index)}
                         value={option}
                         key={option}>
                         {option}
