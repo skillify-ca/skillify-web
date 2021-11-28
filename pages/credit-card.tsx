@@ -57,14 +57,14 @@ export default function CreditCard(props) {
             <div className="flex flex-row space-x-8 justify-center">
                 <Button
                     label="submit"
-                    backgroundColor="blue"
+                    backgroundColor="yellow"
                     textColor="white"/>
             </div>
             {(stage == STAGE.CreditDebitInfo)
                 ?
                 <div className="flex flex-col min-w-full p-12">
                     <Button
-                        backgroundColor="blue"
+                        backgroundColor="purple"
                         textColor="white"
                         label="Next"
                         onClick={nextStage}
@@ -73,14 +73,14 @@ export default function CreditCard(props) {
                 :
                 <div className="flex flex-row space-x-8 justify-center p-12">
                     <Button
-                        backgroundColor="red"
+                        backgroundColor="purple"
                         textColor="white"
                         label="Go Back"
                         onClick={previousStage}
                     />
     
                     <Button
-                        backgroundColor="blue"
+                        backgroundColor="green"
                         textColor="white"
                         label="Next"
                         onClick={nextStage}

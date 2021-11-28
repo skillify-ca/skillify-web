@@ -1,24 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { multiQuestionData } from './CCDCMultiData'
+import { FinanceMultipleChoice } from './FinanceMultipleChoice'
 
 const CCDCMulti = () => {
 
+
   return (
-    <div className="flex flex-col p-12 justify-center">
-      <h1 className="text-5xl mb-4">Credit Cards & Debit Cards</h1>
-      {" "}
-      <h2 className="mb-12">Click on your answer</h2>
-      <div className="grid md:grid-cols-2">
+    <div className="">
+      <div className="flex flex-col p-12 justify-center items-center">
+        <h1 className="font-extrabold text-5xl md:text-8xl uppercase text-yellow-400">
+          <span className="text-purple-500">Credit</span>
+            {" "}&{" "}
+          <span className="text-green-500">Debit</span>
+        </h1>
+        <h2 className="text-3xl md:text-4xl mb-1">Click on your answer</h2>
+      </div>
+      <div className="grid grid-none md:grid-cols-2">
         {
         multiQuestionData.map((item, index) => (
-          <div key={index} className="flex flex-col gap-4 p-4">
-            <h3 className="text-purple-300 font-bold">{item.question}</h3>
-            <ul className="flex flex-col gap-4">
-              {item.options.map((option, index) => (
-                <li key={index}>{option.id}{") "}{option.answer}</li>
-              ))}
-            </ul>
-          </div>
+          <FinanceMultipleChoice
+            key={index}
+            question={item.question}
+            options={item.options}
+            img={item.img}
+          />
         ))
         }
       </div>

@@ -21,7 +21,7 @@ const CreditDebitInfo = () => {
     return (
         <div className="flex flex-col p-12">
             <div className="mb-12 flex justify-center">
-                <h1 className="font-extrabold text-8xl uppercase -pl-12">
+                <h1 className="font-extrabold text-8xl uppercase -pl-12 text-yellow-400">
                     <span className="text-purple-500">Credit</span>
                      {" "}vs{" "}
                     <span className="text-green-500">Debit</span>
