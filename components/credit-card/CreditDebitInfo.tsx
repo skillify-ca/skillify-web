@@ -19,7 +19,7 @@ export interface DropDownMenuProps {
     answer: string,
 }
 
-const CreditDebitInfo = () => {
+const CreditDebitInfo = ({ q1, setq1 }) => {
 
     return (
         <div className="flex flex-col p-12">
@@ -41,7 +41,7 @@ const CreditDebitInfo = () => {
                             <div className="flex flex-col justify-center bg-purple-200 p-12 mx-12 rounded-2xl">
                                 <h2 className="text-4xl mb-4">Credit Cards</h2>
                                 <span className="text-2xl">
-                                    Allow consumers to <DropDownMenu words={borrowArray} />
+                                    Allow consumers to <DropDownMenu value={q1} setValue={setq1} words={borrowArray} />
                                     money from a financial institution and <DropDownMenu words={payArray} />
                                     it back later
                                 </span>

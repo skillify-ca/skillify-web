@@ -23,6 +23,20 @@ export default function CreditCard(props) {
   const [q1, setq1] = useState("");
   const [a1, seta1] = useState("");
 
+  const onSubmitMaster = () => {
+
+    // check if each stage has a score
+
+    // return false if any stage has no score
+
+    // else return true 
+    //final score reveal
+  }
+
+  const getCreditDebitInfoScore = () => {
+    // score available
+  }
+
   const previousStage = () => {
     if (stage > STAGE.CreditDebitInfo) {
       setStage(stage - 1);
@@ -37,7 +51,10 @@ export default function CreditCard(props) {
 
   const getComponent = (stage: STAGE) => {
     if (stage == STAGE.CreditDebitInfo) {
-      return <CreditDebitInfo />;
+      return <CreditDebitInfo
+        q1={q1}
+        setq1={setq1}
+      />
     } else if (stage == STAGE.CreditCardWordProblem) {
       return <CreditCardWordProblem />;
     } else if (stage == STAGE.DebitCardWordProblem) {
@@ -52,9 +69,14 @@ export default function CreditCard(props) {
   return (
     <div className={"bg-white"}>
       <CreditCardProgressTracker />
+      {JSON.stringify(q1)}
       <div>{getComponent(stage)}</div>
       <div className="flex flex-row space-x-8 justify-center">
-        <Button label="submit" backgroundColor="yellow" textColor="white" />
+        <Button
+          label="submit"
+          backgroundColor="yellow"
+          textColor="white"
+          onClick={onSubmitMaster} />
       </div>
       {stage == STAGE.CreditDebitInfo ? (
         <div className="flex flex-col min-w-full p-12">
