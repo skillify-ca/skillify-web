@@ -17,14 +17,16 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "baseUrl": "src"
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "components/ticTacToe/TicTacToeBoard.tsx",
-    "pages/index.tsx"
+    "pages/index.tsx",
+    "src"
   ],
   "exclude": [
     "node_modules"
