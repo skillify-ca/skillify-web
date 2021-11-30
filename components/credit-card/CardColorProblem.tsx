@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CardColorProblemData } from './CardColorProblemData'
+import { CardColorProblemData } from '../../pages/api/credit-card/CardColorProblemData'
 import FinanceCard from './FinanceCard';
 
 const CardColorProblem = () => {
