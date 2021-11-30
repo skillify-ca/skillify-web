@@ -29,12 +29,12 @@ const interactiveLessosn = [
   { title: "Kaboom", link: "kaboom", author: "Vithushan" },
   {
     title: "Escape from Giza",
-    link: "teachers/djacobs/giza",
+    link: "teachers/djacob/giza",
     author: "Ajevan",
   },
   {
     title: "Surface Area Quiz",
-    link: "teachers/djacobs/surfaceArea",
+    link: "teachers/djacob/surfaceArea",
     author: "Ajevan",
   },
   { title: "Food Truck Frenzy", link: "lessons/foodtruck", author: "Raveen" },

@@ -32,7 +32,7 @@ enum Stage {
   END,
 }
 
-export default function djacobs(props) {
+export default function djacob(props) {
   type GuessResponse = {
     key: String;
     value: GuessData;
@@ -81,9 +81,8 @@ export default function djacobs(props) {
     console.log(guess);
   };
 
-  const [insertGizaStudentData, insertGizaStudentDataMutation] = useMutation(
-    ADD_GIZA_DATA
-  );
+  const [insertGizaStudentData, insertGizaStudentDataMutation] =
+    useMutation(ADD_GIZA_DATA);
 
   const insertGizaStudentDataFunction = (
     studentName: string,
@@ -247,7 +246,7 @@ export default function djacobs(props) {
             >
               <div>
                 {stage == Stage.START && (
-                  <div className="flex flex-col items-center col gap-8 p-4">
+                  <div className="flex flex-col items-center gap-8 p-4 col">
                     <div id="Description" className="text-center">
                       <p className="text-base">
                         You and your group are trapped in a pyramid. Together
@@ -286,7 +285,7 @@ export default function djacobs(props) {
                       onClick={onStartQuiz}
                     />
                     <Image
-                      className="transform transition ease-in-out duration-500 hover:scale-110"
+                      className="transition duration-500 ease-in-out transform hover:scale-110"
                       width={256}
                       height={256}
                       alt="Pyramid"

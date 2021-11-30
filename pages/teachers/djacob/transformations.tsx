@@ -13,7 +13,7 @@ enum Stage {
   END,
 }
 
-export default function djacobs(props) {
+export default function djacob(props) {
   const questionData = [
     "1) On one quadrant, draw your original image by plotting four or more points and connecting them. This is your pre-image" +
       "\n" +
@@ -214,7 +214,7 @@ export default function djacobs(props) {
             >
               <div>
                 {stage == Stage.START && (
-                  <div className="flex flex-col items-center col gap-8 p-4">
+                  <div className="flex flex-col items-center gap-8 p-4 col">
                     <div id="Description" className="text-center">
                       <p className="text-base">
                         Welcome to the Transformation Assignment! Here in this
