@@ -73,6 +73,14 @@ test("test both players ready and start round action", () => {
     currentRoundIndex: 0,
     playerOneReady: true,
     playerTwoReady: true,
+    playerOneCurrentCard: {
+      answer: 0,
+      question: "",
+    },
+    playerTwoCurrentCard: {
+      answer: 3,
+      question: "",
+    },
   });
 });
 
