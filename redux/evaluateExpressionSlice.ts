@@ -67,7 +67,6 @@ export const evaluateExpressionSlice: Slice = createSlice({
     reset: (state: EvaluateExpressionState, action: PayloadAction<string>) => {
       state.currentIndex = 0;
       state.valueStack = [];
-      state.inputExpression = "(1+(4+5+2)-3)+(6+8)";
       state.operatorStack = [];
       state.stage = Stage.POPULATING_STACK;
       state.simpleCalculatorState = null;
@@ -110,7 +109,7 @@ export const evaluateExpressionSlice: Slice = createSlice({
         state.operatorStack.push(currentChar);
         state.currentIndex = state.currentIndex + 1;
       } else if (currentChar === ")") {
-        if (state.operatorStack[0] === ")") {
+        if (state.operatorStack[state.operatorStack.length - 1] === "(") {
           state.operatorStack.pop();
           state.currentIndex = state.currentIndex + 1;
         } else {
@@ -118,8 +117,8 @@ export const evaluateExpressionSlice: Slice = createSlice({
             state.valueStack.push(state.simpleCalculatorState.answer);
             state.simpleCalculatorState = null;
           } else {
-            const value1 = state.valueStack.pop();
             const value2 = state.valueStack.pop();
+            const value1 = state.valueStack.pop();
             const operator = state.operatorStack.pop();
             state.simpleCalculatorState = {
               value1,
@@ -135,13 +134,13 @@ export const evaluateExpressionSlice: Slice = createSlice({
         currentChar == "*" ||
         currentChar == "/"
       ) {
-        console.log(getPrecedence(currentChar));
-        console.log(getPrecedence(state.operatorStack[0]));
-
         if (
           state.simpleCalculatorState ||
           (state.operatorStack.length !== 0 &&
-            getPrecedence(currentChar) <= getPrecedence(state.operatorStack[0]))
+            getPrecedence(currentChar) >=
+              getPrecedence(
+                state.operatorStack[state.operatorStack.length - 1]
+              ))
         ) {
           if (state.simpleCalculatorState) {
             state.valueStack.push(state.simpleCalculatorState.answer);

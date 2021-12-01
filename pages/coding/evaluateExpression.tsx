@@ -5,6 +5,7 @@ import {
   evaluateExpressionSelector,
   onNext,
   reset,
+  setInput,
 } from "../../redux/evaluateExpressionSlice";
 
 import { useAppDispatch } from "../../redux/store";
@@ -13,6 +14,9 @@ export default function EvaluateExpressionPage(props) {
   const dispatch = useAppDispatch();
   const state = useSelector(evaluateExpressionSelector);
 
+  const handleOnInputChangeRequest = (val) => {
+    dispatch(setInput(val));
+  };
   const handleOnNextRequest = () => {
     dispatch(onNext(null));
   };
@@ -26,6 +30,7 @@ export default function EvaluateExpressionPage(props) {
           state={state}
           onNextRequested={handleOnNextRequest}
           onResetRequested={handleOnResetRequest}
+          onInputChangeRequested={handleOnInputChangeRequest}
         />
       )}
     </div>

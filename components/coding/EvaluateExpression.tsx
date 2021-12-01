@@ -12,11 +12,13 @@ export interface EvaluateExpressionProps {
   state: EvaluateExpressionState;
   onNextRequested: () => void;
   onResetRequested: () => void;
+  onInputChangeRequested: (val: string) => void;
 }
 const EvaluateExpression = ({
   state,
   onNextRequested,
   onResetRequested,
+  onInputChangeRequested,
 }: EvaluateExpressionProps) => {
   const handleNextClick = () => {
     onNextRequested();
@@ -28,6 +30,13 @@ const EvaluateExpression = ({
   return (
     <div className="flex flex-col items-center gap-4">
       <p>Evaluate an expression string and return a number</p>
+      <div>
+        <input
+          value={state.inputExpression}
+          onChange={(e) => onInputChangeRequested(e.target.value)}
+        />
+      </div>
+
       {JSON.stringify(state)}
       <Button
         label="Next"
@@ -42,12 +51,6 @@ const EvaluateExpression = ({
         onClick={handleResetClick}
       />
 
-      <p>Precedence Map</p>
-      <ul>
-        {precedenceMap.map((it) => (
-          <li>{JSON.stringify(it)}</li>
-        ))}
-      </ul>
       <p className="text-2xl font-bold">
         {state.inputExpression &&
           state.inputExpression.substring(state.currentIndex)}
