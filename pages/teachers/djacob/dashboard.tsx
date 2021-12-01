@@ -9,7 +9,7 @@ import "katex/dist/katex.min.css";
 import { FETCH_ASSIGNMENT } from "../../../graphql/fetchAssignment";
 import { UPDATE_SOLUTIONS_RELEASED_FOR_ASSIGNMENT } from "../../../graphql/userAssignments/updateSolutionsReleasedForAssignment";
 import dynamic from "next/dynamic";
-import { answers, questions } from "../../api/teachers/djacobs";
+import { answers, questions } from "../../api/teachers/djacob";
 import { Button } from "../../../components/ui/Button";
 
 const FreeDrawing = dynamic(
@@ -24,7 +24,7 @@ const TeacherDashboardPage = ({ data }) => {
   const [solutionsReleased, setSolutionsReleased] = useState(false);
   const { loading, data: assignmentFetchData } = useQuery(FETCH_ASSIGNMENT, {
     variables: {
-      assignmentId: "djacobs1",
+      assignmentId: "djacob1",
     },
     onCompleted: (data) => {
       if (data && data.assignments && data.assignments[0]) {
@@ -43,8 +43,9 @@ const TeacherDashboardPage = ({ data }) => {
     ].user_solution.map((guess, index) => {
       return Number.parseInt(guess) === answers[index];
     });
-    const correctGuesses: number = rightGuesses.filter((it) => it === true)
-      .length;
+    const correctGuesses: number = rightGuesses.filter(
+      (it) => it === true
+    ).length;
 
     const grade =
       (correctGuesses * 100) /
@@ -56,11 +57,11 @@ const TeacherDashboardPage = ({ data }) => {
     return "2 minutes and 33 seconds";
   };
   return (
-    <div className="flex flex-col overflow-auto bg-scroll heropattern-architect-blue-200 bg-blue-100 h-screen">
+    <div className="flex flex-col h-screen overflow-auto bg-scroll bg-blue-100 heropattern-architect-blue-200">
       <Navbar />
       {data && data.user_assignments && data.user_assignments[0] && (
         <div className="flex flex-col items-center">
-          <h1 className="text-center font-bold text-xl p-4">
+          <h1 className="p-4 text-xl font-bold text-center">
             {data.user_assignments[0].assignment.title}
           </h1>
 
@@ -78,7 +79,7 @@ const TeacherDashboardPage = ({ data }) => {
                     updateSolutionsReleased({
                       variables: {
                         solutions_released: !solutionsReleased,
-                        assignment_id: "djacobs1",
+                        assignment_id: "djacob1",
                       },
                     });
                     setSolutionsReleased(!solutionsReleased);
@@ -86,27 +87,27 @@ const TeacherDashboardPage = ({ data }) => {
                 />
               </div>
             )}
-          <div className="bg-blue-50 max-w-6xl mb-4 mx-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
-            <p className="font-bold text-2xl w-full">Ms. Jacob's Classroom</p>
+          <div className="flex flex-col max-w-6xl gap-8 p-4 mx-4 mb-4 shadow-lg bg-blue-50 rounded-xl">
+            <p className="w-full text-2xl font-bold">Ms. Jacob's Classroom</p>
             <div className="grid grid-cols-12 gap-8 ">
-              <div className="col-span-4 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
+              <div className="flex flex-col col-span-4 gap-8 p-8 text-center transition-all duration-500 ease-in-out transform bg-white shadow-lg rounded-xl hover:shadow-2xl hover:scale-105 erounded-xl">
                 <p className="text-2xl font-bold">Average Grade</p>{" "}
                 <p>{getGrade()}</p>
               </div>
-              <div className="col-span-4 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
+              <div className="flex flex-col col-span-4 gap-8 p-8 text-center transition-all duration-500 ease-in-out transform bg-white shadow-lg rounded-xl hover:shadow-2xl hover:scale-105 erounded-xl">
                 <p className="text-2xl font-bold">Hardest Question</p>{" "}
                 <p>Question 4</p>
               </div>
-              <div className="col-span-4 bg-white hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 rounded-xl p-8 text-center flex flex-col gap-8">
+              <div className="flex flex-col col-span-4 gap-8 p-8 text-center transition-all duration-500 ease-in-out transform bg-white shadow-lg hover:shadow-2xl hover:scale-105 rounded-xl">
                 <p className="text-2xl font-bold">Missing Assignments</p>{" "}
                 <p>0</p>
               </div>
             </div>
           </div>
-          <div className="bg-blue-50 max-w-6xl mb-4 mx-4 p-4 rounded-xl shadow-lg flex flex-col gap-8">
-            <p className="font-bold text-2xl w-full">Students</p>
+          <div className="flex flex-col max-w-6xl gap-8 p-4 mx-4 mb-4 shadow-lg bg-blue-50 rounded-xl">
+            <p className="w-full text-2xl font-bold">Students</p>
             <select
-              className="border-blue-400 border-2 p-4"
+              className="p-4 border-2 border-blue-400"
               value={currentStudentIndex}
               onChange={(e) =>
                 setCurrentStudentIndex(Number.parseInt(e.target.value))
@@ -117,17 +118,17 @@ const TeacherDashboardPage = ({ data }) => {
               ))}
             </select>
             <div className="grid grid-cols-12 gap-8 ">
-              <div className="col-span-6 bg-white hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 rounded-xl p-8 text-center flex flex-col gap-8">
+              <div className="flex flex-col col-span-6 gap-8 p-8 text-center transition-all duration-500 ease-in-out transform bg-white shadow-lg hover:shadow-2xl hover:scale-105 rounded-xl">
                 <p className="text-2xl font-bold">Grade</p> <p>{getGrade()}</p>
               </div>
-              <div className="col-span-6 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
+              <div className="flex flex-col col-span-6 gap-8 p-8 text-center transition-all duration-500 ease-in-out transform bg-white shadow-lg rounded-xl hover:shadow-2xl hover:scale-105 erounded-xl">
                 <p className="text-2xl font-bold">Time Spent</p>{" "}
                 <p>{getTimeSpent()}</p>
               </div>
             </div>
-            <div className="grid md:grid-cols-12 grid-cols-1 gap-8">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-12">
               <div className="md:col-span-6 rounded-t-xl">
-                <div className="grid grid-cols-12 rounded-t-xl font-bold items-center justify-between bg-yellow-600 py-4">
+                <div className="grid items-center justify-between grid-cols-12 py-4 font-bold bg-yellow-600 rounded-t-xl">
                   <p className="col-span-2 text-center">#</p>
                   <p className="col-span-8 text-center">Question</p>
                   <p className="col-span-2 text-center">Guess</p>
@@ -166,9 +167,9 @@ const TeacherDashboardPage = ({ data }) => {
                   )
                 )}
               </div>
-              <div className="md:col-span-6 bg-green-400 rounded-t-xl">
-                <p className="font-bold w-full text-xl py-2 px-4">Their Work</p>
-                <div className="col-start-2 col-span-10 max-h-80 overflow-scroll">
+              <div className="bg-green-400 md:col-span-6 rounded-t-xl">
+                <p className="w-full px-4 py-2 text-xl font-bold">Their Work</p>
+                <div className="col-span-10 col-start-2 overflow-scroll max-h-80">
                   <FreeDrawing
                     saveImage={() => {}}
                     lines={
@@ -202,7 +203,7 @@ export async function getServerSideProps({ params }) {
   const { data } = await client.query({
     query: FETCH_USER_ASSIGNMENTS,
     variables: {
-      assignment_id: "djacobs1",
+      assignment_id: "djacob1",
     },
   });
   if (!data) {
