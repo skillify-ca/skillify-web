@@ -1,7 +1,7 @@
 import reducer, {
   setPlayerReady,
   startRound,
-  ifPlayerWon,
+  finishRound,
 } from "./warGameSlice";
 
 const initialState = {
@@ -104,7 +104,7 @@ test("test if player one won the round", () => {
   const firstState = reducer(initialState, setPlayerReady(1));
   const secondState = reducer(firstState, setPlayerReady(2));
   const thirdState = reducer(secondState, startRound(null));
-  expect(reducer(thirdState, ifPlayerWon(1))).toEqual({
+  expect(reducer(thirdState, finishRound(1))).toEqual({
     cardListPlayerOne: [
       { answer: 1, question: "" },
       { answer: 2, question: "" },
@@ -130,7 +130,7 @@ test("test if player two won the round", () => {
   const firstState = reducer(initialState, setPlayerReady(1));
   const secondState = reducer(firstState, setPlayerReady(2));
   const thirdState = reducer(secondState, startRound(null));
-  expect(reducer(thirdState, ifPlayerWon(2))).toEqual({
+  expect(reducer(thirdState, finishRound(2))).toEqual({
     cardListPlayerOne: [
       { answer: 1, question: "" },
       { answer: 2, question: "" },

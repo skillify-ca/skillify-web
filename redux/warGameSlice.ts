@@ -60,7 +60,7 @@ export const warGameSlice: Slice = createSlice({
       }
     },
     //Action that handles winning and also handles moving cards from other player and from current card they chose
-    ifPlayerWon: (state: WarGameState, action: PayloadAction<number>) => {
+    finishRound: (state: WarGameState, action: PayloadAction<number>) => {
       if (
         state.cardListPlayerOne.length == 0 ||
         state.cardListPlayerTwo.length == 0
@@ -96,6 +96,6 @@ export const warGameSlice: Slice = createSlice({
   },
 });
 
-export const { setPlayerReady, startRound, ifPlayerWon } = warGameSlice.actions;
+export const { setPlayerReady, startRound, finishRound } = warGameSlice.actions;
 
 export default warGameSlice.reducer;
