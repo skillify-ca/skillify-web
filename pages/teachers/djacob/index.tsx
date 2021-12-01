@@ -18,18 +18,18 @@ const MainDashboardPage = ({ data, giza_data }) => {
   ];
   const [choiceIndex, setChoiceIndex] = useState(0);
   return (
-    <div className="flex flex-col heropattern-architect-blue-200 bg-blue-100">
+    <div className="flex flex-col bg-blue-100 heropattern-architect-blue-200">
       <Navbar />
-      <div className="flex flex-col sm:flex-row sm:justify-between justify-center bg-gray-700">
+      <div className="flex flex-col justify-center bg-gray-700 sm:flex-row sm:justify-between">
         <div className="p-4 bg-gray-700">
-          <img src="/images/djacobs/logo.png" />
+          <img src="/images/djacob/logo.png" />
         </div>
-        <div className="bg-gray-700 flex flex-col items-center p-4 gap-4">
-          <h2 className="text-center text-gray-50 font-bold">
+        <div className="flex flex-col items-center gap-4 p-4 bg-gray-700">
+          <h2 className="font-bold text-center text-gray-50">
             {"Please select an assignment"}
           </h2>
           <select
-            className="border-blue-400 border-2 p-4 mx-8"
+            className="p-4 mx-8 border-2 border-blue-400"
             value={choiceIndex}
             onChange={(e) => setChoiceIndex(Number.parseInt(e.target.value))}
           >
@@ -57,7 +57,7 @@ export async function getServerSideProps({ params }) {
   const { data } = await client.query({
     query: FETCH_USER_ASSIGNMENTS,
     variables: {
-      assignment_id: "djacobs1",
+      assignment_id: "djacob1",
     },
   });
 
