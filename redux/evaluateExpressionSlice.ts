@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
+import { SimpleCalculatorProps } from "../components/coding/SimpleCalculator";
 import { RootState } from "./rootReducer";
 
 export enum Stage {
@@ -11,6 +12,7 @@ export type EvaluateExpressionState = {
   valueStack: number[];
   operatorStack: string[];
   stage: Stage;
+  simpleCalculatorState?: SimpleCalculatorProps;
 };
 
 const initialState: EvaluateExpressionState = {
@@ -19,6 +21,19 @@ const initialState: EvaluateExpressionState = {
   valueStack: [],
   operatorStack: [],
   stage: Stage.POPULATING_STACK,
+};
+
+export const precedenceMap = [
+  { operator: "+", precedence: 2 },
+  { operator: "-", precedence: 2 },
+  { operator: "*", precedence: 1 },
+  { operator: "/", precedence: 1 },
+  { operator: "(", precedence: 0 },
+];
+
+const getPrecedence = (operator: string) => {
+  return precedenceMap.filter((it) => it.operator === operator).pop()
+    .precedence;
 };
 
 const getCurrentChar = (state: EvaluateExpressionState) => {
@@ -52,21 +67,27 @@ export const evaluateExpressionSlice: Slice = createSlice({
     reset: (state: EvaluateExpressionState, action: PayloadAction<string>) => {
       state.currentIndex = 0;
       state.valueStack = [];
-      state.inputExpression = "2+4*5";
+      state.inputExpression = "(1+(4+5+2)-3)+(6+8)";
       state.operatorStack = [];
       state.stage = Stage.POPULATING_STACK;
+      state.simpleCalculatorState = null;
     },
     onNext: (state: EvaluateExpressionState, action: PayloadAction) => {
       let currentChar = getCurrentChar(state);
       if (state.stage === Stage.CLEARING_STACK) {
-        while (state.operatorStack.length !== 0) {
-          state.valueStack.push(
-            applyOp(
-              state.operatorStack.pop(),
-              state.valueStack.pop(),
-              state.valueStack.pop()
-            )
-          );
+        if (state.simpleCalculatorState) {
+          state.valueStack.push(state.simpleCalculatorState.answer);
+          state.simpleCalculatorState = null;
+        } else if (state.operatorStack.length !== 0) {
+          const value1 = state.valueStack.pop();
+          const value2 = state.valueStack.pop();
+          const operator = state.operatorStack.pop();
+          state.simpleCalculatorState = {
+            value1,
+            value2,
+            operator,
+            answer: applyOp(operator, value1, value2),
+          };
         }
       } else if (state.currentIndex >= state.inputExpression.length) {
         state.stage = Stage.CLEARING_STACK;
@@ -85,24 +106,61 @@ export const evaluateExpressionSlice: Slice = createSlice({
           currentChar = getCurrentChar(state);
         }
         state.valueStack.push(Number.parseInt(digitString));
+      } else if (currentChar === "(") {
+        state.operatorStack.push(currentChar);
+        state.currentIndex = state.currentIndex + 1;
+      } else if (currentChar === ")") {
+        if (state.operatorStack[0] === ")") {
+          state.operatorStack.pop();
+          state.currentIndex = state.currentIndex + 1;
+        } else {
+          if (state.simpleCalculatorState) {
+            state.valueStack.push(state.simpleCalculatorState.answer);
+            state.simpleCalculatorState = null;
+          } else {
+            const value1 = state.valueStack.pop();
+            const value2 = state.valueStack.pop();
+            const operator = state.operatorStack.pop();
+            state.simpleCalculatorState = {
+              value1,
+              value2,
+              operator,
+              answer: applyOp(operator, value1, value2),
+            };
+          }
+        }
       } else if (
         currentChar == "+" ||
         currentChar == "-" ||
         currentChar == "*" ||
         currentChar == "/"
       ) {
-        while (state.operatorStack.length !== 0) {
-          state.valueStack.push(
-            applyOp(
-              state.operatorStack.pop(),
-              state.valueStack.pop(),
-              state.valueStack.pop()
-            )
-          );
-        }
+        console.log(getPrecedence(currentChar));
+        console.log(getPrecedence(state.operatorStack[0]));
 
-        state.operatorStack.push(currentChar);
-        state.currentIndex = state.currentIndex + 1;
+        if (
+          state.simpleCalculatorState ||
+          (state.operatorStack.length !== 0 &&
+            getPrecedence(currentChar) <= getPrecedence(state.operatorStack[0]))
+        ) {
+          if (state.simpleCalculatorState) {
+            state.valueStack.push(state.simpleCalculatorState.answer);
+            state.simpleCalculatorState = null;
+          } else {
+            const value1 = state.valueStack.pop();
+            const value2 = state.valueStack.pop();
+            const operator = state.operatorStack.pop();
+            state.simpleCalculatorState = {
+              value1,
+              value2,
+              operator,
+              answer: applyOp(operator, value1, value2),
+            };
+          }
+        } else {
+          state.operatorStack.push(currentChar);
+          state.currentIndex = state.currentIndex + 1;
+        }
       } else {
         state.currentIndex = state.currentIndex + 1;
       }

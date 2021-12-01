@@ -1,7 +1,11 @@
 import React from "react";
-import { EvaluateExpressionState } from "../../redux/evaluateExpressionSlice";
+import {
+  EvaluateExpressionState,
+  precedenceMap,
+} from "../../redux/evaluateExpressionSlice";
 import { useAppDispatch } from "../../redux/store";
 import { Button } from "../ui/Button";
+import SimpleCalculator from "./SimpleCalculator";
 import Stack from "./Stack";
 
 export interface EvaluateExpressionProps {
@@ -20,6 +24,7 @@ const EvaluateExpression = ({
   const handleResetClick = () => {
     onResetRequested();
   };
+
   return (
     <div className="flex flex-col items-center gap-4">
       <p>Evaluate an expression string and return a number</p>
@@ -36,19 +41,36 @@ const EvaluateExpression = ({
         textColor="white"
         onClick={handleResetClick}
       />
+
+      <p>Precedence Map</p>
+      <ul>
+        {precedenceMap.map((it) => (
+          <li>{JSON.stringify(it)}</li>
+        ))}
+      </ul>
       <p className="text-2xl font-bold">
         {state.inputExpression &&
           state.inputExpression.substring(state.currentIndex)}
       </p>
-      <div className="grid grid-cols-2 gap-16 place-items-end">
-        <div>
+      {state.simpleCalculatorState && (
+        <SimpleCalculator
+          value1={state.simpleCalculatorState?.value1}
+          value2={state.simpleCalculatorState?.value2}
+          operator={state.simpleCalculatorState?.operator}
+          answer={state.simpleCalculatorState?.answer}
+        />
+      )}
+      <div className="grid justify-center grid-cols-2 gap-16 place-items-end">
+        <div className="flex flex-col items-center">
           <Stack
             items={state.valueStack.map((it) => it.toString()).reverse()}
           />
           <p className="text-xl">Value Stack</p>
         </div>
-        <div>
-          <Stack items={state.operatorStack} />
+        <div className="flex flex-col items-center">
+          <Stack
+            items={state.operatorStack.map((it) => it.toString()).reverse()}
+          />
           <p className="text-xl">Operator Stack</p>
         </div>
       </div>
