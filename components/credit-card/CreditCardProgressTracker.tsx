@@ -1,8 +1,10 @@
 import React from "react";
 export interface CreditCardProgressTrackerProps {
-  score?: number;
-  total?: number;
   name?: string;
+  score?: number;
+  updateScore?: (value: number) => void;
+  total?: number;
+  updateTotal?: (value: number) => void;
 }
 
 const CreditCardProgressTracker: React.FC<CreditCardProgressTrackerProps> = ({
