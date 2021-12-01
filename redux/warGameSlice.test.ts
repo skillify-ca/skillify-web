@@ -1,4 +1,8 @@
-import reducer, { setPlayerReady, startRound } from "./warGameSlice";
+import reducer, {
+  setPlayerReady,
+  startRound,
+  ifPlayerWon,
+} from "./warGameSlice";
 
 const initialState = {
   cardListPlayerOne: [
@@ -14,6 +18,9 @@ const initialState = {
   currentRoundIndex: 0,
   playerOneReady: false,
   playerTwoReady: false,
+  playerOneWon: false,
+  playerTwoWon: false,
+  gameOver: false,
 };
 
 test("should return the initial state", () => {
@@ -35,6 +42,9 @@ test("test player one ready action", () => {
     currentRoundIndex: 0,
     playerOneReady: true,
     playerTwoReady: false,
+    playerOneWon: false,
+    playerTwoWon: false,
+    gameOver: false,
   });
 });
 
@@ -53,6 +63,9 @@ test("test player two ready action", () => {
     currentRoundIndex: 0,
     playerOneReady: false,
     playerTwoReady: true,
+    playerOneWon: false,
+    playerTwoWon: false,
+    gameOver: false,
   });
 });
 
@@ -73,6 +86,9 @@ test("test both players ready and start round action", () => {
     currentRoundIndex: 0,
     playerOneReady: true,
     playerTwoReady: true,
+    playerOneWon: false,
+    playerTwoWon: false,
+    gameOver: false,
     playerOneCurrentCard: {
       answer: 0,
       question: "",
@@ -81,5 +97,57 @@ test("test both players ready and start round action", () => {
       answer: 3,
       question: "",
     },
+  });
+});
+
+test("test if player one won the round", () => {
+  const firstState = reducer(initialState, setPlayerReady(1));
+  const secondState = reducer(firstState, setPlayerReady(2));
+  const thirdState = reducer(secondState, startRound(null));
+  expect(reducer(thirdState, ifPlayerWon(1))).toEqual({
+    cardListPlayerOne: [
+      { answer: 1, question: "" },
+      { answer: 2, question: "" },
+      { answer: 0, question: "" },
+      { answer: 3, question: "" },
+    ],
+    cardListPlayerTwo: [
+      { answer: 4, question: "" },
+      { answer: 5, question: "" },
+    ],
+    currentRoundIndex: 0,
+    playerOneReady: false,
+    playerTwoReady: false,
+    playerOneWon: true,
+    playerTwoWon: false,
+    gameOver: false,
+    playerOneCurrentCard: null,
+    playerTwoCurrentCard: null,
+  });
+});
+
+test("test if player two won the round", () => {
+  const firstState = reducer(initialState, setPlayerReady(1));
+  const secondState = reducer(firstState, setPlayerReady(2));
+  const thirdState = reducer(secondState, startRound(null));
+  expect(reducer(thirdState, ifPlayerWon(2))).toEqual({
+    cardListPlayerOne: [
+      { answer: 1, question: "" },
+      { answer: 2, question: "" },
+    ],
+    cardListPlayerTwo: [
+      { answer: 4, question: "" },
+      { answer: 5, question: "" },
+      { answer: 3, question: "" },
+      { answer: 0, question: "" },
+    ],
+    currentRoundIndex: 0,
+    playerOneReady: false,
+    playerTwoReady: false,
+    playerOneWon: false,
+    playerTwoWon: true,
+    gameOver: false,
+    playerOneCurrentCard: null,
+    playerTwoCurrentCard: null,
   });
 });
