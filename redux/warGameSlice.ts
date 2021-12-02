@@ -17,8 +17,8 @@ export interface WarGameState {
   playerOneWon: boolean;
   playerTwoWon: boolean;
   gameOver: boolean;
-  playerOneCorrectExpressionPoints?: number;
-  playerTwoCorrectExpressionPoints?: number;
+  playerOneScoring?: number;
+  playerTwoScoring?: number;
 }
 
 const initialState: WarGameState = {
@@ -38,8 +38,8 @@ const initialState: WarGameState = {
   playerOneWon: false,
   playerTwoWon: false,
   gameOver: false,
-  playerOneCorrectExpressionPoints: 0,
-  playerTwoCorrectExpressionPoints: 0,
+  playerOneScoring: 0,
+  playerTwoScoring: 0,
 };
 
 export const warGameSlice: Slice = createSlice({
@@ -99,17 +99,15 @@ export const warGameSlice: Slice = createSlice({
       }
     },
 
-    playerCorrectExpressionPointsCalcuation: (
+    increasePlayerScore: (
       state: WarGameState,
       action: PayloadAction<number>
     ) => {
       const playerID = action.payload as number;
       if (playerID == 1) {
-        state.playerOneCorrectExpressionPoints =
-          state.playerOneCorrectExpressionPoints + 1;
+        state.playerOneScoring = state.playerOneScoring + 1;
       } else {
-        state.playerTwoCorrectExpressionPoints =
-          state.playerTwoCorrectExpressionPoints + 1;
+        state.playerTwoScoring = state.playerTwoScoring + 1;
       }
     },
   },
@@ -119,7 +117,7 @@ export const {
   setPlayerReady,
   startRound,
   finishRound,
-  playerCorrectExpressionPointsCalcuation,
+  increasePlayerScore,
 } = warGameSlice.actions;
 
 export default warGameSlice.reducer;

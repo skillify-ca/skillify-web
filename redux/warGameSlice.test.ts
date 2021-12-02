@@ -2,7 +2,7 @@ import reducer, {
   setPlayerReady,
   startRound,
   finishRound,
-  playerCorrectExpressionPointsCalcuation,
+  increasePlayerScore,
 } from "./warGameSlice";
 
 const initialState = {
@@ -22,8 +22,8 @@ const initialState = {
   playerOneWon: false,
   playerTwoWon: false,
   gameOver: false,
-  playerOneCorrectExpressionPoints: 0,
-  playerTwoCorrectExpressionPoints: 0,
+  playerOneScoring: 0,
+  playerTwoScoring: 0,
 };
 
 test("should return the initial state", () => {
@@ -48,8 +48,8 @@ test("test player one ready action", () => {
     playerOneWon: false,
     playerTwoWon: false,
     gameOver: false,
-    playerOneCorrectExpressionPoints: 0,
-    playerTwoCorrectExpressionPoints: 0,
+    playerOneScoring: 0,
+    playerTwoScoring: 0,
   });
 });
 
@@ -71,8 +71,8 @@ test("test player two ready action", () => {
     playerOneWon: false,
     playerTwoWon: false,
     gameOver: false,
-    playerOneCorrectExpressionPoints: 0,
-    playerTwoCorrectExpressionPoints: 0,
+    playerOneScoring: 0,
+    playerTwoScoring: 0,
   });
 });
 
@@ -104,18 +104,16 @@ test("test both players ready and start round action", () => {
       answer: 3,
       question: "",
     },
-    playerOneCorrectExpressionPoints: 0,
-    playerTwoCorrectExpressionPoints: 0,
+    playerOneScoring: 0,
+    playerTwoScoring: 0,
   });
 });
 
-test("test if player one got the expression correctly", () => {
+test("test if player one scored", () => {
   const firstState = reducer(initialState, setPlayerReady(1));
   const secondState = reducer(firstState, setPlayerReady(2));
   const thirdState = reducer(secondState, startRound(null));
-  expect(
-    reducer(thirdState, playerCorrectExpressionPointsCalcuation(1))
-  ).toEqual({
+  expect(reducer(thirdState, increasePlayerScore(1))).toEqual({
     cardListPlayerOne: [
       { answer: 0, question: "" },
       { answer: 1, question: "" },
@@ -140,18 +138,16 @@ test("test if player one got the expression correctly", () => {
       answer: 3,
       question: "",
     },
-    playerOneCorrectExpressionPoints: 1,
-    playerTwoCorrectExpressionPoints: 0,
+    playerOneScoring: 1,
+    playerTwoScoring: 0,
   });
 });
 
-test("test if player two got the expression correctly", () => {
+test("test if player two scored", () => {
   const firstState = reducer(initialState, setPlayerReady(1));
   const secondState = reducer(firstState, setPlayerReady(2));
   const thirdState = reducer(secondState, startRound(null));
-  expect(
-    reducer(thirdState, playerCorrectExpressionPointsCalcuation(2))
-  ).toEqual({
+  expect(reducer(thirdState, increasePlayerScore(2))).toEqual({
     cardListPlayerOne: [
       { answer: 0, question: "" },
       { answer: 1, question: "" },
@@ -176,8 +172,8 @@ test("test if player two got the expression correctly", () => {
       answer: 3,
       question: "",
     },
-    playerOneCorrectExpressionPoints: 0,
-    playerTwoCorrectExpressionPoints: 1,
+    playerOneScoring: 0,
+    playerTwoScoring: 1,
   });
 });
 
@@ -204,8 +200,8 @@ test("test if player one won the round", () => {
     gameOver: false,
     playerOneCurrentCard: null,
     playerTwoCurrentCard: null,
-    playerOneCorrectExpressionPoints: 0,
-    playerTwoCorrectExpressionPoints: 0,
+    playerOneScoring: 0,
+    playerTwoScoring: 0,
   });
 });
 
@@ -232,8 +228,8 @@ test("test if player two won the round", () => {
     gameOver: false,
     playerOneCurrentCard: null,
     playerTwoCurrentCard: null,
-    playerOneCorrectExpressionPoints: 0,
-    playerTwoCorrectExpressionPoints: 0,
+    playerOneScoring: 0,
+    playerTwoScoring: 0,
   });
 });
 
@@ -268,7 +264,7 @@ test("test if game is over", () => {
     gameOver: true,
     playerOneCurrentCard: null,
     playerTwoCurrentCard: null,
-    playerOneCorrectExpressionPoints: 0,
-    playerTwoCorrectExpressionPoints: 0,
+    playerOneScoring: 0,
+    playerTwoScoring: 0,
   });
 });
