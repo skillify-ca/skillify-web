@@ -21,12 +21,12 @@ export interface WarGameState {
 
 const initialState: WarGameState = {
   cardListPlayerOne: [
-    { question: "", answer: 0 },
+    { question: "2^2 + 16", answer: 0 },
     { question: "", answer: 1 },
     { question: "", answer: 2 },
   ],
   cardListPlayerTwo: [
-    { question: "", answer: 3 },
+    { question: "2^1 + 12", answer: 3 },
     { question: "", answer: 4 },
     { question: "", answer: 5 },
   ],
@@ -97,5 +97,7 @@ export const warGameSlice: Slice = createSlice({
 });
 
 export const { setPlayerReady, startRound, finishRound } = warGameSlice.actions;
+
+export const warGameSelector = (state: RootState) => state.warGame;
 
 export default warGameSlice.reducer;
