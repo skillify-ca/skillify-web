@@ -17,6 +17,8 @@ export interface WarGameState {
   playerOneWon: boolean;
   playerTwoWon: boolean;
   gameOver: boolean;
+  playerOneScoring?: number;
+  playerTwoScoring?: number;
 }
 
 const initialState: WarGameState = {
@@ -36,6 +38,8 @@ const initialState: WarGameState = {
   playerOneWon: false,
   playerTwoWon: false,
   gameOver: false,
+  playerOneScoring: 0,
+  playerTwoScoring: 0,
 };
 
 export const warGameSlice: Slice = createSlice({
@@ -66,6 +70,7 @@ export const warGameSlice: Slice = createSlice({
         state.cardListPlayerTwo.length == 0
       ) {
         state.gameOver = true;
+        return;
       }
       const playerWon = action.payload as number;
 
@@ -93,9 +98,26 @@ export const warGameSlice: Slice = createSlice({
         state.playerTwoReady = false;
       }
     },
+
+    increasePlayerScore: (
+      state: WarGameState,
+      action: PayloadAction<number>
+    ) => {
+      const playerID = action.payload as number;
+      if (playerID == 1) {
+        state.playerOneScoring = state.playerOneScoring + 1;
+      } else {
+        state.playerTwoScoring = state.playerTwoScoring + 1;
+      }
+    },
   },
 });
 
-export const { setPlayerReady, startRound, finishRound } = warGameSlice.actions;
+export const {
+  setPlayerReady,
+  startRound,
+  finishRound,
+  increasePlayerScore,
+} = warGameSlice.actions;
 
 export default warGameSlice.reducer;
