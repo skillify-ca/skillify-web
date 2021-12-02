@@ -22,73 +22,141 @@ export interface DropDownMenuProps {
 export interface CreditDebitInfoProps {
   infoQ1: string;
   setInfoQ1: (infoQ1: string) => void;
+  infoA1: number;
   setInfoA1: (infoA1: number) => void;
   infoQ2: string;
   setInfoQ2: (infoQ2: string) => void;
+  infoA2: number;
   setInfoA2: (infoA2: number) => void;
   infoQ3: string;
   setInfoQ3: (infoQ3: string) => void;
+  infoA3: number;
   setInfoA3: (infoA3: number) => void;
   infoQ4: string;
   setInfoQ4: (infoQ4: string) => void;
+  infoA4: number;
   setInfoA4: (infoA4: number) => void;
   infoQ5: string;
   setInfoQ5: (infoQ5: string) => void;
+  infoA5: number;
   setInfoA5: (infoA5: number) => void;
   infoQ6: string;
   setInfoQ6: (infoQ6: string) => void;
+  infoA6: number;
   setInfoA6: (infoA6: number) => void;
   infoQ7: string;
   setInfoQ7: (infoQ7: string) => void;
+  infoA7: number;
   setInfoA7: (infoA7: number) => void;
   infoQ8: string;
   setInfoQ8: (infoQ8: string) => void;
+  infoA8: number;
   setInfoA8: (infoA8: number) => void;
   infoQ9: string;
   setInfoQ9: (infoQ9: string) => void;
+  infoA9: number;
   setInfoA9: (infoA9: number) => void;
   infoQ10: string;
   setInfoQ10: (infoQ10: string) => void;
+  infoA10: number;
   setInfoA10: (infoA10: number) => void;
   infoQ11: string;
   setInfoQ11: (infoQ11: string) => void;
+  infoA11: number;
   setInfoA11: (infoA11: number) => void;
+
+  isCorrectQ1: boolean;
+  setIsCorrectQ1: (isCorrectQ1: boolean) => void;
+  isCorrectQ2: boolean;
+  setIsCorrectQ2: (isCorrectQ2: boolean) => void;
+  isCorrectQ3: boolean;
+  setIsCorrectQ3: (isCorrectQ3: boolean) => void;
+  isCorrectQ4: boolean;
+  setIsCorrectQ4: (isCorrectQ4: boolean) => void;
+  isCorrectQ5: boolean;
+  setIsCorrectQ5: (isCorrectQ5: boolean) => void;
+  isCorrectQ6: boolean;
+  setIsCorrectQ6: (isCorrectQ6: boolean) => void;
+  isCorrectQ7: boolean;
+  setIsCorrectQ7: (isCorrectQ7: boolean) => void;
+  isCorrectQ8: boolean;
+  setIsCorrectQ8: (isCorrectQ8: boolean) => void;
+  isCorrectQ9: boolean;
+  setIsCorrectQ9: (isCorrectQ9: boolean) => void;
+  isCorrectQ10: boolean;
+  setIsCorrectQ10: (isCorrectQ10: boolean) => void;
+  isCorrectQ11: boolean;
+  setIsCorrectQ11: (isCorrectQ11: boolean) => void;
 }
 
 const CreditDebitInfo = ({
   infoQ1,
   setInfoQ1,
+  infoA1,
   setInfoA1,
   infoQ2,
   setInfoQ2,
+  infoA2,
   setInfoA2,
   infoQ3,
   setInfoQ3,
+  infoA3,
   setInfoA3,
   infoQ4,
   setInfoQ4,
+  infoA4,
   setInfoA4,
   infoQ5,
   setInfoQ5,
+  infoA5,
   setInfoA5,
   infoQ6,
   setInfoQ6,
+  infoA6,
   setInfoA6,
   infoQ7,
   setInfoQ7,
+  infoA7,
   setInfoA7,
   infoQ8,
   setInfoQ8,
+  infoA8,
   setInfoA8,
   infoQ9,
   setInfoQ9,
+  infoA9,
   setInfoA9,
   infoQ10,
   setInfoQ10,
+  infoA10,
   setInfoA10,
   infoQ11,
   setInfoQ11,
+  infoA11,
   setInfoA11,
+
+  isCorrectQ1,
+  setIsCorrectQ1,
+  isCorrectQ2,
+  setIsCorrectQ2,
+  isCorrectQ3,
+  setIsCorrectQ3,
+  isCorrectQ4,
+  setIsCorrectQ4,
+  isCorrectQ5,
+  setIsCorrectQ5,
+  isCorrectQ6,
+  setIsCorrectQ6,
+  isCorrectQ7,
+  setIsCorrectQ7,
+  isCorrectQ8,
+  setIsCorrectQ8,
+  isCorrectQ9,
+  setIsCorrectQ9,
+  isCorrectQ10,
+  setIsCorrectQ10,
+  isCorrectQ11,
+  setIsCorrectQ11,
 }: CreditDebitInfoProps) => {
   return (
     <div className="flex flex-col p-12">
@@ -111,20 +179,26 @@ const CreditDebitInfo = ({
                 <span className="text-2xl">
                   Allow consumers to{" "}
                   <DropDownMenu
-                    value={infoQ1}
-                    setValue={setInfoQ1}
                     words={borrowArray}
                     answer={"borrow"}
+                    value={infoQ1}
+                    setValue={setInfoQ1}
+                    point={infoA1}
                     getPoint={setInfoA1}
-                  />
+                    isCorrect={isCorrectQ1}
+                    setIsCorrect={setIsCorrectQ1}
+                  />{" "}
                   money from a financial institution and{" "}
                   <DropDownMenu
-                    value={infoQ2}
-                    setValue={setInfoQ2}
                     words={payArray}
                     answer={"pay"}
+                    value={infoQ2}
+                    setValue={setInfoQ2}
+                    point={infoA2}
                     getPoint={setInfoA2}
-                  />
+                    isCorrect={isCorrectQ2}
+                    setIsCorrect={setIsCorrectQ2}
+                  />{" "}
                   it back later
                 </span>
               </div>
@@ -141,19 +215,25 @@ const CreditDebitInfo = ({
                 <span className="text-2xl">
                   Allow consumers to{" "}
                   <DropDownMenu
-                    value={infoQ3}
-                    setValue={setInfoQ3}
                     words={spendArray}
                     answer={"spend"}
+                    value={infoQ3}
+                    setValue={setInfoQ3}
+                    point={infoA3}
                     getPoint={setInfoA3}
+                    isCorrect={isCorrectQ3}
+                    setIsCorrect={setIsCorrectQ3}
                   />{" "}
                   money they have{" "}
                   <DropDownMenu
-                    value={infoQ4}
-                    setValue={setInfoQ4}
                     words={depositArray}
                     answer={"deposited"}
+                    value={infoQ4}
+                    setValue={setInfoQ4}
+                    point={infoA4}
                     getPoint={setInfoA4}
+                    isCorrect={isCorrectQ4}
+                    setIsCorrect={setIsCorrectQ4}
                   />{" "}
                   in their bank account
                 </span>
@@ -177,67 +257,88 @@ const CreditDebitInfo = ({
             <li>
               Allow a person to make{" "}
               <DropDownMenu
-                value={infoQ5}
-                setValue={setInfoQ5}
                 words={purchaseArray}
                 answer={"purchases"}
+                value={infoQ5}
+                setValue={setInfoQ5}
+                point={infoA5}
                 getPoint={setInfoA5}
+                isCorrect={isCorrectQ5}
+                setIsCorrect={setIsCorrectQ5}
               />
             </li>
             <li>
               If card is{" "}
               <DropDownMenu
-                value={infoQ6}
-                setValue={setInfoQ6}
                 words={lostArray}
                 answer={"lost"}
+                value={infoQ6}
+                setValue={setInfoQ6}
+                point={infoA6}
                 getPoint={setInfoA6}
+                isCorrect={isCorrectQ6}
+                setIsCorrect={setIsCorrectQ6}
               />{" "}
               or{" "}
               <DropDownMenu
-                value={infoQ7}
-                setValue={setInfoQ7}
                 words={stolenArray}
                 answer={"stolen"}
+                value={infoQ7}
+                setValue={setInfoQ7}
+                point={infoA7}
                 getPoint={setInfoA7}
+                isCorrect={isCorrectQ7}
+                setIsCorrect={setIsCorrectQ7}
               />
               , report import it immediately
             </li>
             <li>
               Hard,{" "}
               <DropDownMenu
-                value={infoQ8}
-                setValue={setInfoQ8}
                 words={plasticArray}
                 answer={"plastic"}
+                value={infoQ8}
+                setValue={setInfoQ8}
+                point={infoA8}
                 getPoint={setInfoA8}
+                isCorrect={isCorrectQ8}
+                setIsCorrect={setIsCorrectQ8}
               />{" "}
               card with information stored on a{" "}
               <DropDownMenu
-                value={infoQ9}
-                setValue={setInfoQ9}
                 words={magneticArray}
                 answer={"magnetic"}
+                value={infoQ9}
+                setValue={setInfoQ9}
+                point={infoA9}
                 getPoint={setInfoA9}
+                isCorrect={isCorrectQ9}
+                setIsCorrect={setIsCorrectQ9}
               />{" "}
               strip.
             </li>
             <li>
               Owner's{" "}
               <DropDownMenu
-                value={infoQ10}
-                setValue={setInfoQ10}
                 words={nameArray}
                 answer={"name"}
+                value={infoQ10}
+                setValue={setInfoQ10}
+                point={infoA10}
                 getPoint={setInfoA10}
+                isCorrect={isCorrectQ10}
+                setIsCorrect={setIsCorrectQ10}
               />{" "}
               and an{" "}
               <DropDownMenu
-                value={infoQ11}
-                setValue={setInfoQ11}
                 words={expirationArray}
                 answer={"expiration"}
+                value={infoQ11}
+                setValue={setInfoQ11}
+                point={infoA11}
                 getPoint={setInfoA11}
+                isCorrect={isCorrectQ11}
+                setIsCorrect={setIsCorrectQ11}
               />{" "}
               date on the card
             </li>
