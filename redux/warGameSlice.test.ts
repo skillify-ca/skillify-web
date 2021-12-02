@@ -7,12 +7,12 @@ import reducer, {
 
 const initialState = {
   cardListPlayerOne: [
-    { answer: 0, question: "" },
+    { answer: 0, question: "2^2 + 16" },
     { answer: 1, question: "" },
     { answer: 2, question: "" },
   ],
   cardListPlayerTwo: [
-    { answer: 3, question: "" },
+    { answer: 3, question: "2^1 + 12" },
     { answer: 4, question: "" },
     { answer: 5, question: "" },
   ],
@@ -33,12 +33,12 @@ test("should return the initial state", () => {
 test("test player one ready action", () => {
   expect(reducer(initialState, setPlayerReady(1))).toEqual({
     cardListPlayerOne: [
-      { answer: 0, question: "" },
+      { answer: 0, question: "2^2 + 16" },
       { answer: 1, question: "" },
       { answer: 2, question: "" },
     ],
     cardListPlayerTwo: [
-      { answer: 3, question: "" },
+      { answer: 3, question: "2^1 + 12" },
       { answer: 4, question: "" },
       { answer: 5, question: "" },
     ],
@@ -56,12 +56,12 @@ test("test player one ready action", () => {
 test("test player two ready action", () => {
   expect(reducer(initialState, setPlayerReady(2))).toEqual({
     cardListPlayerOne: [
-      { answer: 0, question: "" },
+      { answer: 0, question: "2^2 + 16" },
       { answer: 1, question: "" },
       { answer: 2, question: "" },
     ],
     cardListPlayerTwo: [
-      { answer: 3, question: "" },
+      { answer: 3, question: "2^1 + 12" },
       { answer: 4, question: "" },
       { answer: 5, question: "" },
     ],
@@ -81,12 +81,12 @@ test("test both players ready and start round action", () => {
   const secondState = reducer(firstState, setPlayerReady(2));
   expect(reducer(secondState, startRound(null))).toEqual({
     cardListPlayerOne: [
-      { answer: 0, question: "" },
+      { answer: 0, question: "2^2 + 16" },
       { answer: 1, question: "" },
       { answer: 2, question: "" },
     ],
     cardListPlayerTwo: [
-      { answer: 3, question: "" },
+      { answer: 3, question: "2^1 + 12" },
       { answer: 4, question: "" },
       { answer: 5, question: "" },
     ],
@@ -98,11 +98,11 @@ test("test both players ready and start round action", () => {
     gameOver: false,
     playerOneCurrentCard: {
       answer: 0,
-      question: "",
+      question: "2^2 + 16",
     },
     playerTwoCurrentCard: {
       answer: 3,
-      question: "",
+      question: "2^1 + 12",
     },
     playerOneScoring: 0,
     playerTwoScoring: 0,
@@ -115,12 +115,12 @@ test("test if player one scored", () => {
   const thirdState = reducer(secondState, startRound(null));
   expect(reducer(thirdState, increasePlayerScore(1))).toEqual({
     cardListPlayerOne: [
-      { answer: 0, question: "" },
+      { answer: 0, question: "2^2 + 16" },
       { answer: 1, question: "" },
       { answer: 2, question: "" },
     ],
     cardListPlayerTwo: [
-      { answer: 3, question: "" },
+      { answer: 3, question: "2^1 + 12" },
       { answer: 4, question: "" },
       { answer: 5, question: "" },
     ],
@@ -132,11 +132,11 @@ test("test if player one scored", () => {
     gameOver: false,
     playerOneCurrentCard: {
       answer: 0,
-      question: "",
+      question: "2^2 + 16",
     },
     playerTwoCurrentCard: {
       answer: 3,
-      question: "",
+      question: "2^1 + 12",
     },
     playerOneScoring: 1,
     playerTwoScoring: 0,
@@ -149,12 +149,12 @@ test("test if player two scored", () => {
   const thirdState = reducer(secondState, startRound(null));
   expect(reducer(thirdState, increasePlayerScore(2))).toEqual({
     cardListPlayerOne: [
-      { answer: 0, question: "" },
+      { answer: 0, question: "2^2 + 16" },
       { answer: 1, question: "" },
       { answer: 2, question: "" },
     ],
     cardListPlayerTwo: [
-      { answer: 3, question: "" },
+      { answer: 3, question: "2^1 + 12" },
       { answer: 4, question: "" },
       { answer: 5, question: "" },
     ],
@@ -166,11 +166,11 @@ test("test if player two scored", () => {
     gameOver: false,
     playerOneCurrentCard: {
       answer: 0,
-      question: "",
+      question: "2^2 + 16",
     },
     playerTwoCurrentCard: {
       answer: 3,
-      question: "",
+      question: "2^1 + 12",
     },
     playerOneScoring: 0,
     playerTwoScoring: 1,
@@ -185,8 +185,8 @@ test("test if player one won the round", () => {
     cardListPlayerOne: [
       { answer: 1, question: "" },
       { answer: 2, question: "" },
-      { answer: 0, question: "" },
-      { answer: 3, question: "" },
+      { answer: 0, question: "2^2 + 16" },
+      { answer: 3, question: "2^1 + 12" },
     ],
     cardListPlayerTwo: [
       { answer: 4, question: "" },
@@ -217,8 +217,8 @@ test("test if player two won the round", () => {
     cardListPlayerTwo: [
       { answer: 4, question: "" },
       { answer: 5, question: "" },
-      { answer: 3, question: "" },
-      { answer: 0, question: "" },
+      { answer: 3, question: "2^1 + 12" },
+      { answer: 0, question: "2^2 + 16" },
     ],
     currentRoundIndex: 0,
     playerOneReady: false,
@@ -248,8 +248,8 @@ test("test if game is over", () => {
   const twelvethState = reducer(eleventhState, finishRound(1));
   expect(reducer(twelvethState, finishRound(1))).toEqual({
     cardListPlayerOne: [
-      { answer: 0, question: "" },
-      { answer: 3, question: "" },
+      { answer: 0, question: "2^2 + 16" },
+      { answer: 3, question: "2^1 + 12" },
       { answer: 1, question: "" },
       { answer: 4, question: "" },
       { answer: 2, question: "" },
