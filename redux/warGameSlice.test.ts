@@ -284,7 +284,7 @@ test("test reset state", () => {
   const eleventhState = reducer(tenthState, startRound(null));
   const twelvethState = reducer(eleventhState, finishRound(1));
   const thirteenthState = reducer(twelvethState, finishRound(1));
-  expect(reducer(thirteenthState, resetRound("RESET"))).toEqual({
+  expect(reducer(thirteenthState, resetRound(null))).toEqual({
     cardListPlayerOne: [
       { answer: 0, question: "2^2 + 16" },
       { answer: 1, question: "" },
