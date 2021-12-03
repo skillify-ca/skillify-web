@@ -22,11 +22,11 @@ const TransformationDashboardPage = ({ data }) => {
   };
 
   return (
-    <div className="flex flex-col heropattern-architect-blue-100 bg-blue-300">
-      <div className="flex flex-col gap-8 p-8 items-center">
-        <div className="bg-blue-50 p-4 rounded-xl shadow-lg flex flex-col gap-8">
+    <div className="flex flex-col bg-blue-300 heropattern-architect-blue-100">
+      <div className="flex flex-col items-center gap-8 p-8">
+        <div className="flex flex-col gap-8 p-4 shadow-lg bg-blue-50 rounded-xl">
           <div>
-            <p className="font-bold text-2xl w-full">
+            <p className="w-full text-2xl font-bold">
               Transformation Assignment
             </p>
             <p className="">
@@ -34,7 +34,7 @@ const TransformationDashboardPage = ({ data }) => {
               transformations
             </p>
           </div>
-          <Link href="/teachers/djacobs/transformations">
+          <Link href="/teachers/djacob/transformations">
             <Button
               label="Preview Assignment"
               backgroundColor="white"
@@ -42,23 +42,23 @@ const TransformationDashboardPage = ({ data }) => {
             />
           </Link>
           <div className="grid grid-cols-12 gap-8 ">
-            <div className="col-span-12 sm:col-span-4 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
+            <div className="flex flex-col col-span-12 gap-8 p-8 text-center transition-all duration-500 ease-in-out transform bg-white shadow-lg sm:col-span-4 rounded-xl hover:shadow-2xl hover:scale-105 erounded-xl">
               <p className="text-2xl font-bold">Average Time Spent</p>{" "}
               <p>{getTimeSpentAvg()}</p>
             </div>
-            <div className="col-span-12 sm:col-span-4 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
+            <div className="flex flex-col col-span-12 gap-8 p-8 text-center transition-all duration-500 ease-in-out transform bg-white shadow-lg sm:col-span-4 rounded-xl hover:shadow-2xl hover:scale-105 erounded-xl">
               <p className="text-2xl font-bold">Hardest Question</p>{" "}
               <p>Question 6</p>
             </div>
-            <div className="col-span-12 sm:col-span-4 bg-white hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 rounded-xl p-8 text-center flex flex-col gap-8">
+            <div className="flex flex-col col-span-12 gap-8 p-8 text-center transition-all duration-500 ease-in-out transform bg-white shadow-lg sm:col-span-4 hover:shadow-2xl hover:scale-105 rounded-xl">
               <p className="text-2xl font-bold">Missing Assignments</p> <p>0</p>
             </div>
           </div>
         </div>
-        <div className="bg-blue-50 p-4 rounded-xl shadow-lg flex flex-col gap-8">
-          <p className="font-bold text-2xl w-full">Students</p>
+        <div className="flex flex-col gap-8 p-4 shadow-lg bg-blue-50 rounded-xl">
+          <p className="w-full text-2xl font-bold">Students</p>
           <select
-            className="border-blue-400 border-2 p-4"
+            className="p-4 border-2 border-blue-400"
             value={currentStudentIndex}
             onChange={(e) =>
               setCurrentStudentIndex(Number.parseInt(e.target.value))
@@ -69,14 +69,14 @@ const TransformationDashboardPage = ({ data }) => {
             ))}
           </select>
           <div className="grid grid-cols-12 gap-8 ">
-            <div className="col-span-12 bg-white rounded-xl hover:shadow-2xl transform transition-all hover:scale-105 shadow-lg ease-in-out duration-500 erounded-xl p-8 text-center flex flex-col gap-8">
+            <div className="flex flex-col col-span-12 gap-8 p-8 text-center transition-all duration-500 ease-in-out transform bg-white shadow-lg rounded-xl hover:shadow-2xl hover:scale-105 erounded-xl">
               <p className="text-2xl font-bold">Time Spent</p>{" "}
               <p>{getTimeSpentAvg()}</p>
             </div>
           </div>
-          <div className="grid md:grid-cols-12 grid-cols-1 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-12">
             <div className="md:col-span-12 rounded-t-xl">
-              <div className="grid grid-cols-12 rounded-t-xl font-bold items-center justify-between bg-yellow-600 py-4 overflow-scroll">
+              <div className="grid items-center justify-between grid-cols-12 py-4 overflow-scroll font-bold bg-yellow-600 rounded-t-xl">
                 <p className="col-span-2 text-center">#</p>
                 <p className="col-span-6 text-center">Question</p>
                 <p className="col-span-4 text-center">Answer</p>
@@ -99,8 +99,8 @@ const TransformationDashboardPage = ({ data }) => {
                   ))}
               </div>
             </div>
-            <div className="md:col-span-12 bg-green-400 rounded-t-xl">
-              <p className="font-bold w-full text-xl py-2 px-4">
+            <div className="bg-green-400 md:col-span-12 rounded-t-xl">
+              <p className="w-full px-4 py-2 text-xl font-bold">
                 Guess History
               </p>
             </div>

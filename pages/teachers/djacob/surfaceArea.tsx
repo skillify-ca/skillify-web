@@ -19,7 +19,7 @@ enum Stage {
   END,
 }
 
-export default function djacobs(props) {
+export default function djacob(props) {
   const questionData = [
     "A net for the rectangular prism is shown on the grid. On the net, label each face of the prism. Each square on the grid represents 1cm^2.",
     "Write a multiplication question for the area of each face for the rectangular prisms in question 1, image also provided from question 1. Then find the surface area of the prism",
@@ -124,13 +124,11 @@ export default function djacobs(props) {
   };
 
   //Q7 useStates
-  const [guessStringRectPrismQ7, setGuessStringRectPrismQ7] = useState<string>(
-    ""
-  );
+  const [guessStringRectPrismQ7, setGuessStringRectPrismQ7] =
+    useState<string>("");
   const [guessStringCubeQ7, setGuessStringCubeQ7] = useState<string>("");
-  const [guessStringTriPrismQ7, setGuessStringTriPrismQ7] = useState<string>(
-    ""
-  );
+  const [guessStringTriPrismQ7, setGuessStringTriPrismQ7] =
+    useState<string>("");
   const EMPTY_ARRAY_OF_ARRAYS = [[], [], []];
   const [historyStepForQuestionsQ7, setHistoryStepForQuestionsQ7] = useState<
     number[]
@@ -388,7 +386,7 @@ export default function djacobs(props) {
             >
               <div>
                 {stage == Stage.START && (
-                  <div className="flex flex-col items-center col gap-8 p-4">
+                  <div className="flex flex-col items-center gap-8 p-4 col">
                     <div id="Description" className="text-center">
                       <p className="text-base">
                         Welcome to the Surface Area Assignment! Please fill out

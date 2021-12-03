@@ -10,7 +10,7 @@ import { FETCH_USER_ASSIGNMENT } from "../../../graphql/userAssignments/fetchUse
 import { useMutation, useQuery } from "@apollo/client";
 import { CREATE_USER_ASSIGNMENT } from "../../../graphql/userAssignments/createUserAssignment";
 import { UPDATE_USER_ASSIGNMENT } from "../../../graphql/userAssignments/updateUserAssignment";
-import { questions, solutions } from "../../api/teachers/djacobs";
+import { questions, solutions } from "../../api/teachers/djacob";
 import { UPDATE_USER_ASSIGNMENT_IMAGES } from "../../../graphql/userAssignments/updateUserAssignmentImages";
 import { useAuth } from "../../../lib/authContext";
 import SlideContainer from "../../../components/ui/SlideContainer";
@@ -28,7 +28,7 @@ enum Stage {
   ASSIGNMENT,
 }
 
-export default function djacobs1(props) {
+export default function djacob1(props) {
   const EMPTY_ARRAY_OF_STRING = ["", "", "", ""];
   const EMPTY_ARRAY_OF_ARRAYS = [[], [], [], []];
   const [guesses, setGuesses] = useState<string[]>([]);
@@ -49,7 +49,7 @@ export default function djacobs1(props) {
     {
       variables: {
         user_id: user.uid,
-        assignment_id: "djacobs1",
+        assignment_id: "djacob1",
       },
       onCompleted: (data: any) => {
         if (data.user_assignments.length > 0) {
@@ -99,7 +99,7 @@ export default function djacobs1(props) {
       const result = createUserAssignment({
         variables: {
           user_id: user.uid,
-          assignment_id: "djacobs1",
+          assignment_id: "djacob1",
           user_solution: EMPTY_ARRAY_OF_STRING,
           user_images: EMPTY_ARRAY_OF_STRING,
           user_drawn_lines: EMPTY_ARRAY_OF_ARRAYS,
@@ -109,7 +109,7 @@ export default function djacobs1(props) {
             query: FETCH_USER_ASSIGNMENT,
             variables: {
               userId: user.uid,
-              assignment_id: "djacobs1",
+              assignment_id: "djacob1",
             },
           },
         ],
@@ -131,7 +131,7 @@ export default function djacobs1(props) {
     updateUserAssignmentImages({
       variables: {
         user_id: user.uid,
-        assignment_id: "djacobs1",
+        assignment_id: "djacob1",
         user_images: newImages,
       },
       refetchQueries: [
@@ -139,7 +139,7 @@ export default function djacobs1(props) {
           query: FETCH_USER_ASSIGNMENT,
           variables: {
             userId: user.uid,
-            assignment_id: "djacobs1",
+            assignment_id: "djacob1",
           },
         },
       ],
@@ -171,7 +171,7 @@ export default function djacobs1(props) {
     updateUserAssignment({
       variables: {
         user_id: user.uid,
-        assignment_id: "djacobs1",
+        assignment_id: "djacob1",
         user_solution: guesses,
         user_drawn_lines: linesForQuestions,
       },
@@ -180,7 +180,7 @@ export default function djacobs1(props) {
           query: FETCH_USER_ASSIGNMENT,
           variables: {
             userId: user.uid,
-            assignment_id: "djacobs1",
+            assignment_id: "djacob1",
           },
         },
       ],
@@ -194,7 +194,7 @@ export default function djacobs1(props) {
     updateUserAssignment({
       variables: {
         user_id: user.uid,
-        assignment_id: "djacobs1",
+        assignment_id: "djacob1",
         user_solution: guesses,
         user_drawn_lines: linesForQuestions,
       },
@@ -203,7 +203,7 @@ export default function djacobs1(props) {
           query: FETCH_USER_ASSIGNMENT,
           variables: {
             userId: user.uid,
-            assignment_id: "djacobs1",
+            assignment_id: "djacob1",
           },
         },
       ],
@@ -251,7 +251,7 @@ export default function djacobs1(props) {
   };
 
   return (
-    <div className="flex flex-col bg-blue-50 items-center">
+    <div className="flex flex-col items-center bg-blue-50">
       <div className="grid grid-cols-12 max-w-7xl">
         <div className="col-span-12">
           {stage == Stage.RULES && (
@@ -269,8 +269,8 @@ export default function djacobs1(props) {
             </div>
           )}
           {stage == Stage.ASSIGNMENT && (
-            <div className="flex flex-col items-center gap-4 w-full overflow-y-auto p-4 h-full bg-blue-300">
-              <div className="flex gap-8 w-full items-center justify-between">
+            <div className="flex flex-col items-center w-full h-full gap-4 p-4 overflow-y-auto bg-blue-300">
+              <div className="flex items-center justify-between w-full gap-8">
                 <Button
                   label="Previous"
                   onClick={onPreviousQuestion}
@@ -314,23 +314,23 @@ export default function djacobs1(props) {
                   }}
                   classNames="fade"
                 >
-                  <div className="grid grid-cols-1 gap-y-8 md:grid-cols-12 md:gap-8 h-full">
+                  <div className="grid h-full grid-cols-1 gap-y-8 md:grid-cols-12 md:gap-8">
                     <div
                       className={`flex flex-col gap-8 bg-blue-100 items-center rounded-xl ${
                         showSolutions ? "sm:col-span-4" : "col-span-6"
                       }`}
                     >
-                      <p className="w-full bg-red-400 py-2 px-4 font-bold text-xl rounded-t-xl">
+                      <p className="w-full px-4 py-2 text-xl font-bold bg-red-400 rounded-t-xl">
                         Question #{currentQuestionIndex + 1}
                       </p>
-                      <div className="flex gap-8 w-full items-center justify-center"></div>
-                      <div className="font-bold text-xl">
+                      <div className="flex items-center justify-center w-full gap-8"></div>
+                      <div className="text-xl font-bold">
                         <TeX block>{questions[currentQuestionIndex]}</TeX>
                       </div>
-                      <div className="flex gap-4 items-center p-4">
+                      <div className="flex items-center gap-4 p-4">
                         <label>Guess</label>
                         <input
-                          className="p-4 text-lg w-full"
+                          className="w-full p-4 text-lg"
                           placeholder="eg. 3/8"
                           value={guesses[currentQuestionIndex]}
                           onChange={(e) => onGuessChanged(e.target.value)}
@@ -344,13 +344,13 @@ export default function djacobs1(props) {
                       } overflow-y-auto`}
                     >
                       {showSolutions ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 w-full gap-8">
-                          <div className="flex flex-col bg-yellow-400 items-center justify-center rounded-xl">
-                            <p className="bg-green-300 w-full font-bold text-xl py-2 px-4 rounded-t-xl">
+                        <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2">
+                          <div className="flex flex-col items-center justify-center bg-yellow-400 rounded-xl">
+                            <p className="w-full px-4 py-2 text-xl font-bold bg-green-300 rounded-t-xl">
                               Your Solution
                             </p>
 
-                            <div className="bg-white h-80 w-full overflow-auto">
+                            <div className="w-full overflow-auto bg-white h-80">
                               <FreeDrawing
                                 saveImage={() => {}}
                                 lines={linesForQuestions[currentQuestionIndex]}
@@ -363,12 +363,12 @@ export default function djacobs1(props) {
                               />
                             </div>
                           </div>
-                          <div className="flex flex-col bg-blue-100 items-center justify-center rounded-t-xl">
-                          <p className="bg-yellow-500 w-full font-bold text-xl py-2 px-4 rounded-t-xl">
+                          <div className="flex flex-col items-center justify-center bg-blue-100 rounded-t-xl">
+                            <p className="w-full px-4 py-2 text-xl font-bold bg-yellow-500 rounded-t-xl">
                               Teacher's Solution
                             </p>
 
-                            <div className="flex flex-col items-center justify-center bg-gray-100 h-full w-full">
+                            <div className="flex flex-col items-center justify-center w-full h-full bg-gray-100">
                               {solutions[currentQuestionIndex].map((step) => (
                                 <TeX block>{step}</TeX>
                               ))}
@@ -401,4 +401,4 @@ export default function djacobs1(props) {
   );
 }
 
-djacobs1.auth = true;
+djacob1.auth = true;
