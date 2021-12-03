@@ -139,6 +139,9 @@ export default function CreditCard(props) {
   const [debitA12, setDebitA12] = useState(0);
   const [isDebitCorrectQ12, setIsDebitCorrectQ12] = useState(false);
 
+  // MultipleChoiceWordProblem states
+  const [multiQ1, setMultiQ1] = useState("");
+
   // Global Progress tracker
   const [scoreCounter, setScoreCounter] = useState(0);
 
@@ -555,7 +558,11 @@ export default function CreditCard(props) {
     } else if (stage == STAGE.MultipleChoiceWordProblem) {
       return (
         <>
-          <MultipleChoiceWordProblem />;
+          <MultipleChoiceWordProblem
+            multiQ1={multiQ1}
+            setMultiQ1={setMultiQ1}
+          />
+          ;
           <div className="flex flex-row space-x-8 justify-center">
             <Button
               label="submit"
