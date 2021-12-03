@@ -3,13 +3,10 @@ export interface CreditCardProgressTrackerProps {
   name?: string;
   score?: number;
   updateScore?: (value: number) => void;
-  total?: number;
-  updateTotal?: (value: number) => void;
 }
 
 const CreditCardProgressTracker: React.FC<CreditCardProgressTrackerProps> = ({
   score,
-  total,
   name,
 }) => {
   return (
@@ -20,9 +17,6 @@ const CreditCardProgressTracker: React.FC<CreditCardProgressTrackerProps> = ({
         </h3>
         <h3>
           score: <span className="text-purple-500 font-extrabold">{score}</span>
-        </h3>
-        <h3>
-          total: <span className="text-green-500 font-extrabold">{total}</span>
         </h3>
       </div>
     </div>

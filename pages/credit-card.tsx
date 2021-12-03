@@ -101,9 +101,46 @@ export default function CreditCard(props) {
   const [creditA15, setCreditA15] = useState(0);
   const [isCreditCorrectQ15, setIsCreditCorrectQ15] = useState(false);
 
-  // Progress tracker
+  //DebitCardWordProblem states
+  const [debitQ1, setDebitQ1] = useState("");
+  const [debitA1, setDebitA1] = useState(0);
+  const [isDebitCorrectQ1, setIsDebitCorrectQ1] = useState(false);
+  const [debitQ2, setDebitQ2] = useState("");
+  const [debitA2, setDebitA2] = useState(0);
+  const [isDebitCorrectQ2, setIsDebitCorrectQ2] = useState(false);
+  const [debitQ3, setDebitQ3] = useState("");
+  const [debitA3, setDebitA3] = useState(0);
+  const [isDebitCorrectQ3, setIsDebitCorrectQ3] = useState(false);
+  const [debitQ4, setDebitQ4] = useState("");
+  const [debitA4, setDebitA4] = useState(0);
+  const [isDebitCorrectQ4, setIsDebitCorrectQ4] = useState(false);
+  const [debitQ5, setDebitQ5] = useState("");
+  const [debitA5, setDebitA5] = useState(0);
+  const [isDebitCorrectQ5, setIsDebitCorrectQ5] = useState(false);
+  const [debitQ6, setDebitQ6] = useState("");
+  const [debitA6, setDebitA6] = useState(0);
+  const [isDebitCorrectQ6, setIsDebitCorrectQ6] = useState(false);
+  const [debitQ7, setDebitQ7] = useState("");
+  const [debitA7, setDebitA7] = useState(0);
+  const [isDebitCorrectQ7, setIsDebitCorrectQ7] = useState(false);
+  const [debitQ8, setDebitQ8] = useState("");
+  const [debitA8, setDebitA8] = useState(0);
+  const [isDebitCorrectQ8, setIsDebitCorrectQ8] = useState(false);
+  const [debitQ9, setDebitQ9] = useState("");
+  const [debitA9, setDebitA9] = useState(0);
+  const [isDebitCorrectQ9, setIsDebitCorrectQ9] = useState(false);
+  const [debitQ10, setDebitQ10] = useState("");
+  const [debitA10, setDebitA10] = useState(0);
+  const [isDebitCorrectQ10, setIsDebitCorrectQ10] = useState(false);
+  const [debitQ11, setDebitQ11] = useState("");
+  const [debitA11, setDebitA11] = useState(0);
+  const [isDebitCorrectQ11, setIsDebitCorrectQ11] = useState(false);
+  const [debitQ12, setDebitQ12] = useState("");
+  const [debitA12, setDebitA12] = useState(0);
+  const [isDebitCorrectQ12, setIsDebitCorrectQ12] = useState(false);
+
+  // Global Progress tracker
   const [scoreCounter, setScoreCounter] = useState(0);
-  const [totalCounter, setTotalCounter] = useState(0);
 
   // disable button onClick
   const [disabledInfo, setDisabledInfo] = useState(false);
@@ -111,10 +148,6 @@ export default function CreditCard(props) {
   const [disabledDebitCard, setDisabledDebitCard] = useState(false);
   const [disabledMC, setDisabledMC] = useState(false);
   const [disabledColorCard, setDisabledColorCard] = useState(false);
-
-  const onSubmitMaster = () => {
-    submitCreditDebitInfoScore();
-  };
 
   const submitCreditDebitInfoScore = () => {
     const questionArray = [
@@ -131,10 +164,9 @@ export default function CreditCard(props) {
       infoA11,
     ];
     let scores = questionArray.reduce((total, score) => total + score);
-    console.log(scores);
-    setScoreCounter(scores);
-    setTotalCounter(questionArray.length);
+    setScoreCounter(scoreCounter + scores);
     validateCreditDebitInfoScore();
+    setDisabledInfo(true);
   };
 
   const validateCreditDebitInfoScore = () => {
@@ -149,7 +181,84 @@ export default function CreditCard(props) {
     infoA9 === 1 ? setIsCorrectQ9(true) : setIsCorrectQ9(false);
     infoA10 === 1 ? setIsCorrectQ10(true) : setIsCorrectQ10(false);
     infoA11 === 1 ? setIsCorrectQ11(true) : setIsCorrectQ11(false);
-    setDisabledInfo(true);
+  };
+
+  const submitCreditCardWordScore = () => {
+    const questionArray = [
+      creditA1,
+      creditA2,
+      creditA3,
+      creditA4,
+      creditA5,
+      creditA6,
+      creditA7,
+      creditA8,
+      creditA9,
+      creditA10,
+      creditA11,
+      creditA12,
+      creditA13,
+      creditA14,
+      creditA15,
+    ];
+    let scores = questionArray.reduce((total, score) => total + score);
+    setScoreCounter(scoreCounter + scores);
+    validateCreditCardWordScore();
+    setDisabledCreditCard(true);
+  };
+
+  const validateCreditCardWordScore = () => {
+    creditA1 == 1 ? setIsCreditCorrectQ1(true) : setIsCreditCorrectQ1(false);
+    creditA2 == 1 ? setIsCreditCorrectQ2(true) : setIsCreditCorrectQ2(false);
+    creditA3 == 1 ? setIsCreditCorrectQ3(true) : setIsCreditCorrectQ3(false);
+    creditA4 == 1 ? setIsCreditCorrectQ4(true) : setIsCreditCorrectQ4(false);
+    creditA5 == 1 ? setIsCreditCorrectQ5(true) : setIsCreditCorrectQ5(false);
+    creditA6 == 1 ? setIsCreditCorrectQ6(true) : setIsCreditCorrectQ6(false);
+    creditA7 == 1 ? setIsCreditCorrectQ7(true) : setIsCreditCorrectQ7(false);
+    creditA8 == 1 ? setIsCreditCorrectQ8(true) : setIsCreditCorrectQ8(false);
+    creditA9 == 1 ? setIsCreditCorrectQ9(true) : setIsCreditCorrectQ9(false);
+    creditA10 == 1 ? setIsCreditCorrectQ10(true) : setIsCreditCorrectQ10(false);
+    creditA11 == 1 ? setIsCreditCorrectQ11(true) : setIsCreditCorrectQ11(false);
+    creditA12 == 1 ? setIsCreditCorrectQ12(true) : setIsCreditCorrectQ12(false);
+    creditA13 == 1 ? setIsCreditCorrectQ13(true) : setIsCreditCorrectQ13(false);
+    creditA14 == 1 ? setIsCreditCorrectQ14(true) : setIsCreditCorrectQ14(false);
+    creditA15 == 1 ? setIsCreditCorrectQ15(true) : setIsCreditCorrectQ15(false);
+  };
+
+  const submitDebitCardWordScore = () => {
+    const questionArray = [
+      debitA1,
+      debitA2,
+      debitA3,
+      debitA4,
+      debitA5,
+      debitA6,
+      debitA7,
+      debitA8,
+      debitA9,
+      debitA10,
+      debitA11,
+      debitA12,
+    ];
+    let scores = questionArray.reduce((total, score) => total + score);
+    setScoreCounter(scoreCounter + scores);
+    validateDebitCardWordScore();
+    setDisabledDebitCard(true);
+  };
+
+  const validateDebitCardWordScore = () => {
+    debitA1 == 1 ? setIsDebitCorrectQ1(true) : setIsDebitCorrectQ1(false);
+    debitA2 == 1 ? setIsDebitCorrectQ2(true) : setIsDebitCorrectQ2(false);
+    debitA3 == 1 ? setIsDebitCorrectQ3(true) : setIsDebitCorrectQ3(false);
+    debitA4 == 1 ? setIsDebitCorrectQ4(true) : setIsDebitCorrectQ4(false);
+    debitA5 == 1 ? setIsDebitCorrectQ5(true) : setIsDebitCorrectQ5(false);
+    debitA6 == 1 ? setIsDebitCorrectQ6(true) : setIsDebitCorrectQ6(false);
+    debitA7 == 1 ? setIsDebitCorrectQ7(true) : setIsDebitCorrectQ7(false);
+    debitA8 == 1 ? setIsDebitCorrectQ8(true) : setIsDebitCorrectQ8(false);
+    debitA9 == 1 ? setIsDebitCorrectQ9(true) : setIsDebitCorrectQ9(false);
+    debitA10 == 1 ? setIsDebitCorrectQ10(true) : setIsDebitCorrectQ10(false);
+    debitA11 == 1 ? setIsDebitCorrectQ11(true) : setIsDebitCorrectQ11(false);
+    debitA12 == 1 ? setIsDebitCorrectQ12(true) : setIsDebitCorrectQ12(false);
   };
 
   const previousStage = () => {
@@ -242,7 +351,7 @@ export default function CreditCard(props) {
               backgroundColor="yellow"
               textColor="white"
               disabled={disabledInfo}
-              onClick={onSubmitMaster}
+              onClick={submitCreditDebitInfoScore}
             />
           </div>
         </>
@@ -348,8 +457,8 @@ export default function CreditCard(props) {
               label="submit"
               backgroundColor="yellow"
               textColor="white"
-              disabled={disabledColorCard}
-              onClick={onSubmitMaster}
+              disabled={disabledCreditCard}
+              onClick={submitCreditCardWordScore}
             />
           </div>
         </>
@@ -357,14 +466,88 @@ export default function CreditCard(props) {
     } else if (stage == STAGE.DebitCardWordProblem) {
       return (
         <>
-          <DebitCardWordProblem />;{" "}
+          <DebitCardWordProblem
+            debitQ1={debitQ1}
+            setDebitQ1={setDebitQ1}
+            debitA1={debitA1}
+            setDebitA1={setDebitA1}
+            isDebitCorrectQ1={isDebitCorrectQ1}
+            setIsDebitCorrectQ1={setIsDebitCorrectQ1}
+            debitQ2={debitQ2}
+            setDebitQ2={setDebitQ2}
+            debitA2={debitA2}
+            setDebitA2={setDebitA2}
+            isDebitCorrectQ2={isDebitCorrectQ2}
+            setIsDebitCorrectQ2={setIsDebitCorrectQ2}
+            debitQ3={debitQ3}
+            setDebitQ3={setDebitQ3}
+            debitA3={debitA3}
+            setDebitA3={setDebitA3}
+            isDebitCorrectQ3={isDebitCorrectQ3}
+            setIsDebitCorrectQ3={setIsDebitCorrectQ3}
+            debitQ4={debitQ4}
+            setDebitQ4={setDebitQ4}
+            debitA4={debitA4}
+            setDebitA4={setDebitA4}
+            isDebitCorrectQ4={isDebitCorrectQ4}
+            setIsDebitCorrectQ4={setIsDebitCorrectQ4}
+            debitQ5={debitQ5}
+            setDebitQ5={setDebitQ5}
+            debitA5={debitA5}
+            setDebitA5={setDebitA5}
+            isDebitCorrectQ5={isDebitCorrectQ5}
+            setIsDebitCorrectQ5={setIsDebitCorrectQ5}
+            debitQ6={debitQ6}
+            setDebitQ6={setDebitQ6}
+            debitA6={debitA6}
+            setDebitA6={setDebitA6}
+            isDebitCorrectQ6={isDebitCorrectQ6}
+            setIsDebitCorrectQ6={setIsDebitCorrectQ6}
+            debitQ7={debitQ7}
+            setDebitQ7={setDebitQ7}
+            debitA7={debitA7}
+            setDebitA7={setDebitA7}
+            isDebitCorrectQ7={isDebitCorrectQ7}
+            setIsDebitCorrectQ7={setIsDebitCorrectQ7}
+            debitQ8={debitQ8}
+            setDebitQ8={setDebitQ8}
+            debitA8={debitA8}
+            setDebitA8={setDebitA8}
+            isDebitCorrectQ8={isDebitCorrectQ8}
+            setIsDebitCorrectQ8={setIsDebitCorrectQ8}
+            debitQ9={debitQ9}
+            setDebitQ9={setDebitQ9}
+            debitA9={debitA9}
+            setDebitA9={setDebitA9}
+            isDebitCorrectQ9={isDebitCorrectQ9}
+            setIsDebitCorrectQ9={setIsDebitCorrectQ9}
+            debitQ10={debitQ10}
+            setDebitQ10={setDebitQ10}
+            debitA10={debitA10}
+            setDebitA10={setDebitA10}
+            isDebitCorrectQ10={isDebitCorrectQ10}
+            setIsDebitCorrectQ10={setIsDebitCorrectQ10}
+            debitQ11={debitQ11}
+            setDebitQ11={setDebitQ11}
+            debitA11={debitA11}
+            setDebitA11={setDebitA11}
+            isDebitCorrectQ11={isDebitCorrectQ11}
+            setIsDebitCorrectQ11={setIsDebitCorrectQ11}
+            debitQ12={debitQ12}
+            setDebitQ12={setDebitQ12}
+            debitA12={debitA12}
+            setDebitA12={setDebitA12}
+            isDebitCorrectQ12={isDebitCorrectQ12}
+            setIsDebitCorrectQ12={setIsDebitCorrectQ12}
+          />
+          ;{" "}
           <div className="flex flex-row space-x-8 justify-center">
             <Button
               label="submit"
               backgroundColor="yellow"
               textColor="white"
               disabled={disabledDebitCard}
-              onClick={onSubmitMaster}
+              onClick={submitDebitCardWordScore}
             />
           </div>
         </>
@@ -379,7 +562,6 @@ export default function CreditCard(props) {
               backgroundColor="yellow"
               textColor="white"
               disabled={disabledMC}
-              onClick={onSubmitMaster}
             />
           </div>
         </>
@@ -393,8 +575,7 @@ export default function CreditCard(props) {
               label="submit"
               backgroundColor="yellow"
               textColor="white"
-              disabled={disabledCreditCard}
-              onClick={onSubmitMaster}
+              disabled={disabledColorCard}
             />
           </div>
         </>
@@ -407,8 +588,6 @@ export default function CreditCard(props) {
       <CreditCardProgressTracker
         score={scoreCounter}
         updateScore={setScoreCounter}
-        total={totalCounter}
-        updateTotal={setTotalCounter}
       />
       <div>{getComponent(stage)}</div>
 

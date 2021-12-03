@@ -1,14 +1,19 @@
-export const chargeArray = ["charge","claim","withdraw"]
-export const creditCardArray = ["credit card", "plastic card", "membership card"]
-export const payArray = ["pay","5"]
-export const billArray = ["bill", "1"]
-export const doesntArray = ["doesn't", "2"]
-export const interestArray = ["interest","3"]
-export const unpaidArray = ["unpaid", "4"]
-export const minimumArray = ["minimum", "5"]
-export const lateFeeArray = ["late fee", "6"]
-export const creditLimitArray = ["credit limit", "7"]
-export const applyArray = ["apply", "7"]
-export const approvedArray = ["approved","5"]
-export const buildArray = ["build","6"]
-export const responsibleArray = ["responsible", "1"]
+export const chargeArray = ["charge", "claim", "withdraw"];
+export const creditCardArray = [
+  "credit card",
+  "plastic card",
+  "membership card",
+];
+export const billArray = ["bill", "receipt", "email"];
+export const payArray = ["pay", "bill", "offer"];
+export const bill2Array = ["bill", "paper", "email"];
+export const doesntArray = ["doesn't", "won't", "shouldn't"];
+export const interestArray = ["interest", "compensation", "extra"];
+export const unpaidArray = ["unpaid", "overdraft", "extra"];
+export const minimumArray = ["minimum", "maximum", "regular"];
+export const lateFeeArray = ["late fee", "compensation", "spending"];
+export const creditLimitArray = ["credit limit", "overdraft", "interest rate"];
+export const applyArray = ["apply", "submit", "give"];
+export const approvedArray = ["approved", "submitted", "distributed"];
+export const buildArray = ["build", "organize", "sent"];
+export const responsibleArray = ["responsible", "paid", "extra"];

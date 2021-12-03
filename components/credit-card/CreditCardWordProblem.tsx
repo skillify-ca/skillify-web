@@ -5,6 +5,7 @@ import {
   approvedArray,
   billArray,
   buildArray,
+  bill2Array,
   chargeArray,
   creditCardArray,
   creditLimitArray,
@@ -212,8 +213,18 @@ const CreditCardWordProblem = ({
         </div>
         <div className="flex justify-center mb-12">
           <span className="text-4xl">
-            You <DropDownMenu words={chargeArray} /> a purchase to your credit
-            card
+            You{" "}
+            <DropDownMenu
+              words={chargeArray}
+              answer="charge"
+              value={creditQ1}
+              setValue={setCreditQ1}
+              point={creditA1}
+              getPoint={setCreditA1}
+              isCorrect={isCreditCorrectQ1}
+              setIsCorrect={setIsCreditCorrectQ1}
+            />{" "}
+            a purchase to your credit card
           </span>
         </div>
         <div className="flex flex-col-reverse md:flex-row justify-center items-center">
@@ -223,14 +234,44 @@ const CreditCardWordProblem = ({
           <div className="text-2xl">
             <div className="flex justify-center p-8 bg-purple-200 rounded-2xl mx-12">
               <span>
-                <DropDownMenu words={creditCardArray} /> company pays the store
+                <DropDownMenu
+                  words={creditCardArray}
+                  answer="credit card"
+                  value={creditQ2}
+                  setValue={setCreditQ2}
+                  point={creditA2}
+                  getPoint={setCreditA2}
+                  isCorrect={isCreditCorrectQ2}
+                  setIsCorrect={setIsCreditCorrectQ2}
+                />{" "}
+                company pays the store
               </span>
             </div>
             <div className="flex justify-center p-8 bg-purple-300 rounded-2xl mx-12 my-4">
               <span>
                 Credit card company sends you a{" "}
-                <DropDownMenu words={billArray} /> and you{" "}
-                <DropDownMenu words={payArray} /> the credit card company
+                <DropDownMenu
+                  words={billArray}
+                  answer="bill"
+                  value={creditQ3}
+                  setValue={setCreditQ3}
+                  point={creditA3}
+                  getPoint={setCreditA3}
+                  isCorrect={isCreditCorrectQ3}
+                  setIsCorrect={setIsCreditCorrectQ3}
+                />{" "}
+                and you{" "}
+                <DropDownMenu
+                  words={payArray}
+                  answer="pay"
+                  value={creditQ4}
+                  setValue={setCreditQ4}
+                  point={creditA4}
+                  getPoint={setCreditA4}
+                  isCorrect={isCreditCorrectQ4}
+                  setIsCorrect={setIsCreditCorrectQ4}
+                />{" "}
+                the credit card company
               </span>
             </div>
           </div>
@@ -244,21 +285,83 @@ const CreditCardWordProblem = ({
           />
           <ul className="p-12 flex flex-col text-2xl gap-4 md:mx-12 m-12 border-8 border-gray-200">
             <li>
-              You receive a <DropDownMenu words={billArray} /> each month
+              You receive a{" "}
+              <DropDownMenu
+                words={bill2Array}
+                answer="bill"
+                value={creditQ5}
+                setValue={setCreditQ5}
+                point={creditA5}
+                getPoint={setCreditA5}
+                isCorrect={isCreditCorrectQ5}
+                setIsCorrect={setIsCreditCorrectQ5}
+              />{" "}
+              each month
             </li>
             <li>
-              Full bill <DropDownMenu words={doesntArray} /> need to be paid
+              Full bill{" "}
+              <DropDownMenu
+                words={doesntArray}
+                answer="doesn't"
+                value={creditQ6}
+                setValue={setCreditQ6}
+                point={creditA6}
+                getPoint={setCreditA6}
+                isCorrect={isCreditCorrectQ6}
+                setIsCorrect={setIsCreditCorrectQ6}
+              />{" "}
+              need to be paid
             </li>
             <li>
-              <DropDownMenu words={interestArray} /> is charged on{" "}
-              <DropDownMenu words={unpaidArray} /> amount
+              <DropDownMenu
+                words={interestArray}
+                answer="interest"
+                value={creditQ7}
+                setValue={setCreditQ7}
+                point={creditA7}
+                getPoint={setCreditA7}
+                isCorrect={isCreditCorrectQ7}
+                setIsCorrect={setIsCreditCorrectQ7}
+              />{" "}
+              is charged on{" "}
+              <DropDownMenu
+                words={unpaidArray}
+                answer="unpaid"
+                value={creditQ8}
+                setValue={setCreditQ8}
+                point={creditA8}
+                getPoint={setCreditA8}
+                isCorrect={isCreditCorrectQ8}
+                setIsCorrect={setIsCreditCorrectQ8}
+              />{" "}
+              amount
             </li>
             <li>
-              a <DropDownMenu words={minimumArray} /> payment is required each
-              month
+              a{" "}
+              <DropDownMenu
+                words={minimumArray}
+                answer="minimum"
+                value={creditQ9}
+                setValue={setCreditQ9}
+                point={creditA9}
+                getPoint={setCreditA9}
+                isCorrect={isCreditCorrectQ9}
+                setIsCorrect={setIsCreditCorrectQ9}
+              />{" "}
+              payment is required each month
             </li>
             <li>
-              <DropDownMenu words={lateFeeArray} /> is billed not paid on time
+              <DropDownMenu
+                words={lateFeeArray}
+                answer="late fee"
+                value={creditQ10}
+                setValue={setCreditQ10}
+                point={creditA10}
+                getPoint={setCreditA10}
+                isCorrect={isCreditCorrectQ10}
+                setIsCorrect={setIsCreditCorrectQ10}
+              />{" "}
+              is billed not paid on time
             </li>
           </ul>
         </div>
@@ -269,15 +372,65 @@ const CreditCardWordProblem = ({
           />
           <ul className="flex flex-col gap-8 p-4 text-2xl">
             <li>
-              Spending is limited by a <DropDownMenu words={creditLimitArray} />
+              Spending is limited by a{" "}
+              <DropDownMenu
+                words={creditLimitArray}
+                answer="credit limit"
+                value={creditQ11}
+                setValue={setCreditQ11}
+                point={creditA11}
+                getPoint={setCreditA11}
+                isCorrect={isCreditCorrectQ11}
+                setIsCorrect={setIsCreditCorrectQ11}
+              />
             </li>
             <li>
-              You <DropDownMenu words={applyArray} /> for a credit card and need
-              to be <DropDownMenu words={approvedArray} />
+              You{" "}
+              <DropDownMenu
+                words={applyArray}
+                answer="apply"
+                value={creditQ12}
+                setValue={setCreditQ12}
+                point={creditA12}
+                getPoint={setCreditA12}
+                isCorrect={isCreditCorrectQ12}
+                setIsCorrect={setIsCreditCorrectQ12}
+              />{" "}
+              for a credit card and need to be{" "}
+              <DropDownMenu
+                words={approvedArray}
+                answer="approved"
+                value={creditQ13}
+                setValue={setCreditQ13}
+                point={creditA13}
+                getPoint={setCreditA13}
+                isCorrect={isCreditCorrectQ13}
+                setIsCorrect={setIsCreditCorrectQ13}
+              />
             </li>
             <li>
-              <DropDownMenu words={buildArray} /> your credit with{" "}
-              <DropDownMenu words={responsibleArray} /> credit card use
+              <DropDownMenu
+                words={buildArray}
+                answer="build"
+                value={creditQ14}
+                setValue={setCreditQ14}
+                point={creditA14}
+                getPoint={setCreditA14}
+                isCorrect={isCreditCorrectQ14}
+                setIsCorrect={setIsCreditCorrectQ14}
+              />{" "}
+              your credit with{" "}
+              <DropDownMenu
+                words={responsibleArray}
+                answer="responsible"
+                value={creditQ15}
+                setValue={setCreditQ15}
+                point={creditA15}
+                getPoint={setCreditA15}
+                isCorrect={isCreditCorrectQ15}
+                setIsCorrect={setIsCreditCorrectQ15}
+              />{" "}
+              credit card use
             </li>
           </ul>
         </div>
