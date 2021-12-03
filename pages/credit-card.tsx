@@ -562,6 +562,7 @@ export default function CreditCard(props) {
               backgroundColor="yellow"
               textColor="white"
               disabled={disabledMC}
+              onClick={submitDebitCardWordScore}
             />
           </div>
         </>
