@@ -20,7 +20,7 @@ type State = {
   studentProfile: StudentProfileState;
   bakersRackB: BakersRackBState;
   assignmentSession: assignmentSessionState;
-  warGameState: WarGameState;
+  warGame: WarGameState;
   evaluateExpressionHistory: EvaluateExpressionState[];
 };
 const diagnosticReducer: Reducer = diagnosticSlice.reducer;
