@@ -70,7 +70,7 @@ const EvaluateExpression = ({
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-center gap-8 p-8 bg-white shadow-lg rounded-xl">
+        <div className="flex flex-col justify-center gap-8 p-8 bg-white shadow-lg rounded-xl">
           {state.simpleCalculatorState ? (
             <SimpleCalculator
               value1={state.simpleCalculatorState?.value2}
@@ -88,11 +88,16 @@ const EvaluateExpression = ({
             />
           )}
         </div>
-        <div className="flex flex-col items-center justify-center gap-8 p-8 bg-white shadow-lg rounded-xl">
-          <p className="p-4">Message: {state.message}</p>
+        <div className="flex flex-col justify-center gap-4 p-8 bg-white shadow-lg rounded-xl">
+          <p className="font-bold">History</p>
+          <ul className="flex flex-col-reverse">
+            {stateHistory.map((it) => (
+              <li>{it.message}</li>
+            ))}
+          </ul>
         </div>
-        <div className="flex flex-col items-center justify-center gap-8 p-8 bg-white shadow-lg rounded-xl">
-          <p>Resources</p>
+        <div className="flex flex-col justify-center gap-4 p-8 bg-white shadow-lg rounded-xl">
+          <p className="font-bold">Resources</p>
           <a
             href="https://leetcode.com/problems/basic-calculator/"
             className="text-blue-500 underline"
@@ -105,6 +110,14 @@ const EvaluateExpression = ({
           >
             GeeksForGeeks Article
           </a>
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/081AqOuasw0"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
         </div>
       </div>
       <div className="h-screen col-span-1 p-8 bg-white shadow-lg sm:col-span-3 rounded-xl">

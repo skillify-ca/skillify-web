@@ -85,6 +85,7 @@ export const evaluateExpressionSlice: Slice = createSlice({
       state.currentIndex = 0;
       state.valueStack = [];
       state.operatorStack = [];
+      state.message = "";
       state.stage = Stage.POPULATING_STACK;
       state.simpleCalculatorState = null;
       return [state];
@@ -143,8 +144,7 @@ export const evaluateExpressionSelector = (state: RootState) =>
 
 const handleClearingStackStep = (state: EvaluateExpressionState) => {
   if (state.simpleCalculatorState) {
-    state.valueStack.push(state.simpleCalculatorState.answer);
-    state.simpleCalculatorState = null;
+    applySimpleCalculation(state);
   } else if (state.operatorStack.length !== 0) {
     popPopAndPop(state);
   }
@@ -156,8 +156,7 @@ const handleClosingBracket = (state: EvaluateExpressionState) => {
     state.currentIndex = state.currentIndex + 1;
   } else {
     if (state.simpleCalculatorState) {
-      state.valueStack.push(state.simpleCalculatorState.answer);
-      state.simpleCalculatorState = null;
+      applySimpleCalculation(state);
     } else {
       popPopAndPop(state);
     }
@@ -226,7 +225,7 @@ function popPopAndPop(state: EvaluateExpressionState) {
 function applySimpleCalculation(state: EvaluateExpressionState) {
   state.valueStack.push(state.simpleCalculatorState.answer);
   state.simpleCalculatorState = null;
-  state.message = "Apply simple calculation";
+  state.message = "Apply simple calculation and push";
 }
 function isComplete(state: EvaluateExpressionState) {
   return (

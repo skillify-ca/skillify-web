@@ -33,8 +33,8 @@ const SimpleCalculator = ({
   disabled = false,
 }: SimpleCalculatorProps) => {
   return (
-    <div>
-      <p>Simple Calculator</p>
+    <div className="flex flex-col gap-4">
+      <p className="font-bold">Simple Calculator</p>
       {disabled ? (
         <DisabledCalculator />
       ) : (
