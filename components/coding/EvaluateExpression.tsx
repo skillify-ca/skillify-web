@@ -10,23 +10,30 @@ import SimpleCalculator from "./SimpleCalculator";
 import Stack from "./Stack";
 
 export interface EvaluateExpressionProps {
-  state: EvaluateExpressionState;
+  stateHistory: EvaluateExpressionState[];
   onNextRequested: () => void;
+  onPreviousRequested: () => void;
   onResetRequested: () => void;
   onInputChangeRequested: (val: string) => void;
 }
 const EvaluateExpression = ({
-  state,
+  stateHistory,
   onNextRequested,
+  onPreviousRequested,
   onResetRequested,
   onInputChangeRequested,
 }: EvaluateExpressionProps) => {
   const handleNextClick = () => {
     onNextRequested();
   };
+  const handlePreviousClick = () => {
+    onPreviousRequested();
+  };
   const handleResetClick = () => {
     onResetRequested();
   };
+
+  const state = stateHistory[stateHistory.length - 1];
 
   return (
     <div className="grid items-center justify-center min-h-screen grid-cols-1 gap-8 p-8 sm:grid-cols-6">
@@ -43,6 +50,12 @@ const EvaluateExpression = ({
 
           <div className="flex gap-8">
             <Button
+              label="Previous"
+              backgroundColor="purple"
+              textColor="white"
+              onClick={handlePreviousClick}
+            />
+            <Button
               label="Next"
               backgroundColor="blue"
               textColor="white"
@@ -56,6 +69,7 @@ const EvaluateExpression = ({
             />
           </div>
         </div>
+
         <div className="flex flex-col items-center justify-center gap-8 p-8 bg-white shadow-lg rounded-xl">
           {state.simpleCalculatorState ? (
             <SimpleCalculator
@@ -76,6 +90,21 @@ const EvaluateExpression = ({
         </div>
         <div className="flex flex-col items-center justify-center gap-8 p-8 bg-white shadow-lg rounded-xl">
           <p className="p-4">Message: {state.message}</p>
+        </div>
+        <div className="flex flex-col items-center justify-center gap-8 p-8 bg-white shadow-lg rounded-xl">
+          <p>Resources</p>
+          <a
+            href="https://leetcode.com/problems/basic-calculator/"
+            className="text-blue-500 underline"
+          >
+            Leetcode #224
+          </a>
+          <a
+            href="https://www.geeksforgeeks.org/expression-evaluation/"
+            className="text-blue-500 underline"
+          >
+            GeeksForGeeks Article
+          </a>
         </div>
       </div>
       <div className="h-screen col-span-1 p-8 bg-white shadow-lg sm:col-span-3 rounded-xl">
