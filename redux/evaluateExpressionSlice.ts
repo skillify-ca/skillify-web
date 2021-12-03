@@ -13,14 +13,16 @@ export type EvaluateExpressionState = {
   operatorStack: string[];
   stage: Stage;
   simpleCalculatorState?: SimpleCalculatorProps;
+  message: string;
 };
 
 const initialState: EvaluateExpressionState = {
   currentIndex: 0,
-  inputExpression: "2+4*5",
+  inputExpression: "",
   valueStack: [],
   operatorStack: [],
   stage: Stage.POPULATING_STACK,
+  message: "",
 };
 
 export const precedenceMap = [
@@ -31,27 +33,38 @@ export const precedenceMap = [
   { operator: "(", precedence: 0 },
 ];
 
-const getPrecedence = (operator: string) => {
-  return precedenceMap.filter((it) => it.operator === operator).pop()
-    .precedence;
-};
-
 const getCurrentChar = (state: EvaluateExpressionState) => {
   const currentString = state.inputExpression.substring(state.currentIndex);
   const currentChar = currentString.charAt(0);
   return currentChar;
 };
 
-const applyOp = (operator: string, value1: number, value2: number) => {
-  if (operator === "+") {
-    return value1 + value2;
-  } else if (operator === "-") {
-    return value1 - value2;
-  } else if (operator === "*") {
-    return value1 * value2;
-  } else {
-    return value1 / value2;
+// A utility method to apply an
+// operator 'op' on operands 'a'
+// and 'b'. Return the result.
+const applyOp = (op: string, b: number, a: number) => {
+  switch (op) {
+    case "+":
+      return a + b;
+    case "-":
+      return a - b;
+    case "*":
+      return a * b;
+    case "/":
+      if (b !== 0) {
+        return a / b;
+      }
   }
+  return 0;
+};
+
+// Returns true if 'op2' has higher
+// or same precedence as 'op1',
+// otherwise returns false.
+const hasPrecedence = (op1: string, op2: string) => {
+  if (op2 == "(" || op2 == ")") return false;
+  if ((op1 == "*" || op1 == "/") && (op2 == "+" || op2 == "-")) return false;
+  else return true;
 };
 
 export const evaluateExpressionSlice: Slice = createSlice({
@@ -74,92 +87,22 @@ export const evaluateExpressionSlice: Slice = createSlice({
     onNext: (state: EvaluateExpressionState, action: PayloadAction) => {
       let currentChar = getCurrentChar(state);
       if (state.stage === Stage.CLEARING_STACK) {
-        if (state.simpleCalculatorState) {
-          state.valueStack.push(state.simpleCalculatorState.answer);
-          state.simpleCalculatorState = null;
-        } else if (state.operatorStack.length !== 0) {
-          const value1 = state.valueStack.pop();
-          const value2 = state.valueStack.pop();
-          const operator = state.operatorStack.pop();
-          state.simpleCalculatorState = {
-            value1,
-            value2,
-            operator,
-            answer: applyOp(operator, value1, value2),
-          };
-        }
+        handleClearingStackStep(state);
       } else if (state.currentIndex >= state.inputExpression.length) {
-        state.stage = Stage.CLEARING_STACK;
-        state.currentIndex = state.currentIndex + 1;
-      }
-      // is digit
-      else if (currentChar >= "0" && currentChar <= "9") {
-        let digitString = "";
-        while (
-          state.currentIndex < state.inputExpression.length &&
-          currentChar >= "0" &&
-          currentChar <= "9"
-        ) {
-          digitString = digitString.concat(currentChar);
-          state.currentIndex = state.currentIndex + 1;
-          currentChar = getCurrentChar(state);
-        }
-        state.valueStack.push(Number.parseInt(digitString));
+        handleLastCharacter(state);
+      } else if (currentChar >= "0" && currentChar <= "9") {
+        handleDigit(currentChar, state);
       } else if (currentChar === "(") {
-        state.operatorStack.push(currentChar);
-        state.currentIndex = state.currentIndex + 1;
+        handleOpenBracket(currentChar, state);
       } else if (currentChar === ")") {
-        if (state.operatorStack[state.operatorStack.length - 1] === "(") {
-          state.operatorStack.pop();
-          state.currentIndex = state.currentIndex + 1;
-        } else {
-          if (state.simpleCalculatorState) {
-            state.valueStack.push(state.simpleCalculatorState.answer);
-            state.simpleCalculatorState = null;
-          } else {
-            const value2 = state.valueStack.pop();
-            const value1 = state.valueStack.pop();
-            const operator = state.operatorStack.pop();
-            state.simpleCalculatorState = {
-              value1,
-              value2,
-              operator,
-              answer: applyOp(operator, value1, value2),
-            };
-          }
-        }
+        handleClosingBracket(state);
       } else if (
         currentChar == "+" ||
         currentChar == "-" ||
         currentChar == "*" ||
         currentChar == "/"
       ) {
-        if (
-          state.simpleCalculatorState ||
-          (state.operatorStack.length !== 0 &&
-            getPrecedence(currentChar) >=
-              getPrecedence(
-                state.operatorStack[state.operatorStack.length - 1]
-              ))
-        ) {
-          if (state.simpleCalculatorState) {
-            state.valueStack.push(state.simpleCalculatorState.answer);
-            state.simpleCalculatorState = null;
-          } else {
-            const value1 = state.valueStack.pop();
-            const value2 = state.valueStack.pop();
-            const operator = state.operatorStack.pop();
-            state.simpleCalculatorState = {
-              value1,
-              value2,
-              operator,
-              answer: applyOp(operator, value1, value2),
-            };
-          }
-        } else {
-          state.operatorStack.push(currentChar);
-          state.currentIndex = state.currentIndex + 1;
-        }
+        handleOperator(currentChar, state);
       } else {
         state.currentIndex = state.currentIndex + 1;
       }
@@ -173,3 +116,91 @@ export default evaluateExpressionSlice.reducer;
 
 export const evaluateExpressionSelector = (state: RootState) =>
   state.evaluateExpression;
+
+const handleClearingStackStep = (state: EvaluateExpressionState) => {
+  if (state.simpleCalculatorState) {
+    state.valueStack.push(state.simpleCalculatorState.answer);
+    state.simpleCalculatorState = null;
+  } else if (state.operatorStack.length !== 0) {
+    popPopAndPop(state);
+  }
+};
+
+const handleClosingBracket = (state: EvaluateExpressionState) => {
+  if (state.operatorStack[state.operatorStack.length - 1] === "(") {
+    state.operatorStack.pop();
+    state.currentIndex = state.currentIndex + 1;
+  } else {
+    if (state.simpleCalculatorState) {
+      state.valueStack.push(state.simpleCalculatorState.answer);
+      state.simpleCalculatorState = null;
+    } else {
+      popPopAndPop(state);
+    }
+  }
+};
+function handleDigit(currentChar: string, state: EvaluateExpressionState) {
+  let digitString = "";
+  while (
+    state.currentIndex < state.inputExpression.length &&
+    currentChar >= "0" &&
+    currentChar <= "9"
+  ) {
+    digitString = digitString.concat(currentChar);
+    state.currentIndex = state.currentIndex + 1;
+    currentChar = getCurrentChar(state);
+  }
+  state.valueStack.push(Number.parseInt(digitString));
+  state.message = "Push to value stack";
+}
+
+function handleOperator(currentChar: string, state: EvaluateExpressionState) {
+  if (
+    state.simpleCalculatorState ||
+    (state.operatorStack.length !== 0 &&
+      hasPrecedence(
+        currentChar,
+        state.operatorStack[state.operatorStack.length - 1]
+      ))
+  ) {
+    if (state.simpleCalculatorState) {
+      applySimpleCalculation(state);
+    } else {
+      popPopAndPop(state);
+    }
+  } else {
+    state.operatorStack.push(currentChar);
+    state.currentIndex = state.currentIndex + 1;
+    state.message = "Push to operator stack";
+  }
+}
+function handleLastCharacter(state: EvaluateExpressionState) {
+  state.stage = Stage.CLEARING_STACK;
+  state.currentIndex = state.currentIndex + 1;
+  state.message = "Enter clearing stack stage";
+}
+function handleOpenBracket(
+  currentChar: string,
+  state: EvaluateExpressionState
+) {
+  state.operatorStack.push(currentChar);
+  state.currentIndex = state.currentIndex + 1;
+  state.message = "Push to operator stack";
+}
+function popPopAndPop(state: EvaluateExpressionState) {
+  const value1 = state.valueStack.pop();
+  const value2 = state.valueStack.pop();
+  const operator = state.operatorStack.pop();
+  state.simpleCalculatorState = {
+    value1,
+    value2,
+    operator,
+    answer: applyOp(operator, value1, value2),
+  };
+  state.message = "Pop Pop and Pop";
+}
+function applySimpleCalculation(state: EvaluateExpressionState) {
+  state.valueStack.push(state.simpleCalculatorState.answer);
+  state.simpleCalculatorState = null;
+  state.message = "Apply simple calculation";
+}

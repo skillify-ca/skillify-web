@@ -1,7 +1,8 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
   EvaluateExpressionState,
   precedenceMap,
+  Stage,
 } from "../../redux/evaluateExpressionSlice";
 import { useAppDispatch } from "../../redux/store";
 import { Button } from "../ui/Button";
@@ -28,53 +29,84 @@ const EvaluateExpression = ({
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <p>Evaluate an expression string and return a number</p>
-      <div>
-        <input
-          value={state.inputExpression}
-          onChange={(e) => onInputChangeRequested(e.target.value)}
-        />
-      </div>
+    <div className="grid items-center justify-center min-h-screen grid-cols-1 gap-8 p-8 sm:grid-cols-6">
+      <div className="flex flex-col h-screen col-span-1 gap-8 sm:col-span-3">
+        <div className="flex flex-col items-center justify-center gap-8 p-8 bg-white shadow-lg rounded-xl">
+          <p>Evaluate an expression string and return a number</p>
+          <div>
+            <input
+              className="p-4 text-xl bg-gray-100"
+              value={state.inputExpression}
+              onChange={(e) => onInputChangeRequested(e.target.value)}
+            />
+          </div>
 
-      {JSON.stringify(state)}
-      <Button
-        label="Next"
-        backgroundColor="blue"
-        textColor="white"
-        onClick={handleNextClick}
-      />
-      <Button
-        label="Reset"
-        backgroundColor="green"
-        textColor="white"
-        onClick={handleResetClick}
-      />
-
-      <p className="text-2xl font-bold">
-        {state.inputExpression &&
-          state.inputExpression.substring(state.currentIndex)}
-      </p>
-      {state.simpleCalculatorState && (
-        <SimpleCalculator
-          value1={state.simpleCalculatorState?.value1}
-          value2={state.simpleCalculatorState?.value2}
-          operator={state.simpleCalculatorState?.operator}
-          answer={state.simpleCalculatorState?.answer}
-        />
-      )}
-      <div className="grid justify-center grid-cols-2 gap-16 place-items-end">
-        <div className="flex flex-col items-center">
-          <Stack
-            items={state.valueStack.map((it) => it.toString()).reverse()}
-          />
-          <p className="text-xl">Value Stack</p>
+          <div className="flex gap-8">
+            <Button
+              label="Next"
+              backgroundColor="blue"
+              textColor="white"
+              onClick={handleNextClick}
+            />
+            <Button
+              label="Reset"
+              backgroundColor="green"
+              textColor="white"
+              onClick={handleResetClick}
+            />
+          </div>
         </div>
-        <div className="flex flex-col items-center">
-          <Stack
-            items={state.operatorStack.map((it) => it.toString()).reverse()}
-          />
-          <p className="text-xl">Operator Stack</p>
+        <div className="flex flex-col items-center justify-center gap-8 p-8 bg-white shadow-lg rounded-xl">
+          {state.simpleCalculatorState ? (
+            <SimpleCalculator
+              value1={state.simpleCalculatorState?.value2}
+              value2={state.simpleCalculatorState?.value1}
+              operator={state.simpleCalculatorState?.operator}
+              answer={state.simpleCalculatorState?.answer}
+            />
+          ) : (
+            <SimpleCalculator
+              disabled={true}
+              value1={0}
+              value2={0}
+              operator={""}
+              answer={0}
+            />
+          )}
+        </div>
+        <div className="flex flex-col items-center justify-center gap-8 p-8 bg-white shadow-lg rounded-xl">
+          <p className="p-4">Message: {state.message}</p>
+        </div>
+      </div>
+      <div className="h-screen col-span-1 p-8 bg-white shadow-lg sm:col-span-3 rounded-xl">
+        <div className="flex flex-col items-center gap-8">
+          <p className="">
+            <span className="text-2xl font-bold">Stage: </span>
+            {state.stage === Stage.POPULATING_STACK && (
+              <span className="text-green-600">Processing String Input</span>
+            )}
+            {state.stage === Stage.CLEARING_STACK && (
+              <span className="text-blue-500">Clearing the Operator Stack</span>
+            )}
+          </p>
+          <p className="text-2xl font-bold">
+            {state.inputExpression &&
+              state.inputExpression.substring(state.currentIndex)}
+          </p>
+          <div className="grid justify-center grid-cols-2 gap-16 place-items-end">
+            <div className="flex flex-col items-center">
+              <Stack
+                items={state.valueStack.map((it) => it.toString()).reverse()}
+              />
+              <p className="text-xl">Value Stack</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <Stack
+                items={state.operatorStack.map((it) => it.toString()).reverse()}
+              />
+              <p className="text-xl">Operator Stack</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -82,93 +114,3 @@ const EvaluateExpression = ({
 };
 
 export default EvaluateExpression;
-
-/**
- * 
- * 
- * import java.util.Stack; 
-  
-class EvaluateString{
-    
-    public static int evaluate(String expression){
-        
-        char[] tokens = expression.toCharArray(); 
-  
-        Stack<Integer> values = new Stack<Integer>(); 
-  
-        Stack<Character> ops = new Stack<Character>(); 
-  
-        for (int i = 0; i < tokens.length; i++){ 
-             
-            if(tokens[i] == ' ') 
-                continue; 
-  
-            if(tokens[i] >= '0' && tokens[i] <= '9'){ 
-                StringBuffer sbuf = new StringBuffer(); 
-                
-                while(i < tokens.length && tokens[i] >= '0' && tokens[i] <= '9'){
-                    sbuf.append(tokens[i++]); 
-                }
-                
-                values.push(Integer.parseInt(sbuf.toString())); 
-            } 
-  
-            else if(tokens[i] == '(') 
-                ops.push(tokens[i]); 
-  
-            else if(tokens[i] == ')'){ 
-                while (ops.peek() != '('){ 
-                  values.push(applyOp(ops.pop(), values.pop(), values.pop())); 
-                }  
-                ops.pop(); 
-            } 
-  
-            else if(tokens[i] == '+' || tokens[i] == '-' || tokens[i] == '*' || tokens[i] == '/'){ 
-                
-                while (!ops.empty() && hasPrecedence(tokens[i], ops.peek())){ 
-                  values.push(applyOp(ops.pop(), values.pop(), values.pop()));
-                }  
-  
-                ops.push(tokens[i]); 
-            } 
-        } 
-  
-        while(!ops.empty()){ 
-            values.push(applyOp(ops.pop(), values.pop(), values.pop())); 
-        }    
-  
-        return values.pop(); 
-    } 
-  
-    public static boolean hasPrecedence(char op1, char op2){ 
-        if (op2 == '(' || op2 == ')') 
-            return false; 
-        if ((op1 == '*' || op1 == '/') && (op2 == '+' || op2 == '-')) 
-            return false; 
-        else
-            return true; 
-    } 
-  
-    public static int applyOp(char op, int b, int a){ 
-        switch (op){ 
-            case '+': 
-                return a + b; 
-            case '-': 
-                return a - b; 
-            case '*': 
-                return a * b; 
-            case '/': 
-                if (b == 0) 
-                    throw new
-                    UnsupportedOperationException("Cannot divide by zero"); 
-                return a / b; 
-        } 
-        return 0; 
-    } 
-  
-    public static void main(String[] args){
-        
-        System.out.println(EvaluateString.evaluate("100 * ( 2 + 12 )")); 
-        
-    } 
- */
