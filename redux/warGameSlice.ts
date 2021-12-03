@@ -110,6 +110,12 @@ export const warGameSlice: Slice = createSlice({
         state.playerTwoScoring = state.playerTwoScoring + 1;
       }
     },
+
+    resetRound: (state: WarGameState, action: PayloadAction<string>) => {
+      const resetAction = action.payload as String;
+      Object.assign(state, initialState);
+    },
+    //Add functions before this },
   },
 });
 
@@ -118,6 +124,7 @@ export const {
   startRound,
   finishRound,
   increasePlayerScore,
+  resetRound,
 } = warGameSlice.actions;
 
 export const warGameSelector = (state: RootState) => state.warGame;
