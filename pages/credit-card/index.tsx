@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import CardColorProblem from "../components/credit-card/CardColorProblem";
-import MultipleChoiceWordProblem from "../components/credit-card/MultipleChoiceWordProblem";
-import CreditCardWordProblem from "../components/credit-card/CreditCardWordProblem";
-import CreditDebitInfo from "../components/credit-card/CreditDebitInfo";
-import DebitCardWordProblem from "../components/credit-card/DebitCardWordProblem";
-import { Button } from "../components/ui/Button";
-import CreditCardProgressTracker from "../components/credit-card/CreditCardProgressTracker";
+import CardColorProblem from "../../components/credit-card/CardColorProblem";
+import MultipleChoiceWordProblem from "../../components/credit-card/MultipleChoiceWordProblem";
+import CreditCardWordProblem from "../../components/credit-card/CreditCardWordProblem";
+import CreditDebitInfo from "../../components/credit-card/CreditDebitInfo";
+import DebitCardWordProblem from "../../components/credit-card/DebitCardWordProblem";
+import { Button } from "../../components/ui/Button";
+import CreditCardProgressTracker from "../../components/credit-card/CreditCardProgressTracker";
 
 export default function CreditCard() {
   enum STAGE {
