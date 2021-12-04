@@ -10,6 +10,10 @@ import {
   assignmentSessionSlice,
   assignmentSessionState,
 } from "./assignmentSession";
+import {
+  evaluateExpressionSlice,
+  EvaluateExpressionState,
+} from "./evaluateExpressionSlice";
 
 type State = {
   diagnostic: DiagnosticState;
@@ -17,12 +21,14 @@ type State = {
   bakersRackB: BakersRackBState;
   assignmentSession: assignmentSessionState;
   warGame: WarGameState;
+  evaluateExpression: EvaluateExpressionState;
 };
 const diagnosticReducer: Reducer = diagnosticSlice.reducer;
 const studentProfileReducer = studentProfileSlice.reducer;
 const bakersRackBReducer = bakersRackBSlice.reducer;
 const assignmentSessionReducer = assignmentSessionSlice.reducer;
 const warGameReducer = warGameSlice.reducer;
+const evaluateExpressionReducer = evaluateExpressionSlice.reducer;
 
 const rootReducer = combineReducers({
   diagnostic: diagnosticReducer,
@@ -30,6 +36,7 @@ const rootReducer = combineReducers({
   bakersBRack: bakersRackBReducer,
   assignmentSession: assignmentSessionReducer,
   warGame: warGameReducer,
+  evaluateExpression: evaluateExpressionReducer,
 });
 
 export type RootState = State;
