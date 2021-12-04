@@ -1,7 +1,10 @@
 import { Story, Meta } from "@storybook/react";
 import React from "react";
 import { Provider } from "react-redux";
-import { Stage } from "../../redux/evaluateExpressionSlice";
+import {
+  EvaluateExpressionState,
+  Stage,
+} from "../../redux/evaluateExpressionSlice";
 import store from "../../redux/store";
 
 import EvaluateExpression, {
@@ -14,17 +17,20 @@ export default {
   argTypes: {},
 } as Meta;
 
-const state = {
-  currentIndex: 0,
-  inputExpression: "2+4",
-  valueStack: [],
-  operatorStack: [],
-  stage: Stage.POPULATING_STACK,
-};
+const state: EvaluateExpressionState[] = [
+  {
+    currentIndex: 0,
+    inputExpression: "2+4",
+    valueStack: [],
+    operatorStack: [],
+    stage: Stage.POPULATING_STACK,
+    message: "Step",
+  },
+];
 
 const Template: Story<EvaluateExpressionProps> = (args) => (
   <Provider store={store}>
-    <EvaluateExpression state={state} {...args} />
+    <EvaluateExpression stateHistory={state} {...args} />
   </Provider>
 );
 
