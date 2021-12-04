@@ -16,14 +16,16 @@ export type EvaluateExpressionState = {
   message: string;
 };
 
-const initialState: EvaluateExpressionState = {
-  currentIndex: 0,
-  inputExpression: "",
-  valueStack: [],
-  operatorStack: [],
-  stage: Stage.POPULATING_STACK,
-  message: "",
-};
+const initialState: EvaluateExpressionState[] = [
+  {
+    currentIndex: 0,
+    inputExpression: "",
+    valueStack: [],
+    operatorStack: [],
+    stage: Stage.POPULATING_STACK,
+    message: "",
+  },
+];
 
 export const precedenceMap = [
   { operator: "+", precedence: 2 },
@@ -72,55 +74,80 @@ export const evaluateExpressionSlice: Slice = createSlice({
   initialState,
   reducers: {
     setInput: (
-      state: EvaluateExpressionState,
+      stateHistory: EvaluateExpressionState[],
       action: PayloadAction<string>
     ) => {
+      const state = stateHistory[stateHistory.length - 1];
       state.inputExpression = action.payload;
     },
-    reset: (state: EvaluateExpressionState, action: PayloadAction<string>) => {
+    reset: (stateHistory: EvaluateExpressionState[], _: PayloadAction) => {
+      const state = { ...stateHistory[stateHistory.length - 1] };
       state.currentIndex = 0;
       state.valueStack = [];
       state.operatorStack = [];
+      state.message = "";
       state.stage = Stage.POPULATING_STACK;
       state.simpleCalculatorState = null;
+      return [state];
     },
-    onNext: (state: EvaluateExpressionState, action: PayloadAction) => {
-      let currentChar = getCurrentChar(state);
-      if (state.stage === Stage.CLEARING_STACK) {
-        handleClearingStackStep(state);
-      } else if (state.currentIndex >= state.inputExpression.length) {
-        handleLastCharacter(state);
-      } else if (currentChar >= "0" && currentChar <= "9") {
-        handleDigit(currentChar, state);
-      } else if (currentChar === "(") {
-        handleOpenBracket(currentChar, state);
-      } else if (currentChar === ")") {
-        handleClosingBracket(state);
-      } else if (
-        currentChar == "+" ||
-        currentChar == "-" ||
-        currentChar == "*" ||
-        currentChar == "/"
-      ) {
-        handleOperator(currentChar, state);
-      } else {
-        state.currentIndex = state.currentIndex + 1;
+    onPrevious: (
+      stateHistory: EvaluateExpressionState[],
+      action: PayloadAction
+    ) => {
+      if (stateHistory[stateHistory.length - 1].currentIndex !== 0) {
+        const newHistory = [...stateHistory];
+        newHistory.pop();
+        return newHistory;
       }
+    },
+    onNext: (
+      stateHistory: EvaluateExpressionState[],
+      action: PayloadAction
+    ) => {
+      const prevState = stateHistory[stateHistory.length - 1];
+      const state = JSON.parse(JSON.stringify(prevState));
+      let currentChar = getCurrentChar(state);
+      if (isComplete(prevState)) {
+        return;
+      } else if (state.stage === Stage.CLEARING_STACK) {
+        handleClearingStackStep(state);
+      } else {
+        if (currentChar >= "0" && currentChar <= "9") {
+          handleDigit(currentChar, state);
+        } else if (currentChar === "(") {
+          handleOpenBracket(currentChar, state);
+        } else if (currentChar === ")") {
+          handleClosingBracket(state);
+        } else if (
+          currentChar == "+" ||
+          currentChar == "-" ||
+          currentChar == "*" ||
+          currentChar == "/"
+        ) {
+          handleOperator(currentChar, state);
+        } else {
+          state.currentIndex = state.currentIndex + 1;
+        }
+        if (state.currentIndex >= state.inputExpression.length) {
+          handleLastCharacter(state);
+        }
+      }
+      stateHistory.push(state);
     },
   },
 });
 
-export const { setInput, onNext, reset } = evaluateExpressionSlice.actions;
+export const { setInput, onNext, onPrevious, reset } =
+  evaluateExpressionSlice.actions;
 
 export default evaluateExpressionSlice.reducer;
 
 export const evaluateExpressionSelector = (state: RootState) =>
-  state.evaluateExpression;
+  state.evaluateExpressionHistory;
 
 const handleClearingStackStep = (state: EvaluateExpressionState) => {
   if (state.simpleCalculatorState) {
-    state.valueStack.push(state.simpleCalculatorState.answer);
-    state.simpleCalculatorState = null;
+    applySimpleCalculation(state);
   } else if (state.operatorStack.length !== 0) {
     popPopAndPop(state);
   }
@@ -132,8 +159,7 @@ const handleClosingBracket = (state: EvaluateExpressionState) => {
     state.currentIndex = state.currentIndex + 1;
   } else {
     if (state.simpleCalculatorState) {
-      state.valueStack.push(state.simpleCalculatorState.answer);
-      state.simpleCalculatorState = null;
+      applySimpleCalculation(state);
     } else {
       popPopAndPop(state);
     }
@@ -202,5 +228,12 @@ function popPopAndPop(state: EvaluateExpressionState) {
 function applySimpleCalculation(state: EvaluateExpressionState) {
   state.valueStack.push(state.simpleCalculatorState.answer);
   state.simpleCalculatorState = null;
-  state.message = "Apply simple calculation";
+  state.message = "Apply simple calculation and push";
+}
+export function isComplete(state: EvaluateExpressionState) {
+  return (
+    state.operatorStack.length === 0 &&
+    state.currentIndex >= state.inputExpression.length &&
+    state.valueStack.length === 1
+  );
 }

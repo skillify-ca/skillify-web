@@ -21,7 +21,7 @@ type State = {
   bakersRackB: BakersRackBState;
   assignmentSession: assignmentSessionState;
   warGame: WarGameState;
-  evaluateExpression: EvaluateExpressionState;
+  evaluateExpressionHistory: EvaluateExpressionState[];
 };
 const diagnosticReducer: Reducer = diagnosticSlice.reducer;
 const studentProfileReducer = studentProfileSlice.reducer;
@@ -36,7 +36,7 @@ const rootReducer = combineReducers({
   bakersBRack: bakersRackBReducer,
   assignmentSession: assignmentSessionReducer,
   warGame: warGameReducer,
-  evaluateExpression: evaluateExpressionReducer,
+  evaluateExpressionHistory: evaluateExpressionReducer,
 });
 
 export type RootState = State;

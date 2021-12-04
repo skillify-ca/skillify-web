@@ -5,14 +5,16 @@ import reducer, {
   Stage,
 } from "./evaluateExpressionSlice";
 
-const initialState: EvaluateExpressionState = {
-  currentIndex: 0,
-  inputExpression: "",
-  operatorStack: [],
-  stage: Stage.POPULATING_STACK,
-  valueStack: [],
-  message: "",
-};
+const initialState: EvaluateExpressionState[] = [
+  {
+    currentIndex: 0,
+    inputExpression: "",
+    operatorStack: [],
+    stage: Stage.POPULATING_STACK,
+    valueStack: [],
+    message: "",
+  },
+];
 
 test("should return the initial state", () => {
   expect(reducer(undefined, { type: "no action" })).toEqual(initialState);
@@ -23,9 +25,9 @@ const evaluate = (expression: string) => {
   state = reducer(initialState, setInput(expression));
 
   while (
-    state.currentIndex < expression.length ||
-    state.operatorStack.length > 0 ||
-    state.simpleCalculatorState
+    state[state.length - 1].currentIndex < expression.length ||
+    state[state.length - 1].operatorStack.length > 0 ||
+    state[state.length - 1].simpleCalculatorState
   ) {
     state = reducer(state, onNext);
   }
@@ -33,13 +35,19 @@ const evaluate = (expression: string) => {
 };
 
 test("test (1+(4+5+2)-3)+(6+8)", () => {
-  expect(evaluate("(1+(4+5+2)-3)+(6+8)").valueStack[0]).toEqual(23);
+  const history = evaluate("(1+(4+5+2)-3)+(6+8)");
+  const last = history[history.length - 1];
+  expect(last.valueStack[0]).toEqual(23);
 });
 
 test("test 1 + 1", () => {
-  expect(evaluate("1 + 1").valueStack[0]).toEqual(2);
+  const history = evaluate("(1+1)");
+  const last = history[history.length - 1];
+  expect(last.valueStack[0]).toEqual(2);
 });
 
 test("test 2 - 1 +2", () => {
-  expect(evaluate("2 - 1+2").valueStack[0]).toEqual(3);
+  const history = evaluate("(2-1+2)");
+  const last = history[history.length - 1];
+  expect(last.valueStack[0]).toEqual(3);
 });
