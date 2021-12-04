@@ -6,6 +6,7 @@ import CreditDebitInfo from "../../components/credit-card/CreditDebitInfo";
 import DebitCardWordProblem from "../../components/credit-card/DebitCardWordProblem";
 import { Button } from "../../components/ui/Button";
 import CreditCardProgressTracker from "../../components/credit-card/CreditCardProgressTracker";
+import CreditCardFinalResults from "../../components/credit-card/CreditCardFinalResults";
 
 export default function CreditCard() {
   enum STAGE {
@@ -14,17 +15,18 @@ export default function CreditCard() {
     DebitCardWordProblem,
     MultipleChoiceWordProblem,
     CardColorProblem,
+    FinalResults,
   }
 
   const [stage, setStage] = useState(STAGE.CreditDebitInfo);
   const [scoreCounter, setScoreCounter] = useState(0);
 
-  // Submit Btn
+  // Submit
   const [disabledInfo, setDisabledInfo] = useState(false);
   const [disabledCreditCard, setDisabledCreditCard] = useState(false);
   const [disabledDebitCard, setDisabledDebitCard] = useState(false);
   const [disabledMC, setDisabledMC] = useState(false);
-  const [disabledColorCard, setDisabledColorCard] = useState(false);
+  const [disabledCardColor, setDisabledCardColor] = useState(false);
 
   // CreditDebitInfo
   const [infoQ1, setInfoQ1] = useState("");
@@ -319,7 +321,7 @@ export default function CreditCard() {
     multiA4 == 1 ? setIsMultiCorrectQ4(true) : setIsMultiCorrectQ4(false);
   };
 
-  const submitColorCardProblem = () => {
+  const submitCardColorProblem = () => {
     const questionArray = [
       cardA1,
       cardA2,
@@ -334,11 +336,11 @@ export default function CreditCard() {
     ];
     let scores = questionArray.reduce((total, score) => total + score);
     setScoreCounter(scoreCounter + scores);
-    validateColorCardProblem();
-    setDisabledColorCard(true);
+    validateCardColorProblem();
+    setDisabledCardColor(true);
   };
 
-  const validateColorCardProblem = () => {
+  const validateCardColorProblem = () => {
     cardA1 == 1 ? setIsCardCorrectQ1(true) : setIsCardCorrectQ1(false);
     cardA2 == 1 ? setIsCardCorrectQ2(true) : setIsCardCorrectQ2(false);
     cardA3 == 1 ? setIsCardCorrectQ3(true) : setIsCardCorrectQ3(false);
@@ -358,10 +360,12 @@ export default function CreditCard() {
   };
 
   const nextStage = () => {
-    if (stage < STAGE.CardColorProblem) {
+    if (stage < STAGE.FinalResults) {
       setStage(stage + 1);
     }
   };
+
+  const startOver = () => window.location.reload();
 
   const getComponent = (stage: STAGE) => {
     if (stage == STAGE.CreditDebitInfo) {
@@ -754,12 +758,14 @@ export default function CreditCard() {
               label="submit"
               backgroundColor="yellow"
               textColor="white"
-              disabled={disabledColorCard}
-              onClick={submitColorCardProblem}
+              disabled={disabledCardColor}
+              onClick={submitCardColorProblem}
             />
           </div>
         </>
       );
+    } else if (stage == STAGE.FinalResults) {
+      return <CreditCardFinalResults name="Big boy" score={scoreCounter} />;
     }
   };
 
@@ -774,11 +780,21 @@ export default function CreditCard() {
       {stage == STAGE.CreditDebitInfo ? (
         <div className="flex flex-col min-w-full p-12">
           <Button
-            backgroundColor="purple"
+            backgroundColor="green"
             textColor="white"
             label="Next"
             onClick={nextStage}
           />
+        </div>
+      ) : stage == STAGE.FinalResults ? (
+        <div className="flex flex-row space-x-8 justify-center p-12">
+          <Button
+            backgroundColor="purple"
+            textColor="white"
+            label="Start Over"
+            onClick={startOver}
+          />
+          <Button backgroundColor="yellow" textColor="white" label="Submit" />
         </div>
       ) : (
         <div className="flex flex-row space-x-8 justify-center p-12">
