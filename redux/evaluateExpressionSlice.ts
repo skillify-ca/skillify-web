@@ -111,23 +111,26 @@ export const evaluateExpressionSlice: Slice = createSlice({
         return;
       } else if (state.stage === Stage.CLEARING_STACK) {
         handleClearingStackStep(state);
-      } else if (state.currentIndex >= state.inputExpression.length) {
-        handleLastCharacter(state);
-      } else if (currentChar >= "0" && currentChar <= "9") {
-        handleDigit(currentChar, state);
-      } else if (currentChar === "(") {
-        handleOpenBracket(currentChar, state);
-      } else if (currentChar === ")") {
-        handleClosingBracket(state);
-      } else if (
-        currentChar == "+" ||
-        currentChar == "-" ||
-        currentChar == "*" ||
-        currentChar == "/"
-      ) {
-        handleOperator(currentChar, state);
       } else {
-        state.currentIndex = state.currentIndex + 1;
+        if (currentChar >= "0" && currentChar <= "9") {
+          handleDigit(currentChar, state);
+        } else if (currentChar === "(") {
+          handleOpenBracket(currentChar, state);
+        } else if (currentChar === ")") {
+          handleClosingBracket(state);
+        } else if (
+          currentChar == "+" ||
+          currentChar == "-" ||
+          currentChar == "*" ||
+          currentChar == "/"
+        ) {
+          handleOperator(currentChar, state);
+        } else {
+          state.currentIndex = state.currentIndex + 1;
+        }
+        if (state.currentIndex >= state.inputExpression.length) {
+          handleLastCharacter(state);
+        }
       }
       stateHistory.push(state);
     },
@@ -227,7 +230,7 @@ function applySimpleCalculation(state: EvaluateExpressionState) {
   state.simpleCalculatorState = null;
   state.message = "Apply simple calculation and push";
 }
-function isComplete(state: EvaluateExpressionState) {
+export function isComplete(state: EvaluateExpressionState) {
   return (
     state.operatorStack.length === 0 &&
     state.currentIndex >= state.inputExpression.length &&
