@@ -27,8 +27,37 @@ const initialState = {
   playerTwoScoring: 0,
 };
 
+const drawInitialState = {
+  cardListPlayerOne: [
+    { question: "2^2 + 16", answer: 0 },
+    { question: "2*(-4) + 10", answer: 1 },
+    { question: "1*(-5) + 14", answer: 2 },
+    { question: "1*(-3) + 14", answer: 3 },
+    { question: "1*(-6) + 14", answer: 5 },
+    { question: "1*(-7) + 14", answer: 5 },
+  ],
+  cardListPlayerTwo: [
+    { question: "2^1 + 12", answer: 6 },
+    { question: "2^3 + 13", answer: 7 },
+    { question: "2*12 + (-6)", answer: 8 },
+    { question: "1*(-2) + 14", answer: 9 },
+    { question: "1*(-8) + 14", answer: 4 },
+    { question: "1*(-9) + 14", answer: 11 },
+  ],
+  drawListPlayerOne: [],
+  drawListPlayerTwo: [],
+  currentRoundIndex: 0,
+  playerOneReady: false,
+  playerTwoReady: false,
+  playerOneWon: false,
+  playerTwoWon: false,
+  gameOver: false,
+  playerOneScoring: 0,
+  playerTwoScoring: 0,
+};
+
 test("should return the initial state", () => {
-  expect(reducer(undefined, { type: "no action" })).toEqual(initialState);
+  expect(reducer(initialState, { type: "no action" })).toEqual(initialState);
 });
 
 test("test player one ready action", () => {
@@ -284,7 +313,7 @@ test("test reset state", () => {
   const eleventhState = reducer(tenthState, startRound(null));
   const twelvethState = reducer(eleventhState, finishRound(1));
   const thirteenthState = reducer(twelvethState, finishRound(1));
-  expect(reducer(thirteenthState, resetRound(null))).toEqual({
+  expect(reducer(thirteenthState, resetRound(initialState))).toEqual({
     cardListPlayerOne: [
       { answer: 0, question: "2^2 + 16" },
       { answer: 1, question: "" },
@@ -303,6 +332,40 @@ test("test reset state", () => {
     playerOneCurrentCard: null,
     playerTwoCurrentCard: null,
     gameOver: false,
+    playerOneScoring: 0,
+    playerTwoScoring: 0,
+  });
+});
+
+test("test if there is a draw", () => {
+  const firstState = reducer(drawInitialState, setPlayerReady(1));
+  const secondState = reducer(firstState, setPlayerReady(2));
+  const thirdState = reducer(secondState, startRound(null));
+  expect(reducer(thirdState, finishRound(0))).toEqual({
+    cardListPlayerOne: [
+      { question: "1*(-7) + 14", answer: 5 },
+      { question: "2^2 + 16", answer: 0 },
+      { question: "2*(-4) + 10", answer: 1 },
+      { question: "1*(-5) + 14", answer: 2 },
+      { question: "1*(-3) + 14", answer: 3 },
+      { question: "2^1 + 12", answer: 6 },
+      { question: "2^3 + 13", answer: 7 },
+      { question: "2*12 + (-6)", answer: 8 },
+      { question: "1*(-2) + 14", answer: 9 },
+      { question: "1*(-6) + 14", answer: 5 },
+      { question: "1*(-8) + 14", answer: 4 },
+    ],
+    cardListPlayerTwo: [{ question: "1*(-9) + 14", answer: 11 }],
+    currentRoundIndex: 0,
+    playerOneReady: false,
+    playerTwoReady: false,
+    playerOneWon: true,
+    playerTwoWon: false,
+    gameOver: false,
+    playerOneCurrentCard: null,
+    playerTwoCurrentCard: null,
+    drawListPlayerOne: [],
+    drawListPlayerTwo: [],
     playerOneScoring: 0,
     playerTwoScoring: 0,
   });
