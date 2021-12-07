@@ -130,7 +130,6 @@ export const warGameSlice: Slice = createSlice({
 
     resetRound: (state: WarGameState, action: PayloadAction<WarGameState>) => {
       const resetState = action.payload as WarGameState;
-      console.log("RESET");
 
       Object.assign(state, resetState);
     },
