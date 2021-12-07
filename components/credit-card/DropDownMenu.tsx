@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export interface DropDownMenuProps {
   words: string[];
@@ -21,8 +21,6 @@ export const DropDownMenu = ({
   isCorrect,
   setIsCorrect,
 }: DropDownMenuProps) => {
-
-
   const onChange = (e) => {
     setValue(e.target.value);
     if (answer === e.target.value) {
@@ -34,8 +32,16 @@ export const DropDownMenu = ({
   };
 
   return (
-    <div className={`${isCorrect ? "border-green-500" : "border-gray-500"} inline-block border`}>
-      <select className={`${isCorrect ? "text-green-500" : "text--black"}`} value={value} onChange={onChange}>
+    <div
+      className={`${
+        isCorrect ? "border-green-500" : "border-gray-500"
+      } inline-block border`}
+    >
+      <select
+        className={`${isCorrect ? "text-green-500" : "text--black"}`}
+        value={value}
+        onChange={onChange}
+      >
         <option>...</option>
         {words
           .map((word) => ({ word, sort: Math.random() }))
