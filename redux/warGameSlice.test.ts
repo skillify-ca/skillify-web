@@ -3,6 +3,7 @@ import reducer, {
   startRound,
   finishRound,
   increasePlayerScore,
+  resetRound,
 } from "./warGameSlice";
 
 const initialState = {
@@ -264,6 +265,44 @@ test("test if game is over", () => {
     gameOver: true,
     playerOneCurrentCard: null,
     playerTwoCurrentCard: null,
+    playerOneScoring: 0,
+    playerTwoScoring: 0,
+  });
+});
+
+test("test reset state", () => {
+  const firstState = reducer(initialState, setPlayerReady(1));
+  const secondState = reducer(firstState, setPlayerReady(2));
+  const thirdState = reducer(secondState, startRound(null));
+  const fourthState = reducer(thirdState, finishRound(1));
+  const fifthState = reducer(fourthState, setPlayerReady(1));
+  const sixthState = reducer(fifthState, setPlayerReady(2));
+  const seventhState = reducer(sixthState, startRound(null));
+  const eighthState = reducer(seventhState, finishRound(1));
+  const ninthState = reducer(eighthState, setPlayerReady(1));
+  const tenthState = reducer(ninthState, setPlayerReady(2));
+  const eleventhState = reducer(tenthState, startRound(null));
+  const twelvethState = reducer(eleventhState, finishRound(1));
+  const thirteenthState = reducer(twelvethState, finishRound(1));
+  expect(reducer(thirteenthState, resetRound(null))).toEqual({
+    cardListPlayerOne: [
+      { answer: 0, question: "2^2 + 16" },
+      { answer: 1, question: "" },
+      { answer: 2, question: "" },
+    ],
+    cardListPlayerTwo: [
+      { answer: 3, question: "2^1 + 12" },
+      { answer: 4, question: "" },
+      { answer: 5, question: "" },
+    ],
+    currentRoundIndex: 0,
+    playerOneReady: false,
+    playerTwoReady: false,
+    playerOneWon: false,
+    playerTwoWon: false,
+    playerOneCurrentCard: null,
+    playerTwoCurrentCard: null,
+    gameOver: false,
     playerOneScoring: 0,
     playerTwoScoring: 0,
   });
