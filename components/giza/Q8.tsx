@@ -8,11 +8,25 @@ const Q8 = (displayQuestion, nextQuestion, isWrong) => {
 
   const answer = "PINKYELLOWBLUEPURPLEGREEN";
 
-  const onGuessChanged = (currentGuess: string) => {
-    const newGuess = currentGuess;
+  const imgArray = [
+    "/images/giza/Triangle1.png",
+    "/images/giza/Triangle2.png",
+    "/images/giza/Triangle3.png",
+    "/images/giza/Triangle4.png",
+    "/images/giza/Triangle5.png",
+  ];
+
+  const imgArrayValue = ["BLUE", "GREEN", "PURPLE", "YELLOW", "PINK"];
+
+  const passwordCreation = (passwordPiece: string) => {
+    const stringtoAdd = passwordPiece;
+    const newGuess = guessString + stringtoAdd;
     setGuessString(newGuess);
   };
 
+  const clear = () => {
+    setGuessString("");
+  };
   const onSubmit = () => {
     const guess: GuessData = {
       guess: guessString,
@@ -29,11 +43,15 @@ const Q8 = (displayQuestion, nextQuestion, isWrong) => {
   return (
     <React.Fragment>
       <div className="flex flex-col gap-8 items-center">
-        <div id="quizImage">
-          <img
-            className="animate-fadeIn"
-            src="/images/giza/MathQuestionImage.png"
-          ></img>
+        <div id="quizImages" className="grid grid-cols-5 gap-4 mt-4">
+          {imgArray.map((imgPath, index) => (
+            <img
+              className="animate-fadeIn"
+              src={imgPath}
+              alt={imgArrayValue[index]}
+              onClick={(e) => passwordCreation(imgArrayValue[index])}
+            ></img>
+          ))}
         </div>
         <p className="text-2xl text-center">{displayQuestion}</p>
         <div className="text-center">
@@ -42,15 +60,21 @@ const Q8 = (displayQuestion, nextQuestion, isWrong) => {
             className="p-4 text-lg"
             placeholder="Enter Code here"
             value={guessString}
-            onChange={(e) => onGuessChanged(e.target.value)}
+            disabled={true}
           />
         </div>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-row items-center gap-4">
           <Button
             label="Submit"
             backgroundColor="blue"
             textColor="white"
             onClick={onSubmit}
+          />
+          <Button
+            label="Clear"
+            backgroundColor="blue"
+            textColor="white"
+            onClick={clear}
           />
         </div>
       </div>
