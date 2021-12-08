@@ -81,8 +81,9 @@ export default function djacob(props) {
     console.log(guess);
   };
 
-  const [insertGizaStudentData, insertGizaStudentDataMutation] =
-    useMutation(ADD_GIZA_DATA);
+  const [insertGizaStudentData, insertGizaStudentDataMutation] = useMutation(
+    ADD_GIZA_DATA
+  );
 
   const insertGizaStudentDataFunction = (
     studentName: string,
