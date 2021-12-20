@@ -7,6 +7,7 @@ import {
 import { useAppDispatch } from "../../redux/store";
 import { Button } from "../ui/Button";
 import Algorithm from "./Algorithm";
+import Resources from "./Resources";
 import SimpleCalculator from "./SimpleCalculator";
 import Stack from "./Stack";
 

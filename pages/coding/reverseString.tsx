@@ -50,7 +50,7 @@ export default function ReverseString(props) {
   };
 
   const isComplete = () => {
-    return head >= tail;
+    return head >= tail && s.length > 0;
   };
 
   const [s, setStr] = useState([]);
