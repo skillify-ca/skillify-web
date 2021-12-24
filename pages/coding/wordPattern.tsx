@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import EvaluateExpression from "../../components/coding/EvaluateExpression";
 import HashMap from "../../components/coding/HashMap";
 import Resources from "../../components/coding/Resources";
+import StringIteration from "../../components/coding/ArrayIteration";
 import { Button } from "../../components/ui/Button";
 import {
   evaluateExpressionSelector,
@@ -15,6 +16,7 @@ import {
 } from "../../redux/evaluateExpressionSlice";
 
 import { useAppDispatch } from "../../redux/store";
+import ArrayIteration from "../../components/coding/ArrayIteration";
 
 export default function WordPattern(props) {
   const onResetRequested = () => {
@@ -22,31 +24,54 @@ export default function WordPattern(props) {
     setDictionary(new Map())
     setResult(undefined)
     setIsComplete(false)
+    setMessage("")
   };
-  const words = () => { return str.split(" ") }
+  const words = () => {
+    if (str.length === 0) return [];
+    return str.split(" ")
+  }
 
   const onAdvanceRequested = () => {
-    if (index === pattern.length) {
+    if (index === pattern.length - 1) {
       setIsComplete(true);
       setResult(true);
+      setMessage("You got to the end of the string, so the pattern match this list of words. Congrats!")
     } else {
       setIndex(index + 1)
-      const c = dictionary.get(pattern.charAt(index))
-      const word = dictionary.get(words()[index])
-
-      if (c !== word) {
-        setIsComplete(true)
-        setResult(false)
-      } else {
-        if (c === undefined) {
-          dictionary.set(pattern.charAt(index), index)
-        }
-        if (word === undefined) {
-          dictionary.set(words()[index], index)
-        }
-      }
     }
   };
+
+  const onCheckDictionaryRequested = () => {
+    const c = dictionary.get(pattern.charAt(index))
+    const word = dictionary.get(words()[index])
+
+    if (c !== word) {
+      if (c === undefined) {
+        setMessage("The word is already in the dictionary with a different character value. The pattern does not match.")
+      }
+      if (word === undefined) {
+        setMessage("The character is already in the dictionary with a different word value. The pattern does not match.")
+      }
+    } else {
+      if (c === undefined && word === undefined) {
+        setMessage("Dictionary doesn't contain current character or word. It is safe to add both to the dictionary.")
+      } else {
+        setMessage("The character and word are mapped to each other already in the dictionary. It is safe to continue.")
+      }
+    }
+  }
+
+  const onSetDictionaryRequested = () => {
+    const c = dictionary.get(pattern.charAt(index))
+    const word = dictionary.get(words()[index])
+    setMessage("")
+    if (c === undefined && word === undefined) {
+      const newDictionary = new Map(dictionary);
+      newDictionary.set(pattern.charAt(index), index)
+      newDictionary.set(words()[index], index)
+      setDictionary(newDictionary)
+    }
+  }
 
   const onClearRequested = () => {
     setPattern("");
@@ -69,6 +94,7 @@ export default function WordPattern(props) {
   const [index, setIndex] = useState(0);
   const [str, setStr] = useState("");
   const [pattern, setPattern] = useState("");
+  const [message, setMessage] = useState("");
   const [dictionary, setDictionary] = useState(new Map<string, number>());
 
 
@@ -79,8 +105,8 @@ export default function WordPattern(props) {
           290. Word Pattern
         </h1>
         <p className="w-full p-4 text-center bg-blue-300">
-          Given a pattern and a string s, find if s follows the same pattern. 
-          Here follow means a full match, such that there is a bijection between 
+          Given a pattern and a string s, find if s follows the same pattern.
+          Here follow means a full match, such that there is a bijection between
           a letter in pattern and a non-empty word in s.
         </p>
       </div>
@@ -95,16 +121,16 @@ export default function WordPattern(props) {
               Leetcode #290
             </a>
             <a
-              href="https://stackoverflow.com/questions/228038/best-way-to-reverse-a-string"
+              href="https://cheonhyangzhang.gitbooks.io/leetcode-solutions/content/290-word-pattern.html"
               className="text-blue-500 underline"
             >
-              StackOverflow Thread
+              Blog Post
             </a>
             <iframe
               width="110"
               height="200"
               className="w-full"
-              src="https://www.youtube.com/embed/NA--2JiDaeQ"
+              src="https://www.youtube.com/embed/dnlB0lvz5LY"
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -131,20 +157,45 @@ export default function WordPattern(props) {
               onChange={(e) => onStrInputChangeRequested(e.target.value)}
             />
           </div>
-          <div className="flex flex-col gap-4 p-4 bg-white shadow-lg rounded-xl">
-          <p className="font-bold">Interactive</p>
-          <HashMap data={dictionary} title="Dictionary" />
-          {isComplete && (
-                  <p className="text-green-600">
-                    Finished! The pattern does {result ? "" : " not "} match the words!
-                  </p>
-                )}
+          <div className="flex flex-col space-y-4 p-4 bg-white shadow-lg rounded-xl">
+            <p className="font-bold ">Interactive</p>
+            <div className="flex flex-col space-y-2 bg-white">
+              <p className="font-bold text-sm">Pattern</p>
+              <ArrayIteration data={pattern.split("")} currentIndex={index} />
+            </div>
+            <div className="flex flex-col space-y-2 bg-white">
+              <p className="font-bold text-sm">Words</p>
+              <ArrayIteration data={words()} currentIndex={index} />
+            </div>
+            <div className="flex flex-col space-y-2 bg-white">
+              <p className="font-bold text-sm">Dictionary</p>
+
+              <HashMap data={dictionary} />
+            </div>
+            <div className="flex flex-col space-y-2 bg-white">
+              <p className="font-bold text-sm">Message</p>
+              <p className="font-bold text-sm">{message}</p>
+
+            </div>
           </div>
 
           <div className="flex flex-col gap-4 p-4 bg-white shadow-lg rounded-xl">
             <p className="font-bold">Controls</p>
             <div className="grid grid-cols-2 gap-4">
-          
+              <Button
+                disabled={isComplete}
+                label="Check Dictionary"
+                backgroundColor="blue"
+                textColor="white"
+                onClick={onCheckDictionaryRequested}
+              />
+              <Button
+                disabled={isComplete}
+                label="Set Dictionary"
+                backgroundColor="blue"
+                textColor="white"
+                onClick={onSetDictionaryRequested}
+              />
               <Button
                 disabled={isComplete}
                 label="Advance"
@@ -152,6 +203,7 @@ export default function WordPattern(props) {
                 textColor="white"
                 onClick={onAdvanceRequested}
               />
+
               <Button
                 label="Reset"
                 backgroundColor="blue"
@@ -166,7 +218,7 @@ export default function WordPattern(props) {
               />
             </div>
           </div>
-        
+
         </div>
       </div>
     </>
