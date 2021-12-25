@@ -1,7 +1,7 @@
 import {
   EvaluateExpressionState,
   isComplete,
-} from "../../redux/evaluateExpressionSlice";
+} from "../../../redux/evaluateExpressionSlice";
 
 interface AlgorithmProps {
   state: EvaluateExpressionState;

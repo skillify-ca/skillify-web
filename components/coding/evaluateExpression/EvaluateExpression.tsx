@@ -9,7 +9,7 @@ import { Button } from "../ui/Button";
 import Algorithm from "./Algorithm";
 import Resources from "./Resources";
 import SimpleCalculator from "./SimpleCalculator";
-import Stack from "./Stack";
+import Stack from "./dataStructures/Stack";
 
 export interface EvaluateExpressionProps {
   stateHistory: EvaluateExpressionState[];
