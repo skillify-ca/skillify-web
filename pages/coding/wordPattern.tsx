@@ -1,22 +1,7 @@
-import { words } from "lodash";
-import Link from "next/link";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import EvaluateExpression from "../../components/coding/EvaluateExpression";
-import HashMap from "../../components/coding/HashMap";
-import Resources from "../../components/coding/Resources";
-import StringIteration from "../../components/coding/ArrayIteration";
+import ArrayIteration from "../../components/coding/dataStructures/ArrayIteration";
+import HashMap from "../../components/coding/dataStructures/HashMap";
 import { Button } from "../../components/ui/Button";
-import {
-  evaluateExpressionSelector,
-  onNext,
-  onPrevious,
-  reset,
-  setInput,
-} from "../../redux/evaluateExpressionSlice";
-
-import { useAppDispatch } from "../../redux/store";
-import ArrayIteration from "../../components/coding/ArrayIteration";
 
 export default function WordPattern(props) {
   const onResetRequested = () => {
@@ -138,8 +123,7 @@ export default function WordPattern(props) {
           </div>
           <div className="flex flex-col gap-4 p-4 bg-white shadow-lg rounded-xl">
             <p className="font-bold">Algorithm</p>
-            Use a head and a tail pointer to traverse the string. Swap the head
-            and tail characters each time. Stop when the head passes the tail.
+            Iterate through the string and build up a dictionary of key-value pairs. Save both the current character and the current word in the dictionary along with the current index.
           </div>
           <div className="flex flex-col gap-2 p-4 bg-white shadow-lg rounded-xl">
             <h2 className="font-bold">Pattern Input</h2>

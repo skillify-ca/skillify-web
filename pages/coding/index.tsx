@@ -1,5 +1,6 @@
 import React from "react";
 import HeroHome from "../../components/coding/landing/HeroHome";
+import Navbar from "../../components/Navbar";
 
 export default function Coding(props) {
   const pages = [
@@ -10,7 +11,7 @@ export default function Coding(props) {
 
   return (
     <div className=" bg-white grid grid-cols-1">
-      <div className="bg-blue-600 p-4 w-full text-center font-bold text-white">CS Champ</div>
+      <Navbar />
       <div className="p-4 flex flex-col w-full space-y-4">
         <HeroHome />
         <p className="text-center font-bold text-xl">Interactive Lessons</p>

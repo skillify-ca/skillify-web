@@ -36,13 +36,13 @@ const LandingPagev2 = () => {
     {
       name: "Interactive Lessons",
       description:
-        "Use our videos, puzzles and lessons to introduce new math concepts to your child.",
+        "Use our videos, puzzles and lessons to introduce new math concepts.",
       icon: AnnotationIcon,
     },
     {
       name: "Weekly Progress Reports",
       description:
-        "Stay in the know with weekly reports sent straight to your inbox to your inbox.",
+        "Stay in the know with weekly reports sent straight to your inbox.",
       icon: LightningBoltIcon,
     },
   ];
@@ -53,14 +53,13 @@ const LandingPagev2 = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:text-center">
             <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">
-              K-12 Math Activities and Quizzes
+              Activities and Quizzes
             </h2>
             <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              Motivate your child to become a self-learner
+              Motivate yourself to become a self-learner
             </p>
             <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-              Help your child become confident with numbers with content aligned
-              to the Canadian curriculum
+              Become confident working with numbers and code
             </p>
           </div>
 

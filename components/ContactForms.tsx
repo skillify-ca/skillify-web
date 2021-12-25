@@ -53,51 +53,18 @@ const ContactForms = (props) => {
           Contact Us
         </h2>
       </div>
-      <div className="p-4 flex flex-col items-center justify-center gap-8">
-        <div className="md:grid md:grid-cols-2 gap-8">
-          <div className="bg-white rounded-lg w-full p-4">
-            <div className="flex flex-col gap-4">
-              <p className="font-bold">Are You An Educator?</p>
+      <div className="flex flex-col items-center justify-center space-y-8">
+          <div className="bg-white rounded-lg w-full">
+            <div className="flex flex-col space-y-4">
+              <p className="font-bold">Want to Learn How To Code?</p>
               <p className="">
-                We are always looking for passionate teachers to partner with.
-                If you are a math educator we would love to digitize your
-                resources for free!
-              </p>
-              <p className="">
-                Please reach out if you want us to convert your resources into
-                digital mini games.
-              </p>
-              <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
-                <input
-                  id="teacher"
-                  type="text"
-                  value={teacherInput}
-                  onChange={(e) => setTeacherInput(e.target.value)}
-                  autoComplete="off"
-                  className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
-                  placeholder="Email"
-                />
-                <Button
-                  disabled={!teacherButtonEnabled}
-                  backgroundColor="blue"
-                  textColor="white"
-                  label="Learn More"
-                  onClick={notifyTeacherSignup}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="bg-white rounded-lg w-full p-4">
-            <div className="flex flex-col gap-4">
-              <p className="font-bold">Are You Looking To Learn How To Code?</p>
-              <p className="">
-                Gain real world experience by building educational resources for
-                teachers. Become a hirable front-end developer in just four
+                Gain real world experience by building real-world projects for
+                the web. Become a hirable front-end developer in just four
                 months.
               </p>
               <p className="">
-                Enter your email below to learn more about our course and
-                program! No experience necessary!
+                Enter your email below to learn more about our courses and
+                programs! No experience necessary!
               </p>
               <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
                 <input
@@ -119,7 +86,6 @@ const ContactForms = (props) => {
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   );

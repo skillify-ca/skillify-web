@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import EvaluateExpression from "../../components/coding/EvaluateExpression";
+import EvaluateExpression from "../../components/coding/evaluateExpression/EvaluateExpression";
 import {
   evaluateExpressionSelector,
   onNext,

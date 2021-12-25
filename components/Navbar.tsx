@@ -86,22 +86,28 @@ export default function Navbar() {
                   src="/images/logo.png"
                   alt="Workflow"
                 />
-                <span className="text-white pl-2">Math Champ</span>
+                <span className="text-white pl-2">Champ School</span>
               </div>
             </a>
             <div className="hidden lg:block lg:ml-6">
               <div className="flex space-x-4">
                 <a
-                  href="/practice"
+                  href="/math"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Student Portal
+                  Math
                 </a>
                 <a
-                  href="/resources"
+                  href="/coding"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  For Educators
+                  Coding
+                </a>
+                <a
+                  href="/finance"
+                  className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Finance
                 </a>
 
                 <a
@@ -198,16 +204,22 @@ export default function Navbar() {
       <div className={`${active ? "block" : "hidden"} lg:hidden`}>
         <div className="px-2 pt-2 pb-3 space-y-1">
           <a
-            href="/practice"
+            href="/math"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Student Portal
+            Math
           </a>
           <a
-            href="/resources"
+            href="/coding"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            For Educators
+            Coding
+          </a>
+          <a
+            href="/finance"
+            className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Finance
           </a>
           <a
             href="/about"
