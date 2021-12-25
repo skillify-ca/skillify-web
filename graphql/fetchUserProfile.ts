@@ -15,6 +15,7 @@ query fetchUserProfile($userId: String = "") {
     emoji
     skill {
       title
+      grade
     }
   }
 }

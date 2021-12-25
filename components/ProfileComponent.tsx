@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { EMOJI_MASTERY, getEmoji } from "../pages/api/skill";
+import { EMOJI_MASTERY, getEmoji, grades } from "../pages/api/skill";
 import { FETCH_USER_PROFILE } from "../graphql/fetchUserProfile";
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
@@ -31,7 +31,7 @@ const ProfileComponent = () => {
       );
       return Math.round(
         ((unlockedBadges.length) * 100) /
-          (data.user_badges.length)
+        (data.user_badges.length)
       );
     } else {
       return 0;
@@ -107,14 +107,22 @@ const ProfileComponent = () => {
             </div>
           )}
           {stage == Stage.SKILLS && (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 p-8">
-              {data &&
-                data.user_skills.map((skill) => (
-                  <div className="flex gap-8 bg-white rounded-xl shadow-xl p-12 justify-center items-center">
-                    <p className="text-xl">{skill.skill.title}</p>
-                    <p className="text-3xl">{getEmoji(skill.emoji)}</p>
-                  </div>
-                ))}
+            <div className="grid grid-cols-1 gap-8 p-8">
+              {data && grades.map(grade => <div>
+                <p className="text-xl font-bold">{grade.title}</p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 p-8">
+
+                  {
+                    data.user_skills.filter(it => it.skill.grade == grade.ordinal).map((skill) => (
+                      <div className="flex flex-col gap-8 bg-white rounded-xl shadow-xl p-8 text-center justify-center items-center">
+                        <p className="w-full  text-xl">{skill.skill.title}</p>
+                        <p className="text-3xl">{getEmoji(skill.emoji)}</p>
+                      </div>
+                    ))}
+                </div>
+
+              </div>)}
+
             </div>
           )}
         </div>

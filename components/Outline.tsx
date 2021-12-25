@@ -74,9 +74,6 @@ export default function Outline() {
 
   const DEBUG_MODE = false;
 
-  const getGrade = (title: string) => {
-    return grades.find(it => it.title === title)
-  }
   const onGradeChange = (newGrade: string) => {
     dispatch(setStudentProfile(newGrade));
   };
@@ -109,6 +106,7 @@ export default function Outline() {
 
           <p className="">
             {" "}
+            Start at grade 1 and unlock as many badges as you can. Get to 100% to 
             Practice skills to increase your math confidence and ace the quizzes
             to unlock badges!{" "}
           </p>
