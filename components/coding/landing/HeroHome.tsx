@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Modal from './Modal';
 
 function HeroHome() {
 
@@ -68,14 +67,6 @@ function HeroHome() {
                                 <span className="ml-3">Watch the full video (2 min)</span>
                             </button>
                         </div>
-
-                        {/* Modal */}
-                        <Modal id="modal" ariaLabel="modal-headline" show={videoModalOpen} handleClose={() => setVideoModalOpen(false)}>
-                            <div className="relative pb-9/16">
-
-                                <iframe className='w-full' width="860" height="515" src="https://www.youtube.com/embed/pXkIIzihEYM" title="YouTube video player" frameBorder={"0"} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                            </div>
-                        </Modal>
 
                     </div>
 
