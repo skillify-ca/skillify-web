@@ -67,12 +67,12 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
           ""
         )}
       </div>
-      <div className="flex flex-row gap-32">
+      <div className="flex flex-row space-x-32">
         <NumberLiteral num={parseInt(parse(question).first)} />
 
         <NumberLiteral num={parseInt(parse(question).second)} />
       </div>
-      <div className="p-4 flex flex-col gap-4">
+      <div className="p-4 flex flex-col space-y-4">
         <Input
           guess={guess}
           setGuess={setGuess}

@@ -3,11 +3,11 @@ import { Grade } from "../pages/api/skill";
 import { RootState } from "./rootReducer";
 
 export interface StudentProfileState {
-  grade: string;
+  grade: Grade;
 }
 
 const initialState: StudentProfileState = {
-  grade: Grade.GRADE_1,
+  grade: {title: "Grade 1", ordinal: 1},
 };
 
 export const studentProfileSlice: Slice = createSlice({

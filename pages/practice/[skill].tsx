@@ -225,9 +225,9 @@ const PracticeQuiz = ({ skill }) => {
   };
 
   return (
-    <div className="bg-blue-100 heropattern-architect-blue-50 h-md">
-      <div className="flex flex-col justify-center items-center pt-8 gap-8">
-        <div className="flex flex-row w-96 p-4 justify-between bg-gray-400 shadow-lg rounded-lg ">
+    <div className="bg-blue-100 heropattern-architect-blue-50 min-h-screen">
+      <div className="flex flex-col justify-center items-center space-y-8">
+        <div className="grid grid-cols-2 w-full p-4 bg-gray-100 shadow-lg">
           <p className="font-semibold">
             Question: {index + 1} / {questionData.length}
           </p>

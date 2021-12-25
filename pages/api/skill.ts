@@ -12,13 +12,18 @@ export enum Unit {
   FINANCE = "finance",
 }
 
-export enum Grade {
-  GRADE_1 = "Grade 1",
-  GRADE_2 = "Grade 2",
-  GRADE_3 = "Grade 3",
-  GRADE_4 = "Grade 4",
-  GRADE_5 = "Grade 5",
-  GRADE_6 = "Grade 6",
+export const grades: Grade[] = [
+  {title: "Grade 1", ordinal: 1},
+  {title: "Grade 2", ordinal: 2},
+  {title: "Grade 3", ordinal: 3},
+  {title: "Grade 4", ordinal: 4},
+  {title: "Grade 5", ordinal: 5},
+  {title: "Grade 6", ordinal: 6},
+]
+
+export type Grade = {
+  title: string;
+  ordinal: number;
 }
 
 export type SkillData = {

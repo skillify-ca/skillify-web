@@ -24,19 +24,14 @@ const ProfileComponent = () => {
   const progress = () => {
     if (
       !loading &&
-      data.user_badges.length > 0 &&
-      data.user_skills.length > 0
+      data.user_badges.length > 0
     ) {
       const unlockedBadges = data.user_badges.filter(
         (it) => it.locked == false
       );
-      const masteredSkills = data.user_skills.filter(
-        (it) => it.emoji > EMOJI_MASTERY
-      );
-
       return Math.round(
-        ((unlockedBadges.length + masteredSkills.length) * 100) /
-          (data.user_badges.length + data.user_skills.length)
+        ((unlockedBadges.length) * 100) /
+          (data.user_badges.length)
       );
     } else {
       return 0;
@@ -45,14 +40,14 @@ const ProfileComponent = () => {
 
   return (
     <div className="overflow-auto bg-scroll h-screen bg-blue-50">
-      <div className="flex flex-col gap-8 p-8">
+      <div className="flex flex-col space-y-8 p-8">
         <div className="col-span-2 p-8 bg-white shadow-lg rounded-3xl">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex flex-col items-center">
               <p className="text-xl">{user && user.displayName}</p>
               <p className="text-sm">{user && user.email}</p>
             </div>
-            <div className="flex flex-col gap-4 m-4">
+            <div className="flex flex-col space-y-4 m-4">
               <p className="text-sm">Progress</p>
               <p className="flex justify-center items-center bg-purple-100 shadow-inner ring-blue-400 text-center rounded-full ring-8 w-16 h-16">
                 {progress()}%

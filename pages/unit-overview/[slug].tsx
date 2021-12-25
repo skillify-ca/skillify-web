@@ -17,6 +17,8 @@ import Head from "next/head";
 import { useAuth } from "../../lib/authContext";
 import { FETCH_SKILLS_FOR_UNIT } from "../../graphql/fetchSkillsForUnit";
 import Image from "next/image";
+import { getUserEmojiValue } from "../api/practiceTracker/emojiHelper";
+import SkillCard from "../../components/stories/SkillCard";
 
 const Box = dynamic(() => import("../../components/stories/Box"));
 
@@ -57,7 +59,7 @@ const UnitOverviewPage = ({ slug, skillData }) => {
 
   const skillsForCurrentGrade = (skillData: SkillDataResponse) =>
     skillData.skills.filter(
-      (skill) => skill.grade == gradeNum(studentGrade.grade)
+      (skill) => skill.grade == gradeNum(studentGrade.grade.title)
     );
 
   type UserSkillData = {
@@ -80,10 +82,10 @@ const UnitOverviewPage = ({ slug, skillData }) => {
             .filter(
               (skill) =>
                 skill.unit == slug &&
-                skill.grade == gradeNum(studentGrade.grade)
+                skill.grade == gradeNum(studentGrade.grade.title)
             )
             .map((skill) => skill.id),
-        badgeId: getBadgeId(slug, gradeNum(studentGrade.grade)),
+        badgeId: getBadgeId(slug, gradeNum(studentGrade.grade.title)),
       },
     }
   );
@@ -102,21 +104,12 @@ const UnitOverviewPage = ({ slug, skillData }) => {
     return maxAccuracy;
   };
 
-  const getUserEmojiValue = (skillId: number) => {
-    const userSkillResults = data.user_skills.filter(
-      (it) => it.skill_id == skillId
-    );
-    if (userSkillResults.length > 0) {
-      return userSkillResults[0].emoji;
-    } else {
-      return undefined;
-    }
-  };
+
 
   const isQuizLocked = () => {
     if (!loading && data && data.user_skills.length !== 0) {
       const unmasteredSkills = skillsForCurrentGrade(skillData)
-        .map((skill) => getUserEmojiValue(skill.id))
+        .map((skill) => getUserEmojiValue(data, skill.id))
         .filter((emojiVal) => !emojiVal || emojiVal <= EMOJI_MASTERY);
 
       return unmasteredSkills.length > 0;
@@ -127,8 +120,8 @@ const UnitOverviewPage = ({ slug, skillData }) => {
 
   const quizComponent = (
     <div>
-      <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-xl p-8 gap-8">
-        <div className="flex flex-col gap-4 justify-center md:w-2/3">
+      <div className="grid grid-cols-12 bg-white shadow-lg rounded-xl p-8 space-y-8">
+        <div className="col-span-8 flex flex-col space-y-4 justify-center">
           {isQuizLocked() && (
             <p className="text-4xl font-bold text-blue-900">QUIZ LOCKED</p>
           )}
@@ -150,10 +143,10 @@ const UnitOverviewPage = ({ slug, skillData }) => {
             </p>
           )}
           {!isQuizLocked() && (
-            <div className="flex gap-8">
+            <div className="flex space-y-8">
               <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
                 <Link
-                  href={`/quiz/${slug}?level=` + gradeNum(studentGrade.grade)}
+                  href={`/quiz/${slug}?level=` + gradeNum(studentGrade.grade.title)}
                 >
                   <Button
                     backgroundColor="blue"
@@ -174,15 +167,15 @@ const UnitOverviewPage = ({ slug, skillData }) => {
               >
                 {!loading && data && getMaxAccuracy(data.user_quizzes)}
                 {data &&
-                !loading &&
-                getMaxAccuracy(data.user_quizzes) != "Not Attempted"
+                  !loading &&
+                  getMaxAccuracy(data.user_quizzes) != "Not Attempted"
                   ? "%"
                   : ""}
               </p>
             </div>
           )}
         </div>
-        <div className="flex flex-col gap-8 justify-center items-center bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 sm:w-1/2 rounded-2xl h-72">
+        <div className="col-span-4 m-4 flex flex-col space-y-8 justify-center items-center bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 rounded-2xl h-72">
           {isQuizLocked() && <img src="/images/lock.png" className="w-28" />}
           {!isQuizLocked() &&
             !loading &&
@@ -199,25 +192,25 @@ const UnitOverviewPage = ({ slug, skillData }) => {
               ) : (
                 <>
                   {/* TODO fix importing react three fiber into this project */}
-                  {/* <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
-                    <Preload all />
-                    <group>
+                  {/* <Canvas camera={{ position: [10, 2, -10], fov: 60 }}> */}
+                    {/* <Preload all /> */}
+                    {/* <group> 
                       <Box
                         url={
                           badge.badge.image
                             ? badge.badge.image
                             : "/images/lock.png"
                         }
-                      />
-                      <OrbitControls
+                      /> 
+                       <OrbitControls
                         hasEventListener={false}
                         removeEventListener={() => {}}
                         addEventListener={() => {}}
                         dispatchEvent={() => {}}
                       />
-                      <Stars />
-                    </group>
-                  </Canvas> */}
+                      <Stars /> 
+                     </group> */}
+                  {/* </Canvas> */}
                   <img src={badge.badge.image} className="w-32" />
                   <p className="text-md -mt-4 flex items-center">
                     {"   "}
@@ -239,16 +232,16 @@ const UnitOverviewPage = ({ slug, skillData }) => {
         </title>
       </Head>
       <Navbar />
-      <div className="p-4 flex flex-col gap-8">
+      <div className="p-4 flex flex-col space-y-8">
         <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-4">
           <p className="text-2xl text-white">
             {slug && slug.charAt(0).toUpperCase() + slug.slice(1)} Overview
           </p>
         </div>
 
-        <div className="grid items-stretch grid-cols-1 sm:grid-cols-2 bg-white shadow-lg rounded-xl gap-8">
-          <div className="gap-8 p-4 sm:p-8">
-            <div className="flex flex-col gap-4">
+        <div className="grid items-stretch grid-cols-1 sm:grid-cols-2 bg-white shadow-lg rounded-xl space-y-8">
+          <div className="space-y-8 p-4 sm:p-8">
+            <div className="flex flex-col space-y-4">
               <p className="text-4xl font-bold text-blue-900 capitalize">
                 {" "}
                 PRACTICE TIME
@@ -266,53 +259,10 @@ const UnitOverviewPage = ({ slug, skillData }) => {
             src="/images/practiceAdd.png"
           />
         </div>
-        <div className="col-span-2 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 sm:p-4 gap-8">
+        <div className="col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {skillData &&
             skillsForCurrentGrade(skillData).map((skill) => (
-              <Link href={skill.published ? `/practice/${skill.id}` : ""}>
-                <div
-                  className={`${
-                    !skill.published
-                      ? "opacity-50"
-                      : " cursor-pointer transform transition duration-200 hover:bg-blue-200"
-                  } bg-white flex flex-col items-center rounded-xl shadow-lg`}
-                >
-                  <img
-                    className="w-full h-32 object-cover rounded-t-xl"
-                    src={
-                      !skill.published
-                        ? "/images/skills/lock.png"
-                        : `https://placeimg.com/640/480/tech`
-                    }
-                  />
-
-                  <p className="text-center p-4 h-16 flex items-center justify-center">
-                    {`I can ${skill.description}`}
-                  </p>
-                  {skill.published && (
-                    <p className="text-4xl mb-4">
-                      {!loading &&
-                        data &&
-                        getEmoji(getUserEmojiValue(skill.id))}{" "}
-                    </p>
-                  )}
-
-                  {skill.published && (
-                    <div className="flex flex-col md:flex-row justify-center p-4 gap-4">
-                      <Button
-                        label="Learn"
-                        backgroundColor="green"
-                        textColor="white"
-                      />
-                      <Button
-                        label="Practice"
-                        backgroundColor="blue"
-                        textColor="white"
-                      />
-                    </div>
-                  )}
-                </div>
-              </Link>
+              <SkillCard loading={loading} data={data} skill={skill} />
             ))}
         </div>
         <div>{quizComponent}</div>
