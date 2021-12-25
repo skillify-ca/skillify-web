@@ -1,18 +1,6 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import EvaluateExpression from "../../components/coding/EvaluateExpression";
-import Resources from "../../components/coding/Resources";
 import { Button } from "../../components/ui/Button";
-import {
-  evaluateExpressionSelector,
-  onNext,
-  onPrevious,
-  reset,
-  setInput,
-} from "../../redux/evaluateExpressionSlice";
-
-import { useAppDispatch } from "../../redux/store";
 
 export default function ReverseString(props) {
   const onResetRequested = () => {
