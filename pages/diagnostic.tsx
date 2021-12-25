@@ -35,7 +35,7 @@ const Diagnostic = () => {
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState(1);
   const [isShaking, setIsShaking] = useState(false);
-  const [grade, setGrade] = useState(Grade.GRADE_3);
+  const [grade, setGrade] = useState<string>( "Grade 1");
   const [stage, setStage] = useState(STAGE.CREATE);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -46,10 +46,10 @@ const Diagnostic = () => {
   const [answeredQuestions, setAnsweredQuestions] = useState<Question[]>([]);
   const [juniorDiagnosticQuestions, setJuniorDiagnosticQuestions] = useState<Question[]>([]);
   const [currentJuniorQuestion, setCurrentJuniorQuestion] = useState<number>(0)
-  const [gradeLevel, setGradeLevel] = useState(Grade.GRADE_4)
+  const [gradeLevel, setGradeLevel] = useState<String>("Grade 4")
 
   const getGradeRange: () => string = () => {
-    return [Grade.GRADE_1, Grade.GRADE_2, Grade.GRADE_3].includes(grade)
+    return ["Grade 1", "Grade 2", "Grade 3"].includes(grade)
       ? "Primary"
       : "Junior";
   };
@@ -85,11 +85,11 @@ const Diagnostic = () => {
   // looks at gradeLevel and returns questions
   const getGradeList = (gradeLevel) => {
 
-    if (gradeLevel == Grade.GRADE_4) {
+    if (gradeLevel == "Grade 4") {
       return getFourthGradeQuestion()
-    } else if (gradeLevel == Grade.GRADE_5) {
+    } else if (gradeLevel == "Grade 5") {
       return getFifthGradeQuestion()
-    } else if (gradeLevel == Grade.GRADE_6) {
+    } else if (gradeLevel == "Grade 6") {
       return getSixthGradeQuestion()
     }
   };
@@ -139,14 +139,14 @@ const Diagnostic = () => {
         if (shouldMoveToNextUnit()) {
           setJuniorDiagnosticQuestions(getFourthGradeQuestion())
         } else if (guessData.isCorrect) {
-          if (gradeLevel == Grade.GRADE_4) {
-            const fifthGradeList = getGradeList(Grade.GRADE_5)
+          if (gradeLevel == "Grade 4") {
+            const fifthGradeList = getGradeList("Grade 5")
             setJuniorDiagnosticQuestions(fifthGradeList)
-            setGradeLevel(Grade.GRADE_5)
-          } else if (gradeLevel == Grade.GRADE_5) {
-            const sixthGradeList = getGradeList(Grade.GRADE_6)
+            setGradeLevel("Grade 5")
+          } else if (gradeLevel == "Grade 5") {
+            const sixthGradeList = getGradeList("Grade 6")
             setJuniorDiagnosticQuestions(sixthGradeList)
-            setGradeLevel(Grade.GRADE_6)
+            setGradeLevel("Grade 6")
           }
         } else if (!guessData.isCorrect && juniorDiagnosticQuestions == getFifthGradeQuestion()) {
           setJuniorDiagnosticQuestions(getFourthGradeQuestion())
@@ -184,7 +184,7 @@ const Diagnostic = () => {
     }
   };
 
-  const createDiagnostic = (grade: Grade) => {
+  const createDiagnostic = (grade: string) => {
     setGrade(grade);
     setStage(STAGE.TEST);
   };

@@ -11,7 +11,7 @@ type DiagnosticTestFormProps = {
   lastName: string;
   setLastName: (name: string) => void;
   grade: string;
-  setGrade: (gradeRange: Grade) => void;
+  setGrade: (gradeRange: string) => void;
 };
 
 const DiagnosticTestForm = ({

@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 import { OrbitControls } from "@react-three/drei";
 import { useAuth } from "../../lib/authContext";
 
-const Box = dynamic(() => import("../../components/stories/Box"));
+// const Box = dynamic(() => import("../../components/stories/Box"));
 
 const BadgeDetailsPage = ({ slug }) => {
   const { user } = useAuth();
@@ -66,7 +66,8 @@ const BadgeDetailsPage = ({ slug }) => {
               {badgeDetail.title}{" "}
             </p>
             <div className="bg-blue-900 h-64">
-              <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
+              <img src={badgeDetail.image} className="transition-all transform hover:animate-shake w-full h-full object-contain p-4" />
+              {/* <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
                 <Preload all />
                 <group>
                   <Box
@@ -80,7 +81,7 @@ const BadgeDetailsPage = ({ slug }) => {
                   />
                   <Stars />
                 </group>
-              </Canvas>
+              </Canvas> */}
             </div>
             <p className="text-center mt-4"> {badgeDetail.description} </p>
             <div className="flex flex-row">
