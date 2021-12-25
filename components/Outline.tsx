@@ -77,11 +77,8 @@ export default function Outline() {
   const getGrade = (title: string) => {
     return grades.find(it => it.title === title)
   }
-  const onGradeChange = (newGrade) => {
-    const updatedState: StudentProfileState = {
-      grade: { title: newGrade, ordinal: getGrade(newGrade).ordinal },
-    };
-    dispatch(setStudentProfile(updatedState));
+  const onGradeChange = (newGrade: string) => {
+    dispatch(setStudentProfile(newGrade));
   };
   const studentGrade = useSelector(studentProfileSelector);
 

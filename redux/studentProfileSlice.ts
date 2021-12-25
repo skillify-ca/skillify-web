@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
-import { Grade } from "../pages/api/skill";
+import { Grade, grades } from "../pages/api/skill";
 import { RootState } from "./rootReducer";
 
 export interface StudentProfileState {
@@ -14,14 +14,17 @@ export const studentProfileSlice: Slice = createSlice({
   name: "studentProfile",
   initialState,
   reducers: {
-    setStudentProfile: (state, action: PayloadAction<StudentProfileState>) => {
+    setStudentProfile: (state, action: PayloadAction<string>) => {
       if (action.type == "studentProfile/setStudentProfile") {
-        const newStudentProfileState = action.payload as StudentProfileState;
-        state.grade = newStudentProfileState.grade;
+        const newGradeTitle = action.payload as string;
+        state.grade = getGrade(newGradeTitle)};
       }
     },
-  },
 });
+
+const getGrade = (title: string) => {
+  return grades.find(it => it.title === title)
+}
 
 export const { setStudentProfile } = studentProfileSlice.actions;
 
