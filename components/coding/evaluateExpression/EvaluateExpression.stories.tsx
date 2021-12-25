@@ -1,11 +1,9 @@
 import { Story, Meta } from "@storybook/react";
 import React from "react";
 import { Provider } from "react-redux";
-import {
-  EvaluateExpressionState,
-  Stage,
-} from "../../redux/evaluateExpressionSlice";
-import store from "../../redux/store";
+import { EvaluateExpressionState, Stage } from "../../../redux/evaluateExpressionSlice";
+import store from "../../../redux/store";
+
 
 import EvaluateExpression, {
   EvaluateExpressionProps,
