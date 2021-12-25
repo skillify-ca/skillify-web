@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function HeroHome() {
+function HeroHome({ title, description }) {
 
     const [videoModalOpen, setVideoModalOpen] = useState(false);
 
@@ -31,14 +31,14 @@ function HeroHome() {
 
                     {/* Section header */}
                     <div className="text-center pb-12 md:pb-16">
-                        <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4" data-aos="zoom-y-out">Learn to <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">code</span></h1>
+                        <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4" data-aos="zoom-y-out">Learn <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-300">{title}</span></h1>
                         <div className="max-w-3xl mx-auto">
-                            <p className="text-xl text-gray-600 mb-8" data-aos="zoom-y-out" data-aos-delay="150">Our resources and courses will get you hired in tech.</p>
+                            <p className="text-xl text-gray-600 mb-8" data-aos="zoom-y-out" data-aos-delay="150">{description}</p>
                             <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center" data-aos="zoom-y-out" data-aos-delay="300">
                                 <div>
                                     <a className="btn p-4 rounded-md text-white bg-blue-600 hover:bg-blue-700 w-full mb-4 sm:w-auto sm:mb-0" href="mailto:admin@vithushan.ca?subject=Learn to Code">Learn More</a>
                                 </div>
-                            
+
                             </div>
                         </div>
                     </div>

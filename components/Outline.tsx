@@ -17,50 +17,8 @@ import {
 import { useAppDispatch } from "../redux/store";
 import { useSelector } from "react-redux";
 import { useAuth } from "../lib/authContext";
-import { getGradeLevel } from "../pages/quiz/[slug]";
+import Hero from "./practiceTracker/Hero";
 
-type InteractiveLessonProps = {
-  title: string;
-  link: string;
-  author: string;
-};
-
-const interactiveLessosn = [
-  { title: "Financial Literacy", link: "finance", author: "Vithushan" },
-  { title: "Kaboom", link: "kaboom", author: "Vithushan" },
-  {
-    title: "Escape from Giza",
-    link: "teachers/djacob/giza",
-    author: "Ajevan",
-  },
-  {
-    title: "Surface Area Quiz",
-    link: "teachers/djacob/surfaceArea",
-    author: "Ajevan",
-  },
-  { title: "Food Truck Frenzy", link: "lessons/foodtruck", author: "Raveen" },
-  {
-    title: "Balance the Budget",
-    link: "lessons/budget",
-    author: "Brian, Daniel and Mayu",
-  },
-  { title: "Building a Bakery", link: "lessons/bakery", author: "Brian" },
-];
-const InteractiveLesson = ({ title, link, author }: InteractiveLessonProps) => {
-  return (
-    <Link href={`/${link}`}>
-      <div className="transition duration-500 ease-in-out transform cursor-pointer hover:scale-110">
-        <Card size="medium">
-          <div className="flex flex-col items-center justify-between w-full h-full space-y-4">
-            <div className="flex w-16 h-16 p-1 bg-purple-100 rounded-full ring-2 ring-blue-300 heropattern-jupiter-yellow-500"></div>
-            <p className="text-xl">{title}</p>
-            <p className="w-full p-2 border-t-2">{author}</p>
-          </div>
-        </Card>
-      </div>
-    </Link>
-  );
-};
 export default function Outline() {
   const { user } = useAuth();
 
@@ -71,8 +29,6 @@ export default function Outline() {
   });
 
   const dispatch = useAppDispatch();
-
-  const DEBUG_MODE = false;
 
   const onGradeChange = (newGrade: string) => {
     dispatch(setStudentProfile(newGrade));
@@ -100,44 +56,8 @@ export default function Outline() {
 
   return (
     <div className="flex flex-col items-center justify-between w-full max-w-screen-lg col-span-2 space-y-8 p-4 mx-auto mb-4">
-      <div className="grid grid-cols-1 gap-8 p-4 rounded-lg shadow-lg sm:grid-cols-2 bg-blue-50">
-        <div className="flex flex-col space-y-4">
-          <p className="text-2xl font-bold">Practice Tracker</p>
-
-          <p className="">
-            {" "}
-            Start at grade 1 and unlock as many badges as you can. Get to 100% to 
-            Practice skills to increase your math confidence and ace the quizzes
-            to unlock badges!{" "}
-          </p>
-        </div>
-        <div className="flex flex-col items-center gap-4 sm:items-end sm:pr-8">
-          <p className="text-lg font-bold"> Overall Progress</p>
-          <div className="p-4">
-            <ProgressRing percentage={progress()} radius={24} />
-          </div>
-        </div>
-        <div className="flex flex-row">
-          <p className="flex items-center text-xl text-blue-900">
-            {" "}
-            Set your grade:
-          </p>
-          <select
-            value={studentGrade.grade.title}
-            defaultValue={studentGrade.grade.title}
-            onChange={(e) => onGradeChange(e.target.value)}
-            className="flex items-center w-56 py-2 ml-4 text-sm text-blue-900 bg-transparent border border-black border-solid outline-none focus:outline-none rounded-xl"
-          >
-            <option>Grade 1</option>
-            <option>Grade 2</option>
-            <option>Grade 3</option>
-            <option>Grade 4</option>
-            <option>Grade 5</option>
-            <option>Grade 6</option>
-          </select>
-        </div>
-      </div>
-
+      <Hero levels={grades.map(it => it.title)} level={studentGrade.grade.title} onLevelChange={grade => onGradeChange(grade)}
+        progress={progress()} description={"Start at grade 1 and unlock as many badges as you can. Master you math confidence by getting to 100%"} />
       <div className="grid items-center justify-center grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4">
         {unlockedUnits(studentGrade.grade.ordinal).map((unit, index) => (
           <div key={unit.title}>
@@ -156,102 +76,6 @@ export default function Outline() {
           </div>
         ))}
       </div>
-
-      {DEBUG_MODE && <>
-        <div className="w-full p-4 rounded-lg shadow-lg bg-blue-50">
-          <div className="flex flex-col gap-4">
-            <p className="text-2xl font-bold">Interactive Lessons</p>
-
-            <p className="">Complete these lessons to unlock extra badges.</p>
-          </div>
-        </div>
-        <div className="grid items-center justify-center grid-cols-2 gap-8 md:grid-cols-4">
-          {interactiveLessosn.map((it) => (
-            <InteractiveLesson
-              title={it.title}
-              link={it.link}
-              author={it.author}
-            />
-          ))}
-        </div>
-        <div className="w-full p-4 rounded-lg shadow-lg bg-blue-50">
-          <div className="flex flex-col gap-4">
-            <p className="text-2xl font-bold">Multiplayer Games</p>
-
-            <p className="">Play math games online with your friends</p>
-          </div>
-        </div>
-        <div className="grid items-center justify-center grid-cols-2 gap-8 md:grid-cols-4">
-          <Link href={`/games`}>
-            <div className="transition duration-500 ease-in-out transform cursor-pointer hover:scale-110">
-              <Card size="medium">
-                <div className="flex flex-col items-center justify-center gap-4">
-                  <div className="flex w-16 h-16 p-1 bg-purple-100 rounded-full ring-2 ring-blue-300">
-                    <img src="/images/PVPIconBackground.png" alt="" />
-                  </div>
-                  <p className="mx-4 text-xl text-center">Math Battle</p>
-                </div>
-              </Card>
-            </div>
-          </Link>
-
-          <Card size="medium">
-            <div className="flex flex-col items-center justify-center gap-4">
-              <div className="flex w-16 h-16 p-1 bg-purple-100 rounded-full ring-2 ring-blue-300">
-                <img src="/images/skills/lock.png" alt="" />
-              </div>
-              <p className="mx-4 text-xl text-center">Zombies</p>
-            </div>
-          </Card>
-          <Card size="medium">
-            <div className="flex flex-col items-center justify-center gap-4">
-              <div className="flex w-16 h-16 p-1 bg-purple-100 rounded-full ring-2 ring-blue-300">
-                <img src="/images/skills/lock.png" alt="" />
-              </div>
-              <p className="mx-4 text-xl text-center">Tic Tac Toe</p>
-            </div>
-          </Card>
-          <Card size="medium">
-            <div className="flex flex-col items-center justify-center gap-4">
-              <div className="flex w-16 h-16 p-1 bg-purple-100 rounded-full ring-2 ring-blue-300">
-                <img src="/images/skills/lock.png" alt="" />
-              </div>
-              <p className="mx-4 text-xl text-center">Connect 4</p>
-            </div>
-          </Card>
-        </div>
-        <div className="w-full p-4 rounded-lg shadow-lg bg-blue-50">
-          <div className="flex flex-col gap-4">
-            <p className="text-2xl font-bold">Puzzles</p>
-
-            <p className="">Master your multiplication facts with our puzzles</p>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 p-8 bg-white shadow-lg sm:grid-cols-2 rounded-xl">
-          <div className="flex flex-col justify-center gap-8">
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
-              {Object.values(PUZZLE_DATA).map((p) => {
-                const puzzle = p as Puzzle;
-                return (
-                  <Link href={`/puzzle/${puzzle.id}`}>
-                    <Button
-                      label={puzzle.title}
-                      backgroundColor="blue"
-                      textColor="white"
-                    />
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-          <img
-            className="object-cover rounded-xl"
-            alt="student-image"
-            src="/images/practiceAdd.png"
-          />
-        </div>
-        </>
-      }
     </div>
   );
 }

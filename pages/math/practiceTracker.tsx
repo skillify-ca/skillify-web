@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Outline from "../components/Outline";
+import Outline from "../../components/Outline";
 
 export default function Home() {
   return (

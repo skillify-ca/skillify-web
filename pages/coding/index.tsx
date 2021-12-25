@@ -13,19 +13,7 @@ export default function Coding(props) {
     <div className=" bg-white grid grid-cols-1">
       <Navbar />
       <div className="p-4 flex flex-col w-full space-y-4">
-        <HeroHome />
-        <p className="text-center font-bold text-xl">Interactive Lessons</p>
-        <div className="flex space-x-8 pb-16 overflow-x-auto">
-
-          {pages.map((page) => (
-            <a href={page.link}>
-              <div className="p-8 flex flex-col items-center w-64 space-y-8 transition-all transform bg-white shadow-lg cursor-pointer rounded-xl hover:scale-110">
-                <div className="flex w-16 h-16 p-1 bg-purple-100 rounded-full ring-2 ring-blue-300 heropattern-jupiter-yellow-500"></div>
-                <p>{page.title}</p>
-              </div>
-            </a>
-          ))}
-        </div>
+        <HeroHome title={"to code"} description={"Use our resources and services to get hired in tech."} />
         <div className="flex flex-col space-y-8 bg-blue-600 py-16">
           <p className="text-center font-bold text-xl text-white">Our Services</p>
           <div className="grid gap-4 grid-cols-2 justify-center text-center p-8 w-full items-center">

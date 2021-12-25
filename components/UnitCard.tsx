@@ -20,7 +20,7 @@ export const UnitCard: React.FC<UnitCardProps> = ({
   );
   const unlockedunit = (
     <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
-      <Link href={`unit-overview/${title.toLocaleLowerCase()}`}>
+      <Link href={`/unit-overview/${title.toLocaleLowerCase()}`}>
         <UnitItem disabled={disabled} image={image} title={title} rating={0} />
       </Link>
     </div>
