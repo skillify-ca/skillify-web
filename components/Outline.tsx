@@ -12,12 +12,14 @@ import {
   StudentProfileState,
   setStudentProfile,
   studentProfileSelector,
+  setMathLevel,
 } from "../redux/studentProfileSlice";
 import { useAppDispatch } from "../redux/store";
 import { useSelector } from "react-redux";
 import { useAuth } from "../lib/authContext";
 import Hero from "./practiceTracker/Hero";
 import PracticeTracker from "./practiceTracker/PracticeTracker";
+import courseData from "../pages/api/explore";
 
 export default function Outline() {
   const { user } = useAuth();
@@ -30,8 +32,8 @@ export default function Outline() {
 
   const dispatch = useAppDispatch();
 
-  const onGradeChange = (newGrade: string) => {
-    dispatch(setStudentProfile(newGrade));
+  const onGradeChange = (newGrade: number) => {
+    dispatch(setMathLevel(newGrade));
   };
   const studentGrade = useSelector(studentProfileSelector);
 
@@ -56,7 +58,7 @@ export default function Outline() {
 
   return (
     <div className="flex flex-col items-center justify-between w-full max-w-screen-lg col-span-2 space-y-8 p-4 mx-auto mb-4">
-      <PracticeTracker unlockedUnits={unlockedUnits()} lockedUnits={lockedUnits()} level={studentGrade.grade.title} onLevelChange={grade => onGradeChange(grade)} levels={grades.map(it => it.title)} description={"Start at grade 1 and unlock as many badges as you can. Master you math confidence by getting to 100%"} progress={progress()} />
+      <PracticeTracker unlockedUnits={unlockedUnits(studentGrade.mathLevel)} lockedUnits={lockedUnits(studentGrade.mathLevel)} level={studentGrade.mathLevel} onLevelChange={grade => onGradeChange(grade)} levels={courseData.math.levels.map(it => it.title)} description={"Start at grade 1 and unlock as many badges as you can. Master you math confidence by getting to 100%"} progress={progress()} />
     </div>
   );
 }

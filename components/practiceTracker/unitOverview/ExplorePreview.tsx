@@ -11,7 +11,7 @@ const ExplorePreview = ({ unitTitle, level }) => {
                     {" "}
                     Explore
                 </p>
-                <Link href={`/explore/${unitTitle}?level=${level}`}>
+                <Link href={`/explore/${unitTitle}/${level}`}>
                     <Button label="Start Interactive Lesson" backgroundColor="blue" textColor="white" />
                 </Link>
             </div>

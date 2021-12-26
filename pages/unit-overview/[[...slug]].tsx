@@ -25,27 +25,8 @@ import ExplorePreview from "../../components/practiceTracker/unitOverview/Explor
 
 const Box = dynamic(() => import("../../components/stories/Box"));
 
-const UnitOverviewPage = ({ slug, skillData }) => {
+const UnitOverviewPage = ({ unitTitle, skillData, level }) => {
   const { user } = useAuth();
-
-  const studentGrade = useSelector(studentProfileSelector);
-
-  let gradeNum = (grade: string) => {
-    switch (grade) {
-      case "Grade 1":
-        return 1;
-      case "Grade 2":
-        return 2;
-      case "Grade 3":
-        return 3;
-      case "Grade 4":
-        return 4;
-      case "Grade 5":
-        return 5;
-      case "Grade 6":
-        return 6;
-    }
-  };
 
   type SkillDataResponse = {
     skills: SkillData[];
@@ -53,7 +34,7 @@ const UnitOverviewPage = ({ slug, skillData }) => {
 
   const skillsForCurrentGrade = (skillData: SkillDataResponse) =>
     skillData.skills.filter(
-      (skill) => skill.grade == gradeNum(studentGrade.grade.title)
+      (skill) => skill.grade == level
     );
 
   type UserSkillData = {
@@ -75,11 +56,11 @@ const UnitOverviewPage = ({ slug, skillData }) => {
           skillData.skills
             .filter(
               (skill) =>
-                skill.unit == slug &&
-                skill.grade == studentGrade.grade.ordinal
+                skill.unit == unitTitle &&
+                skill.grade == level
             )
             .map((skill) => skill.id),
-        badgeId: getBadgeId(slug, gradeNum(studentGrade.grade.title)),
+        badgeId: getBadgeId(unitTitle, level),
       },
     }
   );
@@ -100,20 +81,20 @@ const UnitOverviewPage = ({ slug, skillData }) => {
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-blue-100 ">
       <Head>
         <title>
-          {slug && slug.charAt(0).toUpperCase() + slug.slice(1)} Overview
+          {unitTitle && unitTitle.charAt(0).toUpperCase() + unitTitle.slice(1)} Overview
         </title>
       </Head>
       <Navbar />
       <div className="p-4 flex flex-col space-y-8">
         <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-4">
           <p className="text-2xl text-white">
-            {slug && slug.charAt(0).toUpperCase() + slug.slice(1)} Overview
+            {unitTitle && unitTitle.charAt(0).toUpperCase() + unitTitle.slice(1)} Overview
           </p>
         </div>
-        <ExplorePreview unitTitle={slug} level={studentGrade.grade.ordinal} />
+        <ExplorePreview unitTitle={unitTitle} level={level} />
         {skillData && <PracticePreview loading={loading} data={data} skills={skillsForCurrentGrade(skillData)} />}
         <div>
-          <QuizPreview isQuizLocked={isQuizLocked()} unitTitle={slug} loading={loading} data={data} /></div>
+          <QuizPreview isQuizLocked={isQuizLocked()} unitTitle={unitTitle} loading={loading} data={data} /></div>
       </div>
     </div>
   );
@@ -127,27 +108,30 @@ export async function getStaticProps({ params }) {
   const { data } = await client.query({
     query: FETCH_SKILLS_FOR_UNIT,
     variables: {
-      unit: params.slug,
+      unit: params.slug[0],
     },
   });
+
   if (!data) {
     return {
       notFound: true,
     };
   }
+  
+  const level = params.slug.length > 1 ? params.slug[1] : 1
   //return multiple descriptions,
-  return { props: { skillData: data, slug: params.slug } };
+  return { props: { skillData: data, unitTitle: params.slug[0], level } };
 }
 
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { slug: "numbers" } },
-      { params: { slug: "addition" } },
-      { params: { slug: "subtraction" } },
-      { params: { slug: "multiplication" } },
-      { params: { slug: "division" } },
-      { params: { slug: "finance" } },
+      { params: { slug: ["numbers"] } },
+      { params: { slug: ["addition"] } },
+      { params: { slug: ["subtraction"] } },
+      { params: { slug: ["multiplication"] } },
+      { params: { slug: ["division"] } },
+      { params: { slug: ["finance"] } },
     ],
     fallback: true,
   };

@@ -3,11 +3,15 @@ import { Grade, grades } from "../pages/api/skill";
 import { RootState } from "./rootReducer";
 
 export interface StudentProfileState {
-  grade: Grade;
+  mathLevel: number;
+  codingLevel: number;
+  financeLevel: number;
 }
 
 const initialState: StudentProfileState = {
-  grade: {title: "Grade 1", ordinal: 1},
+  mathLevel: 1,
+  codingLevel: 1,
+  financeLevel: 1,
 };
 
 export const studentProfileSlice: Slice = createSlice({
@@ -17,16 +21,23 @@ export const studentProfileSlice: Slice = createSlice({
     setStudentProfile: (state, action: PayloadAction<string>) => {
       if (action.type == "studentProfile/setStudentProfile") {
         const newGradeTitle = action.payload as string;
-        state.grade = getGrade(newGradeTitle)};
+        state.grade = getGrade(newGradeTitle);
       }
     },
+    setMathLevel: (state, action: PayloadAction<number>) => {
+      if (action.type == "studentProfile/setMathLevel") {
+        const newMathLevel = action.payload as number;
+        state.mathLevel = newMathLevel;
+      }
+    },
+  },
 });
 
 const getGrade = (title: string) => {
-  return grades.find(it => it.title === title)
-}
+  return grades.find((it) => it.title === title);
+};
 
-export const { setStudentProfile } = studentProfileSlice.actions;
+export const { setStudentProfile, setMathLevel } = studentProfileSlice.actions;
 
 export const studentProfileSelector = (state: RootState) =>
   state.studentProfile;

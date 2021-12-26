@@ -6,6 +6,7 @@ import Navbar from "../../components/Navbar";
 import { FETCH_SKILLS_FOR_UNIT } from "../../graphql/fetchSkillsForUnit";
 
 import ContentfulContent from "../../components/explore/ContentfulContent";
+import { getEntryId } from "../api/explore";
 
 const Explore = ({ unitTitle, entry }) => {
     const getComponent = () => {
@@ -32,9 +33,11 @@ export async function getStaticProps({ params }) {
     const client = createClient({
       space: process.env.CF_SPACE_ID,
       accessToken: process.env.CF_DELIVERY_ACCESS_TOKEN
-    });
+    }); 
     
-    const res = await client.getEntry("6ugvsJKvPCCKlzsZOIX597")
+    
+    const id = getEntryId("math", Number.parseInt(params.slug[1]), params.slug[0])
+    const res = await client.getEntry(id)
 
     if (!res) {
       return {
@@ -48,12 +51,12 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
     return {
         paths: [
-            { params: { slug: "addition" } },
-            { params: { slug: "subtraction" } },
-            { params: { slug: "multiplication" } },
-            { params: { slug: "division" } },
-            { params: { slug: "tfsa" } },
-            { params: { slug: "budgeting" } },
+            { params: { slug: ["addition", "1"] } },
+            { params: { slug: ["subtraction", "1"] } },
+            { params: { slug: ["multiplication", "1"] } },
+            { params: { slug: ["division", "1"] } },
+            { params: { slug: ["tfsa", "1"] } },
+            { params: { slug: ["budgeting", "1"] } },
         ],
         fallback: true,
     };

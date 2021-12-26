@@ -38,7 +38,7 @@ export default function Finance(props) {
       <div className="flex flex-col">
         <div className="p-4">
           <PracticeTracker unlockedUnits={unlockedUnits} lockedUnits={units}
-            level={studentGrade.grade.title} onLevelChange={onGradeChange}
+            level={studentGrade.mathLevel} onLevelChange={onGradeChange}
             levels={["Grade 3", "Grade 4", "Grade 5", "Grade 6"]}
             description={"Start at level 1 and unlock as many badges as you can. Master your financial future by getting to 100%!"} progress={0} />
         </div>

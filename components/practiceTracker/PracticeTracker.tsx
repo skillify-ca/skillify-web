@@ -10,13 +10,13 @@ const PracticeTracker = ({ unlockedUnits, lockedUnits, level, onLevelChange, lev
                         key={unit.title}
                         title={unit.title}
                         image={unit.image}
-                        link={`${unit.link}`}
+                        link={`${unit.link}/${Number.parseInt(level) +1}`}
                         rating={0} />
                 </div>
             ))}
             {lockedUnits.map((unit, index) => (
                 <div key={index} className="">
-                    <UnitCard key={index} title={unit.title} disabled={true} link={unit.link} />
+                    <UnitCard key={index} title={unit.title} disabled={true} link={`${unit.link}/${Number.parseInt(level) + 1}`} />
                 </div>
             ))}
         </div></>

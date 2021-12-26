@@ -15,11 +15,11 @@ const Hero = ({ progress, description, level, onLevelChange, levels }) => {
                 </p>
                 <select
                     value={level}
-                    defaultValue={level}
+                    defaultValue={0}
                     onChange={(e) => onLevelChange(e.target.value)}
                     className="flex items-center w-56 py-2 text-sm text-blue-900 bg-transparent border border-black border-solid outline-none focus:outline-none rounded-xl"
-                > {levels.map(it =>
-                    <option>{it}</option>
+                > {levels.map((it, index) =>
+                    <option value={index}>{it}</option>
                 )}
 
                 </select>
