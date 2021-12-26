@@ -1,13 +1,6 @@
-import { Stage } from "@react-three/drei";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import TFSA from "../../components/finance/tfsa";
-import Navbar from "../../components/Navbar";
-import Hero from "../../components/practiceTracker/Hero";
+import React, { useState } from "react";
 import PracticeTracker from "../../components/practiceTracker/PracticeTracker";
 
-import { MultipleChoiceSentence } from "../../components/questionTypes/MultipleChoiceSentence";
-import ProgressRing from "../../components/ui/ProgressRing";
 
 export default function Finance(props) {
   const unlockedUnits = [
