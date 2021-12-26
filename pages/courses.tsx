@@ -9,20 +9,20 @@ const Courses = () => {
         <Link href={"/math/practiceTracker"}>
             <div className="bg-white p-4 m-4 text-xl flex items-center rounded-lg bg-gradient-to-b from-blue-500 text-white to-blue-700 hover:to-blue-500 shadow-lg space-x-4">
                 <img src="/images/courses/math.png" className="w-16" />
-                <p>Math Fundamentals</p></div>
+                <p>Math Champ</p></div>
         </Link>
         <Link href={"/coding"}>
 
             <div className="bg-white p-4 m-4 text-xl flex items-center rounded-lg bg-gradient-to-b from-blue-500 text-white to-blue-700 shadow-lg hover:to-blue-500 space-x-4">
                 <img src="/images/courses/coding.jpg" className="w-16" />
 
-                <p>Coding</p></div>
+                <p>CS Champ</p></div>
         </Link>
         <Link href={"/finance/practiceTracker"}>
 
             <div className="bg-white p-4 m-4 text-xl flex items-center rounded-lg bg-gradient-to-b from-blue-500 text-white to-blue-700 shadow-lg hover:to-blue-500 space-x-4">
                 <img src="/images/skills/finance.png" className="w-16" />
-                <p>Financial Literacy</p></div>
+                <p>Finance Champ</p></div>
         </Link>
     </div>
 }

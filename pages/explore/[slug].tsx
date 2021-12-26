@@ -1,14 +1,27 @@
+import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
+import { createClient } from "contentful";
+import { useState, useEffect, useRef } from "react";
 import TFSA from "../../components/finance/tfsa";
 import Navbar from "../../components/Navbar";
+import { FETCH_SKILLS_FOR_UNIT } from "../../graphql/fetchSkillsForUnit";
 
-const Explore = ({ unitTitle }) => {
+import ContentfulContent from "../../components/explore/ContentfulContent";
+
+const Explore = ({ unitTitle, entry }) => {
     const getComponent = () => {
         if (unitTitle === "tfsa") {
             return <TFSA />
         } else {
-            return "Default"
+            return <div className="flex flex-col items-center">
+                {entry && <ContentfulContent data={entry.fields.content} />}
+            </div>
         }
     }
+
+    if (!entry) {
+      return "Loading...";
+    }
+    
     return <div>
         <Navbar />
         {getComponent()}
@@ -16,8 +29,21 @@ const Explore = ({ unitTitle }) => {
 }
 
 export async function getStaticProps({ params }) {
-    return { props: { unitTitle: params.slug } };
-}
+    const client = createClient({
+      space: process.env.CF_SPACE_ID,
+      accessToken: process.env.CF_DELIVERY_ACCESS_TOKEN
+    });
+    
+    const res = await client.getEntry("6ugvsJKvPCCKlzsZOIX597")
+
+    if (!res) {
+      return {
+        notFound: true,
+      };
+    }
+    //return multiple descriptions,
+    return { props: { entry: res, slug: params.slug } };
+  }
 
 export async function getStaticPaths() {
     return {
