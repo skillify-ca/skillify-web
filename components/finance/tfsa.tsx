@@ -15,9 +15,9 @@ export default function TFSA(props) {
 
   return (
     <div className={"grid grid-cols-12 bg-blue-300"}>
-      <div className="col-span-4">
+      <div className="flex flex-col col-span-12 sm:col-span-4">
         <SidebarItem onClick={(_) => setSelectedSection(SECTION.BASICS)}>
-          <p className="hover:bg-red-200">Why does the TFSA matter?</p>
+          <p className="">Why does the TFSA matter?</p>
         </SidebarItem>
 
         <SidebarItem onClick={(_) => setSelectedSection(SECTION.ANNUAL_LIMIT)}>
@@ -29,7 +29,7 @@ export default function TFSA(props) {
           How much can I contribute to my TFSA in total?
         </SidebarItem>
       </div>
-      <div className="col-span-8 bg-white min-h-screen">
+      <div className="col-span-12 sm:col-span-8 bg-white min-h-screen">
         {selectedSection === SECTION.BASICS ? (
           <TFSABasics />
         ) : selectedSection === SECTION.ANNUAL_LIMIT ? (

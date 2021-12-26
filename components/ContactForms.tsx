@@ -54,38 +54,33 @@ const ContactForms = (props) => {
         </h2>
       </div>
       <div className="flex flex-col items-center justify-center space-y-8">
-          <div className="bg-white rounded-lg w-full">
-            <div className="flex flex-col space-y-4">
-              <p className="font-bold">Want to Learn How To Code?</p>
-              <p className="">
-                Gain real world experience by building real-world projects for
-                the web. Become a hirable front-end developer in just four
-                months.
-              </p>
-              <p className="">
-                Enter your email below to learn more about our courses and
-                programs! No experience necessary!
-              </p>
-              <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
-                <input
-                  id="bootcamper"
-                  type="text"
-                  value={bootcamperInput}
-                  onChange={(e) => setBootcamperInput(e.target.value)}
-                  autoComplete="off"
-                  className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
-                  placeholder="Email"
-                />
-                <Button
-                  disabled={!bootcamperButtonEnabled}
-                  backgroundColor="blue"
-                  textColor="white"
-                  label="Learn More"
-                  onClick={notifyBootcamperSignup}
-                />
-              </div>
+        <div className="bg-white rounded-lg w-full">
+          <div className="flex flex-col space-y-4">
+            <p className="font-bold">Want to stay in touch?</p>
+            <p className="">
+              Enter your email below to learn more about our courses and
+              services!
+            </p>
+            <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
+              <input
+                id="bootcamper"
+                type="text"
+                value={bootcamperInput}
+                onChange={(e) => setBootcamperInput(e.target.value)}
+                autoComplete="off"
+                className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md`}
+                placeholder="Email"
+              />
+              <Button
+                disabled={!bootcamperButtonEnabled}
+                backgroundColor="blue"
+                textColor="white"
+                label="Subscribe"
+                onClick={notifyBootcamperSignup}
+              />
             </div>
           </div>
+        </div>
       </div>
     </div>
   );

@@ -25,7 +25,7 @@ export default function TFSAAnnualLimit(props) {
     <div className={"flex flex-col items-center justify-center"}>
       <div className={"bg-white max-w-7xl p-8 flex flex-col gap-8"}>
         <h1 className="text-xl font-bold">
-          Why do they keep changing the annual limit?
+          Why does the annual limit change every year?
         </h1>
         <div className="flex flex-col">
           <p className="text-lg">What is the annual limit?</p>

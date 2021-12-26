@@ -6,7 +6,7 @@ export type UnitCardProps = {
   title: string;
   image?: string;
   disabled?: boolean;
-  link?: string;
+  link: string;
   rating?: number;
 };
 
@@ -14,13 +14,14 @@ export const UnitCard: React.FC<UnitCardProps> = ({
   title,
   image,
   disabled,
+  link,
 }: UnitCardProps) => {
   const lockedunit = (
     <UnitItem disabled={true} image={image} title={title} rating={0} />
   );
   const unlockedunit = (
-    <div className="cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
-      <Link href={`/unit-overview/${title.toLocaleLowerCase()}`}>
+    <div className="h-full cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
+      <Link href={`/unit-overview/${link}`}>
         <UnitItem disabled={disabled} image={image} title={title} rating={0} />
       </Link>
     </div>

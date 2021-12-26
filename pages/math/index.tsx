@@ -1,6 +1,4 @@
 import React from "react";
-import HeroHome from "../../components/coding/landing/HeroHome";
-import Navbar from "../../components/Navbar";
 import LandingPagev3 from "../../components/stories/LandingPagev3";
 
 export default function Math(props) {
@@ -10,6 +8,6 @@ export default function Math(props) {
   ];
 
   return (
-    <div><LandingPagev3 pages={pages} /></div>
+    <div><LandingPagev3 pages={pages} title={"math confidence"} description={"Get math ready for post-secondary education or the workforce."} /></div>
   );
 }

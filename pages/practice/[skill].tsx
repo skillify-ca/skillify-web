@@ -1,5 +1,6 @@
 import { ApolloClient, InMemoryCache, useMutation } from "@apollo/client";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import ReactCardFlip from "react-card-flip";
 import QuestionSet from "../../components/stories/QuestionSet";
@@ -23,6 +24,7 @@ const PracticeQuiz = ({ skill }) => {
     END_SESSION,
   }
   const { user } = useAuth();
+  const router = useRouter();
   const [isFlipped, setIsFlipped] = useState(false);
   const [display, setDisplay] = useState("flex");
   const [continueFaded, setContinueFaded] = useState(0);
@@ -73,9 +75,10 @@ const PracticeQuiz = ({ skill }) => {
         </div>
 
         <div className="flex flex-row space-x-16">
-          <Link href={`/practice`}>
-            <Button label="Home" backgroundColor="purple"></Button>
-          </Link>
+
+          <Button label="Go Back" backgroundColor="purple" onClick={() => {
+            router.back()
+          }}></Button>
           <Button
             label="Practice again"
             backgroundColor="green"

@@ -36,8 +36,8 @@ export const UnitItem: React.FC<UnitItemProps> = ({
       break;
   }
   return (
-    <div className="" onClick={onClick}>
-      <div className="bg-white shadow-md rounded-xl p-8">
+    <div className="rounded-xl shadow-xl bg-white h-full" onClick={onClick}>
+      <div className="p-8">
         <div className="flex flex-col justify-center items-center gap-4">
           <div className="w-16 h-16 bg-purple-100 rounded-full p-1 ring-2 ring-blue-300 flex">
             {disabled ? (

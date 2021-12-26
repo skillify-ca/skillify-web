@@ -4,16 +4,27 @@ import React, { useEffect, useState } from "react";
 import TFSA from "../../components/finance/tfsa";
 import Navbar from "../../components/Navbar";
 import Hero from "../../components/practiceTracker/Hero";
+import PracticeTracker from "../../components/practiceTracker/PracticeTracker";
 
 import { MultipleChoiceSentence } from "../../components/questionTypes/MultipleChoiceSentence";
-import LandingPagev3 from "../../components/stories/LandingPagev3";
+import ProgressRing from "../../components/ui/ProgressRing";
 
 export default function Finance(props) {
-  const pages = [
-    { title: "Practice Tracker", description: "Our online practice tracker lets you master financial literacy skills at your own pace.", link: "/finance/practiceTracker" },
-    { title: "Ask an Expert", description: "Ask questions to one of our financial literacy tutors.", link: "mailto:admin@vithushan.ca?subject=Financial Literacy Question" },
+  const unlockedUnits = [
+    { title: "Tax-Free Savings Account (TFSA)", link: "tfsa", image: "/images/skills/finance.png" },
+    { title: "Budgeting", link: "budgeting", image: "/images/skills/finance.png" },
+
+  ];
+  const units = [
+    { title: "Taxes", link: "" },
+    { title: "Saving", link: "" },
+    { title: "Investing", link: "" },
+    { title: "Student Loans", link: "" },
+    { title: "Debt", link: "" },
+    { title: "Real Estate", link: "" },
   ];
 
+  const [level, setLevel] = useState("Level 4")
 
   return (
     <div
@@ -24,8 +35,10 @@ export default function Finance(props) {
       }}
     >
       <div className="flex flex-col">
-        <LandingPagev3 pages={pages} title={"financial literacy"} description={"Unlock your economic potential with our Canadian-based resources and experts"} />
-      </div>
-    </div>
+        <Navbar />
+        <div className="p-4">
+          <PracticeTracker unlockedUnits={unlockedUnits} lockedUnits={units} level={level} onLevelChange={setLevel} levels={["Level 3", "Level 4", "Level 5", "Level 9"]} description={"Start at level 1 and unlock as many badges as you can. Master your financial future by getting to 100%!"} progress={0} />
+        </div>
+      </div></div>
   );
 }

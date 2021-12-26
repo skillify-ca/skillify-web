@@ -92,22 +92,22 @@ export default function Navbar() {
             <div className="hidden lg:block lg:ml-6">
               <div className="flex space-x-4">
                 <a
-                  href="/math"
+                  href="/courses"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Math
+                  Courses
                 </a>
                 <a
-                  href="/coding"
+                  href="/resources"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Coding
+                  Resources
                 </a>
                 <a
-                  href="/finance"
+                  href="/blog"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Finance
+                  Blog
                 </a>
 
                 <a
@@ -127,12 +127,12 @@ export default function Navbar() {
                   {status === "loading"
                     ? ""
                     : !user && (
-                        <>
-                          <Link href="/welcome">
-                            <p className="text-white cursor-pointer">Sign in</p>
-                          </Link>
-                        </>
-                      )}
+                      <>
+                        <Link href="/welcome">
+                          <p className="text-white cursor-pointer">Sign in</p>
+                        </Link>
+                      </>
+                    )}
                   {user && (
                     <button
                       className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
@@ -204,22 +204,22 @@ export default function Navbar() {
       <div className={`${active ? "block" : "hidden"} lg:hidden`}>
         <div className="px-2 pt-2 pb-3 space-y-1">
           <a
-            href="/math"
+            href="/courses"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Math
+            Courses
           </a>
           <a
-            href="/coding"
+            href="/resources"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Coding
+            Resources
           </a>
           <a
-            href="/finance"
+            href="/blog"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Finance
+            Blog
           </a>
           <a
             href="/about"
