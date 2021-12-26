@@ -22,7 +22,9 @@ const PracticePreview = ({ loading, data, skills }) => {
             src="/images/practiceAdd.png" />
         <div className="p-4 from-blue-200 bg-gradient-to-b to-blue-400 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {skills.length > 0 ? skills.map((skill) => (
-                <SkillCard loading={loading} userSkillData={data} skill={skill} />
+                <div className="p-2">
+                    <SkillCard loading={loading} userSkillData={data} skill={skill} />
+                </div>
             )) : <div className="bg-white p-4">NO SKILLS FOUND</div>}
         </div>
     </div>

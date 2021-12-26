@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import PracticeTracker from "../../components/practiceTracker/PracticeTracker";
+import { setStudentProfile, studentProfileSelector } from "../../redux/studentProfileSlice";
 
 
 export default function Finance(props) {
   const unlockedUnits = [
+    { title: "Money", link: "money", image: "/images/skills/finance.png" },
     { title: "Tax-Free Savings Account (TFSA)", link: "tfsa", image: "/images/skills/finance.png" },
     { title: "Budgeting", link: "budgeting", image: "/images/skills/finance.png" },
 
@@ -17,7 +20,12 @@ export default function Finance(props) {
     { title: "Real Estate", link: "" },
   ];
 
-  const [level, setLevel] = useState("Level 4")
+  const dispatch = useDispatch()
+
+  const onGradeChange = (newGrade: string) => {
+    dispatch(setStudentProfile(newGrade));
+  };
+  const studentGrade = useSelector(studentProfileSelector);
 
   return (
     <div
@@ -29,7 +37,10 @@ export default function Finance(props) {
     >
       <div className="flex flex-col">
         <div className="p-4">
-          <PracticeTracker unlockedUnits={unlockedUnits} lockedUnits={units} level={level} onLevelChange={setLevel} levels={["Level 3", "Level 4", "Level 5", "Level 9"]} description={"Start at level 1 and unlock as many badges as you can. Master your financial future by getting to 100%!"} progress={0} />
+          <PracticeTracker unlockedUnits={unlockedUnits} lockedUnits={units}
+            level={studentGrade.grade.title} onLevelChange={onGradeChange}
+            levels={["Grade 3", "Grade 4", "Grade 5", "Grade 6"]}
+            description={"Start at level 1 and unlock as many badges as you can. Master your financial future by getting to 100%!"} progress={0} />
         </div>
       </div></div>
   );

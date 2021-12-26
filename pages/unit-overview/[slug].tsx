@@ -10,7 +10,7 @@ import { FETCH_UNIT_OVERVIEW } from "../../graphql/fetchUnitOverview";
 import { getBadgeId } from "../api/badgeHelper";
 import { EMOJI_MASTERY, getEmoji, SkillData } from "../api/skill";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { studentProfileSelector } from "../../redux/studentProfileSlice";
 import { FETCH_SKILL_DESCRIPTION_GRADE_AND_UNIT } from "../../graphql/fetchSkillDescriptionAndGrade";
 import Head from "next/head";
@@ -110,7 +110,7 @@ const UnitOverviewPage = ({ slug, skillData }) => {
             {slug && slug.charAt(0).toUpperCase() + slug.slice(1)} Overview
           </p>
         </div>
-        <ExplorePreview unitTitle={slug} />
+        <ExplorePreview unitTitle={slug} level={studentGrade.grade.ordinal} />
         {skillData && <PracticePreview loading={loading} data={data} skills={skillsForCurrentGrade(skillData)} />}
         <div>
           <QuizPreview isQuizLocked={isQuizLocked()} unitTitle={slug} loading={loading} data={data} /></div>

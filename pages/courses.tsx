@@ -8,7 +8,7 @@ const Courses = () => {
 
         <Link href={"/math/practiceTracker"}>
             <div className="bg-white p-4 m-4 text-xl flex items-center rounded-lg bg-gradient-to-b from-blue-500 text-white to-blue-700 hover:to-blue-500 shadow-lg space-x-4">
-                <img src="/images/skills/finance.png" className="w-16" />
+                <img src="/images/courses/math.png" className="w-16" />
                 <p>Math Fundamentals</p></div>
         </Link>
         <Link href={"/coding"}>
@@ -21,8 +21,7 @@ const Courses = () => {
         <Link href={"/finance/practiceTracker"}>
 
             <div className="bg-white p-4 m-4 text-xl flex items-center rounded-lg bg-gradient-to-b from-blue-500 text-white to-blue-700 shadow-lg hover:to-blue-500 space-x-4">
-                <img src="/images/courses/math.png" className="w-16" />
-
+                <img src="/images/skills/finance.png" className="w-16" />
                 <p>Financial Literacy</p></div>
         </Link>
     </div>
