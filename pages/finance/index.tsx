@@ -29,3 +29,5 @@ export default function Finance(props) {
     </div>
   );
 }
+
+Finance.auth = true;

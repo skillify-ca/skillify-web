@@ -35,10 +35,11 @@ export default function Finance(props) {
       }}
     >
       <div className="flex flex-col">
-        <Navbar />
         <div className="p-4">
           <PracticeTracker unlockedUnits={unlockedUnits} lockedUnits={units} level={level} onLevelChange={setLevel} levels={["Level 3", "Level 4", "Level 5", "Level 9"]} description={"Start at level 1 and unlock as many badges as you can. Master your financial future by getting to 100%!"} progress={0} />
         </div>
       </div></div>
   );
 }
+
+Finance.auth = true;
