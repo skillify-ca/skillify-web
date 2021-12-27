@@ -13,22 +13,23 @@ export enum Unit {
 }
 
 export const grades: Grade[] = [
-  {title: "Grade 1", ordinal: 1},
-  {title: "Grade 2", ordinal: 2},
-  {title: "Grade 3", ordinal: 3},
-  {title: "Grade 4", ordinal: 4},
-  {title: "Grade 5", ordinal: 5},
-  {title: "Grade 6", ordinal: 6},
-]
+  { title: "Grade 1", ordinal: 1 },
+  { title: "Grade 2", ordinal: 2 },
+  { title: "Grade 3", ordinal: 3 },
+  { title: "Grade 4", ordinal: 4 },
+  { title: "Grade 5", ordinal: 5 },
+  { title: "Grade 6", ordinal: 6 },
+];
 
 export type Grade = {
   title: string;
   ordinal: number;
-}
+};
 
 export type SkillData = {
   id: number;
-  grade: number;
+  courseId: string;
+  level: number;
   description: string;
   unit: string;
   published: boolean;

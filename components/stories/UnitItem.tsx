@@ -8,6 +8,7 @@ export type UnitItemProps = {
   image?: string;
   disabled?: boolean;
   rating?: number;
+  level?: number;
   onClick?: () => void;
 };
 
@@ -17,6 +18,7 @@ export const UnitItem: React.FC<UnitItemProps> = ({
   image,
   disabled,
   rating,
+  level,
   onClick,
 }: UnitItemProps) => {
   let accessoryComponent;
@@ -35,8 +37,24 @@ export const UnitItem: React.FC<UnitItemProps> = ({
       );
       break;
   }
+  const getBackgroundColour = () => {
+    if (level) {
+      switch (level) {
+        case 1:
+          return "bg-yellow-50";
+        case 2:
+          return "bg-gray-100";
+        case 3:
+          return "bg-red-50";
+      }
+    }
+    return "bg-white";
+  };
   return (
-    <div className="rounded-xl shadow-xl bg-white h-full" onClick={onClick}>
+    <div
+      className={`rounded-xl shadow-xl ${getBackgroundColour()} h-full`}
+      onClick={onClick}
+    >
       <div className="p-8">
         <div className="flex flex-col justify-center items-center gap-4">
           <div className="w-16 h-16 bg-purple-100 rounded-full p-1 ring-2 ring-blue-300 flex">

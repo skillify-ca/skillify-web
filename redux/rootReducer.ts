@@ -3,6 +3,8 @@ import { bakersRackBSlice, BakersRackBState } from "./bakerBSlice";
 import { diagnosticSlice, DiagnosticState } from "./diagnosticSlice";
 import { warGameSlice, WarGameState } from "./warGameSlice";
 import {
+  practiceTrackerSlice,
+  PracticeTrackerState,
   studentProfileSlice,
   StudentProfileState,
 } from "./studentProfileSlice";
@@ -17,14 +19,14 @@ import {
 
 type State = {
   diagnostic: DiagnosticState;
-  studentProfile: StudentProfileState;
+  practiceTracker: PracticeTrackerState;
   bakersRackB: BakersRackBState;
   assignmentSession: assignmentSessionState;
   warGame: WarGameState;
   evaluateExpressionHistory: EvaluateExpressionState[];
 };
 const diagnosticReducer: Reducer = diagnosticSlice.reducer;
-const studentProfileReducer = studentProfileSlice.reducer;
+const practiceTrackerReducer = practiceTrackerSlice.reducer;
 const bakersRackBReducer = bakersRackBSlice.reducer;
 const assignmentSessionReducer = assignmentSessionSlice.reducer;
 const warGameReducer = warGameSlice.reducer;
@@ -32,7 +34,7 @@ const evaluateExpressionReducer = evaluateExpressionSlice.reducer;
 
 const rootReducer = combineReducers({
   diagnostic: diagnosticReducer,
-  studentProfile: studentProfileReducer,
+  practiceTracker: practiceTrackerReducer,
   bakersBRack: bakersRackBReducer,
   assignmentSession: assignmentSessionReducer,
   warGame: warGameReducer,

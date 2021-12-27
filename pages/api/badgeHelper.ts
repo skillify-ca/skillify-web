@@ -1,4 +1,8 @@
-export const getBadgeId = (slug: string, currentLevel: number) => {
+export const getBadgeId = (
+  courseId: string,
+  slug: string,
+  currentLevel: number
+) => {
   if (slug != null) {
     if (slug.toLowerCase() == "numbers") {
       switch (currentLevel) {
@@ -69,7 +73,7 @@ export const getBadgeId = (slug: string, currentLevel: number) => {
         case 6:
           return 54;
       }
-    } 
+    }
   }
   return 0;
 };

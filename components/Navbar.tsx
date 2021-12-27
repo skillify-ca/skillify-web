@@ -86,7 +86,7 @@ export default function Navbar() {
                   src="/images/logo.png"
                   alt="Workflow"
                 />
-                <span className="text-white pl-2">Champ School</span>
+                <span className="text-white pl-2">Champ</span>
               </div>
             </a>
             <div className="hidden lg:block lg:ml-6">

@@ -1,28 +1,41 @@
 import Link from "next/link";
 import React, { useState } from "react";
+import { Unit } from "../pages/api/explore";
 import UnitItem from "./stories/UnitItem";
 
 export type UnitCardProps = {
-  title: string;
-  image?: string;
+  unit: Unit;
+  courseId: string;
   disabled?: boolean;
-  link: string;
   rating?: number;
+  level: number;
 };
 
 export const UnitCard: React.FC<UnitCardProps> = ({
-  title,
-  image,
   disabled,
-  link,
+  courseId,
+  unit: { image, title, link },
+  level,
 }: UnitCardProps) => {
   const lockedunit = (
-    <UnitItem disabled={true} image={image} title={title} rating={0} />
+    <UnitItem
+      level={level}
+      disabled={true}
+      image={image}
+      title={title}
+      rating={0}
+    />
   );
   const unlockedunit = (
     <div className="h-full cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
-      <Link href={`/unit-overview/${link}`}>
-        <UnitItem disabled={disabled} image={image} title={title} rating={0} />
+      <Link href={`/course/${courseId}/unit/${link}`}>
+        <UnitItem
+          level={level}
+          disabled={disabled}
+          image={image}
+          title={title}
+          rating={0}
+        />
       </Link>
     </div>
   );
