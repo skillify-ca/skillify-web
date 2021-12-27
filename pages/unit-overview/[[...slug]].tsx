@@ -65,6 +65,9 @@ const UnitOverviewPage = ({ unitTitle, skillData, level }) => {
     }
   );
 
+  console.log(getBadgeId(unitTitle, level));
+  
+
   const isQuizLocked = () => {
     if (!loading && data && data.user_skills.length !== 0) {
       const unmasteredSkills = skillsForCurrentGrade(skillData)
@@ -118,7 +121,7 @@ export async function getStaticProps({ params }) {
     };
   }
   
-  const level = params.slug.length > 1 ? params.slug[1] : 1
+  const level = params.slug.length > 1 ? Number.parseInt(params.slug[1]) : 1
   //return multiple descriptions,
   return { props: { skillData: data, unitTitle: params.slug[0], level } };
 }
@@ -126,12 +129,12 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { slug: ["numbers"] } },
-      { params: { slug: ["addition"] } },
-      { params: { slug: ["subtraction"] } },
-      { params: { slug: ["multiplication"] } },
-      { params: { slug: ["division"] } },
-      { params: { slug: ["finance"] } },
+      { params: { slug: ["numbers", "1"] } },
+      { params: { slug: ["addition", "1"] } },
+      { params: { slug: ["subtraction", "1"] } },
+      { params: { slug: ["multiplication", "1"] } },
+      { params: { slug: ["division", "1"] } },
+      { params: { slug: ["finance", "1"] } },
     ],
     fallback: true,
   };

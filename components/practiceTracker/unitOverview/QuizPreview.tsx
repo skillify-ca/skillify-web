@@ -59,7 +59,7 @@ const QuizPreview = ({ isQuizLocked, unitTitle, loading, data }) => {
                     <div className="flex space-y-8">
                         <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
                             <Link
-                                href={`/quiz/${unitTitle}?level=${studentGrade.grade.ordinal}`}
+                                href={`/quiz/${unitTitle}?level=${studentGrade.mathLevel}`}
                             >
                                 <Button
                                     backgroundColor="blue"
