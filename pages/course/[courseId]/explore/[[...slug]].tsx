@@ -71,12 +71,10 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { courseId: "math2", slug: ["addition", "1"] } },
-      { params: { courseId: "math2", slug: ["subtraction", "1"] } },
-      { params: { courseId: "math2", slug: ["multiplication", "1"] } },
-      { params: { courseId: "math2", slug: ["division", "1"] } },
-      { params: { courseId: "math2", slug: ["tfsa", "1"] } },
-      { params: { courseId: "math2", slug: ["budgeting", "1"] } },
+      { params: { courseId: "math1", slug: ["addition", "1"] } },
+      { params: { courseId: "math1", slug: ["subtraction", "1"] } },
+      { params: { courseId: "math1", slug: ["multiplication", "1"] } },
+      { params: { courseId: "math1", slug: ["division", "1"] } },
     ],
     fallback: true,
   };
