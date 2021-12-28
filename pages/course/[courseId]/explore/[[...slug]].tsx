@@ -5,7 +5,7 @@ import TFSA from "../../../../components/finance/tfsa";
 import Navbar from "../../../../components/Navbar";
 
 import ContentfulContent from "../../../../components/explore/ContentfulContent";
-import { getEntryId } from "../../../api/explore";
+import { FETCH_COURSE_UNITS } from "../../../../graphql/fetchCourseUnits";
 
 const Explore = ({ unitTitle, entry }) => {
   const getComponent = () => {
@@ -37,13 +37,27 @@ export async function getStaticProps({ params }) {
     space: process.env.CF_SPACE_ID,
     accessToken: process.env.CF_DELIVERY_ACCESS_TOKEN,
   });
-  const id = getEntryId(
-    params.courseId,
-    Number.parseInt(params.slug[1]),
-    params.slug[0]
+  const level = Number.parseInt(params.slug[1]);
+  const unitTitle = params.slug[0];
+
+  const hasuraClient = new ApolloClient({
+    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
+    cache: new InMemoryCache(),
+  });
+  const { data } = await hasuraClient.query({
+    query: FETCH_COURSE_UNITS,
+    variables: {
+      courseId: params.courseId,
+    },
+  });
+
+  const unit = data.units.find(
+    (it) => it.level == level && it.title === unitTitle
   );
 
-  const res = await client.getEntry(id).catch((e) => console.error(e));
+  const res = await client
+    .getEntry(unit.exploreId)
+    .catch((e) => console.error(e));
 
   if (!res) {
     return {

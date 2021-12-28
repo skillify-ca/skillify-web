@@ -38,7 +38,6 @@ export default function Home({ courseData }) {
       const unlockedBadges = data.user_badges.filter(
         (it) => it.locked == false
       );
-      console.log(unlockedBadges.length);
 
       return Math.round(
         (unlockedBadges.length * 100) / data.user_badges.length
@@ -61,7 +60,7 @@ export default function Home({ courseData }) {
         }}
       >
         <div className="flex flex-col items-center justify-between w-full max-w-screen-lg col-span-2 space-y-8 p-4 mx-auto mb-4">
-          {data && (
+          {courseData && data && (
             <PracticeTracker
               courseId={courseId}
               badgeData={data.user_badges}

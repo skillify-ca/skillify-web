@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { practiceTrackerSelector } from "../../../redux/studentProfileSlice";
 import { Button } from "../../ui/Button";
 
-const QuizPreview = ({ isQuizLocked, unitTitle, loading, data }) => {
+const QuizPreview = ({ isQuizLocked, unitTitle, loading, data, courseId }) => {
   const getColourForAccuracy = (accuracy: any) => {
     if (accuracy >= 75) {
       return "text-green-500";
@@ -58,7 +58,7 @@ const QuizPreview = ({ isQuizLocked, unitTitle, loading, data }) => {
             <div className="flex space-y-8">
               <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
                 <Link
-                  href={`/quiz/${unitTitle}?level=${practiceTrackerState.mathLevel}`}
+                  href={`/course/${courseId}/quiz/${unitTitle}?level=${practiceTrackerState.mathLevel}`}
                 >
                   <Button
                     backgroundColor="blue"

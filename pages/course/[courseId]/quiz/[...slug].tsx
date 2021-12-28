@@ -4,22 +4,22 @@ import "react-simple-hook-modal/dist/styles.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useMutation } from "@apollo/client";
-import { generateQuestions } from "../api/quiz/quizQuestionGenerator";
 import { v4 as uuidv4 } from "uuid";
-import QuestionSet from "../../components/stories/QuestionSet";
-import { QuestionType } from "../api/questionTypes";
-import { GuessData } from "../api/guessData";
-import { AnswerType, Question } from "../api/question";
-import { Skill } from "../api/skill";
-import { UNLOCK_BADGE } from "../../graphql/unlockBadge";
-import { FETCH_USER_BADGES } from "../../graphql/fetchUserBadge";
-import { getBadgeId } from "../api/badgeHelper";
-import { SAVE_USER_GUESSES } from "../../graphql/saveUserGuesses";
-import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
-import { FETCH_USER_SKILL_BADGE } from "../../graphql/fetchBadgeForSkill";
-import { SAVE_QUIZ_ATTEMPT } from "../../graphql/saveQuizAttempt";
-import Navbar from "../../components/Navbar";
-import { useAuth } from "../../lib/authContext";
+import QuestionSet from "../../../../components/stories/QuestionSet";
+import { QuestionType } from "../../../api/questionTypes";
+import { GuessData } from "../../../api/guessData";
+import { AnswerType, Question } from "../../../api/question";
+import { Skill } from "../../../api/skill";
+import { UNLOCK_BADGE } from "../../../../graphql/unlockBadge";
+import { FETCH_USER_BADGES } from "../../../../graphql/fetchUserBadge";
+import { getBadgeId } from "../../../api/badgeHelper";
+import { SAVE_USER_GUESSES } from "../../../../graphql/saveUserGuesses";
+import { FETCH_USER_QUIZZES } from "../../../../graphql/fetchUserQuiz";
+import { FETCH_USER_SKILL_BADGE } from "../../../../graphql/fetchBadgeForSkill";
+import { SAVE_QUIZ_ATTEMPT } from "../../../../graphql/saveQuizAttempt";
+import Navbar from "../../../../components/Navbar";
+import { useAuth } from "../../../../lib/authContext";
+import { generateQuestions } from "../../../api/quiz/quizQuestionGenerator";
 
 //
 export function getGradeLevel(score: number) {
@@ -38,8 +38,9 @@ export function getGradeLevel(score: number) {
   }
 }
 
-const Quiz = ({ slug }) => {
+const Quiz = ({ unitTitle, currentLevel }) => {
   const { query } = useRouter();
+  const courseId: string = query.courseId as string;
   const { user } = useAuth();
 
   const [index, setIndex] = useState(0);
@@ -57,7 +58,6 @@ const Quiz = ({ slug }) => {
     },
   ]);
 
-  const [currentLevel, setCurrentLevel] = React.useState(0);
   const inputElement = useRef(null);
   const [guesses, setGuesses] = useState([]);
   const length = questionData.length;
@@ -85,18 +85,18 @@ const Quiz = ({ slug }) => {
         query: FETCH_USER_QUIZZES,
         variables: {
           userId: user.uid,
-          badgeId: getBadgeId(slug, currentLevel),
+          badgeId: getBadgeId(courseId, unitTitle, currentLevel),
         },
       },
     ],
   });
 
   useEffect(() => {
-    const level = Number.parseInt(query.level as string);
-    setCurrentLevel(level);
-    setQuestionData(generateQuestions(slug, level));
+    const q = generateQuestions(unitTitle, currentLevel);
+
+    setQuestionData(q);
     setSessionId(uuidv4());
-  }, []);
+  }, [unitTitle, currentLevel]);
 
   useEffect(() => {
     if (inputElement.current) {
@@ -125,7 +125,7 @@ const Quiz = ({ slug }) => {
         query: FETCH_USER_SKILL_BADGE,
         variables: {
           userId: user.uid,
-          badgeId: getBadgeId(slug, currentLevel),
+          badgeId: getBadgeId(courseId, unitTitle, currentLevel),
         },
       },
     ],
@@ -161,14 +161,14 @@ const Quiz = ({ slug }) => {
           unlockBadge({
             variables: {
               userId: user.uid,
-              badgeId: getBadgeId(slug, currentLevel),
+              badgeId: getBadgeId(courseId, unitTitle, currentLevel),
             },
           });
         }
         saveQuizData({
           variables: {
             userId: user.uid,
-            badgeId: getBadgeId(slug, currentLevel),
+            badgeId: getBadgeId(courseId, unitTitle, currentLevel),
             accuracy: Math.round((100 * newCorrectGuesses) / length),
             quizTitle: "",
           },
@@ -182,7 +182,7 @@ const Quiz = ({ slug }) => {
     setCorrectGuesses(0);
     setGameOver(false);
     setSecondsElapsed(0);
-    setQuestionData(generateQuestions(slug, currentLevel));
+    setQuestionData(generateQuestions(unitTitle, currentLevel));
     var newInterval = setInterval(() => {
       setSecondsElapsed((secondsElapsed) => secondsElapsed + 1);
     }, 1000);
@@ -197,7 +197,7 @@ const Quiz = ({ slug }) => {
     <div>
       <Navbar />
       <QuestionSet
-        title={slug}
+        title={unitTitle}
         questionData={questionData}
         index={index}
         inputElement={inputElement}
@@ -223,7 +223,7 @@ const Quiz = ({ slug }) => {
           >
             Replay
           </button>
-          <Link href="/practice">
+          <Link href={`/course/${courseId}/unit/${unitTitle}`}>
             <button className="group relative w-3/4 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               Home
             </button>
@@ -235,20 +235,18 @@ const Quiz = ({ slug }) => {
 };
 
 export async function getStaticProps({ params }) {
-  return {
-    props: {
-      slug: params.slug,
-    },
-  };
+  const level = params.slug.length > 1 ? Number.parseInt(params.slug[1]) : 1;
+  return { props: { unitTitle: params.slug[0], currentLevel: level } };
 }
 
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { slug: "addition", level: "1" } },
-      { params: { slug: "subtraction" } },
-      { params: { slug: "multiplication" } },
-      { params: { slug: "division" } },
+      { params: { courseId: "math1", slug: ["addition"], currentLevel: "1" } },
+      { params: { courseId: "math1", slug: ["numbers"], currentLevel: "3" } },
+      { params: { courseId: "math1", slug: ["subtraction"] } },
+      { params: { courseId: "math1", slug: ["multiplication"] } },
+      { params: { courseId: "math1", slug: ["division"] } },
     ],
     fallback: true,
   };

@@ -4,7 +4,6 @@ import {
   useMutation,
   useQuery,
 } from "@apollo/client";
-import { Preload, OrbitControls, Stars } from "@react-three/drei";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import Navbar from "../../../../components/Navbar";
@@ -111,6 +110,7 @@ const UnitOverviewPage = ({ unitTitle, skillData, level }) => {
             unitTitle={unitTitle}
             loading={loading}
             data={data}
+            courseId={courseId}
           />
         </div>
       </div>
