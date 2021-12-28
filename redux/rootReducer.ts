@@ -5,8 +5,6 @@ import { warGameSlice, WarGameState } from "./warGameSlice";
 import {
   practiceTrackerSlice,
   PracticeTrackerState,
-  studentProfileSlice,
-  StudentProfileState,
 } from "./studentProfileSlice";
 import {
   assignmentSessionSlice,
