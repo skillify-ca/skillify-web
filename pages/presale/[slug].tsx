@@ -10,6 +10,14 @@ const Presale = () => {
         return "to code";
       case "finance":
         return "financial literacy";
+      case "climate":
+        return "climate change";
+      case "crypto":
+        return "crypto";
+      case "social":
+        return "social skills";
+      case "sales":
+        return "sales skills";
     }
   };
   const getDescription = (slug) => {
@@ -18,6 +26,14 @@ const Presale = () => {
         return "Prepare for your digital future";
       case "finance":
         return "Unlock your economic potential";
+      case "climate":
+        return "Prepare for your future climate";
+      case "crypto":
+        return "Prepare for your digital future";
+      case "social":
+        return "Learn how to communicate your emotions";
+      case "sales":
+        return "Land a job in sales";
     }
   };
   return (

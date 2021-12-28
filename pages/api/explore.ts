@@ -58,6 +58,34 @@ const courseData: CourseData = {
       title: "Finance Champ",
       presale: true,
     },
+    {
+      id: "climate",
+      image: "/images/skills/climate.png",
+      url: "climate",
+      title: "Climate Champ",
+      presale: true,
+    },
+    {
+      id: "social",
+      image: "/images/skills/social.png",
+      url: "social",
+      title: "Social Champ",
+      presale: true,
+    },
+    {
+      id: "crypto",
+      image: "/images/skills/crypto.png",
+      url: "crypto",
+      title: "Crypto Champ",
+      presale: true,
+    },
+    {
+      id: "sales",
+      image: "/images/skills/sales.png",
+      url: "sales",
+      title: "Sales Champ",
+      presale: true,
+    },
   ],
 };
 

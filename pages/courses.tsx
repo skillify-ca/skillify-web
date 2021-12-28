@@ -5,7 +5,7 @@ import courseData from "./api/explore";
 
 const Courses = () => {
   return (
-    <div className="heropattern-pixeldots-gray-100 min-h-screen bg-gray-200">
+    <div className="heropattern-endlessclouds-blue-200 min-h-screen bg-blue-100">
       <Navbar />
       <h1 className="text-5xl font-bold text-center p-4">Courses</h1>
 
