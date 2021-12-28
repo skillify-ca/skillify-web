@@ -1,9 +1,12 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_USER_PROFILE = gql`
-  query fetchUserProfile($userId: String = "") {
+  query fetchUserProfile($userId: String = "", $courseId: String = "") {
     user_badges(
-      where: { userId: { _eq: $userId } }
+      where: {
+        userId: { _eq: $userId }
+        badge: { courseId: { _eq: $courseId } }
+      }
       order_by: { badgeId: asc }
     ) {
       badge {
@@ -11,6 +14,7 @@ export const FETCH_USER_PROFILE = gql`
         image
         id
         description
+        courseId
       }
       locked
     }

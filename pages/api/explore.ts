@@ -5,6 +5,7 @@ export type Unit = {
   exploreId?: string;
   locked?: boolean;
   badgeId?: number;
+  skills: number[];
 };
 type CourseData = {
   courses: Course[];
@@ -44,31 +45,37 @@ const courseData: CourseData = {
               link: "addition/1",
               exploreId: "6ugvsJKvPCCKlzsZOIX597",
               image: "/images/skills/add.png",
+              skills: [1, 4],
             },
             {
               title: "subtraction",
               link: "subtraction/1",
               exploreId: "31Uab2PK2clarxNePl6f3t",
               image: "/images/skills/sub.png",
+              skills: [2],
             },
             {
               title: "multiplication",
               image: "/images/skills/multi.png",
               link: "multiplication/1",
+              skills: [3],
             },
             {
               title: "division",
               image: "/images/skills/div.png",
               link: "division/1",
+              skills: [3],
             },
             {
               title: "numbers",
+              skills: [3],
               locked: true,
               image: "/images/skills/add.png",
               link: "numbers/1",
             },
             {
               title: "fractions",
+              skills: [3],
               locked: true,
               image: "/images/skills/add.png",
               link: "fractions/1",
@@ -80,11 +87,13 @@ const courseData: CourseData = {
           units: [
             {
               title: "addition",
+              skills: [3],
               link: "addition/2",
               exploreId: "6ugvsJKvPCCKlzsZOIX597",
               image: "/images/skills/add.png",
             },
             {
+              skills: [3],
               title: "subtraction",
               link: "subtraction/2",
               exploreId: "6K4Qf3ltqvhnG3WpEyRWqf",
@@ -93,21 +102,25 @@ const courseData: CourseData = {
             {
               title: "multiplication",
               image: "/images/skills/multi.png",
+              skills: [3],
               link: "multiplication/2",
             },
             {
               title: "division",
+              skills: [3],
               image: "/images/skills/div.png",
               link: "division/2",
             },
             {
               title: "numbers",
               locked: true,
+              skills: [3],
               image: "/images/skills/add.png",
               link: "numbers/2",
             },
             {
               title: "fractions",
+              skills: [3],
               locked: true,
               image: "/images/skills/add.png",
               link: "fractions/2",
@@ -122,20 +135,24 @@ const courseData: CourseData = {
               link: "addition/3",
               exploreId: "6ugvsJKvPCCKlzsZOIX597",
               image: "/images/skills/add.png",
+              skills: [3],
             },
             {
               title: "subtraction",
               link: "subtraction/3",
               exploreId: "31Uab2PK2clarxNePl6f3t",
               image: "/images/skills/sub.png",
+              skills: [3],
             },
             {
               title: "multiplication",
               image: "/images/skills/multi.png",
+              skills: [3],
               link: "multiplication/3",
             },
             {
               title: "division",
+              skills: [3],
               image: "/images/skills/div.png",
               link: "division/3",
             },
@@ -144,12 +161,14 @@ const courseData: CourseData = {
               locked: true,
               image: "/images/skills/add.png",
               link: "numbers/3",
+              skills: [3],
             },
             {
               title: "fractions",
               locked: true,
               image: "/images/skills/add.png",
               link: "fractions/3",
+              skills: [3],
             },
           ],
         },
@@ -171,12 +190,14 @@ const courseData: CourseData = {
               link: "addition/1",
               exploreId: "6ugvsJKvPCCKlzsZOIX597",
               image: "/images/skills/add.png",
+              skills: [3],
               badgeId: 1,
             },
             {
               title: "subtraction",
               link: "subtraction/1",
               exploreId: "31Uab2PK2clarxNePl6f3t",
+              skills: [3],
               image: "/images/skills/sub.png",
               badgeId: 1,
             },
@@ -184,6 +205,7 @@ const courseData: CourseData = {
               title: "multiplication",
               image: "/images/skills/multi.png",
               link: "multiplication/1",
+              skills: [3],
               badgeId: 1,
             },
             {
@@ -191,11 +213,13 @@ const courseData: CourseData = {
               image: "/images/skills/div.png",
               link: "division/1",
               badgeId: 1,
+              skills: [3],
             },
             {
               title: "numbers",
               locked: true,
               image: "/images/skills/add.png",
+              skills: [3],
               link: "numbers/1",
               badgeId: 1,
             },
@@ -204,6 +228,7 @@ const courseData: CourseData = {
               locked: true,
               image: "/images/skills/add.png",
               link: "fractions/1",
+              skills: [3],
               badgeId: 1,
             },
           ],
@@ -217,6 +242,7 @@ const courseData: CourseData = {
               exploreId: "6ugvsJKvPCCKlzsZOIX597",
               image: "/images/skills/add.png",
               badgeId: 1,
+              skills: [3],
             },
             {
               title: "subtraction",
@@ -224,16 +250,19 @@ const courseData: CourseData = {
               exploreId: "31Uab2PK2clarxNePl6f3t",
               image: "/images/skills/sub.png",
               badgeId: 1,
+              skills: [3],
             },
             {
               title: "multiplication",
               image: "/images/skills/multi.png",
               link: "multiplication/2",
+              skills: [3],
               badgeId: 1,
             },
             {
               title: "division",
               image: "/images/skills/div.png",
+              skills: [3],
               link: "division/2",
               badgeId: 1,
             },
@@ -242,6 +271,7 @@ const courseData: CourseData = {
               locked: true,
               image: "/images/skills/add.png",
               badgeId: 1,
+              skills: [3],
 
               link: "numbers/2",
             },
@@ -250,6 +280,7 @@ const courseData: CourseData = {
               badgeId: 1,
 
               locked: true,
+              skills: [3],
               image: "/images/skills/add.png",
               link: "fractions/2",
             },
@@ -264,6 +295,7 @@ const courseData: CourseData = {
 
               link: "addition/3",
               exploreId: "6ugvsJKvPCCKlzsZOIX597",
+              skills: [3],
               image: "/images/skills/add.png",
             },
             {
@@ -272,16 +304,19 @@ const courseData: CourseData = {
               badgeId: 1,
 
               exploreId: "31Uab2PK2clarxNePl6f3t",
+              skills: [3],
               image: "/images/skills/sub.png",
             },
             {
               title: "multiplication",
               badgeId: 1,
+              skills: [3],
               image: "/images/skills/multi.png",
               link: "multiplication/3",
             },
             {
               title: "division",
+              skills: [3],
               badgeId: 1,
               image: "/images/skills/div.png",
               link: "division/3",
@@ -292,6 +327,7 @@ const courseData: CourseData = {
               locked: true,
               image: "/images/skills/add.png",
               link: "numbers",
+              skills: [3],
             },
             {
               title: "fractions",
@@ -299,6 +335,7 @@ const courseData: CourseData = {
               locked: true,
               image: "/images/skills/add.png",
               link: "fractions",
+              skills: [3],
             },
           ],
         },
@@ -328,6 +365,7 @@ const courseData: CourseData = {
               exploreId: "",
               image: "/images/skills/add.png",
               link: "",
+              skills: [3],
             },
             {
               title: "CSS",
@@ -335,6 +373,7 @@ const courseData: CourseData = {
               exploreId: "",
               image: "/images/skills/add.png",
               link: "",
+              skills: [3],
             },
             {
               title: "Javascript",
@@ -342,6 +381,7 @@ const courseData: CourseData = {
               exploreId: "",
               image: "/images/skills/add.png",
               link: "",
+              skills: [3],
             },
           ],
         },
@@ -352,10 +392,12 @@ const courseData: CourseData = {
               title: "Components",
               badgeId: 1,
               exploreId: "",
+              skills: [3],
               image: "/images/skills/add.png",
               link: "",
             },
             {
+              skills: [3],
               title: "Props",
               badgeId: 1,
               exploreId: "",
@@ -368,6 +410,7 @@ const courseData: CourseData = {
               exploreId: "",
               image: "/images/skills/add.png",
               link: "",
+              skills: [3],
             },
           ],
         },

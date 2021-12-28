@@ -2,15 +2,21 @@ import UnitCard from "../UnitCard";
 import Hero from "./Hero";
 
 const PracticeTracker = ({
-  unlockedUnits,
-  lockedUnits,
+  units,
   level,
+  badgeData,
   onLevelChange,
   levels,
   description,
   progress,
   courseId,
 }) => {
+  const isComplete = (unit) => {
+    return badgeData
+      .filter((badge) => !badge.locked)
+      .map((badge) => badge.badge.id)
+      .includes(unit.badgeId);
+  };
   return (
     <>
       <Hero
@@ -21,25 +27,16 @@ const PracticeTracker = ({
         progress={progress}
       />
       <div className="grid mt-8 grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4">
-        {unlockedUnits.map((unit, index) => (
-          <div key={index} className="">
-            <UnitCard
-              key={unit.title}
-              unit={unit}
-              rating={0}
-              courseId={courseId}
-              level={level}
-            />
-          </div>
-        ))}
-        {lockedUnits.map((unit, index) => (
+        {units.map((unit, index) => (
           <div key={index} className="">
             <UnitCard
               key={index}
               unit={unit}
-              disabled={true}
+              rating={0}
               courseId={courseId}
               level={level}
+              disabled={unit.locked}
+              complete={isComplete(unit)}
             />
           </div>
         ))}

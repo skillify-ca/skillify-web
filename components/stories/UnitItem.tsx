@@ -9,6 +9,7 @@ export type UnitItemProps = {
   disabled?: boolean;
   rating?: number;
   level?: number;
+  complete?: boolean;
   onClick?: () => void;
 };
 
@@ -19,6 +20,7 @@ export const UnitItem: React.FC<UnitItemProps> = ({
   disabled,
   rating,
   level,
+  complete,
   onClick,
 }: UnitItemProps) => {
   let accessoryComponent;
@@ -28,12 +30,12 @@ export const UnitItem: React.FC<UnitItemProps> = ({
       break;
     case "completed":
       accessoryComponent = (
-        <img src={"images/checkmark.png"} alt="skill image" className="w-8" />
+        <img src={"/images/checkmark.png"} alt="skill image" className="w-8" />
       );
       break;
     case "progress":
       accessoryComponent = (
-        <img src={"images/progress.png"} alt="skill image" className="w-8" />
+        <img src={"/images/progress.png"} alt="skill image" className="w-8" />
       );
       break;
   }
@@ -61,7 +63,13 @@ export const UnitItem: React.FC<UnitItemProps> = ({
             {disabled ? (
               <img src="/images/skills/lock.png" alt="" />
             ) : (
-              image && <img src={image} alt="" />
+              image && (
+                <img
+                  className={`${complete ? "invert" : ""}`}
+                  src={image}
+                  alt=""
+                />
+              )
             )}
           </div>
           <p className="mx-4 text-center text-xl">{title}</p>

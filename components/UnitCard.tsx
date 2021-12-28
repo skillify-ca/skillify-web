@@ -9,6 +9,7 @@ export type UnitCardProps = {
   disabled?: boolean;
   rating?: number;
   level: number;
+  complete?: boolean;
 };
 
 export const UnitCard: React.FC<UnitCardProps> = ({
@@ -16,6 +17,7 @@ export const UnitCard: React.FC<UnitCardProps> = ({
   courseId,
   unit: { image, title, link },
   level,
+  complete,
 }: UnitCardProps) => {
   const lockedunit = (
     <UnitItem
@@ -26,9 +28,23 @@ export const UnitCard: React.FC<UnitCardProps> = ({
       rating={0}
     />
   );
+  const completeUnit = (
+    <div className="h-full cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
+      <Link href={`/course/${courseId}/unit/${title}/${level}`}>
+        <UnitItem
+          level={level}
+          image={image}
+          title={title}
+          rating={0}
+          complete={true}
+          accessory="completed"
+        />
+      </Link>
+    </div>
+  );
   const unlockedunit = (
     <div className="h-full cursor-pointer transition duration-500 ease-in-out transform hover:scale-110">
-      <Link href={`/course/${courseId}/unit/${link}`}>
+      <Link href={`/course/${courseId}/unit/${title}/${level}`}>
         <UnitItem
           level={level}
           disabled={disabled}
@@ -40,7 +56,7 @@ export const UnitCard: React.FC<UnitCardProps> = ({
     </div>
   );
 
-  return disabled ? lockedunit : unlockedunit;
+  return complete ? completeUnit : disabled ? lockedunit : unlockedunit;
 };
 
 export default UnitCard;

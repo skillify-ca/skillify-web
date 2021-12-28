@@ -1,8 +1,9 @@
-import { useQuery } from "@apollo/client";
+import { ApolloClient, InMemoryCache, useQuery } from "@apollo/client";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import PracticeTracker from "../../components/practiceTracker/PracticeTracker";
+import { FETCH_COURSE_UNITS } from "../../graphql/fetchCourseUnits";
 import { FETCH_USER_PROFILE } from "../../graphql/fetchUserProfile";
 import { useAuth } from "../../lib/authContext";
 import { useAppDispatch } from "../../redux/store";
@@ -10,10 +11,8 @@ import {
   practiceTrackerSelector,
   setMathLevel,
 } from "../../redux/studentProfileSlice";
-import { getCourse } from "../api/explore";
-import { unlockedUnits, lockedUnits } from "../api/units";
 
-export default function Home() {
+export default function Home({ courseData }) {
   const studentGrade = useSelector(practiceTrackerSelector);
   const level = studentGrade.mathLevel;
   const router = useRouter();
@@ -24,6 +23,7 @@ export default function Home() {
   let { loading, data } = useQuery(FETCH_USER_PROFILE, {
     variables: {
       userId: user.uid,
+      courseId: courseId,
     },
   });
 
@@ -34,12 +34,12 @@ export default function Home() {
   };
 
   const progress = () => {
-    console.log(data);
-
     if (!loading && data && data.user_badges && data.user_badges.length > 0) {
       const unlockedBadges = data.user_badges.filter(
         (it) => it.locked == false
       );
+      console.log(unlockedBadges.length);
+
       return Math.round(
         (unlockedBadges.length * 100) / data.user_badges.length
       );
@@ -61,22 +61,53 @@ export default function Home() {
         }}
       >
         <div className="flex flex-col items-center justify-between w-full max-w-screen-lg col-span-2 space-y-8 p-4 mx-auto mb-4">
-          <PracticeTracker
-            courseId={courseId}
-            unlockedUnits={unlockedUnits(courseId, level)}
-            lockedUnits={lockedUnits(courseId, level)}
-            level={level}
-            onLevelChange={(grade) => onGradeChange(grade)}
-            levels={getCourse(courseId).levels.map((it) => it.title)}
-            description={
-              "Start at bronze and unlock as many badges as you can. Master you math confidence by getting to 100%"
-            }
-            progress={progress()}
-          />
+          {data && (
+            <PracticeTracker
+              courseId={courseId}
+              badgeData={data.user_badges}
+              units={courseData.units.filter((it) => it.level === level)}
+              level={level}
+              onLevelChange={(grade) => onGradeChange(grade)}
+              levels={["Bronze", "Silver", "Gold"]}
+              description={
+                "Start at bronze and unlock as many badges as you can. Master you math confidence by getting to 100%"
+              }
+              progress={progress()}
+            />
+          )}
         </div>
       </div>
     </div>
   );
+}
+
+export async function getStaticProps({ params }) {
+  const client = new ApolloClient({
+    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
+    cache: new InMemoryCache(),
+  });
+  const { data } = await client.query({
+    query: FETCH_COURSE_UNITS,
+    variables: {
+      courseId: params.courseId,
+    },
+  });
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  //return multiple descriptions,
+  return { props: { courseData: data, courseId: params.courseId } };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [{ params: { courseId: "math1" } }],
+    fallback: true,
+  };
 }
 
 Home.auth = true;
