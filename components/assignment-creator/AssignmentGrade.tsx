@@ -1,7 +1,7 @@
 import React from "react";
 import Script from "next/script";
 import { GuessData } from "../../pages/api/guessData";
-import { getGradeLevel } from "../../pages/quiz/[slug]";
+import { getGradeLevel } from "../../pages/course/[courseId]/quiz/[...slug]";
 
 type AssignmentGradeProps = {
   guesses: GuessData[];
@@ -29,9 +29,7 @@ const AssignmentGrade = ({ guesses, questions }: AssignmentGradeProps) => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2 bg-white p-4 text-center">
-        <p className="font-bold text-xl">
-          Level {getGradeLevel(getPercent())}
-        </p>
+        <p className="font-bold text-xl">Level {getGradeLevel(getPercent())}</p>
         <p>
           Score: {getCorrectGuesses()}/{questions.length}{" "}
           <span className="text-base font-normal">({getPercent()}%)</span>
