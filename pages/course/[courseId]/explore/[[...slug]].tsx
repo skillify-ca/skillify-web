@@ -34,8 +34,8 @@ const Explore = ({ unitTitle, entry }) => {
 
 export async function getStaticProps({ params }) {
   const client = createClient({
-    space: process.env.CF_SPACE_ID,
-    accessToken: process.env.CF_DELIVERY_ACCESS_TOKEN,
+    space: process.env.NEXT_PUBLIC_CF_SPACE_ID,
+    accessToken: process.env.NEXT_PUBLIC_CF_DELIVERY_ACCESS_TOKEN,
   });
   const level = Number.parseInt(params.slug[1]);
   const unitTitle = params.slug[0];
