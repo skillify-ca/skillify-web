@@ -1,4 +1,4 @@
-import { generateQuestionForSkill } from "../questionGenerator";
+import { generateQuestionForSkill } from "../questions/questionGenerator";
 
 export const generatePracticeQuestions = (skillId: number) => {
   let questions = [];

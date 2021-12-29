@@ -54,6 +54,7 @@ export async function getStaticProps({ params }) {
   const unit = data.units.find(
     (it) => it.level == level && it.title === unitTitle
   );
+  console.log("V", unit);
 
   const res = await client
     .getEntry(unit.exploreId)
@@ -64,6 +65,7 @@ export async function getStaticProps({ params }) {
       notFound: true,
     };
   }
+
   //return multiple descriptions,
   return { props: { entry: res, slug: params.slug } };
 }

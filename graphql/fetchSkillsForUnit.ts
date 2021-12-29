@@ -9,6 +9,7 @@ export const FETCH_SKILLS_FOR_UNIT = gql`
       unit
       published
       courseId
+      image
     }
   }
 `;

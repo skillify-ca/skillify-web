@@ -1,6 +1,6 @@
 import { useState } from "@storybook/client-api";
 import { useSelector } from "react-redux";
-import FinanceProfile from "../../pages/lessons/budget";
+import FinanceProfile from "../../pages/finance/lessons/budget";
 import { assignmentSessionSelector } from "../../redux/assignmentSession";
 import IncomeTable from "./IncomeTable";
 

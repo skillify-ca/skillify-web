@@ -27,7 +27,7 @@
     "components/ticTacToe/TicTacToeBoard.tsx",
     "pages/index.tsx",
     "src"
-, "pages/explore/addition/1.mdx"  ],
+, "pages/course/[courseId]/explore/addition/1.mdx"  ],
   "exclude": [
     "node_modules"
   ]

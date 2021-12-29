@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ChooseFoodType from "../../components/foodtruck/ChooseFoodType";
-import ChooseNumWorkers from "../../components/foodtruck/ChooseNumWorkers";
-import ChooseTruckType from "../../components/foodtruck/ChooseTruckType";
+import ChooseFoodType from "../../../components/foodtruck/ChooseFoodType";
+import ChooseNumWorkers from "../../../components/foodtruck/ChooseNumWorkers";
+import ChooseTruckType from "../../../components/foodtruck/ChooseTruckType";
 
 import {
   hotDog,
@@ -9,17 +9,17 @@ import {
   minimumWage,
   smallTruck,
   Truck,
-} from "../api/foodtruck/food";
-import RevenueEquation from "../../components/foodtruck/RevenueEquation";
-import ProdCostEquation from "../../components/foodtruck/ProdCostEquation";
-import LaborCostEquation from "../../components/foodtruck/LaborCostEquation";
-import ProfitEquation from "../../components/foodtruck/ProfitEquation";
+} from "../../api/foodtruck/food";
+import RevenueEquation from "../../../components/foodtruck/RevenueEquation";
+import ProdCostEquation from "../../../components/foodtruck/ProdCostEquation";
+import LaborCostEquation from "../../../components/foodtruck/LaborCostEquation";
+import ProfitEquation from "../../../components/foodtruck/ProfitEquation";
 
-import { Button } from "../../components/ui/Button";
+import { Button } from "../../../components/ui/Button";
 import { useMutation } from "@apollo/client";
-import { UNLOCK_BADGE } from "../../graphql/unlockBadge";
-import { useAuth } from "../../lib/authContext";
-import { EndSession } from "../../components/budget/EndSession";
+import { UNLOCK_BADGE } from "../../../graphql/unlockBadge";
+import { useAuth } from "../../../lib/authContext";
+import { EndSession } from "../../../components/budget/EndSession";
 
 /*
 TODO fix these issues before make it obvious when food items are not selectable

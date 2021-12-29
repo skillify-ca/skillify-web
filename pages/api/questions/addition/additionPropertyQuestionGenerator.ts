@@ -6,10 +6,10 @@ import {
   AnswerType,
   FillOption,
   fillBlankModel,
-} from "./question";
-import { Skill } from "./skill";
-import { QuestionType } from "./questionTypes";
-import { getRandomItemFromArray, getRndInteger } from "./random";
+} from "../../question";
+import { Skill } from "../../skill";
+import { QuestionType } from "../../questionTypes";
+import { getRandomItemFromArray, getRndInteger } from "../../random";
 import { AdditionProperty } from "./additionProperty";
 
 export function getRandomPropertyAdditionQuestion(
@@ -85,18 +85,22 @@ function getRandomWordPropertyQuestion(
 
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
-  const commutativeQuestion = getCommutativeSentence(a, b, operator)
+  const commutativeQuestion = getCommutativeSentence(a, b, operator);
 
   const identityNum = getRndInteger(min, max);
-  const identityQuestion = getIdentitySentence(identityNum, operator)
+  const identityQuestion = getIdentitySentence(identityNum, operator);
 
   const x = getRndInteger(min, max);
   const y = getRndInteger(min, max);
   const z = getRndInteger(min, max);
-  const associativeQuestion = getAssociativeSentence(x, y, z, operator)
+  const associativeQuestion = getAssociativeSentence(x, y, z, operator);
 
   // question chooser
-  const possibleQuestions = [commutativeQuestion, identityQuestion, associativeQuestion];
+  const possibleQuestions = [
+    commutativeQuestion,
+    identityQuestion,
+    associativeQuestion,
+  ];
   const randomIndex = getRndInteger(0, possibleQuestions.length);
   const question = possibleQuestions[randomIndex];
 

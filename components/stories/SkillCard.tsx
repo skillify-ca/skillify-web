@@ -6,6 +6,7 @@ import Link from "next/link";
 
 const SkillCard = ({ loading, userSkillData, skill }) => {
   const [isSelected, setIsSelected] = useState(false);
+  console.log(userSkillData);
 
   return (
     <Link href={`/practice/${skill.id}`}>
@@ -18,13 +19,13 @@ const SkillCard = ({ loading, userSkillData, skill }) => {
             : " cursor-pointer transform transition duration-200 hover:bg-gray-50"
         } bg-white mb-4 grid grid-cols-12 items-center rounded-xl shadow-lg`}
       >
-        <div className="col-span-2 bg-red-300 h-full rounded-l-lg">
+        <div className="col-span-2 bg-gray-100 h-full rounded-l-lg">
           <img
-            className="object-cover col-span-2 h-full rounded-l-lg"
+            className="object-scale-down col-span-2 h-full rounded-l-lg"
             src={
-              !skill.published
+              !skill.published || !skill.image
                 ? "/images/skills/lock.png"
-                : `https://placeimg.com/640/480/tech`
+                : skill.image
             }
           />
         </div>

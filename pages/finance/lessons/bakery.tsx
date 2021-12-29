@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import BakeryInstructions from "../../components/bakery/BakeryInstructions";
-import BuildingABakeryA from "../../components/bakery/BuildingABakeryA";
-import BakersRack from "../../components/bakery/BakersRack";
+import BakeryInstructions from "../../../components/bakery/BakeryInstructions";
+import BuildingABakeryA from "../../../components/bakery/BuildingABakeryA";
+import BakersRack from "../../../components/bakery/BakersRack";
 
-import BakingGma from "../../components/bakery/BakingGma";
-import BakersRackB from "../../components/bakery/BakersRackB";
+import BakingGma from "../../../components/bakery/BakingGma";
+import BakersRackB from "../../../components/bakery/BakersRackB";
 
-import { STAGE } from "../games";
-import { Button } from "../../components/ui/Button";
+import { STAGE } from "../../games";
+import { Button } from "../../../components/ui/Button";
 
 export default function Bakery(props) {
   enum STAGE {

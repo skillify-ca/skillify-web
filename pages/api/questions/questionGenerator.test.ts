@@ -1,13 +1,9 @@
 import "@testing-library/jest-dom/extend-expect";
-import { Subtraction4DigitWS } from "../../components/stories/WorksheetsObj";
-import {
-  getArrayMultiplicationQuestion,
-  getRandomDivisionQuestion,
-  getDivisionQuestion,
-  getBinaryQuestion,
-} from "./questionGenerator";
-import { QuestionType } from "./questionTypes";
-import { Skill } from "./skill";
+import { QuestionType } from "../questionTypes";
+import { Skill } from "../skill";
+import { getDivisionQuestion } from "./division/divisionQuestionGenerator";
+import { getArrayMultiplicationQuestion } from "./multiplication/multiplicationQuestionGenerator";
+import { getBinaryQuestion } from "./questionGenerator";
 test("generate Array Multiplication question", async () => {
   // Arrange
   let a = 4;

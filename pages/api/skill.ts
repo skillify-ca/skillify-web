@@ -1,5 +1,3 @@
-import { QuestionTypeForSkill } from "../../components/assignment-creator/assignmentCreationForm";
-import { generateQuestionForSkill } from "./questionGenerator";
 import { QuestionType } from "./questionTypes";
 import { getRndInteger } from "./random";
 

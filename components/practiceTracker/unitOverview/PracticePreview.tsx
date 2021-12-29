@@ -2,8 +2,6 @@ import Link from "next/link";
 import SkillCard from "../../stories/SkillCard";
 
 const PracticePreview = ({ loading, userSkills, skills }) => {
-  console.log(userSkills);
-
   return (
     <>
       <div className="grid items-stretch grid-cols-1 bg-white shadow-lg rounded-t-xl">

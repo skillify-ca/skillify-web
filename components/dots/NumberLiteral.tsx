@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { randomize } from "../../pages/api/questionGenerator";
+import { randomize } from "../questionTypes/MultipleChoiceSentence";
 
 export interface NumberLiteralProp {
   num: number;
