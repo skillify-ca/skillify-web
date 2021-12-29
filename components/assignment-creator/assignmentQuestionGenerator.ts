@@ -1,5 +1,5 @@
 import { Question } from "../../pages/api/question";
-import { generateQuestionForSkill } from "../../pages/api/questionGenerator";
+import { generateQuestionForSkill } from "../../pages/api/questions/questionGenerator";
 import { QuestionType } from "../../pages/api/questionTypes";
 
 export const generateAssignmentQuestions = (
