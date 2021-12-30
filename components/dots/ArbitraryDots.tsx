@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { randomize } from "../../pages/api/questionGenerator";
+import { randomize } from "../../pages/api/questions/questionGenerator";
 
 export interface DotProps {
   exists: boolean;

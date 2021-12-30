@@ -14,13 +14,13 @@ import {
   getGradeLevelForUnit,
   getResultForSkill,
 } from "./api/diagnostic/diagnosticGrader";
-import { generateQuestionForSkill } from "./api/questionGenerator";
 import Navbar from "../components/Navbar";
 import getFourthGradeQuestion, {
   getFifthGradeQuestion,
   getSixthGradeQuestion,
 } from "./api/diagnostic/juniorDiagnosticQuestionGenerator";
 import Head from "next/head";
+import { generateQuestionForSkill } from "./api/questions/questionGenerator";
 
 enum STAGE {
   CREATE,
@@ -35,7 +35,7 @@ const Diagnostic = () => {
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState(1);
   const [isShaking, setIsShaking] = useState(false);
-  const [grade, setGrade] = useState<string>( "Grade 1");
+  const [grade, setGrade] = useState<string>("Grade 1");
   const [stage, setStage] = useState(STAGE.CREATE);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -44,9 +44,11 @@ const Diagnostic = () => {
   const [guesses, setGuesses] = useState<Array<string>>([]);
   const [guessAns, setGuessAns] = useState<Array<string>>([]);
   const [answeredQuestions, setAnsweredQuestions] = useState<Question[]>([]);
-  const [juniorDiagnosticQuestions, setJuniorDiagnosticQuestions] = useState<Question[]>([]);
-  const [currentJuniorQuestion, setCurrentJuniorQuestion] = useState<number>(0)
-  const [gradeLevel, setGradeLevel] = useState<String>("Grade 4")
+  const [juniorDiagnosticQuestions, setJuniorDiagnosticQuestions] = useState<
+    Question[]
+  >([]);
+  const [currentJuniorQuestion, setCurrentJuniorQuestion] = useState<number>(0);
+  const [gradeLevel, setGradeLevel] = useState<String>("Grade 4");
 
   const getGradeRange: () => string = () => {
     return ["Grade 1", "Grade 2", "Grade 3"].includes(grade)
@@ -54,16 +56,14 @@ const Diagnostic = () => {
       : "Junior";
   };
 
-  const [questionsLeftInUnit, setQuestionsLeftInUnit] = useState<number>(
-    QUESTIONS_PER_UNIT
-  );
+  const [questionsLeftInUnit, setQuestionsLeftInUnit] =
+    useState<number>(QUESTIONS_PER_UNIT);
   const [currentQuestion, setCurrentQuestion] = useState<Question>();
   const inputElement = useRef(null);
 
   // create this in the backend and then call into the frontend
 
   const requestEmail = async () => {
-
     const url = "https://math-app-1.herokuapp.com/email";
 
     const options = {
@@ -75,7 +75,6 @@ const Diagnostic = () => {
     };
 
     await fetch(url, options);
-
   };
 
   function delay(ms: number) {
@@ -84,13 +83,12 @@ const Diagnostic = () => {
 
   // looks at gradeLevel and returns questions
   const getGradeList = (gradeLevel) => {
-
     if (gradeLevel == "Grade 4") {
-      return getFourthGradeQuestion()
+      return getFourthGradeQuestion();
     } else if (gradeLevel == "Grade 5") {
-      return getFifthGradeQuestion()
+      return getFifthGradeQuestion();
     } else if (gradeLevel == "Grade 6") {
-      return getSixthGradeQuestion()
+      return getSixthGradeQuestion();
     }
   };
 
@@ -137,19 +135,22 @@ const Diagnostic = () => {
         setCurrentJuniorQuestion(currentJuniorQuestion + 1);
 
         if (shouldMoveToNextUnit()) {
-          setJuniorDiagnosticQuestions(getFourthGradeQuestion())
+          setJuniorDiagnosticQuestions(getFourthGradeQuestion());
         } else if (guessData.isCorrect) {
           if (gradeLevel == "Grade 4") {
-            const fifthGradeList = getGradeList("Grade 5")
-            setJuniorDiagnosticQuestions(fifthGradeList)
-            setGradeLevel("Grade 5")
+            const fifthGradeList = getGradeList("Grade 5");
+            setJuniorDiagnosticQuestions(fifthGradeList);
+            setGradeLevel("Grade 5");
           } else if (gradeLevel == "Grade 5") {
-            const sixthGradeList = getGradeList("Grade 6")
-            setJuniorDiagnosticQuestions(sixthGradeList)
-            setGradeLevel("Grade 6")
+            const sixthGradeList = getGradeList("Grade 6");
+            setJuniorDiagnosticQuestions(sixthGradeList);
+            setGradeLevel("Grade 6");
           }
-        } else if (!guessData.isCorrect && juniorDiagnosticQuestions == getFifthGradeQuestion()) {
-          setJuniorDiagnosticQuestions(getFourthGradeQuestion())
+        } else if (
+          !guessData.isCorrect &&
+          juniorDiagnosticQuestions == getFifthGradeQuestion()
+        ) {
+          setJuniorDiagnosticQuestions(getFourthGradeQuestion());
         }
       } else {
         // Primary grades questions

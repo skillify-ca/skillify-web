@@ -1,3 +1,4 @@
+import { generateQuestionForSkill } from "./questions/questionGenerator";
 import { QuestionType } from "./questionTypes";
 import { getRndInteger } from "./random";
 

@@ -65,7 +65,7 @@ export const UnitItem: React.FC<UnitItemProps> = ({
             ) : (
               image && (
                 <img
-                  className={`${complete ? "invert" : ""}`}
+                  className={`rounded-full ${complete ? "invert" : ""}`}
                   src={image}
                   alt=""
                 />

@@ -1,8 +1,7 @@
 import { Question } from "../question";
-import {
-  generateQuestionForSkill,
-  getRandomAdditionQuestion,
-} from "../questionGenerator";
+import { getRandomAdditionQuestion } from "../questions/addition/additionQuestionGenerator";
+import { generateQuestionForSkill } from "../questions/questionGenerator";
+
 import { Skill } from "../skill";
 
 const NUM_QUESTIONS = 1;

@@ -15,7 +15,7 @@ const HomePage = () => {
   return (
     <div>
       <Head>
-        <title>Math Champ</title>
+        <title>Champ</title>
       </Head>
       <div className="relative bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto">
@@ -111,7 +111,9 @@ const HomePage = () => {
                   <span className="block text-blue-600 xl:inline">
                     digital future
                   </span>{" "}
-                  <span className="block xl:inline">with Champ School</span>{" "}
+                  <span className="block xl:inline">
+                    with our online courses
+                  </span>{" "}
                 </h1>
                 <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                   Browse our courses to learn valuable digital skills.

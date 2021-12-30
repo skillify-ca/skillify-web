@@ -1,5 +1,5 @@
+import { generateQuestionForSkill } from "../questions/questionGenerator";
 import { Skill } from "../skill";
-import { generateQuestionForSkill } from "../questionGenerator";
 
 const NUM_QUESTIONS = 12;
 
