@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import { Canvas } from "react-three-fiber";
 import { practiceTrackerSelector } from "../../../redux/studentProfileSlice";
+import Box from "../../stories/Box";
 import { Button } from "../../ui/Button";
 
 const QuizPreview = ({ isQuizLocked, unitTitle, loading, data, courseId }) => {
@@ -87,7 +89,7 @@ const QuizPreview = ({ isQuizLocked, unitTitle, loading, data, courseId }) => {
             </div>
           )}
         </div>
-        <div className="col-span-6 m-4 flex flex-col items-center justify-center space-y-8 bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 rounded-2xl h-72">
+        <div className="col-span-6 m-4 text-white flex flex-col items-center justify-center space-y-8 bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 rounded-2xl h-72">
           {isQuizLocked && <img src="/images/lock.png" className="w-28" />}
           {!isQuizLocked &&
             !loading &&
@@ -102,11 +104,18 @@ const QuizPreview = ({ isQuizLocked, unitTitle, loading, data, courseId }) => {
                   </p>
                 </div>
               ) : (
-                <div className="flex h-full flex-col items-center p-4 justify-center bg-gradient-to-b to-blue-400 from-blue-200">
+                <div className="flex h-full flex-col w-full items-center p-4 justify-center heropattern-overlappingdiamonds-gray-700  bg-gray-500 rounded-xl">
                   {/* TODO fix importing react three fiber into this project */}
-                  {/* <Canvas camera={{ position: [10, 2, -10], fov: 60 }}> */}
-                  {/* <Preload all /> */}
-                  {/* <group> 
+                  <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
+                    <Box
+                      url={
+                        badge.badge.image
+                          ? badge.badge.image
+                          : "/images/lock.png"
+                      }
+                    />
+                    {/* <Preload all /> */}
+                    {/* <group> 
                     <Box
                       url={
                         badge.badge.image
@@ -122,12 +131,12 @@ const QuizPreview = ({ isQuizLocked, unitTitle, loading, data, courseId }) => {
                     />
                     <Stars /> 
                    </group> */}
-                  {/* </Canvas> */}
-                  <img
+                  </Canvas>
+                  {/* <img
                     src={badge.badge.image}
                     className="w-3/4 h-full object-scale-down mb-8"
-                  />
-                  <p className="text-md -mt-4 flex items-center">
+                  /> */}
+                  <p className="text-md flex items-center bg-gray-800 rounded-full p-4">
                     {"   "}
                     Badge: <b> &nbsp;Unlocked</b>{" "}
                   </p>
