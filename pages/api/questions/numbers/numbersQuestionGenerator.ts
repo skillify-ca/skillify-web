@@ -3,7 +3,7 @@ import { QuestionType } from "../../questionTypes";
 import { getRndInteger } from "../../random";
 import { Skill } from "../../skill";
 
-function numtoDigitsArr(answer: string): number[] {
+export function numtoDigitsArr(answer: string): number[] {
   const len = answer.length;
   let numArr = [];
   for (let i = 0; i < len; ++i) {

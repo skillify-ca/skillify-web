@@ -1,4 +1,4 @@
-import { stringNumCalc } from "./questions/questionGenerator";
+import { stringNumCalc } from "./questions/numbers/numbersQuestionGenerator";
 
 test("test 1", async () => {
   // Arrange
