@@ -9,36 +9,11 @@ export default function Resources(props) {
   return (
     <div className="flex flex-col overflow-auto bg-scroll bg-blue-50">
       <Navbar />
-      <div className="w-full shadow-lg bg-blue-100 p-4">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-around">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-            <span className="block">Ready to engage your students?</span>
-            <span className="block text-blue-600">
-              Create your Math Champ assignment today.
-            </span>
-          </h2>
-          <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
-            <div className="inline-flex rounded-md shadow">
-              <a
-                href="/assignment-creator"
-                className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-              >
-                <div className="flex gap-4 items-center">
-                  <p>Create Assignment</p>
-                  <Image src={googleClassroomImg} height="32" width="32" />
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="p-4">
-      <ContactForms />
-      </div>
+
       <div className="flex flex-col items-center justify-center p-4">
         <div className="flex flex-col w-full">
           <div className="flex justify-between items-center border-b-4 border-blue-800">
-            <p className="text-2xl font-bold p-4">Math Champ Picks</p>
+            <p className="text-2xl font-bold p-4">CS Champ Picks</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 p-8">
             {resources.slice(0, 3).map((resource) => (

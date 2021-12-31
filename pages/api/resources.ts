@@ -7,27 +7,26 @@ type Resource = {
 
 export const resources: Resource[] = [
   {
-    title: "Khan Academy",
-    link: "https://www.khanacademy.org/",
+    title: "Codecademy",
+    link: "https://www.codecademy.com/",
     imageUrl:
-      "https://cdn.kastatic.org/ka-perseus-images/d88dc482590783505610904836bb14efa6859ac0.png",
-    description:
-      "Khan Academy offers an intensive library of videos that cover math units in a way that is easy to understand. The videos are followed by practice questions to further enhance students' understanding.",
+      "https://www.codecademy.com/webpack/9b583bc419868d4c95b136cab8b50a69.png",
+    description: "Codecademy is an online course for learning how to code.",
   },
   {
-    title: "Prodigy",
-    link: "https://www.prodigygame.com/main-en/",
-    imageUrl:
-      "https://i.pinimg.com/originals/60/47/3e/60473efd4ce21b4662fff6ad00cbb669.png",
+    title: "Code HS",
+    link: "https://codehs.com/textbook/introjs_textbook/",
+    imageUrl: "https://static1.codehs.com/img/homepage/editor.png",
     description:
-      "Math helps us with real-world problem solving, helps our brains process information faster, and it helps us develop critical thinking skills.",
+      "Code HS has an Intro to JS textbook that covers all the key concepts.",
   },
   {
-    title: "Knowledge Hook",
-    link: "https://www.knowledgehook.com/parent/",
-    imageUrl: "/images/Knowledgehook.png",
+    title: "W3Schools",
+    link: "https://www.w3schools.com/",
+    imageUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/W3Schools_logo.svg/2175px-W3Schools_logo.svg.png",
     description:
-      "Knowledge hook engages students in grades 3-10 with immersive game-based activities designed to improve understanding.",
+      "W3Schools is a classic resource that explains the basics of HTML, CSS and JS.",
   },
   {
     title: "K5 Learning",
