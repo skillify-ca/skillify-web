@@ -1,4 +1,4 @@
-import { numtoDigitsArr } from "./questionGenerator";
+import { numtoDigitsArr } from "./questions/questionGenerator";
 
 test("test 1", async () => {
   // Arrange

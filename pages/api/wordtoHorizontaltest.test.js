@@ -1,6 +1,4 @@
-import { getRandomNumbersQuestion } from "./questionGenerator";
-import { Skill } from "./skill";
-import { stringNumCalc } from "./questionGenerator";
+import { stringNumCalc } from "./questions/questionGenerator";
 
 test("test 1", async () => {
   // Arrange

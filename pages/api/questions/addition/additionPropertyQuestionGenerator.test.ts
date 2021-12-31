@@ -2,7 +2,7 @@ import {
   getFillBlankQuestion,
   getRandomFillBlankQuestion,
 } from "./additionPropertyQuestionGenerator";
-import { Skill } from "./skill";
+import { Skill } from "./../../skill";
 
 test("Fill in the Blanks test", async () => {
   // Act
