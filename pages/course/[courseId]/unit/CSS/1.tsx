@@ -1,6 +1,36 @@
+import Card, { CardData } from "../../../../../components/coding/Card";
 import Navbar from "../../../../../components/Navbar";
 
-const HTML1 = () => {
+const CSS = () => {
+  const data: CardData[] = [
+    {
+      title: "W3Schools CSS tutorial",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/W3Schools_logo.svg/2175px-W3Schools_logo.svg.png",
+      link: "https://www.w3schools.com/css/default.asp",
+      description: "",
+    },
+    {
+      title: "CSS Grid Garden",
+      image: "https://cssgridgarden.com/favicon.ico",
+      link: "https://cssgridgarden.com/",
+      description: "",
+    },
+    {
+      title: "CSS Flexbox Froggy",
+      image:
+        "https://www.saashub.com/images/app/service_logos/82/fc3339facb56/large.png?1569287111",
+      link: "https://flexboxfroggy.com/",
+      description: "",
+    },
+    {
+      title: "CSS Diner",
+      image:
+        "https://i.pinimg.com/originals/8a/b1/ad/8ab1ad8128508785f956eb6f58779b47.jpg",
+      link: "https://flukeout.github.io/",
+      description: "",
+    },
+  ];
   return (
     <>
       <Navbar />
@@ -18,33 +48,18 @@ const HTML1 = () => {
             </p>
             <div className="flex flex-col space-y-2">
               <p className="font-bold">Tutorials</p>
-
-              <a
-                className="underline text-blue-600"
-                href="https://www.w3schools.com/css/default.asp"
-              >
-                W3Schools CSS tutorial
-              </a>
-              <a
-                className="underline text-blue-600"
-                href="https://cssgridgarden.com/"
-              >
-                CSS Grid Garden
-              </a>
-              <a
-                className="underline text-blue-600"
-                href="https://flexboxfroggy.com/"
-              >
-                CSS Flexbox Froggy
-              </a>
-              <a
-                className="underline text-blue-600"
-                href="https://flukeout.github.io/"
-              >
-                CSS Diner
-              </a>
+              {data.map((it) => (
+                <Card
+                  title={it.title}
+                  image={it.image}
+                  description={it.description}
+                  link={it.link}
+                />
+              ))}
             </div>
-            <div>
+          </div>
+          <div className="ml-4">
+            <div className="p-4">
               <p className="font-bold">Readings</p>
 
               <div className="underline text-blue-600 flex flex-col space-y-2">
@@ -59,12 +74,12 @@ const HTML1 = () => {
                 </a>
               </div>
             </div>
+            <img src="/images/coding/units/CSS/browsers.svg" className="w-96" />
           </div>
-          <img src="/images/coding/units/CSS/browsers.svg" className="w-96" />
         </div>
       </div>
     </>
   );
 };
 
-export default HTML1;
+export default CSS;

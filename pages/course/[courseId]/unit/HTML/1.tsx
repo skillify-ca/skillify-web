@@ -1,3 +1,4 @@
+import Card from "../../../../../components/coding/Card";
 import Navbar from "../../../../../components/Navbar";
 
 const HTML1 = () => {
@@ -17,20 +18,31 @@ const HTML1 = () => {
               different things. You will gain experience with all the possible
               HTML elements over time.
             </p>
-            <p>
-              {" "}
-              A good starting tutorial is the W3Schools website. Start at the
-              beginning and stop after you complete the Lists section.
-            </p>
-            <a
-              className="underline text-blue-600"
-              href="https://www.w3schools.com/html/default.asp"
-            >
-              W3Schools HTML tutorial
-            </a>
+
+            <div className="p-4">
+              <Card
+                title={"W3Schools HTML tutorial"}
+                image={
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/W3Schools_logo.svg/2175px-W3Schools_logo.svg.png"
+                }
+                description={
+                  "A good starting tutorial is the W3Schools website. Start at the beginning and stop after you complete the Lists section."
+                }
+                link={"https://www.w3schools.com/html/default.asp"}
+              />
+            </div>
           </div>
-          <img src="/images/coding/units/HTML/building.svg" className="w-96" />
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/Hjl6gbg9kmk"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
         </div>
+
         <p className="font-bold">Assignment</p>
 
         <p>
