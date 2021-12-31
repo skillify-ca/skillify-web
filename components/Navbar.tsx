@@ -104,17 +104,10 @@ export default function Navbar() {
                   Resources
                 </a>
                 <a
-                  href="/blog"
+                  href="https://vithushan.substack.com/"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Blog
-                </a>
-
-                <a
-                  href="/about"
-                  className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  About
                 </a>
               </div>
             </div>
@@ -127,12 +120,12 @@ export default function Navbar() {
                   {status === "loading"
                     ? ""
                     : !user && (
-                      <>
-                        <Link href="/welcome">
-                          <p className="text-white cursor-pointer">Sign in</p>
-                        </Link>
-                      </>
-                    )}
+                        <>
+                          <Link href="/welcome">
+                            <p className="text-white cursor-pointer">Sign in</p>
+                          </Link>
+                        </>
+                      )}
                   {user && (
                     <button
                       className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
@@ -216,16 +209,10 @@ export default function Navbar() {
             Resources
           </a>
           <a
-            href="/blog"
+            href="https://vithushan.substack.com/"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Blog
-          </a>
-          <a
-            href="/about"
-            className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-          >
-            About
           </a>
         </div>
       </div>

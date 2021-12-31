@@ -34,6 +34,7 @@ const HTML1 = () => {
           </div>
           <iframe
             width="560"
+            className="w-full"
             height="315"
             src="https://www.youtube.com/embed/Hjl6gbg9kmk"
             title="YouTube video player"

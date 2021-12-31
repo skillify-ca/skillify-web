@@ -7,7 +7,6 @@ import Head from "next/head";
 const navigation = [
   { name: "Courses", href: "/courses" },
   { name: "Resources", href: "/resources" },
-  { name: "About", href: "/about" },
 ];
 
 const HomePage = () => {

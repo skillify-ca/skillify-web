@@ -46,7 +46,7 @@ const CSS = () => {
               to HTML. In this lesson you will learn about different styles that
               you can apply to your HTML elements.
             </p>
-            <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-8">
               <p className="font-bold">Tutorials</p>
               {data.map((it) => (
                 <Card
