@@ -31,6 +31,12 @@ export const getCourse = (id): Course => {
 const courseData: CourseData = {
   courses: [
     {
+      id: "coding",
+      image: "/images/courses/coding.jpg",
+      title: "CS Champ",
+      url: "course/coding",
+    },
+    {
       id: "math1",
       image: "/images/courses/math.png",
       url: "course/math1",
@@ -55,14 +61,6 @@ const courseData: CourseData = {
       title: "Finance Champ",
       description: "Coming soon",
       locked: true,
-    },
-    {
-      id: "coding",
-      image: "/images/courses/coding.jpg",
-      title: "CS Champ",
-      url: "coding",
-      locked: true,
-      description: "Coming soon",
     },
     {
       id: "climate",

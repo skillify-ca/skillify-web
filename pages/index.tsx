@@ -5,9 +5,8 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Head from "next/head";
 
 const navigation = [
-  { name: "Math", href: "/math" },
-  { name: "Coding", href: "/coding" },
-  { name: "Finance", href: "/finance" },
+  { name: "Courses", href: "/courses" },
+  { name: "Resources", href: "/resources" },
   { name: "About", href: "/about" },
 ];
 

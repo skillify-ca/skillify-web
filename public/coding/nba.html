@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      background-image: url("https://thumbs.dreamstime.com/b/basketball-ball-over-white-background-181494767.jpg");
+      background-repeat: repeat-y;
+      background-position: right top;
+    }
+
+    h1 {
+      color: blue;
+      border-style: dotted dashed solid double;
+      font-size: 90px;
+
+    }
+    .name { 
+      color: blue;
+      font-size: 50px;
+      border: solid 1px black;
+      font-family: "copperplate";
+    
+    }
+
+    .desc {
+      color: black;
+      font-size: 20px;
+      border: outset 5px;
+      width: 100px;
+      background-color: beige;
+      display: flex; 
+      justify-content: center;
+  }
+  .card {
+    border: solid 2px black;
+    background-image: url(https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F615068%2Fgettyimages-1252288050.jpg&w=1200&op=resize);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 450px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+  }
+  .Stats {
+display: flex;
+align-items: flex-start;
+
+  }
+
+  </style>
+  <title>HTML Practice</title>
+</head>
+
+<body>
+
+  <h1>NBA Player Cards 2021</h1>
+
+
+  <a href="https://www.nba.com">NBA</a>
+
+  <blockquote style="font-family:courier;" cite="https://en.wikipedia.org/wiki/National_Basketball_Association">
+    The National Basketball Association (NBA) is a professional basketball league in North America. The league is
+    composed of 30 teams (29 in the United States and 1 in Canada) and is one of the four major professional sports
+    leagues in the United States and Canada. It is the divmier men's professional basketball league in the world
+  </blockquote>
+
+  <div class="card">
+    <p class="name"> <i>Steph Curry</i></p>
+    <div class="desc">
+      <p>
+        Golden State Warriors
+        #30
+        Point Guard
+      </p>
+  </div>
+    <img src="https://s.hdnux.com/photos/01/22/60/27/21693934/9/1200x0.jpg" alt="nba.com"
+      style="width: 315px;px;height:275px;">
+      <div class="Stats">
+      <table style="width:100%">
+          <td>50% Field Goal</td>
+          <td>30 Points Per Game</td>
+          <td>6 Rebounds Per Game</td>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <p class="name"><i>Kevin Durant</i></p>
+    <div class="desc">
+      Brooklyn Nets
+      #7
+      Small Forward
+</div>
+    <img
+      src="https://static01.nyt.com/images/2021/04/15/business/15econ-brf-coinbase/merlin_186240468_57bd6273-0318-4de0-a966-f3d540201223-mediumSquareAt3X.jpg"
+      alt="nba.com" style="width:315px;height:275px;">
+      <div class="Stats">
+        <table style="width:100%">
+            <td>55% Field Goal</td>
+            <td>32 Points Per Game</td>
+            <td>10 Rebounds Per Game</td>
+            </table>
+      </div>
+    </div>
+  <div class="card">
+    <p class="name"><i>Jimmy Butler</i></p>
+    <div class="desc">
+      Miami Heat
+      #22
+      Small Forward
+</div>
+    <img
+      src="https://images2.minutemediacdn.com/image/fetch/w_736,h_485,c_fill,g_auto,f_auto/https%3A%2F%2Ffansided.com%2Fwp-content%2Fuploads%2Fimagn-images%2F2021%2F11%2F17110324-850x560.jpeg"
+      alt="nba.com" style="width:315px;height:275px;">
+      <div class="Stats">
+        <table style="width:100%">
+          <td>47% Field Goal</td>
+          <td>25 Points Per Game</td>
+          <td>8 Rebounds Per Game</td>
+        </table>
+      </div>
+  </div>
+</body>
+
+</html>
+
+<html>
+
+<head>
+  <style>
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2 style="font-size:30px;">
+    Current Stats for the Top 3 Players in the NBA
+  </h2>
+  <ol type="I">
+    <li>Field Goal Percentage</li>
+    <li>Points Per Game</li>
+    <li>Rebounds</li>
+  </ol>
+
+  <table style="width:100%">
+    <tr>
+      <th>Steph Curry</th>
+      <th>Kevin Durant</th>
+      <th>Jimmy Butler</th>
+    </tr>
+    <tr>
+      <td>50%</td>
+      <td>55%</td>
+      <td>47%</td>
+    </tr>
+    <tr>
+      <td>30</td>
+      <td>32</td>
+      <td>25</td>
+    </tr>
+    <td>6</td>
+    <td>10</td>
+    <td>8</td>
+  </table>
+
+
+</body>
+
+</html>
