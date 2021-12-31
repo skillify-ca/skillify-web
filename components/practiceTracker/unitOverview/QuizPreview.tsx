@@ -32,8 +32,8 @@ const QuizPreview = ({ isQuizLocked, unitTitle, loading, data, courseId }) => {
 
   return (
     <div>
-      <div className="grid grid-cols-12 bg-white shadow-lg rounded-xl p-8 space-y-8">
-        <div className="col-span-12 flex flex-col space-y-4">
+      <div className="grid sm:grid-cols-12 grid-cols-6 bg-white shadow-lg rounded-xl p-8 space-y-8">
+        <div className="col-span-6 flex flex-col space-y-4">
           {isQuizLocked && (
             <p className="text-4xl font-bold text-blue-900">QUIZ LOCKED</p>
           )}
@@ -87,7 +87,7 @@ const QuizPreview = ({ isQuizLocked, unitTitle, loading, data, courseId }) => {
             </div>
           )}
         </div>
-        <div className="col-span-12 m-4 flex flex-col items-center justify-center space-y-8 bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 rounded-2xl h-72">
+        <div className="col-span-6 m-4 flex flex-col items-center justify-center space-y-8 bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 rounded-2xl h-72">
           {isQuizLocked && <img src="/images/lock.png" className="w-28" />}
           {!isQuizLocked &&
             !loading &&

@@ -18,12 +18,7 @@ const PracticePreview = ({ loading, userSkills, skills }) => {
             </p>
           </div>
         </div>
-        <img
-          className="object-cover rounded-t-xl max-h-80"
-          alt="student-image"
-          src="/images/practiceAdd.png"
-        />
-        <div className="p-4 from-blue-200 bg-gradient-to-b to-blue-400 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {skills.length > 0 ? (
             skills.map((skill) => (
               <div className="p-2">

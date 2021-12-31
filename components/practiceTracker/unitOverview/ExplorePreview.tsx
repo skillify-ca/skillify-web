@@ -10,6 +10,9 @@ const ExplorePreview = ({ courseId, unitTitle, level }) => {
             <p className="text-4xl font-bold text-blue-900 capitalize">
               {" "}
               Explore
+            </p>{" "}
+            <p className="">
+              Complete the lesson to better understand the skills for this unit.
             </p>
             <Link href={`/course/${courseId}/explore/${unitTitle}/${level}`}>
               <Button
@@ -20,6 +23,11 @@ const ExplorePreview = ({ courseId, unitTitle, level }) => {
             </Link>
           </div>
         </div>
+        <img
+          className="object-cover rounded-t-xl max-h-80"
+          alt="student-image"
+          src="/images/practiceAdd.png"
+        />
       </div>
     </>
   );

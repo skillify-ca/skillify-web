@@ -16,10 +16,10 @@ const SkillCard = ({ loading, userSkillData, skill }) => {
         className={`${
           !skill.published
             ? "opacity-50"
-            : " cursor-pointer transform transition duration-200 hover:bg-gray-50"
-        } bg-white mb-4 grid grid-cols-12 items-center rounded-xl shadow-lg`}
+            : " cursor-pointer transform transition duration-200 hover:bg-gray-200"
+        } bg-gray-100 mb-4 grid grid-cols-12 items-center h-full rounded-xl shadow-lg`}
       >
-        <div className="col-span-2 bg-gray-100 h-full rounded-l-lg">
+        <div className="col-span-2 h-full rounded-l-lg ml-4">
           <img
             className="object-scale-down col-span-2 h-full rounded-l-lg"
             src={
@@ -29,12 +29,12 @@ const SkillCard = ({ loading, userSkillData, skill }) => {
             }
           />
         </div>
-        <div className="col-span-8 bg-white h-full">
+        <div className="col-span-8  h-full">
           <p className="h-full text-center p-4 flex col-span-8  items-center justify-center">
             {`I can ${skill.description}`}
           </p>
         </div>
-        <div className="col-span-2 bg-white h-full rounded-r-lg">
+        <div className="col-span-2 h-full rounded-r-lg">
           <p
             className={` col-span-2 justify-center rounded-r-lg text-center flex items-center h-full text-4xl mb-4 transform transition-all ease-in-out duration-200 ${
               isSelected ? "-rotate-45 scale-110" : ""
