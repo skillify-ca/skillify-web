@@ -8,20 +8,20 @@ const CSS = () => {
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/W3Schools_logo.svg/2175px-W3Schools_logo.svg.png",
       link: "https://www.w3schools.com/css/default.asp",
-      description: "",
+      description: "Start at the beginning and stop at CSS Overflow.",
     },
     {
       title: "CSS Grid Garden",
       image: "https://cssgridgarden.com/favicon.ico",
       link: "https://cssgridgarden.com/",
-      description: "",
+      description: "Do all levels.",
     },
     {
       title: "CSS Flexbox Froggy",
       image:
         "https://www.saashub.com/images/app/service_logos/82/fc3339facb56/large.png?1569287111",
       link: "https://flexboxfroggy.com/",
-      description: "",
+      description: "Do all levels.",
     },
     {
       title: "CSS Diner",
@@ -73,8 +73,31 @@ const CSS = () => {
                   Codecademy CSS Course{" "}
                 </a>
               </div>
+            </div>{" "}
+            <div className="p-4">
+              <p className="font-bold">Assignments</p>
+
+              <div className="flex flex-col space-y-2">
+                Create the following layouts
+                <ul className="list-disc list-decimal">
+                  <li>
+                    <img
+                      src="/images/coding/units/css/layout1.png"
+                      className="w-64"
+                    />
+                  </li>
+                  <li>
+                    <p>
+                      Create a grid layout that looks like the one in{" "}
+                      <a href="nba.com" className="underline text-blue-600">
+                        nba.com
+                      </a>
+                    </p>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <img src="/images/coding/units/CSS/browsers.svg" className="w-96" />
+            <img src="/images/coding/units/css/browsers.svg" className="w-96" />
           </div>
         </div>
       </div>
