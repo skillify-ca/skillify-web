@@ -100,7 +100,7 @@ const CSS = () => {
             <img src="/images/coding/units/css/browsers.svg" className="w-96" />
           </div>
           <div>
-            <h1>CSS Carousel</h1>
+            <h1 className="font-bold">CSS Carousel</h1>
           </div>
         </div>
       </div>
