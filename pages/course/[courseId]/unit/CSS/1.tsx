@@ -101,7 +101,7 @@ const CSS = () => {
           </div>
           //Adding HTML component from W3S
           <div class="container">
-         <!-- Full-width images with number text -->
+         // Full-width images with number text
   <div class="mySlides">
     <div class="numbertext">1 / 6</div>
       <img src="img_woods_wide.jpg" style="width:100%"/>
@@ -132,16 +132,16 @@ const CSS = () => {
       <img src="img_snow_wide.jpg" style="width:100%"/>
   </div>
 
-  <!-- Next and previous buttons -->
+  //Next and previous buttons
   <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
   <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
-  <!-- Image text -->
+  // Image text
   <div class="caption-container">
     <p id="caption"></p>
   </div>
 
-  <!-- Thumbnail images -->
+  // Thumbnail images
   <div class="row">
     <div class="column">
       <img class="demo cursor" src="img_woods.jpg" style="width:100%" onclick="currentSlide(1)" alt="The Woods"/>
