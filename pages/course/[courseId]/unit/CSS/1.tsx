@@ -99,9 +99,7 @@ const CSS = () => {
             </div>
             <img src="/images/coding/units/css/browsers.svg" className="w-96" />
           </div>
-          //Adding HTML component from W3S
           <div class="container">
-            // Full-width images with number text
             <div class="mySlides">
               <div class="numbertext">1 / 6</div>
               <img src="img_woods_wide.jpg" style="width:100%" />
@@ -126,18 +124,15 @@ const CSS = () => {
               <div class="numbertext">6 / 6</div>
               <img src="img_snow_wide.jpg" style="width:100%" />
             </div>
-            //Next and previous buttons
             <a class="prev" onclick="plusSlides(-1)">
               &#10094;
             </a>
             <a class="next" onclick="plusSlides(1)">
               &#10095;
             </a>
-            // Image text
             <div class="caption-container">
               <p id="caption"></p>
             </div>
-            // Thumbnail images
             <div class="row">
               <div class="column">
                 <img
