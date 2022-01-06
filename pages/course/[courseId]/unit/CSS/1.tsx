@@ -99,42 +99,42 @@ const CSS = () => {
             </div>
             <img src="/images/coding/units/css/browsers.svg" className="w-96" />
           </div>
-          <div class="container">
-            <div class="mySlides">
-              <div class="numbertext">1 / 6</div>
+          <div className="container">
+            <div className="mySlides">
+              <div className="numbertext">1 / 6</div>
               <img src="img_woods_wide.jpg" style="width:100%" />
             </div>
-            <div class="mySlides">
-              <div class="numbertext">2 / 6</div>
+            <div className="mySlides">
+              <div className="numbertext">2 / 6</div>
               <img src="img_5terre_wide.jpg" style="width:100%" />
             </div>
-            <div class="mySlides">
-              <div class="numbertext">3 / 6</div>
+            <div className="mySlides">
+              <div className="numbertext">3 / 6</div>
               <img src="img_mountains_wide.jpg" style="width:100%" />
             </div>
-            <div class="mySlides">
-              <div class="numbertext">4 / 6</div>
+            <div className="mySlides">
+              <div className="numbertext">4 / 6</div>
               <img src="img_lights_wide.jpg" style="width:100%" />
             </div>
-            <div class="mySlides">
-              <div class="numbertext">5 / 6</div>
+            <div className="mySlides">
+              <div className="numbertext">5 / 6</div>
               <img src="img_nature_wide.jpg" style="width:100%" />
             </div>
-            <div class="mySlides">
-              <div class="numbertext">6 / 6</div>
+            <div className="mySlides">
+              <div className="numbertext">6 / 6</div>
               <img src="img_snow_wide.jpg" style="width:100%" />
             </div>
-            <a class="prev" onclick="plusSlides(-1)">
+            <a className="prev" onclick="plusSlides(-1)">
               &#10094;
             </a>
-            <a class="next" onclick="plusSlides(1)">
+            <a className="next" onclick="plusSlides(1)">
               &#10095;
             </a>
-            <div class="caption-container">
+            <div className="caption-container">
               <p id="caption"></p>
             </div>
-            <div class="row">
-              <div class="column">
+            <div className="row">
+              <div className="column">
                 <img
                   class="demo cursor"
                   src="img_woods.jpg"
@@ -143,7 +143,7 @@ const CSS = () => {
                   alt="The Woods"
                 />
               </div>
-              <div class="column">
+              <div className="column">
                 <img
                   class="demo cursor"
                   src="img_5terre.jpg"
@@ -152,7 +152,7 @@ const CSS = () => {
                   alt="Cinque Terre"
                 />
               </div>
-              <div class="column">
+              <div className="column">
                 <img
                   class="demo cursor"
                   src="img_mountains.jpg"
@@ -161,7 +161,7 @@ const CSS = () => {
                   alt="Mountains and fjords"
                 />
               </div>
-              <div class="column">
+              <div className="column">
                 <img
                   class="demo cursor"
                   src="img_lights.jpg"
@@ -170,7 +170,7 @@ const CSS = () => {
                   alt="Northern Lights"
                 />
               </div>
-              <div class="column">
+              <div className="column">
                 <img
                   class="demo cursor"
                   src="img_nature.jpg"
@@ -179,7 +179,7 @@ const CSS = () => {
                   alt="Nature and sunrise"
                 />
               </div>
-              <div class="column">
+              <div className="column">
                 <img
                   class="demo cursor"
                   src="img_snow.jpg"
