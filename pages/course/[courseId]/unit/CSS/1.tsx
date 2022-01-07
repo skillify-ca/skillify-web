@@ -2,6 +2,10 @@ import Card, { CardData } from "../../../../../components/coding/Card";
 import Navbar from "../../../../../components/Navbar";
 
 const CSS = () => {
+  const assignments = [
+    { link: "/coding/css/sujee-week-1/index.html", title: "Sujee-Week1" },
+    { link: "/coding/css/mau-week-1/index.html", title: "Mau-Week1" },
+  ];
   const data: CardData[] = [
     {
       title: "W3Schools CSS tutorial",
@@ -35,9 +39,9 @@ const CSS = () => {
     <>
       <Navbar />
 
-      <div className="grid grid-cols-1 bg-white p-8 m-8 space-y-4">
-        <h1 className="font-bold text-5xl">CSS 1</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 bg-white space-y-4">
+      <div className="grid grid-cols-1 p-8 m-8 space-y-4 bg-white">
+        <h1 className="text-5xl font-bold">CSS 1</h1>
+        <div className="grid grid-cols-1 space-y-4 bg-white sm:grid-cols-2">
           <div className="flex flex-col space-y-4">
             <p className="font-bold">Lesson</p>
             <p>
@@ -46,15 +50,17 @@ const CSS = () => {
               to HTML. In this lesson you will learn about different styles that
               you can apply to your HTML elements.
             </p>
-            <div className="flex flex-col space-y-8">
-              <p className="font-bold">Tutorials</p>
+            <p className="font-bold">Tutorials</p>
+            <div className="grid grid-cols-2">
               {data.map((it) => (
-                <Card
-                  title={it.title}
-                  image={it.image}
-                  description={it.description}
-                  link={it.link}
-                />
+                <div className="p-4">
+                  <Card
+                    title={it.title}
+                    image={it.image}
+                    description={it.description}
+                    link={it.link}
+                  />
+                </div>
               ))}
             </div>
           </div>
@@ -62,7 +68,7 @@ const CSS = () => {
             <div className="p-4">
               <p className="font-bold">Readings</p>
 
-              <div className="underline text-blue-600 flex flex-col space-y-2">
+              <div className="flex flex-col space-y-2 text-blue-600 underline">
                 <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">
                   CSS Tricks: Flexbox
                 </a>
@@ -87,17 +93,33 @@ const CSS = () => {
                     />
                   </li>
                   <li>
-                    <p>
-                      Create a grid layout that looks like the one in{" "}
-                      <a href="nba.com" className="underline text-blue-600">
-                        nba.com
-                      </a>
-                    </p>
+                    <p>Apply the French flag layout to your blog assignment.</p>
                   </li>
                 </ul>
               </div>
             </div>
             <img src="/images/coding/units/css/browsers.svg" className="w-96" />
+          </div>
+          <div className="col-span-2">
+            <p className="font-bold">Previous Assignments</p>
+            <p className="">
+              You can look at how these pages were build by navigating to the
+              page and right-clicking on it. Select View Page Source to see the
+              HTML code that makes up the web page.
+            </p>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {assignments.map((it) => (
+                <div>
+                  <a className="text-blue-600 underline" href={it.link}>
+                    {it.title}
+                  </a>
+                  <iframe
+                    src={it.link}
+                    className="w-full p-4 bg-white border-4 border-purple-400 shadow-lg h-96"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
