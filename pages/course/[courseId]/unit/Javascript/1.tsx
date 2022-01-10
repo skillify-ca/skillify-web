@@ -32,6 +32,23 @@ const JS1 = () => {
       description: "An online course introducing you to Javascript",
     },
   ];
+  //You can add more JS Code practice here
+  const CsAssign: CardData[] = [
+    {
+      title: "Greetings",
+      link: "/coding/JavaScript/greetings.zip",
+      image: "/images/greetings.png",
+      description:
+        "A practice problem using strings. Say hello and something you want to learn!",
+    },
+    {
+      title: "Temperature",
+      link: "/coding/JavaScript/temperature.zip",
+      image: "/images/temperature.jpeg",
+      description:
+        "A temperature converter problem. It gets confusing switching between Celsius and Fahrenheit",
+    },
+  ];
 
   return (
     <>
@@ -50,6 +67,18 @@ const JS1 = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {data.map((it) => (
+                  <Card
+                    title={it.title}
+                    image={it.image}
+                    description={it.description}
+                    link={it.link}
+                  />
+                ))}
+              </div>
+
+              <p className="font-bold mt-3"> JS Coding Practice </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {CsAssign.map((it) => (
                   <Card
                     title={it.title}
                     image={it.image}
