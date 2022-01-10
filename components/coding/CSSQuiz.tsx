@@ -12,18 +12,18 @@ const CSSQuiz = ({}: CSSQuizProp) => {
   const questionData: MultipleChoiceSentenceProp[] = [
     {
       image: "/images/coding/units/css/ottom-border.png",
-      option1: { id: "A", text: " Dotted Border" },
-      option2: { id: "B", text: " Dotted Border" },
-      option3: { id: "C", text: " Dotted Border" },
-      option4: { id: "D", text: " Dotted Border" },
+      option1: { id: "A", text: "justify-content: flex-end;" },
+      option2: { id: "B", text: "justify-content: flex-start;" },
+      option3: { id: "C", text: "justify-content: reverse;" },
+      option4: { id: "D", text: "align-items: center;" },
       answer: "A",
     },
     {
       image: "/images/coding/units/css/Dashed-border.png",
-      option1: { id: "A", text: " Dash Border" },
-      option2: { id: "B", text: " Dotted Border" },
-      option3: { id: "C", text: " Dotted Border" },
-      option4: { id: "D", text: " Dotted Border" },
+      option1: { id: "A", text: "align-items: center;" },
+      option2: { id: "B", text: "justify-content: space-around;" },
+      option3: { id: "C", text: "justify-content: center;" },
+      option4: { id: "D", text: "flex-direction: row;" },
       answer: "B",
     },
     {
