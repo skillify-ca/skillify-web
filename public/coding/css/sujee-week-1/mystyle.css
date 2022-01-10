@@ -1,0 +1,70 @@
+body {
+  background-color: whitesmoke;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+  
+h1 {
+  color: black;
+  text-align: center;
+  text-shadow: 2px 2px red
+}
+  
+a:link, a:visited {
+  background-color:rgb(141, 54, 54);
+  color:white;
+  padding: 5px 20px;
+  text-align:left;
+  text-decoration:none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: rgb(138, 67, 67);
+}
+
+
+.nav {
+  display:flex;
+  background-color: rgb(141, 54, 54);
+  width: 100%;
+  height: 50px;
+  border: 1px black;
+  overflow: visible;
+  justify-content:space-between;
+}
+
+
+ul {
+  list-style: square inside url("sqpurple.gif");
+  text-align:left;
+}
+
+.overflow {
+  display:grid;
+  grid-template-columns: 10% 80% 10%;
+  color:white;
+  text-align:left;
+  width: 100%;
+  height: 150px;
+  border: 1px black;
+  overflow: scroll;
+}
+
+.left {
+  background-color: rgb(202, 194, 194);
+}
+
+.center {
+  background-color: rgb(141, 54, 54);
+}
+
+.right {
+  background-color: rgb(202, 194, 194);
+}
+
+.write{
+  width: 100%;
+  text-align: center;
+}
+
