@@ -70,39 +70,47 @@ const CSSQuiz = ({}: CSSQuizProp) => {
   };
 
   return (
-    <div
-      className={`${isShaking ? "animate-shake" : ""}`}
-      onAnimationEnd={() => setIsShaking(false)}
-    >
-      {" "}
-      {notComplete ? (
-        <MultipleChoiceSentence
-          image={questionData[index].image}
-          option1={{
-            id: questionData[index].option1.id,
-            text: questionData[index].option1.text,
-          }}
-          option2={{
-            id: questionData[index].option2.id,
-            text: questionData[index].option2.text,
-          }}
-          option3={{
-            id: questionData[index].option3.id,
-            text: questionData[index].option3.text,
-          }}
-          option4={{
-            id: questionData[index].option4.id,
-            text: questionData[index].option4.text,
-          }}
-          answer={questionData[index].answer}
-          submitGuess={submitGuessRequested}
-        />
-      ) : (
+    <>
+      <div
+        className={`rounded-xl shadow-xl mt-4 p-4 transform transition-all bg-blue-100 ${
+          isShaking ? "animate-shake" : ""
+        } `}
+        onAnimationEnd={() => {
+          setIsShaking(false);
+        }}
+      >
         <div>
-          <h1 className="font-bold text-green-400 text-2xl">Completed!</h1>
+          {notComplete ? (
+            <MultipleChoiceSentence
+              displayQuestion="Which CSS property would achieve this effect?"
+              image={questionData[index].image}
+              option1={{
+                id: questionData[index].option1.id,
+                text: questionData[index].option1.text,
+              }}
+              option2={{
+                id: questionData[index].option2.id,
+                text: questionData[index].option2.text,
+              }}
+              option3={{
+                id: questionData[index].option3.id,
+                text: questionData[index].option3.text,
+              }}
+              option4={{
+                id: questionData[index].option4.id,
+                text: questionData[index].option4.text,
+              }}
+              answer={questionData[index].answer}
+              submitGuess={submitGuessRequested}
+            />
+          ) : (
+            <div>
+              <h1 className="text-2xl font-bold text-green-400">Completed!</h1>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      </div>
+    </>
   );
 };
 
