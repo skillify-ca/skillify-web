@@ -58,7 +58,6 @@ const CSSQuiz = ({}: CSSQuizProp) => {
   const [notComplete, setNotComplete] = useState(true);
 
   const submitGuessRequested = (guessData: GuessData) => {
-    console.log(guessData.isCorrect);
     setIsShaking(false);
     if (guessData.isCorrect) {
       setIndex(index + 1);

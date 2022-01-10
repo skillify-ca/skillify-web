@@ -28,8 +28,6 @@ export const MultipleChoiceSentence: React.FC<MultipleChoiceSentenceProp> = ({
   submitGuess,
 }) => {
   const onSubmit = (guess: string) => {
-    console.log(guess);
-    console.log(answer);
     submitGuess({
       guess,
       isCorrect: guess == answer,
