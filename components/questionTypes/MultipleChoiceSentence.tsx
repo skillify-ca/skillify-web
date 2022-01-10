@@ -4,12 +4,13 @@ import { Button } from "../ui/Button";
 
 export interface MultipleChoiceSentenceProp {
   displayQuestion?: string;
+  image?: string;
   option1: MCOption;
   option2: MCOption;
   option3: MCOption;
   option4: MCOption;
   answer: string;
-  submitGuess: (e) => void;
+  submitGuess?: (e) => void;
 }
 
 export function randomize(min: number, max: number) {
@@ -18,6 +19,7 @@ export function randomize(min: number, max: number) {
 
 export const MultipleChoiceSentence: React.FC<MultipleChoiceSentenceProp> = ({
   displayQuestion,
+  image,
   option1,
   option2,
   option3,
@@ -34,6 +36,7 @@ export const MultipleChoiceSentence: React.FC<MultipleChoiceSentenceProp> = ({
   return (
     <div className="flex flex-col items-center space-y-8">
       <h1 className="text-4m font-semibold text-center"> {displayQuestion} </h1>
+      {image && <img src={image} />}
       <Button
         label={option1.text}
         backgroundColor="red"

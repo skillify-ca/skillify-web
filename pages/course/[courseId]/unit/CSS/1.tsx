@@ -1,5 +1,9 @@
+import React from "react";
 import Card, { CardData } from "../../../../../components/coding/Card";
+import { Carousel } from "../../../../../components/coding/Carousel";
+import CSSQuiz from "../../../../../components/coding/CSSQuiz";
 import Navbar from "../../../../../components/Navbar";
+import { MultipleChoiceSentence } from "../../../../../components/questionTypes/MultipleChoiceSentence";
 
 const CSS = () => {
   const data: CardData[] = [
@@ -75,8 +79,11 @@ const CSS = () => {
               </div>
             </div>{" "}
             <div className="p-4">
+              <p className="font-bold">Quiz</p>
+              <CSSQuiz />
+            </div>
+            <div className="p-4">
               <p className="font-bold">Assignments</p>
-
               <div className="flex flex-col space-y-2">
                 Create the following layouts
                 <ul className="list-disc list-decimal">
@@ -99,10 +106,8 @@ const CSS = () => {
             </div>
             <img src="/images/coding/units/css/browsers.svg" className="w-96" />
           </div>
-          <div className="bg-yellow-200">
-            <h1 className="font-bold">CSS Carousel</h1>
-          </div>
         </div>
+        <Carousel />
       </div>
     </>
   );
