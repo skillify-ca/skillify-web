@@ -45,21 +45,21 @@ const CSS = () => {
     <>
       <Navbar />
 
-      <div className="grid grid-cols-1 p-8 m-8 space-y-4 bg-white">
+      <div className="grid grid-cols-1 p-8 space-y-4 bg-white sm:m-8">
         <h1 className="text-5xl font-bold">CSS 1</h1>
-        <div className="grid grid-cols-1 space-y-4 bg-white sm:grid-cols-2">
-          <div className="flex flex-col space-y-4">
-            <p className="font-bold">Lesson</p>
-            <p>
-              CSS stands for cascading style sheets. It's another language that
-              you need to learn that has different rules and keywords compared
-              to HTML. In this lesson you will learn about different styles that
-              you can apply to your HTML elements.
-            </p>
+        <div className="grid grid-cols-1">
+          <p className="font-bold">Lesson</p>
+          <p className="mt-4">
+            CSS stands for cascading style sheets. It's another language that
+            you need to learn that has different rules and keywords compared to
+            HTML. In this lesson you will learn about different styles that you
+            can apply to your HTML elements.
+          </p>
+          <div className="pt-4 ">
             <p className="font-bold">Tutorials</p>
-            <div className="grid grid-cols-2">
+            <div className="grid grid-cols-1 lg:grid-cols-2">
               {data.map((it) => (
-                <div className="p-4">
+                <div className="w-full p-4">
                   <Card
                     title={it.title}
                     image={it.image}
@@ -70,11 +70,11 @@ const CSS = () => {
               ))}
             </div>
           </div>
-          <div className="ml-4">
+          <div className="flex flex-col ">
             <div className="p-4">
               <p className="font-bold">Readings</p>
 
-              <div className="flex flex-col space-y-2 text-blue-600 underline">
+              <div className="flex flex-col w-full p-4 space-y-2 text-blue-600 underline bg-blue-100 shadow-lg rounded-xl">
                 <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">
                   CSS Tricks: Flexbox
                 </a>
@@ -91,25 +91,25 @@ const CSS = () => {
               <CSSQuiz />
             </div>
             <div className="p-4">
-              <p className="font-bold">Assignments</p>
-              <div className="flex flex-col space-y-2">
-                Create the following layouts
-                <ul className="list-disc list-decimal">
-                  <li>
-                    <img
-                      src="/images/coding/units/css/layout1.png"
-                      className="w-64"
-                    />
-                  </li>
-                  <li>
-                    <p>Apply the French flag layout to your blog assignment.</p>
-                  </li>
-                </ul>
+              <p className="font-bold">Assignment</p>
+              <div className="flex flex-col p-4 mt-4 space-y-2 bg-blue-100 shadow-lg rounded-xl">
+                <img
+                  src="/images/coding/units/css/layout1.png"
+                  className="w-64"
+                />
+                <p>
+                  Use styled divs to create this French Flag layout in your blog
+                  assignment. Place your navigation menu in the top green header
+                  and your main blog content inside of the grey div. After you
+                  have laid out all your content, remove all the
+                  background-colour styling from your divs so that you have a
+                  consistent background and a professional looking website.
+                </p>
               </div>
             </div>
             <img src="/images/coding/units/css/browsers.svg" className="w-96" />
           </div>
-          <div className="col-span-2">
+          <div className="flex flex-col">
             <p className="font-bold">Previous Assignments</p>
             <p className="">
               You can look at how these pages were build by navigating to the

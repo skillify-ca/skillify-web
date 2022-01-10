@@ -35,8 +35,8 @@ export const MultipleChoiceSentence: React.FC<MultipleChoiceSentenceProp> = ({
   };
   return (
     <div className="flex flex-col items-center space-y-8">
-      <h1 className="text-4m font-semibold text-center"> {displayQuestion} </h1>
-      {image && <img src={image} />}
+      <h1 className="font-semibold text-center text-4m"> {displayQuestion} </h1>
+      {image && <img className="object-scale-down sm:h-64" src={image} />}
       <div className="flex flex-row space-x-4">
         <div className="flex flex-col space-y-4">
           <Button
