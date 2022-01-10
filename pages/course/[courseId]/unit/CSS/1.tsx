@@ -93,7 +93,7 @@ const CSS = () => {
             <div className="p-4">
               <p className="font-bold">Assignments</p>
               <div className="flex flex-col space-y-2">
-                Create the following layouts
+                Create the following layouts using flex-box properties
                 <ul className="list-disc list-decimal">
                   <li>
                     <img
@@ -102,7 +102,10 @@ const CSS = () => {
                     />
                   </li>
                   <li>
-                    <p>Apply the French flag layout to your blog assignment.</p>
+                    <p>
+                      Apply the French flag layout (previous layout) to your
+                      blog assignment.
+                    </p>
                   </li>
                 </ul>
               </div>

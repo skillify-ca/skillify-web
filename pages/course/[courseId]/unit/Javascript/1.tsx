@@ -94,6 +94,9 @@ const JS1 = () => {
               </p>
             </a>
             <img src="/images/coding/units/CSS/browsers.svg" className="w-96" />
+            <a href="/JsFunctions/JsFunctions.zip" download target="_blank">
+              Greetings Code Practice
+            </a>
           </div>
         </div>
       </div>
