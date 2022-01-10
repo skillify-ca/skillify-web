@@ -131,7 +131,6 @@ const CSS = () => {
             </div>
           </div>
         </div>
-        <Carousel />
       </div>
     </>
   );
