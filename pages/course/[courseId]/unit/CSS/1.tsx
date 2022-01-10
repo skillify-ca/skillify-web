@@ -1,10 +1,16 @@
+import React from "react";
 import Card, { CardData } from "../../../../../components/coding/Card";
+import { Carousel } from "../../../../../components/coding/Carousel";
+import CSSQuiz from "../../../../../components/coding/CSSQuiz";
 import Navbar from "../../../../../components/Navbar";
+import { MultipleChoiceSentence } from "../../../../../components/questionTypes/MultipleChoiceSentence";
 
 const CSS = () => {
   const assignments = [
     { link: "/coding/css/sujee-week-1/index.html", title: "Sujee-Week1" },
     { link: "/coding/css/mau-week-1/index.html", title: "Mau-Week1" },
+    { link: "/coding/css/vinon-week-1/indexflower.html", title: "Vinon-Week1" },
+    { link: "/coding/css/jacky-week-1/index.html", title: "Jacky-Week1" },
   ];
   const data: CardData[] = [
     {
@@ -81,8 +87,11 @@ const CSS = () => {
               </div>
             </div>{" "}
             <div className="p-4">
+              <p className="font-bold">Quiz</p>
+              <CSSQuiz />
+            </div>
+            <div className="p-4">
               <p className="font-bold">Assignments</p>
-
               <div className="flex flex-col space-y-2">
                 Create the following layouts
                 <ul className="list-disc list-decimal">
