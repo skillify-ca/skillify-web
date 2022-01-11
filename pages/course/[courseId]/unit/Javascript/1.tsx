@@ -124,7 +124,7 @@ const JS1 = () => {
                   correctly
                 </li>
                 <li>
-                  <b>9.</b> If the outputs are not mathcing, try again, and if
+                  <b>9.</b> If the outputs are not matching, try again, and if
                   you're still having trouble, refer to the Correct
                   implementation in the zip file
                 </li>
