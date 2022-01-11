@@ -105,7 +105,7 @@ const JS1 = () => {
                 </li>
                 <li>
                   <b>4.</b> In VS Code you will need to download an extension
-                  called "Run Code"
+                  called "Code Runner"
                 </li>
                 <li>
                   <b>5.</b> After you are done writing your function, press
