@@ -62,6 +62,8 @@ const JS1 = () => {
               JavaScript is yet another language that you need to learn. This
               lesson will teach you the main concepts of JavaScript.
             </p>
+            <p className="font-bold">Javascript Roadmap</p>
+
             <div className="flex flex-col space-y-2">
               <p className="font-bold">Tutorials</p>
 
