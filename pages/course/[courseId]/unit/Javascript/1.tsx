@@ -87,38 +87,46 @@ const JS1 = () => {
                   />
                 ))}
               </div>
-              <h1>What to do with the coding challenges?</h1>
+              <h1 className="font-bold">
+                What to do with the coding challenges?
+              </h1>
               <ol type="1">
-                <li>Click the Challenge and it should download a zip file</li>
                 <li>
-                  In the zip file there is a practice and a correct version of
-                  the code
+                  1. Click the Challenge and it should download a zip file
                 </li>
                 <li>
-                  Open the practice version of the code and follow instructions
-                  in the document
+                  2. In the zip file there is a practice and a correct version
+                  of the code
                 </li>
                 <li>
-                  In VS Code you will need to download an extension called "Run
-                  Code"
+                  3. Open the practice version of the code and follow
+                  instructions in the document
                 </li>
                 <li>
-                  After you are done writing your function, press cmd+shift+p or
-                  control+shift+p for windows
+                  4. In VS Code you will need to download an extension called
+                  "Run Code"
                 </li>
-                <li> Type Run Code in the search bar and hit enter</li>
                 <li>
-                  In the bottom window of VS code you should see your program
+                  5. After you are done writing your function, press cmd+shift+p
+                  or control+shift+p for windows
+                </li>
+                <li>6. Type Run Code in the search bar and hit enter</li>
+                <li>
+                  7. In the bottom window of VS code you should see your program
                   outputting something
                 </li>
-                <li> Compare results to see if your did it correctly</li>
                 <li>
-                  If the outputs are not mathcing, try again, and if you're
+                  {" "}
+                  8. Compare results to see if your coded your function
+                  correctly
+                </li>
+                <li>
+                  9. If the outputs are not mathcing, try again, and if you're
                   still having trouble, refer to the Correct impletation in the
                   zip file
                 </li>
                 <li>
-                  Give the challenge a try before taking a peek of the
+                  10. Give the challenge a try before taking a peek at the
                   solution!!
                 </li>
               </ol>
