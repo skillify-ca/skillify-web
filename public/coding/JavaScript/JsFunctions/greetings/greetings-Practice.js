@@ -1,5 +1,8 @@
+//Here's a little coding challenge. You're going to be writing a function that will take in 2 string parameters and output the desired sentence following this template
+//Hello my name is (name) and I am learning (subject)!
 function greetings(name, subject) {
-  //return statement
+  //your code goes here
+  return;
 }
 
 console.log(greetings("Lavan", "CSS")); //output: Hello my name is Lavan and I am learning CSS!

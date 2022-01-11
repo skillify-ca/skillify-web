@@ -76,7 +76,7 @@ const JS1 = () => {
                 ))}
               </div>
 
-              <p className="font-bold mt-3"> JS Coding Practice </p>
+              <p className="font-bold mt-3"> JS Coding Challenges </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {CsAssign.map((it) => (
                   <Card
@@ -87,6 +87,52 @@ const JS1 = () => {
                   />
                 ))}
               </div>
+              <h1 className="font-bold">
+                What to do with the coding challenges?
+              </h1>
+              <ol type="1">
+                <li>
+                  <b>1.</b> Click the Challenge and it should download a zip
+                  file
+                </li>
+                <li>
+                  <b>2.</b> In the zip file there is a practice and a correct
+                  version of the code
+                </li>
+                <li>
+                  <b>3.</b> Open the practice version of the code and follow
+                  instructions in the document
+                </li>
+                <li>
+                  <b>4.</b> In VS Code you will need to download an extension
+                  called "Code Runner"
+                </li>
+                <li>
+                  <b>5.</b> After you are done writing your function, press
+                  cmd+shift+p or control+shift+p for windows
+                </li>
+                <li>
+                  <b>6.</b> Type Run Code in the search bar and hit enter
+                </li>
+                <li>
+                  <b>7.</b> In the bottom window of VS code you should see your
+                  program outputting something
+                </li>
+                <li>
+                  {" "}
+                  <b>8.</b> Compare results to see if your coded your function
+                  correctly
+                </li>
+                <li>
+                  <b>9.</b> If the outputs are not matching, try again, and if
+                  you're still having trouble, refer to the Correct
+                  implementation in the zip file
+                </li>
+                <li>
+                  <b>10.</b> Give the challenge a try before taking a peek at
+                  the solution!!
+                </li>
+              </ol>
             </div>
           </div>
           <div className="sm:ml-4">
