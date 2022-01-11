@@ -76,7 +76,7 @@ const JS1 = () => {
                 ))}
               </div>
 
-              <p className="font-bold mt-3"> JS Coding Practice </p>
+              <p className="font-bold mt-3"> JS Coding Challenges </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {CsAssign.map((it) => (
                   <Card
@@ -125,8 +125,8 @@ const JS1 = () => {
                 </li>
                 <li>
                   <b>9.</b> If the outputs are not mathcing, try again, and if
-                  you're still having trouble, refer to the Correct impletation
-                  in the zip file
+                  you're still having trouble, refer to the Correct
+                  implementation in the zip file
                 </li>
                 <li>
                   <b>10.</b> Give the challenge a try before taking a peek at
