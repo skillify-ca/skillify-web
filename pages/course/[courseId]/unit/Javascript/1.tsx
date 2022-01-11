@@ -32,6 +32,23 @@ const JS1 = () => {
       description: "An online course introducing you to Javascript",
     },
   ];
+  //You can add more JS Code practice here
+  const CsAssign: CardData[] = [
+    {
+      title: "Greetings",
+      link: "/coding/JavaScript/greetings.zip",
+      image: "/images/greetings.png",
+      description:
+        "A practice problem using strings. Say hello and something you want to learn!",
+    },
+    {
+      title: "Temperature",
+      link: "/coding/JavaScript/temperature.zip",
+      image: "/images/temperature.jpeg",
+      description:
+        "A temperature converter problem. It gets confusing switching between Celsius and Fahrenheit",
+    },
+  ];
 
   return (
     <>
@@ -58,6 +75,53 @@ const JS1 = () => {
                   />
                 ))}
               </div>
+
+              <p className="font-bold mt-3"> JS Coding Practice </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {CsAssign.map((it) => (
+                  <Card
+                    title={it.title}
+                    image={it.image}
+                    description={it.description}
+                    link={it.link}
+                  />
+                ))}
+              </div>
+              <h1>What to do with the coding challenges?</h1>
+              <ol type="1">
+                <li>Click the Challenge and it should download a zip file</li>
+                <li>
+                  In the zip file there is a practice and a correct version of
+                  the code
+                </li>
+                <li>
+                  Open the practice version of the code and follow instructions
+                  in the document
+                </li>
+                <li>
+                  In VS Code you will need to download an extension called "Run
+                  Code"
+                </li>
+                <li>
+                  After you are done writing your function, press cmd+shift+p or
+                  control+shift+p for windows
+                </li>
+                <li> Type Run Code in the search bar and hit enter</li>
+                <li>
+                  In the bottom window of VS code you should see your program
+                  outputting something
+                </li>
+                <li> Compare results to see if your did it correctly</li>
+                <li>
+                  If the outputs are not mathcing, try again, and if you're
+                  still having trouble, refer to the Correct impletation in the
+                  zip file
+                </li>
+                <li>
+                  Give the challenge a try before taking a peek of the
+                  solution!!
+                </li>
+              </ol>
             </div>
           </div>
           <div className="sm:ml-4">
