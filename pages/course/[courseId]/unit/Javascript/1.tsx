@@ -48,6 +48,27 @@ const JS1 = () => {
       description:
         "A temperature converter problem. It gets confusing switching between Celsius and Fahrenheit",
     },
+    {
+      title: "Star Patterns",
+      link: "/coding/JavaScript/starPatterns.zip",
+      image: "/images/gold-star.png",
+      description:
+        "ASCII art is pretty fun to play around with. Let's get started with some star patterns!",
+    },
+    {
+      title: "Find the Plant",
+      link: "/coding/JavaScript/findPlant.zip",
+      image: "/images/plant.png",
+      description:
+        "There are so many plants in our eco-system! Give the functiuon the name of the plant and find out its description",
+    },
+    {
+      title: "Home Equity Calculator",
+      link: "/coding/JavaScript/homeEquity.zip",
+      image: "/images/home.png",
+      description:
+        "A home equity calculator to know how much of the house you actually own over your mortgage period",
+    },
   ];
 
   return (
