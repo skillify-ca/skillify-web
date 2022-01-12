@@ -134,17 +134,20 @@ const JS1 = () => {
                   <b>5.</b> In VS Code you will need to download an extension
                   called "Code Runner"
                 </li>
+                <img src="/images/extension.png" />
                 <li>
                   <b>6.</b> After you are done writing your function, press
                   cmd+shift+p or control+shift+p for windows
                 </li>
                 <li>
                   <b>7.</b> Type Run Code in the search bar and hit enter
+                  <img src="/images/cmd+shift+p.png" />
                 </li>
                 <li>
                   <b>8.</b> In the bottom window of VS code you should see your
                   program outputting something
                 </li>
+                <img src="/images/console.png" />
                 <li>
                   {" "}
                   <b>9.</b> Compare results to see if your coded your function
