@@ -48,6 +48,27 @@ const JS1 = () => {
       description:
         "A temperature converter problem. It gets confusing switching between Celsius and Fahrenheit",
     },
+    {
+      title: "Star Patterns",
+      link: "/coding/JavaScript/starPatterns.zip",
+      image: "/images/gold-star.png",
+      description:
+        "ASCII art is pretty fun to play around with. Let's get started with some star patterns!",
+    },
+    {
+      title: "Find the Plant",
+      link: "/coding/JavaScript/findPlant.zip",
+      image: "/images/plant.png",
+      description:
+        "There are so many plants in our eco-system! Give the functiuon the name of the plant and find out its description",
+    },
+    {
+      title: "Home Equity Calculator",
+      link: "/coding/JavaScript/homeEquity.zip",
+      image: "/images/home.png",
+      description:
+        "A home equity calculator to know how much of the house you actually own over your mortgage period",
+    },
   ];
 
   return (
@@ -62,6 +83,8 @@ const JS1 = () => {
               JavaScript is yet another language that you need to learn. This
               lesson will teach you the main concepts of JavaScript.
             </p>
+            <p className="font-bold">Javascript Roadmap</p>
+
             <div className="flex flex-col space-y-2">
               <p className="font-bold">Tutorials</p>
 
@@ -104,32 +127,36 @@ const JS1 = () => {
                   instructions in the document
                 </li>
                 <li>
-                  <b>4.</b> In VS Code you will need to download an extension
+                  <b>4.</b> As a prerequisite to the coding challenges you'll
+                  need to install node.js
+                </li>
+                <li>
+                  <b>5.</b> In VS Code you will need to download an extension
                   called "Code Runner"
                 </li>
                 <li>
-                  <b>5.</b> After you are done writing your function, press
+                  <b>6.</b> After you are done writing your function, press
                   cmd+shift+p or control+shift+p for windows
                 </li>
                 <li>
-                  <b>6.</b> Type Run Code in the search bar and hit enter
+                  <b>7.</b> Type Run Code in the search bar and hit enter
                 </li>
                 <li>
-                  <b>7.</b> In the bottom window of VS code you should see your
+                  <b>8.</b> In the bottom window of VS code you should see your
                   program outputting something
                 </li>
                 <li>
                   {" "}
-                  <b>8.</b> Compare results to see if your coded your function
+                  <b>9.</b> Compare results to see if your coded your function
                   correctly
                 </li>
                 <li>
-                  <b>9.</b> If the outputs are not matching, try again, and if
+                  <b>10.</b> If the outputs are not matching, try again, and if
                   you're still having trouble, refer to the Correct
                   implementation in the zip file
                 </li>
                 <li>
-                  <b>10.</b> Give the challenge a try before taking a peek at
+                  <b>11.</b> Give the challenge a try before taking a peek at
                   the solution!!
                 </li>
               </ol>
