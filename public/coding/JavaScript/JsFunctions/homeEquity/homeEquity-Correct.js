@@ -1,7 +1,7 @@
-function homeEquity(homePrice, downPayment, mortgagePeriod, month) {
-  let loans = homePrice - downPayment;
+function homeEquity(homePrice, downPayment, numberOfMortgagePayments, month) {
+  let mortgageAmount = homePrice - downPayment;
   let equity = downPayment;
-  let mortgagePayment = loans / mortgagePeriod;
+  let mortgagePayment = mortgageAmount / numberOfMortgagePayments;
 
   for (let i = 1; i <= month; i++) {
     equity += mortgagePayment;

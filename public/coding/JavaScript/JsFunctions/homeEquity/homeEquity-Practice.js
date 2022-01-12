@@ -1,9 +1,8 @@
-function homeEquity(homePrice, downPayment, mortgagePeriod, month) {
+function homeEquity(homePrice, downPayment, numberOfMortgagePayments, month) {
   /*
-   * In this challenge you will be calculating how much home equity you own from the given parameter:
-   * the total value of the home, the down payment in dollars, and the number of months after home purchase.
-   * Note the formula of equity is Equity = Assets - Liabilities
-   * So, Equity = (downPayment + (number of months after home purchase * Monthly Mortgage Payments))
+   * In this challenge you will be calculating how much home equity you own from the given parameters:
+   * the total value of the home, the down payment in dollars, mortgage period, and the number of months after home purchase.
+   * Consider using this formula, Equity = (downPayment + (number of months after home purchase * Monthly Mortgage Payments))
    * Note: since we are dealing with outputting money, to output to 2 decimal places do .toFixed(2)
    */
   return;
