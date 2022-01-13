@@ -82,13 +82,12 @@ const Warmups1 = () => {
               </li>
               <img src="/images/download.png" height="50px" />
               <li>
-                2. You should see this homepage. Download for your operating
-                system.
+                2. You should see this homepage. Click on your operating system.
               </li>
               <li>3. Click on the Downloaded Package</li>
               <li>
-                4. It should open up soemthing similar to the image below. Agree
-                to the terms and conditions and press continue
+                4. It should open up something similar to the image below. Agree
+                to the terms and conditions and press continue.
               </li>
               <img src="/images/terms-and-conditions.png" />
               <li>5. Once you reach this end screen you're good to go!</li>
