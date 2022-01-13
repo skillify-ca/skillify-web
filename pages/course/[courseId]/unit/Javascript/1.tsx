@@ -1,4 +1,6 @@
+import React from "react";
 import Card, { CardData } from "../../../../../components/coding/Card";
+import JSQuiz from "../../../../../components/coding/JSQuiz";
 import Navbar from "../../../../../components/Navbar";
 
 const JS1 = () => {
@@ -196,6 +198,7 @@ const JS1 = () => {
               </p>
             </a>
             <img src="/images/coding/units/CSS/browsers.svg" className="w-96" />
+            <JSQuiz />
           </div>
         </div>
       </div>
