@@ -5,6 +5,7 @@ import {
   MultipleChoiceSentenceProp,
 } from "../questionTypes/MultipleChoiceSentence";
 import { Button } from "../ui/Button";
+import MCQuiz from "./MCQuiz";
 
 export interface JSQuizProp {}
 
@@ -59,64 +60,7 @@ const JSQuiz = ({}: JSQuizProp) => {
     },
   ];
 
-  const [index, setIndex] = useState(0);
-  const [isShaking, setIsShaking] = useState(false);
-  const [notComplete, setNotComplete] = useState(true);
-
-  const submitGuessRequested = (guessData: GuessData) => {
-    setIsShaking(false);
-    if (guessData.isCorrect) {
-      setIndex(index + 1);
-      if (index == questionData.length - 1) {
-        setNotComplete(false);
-      }
-    } else {
-      setIsShaking(true);
-    }
-  };
-
-  return (
-    <>
-      <div
-        className={`rounded-xl shadow-xl mt-4 p-4 transform transition-all bg-blue-100 ${
-          isShaking ? "animate-shake" : ""
-        } `}
-        onAnimationEnd={() => {
-          setIsShaking(false);
-        }}
-      >
-        <div>
-          {notComplete ? (
-            <MultipleChoiceSentence
-              displayQuestion={questionData[index].displayQuestion}
-              option1={{
-                id: questionData[index].option1.id,
-                text: questionData[index].option1.text,
-              }}
-              option2={{
-                id: questionData[index].option2.id,
-                text: questionData[index].option2.text,
-              }}
-              option3={{
-                id: questionData[index].option3.id,
-                text: questionData[index].option3.text,
-              }}
-              option4={{
-                id: questionData[index].option4.id,
-                text: questionData[index].option4.text,
-              }}
-              answer={questionData[index].answer}
-              submitGuess={submitGuessRequested}
-            />
-          ) : (
-            <div>
-              <h1 className="text-2xl font-bold text-green-400">Completed!</h1>
-            </div>
-          )}
-        </div>
-      </div>
-    </>
-  );
+  return <MCQuiz questionData={questionData} />;
 };
 
 export default JSQuiz;
