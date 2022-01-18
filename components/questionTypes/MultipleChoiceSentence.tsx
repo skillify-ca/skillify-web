@@ -4,7 +4,8 @@ import { Button } from "../ui/Button";
 
 export interface MultipleChoiceSentenceProp {
   displayQuestion?: string;
-  image?: string;
+  image?: string[];
+  properties?: string;
   option1: MCOption;
   option2: MCOption;
   option3: MCOption;
@@ -20,6 +21,7 @@ export function randomize(min: number, max: number) {
 export const MultipleChoiceSentence: React.FC<MultipleChoiceSentenceProp> = ({
   displayQuestion,
   image,
+  properties,
   option1,
   option2,
   option3,
@@ -36,7 +38,10 @@ export const MultipleChoiceSentence: React.FC<MultipleChoiceSentenceProp> = ({
   return (
     <div className="flex flex-col items-center space-y-8">
       <h1 className="font-semibold text-center text-4m"> {displayQuestion} </h1>
-      {image && <img className="object-scale-down sm:h-64" src={image} />}
+      <div className={`${properties}`}>
+        {image &&
+          image.map((img) => <img className="sm:h-24 lg:h-64" src={img} />)}
+      </div>
       <div className="flex flex-row space-x-4">
         <div className="flex flex-col space-y-4">
           <Button
