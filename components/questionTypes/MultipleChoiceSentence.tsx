@@ -36,7 +36,7 @@ export const MultipleChoiceSentence: React.FC<MultipleChoiceSentenceProp> = ({
     });
   };
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center space-y-8">
       <h1 className="font-semibold text-center text-4m"> {displayQuestion} </h1>
       <div className={`${properties}`}>
         {image &&
