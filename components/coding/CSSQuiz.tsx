@@ -13,7 +13,8 @@ const CSSQuiz = ({}: CSSQuizProp) => {
   //We can add CSS questions here
   const questionData: MultipleChoiceSentenceProp[] = [
     {
-      image: "/../images/coding/units/css/flex-end.png",
+      image: ["/images/gold-star.png", "/images/gold-star.png"],
+      properties: "flex flex-row place-content-end bg-yellow-200 w-full",
       option1: { id: "A", text: "justify-content: flex-end;" },
       option2: { id: "B", text: "justify-content: flex-start;" },
       option3: { id: "C", text: "justify-content: reverse;" },
@@ -21,7 +22,8 @@ const CSSQuiz = ({}: CSSQuizProp) => {
       answer: "justify-content: flex-end;",
     },
     {
-      image: "/../images/coding/units/css/space-around.png",
+      image: ["/images/gold-star.png", "/images/gold-star.png"],
+      properties: "flex flex-row place-content-around bg-yellow-200 w-full",
       option1: { id: "A", text: "align-items: center;" },
       option2: { id: "B", text: "justify-content: space-around;" },
       option3: { id: "C", text: "justify-content: center;" },
@@ -29,7 +31,8 @@ const CSSQuiz = ({}: CSSQuizProp) => {
       answer: "justify-content: space-around;",
     },
     {
-      image: "/../images/coding/units/css/column.png",
+      image: ["/images/gold-star.png", "/images/gold-star.png"],
+      properties: "flex flex-col bg-yellow-200 h-full",
       option1: { id: "A", text: "flex-direction: reverse;" },
       option2: { id: "B", text: "justify-content: flex-end;" },
       option3: { id: "C", text: "flex-direction: column;" },
@@ -37,7 +40,8 @@ const CSSQuiz = ({}: CSSQuizProp) => {
       answer: "flex-direction: column;",
     },
     {
-      image: "/../images/coding/units/css/space-between.png",
+      image: ["/images/gold-star.png", "/images/gold-star.png"],
+      properties: "flex flex-row place-content-between bg-yellow-200 w-full",
       option1: { id: "A", text: "justify-content: space-between;" },
       option2: { id: "B", text: "flex-direction: row;" },
       option3: { id: "C", text: "justify-content: flex-start;" },
@@ -45,7 +49,8 @@ const CSSQuiz = ({}: CSSQuizProp) => {
       answer: "justify-content: space-between;",
     },
     {
-      image: "/../images/coding/units/css/center.png",
+      image: ["/images/gold-star.png", "/images/gold-star.png"],
+      properties: "flex flex-row justify-center bg-yellow-200 w-full",
       option1: { id: "A", text: "flex-direction: flex-start;" },
       option2: { id: "B", text: "justify-content: center;" },
       option3: { id: "C", text: "justify-items: center;" },

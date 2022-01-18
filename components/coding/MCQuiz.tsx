@@ -41,6 +41,7 @@ export const MCQuiz: React.FC<MCQuiz> = ({ questionData }) => {
             <MultipleChoiceSentence
               displayQuestion={questionData[index].displayQuestion}
               image={questionData[index].image}
+              properties={questionData[index].properties}
               option1={{
                 id: questionData[index].option1.id,
                 text: questionData[index].option1.text,
