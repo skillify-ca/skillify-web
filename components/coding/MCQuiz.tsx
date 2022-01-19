@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import {
   MultipleChoiceSentence,
@@ -25,6 +25,12 @@ export const MCQuiz: React.FC<MCQuiz> = ({ questionData }) => {
       setIsShaking(true);
     }
   };
+  useEffect(() => {
+    for (let i = questionData.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [questionData[i], questionData[j]] = [questionData[j], questionData[i]];
+    }
+  }, []);
 
   return (
     <>
