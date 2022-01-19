@@ -25,11 +25,14 @@ export const MCQuiz: React.FC<MCQuiz> = ({ questionData }) => {
       setIsShaking(true);
     }
   };
-  useEffect(() => {
-    for (let i = questionData.length - 1; i > 0; i--) {
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [questionData[i], questionData[j]] = [questionData[j], questionData[i]];
+      [array[i], array[j]] = [array[j], array[i]];
     }
+  }
+  useEffect(() => {
+    shuffleArray(questionData);
   }, []);
 
   return (
