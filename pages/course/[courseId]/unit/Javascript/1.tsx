@@ -200,7 +200,6 @@ const JS1 = () => {
                 Start Quiz
               </p>
             </a>
-            <img src="/images/coding/units/CSS/browsers.svg" className="w-96" />
             <JSQuiz />
           </div>
         </div>
