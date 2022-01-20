@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import PracticeTracker from "../../components/practiceTracker/PracticeTracker";
 import { FETCH_COURSE_UNITS } from "../../graphql/fetchCourseUnits";
 import { FETCH_USER_PROFILE } from "../../graphql/fetchUserProfile";
+import { FETCH_USER_PROGRESS } from "../../graphql/fetchUserProgress";
 import { useAuth } from "../../lib/authContext";
 import { useAppDispatch } from "../../redux/store";
 import {
@@ -27,6 +28,15 @@ export default function Home({ courseData }) {
     },
   });
 
+  let { loading: progressLoading, data: progressData } = useQuery(
+    FETCH_USER_PROGRESS,
+    {
+      variables: {
+        userId: user.uid,
+      },
+    }
+  );
+
   const dispatch = useAppDispatch();
 
   const onGradeChange = (newGrade: number) => {
@@ -34,17 +44,10 @@ export default function Home({ courseData }) {
   };
 
   const progress = () => {
-    if (!loading && data && data.user_badges && data.user_badges.length > 0) {
-      const unlockedBadges = data.user_badges.filter(
-        (it) => it.locked == false
-      );
-
-      return Math.round(
-        (unlockedBadges.length * 100) / data.user_badges.length
-      );
-    } else {
-      return 0;
+    if (!progressLoading && progressData.user_progress.length > 0) {
+      return progressData.user_progress[0].progress;
     }
+    return 0;
   };
 
   return (
