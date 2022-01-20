@@ -34,7 +34,7 @@ const JS1 = () => {
   return (
     <>
       <Navbar />
-      <div className="grid grid-cols-1 bg-white p-8 m-8 space-y-4">
+      <div className="grid grid-cols-1 bg-white p-8 m-8 space-y-4 space-x-8">
         <h1 className="font-bold text-5xl">React 1</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 bg-white space-y-4">
           <div className="flex flex-col space-y-4">
@@ -62,6 +62,17 @@ const JS1 = () => {
                 ))}
               </div>
             </div>
+          </div>
+          <div className="flex flex-col space-y-2 sm:ml-4">
+            <p className="font-bold">Key Concepts</p>
+            <p className="">I can define and use:</p>
+            <ul className="list-disc list-inside">
+              <li>React Component and Props</li>
+              <li>The useState hook</li>
+              <li>The useEffect hook</li>
+              <li>Conditional Rendering</li>
+              <li>Handling Events</li>
+            </ul>
           </div>
         </div>
       </div>
