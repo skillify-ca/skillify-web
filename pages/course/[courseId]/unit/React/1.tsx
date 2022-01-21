@@ -68,9 +68,7 @@ const React1 = () => {
               height="400"
               src="https://www.youtube.com/embed/N3AkSS5hXMA?start=28"
               title="YouTube video player"
-              frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
             ></iframe>
             <p className="font-bold">Key Concepts</p>
             <p className="">I can define and use:</p>
