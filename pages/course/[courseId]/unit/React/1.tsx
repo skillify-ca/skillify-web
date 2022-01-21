@@ -2,13 +2,13 @@ import React from "react";
 import Card, { CardData } from "../../../../../components/coding/Card";
 import Navbar from "../../../../../components/Navbar";
 
-const JS1 = () => {
+const React1 = () => {
   const data: CardData[] = [
     {
       title: "React Compoents and Props",
       link: "https://reactjs.org/docs/components-and-props.html",
       image: "/images/component.png",
-      description: "explore the builing blocks of React",
+      description: "Explore the building blocks of React",
     },
     {
       title: "React Hooks",
@@ -43,10 +43,9 @@ const JS1 = () => {
               React is a powerful library that makes web development very
               scalable and painless. With the React library we can use
               Javascript or TypeScript to make interactive webpages with many
-              interesting built-in features which will talk about in the next{" "}
-              <section className=""></section>
+              interesting built-in features which we will talk about in the next
+              section.
             </p>
-            <p className="font-bold">Javascript Roadmap</p>
 
             <div className="flex flex-col space-y-2">
               <p className="font-bold">Tutorials</p>
@@ -64,6 +63,15 @@ const JS1 = () => {
             </div>
           </div>
           <div className="flex flex-col space-y-2 sm:ml-4">
+            <iframe
+              width="750"
+              height="400"
+              src="https://www.youtube.com/embed/N3AkSS5hXMA?start=28"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
             <p className="font-bold">Key Concepts</p>
             <p className="">I can define and use:</p>
             <ul className="list-disc list-inside">
@@ -80,4 +88,4 @@ const JS1 = () => {
   );
 };
 
-export default JS1;
+export default React1;
