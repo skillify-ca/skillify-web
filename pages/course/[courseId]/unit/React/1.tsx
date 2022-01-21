@@ -63,13 +63,6 @@ const React1 = () => {
             </div>
           </div>
           <div className="flex flex-col space-y-2 sm:ml-4">
-            <iframe
-              width="750"
-              height="400"
-              src="https://www.youtube.com/embed/N3AkSS5hXMA?start=28"
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            ></iframe>
             <p className="font-bold">Key Concepts</p>
             <p className="">I can define and use:</p>
             <ul className="list-disc list-inside">
