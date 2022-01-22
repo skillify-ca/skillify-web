@@ -41,6 +41,13 @@ class MyDocument extends Document {
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-FJLNTHHN4G"
           />
+          <script
+            type="text/javascript"
+            id="hs-script-loader"
+            async
+            defer
+            src="//js-na1.hs-scripts.com/21210484.js"
+          ></script>
 
           <script
             dangerouslySetInnerHTML={{
