@@ -130,7 +130,13 @@ const JS1 = () => {
                 </li>
                 <li>
                   <b>4.</b> As a prerequisite to the coding challenges you'll
-                  need to install node.js
+                  need to install node.js.
+                  <a
+                    href="https://www.mathchamp.ca/course/coding/unit/warmups/1"
+                    className="font-bold text-blue-500"
+                  >
+                    Click Here to See How.
+                  </a>
                 </li>
                 <li>
                   <b>5.</b> In VS Code you will need to download an extension

@@ -40,7 +40,9 @@ export const MultipleChoiceSentence: React.FC<MultipleChoiceSentenceProp> = ({
       <h1 className="font-semibold text-center text-4m"> {displayQuestion} </h1>
       <div className={`${properties}`}>
         {image &&
-          image.map((img) => <img className="sm:h-24 lg:h-64" src={img} />)}
+          image.map((img) => (
+            <img className="h-16 sm:h-24 lg:h-64" src={img} />
+          ))}
       </div>
       <div className="flex flex-row space-x-4">
         <div className="flex flex-col space-y-4">
