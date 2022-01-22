@@ -19,12 +19,10 @@ const JS1 = () => {
       description: "Intro to Javascript Textbook",
     },
     {
-      title: "Code Wars",
-      link: "https://www.codewars.com/",
-      image:
-        "https://www.codewars.com/assets/logos/logo-square-red-big-c74ae0e7a89b33acd3beb1f08229630391934650e3bbd30ddc40e8be5bbfc71e.png",
-      description:
-        "Improve your development skills by training with your peers using coding challenges",
+      title: "Free Code Camp",
+      link: "https://www.freecodecamp.org/news/javascript-map-reduce-and-filter-explained-with-examples/",
+      image: "/images/coding/units/javascript/freeCodeCamp.png",
+      description: "Iterators Tutorial: Map, Filter, Reduce",
     },
     {
       title: "Codecademy JS Course",
@@ -76,7 +74,7 @@ const JS1 = () => {
   return (
     <>
       <Navbar />
-      <div className="grid grid-cols-1 bg-white p-8 m-8 space-y-4">
+      <div className="grid grid-cols-1 bg-white p-8 sm:m-8 space-y-4">
         <h1 className="font-bold text-5xl">JavaScript 1</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 bg-white space-y-4">
           <div className="flex flex-col space-y-4">
@@ -85,8 +83,6 @@ const JS1 = () => {
               JavaScript is yet another language that you need to learn. This
               lesson will teach you the main concepts of JavaScript.
             </p>
-            <p className="font-bold">Javascript Roadmap</p>
-
             <div className="flex flex-col space-y-2">
               <p className="font-bold">Tutorials</p>
 
@@ -209,7 +205,7 @@ const JS1 = () => {
             <JSQuiz />
             <a
               className="font-bold text-blue-700 text-2xl mt-8"
-              href="http://mathchamp.ca/course/coding/unit/Javascript/Final1"
+              href="/course/coding/unit/Javascript/Final1"
             >
               Find the Final Assignment Here!
             </a>

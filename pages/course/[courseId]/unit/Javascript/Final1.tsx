@@ -25,12 +25,21 @@ const Final1 = () => {
               E-commerce stores!
             </p>
           </div>
-          <div className="mt-3">
+          <div className="mt-4">
             <h1 className="font-bold">What do you need to get started?</h1>
             <p>
-              First and foremost, you must have a .html file for your store.
-              We'll now be using Tailwind for CSS properties. Trust me, you'll
-              thank me later.
+              First and foremost, you must create a new folder for your store.
+              Create a .html file for each page of your online store.
+            </p>
+            <ul className="list-disc list-inside">
+              <li>Home Page</li>
+              <li>About Page</li>
+            </ul>
+            <h1 className="font-bold mt-4">Tailwind CSS</h1>
+
+            <p>
+              Tailwind is a modern way of writing CSS properties. Trust me,
+              you'll thank me later.
             </p>
             <a
               className="text-blue-400 font-medium"
@@ -51,7 +60,7 @@ const Final1 = () => {
               </li>
               <li>
                 Your customer must know what you're selling. Make sure you have
-                an image of your product!
+                all of your images for your product!
               </li>
               <li>
                 You will also need to add product details.
@@ -65,13 +74,14 @@ const Final1 = () => {
               </li>
               <li>
                 {" "}
-                Add a Purchase button that will redirect the customer to this
+                Add a Purchase button that will redirect the customer to a
+                Stripe payment link.
                 <a
                   className="text-blue-400 font-medium"
-                  href="https://buy.stripe.com/4gw6rjbAUdQp7Ys28d"
+                  href="https://stripe.com/en-ca/payments/payment-links"
                 >
                   {" "}
-                  Purchase Redirection Link
+                  Stripe Documentation
                 </a>
               </li>
               <li>
