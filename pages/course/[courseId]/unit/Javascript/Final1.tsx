@@ -6,10 +6,10 @@ const Final1 = () => {
   return (
     <>
       <Navbar />
-      <div className="grid grid-cols-2 bg-white p-8 m-8 space-y-4">
+      <div className="grid p-8 space-y-4 bg-white sm:m-8 sm:grid-cols-2">
         <div>
-          <p className="font-bold text-2xl"> Final Assignment </p>
-          <p className="font-extrabold text-xl text-blue-600">
+          <p className="text-2xl font-bold"> Final Assignment </p>
+          <p className="text-xl font-extrabold text-blue-600">
             {" "}
             E-Commerce Site{" "}
           </p>
@@ -35,14 +35,14 @@ const Final1 = () => {
               <li>Home Page</li>
               <li>About Page</li>
             </ul>
-            <h1 className="font-bold mt-4">Tailwind CSS</h1>
+            <h1 className="mt-4 font-bold">Tailwind CSS</h1>
 
             <p>
               Tailwind is a modern way of writing CSS properties. Trust me,
               you'll thank me later.
             </p>
             <a
-              className="text-blue-400 font-medium"
+              className="font-medium text-blue-400"
               href="https://tailwindcss.com/docs/installation/play-cdn"
             >
               Here's the process on how to get Tailwind working in your code.
@@ -77,7 +77,7 @@ const Final1 = () => {
                 Add a Purchase button that will redirect the customer to a
                 Stripe payment link.
                 <a
-                  className="text-blue-400 font-medium"
+                  className="font-medium text-blue-400"
                   href="https://stripe.com/en-ca/payments/payment-links"
                 >
                   {" "}
@@ -93,7 +93,22 @@ const Final1 = () => {
           </div>
         </div>
         <div>
-          <div className="font-bold text-white text-lg ml-3 bg-blue-900 pl-5">
+          <div className="">
+            <div className="pl-5 text-lg font-bold text-white bg-blue-900 sm:ml-3">
+              <a href="https://www.loom.com/share/caa5e7490db3472b82e3b15c468b2392">
+                Video Walkthrough - Link
+              </a>
+            </div>
+            <iframe
+              src="https://www.loom.com/embed/caa5e7490db3472b82e3b15c468b2392"
+              frameBorder={"0"}
+              webkitallowfullscreen
+              mozallowfullscreen
+              allowfullscreen
+              className="w-full"
+            ></iframe>
+          </div>
+          <div className="pl-4 mt-8 text-lg font-bold text-white bg-blue-900 sm:ml-3">
             Example E-Commerce Store
           </div>
           <img src="/images/shopifyExample.png"></img>
