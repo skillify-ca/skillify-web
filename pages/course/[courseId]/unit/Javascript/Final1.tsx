@@ -102,9 +102,7 @@ const Final1 = () => {
             <iframe
               src="https://www.loom.com/embed/caa5e7490db3472b82e3b15c468b2392"
               frameBorder={"0"}
-              webkitallowfullscreen
-              mozallowfullscreen
-              allowfullscreen
+              allowFullScreen
               className="w-full"
             ></iframe>
           </div>
