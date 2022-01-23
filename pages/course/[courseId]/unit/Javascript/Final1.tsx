@@ -94,17 +94,33 @@ const Final1 = () => {
         </div>
         <div>
           <div className="">
-            <div className="pl-5 text-lg font-bold text-white bg-blue-900 sm:ml-3">
-              <a href="https://www.loom.com/share/caa5e7490db3472b82e3b15c468b2392">
-                Video Walkthrough - Link
-              </a>
+            <div className="flex flex-col gap-4">
+              <div className="pl-4 text-lg font-bold text-white bg-blue-900">
+                Video Walkthrough
+              </div>
+              Part 1
+              <iframe
+                width="560"
+                height="315"
+                className="w-full"
+                src="https://www.youtube.com/embed/lZr-Rl1hwfA"
+                title="YouTube video player"
+                frameBorder={"0"}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+              Part 2
+              <iframe
+                width="560"
+                height="315"
+                className="w-full"
+                src="https://www.youtube.com/embed/wYUs8JfkkvI"
+                title="YouTube video player"
+                frameBorder={"0"}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
             </div>
-            <iframe
-              src="https://www.loom.com/embed/caa5e7490db3472b82e3b15c468b2392"
-              frameBorder={"0"}
-              allowFullScreen
-              className="w-full"
-            ></iframe>
           </div>
           <div className="pl-4 mt-8 text-lg font-bold text-white bg-blue-900 sm:ml-3">
             Example E-Commerce Store

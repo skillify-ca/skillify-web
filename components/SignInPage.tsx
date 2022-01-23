@@ -20,39 +20,33 @@ export default function SignInPage() {
 
   return (
     <div>
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col items-center justify-center">
         <div className="flex flex-col items-center gap-8">
           <img
-            className="h-16 w-16"
+            className="w-16 h-16"
             src="/images/logo.png"
-            alt="Math Champ Logo"
+            alt="Skillify Logo"
           />
-          <p className="font-bold text-4xl text-center">
-            {" "}
-            Welcome to Math Champ
-          </p>
+          <p className="text-4xl font-bold text-center"> Welcome to Skillify</p>
         </div>
-        <div className="flex flex-col lg:flex-row-reverse items-center justify-center gap-8 mt-12">
+        <div className="flex flex-col items-center justify-center gap-8 mt-12 lg:flex-row-reverse">
           <div className="w-1/2">
             <img className="" src="/images/signIn.png" />
           </div>
-          <div className="flex flex-col items-center gap-y-8 justify-between">
+          <div className="flex flex-col items-center justify-between gap-y-8">
             <div className="">
               <p className="text-center text-md">
                 {" "}
                 <p className="text-xl font-bold">
                   {" "}
-                  Math Champ makes math fun and engaging.{" "}
+                  Skillify makes online learning fun and engaging.{" "}
                 </p>{" "}
-                <p>
-                  Help your students feel more confident with numbers and
-                  questions aligned to the Canadian curriculum{" "}
-                </p>
+                <p>Feel more confident with code and get hired in tech</p>
               </p>
             </div>
             <button
               onClick={() => signIn()}
-              className="flex justify-between items-center bg-white border border-black rounded-2xl p-4 w-64 hover:bg-gray-100 shadow-lg"
+              className="flex items-center justify-between w-64 p-4 bg-white border border-black shadow-lg rounded-2xl hover:bg-gray-100"
             >
               Sign in with Google
               <img className="w-8" src="/images/googleLogo.png" />
