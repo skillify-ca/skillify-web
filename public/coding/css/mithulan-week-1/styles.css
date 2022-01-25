@@ -1,0 +1,14 @@
+body {
+  color: white;
+  background-color: black;
+}
+h1 {
+  color: white;
+}
+.nav {
+  padding: 16px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+}
