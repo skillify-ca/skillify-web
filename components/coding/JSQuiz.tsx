@@ -58,6 +58,51 @@ const JSQuiz = ({}: JSQuizProp) => {
       },
       answer: "variable x;",
     },
+    {
+      displayQuestion: "Which of the following expressions evaluates as True",
+      option1: { id: "A", text: "4**0 > 1" },
+      option2: { id: "B", text: "!(2 + 2 == 5)" },
+      option3: { id: "C", text: "1 < 1 ** 1" },
+      option4: {
+        id: "D",
+        text: "All of the above",
+      },
+      answer: "!(2 + 2 == 5)",
+    },
+    {
+      displayQuestion: "Which of the following expressions evaluates as True",
+      option1: { id: "A", text: "-3 > 0 || 0 >= 0" },
+      option2: { id: "B", text: "7**0 == 1 && 0 > -1" },
+      option3: { id: "C", text: "0 == 0 && 1 > -1" },
+      option4: {
+        id: "D",
+        text: "All of the above",
+      },
+      answer: "All of the above",
+    },
+    {
+      displayQuestion: "Which of the following expressions evaluates as False",
+      option1: { id: "A", text: "4 == 4" },
+      option2: { id: "B", text: "4 === '4'" },
+      option3: { id: "C", text: "4 == '4'" },
+      option4: {
+        id: "D",
+        text: "All of the above",
+      },
+      answer: "4 === '4'",
+    },
+    {
+      displayQuestion:
+        "What does the following expression return? \n 2 + 2 == 5 ? 'Big Brother' : 2 + 2 == 4 ? 'Hello' : 'World'",
+      option1: { id: "A", text: "Big Brother" },
+      option2: { id: "B", text: "Hello" },
+      option3: { id: "C", text: "World" },
+      option4: {
+        id: "D",
+        text: "Error",
+      },
+      answer: "Hello",
+    },
   ];
 
   return <MCQuiz questionData={questionData} />;
