@@ -49,11 +49,6 @@ const Studentbadges = () => {
       return 2;
     }
   };
-  let { loading, data } = useQuery(FETCH_ALL_STUDENT_CODING_BADGES);
-
-  /* useEffect(() => {
-    !loading && initStudentsBadges();
-  }, [loading]); */
 
   const getUserId = (index: number) => {
     if (index === 1) {
@@ -100,38 +95,7 @@ const Studentbadges = () => {
       }
     }
   };
-  //Query User Coding Badges
-  /*
-  const initStudentsBadges = () => {
-    console.log("HERE");
 
-    if (!loading && data.user_coding_badges.length > 0) {
-      let newStudentBadges = JSON.parse(JSON.stringify(allStudentBadges)); //Deep copy
-      console.log("data", data);
-
-      for (let i = 0; i < data.user_coding_badges.length; i++) {
-        let studentId = getUserIndex(data.user_coding_badges[i].userId);
-        console.log("student", studentId);
-        let badgeId = data.user_coding_badges[i].badgeId - 1;
-        console.log("badge", badgeId);
-        let visibility = data.user_coding_badges[i].locked;
-        console.log("Visibility", visibility);
-        console.log(
-          "Before Visibility",
-          newStudentBadges[studentId][badgeId].visibilty
-        );
-        newStudentBadges[studentId][badgeId].visibilty = visibility;
-        console.log(
-          "After Visibility",
-          newStudentBadges[studentId][badgeId].visibilty
-        );
-      }
-      setallStudentBadges(newStudentBadges);
-      console.log("student Badges", allStudentBadges);
-    } else {
-      console.log("Waiting");
-    }
-  }; */
   const [unlockBadge, unlockBadgeData] = useMutation(LOCK_USER_BADGES);
   const onButtonClick = (student: string, badge: number) => {
     let newStudentBadges = JSON.parse(JSON.stringify(allStudentBadges)); //Deep copy
