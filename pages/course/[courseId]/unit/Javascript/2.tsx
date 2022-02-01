@@ -169,7 +169,7 @@ const Studentbadges = () => {
         <img
           src="/images/Addition5.png"
           className={`w-full h-full ${
-            allStudentBadges[getStudentId()][0].visibility && !loading && data
+            allStudentBadges[getStudentId()][0].visibility
               ? "border-8 border-green-600"
               : "border-8 border-red-600"
           }`}
@@ -178,7 +178,7 @@ const Studentbadges = () => {
         <img
           src="/images/Addition6.png"
           className={`w-full h-full ${
-            allStudentBadges[getStudentId()][1].visibility && !loading && data
+            allStudentBadges[getStudentId()][1].visibility
               ? "border-8 border-green-600"
               : "border-8 border-red-600"
           }`}
@@ -187,7 +187,7 @@ const Studentbadges = () => {
         <img
           src="/images/Addition4.png"
           className={`w-full h-full ${
-            allStudentBadges[getStudentId()][2].visibility && !loading && data
+            allStudentBadges[getStudentId()][2].visibility
               ? "border-8 border-green-600"
               : "border-8 border-red-600"
           }`}
