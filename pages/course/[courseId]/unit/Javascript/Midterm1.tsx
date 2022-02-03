@@ -1,7 +1,22 @@
 import React from "react";
+import Card, { CardData } from "../../../../../components/coding/Card";
 import Navbar from "../../../../../components/Navbar";
 
 const Midterm1 = () => {
+  const data: CardData[] = [
+    {
+      title: "Pokemon JSON",
+      link: "/coding/JavaScript?PokemonTemp.js",
+      image: "/images/pokeball.png",
+      description: "Find out what Pokemons can learn Fire Blast!",
+    },
+    {
+      title: "NBA Data",
+      link: "/coding/JavaScript/NBATemp.js",
+      image: "/images/basketball.png",
+      description: "Examine the data and figure who was the best Hooper!",
+    },
+  ];
   return (
     <>
       <Navbar />
@@ -144,10 +159,19 @@ const Midterm1 = () => {
               ></iframe>
             </div>
           </div>
-          <div className="pl-4 mt-8 text-lg font-bold text-white bg-blue-900 sm:ml-3">
-            Example E-Commerce Store
+          <div className="pl-4 text-lg font-bold text-white bg-blue-900 mt-2">
+            Javascript Assignment
           </div>
-          <img src="/images/shopifyExample.png"></img>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
+            {data.map((it) => (
+              <Card
+                title={it.title}
+                image={it.image}
+                description={it.description}
+                link={it.link}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </>
