@@ -139,8 +139,7 @@ const Midterm1 = () => {
               <iframe
                 width="560"
                 height="315"
-                className="w-full"
-                src="https://www.youtube.com/embed/lZr-Rl1hwfA"
+                src="https://www.youtube.com/embed/jSbJuG6Npss"
                 title="YouTube video player"
                 frameBorder={"0"}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -150,10 +149,9 @@ const Midterm1 = () => {
               <iframe
                 width="560"
                 height="315"
-                className="w-full"
-                src="https://www.youtube.com/embed/wYUs8JfkkvI"
+                src="https://www.youtube.com/embed/W0foH4d3v1w"
                 title="YouTube video player"
-                frameBorder={"0"}
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
