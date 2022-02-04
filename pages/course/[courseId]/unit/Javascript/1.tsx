@@ -203,12 +203,20 @@ const JS1 = () => {
               </p>
             </a>
             <JSQuiz />
-            <a
-              className="font-bold text-blue-700 text-2xl mt-8"
-              href="/course/coding/unit/Javascript/Final1"
-            >
-              Find the Final Assignment Here!
-            </a>
+            <div className="flex flex-col">
+              <a
+                className="font-bold text-yellow-600 text-2xl mt-8"
+                href="/course/coding/unit/Javascript/Midterm1"
+              >
+                Find the JavaScript Assignment Here!
+              </a>
+              <a
+                className="font-bold text-blue-700 text-2xl mt-8"
+                href="/course/coding/unit/Javascript/Final1"
+              >
+                Find the Final Assignment Here!
+              </a>
+            </div>
           </div>
         </div>
       </div>
