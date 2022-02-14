@@ -54,29 +54,3 @@ export const linesOfCode = [
     }
     
 ]
-
-
-
-// var maximumWealth = function(accounts) {
-    
-//     balances = []
-    
-//     accounts.forEach((account, index) => {
-//         let account_sum = 0 
-//         console.log("account: " + index + " has the following units: " + account)
-        
-//         account.forEach((elem, index) => {                
-//             account_sum += elem 
-//             console.log('account sum is now' + account_sum)
-//         })
-//         console.log('the final account sum for account: ' + index + "is" + account_sum)
-//         balances.push(account_sum)
-//     })
-    
-//     console.log("the account balances are:" + balances)
-    
-//     // sort list descending
-//     balances.sort((a, b) => {return b-a})
-    
-//     return balances[0] 
-// };
