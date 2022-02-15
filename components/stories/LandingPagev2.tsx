@@ -36,30 +36,30 @@ const LandingPagev2 = () => {
               <p className="text-3xl text-yellow-600 place-self-center">
                 Build Real Projects
               </p>
-              <p className="place-self-center text-white w-1/2 align-middle">
+              <p className="place-self-center text-white w-1/2 text-center">
                 You will build real products to add to your portfolio or resume.
               </p>
             </div>
             <div className="flex flex-col">
               <div className="h-100 w-100 rounded-full bg-white place-self-center">
-                <img src="/images/community.svg" />
+                <img src="/images/landingpage/community.svg" />
               </div>
               <p className="text-3xl text-yellow-600 place-self-center">
                 Community of Learners
               </p>
-              <p className="place-self-center text-white w-1/2 align-middle">
+              <p className="place-self-center text-white w-1/2 text-center">
                 Join a cohort-based course to learn with peers and keep each
                 other accountable.
               </p>
             </div>
             <div className="flex flex-col">
               <div className="h-100 w-100 rounded-full bg-white place-self-center">
-                <img src="/images/experts.svg" />
+                <img src="/images/landingpage/experts.svg" />
               </div>
               <p className="text-3xl text-yellow-600 place-self-center">
                 Industry Experts
               </p>
-              <p className="place-self-center text-white w-1/2 align-middle">
+              <p className="place-self-center text-white w-1/2 text-center">
                 Learn from the best with our expert mentors
               </p>
             </div>
