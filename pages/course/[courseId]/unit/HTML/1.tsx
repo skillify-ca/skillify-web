@@ -1,7 +1,14 @@
+import React, { useState } from "react";
 import Card from "../../../../../components/coding/Card";
 import Navbar from "../../../../../components/Navbar";
+import { Button } from "../../../../../components/ui/Button";
+import EmojiSlider from "../../../../../components/ui/EmojiSlider";
 
 const HTML1 = () => {
+  const [emoji, setEmoji] = useState(0);
+  const setEmojiCallback = (val: number) => {
+    setEmoji(val);
+  };
   return (
     <>
       <Navbar />
@@ -75,6 +82,20 @@ const HTML1 = () => {
               src="/coding/nba.html"
               className="w-full h-96 p-4 bg-white shadow-lg border-4 border-purple-400"
             />
+          </div>
+          <div className="rounded-lg bg-blue-200">
+            <p className="font-semibold text-2xl text-center">
+              {" "}
+              Rate your Confidence
+            </p>
+            <EmojiSlider callback={setEmojiCallback} />
+            <div className="flex justify-center">
+              <Button
+                label={"Save"}
+                backgroundColor="blue"
+                textColor="white"
+              ></Button>{" "}
+            </div>
           </div>
         </div>
       </div>

@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Card, { CardData } from "../../../../../components/coding/Card";
 import { Carousel } from "../../../../../components/coding/Carousel";
 import CSSQuiz from "../../../../../components/coding/CSSQuiz";
 import Navbar from "../../../../../components/Navbar";
 import { MultipleChoiceSentence } from "../../../../../components/questionTypes/MultipleChoiceSentence";
+import EmojiSlider from "../../../../../components/ui/EmojiSlider";
 
 const CSS = () => {
+  const [emoji, setEmoji] = useState(0);
+  const setEmojiCallback = (val: number) => {
+    setEmoji(val);
+  };
   const assignments = [
     { link: "/coding/css/sujee-week-1/index.html", title: "Sujee-Week1" },
     { link: "/coding/css/mau-week-1/index.html", title: "Mau-Week1" },
@@ -129,6 +134,13 @@ const CSS = () => {
                   />
                 </div>
               ))}
+            </div>
+            <div className="rounded-lg bg-blue-200">
+              <p className="font-semibold text-2xl text-center">
+                {" "}
+                Rate your Confidence
+              </p>
+              <EmojiSlider callback={setEmojiCallback} />
             </div>
           </div>
         </div>

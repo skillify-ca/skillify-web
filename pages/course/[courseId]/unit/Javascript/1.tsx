@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Card, { CardData } from "../../../../../components/coding/Card";
 import JSQuiz from "../../../../../components/coding/JSQuiz";
 import Navbar from "../../../../../components/Navbar";
+import EmojiSlider from "../../../../../components/ui/EmojiSlider";
 
 const JS1 = () => {
+  const [emoji, setEmoji] = useState(0);
+  const setEmojiCallback = (val: number) => {
+    setEmoji(val);
+  };
   const data: CardData[] = [
     {
       title: "Grasshopper",
@@ -216,6 +221,13 @@ const JS1 = () => {
               >
                 Find the Final Assignment Here!
               </a>
+            </div>
+            <div className="rounded-lg bg-blue-200">
+              <p className="font-semibold text-2xl text-center">
+                {" "}
+                Rate your Confidence
+              </p>
+              <EmojiSlider callback={setEmojiCallback} />
             </div>
           </div>
         </div>

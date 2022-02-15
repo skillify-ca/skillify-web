@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Card, { CardData } from "../../../../../components/coding/Card";
 import Navbar from "../../../../../components/Navbar";
+import EmojiSlider from "../../../../../components/ui/EmojiSlider";
 
 const React1 = () => {
+  const [emoji, setEmoji] = useState(0);
+  const setEmojiCallback = (val: number) => {
+    setEmoji(val);
+  };
   const data: CardData[] = [
     {
       title: "React Compoents and Props",
@@ -80,6 +85,13 @@ const React1 = () => {
               <li>Handling Events</li>
             </ul>
           </div>
+        </div>
+        <div className="rounded-lg bg-blue-200">
+          <p className="font-semibold text-2xl text-center">
+            {" "}
+            Rate your Confidence
+          </p>
+          <EmojiSlider callback={setEmojiCallback} />
         </div>
       </div>
     </>
