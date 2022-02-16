@@ -75,9 +75,9 @@ const LandingPagev2 = () => {
             ))}
           </div>
         </div>
-        <div>Email Capture 2</div>
+        <div className="bg-blue-800">Email Capture 2</div>
       </div>
-      <div className="bg-gray-900 text-white pt-6">
+      <div className="bg-gray-900 text-white pt-6 border-t-4 border-yellow-500">
         <div className="grid grid-cols-12 gap-x-36">
           <div></div>
           <div className="col-span-2">
@@ -134,12 +134,12 @@ const LandingPagev2 = () => {
             </ol>
           </div>
         </div>
-        <div className="w-1/3 flex flex-row justify-around mt-8">
+        <div className="w-1/3 flex flex-row justify-between pl-8 mt-8">
           <div>Legal</div>
           <div>Privacy Policy</div>
           <div> Login</div>
         </div>
-        <div className="w-11/12 flex flex-row justify-between mt-3 bg-yellow-600 p-3">
+        <div className="w-11/12 flex flex-row justify-between pl-8 mt-3 bg-yellow-600 p-3">
           <div> © 2022 All rights reserved. </div>
           <div className="gap-x-2 flex flex-row">
             <svg
