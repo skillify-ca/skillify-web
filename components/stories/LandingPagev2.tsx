@@ -76,7 +76,116 @@ const LandingPagev2 = () => {
           </div>
         </div>
         <div>Email Capture 2</div>
-        <div> Footer</div>
+      </div>
+      <div className="bg-gray-900 text-white pt-6">
+        <div className="grid grid-cols-12 gap-x-36">
+          <div></div>
+          <div className="col-span-2">
+            <h1 className="text-2xl">About us</h1>
+            <ol>
+              <li>
+                <a className="hover:text-yellow-500">Courses</a>
+              </li>
+              <li>
+                <a className="hover:text-yellow-500">Mission</a>
+              </li>
+            </ol>
+          </div>
+          <div className="col-span-2">
+            <h1 className="text-2xl">Resources</h1>
+            <ol>
+              <li>
+                <a className="hover:text-yellow-500">Link</a>
+              </li>
+              <li>
+                <a className="hover:text-yellow-500">Link</a>
+              </li>
+              <li>
+                <a className="hover:text-yellow-500">Link</a>
+              </li>
+              <li>
+                <a className="hover:text-yellow-500"> Link</a>
+              </li>
+            </ol>
+          </div>
+          <div className="col-span-2">
+            <h1 className="text-2xl">Community</h1>
+            <ol>
+              <li>
+                <a className="hover:text-yellow-500">Slack</a>
+              </li>
+            </ol>
+          </div>
+          <div>
+            <h1 className="text-2xl">Languages</h1>
+            <ol>
+              <li>
+                <a className="hover:text-yellow-500">HTML</a>
+              </li>
+              <li>
+                <a className="hover:text-yellow-500">CSS</a>
+              </li>
+              <li>
+                <a className="hover:text-yellow-500">Javascript</a>
+              </li>
+              <li>
+                <a className="hover:text-yellow-500">React</a>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div className="w-1/3 flex flex-row justify-around mt-8">
+          <div>Legal</div>
+          <div>Privacy Policy</div>
+          <div> Login</div>
+        </div>
+        <div className="w-11/12 flex flex-row justify-between mt-3 bg-yellow-600 p-3">
+          <div> © 2022 All rights reserved. </div>
+          <div className="gap-x-2 flex flex-row">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76"
+              />
+            </svg>
+          </div>
+        </div>
       </div>
     </div>
   );
