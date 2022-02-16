@@ -8,6 +8,7 @@ import {
 } from "@heroicons/react/outline";
 import ContactForms from "../ContactForms";
 import Testimonial, { TestimonialProps } from "../landing/Testimonial";
+import { Button } from "../ui/Button";
 
 const LandingPagev2 = () => {
   const testimonialData: TestimonialProps[] = [
@@ -75,7 +76,32 @@ const LandingPagev2 = () => {
             ))}
           </div>
         </div>
-        <div className="bg-blue-800">Email Capture 2</div>
+        <div className="flex justify-center">
+          <div className="bg-blue-900 rounded-2xl w-11/12 p-14 mt-5 flex flex-row">
+            <div className="w-1/2">
+              <p className="text-yellow-600 font-medium text-5xl">
+                Don't believe your college's marketing? In one project-based
+                class you can learn the fundamentals of coding.
+              </p>
+            </div>
+            <div className=" flex items-center">
+              <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
+                <input
+                  id="bootcamper"
+                  type="text"
+                  autoComplete="off"
+                  className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md `}
+                  placeholder="Email"
+                />
+                <Button
+                  backgroundColor="yellow"
+                  textColor="white"
+                  label="Subscribe"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="bg-gray-900 text-white pt-6 border-t-4 border-yellow-500">
         <div className="grid grid-cols-12 gap-x-36">
