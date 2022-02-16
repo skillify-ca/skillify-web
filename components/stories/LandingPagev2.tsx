@@ -28,7 +28,7 @@ const LandingPagev2 = () => {
             {" "}
             Benefits
           </h1>
-          <div className="flex flex-row justify-around ">
+          <div className="flex flex-col md:flex-row justify-around ">
             <div className="flex flex-col">
               <div className="h-100 w-100 rounded-full bg-white place-self-center">
                 <img src="/images/landingpage/code.svg" />
