@@ -13,16 +13,25 @@ import { Button } from "../ui/Button";
 const LandingPagev2 = () => {
   const testimonialData: TestimonialProps[] = [
     {
-      text: "Skillify has been an excellent axperience! It allowed me to reskill and learn modern coding frameworks that makes me competitive to get hired in software engineering.",
+      studentName: "Mayu Ganesathas",
+      img: "/images/landingPage/mayu.png",
+      text: "“Skillify has been an excellent axperience! It allowed me to reskill and learn modern coding frameworks that makes me competitive to get hired in software engineering.”",
     },
     {
-      text: "I joined Skillify and learned so much about front end web development that I was able to get interviews from big tech companies and start-ups. I feel more confident getting interviews after taking the Skillify course",
+      studentName: "Ajevan Mahadaya",
+      img: "/images/landingPage/ajevan.png",
+      text: "“I joined Skillify and learned so much about front end web development that I was able to get interviews from big tech companies and start-ups. I feel more confident getting interviews after taking the Skillify course”",
+    },
+    {
+      studentName: "Mithulan ",
+      img: "/images/landingPage/goldMedal.svg",
+      text: "The team at Skillify did an excellent job in this course to facilitate the fundamentals and give each student the confidence to succeed in the field of coding. Thank you to Vithushan and his team for a wonderful experience.",
     },
   ];
   return (
     <div>
-      <div className="flex flex-col w-full bg-gray-300">
-        <div className="bg-blue-900">
+      <div className="flex flex-col w-full bg-gray-100">
+        <div className="bg-blue-900 pb-5">
           <h1 className="text-white text-7xl text-center ml-32 my-3">
             {" "}
             Benefits
@@ -116,16 +125,30 @@ const LandingPagev2 = () => {
             </div>
           </div>
         </div>
-        <div>
-          Testimonials
-          <div className="flex gap-4">
-            {testimonialData.map((it) => (
-              <Testimonial text={it.text} />
-            ))}
+        <div className="flex justify-center flex-col p-5">
+          <div className="w-11/12">
+            <p className="text-3xl ml-12 font-semibold w-11/12">
+              {" "}
+              Testimonials
+            </p>
+            <p className=" text-xl ml-12 my-8 w-11/12">
+              {" "}
+              Read what our previous students have to say about their experience
+              at Skillify.
+            </p>
+            <div className="flex ml-12 gap-4 w-11/12">
+              {testimonialData.map((it) => (
+                <Testimonial
+                  text={it.text}
+                  img={it.img}
+                  studentName={it.studentName}
+                />
+              ))}
+            </div>
           </div>
         </div>
         <div className="flex justify-center">
-          <div className="bg-blue-900 rounded-2xl w-11/12 p-14 mt-5 flex flex-row">
+          <div className="bg-blue-900 rounded-2xl w-11/12 p-14 flex flex-row my-5">
             <div className="w-1/2">
               <p className="text-yellow-600 font-medium text-5xl">
                 Don't believe your college's marketing? In one project-based

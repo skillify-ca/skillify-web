@@ -3,23 +3,25 @@ import { Skill } from "../../pages/api/skill";
 
 export interface TestimonialProps {
   text: string;
+  img: string;
+  studentName: string;
 }
 
-const Testimonial = ({ text }: TestimonialProps) => {
+const Testimonial = ({ text, img, studentName }: TestimonialProps) => {
   return (
-    <div className="flex flex-col w-96 bg-white">
+    <div className="flex flex-col w-96 bg-white p-5 rounded-xl border-t-8 border-blue-900">
       <p>{text}</p>
       <div className="flex">
-        <img src="/images/landingPage/star.svg" className="hue-rotate-90" />
-        <img src="/images/landingPage/star.svg" className="-hue-rotate-60" />
         <img src="/images/landingPage/star.svg" className="hue-rotate-45" />
-        <img src="/images/landingPage/star.svg" className="hue-rotate-0" />
-        <img src="/images/landingPage/star.svg" className="hue-rotate-180" />
+        <img src="/images/landingPage/star.svg" className="hue-rotate-45" />
+        <img src="/images/landingPage/star.svg" className="hue-rotate-45" />
+        <img src="/images/landingPage/star.svg" className="hue-rotate-45" />
+        <img src="/images/landingPage/star.svg" className="hue-rotate-45" />
       </div>
       <div className="grid grid-cols-6">
-        <img src="/images/landingPage/mayu.png" alt="student" />
+        <img src={img} alt="student" />
         <div className="flex flex-col col-span-4 ml-4 justify-center">
-          <p className="font-bold text-xl">Mayu Ganesathas</p>
+          <p className="font-bold text-xl">{studentName}</p>
           <p>Completed in January 2022</p>
         </div>
         <div className="flex flex-col justify-center items-center">
