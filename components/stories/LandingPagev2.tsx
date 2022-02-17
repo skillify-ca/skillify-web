@@ -31,7 +31,7 @@ const LandingPagev2 = () => {
   return (
     <div>
       <div className="flex flex-col w-full bg-gray-100">
-        <div className="bg-blue-900 pb-5">
+        <div className="bg-secondary-third pb-5">
           <h1 className="text-white text-7xl text-center ml-32 my-3">
             {" "}
             Benefits
@@ -41,7 +41,7 @@ const LandingPagev2 = () => {
               <div className="h-100 w-100 rounded-full bg-white place-self-center">
                 <img src="/images/landingpage/code.svg" />
               </div>
-              <p className="text-3xl text-yellow-600 place-self-center">
+              <p className="text-3xl text-primary place-self-center">
                 Build Real Projects
               </p>
               <p className="place-self-center text-white w-1/2 text-center">
@@ -52,7 +52,7 @@ const LandingPagev2 = () => {
               <div className="h-100 w-100 rounded-full bg-white place-self-center">
                 <img src="/images/landingpage/community.svg" />
               </div>
-              <p className="text-3xl text-yellow-600 place-self-center">
+              <p className="text-3xl text-primary place-self-center">
                 Community of Learners
               </p>
               <p className="place-self-center text-white w-1/2 text-center">
@@ -64,7 +64,7 @@ const LandingPagev2 = () => {
               <div className="h-100 w-100 rounded-full bg-white place-self-center">
                 <img src="/images/landingpage/experts.svg" />
               </div>
-              <p className="text-3xl text-yellow-600 place-self-center">
+              <p className="text-3xl text-primary place-self-center">
                 Industry Experts
               </p>
               <p className="place-self-center text-white w-1/2 text-center">
@@ -73,13 +73,13 @@ const LandingPagev2 = () => {
             </div>
           </div>
         </div>
-        <div className="bg-gradient-to-r from-yellow-500">
+        <div className="bg-email-capture bg-primary bg-blend-multiply bg-no-repeat">
           <div className="justify-center ml-16">
             <div className="bg-white rounded-2xl p-20 w-1/3 my-40">
               <div className="sm:text-center lg:text-left mb-2">
                 <h1 className="tracking-tight font-extrabold text-gray-900 sm:text-2xl md:text-3xl">
                   <span className="block xl:inline">Get your </span>{" "}
-                  <span className="block text-yellow-600 xl:inline">
+                  <span className="block text-primary xl:inline">
                     personalized
                   </span>{" "}
                   <span className="block xl:inline">to </span>{" "}
@@ -92,7 +92,7 @@ const LandingPagev2 = () => {
                     id="bootcamper"
                     type="text"
                     autoComplete="off"
-                    className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-yellow-600 placeholder-yellow-700`}
+                    className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-primary placeholder-primary`}
                     placeholder="First Name"
                   />
                 </div>
@@ -101,7 +101,7 @@ const LandingPagev2 = () => {
                     id="bootcamper"
                     type="text"
                     autoComplete="off"
-                    className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-yellow-600 placeholder-yellow-700`}
+                    className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-primary placeholder-primary`}
                     placeholder="Last Name"
                   />
                 </div>
@@ -111,16 +111,21 @@ const LandingPagev2 = () => {
                   id="bootcamper"
                   type="text"
                   autoComplete="off"
-                  className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-yellow-600 placeholder-yellow-700 w-96`}
+                  className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-primary placeholder-primary w-96`}
                   placeholder="Enter your email address"
                 />
               </div>
               <div className="mt-2">
-                <Button
-                  backgroundColor="yellow"
-                  textColor="white"
-                  label="Subscribe"
-                />
+                <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                  <div className="rounded-md shadow">
+                    <a
+                      href="/courses"
+                      className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-yellow-700 md:py-4 md:text-lg md:px-10"
+                    >
+                      Enroll Now
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -148,9 +153,9 @@ const LandingPagev2 = () => {
           </div>
         </div>
         <div className="flex justify-center">
-          <div className="bg-blue-900 rounded-2xl w-11/12 p-14 flex flex-row my-5">
+          <div className="bg-secondary-third rounded-2xl w-11/12 p-14 flex flex-row my-5">
             <div className="w-1/2">
-              <p className="text-yellow-600 font-medium text-5xl">
+              <p className="text-primary font-medium text-5xl">
                 Don't believe your college's marketing? In one project-based
                 class you can learn the fundamentals of coding.
               </p>
@@ -162,30 +167,40 @@ const LandingPagev2 = () => {
                     id="bootcamper"
                     type="text"
                     autoComplete="off"
-                    className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-yellow-600 placeholder-yellow-700 w-96`}
+                    className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-primary placeholder-yellow-700 w-96`}
                     placeholder="Email"
                   />
                 </div>
                 <div>
-                  <Button
-                    backgroundColor="yellow"
-                    textColor="white"
-                    label="Subscribe"
-                  />
+                  <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                    <div className="rounded-md shadow">
+                      <a
+                        href="/courses"
+                        className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-yellow-700 md:py-4 md:text-lg md:px-10"
+                      >
+                        Enroll Now
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="bg-gray-900 text-white pt-6 border-t-4 border-yellow-500">
+      <div className="bg-gray-900 text-white pt-6 border-t-4 border-primary">
         <div className="grid grid-cols-12 gap-x-36">
           <div></div>
           <div className="col-span-2">
             <h1 className="text-2xl">About us</h1>
             <ol>
               <li>
-                <a className="hover:text-yellow-500">Courses</a>
+                <a
+                  className="hover:text-yellow-500"
+                  href="https://www.skillify.ca/courses"
+                >
+                  Courses
+                </a>
               </li>
               <li>
                 <a className="hover:text-yellow-500">Mission</a>
@@ -221,16 +236,36 @@ const LandingPagev2 = () => {
             <h1 className="text-2xl">Languages</h1>
             <ol>
               <li>
-                <a className="hover:text-yellow-500">HTML</a>
+                <a
+                  className="hover:text-yellow-500"
+                  href="https://www.skillify.ca//course/coding/unit/HTML/1"
+                >
+                  HTML
+                </a>
               </li>
               <li>
-                <a className="hover:text-yellow-500">CSS</a>
+                <a
+                  className="hover:text-yellow-500"
+                  href="https://www.skillify.ca//course/coding/unit/CSS/1"
+                >
+                  CSS
+                </a>
               </li>
               <li>
-                <a className="hover:text-yellow-500">Javascript</a>
+                <a
+                  className="hover:text-yellow-500"
+                  href="https://www.skillify.ca//course/coding/unit/Javascript/1"
+                >
+                  Javascript
+                </a>
               </li>
               <li>
-                <a className="hover:text-yellow-500">React</a>
+                <a
+                  className="hover:text-yellow-500"
+                  href="https://www.skillify.ca//course/coding/unit/React/1"
+                >
+                  React
+                </a>
               </li>
             </ol>
           </div>
@@ -240,7 +275,7 @@ const LandingPagev2 = () => {
           <div>Privacy Policy</div>
           <div> Login</div>
         </div>
-        <div className="w-11/12 flex flex-row justify-between pl-8 mt-3 bg-yellow-600 p-3">
+        <div className="w-11/12 flex flex-row justify-between pl-8 mt-3 bg-primary p-3">
           <div> © 2022 All rights reserved. </div>
           <div className="gap-x-2 flex flex-row">
             <svg
