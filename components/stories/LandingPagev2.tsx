@@ -22,8 +22,6 @@ const LandingPagev2 = () => {
   return (
     <div>
       <div className="flex flex-col w-full bg-gray-300">
-        <div>Navigation</div>
-        <div>Hero</div>
         <div className="bg-blue-900">
           <h1 className="text-white text-7xl text-center ml-32 my-3">
             {" "}
@@ -66,8 +64,58 @@ const LandingPagev2 = () => {
             </div>
           </div>
         </div>
-
-        <div>Email Capture</div>
+        <div className="bg-gradient-to-r from-yellow-500">
+          <div className="justify-center ml-16">
+            <div className="bg-white rounded-2xl p-20 w-1/3 my-40">
+              <div className="sm:text-center lg:text-left mb-2">
+                <h1 className="tracking-tight font-extrabold text-gray-900 sm:text-2xl md:text-3xl">
+                  <span className="block xl:inline">Get your </span>{" "}
+                  <span className="block text-yellow-600 xl:inline">
+                    personalized
+                  </span>{" "}
+                  <span className="block xl:inline">to </span>{" "}
+                  <p className="block text-gray-900">learning roadmap.</p>{" "}
+                </h1>
+              </div>
+              <div className="flex flex-row gap-4">
+                <div>
+                  <input
+                    id="bootcamper"
+                    type="text"
+                    autoComplete="off"
+                    className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-yellow-600 placeholder-yellow-700`}
+                    placeholder="First Name"
+                  />
+                </div>
+                <div>
+                  <input
+                    id="bootcamper"
+                    type="text"
+                    autoComplete="off"
+                    className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-yellow-600 placeholder-yellow-700`}
+                    placeholder="Last Name"
+                  />
+                </div>
+              </div>
+              <div className="mt-2">
+                <input
+                  id="bootcamper"
+                  type="text"
+                  autoComplete="off"
+                  className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-yellow-600 placeholder-yellow-700 w-96`}
+                  placeholder="Enter your email address"
+                />
+              </div>
+              <div className="mt-2">
+                <Button
+                  backgroundColor="yellow"
+                  textColor="white"
+                  label="Subscribe"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
         <div>
           Testimonials
           <div className="flex gap-4">
@@ -85,19 +133,23 @@ const LandingPagev2 = () => {
               </p>
             </div>
             <div className=" flex items-center">
-              <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
-                <input
-                  id="bootcamper"
-                  type="text"
-                  autoComplete="off"
-                  className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md `}
-                  placeholder="Email"
-                />
-                <Button
-                  backgroundColor="yellow"
-                  textColor="white"
-                  label="Subscribe"
-                />
+              <div className="flex flex-row gap-4">
+                <div className="bg-white flex sm:flex-row items-center rounded-lg">
+                  <input
+                    id="bootcamper"
+                    type="text"
+                    autoComplete="off"
+                    className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-yellow-600 placeholder-yellow-700 w-96`}
+                    placeholder="Email"
+                  />
+                </div>
+                <div>
+                  <Button
+                    backgroundColor="yellow"
+                    textColor="white"
+                    label="Subscribe"
+                  />
+                </div>
               </div>
             </div>
           </div>
