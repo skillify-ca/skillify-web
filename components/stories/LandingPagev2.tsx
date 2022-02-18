@@ -87,7 +87,7 @@ const LandingPagev2 = () => {
                     id="bootcamper"
                     type="text"
                     autoComplete="off"
-                    className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-primary placeholder-primary`}
+                    className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-primary placeholder-primary w-full`}
                     placeholder="First Name"
                   />
                 </div>
@@ -98,7 +98,7 @@ const LandingPagev2 = () => {
                     id="bootcamper"
                     type="text"
                     autoComplete="off"
-                    className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-primary placeholder-primary sm:w-full`}
+                    className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-primary placeholder-primary w-full`}
                     placeholder="Last Name"
                   />
                 </div>
@@ -108,7 +108,7 @@ const LandingPagev2 = () => {
                   id="bootcamper"
                   type="text"
                   autoComplete="off"
-                  className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-primary placeholder-primary sm:w-full `}
+                  className={`text-left p-2 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-primary placeholder-primary w-full `}
                   placeholder="Enter your email address"
                 />
               </div>
@@ -124,6 +124,13 @@ const LandingPagev2 = () => {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="place-self-center p-5">
+              <p className="text-white sm:text-5xl text-3xl px-10 align-middle">
+                {" "}
+                With free coding, design, and business courses, more people can
+                get the skills they need to get hired fast.{" "}
+              </p>
             </div>
           </div>
         </div>
@@ -156,8 +163,8 @@ const LandingPagev2 = () => {
             </p>
           </div>
 
-          <div className="flex items-center gap-4 p-4">
-            <div className="bg-white flex sm:flex-row items-center rounded-lg">
+          <div className="items-center grid sm:grid-cols-2 grid-cols-1 gap-4 p-4">
+            <div className="bg-white flex sm:flex-row items-center rounded-lg sm:cols-span-2 sm: col-span-1">
               <input
                 id="bootcamper"
                 type="text"
@@ -167,11 +174,11 @@ const LandingPagev2 = () => {
               />
             </div>
             <div>
-              <div className="sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+              <div className="sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
                   <a
                     href="/courses"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-yellow-700 md:py-4 md:text-lg md:px-10"
+                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-yellow-700 md:py-2 md:text-lg md:px-10"
                   >
                     Enroll Now
                   </a>
@@ -262,7 +269,7 @@ const LandingPagev2 = () => {
             </ol>
           </div>
         </div>
-        <div className="flex flex-row justify-between pl-8 mt-8">
+        <div className="flex flex-row justify-between px-8 mt-8">
           <div>Legal</div>
           <div>Privacy Policy</div>
           <div> Login</div>
