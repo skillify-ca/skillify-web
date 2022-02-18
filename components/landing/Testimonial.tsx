@@ -9,7 +9,7 @@ export interface TestimonialProps {
 
 const Testimonial = ({ text, img, studentName }: TestimonialProps) => {
   return (
-    <div className="flex flex-col w-96 bg-white p-5 rounded-xl border-t-8 border-blue-900">
+    <div className="flex flex-col h-full bg-white p-5 rounded-xl border-t-8 border-blue-900">
       <p>{text}</p>
       <div className="flex">
         <img src="/images/landingPage/star.svg" className="hue-rotate-45" />
