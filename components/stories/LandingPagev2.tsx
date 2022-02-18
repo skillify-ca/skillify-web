@@ -39,7 +39,7 @@ const LandingPagev2 = () => {
           <div className="flex flex-col md:flex-row justify-around ">
             <div className="flex flex-col">
               <div className="h-100 w-100 rounded-full bg-white place-self-center">
-                <img src="/images/landingpage/code.svg" />
+                <img src="/images/landingPage/code.svg" />
               </div>
               <p className="text-3xl text-primary place-self-center">
                 Build Real Projects
@@ -50,7 +50,7 @@ const LandingPagev2 = () => {
             </div>
             <div className="flex flex-col">
               <div className="h-100 w-100 rounded-full bg-white place-self-center">
-                <img src="/images/landingpage/community.svg" />
+                <img src="/images/landingPage/community.svg" />
               </div>
               <p className="text-3xl text-primary place-self-center">
                 Community of Learners
@@ -62,7 +62,7 @@ const LandingPagev2 = () => {
             </div>
             <div className="flex flex-col">
               <div className="h-100 w-100 rounded-full bg-white place-self-center">
-                <img src="/images/landingpage/experts.svg" />
+                <img src="/images/landingPage/experts.svg" />
               </div>
               <p className="text-3xl text-primary place-self-center">
                 Industry Experts
