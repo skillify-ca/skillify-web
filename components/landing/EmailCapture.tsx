@@ -13,9 +13,9 @@ import { Button } from "../ui/Button";
 const EmailCapture = () => {
   return (
     <div>
-      <div className="bg-email-capture bg-primary bg-blend-multiply bg-no-repeat">
-        <div className="grid grid-cols-1 sm:grid-cols-2 m-4">
-          <div className="bg-white rounded-2xl p-16 w-full my-40 grid grid-cols-1 sm:grid-cols-2">
+      <div className="bg-email-capture bg-primary bg-blend-multiply bg-no-repeat p-4 sm:p-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2">
+          <div className="bg-white rounded-2xl p-16 w-full grid grid-cols-1 sm:grid-cols-2">
             <div className="sm:text-center lg:text-left mb-2 col-span-2">
               <h1 className="tracking-tight font-extrabold text-gray-900 sm:text-2xl md:text-3xl">
                 <span className="">Get your </span>{" "}
@@ -56,11 +56,11 @@ const EmailCapture = () => {
               />
             </div>
             <div className="mt-2 col-span-2 flex justify-center">
-              <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                <div className="rounded-md shadow">
+              <div className="sm:flex sm:justify-center lg:justify-start">
+                <div className="rounded-md">
                   <a
                     href="/courses"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-yellow-700 md:py-4 md:text-lg md:px-10"
+                    className="w-full p-4 flex items-center justify-center text-base font-medium rounded-md text-white bg-primary hover:bg-yellow-700 md:text-lg "
                   >
                     Enroll Now
                   </a>
@@ -68,8 +68,8 @@ const EmailCapture = () => {
               </div>
             </div>
           </div>
-          <div className="place-self-center p-5">
-            <p className="text-white sm:text-5xl text-3xl px-10 align-middle">
+          <div className="mt-4 sm:p-8">
+            <p className="text-white sm:text-5xl text-3xl">
               {" "}
               With free coding, design, and business courses, more people can
               get the skills they need to get hired fast.{" "}
