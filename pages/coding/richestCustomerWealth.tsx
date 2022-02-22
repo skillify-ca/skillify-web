@@ -8,9 +8,27 @@ export default function richestCustomerWealth(props) {
   const [lineNum, setLineNum] = useState(0);
   const [loopNum, setLoopNum] = useState(1);
   const [loopElemNum, setLoopElemNum] = useState(0);
+  const [loopElemValue, setLoopElemValue] = useState(0);
   const [balancesState, setBalancesState] = useState([]);
   const [accountSumState, setAccountSumState] = useState(0);
   const [finalAnswerState, setFinalAnswerState] = useState(0);
+
+  const renderAccounts = [
+    "[",
+    "5",
+    ",",
+    "10",
+    ",",
+    "15",
+    "]",
+    "[",
+    "2",
+    ",",
+    "4",
+    ",",
+    "6",
+    "]",
+  ];
 
   function iterateOnSolution() {
     const accounts = [
@@ -30,6 +48,7 @@ export default function richestCustomerWealth(props) {
     }
 
     if (lineNum == 5) {
+      setLoopElemValue(accounts[loopNum - 1][loopElemNum]);
       setLineNum(lineNum + 1);
       return;
     }
@@ -74,8 +93,6 @@ export default function richestCustomerWealth(props) {
     }
   }
 
-  // this.setState({ myArray: [...this.state.myArray, 'new value'] }) //simple value
-
   return (
     <>
       <div className="sticky top-0 w-full shadow-md">
@@ -101,18 +118,18 @@ export default function richestCustomerWealth(props) {
             Code to Evaluate
           </p>
 
-          {linesOfCode.map(({ line, text }) => {
+          {linesOfCode.map(({ line, text, indent }) => {
             return (
-              <div className="grid grid-flow-row-dense grid-cols-12">
+              <div className="grid grid-flow-row-dense grid-cols-12 text-xl">
                 <div className="col-span-1">{line}</div>
                 <div
                   className={
                     lineNum === line
                       ? "col-span-11 bg-yellow-200"
-                      : "col-span-7"
+                      : "col-span-11"
                   }
                 >
-                  {text}
+                  <p>{text}</p>
                 </div>
               </div>
             );
@@ -133,7 +150,6 @@ export default function richestCustomerWealth(props) {
             />
 
             <Button
-              disabled={lineNum == linesOfCode.length}
               label="Reset"
               backgroundColor="blue"
               textColor="white"
@@ -143,19 +159,35 @@ export default function richestCustomerWealth(props) {
                 setBalancesState([]);
                 setAccountSumState(0);
                 setFinalAnswerState(0);
+                setLoopElemValue(0);
               }}
             />
           </div>
           <p className="font-bold text border-b-2 border-black">Inputs</p>
-          <p> accounts = [[5, 10, 15], [2, 4, 6]] </p>
-          <p className="font-bold text border-b-2 border-black">Variables</p>
+          <div className="flex flex-row gap-2 text-2xl">
+            {renderAccounts.map((elem) => {
+              return (
+                <p
+                  className={
+                    parseInt(elem) == loopElemValue ? "bg-blue-200" : ""
+                  }
+                >
+                  {elem}
+                </p>
+              );
+            })}
+          </div>
+          <p className="font-bold text border-b-2 border-black">Outputs</p>
           <p> balances = {balancesState}</p>
           <p> account_sum = {accountSumState}</p>
-          <p> lineNum: {lineNum}</p>
+          <p> Final Answer: {finalAnswerState}</p>
+          <p className="font-bold text border-b-2 border-black">
+            Solution Progress
+          </p>
 
+          <p> lineNum: {lineNum}</p>
           <p> loopNum: {loopNum}</p>
           <p> loopElemNum: {loopElemNum}</p>
-          <p> final answer: {finalAnswerState}</p>
         </div>
       </div>
     </>
