@@ -86,16 +86,15 @@ export default function Navbar() {
                   src="/images/logo.png"
                   alt="Workflow"
                 />
-                <span className="text-white pl-2">Champ</span>
               </div>
             </a>
             <div className="hidden lg:block lg:ml-6">
               <div className="flex space-x-4">
                 <a
-                  href="/courses"
+                  href="/course/coding"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Courses
+                  Student Portal
                 </a>
                 <a
                   href="/resources"
@@ -197,10 +196,10 @@ export default function Navbar() {
       <div className={`${active ? "block" : "hidden"} lg:hidden`}>
         <div className="px-2 pt-2 pb-3 space-y-1">
           <a
-            href="/courses"
+            href="/course/coding"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Courses
+            Student Portal
           </a>
           <a
             href="/resources"
