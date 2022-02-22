@@ -4,23 +4,16 @@ import { Button } from "../../components/ui/Button";
 import { linesOfCode } from "../api/coding/LinesOfCode";
 
 export default function richestCustomerWealth(props) {
-  const [codeStepNum, setCodeStepNum] = useState(0);
   const [lineNum, setLineNum] = useState(0);
   const [loopNum, setLoopNum] = useState(1);
   const [loopElemNum, setLoopElemNum] = useState(0);
   const [loopElemValue, setLoopElemValue] = useState(0);
   const [balancesState, setBalancesState] = useState([]);
+  const [sortedBalancesState, setSortedBalancesState] = useState([]);
   const [accountSumState, setAccountSumState] = useState(0);
   const [finalAnswerState, setFinalAnswerState] = useState(0);
 
   const renderAccounts = [
-    "[",
-    "5",
-    ",",
-    "10",
-    ",",
-    "15",
-    "]",
     "[",
     "2",
     ",",
@@ -28,12 +21,19 @@ export default function richestCustomerWealth(props) {
     ",",
     "6",
     "]",
+    "[",
+    "5",
+    ",",
+    "10",
+    ",",
+    "15",
+    "]",
   ];
 
   function iterateOnSolution() {
     const accounts = [
-      [5, 10, 15],
       [2, 4, 6],
+      [5, 10, 15],
     ];
 
     if (lineNum < 4) {
@@ -79,7 +79,8 @@ export default function richestCustomerWealth(props) {
     }
 
     if (lineNum == 10) {
-      setBalancesState((balancesState) =>
+      // this isn't working yet
+      setSortedBalancesState((balancesState) =>
         balancesState.sort((a, b) => {
           return b - a;
         })
@@ -88,7 +89,7 @@ export default function richestCustomerWealth(props) {
     }
 
     if (lineNum == 11) {
-      setFinalAnswerState(balancesState[0]);
+      setFinalAnswerState(sortedBalancesState[0]);
       setLineNum(lineNum + 1);
     }
   }
@@ -159,6 +160,7 @@ export default function richestCustomerWealth(props) {
                 setBalancesState([]);
                 setAccountSumState(0);
                 setFinalAnswerState(0);
+                setLoopElemNum(0);
                 setLoopElemValue(0);
               }}
             />
@@ -169,7 +171,7 @@ export default function richestCustomerWealth(props) {
               return (
                 <p
                   className={
-                    parseInt(elem) == loopElemValue ? "bg-blue-200" : ""
+                    parseInt(elem) == loopElemValue ? "bg-red-200" : ""
                   }
                 >
                   {elem}
@@ -178,9 +180,15 @@ export default function richestCustomerWealth(props) {
             })}
           </div>
           <p className="font-bold text border-b-2 border-black">Outputs</p>
-          <p> balances = {balancesState}</p>
-          <p> account_sum = {accountSumState}</p>
-          <p> Final Answer: {finalAnswerState}</p>
+          <div className="flex flex-col text-lg gap-4">
+            <p>Balances: {balancesState.join(" ")}</p>
+            <p>Sorted Balances: {sortedBalancesState.join(" ")}</p>
+            <p>account_sum: {accountSumState}</p>
+            <p>
+              {" "}
+              Final Answer: {finalAnswerState == 0 ? "" : finalAnswerState}
+            </p>
+          </div>
           <p className="font-bold text border-b-2 border-black">
             Solution Progress
           </p>
@@ -188,6 +196,7 @@ export default function richestCustomerWealth(props) {
           <p> lineNum: {lineNum}</p>
           <p> loopNum: {loopNum}</p>
           <p> loopElemNum: {loopElemNum}</p>
+          <p> loopElemValue: {loopElemValue}</p>
         </div>
       </div>
     </>
