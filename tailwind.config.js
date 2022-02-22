@@ -19,7 +19,16 @@ module.exports = {
         fadeIn: "fadeIn 2s ease-in-out",
         fadeIn_half: "fadeInHalf 1s ease-in-out",
       },
+      colors: {
+        primary: "#F18701",
+        secondary: {
+          first: "#7678ED",
+          second: "#F7B801",
+          third: "#18124D",
+        },
+      },
       backgroundImage: (theme) => ({
+        "email-capture": "url('/images/landingPage/Rectangle5.png')",
         "hero-student":
           "url('https://images.unsplash.com/photo-1596495578065-6e0763fa1178?crop=entropy&cs=srgb&fm=jpg&ixid=MXwxNDEzNDF8MHwxfHNlYXJjaHwxMDZ8fG1hdGh8ZW58MHx8fA&ixlib=rb-1.2.1&q=85&w=528&dpr=2')",
         "finance-life":
