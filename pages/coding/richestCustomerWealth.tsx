@@ -1,10 +1,80 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { Button } from "../../components/ui/Button";
-import { linesOfCode } from "../api/coding/linesOfCode";
+import { linesOfCode } from "../api/coding/LinesOfCode";
 
 export default function richestCustomerWealth(props) {
+  const [codeStepNum, setCodeStepNum] = useState(0);
   const [lineNum, setLineNum] = useState(0);
+  const [loopNum, setLoopNum] = useState(1);
+  const [loopElemNum, setLoopElemNum] = useState(0);
+  const [balancesState, setBalancesState] = useState([]);
+  const [accountSumState, setAccountSumState] = useState(0);
+  const [finalAnswerState, setFinalAnswerState] = useState(0);
+
+  function iterateOnSolution() {
+    const accounts = [
+      [5, 10, 15],
+      [2, 4, 6],
+    ];
+
+    if (lineNum < 4) {
+      setLineNum(lineNum + 1);
+      return;
+    }
+
+    if (lineNum == 4) {
+      setAccountSumState(0);
+      setLineNum(lineNum + 1);
+      return;
+    }
+
+    if (lineNum == 5) {
+      setLineNum(lineNum + 1);
+      return;
+    }
+
+    if (lineNum == 6) {
+      setAccountSumState(accountSumState + accounts[loopNum - 1][loopElemNum]);
+      setLineNum(lineNum + 1);
+      return;
+    }
+
+    if (lineNum == 7 && loopElemNum < 2) {
+      setLoopElemNum(loopElemNum + 1);
+      setLineNum(5);
+      return;
+    }
+
+    if (lineNum == 8) {
+      setBalancesState((balancesState) => [balancesState, accountSumState]);
+      setLineNum(lineNum + 1);
+    }
+
+    if (lineNum == 9 && loopNum < 2) {
+      setLoopNum(loopNum + 1);
+      setLoopElemNum(0);
+      setLineNum(3);
+    } else {
+      setLineNum(lineNum + 1);
+    }
+
+    if (lineNum == 10) {
+      setBalancesState((balancesState) =>
+        balancesState.sort((a, b) => {
+          return b - a;
+        })
+      );
+      setLineNum(lineNum + 1);
+    }
+
+    if (lineNum == 11) {
+      setFinalAnswerState(balancesState[0]);
+      setLineNum(lineNum + 1);
+    }
+  }
+
+  // this.setState({ myArray: [...this.state.myArray, 'new value'] }) //simple value
 
   return (
     <>
@@ -37,7 +107,9 @@ export default function richestCustomerWealth(props) {
                 <div className="col-span-1">{line}</div>
                 <div
                   className={
-                    lineNum === 5 ? "col-span-11 bg-yellow-200" : "col-span-7"
+                    lineNum === line
+                      ? "col-span-11 bg-yellow-200"
+                      : "col-span-7"
                   }
                 >
                   {text}
@@ -48,30 +120,42 @@ export default function richestCustomerWealth(props) {
         </div>
         <div className="flex flex-col gap-4 p-4 bg-white shadow-lg rounded-xl">
           <p className="font-bold text border-b-2 border-black">Controls</p>
-
           <div className="grid grid-cols-4 gap-4">
             <Button
-              disabled={lineNum == 0}
-              label="Previous"
-              backgroundColor="blue"
-              textColor="white"
-              onClick={() => setLineNum(lineNum - 1)}
-            />
-
-            <Button
-              disabled={lineNum == linesOfCode.length - 1}
+              disabled={lineNum == linesOfCode.length}
               label="Next"
               backgroundColor="blue"
               textColor="white"
-              onClick={() => setLineNum(lineNum + 1)}
+              onClick={() => {
+                setLineNum(lineNum + 1);
+                iterateOnSolution();
+              }}
+            />
+
+            <Button
+              disabled={lineNum == linesOfCode.length}
+              label="Reset"
+              backgroundColor="blue"
+              textColor="white"
+              onClick={() => {
+                setLineNum(0);
+                setLoopNum(1);
+                setBalancesState([]);
+                setAccountSumState(0);
+                setFinalAnswerState(0);
+              }}
             />
           </div>
           <p className="font-bold text border-b-2 border-black">Inputs</p>
-          <p> accounts = [[1,2,3],[3,2,1]] </p>
+          <p> accounts = [[5, 10, 15], [2, 4, 6]] </p>
           <p className="font-bold text border-b-2 border-black">Variables</p>
-          <p> balances = []</p>
-          <p> account_sum = 0</p>
-          <p> What line are we on: {lineNum}</p>
+          <p> balances = {balancesState}</p>
+          <p> account_sum = {accountSumState}</p>
+          <p> lineNum: {lineNum}</p>
+
+          <p> loopNum: {loopNum}</p>
+          <p> loopElemNum: {loopElemNum}</p>
+          <p> final answer: {finalAnswerState}</p>
         </div>
       </div>
     </>
