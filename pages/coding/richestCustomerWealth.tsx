@@ -67,6 +67,10 @@ export default function richestCustomerWealth(props) {
 
     if (lineNum == 8) {
       setBalancesState((balancesState) => [balancesState, accountSumState]);
+
+      // if (loopNum < 2) {
+      //   setBalancesState((balancesState) => [balancesState, ", "]);
+      // }
       setLineNum(lineNum + 1);
     }
 
@@ -80,11 +84,17 @@ export default function richestCustomerWealth(props) {
 
     if (lineNum == 10) {
       // this isn't working yet
-      setSortedBalancesState((balancesState) =>
-        balancesState.sort((a, b) => {
-          return b - a;
-        })
+      console.log(balancesState + "display array");
+      console.log(balancesState.sort() + "sort");
+      console.log(balancesState.sort().reverse() + "sort and reverse");
+
+      setBalancesState(
+        balancesState.sort().reverse()
+        // balancesState.sort((a, b) => {
+        //   return b - a;
+        // })
       );
+      console.log("hello");
       setLineNum(lineNum + 1);
     }
 
@@ -130,7 +140,7 @@ export default function richestCustomerWealth(props) {
                       : "col-span-11"
                   }
                 >
-                  <p>{text}</p>
+                  <p className={indent ? "ml-5" : ""}>{text}</p>
                 </div>
               </div>
             );
@@ -181,8 +191,7 @@ export default function richestCustomerWealth(props) {
           </div>
           <p className="font-bold text border-b-2 border-black">Outputs</p>
           <div className="flex flex-col text-lg gap-4">
-            <p>Balances: {balancesState.join(" ")}</p>
-            <p>Sorted Balances: {sortedBalancesState.join(" ")}</p>
+            <p>Balances: [{balancesState}]</p>
             <p>account_sum: {accountSumState}</p>
             <p>
               {" "}
