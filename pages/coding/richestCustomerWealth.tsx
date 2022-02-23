@@ -83,18 +83,10 @@ export default function richestCustomerWealth(props) {
     }
 
     if (lineNum == 10) {
-      // this isn't working yet
-      console.log(balancesState + "display array");
-      console.log(balancesState.sort() + "sort");
-      console.log(balancesState.sort().reverse() + "sort and reverse");
+      // this still is not working yet
 
-      setBalancesState(
-        balancesState.sort().reverse()
-        // balancesState.sort((a, b) => {
-        //   return b - a;
-        // })
-      );
-      console.log("hello");
+      setBalancesState(balancesState.sort().reverse());
+
       setLineNum(lineNum + 1);
     }
 
