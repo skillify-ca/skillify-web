@@ -131,7 +131,7 @@ export default function richestCustomerWealth(props) {
 
           {linesOfCode.map(({ line, text, indent }) => {
             return (
-              <div className="grid grid-flow-row-dense grid-cols-12 text-xl">
+              <div className="grid grid-flow-row-dense grid-cols-12 text-lg">
                 <div className="col-span-1">{line}</div>
                 <div
                   className={
@@ -140,7 +140,19 @@ export default function richestCustomerWealth(props) {
                       : "col-span-11"
                   }
                 >
-                  <p className={indent ? "ml-5" : ""}>{text}</p>
+                  <p
+                    className={
+                      indent === "none"
+                        ? "ml-0"
+                        : indent === "single"
+                        ? "ml-8"
+                        : indent === "double"
+                        ? "ml-16"
+                        : "ml-24"
+                    }
+                  >
+                    {text}
+                  </p>
                 </div>
               </div>
             );
