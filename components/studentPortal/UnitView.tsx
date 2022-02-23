@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import { Unit } from "../../pages/studentPortal";
+import { Unit } from "../../pages/api/studentPortal/units";
 import UnitNodeView from "./UnitNodeView";
 
 export type UnitViewProps = {
