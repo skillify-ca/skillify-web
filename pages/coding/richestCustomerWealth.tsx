@@ -67,10 +67,6 @@ export default function richestCustomerWealth(props) {
 
     if (lineNum == 8) {
       setBalancesState((balancesState) => [balancesState, accountSumState]);
-
-      // if (loopNum < 2) {
-      //   setBalancesState((balancesState) => [balancesState, ", "]);
-      // }
       setLineNum(lineNum + 1);
     }
 
@@ -84,9 +80,7 @@ export default function richestCustomerWealth(props) {
 
     if (lineNum == 10) {
       // this still is not working yet
-
       setBalancesState(balancesState.sort().reverse());
-
       setLineNum(lineNum + 1);
     }
 
