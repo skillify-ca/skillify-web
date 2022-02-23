@@ -84,7 +84,7 @@ export default function richestCustomerWealth(props) {
     }
 
     if (lineNum == 11) {
-      setFinalAnswerState(sortedBalancesState[0]);
+      setFinalAnswerState(balancesState[0]);
       setLineNum(lineNum + 1);
     }
   }
