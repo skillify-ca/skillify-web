@@ -9,7 +9,6 @@ export default function richestCustomerWealth(props) {
   const [loopElemNum, setLoopElemNum] = useState(0);
   const [loopElemValue, setLoopElemValue] = useState(0);
   const [balancesState, setBalancesState] = useState([]);
-  const [sortedBalancesState, setSortedBalancesState] = useState([]);
   const [accountSumState, setAccountSumState] = useState(0);
   const [finalAnswerState, setFinalAnswerState] = useState(0);
 
