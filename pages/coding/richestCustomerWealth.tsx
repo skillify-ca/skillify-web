@@ -9,7 +9,6 @@ export default function richestCustomerWealth(props) {
   const [loopElemNum, setLoopElemNum] = useState(0);
   const [loopElemValue, setLoopElemValue] = useState(0);
   const [balancesState, setBalancesState] = useState([]);
-  const [sortedBalancesState, setSortedBalancesState] = useState([]);
   const [accountSumState, setAccountSumState] = useState(0);
   const [finalAnswerState, setFinalAnswerState] = useState(0);
 
@@ -79,17 +78,13 @@ export default function richestCustomerWealth(props) {
     }
 
     if (lineNum == 10) {
-      // this isn't working yet
-      setSortedBalancesState((balancesState) =>
-        balancesState.sort((a, b) => {
-          return b - a;
-        })
-      );
+      // this still is not working yet
+      setBalancesState(balancesState.sort().reverse());
       setLineNum(lineNum + 1);
     }
 
     if (lineNum == 11) {
-      setFinalAnswerState(sortedBalancesState[0]);
+      setFinalAnswerState(balancesState[0]);
       setLineNum(lineNum + 1);
     }
   }
@@ -121,7 +116,7 @@ export default function richestCustomerWealth(props) {
 
           {linesOfCode.map(({ line, text, indent }) => {
             return (
-              <div className="grid grid-flow-row-dense grid-cols-12 text-xl">
+              <div className="grid grid-flow-row-dense grid-cols-12 text-lg">
                 <div className="col-span-1">{line}</div>
                 <div
                   className={
@@ -130,7 +125,19 @@ export default function richestCustomerWealth(props) {
                       : "col-span-11"
                   }
                 >
-                  <p>{text}</p>
+                  <p
+                    className={
+                      indent === "none"
+                        ? "ml-0"
+                        : indent === "single"
+                        ? "ml-8"
+                        : indent === "double"
+                        ? "ml-16"
+                        : "ml-24"
+                    }
+                  >
+                    {text}
+                  </p>
                 </div>
               </div>
             );
@@ -181,8 +188,7 @@ export default function richestCustomerWealth(props) {
           </div>
           <p className="font-bold text border-b-2 border-black">Outputs</p>
           <div className="flex flex-col text-lg gap-4">
-            <p>Balances: {balancesState.join(" ")}</p>
-            <p>Sorted Balances: {sortedBalancesState.join(" ")}</p>
+            <p>Balances: [{balancesState}]</p>
             <p>account_sum: {accountSumState}</p>
             <p>
               {" "}
