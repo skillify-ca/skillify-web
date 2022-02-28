@@ -108,7 +108,7 @@ const HomePage = () => {
                   <span className="">Learn new </span>{" "}
                   <span className=" text-yellow-600">skills</span>{" "}
                   <span className="">to </span>{" "}
-                  <span className=" text-yellow-600">start a career</span>{" "}
+                  <div className=" text-yellow-600">start a career</div>{" "}
                   <span className="">in tech.</span>{" "}
                 </h1>
                 <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
