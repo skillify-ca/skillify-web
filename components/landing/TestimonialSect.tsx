@@ -35,7 +35,7 @@ const TestimonialSect = () => {
   ];
   return (
     <div>
-      <div className="flex justify-center flex-col p-4">
+      <div className="flex justify-center flex-col p-24">
         <div className="">
           <p className="text-3xl font-semibold "> Testimonials</p>
           <p className=" text-xl my-8">
