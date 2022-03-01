@@ -15,7 +15,7 @@ import {
   Subtraction4DigitWS,
   AdditionTripleAddendsWS,
   DivisionTripleDigitDividendWS,
-} from "../../components/stories/WorksheetsObj";
+} from "../../components/math/stories/WorksheetsObj";
 import { DiagnosticState } from "../../redux/diagnosticSlice";
 import { getResultForSkill } from "./diagnostic/diagnosticGrader";
 import { Question } from "./question";

@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import * as Colyseus from "colyseus.js";
-import BattleComponent from "../../components/mathBattle/BattleComponent";
+import BattleComponent from "../../components/math/mathBattle/BattleComponent";
 import { generateQuestions } from "../api/quiz/quizQuestionGenerator";
 import { Question, AnswerType } from "../api/question";
 import { QuestionType } from "../api/questionTypes";
 import { questionSetGenerator, Skill } from "../api/skill";
-import CoopBattleComponent from "../../components/mathBattle/coop/CoopBattleComponent";
+import CoopBattleComponent from "../../components/math/mathBattle/coop/CoopBattleComponent";
 import { useEffect } from "react";
-import CreateRoom from "../../components/mathBattle/CreateRooms";
-import Lobby from "../../components/mathBattle/PlayerLobby";
-import PostGameLobby from "../../components/mathBattle/PostGameLobby";
-import CoopGameOver from "../../components/mathBattle/coop/CoopGameOver";
-import CoopBattleIntro from "../../components/mathBattle/coop/CoopBattleIntro";
-import CoopStoryComponent from "../../components/mathBattle/coop/CoopNarrative";
-import Navbar from "../../components/Navbar";
+import CreateRoom from "../../components/math/mathBattle/CreateRooms";
+import Lobby from "../../components/math/mathBattle/PlayerLobby";
+import PostGameLobby from "../../components/math/mathBattle/PostGameLobby";
+import CoopGameOver from "../../components/math/mathBattle/coop/CoopGameOver";
+import CoopBattleIntro from "../../components/math/mathBattle/coop/CoopBattleIntro";
+import CoopStoryComponent from "../../components/math/mathBattle/coop/CoopNarrative";
+import Navbar from "../../components/ui/Navbar";
 
 export type Player = {
   seat: number;
@@ -158,7 +158,7 @@ const MathBattle = () => {
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <div className="p-4">
         {stage == STAGE.CREATE_JOIN_GAME && (
           <CreateRoom

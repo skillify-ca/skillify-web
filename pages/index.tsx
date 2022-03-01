@@ -1,5 +1,5 @@
 import React from "react";
-import LandingPagev2 from "../components/stories/LandingPagev2";
+import LandingPagev2 from "../components/math/stories/LandingPagev2";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Head from "next/head";

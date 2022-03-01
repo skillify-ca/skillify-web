@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
-import Navbar from "../../../../../components/Navbar";
+import Navbar from "../../../../../components/ui/Navbar";
 import { Button } from "../../../../../components/ui/Button";
 import { FETCH_USER_SKILL_BADGE } from "../../../../../graphql/fetchBadgeForSkill";
 import { FETCH_USER_BADGES } from "../../../../../graphql/fetchUserBadge";

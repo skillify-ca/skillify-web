@@ -19,9 +19,7 @@ export default function TFSABasics(props) {
   return (
     <div className={"flex flex-col items-center justify-center"}>
       <div className={"bg-white max-w-7xl p-8 flex flex-col gap-8"}>
-        <h1 className="text-xl font-bold">
-          Why does the TFSA matter?
-        </h1>
+        <h1 className="text-xl font-bold">Why does the TFSA matter?</h1>
         <div className="flex flex-col">
           <p className="text-lg">What is the point of a TFSA?</p>
           <p>
@@ -40,8 +38,9 @@ export default function TFSABasics(props) {
           >
             <div
               onAnimationEnd={() => setIsShaking(false)}
-              className={`${isShaking ? "animate-shake" : ""
-                } bg-gray-100 shadow-lg rounded-xl p-8 m-8`}
+              className={`${
+                isShaking ? "animate-shake" : ""
+              } bg-gray-100 shadow-lg rounded-xl p-8 m-8`}
             >
               <MultipleChoiceSentence
                 displayQuestion="What is a benefit of the Tax-Free Savings Account?"

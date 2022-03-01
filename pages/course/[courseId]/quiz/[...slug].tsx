@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useMutation } from "@apollo/client";
 import { v4 as uuidv4 } from "uuid";
-import QuestionSet from "../../../../components/stories/QuestionSet";
+import QuestionSet from "../../../../components/math/stories/QuestionSet";
 import { QuestionType } from "../../../api/questionTypes";
 import { GuessData } from "../../../api/guessData";
 import { AnswerType, Question } from "../../../api/question";
@@ -17,7 +17,7 @@ import { SAVE_USER_GUESSES } from "../../../../graphql/saveUserGuesses";
 import { FETCH_USER_QUIZZES } from "../../../../graphql/fetchUserQuiz";
 import { FETCH_USER_SKILL_BADGE } from "../../../../graphql/fetchBadgeForSkill";
 import { SAVE_QUIZ_ATTEMPT } from "../../../../graphql/saveQuizAttempt";
-import Navbar from "../../../../components/Navbar";
+import Navbar from "../../../../components/ui/Navbar";
 import { useAuth } from "../../../../lib/authContext";
 import { generateQuestions } from "../../../api/quiz/quizQuestionGenerator";
 

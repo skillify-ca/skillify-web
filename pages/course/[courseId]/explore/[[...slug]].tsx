@@ -2,7 +2,7 @@ import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
 import { createClient } from "contentful";
 import { useState, useEffect, useRef } from "react";
 import TFSA from "../../../../components/finance/tfsa";
-import Navbar from "../../../../components/Navbar";
+import Navbar from "../../../../components/ui/Navbar";
 
 import ContentfulContent from "../../../../components/explore/ContentfulContent";
 import { FETCH_COURSE_UNITS } from "../../../../graphql/fetchCourseUnits";

@@ -2,7 +2,7 @@ import { ApolloClient, InMemoryCache, useQuery } from "@apollo/client";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import PracticeTracker from "../../components/practiceTracker/PracticeTracker";
+import PracticeTracker from "../../components/math/practiceTracker/PracticeTracker";
 import { FETCH_COURSE_UNITS } from "../../graphql/fetchCourseUnits";
 import { FETCH_USER_PROFILE } from "../../graphql/fetchUserProfile";
 import { FETCH_USER_PROGRESS } from "../../graphql/fetchUserProgress";

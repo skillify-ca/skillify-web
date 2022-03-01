@@ -11,8 +11,8 @@ import { Provider as ReduxProvider } from "react-redux";
 import store from "../redux/store";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import Navbar from "../components/Navbar";
 import Script from "next/script";
+import Navbar from "../components/ui/Navbar"
 
 function MyApp({ Component, pageProps: { ...pageProps } }) {
   const router = useRouter();
@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
             <AuthProvider>
               {Component.auth ? (
                 <Auth>
-                  <Navbar />
+                  <Navbar/>
                   <Component {...pageProps} />
                 </Auth>
               ) : (

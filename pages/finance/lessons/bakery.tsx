@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import BakeryInstructions from "../../../components/bakery/BakeryInstructions";
-import BuildingABakeryA from "../../../components/bakery/BuildingABakeryA";
-import BakersRack from "../../../components/bakery/BakersRack";
+import BakeryInstructions from "../../../components/finance/bakery/BakeryInstructions";
+import BuildingABakeryA from "../../../components/finance/bakery/BuildingABakeryA";
+import BakersRack from "../../../components/finance/bakery/BakersRack";
 
-import BakingGma from "../../../components/bakery/BakingGma";
-import BakersRackB from "../../../components/bakery/BakersRackB";
+import BakingGma from "../../../components/finance/bakery/BakingGma";
+import BakersRackB from "../../../components/finance/bakery/BakersRackB";
 
 import { STAGE } from "../../games";
 import { Button } from "../../../components/ui/Button";

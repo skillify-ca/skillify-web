@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import CardColorProblem from "../../../components/credit-card/CardColorProblem";
-import MultipleChoiceWordProblem from "../../../components/credit-card/MultipleChoiceWordProblem";
-import CreditCardWordProblem from "../../../components/credit-card/CreditCardWordProblem";
-import CreditDebitInfo from "../../../components/credit-card/CreditDebitInfo";
-import DebitCardWordProblem from "../../../components/credit-card/DebitCardWordProblem";
+import CardColorProblem from "../../../components/finance/credit-card/CardColorProblem";
+import MultipleChoiceWordProblem from "../../../components/finance/credit-card/MultipleChoiceWordProblem";
+import CreditCardWordProblem from "../../../components/finance/credit-card/CreditCardWordProblem";
+import CreditDebitInfo from "../../../components/finance/credit-card/CreditDebitInfo";
+import DebitCardWordProblem from "../../../components/finance/credit-card/DebitCardWordProblem";
 import { Button } from "../../../components/ui/Button";
-import CreditCardProgressTracker from "../../../components/credit-card/CreditCardProgressTracker";
-import CreditCardFinalResults from "../../../components/credit-card/CreditCardFinalResults";
+import CreditCardProgressTracker from "../../../components/finance/credit-card/CreditCardProgressTracker";
+import CreditCardFinalResults from "../../../components/finance/credit-card/CreditCardFinalResults";
 
 export default function CreditCard() {
   enum STAGE {

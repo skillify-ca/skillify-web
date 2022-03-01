@@ -11,10 +11,10 @@ import { getRndInteger } from "../../api/random";
 import { UNLOCK_BADGE } from "../../../graphql/unlockBadge";
 import { useAuth } from "../../../lib/authContext";
 import { Button } from "../../../components/ui/Button";
-import AssignmentSession from "../../../components/budget/AssignmentSession";
-import { EndSession } from "../../../components/budget/EndSession";
-import { FinanceProfileChart } from "../../../components/budget/FinanceProfileChart";
-import { RulesSession } from "../../../components/budget/RulesSession";
+import AssignmentSession from "../../../components/finance/budget/AssignmentSession";
+import { EndSession } from "../../../components/finance/budget/EndSession";
+import { FinanceProfileChart } from "../../../components/finance/budget/FinanceProfileChart";
+import { RulesSession } from "../../../components/finance/budget/RulesSession";
 
 enum STAGES {
   START,

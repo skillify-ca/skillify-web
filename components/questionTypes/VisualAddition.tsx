@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
-import DiceDots from "../dots/DiceDots";
-import DualColourDots from "../dots/DualColourDots";
-import NumberLiteral from "../dots/NumberLiteral";
-import { TenFrame } from "../dots/TenFrames";
+import DiceDots from "../math/dots/DiceDots";
+import DualColourDots from "../math/dots/DualColourDots";
+import NumberLiteral from "../math/dots/NumberLiteral";
+import { TenFrame } from "../math/dots/TenFrames";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 

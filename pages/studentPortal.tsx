@@ -1,5 +1,5 @@
 import React from "react";
-import UnitView from "../components/studentPortal/UnitView";
+import UnitView from "../components/coding/studentPortal/UnitView";
 import units from "./api/studentPortal/units";
 
 export default function StudentPortalPage() {
