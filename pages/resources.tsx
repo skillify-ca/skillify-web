@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/ui/Navbar";
 import Image from "next/image";
 import googleClassroomImg from "../public/images/assignments/google-classroom.svg";
 import { resources } from "./api/resources";

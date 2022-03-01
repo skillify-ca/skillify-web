@@ -1,5 +1,5 @@
 import React from "react";
-import WarGame from "../components/war-game/WarGame";
+import WarGame from "../components/math/war-game/WarGame";
 
 export default function WarGamePage() {
   return (

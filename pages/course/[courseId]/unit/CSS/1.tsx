@@ -2,7 +2,7 @@ import React from "react";
 import Card, { CardData } from "../../../../../components/coding/Card";
 import { Carousel } from "../../../../../components/coding/Carousel";
 import CSSQuiz from "../../../../../components/coding/CSSQuiz";
-import Navbar from "../../../../../components/Navbar";
+import Navbar from "../../../../../components/ui/Navbar";
 import { MultipleChoiceSentence } from "../../../../../components/questionTypes/MultipleChoiceSentence";
 
 const CSS = () => {

@@ -9,9 +9,9 @@ import {
   getRndInteger,
 } from "../../pages/api/random";
 import { Skill } from "../../pages/api/skill";
-import BalanceBudget from "../money/BalanceBudgetTable";
-import BudgetTable from "../money/BudgetTable";
-import TipQuestion from "../money/TipQuestion";
+import BalanceBudget from "../finance/money/BalanceBudgetTable";
+import BudgetTable from "../finance/money/BudgetTable";
+import TipQuestion from "../finance/money/TipQuestion";
 import { FillBlank } from "../questionTypes/FillBlank";
 import { HorizontalEquation } from "../questionTypes/HorizontalEquation";
 import { LongDivision } from "../questionTypes/LongDivision";
@@ -278,22 +278,21 @@ const QuestionSet = ({
           />
         );
       }
-    } else if ( 
+    } else if (
       questionData[index].questionType ===
       QuestionType.FINANCE_BUDGET_TABLE_PROBLEM
     ) {
       {
         return (
-            <BudgetTable
-              question={questionData[index]}
-              answer={questionData[index].answer}
-              submitGuess={submitGuess}
-            />
+          <BudgetTable
+            question={questionData[index]}
+            answer={questionData[index].answer}
+            submitGuess={submitGuess}
+          />
         );
       }
     } else if (
-      questionData[index].questionType ===
-      QuestionType.FINANCE_TIP_PROBLEM
+      questionData[index].questionType === QuestionType.FINANCE_TIP_PROBLEM
     ) {
       {
         return (
@@ -305,7 +304,7 @@ const QuestionSet = ({
         );
       }
     } else if (
-      questionData[index].questionType === 
+      questionData[index].questionType ===
       QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM
     ) {
       {
@@ -331,8 +330,9 @@ const QuestionSet = ({
     <div className="flex justify-center items-center gap-4">
       <Card size="large">
         <div
-          className={`transition-opacity duration-150 ease-in-out opacity-${diagnostic?.isDiagnostic && diagnostic.opacityVal
-            }`}
+          className={`transition-opacity duration-150 ease-in-out opacity-${
+            diagnostic?.isDiagnostic && diagnostic.opacityVal
+          }`}
         >
           {questionData[index] && questionComponent()}
         </div>

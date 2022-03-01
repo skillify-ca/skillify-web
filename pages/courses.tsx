@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Navbar from "../components/Navbar";
-import CourseListItem from "../components/practiceTracker/CourseListItem";
+import Navbar from "../components/ui/Navbar";
+import CourseListItem from "../components/math/practiceTracker/CourseListItem";
 import courseData from "./api/explore";
 
 const Courses = () => {

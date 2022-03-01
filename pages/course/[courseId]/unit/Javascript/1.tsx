@@ -1,7 +1,7 @@
 import React from "react";
 import Card, { CardData } from "../../../../../components/coding/Card";
 import JSQuiz from "../../../../../components/coding/JSQuiz";
-import Navbar from "../../../../../components/Navbar";
+import Navbar from "../../../../../components/ui/Navbar";
 
 const JS1 = () => {
   const data: CardData[] = [

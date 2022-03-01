@@ -1,26 +1,26 @@
 import React, { useState } from "react";
-import Navbar from "../../../components/Navbar";
+import Navbar from "../../../components/ui/Navbar";
 import Image from "next/image";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import { GuessData } from "../../api/guessData";
 import { Button } from "../../../components/ui/Button";
-import Q1 from "../../../components/giza/Q1";
-import Q2 from "../../../components/giza/Q2";
-import Q3 from "../../../components/giza/Q3";
-import Q4 from "../../../components/giza/Q4";
-import Q5 from "../../../components/giza/Q5";
-import Q6 from "../../../components/giza/Q6";
-import Q7 from "../../../components/giza/Q7";
-import Q8 from "../../../components/giza/Q8";
-import Q9 from "../../../components/giza/Q9";
-import Q10 from "../../../components/giza/Q10";
-import Q11 from "../../../components/giza/Q11";
-import Q12 from "../../../components/giza/Q12";
-import Q13 from "../../../components/giza/Q13";
-import Q14 from "../../../components/giza/Q14";
-import Q15 from "../../../components/giza/Q15";
-import Q16 from "../../../components/giza/Q16";
-import MiddleOfQuiz from "../../../components/giza/MiddleOfQuiz";
+import Q1 from "../../../components/math/geometry/giza/Q1";
+import Q2 from "../../../components/math/geometry/giza/Q2";
+import Q3 from "../../../components/math/geometry/giza/Q3";
+import Q4 from "../../../components/math/geometry/giza/Q4";
+import Q5 from "../../../components/math/geometry/giza/Q5";
+import Q6 from "../../../components/math/geometry/giza/Q6";
+import Q7 from "../../../components/math/geometry/giza/Q7";
+import Q8 from "../../../components/math/geometry/giza/Q8";
+import Q9 from "../../../components/math/geometry/giza/Q9";
+import Q10 from "../../../components/math/geometry/giza/Q10";
+import Q11 from "../../../components/math/geometry/giza/Q11";
+import Q12 from "../../../components/math/geometry/giza/Q12";
+import Q13 from "../../../components/math/geometry/giza/Q13";
+import Q14 from "../../../components/math/geometry/giza/Q14";
+import Q15 from "../../../components/math/geometry/giza/Q15";
+import Q16 from "../../../components/math/geometry/giza/Q16";
+import MiddleOfQuiz from "../../../components/math/geometry/giza/MiddleOfQuiz";
 import { start } from "repl";
 import { measureTime } from "../../api/time";
 import { ADD_GIZA_DATA } from "../../../graphql/addGizaData";
@@ -81,9 +81,8 @@ export default function djacob(props) {
     console.log(guess);
   };
 
-  const [insertGizaStudentData, insertGizaStudentDataMutation] = useMutation(
-    ADD_GIZA_DATA
-  );
+  const [insertGizaStudentData, insertGizaStudentDataMutation] =
+    useMutation(ADD_GIZA_DATA);
 
   const insertGizaStudentDataFunction = (
     studentName: string,

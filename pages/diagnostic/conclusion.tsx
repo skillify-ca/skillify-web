@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { diagnosticSelector } from "../../redux/diagnosticSlice";
 
 import dynamic from "next/dynamic";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/ui/Navbar";
 
 const DiagnosticConclusion = dynamic(
   () => import("../../components/assessment/DiagnosticConclusion"),

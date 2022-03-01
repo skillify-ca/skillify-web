@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import Navbar from "../../../components/Navbar";
+import Navbar from "../../../components/ui/Navbar";
 import { ApolloClient, InMemoryCache, useQuery } from "@apollo/client";
 import { FETCH_USER_ASSIGNMENTS } from "../../../graphql/userAssignments/fetchUserAssignments";
 import { FETCH_GIZA_DATA } from "../../../graphql/fetchGizaData";
-import TeacherDashboardPage from "../../../components/dashboard/solving-for-variables-dashboard";
-import GizaDashboardPage from "../../../components/dashboard/dashboard-giza";
-import SolvingForVariablesDashboard from "../../../components/dashboard/solving-for-variables-dashboard";
-import SurfaceAreaDashboardPage from "../../../components/dashboard/dashboard-surfaceArea";
-import TransformationDashboardPage from "../../../components/dashboard/dashboard-transformations";
+import TeacherDashboardPage from "../../../components/math/geometry/dashboard/solving-for-variables-dashboard";
+import GizaDashboardPage from "../../../components/math/geometry/dashboard/dashboard-giza";
+import SolvingForVariablesDashboard from "../../../components/math/geometry/dashboard/solving-for-variables-dashboard";
+import SurfaceAreaDashboardPage from "../../../components/math/geometry/dashboard/dashboard-surfaceArea";
+import TransformationDashboardPage from "../../../components/math/geometry/dashboard/dashboard-transformations";
 
 const MainDashboardPage = ({ data, giza_data }) => {
   const choices = [

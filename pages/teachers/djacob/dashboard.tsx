@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { FETCH_USER_ASSIGNMENTS } from "../../../graphql/userAssignments/fetchUserAssignments";
-import Navbar from "../../../components/Navbar";
+import Navbar from "../../../components/ui/Navbar";
 import TeX from "@matejmazur/react-katex";
 import "katex/dist/katex.min.css";
 import { FETCH_ASSIGNMENT } from "../../../graphql/fetchAssignment";

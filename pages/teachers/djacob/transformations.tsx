@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
-import Navbar from "../../../components/Navbar";
-import TQ from "../../../components/transformations/transformation_question_template";
+import Navbar from "../../../components/ui/Navbar";
+import TQ from "../../../components/math/transformations/transformation_question_template";
 import { Button } from "../../../components/ui/Button";
 import { LineData } from "../../../components/ui/FreeDrawing";
 import { GuessData } from "../../api/guessData";

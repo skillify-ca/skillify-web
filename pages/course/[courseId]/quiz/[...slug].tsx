@@ -17,7 +17,7 @@ import { SAVE_USER_GUESSES } from "../../../../graphql/saveUserGuesses";
 import { FETCH_USER_QUIZZES } from "../../../../graphql/fetchUserQuiz";
 import { FETCH_USER_SKILL_BADGE } from "../../../../graphql/fetchBadgeForSkill";
 import { SAVE_QUIZ_ATTEMPT } from "../../../../graphql/saveQuizAttempt";
-import Navbar from "../../../../components/Navbar";
+import Navbar from "../../../../components/ui/Navbar";
 import { useAuth } from "../../../../lib/authContext";
 import { generateQuestions } from "../../../api/quiz/quizQuestionGenerator";
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-import Navbar from "../../../../../components/Navbar";
+import Navbar from "../../../../../components/ui/Navbar";
 
 const Final1 = () => {
   return (

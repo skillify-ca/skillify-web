@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import DiagnosticEvidence from "../../../components/assessment/DiagnosticEvidence";
-import Navbar from "../../../components/Navbar";
+import Navbar from "../../../components/ui/Navbar";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 import { diagnosticSelector } from "../../../redux/diagnosticSlice";

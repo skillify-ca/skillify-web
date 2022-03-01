@@ -1,5 +1,5 @@
 import Card from "../../../../../components/coding/Card";
-import Navbar from "../../../../../components/Navbar";
+import Navbar from "../../../../../components/ui/Navbar";
 
 const HTML1 = () => {
   return (

@@ -4,7 +4,7 @@ import { Skill } from "./api/skill";
 import AssignmentCreationForm, {
   QuestionCount,
 } from "../components/assignment-creator/assignmentCreationForm";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/ui/Navbar";
 import { Question } from "./api/question";
 import { useMutation } from "@apollo/client";
 import AssignmentConfirmation from "../components/assignment-creator/assignmentConfirmation";

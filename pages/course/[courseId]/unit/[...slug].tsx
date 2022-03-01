@@ -6,10 +6,10 @@ import {
 } from "@apollo/client";
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import Navbar from "../../../../components/Navbar";
-import ExplorePreview from "../../../../components/practiceTracker/unitOverview/ExplorePreview";
-import PracticePreview from "../../../../components/practiceTracker/unitOverview/PracticePreview";
-import QuizPreview from "../../../../components/practiceTracker/unitOverview/QuizPreview";
+import Navbar from "../../../../components/ui/Navbar";
+import ExplorePreview from "../../../../components/math/practiceTracker/unitOverview/ExplorePreview";
+import PracticePreview from "../../../../components/math/practiceTracker/unitOverview/PracticePreview";
+import QuizPreview from "../../../../components/math/practiceTracker/unitOverview/QuizPreview";
 import { FETCH_UNIT_OVERVIEW } from "../../../../graphql/fetchUnitOverview";
 import { useAuth } from "../../../../lib/authContext";
 import { getBadgeId } from "../../../api/badgeHelper";
