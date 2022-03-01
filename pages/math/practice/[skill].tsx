@@ -1,5 +1,4 @@
 import { ApolloClient, InMemoryCache, useMutation } from "@apollo/client";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import ReactCardFlip from "react-card-flip";

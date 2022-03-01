@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import Navbar from "../../../components/ui/Navbar";
 import Image from "next/image";
 import { Button } from "../../../components/ui/Button";
 import "katex/dist/katex.min.css";
 import TeX from "@matejmazur/react-katex";
-import bedmasRulesImg from "../../public/images/cye/rules.png";
+import bedmasRulesImg from "../../../public/images/cye/rules.png";
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import { LineData } from "../../../components/ui/FreeDrawing";

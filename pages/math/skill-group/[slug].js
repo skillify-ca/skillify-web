@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import apiData from "../api/data.json";
-import ProgressBar from "../../components/ProgressBar";
+import apiData from "../../api/data.json";
+import ProgressBar from "../../../components/ProgressBar";
 
 const SkillGroup = () => {
   const router = useRouter();
