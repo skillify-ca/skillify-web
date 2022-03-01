@@ -3,9 +3,9 @@
 import { ApolloClient, InMemoryCache, useQuery } from "@apollo/client";
 import React from "react";
 import { useState } from "react";
-import Navbar from "../../../components/ui/Navbar";
-import { FETCH_GIZA_DATA } from "../../../graphql/fetchGizaData";
-import { measureTime } from "../../api/time";
+import Navbar from "../../../../components/ui/Navbar";
+import { FETCH_GIZA_DATA } from "../../../../graphql/fetchGizaData";
+import { measureTime } from "../../../api/time";
 import TeX from "@matejmazur/react-katex";
 
 const GizaDashboardPage = ({ data }) => {

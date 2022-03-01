@@ -2,18 +2,18 @@ import { useQuery, useMutation } from "@apollo/client";
 import React from "react";
 import { useState } from "react";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import { FETCH_USER_ASSIGNMENTS } from "../../../graphql/userAssignments/fetchUserAssignments";
-import Navbar from "../../../components/ui/Navbar";
+import { FETCH_USER_ASSIGNMENTS } from "../../../../graphql/userAssignments/fetchUserAssignments";
+import Navbar from "../../../../components/ui/Navbar";
 import TeX from "@matejmazur/react-katex";
 import "katex/dist/katex.min.css";
-import { FETCH_ASSIGNMENT } from "../../../graphql/fetchAssignment";
-import { UPDATE_SOLUTIONS_RELEASED_FOR_ASSIGNMENT } from "../../../graphql/userAssignments/updateSolutionsReleasedForAssignment";
+import { FETCH_ASSIGNMENT } from "../../../../graphql/fetchAssignment";
+import { UPDATE_SOLUTIONS_RELEASED_FOR_ASSIGNMENT } from "../../../../graphql/userAssignments/updateSolutionsReleasedForAssignment";
 import dynamic from "next/dynamic";
-import { answers, questions } from "../../api/teachers/djacob";
-import { Button } from "../../../components/ui/Button";
+import { answers, questions } from "../../../api/teachers/djacob";
+import { Button } from "../../../../components/ui/Button";
 
 const FreeDrawing = dynamic(
-  () => import("../../../components/ui/FreeDrawing"),
+  () => import("../../../../components/ui/FreeDrawing"),
   {
     ssr: false,
   }

@@ -1,9 +1,9 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import _ from "lodash";
-import { FETCH_FLASHCARD_GUESSES_BY_SESSION } from "../../graphql/fetchFlashcardGuessBySession";
-import Card from "../../components/ui/Card";
-import { useAuth } from "../../lib/authContext";
+import { FETCH_FLASHCARD_GUESSES_BY_SESSION } from "../../../graphql/fetchFlashcardGuessBySession";
+import Card from "../../../components/ui/Card";
+import { useAuth } from "../../../lib/authContext";
 
 export default function SessionDetails({ slug }) {
   const { user } = useAuth();

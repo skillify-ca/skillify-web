@@ -3,19 +3,19 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import ReactCardFlip from "react-card-flip";
-import QuestionSet from "../../components/math/stories/QuestionSet";
-import { Button } from "../../components/ui/Button";
-import Card from "../../components/ui/Card";
-import EmojiSlider from "../../components/ui/EmojiSlider";
-import { FETCH_SKILLS } from "../../graphql/fetchSkills";
-import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
-import { UPDATE_USER_SKILL_EMOJI } from "../../graphql/updateUserEmoji";
-import { useAuth } from "../../lib/authContext";
-import { GuessData } from "../api/guessData";
-import { generatePracticeQuestions } from "../api/practice/practiceQuestionGenerator";
-import { Question, AnswerType } from "../api/question";
-import { QuestionType } from "../api/questionTypes";
-import { Skill } from "../api/skill";
+import QuestionSet from "../../../components/math/stories/QuestionSet";
+import { Button } from "../../../components/ui/Button";
+import Card from "../../../components/ui/Card";
+import EmojiSlider from "../../../components/ui/EmojiSlider";
+import { FETCH_SKILLS } from "../../../graphql/fetchSkills";
+import { FETCH_USER_EMOJIS } from "../../../graphql/fetchUserEmojis";
+import { UPDATE_USER_SKILL_EMOJI } from "../../../graphql/updateUserEmoji";
+import { useAuth } from "../../../lib/authContext";
+import { GuessData } from "../../api/guessData";
+import { generatePracticeQuestions } from "../../api/practice/practiceQuestionGenerator";
+import { Question, AnswerType } from "../../api/question";
+import { QuestionType } from "../../api/questionTypes";
+import { Skill } from "../../api/skill";
 
 const PracticeQuiz = ({ skill }) => {
   enum STAGE {

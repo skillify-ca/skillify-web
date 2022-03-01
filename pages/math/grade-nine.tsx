@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import ProgressBar from "../components/ProgressBar";
-import apiData from "./api/data.json";
+import ProgressBar from "../../components/ProgressBar";
+import apiData from "../api/data.json";
 
 export default function GradeNine(props) {
   /**

@@ -1,4 +1,4 @@
-import UnitCard from "../../UnitCard";
+import UnitCard from "../UnitCard";
 import Hero from "./Hero";
 
 const PracticeTracker = ({

@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
-import { FETCH_FLASHCARD_GUESSES } from "../../graphql/fetchFlashcardGuesses";
+import { FETCH_FLASHCARD_GUESSES } from "../../../graphql/fetchFlashcardGuesses";
 import _ from "lodash";
 import Link from "next/link";
-import { getSkillIdFromSlug } from "../../graphql/utils/constants";
-import Card from "../../components/ui/Card";
-import data from "../api/profile/data.json";
-import { useAuth } from "../../lib/authContext";
+import { getSkillIdFromSlug } from "../../../graphql/utils/constants";
+import Card from "../../../components/ui/Card";
+import data from "../../api/profile/data.json";
+import { useAuth } from "../../../lib/authContext";
 
 const Portfolio = ({ slug }) => {
   const { user } = useAuth();

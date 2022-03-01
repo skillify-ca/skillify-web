@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
-import { Leaderboard } from "../components/coding/Leaderboard";
-import ProfileComponent from "../components/ProfileComponent";
+import { Leaderboard } from "../../components/coding/Leaderboard";
+import ProfileComponent from "../../components/ProfileComponent";
 
 const Profile = () => {
   return (

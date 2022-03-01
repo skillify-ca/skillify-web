@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import { Button } from "../components/ui/Button";
-import { Puzzle, PUZZLE_DATA } from "./api/puzzle";
+import { Button } from "../../components/ui/Button";
+import { Puzzle, PUZZLE_DATA } from "../api/puzzle";
 
 export default function Puzzles({ puzzleData }) {
   return (

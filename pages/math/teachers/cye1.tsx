@@ -1,24 +1,27 @@
 import React, { useState } from "react";
-import Navbar from "../../components/ui/Navbar";
+import Navbar from "../../../components/ui/Navbar";
 import Image from "next/image";
-import { Button } from "../../components/ui/Button";
+import { Button } from "../../../components/ui/Button";
 import "katex/dist/katex.min.css";
 import TeX from "@matejmazur/react-katex";
 import bedmasRulesImg from "../../public/images/cye/rules.png";
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
-import { LineData } from "../../components/ui/FreeDrawing";
-import { FETCH_USER_ASSIGNMENT } from "../../graphql/userAssignments/fetchUserAssignment";
+import { LineData } from "../../../components/ui/FreeDrawing";
+import { FETCH_USER_ASSIGNMENT } from "../../../graphql/userAssignments/fetchUserAssignment";
 import { useMutation, useQuery } from "@apollo/client";
-import { CREATE_USER_ASSIGNMENT } from "../../graphql/userAssignments/createUserAssignment";
-import { UPDATE_USER_ASSIGNMENT } from "../../graphql/userAssignments/updateUserAssignment";
-import { questions, solutions } from "../api/teachers/cye";
-import { UPDATE_USER_ASSIGNMENT_IMAGES } from "../../graphql/userAssignments/updateUserAssignmentImages";
-import { useAuth } from "../../lib/authContext";
+import { CREATE_USER_ASSIGNMENT } from "../../../graphql/userAssignments/createUserAssignment";
+import { UPDATE_USER_ASSIGNMENT } from "../../../graphql/userAssignments/updateUserAssignment";
+import { questions, solutions } from "../../api/teachers/cye";
+import { UPDATE_USER_ASSIGNMENT_IMAGES } from "../../../graphql/userAssignments/updateUserAssignmentImages";
+import { useAuth } from "../../../lib/authContext";
 
-const FreeDrawing = dynamic(() => import("../../components/ui/FreeDrawing"), {
-  ssr: false,
-});
+const FreeDrawing = dynamic(
+  () => import("../../../components/ui/FreeDrawing"),
+  {
+    ssr: false,
+  }
+);
 
 enum Stage {
   RULES,
