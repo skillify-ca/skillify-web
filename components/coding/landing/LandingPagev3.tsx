@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React from "react";
-import HeroHome from "../coding/landing/HeroHome";
-import Navbar from "../ui/Navbar";
-import { Button } from "../ui/Button";
+import HeroHome from "./HeroHome";
+import Navbar from "../../ui/Navbar";
+import { Button } from "../../ui/Button";
 
 const LandingPagev3 = ({ curriculumLink, title, description, images }) => {
   return (

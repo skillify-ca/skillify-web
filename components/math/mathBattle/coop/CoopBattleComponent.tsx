@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import * as Colyseus from "colyseus.js";
-import QuestionSet from "../../../stories/QuestionSet";
+import QuestionSet from "../../stories/QuestionSet";
 import { Question } from "../../../../pages/api/question";
 import { GuessData } from "../../../../pages/api/guessData";
 import ProgressRing from "../../../ui/ProgressRing";

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { getUserEmojiValue } from "../../pages/api/practiceTracker/emojiHelper";
-import { getEmoji } from "../../pages/api/skill";
-import { Button } from "../ui/Button";
+import { getUserEmojiValue } from "../../../pages/api/practiceTracker/emojiHelper";
+import { getEmoji } from "../../../pages/api/skill";
+import { Button } from "../../ui/Button";
 import Link from "next/link";
 
 const SkillCard = ({ loading, userSkillData, skill }) => {

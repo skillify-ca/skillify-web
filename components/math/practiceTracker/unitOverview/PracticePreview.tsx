@@ -1,5 +1,5 @@
 import Link from "next/link";
-import SkillCard from "../../../stories/SkillCard";
+import SkillCard from "../../stories/SkillCard";
 
 const PracticePreview = ({ loading, userSkills, skills }) => {
   return (

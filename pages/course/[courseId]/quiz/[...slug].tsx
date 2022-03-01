@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useMutation } from "@apollo/client";
 import { v4 as uuidv4 } from "uuid";
-import QuestionSet from "../../../../components/stories/QuestionSet";
+import QuestionSet from "../../../../components/math/stories/QuestionSet";
 import { QuestionType } from "../../../api/questionTypes";
 import { GuessData } from "../../../api/guessData";
 import { AnswerType, Question } from "../../../api/question";

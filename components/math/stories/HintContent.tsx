@@ -1,4 +1,4 @@
-import { Skill } from "../../pages/api/skill";
+import { Skill } from "../../../pages/api/skill";
 
 export const getHintForUnit = (skill: Skill) => {
   let hintTag;

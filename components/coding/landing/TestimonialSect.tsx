@@ -6,9 +6,9 @@ import {
   LightningBoltIcon,
   ScaleIcon,
 } from "@heroicons/react/outline";
-import ContactForms from "../ContactForms";
-import Testimonial, { TestimonialProps } from "../landing/Testimonial";
-import { Button } from "../ui/Button";
+import ContactForms from "../../ContactForms";
+import Testimonial, { TestimonialProps } from "./Testimonial";
+import { Button } from "../../ui/Button";
 
 const TestimonialSect = () => {
   const testimonialData: TestimonialProps[] = [

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "react-simple-hook-modal/dist/styles.css";
 import Link from "next/link";
 import data from "../api/profile/data.json";
-import StatementRow from "../../components/stories/StatementRow";
+import StatementRow from "../../components/math/stories/StatementRow";
 
 const Practice = ({ slug }) => {
   const [statements, setStatements] = React.useState([]);

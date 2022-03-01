@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
-import LandingPagev3 from "../../components/stories/LandingPagev3";
+import LandingPagev3 from "../../components/coding/landing/LandingPagev3";
 
 const Presale = () => {
   const slug = useRouter().query.slug;

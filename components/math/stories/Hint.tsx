@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { Skill } from "../../pages/api/skill";
+import { Skill } from "../../../pages/api/skill";
 import { getHintForUnit } from "./HintContent";
 
 export interface HintProps {

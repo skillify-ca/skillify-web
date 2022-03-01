@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { Canvas } from "react-three-fiber";
 import { practiceTrackerSelector } from "../../../../redux/studentProfileSlice";
-import Box from "../../../stories/Box";
+import Box from "../../stories/Box";
 import { Button } from "../../../ui/Button";
 
 const QuizPreview = ({ isQuizLocked, unitTitle, loading, data, courseId }) => {

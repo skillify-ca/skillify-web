@@ -18,7 +18,7 @@ import { EMOJI_MASTERY, SkillData } from "../../../api/skill";
 import { useRouter } from "next/router";
 import { FETCH_SKILLS_FOR_UNIT } from "../../../../graphql/fetchSkillsForUnit";
 
-const Box = dynamic(() => import("../../../../components/stories/Box"));
+const Box = dynamic(() => import("../../../../components/math/stories/Box"));
 
 const UnitOverviewPage = ({ unitTitle, skillData, level }) => {
   const { user } = useAuth();

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import ReactCardFlip from "react-card-flip";
-import QuestionSet from "../../components/stories/QuestionSet";
+import QuestionSet from "../../components/math/stories/QuestionSet";
 import { Button } from "../../components/ui/Button";
 import Card from "../../components/ui/Card";
 import EmojiSlider from "../../components/ui/EmojiSlider";
@@ -75,10 +75,13 @@ const PracticeQuiz = ({ skill }) => {
         </div>
 
         <div className="flex flex-row space-x-16">
-
-          <Button label="Go Back" backgroundColor="purple" onClick={() => {
-            router.back()
-          }}></Button>
+          <Button
+            label="Go Back"
+            backgroundColor="purple"
+            onClick={() => {
+              router.back();
+            }}
+          ></Button>
           <Button
             label="Practice again"
             backgroundColor="green"

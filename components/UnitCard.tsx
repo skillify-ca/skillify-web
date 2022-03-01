@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { Unit } from "../pages/api/explore";
-import UnitItem from "./stories/UnitItem";
+import UnitItem from "./math/stories/UnitItem";
 
 export type UnitCardProps = {
   unit: Unit;

@@ -11,7 +11,7 @@ import {
   setTotalCarCosts,
 } from "../../../redux/assignmentSession";
 import { useAppDispatch } from "../../../redux/store";
-import StatementRow from "../../stories/StatementRow";
+import StatementRow from "../../math/stories/StatementRow";
 import { Input } from "../../ui/Input";
 
 const CarExpenseTable = () => {
