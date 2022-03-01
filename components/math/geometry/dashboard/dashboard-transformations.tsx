@@ -1,9 +1,5 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
 import Link from "next/link";
 import React, { useState } from "react";
-import { FETCH_GIZA_DATA } from "../../../../graphql/fetchGizaData";
-import { measureTime } from "../../../../pages/api/time";
-import Navbar from "../../../ui/Navbar";
 import { Button } from "../../../ui/Button";
 
 const TransformationDashboardPage = ({ data }) => {

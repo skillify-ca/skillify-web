@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import apiData from "../api/data.json";
 import ProgressBar from "../../components/ProgressBar";
-import Navbar from "../../components/Navbar";
 import React, { useState } from "react";
 import YouTube from "react-youtube";
 

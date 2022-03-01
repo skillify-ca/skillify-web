@@ -6,7 +6,6 @@ import TeX from "@matejmazur/react-katex";
 import { FETCH_ASSIGNMENT } from "../../../../graphql/fetchAssignment";
 import { UPDATE_SOLUTIONS_RELEASED_FOR_ASSIGNMENT } from "../../../../graphql/userAssignments/updateSolutionsReleasedForAssignment";
 import { answers, questions } from "../../../../pages/api/teachers/djacob";
-import Navbar from "../../../ui/Navbar";
 import { Button } from "../../../ui/Button";
 import { FETCH_USER_ASSIGNMENTS } from "../../../../graphql/userAssignments/fetchUserAssignments";
 import dynamic from "next/dynamic";

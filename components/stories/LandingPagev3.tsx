@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import pages from "../../pages";
 import HeroHome from "../coding/landing/HeroHome";
 import Navbar from "../ui/Navbar";
 import { Button } from "../ui/Button";
