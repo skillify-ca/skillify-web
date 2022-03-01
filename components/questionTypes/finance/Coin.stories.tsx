@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import { Coin, CoinProp } from "./Coin";
 
 export default {
-  title: "Coin",
+  title: "finance/Coin",
   component: Coin,
   argTypes: {},
 } as Meta;

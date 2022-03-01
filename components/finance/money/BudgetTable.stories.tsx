@@ -3,16 +3,14 @@ import { Story, Meta } from "@storybook/react";
 import BudgetTable, { BudgetItemProps } from "./BudgetTable";
 
 export default {
-  title: "Budget Table",
+  title: "finance/Budget Table",
   component: BudgetTable,
   argTypes: {},
 } as Meta;
 
 const Template: Story<BudgetItemProps> = (args) => <BudgetTable {...args} />;
 
-
 export const Primary = Template.bind({});
 Primary.args = {
-  budget: 1.50,
+  budget: 1.5,
 };
-

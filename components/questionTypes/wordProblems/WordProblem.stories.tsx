@@ -9,7 +9,7 @@ import { Skill } from "../../../pages/api/skill";
 import Card from "../../ui/Card";
 
 export default {
-  title: "Word Problem Simple",
+  title: "math/Word Problem Simple",
   component: WordProblemAdd,
   argTypes: {},
 } as Meta;

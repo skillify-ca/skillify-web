@@ -5,7 +5,7 @@ import Card from "../ui/Card";
 import { VisualAddition, VisualAdditionProp } from "./VisualAddition";
 
 export default {
-  title: "Visual Addition",
+  title: "math/Visual Addition",
   component: VisualAddition,
   argTypes: {},
 } as Meta;

@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import { MissingNumSeq, MissingNumSeqProp } from "./MissingNumSeq";
 
 export default {
-  title: "Missing Number Sequence",
+  title: "math/Missing Number Sequence",
   component: MissingNumSeq,
   argTypes: {},
 } as Meta;

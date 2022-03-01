@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import { Money, MoneyProp } from "./Money";
 
 export default {
-  title: "Money",
+  title: "finance/Money",
   component: Money,
   argTypes: {},
 } as Meta;

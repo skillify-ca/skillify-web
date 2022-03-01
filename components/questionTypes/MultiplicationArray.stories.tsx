@@ -7,7 +7,7 @@ import {
 } from "./MultiplicationArray";
 
 export default {
-  title: "Multiplication Array",
+  title: "math/Multiplication Array",
   component: MultiplicationArray,
   argTypes: {},
 } as Meta;
@@ -19,5 +19,5 @@ const Template: Story<MultiplicationArrayProp> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {
   question: { text: "10 x 10" },
-  color: 0
+  color: 0,
 };

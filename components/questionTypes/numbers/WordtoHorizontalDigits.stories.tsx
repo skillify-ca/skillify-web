@@ -7,7 +7,7 @@ import {
 import Card from "../../ui/Card";
 
 export default {
-  title: "Word to Horizontal Digits",
+  title: "math/Word to Horizontal Digits",
   component: WordtoHorizontalDigits,
   argTypes: {},
 } as Meta;

@@ -6,7 +6,7 @@ import {
 } from "./VerticalDigitstoNum";
 
 export default {
-  title: "Vertical Digits to Num",
+  title: "math/Vertical Digits to Num",
   component: VerticalDigitstoNum,
   argTypes: {},
 } as Meta;

@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import { MultipleChoice, MultipleChoiceProp } from "./MultipleChoice";
 
 export default {
-  title: "Multiple Choice",
+  title: "questions/Multiple Choice",
   component: MultipleChoice,
   argTypes: {},
 } as Meta;

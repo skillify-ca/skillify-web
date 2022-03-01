@@ -7,7 +7,7 @@ import {
 } from "./MultipleChoiceWord";
 
 export default {
-  title: "Multiple Choice Word",
+  title: "questions/Multiple Choice Word",
   component: MultipleChoiceWord,
   argTypes: {},
 } as Meta;
@@ -18,7 +18,7 @@ const Template: Story<MultipleChoiceWordProp> = (args) => (
     options={args.options}
     submitGuess={() => {
       // empty function
-    }} 
+    }}
   >
     <h1>Which Property of Addition is Shown?</h1>
     <p>3 + 2 = 2 + 3</p>

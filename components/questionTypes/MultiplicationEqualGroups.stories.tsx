@@ -8,7 +8,7 @@ import {
 import Card from "../ui/Card";
 
 export default {
-  title: "Multiplication Equal Groups",
+  title: "math/Multiplication Equal Groups",
   component: MultiplicationEqualGroups,
   argTypes: {
     color: {

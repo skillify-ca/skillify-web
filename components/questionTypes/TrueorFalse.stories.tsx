@@ -4,7 +4,7 @@ import { Story, Meta } from "@storybook/react";
 import { TrueorFalse, TrueorFalseProp } from "./TrueorFalse";
 
 export default {
-  title: "True or False",
+  title: "questions/True or False",
   component: TrueorFalse,
   argTypes: {},
 } as Meta;

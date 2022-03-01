@@ -5,7 +5,7 @@ import { VerticalEquation, VerticalEquationProp } from "./VerticalEquation";
 import Card from "../ui/Card";
 
 export default {
-  title: "Vertical Equation",
+  title: "math/Vertical Equation",
   component: VerticalEquation,
   argTypes: {},
 } as Meta;

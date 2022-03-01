@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import { FillBlank, FillBlankProp } from "./FillBlank";
 
 export default {
-  title: "Fill in the Blanks",
+  title: "math/Fill in the Blanks",
   component: FillBlank,
   argTypes: {},
 } as Meta;
