@@ -4,7 +4,7 @@ import { PatternBlank, PatternBlankProp } from "./PatternBlank";
 import Card from "../../ui/Card";
 
 export default {
-  title: "Pattern Blanks",
+  title: "math/Pattern Blanks",
   component: PatternBlank,
   argTypes: {},
 } as Meta;

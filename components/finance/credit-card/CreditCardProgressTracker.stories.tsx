@@ -6,7 +6,7 @@ import CreditCardProgressTracker, {
 } from "./CreditCardProgressTracker";
 
 export default {
-  title: "Credit Card Progress Tracker",
+  title: "finance/Credit Card Progress Tracker",
   component: CreditCardProgressTracker,
   argTypes: {},
 } as Meta;

@@ -4,7 +4,7 @@ import { Story, Meta } from "@storybook/react";
 import { NumberComparison, NumberComparisonProp } from "./numberComparison";
 
 export default {
-  title: "Number Comparison",
+  title: "math/Number Comparison",
   component: NumberComparison,
   argTypes: {},
 } as Meta;

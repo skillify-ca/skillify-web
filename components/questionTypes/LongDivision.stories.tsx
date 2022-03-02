@@ -5,7 +5,7 @@ import { VerticalEquation, VerticalEquationProp } from "./VerticalEquation";
 import { LongDivision, LongDivisionProp } from "./LongDivision";
 
 export default {
-  title: "Long Division",
+  title: "math/Long Division",
   component: LongDivision,
   argTypes: {},
 } as Meta;
