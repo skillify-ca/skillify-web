@@ -12,8 +12,8 @@ const Template: Story<UnitNodeViewProps> = (args) => <UnitNodeView {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  data: {
-    title: "VIthus",
-    locked: false,
-  },
+  title: "Lesson",
+  description: "What is HTML?",
+  locked: false,
+  completed: true,
 };
