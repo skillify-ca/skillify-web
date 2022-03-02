@@ -20,6 +20,14 @@ const question: Question = {
   answer: "1.5",
   answerType: AnswerType.NUMBER,
   questionType: QuestionType.HORIZONTAL_EQUATION,
+  personDataModel: {
+    name: "name",
+    month: "month",
+    income: [],
+    expenses: [],
+    totalIncome: 100,
+    totalExpenses: 99,
+  },
 };
 Primary.args = {
   budget: 1.5,

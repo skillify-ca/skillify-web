@@ -9,7 +9,8 @@
     "start": "next start",
     "test": "jest",
     "storybook": "start-storybook -s ./public -p 6006",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "chromatic": "npx chromatic --project-token=3849dc6eb670"
   },
   "dependencies": {
     "@apollo/client": "^3.3.13",
