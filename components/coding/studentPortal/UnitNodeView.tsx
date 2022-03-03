@@ -44,11 +44,13 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
       <a href={link}>
         <div
           className={`${
-            active ? "py-4 border-2" : ""
-          } bg-white grid grid-cols-12`}
+            active
+              ? "px-4 sm:px-0 py-4 border-2 flex flex-col sm:grid sm:grid-cols-12"
+              : "grid grid-cols-12"
+          } bg-white `}
         >
           <div className="col-span-2 flex flex-col items-center">
-            <div className="flex justify-center items-center rounded-full">
+            <div className="flex  items-center rounded-full">
               {
                 <img
                   src={`${imageSrc(completed, locked, type)}`}
@@ -58,13 +60,13 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
             </div>
           </div>
           <div className="flex flex-col col-span-6 w-full justify-center">
-            <p>{title}</p>
-            <p>{description}</p>
+            <p className="">{title}</p>
+            <p className="">{description}</p>
           </div>
           <div
             className={`${
               active ? "" : "hidden"
-            } flex flex-col col-span-4 justify-center`}
+            } flex flex-col col-span-4 justify-center sm:mr-4`}
           >
             <Button label="Continue" />
           </div>
