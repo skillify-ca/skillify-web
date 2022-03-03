@@ -11,6 +11,7 @@ export interface ButtonProps {
     | "purple"
     | "pink"
     | "yellow"
+    | "orange"
     | "white";
   /**
    * What text color to use
@@ -32,8 +33,8 @@ export interface ButtonProps {
  * Primary UI component for user interaction
  */
 export const Button: React.FC<ButtonProps> = ({
-  backgroundColor,
-  textColor,
+  backgroundColor = "primary",
+  textColor = "white",
   label,
   disabled = false,
   onClick,
@@ -41,6 +42,9 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   let backgroundStyles;
   switch (backgroundColor) {
+    case "primary":
+      backgroundStyles = "bg-charmander hover:bg-pikachu";
+      break;
     case "blue":
       backgroundStyles =
         "from-blue-500 via-blue-500 to-blue-500 border-blue-900 hover:from-blue-400";
@@ -66,7 +70,8 @@ export const Button: React.FC<ButtonProps> = ({
         "from-yellow-300 via-yellow-400 to-yellow-500 border-yellow-900 hover:from-yellow-200";
       break;
     case "white":
-      backgroundStyles = "bg-white border-gray-300 border-2 hover:from-blue-200";
+      backgroundStyles =
+        "bg-white border-gray-300 border-2 hover:from-blue-200";
       break;
   }
   return (
@@ -74,7 +79,7 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       type="button"
       onClick={disabled ? null : onClick}
-      className={`bg-gradient-to-b px-4 py-2 font-bold border-b-4 rounded-xl 
+      className={`bg-gradient-to-b px-4 py-2 font-bold border-b-4 rounded-lg w-48
       ${disabled ? "bg-gray-400" : backgroundStyles}
       ${disabled ? "" : "active:border-b-2"}
       ${disabled ? "cursor-default" : "cursor-pointer"}

@@ -22,6 +22,7 @@ export const UnitView: React.FC<UnitViewProps> = ({ data }: UnitViewProps) => {
             locked={it.locked}
             title={it.title}
             description={it.description}
+            type={it.type}
           />
         ))}
       </div>

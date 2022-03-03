@@ -15,12 +15,12 @@ const TestimonialSect = () => {
     {
       studentName: "Mayu G",
       img: "/images/landingPage/mayu.png",
-      text: "“Skillify has been an excellent axperience! It allowed me to reskill and learn modern coding frameworks that makes me competitive to get hired in software engineering.”",
+      text: "Skillify has been an excellent axperience! It allowed me to reskill and learn modern coding frameworks that makes me competitive to get hired in software engineering.",
     },
     {
       studentName: "Ajevan M",
       img: "/images/landingPage/ajevan.png",
-      text: "“I joined Skillify and learned so much about front end web development that I was able to get interviews from big tech companies and start-ups. I feel more confident getting interviews after taking the Skillify course”",
+      text: "I joined Skillify and learned so much about front end web development that I was able to get interviews from big tech companies and start-ups. I feel more confident getting interviews after taking the Skillify course",
     },
     {
       studentName: "Mithulan M",
@@ -30,7 +30,7 @@ const TestimonialSect = () => {
     {
       studentName: "Jacky H ",
       img: "/images/landingPage/goldMedal.svg",
-      text: "I have a degree in IT, however, I'm not working in the tech industry. My experience in this course was great. I got to expand my skills with the help of professionals and was encouraged to ask plenty of questions. The demos and projects were great to showcase what I learned every week. The intro course gave me the fundamental knowledge and a roadmap to work towards my goals of entering the tech job field.",
+      text: "I have a degree in IT, however, I'm not working in the tech industry. In the course, I got to expand my skills with the help of professionals and was encouraged to ask plenty of questions. The demos and projects were great to showcase what I learned every week.",
     },
   ];
   return (
