@@ -41,6 +41,9 @@ module.exports = {
       fontFamily: {
         sans: ["Lexend", ...defaultTheme.fontFamily.sans],
       },
+      gridTemplateColumns:  {
+        'resource-row': '100px 1fr 236px',
+      },
       keyframes: {
         shake: {
           "0%, 100%": { transform: "rotate(0deg)" },
