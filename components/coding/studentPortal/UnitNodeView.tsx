@@ -2,6 +2,7 @@ import { link } from "fs";
 import Link from "next/link";
 import React, { useState } from "react";
 import { UnitNode } from "../../../pages/api/studentPortal/units";
+import { Button } from "../../ui/Button";
 
 export type UnitNodeViewProps = {
   link: string;
@@ -10,6 +11,7 @@ export type UnitNodeViewProps = {
   completed: boolean;
   locked: boolean;
   hiddenLine: boolean;
+  type: "lesson" | "quiz" | "assignment";
 };
 
 export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
@@ -19,33 +21,65 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
   hiddenLine,
   title,
   description,
+  type,
 }: UnitNodeViewProps) => {
+  const imageSrc = (completed, locked, type) => {
+    if (completed) {
+      return "/images/studentPortal/checkmark.svg";
+    } else if (locked) {
+      return "/images/lock.png";
+    } else if (type === "lesson") {
+      return "/images/studentPortal/lesson_active.svg";
+    } else if (type === "quiz") {
+      return "/images/studentPortal/quiz_active.svg";
+    } else if (type === "assignment") {
+      return "/images/studentPortal/assignment_active.svg";
+    }
+    return "";
+  };
+  const active = !completed && !locked;
+
   return (
     <div>
       <a href={link}>
-        <div className="bg-white grid grid-cols-12">
+        <div
+          className={`${
+            active ? "py-4 border-2" : ""
+          } bg-white grid grid-cols-12`}
+        >
           <div className="col-span-2 flex flex-col items-center">
             <div className="flex justify-center items-center rounded-full">
-              {completed ? (
+              {
                 <img
-                  src="/images/studentPortal/checkmark.svg"
+                  src={`${imageSrc(completed, locked, type)}`}
                   className="w-12 h-12"
                 />
-              ) : locked ? (
-                <img src="/images/lock.png" className="w-12" />
-              ) : null}
+              }{" "}
             </div>
           </div>
-          <div className="flex flex-col col-span-10 w-full justify-center">
+          <div className="flex flex-col col-span-6 w-full justify-center">
             <p>{title}</p>
             <p>{description}</p>
           </div>
           <div
             className={`${
+              active ? "" : "hidden"
+            } flex flex-col col-span-4 justify-center`}
+          >
+            <Button label="Continue" />
+          </div>
+        </div>
+        <div className="grid grid-cols-12">
+          <div
+            className={`${
               hiddenLine ? "hidden" : ""
             } flex flex-col items-center col-span-2 w-full`}
           >
-            <div className="h-16 w-1 bg-green-500" />
+            <div
+              className={`h-16 w-1 ${
+                completed ? "bg-green-500" : "bg-gray-500"
+              }`}
+            />
           </div>
         </div>
       </a>

@@ -20,12 +20,10 @@ module.exports = {
         fadeIn_half: "fadeInHalf 1s ease-in-out",
       },
       colors: {
-        primary: "#F18701",
-        secondary: {
-          first: "#7678ED",
-          second: "#F7B801",
-          third: "#18124D",
-        },
+        charmander: "#F18701",
+        rattata: "#7678ED",
+        pikachu: "#F7B801",
+        murkrow: "#18124D",
       },
       backgroundImage: (theme) => ({
         "email-capture": "url('/images/landingPage/Rectangle5.png')",

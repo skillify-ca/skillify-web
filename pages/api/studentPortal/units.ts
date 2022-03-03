@@ -4,6 +4,7 @@ export interface UnitNode {
   completed: boolean;
   locked: boolean;
   link: string;
+  type: "lesson" | "quiz" | "assignment";
 }
 export interface Unit {
   title: string;
@@ -21,6 +22,7 @@ const units: Unit[] = [
         completed: true,
         locked: false,
         link: "https://www.skillify.ca/course/coding/unit/HTML/1",
+        type: "lesson",
       },
     ],
   },
@@ -33,6 +35,7 @@ const units: Unit[] = [
         completed: true,
         locked: false,
         link: "https://www.skillify.ca/course/coding/unit/HTML/1",
+        type: "lesson",
       },
       {
         title: "Quiz",
@@ -40,6 +43,7 @@ const units: Unit[] = [
         completed: false,
         locked: false,
         link: "https://www.skillify.ca/course/coding/unit/HTML/1",
+        type: "quiz",
       },
       {
         title: "Assignment",
@@ -47,6 +51,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/HTML/1",
+        type: "assignment",
       },
     ],
   },
@@ -59,6 +64,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/CSS/1",
+        type: "lesson",
       },
       {
         title: "Quiz",
@@ -66,6 +72,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/CSS/1",
+        type: "quiz",
       },
       {
         title: "Assignment",
@@ -73,6 +80,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/CSS/1",
+        type: "assignment",
       },
     ],
   },
@@ -85,6 +93,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/Javascript/1",
+        type: "lesson",
       },
       {
         title: "Lesson 2",
@@ -92,6 +101,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/Javascript/1",
+        type: "lesson",
       },
       {
         title: "Lesson 3",
@@ -99,6 +109,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/Javascript/1",
+        type: "lesson",
       },
       {
         title: "Quiz 1",
@@ -106,6 +117,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/Javascript/1",
+        type: "lesson",
       },
       {
         title: "Lesson 4",
@@ -113,6 +125,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/Javascript/1",
+        type: "lesson",
       },
       {
         title: "Lesson 5",
@@ -120,6 +133,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/Javascript/1",
+        type: "lesson",
       },
       {
         title: "Lesson 6",
@@ -127,6 +141,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/Javascript/1",
+        type: "lesson",
       },
       {
         title: "Lesson 7",
@@ -134,6 +149,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/Javascript/1",
+        type: "lesson",
       },
       {
         title: "Quiz",
@@ -141,6 +157,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/Javascript/1",
+        type: "quiz",
       },
       {
         title: "Assignment",
@@ -148,6 +165,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/Javascript/1",
+        type: "lesson",
       },
     ],
   },
@@ -160,6 +178,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/React/1",
+        type: "lesson",
       },
       {
         title: "Lesson 2",
@@ -167,6 +186,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/React/1",
+        type: "lesson",
       },
       {
         title: "Quiz 1",
@@ -174,6 +194,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/React/1",
+        type: "lesson",
       },
       {
         title: "Lesson 3",
@@ -181,6 +202,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/React/1",
+        type: "lesson",
       },
 
       {
@@ -189,6 +211,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/React/1",
+        type: "lesson",
       },
       {
         title: "Lesson 5",
@@ -196,6 +219,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/React/1",
+        type: "lesson",
       },
       {
         title: "Lesson 6",
@@ -203,6 +227,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/React/1",
+        type: "lesson",
       },
       {
         title: "Assignment 1",
@@ -210,6 +235,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/React/1",
+        type: "lesson",
       },
       {
         title: "Assignment 2",
@@ -217,6 +243,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/React/1",
+        type: "lesson",
       },
       {
         title: "Assignment 3",
@@ -224,6 +251,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/React/1",
+        type: "lesson",
       },
       {
         title: "Assignment 4",
@@ -231,6 +259,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "https://www.skillify.ca/course/coding/unit/React/1",
+        type: "lesson",
       },
     ],
   },
@@ -240,6 +269,7 @@ const units: Unit[] = [
       {
         title: "Lesson 1",
         description: "Intro to Databases",
+        type: "lesson",
         completed: false,
         locked: true,
         link: "",
@@ -247,6 +277,7 @@ const units: Unit[] = [
       {
         title: "Lesson 2",
         description: "Database Reads",
+        type: "lesson",
         completed: false,
         locked: true,
         link: "",
@@ -254,6 +285,7 @@ const units: Unit[] = [
       {
         title: "Lesson 3",
         description: "Database Writes",
+        type: "lesson",
         completed: false,
         locked: true,
         link: "",
@@ -261,6 +293,7 @@ const units: Unit[] = [
       {
         title: "Assignment",
         description: "Build a Fullstack Chat Application",
+        type: "lesson",
         completed: false,
         locked: true,
         link: "",
@@ -272,6 +305,7 @@ const units: Unit[] = [
     nodes: [
       {
         title: "Lesson 1",
+        type: "lesson",
         description: "Arrays",
         completed: false,
         locked: true,
@@ -281,6 +315,7 @@ const units: Unit[] = [
         title: "Lesson 2",
         description: "Strings",
         completed: false,
+        type: "lesson",
         locked: true,
         link: "",
       },
@@ -289,17 +324,20 @@ const units: Unit[] = [
         description: "Hash Maps",
         completed: false,
         locked: true,
+        type: "lesson",
         link: "",
       },
       {
         title: "Lesson 4",
         description: "Linked Lists",
+        type: "lesson",
         completed: false,
         locked: true,
         link: "",
       },
       {
         title: "Lesson 5",
+        type: "lesson",
         description: "Trees",
         completed: false,
         locked: true,
@@ -308,11 +346,13 @@ const units: Unit[] = [
       {
         title: "Lesson 6",
         description: "HashMaps",
+        type: "lesson",
         completed: false,
         locked: true,
         link: "",
       },
       {
+        type: "lesson",
         title: "Lesson 7",
         description: "Stacks",
         completed: false,
@@ -321,6 +361,7 @@ const units: Unit[] = [
       },
       {
         title: "Lesson 8",
+        type: "lesson",
         description: "Queues",
         completed: false,
         locked: true,
@@ -330,6 +371,7 @@ const units: Unit[] = [
         title: "Lesson 9",
         description: "Heaps",
         completed: false,
+        type: "lesson",
         locked: true,
         link: "",
       },
@@ -341,6 +383,7 @@ const units: Unit[] = [
       {
         title: "Lesson 1",
         description: "Sliding Window",
+        type: "lesson",
         completed: false,
         locked: true,
         link: "",
@@ -350,6 +393,7 @@ const units: Unit[] = [
         description: "Two Pointers",
         completed: false,
         locked: true,
+        type: "lesson",
         link: "",
       },
       {
@@ -358,11 +402,13 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "",
+        type: "lesson",
       },
 
       {
         title: "Lesson 4",
         description: "Merge Intervals",
+        type: "lesson",
         completed: false,
         locked: true,
         link: "",
@@ -370,6 +416,7 @@ const units: Unit[] = [
       {
         title: "Lesson 5",
         description: "Cyclic Sort",
+        type: "lesson",
         completed: false,
         locked: true,
         link: "",
@@ -378,6 +425,7 @@ const units: Unit[] = [
         title: "Lesson 6",
         description: "In-place reversal of linked list",
         completed: false,
+        type: "lesson",
         locked: true,
         link: "",
       },
@@ -387,10 +435,12 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "",
+        type: "lesson",
       },
       {
         title: "Lesson 8",
         description: "Tree DFS",
+        type: "lesson",
         completed: false,
         locked: true,
         link: "",
@@ -398,6 +448,7 @@ const units: Unit[] = [
       {
         title: "Lesson 9",
         description: "Two Heaps",
+        type: "lesson",
         completed: false,
         locked: true,
         link: "",
@@ -407,6 +458,7 @@ const units: Unit[] = [
         description: "Subsets",
         completed: false,
         locked: true,
+        type: "lesson",
         link: "",
       },
       {
@@ -414,17 +466,20 @@ const units: Unit[] = [
         description: "Modified Binary Search",
         completed: false,
         locked: true,
+        type: "lesson",
         link: "",
       },
       {
         title: "Lesson 12",
         description: "Top K Elements",
+        type: "lesson",
         completed: false,
         locked: true,
         link: "",
       },
       {
         title: "Lesson 13",
+        type: "lesson",
         description: "K-way Merge",
         completed: false,
         locked: true,
@@ -432,6 +487,7 @@ const units: Unit[] = [
       },
       {
         title: "Lesson 14",
+        type: "lesson",
         description: "Toplogical Sort",
         completed: false,
         locked: true,
@@ -444,6 +500,7 @@ const units: Unit[] = [
     nodes: [
       {
         title: "Lesson 1",
+        type: "lesson",
         description: "Activities",
         completed: false,
         locked: true,
@@ -455,6 +512,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "",
+        type: "lesson",
       },
       {
         title: "Lesson 3",
@@ -462,6 +520,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "",
+        type: "lesson",
       },
       {
         title: "Lesson 4",
@@ -469,6 +528,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "",
+        type: "lesson",
       },
       {
         title: "Lesson 5",
@@ -476,6 +536,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "",
+        type: "lesson",
       },
       {
         title: "Lesson 6",
@@ -483,6 +544,7 @@ const units: Unit[] = [
         completed: false,
         locked: true,
         link: "",
+        type: "lesson",
       },
     ],
   },
