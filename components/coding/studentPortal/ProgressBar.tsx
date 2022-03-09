@@ -14,7 +14,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   };
   return (
     <div>
-      <div className="h-8 w-full bg-gray-300 m-32 border rounded-full">
+      <div className="h-8 w-full bg-gray-300 border rounded-full">
         <div style={fillerStyles} className="text-right bg-rattata">
           <span className="p-5 text-white font-bold text-center">{`${completed}%`}</span>
         </div>
