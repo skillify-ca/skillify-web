@@ -33,7 +33,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               </div>
             </div>
           </a>
-          <a className={`p-4 border-l-4`} href="/math/profile">
+          <a className={`p-4 border-l-4`} href="/classroom">
             <div className="flex flex-wrap">
               <img
                 className="w-8 h-8 mr-4"
