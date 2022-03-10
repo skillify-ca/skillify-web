@@ -51,8 +51,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
             <AuthProvider>
               {Component.auth ? (
                 <Auth>
-                  <Navbar/>
-                  getLayout(<Component {...pageProps} />)
+                  {getLayout(<Component {...pageProps} />)}
                 </Auth>
               ) : (
                 getLayout(<Component {...pageProps} />)
