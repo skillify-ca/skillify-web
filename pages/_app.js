@@ -37,6 +37,9 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
     isMobile = window.innerWidth < 600;
   }
 
+  // Use the layout defined at the page level, if available
+  const getLayout = Component.getLayout || ((page) => page)
+
   // TODO remove setting Component.Auth
   return (
     <ApolloProvider client={client}>
@@ -49,10 +52,10 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
               {Component.auth ? (
                 <Auth>
                   <Navbar/>
-                  <Component {...pageProps} />
+                  getLayout(<Component {...pageProps} />)
                 </Auth>
               ) : (
-                <Component {...pageProps} />
+                getLayout(<Component {...pageProps} />)
               )}
             </AuthProvider>
           </ReduxProvider>
