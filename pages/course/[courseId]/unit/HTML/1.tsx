@@ -40,49 +40,47 @@ const HTML1 = () => {
                 </div>
               </div>
             </div>
-            {true && (
-              <div>
-                <p className="font-bold mt-12">Assignment</p>
+            <div>
+              <p className="font-bold mt-12">Assignment</p>
 
-                <p className="my-4">
-                  After you complete the tutorial create your own index.html
-                  file and build a simple web page. Your page should include
-                  texts, images and lists. Upload it to group channel on Slack.
-                </p>
-                <p className="font-bold mt-12">Previous Assignments</p>
-                <p className="my-4">
-                  You can look at how these pages were build by navigating to
-                  the page and right-clicking on it. Select View Page Source to
-                  see the HTML code that makes up the web page.
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <a
-                      className="underline text-charmander"
-                      href="/coding/foodblog.html"
-                    >
-                      Food Blog
-                    </a>
-                    <iframe
-                      src="/coding/foodblog.html"
-                      className="w-full h-96 p-4 bg-white shadow-lg border-4 border-purple-400"
-                    />
-                  </div>
-                  <div>
-                    <a
-                      className="underline text-charmander"
-                      href="/coding/nba.html"
-                    >
-                      NBA Blog
-                    </a>
-                    <iframe
-                      src="/coding/nba.html"
-                      className="w-full h-96 p-4 bg-white shadow-lg border-4 border-purple-400"
-                    />
-                  </div>
+              <p className="my-4">
+                After you complete the tutorial create your own index.html file
+                and build a simple web page. Your page should include texts,
+                images and lists. Upload it to group channel on Slack.
+              </p>
+              <p className="font-bold mt-12">Previous Assignments</p>
+              <p className="my-4">
+                You can look at how these pages were build by navigating to the
+                page and right-clicking on it. Select View Page Source to see
+                the HTML code that makes up the web page.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <a
+                    className="underline text-charmander"
+                    href="/coding/foodblog.html"
+                  >
+                    Food Blog
+                  </a>
+                  <iframe
+                    src="/coding/foodblog.html"
+                    className="w-full h-96 p-4 bg-white shadow-lg border-4 border-purple-400"
+                  />
+                </div>
+                <div>
+                  <a
+                    className="underline text-charmander"
+                    href="/coding/nba.html"
+                  >
+                    NBA Blog
+                  </a>
+                  <iframe
+                    src="/coding/nba.html"
+                    className="w-full h-96 p-4 bg-white shadow-lg border-4 border-purple-400"
+                  />
                 </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>
