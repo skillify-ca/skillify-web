@@ -18,21 +18,22 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               <p className="font-medium ml-4">Student</p>
             </div>
           </div>
-          <div className={`"border-charmander text-charmander"`}>
-            <div className={`p-4 border-l-4 border-charmander text-charmander`}>
-              <div className="flex flex-wrap">
-                <img
-                  className="w-8 h-8 mr-4"
-                  src="/images/dashBoardActive.svg"
-                />
-                Dashboard
+          <a className={``} href="/studentPortal">
+            <div className={`"border-charmander text-charmander"`}>
+              <div
+                className={`p-4 border-l-4 border-charmander text-charmander`}
+              >
+                <div className="flex flex-wrap">
+                  <img
+                    className="w-8 h-8 mr-4"
+                    src="/images/dashBoardActive.svg"
+                  />
+                  Dashboard
+                </div>
               </div>
             </div>
-          </div>
-          <a
-            className={`p-4 border-l-4`}
-            href="https://www.skillify.ca/profile"
-          >
+          </a>
+          <a className={`p-4 border-l-4`} href="/classroom">
             <div className="flex flex-wrap">
               <img
                 className="w-8 h-8 mr-4"
@@ -45,7 +46,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
           <a
             className={`p-4 border-l-4
             `}
-            href="https://www.skillify.ca/profile"
+            href="/math/profile"
           >
             <div className="flex flex-wrap">
               <img className="w-8 h-8 mr-4" src="/images/profileInactive.svg" />
