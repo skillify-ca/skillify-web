@@ -24,7 +24,7 @@ export default function SignInPage() {
         <div className="flex flex-col items-center gap-8">
           <img
             className="w-16 h-16"
-            src="/images/logo.png"
+            src="/images/logo.svg"
             alt="Skillify Logo"
           />
           <p className="text-4xl font-bold text-center"> Welcome to Skillify</p>

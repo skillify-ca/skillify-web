@@ -22,7 +22,7 @@ const MainDashboardPage = ({ data, giza_data }) => {
       <Navbar />
       <div className="flex flex-col justify-center bg-gray-700 sm:flex-row sm:justify-between">
         <div className="p-4 bg-gray-700">
-          <img src="/images/djacob/logo.png" />
+          <img src="/images/djacob/logo.svg" />
         </div>
         <div className="flex flex-col items-center gap-4 p-4 bg-gray-700">
           <h2 className="font-bold text-center text-gray-50">

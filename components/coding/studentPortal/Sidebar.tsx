@@ -11,7 +11,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
           <div className="p-2 flex">
             <div>
               {" "}
-              <img className="w-12 h-12" src="/images/logo.png" />
+              <img className="w-16 h-16" src="/images/logo.svg" />
             </div>
             <div>
               <p className="font-bold ml-4">Hey There!</p>

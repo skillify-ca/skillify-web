@@ -40,7 +40,7 @@ const HomePage = () => {
                         <span className="sr-only">Workflow</span>
                         <img
                           className="h-8 w-auto sm:h-10"
-                          src="/images/logo.png"
+                          src="/images/logo.svg"
                         />
                       </a>
                       <div className="-mr-2 flex items-center md:hidden">
@@ -75,7 +75,7 @@ const HomePage = () => {
                       <div>
                         <img
                           className="h-8 w-auto"
-                          src="/images/logo.png"
+                          src="/images/logo.svg"
                           alt=""
                         />
                       </div>
