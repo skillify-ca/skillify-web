@@ -78,9 +78,7 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
             } flex flex-col items-center col-span-2 w-full`}
           >
             <div
-              className={`h-16 w-1 ${
-                completed ? "bg-green-500" : "bg-gray-500"
-              }`}
+              className={`h-16 w-1 ${completed ? "bg-turtwig" : "bg-gray-500"}`}
             />
           </div>
         </div>
