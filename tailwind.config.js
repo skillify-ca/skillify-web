@@ -24,6 +24,7 @@ module.exports = {
         rattata: "#7678ED",
         pikachu: "#F7B801",
         murkrow: "#18124D",
+        turtwig: "#5BB84C",
       },
       backgroundImage: (theme) => ({
         "email-capture": "url('/images/landingPage/Rectangle5.png')",
@@ -41,8 +42,8 @@ module.exports = {
       fontFamily: {
         sans: ["Lexend", ...defaultTheme.fontFamily.sans],
       },
-      gridTemplateColumns:  {
-        'resource-row': '100px 1fr 236px',
+      gridTemplateColumns: {
+        "resource-row": "100px 1fr 236px",
       },
       keyframes: {
         shake: {

@@ -5,7 +5,7 @@ export type SidebarProps = {};
 export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   return (
     //Full width then restrict in page
-    <div className="">
+    <div className="bg-white h-full">
       <div className="grid grid-rows-2 place-content-between ">
         <div className="grid grid-rows-4 gap-y-8 ">
           <div className="p-2 flex">
