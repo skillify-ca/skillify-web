@@ -1,0 +1,126 @@
+import React from "react";
+import Card, { CardData } from "../../../../../components/coding/Card";
+import CSSQuiz from "../../../../../components/coding/CSSQuiz";
+import Navbar from "../../../../../components/ui/Navbar";
+import ResourceRow from "../../../../../components/coding/studentPortal/ResourceRow";
+import { Sidebar } from "../../../../../components/coding/studentPortal/Sidebar";
+import { Button } from "../../../../../components/ui/Button";
+
+const CSS2 = () => {
+  const assignments = [
+    { link: "/coding/css/sujee-week-1/index.html", title: "Sujee-Week1" },
+    { link: "/coding/css/mau-week-1/index.html", title: "Mau-Week1" },
+    { link: "/coding/css/vinon-week-1/indexflower.html", title: "Vinon-Week1" },
+    { link: "/coding/css/jacky-week-1/index.html", title: "Jacky-Week1" },
+    { link: "/coding/css/mithulan-week-1/index.html", title: "Mithulan-Week1" },
+  ];
+  const data: CardData[] = [
+    {
+      title: "CSS Tricks: Flexbox",
+      image: "/images/ResourceRow.svg",
+      link: "https://css-tricks.com/snippets/css/a-guide-to-flexbox/",
+      description: "Start at the beginning and stop at CSS Overflow.",
+    },
+    {
+      title: "CSS Tricks: Grid",
+      image: "/images/ResourceRow.svg",
+      link: "https://css-tricks.com/snippets/css/complete-guide-grid/",
+      description: "Complete all levels.",
+    },
+    {
+      title: "Codecademy CSS Course",
+      image: "/images/ResourceRow.svg",
+      link: "https://www.codecademy.com/learn/learn-css",
+      description: "Complete all levels.",
+    },
+  ];
+  return (
+    <>
+      <Navbar />
+      <div className="grid grid-cols-5 h-full">
+        <Sidebar />
+        <div className="col-span-4">
+          <div className="grid grid-cols-1 p-8 space-y-4 bg-gray-100 h-full">
+            <h1 className="text-5xl font-bold">Reading</h1>
+            <div className="grid grid-cols-1">
+              <p className="mt-4">Click the link to acess the readings</p>
+              <div className="pt-4 ">
+                <div className="grid grid-cols-1">
+                  {data.map((it) => (
+                    <div className="w-full p-4">
+                      <ResourceRow
+                        title={it.title}
+                        image={it.image}
+                        description={it.description}
+                        link={it.link}
+                        disabled={false}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="flex sm:justify-end mt-12 h-full">
+                <a href={""}>
+                  <Button label="Continue" disabled={false} />
+                </a>
+              </div>
+              {false && (
+                <div>
+                  <div className="p-4">
+                    <p className="font-bold">Quiz</p>
+                    <CSSQuiz />
+                  </div>
+                  <div className="p-4">
+                    <p className="font-bold">Assignment</p>
+                    <div className="flex flex-col p-4 mt-4 space-y-2 bg-blue-100 shadow-lg rounded-xl">
+                      <img
+                        src="/images/coding/units/css/layout1.png"
+                        className="w-64"
+                      />
+                      <p>
+                        Use styled divs to create this French Flag layout in
+                        your blog assignment. Place your navigation menu in the
+                        top green header and your main blog content inside of
+                        the grey div. After you have laid out all your content,
+                        remove all the background-colour styling from your divs
+                        so that you have a consistent background and a
+                        professional looking website.
+                      </p>
+                    </div>
+                  </div>
+                  <img
+                    src="/images/coding/units/css/browsers.svg"
+                    className="w-96"
+                  />
+                  <div className="flex flex-col">
+                    <p className="font-bold">Previous Assignments</p>
+                    <p className="">
+                      You can look at how these pages were build by navigating
+                      to the page and right-clicking on it. Select View Page
+                      Source to see the HTML code that makes up the web page.
+                    </p>
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                      {assignments.map((it) => (
+                        <div>
+                          <a className="text-blue-600 underline" href={it.link}>
+                            {it.title}
+                          </a>
+                          <iframe
+                            src={it.link}
+                            className="w-full p-4 bg-white border-4 border-purple-400 shadow-lg h-96"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default CSS2;
