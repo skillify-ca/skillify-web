@@ -8,7 +8,7 @@ import ResourceRow from "../../../../../components/coding/studentPortal/Resource
 import { Sidebar } from "../../../../../components/coding/studentPortal/Sidebar";
 import { Button } from "../../../../../components/ui/Button";
 
-const CSS = () => {
+const CSS1 = () => {
   const assignments = [
     { link: "/coding/css/sujee-week-1/index.html", title: "Sujee-Week1" },
     { link: "/coding/css/mau-week-1/index.html", title: "Mau-Week1" },
@@ -78,81 +78,60 @@ const CSS = () => {
                 </div>
               </div>
               <div className="flex sm:justify-end mt-12 h-full">
-                <a href={""}>
+                <a href={"/course/coding/unit/CSS/2"}>
                   <Button label="Continue" disabled={false} />
                 </a>
               </div>
+
               {false && (
-                <div className="flex flex-col ">
+                <div>
                   <div className="p-4">
-                    <p className="font-bold">Readings</p>
-                    <div className="flex flex-col w-full p-4 space-y-2 text-blue-600 underline bg-blue-100 shadow-lg rounded-xl">
-                      <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">
-                        CSS Tricks: Flexbox
-                      </a>
-                      <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">
-                        CSS Tricks: Grid
-                      </a>
-                      <a href="https://www.codecademy.com/learn/learn-css">
-                        Codecademy CSS Course{" "}
-                      </a>
-                    </div>
-                  </div>{" "}
-                  {false && (
-                    <div>
-                      <div className="p-4">
-                        <p className="font-bold">Quiz</p>
-                        <CSSQuiz />
-                      </div>
-                      <div className="p-4">
-                        <p className="font-bold">Assignment</p>
-                        <div className="flex flex-col p-4 mt-4 space-y-2 bg-blue-100 shadow-lg rounded-xl">
-                          <img
-                            src="/images/coding/units/css/layout1.png"
-                            className="w-64"
-                          />
-                          <p>
-                            Use styled divs to create this French Flag layout in
-                            your blog assignment. Place your navigation menu in
-                            the top green header and your main blog content
-                            inside of the grey div. After you have laid out all
-                            your content, remove all the background-colour
-                            styling from your divs so that you have a consistent
-                            background and a professional looking website.
-                          </p>
-                        </div>
-                      </div>
+                    <p className="font-bold">Quiz</p>
+                    <CSSQuiz />
+                  </div>
+                  <div className="p-4">
+                    <p className="font-bold">Assignment</p>
+                    <div className="flex flex-col p-4 mt-4 space-y-2 bg-blue-100 shadow-lg rounded-xl">
                       <img
-                        src="/images/coding/units/css/browsers.svg"
-                        className="w-96"
+                        src="/images/coding/units/css/layout1.png"
+                        className="w-64"
                       />
-                      <div className="flex flex-col">
-                        <p className="font-bold">Previous Assignments</p>
-                        <p className="">
-                          You can look at how these pages were build by
-                          navigating to the page and right-clicking on it.
-                          Select View Page Source to see the HTML code that
-                          makes up the web page.
-                        </p>
-                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                          {assignments.map((it) => (
-                            <div>
-                              <a
-                                className="text-blue-600 underline"
-                                href={it.link}
-                              >
-                                {it.title}
-                              </a>
-                              <iframe
-                                src={it.link}
-                                className="w-full p-4 bg-white border-4 border-purple-400 shadow-lg h-96"
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      </div>
+                      <p>
+                        Use styled divs to create this French Flag layout in
+                        your blog assignment. Place your navigation menu in the
+                        top green header and your main blog content inside of
+                        the grey div. After you have laid out all your content,
+                        remove all the background-colour styling from your divs
+                        so that you have a consistent background and a
+                        professional looking website.
+                      </p>
                     </div>
-                  )}
+                  </div>
+                  <img
+                    src="/images/coding/units/css/browsers.svg"
+                    className="w-96"
+                  />
+                  <div className="flex flex-col">
+                    <p className="font-bold">Previous Assignments</p>
+                    <p className="">
+                      You can look at how these pages were build by navigating
+                      to the page and right-clicking on it. Select View Page
+                      Source to see the HTML code that makes up the web page.
+                    </p>
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                      {assignments.map((it) => (
+                        <div>
+                          <a className="text-blue-600 underline" href={it.link}>
+                            {it.title}
+                          </a>
+                          <iframe
+                            src={it.link}
+                            className="w-full p-4 bg-white border-4 border-purple-400 shadow-lg h-96"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
@@ -163,4 +142,4 @@ const CSS = () => {
   );
 };
 
-export default CSS;
+export default CSS1;
