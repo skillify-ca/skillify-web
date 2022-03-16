@@ -7,6 +7,7 @@ import { MultipleChoiceSentence } from "../../../../../components/questionTypes/
 import ResourceRow from "../../../../../components/coding/studentPortal/ResourceRow";
 import { Sidebar } from "../../../../../components/coding/studentPortal/Sidebar";
 import { Button } from "../../../../../components/ui/Button";
+import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
 
 const CSS1 = () => {
   const assignments = [
@@ -48,10 +49,11 @@ const CSS1 = () => {
   return (
     <>
       <Navbar />
-      <div className="grid grid-cols-5 h-full">
+      <div className="grid grid-cols-8 h-full">
         <Sidebar />
-        <div className="col-span-4">
+        <div className="col-span-7">
           <div className="grid grid-cols-1 p-8 space-y-4 bg-gray-100">
+            <ProgressBar completed={100} />
             <h1 className="text-5xl font-bold">CSS 1</h1>
             <div className="grid grid-cols-1">
               <p className="font-bold">Lesson</p>
