@@ -1,8 +1,5 @@
 import React from "react";
-import Card, { CardData } from "../../../../../components/coding/Card";
-import CSSQuiz from "../../../../../components/coding/CSSQuiz";
 import Navbar from "../../../../../components/ui/Navbar";
-import ResourceRow from "../../../../../components/coding/studentPortal/ResourceRow";
 import { Sidebar } from "../../../../../components/coding/studentPortal/Sidebar";
 import { Button } from "../../../../../components/ui/Button";
 import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
