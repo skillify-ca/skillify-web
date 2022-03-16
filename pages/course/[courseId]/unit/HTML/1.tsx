@@ -11,9 +11,9 @@ const HTML1 = () => {
       <Navbar />
 
       <div className="bg-white p-8 m-8 space-y-4">
-        <div className="grid grid-cols-5 gap-x-8 pt-16">
+        <div className="grid grid-cols-8 gap-x-8 pt-16">
           <Sidebar />
-          <div className="col-span-4 ">
+          <div className="col-span-7 ">
             <div className="mx-20 mb-20">
               <ProgressBar completed={100} />
             </div>
