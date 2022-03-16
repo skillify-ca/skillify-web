@@ -41,7 +41,7 @@ const CSS2 = () => {
         <Sidebar />
         <div className="col-span-4">
           <div className="grid grid-cols-1 p-8 space-y-4 bg-gray-100 h-full">
-            <h1 className="text-5xl font-bold">Reading</h1>
+            <h1 className="text-5xl font-bold">Readings</h1>
             <div className="grid grid-cols-1">
               <p className="mt-4">Click the link to acess the readings</p>
               <div className="pt-4 ">

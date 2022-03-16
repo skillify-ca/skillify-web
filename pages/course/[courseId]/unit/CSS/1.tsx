@@ -78,7 +78,7 @@ const CSS1 = () => {
                 </div>
               </div>
               <div className="flex sm:justify-end mt-12 h-full">
-                <a href={"https://www.skillify.ca/course/coding/unit/CSS/2"}>
+                <a href={"/course/coding/unit/CSS/2"}>
                   <Button label="Continue" disabled={false} />
                 </a>
               </div>
