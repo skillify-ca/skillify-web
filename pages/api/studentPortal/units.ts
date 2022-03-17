@@ -169,6 +169,9 @@ const units: Unit[] = [
       },
     ],
   },
+];
+
+const advancedUnits = [
   {
     title: "React",
     nodes: [
