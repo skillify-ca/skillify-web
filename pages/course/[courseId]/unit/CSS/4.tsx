@@ -4,7 +4,7 @@ import { Sidebar } from "../../../../../components/coding/studentPortal/Sidebar"
 import { Button } from "../../../../../components/ui/Button";
 import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
 
-const CSS3 = () => {
+const CSS4 = () => {
   return (
     <>
       <Navbar />
@@ -17,27 +17,19 @@ const CSS3 = () => {
               <div className="pt-4 ">
                 <div className="grid grid-cols-1">
                   <div className="flex w-full p-4 justify-center">
-                    <img src="/images/CssAchievement.svg" />
+                    <img src="/images/studentPortal/explore.svg" />
                   </div>
-                  <h1 className="text-charmander font-bold text-center text-xl">
+                  <h1 className="text-charmander font-bold text-center text-xl mt-4">
                     {" "}
-                    You have unlocked a new achievement!
+                    Ready to test your CSS knowledge?
                   </h1>
-                  <p className="text-center">Lesson Complete</p>
-                  <div className="mt-24">
-                    <p className="text-center mr-80">Up Next:</p>
-                    <div className="grid grid-cols-1 place-items-center">
-                      <div className="bg-white px-36 p-12 border-2 border-gray-200 rounded-lg mt-4">
-                        <p className="font-bold text-xl text-center">Quiz</p>
-                        <p className="text-center">What is CSS?</p>
-                      </div>
-                    </div>
-                  </div>
+                  <p className="text-center">10 Questions</p>
+                  <p className="text-center mt-4">Begin the quiz now!</p>
                 </div>
               </div>
               <div className="flex sm:justify-end mt-12 h-full">
-                <a href={"/course/coding/unit/CSS/4"}>
-                  <Button label="Continue" disabled={false} />
+                <a href={""}>
+                  <Button label="Start Quiz" disabled={false} />
                 </a>
               </div>
             </div>
@@ -48,4 +40,4 @@ const CSS3 = () => {
   );
 };
 
-export default CSS3;
+export default CSS4;
