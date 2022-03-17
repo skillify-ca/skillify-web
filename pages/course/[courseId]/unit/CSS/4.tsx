@@ -17,9 +17,9 @@ const CSS4 = () => {
               <div className="pt-4 ">
                 <div className="grid grid-cols-1">
                   <div className="flex w-full p-4 justify-center">
-                    <img src="/images/CssAchievement.svg" />
+                    <img src="/images/studentPortal/explore.svg" />
                   </div>
-                  <h1 className="text-charmander font-bold text-center text-xl">
+                  <h1 className="text-charmander font-bold text-center text-xl mt-4">
                     {" "}
                     Ready to test your CSS knowledge?
                   </h1>
