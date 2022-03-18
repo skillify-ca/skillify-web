@@ -9,7 +9,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
 
   return (
     //Full width then restrict in page
-    <div className="flex flex-col">
+    <div className="dark:text-white flex flex-col">
       <div className="grid grid-rows-4">
         <div className="p-4 flex">
           {false && (

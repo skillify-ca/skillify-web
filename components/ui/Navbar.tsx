@@ -12,7 +12,7 @@ export default function Navbar({
 
   return (
     // <!-- This example requires Tailwind CSS v2.0+ -->
-    <nav className="bg-white w-full border-b-2 border-gray-200">
+    <nav className="bg-white dark:bg-gray-900 w-full border-b-2 border-gray-200">
       <div className="mx-auto px-2 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">

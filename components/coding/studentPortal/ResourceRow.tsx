@@ -17,7 +17,7 @@ export const ResourceRow: React.FC<ResourceRowProps> = ({
   link,
 }: ResourceRowProps) => {
   return (
-    <div className="bg-white grid grid-cols-1 sm:grid-cols-resource-row shadow-lg p-6">
+    <div className="bg-white dark:bg-gray-900 grid grid-cols-1 sm:grid-cols-resource-row shadow-lg p-6">
       <div className="flex sm:justify-center items-center">
         <img src={image} className="h-16 w-16 " />
       </div>

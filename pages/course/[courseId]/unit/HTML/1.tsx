@@ -10,11 +10,9 @@ const HTML1 = () => {
   return (
     <>
       <div className="space-y-4">
-        <div className="grid grid-cols-8 gap-x-8">
-          <div className="col-span-8">
-            <div className="mb-4">
-              <ProgressBar completed={100} />
-            </div>
+        <div className="grid grid-cols-1 gap-x-8">
+          <div className="">
+            <ProgressBar completed={100} />
             <h1 className="font-bold text-5xl">HTML</h1>
             <div className="space-y-4 ">
               <div className="flex flex-col space-y-4 mt-12">
