@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
+import Navbar from "../../ui/Navbar";
 import Sidebar from "./Sidebar";
 
 export const Layout: React.FC = ({ children }) => {
+  const [active, setActive] = useState(false);
+
   return (
-    <div className="grid grid-cols-12">
-      <div className="hidden lg:flex col-span-2">
+    <div className="">
+      <div className="col-span-12 flex z-20 fixed w-full">
+        <Navbar active={active} setActive={setActive} />
+      </div>
+      <div className="hidden lg:flex w-48 fixed mt-16 bg-white h-full">
         <Sidebar />
       </div>
-      <div className="grid grid-cols-1 col-span-12 lg:col-span-10 gap-4 bg-white shadow-lg p-8">
+
+      <div
+        className={`absolute z-10 mt-16 lg:hidden w-48 ${
+          active ? "left-0" : "-left-48"
+        } h-full bg-white lg:w-0 transition-all transform duration-500 ease-in-out`}
+      >
+        <Sidebar />
+      </div>
+      <div
+        className={`transition-all transform duration-500 ease-in-out grid grid-cols-1 gap-4 bg-gray-100 pt-20 pb-16 lg:pl-8 px-4 lg:ml-48 ${
+          active ? "" : ""
+        } `}
+      >
         <main>{children}</main>
       </div>
     </div>

@@ -19,7 +19,3 @@ const Profile = () => {
 export default Profile;
 
 Profile.auth = true;
-
-Profile.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>;
-};

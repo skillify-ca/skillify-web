@@ -13,7 +13,3 @@ export default function ClassroomPage() {
     </div>
   );
 }
-
-ClassroomPage.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>;
-};
