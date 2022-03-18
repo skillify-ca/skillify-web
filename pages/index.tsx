@@ -143,3 +143,7 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+HomePage.getLayout = function getLayout(page) {
+  return <div>{page}</div>;
+};

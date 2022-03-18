@@ -13,6 +13,8 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import Navbar from "../components/ui/Navbar"
+import Layout from "../components/coding/studentPortal/Layout";
+
 
 function MyApp({ Component, pageProps: { ...pageProps } }) {
   const router = useRouter();
@@ -38,7 +40,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
   }
 
   // Use the layout defined at the page level, if available
-  const getLayout = Component.getLayout || ((page) => page)
+  const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>)
 
   // TODO remove setting Component.Auth
   return (

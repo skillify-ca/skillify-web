@@ -98,7 +98,3 @@ const HTML1 = () => {
 };
 
 export default HTML1;
-
-HTML1.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>;
-};
