@@ -16,7 +16,7 @@ class MyDocument extends Document {
   }
 
   bodyStyle: CSSProperties = {
-    backgroundColor: "#E5E7EB",
+    backgroundColor: "#f3f4f6",
   };
 
   render() {

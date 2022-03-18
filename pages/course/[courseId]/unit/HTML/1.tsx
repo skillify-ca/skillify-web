@@ -9,17 +9,14 @@ import Layout from "../../../../../components/coding/studentPortal/Layout";
 const HTML1 = () => {
   return (
     <>
-      <div className="bg-white p-8 space-y-4">
+      <div className="space-y-4">
         <div className="grid grid-cols-8 gap-x-8">
-          <div className="hidden">
-            <Sidebar />
-          </div>
           <div className="col-span-8">
             <div className="mb-4">
               <ProgressBar completed={100} />
             </div>
             <h1 className="font-bold text-5xl">HTML</h1>
-            <div className="bg-white space-y-4 ">
+            <div className="space-y-4 ">
               <div className="flex flex-col space-y-4 mt-12">
                 <p>
                   HTML is a basic language that all web pages are built on top
@@ -42,7 +39,7 @@ const HTML1 = () => {
                 </div>
               </div>
             </div>
-            <div className="flex sm:justify-end mt-12 h-full">
+            <div className="flex sm:justify-end mt-12">
               <a href={""}>
                 <Button label="Continue" disabled={false} />
               </a>
