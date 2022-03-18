@@ -4,17 +4,18 @@ import ProgressBar from "../../../../../components/coding/studentPortal/Progress
 import Navbar from "../../../../../components/ui/Navbar";
 import { ResourceRow } from "../../../../../components/coding/studentPortal/ResourceRow";
 import { Button } from "../../../../../components/ui/Button";
+import Layout from "../../../../../components/coding/studentPortal/Layout";
 
 const HTML1 = () => {
   return (
     <>
-      <Navbar />
-
-      <div className="bg-white p-8 m-8 space-y-4">
-        <div className="grid grid-cols-8 gap-x-8 pt-16">
-          <Sidebar />
-          <div className="col-span-7 ">
-            <div className="mx-20 mb-20">
+      <div className="bg-white p-8 space-y-4">
+        <div className="grid grid-cols-8 gap-x-8">
+          <div className="hidden">
+            <Sidebar />
+          </div>
+          <div className="col-span-8">
+            <div className="mb-4">
               <ProgressBar completed={100} />
             </div>
             <h1 className="font-bold text-5xl">HTML</h1>
@@ -97,3 +98,7 @@ const HTML1 = () => {
 };
 
 export default HTML1;
+
+HTML1.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};

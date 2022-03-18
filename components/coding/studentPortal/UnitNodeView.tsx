@@ -45,9 +45,9 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
         <div
           className={`${
             active
-              ? "px-4 sm:px-0 py-4 border-2 flex flex-col sm:grid sm:grid-cols-12"
+              ? "px-4 sm:px-0 py-4 border-2 flex flex-col sm:grid sm:grid-cols-12 bg-white"
               : "grid grid-cols-12"
-          } bg-white `}
+          }  `}
         >
           <div className="col-span-2 flex flex-col items-center">
             <div className="flex  items-center rounded-full">
