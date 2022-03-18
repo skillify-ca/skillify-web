@@ -17,7 +17,7 @@ export const Layout: React.FC = ({ children }) => {
       <div
         className={`absolute z-10 mt-16 lg:hidden w-48 ${
           active ? "left-0" : "-left-48"
-        } h-full bg-white lg:w-0 transition-all transform duration-500 ease-in-out`}
+        } h-full bg-white dark:bg-gray-900 lg:w-0 transition-all transform duration-500 ease-in-out`}
       >
         <Sidebar />
       </div>
