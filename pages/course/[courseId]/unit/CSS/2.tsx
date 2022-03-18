@@ -36,35 +36,31 @@ const CSS2 = () => {
   ];
   return (
     <>
-      <Navbar />
-      <div className="grid grid-cols-8 h-full">
-        <Sidebar />
-        <div className="col-span-7">
-          <div className="grid grid-cols-1 p-8 space-y-4 bg-gray-100 h-full">
-            <ProgressBar completed={100} />
-            <h1 className="text-5xl font-bold">Readings</h1>
-            <div className="grid grid-cols-1">
-              <p className="mt-4">Click the link to acess the readings</p>
-              <div className="pt-4 ">
-                <div className="grid grid-cols-1">
-                  {data.map((it) => (
-                    <div className="w-full p-4">
-                      <ResourceRow
-                        title={it.title}
-                        image={it.image}
-                        description={it.description}
-                        link={it.link}
-                        disabled={false}
-                      />
-                    </div>
-                  ))}
-                </div>
+      <div className="col-span-7">
+        <div className="grid grid-cols-1 p-8 space-y-4 bg-gray-100 h-full">
+          <ProgressBar completed={100} />
+          <h1 className="text-5xl font-bold">Readings</h1>
+          <div className="grid grid-cols-1">
+            <p className="mt-4">Click the link to acess the readings</p>
+            <div className="pt-4 ">
+              <div className="grid grid-cols-1">
+                {data.map((it) => (
+                  <div className="w-full p-4">
+                    <ResourceRow
+                      title={it.title}
+                      image={it.image}
+                      description={it.description}
+                      link={it.link}
+                      disabled={false}
+                    />
+                  </div>
+                ))}
               </div>
-              <div className="flex sm:justify-end mt-12 h-full">
-                <a href={"/course/coding/unit/CSS/3"}>
-                  <Button label="Continue" disabled={false} />
-                </a>
-              </div>
+            </div>
+            <div className="flex sm:justify-end mt-12 h-full">
+              <a href={"/course/coding/unit/CSS/3"}>
+                <Button label="Continue" disabled={false} />
+              </a>
             </div>
           </div>
         </div>
