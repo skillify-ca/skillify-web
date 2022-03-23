@@ -455,7 +455,7 @@ export const interviewUnits = [
     title: "Algorithms 2",
     nodes: [
       {
-        title: "Lesson 4",
+        title: "Lesson 1",
         description: "Merge Intervals",
         type: "lesson",
         completed: false,
@@ -463,7 +463,7 @@ export const interviewUnits = [
         link: "",
       },
       {
-        title: "Lesson 5",
+        title: "Lesson 2",
         description: "Cyclic Sort",
         type: "lesson",
         completed: false,
@@ -471,7 +471,7 @@ export const interviewUnits = [
         link: "",
       },
       {
-        title: "Lesson 6",
+        title: "Lesson 3",
         description: "In-place reversal of linked list",
         completed: false,
         type: "lesson",
@@ -480,7 +480,7 @@ export const interviewUnits = [
       },
 
       {
-        title: "Lesson 9",
+        title: "Lesson 4",
         description: "Two Heaps",
         type: "lesson",
         completed: false,
@@ -488,7 +488,7 @@ export const interviewUnits = [
         link: "",
       },
       {
-        title: "Lesson 10",
+        title: "Lesson 5",
         description: "Subsets",
         completed: false,
         locked: true,
@@ -497,7 +497,7 @@ export const interviewUnits = [
       },
 
       {
-        title: "Lesson 12",
+        title: "Lesson 6",
         description: "Top K Elements",
         type: "lesson",
         completed: false,
@@ -505,7 +505,7 @@ export const interviewUnits = [
         link: "",
       },
       {
-        title: "Lesson 13",
+        title: "Lesson 7",
         type: "lesson",
         description: "K-way Merge",
         completed: false,
@@ -513,7 +513,7 @@ export const interviewUnits = [
         link: "",
       },
       {
-        title: "Lesson 14",
+        title: "Lesson 8",
         type: "lesson",
         description: "Toplogical Sort",
         completed: false,
