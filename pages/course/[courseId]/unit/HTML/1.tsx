@@ -24,7 +24,7 @@ const HTML1 = () => {
                   the possible HTML elements over time.
                 </p>
                 <h1 className="font-bold">Resources</h1>
-                <div className="p-4">
+                <div className="">
                   <ResourceRow
                     title={"W3Schools HTML tutorial"}
                     description={
