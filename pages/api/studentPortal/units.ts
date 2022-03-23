@@ -11,8 +11,7 @@ export interface Unit {
   nodes: UnitNode[];
 }
 
-// TOOD: fetch this from the backend instead
-const units: Unit[] = [
+export const introUnits: Unit[] = [
   {
     title: "Introduction",
     nodes: [
@@ -179,7 +178,7 @@ const units: Unit[] = [
   },
 ];
 
-const advancedUnits = [
+export const reactUnits = [
   {
     title: "React",
     nodes: [
@@ -275,7 +274,7 @@ const advancedUnits = [
     ],
   },
   {
-    title: "Fullstack",
+    title: "Backend",
     nodes: [
       {
         title: "Lesson 1",
@@ -283,7 +282,7 @@ const advancedUnits = [
         type: "lesson",
         completed: false,
         locked: true,
-        link: "",
+        link: "course/coding/unit/React/1",
       },
       {
         title: "Lesson 2",
@@ -291,7 +290,7 @@ const advancedUnits = [
         type: "lesson",
         completed: false,
         locked: true,
-        link: "",
+        link: "course/coding/unit/React/1",
       },
       {
         title: "Lesson 3",
@@ -299,7 +298,7 @@ const advancedUnits = [
         type: "lesson",
         completed: false,
         locked: true,
-        link: "",
+        link: "course/coding/unit/React/1",
       },
       {
         title: "Assignment",
@@ -307,10 +306,13 @@ const advancedUnits = [
         type: "lesson",
         completed: false,
         locked: true,
-        link: "",
+        link: "course/coding/unit/React/1",
       },
     ],
   },
+];
+
+export const interviewUnits = [
   {
     title: "Data Structures",
     nodes: [
@@ -332,7 +334,7 @@ const advancedUnits = [
       },
       {
         title: "Lesson 3",
-        description: "Hash Maps",
+        description: "Maps",
         completed: false,
         locked: true,
         type: "lesson",
@@ -356,7 +358,7 @@ const advancedUnits = [
       },
       {
         title: "Lesson 6",
-        description: "HashMaps",
+        description: "Graphs",
         type: "lesson",
         completed: false,
         locked: true,
@@ -415,7 +417,43 @@ const advancedUnits = [
         link: "",
         type: "lesson",
       },
-
+      {
+        title: "Lesson 4",
+        description: "Tree BFS",
+        completed: false,
+        locked: true,
+        link: "",
+        type: "lesson",
+      },
+      {
+        title: "Lesson 5",
+        description: "Tree DFS",
+        type: "lesson",
+        completed: false,
+        locked: true,
+        link: "",
+      },
+      {
+        title: "Lesson 6",
+        description: "Modified Binary Search",
+        completed: false,
+        locked: true,
+        type: "lesson",
+        link: "",
+      },
+      {
+        title: "Lesson 7",
+        type: "lesson",
+        description: "Dynamic Programming",
+        completed: false,
+        locked: true,
+        link: "",
+      },
+    ],
+  },
+  {
+    title: "Algorithms 2",
+    nodes: [
       {
         title: "Lesson 4",
         description: "Merge Intervals",
@@ -440,22 +478,7 @@ const advancedUnits = [
         locked: true,
         link: "",
       },
-      {
-        title: "Lesson 7",
-        description: "Tree BFS",
-        completed: false,
-        locked: true,
-        link: "",
-        type: "lesson",
-      },
-      {
-        title: "Lesson 8",
-        description: "Tree DFS",
-        type: "lesson",
-        completed: false,
-        locked: true,
-        link: "",
-      },
+
       {
         title: "Lesson 9",
         description: "Two Heaps",
@@ -472,14 +495,7 @@ const advancedUnits = [
         type: "lesson",
         link: "",
       },
-      {
-        title: "Lesson 11",
-        description: "Modified Binary Search",
-        completed: false,
-        locked: true,
-        type: "lesson",
-        link: "",
-      },
+
       {
         title: "Lesson 12",
         description: "Top K Elements",
@@ -506,6 +522,9 @@ const advancedUnits = [
       },
     ],
   },
+];
+
+export const androidUnits = [
   {
     title: "Android",
     nodes: [
@@ -560,5 +579,3 @@ const advancedUnits = [
     ],
   },
 ];
-
-export default units;

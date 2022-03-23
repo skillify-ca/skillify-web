@@ -24,7 +24,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             <p className="font-medium ml-4">Student</p>
           </div>
         </div>
-        <a className={``} href="/studentPortal">
+        <a className={``} href="/studentPortal/intro">
           <div className={`"border-charmander text-charmander"`}>
             <div className={`p-4 border-l-4 border-charmander text-charmander`}>
               <div className="flex flex-wrap">
