@@ -97,6 +97,7 @@ const Studentbadges = () => {
   };
 
   const [unlockBadge, unlockBadgeData] = useMutation(LOCK_USER_BADGES);
+
   const onButtonClick = (student: string, badge: number) => {
     let newStudentBadges = JSON.parse(JSON.stringify(allStudentBadges)); //Deep copy
     let studentId = getStudentId();

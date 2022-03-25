@@ -73,7 +73,6 @@ const JS1 = () => {
 
   return (
     <>
-      <Navbar />
       <div className="grid grid-cols-1 bg-white p-8 sm:m-8 space-y-4">
         <h1 className="font-bold text-5xl">JavaScript 1</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 bg-white space-y-4">
