@@ -1,17 +1,8 @@
-import Link from "next/link";
 import React from "react";
-import {
-  AnnotationIcon,
-  GlobeAltIcon,
-  LightningBoltIcon,
-  ScaleIcon,
-} from "@heroicons/react/outline";
-import ContactForms from "../../ContactForms";
 import Testimonial, { TestimonialProps } from "./Testimonial";
-import { Button } from "../../ui/Button";
 
 const TestimonialSect = () => {
-  const testimonialData: TestimonialProps[] = [
+  const testimonialData = [
     {
       studentName: "Mayu G",
       img: "/images/landingPage/mayu.png",
@@ -35,21 +26,22 @@ const TestimonialSect = () => {
   ];
   return (
     <div>
-      <div className="flex justify-center flex-col p-24">
+      <div className="flex flex-col justify-center p-4 sm:p-8">
         <div className="">
           <p className="text-3xl font-semibold "> Testimonials</p>
-          <p className=" text-xl my-8">
+          <p className="">
             {" "}
             Read what our previous students have to say about their experience
             at Skillify.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {testimonialData.map((it) => (
+          <div className="flex flex-wrap gap-8 mt-4">
+            {testimonialData.map((it, index) => (
               <div>
                 <Testimonial
                   text={it.text}
                   img={it.img}
                   studentName={it.studentName}
+                  color={index % 4}
                 />
               </div>
             ))}
