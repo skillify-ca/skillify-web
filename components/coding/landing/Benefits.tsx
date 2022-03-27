@@ -10,47 +10,46 @@ import ContactForms from "../../ContactForms";
 import Testimonial, { TestimonialProps } from "./Testimonial";
 import { Button } from "../../ui/Button";
 
+interface BenefitProps {
+  image: string;
+  title: string;
+  description: string;
+}
+const Benefit = ({ image, title, description }: BenefitProps) => {
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="w-24 h-24 bg-white rounded-full place-self-center">
+        <img src={image} />
+      </div>
+      <p className="text-xl font-bold text-center text-charmander">{title}</p>
+      <p className="text-center text-white">{description}</p>
+    </div>
+  );
+};
 const Benefits = () => {
   return (
-    <div>
-      <div className="p-10 bg-murkrow">
-        <h1 className="text-white text-7xl text-center my-3 p-5"> Benefits</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-3 justify-center gap-4 sm:p-24">
-          <div className="flex flex-col gap-4">
-            <div className="h-100 w-100 rounded-full bg-white place-self-center">
-              <img src="/images/landingPage/code.svg" />
-            </div>
-            <p className="text-3xl text-charmander text-center">
-              Build Real Projects
-            </p>
-            <p className="w-1/2 place-self-center text-white text-center">
-              You will build real products to add to your portfolio or resume.
-            </p>
-          </div>
-          <div className="flex flex-col gap-4">
-            <div className="h-100 w-100 rounded-full bg-white place-self-center">
-              <img src="/images/landingPage/community.svg" />
-            </div>
-            <p className="text-3xl text-charmander text-center">
-              Community of Learners
-            </p>
-            <p className=" w-1/2 place-self-center text-white text-center">
-              Join a cohort-based course to learn with peers and keep each other
-              accountable.
-            </p>
-          </div>
-          <div className="flex flex-col gap-4">
-            <div className="h-100 w-100 rounded-full bg-white place-self-center">
-              <img src="/images/landingPage/experts.svg" />
-            </div>
-            <p className="text-3xl text-charmander text-center">
-              Industry Experts
-            </p>
-            <p className="w-2/5 place-self-center text-white text-center">
-              Learn from the best with our expert mentors
-            </p>
-          </div>
-        </div>
+    <div className="p-4 sm:p-16 bg-murkrow">
+      <h1 className="mb-4 text-5xl font-bold text-center text-white sm:mb-16">
+        {" "}
+        Benefits
+      </h1>
+      <div className="grid justify-center grid-cols-1 gap-8 sm:grid-cols-3">
+        <Benefit
+          image="/images/landingPage/code.svg"
+          title="Build Real Projects"
+          description="You will build real products to add to your portfolio or resume."
+        />
+        <Benefit
+          image="/images/landingPage/community.svg"
+          title="Community of Learners"
+          description="Join a cohort-based course to learn with peers and keep each other
+            accountable."
+        />
+        <Benefit
+          image="/images/landingPage/experts.svg"
+          title="Industry Experts"
+          description="Learn from the best with our expert mentors"
+        />
       </div>
     </div>
   );

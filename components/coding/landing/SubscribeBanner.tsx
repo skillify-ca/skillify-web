@@ -13,32 +13,26 @@ import { Button } from "../../ui/Button";
 const SubscribeBanner = () => {
   return (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 my-8 p-4 sm:p-16 mx-8 bg-murkrow">
-        <p className="text-charmander font-medium text-4xl p-4">
-          Don't believe your college's marketing? In one project-based class you
-          can learn the fundamentals of coding.
+      <div className="grid grid-cols-1 p-4 sm:m-8 sm:p-8 sm:rounded-md sm:grid-cols-2 bg-murkrow">
+        <p className="mb-4 text-xl text-charmander">
+          Universities and bootcamps leave you in debt and unprepared for
+          finding a real job. With our project-based courses, you can learn the
+          fundamentals of coding and get hired.
         </p>
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row ">
+          <input
+            id="bootcamper"
+            type="text"
+            autoComplete="off"
+            className={`text-left rounded-lg p-2 sm:mb-0 mb-4 border shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-charmander placeholder-yellow-700 sm:w-80 w-full `}
+            placeholder="Email"
+          />
 
-        <div className=" grid grid-cols-4 items-center gap-4">
-          <div className="items-center rounded-lg col-span-3 p-4">
-            <input
-              id="bootcamper"
-              type="text"
-              autoComplete="off"
-              className={`text-left p-2 mb-4 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-charmander placeholder-yellow-700 w-full `}
-              placeholder="Email"
-            />
+          <div className="flex items-center justify-center p-4 text-center text-white rounded-md shadow sm:w-36 bg-charmander hover:bg-yellow-700 ">
+            <a href="/courses" className="">
+              Enroll Now
+            </a>
           </div>
-          <div className="sm:justify-center lg:justify-start">
-            <div className="rounded-md shadow">
-              <a
-                href="/courses"
-                className="w-full flex items-center justify-center p-4 border border-transparent text-base font-medium rounded-md text-white bg-charmander hover:bg-yellow-700 md:py-2 md:text-lg md:px-10"
-              >
-                Enroll Now
-              </a>
-            </div>
-          </div>{" "}
         </div>
       </div>
     </div>

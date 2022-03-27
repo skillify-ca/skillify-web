@@ -40,7 +40,8 @@ module.exports = {
           "url('https://images.unsplash.com/photo-1425315283416-2acc50323ee6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80')",
       }),
       fontFamily: {
-        sans: ["Lexend", ...defaultTheme.fontFamily.sans],
+        
+        sans: ["Poppins", ...defaultTheme.fontFamily.sans],
       },
       gridTemplateColumns: {
         "resource-row": "100px 1fr 236px",

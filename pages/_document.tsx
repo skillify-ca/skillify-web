@@ -26,13 +26,13 @@ class MyDocument extends Document {
           <link rel="icon" href="/favicon.ico" />
           <link
             rel="preload"
-            href="/fonts/Lexend/Lexend-Bold.ttf"
+            href="/fonts/Poppins/Poppins-Bold.ttf"
             as="font"
             crossOrigin=""
           />
           <link
             rel="preload"
-            href="/fonts/Lexend/Lexend-Regular.ttf"
+            href="/fonts/Poppins/Poppins-Regular.ttf"
             as="font"
             crossOrigin=""
           />
