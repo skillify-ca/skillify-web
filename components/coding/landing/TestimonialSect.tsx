@@ -2,7 +2,7 @@ import React from "react";
 import Testimonial, { TestimonialProps } from "./Testimonial";
 
 const TestimonialSect = () => {
-  const testimonialData: TestimonialProps[] = [
+  const testimonialData = [
     {
       studentName: "Mayu G",
       img: "/images/landingPage/mayu.png",
