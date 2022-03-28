@@ -1,9 +1,6 @@
 import React from "react";
-import Card, { CardData } from "../../../../../components/coding/Card";
-import JSQuiz from "../../../../../components/coding/JSQuiz";
-import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
-import { Button } from "../../../../../components/ui/Button";
-import Navbar from "../../../../../components/ui/Navbar";
+import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
+import { Button } from "../../../../components/ui/Button";
 
 const JS_Temperature = () => {
   return (
