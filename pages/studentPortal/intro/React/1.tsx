@@ -1,6 +1,6 @@
 import React from "react";
-import Card, { CardData } from "../../../../../components/coding/Card";
-import Navbar from "../../../../../components/ui/Navbar";
+import Card, { CardData } from "../../../../components/coding/Card";
+import Navbar from "../../../../components/ui/Navbar";
 
 const React1 = () => {
   const data: CardData[] = [
@@ -34,9 +34,9 @@ const React1 = () => {
   return (
     <>
       <Navbar />
-      <div className="grid grid-cols-1 bg-white p-8 m-8 space-y-4 space-x-8">
-        <h1 className="font-bold text-5xl">React 1</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 bg-white space-y-4">
+      <div className="grid grid-cols-1 p-8 m-8 space-x-8 space-y-4 bg-white">
+        <h1 className="text-5xl font-bold">React 1</h1>
+        <div className="grid grid-cols-1 space-y-4 bg-white sm:grid-cols-2">
           <div className="flex flex-col space-y-4">
             <p className="font-bold">Lessons</p>
             <p>
@@ -50,7 +50,7 @@ const React1 = () => {
             <div className="flex flex-col space-y-2">
               <p className="font-bold">Tutorials</p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {data.map((it) => (
                   <Card
                     title={it.title}

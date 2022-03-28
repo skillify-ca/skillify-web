@@ -1,11 +1,11 @@
 import { useMutation, useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
-import Navbar from "../../../../../components/ui/Navbar";
-import { Button } from "../../../../../components/ui/Button";
-import { FETCH_USER_SKILL_BADGE } from "../../../../../graphql/fetchBadgeForSkill";
-import { FETCH_USER_BADGES } from "../../../../../graphql/fetchUserBadge";
-import { LOCK_USER_BADGES } from "../../../../../graphql/lockUserCodingBadges";
-import { FETCH_ALL_STUDENT_CODING_BADGES } from "../../../../../graphql/fetchAllStudentCodingBadges";
+import Navbar from "../../../../components/ui/Navbar";
+import { Button } from "../../../../components/ui/Button";
+import { FETCH_USER_SKILL_BADGE } from "../../../../graphql/fetchBadgeForSkill";
+import { FETCH_USER_BADGES } from "../../../../graphql/fetchUserBadge";
+import { LOCK_USER_BADGES } from "../../../../graphql/lockUserCodingBadges";
+import { FETCH_ALL_STUDENT_CODING_BADGES } from "../../../../graphql/fetchAllStudentCodingBadges";
 
 //You need to create a badge object
 type Badge = {
@@ -110,10 +110,10 @@ const Studentbadges = () => {
   return (
     <div>
       <Navbar />
-      <h1 className="text-2xl font-bold justify text-center">{student}</h1>
-      <h1 className="border-4 border-black text-center">Students</h1>
+      <h1 className="text-2xl font-bold text-center justify">{student}</h1>
+      <h1 className="text-center border-4 border-black">Students</h1>
       <ol>
-        <div className="grid grid-cols-3 m-2 justify-items-center gap-2">
+        <div className="grid grid-cols-3 gap-2 m-2 justify-items-center">
           <li>
             <Button
               label={"Kishan"}
@@ -165,7 +165,7 @@ const Studentbadges = () => {
         </div>
       </ol>
 
-      <h1 className="border-4 border-black text-center">Badges</h1>
+      <h1 className="text-center border-4 border-black">Badges</h1>
       <div className="grid grid-cols-3 mt-2">
         <img
           src="/images/Addition5.png"
@@ -196,10 +196,10 @@ const Studentbadges = () => {
         />
       </div>
 
-      <div className="border-4 border-black text-center mt-2">Description</div>
+      <div className="mt-2 text-center border-4 border-black">Description</div>
       <div className="m-2"></div>
 
-      <div className="flex w-full justify-center">
+      <div className="flex justify-center w-full">
         <Button
           label={"Save Changes"}
           backgroundColor="green"

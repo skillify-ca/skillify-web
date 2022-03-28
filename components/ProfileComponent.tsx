@@ -22,16 +22,12 @@ const ProfileComponent = () => {
   const [stage, setStage] = useState(Stage.BADGES);
 
   const progress = () => {
-    if (
-      !loading &&
-      data.user_badges.length > 0
-    ) {
+    if (!loading && data.user_badges.length > 0) {
       const unlockedBadges = data.user_badges.filter(
         (it) => it.locked == false
       );
       return Math.round(
-        ((unlockedBadges.length) * 100) /
-        (data.user_badges.length)
+        (unlockedBadges.length * 100) / data.user_badges.length
       );
     } else {
       return 0;
@@ -39,23 +35,23 @@ const ProfileComponent = () => {
   };
 
   return (
-    <div className="overflow-auto bg-scroll h-screen bg-blue-50">
-      <div className="flex flex-col space-y-8 p-8">
+    <div className="h-screen overflow-auto bg-scroll bg-blue-50">
+      <div className="flex flex-col p-8 space-y-8">
         <div className="col-span-2 p-8 bg-white shadow-lg rounded-3xl">
-          <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="flex flex-col items-center justify-between md:flex-row">
             <div className="flex flex-col items-center">
               <p className="text-xl">{user && user.displayName}</p>
               <p className="text-sm">{user && user.email}</p>
             </div>
-            <div className="flex flex-col space-y-4 m-4">
+            <div className="flex flex-col m-4 space-y-4">
               <p className="text-sm">Progress</p>
-              <p className="flex justify-center items-center bg-purple-100 shadow-inner ring-blue-400 text-center rounded-full ring-8 w-16 h-16">
+              <p className="flex items-center justify-center w-16 h-16 text-center bg-purple-100 rounded-full shadow-inner ring-blue-400 ring-8">
                 {progress()}%
               </p>
             </div>
           </div>
         </div>
-        <div className="flex rounded-md bg-gray-300 relative tabs">
+        <div className="relative flex bg-gray-300 rounded-md tabs">
           <button
             className={
               "tabs-item active relative z-10 p-4 text-center rounded-l-md w-full text-sm cursor-pointer select-none focus:outline-none " +
@@ -86,19 +82,19 @@ const ProfileComponent = () => {
         </div>
         <div className="">
           {stage == Stage.BADGES && (
-            <div className="grid gap-8 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 p-8 bg-white shadow-lg rounded-xl">
+            <div className="grid grid-cols-2 gap-8 p-8 bg-white shadow-lg sm:grid-cols-3 md:grid-cols-4 rounded-xl">
               {data &&
                 data.user_badges.map((badge) => {
                   return badge.locked ? (
-                    <div className="flex justify-center items-center">
+                    <div className="flex items-center justify-center">
                       <LockedBadge title={badge.badge.title} />
                     </div>
                   ) : (
                     <Link href={`/badges/${badge.badge.id}`}>
-                      <div className="flex justify-center items-center">
+                      <div className="flex items-center justify-center">
                         <img
                           src={badge.badge.image}
-                          className="w-32 cursor-pointer transition duration-500 ease-in-out transform hover:scale-110"
+                          className="w-32 transition duration-500 ease-in-out transform cursor-pointer hover:scale-110"
                         />
                       </div>
                     </Link>
@@ -108,21 +104,24 @@ const ProfileComponent = () => {
           )}
           {stage == Stage.SKILLS && (
             <div className="grid grid-cols-1 gap-8 p-8">
-              {data && grades.map(grade => <div>
-                <p className="text-xl font-bold">{grade.title}</p>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 p-8">
-
-                  {
-                    data.user_skills.filter(it => it.skill.grade == grade.ordinal).map((skill) => (
-                      <div className="flex flex-col gap-8 bg-white rounded-xl shadow-xl p-8 text-center justify-center items-center">
-                        <p className="w-full  text-xl">{skill.skill.title}</p>
-                        <p className="text-3xl">{getEmoji(skill.emoji)}</p>
-                      </div>
-                    ))}
-                </div>
-
-              </div>)}
-
+              {data &&
+                grades.map((grade) => (
+                  <div>
+                    <p className="text-xl font-bold">{grade.title}</p>
+                    <div className="grid grid-cols-1 gap-8 p-8 sm:grid-cols-3">
+                      {data.user_skills
+                        .filter((it) => it.skill.grade == grade.ordinal)
+                        .map((skill) => (
+                          <div className="flex flex-col items-center justify-center gap-8 p-8 text-center bg-white shadow-xl rounded-xl">
+                            <p className="w-full text-xl">
+                              {skill.skill.title}
+                            </p>
+                            <p className="text-3xl">{getEmoji(skill.emoji)}</p>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                ))}
             </div>
           )}
         </div>

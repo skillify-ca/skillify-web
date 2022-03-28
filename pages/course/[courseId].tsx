@@ -81,7 +81,7 @@ export default function Home({ courseData }) {
           )`,
         }}
       >
-        <div className="flex flex-col items-center justify-between w-full max-w-screen-lg col-span-2 space-y-8 p-4 mx-auto mb-4">
+        <div className="flex flex-col items-center justify-between w-full max-w-screen-lg col-span-2 p-4 mx-auto mb-4 space-y-8">
           {courseData && data && (
             <PracticeTracker
               courseId={courseId}
@@ -132,3 +132,6 @@ export async function getStaticPaths() {
 }
 
 Home.auth = true;
+Home.getLayout = function getLayout(page) {
+  return <div>{page}</div>;
+};

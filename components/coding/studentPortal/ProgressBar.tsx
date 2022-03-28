@@ -13,11 +13,12 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
     borderRadius: "inherit",
   };
   return (
-    <div>
-      <div className="h-8 w-full bg-gray-300 border rounded-full">
-        <div style={fillerStyles} className="text-right bg-rattata">
-          <span className="p-5 text-white font-bold text-center">{`${completed}%`}</span>
-        </div>
+    <div className="w-full h-8 bg-gray-300 border rounded-full">
+      <div
+        style={fillerStyles}
+        className="flex items-center justify-end bg-rattata"
+      >
+        <span className="p-5 font-bold text-center text-white">{`${completed}%`}</span>
       </div>
     </div>
   );

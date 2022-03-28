@@ -5,9 +5,8 @@ import Document, {
   Main,
   NextScript,
 } from "next/document";
-import Script from "next/script";
 import React, { CSSProperties } from "react";
-
+import { FB_PIXEL_ID } from "../lib/fbPixel";
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
@@ -26,13 +25,13 @@ class MyDocument extends Document {
           <link rel="icon" href="/favicon.ico" />
           <link
             rel="preload"
-            href="/fonts/Lexend/Lexend-Bold.ttf"
+            href="/fonts/Poppins/Poppins-Bold.ttf"
             as="font"
             crossOrigin=""
           />
           <link
             rel="preload"
-            href="/fonts/Lexend/Lexend-Regular.ttf"
+            href="/fonts/Poppins/Poppins-Regular.ttf"
             as="font"
             crossOrigin=""
           />
@@ -59,6 +58,18 @@ class MyDocument extends Document {
             `,
             }}
           />
+          <meta
+            name="facebook-domain-verification"
+            content="c116vcf4jgnb5bfmzhijy6ag2kp33v"
+          />
+          <noscript>
+            <img
+              height="1"
+              width="1"
+              style={{ display: "none" }}
+              src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
+            />
+          </noscript>
         </Head>
         <body style={this.bodyStyle}>
           <Main />

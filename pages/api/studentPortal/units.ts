@@ -11,17 +11,16 @@ export interface Unit {
   nodes: UnitNode[];
 }
 
-// TOOD: fetch this from the backend instead
-const units: Unit[] = [
+export const introUnits: Unit[] = [
   {
     title: "Introduction",
     nodes: [
       {
         title: "Lesson",
         description: "Intro to Skillify",
-        completed: true,
+        completed: false,
         locked: false,
-        link: "course/coding/unit/HTML/1",
+        link: "intro/warmups/1",
         type: "lesson",
       },
     ],
@@ -32,17 +31,17 @@ const units: Unit[] = [
       {
         title: "Lesson",
         description: "HTML Basics",
-        completed: true,
+        completed: false,
         locked: false,
-        link: "course/coding/unit/HTML/1",
+        link: "intro/HTML/1",
         type: "lesson",
       },
       {
         title: "Quiz",
         description: "HTML Basics",
         completed: false,
-        locked: false,
-        link: "course/coding/unit/HTML/1",
+        locked: true,
+        link: "intro/HTML/1",
         type: "quiz",
       },
       {
@@ -50,7 +49,7 @@ const units: Unit[] = [
         description: "Build an HTML Blog",
         completed: false,
         locked: true,
-        link: "course/coding/unit/HTML/1",
+        link: "intro/HTML/1",
         type: "assignment",
       },
     ],
@@ -63,7 +62,7 @@ const units: Unit[] = [
         description: "CSS Basics",
         completed: false,
         locked: true,
-        link: "course/coding/unit/CSS/1",
+        link: "intro/CSS/1",
         type: "lesson",
       },
       {
@@ -71,7 +70,7 @@ const units: Unit[] = [
         description: "CSS Basics",
         completed: false,
         locked: true,
-        link: "course/coding/unit/CSS/1",
+        link: "intro/CSS/1",
         type: "quiz",
       },
       {
@@ -79,7 +78,7 @@ const units: Unit[] = [
         description: "Style an HTML Blog",
         completed: false,
         locked: true,
-        link: "course/coding/unit/CSS/1",
+        link: "intro/CSS/1",
         type: "assignment",
       },
     ],
@@ -92,7 +91,7 @@ const units: Unit[] = [
         description: "Variables",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -100,7 +99,7 @@ const units: Unit[] = [
         description: "Functions",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -108,7 +107,7 @@ const units: Unit[] = [
         description: "Conditionals",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -116,7 +115,7 @@ const units: Unit[] = [
         description: "Variables, Functions and Conditionals",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -124,7 +123,7 @@ const units: Unit[] = [
         description: "Arrays",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -132,7 +131,7 @@ const units: Unit[] = [
         description: "Loops",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -140,7 +139,7 @@ const units: Unit[] = [
         description: "Objects",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -148,7 +147,7 @@ const units: Unit[] = [
         description: "Iterators",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -156,7 +155,7 @@ const units: Unit[] = [
         description: "Arrays, Loops, Objects, Iterators",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "quiz",
       },
       {
@@ -164,7 +163,7 @@ const units: Unit[] = [
         description: "Build a server application",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -172,14 +171,14 @@ const units: Unit[] = [
         description: "Build an e-commerce store",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/Final1",
+        link: "intro/Javascript/Final1",
         type: "lesson",
       },
     ],
   },
 ];
 
-const advancedUnits = [
+export const reactUnits = [
   {
     title: "React",
     nodes: [
@@ -188,7 +187,7 @@ const advancedUnits = [
         description: "Components",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
       {
@@ -196,7 +195,7 @@ const advancedUnits = [
         description: "Props",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
       {
@@ -204,7 +203,7 @@ const advancedUnits = [
         description: "Components and Props",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
       {
@@ -212,7 +211,7 @@ const advancedUnits = [
         description: "Hooks - useState",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
 
@@ -221,7 +220,7 @@ const advancedUnits = [
         description: "Hooks - useEffect",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
       {
@@ -229,7 +228,7 @@ const advancedUnits = [
         description: "Conditional Rendering",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
       {
@@ -237,7 +236,7 @@ const advancedUnits = [
         description: "Handling Events",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
       {
@@ -245,7 +244,7 @@ const advancedUnits = [
         description: "Building a tic tac toe game",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
       {
@@ -253,7 +252,7 @@ const advancedUnits = [
         description: "Build a K-12 Math Quiz",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
       {
@@ -261,21 +260,13 @@ const advancedUnits = [
         description: "Build a tutorial to a Leetcode question",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
-        type: "lesson",
-      },
-      {
-        title: "Assignment 4",
-        description: "Capstone Project",
-        completed: false,
-        locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
     ],
   },
   {
-    title: "Fullstack",
+    title: "Backend",
     nodes: [
       {
         title: "Lesson 1",
@@ -283,7 +274,7 @@ const advancedUnits = [
         type: "lesson",
         completed: false,
         locked: true,
-        link: "",
+        link: "react/React/1",
       },
       {
         title: "Lesson 2",
@@ -291,7 +282,7 @@ const advancedUnits = [
         type: "lesson",
         completed: false,
         locked: true,
-        link: "",
+        link: "react/React/1",
       },
       {
         title: "Lesson 3",
@@ -299,18 +290,21 @@ const advancedUnits = [
         type: "lesson",
         completed: false,
         locked: true,
-        link: "",
+        link: "react/React/1",
       },
       {
-        title: "Assignment",
-        description: "Build a Fullstack Chat Application",
-        type: "lesson",
+        title: "Assignment 1",
+        description: "Capstone Project",
         completed: false,
         locked: true,
-        link: "",
+        link: "react/React/1",
+        type: "assignment",
       },
     ],
   },
+];
+
+export const interviewUnits = [
   {
     title: "Data Structures",
     nodes: [
@@ -332,7 +326,7 @@ const advancedUnits = [
       },
       {
         title: "Lesson 3",
-        description: "Hash Maps",
+        description: "Maps",
         completed: false,
         locked: true,
         type: "lesson",
@@ -356,7 +350,7 @@ const advancedUnits = [
       },
       {
         title: "Lesson 6",
-        description: "HashMaps",
+        description: "Graphs",
         type: "lesson",
         completed: false,
         locked: true,
@@ -389,7 +383,7 @@ const advancedUnits = [
     ],
   },
   {
-    title: "Algorithms",
+    title: "Algorithms 1",
     nodes: [
       {
         title: "Lesson 1",
@@ -418,20 +412,21 @@ const advancedUnits = [
 
       {
         title: "Lesson 4",
-        description: "Merge Intervals",
-        type: "lesson",
+        description: "Binary Search",
         completed: false,
         locked: true,
+        type: "lesson",
         link: "",
       },
       {
         title: "Lesson 5",
-        description: "Cyclic Sort",
-        type: "lesson",
+        description: "Greedy",
         completed: false,
         locked: true,
+        type: "lesson",
         link: "",
       },
+
       {
         title: "Lesson 6",
         description: "In-place reversal of linked list",
@@ -440,8 +435,13 @@ const advancedUnits = [
         locked: true,
         link: "",
       },
+    ],
+  },
+  {
+    title: "Algorithms 2",
+    nodes: [
       {
-        title: "Lesson 7",
+        title: "Lesson 1",
         description: "Tree BFS",
         completed: false,
         locked: true,
@@ -449,7 +449,7 @@ const advancedUnits = [
         type: "lesson",
       },
       {
-        title: "Lesson 8",
+        title: "Lesson 2",
         description: "Tree DFS",
         type: "lesson",
         completed: false,
@@ -457,7 +457,60 @@ const advancedUnits = [
         link: "",
       },
       {
-        title: "Lesson 9",
+        title: "Lesson 3",
+        type: "lesson",
+        description: "Dynamic Programming",
+        completed: false,
+        locked: true,
+        link: "",
+      },
+      {
+        title: "Lesson 4",
+        type: "lesson",
+        description: "Backtracking",
+        completed: false,
+        locked: true,
+        link: "",
+      },
+    ],
+  },
+  {
+    title: "Algorithms 3",
+    nodes: [
+      {
+        title: "Lesson 1",
+        description: "Intervals",
+        type: "lesson",
+        completed: false,
+        locked: true,
+        link: "",
+      },
+      {
+        title: "Lesson 2",
+        type: "lesson",
+        description: "Toplogical Sort",
+        completed: false,
+        locked: true,
+        link: "",
+      },
+      {
+        title: "Lesson 3",
+        type: "lesson",
+        description: "Union Find",
+        completed: false,
+        locked: true,
+        link: "",
+      },
+      {
+        title: "Lesson 4",
+        description: "Cyclic Sort",
+        type: "lesson",
+        completed: false,
+        locked: true,
+        link: "",
+      },
+      {
+        title: "Lesson 5",
         description: "Two Heaps",
         type: "lesson",
         completed: false,
@@ -465,7 +518,7 @@ const advancedUnits = [
         link: "",
       },
       {
-        title: "Lesson 10",
+        title: "Lesson 6",
         description: "Subsets",
         completed: false,
         locked: true,
@@ -473,15 +526,7 @@ const advancedUnits = [
         link: "",
       },
       {
-        title: "Lesson 11",
-        description: "Modified Binary Search",
-        completed: false,
-        locked: true,
-        type: "lesson",
-        link: "",
-      },
-      {
-        title: "Lesson 12",
+        title: "Lesson 7",
         description: "Top K Elements",
         type: "lesson",
         completed: false,
@@ -489,23 +534,18 @@ const advancedUnits = [
         link: "",
       },
       {
-        title: "Lesson 13",
+        title: "Lesson 8",
         type: "lesson",
         description: "K-way Merge",
         completed: false,
         locked: true,
         link: "",
       },
-      {
-        title: "Lesson 14",
-        type: "lesson",
-        description: "Toplogical Sort",
-        completed: false,
-        locked: true,
-        link: "",
-      },
     ],
   },
+];
+
+export const androidUnits = [
   {
     title: "Android",
     nodes: [
@@ -560,5 +600,3 @@ const advancedUnits = [
     ],
   },
 ];
-
-export default units;

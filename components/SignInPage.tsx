@@ -12,7 +12,7 @@ export default function SignInPage() {
     async function checkAuth() {
       const result = await getRedirectResult(auth);
       if (result) {
-        router.push("/courses");
+        router.push("/studentPortal/intro");
       }
     }
     checkAuth();
