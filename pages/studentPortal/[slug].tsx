@@ -10,6 +10,8 @@ import {
   Unit,
 } from "../api/studentPortal/units";
 
+import moment from "moment";
+
 interface StudentPortalPageProps {
   units: Unit[];
 }
@@ -18,10 +20,12 @@ export default function StudentPortalPage({ units }: StudentPortalPageProps) {
 
   return (
     <>
-      <p className="font-bold">January 1, 2022</p>
-      <p className="mb-8 text-3xl font-bold">
-        Let's start learning, {user.displayName}
-      </p>
+      <div className="p-4 mb-8 bg-white shadow-md ">
+        <p className="font-bold">{moment().format("MMM Do YYYY")}</p>
+        <p className="text-3xl font-bold">
+          Let's start learning, {user.displayName}
+        </p>
+      </div>
       <div className="grid grid-cols-1 gap-4">
         {units.map((it) => (
           <UnitView data={it} />
