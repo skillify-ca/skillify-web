@@ -16,12 +16,14 @@ import EmailCapture from "../../coding/landing/EmailCapture";
 import TestimonialSect from "../../coding/landing/TestimonialSect";
 import SubscribeBanner from "../../coding/landing/SubscribeBanner";
 import LandingFooter from "../../coding/landing/LandingFooter";
+import Credentials from "../../coding/landing/Credentials";
 
 const LandingPagev2 = () => {
   return (
     <div>
       <div className="flex flex-col w-full bg-gray-100">
         <Benefits />
+        <Credentials />
         <EmailCapture />
         <TestimonialSect />
         <SubscribeBanner />
