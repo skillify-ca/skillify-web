@@ -24,8 +24,12 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
   const imageSrc = (completed, locked, type) => {
     if (completed) {
       return "/images/studentPortal/checkmark.svg";
-    } else if (locked) {
-      return "/images/lock.png";
+    } else if (locked && type === "lesson") {
+      return "/images/studentPortal/lesson_inactive.svg";
+    } else if (locked && type === "quiz") {
+      return "/images/studentPortal/quiz_inactive.svg";
+    } else if (locked && type === "assignment") {
+      return "/images/studentPortal/assignment_inactive.svg";
     } else if (type === "lesson") {
       return "/images/studentPortal/lesson_active.svg";
     } else if (type === "quiz") {
