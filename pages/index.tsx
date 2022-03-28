@@ -5,7 +5,7 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Head from "next/head";
 
 const navigation = [
-  { name: "Student Portal", href: "/course/coding" },
+  { name: "Student Portal", href: "/studentPortal/intro" },
   { name: "Resources", href: "/resources" },
 ];
 
@@ -13,7 +13,7 @@ const HomePage = () => {
   return (
     <div>
       <Head>
-        <title>Champ</title>
+        <title>Skillify</title>
       </Head>
       <div className="relative overflow-hidden bg-white">
         <div className="mx-auto max-w-7xl">
@@ -37,7 +37,7 @@ const HomePage = () => {
                   <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
                     <div className="flex items-center justify-between w-full md:w-auto">
                       <a href="#">
-                        <span className="sr-only">Workflow</span>
+                        <span className="sr-only">Skillify</span>
                         <img
                           className="w-auto h-8 sm:h-10"
                           src="/images/logo.svg"
