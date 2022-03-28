@@ -6,19 +6,19 @@ import {
 } from "@apollo/client";
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import Navbar from "../../../../components/ui/Navbar";
-import ExplorePreview from "../../../../components/math/practiceTracker/unitOverview/ExplorePreview";
-import PracticePreview from "../../../../components/math/practiceTracker/unitOverview/PracticePreview";
-import QuizPreview from "../../../../components/math/practiceTracker/unitOverview/QuizPreview";
-import { FETCH_UNIT_OVERVIEW } from "../../../../graphql/fetchUnitOverview";
-import { useAuth } from "../../../../lib/authContext";
-import { getBadgeId } from "../../../api/badgeHelper";
-import { getUserEmojiValue } from "../../../api/practiceTracker/emojiHelper";
-import { EMOJI_MASTERY, SkillData } from "../../../api/skill";
+import Navbar from "../../../components/ui/Navbar";
+import ExplorePreview from "../../../components/math/practiceTracker/unitOverview/ExplorePreview";
+import PracticePreview from "../../../components/math/practiceTracker/unitOverview/PracticePreview";
+import QuizPreview from "../../../components/math/practiceTracker/unitOverview/QuizPreview";
+import { FETCH_UNIT_OVERVIEW } from "../../../graphql/fetchUnitOverview";
+import { useAuth } from "../../../lib/authContext";
+import { getBadgeId } from "../../api/badgeHelper";
+import { getUserEmojiValue } from "../../api/practiceTracker/emojiHelper";
+import { EMOJI_MASTERY, SkillData } from "../../api/skill";
 import { useRouter } from "next/router";
-import { FETCH_SKILLS_FOR_UNIT } from "../../../../graphql/fetchSkillsForUnit";
+import { FETCH_SKILLS_FOR_UNIT } from "../../../graphql/fetchSkillsForUnit";
 
-const Box = dynamic(() => import("../../../../components/math/stories/Box"));
+const Box = dynamic(() => import("../../../components/math/stories/Box"));
 
 const UnitOverviewPage = ({ unitTitle, skillData, level }) => {
   const { user } = useAuth();
@@ -84,8 +84,8 @@ const UnitOverviewPage = ({ unitTitle, skillData, level }) => {
         </title>
       </Head>
       <Navbar />
-      <div className="p-4 flex flex-col space-y-8">
-        <div className="bg-blue-500 heropattern-architect-blue-400 rounded-xl shadow-lg flex-col text-center p-4">
+      <div className="flex flex-col p-4 space-y-8">
+        <div className="flex-col p-4 text-center bg-blue-500 shadow-lg heropattern-architect-blue-400 rounded-xl">
           <p className="text-2xl text-white">
             {unitTitle &&
               unitTitle.charAt(0).toUpperCase() + unitTitle.slice(1)}{" "}

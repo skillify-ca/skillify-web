@@ -18,9 +18,9 @@ export const introUnits: Unit[] = [
       {
         title: "Lesson",
         description: "Intro to Skillify",
-        completed: true,
+        completed: false,
         locked: false,
-        link: "course/coding/unit/HTML/1",
+        link: "intro/warmups/1",
         type: "lesson",
       },
     ],
@@ -31,17 +31,17 @@ export const introUnits: Unit[] = [
       {
         title: "Lesson",
         description: "HTML Basics",
-        completed: true,
+        completed: false,
         locked: false,
-        link: "course/coding/unit/HTML/1",
+        link: "intro/HTML/1",
         type: "lesson",
       },
       {
         title: "Quiz",
         description: "HTML Basics",
         completed: false,
-        locked: false,
-        link: "course/coding/unit/HTML/1",
+        locked: true,
+        link: "intro/HTML/1",
         type: "quiz",
       },
       {
@@ -49,7 +49,7 @@ export const introUnits: Unit[] = [
         description: "Build an HTML Blog",
         completed: false,
         locked: true,
-        link: "course/coding/unit/HTML/1",
+        link: "intro/HTML/1",
         type: "assignment",
       },
     ],
@@ -62,7 +62,7 @@ export const introUnits: Unit[] = [
         description: "CSS Basics",
         completed: false,
         locked: true,
-        link: "course/coding/unit/CSS/1",
+        link: "intro/CSS/1",
         type: "lesson",
       },
       {
@@ -70,7 +70,7 @@ export const introUnits: Unit[] = [
         description: "CSS Basics",
         completed: false,
         locked: true,
-        link: "course/coding/unit/CSS/1",
+        link: "intro/CSS/1",
         type: "quiz",
       },
       {
@@ -78,7 +78,7 @@ export const introUnits: Unit[] = [
         description: "Style an HTML Blog",
         completed: false,
         locked: true,
-        link: "course/coding/unit/CSS/1",
+        link: "intro/CSS/1",
         type: "assignment",
       },
     ],
@@ -91,7 +91,7 @@ export const introUnits: Unit[] = [
         description: "Variables",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -99,7 +99,7 @@ export const introUnits: Unit[] = [
         description: "Functions",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -107,7 +107,7 @@ export const introUnits: Unit[] = [
         description: "Conditionals",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -115,7 +115,7 @@ export const introUnits: Unit[] = [
         description: "Variables, Functions and Conditionals",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -123,7 +123,7 @@ export const introUnits: Unit[] = [
         description: "Arrays",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -131,7 +131,7 @@ export const introUnits: Unit[] = [
         description: "Loops",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -139,7 +139,7 @@ export const introUnits: Unit[] = [
         description: "Objects",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -147,7 +147,7 @@ export const introUnits: Unit[] = [
         description: "Iterators",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -155,7 +155,7 @@ export const introUnits: Unit[] = [
         description: "Arrays, Loops, Objects, Iterators",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "quiz",
       },
       {
@@ -163,7 +163,7 @@ export const introUnits: Unit[] = [
         description: "Build a server application",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/1",
+        link: "intro/Javascript/1",
         type: "lesson",
       },
       {
@@ -171,7 +171,7 @@ export const introUnits: Unit[] = [
         description: "Build an e-commerce store",
         completed: false,
         locked: true,
-        link: "course/coding/unit/Javascript/Final1",
+        link: "intro/Javascript/Final1",
         type: "lesson",
       },
     ],
@@ -187,7 +187,7 @@ export const reactUnits = [
         description: "Components",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
       {
@@ -195,7 +195,7 @@ export const reactUnits = [
         description: "Props",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
       {
@@ -203,7 +203,7 @@ export const reactUnits = [
         description: "Components and Props",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
       {
@@ -211,7 +211,7 @@ export const reactUnits = [
         description: "Hooks - useState",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
 
@@ -220,7 +220,7 @@ export const reactUnits = [
         description: "Hooks - useEffect",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
       {
@@ -228,7 +228,7 @@ export const reactUnits = [
         description: "Conditional Rendering",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
       {
@@ -236,7 +236,7 @@ export const reactUnits = [
         description: "Handling Events",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
       {
@@ -244,7 +244,7 @@ export const reactUnits = [
         description: "Building a tic tac toe game",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
       {
@@ -252,7 +252,7 @@ export const reactUnits = [
         description: "Build a K-12 Math Quiz",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
       {
@@ -260,7 +260,7 @@ export const reactUnits = [
         description: "Build a tutorial to a Leetcode question",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "lesson",
       },
     ],
@@ -274,7 +274,7 @@ export const reactUnits = [
         type: "lesson",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
       },
       {
         title: "Lesson 2",
@@ -282,7 +282,7 @@ export const reactUnits = [
         type: "lesson",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
       },
       {
         title: "Lesson 3",
@@ -290,14 +290,14 @@ export const reactUnits = [
         type: "lesson",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
       },
       {
         title: "Assignment 1",
         description: "Capstone Project",
         completed: false,
         locked: true,
-        link: "course/coding/unit/React/1",
+        link: "react/React/1",
         type: "assignment",
       },
     ],

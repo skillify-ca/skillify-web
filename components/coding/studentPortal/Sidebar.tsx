@@ -5,24 +5,27 @@ import { useAuth } from "../../../lib/authContext";
 export type SidebarProps = {};
 
 export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
-  // const { signOut, user } = useAuth();
+  const { signOut, user } = useAuth();
 
   return (
     //Full width then restrict in page
-    <div className="dark:text-white flex flex-col">
+    <div className="flex flex-col dark:text-white">
       <div className="grid grid-rows-4">
-        <div className="p-4 flex">
-          {false && (
+        <div className="flex p-4">
+          {user && (
             <img
-              className="h-12 w-12 rounded-full"
-              src={"user.photoURL"}
+              className="w-12 h-12 rounded-full"
+              src={user.photoURL}
               alt=""
             />
           )}
-          <div>
-            <p className="font-bold ml-4">{"user.displayName"}</p>
-            <p className="font-medium ml-4">Student</p>
-          </div>
+
+          {user && (
+            <div>
+              <p className="ml-4 font-bold">{user.displayName}</p>
+              <p className="ml-4 font-medium">Student</p>
+            </div>
+          )}
         </div>
         <a className={``} href="/studentPortal/intro">
           <div className={`"border-charmander text-charmander"`}>
@@ -43,20 +46,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             Classroom
           </div>
         </a>
-
-        <a
-          className={`p-4 border-l-4
-            `}
-          href="/math/profile"
-        >
-          <div className="flex flex-wrap">
-            <img className="w-8 h-8 mr-4" src="/images/profileInactive.svg" />
-            Profile
-          </div>
-        </a>
-      </div>
-      <div className="flex flex-col justify-end p-4">
-        <div className="flex flex-wrap ">
+        <div className="flex flex-wrap p-4 cursor-pointer" onClick={signOut}>
           <img className="w-8 h-8 mr-4" src="/images/logoutButton.svg" />
           Logout
         </div>

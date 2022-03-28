@@ -1,6 +1,6 @@
 import React from "react";
-import Card, { CardData } from "../../../../../components/coding/Card";
-import Navbar from "../../../../../components/ui/Navbar";
+import Card, { CardData } from "../../../../components/coding/Card";
+import Navbar from "../../../../components/ui/Navbar";
 
 const Midterm1 = () => {
   const data: CardData[] = [
@@ -53,7 +53,7 @@ const Midterm1 = () => {
           <p className="text-xl font-extrabold text-blue-600"> Pokemon JSON </p>
           <div className="flex flex-row border-l-2 border-yellow-300">
             <p className="text-lg font-bold text-black"> Difficulty: </p>
-            <p className="text-lg font-bold text-yellow-300 ml-1"> Easy </p>
+            <p className="ml-1 text-lg font-bold text-yellow-300"> Easy </p>
           </div>
           <div className="mt-3">
             <p>
@@ -83,7 +83,7 @@ const Midterm1 = () => {
           <p className="text-xl font-extrabold text-blue-600"> NBA Data </p>
           <div className="flex flex-row border-l-2 border-yellow-600">
             <p className="text-lg font-bold text-black"> Difficulty: </p>
-            <p className="text-lg font-bold text-yellow-600 ml-1"> Medium </p>
+            <p className="ml-1 text-lg font-bold text-yellow-600"> Medium </p>
           </div>
           <div className="mt-3">
             <p>
@@ -157,10 +157,10 @@ const Midterm1 = () => {
               ></iframe>
             </div>
           </div>
-          <div className="pl-4 text-lg font-bold text-white bg-blue-900 mt-2">
+          <div className="pl-4 mt-2 text-lg font-bold text-white bg-blue-900">
             Javascript Assignment
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
+          <div className="grid grid-cols-1 gap-4 mt-3 sm:grid-cols-2">
             {data.map((it) => (
               <Card
                 title={it.title}

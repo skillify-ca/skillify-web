@@ -1,6 +1,7 @@
 import React from "react";
 import Sidebar from "../../components/coding/studentPortal/Sidebar";
 import UnitView from "../../components/coding/studentPortal/UnitView";
+import { useAuth } from "../../lib/authContext";
 import {
   androidUnits,
   interviewUnits,
@@ -13,10 +14,14 @@ interface StudentPortalPageProps {
   units: Unit[];
 }
 export default function StudentPortalPage({ units }: StudentPortalPageProps) {
+  const { user } = useAuth();
+
   return (
     <>
       <p className="font-bold">January 1, 2022</p>
-      <p className="text-3xl font-bold mb-8">Let's start learning, David</p>
+      <p className="mb-8 text-3xl font-bold">
+        Let's start learning, {user.displayName}
+      </p>
       <div className="grid grid-cols-1 gap-4">
         {units.map((it) => (
           <UnitView data={it} />
@@ -53,3 +58,5 @@ export async function getStaticPaths() {
     fallback: true, // false or 'blocking'
   };
 }
+
+StudentPortalPage.auth = true;

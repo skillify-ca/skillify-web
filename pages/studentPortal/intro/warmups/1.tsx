@@ -1,5 +1,5 @@
-import Card, { CardData } from "../../../../../components/coding/Card";
-import Navbar from "../../../../../components/ui/Navbar";
+import Card, { CardData } from "../../../../components/coding/Card";
+import Navbar from "../../../../components/ui/Navbar";
 
 const Warmups1 = () => {
   const data: CardData[] = [
@@ -37,17 +37,16 @@ const Warmups1 = () => {
   ];
   return (
     <>
-      <Navbar />
-      <div className="grid grid-cols-1 bg-white p-8 m-8 space-y-4">
-        <h1 className="font-bold text-5xl">Warmups 1</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 bg-white space-y-4">
+      <div className="grid grid-cols-1 space-y-4 ">
+        <h1 className="text-5xl font-bold">Warmups 1</h1>
+        <div className="grid grid-cols-1 space-y-4 sm:grid-cols-2">
           <div className="flex flex-col space-y-4">
             <p className="font-bold">Lesson</p>
             <p>
               Make sure you download or sign up for all of these programs to get
               started. Message Vithushan if you're having trouble.
             </p>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2">
               {data.map((it) => (
                 <li className="max-h-96">
                   <Card
@@ -71,7 +70,7 @@ const Warmups1 = () => {
             allowFullScreen
           ></iframe>
           <div>
-            <p className="text-green-700 font-bold text-lg">
+            <p className="text-lg font-bold text-green-700">
               {" "}
               How to download Node.js{" "}
             </p>

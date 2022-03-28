@@ -1,10 +1,10 @@
-import Card from "../../../../../components/coding/Card";
-import Sidebar from "../../../../../components/coding/studentPortal/Sidebar";
-import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
-import Navbar from "../../../../../components/ui/Navbar";
-import { ResourceRow } from "../../../../../components/coding/studentPortal/ResourceRow";
-import { Button } from "../../../../../components/ui/Button";
-import Layout from "../../../../../components/coding/studentPortal/Layout";
+import Card from "../../../../components/coding/Card";
+import Sidebar from "../../../../components/coding/studentPortal/Sidebar";
+import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
+import Navbar from "../../../../components/ui/Navbar";
+import { ResourceRow } from "../../../../components/coding/studentPortal/ResourceRow";
+import { Button } from "../../../../components/ui/Button";
+import Layout from "../../../../components/coding/studentPortal/Layout";
 
 const HTML1 = () => {
   return (
@@ -13,9 +13,9 @@ const HTML1 = () => {
         <div className="grid grid-cols-1 gap-x-8">
           <div className="">
             <ProgressBar completed={100} />
-            <h1 className="font-bold text-5xl">HTML</h1>
+            <h1 className="text-5xl font-bold">HTML</h1>
             <div className="space-y-4 ">
-              <div className="flex flex-col space-y-4 mt-12">
+              <div className="flex flex-col mt-12 space-y-4">
                 <p>
                   HTML is a basic language that all web pages are built on top
                   of. HTML stands for Hyper Text Markup Language. Just like any
@@ -37,27 +37,27 @@ const HTML1 = () => {
                 </div>
               </div>
             </div>
-            <div className="flex sm:justify-end mt-12">
+            <div className="flex mt-12 sm:justify-end">
               <a href={""}>
                 <Button label="Continue" disabled={false} />
               </a>
             </div>
             {false && (
               <div>
-                <p className="font-bold mt-12">Assignment</p>
+                <p className="mt-12 font-bold">Assignment</p>
 
                 <p className="my-4">
                   After you complete the tutorial create your own index.html
                   file and build a simple web page. Your page should include
                   texts, images and lists. Upload it to group channel on Slack.
                 </p>
-                <p className="font-bold mt-12">Previous Assignments</p>
+                <p className="mt-12 font-bold">Previous Assignments</p>
                 <p className="my-4">
                   You can look at how these pages were build by navigating to
                   the page and right-clicking on it. Select View Page Source to
                   see the HTML code that makes up the web page.
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
                     <a
                       className="underline text-charmander"
@@ -67,7 +67,7 @@ const HTML1 = () => {
                     </a>
                     <iframe
                       src="/coding/foodblog.html"
-                      className="w-full h-96 p-4 bg-white shadow-lg border-4 border-purple-400"
+                      className="w-full p-4 bg-white border-4 border-purple-400 shadow-lg h-96"
                     />
                   </div>
                   <div>
@@ -79,7 +79,7 @@ const HTML1 = () => {
                     </a>
                     <iframe
                       src="/coding/nba.html"
-                      className="w-full h-96 p-4 bg-white shadow-lg border-4 border-purple-400"
+                      className="w-full p-4 bg-white border-4 border-purple-400 shadow-lg h-96"
                     />
                   </div>
                 </div>

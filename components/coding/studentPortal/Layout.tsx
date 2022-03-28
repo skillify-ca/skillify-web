@@ -7,10 +7,10 @@ export const Layout: React.FC = ({ children }) => {
 
   return (
     <div className="">
-      <div className="col-span-12 flex z-20 fixed w-full">
+      <div className="fixed z-20 flex w-full col-span-12">
         <Navbar active={active} setActive={setActive} />
       </div>
-      <div className="hidden lg:flex w-48 fixed mt-16 bg-white dark:bg-gray-900 h-full">
+      <div className="fixed hidden w-48 h-full mt-16 bg-white lg:flex dark:bg-gray-900">
         <Sidebar />
       </div>
 

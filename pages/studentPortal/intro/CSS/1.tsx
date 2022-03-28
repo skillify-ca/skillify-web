@@ -1,13 +1,13 @@
 import React from "react";
-import Card, { CardData } from "../../../../../components/coding/Card";
-import { Carousel } from "../../../../../components/coding/Carousel";
-import CSSQuiz from "../../../../../components/coding/CSSQuiz";
-import Navbar from "../../../../../components/ui/Navbar";
-import { MultipleChoiceSentence } from "../../../../../components/questionTypes/MultipleChoiceSentence";
-import ResourceRow from "../../../../../components/coding/studentPortal/ResourceRow";
-import { Sidebar } from "../../../../../components/coding/studentPortal/Sidebar";
-import { Button } from "../../../../../components/ui/Button";
-import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
+import Card, { CardData } from "../../../../components/coding/Card";
+import { Carousel } from "../../../../components/coding/Carousel";
+import CSSQuiz from "../../../../components/coding/CSSQuiz";
+import Navbar from "../../../../components/ui/Navbar";
+import { MultipleChoiceSentence } from "../../../../components/questionTypes/MultipleChoiceSentence";
+import ResourceRow from "../../../../components/coding/studentPortal/ResourceRow";
+import { Sidebar } from "../../../../components/coding/studentPortal/Sidebar";
+import { Button } from "../../../../components/ui/Button";
+import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 
 const CSS1 = () => {
   const assignments = [
@@ -75,7 +75,7 @@ const CSS1 = () => {
               ))}
             </div>
           </div>
-          <div className="flex sm:justify-end mt-12 h-full">
+          <div className="flex h-full mt-12 sm:justify-end">
             <a href={"/course/coding/unit/CSS/2"}>
               <Button label="Continue" disabled={false} />
             </a>

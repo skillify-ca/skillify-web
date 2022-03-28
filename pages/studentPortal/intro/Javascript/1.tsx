@@ -1,7 +1,7 @@
 import React from "react";
-import Card, { CardData } from "../../../../../components/coding/Card";
-import JSQuiz from "../../../../../components/coding/JSQuiz";
-import Navbar from "../../../../../components/ui/Navbar";
+import Card, { CardData } from "../../../../components/coding/Card";
+import JSQuiz from "../../../../components/coding/JSQuiz";
+import Navbar from "../../../../components/ui/Navbar";
 
 const JS1 = () => {
   const data: CardData[] = [
@@ -74,9 +74,9 @@ const JS1 = () => {
   return (
     <>
       <Navbar />
-      <div className="grid grid-cols-1 bg-white p-8 sm:m-8 space-y-4">
-        <h1 className="font-bold text-5xl">JavaScript 1</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 bg-white space-y-4">
+      <div className="grid grid-cols-1 p-8 space-y-4 bg-white sm:m-8">
+        <h1 className="text-5xl font-bold">JavaScript 1</h1>
+        <div className="grid grid-cols-1 space-y-4 bg-white sm:grid-cols-2">
           <div className="flex flex-col space-y-4">
             <p className="font-bold">Lesson</p>
             <p>
@@ -86,7 +86,7 @@ const JS1 = () => {
             <div className="flex flex-col space-y-2">
               <p className="font-bold">Tutorials</p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {data.map((it) => (
                   <Card
                     title={it.title}
@@ -97,8 +97,8 @@ const JS1 = () => {
                 ))}
               </div>
 
-              <p className="font-bold mt-3"> JS Coding Challenges </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <p className="mt-3 font-bold"> JS Coding Challenges </p>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {CsAssign.map((it) => (
                   <Card
                     title={it.title}
@@ -194,24 +194,24 @@ const JS1 = () => {
                 <li>Iterators</li>
               </ul>
             </div>
-            <p className="font-bold mb-4 mt-8">
+            <p className="mt-8 mb-4 font-bold">
               10 Javascript Code Challlenges
             </p>
             <a href="https://www.codecademy.com/resources/blog/10-javascript-code-challenges-for-beginners/">
-              <p className="bg-blue-500 p-4 text-white w-36 text-center rounded-lg border-b-4 border-blue-800">
+              <p className="p-4 text-center text-white bg-blue-500 border-b-4 border-blue-800 rounded-lg w-36">
                 Start Quiz
               </p>
             </a>
             <JSQuiz />
             <div className="flex flex-col">
               <a
-                className="font-bold text-yellow-600 text-2xl mt-8"
+                className="mt-8 text-2xl font-bold text-yellow-600"
                 href="/course/coding/unit/Javascript/Midterm1"
               >
                 Find the JavaScript Assignment Here!
               </a>
               <a
-                className="font-bold text-blue-700 text-2xl mt-8"
+                className="mt-8 text-2xl font-bold text-blue-700"
                 href="/course/coding/unit/Javascript/Final1"
               >
                 Find the Final Assignment Here!
