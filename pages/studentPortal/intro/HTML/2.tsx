@@ -17,7 +17,7 @@ const HTML2 = () => {
       </div>
       <div className="flex flex-col">
         <Quiz />
-        <div className="fixed bottom-0 w-full p-8 h-36 ">
+        <div className="w-full p-8 h-36 ">
           <div className="flex justify-end w-full">
             {showSessionEnd ? (
               <a href="/studentPortal/intro/HTML/1">

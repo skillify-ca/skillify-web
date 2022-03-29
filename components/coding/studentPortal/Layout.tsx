@@ -16,9 +16,9 @@ export const Layout: React.FC = ({ children }) => {
           height: 100%;
         }
       `}</style>
-      <div className="z-20 flex justify-between w-full h-16 col-span-12 p-4 bg-white ">
+      <div className="fixed z-20 flex justify-between w-full h-16 col-span-12 p-4 bg-white ">
         <div onClick={(e) => setActive(!active)}>
-          <div className="cursor-pointer md:hidden">
+          <div className="cursor-pointer ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-8 h-8"
@@ -36,22 +36,15 @@ export const Layout: React.FC = ({ children }) => {
         <img className="w-48 h-8" src="/images/logo.svg" />
         <div />
       </div>
-      <div className="flex h-full">
-        <div className="hidden w-64 h-full col-span-2 bg-white md:flex dark:bg-gray-900">
-          <Sidebar />
-        </div>
-        <div
-          className={`dark:text-white w-full h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 gap-4 bg-gray-100 dark:bg-gray-800 ${
-            active ? "" : ""
-          } `}
-        >
-          <div>{children}</div>
-        </div>
+      <div
+        className={`dark:text-white w-full h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 gap-4 bg-gray-100 dark:bg-gray-800`}
+      >
+        <div>{children}</div>
       </div>
       <div
-        className={`absolute z-10 lg:hidden w-48 top-16 ${
-          active ? "left-0" : "-left-48"
-        } h-full bg-white dark:bg-gray-900 lg:w-0 transition-all transform duration-500 ease-in-out`}
+        className={`fixed z-10 w-56 top-16 ${
+          active ? "left-0" : "-left-56"
+        } h-full transition-all transform duration-500 ease-in-out`}
       >
         <Sidebar />
       </div>

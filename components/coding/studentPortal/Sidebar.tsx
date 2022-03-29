@@ -9,7 +9,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
 
   return (
     //Full width then restrict in page
-    <div className="flex flex-col w-full h-full dark:text-white">
+    <div className="flex flex-col w-full h-full bg-white dark:bg-gray-900 dark:text-white">
       <div className="grid grid-rows-4">
         <div className="flex p-4">
           {user && (

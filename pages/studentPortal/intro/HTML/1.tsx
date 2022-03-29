@@ -8,7 +8,7 @@ import { Button } from "../../../../components/ui/Button";
 const HTML1 = ({ lessonComponents }) => {
   return (
     <>
-      <div className="grid grid-cols-1 gap-8 px-12 pt-4">
+      <div className="grid grid-cols-1 gap-8 px-4 pt-4 sm:px-12">
         <ProgressBar completed={100} />
         {lessonComponents.map((it) => (
           <LessonComponent data={it} />

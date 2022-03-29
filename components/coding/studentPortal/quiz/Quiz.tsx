@@ -104,7 +104,7 @@ export default function Quiz({}: QuizProps) {
             </div>
           </div>
 
-          <div className="mt-16 overflow-hidden h-36">
+          <div className="hidden overflow-hidden h-36">
             <div
               className={`${
                 isGraded ? "mt-0" : "mt-36"
