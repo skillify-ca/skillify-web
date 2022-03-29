@@ -8,29 +8,29 @@ import LessonComponent, {
 import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 import { Button } from "../../../../components/ui/Button";
 import Navbar from "../../../../components/ui/Navbar";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
 import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
-import { UPDATE_USER_INTRO_NODE } from "../../../../graphql/coding/updateUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
 
 const Warmups1 = ({ lessonComponents }) => {
   const { user } = useAuth();
   const router = useRouter();
-  const [updateUserIntroNode] = useMutation(UPDATE_USER_INTRO_NODE);
+  const [unlockUserNode] = useMutation(UNLOCK_USER_INTRO_NODE);
+  const [completeUserNode] = useMutation(COMPLETE_USER_INTRO_NODE);
 
   const handleContinue = () => {
-    updateUserIntroNode({
+    completeUserNode({
       variables: {
         user_id: user.uid,
         node_id: 1,
         completed: true,
-        locked: false,
       },
     }).then((res) => {
-      updateUserIntroNode({
+      unlockUserNode({
         variables: {
           user_id: user.uid,
           node_id: 2,
-          completed: false,
           locked: false,
         },
         refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
