@@ -8,13 +8,13 @@ import { Button } from "../../../../components/ui/Button";
 const HTML1 = ({ lessonComponents }) => {
   return (
     <>
-      <div className="grid grid-cols-1 gap-8">
+      <div className="grid grid-cols-1 gap-8 px-12 pt-4">
         <ProgressBar completed={100} />
         {lessonComponents.map((it) => (
           <LessonComponent data={it} />
         ))}
         <div className="flex mt-8 sm:justify-end">
-          <a href={""}>
+          <a href={"/studentPortal/intro/HTML/2"}>
             <Button label="Continue" disabled={false} />
           </a>
         </div>

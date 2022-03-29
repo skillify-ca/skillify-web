@@ -24,7 +24,15 @@ module.exports = {
         rattata: "#7678ED",
         pikachu: "#F7B801",
         murkrow: "#18124D",
-        turtwig: "#5BB84C",
+        bulbasaur: {
+          200: "#F0FFE9",
+          500: "#5BB84C",
+        }
+          ,
+        moltres: {
+          200: "#FFE8E8",
+          500: "#D00000"
+        },
       },
       backgroundImage: (theme) => ({
         "email-capture": "url('/images/landingPage/Rectangle5.png')",

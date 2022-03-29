@@ -40,8 +40,8 @@ export const introUnits: Unit[] = [
         title: "Quiz",
         description: "HTML Basics",
         completed: false,
-        locked: true,
-        link: "intro/HTML/1",
+        locked: false,
+        link: "intro/HTML/2",
         type: "quiz",
       },
       {

@@ -1,4 +1,5 @@
 import React from "react";
+import Quiz from "./quiz/Quiz";
 import ResourceRow from "./ResourceRow";
 
 export type Resource = {
@@ -19,7 +20,8 @@ export type LessonComponentData =
   | {
       component: "resource-list";
       resources: Resource[];
-    };
+    }
+  | { component: "quiz" };
 
 export type LessonComponentProps = {
   data: LessonComponentData;
@@ -49,5 +51,8 @@ export default function LessonComponent({ data }: LessonComponentProps) {
         </div>
       </>
     );
+  }
+  if (data.component === "quiz") {
+    return <Quiz />;
   }
 }

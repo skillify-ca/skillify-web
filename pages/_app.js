@@ -3,7 +3,6 @@ import "../styles/globals.css";
 import { DndProvider } from "react-dnd";
 import { TouchBackend } from "react-dnd-touch-backend";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { ModalProvider } from "react-simple-hook-modal";
 import initializeApollo from "../lib/apollo";
 import { AuthProvider, useAuth } from "../lib/authContext";
 import { ApolloProvider } from "@apollo/client";
@@ -48,7 +47,6 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
       <Script src="https://unpkg.com/kaboom/dist/kaboom.js" onLoad={() => {
       }} />
       <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
-        <ModalProvider>
           <ReduxProvider store={store}>
             <AuthProvider>
               {Component.auth ? (
@@ -60,7 +58,6 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
               )}
             </AuthProvider>
           </ReduxProvider>
-        </ModalProvider>
       </DndProvider>
     </ApolloProvider>
   );
