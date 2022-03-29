@@ -48,10 +48,10 @@ export default function Quiz({}: QuizProps) {
     <>
       {showSessionEnd ? (
         <div className="flex flex-col items-center justify-center w-full gap-4 ">
-          <img src={"/images/coding/quiz/finish.svg"} className="w-64" />
+          <img src={"/images/coding/quiz/finish.svg"} className="w-52" />
           <p>You have unlocked a new achievment</p>
           <p>Quiz complete</p>
-          <div className="flex w-64 -mt-16">
+          <div className="flex -mt-16 w-52">
             <Lottie
               animationData={quizCompleteAnimation}
               loop={false}
@@ -104,11 +104,12 @@ export default function Quiz({}: QuizProps) {
             </div>
           </div>
 
-          <div className="hidden overflow-hidden h-36">
+          {/* TODO: Create grading ribbons on mobile */}
+          <div className="hidden overflow-hidden lg:flex lg:h-36 lg:mt-8">
             <div
               className={`${
                 isGraded ? "mt-0" : "mt-36"
-              } overflow-hidden transition-all transform`}
+              } overflow-hidden transition-all transform w-full`}
             >
               <GradingRibbon
                 correct={shouldShowCorrectGrade}

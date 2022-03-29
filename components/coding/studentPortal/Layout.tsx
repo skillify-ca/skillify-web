@@ -37,7 +37,7 @@ export const Layout: React.FC = ({ children }) => {
         <div />
       </div>
       <div
-        className={`dark:text-white w-full h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 gap-4 bg-gray-100 dark:bg-gray-800`}
+        className={`dark:text-white mt-16 overflow-auto w-full h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 gap-4 bg-gray-100 dark:bg-gray-800`}
       >
         <div>{children}</div>
       </div>
