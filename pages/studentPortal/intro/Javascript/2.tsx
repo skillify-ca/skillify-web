@@ -6,6 +6,8 @@ import { FETCH_USER_SKILL_BADGE } from "../../../../graphql/fetchBadgeForSkill";
 import { FETCH_USER_BADGES } from "../../../../graphql/fetchUserBadge";
 import { LOCK_USER_BADGES } from "../../../../graphql/lockUserCodingBadges";
 import { FETCH_ALL_STUDENT_CODING_BADGES } from "../../../../graphql/fetchAllStudentCodingBadges";
+import { INIT_USER_INTRO_NODES } from "../../../../graphql/coding/initUserIntroNodes";
+import { useAuth } from "../../../../lib/authContext";
 
 //You need to create a badge object
 type Badge = {
@@ -29,6 +31,7 @@ for (let i = 0; i < numOfStudents; i++) {
 }
 
 const Studentbadges = () => {
+  const { user } = useAuth();
   const [student, setStudent] = useState("No Student is Selected");
   const [allStudentBadges, setallStudentBadges] =
     useState<Badge[][]>(studentBadges);
