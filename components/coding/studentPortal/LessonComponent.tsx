@@ -21,7 +21,12 @@ export type LessonComponentData =
       component: "resource-list";
       resources: Resource[];
     }
-  | { component: "quiz" };
+  | { component: "quiz" }
+  | {
+      component: "code-sandbox";
+      title: string;
+      link: string;
+    };
 
 export type LessonComponentProps = {
   data: LessonComponentData;
@@ -54,5 +59,21 @@ export default function LessonComponent({ data }: LessonComponentProps) {
   }
   if (data.component === "quiz") {
     return <Quiz />;
+  }
+  if (data.component === "code-sandbox") {
+    return (
+      <>
+        <h1 className="font-bold">{data.title}</h1>
+        <div className="flex flex-col gap-8 px-4">
+          <iframe
+            src={data.link}
+            className="w-full overflow-hidden rounded-md h-108"
+            title={data.title}
+            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+          ></iframe>
+        </div>
+      </>
+    );
   }
 }
