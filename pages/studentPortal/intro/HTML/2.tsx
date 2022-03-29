@@ -1,10 +1,13 @@
+import { useDispatch } from "react-redux";
 import LessonComponent, {
   LessonComponentData,
 } from "../../../../components/coding/studentPortal/LessonComponent";
 import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 import { Button } from "../../../../components/ui/Button";
+import { continueRequested } from "../../../../redux/quizSlice";
 
 const HTML2 = ({ lessonComponents }) => {
+  const dispatch = useDispatch();
   return (
     <div className="flex flex-col">
       <div className="p-4 mb-4">
@@ -14,11 +17,13 @@ const HTML2 = ({ lessonComponents }) => {
         {lessonComponents.map((it) => (
           <LessonComponent data={it} />
         ))}
-        <div className="fixed bottom-0 w-full p-8 bg-gray-200 h-36 ">
+        <div className="fixed bottom-0 w-full p-8 h-36 ">
           <div className="flex justify-end w-full">
-            <a className="" href={""}>
-              <Button label="Continue" disabled={false} />
-            </a>
+            <Button
+              label="Continue"
+              disabled={false}
+              onClick={(e) => dispatch(continueRequested(null))}
+            />
           </div>
         </div>
       </div>

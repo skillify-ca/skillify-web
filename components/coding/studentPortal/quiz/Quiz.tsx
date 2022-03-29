@@ -1,74 +1,104 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  quizSelector,
+  selectOptionRequested,
+} from "../../../../redux/quizSlice";
 import GradingRibbon from "./GradingRibbon";
 import MCOption, { OptionState } from "./MCOption";
 
-export type QuizProps = {
-  question: string;
-  option1: string;
-  option2: string;
-  option3: string;
-  option4: string;
-  answer: string;
-};
+export type QuizProps = {};
 
 export default function Quiz({}: QuizProps) {
-  const [selectedOption, setSelectedOption] = useState<string>();
+  const {
+    questions,
+    currentQuestion,
+    selectedOption,
+    isGraded,
+    shouldShowIncorrectGrade,
+    shouldShowCorrectGrade,
+  } = useSelector(quizSelector);
+  const dispatch = useDispatch();
+
+  const getOptionState = (option: string) => {
+    if (selectedOption === option) {
+      if (isGraded) {
+        if (selectedOption === option) {
+          if (shouldShowCorrectGrade) {
+            return OptionState.CORRECT;
+          } else if (shouldShowIncorrectGrade) {
+            return OptionState.INCORRECT;
+          }
+        }
+      } else {
+        if (selectedOption === option) {
+          return OptionState.SELECTED;
+        }
+      }
+    }
+
+    return OptionState.DEFAULT;
+  };
 
   return (
     <div>
       <div className="px-4 mb-10 sm:px-32">
-        <p>Question 1 of 10</p>
-        <p className="text-2xl">What does HTML stand for?</p>
+        <p>Question {currentQuestion + 1} of 10</p>
+        <p className="text-2xl">{questions[currentQuestion].text}</p>
       </div>
       <div className="grid grid-cols-1 gap-6 px-4 sm:grid-cols-2 sm:px-32">
-        <div onClick={(e) => setSelectedOption("A")} className="cursor-pointer">
+        <div
+          onClick={(e) => dispatch(selectOptionRequested("A"))}
+          className="cursor-pointer"
+        >
           <MCOption
-            text={"Option 1"}
-            state={
-              selectedOption === "A"
-                ? OptionState.SELECTED
-                : OptionState.DEFAULT
-            }
+            text={questions[currentQuestion].A}
+            state={getOptionState("A")}
           />
         </div>
-        <div onClick={(e) => setSelectedOption("B")} className="cursor-pointer">
+        <div
+          onClick={(e) => dispatch(selectOptionRequested("B"))}
+          className="cursor-pointer"
+        >
           <MCOption
-            text={"Option 2"}
-            state={
-              selectedOption === "B"
-                ? OptionState.SELECTED
-                : OptionState.DEFAULT
-            }
+            text={questions[currentQuestion].B}
+            state={getOptionState("B")}
           />
         </div>
-        <div onClick={(e) => setSelectedOption("C")} className="cursor-pointer">
+        <div
+          onClick={(e) => dispatch(selectOptionRequested("C"))}
+          className="cursor-pointer"
+        >
           <MCOption
-            text={"Option 3"}
-            state={
-              selectedOption === "C"
-                ? OptionState.SELECTED
-                : OptionState.DEFAULT
-            }
+            text={questions[currentQuestion].C}
+            state={getOptionState("C")}
           />
         </div>
-        <div onClick={(e) => setSelectedOption("D")} className="cursor-pointer">
+        <div
+          onClick={(e) => dispatch(selectOptionRequested("D"))}
+          className="cursor-pointer"
+        >
           <MCOption
-            text={"Option 4"}
-            state={
-              selectedOption === "D"
-                ? OptionState.SELECTED
-                : OptionState.DEFAULT
+            text={questions[currentQuestion].D}
+            state={getOptionState("D")}
+          />
+        </div>
+      </div>
+
+      <div className="mt-16 overflow-hidden h-36">
+        <div
+          className={`${
+            isGraded ? "mt-0" : "mt-36"
+          } overflow-hidden transition-all transform`}
+        >
+          <GradingRibbon
+            correct={shouldShowCorrectGrade}
+            answer={
+              questions[currentQuestion][questions[currentQuestion].answer]
             }
           />
         </div>
       </div>
-      {true && (
-        <div className="mt-16 overflow-hidden h-36">
-          <div className="mt-0 overflow-hidden transition-all transform">
-            <GradingRibbon />
-          </div>
-        </div>
-      )}
     </div>
   );
 }
