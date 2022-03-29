@@ -9,55 +9,53 @@ import Navbar from "../../../../components/ui/Navbar";
 
 const Warmups1 = ({ lessonComponents }) => {
   return (
-    <>
+    <div className="grid grid-cols-1 gap-8 px-4 md:px-8 lg:px-12">
+      <ProgressBar completed={100} />
+      {lessonComponents.map((it) => (
+        <LessonComponent data={it} />
+      ))}
       <div className="grid grid-cols-1 gap-8">
-        <ProgressBar completed={100} />
-        {lessonComponents.map((it) => (
-          <LessonComponent data={it} />
-        ))}
-        <div className="grid grid-cols-1 gap-8">
-          <iframe
-            width="560"
-            className="w-full p-0 sm:p-8"
-            height="315"
-            src="https://www.youtube.com/embed/gT0Lh1eYk78"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-          <div>
-            <p className="text-lg font-bold text-green-700">
-              {" "}
-              How to download Node.js{" "}
-            </p>
-            <ol>
-              <li>
-                1. Google "Node.js" and click this link
-                https://nodejs.org/en/download/
-              </li>
-              <img src="/images/download.png" height="50px" />
-              <li>
-                2. You should see this homepage. Click on your operating system.
-              </li>
-              <li>3. Click on the Downloaded Package</li>
-              <li>
-                4. It should open up something similar to the image below. Agree
-                to the terms and conditions and press continue.
-              </li>
-              <img src="/images/terms-and-conditions.png" />
-              <li>5. Once you reach this end screen you're good to go!</li>
-              <img src="/images/end-screen.png" />
-            </ol>
-          </div>
-        </div>
-        <div className="flex mt-8 sm:justify-end">
-          <a href={""}>
-            <Button label="Continue" disabled={false} />
-          </a>
+        <iframe
+          width="560"
+          className="w-full p-0 sm:p-8"
+          height="315"
+          src="https://www.youtube.com/embed/gT0Lh1eYk78"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+        <div>
+          <p className="text-lg font-bold text-green-700">
+            {" "}
+            How to download Node.js{" "}
+          </p>
+          <ol>
+            <li>
+              1. Google "Node.js" and click this link
+              https://nodejs.org/en/download/
+            </li>
+            <img src="/images/download.png" height="50px" />
+            <li>
+              2. You should see this homepage. Click on your operating system.
+            </li>
+            <li>3. Click on the Downloaded Package</li>
+            <li>
+              4. It should open up something similar to the image below. Agree
+              to the terms and conditions and press continue.
+            </li>
+            <img src="/images/terms-and-conditions.png" />
+            <li>5. Once you reach this end screen you're good to go!</li>
+            <img src="/images/end-screen.png" />
+          </ol>
         </div>
       </div>
-    </>
+      <div className="flex mt-8 sm:justify-end">
+        <a href={"/studentPortal/intro/HTML/1"}>
+          <Button label="Continue" disabled={false} />
+        </a>
+      </div>
+    </div>
   );
 };
 

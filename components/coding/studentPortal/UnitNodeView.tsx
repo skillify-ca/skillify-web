@@ -60,7 +60,7 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
             }{" "}
           </div>
         </div>
-        <div className="flex flex-col justify-center w-full col-span-6">
+        <div className="flex flex-col justify-center w-full col-span-10 sm:col-span-6">
           <p className="">{title}</p>
           <p className="">{description}</p>
         </div>

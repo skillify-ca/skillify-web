@@ -19,8 +19,8 @@ export default function StudentPortalPage({ units }: StudentPortalPageProps) {
   const { user } = useAuth();
 
   return (
-    <>
-      <div className="p-4 mb-8 bg-white shadow-md ">
+    <div className="flex flex-col w-full p-8 ">
+      <div className="p-4 mb-8 bg-white shadow-md">
         <p className="font-bold">{moment().format("MMM Do YYYY")}</p>
         <p className="text-3xl font-bold">
           Let's start learning, {user.displayName}
@@ -31,7 +31,7 @@ export default function StudentPortalPage({ units }: StudentPortalPageProps) {
           <UnitView data={it} />
         ))}
       </div>
-    </>
+    </div>
   );
 }
 export async function getStaticProps({ params }) {
