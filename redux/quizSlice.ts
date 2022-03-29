@@ -34,6 +34,7 @@ export interface QuizState {
   shouldShowIncorrectGrade: boolean;
   selectedOption?: string;
   isGraded: boolean;
+  showSessionEnd: boolean;
 }
 
 const initialState: QuizState = {
@@ -42,6 +43,7 @@ const initialState: QuizState = {
   shouldShowCorrectGrade: false,
   shouldShowIncorrectGrade: false,
   isGraded: false,
+  showSessionEnd: false,
 };
 
 export const quizSlice: Slice = createSlice({
@@ -62,7 +64,6 @@ export const quizSlice: Slice = createSlice({
       if (action.type == "quiz/continueRequested") {
         if (state.isGraded) {
           state.isGraded = false;
-
           if (state.shouldShowCorrectGrade) {
             state.shouldShowCorrectGrade = false;
           }
@@ -70,10 +71,11 @@ export const quizSlice: Slice = createSlice({
             state.shouldShowIncorrectGrade = false;
           }
           if (state.currentQuestion === state.questions.length - 1) {
-            // TODO show end screen
+            state.showSessionEnd = true;
           } else {
             state.currentQuestion = state.currentQuestion + 1;
           }
+          state.selectedOption = undefined;
         } else {
           state.isGraded = true;
           if (

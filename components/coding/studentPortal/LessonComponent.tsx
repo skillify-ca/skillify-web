@@ -53,15 +53,6 @@ export default function LessonComponent({ data }: LessonComponentProps) {
     );
   }
   if (data.component === "quiz") {
-    return (
-      <Quiz
-        question={""}
-        option1={""}
-        option2={""}
-        option3={""}
-        option4={""}
-        answer={""}
-      />
-    );
+    return <Quiz />;
   }
 }
