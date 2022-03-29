@@ -32,7 +32,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             <div className={`p-4 border-l-4 border-charmander text-charmander`}>
               <div className="flex flex-wrap">
                 <img
-                  className="w-8 h-8 mr-4"
+                  className="w-6 h-6 mr-4"
                   src="/images/dashBoardActive.svg"
                 />
                 Dashboard
@@ -40,9 +40,9 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             </div>
           </div>
         </a>
-        <a className={`p-4 border-l-4`} href="/classroom">
+        <a className={`p-4`} href="/classroom">
           <div className="flex flex-wrap">
-            <img className="w-8 h-8 mr-4" src="/images/classroomInactive.svg" />
+            <img className="w-6 h-6 mr-4" src="/images/classroomInactive.svg" />
             Classroom
           </div>
         </a>
