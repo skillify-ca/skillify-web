@@ -15,7 +15,7 @@ const HomePage = () => {
   return (
     <div>
       <Head>
-        <title></title>
+        <title>Skillify</title>
       </Head>
       <SEO
         title={"Skillify"}
