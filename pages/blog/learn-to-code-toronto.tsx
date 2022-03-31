@@ -44,3 +44,7 @@ export default function Page() {
     </div>
   );
 }
+
+Page.getLayout = function getLayout(page) {
+  return <div>{page}</div>;
+};

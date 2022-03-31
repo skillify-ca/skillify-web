@@ -1,4 +1,4 @@
-import { Head } from "next/document";
+import Head from "next/head";
 
 type SEOProps = {
   title: string;
