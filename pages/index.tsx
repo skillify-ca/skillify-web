@@ -4,6 +4,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Head from "next/head";
 import Facebook from "../components/Facebook";
+import SEO from "../components/SEO";
 
 const navigation = [
   { name: "Student Portal", href: "/studentPortal/intro" },
@@ -14,8 +15,15 @@ const HomePage = () => {
   return (
     <div>
       <Head>
-        <title>Skillify</title>
+        <title></title>
       </Head>
+      <SEO
+        title={"Skillify"}
+        description={
+          "Toronto's best website for online learning! We teach high demand skills to help you get hired in the tech industry."
+        }
+        image={"https://www.skillify.ca/images/logo.svg"}
+      />
       <div className="relative overflow-hidden bg-white">
         <Facebook />
 
