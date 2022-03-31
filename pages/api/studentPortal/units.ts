@@ -164,7 +164,7 @@ export const introUnits: Unit[] = [
         completed: false,
         locked: true,
         link: "intro/Javascript/1",
-        type: "lesson",
+        type: "assignment",
       },
       {
         title: "Assignment 2",
@@ -172,7 +172,7 @@ export const introUnits: Unit[] = [
         completed: false,
         locked: true,
         link: "intro/Javascript/Final1",
-        type: "lesson",
+        type: "assignment",
       },
     ],
   },

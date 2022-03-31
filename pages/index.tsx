@@ -3,6 +3,7 @@ import LandingPagev2 from "../components/math/stories/LandingPagev2";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Head from "next/head";
+import Facebook from "../components/Facebook";
 
 const navigation = [
   { name: "Student Portal", href: "/studentPortal/intro" },
@@ -16,6 +17,8 @@ const HomePage = () => {
         <title>Skillify</title>
       </Head>
       <div className="relative overflow-hidden bg-white">
+        <Facebook />
+
         <div className="mx-auto max-w-7xl">
           <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
             <svg

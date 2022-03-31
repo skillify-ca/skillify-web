@@ -1,30 +1,13 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { RootState } from "./rootReducer";
 
-type Question = {
+export type Question = {
   text: string;
   A: string;
   B: string;
   C: string;
   D: string;
   answer: string;
-};
-
-const q1 = {
-  text: "Which element is used to display text?",
-  A: "<a>",
-  B: "<img>",
-  C: "<p>",
-  D: "<div>",
-  answer: "C",
-};
-const q2 = {
-  text: "Which elements are used to display lists?",
-  A: "<ul> and <ol>",
-  B: "<ul> and <li>",
-  C: "<ol> and <li>",
-  D: "None of the above",
-  answer: "A",
 };
 
 export interface QuizState {
@@ -38,7 +21,7 @@ export interface QuizState {
 }
 
 const initialState: QuizState = {
-  questions: [q1, q2],
+  questions: [],
   currentQuestion: 0,
   shouldShowCorrectGrade: false,
   shouldShowIncorrectGrade: false,
@@ -50,9 +33,11 @@ export const quizSlice: Slice = createSlice({
   name: "quiz",
   initialState,
   reducers: {
-    setQuizQuestions: (state: QuizState, action: PayloadAction<QuizState>) => {
-      if (action.type == "quiz/setQuestions") {
-        state.questions = [q1, q2];
+    setQuizQuestions: (state: QuizState, action: PayloadAction<Question[]>) => {
+
+      if (action.type == "quiz/setQuizQuestions") {
+
+        state.questions = action.payload;
       }
     },
     selectOptionRequested: (state, action: PayloadAction<string>) => {
@@ -92,11 +77,7 @@ export const quizSlice: Slice = createSlice({
   },
 });
 
-export const {
-  setQuizQuestions,
-  selectOptionRequested,
-  submitGuess,
-  continueRequested,
-} = quizSlice.actions;
+export const { setQuizQuestions, selectOptionRequested, continueRequested } =
+  quizSlice.actions;
 
 export const quizSelector = (state: RootState) => state.quizState;

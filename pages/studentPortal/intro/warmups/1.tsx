@@ -1,3 +1,5 @@
+import { useMutation, useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
 import Card, { CardData } from "../../../../components/coding/Card";
 import LessonComponent, {
   LessonComponentData,
@@ -6,8 +8,36 @@ import LessonComponent, {
 import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 import { Button } from "../../../../components/ui/Button";
 import Navbar from "../../../../components/ui/Navbar";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
+import { useAuth } from "../../../../lib/authContext";
 
 const Warmups1 = ({ lessonComponents }) => {
+  const { user } = useAuth();
+  const router = useRouter();
+  const [unlockUserNode] = useMutation(UNLOCK_USER_INTRO_NODE);
+  const [completeUserNode] = useMutation(COMPLETE_USER_INTRO_NODE);
+
+  const handleContinue = () => {
+    completeUserNode({
+      variables: {
+        user_id: user.uid,
+        node_id: 1,
+        completed: true,
+      },
+    }).then((res) => {
+      unlockUserNode({
+        variables: {
+          user_id: user.uid,
+          node_id: 2,
+          locked: false,
+        },
+        refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
+      });
+      router.push("/studentPortal/intro/HTML/1");
+    });
+  };
   return (
     <div className="grid grid-cols-1 gap-8 px-4 md:px-8 lg:px-12">
       <ProgressBar completed={100} />
@@ -51,9 +81,7 @@ const Warmups1 = ({ lessonComponents }) => {
         </div>
       </div>
       <div className="flex mt-8 sm:justify-end">
-        <a href={"/studentPortal/intro/HTML/1"}>
-          <Button label="Continue" disabled={false} />
-        </a>
+        <Button onClick={handleContinue} label="Continue" disabled={false} />
       </div>
     </div>
   );

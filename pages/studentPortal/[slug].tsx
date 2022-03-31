@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/coding/studentPortal/Sidebar";
 import UnitView from "../../components/coding/studentPortal/UnitView";
 import { useAuth } from "../../lib/authContext";
@@ -11,12 +11,48 @@ import {
 } from "../api/studentPortal/units";
 
 import moment from "moment";
+import { useMutation, useQuery } from "@apollo/client";
+import {
+  INIT_USER_INTRO_NODES,
+  objects,
+} from "../../graphql/coding/initUserIntroNodes";
+import {
+  FETCH_USER_INTRO_NODES,
+  transform,
+} from "../../graphql/coding/fetchUserIntroNodes";
 
-interface StudentPortalPageProps {
-  units: Unit[];
-}
-export default function StudentPortalPage({ units }: StudentPortalPageProps) {
+interface StudentPortalPageProps {}
+export default function StudentPortalPage({}: StudentPortalPageProps) {
   const { user } = useAuth();
+
+  const [initUserNodes] = useMutation(INIT_USER_INTRO_NODES);
+  const { data } = useQuery(FETCH_USER_INTRO_NODES, {
+    variables: {
+      userId: user.uid,
+    },
+  });
+  const [units, setUnits] = useState<Unit[]>([]);
+  useEffect(() => {
+    // TODO move this to user onboarding, so we're not re-initializing the nodes on every page load
+    if (user) {
+      initUserNodes({
+        variables: {
+          objects: objects(user),
+        },
+        refetchQueries: [
+          {
+            query: FETCH_USER_INTRO_NODES,
+          },
+        ],
+      });
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (data) {
+      setUnits(transform(data));
+    }
+  }, [data]);
 
   return (
     <div className="flex flex-col w-full p-8 ">
@@ -33,34 +69,6 @@ export default function StudentPortalPage({ units }: StudentPortalPageProps) {
       </div>
     </div>
   );
-}
-export async function getStaticProps({ params }) {
-  let units = [];
-  if (params.slug === "intro") {
-    units = introUnits;
-  } else if (params.slug === "react") {
-    units = reactUnits;
-  } else if (params.slug === "interview") {
-    units = interviewUnits;
-  } else if (params.slug === "android") {
-    units = androidUnits;
-  }
-  return {
-    props: {
-      units,
-    }, // will be passed to the page component as props
-  };
-}
-export async function getStaticPaths() {
-  return {
-    paths: [
-      { params: { slug: "intro" } },
-      { params: { slug: "react" } },
-      { params: { slug: "interview" } },
-      { params: { slug: "android" } },
-    ],
-    fallback: true, // false or 'blocking'
-  };
 }
 
 StudentPortalPage.auth = true;
