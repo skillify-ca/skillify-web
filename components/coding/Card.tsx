@@ -1,14 +1,16 @@
+import Link from "next/link";
+
 const Card = ({ title, image, description, link }) => {
   return (
-    <a href={link} target="_blank">
-      <div className="h-full items-center justify-center flex flex-col shadow-lg p-4 rounded-xl bg-blue-100 hover:scale-110 transform transition-all">
+    <Link href={link}>
+      <div className="flex flex-col items-center justify-center h-full p-4 transition-all transform bg-blue-100 shadow-lg cursor-pointer rounded-xl hover:scale-110">
         <div className="flex flex-col items-center">
-          <p className="mb-4">{title}</p>
+          <h4 className="mb-4 font-bold">{title}</h4>
           <img src={image} className="w-24 mb-4" />
         </div>
         {description}
       </div>
-    </a>
+    </Link>
   );
 };
 export default Card;

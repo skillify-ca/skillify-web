@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LessonComponent, {
@@ -45,9 +46,9 @@ const HTML2 = () => {
         <div className="w-full p-8 h-36 ">
           <div className="flex justify-end w-full">
             {showSessionEnd ? (
-              <a href="/studentPortal/intro/HTML/1">
+              <Link href="/studentPortal/intro/HTML/1">
                 <Button label="Continue" disabled={false} />
-              </a>
+              </Link>
             ) : (
               <Button
                 label="Continue"

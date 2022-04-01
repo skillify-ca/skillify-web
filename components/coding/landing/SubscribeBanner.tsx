@@ -29,9 +29,7 @@ const SubscribeBanner = () => {
           />
 
           <div className="flex items-center justify-center p-4 text-center text-white rounded-md shadow sm:w-36 bg-charmander hover:bg-yellow-700 ">
-            <a href="/courses" className="">
-              Enroll Now
-            </a>
+            <Link href="/studentPortal/intro">Enroll Now</Link>
           </div>
         </div>
       </div>

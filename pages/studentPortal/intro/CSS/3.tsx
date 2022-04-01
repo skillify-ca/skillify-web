@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
+import Link from "next/link";
 
 const CSS3 = () => {
   return (
@@ -31,9 +32,9 @@ const CSS3 = () => {
               </div>
             </div>
             <div className="flex h-full mt-12 sm:justify-end">
-              <a href={"/course/coding/unit/CSS/4"}>
+              <Link href={"/course/coding/unit/CSS/4"}>
                 <Button label="Continue" disabled={false} />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
