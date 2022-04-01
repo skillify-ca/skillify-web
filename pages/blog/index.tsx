@@ -6,11 +6,11 @@ export default function Blog() {
   return (
     <div>
       <LandingNavbar />
-      <div className="flex flex-col items-center gap-4 p-4">
+      <div className="flex flex-col items-center gap-16 p-4">
         <h1 className="text-5xl font-bold">Blog</h1>
 
         <div>
-          <h4>March 31, 2022</h4>
+          <h4>March 30, 2022</h4>
           <Card
             title={"Where can I learn to code in Toronto?"}
             image={undefined}
@@ -18,6 +18,17 @@ export default function Blog() {
               "This resource lists the top coding bootcamps in Toronto"
             }
             link={"/blog/learn-to-code-toronto"}
+          />
+        </div>
+        <div>
+          <h4>Apriil 2, 2022</h4>
+          <Card
+            title={"Are Toronto coding bootcamps worth it?"}
+            image={undefined}
+            description={
+              "This resource lists the top coding bootcamps in Toronto"
+            }
+            link={"/blog/is-it-worth-paying-for-a-coding-bootcamp"}
           />
         </div>
       </div>
