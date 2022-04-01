@@ -15,9 +15,6 @@ const navigation = [
 const HomePage = () => {
   return (
     <div>
-      <Head>
-        <title>Skillify</title>
-      </Head>
       <SEO
         title={"Skillify"}
         description={
