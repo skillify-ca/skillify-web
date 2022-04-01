@@ -17,7 +17,7 @@ export default function Blog() {
             description={
               "This resource lists the top coding bootcamps in Toronto"
             }
-            link={"/blog/learn-to-code-toronto"}
+            link={"/blog/best-toronto-coding-bootcamps-2022"}
           />
         </div>
         <div>
