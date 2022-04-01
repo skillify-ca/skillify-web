@@ -49,11 +49,13 @@ const HomePage = () => {
                   <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
                     <div className="flex items-center justify-between w-full md:w-auto">
                       <Link href="#">
-                        <span className="sr-only">Skillify</span>
-                        <img
-                          className="w-auto h-8 sm:h-10"
-                          src="/images/logo.svg"
-                        />
+                        <div>
+                          <span className="sr-only">Skillify</span>
+                          <img
+                            className="w-auto h-8 sm:h-10"
+                            src="/images/logo.svg"
+                          />
+                        </div>
                       </Link>
                       <div className="flex items-center -mr-2 md:hidden">
                         <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
