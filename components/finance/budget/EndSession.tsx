@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import { Button } from "../../ui/Button";
 import useWindowSize from "../../../hooks/UseWindowSizeHook";
 import Confetti from "react-confetti";
+import Link from "next/link";
 
 export interface EndSessionProps {
   onClick: () => void;
@@ -11,17 +12,17 @@ export const EndSession = ({ onClick }: EndSessionProps) => {
   const { width, height } = useWindowSize();
 
   return (
-    <div className="pt-64 bg-white min-h-screen max-w-screen">
+    <div className="min-h-screen pt-64 bg-white max-w-screen">
       <Confetti width={width} height={height} />
 
-      <div className="text-center pb-5">
-        <p className="text-5xl pb-5">GREAT JOB!</p>
+      <div className="pb-5 text-center">
+        <p className="pb-5 text-5xl">GREAT JOB!</p>
         <p>
           The more money you have left over, the more you can save for your
           future!
         </p>
       </div>
-      <div className="flex flex-nowrap justify-center">
+      <div className="flex justify-center flex-nowrap">
         <div className="pr-5">
           <Button
             label="Play Again"
@@ -31,9 +32,9 @@ export const EndSession = ({ onClick }: EndSessionProps) => {
           />
         </div>
         <div>
-          <a href="/practice">
+          <Link href="/practice">
             <Button label="Go Home" backgroundColor="green" textColor="white" />
-          </a>
+          </Link>
         </div>
       </div>
     </div>

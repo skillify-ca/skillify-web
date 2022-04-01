@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 import { Button } from "../../../../components/ui/Button";
@@ -20,10 +21,10 @@ const JS_Temperature = () => {
           allowFullScreen
         ></iframe>
       </div>
-      <div className="flex sm:justify-end mt-12 h-full">
-        <a href={"/course/coding/unit/Javascript/Find-Plant-video"}>
+      <div className="flex h-full mt-12 sm:justify-end">
+        <Link href={"/course/coding/unit/Javascript/Find-Plant-video"}>
           <Button label="Continue" disabled={false} />
-        </a>
+        </Link>
       </div>
     </>
   );

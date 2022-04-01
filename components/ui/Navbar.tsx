@@ -67,7 +67,7 @@ export default function Navbar({
           </button>
         </div>
         <div className="flex items-center justify-center flex-1 lg:items-stretch lg:justify-center">
-          <a href="/">
+          <Link href="/">
             <div className="flex items-center flex-shrink-0">
               <img
                 className="block w-auto h-8 lg:hidden"
@@ -80,7 +80,7 @@ export default function Navbar({
                 alt="Workflow"
               />
             </div>
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
