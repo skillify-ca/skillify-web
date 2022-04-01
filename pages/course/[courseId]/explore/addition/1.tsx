@@ -1,13 +1,12 @@
-import Card, { CardData } from "../../../../../components/coding/Card";
 import Navbar from "../../../../../components/ui/Navbar";
 
 const MultiDigitAddition = () => {
   return (
     <>
       <Navbar />
-      <div className="grid grid-cols-1 bg-white p-4 sm:p-8 m-4 sm:m-8 space-y-4">
-        <h1 className="font-bold text-5xl">4, 5, and 6 Digit Addition</h1>
-        <div className="grid grid-cols-1 bg-white space-y-4">
+      <div className="grid grid-cols-1 p-4 m-4 space-y-4 bg-white sm:p-8 sm:m-8">
+        <h1 className="text-5xl font-bold">4, 5, and 6 Digit Addition</h1>
+        <div className="grid grid-cols-1 space-y-4 bg-white">
           <div className="flex flex-col space-y-4">
             <p className="font-bold">Lesson</p>
             <p>

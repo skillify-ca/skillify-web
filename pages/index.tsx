@@ -8,7 +8,7 @@ import SEO from "../components/SEO";
 
 const navigation = [
   { name: "Student Portal", href: "/studentPortal/intro" },
-  { name: "Resources", href: "/resources" },
+  { name: "Blog", href: "/blog" },
 ];
 
 const HomePage = () => {

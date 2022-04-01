@@ -4,7 +4,7 @@ import ResourceRow from "./ResourceRow";
 
 export type Resource = {
   title: string;
-  description: string;
+  description?: string;
   image: string;
   link: string;
 };
