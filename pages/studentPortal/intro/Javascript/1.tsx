@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import Card, { CardData } from "../../../../components/coding/Card";
 import JSQuiz from "../../../../components/coding/JSQuiz";
@@ -197,11 +198,11 @@ const JS1 = () => {
             <p className="mt-8 mb-4 font-bold">
               10 Javascript Code Challlenges
             </p>
-            <a href="https://www.codecademy.com/resources/blog/10-javascript-code-challenges-for-beginners/">
+            <Link href="https://www.codecademy.com/resources/blog/10-javascript-code-challenges-for-beginners/">
               <p className="p-4 text-center text-white bg-blue-500 border-b-4 border-blue-800 rounded-lg w-36">
                 Start Quiz
               </p>
-            </a>
+            </Link>
             <JSQuiz />
             <div className="flex flex-col">
               <a

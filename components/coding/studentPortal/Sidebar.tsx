@@ -27,7 +27,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             </div>
           )}
         </div>
-        <a className={``} href="/studentPortal/intro">
+        <Link href="/studentPortal/intro">
           <div className={`"border-charmander text-charmander"`}>
             <div className={`p-4 border-l-4 border-charmander text-charmander`}>
               <div className="flex flex-wrap">
@@ -39,13 +39,13 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               </div>
             </div>
           </div>
-        </a>
-        <a className={`p-4`} href="/classroom">
-          <div className="flex flex-wrap">
+        </Link>
+        <Link href="/classroom">
+          <div className="flex flex-wrap p-4">
             <img className="w-6 h-6 mr-4" src="/images/classroomInactive.svg" />
             Classroom
           </div>
-        </a>
+        </Link>
         <div className="flex flex-wrap p-4 cursor-pointer" onClick={signOut}>
           <img className="w-8 h-8 mr-4" src="/images/logoutButton.svg" />
           Logout

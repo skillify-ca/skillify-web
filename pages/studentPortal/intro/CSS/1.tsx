@@ -6,6 +6,7 @@ import LessonComponent, {
   LessonComponentData,
   Resource,
 } from "../../../../components/coding/studentPortal/LessonComponent";
+import Link from "next/link";
 
 const CSS1 = ({ lessonComponents }) => {
   const assignments = [
@@ -63,9 +64,9 @@ const CSS1 = ({ lessonComponents }) => {
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {assignments.map((it) => (
                   <div>
-                    <a className="text-blue-600 underline" href={it.link}>
+                    <Link className="text-blue-600 underline" href={it.link}>
                       {it.title}
-                    </a>
+                    </Link>
                     <iframe
                       src={it.link}
                       className="w-full p-4 bg-white border-4 border-purple-400 shadow-lg h-96"
