@@ -37,7 +37,7 @@ export const Layout: React.FC = ({ children }) => {
         <div />
       </div>
       <div className="flex">
-        <div className="hidden w-56 mt-16 lg:flex">
+        <div className="hidden mt-16 w-72 lg:flex">
           <Sidebar />
         </div>
         <div
