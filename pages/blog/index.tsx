@@ -1,10 +1,12 @@
 import Link from "next/link";
 import Card from "../../components/coding/Card";
 import LandingNavbar from "../../components/LandingNavbar";
+import SEO from "../../components/SEO";
 
 export default function Blog() {
   return (
     <div>
+      <SEO title={"Blog"} description={"The Skillify Blog"} image={""} />
       <LandingNavbar />
       <div className="flex flex-col items-center gap-16 p-4">
         <h1 className="text-5xl font-bold">Blog</h1>

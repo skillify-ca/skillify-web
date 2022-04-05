@@ -12,7 +12,7 @@ export default function Page({ blogComponents }: PageProps) {
   return (
     <div>
       <SEO
-        title={"Are Toronto coding bootcamps worth it?"}
+        title={"Is it worth paying for a Toronto coding bootcamp?"}
         description={"We break down where you can learn to code in Toronto."}
         image={"https://melv1n.com/img/learn-to-code-how-to-start.png"}
       />
@@ -31,6 +31,10 @@ export async function getServerSideProps({ params }) {
     {
       component: "title",
       text: "Is it worth paying for a coding bootcamp?",
+    },
+    {
+      component: "description",
+      text: "Are Toronto coding bootcamps worth it?",
     },
     {
       component: "description",

@@ -22,7 +22,7 @@ const Testimonial = ({ text, img, studentName, color }: TestimonialProps) => {
   };
   return (
     <div
-      className={`flex flex-col h-full p-4 bg-white border-t-8 w-full sm:w-96 rounded-xl ${getBorderColour()}`}
+      className={`flex flex-col h-full p-4 bg-white border-t-8 shadow-xl w-full sm:w-96 rounded-xl ${getBorderColour()}`}
     >
       <p>{text}</p>
       <div className="flex p-3">
