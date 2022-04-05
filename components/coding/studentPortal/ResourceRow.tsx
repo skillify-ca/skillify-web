@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { Button } from "../../ui/Button";
 
@@ -26,9 +27,9 @@ export const ResourceRow: React.FC<ResourceRowProps> = ({
         <p>{description}</p>
       </div>
       <div className="flex items-center sm:justify-end">
-        <a href={link}>
+        <Link href={link}>
           <Button label="View" disabled={disabled} />
-        </a>
+        </Link>
       </div>
     </div>
   );

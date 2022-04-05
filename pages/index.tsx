@@ -3,10 +3,13 @@ import LandingPagev2 from "../components/math/stories/LandingPagev2";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Head from "next/head";
+import Facebook from "../components/Facebook";
+import SEO from "../components/SEO";
+import Link from "next/link";
 
 const navigation = [
   { name: "Student Portal", href: "/studentPortal/intro" },
-  { name: "Resources", href: "/resources" },
+  { name: "Blog", href: "/blog" },
 ];
 
 const HomePage = () => {
@@ -15,7 +18,16 @@ const HomePage = () => {
       <Head>
         <title>Skillify</title>
       </Head>
+      <SEO
+        title={"Skillify"}
+        description={
+          "Toronto's best website for online learning! We teach high demand skills to help you get hired in the tech industry."
+        }
+        image={"https://www.skillify.ca/images/logo.svg"}
+      />
       <div className="relative overflow-hidden bg-white">
+        <Facebook />
+
         <div className="mx-auto max-w-7xl">
           <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
             <svg
@@ -36,13 +48,15 @@ const HomePage = () => {
                 >
                   <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
                     <div className="flex items-center justify-between w-full md:w-auto">
-                      <a href="#">
-                        <span className="sr-only">Skillify</span>
-                        <img
-                          className="w-auto h-8 sm:h-10"
-                          src="/images/logo.svg"
-                        />
-                      </a>
+                      <Link href="#">
+                        <div>
+                          <span className="sr-only">Skillify</span>
+                          <img
+                            className="w-auto h-8 sm:h-10"
+                            src="/images/logo.svg"
+                          />
+                        </div>
+                      </Link>
                       <div className="flex items-center -mr-2 md:hidden">
                         <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
                           <span className="sr-only">Open main menu</span>

@@ -22,6 +22,7 @@ export default function Quiz({}: QuizProps) {
     shouldShowCorrectGrade,
     showSessionEnd,
   } = useSelector(quizSelector);
+
   const dispatch = useDispatch();
 
   const getOptionState = (option: string) => {
@@ -59,7 +60,7 @@ export default function Quiz({}: QuizProps) {
             />
           </div>
         </div>
-      ) : (
+      ) : questions.length > 0 ? (
         <div>
           <div className="px-4 mb-10 sm:px-32">
             <p>Question {currentQuestion + 1} of 10</p>
@@ -120,7 +121,7 @@ export default function Quiz({}: QuizProps) {
             </div>
           </div>
         </div>
-      )}
+      ) : null}
     </>
   );
 }
