@@ -41,17 +41,15 @@ const HTML2 = () => {
       C: "There is no difference in significance",
       D: "None of the above",
       answer: "A",
-      anyImage: false,
       image: "",
     };
     const q4 = {
       text: "What is the correct way to implement tags on a HTML page?",
-      A: '<img from="skillify.jpg"',
-      B: '<img src="skillify.jpg">',
-      C: '<image src="skillify.jpg">',
+      A: '<img from="skillify.jpg"/>',
+      B: '<img src="skillify.jpg"/>',
+      C: '<image src="skillify.jpg"/>',
       D: "All of the above",
       answer: "B",
-      anyImage: false,
       image: "",
     };
     const q5 = {
@@ -61,7 +59,6 @@ const HTML2 = () => {
       C: '<ul style="list-style-type:square;">',
       D: '<ol type="box">',
       answer: "C",
-      anyImage: false,
       image: "",
     };
     dispatch(setQuizQuestions([q1, q2, q3, q4, q5]));

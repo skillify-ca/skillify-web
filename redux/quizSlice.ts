@@ -8,8 +8,7 @@ export type Question = {
   C: string;
   D: string;
   answer: string;
-  anyImage: boolean;
-  image: string;
+  image?: string;
 };
 
 export interface QuizState {
