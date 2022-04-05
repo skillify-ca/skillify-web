@@ -63,7 +63,7 @@ export default function Quiz({}: QuizProps) {
       ) : questions.length > 0 ? (
         <div>
           <div className="px-4 mb-10 sm:px-32">
-            <p>Question {currentQuestion + 1} of 10</p>
+            <p>Question {currentQuestion + 1} of 5</p>
             <p className="text-2xl">{questions[currentQuestion].text}</p>
           </div>
           <div className="grid grid-cols-1 gap-6 px-4 sm:grid-cols-2 sm:px-32">

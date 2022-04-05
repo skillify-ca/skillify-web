@@ -34,7 +34,37 @@ const HTML2 = () => {
       D: "None of the above",
       answer: "A",
     };
-    dispatch(setQuizQuestions([q1, q2]));
+    const q3 = {
+      text: "What is the difference between <h1> and <h2> tags?",
+      A: "<h1> tags are ranked higher in significance than <h2> and thus are slightly larger",
+      B: "<h2> is larger than <h1>",
+      C: "There is no difference in significance",
+      D: "None of the above",
+      answer: "A",
+      anyImage: false,
+      image: "",
+    };
+    const q4 = {
+      text: "What is the correct way to implement tags on a HTML page?",
+      A: '<img from="skillify.jpg"',
+      B: '<img src="skillify.jpg">',
+      C: '<image src="skillify.jpg">',
+      D: "All of the above",
+      answer: "B",
+      anyImage: false,
+      image: "",
+    };
+    const q5 = {
+      text: "How can we implement square points in an unordered list?",
+      A: '<ol style="list-style-type:square;">',
+      B: '<ul type="box">',
+      C: '<ul style="list-style-type:square;">',
+      D: '<ol type="box">',
+      answer: "C",
+      anyImage: false,
+      image: "",
+    };
+    dispatch(setQuizQuestions([q1, q2, q3, q4, q5]));
   }, []);
   return (
     <div className="flex flex-col">
@@ -46,7 +76,7 @@ const HTML2 = () => {
         <div className="w-full p-8 h-36 ">
           <div className="flex justify-end w-full">
             {showSessionEnd ? (
-              <Link href="/studentPortal/intro/HTML/1">
+              <Link href="/studentPortal/intro/HTML/3">
                 <Button label="Continue" disabled={false} />
               </Link>
             ) : (
