@@ -9,11 +9,12 @@ export default function SEO(props: SEOProps) {
   const { title, description, image } = props;
   return (
     <Head>
-      <title>{title} | App</title>
+      <title>{title}</title>
       <meta name="description" content={description} />
-      <meta itemProp="name" content={title} />
-      <meta itemProp="description" content={description} />
-      <meta itemProp="image" content={image} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content="https://skillify.ca/" />
+      <meta property="og:type" content="website" />
     </Head>
   );
 }

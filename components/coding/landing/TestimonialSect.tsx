@@ -26,7 +26,7 @@ const TestimonialSect = () => {
   ];
   return (
     <div>
-      <div className="flex flex-col justify-center p-4 sm:p-8">
+      <div className="flex flex-col justify-center p-4 bg-white sm:p-8">
         <div className="">
           <p className="text-3xl font-semibold "> Testimonials</p>
           <p className="">
@@ -34,7 +34,7 @@ const TestimonialSect = () => {
             Read what our previous students have to say about their experience
             at Skillify.
           </p>
-          <div className="flex flex-wrap gap-8 mt-4">
+          <div className="flex flex-wrap gap-8 mt-4 bg-white">
             {testimonialData.map((it, index) => (
               <div>
                 <Testimonial

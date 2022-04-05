@@ -13,7 +13,7 @@ import { Button } from "../../ui/Button";
 const SubscribeBanner = () => {
   return (
     <div>
-      <div className="grid grid-cols-1 p-4 sm:m-8 sm:p-8 sm:rounded-md sm:grid-cols-2 bg-murkrow">
+      <div className="grid grid-cols-1 p-4 lg:m-8 md:p-8 lg:rounded-md lg:grid-cols-2 bg-murkrow">
         <p className="mb-4 text-xl text-charmander">
           Universities and bootcamps leave you in debt and unprepared for
           finding a real job. With our project-based courses, you can learn the
