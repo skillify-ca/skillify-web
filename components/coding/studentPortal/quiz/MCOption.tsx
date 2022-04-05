@@ -39,11 +39,11 @@ export default function MCOption({ text, state }: MCOptionProps) {
 
   return (
     <div
-      className={`flex items-center h-16 px-6 bg-white rounded-md w-full ${getBorderColour(
+      className={`flex items-center h-16 px-6 bg-white dark:bg-gray-900 rounded-md w-full ${getBorderColour(
         state
       )}`}
     >
-      <div className="flex items-center justify-center w-6 h-6 mr-6 bg-gray-200 rounded-full">
+      <div className="flex items-center justify-center w-6 h-6 mr-6 bg-gray-200 dark:bg-gray-400 rounded-full">
         <div
           className={`w-4 h-4 rounded-full ${getRadioButtonColour(state)}`}
         ></div>

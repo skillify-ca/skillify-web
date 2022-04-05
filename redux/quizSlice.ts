@@ -8,6 +8,7 @@ export type Question = {
   C: string;
   D: string;
   answer: string;
+  image?: string;
 };
 
 export interface QuizState {
@@ -34,9 +35,7 @@ export const quizSlice: Slice = createSlice({
   initialState,
   reducers: {
     setQuizQuestions: (state: QuizState, action: PayloadAction<Question[]>) => {
-
       if (action.type == "quiz/setQuizQuestions") {
-
         state.questions = action.payload;
       }
     },
