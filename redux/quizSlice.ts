@@ -8,6 +8,8 @@ type Question = {
   C: string;
   D: string;
   answer: string;
+  anyImage: boolean;
+  image: string;
 };
 
 const q1 = {
@@ -17,6 +19,8 @@ const q1 = {
   C: "<p>",
   D: "<div>",
   answer: "C",
+  anyImage: false,
+  image: "",
 };
 const q2 = {
   text: "Which elements are used to display lists?",
@@ -25,8 +29,39 @@ const q2 = {
   C: "<ol> and <li>",
   D: "None of the above",
   answer: "A",
+  anyImage: false,
+  image: "",
 };
-
+const q3 = {
+  text: "What is the difference between <h1> and <h2> tags?",
+  A: "<h1> tags are ranked higher in significance than <h2> and thus are slightly larger",
+  B: "<h2> is larger than <h1>",
+  C: "There is no difference in significance",
+  D: "None of the above",
+  answer: "A",
+  anyImage: false,
+  image: "",
+};
+const q4 = {
+  text: "What is the correct way to implement tags on a HTML page?",
+  A: '<img from="skillify.jpg"',
+  B: '<img src="skillify.jpg">',
+  C: '<image src="skillify.jpg">',
+  D: "All of the above",
+  answer: "B",
+  anyImage: false,
+  image: "",
+};
+const q5 = {
+  text: "How can we implement square points in an unordered list?",
+  A: '<ol style="list-style-type:square;">',
+  B: '<ul type="box">',
+  C: '<ul style="list-style-type:square;">',
+  D: '<ol type="box">',
+  answer: "C",
+  anyImage: false,
+  image: "",
+};
 export interface QuizState {
   questions: Question[];
   currentQuestion: number;
@@ -38,7 +73,7 @@ export interface QuizState {
 }
 
 const initialState: QuizState = {
-  questions: [q1, q2],
+  questions: [q1, q2, q3, q4, q5],
   currentQuestion: 0,
   shouldShowCorrectGrade: false,
   shouldShowIncorrectGrade: false,
@@ -52,7 +87,7 @@ export const quizSlice: Slice = createSlice({
   reducers: {
     setQuizQuestions: (state: QuizState, action: PayloadAction<QuizState>) => {
       if (action.type == "quiz/setQuestions") {
-        state.questions = [q1, q2];
+        state.questions = [q1, q2, q3, q4, q5];
       }
     },
     selectOptionRequested: (state, action: PayloadAction<string>) => {

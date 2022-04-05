@@ -20,7 +20,7 @@ const HTML2 = () => {
         <div className="w-full p-8 h-36 ">
           <div className="flex justify-end w-full">
             {showSessionEnd ? (
-              <a href="/studentPortal/intro/HTML/1">
+              <a href="/studentPortal/intro/HTML/3">
                 <Button label="Continue" disabled={false} />
               </a>
             ) : (
