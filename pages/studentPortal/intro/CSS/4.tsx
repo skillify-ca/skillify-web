@@ -18,12 +18,12 @@ const CSS4 = () => {
                   {" "}
                   Ready to test your CSS knowledge?
                 </h1>
-                <p className="text-center">10 Questions</p>
+                <p className="text-center">5 Questions</p>
                 <p className="mt-4 text-center">Begin the quiz now!</p>
               </div>
             </div>
             <div className="flex h-full mt-12 sm:justify-end">
-              <a href={""}>
+              <a href={"/studentPortal/intro/CSS/css-quiz"}>
                 <Button label="Start Quiz" disabled={false} />
               </a>
             </div>
