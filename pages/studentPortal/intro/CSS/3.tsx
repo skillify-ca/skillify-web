@@ -32,7 +32,7 @@ const CSS3 = () => {
               </div>
             </div>
             <div className="flex h-full mt-12 sm:justify-end">
-              <Link href={"/course/coding/unit/CSS/4"}>
+              <Link href={"/studentPortal/intro/CSS/4"}>
                 <Button label="Continue" disabled={false} />
               </Link>
             </div>
