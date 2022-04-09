@@ -17,7 +17,7 @@ export const UnitView: React.FC<UnitViewProps> = ({ data }: UnitViewProps) => {
         {data.nodes.map((it, index) => {
           if (!it.locked) {
             return (
-              <Link href={it.link}>
+              <a href={it.link}>
                 <UnitNodeView
                   hiddenLine={index === data.nodes.length - 1}
                   completed={it.completed}
@@ -26,7 +26,7 @@ export const UnitView: React.FC<UnitViewProps> = ({ data }: UnitViewProps) => {
                   description={it.description}
                   type={it.type}
                 />
-              </Link>
+              </a>
             );
           } else {
             return (
