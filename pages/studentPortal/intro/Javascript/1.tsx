@@ -74,7 +74,6 @@ const JS1 = () => {
 
   return (
     <>
-      <Navbar />
       <div className="grid grid-cols-1 p-8 space-y-4 bg-white sm:m-8">
         <h1 className="text-5xl font-bold">JavaScript 1</h1>
         <div className="grid grid-cols-1 space-y-4 bg-white sm:grid-cols-2">

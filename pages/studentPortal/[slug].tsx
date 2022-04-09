@@ -21,8 +21,10 @@ import {
   transform,
 } from "../../graphql/coding/fetchUserIntroNodes";
 
-interface StudentPortalPageProps {}
-export default function StudentPortalPage({}: StudentPortalPageProps) {
+interface StudentPortalPageProps {
+  slug: string;
+}
+export default function StudentPortalPage({ slug }: StudentPortalPageProps) {
   const { user } = useAuth();
 
   const [initUserNodes] = useMutation(INIT_USER_INTRO_NODES);
@@ -49,7 +51,9 @@ export default function StudentPortalPage({}: StudentPortalPageProps) {
   }, [user]);
 
   useEffect(() => {
-    if (data) {
+    if (slug === "react") {
+      setUnits(reactUnits);
+    } else if (data) {
       setUnits(transform(data));
     }
   }, [data]);
@@ -69,6 +73,25 @@ export default function StudentPortalPage({}: StudentPortalPageProps) {
       </div>
     </div>
   );
+}
+export async function getStaticProps({ params }) {
+  return {
+    props: {
+      slug: params.slug,
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { slug: "intro" } },
+      { params: { slug: "react" } },
+      { params: { slug: "interview" } },
+      { params: { slug: "android" } },
+    ],
+    fallback: true,
+  };
 }
 
 StudentPortalPage.auth = true;
