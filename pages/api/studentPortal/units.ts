@@ -178,7 +178,7 @@ export const introUnits: Unit[] = [
   },
 ];
 
-export const reactUnits: Unit[] = [
+export const reactUnits = [
   {
     title: "React",
     nodes: [
