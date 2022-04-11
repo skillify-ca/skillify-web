@@ -21,8 +21,10 @@ import {
   transform,
 } from "../../graphql/coding/fetchUserIntroNodes";
 
-interface StudentPortalPageProps {}
-export default function StudentPortalPage({}: StudentPortalPageProps) {
+interface StudentPortalPageProps {
+  slug: string;
+}
+export default function StudentPortalPage({ slug }: StudentPortalPageProps) {
   const { user } = useAuth();
 
   const [initUserNodes] = useMutation(INIT_USER_INTRO_NODES);
@@ -49,14 +51,16 @@ export default function StudentPortalPage({}: StudentPortalPageProps) {
   }, [user]);
 
   useEffect(() => {
-    if (data) {
+    if (slug === "react") {
+      setUnits(reactUnits);
+    } else if (data) {
       setUnits(transform(data));
     }
   }, [data]);
 
   return (
     <div className="flex flex-col w-full p-8 ">
-      <div className="p-4 mb-8 bg-white shadow-md">
+      <div className="p-4 mb-8 bg-white shadow-md dark:bg-gray-900">
         <p className="font-bold">{moment().format("MMM Do YYYY")}</p>
         <p className="text-3xl font-bold">
           Let's start learning, {user.displayName}
@@ -69,6 +73,25 @@ export default function StudentPortalPage({}: StudentPortalPageProps) {
       </div>
     </div>
   );
+}
+export async function getStaticProps({ params }) {
+  return {
+    props: {
+      slug: params.slug,
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { slug: "intro" } },
+      { params: { slug: "react" } },
+      { params: { slug: "interview" } },
+      { params: { slug: "android" } },
+    ],
+    fallback: true,
+  };
 }
 
 StudentPortalPage.auth = true;
