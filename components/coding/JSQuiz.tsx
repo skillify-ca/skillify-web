@@ -12,6 +12,7 @@ export interface JSQuizProp {}
 const JSQuiz = ({}: JSQuizProp) => {
   //We can add CSS questions here
   const questionData: MultipleChoiceSentenceProp[] = [
+    //Quiz 2
     {
       displayQuestion:
         "How many times will this loop run? \nfor (int i = 1; i <= 10; i++)",
@@ -22,6 +23,16 @@ const JSQuiz = ({}: JSQuizProp) => {
       answer: "10",
     },
     {
+      displayQuestion:
+        'What value does phone[3] have in the following Array. const phones = [ "BlackBerry", "Samsung", "iPhone", "Pixel"];',
+      option1: { id: "A", text: "Samsung" },
+      option2: { id: "B", text: "iPhone" },
+      option3: { id: "C", text: "Pixel" },
+      option4: { id: "D", text: "BlackBerry" },
+      answer: "Pixel",
+    },
+    //Quiz 1
+    {
       displayQuestion: "How do you declare and intialize a constant type?",
       option1: { id: "A", text: "let a = 8;" },
       option2: { id: "B", text: "var b;" },
@@ -29,6 +40,7 @@ const JSQuiz = ({}: JSQuizProp) => {
       option4: { id: "D", text: "const x = 22;" },
       answer: "const x = 22;",
     },
+    //Quiz 1
     {
       displayQuestion: "What is the valid way to increment a variable by 1?",
       option1: { id: "A", text: "x++;" },
@@ -37,6 +49,16 @@ const JSQuiz = ({}: JSQuizProp) => {
       option4: { id: "D", text: "All of the above" },
       answer: "All of the above",
     },
+    //Quiz 2
+    {
+      displayQuestion: "How do you declare an array?",
+      option1: { id: "A", text: "let cars = [];" },
+      option2: { id: "B", text: "array cars = []" },
+      option3: { id: "C", text: "cars[] = Array;" },
+      option4: { id: "D", text: "None of the above" },
+      answer: "let cars = [];",
+    },
+    //Quiz 2
     {
       displayQuestion:
         "How many times will this loop run? \nfor(int i = 0; i < 20; i--) ",
@@ -46,6 +68,7 @@ const JSQuiz = ({}: JSQuizProp) => {
       option4: { id: "D", text: "infinite" },
       answer: "infinite",
     },
+    //Quiz 1
     {
       displayQuestion:
         "Which one of the following is an incorrect way of declaring a variable",
@@ -58,6 +81,7 @@ const JSQuiz = ({}: JSQuizProp) => {
       },
       answer: "variable x;",
     },
+    //Quiz 1
     {
       displayQuestion: "Which of the following expressions evaluates as True",
       option1: { id: "A", text: "4**0 > 1" },
@@ -69,6 +93,7 @@ const JSQuiz = ({}: JSQuizProp) => {
       },
       answer: "!(2 + 2 == 5)",
     },
+    //Quiz 1
     {
       displayQuestion: "Which of the following expressions evaluates as True",
       option1: { id: "A", text: "-3 > 0 || 0 >= 0" },
@@ -80,6 +105,7 @@ const JSQuiz = ({}: JSQuizProp) => {
       },
       answer: "All of the above",
     },
+    //Quiz 1
     {
       displayQuestion: "Which of the following expressions evaluates as False",
       option1: { id: "A", text: "4 == 4" },
@@ -91,6 +117,7 @@ const JSQuiz = ({}: JSQuizProp) => {
       },
       answer: "4 === '4'",
     },
+    //Quiz 1
     {
       displayQuestion:
         "What does the following expression return? \n 2 + 2 == 5 ? 'Big Brother' : 2 + 2 == 4 ? 'Hello' : 'World'",
@@ -102,6 +129,17 @@ const JSQuiz = ({}: JSQuizProp) => {
         text: "Error",
       },
       answer: "Hello",
+    },
+    {
+      displayQuestion: "What loop is displayed?",
+      option1: { id: "A", text: "For loop" },
+      option2: { id: "B", text: "While Loop" },
+      option3: { id: "C", text: "For each loop" },
+      option4: {
+        id: "D",
+        text: "Do while loop",
+      },
+      answer: "While loop",
     },
   ];
 
