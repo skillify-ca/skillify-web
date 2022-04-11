@@ -6,7 +6,7 @@ const CSS4 = () => {
   return (
     <>
       <div className="col-span-7">
-        <div className="grid h-full grid-cols-1 p-8 space-y-4 bg-gray-100">
+        <div className="grid h-full grid-cols-1 p-8 space-y-4 bg-gray-100 dark:bg-gray-800">
           <ProgressBar completed={100} />
           <div className="grid grid-cols-1">
             <div className="pt-4 ">
