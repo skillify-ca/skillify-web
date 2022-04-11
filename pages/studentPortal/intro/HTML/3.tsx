@@ -6,7 +6,7 @@ const HTML3 = () => {
   return (
     <>
       <div className="col-span-7">
-        <div className="grid h-full grid-cols-1 p-8 space-y-4 bg-gray-100">
+        <div className="grid h-full grid-cols-1 p-8 space-y-4 bg-gray-100 dark:bg-gray-800">
           <ProgressBar completed={100} />
           <div className="grid grid-cols-1">
             <div className="pt-4 ">
@@ -18,7 +18,7 @@ const HTML3 = () => {
                   {" "}
                   Ready to apply your HTML Knowledge?
                 </h1>
-                <p className="text-center text-gray-800">
+                <p className="text-center text-gray-800 dark:text-white">
                   Begin the assignment now!
                 </p>
               </div>

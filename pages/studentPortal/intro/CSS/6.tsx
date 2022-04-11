@@ -47,7 +47,7 @@ const CSS6 = ({ lessonComponents }) => {
             </p>
           </div>
           <div className="flex h-full mt-16 sm:justify-end">
-            <a href={"/studentPortal/intro/CSS/6"}>
+            <a href={"/studentPortal/intro"}>
               <Button label="Continue" disabled={false} />
             </a>
           </div>

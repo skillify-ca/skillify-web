@@ -25,7 +25,7 @@ const CSS1 = ({ lessonComponents }) => {
           <LessonComponent data={it} />
         ))}
         <div className="flex mt-8 sm:justify-end">
-          <a href={""}>
+          <a href={"/studentPortal/intro/CSS/2"}>
             <Button label="Continue" disabled={false} />
           </a>
         </div>
