@@ -24,7 +24,7 @@ const CSS5 = () => {
               </div>
             </div>
             <div className="flex h-full mt-12 sm:justify-end">
-              <a href={"/studentPortal/intro"}>
+              <a href={"/studentPortal/intro/CSS/6"}>
                 <Button label="Continue" disabled={false} />
               </a>
             </div>
