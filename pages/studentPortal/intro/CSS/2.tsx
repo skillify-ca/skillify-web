@@ -36,7 +36,7 @@ const CSS2 = () => {
   return (
     <>
       <div className="col-span-7">
-        <div className="grid h-full grid-cols-1 p-8 space-y-4 bg-gray-100">
+        <div className="grid h-full grid-cols-1 p-8 space-y-4 bg-gray-100 dark:bg-gray-800">
           <ProgressBar completed={100} />
           <h1 className="text-5xl font-bold">Readings</h1>
           <div className="grid grid-cols-1">
@@ -57,7 +57,7 @@ const CSS2 = () => {
               </div>
             </div>
             <div className="flex h-full mt-12 sm:justify-end">
-              <Link href={"/course/coding/unit/CSS/3"}>
+              <Link href={"/studentPortal/intro/CSS/3"}>
                 <Button label="Continue" disabled={false} />
               </Link>
             </div>
