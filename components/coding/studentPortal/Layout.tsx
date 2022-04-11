@@ -16,9 +16,9 @@ export const Layout: React.FC = ({ children }) => {
           height: 100%;
         }
       `}</style>
-      <div className="fixed z-20 flex justify-between w-full h-16 col-span-12 p-4 bg-white dark:bg-gray-900">
+      <div className="fixed z-20 flex justify-between w-full h-16 col-span-12 p-4 bg-white ">
         <div onClick={(e) => setActive(!active)}>
-          <div className="cursor-pointer dark:text-white lg:hidden">
+          <div className="cursor-pointer lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-8 h-8"
@@ -33,8 +33,7 @@ export const Layout: React.FC = ({ children }) => {
             </svg>
           </div>
         </div>
-        <img className="visible w-48 h-8 dark:hidden" src="/images/logo.svg" />
-        <img className="w-48 h-8" src="/images/logo-dark.svg" />
+        <img className="w-48 h-8" src="/images/logo.svg" />
         <div />
       </div>
       <div className="flex">

@@ -31,9 +31,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
         </div>
         <Link href="/studentPortal/intro">
           <div className={`"border-charmander text-charmander"`}>
-            <div
-              className={`p-4 border-l-4 border-charmander text-charmander cursor-pointer`}
-            >
+            <div className={`p-4 border-l-4 border-charmander text-charmander`}>
               <div className="flex flex-wrap">
                 <img
                   className="w-6 h-6 mr-4"

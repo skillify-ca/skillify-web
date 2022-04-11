@@ -60,7 +60,7 @@ export default function StudentPortalPage({ slug }: StudentPortalPageProps) {
 
   return (
     <div className="flex flex-col w-full p-8 ">
-      <div className="p-4 mb-8 bg-white shadow-md dark:bg-gray-900">
+      <div className="p-4 mb-8 bg-white shadow-md">
         <p className="font-bold">{moment().format("MMM Do YYYY")}</p>
         <p className="text-3xl font-bold">
           Let's start learning, {user.displayName}
