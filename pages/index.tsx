@@ -7,10 +7,7 @@ import Facebook from "../components/Facebook";
 import SEO from "../components/SEO";
 import Link from "next/link";
 
-const navigation = [
-  { name: "Student Portal", href: "/studentPortal/intro" },
-  { name: "Blog", href: "/blog" },
-];
+const navigation = [{ name: "Blog", href: "/blog" }];
 
 const HomePage = () => {
   return (
@@ -48,10 +45,7 @@ const HomePage = () => {
                       <Link href="#">
                         <div>
                           <span className="sr-only">Skillify</span>
-                          <img
-                            className="w-auto h-8 sm:h-10"
-                            src="/images/logo.svg"
-                          />
+                          <img className="w-auto h-8" src="/images/logo.svg" />
                         </div>
                       </Link>
                       <div className="flex items-center -mr-2 md:hidden">
@@ -126,16 +120,6 @@ const HomePage = () => {
                   Get access to a personalized roadmap, industry mentors and a
                   community of learners.
                 </p>
-                <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                  <div className="rounded-md shadow">
-                    <a
-                      href="/studentPortal/intro"
-                      className="flex items-center justify-center w-full px-8 py-3 text-base font-medium text-white bg-yellow-600 border border-transparent rounded-md hover:bg-yellow-700 md:py-4 md:text-lg md:px-10"
-                    >
-                      Start Learning
-                    </a>
-                  </div>
-                </div>
               </div>
             </main>
           </div>

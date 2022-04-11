@@ -41,7 +41,7 @@ const EmailCapture = () => {
           <div className="flex flex-col items-center justify-center p-4">
             <p className="text-xl font-bold text-white sm:text-2xl">
               {" "}
-              With affordable coding courses, more people can get the skills
+              With cohort-based coding courses, more people can get the skills
               they need to get hired fast.{" "}
             </p>
           </div>
