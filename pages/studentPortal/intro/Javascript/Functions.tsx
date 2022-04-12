@@ -6,7 +6,7 @@ import LessonComponent, {
   Resource,
 } from "../../../../components/coding/studentPortal/LessonComponent";
 
-const Variables = ({ lessonComponents }) => {
+const Functions = ({ lessonComponents }) => {
   return (
     <>
       <div className="col-span-7">
@@ -59,4 +59,4 @@ export async function getServerSideProps({ params }) {
   return { props: { lessonComponents } };
 }
 
-export default Variables;
+export default Functions;
