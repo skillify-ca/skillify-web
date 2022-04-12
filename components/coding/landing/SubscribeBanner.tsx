@@ -31,7 +31,7 @@ const SubscribeBanner = () => {
     await fetch(url, options);
   };
   return (
-    <div>
+    <div className="bg-white">
       <div className="grid grid-cols-1 p-4 lg:m-8 md:p-8 lg:rounded-md lg:grid-cols-2 bg-murkrow">
         <p className="mb-4 text-xl text-charmander">
           Universities and bootcamps leave you in debt and unprepared for

@@ -39,11 +39,13 @@ const Testimonial = ({ text, img, studentName, color }: TestimonialProps) => {
           <p>Completed in January 2022</p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <img
-            className="w-8 h-8"
-            src="/images/landingPage/linkedin.svg"
-            alt="linkedin"
-          />
+          {false && (
+            <img
+              className="w-8 h-8"
+              src="/images/landingPage/linkedin.svg"
+              alt="linkedin"
+            />
+          )}
         </div>
       </div>
     </div>
