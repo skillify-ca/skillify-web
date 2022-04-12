@@ -20,14 +20,14 @@ const HTML1 = ({ lessonComponents }) => {
     completeUserNode({
       variables: {
         user_id: user.uid,
-        node_id: 1,
+        node_id: 2,
         completed: true,
       },
     }).then((res) => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
-          node_id: 2,
+          node_id: 3,
           locked: false,
         },
         refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],

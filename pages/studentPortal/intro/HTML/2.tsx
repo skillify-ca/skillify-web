@@ -1,4 +1,6 @@
+import { useMutation } from "@apollo/client";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LessonComponent, {
@@ -7,6 +9,10 @@ import LessonComponent, {
 import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 import Quiz from "../../../../components/coding/studentPortal/quiz/Quiz";
 import { Button } from "../../../../components/ui/Button";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
+import { useAuth } from "../../../../lib/authContext";
 import {
   continueRequested,
   quizSelector,
@@ -63,6 +69,31 @@ const HTML2 = () => {
     };
     dispatch(setQuizQuestions([q1, q2, q3, q4, q5]));
   }, []);
+
+  const { user } = useAuth();
+  const router = useRouter();
+  const [unlockUserNode] = useMutation(UNLOCK_USER_INTRO_NODE);
+  const [completeUserNode] = useMutation(COMPLETE_USER_INTRO_NODE);
+
+  const handleSessionEndContinue = () => {
+    completeUserNode({
+      variables: {
+        user_id: user.uid,
+        node_id: 3,
+        completed: true,
+      },
+    }).then((res) => {
+      unlockUserNode({
+        variables: {
+          user_id: user.uid,
+          node_id: 4,
+          locked: false,
+        },
+        refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
+      });
+      router.push("/studentPortal/intro/HTML/3");
+    });
+  };
   return (
     <div className="flex flex-col">
       <div className="p-4 mb-4">
@@ -73,9 +104,11 @@ const HTML2 = () => {
         <div className="w-full p-8 h-36 ">
           <div className="flex justify-end w-full">
             {showSessionEnd ? (
-              <Link href="/studentPortal/intro/HTML/3">
-                <Button label="Continue" disabled={false} />
-              </Link>
+              <Button
+                label="Continue"
+                disabled={false}
+                onClick={handleSessionEndContinue}
+              />
             ) : (
               <Button
                 label="Continue"

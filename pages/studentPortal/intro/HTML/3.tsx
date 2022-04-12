@@ -18,7 +18,7 @@ const HTML3 = () => {
                   {" "}
                   Ready to apply your HTML Knowledge?
                 </h1>
-                <p className="text-center text-gray-800">
+                <p className="text-center text-gray-800 dark:text-white">
                   Begin the assignment now!
                 </p>
               </div>
