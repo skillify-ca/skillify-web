@@ -17,7 +17,7 @@ const intro = ({ lessonComponents }) => {
           ))}
 
           <div className="flex h-full mt-12 sm:justify-end">
-            <a href={"/studentPortal/intro/Javascript/5"}>
+            <a href={"/studentPortal/intro/Javascript/Variables"}>
               <Button label="Continue" disabled={false} />
             </a>
           </div>
@@ -29,31 +29,30 @@ const intro = ({ lessonComponents }) => {
 export async function getServerSideProps({ params }) {
   const resources: Resource[] = [
     {
-      title: "W3Schools CSS tutorial",
+      title: "Grasshopper",
       image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/W3Schools_logo.svg/2175px-W3Schools_logo.svg.png",
-      link: "https://www.w3schools.com/css/default.asp",
-      description: "Start at the beginning and stop at CSS Overflow.",
+        "https://grasshopper.app/assets/static/images/home-touts/adventure__journey.svg",
+      link: "https://grasshopper.app/",
+      description: "A mobile application with Javascript challenges",
     },
     {
-      title: "CSS Grid Garden",
-      image: "https://cssgridgarden.com/favicon.ico",
-      link: "https://cssgridgarden.com/",
-      description: "Do all levels.",
+      title: "Code HS",
+      image: "https://codehs.com/static/img/logo.png",
+      link: "https://codehs.com/textbook/introjs_textbook/",
+      description: "Intro to Javascript Textbook",
     },
     {
-      title: "CSS Flexbox Froggy",
-      image:
-        "https://www.saashub.com/images/app/service_logos/82/fc3339facb56/large.png?1569287111",
-      link: "https://flexboxfroggy.com/",
-      description: "Do all levels.",
+      title: "Free Code Camp",
+      image: "/images/coding/units/javascript/freeCodeCamp.png",
+      link: "https://www.freecodecamp.org/news/javascript-map-reduce-and-filter-explained-with-examples/",
+      description: "Iterators Tutorial: Map, Filter, Reduce",
     },
     {
-      title: "CSS Diner",
+      title: "Codecademy JS Course",
       image:
-        "https://i.pinimg.com/originals/8a/b1/ad/8ab1ad8128508785f956eb6f58779b47.jpg",
-      link: "https://flukeout.github.io/",
-      description: "",
+        "https://pentagram-production.imgix.net/1cbbfce1-48d5-4257-95e5-745c10e6492e/eo_codecademy_01.jpg?crop=edges&fit=crop&h=630&rect=375%2C0%2C2256%2C1412&w=1200",
+      link: "https://www.codecademy.com/learn/introduction-to-javascript",
+      description: "An online course introducing you to Javascript",
     },
   ];
   const lessonComponents: LessonComponentData[] = [
