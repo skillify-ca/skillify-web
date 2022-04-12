@@ -58,8 +58,8 @@ const SubscribeBanner = () => {
         </div>
         {hasClicked && (
           <p className="w-full text-center text-bulbasaur-500">
-            Thank you for your email, we're looking forward to getting to know
-            you and excited to help!
+            Thank you for your email, someone from our team will reach out
+            shortly to help!
           </p>
         )}
       </div>
