@@ -22,7 +22,10 @@ module.exports = {
       colors: {
         charmander: "#F18701",
         rattata: "#7678ED",
-        pikachu: "#F7B801",
+        pikachu: {
+          200: "#F7B80150",
+          500: "#F7B801"
+        },
         murkrow: "#18124D",
         bulbasaur: {
           200: "#F0FFE9",

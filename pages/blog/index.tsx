@@ -11,10 +11,10 @@ export default function Blog() {
       <LandingNavbar />
       <h1 className="w-full p-4 text-5xl font-bold text-center ">Blog</h1>
 
-      <div className="absolute w-full">
+      <div className="absolute w-full p-8 md:p-16">
         <div className="absolute top-0 w-full h-full opacity-5"></div>
 
-        <div className="flex flex-col items-center w-full gap-16 p-4 ">
+        <div className="grid items-center w-full grid-cols-1 gap-16 p-4 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <h4>March 30, 2022</h4>
             <Card
@@ -26,7 +26,7 @@ export default function Blog() {
                 "This resource lists the top coding bootcamps in Toronto"
               }
               link={"/blog/best-toronto-coding-bootcamps-2022"}
-              color={1}
+              color={0}
             />
           </div>
           <div>
@@ -40,6 +40,20 @@ export default function Blog() {
                 "This resource lists the top coding bootcamps in Toronto"
               }
               link={"/blog/is-it-worth-paying-for-a-coding-bootcamp"}
+              color={1}
+            />
+          </div>
+          <div>
+            <h4>Apriil 13, 2022</h4>
+            <Card
+              title={"Do Product Manager Need Coding Skills?"}
+              image={
+                "https://www.gooddata.com/img/blog/_1200x630/project-manager-bg.jpg"
+              }
+              description={
+                "We talk about whether product managers should learn how to code"
+              }
+              link={"/blog/do-product-managers-need-coding-skills"}
               color={2}
             />
           </div>

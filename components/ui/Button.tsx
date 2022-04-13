@@ -43,7 +43,7 @@ export const Button: React.FC<ButtonProps> = ({
   let backgroundStyles;
   switch (backgroundColor) {
     case "primary":
-      backgroundStyles = "bg-charmander hover:bg-pikachu";
+      backgroundStyles = "bg-charmander hover:bg-pikachu-500";
       break;
     case "blue":
       backgroundStyles =

@@ -26,6 +26,10 @@ export type LessonComponentData =
       component: "code-sandbox";
       title: string;
       link: string;
+    }
+  | {
+      component: "list";
+      items: string[];
     };
 
 export type LessonComponentProps = {

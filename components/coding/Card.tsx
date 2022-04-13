@@ -7,7 +7,7 @@ const Card = ({ title, image, description, link, color }) => {
     } else if (color === 1) {
       return "border-rattata";
     } else if (color === 2) {
-      return "border-pikachu";
+      return "border-pikachu-500";
     } else if (color === 3) {
       return "border-murkrow";
     }

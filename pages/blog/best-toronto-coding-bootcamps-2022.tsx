@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PostLayout from "../../components/coding/blog/PostLayout";
 import LessonComponent, {
   LessonComponentData,
 } from "../../components/coding/studentPortal/LessonComponent";
@@ -16,7 +17,6 @@ export default function Page({ blogComponents }: PageProps) {
         description={"We break down where you can learn to code in Toronto."}
         image={"https://melv1n.com/img/learn-to-code-how-to-start.png"}
       />
-      <LnadingNavbar />
       <div className="flex flex-col gap-4 p-4">
         {blogComponents.map((it) => (
           <LessonComponent data={it} />
@@ -83,5 +83,5 @@ export async function getServerSideProps({ params }) {
 }
 
 Page.getLayout = function getLayout(page) {
-  return <div>{page}</div>;
+  return <PostLayout>{page}</PostLayout>;
 };
