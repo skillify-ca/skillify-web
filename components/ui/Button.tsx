@@ -79,16 +79,16 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       type="button"
       onClick={disabled ? null : onClick}
-      className={`bg-gradient-to-b px-4 py-2 font-bold border-b-4 rounded-lg w-48 h-12
+      className={`bg-gradient-to-b px-4 py-2 font-bold border-b-4 rounded-lg w-36 h-12
       ${disabled ? "bg-gray-400" : backgroundStyles}
       ${disabled ? "" : "active:border-b-2"}
       ${disabled ? "cursor-default" : "cursor-pointer"}
       `}
       {...props}
     >
-      <span className={`${disabled ? "text-gray-50" : "text-" + textColor}`}>
+      <p className={`${disabled ? "text-gray-50" : "text-" + textColor}`}>
         {label}
-      </span>
+      </p>
     </button>
   );
 };
