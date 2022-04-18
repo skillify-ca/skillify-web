@@ -3,6 +3,7 @@ import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 import LessonComponent, {
   LessonComponentData,
+  Resource,
 } from "../../../../components/coding/studentPortal/LessonComponent";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
@@ -11,7 +12,7 @@ import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntr
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
 
-const HTML3 = ({ lessonComponents }) => {
+const Iterators = ({ lessonComponents }) => {
   const { user } = useAuth();
   const router = useRouter();
   const [unlockUserNode] = useMutation(UNLOCK_USER_INTRO_NODE);
@@ -21,14 +22,14 @@ const HTML3 = ({ lessonComponents }) => {
     completeUserNode({
       variables: {
         user_id: user.uid,
-        node_id: 4,
+        node_id: 44,
         completed: true,
       },
     }).then((res) => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
-          node_id: 5,
+          node_id: 45,
           locked: false,
         },
         refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
@@ -39,44 +40,12 @@ const HTML3 = ({ lessonComponents }) => {
   return (
     <>
       <div className="col-span-7">
-        <div className="grid h-full grid-cols-1 p-8 space-y-4 text-gray-700 bg-gray-100 dark:text-white dark:bg-gray-800">
+        <div className="grid h-full grid-cols-1 space-y-4 bg-gray-100 text-gray-700  dark:bg-gray-800 dark:text-white p-32">
           <ProgressBar completed={100} />
           {lessonComponents.map((it) => (
             <LessonComponent data={it} />
           ))}
-          <h1 className="mt-12 text-xl font-bold">How to get started:</h1>
-          <div className="flex-row">
-            <h1 className="text-charmander">Step 1:</h1>
-            <p>
-              Complete the HTML tutorials. You will need to use many of the
-              basic tags to create you page.
-            </p>
-          </div>
-          <div>
-            <p className="text-charmander">Step 2:</p>
-            <p>
-              Create the index.html file. This is where you will do all your
-              coding!
-            </p>
-          </div>
-          <div>
-            <p className="text-charmander">Step 3:</p>
-            <p>
-              You may use any sort of html tags you like in order to create the
-              blog you want.
-            </p>
-            <p>
-              Focus on the structure of your webpage, we will make it flashy
-              once we learn CSS styling!
-            </p>
-          </div>
-          <div>
-            <p className="text-charmander">Step 4:</p>
-            <p>
-              Once your are complete, submit you index.html to the Slack
-              Channel.
-            </p>
-          </div>
+
           <div className="flex h-full mt-12 sm:justify-end">
             <a href={"/studentPortal/intro"}>
               <Button
@@ -92,17 +61,36 @@ const HTML3 = ({ lessonComponents }) => {
   );
 };
 export async function getServerSideProps({ params }) {
+  const resources: Resource[] = [
+    {
+      title: "Codecademy",
+      image:
+        "https://icons-for-free.com/download-icon-codecademy-1324440139458906558_512.png",
+      link: "https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-iterators/cheatsheet",
+      description:
+        "This is a deeper dive into what iterators are in Javascript",
+    },
+  ];
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
-      text: "HTML Blog Assignment",
+      text: "Iterators",
     },
     {
       component: "description",
-      text: "You are now ready to complete your very first coding assignment!",
+      text: "Iterators are objects that have a sequence where there are 2 questions being answered: If there is an element next? If so, what is it? This is what we call an iterator protocol. If these questions are answered then we are dealing with an iterator. With iterators we can use iterator methods that are very powerful and versatile. These methods are .map() and .filter().",
+    },
+    {
+      component: "resource-list",
+      resources,
+    },
+    {
+      component: "code-sandbox",
+      title: "Iterator Functions in Javascript",
+      link: "https://codesandbox.io/embed/findplant-du92ty?fontsize=14&hidenavigation=1&theme=dark",
     },
   ];
   return { props: { lessonComponents } };
 }
 
-export default HTML3;
+export default Iterators;

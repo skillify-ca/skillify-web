@@ -33,6 +33,7 @@ const CSS2 = () => {
       description: "Complete all levels.",
     },
   ];
+
   return (
     <>
       <div className="col-span-7">

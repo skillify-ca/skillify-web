@@ -47,6 +47,7 @@ type UserIntroCourseNode = {
 };
 
 export const transform = (data: Data): Unit[] => {
+  console.log("data", data);
   return data.intro_course_unit.map((it) => {
     return {
       title: it.title,

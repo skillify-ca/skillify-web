@@ -5,8 +5,38 @@ import LessonComponent, {
   LessonComponentData,
   Resource,
 } from "../../../../components/coding/studentPortal/LessonComponent";
+import { useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
+import { useAuth } from "../../../../lib/authContext";
 
 const Functions = ({ lessonComponents }) => {
+  const { user } = useAuth();
+  const router = useRouter();
+  const [unlockUserNode] = useMutation(UNLOCK_USER_INTRO_NODE);
+  const [completeUserNode] = useMutation(COMPLETE_USER_INTRO_NODE);
+
+  const handleContinue = () => {
+    completeUserNode({
+      variables: {
+        user_id: user.uid,
+        node_id: 38,
+        completed: true,
+      },
+    }).then((res) => {
+      unlockUserNode({
+        variables: {
+          user_id: user.uid,
+          node_id: 39,
+          locked: false,
+        },
+        refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
+      });
+      router.push("/studentPortal/intro/Javascript/Conditionals");
+    });
+  };
   return (
     <>
       <div className="col-span-7">
@@ -18,7 +48,11 @@ const Functions = ({ lessonComponents }) => {
 
           <div className="flex h-full mt-12 sm:justify-end">
             <a href={"/studentPortal/intro"}>
-              <Button label="Continue" disabled={false} />
+              <Button
+                label="Continue"
+                disabled={false}
+                onClick={handleContinue}
+              />
             </a>
           </div>
         </div>
@@ -44,7 +78,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Text: Variables help us store values and perform operations on numbers and letters. There are lots of different types of variables but two important ones are numbers and strings (letters)",
+      text: "Functions is the foundation of programming. Functions allows us to group a specific process and allowing the process to take in an input in order to produce an output. The input for a function would be considered their parameters whereas the output would be the return statement.",
     },
     {
       component: "resource-list",
@@ -53,7 +87,7 @@ export async function getServerSideProps({ params }) {
     {
       component: "code-sandbox",
       title: "Functions in Javascript",
-      link: "https://codesandbox.io/s/temperature-2j5ecn?file=/src/entry.ts",
+      link: "https://codesandbox.io/embed/greetings-p62iff?fontsize=14&hidenavigation=1&theme=dark",
     },
   ];
   return { props: { lessonComponents } };
