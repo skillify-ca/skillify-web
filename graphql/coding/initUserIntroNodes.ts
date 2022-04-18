@@ -78,5 +78,65 @@ export const objects = (user: User): UserIntroNodesInput[] => {
       locked: true,
       user_id: user.uid,
     },
+    {
+      node_id: 38,
+      completed: false,
+      locked: true,
+      user_id: user.uid,
+    },
+    {
+      node_id: 39,
+      completed: false,
+      locked: true,
+      user_id: user.uid,
+    },
+    {
+      node_id: 40,
+      completed: false,
+      locked: true,
+      user_id: user.uid,
+    },
+    {
+      node_id: 41,
+      completed: false,
+      locked: true,
+      user_id: user.uid,
+    },
+    {
+      node_id: 42,
+      completed: false,
+      locked: true,
+      user_id: user.uid,
+    },
+    {
+      node_id: 43,
+      completed: false,
+      locked: true,
+      user_id: user.uid,
+    },
+    {
+      node_id: 44,
+      completed: false,
+      locked: true,
+      user_id: user.uid,
+    },
+    {
+      node_id: 45,
+      completed: false,
+      locked: true,
+      user_id: user.uid,
+    },
+    {
+      node_id: 46,
+      completed: false,
+      locked: true,
+      user_id: user.uid,
+    },
+    {
+      node_id: 47,
+      completed: false,
+      locked: true,
+      user_id: user.uid,
+    },
   ];
 };

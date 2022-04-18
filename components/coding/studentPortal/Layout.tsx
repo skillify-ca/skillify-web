@@ -34,7 +34,10 @@ export const Layout: React.FC = ({ children }) => {
           </div>
         </div>
         <img className="visible w-48 h-8 dark:hidden" src="/images/logo.svg" />
-        <img className="w-48 h-8" src="/images/logo-dark.svg" />
+        <img
+          className="hidden w-48 h-8 dark:visible"
+          src="/images/logo-dark.svg"
+        />
         <div />
       </div>
       <div className="flex">

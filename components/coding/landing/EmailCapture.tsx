@@ -1,6 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 
 const EmailCapture = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [hasClicked, setHasClicked] = useState(false);
+
+  const handleClick = async () => {
+    setHasClicked(true);
+    const url =
+      "https://math-app-1.herokuapp.com/notifications?product=email-capture";
+    const options = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      body: JSON.stringify({
+        email: `[Name] ${name} [Email] ${email}`,
+      }),
+    };
+    await fetch(url, options);
+  };
   return (
     <div>
       <div className="grid h-full grid-cols-1 bg-no-repeat sm:p-16 sm:grid-cols-2 bg-email-capture bg-charmander bg-blend-multiply">
@@ -16,33 +36,43 @@ const EmailCapture = () => {
             id="bootcamper"
             type="text"
             autoComplete="off"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             className={`p-4 mb-4 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-charmander placeholder-charmander w-full`}
             placeholder="First Name"
           />
           <input
             id="bootcamper"
             type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             autoComplete="off"
             className={`text-left mb-4 p-4 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500  text-charmander placeholder-charmander w-full `}
             placeholder="Enter your email address"
           />
           <div className="">
             <div className="rounded-md">
-              <a
-                href="/courses"
-                className="flex items-center justify-center w-full p-4 text-base font-medium text-white rounded-md bg-charmander hover:bg-yellow-700 md:text-lg "
+              <p
+                onClick={handleClick}
+                className="flex items-center justify-center w-full p-4 text-base font-medium text-white rounded-md cursor-pointer bg-charmander hover:bg-yellow-700 md:text-lg "
               >
                 Enroll Now
-              </a>
+              </p>
             </div>
           </div>
+          {hasClicked && (
+            <p className="w-full text-center text-bulbasaur-500">
+              Thank you for your email, someone from our team will reach out
+              shortly to help!
+            </p>
+          )}
         </div>
         <div className="grid grid-cols-1">
           <div className="flex flex-col items-center justify-center p-4">
             <p className="text-xl font-bold text-white sm:text-2xl">
               {" "}
-              With affordable coding courses, more people can get the skills
-              they need to get hired fast.{" "}
+              Not sure how to start coding? Enroll now and we will create an
+              individual plan to help you reach your career goals.
             </p>
           </div>
         </div>

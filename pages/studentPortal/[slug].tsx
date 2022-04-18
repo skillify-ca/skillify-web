@@ -44,6 +44,9 @@ export default function StudentPortalPage({ slug }: StudentPortalPageProps) {
         refetchQueries: [
           {
             query: FETCH_USER_INTRO_NODES,
+            variables: {
+              userId: user.uid,
+            },
           },
         ],
       });

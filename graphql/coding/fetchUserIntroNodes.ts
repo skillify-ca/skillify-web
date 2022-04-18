@@ -47,6 +47,7 @@ type UserIntroCourseNode = {
 };
 
 export const transform = (data: Data): Unit[] => {
+  console.log("data", data);
   return data.intro_course_unit.map((it) => {
     return {
       title: it.title,
@@ -56,8 +57,14 @@ export const transform = (data: Data): Unit[] => {
           description: it.description,
           link: it.link,
           type: it.type,
-          completed: it.user_intro_course_nodes[0].completed,
-          locked: it.user_intro_course_nodes[0].locked,
+          completed:
+            it.user_intro_course_nodes.length > 0
+              ? it.user_intro_course_nodes[0].completed
+              : false,
+          locked:
+            it.user_intro_course_nodes.length > 0
+              ? it.user_intro_course_nodes[0].locked
+              : true,
         };
       }),
     };

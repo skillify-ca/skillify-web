@@ -15,7 +15,7 @@ const Testimonial = ({ text, img, studentName, color }: TestimonialProps) => {
     } else if (color === 1) {
       return "border-rattata";
     } else if (color === 2) {
-      return "border-pikachu";
+      return "border-pikachu-500";
     } else if (color === 3) {
       return "border-murkrow";
     }
@@ -39,11 +39,13 @@ const Testimonial = ({ text, img, studentName, color }: TestimonialProps) => {
           <p>Completed in January 2022</p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <img
-            className="w-8 h-8"
-            src="/images/landingPage/linkedin.svg"
-            alt="linkedin"
-          />
+          {false && (
+            <img
+              className="w-8 h-8"
+              src="/images/landingPage/linkedin.svg"
+              alt="linkedin"
+            />
+          )}
         </div>
       </div>
     </div>
