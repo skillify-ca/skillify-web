@@ -6,7 +6,7 @@ import LessonComponent, {
   Resource,
 } from "../../../../components/coding/studentPortal/LessonComponent";
 
-const Functions = ({ lessonComponents }) => {
+const Objects = ({ lessonComponents }) => {
   return (
     <>
       <div className="col-span-7">
@@ -32,31 +32,25 @@ export async function getServerSideProps({ params }) {
       title: "Codecademy",
       image:
         "https://icons-for-free.com/download-icon-codecademy-1324440139458906558_512.png",
-      link: "https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-functions",
-      description:
-        "This is a deeper dive into what functions are in Javascript",
+      link: "https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-objects/cheatsheet",
+      description: "This is a deeper dive into what objects are in Javascript",
     },
   ];
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
-      text: "Functions",
+      text: "Objects",
     },
     {
       component: "description",
-      text: "Functions is the foundation of programming. Functions allows us to group a specific process and allowing the process to take in an input in order to produce an output. The input for a function would be considered their parameters whereas the output would be the return statement.",
+      text: "Objects are a data type that allows us to store many properties under one variable. For example, if we wanted to store a variable for a human. We know that humans have many properties/feature that make them unique such as height, weight, eye-colour, and much more. By storing these features under a data type of an object allows us to have access to the data fields that make a human such as their height.",
     },
     {
       component: "resource-list",
       resources,
     },
-    {
-      component: "code-sandbox",
-      title: "Functions in Javascript",
-      link: "https://codesandbox.io/embed/greetings-p62iff?fontsize=14&hidenavigation=1&theme=dark",
-    },
   ];
   return { props: { lessonComponents } };
 }
 
-export default Functions;
+export default Objects;

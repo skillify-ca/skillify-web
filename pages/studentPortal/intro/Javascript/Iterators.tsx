@@ -6,7 +6,7 @@ import LessonComponent, {
   Resource,
 } from "../../../../components/coding/studentPortal/LessonComponent";
 
-const Functions = ({ lessonComponents }) => {
+const Iterators = ({ lessonComponents }) => {
   return (
     <>
       <div className="col-span-7">
@@ -32,19 +32,19 @@ export async function getServerSideProps({ params }) {
       title: "Codecademy",
       image:
         "https://icons-for-free.com/download-icon-codecademy-1324440139458906558_512.png",
-      link: "https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-functions",
+      link: "https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-iterators/cheatsheet",
       description:
-        "This is a deeper dive into what functions are in Javascript",
+        "This is a deeper dive into what iterators are in Javascript",
     },
   ];
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
-      text: "Functions",
+      text: "Iterators",
     },
     {
       component: "description",
-      text: "Functions is the foundation of programming. Functions allows us to group a specific process and allowing the process to take in an input in order to produce an output. The input for a function would be considered their parameters whereas the output would be the return statement.",
+      text: "Iterators are objects that have a sequence where there are 2 questions being answered: If there is an element next? If so, what is it? This is what we call an iterator protocol. If these questions are answered then we are dealing with an iterator. With iterators we can use iterator methods that are very powerful and versatile. These methods are .map() and .filter().",
     },
     {
       component: "resource-list",
@@ -52,11 +52,11 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "code-sandbox",
-      title: "Functions in Javascript",
-      link: "https://codesandbox.io/embed/greetings-p62iff?fontsize=14&hidenavigation=1&theme=dark",
+      title: "Iterator Functions in Javascript",
+      link: "https://codesandbox.io/embed/findplant-du92ty?fontsize=14&hidenavigation=1&theme=dark",
     },
   ];
   return { props: { lessonComponents } };
 }
 
-export default Functions;
+export default Iterators;

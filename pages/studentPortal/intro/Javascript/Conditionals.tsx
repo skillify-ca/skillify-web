@@ -6,7 +6,7 @@ import LessonComponent, {
   Resource,
 } from "../../../../components/coding/studentPortal/LessonComponent";
 
-const Functions = ({ lessonComponents }) => {
+const Conditionals = ({ lessonComponents }) => {
   return (
     <>
       <div className="col-span-7">
@@ -32,19 +32,19 @@ export async function getServerSideProps({ params }) {
       title: "Codecademy",
       image:
         "https://icons-for-free.com/download-icon-codecademy-1324440139458906558_512.png",
-      link: "https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-functions",
+      link: "https://www.codecademy.com/courses/introduction-to-javascript/lessons/control-flow/exercises/else-if",
       description:
-        "This is a deeper dive into what functions are in Javascript",
+        "This is a deeper dive into what conditional statements are in Javascript",
     },
   ];
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
-      text: "Functions",
+      text: "Conditionals",
     },
     {
       component: "description",
-      text: "Functions is the foundation of programming. Functions allows us to group a specific process and allowing the process to take in an input in order to produce an output. The input for a function would be considered their parameters whereas the output would be the return statement.",
+      text: "Conditionals allows us to create programs that can make decisions based on if expressions are true or false. This helps programmers to produce different outputs based on the input provided by the user.",
     },
     {
       component: "resource-list",
@@ -53,10 +53,10 @@ export async function getServerSideProps({ params }) {
     {
       component: "code-sandbox",
       title: "Functions in Javascript",
-      link: "https://codesandbox.io/embed/greetings-p62iff?fontsize=14&hidenavigation=1&theme=dark",
+      link: "https://codesandbox.io/embed/temperature-2j5ecn?fontsize=14&hidenavigation=1&theme=dark",
     },
   ];
   return { props: { lessonComponents } };
 }
 
-export default Functions;
+export default Conditionals;
