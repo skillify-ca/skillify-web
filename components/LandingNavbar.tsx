@@ -4,18 +4,16 @@ export default function LandingNavbar(props) {
   return (
     <div className="flex items-center justify-between w-full bg-white text-murkrow">
       <Link href={"/"}>
-        <img src="/images/logo.svg" className="w-48 p-4 cursor-pointer" />
+        <img src="/images/logo.svg" className="p-4 cursor-pointer w-36" />
       </Link>
       <div className="flex items-center gap-4">
         <Link href={"/studentPortal/intro"}>
-          <p className="p-4 cursor-pointer hover:bg-gray-900 hover:text-white">
+          <p className="p-4 cursor-pointer hover:text-charmander">
             Student Portal
           </p>
         </Link>
         <Link href={"/blog"}>
-          <p className="p-4 cursor-pointer hover:bg-gray-900 hover:text-white">
-            Blog
-          </p>
+          <p className="p-4 cursor-pointer hover:text-charmander">Blog</p>
         </Link>
       </div>
     </div>
