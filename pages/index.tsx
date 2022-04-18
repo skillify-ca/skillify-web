@@ -36,7 +36,7 @@ const HomePage = () => {
       <div
         className={`sticky top-0 z-50 ${
           showNavBar ? "opacity-100" : "opacity-0 h-0"
-        } overflow-hidden transform transition-all`}
+        } overflow-hidden shadow-lg transform transition-all`}
       >
         <LandingNavbar />
       </div>

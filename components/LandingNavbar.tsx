@@ -3,7 +3,7 @@ import { Button } from "./ui/Button";
 
 export default function LandingNavbar(props) {
   return (
-    <div className="flex items-center justify-between w-full p-4 bg-white border-b-2 shadow-lg text-murkrow">
+    <div className="flex items-center justify-between w-full px-4 py-2 bg-white border-b-2 text-murkrow">
       <Link href={"/"}>
         <img src="/images/logo.svg" className="w-40 cursor-pointer" />
       </Link>
