@@ -5,8 +5,38 @@ import LessonComponent, {
   LessonComponentData,
   Resource,
 } from "../../../../components/coding/studentPortal/LessonComponent";
+import { useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
+import { useAuth } from "../../../../lib/authContext";
 
 const Conditionals = ({ lessonComponents }) => {
+  const { user } = useAuth();
+  const router = useRouter();
+  const [unlockUserNode] = useMutation(UNLOCK_USER_INTRO_NODE);
+  const [completeUserNode] = useMutation(COMPLETE_USER_INTRO_NODE);
+
+  const handleContinue = () => {
+    completeUserNode({
+      variables: {
+        user_id: user.uid,
+        node_id: 39,
+        completed: true,
+      },
+    }).then((res) => {
+      unlockUserNode({
+        variables: {
+          user_id: user.uid,
+          node_id: 40,
+          locked: false,
+        },
+        refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
+      });
+      router.push("/studentPortal/intro");
+    });
+  };
   return (
     <>
       <div className="col-span-7">
@@ -18,7 +48,11 @@ const Conditionals = ({ lessonComponents }) => {
 
           <div className="flex h-full mt-12 sm:justify-end">
             <a href={"/studentPortal/intro"}>
-              <Button label="Continue" disabled={false} />
+              <Button
+                label="Continue"
+                disabled={false}
+                onClick={handleContinue}
+              />
             </a>
           </div>
         </div>
