@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LandingPagev2 from "../components/math/stories/LandingPagev2";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
@@ -9,12 +9,20 @@ import Link from "next/link";
 import LandingNavbar from "../components/LandingNavbar";
 import { Button } from "../components/ui/Button";
 
-const navigation = [
-  { name: "Student Portal", href: "/studentPortal/intro" },
-  { name: "Blog", href: "/blog" },
-];
-
 const HomePage = () => {
+  const [showNavBar, setShowNavBar] = useState(false);
+  useEffect(() => {
+    const onScroll = (e) => {
+      if (e.target.documentElement.scrollTop > 400) {
+        setShowNavBar(true);
+      } else {
+        setShowNavBar(false);
+      }
+    };
+    window.addEventListener("scroll", onScroll);
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
     <div>
       <SEO
@@ -24,38 +32,39 @@ const HomePage = () => {
         }
         image={"https://www.skillify.ca/images/logo.svg"}
       />
-      <div className="sticky top-0 z-50">
+
+      <div
+        className={`sticky top-0 z-50 ${
+          showNavBar ? "opacity-100" : "opacity-0 h-0"
+        } overflow-hidden transform transition-all`}
+      >
         <LandingNavbar />
       </div>
+
       <div className="relative overflow-hidden bg-white">
         <Facebook />
-
-        <div className="mx-auto max-w-7xl">
-          <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-            <main className="px-4 mx-auto mt-10 max-w-7xl sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-              <div className="sm:text-center lg:text-left">
-                <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-                  <span className="">Learn new </span>{" "}
-                  <span className="text-yellow-600 ">skills</span>{" "}
-                  <span className="">to </span>{" "}
-                  <div className="text-yellow-600 ">start a career</div>{" "}
-                  <span className="">in tech.</span>{" "}
-                </h1>
-                <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                  Get access to a personalized roadmap, industry mentors and a
-                  community of learners.
-                </p>
-              </div>
-            </main>
+        <div className="grid grid-cols-1 sm:grid-cols-2 h-160">
+          <div className="p-4 lg:p-16 sm:text-center lg:text-left">
+            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+              <span className="">Learn new </span>{" "}
+              <span className="text-yellow-600 ">skills</span>{" "}
+              <span className="">to </span>{" "}
+              <div className="text-yellow-600 ">start a career</div>{" "}
+              <span className="">in tech.</span>{" "}
+            </h1>
+            <p className="my-4 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+              Get access to a personalized roadmap, industry mentors and a
+              community of learners.
+            </p>
+            <Button label={"Start Learning"} size="large" />
           </div>
-        </div>
-
-        <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-          <img
-            className="object-cover w-full h-56 sm:h-72 md:h-96 lg:w-full lg:h-full"
-            src="/images/landingPage/cuate.svg"
-            alt=""
-          />
+          <div className="h-3/4">
+            <img
+              className="object-cover w-full -mt-28"
+              src="/images/landingPage/cuate.svg"
+              alt=""
+            />
+          </div>
         </div>
       </div>
       <LandingPagev2 />
