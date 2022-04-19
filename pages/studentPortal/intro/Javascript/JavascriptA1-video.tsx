@@ -22,7 +22,7 @@ const JS_A1 = () => {
         ></iframe>
       </div>
       <div className="flex h-full mt-12 sm:justify-end">
-        <Link href={""}>
+        <Link href={"/studentPortal/intro/Javascript/9"}>
           <Button label="Continue" disabled={false} />
         </Link>
       </div>
