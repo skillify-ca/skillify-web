@@ -54,6 +54,13 @@ export async function getServerSideProps({ params }) {
       link: "https://www.codecademy.com/learn/introduction-to-javascript",
       description: "An online course introducing you to Javascript",
     },
+    {
+      title: "Code Wars",
+      image: "https://docs.codewars.com/logo.svg",
+      link: "https://www.codewars.com/",
+      description:
+        "Code wars is a fun way to learn code and recieve instant feedback!",
+    },
   ];
   const lessonComponents: LessonComponentData[] = [
     {
