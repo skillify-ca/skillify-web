@@ -47,7 +47,7 @@ export default function LessonComponent({ data }: LessonComponentProps) {
     return (
       <>
         <h1 className="font-bold">Resources</h1>
-        <div className="flex flex-col gap-8 px-4">
+        <div className="flex flex-col gap-8">
           {data.resources.map((it) => (
             <ResourceRow
               title={it.title}

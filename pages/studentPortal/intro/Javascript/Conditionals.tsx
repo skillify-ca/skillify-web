@@ -40,20 +40,18 @@ const Conditionals = ({ lessonComponents }) => {
   return (
     <>
       <div className="col-span-7">
-        <div className="grid h-full grid-cols-1 space-y-4 bg-gray-100 text-gray-700  dark:bg-gray-800 dark:text-white p-32">
+        <div className="grid h-full grid-cols-1 px-4 pt-4 space-y-4 text-gray-700 bg-gray-100 sm:px-12 dark:bg-gray-800 dark:text-white">
           <ProgressBar completed={100} />
           {lessonComponents.map((it) => (
             <LessonComponent data={it} />
           ))}
 
           <div className="flex h-full mt-12 sm:justify-end">
-            <a href={"/studentPortal/intro"}>
-              <Button
-                label="Continue"
-                disabled={false}
-                onClick={handleContinue}
-              />
-            </a>
+            <Button
+              label="Continue"
+              disabled={false}
+              onClick={handleContinue}
+            />
           </div>
         </div>
       </div>
@@ -86,7 +84,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "code-sandbox",
-      title: "Functions in Javascript",
+      title: "Conditionals in Javascript",
       link: "https://codesandbox.io/embed/temperature-2j5ecn?fontsize=14&hidenavigation=1&theme=dark",
     },
   ];

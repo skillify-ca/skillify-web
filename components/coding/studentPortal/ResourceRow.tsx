@@ -27,9 +27,9 @@ export const ResourceRow: React.FC<ResourceRowProps> = ({
         <p>{description}</p>
       </div>
       <div className="flex items-center sm:justify-end">
-        <Link href={link}>
+        <a target="_blank" href={link} rel="noopener noreferrer">
           <Button label="View" disabled={disabled} />
-        </Link>
+        </a>
       </div>
     </div>
   );
