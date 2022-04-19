@@ -88,7 +88,7 @@ const JSQuiz1 = () => {
         },
         refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
       });
-      router.push("/studentPortal/intro");
+      router.push("/studentPortal/intro/Javascript/Array");
     });
   };
   return (
