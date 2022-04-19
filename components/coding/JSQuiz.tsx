@@ -33,7 +33,7 @@ const JSQuiz = ({}: JSQuizProp) => {
     },
     //Quiz 1
     {
-      displayQuestion: "How do you declare and intialize a constant type?",
+      displayQuestion: ,
       option1: { id: "A", text: "let a = 8;" },
       option2: { id: "B", text: "var b;" },
       option3: { id: "C", text: "constant b = 0;" },
