@@ -12,6 +12,7 @@ module.exports = {
       },
       height: {
         108: "27rem",
+        160: "40rem"
       },
       animation: {
         shake: "shake 0.5s ease-in-out",

@@ -41,11 +41,11 @@ export const Layout: React.FC = ({ children }) => {
         <div />
       </div>
       <div className="flex">
-        <div className="hidden mt-16 w-72 lg:flex">
+        <div className="hidden max-h-screen mt-16 w-72 lg:flex">
           <Sidebar />
         </div>
         <div
-          className={`dark:text-white overflow-auto w-full h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 gap-4 bg-gray-100 dark:bg-gray-800`}
+          className={`dark:text-white overflow-auto w-full max-h-screen h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 gap-4 bg-gray-100 dark:bg-gray-800`}
         >
           <div className="h-16" />
           <div className="min-h-screen">{children}</div>

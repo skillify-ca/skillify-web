@@ -71,8 +71,8 @@ const EmailCapture = () => {
           <div className="flex flex-col items-center justify-center p-4">
             <p className="text-xl font-bold text-white sm:text-2xl">
               {" "}
-              With affordable coding courses, more people can get the skills
-              they need to get hired fast.{" "}
+              Not sure how to start coding? Enroll now and we will create an
+              individual plan to help you reach your career goals.
             </p>
           </div>
         </div>
