@@ -180,6 +180,19 @@ export const introUnits: Unit[] = [
 
 export const reactUnits: Unit[] = [
   {
+    title: "Introduction",
+    nodes: [
+      {
+        title: "Lesson",
+        description: "Intro to Web Development",
+        type: "lesson",
+        completed: false,
+        locked: false,
+        link: "react/introduction",
+      },
+    ],
+  },
+  {
     title: "React",
     nodes: [
       {

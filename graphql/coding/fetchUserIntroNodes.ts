@@ -1,5 +1,4 @@
 import { gql } from "@apollo/client";
-import { title } from "process";
 import { Unit } from "../../pages/api/studentPortal/units";
 
 export const FETCH_USER_INTRO_NODES = gql`
