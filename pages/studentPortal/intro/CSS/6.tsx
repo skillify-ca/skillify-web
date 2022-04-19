@@ -39,12 +39,12 @@ const CSS6 = ({ lessonComponents }) => {
   return (
     <>
       <div className="col-span-7">
-        <div className="grid h-full grid-cols-1 p-8 space-y-4 bg-gray-100 text-gray-700">
+        <div className="grid h-full grid-cols-1 p-8 space-y-4 text-gray-700 bg-gray-100">
           <ProgressBar completed={100} />
           {lessonComponents.map((it) => (
             <LessonComponent data={it} />
           ))}
-          <h1 className="font-bold text-xl mt-12">How to get started:</h1>
+          <h1 className="mt-12 text-xl font-bold">How to get started:</h1>
           <div className="flex-row">
             <h1 className="text-charmander">Step 1:</h1>
             <p>
@@ -77,13 +77,11 @@ const CSS6 = ({ lessonComponents }) => {
             </p>
           </div>
           <div className="flex h-full mt-16 sm:justify-end">
-            <a href={"/studentPortal/intro"}>
-              <Button
-                label="Continue"
-                disabled={false}
-                onClick={handleContinue}
-              />
-            </a>
+            <Button
+              label="Continue"
+              disabled={false}
+              onClick={handleContinue}
+            />
           </div>
         </div>
       </div>

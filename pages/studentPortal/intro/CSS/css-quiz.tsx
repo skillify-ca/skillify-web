@@ -106,13 +106,11 @@ const CSS_QUIZ = () => {
         <div className="w-full p-8 h-36 ">
           <div className="flex justify-end w-full">
             {showSessionEnd ? (
-              <Link href="/studentPortal/intro/CSS/5">
-                <Button
-                  label="Continue"
-                  disabled={false}
-                  onClick={handleContinue}
-                />
-              </Link>
+              <Button
+                label="Continue"
+                disabled={false}
+                onClick={handleContinue}
+              />
             ) : (
               <Button
                 label="Continue"
