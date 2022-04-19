@@ -67,10 +67,10 @@ export default function Quiz({}: QuizProps) {
             <p className="text-2xl">{questions[currentQuestion].text}</p>
           </div>
           {questions[currentQuestion].image ? (
-            <div className="flex flew-row w-full justify-around">
+            <div className="flex justify-around w-full px-8 pb-8 flew-row">
               <img
                 src={questions[currentQuestion].image}
-                className="max-h-72 justify-around"
+                className="justify-around max-h-72"
               />
             </div>
           ) : (
