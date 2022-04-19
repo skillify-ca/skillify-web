@@ -40,20 +40,20 @@ const Variables = ({ lessonComponents }) => {
   return (
     <>
       <div className="col-span-7">
-        <div className="grid h-full grid-cols-1 space-y-4 bg-gray-100 text-gray-700  dark:bg-gray-800 dark:text-white p-32">
-          <ProgressBar completed={100} />
-          {lessonComponents.map((it) => (
-            <LessonComponent data={it} />
-          ))}
+        <div className="grid h-full grid-cols-1 px-4 pt-4 text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-white sm:px-12">
+          <div className="space-y-4">
+            <ProgressBar completed={100} />
+            {lessonComponents.map((it) => (
+              <LessonComponent data={it} />
+            ))}
+          </div>
 
-          <div className="flex h-full mt-12 sm:justify-end">
-            <a href={"/studentPortal/intro"}>
-              <Button
-                label="Continue"
-                disabled={false}
-                onClick={handleContinue}
-              />
-            </a>
+          <div className="flex h-full mt-16 sm:justify-end">
+            <Button
+              label="Continue"
+              disabled={false}
+              onClick={handleContinue}
+            />
           </div>
         </div>
       </div>
