@@ -33,6 +33,7 @@
     "colyseus.js": "^0.14.12",
     "contentful": "^9.1.5",
     "dangerously-set-html-content": "^1.0.8",
+    "date-fns": "^2.28.0",
     "fetch-retry": "^4.1.1",
     "firebase": "^9.1.2",
     "graphql": "^15.5.0",

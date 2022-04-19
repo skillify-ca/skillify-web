@@ -1,15 +1,25 @@
+import { useQuery } from "@apollo/client";
 import React from "react";
-import Layout from "../components/coding/studentPortal/Layout";
+import UserCard from "../components/coding/classroom/UserCard";
+import {
+  FetchUsersResponse,
+  FETCH_CLASSROOM_USERS,
+} from "../graphql/coding/classroom/fetchUsers";
 
 export default function ClassroomPage() {
+  const { data, loading } = useQuery<FetchUsersResponse>(FETCH_CLASSROOM_USERS);
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
-      <h1 className="text-5xl font-bold">Coming Soon</h1>
-      <img
-        className="w-64 h-64 object-cover"
-        src="/images/landingPage/cuate.svg"
-        alt=""
-      />
+    <div className="flex flex-col items-center justify-center w-full">
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="grid grid-cols-1 gap-4 p-8">
+          <h1 className="text-3xl font-bold">Classroom</h1>
+          {data.users.map((user) => (
+            <UserCard user={user} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
