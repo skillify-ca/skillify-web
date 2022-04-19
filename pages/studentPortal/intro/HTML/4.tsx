@@ -78,13 +78,11 @@ const HTML3 = ({ lessonComponents }) => {
             </p>
           </div>
           <div className="flex h-full mt-12 sm:justify-end">
-            <a href={"/studentPortal/intro"}>
-              <Button
-                label="Continue"
-                disabled={false}
-                onClick={handleContinue}
-              />
-            </a>
+            <Button
+              label="Continue"
+              disabled={false}
+              onClick={handleContinue}
+            />
           </div>
         </div>
       </div>
