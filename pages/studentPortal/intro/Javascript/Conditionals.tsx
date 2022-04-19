@@ -34,7 +34,7 @@ const Conditionals = ({ lessonComponents }) => {
         },
         refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
       });
-      router.push("/studentPortal/intro");
+      router.push("/studentPortal/intro/Javascript/JSQuiz1");
     });
   };
   return (
