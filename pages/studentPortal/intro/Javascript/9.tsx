@@ -16,7 +16,7 @@ const JS9 = () => {
                 </div>
                 <h1 className="text-xl font-bold text-center text-charmander">
                   {" "}
-                  Ready to apply your JS Knowledge?
+                  Ready to move to Part 2 of the Javascript Assignment?
                 </h1>
                 <p className="text-center text-gray-800">
                   Begin the assignment now!
