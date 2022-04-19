@@ -20,6 +20,7 @@ import {
   FETCH_USER_INTRO_NODES,
   transform,
 } from "../../graphql/coding/fetchUserIntroNodes";
+import { UPDATE_USER } from "../../graphql/updateUser";
 
 interface StudentPortalPageProps {
   slug: string;
@@ -28,6 +29,7 @@ export default function StudentPortalPage({ slug }: StudentPortalPageProps) {
   const { user } = useAuth();
 
   const [initUserNodes] = useMutation(INIT_USER_INTRO_NODES);
+  const [updateUser] = useMutation(UPDATE_USER);
   const { data } = useQuery(FETCH_USER_INTRO_NODES, {
     variables: {
       userId: user.uid,
@@ -60,6 +62,17 @@ export default function StudentPortalPage({ slug }: StudentPortalPageProps) {
       setUnits(transform(data));
     }
   }, [data]);
+
+  useEffect(() => {
+    // TODO save profile photos to firebase storage and allow users to edit photos
+    updateUser({
+      variables: {
+        userId: user.uid,
+        last_seen: new Date(),
+        profile_image: user.photoURL,
+      },
+    });
+  }, [user]);
 
   return (
     <div className="flex flex-col w-full p-8 ">

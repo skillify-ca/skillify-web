@@ -1,13 +1,30 @@
 import Link from "next/link";
-import React, { useRef, useState } from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useRef, useState } from "react";
 import { useAuth } from "../../../lib/authContext";
 
 export type SidebarProps = {};
+type SidebarPage = "dashboard" | "classroom" | "profile";
 
 export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const { signOut, user } = useAuth();
+  const dashboardIconRef = useRef<HTMLImageElement>();
   const classroomIconRef = useRef<HTMLImageElement>();
   const profileIconRef = useRef<HTMLImageElement>();
+  const router = useRouter();
+  const [activePage, setActivePage] = useState<SidebarPage>();
+
+  console.log(router.pathname);
+
+  useEffect(() => {
+    if (router.pathname.startsWith("/classroom")) {
+      setActivePage("classroom");
+    } else if (router.pathname.startsWith("/profile")) {
+      setActivePage("profile");
+    } else {
+      setActivePage("dashboard");
+    }
+  }, [router.pathname]);
 
   return (
     //Full width then restrict in page
@@ -30,30 +47,49 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
           )}
         </div>
         <Link href="/studentPortal/intro">
-          <div className={`"border-charmander text-charmander"`}>
-            <div
-              className={`p-4 border-l-4 border-charmander text-charmander cursor-pointer`}
-            >
-              <div className="flex flex-wrap">
-                <img
-                  className="w-6 h-6 mr-4"
-                  src="/images/dashBoardActive.svg"
-                />
-                Dashboard
-              </div>
-            </div>
+          <div
+            className={`flex flex-wrap items-center h-12 p-4 cursor-pointer hover:border-l-4 ${
+              activePage === "dashboard"
+                ? "border-charmander text-charmander"
+                : ""
+            } hover:border-charmander hover:text-charmander`}
+            onMouseOver={(e) => {
+              if (dashboardIconRef.current) {
+                dashboardIconRef.current.src = "/images/dashboardActive.svg";
+              }
+            }}
+            onMouseLeave={() => {
+              if (activePage !== "dashboard" && dashboardIconRef.current) {
+                dashboardIconRef.current.src = "/images/dashboardInactive.svg";
+              }
+            }}
+          >
+            <img
+              ref={dashboardIconRef}
+              className="w-6 h-6 mr-4"
+              src={
+                activePage === "dashboard"
+                  ? "/images/dashboardActive.svg"
+                  : "/images/dashboardInactive.svg"
+              }
+            />
+            Dashboard
           </div>
         </Link>
         <Link href="/classroom">
           <div
-            className="flex flex-wrap items-center h-12 p-4 cursor-pointer hover:border-l-4 hover:border-charmander hover:text-charmander"
+            className={`flex flex-wrap items-center h-12 p-4 cursor-pointer hover:border-l-4 ${
+              activePage === "classroom"
+                ? "border-charmander text-charmander"
+                : ""
+            } hover:border-charmander hover:text-charmander`}
             onMouseOver={(e) => {
               if (classroomIconRef.current) {
                 classroomIconRef.current.src = "/images/classroomActive.svg";
               }
             }}
             onMouseLeave={() => {
-              if (classroomIconRef.current) {
+              if (activePage !== "classroom" && classroomIconRef.current) {
                 classroomIconRef.current.src = "/images/classroomInactive.svg";
               }
             }}
@@ -61,21 +97,30 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             <img
               ref={classroomIconRef}
               className="w-6 h-6 mr-4"
-              src="/images/classroomInactive.svg"
+              src={
+                activePage === "classroom"
+                  ? "/images/classroomActive.svg"
+                  : "/images/classroomInactive.svg"
+              }
             />
             Classroom
           </div>
         </Link>
         <Link href="/profile">
           <div
-            className="flex flex-wrap items-center h-12 p-4 cursor-pointer hover:border-l-4 hover:border-charmander hover:text-charmander"
+            className={`flex flex-wrap items-center h-12 p-4 cursor-pointer hover:border-l-4 hover:border-charmander hover:text-charmander    
+            ${
+              activePage === "profile"
+                ? "border-charmander text-charmander"
+                : ""
+            }`}
             onMouseOver={(e) => {
               if (profileIconRef.current) {
                 profileIconRef.current.src = "/images/profileActive.svg";
               }
             }}
             onMouseLeave={() => {
-              if (profileIconRef.current) {
+              if (activePage !== "profile" && profileIconRef.current) {
                 profileIconRef.current.src = "/images/profileInactive.svg";
               }
             }}
@@ -83,7 +128,11 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             <img
               ref={profileIconRef}
               className="w-6 h-6 mr-4"
-              src="/images/profileInactive.svg"
+              src={
+                activePage === "profile"
+                  ? "/images/profileActive.svg"
+                  : "/images/profileInactive.svg"
+              }
             />
             Profile
           </div>
