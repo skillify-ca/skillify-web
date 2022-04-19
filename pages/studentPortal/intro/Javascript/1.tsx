@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import Card, { CardData } from "../../../../components/coding/Card";
-import JSQuiz from "../../../../components/coding/JSQuiz";
 import Navbar from "../../../../components/ui/Navbar";
 
 const JS1 = () => {
@@ -93,6 +92,7 @@ const JS1 = () => {
                     image={it.image}
                     description={it.description}
                     link={it.link}
+                    color={RED}
                   />
                 ))}
               </div>
@@ -105,6 +105,7 @@ const JS1 = () => {
                     image={it.image}
                     description={it.description}
                     link={it.link}
+                    color={RED}
                   />
                 ))}
               </div>
@@ -202,7 +203,6 @@ const JS1 = () => {
                 Start Quiz
               </p>
             </Link>
-            <JSQuiz />
             <div className="flex flex-col">
               <a
                 className="mt-8 text-2xl font-bold text-yellow-600"
