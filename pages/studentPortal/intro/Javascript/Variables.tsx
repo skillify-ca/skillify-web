@@ -34,7 +34,7 @@ const Variables = ({ lessonComponents }) => {
         },
         refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
       });
-      router.push("/studentPortal/intro/Javascript/Functions");
+      router.push("/studentPortal/intro");
     });
   };
   return (
@@ -47,7 +47,7 @@ const Variables = ({ lessonComponents }) => {
           ))}
 
           <div className="flex h-full mt-12 sm:justify-end">
-            <a href={"/studentPortal/intro/Javascript/Functions"}>
+            <a href={"/studentPortal/intro"}>
               <Button
                 label="Continue"
                 disabled={false}

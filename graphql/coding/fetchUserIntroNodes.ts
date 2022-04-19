@@ -6,7 +6,7 @@ export const FETCH_USER_INTRO_NODES = gql`
   query fetchUserIntroNodes($userId: String = "") {
     intro_course_unit {
       title
-      intro_course_nodes {
+      intro_course_nodes(order_by: { id: asc }) {
         description
         link
         title
