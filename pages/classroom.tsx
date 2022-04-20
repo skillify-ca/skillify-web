@@ -13,7 +13,7 @@ export default function ClassroomPage() {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div className="grid grid-cols-1 gap-4 p-8">
+        <div className="grid grid-cols-1 gap-4 px-4 sm:px-8 w-full">
           <h1 className="text-3xl font-bold">Classroom</h1>
           {data.users.map((user) => (
             <UserCard user={user} />
