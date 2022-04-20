@@ -55,7 +55,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             } hover:border-charmander hover:text-charmander`}
             onMouseOver={(e) => {
               if (dashboardIconRef.current) {
-                dashboardIconRef.current.src = "/images/dashboardActive.svg";
+                dashboardIconRef.current.src = "/images/dashBoardActive.svg";
               }
             }}
             onMouseLeave={() => {
@@ -69,7 +69,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               className="w-6 h-6 mr-4"
               src={
                 activePage === "dashboard"
-                  ? "/images/dashboardActive.svg"
+                  ? "/images/dashBoardActive.svg"
                   : "/images/dashboardInactive.svg"
               }
             />
