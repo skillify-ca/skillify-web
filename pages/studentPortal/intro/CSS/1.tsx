@@ -19,7 +19,7 @@ const CSS1 = ({ lessonComponents }) => {
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-8">
+      <div className="grid grid-cols-1 gap-8 p-8">
         <ProgressBar completed={100} />
         {lessonComponents.map((it) => (
           <LessonComponent data={it} />
