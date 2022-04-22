@@ -56,7 +56,7 @@ const CSS_QUIZ = () => {
       C: "justify-content: reverse;",
       D: "align-items: center;",
       answer: "A",
-      image: "/images/coding/units/Css/flex-end.png",
+      image: "/images/coding/units/css/flex-end.png",
     };
     const q2 = {
       text: "What CSS properties are used here?",
@@ -65,7 +65,7 @@ const CSS_QUIZ = () => {
       C: "justify-content: center;",
       D: "flex-direction: row;",
       answer: "B",
-      image: "/images/coding/units/Css/space-around.png",
+      image: "/images/coding/units/css/space-around.png",
     };
     const q3 = {
       text: "What CSS properties are used here?",
@@ -74,7 +74,7 @@ const CSS_QUIZ = () => {
       C: "flex-direction: column;",
       D: "justify-content: flex-start;",
       answer: "C",
-      image: "/images/coding/units/Css/column.png",
+      image: "/images/coding/units/css/column.png",
     };
     const q4 = {
       text: "What CSS properties are used here?",
@@ -83,7 +83,7 @@ const CSS_QUIZ = () => {
       C: "justify-content: flex-start;",
       D: "align-items: center;",
       answer: "A",
-      image: "/images/coding/units/Css/space-between.png",
+      image: "/images/coding/units/css/space-between.png",
     };
     const q5 = {
       text: "What CSS properties are used here?",
@@ -92,7 +92,7 @@ const CSS_QUIZ = () => {
       C: "justify-items: center;",
       D: "justify-contents: center;",
       answer: "B",
-      image: "/images/coding/units/Css/center.png",
+      image: "/images/coding/units/css/center.png",
     };
     dispatch(setQuizQuestions([q1, q2, q3, q4, q5]));
   }, []);
