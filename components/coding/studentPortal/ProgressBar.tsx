@@ -13,7 +13,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
     borderRadius: "inherit",
   };
   return (
-    <div className="w-full h-8 bg-gray-300 border rounded-full">
+    <div className="w-full h-8 bg-gray-300 border rounded-full mb-8">
       <div
         style={fillerStyles}
         className="flex items-center justify-end bg-rattata"

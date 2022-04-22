@@ -10,7 +10,10 @@ const JS5 = ({ lessonComponents }) => {
     <>
       <div className="col-span-7">
         <div className="grid h-full grid-cols-1 p-8 space-y-4 bg-gray-100 text-gray-700">
-          <ProgressBar completed={100} />
+          <div className="mb-5">
+            <ProgressBar completed={100} />
+          </div>
+
           <h1 className="font-bold text-xl mt-12">Requirements:</h1>
           <div className="flex-row">
             <h1 className="text-charmander">Step 1:</h1>
