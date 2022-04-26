@@ -1,13 +1,17 @@
 import { getRedirectResult } from "@firebase/auth";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../lib/authContext";
 import { auth } from "../lib/firebase";
 import { useRouter } from "next/router";
+import { Input } from "./ui/Input";
+import { Button } from "./ui/Button";
 
 export default function SignInPage() {
   const { signIn, user } = useAuth();
   const router = useRouter();
+  const [email, setEmail] = useState("");
 
+  const magic = new Magic("YOUR_LIVE_PUBLISHABLE_API_KEY");
   useEffect(() => {
     async function checkAuth() {
       const result = await getRedirectResult(auth);
@@ -17,6 +21,20 @@ export default function SignInPage() {
     }
     checkAuth();
   }, []);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const email = new FormData(e.target).get("email");
+
+    const redirectURI = `${window.location.origin}/callback`; // 👈 This will be our callback URI
+
+    if (email) {
+      /* One-liner login 🤯 */
+
+      await magic.auth.loginWithMagicLink({ email, redirectURI }); // 👈 Notice the additional parameter!
+    }
+  };
 
   return (
     <div>
@@ -44,14 +62,8 @@ export default function SignInPage() {
                 <p>Feel more confident with code and get hired in tech</p>
               </p>
             </div>
-
-            <button
-              onClick={() => signIn()}
-              className="flex items-center justify-between w-64 p-4 bg-white border border-black shadow-lg rounded-2xl hover:bg-gray-100"
-            >
-              Sign in with Google
-              <img className="w-8" src="/images/googleLogo.png" />
-            </button>
+            <Input value={email} setValue={setEmail} />
+            <Button label="Log In" />
           </div>
         </div>
       </div>

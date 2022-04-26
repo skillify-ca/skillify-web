@@ -5,6 +5,7 @@ import { TouchBackend } from "react-dnd-touch-backend";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import initializeApollo from "../lib/apollo";
 import { AuthProvider, useAuth } from "../lib/authContext";
+import { MagicProvider, useMagic } from "../lib/magicContext";
 import { ApolloProvider } from "@apollo/client";
 import { Provider as ReduxProvider } from "react-redux";
 import store from "../redux/store";
@@ -48,6 +49,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
       }} />
       <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
           <ReduxProvider store={store}>
+            <MagicProvider>
             <AuthProvider>
               {Component.auth ? (
                 <Auth>
@@ -57,6 +59,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
                 getLayout(<Component {...pageProps} />)
               )}
             </AuthProvider>
+            </MagicProvider>
           </ReduxProvider>
       </DndProvider>
     </ApolloProvider>
