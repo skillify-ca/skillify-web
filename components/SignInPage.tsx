@@ -44,6 +44,7 @@ export default function SignInPage() {
                 <p>Feel more confident with code and get hired in tech</p>
               </p>
             </div>
+
             <button
               onClick={() => signIn()}
               className="flex items-center justify-between w-64 p-4 bg-white border border-black shadow-lg rounded-2xl hover:bg-gray-100"

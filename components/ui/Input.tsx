@@ -2,8 +2,8 @@ import React from "react";
 
 export interface InputProps {
   autoFocus?: boolean;
-  guess: string;
-  setGuess: (string) => void;
+  value: string;
+  setValue: (string) => void;
   handleKeypress?: (e) => void;
 }
 
@@ -12,8 +12,8 @@ export interface InputProps {
  */
 export const Input: React.FC<InputProps> = ({
   autoFocus = true,
-  guess,
-  setGuess,
+  value: guess,
+  setValue: setGuess,
   handleKeypress,
 }) => {
   return (
@@ -24,7 +24,7 @@ export const Input: React.FC<InputProps> = ({
       autoComplete="off"
       value={guess}
       onChange={(e) => setGuess(e.target.value)}
-      className="w-full sm:w-64 appearance-none py-4 text-center border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 bg-blue-100 focus:z-10 sm:text-sm"
+      className="w-full py-4 text-center bg-blue-100 border rounded-md shadow-md appearance-none sm:w-64 focus:outline-none focus:ring-indigo-500 focus:z-10 sm:text-sm"
       placeholder="Enter Answer"
       onKeyPress={handleKeypress}
     />

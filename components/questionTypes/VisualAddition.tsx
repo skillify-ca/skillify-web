@@ -55,7 +55,7 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
           ""
         )}
 
-        <p className="text-5xl font-bold p-4">+</p>
+        <p className="p-4 text-5xl font-bold">+</p>
         {visualDisplay == 0 ? (
           <TenFrame num={parseInt(parse(question).second)} />
         ) : visualDisplay == 1 ? (
@@ -72,10 +72,10 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
 
         <NumberLiteral num={parseInt(parse(question).second)} />
       </div>
-      <div className="p-4 flex flex-col space-y-4">
+      <div className="flex flex-col p-4 space-y-4">
         <Input
-          guess={guess}
-          setGuess={setGuess}
+          value={guess}
+          setValue={setGuess}
           handleKeypress={handleKeypress}
         />
         <Button

@@ -45,16 +45,16 @@ export const HorizontalEquation: React.FC<HorizontalEquationProp> = ({
     };
   };
   return (
-    <div className="flex flex-col gap-4 justify-between h-full">
-      <p className="text-6xl w-full flex-grow flex justify-center items-center">
+    <div className="flex flex-col justify-between h-full gap-4">
+      <p className="flex items-center justify-center flex-grow w-full text-6xl">
         {parse().first}
         {" " + parse().operation + " "}
         {parse().second}
       </p>
       {!isReadOnly && (
         <Input
-          guess={guess}
-          setGuess={setGuess}
+          value={guess}
+          setValue={setGuess}
           handleKeypress={handleKeypress}
         />
       )}

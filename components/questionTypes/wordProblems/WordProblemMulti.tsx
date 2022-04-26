@@ -55,11 +55,11 @@ export const WordProblemMulti: React.FC<WordProblemMultiProp> = ({
   };
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="text-2xl flex flex-wrap">
+      <div className="flex flex-wrap text-2xl">
         <p className="align-left">
           {name} has
           <span> </span>
-          <span className="text-black font-bold">
+          <span className="font-bold text-black">
             {" " + parse().first}
             {" " + title(itemContainer, parse().first)}.{" "}
           </span>{" "}
@@ -72,10 +72,10 @@ export const WordProblemMulti: React.FC<WordProblemMultiProp> = ({
         </p>
       </div>
       {!isReadOnly && (
-        <div className="text-2xl flex flex-wrap">
+        <div className="flex flex-wrap text-2xl">
           <Input
-            guess={guess}
-            setGuess={setGuess}
+            value={guess}
+            setValue={setGuess}
             handleKeypress={handleKeypress}
           />
         </div>

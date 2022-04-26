@@ -82,9 +82,9 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
 
   return (
     <div>
-      <div className="flex flex-col gap-2 items-center">
+      <div className="flex flex-col items-center gap-2">
         {horizontal.map((it) => (
-          <div className="flex flew-row gap-2">
+          <div className="flex gap-2 flew-row">
             {columns.map((it) => (
               <div
                 className={`${getColourStyles().colorStyle} ${
@@ -106,17 +106,21 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
         >
           {parse().first} x {parse().second}
         </div>
-        {!isReadOnly && <Input
-          guess={guess}
-          setGuess={setGuess}
-          handleKeypress={handleKeypress}
-        />}
-        {!isReadOnly && <Button
-          onClick={onSubmit}
-          label="Submit"
-          backgroundColor="blue"
-          textColor="white"
-        />}
+        {!isReadOnly && (
+          <Input
+            value={guess}
+            setValue={setGuess}
+            handleKeypress={handleKeypress}
+          />
+        )}
+        {!isReadOnly && (
+          <Button
+            onClick={onSubmit}
+            label="Submit"
+            backgroundColor="blue"
+            textColor="white"
+          />
+        )}
       </div>
     </div>
   );
