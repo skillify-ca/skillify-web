@@ -1,6 +1,7 @@
 import { getRedirectResult } from "@firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../lib/authContext";
+import { useMagic } from "../lib/magicContext";
 import { auth } from "../lib/firebase";
 import { useRouter } from "next/router";
 import { Input } from "./ui/Input";
@@ -11,7 +12,7 @@ export default function SignInPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
 
-  const magic = new Magic("YOUR_LIVE_PUBLISHABLE_API_KEY");
+  // const magic = new Magic("YOUR_LIVE_PUBLISHABLE_API_KEY");
   useEffect(() => {
     async function checkAuth() {
       const result = await getRedirectResult(auth);
@@ -25,15 +26,7 @@ export default function SignInPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const email = new FormData(e.target).get("email");
-
-    const redirectURI = `${window.location.origin}/callback`; // 👈 This will be our callback URI
-
-    if (email) {
-      /* One-liner login 🤯 */
-
-      await magic.auth.loginWithMagicLink({ email, redirectURI }); // 👈 Notice the additional parameter!
-    }
+    signIn(email);
   };
 
   return (
@@ -53,17 +46,30 @@ export default function SignInPage() {
           </div>
           <div className="flex flex-col items-center justify-between gap-y-8">
             <div className="">
-              <p className="text-center text-md">
+              {" "}
+              <p className="text-xl font-bold">
                 {" "}
-                <p className="text-xl font-bold">
-                  {" "}
-                  Skillify makes online learning fun and engaging.{" "}
-                </p>{" "}
-                <p>Feel more confident with code and get hired in tech</p>
+                Skillify makes online learning fun and engaging.{" "}
+              </p>{" "}
+              <p className="text-center text-md">
+                Feel more confident with code and get hired in tech
               </p>
             </div>
-            <Input value={email} setValue={setEmail} />
-            <Button label="Log In" />
+            <form>
+              <Input
+                value={email}
+                setValue={setEmail}
+                placeholder="Enter Email"
+              />
+              <Button label="Log In" onClick={handleLogin} />
+            </form>
+            <button
+              onClick={() => signIn()}
+              className="flex items-center justify-between w-64 p-4 bg-white border border-black shadow-lg rounded-2xl hover:bg-gray-100"
+            >
+              Sign in with Google
+              <img className="w-8" src="/images/googleLogo.png" />
+            </button>
           </div>
         </div>
       </div>
