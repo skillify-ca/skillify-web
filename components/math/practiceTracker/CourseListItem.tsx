@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useAuth } from "../../../lib/authContext";
 import { Course } from "../../../pages/api/explore";
 
 type CourseListItemProps = {
@@ -10,19 +12,61 @@ const CourseListItem = ({
   locked,
   description,
 }: CourseListItemProps) => {
+  const [isEnrollNowClicked, setIsEnrollNowClicked] = useState(false);
+  const { user } = useAuth();
+
+  const handleEnrollClick = async () => {
+    setIsEnrollNowClicked(true);
+    const url = `https://math-app-1.herokuapp.com/notifications?product=${course.title}`;
+    const options = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      body: JSON.stringify({
+        email: `[Name] ${user.email} [course] `,
+      }),
+    };
+    await fetch(url, options);
+  };
   return (
     <div
-      className={`p-4 m-4 text-xl flex items-center rounded-lg text-white ${
-        locked
-          ? "to-gray-700 hover:to-gray-700 bg-gradient-to-b from-gray-500"
-          : "to-blue-700 hover:to-blue-500 bg-gradient-to-b from-blue-500 cursor-pointer"
-      } shadow-lg space-x-4`}
+      className={`p-8 bg-white m-4 text-xl flex flex-col gap-4 h-80 items-between justify-center text-gray-500 ${
+        locked ? "" : "bg-white"
+      } shadow-lg`}
     >
-      <img src={course.image} className="w-16" />
+      <div>
+        <img src={course.image} className="object-center w-24 h-24" />
+      </div>
       <div className="flex flex-col">
         <p>{course.title}</p>
         {description && <p className="text-sm">{course.description}</p>}
       </div>
+      {isEnrollNowClicked ? (
+        <div className="flex text-sm text-charmander">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-5 h-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <p className="ml-4">Enrollment Requested</p>
+        </div>
+      ) : (
+        <div
+          onClick={handleEnrollClick}
+          className="flex justify-center w-40 px-5 py-3 border-2 border-gray-500 rounded-lg cursor-pointer hover:bg-charmander hover:border-charmander hover:text-white"
+        >
+          Enroll now
+        </div>
+      )}
     </div>
   );
 };

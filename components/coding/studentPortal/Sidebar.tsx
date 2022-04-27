@@ -137,6 +137,16 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             Profile
           </div>
         </Link>
+        <div>
+          <div className="flex items-center justify-between p-4 ">
+            <p className="font-bold">Courses</p>
+            <Link href={"/courses"}>
+              <div className="px-2 py-1 text-gray-400 border-2 border-gray-400 rounded-md cursor-pointer">
+                Add Course
+              </div>
+            </Link>
+          </div>
+        </div>
         <div className="flex flex-wrap p-4 cursor-pointer" onClick={signOut}>
           <img className="w-8 h-8 mr-4" src="/images/logoutButton.svg" />
           Logout
