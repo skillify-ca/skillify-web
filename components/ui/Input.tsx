@@ -2,9 +2,10 @@ import React from "react";
 
 export interface InputProps {
   autoFocus?: boolean;
-  guess: string;
-  setGuess: (string) => void;
+  value: string;
+  setValue: (string) => void;
   handleKeypress?: (e) => void;
+  placeholder?: string;
 }
 
 /**
@@ -12,9 +13,10 @@ export interface InputProps {
  */
 export const Input: React.FC<InputProps> = ({
   autoFocus = true,
-  guess,
-  setGuess,
+  value: guess,
+  setValue: setGuess,
   handleKeypress,
+  placeholder = "",
 }) => {
   return (
     <input

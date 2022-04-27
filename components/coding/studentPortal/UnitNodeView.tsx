@@ -42,9 +42,13 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
   const active = !completed && !locked;
 
   return (
-    <div>
+    <div className="">
       <div
         className={`${
+          locked
+            ? ""
+            : "hover:bg-white hover:shadow-lg hover:py-4 transform transition-all"
+        } ${
           active
             ? "px-4 sm:px-0 py-4 border-2 flex flex-col sm:grid sm:grid-cols-12 bg-white dark:bg-gray-800"
             : "grid grid-cols-12"
@@ -60,7 +64,7 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
             }{" "}
           </div>
         </div>
-        <div className="flex flex-col justify-center w-full col-span-10 sm:col-span-6">
+        <div className="flex flex-col justify-center w-full col-span-10 ml-4 sm:ml-0 sm:col-span-6">
           <p className="">{title}</p>
           <p className="">{description}</p>
         </div>

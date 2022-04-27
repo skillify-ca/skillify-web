@@ -39,7 +39,7 @@ export const VerticalEquation: React.FC<VerticalEquationProp> = ({
   };
   return (
     <div className="flex flex-col gap-4">
-      <div className="text-8xl flex flex-col flex-end items-end border-b-8 border-blue-900">
+      <div className="flex flex-col items-end border-b-8 border-blue-900 text-8xl flex-end">
         <p className="align-right">{parse().first}</p>
         <div className="flex">
           <p>{question.operator}</p>
@@ -48,8 +48,8 @@ export const VerticalEquation: React.FC<VerticalEquationProp> = ({
       </div>
       {!isReadOnly && (
         <Input
-          guess={guess}
-          setGuess={setGuess}
+          value={guess}
+          setValue={setGuess}
           handleKeypress={handleKeypress}
         />
       )}

@@ -50,6 +50,7 @@ module.exports = {
           "url('https://images.unsplash.com/photo-1520061012101-6277a74655bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')",
         phone:
           "url('https://images.unsplash.com/photo-1425315283416-2acc50323ee6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80')",
+          signInBackground: "url('/images/onboarding/sign-in-background.svg')"
       }),
       fontFamily: {
         

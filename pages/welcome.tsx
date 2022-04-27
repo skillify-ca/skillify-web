@@ -3,8 +3,8 @@ import SignInPage from "../components/SignInPage";
 
 const Welcome = () => {
   return (
-    <div className="flex flex-col h-screen overflow-auto bg-scroll bg-blue-100 heropattern-architect-blue-50">
-      <div className="flex flex-col items-center justify-center p-4">
+    <div className="flex flex-col h-screen overflow-auto bg-scroll">
+      <div className="flex flex-col items-center justify-center">
         <SignInPage />
       </div>
     </div>

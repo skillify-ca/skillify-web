@@ -16,7 +16,7 @@ export const Layout: React.FC = ({ children }) => {
           height: 100%;
         }
       `}</style>
-      <div className="fixed z-20 flex justify-between w-full h-16 col-span-12 p-4 bg-white dark:bg-gray-900">
+      <div className="fixed z-20 flex justify-between w-full h-16 col-span-12 p-4 bg-white border-b-2 dark:bg-gray-900">
         <div onClick={(e) => setActive(!active)}>
           <div className="cursor-pointer dark:text-white lg:hidden">
             <svg

@@ -52,7 +52,7 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
   };
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="text-xl flex flex-wrap">
+      <div className="flex flex-wrap text-xl">
         <p className="align-left">
           {name} has
           <span className={noun1.colour}>
@@ -60,7 +60,7 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
             {" " + title(noun1, parse().first, false) + " "}{" "}
           </span>
           <span> and </span>
-          <span className="text-black font-extrabold">
+          <span className="font-extrabold text-black">
             {parse().second + " friend(s)"}.
           </span>
           {" " + name} wants to share the{" "}
@@ -72,13 +72,15 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
           will each friend have?
         </p>
       </div>
-      {!isReadOnly && <div className="text-2xl flex flex-wrap">
-        <Input
-          guess={guess}
-          setGuess={setGuess}
-          handleKeypress={handleKeypress}
-        />
-      </div>}
+      {!isReadOnly && (
+        <div className="flex flex-wrap text-2xl">
+          <Input
+            value={guess}
+            setValue={setGuess}
+            handleKeypress={handleKeypress}
+          />
+        </div>
+      )}
       <div className="flex flex-wrap mt-2">
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
@@ -86,12 +88,14 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
       </div>
-      {!isReadOnly && <Button
-        onClick={onSubmit}
-        label="Submit"
-        backgroundColor="blue"
-        textColor="white"
-      />}
+      {!isReadOnly && (
+        <Button
+          onClick={onSubmit}
+          label="Submit"
+          backgroundColor="blue"
+          textColor="white"
+        />
+      )}
     </div>
   );
 };

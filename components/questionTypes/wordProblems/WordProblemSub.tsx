@@ -55,12 +55,12 @@ export const WordProblemSub: React.FC<WordProblemSubProp> = ({
   };
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="text-xl flex flex-wrap">
+      <div className="flex flex-wrap text-xl">
         <p className="align-left">
           {name} has a {itemContainer.singleTitle} of {noun1.type}. Inside,
           there are
           <span> </span>
-          <span className="text-black font-extrabold">
+          <span className="font-extrabold text-black">
             {parse().first} {noun1.type}.
           </span>{" "}
           {name} takes out
@@ -69,13 +69,15 @@ export const WordProblemSub: React.FC<WordProblemSubProp> = ({
           {itemContainer.singleTitle}?
         </p>
       </div>
-      {!isReadOnly && <div className="text-2xl flex flex-wrap">
-        <Input
-          guess={guess}
-          setGuess={setGuess}
-          handleKeypress={handleKeypress}
-        />
-      </div>}
+      {!isReadOnly && (
+        <div className="flex flex-wrap text-2xl">
+          <Input
+            value={guess}
+            setValue={setGuess}
+            handleKeypress={handleKeypress}
+          />
+        </div>
+      )}
       <div className="flex flex-wrap mt-2">
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
@@ -83,12 +85,14 @@ export const WordProblemSub: React.FC<WordProblemSubProp> = ({
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
       </div>
-      {!isReadOnly && <Button
-        onClick={onSubmit}
-        label="Submit"
-        backgroundColor="blue"
-        textColor="white"
-      />}
+      {!isReadOnly && (
+        <Button
+          onClick={onSubmit}
+          label="Submit"
+          backgroundColor="blue"
+          textColor="white"
+        />
+      )}
     </div>
   );
 };

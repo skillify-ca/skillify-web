@@ -54,7 +54,7 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
   };
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="text-xl flex flex-wrap">
+      <div className="flex flex-wrap text-xl">
         <p className="align-left">
           {name} has a {itemContainer.singleTitle} of {noun1.type}. Inside,
           there are
@@ -66,16 +66,16 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
         </p>
       </div>
       {!isReadOnly && (
-        <div className="text-2xl flex flex-wrap justify-center w-full">
+        <div className="flex flex-wrap justify-center w-full text-2xl">
           <Input
             autoFocus={autofocus}
-            guess={guess}
-            setGuess={setGuess}
+            value={guess}
+            setValue={setGuess}
             handleKeypress={handleKeypress}
           />
         </div>
       )}
-      <div className="flex flex-wrap mt-2 justify-center">
+      <div className="flex flex-wrap justify-center mt-2">
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         <img src={noun2.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
