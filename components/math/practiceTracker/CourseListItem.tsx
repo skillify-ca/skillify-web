@@ -6,11 +6,13 @@ type CourseListItemProps = {
   course: Course;
   locked?: boolean;
   description?: string;
+  enrolled: boolean;
 };
 const CourseListItem = ({
   course,
   locked,
   description,
+  enrolled,
 }: CourseListItemProps) => {
   const [isEnrollNowClicked, setIsEnrollNowClicked] = useState(false);
   const { user } = useAuth();
@@ -43,11 +45,27 @@ const CourseListItem = ({
         <p>{course.title}</p>
         {description && <p className="text-sm">{course.description}</p>}
       </div>
-      {isEnrollNowClicked ? (
-        <div className="flex text-sm text-charmander">
+      {enrolled ? (
+        <div className="flex items-center text-base text-bulbasaur-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-5 h-5"
+            className="w-8 h-8"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <p className="ml-2 text-lg">Enrolled</p>
+        </div>
+      ) : isEnrollNowClicked ? (
+        <div className="flex items-center text-lg text-charmander">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-8 h-8"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -57,7 +75,7 @@ const CourseListItem = ({
               clipRule="evenodd"
             />
           </svg>
-          <p className="ml-4">Enrollment Requested</p>
+          <p className="ml-2">Enrollment Requested</p>
         </div>
       ) : (
         <div

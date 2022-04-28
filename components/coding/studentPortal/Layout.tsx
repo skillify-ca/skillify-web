@@ -41,7 +41,7 @@ export const Layout: React.FC = ({ children }) => {
         <div />
       </div>
       <div className="flex">
-        <div className="hidden max-h-screen mt-16 w-72 lg:flex">
+        <div className="hidden max-h-screen mt-16 w-96 lg:flex">
           <Sidebar />
         </div>
         <div

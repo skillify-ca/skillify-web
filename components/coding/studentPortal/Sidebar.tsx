@@ -28,7 +28,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
 
   return (
     //Full width then restrict in page
-    <div className="flex flex-col w-full h-full bg-white dark:bg-gray-900 dark:text-white">
+    <div className="flex flex-col w-full h-full bg-gray-50 dark:bg-gray-900 dark:text-white">
       <div className="grid grid-rows-4">
         <div className="flex p-4">
           {user && (
@@ -146,8 +146,30 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               </div>
             </Link>
           </div>
+          <Link href="/studentPortal/intro">
+            <div className="flex p-4 bg-white shadow-sm cursor-pointer hover:text-charmander hover:bg-yellow-50">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                />
+              </svg>
+              <p className="ml-3">Coding Basics</p>
+            </div>
+          </Link>
         </div>
-        <div className="flex flex-wrap p-4 cursor-pointer" onClick={signOut}>
+        <div
+          className="flex flex-wrap p-4 mt-40 cursor-pointer"
+          onClick={signOut}
+        >
           <img className="w-8 h-8 mr-4" src="/images/logoutButton.svg" />
           Logout
         </div>
