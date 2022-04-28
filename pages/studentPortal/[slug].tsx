@@ -61,7 +61,7 @@ export default function StudentPortalPage({ slug }: StudentPortalPageProps) {
     } else if (data) {
       setUnits(transform(data));
     }
-  }, [data]);
+  }, [data, slug]);
 
   useEffect(() => {
     // TODO save profile photos to firebase storage and allow users to edit photos

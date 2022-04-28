@@ -141,33 +141,54 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
           <div className="flex items-center justify-between p-4 ">
             <p className="font-bold">Courses</p>
             <Link href={"/courses"}>
-              <div className="px-2 py-1 text-gray-400 border-2 border-gray-400 rounded-md cursor-pointer">
+              <div className="px-2 py-1 text-gray-400 border-2 border-gray-400 rounded-md cursor-pointer hover:bg-gray-50 hover:border-charmander hover:text-charmander">
                 Add Course
               </div>
             </Link>
           </div>
-          <Link href="/studentPortal/intro">
-            <div className="flex p-4 bg-white shadow-sm cursor-pointer hover:text-charmander hover:bg-yellow-50">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                />
-              </svg>
-              <p className="ml-3">Coding Basics</p>
-            </div>
-          </Link>
+          <div className="overflow-auto h-36">
+            <Link href="/studentPortal/intro">
+              <div className="flex p-4 bg-white shadow-sm cursor-pointer hover:text-charmander hover:bg-yellow-50">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                  />
+                </svg>
+                <p className="ml-3">Coding Basics</p>
+              </div>
+            </Link>
+            <Link href="/studentPortal/react">
+              <div className="flex p-4 bg-white shadow-sm cursor-pointer hover:text-charmander hover:bg-yellow-50">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M8 13v-1m4 1v-3m4 3V8M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
+                  />
+                </svg>
+                <p className="ml-3">Web Development</p>
+              </div>
+            </Link>
+          </div>
         </div>
         <div
-          className="flex flex-wrap p-4 mt-40 cursor-pointer"
+          className="flex flex-wrap p-4 mt-20 cursor-pointer"
           onClick={signOut}
         >
           <img className="w-8 h-8 mr-4" src="/images/logoutButton.svg" />
