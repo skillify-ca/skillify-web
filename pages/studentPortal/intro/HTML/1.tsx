@@ -1,5 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import LessonComponent, {
   LessonComponentData,
 } from "../../../../components/coding/studentPortal/LessonComponent";
@@ -9,6 +11,11 @@ import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUse
 import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
+import {
+  lessonSelector,
+  resetCurrentSteps,
+  setTotalSteps,
+} from "../../../../redux/lessonSlice";
 
 const HTML1 = ({ lessonComponents }) => {
   const { user } = useAuth();
@@ -35,15 +42,28 @@ const HTML1 = ({ lessonComponents }) => {
       router.push("/studentPortal/intro/HTML/2");
     });
   };
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setTotalSteps(1));
+    dispatch(resetCurrentSteps(null));
+  }, []);
+  const lessonState = useSelector(lessonSelector);
   return (
     <>
       <div className="grid grid-cols-1 gap-8 px-4 pt-4 sm:px-12">
-        <ProgressBar completed={100} />
+        <ProgressBar
+          completed={(lessonState.currentStep * 100) / lessonState.totalSteps}
+        />
         {lessonComponents.map((it) => (
           <LessonComponent data={it} />
         ))}
         <div className="flex mt-8 sm:justify-end">
-          <Button label="Continue" disabled={false} onClick={handleContinue} />
+          <Button
+            label="Continue"
+            disabled={lessonState.currentStep !== lessonState.totalSteps}
+            onClick={handleContinue}
+          />
         </div>
         {false && (
           <div>

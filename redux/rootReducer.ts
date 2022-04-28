@@ -15,6 +15,7 @@ import {
   EvaluateExpressionState,
 } from "./evaluateExpressionSlice";
 import { quizSlice, QuizState } from "./quizSlice";
+import { lessonSlice, LessonState } from "./lessonSlice";
 
 type State = {
   diagnostic: DiagnosticState;
@@ -24,6 +25,7 @@ type State = {
   warGame: WarGameState;
   evaluateExpressionHistory: EvaluateExpressionState[];
   quizState: QuizState;
+  lessonState: LessonState;
 };
 const diagnosticReducer: Reducer = diagnosticSlice.reducer;
 const practiceTrackerReducer = practiceTrackerSlice.reducer;
@@ -32,6 +34,7 @@ const assignmentSessionReducer = assignmentSessionSlice.reducer;
 const warGameReducer = warGameSlice.reducer;
 const evaluateExpressionReducer = evaluateExpressionSlice.reducer;
 const quizReducer = quizSlice.reducer;
+const lessonReducer = lessonSlice.reducer;
 
 const rootReducer = combineReducers({
   diagnostic: diagnosticReducer,
@@ -41,6 +44,7 @@ const rootReducer = combineReducers({
   warGame: warGameReducer,
   evaluateExpressionHistory: evaluateExpressionReducer,
   quizState: quizReducer,
+  lessonState: lessonReducer,
 });
 
 export type RootState = State;

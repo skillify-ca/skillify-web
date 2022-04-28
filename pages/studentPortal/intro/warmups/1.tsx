@@ -1,5 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Card, { CardData } from "../../../../components/coding/Card";
 import LessonComponent, {
   LessonComponentData,
@@ -12,6 +14,7 @@ import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUse
 import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
+import { lessonSelector, setTotalSteps } from "../../../../redux/lessonSlice";
 
 const Warmups1 = ({ lessonComponents }) => {
   const { user } = useAuth();
@@ -38,15 +41,39 @@ const Warmups1 = ({ lessonComponents }) => {
       router.push("/studentPortal/intro/HTML/1");
     });
   };
+  const dispatch = useDispatch();
+  const lessonState = useSelector(lessonSelector);
+
+  useEffect(() => {
+    dispatch(setTotalSteps(4));
+  }, []);
   return (
-    <div className="grid grid-cols-1 gap-8 px-4 md:px-8 lg:px-12">
-      <ProgressBar completed={100} />
+    <div className="grid grid-cols-1 gap-8 px-4 pb-16 md:px-8 lg:px-12">
+      <ProgressBar
+        completed={(lessonState.currentStep * 100) / lessonState.totalSteps}
+      />
       {lessonComponents.map((it) => (
         <LessonComponent data={it} />
       ))}
+
+      <div className="pb-56 h-80 ">
+        <iframe
+          src="https://www.loom.com/embed/e365ed8ce69942ad8caa79da950a030e"
+          frameBorder="0"
+          webkit-allowfullscreen
+          moz-allowfullscreen
+          allowFullScreen
+          className="w-full h-96"
+        ></iframe>
+      </div>
+
       <div className="grid grid-cols-1 gap-8"></div>
       <div className="flex mt-8 sm:justify-end">
-        <Button onClick={handleContinue} label="Continue" disabled={false} />
+        <Button
+          onClick={handleContinue}
+          label="Continue"
+          disabled={lessonState.currentStep !== lessonState.totalSteps}
+        />
       </div>
     </div>
   );

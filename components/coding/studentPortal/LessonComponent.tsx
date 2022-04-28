@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { lessonSelector } from "../../../redux/lessonSlice";
 import Quiz from "./quiz/Quiz";
 import ResourceRow from "./ResourceRow";
 
@@ -37,6 +39,8 @@ export type LessonComponentProps = {
 };
 
 export default function LessonComponent({ data }: LessonComponentProps) {
+  const lessonState = useSelector(lessonSelector);
+
   if (data.component === "title") {
     return <h1 className="text-5xl font-bold">{data.text}</h1>;
   }
@@ -48,11 +52,11 @@ export default function LessonComponent({ data }: LessonComponentProps) {
       <>
         <h1 className="font-bold">Resources</h1>
         <div className="flex flex-col gap-8">
-          {data.resources.map((it) => (
+          {data.resources.map((it, index) => (
             <ResourceRow
               title={it.title}
               description={it.description}
-              disabled={false}
+              disabled={lessonState.currentStep < index}
               image={it.image}
               link={it.link}
             />
