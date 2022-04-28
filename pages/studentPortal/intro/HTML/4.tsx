@@ -10,6 +10,7 @@ import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUse
 import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
+import Link from "next/link";
 
 const HTML3 = ({ lessonComponents }) => {
   const { user } = useAuth();
@@ -76,6 +77,20 @@ const HTML3 = ({ lessonComponents }) => {
               Once your are complete, submit you index.html to the Slack
               Channel.
             </p>
+          </div>
+          <h1 className="mt-12 text-xl font-bold">Showcase</h1>
+          <div className="grid grid-cols-2 gap-8">
+            <a target={"_blank"} href="/coding/html/nba.html">
+              <div className="w-full p-8 bg-white shadow-md cursor-pointer">
+                NBA Blog by Jacky H
+              </div>
+            </a>
+
+            <a target={"_blank"} href="/coding/html/foodblog.html">
+              <div className="w-full p-8 bg-white shadow-md cursor-pointer">
+                Food Blog by Mithulan M
+              </div>
+            </a>
           </div>
           <div className="flex h-full mt-12 sm:justify-end">
             <Button

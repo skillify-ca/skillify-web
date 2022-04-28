@@ -74,6 +74,7 @@ const HTML2 = () => {
   const router = useRouter();
   const [unlockUserNode] = useMutation(UNLOCK_USER_INTRO_NODE);
   const [completeUserNode] = useMutation(COMPLETE_USER_INTRO_NODE);
+  const quizState = useSelector(quizSelector);
 
   const handleSessionEndContinue = () => {
     completeUserNode({
@@ -97,7 +98,12 @@ const HTML2 = () => {
   return (
     <div className="flex flex-col">
       <div className="p-4 mb-4">
-        <ProgressBar completed={100} />
+        <ProgressBar
+          completed={
+            (quizState.currentQuestion * 100) /
+            Math.max(1, quizState.questions.length)
+          }
+        />
       </div>
       <div className="flex flex-col">
         <Quiz />

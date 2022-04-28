@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CSSQuiz from "../../../../components/coding/CSSQuiz";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
@@ -7,8 +7,14 @@ import LessonComponent, {
   Resource,
 } from "../../../../components/coding/studentPortal/LessonComponent";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  lessonSelector,
+  resetCurrentSteps,
+  setTotalSteps,
+} from "../../../../redux/lessonSlice";
 
-const CSS1 = ({ lessonComponents }) => {
+const CSS1 = ({ lessonComponents, totalSteps }) => {
   const assignments = [
     { link: "/coding/css/sujee-week-1/index.html", title: "Sujee-Week1" },
     { link: "/coding/css/mau-week-1/index.html", title: "Mau-Week1" },
@@ -17,16 +23,28 @@ const CSS1 = ({ lessonComponents }) => {
     { link: "/coding/css/mithulan-week-1/index.html", title: "Mithulan-Week1" },
   ];
 
+  const dispatch = useDispatch();
+  const lessonState = useSelector(lessonSelector);
+  useEffect(() => {
+    dispatch(setTotalSteps(totalSteps));
+    dispatch(resetCurrentSteps(null));
+  }, []);
+
   return (
     <>
       <div className="grid grid-cols-1 gap-8 p-8">
-        <ProgressBar completed={100} />
+        <ProgressBar
+          completed={(lessonState.currentStep * 100) / lessonState.totalSteps}
+        />
         {lessonComponents.map((it) => (
           <LessonComponent data={it} />
         ))}
         <div className="flex mt-8 sm:justify-end">
           <a href={"/studentPortal/intro/CSS/2"}>
-            <Button label="Continue" disabled={false} />
+            <Button
+              label="Continue"
+              disabled={lessonState.totalSteps !== lessonState.currentStep}
+            />
           </a>
         </div>
 
@@ -126,7 +144,7 @@ export async function getServerSideProps({ params }) {
       resources,
     },
   ];
-  return { props: { lessonComponents } };
+  return { props: { lessonComponents, totalSteps: 4 } };
 }
 
 export default CSS1;

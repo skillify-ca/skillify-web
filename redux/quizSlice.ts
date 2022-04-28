@@ -55,6 +55,7 @@ export const quizSlice: Slice = createSlice({
             state.shouldShowIncorrectGrade = false;
           }
           if (state.currentQuestion === state.questions.length - 1) {
+            state.currentQuestion = state.currentQuestion + 1;
             state.showSessionEnd = true;
           } else {
             state.currentQuestion = state.currentQuestion + 1;

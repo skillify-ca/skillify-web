@@ -58,6 +58,17 @@ const HTML1 = ({ lessonComponents }) => {
         {lessonComponents.map((it) => (
           <LessonComponent data={it} />
         ))}
+        <div className="pb-56 mb-8 h-80">
+          <iframe
+            src="https://www.loom.com/embed/ae31ff80dcc54633875fd648cfcf6cac"
+            frameBorder="0"
+            webkit-allowfullscreen
+            moz-allowfullscreen
+            allowFullScreen
+            className="w-full h-96"
+          ></iframe>
+        </div>
+
         <div className="flex mt-8 sm:justify-end">
           <Button
             label="Continue"
