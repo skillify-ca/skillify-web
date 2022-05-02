@@ -64,15 +64,14 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               }
             }}
           >
-            <img
-              ref={dashboardIconRef}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
               className="w-6 h-6 mr-4"
-              src={
-                activePage === "dashboard"
-                  ? "/images/dashBoardActive.svg"
-                  : "/images/dashboardInactive.svg"
-              }
-            />
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+            </svg>
             Dashboard
           </div>
         </Link>
@@ -94,15 +93,14 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               }
             }}
           >
-            <img
-              ref={classroomIconRef}
-              className="w-6 h-6 mr-4"
-              src={
-                activePage === "classroom"
-                  ? "/images/classroomActive.svg"
-                  : "/images/classroomInactive.svg"
-              }
-            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={`w-6 h-6 mr-4`}
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+            </svg>
             Classroom
           </div>
         </Link>
@@ -125,15 +123,18 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               }
             }}
           >
-            <img
-              ref={profileIconRef}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
               className="w-6 h-6 mr-4"
-              src={
-                activePage === "profile"
-                  ? "/images/profileActive.svg"
-                  : "/images/profileInactive.svg"
-              }
-            />
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                clip-rule="evenodd"
+              />
+            </svg>
             Profile
           </div>
         </Link>
@@ -141,14 +142,14 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
           <div className="flex items-center justify-between p-4 ">
             <p className="font-bold">Courses</p>
             <Link href={"/courses"}>
-              <div className="px-2 py-1 text-gray-400 border-2 border-gray-400 rounded-md cursor-pointer hover:bg-gray-50 hover:border-charmander hover:text-charmander">
+              <div className="px-2 py-1 text-gray-400 border-2 border-gray-400 rounded-md cursor-pointer hover:bg-gray-50 hover:border-charmander hover:text-charmander dark:hover:bg-gray-800">
                 Add Course
               </div>
             </Link>
           </div>
           <div className="overflow-auto h-36">
             <Link href="/studentPortal/intro">
-              <div className="flex p-4 bg-white shadow-sm cursor-pointer hover:text-charmander hover:bg-yellow-50">
+              <div className="flex p-4 bg-white shadow-sm cursor-pointer dark:bg-gray-900 hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6"
@@ -167,7 +168,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               </div>
             </Link>
             <Link href="/studentPortal/react">
-              <div className="flex p-4 bg-white shadow-sm cursor-pointer hover:text-charmander hover:bg-yellow-50">
+              <div className="flex p-4 bg-white shadow-sm cursor-pointer dark:bg-gray-900 hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6"
@@ -188,10 +189,23 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
           </div>
         </div>
         <div
-          className="flex flex-wrap p-4 mt-20 cursor-pointer"
+          className="flex flex-wrap p-4 mt-20 cursor-pointer hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800"
           onClick={signOut}
         >
-          <img className="w-8 h-8 mr-4" src="/images/logoutButton.svg" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6 mr-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+            />
+          </svg>
           Logout
         </div>
       </div>

@@ -47,7 +47,7 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
         className={`${
           locked
             ? ""
-            : "hover:bg-white hover:shadow-lg hover:py-4 transform transition-all"
+            : "hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg hover:py-4 transform transition-all"
         } ${
           active
             ? "px-4 sm:px-0 py-4 border-2 flex flex-col sm:grid sm:grid-cols-12 bg-white dark:bg-gray-800"
