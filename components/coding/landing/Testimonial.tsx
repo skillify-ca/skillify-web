@@ -6,9 +6,16 @@ export interface TestimonialProps {
   img: string;
   studentName: string;
   color: number;
+  completionDate: string;
 }
 
-const Testimonial = ({ text, img, studentName, color }: TestimonialProps) => {
+const Testimonial = ({
+  text,
+  img,
+  studentName,
+  color,
+  completionDate,
+}: TestimonialProps) => {
   const getBorderColour = () => {
     if (color === 0) {
       return "border-charmander";
@@ -24,19 +31,19 @@ const Testimonial = ({ text, img, studentName, color }: TestimonialProps) => {
     <div
       className={`flex flex-col h-full p-4 bg-white border-t-8 shadow-xl w-full sm:w-96 rounded-xl ${getBorderColour()}`}
     >
-      <p>{text}</p>
-      <div className="flex p-3">
+      <p className="sm:h-48">{text}</p>
+      <div className="flex py-3">
         <img src="/images/landingPage/star.svg" className="hue-rotate-45" />
         <img src="/images/landingPage/star.svg" className="hue-rotate-45" />
         <img src="/images/landingPage/star.svg" className="hue-rotate-45" />
         <img src="/images/landingPage/star.svg" className="hue-rotate-45" />
         <img src="/images/landingPage/star.svg" className="hue-rotate-45" />
       </div>
-      <div className="grid grid-cols-6 p-3">
-        <img src={img} alt="student" />
+      <div className="grid grid-cols-6 py-3">
+        <img src={img} alt="student" className="rounded-full" />
         <div className="flex flex-col justify-center col-span-4 ml-4">
           <p className="text-xl font-bold">{studentName}</p>
-          <p>Completed in January 2022</p>
+          <p>Completed in {completionDate}</p>
         </div>
         <div className="flex flex-col items-center justify-center">
           {false && (
