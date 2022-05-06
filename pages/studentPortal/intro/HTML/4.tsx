@@ -81,13 +81,13 @@ const HTML3 = ({ lessonComponents }) => {
           <h1 className="mt-12 text-xl font-bold">Showcase</h1>
           <div className="grid grid-cols-2 gap-8">
             <a target={"_blank"} href="/coding/html/nba.html">
-              <div className="w-full p-8 bg-white shadow-md cursor-pointer">
+              <div className="w-full p-8 bg-white shadow-md cursor-pointer dark:bg-gray-900">
                 NBA Blog by Jacky H
               </div>
             </a>
 
             <a target={"_blank"} href="/coding/html/foodblog.html">
-              <div className="w-full p-8 bg-white shadow-md cursor-pointer">
+              <div className="w-full p-8 bg-white shadow-md cursor-pointer dark:bg-gray-900">
                 Food Blog by Mithulan M
               </div>
             </a>
