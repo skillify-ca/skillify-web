@@ -38,7 +38,7 @@ class MyDocument extends Document {
 
           <script
             async
-            src="https://www.googletagmanager.com/gtag/js?id=G-FJLNTHHN4G"
+            src="https://www.googletagmanager.com/gtag/js?id=UA-198040313-1"
           />
           <script
             type="text/javascript"
@@ -54,7 +54,7 @@ class MyDocument extends Document {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-STGC1V6SM3', { page_path: window.location.pathname });
+              gtag('config', 'UA-198040313-1', { page_path: window.location.pathname });
             `,
             }}
           />

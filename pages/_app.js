@@ -11,15 +11,14 @@ import store from "../redux/store";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Script from "next/script";
-import Navbar from "../components/ui/Navbar"
+import Navbar from "../components/ui/Navbar";
 import Layout from "../components/coding/studentPortal/Layout";
-
 
 function MyApp({ Component, pageProps: { ...pageProps } }) {
   const router = useRouter();
 
   const handleRouteChange = (url) => {
-    window.gtag("config", "G-FJLNTHHN4G", {
+    window.gtag("config", "UA-198040313-1", {
       page_path: url,
     });
   };
@@ -39,25 +38,22 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
   }
 
   // Use the layout defined at the page level, if available
-  const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>)
+  const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
 
   // TODO remove setting Component.Auth
   return (
     <ApolloProvider client={client}>
-      <Script src="https://unpkg.com/kaboom/dist/kaboom.js" onLoad={() => {
-      }} />
+      <Script src="https://unpkg.com/kaboom/dist/kaboom.js" onLoad={() => {}} />
       <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
-          <ReduxProvider store={store}>
-            <AuthProvider>
-              {Component.auth ? (
-                <Auth>
-                  {getLayout(<Component {...pageProps} />)}
-                </Auth>
-              ) : (
-                getLayout(<Component {...pageProps} />)
-              )}
-            </AuthProvider>
-          </ReduxProvider>
+        <ReduxProvider store={store}>
+          <AuthProvider>
+            {Component.auth ? (
+              <Auth>{getLayout(<Component {...pageProps} />)}</Auth>
+            ) : (
+              getLayout(<Component {...pageProps} />)
+            )}
+          </AuthProvider>
+        </ReduxProvider>
       </DndProvider>
     </ApolloProvider>
   );
