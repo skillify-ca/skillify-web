@@ -27,9 +27,10 @@ const EmailCapture = () => {
         <div className="grid grid-cols-1 p-4 bg-white sm:p-16">
           <h1 className="mb-4 font-extrabold tracking-tight text-gray-900">
             <p className="text-3xl text-gray-900">
-              <span className="">Get your </span>
-              <span className=" text-charmander">personalized </span>
-              learning roadmap.
+              <span className="">Get our </span>
+              <span className=" text-charmander">secret tips </span>
+              <span className="">on learning how to </span>
+              <span className=" text-charmander">code </span>
             </p>{" "}
           </h1>
           <input
@@ -54,9 +55,9 @@ const EmailCapture = () => {
             <div className="rounded-md">
               <p
                 onClick={handleClick}
-                className="flex items-center justify-center w-full p-4 text-base font-medium text-white rounded-md cursor-pointer bg-charmander hover:bg-yellow-700 md:text-lg "
+                className="flex items-center justify-center w-full p-4 text-base font-bold text-white rounded-md cursor-pointer bg-charmander hover:bg-yellow-700 md:text-lg "
               >
-                Enroll Now
+                Request Access
               </p>
             </div>
           </div>
@@ -71,8 +72,8 @@ const EmailCapture = () => {
           <div className="flex flex-col items-center justify-center p-4">
             <p className="text-xl font-bold text-white sm:text-2xl">
               {" "}
-              Not sure how to start coding? Enroll now and we will create an
-              individual plan to help you reach your career goals.
+              Not sure how to start coding? Drop us your email and we will send
+              your our top strategies on learning how to code.
             </p>
           </div>
         </div>

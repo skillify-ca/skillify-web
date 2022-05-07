@@ -4,7 +4,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   mode: "jit",
   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
-  darkMode: 'media', // or 'media' or 'class'
+  darkMode: "media", // or 'media' or 'class'
   theme: {
     extend: {
       width: {
@@ -12,7 +12,7 @@ module.exports = {
       },
       height: {
         108: "27rem",
-        160: "40rem"
+        160: "40rem",
       },
       animation: {
         shake: "shake 0.5s ease-in-out",
@@ -25,17 +25,19 @@ module.exports = {
         rattata: "#7678ED",
         pikachu: {
           200: "#F7B80150",
-          500: "#F7B801"
+          500: "#F7B801",
         },
         murkrow: "#18124D",
         bulbasaur: {
           200: "#F0FFE9",
           500: "#5BB84C",
-        }
-          ,
+        },
         moltres: {
           200: "#FFE8E8",
-          500: "#D00000"
+          500: "#D00000",
+        },
+        black: {
+          transparent: "#000000e1",
         },
       },
       backgroundImage: (theme) => ({
@@ -50,10 +52,9 @@ module.exports = {
           "url('https://images.unsplash.com/photo-1520061012101-6277a74655bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')",
         phone:
           "url('https://images.unsplash.com/photo-1425315283416-2acc50323ee6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80')",
-          signInBackground: "url('/images/onboarding/sign-in-background.svg')"
+        signInBackground: "url('/images/onboarding/sign-in-background.svg')",
       }),
       fontFamily: {
-        
         sans: ["Poppins", ...defaultTheme.fontFamily.sans],
       },
       gridTemplateColumns: {
