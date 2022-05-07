@@ -51,7 +51,7 @@ const SubscribeBanner = () => {
 
           <div
             onClick={(e) => handleClick()}
-            className="flex items-center justify-center p-4 text-center text-white rounded-md shadow cursor-pointer sm:w-36 bg-charmander hover:bg-yellow-700 "
+            className="flex items-center justify-center p-4 font-bold text-center text-white rounded-md shadow cursor-pointer sm:w-36 bg-charmander hover:bg-yellow-700"
           >
             <p>Learn More</p>
           </div>

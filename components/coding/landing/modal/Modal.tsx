@@ -75,7 +75,7 @@ export default function Modal({ handleClose }) {
               <div className="rounded-md">
                 <p
                   onClick={handleClick}
-                  className="flex items-center justify-center w-full p-4 text-base font-medium text-white rounded-md cursor-pointer bg-charmander hover:bg-yellow-700 md:text-lg "
+                  className="flex items-center justify-center w-full p-4 text-base font-bold text-white rounded-md cursor-pointer bg-charmander hover:bg-yellow-700 md:text-lg "
                 >
                   Request Demo
                 </p>
