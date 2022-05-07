@@ -30,8 +30,8 @@ export const ResourceRow: React.FC<ResourceRowProps> = ({
         <img src={image} className="w-16 h-16 " />
       </div>
       <div className="flex flex-col">
-        <h2 className="font-bold">{title}</h2>
-        <p>{description}</p>
+        <h2 className="font-bold dark:text-white">{title}</h2>
+        <p className="dark:text-white">{description}</p>
       </div>
       <div className="flex items-center sm:justify-end">
         <a target="_blank" href={link} rel="noopener noreferrer">
