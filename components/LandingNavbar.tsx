@@ -13,9 +13,7 @@ export default function LandingNavbar(props) {
             <p className="p-4 cursor-pointer hover:text-charmander">Blog</p>
           </Link>{" "}
         </div>
-        <Link href={"/studentPortal/intro"}>
-          <Button label="Enroll Now" />
-        </Link>
+        <Button label="Learn More" />
       </div>
     </div>
   );
