@@ -18,7 +18,7 @@ export default function Page() {
         <p className="mb-4 text-center">Here is a little gift for you!</p>
 
         <EmailCapture />
-        <div className="p-8 text-white bg-murkrow">
+        <div className="p-8 border-b-2">
           <p className="font-bold ">What you'll learn:</p>
           <ul className="list-disc list-inside">
             <li>How to start coding with no previous experience</li>
@@ -32,12 +32,12 @@ export default function Page() {
             </li>
           </ul>
         </div>
-        <p className="p-4 text-center">
+        <p className="p-4 text-center text-white bg-murkrow">
           Until now, this resource has only been available to Skillify students.
           But my team went through it last month and thought, “This is amazing
           and deserves to be shared with everyone!”
         </p>
-        <div className="p-8 text-white bg-murkrow">
+        <div className="p-8 border-t-2">
           <p className="font-bold">This guide is for you if:</p>
           <ul className="list-disc list-inside">
             <li>
