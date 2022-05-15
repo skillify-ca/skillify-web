@@ -21,14 +21,14 @@ export default function Page() {
         <div className="p-8 border-b-2">
           <p className="font-bold ">What you'll learn:</p>
           <ul className="list-disc list-inside">
-            <li>How to start coding with no previous experience</li>
+            <li>👶 How to start coding with no previous experience</li>
             <li>
-              How to avoid getting overwhelmed when learning this in-demand
+              😩 How to avoid getting overwhelmed when learning this in-demand
               skill
             </li>
             <li>
-              12 strategies that will help you make progress no matter where you
-              are in your journey
+              📈 12 strategies that will help you make progress no matter where
+              you are in your journey
             </li>
           </ul>
         </div>
@@ -41,12 +41,12 @@ export default function Page() {
           <p className="font-bold">This guide is for you if:</p>
           <ul className="list-disc list-inside">
             <li>
-              You want to transition into a career or get your first job in the
-              tech industry.
+              💼 You want to transition into a career or get your first job in
+              the tech industry.
             </li>
-            <li>You want build out your own startup business ideas.</li>
+            <li>💡 You want build out your own startup business ideas.</li>
             <li>
-              You want to learn a valuable skill that will future-proof your
+              🏫 You want to learn a valuable skill that will future-proof your
               career in your any industry.
             </li>
           </ul>
