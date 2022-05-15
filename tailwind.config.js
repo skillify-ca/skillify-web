@@ -12,6 +12,7 @@ module.exports = {
       },
       height: {
         108: "27rem",
+        144: "36rem",
         160: "40rem"
       },
       animation: {
