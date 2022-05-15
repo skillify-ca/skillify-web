@@ -12,11 +12,16 @@ export default function Page() {
         image={"https://melv1n.com/img/learn-to-code-how-to-start.png"}
       />
       <div className="flex flex-col bg-white">
-        <h1 className="my-4 text-2xl font-bold text-center">
-          Learning to Code Strategy Guide
-        </h1>
-        <p className="mb-4 text-center">Here is a little gift for you!</p>
-
+        <div className="flex flex-col items-center py-4 text-white bg-murkrow">
+          <img src="/images/logo-dark.svg" className="w-36" />
+          <h1 className="mt-4 text-2xl font-bold text-center">
+            Learn to Code Strategy Guide
+          </h1>
+          <p className="text-center">
+            This free guide will help you kickstart your coding journey so you
+            can work less and make more money.
+          </p>
+        </div>
         <EmailCapture />
         <div className="p-8 border-b-2">
           <p className="font-bold ">What you'll learn:</p>
