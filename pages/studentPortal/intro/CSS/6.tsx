@@ -62,8 +62,8 @@ const CSS6 = ({ lessonComponents }) => {
           <div>
             <p className="text-charmander">Step 3:</p>
             <p>
-              Your this assignment you will need to set up your Blog to follow
-              the French Flag Layout.
+              In this assignment you will need to set up your Blog to follow the
+              French Flag Layout.
             </p>
             <p>The Layout below is what you want to aim for.</p>
             <img src="/images/coding/units/css/layout1.png" className="w-96" />
