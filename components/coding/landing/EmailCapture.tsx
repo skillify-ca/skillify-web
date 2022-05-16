@@ -8,7 +8,7 @@ const EmailCapture = () => {
   const handleClick = async () => {
     setHasClicked(true);
     const url =
-      "https://math-app-1.herokuapp.com/notifications?product=email-capture";
+      "https://math-app-1.herokuapp.com/notifications?product=new-lead-free-guide";
     const options = {
       method: "POST",
       headers: {
@@ -73,8 +73,7 @@ const EmailCapture = () => {
             <p className="text-xl font-bold text-white sm:text-2xl">
               {" "}
               Think coding is too hard to learn? Drop us your email and we will
-              send your our guide on avoiding overhwhelm when learning how to
-              code.
+              send your our free guide on avoiding overhwhelm.
             </p>
           </div>
         </div>
