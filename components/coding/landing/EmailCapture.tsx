@@ -1,12 +1,12 @@
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 const EmailCapture = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [hasClicked, setHasClicked] = useState(false);
+  const router = useRouter();
 
   const handleClick = async () => {
-    setHasClicked(true);
     const url =
       "https://math-app-1.herokuapp.com/notifications?product=new-lead-free-guide";
     const options = {
@@ -19,7 +19,9 @@ const EmailCapture = () => {
         email: `[Name] ${name} [Email] ${email}`,
       }),
     };
-    await fetch(url, options);
+    await fetch(url, options).then((res) => {
+      router.push("/guide-thank-you");
+    });
   };
   return (
     <div>
@@ -61,12 +63,6 @@ const EmailCapture = () => {
               </p>
             </div>
           </div>
-          {hasClicked && (
-            <p className="w-full text-center text-bulbasaur-500">
-              Thank you for your email, someone from our team will reach out
-              shortly to help!
-            </p>
-          )}
         </div>
         <div className="grid grid-cols-1">
           <div className="flex flex-col items-center justify-center p-4">

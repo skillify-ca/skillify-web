@@ -1,12 +1,13 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function Modal({ handleClose }) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [hasClicked, setHasClicked] = useState(false);
+
+  const router = useRouter();
 
   const handleClick = async () => {
-    setHasClicked(true);
     const url =
       "https://math-app-1.herokuapp.com/notifications?product=request-demo";
     const options = {
@@ -19,7 +20,7 @@ export default function Modal({ handleClose }) {
         email: email,
       }),
     };
-    await fetch(url, options);
+    await fetch(url, options).then((res) => router.push("/demo-thank-you"));
   };
   return (
     <div>
@@ -43,53 +44,45 @@ export default function Modal({ handleClose }) {
         </svg>
       </div>
       <div className="flex flex-col w-full bg-white rounded-xl">
-        {!hasClicked && (
-          <div className="grid grid-cols-1 p-4 bg-white sm:p-16">
-            <h1 className="mb-4 font-extrabold tracking-tight text-gray-900">
-              <p className="text-3xl text-gray-900 ">
-                <span className="">Learn to </span>
-                <span className=" text-charmander">code </span>
-                and get
-                <span className=" text-charmander"> hired</span>
-              </p>{" "}
-            </h1>
-            <input
-              id="bootcamper"
-              type="text"
-              autoComplete="off"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className={`p-4 mb-4 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-charmander placeholder-charmander w-full`}
-              placeholder="First Name"
-            />
-            <input
-              id="bootcamper"
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              autoComplete="off"
-              className={`text-left mb-4 p-4 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500  text-charmander placeholder-charmander w-full `}
-              placeholder="Enter your email address"
-            />
-            <div className="">
-              <div className="rounded-md">
-                <p
-                  onClick={handleClick}
-                  className="flex items-center justify-center w-full p-4 text-base font-bold text-white rounded-md cursor-pointer bg-charmander hover:bg-yellow-700 md:text-lg "
-                >
-                  Request Demo
-                </p>
-              </div>
+        <div className="grid grid-cols-1 p-4 bg-white sm:p-16">
+          <h1 className="mb-4 font-extrabold tracking-tight text-gray-900">
+            <p className="text-3xl text-gray-900 ">
+              <span className="">Learn to </span>
+              <span className=" text-charmander">code </span>
+              and get
+              <span className=" text-charmander"> hired</span>
+            </p>{" "}
+          </h1>
+          <input
+            id="bootcamper"
+            type="text"
+            autoComplete="off"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className={`p-4 mb-4 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-charmander placeholder-charmander w-full`}
+            placeholder="First Name"
+          />
+          <input
+            id="bootcamper"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            autoComplete="off"
+            className={`text-left mb-4 p-4 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500  text-charmander placeholder-charmander w-full `}
+            placeholder="Enter your email address"
+          />
+          <div className="">
+            <div className="rounded-md">
+              <p
+                onClick={handleClick}
+                className="flex items-center justify-center w-full p-4 text-base font-bold text-white rounded-md cursor-pointer bg-charmander hover:bg-yellow-700 md:text-lg "
+              >
+                Request Demo
+              </p>
             </div>
           </div>
-        )}
+        </div>
       </div>
-      {hasClicked && (
-        <p className="w-full text-center text-charmander">
-          Thank you for your email, someone from our team will reach out shortly
-          to help!
-        </p>
-      )}
     </div>
   );
 }
