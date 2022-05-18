@@ -1,4 +1,5 @@
 import { HeartIcon } from "@heroicons/react/solid";
+import Head from "next/head";
 import Link from "next/link";
 import Card from "../../components/coding/Card";
 import LandingNavbar from "../../components/LandingNavbar";
@@ -7,7 +8,24 @@ import SEO from "../../components/SEO";
 export default function Blog() {
   return (
     <div>
-      <SEO title={"Blog"} description={"The Skillify Blog"} image={""} />
+      <Head>
+        <title>{"Skillify Blog"}</title>
+        <meta
+          name="description"
+          content={"Articles and resources about Toronto coding bootcamps"}
+        />
+        <meta property="og:title" content={"Skillify Blog"} />
+        <meta
+          property="og:image"
+          content={"https://www.skillify.ca/images/skillify-header.jpeg"}
+        />
+        <meta
+          property="og:description"
+          content={"Articles and resources about Toronto coding bootcamps"}
+        />
+        <meta property="og:url" content="https://skillify.ca/" />
+        <meta property="og:type" content="website" />
+      </Head>
       <LandingNavbar />
       <h1 className="w-full p-4 text-5xl font-bold text-center ">Blog</h1>
 
