@@ -6,6 +6,7 @@ import Document, {
   NextScript,
 } from "next/document";
 import React, { CSSProperties } from "react";
+import SEO from "../components/SEO";
 import { FB_PIXEL_ID } from "../lib/fbPixel";
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -22,6 +23,13 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <SEO
+            title={"Skillify"}
+            description={
+              "Toronto's best coding bootcamp for online learning! We teach high demand skills to help you get hired in the tech industry."
+            }
+            image={"https://www.skillify.ca/images/logo.svg"}
+          />
           <link rel="icon" href="/favicon.ico" />
           <link
             rel="preload"
