@@ -32,7 +32,7 @@ class MyDocument extends Document {
           <meta property="og:title" content={"Skillify"} />
           <meta
             property="og:image"
-            content={"https://www.skillify.ca/images/skillify-header.png"}
+            content={"https://www.skillify.ca/images/skillify-header.jpeg"}
           />
           <meta
             property="og:description"
