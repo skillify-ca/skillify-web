@@ -1,105 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
-        <loc>https://skillify.ca/_document.tsx</loc>
-        <lastmod>2022-04-01T23:23:47.440Z</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://skillify.ca/badges</loc>
-        <lastmod>2022-04-01T23:23:47.440Z</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
+        <loc>https://skillify.ca/</loc>
+        <lastmod>2022-05-17T23:23:47.440Z</lastmod>
+        <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://skillify.ca/blog</loc>
-        <lastmod>2022-04-01T23:23:47.440Z</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
+        <lastmod>2022-05-17T23:23:47.440Z</lastmod>
+        <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://skillify.ca/blog/best-toronto-coding-bootcamps-2022</loc>
-        <lastmod>2022-04-01T23:23:47.440Z</lastmod>
+        <lastmod>2022-05-17T23:23:47.440Z</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
     </url>
     <url>
         <loc>https://skillify.ca/blog/is-it-worth-paying-for-a-coding-bootcamp</loc>
-        <lastmod>2022-04-01T23:23:47.440Z</lastmod>
+        <lastmod>2022-05-17T23:23:47.440Z</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://skillify.ca/classroom.tsx</loc>
-        <lastmod>2022-04-01T23:23:47.440Z</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://skillify.ca/coding</loc>
-        <lastmod>2022-04-01T23:23:47.440Z</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://skillify.ca/courses.tsx</loc>
-        <lastmod>2022-04-01T23:23:47.440Z</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://skillify.ca/finance</loc>
-        <lastmod>2022-04-01T23:23:47.440Z</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://skillify.ca/games</loc>
-        <lastmod>2022-04-01T23:23:47.440Z</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://skillify.ca/index.tsx</loc>
-        <lastmod>2022-04-01T23:23:47.440Z</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://skillify.ca/math</loc>
-        <lastmod>2022-04-01T23:23:47.440Z</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://skillify.ca/presale</loc>
-        <lastmod>2022-04-01T23:23:47.440Z</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://skillify.ca/resources.tsx</loc>
-        <lastmod>2022-04-01T23:23:47.440Z</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://skillify.ca/sitemap.xml.tsx</loc>
-        <lastmod>2022-04-01T23:23:47.440Z</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://skillify.ca/studentPortal</loc>
-        <lastmod>2022-04-01T23:23:47.440Z</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://skillify.ca/welcome.tsx</loc>
-        <lastmod>2022-04-01T23:23:47.440Z</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
     </url>
 </urlset>
