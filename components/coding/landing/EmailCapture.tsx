@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import ActiveCampaignEmailCapture from "./ActiveCampaignEmailCapture";
 
 const EmailCapture = () => {
   const [name, setName] = useState("");
@@ -35,34 +36,7 @@ const EmailCapture = () => {
               <span className=" text-charmander">code </span>
             </p>{" "}
           </h1>
-          <input
-            id="bootcamper"
-            type="text"
-            autoComplete="off"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className={`p-4 mb-4 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-charmander placeholder-charmander w-full`}
-            placeholder="First Name"
-          />
-          <input
-            id="bootcamper"
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            autoComplete="off"
-            className={`text-left mb-4 p-4 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500  text-charmander placeholder-charmander w-full `}
-            placeholder="Enter your email address"
-          />
-          <div className="">
-            <div className="rounded-md">
-              <p
-                onClick={handleClick}
-                className="flex items-center justify-center w-full p-4 text-base font-bold text-white rounded-md cursor-pointer bg-charmander hover:bg-yellow-700 md:text-lg "
-              >
-                Request Access
-              </p>
-            </div>
-          </div>
+          <ActiveCampaignEmailCapture />
         </div>
         <div className="grid grid-cols-1">
           <div className="flex flex-col items-center justify-center p-4">
