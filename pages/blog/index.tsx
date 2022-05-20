@@ -3,7 +3,6 @@ import Head from "next/head";
 import Link from "next/link";
 import Card from "../../components/coding/Card";
 import LandingNavbar from "../../components/LandingNavbar";
-import SEO from "../../components/SEO";
 
 export default function Blog() {
   return (
