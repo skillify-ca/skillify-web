@@ -23,15 +23,21 @@ const TestimonialSect = () => {
     },
     {
       studentName: "Mithulan M",
-      img: "/images/landingPage/goldMedal.svg",
+      img: "/images/landingPage/mithulan.jpg",
       text: "The team at Skillify did an excellent job in this course to facilitate the fundamentals and give each student the confidence to succeed in the field of coding. Thank you to Vithushan and his team for a wonderful experience.",
       completionDate: "Feb 2022",
     },
     {
       studentName: "Jacky H ",
-      img: "/images/landingPage/goldMedal.svg",
+      img: "/images/landingPage/jacky.jpg",
       text: "I have a degree in IT, however, I'm not working in the tech industry. In the course, I got to expand my skills with the help of professionals and was encouraged to ask plenty of questions. The demos and projects were great to showcase what I learned every week.",
       completionDate: "Feb 2022",
+    },
+    {
+      studentName: "Winthya V",
+      img: "/images/landingPage/winthya.jpg",
+      text: "Skillify's expert coaching and domain knowledge has helped me build a fully-functioning, professional website for my business. With no prior knowledge of coding, I was able to develop a website within weeks of working with Skillify. Most importantly, skillify made the whole learning experience fun and enjoyable. I am now equipped to code my own websites.",
+      completionDate: "May 2022",
     },
   ];
   return (
