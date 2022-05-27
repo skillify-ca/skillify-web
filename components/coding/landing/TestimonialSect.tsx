@@ -4,6 +4,12 @@ import Testimonial, { TestimonialProps } from "./Testimonial";
 const TestimonialSect = () => {
   const testimonialData = [
     {
+      studentName: "Winthya V",
+      img: "/images/landingPage/winthya.jpg",
+      text: "Skillify's expert coaching helped me build a fully-functioning, professional website for my business. With no prior knowledge of coding, I was able to develop a website within weeks. Most importantly, Skillify made the whole learning experience fun and enjoyable. I am now equipped to code my own websites.",
+      completionDate: "May 2022",
+    },
+    {
       studentName: "Raveen R",
       img: "/images/landingPage/raveen.jpg",
       text: "I’ve always had a curiosity to build out my own product ideas. Skillify gave me the guidance and technical foundation needed to build web applications using modern frameworks. I feel confident that I can leverage these new-found skills as a technical founder or even transition into a software engineering role.",
@@ -15,12 +21,7 @@ const TestimonialSect = () => {
       text: "I joined Skillify and learned so much about front end web development that I was able to get interviews from big tech companies and start-ups. I feel more confident getting interviews after taking the Skillify course",
       completionDate: "March 2022",
     },
-    {
-      studentName: "Mayu G",
-      img: "/images/landingPage/mayu.png",
-      text: "Skillify has been an excellent axperience! It allowed me to reskill and learn modern coding frameworks that makes me competitive to get hired in software engineering.",
-      completionDate: "Nov 2021",
-    },
+
     {
       studentName: "Mithulan M",
       img: "/images/landingPage/mithulan.jpg",
@@ -34,10 +35,10 @@ const TestimonialSect = () => {
       completionDate: "Feb 2022",
     },
     {
-      studentName: "Winthya V",
-      img: "/images/landingPage/winthya.jpg",
-      text: "Skillify's expert coaching and domain knowledge has helped me build a fully-functioning, professional website for my business. With no prior knowledge of coding, I was able to develop a website within weeks of working with Skillify. Most importantly, skillify made the whole learning experience fun and enjoyable. I am now equipped to code my own websites.",
-      completionDate: "May 2022",
+      studentName: "Mayu G",
+      img: "/images/landingPage/mayu.png",
+      text: "Skillify has been an excellent axperience! It allowed me to reskill and learn modern coding frameworks that makes me competitive to get hired in software engineering.",
+      completionDate: "Nov 2021",
     },
   ];
   return (

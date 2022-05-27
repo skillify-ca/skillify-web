@@ -22,6 +22,26 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <title>{"Skillify"}</title>
+          <meta
+            name="description"
+            content={
+              "Toronto's best coding bootcamp for online learning! We teach high demand skills to help you get hired in the tech industry."
+            }
+          />
+          <meta property="og:title" content={"Skillify"} />
+          <meta
+            property="og:image"
+            content={"https://www.skillify.ca/images/logo.png"}
+          />
+          <meta
+            property="og:description"
+            content={
+              "Toronto's best coding bootcamp for online learning! We teach high demand skills to help you get hired in the tech industry."
+            }
+          />
+          <meta property="og:url" content="https://skillify.ca/" />
+          <meta property="og:type" content="website" />
           <link rel="icon" href="/favicon.ico" />
           <link
             rel="preload"

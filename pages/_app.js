@@ -42,45 +42,20 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
 
   // TODO remove setting Component.Auth
   return (
-    <>
-      <title>{"Skillify"}</title>
-      <meta
-        name="description"
-        content={
-          "Toronto's best coding bootcamp for online learning! We teach high demand skills to help you get hired in the tech industry."
-        }
-      />
-      <meta property="og:title" content={"Skillify"} />
-      <meta
-        property="og:image"
-        content={"https://www.skillify.ca/images/skillify-header.jpeg"}
-      />
-      <meta
-        property="og:description"
-        content={
-          "Toronto's best coding bootcamp for online learning! We teach high demand skills to help you get hired in the tech industry."
-        }
-      />
-      <meta property="og:url" content="https://skillify.ca/" />
-      <meta property="og:type" content="website" />
-      <ApolloProvider client={client}>
-        <Script
-          src="https://unpkg.com/kaboom/dist/kaboom.js"
-          onLoad={() => {}}
-        />
-        <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
-          <ReduxProvider store={store}>
-            <AuthProvider>
-              {Component.auth ? (
-                <Auth>{getLayout(<Component {...pageProps} />)}</Auth>
-              ) : (
-                getLayout(<Component {...pageProps} />)
-              )}
-            </AuthProvider>
-          </ReduxProvider>
-        </DndProvider>
-      </ApolloProvider>
-    </>
+    <ApolloProvider client={client}>
+      <Script src="https://unpkg.com/kaboom/dist/kaboom.js" onLoad={() => {}} />
+      <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
+        <ReduxProvider store={store}>
+          <AuthProvider>
+            {Component.auth ? (
+              <Auth>{getLayout(<Component {...pageProps} />)}</Auth>
+            ) : (
+              getLayout(<Component {...pageProps} />)
+            )}
+          </AuthProvider>
+        </ReduxProvider>
+      </DndProvider>
+    </ApolloProvider>
   );
 }
 
