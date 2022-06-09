@@ -63,7 +63,7 @@ const HTML3 = ({ lessonComponents }) => {
             <p className="text-charmander">Step 2:</p>
             <p>
               Create a folder on your computer called Skillify and create a new
-              filed called index.html inside that folder. This is where you will
+              file called index.html inside that folder. This is where you will
               do all your coding!
             </p>
           </div>
@@ -105,6 +105,16 @@ const HTML3 = ({ lessonComponents }) => {
                 Food Blog by Mithulan M
               </div>
             </a>
+          </div>
+          <div className="pb-56 mb-8 h-96">
+            <iframe
+              src="https://www.loom.com/embed/c150ce49d1844f3297c4a304a6f3c486"
+              frameBorder="0"
+              webkit-allowfullscreen
+              moz-allowfullscreen
+              allowFullScreen
+              className="w-full h-96"
+            ></iframe>
           </div>
           <div className="flex h-full mt-12 sm:justify-end">
             <Button
