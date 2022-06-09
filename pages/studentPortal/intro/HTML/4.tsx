@@ -49,40 +49,54 @@ const HTML3 = ({ lessonComponents }) => {
           <div className="flex-row">
             <h1 className="text-charmander">Step 1:</h1>
             <p>
-              Complete the HTML tutorials. You will need to use many of the
-              basic tags to create you page.
+              Open the{" "}
+              <a
+                className="underline text-charmander"
+                href="https://www.w3schools.com/html/default.asp"
+              >
+                W3Schools HTML tutorials
+              </a>
+              . You will need to refer back to it as you create your page.
             </p>
           </div>
           <div>
             <p className="text-charmander">Step 2:</p>
             <p>
-              Create the index.html file. This is where you will do all your
-              coding!
+              Create a folder on your computer called Skillify and create a new
+              filed called index.html inside that folder. This is where you will
+              do all your coding!
             </p>
           </div>
           <div>
             <p className="text-charmander">Step 3:</p>
-            <p>
-              You may use any sort of html tags you like in order to create the
-              blog you want.
-            </p>
-            <p>
-              Focus on the structure of your webpage, we will make it flashy
-              once we learn CSS styling!
-            </p>
+            <p>Open your Skillify folder using Visual Studio Code.</p>
           </div>
           <div>
             <p className="text-charmander">Step 4:</p>
             <p>
-              Once your are complete, submit you index.html to the Slack
-              Channel.
+              Make sure to use headers, paragraphs, images, links and lists
+              inside of your blog page. You may use any other html tags you like
+              as well.
+            </p>
+            <p>
+              Focus on the structure of your webpage, we will make it flashy
+              once we learn CSS styling! Don't worry about centering or styling,
+              that will come in the next module.
+            </p>
+          </div>
+          <div>
+            <p className="text-charmander">Step 5:</p>
+
+            <p>
+              Once your are complete, create a zip file from your Skillify
+              folder and drag and drop it into Slack to submit your assignment.
             </p>
           </div>
           <h1 className="mt-12 text-xl font-bold">Showcase</h1>
           <div className="grid grid-cols-2 gap-8">
-            <a target={"_blank"} href="/coding/html/nba.html">
+            <a target={"_blank"} href="/coding/html/baseball/index.html">
               <div className="w-full p-8 bg-white shadow-md cursor-pointer dark:bg-gray-900">
-                NBA Blog by Jacky H
+                Baseball Blog by Pratik P
               </div>
             </a>
 
