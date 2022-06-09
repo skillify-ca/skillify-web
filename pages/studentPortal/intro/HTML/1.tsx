@@ -70,11 +70,7 @@ const HTML1 = ({ lessonComponents }) => {
         </div>
 
         <div className="flex mt-8 sm:justify-end">
-          <Button
-            label="Continue"
-            disabled={lessonState.currentStep !== lessonState.totalSteps}
-            onClick={handleContinue}
-          />
+          <Button label="Continue" disabled={false} onClick={handleContinue} />
         </div>
         {false && (
           <div>
@@ -106,7 +102,8 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "HTML is a basic language that all web pages are built on top of. HTML stands for Hyper Text Markup Language. Just like any other language, HTML is made up of a limited number of words that mean different things. You will gain experience with all the possible HTML elements over time.",
+      text:
+        "HTML is a basic language that all web pages are built on top of. HTML stands for Hyper Text Markup Language. Just like any other language, HTML is made up of a limited number of words that mean different things. You will gain experience with all the possible HTML elements over time.",
     },
     {
       component: "resource-list",

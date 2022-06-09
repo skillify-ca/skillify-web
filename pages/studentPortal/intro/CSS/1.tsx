@@ -62,10 +62,7 @@ const CSS1 = ({ lessonComponents, totalSteps }) => {
 
         <div className="flex mt-8 sm:justify-end">
           <a href={"/studentPortal/intro/CSS/2"}>
-            <Button
-              label="Continue"
-              disabled={lessonState.totalSteps !== lessonState.currentStep}
-            />
+            <Button label="Continue" />
           </a>
         </div>
 

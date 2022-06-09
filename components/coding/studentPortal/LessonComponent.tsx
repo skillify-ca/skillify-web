@@ -39,8 +39,6 @@ export type LessonComponentProps = {
 };
 
 export default function LessonComponent({ data }: LessonComponentProps) {
-  const lessonState = useSelector(lessonSelector);
-
   if (data.component === "title") {
     return <h1 className="text-5xl font-bold">{data.text}</h1>;
   }
@@ -56,7 +54,7 @@ export default function LessonComponent({ data }: LessonComponentProps) {
             <ResourceRow
               title={it.title}
               description={it.description}
-              disabled={lessonState.currentStep < index}
+              disabled={false}
               image={it.image}
               link={it.link}
             />
