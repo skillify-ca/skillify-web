@@ -17,6 +17,14 @@ const CSS6 = ({ lessonComponents }) => {
   const [unlockUserNode] = useMutation(UNLOCK_USER_INTRO_NODE);
   const [completeUserNode] = useMutation(COMPLETE_USER_INTRO_NODE);
 
+  const assignments = [
+    { link: "/coding/css/sujee-week-1/index.html", title: "Sujee-Week1" },
+    { link: "/coding/css/mau-week-1/index.html", title: "Mau-Week1" },
+    { link: "/coding/css/vinon-week-1/indexflower.html", title: "Vinon-Week1" },
+    { link: "/coding/css/jacky-week-1/index.html", title: "Jacky-Week1" },
+    { link: "/coding/css/mithulan-week-1/index.html", title: "Mithulan-Week1" },
+  ];
+
   const handleContinue = () => {
     completeUserNode({
       variables: {

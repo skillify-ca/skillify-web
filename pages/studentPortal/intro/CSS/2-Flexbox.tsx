@@ -13,12 +13,12 @@ import {
   resetCurrentSteps,
   setTotalSteps,
 } from "../../../../redux/lessonSlice";
-import { useRouter } from "next/router";
-import { useAuth } from "../../../../lib/authContext";
-import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
 import { useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
+import { useAuth } from "../../../../lib/authContext";
 
 const CSS1 = ({ lessonComponents, totalSteps }) => {
   const dispatch = useDispatch();
@@ -27,6 +27,7 @@ const CSS1 = ({ lessonComponents, totalSteps }) => {
     dispatch(setTotalSteps(totalSteps));
     dispatch(resetCurrentSteps(null));
   }, []);
+
   const router = useRouter();
   const { user } = useAuth();
   const [unlockUserNode] = useMutation(UNLOCK_USER_INTRO_NODE);
@@ -36,19 +37,19 @@ const CSS1 = ({ lessonComponents, totalSteps }) => {
     completeUserNode({
       variables: {
         user_id: user.uid,
-        node_id: 5,
+        node_id: 49,
         completed: true,
       },
     }).then((res) => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
-          node_id: 48,
+          node_id: 51,
           locked: false,
         },
         refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
       });
-      router.push("/studentPortal/intro/CSS/2-Grid");
+      router.push("/studentPortal/intro/CSS/4");
     });
   };
 
@@ -72,35 +73,41 @@ const CSS1 = ({ lessonComponents, totalSteps }) => {
 export async function getServerSideProps({ params }) {
   const resources: Resource[] = [
     {
-      title: "W3Schools CSS tutorial",
+      title: "CSS Flexbox Froggy",
       image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/W3Schools_logo.svg/2175px-W3Schools_logo.svg.png",
-      link: "https://www.w3schools.com/css/default.asp",
-      description: "Start at the beginning and stop at CSS Overflow.",
+        "https://www.saashub.com/images/app/service_logos/82/fc3339facb56/large.png?1569287111",
+      link: "https://flexboxfroggy.com/",
+      description: "Do all levels.",
+    },
+
+    {
+      title: "CSS Tricks: Flexbox",
+      image:
+        "https://i0.wp.com/css-tricks.com/wp-content/uploads/2021/12/default-social-css-tricks.png",
+      link: "https://css-tricks.com/snippets/css/a-guide-to-flexbox/",
+      description:
+        "Skim through this reference guide on CSS Flexbox. But keep it handy when building websites.",
     },
     {
-      title: "Codecademy CSS Course",
-      image: "/images/ResourceRow.svg",
-      link: "https://www.codecademy.com/learn/learn-css",
-      description: "Complete all levels.",
+      title: "CSS Tricks: Flexbox",
+      image:
+        "https://yt3.ggpht.com/ytc/AKedOLSxHOOxxa9Af8Bfb2XMop3lm4tor9bViWiC-d5aaw=s176-c-k-c0x00ffffff-no-rj",
+      link: "https://www.youtube.com/watch?v=JJSoEo8JSnc",
+      description: "Optional - A 30 minute video explaining CSS Flexbox.",
     },
   ];
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
-      text: "CSS",
+      text: "CSS Flexbox",
     },
     {
       component: "description",
-      text: "CSS stands for cascading style sheets. It's another language that you need to learn that has different rules and keywords compared to HTML. In this lesson you will learn about different styles that you can apply to your HTML elements.",
+      text: "CSS Flexbox is another new property of CSS. You can turn any <div> element into a flexbox using the 'display: flex' property. By using different flex properties you can tell the div how you want it to arrange it's children. Combining Flexbox with Grid will allow you to build the most advanced layouts that you can imagine on the internet.",
     },
     {
       component: "resource-list",
       resources,
-    },
-    {
-      component: "loom-video",
-      videoId: "13bf6c0abba840eba25daf94e332244f",
     },
   ];
   return { props: { lessonComponents, totalSteps: 4 } };

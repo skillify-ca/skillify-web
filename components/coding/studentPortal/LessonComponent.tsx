@@ -32,6 +32,10 @@ export type LessonComponentData =
   | {
       component: "list";
       items: string[];
+    }
+  | {
+      component: "loom-video";
+      videoId: string;
     };
 
 export type LessonComponentProps = {
@@ -80,6 +84,20 @@ export default function LessonComponent({ data }: LessonComponentProps) {
           ></iframe>
         </div>
       </>
+    );
+  }
+  if (data.component === "loom-video") {
+    return (
+      <div className="pb-56 mb-8 h-96">
+        <iframe
+          src={`https://www.loom.com/embed/${data.videoId}`}
+          frameBorder="0"
+          webkit-allowfullscreen
+          moz-allowfullscreen
+          allowFullScreen
+          className="w-full h-96"
+        ></iframe>
+      </div>
     );
   }
 }

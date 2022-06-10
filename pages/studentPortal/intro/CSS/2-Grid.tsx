@@ -13,12 +13,12 @@ import {
   resetCurrentSteps,
   setTotalSteps,
 } from "../../../../redux/lessonSlice";
-import { useRouter } from "next/router";
-import { useAuth } from "../../../../lib/authContext";
-import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
 import { useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
+import { useAuth } from "../../../../lib/authContext";
 
 const CSS1 = ({ lessonComponents, totalSteps }) => {
   const dispatch = useDispatch();
@@ -27,6 +27,7 @@ const CSS1 = ({ lessonComponents, totalSteps }) => {
     dispatch(setTotalSteps(totalSteps));
     dispatch(resetCurrentSteps(null));
   }, []);
+
   const router = useRouter();
   const { user } = useAuth();
   const [unlockUserNode] = useMutation(UNLOCK_USER_INTRO_NODE);
@@ -36,19 +37,19 @@ const CSS1 = ({ lessonComponents, totalSteps }) => {
     completeUserNode({
       variables: {
         user_id: user.uid,
-        node_id: 5,
+        node_id: 48,
         completed: true,
       },
     }).then((res) => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
-          node_id: 48,
+          node_id: 49,
           locked: false,
         },
         refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
       });
-      router.push("/studentPortal/intro/CSS/2-Grid");
+      router.push("/studentPortal/intro/CSS/2-Flexbox");
     });
   };
 
@@ -61,6 +62,7 @@ const CSS1 = ({ lessonComponents, totalSteps }) => {
         {lessonComponents.map((it) => (
           <LessonComponent data={it} />
         ))}
+
         <div className="flex mt-8 sm:justify-end">
           <Button label="Continue" onClick={handleContinue} />
         </div>
@@ -72,35 +74,39 @@ const CSS1 = ({ lessonComponents, totalSteps }) => {
 export async function getServerSideProps({ params }) {
   const resources: Resource[] = [
     {
-      title: "W3Schools CSS tutorial",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/W3Schools_logo.svg/2175px-W3Schools_logo.svg.png",
-      link: "https://www.w3schools.com/css/default.asp",
-      description: "Start at the beginning and stop at CSS Overflow.",
+      title: "CSS Grid Garden",
+      image: "https://cssgridgarden.com/favicon.ico",
+      link: "https://cssgridgarden.com/",
+      description: "Do all levels.",
     },
     {
-      title: "Codecademy CSS Course",
-      image: "/images/ResourceRow.svg",
-      link: "https://www.codecademy.com/learn/learn-css",
-      description: "Complete all levels.",
+      title: "CSS Tricks: Grid",
+      image:
+        "https://i0.wp.com/css-tricks.com/wp-content/uploads/2021/12/default-social-css-tricks.png",
+      link: "https://css-tricks.com/snippets/css/complete-guide-grid/",
+      description:
+        "Skim through this reference guide on CSS Grid. But keep it handy when building websites.",
+    },
+    {
+      title: "CSS Grid Layout Crash Course",
+      image:
+        "https://yt3.ggpht.com/ytc/AKedOLSxHOOxxa9Af8Bfb2XMop3lm4tor9bViWiC-d5aaw=s176-c-k-c0x00ffffff-no-rj",
+      link: "https://www.youtube.com/watch?v=jV8B24rSN5o",
+      description: "Optional - A 30 minute video explaining CSS Grid",
     },
   ];
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
-      text: "CSS",
+      text: "CSS Grid",
     },
     {
       component: "description",
-      text: "CSS stands for cascading style sheets. It's another language that you need to learn that has different rules and keywords compared to HTML. In this lesson you will learn about different styles that you can apply to your HTML elements.",
+      text: "CSS Grid is a newer property of CSS that lets developer create more complex layouts or force yourself to use a single column layout. Without Grid, you had to position elements using coordinates on the screen. Although that technique worked in the 90s, it quickly became out of date as the world started to adopt a wide variety of screen sizes. CSS Grid allows you to position different HTML elements on your screen in a dynamic way that can adjust to the size of your screen.",
     },
     {
       component: "resource-list",
       resources,
-    },
-    {
-      component: "loom-video",
-      videoId: "13bf6c0abba840eba25daf94e332244f",
     },
   ];
   return { props: { lessonComponents, totalSteps: 4 } };
