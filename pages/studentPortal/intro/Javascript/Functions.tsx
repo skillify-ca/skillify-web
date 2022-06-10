@@ -68,6 +68,13 @@ export async function getServerSideProps({ params }) {
       description:
         "This is a deeper dive into what functions are in Javascript",
     },
+    {
+      title: "Home Equity Calculator",
+      link: "/coding/JavaScript/homeEquity.zip",
+      image: "/images/home.png",
+      description:
+        "A home equity calculator to know how much of the house you actually own over your mortgage period",
+    },
   ];
   const lessonComponents: LessonComponentData[] = [
     {
@@ -81,11 +88,6 @@ export async function getServerSideProps({ params }) {
     {
       component: "resource-list",
       resources,
-    },
-    {
-      component: "code-sandbox",
-      title: "Functions in Javascript",
-      link: "https://codesandbox.io/embed/greetings-p62iff?fontsize=14&hidenavigation=1&theme=dark",
     },
   ];
   return { props: { lessonComponents } };

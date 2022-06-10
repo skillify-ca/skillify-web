@@ -61,6 +61,12 @@ export const objects = (user: User): UserIntroNodesInput[] => {
       user_id: user.uid,
     },
     {
+      node_id: 7,
+      completed: false,
+      locked: true,
+      user_id: user.uid,
+    },
+    {
       node_id: 8,
       completed: false,
       locked: true,

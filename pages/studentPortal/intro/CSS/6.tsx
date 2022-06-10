@@ -29,14 +29,14 @@ const CSS6 = ({ lessonComponents }) => {
     completeUserNode({
       variables: {
         user_id: user.uid,
-        node_id: 7,
+        node_id: 52,
         completed: true,
       },
     }).then((res) => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
-          node_id: 8,
+          node_id: 7,
           locked: false,
         },
         refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
@@ -72,21 +72,32 @@ const CSS6 = ({ lessonComponents }) => {
             <p className="text-charmander">Step 2:</p>
             <p>
               Locate your HTML Blog assignment folder and create a new file
-              inside called style.css. This is where you CSS code will go!
+              inside called style.css. This is where you CSS code will go!{" "}
+              <a
+                href="https://www.w3schools.com/css/css_howto.asp"
+                className="underline text-charmander"
+              >
+                Link
+              </a>{" "}
+              it to your html page using a link tag inside of your head tag.
             </p>
           </div>
           <div>
             <p className="text-charmander">Step 3:</p>
             <p>
               In this assignment you will need to set up your Blog to follow the
-              French Flag Layout. Check out my previous video called 'What is a
-              div' for hints.
+              French Flag Layout using CSS Grid. Check out my previous video
+              called 'What is a div' for hints.
             </p>
             <p>The Layout below is what you want to aim for.</p>
             <img src="/images/coding/units/css/layout1.png" className="w-96" />
           </div>
           <div className="mb-12">
             <p className="text-charmander">Step 4:</p>
+            <p>Use Flexbox to create a row of navigation links.</p>
+          </div>
+          <div className="mb-12">
+            <p className="text-charmander">Step 5:</p>
             <p>
               Once you have the layout in place, the sky is the limit. Try out
               different CSS styles to make your page cool and exciting! Add
@@ -119,6 +130,7 @@ export async function getServerSideProps({ params }) {
       component: "description",
       text: "We are going to change that using CSS styling! You will now use CSS styling to bring your page to life!",
     },
+    { component: "loom-video", videoId: "ed935cc53123419695e9f6b97f5589e9" },
   ];
   return { props: { lessonComponents } };
 }

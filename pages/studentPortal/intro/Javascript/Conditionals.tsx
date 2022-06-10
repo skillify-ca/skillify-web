@@ -68,6 +68,13 @@ export async function getServerSideProps({ params }) {
       description:
         "This is a deeper dive into what conditional statements are in Javascript",
     },
+    {
+      title: "Temperature",
+      link: "/coding/JavaScript/temperature.zip",
+      image: "/images/temperature.jpeg",
+      description:
+        "A temperature converter problem. It gets confusing switching between Celsius and Fahrenheit",
+    },
   ];
   const lessonComponents: LessonComponentData[] = [
     {
@@ -81,11 +88,6 @@ export async function getServerSideProps({ params }) {
     {
       component: "resource-list",
       resources,
-    },
-    {
-      component: "code-sandbox",
-      title: "Conditionals in Javascript",
-      link: "https://codesandbox.io/embed/temperature-2j5ecn?fontsize=14&hidenavigation=1&theme=dark",
     },
   ];
   return { props: { lessonComponents } };

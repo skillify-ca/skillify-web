@@ -30,14 +30,14 @@ const CSS_QUIZ = () => {
     completeUserNode({
       variables: {
         user_id: user.uid,
-        node_id: 6,
+        node_id: 51,
         completed: true,
       },
     }).then((res) => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
-          node_id: 7,
+          node_id: 52,
           locked: false,
         },
         refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],

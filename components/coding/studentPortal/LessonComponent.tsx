@@ -36,6 +36,10 @@ export type LessonComponentData =
   | {
       component: "loom-video";
       videoId: string;
+    }
+  | {
+      component: "custom";
+      children: React.ReactNode;
     };
 
 export type LessonComponentProps = {

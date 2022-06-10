@@ -68,6 +68,13 @@ export async function getServerSideProps({ params }) {
       link: "https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-loops",
       description: "This is a deeper dive into what loops are in Javascript",
     },
+    {
+      title: "Star Patterns",
+      link: "/coding/JavaScript/starPatterns.zip",
+      image: "/images/gold-star.png",
+      description:
+        "ASCII art is pretty fun to play around with. Let's get started with some star patterns!",
+    },
   ];
   const lessonComponents: LessonComponentData[] = [
     {

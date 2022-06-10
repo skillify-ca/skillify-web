@@ -69,6 +69,13 @@ export async function getServerSideProps({ params }) {
       link: "https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-objects/cheatsheet",
       description: "This is a deeper dive into what objects are in Javascript",
     },
+    {
+      title: "Find the Plant",
+      link: "/coding/JavaScript/findPlant.zip",
+      image: "/images/plant.png",
+      description:
+        "There are so many plants in our eco-system! Give the functiuon the name of the plant and find out its description",
+    },
   ];
   const lessonComponents: LessonComponentData[] = [
     {

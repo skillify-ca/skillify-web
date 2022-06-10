@@ -63,12 +63,31 @@ const Iterators = ({ lessonComponents }) => {
 export async function getServerSideProps({ params }) {
   const resources: Resource[] = [
     {
-      title: "Codecademy",
+      title: "Codecademy Iterators Lesson",
       image:
         "https://icons-for-free.com/download-icon-codecademy-1324440139458906558_512.png",
       link: "https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-iterators/cheatsheet",
       description:
         "This is a deeper dive into what iterators are in Javascript",
+    },
+    {
+      title: "Free Code Camp Iterators Tutorial: Map, Filter, Reduce",
+      link: "https://www.freecodecamp.org/news/javascript-map-reduce-and-filter-explained-with-examples/",
+      image: "/images/coding/units/javascript/freeCodeCamp.png",
+      description: "Focus on Map and Filter. Ignore Reduce",
+    },
+    {
+      title: "Codecademy Code Challenges",
+      image:
+        "https://icons-for-free.com/download-icon-codecademy-1324440139458906558_512.png",
+      link: "https://www.codecademy.com/resources/blog/10-javascript-code-challenges-for-beginners/",
+      description: "10 Beginner JavaScript Code Challenges",
+    },
+    {
+      title: "Edabit Code Challenges",
+      image: "https://s3.amazonaws.com/edabit-images/monster003.png",
+      link: "https://edabit.com/challenges/javascript",
+      description: "Optional - More Beginner JavaScript Code Challenges",
     },
   ];
   const lessonComponents: LessonComponentData[] = [
@@ -83,11 +102,6 @@ export async function getServerSideProps({ params }) {
     {
       component: "resource-list",
       resources,
-    },
-    {
-      component: "code-sandbox",
-      title: "Iterator Functions in Javascript",
-      link: "https://codesandbox.io/embed/findplant-du92ty?fontsize=14&hidenavigation=1&theme=dark",
     },
   ];
   return { props: { lessonComponents } };
