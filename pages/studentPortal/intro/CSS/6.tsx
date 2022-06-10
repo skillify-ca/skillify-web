@@ -56,22 +56,31 @@ const CSS6 = ({ lessonComponents }) => {
           <div className="flex-row">
             <h1 className="text-charmander">Step 1:</h1>
             <p>
-              Complete the CSS tutorials. You will need to use many CSS styles
-              to make your page flashy!
+              Open the{" "}
+              <a
+                className="underline text-charmander"
+                href="https://www.w3schools.com/cssref/default.asp"
+              >
+                CSS reference guide
+              </a>{" "}
+              and keep it handy. It'll be helpful to look back to all the
+              possible styles that you can use to make your blog page look
+              modern and professional.
             </p>
           </div>
           <div>
             <p className="text-charmander">Step 2:</p>
             <p>
-              Locate your HTML Blog assignment file and create a new file called
-              style.css. This is where you CSS code will go!
+              Locate your HTML Blog assignment folder and create a new file
+              inside called style.css. This is where you CSS code will go!
             </p>
           </div>
           <div>
             <p className="text-charmander">Step 3:</p>
             <p>
               In this assignment you will need to set up your Blog to follow the
-              French Flag Layout.
+              French Flag Layout. Check out my previous video called 'What is a
+              div' for hints.
             </p>
             <p>The Layout below is what you want to aim for.</p>
             <img src="/images/coding/units/css/layout1.png" className="w-96" />

@@ -109,6 +109,10 @@ export async function getServerSideProps({ params }) {
       component: "resource-list",
       resources,
     },
+    {
+      component: "loom-video",
+      videoId: "3ccdfc795e2648b697356e15fa1e67f3",
+    },
   ];
   return { props: { lessonComponents, totalSteps: 4 } };
 }
