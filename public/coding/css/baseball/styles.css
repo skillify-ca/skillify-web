@@ -1,0 +1,158 @@
+table, th,td { 
+    border:2px solid rgb(20, 20, 15);
+    text-align:center;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+.flexbox-container { 
+    flex-direction: column;
+    width: 100%;
+    background-color:rgb(255, 255, 255)
+}
+.navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    background-image: url(dodger.jpeg);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    padding: 0px;
+}
+
+.navbar2 {
+    display:flex;
+    flex-direction:row;
+    list-style: none;
+    justify-content: space-around; 
+    background-color:rgb(255, 255, 255);
+    font-size: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+}
+.nav-link {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-family: 'Trebuchet MS', sans-serif;
+
+}
+.About {
+    background-color: rgb(142, 139, 139);
+    height: 30px;
+    color: rgb(255, 255, 255);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    justify-items:auto;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+.Toronto {
+    background-color:rgb(142, 139, 139);
+    height: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-image: url(mlbteams.png)
+}
+.new-york {
+    background-color: rgb(142, 139, 139);
+    height:100%;
+    background-image: url(mlbteams.png)
+}
+.header-text {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    font-style: italic;
+    color: rgb(255, 255, 255);
+}
+
+img {
+    width: 100%;
+}
+
+h1{
+    font-size: 20px;
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+    color: rgb(222, 203, 59);
+}
+
+p{
+color:rgb(0, 0, 0);
+text-align:center;
+font-size:20px;
+}
+
+address{
+text-align:center;
+font-family: Arial, Helvetica, sans-serif;
+font-style: normal;
+}
+
+.park-header-text {
+    color: rgb(255, 0, 0);
+    font-size: 28px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.park-ny-text{
+    color: navy;
+    font-size: 28px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.centre-tor-text{
+    color: blue;
+    font-size: 28px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.park-oldny-text {
+    color:navy;
+    font-size: 28px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.park-phili-text { 
+    color: firebrick;
+    font-size: 28px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.park-oriole-text {
+    color:orange;
+    font-size: 28px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.avg-tix-text {
+    color: rgb(0, 0, 0);
+    font-stretch: expanded;
+}
+/* selected link */
+a:active {
+    color: orange;
+  }
+
+ a:hover {
+     color: rgb(0, 255, 238);
+ }
+
+ .card {
+     padding: 4px;
+     background-color: rgb(0, 0, 0);
+     border: 5px solid rgb(6, 6, 6);
+     width: 100%;
+     text-align: center;
+ }
+
+.card-container { 
+    display: flex;
+    flex-direction: row;
+}
+
+.About {
+    background-image: url(mlbteams.png);
+    padding: 10px;
+}

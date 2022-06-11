@@ -1,0 +1,96 @@
+.flexbox { 
+    flex-direction:flex;
+    height: 100%;
+    background-color:rgb(0, 0, 0);
+    background-image:url(dodger.jpeg);
+    padding: 40px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px;
+    
+}
+    .header-text {
+        font-family: 'Trebuchet MS', Arial, sans-serif, sans-serif;
+        margin:auto;
+        text-align: center;
+        font-size: 70px;
+        color: rgb(255, 255, 255);
+
+}
+.navigation-bar{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-evenly;
+    padding: 10px;
+    background-color: rgb(249, 249, 249);
+    align-content: space-between;
+    margin: 0px;
+    list-style-type: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.nav-link { 
+    text-decoration: none;
+    background-color:rgb(249, 249, 249);
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    list-style: none;
+}
+
+.grid-container {
+    display: grid;
+    background-color:rgb(255, 255, 255);
+    grid-template-columns: 1fr 2fr 1fr;
+    justify-items: auto;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+.left {
+    background-color:rgb(0, 0, 0);
+    height: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.right { 
+    background-color:rgb(255, 0, 0);
+    height: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.right-right{ 
+    background-color:rgb(0, 0, 0);
+    height: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.footer-nav-bar { 
+    display:flex;
+    flex-direction:row;
+    justify-content:space-evenly;
+    padding: 10px;
+    background-color: rgb(249, 249, 249);
+    align-content: space-between;
+    margin: 0px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    list-style: none;
+}
+
+img{ 
+    max-width: 100%;
+}
+
+.content-container { 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    text-align: center;
+    align-self: center;
+}
+
+ a:hover {
+     color: rgb(0, 255, 238);
+ }
