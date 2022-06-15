@@ -78,6 +78,7 @@ const HTML3 = ({ lessonComponents }) => {
               inside of your blog page. You may use any other html tags you like
               as well.
             </p>
+            <p>Make sure to SAVE your work as you are changing your website.</p>
             <p>
               Focus on the structure of your webpage, we will make it flashy
               once we learn CSS styling! Don't worry about centering or styling,
