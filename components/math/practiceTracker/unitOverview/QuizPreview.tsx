@@ -2,7 +2,6 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { Canvas } from "react-three-fiber";
 import { practiceTrackerSelector } from "../../../../redux/studentProfileSlice";
-import Box from "../../stories/Box";
 import { Button } from "../../../ui/Button";
 
 const QuizPreview = ({ isQuizLocked, unitTitle, loading, data, courseId }) => {
@@ -34,8 +33,8 @@ const QuizPreview = ({ isQuizLocked, unitTitle, loading, data, courseId }) => {
 
   return (
     <div>
-      <div className="grid sm:grid-cols-12 grid-cols-6 bg-white shadow-lg rounded-xl p-8 space-y-8">
-        <div className="col-span-6 flex flex-col space-y-4">
+      <div className="grid grid-cols-6 p-8 space-y-8 bg-white shadow-lg sm:grid-cols-12 rounded-xl">
+        <div className="flex flex-col col-span-6 space-y-4">
           {isQuizLocked && (
             <p className="text-4xl font-bold text-blue-900">QUIZ LOCKED</p>
           )}
@@ -58,7 +57,7 @@ const QuizPreview = ({ isQuizLocked, unitTitle, loading, data, courseId }) => {
           )}
           {!isQuizLocked && (
             <div className="flex space-y-8">
-              <div className="text-white text-xl border-blue-900 font-bold rounded-xl">
+              <div className="text-xl font-bold text-white border-blue-900 rounded-xl">
                 <Link
                   href={`/course/${courseId}/quiz/${unitTitle}?level=${practiceTrackerState.mathLevel}`}
                 >
@@ -72,7 +71,7 @@ const QuizPreview = ({ isQuizLocked, unitTitle, loading, data, courseId }) => {
             </div>
           )}
           {!isQuizLocked && (
-            <div className="flex items-center text-lg flex-row">
+            <div className="flex flex-row items-center text-lg">
               <p className="text-xl font-bold text-blue-900"> Best Attempt: </p>
               <p
                 className={`${getColourForAccuracy(
@@ -89,26 +88,26 @@ const QuizPreview = ({ isQuizLocked, unitTitle, loading, data, courseId }) => {
             </div>
           )}
         </div>
-        <div className="col-span-6 m-4 text-white flex flex-col items-center justify-center space-y-8 bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 rounded-2xl h-72">
+        <div className="flex flex-col items-center justify-center col-span-6 m-4 space-y-8 text-white bg-gradient-to-r from-gray-200 via-gray-400 to-gray-500 rounded-2xl h-72">
           {isQuizLocked && <img src="/images/lock.png" className="w-28" />}
           {!isQuizLocked &&
             !loading &&
             data &&
             data.user_badges.map((badge) => {
               return badge.locked ? (
-                <div className="flex h-full flex-col items-center p-4 justify-center">
+                <div className="flex flex-col items-center justify-center h-full p-4">
                   <img src="/images/lock.png" className="w-3/4 h-full" />
-                  <p className="text-md -mt-4 flex items-center">
+                  <p className="flex items-center -mt-4 text-md">
                     {"   "}
                     Badge: <b> &nbsp;Locked</b>{" "}
                   </p>
                 </div>
               ) : (
-                <div className="flex h-full flex-col w-full items-center p-4 justify-center heropattern-overlappingdiamonds-gray-700  bg-gray-500 rounded-xl">
+                <div className="flex flex-col items-center justify-center w-full h-full p-4 bg-gray-500 heropattern-overlappingdiamonds-gray-700 rounded-xl">
                   {/* TODO fix importing react three fiber into this project */}
                   <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
-                    <Box
-                      url={
+                    <img
+                      src={
                         badge.badge.image
                           ? badge.badge.image
                           : "/images/lock.png"
@@ -134,9 +133,9 @@ const QuizPreview = ({ isQuizLocked, unitTitle, loading, data, courseId }) => {
                   </Canvas>
                   {/* <img
                     src={badge.badge.image}
-                    className="w-3/4 h-full object-scale-down mb-8"
+                    className="object-scale-down w-3/4 h-full mb-8"
                   /> */}
-                  <p className="text-md flex items-center bg-gray-800 rounded-full p-4">
+                  <p className="flex items-center p-4 bg-gray-800 rounded-full text-md">
                     {"   "}
                     Badge: <b> &nbsp;Unlocked</b>{" "}
                   </p>

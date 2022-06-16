@@ -5,7 +5,6 @@ import {
   useQuery,
 } from "@apollo/client";
 import Head from "next/head";
-import dynamic from "next/dynamic";
 import Navbar from "../../../components/ui/Navbar";
 import ExplorePreview from "../../../components/math/practiceTracker/unitOverview/ExplorePreview";
 import PracticePreview from "../../../components/math/practiceTracker/unitOverview/PracticePreview";
@@ -13,17 +12,14 @@ import QuizPreview from "../../../components/math/practiceTracker/unitOverview/Q
 import { FETCH_UNIT_OVERVIEW } from "../../../graphql/fetchUnitOverview";
 import { useAuth } from "../../../lib/authContext";
 import { getBadgeId } from "../../api/badgeHelper";
-import { getUserEmojiValue } from "../../api/practiceTracker/emojiHelper";
 import { EMOJI_MASTERY, SkillData } from "../../api/skill";
 import { useRouter } from "next/router";
 import { FETCH_SKILLS_FOR_UNIT } from "../../../graphql/fetchSkillsForUnit";
 
-const Box = dynamic(() => import("../../../components/math/stories/Box"));
-
 const UnitOverviewPage = ({ unitTitle, skillData, level }) => {
   const { user } = useAuth();
   const router = useRouter();
-  const { courseId } = router.query;
+  const courseId = "math1";
 
   type SkillDataResponse = {
     skills: SkillData[];
@@ -43,34 +39,34 @@ const UnitOverviewPage = ({ unitTitle, skillData, level }) => {
     user_quizzes: any[];
     user_badges: any[];
   };
+  const skillIds = skillData.skills
+    .filter(
+      (skill) =>
+        skill.unit == unitTitle &&
+        skill.level == level &&
+        skill.courseId === courseId
+    )
+    .map((skill) => skill.id);
+
   let { loading, error, data } = useQuery<FetchUnitOverviewResponse>(
     FETCH_UNIT_OVERVIEW,
     {
       variables: {
         userId: user?.uid,
-        skillId:
-          skillData &&
-          skillData.skills
-            .filter(
-              (skill) =>
-                skill.unit == unitTitle &&
-                skill.level == level &&
-                skill.courseId === courseId
-            )
-            .map((skill) => skill.id),
+        skillId: skillIds,
         badgeId: getBadgeId(courseId as string, unitTitle, level),
       },
     }
   );
 
   const isQuizLocked = () => {
-    if (!loading && data && data.user_skills.length !== 0) {
-      const unmasteredSkills = skillsForCurrentGrade(skillData)
-        .map((skill) => getUserEmojiValue(data, skill.id))
-        .filter((emojiVal) => !emojiVal || emojiVal <= EMOJI_MASTERY);
+    // if (!loading && data && data.user_skills.length !== 0) {
+    //   const unmasteredSkills = skillsForCurrentGrade(skillData)
+    //     .map((skill) => getUserEmojiValue(data, skill.id))
+    //     .filter((emojiVal) => !emojiVal || emojiVal <= EMOJI_MASTERY);
 
-      return unmasteredSkills.length > 0;
-    }
+    //   return unmasteredSkills.length > 0;
+    // }
 
     return false;
   };
@@ -83,7 +79,6 @@ const UnitOverviewPage = ({ unitTitle, skillData, level }) => {
           Overview
         </title>
       </Head>
-      <Navbar />
       <div className="flex flex-col p-4 space-y-8">
         <div className="flex-col p-4 text-center bg-blue-500 shadow-lg heropattern-architect-blue-400 rounded-xl">
           <p className="text-2xl text-white">
@@ -92,11 +87,6 @@ const UnitOverviewPage = ({ unitTitle, skillData, level }) => {
             Overview
           </p>
         </div>
-        <ExplorePreview
-          unitTitle={unitTitle}
-          level={level}
-          courseId={courseId}
-        />
         {skillData && (
           <PracticePreview
             loading={loading}
@@ -104,7 +94,7 @@ const UnitOverviewPage = ({ unitTitle, skillData, level }) => {
             skills={skillsForCurrentGrade(skillData)}
           />
         )}
-        <div>
+        {/* <div>
           <QuizPreview
             isQuizLocked={isQuizLocked()}
             unitTitle={unitTitle}
@@ -112,7 +102,7 @@ const UnitOverviewPage = ({ unitTitle, skillData, level }) => {
             data={data}
             courseId={courseId}
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -144,12 +134,12 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { courseId: "math2", slug: ["numbers", "1"] } },
-      { params: { courseId: "math2", slug: ["addition", "1"] } },
-      { params: { courseId: "math2", slug: ["subtraction", "1"] } },
-      { params: { courseId: "math2", slug: ["multiplication", "1"] } },
-      { params: { courseId: "math2", slug: ["division", "1"] } },
-      { params: { courseId: "math2", slug: ["finance", "1"] } },
+      { params: { slug: ["numbers", "1"] } },
+      { params: { slug: ["addition", "1"] } },
+      { params: { slug: ["subtraction", "1"] } },
+      { params: { slug: ["multiplication", "1"] } },
+      { params: { slug: ["division", "1"] } },
+      { params: { slug: ["finance", "1"] } },
     ],
     fallback: true,
   };
