@@ -9,7 +9,7 @@ const JS8 = ({ lessonComponents }) => {
   return (
     <>
       <div className="col-span-7">
-        <div className="grid h-full grid-cols-1 p-8 space-y-4 bg-gray-100 text-gray-700">
+        <div className="grid h-full grid-cols-1 p-8 space-y-4 text-gray-700 bg-gray-100">
           <ProgressBar completed={100} />
           <p>
             {" "}
@@ -21,6 +21,39 @@ const JS8 = ({ lessonComponents }) => {
           <div className="flex-row">
             <h1 className="text-charmander">Step 1:</h1>
             <p>You must read through the JSON object.</p>
+            <p>
+              You can access the Pokemon data from this{" "}
+              <a
+                className="underline cursor-pointer text-charmander"
+                href="https://pokeapi.co/api/v2/move/fire-blast"
+              >
+                link
+              </a>
+            </p>
+            <p>
+              Copy and paste that data into a{" "}
+              <a
+                className="underline cursor-pointer text-charmander"
+                href="http://jsonviewer.stack.hu/"
+              >
+                JSON viewer
+              </a>{" "}
+              so you can properly visualize the object you're going to work
+              with.
+            </p>
+            <p>
+              Copy and paste that data again into a new javascript file on your
+              computer. Use the{" "}
+              <a
+                className="underline cursor-pointer text-charmander"
+                href="https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner"
+              >
+                Code Runner Visual Studio Extension
+              </a>{" "}
+              to run your code. You can use the extension by searching for "Run
+              Code" inside of your Command Pallette (CMD+SHIFT+P or
+              CTRL+SHIFT+P)
+            </p>
           </div>
           <div>
             <p className="text-charmander">Step 2:</p>
