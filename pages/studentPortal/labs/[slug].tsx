@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import { FETCH_SKILLS_FOR_UNIT } from "../../../graphql/fetchSkillsForUnit";
 import { FETCH_SKILLS } from "../../../graphql/fetchSkills";
 import { FETCH_SKILLS_FOR_COURSE } from "../../../graphql/fetchSkillsForCourse";
+import Link from "next/link";
 
 const UnitOverviewPage = ({ courseId, skillData }) => {
   const { user } = useAuth();
@@ -61,6 +62,16 @@ const UnitOverviewPage = ({ courseId, skillData }) => {
           />
         )}
       </div>
+      {courseId === "finance" ? (
+        <div className="p-4 m-4 bg-white text-murkrow">
+          <h2 className="text-lg font-bold text-murkrow">Lessons</h2>
+          <Link href="finance/credit-card">
+            <div className="w-64 p-4 my-4 bg-gray-100 shadow-lg cursor-pointer rounded-xl">
+              <p>Credit Card Lesson</p>
+            </div>
+          </Link>
+        </div>
+      ) : null}
     </div>
   );
 };
