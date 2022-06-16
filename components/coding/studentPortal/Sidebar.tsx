@@ -4,13 +4,15 @@ import React, { useEffect, useRef, useState } from "react";
 import { useAuth } from "../../../lib/authContext";
 
 export type SidebarProps = {};
-type SidebarPage = "dashboard" | "classroom" | "profile";
+type SidebarPage = "dashboard" | "classroom" | "profile" | "labs";
 
 export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const { signOut, user } = useAuth();
   const dashboardIconRef = useRef<HTMLImageElement>();
   const classroomIconRef = useRef<HTMLImageElement>();
   const profileIconRef = useRef<HTMLImageElement>();
+  const labsIconRef = useRef<HTMLImageElement>();
+
   const router = useRouter();
   const [activePage, setActivePage] = useState<SidebarPage>();
 
@@ -21,6 +23,8 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
       setActivePage("classroom");
     } else if (router.pathname.startsWith("/profile")) {
       setActivePage("profile");
+    } else if (router.pathname.startsWith("/studentPortal/labs")) {
+      setActivePage("labs");
     } else {
       setActivePage("dashboard");
     }
@@ -102,6 +106,38 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
             </svg>
             Classroom
+          </div>
+        </Link>
+        <Link href="/studentPortal/labs">
+          <div
+            className={`flex flex-wrap items-center h-12 p-4 cursor-pointer hover:border-l-4 hover:border-charmander hover:text-charmander    
+            ${
+              activePage === "labs" ? "border-charmander text-charmander" : ""
+            }`}
+            onMouseOver={(e) => {
+              if (labsIconRef.current) {
+                labsIconRef.current.src = "/images/labsActive.svg";
+              }
+            }}
+            onMouseLeave={() => {
+              if (activePage !== "labs" && labsIconRef.current) {
+                labsIconRef.current.src = "/images/labsInactive.svg";
+              }
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={`w-6 h-6 mr-4`}
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M7 2a1 1 0 00-.707 1.707L7 4.414v3.758a1 1 0 01-.293.707l-4 4C.817 14.769 2.156 18 4.828 18h10.343c2.673 0 4.012-3.231 2.122-5.121l-4-4A1 1 0 0113 8.172V4.414l.707-.707A1 1 0 0013 2H7zm2 6.172V4h2v4.172a3 3 0 00.879 2.12l1.027 1.028a4 4 0 00-2.171.102l-.47.156a4 4 0 01-2.53 0l-.563-.187a1.993 1.993 0 00-.114-.035l1.063-1.063A3 3 0 009 8.172z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            Labs
           </div>
         </Link>
         <Link href="/profile">
