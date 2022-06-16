@@ -28,7 +28,7 @@ export const MultipleChoice: React.FC<MultipleChoiceProp> = ({
   return (
     <div className="flex flex-col items-center space-y-8">
       <h1 className="text-4xl text-center"> {displayQuestion} </h1>
-      <div className="flex flex-row space-x-8">
+      <div className="flex flex-col space-y-4">
         <Button
           label={option1.text}
           backgroundColor="red"
