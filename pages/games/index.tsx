@@ -11,8 +11,6 @@ import CreateRoom from "../../components/math/mathBattle/CreateRooms";
 import Lobby from "../../components/math/mathBattle/PlayerLobby";
 import PostGameLobby from "../../components/math/mathBattle/PostGameLobby";
 import CoopGameOver from "../../components/math/mathBattle/coop/CoopGameOver";
-import CoopBattleIntro from "../../components/math/mathBattle/coop/CoopBattleIntro";
-import CoopStoryComponent from "../../components/math/mathBattle/coop/CoopNarrative";
 import Navbar from "../../components/ui/Navbar";
 
 export type Player = {
@@ -158,7 +156,6 @@ const MathBattle = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="p-4">
         {stage == STAGE.CREATE_JOIN_GAME && (
           <CreateRoom
