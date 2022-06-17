@@ -1,5 +1,6 @@
 import { ApolloClient, InMemoryCache, useMutation } from "@apollo/client";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import ReactCardFlip from "react-card-flip";
 import QuestionSet from "../../components/math/stories/QuestionSet";
@@ -20,22 +21,24 @@ const PracticeQuiz = ({ skill }) => {
   enum STAGE {
     QUESTION,
     EMOJI,
-    END_SESSION,
+    SESSION_END,
   }
   const { user } = useAuth();
-  const [isFlipped, setIsFlipped] = useState(false);
-  const [display, setDisplay] = useState("flex");
-  const [continueFaded, setContinueFaded] = useState(0);
-  const [isFaded, setIsFaded] = useState(1);
-  const [index, setIndex] = useState(0);
-  const [emoji, setEmoji] = useState(0);
+  const router = useRouter();
+
+  const [isFlipped, setIsFlipped] = useState(false); // is the front of the card showing or is the back showing
+  const [index, setIndex] = useState(0); // which question are we on in the question set
+  const [replayCount, setReplayCount] = useState(0); // how many times has the user replayed this practice session
+  const [emoji, setEmoji] = useState(0); // value of the emoji slider, user will use to represent their confidence of skill
+
   const [guessAttempt, setGuessAttempt] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState(false);
   const [wrongAnswer, setWrongAnswer] = useState(false);
   const [indexCap, setIndexCap] = useState(false);
+
   const [nextQuestionButton, setNextQuestionButton] = useState(false);
   const [continueButton, setContinueButton] = useState(false);
-  const [interval, setMyInterval] = useState(null);
+
   const [stage, setStage] = useState(STAGE.QUESTION);
   const [correctGuess, setCorrectGuess] = useState(0);
   const [questionData, setQuestionData] = useState<Question[]>([
@@ -65,98 +68,27 @@ const PracticeQuiz = ({ skill }) => {
   );
   const inputElement = useRef(null);
 
-  function getComponent() {
-    const sessionEnd = (
-      <div className="flex flex-col p-8 bg-white rounded-lg">
-        <img src="/images/goodWork.png" className="mt-12 w-80"></img>
-
-        <div className="flex flex-row justify-between ">
-          <Link href={`/studentPortal/math/`}>
-            <Button label="Back" backgroundColor="purple"></Button>
-          </Link>
-          <Button
-            label="Restart"
-            backgroundColor="green"
-            onClick={() => window.location.reload()}
-          ></Button>
-        </div>
-      </div>
-    );
-
-    const emojiFeedback = (
-      <div>
-        <Card size="large">
-          <div
-            className={`grid-cols-1 grid text-murkrow justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in`}
-          >
-            <p className="mt-12 font-bold">
-              How confident were you with those practice questions?
-            </p>
-            <EmojiSlider callback={setEmojiCallback} />
-            <Button
-              label="Submit"
-              backgroundColor="blue"
-              onClick={saveEmoji}
-            ></Button>
-          </div>
-        </Card>
-      </div>
-    );
-
-    const questionSet = (
-      <div className="flex flex-col items-center justify-center text-murkrow">
-        <QuestionSet
-          title={"Practice"} // TODO
-          questionData={questionData}
-          index={index}
-          inputElement={inputElement}
-          submitGuess={submitGuess}
-          score={correctGuess}
-          HUDEnabled={false}
-        />
-      </div>
-    );
-    let stageLevel = stage;
-
-    //Controlling the stages of the practice session
-    switch (stageLevel) {
-      case STAGE.QUESTION:
-        return questionSet;
-      case STAGE.EMOJI:
-        return emojiFeedback;
-      case STAGE.END_SESSION:
-        return sessionEnd;
-    }
-  }
-
   const toggleFlip = () => {
     setIsFlipped(!isFlipped);
   };
 
   useEffect(() => {
     setQuestionData(generatePracticeQuestions(Number.parseInt(skill)));
-  }, []);
+    setCorrectGuess(0);
+    setIndex(0);
+    setIsFlipped(false);
+    setIndexCap(false);
+    setStage(STAGE.QUESTION);
+    setContinueButton(false);
+  }, [replayCount]);
 
   const applyNextQuestion = () => {
     toggleFlip();
-
     setNextQuestionButton(false);
     setGuessAttempt("");
     setCorrectAnswer(false);
     setWrongAnswer(false);
     nextQuestion();
-  };
-
-  function delay(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-
-  const applyContinuePage = async () => {
-    setIsFaded(0);
-    await delay(150);
-    setDisplay("hidden");
-    setContinueFaded(100);
-    setStage(STAGE.END_SESSION);
   };
 
   const nextQuestion = () => {
@@ -167,8 +99,6 @@ const PracticeQuiz = ({ skill }) => {
       }
     } else {
       setIndex(index + 1);
-      clearInterval(interval);
-      setMyInterval(null);
     }
   };
 
@@ -180,8 +110,7 @@ const PracticeQuiz = ({ skill }) => {
         emoji: emoji,
       },
     });
-    setStage(STAGE.END_SESSION);
-    applyContinuePage;
+    setStage(STAGE.SESSION_END);
   };
 
   const setEmojiCallback = (val: number) => {
@@ -239,10 +168,60 @@ const PracticeQuiz = ({ skill }) => {
         flipDirection="horizontal"
         infinite={true}
       >
-        <div className="align-middle w-50">{getComponent()}</div>
-        <div
-          className={`${display} flex-col justify-center items-center gap-8 transition-opacity duration-150 ease-in-out opacity-${isFaded}`}
-        >
+        {/* Front of the card */}
+        <div className="align-middle w-50">
+          {stage === STAGE.QUESTION ? (
+            <div className="flex flex-col items-center justify-center text-murkrow">
+              <QuestionSet
+                title={"Practice"} // TODO
+                questionData={questionData}
+                index={index}
+                inputElement={inputElement}
+                submitGuess={submitGuess}
+                score={correctGuess}
+                HUDEnabled={false}
+              />
+            </div>
+          ) : stage === STAGE.EMOJI ? (
+            <div>
+              <Card size="large">
+                <div
+                  className={`grid-cols-1 grid text-murkrow justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in`}
+                >
+                  <p className="mt-12 font-bold">
+                    How confident were you with those practice questions?
+                  </p>
+                  <EmojiSlider callback={setEmojiCallback} />
+                  <Button
+                    label="Submit"
+                    backgroundColor="blue"
+                    onClick={saveEmoji}
+                  ></Button>
+                </div>
+              </Card>
+            </div>
+          ) : stage === STAGE.SESSION_END ? (
+            <div className="flex flex-col p-8 bg-white rounded-lg">
+              <img src="/images/goodWork.png" className="mt-12 w-80"></img>
+
+              <div className="flex flex-row justify-between ">
+                <Button
+                  label="Back"
+                  backgroundColor="purple"
+                  onClick={() => router.back()}
+                ></Button>
+
+                <Button
+                  label="Restart"
+                  backgroundColor="green"
+                  onClick={() => setReplayCount(replayCount + 1)}
+                ></Button>
+              </div>
+            </div>
+          ) : null}
+        </div>
+        {/* Back of the card */}
+        <div className={` flex-col justify-center items-center gap-8 `}>
           <div className={"justify-items-center align-middle w-50"}>
             <Card size="large">
               <div className="flex flex-col justify-around h-full">
@@ -277,9 +256,7 @@ const PracticeQuiz = ({ skill }) => {
                       )}
                     </span>
                   </div>
-                ) : (
-                  ""
-                )}
+                ) : null}
                 {nextQuestionButton && (
                   <div className="flex justify-center">
                     <Button label="Next" onClick={applyNextQuestion}></Button>
@@ -310,8 +287,8 @@ export async function getStaticPaths() {
     query: FETCH_SKILLS,
   });
 
-  const ids = data.skills.map((element) => {
-    return { params: { skill: element.id.toString() } };
+  const ids = data.skills.map((skill) => {
+    return { params: { skill: skill.id.toString() } };
   });
 
   return {
