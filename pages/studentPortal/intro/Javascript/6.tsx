@@ -19,7 +19,19 @@ const JS6 = () => {
                   Ready to apply your JS Knowledge?
                 </h1>
                 <p className="text-center text-gray-800">
-                  Begin the assignment now!
+                  Before you begin the assignment check-in with your coach and
+                  make sure that you're ready to start. Fill out this{" "}
+                  <a
+                    className="underline cursor-pointer text-charmander"
+                    target="_blank"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSc9uMgy9iVG9cXnXiZTl9yGbAfg26LCTXofqLc8BoBY_FBMmQ/viewform?usp=sf_link"
+                  >
+                    form
+                  </a>{" "}
+                  to track your confidence around different JavaScript concepts
+                  and discuss your responses with your coach. You don't need to
+                  feel mastery over all concepts, but you should have a basic
+                  understanding of each concept before starting the assignment.
                 </p>
               </div>
             </div>

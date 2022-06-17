@@ -17,14 +17,25 @@ const JS7 = ({ lessonComponents }) => {
           <div className="mt-2">
             <h1 className="font-bold">What do you need to get started?</h1>
             <p>
-              First and foremost, you must download the Javascript Assignment
-              file. You can find this towards the bottom right side of the page.
-              Click the "Download" and it should download a .zip file.
+              First and foremost, you must download{" "}
+              <a
+                className="underline cursor-pointer text-charmander"
+                href="https://nodejs.org/en/download/"
+              >
+                Node.js
+              </a>{" "}
+              to your computer.
             </p>
             <p>
               {" "}
-              Secondly you must have Node.js installed and the Code Runner
-              Extension.{" "}
+              Secondly you install the{" "}
+              <a
+                href="https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner"
+                className="underline cursor-pointer text-charmander"
+              >
+                Code Runner Extension
+              </a>{" "}
+              to Visual Studio Code.{" "}
             </p>
             <p> After these 2 steps you should be good to go! </p>
           </div>
@@ -46,7 +57,8 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "In the previous modules, you were introduced to the concept of iterators, which include, .map and .filter. These iterators are actually used in a profesional setting all the time! That means, you must be confortable with using .map and .filter in order to apply them in your future job opprotunities. In this assignment, you will work with big JSON objects and apply iterators to narrow down to specific data.",
+      text:
+        "In the previous modules, you were introduced to the concept of iterators, which include, .map and .filter. These iterators are actually used in a profesional setting all the time! That means, you must be confortable with using .map and .filter in order to apply them in your future job opprotunities. In this assignment, you will work with big JSON objects and apply iterators to narrow down to specific data.",
     },
   ];
   return { props: { lessonComponents } };
