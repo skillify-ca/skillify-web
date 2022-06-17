@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button } from "../../ui/Button";
 import * as Colyseus from "colyseus.js";
 import { Player } from "../../../pages/games";
-import { Modal, ModalTransition } from "react-simple-hook-modal";
 
 export interface CreateRoomProps {
   room: Colyseus.Room;
@@ -29,30 +28,30 @@ const Lobby = ({
   };
 
   return isLoading ? (
-    <div className=" flex flex-col justify-center items-center gap-4">
-      <p className="text-center text-2xl">Loading...</p>
+    <div className="flex flex-col items-center justify-center gap-4 ">
+      <p className="text-2xl text-center">Loading...</p>
 
-      <div className="loader bg-white p-5 rounded-full flex space-x-3">
-        <div className="w-5 h-5 bg-blue-400 shadow-sm rounded-full animate-bounce"></div>
-        <div className="w-5 h-5 bg-blue-400 shadow-sm  rounded-full animate-bounce"></div>
-        <div className="w-5 h-5 bg-blue-400  shadow-sm rounded-full animate-bounce"></div>
+      <div className="flex p-5 space-x-3 bg-white rounded-full loader">
+        <div className="w-5 h-5 bg-blue-400 rounded-full shadow-sm animate-bounce"></div>
+        <div className="w-5 h-5 bg-blue-400 rounded-full shadow-sm animate-bounce"></div>
+        <div className="w-5 h-5 bg-blue-400 rounded-full shadow-sm animate-bounce"></div>
       </div>
     </div>
   ) : (
     <div className="flex flex-col items-center gap-8">
-      <div className="relative flex flex-col justify-center  bg-gray-100 w-full sm:w-1/2">
-        <h1 className="text-3xl font-bold text-blue-400 border-b p-4">
+      <div className="relative flex flex-col justify-center w-full bg-gray-100 sm:w-1/2">
+        <h1 className="p-4 text-3xl font-bold text-blue-400 border-b">
           Lobby Room
         </h1>
-        <div className="bg-blue-400 opacity-75 text-center items-center">
+        <div className="items-center text-center bg-blue-400 opacity-75">
           {players.map((it) => (
-            <div className="text-xl font-bold border-b opacity-100 flex items-center justify-center p-4">
+            <div className="flex items-center justify-center p-4 text-xl font-bold border-b opacity-100">
               <h1>{it.name}</h1>
               {leader && leader == it.sessionId && (
                 <div className="ml-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5  w-5 text-center"
+                    className="w-5 h-5 text-center"
                     viewBox="0 0 20 20"
                     fill="red"
                   >
@@ -64,8 +63,8 @@ const Lobby = ({
           ))}
         </div>
 
-        <p className="bg-gray-500 text-white font-bold p-2">Code: {code}</p>
-        <p className="bg-gray-500 text-white font-bold p-2">
+        <p className="p-2 font-bold text-white bg-gray-500">Code: {code}</p>
+        <p className="p-2 font-bold text-white bg-gray-500">
           Lobby Capacity: {players.length}/4
         </p>
       </div>
@@ -77,14 +76,14 @@ const Lobby = ({
       ></Button>
       {players.length === 1 ? (
         <div className="flex flex-col gap-4">
-          <p className="font-bold text-blue-400 text-xl">
+          <p className="text-xl font-bold text-blue-400">
             Waiting for more Players
           </p>
-          <div className=" flex justify-center items-center ">
-            <div className="loader bg-white p-5 rounded-full flex space-x-3">
-              <div className="w-5 h-5 bg-blue-400 shadow-sm rounded-full animate-bounce"></div>
-              <div className="w-5 h-5 bg-blue-400 shadow-sm  rounded-full animate-bounce"></div>
-              <div className="w-5 h-5 bg-blue-400  shadow-sm rounded-full animate-bounce"></div>
+          <div className="flex items-center justify-center ">
+            <div className="flex p-5 space-x-3 bg-white rounded-full loader">
+              <div className="w-5 h-5 bg-blue-400 rounded-full shadow-sm animate-bounce"></div>
+              <div className="w-5 h-5 bg-blue-400 rounded-full shadow-sm animate-bounce"></div>
+              <div className="w-5 h-5 bg-blue-400 rounded-full shadow-sm animate-bounce"></div>
             </div>
           </div>
         </div>
@@ -99,55 +98,53 @@ const Lobby = ({
             />
           ) : (
             <div className="flex flex-col gap-4">
-              <p className="font-bold text-blue-400 text-xl">
+              <p className="text-xl font-bold text-blue-400">
                 Waiting for Lobby Leader to Start Game
               </p>
-              <div className=" flex justify-center items-center ">
-                <div className="loader bg-white p-5 rounded-full flex space-x-3">
-                  <div className="w-5 h-5 bg-blue-400 shadow-sm rounded-full animate-bounce"></div>
-                  <div className="w-5 h-5 bg-blue-400 shadow-sm  rounded-full animate-bounce"></div>
-                  <div className="w-5 h-5 bg-blue-400  shadow-sm rounded-full animate-bounce"></div>
+              <div className="flex items-center justify-center ">
+                <div className="flex p-5 space-x-3 bg-white rounded-full loader">
+                  <div className="w-5 h-5 bg-blue-400 rounded-full shadow-sm animate-bounce"></div>
+                  <div className="w-5 h-5 bg-blue-400 rounded-full shadow-sm animate-bounce"></div>
+                  <div className="w-5 h-5 bg-blue-400 rounded-full shadow-sm animate-bounce"></div>
                 </div>
               </div>
             </div>
           )}
         </div>
       )}
-      <Modal
-        id="game-over-model"
-        isOpen={instructionsPage}
-        transition={ModalTransition.SCALE}
-      >
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-row-reverse">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              onClick={() => setInstructionsPage(false)}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-          </div>
-          <div className="flex flex-col">
-            <p className="font-bold text-xl text-green-400 text-center">
-              Instructions
+      {instructionsPage && (
+        <div>
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-row-reverse">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                onClick={() => setInstructionsPage(false)}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <div className="flex flex-col">
+              <p className="text-xl font-bold text-center text-green-400">
+                Instructions
+              </p>
+            </div>
+            <p className="mt-2 text-xl leading-8 tracking-tight text-gray-900 ">
+              Battle Against your Friends by displaying your Math Skills to see
+              who has the better time! But be careful, there is a time penalty
+              for wrongly answered Questions!
             </p>
           </div>
-          <p className="mt-2 text-xl leading-8  tracking-tight text-gray-900 ">
-            Battle Against your Friends by displaying your Math Skills to see
-            who has the better time! But be careful, there is a time penalty for
-            wrongly answered Questions!
-          </p>
         </div>
-      </Modal>
+      )}
     </div>
   );
 };
