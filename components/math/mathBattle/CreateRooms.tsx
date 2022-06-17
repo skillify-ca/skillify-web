@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Modal, ModalTransition } from "react-simple-hook-modal";
-import "react-simple-hook-modal/dist/styles.css";
 import { Player } from "../../../pages/games";
 import { Button } from "../../ui/Button";
 import CoopNarrative from "./coop/CoopNarrative";
@@ -41,21 +39,21 @@ const CreateRoom = ({
   };
   return (
     <div>
-      <h1 className="text-5xl text-blue-600 font-bold text-center mb-4">
+      <h1 className="mb-4 text-5xl font-bold text-center text-blue-600">
         Math Battle
       </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-        <div className="flex flex-col bg-white items-center gap-8 p-8 shadow-lg rounded-lg">
-          <div className="flex items-center gap-8 flex-wrap">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+        <div className="flex flex-col items-center gap-8 p-8 bg-white rounded-lg shadow-lg text-murkrow">
+          <div className="flex flex-wrap items-center gap-8">
             <img
               src="/images/PVPIconBackground.png"
-              className="h-24 w-24"
+              className="w-24 h-24"
               width="300"
               height="300"
             />
-            <h2 className="text-5xl text-blue-600 font-bold">Create</h2>
+            <h2 className="text-5xl font-bold text-blue-600">Create</h2>
           </div>
-          <p className="text-lg mt-4 mb-3">
+          <p className="mt-4 mb-3 text-lg">
             Up to four players can go head to head against other Math Champs in
             this heated Versus Mode. Race each other to see who can get the most
             correct answers in the fastest time.
@@ -77,23 +75,23 @@ const CreateRoom = ({
           ></Button>
         </div>
         {SHOULD_SHOW_COOP && (
-          <div className="flex flex-col bg-white items-center justify-center gap-8 p-8 shadow-lg rounded-lg">
+          <div className="flex flex-col items-center justify-center gap-8 p-8 bg-white rounded-lg shadow-lg">
             <div className="items-center content-around">
               <img
                 src="/images/PVPIconBackground.png"
-                className="h-24 w-24"
+                className="w-24 h-24"
                 width="300"
                 height="300"
               />
             </div>
-            <h1 className="text-5xl text-blue-600 font-bold">Zombies</h1>
+            <h1 className="text-5xl font-bold text-blue-600">Zombies</h1>
             <Button
               backgroundColor="white"
               label="Rules"
               onClick={onRulesClick}
               textColor="black"
             />
-            <p className="text-xl mt-4 mb-3">
+            <p className="mt-4 mb-3 text-xl">
               Up to four players can play as a team to take down Frankenstein.
               The more questions you answer correctly as a team, the faster his
               health decreases.
@@ -115,15 +113,15 @@ const CreateRoom = ({
             ></Button>
           </div>
         )}
-        <div className="flex flex-col bg-white p-8 shadow-lg rounded-lg col-span-1 items-center gap-8">
+        <div className="flex flex-col items-center col-span-1 gap-8 p-8 bg-white rounded-lg shadow-lg">
           <div className="flex items-center gap-8">
             <img
               src="/images/PVPIconBackground.png"
-              className="h-24 w-24"
+              className="w-24 h-24"
               width="300"
               height="300"
             />
-            <h1 className="text-5xl text-blue-600 font-bold">Join</h1>
+            <h1 className="text-5xl font-bold text-blue-600">Join</h1>
           </div>
           <input
             id="guess"
@@ -151,14 +149,11 @@ const CreateRoom = ({
           ></Button>
         </div>
       </div>
-      <Modal
-        id="game-over-model"
-        isOpen={isCoopRulesModalShowing}
-        transition={ModalTransition.SCALE}
-        onBackdropClick={onRulesClick}
-      >
-        <CoopNarrative close={onRulesClick} />
-      </Modal>
+      {isCoopRulesModalShowing && (
+        <div>
+          <CoopNarrative close={onRulesClick} />
+        </div>
+      )}
     </div>
   );
 };

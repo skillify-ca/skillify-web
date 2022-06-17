@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import CardColorProblem from "../../../components/finance/credit-card/CardColorProblem";
-import MultipleChoiceWordProblem from "../../../components/finance/credit-card/MultipleChoiceWordProblem";
-import CreditCardWordProblem from "../../../components/finance/credit-card/CreditCardWordProblem";
-import CreditDebitInfo from "../../../components/finance/credit-card/CreditDebitInfo";
-import DebitCardWordProblem from "../../../components/finance/credit-card/DebitCardWordProblem";
-import { Button } from "../../../components/ui/Button";
-import CreditCardProgressTracker from "../../../components/finance/credit-card/CreditCardProgressTracker";
-import CreditCardFinalResults from "../../../components/finance/credit-card/CreditCardFinalResults";
+import CardColorProblem from "../../../../../components/finance/credit-card/CardColorProblem";
+import CreditCardFinalResults from "../../../../../components/finance/credit-card/CreditCardFinalResults";
+import CreditCardProgressTracker from "../../../../../components/finance/credit-card/CreditCardProgressTracker";
+import CreditCardWordProblem from "../../../../../components/finance/credit-card/CreditCardWordProblem";
+import CreditDebitInfo from "../../../../../components/finance/credit-card/CreditDebitInfo";
+import DebitCardWordProblem from "../../../../../components/finance/credit-card/DebitCardWordProblem";
+import MultipleChoiceWordProblem from "../../../../../components/finance/credit-card/MultipleChoiceWordProblem";
+import { Button } from "../../../../../components/ui/Button";
 
 export default function CreditCard() {
   enum STAGE {
@@ -439,7 +439,7 @@ export default function CreditCard() {
             isCorrectQ11={isCorrectQ11}
             setIsCorrectQ11={setIsCorrectQ11}
           />
-          <div className="flex flex-row space-x-8 justify-center">
+          <div className="flex flex-row justify-center space-x-8">
             <Button
               label="submit"
               backgroundColor="yellow"
@@ -546,7 +546,7 @@ export default function CreditCard() {
             setIsCreditCorrectQ15={setIsCreditCorrectQ15}
           />
           ;
-          <div className="flex flex-row space-x-8 justify-center">
+          <div className="flex flex-row justify-center space-x-8">
             <Button
               label="submit"
               backgroundColor="yellow"
@@ -635,7 +635,7 @@ export default function CreditCard() {
             setIsDebitCorrectQ12={setIsDebitCorrectQ12}
           />
           ;{" "}
-          <div className="flex flex-row space-x-8 justify-center">
+          <div className="flex flex-row justify-center space-x-8">
             <Button
               label="submit"
               backgroundColor="yellow"
@@ -676,7 +676,7 @@ export default function CreditCard() {
             setIsMultiCorrectQ4={setIsMultiCorrectQ4}
           />
           ;
-          <div className="flex flex-row space-x-8 justify-center">
+          <div className="flex flex-row justify-center space-x-8">
             <Button
               label="submit"
               backgroundColor="yellow"
@@ -753,7 +753,7 @@ export default function CreditCard() {
             setIsCardCorrectQ10={setIsCardCorrectQ10}
           />
           ;{" "}
-          <div className="flex flex-row space-x-8 justify-center">
+          <div className="flex flex-row justify-center space-x-8">
             <Button
               label="submit"
               backgroundColor="yellow"
@@ -770,7 +770,7 @@ export default function CreditCard() {
   };
 
   return (
-    <div className={"bg-white"}>
+    <div className={"bg-white text-murkrow"}>
       <CreditCardProgressTracker
         score={scoreCounter}
         updateScore={setScoreCounter}
@@ -787,7 +787,7 @@ export default function CreditCard() {
           />
         </div>
       ) : stage == STAGE.FinalResults ? (
-        <div className="flex flex-row space-x-8 justify-center p-12">
+        <div className="flex flex-row justify-center p-12 space-x-8">
           <Button
             backgroundColor="purple"
             textColor="white"
@@ -797,7 +797,7 @@ export default function CreditCard() {
           <Button backgroundColor="yellow" textColor="white" label="Submit" />
         </div>
       ) : (
-        <div className="flex flex-row space-x-8 justify-center p-12">
+        <div className="flex flex-row justify-center p-12 space-x-8">
           <Button
             backgroundColor="purple"
             textColor="white"

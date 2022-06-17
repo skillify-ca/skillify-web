@@ -13,28 +13,20 @@ const SkillCard = ({ loading, userSkillData, skill }) => {
       <div
         onMouseEnter={() => setIsSelected(true)}
         onMouseLeave={() => setIsSelected(false)}
-        className={`${
-          !skill.published
-            ? "opacity-50"
-            : " cursor-pointer transform transition duration-200 hover:bg-gray-200"
-        } bg-gray-100 mb-4 grid grid-cols-12 items-center h-full rounded-xl shadow-lg`}
+        className={`${"cursor-pointer transform transition duration-200 hover:bg-gray-200"} bg-gray-100 mb-4 grid grid-cols-12 items-center h-full rounded-xl shadow-lg`}
       >
-        <div className="col-span-2 h-full rounded-l-lg ml-4">
+        <div className="h-full col-span-2 ml-4 rounded-l-lg">
           <img
-            className="object-scale-down col-span-2 h-full rounded-l-lg"
-            src={
-              !skill.published || !skill.image
-                ? "/images/skills/lock.png"
-                : skill.image
-            }
+            className="object-scale-down h-full col-span-2 rounded-l-lg"
+            src={!skill.image ? "/images/skills/lock.png" : skill.image}
           />
         </div>
-        <div className="col-span-8  h-full">
-          <p className="h-full text-center p-4 flex col-span-8  items-center justify-center">
+        <div className="h-full col-span-8">
+          <p className="flex items-center justify-center h-full col-span-8 p-4 text-center text-murkrow">
             {`I can ${skill.description}`}
           </p>
         </div>
-        <div className="col-span-2 h-full rounded-r-lg">
+        <div className="h-full col-span-2 rounded-r-lg">
           <p
             className={` col-span-2 justify-center rounded-r-lg text-center flex items-center h-full text-4xl mb-4 transform transition-all ease-in-out duration-200 ${
               isSelected ? "-rotate-45 scale-110" : ""
