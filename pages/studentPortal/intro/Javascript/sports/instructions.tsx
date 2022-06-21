@@ -1,30 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
 import { Button } from "../../../../../components/ui/Button";
 
 const JS11 = ({ lessonComponents }) => {
+  const playerDataURL =
+    "https://api.sportsdata.io/api/nba/fantasy/json/Players?key=2d5681816c7c4474a99f125654385a8d";
+
+  const [playerData, setPlayerData] = useState(null);
+
+  useEffect(() => {
+    fetch(playerDataURL)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        setPlayerData(data);
+      });
+  }, []);
+
   return (
     <>
       <div className="col-span-7">
         <div className="grid h-full grid-cols-1 p-8 space-y-4 text-gray-700 bg-gray-100">
-          <h1 className="font-bold">Challenge 0 (warmup)</h1>
+          <h1 className="font-bold text-2xl">NBA Data Challenge</h1>
           <p>
-            Copy the data for NBA players from here
-            <a
-              className="text-blue"
-              href="https://api.sportsdata.io/api/nba/fantasy/json/Players?key=2d5681816c7c4474a99f125654385a8d"
-            >
+            The following challenges will test your ability to write javascript
+            functions that manipulate JSON data to produce insights on NBA data
+          </p>
+
+          <h1 className="font-bold">Warmup Challenge</h1>
+          <p>
+            The following dataset contains a list of all NBA players
+            <a className="text-red-500" href={playerDataURL}>
               {" "}
               (link)
             </a>
           </p>
 
           <p>
-            This data represents an array of projected fantasy stats from last
-            season. Paste that data into your code, and write a function that
-            calculates the average height of all players who play for the
-            Raptors
+            Using the .map() and .filter() methods, display a list of all
+            players on the Toronto Raptors.
           </p>
+          <p className="space-y-2">
+            For example, here is a list of a few players from the Golden State
+            Warriors:
+            {playerData
+              .filter((player) => player.Team === "GS")
+              .slice(0, 5)
+              .map((it) => {
+                return (
+                  <p className="ml-5">{it.FirstName + " " + it.LastName}</p>
+                );
+              })}
+          </p>
+
           <h1 className="font-bold">Challenge 1 </h1>
           <p>
             Write a function that returns the player name who was projected to
