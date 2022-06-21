@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
-import { Button } from "../../../../components/ui/Button";
+import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
+import { Button } from "../../../../../components/ui/Button";
 
 const JS_A1 = () => {
   return (
@@ -22,7 +22,9 @@ const JS_A1 = () => {
         ></iframe>
       </div>
       <div className="flex h-full mt-12 sm:justify-end">
-        <Link href={"/studentPortal/intro/Javascript/9"}>
+        <Link
+          href={"/studentPortal/intro/Javascript/pokemon/submit-assignment"}
+        >
           <Button label="Continue" disabled={false} />
         </Link>
       </div>

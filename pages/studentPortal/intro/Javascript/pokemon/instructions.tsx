@@ -1,9 +1,6 @@
 import React from "react";
-import { Button } from "../../../../components/ui/Button";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
-import LessonComponent, {
-  LessonComponentData,
-} from "../../../../components/coding/studentPortal/LessonComponent";
+import ProgressBar from "../../../../../components/ProgressBar";
+import { Button } from "../../../../../components/ui/Button";
 
 const JS8 = ({ lessonComponents }) => {
   return (
@@ -81,7 +78,7 @@ const JS8 = ({ lessonComponents }) => {
             </p>
           </div>
           <div className="flex h-full mt-12 sm:justify-end">
-            <a href={"/studentPortal/intro/Javascript/JavascriptA1-video"}>
+            <a href={"/studentPortal/intro/Javascript/pokemon/video-hint"}>
               <Button label="Continue" disabled={false} />
             </a>
           </div>

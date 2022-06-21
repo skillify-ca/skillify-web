@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "../../../../components/ui/Button";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
+import { Button } from "../../../../../components/ui/Button";
+import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
 
 const JS9 = () => {
   return (
@@ -24,7 +24,7 @@ const JS9 = () => {
               </div>
             </div>
             <div className="flex h-full mt-12 sm:justify-end">
-              <a href={"/studentPortal/intro/Javascript/10"}>
+              <a href={"/studentPortal/intro/Javascript/sports/pre-requisites"}>
                 <Button label="Continue" disabled={false} />
               </a>
             </div>

@@ -1,15 +1,15 @@
 import React from "react";
-import { Button } from "../../../../components/ui/Button";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 import LessonComponent, {
   LessonComponentData,
-} from "../../../../components/coding/studentPortal/LessonComponent";
+} from "../../../../../components/coding/studentPortal/LessonComponent";
+import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
+import { Button } from "../../../../../components/ui/Button";
 
 const JS10 = ({ lessonComponents }) => {
   return (
     <>
       <div className="col-span-7">
-        <div className="grid h-full grid-cols-1 space-y-4 bg-gray-100 text-gray-700 p-32">
+        <div className="grid h-full grid-cols-1 p-4 space-y-4 text-gray-700 bg-gray-100">
           <ProgressBar completed={100} />
           {lessonComponents.map((it) => (
             <LessonComponent data={it} />
@@ -29,7 +29,7 @@ const JS10 = ({ lessonComponents }) => {
             <p> After these 2 steps you should be good to go! </p>
           </div>
           <div className="flex h-full mt-12 sm:justify-end">
-            <a href={"/studentPortal/intro/Javascript/11"}>
+            <a href={"/studentPortal/intro/Javascript/sports/instructions"}>
               <Button label="Continue" disabled={false} />
             </a>
           </div>

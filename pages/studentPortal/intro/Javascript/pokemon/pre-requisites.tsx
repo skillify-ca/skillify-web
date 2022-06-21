@@ -1,9 +1,9 @@
 import React from "react";
-import { Button } from "../../../../components/ui/Button";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 import LessonComponent, {
   LessonComponentData,
-} from "../../../../components/coding/studentPortal/LessonComponent";
+} from "../../../../../components/coding/studentPortal/LessonComponent";
+import ProgressBar from "../../../../../components/ProgressBar";
+import { Button } from "../../../../../components/ui/Button";
 
 const JS7 = ({ lessonComponents }) => {
   return (
@@ -40,7 +40,7 @@ const JS7 = ({ lessonComponents }) => {
             <p> After these 2 steps you should be good to go! </p>
           </div>
           <div className="flex h-full mt-12 sm:justify-end">
-            <a href={"/studentPortal/intro/Javascript/8"}>
+            <a href={"/studentPortal/intro/Javascript/pokemon/instructions"}>
               <Button label="Continue" disabled={false} />
             </a>
           </div>
@@ -57,8 +57,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text:
-        "In the previous modules, you were introduced to the concept of iterators, which include, .map and .filter. These iterators are actually used in a profesional setting all the time! That means, you must be confortable with using .map and .filter in order to apply them in your future job opprotunities. In this assignment, you will work with big JSON objects and apply iterators to narrow down to specific data.",
+      text: "In the previous modules, you were introduced to the concept of iterators, which include, .map and .filter. These iterators are actually used in a profesional setting all the time! That means, you must be confortable with using .map and .filter in order to apply them in your future job opprotunities. In this assignment, you will work with big JSON objects and apply iterators to narrow down to specific data.",
     },
   ];
   return { props: { lessonComponents } };

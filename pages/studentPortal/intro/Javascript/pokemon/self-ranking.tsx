@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "../../../../components/ui/Button";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
+import { Button } from "../../../../../components/ui/Button";
+import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
 
 const JS6 = () => {
   return (
@@ -36,7 +36,9 @@ const JS6 = () => {
               </div>
             </div>
             <div className="flex h-full mt-12 sm:justify-end">
-              <a href={"/studentPortal/intro/Javascript/7"}>
+              <a
+                href={"/studentPortal/intro/Javascript/pokemon/pre-requisites"}
+              >
                 <Button label="Continue" disabled={false} />
               </a>
             </div>

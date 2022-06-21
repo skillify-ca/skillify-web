@@ -1,15 +1,12 @@
 import React from "react";
-import { Button } from "../../../../components/ui/Button";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
-import LessonComponent, {
-  LessonComponentData,
-} from "../../../../components/coding/studentPortal/LessonComponent";
+import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
+import { Button } from "../../../../../components/ui/Button";
 
 const JS11 = ({ lessonComponents }) => {
   return (
     <>
       <div className="col-span-7">
-        <div className="grid h-full grid-cols-1 p-8 space-y-4 bg-gray-100 text-gray-700">
+        <div className="grid h-full grid-cols-1 p-8 space-y-4 text-gray-700 bg-gray-100">
           <ProgressBar completed={100} />
           <p>
             {" "}
@@ -69,7 +66,9 @@ const JS11 = ({ lessonComponents }) => {
             </p>
           </div>
           <div className="flex h-full mt-12 sm:justify-end">
-            <a href={"/studentPortal/intro/Javascript/JavascriptA2-video"}>
+            <a
+              href={"/studentPortal/intro/Javascript/sports/submit-assignment"}
+            >
               <Button label="Continue" disabled={false} />
             </a>
           </div>

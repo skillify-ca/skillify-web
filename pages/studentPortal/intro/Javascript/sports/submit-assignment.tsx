@@ -1,12 +1,12 @@
 import React from "react";
-import { Button } from "../../../../components/ui/Button";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
+import { Button } from "../../../../../components/ui/Button";
+import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
-import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
-import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
-import { useAuth } from "../../../../lib/authContext";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../../graphql/coding/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../../graphql/coding/fetchUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../../graphql/coding/unlockUserIntroNode";
+import { useAuth } from "../../../../../lib/authContext";
 
 const JS12 = () => {
   const { user } = useAuth();
@@ -18,14 +18,14 @@ const JS12 = () => {
     completeUserNode({
       variables: {
         user_id: user.uid,
-        node_id: 46,
+        node_id: 47,
         completed: true,
       },
     }).then((res) => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
-          node_id: 47,
+          node_id: 53,
           locked: false,
         },
         refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
@@ -42,13 +42,13 @@ const JS12 = () => {
           <div className="grid grid-cols-1">
             <div className="pt-4 ">
               <div
-                className="bg-charmander text-center font-bold p-12 rounded-lg cursor-pointer"
+                className="p-12 font-bold text-center rounded-lg cursor-pointer bg-charmander"
                 onClick={handleContinue}
               >
                 <p>
                   {" "}
-                  Click here if you have submitted BOTH the Javasxript
-                  Assignments to the Slack channel
+                  Click here if you have submitted the Sports Javascript
+                  Assignment to the Slack channel
                 </p>
               </div>
             </div>
