@@ -7,71 +7,56 @@ const JS11 = ({ lessonComponents }) => {
     <>
       <div className="col-span-7">
         <div className="grid h-full grid-cols-1 p-8 space-y-4 text-gray-700 bg-gray-100">
-          <ProgressBar completed={100} />
+          <h1 className="font-bold">Challenge 0 (warmup)</h1>
           <p>
-            {" "}
-            <b>Objective:</b> Write a javascript function that takes this NBA
-            Box Score JSON and returns the pid of the player who scored the most
-            points in that game.
-          </p>
-          <h1 className="text-xl font-bold"> Steps in the right Direction:</h1>
-          <div className="flex-row">
-            <h1 className="text-charmander">Step 1:</h1>
-            <p>
-              {" "}
-              You are handed a very large JSON object containing a lot of data.
-              However, the main properties we are looking for in this JSON
-              object is "pd". This is the array of the 4 periods in the
-              Basketball game.
-            </p>
-          </div>
-          <div>
-            <p className="text-charmander">Step 2:</p>
-            <p>
-              Within this "pd" array, we can see that the first index of the
-              array in this case index 0, is all the plays that happen in period
-              1.
-            </p>
-          </div>
-          <div>
-            <p className="text-charmander">Step 3:</p>
-            <p>
-              Note that plays is found in the "pla" array. There are many
-              different types of plays in Basketball. Anything from scoring a
-              bucket, jump-off, misses, are all considered plays. The way we
-              differentiate between different plays is by using the "etype"
-              property. Since we are only concerned about the scored buckets, we
-              will only consider the plays with the etype of 15.
-            </p>
-          </div>
-          <div>
-            <p className="text-charmander">Step 4:</p>
-            <p>
-              We must now figure out a way to fiter only the plays of etype of
-              15.
-            </p>
-          </div>
-          <div>
-            <p className="text-charmander">Step 5:</p>
-            <p>
-              Now we must keep track of which pid scored how many points and
-              return the pid that scored the most.
-            </p>
-          </div>
-          <div>
-            <p className="text-charmander">Step 6:</p>
-            <p>
-              There you have it! Part 2 of the Javascript Assignment is
-              Complete!
-            </p>
-          </div>
-          <div className="flex h-full mt-12 sm:justify-end">
+            Copy the data for NBA players from here
             <a
-              href={"/studentPortal/intro/Javascript/sports/submit-assignment"}
+              className="text-blue"
+              href="https://api.sportsdata.io/api/nba/fantasy/json/Players?key=2d5681816c7c4474a99f125654385a8d"
             >
-              <Button label="Continue" disabled={false} />
+              {" "}
+              (link)
             </a>
-          </div>
+          </p>
+
+          <p>
+            This data represents an array of projected fantasy stats from last
+            season. Paste that data into your code, and write a function that
+            calculates the average height of all players who play for the
+            Raptors
+          </p>
+          <h1 className="font-bold">Challenge 1 </h1>
+          <p>
+            Write a function that returns the player name who was projected to
+            make the most number of free throws.
+          </p>
+          <h1 className="font-bold">Challenge 2 </h1>
+          <p>
+            Write a function that can take a player from this array, analyze
+            their fantasy stats and return a rating from 1 to 100 for that
+            player. You have creativity here on how you want to come up with
+            that rating but base it off their stats.
+          </p>
+          <h1 className="font-bold">Challenge 3 </h1>
+          <p>
+            Write a function that sorts this array based on your rating function
+            and print out the top 10 players. // (hint. use map() to add a new
+            rating property to each item in the array, then sort by that
+            property)
+          </p>
+          <h1 className="font-bold">Challenge 4 </h1>
+          <p>
+            Adapt your rating function to take in a boolean parameter called
+            isFreeThrowPunt your rating function should return a different
+            rating depending on this parameter being true or false (hint. an if
+            statement will be helpful here). Sort the players
+          </p>
+          <h1 className="font-bold">Challenge 5 </h1>
+          <p>
+            Adapt your rating function to support other types of punt categories
+            by changing your boolean parameter to a string parameter (hint. more
+            if statements would be needed to support each type of punt category)
+          </p>
         </div>
       </div>
     </>
