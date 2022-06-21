@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
 import { Button } from "../../../../../components/ui/Button";
+import { ArrowCircleDownIcon, ArrowCircleUpIcon } from "@heroicons/react/solid";
 
 const JS11 = ({ lessonComponents }) => {
   const playerDataURL =
@@ -38,15 +39,23 @@ const JS11 = ({ lessonComponents }) => {
           </p>
           <div className="flex flex-row space-x-4">
             <h1 className="font-bold">Warmup Challenge</h1>
-            <Button
-              label={warmUpChallengeVisible ? "-" : "+"}
-              size={"small"}
-              backgroundColor={"blue"}
-              textColor={"yellow"}
-              onClick={() =>
-                setWarmUpChallengeVisible((prevValue) => !prevValue)
-              }
-            />
+            {warmUpChallengeVisible ? (
+              <ArrowCircleUpIcon
+                className="h-5 w-5"
+                color="orange"
+                onClick={() =>
+                  setWarmUpChallengeVisible((prevValue) => !prevValue)
+                }
+              />
+            ) : (
+              <ArrowCircleDownIcon
+                className="h-5 w-5"
+                color="orange"
+                onClick={() =>
+                  setWarmUpChallengeVisible((prevValue) => !prevValue)
+                }
+              />
+            )}
           </div>
 
           {warmUpChallengeVisible && (
@@ -83,13 +92,23 @@ const JS11 = ({ lessonComponents }) => {
 
           <div className="flex flex-row space-x-4">
             <h1 className="font-bold">Challenge One</h1>
-            <Button
-              label={challengeOneVisible ? "-" : "+"}
-              size={"small"}
-              backgroundColor={"blue"}
-              textColor={"yellow"}
-              onClick={() => setChallengeOneVisible((prevValue) => !prevValue)}
-            />
+            {challengeOneVisible ? (
+              <ArrowCircleUpIcon
+                className="h-5 w-5"
+                color="orange"
+                onClick={() =>
+                  setChallengeOneVisible((prevValue) => !prevValue)
+                }
+              />
+            ) : (
+              <ArrowCircleDownIcon
+                className="h-5 w-5"
+                color="orange"
+                onClick={() =>
+                  setChallengeOneVisible((prevValue) => !prevValue)
+                }
+              />
+            )}
           </div>
 
           {challengeOneVisible && (
@@ -101,13 +120,23 @@ const JS11 = ({ lessonComponents }) => {
 
           <div className="flex flex-row space-x-4">
             <h1 className="font-bold">Challenge Two</h1>
-            <Button
-              label={challengeTwoVisible ? "-" : "+"}
-              size={"small"}
-              backgroundColor={"blue"}
-              textColor={"yellow"}
-              onClick={() => setChallengeTwoVisible((prevValue) => !prevValue)}
-            />
+            {challengeTwoVisible ? (
+              <ArrowCircleUpIcon
+                className="h-5 w-5"
+                color="orange"
+                onClick={() =>
+                  setChallengeTwoVisible((prevValue) => !prevValue)
+                }
+              />
+            ) : (
+              <ArrowCircleDownIcon
+                className="h-5 w-5"
+                color="orange"
+                onClick={() =>
+                  setChallengeTwoVisible((prevValue) => !prevValue)
+                }
+              />
+            )}
           </div>
 
           {challengeTwoVisible && (
@@ -121,15 +150,23 @@ const JS11 = ({ lessonComponents }) => {
 
           <div className="flex flex-row space-x-4">
             <h1 className="font-bold">Challenge Three</h1>
-            <Button
-              label={challengeThreeVisible ? "-" : "+"}
-              size={"small"}
-              backgroundColor={"blue"}
-              textColor={"yellow"}
-              onClick={() =>
-                setChallengeThreeVisible((prevValue) => !prevValue)
-              }
-            />
+            {challengeThreeVisible ? (
+              <ArrowCircleUpIcon
+                className="h-5 w-5"
+                color="orange"
+                onClick={() =>
+                  setChallengeThreeVisible((prevValue) => !prevValue)
+                }
+              />
+            ) : (
+              <ArrowCircleDownIcon
+                className="h-5 w-5"
+                color="orange"
+                onClick={() =>
+                  setChallengeThreeVisible((prevValue) => !prevValue)
+                }
+              />
+            )}
           </div>
 
           {challengeThreeVisible && (
@@ -143,13 +180,23 @@ const JS11 = ({ lessonComponents }) => {
 
           <div className="flex flex-row space-x-4">
             <h1 className="font-bold">Challenge Four</h1>
-            <Button
-              label={challengeFourVisible ? "-" : "+"}
-              size={"small"}
-              backgroundColor={"blue"}
-              textColor={"yellow"}
-              onClick={() => setChallengeFourVisible((prevValue) => !prevValue)}
-            />
+            {challengeFourVisible ? (
+              <ArrowCircleUpIcon
+                className="h-5 w-5"
+                color="orange"
+                onClick={() =>
+                  setChallengeFourVisible((prevValue) => !prevValue)
+                }
+              />
+            ) : (
+              <ArrowCircleDownIcon
+                className="h-5 w-5"
+                color="orange"
+                onClick={() =>
+                  setChallengeFourVisible((prevValue) => !prevValue)
+                }
+              />
+            )}
           </div>
 
           {challengeFourVisible && (
@@ -163,13 +210,23 @@ const JS11 = ({ lessonComponents }) => {
 
           <div className="flex flex-row space-x-4">
             <h1 className="font-bold">Challenge Five</h1>
-            <Button
-              label={challengeFiveVisible ? "-" : "+"}
-              size={"small"}
-              backgroundColor={"blue"}
-              textColor={"yellow"}
-              onClick={() => setChallengeFiveVisible((prevValue) => !prevValue)}
-            />
+            {challengeFiveVisible ? (
+              <ArrowCircleUpIcon
+                className="h-5 w-5"
+                color="orange"
+                onClick={() =>
+                  setChallengeFiveVisible((prevValue) => !prevValue)
+                }
+              />
+            ) : (
+              <ArrowCircleDownIcon
+                className="h-5 w-5"
+                color="orange"
+                onClick={() =>
+                  setChallengeFiveVisible((prevValue) => !prevValue)
+                }
+              />
+            )}
           </div>
           {challengeFiveVisible && (
             <p>
