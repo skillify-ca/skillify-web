@@ -63,10 +63,28 @@ const Objects = ({ lessonComponents }) => {
 export async function getServerSideProps({ params }) {
   const resources: Resource[] = [
     {
-      title: "Codecademy",
+      title: "Codecademy Lesson: Objects",
       image:
         "https://icons-for-free.com/download-icon-codecademy-1324440139458906558_512.png",
-      link: "https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-objects/cheatsheet",
+      link:
+        "https://www.codecademy.com/courses/introduction-to-javascript/lessons/objects/exercises/intro",
+      description:
+        "This is an introduction into what objects are in Javascript",
+    },
+    {
+      title: "Codecademy Lesson: Objects",
+      image:
+        "https://icons-for-free.com/download-icon-codecademy-1324440139458906558_512.png",
+      link:
+        "https://www.codecademy.com/courses/introduction-to-javascript/lessons/advanced-objects/exercises/adv-intro",
+      description: "This is a deeper dive into what objects are in Javascript",
+    },
+    {
+      title: "Codecademy Objects: Cheatsheet",
+      image:
+        "https://icons-for-free.com/download-icon-codecademy-1324440139458906558_512.png",
+      link:
+        "https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-objects/cheatsheet",
       description: "This is a deeper dive into what objects are in Javascript",
     },
     {
@@ -84,7 +102,8 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Objects are a data type that allows us to store many properties under one variable. For example, if we wanted to store a variable for a human. We know that humans have many properties/feature that make them unique such as height, weight, eye-colour, and much more. By storing these features under a data type of an object allows us to have access to the data fields that make a human such as their height.",
+      text:
+        "Objects are a data type that allows us to store many properties under one variable. For example, if we wanted to store a variable for a human. We know that humans have many properties/feature that make them unique such as height, weight, eye-colour, and much more. By storing these features under a data type of an object allows us to have access to the data fields that make a human such as their height.",
     },
     {
       component: "resource-list",
