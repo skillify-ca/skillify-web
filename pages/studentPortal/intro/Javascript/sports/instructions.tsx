@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
-import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
+import {
+  ArrowCircleDownIcon,
+  ArrowCircleUpIcon,
+  QuestionMarkCircleIcon,
+} from "@heroicons/react/solid";
 import { Button } from "../../../../../components/ui/Button";
-import { ArrowCircleDownIcon, ArrowCircleUpIcon } from "@heroicons/react/solid";
 
 const JS11 = ({ lessonComponents }) => {
   const playerDataURL =
     "https://api.sportsdata.io/api/nba/fantasy/json/Players?key=2d5681816c7c4474a99f125654385a8d";
+
+  const fantasyProjectionDataURL =
+    "https://api.sportsdata.io/api/nba/fantasy/json/PlayerSeasonProjectionStats/2021?key=2d5681816c7c4474a99f125654385a8d";
 
   const [playerData, setPlayerData] = useState(null);
 
@@ -15,6 +21,7 @@ const JS11 = ({ lessonComponents }) => {
   const [challengeThreeVisible, setChallengeThreeVisible] = useState(false);
   const [challengeFourVisible, setChallengeFourVisible] = useState(false);
   const [challengeFiveVisible, setChallengeFiveVisible] = useState(false);
+  const [warmUpHintVisible, setWarmUpHintVisible] = useState(false);
 
   useEffect(() => {
     fetch(playerDataURL)
@@ -34,9 +41,28 @@ const JS11 = ({ lessonComponents }) => {
         <div className="grid h-full grid-cols-1 p-8 space-y-4 text-gray-700 bg-gray-100">
           <h1 className="font-bold text-2xl">NBA Data Challenge</h1>
           <p>
-            The following challenges will test your ability to write javascript
+            The following challenges will test your ability to write Javascript
             functions that manipulate JSON data to produce insights on NBA data
           </p>
+          <ul className="list-disc list-inside">
+            <li>
+              For the Warmup challenge, use the following dataset which contains
+              a list of all NBA players{" "}
+              <a className="text-red-500" href={playerDataURL}>
+                {" "}
+                (link)
+              </a>{" "}
+            </li>
+            <li>
+              For challenges 1-5, use the following data which represents an
+              array of projected fantasy stats from last season{" "}
+              <a href={fantasyProjectionDataURL} className="text-red-500">
+                (link){" "}
+              </a>
+            </li>
+            <li>Click on the "?" icon to toggle a hint!</li>
+          </ul>
+
           <div className="flex flex-row space-x-4">
             <h1 className="font-bold">Warmup Challenge</h1>
             {warmUpChallengeVisible ? (
@@ -60,35 +86,32 @@ const JS11 = ({ lessonComponents }) => {
 
           {warmUpChallengeVisible && (
             <div className="space-y-4">
-              <p>
-                The following dataset contains a list of all NBA players
-                <a className="text-red-500" href={playerDataURL}>
-                  {" "}
-                  (link)
-                </a>
+              <p className="flex flex-row">
+                Write a function that finds the average height of all players on
+                the Toronto Raptors
+                <QuestionMarkCircleIcon
+                  className="h-5 w-5 ml-2"
+                  color={warmUpHintVisible ? "red" : "green"}
+                  onClick={() => {
+                    setWarmUpHintVisible((prevValue) => !prevValue);
+                  }}
+                />
               </p>
 
-              <p>
-                Using the .map() and .filter() methods, display a list of all
-                players on the Toronto Raptors.
-              </p>
-              <p className="space-y-2">
-                For example, here is a list of a few players from the Golden
-                State Warriors:
-                {playerData &&
-                  playerData
-                    .filter((player) => player.Team === "GS")
-                    .slice(0, 5)
-                    .map((it) => {
-                      return (
-                        <p className="ml-5">
-                          {it.FirstName + " " + it.LastName}
-                        </p>
-                      );
-                    })}
-              </p>
+              {warmUpHintVisible && (
+                <p className="space-y-2 border-4 border-blue-900 p-4 border-dashed">
+                  Here is some sample code that lists all players on the Golden
+                  State Warriors:
+                  <img
+                    className="p-4"
+                    src="/images/warmUpChallengeExample.png"
+                  ></img>
+                </p>
+              )}
             </div>
           )}
+
+          <p></p>
 
           <div className="flex flex-row space-x-4">
             <h1 className="font-bold">Challenge One</h1>
