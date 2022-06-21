@@ -1,5 +1,4 @@
-function paceCalculator(distanceMiles, timeHours, timeMinutes) {
-  const totalTimeMinutes = timeHours * 60 + timeMinutes;
+function paceCalculator(distanceMiles, totalTimeMinutes) {
   const pacePerMile = totalTimeMinutes / distanceMiles;
 
   const pacePerMileHours = Math.floor(pacePerMile).toString();
@@ -12,7 +11,7 @@ function paceCalculator(distanceMiles, timeHours, timeMinutes) {
   }
 }
 
-console.log(paceCalculator(26.2, 3, 45));
-console.log(paceCalculator(13.1, 1, 7));
-console.log(paceCalculator(6.1, 0, 40));
-console.log(paceCalculator(6.1, 0, 31));
+console.log(paceCalculator(26.2, 225)); // 8:35
+console.log(paceCalculator(13.1, 67)); // 5:07
+console.log(paceCalculator(6.1, 40)); // 6:33
+console.log(paceCalculator(6.1, 31)); // 5:05
