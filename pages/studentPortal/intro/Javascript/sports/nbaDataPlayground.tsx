@@ -16,18 +16,20 @@ const nbaDataPlayground = ({ lessonComponents }) => {
   const [playerData, setPlayerData] = useState(null);
   const [fantasyProjectionData, setFantasyProjectionData] = useState(null);
 
-  const createPlayerRating = (fantasyProjectionData) => {
-    const sampleData = fantasyProjectionData.filter(
-      (player) => player.Team === "ATL"
-    );
+  const findTopXbyState = (
+    fantasyProjectionData,
+    rankStatistic,
+    minGames,
+    numPlayers
+  ) => {
+    const topXArray = fantasyProjectionData
+      .filter((criteria) => criteria.Games > minGames)
+      .sort(
+        (a, b) => parseFloat(b[rankStatistic]) - parseFloat(a[rankStatistic])
+      )
+      .slice(0, numPlayers);
 
-    return sampleData.map((player) => {
-      return {
-        name: player.Name,
-        Team: player.Team,
-        gameStarted: player.Started,
-      };
-    });
+    return topXArray;
   };
 
   useEffect(() => {
@@ -76,12 +78,40 @@ const nbaDataPlayground = ({ lessonComponents }) => {
                 })}
           </div>
           <div>
-            <p className="font-bold">
-              Player Name Projected To Make Most Free Throws
-            </p>
-            {fantasyProjectionData
-              ? JSON.stringify(createPlayerRating(fantasyProjectionData))
-              : "no data"}
+            <p className="font-bold">Players with Most Turnovers </p>
+            {fantasyProjectionData &&
+              findTopXbyState(fantasyProjectionData, "Turnovers", 25, 10).map(
+                (it) => {
+                  return (
+                    <div
+                      className="flex flex-row space-x-2 justify-evenly"
+                      key={it}
+                    >
+                      <p>{it.Name}</p> <p>{it.Turnovers}</p>{" "}
+                    </div>
+                  );
+                }
+              )}
+          </div>
+          <div>
+            <p className="font-bold">Players with Most 3pt FG </p>
+            {fantasyProjectionData &&
+              findTopXbyState(
+                fantasyProjectionData,
+                "ThreePointersMade",
+                25,
+                10
+              ).map((it) => {
+                return (
+                  <div
+                    className="flex flex-row space-x-2 justify-evenly"
+                    key={it}
+                  >
+                    <p>{it.Name}</p> <p>{it.ThreePointersMade}</p>
+                    <p>{parseFloat(it.ThreePointersPercentage)}%</p>{" "}
+                  </div>
+                );
+              })}
           </div>
         </div>
       </div>
