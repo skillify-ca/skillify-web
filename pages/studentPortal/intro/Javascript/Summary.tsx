@@ -12,29 +12,21 @@ import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntr
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
 
-const Iterators = ({ lessonComponents }) => {
-  const { user } = useAuth();
+const Summary = ({ lessonComponents }) => {
   const router = useRouter();
-  const [unlockUserNode] = useMutation(UNLOCK_USER_INTRO_NODE);
+  const { user } = useAuth();
+
   const [completeUserNode] = useMutation(COMPLETE_USER_INTRO_NODE);
 
   const handleContinue = () => {
     completeUserNode({
       variables: {
         user_id: user.uid,
-        node_id: 44,
+        node_id: 53,
         completed: true,
       },
     }).then((res) => {
-      unlockUserNode({
-        variables: {
-          user_id: user.uid,
-          node_id: 45,
-          locked: false,
-        },
-        refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
-      });
-      router.push("/studentPortal/intro/Javascript/JSQuiz2");
+      router.push("/studentPortal/intro");
     });
   };
   return (
@@ -63,11 +55,17 @@ const Iterators = ({ lessonComponents }) => {
 export async function getServerSideProps({ params }) {
   const resources: Resource[] = [
     {
+      title: "Self-Ranking Form",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Google_Forms_logo_%282014-2020%29.svg/1489px-Google_Forms_logo_%282014-2020%29.svg.png",
+      link: "https://docs.google.com/forms/d/e/1FAIpQLSc9uMgy9iVG9cXnXiZTl9yGbAfg26LCTXofqLc8BoBY_FBMmQ/viewform?usp=sf_link",
+      description: "Measure your mastery with this form",
+    },
+    {
       title: "Codecademy Code Challenges",
       image:
         "https://icons-for-free.com/download-icon-codecademy-1324440139458906558_512.png",
-      link:
-        "https://www.codecademy.com/resources/blog/10-javascript-code-challenges-for-beginners/",
+      link: "https://www.codecademy.com/resources/blog/10-javascript-code-challenges-for-beginners/",
       description: "10 Beginner JavaScript Code Challenges",
     },
     {
@@ -80,12 +78,11 @@ export async function getServerSideProps({ params }) {
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
-      text: "Iterators",
+      text: "Summary",
     },
     {
       component: "description",
-      text:
-        "Iterators are objects that have a sequence where there are 2 questions being answered: If there is an element next? If so, what is it? This is what we call an iterator protocol. If these questions are answered then we are dealing with an iterator. With iterators we can use iterator methods that are very powerful and versatile. These methods are .map() and .filter().",
+      text: "This summary for JavaScript contains additional coding challenges to apply your knowledge. Fill out the form below again. What concepts do you feel improved the most? Which concepts do you feel weaker around? Review those lessons and cheatsheets in Codecademy then try to complete these challenges.",
     },
     {
       component: "resource-list",
@@ -95,4 +92,4 @@ export async function getServerSideProps({ params }) {
   return { props: { lessonComponents } };
 }
 
-export default Iterators;
+export default Summary;
