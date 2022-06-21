@@ -13,8 +13,6 @@ const JS11 = ({ lessonComponents }) => {
   const fantasyProjectionDataURL =
     "https://api.sportsdata.io/api/nba/fantasy/json/PlayerSeasonProjectionStats/2021?key=2d5681816c7c4474a99f125654385a8d";
 
-  const [playerData, setPlayerData] = useState(null);
-
   const [warmUpChallengeVisible, setWarmUpChallengeVisible] = useState(true);
   const [challengeOneVisible, setChallengeOneVisible] = useState(false);
   const [challengeTwoVisible, setChallengeTwoVisible] = useState(false);
@@ -22,18 +20,6 @@ const JS11 = ({ lessonComponents }) => {
   const [challengeFourVisible, setChallengeFourVisible] = useState(false);
   const [challengeFiveVisible, setChallengeFiveVisible] = useState(false);
   const [warmUpHintVisible, setWarmUpHintVisible] = useState(false);
-
-  useEffect(() => {
-    fetch(playerDataURL)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .then((data) => {
-        setPlayerData(data);
-      });
-  }, []);
 
   return (
     <>
