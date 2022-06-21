@@ -6,14 +6,29 @@ import {
 } from "@heroicons/react/solid";
 import { Button } from "../../../../../components/ui/Button";
 
-const JS11 = ({ lessonComponents }) => {
+const nbaDataPlayground = ({ lessonComponents }) => {
   const playerDataURL =
     "https://api.sportsdata.io/api/nba/fantasy/json/Players?key=2d5681816c7c4474a99f125654385a8d";
 
   const fantasyProjectionDataURL =
-    "https://api.sportsdata.io/api/nba/fantasy/json/PlayerSeasonProjectionStats/2021?key=2d5681816c7c4474a99f125654385a8d";
+    "https://api.sportsdata.io/api/nba/fantasy/json/PlayerSeasonProjectionStats/2022?key=2d5681816c7c4474a99f125654385a8d";
 
   const [playerData, setPlayerData] = useState(null);
+  const [fantasyProjectionData, setFantasyProjectionData] = useState(null);
+
+  const createPlayerRating = (fantasyProjectionData) => {
+    const sampleData = fantasyProjectionData.filter(
+      (player) => player.Team === "ATL"
+    );
+
+    return sampleData.map((player) => {
+      return {
+        name: player.Name,
+        Team: player.Team,
+        gameStarted: player.Started,
+      };
+    });
+  };
 
   useEffect(() => {
     fetch(playerDataURL)
@@ -24,6 +39,16 @@ const JS11 = ({ lessonComponents }) => {
       })
       .then((data) => {
         setPlayerData(data);
+      });
+
+    fetch(fantasyProjectionDataURL)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((fantasyData) => {
+        setFantasyProjectionData(fantasyData);
       });
   }, []);
 
@@ -50,10 +75,18 @@ const JS11 = ({ lessonComponents }) => {
                   return it.FirstName + " " + it.LastName + ", ";
                 })}
           </div>
+          <div>
+            <p className="font-bold">
+              Player Name Projected To Make Most Free Throws
+            </p>
+            {fantasyProjectionData
+              ? JSON.stringify(createPlayerRating(fantasyProjectionData))
+              : "no data"}
+          </div>
         </div>
       </div>
     </>
   );
 };
 
-export default JS11;
+export default nbaDataPlayground;
