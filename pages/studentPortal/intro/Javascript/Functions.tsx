@@ -75,6 +75,14 @@ export async function getServerSideProps({ params }) {
       description:
         "A home equity calculator to know how much of the house you actually own over your mortgage period",
     },
+
+    {
+      title: "Running Pace Calculator",
+      link: "/coding/JavaScript/runningPaceCalculator.zip",
+      image: "/images/runnerClipArt.png",
+      description:
+        "A running pace calculator to help determine your average per mile pace during a race",
+    },
   ];
   const lessonComponents: LessonComponentData[] = [
     {
