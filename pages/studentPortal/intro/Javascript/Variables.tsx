@@ -76,6 +76,13 @@ export async function getServerSideProps({ params }) {
       image: "/images/greetings.png",
       description: "A practice problem using strings.",
     },
+    {
+      title: "Coding Challenge: Greetings Solution",
+      link: "https://www.youtube.com/watch?v=W-kkyPEAWXc&t=32s",
+      image: "/images/greetings.png",
+      description:
+        "Don't watch this video until you've attempted the challenge above.",
+    },
   ];
   const lessonComponents: LessonComponentData[] = [
     {
