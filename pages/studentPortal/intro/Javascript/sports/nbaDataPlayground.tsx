@@ -32,6 +32,37 @@ const nbaDataPlayground = ({ lessonComponents }) => {
     return topXArray;
   };
 
+  const topPlayerEfficiency = (fantasyProjectionData) => {
+    const perDataSet = fantasyProjectionData
+      .filter((criteria) => criteria.Minutes > 0)
+      .map((player) => {
+        return {
+          name: player.Name,
+          PER:
+            (parseFloat(player.FieldGoalsMade) * 85.91 +
+              parseFloat(player.Steals) * 53.897 +
+              parseFloat(player.ThreePointersMade) * 51.757 +
+              parseFloat(player.FreeThrowsMade) * 46.845 +
+              parseFloat(player.OffensiveRebounds) * 39.19 +
+              parseFloat(player.Assists) * 34.677 +
+              parseFloat(player.DefensiveRebounds) * 14.707 -
+              parseFloat(player.PersonalFouls) * 17.174 -
+              (parseFloat(player.FreeThrowsAttempted) -
+                parseFloat(player.FreeThrowsMade)) *
+                20.091 -
+              (parseFloat(player.FieldGoalsAttempted) -
+                parseFloat(player.FieldGoalsMade)) *
+                39.19 -
+              parseFloat(player.Turnovers) * 53.897) *
+            (1 / parseFloat(player.Minutes)),
+        };
+      });
+
+    const topPerArray = perDataSet.sort((a, b) => b.PER - a.PER).slice(0, 10);
+
+    return topPerArray;
+  };
+
   useEffect(() => {
     fetch(playerDataURL)
       .then((res) => {
@@ -112,6 +143,21 @@ const nbaDataPlayground = ({ lessonComponents }) => {
                   </div>
                 );
               })}
+          </div>
+          <div>
+            <p className="font-bold">Players with Highest PER </p>
+            {fantasyProjectionData &&
+              topPlayerEfficiency(fantasyProjectionData).map((it) => {
+                return (
+                  <div
+                    className="flex flex-row space-x-2 justify-evenly"
+                    key={it}
+                  >
+                    <p>{it.name}</p> <p>{it.PER}</p>
+                  </div>
+                );
+              })}
+            {/* JSON.stringify(topPlayerEfficiency(fantasyProjectionData)) */}
           </div>
         </div>
       </div>
