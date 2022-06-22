@@ -3,7 +3,7 @@ import * as Colyseus from "colyseus.js";
 import QuestionSet from "../stories/QuestionSet";
 import { Question } from "../../../pages/api/question";
 import { GuessData } from "../../../pages/api/guessData";
-import ProgressBar from "../../ProgressBar";
+import BattleProgressBar from "./BattleProgressBar";
 import { Player } from "../../../pages/games";
 
 export interface BattleComponentProps {
@@ -96,7 +96,7 @@ const BattleComponent = ({
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col items-center justify-center">
       <QuestionSet
         title={"Battle"}
         questionData={questions}
@@ -112,7 +112,7 @@ const BattleComponent = ({
         </p>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className=" w-5"
+          className="w-5 "
           viewBox="0 0 20 20"
           fill="orange"
         >
@@ -134,14 +134,14 @@ const BattleComponent = ({
         {players.map((it) => (
           <div className="flex flex-row">
             <div className="gap-4 w-96">
-              <ProgressBar
+              <BattleProgressBar
                 id={it.sessionId}
                 max={10}
                 value={getPlayerProgress(it.seat)}
                 color={colourArr[it.seat - 1]}
-              ></ProgressBar>
+              ></BattleProgressBar>
             </div>
-            <p className="font-bold text-xl "> {it.name}</p>
+            <p className="text-xl font-bold "> {it.name}</p>
           </div>
         ))}
       </div>

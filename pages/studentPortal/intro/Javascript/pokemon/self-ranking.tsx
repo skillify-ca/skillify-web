@@ -32,6 +32,8 @@ const JS6 = () => {
                   and discuss your responses with your coach. You don't need to
                   feel mastery over all concepts, but you should have a basic
                   understanding of each concept before starting the assignment.
+                  If you don't feel confident about a certain topic, review that
+                  section in Codecademy.
                 </p>
               </div>
             </div>

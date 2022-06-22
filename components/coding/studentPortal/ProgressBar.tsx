@@ -4,7 +4,7 @@ export type ProgressBarProps = {
   completed: number;
 };
 
-export const ProgressBar: React.FC<ProgressBarProps> = ({
+const ProgressBar: React.FC<ProgressBarProps> = ({
   completed,
 }: ProgressBarProps) => {
   const fillerStyles = {
