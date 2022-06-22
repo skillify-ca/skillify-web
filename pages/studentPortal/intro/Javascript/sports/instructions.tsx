@@ -9,7 +9,7 @@ import { Button } from "../../../../../components/ui/Button";
 const JS11 = ({ lessonComponents }) => {
   const playerDataURL = `https://api.sportsdata.io/api/nba/fantasy/json/Players?key=${process.env.NEXT_PUBLIC_NBA_DATA_API_KEY}`;
 
-  const fantasyProjectionDataURL = `https://api.sportsdata.io/api/nba/fantasy/json/PlayerSeasonProjectionStats/2021?key=${process.env.NEXT_PUBLIC_NBA_DATA_API_KEY}`;
+  const fantasyProjectionDataURL = `https://api.sportsdata.io/api/nba/fantasy/json/PlayerSeasonProjectionStats/2022?key=${process.env.NEXT_PUBLIC_NBA_DATA_API_KEY}`;
 
   const [warmUpChallengeVisible, setWarmUpChallengeVisible] = useState(true);
   const [challengeOneVisible, setChallengeOneVisible] = useState(false);
@@ -24,7 +24,7 @@ const JS11 = ({ lessonComponents }) => {
     <>
       <div className="col-span-7">
         <div className="grid h-full grid-cols-1 p-8 space-y-4 text-gray-700 bg-gray-100">
-          <h1 className="font-bold text-2xl">NBA Data Challenge</h1>
+          <h1 className="text-2xl font-bold">NBA Data Challenge</h1>
           <p>
             The following challenges will test your ability to write Javascript
             functions that manipulate JSON data to produce insights on NBA data
@@ -52,7 +52,7 @@ const JS11 = ({ lessonComponents }) => {
             <h1 className="font-bold">Warmup Challenge</h1>
             {warmUpChallengeVisible ? (
               <ArrowCircleUpIcon
-                className="h-5 w-5"
+                className="w-5 h-5"
                 color="orange"
                 onClick={() =>
                   setWarmUpChallengeVisible((prevValue) => !prevValue)
@@ -60,7 +60,7 @@ const JS11 = ({ lessonComponents }) => {
               />
             ) : (
               <ArrowCircleDownIcon
-                className="h-5 w-5"
+                className="w-5 h-5"
                 color="orange"
                 onClick={() =>
                   setWarmUpChallengeVisible((prevValue) => !prevValue)
@@ -75,7 +75,7 @@ const JS11 = ({ lessonComponents }) => {
                 Write a function that finds the average height of all players on
                 the Toronto Raptors
                 <QuestionMarkCircleIcon
-                  className="h-5 w-5 ml-2"
+                  className="w-5 h-5 ml-2"
                   color={warmUpHintVisible ? "red" : "green"}
                   onClick={() => {
                     setWarmUpHintVisible((prevValue) => !prevValue);
@@ -84,7 +84,7 @@ const JS11 = ({ lessonComponents }) => {
               </p>
 
               {warmUpHintVisible && (
-                <p className="space-y-2 border-4 border-blue-900 p-4 border-dashed">
+                <p className="p-4 space-y-2 border-4 border-blue-900 border-dashed">
                   Here is sample code that lists all players using the filter
                   and map methods:
                   <img
@@ -102,7 +102,7 @@ const JS11 = ({ lessonComponents }) => {
             <h1 className="font-bold">Challenge One</h1>
             {challengeOneVisible ? (
               <ArrowCircleUpIcon
-                className="h-5 w-5"
+                className="w-5 h-5"
                 color="orange"
                 onClick={() =>
                   setChallengeOneVisible((prevValue) => !prevValue)
@@ -110,7 +110,7 @@ const JS11 = ({ lessonComponents }) => {
               />
             ) : (
               <ArrowCircleDownIcon
-                className="h-5 w-5"
+                className="w-5 h-5"
                 color="orange"
                 onClick={() =>
                   setChallengeOneVisible((prevValue) => !prevValue)
@@ -125,7 +125,7 @@ const JS11 = ({ lessonComponents }) => {
                 Write a function that returns the player who was projected to
                 have the most turnovers
                 <QuestionMarkCircleIcon
-                  className="h-5 w-5 ml-2"
+                  className="w-5 h-5 ml-2"
                   color={challengeOneHintVisible ? "red" : "green"}
                   onClick={() => {
                     setChallengeOneHintVisible((prevValue) => !prevValue);
@@ -133,7 +133,7 @@ const JS11 = ({ lessonComponents }) => {
                 />
               </p>
               {challengeOneHintVisible && (
-                <p className="space-y-2 border-4 border-blue-900 p-4 border-dashed">
+                <p className="p-4 space-y-2 border-4 border-blue-900 border-dashed">
                   Here is sample code that sorts an array of objects in
                   descending order by a property named "rankStatistic":
                   <img
@@ -149,7 +149,7 @@ const JS11 = ({ lessonComponents }) => {
             <h1 className="font-bold">Challenge Two</h1>
             {challengeTwoVisible ? (
               <ArrowCircleUpIcon
-                className="h-5 w-5"
+                className="w-5 h-5"
                 color="orange"
                 onClick={() =>
                   setChallengeTwoVisible((prevValue) => !prevValue)
@@ -157,7 +157,7 @@ const JS11 = ({ lessonComponents }) => {
               />
             ) : (
               <ArrowCircleDownIcon
-                className="h-5 w-5"
+                className="w-5 h-5"
                 color="orange"
                 onClick={() =>
                   setChallengeTwoVisible((prevValue) => !prevValue)
@@ -173,7 +173,7 @@ const JS11 = ({ lessonComponents }) => {
                 highest three point field goal percentage given they will play
                 in at least 50 games
                 <QuestionMarkCircleIcon
-                  className="h-5 w-5 ml-2"
+                  className="w-5 h-5 ml-2"
                   color={challengeTwoHintVisible ? "red" : "green"}
                   onClick={() => {
                     setChallengeTwoHintVisible((prevValue) => !prevValue);
@@ -181,7 +181,7 @@ const JS11 = ({ lessonComponents }) => {
                 />
               </p>
               {challengeTwoHintVisible && (
-                <p className="space-y-2 border-4 border-blue-900 p-4 border-dashed">
+                <p className="p-4 space-y-2 border-4 border-blue-900 border-dashed">
                   You can use the slice method to only return a set of 0 to X
                   results from an array: ".slice(0, X)"
                 </p>
@@ -193,7 +193,7 @@ const JS11 = ({ lessonComponents }) => {
             <h1 className="font-bold">Challenge Three</h1>
             {challengeThreeVisible ? (
               <ArrowCircleUpIcon
-                className="h-5 w-5"
+                className="w-5 h-5"
                 color="orange"
                 onClick={() =>
                   setChallengeThreeVisible((prevValue) => !prevValue)
@@ -201,7 +201,7 @@ const JS11 = ({ lessonComponents }) => {
               />
             ) : (
               <ArrowCircleDownIcon
-                className="h-5 w-5"
+                className="w-5 h-5"
                 color="orange"
                 onClick={() =>
                   setChallengeThreeVisible((prevValue) => !prevValue)
@@ -228,7 +228,7 @@ const JS11 = ({ lessonComponents }) => {
             <h1 className="font-bold">Challenge Four</h1>
             {challengeFourVisible ? (
               <ArrowCircleUpIcon
-                className="h-5 w-5"
+                className="w-5 h-5"
                 color="orange"
                 onClick={() =>
                   setChallengeFourVisible((prevValue) => !prevValue)
@@ -236,7 +236,7 @@ const JS11 = ({ lessonComponents }) => {
               />
             ) : (
               <ArrowCircleDownIcon
-                className="h-5 w-5"
+                className="w-5 h-5"
                 color="orange"
                 onClick={() =>
                   setChallengeFourVisible((prevValue) => !prevValue)
