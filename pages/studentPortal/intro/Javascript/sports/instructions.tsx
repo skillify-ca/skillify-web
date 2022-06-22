@@ -7,11 +7,9 @@ import {
 import { Button } from "../../../../../components/ui/Button";
 
 const JS11 = ({ lessonComponents }) => {
-  const playerDataURL =
-    "https://api.sportsdata.io/api/nba/fantasy/json/Players?key=2d5681816c7c4474a99f125654385a8d";
+  const playerDataURL = `https://api.sportsdata.io/api/nba/fantasy/json/Players?key=${process.env.NEXT_PUBLIC_NBA_DATA_API_KEY}`;
 
-  const fantasyProjectionDataURL =
-    "https://api.sportsdata.io/api/nba/fantasy/json/PlayerSeasonProjectionStats/2021?key=2d5681816c7c4474a99f125654385a8d";
+  const fantasyProjectionDataURL = `https://api.sportsdata.io/api/nba/fantasy/json/PlayerSeasonProjectionStats/2021?key=${process.env.NEXT_PUBLIC_NBA_DATA_API_KEY}`;
 
   const [warmUpChallengeVisible, setWarmUpChallengeVisible] = useState(true);
   const [challengeOneVisible, setChallengeOneVisible] = useState(false);

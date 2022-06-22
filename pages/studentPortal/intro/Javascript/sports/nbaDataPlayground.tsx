@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {
-  ArrowCircleDownIcon,
-  ArrowCircleUpIcon,
-  QuestionMarkCircleIcon,
-} from "@heroicons/react/solid";
-import { Button } from "../../../../../components/ui/Button";
 
 const nbaDataPlayground = ({ lessonComponents }) => {
-  const playerDataURL =
-    "https://api.sportsdata.io/api/nba/fantasy/json/Players?key=2d5681816c7c4474a99f125654385a8d";
+  const playerDataURL = `https://api.sportsdata.io/api/nba/fantasy/json/Players?key=${process.env.NEXT_PUBLIC_NBA_DATA_API_KEY}`;
 
-  const fantasyProjectionDataURL =
-    "https://api.sportsdata.io/api/nba/fantasy/json/PlayerSeasonProjectionStats/2022?key=2d5681816c7c4474a99f125654385a8d";
+  const fantasyProjectionDataURL = `https://api.sportsdata.io/api/nba/fantasy/json/PlayerSeasonProjectionStats/2022?key=${process.env.NEXT_PUBLIC_NBA_DATA_API_KEY}`;
 
   const [playerData, setPlayerData] = useState(null);
   const [fantasyProjectionData, setFantasyProjectionData] = useState(null);
