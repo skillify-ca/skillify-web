@@ -27,7 +27,7 @@ const nbaDataPlayground = ({ lessonComponents }) => {
       .sort(
         (a, b) => parseFloat(b[rankStatistic]) - parseFloat(a[rankStatistic])
       )
-      .slice(0, numPlayers);
+      .slice(0, 5);
 
     return topXArray;
   };
@@ -157,7 +157,6 @@ const nbaDataPlayground = ({ lessonComponents }) => {
                   </div>
                 );
               })}
-            {/* JSON.stringify(topPlayerEfficiency(fantasyProjectionData)) */}
           </div>
         </div>
       </div>

@@ -18,8 +18,9 @@ const JS11 = ({ lessonComponents }) => {
   const [challengeTwoVisible, setChallengeTwoVisible] = useState(false);
   const [challengeThreeVisible, setChallengeThreeVisible] = useState(false);
   const [challengeFourVisible, setChallengeFourVisible] = useState(false);
-  const [challengeFiveVisible, setChallengeFiveVisible] = useState(false);
   const [warmUpHintVisible, setWarmUpHintVisible] = useState(false);
+  const [challengeOneHintVisible, setChallengeOneHintVisible] = useState(false);
+  const [challengeTwoHintVisible, setChallengeTwoHintVisible] = useState(false);
 
   return (
     <>
@@ -40,8 +41,8 @@ const JS11 = ({ lessonComponents }) => {
               </a>{" "}
             </li>
             <li>
-              For challenges 1-5, use the following data which represents an
-              array of projected fantasy stats from last season{" "}
+              For challenges 1-4, use the following data which contains last
+              year's fantasy projections for every NBA player
               <a href={fantasyProjectionDataURL} className="text-red-500">
                 (link){" "}
               </a>
@@ -86,18 +87,18 @@ const JS11 = ({ lessonComponents }) => {
 
               {warmUpHintVisible && (
                 <p className="space-y-2 border-4 border-blue-900 p-4 border-dashed">
-                  Here is some sample code that lists all players on the Golden
-                  State Warriors:
+                  Here is sample code that lists all players using the filter
+                  and map methods:
                   <img
                     className="p-4"
                     src="/images/warmUpChallengeExample.png"
-                  ></img>
+                  />
+                  parseFloat(value) and parseInt(value) are useful to ensure
+                  data is being treated as a number
                 </p>
               )}
             </div>
           )}
-
-          <p></p>
 
           <div className="flex flex-row space-x-4">
             <h1 className="font-bold">Challenge One</h1>
@@ -121,10 +122,29 @@ const JS11 = ({ lessonComponents }) => {
           </div>
 
           {challengeOneVisible && (
-            <p>
-              Write a function that returns the player name who was projected to
-              make the most number of free throws.
-            </p>
+            <div className="space-y-4">
+              <p className="flex flex-row">
+                Write a function that returns the player who was projected to
+                have the most turnovers
+                <QuestionMarkCircleIcon
+                  className="h-5 w-5 ml-2"
+                  color={challengeOneHintVisible ? "red" : "green"}
+                  onClick={() => {
+                    setChallengeOneHintVisible((prevValue) => !prevValue);
+                  }}
+                />
+              </p>
+              {challengeOneHintVisible && (
+                <p className="space-y-2 border-4 border-blue-900 p-4 border-dashed">
+                  Here is sample code that sorts an array of objects in
+                  descending order:
+                  <img
+                    className="p-4"
+                    src="/images/warmUpChallengeExample.png"
+                  />
+                </p>
+              )}
+            </div>
           )}
 
           <div className="flex flex-row space-x-4">
@@ -149,12 +169,26 @@ const JS11 = ({ lessonComponents }) => {
           </div>
 
           {challengeTwoVisible && (
-            <p>
-              Write a function that can take a player from this array, analyze
-              their fantasy stats and return a rating from 1 to 100 for that
-              player. You have creativity here on how you want to come up with
-              that rating but base it off their stats.
-            </p>
+            <div className="space-y-4">
+              <p>
+                Write a function that returns the player projected to have
+                highest three point field goal percentage given they will play
+                in at least 50 games
+                <QuestionMarkCircleIcon
+                  className="h-5 w-5 ml-2"
+                  color={challengeTwoHintVisible ? "red" : "green"}
+                  onClick={() => {
+                    setChallengeTwoHintVisible((prevValue) => !prevValue);
+                  }}
+                />
+              </p>
+              {challengeTwoHintVisible && (
+                <p className="space-y-2 border-4 border-blue-900 p-4 border-dashed">
+                  You can use the slice method to only return a set of 0 to X
+                  results from an array: ".slice(0, X)"
+                </p>
+              )}
+            </div>
           )}
 
           <div className="flex flex-row space-x-4">
@@ -179,12 +213,15 @@ const JS11 = ({ lessonComponents }) => {
           </div>
 
           {challengeThreeVisible && (
-            <p>
-              Write a function that sorts this array based on your rating
-              function and print out the top 10 players. // (hint. use map() to
-              add a new rating property to each item in the array, then sort by
-              that property)
-            </p>
+            <div className="space-y-4">
+              <p>
+                The assist to turnover ratio is a valuable metric for evaluating
+                the efficiency of point guards. Write a function that returns
+                the top 10 point guards by projected assist to turnover ratio.
+                Make sure you account for players projected to have zero
+                turnovers otherwise the ratio will not compute
+              </p>
+            </div>
           )}
 
           <div className="flex flex-row space-x-4">
@@ -209,41 +246,35 @@ const JS11 = ({ lessonComponents }) => {
           </div>
 
           {challengeFourVisible && (
-            <p>
-              Adapt your rating function to take in a boolean parameter called
-              isFreeThrowPunt your rating function should return a different
-              rating depending on this parameter being true or false (hint. an
-              if statement will be helpful here). Sort the players
-            </p>
-          )}
-
-          <div className="flex flex-row space-x-4">
-            <h1 className="font-bold">Challenge Five</h1>
-            {challengeFiveVisible ? (
-              <ArrowCircleUpIcon
-                className="h-5 w-5"
-                color="orange"
-                onClick={() =>
-                  setChallengeFiveVisible((prevValue) => !prevValue)
-                }
-              />
-            ) : (
-              <ArrowCircleDownIcon
-                className="h-5 w-5"
-                color="orange"
-                onClick={() =>
-                  setChallengeFiveVisible((prevValue) => !prevValue)
-                }
-              />
-            )}
-          </div>
-          {challengeFiveVisible && (
-            <p>
-              Adapt your rating function to support other types of punt
-              categories by changing your boolean parameter to a string
-              parameter (hint. more if statements would be needed to support
-              each type of punt category)
-            </p>
+            <div className="space-y-4">
+              <p>
+                Player Efficiency Rating (PER) is an advanced metric often used
+                to determine the "best" player by summing up all their positive
+                accomplishments and subtracting their negative accomplishments.
+              </p>
+              <p>
+                You can calculate (PER) using the following formula:
+                <ul className="list-disc list-inside">
+                  <li>Field Goals Made * 85.910 + </li>
+                  <li>Steals * 53.897 +</li>
+                  <li>Three Points Made * 51.757 +</li>
+                  <li>Free Throws Made * 46.845 + </li>
+                  <li>Offensive Rebounds * 39.190 +</li>
+                  <li>Assists * 34.677 +</li>
+                  <li>Defensive Rebounds * 14.707 -</li>
+                  <li>Fouls * 17.174 - </li>
+                  <li>Free Throws Missed * 20.091 - </li>
+                  <li>Field Goals Missed * 39.190 -</li>
+                  <li>Turnovers * 53.897 *</li>
+                  <li>(1 / Minutes Played)</li>
+                </ul>{" "}
+              </p>
+              <p>
+                Write a function that returns the top 10 players projected to
+                have the highest PER. Make sure you only include players
+                projected to play at least one minute
+              </p>
+            </div>
           )}
         </div>
       </div>
