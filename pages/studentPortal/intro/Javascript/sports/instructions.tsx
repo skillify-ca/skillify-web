@@ -91,7 +91,7 @@ const JS11 = ({ lessonComponents }) => {
                   and map methods:
                   <img
                     className="p-4"
-                    src="/images/warmUpChallengeExample.png"
+                    src="/images/nbachallenge/warmUpChallengeExample.png"
                   />
                   parseFloat(value) and parseInt(value) are useful to ensure
                   data is being treated as a number
@@ -137,10 +137,10 @@ const JS11 = ({ lessonComponents }) => {
               {challengeOneHintVisible && (
                 <p className="space-y-2 border-4 border-blue-900 p-4 border-dashed">
                   Here is sample code that sorts an array of objects in
-                  descending order:
+                  descending order by a property named "rankStatistic":
                   <img
                     className="p-4"
-                    src="/images/warmUpChallengeExample.png"
+                    src="/images/nbachallenge/sortExample.png"
                   />
                 </p>
               )}
@@ -218,6 +218,8 @@ const JS11 = ({ lessonComponents }) => {
                 The assist to turnover ratio is a valuable metric for evaluating
                 the efficiency of point guards. Write a function that returns
                 the top 10 point guards by projected assist to turnover ratio.
+              </p>
+              <p>
                 Make sure you account for players projected to have zero
                 turnovers otherwise the ratio will not compute
               </p>
