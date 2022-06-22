@@ -69,11 +69,7 @@ const Warmups1 = ({ lessonComponents }) => {
 
       <div className="grid grid-cols-1 gap-8"></div>
       <div className="flex mt-8 sm:justify-end">
-        <Button
-          onClick={handleContinue}
-          label="Continue"
-          disabled={lessonState.currentStep !== lessonState.totalSteps}
-        />
+        <Button onClick={handleContinue} label="Continue" />
       </div>
     </div>
   );
@@ -120,11 +116,13 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Welcome to the Skillify learning path! Let me start by congratulating you on this journey. You are learning an in-demand skill that will future-proof your career. Just like learning to play the guitar, coding is a skill that requires practice, but mastering a few key competencies will unlock high-paying and remote career opportunities from all over the world.",
+      text:
+        "Welcome to the Skillify learning path! Let me start by congratulating you on this journey. You are learning an in-demand skill that will future-proof your career. Just like learning to play the guitar, coding is a skill that requires practice, but mastering a few key competencies will unlock high-paying and remote career opportunities from all over the world.",
     },
     {
       component: "description",
-      text: " Make sure you download or sign up for all of these programs to get started. Message Vithushan if you're having trouble.",
+      text:
+        " Make sure you download or sign up for all of these programs to get started. Message Vithushan if you're having trouble.",
     },
     {
       component: "resource-list",
