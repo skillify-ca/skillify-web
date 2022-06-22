@@ -1,5 +1,5 @@
 import React from "react";
-import ProgressBar from "../../../../../components/ProgressBar";
+import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
 import { Button } from "../../../../../components/ui/Button";
 
 const JS8 = ({ lessonComponents }) => {
@@ -72,10 +72,7 @@ const JS8 = ({ lessonComponents }) => {
           </div>
           <div>
             <p className="text-charmander">Step 5:</p>
-            <p>
-              And there you have it! Part 1 of the Javascript Assignment is
-              complete!
-            </p>
+            <p>And there you have it! The Pokemon Assignment is complete!</p>
           </div>
           <div className="flex h-full mt-12 sm:justify-end">
             <a href={"/studentPortal/intro/Javascript/pokemon/video-hint"}>

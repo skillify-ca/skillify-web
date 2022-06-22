@@ -75,6 +75,13 @@ export async function getServerSideProps({ params }) {
       description:
         "A temperature converter problem. It gets confusing switching between Celsius and Fahrenheit",
     },
+    {
+      title: "Temperature Solution",
+      link: "https://www.youtube.com/watch?v=PIxT77Pf3SI&t=15s",
+      image: "/images/temperature.jpeg",
+      description:
+        "Don't watch this solution, until you've attempted the challenge above",
+    },
   ];
   const lessonComponents: LessonComponentData[] = [
     {

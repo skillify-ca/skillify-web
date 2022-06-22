@@ -31,7 +31,7 @@ const JS_A1 = () => {
         },
         refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
       });
-      router.push("/studentPortal/intro/Javascript/9");
+      router.push("/studentPortal/intro/Javascript/sports/introduction");
     });
   };
   return (
@@ -43,18 +43,18 @@ const JS_A1 = () => {
       <div className="p-4">
         <h1 className="text-xl font-bold ">Submit your Assignment</h1>
         <div
-          className="p-12 font-bold text-center rounded-lg cursor-pointer bg-charmander"
+          className="p-12 mt-8 font-bold text-center rounded-lg bg-pikachu-200"
           onClick={handleContinue}
         >
-          <p>
+          <p className="text-lg">
             {" "}
-            Stop! Click here only if you have submitted the Pokemon Javascript
-            Assignment to the Slack channel
+            Stop! Click continue only if you have already submitted the Pokemon
+            Javascript Assignment to the Slack channel
           </p>
         </div>
-      </div>
-      <div className="flex mt-12 sm:justify-end">
-        <Button label="Continue" disabled={false} onClick={handleContinue} />
+        <div className="flex mt-12 sm:justify-end">
+          <Button label="Continue" disabled={false} onClick={handleContinue} />
+        </div>
       </div>
     </>
   );
