@@ -104,6 +104,28 @@ const CSS6 = ({ lessonComponents }) => {
               colours, hover effects, borders, or whatever you want!
             </p>
           </div>
+          <div className="mb-12">
+            <p className="text-charmander">Step 6:</p>
+            <p>
+              Create a second html page and style it with a similar design that
+              you used to style your first html page. Put the second html page
+              in the same folder as your primary home page that you built in the
+              previous assignment. This second page should resemble some kind of
+              online store that users would come to buy things online. You don't
+              have to implement any purchasing functionality, but you should
+              build the layout of an online store and connect this second page
+              to your home page using an a tag in the navigation bar.
+            </p>
+          </div>
+          <div className="mb-12">
+            <p className="text-charmander">Step 7:</p>
+            <p>
+              On your second page make sure to implement a different kind of
+              advanced grid layout than what you used on your first page. Don't
+              forget to link the two pages together!
+            </p>
+          </div>
+
           <div className="flex h-full mt-16 sm:justify-end">
             <Button
               label="Continue"
@@ -124,11 +146,13 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Previously you made a blog using HTML but it may look very boring.",
+      text:
+        "Previously you made a blog using HTML but it may look very boring.",
     },
     {
       component: "description",
-      text: "We are going to change that using CSS styling! You will now use CSS styling to bring your page to life!",
+      text:
+        "We are going to change that using CSS styling! You will now use CSS styling to bring your page to life!",
     },
     { component: "loom-video", videoId: "ed935cc53123419695e9f6b97f5589e9" },
   ];
