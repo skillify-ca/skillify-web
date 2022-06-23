@@ -7,8 +7,6 @@ import {
 } from "../graphql/fetchUserProfile";
 import { useAuth } from "../lib/authContext";
 
-// query to add User's name, username, email, created at date (joined), profile picture, achievements / badges?? prob existing quiz
-
 export default function Profile(props) {
   const { user } = useAuth();
 
