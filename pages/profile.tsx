@@ -1,16 +1,16 @@
 import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
 import {
-  FetchUserProfileMetadataResponse,
+  FetchUserProfileDataResponse,
   FETCH_USER_PROFILE_METADATA,
-  UserProfileMetadata,
+  UserProfileData,
 } from "../graphql/fetchUserProfile";
 import { useAuth } from "../lib/authContext";
 
 export default function Profile(props) {
   const { user } = useAuth();
 
-  const { loading, error, data } = useQuery<FetchUserProfileMetadataResponse>(
+  const { loading, error, data } = useQuery<FetchUserProfileDataResponse>(
     FETCH_USER_PROFILE_METADATA,
     {
       variables: {
@@ -31,7 +31,7 @@ export default function Profile(props) {
   );
 
   const [userProfileMetadata, setUserProfileMetadata] =
-    useState<UserProfileMetadata>(Object);
+    useState<UserProfileData>(Object);
 
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
