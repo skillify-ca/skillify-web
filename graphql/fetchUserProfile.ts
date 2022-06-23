@@ -44,14 +44,23 @@ export const FETCH_USER_PROFILE_METADATA = gql`
 `;
 
 export type FetchUserProfileDataResponse = {
-  users: Array<UserProfileData>;
+  users: Array<UserProfileResponse>;
 };
 
-export type UserProfileData = {
+export type UserProfileResponse = {
   __typename: string;
   created_at: Date;
   email: string;
   last_seen: Date;
   name: string;
   profile_image: string;
+};
+
+export type UserProfileData = {
+  typeName: string;
+  createdAt: Date;
+  email: string;
+  lastSeen: Date;
+  name: string;
+  profileImage: string;
 };
