@@ -39,6 +39,20 @@ export const FETCH_USER_PROFILE_METADATA = gql`
       last_seen
       name
       profile_image
+      username
     }
   }
 `;
+
+export type FetchUserProfileMetadataResponse = {
+  users: Array<UserProfileMetadata>;
+};
+
+export type UserProfileMetadata = {
+  __typename: string;
+  created_at: Date;
+  email: string;
+  last_seen: Date;
+  name: string;
+  profile_image: string;
+};
