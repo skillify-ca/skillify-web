@@ -30,3 +30,15 @@ export const FETCH_USER_PROFILE = gql`
     }
   }
 `;
+
+export const FETCH_USER_PROFILE_METADATA = gql`
+  query fetchUserProfileMetadata($userId: String = "") {
+    users(where: { id: { _eq: $userId } }) {
+      created_at
+      email
+      last_seen
+      name
+      profile_image
+    }
+  }
+`;
