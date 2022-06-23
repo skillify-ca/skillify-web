@@ -1,10 +1,6 @@
 import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
 import {
-  FetchUsersResponse,
-  User,
-} from "../graphql/coding/classroom/fetchUsers";
-import {
   FetchUserProfileMetadataResponse,
   FETCH_USER_PROFILE_METADATA,
   UserProfileMetadata,
@@ -42,7 +38,9 @@ export default function Profile(props) {
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">{userProfileMetadata.name}</h1>
+        {userProfileMetadata && (
+          <h1 className="text-3xl font-bold">{userProfileMetadata.name}</h1>
+        )}
         <div className="w-32 text-center sm:justify-end px-2 py-1 text-gray-400 border-2 border-gray-400 rounded-md cursor-pointer hover:bg-gray-50 hover:border-charmander hover:text-charmander dark:hover:bg-gray-800">
           Edit
         </div>
@@ -67,7 +65,7 @@ export default function Profile(props) {
                 src="/images/profile/clock-solid-1.svg"
               ></img>
               <span className="text-base ml-2">
-                {userProfileMetadata.created_at}
+                Joined {userProfileMetadata.created_at}
               </span>
             </div>
           </div>

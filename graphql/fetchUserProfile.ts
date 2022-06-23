@@ -39,7 +39,6 @@ export const FETCH_USER_PROFILE_METADATA = gql`
       last_seen
       name
       profile_image
-      username
     }
   }
 `;
