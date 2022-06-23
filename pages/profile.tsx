@@ -6,6 +6,7 @@ import {
   UserProfileData,
 } from "../graphql/fetchUserProfile";
 import { useAuth } from "../lib/authContext";
+import { format } from "date-fns";
 
 export default function Profile(props) {
   const { user } = useAuth();
@@ -58,7 +59,10 @@ export default function Profile(props) {
                 src="/images/profile/clock-solid-1.svg"
               ></img>
               <span className="ml-2 text-base">
-                Joined {userProfileData.createdAt}
+                {userProfileData.createdAt
+                  ? "Joined " +
+                    format(new Date(userProfileData.createdAt), "MMMM yyyy")
+                  : userProfileData.createdAt}
               </span>
             </div>
           </div>
