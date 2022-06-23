@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import {
   FetchUserProfileMetadataResponse,
   FETCH_USER_PROFILE_METADATA,
-  UserProfileMetadata,
+  UserProfileData,
 } from "../graphql/fetchUserProfile";
 import { useAuth } from "../lib/authContext";
 
@@ -18,52 +18,50 @@ export default function Profile(props) {
       },
       onCompleted: (data) => {
         console.log("oncomplete useQuery", JSON.stringify(data.users[0]));
-        setUserProfileMetadata({
-          __typename: data.users[0].__typename,
-          created_at: data.users[0].created_at,
+        setUserProfileData({
+          typeName: data.users[0].__typename,
+          createdAt: data.users[0].created_at,
           email: data.users[0].email,
-          last_seen: data.users[0].last_seen,
+          lastSeen: data.users[0].last_seen,
           name: data.users[0].name,
-          profile_image: data.users[0].profile_image,
+          profileImage: data.users[0].profile_image,
         });
       },
     }
   );
 
-  const [userProfileMetadata, setUserProfileMetadata] =
-    useState<UserProfileMetadata>(Object);
+  const [userProfileData, setUserProfileData] =
+    useState<UserProfileData>(Object);
 
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
       <div className="flex items-center justify-between">
         {userProfileMetadata && (
           <h1 className="text-3xl font-bold">{userProfileMetadata.name}</h1>
+        {userProfileData && (
+          <h1 className="text-3xl font-bold">{userProfileData.name}</h1>
         )}
         <div className="w-32 text-center sm:justify-end px-2 py-1 text-gray-400 border-2 border-gray-400 rounded-md cursor-pointer hover:bg-gray-50 hover:border-charmander hover:text-charmander dark:hover:bg-gray-800">
           Edit
         </div>
       </div>
-      {userProfileMetadata && (
-        <div className="grid grid-cols-1 sm:grid-cols-8 mt-12">
+      {userProfileData && (
+        <div className="grid grid-cols-1 mt-12 sm:grid-cols-8">
           <img
             className="w-32 rounded-full"
-            src={userProfileMetadata.profile_image}
+            src={userProfileData.profileImage}
           />
           <div className="col-span-2 mt-2">
             <p className="text-lg font-bold"></p>
-            <p className="text-base text-gray-400">
-              {userProfileMetadata.name}
-            </p>
-            <p className="text-base text-gray-400">
-              {userProfileMetadata.email}
-            </p>
+            <p className="text-base text-gray-400">{userProfileData.name}</p>
+            <p className="text-base text-gray-400">{userProfileData.email}</p>
             <div className="mt-4">
               <img
                 className="inline"
                 src="/images/profile/clock-solid-1.svg"
               ></img>
-              <span className="text-base ml-2">
-                Joined {userProfileMetadata.created_at}
+              <span className="ml-2 text-base">
+                Joined {userProfileData.createdAt}
               </span>
             </div>
           </div>
@@ -194,3 +192,5 @@ export default function Profile(props) {
     </div>
   );
 }
+
+Profile.auth = true;
