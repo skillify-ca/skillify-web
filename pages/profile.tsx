@@ -17,7 +17,6 @@ export default function Profile(props) {
         userId: user.uid,
       },
       onCompleted: (data) => {
-        console.log("oncomplete useQuery", JSON.stringify(data.users[0]));
         setUserProfileData({
           typeName: data.users[0].__typename,
           createdAt: data.users[0].created_at,
