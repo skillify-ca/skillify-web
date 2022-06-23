@@ -31,8 +31,8 @@ export const FETCH_USER_PROFILE = gql`
   }
 `;
 
-export const FETCH_USER_PROFILE_METADATA = gql`
-  query fetchUserProfileMetadata($userId: String = "") {
+export const FETCH_USER_PROFILE_DATA = gql`
+  query fetchUserProfileData($userId: String = "") {
     users(where: { id: { _eq: $userId } }) {
       created_at
       email

@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
 import {
   FetchUserProfileDataResponse,
-  FETCH_USER_PROFILE_METADATA,
+  FETCH_USER_PROFILE_DATA,
   UserProfileData,
 } from "../graphql/fetchUserProfile";
 import { useAuth } from "../lib/authContext";
@@ -12,7 +12,7 @@ export default function Profile(props) {
   const { user } = useAuth();
 
   const { loading, error, data } = useQuery<FetchUserProfileDataResponse>(
-    FETCH_USER_PROFILE_METADATA,
+    FETCH_USER_PROFILE_DATA,
     {
       variables: {
         userId: user.uid,
