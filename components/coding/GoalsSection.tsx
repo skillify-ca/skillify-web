@@ -5,7 +5,6 @@ import {
   FETCH_USER_GOALS,
   UserGoalsData,
 } from "../../graphql/fetchUserGoals";
-import { useAuth } from "../../lib/authContext";
 
 export type GoalsSectionProps = {
   user: any;

@@ -7,11 +7,7 @@ import {
 } from "../graphql/fetchUserProfile";
 import { useAuth } from "../lib/authContext";
 import { format } from "date-fns";
-import {
-  FetchUserGoalsDataResponse,
-  FETCH_USER_GOALS,
-  UserGoalsData,
-} from "../graphql/fetchUserGoals";
+
 import GoalsSection from "../components/coding/GoalsSection";
 
 export default function Profile(props) {
@@ -34,34 +30,8 @@ export default function Profile(props) {
       },
     });
 
-  const { loading: userGoalsLoading } = useQuery<FetchUserGoalsDataResponse>(
-    FETCH_USER_GOALS,
-    {
-      variables: {
-        userId: user.uid,
-      },
-      onCompleted: (data: FetchUserGoalsDataResponse) => {
-        setUserGoals(
-          data.user_goals.map((it) => {
-            return {
-              __typename: it.__typename,
-              createdAt: it.createdAt,
-              goalName: it.goalName,
-              id: it.id,
-              isActive: it.isActive,
-              updatedAt: it.updatedAt,
-              userId: it.userId,
-            };
-          })
-        );
-      },
-    }
-  );
-
   const [userProfileData, setUserProfileData] =
     useState<UserProfileData>(Object);
-
-  const [userGoals, setUserGoals] = useState<UserGoalsData[]>([]);
 
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
@@ -104,19 +74,9 @@ export default function Profile(props) {
       <h2 className="mt-14 mb-9 font-bold text-lg">Goals</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 mb-16">
-        {userGoalsLoading ? (
-          <div>Loading...</div>
-        ) : (
-          userGoals.map((it) => {
-            return (
-              <div className="text-white bg-murkrow text-center rounded-full mx-5 py-2 mb-5">
-                {it.goalName}
-              </div>
-            );
-          })
-        )}
+        <GoalsSection user={user} />
       </div>
-      <GoalsSection user={user} />
+
       <h2 className="font-bold text-lg mb-9">Achievements</h2>
       <div className="grid grid-cols-1 sm:grid-cols-6">
         <div className="text-gray-400 bg-gray-200 rounded-full text-center py-4">
