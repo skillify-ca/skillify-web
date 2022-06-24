@@ -72,7 +72,9 @@ export default function Profile(props) {
           Edit
         </div>
       </div>
-      {userProfileData && (
+      {userProfileLoading ? (
+        <div>Loading...</div>
+      ) : (
         <div className="grid grid-cols-1 mt-12 sm:grid-cols-8">
           <img
             className="w-32 rounded-full"
