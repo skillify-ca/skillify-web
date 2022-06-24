@@ -35,6 +35,14 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
 
   return (
     <>
+      <div className="flex items-center justify-between">
+        {userProfileData && (
+          <h1 className="text-3xl font-bold">{userProfileData.name}</h1>
+        )}
+        <div className="w-32 text-center sm:justify-end px-2 py-1 text-gray-400 border-2 border-gray-400 rounded-md cursor-pointer hover:bg-gray-50 hover:border-charmander hover:text-charmander dark:hover:bg-gray-800">
+          Edit
+        </div>
+      </div>
       {userProfileLoading ? (
         <div>Loading...</div>
       ) : (
