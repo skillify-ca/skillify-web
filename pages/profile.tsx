@@ -1,38 +1,12 @@
-import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
-import {
-  FetchUserProfileDataResponse,
-  FETCH_USER_PROFILE_DATA,
-  UserProfileData,
-} from "../graphql/fetchUserProfile";
+
 import { useAuth } from "../lib/authContext";
-import { format } from "date-fns";
 
 import GoalsSection from "../components/coding/GoalsSection";
 import UserProfileSection from "../components/coding/UserProfileSection";
 
 export default function Profile(props) {
   const { user } = useAuth();
-
-  const { loading: userProfileLoading } =
-    useQuery<FetchUserProfileDataResponse>(FETCH_USER_PROFILE_DATA, {
-      variables: {
-        userId: user.uid,
-      },
-      onCompleted: (data) => {
-        setUserProfileData({
-          typeName: data.users[0].__typename,
-          createdAt: data.users[0].created_at,
-          email: data.users[0].email,
-          lastSeen: data.users[0].last_seen,
-          name: data.users[0].name,
-          profileImage: data.users[0].profile_image,
-        });
-      },
-    });
-
-  const [userProfileData, setUserProfileData] =
-    useState<UserProfileData>(Object);
 
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
