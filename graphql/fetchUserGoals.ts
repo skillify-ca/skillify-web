@@ -14,17 +14,7 @@ export const FETCH_USER_GOALS = gql`
 `;
 
 export type FetchUserGoalsDataResponse = {
-  user_goals: Array<UserGoalsResponse>;
-};
-
-export type UserGoalsResponse = {
-  __typename: string;
-  createdAt: Date;
-  goalName: string;
-  id: string;
-  isActive: boolean;
-  updatedAt: Date;
-  userId: string;
+  user_goals: Array<UserGoalsData>;
 };
 
 export type UserGoalsData = {
