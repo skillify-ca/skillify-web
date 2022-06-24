@@ -12,3 +12,27 @@ export const FETCH_USER_GOALS = gql`
     }
   }
 `;
+
+export type FetchUserGoalsDataResponse = {
+  users: Array<UserGoalsResponse>;
+};
+
+export type UserGoalsResponse = {
+  __typename: string;
+  createdAt: Date;
+  goalName: string;
+  id: string;
+  isActive: boolean;
+  updatedAt: Date;
+  userId: string;
+};
+
+export type UserGoalsData = {
+  __typename: string;
+  createdAt: Date;
+  goalName: string;
+  id: string;
+  isActive: boolean;
+  updatedAt: Date;
+  userId: string;
+};
