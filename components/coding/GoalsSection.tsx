@@ -20,19 +20,7 @@ export default function GoalsSection({ user }: GoalsSectionProps) {
       },
 
       onCompleted: (data: FetchUserGoalsDataResponse) => {
-        setUserGoals(
-          data.user_goals.map((it) => {
-            return {
-              __typename: it.__typename,
-              createdAt: it.createdAt,
-              goalName: it.goalName,
-              id: it.id,
-              isActive: it.isActive,
-              updatedAt: it.updatedAt,
-              userId: it.userId,
-            };
-          })
-        );
+        setUserGoals(data.user_goals);
       },
     }
   );
