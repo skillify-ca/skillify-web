@@ -14,7 +14,7 @@ export const FETCH_USER_GOALS = gql`
 `;
 
 export type FetchUserGoalsDataResponse = {
-  users: Array<UserGoalsResponse>;
+  user_goals: Array<UserGoalsResponse>;
 };
 
 export type UserGoalsResponse = {
