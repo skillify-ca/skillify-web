@@ -12,6 +12,7 @@ import {
   FETCH_USER_GOALS,
   UserGoalsData,
 } from "../graphql/fetchUserGoals";
+import GoalsSection from "../components/coding/GoalsSection";
 
 export default function Profile(props) {
   const { user } = useAuth();
@@ -115,6 +116,7 @@ export default function Profile(props) {
           })
         )}
       </div>
+      <GoalsSection user={user} />
       <h2 className="font-bold text-lg mb-9">Achievements</h2>
       <div className="grid grid-cols-1 sm:grid-cols-6">
         <div className="text-gray-400 bg-gray-200 rounded-full text-center py-4">
