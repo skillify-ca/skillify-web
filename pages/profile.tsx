@@ -97,12 +97,13 @@ export default function Profile(props) {
       <h2 className="mt-14 mb-9 font-bold text-lg">Goals</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 mb-16">
-        <div className="text-white bg-murkrow text-center rounded-full mx-5 py-2 mb-5">
-          Get A Tech Job
-        </div>
-        <div className="text-white bg-murkrow text-center rounded-full mx-5 py-2 mb-5">
-          Learn A New Skill
-        </div>
+        {userGoals.map((it) => {
+          return (
+            <div className="text-white bg-murkrow text-center rounded-full mx-5 py-2 mb-5">
+              {it.goalName}
+            </div>
+          );
+        })}
       </div>
       <h2 className="font-bold text-lg mb-9">Achievements</h2>
       <div className="grid grid-cols-1 sm:grid-cols-6">
