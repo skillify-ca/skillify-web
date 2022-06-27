@@ -16,7 +16,7 @@ export default function Blog() {
         <meta property="og:title" content={"Skillify Blog"} />
         <meta
           property="og:image"
-          content={"https://www.skillify.ca/images/skillify-header.jpeg"}
+          content={"https://www.skillify.ca/images/images/logo.png"}
         />
         <meta
           property="og:description"
