@@ -30,3 +30,37 @@ export const FETCH_USER_PROFILE = gql`
     }
   }
 `;
+
+export const FETCH_USER_PROFILE_DATA = gql`
+  query fetchUserProfileData($userId: String = "") {
+    users(where: { id: { _eq: $userId } }) {
+      created_at
+      email
+      last_seen
+      name
+      profile_image
+    }
+  }
+`;
+
+export type FetchUserProfileDataResponse = {
+  users: Array<UserProfileResponse>;
+};
+
+export type UserProfileResponse = {
+  __typename: string;
+  created_at: Date;
+  email: string;
+  last_seen: Date;
+  name: string;
+  profile_image: string;
+};
+
+export type UserProfileData = {
+  typeName: string;
+  createdAt: Date;
+  email: string;
+  lastSeen: Date;
+  name: string;
+  profileImage: string;
+};
