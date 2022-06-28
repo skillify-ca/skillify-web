@@ -1,4 +1,4 @@
-import React, { ReactComponentElement, ReactElement, useState } from "react";
+import React, { useState } from "react";
 
 import { useAuth } from "../lib/authContext";
 import {
@@ -13,7 +13,7 @@ import {
 } from "../graphql/fetchUserGoals";
 import { useQuery } from "@apollo/client";
 import { format } from "date-fns";
-import { User } from "../graphql/coding/classroom/fetchUsers";
+import { GoalsSection } from "./api/goals/goalsHelpers";
 
 export default function Goals(props) {
   const { user } = useAuth();
@@ -33,16 +33,6 @@ export default function Goals(props) {
   );
 
   // need to define types for GoalsSections Data
-
-  type GoalsSection = {
-    header: GoalsSectionHeader;
-    rows: UserGoalsData[];
-  };
-
-  type GoalsSectionHeader = {
-    sectionName: string;
-    manageIcons: Array<ReactElement>;
-  };
 
   // sample data for Goals Sections, eventually pull from hasura and map to this data structure
 
