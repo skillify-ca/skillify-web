@@ -6,9 +6,29 @@ import {
   TrashIcon,
   CheckCircleIcon,
 } from "@heroicons/react/solid";
+import {
+  FetchUserGoalsDataResponse,
+  FETCH_USER_GOALS,
+  UserGoalsData,
+} from "../graphql/fetchUserGoals";
+import { useQuery } from "@apollo/client";
 
 export default function Goals(props) {
   const { user } = useAuth();
+
+  const [userGoals, setUserGoals] = useState<UserGoalsData[]>([]);
+  const { loading: userGoalsLoading } = useQuery<FetchUserGoalsDataResponse>(
+    FETCH_USER_GOALS,
+    {
+      variables: {
+        userId: user.uid,
+      },
+
+      onCompleted: (data: FetchUserGoalsDataResponse) => {
+        setUserGoals(data.user_goals);
+      },
+    }
+  );
 
   // need to define types for GoalsSections Data
 
