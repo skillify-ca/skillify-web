@@ -13,6 +13,7 @@ import {
 } from "../graphql/fetchUserGoals";
 import { useQuery } from "@apollo/client";
 import { format } from "date-fns";
+import { User } from "../graphql/coding/classroom/fetchUsers";
 
 export default function Goals(props) {
   const { user } = useAuth();
