@@ -12,8 +12,6 @@ import {
   UserGoalsData,
 } from "../graphql/fetchUserGoals";
 import { useQuery } from "@apollo/client";
-import { format } from "date-fns";
-import { GoalsSectionType } from "./api/goals/goalsHelpers";
 import GoalsSectionComponent from "../components/coding/GoalsSectionComponent";
 
 export default function Goals(props) {
@@ -33,10 +31,6 @@ export default function Goals(props) {
     }
   );
 
-  // need to define types for GoalsSections Data
-
-  // sample data for Goals Sections, eventually pull from hasura and map to this data structure
-
   const tailwindIconSize = "h-5 w-5";
 
   return (
@@ -46,6 +40,7 @@ export default function Goals(props) {
       ) : (
         <div>
           <GoalsSectionComponent
+            // only fetch active goals
             userGoals={userGoals.filter((goal) => goal.isActive)}
             header={{
               sectionName: "Current Goals",
@@ -56,6 +51,7 @@ export default function Goals(props) {
             }}
           />
           <GoalsSectionComponent
+            // only fetch complete goals
             userGoals={userGoals.filter((goal) => goal.isComplete)}
             header={{
               sectionName: "Completed Goals",
@@ -66,6 +62,7 @@ export default function Goals(props) {
             }}
           />
           <GoalsSectionComponent
+            // only fetch archived goals (not complete or not active)
             userGoals={userGoals.filter(
               (goal) => !goal.isComplete && !goal.isActive
             )}
