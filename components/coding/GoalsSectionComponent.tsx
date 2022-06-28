@@ -11,7 +11,7 @@ export type GoalsSectionProps = {
 export default function GoalsSection({ userGoals, header }: GoalsSectionProps) {
   return (
     <div>
-      <h2 className="mt-14 mb-9 font-bold text-lg border-b-2">
+      <h2 className="mt-4 mb-4 font-bold text-lg border-b-2">
         {header.sectionName}
       </h2>
 
