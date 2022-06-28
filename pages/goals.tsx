@@ -114,16 +114,16 @@ export default function Goals(props) {
               <p className="col-span-2 font-bold">Target Completion</p>
               <p className="col-span-2"></p>
             </div>
-            {section.rows.map((goal) => {
+            {section.rows.map((goal, index) => {
               return (
                 <div className="grid grid-cols-12 text-center">
-                  <p className="col-span-1">1</p>
+                  <p className="col-span-1">{index + 1}</p>
                   <p className="col-span-5">{goal.goalName}</p>
                   <p className="col-span-2">{goal.createdDate}</p>
                   <p className="col-span-2">{goal.targetDate}</p>
                   <div className="col-span-2 flex justify-center">
                     {section.header.manageIcons.map((icon) => {
-                      return <React.Fragment>{icon}</React.Fragment>;
+                      return <div>{icon}</div>;
                     })}
                   </div>
                 </div>
