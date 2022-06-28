@@ -12,8 +12,9 @@ import {
   UserGoalsData,
 } from "../graphql/fetchUserGoals";
 import { useQuery } from "@apollo/client";
-import GoalsSectionComponent from "../components/coding/GoalsSectionComponent";
-import { GoalsSectionType } from "./api/goals/goalsHelpers";
+import GoalsSectionComponent, {
+  GoalsSectionProps,
+} from "../components/coding/goals/GoalsSectionComponent";
 
 export default function Goals(props) {
   const { user } = useAuth();
@@ -36,7 +37,7 @@ export default function Goals(props) {
 
   // create goal sections here, map through below to render
 
-  const goalsSections: GoalsSectionType[] = [
+  const goalsSections: GoalsSectionProps[] = [
     {
       header: {
         sectionName: "Current Goals",
@@ -45,7 +46,7 @@ export default function Goals(props) {
           <CheckCircleIcon className={tailwindIconSize} />,
         ],
       },
-      rows: userGoals.filter((goal) => goal.isActive),
+      userGoals: userGoals.filter((goal) => goal.isActive),
     },
     {
       header: {
@@ -55,14 +56,14 @@ export default function Goals(props) {
           <TrashIcon className={tailwindIconSize} />,
         ],
       },
-      rows: userGoals.filter((goal) => goal.isComplete),
+      userGoals: userGoals.filter((goal) => goal.isComplete),
     },
     {
       header: {
         sectionName: "Archived Goals",
         manageIcons: [<TrashIcon className={tailwindIconSize} />],
       },
-      rows: userGoals.filter((goal) => !goal.isComplete && !goal.isActive),
+      userGoals: userGoals.filter((goal) => !goal.isComplete && !goal.isActive),
     },
   ];
 
@@ -76,7 +77,7 @@ export default function Goals(props) {
             return (
               <div>
                 <GoalsSectionComponent
-                  userGoals={section.rows}
+                  userGoals={section.userGoals}
                   header={section.header}
                 />
               </div>
