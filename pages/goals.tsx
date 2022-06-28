@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactComponentElement, ReactElement, useState } from "react";
 
 import { useAuth } from "../lib/authContext";
 import {
@@ -12,6 +12,7 @@ import {
   UserGoalsData,
 } from "../graphql/fetchUserGoals";
 import { useQuery } from "@apollo/client";
+import { format } from "date-fns";
 
 export default function Goals(props) {
   const { user } = useAuth();
@@ -32,11 +33,21 @@ export default function Goals(props) {
 
   // need to define types for GoalsSections Data
 
+  type GoalsSection = {
+    header: GoalsSectionHeader;
+    rows: UserGoalsData[];
+  };
+
+  type GoalsSectionHeader = {
+    sectionName: string;
+    manageIcons: Array<ReactElement>;
+  };
+
   // sample data for Goals Sections, eventually pull from hasura and map to this data structure
 
   const tailwindIconSize = "h-5 w-5";
 
-  const GoalsSections = [
+  const GoalsSections: GoalsSection[] = [
     {
       header: {
         sectionName: "Current Goals",
@@ -49,19 +60,37 @@ export default function Goals(props) {
       },
       rows: [
         {
+          __typename: "remove",
+          userId: "raveen",
+          isActive: true,
+          updatedAt: new Date(2022, 6, 1),
+          id: "test",
+          isComplete: false,
           goalName: "Learn React Fundamentals",
-          createdDate: "2022-06-01",
-          targetDate: "2022-06-14",
+          createdAt: new Date(2022, 6, 1),
+          targetDate: new Date(2022, 6, 14),
         },
         {
-          goalName: "First 5 problems of LeetCode 75",
-          createdDate: "2022-06-01",
-          targetDate: "2022-06-07",
+          __typename: "remove",
+          userId: "raveen",
+          isActive: true,
+          updatedAt: new Date(2022, 6, 1),
+          id: "test",
+          isComplete: false,
+          goalName: "Completed Goal 2",
+          createdAt: new Date(2022, 6, 1),
+          targetDate: new Date(2022, 6, 14),
         },
         {
-          goalName: "Lorem Ipsum Dolor Sit Amet",
-          createdDate: "2022-06-07",
-          targetDate: "2022-07-01",
+          __typename: "remove",
+          userId: "raveen",
+          isActive: true,
+          updatedAt: new Date(2022, 6, 1),
+          id: "test",
+          isComplete: false,
+          goalName: "Completed Goal 3",
+          createdAt: new Date(2022, 6, 1),
+          targetDate: new Date(2022, 6, 14),
         },
       ],
     },
@@ -77,19 +106,37 @@ export default function Goals(props) {
       },
       rows: [
         {
-          goalName: "Complete all levels of FlexBox Frog Game",
-          createdDate: "2022-06-01",
-          targetDate: "2022-06-08",
+          __typename: "remove",
+          userId: "raveen",
+          isActive: true,
+          updatedAt: new Date(2022, 6, 1),
+          id: "test",
+          isComplete: false,
+          goalName: "Completed Goal 1",
+          createdAt: new Date(2022, 6, 1),
+          targetDate: new Date(2022, 6, 14),
         },
         {
-          goalName: "Build Basic HTML page",
-          createdDate: "2022-06-01",
-          targetDate: "2022-06-06",
+          __typename: "remove",
+          userId: "raveen",
+          isActive: true,
+          updatedAt: new Date(2022, 6, 1),
+          id: "test",
+          isComplete: false,
+          goalName: "Completed Goal 2",
+          createdAt: new Date(2022, 6, 1),
+          targetDate: new Date(2022, 6, 14),
         },
         {
-          goalName: "Make first pull request",
-          createdDate: "2022-06-01",
-          targetDate: "2022-06-02",
+          __typename: "remove",
+          userId: "raveen",
+          isActive: true,
+          updatedAt: new Date(2022, 6, 1),
+          id: "test",
+          isComplete: false,
+          goalName: "Completed Goal 3",
+          createdAt: new Date(2022, 6, 1),
+          targetDate: new Date(2022, 6, 14),
         },
       ],
     },
@@ -106,14 +153,26 @@ export default function Goals(props) {
       },
       rows: [
         {
-          goalName: "Learn Kotlin",
-          createdDate: "2022-06-01",
-          targetDate: "2022-09-01",
+          __typename: "remove",
+          userId: "raveen",
+          isActive: true,
+          updatedAt: new Date(2022, 6, 1),
+          id: "test",
+          isComplete: false,
+          goalName: "Archived Goal 1",
+          createdAt: new Date(2022, 6, 1),
+          targetDate: new Date(2022, 6, 14),
         },
         {
-          goalName: "Learn SQL",
-          createdDate: "2022-06-01",
-          targetDate: "2022-09-01",
+          __typename: "remove",
+          userId: "raveen",
+          isActive: true,
+          updatedAt: new Date(2022, 6, 1),
+          id: "test",
+          isComplete: false,
+          goalName: "Archived Goal 2",
+          createdAt: new Date(2022, 6, 1),
+          targetDate: new Date(2022, 6, 14),
         },
       ],
     },
@@ -139,8 +198,12 @@ export default function Goals(props) {
                 <div className="grid grid-cols-12 text-center">
                   <p className="col-span-1">{index + 1}</p>
                   <p className="col-span-5">{goal.goalName}</p>
-                  <p className="col-span-2">{goal.createdDate}</p>
-                  <p className="col-span-2">{goal.targetDate}</p>
+                  <p className="col-span-2">
+                    {format(goal.createdAt, "MMMM yyyy")}
+                  </p>
+                  <p className="col-span-2">
+                    {format(goal.targetDate, "MMMM yyyy")}
+                  </p>
                   <div className="col-span-2 flex justify-center">
                     {section.header.manageIcons.map((icon) => {
                       return <div>{icon}</div>;
