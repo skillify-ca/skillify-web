@@ -4,13 +4,15 @@ import {
   FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
   UserGoalsData,
-} from "../../graphql/fetchUserGoals";
+} from "../../../graphql/fetchUserGoals";
 
-export type GoalsSectionProps = {
+export type ProfileGoalsSectionProps = {
   user: any;
 };
 
-export default function ProfileGoalsSection({ user }: GoalsSectionProps) {
+export default function ProfileGoalsSection({
+  user,
+}: ProfileGoalsSectionProps) {
   const [userGoals, setUserGoals] = useState<UserGoalsData[]>([]);
   const { loading: userGoalsLoading } = useQuery<FetchUserGoalsDataResponse>(
     FETCH_USER_GOALS,
@@ -32,7 +34,7 @@ export default function ProfileGoalsSection({ user }: GoalsSectionProps) {
       ) : (
         userGoals.map((it) => {
           return (
-            <div className="text-white bg-murkrow text-center rounded-full mx-5 py-2 mb-5">
+            <div className="py-2 mx-5 mb-5 text-center text-white rounded-full bg-murkrow">
               {it.goalName}
             </div>
           );
