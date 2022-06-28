@@ -26,8 +26,8 @@ export default function GoalsSection({ userGoals, header }: GoalsSectionProps) {
           <div className="grid grid-cols-12 text-center">
             <p className="col-span-1">{index + 1}</p>
             <p className="col-span-5">{goal.goalName}</p>
-            <p className="col-span-2">{format(goal.createdAt, "MMMM yyyy")}</p>
-            <p className="col-span-2">{format(goal.targetDate, "MMMM yyyy")}</p>
+            {/* <p className="col-span-2">{format(goal.createdAt, "MMMM yyyy")}</p>
+            <p className="col-span-2">{format(goal.targetDate, "MMMM yyyy")}</p> */}
             <div className="col-span-2 flex justify-center">
               {header.manageIcons.map((icon) => {
                 return <div>{icon}</div>;

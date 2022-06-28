@@ -10,7 +10,7 @@ export type GoalsSectionProps = {
   user: any;
 };
 
-export default function GoalsSection({ user }: GoalsSectionProps) {
+export default function ProfileGoalsSection({ user }: GoalsSectionProps) {
   const [userGoals, setUserGoals] = useState<UserGoalsData[]>([]);
   const { loading: userGoalsLoading } = useQuery<FetchUserGoalsDataResponse>(
     FETCH_USER_GOALS,

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { useAuth } from "../lib/authContext";
 
-import GoalsSection from "../components/coding/GoalsSection";
+import ProfileGoalsSection from "../components/coding/ProfileGoalsSection";
 import UserProfileSection from "../components/coding/UserProfileSection";
 
 export default function Profile(props) {
@@ -15,7 +15,7 @@ export default function Profile(props) {
       <h2 className="mt-14 mb-9 font-bold text-lg">Goals</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 mb-16">
-        <GoalsSection user={user} />
+        <ProfileGoalsSection user={user} />
       </div>
 
       <h2 className="font-bold text-lg mb-9">Achievements</h2>

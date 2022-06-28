@@ -13,7 +13,8 @@ import {
 } from "../graphql/fetchUserGoals";
 import { useQuery } from "@apollo/client";
 import { format } from "date-fns";
-import { GoalsSection } from "./api/goals/goalsHelpers";
+import { GoalsSectionType } from "./api/goals/goalsHelpers";
+import GoalsSectionComponent from "../components/coding/GoalsSectionComponent";
 
 export default function Goals(props) {
   const { user } = useAuth();
@@ -38,7 +39,7 @@ export default function Goals(props) {
 
   const tailwindIconSize = "h-5 w-5";
 
-  const GoalsSections: GoalsSection[] = [
+  const GoalsSections: GoalsSectionType[] = [
     {
       header: {
         sectionName: "Current Goals",
@@ -171,6 +172,42 @@ export default function Goals(props) {
 
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
+      {userGoalsLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <div>
+          <GoalsSectionComponent
+            userGoals={userGoals.filter((goal) => goal.isActive)}
+            header={{
+              sectionName: "Current Goals",
+              manageIcons: [
+                <ArchiveIcon className={tailwindIconSize} />,
+                <CheckCircleIcon className={tailwindIconSize} />,
+              ],
+            }}
+          />
+          <GoalsSectionComponent
+            userGoals={userGoals.filter((goal) => goal.isComplete)}
+            header={{
+              sectionName: "Completed Goals",
+              manageIcons: [
+                <ArchiveIcon className={tailwindIconSize} />,
+                <TrashIcon className={tailwindIconSize} />,
+              ],
+            }}
+          />
+          <GoalsSectionComponent
+            userGoals={userGoals.filter(
+              (goal) => !goal.isComplete && !goal.isActive
+            )}
+            header={{
+              sectionName: "Archived Goals",
+              manageIcons: [<TrashIcon className={tailwindIconSize} />],
+            }}
+          />
+        </div>
+      )}
+
       {GoalsSections.map((section) => {
         return (
           <div>
