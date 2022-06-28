@@ -9,6 +9,8 @@ export const FETCH_USER_GOALS = gql`
       isActive
       updatedAt
       userId
+      isComplete
+      targetDate
     }
   }
 `;
@@ -25,4 +27,6 @@ export type UserGoalsData = {
   isActive: boolean;
   updatedAt: Date;
   userId: string;
+  isComplete: boolean;
+  targetDate: Date;
 };
