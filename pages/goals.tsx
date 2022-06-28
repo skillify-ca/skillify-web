@@ -52,7 +52,7 @@ export default function Goals(props) {
       ],
 
       userGoals: userGoals.filter(
-        (goal) => goal.isComplete && !goal.isComplete
+        (goal) => goal.isComplete && !goal.isArchived
       ),
     },
     {
