@@ -51,12 +51,14 @@ export default function Goals(props) {
         <TrashIcon className={tailwindIconSize} />,
       ],
 
-      userGoals: userGoals.filter((goal) => goal.isComplete),
+      userGoals: userGoals.filter(
+        (goal) => goal.isComplete && !goal.isComplete
+      ),
     },
     {
       sectionName: "Archived Goals",
       manageIcons: [<TrashIcon className={tailwindIconSize} />],
-      userGoals: userGoals.filter((goal) => !goal.isComplete && !goal.isActive),
+      userGoals: userGoals.filter((goal) => goal.isArchived),
     },
   ];
 

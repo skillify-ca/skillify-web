@@ -11,6 +11,7 @@ export const FETCH_USER_GOALS = gql`
       userId
       isComplete
       targetDate
+      isArchived
     }
   }
 `;
@@ -20,7 +21,6 @@ export type FetchUserGoalsDataResponse = {
 };
 
 export type UserGoalsData = {
-  __typename: string;
   createdAt: Date;
   goalName: string;
   id: string;
@@ -29,4 +29,5 @@ export type UserGoalsData = {
   userId: string;
   isComplete: boolean;
   targetDate: Date;
+  isArchived: boolean;
 };
