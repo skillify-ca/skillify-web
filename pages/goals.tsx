@@ -13,7 +13,6 @@ import {
 } from "../graphql/fetchUserGoals";
 import { useQuery } from "@apollo/client";
 import GoalsSectionComponent from "../components/coding/GoalsSectionComponent";
-import { GoalsSectionType } from "./api/goals/goalsHelpers";
 
 export default function Goals(props) {
   const { user } = useAuth();
@@ -36,33 +35,28 @@ export default function Goals(props) {
 
   // create goal sections here, map through below to render
 
-  const goalsSections: GoalsSectionType[] = [
+  const goalsSections = [
     {
-      header: {
-        sectionName: "Current Goals",
-        manageIcons: [
-          <ArchiveIcon className={tailwindIconSize} />,
-          <CheckCircleIcon className={tailwindIconSize} />,
-        ],
-      },
-      rows: userGoals.filter((goal) => goal.isActive),
+      sectionName: "Current Goals",
+      manageIcons: [
+        <ArchiveIcon className={tailwindIconSize} />,
+        <CheckCircleIcon className={tailwindIconSize} />,
+      ],
+      userGoals: userGoals.filter((goal) => goal.isActive),
     },
     {
-      header: {
-        sectionName: "Completed Goals",
-        manageIcons: [
-          <ArchiveIcon className={tailwindIconSize} />,
-          <TrashIcon className={tailwindIconSize} />,
-        ],
-      },
-      rows: userGoals.filter((goal) => goal.isComplete),
+      sectionName: "Completed Goals",
+      manageIcons: [
+        <ArchiveIcon className={tailwindIconSize} />,
+        <TrashIcon className={tailwindIconSize} />,
+      ],
+
+      userGoals: userGoals.filter((goal) => goal.isComplete),
     },
     {
-      header: {
-        sectionName: "Archived Goals",
-        manageIcons: [<TrashIcon className={tailwindIconSize} />],
-      },
-      rows: userGoals.filter((goal) => !goal.isComplete && !goal.isActive),
+      sectionName: "Archived Goals",
+      manageIcons: [<TrashIcon className={tailwindIconSize} />],
+      userGoals: userGoals.filter((goal) => !goal.isComplete && !goal.isActive),
     },
   ];
 
@@ -76,8 +70,9 @@ export default function Goals(props) {
             return (
               <div>
                 <GoalsSectionComponent
-                  userGoals={section.rows}
-                  header={section.header}
+                  userGoals={section.userGoals}
+                  sectionName={section.sectionName}
+                  manageIcons={section.manageIcons}
                 />
               </div>
             );

@@ -1,19 +1,21 @@
 import { format } from "date-fns";
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { UserGoalsData } from "../../graphql/fetchUserGoals";
-import { GoalsSectionHeader } from "../../pages/api/goals/goalsHelpers";
 
 export type GoalsSectionProps = {
   userGoals: UserGoalsData[];
-  header: GoalsSectionHeader;
+  sectionName: string;
+  manageIcons: Array<ReactElement>;
 };
 
-export default function GoalsSection({ userGoals, header }: GoalsSectionProps) {
+export default function GoalsSection({
+  userGoals,
+  sectionName,
+  manageIcons,
+}: GoalsSectionProps) {
   return (
     <div>
-      <h2 className="mt-4 mb-4 font-bold text-lg border-b-2">
-        {header.sectionName}
-      </h2>
+      <h2 className="mt-4 mb-4 font-bold text-lg border-b-2">{sectionName}</h2>
 
       <div className="grid grid-cols-12 text-center">
         <p className="col-span-1 font-bold">#</p>
@@ -34,7 +36,7 @@ export default function GoalsSection({ userGoals, header }: GoalsSectionProps) {
               {format(new Date(goal.targetDate), "MMMM yyyy")}
             </p>
             <div className="col-span-2 flex justify-center">
-              {header.manageIcons.map((icon) => {
+              {manageIcons.map((icon) => {
                 return <div>{icon}</div>;
               })}
             </div>
