@@ -31,9 +31,28 @@ const Benefits = () => {
     <div className="p-4 sm:p-16 bg-murkrow">
       <h1 className="mb-4 text-5xl font-bold text-center text-white sm:mb-16">
         {" "}
-        Benefits
+        Grow without limits
       </h1>
       <div className="grid justify-center grid-cols-1 gap-8 sm:grid-cols-3">
+        <Benefit
+          image={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-24 h-24 p-4 text-charmander"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
+                clipRule="evenodd"
+              />
+              <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z" />
+            </svg>
+          }
+          title="Expert Mentors"
+          description="Get tailored coaching from our industry experts. Our trainers walk alongside you to help you confidently take the next step."
+        />
         <Benefit
           image={
             <svg
@@ -51,27 +70,9 @@ const Benefits = () => {
             </svg>
           }
           title="Job Search Support"
-          description="We will help you get hired with resume critiques and mock technical interviews"
+          description="We will help you get hired with access to resume critiques, mock coding interviews as well as exclusive internship opportunities."
         />
-        <Benefit
-          image={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-24 h-24 p-4 text-charmander"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
-                clipRule="evenodd"
-              />
-              <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z" />
-            </svg>
-          }
-          title="Build Real Projects"
-          description="You will build real products to add to your portfolio or resume."
-        />
+
         <Benefit
           image={
             <svg

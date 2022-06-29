@@ -28,8 +28,8 @@ export default function Hero() {
             <span className="">in tech.</span>{" "}
           </h1>
           <p className="my-4 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-            Get access to a personalized roadmap, industry mentors and a
-            community of learners.
+            Get access to personalized coaching, expert mentors and a community
+            of learners.
           </p>
           <Button
             label={"Request Demo"}

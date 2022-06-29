@@ -14,7 +14,9 @@ export default function Credentials() {
   ];
   return (
     <div className="flex flex-col items-center justify-center p-4 bg-white sm:p-16">
-      <p className="mb-4 text-3xl font-bold">Our instructors have worked at</p>
+      <p className="mb-4 text-3xl font-bold">
+        Our expert coaches have worked at
+      </p>
       <div className="grid w-full grid-cols-2 gap-8 p-4 bg-white border-t-8 rounded-lg shadow-lg border-charmander sm:grid-cols-3">
         {images.map((image) => (
           <div className="flex justify-center">
