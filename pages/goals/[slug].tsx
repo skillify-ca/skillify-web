@@ -1,14 +1,19 @@
-import { ApolloClient, InMemoryCache, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { format } from "date-fns";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import {
   FetchUserGoalsDataResponse,
-  FETCH_GOALS,
   FETCH_USER_GOAL_DETAIL,
+  UserGoalsData,
 } from "../../graphql/fetchUserGoals";
 import { useAuth } from "../../lib/authContext";
 
-const EditGoalsPage = ({ slug }) => {
+const EditGoalsPage = () => {
   const { user } = useAuth();
+
+  const router = useRouter();
+  const { slug } = router.query;
 
   const goalDetailResults = useQuery<FetchUserGoalsDataResponse>(
     FETCH_USER_GOAL_DETAIL,
@@ -20,49 +25,36 @@ const EditGoalsPage = ({ slug }) => {
     }
   );
 
-  let goalDetail;
+  let goalDetail: UserGoalsData;
   if (goalDetailResults.data) {
     goalDetail = goalDetailResults.data.user_goals[0];
   }
 
   return (
-    <div>
+    <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
+      <h1 className="text-3xl font-bold mb-4">Edit Goal</h1>
       {goalDetail && (
-        <div>
-          <h1>Details for {goalDetail.id}</h1>
-          <div>{JSON.stringify(goalDetail)}</div>
+        <div className="grid grid-cols-12">
+          <p className="col-span-2">Goal Name:</p>
+          <p className="col-span-2">{goalDetail.goalName}</p>
+          <p className="col-start-1 col-span-2">Target Completion:</p>
+          <p className="col-span-2">
+            {goalDetail.targetDate ?? "No Target Date Set"}
+          </p>
+          <p className="col-start-1 col-span-2">Created Date:</p>
+          <p className="col-span-2">
+            {format(new Date(goalDetail.targetDate), "MMMM dd yyyy")}
+          </p>
+          <p className="col-start-1 col-span-2">Is Goal Active?</p>
+          <p className="col-span-2">{goalDetail.isActive ? "Yes" : "No"}</p>
+          <p className="col-start-1 col-span-2">Is Goal Complete?</p>
+          <p className="col-span-2">{goalDetail.isComplete ? "Yes" : "No"}</p>
+          <p className="col-start-1 col-span-2">Is Goal Archived?</p>
+          <p className="col-span-2">{goalDetail.isArchived ? "Yes" : "No"}</p>
         </div>
       )}
     </div>
   );
 };
-
-export async function getStaticPaths() {
-  const client = new ApolloClient({
-    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
-    cache: new InMemoryCache(),
-  });
-
-  const { data } = await client.query({
-    query: FETCH_GOALS,
-  });
-
-  const ids = data.user_goals.map((goal) => {
-    return { params: { slug: goal.id.toString() } };
-  });
-
-  return {
-    paths: ids,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params }) {
-  return {
-    props: {
-      slug: params.slug,
-    },
-  };
-}
 
 export default EditGoalsPage;
