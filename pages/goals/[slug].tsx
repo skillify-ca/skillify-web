@@ -1,10 +1,9 @@
-import { useQuery } from "@apollo/client";
+import { ApolloClient, InMemoryCache, useQuery } from "@apollo/client";
 import React, { useState } from "react";
 import {
   FetchUserGoalsDataResponse,
-  FETCH_USER_GOALS,
+  FETCH_GOALS,
   FETCH_USER_GOAL_DETAIL,
-  UserGoalsData,
 } from "../../graphql/fetchUserGoals";
 import { useAuth } from "../../lib/authContext";
 
@@ -38,22 +37,31 @@ const EditGoalsPage = ({ slug }) => {
   );
 };
 
+export async function getStaticPaths() {
+  const client = new ApolloClient({
+    uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
+    cache: new InMemoryCache(),
+  });
+
+  const { data } = await client.query({
+    query: FETCH_GOALS,
+  });
+
+  const ids = data.user_goals.map((goal) => {
+    return { params: { slug: goal.id.toString() } };
+  });
+
+  return {
+    paths: ids,
+    fallback: false,
+  };
+}
+
 export async function getStaticProps({ params }) {
   return {
     props: {
       slug: params.slug,
     },
-  };
-}
-
-export async function getStaticPaths() {
-  return {
-    paths: [
-      { params: { slug: "dbc1ac74-8b42-41e7-9969-65be9d028ee8" } },
-      { params: { slug: "357c7793-a694-49f1-ae5e-cb6b3761ef3f" } },
-      { params: { slug: "577b265f-869d-40d7-a491-72b5d0577706" } },
-    ],
-    fallback: true,
   };
 }
 
