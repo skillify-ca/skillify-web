@@ -35,7 +35,7 @@ Math Champ is continuously adding more skills and questions types. If you want t
 - how the question generator
 - Software testing
 
-## Important libraries that we ue
+## Important libraries that we use
 
 - [Tailwind + NextJS Starter](https://tailwindcss.com/docs/guides/nextjs)
 - [Tailwind CSS](https://tailwindcss.com/) (v2)
