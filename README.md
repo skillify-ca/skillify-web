@@ -4,9 +4,7 @@
 
 Navigate to the math folder using your Terminal and run these commands:
 
-`npm install`
 
-`npm run dev`
 
 ## Storybook
 
