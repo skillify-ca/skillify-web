@@ -1,17 +1,17 @@
+import { PencilAltIcon, PencilIcon } from "@heroicons/react/outline";
 import { format } from "date-fns";
-import React, { ReactElement, useState } from "react";
+import Link from "next/link";
+import React from "react";
 import { UserGoalsData } from "../../graphql/fetchUserGoals";
 
 export type GoalsSectionProps = {
   userGoals: UserGoalsData[];
   sectionName: string;
-  manageIcons: Array<ReactElement>;
 };
 
 export default function GoalsSection({
   userGoals,
   sectionName,
-  manageIcons,
 }: GoalsSectionProps) {
   return (
     <div>
@@ -35,10 +35,10 @@ export default function GoalsSection({
             <p className="col-span-2">
               {format(new Date(goal.targetDate), "MMMM yyyy")}
             </p>
-            <div className="col-span-2 flex justify-center">
-              {manageIcons.map((icon) => {
-                return <div>{icon}</div>;
-              })}
+            <div>
+              <Link href={"/goals/" + goal.id}>
+                <PencilAltIcon className="h-5 w-5 hover:text-yellow-600 cursor-pointer" />
+              </Link>
             </div>
           </div>
         );
