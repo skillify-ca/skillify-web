@@ -3,9 +3,9 @@ import { Unit } from "../../pages/api/studentPortal/units";
 
 export const FETCH_USER_INTRO_NODES = gql`
   query fetchUserIntroNodes($userId: String = "") {
-    intro_course_unit {
+    intro_course_unit(order_by: {order: asc}) {
       title
-      intro_course_nodes(order_by: { id: asc }) {
+      intro_course_nodes(order_by: {order: asc}) {
         description
         link
         title

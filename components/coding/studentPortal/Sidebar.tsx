@@ -225,7 +225,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
           </div>
         </div>
         <div
-          className="flex flex-wrap p-4 mt-20 cursor-pointer hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800"
+          className="flex flex-wrap p-4 cursor-pointer hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800"
           onClick={signOut}
         >
           <svg
