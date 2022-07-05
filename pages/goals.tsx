@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 
 import { useAuth } from "../lib/authContext";
-import {
-  ArchiveIcon,
-  TrashIcon,
-  CheckCircleIcon,
-} from "@heroicons/react/solid";
+
 import {
   FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
@@ -38,26 +34,16 @@ export default function Goals(props) {
   const goalsSections = [
     {
       sectionName: "Current Goals",
-      manageIcons: [
-        <ArchiveIcon className={tailwindIconSize} />,
-        <CheckCircleIcon className={tailwindIconSize} />,
-      ],
       userGoals: userGoals.filter((goal) => goal.isActive),
     },
     {
       sectionName: "Completed Goals",
-      manageIcons: [
-        <ArchiveIcon className={tailwindIconSize} />,
-        <TrashIcon className={tailwindIconSize} />,
-      ],
-
       userGoals: userGoals.filter(
         (goal) => goal.isComplete && !goal.isArchived
       ),
     },
     {
       sectionName: "Archived Goals",
-      manageIcons: [<TrashIcon className={tailwindIconSize} />],
       userGoals: userGoals.filter((goal) => goal.isArchived),
     },
   ];
@@ -74,7 +60,6 @@ export default function Goals(props) {
                 <GoalsSectionComponent
                   userGoals={section.userGoals}
                   sectionName={section.sectionName}
-                  manageIcons={section.manageIcons}
                 />
               </div>
             );
