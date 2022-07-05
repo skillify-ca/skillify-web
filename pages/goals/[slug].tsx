@@ -14,6 +14,8 @@ import {
   UserGoalsData,
 } from "../../graphql/fetchUserGoals";
 import { useAuth } from "../../lib/authContext";
+import { useMutation } from "@apollo/client";
+import { UPSERT_USER_GOALS } from "../../graphql/upsertUserGoals";
 
 const EditGoalsPage = () => {
   const { user } = useAuth();
@@ -22,6 +24,8 @@ const EditGoalsPage = () => {
   const { slug } = router.query;
 
   const [editedGoalValues, setEditedGoalValues] = useState<UserGoalsData>();
+
+  const [saveEditedGoals] = useMutation(UPSERT_USER_GOALS);
 
   const goalDetailResults = useQuery<FetchUserGoalsDataResponse>(
     FETCH_USER_GOAL_DETAIL,
@@ -115,7 +119,16 @@ const EditGoalsPage = () => {
                 }))
               }
             />
-            <Button label="Save" />
+            <Button
+              label="Save"
+              onClick={() => {
+                saveEditedGoals({
+                  variables: {
+                    objects: editedGoalValues,
+                  },
+                });
+              }}
+            />
           </div>
         </div>
       )}
