@@ -1,11 +1,12 @@
 import { gql } from "@apollo/client";
 import { Unit } from "../../pages/api/studentPortal/units";
 
+// Ignore unit 34 (The Community Unit)
 export const FETCH_USER_INTRO_NODES = gql`
-  query fetchUserIntroNodes($userId: String = "") {
-    intro_course_unit(order_by: {order: asc}) {
+  query fetchUserIntroNodes($userId: String = "Yxe3yn3BNhbSulbrnT3DI5bfrU93") {
+    intro_course_unit(order_by: { order: asc }, where: { id: { _neq: 34 } }) {
       title
-      intro_course_nodes(order_by: {order: asc}) {
+      intro_course_nodes(order_by: { order: asc }) {
         description
         link
         title
