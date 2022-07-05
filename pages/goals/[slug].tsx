@@ -74,9 +74,24 @@ const EditGoalsPage = () => {
             />
           </div>
           <div className="flex flex-row mt-8 space-x-4">
-            <ArchiveIcon className="h-10 w-10" />
-            <TrashIcon className="h-10 w-10" />
-            <CheckCircleIcon className="h-10 w-10" />
+            <ArchiveIcon
+              className={
+                "h-10 w-10" + goalDetail.isArchived
+                  ? "text-yellow-600 h-10 w-10"
+                  : "h-10 w-10"
+              }
+            />
+            <TrashIcon
+              className={
+                goalDetail.isComplete ? "h-10 w-10 text-red-600" : "h-10 w-10"
+              }
+              path="text-"
+            />
+            <CheckCircleIcon
+              className={
+                goalDetail.isComplete ? "h-10 w-10 text-green-600" : "h-10 w-10"
+              }
+            />
             <Button label="Save" />
           </div>
         </div>
