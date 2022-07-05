@@ -122,9 +122,20 @@ const EditGoalsPage = () => {
             <Button
               label="Save"
               onClick={() => {
+                // this is a workaround to remove __typename from the gql response which causes mutation to fail
+                const removeTypeNameForHasura = {
+                  goalName: editedGoalValues.goalName,
+                  userId: editedGoalValues.userId,
+                  id: editedGoalValues.id,
+                  isArchived: editedGoalValues.isArchived,
+                  isComplete: editedGoalValues.isComplete,
+                  targetDate: editedGoalValues.targetDate,
+                  isActive: editedGoalValues.isActive,
+                };
+
                 saveEditedGoals({
                   variables: {
-                    objects: editedGoalValues,
+                    objects: removeTypeNameForHasura,
                   },
                 });
               }}
