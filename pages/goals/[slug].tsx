@@ -25,7 +25,9 @@ const EditGoalsPage = () => {
 
   const [editedGoalValues, setEditedGoalValues] = useState<UserGoalsData>();
 
-  const [saveEditedGoals] = useMutation(UPSERT_USER_GOALS);
+  const [saveEditedGoals] = useMutation(UPSERT_USER_GOALS, {
+    onCompleted: () => router.push("/goals"),
+  });
 
   const goalDetailResults = useQuery<FetchUserGoalsDataResponse>(
     FETCH_USER_GOAL_DETAIL,
