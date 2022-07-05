@@ -21,12 +21,17 @@ const EditGoalsPage = () => {
   const router = useRouter();
   const { slug } = router.query;
 
+  const [editedGoalValues, setEditedGoalValues] = useState<UserGoalsData>();
+
   const goalDetailResults = useQuery<FetchUserGoalsDataResponse>(
     FETCH_USER_GOAL_DETAIL,
     {
       variables: {
         userId: user.uid,
         id: slug,
+      },
+      onCompleted: (data) => {
+        setEditedGoalValues(data.user_goals[0]);
       },
     }
   );
@@ -39,7 +44,7 @@ const EditGoalsPage = () => {
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
       <h1 className="text-3xl font-bold mb-4">Edit Goal</h1>
-      {goalDetail && (
+      {goalDetail && editedGoalValues && (
         <div>
           <div className="flex flex-col space-y-2">
             <p className="font-bold">Goal Name</p>
@@ -47,6 +52,13 @@ const EditGoalsPage = () => {
               type="text"
               className="text-left p-2 border rounded-md shadow-md w-1/2"
               placeholder={goalDetail.goalName}
+              value={editedGoalValues.goalName}
+              onChange={(e) => {
+                setEditedGoalValues((prevState) => ({
+                  ...prevState,
+                  goalName: e.target.value,
+                }));
+              }}
             />
             <p className="font-bold">Created On</p>
             <input
@@ -80,16 +92,23 @@ const EditGoalsPage = () => {
                   ? "text-yellow-600 h-10 w-10"
                   : "h-10 w-10"
               }
-            />
-            <TrashIcon
-              className={
-                goalDetail.isComplete ? "h-10 w-10 text-red-600" : "h-10 w-10"
+              onClick={() =>
+                setEditedGoalValues((prevState) => ({
+                  ...prevState,
+                  isArchived: !prevState.isArchived,
+                }))
               }
-              path="text-"
             />
+            <TrashIcon className="h-10 w-10" />
             <CheckCircleIcon
               className={
                 goalDetail.isComplete ? "h-10 w-10 text-green-600" : "h-10 w-10"
+              }
+              onClick={() =>
+                setEditedGoalValues((prevState) => ({
+                  ...prevState,
+                  isComplete: !prevState.isComplete,
+                }))
               }
             />
             <Button label="Save" />
