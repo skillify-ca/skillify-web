@@ -1,7 +1,9 @@
 import { useQuery } from "@apollo/client";
+import { ArchiveIcon, TrashIcon } from "@heroicons/react/outline";
 import { format } from "date-fns";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { Button } from "../../components/ui/Button";
 import {
   FetchUserGoalsDataResponse,
   FETCH_USER_GOAL_DETAIL,
@@ -34,8 +36,54 @@ const EditGoalsPage = () => {
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
       <h1 className="text-3xl font-bold mb-4">Edit Goal</h1>
       {goalDetail && (
-        <div className="grid grid-cols-12">
-          <p className="col-span-2">Goal Name:</p>
+        <div>
+          <div className="flex flex-col space-y-2">
+            <p className="font-bold">Goal Name</p>
+            <input
+              type="text"
+              className="text-left p-2 border rounded-md shadow-md w-1/2"
+              placeholder={goalDetail.goalName}
+            />
+            <p className="font-bold">Created On</p>
+            <input
+              type="text"
+              className="text-left p-2 border rounded-md shadow-md w-1/4"
+              value={format(new Date(goalDetail.createdAt), "MMMM dd yyyy")}
+              disabled
+            />
+            <p className="font-bold">Last Updated</p>
+            <input
+              type="text"
+              className="text-left p-2 border rounded-md shadow-md w-1/4"
+              value={format(new Date(goalDetail.updatedAt), "MMMM dd yyyy")}
+              disabled
+            />
+            <p className="font-bold">Target Completion Date</p>
+            <input
+              type="text"
+              className="text-left p-2 border rounded-md shadow-md w-1/4"
+              value={
+                format(new Date(goalDetail.targetDate), "MMMM dd yyyy") ??
+                "No Date Set"
+              }
+              disabled
+            />
+          </div>
+          <div className="flex flex-row mt-8 space-x-4">
+            <ArchiveIcon className="h-10 w-10" />
+            <TrashIcon className="h-10 w-10" />
+            <Button label="Save" />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default EditGoalsPage;
+
+{
+  /* <p className="col-span-2">Goal Name:</p>
           <p className="col-span-2">{goalDetail.goalName}</p>
           <p className="col-start-1 col-span-2">Target Completion:</p>
           <p className="col-span-2">
@@ -50,11 +98,5 @@ const EditGoalsPage = () => {
           <p className="col-start-1 col-span-2">Is Goal Complete?</p>
           <p className="col-span-2">{goalDetail.isComplete ? "Yes" : "No"}</p>
           <p className="col-start-1 col-span-2">Is Goal Archived?</p>
-          <p className="col-span-2">{goalDetail.isArchived ? "Yes" : "No"}</p>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default EditGoalsPage;
+          <p className="col-span-2">{goalDetail.isArchived ? "Yes" : "No"}</p> */
+}
