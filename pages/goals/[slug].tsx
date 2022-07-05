@@ -3,7 +3,7 @@ import {
   ArchiveIcon,
   CheckCircleIcon,
   TrashIcon,
-} from "@heroicons/react/outline";
+} from "@heroicons/react/solid";
 import { format } from "date-fns";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -85,11 +85,12 @@ const EditGoalsPage = () => {
               disabled
             />
           </div>
-          <div className="flex flex-row mt-8 space-x-4">
+          <div className="grid grid-cols-12 items-center mt-8">
+            <p className="text-center font-bold">Archive Goal</p>
             <ArchiveIcon
               className={
-                "h-10 w-10" + goalDetail.isArchived
-                  ? "text-yellow-600 h-10 w-10"
+                editedGoalValues.isArchived
+                  ? "h-10 w-10 text-yellow-600"
                   : "h-10 w-10"
               }
               onClick={() =>
@@ -99,10 +100,13 @@ const EditGoalsPage = () => {
                 }))
               }
             />
-            <TrashIcon className="h-10 w-10" />
+
+            <p className="text-center font-bold">Complete Goal</p>
             <CheckCircleIcon
               className={
-                goalDetail.isComplete ? "h-10 w-10 text-green-600" : "h-10 w-10"
+                editedGoalValues.isComplete
+                  ? "h-10 w-10 text-green-600"
+                  : "h-10 w-10"
               }
               onClick={() =>
                 setEditedGoalValues((prevState) => ({
