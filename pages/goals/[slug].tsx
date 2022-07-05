@@ -123,6 +123,7 @@ const EditGoalsPage = () => {
             />
             <Button
               label="Save"
+              disabled={goalDetail === editedGoalValues}
               onClick={() => {
                 // this is a workaround to remove __typename from the gql response which causes mutation to fail
                 const removeTypeNameForHasura = {
