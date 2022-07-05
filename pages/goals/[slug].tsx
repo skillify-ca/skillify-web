@@ -1,5 +1,9 @@
 import { useQuery } from "@apollo/client";
-import { ArchiveIcon, TrashIcon } from "@heroicons/react/outline";
+import {
+  ArchiveIcon,
+  CheckCircleIcon,
+  TrashIcon,
+} from "@heroicons/react/outline";
 import { format } from "date-fns";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -72,6 +76,7 @@ const EditGoalsPage = () => {
           <div className="flex flex-row mt-8 space-x-4">
             <ArchiveIcon className="h-10 w-10" />
             <TrashIcon className="h-10 w-10" />
+            <CheckCircleIcon className="h-10 w-10" />
             <Button label="Save" />
           </div>
         </div>
@@ -81,22 +86,3 @@ const EditGoalsPage = () => {
 };
 
 export default EditGoalsPage;
-
-{
-  /* <p className="col-span-2">Goal Name:</p>
-          <p className="col-span-2">{goalDetail.goalName}</p>
-          <p className="col-start-1 col-span-2">Target Completion:</p>
-          <p className="col-span-2">
-            {goalDetail.targetDate ?? "No Target Date Set"}
-          </p>
-          <p className="col-start-1 col-span-2">Created Date:</p>
-          <p className="col-span-2">
-            {format(new Date(goalDetail.targetDate), "MMMM dd yyyy")}
-          </p>
-          <p className="col-start-1 col-span-2">Is Goal Active?</p>
-          <p className="col-span-2">{goalDetail.isActive ? "Yes" : "No"}</p>
-          <p className="col-start-1 col-span-2">Is Goal Complete?</p>
-          <p className="col-span-2">{goalDetail.isComplete ? "Yes" : "No"}</p>
-          <p className="col-start-1 col-span-2">Is Goal Archived?</p>
-          <p className="col-span-2">{goalDetail.isArchived ? "Yes" : "No"}</p> */
-}
