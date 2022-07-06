@@ -1,9 +1,5 @@
 import { useQuery } from "@apollo/client";
-import {
-  ArchiveIcon,
-  CheckCircleIcon,
-  TrashIcon,
-} from "@heroicons/react/solid";
+import { ArchiveIcon, CheckCircleIcon } from "@heroicons/react/solid";
 import { format } from "date-fns";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -82,13 +78,18 @@ const EditGoalsPage = () => {
             />
             <p className="font-bold">Target Completion Date</p>
             <input
-              type="text"
+              type="date"
               className="text-left p-2 border rounded-md shadow-md w-1/4"
-              value={
-                format(new Date(goalDetail.targetDate), "MMMM dd yyyy") ??
-                "No Date Set"
-              }
-              disabled
+              value={format(
+                new Date(editedGoalValues.targetDate),
+                "yyyy-MM-dd"
+              )}
+              onChange={(e) => {
+                setEditedGoalValues((prevState) => ({
+                  ...prevState,
+                  targetDate: new Date(e.target.value),
+                }));
+              }}
             />
           </div>
           <div className="grid grid-cols-12 items-center mt-8">
