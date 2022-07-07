@@ -11,6 +11,7 @@ const EditGoalsPage = () => {
 
   const router = useRouter();
 
+  // initialize only with values required by DB to add goal
   const [newGoalValues, setNewGoalValues] = useState({
     userId: user.uid,
     isActive: true,
@@ -19,6 +20,7 @@ const EditGoalsPage = () => {
     targetDate: new Date(),
   });
 
+  // route back to goals overview page on complete
   const [saveNewGoal] = useMutation(UPSERT_USER_GOALS, {
     onCompleted: () => router.push("/goals"),
   });
