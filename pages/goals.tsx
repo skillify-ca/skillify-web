@@ -67,16 +67,17 @@ export default function Goals(props) {
               }}
             />
           </div>
-          {goalsSections.map((section) => {
-            return (
-              <div>
-                <GoalsSectionComponent
-                  userGoals={section.userGoals}
-                  sectionName={section.sectionName}
-                />
-              </div>
-            );
-          })}
+          {userGoals.length > 0 &&
+            goalsSections.map((section) => {
+              return (
+                <div>
+                  <GoalsSectionComponent
+                    userGoals={section.userGoals}
+                    sectionName={section.sectionName}
+                  />
+                </div>
+              );
+            })}
         </div>
       )}
     </div>
