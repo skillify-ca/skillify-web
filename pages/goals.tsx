@@ -37,7 +37,9 @@ export default function Goals(props) {
   const goalsSections = [
     {
       sectionName: "Current Goals",
-      userGoals: userGoals.filter((goal) => goal.isActive),
+      userGoals: userGoals.filter(
+        (goal) => !goal.isComplete && !goal.isArchived
+      ),
     },
     {
       sectionName: "Completed Goals",

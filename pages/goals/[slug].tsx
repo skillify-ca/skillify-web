@@ -163,7 +163,6 @@ const EditGoalsPage = () => {
                     isArchived: editedGoalValues.isArchived,
                     isComplete: editedGoalValues.isComplete,
                     targetDate: editedGoalValues.targetDate,
-                    isActive: editedGoalValues.isActive,
                   };
 
                   saveEditedGoals({

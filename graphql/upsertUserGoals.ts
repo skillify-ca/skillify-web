@@ -13,7 +13,6 @@ export const UPSERT_USER_GOALS = gql`
           goalName
           isArchived
           isComplete
-          isActive
           updatedAt
           targetDate
         ]
@@ -23,7 +22,6 @@ export const UPSERT_USER_GOALS = gql`
       returning {
         id
         goalName
-        isActive
         isArchived
         isComplete
         targetDate

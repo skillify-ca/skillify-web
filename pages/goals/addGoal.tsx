@@ -14,7 +14,6 @@ const EditGoalsPage = () => {
   // initialize only with values required by DB to add goal
   const [newGoalValues, setNewGoalValues] = useState({
     userId: user.uid,
-    isActive: true,
     isComplete: false,
     goalName: "",
     targetDate: new Date(),
