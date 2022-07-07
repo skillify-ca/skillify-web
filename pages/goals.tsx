@@ -10,7 +10,10 @@ import {
 import { useQuery } from "@apollo/client";
 import GoalsSectionComponent from "../components/coding/GoalsSectionComponent";
 import { Button } from "../components/ui/Button";
+<<<<<<< HEAD
 import { useRouter } from "next/router";
+=======
+>>>>>>> main
 
 export default function Goals(props) {
   const { user } = useAuth();
@@ -58,12 +61,16 @@ export default function Goals(props) {
       ) : (
         <div>
           <div>
+<<<<<<< HEAD
             <Button
               label={"Create Goal"}
               onClick={() => {
                 router.push("/goals/addGoal");
               }}
             />
+=======
+            <Button label={"Create Goal"} />
+>>>>>>> main
           </div>
           {goalsSections.map((section) => {
             return (
