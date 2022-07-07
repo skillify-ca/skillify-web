@@ -144,7 +144,9 @@ const EditGoalsPage = () => {
             <TrashIcon
               className={"h-10 w-10 hover:text-red-600 cursor-pointer"}
               onClick={() =>
-                removeUserGoal({ variables: { id: editedGoalValues.id } })
+                window.confirm("Are you sure you want to delete this goal?")
+                  ? removeUserGoal({ variables: { id: editedGoalValues.id } })
+                  : ""
               }
             />
             <div className="col-start-1 mt-8">
