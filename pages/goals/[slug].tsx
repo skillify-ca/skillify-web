@@ -52,7 +52,11 @@ const EditGoalsPage = () => {
             <p className="font-bold">Goal Name</p>
             <input
               type="text"
-              className="text-left p-2 border rounded-md shadow-md w-1/2"
+              className={
+                editedGoalValues.goalName.length <= 60
+                  ? "text-left p-2 border rounded-md shadow-md w-1/2"
+                  : "text-left p-2 border-2 rounded-md shadow-md w-1/2 border-red-600"
+              }
               placeholder={goalDetail.goalName}
               value={editedGoalValues.goalName}
               onChange={(e) => {
@@ -62,6 +66,11 @@ const EditGoalsPage = () => {
                 }));
               }}
             />
+            {editedGoalValues.goalName.length > 60 && (
+              <p className="text-xs text-red-600">
+                please keep your goal under 60 characters
+              </p>
+            )}
             <p className="font-bold">Created On</p>
             <input
               type="text"
@@ -124,7 +133,10 @@ const EditGoalsPage = () => {
             />
             <Button
               label="Save"
-              disabled={goalDetail === editedGoalValues}
+              disabled={
+                goalDetail === editedGoalValues ||
+                editedGoalValues.goalName.length > 60
+              }
               onClick={() => {
                 // this is a workaround to remove __typename from the gql response which causes mutation to fail
                 const editedGoalValuesForHasura = {
