@@ -55,7 +55,11 @@ const EditGoalsPage = () => {
         <p className="font-bold">Target Completion Date</p>
         <input
           type="date"
-          className="text-left p-2 border rounded-md shadow-md w-1/4"
+          className={
+            newGoalValues.targetDate >= new Date()
+              ? "text-left p-2 border rounded-md shadow-md w-1/2"
+              : "text-left p-2 border-2 rounded-md shadow-md w-1/2 border-red-600"
+          }
           value={format(new Date(newGoalValues.targetDate), "yyyy-MM-dd")}
           onChange={(e) => {
             setNewGoalValues((prevState) => ({
@@ -64,6 +68,11 @@ const EditGoalsPage = () => {
             }));
           }}
         />
+        {newGoalValues.targetDate < new Date() && (
+          <p className="text-xs text-red-600">
+            please set a target date after today
+          </p>
+        )}
       </div>
 
       <div>
@@ -77,8 +86,9 @@ const EditGoalsPage = () => {
             });
           }}
           disabled={
-            newGoalValues.goalName.length == 0 &&
-            newGoalValues.goalName.length > 60
+            newGoalValues.goalName.length == 0 ||
+            newGoalValues.goalName.length > 60 ||
+            newGoalValues.targetDate < new Date()
           }
         />
       </div>
