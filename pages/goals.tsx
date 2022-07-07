@@ -9,6 +9,7 @@ import {
 } from "../graphql/fetchUserGoals";
 import { useQuery } from "@apollo/client";
 import GoalsSectionComponent from "../components/coding/GoalsSectionComponent";
+import { Button } from "../components/ui/Button";
 
 export default function Goals(props) {
   const { user } = useAuth();
@@ -54,6 +55,9 @@ export default function Goals(props) {
         <div>Loading...</div>
       ) : (
         <div>
+          <div>
+            <Button label={"Create Goal"} />
+          </div>
           {goalsSections.map((section) => {
             return (
               <div>
