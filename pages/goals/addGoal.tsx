@@ -67,6 +67,7 @@ const EditGoalsPage = () => {
               },
             });
           }}
+          disabled={newGoalValues.goalName.length == 0}
         />
       </div>
     </div>
