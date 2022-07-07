@@ -1,5 +1,9 @@
 import { useQuery } from "@apollo/client";
-import { ArchiveIcon, CheckCircleIcon } from "@heroicons/react/solid";
+import {
+  ArchiveIcon,
+  CheckCircleIcon,
+  TrashIcon,
+} from "@heroicons/react/solid";
 import { format } from "date-fns";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -131,31 +135,38 @@ const EditGoalsPage = () => {
                 }))
               }
             />
-            <Button
-              label="Save"
-              disabled={
-                goalDetail === editedGoalValues ||
-                editedGoalValues.goalName.length > 60
-              }
-              onClick={() => {
-                // this is a workaround to remove __typename from the gql response which causes mutation to fail
-                const editedGoalValuesForHasura = {
-                  goalName: editedGoalValues.goalName,
-                  userId: editedGoalValues.userId,
-                  id: editedGoalValues.id,
-                  isArchived: editedGoalValues.isArchived,
-                  isComplete: editedGoalValues.isComplete,
-                  targetDate: editedGoalValues.targetDate,
-                  isActive: editedGoalValues.isActive,
-                };
-
-                saveEditedGoals({
-                  variables: {
-                    objects: editedGoalValuesForHasura,
-                  },
-                });
-              }}
+            <p className="text-center font-bold">Remove Goal</p>
+            <TrashIcon
+              className={"h-10 w-10 hover:text-red-600 cursor-pointer"}
+              // onClick={() => }
             />
+            <div className="col-start-1 mt-8">
+              <Button
+                label="Save"
+                disabled={
+                  goalDetail === editedGoalValues ||
+                  editedGoalValues.goalName.length > 60
+                }
+                onClick={() => {
+                  // this is a workaround to remove __typename from the gql response which causes mutation to fail
+                  const editedGoalValuesForHasura = {
+                    goalName: editedGoalValues.goalName,
+                    userId: editedGoalValues.userId,
+                    id: editedGoalValues.id,
+                    isArchived: editedGoalValues.isArchived,
+                    isComplete: editedGoalValues.isComplete,
+                    targetDate: editedGoalValues.targetDate,
+                    isActive: editedGoalValues.isActive,
+                  };
+
+                  saveEditedGoals({
+                    variables: {
+                      objects: editedGoalValuesForHasura,
+                    },
+                  });
+                }}
+              />
+            </div>
           </div>
         </div>
       )}
