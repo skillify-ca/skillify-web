@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useAuth } from "../../../lib/authContext";
 
 export type SidebarProps = {};
-type SidebarPage = "dashboard" | "classroom" | "profile" | "labs";
+type SidebarPage = "dashboard" | "classroom" | "profile" | "labs" | "goals";
 
 export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const { signOut, user } = useAuth();
@@ -12,6 +12,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const classroomIconRef = useRef<HTMLImageElement>();
   const profileIconRef = useRef<HTMLImageElement>();
   const labsIconRef = useRef<HTMLImageElement>();
+  const goalsIconRef = useRef<HTMLImageElement>();
 
   const router = useRouter();
   const [activePage, setActivePage] = useState<SidebarPage>();
@@ -25,6 +26,8 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
       setActivePage("profile");
     } else if (router.pathname.startsWith("/studentPortal/labs")) {
       setActivePage("labs");
+    } else if (router.pathname.startsWith("/studentPortal/goals")) {
+      setActivePage("goals");
     } else {
       setActivePage("dashboard");
     }
@@ -33,7 +36,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   return (
     //Full width then restrict in page
     <div className="flex flex-col w-full h-full bg-gray-50 dark:bg-gray-900 dark:text-white">
-      <div className="grid grid-rows-4">
+      <div className="grid grid-rows-5">
         <div className="flex p-4">
           {user && (
             <img
@@ -108,6 +111,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             Classroom
           </div>
         </Link>
+
         <Link href="/studentPortal/labs">
           <div
             className={`flex flex-wrap items-center h-12 p-4 cursor-pointer hover:border-l-4 hover:border-charmander hover:text-charmander    
@@ -140,6 +144,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             Labs
           </div>
         </Link>
+
         <Link href="/profile">
           <div
             className={`flex flex-wrap items-center h-12 p-4 cursor-pointer hover:border-l-4 hover:border-charmander hover:text-charmander    
@@ -172,6 +177,38 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               />
             </svg>
             Profile
+          </div>
+        </Link>
+        <Link href="/goals">
+          <div
+            className={`flex flex-wrap items-center h-12 p-4 cursor-pointer hover:border-l-4 hover:border-charmander hover:text-charmander    
+            ${
+              activePage === "goals" ? "border-charmander text-charmander" : ""
+            }`}
+            onMouseOver={(e) => {
+              if (profileIconRef.current) {
+                profileIconRef.current.src = "/images/profileActive.svg";
+              }
+            }}
+            onMouseLeave={() => {
+              if (activePage !== "goals" && profileIconRef.current) {
+                profileIconRef.current.src = "/images/profileInactive.svg";
+              }
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-6 h-6 mr-4"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            Goals
           </div>
         </Link>
         <div>
