@@ -16,6 +16,7 @@ import {
 import { useAuth } from "../../lib/authContext";
 import { useMutation } from "@apollo/client";
 import { UPSERT_USER_GOALS } from "../../graphql/upsertUserGoals";
+import { REMOVE_USER_GOAL } from "../../graphql/removeUserGoal";
 
 const EditGoalsPage = () => {
   const { user } = useAuth();
@@ -26,6 +27,10 @@ const EditGoalsPage = () => {
   const [editedGoalValues, setEditedGoalValues] = useState<UserGoalsData>();
 
   const [saveEditedGoals] = useMutation(UPSERT_USER_GOALS, {
+    onCompleted: () => router.push("/goals"),
+  });
+
+  const [removeUserGoal] = useMutation(REMOVE_USER_GOAL, {
     onCompleted: () => router.push("/goals"),
   });
 
@@ -138,7 +143,9 @@ const EditGoalsPage = () => {
             <p className="text-center font-bold">Remove Goal</p>
             <TrashIcon
               className={"h-10 w-10 hover:text-red-600 cursor-pointer"}
-              // onClick={() => }
+              onClick={() =>
+                removeUserGoal({ variables: { id: editedGoalValues.id } })
+              }
             />
             <div className="col-start-1 mt-8">
               <Button
