@@ -30,10 +30,14 @@ const EditGoalsPage = () => {
       <h1 className="text-3xl font-bold">Add New Goal</h1>
 
       <div className="flex flex-col space-y-2">
-        <p className="font-bold">Goal Name</p>
+        <p className="font-bold">Goal</p>
         <input
           type="text"
-          className="text-left p-2 border rounded-md shadow-md w-1/2"
+          className={
+            newGoalValues.goalName.length <= 60
+              ? "text-left p-2 border rounded-md shadow-md w-1/2"
+              : "text-left p-2 border-2 rounded-md shadow-md w-1/2 border-red-600"
+          }
           placeholder="Write your goal here..."
           value={newGoalValues.goalName ?? ""}
           onChange={(e) => {
@@ -43,6 +47,11 @@ const EditGoalsPage = () => {
             }));
           }}
         />
+        {newGoalValues.goalName.length > 60 && (
+          <p className="text-xs text-red-600">
+            please keep your goal under 60 characters
+          </p>
+        )}
         <p className="font-bold">Target Completion Date</p>
         <input
           type="date"
@@ -67,7 +76,10 @@ const EditGoalsPage = () => {
               },
             });
           }}
-          disabled={newGoalValues.goalName.length == 0}
+          disabled={
+            newGoalValues.goalName.length == 0 &&
+            newGoalValues.goalName.length > 60
+          }
         />
       </div>
     </div>
