@@ -23,6 +23,7 @@ export default function Goals(props) {
       variables: {
         userId: user.uid,
       },
+      fetchPolicy: "cache-and-network",
 
       onCompleted: (data: FetchUserGoalsDataResponse) => {
         setUserGoals(data.user_goals);
