@@ -15,13 +15,14 @@ export default function GoalsSection({
 }: GoalsSectionProps) {
   return (
     <div>
-      <h2 className="mt-4 mb-4 font-bold text-lg border-b-2">{sectionName}</h2>
-
-      {sectionName == "Current Goals" && (
-        <div className="grid grid-cols-12 text-center">
-          <p className="col-start-2 col-span-5 font-bold">Goal Name</p>
-          <p className="col-span-2 font-bold">Date Added</p>
-          <p className="col-span-2 font-bold">Target Completion</p>
+      {userGoals.length > 0 && (
+        <div className="grid grid-cols-12 text-center border-b-2">
+          <p className="text-lg font-semibold">{sectionName}</p>
+          <p className="col-start-2 col-span-5 font-semibold text-lg">
+            Goal Name
+          </p>
+          <p className="col-span-2 font-semibold text-lg">Date Added</p>
+          <p className="col-span-2 font-semibold text-lg">Target Completion</p>
           <p className="col-span-2"></p>
         </div>
       )}
