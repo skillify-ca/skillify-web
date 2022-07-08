@@ -5,6 +5,7 @@ import { Button } from "../../components/ui/Button";
 import { useAuth } from "../../lib/authContext";
 import { useMutation } from "@apollo/client";
 import { UPSERT_USER_GOALS } from "../../graphql/upsertUserGoals";
+import { FETCH_USER_GOALS } from "../../graphql/fetchUserGoals";
 
 const EditGoalsPage = () => {
   const { user } = useAuth();
@@ -14,7 +15,6 @@ const EditGoalsPage = () => {
   // initialize only with values required by DB to add goal
   const [newGoalValues, setNewGoalValues] = useState({
     userId: user.uid,
-    isActive: true,
     isComplete: false,
     goalName: "",
     targetDate: new Date(),
@@ -23,6 +23,7 @@ const EditGoalsPage = () => {
   // route back to goals overview page on complete
   const [saveNewGoal] = useMutation(UPSERT_USER_GOALS, {
     onCompleted: () => router.push("/goals"),
+    refetchQueries: [{ query: FETCH_USER_GOALS }],
   });
 
   return (
@@ -30,10 +31,14 @@ const EditGoalsPage = () => {
       <h1 className="text-3xl font-bold">Add New Goal</h1>
 
       <div className="flex flex-col space-y-2">
-        <p className="font-bold">Goal Name</p>
+        <p className="font-bold">Goal</p>
         <input
           type="text"
-          className="text-left p-2 border rounded-md shadow-md w-1/2"
+          className={
+            newGoalValues.goalName.length <= 60
+              ? "text-left p-2 border rounded-md shadow-md w-1/2"
+              : "text-left p-2 border-2 rounded-md shadow-md w-1/2 border-red-600"
+          }
           placeholder="Write your goal here..."
           value={newGoalValues.goalName ?? ""}
           onChange={(e) => {
@@ -43,10 +48,19 @@ const EditGoalsPage = () => {
             }));
           }}
         />
+        {newGoalValues.goalName.length > 60 && (
+          <p className="text-xs text-red-600">
+            please keep your goal under 60 characters
+          </p>
+        )}
         <p className="font-bold">Target Completion Date</p>
         <input
           type="date"
-          className="text-left p-2 border rounded-md shadow-md w-1/4"
+          className={
+            newGoalValues.targetDate >= new Date()
+              ? "text-left p-2 border rounded-md shadow-md w-1/2"
+              : "text-left p-2 border-2 rounded-md shadow-md w-1/2 border-red-600"
+          }
           value={format(new Date(newGoalValues.targetDate), "yyyy-MM-dd")}
           onChange={(e) => {
             setNewGoalValues((prevState) => ({
@@ -55,6 +69,11 @@ const EditGoalsPage = () => {
             }));
           }}
         />
+        {newGoalValues.targetDate < new Date() && (
+          <p className="text-xs text-red-600">
+            please set a target date after today
+          </p>
+        )}
       </div>
 
       <div>
@@ -67,7 +86,11 @@ const EditGoalsPage = () => {
               },
             });
           }}
-          disabled={newGoalValues.goalName.length == 0}
+          disabled={
+            newGoalValues.goalName.length == 0 ||
+            newGoalValues.goalName.length > 60 ||
+            newGoalValues.targetDate < new Date()
+          }
         />
       </div>
     </div>

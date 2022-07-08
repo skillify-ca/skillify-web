@@ -23,6 +23,7 @@ export default function Goals(props) {
       variables: {
         userId: user.uid,
       },
+      fetchPolicy: "cache-and-network",
 
       onCompleted: (data: FetchUserGoalsDataResponse) => {
         setUserGoals(data.user_goals);
@@ -36,17 +37,19 @@ export default function Goals(props) {
 
   const goalsSections = [
     {
-      sectionName: "Current Goals",
-      userGoals: userGoals.filter((goal) => goal.isActive),
+      sectionName: "Current",
+      userGoals: userGoals.filter(
+        (goal) => !goal.isComplete && !goal.isArchived
+      ),
     },
     {
-      sectionName: "Completed Goals",
+      sectionName: "Completed",
       userGoals: userGoals.filter(
         (goal) => goal.isComplete && !goal.isArchived
       ),
     },
     {
-      sectionName: "Archived Goals",
+      sectionName: "Archived",
       userGoals: userGoals.filter((goal) => goal.isArchived),
     },
   ];
@@ -57,7 +60,7 @@ export default function Goals(props) {
         <div>Loading...</div>
       ) : (
         <div>
-          <div>
+          <div className="mb-8">
             <Button
               label={"Create Goal"}
               onClick={() => {
@@ -65,16 +68,17 @@ export default function Goals(props) {
               }}
             />
           </div>
-          {goalsSections.map((section) => {
-            return (
-              <div>
-                <GoalsSectionComponent
-                  userGoals={section.userGoals}
-                  sectionName={section.sectionName}
-                />
-              </div>
-            );
-          })}
+          {userGoals.length > 0 &&
+            goalsSections.map((section) => {
+              return (
+                <div className="mb-8">
+                  <GoalsSectionComponent
+                    userGoals={section.userGoals}
+                    sectionName={section.sectionName}
+                  />
+                </div>
+              );
+            })}
         </div>
       )}
     </div>

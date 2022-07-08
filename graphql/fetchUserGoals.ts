@@ -6,7 +6,6 @@ export const FETCH_USER_GOALS = gql`
       createdAt
       goalName
       id
-      isActive
       updatedAt
       userId
       isComplete
@@ -24,7 +23,6 @@ export const FETCH_USER_GOAL_DETAIL = gql`
       createdAt
       goalName
       id
-      isActive
       updatedAt
       userId
       isComplete
@@ -42,7 +40,6 @@ export type UserGoalsData = {
   createdAt: Date;
   goalName: string;
   id: string;
-  isActive: boolean;
   updatedAt: Date;
   userId: string;
   isComplete: boolean;

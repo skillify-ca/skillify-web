@@ -1,17 +1,23 @@
 import { useQuery } from "@apollo/client";
-import { ArchiveIcon, CheckCircleIcon } from "@heroicons/react/solid";
+import {
+  ArchiveIcon,
+  CheckCircleIcon,
+  TrashIcon,
+} from "@heroicons/react/solid";
 import { format } from "date-fns";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { Button } from "../../components/ui/Button";
 import {
   FetchUserGoalsDataResponse,
+  FETCH_USER_GOALS,
   FETCH_USER_GOAL_DETAIL,
   UserGoalsData,
 } from "../../graphql/fetchUserGoals";
 import { useAuth } from "../../lib/authContext";
 import { useMutation } from "@apollo/client";
 import { UPSERT_USER_GOALS } from "../../graphql/upsertUserGoals";
+import { REMOVE_USER_GOAL } from "../../graphql/removeUserGoal";
 
 const EditGoalsPage = () => {
   const { user } = useAuth();
@@ -22,6 +28,12 @@ const EditGoalsPage = () => {
   const [editedGoalValues, setEditedGoalValues] = useState<UserGoalsData>();
 
   const [saveEditedGoals] = useMutation(UPSERT_USER_GOALS, {
+    refetchQueries: [{ query: FETCH_USER_GOALS }],
+    onCompleted: () => router.push("/goals"),
+  });
+
+  const [removeUserGoal] = useMutation(REMOVE_USER_GOAL, {
+    refetchQueries: [{ query: FETCH_USER_GOALS }],
     onCompleted: () => router.push("/goals"),
   });
 
@@ -52,7 +64,11 @@ const EditGoalsPage = () => {
             <p className="font-bold">Goal Name</p>
             <input
               type="text"
-              className="text-left p-2 border rounded-md shadow-md w-1/2"
+              className={
+                editedGoalValues.goalName.length <= 60
+                  ? "text-left p-2 border rounded-md shadow-md w-1/2"
+                  : "text-left p-2 border-2 rounded-md shadow-md w-1/2 border-red-600"
+              }
               placeholder={goalDetail.goalName}
               value={editedGoalValues.goalName}
               onChange={(e) => {
@@ -62,6 +78,11 @@ const EditGoalsPage = () => {
                 }));
               }}
             />
+            {editedGoalValues.goalName.length > 60 && (
+              <p className="text-xs text-red-600">
+                please keep your goal under 60 characters
+              </p>
+            )}
             <p className="font-bold">Created On</p>
             <input
               type="text"
@@ -122,28 +143,41 @@ const EditGoalsPage = () => {
                 }))
               }
             />
-            <Button
-              label="Save"
-              disabled={goalDetail === editedGoalValues}
-              onClick={() => {
-                // this is a workaround to remove __typename from the gql response which causes mutation to fail
-                const editedGoalValuesForHasura = {
-                  goalName: editedGoalValues.goalName,
-                  userId: editedGoalValues.userId,
-                  id: editedGoalValues.id,
-                  isArchived: editedGoalValues.isArchived,
-                  isComplete: editedGoalValues.isComplete,
-                  targetDate: editedGoalValues.targetDate,
-                  isActive: editedGoalValues.isActive,
-                };
-
-                saveEditedGoals({
-                  variables: {
-                    objects: editedGoalValuesForHasura,
-                  },
-                });
-              }}
+            <p className="text-center font-bold">Remove Goal</p>
+            <TrashIcon
+              className={"h-10 w-10 hover:text-red-600 cursor-pointer"}
+              onClick={() =>
+                window.confirm("Are you sure you want to delete this goal?")
+                  ? removeUserGoal({ variables: { id: editedGoalValues.id } })
+                  : ""
+              }
             />
+            <div className="col-start-1 mt-8">
+              <Button
+                label="Save"
+                disabled={
+                  goalDetail === editedGoalValues ||
+                  editedGoalValues.goalName.length > 60
+                }
+                onClick={() => {
+                  // this is a workaround to remove __typename from the gql response which causes mutation to fail
+                  const editedGoalValuesForHasura = {
+                    goalName: editedGoalValues.goalName,
+                    userId: editedGoalValues.userId,
+                    id: editedGoalValues.id,
+                    isArchived: editedGoalValues.isArchived,
+                    isComplete: editedGoalValues.isComplete,
+                    targetDate: editedGoalValues.targetDate,
+                  };
+
+                  saveEditedGoals({
+                    variables: {
+                      objects: editedGoalValuesForHasura,
+                    },
+                  });
+                }}
+              />
+            </div>
           </div>
         </div>
       )}
