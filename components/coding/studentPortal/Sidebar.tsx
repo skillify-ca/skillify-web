@@ -187,12 +187,12 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             }`}
             onMouseOver={(e) => {
               if (goalsIconRef.current) {
-                goalsIconRef.current.src = "/images/profileActive.svg";
+                goalsIconRef.current.src = "/images/goalActive.svg";
               }
             }}
             onMouseLeave={() => {
               if (activePage !== "goals" && goalsIconRef.current) {
-                goalsIconRef.current.src = "/images/profileInactive.svg";
+                goalsIconRef.current.src = "/images/goalInactive.svg";
               }
             }}
           >
@@ -200,7 +200,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               className="w-6 h-6 mr-4"
               fill="currentColor"
               stroke="currentColor"
-              viewBox="0 0 20 20"
+              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
