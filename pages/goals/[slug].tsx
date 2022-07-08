@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { Button } from "../../components/ui/Button";
 import {
   FetchUserGoalsDataResponse,
+  FETCH_USER_GOALS,
   FETCH_USER_GOAL_DETAIL,
   UserGoalsData,
 } from "../../graphql/fetchUserGoals";
@@ -27,10 +28,12 @@ const EditGoalsPage = () => {
   const [editedGoalValues, setEditedGoalValues] = useState<UserGoalsData>();
 
   const [saveEditedGoals] = useMutation(UPSERT_USER_GOALS, {
+    refetchQueries: [{ query: FETCH_USER_GOALS }],
     onCompleted: () => router.push("/goals"),
   });
 
   const [removeUserGoal] = useMutation(REMOVE_USER_GOAL, {
+    refetchQueries: [{ query: FETCH_USER_GOALS }],
     onCompleted: () => router.push("/goals"),
   });
 

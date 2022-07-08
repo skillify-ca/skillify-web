@@ -5,6 +5,7 @@ import { Button } from "../../components/ui/Button";
 import { useAuth } from "../../lib/authContext";
 import { useMutation } from "@apollo/client";
 import { UPSERT_USER_GOALS } from "../../graphql/upsertUserGoals";
+import { FETCH_USER_GOALS } from "../../graphql/fetchUserGoals";
 
 const EditGoalsPage = () => {
   const { user } = useAuth();
@@ -22,6 +23,7 @@ const EditGoalsPage = () => {
   // route back to goals overview page on complete
   const [saveNewGoal] = useMutation(UPSERT_USER_GOALS, {
     onCompleted: () => router.push("/goals"),
+    refetchQueries: [{ query: FETCH_USER_GOALS }],
   });
 
   return (
