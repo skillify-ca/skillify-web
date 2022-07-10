@@ -77,7 +77,7 @@ export default function Modal({ handleClose }) {
                 onClick={handleClick}
                 className="flex items-center justify-center w-full p-4 text-base font-bold text-white rounded-md cursor-pointer bg-charmander hover:bg-yellow-700 md:text-lg "
               >
-                Request Demo
+                Join Waitlist
               </p>
             </div>
           </div>

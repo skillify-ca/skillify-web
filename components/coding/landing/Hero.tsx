@@ -32,7 +32,7 @@ export default function Hero() {
             of learners.
           </p>
           <Button
-            label={"Request Demo"}
+            label={"Join Waitlist"}
             size="large"
             onClick={(e) => setIsOpen(true)}
           />
