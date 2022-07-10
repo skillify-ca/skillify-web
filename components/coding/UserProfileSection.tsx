@@ -13,6 +13,9 @@ export type UserProfileSectionProps = {
 };
 
 export default function UserProfileSection({ user }: UserProfileSectionProps) {
+  const [userProfileData, setUserProfileData] =
+    useState<UserProfileData>(Object);
+
   const { loading: userProfileLoading } =
     useQuery<FetchUserProfileDataResponse>(FETCH_USER_PROFILE_DATA, {
       variables: {
@@ -29,9 +32,6 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
         });
       },
     });
-
-  const [userProfileData, setUserProfileData] =
-    useState<UserProfileData>(Object);
 
   return (
     <>
