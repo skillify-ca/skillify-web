@@ -62,12 +62,12 @@ const EditGoalsPage = () => {
         <div>
           <div className="flex flex-col space-y-2">
             <p className="font-bold">Goal Name</p>
-            <input
-              type="text"
+
+            <textarea
               className={
                 editedGoalValues.goalName.length <= 60
-                  ? "text-left p-2 border rounded-md shadow-md w-1/2"
-                  : "text-left p-2 border-2 rounded-md shadow-md w-1/2 border-red-600"
+                  ? "text-left p-2 border rounded-md shadow-md w-full md:w-1/2"
+                  : "text-left p-2 border-2 rounded-md shadow-md w-full md:w-1/2 border-red-600"
               }
               placeholder={goalDetail.goalName}
               value={editedGoalValues.goalName}
@@ -86,21 +86,21 @@ const EditGoalsPage = () => {
             <p className="font-bold">Created On</p>
             <input
               type="text"
-              className="text-left p-2 border rounded-md shadow-md w-1/4"
+              className="text-left p-2 border rounded-md shadow-md w-1/2 md:w-1/4"
               value={format(new Date(goalDetail.createdAt), "MMMM dd yyyy")}
               disabled
             />
             <p className="font-bold">Last Updated</p>
             <input
               type="text"
-              className="text-left p-2 border rounded-md shadow-md w-1/4"
+              className="text-left p-2 border rounded-md shadow-md  w-1/2 md:w-1/4"
               value={format(new Date(goalDetail.updatedAt), "MMMM dd yyyy")}
               disabled
             />
             <p className="font-bold">Target Completion Date</p>
             <input
               type="date"
-              className="text-left p-2 border rounded-md shadow-md w-1/4"
+              className="text-left p-2 border rounded-md shadow-md  w-1/2 md:w-1/4"
               value={format(
                 new Date(editedGoalValues.targetDate),
                 "yyyy-MM-dd"
@@ -113,8 +113,8 @@ const EditGoalsPage = () => {
               }}
             />
           </div>
-          <div className="grid grid-cols-12 items-center mt-8">
-            <p className="text-center font-bold">Archive Goal</p>
+          <div className="grid grid-cols-2 md:grid-cols-12 md:text-center mt-8">
+            <p className="font-bold">Archive Goal</p>
             <ArchiveIcon
               className={
                 editedGoalValues.isArchived
@@ -129,7 +129,7 @@ const EditGoalsPage = () => {
               }
             />
 
-            <p className="text-center font-bold">Complete Goal</p>
+            <p className="font-bold">Complete Goal</p>
             <CheckCircleIcon
               className={
                 editedGoalValues.isComplete
@@ -143,7 +143,7 @@ const EditGoalsPage = () => {
                 }))
               }
             />
-            <p className="text-center font-bold">Remove Goal</p>
+            <p className="font-bold">Remove Goal</p>
             <TrashIcon
               className={"h-10 w-10 hover:text-red-600 cursor-pointer"}
               onClick={() =>
