@@ -32,8 +32,7 @@ const EditGoalsPage = () => {
 
       <div className="flex flex-col space-y-2">
         <p className="font-bold">Goal</p>
-        <input
-          type="text"
+        <textarea
           className={
             newGoalValues.goalName.length <= 60
               ? "text-left p-2 border rounded-md shadow-md w-1/2"
