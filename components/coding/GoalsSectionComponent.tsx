@@ -16,33 +16,29 @@ export default function GoalsSection({
   return (
     <div>
       {userGoals.length > 0 && (
-        <div className="grid grid-cols-12 text-center border-b-2">
-          <p className="text-lg font-semibold">{sectionName}</p>
-          <p className="col-start-2 col-span-5 font-semibold text-lg">
-            Goal Name
-          </p>
-          <p className="col-span-2 font-semibold text-lg">Date Added</p>
-          <p className="col-span-2 font-semibold text-lg">Target Completion</p>
-          <p className="col-span-2"></p>
+        <div className="grid grid-cols-5 md:grid-cols-10 border-b-2 text-sm md:text-lg font-semibold text-center">
+          <p className="font-semibold">{sectionName}</p>
+          <p className="col-span-2 md:col-span-4">Goal</p>
+          <p className="hidden md:block md:col-span-2">Date Added</p>
+          <p className="md:col-span-2 font-semibold">Target Date</p>
         </div>
       )}
 
       {userGoals.map((goal, index) => {
         return (
-          <div className="grid grid-cols-12 text-center">
-            <p className="col-span-1">{index + 1}</p>
-            <p className="col-span-5">{goal.goalName}</p>
-            <p className="col-span-2">
+          <div className="grid grid-cols-5 md:grid-cols-10 text-sm md:text-lg text-center place-items-center my-2">
+            <p>{index + 1}.</p>
+            <p className="col-span-2 md:col-span-4">{goal.goalName}</p>
+            <p className="hidden md:block md:col-span-2">
               {format(new Date(goal.createdAt), "MM/dd/yyyy")}
             </p>
-            <p className="col-span-2">
+            <p className="md:col-span-2">
               {format(new Date(goal.targetDate), "MM/dd/yyyy")}
             </p>
-            <div>
-              <Link href={"/goals/" + goal.id}>
-                <PencilAltIcon className="h-5 w-5 hover:text-yellow-600 cursor-pointer" />
-              </Link>
-            </div>
+
+            <Link href={"/goals/" + goal.id}>
+              <PencilAltIcon className="h-5 w-5 hover:text-yellow-600 cursor-pointer" />
+            </Link>
           </div>
         );
       })}
