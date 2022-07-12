@@ -5,13 +5,6 @@ import { Button } from "../components/ui/Button";
 export default function Page() {
   return (
     <div>
-      <SEO
-        title={"Learning to Code Guide"}
-        description={
-          "This guide teaches you our top strategies for learning how to code"
-        }
-        image={"https://melv1n.com/img/learn-to-code-how-to-start.png"}
-      />
       <div className="flex justify-center w-full p-4 bg-murkrow">
         <img src="/images/logo-dark.svg" className="w-36" />
       </div>
