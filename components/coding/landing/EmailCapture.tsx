@@ -31,7 +31,7 @@ const EmailCapture = () => {
           <h1 className="mb-4 font-extrabold tracking-tight text-gray-900">
             <p className="text-3xl text-gray-900">
               <span className="">Get our </span>
-              <span className=" text-charmander">secret tips </span>
+              <span className=" text-charmander">top 12 secret tips </span>
               <span className="">on learning how to </span>
               <span className=" text-charmander">code </span>
             </p>{" "}

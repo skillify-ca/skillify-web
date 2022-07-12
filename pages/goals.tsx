@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 
 import { useAuth } from "../lib/authContext";
-import {
-  ArchiveIcon,
-  TrashIcon,
-  CheckCircleIcon,
-} from "@heroicons/react/solid";
+
 import {
   FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
@@ -13,9 +9,12 @@ import {
 } from "../graphql/fetchUserGoals";
 import { useQuery } from "@apollo/client";
 import GoalsSectionComponent from "../components/coding/GoalsSectionComponent";
+import { Button } from "../components/ui/Button";
+import { useRouter } from "next/router";
 
 export default function Goals(props) {
   const { user } = useAuth();
+  const router = useRouter();
 
   const [userGoals, setUserGoals] = useState<UserGoalsData[]>([]);
   const { loading: userGoalsLoading } = useQuery<FetchUserGoalsDataResponse>(
@@ -24,6 +23,7 @@ export default function Goals(props) {
       variables: {
         userId: user.uid,
       },
+      fetchPolicy: "cache-and-network",
 
       onCompleted: (data: FetchUserGoalsDataResponse) => {
         setUserGoals(data.user_goals);
@@ -37,27 +37,19 @@ export default function Goals(props) {
 
   const goalsSections = [
     {
-      sectionName: "Current Goals",
-      manageIcons: [
-        <ArchiveIcon className={tailwindIconSize} />,
-        <CheckCircleIcon className={tailwindIconSize} />,
-      ],
-      userGoals: userGoals.filter((goal) => goal.isActive),
+      sectionName: "Current",
+      userGoals: userGoals.filter(
+        (goal) => !goal.isComplete && !goal.isArchived
+      ),
     },
     {
-      sectionName: "Completed Goals",
-      manageIcons: [
-        <ArchiveIcon className={tailwindIconSize} />,
-        <TrashIcon className={tailwindIconSize} />,
-      ],
-
+      sectionName: "Completed",
       userGoals: userGoals.filter(
         (goal) => goal.isComplete && !goal.isArchived
       ),
     },
     {
-      sectionName: "Archived Goals",
-      manageIcons: [<TrashIcon className={tailwindIconSize} />],
+      sectionName: "Archived",
       userGoals: userGoals.filter((goal) => goal.isArchived),
     },
   ];
@@ -68,17 +60,25 @@ export default function Goals(props) {
         <div>Loading...</div>
       ) : (
         <div>
-          {goalsSections.map((section) => {
-            return (
-              <div>
-                <GoalsSectionComponent
-                  userGoals={section.userGoals}
-                  sectionName={section.sectionName}
-                  manageIcons={section.manageIcons}
-                />
-              </div>
-            );
-          })}
+          <div className="mb-8">
+            <Button
+              label={"Create Goal"}
+              onClick={() => {
+                router.push("/goals/addGoal");
+              }}
+            />
+          </div>
+          {userGoals.length > 0 &&
+            goalsSections.map((section) => {
+              return (
+                <div className="mb-8">
+                  <GoalsSectionComponent
+                    userGoals={section.userGoals}
+                    sectionName={section.sectionName}
+                  />
+                </div>
+              );
+            })}
         </div>
       )}
     </div>

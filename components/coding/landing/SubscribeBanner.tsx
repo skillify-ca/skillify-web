@@ -1,14 +1,6 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import {
-  AnnotationIcon,
-  GlobeAltIcon,
-  LightningBoltIcon,
-  ScaleIcon,
-} from "@heroicons/react/outline";
-import ContactForms from "../../ContactForms";
-import Testimonial, { TestimonialProps } from "./Testimonial";
-import { Button } from "../../ui/Button";
+import * as fbq from "../../../lib/fbPixel";
 
 const SubscribeBanner = () => {
   const [email, setEmail] = useState("");
@@ -16,6 +8,7 @@ const SubscribeBanner = () => {
 
   const handleClick = async () => {
     setHasClicked(true);
+    fbq.event("Lead");
     const url =
       "https://math-app-1.herokuapp.com/notifications?product=subscribe-banner";
     const options = {
