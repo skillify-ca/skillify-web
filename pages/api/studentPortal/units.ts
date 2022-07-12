@@ -317,7 +317,7 @@ export const reactUnits: Unit[] = [
   },
 ];
 
-export const interviewUnits = [
+export const interviewUnits: Unit[] = [
   {
     title: "Data Structures",
     nodes: [

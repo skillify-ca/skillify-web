@@ -30,7 +30,7 @@ export default function LandingNavbar(props) {
           className={`py-3 bg-gradient-to-b bg-charmander hover:bg-pikachu-500 text-white px-3 font-bold border-b-4 rounded-lg active:border-b-2 cursor-pointer`}
           {...props}
         >
-          <p className={`text-base"`}>Request Demo</p>
+          <p className={`text-base"`}>Join Waitlist</p>
         </button>
       </div>
     </div>

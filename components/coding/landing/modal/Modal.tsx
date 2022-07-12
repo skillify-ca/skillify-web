@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
+import * as fbq from "../../../../lib/fbPixel";
 
 export default function Modal({ handleClose }) {
   const [email, setEmail] = useState("");
@@ -8,6 +9,7 @@ export default function Modal({ handleClose }) {
   const router = useRouter();
 
   const handleClick = async () => {
+    fbq.event("Lead");
     const url =
       "https://math-app-1.herokuapp.com/notifications?product=request-demo";
     const options = {
@@ -77,7 +79,7 @@ export default function Modal({ handleClose }) {
                 onClick={handleClick}
                 className="flex items-center justify-center w-full p-4 text-base font-bold text-white rounded-md cursor-pointer bg-charmander hover:bg-yellow-700 md:text-lg "
               >
-                Request Demo
+                Join Waitlist
               </p>
             </div>
           </div>

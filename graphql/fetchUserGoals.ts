@@ -6,7 +6,23 @@ export const FETCH_USER_GOALS = gql`
       createdAt
       goalName
       id
-      isActive
+      updatedAt
+      userId
+      isComplete
+      targetDate
+      isArchived
+    }
+  }
+`;
+
+export const FETCH_USER_GOAL_DETAIL = gql`
+  query fetchUserGoalDetail($userId: String = "", $id: uuid = "") {
+    user_goals(
+      where: { _and: [{ userId: { _eq: $userId } }, { id: { _eq: $id } }] }
+    ) {
+      createdAt
+      goalName
+      id
       updatedAt
       userId
       isComplete
@@ -24,7 +40,6 @@ export type UserGoalsData = {
   createdAt: Date;
   goalName: string;
   id: string;
-  isActive: boolean;
   updatedAt: Date;
   userId: string;
   isComplete: boolean;

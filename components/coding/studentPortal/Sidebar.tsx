@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useAuth } from "../../../lib/authContext";
 
 export type SidebarProps = {};
-type SidebarPage = "dashboard" | "classroom" | "profile" | "labs";
+type SidebarPage = "dashboard" | "classroom" | "profile" | "labs" | "goals";
 
 export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const { signOut, user } = useAuth();
@@ -12,6 +12,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const classroomIconRef = useRef<HTMLImageElement>();
   const profileIconRef = useRef<HTMLImageElement>();
   const labsIconRef = useRef<HTMLImageElement>();
+  const goalsIconRef = useRef<HTMLImageElement>();
 
   const router = useRouter();
   const [activePage, setActivePage] = useState<SidebarPage>();
@@ -25,6 +26,8 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
       setActivePage("profile");
     } else if (router.pathname.startsWith("/studentPortal/labs")) {
       setActivePage("labs");
+    } else if (router.pathname.startsWith("/studentPortal/goals")) {
+      setActivePage("goals");
     } else {
       setActivePage("dashboard");
     }
@@ -33,7 +36,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   return (
     //Full width then restrict in page
     <div className="flex flex-col w-full h-full bg-gray-50 dark:bg-gray-900 dark:text-white">
-      <div className="grid grid-rows-4">
+      <div className="grid grid-rows-5">
         <div className="flex p-4">
           {user && (
             <img
@@ -108,6 +111,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             Classroom
           </div>
         </Link>
+
         <Link href="/studentPortal/labs">
           <div
             className={`flex flex-wrap items-center h-12 p-4 cursor-pointer hover:border-l-4 hover:border-charmander hover:text-charmander    
@@ -140,6 +144,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             Labs
           </div>
         </Link>
+
         <Link href="/profile">
           <div
             className={`flex flex-wrap items-center h-12 p-4 cursor-pointer hover:border-l-4 hover:border-charmander hover:text-charmander    
@@ -172,6 +177,39 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               />
             </svg>
             Profile
+          </div>
+        </Link>
+        <Link href="/goals">
+          <div
+            className={`flex flex-wrap items-center h-12 p-4 cursor-pointer hover:border-l-4 hover:border-charmander hover:text-charmander    
+            ${
+              activePage === "goals" ? "border-charmander text-charmander" : ""
+            }`}
+            onMouseOver={(e) => {
+              if (goalsIconRef.current) {
+                goalsIconRef.current.src = "/images/goalActive.svg";
+              }
+            }}
+            onMouseLeave={() => {
+              if (activePage !== "goals" && goalsIconRef.current) {
+                goalsIconRef.current.src = "/images/goalInactive.svg";
+              }
+            }}
+          >
+            <svg
+              className="w-6 h-6 mr-4"
+              fill="currentColor"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+              ></path>
+            </svg>
+            Goals
           </div>
         </Link>
         <div>
@@ -225,7 +263,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
           </div>
         </div>
         <div
-          className="flex flex-wrap p-4 mt-20 cursor-pointer hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800"
+          className="flex flex-wrap p-4 cursor-pointer hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800"
           onClick={signOut}
         >
           <svg

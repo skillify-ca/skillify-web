@@ -58,6 +58,8 @@ export default function StudentPortalPage({ slug }: StudentPortalPageProps) {
   useEffect(() => {
     if (slug === "react") {
       setUnits(reactUnits);
+    } else if (slug === "interview") {
+      setUnits(interviewUnits);
     } else if (data) {
       setUnits(transform(data));
     }
