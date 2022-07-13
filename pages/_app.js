@@ -11,19 +11,28 @@ import store from "../redux/store";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Script from "next/script";
-import Navbar from "../components/ui/Navbar";
 import Layout from "../components/coding/studentPortal/Layout";
+import * as fbq from "../lib/fbPixel"
+import Hotjar from '@hotjar/browser';
 
 function MyApp({ Component, pageProps: { ...pageProps } }) {
   const router = useRouter();
+
+  // HotJar setup
+  const siteId = 3063697;
+  const hotjarVersion = 6;
+  Hotjar.init(siteId, hotjarVersion);
 
   const handleRouteChange = (url) => {
     window.gtag("config", "UA-198040313-1", {
       page_path: url,
     });
+    fbq.pageview();
   };
 
   useEffect(() => {
+    fbq.pageview()
+
     router.events.on("routeChangeComplete", handleRouteChange);
     return () => {
       router.events.off("routeChangeComplete", handleRouteChange);
@@ -44,6 +53,23 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
   return (
     <ApolloProvider client={client}>
       <Script src="https://unpkg.com/kaboom/dist/kaboom.js" onLoad={() => {}} />
+      <Script
+        id="fb-pixel"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', ${fbq.FB_PIXEL_ID});
+          `,
+        }}
+      />
       <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
         <ReduxProvider store={store}>
           <AuthProvider>
