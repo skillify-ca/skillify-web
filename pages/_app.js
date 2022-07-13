@@ -13,9 +13,15 @@ import { useRouter } from "next/router";
 import Script from "next/script";
 import Layout from "../components/coding/studentPortal/Layout";
 import * as fbq from "../lib/fbPixel"
+import Hotjar from '@hotjar/browser';
 
 function MyApp({ Component, pageProps: { ...pageProps } }) {
   const router = useRouter();
+
+  // HotJar setup
+  const siteId = 3063697;
+  const hotjarVersion = 6;
+  Hotjar.init(siteId, hotjarVersion);
 
   const handleRouteChange = (url) => {
     window.gtag("config", "UA-198040313-1", {
