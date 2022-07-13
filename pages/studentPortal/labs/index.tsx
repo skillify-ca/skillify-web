@@ -1,23 +1,20 @@
-import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import React from "react";
-import UserCard from "../../../components/coding/classroom/UserCard";
 import Card from "../../../components/ui/Card";
-import {
-  FetchUsersResponse,
-  FETCH_CLASSROOM_USERS,
-} from "../../../graphql/coding/classroom/fetchUsers";
 
 export default function ClassroomPage() {
   return (
     <div className="flex flex-col items-center justify-center w-full p-4 space-y-4 text-murkrow">
-      <h1 className="text-xl text-white">Welcome to Skillify Labs!</h1>
-      <p className="text-white">
-        These labs are in-development micro-courses that community members can
-        contribute to in order to improve their software development skills. Lab
-        contributions are <strong>restricted</strong> to community members who
-        have completed the coding basics course.
-      </p>
+      <div className="p-4 bg-white shadow-md mb-14 sm:p-8 dark:bg-gray-900 text-murkrow dark:text-white">
+        <h1 className="text-3xl font-bold">Welcome to Skillify Labs!</h1>
+
+        <p className="">
+          These labs are in-development micro-courses that community members can
+          contribute to in order to improve their software development skills.
+          Lab contributions are <strong>restricted</strong> to community members
+          who have completed the web development course.
+        </p>
+      </div>
       <Link href={"/studentPortal/labs/math1"}>
         <div className="transition transform cursor-pointer hover:scale-110">
           <Card size={"small"}>
