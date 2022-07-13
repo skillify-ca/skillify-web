@@ -1,12 +1,18 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../../lib/authContext";
-
-export type SidebarProps = {};
-type SidebarPage = "dashboard" | "classroom" | "profile" | "labs" | "goals";
+import {
+  activePageSelector,
+  setActivePage,
+  SidebarProps,
+} from "../../../redux/sidebarSlice";
 
 export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
+  const { activePage } = useSelector(activePageSelector);
+  const dispatch = useDispatch();
+
   const { signOut, user } = useAuth();
   const dashboardIconRef = useRef<HTMLImageElement>();
   const classroomIconRef = useRef<HTMLImageElement>();
@@ -15,21 +21,18 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const goalsIconRef = useRef<HTMLImageElement>();
 
   const router = useRouter();
-  const [activePage, setActivePage] = useState<SidebarPage>();
-
-  console.log(router.pathname);
 
   useEffect(() => {
     if (router.pathname.startsWith("/classroom")) {
-      setActivePage("classroom");
+      dispatch(setActivePage("classroom"));
     } else if (router.pathname.startsWith("/profile")) {
-      setActivePage("profile");
+      dispatch(setActivePage("profile"));
     } else if (router.pathname.startsWith("/studentPortal/labs")) {
-      setActivePage("labs");
+      dispatch(setActivePage("labs"));
     } else if (router.pathname.startsWith("/studentPortal/goals")) {
-      setActivePage("goals");
+      dispatch(setActivePage("goals"));
     } else {
-      setActivePage("dashboard");
+      dispatch(setActivePage("dashboard"));
     }
   }, [router.pathname]);
 
