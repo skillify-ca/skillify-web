@@ -4,10 +4,10 @@ import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../../lib/authContext";
 import {
-  setActivePage,
   activePageSelector,
+  setActivePage,
   SidebarProps,
-} from "../../../redux/sideBarSlice";
+} from "../../../redux/sidebarSlice";
 
 export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const { activePage } = useSelector(activePageSelector);

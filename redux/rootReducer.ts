@@ -16,7 +16,7 @@ import {
 } from "./evaluateExpressionSlice";
 import { quizSlice, QuizState } from "./quizSlice";
 import { lessonSlice, LessonState } from "./lessonSlice";
-import { sidebarSlice, SidebarState } from "./sideBarSlice";
+import { sidebarSlice, SidebarState } from "./sidebarSlice";
 
 type State = {
   [x: string]: any;
