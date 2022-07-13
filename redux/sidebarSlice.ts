@@ -26,7 +26,7 @@ export const sidebarSlice: Slice = createSlice({
       state: SidebarState,
       action: PayloadAction<SidebarPage>
     ) => {
-      if (action.type == "sidebar/setActivePageDos") {
+      if (action.type == "sidebar/setActivePage") {
         state.activePage = action.payload;
       }
     },
