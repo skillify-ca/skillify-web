@@ -15,7 +15,7 @@ export interface SidebarState {
 }
 
 const initialState: SidebarState = {
-  activePage: "goals",
+  activePage: "dashboard",
 };
 
 export const sidebarSlice: Slice = createSlice({
