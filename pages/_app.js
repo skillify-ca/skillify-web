@@ -24,10 +24,12 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
   Hotjar.init(siteId, hotjarVersion);
 
   const handleRouteChange = (url) => {
-    window.gtag("config", "UA-198040313-1", {
-      page_path: url,
-    });
-    fbq.pageview();
+    if (window.gtag) {
+      window.gtag("config", "UA-198040313-1", {
+        page_path: url,
+      });
+      fbq.pageview();
+    }
   };
 
   useEffect(() => {

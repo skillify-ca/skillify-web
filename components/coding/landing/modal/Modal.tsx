@@ -9,20 +9,22 @@ export default function Modal({ handleClose }) {
   const router = useRouter();
 
   const handleClick = async () => {
-    fbq.event("Lead");
-    const url =
-      "https://math-app-1.herokuapp.com/notifications?product=request-demo";
-    const options = {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      },
-      body: JSON.stringify({
-        email: email,
-      }),
-    };
-    await fetch(url, options).then((res) => router.push("/demo-thank-you"));
+    if (email.length > 0) {
+      fbq.event("Lead");
+      const url = "/api/email/join-waitlist";
+      const options = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+        body: JSON.stringify({
+          email,
+          name,
+        }),
+      };
+      await fetch(url, options).then((res) => router.push("/demo-thank-you"));
+    }
   };
   return (
     <div>
@@ -46,14 +48,13 @@ export default function Modal({ handleClose }) {
         </svg>
       </div>
       <div className="flex flex-col w-full bg-white rounded-xl">
-        <div className="grid grid-cols-1 p-4 bg-white sm:p-16">
-          <h1 className="mb-4 font-extrabold tracking-tight text-gray-900">
-            <p className="text-3xl text-gray-900 ">
-              <span className="">Learn to </span>
-              <span className=" text-charmander">code </span>
-              and get
-              <span className=" text-charmander"> hired</span>
-            </p>{" "}
+        <div className="grid grid-cols-1 p-8 bg-white sm:p-16">
+          <h1 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">
+            <span className="">Be the </span>
+            <span className=" text-charmander">first </span>
+            to know when the{" "}
+            <span className=" text-charmander"> next cohort</span> opens for
+            enrollment
           </h1>
           <input
             id="bootcamper"
@@ -62,7 +63,7 @@ export default function Modal({ handleClose }) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             className={`p-4 mb-4 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-charmander placeholder-charmander w-full`}
-            placeholder="First Name"
+            placeholder="Enter your full name"
           />
           <input
             id="bootcamper"
