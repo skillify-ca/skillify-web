@@ -39,7 +39,7 @@ export default function Modal({ handleClose }) {
           name,
         }),
       };
-      fetch(url, options).then((res) => router.push("/demo-thank-you"));
+      fetch(url, options).then((res) => router.push("/waitlist-thank-you"));
     }
   };
   return (
