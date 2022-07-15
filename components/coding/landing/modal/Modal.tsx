@@ -11,6 +11,22 @@ export default function Modal({ handleClose }) {
   const handleClick = async () => {
     if (email.length > 0) {
       fbq.event("Lead");
+
+      // TODO (vithushan) delete this once emails are confirmed to be sending
+      const slackURL =
+        "https://math-app-1.herokuapp.com/notifications?product=request-demo";
+      const slackOptions = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+        body: JSON.stringify({
+          email: email,
+        }),
+      };
+      fetch(slackURL, slackOptions);
+
       const url = "/api/email/join-waitlist";
       const options = {
         method: "POST",
@@ -23,7 +39,7 @@ export default function Modal({ handleClose }) {
           name,
         }),
       };
-      await fetch(url, options).then((res) => router.push("/demo-thank-you"));
+      fetch(url, options).then((res) => router.push("/demo-thank-you"));
     }
   };
   return (
