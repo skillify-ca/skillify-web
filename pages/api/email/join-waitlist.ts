@@ -8,8 +8,8 @@ export default async (req, res) => {
   const name = req.body.name;
 
   const firstSpace = name.indexOf(" ");
-  const firstName = name.slice(0, firstSpace);
-  const lastName = name.slice(firstSpace, name.length);
+  const firstName = firstSpace === -1 ? name : name.slice(0, firstSpace);
+  const lastName = firstSpace === -1 ? "" : name.slice(firstSpace, name.length);
 
   await fetch(url, {
     method: "POST",
@@ -32,7 +32,7 @@ export default async (req, res) => {
       const contact = r.contact.id;
       const tag = 6; // [Event] joined waitlist
 
-      fetch(url, {
+      return fetch(url, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -46,7 +46,9 @@ export default async (req, res) => {
           },
         }),
       });
-    });
+    })
+    .then((r) => r.json())
+    .then((r) => console.log(r));
   res.statusCode = 200;
   res.json({ result: "New Contact Created with [Event] joined waitlist tag" });
 };
