@@ -25,7 +25,28 @@ export default async (req, res) => {
         lastName,
       },
     }),
-  });
+  })
+    .then((r) => r.json())
+    .then((r) => {
+      const url = "https://skillify.api-us1.com/api/3/contactTags";
+      const contact = r.contact.id;
+      const tag = 6; // [Event] joined waitlist
+
+      fetch(url, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
+          "Api-Token": API_KEY,
+        },
+        body: JSON.stringify({
+          contactTag: {
+            contact,
+            tag,
+          },
+        }),
+      });
+    });
   res.statusCode = 200;
-  res.json({ result: "New Contact Created" });
+  res.json({ result: "New Contact Created with [Event] joined waitlist tag" });
 };
