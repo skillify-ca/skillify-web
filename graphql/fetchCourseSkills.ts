@@ -12,3 +12,12 @@ export const FETCH_COURSE_SKILLS = gql`
     }
   }
 `;
+
+export const FETCH_USER_SKILL_RATINGS = gql`
+  query fetchUserCourseSkills($userId: String = "") {
+    intro_course_skills_user(where: { userId: { _eq: $userId } }) {
+      id
+      studentRating
+    }
+  }
+`;
