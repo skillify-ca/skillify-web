@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { UserSkillsRatings } from "../../graphql/fetchUserSkillsRatings";
 import SkillRatings from "../../pages/skillRatings";
 
-export type SkillRow = {
+export type SkillRowType = {
+  skillId: String;
   sectionName: String;
   skillName: String;
   skillRating: Number;
 };
 
 export type SkillRowProps = {
-  skillRow: SkillRow;
+  skillRow: SkillRowType;
 };
 
 export default function SkillRow({ skillRow }: SkillRowProps) {

@@ -1,16 +1,10 @@
 import React, { useState } from "react";
 import { UserSkillsRatings } from "../../graphql/fetchUserSkillsRatings";
 import SkillRatings from "../../pages/skillRatings";
-import SkillRow from "./SkillRow";
-
-export type RenderUserSkill = {
-  sectionName: String;
-  skillName: String;
-  skillRating: Number;
-};
+import SkillRow, { SkillRowType } from "./SkillRow";
 
 type SkillSectionProps = {
-  skillSection: Array<RenderUserSkill>;
+  skillSection: Array<SkillRowType>;
 };
 
 export default function SkillSection({ skillSection }: SkillSectionProps) {

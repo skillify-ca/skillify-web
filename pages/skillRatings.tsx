@@ -1,8 +1,7 @@
 import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
-import SkillSection, {
-  RenderUserSkill,
-} from "../components/coding/SkillSection";
+import { SkillRowType } from "../components/coding/SkillRow";
+import SkillSection from "../components/coding/SkillSection";
 import { Button } from "../components/ui/Button";
 import {
   FetchUserSkillsRatings,
@@ -25,8 +24,9 @@ export default function SkillRatings(props) {
   );
 
   const transformSkillRating = (skillRatings: UserSkillsRatings[]) => {
-    const mappedSkillRatings: RenderUserSkill[] = skillRatings.map((row) => {
+    const mappedSkillRatings: SkillRowType[] = skillRatings.map((row) => {
       return {
+        skillId: row.id,
         sectionName: row.intro_course_skill["intro_course_unit"]["title"],
         skillName: row.intro_course_skill["name"],
         skillRating: parseInt(row.studentRating),
