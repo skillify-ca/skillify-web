@@ -14,11 +14,18 @@ import { useAuth } from "../lib/authContext";
 export default function SkillRatings(props) {
   const { user } = useAuth();
 
+  const [skillRatingsData, setSkillRatingsData] = useState<SkillRowType[]>();
+
   const { data: userSkillRatings } = useQuery<FetchUserSkillsRatings>(
     FETCH_USER_SKILLS_RATINGS,
     {
       variables: {
         userId: user.uid,
+      },
+      onCompleted: (data) => {
+        setSkillRatingsData(
+          transformSkillRating(data.intro_course_skills_user)
+        );
       },
     }
   );
