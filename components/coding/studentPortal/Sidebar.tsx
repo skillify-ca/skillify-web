@@ -10,12 +10,14 @@ import {
   SidebarProps,
 } from "../../../redux/sidebarSlice";
 
-const SidebarItem = ({ name, link, activePage, icon }) => {
+const SidebarItem = ({ name, link, page, icon }) => {
+  const { activePage } = useSelector(activePageSelector);
+
   return (
     <Link href={link}>
       <div
         className={`flex flex-wrap items-center p-4 cursor-pointer hover:border-l-4 ${
-          activePage === "dashboard" ? "border-charmander text-charmander" : ""
+          activePage === page ? "border-charmander text-charmander" : ""
         } hover:border-charmander hover:text-charmander`}
       >
         {icon}
@@ -72,7 +74,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
         <SidebarItem
           name={"Dashboard"}
           link={"/studentPortal/intro"}
-          activePage={"dashboard"}
+          page={"dashboard"}
           icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +89,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
         <SidebarItem
           name={"Classroom"}
           link={"/classroom"}
-          activePage={"classroom"}
+          page={"classroom"}
           icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +104,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
         <SidebarItem
           name={"Labs"}
           link={"/studentPortal/labs"}
-          activePage={"labs"}
+          page={"labs"}
           icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +123,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
         <SidebarItem
           name={"Profile"}
           link={"/profile"}
-          activePage={"profile"}
+          page={"profile"}
           icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +142,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
         <SidebarItem
           name={"Goals"}
           link={"/goals"}
-          activePage={"goals"}
+          page={"goals"}
           icon={
             <svg
               className="w-6 h-6 mr-4"
@@ -160,7 +162,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
         <SidebarItem
           name={"Workshops"}
           link={"/workshops"}
-          activePage={"workshops"}
+          page={"workshops"}
           icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"
