@@ -57,18 +57,16 @@ const EditGoalsPage = () => {
 
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
-      <h1 className="text-3xl font-bold mb-4">Edit Goal</h1>
+      <h1 className="mb-4 text-3xl font-bold">Edit Goal</h1>
       {goalDetail && editedGoalValues && (
         <div>
           <div className="flex flex-col space-y-2">
             <p className="font-bold">Goal Name</p>
 
             <textarea
-              className={
-                editedGoalValues.goalName.length <= 60
-                  ? "text-left p-2 border rounded-md shadow-md w-full md:w-1/2"
-                  : "text-left p-2 border-2 rounded-md shadow-md w-full md:w-1/2 border-red-600"
-              }
+              className={`text-left p-2 border rounded-md shadow-md w-full md:w-1/2 text-murkrow ${
+                editedGoalValues.goalName.length <= 60 ? "" : " border-red-600"
+              }`}
               placeholder={goalDetail.goalName}
               value={editedGoalValues.goalName}
               onChange={(e) => {
@@ -86,21 +84,21 @@ const EditGoalsPage = () => {
             <p className="font-bold">Created On</p>
             <input
               type="text"
-              className="text-left p-2 border rounded-md shadow-md w-1/2 md:w-1/4"
+              className="w-1/2 p-2 text-left border rounded-md shadow-md md:w-1/4"
               value={format(new Date(goalDetail.createdAt), "MMMM dd yyyy")}
               disabled
             />
             <p className="font-bold">Last Updated</p>
             <input
               type="text"
-              className="text-left p-2 border rounded-md shadow-md  w-1/2 md:w-1/4"
+              className="w-1/2 p-2 text-left border rounded-md shadow-md md:w-1/4"
               value={format(new Date(goalDetail.updatedAt), "MMMM dd yyyy")}
               disabled
             />
             <p className="font-bold">Target Completion Date</p>
             <input
               type="date"
-              className="text-left p-2 border rounded-md shadow-md  w-1/2 md:w-1/4"
+              className="w-1/2 p-2 text-left border rounded-md shadow-md md:w-1/4 text-murkrow"
               value={format(
                 new Date(editedGoalValues.targetDate),
                 "yyyy-MM-dd"
@@ -113,7 +111,7 @@ const EditGoalsPage = () => {
               }}
             />
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-12 md:text-center mt-8">
+          <div className="grid grid-cols-2 mt-8 md:grid-cols-12 md:text-center">
             <p className="font-bold">Archive Goal</p>
             <ArchiveIcon
               className={
