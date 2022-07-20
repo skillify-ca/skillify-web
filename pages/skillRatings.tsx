@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
-import { SkillRowType } from "../components/coding/SkillRow";
-import SkillSection from "../components/coding/SkillSection";
+import { SkillRowType } from "../components/skillRatings/SkillRow";
+import SkillSection from "../components/skillRatings/SkillSection";
 import { Button } from "../components/ui/Button";
 import {
   FetchUserSkillsRatings,

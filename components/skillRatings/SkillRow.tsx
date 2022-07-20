@@ -19,7 +19,7 @@ export default function SkillRow({ skillRow }: SkillRowProps) {
   const [inputStudentRating, setInputStudentRating] = useState(
     skillRow.skillRating
   );
-  const setEmojiCallback = (val: number) => {
+  const setInputStudentRatingCallback = (val: number) => {
     setInputStudentRating(val);
   };
 
@@ -44,7 +44,7 @@ export default function SkillRow({ skillRow }: SkillRowProps) {
       </div>
       <p className="col-start-2 col-span-3 text-xl">{skillRow.skillName}</p>
       <p className="text-xl">{inputStudentRating}</p>
-      <SkillRowEmoji callback={setEmojiCallback} />
+      <SkillRowEmoji callback={setInputStudentRatingCallback} />
     </div>
   );
 }
