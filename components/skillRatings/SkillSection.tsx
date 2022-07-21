@@ -13,7 +13,7 @@ export default function SkillSection({ skillSection }: SkillSectionProps) {
   return (
     <div>
       {/* the component tries to render the prop before it's fully loaded into redux */}
-      {skillSection && (
+      {skillSection && skillSection.length > 0 && (
         <div>
           <div className="text-white bg-murkrow text-center rounded-full py-4 w-1/6 mt-4">
             {skillSection[0].unitName}
