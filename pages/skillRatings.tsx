@@ -52,13 +52,6 @@ export default function SkillRatings(props) {
         <Button label="Save" />
       </div>
       <p className="text-xl font-bold">Skills</p>
-      {/* {userSkillRatings && (
-        <SkillSection
-          skillSection={transformSkillRating(
-            userSkillRatings.intro_course_skills_user
-          )}
-        />
-      )} */}
       {skillRatings && <SkillSection skillSection={skillRatings} />}
     </div>
   );
