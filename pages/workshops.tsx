@@ -19,13 +19,22 @@ export default function Goals(props) {
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
       <div>
-        <div className="mb-8">Workshops</div>
-        <div>
-          <h2>Pokedex - July 20, 2022</h2>
-          <video
-            src="https://d3jppm0n5ndqu2.cloudfront.net/pokedex-workshop-final.mp4"
-            controls={true}
-          />
+        <div className="mb-8 text-3xl">Workshops</div>
+        <div className="grid grid-cols-3 gap-4">
+          <div>
+            <h2>Pokedex - July 20, 2022</h2>
+            <video
+              src="https://d3jppm0n5ndqu2.cloudfront.net/pokedex-workshop-final.mp4"
+              controls={true}
+            />
+          </div>
+          <div>
+            <h2>Pokedex - July 21, 2022</h2>
+            <video
+              src="https://d3jppm0n5ndqu2.cloudfront.net/pokedex-july-21.mov"
+              controls={true}
+            />
+          </div>
         </div>
       </div>
     </div>
