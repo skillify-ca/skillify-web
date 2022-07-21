@@ -8,8 +8,6 @@ type SkillSectionProps = {
 };
 
 export default function SkillSection({ skillSection }: SkillSectionProps) {
-  // log skillSection prop
-  console.log(skillSection);
   return (
     <div>
       {/* the component tries to render the prop before it's fully loaded into redux */}
