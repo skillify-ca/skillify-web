@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
-import React, { useState } from "react";
-import { SkillRowType } from "../components/skillRatings/SkillRow";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import SkillSection from "../components/skillRatings/SkillSection";
 import { Button } from "../components/ui/Button";
 import {
@@ -10,33 +10,36 @@ import {
 } from "../graphql/fetchUserSkillsRatings";
 
 import { useAuth } from "../lib/authContext";
+import {
+  setSkillRatings,
+  skillRatingsSelector,
+  SkillRatingsRow,
+} from "../redux/skillRatingsSlice";
 
 export default function SkillRatings(props) {
+  const dispatch = useDispatch();
+  const { skillRatings } = useSelector(skillRatingsSelector);
   const { user } = useAuth();
 
-  const [skillRatingsData, setSkillRatingsData] = useState<SkillRowType[]>();
-
-  const { data: userSkillRatings } = useQuery<FetchUserSkillsRatings>(
-    FETCH_USER_SKILLS_RATINGS,
-    {
-      variables: {
-        userId: user.uid,
-      },
-      onCompleted: (data) => {
-        setSkillRatingsData(
-          transformSkillRating(data.intro_course_skills_user)
-        );
-      },
-    }
-  );
+  const {} = useQuery<FetchUserSkillsRatings>(FETCH_USER_SKILLS_RATINGS, {
+    variables: {
+      userId: user.uid,
+    },
+    onCompleted: (data) => {
+      dispatch(
+        setSkillRatings(transformSkillRating(data.intro_course_skills_user))
+      );
+    },
+  });
 
   const transformSkillRating = (skillRatings: UserSkillsRatings[]) => {
-    const mappedSkillRatings: SkillRowType[] = skillRatings.map((row) => {
+    // map to redux type
+    const mappedSkillRatings: SkillRatingsRow[] = skillRatings.map((row) => {
       return {
         skillId: row.id,
-        sectionName: row.intro_course_skill["intro_course_unit"]["title"],
         skillName: row.intro_course_skill["name"],
-        skillRating: parseInt(row.studentRating),
+        unitName: row.intro_course_skill["intro_course_unit"]["title"],
+        studentRating: parseInt(row.studentRating),
       };
     });
 
@@ -49,13 +52,14 @@ export default function SkillRatings(props) {
         <Button label="Save" />
       </div>
       <p className="text-xl font-bold">Skills</p>
-      {userSkillRatings && (
+      {/* {userSkillRatings && (
         <SkillSection
           skillSection={transformSkillRating(
             userSkillRatings.intro_course_skills_user
           )}
         />
-      )}
+      )} */}
+      {skillRatings && <SkillSection skillSection={skillRatings} />}
     </div>
   );
 }

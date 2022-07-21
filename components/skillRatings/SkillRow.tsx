@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { UserSkillsRatings } from "../../graphql/fetchUserSkillsRatings";
-import SkillRatings from "../../pages/skillRatings";
+import { SkillRatingsRow } from "../../redux/skillRatingsSlice";
 import SkillRowEmoji from "./SkillRowEmoji";
 
 export type SkillRowType = {
@@ -11,13 +11,13 @@ export type SkillRowType = {
 };
 
 export type SkillRowProps = {
-  skillRow: SkillRowType;
+  skillRow: SkillRatingsRow;
 };
 
 export default function SkillRow({ skillRow }: SkillRowProps) {
   // todo: implement redux for state variables
   const [inputStudentRating, setInputStudentRating] = useState(
-    skillRow.skillRating
+    skillRow.studentRating
   );
   const setInputStudentRatingCallback = (val: number) => {
     setInputStudentRating(val);

@@ -4,14 +4,13 @@ import { RootState } from "./rootReducer";
 // export type SidebarProps = {};
 
 export type SkillRatingsState = {
-  skillRatings: SkillRating[];
+  skillRatings: SkillRatingsRow[];
 };
 
-export type SkillRatings = {
-  skillId: string;
-  skillName: string;
-  unitId: string;
-  unitName: string;
+export type SkillRatingsRow = {
+  skillId: String;
+  skillName: String;
+  unitName: String;
   studentRating: Number;
 };
 
@@ -25,9 +24,9 @@ export const skillRatingsSlice: Slice = createSlice({
   reducers: {
     setSkillRatings: (
       state: SkillRatingsState,
-      action: PayloadAction<SkillRatings[]>
+      action: PayloadAction<SkillRatingsRow[]>
     ) => {
-      if (action.type == "skillRatings/setSkillsRatings") {
+      if (action.type == "skillRatings/setSkillRatings") {
         state.skillRatings = action.payload;
       }
     },
