@@ -5,11 +5,11 @@ export type SidebarProps = {};
 
 export type SidebarPage =
   | "dashboard"
-  | "classroom"
-  | "profile"
-  | "labs"
+  | "coaches"
   | "goals"
-  | "workshops";
+  | "workshops"
+  | "profile"
+  | "labs";
 
 export interface SidebarState {
   activePage: SidebarPage;
