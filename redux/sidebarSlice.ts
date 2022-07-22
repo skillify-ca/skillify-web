@@ -8,7 +8,8 @@ export type SidebarPage =
   | "classroom"
   | "profile"
   | "labs"
-  | "goals";
+  | "goals"
+  | "workshops";
 
 export interface SidebarState {
   activePage: SidebarPage;

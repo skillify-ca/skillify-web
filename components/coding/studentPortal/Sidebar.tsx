@@ -1,3 +1,4 @@
+import { link } from "fs";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef } from "react";
@@ -9,16 +10,28 @@ import {
   SidebarProps,
 } from "../../../redux/sidebarSlice";
 
+const SidebarItem = ({ name, link, page, icon }) => {
+  const { activePage } = useSelector(activePageSelector);
+
+  return (
+    <Link href={link}>
+      <div
+        className={`flex flex-wrap items-center p-4 cursor-pointer hover:border-l-4 ${
+          activePage === page ? "border-charmander text-charmander" : ""
+        } hover:border-charmander hover:text-charmander`}
+      >
+        {icon}
+        {name}
+      </div>
+    </Link>
+  );
+};
+
 export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const { activePage } = useSelector(activePageSelector);
   const dispatch = useDispatch();
 
   const { signOut, user } = useAuth();
-  const dashboardIconRef = useRef<HTMLImageElement>();
-  const classroomIconRef = useRef<HTMLImageElement>();
-  const profileIconRef = useRef<HTMLImageElement>();
-  const labsIconRef = useRef<HTMLImageElement>();
-  const goalsIconRef = useRef<HTMLImageElement>();
 
   const router = useRouter();
 
@@ -29,8 +42,10 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
       dispatch(setActivePage("profile"));
     } else if (router.pathname.startsWith("/studentPortal/labs")) {
       dispatch(setActivePage("labs"));
-    } else if (router.pathname.startsWith("/studentPortal/goals")) {
+    } else if (router.pathname.startsWith("/goals")) {
       dispatch(setActivePage("goals"));
+    } else if (router.pathname.startsWith("/workshops")) {
+      dispatch(setActivePage("workshops"));
     } else {
       dispatch(setActivePage("dashboard"));
     }
@@ -39,7 +54,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   return (
     //Full width then restrict in page
     <div className="flex flex-col w-full h-full bg-gray-50 dark:bg-gray-900 dark:text-white">
-      <div className="grid grid-rows-5">
+      <div className="grid">
         <div className="flex p-4">
           {user && (
             <img
@@ -56,24 +71,11 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             </div>
           )}
         </div>
-        <Link href="/studentPortal/intro">
-          <div
-            className={`flex flex-wrap items-center h-12 p-4 cursor-pointer hover:border-l-4 ${
-              activePage === "dashboard"
-                ? "border-charmander text-charmander"
-                : ""
-            } hover:border-charmander hover:text-charmander`}
-            onMouseOver={(e) => {
-              if (dashboardIconRef.current) {
-                dashboardIconRef.current.src = "/images/dashBoardActive.svg";
-              }
-            }}
-            onMouseLeave={() => {
-              if (activePage !== "dashboard" && dashboardIconRef.current) {
-                dashboardIconRef.current.src = "/images/dashboardInactive.svg";
-              }
-            }}
-          >
+        <SidebarItem
+          name={"Dashboard"}
+          link={"/studentPortal/intro"}
+          page={"dashboard"}
+          icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-6 h-6 mr-4"
@@ -82,27 +84,13 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             >
               <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
             </svg>
-            Dashboard
-          </div>
-        </Link>
-        <Link href="/classroom">
-          <div
-            className={`flex flex-wrap items-center h-12 p-4 cursor-pointer hover:border-l-4 ${
-              activePage === "classroom"
-                ? "border-charmander text-charmander"
-                : ""
-            } hover:border-charmander hover:text-charmander`}
-            onMouseOver={(e) => {
-              if (classroomIconRef.current) {
-                classroomIconRef.current.src = "/images/classroomActive.svg";
-              }
-            }}
-            onMouseLeave={() => {
-              if (activePage !== "classroom" && classroomIconRef.current) {
-                classroomIconRef.current.src = "/images/classroomInactive.svg";
-              }
-            }}
-          >
+          }
+        />
+        <SidebarItem
+          name={"Classroom"}
+          link={"/classroom"}
+          page={"classroom"}
+          icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className={`w-6 h-6 mr-4`}
@@ -111,27 +99,13 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             >
               <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
             </svg>
-            Classroom
-          </div>
-        </Link>
-
-        <Link href="/studentPortal/labs">
-          <div
-            className={`flex flex-wrap items-center h-12 p-4 cursor-pointer hover:border-l-4 hover:border-charmander hover:text-charmander    
-            ${
-              activePage === "labs" ? "border-charmander text-charmander" : ""
-            }`}
-            onMouseOver={(e) => {
-              if (labsIconRef.current) {
-                labsIconRef.current.src = "/images/labsActive.svg";
-              }
-            }}
-            onMouseLeave={() => {
-              if (activePage !== "labs" && labsIconRef.current) {
-                labsIconRef.current.src = "/images/labsInactive.svg";
-              }
-            }}
-          >
+          }
+        />
+        <SidebarItem
+          name={"Labs"}
+          link={"/studentPortal/labs"}
+          page={"labs"}
+          icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className={`w-6 h-6 mr-4`}
@@ -144,29 +118,13 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
                 clip-rule="evenodd"
               />
             </svg>
-            Labs
-          </div>
-        </Link>
-
-        <Link href="/profile">
-          <div
-            className={`flex flex-wrap items-center h-12 p-4 cursor-pointer hover:border-l-4 hover:border-charmander hover:text-charmander    
-            ${
-              activePage === "profile"
-                ? "border-charmander text-charmander"
-                : ""
-            }`}
-            onMouseOver={(e) => {
-              if (profileIconRef.current) {
-                profileIconRef.current.src = "/images/profileActive.svg";
-              }
-            }}
-            onMouseLeave={() => {
-              if (activePage !== "profile" && profileIconRef.current) {
-                profileIconRef.current.src = "/images/profileInactive.svg";
-              }
-            }}
-          >
+          }
+        />
+        <SidebarItem
+          name={"Profile"}
+          link={"/profile"}
+          page={"profile"}
+          icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-6 h-6 mr-4"
@@ -179,26 +137,13 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
                 clip-rule="evenodd"
               />
             </svg>
-            Profile
-          </div>
-        </Link>
-        <Link href="/goals">
-          <div
-            className={`flex flex-wrap items-center h-12 p-4 cursor-pointer hover:border-l-4 hover:border-charmander hover:text-charmander    
-            ${
-              activePage === "goals" ? "border-charmander text-charmander" : ""
-            }`}
-            onMouseOver={(e) => {
-              if (goalsIconRef.current) {
-                goalsIconRef.current.src = "/images/goalActive.svg";
-              }
-            }}
-            onMouseLeave={() => {
-              if (activePage !== "goals" && goalsIconRef.current) {
-                goalsIconRef.current.src = "/images/goalInactive.svg";
-              }
-            }}
-          >
+          }
+        />
+        <SidebarItem
+          name={"Goals"}
+          link={"/goals"}
+          page={"goals"}
+          icon={
             <svg
               className="w-6 h-6 mr-4"
               fill="currentColor"
@@ -212,9 +157,24 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
                 d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
               ></path>
             </svg>
-            Goals
-          </div>
-        </Link>
+          }
+        />
+        <SidebarItem
+          name={"Workshops"}
+          link={"/workshops"}
+          page={"workshops"}
+          icon={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-6 h-6 mr-4"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+            </svg>
+          }
+        />
+
         <div>
           <div className="flex items-center justify-between p-4 ">
             <p className="font-bold">Courses</p>

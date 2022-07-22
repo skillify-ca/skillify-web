@@ -5,23 +5,30 @@ import * as fbq from "../../../lib/fbPixel";
 const SubscribeBanner = () => {
   const [email, setEmail] = useState("");
   const [hasClicked, setHasClicked] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const handleClick = async () => {
-    setHasClicked(true);
-    fbq.event("Lead");
-    const url =
-      "https://math-app-1.herokuapp.com/notifications?product=subscribe-banner";
-    const options = {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      },
-      body: JSON.stringify({
-        email: email,
-      }),
-    };
-    await fetch(url, options);
+    if (email.includes("@")) {
+      setShowError(false);
+
+      setHasClicked(true);
+      fbq.event("Lead");
+      const url =
+        "https://math-app-1.herokuapp.com/notifications?product=subscribe-banner";
+      const options = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+        body: JSON.stringify({
+          email: email,
+        }),
+      };
+      await fetch(url, options);
+    } else {
+      setShowError(true);
+    }
   };
   return (
     <div className="bg-white">
@@ -32,15 +39,22 @@ const SubscribeBanner = () => {
           can learn the fundamentals of coding and get hired.
         </p>
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row ">
-          <input
-            id="bootcamper"
-            type="text"
-            autoComplete="off"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className={`text-left rounded-lg p-2 sm:mb-0 mb-4 border shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-charmander placeholder-yellow-700 sm:w-80 w-full `}
-            placeholder="Email"
-          />
+          <div className="flex flex-col items-center">
+            <input
+              id="bootcamper"
+              type="text"
+              autoComplete="off"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={`text-left rounded-lg p-2 sm:mb-0 mb-4 border shadow-md focus:outline-none focus:ring-indigo-500 text-md lg:text-md text-charmander placeholder-yellow-700 sm:w-80 w-full `}
+              placeholder="Email"
+            />
+            {showError && (
+              <p className="text-moltres-200">
+                Please enter a valid email address
+              </p>
+            )}
+          </div>
 
           <div
             onClick={(e) => handleClick()}
