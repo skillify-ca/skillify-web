@@ -25,7 +25,8 @@ export const skillRatingsSlice: Slice = createSlice({
       action: PayloadAction<SkillRatingsRow[]>
     ) => {
       if (action.type == "skillRatings/setSkillRatings") {
-        state.skillRatings = action.payload;
+        console.log("action.payload", action.payload);
+        state.skillRatings = [...action.payload];
       }
     },
     updateSkillRatings: (
@@ -33,13 +34,12 @@ export const skillRatingsSlice: Slice = createSlice({
       action: PayloadAction<{ newStudentRating: Number; skillId: String }>
     ) => {
       if (action.type == "skillRatings/updateSkillRatings") {
-        const skillRatingsCopy = [...state.skillRatings];
-
-        const index = skillRatingsCopy.findIndex(
+        const index = state.skillRatings.findIndex(
           (obj) => obj.skillId == action.payload.skillId
         );
 
-        skillRatingsCopy[index].studentRating = action.payload.newStudentRating;
+        state.skillRatings[index].studentRating =
+          action.payload.newStudentRating;
       }
     },
   },
@@ -47,6 +47,8 @@ export const skillRatingsSlice: Slice = createSlice({
 
 export const { setSkillRatings, updateSkillRatings } =
   skillRatingsSlice.actions;
+
+export default skillRatingsSlice.reducer;
 
 export const skillRatingsSelector = (state: RootState) =>
   state.skillRatingsState;
