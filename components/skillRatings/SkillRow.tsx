@@ -1,6 +1,9 @@
-import React, { useState } from "react";
-import { UserSkillsRatings } from "../../graphql/fetchUserSkillsRatings";
-import { SkillRatingsRow } from "../../redux/skillRatingsSlice";
+import React from "react";
+import { useSelector } from "react-redux";
+import {
+  SkillRatingsRow,
+  skillRatingsSelector,
+} from "../../redux/skillRatingsSlice";
 import SkillRowEmoji from "./SkillRowEmoji";
 
 export type SkillRowType = {
@@ -15,13 +18,10 @@ export type SkillRowProps = {
 };
 
 export default function SkillRow({ skillRow }: SkillRowProps) {
-  // todo: implement redux for state variables
-  const [inputStudentRating, setInputStudentRating] = useState(
-    skillRow.studentRating
+  const { skillRatings } = useSelector(skillRatingsSelector);
+  const index = skillRatings.findIndex(
+    (obj) => obj.skillId == skillRow.skillId
   );
-  const setInputStudentRatingCallback = (val: number) => {
-    setInputStudentRating(val);
-  };
 
   const renderEmojiByRating = (skillRating: Number) => {
     if (skillRating == 0) {
@@ -40,11 +40,11 @@ export default function SkillRow({ skillRow }: SkillRowProps) {
   return (
     <div className="grid grid-cols-8 justify-center items-center text-center">
       <div className="w-1/2 h-1/2 bg-murkrow/50 rounded-full flex p-12 shadow-xl justify-center items-center text-center text-6xl">
-        {renderEmojiByRating(inputStudentRating)}
+        {renderEmojiByRating(skillRatings[index].studentRating)}
       </div>
       <p className="col-start-2 col-span-3 text-xl">{skillRow.skillName}</p>
-      <p className="text-xl">{inputStudentRating}</p>
-      <SkillRowEmoji callback={setInputStudentRatingCallback} />
+      <p className="text-xl">{skillRow.studentRating}</p>
+      <SkillRowEmoji skillId={skillRow.skillId} />
     </div>
   );
 }

@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { UserSkillsRatings } from "../../graphql/fetchUserSkillsRatings";
+import React from "react";
 import { SkillRatingsRow } from "../../redux/skillRatingsSlice";
-import SkillRow, { SkillRowType } from "./SkillRow";
+import SkillRow from "./SkillRow";
 
 type SkillSectionProps = {
   skillSection: Array<SkillRatingsRow>;
@@ -10,7 +9,6 @@ type SkillSectionProps = {
 export default function SkillSection({ skillSection }: SkillSectionProps) {
   return (
     <div>
-      {/* the component tries to render the prop before it's fully loaded into redux */}
       {skillSection && skillSection.length > 0 && (
         <div>
           <div className="text-white bg-murkrow text-center rounded-full py-4 w-1/6 mt-4">

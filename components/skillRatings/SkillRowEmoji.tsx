@@ -1,27 +1,17 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateSkillRatings } from "../../redux/skillRatingsSlice";
 
 export interface EmojiSliderProps {
-  callback: (val: number) => void;
+  skillId: String;
 }
 
-const EmojiSlider = ({ callback }: EmojiSliderProps) => {
-  const [mood, setMood] = useState("😐");
+const EmojiSlider = ({ skillId }: EmojiSliderProps) => {
+  const dispatch = useDispatch();
 
   function handleChange(e) {
-    const val = e.target.value;
-    if (val == 0) {
-      setMood("😶");
-    } else if (val < 30) {
-      setMood("😐");
-    } else if (val < 60) {
-      setMood("🙂");
-    } else if (val < 90) {
-      setMood("😊");
-    } else {
-      setMood("🤩");
-    }
-
-    callback(val);
+    const newStudentRating = Number(e.target.value) || 0;
+    dispatch(updateSkillRatings({ newStudentRating, skillId }));
   }
 
   return (
