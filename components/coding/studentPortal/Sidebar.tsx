@@ -36,8 +36,8 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (router.pathname.startsWith("/classroom")) {
-      dispatch(setActivePage("classroom"));
+    if (router.pathname.startsWith("/coaches")) {
+      dispatch(setActivePage("coaches"));
     } else if (router.pathname.startsWith("/profile")) {
       dispatch(setActivePage("profile"));
     } else if (router.pathname.startsWith("/studentPortal/labs")) {
@@ -87,9 +87,9 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
           }
         />
         <SidebarItem
-          name={"Classroom"}
-          link={"/classroom"}
-          page={"classroom"}
+          name={"Coaches"}
+          link={"/coaches"}
+          page={"coaches"}
           icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -1,20 +1,17 @@
 import Link from "next/link";
 import React from "react";
+import PageHeader from "../../../components/coding/PageHeader";
 import Card from "../../../components/ui/Card";
 
 export default function ClassroomPage() {
   return (
     <div className="flex flex-col items-center justify-center w-full p-4 space-y-4 text-murkrow">
-      <div className="p-4 bg-white shadow-md mb-14 sm:p-8 dark:bg-gray-900 text-murkrow dark:text-white">
-        <h1 className="text-3xl font-bold">Welcome to Skillify Labs!</h1>
-
-        <p className="">
-          These labs are in-development micro-courses that community members can
-          contribute to in order to improve their software development skills.
-          Lab contributions are <strong>restricted</strong> to community members
-          who have completed the web development course.
-        </p>
-      </div>
+      <PageHeader
+        title={"Welcome to Skillify Labs!"}
+        description={
+          "These labs are in-development micro-courses that community members can contribute to in order to improve their software development skills. Lab contributions are restricted to community members who have completed the web development course."
+        }
+      />
       <Link href={"/studentPortal/labs/math1"}>
         <div className="transition transform cursor-pointer hover:scale-110">
           <Card size={"small"}>
