@@ -47,12 +47,13 @@ export default function SkillRatings(props) {
   };
 
   return (
-    <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
-      <div>
+    <div className="flex flex-row overflow-auto-bg-scroll">
+      <div className="flex flex-col p-4 m-4">
+        {skillRatings && <SkillSection skillSection={skillRatings} />}
+      </div>
+      <div className="p-4 mr-8 mt-8">
         <Button label="Save" />
       </div>
-      <p className="text-xl font-bold">Skills</p>
-      {skillRatings && <SkillSection skillSection={skillRatings} />}
     </div>
   );
 }
