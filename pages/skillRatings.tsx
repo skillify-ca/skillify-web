@@ -35,6 +35,9 @@ export default function SkillRatings(props) {
 
   const [saveSkillRatings] = useMutation(UPSERT_USER_SKILL_RATINGS, {
     refetchQueries: [{ query: FETCH_USER_SKILLS_RATINGS }],
+    onCompleted: () => {
+      alert("Your skill ratings have been saved successfully.");
+    },
   });
 
   const transformSkillRating = (skillRatings: UserSkillsRatings[]) => {
