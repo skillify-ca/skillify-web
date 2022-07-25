@@ -27,7 +27,9 @@ export const skillRatingsSlice: Slice = createSlice({
       action: PayloadAction<SkillRatingsRow[]>
     ) => {
       if (action.type == "skillRatings/setSkillRatings") {
-        state.skillRatings = action.payload;
+        return {
+          skillRatings: [...action.payload],
+        };
       }
     },
 

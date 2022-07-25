@@ -30,7 +30,7 @@ test("set skillRatings to testState from initial ", () => {
 
   // Assert
   console.log("nextState before going into expect", nextState);
-  expect(nextState[0]).toEqual({
+  expect(nextState["skillRatings"][0]).toEqual({
     skillId: "abc123",
     skillName: "Able to use <p> tags",
     unitName: "HTML",
