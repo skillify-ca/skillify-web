@@ -26,10 +26,6 @@ export default function SkillRatings(props) {
       userId: user.uid,
     },
     onCompleted: (data) => {
-      console.log(
-        "the payload from DB",
-        transformSkillRating(data.intro_course_skills_user)
-      );
       dispatch(
         setSkillRatings(transformSkillRating(data.intro_course_skills_user))
       );

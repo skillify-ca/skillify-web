@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { RootState } from "./rootReducer";
-import { produce } from "immer";
-import { act } from "react-three-fiber";
 
 export type SkillRatingsState = {
   skillRatings: SkillRatingsRow[];
@@ -48,7 +46,7 @@ export const skillRatingsSlice: Slice = createSlice({
   },
 });
 
-export const { setSkillRatings, updateSkillRatings, setSkillRatingsDos } =
+export const { setSkillRatings, updateSkillRatings } =
   skillRatingsSlice.actions;
 
 export default skillRatingsSlice.reducer;

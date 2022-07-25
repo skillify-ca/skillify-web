@@ -29,7 +29,6 @@ test("set skillRatings to testState from initial ", () => {
   const nextState = reducer(initialState, setSkillRatings(testState));
 
   // Assert
-  console.log("nextState before going into expect", nextState);
   expect(nextState["skillRatings"][0]).toEqual({
     skillId: "abc123",
     skillName: "Able to use <p> tags",
