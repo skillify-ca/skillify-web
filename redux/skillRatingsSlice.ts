@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { RootState } from "./rootReducer";
+import { produce } from "immer";
+import { act } from "react-three-fiber";
 
 export type SkillRatingsState = {
   skillRatings: SkillRatingsRow[];
@@ -25,10 +27,10 @@ export const skillRatingsSlice: Slice = createSlice({
       action: PayloadAction<SkillRatingsRow[]>
     ) => {
       if (action.type == "skillRatings/setSkillRatings") {
-        console.log("action.payload", action.payload);
-        state.skillRatings = [...action.payload];
+        state.skillRatings = action.payload;
       }
     },
+
     updateSkillRatings: (
       state: SkillRatingsState,
       action: PayloadAction<{ newStudentRating: Number; skillId: String }>
@@ -37,7 +39,6 @@ export const skillRatingsSlice: Slice = createSlice({
         const index = state.skillRatings.findIndex(
           (obj) => obj.skillId == action.payload.skillId
         );
-
         state.skillRatings[index].studentRating =
           action.payload.newStudentRating;
       }
@@ -45,7 +46,7 @@ export const skillRatingsSlice: Slice = createSlice({
   },
 });
 
-export const { setSkillRatings, updateSkillRatings } =
+export const { setSkillRatings, updateSkillRatings, setSkillRatingsDos } =
   skillRatingsSlice.actions;
 
 export default skillRatingsSlice.reducer;
