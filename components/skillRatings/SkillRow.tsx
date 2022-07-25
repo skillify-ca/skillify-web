@@ -6,13 +6,6 @@ import {
 } from "../../redux/skillRatingsSlice";
 import SkillRowEmoji from "./SkillRowEmoji";
 
-export type SkillRowType = {
-  skillId: String;
-  sectionName: String;
-  skillName: String;
-  skillRating: Number;
-};
-
 export type SkillRowProps = {
   skillRow: SkillRatingsRow;
 };
@@ -20,7 +13,7 @@ export type SkillRowProps = {
 export default function SkillRow({ skillRow }: SkillRowProps) {
   const { skillRatings } = useSelector(skillRatingsSelector);
   const index = skillRatings.findIndex(
-    (obj) => obj.skillId == skillRow.skillId
+    (obj) => obj.userSkillId == skillRow.userSkillId
   );
 
   const renderEmojiByRating = (skillRating: Number) => {
@@ -44,7 +37,7 @@ export default function SkillRow({ skillRow }: SkillRowProps) {
       </div>
       <p className="col-start-2 col-span-3 text-xl">{skillRow.skillName}</p>
       <p className="text-xl">{skillRow.studentRating}</p>
-      <SkillRowEmoji skillId={skillRow.skillId} />
+      <SkillRowEmoji userSkillId={skillRow.userSkillId} />
     </div>
   );
 }
