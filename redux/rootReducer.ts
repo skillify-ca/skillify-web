@@ -17,6 +17,7 @@ import {
 import { quizSlice, QuizState } from "./quizSlice";
 import { lessonSlice, LessonState } from "./lessonSlice";
 import { sidebarSlice, SidebarState } from "./sidebarSlice";
+import { skillRatingsSlice, SkillRatingsState } from "./skillRatingsSlice";
 
 type State = {
   [x: string]: any;
@@ -29,6 +30,7 @@ type State = {
   quizState: QuizState;
   lessonState: LessonState;
   sidebarState: SidebarState;
+  skillRatingsSlice: SkillRatingsState;
 };
 const diagnosticReducer: Reducer = diagnosticSlice.reducer;
 const practiceTrackerReducer = practiceTrackerSlice.reducer;
@@ -39,6 +41,7 @@ const evaluateExpressionReducer = evaluateExpressionSlice.reducer;
 const quizReducer = quizSlice.reducer;
 const lessonReducer = lessonSlice.reducer;
 const sidebarReducer = sidebarSlice.reducer;
+const skillRatingsReducer = skillRatingsSlice.reducer;
 
 const rootReducer = combineReducers({
   diagnostic: diagnosticReducer,
@@ -50,6 +53,7 @@ const rootReducer = combineReducers({
   quizState: quizReducer,
   lessonState: lessonReducer,
   sidebarState: sidebarReducer,
+  skillRatingsState: skillRatingsReducer,
 });
 
 export type RootState = State;
