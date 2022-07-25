@@ -4,9 +4,10 @@ import { updateSkillRatings } from "../../redux/skillRatingsSlice";
 
 export interface EmojiSliderProps {
   userSkillId: String;
+  studentRating: number;
 }
 
-const EmojiSlider = ({ userSkillId }: EmojiSliderProps) => {
+const EmojiSlider = ({ userSkillId, studentRating }: EmojiSliderProps) => {
   const dispatch = useDispatch();
 
   function handleChange(e) {
@@ -16,7 +17,12 @@ const EmojiSlider = ({ userSkillId }: EmojiSliderProps) => {
 
   return (
     <div className="flex flex-col items-center">
-      <input type="range" onChange={handleChange} className="w-44" />
+      <input
+        type="range"
+        onChange={handleChange}
+        className="w-44"
+        value={studentRating}
+      />
     </div>
   );
 };

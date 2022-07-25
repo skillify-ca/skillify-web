@@ -10,7 +10,7 @@ export type SkillRatingsRow = {
   skillId: String;
   skillName: String;
   unitName: String;
-  studentRating: Number;
+  studentRating: number;
 };
 
 const initialState: SkillRatingsState = {
@@ -34,7 +34,7 @@ export const skillRatingsSlice: Slice = createSlice({
 
     updateSkillRatings: (
       state: SkillRatingsState,
-      action: PayloadAction<{ newStudentRating: Number; userSkillId: String }>
+      action: PayloadAction<{ newStudentRating: number; userSkillId: String }>
     ) => {
       if (action.type == "skillRatings/updateSkillRatings") {
         const index = state.skillRatings.findIndex(

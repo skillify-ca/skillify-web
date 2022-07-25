@@ -16,7 +16,7 @@ export default function SkillRow({ skillRow }: SkillRowProps) {
     (obj) => obj.userSkillId == skillRow.userSkillId
   );
 
-  const renderEmojiByRating = (skillRating: Number) => {
+  const renderEmojiByRating = (skillRating: number) => {
     if (skillRating == 0) {
       return "😶";
     } else if (skillRating < 30) {
@@ -37,7 +37,10 @@ export default function SkillRow({ skillRow }: SkillRowProps) {
       </div>
       <p className="col-start-2 col-span-3 text-xl">{skillRow.skillName}</p>
       <p className="text-xl">{skillRow.studentRating}</p>
-      <SkillRowEmoji userSkillId={skillRow.userSkillId} />
+      <SkillRowEmoji
+        userSkillId={skillRow.userSkillId}
+        studentRating={skillRow.studentRating}
+      />
     </div>
   );
 }
