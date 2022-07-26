@@ -22,21 +22,30 @@ export default function SkillRatings(props) {
   const { skillRatings } = useSelector(skillRatingsSelector);
   const { user } = useAuth();
 
-  let tempSkillId = 0;
+  let tempSkillId = 1;
 
-  const {} = useQuery<FetchUserSkillsDBResponse>(FETCH_USER_SKILLS_RATINGS, {
-    variables: {
-      userId: user.uid,
-    },
-    onCompleted: (data) => {
-      dispatch(setSkillRatings(transformSkillRating(data.intro_course_skills)));
-    },
-  });
+  const { data, refetch } = useQuery<FetchUserSkillsDBResponse>(
+    FETCH_USER_SKILLS_RATINGS,
+    {
+      variables: {
+        userId: user.uid,
+      },
+      onCompleted: (data) => {
+        dispatch(
+          setSkillRatings(transformSkillRating(data.intro_course_skills))
+        );
+      },
+    }
+  );
 
   const [saveSkillRatings] = useMutation(UPSERT_USER_SKILL_RATINGS, {
-    refetchQueries: [{ query: FETCH_USER_SKILLS_RATINGS }],
     onCompleted: () => {
       alert("Your skill ratings have been saved successfully.");
+    },
+    onError: () => {
+      // solve for edge case where user tries to rank skills twice on initial load
+      refetch();
+      alert("Please try again");
     },
   });
 
@@ -73,20 +82,12 @@ export default function SkillRatings(props) {
   const transformSkillRatingForDB = (skillRatings: SkillRatingsRow[]) => {
     // map from redux type to write back to DB
     const transformedOutput = skillRatings.map((skill) => {
-      if (Number.parseInt(skill.userSkillId)) {
-        return {
-          userId: user.uid,
-          skillId: skill.skillId,
-          studentRating: skill.studentRating,
-        };
-      } else {
-        return {
-          userId: user.uid,
-          id: skill.userSkillId,
-          skillId: skill.skillId,
-          studentRating: skill.studentRating,
-        };
-      }
+      return {
+        userId: user.uid,
+        id: Number(skill.userSkillId) ? undefined : skill.userSkillId,
+        skillId: skill.skillId,
+        studentRating: skill.studentRating,
+      };
     });
 
     return transformedOutput;
