@@ -2,16 +2,20 @@ import { gql } from "@apollo/client";
 
 export const FETCH_USER_SKILLS_RATINGS = gql`
   query fetchUserSkillsRatings($userId: String = "") {
-    intro_course_skills_user(where: { userId: { _eq: $userId } }) {
+    intro_course_skills {
+      createdAt
       id
-      studentRating
-      intro_course_skill {
-        name
+      isVisible
+      name
+      unitId
+      updatedAt
+      intro_course_unit {
+        title
+      }
+      intro_course_skills_users(where: { userId: { _eq: $userId } }) {
         id
-        unitId
-        intro_course_unit {
-          title
-        }
+        userId
+        studentRating
       }
     }
   }
