@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import SkillSection from "../components/skillRatings/SkillSection";
 import { Button } from "../components/ui/Button";
 import {
-  FetchUserSkillsRatings,
+  FetchUserSkillsDBResponse,
   FETCH_USER_SKILLS_RATINGS,
-  UserSkillsRatings,
+  UserSkills,
 } from "../graphql/fetchUserSkillsRatings";
 import { UPSERT_USER_SKILL_RATINGS } from "../graphql/upsertUserSkillRatings";
 
@@ -22,14 +22,14 @@ export default function SkillRatings(props) {
   const { skillRatings } = useSelector(skillRatingsSelector);
   const { user } = useAuth();
 
-  const {} = useQuery<FetchUserSkillsRatings>(FETCH_USER_SKILLS_RATINGS, {
+  let tempSkillId = 0;
+
+  const {} = useQuery<FetchUserSkillsDBResponse>(FETCH_USER_SKILLS_RATINGS, {
     variables: {
       userId: user.uid,
     },
     onCompleted: (data) => {
-      dispatch(
-        setSkillRatings(transformSkillRating(data.intro_course_skills_user))
-      );
+      dispatch(setSkillRatings(transformSkillRating(data.intro_course_skills)));
     },
   });
 
@@ -40,15 +40,30 @@ export default function SkillRatings(props) {
     },
   });
 
-  const transformSkillRating = (skillRatings: UserSkillsRatings[]) => {
+  const transformSkillRating = (skillRatings: UserSkills[]) => {
     // map to redux type
-    const mappedSkillRatings: SkillRatingsRow[] = skillRatings.map((row) => {
+
+    const mappedSkillRatings: SkillRatingsRow[] = skillRatings.map((skill) => {
+      const userSkillRef = skill.intro_course_skills_users;
+      let userSkillId = "";
+      let studentRating = 0;
+
+      if (userSkillRef.length == 1) {
+        userSkillId = userSkillRef[0].id;
+        studentRating = parseInt(userSkillRef[0].studentRating);
+      } else {
+        userSkillId = String(tempSkillId);
+        studentRating = 0;
+        // increment temp skill id for other new skills
+        tempSkillId += 1;
+      }
+
       return {
-        userSkillId: row.id,
-        skillId: row.intro_course_skill["id"],
-        skillName: row.intro_course_skill["name"],
-        unitName: row.intro_course_skill["intro_course_unit"]["title"],
-        studentRating: parseInt(row.studentRating),
+        userSkillId: userSkillId,
+        skillId: skill.id,
+        skillName: skill.name,
+        unitName: skill.intro_course_unit.title,
+        studentRating: studentRating,
       };
     });
 
@@ -57,13 +72,21 @@ export default function SkillRatings(props) {
 
   const transformSkillRatingForDB = (skillRatings: SkillRatingsRow[]) => {
     // map from redux type to write back to DB
-    const transformedOutput = skillRatings.map((row) => {
-      return {
-        userId: user.uid,
-        id: row.userSkillId,
-        skillId: row.skillId,
-        studentRating: row.studentRating,
-      };
+    const transformedOutput = skillRatings.map((skill) => {
+      if (Number.parseInt(skill.userSkillId)) {
+        return {
+          userId: user.uid,
+          skillId: skill.skillId,
+          studentRating: skill.studentRating,
+        };
+      } else {
+        return {
+          userId: user.uid,
+          id: skill.userSkillId,
+          skillId: skill.skillId,
+          studentRating: skill.studentRating,
+        };
+      }
     });
 
     return transformedOutput;

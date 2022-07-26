@@ -24,7 +24,7 @@ export type FetchUserSkillsDBResponse = {
 };
 
 export type UserSkills = {
-  name: String;
+  name: string;
   id: string;
   unitId: boolean;
   intro_course_unit: CourseUnitDescription;
@@ -32,13 +32,13 @@ export type UserSkills = {
 };
 
 export type UserSkillsRatings = {
-  id: String;
+  id: string;
   studentRating: string;
   // intro_course_skill: boolean;
 };
 
 export type SkillDescription = {
-  name: String;
+  name: string;
   id: string;
   unitId: boolean;
   intro_course_unit: CourseUnitDescription;
