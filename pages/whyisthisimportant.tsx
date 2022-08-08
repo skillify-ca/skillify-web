@@ -36,13 +36,14 @@ export default function Page() {
           </p>
 
           <div className="mt-16 bg-white">
-            <h1 className="p-16 text-4xl font-bold text-center text-gray-900 ">
+            <h1 className="p-16 text-4xl font-bold text-center text-gray-900  ">
               Traditional coding bootcamps don't deliver on their promises
             </h1>
+            <h2 className = "mx-16 border-t-2  border-solid border-black-500">
 
-            <h2 className="text-center ">
-              ____________________________________________________________________________________
             </h2>
+
+          
             <div className="pt-16 pb-16 pl-16">
               <p className="font-bold">
                 Because they realized that it was too easy to make a quick sale
@@ -75,16 +76,23 @@ export default function Page() {
               get a job at your dream company... it's also the fastest way to
               get hired at ANY company
             </h1>
+            <h2 className = "mx-16 border-t-2 border-solid border-black-500">
 
-            <h1 className="pt-20 pb-16 mx-16 text-4xl font-bold text-center text-gray-900 border-t-2 border-b-2 border-solid border-black-500">
+            </h2>
+
+            <h1 className="pt-20 pb-16 text-4xl font-bold text-center text-gray-900 ">
               What if you don't adapt ?
             </h1>
-            <h1 className="pt-20 pb-16 text-4xl text-center text-gray-900">
+            <h2 className = "mx-16 border-t-2  border-solid border-black-500">
+
+            </h2>
+            <h1 className="pt-20 pb-16 text-4xl text-center text-gray-900 ">
               We are in the midst of The Great Resignation
             </h1>
-            <h2 className="text-center ">
-              ____________________________________________________________________________________
+            <h2 className = "mx-16 border-t-2 border-solid border-black-500">
+
             </h2>
+            
             <p className="pt-16 text-center">
               <b>
                 {" "}
