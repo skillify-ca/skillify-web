@@ -22,6 +22,23 @@ export default function Goals(props) {
         <div className="mb-8 text-3xl">Workshops</div>
         <div className="grid grid-cols-3 gap-4">
           <div>
+            <h2>Course HTML/CSS Page</h2>
+            <video
+              src="https://d3jppm0n5ndqu2.cloudfront.net/header-section-workshop.mp4"
+              controls={true}
+            />
+            <a href="https://d3jppm0n5ndqu2.cloudfront.net/course-workshop-files.zip">
+              Template Files
+            </a>
+          </div>
+          <div>
+            <h2>War Game: JS Basics - August 8, 2022</h2>
+            <video
+              src="https://d3jppm0n5ndqu2.cloudfront.net/war-workshop.mp4"
+              controls={true}
+            />
+          </div>
+          <div>
             <h2>Pokedex - July 20, 2022</h2>
             <video
               src="https://d3jppm0n5ndqu2.cloudfront.net/pokedex-workshop-final.mp4"
