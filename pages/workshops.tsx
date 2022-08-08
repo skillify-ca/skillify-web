@@ -20,7 +20,7 @@ export default function Goals(props) {
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
       <div>
         <div className="mb-8 text-3xl">Workshops</div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-8">
           <div>
             <h2>Course HTML/CSS Page</h2>
             <video
@@ -28,7 +28,9 @@ export default function Goals(props) {
               controls={true}
             />
             <a href="https://d3jppm0n5ndqu2.cloudfront.net/course-workshop-files.zip">
-              Template Files
+              <div className="mt-4">
+                <Button label={"Starter Files"} />
+              </div>
             </a>
           </div>
           <div>
