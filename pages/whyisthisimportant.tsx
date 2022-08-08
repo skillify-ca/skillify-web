@@ -14,96 +14,100 @@ export default function Page() {
       <div className="flex justify-center w-full p-4 bg-murkrow">
         <img src="/images/logo-dark.svg" className="w-36" />
       </div>
-      <div>
-        <h1 className="pt-20 text-4xl text-gray-900 font-bold text-center">
-          Employees who can code have FAR more career growth and freedom than
-          ones that don't
-        </h1>
-        <p className=" font-semibold text-center pt-10">
-          The system I provide in The Skillify Bootcamp helps you learn to code
-          in a way that eliminates stress and will impress employers. By simply
-          working through our course content and meeting with our expert
-          mentors, you instantly set yourself up for a career in tech.
-        </p>
-        <br />
-
-        <p className="font-semibold text-center">
-          This new approach to learning allows you to build a wide variety of
-          websites and mobile applications for your personal portfolio while
-          developing in-demand. valuable skills for your career — THAT WILL GET
-          YOU PAID.
-        </p>
-
-        <div className="bg-white">
-          <h1 className=" pt-20 text-4xl text-gray-900 font-bold text-center pb-10 ">
-            Traditional coding bootcamps don't deliver on their promises
+      <div className="p-16">
+        <div>
+          <h1 className="text-4xl font-bold text-center text-gray-900">
+            Employees who can code have FAR more career growth and freedom than
+            ones that don't
           </h1>
+          <p className="pt-10 font-semibold text-center ">
+            The system I provide in The Skillify Bootcamp helps you learn to
+            code in a way that eliminates stress and will impress employers. By
+            simply working through our course content and meeting with our
+            expert mentors, you instantly set yourself up for a career in tech.
+          </p>
+          <br />
 
-          <h2 className="  text-center ">____________________________________________________________________________________</h2>
-          <div className="pl-16 pt-16 pb-16">
-            <p className="font-bold">
-              Because they realized that it was too easy to make a quick sale by
-              selling a dream of wealth and freedom.
+          <p className="font-semibold text-center">
+            This new approach to learning allows you to build a wide variety of
+            websites and mobile applications for your personal portfolio while
+            developing in-demand. valuable skills for your career — THAT WILL
+            GET YOU PAID.
+          </p>
+
+          <div className="mt-16 bg-white">
+            <h1 className="p-16 text-4xl font-bold text-center text-gray-900 ">
+              Traditional coding bootcamps don't deliver on their promises
+            </h1>
+
+            <h2 className="text-center ">
+              ____________________________________________________________________________________
+            </h2>
+            <div className="pt-16 pb-16 pl-16">
+              <p className="font-bold">
+                Because they realized that it was too easy to make a quick sale
+                by selling a dream of wealth and freedom.
+              </p>
+              <br />
+              <p className="">
+                So instead of developing long-term customer relationships, older
+                bootcamps invested in marketing instead of developing effective
+                curriculum.
+              </p>
+              <br />
+              <p className="">
+                Skillify turns this thinking on its head by offering
+                personalized coaching for a fraction of the cost. We invest in
+                long-term relationships with our students so they return to us
+                for coaching when they're ready to take the next steps in their
+                career.
+              </p>
+              <br />
+              <p className="">
+                Skillify is more similar to a personal trainer than it is to a
+                traditional bootcamp or university.
+              </p>
+            </div>
+          </div>
+          <div>
+            <h1 className="pt-20 pb-16 text-4xl font-bold text-center text-gray-900">
+              Building websites and mobile applications are the fastest way to
+              get a job at your dream company... it's also the fastest way to
+              get hired at ANY company
+            </h1>
+
+            <h1 className="pt-20 pb-16 mx-16 text-4xl font-bold text-center text-gray-900 border-t-2 border-b-2 border-solid border-black-500">
+              What if you don't adapt ?
+            </h1>
+            <h1 className="pt-20 pb-16 text-4xl text-center text-gray-900">
+              We are in the midst of The Great Resignation
+            </h1>
+            <h2 className="text-center ">
+              ____________________________________________________________________________________
+            </h2>
+            <p className="pt-16 text-center">
+              <b>
+                {" "}
+                Old school companies who force employees to commute into an
+                office are finding it harder and harder to keep top talent.
+              </b>
             </p>
-            <br />
-            <p className="">
-              So instead of developing long-term customer relationships, older
-              bootcamps invested in marketing instead of developing effective
-              curriculum.
+
+            <p className="pt-8 text-center">
+              They continue to hope that their employees will be complacent and
+              content with tiny raises that don't keep up with inflation.{" "}
             </p>
-            <br />
-            <p className="">
-              Skillify turns this thinking on its head by offering personalized
-              coaching for a fraction of the cost. We invest in long-term
-              relationships with our students so they return to us for coaching
-              when they're ready to take the next steps in their career.
-            </p>
-            <br />
-            <p className="">
-              Skillify is more similar to a personal trainer than it is to a
-              traditional bootcamp or university.
+            <p className="pt-8 pb-8 text-center">
+              But you and I both know that "hope" is never a good business
+              decision.{" "}
             </p>
           </div>
         </div>
-        <div>
-          <h1 className="pt-20 text-4xl text-gray-900 font-bold text-center pb-16">
-            Building websites and mobile applications are the fastest way to get
-            a job at your dream company... it's also the fastest way to get
-            hired at ANY company
-          </h1>
 
-          <h2 className="  text-center ">____________________________________________________________________________________</h2>
-          <h1 className="pt-20 text-4xl text-gray-900 font-bold text-center pb-16">
-            What if you don't adapt ?
-          </h1>
-          <h2 className="  text-center ">____________________________________________________________________________________</h2>
-          <h1 className="pt-20 text-4xl text-gray-900  text-center pb-16">
-            We are in the midst of The Great Resignation
-          </h1>
-          <h2 className="  text-center ">____________________________________________________________________________________</h2>
-          <p className="text-center pt-16">
-            <b>
-              {" "}
-              Old school companies who force employees to commute into an office
-              are finding it harder and harder to keep top talent.
-            </b>
-          </p>
-
-          <p className="text-center pt-8">
-            They continue to hope that their employees will be complacent and
-            content with tiny raises that don't keep up with inflation.{" "}
-          </p>
-          <p className="text-center pt-8 pb-8">
-            But you and I both know that "hope" is never a good business
-            decision.{" "}
-          </p>
-          </div>
-          </div>
-
-          <div className="bg-white grid grid-cols-2 pt-16">
-
-            <div id = "image"> 
+        <div className="grid grid-cols-1 p-16 pt-16 bg-white lg:grid-cols-2">
+          <div id="image">
             <svg
+              className="w-full"
               width="520"
               height="320"
               viewBox="0 0 520 320"
@@ -303,19 +307,21 @@ export default function Page() {
                 fill="#E6E6E6"
               />
             </svg>
-            </div>
-            <div> 
-            <h1 className="font-bold text-4xl">
+          </div>
+          <div>
+            <h1 className="text-4xl font-bold">
               So, why is now the perfect time to learn to code and pursue a
               career in tech?
             </h1>
-            <p className = "pt-16 pb 16">
-            This Great Resignation combined with the dramatic rise of remote work gives people like you and I access to remote jobs all over the world that pay anywhere as low as $60K and as high as $300K total compensation building websites and mobile applications.
+            <p className="pt-16 pb 16">
+              This Great Resignation combined with the dramatic rise of remote
+              work gives people like you and I access to remote jobs all over
+              the world that pay anywhere as low as $60K and as high as $300K
+              total compensation building websites and mobile applications.
             </p>
-            </div>
           </div>
-        
-      
+        </div>
+      </div>
     </div>
   );
 }

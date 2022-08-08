@@ -38,6 +38,7 @@ module.exports = {
         },
         black: {
           transparent: "#000000e1",
+          500: "#000000",
         },
       },
       backgroundImage: (theme) => ({
