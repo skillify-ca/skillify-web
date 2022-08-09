@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import Script from "next/script";
 import Layout from "../components/coding/studentPortal/Layout";
 import * as fbq from "../lib/fbPixel"
+import * as ga from "../lib/googleAnalytics"
 import Hotjar from '@hotjar/browser';
 
 function MyApp({ Component, pageProps: { ...pageProps } }) {
@@ -25,7 +26,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
 
   const handleRouteChange = (url) => {
     if (window.gtag) {
-      window.gtag("config", "UA-198040313-1", {
+      window.gtag("config", "G-0EEWR63W28", {
         page_path: url,
       });
       fbq.pageview();
@@ -34,6 +35,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
 
   useEffect(() => {
     fbq.pageview()
+    ga.load()
 
     router.events.on("routeChangeComplete", handleRouteChange);
     return () => {

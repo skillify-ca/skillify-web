@@ -55,6 +55,10 @@ class MyDocument extends Document {
             as="font"
             crossOrigin=""
           />
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-0EEWR63W28"
+          ></script>
 
           <script
             async
