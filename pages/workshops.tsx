@@ -20,7 +20,7 @@ export default function Goals(props) {
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
       <div>
         <div className="mb-8 text-3xl">Workshops</div>
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           <div>
             <h2>Course HTML/CSS Page</h2>
             <video

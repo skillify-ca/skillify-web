@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <div>
       <SEO
-        title={"Learning to Code Guide"}
+        title={"Breaking into Tech Strategy Guide"}
         description={
           "This guide teaches you our top strategies for learning how to code"
         }
@@ -15,11 +15,11 @@ export default function Page() {
         <div className="flex flex-col items-center py-4 text-white bg-murkrow">
           <img src="/images/logo-dark.svg" className="w-36" />
           <h1 className="mt-4 text-3xl font-bold text-center">
-            Learn to Code Strategy Guide
+            Breaking into Tech Strategy Guide
           </h1>
           <p className="text-center">
-            This free guide will help you kickstart your coding journey so you
-            can work less and make more money.
+            This free guide will help you kickstart your journey so you can work
+            less and make more money.
           </p>
         </div>
         <EmailCapture />
@@ -63,14 +63,14 @@ export default function Page() {
             <div className="flex flex-col items-center p-4 m-4 transition-all transform bg-white rounded-lg shadow-lg hover:scale-110">
               <p className="mb-4 text-5xl">👶</p>
               <p>
-                How to start coding with <b>no previous experience</b>
+                How to start a career in tech with <b>no previous experience</b>
               </p>
             </div>
             <div className="flex flex-col items-center p-4 m-4 transition-all transform bg-white rounded-lg shadow-lg hover:scale-110">
               <p className="mb-4 text-5xl ">😩</p>
               <p>
-                How to <b>avoid getting overwhelmed</b> when learning this
-                in-demand skill
+                How to learn in-demand skills and{" "}
+                <b>avoid getting overwhelmed</b>
               </p>
             </div>
             <div className="flex flex-col items-center p-4 m-4 transition-all transform bg-white rounded-lg shadow-lg hover:scale-110">

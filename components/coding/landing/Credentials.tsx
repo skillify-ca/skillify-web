@@ -27,6 +27,9 @@ export default function Credentials() {
           </div>
         ))}
       </div>
+      <p className="mt-4 text-3xl font-bold">
+        we've mastered how to stand out in a remote interview
+      </p>
     </div>
   );
 }

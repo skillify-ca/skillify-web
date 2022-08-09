@@ -32,8 +32,8 @@ const EmailCapture = () => {
             <p className="text-3xl text-gray-900">
               <span className="">Get our </span>
               <span className=" text-charmander">top 12 secret tips </span>
-              <span className="">on learning how to </span>
-              <span className=" text-charmander">code </span>
+              <span className="">on how to start a career in </span>
+              <span className=" text-charmander">tech </span>
             </p>{" "}
           </h1>
           <ActiveCampaignEmailCapture />
@@ -42,8 +42,8 @@ const EmailCapture = () => {
           <div className="flex flex-col items-center justify-center p-4">
             <p className="text-xl font-bold text-white sm:text-2xl">
               {" "}
-              Think coding is too hard to learn? Drop us your email and we will
-              send your our free guide on avoiding overhwhelm.
+              Think switching careers is too hard? Drop us your email and we
+              will send you our free guide on avoiding overhwhelm.
             </p>
           </div>
         </div>
