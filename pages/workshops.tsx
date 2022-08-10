@@ -12,7 +12,7 @@ import GoalsSectionComponent from "../components/coding/GoalsSectionComponent";
 import { Button } from "../components/ui/Button";
 import { useRouter } from "next/router";
 
-export default function Goals(props) {
+export default function Workshops(props) {
   const { user } = useAuth();
   const router = useRouter();
 
@@ -20,8 +20,8 @@ export default function Goals(props) {
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
       <div>
         <div className="mb-8 text-3xl">Workshops</div>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
-          <div>
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+          <div className="bg-green-700 p-6 rounded-md shadow-md">
             <h2>Course HTML/CSS Page</h2>
             <video
               src="https://d3jppm0n5ndqu2.cloudfront.net/header-section-workshop.mp4"
@@ -60,4 +60,4 @@ export default function Goals(props) {
   );
 }
 
-Goals.auth = true;
+Workshops.auth = true;
