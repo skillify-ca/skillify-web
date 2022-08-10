@@ -3,25 +3,25 @@ import SkillCard from "../../stories/SkillCard";
 
 const PracticePreview = ({ loading, userSkills, skills, courseId }) => {
   const mathUnits = [
-    "numbers",
-    "addition",
-    "subtraction",
-    "multiplication",
-    "division",
+    { title: "numbers", image: "/images/skills/numbers.png" },
+    { title: "addition", image: "/images/skills/add.png" },
+    { title: "subtraction", image: "/images/skills/sub.png" },
+    { title: "multiplication", image: "/images/skills/multi.png" },
+    { title: "division", image: "/images/skills/division.png" },
   ];
   const financeUnits = [
-    "money",
-    "debt",
-    "consumer math",
-    "budgeting",
-    "investing",
-    "saving",
-    "taxes",
-    "real estate",
+    { title: "money", image: "" },
+    { title: "debt", image: "" },
+    { title: "consumer math", image: "" },
+    { title: "budgeting", image: "" },
+    { title: "investing", image: "" },
+    { title: "saving", image: "" },
+    { title: "taxes", image: "" },
+    { title: "real estate", image: "" },
   ];
 
   const units = courseId === "finance" ? financeUnits : mathUnits;
-  console.log(courseId);
+  console.log(skills);
 
   return (
     <>
@@ -43,13 +43,16 @@ const PracticePreview = ({ loading, userSkills, skills, courseId }) => {
         {units.map((unit) => {
           return (
             <div>
-              {skills.filter((skill) => skill.unit.title === unit).length >
-              0 ? (
+              {skills.filter((skill) => skill.unit.title === unit.title)
+                .length > 0 ? (
                 <>
-                  <p className="px-8 font-bold text-murkrow">{unit}</p>
-                  <div className="grid grid-cols-1 p-4 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="flex items-center p-8 ml-6 font-bold text-murkrow bg-charmander w-108">
+                    <img className="w-24 mr-8 animate-shake" src={unit.image} />
+                    <p>{unit.title}</p>
+                  </div>
+                  <div className="grid grid-cols-1 p-4">
                     {skills
-                      .filter((skill) => skill.unit.title === unit)
+                      .filter((skill) => skill.unit.title === unit.title)
                       .sort((a, b) => a.unit.level - b.unit.level)
                       .map((skill) => (
                         <div className="p-2">
@@ -61,6 +64,7 @@ const PracticePreview = ({ loading, userSkills, skills, courseId }) => {
                         </div>
                       ))}
                   </div>
+                  <div className="h-1 mb-4 ml-6 w-108 bg-rattata" />
                 </>
               ) : null}
             </div>

@@ -6,23 +6,16 @@ import Link from "next/link";
 
 const SkillCard = ({ loading, userSkillData, skill }) => {
   const [isSelected, setIsSelected] = useState(false);
-  console.log(userSkillData);
 
   return (
     <Link href={`/practice/${skill.id}`}>
       <div
         onMouseEnter={() => setIsSelected(true)}
         onMouseLeave={() => setIsSelected(false)}
-        className={`${"cursor-pointer transform transition duration-200 hover:bg-gray-200"} bg-gray-100 mb-4 grid grid-cols-12 items-center h-full rounded-xl shadow-lg`}
+        className={`${"cursor-pointer transform transition duration-200 hover:bg-gray-200"} bg-gray-100 w-108 mb-4 grid grid-cols-12 items-center h-full rounded-xl shadow-lg`}
       >
-        <div className="h-full col-span-2 ml-4 rounded-l-lg">
-          <img
-            className="object-scale-down h-full col-span-2 rounded-l-lg"
-            src={!skill.image ? "/images/skills/lock.png" : skill.image}
-          />
-        </div>
-        <div className="h-full col-span-8">
-          <p className="flex items-center justify-center h-full col-span-8 p-4 text-center text-murkrow">
+        <div className="h-full col-span-10">
+          <p className="flex items-center justify-start h-full col-span-8 p-4 text-center text-murkrow">
             {`I can ${skill.description}`}
           </p>
         </div>
