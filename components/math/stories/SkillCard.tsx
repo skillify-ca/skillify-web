@@ -12,7 +12,7 @@ const SkillCard = ({ loading, userSkillData, skill }) => {
       <div
         onMouseEnter={() => setIsSelected(true)}
         onMouseLeave={() => setIsSelected(false)}
-        className={`${"cursor-pointer transform transition duration-200 hover:bg-gray-200"} bg-gray-100 w-108 mb-4 grid grid-cols-12 items-center h-full rounded-xl shadow-lg`}
+        className={`${"cursor-pointer transform transition duration-200 hover:bg-gray-200"} bg-gray-100 w-full mb-4 grid grid-cols-12 items-center h-full rounded-xl shadow-lg`}
       >
         <div className="h-full col-span-10">
           <p className="flex items-center justify-start h-full col-span-8 p-4 text-center text-murkrow">
