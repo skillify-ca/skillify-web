@@ -45,7 +45,7 @@ const PracticePreview = ({ loading, userSkills, skills, courseId }) => {
               {skills.filter((skill) => skill.unit.title === unit.title)
                 .length > 0 ? (
                 <>
-                  <div className="flex items-center w-full p-8 font-bold text-murkrow bg-charmander">
+                  <div className="flex items-center w-full p-8 font-bold shadow-lg text-murkrow bg-charmander">
                     <img
                       className="w-24 mr-8 hover:animate-shake"
                       src={unit.image}

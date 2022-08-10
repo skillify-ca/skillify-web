@@ -1,30 +1,13 @@
-import {
-  ApolloClient,
-  InMemoryCache,
-  useMutation,
-  useQuery,
-} from "@apollo/client";
-import Head from "next/head";
-import Navbar from "../../../components/ui/Navbar";
-import ExplorePreview from "../../../components/math/practiceTracker/unitOverview/ExplorePreview";
+import { ApolloClient, InMemoryCache, useQuery } from "@apollo/client";
 import PracticePreview from "../../../components/math/practiceTracker/unitOverview/PracticePreview";
-import QuizPreview from "../../../components/math/practiceTracker/unitOverview/QuizPreview";
 import { FETCH_UNIT_OVERVIEW } from "../../../graphql/fetchUnitOverview";
 import { useAuth } from "../../../lib/authContext";
 import { getBadgeId } from "../../api/badgeHelper";
-import { EMOJI_MASTERY, SkillData } from "../../api/skill";
-import { useRouter } from "next/router";
-import { FETCH_SKILLS_FOR_UNIT } from "../../../graphql/fetchSkillsForUnit";
-import { FETCH_SKILLS } from "../../../graphql/fetchSkills";
 import { FETCH_SKILLS_FOR_COURSE } from "../../../graphql/fetchSkillsForCourse";
 import Link from "next/link";
 
 const UnitOverviewPage = ({ courseId, skillData }) => {
   const { user } = useAuth();
-
-  type SkillDataResponse = {
-    skills: SkillData[];
-  };
 
   type UserSkillData = {
     skill_id: number;
@@ -50,6 +33,11 @@ const UnitOverviewPage = ({ courseId, skillData }) => {
     }
   );
 
+  const lessons = {
+    finance: [{ title: "Credit Card Lesson", link: "finance/credit-card" }],
+    math1: [{ title: "Multiplication Game", link: "finance/credit-card" }],
+  };
+
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-blue-100 ">
       <div className="flex flex-col p-4 space-y-8">
@@ -62,14 +50,16 @@ const UnitOverviewPage = ({ courseId, skillData }) => {
           />
         )}
       </div>
-      {courseId === "finance" ? (
+      {lessons[courseId] !== undefined ? (
         <div className="p-4 m-4 bg-white text-murkrow">
           <h2 className="text-lg font-bold text-murkrow">Lessons</h2>
-          <Link href="finance/credit-card">
-            <div className="w-64 p-4 my-4 bg-gray-100 shadow-lg cursor-pointer rounded-xl">
-              <p>Credit Card Lesson</p>
-            </div>
-          </Link>
+          {lessons[courseId].map((lesson) => (
+            <Link href={lesson.link}>
+              <div className="w-64 p-4 my-4 bg-gray-100 shadow-lg cursor-pointer rounded-xl">
+                <p>{lesson.title}</p>
+              </div>
+            </Link>
+          ))}
         </div>
       ) : null}
     </div>
