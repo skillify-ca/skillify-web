@@ -1,13 +1,13 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
-import CoachCard from "../components/coding/classroom/CoachCard";
+import CoachCard from "../components/coding/coaches/CoachCard";
 import PageHeader from "../components/coding/PageHeader";
 import {
   FetchCoachesResponse,
   FETCH_COACHES,
 } from "../graphql/coding/coaches/fetchCoaches";
 
-export default function ClassroomPage() {
+export default function CoachesPage() {
   const { data, loading } = useQuery<FetchCoachesResponse>(FETCH_COACHES);
 
   return (
