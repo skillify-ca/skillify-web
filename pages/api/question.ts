@@ -24,8 +24,9 @@ export type Question = {
   placeholder?: string; // placeholder value for fill in the blanks
   displayNum?: number; //randomizes visualnumber type
   arrayAns?: Array<number>;
-  budgetCostModel? :Array<ItemCostModel>;
-  personDataModel? :PersonData;
+  budgetCostModel?: Array<ItemCostModel>;
+  personDataModel?: PersonData;
+  unitPriceModel?: UnitPriceModel;
 };
 
 export type MCOption = {
@@ -42,4 +43,9 @@ export type fillBlankModel = {
 
 export type FillOption = {
   text: string;
+};
+
+export type UnitPriceModel = {
+  total: number;
+  numberOfObjects: number;
 };

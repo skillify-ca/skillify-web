@@ -155,7 +155,7 @@ const QuestionSet = ({
           answer={questionData[index].answer}
           submitGuess={submitGuess}
         >
-          <h1 className="text-4l underline font-bold">
+          <h1 className="font-bold underline text-4l">
             {" "}
             {questionData[index].multipleChoice.title}{" "}
           </h1>
@@ -316,6 +316,21 @@ const QuestionSet = ({
           />
         );
       }
+    } else if (
+      questionData[index].questionType ===
+      QuestionType.FINANCE_UNIT_PRICE_PROBLEM
+    ) {
+      return (
+        <div>
+          <p>Unit Price</p>
+          Problem Kari has
+          <p>{JSON.stringify(questionData[index].unitPriceModel.total)}</p>
+          Objects
+          <p>
+            {JSON.stringify(questionData[index].unitPriceModel.numberOfObjects)}
+          </p>
+        </div>
+      );
     }
     return (
       <HorizontalEquation
@@ -327,7 +342,7 @@ const QuestionSet = ({
   };
 
   return (
-    <div className="flex justify-center items-center gap-4">
+    <div className="flex items-center justify-center gap-4">
       <Card size="large">
         <div
           className={`transition-opacity duration-150 ease-in-out opacity-${

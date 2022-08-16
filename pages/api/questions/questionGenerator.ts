@@ -102,6 +102,17 @@ export const generateQuestionForSkill = (
       return getRandomDivisionQuestion(100, 1000, skill, questionType);
     case Skill.FINANCE_BUDGET:
       return getRandomFinanceQuestion();
+    case Skill.FINANCE_UNIT_PRICES:
+      return {
+        questionType: QuestionType.FINANCE_UNIT_PRICE_PROBLEM,
+        text: "",
+        answer: "",
+        answerType: AnswerType.STRING,
+        unitPriceModel: {
+          total: 55,
+          numberOfObjects: 5,
+        },
+      };
   }
 };
 
