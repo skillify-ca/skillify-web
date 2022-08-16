@@ -27,17 +27,14 @@ const EditGoalsPage = () => {
   });
 
   return (
-    <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll space-y-8">
+    <div className="flex flex-col p-4 m-4 space-y-8 overflow-auto bg-scroll">
       <h1 className="text-3xl font-bold">Add New Goal</h1>
 
       <div className="flex flex-col space-y-2">
         <p className="font-bold">Goal</p>
         <textarea
-          className={
-            newGoalValues.goalName.length <= 60
-              ? "text-left p-2 border rounded-md shadow-md w-1/2"
-              : "text-left p-2 border-2 rounded-md shadow-md w-1/2 border-red-600"
-          }
+          className={`text-left p-2 border rounded-md shadow-md w-1/2 dark:text-murkrow
+            ${newGoalValues.goalName.length <= 60 ? "" : " border-red-600"}`}
           placeholder="Write your goal here..."
           value={newGoalValues.goalName ?? ""}
           onChange={(e) => {
@@ -55,11 +52,9 @@ const EditGoalsPage = () => {
         <p className="font-bold">Target Completion Date</p>
         <input
           type="date"
-          className={
-            newGoalValues.targetDate >= new Date()
-              ? "text-left p-2 border rounded-md shadow-md w-1/2"
-              : "text-left p-2 border-2 rounded-md shadow-md w-1/2 border-red-600"
-          }
+          className={`text-left p-2 border rounded-md shadow-md w-1/2 dark:text-murkrow ${
+            newGoalValues.targetDate >= new Date() ? "" : " border-red-600"
+          }`}
           value={format(new Date(newGoalValues.targetDate), "yyyy-MM-dd")}
           onChange={(e) => {
             setNewGoalValues((prevState) => ({

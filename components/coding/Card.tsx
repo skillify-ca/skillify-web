@@ -20,7 +20,7 @@ const Card = ({ title, image, description, link, color }) => {
       >
         <div className="flex flex-col items-center">
           <h4 className="mb-4 font-bold">{title}</h4>
-          <img src={image} className="w-24 mb-4" />
+          <img src={image} className="object-cover w-64 h-32 mb-4" />
         </div>
         {description}
       </div>
