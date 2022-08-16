@@ -14,9 +14,7 @@ export default function Page() {
         image={"https://melv1n.com/img/learn-to-code-how-to-start.png"}
       />
       <div className="flex flex-col gap-4 p-4">
-        <h1 className="text-5xl font-bold">
-        How to learn to code in Python?
-        </h1>
+        <h1 className="text-5xl font-bold">How to learn to code in Python?</h1>
         <h2 className="text-xl font-bold"> Learning the Basics</h2>
 
         <p>
@@ -25,15 +23,18 @@ export default function Page() {
           your journey by learning the basics. Basics : Variables , Control
           Structures, Loops , Functions, Operators, basic data structures …
           Medium : Lamba, Comprehensions Advanced Data Structures and
-          Algorithms, Object Oriented Programming… 
-          The video below gives a good
+          Algorithms, Object Oriented Programming… The video below gives a good
           overview on a suggested roadmap to learn Python
-          
         </p>
-        <a href="https://www.youtube.com/watch?v=p15xzjzR9j0&t=606s&ab_channel=TechWithTim">
-            {" "}
-            https://www.youtube.com/watch?v=p15xzjzR9j0&t=606s&ab_channel=TechWithTim
-          </a>
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/p15xzjzR9j0"
+          title="YouTube video player"
+          frameBorder={"0"}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
         <h2 className="text-xl font-bold">Practice</h2>
 
         <p>
@@ -42,14 +43,22 @@ export default function Page() {
           own project. Using the skills you’ve learned helps reinforce what
           you’ve learned, which is essential while learning Python. Below are
           some resources for practicing Python.
-
-          
         </p>
-        <a href="https://dmoj.ca/">https://dmoj.ca/</a>
-          <a href="https://www.dataquest.io/blog/python-projects-for-beginners/">
-            https://www.dataquest.io/blog/python-projects-for-beginners/
-          </a>
-          <a href="https://codingbat.com/python">https://codingbat.com/python</a>
+        <a className="underline text-charmander" href="https://dmoj.ca/">
+          https://dmoj.ca/
+        </a>
+        <a
+          className="underline text-charmander"
+          href="https://www.dataquest.io/blog/python-projects-for-beginners/"
+        >
+          https://www.dataquest.io/blog/python-projects-for-beginners/
+        </a>
+        <a
+          className="underline text-charmander"
+          href="https://codingbat.com/python"
+        >
+          https://codingbat.com/python
+        </a>
 
         <h2 className="text-xl font-bold">Directing your Learning</h2>
         <p>
@@ -61,19 +70,31 @@ export default function Page() {
 
         <h2 className="text-xl font-bold">Resources</h2>
 
-        <p>
-        Here are some useful resources for learning Python Content. 
+        <p>Here are some useful resources for learning Python Content.</p>
 
-          
-        </p> 
+        <a
+          className="underline text-charmander"
+          href="https://docs.python.org/3//<"
+        >
+          https://docs.python.org/3//
+        </a>
 
-        <a href="https://docs.python.org/3//<">https://docs.python.org/3//</a>
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/XKHEtdqhLK8"
+          title="YouTube video player"
+          frameBorder={"0"}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
 
-          <a href="https://www.youtube.com/watch?v=XKHEtdqhLK8&ab_channel=BroCode">
-            https://www.youtube.com/watch?v=XKHEtdqhLK8&ab_channel=BroCode
-
-          </a>
-          <a href="https://www.w3schools.com/python/">https://www.w3schools.com/python/</a>
+        <a
+          className="underline text-charmander"
+          href="https://www.w3schools.com/python/"
+        >
+          https://www.w3schools.com/python/
+        </a>
       </div>
     </div>
   );

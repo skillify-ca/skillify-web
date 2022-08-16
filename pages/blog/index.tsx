@@ -33,6 +33,42 @@ export default function Blog() {
 
         <div className="grid items-center w-full grid-cols-1 gap-16 p-4 sm:grid-cols-2 lg:grid-cols-3">
           <div>
+            <h4>August 15, 2022</h4>
+            <Card
+              title={"How to learn to code in online?"}
+              image={
+                "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80"
+              }
+              description={"Our guide on how to learn to code online"}
+              link={"/blog/learn-to-code-online"}
+              color={2}
+            />
+          </div>
+          <div>
+            <h4>August 14, 2022</h4>
+            <Card
+              title={"How to learn to code in Java?"}
+              image={
+                "https://images.unsplash.com/photo-1588239034647-25783cbfcfc1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80"
+              }
+              description={"Our guide on how to learn to code in Java"}
+              link={"/blog/learn-to-code-in-java"}
+              color={1}
+            />
+          </div>
+          <div>
+            <h4>August 13, 2022</h4>
+            <Card
+              title={"How to learn to code in Python?"}
+              image={
+                "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2064&q=80"
+              }
+              description={"Our guide on how to learn to code in Python"}
+              link={"/blog/learn-to-code-in-python"}
+              color={0}
+            />
+          </div>
+          <div>
             <h4>July 11, 2022</h4>
             <Card
               title={"How to stand out to coop employers?"}

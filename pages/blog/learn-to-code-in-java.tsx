@@ -3,7 +3,7 @@ import PostLayout from "../../components/coding/blog/PostLayout";
 import { LessonComponentData } from "../../components/coding/studentPortal/LessonComponent";
 import SEO from "../../components/SEO";
 
-export default function Page() { 
+export default function Page() {
   return (
     <div>
       <SEO
@@ -42,9 +42,16 @@ export default function Page() {
           which are slightly more difficult concepts. Below, is a video with a
           suggested roadmap to master Java.
         </p>
-        <a href="https://www.youtube.com/watch?v=dPYxBoCQM34&ab_channel=ThinkXAcademy">
-          https://www.youtube.com/watch?v=dPYxBoCQM34&ab_channel=ThinkXAcademy
-        </a>
+
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/p15xzjzR9j0"
+          title="YouTube video player"
+          frameBorder={"0"}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
 
         <h2 className="text-xl font-bold">Practice</h2>
         <p>
@@ -57,12 +64,19 @@ export default function Page() {
           algorithms in Java.
         </p>
 
-        <a href="https://www.youtube.com/watch?v=OWCao3Ul6n4">https://www.youtube.com/watch?v=OWCao3Ul6n4</a>
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/OWCao3Ul6n4"
+          title="YouTube video player"
+          frameBorder={"0"}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
 
         <h2 className="text-xl font-bold">Expanding your learning</h2>
 
         <p>
-          
           Expanding your learning is a great way to create something interesting
           and new with the content you have learned. Some of the things you can
           do with Java include mobile applications, AI, games and many more.
@@ -71,16 +85,28 @@ export default function Page() {
         <h2 className="text-xl font-bold">Extra Resources</h2>
 
         <p>
-          
-         Here are some extra resources, which may aid you in learning Java.
+          Here are some extra resources, which may aid you in learning Java.
         </p>
 
-        <a href="https://www.youtube.com/watch?v=xk4_1vDrzzo&ab_channel=BroCode">https://www.youtube.com/watch?v=xk4_1vDrzzo&ab_channel=BroCode</a>
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/xk4_1vDrzzo"
+          title="YouTube video player"
+          frameBorder={"0"}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
 
-        <a href="https://codingbat.com/java">
-        https://codingbat.com/java
+        <a
+          className="underline text-charmander"
+          href="https://codingbat.com/java"
+        >
+          Coding Bat Tutorial
         </a>
-        <a href="https://dev.java/learn/">https://dev.java/learn/</a>
+        <a className="underline text-charmander" href="https://dev.java/learn/">
+          Dev Java Tutorial
+        </a>
       </div>
     </div>
   );
