@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
-import { useAuth } from "../lib/authContext";
+import { useAuth } from "../../lib/authContext";
 
 import {
   FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
   UserGoalsData,
-} from "../graphql/fetchUserGoals";
+} from "../../graphql/fetchUserGoals";
 import { useQuery } from "@apollo/client";
-import GoalsSectionComponent from "../components/coding/GoalsSectionComponent";
-import { Button } from "../components/ui/Button";
+import GoalsSectionComponent from "../../components/coding/GoalsSectionComponent";
+import { Button } from "../../components/ui/Button";
 import { useRouter } from "next/router";
 
 export default function Goals(props) {
