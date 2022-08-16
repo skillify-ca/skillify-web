@@ -22,6 +22,30 @@ export default function Goals(props) {
         <div className="mb-8 text-3xl">Workshops</div>
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           <div>
+            <h2>Build an image carousel</h2>
+
+            <div
+              style={{
+                position: "relative",
+                paddingBottom: "56.25%",
+                height: "0",
+              }}
+            >
+              <iframe
+                src="https://www.loom.com/embed/ab0c13b6bf4e43cea43303ee0494f0ad"
+                frameBorder={"0"}
+                allowFullScreen
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                }}
+              ></iframe>
+            </div>
+          </div>
+          <div>
             <h2>Course HTML/CSS Page</h2>
             <video
               src="https://d3jppm0n5ndqu2.cloudfront.net/header-section-workshop.mp4"
