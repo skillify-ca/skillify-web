@@ -2,17 +2,10 @@ import React, { useState } from "react";
 
 import { useAuth } from "../lib/authContext";
 
-import {
-  FetchUserGoalsDataResponse,
-  FETCH_USER_GOALS,
-  UserGoalsData,
-} from "../graphql/fetchUserGoals";
-import { useQuery } from "@apollo/client";
-import GoalsSectionComponent from "../components/coding/GoalsSectionComponent";
 import { Button } from "../components/ui/Button";
 import { useRouter } from "next/router";
 
-export default function Goals(props) {
+export default function Workshops(props) {
   const { user } = useAuth();
   const router = useRouter();
 
@@ -21,8 +14,23 @@ export default function Goals(props) {
       <div>
         <div className="mb-8 text-3xl">Workshops</div>
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+          <div className="flex flex-col">
+            <h2>How to create your first pull request - August 16, 2022</h2>
+            <a
+              className="h-full"
+              target={"_blank"}
+              href="https://zoom.us/rec/share/T_7lxPmuK8z0M1nxkfcH_pF1WfRrxP4oqwUczwebMHg6AoqsEJzuX2UB7Atgs2A.Ri20M2FZmE4FXPPy?startTime=1660663533000"
+            >
+              <div className="h-full overflow-hidden border-2 ">
+                <div className="flex items-center justify-center h-full overflow-hidden transition-all hover:scale-110 heropattern-randomshapes-pikachu-200">
+                  <Button label={"Watch Now"} />
+                </div>
+              </div>
+            </a>
+          </div>
+
           <div>
-            <h2>Build an image carousel</h2>
+            <h2>Build an image carousel - August 15, 2022</h2>
 
             <div
               style={{
@@ -46,7 +54,7 @@ export default function Goals(props) {
             </div>
           </div>
           <div>
-            <h2>Course HTML/CSS Page</h2>
+            <h2>Course HTML/CSS Page - August 10, 2022</h2>
             <video
               src="https://d3jppm0n5ndqu2.cloudfront.net/header-section-workshop.mp4"
               controls={true}
@@ -84,4 +92,4 @@ export default function Goals(props) {
   );
 }
 
-Goals.auth = true;
+Workshops.auth = true;
