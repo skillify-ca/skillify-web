@@ -8,6 +8,7 @@ export const name = [
 	'Hayley',
 	'John',
 	'Lee',
+	'Kari',
 	'Bruce',
 	'Bobby',
 	'Carlos',
