@@ -24,7 +24,8 @@ export default function Goals(props) {
           <div className="flex flex-col">
             <h2>How to create your first pull request - August 16, 2022</h2>
             <a
-              className="h-full "
+              className="h-full"
+              target={"_blank"}
               href="https://zoom.us/rec/share/T_7lxPmuK8z0M1nxkfcH_pF1WfRrxP4oqwUczwebMHg6AoqsEJzuX2UB7Atgs2A.Ri20M2FZmE4FXPPy?startTime=1660663533000"
             >
               <div className="h-full overflow-hidden border-2 ">
