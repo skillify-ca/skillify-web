@@ -42,13 +42,8 @@ export const generateQuestionForSkill = (
       return getRandomAdditionQuestion(0.01, 0.99, skill, questionType);
   }
 
+  // Subtraction Skills
   switch (skill) {
-    case Skill.NUMBERS_50:
-      return getRandomNumbersQuestion(1, 51, skill);
-    case Skill.NUMBERS_200:
-      return getRandomNumbersQuestion(1, 201, skill);
-    case Skill.NUMBERS_1000:
-      return getRandomNumbersQuestion(1, 1001, skill);
     case Skill.SUBTRACTION_SINGLE:
       return getRandomSubtractionQuestion(2, 11, skill, questionType);
     case Skill.SUBTRACTION_DOUBLE:
@@ -65,6 +60,10 @@ export const generateQuestionForSkill = (
       return getRandomSubtractionQuestion(100000, 1000001, skill, questionType);
     case Skill.SUBTRACTION_HUNDREDTHS:
       return getRandomSubtractionQuestion(0.01, 0.99, skill, questionType);
+  }
+
+  // Multiplication Skills
+  switch (skill) {
     case Skill.EQUAL_GROUP_10_ITEMS:
       return getRandomMultiplicationQuestion(1, 11, skill, questionType);
     case Skill.MULTIPLICATION_5:
@@ -85,6 +84,10 @@ export const generateQuestionForSkill = (
       return getRandomMultiplicationQuestion(100, 1000, skill, questionType);
     case Skill.MULTIPLY_THREE_DIGIT_BY_TENTH:
       return getRandomMultiplicationQuestion(100, 1000, skill, questionType);
+  }
+
+  // Division skills
+  switch (skill) {
     case Skill.EQUAL_SHARING_8_ITEMS:
       return getRandomDivisionQuestion(1, 5, skill, questionType);
     case Skill.DIVIDE_12_EQUALLY:
@@ -100,6 +103,20 @@ export const generateQuestionForSkill = (
       return getRandomDivisionQuestion(100, 1000, skill, questionType);
     case Skill.DIVISION_THREE_DIGIT_BY_TENTH:
       return getRandomDivisionQuestion(100, 1000, skill, questionType);
+  }
+
+  // Numbers/Counting skills
+  switch (skill) {
+    case Skill.NUMBERS_50:
+      return getRandomNumbersQuestion(1, 51, skill);
+    case Skill.NUMBERS_200:
+      return getRandomNumbersQuestion(1, 201, skill);
+    case Skill.NUMBERS_1000:
+      return getRandomNumbersQuestion(1, 1001, skill);
+  }
+
+  // Financial Skills
+  switch (skill) {
     case Skill.FINANCE_BUDGET:
       return getRandomFinanceQuestion();
     case Skill.FINANCE_UNIT_PRICES:
@@ -117,7 +134,6 @@ export const generateQuestionForSkill = (
 };
 
 //converts number as a string into an array of numbers
-
 export function randomize(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
