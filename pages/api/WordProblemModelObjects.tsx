@@ -88,6 +88,13 @@ export const animalsMap = {
     colour: "text-yellow-500 font-black",
     image: "/images/duck.jpeg",
   },
+  goats: {
+    type: "toys",
+    singleTitle: "goat toy",
+    pluralTitle: "goat toys",
+    colour: "text-slate-800 font-black",
+    image: "/images/goat.jpg",
+  },
   lions: {
     type: "toys",
     singleTitle: "lion toy",
