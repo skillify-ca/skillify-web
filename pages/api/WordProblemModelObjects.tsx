@@ -92,7 +92,7 @@ export const animalsMap = {
     type: "toys",
     singleTitle: "goat toy",
     pluralTitle: "goat toys",
-    colour: "text-slate-800 font-black",
+    colour: "text-gray-700 font-black",
     image: "/images/goat.jpg",
   },
   lions: {
