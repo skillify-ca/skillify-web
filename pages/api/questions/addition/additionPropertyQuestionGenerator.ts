@@ -46,7 +46,7 @@ export function getFillBlankQuestion(
   c: number,
   operator: string,
   skill: Skill
-) {
+): Question {
   const step1: FillOption = { text: getStep1(a, b, c, operator) };
   const step2: FillOption = { text: getStep2(a, b, c, operator) };
   const step3: FillOption = { text: getStep3(a, b, c, operator) };

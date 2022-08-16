@@ -1,7 +1,6 @@
 import { PersonData } from "./money/personData";
 import { ItemCostModel } from "./money/itemCostModel";
 import { QuestionType } from "./questionTypes";
-import { Skill } from "./skill";
 import { WordProblemModel } from "./WordProblemModel";
 
 export enum AnswerType {
@@ -11,22 +10,32 @@ export enum AnswerType {
   ARRAY,
 }
 
-export type Question = {
-  text: string;
-  answer: string; // only accepts strings so Array<Num> doesn't work
-  answerType: AnswerType;
-  questionType: QuestionType;
-  skill?: number;
-  operator?: string; //Numbers unit does not have a operator
-  wordProblem?: WordProblemModel; //value is only stored if QuestionType is wordProblem
-  multipleChoice?: MCModel;
-  fillInTheBlank?: fillBlankModel;
-  placeholder?: string; // placeholder value for fill in the blanks
-  displayNum?: number; //randomizes visualnumber type
-  arrayAns?: Array<number>;
-  budgetCostModel? :Array<ItemCostModel>;
-  personDataModel? :PersonData;
-};
+export type Question =
+  | {
+      text: string;
+      answer: string; // only accepts strings so Array<Num> doesn't work
+      answerType: AnswerType;
+      questionType: QuestionType;
+      skill?: number;
+      operator?: string; //Numbers unit does not have a operator
+      wordProblem?: WordProblemModel; //value is only stored if QuestionType is wordProblem
+      multipleChoice?: MCModel;
+      fillInTheBlank?: fillBlankModel;
+      arrayAns?: Array<number>;
+      placeholder?: string; // placeholder value for fill in the blanks
+    }
+  | {
+      questionType: QuestionType.FINANCE_TIP_PROBLEM;
+      displayNum: number; //randomizes visualnumber type
+    }
+  | {
+      questionType: QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM;
+      personDataModel: PersonData;
+    }
+  | {
+      questionType: QuestionType.FINANCE_BUDGET_TABLE_PROBLEM;
+      budgetCostModel: Array<ItemCostModel>;
+    };
 
 export type MCOption = {
   id: string;
