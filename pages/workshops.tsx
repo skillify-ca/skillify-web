@@ -2,17 +2,10 @@ import React, { useState } from "react";
 
 import { useAuth } from "../lib/authContext";
 
-import {
-  FetchUserGoalsDataResponse,
-  FETCH_USER_GOALS,
-  UserGoalsData,
-} from "../graphql/fetchUserGoals";
-import { useQuery } from "@apollo/client";
-import GoalsSectionComponent from "../components/coding/GoalsSectionComponent";
 import { Button } from "../components/ui/Button";
 import { useRouter } from "next/router";
 
-export default function Goals(props) {
+export default function Workshops(props) {
   const { user } = useAuth();
   const router = useRouter();
 
@@ -99,4 +92,4 @@ export default function Goals(props) {
   );
 }
 
-Goals.auth = true;
+Workshops.auth = true;
