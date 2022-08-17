@@ -20,13 +20,15 @@ export default function Workshops(props) {
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
       <div>
         <div className="mb-8 text-3xl">Workshops</div>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
-          <div className="bg-green-700 p-6 rounded-md shadow-md">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+          <div className="bg-white p-6 rounded-md shadow-md">
+          <div className="font-bold">
             <h2>Course HTML/CSS Page</h2>
             <video
               src="https://d3jppm0n5ndqu2.cloudfront.net/header-section-workshop.mp4"
               controls={true}
             />
+            </div>
             <a href="https://d3jppm0n5ndqu2.cloudfront.net/course-workshop-files.zip">
               <div className="mt-4">
                 <Button label={"Starter Files"} />
@@ -34,25 +36,37 @@ export default function Workshops(props) {
             </a>
           </div>
           <div>
-            <h2>War Game: JS Basics - August 8, 2022</h2>
-            <video
-              src="https://d3jppm0n5ndqu2.cloudfront.net/war-workshop.mp4"
-              controls={true}
-            />
+            <div className="bg-white p-6 rounded-md shadow-md">
+              <div className="font-bold">
+              <h2>War Game: JS Basics - August 8, 2022</h2>
+              <video
+                src="https://d3jppm0n5ndqu2.cloudfront.net/war-workshop.mp4"
+                controls={true}
+              />
+              </div>
+            </div>
           </div>
           <div>
+          <div className="bg-white p-6 rounded-md shadow-md">
+          <div className="font-bold">
             <h2>Pokedex - July 20, 2022</h2>
             <video
               src="https://d3jppm0n5ndqu2.cloudfront.net/pokedex-workshop-final.mp4"
               controls={true}
             />
+            </div>
+          </div>
           </div>
           <div>
+          <div className="bg-white p-6 rounded-md shadow-md">
+          <div className="font-bold">
             <h2>Pokedex - July 21, 2022</h2>
             <video
               src="https://d3jppm0n5ndqu2.cloudfront.net/pokedex-july-21.mov"
               controls={true}
             />
+            </div>
+            </div>
           </div>
         </div>
       </div>
