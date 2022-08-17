@@ -321,17 +321,39 @@ const QuestionSet = ({
       QuestionType.FINANCE_UNIT_PRICE_PROBLEM
     ) {
       return (
+        <div> className="flex flex-col max-h-96 py-4 overflow-y-hidden gap-4">
+        <p>
+          Find the unit price of the item by rounding to the nearest integer.{" "}
+          <span className="italic">after</span> calculating.
+        </p>
+        {""}  
+        <p className="pl-10">Kari has
+          <span className="font-bold">{questionData[index].unitPriceModel.total}</span> objects, and they cost          
+          <span className="font-bold">${questionData[index].unitPriceModel.numberOfObjects}</span>
+        </p>
+        {""}
         <div>
-          <p>Unit Price</p>
-          Problem Kari has
-          <p>{JSON.stringify(questionData[index].unitPriceModel.total)}</p>
-          Objects
-          <p>
-            {JSON.stringify(questionData[index].unitPriceModel.numberOfObjects)}
+          <p className="mb-4">The unit price of each object is approximately</p>
+          <p className="mb-4">
+            $
+            <input
+              id="input"
+              type="number"
+              value={guess}
+              className="border-2 border-gray-300 w-20 text-right font-bold"
+              onChange={(e) => setGuess(e.target.value)}
+            ></input>
           </p>
         </div>
+        <Button
+          backgroundColor="blue"
+          textColor="white"
+          label="Submit"
+          onClick={() => onSubmit(guess)}
+        />
+      </div>          
       );
-    }
+    };
     return (
       <HorizontalEquation
         isReadOnly={isReadOnly}
