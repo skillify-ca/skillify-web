@@ -1,20 +1,19 @@
 import { shuffle } from "lodash";
-import { getRandomPropertyAdditionQuestion } from "./addition/additionPropertyQuestionGenerator";
-import { getRandomFinanceQuestion } from "../money/financeQuestionGenerator";
-import { Question, AnswerType, MCOption } from "../question";
-import { QuestionType } from "../questionTypes";
+import { getRandomPropertyAdditionQuestion } from "../../questions/addition/additionPropertyQuestionGenerator";
+import { Question, AnswerType, MCOption } from "../../question";
+import { QuestionType } from "../../questionTypes";
 import {
   getRndInteger,
   getRndTenthsDecimal,
   getRndHundredthsDecimal,
-} from "../random";
-import { Skill } from "../skill";
-import { createWordProblemModel } from "../WordProblemModel";
-import { getRandomAdditionQuestion } from "./addition/additionQuestionGenerator";
-import { getRandomDivisionQuestion } from "./division/divisionQuestionGenerator";
-import { getRandomMultiplicationQuestion } from "./multiplication/multiplicationQuestionGenerator";
-import { getRandomNumbersQuestion } from "./numbers/numbersQuestionGenerator";
-import { getRandomSubtractionQuestion } from "./subtraction/subtractionQuestionGenerator";
+} from "../../random";
+import { Skill } from "../../skill";
+import { createWordProblemModel } from "../../WordProblemModel";
+import { getRandomAdditionQuestion } from "../../questions/addition/additionQuestionGenerator";
+import { getRandomDivisionQuestion } from "../../questions/division/divisionQuestionGenerator";
+import { getRandomMultiplicationQuestion } from "../../questions/multiplication/multiplicationQuestionGenerator";
+import { getRandomNumbersQuestion } from "../../questions/numbers/numbersQuestionGenerator";
+import { getRandomSubtractionQuestion } from "../../questions/subtraction/subtractionQuestionGenerator";
 
 export const generateQuestionForSkill = (
   skill: Skill,
