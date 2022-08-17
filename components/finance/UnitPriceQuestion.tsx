@@ -1,14 +1,32 @@
+import React, { useState, useEffect } from "react";
+import { GuessData } from "../../../pages/api/guessData";
 import { Button } from "../ui/Button";
 
-type UnitPriceQuestionProps = {
+export interface UnitPriceQuestionProps {
   total: number;
   numberOfObjects: number;
+  submitGuess: (guess: GuessData) => void;
 };
 
-export default function UnitPriceQuestion({
+const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
   total,
   numberOfObjects,
-}: UnitPriceQuestionProps) {
+  submitGuess,
+}) => {
+  const onSubmit = (guess: number) => {
+    submitGuess({
+      guess: guess,
+      isCorrect: guess == Math.floor(total/numberOfObjects),
+    });
+  };
+
+  /** Reference user input and store it in a state, then clear input values by next question */
+  const [guess, setGuess] = useState("");
+  useEffect(() => {
+    (document.getElementById("input") as HTMLInputElement).value = "";
+  }, []);
+
+
   return (
     <div>
       <div className="flex flex-col gap-4 py-4 overflow-y-hidden max-h-96">
@@ -18,9 +36,9 @@ export default function UnitPriceQuestion({
         </p>
         {""}
         <p className="pl-10">
-          Kari has
-          <span className="font-bold">{total}</span> objects, and they cost
-          <span className="font-bold">${numberOfObjects}</span>
+          Kari has {""}
+          <span className="font-bold">{total}</span> objects, and they cost {""}
+          <span className="font-bold">{""}${numberOfObjects}</span>
         </p>
         {""}
         <div>
@@ -30,9 +48,9 @@ export default function UnitPriceQuestion({
             <input
               id="input"
               type="number"
-              value={3}
+              value={guess}
               className="w-20 font-bold text-right border-2 border-gray-300"
-              onChange={(e) => {}}
+              onChange={(e) => setGuess(e.target.value)}
             ></input>
           </p>
         </div>
@@ -40,9 +58,11 @@ export default function UnitPriceQuestion({
           backgroundColor="blue"
           textColor="white"
           label="Submit"
-          onClick={() => {}}
+          onClick={() => onSubmit(guess)}
         />
       </div>
     </div>
   );
-}
+};
+
+export default UnitPriceQuestion;
