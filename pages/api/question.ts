@@ -25,19 +25,24 @@ export type Question =
       placeholder?: string; // placeholder value for fill in the blanks
     }
   | {
-      questionType: QuestionType.FINANCE_TIP_PROBLEM;
+      questionType: QuestionType.VISUAL_TYPE_PROBLEM;
       displayNum: number; //randomizes visualnumber type
-      answer: string; // only accepts strings so Array<Num> doesn't work
+      answer: string;
+    }
+  | {
+      questionType: QuestionType.FINANCE_TIP_PROBLEM;
+      displayNum: number;
+      answer: string;
     }
   | {
       questionType: QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM;
       personDataModel: PersonData;
-      answer: string; // only accepts strings so Array<Num> doesn't work
+      answer: string;
     }
   | {
       questionType: QuestionType.FINANCE_BUDGET_TABLE_PROBLEM;
       budgetCostModel: Array<ItemCostModel>;
-      answer: string; // only accepts strings so Array<Num> doesn't work
+      answer: string;
     };
 
 export type MCOption = {

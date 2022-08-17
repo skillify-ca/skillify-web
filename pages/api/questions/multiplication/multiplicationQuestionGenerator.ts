@@ -38,15 +38,12 @@ export function getMultiplicationEqualGroups(
 export function getRandomMultiplicationQuestion(
   min: number,
   max: number,
-  skill: Skill,
-  questionType?: QuestionType
+  skill: Skill
 ) {
   //This function can be used to determine the product of the two numbers passed in as arguments
   const multiply = (a: number, b: number) => a * b;
   let randomPick = getRndInteger(0, 2);
-  if (questionType === QuestionType.ARRAY_QUESTION) {
-    randomPick = 1;
-  }
+
   //Conditional to generate Array Multiplication questions
   if (skill == Skill.MULTIPLICATION_5 && randomPick === 1) {
     const a = getRndInteger(1, 6);
@@ -58,5 +55,5 @@ export function getRandomMultiplicationQuestion(
     const b = getRndInteger(1, 11);
     return getMultiplicationEqualGroups(a, b, skill);
   }
-  return getRandomBinaryQuestion(min, max, "x", multiply, skill, questionType);
+  return getRandomBinaryQuestion(min, max, "x", multiply, skill);
 }

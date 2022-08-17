@@ -21,8 +21,7 @@ export function getRandomBinaryQuestion(
   max: number,
   operator: string,
   answerFunction: (a: number, b: number) => number,
-  skill: Skill,
-  questionType?: QuestionType
+  skill: Skill
 ): Question {
   //Default possible Question Types
   let types = [
@@ -77,7 +76,7 @@ export function getRandomBinaryQuestion(
     a = getRndInteger(10, 100);
     b = getRndInteger(min, max);
   }
-  const type = questionType ? questionType : types[typeIndex];
+  const type = types[typeIndex];
   return getBinaryQuestion(a, b, operator, type, answerFunction, skill);
 }
 
