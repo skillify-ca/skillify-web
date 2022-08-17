@@ -2,6 +2,7 @@ import { shuffle } from "lodash";
 import { Question, AnswerType, MCOption } from "../question";
 import { generateTrueOrFalseQuestion } from "../questionGenerators/trueOrFalseQuestion";
 import { generateVerticalEquationQuestion } from "../questionGenerators/verticalEquationQuestion";
+import { generateWordProblemQuestion } from "../questionGenerators/wordProblemQuestion";
 import { QuestionType } from "../questionTypes";
 import {
   getRndInteger,
@@ -10,7 +11,6 @@ import {
   getRandomItemFromArray,
 } from "../random";
 import { Skill } from "../skill";
-import { createWordProblemModel } from "../WordProblemModel";
 
 //converts number as a string into an array of numbers
 export function randomize(min: number, max: number) {
@@ -101,7 +101,6 @@ export function getBinaryQuestion(
   skill: Skill
 ): Question {
   let text;
-  let trueFalseAnswer: string;
   const type = questionType;
   let multipleChoiceModel;
 
@@ -139,7 +138,7 @@ export function getBinaryQuestion(
   let wordProblemModel;
   //condition for if it is wordProblem
   if (type === QuestionType.BINARY_WORD_PROBLEM) {
-    wordProblemModel = createWordProblemModel(operator);
+    return generateWordProblemQuestion(a, b, operator, answerFunction);
   }
   let ans;
   if (skill == Skill.ADDITION_TENTHS || skill == Skill.SUBTRACTION_TENTHS) {

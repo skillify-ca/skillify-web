@@ -16,7 +16,6 @@ import {
   generateFinanceQuestions,
   generateMath1Questions,
   generateMath2Questions,
-  generatePracticeQuestions,
 } from "../../../../api/practice/practiceQuestionGenerator";
 import { Question, AnswerType } from "../../../../api/question";
 import { QuestionType } from "../../../../api/questionTypes";

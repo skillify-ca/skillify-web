@@ -1,5 +1,7 @@
-import { random } from "lodash";
-import { name } from "./names";
+import { getBinaryQuestion } from "../questions/questionGenerator";
+import { QuestionType } from "../questionTypes";
+import { Skill } from "../skill";
+import { name } from "./../names";
 import {
   animalsMap,
   fruitsMap,
@@ -7,7 +9,32 @@ import {
   ItemContainerObj,
   map,
   Noun,
-} from "./WordProblemModelObjects";
+} from "./../WordProblemModelObjects";
+
+export type WordProblemQuestion = {
+  questionType: QuestionType.BINARY_WORD_PROBLEM;
+  answer: number;
+  operator: string;
+  wordProblemModel: WordProblemModel;
+};
+
+export function generateWordProblemQuestion(
+  firstNumber: number,
+  secondNumber: number,
+  operator: string,
+  answerFunction: (x: number, y: number) => number
+): WordProblemQuestion {
+  return {
+    answer: answerFunction(
+      Math.max(firstNumber, secondNumber),
+      Math.min(firstNumber, secondNumber)
+    ),
+    questionType: QuestionType.BINARY_WORD_PROBLEM,
+    operator: operator,
+    wordProblemModel: createWordProblemModel(operator),
+  };
+}
+
 export type WordProblemModel = {
   name: string;
   operator: string;
@@ -47,6 +74,7 @@ const getRandomItemFromMap = (map) => {
   const randomKey = keyList[randomIndex];
   return map[randomKey];
 };
+
 const itemSelector = (itemType) => {
   switch (itemType) {
     case ItemType.PETS:
@@ -59,6 +87,7 @@ const itemSelector = (itemType) => {
       console.log("Error");
   }
 };
+
 export function createWordProblemModel(operator): WordProblemModel {
   let itemType = itemTypeSelector();
   if (operator == "+") {

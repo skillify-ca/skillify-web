@@ -4,6 +4,7 @@ import { QuestionType } from "./questionTypes";
 import { Skill } from "./skill";
 import { VerticalEquationQuestion } from "./questionGenerators/verticalEquationQuestion";
 import { TrueOrFalseQuestion } from "./questionGenerators/trueOrFalseQuestion";
+import { WordProblemQuestion } from "./questionGenerators/wordProblemQuestion";
 
 export enum AnswerType {
   NUMBER,
@@ -65,12 +66,7 @@ export type Question =
       multipleChoice: MCModel;
       text: string;
     }
-  | {
-      questionType: QuestionType.BINARY_WORD_PROBLEM;
-      answer: string;
-      operator: string;
-      text: string;
-    }
+  | WordProblemQuestion
   | {
       questionType: QuestionType.VISUAL_TYPE_PROBLEM;
       displayNum: number; //randomizes visualnumber type
