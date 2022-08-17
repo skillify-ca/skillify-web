@@ -5,9 +5,8 @@ import { getRandomBinaryQuestion } from "../questionGenerator";
 export function getRandomSubtractionQuestion(
   min: number,
   max: number,
-  skill: Skill,
-  questionType?: QuestionType
+  skill: Skill
 ) {
   const subtract = (a: number, b: number) => a - b;
-  return getRandomBinaryQuestion(min, max, "-", subtract, skill, questionType);
+  return getRandomBinaryQuestion(min, max, "-", subtract, skill);
 }

@@ -4,16 +4,15 @@ import { Question } from "../../pages/api/question";
 import { Button } from "../ui/Button";
 
 export interface TrueorFalseProp {
-  question: Question;
   submitGuess: (guess: GuessData) => void;
   answer: string;
+  text: string;
 }
 
 export const TrueorFalse: React.FC<TrueorFalseProp> = ({
-  question,
   submitGuess,
   answer,
-  ...props
+  text,
 }) => {
   const onSubmit = (guess: boolean) => {
     submitGuess({
@@ -24,8 +23,8 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
 
   return (
     <div className="flex flex-col items-center space-y-16">
-      <p className="text-4xl">{question.text}</p>
-      <div className="flex flex-row  item-center space-x-4 ">
+      <p className="text-4xl">{text}</p>
+      <div className="flex flex-row space-x-4 item-center ">
         <Button
           label="True"
           backgroundColor="green"

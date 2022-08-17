@@ -2,6 +2,7 @@ import { PersonData } from "./money/personData";
 import { ItemCostModel } from "./money/itemCostModel";
 import { QuestionType } from "./questionTypes";
 import { WordProblemModel } from "./WordProblemModel";
+import { Skill } from "./skill";
 
 export enum AnswerType {
   NUMBER,
@@ -12,22 +13,98 @@ export enum AnswerType {
 
 export type Question =
   | {
+      questionType: QuestionType.VERTICAL_EQUATION;
       text: string;
-      answer: string; // only accepts strings so Array<Num> doesn't work
-      answerType: AnswerType;
-      questionType: QuestionType;
-      skill?: number;
-      operator?: string; //Numbers unit does not have a operator
-      wordProblem?: WordProblemModel; //value is only stored if QuestionType is wordProblem
-      multipleChoice?: MCModel;
-      fillInTheBlank?: fillBlankModel;
-      arrayAns?: Array<number>;
-      placeholder?: string; // placeholder value for fill in the blanks
+      answer: string;
+      operator: string;
+    }
+  | {
+      questionType: QuestionType.MULTIPLE_CHOICE_SENTENCE;
+      multipleChoice: MCModel;
+      answer: string;
+      text: string;
+    }
+  | {
+      questionType: QuestionType.FILL_IN_THE_BLANK_PROBLEM;
+      fillInTheBlank: fillBlankModel;
+      answer: string;
+      text: string;
+    }
+  | {
+      questionType: QuestionType.PATTERN_COUNT_BLANKS_PROBLEM;
+      answer: string;
+      text: string;
+      placeholder: string;
+    }
+  | {
+      questionType: QuestionType.COMPARISON_NUMBER_PROBLEM;
+      answer: string;
+      text: string;
+    }
+  | {
+      questionType: QuestionType.VERTICAL_DIGITS_TO_NUM;
+      arrayAns: number[];
+      text: string;
+    }
+  | {
+      questionType: QuestionType.WORD_TO_HORIZONTAL_DIGITS;
+      arrayAns: number[];
+      text: string;
+    }
+  | {
+      questionType: QuestionType.NUM_TO_VERITCAL_DIGITS;
+      arrayAns: number[];
+      skill: Skill;
+      text: string;
+    }
+  | {
+      questionType: QuestionType.MULTIPLE_CHOICE_WORD;
+      answer: string;
+      multipleChoice: MCModel;
+      text: string;
+    }
+  | {
+      questionType: QuestionType.MULTIPLE_CHOICE;
+      answer: string;
+      multipleChoice: MCModel;
+      text: string;
+    }
+  | {
+      questionType: QuestionType.BINARY_WORD_PROBLEM;
+      answer: string;
+      operator: string;
+      text: string;
     }
   | {
       questionType: QuestionType.VISUAL_TYPE_PROBLEM;
       displayNum: number; //randomizes visualnumber type
       answer: string;
+      operator: string;
+    }
+  | {
+      questionType: QuestionType.TRUE_OR_FALSE_PROBLEM;
+      text: string;
+      answer: string;
+      operator: string;
+    }
+  | {
+      questionType: QuestionType.LONG_DIVISION_PROBLEM;
+      text: string;
+      skill: Skill;
+      answer: string;
+      operator: string;
+    }
+  | {
+      questionType: QuestionType.ARRAY_QUESTION;
+      text: string;
+      answer: string;
+      colour: "red" | "purple" | "blue" | "green" | "yellow";
+    }
+  | {
+      questionType: QuestionType.MULTIPLICATION_EQUAL_GROUPS;
+      text: string;
+      answer: string;
+      colour: 0 | 1 | 2 | 3;
     }
   | {
       questionType: QuestionType.FINANCE_TIP_PROBLEM;

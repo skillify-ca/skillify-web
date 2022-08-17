@@ -184,13 +184,9 @@ const PracticeQuiz = ({ skill, courseId }) => {
           {stage === STAGE.QUESTION ? (
             <div className="flex flex-col items-center justify-center text-murkrow">
               <QuestionSet
-                title={"Practice"} // TODO
                 questionData={questionData}
                 index={index}
-                inputElement={inputElement}
                 submitGuess={submitGuess}
-                score={correctGuess}
-                HUDEnabled={false}
               />
             </div>
           ) : stage === STAGE.EMOJI ? (

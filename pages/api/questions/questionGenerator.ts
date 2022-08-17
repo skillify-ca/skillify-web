@@ -1,5 +1,4 @@
 import { shuffle } from "lodash";
-import { getRandomFinanceQuestion } from "../money/financeQuestionGenerator";
 import { Question, AnswerType, MCOption } from "../question";
 import { QuestionType } from "../questionTypes";
 import {
@@ -142,6 +141,7 @@ export function getBinaryQuestion(
   } else {
     text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} =`;
   }
+
   let wordProblemModel;
   //condition for if it is wordProblem
   if (type === QuestionType.BINARY_WORD_PROBLEM) {
