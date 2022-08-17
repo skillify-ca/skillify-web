@@ -1,17 +1,16 @@
 import React from "react";
-import { SKILLS } from "../../../graphql/utils/constants";
 import { GuessData } from "../../../pages/api/guessData";
 import { Question } from "../../../pages/api/question";
 import { QuestionType } from "../../../pages/api/questionTypes";
 import {
   getRandomItemFromArray,
   getRndColour,
-  getRndInteger,
 } from "../../../pages/api/random";
 import { Skill } from "../../../pages/api/skill";
 import BalanceBudget from "../../finance/money/BalanceBudgetTable";
 import BudgetTable from "../../finance/money/BudgetTable";
 import TipQuestion from "../../finance/money/TipQuestion";
+import UnitPriceQuestion from "../../finance/UnitPriceQuestion";
 import { FillBlank } from "../../questionTypes/FillBlank";
 import { HorizontalEquation } from "../../questionTypes/HorizontalEquation";
 import { LongDivision } from "../../questionTypes/LongDivision";
@@ -321,39 +320,12 @@ const QuestionSet = ({
       QuestionType.FINANCE_UNIT_PRICE_PROBLEM
     ) {
       return (
-        <div> className="flex flex-col max-h-96 py-4 overflow-y-hidden gap-4">
-        <p>
-          Find the unit price of the item by rounding to the nearest integer.{" "}
-          <span className="italic">after</span> calculating.
-        </p>
-        {""}  
-        <p className="pl-10">Kari has
-          <span className="font-bold">{questionData[index].unitPriceModel.total}</span> objects, and they cost          
-          <span className="font-bold">${questionData[index].unitPriceModel.numberOfObjects}</span>
-        </p>
-        {""}
-        <div>
-          <p className="mb-4">The unit price of each object is approximately</p>
-          <p className="mb-4">
-            $
-            <input
-              id="input"
-              type="number"
-              value={guess}
-              className="border-2 border-gray-300 w-20 text-right font-bold"
-              onChange={(e) => setGuess(e.target.value)}
-            ></input>
-          </p>
-        </div>
-        <Button
-          backgroundColor="blue"
-          textColor="white"
-          label="Submit"
-          onClick={() => onSubmit(guess)}
+        <UnitPriceQuestion
+          total={questionData[index].unitPriceModel.total}
+          numberOfObjects={questionData[index].unitPriceModel.numberOfObjects}
         />
-      </div>          
       );
-    };
+    }
     return (
       <HorizontalEquation
         isReadOnly={isReadOnly}
