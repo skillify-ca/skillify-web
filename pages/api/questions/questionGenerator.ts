@@ -1,10 +1,16 @@
 import { shuffle } from "lodash";
 import { Question, AnswerType, MCOption } from "../question";
+import { generateTrueOrFalseQuestion } from "../questionGenerators/trueOrFalseQuestion";
+import {
+  generateQuestion,
+  generateVerticalEquationQuestion,
+} from "../questionGenerators/verticalEquationQuestion";
 import { QuestionType } from "../questionTypes";
 import {
   getRndInteger,
   getRndTenthsDecimal,
   getRndHundredthsDecimal,
+  getRandomItemFromArray,
 } from "../random";
 import { Skill } from "../skill";
 import { createWordProblemModel } from "../WordProblemModel";
@@ -43,8 +49,9 @@ export function getRandomBinaryQuestion(
     //Binary Word problems don't make much sense for deciaml word problems
     types = [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
   }
-  //Randomizes QuestionType
-  let typeIndex = getRndInteger(0, types.length);
+
+  const type = getRandomItemFromArray(types);
+
   let a = getRndInteger(min, max);
   let b = getRndInteger(min, max);
   if (skill == Skill.MULTIPLY_THREE_DIGIT_BY_TENTH) {
@@ -75,7 +82,16 @@ export function getRandomBinaryQuestion(
     a = getRndInteger(10, 100);
     b = getRndInteger(min, max);
   }
-  const type = types[typeIndex];
+
+  if (type === QuestionType.VERTICAL_EQUATION) {
+    return generateVerticalEquationQuestion(
+      a,
+      b,
+      operator,
+      answerFunction,
+      skill
+    );
+  }
   return getBinaryQuestion(a, b, operator, type, answerFunction, skill);
 }
 
@@ -94,26 +110,7 @@ export function getBinaryQuestion(
 
   // T or F Question generation logic
   if (type === QuestionType.TRUE_OR_FALSE_PROBLEM) {
-    const randomAns = randomize(0, 2);
-    switch (randomAns) {
-      case 0:
-        text = `${Math.max(a, b)} ${operator} ${Math.min(
-          a,
-          b
-        )} = ${answerFunction(Math.max(a, b), Math.min(a, b))}`;
-        trueFalseAnswer = "true";
-        break;
-      case 1:
-        let randomDisplacement = randomize(-2, 3);
-        while (randomDisplacement == 0) {
-          randomDisplacement = randomize(-2, 3);
-        }
-        text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} = ${
-          answerFunction(Math.max(a, b), Math.min(a, b)) + randomDisplacement
-        }`;
-        trueFalseAnswer = "false";
-        break;
-    }
+    return generateTrueOrFalseQuestion(a, b, operator, answerFunction);
   } // MC question Generation logic
   else if (type === QuestionType.MULTIPLE_CHOICE) {
     if (a < b) {
@@ -166,11 +163,8 @@ export function getBinaryQuestion(
 
   return {
     text: text,
-    answer: type === QuestionType.TRUE_OR_FALSE_PROBLEM ? trueFalseAnswer : ans,
-    answerType:
-      type === QuestionType.TRUE_OR_FALSE_PROBLEM
-        ? AnswerType.BOOLEAN
-        : AnswerType.NUMBER,
+    answer: ans,
+    answerType: AnswerType.NUMBER,
     questionType: type,
     operator: operator,
     wordProblem: wordProblemModel,

@@ -1,8 +1,9 @@
 import { PersonData } from "./money/personData";
 import { ItemCostModel } from "./money/itemCostModel";
 import { QuestionType } from "./questionTypes";
-import { WordProblemModel } from "./WordProblemModel";
 import { Skill } from "./skill";
+import { VerticalEquationQuestion } from "./questionGenerators/verticalEquationQuestion";
+import { TrueOrFalseQuestion } from "./questionGenerators/trueOrFalseQuestion";
 
 export enum AnswerType {
   NUMBER,
@@ -12,12 +13,7 @@ export enum AnswerType {
 }
 
 export type Question =
-  | {
-      questionType: QuestionType.VERTICAL_EQUATION;
-      text: string;
-      answer: string;
-      operator: string;
-    }
+  | VerticalEquationQuestion
   | {
       questionType: QuestionType.MULTIPLE_CHOICE_SENTENCE;
       multipleChoice: MCModel;
@@ -81,12 +77,7 @@ export type Question =
       answer: string;
       operator: string;
     }
-  | {
-      questionType: QuestionType.TRUE_OR_FALSE_PROBLEM;
-      text: string;
-      answer: string;
-      operator: string;
-    }
+  | TrueOrFalseQuestion
   | {
       questionType: QuestionType.LONG_DIVISION_PROBLEM;
       text: string;
