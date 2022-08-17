@@ -89,6 +89,7 @@ export enum Skill {
   MULTIPLY_THREE_DIGIT_BY_TENTH = 65,
   DIVISION_THREE_DIGIT_BY_TENTH = 66,
   FINANCE_BUDGET = 67,
+  FINANCE_UNIT_PRICES = 101,
 }
 
 export function getQuestionTypesForSkill(skill: Skill): QuestionType[] {

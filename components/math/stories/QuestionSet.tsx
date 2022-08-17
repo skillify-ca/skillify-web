@@ -1,17 +1,16 @@
 import React from "react";
-import { SKILLS } from "../../../graphql/utils/constants";
 import { GuessData } from "../../../pages/api/guessData";
 import { Question } from "../../../pages/api/question";
 import { QuestionType } from "../../../pages/api/questionTypes";
 import {
   getRandomItemFromArray,
   getRndColour,
-  getRndInteger,
 } from "../../../pages/api/random";
 import { Skill } from "../../../pages/api/skill";
 import BalanceBudget from "../../finance/money/BalanceBudgetTable";
 import BudgetTable from "../../finance/money/BudgetTable";
 import TipQuestion from "../../finance/money/TipQuestion";
+import UnitPriceQuestion from "../../finance/UnitPriceQuestion";
 import { FillBlank } from "../../questionTypes/FillBlank";
 import { HorizontalEquation } from "../../questionTypes/HorizontalEquation";
 import { LongDivision } from "../../questionTypes/LongDivision";
@@ -155,7 +154,7 @@ const QuestionSet = ({
           answer={questionData[index].answer}
           submitGuess={submitGuess}
         >
-          <h1 className="text-4l underline font-bold">
+          <h1 className="font-bold underline text-4l">
             {" "}
             {questionData[index].multipleChoice.title}{" "}
           </h1>
@@ -316,6 +315,16 @@ const QuestionSet = ({
           />
         );
       }
+    } else if (
+      questionData[index].questionType ===
+      QuestionType.FINANCE_UNIT_PRICE_PROBLEM
+    ) {
+      return (
+        <UnitPriceQuestion
+          total={questionData[index].unitPriceModel.total}
+          numberOfObjects={questionData[index].unitPriceModel.numberOfObjects}
+        />
+      );
     }
     return (
       <HorizontalEquation
@@ -327,7 +336,7 @@ const QuestionSet = ({
   };
 
   return (
-    <div className="flex justify-center items-center gap-4">
+    <div className="flex items-center justify-center gap-4">
       <Card size="large">
         <div
           className={`transition-opacity duration-150 ease-in-out opacity-${
