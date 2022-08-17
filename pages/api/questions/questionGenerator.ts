@@ -1,10 +1,7 @@
 import { shuffle } from "lodash";
 import { Question, AnswerType, MCOption } from "../question";
 import { generateTrueOrFalseQuestion } from "../questionGenerators/trueOrFalseQuestion";
-import {
-  generateQuestion,
-  generateVerticalEquationQuestion,
-} from "../questionGenerators/verticalEquationQuestion";
+import { generateVerticalEquationQuestion } from "../questionGenerators/verticalEquationQuestion";
 import { QuestionType } from "../questionTypes";
 import {
   getRndInteger,
