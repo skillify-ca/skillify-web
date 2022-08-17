@@ -3,21 +3,26 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import ReactCardFlip from "react-card-flip";
-import QuestionSet from "../../components/math/stories/QuestionSet";
-import { Button } from "../../components/ui/Button";
-import Card from "../../components/ui/Card";
-import EmojiSlider from "../../components/ui/EmojiSlider";
-import { FETCH_SKILLS } from "../../graphql/fetchSkills";
-import { FETCH_USER_EMOJIS } from "../../graphql/fetchUserEmojis";
-import { UPDATE_USER_SKILL_EMOJI } from "../../graphql/updateUserEmoji";
-import { useAuth } from "../../lib/authContext";
-import { GuessData } from "../api/guessData";
-import { generatePracticeQuestions } from "../api/practice/practiceQuestionGenerator";
-import { Question, AnswerType } from "../api/question";
-import { QuestionType } from "../api/questionTypes";
-import { Skill } from "../api/skill";
+import QuestionSet from "../../../../../components/math/stories/QuestionSet";
+import { Button } from "../../../../../components/ui/Button";
+import Card from "../../../../../components/ui/Card";
+import EmojiSlider from "../../../../../components/ui/EmojiSlider";
+import { FETCH_SKILLS } from "../../../../../graphql/fetchSkills";
+import { FETCH_USER_EMOJIS } from "../../../../../graphql/fetchUserEmojis";
+import { UPDATE_USER_SKILL_EMOJI } from "../../../../../graphql/updateUserEmoji";
+import { useAuth } from "../../../../../lib/authContext";
+import { GuessData } from "../../../../api/guessData";
+import {
+  generateFinanceQuestions,
+  generateMath1Questions,
+  generateMath2Questions,
+  generatePracticeQuestions,
+} from "../../../../api/practice/practiceQuestionGenerator";
+import { Question, AnswerType } from "../../../../api/question";
+import { QuestionType } from "../../../../api/questionTypes";
+import { Skill } from "../../../../api/skill";
 
-const PracticeQuiz = ({ skill }) => {
+const PracticeQuiz = ({ skill, courseId }) => {
   enum STAGE {
     QUESTION,
     EMOJI,
@@ -73,7 +78,13 @@ const PracticeQuiz = ({ skill }) => {
   };
 
   useEffect(() => {
-    setQuestionData(generatePracticeQuestions(Number.parseInt(skill)));
+    if (courseId === "math1") {
+      setQuestionData(generateMath1Questions(Number.parseInt(skill)));
+    } else if (courseId === "math2") {
+      setQuestionData(generateMath2Questions(Number.parseInt(skill)));
+    } else if (courseId === "finance") {
+      setQuestionData(generateFinanceQuestions(Number.parseInt(skill)));
+    }
     setCorrectGuess(0);
     setIndex(0);
     setIsFlipped(false);
@@ -288,7 +299,7 @@ export async function getStaticPaths() {
   });
 
   const ids = data.skills.map((skill) => {
-    return { params: { skill: skill.id.toString() } };
+    return { params: { skill: skill.id.toString(), courseId: skill.courseId } };
   });
 
   return {
@@ -301,6 +312,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       skill: params.skill,
+      courseId: params.courseId,
     },
   };
 }

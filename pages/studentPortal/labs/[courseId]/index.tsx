@@ -1,9 +1,9 @@
 import { ApolloClient, InMemoryCache, useQuery } from "@apollo/client";
-import PracticePreview from "../../../components/math/practiceTracker/unitOverview/PracticePreview";
-import { FETCH_UNIT_OVERVIEW } from "../../../graphql/fetchUnitOverview";
-import { useAuth } from "../../../lib/authContext";
-import { getBadgeId } from "../../api/badgeHelper";
-import { FETCH_SKILLS_FOR_COURSE } from "../../../graphql/fetchSkillsForCourse";
+import PracticePreview from "../../../../components/math/practiceTracker/unitOverview/PracticePreview";
+import { FETCH_UNIT_OVERVIEW } from "../../../../graphql/fetchUnitOverview";
+import { useAuth } from "../../../../lib/authContext";
+import { getBadgeId } from "../../../api/badgeHelper";
+import { FETCH_SKILLS_FOR_COURSE } from "../../../../graphql/fetchSkillsForCourse";
 import Link from "next/link";
 
 const UnitOverviewPage = ({ courseId, skillData }) => {
@@ -75,7 +75,7 @@ export async function getServerSideProps({ params }) {
   const { data } = await client.query({
     query: FETCH_SKILLS_FOR_COURSE,
     variables: {
-      courseId: params.slug,
+      courseId: params.courseId,
     },
   });
 
@@ -85,7 +85,7 @@ export async function getServerSideProps({ params }) {
     };
   }
 
-  return { props: { skillData: data, courseId: params.slug } };
+  return { props: { skillData: data, courseId: params.courseId } };
 }
 
 export default UnitOverviewPage;

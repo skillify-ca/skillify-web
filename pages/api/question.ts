@@ -27,14 +27,17 @@ export type Question =
   | {
       questionType: QuestionType.FINANCE_TIP_PROBLEM;
       displayNum: number; //randomizes visualnumber type
+      answer: string; // only accepts strings so Array<Num> doesn't work
     }
   | {
       questionType: QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM;
       personDataModel: PersonData;
+      answer: string; // only accepts strings so Array<Num> doesn't work
     }
   | {
       questionType: QuestionType.FINANCE_BUDGET_TABLE_PROBLEM;
       budgetCostModel: Array<ItemCostModel>;
+      answer: string; // only accepts strings so Array<Num> doesn't work
     };
 
 export type MCOption = {
