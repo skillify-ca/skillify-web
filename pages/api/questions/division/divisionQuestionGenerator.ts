@@ -1,8 +1,8 @@
 import { Question, AnswerType } from "../../question";
+import { createWordProblemModel } from "../../questionGenerators/wordProblemQuestion";
 import { QuestionType } from "../../questionTypes";
 import { getRndInteger, getRndTenthsDecimal } from "../../random";
 import { Skill } from "../../skill";
-import { createWordProblemModel } from "../../WordProblemModel";
 
 export function getRandomDivisionQuestion(
   min: number,

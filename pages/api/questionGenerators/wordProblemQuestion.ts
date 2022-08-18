@@ -1,6 +1,4 @@
-import { getBinaryQuestion } from "../questions/questionGenerator";
 import { QuestionType } from "../questionTypes";
-import { Skill } from "../skill";
 import { name } from "./../names";
 import {
   animalsMap,

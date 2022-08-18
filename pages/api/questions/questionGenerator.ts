@@ -135,7 +135,6 @@ export function getBinaryQuestion(
     text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} =`;
   }
 
-  let wordProblemModel;
   //condition for if it is wordProblem
   if (type === QuestionType.BINARY_WORD_PROBLEM) {
     return generateWordProblemQuestion(a, b, operator, answerFunction);
@@ -163,7 +162,6 @@ export function getBinaryQuestion(
     answerType: AnswerType.NUMBER,
     questionType: type,
     operator: operator,
-    wordProblem: wordProblemModel,
     multipleChoice: multipleChoiceModel,
     skill: skill,
   };
