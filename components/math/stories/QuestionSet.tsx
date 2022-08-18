@@ -323,6 +323,7 @@ const QuestionSet = ({
         <UnitPriceQuestion
           total={questionData[index].unitPriceModel.total}
           numberOfObjects={questionData[index].unitPriceModel.numberOfObjects}
+          submitGuess={submitGuess}
         />
       );
     }
