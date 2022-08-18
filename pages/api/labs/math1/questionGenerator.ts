@@ -4,7 +4,6 @@ import { Skill } from "../../skill";
 import { getRandomAdditionQuestion } from "../../questions/addition/additionQuestionGenerator";
 import { getRandomDivisionQuestion } from "../../questions/division/divisionQuestionGenerator";
 import { getRandomMultiplicationQuestion } from "../../questions/multiplication/multiplicationQuestionGenerator";
-import { getRandomNumbersQuestion } from "../../questions/numbers/numbersQuestionGenerator";
 import { getRandomSubtractionQuestion } from "../../questions/subtraction/subtractionQuestionGenerator";
 
 export const generateQuestionForMath1Skill = (skill: Skill): Question => {
@@ -49,15 +48,5 @@ export const generateQuestionForMath1Skill = (skill: Skill): Question => {
       return getRandomDivisionQuestion(1, 6, skill);
     case Skill.DIVIDE_100:
       return getRandomDivisionQuestion(1, 11, skill);
-  }
-
-  // Numbers/Counting skills
-  switch (skill) {
-    case Skill.NUMBERS_50:
-      return getRandomNumbersQuestion(1, 51, skill);
-    case Skill.NUMBERS_200:
-      return getRandomNumbersQuestion(1, 201, skill);
-    case Skill.NUMBERS_1000:
-      return getRandomNumbersQuestion(1, 1001, skill);
   }
 };

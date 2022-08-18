@@ -6,7 +6,6 @@ import { Skill } from "../../../pages/api/skill";
 import BalanceBudget from "../../finance/money/BalanceBudgetTable";
 import BudgetTable from "../../finance/money/BudgetTable";
 import TipQuestion from "../../finance/money/TipQuestion";
-import { FillBlank } from "../../questionTypes/FillBlank";
 import { HorizontalEquation } from "../../questionTypes/HorizontalEquation";
 import { LongDivision } from "../../questionTypes/LongDivision";
 import { MultipleChoice } from "../../questionTypes/MultipleChoice";
@@ -44,15 +43,6 @@ const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
       option2={questionData.multipleChoice.options[1]}
       option3={questionData.multipleChoice.options[2]}
       option4={questionData.multipleChoice.options[3]}
-      answer={questionData.answer}
-      submitGuess={submitGuess}
-    />
-  ) : questionData.questionType == QuestionType.FILL_IN_THE_BLANK_PROBLEM ? (
-    <FillBlank
-      displayQuestion={questionData.text}
-      step1={questionData.fillInTheBlank.options[0].text}
-      step2={questionData.fillInTheBlank.options[1].text}
-      step3={questionData.fillInTheBlank.options[2].text}
       answer={questionData.answer}
       submitGuess={submitGuess}
     />

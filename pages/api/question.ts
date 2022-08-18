@@ -22,39 +22,6 @@ export type Question =
       text: string;
     }
   | {
-      questionType: QuestionType.FILL_IN_THE_BLANK_PROBLEM;
-      fillInTheBlank: fillBlankModel;
-      answer: string;
-      text: string;
-    }
-  | {
-      questionType: QuestionType.PATTERN_COUNT_BLANKS_PROBLEM;
-      answer: string;
-      text: string;
-      placeholder: string;
-    }
-  | {
-      questionType: QuestionType.COMPARISON_NUMBER_PROBLEM;
-      answer: string;
-      text: string;
-    }
-  | {
-      questionType: QuestionType.VERTICAL_DIGITS_TO_NUM;
-      arrayAns: number[];
-      text: string;
-    }
-  | {
-      questionType: QuestionType.WORD_TO_HORIZONTAL_DIGITS;
-      arrayAns: number[];
-      text: string;
-    }
-  | {
-      questionType: QuestionType.NUM_TO_VERITCAL_DIGITS;
-      arrayAns: number[];
-      skill: Skill;
-      text: string;
-    }
-  | {
       questionType: QuestionType.MULTIPLE_CHOICE_WORD;
       answer: string;
       multipleChoice: MCModel;
