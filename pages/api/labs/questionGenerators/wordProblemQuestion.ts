@@ -1,5 +1,5 @@
-import { QuestionType } from "../questionTypes";
-import { name } from "./../names";
+import { QuestionType } from "../../questionTypes";
+import { name } from "./../../names";
 import {
   animalsMap,
   fruitsMap,
@@ -7,13 +7,14 @@ import {
   ItemContainerObj,
   map,
   Noun,
-} from "./../WordProblemModelObjects";
+} from "./../../WordProblemModelObjects";
 
 export type WordProblemQuestion = {
   questionType: QuestionType.BINARY_WORD_PROBLEM;
   answer: number;
   operator: string;
-  wordProblemModel: WordProblemModel;
+  text: string;
+  wordProblem: WordProblemModel;
 };
 
 export function generateWordProblemQuestion(
@@ -29,7 +30,8 @@ export function generateWordProblemQuestion(
     ),
     questionType: QuestionType.BINARY_WORD_PROBLEM,
     operator: operator,
-    wordProblemModel: createWordProblemModel(operator),
+    wordProblem: createWordProblemModel(operator),
+    text: `${firstNumber} ${operator} ${secondNumber}`,
   };
 }
 
@@ -97,7 +99,7 @@ export function createWordProblemModel(operator): WordProblemModel {
       item1: itemSelector(itemType),
       item2: itemSelector(itemType),
     };
-  } else if (operator == "/") {
+  } else if (operator == "÷") {
     return {
       name: nameSelector(),
       operator: operator,

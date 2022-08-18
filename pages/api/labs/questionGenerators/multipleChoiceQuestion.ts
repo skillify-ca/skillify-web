@@ -1,7 +1,7 @@
-import { QuestionType } from "../questionTypes";
-import { name } from "../names";
-import { ItemContainerObj, Noun } from "../WordProblemModelObjects";
-import { randomize } from "../questions/questionGenerator";
+import { QuestionType } from "../../questionTypes";
+import { name } from "../../names";
+import { ItemContainerObj, Noun } from "../../WordProblemModelObjects";
+import { randomize } from "../../questions/questionGenerator";
 import { shuffle } from "lodash";
 
 export type MCOption = {

@@ -25,7 +25,7 @@ export const generateQuestionForMath2Skill = (skill: Skill): Question => {
         0.1,
         0.9,
         "+",
-        (a, b) => a + b,
+        (a, b) => (a + b).toFixed(1),
         skill,
         MINIMUM_QUESTION_TYPES
       );
@@ -61,7 +61,7 @@ export const generateQuestionForMath2Skill = (skill: Skill): Question => {
         0.01,
         0.99,
         "+",
-        (a, b) => a + b,
+        (a, b) => (a + b).toFixed(2),
         skill,
         MINIMUM_QUESTION_TYPES
       );
@@ -83,7 +83,7 @@ export const generateQuestionForMath2Skill = (skill: Skill): Question => {
         0.1,
         0.9,
         "-",
-        (a, b) => a - b,
+        (a, b) => (a + b).toFixed(1),
         skill,
         MINIMUM_QUESTION_TYPES
       );
@@ -110,7 +110,7 @@ export const generateQuestionForMath2Skill = (skill: Skill): Question => {
         0.01,
         0.99,
         "-",
-        (a, b) => a - b,
+        (a, b) => (a + b).toFixed(2),
         skill,
         MINIMUM_QUESTION_TYPES
       );
@@ -178,7 +178,7 @@ export const generateQuestionForMath2Skill = (skill: Skill): Question => {
         100,
         1000,
         "X",
-        (a, b) => a * b,
+        (a, b) => (a + b).toFixed(1),
         skill,
         MINIMUM_QUESTION_TYPES
       );

@@ -1,7 +1,5 @@
-import { getBinaryQuestion, randomize } from "../questions/questionGenerator";
-import { QuestionType } from "../questionTypes";
-import { getRandomItemFromArray } from "../random";
-import { Skill } from "../skill";
+import { QuestionType } from "../../questionTypes";
+import { getRandomItemFromArray } from "../../random";
 
 export type TrueOrFalseQuestion = {
   questionType: QuestionType.TRUE_OR_FALSE_PROBLEM;

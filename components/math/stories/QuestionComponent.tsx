@@ -24,6 +24,8 @@ type QuestionProps = {
   submitGuess: (guessData: GuessData) => void;
 };
 const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
+  console.log(questionData);
+
   return questionData.questionType === QuestionType.VERTICAL_EQUATION ? (
     <VerticalEquation
       submitGuess={submitGuess}
@@ -82,15 +84,9 @@ const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
     />
   ) : questionData.questionType === QuestionType.LONG_DIVISION_PROBLEM ? (
     <LongDivision
-      question={questionData}
       submitGuess={submitGuess}
-      isRemainder={
-        questionData.skill === Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT ||
-        questionData.skill === Skill.DIVISION_THREE_DIGIT_BY_ONE_DIGIT ||
-        questionData.skill === Skill.DIVISION_THREE_DIGIT_BY_TWO_DIGIT ||
-        questionData.skill === Skill.DIVISION_THREE_DIGIT_BY_TENTH
-      }
-      isReadOnly={false}
+      text={questionData.text}
+      answer={questionData.answer}
     />
   ) : questionData.questionType === QuestionType.ARRAY_QUESTION ? (
     <MultiplicationArray

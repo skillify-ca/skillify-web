@@ -1,8 +1,11 @@
 import { Question } from "../../question";
 import { Skill } from "../../skill";
-import { getRandomDivisionQuestion } from "../../questions/division/divisionQuestionGenerator";
 import { QuestionType } from "../../questionTypes";
 import { getRandomBinaryQuestion } from "../../questions/questionGenerator";
+import { getRandomItemFromArray, getRndInteger } from "../../random";
+import { generateWordProblemQuestion } from "../questionGenerators/wordProblemQuestion";
+import { generateHorizontalEquationQuestion } from "../questionGenerators/horizontalEquationQuestion";
+import { generateLongDivisionQuestion } from "../questionGenerators/longDivisionQuestion";
 
 const DEFAULT_QUESTION_TYPES = [
   QuestionType.HORIZONTAL_EQUATION,
@@ -126,3 +129,37 @@ export const generateQuestionForMath1Skill = (skill: Skill): Question => {
       return getRandomDivisionQuestion(1, 11, skill);
   }
 };
+
+function getRandomDivisionQuestion(
+  min: number,
+  max: number,
+  skill: Skill
+): Question {
+  const a = getRndInteger(min, max);
+  const b = getRndInteger(min, max);
+  const product = a * b;
+  const text = `${product} / ${b} =`;
+  const types = [
+    QuestionType.LONG_DIVISION_PROBLEM,
+    QuestionType.HORIZONTAL_EQUATION,
+    QuestionType.BINARY_WORD_PROBLEM,
+  ];
+  const type = getRandomItemFromArray(types);
+
+  switch (type) {
+    case QuestionType.LONG_DIVISION_PROBLEM:
+      return generateLongDivisionQuestion(a, b);
+    case QuestionType.HORIZONTAL_EQUATION:
+      return generateHorizontalEquationQuestion(
+        product,
+        b,
+        "÷",
+        (x, y) => Math.floor(x / y),
+        skill
+      );
+    case QuestionType.BINARY_WORD_PROBLEM:
+      return generateWordProblemQuestion(product, b, "÷", (x, y) =>
+        Math.floor(x / y)
+      );
+  }
+}

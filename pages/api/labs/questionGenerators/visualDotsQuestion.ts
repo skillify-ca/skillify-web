@@ -1,5 +1,5 @@
-import { QuestionType } from "../questionTypes";
-import { getRndInteger } from "../random";
+import { QuestionType } from "../../questionTypes";
+import { getRndInteger } from "../../random";
 
 export type VisualDotsQuestion = {
   questionType: QuestionType.VISUAL_TYPE_PROBLEM;

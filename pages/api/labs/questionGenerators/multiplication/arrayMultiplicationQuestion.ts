@@ -1,5 +1,5 @@
-import { QuestionType } from "../../questionTypes";
-import { getRandomItemFromArray } from "../../random";
+import { QuestionType } from "../../../questionTypes";
+import { getRandomItemFromArray } from "../../../random";
 
 export function getArrayMultiplicationQuestion(a: number, b: number): Question {
   let text = `${a} x ${b} =`;

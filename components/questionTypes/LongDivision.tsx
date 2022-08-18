@@ -5,21 +5,20 @@ import { Button } from "../ui/Button";
 import { LongDivisionInput } from "./LongDivisionInput";
 
 export interface LongDivisionProp {
-  question: Question;
+  text: string;
+  answer: string;
   submitGuess: (guess: GuessData) => void;
   isRemainder?: boolean;
-  isReadOnly?: boolean;
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const LongDivision: React.FC<LongDivisionProp> = ({
-  question,
   isRemainder,
   submitGuess,
-  isReadOnly = false,
-  ...props
+  text,
+  answer,
 }) => {
   const [guess, setGuess] = useState("");
   const [guess2, setGuess2] = useState("");
@@ -32,7 +31,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
   };
 
   const parse = () => {
-    const parts = question.text && question.text.split(" ");
+    const parts = text && text.split(" ");
     return {
       first: parts && parts[0],
       second: parts && parts[2],
@@ -40,13 +39,13 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
   };
 
   const onSubmit = () => {
-    submitGuess({ guess: guess, isCorrect: guess === question.answer });
+    submitGuess({ guess: guess, isCorrect: guess === answer });
     (document.getElementById("guess") as HTMLInputElement).value = "";
     setGuess("");
     setGuess2("");
     submitGuess({
       guess: guess + "," + guess2,
-      isCorrect: guess + "," + guess2 === question.answer,
+      isCorrect: guess + "," + guess2 === answer,
     });
   };
 
@@ -88,7 +87,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
           {parse().second}&nbsp;
         </span>
         <div className="flex flex-col">
-          {!isReadOnly && <div className="flex flex-row gap-2">
+          <div className="flex flex-row gap-2">
             <LongDivisionInput
               id="guess"
               guess={guess}
@@ -97,8 +96,8 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
               width={width}
             />
             {remainderComponent}
-          </div>}
-          <span className="border-t-2 border-l-2 border-black text-6xl">
+          </div>
+          <span className="text-6xl border-t-2 border-l-2 border-black">
             {parse().first}
           </span>
         </div>

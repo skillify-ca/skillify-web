@@ -1,12 +1,12 @@
 import { PersonData } from "./money/personData";
 import { ItemCostModel } from "./money/itemCostModel";
 import { QuestionType } from "./questionTypes";
-import { Skill } from "./skill";
 import { HorizontalEquationQuestion } from "./labs/questionGenerators/horizontalEquationQuestion";
 import { TrueOrFalseQuestion } from "./labs/questionGenerators/trueOrFalseQuestion";
 import { VerticalEquationQuestion } from "./labs/questionGenerators/verticalEquationQuestion";
 import { VisualDotsQuestion } from "./labs/questionGenerators/visualDotsQuestion";
 import { WordProblemQuestion } from "./labs/questionGenerators/wordProblemQuestion";
+import { LongDivisionQuestion } from "./labs/questionGenerators/longDivisionQuestion";
 
 export type Question =
   | VerticalEquationQuestion
@@ -32,13 +32,7 @@ export type Question =
   | WordProblemQuestion
   | VisualDotsQuestion
   | TrueOrFalseQuestion
-  | {
-      questionType: QuestionType.LONG_DIVISION_PROBLEM;
-      text: string;
-      skill: Skill;
-      answer: string;
-      operator: string;
-    }
+  | LongDivisionQuestion
   | {
       questionType: QuestionType.ARRAY_QUESTION;
       text: string;

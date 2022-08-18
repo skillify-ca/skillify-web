@@ -2,7 +2,6 @@ import { ApolloClient, InMemoryCache, useQuery } from "@apollo/client";
 import PracticePreview from "../../../../components/math/practiceTracker/unitOverview/PracticePreview";
 import { FETCH_UNIT_OVERVIEW } from "../../../../graphql/fetchUnitOverview";
 import { useAuth } from "../../../../lib/authContext";
-import { getBadgeId } from "../../../api/badgeHelper";
 import { FETCH_SKILLS_FOR_COURSE } from "../../../../graphql/fetchSkillsForCourse";
 import Link from "next/link";
 
@@ -28,7 +27,6 @@ const UnitOverviewPage = ({ courseId, skillData }) => {
       variables: {
         userId: user?.uid,
         skillId: skillIds,
-        badgeId: getBadgeId(courseId as string, "", 1),
       },
     }
   );

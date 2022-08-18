@@ -1,10 +1,12 @@
 import { first, shuffle } from "lodash";
-import { generateMultipleChoiceQuestion } from "../labs/finance/questionGenerators/multipleChoiceQuestion";
-import { getArrayMultiplicationQuestion } from "../labs/finance/questionGenerators/multiplication/arrayMultiplicationQuestion";
-import { getMultiplicationEqualGroups } from "../labs/finance/questionGenerators/multiplication/equalGroupsQuestion";
-import { generateTrueOrFalseQuestion } from "../labs/finance/questionGenerators/trueOrFalseQuestion";
-import { generateVerticalEquationQuestion } from "../labs/finance/questionGenerators/verticalEquationQuestion";
-import { generateWordProblemQuestion } from "../labs/finance/questionGenerators/wordProblemQuestion";
+import { generateHorizontalEquationQuestion } from "../labs/questionGenerators/horizontalEquationQuestion";
+import { generateMultipleChoiceQuestion } from "../labs/questionGenerators/multipleChoiceQuestion";
+import { getArrayMultiplicationQuestion } from "../labs/questionGenerators/multiplication/arrayMultiplicationQuestion";
+import { getMultiplicationEqualGroups } from "../labs/questionGenerators/multiplication/equalGroupsQuestion";
+import { generateTrueOrFalseQuestion } from "../labs/questionGenerators/trueOrFalseQuestion";
+import { generateVerticalEquationQuestion } from "../labs/questionGenerators/verticalEquationQuestion";
+import { generateWordProblemQuestion } from "../labs/questionGenerators/wordProblemQuestion";
+
 import { Question, MCOption } from "../question";
 import { QuestionType } from "../questionTypes";
 import {
@@ -64,7 +66,7 @@ export function getRandomBinaryQuestion(
   min: number,
   max: number,
   operator: string,
-  answerFunction: (a: number, b: number) => number,
+  answerFunction: (a: number, b: number) => any,
   skill: Skill,
   types: QuestionType[]
 ): Question {
@@ -74,8 +76,15 @@ export function getRandomBinaryQuestion(
     max,
     skill
   );
-
-  if (type === QuestionType.VERTICAL_EQUATION) {
+  if (type === QuestionType.HORIZONTAL_EQUATION) {
+    return generateHorizontalEquationQuestion(
+      firstNumber,
+      secondNumber,
+      operator,
+      answerFunction,
+      skill
+    );
+  } else if (type === QuestionType.VERTICAL_EQUATION) {
     return generateVerticalEquationQuestion(
       firstNumber,
       secondNumber,
@@ -106,13 +115,11 @@ export function getRandomBinaryQuestion(
     );
   } else if (type === QuestionType.ARRAY_QUESTION) {
     //Conditional to generate Array Multiplication questions
-
     const a = getRndInteger(1, 6);
     const b = getRndInteger(1, 6);
     return getArrayMultiplicationQuestion(a, b);
   } else if (type === QuestionType.MULTIPLICATION_EQUAL_GROUPS) {
     //Conditional to generate Array Multiplication questions
-
     const a = getRndInteger(1, 7);
     const b = getRndInteger(1, 11);
     return getMultiplicationEqualGroups(a, b);
