@@ -138,7 +138,6 @@ function getRandomDivisionQuestion(
   const a = getRndInteger(min, max);
   const b = getRndInteger(min, max);
   const product = a * b;
-  const text = `${product} / ${b} =`;
   const types = [
     QuestionType.LONG_DIVISION_PROBLEM,
     QuestionType.HORIZONTAL_EQUATION,
