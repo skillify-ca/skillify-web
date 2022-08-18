@@ -1,5 +1,3 @@
-import { PersonData } from "./money/personData";
-import { ItemCostModel } from "./money/itemCostModel";
 import { QuestionType } from "./questionTypes";
 import { HorizontalEquationQuestion } from "./labs/questionGenerators/horizontalEquationQuestion";
 import { TrueOrFalseQuestion } from "./labs/questionGenerators/trueOrFalseQuestion";
@@ -7,6 +5,8 @@ import { VerticalEquationQuestion } from "./labs/questionGenerators/verticalEqua
 import { VisualDotsQuestion } from "./labs/questionGenerators/visualDotsQuestion";
 import { WordProblemQuestion } from "./labs/questionGenerators/wordProblemQuestion";
 import { LongDivisionQuestion } from "./labs/questionGenerators/longDivisionQuestion";
+import { ItemCostModel } from "./labs/finance/money/itemCostModel";
+import { PersonData } from "./labs/finance/money/personData";
 
 export type Question =
   | VerticalEquationQuestion
@@ -61,6 +61,12 @@ export type Question =
       budgetCostModel: Array<ItemCostModel>;
       answer: string;
       text: string;
+    }
+  | {
+      questionType: QuestionType.FINANCE_UNIT_PRICE_PROBLEM;
+      unitPriceModel: UnitPriceModel;
+      answer: string;
+      text: string;
     };
 
 export type MCOption = {
@@ -70,4 +76,9 @@ export type MCOption = {
 export type MCModel = {
   title?: string;
   options: Array<MCOption>;
+};
+
+export type UnitPriceModel = {
+  total: number;
+  numberOfObjects: number;
 };

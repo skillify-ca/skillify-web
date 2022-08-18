@@ -13,4 +13,5 @@ export enum QuestionType {
   FINANCE_BUDGET_TABLE_PROBLEM = "choose items under budget",
   FINANCE_TIP_PROBLEM = "tip amount based on tip percentage",
   FINANCE_BALANCE_BUDGET_PROBLEM = "income vs expense problem",
+  FINANCE_UNIT_PRICE_PROBLEM = "unit price problem",
 }
