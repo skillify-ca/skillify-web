@@ -5,7 +5,7 @@ import { Button } from "../ui/Button";
 
 export interface TrueorFalseProp {
   submitGuess: (guess: GuessData) => void;
-  answer: string;
+  answer: boolean;
   text: string;
 }
 
@@ -17,7 +17,9 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
   const onSubmit = (guess: boolean) => {
     submitGuess({
       guess: guess.toString(),
-      isCorrect: guess.toString() == answer.toString(),
+      isCorrect:
+        guess.toString().toLocaleLowerCase() ==
+        (answer ? "True" : "False").toString().toLocaleLowerCase(),
     });
   };
 
