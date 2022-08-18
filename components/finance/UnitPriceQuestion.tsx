@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GuessData } from "../../../pages/api/guessData";
-import { AnswerType } from "../../pages/api/question";
+import { GuessData } from "../../pages/api/guessData";
 import { Button } from "../ui/Button";
 
 export interface UnitPriceQuestionProps {
@@ -8,7 +7,7 @@ export interface UnitPriceQuestionProps {
   numberOfObjects: number;
   submitGuess: (guess: GuessData) => void;
   answer: string;
-};
+}
 
 const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
   total,
@@ -16,11 +15,10 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
   submitGuess,
   answer,
 }) => {
-  const onSubmit = (guess: number) => {
+  const onSubmit = (guess: string) => {
     submitGuess({
-      answer: answer.toString(),
-      guess: guess,
-      isCorrect: guess == Math.floor(total/numberOfObjects),
+      guess: guess.toString(),
+      isCorrect: Number.parseInt(guess) == Math.floor(total / numberOfObjects),
     });
   };
 
@@ -29,7 +27,6 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
   useEffect(() => {
     (document.getElementById("input") as HTMLInputElement).value = "";
   }, []);
-
 
   return (
     <div>
@@ -42,7 +39,9 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
         <p className="pl-10">
           Kari has {""}
           <span className="font-bold">{total}</span> objects, and they cost {""}
-          <span className="font-bold">{""}${numberOfObjects}</span>
+          <span className="font-bold">
+            {""}${numberOfObjects}
+          </span>
         </p>
         {""}
         <div>

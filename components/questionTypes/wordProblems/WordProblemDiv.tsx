@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { WordProblemQuestion } from "../../../pages/api/labs/questionGenerators/wordProblemQuestion";
 import { Question } from "../../../pages/api/question";
 import { Noun } from "../../../pages/api/WordProblemModelObjects";
 import { Button } from "../../ui/Button";
@@ -6,7 +7,7 @@ import { Input } from "../../ui/Input";
 
 export interface WordProblemDivProp {
   submitGuess: (e) => void;
-  question: Question;
+  question: WordProblemQuestion;
   isReadOnly?: boolean;
 }
 
@@ -32,7 +33,10 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
   };
   const onSubmit = () => {
     setGuess("");
-    submitGuess({ guess: guess, isCorrect: guess === question.answer });
+    submitGuess({
+      guess: guess,
+      isCorrect: guess === question.answer.toString(),
+    });
   };
   const parse = () => {
     const parts = question.text.split(" ");

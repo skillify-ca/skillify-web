@@ -21,13 +21,5 @@ export const FETCH_UNIT_OVERVIEW = gql`
       emoji
       skill_id
     }
-    user_badges(
-      where: { userId: { _eq: $userId }, badgeId: { _eq: $badgeId } }
-    ) {
-      badge {
-        image
-      }
-      locked
-    }
   }
 `;
