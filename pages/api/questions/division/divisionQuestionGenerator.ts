@@ -1,4 +1,4 @@
-import { Question, AnswerType } from "../../question";
+import { Question } from "../../question";
 import { createWordProblemModel } from "../../questionGenerators/wordProblemQuestion";
 import { QuestionType } from "../../questionTypes";
 import { getRndInteger, getRndTenthsDecimal } from "../../random";
@@ -63,7 +63,6 @@ export function getDivisionQuestion(
     return {
       text: text,
       answer: answer,
-      answerType: AnswerType.STRING,
       questionType: type,
       operator: "÷",
       skill: skill,
@@ -89,7 +88,6 @@ export function getDivisionQuestion(
     return {
       text: text,
       answer: a.toString(),
-      answerType: AnswerType.NUMBER,
       questionType: questionType ? questionType : type,
       operator: "÷",
       wordProblem: wordProblemModel,

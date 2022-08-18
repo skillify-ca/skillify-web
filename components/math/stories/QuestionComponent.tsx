@@ -13,11 +13,6 @@ import { MultipleChoiceSentence } from "../../questionTypes/MultipleChoiceSenten
 import { MultipleChoiceWord } from "../../questionTypes/MultipleChoiceWord";
 import { MultiplicationArray } from "../../questionTypes/MultiplicationArray";
 import { MultiplicationEqualGroups } from "../../questionTypes/MultiplicationEqualGroups";
-import { NumberComparison } from "../../questionTypes/numberComparison";
-import { NumbertoVerticalDigits } from "../../questionTypes/numbers/NumbertoVerticalDigits";
-import { PatternBlank } from "../../questionTypes/numbers/PatternBlank";
-import { VerticalDigitstoNum } from "../../questionTypes/numbers/VerticalDigitstoNum";
-import { WordtoHorizontalDigits } from "../../questionTypes/numbers/WordtoHorizontalDigits";
 import { TrueorFalse } from "../../questionTypes/TrueorFalse";
 import { VerticalEquation } from "../../questionTypes/VerticalEquation";
 
@@ -44,38 +39,6 @@ const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
       option3={questionData.multipleChoice.options[2]}
       option4={questionData.multipleChoice.options[3]}
       answer={questionData.answer}
-      submitGuess={submitGuess}
-    />
-  ) : questionData.questionType == QuestionType.PATTERN_COUNT_BLANKS_PROBLEM ? (
-    <PatternBlank
-      displayQuestion={questionData.text}
-      startNumber={questionData.placeholder}
-      answer={questionData.answer}
-      submitGuess={submitGuess}
-    />
-  ) : questionData.questionType == QuestionType.COMPARISON_NUMBER_PROBLEM ? (
-    <NumberComparison
-      valueText={questionData.text}
-      answer={questionData.answer}
-      submitGuess={submitGuess}
-    />
-  ) : questionData.questionType == QuestionType.VERTICAL_DIGITS_TO_NUM ? (
-    <VerticalDigitstoNum
-      numArr={questionData.arrayAns}
-      answer={questionData.text}
-      submitGuess={submitGuess}
-    />
-  ) : questionData.questionType == QuestionType.WORD_TO_HORIZONTAL_DIGITS ? (
-    <WordtoHorizontalDigits
-      numString={questionData.text}
-      answer={questionData.arrayAns}
-      submitGuess={submitGuess}
-    />
-  ) : questionData.questionType == QuestionType.NUM_TO_VERITCAL_DIGITS ? (
-    <NumbertoVerticalDigits
-      num={questionData.text}
-      skill={questionData.skill}
-      answer={questionData.arrayAns}
       submitGuess={submitGuess}
     />
   ) : questionData.questionType == QuestionType.MULTIPLE_CHOICE_WORD ? (

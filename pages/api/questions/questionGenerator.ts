@@ -1,5 +1,5 @@
 import { first, shuffle } from "lodash";
-import { Question, AnswerType, MCOption } from "../question";
+import { Question, MCOption } from "../question";
 import { generateTrueOrFalseQuestion } from "../questionGenerators/trueOrFalseQuestion";
 import { generateVerticalEquationQuestion } from "../questionGenerators/verticalEquationQuestion";
 import { generateWordProblemQuestion } from "../questionGenerators/wordProblemQuestion";
@@ -164,12 +164,9 @@ export function getBinaryQuestion(
     text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} =`;
   }
 
-  calculateAnswer();
-
   return {
     text: text,
-    answer: ans,
-    answerType: AnswerType.NUMBER,
+    answer: calculateAnswer(skill, answerFunction, a, b),
     questionType: type,
     operator: operator,
     multipleChoice: multipleChoiceModel,

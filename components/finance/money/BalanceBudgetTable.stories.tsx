@@ -1,7 +1,7 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 import BalanceBudget, { BalanceBudgetProps } from "./BalanceBudgetTable";
-import { AnswerType, Question } from "../../../pages/api/question";
+import { Question } from "../../../pages/api/question";
 import { QuestionType } from "../../../pages/api/questionTypes";
 
 export default {
@@ -18,7 +18,6 @@ export const Primary = Template.bind({});
 const question: Question = {
   text: "Question",
   answer: "1.5",
-  answerType: AnswerType.NUMBER,
   questionType: QuestionType.HORIZONTAL_EQUATION,
   personDataModel: {
     name: "name",

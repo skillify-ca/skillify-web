@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as Colyseus from "colyseus.js";
 import BattleComponent from "../../components/math/mathBattle/BattleComponent";
-import { Question, AnswerType } from "../api/question";
+import { Question } from "../api/question";
 import { QuestionType } from "../api/questionTypes";
 import { Skill } from "../api/skill";
 import CoopBattleComponent from "../../components/math/mathBattle/coop/CoopBattleComponent";
@@ -47,7 +47,6 @@ const MathBattle = () => {
     {
       text: "",
       answer: "",
-      answerType: AnswerType.NUMBER,
       questionType: QuestionType.HORIZONTAL_EQUATION,
       skill: Skill.ADDITION_SINGLE,
     },

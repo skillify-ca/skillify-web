@@ -17,7 +17,7 @@ import {
   generateMath1Questions,
   generateMath2Questions,
 } from "../../../../api/practice/practiceQuestionGenerator";
-import { Question, AnswerType } from "../../../../api/question";
+import { Question } from "../../../../api/question";
 import { QuestionType } from "../../../../api/questionTypes";
 import { Skill } from "../../../../api/skill";
 
@@ -49,9 +49,8 @@ const PracticeQuiz = ({ skill, courseId }) => {
     {
       text: "",
       answer: "",
-      answerType: AnswerType.NUMBER,
       questionType: QuestionType.HORIZONTAL_EQUATION,
-      skill: Skill.ADDITION_SINGLE,
+      operator: "+",
     },
   ]);
 

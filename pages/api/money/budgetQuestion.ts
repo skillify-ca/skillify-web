@@ -1,4 +1,4 @@
-import { Question, AnswerType } from "../question";
+import { Question } from "../question";
 import { QuestionType } from "../questionTypes";
 import { getRndHundredthsDecimal } from "../random";
 import { ItemDataTable } from "../../../components/finance/money/BudgetTableData";
@@ -22,7 +22,6 @@ export function getBudgetQuestion(tape: number, bulb: number): Question {
   return {
     text: budget.toString(),
     answer: answer.toString(),
-    answerType: AnswerType.STRING,
     questionType: QuestionType.FINANCE_BUDGET_TABLE_PROBLEM,
     budgetCostModel: PriceCostTable,
   };

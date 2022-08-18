@@ -1,4 +1,4 @@
-import { Question, AnswerType } from "../../question";
+import { Question } from "../../question";
 import { QuestionType } from "../../questionTypes";
 import { getRandomItemFromArray, getRndInteger } from "../../random";
 import { Skill } from "../../skill";

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as Colyseus from "colyseus.js";
-import { AnswerType, Question } from "../../../pages/api/question";
+import { Question } from "../../../pages/api/question";
 import Card from "../../ui/Card";
 import ReactCardFlip from "react-card-flip";
 import { Button } from "../../ui/Button";
@@ -33,7 +33,6 @@ const PostGameLobby = ({
     {
       text: "",
       answer: "",
-      answerType: AnswerType.NUMBER,
       questionType: QuestionType.HORIZONTAL_EQUATION,
       skill: Skill.ADDITION_SINGLE,
     },

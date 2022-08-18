@@ -2,7 +2,6 @@ import React from "react";
 import { Story, Meta } from "@storybook/react";
 
 import { WordProblemAdd, WordProblemAddProp } from "./WordProblemAdd";
-import { AnswerType } from "../../../pages/api/question";
 import { QuestionType } from "../../../pages/api/questionTypes";
 import { Skill } from "../../../pages/api/skill";
 import Card from "../../ui/Card";
@@ -13,11 +12,6 @@ export default {
   component: WordProblemAdd,
   argTypes: {},
 } as Meta;
-
-type WordProblemStoryProp = {
-  text: string;
-  name: string;
-};
 
 const Template: Story<WordProblemAddProp> = (args) => {
   return (
@@ -33,7 +27,6 @@ Primary.args = {
     text: "2 + 2",
     wordProblem: createWordProblemModel("+"),
     questionType: QuestionType.BINARY_WORD_PROBLEM,
-    answerType: AnswerType.NUMBER,
     answer: "0",
     skill: Skill.ADDITION_SINGLE,
   },

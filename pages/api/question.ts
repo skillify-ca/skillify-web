@@ -6,15 +6,14 @@ import { VerticalEquationQuestion } from "./questionGenerators/verticalEquationQ
 import { TrueOrFalseQuestion } from "./questionGenerators/trueOrFalseQuestion";
 import { WordProblemQuestion } from "./questionGenerators/wordProblemQuestion";
 
-export enum AnswerType {
-  NUMBER,
-  BOOLEAN,
-  STRING,
-  ARRAY,
-}
-
 export type Question =
   | VerticalEquationQuestion
+  | {
+      questionType: QuestionType.HORIZONTAL_EQUATION;
+      text: string;
+      answer: string;
+      operator: string;
+    }
   | {
       questionType: QuestionType.MULTIPLE_CHOICE_SENTENCE;
       multipleChoice: MCModel;
@@ -39,6 +38,7 @@ export type Question =
       displayNum: number; //randomizes visualnumber type
       answer: string;
       operator: string;
+      text: string;
     }
   | TrueOrFalseQuestion
   | {
@@ -64,6 +64,7 @@ export type Question =
       questionType: QuestionType.FINANCE_TIP_PROBLEM;
       displayNum: number;
       answer: string;
+      text: string;
     }
   | {
       questionType: QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM;
@@ -74,6 +75,7 @@ export type Question =
       questionType: QuestionType.FINANCE_BUDGET_TABLE_PROBLEM;
       budgetCostModel: Array<ItemCostModel>;
       answer: string;
+      text: string;
     };
 
 export type MCOption = {
@@ -83,11 +85,4 @@ export type MCOption = {
 export type MCModel = {
   title?: string;
   options: Array<MCOption>;
-};
-export type fillBlankModel = {
-  options: Array<FillOption>;
-};
-
-export type FillOption = {
-  text: string;
 };

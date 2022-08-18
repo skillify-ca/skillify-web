@@ -1,4 +1,4 @@
-import { AnswerType, Question } from "../../question";
+import { Question } from "../../question";
 import { QuestionType } from "../../questionTypes";
 import { getRndInteger } from "../../random";
 import { Skill } from "../../skill";
@@ -20,10 +20,8 @@ export function getRandomAdditionQuestion(
     return {
       text: text,
       answer: (a + b).toString(),
-      answerType: AnswerType.STRING,
       questionType: QuestionType.VISUAL_TYPE_PROBLEM,
       operator: "+",
-      skill: skill,
       displayNum: getRndInteger(0, 3),
     };
   }
