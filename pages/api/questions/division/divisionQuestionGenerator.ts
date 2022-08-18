@@ -1,5 +1,4 @@
 import { Question } from "../../question";
-import { createWordProblemModel } from "../../questionGenerators/wordProblemQuestion";
 import { QuestionType } from "../../questionTypes";
 import { getRndInteger, getRndTenthsDecimal } from "../../random";
 import { Skill } from "../../skill";
@@ -7,8 +6,7 @@ import { Skill } from "../../skill";
 export function getRandomDivisionQuestion(
   min: number,
   max: number,
-  skill: Skill,
-  questionType?: QuestionType
+  skill: Skill
 ): Question {
   let a;
   let b;
@@ -29,14 +27,13 @@ export function getRandomDivisionQuestion(
     a = getRndInteger(min, max);
     b = getRndInteger(min, max);
   }
-  return getDivisionQuestion(a, b, skill, questionType);
+  return getDivisionQuestion(a, b, skill);
 }
 
 export function getDivisionQuestion(
   a: number,
   b: number,
-  skill: Skill,
-  questionType?: QuestionType
+  skill: Skill
 ): Question {
   if (
     skill == Skill.DIVISION_TWO_DIGIT_BY_ONE_DIGIT ||
@@ -75,22 +72,10 @@ export function getDivisionQuestion(
       QuestionType.HORIZONTAL_EQUATION,
       QuestionType.BINARY_WORD_PROBLEM,
     ];
-    const type = types[getRndInteger(0, types.length)];
-    //undefined unless the QuestionType is BINARY_WORD_PROBLEM
-    let wordProblemModel;
 
-    if (
-      type == QuestionType.BINARY_WORD_PROBLEM ||
-      questionType === QuestionType.BINARY_WORD_PROBLEM
-    ) {
-      wordProblemModel = createWordProblemModel("÷");
-    }
     return {
       text: text,
       answer: a.toString(),
-      questionType: questionType ? questionType : type,
-      operator: "÷",
-      wordProblem: wordProblemModel,
       skill: skill,
     };
   }

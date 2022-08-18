@@ -1,42 +1,118 @@
-import { getRandomPropertyAdditionQuestion } from "../../questions/addition/additionPropertyQuestionGenerator";
 import { Question } from "../../question";
 import { Skill } from "../../skill";
-import { getRandomAdditionQuestion } from "../../questions/addition/additionQuestionGenerator";
 import { getRandomDivisionQuestion } from "../../questions/division/divisionQuestionGenerator";
-import { getRandomMultiplicationQuestion } from "../../questions/multiplication/multiplicationQuestionGenerator";
-import { getRandomSubtractionQuestion } from "../../questions/subtraction/subtractionQuestionGenerator";
+import { QuestionType } from "../../questionTypes";
+import { getRandomBinaryQuestion } from "../../questions/questionGenerator";
+
+const DEFAULT_QUESTION_TYPES = [
+  QuestionType.HORIZONTAL_EQUATION,
+  QuestionType.BINARY_WORD_PROBLEM,
+  QuestionType.VERTICAL_EQUATION,
+  QuestionType.TRUE_OR_FALSE_PROBLEM,
+  QuestionType.MULTIPLE_CHOICE,
+];
 
 export const generateQuestionForMath1Skill = (skill: Skill): Question => {
   // Addition skills
   switch (skill) {
     case Skill.ADDITION_SINGLE:
-      return getRandomAdditionQuestion(1, 11, skill);
+      const singleAdditionQuestionTypes = [
+        ...DEFAULT_QUESTION_TYPES,
+        QuestionType.VISUAL_TYPE_PROBLEM,
+        QuestionType.VISUAL_TYPE_PROBLEM,
+        QuestionType.VISUAL_TYPE_PROBLEM,
+        QuestionType.VISUAL_TYPE_PROBLEM,
+        QuestionType.VISUAL_TYPE_PROBLEM,
+      ];
+      return getRandomBinaryQuestion(
+        1,
+        11,
+        "+",
+        (a, b) => a + b,
+        skill,
+        singleAdditionQuestionTypes
+      );
     case Skill.ADDITION_DOUBLE:
-      return getRandomAdditionQuestion(10, 101, skill);
+      return getRandomBinaryQuestion(
+        10,
+        101,
+        "+",
+        (a, b) => a + b,
+        skill,
+        DEFAULT_QUESTION_TYPES
+      );
     case Skill.ADDITION_TRIPLE:
-      return getRandomAdditionQuestion(100, 1001, skill);
-    case Skill.ADDITION_PROPERTIES:
-      return getRandomPropertyAdditionQuestion(1, 15, skill);
+      return getRandomBinaryQuestion(
+        100,
+        1001,
+        "+",
+        (a, b) => a + b,
+        skill,
+        DEFAULT_QUESTION_TYPES
+      );
   }
 
   // Subtraction Skills
   switch (skill) {
     case Skill.SUBTRACTION_SINGLE:
-      return getRandomSubtractionQuestion(2, 11, skill);
+      return getRandomBinaryQuestion(
+        2,
+        11,
+        "-",
+        (a, b) => a - b,
+        skill,
+        DEFAULT_QUESTION_TYPES
+      );
     case Skill.SUBTRACTION_DOUBLE:
-      return getRandomSubtractionQuestion(10, 101, skill);
+      return getRandomBinaryQuestion(
+        10,
+        101,
+        "-",
+        (a, b) => a - b,
+        skill,
+        DEFAULT_QUESTION_TYPES
+      );
     case Skill.SUBTRACTION_TRIPLE:
-      return getRandomSubtractionQuestion(100, 1001, skill);
+      return getRandomBinaryQuestion(
+        100,
+        1001,
+        "-",
+        (a, b) => a - b,
+        skill,
+        DEFAULT_QUESTION_TYPES
+      );
   }
 
+  const multiply = (a: number, b: number) => a * b;
   // Multiplication Skills
   switch (skill) {
     case Skill.EQUAL_GROUP_10_ITEMS:
-      return getRandomMultiplicationQuestion(1, 11, skill);
+      return getRandomBinaryQuestion(6, 10, "x", multiply, skill, [
+        ...DEFAULT_QUESTION_TYPES,
+        QuestionType.MULTIPLICATION_EQUAL_GROUPS,
+        QuestionType.MULTIPLICATION_EQUAL_GROUPS,
+        QuestionType.MULTIPLICATION_EQUAL_GROUPS,
+        QuestionType.MULTIPLICATION_EQUAL_GROUPS,
+        QuestionType.MULTIPLICATION_EQUAL_GROUPS,
+      ]);
     case Skill.MULTIPLICATION_5:
-      return getRandomMultiplicationQuestion(1, 6, skill);
+      return getRandomBinaryQuestion(1, 6, "x", multiply, skill, [
+        ...DEFAULT_QUESTION_TYPES,
+        QuestionType.ARRAY_QUESTION,
+        QuestionType.ARRAY_QUESTION,
+        QuestionType.ARRAY_QUESTION,
+        QuestionType.ARRAY_QUESTION,
+        QuestionType.ARRAY_QUESTION,
+      ]);
     case Skill.MULTIPLICATION_10:
-      return getRandomMultiplicationQuestion(6, 10, skill);
+      return getRandomBinaryQuestion(
+        6,
+        10,
+        "x",
+        multiply,
+        skill,
+        DEFAULT_QUESTION_TYPES
+      );
   }
 
   //All division questions min and maxs are in respect to the dividend

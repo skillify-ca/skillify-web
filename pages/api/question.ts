@@ -2,18 +2,15 @@ import { PersonData } from "./money/personData";
 import { ItemCostModel } from "./money/itemCostModel";
 import { QuestionType } from "./questionTypes";
 import { Skill } from "./skill";
-import { VerticalEquationQuestion } from "./questionGenerators/verticalEquationQuestion";
-import { TrueOrFalseQuestion } from "./questionGenerators/trueOrFalseQuestion";
-import { WordProblemQuestion } from "./questionGenerators/wordProblemQuestion";
+import { HorizontalEquationQuestion } from "./labs/questionGenerators/horizontalEquationQuestion";
+import { TrueOrFalseQuestion } from "./labs/questionGenerators/trueOrFalseQuestion";
+import { VerticalEquationQuestion } from "./labs/questionGenerators/verticalEquationQuestion";
+import { VisualDotsQuestion } from "./labs/questionGenerators/visualDotsQuestion";
+import { WordProblemQuestion } from "./labs/questionGenerators/wordProblemQuestion";
 
 export type Question =
   | VerticalEquationQuestion
-  | {
-      questionType: QuestionType.HORIZONTAL_EQUATION;
-      text: string;
-      answer: string;
-      operator: string;
-    }
+  | HorizontalEquationQuestion
   | {
       questionType: QuestionType.MULTIPLE_CHOICE_SENTENCE;
       multipleChoice: MCModel;
@@ -33,13 +30,7 @@ export type Question =
       text: string;
     }
   | WordProblemQuestion
-  | {
-      questionType: QuestionType.VISUAL_TYPE_PROBLEM;
-      displayNum: number; //randomizes visualnumber type
-      answer: string;
-      operator: string;
-      text: string;
-    }
+  | VisualDotsQuestion
   | TrueOrFalseQuestion
   | {
       questionType: QuestionType.LONG_DIVISION_PROBLEM;

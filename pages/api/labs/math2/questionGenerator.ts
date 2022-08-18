@@ -1,55 +1,187 @@
 import { Question } from "../../question";
 import { Skill } from "../../skill";
-import { getRandomAdditionQuestion } from "../../questions/addition/additionQuestionGenerator";
 import { getRandomDivisionQuestion } from "../../questions/division/divisionQuestionGenerator";
-import { getRandomMultiplicationQuestion } from "../../questions/multiplication/multiplicationQuestionGenerator";
-import { getRandomSubtractionQuestion } from "../../questions/subtraction/subtractionQuestionGenerator";
+import { QuestionType } from "../../questionTypes";
+import { getRandomBinaryQuestion } from "../../questions/questionGenerator";
+
+const DEFAULT_QUESTIONT_TYPES = [
+  QuestionType.HORIZONTAL_EQUATION,
+  QuestionType.BINARY_WORD_PROBLEM,
+  QuestionType.VERTICAL_EQUATION,
+  QuestionType.TRUE_OR_FALSE_PROBLEM,
+  QuestionType.MULTIPLE_CHOICE,
+];
+
+const MINIMUM_QUESTION_TYPES = [
+  QuestionType.HORIZONTAL_EQUATION,
+  QuestionType.VERTICAL_EQUATION,
+];
 
 export const generateQuestionForMath2Skill = (skill: Skill): Question => {
   // Addition skills
   switch (skill) {
     case Skill.ADDITION_TENTHS:
-      return getRandomAdditionQuestion(0.1, 0.9, skill);
+      return getRandomBinaryQuestion(
+        0.1,
+        0.9,
+        "+",
+        (a, b) => a + b,
+        skill,
+        MINIMUM_QUESTION_TYPES
+      );
     case Skill.ADDITION_4_DIGIT:
-      return getRandomAdditionQuestion(1000, 10001, skill);
+      return getRandomBinaryQuestion(
+        1000,
+        10001,
+        "+",
+        (a, b) => a + b,
+        skill,
+        DEFAULT_QUESTIONT_TYPES
+      );
     case Skill.ADDITION_5_DIGIT:
-      return getRandomAdditionQuestion(10000, 100001, skill);
+      return getRandomBinaryQuestion(
+        10000,
+        100001,
+        "+",
+        (a, b) => a + b,
+        skill,
+        DEFAULT_QUESTIONT_TYPES
+      );
     case Skill.ADDITION_6_DIGIT:
-      return getRandomAdditionQuestion(100000, 1000001, skill);
+      return getRandomBinaryQuestion(
+        100000,
+        1000001,
+        "+",
+        (a, b) => a + b,
+        skill,
+        DEFAULT_QUESTIONT_TYPES
+      );
     case Skill.ADDITION_HUNDREDTHS:
-      return getRandomAdditionQuestion(0.01, 0.99, skill);
+      return getRandomBinaryQuestion(
+        0.01,
+        0.99,
+        "+",
+        (a, b) => a + b,
+        skill,
+        MINIMUM_QUESTION_TYPES
+      );
   }
 
   // Subtraction Skills
   switch (skill) {
     case Skill.SUBTRACTION_4_DIGIT:
-      return getRandomSubtractionQuestion(1000, 10001, skill);
+      return getRandomBinaryQuestion(
+        1000,
+        10001,
+        "-",
+        (a, b) => a - b,
+        skill,
+        DEFAULT_QUESTIONT_TYPES
+      );
     case Skill.SUBTRACTION_TENTHS:
-      return getRandomSubtractionQuestion(0.1, 0.9, skill);
+      return getRandomBinaryQuestion(
+        0.1,
+        0.9,
+        "-",
+        (a, b) => a - b,
+        skill,
+        MINIMUM_QUESTION_TYPES
+      );
     case Skill.SUBTRACTION_5_DIGIT:
-      return getRandomSubtractionQuestion(10000, 100001, skill);
+      return getRandomBinaryQuestion(
+        10000,
+        100001,
+        "-",
+        (a, b) => a - b,
+        skill,
+        DEFAULT_QUESTIONT_TYPES
+      );
     case Skill.SUBTRACTION_6_DIGIT:
-      return getRandomSubtractionQuestion(100000, 1000001, skill);
+      return getRandomBinaryQuestion(
+        100000,
+        1000001,
+        "-",
+        (a, b) => a - b,
+        skill,
+        DEFAULT_QUESTIONT_TYPES
+      );
     case Skill.SUBTRACTION_HUNDREDTHS:
-      return getRandomSubtractionQuestion(0.01, 0.99, skill);
+      return getRandomBinaryQuestion(
+        0.01,
+        0.99,
+        "-",
+        (a, b) => a - b,
+        skill,
+        MINIMUM_QUESTION_TYPES
+      );
   }
 
   // Multiplication Skills
   switch (skill) {
     case Skill.MULTIPLY_ONE_DIGIT_X_TWO_DIGIT:
-      return getRandomMultiplicationQuestion(10, 100, skill);
+      return getRandomBinaryQuestion(
+        10,
+        100,
+        "X",
+        (a, b) => a * b,
+        skill,
+        MINIMUM_QUESTION_TYPES
+      );
+
     case Skill.MULTIPLY_ONE_DIGIT_X_THREE_DIGIT:
-      return getRandomMultiplicationQuestion(100, 1000, skill);
+      return getRandomBinaryQuestion(
+        100,
+        1000,
+        "X",
+        (a, b) => a * b,
+        skill,
+        MINIMUM_QUESTION_TYPES
+      );
     case Skill.MULTIPLICATION_10_BY_DOUBLE_DIGIT:
-      return getRandomMultiplicationQuestion(10, 100, skill);
+      return getRandomBinaryQuestion(
+        10,
+        100,
+        "X",
+        (a, b) => a * b,
+        skill,
+        MINIMUM_QUESTION_TYPES
+      );
     case Skill.MULTIPLICATION_10_BY_TRIPLE_DIGIT:
-      return getRandomMultiplicationQuestion(100, 1000, skill);
+      return getRandomBinaryQuestion(
+        100,
+        1000,
+        "X",
+        (a, b) => a * b,
+        skill,
+        MINIMUM_QUESTION_TYPES
+      );
     case Skill.MULTIPLY_TWO_DIGIT_BY_TWO_DIGIT:
-      return getRandomMultiplicationQuestion(10, 100, skill);
+      return getRandomBinaryQuestion(
+        10,
+        100,
+        "X",
+        (a, b) => a * b,
+        skill,
+        MINIMUM_QUESTION_TYPES
+      );
     case Skill.MULTIPLY_TWO_DIGIT_BY_THREE_DIGIT:
-      return getRandomMultiplicationQuestion(100, 1000, skill);
+      return getRandomBinaryQuestion(
+        100,
+        1000,
+        "X",
+        (a, b) => a * b,
+        skill,
+        MINIMUM_QUESTION_TYPES
+      );
     case Skill.MULTIPLY_THREE_DIGIT_BY_TENTH:
-      return getRandomMultiplicationQuestion(100, 1000, skill);
+      return getRandomBinaryQuestion(
+        100,
+        1000,
+        "X",
+        (a, b) => a * b,
+        skill,
+        MINIMUM_QUESTION_TYPES
+      );
   }
 
   // Division skills

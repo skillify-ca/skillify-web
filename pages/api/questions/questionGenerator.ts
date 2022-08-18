@@ -1,8 +1,11 @@
 import { first, shuffle } from "lodash";
+import { generateMultipleChoiceQuestion } from "../labs/finance/questionGenerators/multipleChoiceQuestion";
+import { getArrayMultiplicationQuestion } from "../labs/finance/questionGenerators/multiplication/arrayMultiplicationQuestion";
+import { getMultiplicationEqualGroups } from "../labs/finance/questionGenerators/multiplication/equalGroupsQuestion";
+import { generateTrueOrFalseQuestion } from "../labs/finance/questionGenerators/trueOrFalseQuestion";
+import { generateVerticalEquationQuestion } from "../labs/finance/questionGenerators/verticalEquationQuestion";
+import { generateWordProblemQuestion } from "../labs/finance/questionGenerators/wordProblemQuestion";
 import { Question, MCOption } from "../question";
-import { generateTrueOrFalseQuestion } from "../questionGenerators/trueOrFalseQuestion";
-import { generateVerticalEquationQuestion } from "../questionGenerators/verticalEquationQuestion";
-import { generateWordProblemQuestion } from "../questionGenerators/wordProblemQuestion";
 import { QuestionType } from "../questionTypes";
 import {
   getRndInteger,
@@ -62,30 +65,9 @@ export function getRandomBinaryQuestion(
   max: number,
   operator: string,
   answerFunction: (a: number, b: number) => number,
-  skill: Skill
+  skill: Skill,
+  types: QuestionType[]
 ): Question {
-  //Default possible Question Types
-  let types = [
-    QuestionType.HORIZONTAL_EQUATION,
-    QuestionType.BINARY_WORD_PROBLEM,
-    QuestionType.VERTICAL_EQUATION,
-    QuestionType.TRUE_OR_FALSE_PROBLEM,
-    QuestionType.MULTIPLE_CHOICE,
-  ];
-
-  //Temporarily Disables True and False, MC, and Word Problems for Grade 4 and above for Add and Subtract units
-  //TODO Redesign the logic for MC Question generator and T or F Questions
-  if (
-    skill == Skill.ADDITION_TENTHS ||
-    skill == Skill.SUBTRACTION_TENTHS ||
-    skill == Skill.SUBTRACTION_HUNDREDTHS ||
-    skill == Skill.ADDITION_HUNDREDTHS ||
-    skill == Skill.MULTIPLY_THREE_DIGIT_BY_TENTH
-  ) {
-    //Binary Word problems don't make much sense for deciaml word problems
-    types = [QuestionType.HORIZONTAL_EQUATION, QuestionType.VERTICAL_EQUATION];
-  }
-
   const type = getRandomItemFromArray(types);
   const { firstNumber, secondNumber } = generateTwoRandomNumbers(
     min,
@@ -115,79 +97,24 @@ export function getRandomBinaryQuestion(
       operator,
       answerFunction
     );
-  }
-  return getBinaryQuestion(
-    firstNumber,
-    secondNumber,
-    operator,
-    type,
-    answerFunction,
-    skill
-  );
-}
+  } else if (type === QuestionType.MULTIPLE_CHOICE) {
+    return generateMultipleChoiceQuestion(
+      firstNumber,
+      secondNumber,
+      operator,
+      answerFunction
+    );
+  } else if (type === QuestionType.ARRAY_QUESTION) {
+    //Conditional to generate Array Multiplication questions
 
-export function getBinaryQuestion(
-  a: number,
-  b: number,
-  operator: string,
-  questionType: QuestionType,
-  answerFunction: (a: number, b: number) => number,
-  skill: Skill
-): Question {
-  let text;
-  const type = questionType;
-  let multipleChoiceModel;
-  if (type === QuestionType.MULTIPLE_CHOICE) {
-    if (a < b) {
-      let temp = a;
-      a = b;
-      b = temp;
-    }
+    const a = getRndInteger(1, 6);
+    const b = getRndInteger(1, 6);
+    return getArrayMultiplicationQuestion(a, b);
+  } else if (type === QuestionType.MULTIPLICATION_EQUAL_GROUPS) {
+    //Conditional to generate Array Multiplication questions
 
-    let realAns = answerFunction(a, b);
-    let wrongArr = [-2, -1, 1, 2];
-    let wrongIndexA = randomize(0, wrongArr.length);
-    let wrongA = wrongArr[wrongIndexA] + realAns;
-    wrongArr.splice(wrongIndexA, 1);
-    let wrongIndexB = randomize(0, wrongArr.length);
-    let wrongB = wrongArr[wrongIndexB] + realAns;
-
-    text = `${a} ${operator} ${b}`;
-
-    const option1: MCOption = { text: wrongA.toString(), id: "a" };
-    const option2: MCOption = { text: wrongB.toString(), id: "b" };
-    const option3: MCOption = { text: realAns.toString(), id: "c" };
-
-    const optionArr = [option1, option2, option3];
-    multipleChoiceModel = { options: shuffle(optionArr) };
-  } else {
-    text = `${Math.max(a, b)} ${operator} ${Math.min(a, b)} =`;
-  }
-
-  return {
-    text: text,
-    answer: calculateAnswer(skill, answerFunction, a, b),
-    questionType: type,
-    operator: operator,
-    multipleChoice: multipleChoiceModel,
-    skill: skill,
-  };
-}
-
-function calculateAnswer(skill, answerFunction, a, b) {
-  if (skill == Skill.ADDITION_TENTHS || skill == Skill.SUBTRACTION_TENTHS) {
-    return answerFunction(Math.max(a, b), Math.min(a, b)).toFixed(1);
-  } else if (
-    skill == Skill.SUBTRACTION_HUNDREDTHS ||
-    skill == Skill.ADDITION_HUNDREDTHS
-  ) {
-    return answerFunction(Math.max(a, b), Math.min(a, b)).toFixed(2);
-  } else if (
-    skill == Skill.MULTIPLY_THREE_DIGIT_BY_TENTH ||
-    skill == Skill.DIVISION_THREE_DIGIT_BY_TENTH
-  ) {
-    return answerFunction(Math.max(a, b), Math.min(a, b)).toFixed(1);
-  } else {
-    return answerFunction(Math.max(a, b), Math.min(a, b)).toString();
+    const a = getRndInteger(1, 7);
+    const b = getRndInteger(1, 11);
+    return getMultiplicationEqualGroups(a, b);
   }
 }
