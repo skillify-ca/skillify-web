@@ -6,6 +6,7 @@ import { Skill } from "../../../pages/api/skill";
 import BalanceBudget from "../../finance/money/BalanceBudgetTable";
 import BudgetTable from "../../finance/money/BudgetTable";
 import TipQuestion from "../../finance/money/TipQuestion";
+import UnitPriceQuestion from "../../finance/UnitPriceQuestion";
 import { HorizontalEquation } from "../../questionTypes/HorizontalEquation";
 import { LongDivision } from "../../questionTypes/LongDivision";
 import { MultipleChoice } from "../../questionTypes/MultipleChoice";
@@ -120,6 +121,16 @@ const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
     <BalanceBudget
       question={questionData}
       answer={questionData.answer}
+      submitGuess={submitGuess}
+    />
+  ) : questionData.questionType === QuestionType.FINANCE_UNIT_PRICE_PROBLEM ? (
+    <UnitPriceQuestion
+      total={questionData.unitPriceModel.total}
+      numberOfObjects={questionData.unitPriceModel.numberOfObjects}
+      answer={(
+        questionData.unitPriceModel.total /
+        questionData.unitPriceModel.numberOfObjects
+      ).toString()}
       submitGuess={submitGuess}
     />
   ) : (
