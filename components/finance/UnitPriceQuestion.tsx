@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { GuessData } from "../../../pages/api/guessData";
+import { AnswerType } from "../../pages/api/question";
 import { Button } from "../ui/Button";
 
 export interface UnitPriceQuestionProps {
   total: number;
   numberOfObjects: number;
   submitGuess: (guess: GuessData) => void;
+  answer: string;
 };
 
 const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
   total,
   numberOfObjects,
   submitGuess,
+  answer,
 }) => {
   const onSubmit = (guess: number) => {
     submitGuess({
+      answer: answer.toString(),
       guess: guess,
       isCorrect: guess == Math.floor(total/numberOfObjects),
     });
