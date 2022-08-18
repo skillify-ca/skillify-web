@@ -1,5 +1,5 @@
-import { Question } from "../question";
-import { QuestionType } from "../questionTypes";
+import { Question } from "../../../question";
+import { QuestionType } from "../../../questionTypes";
 
 export function getTipQuestion(tip: number, bill: number): Question {
   const percent = tip / 100;

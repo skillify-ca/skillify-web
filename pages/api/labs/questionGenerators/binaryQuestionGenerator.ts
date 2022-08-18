@@ -1,22 +1,3 @@
-import { first, shuffle } from "lodash";
-import { generateHorizontalEquationQuestion } from "../labs/questionGenerators/horizontalEquationQuestion";
-import { generateMultipleChoiceQuestion } from "../labs/questionGenerators/multipleChoiceQuestion";
-import { getArrayMultiplicationQuestion } from "../labs/questionGenerators/multiplication/arrayMultiplicationQuestion";
-import { getMultiplicationEqualGroups } from "../labs/questionGenerators/multiplication/equalGroupsQuestion";
-import { generateTrueOrFalseQuestion } from "../labs/questionGenerators/trueOrFalseQuestion";
-import { generateVerticalEquationQuestion } from "../labs/questionGenerators/verticalEquationQuestion";
-import { generateWordProblemQuestion } from "../labs/questionGenerators/wordProblemQuestion";
-
-import { Question, MCOption } from "../question";
-import { QuestionType } from "../questionTypes";
-import {
-  getRndInteger,
-  getRndTenthsDecimal,
-  getRndHundredthsDecimal,
-  getRandomItemFromArray,
-} from "../random";
-import { Skill } from "../skill";
-
 //converts number as a string into an array of numbers
 export function randomize(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;

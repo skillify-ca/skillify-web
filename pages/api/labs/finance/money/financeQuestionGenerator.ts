@@ -1,11 +1,10 @@
-import { Question } from "../question";
-import { QuestionType } from "../questionTypes";
-import { getRndHundredthsDecimal, getRndInteger } from "../random";
-
 import { getTipQuestion } from "./tipQuestion";
 import { getBudgetQuestion } from "./budgetQuestion";
 import { getBalanceBudgetQuestion } from "./balanceBudgetQuestion";
-import { personDataTable } from "../../../components/finance/money/BalanceBudgetData";
+import { personDataTable } from "../../../../../components/finance/money/BalanceBudgetData";
+import { Question } from "../../../question";
+import { QuestionType } from "../../../questionTypes";
+import { getRndInteger, getRndHundredthsDecimal } from "../../../random";
 
 export function getRandomFinanceQuestion(): Question {
   const types = [

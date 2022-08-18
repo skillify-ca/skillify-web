@@ -1,12 +1,11 @@
 import { Question } from "../../question";
 import { Skill } from "../../skill";
-import { getRandomDivisionQuestion } from "../../questions/division/divisionQuestionGenerator";
 import { QuestionType } from "../../questionTypes";
-import { getRandomBinaryQuestion } from "../../questions/questionGenerator";
 import { getRndInteger, getRandomItemFromArray } from "../../random";
 import { generateHorizontalEquationQuestion } from "../questionGenerators/horizontalEquationQuestion";
 import { generateLongDivisionQuestion } from "../questionGenerators/longDivisionQuestion";
 import { generateWordProblemQuestion } from "../questionGenerators/wordProblemQuestion";
+import { getRandomBinaryQuestion } from "../questionGenerators/binaryQuestionGenerator";
 
 const DEFAULT_QUESTIONT_TYPES = [
   QuestionType.HORIZONTAL_EQUATION,

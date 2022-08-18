@@ -1,7 +1,7 @@
-import { Question } from "../question";
-import { QuestionType } from "../questionTypes";
-import { getRndHundredthsDecimal } from "../random";
-import { ItemDataTable } from "../../../components/finance/money/BudgetTableData";
+import { ItemDataTable } from "../../../../../components/finance/money/BudgetTableData";
+import { Question } from "../../../question";
+import { QuestionType } from "../../../questionTypes";
+import { getRndHundredthsDecimal } from "../../../random";
 import { ItemCostModel } from "./itemCostModel";
 
 export function getBudgetQuestion(tape: number, bulb: number): Question {

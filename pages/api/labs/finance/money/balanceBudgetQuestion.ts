@@ -1,5 +1,5 @@
-import { Question } from "../question";
-import { QuestionType } from "../questionTypes";
+import { Question } from "../../../question";
+import { QuestionType } from "../../../questionTypes";
 import { PersonData } from "./personData";
 
 export function getBalanceBudgetQuestion(person: PersonData): Question {

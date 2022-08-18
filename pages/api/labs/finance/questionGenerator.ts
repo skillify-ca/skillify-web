@@ -1,7 +1,6 @@
 import { Question } from "../../question";
-import { QuestionType } from "../../questionTypes";
 import { Skill } from "../../skill";
-import { getRandomFinanceQuestion } from "../../money/financeQuestionGenerator";
+import { getRandomFinanceQuestion } from "./money/financeQuestionGenerator";
 
 export const generateQuestionForFinanceSkill = (skill: Skill): Question => {
   // Financial Skills
