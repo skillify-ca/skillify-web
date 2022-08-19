@@ -1,19 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Button } from "../ui/Button";
+import { name } from "../../pages/api/names";
+import { ItemType } from "../../pages/api/labs/questionGenerators/wordProblemQuestion";
 
 export interface UnitPriceQuestionProps {
   total: number;
   numberOfObjects: number;
   submitGuess: (guess: GuessData) => void;
   answer: string;
+  name: string;
+  itemContainer: ItemContainerObj;
+  nounType: string;
+  item1: Noun;
 }
+
+const nameSelector = () => {
+  const random = Math.floor(Math.random() * name.length);
+  return name[random];
+};
 
 const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
   total,
   numberOfObjects,
   submitGuess,
   answer,
+  name,
 }) => {
   const onSubmit = (guess: string) => {
     submitGuess({
@@ -37,7 +49,7 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
         </p>
         {""}
         <p className="pl-10">
-          Kari has {""}
+          {nameSelector(name)} has {""}
           <span className="font-bold">{total}</span> objects, and they cost {""}
           <span className="font-bold">
             {""}${numberOfObjects}
