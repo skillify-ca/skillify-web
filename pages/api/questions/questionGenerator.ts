@@ -130,7 +130,6 @@ export const generateQuestionForSkill = (
         unitPriceModel: {
           total: randomTotal,
           numberOfObjects: randomNumberOfObjects,
-          answer: "",
         },
       };
   }
