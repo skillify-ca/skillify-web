@@ -45,7 +45,7 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
         {""}
         <p className="pl-10">
           {nameSelector(name)} has {""}
-          <span className="font-bold">{total}</span> {noun1.name}, and they cost{" "}
+          <span className="font-bold">{total}</span> {noun1.type}, and they cost{" "}
           {""}
           <span className="font-bold">
             {""}${numberOfObjects}
