@@ -44,7 +44,7 @@ export type WordProblemModel = {
   item2?: Noun;
 };
 
-const nameSelector = () => {
+export const nameSelector = () => {
   const random = Math.floor(Math.random() * name.length);
   return name[random];
 };
@@ -68,7 +68,8 @@ const itemTypeSelector = () => {
       console.log("ERROR");
   }
 };
-const getRandomItemFromMap = (map) => {
+
+export const getRandomItemFromMap = (map) => {
   const keyList = Object.keys(map); //get keys of map
   const randomIndex = Math.floor(Math.random() * keyList.length);
   const randomKey = keyList[randomIndex];

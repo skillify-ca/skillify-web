@@ -3,6 +3,8 @@ import { GuessData } from "../../pages/api/guessData";
 import { Button } from "../ui/Button";
 import { name } from "../../pages/api/names";
 import { fruitsMap } from "../../pages/api/WordProblemModelObjects";
+import { nameSelector } from "../../pages/api/labs/questionGenerators/wordProblemQuestion";
+import { getRandomItemFromMap } from "../../pages/api/labs/questionGenerators/wordProblemQuestion";
 
 export interface UnitPriceQuestionProps {
   total: number;
@@ -11,11 +13,6 @@ export interface UnitPriceQuestionProps {
   answer: string;
   name: string;
 }
-
-const nameSelector = () => {
-  const random = Math.floor(Math.random() * name.length);
-  return name[random];
-};
 
 const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
   total,
@@ -47,8 +44,8 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
         {""}
         <p className="pl-10">
           {nameSelector(name)} has {""}
-          <span className="font-bold">{total}</span> {fruitsMap.type}, and they
-          cost {""}
+          <span className="font-bold">{total}</span>{" "}
+          {getRandomItemFromMap(fruitsMap)}, and they cost {""}
           <span className="font-bold">
             {""}${numberOfObjects}
           </span>
@@ -68,7 +65,10 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
           </p>
         </div>
         <div className="flex flex-wrap justify-center mt-2">
-          <img src={fruitsMap.image} className="w-12 h-12 sm:w-16 sm:h-16" />
+          <img
+            src={getRandomItemFromMap(fruitsMap)}
+            className="w-12 h-12 sm:w-16 sm:h-16"
+          />
         </div>
         <Button
           backgroundColor="blue"
