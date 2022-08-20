@@ -21,6 +21,7 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
   answer,
   ...props
 }) => {
+  const noun1: Noun = getRandomItemFromMap(fruitsMap);
   const onSubmit = (guess: string) => {
     submitGuess({
       guess: guess.toString(),
@@ -44,8 +45,8 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
         {""}
         <p className="pl-10">
           {nameSelector(name)} has {""}
-          <span className="font-bold">{total}</span>{" "}
-          {getRandomItemFromMap(fruitsMap)}, and they cost {""}
+          <span className="font-bold">{total}</span> {noun1.name}, and they cost{" "}
+          {""}
           <span className="font-bold">
             {""}${numberOfObjects}
           </span>
@@ -65,10 +66,7 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
           </p>
         </div>
         <div className="flex flex-wrap justify-center mt-2">
-          <img
-            src={getRandomItemFromMap(fruitsMap)}
-            className="w-12 h-12 sm:w-16 sm:h-16"
-          />
+          <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         </div>
         <Button
           backgroundColor="blue"
