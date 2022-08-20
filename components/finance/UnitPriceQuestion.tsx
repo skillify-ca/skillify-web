@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Button } from "../ui/Button";
 import { name } from "../../pages/api/names";
-import { ItemType } from "../../pages/api/labs/questionGenerators/wordProblemQuestion";
+import { fruitsMap } from "../../pages/api/WordProblemModelObjects";
 
 export interface UnitPriceQuestionProps {
   total: number;
@@ -10,9 +10,6 @@ export interface UnitPriceQuestionProps {
   submitGuess: (guess: GuessData) => void;
   answer: string;
   name: string;
-  itemContainer: ItemContainerObj;
-  nounType: string;
-  item1: Noun;
 }
 
 const nameSelector = () => {
@@ -25,7 +22,7 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
   numberOfObjects,
   submitGuess,
   answer,
-  name,
+  ...props
 }) => {
   const onSubmit = (guess: string) => {
     submitGuess({
@@ -50,7 +47,8 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
         {""}
         <p className="pl-10">
           {nameSelector(name)} has {""}
-          <span className="font-bold">{total}</span> objects, and they cost {""}
+          <span className="font-bold">{total}</span> {fruitsMap.type}, and they
+          cost {""}
           <span className="font-bold">
             {""}${numberOfObjects}
           </span>
@@ -68,6 +66,9 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
               onChange={(e) => setGuess(e.target.value)}
             ></input>
           </p>
+        </div>
+        <div className="flex flex-wrap justify-center mt-2">
+          <img src={fruitsMap.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         </div>
         <Button
           backgroundColor="blue"
