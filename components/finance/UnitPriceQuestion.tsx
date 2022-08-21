@@ -37,7 +37,7 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
 
   return (
     <div>
-      <div className="flex flex-col gap-4 py-4 overflow-y-hidden max-h-96">
+      <div className="flex flex-col gap-2 py-4 overflow-y-hidden max-h-96">
         <p>
           Find the unit price of the item by rounding to the nearest integer.{" "}
           <span className="italic">after</span> calculating.
@@ -45,35 +45,42 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
         {""}
         <p className="pl-10">
           {nameSelector(name)} has {""}
-          <span className="font-bold">{total}</span> {noun1.type}, and they cost{" "}
-          {""}
+          <span className="font-bold">{total}</span> {noun1.pluralTitle}, and
+          they cost {""}
           <span className="font-bold">
-            {""}${numberOfObjects}
+            {""}${numberOfObjects}.
           </span>
         </p>
         {""}
         <div>
-          <p className="mb-4">The unit price of each object is approximately</p>
-          <p className="mb-4">
-            $
-            <input
-              id="input"
-              type="number"
-              value={guess}
-              className="w-20 font-bold text-right border-2 border-gray-300"
-              onChange={(e) => setGuess(e.target.value)}
-            ></input>
-          </p>
+          <div>
+            {" "}
+            <p className="mb-2">
+              The unit price of each {noun1.singleTitle} is approximately
+            </p>
+            <p className=" flex flex-row mb-2">
+              $
+              <input
+                id="input"
+                type="number"
+                value={guess}
+                className="w-20 font-bold text-right border-2 border-gray-300"
+                onChange={(e) => setGuess(e.target.value)}
+              ></input>
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center mt-2">
+            <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
+          </div>
         </div>
-        <div className="flex flex-wrap justify-center mt-2">
-          <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
+        <div className=" flex flex-wrap justify-center">
+          <Button
+            backgroundColor="blue"
+            textColor="white"
+            label="Submit"
+            onClick={() => onSubmit(guess)}
+          />
         </div>
-        <Button
-          backgroundColor="blue"
-          textColor="white"
-          label="Submit"
-          onClick={() => onSubmit(guess)}
-        />
       </div>
     </div>
   );
