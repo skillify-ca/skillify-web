@@ -65,7 +65,10 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
                 type="number"
                 value={guess}
                 className="w-20 font-bold text-right border-2 border-gray-300"
-                onChange={(e) => setGuess(e.target.value)}
+                onChange={(e) => {
+                  e.stopPropogation();
+                  (e) => setGuess(e.target.value);
+                }}
               ></input>
             </p>
           </div>
