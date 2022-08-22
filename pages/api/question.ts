@@ -1,33 +1,73 @@
-import { PersonData } from "./money/personData";
-import { ItemCostModel } from "./money/itemCostModel";
 import { QuestionType } from "./questionTypes";
-import { Skill } from "./skill";
-import { WordProblemModel } from "./WordProblemModel";
+import { HorizontalEquationQuestion } from "./labs/questionGenerators/horizontalEquationQuestion";
+import { TrueOrFalseQuestion } from "./labs/questionGenerators/trueOrFalseQuestion";
+import { VerticalEquationQuestion } from "./labs/questionGenerators/verticalEquationQuestion";
+import { VisualDotsQuestion } from "./labs/questionGenerators/visualDotsQuestion";
+import { WordProblemQuestion } from "./labs/questionGenerators/wordProblemQuestion";
+import { LongDivisionQuestion } from "./labs/questionGenerators/longDivisionQuestion";
+import { ItemCostModel } from "./labs/finance/money/itemCostModel";
+import { PersonData } from "./labs/finance/money/personData";
 
-export enum AnswerType {
-  NUMBER,
-  BOOLEAN,
-  STRING,
-  ARRAY,
-}
-
-export type Question = {
-  text: string;
-  answer: string; // only accepts strings so Array<Num> doesn't work
-  answerType: AnswerType;
-  questionType: QuestionType;
-  skill?: number;
-  operator?: string; //Numbers unit does not have a operator
-  wordProblem?: WordProblemModel; //value is only stored if QuestionType is wordProblem
-  multipleChoice?: MCModel;
-  fillInTheBlank?: fillBlankModel;
-  placeholder?: string; // placeholder value for fill in the blanks
-  displayNum?: number; //randomizes visualnumber type
-  arrayAns?: Array<number>;
-  budgetCostModel?: Array<ItemCostModel>;
-  personDataModel?: PersonData;
-  unitPriceModel?: UnitPriceModel;
-};
+export type Question =
+  | VerticalEquationQuestion
+  | HorizontalEquationQuestion
+  | {
+      questionType: QuestionType.MULTIPLE_CHOICE_SENTENCE;
+      multipleChoice: MCModel;
+      answer: string;
+      text: string;
+    }
+  | {
+      questionType: QuestionType.MULTIPLE_CHOICE_WORD;
+      answer: string;
+      multipleChoice: MCModel;
+      text: string;
+    }
+  | {
+      questionType: QuestionType.MULTIPLE_CHOICE;
+      answer: string;
+      multipleChoice: MCModel;
+      text: string;
+    }
+  | WordProblemQuestion
+  | VisualDotsQuestion
+  | TrueOrFalseQuestion
+  | LongDivisionQuestion
+  | {
+      questionType: QuestionType.ARRAY_QUESTION;
+      text: string;
+      answer: string;
+      colour: "red" | "purple" | "blue" | "green" | "yellow";
+    }
+  | {
+      questionType: QuestionType.MULTIPLICATION_EQUAL_GROUPS;
+      text: string;
+      answer: string;
+      colour: 0 | 1 | 2 | 3;
+    }
+  | {
+      questionType: QuestionType.FINANCE_TIP_PROBLEM;
+      displayNum: number;
+      answer: string;
+      text: string;
+    }
+  | {
+      questionType: QuestionType.FINANCE_BALANCE_BUDGET_PROBLEM;
+      personDataModel: PersonData;
+      answer: string;
+    }
+  | {
+      questionType: QuestionType.FINANCE_BUDGET_TABLE_PROBLEM;
+      budgetCostModel: Array<ItemCostModel>;
+      answer: string;
+      text: string;
+    }
+  | {
+      questionType: QuestionType.FINANCE_UNIT_PRICE_PROBLEM;
+      unitPriceModel: UnitPriceModel;
+      answer: string;
+      text: string;
+    };
 
 export type MCOption = {
   id: string;
@@ -36,13 +76,6 @@ export type MCOption = {
 export type MCModel = {
   title?: string;
   options: Array<MCOption>;
-};
-export type fillBlankModel = {
-  options: Array<FillOption>;
-};
-
-export type FillOption = {
-  text: string;
 };
 
 export type UnitPriceModel = {

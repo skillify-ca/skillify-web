@@ -192,7 +192,7 @@ const CardColorProblem = ({
   ];
   return (
     <div>
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 p-12 gap-4">
+      <div className="grid gap-4 p-12 sm:grid-cols-2 md:grid-cols-3">
         <div>
           <h1 className="text-3xl font-bold uppercase">Credit or Debit</h1>
         </div>

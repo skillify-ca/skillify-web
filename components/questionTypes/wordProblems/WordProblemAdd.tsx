@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { GuessData } from "../../../pages/api/guessData";
-import { Question } from "../../../pages/api/question";
+import { WordProblemQuestion } from "../../../pages/api/labs/questionGenerators/wordProblemQuestion";
 import {
   ItemContainerObj,
   Noun,
@@ -10,7 +10,7 @@ import { Input } from "../../ui/Input";
 
 export interface WordProblemAddProp {
   autofocus?: boolean;
-  question: Question;
+  question: WordProblemQuestion;
   submitGuess?: (guess: GuessData) => void;
   isReadOnly?: boolean;
 }
@@ -37,7 +37,10 @@ export const WordProblemAdd: React.FC<WordProblemAddProp> = ({
   };
   const onSubmit = () => {
     setGuess("");
-    submitGuess({ guess: guess, isCorrect: guess === question.answer });
+    submitGuess({
+      guess: guess,
+      isCorrect: guess === question.answer.toString(),
+    });
   };
   const parse = () => {
     const parts = question.text.split(" ");

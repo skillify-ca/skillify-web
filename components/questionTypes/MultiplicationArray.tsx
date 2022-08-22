@@ -5,19 +5,19 @@ import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 
 export interface MultiplicationArrayProp {
-  question: Question;
   submitGuess: (guess: GuessData) => void;
   colour: "red" | "purple" | "blue" | "green" | "yellow";
-  isReadOnly?: boolean;
+  text: string;
+  answer: string;
 }
 
 // Array Question type is a new way to visualize multiplication problem using squares
 // Size restriction is 5 x 5 for now
 export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
-  question,
   submitGuess,
   colour,
-  isReadOnly = false,
+  text,
+  answer,
 }) => {
   const [guess, setGuess] = useState("");
   const handleKeypress = (e) => {
@@ -28,10 +28,10 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
   };
   const onSubmit = () => {
     setGuess("");
-    submitGuess({ guess: guess, isCorrect: guess === question.answer });
+    submitGuess({ guess: guess, isCorrect: guess === answer });
   };
   const parse = () => {
-    const parts = question.text.split(" ");
+    const parts = text.split(" ");
     return {
       first: parts[0],
       second: parts[2],
@@ -106,21 +106,17 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
         >
           {parse().first} x {parse().second}
         </div>
-        {!isReadOnly && (
-          <Input
-            value={guess}
-            setValue={setGuess}
-            handleKeypress={handleKeypress}
-          />
-        )}
-        {!isReadOnly && (
-          <Button
-            onClick={onSubmit}
-            label="Submit"
-            backgroundColor="blue"
-            textColor="white"
-          />
-        )}
+        <Input
+          value={guess}
+          setValue={setGuess}
+          handleKeypress={handleKeypress}
+        />
+        <Button
+          onClick={onSubmit}
+          label="Submit"
+          backgroundColor="blue"
+          textColor="white"
+        />
       </div>
     </div>
   );

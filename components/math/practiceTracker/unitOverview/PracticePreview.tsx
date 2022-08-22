@@ -62,6 +62,7 @@ const PracticePreview = ({ loading, userSkills, skills, courseId }) => {
                             loading={loading}
                             userSkillData={userSkills}
                             skill={skill}
+                            courseId={courseId}
                           />
                         </div>
                       ))}

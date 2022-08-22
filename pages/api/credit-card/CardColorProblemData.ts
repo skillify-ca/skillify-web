@@ -1,11 +1,12 @@
 export interface cardOptions {
-  question: string,
-  answer: string,
+  question: string;
+  answer: string;
 }
 
 export const CardColorProblemData: cardOptions[] = [
   {
-    question: "You buy groceries with a card. The money comes directly from your bank account.",
+    question:
+      "You buy groceries with a card. The money comes directly from your bank account.",
     answer: "debit",
   },
   {
@@ -13,7 +14,8 @@ export const CardColorProblemData: cardOptions[] = [
     answer: "both",
   },
   {
-    question: "You get a haircut and use a card to pay. You receive a bill later to pay the transaction.",
+    question:
+      "You get a haircut and use a card to pay. You receive a bill later to pay the transaction.",
     answer: "credit",
   },
   {
@@ -25,11 +27,13 @@ export const CardColorProblemData: cardOptions[] = [
     answer: "both",
   },
   {
-    question: "You purchase shoes with a card. There isn't enough money in your account and you are charged an overdraft fee",
+    question:
+      "You purchase shoes with a card. There isn't enough money in your account and you are charged an overdraft fee",
     answer: "debit",
   },
   {
-    question: "You apply to get this card and are approved with a spending limit.",
+    question:
+      "You apply to get this card and are approved with a spending limit.",
     answer: "credit",
   },
   {
