@@ -129,6 +129,10 @@ const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
       numberOfObjects={questionData.unitPriceModel.numberOfObjects}
       answer={questionData.answer}
       submitGuess={submitGuess}
+      name={questionData.unitPriceModel.name}
+      singularFruit={questionData.unitPriceModel.singularFruit}
+      pluralFruit={questionData.unitPriceModel.pluralFruit}
+      image={questionData.unitPriceModel.image}
     />
   ) : (
     <HorizontalEquation

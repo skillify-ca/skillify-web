@@ -81,4 +81,8 @@ export type MCModel = {
 export type UnitPriceModel = {
   total: number;
   numberOfObjects: number;
+  name: string;
+  image: string;
+  singularFruit: string,
+  pluralFruit: string,
 };

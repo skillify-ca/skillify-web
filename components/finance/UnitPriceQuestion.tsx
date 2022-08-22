@@ -12,6 +12,9 @@ export interface UnitPriceQuestionProps {
   submitGuess: (guess: GuessData) => void;
   answer: string;
   name: string;
+  singularFruit: string;
+  pluralFruit: string;
+  image: string;
 }
 
 const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
@@ -19,14 +22,18 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
   numberOfObjects,
   submitGuess,
   answer,
+  name,
+  singularFruit,
+  pluralFruit,
+  image,
   ...props
 }) => {
-  const noun1: Noun = getRandomItemFromMap(fruitsMap);
   const onSubmit = (guess: string) => {
     submitGuess({
       guess: guess.toString(),
-      isCorrect: Number.parseInt(guess) == Math.floor(total / numberOfObjects),
+      isCorrect: guess === answer,
     });
+    setGuess("");
   };
 
   /** Reference user input and store it in a state, then clear input values by next question */
@@ -44,9 +51,9 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
         </p>
         {""}
         <p className="pl-10">
-          {nameSelector(name)} has {""}
-          <span className="font-bold">{total}</span> {noun1.pluralTitle}, and
-          they cost {""}
+          {name} has {""}
+          <span className="font-bold">{total}</span> {pluralFruit}, and they
+          cost {""}
           <span className="font-bold">
             {""}${numberOfObjects}.
           </span>
@@ -56,24 +63,21 @@ const UnitPriceQuestion: React.FC<UnitPriceQuestionProps> = ({
           <div>
             {" "}
             <p className="mb-2">
-              The unit price of each {noun1.singleTitle} is approximately
+              The unit price of each {singularFruit} is approximately
             </p>
-            <p className=" flex flex-row mb-2">
-              $
-              <input
-                id="input"
-                type="number"
-                value={guess}
-                className="w-20 font-bold text-right border-2 border-gray-300"
-                onChange={(e) => {
-                  e.stopPropogation();
-                  (e) => setGuess(e.target.value);
-                }}
-              ></input>
-            </p>
-          </div>
-          <div className="flex flex-wrap justify-center mt-2">
-            <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
+            <div className="flex items-center justify-center">
+              <p className=" flex flex-row mb-2">
+                $
+                <input
+                  id="input"
+                  type="number"
+                  value={guess}
+                  className="w-20 font-bold text-right border-2 border-gray-300"
+                  onChange={(e) => setGuess(e.target.value)}
+                ></input>
+              </p>
+              <img src={image} className="w-12 h-12 sm:w-16 sm:h-16" />
+            </div>
           </div>
         </div>
         <div className=" flex flex-wrap justify-center">
