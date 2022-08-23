@@ -94,10 +94,11 @@ export type UnitPriceModel = {
 };
 
   export type SalesTaxModel = {
-    total: number;
-    numberOfObjects: number;
+    price: number;
+    number: number;
+    taxRate: number;
     personName: string;
-    image: string;
-    singularFruit: string,
-    pluralFruit: string,
+    image2: string;
+    oneFruit: string,
+    multipleFruit: string,
 };

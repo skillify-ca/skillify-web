@@ -6,6 +6,7 @@ import { Skill } from "../../../pages/api/skill";
 import BalanceBudget from "../../finance/money/BalanceBudgetTable";
 import BudgetTable from "../../finance/money/BudgetTable";
 import TipQuestion from "../../finance/money/TipQuestion";
+import SalesTaxQuestion from "../../finance/SalesTaxQuestion";
 import UnitPriceQuestion from "../../finance/UnitPriceQuestion";
 import { HorizontalEquation } from "../../questionTypes/HorizontalEquation";
 import { LongDivision } from "../../questionTypes/LongDivision";
@@ -133,6 +134,18 @@ const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
       singularFruit={questionData.unitPriceModel.singularFruit}
       pluralFruit={questionData.unitPriceModel.pluralFruit}
       image={questionData.unitPriceModel.image}
+    />
+  ) : questionData.questionType === QuestionType.FINANCE_SALES_TAX_PROBLEM ? (
+    <SalesTaxQuestion
+      number={questionData.salesTaxModel.number}
+      price={questionData.salesTaxModel.price}
+      taxRate={questionData.salesTaxModel.taxRate}
+      answer={questionData.answer}
+      submitGuess={submitGuess}
+      personName={questionData.salesTaxModel.personName}
+      oneFruit={questionData.salesTaxModel.oneFruit}
+      multipleFruit={questionData.salesTaxModel.multipleFruit}
+      image2={questionData.salesTaxModel.image2}
     />
   ) : (
     <HorizontalEquation

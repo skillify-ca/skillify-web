@@ -32,7 +32,7 @@ export const generateQuestionForFinanceSkill = (skill: Skill): Question => {
           image: image,
         },
       };
-      case Skill.FINANCE_SALES_TAX_PROBLEM:
+      case Skill.FINANCE_SALES_TAX:
         let noun2 = getRandomItemFromMap(fruitsMap);
         let randomNumber = randomize(1,20);
         let taxRate = Math.floor(Math.random() * 19) + 1;
@@ -48,7 +48,7 @@ export const generateQuestionForFinanceSkill = (skill: Skill): Question => {
             personName: personName,
             oneFruit: oneFruit,
             multipleFruit: multipleFruit,
-            image: image,
+            image2: image,
           },
         };
   }

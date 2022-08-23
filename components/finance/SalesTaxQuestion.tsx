@@ -7,6 +7,7 @@ export interface SalesTaxQuestionProps {
   personName: string;
   number: number;
   taxRate: number;
+  price: number;
   submitGuess: (guess: GuessData) => void;
   oneFruit: string;
   multipleFruit: string;
@@ -17,6 +18,7 @@ export interface SalesTaxQuestionProps {
 
 const SalesTaxQuestion: React.FC<SalesTaxQuestionProps> = ({
   personName,
+  price,
   number,
   taxRate,
   submitGuess,
@@ -53,3 +55,5 @@ const SalesTaxQuestion: React.FC<SalesTaxQuestionProps> = ({
     </div>
   );
 };
+
+export default SalesTaxQuestion;
