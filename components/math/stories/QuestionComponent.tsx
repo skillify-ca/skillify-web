@@ -137,14 +137,14 @@ const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
     />
   ) : questionData.questionType === QuestionType.FINANCE_SALES_TAX_PROBLEM ? (
     <SalesTaxQuestion
-      number={questionData.salesTaxModel.number}
+      numberOfToys={questionData.salesTaxModel.numberOfToys}
       price={questionData.salesTaxModel.price}
       taxRate={questionData.salesTaxModel.taxRate}
       answer={questionData.answer}
       submitGuess={submitGuess}
       personName={questionData.salesTaxModel.personName}
       multipleAnimals={questionData.salesTaxModel.multipleAnimals}
-      image2={questionData.salesTaxModel.image2}
+      image1={questionData.salesTaxModel.image1}
       text={""}
     />
   ) : (

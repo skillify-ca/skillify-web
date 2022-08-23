@@ -5,12 +5,12 @@ import { Button } from "../ui/Button";
 
 export interface SalesTaxQuestionProps {
   personName: string;
-  number: number;
+  numberOfToys: number;
   taxRate: number;
   price: number;
   submitGuess: (guess: GuessData) => void;
   multipleAnimals: string;
-  image2: string;
+  image1: string;
   answer: string;
   text: string;
 }
@@ -18,10 +18,10 @@ export interface SalesTaxQuestionProps {
 const SalesTaxQuestion: React.FC<SalesTaxQuestionProps> = ({
   personName,
   price,
-  number,
+  numberOfToys,
   taxRate,
   submitGuess,
-  image2,
+  image1,
   multipleAnimals,
   answer,
   text,
@@ -49,8 +49,8 @@ const SalesTaxQuestion: React.FC<SalesTaxQuestionProps> = ({
         {""}
         <p className="pl-10">
           {personName} intends to purchase{" "}
-          <span className="font-bold">{number}</span> {multipleAnimals}, they
-          cost {""}
+          <span className="font-bold">{numberOfToys}</span> {multipleAnimals},
+          they cost {""}
           <span className="font-bold">
             {""}${price} each{" "}
           </span>{" "}
@@ -73,7 +73,7 @@ const SalesTaxQuestion: React.FC<SalesTaxQuestionProps> = ({
                   onChange={(e) => setGuess(e.target.value)}
                 ></input>
               </p>
-              <img src={image2} className="w-12 h-12 sm:w-16 sm:h-16" />
+              <img src={image1} className="w-12 h-12 sm:w-16 sm:h-16" />
             </div>
           </div>
         </div>

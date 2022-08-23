@@ -98,7 +98,6 @@ export type UnitPriceModel = {
     number: number;
     taxRate: number;
     personName: string;
-    image2: string;
-    oneFruit: string,
-    multipleFruit: string,
+    image1: string;
+    multipleAnimals: string,
 };

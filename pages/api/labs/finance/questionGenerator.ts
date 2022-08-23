@@ -12,7 +12,7 @@ export const generateQuestionForFinanceSkill = (skill: Skill): Question => {
     case Skill.FINANCE_BUDGET:
       return getRandomFinanceQuestion();
     case Skill.FINANCE_UNIT_PRICES:
-      let noun1 = getRandomItemFromMap(fruitsMap);
+      const noun1 = getRandomItemFromMap(fruitsMap);
       let randomTotal = randomize(11, 100);
       let randomNumberOfObjects = randomize(1, 10);
       let name = nameSelector();
@@ -33,24 +33,24 @@ export const generateQuestionForFinanceSkill = (skill: Skill): Question => {
         },
       };
       case Skill.FINANCE_SALES_TAX:
-        let noun2 = getRandomItemFromMap(animalsMap);
+        const noun2 = getRandomItemFromMap(animalsMap);
         let randomNumber = randomize(2,20);
         let taxRate = Math.floor(Math.random() * 19) + 1;
         let price = (randomize(1,20)+ randomize(1,100)*0.01).toFixed(2);
         let personName = nameSelector();
         let multipleAnimals = noun2.pluralTitle;
-        let image2 = noun2.image;
+        let image1 = noun2.image;
         return {
           questionType: QuestionType.FINANCE_SALES_TAX_PROBLEM,
           answer: (Math.round(100*(randomNumber*price*(taxRate/100)))/100).toString(),
           text: "",
           salesTaxModel: {
-            number: randomNumber,
+            numberOfToys: randomNumber,
             taxRate: taxRate,
             price: price,
             personName: personName,
             multipleAnimals: multipleAnimals,
-            image2: image2,
+            image1: image1,
           },
         };
   }
