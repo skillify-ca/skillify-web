@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 
 export interface MultiplicationBlockProps {
   text: string;
-  selected?: boolean;
-  onClick?: boolean;
+  selected: boolean;
+  onClick: boolean;
 }
 
 export const MultiplicationBlock: React.FC<MultiplicationBlockProps> = ({
@@ -11,7 +11,7 @@ export const MultiplicationBlock: React.FC<MultiplicationBlockProps> = ({
   onClick,
   ...props
 }) => {
-  const [selected, setSelected] = useState(true);
+  const [selected, setSelected] = useState(false);
   const handleSelected = () => {
     setSelected(!selected);
   };
@@ -19,10 +19,10 @@ export const MultiplicationBlock: React.FC<MultiplicationBlockProps> = ({
     <div>
       <ul
         className={`w-20 h-20 flex justify-center items-center border-2 text-green-50 float-left
-        ${selected ? "bg-green-400" : "bg-red-400"}`}
+        ${!selected ? "bg-green-400" : "bg-red-400"}`}
         onClick={handleSelected}
       >
-        <p>72</p>
+        <p>{text}</p>
       </ul>
     </div>
   );
