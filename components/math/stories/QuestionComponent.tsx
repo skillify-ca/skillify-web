@@ -143,9 +143,9 @@ const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
       answer={questionData.answer}
       submitGuess={submitGuess}
       personName={questionData.salesTaxModel.personName}
-      oneFruit={questionData.salesTaxModel.oneFruit}
-      multipleFruit={questionData.salesTaxModel.multipleFruit}
+      multipleAnimals={questionData.salesTaxModel.multipleAnimals}
       image2={questionData.salesTaxModel.image2}
+      text={""}
     />
   ) : (
     <HorizontalEquation

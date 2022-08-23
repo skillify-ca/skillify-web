@@ -1,7 +1,7 @@
 import { Question } from "../../question";
 import { QuestionType } from "../../questionTypes";
 import { Skill } from "../../skill";
-import { fruitsMap } from "../../WordProblemModelObjects";
+import { fruitsMap, animalsMap } from "../../WordProblemModelObjects";
 import { randomize } from "../questionGenerators/binaryQuestionGenerator";
 import { getRandomItemFromMap, nameSelector } from "../questionGenerators/wordProblemQuestion";
 import { getRandomFinanceQuestion } from "./money/financeQuestionGenerator";
@@ -33,22 +33,24 @@ export const generateQuestionForFinanceSkill = (skill: Skill): Question => {
         },
       };
       case Skill.FINANCE_SALES_TAX:
-        let noun2 = getRandomItemFromMap(fruitsMap);
-        let randomNumber = randomize(1,20);
+        let noun2 = getRandomItemFromMap(animalsMap);
+        let randomNumber = randomize(2,20);
         let taxRate = Math.floor(Math.random() * 19) + 1;
+        let price = (randomize(1,20)+ randomize(1,100)*0.01).toFixed(2);
         let personName = nameSelector();
-        let oneFruit = noun2.singleTitle;
-        let multipleFruit = noun2.pluralTitle;
+        let multipleAnimals = noun2.pluralTitle;
         let image2 = noun2.image;
         return {
           questionType: QuestionType.FINANCE_SALES_TAX_PROBLEM,
-          answer: (randomNumber*taxRate).toString(),
+          answer: (Math.round(100*(randomNumber*price*(taxRate/100)))/100).toString(),
           text: "",
           salesTaxModel: {
+            number: randomNumber,
+            taxRate: taxRate,
+            price: price,
             personName: personName,
-            oneFruit: oneFruit,
-            multipleFruit: multipleFruit,
-            image2: image,
+            multipleAnimals: multipleAnimals,
+            image2: image2,
           },
         };
   }

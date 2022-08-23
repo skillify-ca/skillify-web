@@ -9,8 +9,7 @@ export interface SalesTaxQuestionProps {
   taxRate: number;
   price: number;
   submitGuess: (guess: GuessData) => void;
-  oneFruit: string;
-  multipleFruit: string;
+  multipleAnimals: string;
   image2: string;
   answer: string;
   text: string;
@@ -23,12 +22,11 @@ const SalesTaxQuestion: React.FC<SalesTaxQuestionProps> = ({
   taxRate,
   submitGuess,
   image2,
-  oneFruit,
-  multipleFruit,
+  multipleAnimals,
   answer,
   text,
 }) => {
-  onSubmit = (guess: string) => {
+  const onSubmit = (guess: string) => {
     submitGuess({
       guess: guess.toString(),
       isCorrect: guess === answer,
@@ -43,14 +41,50 @@ const SalesTaxQuestion: React.FC<SalesTaxQuestionProps> = ({
     <div>
       <div className="">
         <p>
-          Find the sales tax on a piece of fruit by rounding to two decimal
-          places. <span className="italic">after</span>
+          Find the sales tax on a total purchase of {multipleAnimals} by
+          rounding to two decimal places{""}{" "}
+          <span className="italic">after {""}</span>
           you make your final calculations.
         </p>
         {""}
         <p className="pl-10">
-          {personName} intends to purchase {number}{" "}
+          {personName} intends to purchase{" "}
+          <span className="font-bold">{number}</span> {multipleAnimals}, they
+          cost {""}
+          <span className="font-bold">
+            {""}${price} each{" "}
+          </span>{" "}
+          and the tax rate is <span className="font-bold"> {taxRate}% </span>.
+          {""}
         </p>
+        {""}
+        <div>
+          <div>
+            <p>Her total sales tax is appoximately: </p>
+
+            <div className="flex items-center justify-center">
+              <p className="flex flex-row">
+                $
+                <input
+                  id="input"
+                  type="number"
+                  value={guess}
+                  className="w-20 font-bold text-right border-2 border-gray-300"
+                  onChange={(e) => setGuess(e.target.value)}
+                ></input>
+              </p>
+              <img src={image2} className="w-12 h-12 sm:w-16 sm:h-16" />
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center justify-center">
+          <Button
+            backgroundColor="blue"
+            textColor="white"
+            label="Submit"
+            onClick={() => onSubmit(guess)}
+          />
+        </div>
       </div>
     </div>
   );
