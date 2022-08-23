@@ -137,6 +137,13 @@ export const animalsMap = {
     colour: "text-yellow-600 font-black",
     image: "/images/giraffe.png",
   },
+  peacock: {
+    type: "toys",
+    singleTitle: "peacock toy",
+    pluralTitle: "peacock toys",
+    colour: "text-purple-600 font-black",
+    image: "/images/peacock.png",
+  },
 };
 export const fruitsMap = {
   apples: {
