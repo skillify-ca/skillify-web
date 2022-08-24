@@ -20,4 +20,5 @@ export const Primary = Template.bind({});
 Primary.args = {
   question: { text: "10 x 10" },
   color: 0,
+  text: "10 x 10",
 };
