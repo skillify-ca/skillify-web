@@ -24,9 +24,9 @@ const question: Question = {
 Primary.args = {
   total: 1000,
   numberOfObjects: 10,
-  image,
-  name,
-  singularFruit,
-  pluralFruit,
-  question,
+  image: "/images/banana.png",
+  name: Kari,
+  singularFruit: banana,
+  pluralFruit: bananas,
+  question: text,
 };
