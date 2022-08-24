@@ -67,6 +67,12 @@ export type Question =
       unitPriceModel: UnitPriceModel;
       answer: string;
       text: string;
+    }
+    | {
+      questionType: QuestionType.FINANCE_SALES_TAX_PROBLEM;
+      salesTaxModel: SalesTaxModel;
+      answer: string;
+      text: string;
     };
 
 export type MCOption = {
@@ -85,4 +91,13 @@ export type UnitPriceModel = {
   image: string;
   singularFruit: string,
   pluralFruit: string,
+};
+
+  export type SalesTaxModel = {
+    price: number;
+    number: number;
+    taxRate: number;
+    personName: string;
+    image1: string;
+    multipleAnimals: string,
 };
