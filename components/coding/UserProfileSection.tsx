@@ -67,7 +67,7 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
             className="w-32 rounded-full"
             src={userProfileData.profileImage}
           />
-          <div className="col-span-2 mt-2">
+          <div className="col-span-2 mt-2 ml-2">
             <div className="flex mt-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

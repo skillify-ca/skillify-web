@@ -16,7 +16,7 @@ export default function ExternalUserProfile({ slug, uid }) {
   return (
     <div>
       <LandingNavbar />
-      <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
+      <div className="flex flex-col p-8 m-4 overflow-auto bg-scroll bg-slate-50 sm:m-auto max-w-7xl dark:bg-slate-800 dark:text-white">
         <UserProfileSection user={user} />
 
         <h2 className="text-lg font-bold mt-14 mb-9">Projects</h2>

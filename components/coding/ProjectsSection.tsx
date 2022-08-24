@@ -29,13 +29,13 @@ export default function ProjectsSection({ user }: ProjectsSectionProps) {
       {userProjectsLoading ? (
         <div>Loading...</div>
       ) : userProjects.length === 0 ? (
-        <div className="col-span-3 p-8 text-center shadow-md bg-slate-300">
+        <div className="col-span-3 p-8 text-center shadow-md bg-slate-300 dark:bg-slate-900">
           No Active Projects
         </div>
       ) : (
         userProjects.map((it) => {
           return (
-            <div className="flex flex-col items-center gap-4 p-4 bg-slate-300">
+            <div className="flex flex-col items-center gap-4 p-4 bg-slate-300 dark:bg-slate-900">
               <p className="font-bold">{it.name}</p>
               <img src={it.image} className="w-24 h-24 bg-white rounded-full" />
               <div className="flex justify-around w-full">
