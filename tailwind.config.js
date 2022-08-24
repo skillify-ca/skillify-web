@@ -3,8 +3,10 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   mode: "jit",
-  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
-  darkMode: "media", // or 'media' or 'class'
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       width: {
@@ -102,20 +104,6 @@ module.exports = {
       },
       primary: "#4495f0",
       secondary: "#ff8e4f",
-    },
-  },
-  variants: {
-    extend: {
-      borderWidth: ["active"],
-      fontFamily: ["hover", "focus"],
-      opacity: ["disabled"],
-      backgroundColor: ["hover", "even", "odd"],
-      ringWidth: ["hover", "active"],
-      ringColor: ["hover", "active"],
-      ringOffsetWidth: ["hover", "active"],
-      ringOffsetColor: ["hover", "active"],
-      maxWidth: ["hover", "active"],
-      width: ["hover", "active"],
     },
   },
   options: {
