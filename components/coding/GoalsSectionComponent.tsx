@@ -16,17 +16,17 @@ export default function GoalsSection({
   return (
     <div>
       {userGoals.length > 0 && (
-        <div className="grid grid-cols-5 md:grid-cols-10 border-b-2 text-sm md:text-lg font-semibold text-center">
+        <div className="grid grid-cols-5 text-sm font-semibold text-center border-b-2 md:grid-cols-10 md:text-lg">
           <p className="font-semibold">{sectionName}</p>
           <p className="col-span-2 md:col-span-4">Goal</p>
           <p className="hidden md:block md:col-span-2">Date Added</p>
-          <p className="md:col-span-2 font-semibold">Target Date</p>
+          <p className="font-semibold md:col-span-2">Target Date</p>
         </div>
       )}
 
       {userGoals.map((goal, index) => {
         return (
-          <div className="grid grid-cols-5 md:grid-cols-10 text-sm md:text-lg text-center place-items-center my-2">
+          <div className="grid grid-cols-5 my-2 text-sm text-center md:grid-cols-10 md:text-lg place-items-center">
             <p>{index + 1}.</p>
             <p className="col-span-2 md:col-span-4">{goal.goalName}</p>
             <p className="hidden md:block md:col-span-2">
@@ -37,7 +37,7 @@ export default function GoalsSection({
             </p>
 
             <Link href={"/goals/" + goal.id}>
-              <PencilAltIcon className="h-5 w-5 hover:text-yellow-600 cursor-pointer" />
+              <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
             </Link>
           </div>
         );

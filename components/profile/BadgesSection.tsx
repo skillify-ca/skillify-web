@@ -24,7 +24,7 @@ export default function BadgesSection({ user }: BadgesSectionProps) {
   }, [data]);
 
   return (
-    <>
+    <div className="p-4 shadow-md bg-slate-300">
       {units.map((unit) => {
         if (unit.coding_badges.length > 0) {
           return (
@@ -59,6 +59,6 @@ export default function BadgesSection({ user }: BadgesSectionProps) {
           );
         }
       })}
-    </>
+    </div>
   );
 }

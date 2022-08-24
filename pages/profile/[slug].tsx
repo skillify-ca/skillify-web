@@ -1,5 +1,6 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import ProfileGoalsSection from "../../components/coding/ProfileGoalsSection";
+import ProjectsSection from "../../components/coding/ProjectsSection";
 import UserProfileSection from "../../components/coding/UserProfileSection";
 import LandingNavbar from "../../components/LandingNavbar";
 import BadgesSection from "../../components/profile/BadgesSection";
@@ -17,6 +18,12 @@ export default function ExternalUserProfile({ slug, uid }) {
       <LandingNavbar />
       <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
         <UserProfileSection user={user} />
+
+        <h2 className="text-lg font-bold mt-14 mb-9">Projects</h2>
+
+        <div className="grid grid-cols-1 mb-16 sm:grid-cols-3">
+          <ProjectsSection user={user} />
+        </div>
 
         <h2 className="text-lg font-bold mt-14 mb-9">Goals</h2>
 
