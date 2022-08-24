@@ -18,7 +18,7 @@ const QuestionSet = ({
   diagnostic,
 }: QuestionSetProps) => {
   return (
-    <div className="flex items-center justify-center gap-4">
+    <div className="flex items-center justify-center w-full gap-4">
       <Card size="large">
         <div
           className={`transition-opacity duration-150 ease-in-out opacity-${

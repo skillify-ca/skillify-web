@@ -172,113 +172,122 @@ const PracticeQuiz = ({ skill, courseId }) => {
           Score: {correctGuess} / {questionData.length}
         </p>
       </div>
-      <ReactCardFlip
-        isFlipped={isFlipped}
-        flipDirection="horizontal"
-        infinite={true}
-      >
-        {/* Front of the card */}
-        <div className="align-middle w-50">
-          {stage === STAGE.QUESTION ? (
-            <div className="flex flex-col items-center justify-center text-murkrow">
-              <QuestionSet
-                questionData={questionData}
-                index={index}
-                submitGuess={submitGuess}
-              />
-            </div>
-          ) : stage === STAGE.EMOJI ? (
-            <div>
-              <Card size="large">
-                <div
-                  className={`grid-cols-1 grid text-murkrow justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in`}
-                >
-                  <p className="mt-12 font-bold">
-                    How confident were you with those practice questions?
-                  </p>
-                  <EmojiSlider callback={setEmojiCallback} />
-                  <Button
-                    label="Submit"
-                    backgroundColor="blue"
-                    onClick={saveEmoji}
-                  ></Button>
+      <div className="w-full p-4">
+        <ReactCardFlip
+          isFlipped={isFlipped}
+          flipDirection="horizontal"
+          infinite={true}
+        >
+          {/* Front of the card */}
+          <div className="align-middle w-50">
+            {stage === STAGE.QUESTION ? (
+              <div className="flex flex-col items-center justify-center text-murkrow">
+                <QuestionSet
+                  questionData={questionData}
+                  index={index}
+                  submitGuess={submitGuess}
+                />
+              </div>
+            ) : stage === STAGE.EMOJI ? (
+              <div className="flex justify-center">
+                <Card size="large">
+                  <div
+                    className={`grid-cols-1 grid text-murkrow justify-items-center space-y-8 z-10 transition-opacity duration-150 ease-in`}
+                  >
+                    <p className="mt-12 font-bold">
+                      How confident were you with those practice questions?
+                    </p>
+                    <EmojiSlider callback={setEmojiCallback} />
+                    <Button
+                      label="Submit"
+                      backgroundColor="blue"
+                      onClick={saveEmoji}
+                    ></Button>
+                  </div>
+                </Card>
+              </div>
+            ) : stage === STAGE.SESSION_END ? (
+              <div className="flex justify-center">
+                <div className="flex flex-col p-8 bg-white rounded-lg">
+                  <img src="/images/goodWork.png" className="mt-12 w-80"></img>
+
+                  <div className="flex flex-row justify-between ">
+                    <Button
+                      label="Back"
+                      backgroundColor="purple"
+                      onClick={() => router.back()}
+                    ></Button>
+
+                    <Button
+                      label="Restart"
+                      backgroundColor="green"
+                      onClick={() => setReplayCount(replayCount + 1)}
+                    ></Button>
+                  </div>
                 </div>
-              </Card>
-            </div>
-          ) : stage === STAGE.SESSION_END ? (
-            <div className="flex flex-col p-8 bg-white rounded-lg">
-              <img src="/images/goodWork.png" className="mt-12 w-80"></img>
-
-              <div className="flex flex-row justify-between ">
-                <Button
-                  label="Back"
-                  backgroundColor="purple"
-                  onClick={() => router.back()}
-                ></Button>
-
-                <Button
-                  label="Restart"
-                  backgroundColor="green"
-                  onClick={() => setReplayCount(replayCount + 1)}
-                ></Button>
               </div>
-            </div>
-          ) : null}
-        </div>
-        {/* Back of the card */}
-        <div className={` flex-col justify-center items-center gap-8 `}>
-          <div className={"justify-items-center align-middle w-50"}>
-            <Card size="large">
-              <div className="flex flex-col justify-around h-full">
-                {correctAnswer ? (
-                  <p className="text-xl font-bold text-gray-400">
-                    Correct,
-                    <span className="font-bold text-green-400">
-                      {" " + guessAttempt + " "}
-                    </span>
-                    was the answer!
-                  </p>
-                ) : wrongAnswer ? (
-                  <div className="space-y-8 text-lg font-bold text-gray-400">
-                    <span>The correct answer was </span>
-                    <span className="font-bold text-green-400">
-                      {questionData[index].answer.toString()}&nbsp;
-                    </span>
-                    <br></br>
-
-                    <span>
-                      {guessAttempt != "" ? (
-                        <span>
-                          <span>Your answer was </span>
-                          <span className="font-bold text-red-500">
-                            {guessAttempt}
-                          </span>
-                        </span>
-                      ) : (
-                        <span className="font-bold">
-                          Don't forget to answer next time!
-                        </span>
-                      )}
-                    </span>
-                  </div>
-                ) : null}
-                {nextQuestionButton && (
-                  <div className="flex justify-center">
-                    <Button label="Next" onClick={applyNextQuestion}></Button>
-                  </div>
-                )}
-                {continueButton && (
-                  <Button
-                    label="Continue"
-                    backgroundColor="green"
-                    onClick={reviewPage}
-                  ></Button>
-                )}
-              </div>
-            </Card>
+            ) : null}
           </div>
-        </div>
-      </ReactCardFlip>
+          {/* Back of the card */}
+          <div className="flex justify-center">
+            <div className={` flex-col justify-center items-center gap-8 `}>
+              <div className={"justify-items-center align-middle w-50"}>
+                <Card size="large">
+                  <div className="flex flex-col justify-around h-full">
+                    {correctAnswer ? (
+                      <p className="text-xl font-bold text-gray-400">
+                        Correct,
+                        <span className="font-bold text-green-400">
+                          {" " + guessAttempt + " "}
+                        </span>
+                        was the answer!
+                      </p>
+                    ) : wrongAnswer ? (
+                      <div className="space-y-8 text-lg font-bold text-gray-400">
+                        <span>The correct answer was </span>
+                        <span className="font-bold text-green-400">
+                          {questionData[index].answer.toString()}&nbsp;
+                        </span>
+                        <br></br>
+
+                        <span>
+                          {guessAttempt != "" ? (
+                            <span>
+                              <span>Your answer was </span>
+                              <span className="font-bold text-red-500">
+                                {guessAttempt}
+                              </span>
+                            </span>
+                          ) : (
+                            <span className="font-bold">
+                              Don't forget to answer next time!
+                            </span>
+                          )}
+                        </span>
+                      </div>
+                    ) : null}
+                    {nextQuestionButton && (
+                      <div className="flex justify-center">
+                        <Button
+                          label="Next"
+                          onClick={applyNextQuestion}
+                        ></Button>
+                      </div>
+                    )}
+                    {continueButton && (
+                      <Button
+                        label="Continue"
+                        backgroundColor="green"
+                        onClick={reviewPage}
+                      ></Button>
+                    )}
+                  </div>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </ReactCardFlip>
+      </div>
     </div>
   );
 };

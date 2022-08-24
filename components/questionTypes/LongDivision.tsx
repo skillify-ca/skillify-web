@@ -80,8 +80,7 @@ export const LongDivision: React.FC<LongDivisionProp> = ({
   }
 
   return (
-    <div className="flex flex-col items-center justify-between h-full">
-      <div />
+    <div className="flex flex-col items-center gap-4">
       <div className="flex flex-row">
         <span className="flex flex-col-reverse text-6xl">
           {parse().second}&nbsp;

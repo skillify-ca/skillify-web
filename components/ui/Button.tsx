@@ -48,32 +48,30 @@ export const Button: React.FC<ButtonProps> = ({
       backgroundStyles = "bg-charmander hover:bg-pikachu-500";
       break;
     case "blue":
-      backgroundStyles =
-        "from-blue-500 via-blue-500 to-blue-500 border-blue-900 hover:from-blue-400";
+      backgroundStyles = "bg-blue-500 border-blue-900 hover:bg-blue-400";
       break;
     case "green":
       backgroundStyles =
-        "from-green-300 via-green-400 to-green-500 border-green-900 hover:from-green-200";
+        "bg-green-500 via-green-400 to-green-500 border-green-900 hover:bg-green-400";
       break;
     case "red":
       backgroundStyles =
-        "from-red-300 via-red-400 to-red-500 border-red-900 hover:from-red-200";
+        "bg-red-500 via-red-400 to-red-500 border-red-900 hover:bg-red-400";
       break;
     case "purple":
       backgroundStyles =
-        "from-purple-300 via-purple-400 to-purple-500 border-purple-900 hover:from-purple-200";
+        "bg-purple-500 via-purple-400 to-purple-500 border-purple-900 hover:bg-purple-400";
       break;
     case "pink":
       backgroundStyles =
-        "from-pink-300 via-pink-400 to-pink-500 border-pink-900 hover:from-pink-200";
+        "bg-pink-500 via-pink-400 to-pink-500 border-pink-900 hover:bg-pink-400";
       break;
     case "yellow":
       backgroundStyles =
-        "from-yellow-300 via-yellow-400 to-yellow-500 border-yellow-900 hover:from-yellow-200";
+        "bg-yellow-500 via-yellow-400 to-yellow-500 border-yellow-900 hover:bg-yellow-400";
       break;
     case "white":
-      backgroundStyles =
-        "bg-white border-gray-300 border-2 hover:from-blue-200";
+      backgroundStyles = "bg-white border-gray-300 border-2 hover:bg-blue-400";
       break;
   }
   return (
