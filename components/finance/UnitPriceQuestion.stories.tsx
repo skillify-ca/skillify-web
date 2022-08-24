@@ -25,8 +25,8 @@ Primary.args = {
   total: 1000,
   numberOfObjects: 10,
   image: "/images/banana.png",
-  name: Kari,
-  singularFruit: banana,
-  pluralFruit: bananas,
+  name: "Kari",
+  singularFruit: "banana",
+  pluralFruit: "bananas",
   question: text,
 };
