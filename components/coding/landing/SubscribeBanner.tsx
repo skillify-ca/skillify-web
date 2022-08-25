@@ -35,8 +35,8 @@ const SubscribeBanner = () => {
       <div className="grid grid-cols-1 p-4 lg:m-8 md:p-8 lg:rounded-md lg:grid-cols-2 bg-murkrow">
         <p className="mb-4 text-xl text-charmander">
           Traditional universities and coding bootcamps leave you in debt and
-          unprepared for finding a real job. With our project-based courses, you
-          can learn the fundamentals of coding and get hired.
+          unprepared in the workforce. With our project-based courses, you can
+          learn the fundamentals of coding and stand out amongst your peers.
         </p>
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row ">
           <div className="flex flex-col items-center">

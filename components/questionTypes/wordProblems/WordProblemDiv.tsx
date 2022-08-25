@@ -18,7 +18,6 @@ export interface WordProblemDivProp {
  */
 export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
   submitGuess,
-  isReadOnly = false,
   question,
   ...props
 }) => {
@@ -76,15 +75,13 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
           will each friend have?
         </p>
       </div>
-      {!isReadOnly && (
-        <div className="flex flex-wrap text-2xl">
-          <Input
-            value={guess}
-            setValue={setGuess}
-            handleKeypress={handleKeypress}
-          />
-        </div>
-      )}
+      <div className="flex flex-wrap text-2xl">
+        <Input
+          value={guess}
+          setValue={setGuess}
+          handleKeypress={handleKeypress}
+        />
+      </div>
       <div className="flex flex-wrap mt-2">
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
@@ -92,14 +89,12 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
       </div>
-      {!isReadOnly && (
-        <Button
-          onClick={onSubmit}
-          label="Submit"
-          backgroundColor="blue"
-          textColor="white"
-        />
-      )}
+      <Button
+        onClick={onSubmit}
+        label="Submit"
+        backgroundColor="blue"
+        textColor="white"
+      />
     </div>
   );
 };

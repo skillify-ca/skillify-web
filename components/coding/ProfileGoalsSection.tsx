@@ -29,14 +29,20 @@ export default function ProfileGoalsSection({ user }: GoalsSectionProps) {
     <>
       {userGoalsLoading ? (
         <div>Loading...</div>
+      ) : userGoals.length === 0 ? (
+        <div className="col-span-3 p-8 text-center shadow-md bg-slate-300 dark:bg-slate-900">
+          No Active Goals
+        </div>
       ) : (
-        userGoals.map((it) => {
-          return (
-            <div className="text-white bg-murkrow text-center rounded-full mx-5 py-2 mb-5">
-              {it.goalName}
-            </div>
-          );
-        })
+        <div className="bg-slate-300 dark:bg-slate-900">
+          {userGoals.map((it) => {
+            return (
+              <div className="py-2 mx-5 mb-5 text-center text-white rounded-full bg-murkrow">
+                {it.goalName}
+              </div>
+            );
+          })}
+        </div>
       )}
     </>
   );

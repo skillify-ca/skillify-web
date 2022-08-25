@@ -5,7 +5,7 @@ import { WordProblemAdd, WordProblemAddProp } from "./WordProblemAdd";
 import { QuestionType } from "../../../pages/api/questionTypes";
 import { Skill } from "../../../pages/api/skill";
 import Card from "../../ui/Card";
-import { createWordProblemModel } from "../../../pages/api/questionGenerators/wordProblemQuestion";
+import { createWordProblemModel } from "../../../pages/api/labs/questionGenerators/wordProblemQuestion";
 
 export default {
   title: "math/Word Problem Simple",
