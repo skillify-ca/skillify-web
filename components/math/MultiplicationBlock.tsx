@@ -1,15 +1,30 @@
 import React, { useEffect, useState } from "react";
 
-export default function MultiplicationBlock() {
+export interface MultiplicationBlockProps {
+  text: string;
+  selected: boolean;
+  onClick: boolean;
+}
+
+export const MultiplicationBlock: React.FC<MultiplicationBlockProps> = ({
+  text,
+  onClick,
+  ...props
+}) => {
+  const [selected, setSelected] = useState(false);
+  const handleSelected = () => {
+    setSelected(!selected);
+  };
   return (
     <div>
-      {" "}
-      <ul className="w-20 h-20 bg-green-400 flex justify-center items-center border-2 text-green-50 float-left ">
-        <p>{"8 x 9"}</p>
-      </ul>
-      <ul className="w-20 h-20 bg-green-400 flex justify-center items-center border-2 text-green-50 float-left ">
-        <p>72</p>
+      <ul
+        className={`w-20 h-20 flex justify-center items-center border-2 text-green-50 float-left
+        ${!selected ? "bg-green-400" : "bg-red-400"}`}
+        onClick={handleSelected}
+      >
+        <p>{text}</p>
       </ul>
     </div>
   );
-}
+};
+export default MultiplicationBlock;
