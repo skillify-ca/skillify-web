@@ -51,7 +51,7 @@ const Benefits = () => {
             </svg>
           }
           title="Expert Mentors"
-          description="Get tailored coaching from our industry experts. Our trainers walk alongside you to help you confidently take the next step."
+          description="Get tailored coaching from our industry experts. Our coaches walk alongside you to help you confidently take the next step."
         />
         <Benefit
           image={
@@ -69,8 +69,8 @@ const Benefits = () => {
               />
             </svg>
           }
-          title="Job Search Support"
-          description="We will help you get hired with access to resume critiques, mock coding interviews as well as exclusive internship opportunities."
+          title="Bring Your Own Project"
+          description="Have an idea you've always wanted to build? We train you to build and ship your own products."
         />
 
         <Benefit

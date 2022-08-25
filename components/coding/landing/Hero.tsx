@@ -22,14 +22,13 @@ export default function Hero() {
         <div className="p-8 lg:p-16 md:text-center lg:text-left">
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
             <span className="">Helping </span>{" "}
-            <span className="text-yellow-600 ">minorities</span>{" "}
-            <span className="">start a </span>{" "}
-            <span className="text-yellow-600 ">career</span>{" "}
-            <span className="">in tech.</span>{" "}
+            <span className="text-yellow-600 ">product managers</span>{" "}
+            <span className="">advance their </span>{" "}
+            <span className="text-yellow-600 ">careers.</span>{" "}
           </h1>
           <p className="my-4 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-            Get access to personalized coaching, expert mentors and a community
-            of learners.
+            Gain the technical skills to communicate effectively with
+            engineering teams.
           </p>
           <Button
             label={"Join Waitlist"}
