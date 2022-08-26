@@ -1,74 +1,76 @@
-import React from "react";
-import MultiplicationBlock from "../../../../components/math/MultiplicationBlock";
+import React, { useState } from "react";
+import MultiplicationBlock, {
+  BlockState,
+} from "../../../../components/math/MultiplicationBlock";
 import { Button } from "../../../../components/ui/Button";
 
-class BlockComponentGallery extends React.Component {
-    handlePlayer: string;
-    handleSelected: string;
-    constructor(props) {
-      super(props);
+export default function BlockComponentGallery() {
+  const [player, setPlayer] = useState(false);
 
+  function handlePlayer() {
+    setPlayer(!player);
+  }
 
+  const initialGameState = [
+    {
+      text: "72",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8x9",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8x1",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "16",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "2x8",
+      state: BlockState.NOT_SELECTED,
+    },
+  ];
 
-      this.state = {player: false, selected: false};
-      this.handlePlayer = this.handlePlayer.bind(this);
-      this.handleSelected = this.handleSelected.bind(this);
+  const [gameState, setGameState] = useState(initialGameState);
+
+  function handleSelect(index) {
+    console.log("BLOCK WAS CLICKED: index ", index);
+    console.log(gameState[index].text);
+
+    let gameState2 = [...gameState];
+    if (player === true) {
+      gameState2[index].state = BlockState.PLAYER_ONE_SELECTED;
+    } else if (player === false) {
+      gameState2[index].state = BlockState.PLAYER_TWO_SELECTED;
     }
 
+    setGameState(gameState2);
+  }
 
-  
-}
-  render () {
-  const player = this.state.player;
-  this.handlePlayer = this.handlePlayer.bind(this);
-  if (player) === false {
-    <MultiplicationBlock 
-      selected={false}
-      onClick={false} text={""} player={false} />
-  } else {
-    <MultiplicationBlock
-      selected={true}
-      onClick={true} text={""} player={true} />
-  };
-      
-  
-    return (
+  function handleReset() {
+    setGameState(initialGameState);
+  }
+
+  return (
     <div>
-      <Button label={"Next Player"} 
-      onClick={this.handlePlayer}/>
+      <p>Current Player: {player ? "Player 1" : "Player 2"}</p>
+      <Button label={"Next Player"} onClick={() => handlePlayer()} />
+      <Button label={"Reset Game"} onClick={() => handleReset()} />
       <h1 className="flex justify-center">Multiplication Game</h1>
-      <MultiplicationBlock
-        text={"72"}
-        selected={this.handleSelected}
-        onClick={this.handlePlayer}
-        player={false}
-      />
-      <MultiplicationBlock
-        text={"8 x 9"}
-        selected={false}
-        onClick={false}
-        player={false}
-      />
-      <MultiplicationBlock
-        text={"8"}
-        selected={false}
-        onClick={false}
-        player={false}
-      />
-      <MultiplicationBlock
-        text={"2 x 4"}
-        selected={false}
-        onClick={false}
-        player={false}
-      />
-      <MultiplicationBlock
-        text={"12"}
-        selected={false}
-        onClick={false}
-        player={false}
-      />{" "}
+      {gameState.map((item, index) => (
+        <MultiplicationBlock
+          text={item.text}
+          onClick={() => handleSelect(index)}
+          blockState={item.state}
+        />
+      ))}
     </div>
   );
 }
-
-export default BlockComponentGallery;
