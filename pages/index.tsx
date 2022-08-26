@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
-import LandingPagev2 from "../components/math/stories/LandingPagev2";
-import { Popover, Transition } from "@headlessui/react";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import Head from "next/head";
 import Facebook from "../components/Facebook";
 import SEO from "../components/SEO";
-import Link from "next/link";
 import LandingNavbar from "../components/LandingNavbar";
-import { Button } from "../components/ui/Button";
+import LandingPage from "../components/math/stories/LandingPage";
 
 const HomePage = () => {
   const [showNavBar, setShowNavBar] = useState(false);
@@ -41,7 +36,7 @@ const HomePage = () => {
         <LandingNavbar />
       </div>
       <Facebook />
-      <LandingPagev2 />
+      <LandingPage />
     </div>
   );
 };
