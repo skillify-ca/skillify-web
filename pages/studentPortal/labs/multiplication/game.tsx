@@ -28,7 +28,7 @@ class BlockComponentGallery extends React.Component {
   } else {
     <MultiplicationBlock
       selected={true}
-      onClick={true} text={""} player={false} />
+      onClick={true} text={""} player={true} />
   };
       
   
