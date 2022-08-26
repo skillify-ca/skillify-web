@@ -10,9 +10,8 @@ class BlockComponentGallery extends React.Component {
 
 
 
-      this.state = {setPlayer: false};
+      this.state = {player: false, selected: false};
       this.handlePlayer = this.handlePlayer.bind(this);
-      this.state = {setSelected: false};
       this.handleSelected = this.handleSelected.bind(this);
     }
 
@@ -20,9 +19,9 @@ class BlockComponentGallery extends React.Component {
   
 }
   render () {
-  const setPlayer = this.state.player;
+  const player = this.state.player;
   this.handlePlayer = this.handlePlayer.bind(this);
-  if (setPlayer) === false {
+  if (player) === false {
     <MultiplicationBlock 
       selected={false}
       onClick={false} text={""} player={false} />
