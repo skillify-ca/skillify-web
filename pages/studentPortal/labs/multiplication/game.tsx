@@ -85,10 +85,10 @@ export default function BlockComponentGallery() {
     let playerTwoArray = longestSubarray(gameState, 2);
 
     if (playerOneArray > playerTwoArray) {
-      console.log("Player One is the Winner");
-    } else if (playerOneArray < playerTwoArray) {
+      console.log("Play One is the winner");
+    } else if (playerTwoArray > playerOneArray) {
       console.log("Player Two is the winner");
-    } else {
+    } else if (playerOneArray === playerTwoArray) {
       console.log("Draw");
     }
   }
@@ -98,6 +98,7 @@ export default function BlockComponentGallery() {
       <p>Current Player: {player ? "Player 1" : "Player 2"}</p>
       <Button label={"Next Player"} onClick={() => handlePlayer()} />
       <Button label={"Reset Game"} onClick={() => handleReset()} />
+      <Button label={"Show Winner"} onClick={() => calculateWinner()} />
       <h1 className="flex justify-center">Multiplication Game</h1>
       {gameState.map((item, index) => (
         <MultiplicationBlock
