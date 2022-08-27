@@ -15,26 +15,32 @@ export default function BlockComponentGallery() {
     {
       text: "72",
       state: BlockState.NOT_SELECTED,
+      winner: -1,
     },
     {
       text: "8x9",
       state: BlockState.NOT_SELECTED,
+      winner: -1,
     },
     {
       text: "8",
       state: BlockState.NOT_SELECTED,
+      winner: -1,
     },
     {
       text: "8x1",
       state: BlockState.NOT_SELECTED,
+      winner: -1,
     },
     {
       text: "16",
       state: BlockState.NOT_SELECTED,
+      winner: -1,
     },
     {
       text: "2x8",
       state: BlockState.NOT_SELECTED,
+      winner: -1,
     },
   ];
 
@@ -47,19 +53,44 @@ export default function BlockComponentGallery() {
     let gameState2 = [...gameState];
     if (player === true) {
       gameState2[index].state = BlockState.PLAYER_ONE_SELECTED;
+      gameState2[index].winner = 1;
     } else if (player === false) {
       gameState2[index].state = BlockState.PLAYER_TWO_SELECTED;
+      gameState2[index].winner = 2;
     }
-    if (gameState2[index].state === BlockState.PLAYER_ONE_SELECTED) {
-      winner.push(1);
-    } else {
-      winner.push(0);
-    }
+
     setGameState(gameState2);
   }
 
   function handleReset() {
     setGameState(initialGameState);
+  }
+  function longestSubarray(array, x) {
+    let maxlength = 0,
+      sum = 0;
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].winner == x) {
+        sum++;
+      } else {
+        sum = 0;
+      }
+    }
+    maxlength = Math.max(maxlength, sum);
+
+    return maxlength;
+  }
+
+  function calculateWinner() {
+    let playerOneArray = longestSubarray(gameState, 1);
+    let playerTwoArray = longestSubarray(gameState, 2);
+
+    if (playerOneArray > playerTwoArray) {
+      console.log("Player One is the Winner");
+    } else if (playerOneArray < playerTwoArray) {
+      console.log("Player Two is the winner");
+    } else {
+      console.log("Draw");
+    }
   }
 
   return (
@@ -77,29 +108,4 @@ export default function BlockComponentGallery() {
       ))}
     </div>
   );
-}
-
-let winner = [];
-function longestSubarray(array, x) {
-  let maxlength = 0,
-    sum = 0;
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] == x) {
-      sum++;
-    } else {
-      sum = 0;
-    }
-  }
-  maxlength = Math.max(maxlength, sum);
-
-  return maxlength;
-}
-let playerOneArray = longestSubarray(winner, 1);
-let playerTwoArray = longestSubarray(winner, 0);
-if (playerOneArray > playerTwoArray) {
-  console.log("Player One is the Winner");
-} else if (playerOneArray < playerTwoArray) {
-  console.log("Player Two is the winner");
-} else {
-  console.log("Draw");
 }
