@@ -1,6 +1,10 @@
 import React from "react";
 
-export default function Credentials() {
+type CredentialsProps = {
+  headerText: string;
+};
+
+export default function Credentials({ headerText }: CredentialsProps) {
   const images = [
     "/images/about/duolingo.png",
     "/images/about/meta.png",
@@ -27,9 +31,7 @@ export default function Credentials() {
           </div>
         ))}
       </div>
-      <p className="mt-16 text-3xl font-bold">
-        Learn to effectively communicate with engineers
-      </p>
+      <p className="mt-16 text-3xl font-bold">{headerText}</p>
     </div>
   );
 }
