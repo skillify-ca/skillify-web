@@ -66,13 +66,13 @@ export default function BlockComponentGallery() {
     setGameState(initialGameState);
   }
   function longestSubarray(array, x) {
-    let maxlength = 0,
-      sum = 0;
+    let maxlength = 0;
+    let sum = 0;
     for (let i = 0; i < array.length; i++) {
+      let sum = 0;
       if (array[i].winner == x) {
         sum++;
       } else {
-        sum = 0;
       }
     }
     maxlength = Math.max(maxlength, sum);
@@ -82,7 +82,9 @@ export default function BlockComponentGallery() {
 
   function calculateWinner() {
     let playerOneArray = longestSubarray(gameState, 1);
+    console.log(playerOneArray);
     let playerTwoArray = longestSubarray(gameState, 2);
+    console.log(playerTwoArray);
 
     if (playerOneArray > playerTwoArray) {
       console.log("Play One is the winner");
