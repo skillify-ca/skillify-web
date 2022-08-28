@@ -4,11 +4,18 @@ import MultiplicationBlock, {
 } from "../../../../components/math/MultiplicationBlock";
 import { Button } from "../../../../components/ui/Button";
 
+export enum STAGE {
+  SET_RULES,
+  PLAY_GAME,
+  CALCULATE_WINNER,
+}
+
 export default function BlockComponentGallery() {
-  const [player, setPlayer] = useState(false);
+  const [stage, setStage] = useState(STAGE.SET_RULES);
+  const [isPlayerOneActive, setPlayerOneActive] = useState(false);
 
   function handlePlayer() {
-    setPlayer(!player);
+    setPlayerOneActive(!isPlayerOneActive);
   }
 
   const initialGameState = [
@@ -51,10 +58,10 @@ export default function BlockComponentGallery() {
     console.log(gameState[index].text);
 
     let gameState2 = [...gameState];
-    if (player === true) {
+    if (isPlayerOneActive === true) {
       gameState2[index].state = BlockState.PLAYER_ONE_SELECTED;
       gameState2[index].winner = 1;
-    } else if (player === false) {
+    } else if (isPlayerOneActive === false) {
       gameState2[index].state = BlockState.PLAYER_TWO_SELECTED;
       gameState2[index].winner = 2;
     }
@@ -73,6 +80,7 @@ export default function BlockComponentGallery() {
       if (array[i].winner == x) {
         sum++;
       } else {
+        let sum = 0;
       }
     }
     maxlength = Math.max(maxlength, sum);
@@ -97,7 +105,7 @@ export default function BlockComponentGallery() {
 
   return (
     <div>
-      <p>Current Player: {player ? "Player 1" : "Player 2"}</p>
+      <p>Current Player: {isPlayerOneActive ? "Player 1" : "Player 2"}</p>
       <Button label={"Next Player"} onClick={() => handlePlayer()} />
       <Button label={"Reset Game"} onClick={() => handleReset()} />
       <Button label={"Show Winner"} onClick={() => calculateWinner()} />
