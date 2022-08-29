@@ -1,5 +1,8 @@
-import { BlockState } from "../../../../components/math/MultiplicationBlock";
-import { calculateWinner, longestSubarray } from "./game";
+import { BlockState } from "../../components/math/MultiplicationBlock";
+import {
+  calculateWinner,
+  longestSubarray,
+} from "../studentPortal/labs/multiplication/game";
 
 test("Test longest subarray - 1", async () => {
   //Arrange
