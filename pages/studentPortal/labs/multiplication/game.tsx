@@ -16,11 +16,29 @@ export type GameBlockState = {
   state: BlockState;
 };
 
+export function longestSubarray(array: GameBlockState[], x: BlockState) {
+  let maxlength = 0;
+  let sum = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].state === x) {
+      sum++;
+    } else {
+      maxlength = Math.max(maxlength, sum);
+      sum = 0;
+      console.log("maxLength", maxlength, "currentSum", sum);
+    }
+  }
+  maxlength = Math.max(maxlength, sum);
+  sum = 0;
+  console.log("maxLength", maxlength, "currentSum", sum);
+  return maxlength;
+}
+
 export function calculateWinner(array: GameBlockState[]) {
   let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
-
+  console.log("P1", playerOneArray);
   let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
-
+  console.log("P2", playerTwoArray);
   if (playerOneArray > playerTwoArray) {
     return "Play One is the winner";
   } else if (playerTwoArray > playerOneArray) {
@@ -28,22 +46,6 @@ export function calculateWinner(array: GameBlockState[]) {
   } else if (playerOneArray === playerTwoArray) {
     return "Draw";
   }
-}
-
-function longestSubarray(array, x) {
-  let maxlength = 0;
-  let sum = 0;
-  for (let i = 0; i < array.length; i++) {
-    let sum = 0;
-    if (array[i].state == x) {
-      sum++;
-    } else {
-      sum = 0;
-    }
-  }
-  maxlength = Math.max(maxlength, sum);
-
-  return maxlength;
 }
 
 export default function BlockComponentGallery() {

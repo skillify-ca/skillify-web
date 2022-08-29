@@ -1,6 +1,54 @@
 import "@testing-library/jest-dom/extend-expect";
 import { BlockState } from "../../../../components/math/MultiplicationBlock";
-import { calculateWinner } from "./game";
+import { calculateWinner, longestSubarray } from "./game";
+
+
+test("Test longest subarray - 1", async () => {
+    //Arrange
+    const array=[{
+        text: "72",
+        state: BlockState.PLAYER_TWO_SELECTED,
+      },
+  
+     ]
+    //Act
+    const result = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED)
+    //Assert
+    expect(result).toBe(1)
+})
+
+
+test("Test the function outputs the longest consecutive line of elements", async () => {
+    //Arrange
+    const array=[{
+        text: "72",
+        state: BlockState.PLAYER_TWO_SELECTED,
+      },
+      {
+        text: "8x9",
+        state: BlockState.PLAYER_TWO_SELECTED,
+      },
+      {
+        text: "8",
+        state: BlockState.PLAYER_ONE_SELECTED,
+      },
+      {
+        text: "8x1",
+        state: BlockState.PLAYER_ONE_SELECTED,
+      },
+      {
+        text: "16",
+        state: BlockState.PLAYER_ONE_SELECTED,
+      },
+      {
+        text: "2x8",
+        state: BlockState.PLAYER_ONE_SELECTED,
+      }]
+    //Act
+    const result = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED)
+    //Assert
+    expect(result).toBe(4)
+})
 
 test("Test that the player with the longest line of consecutive squares wins the game", async () => {
     //Arrange
@@ -14,7 +62,7 @@ test("Test that the player with the longest line of consecutive squares wins the
       },
       {
         text: "8",
-        state: BlockState.PLAYER_TWO_SELECTED,
+        state: BlockState.PLAYER_ONE_SELECTED,
       },
       {
         text: "8x1",
@@ -65,3 +113,4 @@ test("Test that the player with the longest line of consecutive squares wins the
     //Assert
     expect(result).toBe("Player Two is the winner")
 })
+
