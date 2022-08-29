@@ -22,7 +22,17 @@ export default function Page() {
             less and make more money.
           </p>
         </div>
-        <EmailCapture />
+        <EmailCapture
+          headerText={[
+            { text: "Get our" },
+            { text: "top 12 secret tips ", highlight: true },
+            { text: "learning to code as and starting a career in " },
+            { text: "tech ", highlight: true },
+          ]}
+          description={
+            "Think learning to code is too hard? Drop us your email and we will send you our free guide on avoiding overhwhelm."
+          }
+        />
         <div className="p-8 bg-gray-200 border-t-2">
           <h2 className="mb-4 text-3xl font-bold text-center">
             Who is this guide for
