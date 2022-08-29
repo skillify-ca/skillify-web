@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import * as Colyseus from "colyseus.js";
 import BattleComponent from "../../components/math/mathBattle/BattleComponent";
-import { generateQuestions } from "../api/quiz/quizQuestionGenerator";
-import { Question, AnswerType } from "../api/question";
+import { Question } from "../api/question";
 import { QuestionType } from "../api/questionTypes";
-import { questionSetGenerator, Skill } from "../api/skill";
+import { Skill } from "../api/skill";
 import CoopBattleComponent from "../../components/math/mathBattle/coop/CoopBattleComponent";
 import { useEffect } from "react";
 import CreateRoom from "../../components/math/mathBattle/CreateRooms";
@@ -12,6 +11,7 @@ import Lobby from "../../components/math/mathBattle/PlayerLobby";
 import PostGameLobby from "../../components/math/mathBattle/PostGameLobby";
 import CoopGameOver from "../../components/math/mathBattle/coop/CoopGameOver";
 import Navbar from "../../components/ui/Navbar";
+import { generateMath1Questions } from "../api/practice/practiceQuestionGenerator";
 
 export type Player = {
   seat: number;
@@ -47,7 +47,6 @@ const MathBattle = () => {
     {
       text: "",
       answer: "",
-      answerType: AnswerType.NUMBER,
       questionType: QuestionType.HORIZONTAL_EQUATION,
       skill: Skill.ADDITION_SINGLE,
     },
@@ -146,12 +145,12 @@ const MathBattle = () => {
   });
 
   const onStartGameRequested = () => {
-    const questions = generateQuestions("addition", 1, 10);
+    const questions: Question[] = generateMath1Questions(1);
     room.send("startGameRequested", { questions: questions, players: players });
   };
 
   useEffect(() => {
-    setQuestionData(questionSetGenerator(20));
+    setQuestionData(generateMath1Questions(1));
   }, []);
 
   return (

@@ -88,6 +88,13 @@ export const animalsMap = {
     colour: "text-yellow-500 font-black",
     image: "/images/duck.jpeg",
   },
+  goats: {
+    type: "toys",
+    singleTitle: "goat toy",
+    pluralTitle: "goat toys",
+    colour: "text-gray-700 font-black",
+    image: "/images/goat.jpg",
+  },
   lions: {
     type: "toys",
     singleTitle: "lion toy",
@@ -129,6 +136,13 @@ export const animalsMap = {
     pluralTitle: "giraffes toys",
     colour: "text-yellow-600 font-black",
     image: "/images/giraffe.png",
+  },
+  peacock: {
+    type: "toys",
+    singleTitle: "peacock toy",
+    pluralTitle: "peacock toys",
+    colour: "text-purple-600 font-black",
+    image: "/images/peacock.png",
   },
 };
 export const fruitsMap = {

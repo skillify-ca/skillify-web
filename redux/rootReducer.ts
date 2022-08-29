@@ -30,7 +30,7 @@ type State = {
   quizState: QuizState;
   lessonState: LessonState;
   sidebarState: SidebarState;
-  skillRatingsSlice: SkillRatingsState;
+  skillRatingsState: SkillRatingsState;
 };
 const diagnosticReducer: Reducer = diagnosticSlice.reducer;
 const practiceTrackerReducer = practiceTrackerSlice.reducer;

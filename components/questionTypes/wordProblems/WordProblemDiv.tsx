@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { WordProblemQuestion } from "../../../pages/api/labs/questionGenerators/wordProblemQuestion";
 import { Question } from "../../../pages/api/question";
 import { Noun } from "../../../pages/api/WordProblemModelObjects";
 import { Button } from "../../ui/Button";
@@ -6,7 +7,7 @@ import { Input } from "../../ui/Input";
 
 export interface WordProblemDivProp {
   submitGuess: (e) => void;
-  question: Question;
+  question: WordProblemQuestion;
   isReadOnly?: boolean;
 }
 
@@ -17,7 +18,6 @@ export interface WordProblemDivProp {
  */
 export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
   submitGuess,
-  isReadOnly = false,
   question,
   ...props
 }) => {
@@ -32,7 +32,10 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
   };
   const onSubmit = () => {
     setGuess("");
-    submitGuess({ guess: guess, isCorrect: guess === question.answer });
+    submitGuess({
+      guess: guess,
+      isCorrect: guess === question.answer.toString(),
+    });
   };
   const parse = () => {
     const parts = question.text.split(" ");
@@ -72,15 +75,13 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
           will each friend have?
         </p>
       </div>
-      {!isReadOnly && (
-        <div className="flex flex-wrap text-2xl">
-          <Input
-            value={guess}
-            setValue={setGuess}
-            handleKeypress={handleKeypress}
-          />
-        </div>
-      )}
+      <div className="flex flex-wrap text-2xl">
+        <Input
+          value={guess}
+          setValue={setGuess}
+          handleKeypress={handleKeypress}
+        />
+      </div>
       <div className="flex flex-wrap mt-2">
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
@@ -88,14 +89,12 @@ export const WordProblemDiv: React.FC<WordProblemDivProp> = ({
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
         <img src={noun1.image} className="w-12 h-12 sm:w-16 sm:h-16" />
       </div>
-      {!isReadOnly && (
-        <Button
-          onClick={onSubmit}
-          label="Submit"
-          backgroundColor="blue"
-          textColor="white"
-        />
-      )}
+      <Button
+        onClick={onSubmit}
+        label="Submit"
+        backgroundColor="blue"
+        textColor="white"
+      />
     </div>
   );
 };

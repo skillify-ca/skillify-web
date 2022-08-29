@@ -1,10 +1,5 @@
-import React, { useState } from "react";
-import { GuessData } from "../../pages/api/guessData";
-import {
-  MultipleChoiceSentence,
-  MultipleChoiceSentenceProp,
-} from "../questionTypes/MultipleChoiceSentence";
-import { Button } from "../ui/Button";
+import React from "react";
+import { MultipleChoiceSentenceProp } from "../questionTypes/MultipleChoiceSentence";
 import MCQuiz from "./MCQuiz";
 
 export interface CSSQuizProp {}

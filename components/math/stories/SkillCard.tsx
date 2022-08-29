@@ -4,11 +4,11 @@ import { getEmoji } from "../../../pages/api/skill";
 import { Button } from "../../ui/Button";
 import Link from "next/link";
 
-const SkillCard = ({ loading, userSkillData, skill }) => {
+const SkillCard = ({ loading, userSkillData, skill, courseId }) => {
   const [isSelected, setIsSelected] = useState(false);
 
   return (
-    <Link href={`/practice/${skill.id}`}>
+    <Link href={`/studentPortal/labs/${courseId}/practice/${skill.id}`}>
       <div
         onMouseEnter={() => setIsSelected(true)}
         onMouseLeave={() => setIsSelected(false)}

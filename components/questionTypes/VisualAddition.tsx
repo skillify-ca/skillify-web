@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
 import { Question } from "../../pages/api/question";
+import { VisualDotsQuestion } from "../../pages/api/questionGenerators/visualDotsQuestion";
 import DiceDots from "../math/dots/DiceDots";
 import DualColourDots from "../math/dots/DualColourDots";
 import NumberLiteral from "../math/dots/NumberLiteral";
@@ -10,7 +11,7 @@ import { Input } from "../ui/Input";
 
 export interface VisualAdditionProp {
   submitGuess: (guess: GuessData) => void;
-  question: Question;
+  question: VisualDotsQuestion;
   visualDisplay: number;
 }
 
