@@ -209,4 +209,11 @@ export const fruitsMap = {
     colour: "text-green-300 font-black",
     image: "/images/lime.jpeg",
   },
+  mangoes: {
+    type: "fruits",
+    ssingleTitle: "mango",
+    pluralTitle: "mangoes",
+    colour: "text-yellow-300 font-black",
+    image: "/images/mango.jpeg",
+  },
 };
