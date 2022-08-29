@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import MultiplicationBlock, {
   BlockState,
 } from "../../../../components/math/MultiplicationBlock";
+import StatementRow from "../../../../components/math/stories/StatementRow";
 import { Button } from "../../../../components/ui/Button";
 
 export enum STAGE {
@@ -72,6 +73,11 @@ export default function BlockComponentGallery() {
   function handleReset() {
     setGameState(initialGameState);
   }
+  
+  const handlePlayGame()=> {
+    setStage(STAGE.PLAY_GAME)
+  };
+
   function longestSubarray(array, x) {
     let maxlength = 0;
     let sum = 0;
@@ -87,7 +93,9 @@ export default function BlockComponentGallery() {
 
     return maxlength;
   }
-
+  const handleCalculateWinner()=> {
+    setStage(STAGE.CALCULATE_WINNER)
+  }
   function calculateWinner() {
     let playerOneArray = longestSubarray(gameState, 1);
     console.log(playerOneArray);
@@ -105,18 +113,32 @@ export default function BlockComponentGallery() {
 
   return (
     <div>
-      <p>Current Player: {isPlayerOneActive ? "Player 1" : "Player 2"}</p>
-      <Button label={"Next Player"} onClick={() => handlePlayer()} />
-      <Button label={"Reset Game"} onClick={() => handleReset()} />
-      <Button label={"Show Winner"} onClick={() => calculateWinner()} />
-      <h1 className="flex justify-center">Multiplication Game</h1>
-      {gameState.map((item, index) => (
-        <MultiplicationBlock
-          text={item.text}
-          onClick={() => handleSelect(index)}
-          blockState={item.state}
-        />
-      ))}
+      {stage === STAGE.SET_RULES ? (
+        <div className="flex flex-col items-center justify-center text-murkrow">
+          <p>This is where the rules component goes.</p>
+          <Button label={"Play Game"} onClick={(handlePlayGame)} />
+        </div>
+      ) : stage === STAGE.PLAY_GAME ? (
+        <div>
+          <p>Current Player: {isPlayerOneActive ? "Player 1" : "Player 2"}</p>
+          <Button label={"Next Player"} onClick={() => handlePlayer()} />
+          <Button label={"Reset Game"} onClick={() => handleReset()} />
+          <Button label={"Show Winner"} onClick={(handleCalculateWinner)} />
+          <h1 className="flex justify-center">Multiplication Game</h1>
+          {gameState.map((item, index) => (
+            <MultiplicationBlock
+              text={item.text}
+              onClick={() => handleSelect(index)}
+              blockState={item.state}
+            />
+          ))}
+        </div>
+      ) : stage === STAGE.CALCULATE_WINNER ? (
+        <div className="flex justify-center">
+          <div className="flex flex-row justify-between "></div>
+           <Button label={"Show Winner"} onClick={() => calculateWinner()} />
+        </div>
+      ) : null}
     </div>
   );
 }
