@@ -54,17 +54,24 @@ export const generateQuestionForFinanceSkill = (skill: Skill): Question => {
         },
       };
     case Skill.FINANCE_COMMISSIONS:
+      let _personName = nameSelector();
+      let _commission = Math.floor(Math.random() * 19) + 1;
+      let _price =  Math.floor((Math.random() * 10000) + 1);
+      let _numberOfSales = Math.floor((Math.random() * 10) + 1);
+
       return {
         questionType: QuestionType.FINANCE_COMMISSION_PROBLEM,
         // ranodmly generated values & the correct answer to the problem go here
         commisionModel: {
-          personName: personName,
-          commission: 888,
-          price: 999,
-          numberOfSales: 666,
+          personName: _personName,
+          commission: _commission,
+          price: _price,
+          numberOfSales: _numberOfSales,
           image1: image1,
         },
-        answer: "Testing answer response",
+        // numberOfSales*price*(commission/100)
+        // answer: (Math.round(100*(randomNumber*price*(taxRate/100)))/100).toString(),
+        answer: (_numberOfSales*_price*(_commission/100)).toFixed(2).toString(),
         text: "",
       };
 

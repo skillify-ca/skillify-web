@@ -26,7 +26,6 @@ const CommissionQuestion: React.FC<CommissionQuestionProps> = ({
   text,
 }) => {
 
-  // Fix & understand
   const onSubmit = () => {
     submitGuess({
       guess: guess.toString(),
@@ -35,56 +34,43 @@ const CommissionQuestion: React.FC<CommissionQuestionProps> = ({
       setGuess("");
   };
 
-  // Fix & understand
   const [guess, setGuess] = useState("");
-  
 
   const handleKeypress = (e) => {
-    //it triggers by pressing the enter key
+    // triggers by pressing the enter key
     if (e.charCode === 13) {
       onSubmit();
     }
   };
 
-  personName = "Jerry";
-  commission = 12;
-  price = 5000;
-  numberOfSales = 1;
-
-
   return(
-    <div className="flex flex-col items-center gap-4">
-      <p>{personName} earns {commission}% interest for every contract they sell. 
-      If they sell a house for ${price}, how much in commission did they earn?</p>
+    <div className="flex flex-col items-center gap-5">
 
-{/*       <input
-          id="input"
-          // type="number"
-          value={guess}
-          className=
-          // "w-20 font-bold text-right border-2 border-gray-300"
-          // "flex flex-wrap justify-center w-full text-2xl"
-          "w-full py-4 text-center bg-white border rounded-md shadow-lg appearance-none sm:w-64 focus:outline-none focus:ring-indigo-500 focus:z-10 sm:text-sm"
-          onChange={(e) => setGuess(e.target.value)}
-      ></input> */}
+      <p>
+        {personName} earns <b>{commission}%</b> interest for every contract they sell. 
+        If they sell <b>{numberOfSales}</b> house(s) for <b>${price}</b>, how much commission 
+        did they earn?
+      </p>
 
-      <div className="flex justify-center w-full">
+      <div className="flex justify-center items-center w-full gap-2">
+        <p className="text-3xl font-semibold text-green-600">$</p>
         <Input
           value={guess}
           setValue={setGuess}
           handleKeypress={handleKeypress}
         />
       </div>
-      
+
       <Button
-          onClick={onSubmit}
-          label="Submit"
-          backgroundColor="blue"
-          textColor="white"
-        />
+        onClick={onSubmit}
+        label="Submit"
+        backgroundColor="green"
+        textColor="white"
+      />
 
     </div>
   );
+
 };
 
 
