@@ -46,8 +46,8 @@ const CommissionQuestion: React.FC<CommissionQuestionProps> = ({
     <div className="flex flex-col items-center gap-5">
 
       <p>
-        {personName} earns <b>{commission}%</b> interest for every contract they sell. 
-        If they sell <b>{numberOfSales}</b> house(s) for <b>${price}</b>, how much commission 
+        {personName} earns <b>{commission}%</b> interest for every house they sell. 
+        If they sell <b>{numberOfSales}</b> house(s) for <b>${price} each</b>, how much commission 
         did they earn?
       </p>
 
