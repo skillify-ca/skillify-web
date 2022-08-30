@@ -214,6 +214,6 @@ export const fruitsMap = {
     ssingleTitle: "mango",
     pluralTitle: "mangoes",
     colour: "text-yellow-300 font-black",
-    image: "/images/mango.jpeg",
+    image: "/images/mango.jpg",
   },
 };
