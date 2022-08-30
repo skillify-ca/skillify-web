@@ -82,6 +82,19 @@ export async function getServerSideProps({ params }) {
       description:
         "Don't watch this solution, until you've attempted the challenge above",
     },
+    {
+      title: "FizzBuzz",
+      link: "/coding/JavaScript/JsFunctions/FizzBuzz/fizzBuzz-Practice.js",
+      image: "/images/temperature.jpeg",
+      description: "A basic JavaScript coding challenge",
+    },
+    {
+      title: "FizzBuzz Solution",
+      link: "/coding/JavaScript/JsFunctions/FizzBuzz/fizzBuzz-Correct.js",
+      image: "/images/temperature.jpeg",
+      description:
+        "Don't read this solution, until you've attempted the challenge above",
+    },
   ];
   const lessonComponents: LessonComponentData[] = [
     {

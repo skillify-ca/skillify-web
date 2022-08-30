@@ -4,6 +4,13 @@ import Testimonial, { TestimonialProps } from "./Testimonial";
 const TestimonialSect = () => {
   const testimonialData = [
     {
+      studentName: "Brian L",
+      img: "/images/landingPage/brian.jpg",
+      text:
+        "Skillify helped me understand the fundamentals of frameworks and eng team development. As a product manager in tech, I now have a better understanding of the development process and needs of my team members! Working on a capstone project helped me walk a mile in the shoes of some of my teammates!",
+      completionDate: "Aug 2022",
+    },
+    {
       studentName: "Winthya V",
       img: "/images/landingPage/winthya.jpg",
       text:
@@ -47,6 +54,7 @@ const TestimonialSect = () => {
       completionDate: "Nov 2021",
     },
   ];
+
   return (
     <div>
       <div className="flex flex-col justify-center p-4 bg-white sm:p-8">
