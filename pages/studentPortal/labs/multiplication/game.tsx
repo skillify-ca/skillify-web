@@ -48,12 +48,6 @@ export function calculateWinner(array: GameBlockState[]) {
   }
 }
 
-export function distributeBlocks(array: GameBlockState[]) {
-  for (let block = 0; block < array.length; block++) {
-    return <div>array[i]</div>;
-  }
-}
-
 export default function BlockComponentGallery() {
   const [stage, setStage] = useState(STAGE.SET_RULES);
   const [isPlayerOneActive, setPlayerOneActive] = useState(false);
@@ -111,6 +105,118 @@ export default function BlockComponentGallery() {
       text: "2x8",
       state: BlockState.NOT_SELECTED,
     },
+    {
+      text: "72",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8x9",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8x1",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "16",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "2x8",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "72",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8x9",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8x1",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "72",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8x9",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8x1",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "16",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "2x8",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "72",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8x9",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8x1",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "72",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8x9",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8x1",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "16",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "2x8",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "72",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8x9",
+      state: BlockState.NOT_SELECTED,
+    },
   ];
 
   const [gameState, setGameState] =
@@ -162,8 +268,38 @@ export default function BlockComponentGallery() {
             <Button label={"Reset Game"} onClick={() => handleReset()} />
             <Button label={"Show Winner"} onClick={handleCalculateWinner} />
           </div>
-          <div className="col-start-1 col-end-4 ... row-start-3 row-end-7 place-content-between">
-            {gameState.map((item, index) => (
+          <div className="flex flex-row">
+            {gameState.slice(0, 9).map((item, index) => (
+              <MultiplicationBlock
+                text={item.text}
+                onClick={() => handleSelect(index)}
+                blockState={item.state}
+              />
+            ))}
+          </div>
+          <div className="grid grid-cols-9 col-span-6 w-[45rem]">
+            <div className="flex flex-col">
+              {gameState.slice(9, 20).map((item, index) => (
+                <MultiplicationBlock
+                  text={item.text}
+                  onClick={() => handleSelect(index)}
+                  blockState={item.state}
+                />
+              ))}
+            </div>
+            <div className="col-span-7 bg-blue-800">Image</div>
+            <div className="flex flex-col">
+              {gameState.slice(20, 31).map((item, index) => (
+                <MultiplicationBlock
+                  text={item.text}
+                  onClick={() => handleSelect(index)}
+                  blockState={item.state}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-row">
+            {gameState.slice(31, 41).map((item, index) => (
               <MultiplicationBlock
                 text={item.text}
                 onClick={() => handleSelect(index)}
