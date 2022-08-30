@@ -3,7 +3,7 @@ import { GuessData } from "../../pages/api/guessData";
 // import { name } from "../../pages/api/names";
 import { Button } from "../ui/Button";
 
-export interface SalesTaxQuestionProps{
+export interface CommissionQuestionProps{
     personName: string;
     commission: number;
     price: number;
@@ -12,4 +12,22 @@ export interface SalesTaxQuestionProps{
     image1: string;
     answer: string;
     text: string;
-  }
+}
+
+const CommissionQuestion: React.FC<CommissionQuestionProps> = ({
+  personName,
+  commission,
+  price,
+  numberOfSales,
+  submitGuess,
+  image1,
+  answer,
+  text,
+}) => {
+  return(
+    <>Testing</>
+  );
+}
+
+
+export default CommissionQuestion;
