@@ -4,6 +4,7 @@ export const name = [
 	'Ravi',
 	'Vithushan',
 	'Harrishan',
+	'Sukeesan',
 	'Yaathavi',
 	'Hayley',
 	'John',
