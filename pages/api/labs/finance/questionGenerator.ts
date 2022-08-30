@@ -61,7 +61,6 @@ export const generateQuestionForFinanceSkill = (skill: Skill): Question => {
 
       return {
         questionType: QuestionType.FINANCE_COMMISSION_PROBLEM,
-        // ranodmly generated values & the correct answer to the problem go here
         commisionModel: {
           personName: _personName,
           commission: _commission,
@@ -69,11 +68,8 @@ export const generateQuestionForFinanceSkill = (skill: Skill): Question => {
           numberOfSales: _numberOfSales,
           image1: image1,
         },
-        // numberOfSales*price*(commission/100)
-        // answer: (Math.round(100*(randomNumber*price*(taxRate/100)))/100).toString(),
         answer: (_numberOfSales*_price*(_commission/100)).toFixed(2).toString(),
         text: "",
       };
-
   }
 };

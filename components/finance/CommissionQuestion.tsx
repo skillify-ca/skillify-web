@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { GuessData } from "../../pages/api/guessData";
-// import { name } from "../../pages/api/names";
 import { Input } from "../ui/Input";
 import { Button } from "../ui/Button";
 
