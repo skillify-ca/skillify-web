@@ -33,7 +33,7 @@ const UnitOverviewPage = ({ courseId, skillData }) => {
 
   const lessons = {
     finance: [{ title: "Credit Card Lesson", link: "finance/credit-card" }],
-    math1: [{ title: "Multiplication Game", link: "finance/credit-card" }],
+    math1: [{ title: "Multiplication Game", link: "multiplication/game" }],
   };
 
   return (

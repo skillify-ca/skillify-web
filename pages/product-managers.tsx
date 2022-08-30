@@ -21,21 +21,17 @@ const HomePage = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const minoritiesCopy: LandingPageCopy = {
+  const productManagerCopy: LandingPageCopy = {
     headerText: [
-      { text: "Helping" },
-      { text: "minorities", highlight: true },
-      { text: "start a " },
-      { text: "career", highlight: true },
-      { text: "in tech" },
+      { text: "Coding courses" },
+      { text: "for" },
+      { text: "product managers.", highlight: true },
     ],
-    description:
-      "Hands-on experience taught by expert coaches. Get personalized training that leverages your unique perspectives and experiences.",
+    description: "Hands-on experience taught by expert coaches.",
     bannerText:
-      "Traditional universities and coding bootcamps leave you in debt and unprepared for finding a real job. With our project-based courses, you can learn the fundamentals of coding and get hired.",
-    credentialsText:
-      "Learn our secret approach to getting and passing coding interviews",
-    benefitsText: "Grow without limits",
+      "Traditional universities and coding bootcamps leave you in debt and unprepared in the workforce. With our project-based courses, you can learn the fundamentals of coding and stand out amongst your peers.",
+    credentialsText: "Learn to effectively communicate with engineers",
+    benefitsText: "Become technical and advance your career",
     benefits: [
       {
         title: "Expert Mentors",
@@ -43,9 +39,9 @@ const HomePage = () => {
           "Get tailored coaching from our industry experts. Our coaches walk alongside you to help you confidently take the next step.",
       },
       {
-        title: "Job Search Support",
+        title: "Bring Your Own Project",
         descripton:
-          "We will help you get hired with access to resume critiques, mock coding interviews as well as exclusive internship opportunities.",
+          "Have an idea you've always wanted to build? We train you to build and ship your own products.",
       },
       {
         title: "Community of Learners",
@@ -56,8 +52,8 @@ const HomePage = () => {
     emailCaptureText: [
       { text: "Get our" },
       { text: "top 12 secret tips ", highlight: true },
-      { text: "learning to code as and starting a career in " },
-      { text: "tech ", highlight: true },
+      { text: "on learning to code as a " },
+      { text: "product manager ", highlight: true },
     ],
     emailCaptureDescription:
       "Think learning to code is too hard? Drop us your email and we will send you our free guide on avoiding overhwhelm.",
@@ -72,7 +68,7 @@ const HomePage = () => {
     benefits,
     emailCaptureText,
     emailCaptureDescription,
-  } = minoritiesCopy;
+  } = productManagerCopy;
 
   return (
     <div>
