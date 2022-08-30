@@ -263,7 +263,7 @@ export default function BlockComponentGallery() {
           <div className="col-end-7 col-span-3 ...justify-center">
             Current Player: {isPlayerOneActive ? "Player 1" : "Player 2"}
           </div>
-          <div className="col-start-1 col-end-7 row-start-...justify-center">
+          <div className="col-start-1 col-end-7 flex justify-between w-[45rem]">
             <Button label={"Next Player"} onClick={() => handlePlayer()} />
             <Button label={"Reset Game"} onClick={() => handleReset()} />
             <Button label={"Show Winner"} onClick={handleCalculateWinner} />
