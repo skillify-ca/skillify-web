@@ -1,26 +1,36 @@
 import React, { useEffect, useState } from "react";
 
+export enum BlockState {
+  PLAYER_ONE_SELECTED,
+  PLAYER_TWO_SELECTED,
+  NOT_SELECTED,
+}
+
 export interface MultiplicationBlockProps {
   text: string;
-  selected: boolean;
-  onClick: boolean;
+  onClick: () => void;
+  blockState: BlockState;
 }
 
 export const MultiplicationBlock: React.FC<MultiplicationBlockProps> = ({
   text,
   onClick,
+  blockState,
   ...props
 }) => {
-  const [selected, setSelected] = useState(false);
-  const handleSelected = () => {
-    setSelected(!selected);
-  };
   return (
-    <div>
+    <div className="cursor-pointer">
       <ul
         className={`w-20 h-20 flex justify-center items-center border-2 text-green-50 float-left
-        ${!selected ? "bg-green-400" : "bg-red-400"}`}
-        onClick={handleSelected}
+        ${
+          blockState === BlockState.PLAYER_ONE_SELECTED
+            ? "bg-red-400"
+            : blockState === BlockState.PLAYER_TWO_SELECTED
+            ? "bg-blue-400"
+            : "bg-green-400"
+        }
+        `}
+        onClick={onClick}
       >
         <p>{text}</p>
       </ul>
