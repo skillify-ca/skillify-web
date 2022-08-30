@@ -38,10 +38,19 @@ const CommissionQuestion: React.FC<CommissionQuestionProps> = ({
   //   (document.getElementById("input") as HTMLInputElement).value = "";
   // }, []);
 
+  personName = "Jerry";
+  commission = 12;
+  price = 5000;
+  numberOfSales = 1;
+
+
   return(
-    <>
-      Testing
-    </>
+    <div>
+      <p>{personName} earns {commission}% interest for every contract they sell. 
+      If they sell a house for ${price}, how much in commission did they earn?</p>
+
+      
+    </div>
   );
 };
 

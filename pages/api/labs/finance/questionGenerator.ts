@@ -56,6 +56,7 @@ export const generateQuestionForFinanceSkill = (skill: Skill): Question => {
     case Skill.FINANCE_COMMISSIONS:
       return {
         questionType: QuestionType.FINANCE_COMMISSION_PROBLEM,
+        // ranodmly generated values & the correct answer to the problem go here
         commisionModel: {
           personName: personName,
           commission: 888,
@@ -63,7 +64,7 @@ export const generateQuestionForFinanceSkill = (skill: Skill): Question => {
           numberOfSales: 666,
           image1: image1,
         },
-        answer: "Testing",
+        answer: "Testing answer response",
         text: "",
       };
 
