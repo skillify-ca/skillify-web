@@ -7,6 +7,7 @@ import BalanceBudget from "../../finance/money/BalanceBudgetTable";
 import BudgetTable from "../../finance/money/BudgetTable";
 import TipQuestion from "../../finance/money/TipQuestion";
 import SalesTaxQuestion from "../../finance/SalesTaxQuestion";
+import CommissionQuestion from "../../finance/CommissionQuestion";
 import UnitPriceQuestion from "../../finance/UnitPriceQuestion";
 import { HorizontalEquation } from "../../questionTypes/HorizontalEquation";
 import { LongDivision } from "../../questionTypes/LongDivision";
@@ -147,7 +148,20 @@ const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
       image1={questionData.salesTaxModel.image1}
       text={""}
     />
-  ) : (
+  ) : questionData.questionType === QuestionType.FINANCE_COMMISSION_PROBLEM ? (
+    <CommissionQuestion
+      personName={questionData.commisionModel.personName}
+      commission={questionData.commisionModel.commission}
+      price={questionData.commisionModel.price}
+      numberOfSales={questionData.commisionModel.numberOfSales}
+      submitGuess={submitGuess}
+      image1={questionData.commisionModel.image1}
+      answer={questionData.answer}
+      text={""}
+    />
+  ) 
+  
+  : (
     <HorizontalEquation
       isReadOnly={false}
       question={questionData}
