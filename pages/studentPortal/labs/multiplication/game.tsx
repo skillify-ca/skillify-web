@@ -81,6 +81,30 @@ export default function BlockComponentGallery() {
       text: "2x8",
       state: BlockState.NOT_SELECTED,
     },
+    {
+      text: "72",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8x9",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8x1",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "16",
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "2x8",
+      state: BlockState.NOT_SELECTED,
+    },
   ];
 
   const [gameState, setGameState] =
@@ -120,19 +144,27 @@ export default function BlockComponentGallery() {
           <Button label={"Play Game"} onClick={handlePlayGame} />
         </div>
       ) : stage === STAGE.PLAY_GAME ? (
-        <div>
-          <p>Current Player: {isPlayerOneActive ? "Player 1" : "Player 2"}</p>
-          <Button label={"Next Player"} onClick={() => handlePlayer()} />
-          <Button label={"Reset Game"} onClick={() => handleReset()} />
-          <Button label={"Show Winner"} onClick={handleCalculateWinner} />
-          <h1 className="flex justify-center">Multiplication Game</h1>
-          {gameState.map((item, index) => (
-            <MultiplicationBlock
-              text={item.text}
-              onClick={() => handleSelect(index)}
-              blockState={item.state}
-            />
-          ))}
+        <div className="grid grid-cols-6 grid-rows-7">
+          <div className="col-start-1 col-end-4 ...justify-center">
+            Multiplication Game
+          </div>
+          <div className="col-end-7 col-span-3 ...justify-center">
+            Current Player: {isPlayerOneActive ? "Player 1" : "Player 2"}
+          </div>
+          <div className="col-start-1 col-end-7 ...justify-center">
+            <Button label={"Next Player"} onClick={() => handlePlayer()} />
+            <Button label={"Reset Game"} onClick={() => handleReset()} />
+            <Button label={"Show Winner"} onClick={handleCalculateWinner} />
+          </div>
+          <div className="col-start-1 col-end-4 ... row-start-3 row-end-7 place-content-between w-160">
+            {gameState.map((item, index) => (
+              <MultiplicationBlock
+                text={item.text}
+                onClick={() => handleSelect(index)}
+                blockState={item.state}
+              />
+            ))}
+          </div>
         </div>
       ) : stage === STAGE.CALCULATE_WINNER ? (
         <div className="flex justify-center">
