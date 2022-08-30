@@ -48,6 +48,12 @@ export function calculateWinner(array: GameBlockState[]) {
   }
 }
 
+export function distributeBlocks(array: GameBlockState[]) {
+  for (let block = 0; block < array.length; block++) {
+    return <div>array[i]</div>;
+  }
+}
+
 export default function BlockComponentGallery() {
   const [stage, setStage] = useState(STAGE.SET_RULES);
   const [isPlayerOneActive, setPlayerOneActive] = useState(false);
@@ -151,12 +157,12 @@ export default function BlockComponentGallery() {
           <div className="col-end-7 col-span-3 ...justify-center">
             Current Player: {isPlayerOneActive ? "Player 1" : "Player 2"}
           </div>
-          <div className="col-start-1 col-end-7 ...justify-center">
+          <div className="col-start-1 col-end-7 row-start-...justify-center">
             <Button label={"Next Player"} onClick={() => handlePlayer()} />
             <Button label={"Reset Game"} onClick={() => handleReset()} />
             <Button label={"Show Winner"} onClick={handleCalculateWinner} />
           </div>
-          <div className="col-start-1 col-end-4 ... row-start-3 row-end-7 place-content-between w-160">
+          <div className="col-start-1 col-end-4 ... row-start-3 row-end-7 place-content-between">
             {gameState.map((item, index) => (
               <MultiplicationBlock
                 text={item.text}

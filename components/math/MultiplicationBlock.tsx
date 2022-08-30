@@ -19,7 +19,7 @@ export const MultiplicationBlock: React.FC<MultiplicationBlockProps> = ({
   ...props
 }) => {
   return (
-    <div className="grid-wrap place-content-between h-100 cursor-pointer">
+    <div className="grid-wrap place-content-between cursor-pointer">
       <div
         className={`w-20 h-20 flex justify-center items-center border-2 text-green-50 float-left
         ${
