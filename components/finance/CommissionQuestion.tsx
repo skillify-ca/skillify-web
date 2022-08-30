@@ -24,10 +24,26 @@ const CommissionQuestion: React.FC<CommissionQuestionProps> = ({
   answer,
   text,
 }) => {
+
+  // const onSubmit = (guess: string) => {
+  //   submitGuess({
+  //     guess: guess.toString(),
+  //     isCorrect: guess === answer,
+  //   }),
+  //     setGuess("");
+  // };
+
+  // const [guess, setGuess] = useState("");
+  // useEffect(() => {
+  //   (document.getElementById("input") as HTMLInputElement).value = "";
+  // }, []);
+
   return(
-    <>Testing</>
+    <>
+      Testing
+    </>
   );
-}
+};
 
 
 export default CommissionQuestion;

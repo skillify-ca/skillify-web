@@ -32,26 +32,40 @@ export const generateQuestionForFinanceSkill = (skill: Skill): Question => {
           image: image,
         },
       };
-      case Skill.FINANCE_SALES_TAX:
-        const noun2 = getRandomItemFromMap(animalsMap);
-        let randomNumber = randomize(2,20);
-        let taxRate = Math.floor(Math.random() * 19) + 1;
-        let price = (randomize(1,20)+ randomize(1,100)*0.01).toFixed(2);
-        let personName = nameSelector();
-        let multipleAnimals = noun2.pluralTitle;
-        let image1 = noun2.image;
-        return {
-          questionType: QuestionType.FINANCE_SALES_TAX_PROBLEM,
-          answer: (Math.round(100*(randomNumber*price*(taxRate/100)))/100).toString(),
-          text: "",
-          salesTaxModel: {
-            numberOfToys: randomNumber,
-            taxRate: taxRate,
-            price: price,
-            personName: personName,
-            multipleAnimals: multipleAnimals,
-            image1: image1,
-          },
-        };
+    case Skill.FINANCE_SALES_TAX:
+      const noun2 = getRandomItemFromMap(animalsMap);
+      let randomNumber = randomize(2,20);
+      let taxRate = Math.floor(Math.random() * 19) + 1;
+      let price = (randomize(1,20)+ randomize(1,100)*0.01).toFixed(2);
+      let personName = nameSelector();
+      let multipleAnimals = noun2.pluralTitle;
+      let image1 = noun2.image;
+      return {
+        questionType: QuestionType.FINANCE_SALES_TAX_PROBLEM,
+        answer: (Math.round(100*(randomNumber*price*(taxRate/100)))/100).toString(),
+        text: "",
+        salesTaxModel: {
+          numberOfToys: randomNumber,
+          taxRate: taxRate,
+          price: price,
+          personName: personName,
+          multipleAnimals: multipleAnimals,
+          image1: image1,
+        },
+      };
+    case Skill.FINANCE_COMMISSIONS:
+      return {
+        questionType: QuestionType.FINANCE_COMMISSION_PROBLEM,
+        commisionModel: {
+          personName: personName,
+          commission: 888,
+          price: 999,
+          numberOfSales: 666,
+          image1: image1,
+        },
+        answer: "Testing",
+        text: "",
+      };
+
   }
 };
