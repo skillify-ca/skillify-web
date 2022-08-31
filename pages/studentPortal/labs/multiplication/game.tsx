@@ -40,11 +40,25 @@ export function calculateWinner(array: GameBlockState[]) {
   let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
   console.log("P2", playerTwoArray);
   if (playerOneArray > playerTwoArray) {
-    return "Play One is the winner";
+    return "Player One, you have Conquered!";
   } else if (playerTwoArray > playerOneArray) {
-    return "Player Two is the winner";
+    return "Player Two, you have Conquered!";
   } else if (playerOneArray === playerTwoArray) {
-    return "Draw";
+    return "This mission has resulted in a Draw!";
+  }
+}
+
+export function showEndGameImage(array: GameBlockState[]) {
+  let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
+  console.log("P1", playerOneArray);
+  let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
+  console.log("P2", playerTwoArray);
+  if (playerOneArray > playerTwoArray) {
+    return <img src="/images/playerOneWinner.png" />;
+  } else if (playerTwoArray > playerOneArray) {
+    return <img src="/images/playerTwoWinner.png" />;
+  } else if (playerOneArray === playerTwoArray) {
+    return <img src="/images/drawWinner.png" />;
   }
 }
 
@@ -333,9 +347,20 @@ export default function BlockComponentGallery() {
           </div>
         </div>
       ) : stage === STAGE.CALCULATE_WINNER ? (
-        <div className="flex justify-center">
-          <div className="flex flex-row justify-between "></div>
-          {calculateWinner(gameState)}
+        <div className="flex-row justify-center">
+          <div className="flex justify-center animate-bounce space-y-6 py-4 bg-gradient-to-b bg-charmander hover:bg-pikachu-500 text-white px-3 font-bold text-xl border-b-4 rounded-lg active:border-b-2 cursor-pointer`">
+            {calculateWinner(gameState)}
+          </div>
+          <div className="flex justify-center">
+            {" "}
+            {showEndGameImage(gameState)}
+          </div>
+          <p className="py-8 flex justify-center">
+            Take heart. Practice makes perfect. Begin again!
+          </p>
+          <div className="flex justify-center">
+            <Button label={"Play Again"} onClick={handlePlayGame} />
+          </div>
         </div>
       ) : null}
     </div>
