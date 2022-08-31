@@ -320,7 +320,7 @@ export default function BlockComponentGallery() {
               {gameState.slice(9, 20).map((item, index) => (
                 <MultiplicationBlock
                   text={item.text}
-                  onClick={() => handleSelect(index)}
+                  onClick={() => handleSelect(index + 9)}
                   blockState={item.state}
                 />
               ))}
@@ -330,7 +330,7 @@ export default function BlockComponentGallery() {
               {gameState.slice(20, 31).map((item, index) => (
                 <MultiplicationBlock
                   text={item.text}
-                  onClick={() => handleSelect(index)}
+                  onClick={() => handleSelect(index + 20)}
                   blockState={item.state}
                 />
               ))}
@@ -340,7 +340,7 @@ export default function BlockComponentGallery() {
             {gameState.slice(31, 41).map((item, index) => (
               <MultiplicationBlock
                 text={item.text}
-                onClick={() => handleSelect(index)}
+                onClick={() => handleSelect(index + 31)}
                 blockState={item.state}
               />
             ))}
