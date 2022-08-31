@@ -251,19 +251,43 @@ export default function BlockComponentGallery() {
   return (
     <div>
       {stage === STAGE.SET_RULES ? (
-        <div className="flex flex-col items-center justify-center text-murkrow">
-          <p>This is where the rules component goes.</p>
+        <div className="space-y-4 flex flex-col items-center justify-center text-murkrow">
+          <h1 className="font-bold text-2xl flex justify-center">
+            Welcome to the Multiplication Block Game!
+          </h1>
+          <ol className="justify-center">
+            <span className="font-black">Your Quest?</span> Magically turn the
+            longest line of squares into the Player 1 or Player 2 color.{" "}
+          </ol>
+          <div className="space-y-4 py-4 bg-gradient-to-b bg-charmander hover:bg-pikachu-500 text-white px-3 font-bold border-b-4 rounded-lg active:border-b-2 cursor-pointer`">
+            <ol className="justify-start">
+              1. {""} {""}Embark on this math mission by clicking on two
+              squares: a <span className="text-xl">multiplication problem</span>{" "}
+              and its <span className="text-xl">product.</span> The squares will
+              magically change to a different color for each player.
+            </ol>
+            <ol className="justify-start">
+              2. {""}
+              {""}Switch players and colors by clicking the{" "}
+              <span className="text-xl">"Next Player"</span>
+              button.
+            </ol>
+            <ol className="justify-start">
+              3. {""}
+              {""}When all squares have been magically colored in, click
+              <span className="text-xl">"Calculate Winner"</span> to see who
+              conquered the board on this mission!
+            </ol>
+          </div>
+          <p>Learning how to multiply can be fun! Click "Play Game" below!</p>
           <Button label={"Play Game"} onClick={handlePlayGame} />
         </div>
       ) : stage === STAGE.PLAY_GAME ? (
         <div className="grid grid-cols-6 grid-rows-7">
-          <div className="col-start-1 col-end-4 ...justify-center">
-            Multiplication Game
-          </div>
-          <div className="col-end-7 col-span-3 ...justify-center">
+          <div className="pb-4 font-black col-start-1 col-end-6 flex justify-evenly w-[45rem]">
             Current Player: {isPlayerOneActive ? "Player 1" : "Player 2"}
           </div>
-          <div className="col-start-1 col-end-7 flex justify-between w-[45rem]">
+          <div className="pb-8 col-start-1 col-end-7 flex justify-evenly w-[45rem]">
             <Button label={"Next Player"} onClick={() => handlePlayer()} />
             <Button label={"Reset Game"} onClick={() => handleReset()} />
             <Button label={"Show Winner"} onClick={handleCalculateWinner} />
@@ -311,10 +335,7 @@ export default function BlockComponentGallery() {
       ) : stage === STAGE.CALCULATE_WINNER ? (
         <div className="flex justify-center">
           <div className="flex flex-row justify-between "></div>
-          <Button
-            label={"Show Winner"}
-            onClick={() => calculateWinner(gameState)}
-          />
+          {calculateWinner(gameState)}
         </div>
       ) : null}
     </div>
