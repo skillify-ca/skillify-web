@@ -20,7 +20,7 @@ export const MultiplicationBlock: React.FC<MultiplicationBlockProps> = ({
 }) => {
   return (
     <div className="cursor-pointer">
-      <ul
+      <div
         className={`w-20 h-20 flex justify-center items-center border-2 text-green-50 float-left
         ${
           blockState === BlockState.PLAYER_ONE_SELECTED
@@ -33,7 +33,7 @@ export const MultiplicationBlock: React.FC<MultiplicationBlockProps> = ({
         onClick={onClick}
       >
         <p>{text}</p>
-      </ul>
+      </div>
     </div>
   );
 };
