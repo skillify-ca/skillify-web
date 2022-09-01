@@ -1,5 +1,3 @@
-// http://localhost:3000/studentPortal/labs/multiplication-connect/Index
-
 import React from 'react'
 import DiceSection from '../../../../components/math/multiplicationConnect/DiceSection';
 import PlayerSection from '../../../../components/math/multiplicationConnect/PlayerSection';
