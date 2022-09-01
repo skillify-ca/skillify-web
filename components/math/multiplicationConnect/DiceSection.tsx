@@ -1,30 +1,30 @@
-import React from 'react'
 import { Button } from '../../ui/Button'
-import { useState } from 'react'
-import DiceDots from '../dots/DiceDots'
-
-
+import { useState, useEffect } from 'react'
 
 
 const DiceSection = () => {
+
   const diceRoll = () => {
-    console.log ( Math.floor((Math.random()*6) + 1));
     return Math.floor((Math.random()*6) + 1);
   }
 
+  const [roll, setRoll] = useState(0);
+
   return (
-    <div>
-        <div className="flex gap-24 items-center">
-          <div className='border-4 h-40 w-40 grid place-items-center'>
-            <p className='text-sm'>dice 1</p>
-            <p>{diceRoll}</p>
-          </div>
-          <div className='border-4 h-40 w-40 grid place-items-center'>
-            <p className='text-sm'>dice 2</p>
-            <p>{diceRoll}</p>
-          </div>
-          <Button label={'Roll Dice'} onClick={diceRoll} />
-        </div>
+    <div className="flex gap-24 justify-center items-center">
+
+      <div className='border-4 h-40 w-40 flex flex-col justify-center items-center gap-3'>
+        <p className='text-sm'>dice 1</p>
+        <p>{roll}</p>
+      </div>
+
+      <div className='border-4 h-40 w-40 flex flex-col justify-center items-center gap-3'>
+        <p className='text-sm'>dice 2</p>
+        <p>{roll}</p>
+      </div>
+
+      <Button label={'Roll Dice'} onClick={() => setRoll(diceRoll)} />
+
     </div>
   )
 }

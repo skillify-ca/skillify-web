@@ -4,9 +4,10 @@ import { Input } from '../../ui/Input'
 const PlayerSection = () => {
   return (
     <div>
-        <div className="flex justify-around">
-            <input className='placeholder:text-black-500' placeholder='Player 1'></input>
-            <input className='placeholder:text-black-500' placeholder='Player 2 (*WIP)'></input>
+        <div className="flex justify-center gap-24">
+            <input className='bg-inherit placeholder:text-inherit' placeholder='Player 1'></input>
+            <input className='bg-inherit placeholder:text-inherit' placeholder='Player 2 (*WIP)'></input>
+            <p className='text-xs'>Click player to rename</p>
         </div>
     </div>
   )
