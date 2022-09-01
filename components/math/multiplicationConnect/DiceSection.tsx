@@ -23,7 +23,14 @@ const DiceSection = () => {
         <p>{roll}</p>
       </div>
 
-      <Button label={'Roll Dice'} onClick={() => setRoll(diceRoll)} />
+      <div className='flex flex-col items-center gap-5'>
+        <div className='flex justify-center bg-sky-800/30 rounded-md p-7'>
+          <p>Your Number:</p>
+          <p></p>
+        </div>
+        <Button label={'Roll Dice'} onClick={() => setRoll(diceRoll)} />
+        <Button label={'Game Rules'} size="small" backgroundColor='yellow' />
+      </div>
 
     </div>
   )

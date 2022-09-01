@@ -4,10 +4,10 @@ import GameBoard from '../../../../components/math/multiplicationConnect/GameBoa
 import PlayerSection from '../../../../components/math/multiplicationConnect/PlayerSection';
 
 
-const index = () => {
+const Index = () => {
   return (
     <div className='flex flex-col gap-10'>
-        <h1 className='text-3xl text-center'>Welcome to Multiplication Connect Four</h1>
+        <h1 className='text-3xl text-center'>Welcome to Multiplication Connect Four 🔴🟡</h1>
         <PlayerSection />
         <DiceSection />
         <GameBoard />
@@ -15,4 +15,4 @@ const index = () => {
   )
 }
 
-export default index;
+export default Index;
