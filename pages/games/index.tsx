@@ -28,6 +28,7 @@ export enum STAGE {
   POSTGAME_LOBBY,
   GAME_OVER,
   COOP_GAME_OVER,
+  PLAY_GAME,
 }
 
 const MathBattle = () => {
