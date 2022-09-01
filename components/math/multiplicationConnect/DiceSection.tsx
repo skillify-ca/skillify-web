@@ -13,12 +13,12 @@ const DiceSection = () => {
   return (
     <div className="flex gap-24 justify-center items-center">
 
-      <div className='border-4 h-40 w-40 rounded-3xl heropattern-dominos-zinc-900 flex flex-col justify-center items-center gap-3'>
+      <div className='border-2 h-40 w-40 rounded-3xl bg-neutral-300 text-black-500 flex flex-col justify-center items-center gap-3'>
         <p className='text-sm'>dice 1</p>
         <p>{roll}</p>
       </div>
 
-      <div className='border-4 h-40 w-40 rounded-3xl heropattern-dominos-zinc-900 flex flex-col justify-center items-center gap-3'>
+      <div className='border-2 h-40 w-40 rounded-3xl bg-neutral-300 text-black-500 flex flex-col justify-center items-center gap-3'>
         <p className='text-sm'>dice 2</p>
         <p>{roll}</p>
       </div>
