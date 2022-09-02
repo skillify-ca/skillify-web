@@ -1,4 +1,4 @@
-import { BlockState } from "../../components/math/MultiplicationBlock";
+import { BlockState } from "../../components/math/longestStreak/MultiplicationBlock";
 import {
   calculateWinner,
   longestSubarray,

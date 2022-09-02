@@ -58,43 +58,40 @@ export function showEndGameImage(array: GameBlockState[]) {
   let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
   console.log("P2", playerTwoArray);
   if (playerOneArray > playerTwoArray) {
-    return <img src="/images/playerOneWinner.png" />;
+    return <img src="/images/math1/longestStreatk/playerOneWinner.png" />;
   } else if (playerTwoArray > playerOneArray) {
-    return <img src="/images/playerTwoWinner.png" />;
+    return <img src="/images/math1/longestStreak/playerTwoWinner.png" />;
   } else if (playerOneArray === playerTwoArray) {
-    return <img src="/images/drawWinner.png" />;
+    return <img src="/images/math1/longestStreak/drawWinner.png" />;
   }
 }
 
-export const [stage, setStage] = useState(STAGE.SET_RULES);
-export const [isPlayerOneActive, setPlayerOneActive] = useState(false);
-
-export function handlePlayer() {
-  setPlayerOneActive(!isPlayerOneActive);
-}
-
 export default function BlockComponentGallery() {
+  const [stage, setStage] = useState(STAGE.SET_RULES);
   const [gameState, setGameState] =
     useState<GameBlockState[]>(initialGameState);
-
+  const [isPlayerOneActive, setPlayerOneActive] = useState(false);
+  function handlePlayer() {
+    setPlayerOneActive(!isPlayerOneActive);
+  }
   function randomNumberProductList(array) {
     let dummyArray = [];
     for (let i = 0; i <= 20; i++) {
       let x = getRndInteger(1, 9);
       let y = getRndInteger(1, 9);
       let z = x * y;
-      let product = `x + " x " + y`;
+      let product = x + " x " + y;
 
       let initiateBlockState = {};
 
       initiateBlockState = {
-        text: z.toString,
+        text: z.toString(),
         state: BlockState.NOT_SELECTED,
       };
       dummyArray.push(initiateBlockState);
 
       initiateBlockState = {
-        text: product,
+        text: product.toString(),
         state: BlockState.NOT_SELECTED,
       };
       dummyArray.push(initiateBlockState);
@@ -103,10 +100,9 @@ export default function BlockComponentGallery() {
     //shuffle list
     initialGameState = shuffle(initialGameState);
 
-    //map array to the gameState.text
+    //set opening game state (unclicked and green)
     setGameState(initialGameState);
   }
-  randomNumberProductList(initialGameState);
   function handleReset() {
     setGameState(initialGameState);
   }
@@ -127,6 +123,7 @@ export default function BlockComponentGallery() {
 
   function handlePlayGame() {
     setStage(STAGE.PLAY_GAME);
+    randomNumberProductList(initialGameState);
   }
 
   function handleCalculateWinner() {
@@ -188,7 +185,12 @@ export default function BlockComponentGallery() {
           </div>
         </div>
       ) : stage === STAGE.CALCULATE_WINNER ? (
-        <CalculateWinner text={""} onClick={handlePlayGame} />
+        <CalculateWinner
+          text={""}
+          onClick={handlePlayGame}
+          winner={calculateWinner(gameState)}
+          image={showEndGameImage(gameState)}
+        />
       ) : null}
     </div>
   );
