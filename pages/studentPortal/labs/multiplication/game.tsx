@@ -83,7 +83,7 @@ export default function BlockComponentGallery() {
       let x = getRndInteger(1, 9);
       let y = getRndInteger(1, 9);
       let z = x * y;
-      let product = `x " x " y`;
+      let product = `x + " x " + y`;
 
       let initiateBlockState = {};
 
@@ -106,6 +106,7 @@ export default function BlockComponentGallery() {
     //map array to the gameState.text
     setGameState(initialGameState);
   }
+  randomNumberProductList(initialGameState);
   function handleReset() {
     setGameState(initialGameState);
   }
@@ -120,7 +121,7 @@ export default function BlockComponentGallery() {
     } else if (isPlayerOneActive === false) {
       gameState2[index].state = BlockState.PLAYER_TWO_SELECTED;
     }
-    randomNumberProductList(initialGameState);
+
     setGameState(gameState2);
   }
 
