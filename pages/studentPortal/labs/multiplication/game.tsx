@@ -152,6 +152,19 @@ export default function BlockComponentGallery() {
           </div>
           <div className="grid grid-cols-9 col-span-6 w-[45rem]">
             <div className="flex flex-col">
+              {gameState
+                .slice(30, 41)
+                .map((item, index) => (
+                  <MultiplicationBlock
+                    text={item.text}
+                    onClick={() => handleSelect(index + 30)}
+                    blockState={item.state}
+                  />
+                ))
+                .reverse()}
+            </div>
+            <div className="col-span-7 bg-blue-800">Image</div>
+            <div className="flex flex-col">
               {gameState.slice(9, 20).map((item, index) => (
                 <MultiplicationBlock
                   text={item.text}
@@ -160,25 +173,18 @@ export default function BlockComponentGallery() {
                 />
               ))}
             </div>
-            <div className="col-span-7 bg-blue-800">Image</div>
-            <div className="flex flex-col">
-              {gameState.slice(20, 31).map((item, index) => (
+          </div>
+          <div className="flex flex-row">
+            {gameState
+              .slice(20, 29)
+              .map((item, index) => (
                 <MultiplicationBlock
                   text={item.text}
                   onClick={() => handleSelect(index + 20)}
                   blockState={item.state}
                 />
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-row">
-            {gameState.slice(31, 41).map((item, index) => (
-              <MultiplicationBlock
-                text={item.text}
-                onClick={() => handleSelect(index + 31)}
-                blockState={item.state}
-              />
-            ))}
+              ))
+              .reverse()}
           </div>
         </div>
       ) : stage === STAGE.CALCULATE_WINNER ? (
