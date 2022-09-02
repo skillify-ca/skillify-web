@@ -103,9 +103,6 @@ export default function BlockComponentGallery() {
     //set opening game state (unclicked and green)
     setGameState(initialGameState);
   }
-  function handleReset() {
-    setGameState(initialGameState);
-  }
 
   function handleSelect(index) {
     console.log("BLOCK WAS CLICKED: index ", index);
@@ -141,7 +138,7 @@ export default function BlockComponentGallery() {
           </div>
           <div className="pb-8 col-start-1 col-end-7 flex justify-evenly w-[45rem]">
             <Button label={"Next Player"} onClick={() => handlePlayer()} />
-            <Button label={"Reset Game"} onClick={() => handleReset()} />
+            <Button label={"Reset Game"} onClick={() => handlePlayGame()} />
             <Button label={"Show Winner"} onClick={handleCalculateWinner} />
           </div>
           <div className="flex flex-row">
