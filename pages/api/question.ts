@@ -105,7 +105,6 @@ export type SalesTaxModel = {
   personName: string;
   image1: string;
   multipleAnimals: string,
-  numberOfToys: number,
 };
 export type CommissionModel = {
   personName: string;

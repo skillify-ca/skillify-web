@@ -5,14 +5,14 @@ import {
 } from "../../../pages/studentPortal/labs/multiplication/game";
 import { Button } from "../../ui/Button";
 
-export interface CalculateWinnerProps {
+export interface WinnerProps {
   text: string;
   onClick: () => void;
   winner: string;
-  image: string;
+  image: any;
 }
 
-export const CalculateWinner: React.FC<CalculateWinnerProps> = ({
+export const Winner: React.FC<WinnerProps> = ({
   text,
   onClick,
   winner,
@@ -34,4 +34,4 @@ export const CalculateWinner: React.FC<CalculateWinnerProps> = ({
     </div>
   );
 };
-export default CalculateWinner;
+export default Winner;

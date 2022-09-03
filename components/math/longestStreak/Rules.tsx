@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "../../ui/Button";
 
-export interface SetRulesProps {
+export interface RulesProps {
   text: string;
   onClick: () => void;
 }
 
-export const SetRules: React.FC<SetRulesProps> = ({
-  text,
-  onClick,
-  ...props
-}) => {
+export const Rules: React.FC<RulesProps> = ({ text, onClick, ...props }) => {
   return (
     <div className="cursor-pointer">
       <div className="space-y-4 flex flex-col items-center justify-center text-murkrow">
@@ -47,4 +43,4 @@ export const SetRules: React.FC<SetRulesProps> = ({
     </div>
   );
 };
-export default SetRules;
+export default Rules;
