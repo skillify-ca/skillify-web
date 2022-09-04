@@ -6,7 +6,7 @@ import PlayerSection from '../../../../components/math/multiplicationConnect/Pla
 
 const Index = () => {
   return (
-    <div className='flex flex-col gap-10'>
+    <div className='flex flex-col gap-10 max-w-5xl'>
         <h1 className='text-3xl text-center'>Welcome to Multiplication Connect Four 🔴🟡</h1>
         <PlayerSection />
         <DiceSection />

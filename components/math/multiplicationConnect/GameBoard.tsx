@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { getRandomItemFromArray, getRndInteger } from '../../../pages/api/random';
+import GameBoardBlock from './GameBoardBlock';
 
 const createGrid = () => {
     let arr = [];
