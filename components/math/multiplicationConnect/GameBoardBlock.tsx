@@ -1,8 +1,10 @@
 import React from 'react'
 
-const GameBoardBlock = () => {
+const GameBoardBlock = ({block}) => {
   return (
-    <div>GameBoardBlock</div>
+    <>
+        <p>{block.gridNumber}</p>
+    </>
   )
 }
 
