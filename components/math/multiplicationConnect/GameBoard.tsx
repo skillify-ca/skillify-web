@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
+import { getRndInteger } from '../../../pages/api/random';
 
 const createGrid = () => {
     let arr = [];
-    for(let i=1; i<36; i++){
-        arr.push({
-            id: i,
-            gridNumber: i,  //**To be randomized according to GameBoard setup
-        })
-    }
+    do{
+        let gridNumber = getRndInteger(4, 25);
+        (gridNumber%2===0) ? (
+            arr.push({
+                id: arr.length,
+                gridNumber: gridNumber,
+            })
+        ) : "" ;
+    }while(arr.length<35)
+
     return arr;
 }; 
 
