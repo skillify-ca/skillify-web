@@ -5,6 +5,7 @@ import MultiplicationBlock, {
   BlockState,
 } from "../../../../components/math/longestStreak/MultiplicationBlock";
 import Rules from "../../../../components/math/longestStreak/Rules";
+
 import { Button } from "../../../../components/ui/Button";
 import { getRndInteger } from "../../../api/random";
 
