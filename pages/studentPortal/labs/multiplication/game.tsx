@@ -1,5 +1,5 @@
 import { shuffle } from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CalculateWinner from "../../../../components/math/longestStreak/CalculateWinner";
 import MultiplicationBlock, {
   BlockState,
@@ -73,7 +73,6 @@ export default function BlockComponentGallery() {
       return <img src="/images/math1/longestStreak/drawWinner.png" />;
     }
   }
-
   function handlePlayer() {
     setPlayerOneActive(!isPlayerOneActive);
   }
