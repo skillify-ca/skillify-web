@@ -9,6 +9,8 @@ import SetRules from "../../../../components/math/longestStreak/SetRules";
 import { Button } from "../../../../components/ui/Button";
 import {
   longestStreakSelector,
+  setBlocks,
+  setGameState,
   setStage,
 } from "../../../../redux/longestStreakSlice";
 import { getRndInteger } from "../../../api/random";
@@ -78,9 +80,10 @@ export function showEndGameImage(array: GameBlockState[]) {
 export default function BlockComponentGallery() {
   const dispatch = useDispatch();
   const { stage } = useSelector(longestStreakSelector);
+  const { blocks } = useSelector(longestStreakSelector);
   //const [stage, setStage] = useState(STAGE.SET_RULES);
-  const [gameState, setGameState] =
-    useState<GameBlockState[]>(initialGameState);
+  //const [gameState, setGameState] =
+  //  useState<GameBlockState[]>(initialGameState);
   const [isPlayerOneActive, setPlayerOneActive] = useState(false);
   const [playerOneName, setPlayerOneName] = useState("Player 1");
   const [playerTwoName, setPlayerTwoName] = useState("Player 2");
@@ -114,21 +117,21 @@ export default function BlockComponentGallery() {
     initialGameState = shuffle(initialGameState);
 
     //set opening game state (unclicked and green)
-    setGameState(initialGameState);
+    dispatch(setBlocks(initialGameState));
   }
 
   function handleSelect(index) {
     console.log("BLOCK WAS CLICKED: index ", index);
-    console.log(gameState[index].text);
+    console.log(blocks[index].text);
 
-    let gameState2 = [...gameState];
+    let gameState2 = [...blocks];
     if (isPlayerOneActive === true) {
       gameState2[index].state = BlockState.PLAYER_ONE_SELECTED;
     } else if (isPlayerOneActive === false) {
       gameState2[index].state = BlockState.PLAYER_TWO_SELECTED;
     }
 
-    setGameState(gameState2);
+    dispatch(setGameState(gameState2));
   }
 
   function handlePlayGame() {

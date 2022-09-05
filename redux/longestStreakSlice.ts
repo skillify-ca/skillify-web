@@ -44,11 +44,16 @@ export const longestStreakSlice: Slice = createSlice({
             state.stage = 2;
         }
     },
-    setBlocks: (state: LongestStreakState, action: PayloadAction<GameBlockState[]>) => {
-        if (action.type == "longestStreak/setBlocks") {
-          state.blocks = action.payload;
-        }
-      },
+    setBlocks: (state: LongestStreakState, action: PayloadAction<number>) => {
+      const selectedBlock = action.payload as number;
+      if (selectedBlock === BlockState.NOT_SELECTED) {
+          state.blocks = 0;
+      } else if (selectedBlock === BlockState.PLAYER_ONE_SELECTED) {
+          state.blocks = 1;
+      } else if (selectedBlock === BlockState.PLAYER_TWO_SELECTED) {
+          state.blocks = 2;
+      }
+  },
     setTwoPlayer: (state, action: PayloadAction<boolean>) => {
       if (action.type === "longestStreak/setTwoPlayer") {
         state.isTwoPlayer = action.payload;
