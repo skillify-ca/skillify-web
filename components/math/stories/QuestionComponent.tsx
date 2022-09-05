@@ -7,6 +7,7 @@ import BalanceBudget from "../../finance/money/BalanceBudgetTable";
 import BudgetTable from "../../finance/money/BudgetTable";
 import TipQuestion from "../../finance/money/TipQuestion";
 import SalesTaxQuestion from "../../finance/SalesTaxQuestion";
+import CommissionQuestion from "../../finance/CommissionQuestion";
 import UnitPriceQuestion from "../../finance/UnitPriceQuestion";
 import { HorizontalEquation } from "../../questionTypes/HorizontalEquation";
 import { LongDivision } from "../../questionTypes/LongDivision";
@@ -26,8 +27,6 @@ type QuestionProps = {
   submitGuess: (guessData: GuessData) => void;
 };
 const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
-  console.log(questionData);
-
   return questionData.questionType === QuestionType.VERTICAL_EQUATION ? (
     <VerticalEquation
       submitGuess={submitGuess}
@@ -71,8 +70,7 @@ const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
       questionData={questionData}
       submitGuess={submitGuess}
     />
-  ) : questionData.questionType == QuestionType.VISUAL_TYPE_PROBLEM &&
-    questionData.operator == "+" ? (
+  ) : questionData.questionType == QuestionType.VISUAL_TYPE_PROBLEM ? (
     <VisualAddition
       question={questionData}
       submitGuess={submitGuess}
@@ -145,6 +143,17 @@ const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
       personName={questionData.salesTaxModel.personName}
       multipleAnimals={questionData.salesTaxModel.multipleAnimals}
       image1={questionData.salesTaxModel.image1}
+      text={""}
+    />
+  ) : questionData.questionType === QuestionType.FINANCE_COMMISSION_PROBLEM ? (
+    <CommissionQuestion
+      personName={questionData.commisionModel.personName}
+      commission={questionData.commisionModel.commission}
+      price={questionData.commisionModel.price}
+      numberOfSales={questionData.commisionModel.numberOfSales}
+      submitGuess={submitGuess}
+      image1={questionData.commisionModel.image1}
+      answer={questionData.answer}
       text={""}
     />
   ) : (

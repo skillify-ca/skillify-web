@@ -13,6 +13,7 @@ import { getArrayMultiplicationQuestion } from "./multiplication/arrayMultiplica
 import { getMultiplicationEqualGroups } from "./multiplication/equalGroupsQuestion";
 import { generateTrueOrFalseQuestion } from "./trueOrFalseQuestion";
 import { generateVerticalEquationQuestion } from "./verticalEquationQuestion";
+import { generateVisualDotsQuestion } from "./visualDotsQuestion";
 import { generateWordProblemQuestion } from "./wordProblemQuestion";
 //converts number as a string into an array of numbers
 export function randomize(min: number, max: number) {
@@ -120,5 +121,7 @@ export function getRandomBinaryQuestion(
     const a = getRndInteger(1, 7);
     const b = getRndInteger(1, 11);
     return getMultiplicationEqualGroups(a, b);
+  } else if (type === QuestionType.VISUAL_TYPE_PROBLEM) {
+    return generateVisualDotsQuestion();
   }
 }

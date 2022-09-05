@@ -1,4 +1,4 @@
-import { BlockState } from "../../components/math/MultiplicationBlock";
+import { BlockState } from "../../components/math/longestStreak/MultiplicationBlock";
 import {
   calculateWinner,
   longestSubarray,
@@ -83,7 +83,7 @@ test("Test that the player with the longest line of consecutive squares wins the
   //Act
   const result = calculateWinner(array);
   //Assert
-  expect(result).toBe("Play One is the winner");
+  expect(result).toBe("Player One, you have Conquered!");
 });
 
 test("Test that the player with the longest line of consecutive squares wins the game", async () => {
@@ -117,5 +117,5 @@ test("Test that the player with the longest line of consecutive squares wins the
   //Act
   const result = calculateWinner(array);
   //Assert
-  expect(result).toBe("Player Two is the winner");
+  expect(result).toBe("Player Two, you have Conquered!");
 });
