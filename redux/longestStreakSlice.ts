@@ -14,14 +14,10 @@ export interface LongestStreakState {
   isFilledBoard: boolean;
   isGameReset: boolean;
   isTwoPlayer: boolean;
-  showPlayerOneSelected: boolean;
-  showPlayerTwoSelected: boolean;
-  showNotSelected: boolean;
-  setBlockFreeze: boolean;
 }
 
 const initialState: LongestStreakState = {
-  stage: 1,
+  stage: 0,
   blocks: [],
   currentBlock: 0,
   isPlayerOneActive: false,
@@ -30,10 +26,6 @@ const initialState: LongestStreakState = {
   isFilledBoard: false,
   isGameReset: false,
   isTwoPlayer: false,
-  showPlayerOneSelected: false,
-  showPlayerTwoSelected: false,
-  showNotSelected: true,
-  setBlockFreeze: false,
 
 };
 
@@ -45,11 +37,11 @@ export const longestStreakSlice: Slice = createSlice({
         const stageOfGame = action.payload as number;
 
         if (stageOfGame === STAGE.SET_RULES) {
-            state.stage = 1;
+            state.stage = 0;
         } else if (stageOfGame === STAGE.PLAY_GAME) {
-            state.stage = 2;
+            state.stage = 1;
         } else if (stageOfGame === STAGE.CALCULATE_WINNER) {
-            state.stage = 3;
+            state.stage = 2;
         }
     },
     setBlocks: (state: LongestStreakState, action: PayloadAction<GameBlockState[]>) => {
@@ -67,43 +59,13 @@ export const longestStreakSlice: Slice = createSlice({
           state.isPlayerOneActive = action.payload;
         }
       },
-    setShowPlayerOneName: (state, action: PayloadAction<string>) => {
-        if (action.type === "longestStreak/setShowPlayerOneName") {
-            state.showPlayerOneName = action.payload;
-        }
-    },
-    setShowPlayerTwoName: (state, action: PayloadAction<string>) => {
-        if (action.type === "longestStreak/setShowPlayerOneName") {
-            state.showPlayerTwoName = action.payload;
-        }
-    },
 
-    selectBlocks: (state, action) => {
-      if (action.type == "longestStreak/selectBlocks") {
-        if (state.stage === 2 ) {
-          state.blocks = action.payload;
-          if (state.showPlayerOneSelected) {
-            state.setBlockFreeze = true;
-          }
-          if (state.showPlayerTwoSelected) {
-            state.setBlockFreeze = true;
-          }
-          if (state.isFilledBoard) {
-            state.stage + 1 ;
-          } else {
-            state.stage - 1;
-          }
-          if (
-            state.isGameReset) {
-                state.stage === 1;
-            } 
-        }
-      }
-    },
   },
 });
 
-export const { setlongestStreakQuestions, selectOptionRequested, continueRequested } =
+export const { setStage, setBlocks, setTwoPalyer, setPlayerOneActive, setlongestStreakQuestions, selectOptionRequested, continueRequested } =
   longestStreakSlice.actions;
 
 export const longestStreakSelector = (state: RootState) => state.longestStreakState;
+
+export default longestStreakSlice;

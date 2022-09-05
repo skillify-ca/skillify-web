@@ -1,11 +1,16 @@
 import { shuffle } from "lodash";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CalculateWinner from "../../../../components/math/longestStreak/CalculateWinner";
 import MultiplicationBlock, {
   BlockState,
 } from "../../../../components/math/longestStreak/MultiplicationBlock";
 import SetRules from "../../../../components/math/longestStreak/SetRules";
 import { Button } from "../../../../components/ui/Button";
+import {
+  longestStreakSelector,
+  setStage,
+} from "../../../../redux/longestStreakSlice";
 import { getRndInteger } from "../../../api/random";
 
 let initialGameState: GameBlockState[] = [];
@@ -21,7 +26,9 @@ export type GameBlockState = {
 };
 
 export default function BlockComponentGallery() {
-  const [stage, setStage] = useState(STAGE.SET_RULES);
+  const dispatch = useDispatch();
+  const { stage } = useSelector(longestStreakSelector);
+  //const [stage, setStage] = useState(STAGE.SET_RULES);
   const [gameState, setGameState] =
     useState<GameBlockState[]>(initialGameState);
   const [isPlayerOneActive, setPlayerOneActive] = useState(false);
@@ -122,12 +129,12 @@ export default function BlockComponentGallery() {
   }
 
   function handlePlayGame() {
-    setStage(STAGE.PLAY_GAME);
+    dispatch(setStage(STAGE.PLAY_GAME));
     randomNumberProductList(initialGameState);
   }
 
   function handleCalculateWinner() {
-    setStage(STAGE.CALCULATE_WINNER);
+    dispatch(setStage(STAGE.CALCULATE_WINNER));
   }
 
   return (
@@ -145,7 +152,7 @@ export default function BlockComponentGallery() {
             <Button label={"Show Winner"} onClick={handleCalculateWinner} />
             <Button
               label={"Show Rules"}
-              onClick={() => setStage(STAGE.SET_RULES)}
+              onClick={() => dispatch(setStage(STAGE.SET_RULES))}
             />
           </div>
           <div className="flex flex-row">

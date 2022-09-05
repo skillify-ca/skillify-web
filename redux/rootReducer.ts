@@ -2,7 +2,7 @@ import { combineReducers, Reducer } from "@reduxjs/toolkit";
 import { bakersRackBSlice, BakersRackBState } from "./bakerBSlice";
 import { diagnosticSlice, DiagnosticState } from "./diagnosticSlice";
 import { warGameSlice, WarGameState } from "./warGameSlice";
-import {
+import { 
   practiceTrackerSlice,
   PracticeTrackerState,
 } from "./studentProfileSlice";
@@ -18,6 +18,8 @@ import { quizSlice, QuizState } from "./quizSlice";
 import { lessonSlice, LessonState } from "./lessonSlice";
 import { sidebarSlice, SidebarState } from "./sidebarSlice";
 import { skillRatingsSlice, SkillRatingsState } from "./skillRatingsSlice";
+import longestStreakSlice, { LongestStreakState } from "./longestStreakSlice";
+
 
 type State = {
   [x: string]: any;
@@ -31,6 +33,7 @@ type State = {
   lessonState: LessonState;
   sidebarState: SidebarState;
   skillRatingsState: SkillRatingsState;
+  longestStreakState: LongestStreakState;
 };
 const diagnosticReducer: Reducer = diagnosticSlice.reducer;
 const practiceTrackerReducer = practiceTrackerSlice.reducer;
@@ -42,6 +45,7 @@ const quizReducer = quizSlice.reducer;
 const lessonReducer = lessonSlice.reducer;
 const sidebarReducer = sidebarSlice.reducer;
 const skillRatingsReducer = skillRatingsSlice.reducer;
+const longestStreakReducer = longestStreakSlice.reducer;
 
 const rootReducer = combineReducers({
   diagnostic: diagnosticReducer,
@@ -54,6 +58,7 @@ const rootReducer = combineReducers({
   lessonState: lessonReducer,
   sidebarState: sidebarReducer,
   skillRatingsState: skillRatingsReducer,
+  longestStreakState: longestStreakReducer,
 });
 
 export type RootState = State;
