@@ -9,11 +9,15 @@ export interface LongestStreakState {
   blocks: GameBlockState[];
   currentBlock: number;
   isPlayerOneActive: boolean;
-  shouldShowPlayerOneName: string;
-  shouldShowPlayerTwoName: string;
+  showPlayerOneName: string;
+  showPlayerTwoName: string;
   isFilledBoard: boolean;
   isGameReset: boolean;
   isTwoPlayer: boolean;
+  showPlayerOneSelected: boolean;
+  showPlayerTwoSelected: boolean;
+  showNotSelected: boolean;
+  setBlockFreeze: boolean;
 }
 
 const initialState: LongestStreakState = {
@@ -21,11 +25,16 @@ const initialState: LongestStreakState = {
   blocks: [],
   currentBlock: 0,
   isPlayerOneActive: false,
-  shouldShowPlayerOneName: "Player 1",
-  shouldShowPlayerTwoName: "PLayer 2",
+  showPlayerOneName: "Player 1",
+  showPlayerTwoName: "PLayer 2",
   isFilledBoard: false,
   isGameReset: false,
   isTwoPlayer: false,
+  showPlayerOneSelected: false,
+  showPlayerTwoSelected: false,
+  showNotSelected: true,
+  setBlockFreeze: false,
+
 };
 
 export const longestStreakSlice: Slice = createSlice({
@@ -60,41 +69,34 @@ export const longestStreakSlice: Slice = createSlice({
       },
     setShowPlayerOneName: (state, action: PayloadAction<string>) => {
         if (action.type === "longestStreak/setShowPlayerOneName") {
-            state.shouldShowPlayerOneName = action.payload;
+            state.showPlayerOneName = action.payload;
         }
     },
     setShowPlayerTwoName: (state, action: PayloadAction<string>) => {
         if (action.type === "longestStreak/setShowPlayerOneName") {
-            state.shouldShowPlayerTwoName = action.payload;
+            state.showPlayerTwoName = action.payload;
         }
     },
-    continueRequested: (state, action) => {
-      if (action.type == "longestStreak/continueRequested") {
-        if (state.isGraded) {
-          state.isGraded = false;
-          if (state.shouldShowCorrectGrade) {
-            state.shouldShowCorrectGrade = false;
+
+    selectBlocks: (state, action) => {
+      if (action.type == "longestStreak/selectBlocks") {
+        if (state.stage === 2 ) {
+          state.blocks = action.payload;
+          if (state.showPlayerOneSelected) {
+            state.setBlockFreeze = true;
           }
-          if (state.shouldShowIncorrectGrade) {
-            state.shouldShowIncorrectGrade = false;
+          if (state.showPlayerTwoSelected) {
+            state.setBlockFreeze = true;
           }
-          if (state.currentQuestion === state.questions.length - 1) {
-            state.currentQuestion = state.currentQuestion + 1;
-            state.showSessionEnd = true;
+          if (state.isFilledBoard) {
+            state.stage + 1 ;
           } else {
-            state.currentQuestion = state.currentQuestion + 1;
+            state.stage - 1;
           }
-          state.selectedOption = undefined;
-        } else {
-          state.isGraded = true;
           if (
-            state.selectedOption ===
-            state.questions[state.currentQuestion].answer
-          ) {
-            state.shouldShowCorrectGrade = true;
-          } else {
-            state.shouldShowIncorrectGrade = true;
-          }
+            state.isGameReset) {
+                state.stage === 1;
+            } 
         }
       }
     },
