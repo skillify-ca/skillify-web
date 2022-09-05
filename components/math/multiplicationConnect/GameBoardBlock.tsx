@@ -1,9 +1,12 @@
 import React, {useState} from 'react'
 
 
-const onBlockClick = (block) => {
+const blockClick = (block) => {
     (block.isSelected===false) ? block.isSelected=true: block.isSelected=false;
     console.log(block);
+    return (
+        {...block,
+        });
 }
 
 const GameBoardBlock = ({ blockData, onClick }) => {
@@ -11,8 +14,8 @@ const GameBoardBlock = ({ blockData, onClick }) => {
 
   return (
     <div
-      className="flex justify-center items-center h-full w-full cursor-pointer rounded-full hover:bg-[#F20000]/40 transition-all"
-      onClick={()=>onBlockClick(block)}
+      onClick={()=>setBlock(blockClick(block))}
+      className={`flex justify-center items-center h-full w-full cursor-pointer rounded-full transition ${block.isSelected===false ? "hover:bg-[#F20000]/40" : "bg-[#F20000]/40"}`}
     >
       <p>{block.gridNumber}</p>
     </div>
