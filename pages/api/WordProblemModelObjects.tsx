@@ -37,6 +37,13 @@ export const map = {
   },
 };
 export const coinsMap = {
+  shekel: {
+    type: "coins",
+    singleTitle: "shekel coin",
+    pluralTitle: "shekel coins",
+    colour: "text-gray-800 font-black",
+    image: "/images/shekel_coin.jpg",
+  },
   silver: {
     type: "coins",
     singleTitle: "silver coin",
