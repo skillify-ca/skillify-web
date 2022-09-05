@@ -1,4 +1,5 @@
 export const name = [
+	'Lucky',
 	'Lavan',
 	'Selvi',
 	'Ravi',
