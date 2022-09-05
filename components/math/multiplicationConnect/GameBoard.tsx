@@ -15,19 +15,17 @@ const createGrid = () => {
         grid.push({
             id: i,
             gridNumber: gridNumber,
+            isSelected: false,
         });
     }
 
     return grid;
 }; 
 
-const onBlockClick = (block) => {
-    console.log(block.gridNumber+' has been pressed!');
-}
+
 
 const GameBoard = () => {
     const [grid, setGrid] = useState(createGrid);
-    const [block, setBlock] = useState();
 
     return (
       <div className="px-28 pb-8">
@@ -38,7 +36,7 @@ const GameBoard = () => {
               className="border-r-2 border-b-2 h-28 border-b-[#149ECA] border-r-[#149ECA] bg-blue-900"
               key={i.id}
             >
-              <GameBoardBlock block={i} onClick={() => onBlockClick(i)} />
+              <GameBoardBlock blockData={i} onClick={()=>onClick(i)} />
             </div>
           ))}
         </div>
