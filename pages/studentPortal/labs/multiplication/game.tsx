@@ -25,6 +25,56 @@ export type GameBlockState = {
   state: BlockState;
 };
 
+export function longestSubarray(array: GameBlockState[], x: BlockState) {
+  let maxlength = 0;
+  let sum = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].state === x) {
+      sum++;
+    } else {
+      maxlength = Math.max(maxlength, sum);
+      sum = 0;
+      console.log("maxLength", maxlength, "currentSum", sum);
+    }
+  }
+  maxlength = Math.max(maxlength, sum);
+  sum = 0;
+  console.log("maxLength", maxlength, "currentSum", sum);
+  return maxlength;
+}
+
+export function calculateWinner(
+  array: GameBlockState[],
+  playerOne = "Player One",
+  playerTwo = "Player Two"
+) {
+  let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
+  console.log("P1", playerOneArray);
+  let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
+  console.log("P2", playerTwoArray);
+  if (playerOneArray > playerTwoArray) {
+    return playerOne + ", you have Conquered!";
+  } else if (playerTwoArray > playerOneArray) {
+    return playerTwo + ", you have Conquered!";
+  } else if (playerOneArray === playerTwoArray) {
+    return "This mission has resulted in a Draw!";
+  }
+}
+
+export function showEndGameImage(array: GameBlockState[]) {
+  let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
+  console.log("P1", playerOneArray);
+  let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
+  console.log("P2", playerTwoArray);
+  if (playerOneArray > playerTwoArray) {
+    return <img src="/images/math1/longestStreak/playerOneWinner.png" />;
+  } else if (playerTwoArray > playerOneArray) {
+    return <img src="/images/math1/longestStreak/playerTwoWinner.png" />;
+  } else if (playerOneArray === playerTwoArray) {
+    return <img src="/images/math1/longestStreak/drawWinner.png" />;
+  }
+}
+
 export default function BlockComponentGallery() {
   const dispatch = useDispatch();
   const { stage } = useSelector(longestStreakSelector);
@@ -34,52 +84,6 @@ export default function BlockComponentGallery() {
   const [isPlayerOneActive, setPlayerOneActive] = useState(false);
   const [playerOneName, setPlayerOneName] = useState("Player 1");
   const [playerTwoName, setPlayerTwoName] = useState("Player 2");
-
-  function longestSubarray(array: GameBlockState[], x: BlockState) {
-    let maxlength = 0;
-    let sum = 0;
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].state === x) {
-        sum++;
-      } else {
-        maxlength = Math.max(maxlength, sum);
-        sum = 0;
-        console.log("maxLength", maxlength, "currentSum", sum);
-      }
-    }
-    maxlength = Math.max(maxlength, sum);
-    sum = 0;
-    console.log("maxLength", maxlength, "currentSum", sum);
-    return maxlength;
-  }
-
-  function calculateWinner(array: GameBlockState[]) {
-    let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
-    console.log("P1", playerOneArray);
-    let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
-    console.log("P2", playerTwoArray);
-    if (playerOneArray > playerTwoArray) {
-      return playerOneName + ", you have Conquered!";
-    } else if (playerTwoArray > playerOneArray) {
-      return playerTwoName + ", you have Conquered!";
-    } else if (playerOneArray === playerTwoArray) {
-      return "This mission has resulted in a Draw!";
-    }
-  }
-
-  function showEndGameImage(array: GameBlockState[]) {
-    let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
-    console.log("P1", playerOneArray);
-    let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
-    console.log("P2", playerTwoArray);
-    if (playerOneArray > playerTwoArray) {
-      return <img src="/images/math1/longestStreak/playerOneWinner.png" />;
-    } else if (playerTwoArray > playerOneArray) {
-      return <img src="/images/math1/longestStreak/playerTwoWinner.png" />;
-    } else if (playerOneArray === playerTwoArray) {
-      return <img src="/images/math1/longestStreak/drawWinner.png" />;
-    }
-  }
 
   function handlePlayer() {
     setPlayerOneActive(!isPlayerOneActive);

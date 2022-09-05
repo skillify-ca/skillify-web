@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {
-  calculateWinner,
-  showEndGameImage,
-} from "../../../pages/studentPortal/labs/multiplication/game";
 import { Button } from "../../ui/Button";
 
 export interface CalculateWinnerProps {
   text: string;
   onClick: () => void;
   winner: string;
-  image: string;
+  image: any;
 }
 
 export const CalculateWinner: React.FC<CalculateWinnerProps> = ({
