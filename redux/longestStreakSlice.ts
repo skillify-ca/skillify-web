@@ -3,9 +3,10 @@ import { RootState } from "./rootReducer";
 import { BlockState } from "../components/math/longestStreak/MultiplicationBlock";
 import { GameBlockState } from "../pages/studentPortal/labs/multiplication/game";
 import { STAGE } from "../pages/studentPortal/labs/multiplication/game";
+import { Stage } from "konva/lib/Stage";
 
 export interface LongestStreakState {
-  stage: number;
+  stage: STAGE;
   blocks: GameBlockState[];
   currentBlock: number;
   isPlayerOneActive: boolean;
@@ -17,7 +18,7 @@ export interface LongestStreakState {
 }
 
 const initialState: LongestStreakState = {
-  stage: 0,
+  stage: STAGE.SET_RULES,
   blocks: [],
   currentBlock: 0,
   isPlayerOneActive: false,
@@ -33,21 +34,16 @@ export const longestStreakSlice: Slice = createSlice({
   name: "longestStreak",
   initialState,
   reducers: {
-    setStage: (state: LongestStreakState, action: PayloadAction<number>) => {
-        const stageOfGame = action.payload as number;
+    setStage: (state: LongestStreakState, action: PayloadAction<STAGE>) => {
+        const stageOfGame = action.payload as STAGE;
 
-        if (stageOfGame === STAGE.SET_RULES) {
-            state.stage = 0;
-        } else if (stageOfGame === STAGE.PLAY_GAME) {
-            state.stage = 1;
-        } else if (stageOfGame === STAGE.CALCULATE_WINNER) {
-            state.stage = 2;
-        }
+        state.stage=stageOfGame
     },
+    
     setBlocks: (state: LongestStreakState, action: PayloadAction<number>) => {
       const selectedBlock = action.payload as number;
       if (selectedBlock === BlockState.NOT_SELECTED) {
-          state.blocks = 0;
+          state.blocks = GameBlockState[];
       } else if (selectedBlock === BlockState.PLAYER_ONE_SELECTED) {
           state.blocks = 1;
       } else if (selectedBlock === BlockState.PLAYER_TWO_SELECTED) {
@@ -68,7 +64,7 @@ export const longestStreakSlice: Slice = createSlice({
   },
 });
 
-export const { setStage, setBlocks, setTwoPalyer, setPlayerOneActive, setlongestStreakQuestions, selectOptionRequested, continueRequested } =
+export const { setStage, setBlocks, setTwoPalyer, setPlayerOneActive, setlongestStreakQuestions } =
   longestStreakSlice.actions;
 
 export const longestStreakSelector = (state: RootState) => state.longestStreakState;
