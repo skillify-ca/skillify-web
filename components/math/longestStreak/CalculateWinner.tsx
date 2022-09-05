@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from "react";
+import {
+  calculateWinner,
+  showEndGameImage,
+} from "../../../pages/studentPortal/labs/multiplication/game";
 import { Button } from "../../ui/Button";
 
 export interface CalculateWinnerProps {

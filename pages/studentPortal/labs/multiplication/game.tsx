@@ -84,7 +84,6 @@ export default function BlockComponentGallery() {
   const [isPlayerOneActive, setPlayerOneActive] = useState(false);
   const [playerOneName, setPlayerOneName] = useState("Player 1");
   const [playerTwoName, setPlayerTwoName] = useState("Player 2");
-
   function handlePlayer() {
     setPlayerOneActive(!isPlayerOneActive);
   }
