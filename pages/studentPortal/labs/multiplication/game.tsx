@@ -1,10 +1,14 @@
+import { shuffle } from "lodash";
 import React, { useState } from "react";
+import CalculateWinner from "../../../../components/math/longestStreak/CalculateWinner";
 import MultiplicationBlock, {
   BlockState,
-} from "../../../../components/math/MultiplicationBlock";
-import StatementRow from "../../../../components/math/stories/StatementRow";
+} from "../../../../components/math/longestStreak/MultiplicationBlock";
+import SetRules from "../../../../components/math/longestStreak/SetRules";
 import { Button } from "../../../../components/ui/Button";
+import { getRndInteger } from "../../../api/random";
 
+let initialGameState: GameBlockState[] = [];
 export enum STAGE {
   SET_RULES,
   PLAY_GAME,
@@ -40,187 +44,65 @@ export function calculateWinner(array: GameBlockState[]) {
   let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
   console.log("P2", playerTwoArray);
   if (playerOneArray > playerTwoArray) {
-    return "Play One is the winner";
+    return "Player One, you have Conquered!";
   } else if (playerTwoArray > playerOneArray) {
-    return "Player Two is the winner";
+    return "Player Two, you have Conquered!";
   } else if (playerOneArray === playerTwoArray) {
-    return "Draw";
+    return "This mission has resulted in a Draw!";
+  }
+}
+
+export function showEndGameImage(array: GameBlockState[]) {
+  let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
+  console.log("P1", playerOneArray);
+  let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
+  console.log("P2", playerTwoArray);
+  if (playerOneArray > playerTwoArray) {
+    return <img src="/images/math1/longestStreatk/playerOneWinner.png" />;
+  } else if (playerTwoArray > playerOneArray) {
+    return <img src="/images/math1/longestStreak/playerTwoWinner.png" />;
+  } else if (playerOneArray === playerTwoArray) {
+    return <img src="/images/math1/longestStreak/drawWinner.png" />;
   }
 }
 
 export default function BlockComponentGallery() {
   const [stage, setStage] = useState(STAGE.SET_RULES);
+  const [gameState, setGameState] =
+    useState<GameBlockState[]>(initialGameState);
   const [isPlayerOneActive, setPlayerOneActive] = useState(false);
-
   function handlePlayer() {
     setPlayerOneActive(!isPlayerOneActive);
   }
+  function randomNumberProductList(array) {
+    let dummyArray = [];
+    for (let i = 0; i <= 20; i++) {
+      let x = getRndInteger(1, 9);
+      let y = getRndInteger(1, 9);
+      let z = x * y;
+      let product = x + " x " + y;
 
-  const initialGameState: GameBlockState[] = [
-    {
-      text: "72",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8x9",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8x1",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "16",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "2x8",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "72",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8x9",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8x1",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "16",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "2x8",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "72",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8x9",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8x1",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "16",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "2x8",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "72",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8x9",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8x1",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "72",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8x9",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8x1",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "16",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "2x8",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "72",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8x9",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8x1",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "72",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8x9",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8x1",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "16",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "2x8",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "72",
-      state: BlockState.NOT_SELECTED,
-    },
-    {
-      text: "8x9",
-      state: BlockState.NOT_SELECTED,
-    },
-  ];
+      let initiateBlockState = {};
 
-  const [gameState, setGameState] =
-    useState<GameBlockState[]>(initialGameState);
+      initiateBlockState = {
+        text: z.toString(),
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+
+      initiateBlockState = {
+        text: product.toString(),
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+    }
+    initialGameState = dummyArray;
+    //shuffle list
+    initialGameState = shuffle(initialGameState);
+
+    //set opening game state (unclicked and green)
+    setGameState(initialGameState);
+  }
 
   function handleSelect(index) {
     console.log("BLOCK WAS CLICKED: index ", index);
@@ -236,12 +118,9 @@ export default function BlockComponentGallery() {
     setGameState(gameState2);
   }
 
-  function handleReset() {
-    setGameState(initialGameState);
-  }
-
   function handlePlayGame() {
     setStage(STAGE.PLAY_GAME);
+    randomNumberProductList(initialGameState);
   }
 
   function handleCalculateWinner() {
@@ -251,37 +130,7 @@ export default function BlockComponentGallery() {
   return (
     <div>
       {stage === STAGE.SET_RULES ? (
-        <div className="space-y-4 flex flex-col items-center justify-center text-murkrow">
-          <h1 className="font-bold text-2xl flex justify-center">
-            Welcome to the Multiplication Block Game!
-          </h1>
-          <ol className="justify-center">
-            <span className="font-black">Your Quest?</span> Magically turn the
-            longest line of squares into the Player 1 or Player 2 color.{" "}
-          </ol>
-          <div className="space-y-4 py-4 bg-gradient-to-b bg-charmander hover:bg-pikachu-500 text-white px-3 font-bold border-b-4 rounded-lg active:border-b-2 cursor-pointer`">
-            <ol className="justify-start">
-              1. {""} {""}Embark on this math mission by clicking on two
-              squares: a <span className="text-xl">multiplication problem</span>{" "}
-              and its <span className="text-xl">product.</span> The squares will
-              magically change to a different color for each player.
-            </ol>
-            <ol className="justify-start">
-              2. {""}
-              {""}Switch players and colors by clicking the{" "}
-              <span className="text-xl">"Next Player"</span>
-              button.
-            </ol>
-            <ol className="justify-start">
-              3. {""}
-              {""}When all squares have been magically colored in, click
-              <span className="text-xl">"Calculate Winner"</span> to see who
-              conquered the board on this mission!
-            </ol>
-          </div>
-          <p>Learning how to multiply can be fun! Click "Play Game" below!</p>
-          <Button label={"Play Game"} onClick={handlePlayGame} />
-        </div>
+        <SetRules text={""} onClick={handlePlayGame} />
       ) : stage === STAGE.PLAY_GAME ? (
         <div className="grid grid-cols-6 grid-rows-7">
           <div className="pb-4 font-black col-start-1 col-end-6 flex justify-evenly w-[45rem]">
@@ -289,7 +138,7 @@ export default function BlockComponentGallery() {
           </div>
           <div className="pb-8 col-start-1 col-end-7 flex justify-evenly w-[45rem]">
             <Button label={"Next Player"} onClick={() => handlePlayer()} />
-            <Button label={"Reset Game"} onClick={() => handleReset()} />
+            <Button label={"Reset Game"} onClick={() => handlePlayGame()} />
             <Button label={"Show Winner"} onClick={handleCalculateWinner} />
           </div>
           <div className="flex flex-row">
@@ -303,40 +152,48 @@ export default function BlockComponentGallery() {
           </div>
           <div className="grid grid-cols-9 col-span-6 w-[45rem]">
             <div className="flex flex-col">
-              {gameState.slice(9, 20).map((item, index) => (
-                <MultiplicationBlock
-                  text={item.text}
-                  onClick={() => handleSelect(index)}
-                  blockState={item.state}
-                />
-              ))}
+              {gameState
+                .slice(30, 41)
+                .map((item, index) => (
+                  <MultiplicationBlock
+                    text={item.text}
+                    onClick={() => handleSelect(index + 30)}
+                    blockState={item.state}
+                  />
+                ))
+                .reverse()}
             </div>
             <div className="col-span-7 bg-blue-800">Image</div>
             <div className="flex flex-col">
-              {gameState.slice(20, 31).map((item, index) => (
+              {gameState.slice(9, 20).map((item, index) => (
                 <MultiplicationBlock
                   text={item.text}
-                  onClick={() => handleSelect(index)}
+                  onClick={() => handleSelect(index + 9)}
                   blockState={item.state}
                 />
               ))}
             </div>
           </div>
           <div className="flex flex-row">
-            {gameState.slice(31, 41).map((item, index) => (
-              <MultiplicationBlock
-                text={item.text}
-                onClick={() => handleSelect(index)}
-                blockState={item.state}
-              />
-            ))}
+            {gameState
+              .slice(20, 29)
+              .map((item, index) => (
+                <MultiplicationBlock
+                  text={item.text}
+                  onClick={() => handleSelect(index + 20)}
+                  blockState={item.state}
+                />
+              ))
+              .reverse()}
           </div>
         </div>
       ) : stage === STAGE.CALCULATE_WINNER ? (
-        <div className="flex justify-center">
-          <div className="flex flex-row justify-between "></div>
-          {calculateWinner(gameState)}
-        </div>
+        <CalculateWinner
+          text={""}
+          onClick={handlePlayGame}
+          winner={calculateWinner(gameState)}
+          image={showEndGameImage(gameState)}
+        />
       ) : null}
     </div>
   );
