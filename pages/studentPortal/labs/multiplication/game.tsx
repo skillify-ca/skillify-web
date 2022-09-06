@@ -1,13 +1,13 @@
 import { shuffle } from "lodash";
 import React, { useState } from "react";
-import CalculateWinner from "../../../../components/math/longestStreak/CalculateWinner";
+import Winner from "../../../../components/math/longestStreak/Winner";
 import MultiplicationBlock, {
   BlockState,
 } from "../../../../components/math/longestStreak/MultiplicationBlock";
-import SetRules from "../../../../components/math/longestStreak/SetRules";
+import Rules from "../../../../components/math/longestStreak/Rules";
+
 import { Button } from "../../../../components/ui/Button";
 import { getRndInteger } from "../../../api/random";
-
 let initialGameState: GameBlockState[] = [];
 export enum STAGE {
   SET_RULES,
@@ -130,7 +130,7 @@ export default function BlockComponentGallery() {
   return (
     <div>
       {stage === STAGE.SET_RULES ? (
-        <SetRules text={""} onClick={handlePlayGame} />
+        <Rules text={""} onClick={handlePlayGame} />
       ) : stage === STAGE.PLAY_GAME ? (
         <div className="grid grid-cols-6 grid-rows-7">
           <div className="pb-4 font-black col-start-1 col-end-6 flex justify-evenly w-[45rem]">
@@ -188,7 +188,7 @@ export default function BlockComponentGallery() {
           </div>
         </div>
       ) : stage === STAGE.CALCULATE_WINNER ? (
-        <CalculateWinner
+        <Winner
           text={""}
           onClick={handlePlayGame}
           winner={calculateWinner(gameState)}

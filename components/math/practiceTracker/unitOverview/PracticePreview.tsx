@@ -45,14 +45,14 @@ const PracticePreview = ({ loading, userSkills, skills, courseId }) => {
               {skills.filter((skill) => skill.unit.title === unit.title)
                 .length > 0 ? (
                 <>
-                  <div className="flex items-center w-full p-8 font-bold shadow-lg text-murkrow bg-charmander">
+                  <div className="flex items-center w-full p-8 font-bold text-white shadow-lg bg-slate-500">
                     <img
                       className="w-24 mr-8 hover:animate-shake"
                       src={unit.image}
                     />
                     <p>{unit.title}</p>
                   </div>
-                  <div className="grid grid-cols-1 p-4">
+                  <div className="grid grid-cols-1 p-8 sm:grid-cols-4">
                     {skills
                       .filter((skill) => skill.unit.title === unit.title)
                       .sort((a, b) => a.unit.level - b.unit.level)
@@ -67,7 +67,6 @@ const PracticePreview = ({ loading, userSkills, skills, courseId }) => {
                         </div>
                       ))}
                   </div>
-                  <div className="w-full h-1 mb-4 bg-rattata" />
                 </>
               ) : null}
             </div>
