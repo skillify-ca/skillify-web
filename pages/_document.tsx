@@ -56,15 +56,6 @@ class MyDocument extends Document {
             crossOrigin=""
           />
           <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-0EEWR63W28"
-          ></script>
-
-          <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=UA-198040313-1"
-          />
-          <script
             type="text/javascript"
             id="hs-script-loader"
             async
@@ -72,6 +63,7 @@ class MyDocument extends Document {
             src="//js-na1.hs-scripts.com/21210484.js"
           ></script>
 
+          {/* Facebook Pixel */}
           <meta
             name="facebook-domain-verification"
             content="c116vcf4jgnb5bfmzhijy6ag2kp33v"
@@ -84,6 +76,13 @@ class MyDocument extends Document {
               src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
             />
           </noscript>
+
+          {/* Google Analytics */}
+          {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-235433930-1"
+          ></script>
         </Head>
         <body style={this.bodyStyle}>
           <Main />
