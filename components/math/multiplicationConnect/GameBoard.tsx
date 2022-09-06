@@ -12,7 +12,7 @@ const GameBoard = ({grid}) => {
             className="border-r-2 border-b-2 h-28 border-b-[#149ECA] border-r-[#149ECA] bg-blue-900"
             key={blockData.id}
           >
-            <GameBoardBlock gridData={grid} blockData={blockData} />
+            <GameBoardBlock blockData={blockData} gridData={grid} />
           </div>
         ))}
       </div>

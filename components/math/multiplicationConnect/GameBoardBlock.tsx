@@ -3,12 +3,11 @@ import { calculateWinner } from '../../../pages/studentPortal/labs/multiplicatio
 
 
 const blockClick = (block, grid) => {
-    (block.isSelected===false) ? block.isSelected=true : block.isSelected=false;
-    calculateWinner(grid);
+    (block.isSelected===false) ? (block.isSelected=true, calculateWinner(block, grid)) : block.isSelected=false;
     return {...block};
 }
 
-const GameBoardBlock = ({ gridData, blockData}) => {
+const GameBoardBlock = ({ blockData, gridData }) => {
   const [block, setBlock] = useState(blockData);
 
   return (

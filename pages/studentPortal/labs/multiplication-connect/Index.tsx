@@ -21,10 +21,14 @@ const createGrid = () => {
   return grid;
 }; 
 
-export const calculateWinner = (grid) => {
-  // on block press log grid to console
+export const calculateWinner = (block, grid) => {
   // on block press run calculateWinner algo
-  console.log(grid);
+  let sum = 1;
+  let id = block.id;
+
+  console.log(id);
+  console.log(grid[id+1]);
+
 }
 
 const Index = () => {
@@ -37,7 +41,6 @@ const Index = () => {
         <PlayerSection />
         <DiceSection />
         <GameBoard grid={grid}/>
-        {/* Send grid to GameBoardBlock as prop and call this function on block click {logFunction(grid)} */}
     </div>
   )
 }
