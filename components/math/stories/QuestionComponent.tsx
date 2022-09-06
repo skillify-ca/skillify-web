@@ -27,8 +27,6 @@ type QuestionProps = {
   submitGuess: (guessData: GuessData) => void;
 };
 const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
-  console.log(questionData);
-
   return questionData.questionType === QuestionType.VERTICAL_EQUATION ? (
     <VerticalEquation
       submitGuess={submitGuess}
@@ -72,8 +70,7 @@ const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
       questionData={questionData}
       submitGuess={submitGuess}
     />
-  ) : questionData.questionType == QuestionType.VISUAL_TYPE_PROBLEM &&
-    questionData.operator == "+" ? (
+  ) : questionData.questionType == QuestionType.VISUAL_TYPE_PROBLEM ? (
     <VisualAddition
       question={questionData}
       submitGuess={submitGuess}
@@ -159,9 +156,7 @@ const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
       answer={questionData.answer}
       text={""}
     />
-  ) 
-  
-  : (
+  ) : (
     <HorizontalEquation
       isReadOnly={false}
       question={questionData}
