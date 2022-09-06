@@ -3,9 +3,14 @@ import { calculateWinner } from '../../../pages/studentPortal/labs/multiplicatio
 
 
 const blockClick = (block, grid) => {
-    (block.isSelected===false) ? (block.isSelected=true, calculateWinner(grid)) : block.isSelected=false;
-    return {...block};
-}
+  if (!block.isSelected) {
+    block.isSelected = true;
+    calculateWinner(grid);
+  } else {
+    block.isSelected = false;
+  }
+  return { ...block };
+};
 
 const GameBoardBlock = ({ blockData, gridData }) => {
   const [block, setBlock] = useState(blockData);
