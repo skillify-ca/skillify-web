@@ -23,11 +23,54 @@ const createGrid = () => {
 
 export const calculateWinner = (block, grid) => {
   // on block press run calculateWinner algo
-  let sum = 1;
-  let id = block.id;
 
-  console.log(id);
-  console.log(grid[id+1]);
+  /* might be able to use .filter() to break down the grid into rows, verticals, diagonals
+    alternatively can use this: https://stackoverflow.com/questions/32770321/connect-4-check-for-a-win-algorithm 
+  */
+
+  // refactor the checks
+  // (subtract 3 bc 4 in a row can't be formed afterward)
+        /*   // horizontalCheck 
+      for (int j = 0; j<getHeight()-3 ; j++ ){
+        for (int i = 0; i<getWidth(); i++){
+            if (this.board[i][j] == player && this.board[i][j+1] == player && this.board[i][j+2] == player && this.board[i][j+3] == player)
+                return true;
+        }
+      }
+
+       // verticalCheck
+      for (int i = 0; i<getWidth()-3 ; i++ ){
+        for (int j = 0; j<this.getHeight(); j++){
+            if (this.board[i][j] == player && this.board[i+1][j] == player && this.board[i+2][j] == player && this.board[i+3][j] == player){
+                return true;
+            }           
+        }
+      }
+
+      // descendingDiagonalCheck
+      for (int i=3; i<getWidth(); i++){
+        for (int j=3; j<getHeight(); j++){
+            if (this.board[i][j] == player && this.board[i-1][j-1] == player && this.board[i-2][j-2] == player && this.board[i-3][j-3] == player)
+                return true;
+        }
+      } */
+
+      
+  let rows = [grid.filter((i) => (i.id >= 0 && i.id < 5)), 
+              grid.filter((i) => (i.id >= 5 && i.id < 10)),
+              grid.filter((i) => (i.id >= 10 && i.id < 15)),
+              grid.filter((i) => (i.id >= 15 && i.id < 20)),
+              grid.filter((i) => (i.id >= 20 && i.id < 25)), 
+              grid.filter((i) => (i.id >= 25 && i.id < 30)), 
+              grid.filter((i) => (i.id >= 30 && i.id < 35))];
+  // console.log(rows);
+
+  for(let row of rows){
+    for(let id=0; id<2; id++){
+      (row[id].isSelected && row[id+1].isSelected && row[id+2].isSelected && row[id+3].isSelected) ? console.log("(horizontal) Four in a row!") : "";
+    }
+  }
+
 
 }
 
