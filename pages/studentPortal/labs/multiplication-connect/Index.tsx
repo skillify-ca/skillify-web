@@ -25,7 +25,7 @@ export const calculateWinner = (block, grid) => {
   // on block press run calculateWinner algo
 
   /* might be able to use .filter() to break down the grid into rows, verticals, diagonals
-    alternatively can use this: https://stackoverflow.com/questions/32770321/connect-4-check-for-a-win-algorithm 
+    connect four logic: https://stackoverflow.com/questions/32770321/connect-4-check-for-a-win-algorithm 
   */
 
   // refactor the checks
@@ -65,13 +65,19 @@ export const calculateWinner = (block, grid) => {
               grid.filter((i) => (i.id >= 30 && i.id < 35))];
   // console.log(rows);
 
-  for(let row of rows){
-    for(let id=0; id<2; id++){
-      (row[id].isSelected && row[id+1].isSelected && row[id+2].isSelected && row[id+3].isSelected) ? console.log("(horizontal) Four in a row!") : "";
+  for(let i=0;i<rows.length;i++){
+    // Horizontal check
+    for(let index=0; index<(rows[i].length-3); index++){
+      (rows[i][index].isSelected && rows[i][index+1].isSelected && rows[i][index+2].isSelected && rows[i][index+3].isSelected) ? console.log("(horizontal) Four in a row!") : "";
     }
+    if(i<rows.length-3){
+      // Vertical check
+      for(let index=0;index<rows[i].length;index++){
+        (rows[i][index].isSelected && rows[i+1][index].isSelected && rows[i+2][index].isSelected && rows[i+3][index].isSelected) ? console.log("(vertical) Four in a row!") : "";
+      }
+    }
+    
   }
-
-
 }
 
 const Index = () => {
