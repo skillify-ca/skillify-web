@@ -4,10 +4,6 @@ import GameBoard from '../../../../components/math/multiplicationConnect/GameBoa
 import PlayerSection from '../../../../components/math/multiplicationConnect/PlayerSection';
 import { getRandomItemFromArray } from '../../../api/random';
 
-const calculateWinner = () => {
-  
-}
-
 const createGrid = () => {
   let arr = [];
   let grid = [];
