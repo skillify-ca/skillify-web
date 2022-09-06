@@ -3,7 +3,7 @@ import { calculateWinner } from '../../../pages/studentPortal/labs/multiplicatio
 
 
 const blockClick = (block, grid) => {
-    (block.isSelected===false) ? (block.isSelected=true, calculateWinner(block, grid)) : block.isSelected=false;
+    (block.isSelected===false) ? (block.isSelected=true, calculateWinner(grid)) : block.isSelected=false;
     return {...block};
 }
 

@@ -21,7 +21,7 @@ const createGrid = () => {
   return grid;
 }; 
 
-export const calculateWinner = (block, grid) => {
+export const calculateWinner = (grid) => {
   // on block press run calculateWinner algo
 
   /* might be able to use .filter() to break down the grid into rows, verticals, diagonals
