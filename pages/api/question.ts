@@ -79,6 +79,12 @@ export type Question =
       commisionModel: CommissionModel;
       answer: string;
       text: string;
+    }
+  | {
+      questionType: QuestionType.FINANCE_SIMPLE_INTEREST_PROBLEM;
+      interestModel: InterestModel;
+      answer: string;
+      text: string;
     };
 
 export type MCOption = {
@@ -112,5 +118,12 @@ export type CommissionModel = {
   commission: number;
   price: number;
   numberOfSales: number;
+  image1: string;
+};
+export type InterestModel = {
+  personName: string;
+  principalAmount: number;
+  interestRate: number;
+  time: number;
   image1: string;
 };
