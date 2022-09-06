@@ -21,11 +21,15 @@ const createGrid = () => {
   return grid;
 }; 
 
+export const calculateWinner = (grid) => {
+  // on block press log grid to console
+  // on block press run calculateWinner algo
+  console.log(grid);
+}
 
 const Index = () => {
-  //Extract these into App level State to determine Winner here
+  //Extractd to App level State to determine Winner here
   const [grid, setGrid] = useState(createGrid);
-  // const [block, setBlock] = useState(blockData); //this next
 
   return (
     <div className='flex flex-col gap-10 max-w-5xl'>
@@ -33,6 +37,7 @@ const Index = () => {
         <PlayerSection />
         <DiceSection />
         <GameBoard grid={grid}/>
+        {/* Send grid to GameBoardBlock as prop and call this function on block click {logFunction(grid)} */}
     </div>
   )
 }
