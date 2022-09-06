@@ -8,6 +8,7 @@ const PracticePreview = ({ loading, userSkills, skills, courseId }) => {
     { title: "subtraction", image: "/images/skills/sub.png" },
     { title: "multiplication", image: "/images/skills/multi.png" },
     { title: "division", image: "/images/skills/division.png" },
+    { title: "Algebra", image: "/images/skills/algebra.jpg" },
   ];
   const financeUnits = [
     { title: "money", image: "" },
