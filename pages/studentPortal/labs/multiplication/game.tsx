@@ -9,6 +9,8 @@ import Rules from "../../../../components/math/longestStreak/Rules";
 
 import { Button } from "../../../../components/ui/Button";
 import {
+  handlePlayerSelect,
+  initializeGame,
   longestStreakSelector,
   setBlocks,
   setGameState,
@@ -79,66 +81,32 @@ export function showEndGameImage(array: GameBlockState[]) {
 
 export default function BlockComponentGallery() {
   const dispatch = useDispatch();
-  const { stage } = useSelector(longestStreakSelector);
-  const { blocks } = useSelector(longestStreakSelector);
+  const { stage, blocks: gameState } = useSelector(longestStreakSelector);
+
   //const [stage, setStage] = useState(STAGE.SET_RULES);
-  //const [gameState, setGameState] =
-  //  useState<GameBlockState[]>(initialGameState);
+
   const [isPlayerOneActive, setPlayerOneActive] = useState(false);
   const [playerOneName, setPlayerOneName] = useState("Player 1");
   const [playerTwoName, setPlayerTwoName] = useState("Player 2");
   function handlePlayer() {
     setPlayerOneActive(!isPlayerOneActive);
   }
-  function randomNumberProductList(array) {
-    let dummyArray = [];
-    for (let i = 0; i <= 20; i++) {
-      let x = getRndInteger(1, 9);
-      let y = getRndInteger(1, 9);
-      let z = x * y;
-      let product = x + " x " + y;
-
-      let initiateBlockState = {};
-
-      initiateBlockState = {
-        text: z.toString(),
-        state: BlockState.NOT_SELECTED,
-      };
-      dummyArray.push(initiateBlockState);
-
-      initiateBlockState = {
-        text: product.toString(),
-        state: BlockState.NOT_SELECTED,
-      };
-      dummyArray.push(initiateBlockState);
-    }
-    initialGameState = dummyArray;
-    //shuffle list
-    initialGameState = shuffle(initialGameState);
-
-    //set opening game state (unclicked and green)
-    dispatch(setBlocks(initialGameState));
-  }
 
   function handleSelect(index) {
     console.log("BLOCK WAS CLICKED: index ", index);
-    console.log(blocks[index].text);
+    console.log(gameState[index].text);
 
-    let gameState2 = [...blocks];
-    if (isPlayerOneActive === true) {
-      gameState2[index].state = BlockState.PLAYER_ONE_SELECTED;
-    } else if (isPlayerOneActive === false) {
-      gameState2[index].state = BlockState.PLAYER_TWO_SELECTED;
-    }
-
-    dispatch(setGameState(gameState2));
+    dispatch(handlePlayerSelect(index));
   }
 
   function handlePlayGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
-    randomNumberProductList(initialGameState);
   }
 
+  function handleResetGame() {
+    dispatch(setStage(STAGE.PLAY_GAME));
+    dispatch(initializeGame(0));
+  }
   function handleCalculateWinner() {
     dispatch(setStage(STAGE.CALCULATE_WINNER));
   }
@@ -154,7 +122,7 @@ export default function BlockComponentGallery() {
           </div>
           <div className="pb-8 col-start-1 col-end-7 flex justify-evenly w-[45rem]">
             <Button label={"Next Player"} onClick={() => handlePlayer()} />
-            <Button label={"Reset Game"} onClick={() => handlePlayGame()} />
+            <Button label={"Reset Game"} onClick={() => handleResetGame()} />
             <Button label={"Show Winner"} onClick={handleCalculateWinner} />
             <Button
               label={"Show Rules"}
