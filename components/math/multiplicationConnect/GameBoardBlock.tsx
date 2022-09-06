@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 
 const blockClick = (block) => {
     (block.isSelected===false) ? block.isSelected=true : block.isSelected=false;
-    console.log(block);
+    // console.log(block);
     return {...block};
 }
 
