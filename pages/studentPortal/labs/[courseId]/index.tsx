@@ -4,6 +4,7 @@ import { FETCH_UNIT_OVERVIEW } from "../../../../graphql/fetchUnitOverview";
 import { useAuth } from "../../../../lib/authContext";
 import { FETCH_SKILLS_FOR_COURSE } from "../../../../graphql/fetchSkillsForCourse";
 import Link from "next/link";
+import CourseNavbar from "../../../../components/textbook/CourseNavbar";
 
 const UnitOverviewPage = ({ courseId, skillData }) => {
   const { user } = useAuth();
@@ -31,13 +32,14 @@ const UnitOverviewPage = ({ courseId, skillData }) => {
     }
   );
 
-  const lessons = {
-    finance: [{ title: "Credit Card Lesson", link: "finance/credit-card" }],
-    math1: [{ title: "Multiplication Game", link: "multiplication/game" }, { title: "Multiplication Connect Four", link: "multiplication-connect/Index" }],
-  };
-
   return (
     <div className="flex flex-col justify-center overflow-auto bg-scroll bg-blue-100 ">
+      <CourseNavbar
+        navbarLinks={[
+          { name: "Practice", href: `/studentPortal/labs/${courseId}` },
+          { name: "Games", href: `/studentPortal/labs/${courseId}/games` },
+        ]}
+      />
       <div className="flex flex-col p-4 space-y-8">
         {skillData && (
           <PracticePreview
@@ -48,18 +50,6 @@ const UnitOverviewPage = ({ courseId, skillData }) => {
           />
         )}
       </div>
-      {lessons[courseId] !== undefined ? (
-        <div className="p-4 m-4 bg-white text-murkrow">
-          <h2 className="text-lg font-bold text-murkrow">Lessons</h2>
-          {lessons[courseId].map((lesson) => (
-            <Link href={lesson.link}>
-              <div className="w-64 p-4 my-4 bg-gray-100 shadow-lg cursor-pointer rounded-xl">
-                <p>{lesson.title}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      ) : null}
     </div>
   );
 };
