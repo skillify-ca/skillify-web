@@ -65,7 +65,7 @@ export const calculateWinner = (grid) => {
         }
       } */
 
-      
+
   let rows = [grid.filter((i) => (i.id >= 0 && i.id < 5)), 
               grid.filter((i) => (i.id >= 5 && i.id < 10)),
               grid.filter((i) => (i.id >= 10 && i.id < 15)),
@@ -78,8 +78,8 @@ export const calculateWinner = (grid) => {
     // rows.length == board height == 7
     // rows[i].length == board width == 5
 
-    // Horizontal check
     for(let index=0; index<(rows[i].length-3); index++){
+      // Horizontal check
       (rows[i][index].isSelected && rows[i][index+1].isSelected && rows[i][index+2].isSelected && rows[i][index+3].isSelected) ? 
         console.log("(horizontal) Four in a row!") : "";
     }
@@ -98,17 +98,14 @@ export const calculateWinner = (grid) => {
         (rows[i][index].isSelected && rows[i-1][index+1].isSelected && rows[i-2][index+2].isSelected && rows[i-3][index+3].isSelected) ?
           console.log("(ascending diagonal) Four in a row!") : "";
       }
+
       // Descending diagonal check
-
+      for(let index=3; index<rows[i].length; index++){
+        (rows[i][index].isSelected && rows[i-1][index-1].isSelected && rows[i-2][index-2].isSelected && rows[i-3][index-3].isSelected) ?
+          console.log("(descending diagonal) Four in a row!") : "";
+      }
     }
-
   }
-
-
-  /* if(i<rows[i].length-3){
-    
-  }
-*/
 }
 
 const Index = () => {
