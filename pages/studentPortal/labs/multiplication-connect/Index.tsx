@@ -22,49 +22,7 @@ const createGrid = () => {
 }; 
 
 export const calculateWinner = (grid) => {
-  // on block press run calculateWinner algo
-
-  /* might be able to use .filter() to break down the grid into rows, verticals, diagonals
-    connect four logic: https://stackoverflow.com/questions/32770321/connect-4-check-for-a-win-algorithm 
-  */
-
-  // refactor the checks
-  // (subtract 3 bc 4 in a row can't be formed afterward)
-  // height === width for this example
-
-/*       // horizontalCheck 
-      for (int j = 0; j<getHeight()-3 ; j++ ){
-        for (int i = 0; i<getWidth(); i++){
-            if (this.board[i][j] == player && this.board[i][j+1] == player && this.board[i][j+2] == player && this.board[i][j+3] == player)
-                return true;
-        }
-      } */
-
-/*       // verticalCheck
-      for (int i = 0; i<getWidth()-3 ; i++ ){
-        for (int j = 0; j<this.getHeight(); j++){
-            if (this.board[i][j] == player && this.board[i+1][j] == player && this.board[i+2][j] == player && this.board[i+3][j] == player){
-                return true;
-            }           
-        }
-      } */
-
-/*       // ascendingDiagonalCheck 
-      for (int i=3; i<getWidth(); i++){
-        for (int j=0; j<getHeight()-3; j++){
-            if (this.board[i][j] == player && this.board[i-1][j+1] == player && this.board[i-2][j+2] == player && this.board[i-3][j+3] == player)
-                return true;
-        }
-      } */
-
-/*       // descendingDiagonalCheck
-      for (int i=3; i<getWidth(); i++){
-        for (int j=3; j<getHeight(); j++){
-            if (this.board[i][j] == player && this.board[i-1][j-1] == player && this.board[i-2][j-2] == player && this.board[i-3][j-3] == player)
-                return true;
-        }
-      } */
-
+  // Algorithm ran on block click to determine win
 
   let rows = [grid.filter((i) => (i.id >= 0 && i.id < 5)), 
               grid.filter((i) => (i.id >= 5 && i.id < 10)),
