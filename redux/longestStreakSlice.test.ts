@@ -101,3 +101,7 @@ test("test selecting two blocks should trigger AI selection", () => {
   // Assert
   expect(secondState).toEqual(finalState);
 });
+
+test("test selecting invalid blocks", () => {
+  //TODO implement this
+});
