@@ -98,12 +98,15 @@ export const longestStreakSlice: Slice = createSlice({
     handlePlayerSelect: (state, action: PayloadAction<number>) => {
       if (action.type === "longestStreak/handlePlayerSelect") {
         const index = action.payload;
+
+        // TODO only do this if player clicked on a non selected block
         if (state.isPlayerSelecting === false) {
           // Player selected first block
           state.blocks[index].state = BlockState.PLAYER_ONE_SELECTED;
           state.isPlayerSelecting = true;
         } else if (state.isPlayerSelecting === true) {
           // Player selected second block
+          // TODO only allow player to click the "correct" block
           state.blocks[index].state = BlockState.PLAYER_ONE_SELECTED;
           state.isPlayerSelecting = false;
           handleAISelection(state);
