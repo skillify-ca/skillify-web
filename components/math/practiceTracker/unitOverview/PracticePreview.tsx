@@ -15,13 +15,13 @@ const PracticePreview = ({ loading, userSkills, skills, courseId }) => {
     },
   ];
   const financeUnits = [
-    { title: "money", image: "" },
-    { title: "debt", image: "" },
-    { title: "consumer math", image: "" },
-    { title: "budgeting", image: "" },
-    { title: "investing", image: "" },
+    { title: "money", image: "/images/finance/debt.jpg" },
+    { title: "debt", image: "/images/finance/debt.jpg" },
+    { title: "consumer math", image: "/images/finance/sale.jpg" },
+    { title: "budgeting", image: "/images/finance/budget.jpg" },
+    { title: "investing", image: "/images/finance/investing.jpg" },
     { title: "saving", image: "" },
-    { title: "taxes", image: "" },
+    { title: "taxes", image: "/images/finance/taxes.png" },
     { title: "real estate", image: "" },
   ];
 
