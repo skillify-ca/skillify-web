@@ -92,18 +92,21 @@ export const longestStreakSlice: Slice = createSlice({
       //   }
       // }
     },
-    //here's where to add the AI randomly selecting next block.
+
 
     handlePlayerSelect: (state, action: PayloadAction<number>) => {
       if (action.type === "longestStreak/handlePlayerSelect") {
         const index = action.payload;
+        const unselectedBlocks = state.blocks.filter(
+          (block) => block.state === BlockState.NOT_SELECTED
+        );
 
         // TODO only do this if player clicked on a non selected block
-        if (state.isPlayerSelecting === false) {
+        if (state.isPlayerSelecting === false && unselectedBlocks.includes(state.blocks[index])) {
           // Player selected first block
           state.blocks[index].state = BlockState.PLAYER_ONE_SELECTED;
           state.isPlayerSelecting = true;
-        } else if (state.isPlayerSelecting === true) {
+        } else if (state.isPlayerSelecting === true && unselectedBlocks.includes(state.blocks[index])) {
           // Player selected second block
           // TODO only allow player to click the "correct" block
           state.blocks[index].state = BlockState.PLAYER_ONE_SELECTED;

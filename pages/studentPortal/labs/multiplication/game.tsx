@@ -11,7 +11,6 @@ import { Button } from "../../../../components/ui/Button";
 import {
   handlePlayerSelect,
   initializeGame,
-  isPlayerSelecting,
   longestStreakSelector,
   setStage,
   STAGE,
