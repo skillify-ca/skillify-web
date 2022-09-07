@@ -83,15 +83,20 @@ export const calculateWinner = (grid) => {
       (rows[i][index].isSelected && rows[i][index+1].isSelected && rows[i][index+2].isSelected && rows[i][index+3].isSelected) ? 
         console.log("(horizontal) Four in a row!") : "";
     }
+
+    if(i<rows.length-3){
+      // Vertical check
+      for(let index=0; index<rows[i].length; index++){
+        (rows[i][index].isSelected && rows[i+1][index].isSelected && rows[i+2][index].isSelected && rows[i+3][index].isSelected) ? 
+          console.log("(vertical) Four in a row!") : "";
+      }
+    }
+
   }
 
-  for(let i=0; i<rows.length-3; i++){
-    // Vertical check
-    for(let index=0; index<rows[i].length; index++){
-      (rows[i][index].isSelected && rows[i+1][index].isSelected && rows[i+2][index].isSelected && rows[i+3][index].isSelected) ? 
-        console.log("(vertical) Four in a row!") : "";
-    }
-  }
+  // for(let i=0; i<rows.length-3; i++){
+    
+  // }
 
   /* if(i<rows[i].length-3){
     // Ascending diagonal check
