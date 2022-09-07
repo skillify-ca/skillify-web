@@ -129,6 +129,10 @@ function handleAISelection(state: LongestStreakState) {
 
   state.blocks[indexOfComputerSelected].state = BlockState.PLAYER_TWO_SELECTED;
   const valueToSearchFor = computerSelected.value;
+  let secondComputerSelected: GameBlockState = unselectedBlocks.find( (block) => block.value === valueToSearchFor)
+  const indexOfSecondComputerSelected = state.blocks.indexOf(secondComputerSelected);
+  state.blocks[indexOfSecondComputerSelected].state = BlockState.PLAYER_TWO_SELECTED;
+ 
 
   // TODO find a a non-selected block that has the value to search for and then select that
 }
