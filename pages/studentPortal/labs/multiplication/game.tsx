@@ -11,6 +11,7 @@ import { Button } from "../../../../components/ui/Button";
 import {
   handlePlayerSelect,
   initializeGame,
+  isPlayerSelecting,
   longestStreakSelector,
   setStage,
   STAGE,
@@ -78,12 +79,7 @@ export default function BlockComponentGallery() {
 
   //const [stage, setStage] = useState(STAGE.SET_RULES);
 
-  const [isPlayerOneActive, setPlayerOneActive] = useState(false);
   const [playerOneName, setPlayerOneName] = useState("Player 1");
-  const [playerTwoName, setPlayerTwoName] = useState("Player 2");
-  function handlePlayer() {
-    setPlayerOneActive(!isPlayerOneActive);
-  }
 
   function handleSelect(index) {
     console.log("BLOCK WAS CLICKED: index ", index);
@@ -111,10 +107,10 @@ export default function BlockComponentGallery() {
       ) : stage === STAGE.PLAY_GAME ? (
         <div className="grid grid-cols-6 grid-rows-7">
           <div className="pb-4 font-black col-start-1 col-end-6 flex justify-evenly w-[45rem]">
-            Current Player: {isPlayerOneActive ? playerOneName : playerTwoName}
+            {playerOneName}, your quest is to battle the computer. Let's see how
+            you do!
           </div>
           <div className="pb-8 col-start-1 col-end-7 flex justify-evenly w-[45rem]">
-            <Button label={"Next Player"} onClick={() => handlePlayer()} />
             <Button label={"Reset Game"} onClick={() => handleResetGame()} />
             <Button label={"Show Winner"} onClick={handleCalculateWinner} />
             <Button
