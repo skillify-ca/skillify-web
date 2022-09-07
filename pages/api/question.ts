@@ -7,6 +7,7 @@ import { WordProblemQuestion } from "./labs/questionGenerators/wordProblemQuesti
 import { LongDivisionQuestion } from "./labs/questionGenerators/longDivisionQuestion";
 import { ItemCostModel } from "./labs/finance/money/itemCostModel";
 import { PersonData } from "./labs/finance/money/personData";
+import { AlgebraSolveQuestion } from "./labs/questionGenerators/algebraQuestionGenerator";
 
 export type Question =
   | VerticalEquationQuestion
@@ -68,13 +69,8 @@ export type Question =
       answer: string;
       text: string;
     }
-    {
-      questionType: QuestionType.ALGEBRA_SOLVE_VARIABLE;
-      algebrasolveModel: AlgebraSolveModel;
-      answer: string;
-      text: string;
-    }
-    {
+  | AlgebraSolveQuestion
+  | {
       questionType: QuestionType.FINANCE_SALES_TAX_PROBLEM;
       salesTaxModel: SalesTaxModel;
       answer: string;
@@ -101,8 +97,8 @@ export type UnitPriceModel = {
   numberOfObjects: number;
   name: string;
   image: string;
-  singularFruit: string,
-  pluralFruit: string,
+  singularFruit: string;
+  pluralFruit: string;
 };
 export type SalesTaxModel = {
   price: number;
@@ -110,8 +106,8 @@ export type SalesTaxModel = {
   taxRate: number;
   personName: string;
   image1: string;
-  multipleAnimals: string,
-  numberOfToys: number,
+  multipleAnimals: string;
+  numberOfToys: number;
 };
 export type CommissionModel = {
   personName: string;
@@ -119,9 +115,4 @@ export type CommissionModel = {
   price: number;
   numberOfSales: number;
   image1: string;
-};
-export type AlgebraSolveModel = {
-  variableLetter: string;
-  text: string;
-  answer: string;
 };
