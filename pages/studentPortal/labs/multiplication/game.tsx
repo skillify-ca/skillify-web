@@ -26,6 +26,7 @@ export enum STAGE {
 
 export type GameBlockState = {
   text: string;
+  value: number;
   state: BlockState;
 };
 
@@ -97,7 +98,6 @@ export default function BlockComponentGallery() {
     console.log(gameState[index].text);
 
     dispatch(handlePlayerSelect(index));
-    dispatch(isPlayerSelecting);
   }
 
   function handlePlayGame() {
@@ -153,8 +153,8 @@ export default function BlockComponentGallery() {
                 .reverse()}
             </div>
             <div className="col-span-7 bg-rattata">
-              <div className=" flex flex-col row-auto">
-                <label className=" py-8 flex justify-center text-xl">
+              <div className="flex flex-col row-auto ">
+                <label className="flex justify-center py-8 text-xl ">
                   Please enter your name for battle, Player One.{" "}
                 </label>
                 <input
@@ -162,7 +162,7 @@ export default function BlockComponentGallery() {
                   type="string"
                   value={playerOneName}
                   onChange={(e) => setPlayerOneName(e.target.value)}
-                  className="place-self-center w-30 font-bold text-center border-2 border-gray-300"
+                  className="font-bold text-center border-2 border-gray-300 place-self-center w-30"
                 ></input>
               </div>
             </div>
