@@ -92,20 +92,21 @@ export const calculateWinner = (grid) => {
       }
     }
 
+    if(i>=3){
+      // Ascending diagonal check
+      for(let index=0; index<rows[i].length-3; index++){
+        (rows[i][index].isSelected && rows[i-1][index+1].isSelected && rows[i-2][index+2].isSelected && rows[i-3][index+3].isSelected) ?
+          console.log("(ascending diagonal) Four in a row!") : "";
+      }
+      // Descending diagonal check
+
+    }
+
   }
 
-  // for(let i=0; i<rows.length-3; i++){
-    
-  // }
 
   /* if(i<rows[i].length-3){
-    // Ascending diagonal check
-    for(let index=3; i<rows.length; i++){
-      (rows[i][index].isSelected && rows[i+1][index-1].isSelected && rows[i+2][index-2].isSelected && rows[i+3][index-3].isSelected) ?
-        console.log("(ascending diagonal) Four in a row!") : "";
-    }
-    // Descending diagonal check
-
+    
   }
 */
 }
