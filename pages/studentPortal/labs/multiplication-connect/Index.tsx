@@ -30,24 +30,34 @@ export const calculateWinner = (grid) => {
 
   // refactor the checks
   // (subtract 3 bc 4 in a row can't be formed afterward)
-        /*   // horizontalCheck 
+  // height === width for this example
+
+/*       // horizontalCheck 
       for (int j = 0; j<getHeight()-3 ; j++ ){
         for (int i = 0; i<getWidth(); i++){
             if (this.board[i][j] == player && this.board[i][j+1] == player && this.board[i][j+2] == player && this.board[i][j+3] == player)
                 return true;
         }
-      }
+      } */
 
-       // verticalCheck
+/*       // verticalCheck
       for (int i = 0; i<getWidth()-3 ; i++ ){
         for (int j = 0; j<this.getHeight(); j++){
             if (this.board[i][j] == player && this.board[i+1][j] == player && this.board[i+2][j] == player && this.board[i+3][j] == player){
                 return true;
             }           
         }
-      }
+      } */
 
-      // descendingDiagonalCheck
+/*       // ascendingDiagonalCheck 
+      for (int i=3; i<getWidth(); i++){
+        for (int j=0; j<getHeight()-3; j++){
+            if (this.board[i][j] == player && this.board[i-1][j+1] == player && this.board[i-2][j+2] == player && this.board[i-3][j+3] == player)
+                return true;
+        }
+      } */
+
+/*       // descendingDiagonalCheck
       for (int i=3; i<getWidth(); i++){
         for (int j=3; j<getHeight(); j++){
             if (this.board[i][j] == player && this.board[i-1][j-1] == player && this.board[i-2][j-2] == player && this.board[i-3][j-3] == player)
@@ -63,21 +73,36 @@ export const calculateWinner = (grid) => {
               grid.filter((i) => (i.id >= 20 && i.id < 25)), 
               grid.filter((i) => (i.id >= 25 && i.id < 30)), 
               grid.filter((i) => (i.id >= 30 && i.id < 35))];
-  // console.log(rows);
 
-  for(let i=0;i<rows.length;i++){
+  for(let i=0; i<rows.length; i++){
+    // rows.length == board height == 7
+    // rows[i].length == board width == 5
+
     // Horizontal check
     for(let index=0; index<(rows[i].length-3); index++){
-      (rows[i][index].isSelected && rows[i][index+1].isSelected && rows[i][index+2].isSelected && rows[i][index+3].isSelected) ? console.log("(horizontal) Four in a row!") : "";
+      (rows[i][index].isSelected && rows[i][index+1].isSelected && rows[i][index+2].isSelected && rows[i][index+3].isSelected) ? 
+        console.log("(horizontal) Four in a row!") : "";
     }
-    if(i<rows.length-3){
-      // Vertical check
-      for(let index=0;index<rows[i].length;index++){
-        (rows[i][index].isSelected && rows[i+1][index].isSelected && rows[i+2][index].isSelected && rows[i+3][index].isSelected) ? console.log("(vertical) Four in a row!") : "";
-      }
-    }
-    
   }
+
+  for(let i=0; i<rows.length-3; i++){
+    // Vertical check
+    for(let index=0; index<rows[i].length; index++){
+      (rows[i][index].isSelected && rows[i+1][index].isSelected && rows[i+2][index].isSelected && rows[i+3][index].isSelected) ? 
+        console.log("(vertical) Four in a row!") : "";
+    }
+  }
+
+  /* if(i<rows[i].length-3){
+    // Ascending diagonal check
+    for(let index=3; i<rows.length; i++){
+      (rows[i][index].isSelected && rows[i+1][index-1].isSelected && rows[i+2][index-2].isSelected && rows[i+3][index-3].isSelected) ?
+        console.log("(ascending diagonal) Four in a row!") : "";
+    }
+    // Descending diagonal check
+
+  }
+*/
 }
 
 const Index = () => {
