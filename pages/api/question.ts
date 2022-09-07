@@ -68,7 +68,13 @@ export type Question =
       answer: string;
       text: string;
     }
-  | {
+    {
+      questionType: QuestionType.ALGEBRA_SOLVE_VARIABLE;
+      algebrasolveModel: AlgebraSolveModel;
+      answer: string;
+      text: string;
+    }
+    {
       questionType: QuestionType.FINANCE_SALES_TAX_PROBLEM;
       salesTaxModel: SalesTaxModel;
       answer: string;
@@ -113,4 +119,9 @@ export type CommissionModel = {
   price: number;
   numberOfSales: number;
   image1: string;
+};
+export type AlgebraSolveModel = {
+  variableLetter: string;
+  text: string;
+  answer: string;
 };
