@@ -11,18 +11,10 @@ import { Button } from "../../../../components/ui/Button";
 import {
   handlePlayerSelect,
   initializeGame,
-  isPlayerSelecting,
   longestStreakSelector,
-  setBlocks,
   setStage,
+  STAGE,
 } from "../../../../redux/longestStreakSlice";
-import { getRndInteger } from "../../../api/random";
-let initialGameState: GameBlockState[] = [];
-export enum STAGE {
-  SET_RULES,
-  PLAY_GAME,
-  CALCULATE_WINNER,
-}
 
 export type GameBlockState = {
   text: string;
