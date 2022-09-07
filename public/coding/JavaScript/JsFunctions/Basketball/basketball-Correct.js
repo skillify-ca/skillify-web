@@ -1,7 +1,7 @@
  function basketball(threepointRaptors, twopointRaptors, threepointWarriors, twopointWarriors) {
     
-    let totalA = (threepointRaptors * 3) + (twopointRaptors * 2);
-    let totalB = (threepointWarriors * 3) + (twopointWarriors * 2);
+    let totalA = (threepointRaptors * 3) + (twopointRaptors * 2)
+    let totalB = (threepointWarriors * 3) + (twopointWarriors * 2)
 
     if (totalA > totalB)
     {
