@@ -11,9 +11,9 @@ import { Button } from "../../../../components/ui/Button";
 import {
   handlePlayerSelect,
   initializeGame,
+  isPlayerSelecting,
   longestStreakSelector,
   setBlocks,
-  setGameState,
   setStage,
 } from "../../../../redux/longestStreakSlice";
 import { getRndInteger } from "../../../api/random";
@@ -97,6 +97,7 @@ export default function BlockComponentGallery() {
     console.log(gameState[index].text);
 
     dispatch(handlePlayerSelect(index));
+    dispatch(isPlayerSelecting);
   }
 
   function handlePlayGame() {
@@ -161,16 +162,6 @@ export default function BlockComponentGallery() {
                   type="string"
                   value={playerOneName}
                   onChange={(e) => setPlayerOneName(e.target.value)}
-                  className="place-self-center w-30 font-bold text-center border-2 border-gray-300"
-                ></input>
-                <label className="py-8 flex justify-center text-xl">
-                  Please enter your name for battle, Player Two.
-                </label>
-                <input
-                  id="input"
-                  type="string"
-                  value={playerTwoName}
-                  onChange={(e) => setPlayerTwoName(e.target.value)}
                   className="place-self-center w-30 font-bold text-center border-2 border-gray-300"
                 ></input>
               </div>
