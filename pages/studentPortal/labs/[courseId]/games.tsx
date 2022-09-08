@@ -9,11 +9,14 @@ export default function CourseGamesPage({ courseId, gameList }) {
           navbarLinks={[
             { name: "Practice", href: `/studentPortal/labs/${courseId}` },
             { name: "Games", href: `/studentPortal/labs/${courseId}/games` },
+            { name: "Stats", href: `/studentPortal/labs/${courseId}/stats` },
           ]}
         />
       </div>
-      <div className="p-4 bg-slate-400 text-murkrow">
-        <h2 className="text-5xl font-bold text-murkrow">Games</h2>
+      <div className="p-4 bg-slate-300 dark:bg-slate-700 text-murkrow">
+        <h2 className="text-5xl font-bold text-murkrow dark:text-white">
+          Games
+        </h2>
         <div className="flex gap-8">
           {gameList.map((game) => (
             <Link href={game.link}>
