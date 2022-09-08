@@ -12,8 +12,8 @@ import reducer, {
 const initialState: LongestStreakState = {
   blocks: [
     {
-      text: "72",
-      value: 72,
+      text: "56",
+      value: 56,
       state: BlockState.NOT_SELECTED,
     },
     {
@@ -26,10 +26,23 @@ const initialState: LongestStreakState = {
       value: 72,
       state: BlockState.NOT_SELECTED,
     },
+    {
+      text: "6x6",
+      value: 72,
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "36",
+      value: 36,
+      state: BlockState.NOT_SELECTED,
+    },
+    {
+      text: "8x9",
+      value: 72,
+      state: BlockState.NOT_SELECTED,
+    },
   ],
   stage: STAGE.PLAY_GAME,
-  isPlayerOneActive: false, // TODO remove?
-  handlePlayerSelect: 0, // TODO remove?
   isPlayerSelecting: false,
 };
 
@@ -45,27 +58,40 @@ test("test selecting one block", () => {
   const finalState = {
     blocks: [
       {
-        text: "72",
-        value: 72,
-        state: BlockState.PLAYER_ONE_SELECTED,
-      },
-      {
-        text: "7 x 8",
+        text: "56",
         value: 56,
         state: BlockState.NOT_SELECTED,
       },
       {
+        text: "7 x 8",
+        value: 56,
+        state: BlockState.PLAYER_ONE_SELECTED,
+      },
+      {
         text: "72",
+        value: 72,
+        state: BlockState.NOT_SELECTED,
+      },
+      {
+        text: "6x6",
+        value: 72,
+        state: BlockState.NOT_SELECTED,
+      },
+      {
+        text: "36",
+        value: 36,
+        state: BlockState.NOT_SELECTED,
+      },
+      {
+        text: "8x9",
         value: 72,
         state: BlockState.NOT_SELECTED,
       },
     ],
     stage: STAGE.PLAY_GAME,
-    isPlayerOneActive: false, // TODO remove?
-    handlePlayerSelect: 0, // TODO remove?
     isPlayerSelecting: true,
   };
-  expect(reducer(initialState, handlePlayerSelect(0))).toEqual(finalState);
+  expect(reducer(initialState, handlePlayerSelect(1))).toEqual(finalState);
 });
 
 test("test selecting two blocks should trigger AI selection", () => {
@@ -73,8 +99,8 @@ test("test selecting two blocks should trigger AI selection", () => {
   const finalState = {
     blocks: [
       {
-        text: "72",
-        value: 72,
+        text: "56",
+        value: 56,
         state: BlockState.PLAYER_ONE_SELECTED,
       },
       {
@@ -87,21 +113,36 @@ test("test selecting two blocks should trigger AI selection", () => {
         value: 72,
         state: BlockState.PLAYER_TWO_SELECTED,
       },
+      {
+        text: "6x6",
+        value: 72,
+        state: BlockState.NOT_SELECTED,
+      },
+      {
+        text: "36",
+        value: 36,
+        state: BlockState.NOT_SELECTED,
+      },
+      {
+        text: "8x9",
+        value: 72,
+        state: BlockState.PLAYER_TWO_SELECTED,
+      },
     ],
     stage: STAGE.PLAY_GAME,
-    isPlayerOneActive: false, // TODO remove?
-    handlePlayerSelect: 0, // TODO remove?
     isPlayerSelecting: false,
   };
 
   //Act
-  const firstState = reducer(initialState, handlePlayerSelect(0));
-  const secondState = reducer(firstState, handlePlayerSelect(1));
-
+  const firstState = reducer(initialState, handlePlayerSelect(1));
+  const secondState = reducer(firstState, handlePlayerSelect(0),);
+  const thirdState = reducer(secondState, handlePlayerSelect(2));
+  const fourthState = reducer(thirdState, handlePlayerSelect(5));
   // Assert
-  expect(secondState).toEqual(finalState);
+  expect(fourthState).toEqual(finalState);
 });
 
 test("test selecting invalid blocks", () => {
+// Arrange
   //TODO implement this
 });
