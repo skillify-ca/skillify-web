@@ -95,7 +95,22 @@ export async function getServerSideProps({ params }) {
       description:
         "Don't read this solution, until you've attempted the challenge above",
     },
+    {
+      title: "Basketball",
+      link: "/coding/JavaScript/JsFunctions/Basketball/basketball-Practice.js",
+      image: "/images/basketball.jpg",
+      description:
+        "A problem involving calculating the score of a basketball game!"
+    },
+    {
+      title: "Basketball Solution",
+      link: "/coding/JavaScript/JsFunctions/Basketball/basketball-Correct.js",
+      image: "/images/basketball.jpg",
+      description:
+        "Don't watch this solution, until you've attempted the challenge above",
+    },
   ];
+  
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
