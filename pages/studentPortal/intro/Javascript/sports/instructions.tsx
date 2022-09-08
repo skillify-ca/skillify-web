@@ -277,6 +277,11 @@ const JS11 = ({ lessonComponents }) => {
             </div>
           )}
         </div>
+        <div className="flex h-full mt-12 sm:justify-end">
+          <a href={"/studentPortal/intro/Javascript/sports/submit-assignment"}>
+            <Button label="Continue" disabled={false} />
+          </a>
+        </div>
       </div>
     </>
   );

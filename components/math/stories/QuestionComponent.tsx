@@ -9,6 +9,7 @@ import TipQuestion from "../../finance/money/TipQuestion";
 import SalesTaxQuestion from "../../finance/SalesTaxQuestion";
 import CommissionQuestion from "../../finance/CommissionQuestion";
 import UnitPriceQuestion from "../../finance/UnitPriceQuestion";
+import SimpleInterestQuestion from "../../finance/SimpleInterestQuestion";
 import { HorizontalEquation } from "../../questionTypes/HorizontalEquation";
 import { LongDivision } from "../../questionTypes/LongDivision";
 import { MultipleChoice } from "../../questionTypes/MultipleChoice";
@@ -153,6 +154,18 @@ const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
       numberOfSales={questionData.commisionModel.numberOfSales}
       submitGuess={submitGuess}
       image1={questionData.commisionModel.image1}
+      answer={questionData.answer}
+      text={""}
+    />
+  ) : questionData.questionType ===
+    QuestionType.FINANCE_SIMPLE_INTEREST_PROBLEM ? (
+    <SimpleInterestQuestion
+      personName={questionData.interestModel.personName}
+      principalAmount={questionData.interestModel.principalAmount}
+      interestRate={questionData.interestModel.interestRate}
+      time={questionData.interestModel.time}
+      submitGuess={submitGuess}
+      image1={questionData.interestModel.image1}
       answer={questionData.answer}
       text={""}
     />
