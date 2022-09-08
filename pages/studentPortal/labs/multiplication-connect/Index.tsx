@@ -85,11 +85,7 @@ export const calculateWinner = (grid) => {
   }
 };
 
-interface IndexProps {
-  grid: [];
-}
-
-const Index: FC<IndexProps> = () => {
+const Index: FC = () => {
   //Extractd to App level State to determine Winner here
   const [grid, setGrid] = useState(createGrid);
 

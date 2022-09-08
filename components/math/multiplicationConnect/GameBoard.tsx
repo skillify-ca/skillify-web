@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import GameBoardBlock from "./GameBoardBlock";
 
 interface GameBoardProps {
-  grid: [];
+  grid: GameBoardBlock[];
 }
 
 const GameBoard: FC<GameBoardProps> = ({ grid }) => {

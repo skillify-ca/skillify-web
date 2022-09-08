@@ -17,10 +17,9 @@ interface GameBoardBlock {
   isSelected: boolean;
 }
 
-// fixme: change the any types
 interface GameBoardBlockProps {
-  blockData: any;
-  gridData: any;
+  blockData: GameBoardBlock;
+  gridData: GameBoardBlock[];
 }
 
 const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData, gridData }) => {
