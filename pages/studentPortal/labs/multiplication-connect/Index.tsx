@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import DiceSection from "../../../../components/math/multiplicationConnect/DiceSection";
 import GameBoard from "../../../../components/math/multiplicationConnect/GameBoard";
+import GameBoardBlock from "../../../../components/math/multiplicationConnect/GameBoardBlock";
 import PlayerSection from "../../../../components/math/multiplicationConnect/PlayerSection";
 import { getRandomItemFromArray } from "../../../api/random";
 
@@ -22,7 +23,7 @@ const createGrid = () => {
   return grid;
 };
 
-export const calculateWinner = (grid) => {
+export const calculateWinner = (grid: GameBoardBlock[]) => {
   // Algorithm ran on block click to determine win
 
   let rows = [

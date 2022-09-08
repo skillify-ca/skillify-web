@@ -1,10 +1,10 @@
 import React, { FC, useState } from "react";
 import { calculateWinner } from "../../../pages/studentPortal/labs/multiplication-connect/Index";
 
-const blockClick = (block, grid) => {
+const blockClick = (block: GameBoardBlock, gridData: GameBoardBlock[]) => {
   if (!block.isSelected) {
     block.isSelected = true;
-    calculateWinner(grid);
+    calculateWinner(gridData);
   } else {
     block.isSelected = false;
   }
