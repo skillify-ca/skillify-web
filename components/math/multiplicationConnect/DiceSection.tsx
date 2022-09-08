@@ -1,12 +1,12 @@
 import { Button } from '../../ui/Button'
-import { useState, useEffect } from 'react'
+import { useState, FC } from 'react'
 
 
 const diceRoll = () => {
   return Math.floor((Math.random()*6)+1);
 }
 
-const DiceSection = () => {
+const DiceSection:FC = () => {
   const [roll1, setRoll1] = useState(0);
   const [roll2, setRoll2] = useState(0);
 

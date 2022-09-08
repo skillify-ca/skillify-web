@@ -1,6 +1,5 @@
-import React, {useState} from 'react'
-import { calculateWinner } from '../../../pages/studentPortal/labs/multiplication-connect/Index';
-
+import React, { FC, useState } from "react";
+import { calculateWinner } from "../../../pages/studentPortal/labs/multiplication-connect/Index";
 
 const blockClick = (block, grid) => {
   if (!block.isSelected) {
@@ -12,18 +11,34 @@ const blockClick = (block, grid) => {
   return { ...block };
 };
 
-const GameBoardBlock = ({ blockData, gridData }) => {
+interface GameBoardBlock {
+  id: number;
+  gridNumber: number;
+  isSelected: boolean;
+}
+
+// fixme: change the any types
+interface GameBoardBlockProps {
+  blockData: any;
+  gridData: any;
+}
+
+const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData, gridData }) => {
   const [block, setBlock] = useState(blockData);
 
   return (
     <div
-      onClick={()=>setBlock(blockClick(block, gridData))}
+      onClick={() => setBlock(blockClick(block, gridData))}
       className={`flex justify-center items-center h-full w-full cursor-pointer rounded-full    
-            ${block.isSelected===false ? "hover:bg-[#F20000]/40 hover:animate-pulse" : "bg-[#F20000]/60"}`}
+            ${
+              block.isSelected === false
+                ? "hover:bg-[#F20000]/40 hover:animate-pulse"
+                : "bg-[#F20000]/60"
+            }`}
     >
       <p>{block.gridNumber}</p>
     </div>
   );
 };
 
-export default GameBoardBlock
+export default GameBoardBlock;

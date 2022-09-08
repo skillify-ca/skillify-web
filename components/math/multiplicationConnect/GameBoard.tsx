@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
-import GameBoardBlock from './GameBoardBlock';
+import React, { FC, useState } from "react";
+import GameBoardBlock from "./GameBoardBlock";
 
+interface GameBoardProps {
+  grid: [];
+}
 
-const GameBoard = ({grid}) => {
+const GameBoard: FC<GameBoardProps> = ({ grid }) => {
   return (
     <div className="px-28 pb-8">
       <h2 className="text-xl pb-4">GameBoard</h2>
@@ -11,7 +14,17 @@ const GameBoard = ({grid}) => {
           <div
             key={blockData.id}
             className={`border-r-2 border-b-2 h-28 border-b-[#149ECA] border-r-[#149ECA] bg-blue-900 
-                ${blockData.id===0 ? "rounded-tl-2xl" : blockData.id===4 ? "rounded-tr-2xl" : blockData.id===30 ? "rounded-bl-2xl": blockData.id===34 ? "rounded-br-2xl" : "" }`}
+                ${
+                  blockData.id === 0
+                    ? "rounded-tl-2xl"
+                    : blockData.id === 4
+                    ? "rounded-tr-2xl"
+                    : blockData.id === 30
+                    ? "rounded-bl-2xl"
+                    : blockData.id === 34
+                    ? "rounded-br-2xl"
+                    : ""
+                }`}
           >
             <GameBoardBlock blockData={blockData} gridData={grid} />
           </div>
