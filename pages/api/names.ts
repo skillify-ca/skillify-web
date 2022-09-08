@@ -1,9 +1,11 @@
 export const name = [
+	'Lucky',
 	'Lavan',
 	'Selvi',
 	'Ravi',
 	'Vithushan',
 	'Harrishan',
+	'Sukeesan',
 	'Yaathavi',
 	'Hayley',
 	'John',

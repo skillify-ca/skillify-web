@@ -95,7 +95,6 @@ export async function getServerSideProps({ params }) {
       description:
         "Don't read this solution, until you've attempted the challenge above",
     },
-
     {
       title: "Basketball",
       link: "/coding/JavaScript/JsFunctions/Basketball/basketball-Practice.js",
@@ -110,12 +109,8 @@ export async function getServerSideProps({ params }) {
       description:
         "Don't watch this solution, until you've attempted the challenge above",
     },
-
-    
-    
-
-
   ];
+  
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
