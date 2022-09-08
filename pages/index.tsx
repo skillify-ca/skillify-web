@@ -30,11 +30,11 @@ const HomePage = () => {
       { text: "in tech" },
     ],
     description:
-      "Hands-on experience taught by expert coaches. Get personalized training that leverages your unique perspectives and experiences.",
+      "Hands-on experience taught by expert coaches. Get personalized and flexible training for high-paying remote jobs. We customize our program to you and your unique interests.",
     bannerText:
       "Traditional universities and coding bootcamps leave you in debt and unprepared for finding a real job. With our project-based courses, you can learn the fundamentals of coding and get hired.",
     credentialsText:
-      "Learn our secret approach to getting and passing coding interviews",
+      "Learn our secret approach to get and ace coding interviews",
     benefitsText: "Grow without limits",
     benefits: [
       {
