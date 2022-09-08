@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Input } from '../../ui/Input'
 
-const PlayerSection = () => {
+const PlayerSection:FC = () => {
   return (
     <div>
       <div className="flex justify-center items-center gap-24">
