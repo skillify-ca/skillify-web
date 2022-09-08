@@ -1,26 +1,37 @@
-import React, { useEffect, useState } from "react";
-import { GuessData } from "../../../pages/api/guessData";
-import { getRndInteger } from "../../../pages/api/random";
-import { Button } from "../../ui/Button";
+import React from "react";
 
+export enum CoinType {
+  PENNY,
+  NICKEL,
+  DIME,
+  QUARTER,
+  LOONIE,
+  TOONIE,
+}
 export interface CoinProp {
-  coinType: number;
+  coinType: CoinType;
 }
 
 export const Coin: React.FC<CoinProp> = ({ coinType }) => {
   return (
     <div className="flex flex-col space-y-8">
-      {coinType === 1 && (
-        <img src="/images/money/nickle.jpeg" className="w-16 h-16" />
+      {coinType === CoinType.PENNY && (
+        <img src="/images/money/penny.png" className="w-14 h-14" />
       )}
-      {coinType === 2 && (
-        <img src="/images/money/loonie.jpeg" className="w-24" />
+      {coinType === CoinType.NICKEL && (
+        <img src="/images/money/nickel.png" className="w-16 h-16" />
       )}
-      {coinType === 3 && (
-        <img src="/images/money/toonie.jpeg" className="w-28" />
+      {coinType === CoinType.LOONIE && (
+        <img src="/images/money/loonie.png" className="w-24" />
       )}
-      {coinType === 4 && (
-        <img src="/images/money/dime.jpeg" className="w-16 h-16" />
+      {coinType === CoinType.TOONIE && (
+        <img src="/images/money/toonie.png" className="w-28" />
+      )}
+      {coinType === CoinType.DIME && (
+        <img src="/images/money/dime.png" className="w-12 h-12" />
+      )}
+      {coinType === CoinType.QUARTER && (
+        <img src="/images/money/quarter.png" className="w-20 h-20" />
       )}
     </div>
   );

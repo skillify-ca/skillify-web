@@ -16,4 +16,5 @@ export enum QuestionType {
   FINANCE_UNIT_PRICE_PROBLEM = "unit price problem",
   FINANCE_SALES_TAX_PROBLEM = "calculate sales tax",
   FINANCE_COMMISSION_PROBLEM = "calculate commission on sales",
+  FINANCE_SIMPLE_INTEREST_PROBLEM = "calculate simple interest",
 }
