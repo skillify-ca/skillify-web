@@ -21,20 +21,19 @@ const HomePage = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const minoritiesCopy: LandingPageCopy = {
+  const defaultCopy: LandingPageCopy = {
     headerText: [
       { text: "Helping" },
-      { text: "minorities", highlight: true },
+      { text: "people", highlight: true },
       { text: "start a " },
       { text: "career", highlight: true },
       { text: "in tech" },
     ],
     description:
-      "Hands-on experience taught by expert coaches. Get personalized training that leverages your unique perspectives and experiences.",
+      "Get personalized and flexible training for high-paying remote jobs. We customize our program to you and your unique interests.",
     bannerText:
       "Traditional universities and coding bootcamps leave you in debt and unprepared for finding a real job. With our project-based courses, you can learn the fundamentals of coding and get hired.",
-    credentialsText:
-      "Learn our secret approach to getting and passing coding interviews",
+    credentialsText: "",
     benefitsText: "Grow without limits",
     benefits: [
       {
@@ -56,7 +55,7 @@ const HomePage = () => {
     emailCaptureText: [
       { text: "Get our" },
       { text: "top 12 secret tips ", highlight: true },
-      { text: "learning to code as and starting a career in " },
+      { text: "for learning to code and starting a career in " },
       { text: "tech ", highlight: true },
     ],
     emailCaptureDescription:
@@ -72,7 +71,7 @@ const HomePage = () => {
     benefits,
     emailCaptureText,
     emailCaptureDescription,
-  } = minoritiesCopy;
+  } = defaultCopy;
 
   return (
     <div>
