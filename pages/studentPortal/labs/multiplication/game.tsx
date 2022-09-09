@@ -98,7 +98,7 @@ export default function BlockComponentGallery() {
   function handleCalculateWinner() {
     dispatch(setStage(STAGE.CALCULATE_WINNER));
   }
-
+  function clickEvent() {}
   return (
     <div>
       {stage === STAGE.SET_RULES ? (
