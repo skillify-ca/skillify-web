@@ -134,8 +134,8 @@ test("test selecting two blocks should trigger AI selection", () => {
   };
 
   //Act
-  const firstState = reducer(initialState, handlePlayerSelect(1));
-  const secondState = reducer(firstState, handlePlayerSelect(0),);
+  const firstState = reducer(initialState, handlePlayerSelect(0));
+  const secondState = reducer(firstState, handlePlayerSelect(1));
   const thirdState = reducer(secondState, handlePlayerSelect(2));
   const fourthState = reducer(thirdState, handlePlayerSelect(5));
   // Assert
