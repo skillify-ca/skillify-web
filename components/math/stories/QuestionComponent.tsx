@@ -137,7 +137,7 @@ const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
     />
   ) : questionData.questionType === QuestionType.ALGEBRA_SOLVE_VARIABLE ? (
     <AlgebraSolveVariable
-    variableLetter={questionData.AlgebraSolveModel.variableLetter}
+    variableLetter={questionData.algebrasolveModel.variableLetter}
     submitGuess={submitGuess}
     answer={questionData.answer}
     text={""}
