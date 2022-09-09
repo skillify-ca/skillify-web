@@ -27,14 +27,15 @@ export function generateAlgebraQuestion(): AlgebraSolveQuestion {
   // TODO generate a question object
   return {
     questionType: QuestionType.ALGEBRA_SOLVE_VARIABLE,
+    variableLetter: getRandomItemFromArray(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]),
     algebrasolveModel: {
-      variableLetter: getRandomItemFromArray(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]),
+      variableLetter: "x",
       text: "Help solve for the unkown variable",
-      name: "Vithusan",
       answer:  "6",
+      name: "Vithusan",
     },
-    variableLetter: "x",
-    text: "solve for x",
+    name: "",
     answer: "7",
+    text: "solve for x",
   }
 }
