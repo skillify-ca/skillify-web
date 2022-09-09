@@ -30,6 +30,7 @@ function initializeGameState(): GameBlockState[] {
     let initiateBlockState: GameBlockState = {
       text: product.toString(),
       value: product,
+      isProduct: 1,
       state: BlockState.NOT_SELECTED,
     };
     dummyArray.push(initiateBlockState);
@@ -37,6 +38,7 @@ function initializeGameState(): GameBlockState[] {
     initiateBlockState = {
       text: productString,
       value: product,
+      isProduct: null,
       state: BlockState.NOT_SELECTED,
     };
     dummyArray.push(initiateBlockState);
@@ -134,13 +136,14 @@ export const longestStreakSlice: Slice = createSlice({
 
 function handleAISelection(state: LongestStreakState) {
   const unselectedBlocks = state.blocks.filter(
-    (block) => block.state === BlockState.NOT_SELECTED
+    (block) => block.state === BlockState.NOT_SELECTED && block.isProduct!= null
   );
+   console.log("Product: " + unselectedBlocks.length)
   //find block that is "x * y" only
   //const unselectedBlocks = unselectedBlocksAll.filter(
-  //  (block) => block.text.length >=4
+    //(block) => block.text.length >= 4
   //);
-    let computerSelected: GameBlockState =
+  let computerSelected: GameBlockState =
     getRandomItemFromArray(unselectedBlocks);
   const indexOfComputerSelected = state.blocks.indexOf(computerSelected);
   state.blocks[indexOfComputerSelected].state = BlockState.PLAYER_TWO_SELECTED; 
@@ -148,7 +151,10 @@ function handleAISelection(state: LongestStreakState) {
   
   //find corresponding block in value that is "product" only
   //const secondComputerSelectedProduct = unselectedBlocks.filter( (block) => block.text.length <=3)
-  const secondComputerSelected = unselectedBlocks.find( (block) => block.value === valueToSearchFor)
+  const secondUnselectedBlocks = state.blocks.filter(
+    (block) => block.state === BlockState.NOT_SELECTED && block.isProduct=== null
+  );
+  const secondComputerSelected = secondUnselectedBlocks.find( (block) => block.value === valueToSearchFor)
   const indexOfSecondComputerSelected = state.blocks.indexOf(secondComputerSelected);
   state.blocks[indexOfSecondComputerSelected].state = BlockState.PLAYER_TWO_SELECTED;
  

@@ -19,6 +19,7 @@ import {
 export type GameBlockState = {
   text: string;
   value: number;
+  isProduct?: number;
   state: BlockState;
 };
 
