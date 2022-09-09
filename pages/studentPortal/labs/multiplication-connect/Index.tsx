@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import DiceSection from "../../../../components/math/multiplicationConnect/DiceSection";
 import GameBoard from "../../../../components/math/multiplicationConnect/GameBoard";
 import GameBoardBlock from "../../../../components/math/multiplicationConnect/GameBoardBlock";
@@ -87,8 +87,16 @@ export const calculateWinner = (grid: GameBoardBlock[]) => {
 };
 
 const Index: FC = () => {
-  //Extractd to App level State to determine Winner here
   const [grid, setGrid] = useState(createGrid);
+  const [newGame, setNewGame] = useState(false);
+
+  // initialize grid on page load
+  // create a boolean newGame state that triggers the rerender of this hook
+  const useEffect(() => {
+    first
+
+  }, [third])
+  
 
   return (
     <div className="flex flex-col gap-10 max-w-5xl">
