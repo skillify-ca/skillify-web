@@ -6,12 +6,10 @@ import PlayerSection from "../../../../components/math/multiplicationConnect/Pla
 import { getRandomItemFromArray } from "../../../api/random";
 
 // todo: convert to useEffect hook for initialization
-const createGrid = () => {
+/* const createGrid = () => {
   let arr = [];
   let grid = [];
-  for (let i = 4; i < 25; i++) {
-    i % 2 === 0 ? arr.push(i) : "";
-  }
+  for (let i = 4; i < 25; i++) i % 2 === 0 ? arr.push(i) : "";
   for (let i = 0; i < 35; i++) {
     let gridNumber = getRandomItemFromArray(arr);
     grid.push({
@@ -21,7 +19,7 @@ const createGrid = () => {
     });
   }
   return grid;
-};
+}; */
 
 export const calculateWinner = (grid: GameBoardBlock[]) => {
   // Algorithm ran on block click to determine win
@@ -87,16 +85,26 @@ export const calculateWinner = (grid: GameBoardBlock[]) => {
 };
 
 const Index: FC = () => {
-  const [grid, setGrid] = useState(createGrid);
+  const [grid, setGrid] = useState<GameBoardBlock[]>();
   const [newGame, setNewGame] = useState(false);
 
   // initialize grid on page load
   // create a boolean newGame state that triggers the rerender of this hook
-  const useEffect(() => {
-    first
-
-  }, [third])
-  
+  useEffect(() => {
+    let arr = [];
+    let initialGrid = [];
+    for (let i = 4; i < 25; i++) i % 2 === 0 ? arr.push(i) : "";
+    for (let i = 0; i < 35; i++) {
+      let gridNumber = getRandomItemFromArray(arr);
+      initialGrid.push({
+        id: i,
+        gridNumber: gridNumber,
+        isSelected: false,
+      });
+    }
+    console.log("Create Grid function ran");
+    setGrid(initialGrid);
+  });
 
   return (
     <div className="flex flex-col gap-10 max-w-5xl">
