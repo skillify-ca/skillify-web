@@ -21,10 +21,10 @@ const HomePage = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const minoritiesCopy: LandingPageCopy = {
+  const defaultCopy: LandingPageCopy = {
     headerText: [
       { text: "Helping" },
-      { text: "minorities", highlight: true },
+      { text: "people", highlight: true },
       { text: "start a " },
       { text: "career", highlight: true },
       { text: "in tech" },
@@ -71,7 +71,7 @@ const HomePage = () => {
     benefits,
     emailCaptureText,
     emailCaptureDescription,
-  } = minoritiesCopy;
+  } = defaultCopy;
 
   return (
     <div>
