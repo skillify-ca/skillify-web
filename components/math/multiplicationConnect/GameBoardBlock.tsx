@@ -1,24 +1,43 @@
-import React, {useState} from 'react'
+import React, { FC, useState } from "react";
+import { calculateWinner } from "../../../pages/studentPortal/labs/multiplication-connect/Index";
 
+const blockClick = (block: GameBoardBlock, gridData: GameBoardBlock[]) => {
+  if (!block.isSelected) {
+    block.isSelected = true;
+    calculateWinner(gridData);
+  } else {
+    block.isSelected = false;
+  }
+  return { ...block };
+};
 
-const blockClick = (block) => {
-    (block.isSelected===false) ? block.isSelected=true : block.isSelected=false;
-    // console.log(block);
-    return {...block};
+interface GameBoardBlock {
+  id: number;
+  gridNumber: number;
+  isSelected: boolean;
 }
 
-const GameBoardBlock = ({ blockData, onClick }) => {
+interface GameBoardBlockProps {
+  blockData: GameBoardBlock;
+  gridData: GameBoardBlock[];
+}
+
+const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData, gridData }) => {
   const [block, setBlock] = useState(blockData);
 
   return (
     <div
-      onClick={()=>setBlock(blockClick(block))}
-      className={`flex justify-center items-center h-full w-full cursor-pointer rounded-full duration-300 
-            ${block.isSelected===false ? "hover:bg-[#F20000]/40 hover:animate-pulse" : "bg-[#F20000]/40"}`}
+      onClick={() => setBlock(blockClick(block, gridData))}
+      className={`flex justify-center items-center h-full w-full cursor-pointer rounded-full    
+            ${
+              block.isSelected === false
+                ? "hover:bg-[#F20000]/40 hover:animate-pulse"
+                : "bg-[#F20000]/60"
+            }`}
     >
       <p>{block.gridNumber}</p>
     </div>
   );
 };
 
-export default GameBoardBlock
+export default GameBoardBlock;
