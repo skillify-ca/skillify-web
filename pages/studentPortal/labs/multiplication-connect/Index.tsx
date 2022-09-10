@@ -68,42 +68,34 @@ export const calculateWinner = (grid: GameBoardBlock[]) => {
   }
 };
 
-// not working
-export const resetGame = (newGameState: boolean) => {
-  console.log("Reset function ran");
-  return (newGameState = true);
-};
-
-/* todo: send as a prop to DiceSection?
-      OR call the function in DiceSection and return a button that updates state 
-*/
-export const resetButton = () => {};
-
 const Index: FC = () => {
   const [grid, setGrid] = useState([]);
   const [newGame, setNewGame] = useState(0);
 
   // initialize grid on page load
+  // todo: what if you mutate grid w setGrid right here?
   const createGrid = () => {
+    // setGrid;
     let arr = [];
-    let grid = [];
+    let newGrid = [];
     for (let i = 4; i < 25; i++) i % 2 === 0 ? arr.push(i) : "";
     for (let i = 0; i < 35; i++) {
       let gridNumber = getRandomItemFromArray(arr);
-      grid.push({
+      newGrid.push({
         id: i,
         gridNumber: gridNumber,
         isSelected: false,
       });
     }
     console.log("Grid created");
-    return grid;
+    console.log(newGrid);
+    return newGrid;
   };
 
   // todo: create a boolean newGame state that triggers the rerender of this hook
   useEffect(() => {
     console.log(`newGame: ${newGame}`);
-    setGrid(createGrid());
+    setGrid(createGrid);
     // return () => {
     //   setGrid(createGrid);
     //   console.log("component unmounted");
@@ -134,6 +126,7 @@ const Index: FC = () => {
         >
           📝 Game Rules
         </button>
+        <div>newGame state is currently: {newGame}</div>
       </div>
       <GameBoard grid={grid} />
     </div>
