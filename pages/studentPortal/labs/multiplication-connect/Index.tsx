@@ -80,26 +80,34 @@ export const resetGame = (newGameState: boolean) => {
 export const resetButton = () => {};
 
 const Index: FC = () => {
-  const [grid, setGrid] = useState<GameBoardBlock[]>([]);
-  const [newGame, setNewGame] = useState(false);
+  const [grid, setGrid] = useState([]);
+  const [newGame, setNewGame] = useState(0);
 
   // initialize grid on page load
-  // todo: create a boolean newGame state that triggers the rerender of this hook
-  useEffect(() => {
+  const createGrid = () => {
     let arr = [];
-    let initialGrid = [];
+    let grid = [];
     for (let i = 4; i < 25; i++) i % 2 === 0 ? arr.push(i) : "";
     for (let i = 0; i < 35; i++) {
       let gridNumber = getRandomItemFromArray(arr);
-      initialGrid.push({
+      grid.push({
         id: i,
         gridNumber: gridNumber,
         isSelected: false,
       });
     }
-    console.log("Create Grid function ran"); //fixme: remove these comments before merge into main
-    setNewGame(false);
-    setGrid(initialGrid);
+    console.log("Grid created");
+    return grid;
+  };
+
+  // todo: create a boolean newGame state that triggers the rerender of this hook
+  useEffect(() => {
+    console.log(`newGame: ${newGame}`);
+    setGrid(createGrid());
+    // return () => {
+    //   setGrid(createGrid);
+    //   console.log("component unmounted");
+    // };
   }, [newGame]);
 
   return (
@@ -113,7 +121,9 @@ const Index: FC = () => {
         <button
           type="button"
           className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-          onClick={() => {}}
+          onClick={() => {
+            setNewGame(newGame + 1);
+          }}
         >
           🔄 New Game
         </button>
