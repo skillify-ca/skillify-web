@@ -6,6 +6,7 @@ import MultiplicationBlock, {
   BlockState,
 } from "../../../../components/math/longestStreak/MultiplicationBlock";
 import Rules from "../../../../components/math/longestStreak/Rules";
+import { reset, showOnReviewSlice } from "../../../../redux/longestStreakSlice";
 
 import { Button } from "../../../../components/ui/Button";
 import {
@@ -76,9 +77,6 @@ export function showEndGameImage(array: GameBlockState[]) {
 export default function BlockComponentGallery() {
   const dispatch = useDispatch();
   const { stage, blocks: gameState } = useSelector(longestStreakSelector);
-
-  //const [stage, setStage] = useState(STAGE.SET_RULES);
-
   const [playerOneName, setPlayerOneName] = useState("Player 1");
 
   function handleSelect(index) {
@@ -94,12 +92,13 @@ export default function BlockComponentGallery() {
 
   function handleResetGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
+    dispatch(reset(0));
     dispatch(initializeGame(0));
   }
   function handleCalculateWinner() {
     dispatch(setStage(STAGE.CALCULATE_WINNER));
   }
-  function clickEvent() {}
+
   return (
     <div>
       {stage === STAGE.SET_RULES ? (
@@ -180,7 +179,7 @@ export default function BlockComponentGallery() {
       ) : stage === STAGE.CALCULATE_WINNER ? (
         <Winner
           text={""}
-          onClick={handlePlayGame}
+          onClick={handleResetGame}
           winner={calculateWinner(gameState)}
           image={showEndGameImage(gameState)}
         />

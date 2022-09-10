@@ -7,6 +7,7 @@ import { shuffle } from "lodash";
 
 export interface LongestStreakState {
   stage: STAGE;
+  reset: boolean;
   blocks: GameBlockState[];
   handlePlayerSelect: number;
   isPlayerSelecting: boolean;
@@ -50,6 +51,16 @@ function initializeGameState(): GameBlockState[] {
 }
 const initialState: LongestStreakState = {
   stage: STAGE.SET_RULES,
+  reset: false,
+  blocks: initializeGameState(),
+  handlePlayerSelect: 0,
+  isPlayerSelecting: false,
+  currentlySelectedBlock: null,
+};
+
+const resetInitialState: LongestStreakState = {
+  stage: STAGE.PLAY_GAME,
+  reset: false,
   blocks: initializeGameState(),
   handlePlayerSelect: 0,
   isPlayerSelecting: false,
@@ -66,6 +77,8 @@ export const longestStreakSlice: Slice = createSlice({
       state.stage = stageOfGame;
     },
 
+    reset: () => resetInitialState,
+
     setBlocks: (
       state: LongestStreakState,
       action: PayloadAction<GameBlockState[]>
@@ -73,6 +86,7 @@ export const longestStreakSlice: Slice = createSlice({
       const selectedBlock = action.payload as GameBlockState[];
       state.blocks = selectedBlock;
     },
+
     initializeGame: (state: LongestStreakState, action: PayloadAction) => {
       state.blocks = initializeGameState();
     },
@@ -98,15 +112,11 @@ export const longestStreakSlice: Slice = createSlice({
         const unselectedBlocks = state.blocks.filter(
           (block) => block.state === BlockState.NOT_SELECTED
         );
-        // TODO only do this if player clicked on a non selected block
+        // only do this if player clicked on a non selected block
         if (state.isPlayerSelecting === false && unselectedBlocks.includes(state.blocks[index])) {
               state.blocks[index].state = BlockState.PLAYER_ONE_SELECTED;
               state.currentlySelectedBlock = index;
               state.isPlayerSelecting = true;
-           
-          // Player selected first block
-              
-          
       } else if (state.isPlayerSelecting === true && unselectedBlocks.includes(state.blocks[index])) {
           const firstSelectedBlockIndex = state.currentlySelectedBlock
           if (state.blocks[index].value === state.blocks[firstSelectedBlockIndex].value) {
@@ -114,22 +124,10 @@ export const longestStreakSlice: Slice = createSlice({
             state.isPlayerSelecting = false;
             console.log(index)
             console.log(state.currentlySelectedBlock)
-            handleAISelection(state);
-            
+            handleAISelection(state);            
+          }     
           }
-        
-        //if (state.blocks[index] === firstBlock.indexOf() ) {
-          //if (state.blocks[index].value === blockTwoValueToSearchFor) {
-            
-          //}
-        //}
-            // Player selected second block
-            // TODO only allow player to click the "correct" block
-            
-          }
-          
         }
-  
     },
   },
 });
@@ -140,9 +138,6 @@ function handleAISelection(state: LongestStreakState) {
   );
    console.log("Product: " + unselectedBlocks.length)
   //find block that is "x * y" only
-  //const unselectedBlocks = unselectedBlocksAll.filter(
-    //(block) => block.text.length >= 4
-  //);
   let computerSelected: GameBlockState =
     getRandomItemFromArray(unselectedBlocks);
   const indexOfComputerSelected = state.blocks.indexOf(computerSelected);
@@ -150,20 +145,17 @@ function handleAISelection(state: LongestStreakState) {
   const valueToSearchFor = computerSelected.value;
   
   //find corresponding block in value that is "product" only
-  //const secondComputerSelectedProduct = unselectedBlocks.filter( (block) => block.text.length <=3)
   const secondUnselectedBlocks = state.blocks.filter(
     (block) => block.state === BlockState.NOT_SELECTED && block.isProduct=== null
   );
   const secondComputerSelected = secondUnselectedBlocks.find( (block) => block.value === valueToSearchFor)
   const indexOfSecondComputerSelected = state.blocks.indexOf(secondComputerSelected);
-  state.blocks[indexOfSecondComputerSelected].state = BlockState.PLAYER_TWO_SELECTED;
- 
-
-  // TODO find a a non-selected block that has the value to search for and then select that
+  state.blocks[indexOfSecondComputerSelected].state = BlockState.PLAYER_TWO_SELECTED; 
 }
 
 export const {
   setStage,
+  reset,
   setBlocks,
   isPlayerSelecting,
   handlePlayerSelect,
