@@ -73,9 +73,7 @@ const Index: FC = () => {
   const [newGame, setNewGame] = useState(0);
 
   // initialize grid on page load
-  // todo: what if you mutate grid w setGrid right here?
   const createGrid = () => {
-    // setGrid;
     let arr = [];
     let newGrid = [];
     for (let i = 4; i < 25; i++) i % 2 === 0 ? arr.push(i) : "";
@@ -92,7 +90,6 @@ const Index: FC = () => {
     return newGrid;
   };
 
-  // todo: create a boolean newGame state that triggers the rerender of this hook
   useEffect(() => {
     console.log(`newGame: ${newGame}`);
     setGrid(createGrid);
@@ -113,9 +110,7 @@ const Index: FC = () => {
         <button
           type="button"
           className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-          onClick={() => {
-            setNewGame(newGame + 1);
-          }}
+          onClick={() => setNewGame(newGame + 1)}
         >
           🔄 New Game
         </button>
