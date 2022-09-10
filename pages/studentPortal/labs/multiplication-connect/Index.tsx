@@ -3,6 +3,7 @@ import DiceSection from "../../../../components/math/multiplicationConnect/DiceS
 import GameBoard from "../../../../components/math/multiplicationConnect/GameBoard";
 import GameBoardBlock from "../../../../components/math/multiplicationConnect/GameBoardBlock";
 import PlayerSection from "../../../../components/math/multiplicationConnect/PlayerSection";
+import { Button } from "../../../../components/ui/Button";
 import { getRandomItemFromArray } from "../../../api/random";
 
 export const calculateWinner = (grid: GameBoardBlock[]) => {
@@ -68,6 +69,17 @@ export const calculateWinner = (grid: GameBoardBlock[]) => {
   }
 };
 
+// not working
+export const resetGame = (newGameState: boolean) => {
+  console.log("Reset function ran");
+  return (newGameState = true);
+};
+
+/* todo: send as a prop to DiceSection?
+      OR call the function in DiceSection and return a button that updates state 
+*/
+export const resetButton = () => {};
+
 const Index: FC = () => {
   const [grid, setGrid] = useState<GameBoardBlock[]>([]);
   const [newGame, setNewGame] = useState(false);
@@ -87,16 +99,27 @@ const Index: FC = () => {
       });
     }
     console.log("Create Grid function ran"); //fixme: remove these comments before merge into main
+    setNewGame(false);
     setGrid(initialGrid);
   }, [newGame]);
 
   return (
-    <div className="flex flex-col justify-center gap-4 max-w-5xl mx-auto">
-      <h1 className="text-4xl text-center font-bold mb-3 mx-10 drop-shadow-lg shadow-black">
+    <div className="flex flex-col justify-center max-w-5xl gap-4 mx-auto">
+      <h1 className="mx-10 mb-3 text-4xl font-bold text-center drop-shadow-lg shadow-black">
         Welcome to Multiplication Connect Four 🔴🟡
       </h1>
       <PlayerSection />
       <DiceSection />
+      <div className="flex py-4 justify-evenly">
+        <Button label="📝 Game Rules" backgroundColor="purple" />
+        <button
+          className="h-12 px-4 py-2 font-semibold border-b-4 border-purple-900 rounded-lg cursor-pointer bg-black-500 hover:bg-purple-400"
+          onClick={() => {}}
+        >
+          📝 Game Rules
+        </button>
+        <Button label="🔄 New Game" backgroundColor="blue" onClick={() => {}} />
+      </div>
       <GameBoard grid={grid} />
     </div>
   );

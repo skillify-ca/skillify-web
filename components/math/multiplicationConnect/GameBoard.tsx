@@ -13,7 +13,7 @@ const GameBoard: FC<GameBoardProps> = ({ grid }) => {
         {grid.map((blockData) => (
           <div
             key={blockData.id}
-            className={`border-r-2 border-b-2 md:h-32 sm:h-24 h-16 border-b-[#149ECA] border-r-[#149ECA] bg-blue-900 
+            className={`border-r-2 border-b-2 md:h-32 sm:h-24 h-20 border-b-[#149ECA] border-r-[#149ECA] bg-blue-900 
                 ${
                   blockData.id === 0
                     ? "rounded-tl-2xl"
