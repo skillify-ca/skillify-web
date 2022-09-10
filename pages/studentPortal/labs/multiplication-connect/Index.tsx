@@ -3,7 +3,6 @@ import DiceSection from "../../../../components/math/multiplicationConnect/DiceS
 import GameBoard from "../../../../components/math/multiplicationConnect/GameBoard";
 import GameBoardBlock from "../../../../components/math/multiplicationConnect/GameBoardBlock";
 import PlayerSection from "../../../../components/math/multiplicationConnect/PlayerSection";
-import { Button } from "../../../../components/ui/Button";
 import { getRandomItemFromArray } from "../../../api/random";
 
 export const calculateWinner = (grid: GameBoardBlock[]) => {
@@ -110,15 +109,21 @@ const Index: FC = () => {
       </h1>
       <PlayerSection />
       <DiceSection />
-      <div className="flex py-4 justify-evenly">
-        <Button label="📝 Game Rules" backgroundColor="purple" />
+      <div className="flex pt-5 pb-3 justify-evenly">
         <button
-          className="h-12 px-4 py-2 font-semibold border-b-4 border-purple-900 rounded-lg cursor-pointer bg-black-500 hover:bg-purple-400"
+          type="button"
+          className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+          onClick={() => {}}
+        >
+          🔄 New Game
+        </button>
+        <button
+          type="button"
+          className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
           onClick={() => {}}
         >
           📝 Game Rules
         </button>
-        <Button label="🔄 New Game" backgroundColor="blue" onClick={() => {}} />
       </div>
       <GameBoard grid={grid} />
     </div>
