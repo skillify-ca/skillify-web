@@ -86,13 +86,13 @@ const Index: FC = () => {
         isSelected: false,
       });
     }
-    console.log("Create Grid function ran");
+    console.log("Create Grid function ran"); //fixme: remove these comments before merge into main
     setGrid(initialGrid);
   }, [newGame]);
 
   return (
-    <div className="flex flex-col gap-10 max-w-5xl">
-      <h1 className="text-3xl text-center">
+    <div className="flex flex-col justify-center gap-4 max-w-5xl mx-auto">
+      <h1 className="text-4xl text-center font-bold mb-3 mx-10 drop-shadow-lg shadow-black">
         Welcome to Multiplication Connect Four 🔴🟡
       </h1>
       <PlayerSection />

@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
-import { Input } from '../../ui/Input'
+import React, { FC } from "react";
+import { Input } from "../../ui/Input";
 
-const PlayerSection:FC = () => {
+const PlayerSection: FC = () => {
   return (
     <div>
-      <div className="flex justify-center items-center gap-24">
+      <div className="flex justify-evenly items-center">
         <input
           className="bg-inherit placeholder:text-inherit max-w-[200px] h-12 text-center cursor-pointer rounded-xl enabled:bg-[#F20000]/40"
           placeholder="Player 1"
@@ -17,6 +17,6 @@ const PlayerSection:FC = () => {
       </div>
     </div>
   );
-}
+};
 
-export default PlayerSection
+export default PlayerSection;
