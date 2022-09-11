@@ -7,7 +7,6 @@ import { getRandomItemFromArray } from "../../../api/random";
 
 export const calculateWinner = (grid: GameBoardBlock[]) => {
   // Algorithm ran on block click to determine win
-
   let rows = [
     grid.filter((i) => i.id >= 0 && i.id < 5),
     grid.filter((i) => i.id >= 5 && i.id < 10),
@@ -17,7 +16,6 @@ export const calculateWinner = (grid: GameBoardBlock[]) => {
     grid.filter((i) => i.id >= 25 && i.id < 30),
     grid.filter((i) => i.id >= 30 && i.id < 35),
   ];
-
   for (let i = 0; i < rows.length; i++) {
     // rows.length == board height == 7
     // rows[i].length == board width == 5
@@ -31,7 +29,6 @@ export const calculateWinner = (grid: GameBoardBlock[]) => {
         ? console.log("(horizontal) Four in a row!")
         : "";
     }
-
     if (i < rows.length - 3) {
       // Vertical check
       for (let index = 0; index < rows[i].length; index++) {
@@ -43,7 +40,6 @@ export const calculateWinner = (grid: GameBoardBlock[]) => {
           : "";
       }
     }
-
     if (i >= 3) {
       // Ascending diagonal check
       for (let index = 0; index < rows[i].length - 3; index++) {
@@ -54,7 +50,6 @@ export const calculateWinner = (grid: GameBoardBlock[]) => {
           ? console.log("(ascending diagonal) Four in a row!")
           : "";
       }
-
       // Descending diagonal check
       for (let index = 3; index < rows[i].length; index++) {
         rows[i][index].isSelected &&
@@ -90,11 +85,13 @@ const Index: FC = () => {
     return newGrid;
   };
 
+  // useEffect not triggering re-render of GameBoard even though grid State is being updated
+  // grid state may need to included in dependency array but this results in infinite loop of renders
   useEffect(() => {
     console.log(`newGame: ${newGame}`);
-    setGrid(createGrid);
+    setGrid(createGrid());
+
     // return () => {
-    //   setGrid(createGrid);
     //   console.log("component unmounted");
     // };
   }, [newGame]);
