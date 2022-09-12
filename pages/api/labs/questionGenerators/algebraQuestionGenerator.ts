@@ -1,4 +1,3 @@
-import { HorizontalEquation } from "../../../../components/questionTypes/HorizontalEquation";
 import { QuestionType } from "../../questionTypes";
 import {
   getRndInteger,
@@ -6,12 +5,12 @@ import {
   getRndHundredthsDecimal,
   getRandomItemFromArray,
 } from "../../random";
-
+import { name } from "../../../api/names";
 export type AlgebraSolveQuestion = {
   questionType: QuestionType.ALGEBRA_SOLVE_VARIABLE;
   variableLetter: string;
   algebrasolveModel: AlgebraSolveModel;
-  name: string;
+  personname: string;
   answer: string;
   text: string;
 };
@@ -20,8 +19,13 @@ export type AlgebraSolveModel = {
   variableLetter: string;
   text: string;
   answer: string;
-  name: string;
+  personname: string;
 };
+
+// create helper function
+// no inputs
+// outputs two integers between 0 and 100
+// ~m
 
 export function generateAlgebraQuestion(): AlgebraSolveQuestion {
   // TODO generate a question object
@@ -32,10 +36,12 @@ export function generateAlgebraQuestion(): AlgebraSolveQuestion {
       variableLetter: "x",
       text: "Help solve for the unkown variable",
       answer:  "6",
-      name: "Vithusan",
+      personname: getRandomItemFromArray(name),
     },
-    name: "",
+    personname: "asdf",
     answer: "7",
     text: "solve for x",
   }
 }
+
+console.log(name[0])

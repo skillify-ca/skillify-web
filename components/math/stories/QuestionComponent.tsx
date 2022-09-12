@@ -140,6 +140,7 @@ const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
     variableLetter={questionData.algebrasolveModel.variableLetter}
     submitGuess={submitGuess}
     answer={questionData.answer}
+    personname={questionData.algebrasolveModel.personname}
     text={""}
     />
   ) : questionData.questionType === QuestionType.FINANCE_SALES_TAX_PROBLEM ? (

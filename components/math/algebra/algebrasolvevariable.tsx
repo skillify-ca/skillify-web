@@ -6,15 +6,15 @@ export interface AlgebraSolveVariableProps {
   variableLetter: string;
   submitGuess: (guess: GuessData) => void;
   answer: string;
-  name: string;
+  personname: string;
   text: string;
 }
 
 const AlgebraSolveVariable: React.FC<AlgebraSolveVariableProps> = ({
   variableLetter,
-  submitGuess,
-  name,
+  submitGuess,  
   answer,
+  personname,
   text,
 }) => {
     const onSubmit = (guess: string) => {
@@ -32,15 +32,17 @@ const AlgebraSolveVariable: React.FC<AlgebraSolveVariableProps> = ({
     <div className="flex items-center justify-center">
       <div>
             <p className="flex flex-row">
-            Solve for the unknown {variableLetter}
-        <br></br>
+            Help {personname} solve for the unknown {variableLetter}
             0*{variableLetter}+7=?
         <div>
+            <div>
             <input
                 id="input"
                 type="number"
                 className="w-20 font-bold text-right border-2 border-gray-300"
             ></input>
+            </div>
+            
         </div>
         </p>
         {""}
