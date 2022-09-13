@@ -1,6 +1,5 @@
 import { BlockState } from "../components/math/longestStreak/MultiplicationBlock";
 import reducer, {
-  currentlySelectedBlock,
   handlePlayerSelect,
   LongestStreakState,
   STAGE,
@@ -15,44 +14,38 @@ const initialState: LongestStreakState = {
     {
       text: "56",
       value: 56,
-      isProduct: 1,
       state: BlockState.NOT_SELECTED,
     },
     {
       text: "7 x 8",
       value: 56,
-      isProduct: null,
       state: BlockState.NOT_SELECTED,
     },
     {
       text: "72",
       value: 72,
-      isProduct: 1,
       state: BlockState.NOT_SELECTED,
     },
     {
-      text: "6 x 6",
-      value: 36,
-      isProduct: null,
+      text: "6x6",
+      value: 72,
       state: BlockState.NOT_SELECTED,
     },
     {
       text: "36",
       value: 36,
-      isProduct: 1,
       state: BlockState.NOT_SELECTED,
     },
     {
-      text: "8 x 9",
+      text: "8x9",
       value: 72,
-      isProduct: null,
       state: BlockState.NOT_SELECTED,
     },
   ],
   stage: STAGE.PLAY_GAME,
   isPlayerSelecting: false,
-  handlePlayerSelect: 1,
-  currentlySelectedBlock: 1,
+  reset: false,
+  handlePlayerSelect: 0
 };
 
 test("should return the initial state", () => {
@@ -69,44 +62,37 @@ test("test selecting one block", () => {
       {
         text: "56",
         value: 56,
-        isProduct: 1,
         state: BlockState.NOT_SELECTED,
       },
       {
         text: "7 x 8",
         value: 56,
-        isProduct: null,
         state: BlockState.PLAYER_ONE_SELECTED,
       },
       {
         text: "72",
         value: 72,
-        isProduct: 1,
         state: BlockState.NOT_SELECTED,
       },
       {
-        text: "6 x 6",
-        value: 36,
-        isProduct: null,
+        text: "6x6",
+        value: 72,
         state: BlockState.NOT_SELECTED,
       },
       {
         text: "36",
         value: 36,
-        isProduct: 1,
         state: BlockState.NOT_SELECTED,
       },
       {
-        text: "8 x 9",
+        text: "8x9",
         value: 72,
-        isProduct: null,
         state: BlockState.NOT_SELECTED,
       },
     ],
     stage: STAGE.PLAY_GAME,
     isPlayerSelecting: true,
-    handlePlayerSelect: 1,
-    currentlySelectedBlock: 1,
+    reset: false,
   };
   expect(reducer(initialState, handlePlayerSelect(1))).toEqual(finalState);
 });
@@ -118,49 +104,45 @@ test("test selecting two blocks should trigger AI selection", () => {
       {
         text: "56",
         value: 56,
-        isProduct: 1,
         state: BlockState.PLAYER_ONE_SELECTED,
       },
       {
         text: "7 x 8",
         value: 56,
-        isProduct: null,
         state: BlockState.PLAYER_ONE_SELECTED,
       },
       {
         text: "72",
         value: 72,
-        isProduct: 1,
         state: BlockState.PLAYER_TWO_SELECTED,
       },
       {
-        text: "6 x 6",
-        value: 36,
-        isProduct: null,
+        text: "6x6",
+        value: 72,
         state: BlockState.NOT_SELECTED,
       },
       {
         text: "36",
         value: 36,
-        isProduct: 1,
         state: BlockState.NOT_SELECTED,
       },
       {
-        text: "8 x 9",
+        text: "8x9",
         value: 72,
-        isProduct: null,
         state: BlockState.PLAYER_TWO_SELECTED,
       },
     ],
     stage: STAGE.PLAY_GAME,
     isPlayerSelecting: false,
-    handlePlayerSelect: 1,
     currentlySelectedBlock: 1,
+    handlePlayerSelect: 0,
+    reset: false,
+
   };
 
   //Act
   const firstState = reducer(initialState, handlePlayerSelect(1));
-  const secondState = reducer(firstState, handlePlayerSelect(0),);
+  const secondState = reducer(firstState, handlePlayerSelect(0));
   const thirdState = reducer(secondState, handlePlayerSelect(2));
   const fourthState = reducer(thirdState, handlePlayerSelect(5));
   // Assert

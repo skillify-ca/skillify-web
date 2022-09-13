@@ -22,7 +22,7 @@ export const Winner: React.FC<WinnerProps> = ({
       </div>
       <div className="flex justify-center"> {image}</div>
       <p className="py-8 flex justify-center">
-        Take heart. Practice makes perfect. Begin again!
+        Remember... Practice makes perfect. Begin again!
       </p>
       <div className="flex justify-center">
         <Button label={"Play Again"} onClick={onClick} />

@@ -5,6 +5,7 @@ import { GameBlockState } from "../pages/studentPortal/labs/multiplication/game"
 import { getRandomItemFromArray, getRndInteger } from "../pages/api/random";
 import { shuffle } from "lodash";
 
+
 export interface LongestStreakState {
   stage: STAGE;
   reset: boolean;
@@ -12,6 +13,7 @@ export interface LongestStreakState {
   handlePlayerSelect: number;
   isPlayerSelecting: boolean;
   currentlySelectedBlock?: number;
+  playerName: string;
 }
 
 export enum STAGE {
@@ -23,15 +25,15 @@ export enum STAGE {
 function initializeGameState(): GameBlockState[] {
   let dummyArray: GameBlockState[] = [];
   for (let i = 0; i <= 20; i++) {
-    let x = getRndInteger(1, 9);
-    let y = getRndInteger(1, 9);
+    let x = getRndInteger(1, 10);
+    let y = getRndInteger(1, 10);
     let product: number = x * y;
     let productString: string = x + " x " + y;
 
     let initiateBlockState: GameBlockState = {
       text: product.toString(),
       value: product,
-      isProduct: 1,
+      isProduct: true,
       state: BlockState.NOT_SELECTED,
     };
     dummyArray.push(initiateBlockState);
@@ -39,14 +41,14 @@ function initializeGameState(): GameBlockState[] {
     initiateBlockState = {
       text: productString,
       value: product,
-      isProduct: null,
+      isProduct: false,
       state: BlockState.NOT_SELECTED,
     };
     dummyArray.push(initiateBlockState);
   }
 
-  //shuffle list
-  dummyArray = shuffle(dummyArray);
+  dummyArray = shuffle(dummyArray)
+  
   return dummyArray;
 }
 const initialState: LongestStreakState = {
@@ -56,6 +58,7 @@ const initialState: LongestStreakState = {
   handlePlayerSelect: 0,
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
+  playerName: "Player 1",
 };
 
 const resetInitialState: LongestStreakState = {
@@ -65,6 +68,7 @@ const resetInitialState: LongestStreakState = {
   handlePlayerSelect: 0,
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
+  playerName: "Player 1",
 };
 
 export const longestStreakSlice: Slice = createSlice({
@@ -73,8 +77,8 @@ export const longestStreakSlice: Slice = createSlice({
   reducers: {
     setStage: (state: LongestStreakState, action: PayloadAction<STAGE>) => {
       const stageOfGame = action.payload as STAGE;
-
       state.stage = stageOfGame;
+
     },
 
     reset: () => resetInitialState,
@@ -106,52 +110,89 @@ export const longestStreakSlice: Slice = createSlice({
     }
   },
 
+    playerName: (state, action: PayloadAction<string>) => {
+      if (action.type === "longestStreak/playerName") {
+        const playerName = action.payload;
+        state.playerName = playerName;
+      }
+   },
+
+
     handlePlayerSelect: (state, action: PayloadAction<number>) => {
       if (action.type === "longestStreak/handlePlayerSelect") {
         const index = action.payload;
         const unselectedBlocks = state.blocks.filter(
           (block) => block.state === BlockState.NOT_SELECTED
         );
+        const secondSelectedBlockIndex = state.currentlySelectedBlock
         // only do this if player clicked on a non selected block
         if (state.isPlayerSelecting === false && unselectedBlocks.includes(state.blocks[index])) {
-              state.blocks[index].state = BlockState.PLAYER_ONE_SELECTED;
+              state.blocks[index].state = BlockState.HIGHLIGHTED;
               state.currentlySelectedBlock = index;
               state.isPlayerSelecting = true;
+              if (secondSelectedBlockIndex != null) {
+                state.blocks[secondSelectedBlockIndex].state===BlockState.PLAYER_ONE_SELECTED
+              }
+              
+
+    
       } else if (state.isPlayerSelecting === true && unselectedBlocks.includes(state.blocks[index])) {
           const firstSelectedBlockIndex = state.currentlySelectedBlock
           if (state.blocks[index].value === state.blocks[firstSelectedBlockIndex].value) {
             state.blocks[index].state = BlockState.PLAYER_ONE_SELECTED;
+            state.blocks[firstSelectedBlockIndex].state = BlockState.PLAYER_ONE_SELECTED;
             state.isPlayerSelecting = false;
             console.log(index)
-            console.log(state.currentlySelectedBlock)
-            handleAISelection(state);            
+            console.log("Last Clicked Index: " + state.currentlySelectedBlock)
+            if (unselectedBlocks.length<=0) {
+              console.log("Unselected: " + unselectedBlocks.length)
+              console.log("STAGE: " + state.stage)
+              state.stage===STAGE.CALCULATE_WINNER;
+            } else {
+              handleAISelection(state);
+            }
+                
           }     
-          }
+          } 
         }
     },
   },
 });
 
+function checkWinner(state: LongestStreakState) {
+  const unselectedBlocks = state.blocks.filter(
+    (block) => block.state === BlockState.NOT_SELECTED
+  );
+  if (unselectedBlocks.length<=0) {
+    state.stage === STAGE.CALCULATE_WINNER;
+  }
+}
+
 function handleAISelection(state: LongestStreakState) {
   const unselectedBlocks = state.blocks.filter(
-    (block) => block.state === BlockState.NOT_SELECTED && block.isProduct!= null
+    (block) => block.state === BlockState.NOT_SELECTED && block.isProduct === true
   );
    console.log("Product: " + unselectedBlocks.length)
-  //find block that is "x * y" only
-  let computerSelected: GameBlockState =
+   if (unselectedBlocks.length >0) {
+    let computerSelected: GameBlockState =
     getRandomItemFromArray(unselectedBlocks);
-  const indexOfComputerSelected = state.blocks.indexOf(computerSelected);
-  state.blocks[indexOfComputerSelected].state = BlockState.PLAYER_TWO_SELECTED; 
-  const valueToSearchFor = computerSelected.value;
+    const indexOfComputerSelected = state.blocks.indexOf(computerSelected);
+    state.blocks[indexOfComputerSelected].state = BlockState.PLAYER_TWO_SELECTED; 
+    const valueToSearchFor = computerSelected.value;
   
   //find corresponding block in value that is "product" only
-  const secondUnselectedBlocks = state.blocks.filter(
-    (block) => block.state === BlockState.NOT_SELECTED && block.isProduct=== null
+    const secondUnselectedBlocks = state.blocks.filter(
+    (block) => block.state === BlockState.NOT_SELECTED && block.isProduct=== false
   );
-  const secondComputerSelected = secondUnselectedBlocks.find( (block) => block.value === valueToSearchFor)
-  const indexOfSecondComputerSelected = state.blocks.indexOf(secondComputerSelected);
-  state.blocks[indexOfSecondComputerSelected].state = BlockState.PLAYER_TWO_SELECTED; 
+    const secondComputerSelected = secondUnselectedBlocks.find( (block) => block.value === valueToSearchFor)
+    const indexOfSecondComputerSelected = state.blocks.indexOf(secondComputerSelected);
+    state.blocks[indexOfSecondComputerSelected].state = BlockState.PLAYER_TWO_SELECTED; 
+
+   } 
+  //find block that is "x * y" only
+  
 }
+
 
 export const {
   setStage,
@@ -161,6 +202,7 @@ export const {
   handlePlayerSelect,
   initializeGame,
   currentlySelectedBlock,
+  playerName,
 } = longestStreakSlice.actions;
 
 export const longestStreakSelector = (state: RootState) =>

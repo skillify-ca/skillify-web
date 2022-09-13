@@ -6,7 +6,11 @@ import MultiplicationBlock, {
   BlockState,
 } from "../../../../components/math/longestStreak/MultiplicationBlock";
 import Rules from "../../../../components/math/longestStreak/Rules";
-import { reset, showOnReviewSlice } from "../../../../redux/longestStreakSlice";
+import {
+  playerName,
+  reset,
+  setPlayerName,
+} from "../../../../redux/longestStreakSlice";
 
 import { Button } from "../../../../components/ui/Button";
 import {
@@ -20,7 +24,7 @@ import {
 export type GameBlockState = {
   text: string;
   value: number;
-  isProduct?: number;
+  isProduct?: boolean;
   state: BlockState;
 };
 
@@ -42,19 +46,15 @@ export function longestSubarray(array: GameBlockState[], x: BlockState) {
   return maxlength;
 }
 
-export function calculateWinner(
-  array: GameBlockState[],
-  playerOne = "Player One",
-  playerTwo = "Player Two"
-) {
+export function calculateWinner(array: GameBlockState[]) {
   let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
   console.log("P1", playerOneArray);
   let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
   console.log("P2", playerTwoArray);
   if (playerOneArray > playerTwoArray) {
-    return playerOne + ", you have Conquered!";
+    return playerName + ", you have Conquered!";
   } else if (playerTwoArray > playerOneArray) {
-    return playerTwo + ", you have Conquered!";
+    return "This round goes to Computer the Great...";
   } else if (playerOneArray === playerTwoArray) {
     return "This mission has resulted in a Draw!";
   }
@@ -77,7 +77,6 @@ export function showEndGameImage(array: GameBlockState[]) {
 export default function BlockComponentGallery() {
   const dispatch = useDispatch();
   const { stage, blocks: gameState } = useSelector(longestStreakSelector);
-  const [playerOneName, setPlayerOneName] = useState("Player 1");
 
   function handleSelect(index) {
     console.log("BLOCK WAS CLICKED: index ", index);
@@ -99,6 +98,10 @@ export default function BlockComponentGallery() {
     dispatch(setStage(STAGE.CALCULATE_WINNER));
   }
 
+  function handlePlayerName() {
+    dispatch(setPlayerName(playerName));
+  }
+
   return (
     <div>
       {stage === STAGE.SET_RULES ? (
@@ -106,7 +109,7 @@ export default function BlockComponentGallery() {
       ) : stage === STAGE.PLAY_GAME ? (
         <div className="grid grid-cols-6 grid-rows-7">
           <div className="pb-4 font-black col-start-1 col-end-6 flex justify-evenly w-[45rem]">
-            {playerOneName}, your quest is to battle the computer. Let's see how
+            {setPlayerName}, your quest is to battle the computer. Let's see how
             you do!
           </div>
           <div className="pb-8 col-start-1 col-end-7 flex justify-evenly w-[45rem]">
@@ -139,7 +142,7 @@ export default function BlockComponentGallery() {
                 ))
                 .reverse()}
             </div>
-            <div className="col-span-7 bg-rattata">
+            <div className="col-span-7 bg-orange-100">
               <div className="flex flex-col row-auto ">
                 <label className="flex justify-center py-8 text-xl ">
                   Please enter your name for battle, Player One.{" "}
@@ -147,8 +150,8 @@ export default function BlockComponentGallery() {
                 <input
                   id="input"
                   type="string"
-                  value={playerOneName}
-                  onChange={(e) => setPlayerOneName(e.target.value)}
+                  value={setPlayerName}
+                  onChange={(e) => dispatch(setPlayerName(e.target.value))}
                   className="font-bold text-center border-2 border-gray-300 place-self-center w-30"
                 ></input>
               </div>
