@@ -6,11 +6,7 @@ import MultiplicationBlock, {
   BlockState,
 } from "../../../../components/math/longestStreak/MultiplicationBlock";
 import Rules from "../../../../components/math/longestStreak/Rules";
-import {
-  playerName,
-  reset,
-  setPlayerName,
-} from "../../../../redux/longestStreakSlice";
+import { setPlayerName, reset } from "../../../../redux/longestStreakSlice";
 
 import { Button } from "../../../../components/ui/Button";
 import {
@@ -46,7 +42,7 @@ export function longestSubarray(array: GameBlockState[], x: BlockState) {
   return maxlength;
 }
 
-export function calculateWinner(array: GameBlockState[]) {
+export function calculateWinner(array: GameBlockState[], playerName: string) {
   let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
   console.log("P1", playerOneArray);
   let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
@@ -54,9 +50,9 @@ export function calculateWinner(array: GameBlockState[]) {
   if (playerOneArray > playerTwoArray) {
     return playerName + ", you have Conquered!";
   } else if (playerTwoArray > playerOneArray) {
-    return "This round goes to Computer the Great...";
+    return playerName + "This round goes to Computer the Great...";
   } else if (playerOneArray === playerTwoArray) {
-    return "This mission has resulted in a Draw!";
+    return playerName + "This mission has resulted in a Draw!";
   }
 }
 
@@ -76,7 +72,11 @@ export function showEndGameImage(array: GameBlockState[]) {
 
 export default function BlockComponentGallery() {
   const dispatch = useDispatch();
-  const { stage, blocks: gameState } = useSelector(longestStreakSelector);
+  const {
+    stage,
+    blocks: gameState,
+    playerName,
+  } = useSelector(longestStreakSelector);
 
   function handleSelect(index) {
     console.log("BLOCK WAS CLICKED: index ", index);
@@ -96,9 +96,6 @@ export default function BlockComponentGallery() {
   }
   function handleCalculateWinner() {
     dispatch(setStage(STAGE.CALCULATE_WINNER));
-  }
-
-  function handlePlayerName() {
     dispatch(setPlayerName(playerName));
   }
 
@@ -108,8 +105,11 @@ export default function BlockComponentGallery() {
         <Rules text={""} onClick={handlePlayGame} />
       ) : stage === STAGE.PLAY_GAME ? (
         <div className="grid grid-cols-6 grid-rows-7">
+          <p>this is the current stage: {stage} </p>
+          <p>this is the current player: {playerName} </p>
+          <Button label="test button" onClick={() => alert("this is a test")} />
           <div className="pb-4 font-black col-start-1 col-end-6 flex justify-evenly w-[45rem]">
-            {setPlayerName}, your quest is to battle the computer. Let's see how
+            {playerName}, your quest is to battle the computer. Let's see how
             you do!
           </div>
           <div className="pb-8 col-start-1 col-end-7 flex justify-evenly w-[45rem]">
@@ -150,7 +150,7 @@ export default function BlockComponentGallery() {
                 <input
                   id="input"
                   type="string"
-                  value={setPlayerName}
+                  value={playerName}
                   onChange={(e) => dispatch(setPlayerName(e.target.value))}
                   className="font-bold text-center border-2 border-gray-300 place-self-center w-30"
                 ></input>
@@ -183,7 +183,7 @@ export default function BlockComponentGallery() {
         <Winner
           text={""}
           onClick={handleResetGame}
-          winner={calculateWinner(gameState)}
+          winner={calculateWinner(gameState, playerName)}
           image={showEndGameImage(gameState)}
         />
       ) : null}
