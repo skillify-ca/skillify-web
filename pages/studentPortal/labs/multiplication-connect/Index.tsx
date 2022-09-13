@@ -6,6 +6,8 @@ import PlayerSection from "../../../../components/math/multiplicationConnect/Pla
 import { getRandomItemFromArray } from "../../../api/random";
 
 export const calculateWinner = (grid: GameBoardBlock[]) => {
+  // fixme: remove before commit to main
+  console.log("calculateWinner() ran");
   // Algorithm ran on block click to determine win
   let rows = [
     grid.filter((i) => i.id >= 0 && i.id < 5),
@@ -84,10 +86,8 @@ const Index: FC = () => {
     return newGrid;
   };
 
-  // useEffect not triggering re-render of GameBoard even though grid State is being updated
-  // grid state may need to included in dependency array but this results in infinite loop of renders
   useEffect(() => {
-    console.log(`newGame: ${newGame}`);
+    console.log(`newGame: ${newGame}`); //fixme: remove before commit to main
     setGrid(createGrid);
   }, [newGame]);
 
@@ -102,7 +102,7 @@ const Index: FC = () => {
         <button
           type="button"
           className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-          onClick={() => setNewGame(newGame + 1)}
+          onClick={() => setNewGame((prev) => prev + 1)}
         >
           🔄 New Game
         </button>
@@ -113,7 +113,6 @@ const Index: FC = () => {
         >
           📝 Game Rules
         </button>
-        <div>newGame state is currently: {newGame}</div>
       </div>
       <GameBoard grid={grid} />
     </div>

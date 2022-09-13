@@ -15,30 +15,22 @@ interface GameBoardBlockProps {
 const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData, gridData }) => {
   const [block, setBlock] = useState(blockData);
 
-  const blockClick = (block: GameBoardBlock, gridData: GameBoardBlock[]) => {
+  useEffect(() => {
+    setBlock(blockData);
+    console.log("GBB useEffect()");
+  }, [blockData]);
+
+  const blockClick = (block: GameBoardBlock) => {
     if (!block.isSelected) {
       block.isSelected = true;
-      /*fixme: don't modify state directly, it should be read-only
-          look more into useState (watch tutorials) and refactor this. */
-      // setBlock((prevState) => ({ ...prevState, isSelected: true }));
-      /* setObject((prevState) => ({
-              ...prevState,
-              secondKey: 'value',
-            }));
-            */
-      calculateWinner(gridData);
+      // setBlock((prev) => ({ ...prev, isSelected: true }));
     } else {
-      // block.isSelected = false;
-      console.log("This block is already selected!");
+      console.log("Block already selected!");
     }
-    console.log("block data:", block);
     return { ...block };
   };
 
-  useEffect(() => {
-    setBlock(blockData);
-  }, [blockData]);
-
+  //fixme: remove before commit to main
   // console.log("block data:", block);
 
   /* todo: 
@@ -52,10 +44,13 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData, gridData }) => {
 
   return (
     <div
-      onClick={() => setBlock(blockClick(block, gridData))}
+      onClick={() => {
+        setBlock(blockClick(block));
+        calculateWinner(gridData);
+      }}
       className={`flex justify-center items-center h-full w-full cursor-pointer rounded-full    
             ${
-              block.isSelected === false
+              !block.isSelected
                 ? "hover:bg-[#F20000]/40 hover:animate-pulse"
                 : "bg-[#F20000]/60"
             }`}
