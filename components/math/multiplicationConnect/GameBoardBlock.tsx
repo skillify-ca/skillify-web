@@ -1,15 +1,5 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { calculateWinner } from "../../../pages/studentPortal/labs/multiplication-connect/Index";
-
-const blockClick = (block: GameBoardBlock, gridData: GameBoardBlock[]) => {
-  if (!block.isSelected) {
-    block.isSelected = true;
-    calculateWinner(gridData);
-  } else {
-    block.isSelected = false;
-  }
-  return { ...block };
-};
 
 interface GameBoardBlock {
   id: number;
@@ -24,12 +14,38 @@ interface GameBoardBlockProps {
 
 const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData, gridData }) => {
   const [block, setBlock] = useState(blockData);
+
+  const blockClick = (block: GameBoardBlock, gridData: GameBoardBlock[]) => {
+    if (!block.isSelected) {
+      block.isSelected = true;
+      /*fixme: don't modify state directly, it should be read-only
+          look more into useState (watch tutorials) and refactor this. */
+      // setBlock((prevState) => ({ ...prevState, isSelected: true }));
+      /* setObject((prevState) => ({
+              ...prevState,
+              secondKey: 'value',
+            }));
+            */
+      calculateWinner(gridData);
+    } else {
+      // block.isSelected = false;
+      console.log("This block is already selected!");
+    }
+    console.log("block data:", block);
+    return { ...block };
+  };
+
+  useEffect(() => {
+    setBlock(blockData);
+  }, [blockData]);
+
+  // console.log("block data:", block);
+
   /* todo: 
       - toggle this state on block to determine the colour to display on board
+      - merge this into kp-twoPlayerSupport & get button working there before merge into kp-multiplicationConnect
       
       Options to determine winner:
-        1. add block to an array in GameBoardBlock passed to calculateWinner() onClick
-        2. add block to array passed to GameBoardBlock as prop from index (don't see the value in this)
         3. add an isPlayerOne variable to GameBoardBlock & evaluate accordingly in calculateWinner() — to make sure 4 blocks in a row are pressed by the same player
   */
   const [isPlayerOne, setIsPlayerOne] = useState(true);

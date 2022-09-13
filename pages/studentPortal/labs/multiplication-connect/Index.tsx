@@ -80,8 +80,7 @@ const Index: FC = () => {
         isSelected: false,
       });
     }
-    console.log("Grid created");
-    console.log(newGrid);
+
     return newGrid;
   };
 
@@ -89,11 +88,7 @@ const Index: FC = () => {
   // grid state may need to included in dependency array but this results in infinite loop of renders
   useEffect(() => {
     console.log(`newGame: ${newGame}`);
-    setGrid(createGrid());
-
-    // return () => {
-    //   console.log("component unmounted");
-    // };
+    setGrid(createGrid);
   }, [newGame]);
 
   return (
