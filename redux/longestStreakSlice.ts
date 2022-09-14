@@ -148,12 +148,13 @@ export const longestStreakSlice: Slice = createSlice({
             state.blocks[firstSelectedBlockIndex].state =
               BlockState.PLAYER_ONE_SELECTED;
             state.isPlayerSelecting = false;
-            console.log(index);
+            console.log("Index: " + index);
+            console.log("Unselected: " + unselectedBlocks.length);
             console.log("Last Clicked Index: " + state.currentlySelectedBlock);
-            if (unselectedBlocks.length <= 0) {
+            if (unselectedBlocks.length <= 1) {
               console.log("Unselected: " + unselectedBlocks.length);
               console.log("STAGE: " + state.stage);
-              state.stage === STAGE.CALCULATE_WINNER;
+              state.stage = STAGE.CALCULATE_WINNER;
             } else {
               handleAISelection(state);
             }

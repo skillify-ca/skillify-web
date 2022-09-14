@@ -1,5 +1,5 @@
 import { shuffle } from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Winner from "../../../../components/math/longestStreak/Winner";
 import MultiplicationBlock, {
@@ -16,6 +16,7 @@ import {
   setStage,
   STAGE,
 } from "../../../../redux/longestStreakSlice";
+import { Firework } from "../../../../components/math/longestStreak/Firework";
 
 export type GameBlockState = {
   text: string;
@@ -50,9 +51,9 @@ export function calculateWinner(array: GameBlockState[], playerName: string) {
   if (playerOneArray > playerTwoArray) {
     return playerName + ", you have Conquered!";
   } else if (playerTwoArray > playerOneArray) {
-    return playerName + "This round goes to Computer the Great...";
+    return "Sorry, " + playerName + "This round goes to Computer the Great...";
   } else if (playerOneArray === playerTwoArray) {
-    return playerName + "This mission has resulted in a Draw!";
+    return "This mission has resulted in a Draw!";
   }
 }
 
@@ -62,7 +63,7 @@ export function showEndGameImage(array: GameBlockState[]) {
   let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
   console.log("P2", playerTwoArray);
   if (playerOneArray > playerTwoArray) {
-    return <img src="/images/math1/longestStreak/playerOneWinner.png" />;
+    return <Firework />;
   } else if (playerTwoArray > playerOneArray) {
     return <img src="/images/math1/longestStreak/playerTwoWinner.png" />;
   } else if (playerOneArray === playerTwoArray) {
@@ -105,9 +106,6 @@ export default function BlockComponentGallery() {
         <Rules text={""} onClick={handlePlayGame} />
       ) : stage === STAGE.PLAY_GAME ? (
         <div className="grid grid-cols-6 grid-rows-7">
-          <p>this is the current stage: {stage} </p>
-          <p>this is the current player: {playerName} </p>
-          <Button label="test button" onClick={() => alert("this is a test")} />
           <div className="pb-4 font-black col-start-1 col-end-6 flex justify-evenly w-[45rem]">
             {playerName}, your quest is to battle the computer. Let's see how
             you do!
