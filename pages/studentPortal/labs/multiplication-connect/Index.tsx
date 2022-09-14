@@ -95,6 +95,7 @@ const Index: FC = () => {
     let newGrid = Array.from(grid);
     newGrid[newGrid.indexOf(block)].isSelected = true;
     setGrid(newGrid);
+    calculateWinner(grid);
     // console.log("Updated grid:", grid);
   };
 

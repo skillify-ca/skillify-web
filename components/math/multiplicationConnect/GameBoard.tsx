@@ -28,11 +28,7 @@ const GameBoard: FC<GameBoardProps> = ({ grid, blockClick }) => {
                     : ""
                 }`}
           >
-            <GameBoardBlock
-              blockData={blockData}
-              gridData={grid}
-              blockClick={blockClick}
-            />
+            <GameBoardBlock blockData={blockData} blockClick={blockClick} />
           </div>
         ))}
       </div>

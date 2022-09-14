@@ -10,14 +10,9 @@ interface GameBoardBlock {
 interface GameBoardBlockProps {
   blockData: GameBoardBlock;
   blockClick(block: GameBoardBlock): void;
-  gridData: GameBoardBlock[];
 }
 
-const GameBoardBlock: FC<GameBoardBlockProps> = ({
-  blockData,
-  blockClick,
-  gridData,
-}) => {
+const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData, blockClick }) => {
   /* todo: 
       - toggle this state on block to determine the colour to display on board
       - merge this into kp-twoPlayerSupport & get button working there before merge into kp-multiplicationConnect
@@ -31,7 +26,6 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({
     <div
       onClick={() => {
         blockClick(blockData);
-        calculateWinner(gridData);
       }}
       className={`flex justify-center items-center h-full w-full cursor-pointer rounded-full    
             ${
