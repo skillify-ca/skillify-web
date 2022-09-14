@@ -1,11 +1,13 @@
+import { FieldNode } from "graphql";
 import React, { FC, useState } from "react";
 import GameBoardBlock from "./GameBoardBlock";
 
 interface GameBoardProps {
   grid: GameBoardBlock[];
+  blockClick(block: GameBoardBlock): void;
 }
 
-const GameBoard: FC<GameBoardProps> = ({ grid }) => {
+const GameBoard: FC<GameBoardProps> = ({ grid, blockClick }) => {
   return (
     <div className="px-20">
       <h2 className="pb-4 text-xl">GameBoard</h2>
@@ -26,7 +28,11 @@ const GameBoard: FC<GameBoardProps> = ({ grid }) => {
                     : ""
                 }`}
           >
-            <GameBoardBlock blockData={blockData} gridData={grid} />
+            <GameBoardBlock
+              blockData={blockData}
+              gridData={grid}
+              blockClick={blockClick}
+            />
           </div>
         ))}
       </div>

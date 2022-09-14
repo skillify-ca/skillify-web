@@ -1,3 +1,4 @@
+import { indexOf } from "lodash";
 import React, { FC, useState, useEffect } from "react";
 import DiceSection from "../../../../components/math/multiplicationConnect/DiceSection";
 import GameBoard from "../../../../components/math/multiplicationConnect/GameBoard";
@@ -6,8 +7,6 @@ import PlayerSection from "../../../../components/math/multiplicationConnect/Pla
 import { getRandomItemFromArray } from "../../../api/random";
 
 export const calculateWinner = (grid: GameBoardBlock[]) => {
-  // fixme: remove before commit to main
-  console.log("calculateWinner() ran");
   // Algorithm ran on block click to determine win
   let rows = [
     grid.filter((i) => i.id >= 0 && i.id < 5),
@@ -65,31 +64,39 @@ export const calculateWinner = (grid: GameBoardBlock[]) => {
   }
 };
 
+const createGrid = () => {
+  let arr = [];
+  let newGrid = [];
+  for (let i = 4; i < 25; i++) i % 2 === 0 ? arr.push(i) : "";
+  for (let i = 0; i < 35; i++) {
+    let gridNumber = getRandomItemFromArray(arr);
+    newGrid.push({
+      id: i,
+      gridNumber: gridNumber,
+      isSelected: false,
+    });
+  }
+  return newGrid;
+};
+
 const Index: FC = () => {
   const [grid, setGrid] = useState([]);
   const [newGame, setNewGame] = useState(0);
 
-  // initialize grid on page load
-  const createGrid = () => {
-    let arr = [];
-    let newGrid = [];
-    for (let i = 4; i < 25; i++) i % 2 === 0 ? arr.push(i) : "";
-    for (let i = 0; i < 35; i++) {
-      let gridNumber = getRandomItemFromArray(arr);
-      newGrid.push({
-        id: i,
-        gridNumber: gridNumber,
-        isSelected: false,
-      });
-    }
-
-    return newGrid;
-  };
-
   useEffect(() => {
-    console.log(`newGame: ${newGame}`); //fixme: remove before commit to main
+    console.log(`newGame: ${newGame}`);
     setGrid(createGrid);
   }, [newGame]);
+  //   setBlock(blockData);
+  //   console.log("GBB useEffect()");
+  // }, [blockData]);
+
+  const blockClick = (block: GameBoardBlock) => {
+    let newGrid = Array.from(grid);
+    newGrid[newGrid.indexOf(block)].isSelected = true;
+    setGrid(newGrid);
+    // console.log("Updated grid:", grid);
+  };
 
   return (
     <div className="flex flex-col justify-center max-w-5xl gap-4 mx-auto">
@@ -114,7 +121,7 @@ const Index: FC = () => {
           📝 Game Rules
         </button>
       </div>
-      <GameBoard grid={grid} />
+      <GameBoard grid={grid} blockClick={blockClick} />
     </div>
   );
 };

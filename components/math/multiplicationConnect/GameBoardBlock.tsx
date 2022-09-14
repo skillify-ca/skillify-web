@@ -9,30 +9,15 @@ interface GameBoardBlock {
 
 interface GameBoardBlockProps {
   blockData: GameBoardBlock;
+  blockClick(block: GameBoardBlock): void;
   gridData: GameBoardBlock[];
 }
 
-const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData, gridData }) => {
-  const [block, setBlock] = useState(blockData);
-
-  useEffect(() => {
-    setBlock(blockData);
-    console.log("GBB useEffect()");
-  }, [blockData]);
-
-  const blockClick = (block: GameBoardBlock) => {
-    if (!block.isSelected) {
-      block.isSelected = true;
-      // setBlock((prev) => ({ ...prev, isSelected: true }));
-    } else {
-      console.log("Block already selected!");
-    }
-    return { ...block };
-  };
-
-  //fixme: remove before commit to main
-  // console.log("block data:", block);
-
+const GameBoardBlock: FC<GameBoardBlockProps> = ({
+  blockData,
+  blockClick,
+  gridData,
+}) => {
   /* todo: 
       - toggle this state on block to determine the colour to display on board
       - merge this into kp-twoPlayerSupport & get button working there before merge into kp-multiplicationConnect
@@ -45,17 +30,17 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData, gridData }) => {
   return (
     <div
       onClick={() => {
-        setBlock(blockClick(block));
+        blockClick(blockData);
         calculateWinner(gridData);
       }}
       className={`flex justify-center items-center h-full w-full cursor-pointer rounded-full    
             ${
-              !block.isSelected
+              !blockData.isSelected
                 ? "hover:bg-[#F20000]/40 hover:animate-pulse"
                 : "bg-[#F20000]/60"
             }`}
     >
-      <p>{block.gridNumber}</p>
+      <p>{blockData.gridNumber}</p>
     </div>
   );
 };
