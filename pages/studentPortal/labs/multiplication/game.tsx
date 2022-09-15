@@ -67,7 +67,7 @@ export function showEndGameImage(array: GameBlockState[]) {
   if (playerOneArray > playerTwoArray) {
     return <Firework />;
   } else if (playerTwoArray > playerOneArray) {
-    return <img src="/images/math1/longestStreak/playerTwoWinner.png" />;
+    return <img src="/images/math1/longestStreak/playerTwoWinner.jpg" />;
   } else if (playerOneArray === playerTwoArray) {
     return <img src="/images/math1/longestStreak/drawWinner.png" />;
   }
