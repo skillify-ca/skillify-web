@@ -32,7 +32,7 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({
         blockClick(blockData);
         // console.log(blockData.selectedBy);
       }}
-      className={`flex justify-center items-center h-full w-full cursor-pointer rounded-full shadow-[0_0_60px_10px_rgba(0,0,0,0.3)]
+      className={`flex justify-center items-center h-full w-full cursor-pointer rounded-full shadow-[0_0_40px_10px_rgba(0,0,0,0.3)]
           ${
             // Selected block colours
             blockData.selectedBy === selectedBy.PlayerOne
