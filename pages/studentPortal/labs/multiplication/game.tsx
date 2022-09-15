@@ -1,4 +1,3 @@
-import { shuffle } from "lodash";
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Winner from "../../../../components/math/longestStreak/Winner";
@@ -17,7 +16,6 @@ import {
   STAGE,
 } from "../../../../redux/longestStreakSlice";
 import { Firework } from "../../../../components/math/longestStreak/Firework";
-
 export type GameBlockState = {
   text: string;
   value: number;
