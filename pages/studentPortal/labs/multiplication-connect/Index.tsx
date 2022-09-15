@@ -6,16 +6,16 @@ import GameBoardBlock from "../../../../components/math/multiplicationConnect/Ga
 import PlayerSection from "../../../../components/math/multiplicationConnect/PlayerSection";
 import { getRandomItemFromArray } from "../../../api/random";
 
-
 enum selectedBy {
   Unselected = "UNSELECTED",
   PlayerOne = "PLAYERONE",
   PlayerTwo = "PLAYERTWO",
 }
 
-
-export const calculateWinner = (grid: GameBoardBlock[]) => {
-  // Algorithm ran on block click to determine win
+export const calculateWinner = (
+  grid: GameBoardBlock[],
+  isPlayerOne: boolean
+) => {
   let rows = [
     grid.filter((i) => i.id >= 0 && i.id < 5),
     grid.filter((i) => i.id >= 5 && i.id < 10),
@@ -25,26 +25,29 @@ export const calculateWinner = (grid: GameBoardBlock[]) => {
     grid.filter((i) => i.id >= 25 && i.id < 30),
     grid.filter((i) => i.id >= 30 && i.id < 35),
   ];
+  let player: selectedBy;
+  isPlayerOne
+    ? (player = selectedBy.PlayerOne)
+    : (player = selectedBy.PlayerTwo);
   for (let i = 0; i < rows.length; i++) {
     // rows.length == board height == 7
     // rows[i].length == board width == 5
-
     for (let index = 0; index < rows[i].length - 3; index++) {
       // Horizontal check
-      rows[i][index].isSelected &&
-      rows[i][index + 1].isSelected &&
-      rows[i][index + 2].isSelected &&
-      rows[i][index + 3].isSelected
+      rows[i][index].selectedBy == player &&
+      rows[i][index + 1].selectedBy == player &&
+      rows[i][index + 2].selectedBy == player &&
+      rows[i][index + 3].selectedBy == player
         ? console.log("(horizontal) Four in a row!")
         : "";
     }
     if (i < rows.length - 3) {
       // Vertical check
       for (let index = 0; index < rows[i].length; index++) {
-        rows[i][index].isSelected &&
-        rows[i + 1][index].isSelected &&
-        rows[i + 2][index].isSelected &&
-        rows[i + 3][index].isSelected
+        rows[i][index].selectedBy == player &&
+        rows[i + 1][index].selectedBy == player &&
+        rows[i + 2][index].selectedBy == player &&
+        rows[i + 3][index].selectedBy == player
           ? console.log("(vertical) Four in a row!")
           : "";
       }
@@ -52,19 +55,19 @@ export const calculateWinner = (grid: GameBoardBlock[]) => {
     if (i >= 3) {
       // Ascending diagonal check
       for (let index = 0; index < rows[i].length - 3; index++) {
-        rows[i][index].isSelected &&
-        rows[i - 1][index + 1].isSelected &&
-        rows[i - 2][index + 2].isSelected &&
-        rows[i - 3][index + 3].isSelected
+        rows[i][index].selectedBy == player &&
+        rows[i - 1][index + 1].selectedBy == player &&
+        rows[i - 2][index + 2].selectedBy == player &&
+        rows[i - 3][index + 3].selectedBy == player
           ? console.log("(ascending diagonal) Four in a row!")
           : "";
       }
       // Descending diagonal check
       for (let index = 3; index < rows[i].length; index++) {
-        rows[i][index].isSelected &&
-        rows[i - 1][index - 1].isSelected &&
-        rows[i - 2][index - 2].isSelected &&
-        rows[i - 3][index - 3].isSelected
+        rows[i][index].selectedBy == player &&
+        rows[i - 1][index - 1].selectedBy == player &&
+        rows[i - 2][index - 2].selectedBy == player &&
+        rows[i - 3][index - 3].selectedBy == player
           ? console.log("(descending diagonal) Four in a row!")
           : "";
       }
@@ -90,20 +93,6 @@ const createGrid = () => {
 const Index: FC = () => {
   const [grid, setGrid] = useState([]);
   const [newGame, setNewGame] = useState(0);
-
-
-  /* todo: 
-      - toggle this state on block to determine the colour to display on board
-      - merge this into kp-twoPlayerSupport & get button working there before merge into kp-multiplicationConnect
-      
-      TO DETERMINE WINNER:
-        - add an isPlayerOne variable to GameBoardBlock & evaluate accordingly in calculateWinner() — to make sure 4 blocks in a row are pressed by the same player
-        - use the state variable as a means of managing the click state & to set the highlight of the GameBoard
-            * need to toggle isPlayerOne on blockClick()
-            * change setting block to true in blockClick()
-            * change block initialization in createGrid()
-        - can send this state to calculateWinner() to check win for the current player OR can read player that selected within the GameBoardBlock instead
-  */
   const [isPlayerOne, setIsPlayerOne] = useState(true);
 
   useEffect(() => {
@@ -111,23 +100,18 @@ const Index: FC = () => {
     setGrid(createGrid);
     setIsPlayerOne(true);
   }, [newGame]);
-  //   setBlock(blockData);
-  //   console.log("GBB useEffect()");
-  // }, [blockData]);
 
   const blockClick = (block: GameBoardBlock) => {
-    console.log("isPlayerOne: " + isPlayerOne);
+    // console.log("isPlayerOne: " + isPlayerOne);
 
     let newGrid = Array.from(grid);
-    // set selectedBy block property based on current player state
     isPlayerOne
       ? (newGrid[newGrid.indexOf(block)].selectedBy = selectedBy.PlayerOne)
       : (newGrid[newGrid.indexOf(block)].selectedBy = selectedBy.PlayerTwo);
 
     setGrid(newGrid);
     // console.table(grid);
-    // todo: Rework winner function! Send isPlayerOne to calculateWinner() to check if isSelected === PLAYERONE or PLAYERTWO
-    // calculateWinner(grid);
+    calculateWinner(grid, isPlayerOne);
     isPlayerOne ? setIsPlayerOne(false) : setIsPlayerOne(true);
   };
 
