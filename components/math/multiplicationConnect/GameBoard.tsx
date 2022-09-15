@@ -5,9 +5,10 @@ import GameBoardBlock from "./GameBoardBlock";
 interface GameBoardProps {
   grid: GameBoardBlock[];
   blockClick(block: GameBoardBlock): void;
+  isPlayerOne: boolean;
 }
 
-const GameBoard: FC<GameBoardProps> = ({ grid, blockClick }) => {
+const GameBoard: FC<GameBoardProps> = ({ grid, blockClick, isPlayerOne }) => {
   return (
     <div className="px-20">
       <h2 className="pb-4 text-xl">GameBoard</h2>
@@ -28,7 +29,11 @@ const GameBoard: FC<GameBoardProps> = ({ grid, blockClick }) => {
                     : ""
                 }`}
           >
-            <GameBoardBlock blockData={blockData} blockClick={blockClick} />
+            <GameBoardBlock
+              blockData={blockData}
+              blockClick={blockClick}
+              isPlayerOne={isPlayerOne}
+            />
           </div>
         ))}
       </div>

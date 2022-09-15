@@ -6,6 +6,12 @@ import GameBoardBlock from "../../../../components/math/multiplicationConnect/Ga
 import PlayerSection from "../../../../components/math/multiplicationConnect/PlayerSection";
 import { getRandomItemFromArray } from "../../../api/random";
 
+enum selectedBy {
+  Unselected = "UNSELECTED",
+  PlayerOne = "PLAYERONE",
+  PlayerTwo = "PLAYERTWO",
+}
+
 export const calculateWinner = (grid: GameBoardBlock[]) => {
   // Algorithm ran on block click to determine win
   let rows = [
@@ -73,7 +79,7 @@ const createGrid = () => {
     newGrid.push({
       id: i,
       gridNumber: gridNumber,
-      isSelected: false,
+      isSelected: selectedBy.Unselected,
     });
   }
   return newGrid;
@@ -83,20 +89,43 @@ const Index: FC = () => {
   const [grid, setGrid] = useState([]);
   const [newGame, setNewGame] = useState(0);
 
+  /* todo: 
+      - toggle this state on block to determine the colour to display on board
+      - merge this into kp-twoPlayerSupport & get button working there before merge into kp-multiplicationConnect
+      
+      TO DETERMINE WINNER:
+        - add an isPlayerOne variable to GameBoardBlock & evaluate accordingly in calculateWinner() — to make sure 4 blocks in a row are pressed by the same player
+        - use the state variable as a means of managing the click state & to set the highlight of the GameBoard
+            * need to toggle isPlayerOne on blockClick()
+            * change setting block to true in blockClick()
+            * change block initialization in createGrid()
+        - can send this state to calculateWinner() to check win for the current player OR can read player that selected within the GameBoardBlock instead
+  */
+  const [isPlayerOne, setIsPlayerOne] = useState(true);
+
   useEffect(() => {
     console.log(`newGame: ${newGame}`);
     setGrid(createGrid);
+    setIsPlayerOne(true);
   }, [newGame]);
   //   setBlock(blockData);
   //   console.log("GBB useEffect()");
   // }, [blockData]);
 
   const blockClick = (block: GameBoardBlock) => {
+    console.log("isPlayerOne: " + isPlayerOne);
+
     let newGrid = Array.from(grid);
-    newGrid[newGrid.indexOf(block)].isSelected = true;
+    // set selectedBy block property based on current player state
+    isPlayerOne
+      ? (newGrid[newGrid.indexOf(block)].isSelected = selectedBy.PlayerOne)
+      : (newGrid[newGrid.indexOf(block)].isSelected = selectedBy.PlayerTwo);
+
     setGrid(newGrid);
-    calculateWinner(grid);
-    // console.log("Updated grid:", grid);
+    // console.table(grid);
+    // todo: Rework winner function! Send isPlayerOne to calculateWinner() to check if isSelected === PLAYERONE or PLAYERTWO
+    // calculateWinner(grid);
+    isPlayerOne ? setIsPlayerOne(false) : setIsPlayerOne(true);
   };
 
   return (
@@ -122,7 +151,11 @@ const Index: FC = () => {
           📝 Game Rules
         </button>
       </div>
-      <GameBoard grid={grid} blockClick={blockClick} />
+      <GameBoard
+        grid={grid}
+        blockClick={blockClick}
+        isPlayerOne={isPlayerOne}
+      />
     </div>
   );
 };
