@@ -1,4 +1,3 @@
-import { FieldNode } from "graphql";
 import React, { FC, useState } from "react";
 import GameBoardBlock from "./GameBoardBlock";
 

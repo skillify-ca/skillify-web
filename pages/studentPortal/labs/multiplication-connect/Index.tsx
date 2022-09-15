@@ -75,6 +75,7 @@ export const calculateWinner = (
   }
 };
 
+// todo: convert to useEffect hook for initialization
 const createGrid = () => {
   let arr = [];
   let newGrid = [];
