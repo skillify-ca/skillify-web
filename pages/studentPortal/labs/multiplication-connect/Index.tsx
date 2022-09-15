@@ -75,7 +75,6 @@ export const calculateWinner = (
   }
 };
 
-// todo: convert to useEffect hook for initialization
 const createGrid = () => {
   let arr = [];
   let newGrid = [];
@@ -103,15 +102,12 @@ const Index: FC = () => {
   }, [newGame]);
 
   const blockClick = (block: GameBoardBlock) => {
-    // console.log("isPlayerOne: " + isPlayerOne);
-
     let newGrid = Array.from(grid);
     isPlayerOne
       ? (newGrid[newGrid.indexOf(block)].selectedBy = SelectedBy.PlayerOne)
       : (newGrid[newGrid.indexOf(block)].selectedBy = SelectedBy.PlayerTwo);
 
     setGrid(newGrid);
-    // console.table(grid);
     calculateWinner(grid, isPlayerOne);
     isPlayerOne ? setIsPlayerOne(false) : setIsPlayerOne(true);
   };

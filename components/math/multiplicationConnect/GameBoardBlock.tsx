@@ -24,8 +24,6 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({
   blockClick,
   isPlayerOne,
 }) => {
-  // console.log("Block", blockData);
-
   return (
     <div
       onClick={() => {
