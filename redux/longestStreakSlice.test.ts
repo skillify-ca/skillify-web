@@ -171,6 +171,57 @@ test("test selecting two blocks should trigger AI selection", () => {
 });
 
 test("test selecting invalid blocks", () => {
-// Arrange
-  //TODO implement this
+  const finalState = {
+    blocks: [
+      {
+        text: "56",
+        value: 56,
+        isProduct: true,
+        state: BlockState.HIGHLIGHTED,
+      },
+      {
+        text: "7x8",
+        value: 56,
+        isProduct: false,
+        state: BlockState.NOT_SELECTED,
+      },
+      {
+        text: "72",
+        value: 72,
+        isProduct: true,
+        state: BlockState.NOT_SELECTED,
+      },
+      {
+        text: "6x6",
+        value: 36,
+        isProduct: false,
+        state: BlockState.NOT_SELECTED,
+      },
+      {
+        text: "36",
+        value: 36,
+        isProduct: true,
+        state: BlockState.NOT_SELECTED,
+      },
+      {
+        text: "8x9",
+        value: 72,
+        isProduct: false,
+        state: BlockState.NOT_SELECTED,
+      },
+    ],
+    stage: STAGE.PLAY_GAME,
+    isPlayerSelecting: true,
+    playerName: "",
+    currentlySelectedBlock: 0,
+    handlePlayerSelect: 0,
+    reset: false,
+
+  };
+
+  //Act
+  const firstState = reducer(initialState, handlePlayerSelect(0));
+  const secondState = reducer(firstState, handlePlayerSelect(2));
+  // Assert
+  expect(secondState).toEqual(finalState);
 });
