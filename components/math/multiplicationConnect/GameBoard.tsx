@@ -18,13 +18,13 @@ const GameBoard: FC<GameBoardProps> = ({ grid, blockClick, isPlayerOne }) => {
             className={`border-r-2 border-b-2 md:h-32 sm:h-24 h-20 border-b-[#149ECA] border-r-[#149ECA] bg-blue-900
                 ${
                   blockData.id === 0
-                    ? "rounded-tl-2xl"
+                    ? "rounded-tl-[14px]"
                     : blockData.id === 4
-                    ? "rounded-tr-2xl"
+                    ? "rounded-tr-[14px]"
                     : blockData.id === 30
-                    ? "rounded-bl-2xl"
+                    ? "rounded-bl-[14px]"
                     : blockData.id === 34
-                    ? "rounded-br-2xl"
+                    ? "rounded-br-[14px]"
                     : ""
                 }`}
           >
