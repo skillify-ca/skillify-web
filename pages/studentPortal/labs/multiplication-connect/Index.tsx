@@ -6,7 +6,7 @@ import GameBoardBlock from "../../../../components/math/multiplicationConnect/Ga
 import PlayerSection from "../../../../components/math/multiplicationConnect/PlayerSection";
 import { getRandomItemFromArray } from "../../../api/random";
 
-enum selectedBy {
+enum SelectedBy {
   Unselected = "UNSELECTED",
   PlayerOne = "PLAYERONE",
   PlayerTwo = "PLAYERTWO",
@@ -25,10 +25,10 @@ export const calculateWinner = (
     grid.filter((i) => i.id >= 25 && i.id < 30),
     grid.filter((i) => i.id >= 30 && i.id < 35),
   ];
-  let player: selectedBy;
+  let player: SelectedBy;
   isPlayerOne
-    ? (player = selectedBy.PlayerOne)
-    : (player = selectedBy.PlayerTwo);
+    ? (player = SelectedBy.PlayerOne)
+    : (player = SelectedBy.PlayerTwo);
   for (let i = 0; i < rows.length; i++) {
     // rows.length == board height == 7
     // rows[i].length == board width == 5
@@ -84,7 +84,7 @@ const createGrid = () => {
     newGrid.push({
       id: i,
       gridNumber: gridNumber,
-      selectedBy: selectedBy.Unselected,
+      selectedBy: SelectedBy.Unselected,
     });
   }
   return newGrid;
@@ -106,8 +106,8 @@ const Index: FC = () => {
 
     let newGrid = Array.from(grid);
     isPlayerOne
-      ? (newGrid[newGrid.indexOf(block)].selectedBy = selectedBy.PlayerOne)
-      : (newGrid[newGrid.indexOf(block)].selectedBy = selectedBy.PlayerTwo);
+      ? (newGrid[newGrid.indexOf(block)].selectedBy = SelectedBy.PlayerOne)
+      : (newGrid[newGrid.indexOf(block)].selectedBy = SelectedBy.PlayerTwo);
 
     setGrid(newGrid);
     // console.table(grid);
