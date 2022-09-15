@@ -5,8 +5,21 @@ import GameBoardBlock from "../../../../components/math/multiplicationConnect/Ga
 import PlayerSection from "../../../../components/math/multiplicationConnect/PlayerSection";
 import { getRandomItemFromArray } from "../../../api/random";
 
+<<<<<<< Updated upstream
 export const calculateWinner = (grid: GameBoardBlock[]) => {
   // Algorithm ran on block click to determine win
+=======
+enum SelectedBy {
+  Unselected = "UNSELECTED",
+  PlayerOne = "PLAYERONE",
+  PlayerTwo = "PLAYERTWO",
+}
+
+export const calculateWinner = (
+  grid: GameBoardBlock[],
+  isPlayerOne: boolean
+) => {
+>>>>>>> Stashed changes
   let rows = [
     grid.filter((i) => i.id >= 0 && i.id < 5),
     grid.filter((i) => i.id >= 5 && i.id < 10),
@@ -16,6 +29,13 @@ export const calculateWinner = (grid: GameBoardBlock[]) => {
     grid.filter((i) => i.id >= 25 && i.id < 30),
     grid.filter((i) => i.id >= 30 && i.id < 35),
   ];
+<<<<<<< Updated upstream
+=======
+  let player: SelectedBy;
+  isPlayerOne
+    ? (player = SelectedBy.PlayerOne)
+    : (player = SelectedBy.PlayerTwo);
+>>>>>>> Stashed changes
   for (let i = 0; i < rows.length; i++) {
     // rows.length == board height == 7
     // rows[i].length == board width == 5
@@ -63,6 +83,24 @@ export const calculateWinner = (grid: GameBoardBlock[]) => {
   }
 };
 
+<<<<<<< Updated upstream
+=======
+const createGrid = () => {
+  let arr = [];
+  let newGrid = [];
+  for (let i = 4; i < 25; i++) i % 2 === 0 ? arr.push(i) : "";
+  for (let i = 0; i < 35; i++) {
+    let gridNumber = getRandomItemFromArray(arr);
+    newGrid.push({
+      id: i,
+      gridNumber: gridNumber,
+      selectedBy: SelectedBy.Unselected,
+    });
+  }
+  return newGrid;
+};
+
+>>>>>>> Stashed changes
 const Index: FC = () => {
   const [grid, setGrid] = useState([]);
   const [newGame, setNewGame] = useState(0);
@@ -91,6 +129,23 @@ const Index: FC = () => {
     setGrid(createGrid);
   }, [newGame]);
 
+<<<<<<< Updated upstream
+=======
+  const blockClick = (block: GameBoardBlock) => {
+    // console.log("isPlayerOne: " + isPlayerOne);
+
+    let newGrid = Array.from(grid);
+    isPlayerOne
+      ? (newGrid[newGrid.indexOf(block)].selectedBy = SelectedBy.PlayerOne)
+      : (newGrid[newGrid.indexOf(block)].selectedBy = SelectedBy.PlayerTwo);
+
+    setGrid(newGrid);
+    // console.table(grid);
+    calculateWinner(grid, isPlayerOne);
+    isPlayerOne ? setIsPlayerOne(false) : setIsPlayerOne(true);
+  };
+
+>>>>>>> Stashed changes
   return (
     <div className="flex flex-col justify-center max-w-5xl gap-4 mx-auto">
       <h1 className="mx-10 mb-3 text-4xl font-bold text-center drop-shadow-lg shadow-black">
