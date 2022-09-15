@@ -38,7 +38,7 @@ export const calculateWinner = (
       rows[i][index + 1].selectedBy == player &&
       rows[i][index + 2].selectedBy == player &&
       rows[i][index + 3].selectedBy == player
-        ? console.log("(horizontal) Four in a row!")
+        ? console.log(player, "(horizontal) Four in a row!")
         : "";
     }
     if (i < rows.length - 3) {
@@ -48,7 +48,7 @@ export const calculateWinner = (
         rows[i + 1][index].selectedBy == player &&
         rows[i + 2][index].selectedBy == player &&
         rows[i + 3][index].selectedBy == player
-          ? console.log("(vertical) Four in a row!")
+          ? console.log(player, "(vertical) Four in a row!")
           : "";
       }
     }
@@ -59,7 +59,7 @@ export const calculateWinner = (
         rows[i - 1][index + 1].selectedBy == player &&
         rows[i - 2][index + 2].selectedBy == player &&
         rows[i - 3][index + 3].selectedBy == player
-          ? console.log("(ascending diagonal) Four in a row!")
+          ? console.log(player, "(ascending diagonal) Four in a row!")
           : "";
       }
       // Descending diagonal check
@@ -68,7 +68,7 @@ export const calculateWinner = (
         rows[i - 1][index - 1].selectedBy == player &&
         rows[i - 2][index - 2].selectedBy == player &&
         rows[i - 3][index - 3].selectedBy == player
-          ? console.log("(descending diagonal) Four in a row!")
+          ? console.log(player, "(descending diagonal) Four in a row!")
           : "";
       }
     }

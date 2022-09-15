@@ -11,7 +11,6 @@ interface GameBoardProps {
 const GameBoard: FC<GameBoardProps> = ({ grid, blockClick, isPlayerOne }) => {
   return (
     <div className="px-20">
-      <h2 className="pb-4 text-xl">GameBoard</h2>
       <div className="grid grid-cols-5 border-t-2 border-l-2 rounded-2xl border-t-[#149ECA] border-l-[#149ECA] text-white text-2xl">
         {grid.map((blockData) => (
           <div
