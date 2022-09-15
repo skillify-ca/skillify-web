@@ -1,41 +1,55 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { calculateWinner } from "../../../pages/studentPortal/labs/multiplication-connect/Index";
 
-const blockClick = (block: GameBoardBlock, gridData: GameBoardBlock[]) => {
-  if (!block.isSelected) {
-    block.isSelected = true;
-    calculateWinner(gridData);
-  } else {
-    block.isSelected = false;
-  }
-  return { ...block };
-};
+enum SelectedBy {
+  Unselected = "UNSELECTED",
+  PlayerOne = "PLAYERONE",
+  PlayerTwo = "PLAYERTWO",
+}
 
 interface GameBoardBlock {
   id: number;
   gridNumber: number;
-  isSelected: boolean;
+  selectedBy: SelectedBy;
 }
 
 interface GameBoardBlockProps {
   blockData: GameBoardBlock;
-  gridData: GameBoardBlock[];
+  blockClick(block: GameBoardBlock): void;
+  isPlayerOne: boolean;
 }
 
-const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData, gridData }) => {
-  const [block, setBlock] = useState(blockData);
-
+const GameBoardBlock: FC<GameBoardBlockProps> = ({
+  blockData,
+  blockClick,
+  isPlayerOne,
+}) => {
   return (
     <div
-      onClick={() => setBlock(blockClick(block, gridData))}
-      className={`flex justify-center items-center h-full w-full cursor-pointer rounded-full    
-            ${
-              block.isSelected === false
-                ? "hover:bg-[#F20000]/40 hover:animate-pulse"
-                : "bg-[#F20000]/60"
-            }`}
+      onClick={() => {
+        blockClick(blockData);
+      }}
+      className={`flex justify-center items-center h-full w-full cursor-pointer rounded-full shadow-[0_0_40px_10px_rgba(0,0,0,0.3)]
+          ${
+            // Selected block colours
+            blockData.selectedBy === SelectedBy.PlayerOne
+              ? "bg-[#F20000]/80"
+              : blockData.selectedBy === SelectedBy.PlayerTwo
+              ? "bg-[#FFDB00]/90"
+              : ""
+          }
+          ${
+            // Unselected hover animations
+            isPlayerOne
+              ? blockData.selectedBy === SelectedBy.Unselected
+                ? "hover:bg-[#F20000]/70 hover:animate-pulse"
+                : ""
+              : blockData.selectedBy === SelectedBy.Unselected
+              ? "hover:bg-[#FFD500]/80 hover:animate-pulse"
+              : ""
+          }`}
     >
-      <p>{block.gridNumber}</p>
+      <p>{blockData.gridNumber}</p>
     </div>
   );
 };
