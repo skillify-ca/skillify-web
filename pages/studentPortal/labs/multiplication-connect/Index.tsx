@@ -6,11 +6,13 @@ import GameBoardBlock from "../../../../components/math/multiplicationConnect/Ga
 import PlayerSection from "../../../../components/math/multiplicationConnect/PlayerSection";
 import { getRandomItemFromArray } from "../../../api/random";
 
+
 enum selectedBy {
   Unselected = "UNSELECTED",
   PlayerOne = "PLAYERONE",
   PlayerTwo = "PLAYERTWO",
 }
+
 
 export const calculateWinner = (grid: GameBoardBlock[]) => {
   // Algorithm ran on block click to determine win
@@ -88,6 +90,7 @@ const createGrid = () => {
 const Index: FC = () => {
   const [grid, setGrid] = useState([]);
   const [newGame, setNewGame] = useState(0);
+
 
   /* todo: 
       - toggle this state on block to determine the colour to display on board
