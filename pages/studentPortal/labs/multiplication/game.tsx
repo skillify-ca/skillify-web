@@ -142,7 +142,7 @@ export default function BlockComponentGallery() {
                 ))
                 .reverse()}
             </div>
-            <div className="col-span-7 bg-orange-100">
+            <div className="col-span-7 bg-gradient-to-r from-rattata ...">
               <div className="flex flex-col row-auto ">
                 <label className="flex justify-center py-8 text-xl ">
                   Please enter your name for battle, Player One.{" "}
