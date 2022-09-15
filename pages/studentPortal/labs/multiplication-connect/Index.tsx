@@ -79,7 +79,7 @@ const createGrid = () => {
     newGrid.push({
       id: i,
       gridNumber: gridNumber,
-      isSelected: selectedBy.Unselected,
+      selectedBy: selectedBy.Unselected,
     });
   }
   return newGrid;
@@ -118,8 +118,8 @@ const Index: FC = () => {
     let newGrid = Array.from(grid);
     // set selectedBy block property based on current player state
     isPlayerOne
-      ? (newGrid[newGrid.indexOf(block)].isSelected = selectedBy.PlayerOne)
-      : (newGrid[newGrid.indexOf(block)].isSelected = selectedBy.PlayerTwo);
+      ? (newGrid[newGrid.indexOf(block)].selectedBy = selectedBy.PlayerOne)
+      : (newGrid[newGrid.indexOf(block)].selectedBy = selectedBy.PlayerTwo);
 
     setGrid(newGrid);
     // console.table(grid);
@@ -130,7 +130,7 @@ const Index: FC = () => {
 
   return (
     <div className="flex flex-col justify-center max-w-5xl gap-4 mx-auto">
-      <h1 className="mx-10 mb-3 text-4xl font-bold text-center drop-shadow-lg shadow-black">
+      <h1 className="mx-10 mb-3 text-4xl font-bold text-center drop-shadow-lg shadow-black-500">
         Welcome to Multiplication Connect Four 🔴🟡
       </h1>
       <PlayerSection />
