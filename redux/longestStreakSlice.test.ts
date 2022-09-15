@@ -28,7 +28,7 @@ const initialState: LongestStreakState = {
     },
     {
       text: "6x6",
-      value: 72,
+      value: 36,
       state: BlockState.NOT_SELECTED,
     },
     {
@@ -44,6 +44,7 @@ const initialState: LongestStreakState = {
   ],
   stage: STAGE.PLAY_GAME,
   isPlayerSelecting: false,
+  handlePlayerSelect: 0
 };
 
 test("should return the initial state", () => {
@@ -74,7 +75,7 @@ test("test selecting one block", () => {
       },
       {
         text: "6x6",
-        value: 72,
+        value: 36,
         state: BlockState.NOT_SELECTED,
       },
       {
@@ -115,7 +116,7 @@ test("test selecting two blocks should trigger AI selection", () => {
       },
       {
         text: "6x6",
-        value: 72,
+        value: 36,
         state: BlockState.NOT_SELECTED,
       },
       {
@@ -134,12 +135,10 @@ test("test selecting two blocks should trigger AI selection", () => {
   };
 
   //Act
-  const firstState = reducer(initialState, handlePlayerSelect(1));
-  const secondState = reducer(firstState, handlePlayerSelect(0));
-  const thirdState = reducer(secondState, handlePlayerSelect(2));
-  const fourthState = reducer(thirdState, handlePlayerSelect(5));
+  const firstState = reducer(initialState, handlePlayerSelect(0));
+  const secondState = reducer(firstState, handlePlayerSelect(1));
   // Assert
-  expect(fourthState).toEqual(finalState);
+  expect(secondState).toEqual(finalState);
 });
 
 test("test selecting invalid blocks", () => {
