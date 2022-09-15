@@ -51,7 +51,9 @@ export function calculateWinner(array: GameBlockState[], playerName: string) {
   if (playerOneArray > playerTwoArray) {
     return playerName + ", you have Conquered!";
   } else if (playerTwoArray > playerOneArray) {
-    return "Sorry, " + playerName + "This round goes to Computer the Great...";
+    return (
+      "Sorry, " + playerName + " " + "This round goes to Computer the Great..."
+    );
   } else if (playerOneArray === playerTwoArray) {
     return "This mission has resulted in a Draw!";
   }
