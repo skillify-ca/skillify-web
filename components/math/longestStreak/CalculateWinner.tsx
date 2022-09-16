@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import {
   calculateWinner,
   showEndGameImage,
@@ -9,7 +8,7 @@ export interface CalculateWinnerProps {
   text: string;
   onClick: () => void;
   winner: string;
-  image: string;
+  image: any;
 }
 
 export const CalculateWinner: React.FC<CalculateWinnerProps> = ({
