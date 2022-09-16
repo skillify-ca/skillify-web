@@ -86,6 +86,7 @@ test("Test that the player with the longest line of consecutive squares wins the
   const result = calculateWinner(array, 'input'); 
   //Assert
   expect(result).toBe('input' + ", you have Conquered!");
+
 });
 
 test("Test that the player with the longest line of consecutive squares wins the game", async () => {
