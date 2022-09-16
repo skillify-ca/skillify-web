@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Winner from "../../../../components/math/longestStreak/Winner";
@@ -19,7 +18,7 @@ import {
 export type GameBlockState = {
   text: string;
   value: number;
-  isProduct?: boolean;
+  isProduct: boolean;
   state: BlockState;
 };
 
