@@ -225,3 +225,4 @@ test("test selecting invalid blocks", () => {
   // Assert
   expect(secondState).toEqual(finalState);
 });
+

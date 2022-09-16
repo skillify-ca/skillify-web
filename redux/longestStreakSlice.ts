@@ -93,6 +93,7 @@ export const longestStreakSlice: Slice = createSlice({
       state.blocks = initializeGameState();
     },
 
+
     isPlayerSelecting: (state, action: PayloadAction<boolean>) => {
       if (action.type === "longestStreak/isPlayerSelecting") {
         state.isPlayerSelecting = action.payload;
