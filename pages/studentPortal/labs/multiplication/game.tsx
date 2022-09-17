@@ -41,7 +41,10 @@ export function longestSubarray(array: GameBlockState[], x: BlockState) {
 }
 
 export function calculateWinner(array: GameBlockState[], playerName: string) {
-  let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
+  let playerOneArray = longestSubarray(
+    array,
+    BlockState.PLAYER_ONE_SELECTED && BlockState.HIGHLIGHTED
+  );
   console.log("P1", playerOneArray);
   let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
   console.log("P2", playerTwoArray);
@@ -54,6 +57,27 @@ export function calculateWinner(array: GameBlockState[], playerName: string) {
   } else if (playerOneArray === playerTwoArray) {
     return "This mission has resulted in a Draw!";
   }
+}
+
+export function calculatePlayerOneScore(array: GameBlockState[]) {
+  let playerOneArray = longestSubarray(
+    array,
+    BlockState.PLAYER_ONE_SELECTED && BlockState.HIGHLIGHTED
+  );
+  return playerOneArray;
+}
+
+export function calculatePlayerTwoScore(array: GameBlockState[]) {
+  let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
+  return playerTwoArray;
+}
+
+export function checkNumberNotSelected(array: GameBlockState[]) {
+  const ns = array.filter((block) => {
+    return block.state === BlockState.NOT_SELECTED;
+  });
+  let notSelectedNumber = ns.length;
+  return notSelectedNumber;
 }
 
 export function showEndGameImage(array: GameBlockState[]) {
@@ -110,9 +134,18 @@ export default function BlockComponentGallery() {
             you do!
           </div>
           <div className="pb-8 col-start-1 col-end-7 flex justify-evenly w-[45rem]">
-            <Button label={"Reset Game"} onClick={() => handleResetGame()} />
-            <Button label={"Show Winner"} onClick={handleCalculateWinner} />
             <Button
+              backgroundColor="purple"
+              label={"Reset Game"}
+              onClick={() => handleResetGame()}
+            />
+            <Button
+              backgroundColor="purple"
+              label={"Show Winner"}
+              onClick={handleCalculateWinner}
+            />
+            <Button
+              backgroundColor="purple"
               label={"Show Rules"}
               onClick={() => dispatch(setStage(STAGE.SET_RULES))}
             />
@@ -139,8 +172,15 @@ export default function BlockComponentGallery() {
                 ))
                 .reverse()}
             </div>
-            <div className="col-span-7 bg-gradient-to-r from-rattata ...">
+            <div className="col-span-7 bg-gradient-to-r from-purple-300 ...">
               <div className="flex flex-col row-auto ">
+                <ul>
+                  {playerName} Score: {calculatePlayerOneScore(gameState)}
+                </ul>
+                <ul>Computer Score: {calculatePlayerTwoScore(gameState)}</ul>
+                <ul>
+                  Number of Open Blocks: {checkNumberNotSelected(gameState)}
+                </ul>
                 <label className="flex justify-center py-8 text-xl ">
                   Please enter your name for battle, Player One.{" "}
                 </label>
@@ -154,10 +194,10 @@ export default function BlockComponentGallery() {
               </div>
             </div>
             <div className="flex flex-col">
-              {gameState.slice(9, 20).map((item, index) => (
+              {gameState.slice(10, 20).map((item, index) => (
                 <MultiplicationBlock
                   text={item.text}
-                  onClick={() => handleSelect(index + 9)}
+                  onClick={() => handleSelect(index + 10)}
                   blockState={item.state}
                 />
               ))}
@@ -165,11 +205,11 @@ export default function BlockComponentGallery() {
           </div>
           <div className="flex flex-row">
             {gameState
-              .slice(20, 29)
+              .slice(21, 30)
               .map((item, index) => (
                 <MultiplicationBlock
                   text={item.text}
-                  onClick={() => handleSelect(index + 20)}
+                  onClick={() => handleSelect(index + 21)}
                   blockState={item.state}
                 />
               ))

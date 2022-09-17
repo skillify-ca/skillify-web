@@ -25,12 +25,12 @@ export const MultiplicationBlock: React.FC<MultiplicationBlockProps> = ({
         className={`w-20 h-20 flex justify-center items-center border-2 text-green-50 float-left
         ${
           blockState === BlockState.PLAYER_ONE_SELECTED
-            ? "bg-pikachu-500"
+            ? "bg-[#16acea]"
             : blockState === BlockState.PLAYER_TWO_SELECTED
-            ? "bg-rattata"
+            ? "bg-[#4203c9]"
             : blockState === BlockState.HIGHLIGHTED
-            ? "bg-pikachu-500 border-rattata border-width-5fr drop-shadow-2xl"
-            : "bg-charmander"
+            ? "bg-blue-400 border-[#F4FFFDFF] border-width-5fr drop-shadow-2xl"
+            : "bg-purple-500"
         }
         `}
         onClick={onClick}
