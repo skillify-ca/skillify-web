@@ -1,36 +1,22 @@
-import {
-  calculateWinner,
-  showEndGameImage,
-} from "../../../pages/studentPortal/labs/multiplication/game";
-import { Button } from "../../ui/Button";
+import React, { useRef } from "react";
+import useFireWork from "react-use-firework";
 
-export interface CalculateWinnerProps {
-  text: string;
-  onClick: () => void;
-  winner: string;
-  image: any;
-}
-
-export const CalculateWinner: React.FC<CalculateWinnerProps> = ({
-  text,
-  onClick,
-  winner,
-  image,
-  ...props
-}) => {
+export interface FireworkProps {}
+export const Firework: React.FC<FireworkProps> = ({}) => {
+  const ref = useRef(null);
+  useFireWork(ref);
   return (
-    <div className="flex-row justify-center">
-      <div className="flex justify-center animate-bounce space-y-6 py-4 bg-gradient-to-b bg-charmander hover:bg-pikachu-500 text-white px-3 font-bold text-xl border-b-4 rounded-lg active:border-b-2 cursor-pointer`">
-        {winner}
-      </div>
-      <div className="flex justify-center"> {image}</div>
-      <p className="py-8 flex justify-center">
-        Take heart. Practice makes perfect. Begin again!
+    <div>
+      <p className="z-10">
+        Click in the light blue sky for your celebratory surprise!
       </p>
-      <div className="flex justify-center">
-        <Button label={"Play Again"} onClick={onClick} />
-      </div>
+      <div
+        className="z-0 hover:z-50"
+        ref={ref}
+        style={{ width: "100%", height: "100px", background: "#DBF3FA" }}
+      />
     </div>
   );
 };
-export default CalculateWinner;
+
+export default Firework;

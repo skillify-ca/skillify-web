@@ -15,6 +15,7 @@ import {
   setStage,
   STAGE,
 } from "../../../../redux/longestStreakSlice";
+import Firework from "../../../../components/math/longestStreak/CalculateWinner";
 export type GameBlockState = {
   text: string;
   value: number;
@@ -86,7 +87,7 @@ export function showEndGameImage(array: GameBlockState[]) {
   let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
   console.log("P2", playerTwoArray);
   if (playerOneArray > playerTwoArray) {
-    return <img src="/images/math1/longestStreak/playerOneWinner.jpg" />;
+    return <Firework />;
   } else if (playerTwoArray > playerOneArray) {
     return <img src="/images/math1/longestStreak/playerTwoWinner.jpg" />;
   } else if (playerOneArray === playerTwoArray) {
