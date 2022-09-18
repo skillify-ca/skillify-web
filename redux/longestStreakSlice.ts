@@ -146,7 +146,7 @@ export const longestStreakSlice: Slice = createSlice({
             state.blocks[index].value ===
             state.blocks[firstSelectedBlockIndex].value
           ) 
-            if(state.blocks[firstSelectedBlockIndex].isProduct===true && state.blocks[index].isProduct===false||state.blocks[firstSelectedBlockIndex].isProduct===false && state.blocks[index].isProduct===true){
+            {if(state.blocks[firstSelectedBlockIndex].isProduct===true && state.blocks[index].isProduct===false||state.blocks[firstSelectedBlockIndex].isProduct===false && state.blocks[index].isProduct===true){
               state.blocks[index].state = BlockState.PLAYER_ONE_SELECTED;
               state.blocks[firstSelectedBlockIndex].state =
               BlockState.PLAYER_ONE_SELECTED;
@@ -155,7 +155,12 @@ export const longestStreakSlice: Slice = createSlice({
               console.log("Unselected: " + unselectedBlocks.length);
               console.log("Last Clicked Index: " + state.currentlySelectedBlock);
               handleAISelection(state);
+            } else {
+              alert("Ouch...you're being tricky with me. Re-read the rules of the game.  That move shall not pass.")
+            }
               
+        } else {
+          alert("Whoops! You need two integers and their product!")
           }
         }
       }
