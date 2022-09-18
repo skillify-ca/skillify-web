@@ -137,7 +137,7 @@ export const longestStreakSlice: Slice = createSlice({
             state.blocks[secondSelectedBlockIndex].state ===
               BlockState.PLAYER_ONE_SELECTED;
           }
-        } else if (
+      } else if (
           state.isPlayerSelecting === true &&
           unselectedBlocks.includes(state.blocks[index])
         ) {
@@ -146,7 +146,7 @@ export const longestStreakSlice: Slice = createSlice({
             state.blocks[index].value ===
             state.blocks[firstSelectedBlockIndex].value
           ) 
-            if(state.blocks[firstSelectedBlockIndex].isProduct===true && state.blocks[index].isProduct===false){
+            if(state.blocks[firstSelectedBlockIndex].isProduct===true && state.blocks[index].isProduct===false||state.blocks[firstSelectedBlockIndex].isProduct===false && state.blocks[index].isProduct===true){
               state.blocks[index].state = BlockState.PLAYER_ONE_SELECTED;
               state.blocks[firstSelectedBlockIndex].state =
               BlockState.PLAYER_ONE_SELECTED;
@@ -154,34 +154,14 @@ export const longestStreakSlice: Slice = createSlice({
               console.log("Index: " + index);
               console.log("Unselected: " + unselectedBlocks.length);
               console.log("Last Clicked Index: " + state.currentlySelectedBlock);
-              handleAISelection(state);}
-              if (unselectedBlocks.length <= 0) {
-                console.log("Unselected: " + unselectedBlocks.length);
-                console.log("STAGE: " + state.stage);
-                state.stage = STAGE.CALCULATE_WINNER;
-                
-          } else if (
-                state.blocks[firstSelectedBlockIndex].isProduct===false && state.blocks[index].isProduct===true){
-                state.blocks[index].state = BlockState.PLAYER_ONE_SELECTED;
-                state.blocks[firstSelectedBlockIndex].state =
-                BlockState.PLAYER_ONE_SELECTED;
-                state.isPlayerSelecting = false;
-                console.log("Index: " + index);
-                console.log("Unselected: " + unselectedBlocks.length);
-                console.log("Last Clicked Index: " + state.currentlySelectedBlock);
-                handleAISelection(state);}
-              if (unselectedBlocks.length <= 0) {
-                  console.log("Unselected: " + unselectedBlocks.length);
-                  console.log("STAGE: " + state.stage);
-                  state.stage = STAGE.CALCULATE_WINNER;
-                  
-          } 
+              handleAISelection(state);
+              
           }
         }
       }
     },
   },
-);
+});
 
 
 
@@ -212,6 +192,11 @@ function handleAISelection(state: LongestStreakState) {
     );
     state.blocks[indexOfSecondComputerSelected].state =
       BlockState.PLAYER_TWO_SELECTED;
+      if (unselectedBlocks.length <= 1) {
+        console.log("Unselected: " + unselectedBlocks.length);
+        console.log("STAGE: " + state.stage);
+        state.stage = STAGE.CALCULATE_WINNER;  
+    } 
   }
   //find block that is "x * y" only
 }

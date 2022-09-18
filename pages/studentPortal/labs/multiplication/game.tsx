@@ -162,11 +162,11 @@ export default function BlockComponentGallery() {
           <div className="grid grid-cols-9 col-span-6 w-[45rem]">
             <div className="flex flex-col">
               {gameState
-                .slice(30, 41)
+                .slice(29, 40)
                 .map((item, index) => (
                   <MultiplicationBlock
                     text={item.text}
-                    onClick={() => handleSelect(index + 30)}
+                    onClick={() => handleSelect(index + 29)}
                     blockState={item.state}
                   />
                 ))
@@ -194,10 +194,10 @@ export default function BlockComponentGallery() {
               </div>
             </div>
             <div className="flex flex-col">
-              {gameState.slice(10, 20).map((item, index) => (
+              {gameState.slice(9, 20).map((item, index) => (
                 <MultiplicationBlock
                   text={item.text}
-                  onClick={() => handleSelect(index + 10)}
+                  onClick={() => handleSelect(index + 9)}
                   blockState={item.state}
                 />
               ))}
@@ -205,11 +205,11 @@ export default function BlockComponentGallery() {
           </div>
           <div className="flex flex-row">
             {gameState
-              .slice(21, 30)
+              .slice(20, 29)
               .map((item, index) => (
                 <MultiplicationBlock
                   text={item.text}
-                  onClick={() => handleSelect(index + 21)}
+                  onClick={() => handleSelect(index + 20)}
                   blockState={item.state}
                 />
               ))
