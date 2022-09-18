@@ -13,7 +13,7 @@ export const Firework: React.FC<FireworkProps> = ({}) => {
       <div
         className="z-0 hover:z-50"
         ref={ref}
-        style={{ width: "100%", height: "100px", background: "#DBF3FA" }}
+        style={{ width: "100%", height: "500px", background: "#DBF3FA" }}
       />
     </div>
   );

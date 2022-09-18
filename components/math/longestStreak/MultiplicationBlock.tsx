@@ -29,7 +29,7 @@ export const MultiplicationBlock: React.FC<MultiplicationBlockProps> = ({
             : blockState === BlockState.PLAYER_TWO_SELECTED
             ? "bg-[#4203c9]"
             : blockState === BlockState.HIGHLIGHTED
-            ? "bg-pink-900 border-[#F4FFFDFF] border-width-5fr drop-shadow-2xl"
+            ? "bg-[#320d3e] border-[#F4FFFDFF] border-width-5fr drop-shadow-2xl"
             : "bg-purple-500"
         }
         `}

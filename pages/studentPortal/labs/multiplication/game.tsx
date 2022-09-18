@@ -15,7 +15,7 @@ import {
   setStage,
   STAGE,
 } from "../../../../redux/longestStreakSlice";
-import Firework from "../../../../components/math/longestStreak/CalculateWinner";
+import Firework from "../../../../components/math/longestStreak/Firework";
 export type GameBlockState = {
   text: string;
   value: number;
@@ -130,7 +130,7 @@ export default function BlockComponentGallery() {
         <Rules text={""} onClick={handlePlayGame} />
       ) : stage === STAGE.PLAY_GAME ? (
         <div className="grid grid-cols-6 grid-rows-7">
-          <div className="pb-4 font-black col-start-1 col-end-6 flex justify-evenly w-[45rem]">
+          <div className="pb-4 text-xl font-black col-start-1 col-end-6 flex justify-evenly w-[45rem]">
             {playerName}, your quest is to battle the computer. Let's see how
             you do!
           </div>
@@ -175,22 +175,36 @@ export default function BlockComponentGallery() {
             </div>
             <div className="col-span-7 bg-gradient-to-r from-purple-300 ...">
               <div className="flex flex-col row-auto ">
-                <ul>
-                  {playerName} Score: {calculatePlayerOneScore(gameState)}
+                <ul className="flex justify-center text-xl p-5">
+                  Number of Open Blocks: {"  "}
+                  <span className="font-bold">
+                    {checkNumberNotSelected(gameState)}
+                  </span>
                 </ul>
-                <ul>Computer Score: {calculatePlayerTwoScore(gameState)}</ul>
-                <ul>
-                  Number of Open Blocks: {checkNumberNotSelected(gameState)}
-                </ul>
+                <h1 className="flex justify-between p-5 text-xl">
+                  <ul>
+                    {playerName} Score:{" "}
+                    <span className="font-bold">
+                      {calculatePlayerOneScore(gameState)}
+                    </span>
+                  </ul>
+                  <ul>
+                    Computer Score:{" "}
+                    <span className="font-bold">
+                      {calculatePlayerTwoScore(gameState)}
+                    </span>
+                  </ul>
+                </h1>
+
                 <label className="flex justify-center py-8 text-xl ">
-                  Please enter your name for battle, Player One.{" "}
+                  Please enter your name for battle, Player 1.{" "}
                 </label>
                 <input
                   id="input"
                   type="string"
                   value={playerName}
                   onChange={(e) => dispatch(setPlayerName(e.target.value))}
-                  className="font-bold text-center border-2 border-gray-300 place-self-center w-30"
+                  className="font-bold text-center text-2xl border-2 border-gray-300 place-self-center w-30"
                 ></input>
               </div>
             </div>
