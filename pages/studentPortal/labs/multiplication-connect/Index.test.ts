@@ -1,4 +1,4 @@
-import { calculateWinner } from "../multiplication/game";
+import { calculateWinner, createGrid } from "./Index";
 
 // Arrange
 // Act
@@ -33,4 +33,10 @@ import { calculateWinner } from "../multiplication/game";
     - to return a string s.t. the function is testable.
 */
 
-test.todo("calculateWinner()");
+test("calculateWinner() with unselected blocks", () => {
+    // try using createGrid() to initialize a grid to use here
+    let grid = createGrid();
+    let isPlayerOne = true;
+    expect(calculateWinner(grid, true)).toEqual("no winner");
+    // console.log(grid);
+});
