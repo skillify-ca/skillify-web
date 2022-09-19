@@ -21,9 +21,10 @@ export enum STAGE {
   CALCULATE_WINNER,
 }
 
+
 function initializeGameState(): GameBlockState[] {
   let dummyArray: GameBlockState[] = [];
-  for (let i = 0; i <= 20; i++) {
+  for (let i = 0; i <= 19; i++) {
     let x = getRndInteger(1, 10);
     let y = getRndInteger(1, 10);
     let product: number = x * y;
@@ -136,7 +137,7 @@ export const longestStreakSlice: Slice = createSlice({
             state.blocks[secondSelectedBlockIndex].state ===
               BlockState.PLAYER_ONE_SELECTED;
           }
-        } else if (
+      } else if (
           state.isPlayerSelecting === true &&
           unselectedBlocks.includes(state.blocks[index])
         ) {
@@ -144,21 +145,22 @@ export const longestStreakSlice: Slice = createSlice({
           if (
             state.blocks[index].value ===
             state.blocks[firstSelectedBlockIndex].value
-          ) {
-            state.blocks[index].state = BlockState.PLAYER_ONE_SELECTED;
-            state.blocks[firstSelectedBlockIndex].state =
+          ) 
+            {if(state.blocks[firstSelectedBlockIndex].isProduct===true && state.blocks[index].isProduct===false||state.blocks[firstSelectedBlockIndex].isProduct===false && state.blocks[index].isProduct===true){
+              state.blocks[index].state = BlockState.PLAYER_ONE_SELECTED;
+              state.blocks[firstSelectedBlockIndex].state =
               BlockState.PLAYER_ONE_SELECTED;
-            state.isPlayerSelecting = false;
-            console.log("Index: " + index);
-            console.log("Unselected: " + unselectedBlocks.length);
-            console.log("Last Clicked Index: " + state.currentlySelectedBlock);
-            if (unselectedBlocks.length <= 1) {
+              state.isPlayerSelecting = false;
+              console.log("Index: " + index);
               console.log("Unselected: " + unselectedBlocks.length);
-              console.log("STAGE: " + state.stage);
-              state.stage = STAGE.CALCULATE_WINNER;
-            } else {
+              console.log("Last Clicked Index: " + state.currentlySelectedBlock);
               handleAISelection(state);
+            } else {
+              alert("Ouch...you're being tricky with me. Re-read the rules of the game.  That move shall not pass.")
             }
+              
+        } else {
+          alert("Whoops! You need two integers and their product!")
           }
         }
       }
@@ -166,14 +168,7 @@ export const longestStreakSlice: Slice = createSlice({
   },
 });
 
-function checkWinner(state: LongestStreakState) {
-  const unselectedBlocks = state.blocks.filter(
-    (block) => block.state === BlockState.NOT_SELECTED
-  );
-  if (unselectedBlocks.length <= 0) {
-    state.stage === STAGE.CALCULATE_WINNER;
-  }
-}
+
 
 function handleAISelection(state: LongestStreakState) {
   const unselectedBlocks = state.blocks.filter(
@@ -202,6 +197,11 @@ function handleAISelection(state: LongestStreakState) {
     );
     state.blocks[indexOfSecondComputerSelected].state =
       BlockState.PLAYER_TWO_SELECTED;
+      if (unselectedBlocks.length <= 1) {
+        console.log("Unselected: " + unselectedBlocks.length);
+        console.log("STAGE: " + state.stage);
+        state.stage = STAGE.CALCULATE_WINNER;  
+    } 
   }
   //find block that is "x * y" only
 }

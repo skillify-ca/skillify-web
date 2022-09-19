@@ -17,7 +17,7 @@ export const Rules: React.FC<RulesProps> = ({ text, onClick, ...props }) => {
           <span className="font-black">Your Quest?</span> Magically turn the
           longest line of squares into the Player 1 or Player 2 color.{" "}
         </ol>
-        <div className="space-y-4 py-4 bg-gradient-to-b bg-charmander hover:bg-pikachu-500 text-white px-3 font-bold border-b-4 rounded-lg active:border-b-2 cursor-pointer`">
+        <div className="space-y-4 py-4 bg-gradient-to-b bg-purple-700 hover:bg-purple-500 text-white px-3 font-bold border-b-4 rounded-lg active:border-b-2 cursor-pointer`">
           <ol className="justify-start">
             1. {""} {""}Embark on this math mission by clicking on two squares:
             a <span className="text-xl">multiplication problem</span> and its{" "}
@@ -38,7 +38,11 @@ export const Rules: React.FC<RulesProps> = ({ text, onClick, ...props }) => {
           </ol>
         </div>
         <p>Learning how to multiply can be fun! Click "Play Game" below!</p>
-        <Button label={"Play Game"} onClick={onClick} />
+        <Button
+          backgroundColor="purple"
+          label={"Play Game"}
+          onClick={onClick}
+        />
       </div>
     </div>
   );
