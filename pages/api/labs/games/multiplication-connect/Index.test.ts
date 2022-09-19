@@ -1,4 +1,4 @@
-import { calculateWinner, createGrid } from "./Index";
+import { calculateWinner, createGrid } from "../../../../studentPortal/labs/multiplication-connect/Index";
 
 // Arrange
 // Act
