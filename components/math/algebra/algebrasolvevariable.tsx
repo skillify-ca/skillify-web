@@ -31,34 +31,43 @@ const AlgebraSolveVariable: React.FC<AlgebraSolveVariableProps> = ({
     (document.getElementById("input") as HTMLInputElement).value = "";
   }, []);
   return (
-    <div className="flex items-center justify-center">
+    <div>
       <div>
-        <p className="flex flex-row">
+        <p className="font-size: 30px;">
           Help {personname} solve for the unknown {variableLetter} in the
           following problem
         </p>
-        <p className="">
+        <div className="flex items-center justify-center">
+        <p className="font-bold pl-2">
           {variableLetter}
           {variableproblem}
         </p>
+        </div>
         <div>
-          <div className="flex items-centre justify-centre">
+          <div className="flex items-center justify-center">
+            <p className="flex flex-row">
+              {variableLetter} = 
             <input
               id="input"
               type="number"
-              className="w-20 font-bold text-right border-2 border-gray-300"
+              value={guess}
+              className="w-20 font-bold flex text-right border-2 border-gray-300"
+              onChange={(e) => setGuess(e.target.value)}
             ></input>
+            </p>
           </div>
         </div>
         {""}
         <p>{text}</p>
-        <div className="flex items-center justify-center">
-          <Button
-            backgroundColor="blue"
-            textColor="white"
-            label="Submit"
-            onClick={() => onSubmit(guess)}
-          />
+        <div className = "flex items-center justify-center flex-direction: column;">
+          <div className="flex items-center justify-center  flex-direction: column; f">
+            <Button
+              backgroundColor="blue"
+              textColor="white"
+              label="Submit"
+              onClick={() => onSubmit(guess)}
+            />
+          </div>
         </div>
       </div>
     </div>

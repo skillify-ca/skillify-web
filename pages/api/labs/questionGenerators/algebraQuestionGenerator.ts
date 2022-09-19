@@ -17,30 +17,32 @@ export type AlgebraSolveQuestion = {
 };
 
 // Ask coach how to do this properly
-let a = getRndInteger(1,50);
-let b = getRndInteger(1,50);
-let d = a + getRndInteger(1,50);
-let e = getRndInteger(1,10)
-let f = getRndInteger(1,10)
-let g = getRndInteger(1,10)*e
+
 
 // Ask coach how to declare 
-export function algebrahelper(): string {
-  let problemtype = getRandomItemFromArray(["-", "+", "/", "*"]);
+export function algebrahelper():list{
+let problemtype = getRandomItemFromArray(["-", "+", "/", "*"]);
+const a = getRndInteger(1,50);
+const b = getRndInteger(1,50);
+const d = a + getRndInteger(1,50);
+const e = getRndInteger(2,10)
+const f = getRndInteger(1,10)
+const g = getRndInteger(2,10)*e
   if(problemtype == "+") {
-    const problem = " " + problemtype + " " + a.toString() + " = " + d.toString();
-    return problem
+    const problem = [" " + problemtype + " " + a.toString() + " = " + d.toString(),(d-a).toString()];
+    return problem;
   }else if(problemtype == "-"){
-    const problem = " " + problemtype + " " + a.toString() + " = " + b.toString();
-    return problem
+    const problem = [" " + problemtype + " " + a.toString() + " = " + b.toString(),(b+a).toString()];
+    return problem;
   }else if(problemtype == "/"){
-    const problem = " " + problemtype + " " + e.toString() + " = " + f.toString();
-    return problem
+    const problem = ["  " + problemtype + " " + e.toString() + " = " + f.toString(),(e*f).toString()];
+    return problem;
   }else{
-    const problem = " " + problemtype + " " + e.toString() + " = " + g.toString();
-    return problem
+    const problem = ["  " + problemtype + " " + e.toString() + " = " + g.toString(),(g/e).toString()];
+    return problem;
   }
 }
+
 
 export type AlgebraSolveModel = {
   variableLetter: string;
@@ -50,50 +52,46 @@ export type AlgebraSolveModel = {
   personname: string;
 };
 
-
-
 export function generateAlgebraQuestion(): AlgebraSolveQuestion {
-  // TODO generate a question object
+  let algebraproblem = algebrahelper()
   return {
     questionType: QuestionType.ALGEBRA_SOLVE_VARIABLE,
-    variableLetter: getRandomItemFromArray([
-      "a",
-      "b",
-      "c",
-      "d",
-      "e",
-      "f",
-      "g",
-      "h",
-      "i",
-      "j",
-      "k",
-      "l",
-      "m",
-      "n",
-      "o",
-      "p",
-      "q",
-      "r",
-      "s",
-      "t",
-      "u",
-      "v",
-      "w",
-      "x",
-      "y",
-      "z",
-    ]),
+    variableLetter: " ",
     variableproblem: "x",
     algebrasolveModel: {
-      variableLetter: "x",
-      variableproblem: algebrahelper(),
-      text: "Help solve for the unknown variable",
-      answer: "6",
+      variableLetter: getRandomItemFromArray([
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z",
+      ]),
+      variableproblem: algebraproblem[0],
+      text: "",
+      answer: algebraproblem[1],
       personname: getRandomItemFromArray(name),
     },
     personname: "",
-    answer: "",
+    answer: algebraproblem[1],
     text: "",
   };
 }
