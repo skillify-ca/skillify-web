@@ -33,10 +33,16 @@ import { calculateWinner, createGrid } from "../../../../studentPortal/labs/mult
     - to return a string s.t. the function is testable.
 */
 
-test("calculateWinner() with unselected blocks", () => {
-    // try using createGrid() to initialize a grid to use here
-    let grid = createGrid();
-    let isPlayerOne = true;
-    expect(calculateWinner(grid, true)).toEqual("no winner");
-    // console.log(grid);
+describe("calculateWinner() Tests", () => {
+    test("Check for no win with unselected blocks", () => {
+        // try using createGrid() to initialize a grid to use here
+        let grid = createGrid();
+        let isPlayerOne = true;
+        expect(calculateWinner(grid, isPlayerOne)).toEqual("no winner");
+
+        test.todo("Check for PlayerOne win");
+        test.todo("Check for PlayerTwo win");
+        test.todo("Check for no win with mixed selected blocks");
+        test.todo("Check for a draw when there's no winner & all blocks are selected"); // !== 'SelectedBy.Unselected'
+    });
 });
