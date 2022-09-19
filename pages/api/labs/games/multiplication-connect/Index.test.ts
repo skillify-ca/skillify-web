@@ -1,4 +1,4 @@
-import { calculateWinner, createGrid } from "../../../../studentPortal/labs/multiplication-connect/Index";
+import { calculateWinner, createGrid, SelectedBy } from "../../../../studentPortal/labs/multiplication-connect/Index";
 
 // Arrange
 // Act
@@ -29,20 +29,38 @@ import { calculateWinner, createGrid } from "../../../../studentPortal/labs/mult
             - when board is full with no 4 in a row
  */
 
-/* Refactor calculateWinner():
-    - to return a string s.t. the function is testable.
-*/
-
 describe("calculateWinner() Tests", () => {
-    test("Check for no win with unselected blocks", () => {
-        // try using createGrid() to initialize a grid to use here
-        let grid = createGrid();
-        let isPlayerOne = true;
-        expect(calculateWinner(grid, isPlayerOne)).toEqual("no winner");
-
-        test.todo("Check for PlayerOne win");
-        test.todo("Check for PlayerTwo win");
-        test.todo("Check for no win with mixed selected blocks");
-        test.todo("Check for a draw when there's no winner & all blocks are selected"); // !== 'SelectedBy.Unselected'
+    let grid = createGrid();
+    let isPlayerOne = true;
+    test("No win with unselected blocks", () => {
+        expect(calculateWinner(grid, isPlayerOne)).toEqual("No winner");
     });
+    test("PlayerOne horizontal win", () => {
+        grid[6].selectedBy = SelectedBy.PlayerOne;
+        grid[7].selectedBy = SelectedBy.PlayerOne;
+        grid[8].selectedBy = SelectedBy.PlayerOne;
+        grid[9].selectedBy = SelectedBy.PlayerOne;
+        expect(calculateWinner(grid, isPlayerOne)).toEqual("PLAYERONE (horizontal) Four in a row!");
+    });
+    test("PlayerTwo horizontal win", () => {
+        isPlayerOne = false;
+        grid[0].selectedBy = SelectedBy.PlayerTwo;
+        grid[1].selectedBy = SelectedBy.PlayerTwo;
+        grid[2].selectedBy = SelectedBy.PlayerTwo;
+        grid[3].selectedBy = SelectedBy.PlayerTwo;
+        console.log(grid);
+        expect(calculateWinner(grid, isPlayerOne)).toEqual("PLAYERTWO (horizontal) Four in a row!");
+    });
+
+    test.todo("PlayerOne vertical win");
+    test.todo("PlayerTwo vertical win");
+
+    test.todo("PlayerOne ascending diagonal win");
+    test.todo("PlayerTwo ascending diagonal win");
+
+    test.todo("PlayerOne descending diagonal win");
+    test.todo("PlayerTwo descending diagonal win");
+
+    test.todo("No win with mixed selected blocks");
+    test.todo("Draw when there's no winner & all blocks are selected"); // !== 'SelectedBy.Unselected'
 });

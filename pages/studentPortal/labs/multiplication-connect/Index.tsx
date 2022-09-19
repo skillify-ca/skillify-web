@@ -6,7 +6,7 @@ import GameBoardBlock from "../../../../components/math/multiplicationConnect/Ga
 import PlayerSection from "../../../../components/math/multiplicationConnect/PlayerSection";
 import { getRandomItemFromArray } from "../../../api/random";
 
-enum SelectedBy {
+export enum SelectedBy {
   Unselected = "UNSELECTED",
   PlayerOne = "PLAYERONE",
   PlayerTwo = "PLAYERTWO",
@@ -75,7 +75,8 @@ export const calculateWinner = (
       }
     }
   }
-  str ? "" : (str = "no winner");
+  str ? "" : (str = "No winner");
+  // console.log(str);
   return str;
 };
 
