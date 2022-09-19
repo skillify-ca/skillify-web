@@ -71,5 +71,23 @@ export const generateQuestionForFinanceSkill = (skill: Skill): Question => {
         answer: (_numberOfSales*_price*(_commission/100)).toFixed(2).toString(),
         text: "",
       };
+     case Skill.FINANCE_SIMPLE_INTEREST:
+      let personName_ = nameSelector();
+      let interestRate= Math.floor(Math.random() * 19) + 1;
+      let principalAmount=  Math.floor((Math.random() * 10000) + 1);
+      let time = Math.floor((Math.random() * 10) + 1);
+
+      return {
+        questionType: QuestionType.FINANCE_SIMPLE_INTEREST_PROBLEM,
+        interestModel: {
+          personName: personName_,
+          interestRate: interestRate,
+          principalAmount: principalAmount,
+          time: time,
+          image1: image1,
+        },
+        answer: (principalAmount*(interestRate/100)*time).toFixed(2).toString(),
+        text: "",
+      };
   }
 };
