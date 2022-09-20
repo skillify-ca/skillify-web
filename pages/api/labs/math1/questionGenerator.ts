@@ -134,7 +134,6 @@ export const generateQuestionForMath1Skill = (skill: Skill): Question => {
   }
 
   if (skill === Skill.ALGEBRA_SOLVE_VARIABLE) {
-    // TODO add a if statement for algebra skills
     return generateAlgebraQuestion();
   }
 };

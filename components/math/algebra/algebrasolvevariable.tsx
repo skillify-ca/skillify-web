@@ -4,20 +4,20 @@ import { Button } from "../../ui/Button";
 
 export interface AlgebraSolveVariableProps {
   variableLetter: string;
-  variableproblem: string;
+  variableProblem: string;
   submitGuess: (guess: GuessData) => void;
   text: string;
   answer: string;
-  personname: string;
+  personName: string;
 }
 
 const AlgebraSolveVariable: React.FC<AlgebraSolveVariableProps> = ({
   variableLetter,
-  variableproblem,
+  variableProblem,
   submitGuess,
   text,
   answer,
-  personname,
+  personName,
 }) => {
   const onSubmit = (guess: string) => {
     submitGuess({
@@ -31,50 +31,42 @@ const AlgebraSolveVariable: React.FC<AlgebraSolveVariableProps> = ({
     (document.getElementById("input") as HTMLInputElement).value = "";
   }, []);
   return (
-    <div>
-      <div>
-        <p className="font-size: 30px;">
-          Help {personname} solve for the unknown {variableLetter} in the
-          following problem
-        </p>
-        <div className="flex items-center justify-center">
+    <div className="text-xl space-y-4">
+      <p>
+        Help {personName} solve for the unknown {variableLetter} in the
+        following problem
+      </p>
+      <div className="flex items-center justify-center">
         <p className="font-bold pl-2">
           {variableLetter}
-          {variableproblem}
+          {variableProblem}
         </p>
-        </div>
-        <div>
-          <div className="flex items-center justify-center">
-            <p className="flex flex-row">
-              {variableLetter} = 
+      </div>
+      <div>
+        <div className="flex items-center justify-center">
+          <p className="flex flex-row">
+            {variableLetter} =
             <input
               id="input"
               type="number"
               value={guess}
-              className="w-20 font-bold flex text-right border-2 border-gray-300"
+              className="w-20 font-bold flex text-center border-2 border-gray-300"
               onChange={(e) => setGuess(e.target.value)}
             ></input>
-            </p>
-          </div>
+          </p>
         </div>
-        {""}
-        <p>{text}</p>
-        <div className = "flex items-center justify-center flex-direction: column;">
-          <div className="flex items-center justify-center  flex-direction: column; f">
-            <Button
-              backgroundColor="blue"
-              textColor="white"
-              label="Submit"
-              onClick={() => onSubmit(guess)}
-            />
-          </div>
-        </div>
+      </div>
+      <p>{text}</p>
+      <div className="flex items-center justify-center flex-direction: column;">
+        <Button
+          backgroundColor="blue"
+          textColor="white"
+          label="Submit"
+          onClick={() => onSubmit(guess)}
+        />
       </div>
     </div>
   );
 };
 
 export default AlgebraSolveVariable;
-function setGuess(arg0: string) {
-  throw new Error("Function not implemented.");
-}

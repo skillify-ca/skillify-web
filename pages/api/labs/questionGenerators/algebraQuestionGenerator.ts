@@ -9,19 +9,20 @@ import { name } from "../../../api/names";
 export type AlgebraSolveQuestion = {
   questionType: QuestionType.ALGEBRA_SOLVE_VARIABLE;
   variableLetter: string;
-  variableproblem: string;
-  algebrasolveModel: AlgebraSolveModel;
+  variableProblem: string;
+  algebraSolveModel: AlgebraSolveModel;
   text: string;
   answer: string;
-  personname: string;
+  personName: string;
 };
 
-// Ask coach how to do this properly
+type algebraObject = {
+  algebraProblem: string;
+  algebraSolution: string;
+}
 
-
-// Ask coach how to declare 
-export function algebrahelper():list{
-let problemtype = getRandomItemFromArray(["-", "+", "/", "*"]);
+export function algebrahelper():algebraObject{
+let problemtype = getRandomItemFromArray(["-", "+", "/", "x"]);
 const a = getRndInteger(1,50);
 const b = getRndInteger(1,50);
 const d = a + getRndInteger(1,50);
@@ -29,16 +30,28 @@ const e = getRndInteger(2,10)
 const f = getRndInteger(1,10)
 const g = getRndInteger(2,10)*e
   if(problemtype == "+") {
-    const problem = [" " + problemtype + " " + a.toString() + " = " + d.toString(),(d-a).toString()];
+    const problem: algebraObject = {
+      algebraProblem: " " + problemtype + " " + a.toString() + " = " + d.toString(),
+      algebraSolution:(d-a).toString(),
+    }
     return problem;
   }else if(problemtype == "-"){
-    const problem = [" " + problemtype + " " + a.toString() + " = " + b.toString(),(b+a).toString()];
+    const problem: algebraObject = {
+      algebraProblem: " " + problemtype + " " + a.toString() + " = " + b.toString(),
+      algebraSolution: (b+a).toString(),
+    }
     return problem;
   }else if(problemtype == "/"){
-    const problem = ["  " + problemtype + " " + e.toString() + " = " + f.toString(),(e*f).toString()];
+    const problem: algebraObject = {
+      algebraProblem: "  " + problemtype + " " + e.toString() + " = " + f.toString(),
+      algebraSolution: (e*f).toString(),
+    }
     return problem;
   }else{
-    const problem = ["  " + problemtype + " " + e.toString() + " = " + g.toString(),(g/e).toString()];
+    const problem: algebraObject = {
+      algebraProblem: "  " + problemtype + " " + e.toString() + " = " + g.toString(),
+      algebraSolution: (g/e).toString(),
+    }
     return problem;
   }
 }
@@ -46,10 +59,10 @@ const g = getRndInteger(2,10)*e
 
 export type AlgebraSolveModel = {
   variableLetter: string;
-  variableproblem: string;
+  variableProblem: string;
   text: string;
   answer: string;
-  personname: string;
+  personName: string;
 };
 
 export function generateAlgebraQuestion(): AlgebraSolveQuestion {
@@ -57,8 +70,8 @@ export function generateAlgebraQuestion(): AlgebraSolveQuestion {
   return {
     questionType: QuestionType.ALGEBRA_SOLVE_VARIABLE,
     variableLetter: " ",
-    variableproblem: "x",
-    algebrasolveModel: {
+    variableProblem: "x",
+    algebraSolveModel: {
       variableLetter: getRandomItemFromArray([
         "a",
         "b",
@@ -85,15 +98,13 @@ export function generateAlgebraQuestion(): AlgebraSolveQuestion {
         "y",
         "z",
       ]),
-      variableproblem: algebraproblem[0],
+      variableProblem: algebraproblem.algebraProblem,
       text: "",
-      answer: algebraproblem[1],
-      personname: getRandomItemFromArray(name),
+      answer: algebraproblem.algebraSolution,
+      personName: getRandomItemFromArray(name),
     },
-    personname: "",
-    answer: algebraproblem[1],
+    personName: "",
+    answer: algebraproblem.algebraSolution,
     text: "",
   };
 }
-
-console.log(name[0]);
