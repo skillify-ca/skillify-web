@@ -100,6 +100,7 @@ describe("calculateWinner() Tests", () => {
     test("Draw when there's no winner & all blocks are selected", () => {
         let grid = createGrid();
         let isPlayerOne = true;
+        // Rework to use an array instead for readability
         grid[0].selectedBy = SelectedBy.PlayerOne
         grid[1].selectedBy = SelectedBy.PlayerTwo
         grid[2].selectedBy = SelectedBy.PlayerOne
