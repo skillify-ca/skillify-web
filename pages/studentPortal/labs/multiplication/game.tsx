@@ -190,7 +190,8 @@ export default function BlockComponentGallery() {
   }
 
   useEffect(() => {
-    dispatch(setLevel(gameLevel.EXPERT));
+    dispatch(setLevel(gameLevel.INTERMEDIATE));
+    dispatch(initializeGame(level));
   }, [level]);
 
   function handlePlayGame() {
@@ -199,8 +200,8 @@ export default function BlockComponentGallery() {
 
   function handleResetGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
-    dispatch(reset(0));
-    dispatch(initializeGame(0));
+    dispatch(reset(level));
+    dispatch(initializeGame(level));
   }
   function handleCalculateWinner() {
     dispatch(setStage(STAGE.CALCULATE_WINNER));
