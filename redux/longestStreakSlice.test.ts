@@ -3,6 +3,7 @@ import reducer, {
   handlePlayerSelect,
   LongestStreakState,
   STAGE,
+  gameLevel
 } from "./longestStreakSlice";
 
 // Arrange create initialState
@@ -52,7 +53,8 @@ const initialState: LongestStreakState = {
   isPlayerSelecting: false,
   reset: false,
   handlePlayerSelect: 0,
-  playerName: ""
+  playerName: "",
+  level: gameLevel.BEGINNER,
 };
 
 test("should return the initial state", () => {
@@ -109,6 +111,7 @@ test("test selecting one block", () => {
     stage: STAGE.PLAY_GAME,
     isPlayerSelecting: true,
     reset: false,
+    level: gameLevel.BEGINNER,
   };
   expect(reducer(initialState, handlePlayerSelect(1))).toEqual(finalState);
 });
@@ -160,7 +163,7 @@ test("test selecting two blocks should trigger AI selection", () => {
     currentlySelectedBlock: 1,
     handlePlayerSelect: 0,
     reset: false,
-
+    level: gameLevel.BEGINNER,
   };
 
   //Act
@@ -216,7 +219,7 @@ test("test selecting invalid blocks", () => {
     currentlySelectedBlock: 0,
     handlePlayerSelect: 0,
     reset: false,
-
+    level: gameLevel.BEGINNER,
   };
 
   //Act

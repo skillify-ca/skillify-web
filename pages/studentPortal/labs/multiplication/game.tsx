@@ -230,7 +230,7 @@ export default function BlockComponentGallery() {
   }
 
   useEffect(() => {
-    dispatch(setLevel(gameLevel.INTERMEDIATE));
+    dispatch(setLevel(gameLevel.INTERMEDIATE_ADVANCED));
     dispatch(initializeGame(level));
   }, [level]);
 
