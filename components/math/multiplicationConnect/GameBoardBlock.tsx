@@ -1,11 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
-import { calculateWinner } from "../../../pages/studentPortal/labs/multiplication-connect/Index";
-
-enum SelectedBy {
-  Unselected = "UNSELECTED",
-  PlayerOne = "PLAYERONE",
-  PlayerTwo = "PLAYERTWO",
-}
+import {
+  calculateWinner,
+  SelectedBy,
+} from "../../../pages/studentPortal/labs/multiplication-connect/Index";
 
 interface GameBoardBlock {
   id: number;

@@ -6,7 +6,7 @@ import GameBoardBlock from "../../../../components/math/multiplicationConnect/Ga
 import PlayerSection from "../../../../components/math/multiplicationConnect/PlayerSection";
 import { getRandomItemFromArray } from "../../../api/random";
 
-enum SelectedBy {
+export enum SelectedBy {
   Unselected = "UNSELECTED",
   PlayerOne = "PLAYERONE",
   PlayerTwo = "PLAYERTWO",
@@ -15,7 +15,7 @@ enum SelectedBy {
 export const calculateWinner = (
   grid: GameBoardBlock[],
   isPlayerOne: boolean
-) => {
+): string => {
   let rows = [
     grid.filter((i) => i.id >= 0 && i.id < 5),
     grid.filter((i) => i.id >= 5 && i.id < 10),
@@ -26,9 +26,11 @@ export const calculateWinner = (
     grid.filter((i) => i.id >= 30 && i.id < 35),
   ];
   let player: SelectedBy;
+  // check for a PlayerOne or PlayerTwo win based on the current player state
   isPlayerOne
     ? (player = SelectedBy.PlayerOne)
     : (player = SelectedBy.PlayerTwo);
+  let str: string;
   for (let i = 0; i < rows.length; i++) {
     // rows.length == board height == 7
     // rows[i].length == board width == 5
@@ -38,7 +40,7 @@ export const calculateWinner = (
       rows[i][index + 1].selectedBy == player &&
       rows[i][index + 2].selectedBy == player &&
       rows[i][index + 3].selectedBy == player
-        ? console.log(player, "(horizontal) Four in a row!")
+        ? (str = `${player} (horizontal) Four in a row!`)
         : "";
     }
     if (i < rows.length - 3) {
@@ -48,7 +50,7 @@ export const calculateWinner = (
         rows[i + 1][index].selectedBy == player &&
         rows[i + 2][index].selectedBy == player &&
         rows[i + 3][index].selectedBy == player
-          ? console.log(player, "(vertical) Four in a row!")
+          ? (str = `${player} (vertical) Four in a row!`)
           : "";
       }
     }
@@ -59,7 +61,7 @@ export const calculateWinner = (
         rows[i - 1][index + 1].selectedBy == player &&
         rows[i - 2][index + 2].selectedBy == player &&
         rows[i - 3][index + 3].selectedBy == player
-          ? console.log(player, "(ascending diagonal) Four in a row!")
+          ? (str = `${player} (ascending diagonal) Four in a row!`)
           : "";
       }
       // Descending diagonal check
@@ -68,14 +70,21 @@ export const calculateWinner = (
         rows[i - 1][index - 1].selectedBy == player &&
         rows[i - 2][index - 2].selectedBy == player &&
         rows[i - 3][index - 3].selectedBy == player
-          ? console.log(player, "(descending diagonal) Four in a row!")
+          ? (str = `${player} (descending diagonal) Four in a row!`)
           : "";
       }
     }
   }
+  str
+    ? ""
+    : grid.some((i) => i.selectedBy === SelectedBy.Unselected)
+    ? (str = "No winner")
+    : (str = "Draw");
+  // console.log(str);
+  return str;
 };
 
-const createGrid = () => {
+export const createGrid = () => {
   let arr = [];
   let newGrid = [];
   for (let i = 4; i < 25; i++) i % 2 === 0 ? arr.push(i) : "";
