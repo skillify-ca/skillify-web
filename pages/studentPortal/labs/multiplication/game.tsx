@@ -53,7 +53,7 @@ export function initializeGameState(level: gameLevel): GameBlockState[] {
         state: BlockState.NOT_SELECTED,
       };
       dummyArray.push(initiateBlockState);
-    } else if (level === gameLevel.INTERMEDIATE) {
+    } else if (level === gameLevel.BEGINNER_ADVANCED) {
       let x = getRndInteger(10, 20);
       let y = getRndInteger(10, 20);
       let product: number = x * y;
@@ -73,9 +73,49 @@ export function initializeGameState(level: gameLevel): GameBlockState[] {
         state: BlockState.NOT_SELECTED,
       };
       dummyArray.push(initiateBlockState);
-    } else if (level === gameLevel.EXPERT) {
+    } else if (level === gameLevel.INTERMEDIATE) {
       let x = getRndInteger(20, 30);
       let y = getRndInteger(20, 30);
+      let product: number = x * y;
+      let productString: string = x + " x " + y;
+      let initiateBlockState: GameBlockState = {
+        text: product.toString(),
+        value: product,
+        isProduct: true,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+
+      initiateBlockState = {
+        text: productString,
+        value: product,
+        isProduct: false,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+    } else if (level === gameLevel.INTERMEDIATE_ADVANCED) {
+      let x = getRndInteger(30, 40);
+      let y = getRndInteger(30, 40);
+      let product: number = x * y;
+      let productString: string = x + " x " + y;
+      let initiateBlockState: GameBlockState = {
+        text: product.toString(),
+        value: product,
+        isProduct: true,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+
+      initiateBlockState = {
+        text: productString,
+        value: product,
+        isProduct: false,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+    } else if (level === gameLevel.EXPERT) {
+      let x = getRndInteger(40, 50);
+      let y = getRndInteger(40, 50);
       let product: number = x * y;
       let productString: string = x + " x " + y;
       let initiateBlockState: GameBlockState = {

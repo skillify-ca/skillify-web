@@ -22,9 +22,12 @@ export enum STAGE {
   CALCULATE_WINNER,
 }
 
+
 export enum gameLevel {
   BEGINNER,
+  BEGINNER_ADVANCED,
   INTERMEDIATE,
+  INTERMEDIATE_ADVANCED,
   EXPERT,
 }
 
