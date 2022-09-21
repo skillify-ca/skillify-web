@@ -8,7 +8,7 @@ import Rules from "../../../../components/math/longestStreak/Rules";
 import {
   setPlayerName,
   reset,
-  gameLevel,
+  GameLevel,
   setLevel,
 } from "../../../../redux/longestStreakSlice";
 
@@ -30,10 +30,10 @@ export type GameBlockState = {
   state: BlockState;
 };
 
-export function initializeGameState(level: gameLevel): GameBlockState[] {
+export function initializeGameState(level: GameLevel): GameBlockState[] {
   let dummyArray: GameBlockState[] = [];
   for (let i = 0; i <= 19; i++) {
-    if (level === gameLevel.BEGINNER) {
+    if (level === GameLevel.BEGINNER) {
       let x = getRndInteger(1, 10);
       let y = getRndInteger(1, 10);
       let product: number = x * y;
@@ -53,7 +53,7 @@ export function initializeGameState(level: gameLevel): GameBlockState[] {
         state: BlockState.NOT_SELECTED,
       };
       dummyArray.push(initiateBlockState);
-    } else if (level === gameLevel.BEGINNER_ADVANCED) {
+    } else if (level === GameLevel.BEGINNER_ADVANCED) {
       let x = getRndInteger(10, 20);
       let y = getRndInteger(10, 20);
       let product: number = x * y;
@@ -73,7 +73,7 @@ export function initializeGameState(level: gameLevel): GameBlockState[] {
         state: BlockState.NOT_SELECTED,
       };
       dummyArray.push(initiateBlockState);
-    } else if (level === gameLevel.INTERMEDIATE) {
+    } else if (level === GameLevel.INTERMEDIATE) {
       let x = getRndInteger(20, 30);
       let y = getRndInteger(20, 30);
       let product: number = x * y;
@@ -93,7 +93,7 @@ export function initializeGameState(level: gameLevel): GameBlockState[] {
         state: BlockState.NOT_SELECTED,
       };
       dummyArray.push(initiateBlockState);
-    } else if (level === gameLevel.INTERMEDIATE_ADVANCED) {
+    } else if (level === GameLevel.INTERMEDIATE_ADVANCED) {
       let x = getRndInteger(30, 40);
       let y = getRndInteger(30, 40);
       let product: number = x * y;
@@ -113,7 +113,7 @@ export function initializeGameState(level: gameLevel): GameBlockState[] {
         state: BlockState.NOT_SELECTED,
       };
       dummyArray.push(initiateBlockState);
-    } else if (level === gameLevel.EXPERT) {
+    } else if (level === GameLevel.EXPERT) {
       let x = getRndInteger(40, 50);
       let y = getRndInteger(40, 50);
       let product: number = x * y;
@@ -230,9 +230,9 @@ export default function BlockComponentGallery() {
   }
 
   useEffect(() => {
-    dispatch(setLevel(gameLevel.INTERMEDIATE_ADVANCED));
+    dispatch(setLevel(GameLevel.INTERMEDIATE_ADVANCED));
     dispatch(initializeGame(level));
-  }, [level]);
+  }, []);
 
   function handlePlayGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
