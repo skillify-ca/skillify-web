@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { RootState } from "./rootReducer";
 import { BlockState } from "../components/math/longestStreak/MultiplicationBlock";
-import { GameBlockState, initializeGameState, } from "../pages/studentPortal/labs/multiplication/game";
 import { getRandomItemFromArray, getRndInteger } from "../pages/api/random";
-import { shuffle } from "lodash";
+import { GameBlockState, initializeGameState } from "../pages/api/longestStreak";
 
 export interface LongestStreakState {
   stage: STAGE;
@@ -36,7 +35,7 @@ const initialState: LongestStreakState = {
   stage: STAGE.SET_RULES,
   reset: false,
   level: GameLevel.BEGINNER,
-  blocks: initializeGameState(GameLevel.INTERMEDIATE),
+  blocks: initializeGameState(),
   handlePlayerSelect: 0,
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
@@ -47,7 +46,7 @@ const resetInitialState: LongestStreakState = {
   stage: STAGE.PLAY_GAME,
   reset: false,
   level: GameLevel.BEGINNER,
-  blocks: initializeGameState(GameLevel.INTERMEDIATE),
+  blocks: initializeGameState(),
   handlePlayerSelect: 0,
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
@@ -74,7 +73,7 @@ export const longestStreakSlice: Slice = createSlice({
     },
 
     initializeGame: (state: LongestStreakState, action: PayloadAction) => {
-      state.blocks = initializeGameState(state.level);
+      state.blocks = initializeGameState();
     },
 
 
