@@ -5,7 +5,12 @@ import MultiplicationBlock, {
   BlockState,
 } from "../../../../components/math/longestStreak/MultiplicationBlock";
 import Rules from "../../../../components/math/longestStreak/Rules";
-import { setPlayerName, reset } from "../../../../redux/longestStreakSlice";
+import {
+  setPlayerName,
+  reset,
+  GameLevel,
+  setLevel,
+} from "../../../../redux/longestStreakSlice";
 
 import { Button } from "../../../../components/ui/Button";
 import {
@@ -16,12 +21,125 @@ import {
   STAGE,
 } from "../../../../redux/longestStreakSlice";
 import Firework from "../../../../components/math/longestStreak/Firework";
+import { shuffle } from "lodash";
+import { getRndInteger } from "../../../api/random";
 export type GameBlockState = {
   text: string;
   value: number;
   isProduct: boolean;
   state: BlockState;
 };
+
+export function initializeGameState(level: GameLevel): GameBlockState[] {
+  let dummyArray: GameBlockState[] = [];
+  for (let i = 0; i <= 19; i++) {
+    if (level === GameLevel.BEGINNER) {
+      let x = getRndInteger(1, 10);
+      let y = getRndInteger(1, 10);
+      let product: number = x * y;
+      let productString: string = x + " x " + y;
+      let initiateBlockState: GameBlockState = {
+        text: product.toString(),
+        value: product,
+        isProduct: true,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+
+      initiateBlockState = {
+        text: productString,
+        value: product,
+        isProduct: false,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+    } else if (level === GameLevel.BEGINNER_ADVANCED) {
+      let x = getRndInteger(10, 20);
+      let y = getRndInteger(10, 20);
+      let product: number = x * y;
+      let productString: string = x + " x " + y;
+      let initiateBlockState: GameBlockState = {
+        text: product.toString(),
+        value: product,
+        isProduct: true,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+
+      initiateBlockState = {
+        text: productString,
+        value: product,
+        isProduct: false,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+    } else if (level === GameLevel.INTERMEDIATE) {
+      let x = getRndInteger(20, 30);
+      let y = getRndInteger(20, 30);
+      let product: number = x * y;
+      let productString: string = x + " x " + y;
+      let initiateBlockState: GameBlockState = {
+        text: product.toString(),
+        value: product,
+        isProduct: true,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+
+      initiateBlockState = {
+        text: productString,
+        value: product,
+        isProduct: false,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+    } else if (level === GameLevel.INTERMEDIATE_ADVANCED) {
+      let x = getRndInteger(30, 40);
+      let y = getRndInteger(30, 40);
+      let product: number = x * y;
+      let productString: string = x + " x " + y;
+      let initiateBlockState: GameBlockState = {
+        text: product.toString(),
+        value: product,
+        isProduct: true,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+
+      initiateBlockState = {
+        text: productString,
+        value: product,
+        isProduct: false,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+    } else if (level === GameLevel.EXPERT) {
+      let x = getRndInteger(40, 50);
+      let y = getRndInteger(40, 50);
+      let product: number = x * y;
+      let productString: string = x + " x " + y;
+      let initiateBlockState: GameBlockState = {
+        text: product.toString(),
+        value: product,
+        isProduct: true,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+
+      initiateBlockState = {
+        text: productString,
+        value: product,
+        isProduct: false,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+    }
+  }
+
+  dummyArray = shuffle(dummyArray);
+
+  return dummyArray;
+}
 
 export function longestSubarray(array: GameBlockState[], x: BlockState) {
   let maxlength = 0;
@@ -101,6 +219,7 @@ export default function BlockComponentGallery() {
     stage,
     blocks: gameState,
     playerName,
+    level,
   } = useSelector(longestStreakSelector);
 
   function handleSelect(index) {
@@ -110,14 +229,19 @@ export default function BlockComponentGallery() {
     dispatch(handlePlayerSelect(index));
   }
 
+  useEffect(() => {
+    dispatch(setLevel(GameLevel.INTERMEDIATE_ADVANCED));
+    dispatch(initializeGame(level));
+  }, []);
+
   function handlePlayGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
   }
 
   function handleResetGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
-    dispatch(reset(0));
-    dispatch(initializeGame(0));
+    dispatch(reset(level));
+    dispatch(initializeGame(level));
   }
   function handleCalculateWinner() {
     dispatch(setStage(STAGE.CALCULATE_WINNER));
