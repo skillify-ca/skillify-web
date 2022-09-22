@@ -7,6 +7,7 @@ import { WordProblemQuestion } from "./labs/questionGenerators/wordProblemQuesti
 import { LongDivisionQuestion } from "./labs/questionGenerators/longDivisionQuestion";
 import { ItemCostModel } from "./labs/finance/money/itemCostModel";
 import { PersonData } from "./labs/finance/money/personData";
+import { AlgebraSolveQuestion } from "./labs/questionGenerators/algebraQuestionGenerator";
 
 export type Question =
   | VerticalEquationQuestion
@@ -68,6 +69,7 @@ export type Question =
       answer: string;
       text: string;
     }
+  | AlgebraSolveQuestion
   | {
       questionType: QuestionType.FINANCE_SALES_TAX_PROBLEM;
       salesTaxModel: SalesTaxModel;
@@ -77,6 +79,12 @@ export type Question =
   | {
       questionType: QuestionType.FINANCE_COMMISSION_PROBLEM;
       commisionModel: CommissionModel;
+      answer: string;
+      text: string;
+    }
+  | {
+      questionType: QuestionType.FINANCE_SIMPLE_INTEREST_PROBLEM;
+      interestModel: InterestModel;
       answer: string;
       text: string;
     };
@@ -95,8 +103,8 @@ export type UnitPriceModel = {
   numberOfObjects: number;
   name: string;
   image: string;
-  singularFruit: string,
-  pluralFruit: string,
+  singularFruit: string;
+  pluralFruit: string;
 };
 export type SalesTaxModel = {
   price: number;
@@ -104,13 +112,20 @@ export type SalesTaxModel = {
   taxRate: number;
   personName: string;
   image1: string;
-  multipleAnimals: string,
-  numberOfToys: number,
+  multipleAnimals: string;
+  numberOfToys: number;
 };
 export type CommissionModel = {
   personName: string;
   commission: number;
   price: number;
   numberOfSales: number;
+  image1: string;
+};
+export type InterestModel = {
+  personName: string;
+  principalAmount: number;
+  interestRate: number;
+  time: number;
   image1: string;
 };
