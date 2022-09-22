@@ -20,7 +20,6 @@ import {
   setStage,
   STAGE,
 } from "../../../../redux/longestStreakSlice";
-import Firework from "../../../../components/math/longestStreak/Firework";
 import { shuffle } from "lodash";
 import { getRndInteger } from "../../../api/random";
 export type GameBlockState = {
@@ -299,7 +298,7 @@ export default function BlockComponentGallery() {
             </div>
             <div className="col-span-7 bg-gradient-to-r from-purple-300 ...">
               <div className="flex flex-col row-auto ">
-                <ul className="flex justify-center text-xl p-5">
+                <ul className="flex justify-center p-5 text-xl">
                   Number of Open Blocks: {"  "}
                   <span className="font-bold">
                     {checkNumberNotSelected(gameState)}
@@ -328,7 +327,7 @@ export default function BlockComponentGallery() {
                   type="string"
                   value={playerName}
                   onChange={(e) => dispatch(setPlayerName(e.target.value))}
-                  className="font-bold text-center text-2xl border-2 border-gray-300 place-self-center w-30"
+                  className="text-2xl font-bold text-center border-2 border-gray-300 place-self-center w-30"
                 ></input>
               </div>
             </div>
