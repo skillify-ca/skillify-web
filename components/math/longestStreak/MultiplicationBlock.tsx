@@ -4,7 +4,6 @@ export enum BlockState {
   PLAYER_ONE_SELECTED,
   PLAYER_TWO_SELECTED,
   NOT_SELECTED,
-  HIGHLIGHTED,
 }
 
 export interface MultiplicationBlockProps {
@@ -25,12 +24,10 @@ export const MultiplicationBlock: React.FC<MultiplicationBlockProps> = ({
         className={`w-20 h-20 flex justify-center items-center border-2 text-green-50 float-left
         ${
           blockState === BlockState.PLAYER_ONE_SELECTED
-            ? "bg-[#16acea]"
+            ? "bg-red-400"
             : blockState === BlockState.PLAYER_TWO_SELECTED
-            ? "bg-[#4203c9]"
-            : blockState === BlockState.HIGHLIGHTED
-            ? "bg-[#320d3e] border-[#F4FFFDFF] border-width-5fr drop-shadow-2xl"
-            : "bg-purple-500"
+            ? "bg-blue-400"
+            : "bg-green-400"
         }
         `}
         onClick={onClick}

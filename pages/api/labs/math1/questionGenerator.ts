@@ -6,10 +6,6 @@ import { generateWordProblemQuestion } from "../questionGenerators/wordProblemQu
 import { generateHorizontalEquationQuestion } from "../questionGenerators/horizontalEquationQuestion";
 import { generateLongDivisionQuestion } from "../questionGenerators/longDivisionQuestion";
 import { getRandomBinaryQuestion } from "../questionGenerators/binaryQuestionGenerator";
-import {
-  AlgebraSolveQuestion,
-  generateAlgebraQuestion,
-} from "../questionGenerators/algebraQuestionGenerator";
 
 const DEFAULT_QUESTION_TYPES = [
   QuestionType.HORIZONTAL_EQUATION,
@@ -131,10 +127,6 @@ export const generateQuestionForMath1Skill = (skill: Skill): Question => {
       return getRandomDivisionQuestion(1, 6, skill);
     case Skill.DIVIDE_100:
       return getRandomDivisionQuestion(1, 11, skill);
-  }
-
-  if (skill === Skill.ALGEBRA_SOLVE_VARIABLE) {
-    return generateAlgebraQuestion();
   }
 };
 

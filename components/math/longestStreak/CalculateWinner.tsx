@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import {
+  calculateWinner,
+  showEndGameImage,
+} from "../../../pages/studentPortal/labs/multiplication/game";
 import { Button } from "../../ui/Button";
 
-export interface WinnerProps {
+export interface CalculateWinnerProps {
   text: string;
   onClick: () => void;
   winner: string;
   image: any;
 }
 
-export const Winner: React.FC<WinnerProps> = ({
+export const CalculateWinner: React.FC<CalculateWinnerProps> = ({
   text,
   onClick,
   winner,
@@ -30,4 +33,4 @@ export const Winner: React.FC<WinnerProps> = ({
     </div>
   );
 };
-export default Winner;
+export default CalculateWinner;
