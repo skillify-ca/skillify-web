@@ -35,7 +35,9 @@ const initialState: LongestStreakState = {
   stage: STAGE.SET_RULES,
   reset: false,
   level: GameLevel.BEGINNER,
+
   blocks: initializeGameState(),
+
   handlePlayerSelect: 0,
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
@@ -47,6 +49,7 @@ const resetInitialState: LongestStreakState = {
   reset: false,
   level: GameLevel.BEGINNER,
   blocks: initializeGameState(),
+
   handlePlayerSelect: 0,
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
@@ -73,7 +76,7 @@ export const longestStreakSlice: Slice = createSlice({
     },
 
     initializeGame: (state: LongestStreakState, action: PayloadAction) => {
-      state.blocks = initializeGameState();
+      state.blocks = initializeGameState(state.level);
     },
 
 
