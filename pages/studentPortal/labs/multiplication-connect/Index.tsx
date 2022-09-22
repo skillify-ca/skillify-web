@@ -1,4 +1,3 @@
-import { indexOf } from "lodash";
 import React, { FC, useState, useEffect } from "react";
 import DiceSection from "../../../../components/math/multiplicationConnect/DiceSection";
 import GameBoard from "../../../../components/math/multiplicationConnect/GameBoard";
