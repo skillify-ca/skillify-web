@@ -1,10 +1,7 @@
 import { BlockState } from "../../components/math/longestStreak/MultiplicationBlock";
 import { GameLevel, handlePlayerSelect, isPlayerSelecting, reset, setPlayerName, STAGE } from "../../redux/longestStreakSlice";
-import {
-  calculateWinner,
-  initializeGameState,
-  longestSubarray,
-} from "../studentPortal/labs/multiplication/game";
+import { initializeGameState, longestSubarray, calculateWinner, getRangeValues } from "./longestStreak";
+
 
 test("Test longest subarray - 1", async () => {
   //Arrange
@@ -17,7 +14,7 @@ test("Test longest subarray - 1", async () => {
     },
   ];
   
-  initializeGameState(GameLevel.BEGINNER)
+  getRangeValues(GameLevel.BEGINNER)
 
   //Act
   const result = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
@@ -66,7 +63,7 @@ test("Test the function outputs the longest consecutive line of elements", async
     },
   ];
 
-  initializeGameState(GameLevel.BEGINNER)
+  getRangeValues(GameLevel.BEGINNER)
 
   //Act
   const result = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
@@ -115,7 +112,7 @@ test("Test that the player with the longest line of consecutive squares wins the
     },
   ];
   //Act
-  initializeGameState(GameLevel.BEGINNER)
+  getRangeValues(GameLevel.BEGINNER)
 
   const result = calculateWinner(array, 'input'); 
   //Assert
@@ -164,7 +161,7 @@ test("Test that the player with the longest line of consecutive squares wins the
     },
   ];
 
-  initializeGameState(GameLevel.BEGINNER)
+  getRangeValues(GameLevel.BEGINNER)
   //Act
   const result = calculateWinner(array, 'input');
   //Assert
