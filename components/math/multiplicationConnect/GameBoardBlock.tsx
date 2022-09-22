@@ -1,8 +1,5 @@
-import React, { FC, useEffect, useState } from "react";
-import {
-  calculateWinner,
-  SelectedBy,
-} from "../../../pages/studentPortal/labs/multiplication-connect/Index";
+import React, { FC } from "react";
+import { SelectedBy } from "../../../pages/api/labs/games/multiplication-connect/gameLogic";
 
 interface GameBoardBlock {
   id: number;
