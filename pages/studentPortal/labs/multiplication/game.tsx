@@ -1,11 +1,16 @@
-import { shuffle } from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Winner from "../../../../components/math/longestStreak/Winner";
 import MultiplicationBlock, {
   BlockState,
 } from "../../../../components/math/longestStreak/MultiplicationBlock";
 import Rules from "../../../../components/math/longestStreak/Rules";
+import {
+  setPlayerName,
+  reset,
+  GameLevel,
+  setLevel,
+} from "../../../../redux/longestStreakSlice";
 
 import { Button } from "../../../../components/ui/Button";
 import {
@@ -15,12 +20,126 @@ import {
   setStage,
   STAGE,
 } from "../../../../redux/longestStreakSlice";
-
+import Firework from "../../../../components/math/longestStreak/Firework";
+import { shuffle } from "lodash";
+import { getRndInteger } from "../../../api/random";
 export type GameBlockState = {
   text: string;
   value: number;
+  isProduct: boolean;
   state: BlockState;
 };
+
+export function initializeGameState(level: GameLevel): GameBlockState[] {
+  let dummyArray: GameBlockState[] = [];
+  for (let i = 0; i <= 19; i++) {
+    if (level === GameLevel.BEGINNER) {
+      let x = getRndInteger(1, 10);
+      let y = getRndInteger(1, 10);
+      let product: number = x * y;
+      let productString: string = x + " x " + y;
+      let initiateBlockState: GameBlockState = {
+        text: product.toString(),
+        value: product,
+        isProduct: true,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+
+      initiateBlockState = {
+        text: productString,
+        value: product,
+        isProduct: false,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+    } else if (level === GameLevel.BEGINNER_ADVANCED) {
+      let x = getRndInteger(10, 20);
+      let y = getRndInteger(10, 20);
+      let product: number = x * y;
+      let productString: string = x + " x " + y;
+      let initiateBlockState: GameBlockState = {
+        text: product.toString(),
+        value: product,
+        isProduct: true,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+
+      initiateBlockState = {
+        text: productString,
+        value: product,
+        isProduct: false,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+    } else if (level === GameLevel.INTERMEDIATE) {
+      let x = getRndInteger(20, 30);
+      let y = getRndInteger(20, 30);
+      let product: number = x * y;
+      let productString: string = x + " x " + y;
+      let initiateBlockState: GameBlockState = {
+        text: product.toString(),
+        value: product,
+        isProduct: true,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+
+      initiateBlockState = {
+        text: productString,
+        value: product,
+        isProduct: false,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+    } else if (level === GameLevel.INTERMEDIATE_ADVANCED) {
+      let x = getRndInteger(30, 40);
+      let y = getRndInteger(30, 40);
+      let product: number = x * y;
+      let productString: string = x + " x " + y;
+      let initiateBlockState: GameBlockState = {
+        text: product.toString(),
+        value: product,
+        isProduct: true,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+
+      initiateBlockState = {
+        text: productString,
+        value: product,
+        isProduct: false,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+    } else if (level === GameLevel.EXPERT) {
+      let x = getRndInteger(40, 50);
+      let y = getRndInteger(40, 50);
+      let product: number = x * y;
+      let productString: string = x + " x " + y;
+      let initiateBlockState: GameBlockState = {
+        text: product.toString(),
+        value: product,
+        isProduct: true,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+
+      initiateBlockState = {
+        text: productString,
+        value: product,
+        isProduct: false,
+        state: BlockState.NOT_SELECTED,
+      };
+      dummyArray.push(initiateBlockState);
+    }
+  }
+
+  dummyArray = shuffle(dummyArray);
+
+  return dummyArray;
+}
 
 export function longestSubarray(array: GameBlockState[], x: BlockState) {
   let maxlength = 0;
@@ -40,22 +159,44 @@ export function longestSubarray(array: GameBlockState[], x: BlockState) {
   return maxlength;
 }
 
-export function calculateWinner(
-  array: GameBlockState[],
-  playerOne = "Player One",
-  playerTwo = "Player Two"
-) {
-  let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
+export function calculateWinner(array: GameBlockState[], playerName: string) {
+  let playerOneArray = longestSubarray(
+    array,
+    BlockState.PLAYER_ONE_SELECTED && BlockState.HIGHLIGHTED
+  );
   console.log("P1", playerOneArray);
   let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
   console.log("P2", playerTwoArray);
   if (playerOneArray > playerTwoArray) {
-    return playerOne + ", you have Conquered!";
+    return playerName + ", you have Conquered!";
   } else if (playerTwoArray > playerOneArray) {
-    return playerTwo + ", you have Conquered!";
+    return (
+      "Sorry, " + playerName + " " + "This round goes to Computer the Great..."
+    );
   } else if (playerOneArray === playerTwoArray) {
     return "This mission has resulted in a Draw!";
   }
+}
+
+export function calculatePlayerOneScore(array: GameBlockState[]) {
+  let playerOneArray = longestSubarray(
+    array,
+    BlockState.PLAYER_ONE_SELECTED && BlockState.HIGHLIGHTED
+  );
+  return playerOneArray;
+}
+
+export function calculatePlayerTwoScore(array: GameBlockState[]) {
+  let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
+  return playerTwoArray;
+}
+
+export function checkNumberNotSelected(array: GameBlockState[]) {
+  const ns = array.filter((block) => {
+    return block.state === BlockState.NOT_SELECTED;
+  });
+  let notSelectedNumber = ns.length;
+  return notSelectedNumber;
 }
 
 export function showEndGameImage(array: GameBlockState[]) {
@@ -64,9 +205,9 @@ export function showEndGameImage(array: GameBlockState[]) {
   let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
   console.log("P2", playerTwoArray);
   if (playerOneArray > playerTwoArray) {
-    return <img src="/images/math1/longestStreak/playerOneWinner.png" />;
+    return <Firework />;
   } else if (playerTwoArray > playerOneArray) {
-    return <img src="/images/math1/longestStreak/playerTwoWinner.png" />;
+    return <img src="/images/math1/longestStreak/playerTwoWinner.jpg" />;
   } else if (playerOneArray === playerTwoArray) {
     return <img src="/images/math1/longestStreak/drawWinner.png" />;
   }
@@ -74,11 +215,12 @@ export function showEndGameImage(array: GameBlockState[]) {
 
 export default function BlockComponentGallery() {
   const dispatch = useDispatch();
-  const { stage, blocks: gameState } = useSelector(longestStreakSelector);
-
-  //const [stage, setStage] = useState(STAGE.SET_RULES);
-
-  const [playerOneName, setPlayerOneName] = useState("Player 1");
+  const {
+    stage,
+    blocks: gameState,
+    playerName,
+    level,
+  } = useSelector(longestStreakSelector);
 
   function handleSelect(index) {
     console.log("BLOCK WAS CLICKED: index ", index);
@@ -87,16 +229,23 @@ export default function BlockComponentGallery() {
     dispatch(handlePlayerSelect(index));
   }
 
+  useEffect(() => {
+    dispatch(setLevel(GameLevel.INTERMEDIATE_ADVANCED));
+    dispatch(initializeGame(level));
+  }, []);
+
   function handlePlayGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
   }
 
   function handleResetGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
-    dispatch(initializeGame(0));
+    dispatch(reset(level));
+    dispatch(initializeGame(level));
   }
   function handleCalculateWinner() {
     dispatch(setStage(STAGE.CALCULATE_WINNER));
+    dispatch(setPlayerName(playerName));
   }
 
   return (
@@ -105,14 +254,23 @@ export default function BlockComponentGallery() {
         <Rules text={""} onClick={handlePlayGame} />
       ) : stage === STAGE.PLAY_GAME ? (
         <div className="grid grid-cols-6 grid-rows-7">
-          <div className="pb-4 font-black col-start-1 col-end-6 flex justify-evenly w-[45rem]">
-            {playerOneName}, your quest is to battle the computer. Let's see how
+          <div className="pb-4 text-xl font-black col-start-1 col-end-6 flex justify-evenly w-[45rem]">
+            {playerName}, your quest is to battle the computer. Let's see how
             you do!
           </div>
           <div className="pb-8 col-start-1 col-end-7 flex justify-evenly w-[45rem]">
-            <Button label={"Reset Game"} onClick={() => handleResetGame()} />
-            <Button label={"Show Winner"} onClick={handleCalculateWinner} />
             <Button
+              backgroundColor="purple"
+              label={"Reset Game"}
+              onClick={() => handleResetGame()}
+            />
+            <Button
+              backgroundColor="purple"
+              label={"Show Winner"}
+              onClick={handleCalculateWinner}
+            />
+            <Button
+              backgroundColor="purple"
               label={"Show Rules"}
               onClick={() => dispatch(setStage(STAGE.SET_RULES))}
             />
@@ -129,27 +287,48 @@ export default function BlockComponentGallery() {
           <div className="grid grid-cols-9 col-span-6 w-[45rem]">
             <div className="flex flex-col">
               {gameState
-                .slice(30, 41)
+                .slice(29, 40)
                 .map((item, index) => (
                   <MultiplicationBlock
                     text={item.text}
-                    onClick={() => handleSelect(index + 30)}
+                    onClick={() => handleSelect(index + 29)}
                     blockState={item.state}
                   />
                 ))
                 .reverse()}
             </div>
-            <div className="col-span-7 bg-rattata">
+            <div className="col-span-7 bg-gradient-to-r from-purple-300 ...">
               <div className="flex flex-col row-auto ">
+                <ul className="flex justify-center text-xl p-5">
+                  Number of Open Blocks: {"  "}
+                  <span className="font-bold">
+                    {checkNumberNotSelected(gameState)}
+                  </span>
+                </ul>
+                <h1 className="flex justify-between p-5 text-xl">
+                  <ul>
+                    {playerName} Score:{" "}
+                    <span className="font-bold">
+                      {calculatePlayerOneScore(gameState)}
+                    </span>
+                  </ul>
+                  <ul>
+                    Computer Score:{" "}
+                    <span className="font-bold">
+                      {calculatePlayerTwoScore(gameState)}
+                    </span>
+                  </ul>
+                </h1>
+
                 <label className="flex justify-center py-8 text-xl ">
-                  Please enter your name for battle, Player One.{" "}
+                  Please enter your name for battle, Player 1.{" "}
                 </label>
                 <input
                   id="input"
                   type="string"
-                  value={playerOneName}
-                  onChange={(e) => setPlayerOneName(e.target.value)}
-                  className="font-bold text-center border-2 border-gray-300 place-self-center w-30"
+                  value={playerName}
+                  onChange={(e) => dispatch(setPlayerName(e.target.value))}
+                  className="font-bold text-center text-2xl border-2 border-gray-300 place-self-center w-30"
                 ></input>
               </div>
             </div>
@@ -179,8 +358,8 @@ export default function BlockComponentGallery() {
       ) : stage === STAGE.CALCULATE_WINNER ? (
         <Winner
           text={""}
-          onClick={handlePlayGame}
-          winner={calculateWinner(gameState)}
+          onClick={handleResetGame}
+          winner={calculateWinner(gameState, playerName)}
           image={showEndGameImage(gameState)}
         />
       ) : null}
