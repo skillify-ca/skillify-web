@@ -30,11 +30,13 @@ export const multiplicationConnectSlice: Slice = createSlice({
   name: "MultiplicationConnectGame",
   initialState,
   reducers: {
-    reloadGrid: (state) => {
+    reloadGrid: (state: MultiplicationConnectState) => {
       state.grid = createGrid();
     },
-    // Add types to reducer functions
-    blockClick: (state, action: PayloadAction<GameBoardBlock>) => {
+    blockClick: (
+      state: MultiplicationConnectState,
+      action: PayloadAction<GameBoardBlock>
+    ) => {
       const block = action.payload as GameBoardBlock;
       // console.log(current(state.grid[block.id]));
       state.isPlayerOne
@@ -44,7 +46,7 @@ export const multiplicationConnectSlice: Slice = createSlice({
       // can't dispatch here, but could toggle state instead
       // togglePlayer(state.isPlayerOne);
     },
-    togglePlayer: (state) => {
+    togglePlayer: (state: MultiplicationConnectState) => {
       state.isPlayerOne = !state.isPlayerOne;
     },
   },

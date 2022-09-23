@@ -7,7 +7,6 @@ import {
 } from "../../../../redux/multiplicationConnectSlice";
 import DiceSection from "../../../../components/math/multiplicationConnect/DiceSection";
 import GameBoard from "../../../../components/math/multiplicationConnect/GameBoard";
-import GameBoardBlock from "../../../../components/math/multiplicationConnect/GameBoardBlock";
 import PlayerSection from "../../../../components/math/multiplicationConnect/PlayerSection";
 import { calculateWinner } from "../../../api/labs/games/multiplication-connect/gameLogic";
 
