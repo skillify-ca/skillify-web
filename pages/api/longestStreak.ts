@@ -10,39 +10,41 @@ export type GameBlockState = {
   state: BlockState;
 };
 
-export function getRangeValues(level: GameLevel) {
-  if (level === GameLevel.BEGINNER) {
-    let a = 1
-    let b = 10
-    console.log(a, b)
-    return [a, b];
-} else if (level === GameLevel.BEGINNER_ADVANCED) {
-    let a = 10
-    let b = 20
-    return [a, b];
-  } else if (level === GameLevel.INTERMEDIATE) {
-    let a = 20
-    let b = 30
-    return [a, b];
-  } else if (level === GameLevel.INTERMEDIATE_ADVANCED) {
-    let a = 30
-    let b = 40
-    return [a, b];
-  } else if (level === GameLevel.EXPERT) {
-    let a = 40
-    let b = 50
-    return [a, b];
-  };
+export type GameLevelData = {
+  min: number,
+  max: number,
 }
+export const gameLevelsMetaData: Record<GameLevel, GameLevelData> = {
+    beginner: {
+      min: 1,
+      max: 10
+    },
+    beginnerAdvanced: {
+      min: 10,
+      max: 20,
+    },
+    intermediate: {
+      min: 20,
+      max: 30,
+    },
+    intermediateAdvanced: {
+      min: 30, 
+      max: 40,
+    }, 
+    expert: {
+      min: 40, 
+      max: 50,
+    }
+  }
 
-export function initializeGameState(): GameBlockState[] {
+
+
+export function initializeGameState(currentLevel:GameLevel): GameBlockState[] {
   let dummyArray: GameBlockState[] = [];
+  console.log("CL: " + currentLevel)
   for (let i = 0; i <= 19; i++) {
-      let getRangeValuesArray = getRangeValues(GameLevel.BEGINNER)
-      console.log("First range num: " + getRangeValuesArray[0])
-      console.log("second range num: " + getRangeValuesArray[1])
-      let x = getRndInteger(getRangeValuesArray[0], getRangeValuesArray[1]);
-      let y = getRndInteger(getRangeValuesArray[0], getRangeValuesArray[1]);
+      let x = getRndInteger(gameLevelsMetaData[currentLevel].min, gameLevelsMetaData[currentLevel].max);
+      let y = getRndInteger(gameLevelsMetaData[currentLevel].min, gameLevelsMetaData[currentLevel].max);
       let product: number = x * y;
       let productString: string = x + " x " + y;
       let initiateBlockState: GameBlockState = {
@@ -76,12 +78,10 @@ export function longestSubarray(array: GameBlockState[], x: BlockState) {
     } else {
       maxlength = Math.max(maxlength, sum);
       sum = 0;
-      console.log("maxLength", maxlength, "currentSum", sum);
     }
   }
   maxlength = Math.max(maxlength, sum);
   sum = 0;
-  console.log("maxLength", maxlength, "currentSum", sum);
   return maxlength;
 }
 

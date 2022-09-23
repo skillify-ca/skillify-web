@@ -9,7 +9,6 @@ import {
   setPlayerName,
   reset,
   GameLevel,
-  setLevel,
 } from "../../../../redux/longestStreakSlice";
 
 import { Button } from "../../../../components/ui/Button";
@@ -27,6 +26,7 @@ import {
   calculateWinner,
   checkNumberNotSelected,
   GameBlockState,
+  gameLevelsMetaData,
   longestSubarray,
 } from "../../../api/longestStreak";
 
@@ -50,7 +50,6 @@ export default function BlockComponentGallery() {
     stage,
     blocks: gameState,
     playerName,
-    level,
   } = useSelector(longestStreakSelector);
 
   function handleSelect(index) {
@@ -61,8 +60,7 @@ export default function BlockComponentGallery() {
   }
 
   useEffect(() => {
-    dispatch(setLevel(GameLevel.INTERMEDIATE_ADVANCED));
-    dispatch(initializeGame(level));
+    dispatch(initializeGame(GameLevel.BEGINNER));
   }, []);
 
   function handlePlayGame() {
@@ -71,8 +69,8 @@ export default function BlockComponentGallery() {
 
   function handleResetGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
-    dispatch(reset(level));
-    dispatch(initializeGame(level));
+    dispatch(reset(GameLevel.BEGINNER));
+    dispatch(initializeGame(GameLevel.BEGINNER));
   }
   function handleCalculateWinner() {
     dispatch(setStage(STAGE.CALCULATE_WINNER));

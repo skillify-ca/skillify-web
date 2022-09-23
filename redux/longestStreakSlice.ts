@@ -2,7 +2,8 @@ import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { RootState } from "./rootReducer";
 import { BlockState } from "../components/math/longestStreak/MultiplicationBlock";
 import { getRandomItemFromArray, getRndInteger } from "../pages/api/random";
-import { GameBlockState, initializeGameState } from "../pages/api/longestStreak";
+import { GameBlockState, GameLevelsMetaData, gameLevelsMetaData, initializeGameState } from "../pages/api/longestStreak";
+import { min } from "lodash";
 
 export interface LongestStreakState {
   stage: STAGE;
@@ -12,7 +13,6 @@ export interface LongestStreakState {
   isPlayerSelecting: boolean;
   currentlySelectedBlock?: number;
   playerName: string;
-  level: GameLevel;
 }
 
 export enum STAGE {
@@ -23,21 +23,19 @@ export enum STAGE {
 
 
 export enum GameLevel {
-  BEGINNER,
-  BEGINNER_ADVANCED,
-  INTERMEDIATE,
-  INTERMEDIATE_ADVANCED,
-  EXPERT,
+  BEGINNER = "beginner",
+  BEGINNER_ADVANCED = "beginnerAdvanced",
+  INTERMEDIATE = "intermediate",
+  INTERMEDIATE_ADVANCED = "intermediateAdvanced",
+  EXPERT = "expert",
 }
 
+//function that takes in GameLevel as input
 
 const initialState: LongestStreakState = {
   stage: STAGE.SET_RULES,
   reset: false,
-  level: GameLevel.BEGINNER,
-
-  blocks: initializeGameState(),
-
+  blocks: initializeGameState(GameLevel.BEGINNER),
   handlePlayerSelect: 0,
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
@@ -47,8 +45,7 @@ const initialState: LongestStreakState = {
 const resetInitialState: LongestStreakState = {
   stage: STAGE.PLAY_GAME,
   reset: false,
-  level: GameLevel.BEGINNER,
-  blocks: initializeGameState(),
+  blocks: initializeGameState(GameLevel.BEGINNER),
 
   handlePlayerSelect: 0,
   isPlayerSelecting: false,
@@ -75,8 +72,9 @@ export const longestStreakSlice: Slice = createSlice({
       state.blocks = selectedBlock;
     },
 
-    initializeGame: (state: LongestStreakState, action: PayloadAction) => {
-      state.blocks = initializeGameState(state.level);
+    initializeGame: (state: LongestStreakState, action: PayloadAction<GameLevel>) => {
+      const currentLevel = action.payload
+      state.blocks = initializeGameState(currentLevel);
     },
 
 
@@ -103,11 +101,6 @@ export const longestStreakSlice: Slice = createSlice({
       }
     },
     
-    setLevel: (state: LongestStreakState, action: PayloadAction<GameLevel>) => {
-      const levelOfGame = action.payload as GameLevel;
-      state.level = levelOfGame;
-    },
-
     handlePlayerSelect: (state, action: PayloadAction<number>) => {
       if (action.type === "longestStreak/handlePlayerSelect") {
         const index = action.payload;
@@ -205,7 +198,6 @@ export const {
   initializeGame,
   currentlySelectedBlock,
   setPlayerName,
-  setLevel
 } = longestStreakSlice.actions;
 
 export const longestStreakSelector = (state: RootState) =>
