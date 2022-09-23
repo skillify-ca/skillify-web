@@ -1,7 +1,11 @@
 import React, { FC } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SelectedBy } from "../../../pages/api/labs/games/multiplication-connect/gameLogic";
-import { multiplicationConnectSelector } from "../../../redux/multiplicationConnectSlice";
+import {
+  blockClick,
+  multiplicationConnectSelector,
+  togglePlayer,
+} from "../../../redux/multiplicationConnectSlice";
 
 interface GameBoardBlock {
   id: number;
@@ -11,16 +15,17 @@ interface GameBoardBlock {
 
 interface GameBoardBlockProps {
   blockData: GameBoardBlock;
-  blockClick(block: GameBoardBlock): void;
 }
 
-const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData, blockClick }) => {
+const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
   const { isPlayerOne } = useSelector(multiplicationConnectSelector);
+  const dispatch = useDispatch();
 
   return (
     <div
       onClick={() => {
-        blockClick(blockData);
+        dispatch(blockClick(blockData));
+        dispatch(togglePlayer(isPlayerOne));
       }}
       className={`flex justify-center items-center h-full w-full cursor-pointer rounded-full shadow-[0_0_40px_10px_rgba(0,0,0,0.3)]
           ${
@@ -32,7 +37,7 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData, blockClick }) => {
               : ""
           }
           ${
-            // Unselected hover animations
+            // Unselected hover animation
             isPlayerOne
               ? blockData.selectedBy === SelectedBy.Unselected
                 ? "hover:bg-[#F20000]/70 hover:animate-pulse"

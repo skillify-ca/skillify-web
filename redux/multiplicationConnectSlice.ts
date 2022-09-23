@@ -1,44 +1,57 @@
-import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
+import { createSlice, current, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { RootState } from "./rootReducer";
+import {
+  calculateWinner,
+  createGrid,
+  SelectedBy,
+} from "../pages/api/labs/games/multiplication-connect/gameLogic";
+import GameBoardBlock from "../components/math/multiplicationConnect/GameBoardBlock";
 
 export interface MultiplicationConnectState {
   isPlayerOne: boolean;
+  grid: GameBoardBlock[];
 }
 
-/* todo: change isPlayerOne state to use Redux -- USED IN: useEffect, blockClick
-    - initialState should be set here, rather than the useEffect
-    - don't prop drill the state and access it w Redux instead
-    - get help if getting stuck here
+/* todo: Change states to use Redux:
+    - initialState should be set here, rather than the useState hook
+    - remove prop drilling and access with selector + slice
 
-    upcoming: 
-    + convert grid state to Redux, 
-    + move the blockClick function, 
+    Upcoming: 
     + consider adding the stage and game rules now, 
+    + diceRoll
+    + setPlayerName
 */
 const initialState: MultiplicationConnectState = {
   isPlayerOne: true,
+  grid: createGrid(),
 };
 
-/* Actions brainstorm:
-    - block selection / blockClick() -- might be able to work w the function here rather than the API file
-    - setGrid
-    - diceRoll
-    - setPlayerName
-*/
 export const multiplicationConnectSlice: Slice = createSlice({
   name: "MultiplicationConnectGame",
   initialState,
   reducers: {
-    // Toggles boolean isPlayerOne state on blockClick()
-    // todo: make sure this toggle is working as expected when called, before calling it in blockClick()/useEffect
+    reloadGrid: (state) => {
+      state.grid = createGrid();
+    },
+    // Add types to reducer functions
+    blockClick: (state, action: PayloadAction<GameBoardBlock>) => {
+      const block = action.payload as GameBoardBlock;
+      // console.log(current(state.grid[block.id]));
+      state.isPlayerOne
+        ? (state.grid[block.id].selectedBy = SelectedBy.PlayerOne)
+        : (state.grid[block.id].selectedBy = SelectedBy.PlayerTwo);
+      calculateWinner(state.grid, state.isPlayerOne);
+      // can't dispatch here, but could toggle state instead
+      // togglePlayer(state.isPlayerOne);
+    },
     togglePlayer: (state) => {
       state.isPlayerOne = !state.isPlayerOne;
-      //   console.log("isPlayerOne: " + state.isPlayerOne);
     },
   },
 });
 
-export const { togglePlayer } = multiplicationConnectSlice.actions;
+export const { togglePlayer, reloadGrid, blockClick } =
+  multiplicationConnectSlice.actions;
 
 export const multiplicationConnectSelector = (state: RootState) =>
   state.multiplicationConnect;

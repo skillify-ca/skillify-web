@@ -2,43 +2,25 @@ import React, { FC, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   multiplicationConnectSelector,
+  reloadGrid,
   togglePlayer,
 } from "../../../../redux/multiplicationConnectSlice";
 import DiceSection from "../../../../components/math/multiplicationConnect/DiceSection";
 import GameBoard from "../../../../components/math/multiplicationConnect/GameBoard";
 import GameBoardBlock from "../../../../components/math/multiplicationConnect/GameBoardBlock";
 import PlayerSection from "../../../../components/math/multiplicationConnect/PlayerSection";
-import {
-  SelectedBy,
-  calculateWinner,
-  createGrid,
-} from "../../../api/labs/games/multiplication-connect/gameLogic";
+import { calculateWinner } from "../../../api/labs/games/multiplication-connect/gameLogic";
 
 const Index: FC = () => {
-  const [grid, setGrid] = useState([]);
   const [newGame, setNewGame] = useState(0);
-
-  const { isPlayerOne } = useSelector(multiplicationConnectSelector);
+  const { grid, isPlayerOne } = useSelector(multiplicationConnectSelector);
   const dispatch = useDispatch();
-
-  console.log("isPlayerOne state: " + isPlayerOne);
 
   useEffect(() => {
     console.log(`newGame: ${newGame}`);
-    setGrid(createGrid);
+    dispatch(reloadGrid(grid));
     !isPlayerOne ? dispatch(togglePlayer(isPlayerOne)) : "";
   }, [newGame]);
-
-  const blockClick = (block: GameBoardBlock) => {
-    let newGrid = Array.from(grid);
-    isPlayerOne
-      ? (newGrid[newGrid.indexOf(block)].selectedBy = SelectedBy.PlayerOne)
-      : (newGrid[newGrid.indexOf(block)].selectedBy = SelectedBy.PlayerTwo);
-
-    setGrid(newGrid);
-    calculateWinner(grid, isPlayerOne);
-    dispatch(togglePlayer(isPlayerOne));
-  };
 
   return (
     <div className="flex flex-col justify-center max-w-5xl gap-4 mx-auto">
@@ -63,7 +45,7 @@ const Index: FC = () => {
           📝 Game Rules
         </button>
       </div>
-      <GameBoard grid={grid} blockClick={blockClick} />
+      <GameBoard />
     </div>
   );
 };
