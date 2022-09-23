@@ -14,8 +14,6 @@ test("Test longest subarray - 1", async () => {
     },
   ];
   
-  getRangeValues(GameLevel.BEGINNER)
-
   //Act
   const result = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
   //Assert
@@ -62,8 +60,6 @@ test("Test the function outputs the longest consecutive line of elements", async
       state: BlockState.PLAYER_ONE_SELECTED,
     },
   ];
-
-  getRangeValues(GameLevel.BEGINNER)
 
   //Act
   const result = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
@@ -112,8 +108,6 @@ test("Test that the player with the longest line of consecutive squares wins the
     },
   ];
   //Act
-  getRangeValues(GameLevel.BEGINNER)
-
   const result = calculateWinner(array, 'input'); 
   //Assert
   expect(result).toBe('input' + ", you have Conquered!");
@@ -161,8 +155,7 @@ test("Test that the player with the longest line of consecutive squares wins the
     },
   ];
 
-  getRangeValues(GameLevel.BEGINNER)
-  //Act
+    //Act
   const result = calculateWinner(array, 'input');
   //Assert
   expect(result).toBe("Sorry, " + 'input' + " This round goes to Computer the Great...");
