@@ -1,5 +1,7 @@
 import React, { FC } from "react";
+import { useSelector } from "react-redux";
 import { SelectedBy } from "../../../pages/api/labs/games/multiplication-connect/gameLogic";
+import { multiplicationConnectSelector } from "../../../redux/multiplicationConnectSlice";
 
 interface GameBoardBlock {
   id: number;
@@ -10,14 +12,11 @@ interface GameBoardBlock {
 interface GameBoardBlockProps {
   blockData: GameBoardBlock;
   blockClick(block: GameBoardBlock): void;
-  isPlayerOne: boolean;
 }
 
-const GameBoardBlock: FC<GameBoardBlockProps> = ({
-  blockData,
-  blockClick,
-  isPlayerOne,
-}) => {
+const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData, blockClick }) => {
+  const { isPlayerOne } = useSelector(multiplicationConnectSelector);
+
   return (
     <div
       onClick={() => {

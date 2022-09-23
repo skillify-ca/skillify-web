@@ -1,4 +1,9 @@
 import React, { FC, useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  multiplicationConnectSelector,
+  togglePlayer,
+} from "../../../../redux/multiplicationConnectSlice";
 import DiceSection from "../../../../components/math/multiplicationConnect/DiceSection";
 import GameBoard from "../../../../components/math/multiplicationConnect/GameBoard";
 import GameBoardBlock from "../../../../components/math/multiplicationConnect/GameBoardBlock";
@@ -12,12 +17,16 @@ import {
 const Index: FC = () => {
   const [grid, setGrid] = useState([]);
   const [newGame, setNewGame] = useState(0);
-  const [isPlayerOne, setIsPlayerOne] = useState(true);
+
+  const { isPlayerOne } = useSelector(multiplicationConnectSelector);
+  const dispatch = useDispatch();
+
+  console.log("isPlayerOne state: " + isPlayerOne);
 
   useEffect(() => {
     console.log(`newGame: ${newGame}`);
     setGrid(createGrid);
-    setIsPlayerOne(true);
+    !isPlayerOne ? dispatch(togglePlayer(isPlayerOne)) : "";
   }, [newGame]);
 
   const blockClick = (block: GameBoardBlock) => {
@@ -28,7 +37,7 @@ const Index: FC = () => {
 
     setGrid(newGrid);
     calculateWinner(grid, isPlayerOne);
-    isPlayerOne ? setIsPlayerOne(false) : setIsPlayerOne(true);
+    dispatch(togglePlayer(isPlayerOne));
   };
 
   return (
@@ -54,11 +63,7 @@ const Index: FC = () => {
           📝 Game Rules
         </button>
       </div>
-      <GameBoard
-        grid={grid}
-        blockClick={blockClick}
-        isPlayerOne={isPlayerOne}
-      />
+      <GameBoard grid={grid} blockClick={blockClick} />
     </div>
   );
 };

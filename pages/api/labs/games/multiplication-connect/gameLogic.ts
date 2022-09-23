@@ -75,7 +75,7 @@ export const calculateWinner = (
     : grid.some((i) => i.selectedBy === SelectedBy.Unselected)
     ? (str = "No winner")
     : (str = "Draw");
-  // console.log(str);
+  console.log(str);
   return str;
 };
 
