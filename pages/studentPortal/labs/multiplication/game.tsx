@@ -26,9 +26,13 @@ import {
   calculateWinner,
   checkNumberNotSelected,
   GameBlockState,
-  gameLevelsMetaData,
   longestSubarray,
 } from "../../../api/longestStreak";
+import { useQuery } from "@apollo/client";
+import {
+  FetchGameLevelResponse,
+  FETCH_GAME_LEVEL,
+} from "../../../../graphql/longestStreak/fetchGameLevel";
 
 export function showEndGameImage(array: GameBlockState[]) {
   let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
@@ -58,9 +62,10 @@ export default function BlockComponentGallery() {
 
     dispatch(handlePlayerSelect(index));
   }
+  const { data, loading } = useQuery<FetchGameLevelResponse>(FETCH_GAME_LEVEL);
 
   useEffect(() => {
-    dispatch(initializeGame(GameLevel.BEGINNER));
+    dispatch(initializeGame(data.currentLevel));
   }, []);
 
   function handlePlayGame() {
@@ -69,8 +74,9 @@ export default function BlockComponentGallery() {
 
   function handleResetGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
-    dispatch(reset(GameLevel.BEGINNER));
-    dispatch(initializeGame(GameLevel.BEGINNER));
+
+    dispatch(reset(GameLevel.BEGINNER_ADVANCED));
+    dispatch(initializeGame(GameLevel.BEGINNER_ADVANCED));
   }
   function handleCalculateWinner() {
     dispatch(setStage(STAGE.CALCULATE_WINNER));
