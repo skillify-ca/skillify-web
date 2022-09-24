@@ -111,6 +111,21 @@ export async function getServerSideProps({ params }) {
         "Don't watch this solution, until you've attempted the challenge above",
     },
 
+    {
+      title: "Pokemon Battle",
+      link: "/coding/JavaScript/JsFunctions/PokemonBattle/pokemonbattle-practice.js",
+      image: "/images/pokemon.jpg",
+      description:
+        "A problem involving calculating the score of a basketball game!"
+    },
+    {
+      title: "Pokemon Solution",
+      link: "/coding/JavaScript/JsFunctions/PokemonBattle/pokemonbattle-correct.js",
+      image: "/images/pokemon.jpg",
+      description:
+        "Don't watch this solution, until you've attempted the challenge above",
+    },
+
     
     
 
