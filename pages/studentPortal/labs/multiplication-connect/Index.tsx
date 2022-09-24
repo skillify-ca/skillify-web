@@ -1,125 +1,25 @@
-import { indexOf } from "lodash";
 import React, { FC, useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  multiplicationConnectSelector,
+  reloadGrid,
+  togglePlayer,
+} from "../../../../redux/multiplicationConnectSlice";
 import DiceSection from "../../../../components/math/multiplicationConnect/DiceSection";
 import GameBoard from "../../../../components/math/multiplicationConnect/GameBoard";
-import GameBoardBlock from "../../../../components/math/multiplicationConnect/GameBoardBlock";
 import PlayerSection from "../../../../components/math/multiplicationConnect/PlayerSection";
-import { getRandomItemFromArray } from "../../../api/random";
-
-export enum SelectedBy {
-  Unselected = "UNSELECTED",
-  PlayerOne = "PLAYERONE",
-  PlayerTwo = "PLAYERTWO",
-}
-
-export const calculateWinner = (
-  grid: GameBoardBlock[],
-  isPlayerOne: boolean
-): string => {
-  let rows = [
-    grid.filter((i) => i.id >= 0 && i.id < 5),
-    grid.filter((i) => i.id >= 5 && i.id < 10),
-    grid.filter((i) => i.id >= 10 && i.id < 15),
-    grid.filter((i) => i.id >= 15 && i.id < 20),
-    grid.filter((i) => i.id >= 20 && i.id < 25),
-    grid.filter((i) => i.id >= 25 && i.id < 30),
-    grid.filter((i) => i.id >= 30 && i.id < 35),
-  ];
-  let player: SelectedBy;
-  // check for a PlayerOne or PlayerTwo win based on the current player state
-  isPlayerOne
-    ? (player = SelectedBy.PlayerOne)
-    : (player = SelectedBy.PlayerTwo);
-  let str: string;
-  for (let i = 0; i < rows.length; i++) {
-    // rows.length == board height == 7
-    // rows[i].length == board width == 5
-    for (let index = 0; index < rows[i].length - 3; index++) {
-      // Horizontal check
-      rows[i][index].selectedBy == player &&
-      rows[i][index + 1].selectedBy == player &&
-      rows[i][index + 2].selectedBy == player &&
-      rows[i][index + 3].selectedBy == player
-        ? (str = `${player} (horizontal) Four in a row!`)
-        : "";
-    }
-    if (i < rows.length - 3) {
-      // Vertical check
-      for (let index = 0; index < rows[i].length; index++) {
-        rows[i][index].selectedBy == player &&
-        rows[i + 1][index].selectedBy == player &&
-        rows[i + 2][index].selectedBy == player &&
-        rows[i + 3][index].selectedBy == player
-          ? (str = `${player} (vertical) Four in a row!`)
-          : "";
-      }
-    }
-    if (i >= 3) {
-      // Ascending diagonal check
-      for (let index = 0; index < rows[i].length - 3; index++) {
-        rows[i][index].selectedBy == player &&
-        rows[i - 1][index + 1].selectedBy == player &&
-        rows[i - 2][index + 2].selectedBy == player &&
-        rows[i - 3][index + 3].selectedBy == player
-          ? (str = `${player} (ascending diagonal) Four in a row!`)
-          : "";
-      }
-      // Descending diagonal check
-      for (let index = 3; index < rows[i].length; index++) {
-        rows[i][index].selectedBy == player &&
-        rows[i - 1][index - 1].selectedBy == player &&
-        rows[i - 2][index - 2].selectedBy == player &&
-        rows[i - 3][index - 3].selectedBy == player
-          ? (str = `${player} (descending diagonal) Four in a row!`)
-          : "";
-      }
-    }
-  }
-  str
-    ? ""
-    : grid.some((i) => i.selectedBy === SelectedBy.Unselected)
-    ? (str = "No winner")
-    : (str = "Draw");
-  // console.log(str);
-  return str;
-};
-
-export const createGrid = () => {
-  let arr = [];
-  let newGrid = [];
-  for (let i = 4; i < 25; i++) i % 2 === 0 ? arr.push(i) : "";
-  for (let i = 0; i < 35; i++) {
-    let gridNumber = getRandomItemFromArray(arr);
-    newGrid.push({
-      id: i,
-      gridNumber: gridNumber,
-      selectedBy: SelectedBy.Unselected,
-    });
-  }
-  return newGrid;
-};
+import { calculateWinner } from "../../../api/labs/games/multiplication-connect/gameLogic";
 
 const Index: FC = () => {
-  const [grid, setGrid] = useState([]);
   const [newGame, setNewGame] = useState(0);
-  const [isPlayerOne, setIsPlayerOne] = useState(true);
+  const { grid, isPlayerOne } = useSelector(multiplicationConnectSelector);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     console.log(`newGame: ${newGame}`);
-    setGrid(createGrid);
-    setIsPlayerOne(true);
+    dispatch(reloadGrid(grid));
+    !isPlayerOne ? dispatch(togglePlayer(isPlayerOne)) : "";
   }, [newGame]);
-
-  const blockClick = (block: GameBoardBlock) => {
-    let newGrid = Array.from(grid);
-    isPlayerOne
-      ? (newGrid[newGrid.indexOf(block)].selectedBy = SelectedBy.PlayerOne)
-      : (newGrid[newGrid.indexOf(block)].selectedBy = SelectedBy.PlayerTwo);
-
-    setGrid(newGrid);
-    calculateWinner(grid, isPlayerOne);
-    isPlayerOne ? setIsPlayerOne(false) : setIsPlayerOne(true);
-  };
 
   return (
     <div className="flex flex-col justify-center max-w-5xl gap-4 mx-auto">
@@ -144,11 +44,7 @@ const Index: FC = () => {
           📝 Game Rules
         </button>
       </div>
-      <GameBoard
-        grid={grid}
-        blockClick={blockClick}
-        isPlayerOne={isPlayerOne}
-      />
+      <GameBoard />
     </div>
   );
 };
