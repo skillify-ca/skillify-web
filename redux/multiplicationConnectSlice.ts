@@ -7,9 +7,21 @@ import {
 } from "../pages/api/labs/games/multiplication-connect/gameLogic";
 import GameBoardBlock from "../components/math/multiplicationConnect/GameBoardBlock";
 
+/* todo: flesh this out and implement in Index like Kari's game.tsx
+    - include this in State after
+    - add string like SelectedBy type (if it makes more sense when debugging)
+ */
+export enum Stage {
+  WELCOME, //fading overlay welcome message (with Inter or sans font)
+  GAME_PLAY,
+  GAME_RULES, //
+  GAME_WIN, //
+}
+
 export interface MultiplicationConnectState {
   isPlayerOne: boolean;
   grid: GameBoardBlock[];
+  stage: Stage;
 }
 
 /* todo: Change states to use Redux:
@@ -24,6 +36,7 @@ export interface MultiplicationConnectState {
 const initialState: MultiplicationConnectState = {
   isPlayerOne: true,
   grid: createGrid(),
+  stage: Stage.WELCOME,
 };
 
 export const multiplicationConnectSlice: Slice = createSlice({
@@ -38,21 +51,25 @@ export const multiplicationConnectSlice: Slice = createSlice({
       action: PayloadAction<GameBoardBlock>
     ) => {
       const block = action.payload as GameBoardBlock;
-      // console.log(current(state.grid[block.id]));
       state.isPlayerOne
         ? (state.grid[block.id].selectedBy = SelectedBy.PlayerOne)
         : (state.grid[block.id].selectedBy = SelectedBy.PlayerTwo);
       calculateWinner(state.grid, state.isPlayerOne);
-      // can't dispatch here, but could toggle state instead
-      // togglePlayer(state.isPlayerOne);
     },
     togglePlayer: (state: MultiplicationConnectState) => {
       state.isPlayerOne = !state.isPlayerOne;
     },
+    setStage: (
+      state: MultiplicationConnectState,
+      action: PayloadAction<Stage>
+    ) => {
+      const gameStage = action.payload as Stage;
+      state.stage = gameStage;
+    },
   },
 });
 
-export const { togglePlayer, reloadGrid, blockClick } =
+export const { togglePlayer, reloadGrid, blockClick, setStage } =
   multiplicationConnectSlice.actions;
 
 export const multiplicationConnectSelector = (state: RootState) =>
