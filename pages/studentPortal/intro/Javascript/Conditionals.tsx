@@ -116,7 +116,7 @@ export async function getServerSideProps({ params }) {
       link: "/coding/JavaScript/JsFunctions/PokemonBattle/pokemonbattle-practice.js",
       image: "/images/pokemon.jpg",
       description:
-        "A problem involving calculating the score of a basketball game!"
+        "A problem involving finding out the winner of a pokemon battle!"
     },
     {
       title: "Pokemon Solution",
