@@ -20,7 +20,7 @@ const Modal = ({ type, closeModal, children }) => {
         <>
           {/* // Overlay */}
           <div
-            className="fixed top-0 bottom-0 left-0 right-0 z-50 -mb-[30rem] bg-black-500/20"
+            className="fixed top-0 bottom-0 left-0 right-0 z-50 -mb-[28rem] bg-black-500/20 "
             onClick={closeModal}
           />
           {/* // Modal pop-up with button */}
@@ -35,6 +35,19 @@ const Modal = ({ type, closeModal, children }) => {
                 Close
               </button>
             </div>
+          </div>
+        </>
+      ) : type === "fullscreen" ? (
+        <>
+          <div
+            className="cursor-pointer fixed top-0 bottom-0 left-0 right-0 z-10 -mb-[28rem] bg-black-500/40 backdrop-blur-md"
+            onClick={closeModal}
+          />
+          <div
+            className="fixed z-50 flex flex-col justify-center gap-10 font-black text-[2.25rem] w-2/3 drop-shadow-2xl text-white text-center -translate-x-1/2 -translate-y-1/2 top-[40%] left-1/2"
+            onClick={closeModal}
+          >
+            {children}
           </div>
         </>
       ) : (

@@ -12,10 +12,10 @@ import GameBoardBlock from "../components/math/multiplicationConnect/GameBoardBl
     - add string like SelectedBy type (if it makes more sense when debugging)
  */
 export enum Stage {
-  WELCOME, //fading overlay welcome message (with Inter or sans font)
-  GAME_PLAY,
-  GAME_RULES, //
-  GAME_WIN, //
+  WELCOME = "WELCOME", //fading overlay welcome message (with Inter or sans font)
+  GAME_PLAY = "GAME_PLAY",
+  GAME_RULES = "GAME_RULES", //
+  GAME_WIN = "GAME_WIN", //
 }
 
 export interface MultiplicationConnectState {
@@ -64,6 +64,7 @@ export const multiplicationConnectSlice: Slice = createSlice({
       action: PayloadAction<Stage>
     ) => {
       const gameStage = action.payload as Stage;
+      console.log(state.stage + " > " + gameStage);
       state.stage = gameStage;
     },
   },

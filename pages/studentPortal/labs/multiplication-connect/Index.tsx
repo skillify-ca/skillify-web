@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   multiplicationConnectSelector,
   reloadGrid,
+  setStage,
   Stage,
   togglePlayer,
 } from "../../../../redux/multiplicationConnectSlice";
@@ -34,11 +35,16 @@ const Index: FC = () => {
           - need to make className hidden on userClick
     */
     <div className="">
-      {/* {stage === Stage.WELCOME && (
-        <Modal closeModal={""}>Welcome to Multiplication Connect Four!</Modal>
+      {stage === Stage.WELCOME && (
+        <Modal
+          type="fullscreen"
+          closeModal={() => dispatch(setStage(Stage.GAME_PLAY))}
+        >
+          <p>Welcome to Multiplication Connect Four!</p>
+        </Modal>
         // Build as a normal modal first then style
         // Need to pass something to Modal here that changes the Stage
-      )} */}
+      )}
 
       <div className="flex flex-col justify-center max-w-5xl gap-4 mx-auto">
         <h1 className="mx-10 mb-3 text-4xl font-bold text-center drop-shadow-lg shadow-black-500">
