@@ -89,13 +89,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
         }}
       />
       {/* <!-- End Google Tag Manager --> */}
-      {/* <!-- Google Tag Manager (noscript) --> */}
-      <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WD9273S"
-          height="0" width="0" style={{display:"none", visibility:"hidden"}}>
-        </iframe>
-      </noscript>
-      {/* <!-- End Google Tag Manager (noscript) --> */}
+
       <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
         <ReduxProvider store={store}>
           <AuthProvider>
