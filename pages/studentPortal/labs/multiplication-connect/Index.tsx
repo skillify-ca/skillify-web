@@ -16,7 +16,6 @@ import { Button } from "../../../../components/ui/Button";
 
 const Index: FC = () => {
   const [newGame, setNewGame] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { grid, isPlayerOne, stage } = useSelector(
     multiplicationConnectSelector
   );
@@ -34,7 +33,7 @@ const Index: FC = () => {
       setStage === GAME_PLAY -- when either user clicks and dismisses entry animation OR animations are over
           - need to make className hidden on userClick
     */
-    <div className="">
+    <main className="">
       {stage === Stage.WELCOME && (
         <Modal
           type="fullscreen"
@@ -63,33 +62,34 @@ const Index: FC = () => {
           <button
             type="button"
             className="font-mono font-bold text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-            onClick={() => {}}
+            onClick={() => dispatch(setStage(Stage.GAME_RULES))}
           >
-            🛠📝 Game Rules
+            📝 Game Rules
           </button>
-          <button
-            type="button"
-            className="font-mono font-bold text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-            onClick={() => {
-              setIsModalOpen(true);
-            }}
-          >
-            🛠 Open Modal
-          </button>
+          {stage === Stage.GAME_RULES && (
+            <Modal
+              type="centered"
+              closeModal={() => dispatch(setStage(Stage.GAME_PLAY))}
+            >
+              <section>
+                <h2 className="text-4xl font-bold">Game Rules</h2>
+                <ol className="pt-8 space-y-2 list-decimal">
+                  <li>Roll two dice.</li>
+                  <li>Add the numbers together, and multiply by 2.</li>
+                  <li>Select this number within a block in the game.</li>
+                  <li>Repeat for the next player.</li>
+                  <li>
+                    Play until a player connect 4 squares in a row (vertically,
+                    horizontally, or diagonally) to win the game.
+                  </li>
+                </ol>
+              </section>
+            </Modal>
+          )}
         </div>
-        {isModalOpen && (
-          <Modal type="centered" closeModal={() => setIsModalOpen(false)}>
-            <div className="px-20">
-              <h2 className="text-2xl font-bold">
-                This is an example Modal with an overlay
-              </h2>
-              <p>that's conditionally rendered</p>
-            </div>
-          </Modal>
-        )}
         <GameBoard />
       </div>
-    </div>
+    </main>
   );
 };
 

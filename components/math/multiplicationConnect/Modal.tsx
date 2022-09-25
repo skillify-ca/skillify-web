@@ -20,11 +20,11 @@ const Modal = ({ type, closeModal, children }) => {
         <>
           {/* // Overlay */}
           <div
-            className="fixed top-0 bottom-0 left-0 right-0 z-50 -mb-[28rem] bg-black-500/20 "
+            className="fixed top-0 bottom-0 left-0 right-0 z-50 -mb-[28rem] bg-black-500/30"
             onClick={closeModal}
           />
           {/* // Modal (dialog pop-up with prompts) */}
-          <div className="fixed z-50 backdrop-blur-3xl flex flex-col justify-center w-7/12 gap-10 p-12 -translate-x-1/2 -translate-y-1/2 shadow-[0_0px_50px_40px_rgba(0,0,0,0.3)] rounded-xl h-1/2 top-1/2 left-1/2 bg-sky-800/30">
+          <div className="fixed z-50 backdrop-blur-xl flex flex-col justify-center w-7/12 gap-24 p-14 -translate-x-1/2 -translate-y-1/2 shadow-[0_0px_50px_40px_rgba(0,0,0,0.3)] rounded-xl h-1/2 top-1/2 left-1/2 bg-sky-800/60">
             {children}
             <div className="flex justify-center">
               <button
