@@ -41,14 +41,14 @@ const Modal = ({ type, closeModal, children }) => {
         <>
           {/* Overlay */}
           <div
-            className="cursor-pointer fixed top-0 bottom-0 left-0 right-0 z-10 -mb-[28rem] bg-black-500/20 backdrop-blur-md"
+            className="cursor-pointer fixed top-0 bottom-0 left-0 right-0 z-10 -mb-[28rem] bg-black-500/30 backdrop-blur-sm"
             onClick={closeModal}
           />
           {/* Modal */}
           {/* current gradient: from-[#ffcf00]/90 to-[#ffed5b]/100
            */}
           <div
-            className="fixed z-50 flex flex-col justify-center gap-10 font-bold text-transparent bg-clip-text bg-gradient-to-tr from-[#F20000]/80 via-[#ffcf00]/100 to-[#ffed5b]/100 text-5xl w-full text-center -translate-x-1/2 -translate-y-1/2 top-[40%] left-1/2"
+            className="fixed drop-shadow-2xl z-50 flex flex-col justify-center gap-10 font-bold text-transparent bg-clip-text bg-gradient-to-tr from-[#F20000]/80 via-[#ffcf00]/100 to-[#ffed5b]/100 text-5xl w-full text-center -translate-x-1/2 -translate-y-1/2 top-[40%] left-1/2"
             onClick={closeModal}
           >
             {children}
