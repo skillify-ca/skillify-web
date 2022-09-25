@@ -11,6 +11,7 @@ import GameBoard from "../../../../components/math/multiplicationConnect/GameBoa
 import PlayerSection from "../../../../components/math/multiplicationConnect/PlayerSection";
 import { calculateWinner } from "../../../api/labs/games/multiplication-connect/gameLogic";
 import Modal from "../../../../components/math/multiplicationConnect/Modal";
+import { Button } from "../../../../components/ui/Button";
 
 const Index: FC = () => {
   const [newGame, setNewGame] = useState(0);
@@ -71,7 +72,7 @@ const Index: FC = () => {
           </button>
         </div>
         {isModalOpen && (
-          <Modal closeModal={() => setIsModalOpen(false)}>
+          <Modal type="centered" closeModal={() => setIsModalOpen(false)}>
             <div className="px-20">
               <h2 className="text-2xl font-bold">
                 This is an example Modal with an overlay
