@@ -76,7 +76,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
       />
       {/* <!-- Google Tag Manager --> */}
        <Script
-        id="fb-pixel"
+        id="google-tag-manager"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
