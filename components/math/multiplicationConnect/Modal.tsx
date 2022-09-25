@@ -17,16 +17,16 @@ const Modal = ({ type, closeModal, children }) => {
   return (
     <>
       {type === "centered" ? (
-        <>
+        <div className="duration-1000 ease-out delay-500 opacity-100">
           {/* // Overlay */}
           <div
             className="fixed top-0 bottom-0 left-0 right-0 z-50 -mb-[28rem] bg-black-500/30"
             onClick={closeModal}
           />
-          {/* // Modal (dialog pop-up with prompts) */}
+          {/* // Modal (pop-up with buttons) */}
           <div
             className="fixed z-50 backdrop-blur-xl flex flex-col justify-center w-7/12 gap-24 p-14 -translate-x-1/2 -translate-y-1/2 
-              shadow-[0_0px_50px_40px_rgba(0,0,0,0.3)] rounded-xl h-1/2 top-1/2 left-1/2 bg-sky-800/60"
+              shadow-[0_0px_50px_40px_rgba(0,0,0,0.3)] rounded-xl h-1/2 top-1/2 left-1/2 bg-sky-700/60 text-white"
           >
             {children}
             <div className="flex justify-center">
@@ -42,7 +42,7 @@ const Modal = ({ type, closeModal, children }) => {
               </button>
             </div>
           </div>
-        </>
+        </div>
       ) : (
         type === "fullscreen" && (
           <div className="duration-1000 ease-out delay-500 opacity-100 hover:opacity-0">
@@ -52,12 +52,6 @@ const Modal = ({ type, closeModal, children }) => {
               onClick={closeModal}
             />
             {/* Modal */}
-            {/*
-          current: bg-gradient-to-tr from-[#F20000]/80 via-[#ffcf00]/100 to-[#ffed5b]/100 
-          yellow: from-[#ffcf00]/90 to-[#ffed5b]/100
-          new: 
-            
-           */}
             <div
               className="fixed drop-shadow-2xl z-50 flex flex-col justify-center gap-10 font-bold text-transparent bg-clip-text 
                 bg-gradient-to-tr from-[#F20000]/80 via-[#ffcf00]/100 to-[#ffed5b]/100 text-5xl w-full text-center -translate-x-1/2 
