@@ -32,9 +32,10 @@ const Index: FC = () => {
       setStage === GAME_PLAY -- when either user clicks and dismisses entry animation OR animations are over
           - need to make className hidden on userClick
     */
-    <div>
+    <div className="">
       {/* {stage === Stage.WELCOME && (
         <Modal closeModal={""}>Welcome to Multiplication Connect Four!</Modal>
+        // Build as a normal modal first then style
         // Need to pass something to Modal here that changes the Stage
       )} */}
 
@@ -75,10 +76,7 @@ const Index: FC = () => {
               <h2 className="text-2xl font-bold">
                 This is an example Modal with an overlay
               </h2>
-              <p>
-                that's also conditionally rendered and uses React Portal API to
-                do so
-              </p>
+              <p>that's conditionally rendered</p>
             </div>
           </Modal>
         )}
