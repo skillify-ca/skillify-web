@@ -66,6 +66,7 @@ const Index: FC = () => {
           >
             📝 Game Rules
           </button>
+
           {stage === Stage.GAME_RULES && (
             <Modal
               type="centered"
