@@ -23,7 +23,7 @@ const Modal = ({ type, closeModal, children }) => {
             className="fixed top-0 bottom-0 left-0 right-0 z-50 -mb-[28rem] bg-black-500/20 "
             onClick={closeModal}
           />
-          {/* // Modal pop-up with button */}
+          {/* // Modal (dialog pop-up with prompts) */}
           <div className="fixed z-50 backdrop-blur-3xl flex flex-col justify-center w-7/12 gap-10 p-12 -translate-x-1/2 -translate-y-1/2 shadow-[0_0px_50px_40px_rgba(0,0,0,0.3)] rounded-xl h-1/2 top-1/2 left-1/2 bg-sky-800/30">
             {children}
             <div className="flex justify-center">
@@ -39,12 +39,16 @@ const Modal = ({ type, closeModal, children }) => {
         </>
       ) : type === "fullscreen" ? (
         <>
+          {/* Overlay */}
           <div
-            className="cursor-pointer fixed top-0 bottom-0 left-0 right-0 z-10 -mb-[28rem] bg-black-500/40 backdrop-blur-md"
+            className="cursor-pointer fixed top-0 bottom-0 left-0 right-0 z-10 -mb-[28rem] bg-black-500/20 backdrop-blur-md"
             onClick={closeModal}
           />
+          {/* Modal */}
+          {/* current gradient: from-[#ffcf00]/90 to-[#ffed5b]/100
+           */}
           <div
-            className="fixed z-50 flex flex-col justify-center gap-10 font-black text-[2.25rem] w-2/3 drop-shadow-2xl text-white text-center -translate-x-1/2 -translate-y-1/2 top-[40%] left-1/2"
+            className="fixed z-50 flex flex-col justify-center gap-10 font-bold text-transparent bg-clip-text bg-gradient-to-tr from-[#F20000]/80 via-[#ffcf00]/100 to-[#ffed5b]/100 text-5xl w-full text-center -translate-x-1/2 -translate-y-1/2 top-[40%] left-1/2"
             onClick={closeModal}
           >
             {children}

@@ -1,7 +1,5 @@
-
 import { Button } from "../../ui/Button";
 import { useState, FC } from "react";
-
 
 const diceRoll = () => {
   return Math.floor(Math.random() * 6 + 1);

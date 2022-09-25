@@ -47,7 +47,7 @@ const Index: FC = () => {
       )}
 
       <div className="flex flex-col justify-center max-w-5xl gap-4 mx-auto">
-        <h1 className="mx-10 mb-3 text-4xl font-bold text-center drop-shadow-lg shadow-black-500">
+        <h1 className="mx-10 mb-3 text-3xl font-bold text-center drop-shadow-lg shadow-black-500">
           Multiplication Connect Four 🔴🟡
         </h1>
         <PlayerSection />
