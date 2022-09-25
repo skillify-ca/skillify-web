@@ -97,7 +97,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
         }}
       />
       <noscript>
-        <img height="1" width="1" style="display:none;" alt="" src={`https://px.ads.linkedin.com/collect/?pid=${process.env.NEXT_PUBLIC_LINKED_PX_ID}&fmt=gif`} />
+        <img height="1" width="1" style={{display: "none"}} alt="" src={`https://px.ads.linkedin.com/collect/?pid=${process.env.NEXT_PUBLIC_LINKED_PX_ID}&fmt=gif`} />
       </noscript>
       <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
         <ReduxProvider store={store}>
