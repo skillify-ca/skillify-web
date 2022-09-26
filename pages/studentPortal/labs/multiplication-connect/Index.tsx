@@ -7,9 +7,8 @@ import {
   Stage,
   togglePlayer,
 } from "../../../../redux/multiplicationConnectSlice";
-import DiceSection from "../../../../components/math/multiplicationConnect/DiceSection";
+import PlayerAndDice from "../../../../components/math/multiplicationConnect/PlayerAndDice";
 import GameBoard from "../../../../components/math/multiplicationConnect/GameBoard";
-import PlayerSection from "../../../../components/math/multiplicationConnect/PlayerSection";
 import { calculateWinner } from "../../../api/labs/games/multiplication-connect/gameLogic";
 import Modal from "../../../../components/math/multiplicationConnect/Modal";
 import { Button } from "../../../../components/ui/Button";
@@ -19,7 +18,6 @@ const Index: FC = () => {
   const { grid, isPlayerOne, stage } = useSelector(
     multiplicationConnectSelector
   );
-  const ref = useRef<HTMLButtonElement>();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,13 +26,7 @@ const Index: FC = () => {
     !isPlayerOne ? dispatch(togglePlayer(isPlayerOne)) : "";
   }, [newGame]);
 
-  const animateButton = () => {
-    ref.current.classList.add("animate-bounce");
-  };
-
   return (
-    /* todo: dispatch & set the stage state
-     */
     <main>
       {stage === Stage.WELCOME && (
         <Modal
@@ -49,23 +41,23 @@ const Index: FC = () => {
         <h1 className="mx-10 mb-3 text-3xl font-bold text-center drop-shadow-lg shadow-black-500">
           Multiplication Connect Four 🔴🟡
         </h1>
-        <PlayerSection />
-        <DiceSection />
+        <PlayerAndDice />
+
         <div className="flex pt-5 pb-3 justify-evenly">
           <button
             type="button"
-            className="font-mono font-bold text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            className="ring-2 ring-sky-400 font-mono font-bold text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             onClick={() => setNewGame((prev) => prev + 1)}
           >
             🔄 New Game
           </button>
           <button
-            ref={ref}
             type="button"
-            className={`z-10 font-mono font-bold text-gray-900 bg-white border border-gray-300 focus:outline-none 
+            className={`z-10 ring-2 ring-amber-400 font-mono font-bold text-gray-900 bg-white border border-gray-300 focus:outline-none 
                 hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 
                 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700
                 ${stage === Stage.WELCOME && "animate-bounce"}`}
+            // animate-[bounce_2s_ease-in-out_forward]
             onClick={() => dispatch(setStage(Stage.GAME_RULES))}
           >
             📝 Game Rules
@@ -89,7 +81,10 @@ const Index: FC = () => {
             </Modal>
           )}
         </div>
-        <GameBoard />
+
+        <div className="px-20 pb-10">
+          <GameBoard />
+        </div>
       </div>
     </main>
   );

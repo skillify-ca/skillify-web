@@ -12,15 +12,11 @@ const Modal = ({ type, closeModal, children }) => {
   const ref = useRef<HTMLDivElement>();
 
   const fadeOut = (ref) => {
-    // Why error?
-    console.log("REF OUTSIDE: ", ref);
-
     setTimeout(() => {
       if (ref.current) {
         ref.current.style.opacity = "0";
       }
     }, 500);
-    // ref.current.style.opacity = "0";
   };
 
   return (
@@ -28,9 +24,8 @@ const Modal = ({ type, closeModal, children }) => {
       {type === "centered" ? (
         <section className="fixed z-50">
           {/* // Overlay */}
-          {/* try to disable scrolling on modal pop-uop */}
           <div
-            className="fixed top-0 bottom-0 left-0 right-0 z-50 -mb-[28rem] bg-black-500/30"
+            className="fixed top-0 bottom-0 left-0 right-0 z-50 -mb-[28rem] bg-black-500/10"
             onClick={closeModal}
           />
           {/* // Modal (pop-up with buttons) */}
@@ -63,7 +58,7 @@ const Modal = ({ type, closeModal, children }) => {
             onTransitionEnd={closeModal}
           >
             {/* Overlay */}
-            <div className="fixed top-0 bottom-0 left-0 right-0 z-10 -mb-[28rem] bg-gradient-to-b from-amber-600/10 to-black-500 backdrop-blur-md" />
+            <div className="fixed top-0 bottom-0 left-0 right-0 z-10 -mb-[28rem] bg-gradient-to-b from-amber-600/5 to-black-500 backdrop-blur-lg" />
             {/* Modal */}
             <div
               className="fixed drop-shadow-2xl z-50 flex flex-col justify-center gap-10 font-bold text-transparent bg-clip-text 
