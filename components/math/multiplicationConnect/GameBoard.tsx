@@ -14,6 +14,7 @@ const GameBoard: FC = () => {
             key={blockData.id}
             className={`border-r-2 border-b-2 md:h-32 sm:h-24 h-20 border-b-[#149ECA] border-r-[#149ECA] bg-gradient-to-br from-blue-800  to-indigo-900
                 ${
+                  // To round the corners of the GameBoard
                   blockData.id === 0
                     ? "rounded-tl-[14px]"
                     : blockData.id === 4

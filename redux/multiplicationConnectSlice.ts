@@ -12,10 +12,10 @@ import GameBoardBlock from "../components/math/multiplicationConnect/GameBoardBl
     - add string like SelectedBy type (if it makes more sense when debugging)
  */
 export enum Stage {
-  WELCOME = "WELCOME", //fading overlay welcome message (with Inter or sans font)
+  WELCOME = "WELCOME",
   GAME_PLAY = "GAME_PLAY",
-  GAME_RULES = "GAME_RULES", //
-  GAME_WIN = "GAME_WIN", //
+  GAME_RULES = "GAME_RULES",
+  GAME_WIN = "GAME_WIN",
 }
 
 export interface MultiplicationConnectState {

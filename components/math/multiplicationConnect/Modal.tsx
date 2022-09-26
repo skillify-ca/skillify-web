@@ -1,31 +1,41 @@
-import React from "react";
+import React, { useRef } from "react";
 
-/* todo: Modal following WDS tutorial using React portals
-    - refer to tailwindelements styling
-    - move isModalOpenState to Redux
+/* todo: 
     - make modals responsive
     - add transitions
     - fix negative margin/padding-bottom -- might be able to calculate based on window size
+    - add typescript for inputs
 */
 const Modal = ({ type, closeModal, children }) => {
-  /*  - setup to return modal depending on modalType passed as prop
-           * centered -- centered div w button
-           * fullscreen -- black overlay, big font, and fades away changing stage after interval
-      - MORE: alert in corner, game win modal
-  */
+  /*  - MORE: alert in corner, game win modal
+   */
+  const ref = useRef<HTMLDivElement>();
+
+  const fadeOut = (ref) => {
+    // Why error?
+    console.log("REF OUTSIDE: ", ref);
+
+    setTimeout(() => {
+      if (ref.current) {
+        ref.current.style.opacity = "0";
+      }
+    }, 500);
+    // ref.current.style.opacity = "0";
+  };
 
   return (
     <>
       {type === "centered" ? (
-        <div className="duration-1000 ease-out delay-500 opacity-100">
+        <section className="fixed z-50">
           {/* // Overlay */}
+          {/* try to disable scrolling on modal pop-uop */}
           <div
             className="fixed top-0 bottom-0 left-0 right-0 z-50 -mb-[28rem] bg-black-500/30"
             onClick={closeModal}
           />
           {/* // Modal (pop-up with buttons) */}
           <div
-            className="fixed z-50 backdrop-blur-xl flex flex-col justify-center w-7/12 gap-24 p-14 -translate-x-1/2 -translate-y-1/2 
+            className="fixed z-50 backdrop-blur-xl flex flex-col justify-center w-7/12 gap-10 p-14 -translate-x-1/2 -translate-y-1/2 
               shadow-[0_0px_50px_40px_rgba(0,0,0,0.3)] rounded-xl h-1/2 top-1/2 left-1/2 bg-sky-700/60 text-white"
           >
             {children}
@@ -42,25 +52,27 @@ const Modal = ({ type, closeModal, children }) => {
               </button>
             </div>
           </div>
-        </div>
+        </section>
       ) : (
         type === "fullscreen" && (
-          <div className="duration-1000 ease-out delay-500 opacity-100 hover:opacity-0">
+          // onMouseMove setTimeout(500, and toggle div className to hide)
+          <section
+            ref={ref}
+            className="transition-opacity duration-200 ease-in"
+            onMouseMove={() => fadeOut(ref)}
+            onTransitionEnd={closeModal}
+          >
             {/* Overlay */}
-            <div
-              className="cursor-pointer fixed top-0 bottom-0 left-0 right-0 z-10 -mb-[28rem] bg-gradient-to-b from-amber-600/10 to-black-500 backdrop-blur-sm"
-              onClick={closeModal}
-            />
+            <div className="fixed top-0 bottom-0 left-0 right-0 z-10 -mb-[28rem] bg-gradient-to-b from-amber-600/10 to-black-500 backdrop-blur-md" />
             {/* Modal */}
             <div
               className="fixed drop-shadow-2xl z-50 flex flex-col justify-center gap-10 font-bold text-transparent bg-clip-text 
                 bg-gradient-to-tr from-[#F20000]/80 via-[#ffcf00]/100 to-[#ffed5b]/100 text-5xl w-full text-center -translate-x-1/2 
-                -translate-y-1/2 top-[40%] left-1/2"
-              onClick={closeModal}
+                -translate-y-1/2 top-[32%] left-1/2"
             >
               {children}
             </div>
-          </div>
+          </section>
         )
       )}
     </>
