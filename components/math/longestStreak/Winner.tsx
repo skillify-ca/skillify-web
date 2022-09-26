@@ -23,13 +23,32 @@ export const Winner: React.FC<WinnerProps> = ({
 }) => {
   const [updateGameLevel] = useMutation(UPDATE_GAME_LEVEL);
 
+  function shouldIncrementLevel() {
+    // TODO implement this
+    return true;
+  }
+
+  function handleSaveGameClick() {
+    if (shouldIncrementLevel()) {
+      updateGameLevel({
+        variables: {
+          userId: user.uid,
+          currentLevel: 20,
+        },
+        onCompleted: () => {
+          alert("Your skill ratings have been saved successfully.");
+        },
+      });
+    }
+  }
+
   return (
     <div className="flex-row justify-center">
       <div className="flex justify-center animate-bounce space-y-6 py-4 bg-gradient-to-b bg-purple-700 hover:bg-purple-500 text-white px-3 font-bold text-xl border-b-4 rounded-lg active:border-b-2 cursor-pointer`">
         {winner}
       </div>
       <div className="flex justify-center"> {image}</div>
-      <p className="py-8 flex justify-center">
+      <p className="flex justify-center py-8">
         Remember... Practice makes perfect. Begin again!
       </p>
       <div className="flex justify-center">
@@ -41,17 +60,7 @@ export const Winner: React.FC<WinnerProps> = ({
         <Button
           backgroundColor="purple"
           label={"Save Game"}
-          onClick={() => {
-            updateGameLevel({
-              variables: {
-                userId: "tpnu03oxiadbDTj5NQjDLcIvweJ2",
-                currentLevel: 1,
-              },
-              onCompleted: () => {
-                alert("Your skill ratings have been saved successfully.");
-              },
-            });
-          }}
+          onClick={() => handleSaveGameClick()}
         />
       </div>
     </div>
