@@ -16,7 +16,7 @@ const Modal = ({ type, closeModal, children }) => {
       if (ref.current) {
         ref.current.style.opacity = "0";
       }
-    }, 500);
+    }, 750);
   };
 
   return (
@@ -58,7 +58,7 @@ const Modal = ({ type, closeModal, children }) => {
             onTransitionEnd={closeModal}
           >
             {/* Overlay */}
-            <div className="fixed top-0 bottom-0 left-0 right-0 z-10 -mb-[28rem] bg-gradient-to-b from-amber-600/5 to-black-500 backdrop-blur-lg" />
+            <div className="fixed top-0 bottom-0 left-0 right-0 z-20 -mb-[28rem] bg-gradient-to-b from-amber-600/5 to-black-500 backdrop-blur-lg" />
             {/* Modal */}
             <div
               className="fixed drop-shadow-2xl z-50 flex flex-col justify-center gap-10 font-bold text-transparent bg-clip-text 

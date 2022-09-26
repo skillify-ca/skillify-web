@@ -10,6 +10,7 @@ import {
 import PlayerAndDice from "../../../../components/math/multiplicationConnect/PlayerAndDice";
 import GameBoard from "../../../../components/math/multiplicationConnect/GameBoard";
 import Modal from "../../../../components/math/multiplicationConnect/Modal";
+import Settings from "../../../../components/math/multiplicationConnect/Settings";
 
 const Index: FC = () => {
   const [newGame, setNewGame] = useState(0);
@@ -41,24 +42,29 @@ const Index: FC = () => {
         </h1>
         <PlayerAndDice />
 
-        <div className="flex pt-5 pb-3 justify-evenly">
+        <div className="flex items-stretch items-center pt-5 pb-3 justify-evenly">
+          {/* Game settings: play solo/two player, toggle dark mode (figure out how to toggle in TW), view stats, restart (at bottom) */}
+          {/* line toggle for lazy/normal mode */}
+          <Settings />
           <button
             type="button"
-            className="ring-2 ring-sky-400 font-mono font-bold text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            className="ring-2 ring-sky-400 font-mono font-bold text-gray-900 bg-white border border-gray-300 focus:outline-none 
+              hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-5 py-2.5 dark:bg-gray-800 dark:text-white 
+              dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             onClick={() => setNewGame((prev) => prev + 1)}
           >
-            🔄 New Game
+            🔄 Restart
           </button>
           <button
             type="button"
-            className={`z-10 ring-2 ring-amber-400 font-mono font-bold text-gray-900 bg-white border border-gray-300 focus:outline-none 
-                hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 
+            className={`z-20 ring-2 ring-yellow-400 font-mono font-bold text-gray-900 bg-white border border-gray-300 focus:outline-none 
+                hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-5 py-2.5 dark:bg-gray-800 
                 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700
                 ${stage === Stage.WELCOME && "animate-bounce"}`}
             // animate-[bounce_2s_ease-in-out_forward]
             onClick={() => dispatch(setStage(Stage.GAME_RULES))}
           >
-            📝 Game Rules
+            📝 Rules
           </button>
           {stage === Stage.GAME_RULES && (
             <Modal
@@ -72,7 +78,7 @@ const Index: FC = () => {
                 <li>Select this number within a block in the game.</li>
                 <li>Repeat for the next player.</li>
                 <li>
-                  Play until a player connect 4 squares in a row (vertically,
+                  Play until a player connects 4 squares in a row (vertically,
                   horizontally, or diagonally) to win the game.
                 </li>
               </ol>

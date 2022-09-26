@@ -18,7 +18,13 @@ const DiceSection: FC = () => {
   const { isPlayerOne, stage } = useSelector(multiplicationConnectSelector);
 
   if (stage === Stage.GAME_PLAY) {
-    setTimeout(() => (ref.current.style.scale = "140%"), 200);
+    setTimeout(
+      () => (
+        (ref.current.style.scale = "170%"),
+        ref.current.classList.add("animate-bounce")
+      ),
+      200
+    );
     setTimeout(() => (ref.current.style.opacity = "0"), 4000);
     setTimeout(() => ref.current.classList.add("hidden"), 5000);
   }
@@ -47,7 +53,7 @@ const DiceSection: FC = () => {
       {/* Dice */}
       <div className="flex items-center justify-evenly">
         <div
-          className={`flex flex-col items-center justify-center w-40 h-40 gap-3 border-2 border-stone-500/25 -z-10 rounded-3xl bg-stone-300 text-black-500 drop-shadow-md ${
+          className={`flex flex-col items-center justify-center w-40 h-40 gap-3 border-2 border-stone-500/25 z-10 rounded-3xl bg-stone-300 text-black-500 drop-shadow-md ${
             shake && "animate-shake"
           }`}
         >
@@ -55,7 +61,7 @@ const DiceSection: FC = () => {
           <p className="text-2xl">{roll1}</p>
         </div>
         <div
-          className={`flex flex-col items-center justify-center w-40 h-40 gap-3 border-2 border-stone-500/25 -z-10 rounded-3xl bg-stone-300 text-black-500 drop-shadow-md ${
+          className={`flex flex-col items-center justify-center w-40 h-40 gap-3 border-2 border-stone-500/25 z-10 rounded-3xl bg-stone-300 text-black-500 drop-shadow-md ${
             shake && "animate-shake"
           }`}
           onAnimationEnd={() => setShake(false)}
@@ -64,11 +70,11 @@ const DiceSection: FC = () => {
           <p className="text-2xl">{roll2}</p>
         </div>
         <div className="flex flex-col items-center gap-5">
-          <div className="flex flex-col justify-center gap-2 p-5 text-center text-white bg-gradient-to-br from-blue-800/80 to-indigo-900/100 rounded-xl -z-10 drop-shadow-xl">
+          <div className="z-10 flex flex-col justify-center gap-2 p-5 text-center text-white bg-gradient-to-br from-blue-800/80 to-indigo-900/100 rounded-xl drop-shadow-xl">
             <p>Your Number:</p>
             <p className="text-3xl ">{(roll1 + roll2) * 2}</p>
           </div>
-          <div className="flex flex-col gap-3">
+          <div className="z-10">
             <Button
               label={"Roll Dice"}
               onClick={() => {
