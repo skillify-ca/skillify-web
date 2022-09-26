@@ -14,6 +14,7 @@ import Settings from "../../../../components/math/multiplicationConnect/Settings
 
 const Index: FC = () => {
   const [newGame, setNewGame] = useState(0);
+  const [isChecked, setIsChecked] = useState(true);
   const { grid, isPlayerOne, stage } = useSelector(
     multiplicationConnectSelector
   );
@@ -24,6 +25,8 @@ const Index: FC = () => {
     dispatch(reloadGrid(grid));
     !isPlayerOne ? dispatch(togglePlayer(isPlayerOne)) : "";
   }, [newGame]);
+
+  console.log(isChecked);
 
   return (
     <main>
@@ -42,7 +45,7 @@ const Index: FC = () => {
         </h1>
         <PlayerAndDice />
 
-        <div className="flex items-stretch items-center pt-5 pb-3 justify-evenly">
+        <div className="flex items-stretch pt-5 pb-3 justify-evenly">
           {/* Game settings: play solo/two player, toggle dark mode (figure out how to toggle in TW), view stats, restart (at bottom) */}
           {/* line toggle for lazy/normal mode */}
           <Settings />
@@ -55,6 +58,24 @@ const Index: FC = () => {
           >
             🔄 Restart
           </button>
+          <div className="flex items-center self-center gap-2">
+            <p className="font-mono text-sm">lazy</p>
+            <label
+              htmlFor="AcceptConditions"
+              className="relative h-6 cursor-pointer w-14"
+            >
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={() => setIsChecked(!isChecked)}
+                id="AcceptConditions"
+                className="sr-only peer"
+              />
+              <span className="absolute inset-0 h-1.5 my-auto bg-blue-400 rounded-full transition peer-checked:bg-blue-600"></span>
+              <span className="absolute inset-0 w-6 h-6 transition bg-white border border-blue-400 rounded-full peer-checked:translate-x-8 peer-checked:border-blue-600"></span>
+            </label>
+            <p className="font-mono text-sm">normal</p>
+          </div>
           <button
             type="button"
             className={`z-20 ring-2 ring-yellow-400 font-mono font-bold text-gray-900 bg-white border border-gray-300 focus:outline-none 
