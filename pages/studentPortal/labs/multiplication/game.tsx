@@ -30,14 +30,11 @@ import {
 } from "../../../api/longestStreak";
 import { useMutation, useQuery } from "@apollo/client";
 import {
-  CurrentLevelData,
   FetchGameLevelResponse,
   FETCH_GAME_LEVEL,
 } from "../../../../graphql/longestStreak/fetchGameLevel";
 import { useRouter } from "next/router";
-import { COMPLETE_GAME_LEVEL } from "../../../../graphql/longestStreak/completeGameLevel";
 import { useAuth } from "../../../../lib/authContext";
-import { UPDATE_GAME_LEVEL } from "../../../../graphql/longestStreak/updateGameLevel";
 
 export function showEndGameImage(array: GameBlockState[]) {
   let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);

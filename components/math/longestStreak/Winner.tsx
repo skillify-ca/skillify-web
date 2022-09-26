@@ -45,7 +45,10 @@ export const Winner: React.FC<WinnerProps> = ({
             updateGameLevel({
               variables: {
                 userId: "tpnu03oxiadbDTj5NQjDLcIvweJ2",
-                currentLevel: 5,
+                currentLevel: 1,
+              },
+              onCompleted: () => {
+                alert("Your skill ratings have been saved successfully.");
               },
             });
           }}
