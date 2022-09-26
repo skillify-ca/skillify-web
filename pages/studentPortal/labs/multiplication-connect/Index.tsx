@@ -9,9 +9,7 @@ import {
 } from "../../../../redux/multiplicationConnectSlice";
 import PlayerAndDice from "../../../../components/math/multiplicationConnect/PlayerAndDice";
 import GameBoard from "../../../../components/math/multiplicationConnect/GameBoard";
-import { calculateWinner } from "../../../api/labs/games/multiplication-connect/gameLogic";
 import Modal from "../../../../components/math/multiplicationConnect/Modal";
-import { Button } from "../../../../components/ui/Button";
 
 const Index: FC = () => {
   const [newGame, setNewGame] = useState(0);

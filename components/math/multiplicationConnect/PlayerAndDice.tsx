@@ -1,5 +1,10 @@
 import { Button } from "../../ui/Button";
-import { useState, FC } from "react";
+import { useState, FC, useRef } from "react";
+import { useSelector } from "react-redux";
+import {
+  multiplicationConnectSelector,
+  Stage,
+} from "../../../redux/multiplicationConnectSlice";
 
 const diceRoll = () => {
   return Math.floor(Math.random() * 6 + 1);
@@ -9,6 +14,14 @@ const DiceSection: FC = () => {
   const [shake, setShake] = useState(false);
   const [roll1, setRoll1] = useState(0);
   const [roll2, setRoll2] = useState(0);
+  const ref = useRef<HTMLParagraphElement>();
+  const { isPlayerOne, stage } = useSelector(multiplicationConnectSelector);
+
+  if (stage === Stage.GAME_PLAY) {
+    setTimeout(() => (ref.current.style.scale = "140%"), 200);
+    setTimeout(() => (ref.current.style.opacity = "0"), 4000);
+    setTimeout(() => ref.current.classList.add("hidden"), 5000);
+  }
 
   return (
     <section className="flex flex-col gap-4">
@@ -25,7 +38,9 @@ const DiceSection: FC = () => {
               bg-gradient-to-tr from-[#ffcf00]/30 to-[#ffed5b]/30 font-mono"
             placeholder="Player 2"
           ></input>
-          <p className="text-md">👈🏼 Click to rename</p>
+          <p className="text-sm transition-all" ref={ref}>
+            👈🏼 Click to rename
+          </p>
         </div>
       </div>
 
