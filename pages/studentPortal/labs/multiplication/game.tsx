@@ -81,37 +81,6 @@ export default function BlockComponentGallery() {
 
   const router = useRouter();
   const { user } = useAuth();
-  const [completeGameLevel] = useMutation(COMPLETE_GAME_LEVEL);
-  const [updateGameLevel] = useMutation(UPDATE_GAME_LEVEL);
-
-  // const handleContinue = () => {
-  //   completeGameLevel({
-  //     variables: {
-  //       user_id: user.uid,
-  //       GameLevel: [{ query: FETCH_GAME_LEVEL }],
-  //       completed: true,
-  //     },
-  //   }).then((res) => {
-  //     updateGameLevel({
-  //       variables: {
-  //         user_id: user.uid,
-  //         GameLevel: [{ query: FETCH_GAME_LEVEL }],
-  //       },
-  //       refetchQueries: [{ query: FETCH_GAME_LEVEL }],
-  //     });
-  //     router.push("/studentPortal/labs/multiplication/game");
-
-  // const transformSkillRating = (skillRatings: UserSkillsRatings[]) => {
-  //   // map to redux type
-  //   const mappedSkillRatings: SkillRatingsRow[] = skillRatings.map((row) => {
-  //     return {
-  //       userSkillId: row.id,
-  //       skillId: row.intro_course_skill["id"],
-  //       skillName: row.intro_course_skill["name"],
-  //       unitName: row.intro_course_skill["intro_course_unit"]["title"],
-  //       studentRating: parseInt(row.studentRating),
-  //     };
-  // });
 
   console.log("Data: " + data);
   // useEffect(() => {
@@ -251,9 +220,10 @@ export default function BlockComponentGallery() {
         <Winner
           text={""}
           onClick={handleResetGame}
-          onClickSave={handleContinue}
           winner={calculateWinner(gameState, playerName)}
           image={showEndGameImage(gameState)}
+          user={user}
+          queryCurrentLevel={data.longestStreakUserData[1].currentLevel}
         />
       ) : null}
     </div>
