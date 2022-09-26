@@ -4,6 +4,7 @@ import { Button } from "../../ui/Button";
 export interface WinnerProps {
   text: string;
   onClick: () => void;
+  onClickSave: () => void;
   winner: string;
   image: any;
 }
@@ -11,6 +12,7 @@ export interface WinnerProps {
 export const Winner: React.FC<WinnerProps> = ({
   text,
   onClick,
+  onClickSave,
   winner,
   image,
   ...props
@@ -29,6 +31,11 @@ export const Winner: React.FC<WinnerProps> = ({
           backgroundColor="purple"
           label={"Play Again"}
           onClick={onClick}
+        />
+        <Button
+          backgroundColor="purple"
+          label={"Save Game"}
+          onClick={onClickSave}
         />
       </div>
     </div>

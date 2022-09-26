@@ -2,7 +2,7 @@ import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { RootState } from "./rootReducer";
 import { BlockState } from "../components/math/longestStreak/MultiplicationBlock";
 import { getRandomItemFromArray, getRndInteger } from "../pages/api/random";
-import { GameBlockState, GameLevelsMetaData, gameLevelsMetaData, initializeGameState } from "../pages/api/longestStreak";
+import { GameBlockState, initializeGameState } from "../pages/api/longestStreak";
 import { min } from "lodash";
 
 export interface LongestStreakState {
@@ -23,11 +23,11 @@ export enum STAGE {
 
 
 export enum GameLevel {
-  BEGINNER = "beginner",
-  BEGINNER_ADVANCED = "beginnerAdvanced",
-  INTERMEDIATE = "intermediate",
-  INTERMEDIATE_ADVANCED = "intermediateAdvanced",
-  EXPERT = "expert",
+  BEGINNER = 1,
+  BEGINNER_ADVANCED = 2,
+  INTERMEDIATE = 3,
+  INTERMEDIATE_ADVANCED = 4,
+  EXPERT = 5,
 }
 
 //function that takes in GameLevel as input

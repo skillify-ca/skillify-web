@@ -15,23 +15,23 @@ export type GameLevelData = {
   max: number,
 }
 export const gameLevelsMetaData: Record<GameLevel, GameLevelData> = {
-    beginner: {
+    1: {
       min: 1,
       max: 10
     },
-    beginnerAdvanced: {
+    2: {
       min: 10,
       max: 20,
     },
-    intermediate: {
+    3: {
       min: 20,
       max: 30,
     },
-    intermediateAdvanced: {
+    4: {
       min: 30, 
       max: 40,
     }, 
-    expert: {
+    5: {
       min: 40, 
       max: 50,
     }

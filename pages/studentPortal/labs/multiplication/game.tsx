@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Winner from "../../../../components/math/longestStreak/Winner";
 import MultiplicationBlock, {
@@ -28,11 +28,16 @@ import {
   GameBlockState,
   longestSubarray,
 } from "../../../api/longestStreak";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import {
+  CurrentLevelData,
   FetchGameLevelResponse,
   FETCH_GAME_LEVEL,
 } from "../../../../graphql/longestStreak/fetchGameLevel";
+import { useRouter } from "next/router";
+import { COMPLETE_GAME_LEVEL } from "../../../../graphql/longestStreak/completeGameLevel";
+import { useAuth } from "../../../../lib/authContext";
+import { UPDATE_GAME_LEVEL } from "../../../../graphql/longestStreak/updateGameLevel";
 
 export function showEndGameImage(array: GameBlockState[]) {
   let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
@@ -47,6 +52,9 @@ export function showEndGameImage(array: GameBlockState[]) {
     return <img src="/images/math1/longestStreak/drawWinner.png" />;
   }
 }
+export type BlockComponentGalleryProps = {
+  user: any;
+};
 
 export default function BlockComponentGallery() {
   const dispatch = useDispatch();
@@ -62,11 +70,55 @@ export default function BlockComponentGallery() {
 
     dispatch(handlePlayerSelect(index));
   }
-  const { data, loading } = useQuery<FetchGameLevelResponse>(FETCH_GAME_LEVEL);
 
-  useEffect(() => {
-    dispatch(initializeGame(data.currentLevel));
-  }, []);
+  const { data, loading } = useQuery<FetchGameLevelResponse>(FETCH_GAME_LEVEL, {
+    onCompleted: (data: FetchGameLevelResponse) => {
+      if (typeof data !== "undefined") {
+        dispatch(initializeGame(data.longestStreakUserData[1].currentLevel));
+      }
+    },
+  });
+
+  const router = useRouter();
+  const { user } = useAuth();
+  const [completeGameLevel] = useMutation(COMPLETE_GAME_LEVEL);
+  const [updateGameLevel] = useMutation(UPDATE_GAME_LEVEL);
+
+  // const handleContinue = () => {
+  //   completeGameLevel({
+  //     variables: {
+  //       user_id: user.uid,
+  //       GameLevel: [{ query: FETCH_GAME_LEVEL }],
+  //       completed: true,
+  //     },
+  //   }).then((res) => {
+  //     updateGameLevel({
+  //       variables: {
+  //         user_id: user.uid,
+  //         GameLevel: [{ query: FETCH_GAME_LEVEL }],
+  //       },
+  //       refetchQueries: [{ query: FETCH_GAME_LEVEL }],
+  //     });
+  //     router.push("/studentPortal/labs/multiplication/game");
+
+  // const transformSkillRating = (skillRatings: UserSkillsRatings[]) => {
+  //   // map to redux type
+  //   const mappedSkillRatings: SkillRatingsRow[] = skillRatings.map((row) => {
+  //     return {
+  //       userSkillId: row.id,
+  //       skillId: row.intro_course_skill["id"],
+  //       skillName: row.intro_course_skill["name"],
+  //       unitName: row.intro_course_skill["intro_course_unit"]["title"],
+  //       studentRating: parseInt(row.studentRating),
+  //     };
+  // });
+
+  console.log("Data: " + data);
+  // useEffect(() => {
+  //   if (typeof data !== "undefined") {
+  //     dispatch(initializeGame(GameLevel.BEGINNER_ADVANCED));
+  //   }
+  // }, [data]);
 
   function handlePlayGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
@@ -92,6 +144,11 @@ export default function BlockComponentGallery() {
           <div className="pb-4 text-xl font-black col-start-1 col-end-6 flex justify-evenly w-[45rem]">
             {playerName}, your quest is to battle the computer. Let's see how
             you do!
+            {data && (
+              <p>
+                {JSON.stringify(data.longestStreakUserData[0].currentLevel)}
+              </p>
+            )}
           </div>
           <div className="pb-8 col-start-1 col-end-7 flex justify-evenly w-[45rem]">
             <Button
@@ -194,6 +251,7 @@ export default function BlockComponentGallery() {
         <Winner
           text={""}
           onClick={handleResetGame}
+          onClickSave={handleContinue}
           winner={calculateWinner(gameState, playerName)}
           image={showEndGameImage(gameState)}
         />

@@ -54,7 +54,6 @@ const initialState: LongestStreakState = {
   reset: false,
   handlePlayerSelect: 0,
   playerName: "",
-  level: GameLevel.BEGINNER,
 };
 
 test("should return the initial state", () => {
