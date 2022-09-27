@@ -63,7 +63,7 @@ const Index: FC = () => {
             📝 Rules
           </button>
           <div className="flex items-center self-center gap-2">
-            <p className="font-mono text-sm">lazy</p>
+            <p className="font-mono text-sm text-gray-600">lazy</p>
             <label
               htmlFor="AcceptConditions"
               className="relative h-6 cursor-pointer w-14"
@@ -78,7 +78,7 @@ const Index: FC = () => {
               <span className="absolute inset-0 h-1.5 my-auto bg-blue-400 rounded-full transition peer-checked:bg-blue-600"></span>
               <span className="absolute inset-0 w-6 h-6 transition bg-white border border-blue-400 rounded-full peer-checked:translate-x-8 peer-checked:border-blue-600"></span>
             </label>
-            <p className="font-mono text-sm">normal</p>
+            <p className="font-mono text-sm text-gray-600">normal</p>
           </div>
           {stage === Stage.GAME_RULES && (
             <Modal
