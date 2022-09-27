@@ -14,7 +14,7 @@ import Modal from "../../../../components/math/multiplicationConnect/Modal";
 import Settings from "../../../../components/math/multiplicationConnect/Settings";
 
 const Index: FC = () => {
-  const [isChecked, setIsChecked] = useState(true);
+  const [normalMode, setIsNormalMode] = useState(true);
   const { grid, isPlayerOne, stage, newGame } = useSelector(
     multiplicationConnectSelector
   );
@@ -26,7 +26,7 @@ const Index: FC = () => {
     !isPlayerOne ? dispatch(togglePlayer(isPlayerOne)) : "";
   }, [newGame]);
 
-  console.log(isChecked);
+  console.log(normalMode ? "normal" : "lazy");
 
   return (
     <main>
@@ -43,7 +43,7 @@ const Index: FC = () => {
         <h1 className="mx-10 mb-3 text-3xl font-bold text-center drop-shadow-lg shadow-black-500">
           Multiplication Connect Four 🔴🟡
         </h1>
-        <PlayerAndDice />
+        <PlayerAndDice normalMode={normalMode} />
 
         <div className="flex items-stretch pt-5 pb-3 justify-evenly">
           {/* Game settings: 
@@ -51,6 +51,7 @@ const Index: FC = () => {
               - toggle dark mode (figure out how to toggle in TW)
               - view stats (link to gQL and Hasura) */}
           {/* Build line toggle for lazy/normal mode that toggles output of the dice roll */}
+          {/* Add the outlined diceRoll animation */}
           <Settings />
           <button
             type="button"
@@ -70,8 +71,8 @@ const Index: FC = () => {
             >
               <input
                 type="checkbox"
-                checked={isChecked}
-                onChange={() => setIsChecked(!isChecked)}
+                checked={normalMode}
+                onChange={() => setIsNormalMode(!normalMode)}
                 id="AcceptConditions"
                 className="sr-only peer"
               />

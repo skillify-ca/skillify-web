@@ -1,12 +1,16 @@
-import React, { useRef } from "react";
+import React, { FC, Ref, useRef } from "react";
+
+interface ModalProps {
+  type: String;
+  closeModal: any;
+  children: any;
+}
 
 /* todo: 
     - make modals responsive
-    - add transitions
-    - fix negative margin/padding-bottom -- might be able to calculate based on window size
-    - add typescript for inputs
+    - add typescript for inputs — this and PlayerAndDice
 */
-const Modal = ({ type, closeModal, children }) => {
+const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
   /*  - MORE: alert in corner, game win modal
    */
   const ref = useRef<HTMLDivElement>();
@@ -26,7 +30,7 @@ const Modal = ({ type, closeModal, children }) => {
           {/* // Overlay */}
           <div
             className="fixed top-0 bottom-0 left-0 right-0 z-50 -mb-[28rem] bg-black-500/10"
-            onClick={closeModal}
+            onClick={() => closeModal()}
           />
           {/* // Modal (pop-up with buttons) */}
           <div
@@ -41,7 +45,7 @@ const Modal = ({ type, closeModal, children }) => {
                     focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-3 py-2.5 mr-2 mb-2 
                     dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 
                     dark:focus:ring-gray-700"
-                onClick={closeModal}
+                onClick={() => closeModal()}
               >
                 Close
               </button>
@@ -55,7 +59,7 @@ const Modal = ({ type, closeModal, children }) => {
             ref={ref}
             className="transition-opacity duration-200 ease-in"
             onMouseMove={() => fadeOut(ref)}
-            onTransitionEnd={closeModal}
+            onTransitionEnd={() => closeModal()}
           >
             {/* Overlay */}
             <div className="fixed top-0 bottom-0 left-0 right-0 z-20 -mb-[28rem] bg-gradient-to-b from-amber-600/5 to-black-500 backdrop-blur-lg" />
