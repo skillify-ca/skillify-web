@@ -85,8 +85,9 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
         </div>
         <div className="flex flex-col items-center gap-5">
           <div className="z-10 flex flex-col justify-center gap-2 p-5 text-center text-white bg-gradient-to-br from-blue-800/80 to-indigo-900/100 rounded-xl drop-shadow-xl">
-            {/* Make sure dice has been rolled before selecting a block */}
-            <div className="font-mono">
+            {/* check whose turn it is and render name if it exists (from above input) */}
+            {/* todo: Make sure dice has been rolled before selecting a block */}
+            <div className="max-w-[10rem] font-mono overflow-hidden">
               <span
                 className={`font-bold underline ${
                   isPlayerOne
@@ -94,7 +95,6 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
                     : "decoration-amber-400 decoration-2"
                 }`}
               >
-                {/* check whose turn it is and render name if it exists (from above input) */}
                 {isPlayerOne
                   ? playerOne
                     ? playerOne + "'s"

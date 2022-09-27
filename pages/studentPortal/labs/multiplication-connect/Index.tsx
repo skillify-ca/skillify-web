@@ -51,19 +51,22 @@ const Index: FC = () => {
               - view stats (link to gQL and Hasura) */}
           {/* Build line toggle for lazy/normal mode that toggles output of the dice roll */}
           {/* Add the outlined diceRoll animation */}
+          {/* update button color/fonts for dark mode — copy dropdown styling */}
           <Settings />
           <button
             type="button"
             className={`z-20 font-mono font-bold text-gray-600 bg-white border border-gray-300 focus:outline-none 
-                hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-5 py-2.5 dark:bg-gray-800 
-                dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700
+                hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-5 py-2.5 
+                dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 dark:bg-gray-900 dark:border-gray-800 dark:text-gray-300
                 ${stage === Stage.WELCOME && "animate-bounce"}`}
             onClick={() => dispatch(setStage(Stage.GAME_RULES))}
           >
             📝 Rules
           </button>
           <div className="flex items-center self-center gap-2">
-            <p className="font-mono text-sm text-gray-600">lazy</p>
+            <p className="font-mono text-sm text-gray-600 dark:text-gray-300">
+              lazy
+            </p>
             <label
               htmlFor="AcceptConditions"
               className="relative h-6 cursor-pointer w-14"
@@ -75,10 +78,12 @@ const Index: FC = () => {
                 id="AcceptConditions"
                 className="sr-only peer"
               />
-              <span className="absolute inset-0 h-1.5 my-auto bg-blue-400 rounded-full transition peer-checked:bg-blue-600"></span>
-              <span className="absolute inset-0 w-6 h-6 transition bg-white border border-blue-400 rounded-full peer-checked:translate-x-8 peer-checked:border-blue-600"></span>
+              <span className="absolute inset-0 h-1.5 my-auto bg-red-500 rounded-full transition peer-checked:bg-lime-500"></span>
+              <span className="absolute inset-0 w-6 h-6 transition bg-white border border-red-600 rounded-full peer-checked:translate-x-8 peer-checked:border-lime-600 dark:bg-gray-900"></span>
             </label>
-            <p className="font-mono text-sm text-gray-600">normal</p>
+            <p className="font-mono text-sm text-gray-600 dark:text-gray-300">
+              normal
+            </p>
           </div>
           {stage === Stage.GAME_RULES && (
             <Modal
