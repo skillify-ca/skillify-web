@@ -22,6 +22,7 @@ export interface MultiplicationConnectState {
   isPlayerOne: boolean;
   grid: GameBoardBlock[];
   stage: Stage;
+  newGame: number;
 }
 
 /* todo: Change states to use Redux:
@@ -37,6 +38,7 @@ const initialState: MultiplicationConnectState = {
   isPlayerOne: true,
   grid: createGrid(),
   stage: Stage.WELCOME,
+  newGame: 0,
 };
 
 export const multiplicationConnectSlice: Slice = createSlice({
@@ -67,10 +69,14 @@ export const multiplicationConnectSlice: Slice = createSlice({
       console.log(state.stage + " > " + gameStage);
       state.stage = gameStage;
     },
+    setNewGame: (state: MultiplicationConnectState) => {
+      state.newGame++;
+      console.log(state.newGame);
+    },
   },
 });
 
-export const { togglePlayer, reloadGrid, blockClick, setStage } =
+export const { togglePlayer, reloadGrid, blockClick, setStage, setNewGame } =
   multiplicationConnectSlice.actions;
 
 export const multiplicationConnectSelector = (state: RootState) =>

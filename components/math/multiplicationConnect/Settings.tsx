@@ -1,20 +1,27 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  multiplicationConnectSelector,
+  setNewGame,
+} from "../../../redux/multiplicationConnectSlice";
 
 const Settings = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [click, setClick] = useState(false);
 
+  const { newGame } = useSelector(multiplicationConnectSelector);
+  const dispatch = useDispatch();
+
   return (
     <section
-      className="inline-flex bg-white border rounded-md ring-2 ring-red-400/80 dark:bg-gray-900 dark:border-gray-800"
+      className="inline-flex bg-white border rounded-md ring-2 ring-rose-400/80 dark:bg-gray-900 dark:border-gray-800"
       onMouseOver={() => setIsOpen(true)}
-      // onMouseLeave={() => setIsOpen(false)}
       onClick={() => setClick(!click)}
-      onMouseOut={() => (click ? "" : setIsOpen(false))}
+      onMouseOut={() => setTimeout(() => (click ? "" : setIsOpen(false)), 500)}
     >
       <a className="inline-flex items-center pl-4 pr-1 mb-1 font-mono text-gray-600 dark:text-gray-300 dark:hover:text-gray-200 dark:hover:bg-gray-800 hover:text-gray-700 hover:bg-gray-50 rounded-l-md">
-        <span className="pr-2 text-2xl">🔜🛠</span>
-        <span className="mt-1 font-bold">Game Settings</span>
+        <span className="pr-2 ">🛠</span>
+        <span className="mt-1 font-bold">Settings</span>
       </a>
 
       <div className="relative">
@@ -39,7 +46,7 @@ const Settings = () => {
 
         <div
           className={`transition-opacity duration-200 absolute right-0 z-10 w-56 mt-4 origin-top-right bg-white border border-gray-100 rounded-md shadow-lg dark:bg-gray-900 dark:border-gray-800 ${
-            isOpen ? "opacity-100" : " opacity-0"
+            isOpen ? "opacity-100 visible" : " opacity-0 invisible"
           }`}
           role="menu"
         >
@@ -76,6 +83,7 @@ const Settings = () => {
               type="submit"
               className="flex items-center w-full gap-2 px-4 py-2 text-sm text-red-700 rounded-lg dark:text-red-500 dark:hover:bg-red-600/10 hover:bg-red-50"
               role="menuitem"
+              onClick={() => dispatch(setNewGame(newGame))}
             >
               <span className="text-2xl">🔄</span> Restart Game
             </button>

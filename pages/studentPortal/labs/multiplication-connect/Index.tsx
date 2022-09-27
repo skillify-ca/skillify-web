@@ -6,6 +6,7 @@ import {
   setStage,
   Stage,
   togglePlayer,
+  setNewGame,
 } from "../../../../redux/multiplicationConnectSlice";
 import PlayerAndDice from "../../../../components/math/multiplicationConnect/PlayerAndDice";
 import GameBoard from "../../../../components/math/multiplicationConnect/GameBoard";
@@ -13,9 +14,8 @@ import Modal from "../../../../components/math/multiplicationConnect/Modal";
 import Settings from "../../../../components/math/multiplicationConnect/Settings";
 
 const Index: FC = () => {
-  const [newGame, setNewGame] = useState(0);
   const [isChecked, setIsChecked] = useState(true);
-  const { grid, isPlayerOne, stage } = useSelector(
+  const { grid, isPlayerOne, stage, newGame } = useSelector(
     multiplicationConnectSelector
   );
   const dispatch = useDispatch();
@@ -46,17 +46,22 @@ const Index: FC = () => {
         <PlayerAndDice />
 
         <div className="flex items-stretch pt-5 pb-3 justify-evenly">
-          {/* Game settings: play solo/two player, toggle dark mode (figure out how to toggle in TW), view stats, restart (at bottom) */}
-          {/* line toggle for lazy/normal mode */}
+          {/* Game settings: 
+              - build play solo/two player
+              - toggle dark mode (figure out how to toggle in TW)
+              - view stats (link to gQL and Hasura) */}
+          {/* Build line toggle for lazy/normal mode that toggles output of the dice roll */}
           <Settings />
           <button
             type="button"
-            className="ring-2 ring-sky-400 font-mono font-bold text-gray-900 bg-white border border-gray-300 focus:outline-none 
-              hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-5 py-2.5 dark:bg-gray-800 dark:text-white 
-              dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-            onClick={() => setNewGame((prev) => prev + 1)}
+            className={`z-20 ring-2 ring-yellow-400 font-mono font-bold text-gray-900 bg-white border border-gray-300 focus:outline-none 
+                hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-5 py-2.5 dark:bg-gray-800 
+                dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700
+                ${stage === Stage.WELCOME && "animate-bounce"}`}
+            // animate-[bounce_2s_ease-in-out_forward]
+            onClick={() => dispatch(setStage(Stage.GAME_RULES))}
           >
-            🔄 Restart
+            📝 Rules
           </button>
           <div className="flex items-center self-center gap-2">
             <p className="font-mono text-sm">lazy</p>
@@ -76,17 +81,6 @@ const Index: FC = () => {
             </label>
             <p className="font-mono text-sm">normal</p>
           </div>
-          <button
-            type="button"
-            className={`z-20 ring-2 ring-yellow-400 font-mono font-bold text-gray-900 bg-white border border-gray-300 focus:outline-none 
-                hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-5 py-2.5 dark:bg-gray-800 
-                dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700
-                ${stage === Stage.WELCOME && "animate-bounce"}`}
-            // animate-[bounce_2s_ease-in-out_forward]
-            onClick={() => dispatch(setStage(Stage.GAME_RULES))}
-          >
-            📝 Rules
-          </button>
           {stage === Stage.GAME_RULES && (
             <Modal
               type="centered"
