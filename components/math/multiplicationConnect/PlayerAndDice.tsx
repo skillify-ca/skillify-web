@@ -1,5 +1,5 @@
 import { Button } from "../../ui/Button";
-import { useState, FC, useRef } from "react";
+import { useState, FC, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
   multiplicationConnectSelector,
@@ -21,28 +21,26 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
   const [playerOne, setPlayerOne] = useState(String);
   const [playerTwo, setPlayerTwo] = useState(String);
   const ref = useRef<HTMLParagraphElement>();
-  // const playerOne = useRef<HTMLInputElement>();
-  // const playerTwo = useRef<HTMLInputElement>();
   const { isPlayerOne, stage } = useSelector(multiplicationConnectSelector);
 
-  if (stage === Stage.GAME_PLAY) {
-    if (!ref.current.classList.contains("hidden")) {
-      setTimeout(
-        () => (
-          (ref.current.style.scale = "170%"),
-          ref.current.classList.add("animate-bounce")
-        ),
-        200
-      );
-      setTimeout(() => (ref.current.style.opacity = "0"), 3000);
-      setTimeout(() => ref.current.classList.add("hidden"), 3500);
+  useEffect(() => {
+    if (stage === Stage.GAME_PLAY) {
+      console.count("Animation function!");
+      if (ref.current) {
+        if (!ref.current.classList.contains("hidden")) {
+          setTimeout(
+            () => (
+              (ref.current.style.scale = "170%"),
+              ref.current.classList.add("animate-bounce")
+            ),
+            200
+          );
+          setTimeout(() => (ref.current.style.opacity = "0"), 3000);
+          setTimeout(() => ref.current.classList.add("hidden"), 3500);
+        }
+      }
     }
-  }
-
-  // Look at React updating state from Input examples
-  playerTwo
-    ? console.log("Player Two exists", playerTwo)
-    : console.log("Player Two DNE", playerTwo);
+  }, [stage]);
 
   return (
     <section className="flex flex-col gap-5">
@@ -90,7 +88,6 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
         </div>
         <div className="flex flex-col items-center gap-5">
           <div className="z-10 flex flex-col justify-center gap-2 p-5 text-center text-white bg-gradient-to-br from-blue-800/80 to-indigo-900/100 rounded-xl drop-shadow-xl">
-            {/* Get placeholder text & use it here */}
             {/* Make sure dice has been rolled before selecting a block */}
             <div className="font-mono">
               <span
@@ -100,6 +97,7 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
                     : "decoration-amber-400 decoration-2"
                 }`}
               >
+                {/* check whose turn it is and render name if it exists (from above input) */}
                 {isPlayerOne
                   ? playerOne
                     ? playerOne + "'s"

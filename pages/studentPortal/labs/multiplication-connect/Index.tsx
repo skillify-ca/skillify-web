@@ -21,7 +21,6 @@ const Index: FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(`newGame: ${newGame}`);
     dispatch(reloadGrid(grid));
     !isPlayerOne ? dispatch(togglePlayer(isPlayerOne)) : "";
   }, [newGame]);
