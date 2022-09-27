@@ -1,4 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
+import AlienBoard from "../../../../components/math/alienPathway/AlienBoard";
+import AlienBoardBlock from "../../../../components/math/alienPathway/AlienBoardBlock";
 import {
   getRndInteger,
   getRndTenthsDecimal,
@@ -49,26 +51,6 @@ export interface ButtonProps {
   size?: "small" | "medium" | "large";
 }
 
-export const PlayerSection: React.FC = () => {
-  return (
-    <div>
-      <div className="flex items-center justify-evenly">
-        <input
-          className="bg-inherit placeholder:text-inherit max-w-[150px] h-12 text-center cursor-pointer rounded-xl bg-gradient-to-tr from-[#ce0000]/30 to-[#ff7d7e]/30 font-mono"
-          placeholder="Player 1"
-        ></input>
-        <input
-          className="bg-inherit placeholder:text-inherit max-w-[150px] h-12 text-center cursor-pointer rounded-xl bg-gradient-to-tr from-[#ffcf00]/40 to-[#ffed5b]/40 font-mono"
-          placeholder="Player 2"
-        ></input>
-      </div>
-    </div>
-  );
-};
-
-/**
- * Primary UI component for user interaction
- */
 export const Button: React.FC<ButtonProps> = ({
   backgroundColor = "primary",
   textColor = "white",
@@ -135,6 +117,90 @@ export const Button: React.FC<ButtonProps> = ({
   );
 };
 
+export const PlayerSection: React.FC = () => {
+  return (
+    <div>
+      <div className="flex items-center justify-evenly">
+        <input
+          className="bg-inherit placeholder:text-inherit max-w-[150px] h-12 text-center cursor-pointer rounded-xl bg-gradient-to-tr from-[#ce0000]/30 to-[#ff7d7e]/30 font-mono"
+          placeholder="Player 1"
+        ></input>
+        <input
+          className="bg-inherit placeholder:text-inherit max-w-[150px] h-12 text-center cursor-pointer rounded-xl bg-gradient-to-tr from-[#ffcf00]/40 to-[#ffed5b]/40 font-mono"
+          placeholder="Player 2"
+        ></input>
+      </div>
+    </div>
+  );
+};
+
+/**
+ * Primary UI component for user interaction
+ */
+
+export const calculateWinner = (
+  grid: AlienBoardBlock[],
+  isPlayerOne: boolean
+) => {
+  let rows = [
+    grid.filter((i) => i.id >= 0 && i.id < 5),
+    grid.filter((i) => i.id >= 5 && i.id < 10),
+    grid.filter((i) => i.id >= 10 && i.id < 15),
+    grid.filter((i) => i.id >= 15 && i.id < 20),
+    grid.filter((i) => i.id >= 20 && i.id < 25),
+    grid.filter((i) => i.id >= 25 && i.id < 30),
+    grid.filter((i) => i.id >= 30 && i.id < 35),
+  ];
+  let player: SelectedBy;
+  isPlayerOne
+    ? (player = SelectedBy.PlayerOne)
+    : (player = SelectedBy.PlayerTwo);
+  for (let i = 0; i < rows.length; i++) {
+    // rows.length == board height == 7
+    // rows[i].length == board width == 5
+    for (let index = 0; index < rows[i].length - 3; index++) {
+      // Horizontal check
+      rows[i][index].selectedBy == player &&
+      rows[i][index + 1].selectedBy == player &&
+      rows[i][index + 2].selectedBy == player &&
+      rows[i][index + 3].selectedBy == player
+        ? console.log(player, "(horizontal) Four in a row!")
+        : "";
+    }
+    if (i < rows.length - 3) {
+      // Vertical check
+      for (let index = 0; index < rows[i].length; index++) {
+        rows[i][index].selectedBy == player &&
+        rows[i + 1][index].selectedBy == player &&
+        rows[i + 2][index].selectedBy == player &&
+        rows[i + 3][index].selectedBy == player
+          ? console.log(player, "(vertical) Four in a row!")
+          : "";
+      }
+    }
+    if (i >= 3) {
+      // Ascending diagonal check
+      for (let index = 0; index < rows[i].length - 3; index++) {
+        rows[i][index].selectedBy == player &&
+        rows[i - 1][index + 1].selectedBy == player &&
+        rows[i - 2][index + 2].selectedBy == player &&
+        rows[i - 3][index + 3].selectedBy == player
+          ? console.log(player, "(ascending diagonal) Four in a row!")
+          : "";
+      }
+      // Descending diagonal check
+      for (let index = 3; index < rows[i].length; index++) {
+        rows[i][index].selectedBy == player &&
+        rows[i - 1][index - 1].selectedBy == player &&
+        rows[i - 2][index - 2].selectedBy == player &&
+        rows[i - 3][index - 3].selectedBy == player
+          ? console.log(player, "(descending diagonal) Four in a row!")
+          : "";
+      }
+    }
+  }
+};
+
 const DiceSection: FC = () => {
   const [roll1, setRoll1] = useState("⚀⚁⚂⚃⚄⚅");
   const [roll2, setRoll2] = useState("⚀⚁⚂⚃⚄⚅");
@@ -179,9 +245,72 @@ const DiceSection: FC = () => {
     </div>
   );
 };
+enum SelectedBy {
+  Unselected = "UNSELECTED",
+  PlayerOne = "PLAYERONE",
+  PlayerTwo = "PLAYERTWO",
+}
+const createGrid = () => {
+  let arr = [];
+  let newGrid = [];
+  for (let i = 6; i < 12; i++) {
+    arr.push(i);
+  }
+  for (let i = 0; i < 42; i++) {
+    let gridNumber = getRandomItemFromArray(arr);
+    newGrid.push({
+      id: i,
+      gridNumber: gridNumber,
+      selectedBy: SelectedBy.Unselected,
+    });
+  }
+  console.log(newGrid);
+  return newGrid;
+};
 
 const Index = () => {
-  return <DiceSection />;
+  const [grid, setGrid] = useState([]);
+  const [newGame, setNewGame] = useState(0);
+  const [isPlayerOne, setIsPlayerOne] = useState(true);
+
+  function newGameButton() {
+    return setNewGame(newGame + 1);
+  }
+
+  useEffect(() => {
+    setGrid(createGrid);
+    setIsPlayerOne(true);
+  }, [newGame]);
+
+  const blockClick = (block: AlienBoardBlock) => {
+    let newGrid = Array.from(grid);
+    isPlayerOne
+      ? (newGrid[newGrid.indexOf(block)].selectedBy = SelectedBy.PlayerOne)
+      : (newGrid[newGrid.indexOf(block)].selectedBy = SelectedBy.PlayerTwo);
+
+    setGrid(newGrid);
+    calculateWinner(grid, isPlayerOne);
+    isPlayerOne ? setIsPlayerOne(false) : setIsPlayerOne(true);
+  };
+
+  return (
+    <div>
+      <button onClick={() => newGameButton()}>newGame</button>
+      <DiceSection />
+      <AlienBoard
+        grid={grid}
+        newGame={newGame}
+        blockClick={blockClick}
+        isPlayerOne={isPlayerOne}
+      />
+      <AlienBoard
+        grid={grid}
+        newGame={newGame}
+        blockClick={blockClick}
+        isPlayerOne={isPlayerOne}
+      />
+    </div>
+  );
 };
 
 export default Index;
