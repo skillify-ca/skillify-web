@@ -37,7 +37,10 @@ export const gameLevelsMetaData: Record<GameLevel, GameLevelData> = {
     }
   }
 
-
+  export function shuffleGameArray (array) {
+    let shuffledArray = shuffle(array)
+    return shuffledArray;
+  }
 
 export function initializeGameState(currentLevel:GameLevel): GameBlockState[] {
   let dummyArray: GameBlockState[] = [];
@@ -64,9 +67,9 @@ export function initializeGameState(currentLevel:GameLevel): GameBlockState[] {
       dummyArray.push(initiateBlockState);
     } 
 
-  dummyArray = shuffle(dummyArray);
+  let shuffledDummyArray = shuffleGameArray(dummyArray)
 
-  return dummyArray;
+  return shuffledDummyArray;
 }
 
 export function longestSubarray(array: GameBlockState[], x: BlockState) {

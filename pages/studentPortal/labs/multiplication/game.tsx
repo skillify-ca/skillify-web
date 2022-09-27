@@ -71,7 +71,7 @@ export default function BlockComponentGallery() {
   const { data, loading } = useQuery<FetchGameLevelResponse>(FETCH_GAME_LEVEL, {
     onCompleted: (data: FetchGameLevelResponse) => {
       if (typeof data !== "undefined") {
-        dispatch(initializeGame(data.longestStreakUserData[1].currentLevel));
+        dispatch(initializeGame(data.longestStreakUserData[0].currentLevel));
       }
     },
   });
@@ -93,8 +93,8 @@ export default function BlockComponentGallery() {
   function handleResetGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
 
-    dispatch(reset(GameLevel.BEGINNER_ADVANCED));
-    dispatch(initializeGame(GameLevel.BEGINNER_ADVANCED));
+    dispatch(reset(GameLevel.BEGINNER));
+    dispatch(initializeGame(GameLevel.BEGINNER));
   }
   function handleCalculateWinner() {
     dispatch(setStage(STAGE.CALCULATE_WINNER));
