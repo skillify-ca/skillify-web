@@ -18,11 +18,11 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
   const [shake, setShake] = useState(false);
   const [roll1, setRoll1] = useState(0);
   const [roll2, setRoll2] = useState(0);
-  const [playerOneName, setPlayerOneName] = useState(String);
-  const [playerTwoName, setPlayerTwoName] = useState(String);
+  const [playerOne, setPlayerOne] = useState(String);
+  const [playerTwo, setPlayerTwo] = useState(String);
   const ref = useRef<HTMLParagraphElement>();
-  const playerOne = useRef<HTMLInputElement>();
-  const playerTwo = useRef<HTMLInputElement>();
+  // const playerOne = useRef<HTMLInputElement>();
+  // const playerTwo = useRef<HTMLInputElement>();
   const { isPlayerOne, stage } = useSelector(multiplicationConnectSelector);
 
   if (stage === Stage.GAME_PLAY) {
@@ -39,24 +39,10 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
     }
   }
 
-  // Check if playerOne & playerTwo.current & if they're not empty/null
-  // If they exist assign them to the state variables & render in the diceroll component if the state variables aren't empty
   // Look at React updating state from Input examples
-  if (playerOne.current) {
-    // console.log("Player One field is empty", playerOne.current.value === "");
-    // console.log(playerOne.current.value);
-    if (playerOne.current.value !== "")
-      setPlayerOneName(playerOne.current.value);
-  }
-
-  if (playerTwo.current) {
-    // this triggers infinite rerenders
-    if (playerTwo.current.value !== "") {
-      console.log("playerTwoName", playerTwoName);
-      setPlayerTwoName(playerTwo.current.value);
-      console.log("playerTwoName", playerTwoName);
-    }
-  }
+  playerTwo
+    ? console.log("Player Two exists", playerTwo)
+    : console.log("Player Two DNE", playerTwo);
 
   return (
     <section className="flex flex-col gap-5">
@@ -67,13 +53,15 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
             className="bg-inherit text-lg placeholder:text-inherit max-w-[150px] h-12 text-center cursor-pointer rounded-lg 
               bg-gradient-to-tr from-[#ce0000]/30 to-[#ff7d7e]/30 font-mono"
             placeholder="Player 1"
-            ref={playerOne}
+            value={playerOne}
+            onChange={(e) => setPlayerOne(e.target.value)}
           ></input>
           <input
             className="bg-inherit text-lg placeholder:text-inherit max-w-[150px] h-12 text-center cursor-pointer rounded-lg 
               bg-gradient-to-tr from-[#ffcf00]/30 to-[#ffed5b]/30 font-mono"
             placeholder="Player 2"
-            ref={playerTwo}
+            value={playerTwo}
+            onChange={(e) => setPlayerTwo(e.target.value)}
           ></input>
           <p className="text-sm transition-all" ref={ref}>
             👈🏼 Click to rename
@@ -112,7 +100,13 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
                     : "decoration-amber-400 decoration-2"
                 }`}
               >
-                {isPlayerOne ? "Player One" : "Player Two"}
+                {isPlayerOne
+                  ? playerOne
+                    ? playerOne + "'s"
+                    : "Player One"
+                  : playerTwo
+                  ? playerTwo + "'s"
+                  : "Player Two"}
               </span>
               <p className="text-left">{normalMode ? "turn" : "number:"}</p>
             </div>
