@@ -14,10 +14,10 @@ const Settings = () => {
 
   return (
     <section
-      className="inline-flex bg-white border rounded-md ring-2 ring-rose-400/80 dark:bg-gray-900 dark:border-gray-800"
-      onMouseOver={() => setIsOpen(true)}
-      onClick={() => setClick(!click)}
-      onMouseOut={() => setTimeout(() => (click ? "" : setIsOpen(false)), 500)}
+      className="inline-flex bg-white border rounded-md ring-2 ring-amber-400 dark:bg-gray-900 dark:border-gray-800"
+      // onMouseOver={() => setIsOpen(true)}
+      onClick={() => setIsOpen(!isOpen)}
+      // onMouseOut={() => setTimeout(() => (click ? "" : setIsOpen(false)), 500)}
     >
       <a className="inline-flex items-center pl-4 pr-1 mb-1 font-mono text-gray-600 dark:text-gray-300 dark:hover:text-gray-200 dark:hover:bg-gray-800 hover:text-gray-700 hover:bg-gray-50 rounded-l-md">
         <span className="pr-2 ">🛠</span>
