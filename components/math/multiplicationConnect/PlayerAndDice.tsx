@@ -25,19 +25,16 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
 
   useEffect(() => {
     if (stage === Stage.GAME_PLAY) {
-      console.count("Animation function!");
-      if (ref.current) {
-        if (!ref.current.classList.contains("hidden")) {
-          setTimeout(
-            () => (
-              (ref.current.style.scale = "170%"),
-              ref.current.classList.add("animate-bounce")
-            ),
-            200
-          );
-          setTimeout(() => (ref.current.style.opacity = "0"), 3000);
-          setTimeout(() => ref.current.classList.add("hidden"), 3500);
-        }
+      if (ref.current && !ref.current.classList.contains("hidden")) {
+        setTimeout(
+          () => (
+            (ref.current.style.scale = "170%"),
+            ref.current.classList.add("animate-bounce")
+          ),
+          200
+        );
+        setTimeout(() => (ref.current.style.opacity = "0"), 3000);
+        setTimeout(() => ref.current.classList.add("hidden"), 3500);
       }
     }
   }, [stage]);

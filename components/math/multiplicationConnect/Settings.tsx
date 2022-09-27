@@ -14,7 +14,7 @@ const Settings = () => {
 
   return (
     <section
-      className="inline-flex bg-white border rounded-md ring-2 ring-amber-400 dark:bg-gray-900 dark:border-gray-800"
+      className="inline-flex bg-white border rounded-md dark:bg-gray-900 dark:border-gray-800"
       // onMouseOver={() => setIsOpen(true)}
       onClick={() => setIsOpen(!isOpen)}
       // onMouseOut={() => setTimeout(() => (click ? "" : setIsOpen(false)), 500)}
