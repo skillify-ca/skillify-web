@@ -71,7 +71,6 @@ export const multiplicationConnectSlice: Slice = createSlice({
     },
     setNewGame: (state: MultiplicationConnectState) => {
       state.newGame++;
-      console.log(state.newGame);
     },
   },
 });

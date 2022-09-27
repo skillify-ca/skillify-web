@@ -26,30 +26,36 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
   const { isPlayerOne, stage } = useSelector(multiplicationConnectSelector);
 
   if (stage === Stage.GAME_PLAY) {
-    setTimeout(
-      () => (
-        (ref.current.style.scale = "170%"),
-        ref.current.classList.add("animate-bounce")
-      ),
-      200
-    );
-    setTimeout(() => (ref.current.style.opacity = "0"), 4000);
-    setTimeout(() => ref.current.classList.add("hidden"), 5000);
+    if (!ref.current.classList.contains("hidden")) {
+      setTimeout(
+        () => (
+          (ref.current.style.scale = "170%"),
+          ref.current.classList.add("animate-bounce")
+        ),
+        200
+      );
+      setTimeout(() => (ref.current.style.opacity = "0"), 3000);
+      setTimeout(() => ref.current.classList.add("hidden"), 3500);
+    }
   }
 
   // Check if playerOne & playerTwo.current & if they're not empty/null
   // If they exist assign them to the state variables & render in the diceroll component if the state variables aren't empty
+  // Look at React updating state from Input examples
   if (playerOne.current) {
     // console.log("Player One field is empty", playerOne.current.value === "");
-    console.log(playerOne.current.value);
+    // console.log(playerOne.current.value);
     if (playerOne.current.value !== "")
       setPlayerOneName(playerOne.current.value);
   }
 
   if (playerTwo.current) {
-    console.log(playerTwo.current.value);
-    if (playerTwo.current.value !== "")
+    // this triggers infinite rerenders
+    if (playerTwo.current.value !== "") {
+      console.log("playerTwoName", playerTwoName);
       setPlayerTwoName(playerTwo.current.value);
+      console.log("playerTwoName", playerTwoName);
+    }
   }
 
   return (
