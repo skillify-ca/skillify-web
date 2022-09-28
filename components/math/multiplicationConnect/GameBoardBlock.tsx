@@ -4,6 +4,7 @@ import { SelectedBy } from "../../../pages/api/labs/games/multiplication-connect
 import {
   blockClick,
   multiplicationConnectSelector,
+  Stage,
   togglePlayer,
 } from "../../../redux/multiplicationConnectSlice";
 
@@ -18,14 +19,14 @@ interface GameBoardBlockProps {
 }
 
 const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
-  const { isPlayerOne } = useSelector(multiplicationConnectSelector);
+  const { isPlayerOne, stage } = useSelector(multiplicationConnectSelector);
   const dispatch = useDispatch();
 
   return (
     <div
       onClick={() => {
-        dispatch(blockClick(blockData));
-        dispatch(togglePlayer(isPlayerOne));
+        stage === Stage.GAME_PLAY && dispatch(blockClick(blockData)); // blocks can only be clicked in GAME_PLAY
+        stage === Stage.GAME_PLAY && dispatch(togglePlayer(isPlayerOne)); // toggle if still in GAME_PLAY (!GAME_WIN, !GAME_OVER)
       }}
       className={`flex justify-center items-center h-full w-full cursor-pointer rounded-full shadow-[0_0_40px_10px_rgba(0,0,0,0.3)]
           ${
@@ -37,13 +38,16 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
           }
           ${
             // Unselected hover animation
-            isPlayerOne
+            stage === Stage.GAME_PLAY && isPlayerOne
               ? blockData.selectedBy === SelectedBy.Unselected
                 ? "hover:bg-[#F20000]/70 hover:animate-pulse"
                 : ""
               : blockData.selectedBy === SelectedBy.Unselected &&
                 "hover:bg-[#FFD500]/80 hover:animate-pulse"
-          }`}
+          }
+          ${stage === Stage.GAME_WIN && ""}`}
+      // highlight winning game selection here
+      // lockout blocks on game over — should already be implemented w the check in onClick
     >
       <p>{blockData.gridNumber}</p>
     </div>

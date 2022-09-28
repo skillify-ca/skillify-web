@@ -16,6 +16,7 @@ export enum Stage {
   GAME_PLAY = "GAME_PLAY",
   GAME_RULES = "GAME_RULES",
   GAME_WIN = "GAME_WIN",
+  GAME_OVER = "GAME_OVER",
 }
 
 export interface MultiplicationConnectState {
@@ -56,8 +57,12 @@ export const multiplicationConnectSlice: Slice = createSlice({
       state.isPlayerOne
         ? (state.grid[block.id].selectedBy = SelectedBy.PlayerOne)
         : (state.grid[block.id].selectedBy = SelectedBy.PlayerTwo);
+      // if calculateWinner() === Win (Loss, Draw)
+      // state.stage = Stage.GAME_WIN
+      /* todo: calculateWinner should return winning block.id's to be highlighted on gameboard & the winning player*/
       calculateWinner(state.grid, state.isPlayerOne);
     },
+    // setGameWin — change the selectedBy properties of the winning blocks to SelectedBy.Winner to be styled in the GameBoardBlock
     togglePlayer: (state: MultiplicationConnectState) => {
       state.isPlayerOne = !state.isPlayerOne;
     },

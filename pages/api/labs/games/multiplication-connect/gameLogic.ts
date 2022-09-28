@@ -5,6 +5,7 @@ export enum SelectedBy {
   Unselected = "UNSELECTED",
   PlayerOne = "PLAYERONE",
   PlayerTwo = "PLAYERTWO",
+  Winner = "Winner",
 }
 
 export const calculateWinner = (

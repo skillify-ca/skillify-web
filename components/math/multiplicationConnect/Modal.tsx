@@ -7,7 +7,7 @@ interface ModalProps {
 }
 
 /* todo: 
-    - make modals responsive
+    - make modals responsive — overflowing as is
     - add typescript for inputs — this and PlayerAndDice
 */
 const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
@@ -23,7 +23,11 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
     }, 750);
   };
 
-  // on Modal open toggle this: document.body.classList.add("no-scroll")
+  // todo: on Modal open toggle this: document.body.classList.add("no-scroll")
+  /* todo: setup GAME_WIN & alert Modal
+      - trigger the game win state when passing to calculateWinner() in Slice
+      - pass Modal type in Index to get log to print
+  */
   return (
     <>
       {type === "centered" ? (
@@ -53,26 +57,27 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
             </div>
           </div>
         </section>
-      ) : (
-        type === "fullscreen" && (
-          <section
-            ref={ref}
-            className="transition-opacity duration-200 ease-in"
-            onMouseMove={() => fadeOut(ref)}
-            onTransitionEnd={() => closeModal()}
-          >
-            {/* Overlay */}
-            <div className="fixed top-0 bottom-0 left-0 right-0 z-20 -mb-[28rem] bg-gradient-to-b from-amber-600/5 to-black-500 backdrop-blur-lg" />
-            {/* Modal */}
-            <div
-              className="fixed drop-shadow-2xl z-50 flex flex-col justify-center gap-10 font-bold text-transparent bg-clip-text 
+      ) : type === "fullscreen" ? (
+        <section
+          ref={ref}
+          className="transition-opacity duration-200 ease-in"
+          onMouseMove={() => fadeOut(ref)}
+          onTransitionEnd={() => closeModal()}
+        >
+          {/* Overlay */}
+          <div className="fixed top-0 bottom-0 left-0 right-0 z-20 -mb-[28rem] bg-gradient-to-b from-amber-600/5 to-black-500 backdrop-blur-lg" />
+          {/* Modal */}
+          <div
+            className="fixed drop-shadow-2xl z-50 flex flex-col justify-center gap-10 font-bold text-transparent bg-clip-text 
                 bg-gradient-to-tr from-[#F20000]/80 via-[#ffcf00]/100 to-[#ffed5b]/100 text-5xl w-full text-center -translate-x-1/2 
                 -translate-y-1/2 top-[32%] left-1/2"
-            >
-              {children}
-            </div>
-          </section>
-        )
+          >
+            {children}
+          </div>
+        </section>
+      ) : (
+        type === "alert" && console.log("alert dialog triggered")
+        // Get alert Modal from HyperUI
       )}
     </>
   );

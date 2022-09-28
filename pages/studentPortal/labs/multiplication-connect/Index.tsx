@@ -37,6 +37,37 @@ const Index: FC = () => {
           <p>Welcome to Multiplication Connect Four!</p>
         </Modal>
       )}
+      {stage === Stage.GAME_RULES && (
+        <Modal
+          type="centered"
+          closeModal={() => dispatch(setStage(Stage.GAME_PLAY))}
+        >
+          <h2 className="text-4xl font-bold">Game Rules</h2>
+          <ol className="space-y-2 list-decimal">
+            <li>Roll two dice.</li>
+            <li>Add the numbers together, and multiply by 2.</li>
+            <li>Select this number within a block in the game.</li>
+            <li>Repeat for the next player.</li>
+            <li>
+              Play until a player connects 4 squares in a row (vertically,
+              horizontally, or diagonally) to win the game.
+            </li>
+          </ol>
+        </Modal>
+      )}
+      {stage === Stage.GAME_WIN && (
+        <Modal
+          type="alert"
+          closeModal={() => dispatch(setStage(Stage.GAME_OVER))}
+        >
+          <h1>Player __ win!</h1>
+          <p>get player name text and output here</p>
+          <button>Store progress</button>
+          <button>Restart</button>
+          <button>Save your win (download a screenshot)</button>
+          <button>Close</button>
+        </Modal>
+      )}
 
       <div className="flex flex-col justify-center max-w-5xl gap-4 mx-auto">
         <h1 className="mx-10 mb-3 text-3xl font-bold text-center drop-shadow-lg shadow-black-500">
@@ -85,24 +116,6 @@ const Index: FC = () => {
               normal
             </p>
           </div>
-          {stage === Stage.GAME_RULES && (
-            <Modal
-              type="centered"
-              closeModal={() => dispatch(setStage(Stage.GAME_PLAY))}
-            >
-              <h2 className="text-4xl font-bold">Game Rules</h2>
-              <ol className="space-y-2 list-decimal">
-                <li>Roll two dice.</li>
-                <li>Add the numbers together, and multiply by 2.</li>
-                <li>Select this number within a block in the game.</li>
-                <li>Repeat for the next player.</li>
-                <li>
-                  Play until a player connects 4 squares in a row (vertically,
-                  horizontally, or diagonally) to win the game.
-                </li>
-              </ol>
-            </Modal>
-          )}
         </div>
 
         <div className="px-20 pb-10">
