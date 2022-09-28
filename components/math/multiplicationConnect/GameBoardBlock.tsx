@@ -32,9 +32,8 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
             // Selected block colours
             blockData.selectedBy === SelectedBy.PlayerOne
               ? "bg-[#F20000]/80"
-              : blockData.selectedBy === SelectedBy.PlayerTwo
-              ? "bg-[#FFDB00]/90"
-              : ""
+              : blockData.selectedBy === SelectedBy.PlayerTwo &&
+                "bg-[#FFDB00]/90"
           }
           ${
             // Unselected hover animation
@@ -42,9 +41,8 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
               ? blockData.selectedBy === SelectedBy.Unselected
                 ? "hover:bg-[#F20000]/70 hover:animate-pulse"
                 : ""
-              : blockData.selectedBy === SelectedBy.Unselected
-              ? "hover:bg-[#FFD500]/80 hover:animate-pulse"
-              : ""
+              : blockData.selectedBy === SelectedBy.Unselected &&
+                "hover:bg-[#FFD500]/80 hover:animate-pulse"
           }`}
     >
       <p>{blockData.gridNumber}</p>

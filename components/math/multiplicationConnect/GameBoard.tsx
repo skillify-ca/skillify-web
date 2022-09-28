@@ -20,9 +20,7 @@ const GameBoard: FC = () => {
                     ? "rounded-tr-[14px]"
                     : blockData.id === 30
                     ? "rounded-bl-[14px]"
-                    : blockData.id === 34
-                    ? "rounded-br-[14px]"
-                    : ""
+                    : blockData.id === 34 && "rounded-br-[14px]"
                 }`}
         >
           <GameBoardBlock blockData={blockData} />

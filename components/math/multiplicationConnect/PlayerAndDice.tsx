@@ -65,7 +65,6 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
       </div>
 
       {/* Dice */}
-      {/* modify dice sizes for sm & md */}
       <div className="flex items-center justify-evenly">
         <div
           className={`flex flex-col items-center justify-center md:w-36 md:h-36 sm:w-28 sm:h-28 w-24 h-24 gap-3 border-2 border-stone-500/25 z-10 rounded-3xl bg-stone-300 text-black-500 drop-shadow-md ${
