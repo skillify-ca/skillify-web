@@ -15,7 +15,8 @@ const Settings = () => {
   return (
     <section
       className="inline-flex bg-white border border-gray-300 rounded-md cursor-pointer dark:bg-gray-900 dark:border-gray-700 dark:hover:border-gray-600"
-      // onMouseOver={() => setIsOpen(true)}
+      onMouseOver={() => setIsOpen(true)}
+      onMouseOut={() => setIsOpen(false)}
       onClick={() => setIsOpen(!isOpen)}
       // onMouseOut={() => setTimeout(() => (click ? "" : setIsOpen(false)), 500)}
     >
@@ -45,7 +46,8 @@ const Settings = () => {
         </button>
 
         <div
-          className={`transition-opacity duration-200 absolute right-0 z-10 w-56 mt-4 origin-top-right bg-white border border-gray-100 rounded-md shadow-lg dark:bg-gray-900 dark:border-gray-800 ${
+          onMouseOut={() => setIsOpen(false)}
+          className={`transition-opacity duration-200 absolute right-0 z-10 w-56 origin-top-right bg-white border border-gray-100 rounded-md shadow-lg dark:bg-gray-900 dark:border-gray-800 ${
             isOpen ? "opacity-100 visible" : " opacity-0 invisible"
           }`}
           role="menu"
