@@ -49,7 +49,6 @@ const Index: FC = () => {
               - build play solo/two player
               - toggle dark mode (figure out how to toggle in TW)
               - view stats (link to gQL and Hasura) */}
-          {/* Build line toggle for lazy/normal mode that toggles output of the dice roll */}
           {/* Add the outlined diceRoll animation */}
           <Settings />
           <button
@@ -80,7 +79,9 @@ const Index: FC = () => {
                 className="sr-only peer"
               />
               <span className="absolute inset-0 h-1.5 my-auto bg-red-500 rounded-full transition peer-checked:bg-lime-500"></span>
-              <span className="absolute inset-0 w-6 h-6 transition bg-white border border-red-600 rounded-full peer-checked:translate-x-8 peer-checked:border-lime-600 peer-checked:hover:border-gray-400 dark:bg-gray-900 hover:bg-gray-50 peer-checked:hover:bg-gray-50 hover:border-gray-400 dark:hover:bg-gray-800 dark:peer-checked:hover:bg-gray-800 dark:hover:border-gray-600 dark:peer-checked:hover:border-gray-600"></span>
+              <span
+                className="absolute inset-0 w-6 h-6 transition bg-white border border-red-600 rounded-full peer-checked:translate-x-8 peer-checked:border-lime-600 peer-checked:hover:border-gray-400 dark:bg-gray-900 hover:bg-gray-50 peer-checked:hover:bg-gray-50 hover:border-gray-400 dark:hover:bg-gray-800 dark:peer-checked:hover:bg-gray-800 dark:hover:border-gray-600 dark:peer-checked:hover:border-gray-600"
+              ></span>
             </label>
             <p className="font-mono text-sm text-gray-600 dark:text-gray-300">
               normal
