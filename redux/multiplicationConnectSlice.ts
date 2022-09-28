@@ -26,15 +26,6 @@ export interface MultiplicationConnectState {
   newGame: number;
 }
 
-/* todo: Change states to use Redux:
-    - initialState should be set here, rather than the useState hook
-    - remove prop drilling and access with selector + slice
-
-    Upcoming: 
-    + consider adding the stage and game rules now, 
-    + diceRoll
-    + setPlayerName
-*/
 const initialState: MultiplicationConnectState = {
   isPlayerOne: true,
   grid: createGrid(),
@@ -57,10 +48,6 @@ export const multiplicationConnectSlice: Slice = createSlice({
       state.isPlayerOne
         ? (state.grid[block.id].selectedBy = SelectedBy.PlayerOne)
         : (state.grid[block.id].selectedBy = SelectedBy.PlayerTwo);
-      // if calculateWinner() === Win (Loss, Draw)
-      // state.stage = Stage.GAME_WIN
-      /* todo: calculateWinner should return winning block.id's to be highlighted on gameboard & the winning player*/
-      calculateWinner(state.grid, state.isPlayerOne);
     },
     // setGameWin — change the selectedBy properties of the winning blocks to SelectedBy.Winner to be styled in the GameBoardBlock
     togglePlayer: (state: MultiplicationConnectState) => {
@@ -74,14 +61,26 @@ export const multiplicationConnectSlice: Slice = createSlice({
       console.log(state.stage + " > " + gameStage);
       state.stage = gameStage;
     },
+    setGameWin: (state: MultiplicationConnectState) => {
+      // TODO set winning blocks selectedBy property here & set the stage as well to game_win
+      state.stage = Stage.GAME_WIN;
+      console.log("game win and blocks styled here");
+    },
     setNewGame: (state: MultiplicationConnectState) => {
       state.newGame++;
+      state.stage = Stage.GAME_PLAY;
     },
   },
 });
 
-export const { togglePlayer, reloadGrid, blockClick, setStage, setNewGame } =
-  multiplicationConnectSlice.actions;
+export const {
+  togglePlayer,
+  reloadGrid,
+  blockClick,
+  setStage,
+  setNewGame,
+  setGameWin,
+} = multiplicationConnectSlice.actions;
 
 export const multiplicationConnectSelector = (state: RootState) =>
   state.multiplicationConnect;

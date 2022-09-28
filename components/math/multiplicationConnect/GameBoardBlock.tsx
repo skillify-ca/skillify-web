@@ -1,9 +1,13 @@
 import React, { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SelectedBy } from "../../../pages/api/labs/games/multiplication-connect/gameLogic";
+import {
+  calculateWinner,
+  SelectedBy,
+} from "../../../pages/api/labs/games/multiplication-connect/gameLogic";
 import {
   blockClick,
   multiplicationConnectSelector,
+  setGameWin,
   Stage,
   togglePlayer,
 } from "../../../redux/multiplicationConnectSlice";
@@ -19,16 +23,30 @@ interface GameBoardBlockProps {
 }
 
 const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
-  const { isPlayerOne, stage } = useSelector(multiplicationConnectSelector);
+  const { isPlayerOne, grid, stage } = useSelector(
+    multiplicationConnectSelector
+  );
   const dispatch = useDispatch();
+
+  const handleBlockClick = () => {
+    if (stage === Stage.GAME_PLAY) {
+      dispatch(blockClick(blockData)); // blocks can only be clicked in GAME_PLAY
+      // if calculateWinner() === Win (Loss, Draw)
+      // state.stage = Stage.GAME_WIN
+      const { winType, winningBlocks } = calculateWinner(grid, isPlayerOne);
+      console.log(winType, winningBlocks);
+      // don't set state here, pass to setGameWin
+      winningBlocks ? dispatch(setGameWin(grid)) : "";
+    }
+    stage === Stage.GAME_PLAY && dispatch(togglePlayer(isPlayerOne)); // toggle if still in GAME_PLAY (!GAME_WIN, !GAME_OVER)
+  };
 
   return (
     <div
-      onClick={() => {
-        stage === Stage.GAME_PLAY && dispatch(blockClick(blockData)); // blocks can only be clicked in GAME_PLAY
-        stage === Stage.GAME_PLAY && dispatch(togglePlayer(isPlayerOne)); // toggle if still in GAME_PLAY (!GAME_WIN, !GAME_OVER)
-      }}
-      className={`flex justify-center items-center h-full w-full cursor-pointer rounded-full shadow-[0_0_40px_10px_rgba(0,0,0,0.3)]
+      onClick={handleBlockClick}
+      className={`flex justify-center items-center h-full w-full rounded-full shadow-[0_0_40px_10px_rgba(0,0,0,0.3)] ${
+        stage === Stage.GAME_PLAY && "cursor-pointer"
+      }
           ${
             // Selected block colours
             blockData.selectedBy === SelectedBy.PlayerOne
@@ -38,12 +56,13 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
           }
           ${
             // Unselected hover animation
-            stage === Stage.GAME_PLAY && isPlayerOne
+            stage === Stage.GAME_PLAY &&
+            (isPlayerOne
               ? blockData.selectedBy === SelectedBy.Unselected
                 ? "hover:bg-[#F20000]/70 hover:animate-pulse"
                 : ""
               : blockData.selectedBy === SelectedBy.Unselected &&
-                "hover:bg-[#FFD500]/80 hover:animate-pulse"
+                "hover:bg-[#FFD500]/80 hover:animate-pulse")
           }
           ${stage === Stage.GAME_WIN && ""}`}
       // highlight winning game selection here

@@ -16,10 +16,18 @@ export enum WinType {
   Draw = "DRAW",
 }
 
+// creating a new return type w TS union types
+type WinDetails = {
+  winType: WinType;
+  winningBlocks: null | number[];
+};
+
+/* returns WinType===(PlayerOne || PlayerTwo) if(4 connected blocks) & either WinType(Pending ||  Draw) otherwise
+if a player wins an arrary with the winning combination of blocks is also returned */
 export const calculateWinner = (
   grid: GameBoardBlock[],
   isPlayerOne: boolean
-): [WinType, null | number[]] => {
+): WinDetails => {
   let rows = [
     grid.filter((i) => i.id >= 0 && i.id < 5),
     grid.filter((i) => i.id >= 5 && i.id < 10),
@@ -36,7 +44,7 @@ export const calculateWinner = (
     : (player = SelectedBy.PlayerTwo);
   let str: string;
   let winningPlayer: SelectedBy;
-  let winningBlocks: number[];
+  let winningBlocks: null | number[] = null;
   let winType: WinType;
 
   for (let i = 0; i < rows.length; i++) {
@@ -103,8 +111,15 @@ export const calculateWinner = (
           rows[i - 1][index - 1].selectedBy == player &&
           rows[i - 2][index - 2].selectedBy == player &&
           rows[i - 3][index - 3].selectedBy == player
-        )
+        ) {
           winningPlayer = player;
+          winningBlocks = [
+            rows[i][index].id,
+            rows[i - 1][index - 1].id,
+            rows[i - 2][index - 2].id,
+            rows[i - 3][index - 3].id,
+          ];
+        }
       }
     }
   }
@@ -116,8 +131,8 @@ export const calculateWinner = (
     : grid.some((i) => i.selectedBy === SelectedBy.Unselected)
     ? (winType = WinType.Pending)
     : (winType = WinType.Draw);
-  console.log("winType:", winType);
-  return [winType, winningBlocks];
+
+  return { winType, winningBlocks };
 };
 
 export const createGrid = () => {
