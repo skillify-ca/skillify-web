@@ -43,38 +43,46 @@ export const calculateWinner = (
     // rows[i].length == board width == 5
     for (let index = 0; index < rows[i].length - 3; index++) {
       // Horizontal check
-      rows[i][index].selectedBy == player &&
+      if (
+        rows[i][index].selectedBy == player &&
         rows[i][index + 1].selectedBy == player &&
         rows[i][index + 2].selectedBy == player &&
-        rows[i][index + 3].selectedBy == player &&
-        (winningPlayer = player);
+        rows[i][index + 3].selectedBy == player
+      )
+        winningPlayer = player;
     }
     if (i < rows.length - 3) {
       // Vertical check
       for (let index = 0; index < rows[i].length; index++) {
-        rows[i][index].selectedBy == player &&
+        if (
+          rows[i][index].selectedBy == player &&
           rows[i + 1][index].selectedBy == player &&
           rows[i + 2][index].selectedBy == player &&
-          rows[i + 3][index].selectedBy == player &&
-          (winningPlayer = player);
+          rows[i + 3][index].selectedBy == player
+        )
+          winningPlayer = player;
       }
     }
     if (i >= 3) {
       // Ascending diagonal check
       for (let index = 0; index < rows[i].length - 3; index++) {
-        rows[i][index].selectedBy == player &&
+        if (
+          rows[i][index].selectedBy == player &&
           rows[i - 1][index + 1].selectedBy == player &&
           rows[i - 2][index + 2].selectedBy == player &&
-          rows[i - 3][index + 3].selectedBy == player &&
-          (winningPlayer = player);
+          rows[i - 3][index + 3].selectedBy == player
+        )
+          winningPlayer = player;
       }
       // Descending diagonal check
       for (let index = 3; index < rows[i].length; index++) {
-        rows[i][index].selectedBy == player &&
+        if (
+          rows[i][index].selectedBy == player &&
           rows[i - 1][index - 1].selectedBy == player &&
           rows[i - 2][index - 2].selectedBy == player &&
-          rows[i - 3][index - 3].selectedBy == player &&
-          (winningPlayer = player);
+          rows[i - 3][index - 3].selectedBy == player
+        )
+          winningPlayer = player;
       }
     }
   }
@@ -87,7 +95,6 @@ export const calculateWinner = (
     ? (winType = WinType.Pending)
     : (winType = WinType.Draw);
   console.log("winType:", winType);
-
   return winType;
 };
 
