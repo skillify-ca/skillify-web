@@ -36,6 +36,7 @@ export const calculateWinner = (
     : (player = SelectedBy.PlayerTwo);
   let str: string;
   let winningPlayer: SelectedBy;
+  let winningBlocks: number[];
   let winType: WinType;
 
   for (let i = 0; i < rows.length; i++) {
@@ -48,8 +49,15 @@ export const calculateWinner = (
         rows[i][index + 1].selectedBy == player &&
         rows[i][index + 2].selectedBy == player &&
         rows[i][index + 3].selectedBy == player
-      )
+      ) {
         winningPlayer = player;
+        winningBlocks = [
+          rows[i][index].id,
+          rows[i][index + 1].id,
+          rows[i][index + 2].id,
+          rows[i][index + 3].id,
+        ];
+      }
     }
     if (i < rows.length - 3) {
       // Vertical check
@@ -59,8 +67,15 @@ export const calculateWinner = (
           rows[i + 1][index].selectedBy == player &&
           rows[i + 2][index].selectedBy == player &&
           rows[i + 3][index].selectedBy == player
-        )
+        ) {
           winningPlayer = player;
+          winningBlocks = [
+            rows[i][index].id,
+            rows[i + 1][index].id,
+            rows[i + 2][index].id,
+            rows[i + 3][index].id,
+          ];
+        }
       }
     }
     if (i >= 3) {
@@ -71,8 +86,15 @@ export const calculateWinner = (
           rows[i - 1][index + 1].selectedBy == player &&
           rows[i - 2][index + 2].selectedBy == player &&
           rows[i - 3][index + 3].selectedBy == player
-        )
+        ) {
           winningPlayer = player;
+          winningBlocks = [
+            rows[i][index].id,
+            rows[i - 1][index + 1].id,
+            rows[i - 2][index + 2].id,
+            rows[i - 3][index + 3].id,
+          ];
+        }
       }
       // Descending diagonal check
       for (let index = 3; index < rows[i].length; index++) {
