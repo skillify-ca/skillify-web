@@ -68,16 +68,19 @@ export default function BlockComponentGallery() {
     dispatch(handlePlayerSelect(index));
   }
 
+  const router = useRouter();
+  const { user } = useAuth();
+
   const { data, loading } = useQuery<FetchGameLevelResponse>(FETCH_GAME_LEVEL, {
+    variables: {
+      userId: user.uid,
+    },
     onCompleted: (data: FetchGameLevelResponse) => {
       if (typeof data !== "undefined") {
-        dispatch(initializeGame(data.longestStreakUserData[0].currentLevel));
+        dispatch(initializeGame(data.longestStreakUserData[user].currentLevel));
       }
     },
   });
-
-  const router = useRouter();
-  const { user } = useAuth();
 
   console.log("Data: " + data);
   // useEffect(() => {
@@ -112,7 +115,7 @@ export default function BlockComponentGallery() {
             you do!
             {data && (
               <p>
-                {JSON.stringify(data.longestStreakUserData[0].currentLevel)}
+                {JSON.stringify(data.longestStreakUserData[user].currentLevel)}
               </p>
             )}
           </div>
@@ -221,6 +224,8 @@ export default function BlockComponentGallery() {
           image={showEndGameImage(gameState)}
           user={user}
           queryCurrentLevel={data.longestStreakUserData[1].currentLevel}
+          playerOneScore={0}
+          playerTwoScore={0}
         />
       ) : null}
     </div>

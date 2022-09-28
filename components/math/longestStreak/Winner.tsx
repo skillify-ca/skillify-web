@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { UPDATE_GAME_LEVEL } from "../../../graphql/longestStreak/updateGameLevel";
 import { Button } from "../../ui/Button";
 
@@ -10,6 +10,8 @@ export interface WinnerProps {
   image: any;
   user: any;
   queryCurrentLevel: string;
+  playerOneScore: number;
+  playerTwoScore: number;
 }
 
 export const Winner: React.FC<WinnerProps> = ({
@@ -19,12 +21,16 @@ export const Winner: React.FC<WinnerProps> = ({
   image,
   user,
   queryCurrentLevel,
+  playerOneScore,
+  playerTwoScore,
   ...props
 }) => {
   const [updateGameLevel] = useMutation(UPDATE_GAME_LEVEL);
 
   function shouldIncrementLevel() {
     // TODO implement this
+    if (playerOneScore > playerTwoScore)
+      console.log("Score 1: " + playerOneScore);
     return true;
   }
 
@@ -33,7 +39,7 @@ export const Winner: React.FC<WinnerProps> = ({
       updateGameLevel({
         variables: {
           userId: user.uid,
-          currentLevel: 20,
+          currentLevel: (queryCurrentLevel += 1),
         },
         onCompleted: () => {
           alert("Your skill ratings have been saved successfully.");

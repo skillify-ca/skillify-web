@@ -134,8 +134,6 @@ export const longestStreakSlice: Slice = createSlice({
               state.blocks[firstSelectedBlockIndex].state =
               BlockState.PLAYER_ONE_SELECTED;
               state.isPlayerSelecting = false;
-              console.log("Index: " + index);
-              console.log("Last Clicked Index: " + state.currentlySelectedBlock);
               handleAISelection(state);
             } else {
               alert("Ouch...you're being tricky with me. Re-read the rules of the game.  That move shall not pass.")
@@ -177,7 +175,6 @@ function handleAISelection(state: LongestStreakState) {
     const indexOfSecondComputerSelected = state.blocks.indexOf(
       secondComputerSelected
     );
-    console.log("index second: " + indexOfSecondComputerSelected)
     state.blocks[indexOfSecondComputerSelected].state =
       BlockState.PLAYER_TWO_SELECTED;
       if (unselectedBlocks.length <= 1) {
