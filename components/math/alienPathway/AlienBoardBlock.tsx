@@ -1,11 +1,15 @@
 import React, { FC, useEffect, useState } from "react";
 import { calculateWinner } from "../../../pages/studentPortal/labs/multiplication-connect/Index";
+import { GuessData } from "../../../pages/api/guessData";
 import {
   getRndInteger,
   getRndTenthsDecimal,
   getRndHundredthsDecimal,
   getRandomItemFromArray,
 } from "../../../pages/api/random";
+import { id } from "date-fns/locale";
+import { type } from "os";
+import input from "postcss/lib/input";
 
 enum SelectedBy {
   Unselected = "UNSELECTED",
@@ -13,17 +17,11 @@ enum SelectedBy {
   PlayerTwo = "PLAYERTWO",
 }
 
-interface AlienBoardBlock {
-  id: number;
-  newGame: number;
-  gridNumber: number;
-  selectedBy: SelectedBy;
-}
-
 interface AlienBoardBlockProps {
   blockData: AlienBoardBlock;
   newGame: number;
-  blockClick(block: AlienBoardBlock): void;
+  submitGuess: (guess: GuessData) => void;
+  answer: string;
   isPlayerOne: boolean;
 }
 
@@ -35,48 +33,50 @@ function numberGenerator() {
 const AlienBoardBlock: FC<AlienBoardBlockProps> = ({
   blockData,
   newGame,
-  blockClick,
+  submitGuess,
+  answer,
   isPlayerOne,
 }) => {
-  let [randNumb, setRandNumb] = useState(0);
-  let [randNumb2, setRandNumb2] = useState(0);
+  const [guess, setGuess] = useState("");
   useEffect(() => {
     setRandNumb((prev) => numberGenerator());
     setRandNumb2((prev) => numberGenerator());
   }, [newGame]);
-
-  const product = randNumb * randNumb2;
+  let [randNumb, setRandNumb] = useState(0);
+  let [randNumb2, setRandNumb2] = useState(0);
+  const problem = randNumb.toString() + " x " + randNumb2.toString();
+  const product = (randNumb * randNumb2).toString();
+  useEffect(() => {
+    (document.getElementById("input") as HTMLInputElement).value = "";
+  }, []);
+  const onSubmit = (guess: string) => {
+    submitGuess({
+      guess: guess.toString(),
+      isCorrect: guess === product,
+    }),
+      setGuess("");
+  };
   return (
-    <div
-      onClick={() => {
-        blockClick(blockData);
-      }}
-      className={`flex justify-center items-center h-full w-full cursor-pointer rounded-full]
-          ${
-            // Selected block colours
-            blockData.selectedBy === SelectedBy.PlayerOne
-              ? "bg-[#F20000]/80"
-              : blockData.selectedBy === SelectedBy.PlayerTwo
-              ? "bg-[#FFDB00]/90"
-              : ""
-          }
-          ${
-            // Unselected hover animations
-            isPlayerOne
-              ? blockData.selectedBy === SelectedBy.Unselected
-                ? "hover:bg-[#F20000]/70 hover:animate-pulse"
-                : ""
-              : blockData.selectedBy === SelectedBy.Unselected
-              ? "hover:bg-[#FFD500]/80 hover:animate-pulse"
-              : ""
-          }`}
-    >
+    <div className="flex justify-center items-center h-full w-full cursor-pointer rounded-full">
       {blockData.id % 7 === 6 ? (
         true
       ) : (
-        <p>
-          {randNumb} x {randNumb2}
-        </p>
+        <div className="flex flex-row">
+          <input
+            id="input"
+            type="number"
+            className="text-sm text-white place-content-center bg-inherit w-12 placeholder:text-inherit text-center"
+            onchange={(e) => setGuess(e.target.value)}
+            placeholder={problem}
+          ></input>
+          <button
+            type="submit"
+            className="text-xs"
+            onClick={() => onSubmit(guess)}
+          >
+            ▉
+          </button>
+        </div>
       )}
     </div>
   );

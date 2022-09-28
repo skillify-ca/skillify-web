@@ -117,26 +117,14 @@ export const Button: React.FC<ButtonProps> = ({
   );
 };
 
-export const PlayerSection: React.FC = () => {
-  return (
-    <div>
-      <div className="flex items-center justify-evenly">
-        <input
-          className="bg-inherit placeholder:text-inherit max-w-[150px] h-12 text-center cursor-pointer rounded-xl bg-gradient-to-tr from-[#ce0000]/30 to-[#ff7d7e]/30 font-mono"
-          placeholder="Player 1"
-        ></input>
-        <input
-          className="bg-inherit placeholder:text-inherit max-w-[150px] h-12 text-center cursor-pointer rounded-xl bg-gradient-to-tr from-[#ffcf00]/40 to-[#ffed5b]/40 font-mono"
-          placeholder="Player 2"
-        ></input>
-      </div>
-    </div>
-  );
-};
-
-/**
- * Primary UI component for user interaction
- */
+interface AlienBoardBlock {
+  id: number;
+  newGame: number;
+  submitGuess: (guess: GuessData) => void;
+  answer: string;
+  gridNumber: number;
+  selectedBy: SelectedBy;
+}
 
 export const calculateWinner = (
   grid: AlienBoardBlock[],
@@ -282,33 +270,12 @@ const Index = () => {
     setIsPlayerOne(true);
   }, [newGame]);
 
-  const blockClick = (block: AlienBoardBlock) => {
-    let newGrid = Array.from(grid);
-    isPlayerOne
-      ? (newGrid[newGrid.indexOf(block)].selectedBy = SelectedBy.PlayerOne)
-      : (newGrid[newGrid.indexOf(block)].selectedBy = SelectedBy.PlayerTwo);
-
-    setGrid(newGrid);
-    calculateWinner(grid, isPlayerOne);
-    isPlayerOne ? setIsPlayerOne(false) : setIsPlayerOne(true);
-  };
-
   return (
     <div>
       <button onClick={() => newGameButton()}>newGame</button>
       <DiceSection />
-      <AlienBoard
-        grid={grid}
-        newGame={newGame}
-        blockClick={blockClick}
-        isPlayerOne={isPlayerOne}
-      />
-      <AlienBoard
-        grid={grid}
-        newGame={newGame}
-        blockClick={blockClick}
-        isPlayerOne={isPlayerOne}
-      />
+      <AlienBoard grid={grid} newGame={newGame} isPlayerOne={isPlayerOne} />
+      <AlienBoard grid={grid} newGame={newGame} isPlayerOne={isPlayerOne} />
     </div>
   );
 };
