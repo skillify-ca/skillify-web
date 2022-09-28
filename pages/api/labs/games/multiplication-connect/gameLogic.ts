@@ -19,7 +19,7 @@ export enum WinType {
 export const calculateWinner = (
   grid: GameBoardBlock[],
   isPlayerOne: boolean
-): WinType => {
+): [WinType, null | number[]] => {
   let rows = [
     grid.filter((i) => i.id >= 0 && i.id < 5),
     grid.filter((i) => i.id >= 5 && i.id < 10),
@@ -117,7 +117,7 @@ export const calculateWinner = (
     ? (winType = WinType.Pending)
     : (winType = WinType.Draw);
   console.log("winType:", winType);
-  return winType;
+  return [winType, winningBlocks];
 };
 
 export const createGrid = () => {

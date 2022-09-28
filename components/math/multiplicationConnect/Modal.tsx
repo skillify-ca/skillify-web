@@ -1,7 +1,7 @@
 import React, { FC, Ref, useRef } from "react";
 
 interface ModalProps {
-  type: String;
+  type: "centered" | "fullscreen" | "alert";
   closeModal: () => void;
   children: any;
 }
