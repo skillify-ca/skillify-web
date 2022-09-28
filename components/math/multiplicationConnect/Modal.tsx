@@ -7,7 +7,7 @@ interface ModalProps {
 }
 
 /* todo: 
-    - make modals responsive — overflowing as is
+    - make modals responsive — overflowing as is & hiding button (esp on monitor)
     - add typescript for inputs — this and PlayerAndDice
 */
 const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
@@ -70,7 +70,7 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
           <div
             className="fixed drop-shadow-2xl z-50 flex flex-col justify-center gap-10 font-bold text-transparent bg-clip-text 
                 bg-gradient-to-tr from-[#F20000]/80 via-[#ffcf00]/100 to-[#ffed5b]/100 text-5xl w-full text-center -translate-x-1/2 
-                -translate-y-1/2 top-[32%] left-1/2"
+                -translate-y-1/2 top-72 left-1/2 px-12"
           >
             {children}
           </div>

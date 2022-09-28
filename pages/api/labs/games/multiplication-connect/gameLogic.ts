@@ -1,17 +1,25 @@
 import GameBoardBlock from "../../../../../components/math/multiplicationConnect/GameBoardBlock";
 import { getRandomItemFromArray } from "../../../random";
 
+//todo: if win return who won (p1, p1) & ***style the winning blocks***
 export enum SelectedBy {
   Unselected = "UNSELECTED",
   PlayerOne = "PLAYERONE",
   PlayerTwo = "PLAYERTWO",
-  Winner = "Winner",
+  Winner = "WINNER",
+}
+
+export enum WinType {
+  Pending = "PENDING",
+  PlayerOne = "PLAYERONE",
+  PlayerTwo = "PLAYERTWO",
+  Draw = "DRAW",
 }
 
 export const calculateWinner = (
   grid: GameBoardBlock[],
   isPlayerOne: boolean
-): string => {
+): WinType => {
   let rows = [
     grid.filter((i) => i.id >= 0 && i.id < 5),
     grid.filter((i) => i.id >= 5 && i.id < 10),
@@ -27,6 +35,9 @@ export const calculateWinner = (
     ? (player = SelectedBy.PlayerOne)
     : (player = SelectedBy.PlayerTwo);
   let str: string;
+  let winningPlayer: SelectedBy;
+  let winType: WinType;
+
   for (let i = 0; i < rows.length; i++) {
     // rows.length == board height == 7
     // rows[i].length == board width == 5
@@ -36,7 +47,7 @@ export const calculateWinner = (
         rows[i][index + 1].selectedBy == player &&
         rows[i][index + 2].selectedBy == player &&
         rows[i][index + 3].selectedBy == player &&
-        (str = `${player} (horizontal) Four in a row!`);
+        (winningPlayer = player);
     }
     if (i < rows.length - 3) {
       // Vertical check
@@ -45,7 +56,7 @@ export const calculateWinner = (
           rows[i + 1][index].selectedBy == player &&
           rows[i + 2][index].selectedBy == player &&
           rows[i + 3][index].selectedBy == player &&
-          (str = `${player} (vertical) Four in a row!`);
+          (winningPlayer = player);
       }
     }
     if (i >= 3) {
@@ -55,7 +66,7 @@ export const calculateWinner = (
           rows[i - 1][index + 1].selectedBy == player &&
           rows[i - 2][index + 2].selectedBy == player &&
           rows[i - 3][index + 3].selectedBy == player &&
-          (str = `${player} (ascending diagonal) Four in a row!`);
+          (winningPlayer = player);
       }
       // Descending diagonal check
       for (let index = 3; index < rows[i].length; index++) {
@@ -63,17 +74,21 @@ export const calculateWinner = (
           rows[i - 1][index - 1].selectedBy == player &&
           rows[i - 2][index - 2].selectedBy == player &&
           rows[i - 3][index - 3].selectedBy == player &&
-          (str = `${player} (descending diagonal) Four in a row!`);
+          (winningPlayer = player);
       }
     }
   }
-  str
-    ? ""
+
+  winningPlayer
+    ? winningPlayer === SelectedBy.PlayerOne
+      ? (winType = WinType.PlayerOne)
+      : (winType = WinType.PlayerTwo)
     : grid.some((i) => i.selectedBy === SelectedBy.Unselected)
-    ? (str = "No winner")
-    : (str = "Draw");
-  console.log(str);
-  return str;
+    ? (winType = WinType.Pending)
+    : (winType = WinType.Draw);
+  console.log("winType:", winType);
+
+  return winType;
 };
 
 export const createGrid = () => {
