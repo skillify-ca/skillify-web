@@ -2,7 +2,7 @@ import React, { FC, Ref, useRef } from "react";
 
 interface ModalProps {
   type: String;
-  closeModal: any;
+  closeModal: () => void;
   children: any;
 }
 
