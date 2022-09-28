@@ -51,14 +51,15 @@ const Index: FC = () => {
               - view stats (link to gQL and Hasura) */}
           {/* Build line toggle for lazy/normal mode that toggles output of the dice roll */}
           {/* Add the outlined diceRoll animation */}
-          {/* update button color/fonts for dark mode — copy dropdown styling */}
           <Settings />
           <button
             type="button"
             className={`z-20 font-mono font-bold text-gray-600 bg-white border border-gray-300 focus:outline-none 
-                hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-5 py-2.5 
-                dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 dark:bg-gray-900 dark:border-gray-800 dark:text-gray-300
-                ${stage === Stage.WELCOME && "animate-bounce"}`}
+                 focus:ring-1 focus:ring-gray-200 rounded-lg px-5 py-2.5 dark:hover:border-gray-600 dark:focus:ring-gray-700
+                 dark:text-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:hover:text-gray-200 dark:hover:bg-gray-800 
+                 hover:text-gray-700 hover:bg-gray-50 ${
+                   stage === Stage.WELCOME && "animate-bounce"
+                 }`}
             onClick={() => dispatch(setStage(Stage.GAME_RULES))}
           >
             📝 Rules
@@ -79,7 +80,7 @@ const Index: FC = () => {
                 className="sr-only peer"
               />
               <span className="absolute inset-0 h-1.5 my-auto bg-red-500 rounded-full transition peer-checked:bg-lime-500"></span>
-              <span className="absolute inset-0 w-6 h-6 transition bg-white border border-red-600 rounded-full peer-checked:translate-x-8 peer-checked:border-lime-600 dark:bg-gray-900"></span>
+              <span className="absolute inset-0 w-6 h-6 transition bg-white border border-red-600 rounded-full peer-checked:translate-x-8 peer-checked:border-lime-600 peer-checked:hover:border-gray-400 dark:bg-gray-900 hover:bg-gray-50 peer-checked:hover:bg-gray-50 hover:border-gray-400 dark:hover:bg-gray-800 dark:peer-checked:hover:bg-gray-800 dark:hover:border-gray-600 dark:peer-checked:hover:border-gray-600"></span>
             </label>
             <p className="font-mono text-sm text-gray-600 dark:text-gray-300">
               normal
