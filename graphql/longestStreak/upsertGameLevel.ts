@@ -11,4 +11,6 @@ mutation upsertCurrentLevel(
       userId
       currentLevel
     }
-  }`
+  }
+}`
+  ;

@@ -13,7 +13,7 @@ export const FETCH_GAME_LEVEL = gql`
 `;
 
 export type FetchGameLevelResponse = {
-  longestStreakUserData: CurrentLevelData[];
+  longestStreakUserData: Array<CurrentLevelData>;
 };
 export type CurrentLevelData = {
   currentLevel: string;

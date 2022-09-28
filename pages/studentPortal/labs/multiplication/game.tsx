@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Winner from "../../../../components/math/longestStreak/Winner";
 import MultiplicationBlock, {
@@ -28,7 +28,7 @@ import {
   GameBlockState,
   longestSubarray,
 } from "../../../api/longestStreak";
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import {
   FetchGameLevelResponse,
   FETCH_GAME_LEVEL,
@@ -71,7 +71,7 @@ export default function BlockComponentGallery() {
   const router = useRouter();
   const { user } = useAuth();
 
-  const { data, loading } = useQuery<FetchGameLevelResponse>(FETCH_GAME_LEVEL, {
+  const { data } = useQuery<FetchGameLevelResponse>(FETCH_GAME_LEVEL, {
     variables: {
       userId: user.uid,
     },
@@ -81,17 +81,6 @@ export default function BlockComponentGallery() {
       }
     },
   });
-
-  console.log("Data: ");
-  if (data) {
-    console.log(data.longestStreakUserData[0].currentLevel);
-  }
-
-  // useEffect(() => {
-  //   if (typeof data !== "undefined") {
-  //     dispatch(initializeGame(GameLevel.BEGINNER_ADVANCED));
-  //   }
-  // }, [data]);
 
   function handlePlayGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
@@ -117,12 +106,6 @@ export default function BlockComponentGallery() {
           <div className="pb-4 text-xl font-black col-start-1 col-end-6 flex justify-evenly w-[45rem]">
             {playerName}, your quest is to battle the computer. Let's see how
             you do!
-            {data && (
-              <p>
-                Your current level is
-                {JSON.stringify(data.longestStreakUserData[0].currentLevel)}
-              </p>
-            )}
           </div>
           <div className="pb-8 col-start-1 col-end-7 flex justify-evenly w-[45rem]">
             <Button
@@ -228,7 +211,7 @@ export default function BlockComponentGallery() {
           winner={calculateWinner(gameState, playerName)}
           image={showEndGameImage(gameState)}
           user={user}
-          queryCurrentLevel={data.longestStreakUserData[1].currentLevel}
+          queryCurrentLevel={data.longestStreakUserData[0].currentLevel}
           playerOneScore={0}
           playerTwoScore={0}
         />
