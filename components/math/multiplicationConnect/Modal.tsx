@@ -97,10 +97,9 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
           // Black overlay on UI and highlight Settings
           <section>
             {/* Overlay */}
-            {/* <div className="fixed top-0 bottom-0 left-0 right-0 z-20 -mb-[28rem] bg-gradient-to-b from-amber-600/5 to-black-500 backdrop-blur-lg" /> */}
             <div className="fixed top-0 bottom-0 left-0 right-0 -mb-[28rem] bg-black-500/30 z-20" />
             {/* Modal */}
-            <div className="fixed z-50 flex flex-col justify-center w-1/2 gap-10 px-12 text-3xl font-bold text-center -translate-x-1/2 -translate-y-1/2 rounded-md drop-shadow-2xl backdrop-blur-xl top-72 left-1/2">
+            <div className="fixed z-50 w-8/12 p-8 text-2xl font-bold text-center text-white -translate-x-1/2 -translate-y-1/2 shadow-2xl rounded-2xl backdrop-blur-xl top-72 left-1/2">
               {children}
             </div>
           </section>
