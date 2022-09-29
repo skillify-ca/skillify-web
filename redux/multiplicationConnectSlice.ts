@@ -4,6 +4,7 @@ import {
   calculateWinner,
   createGrid,
   SelectedBy,
+  WinType,
 } from "../pages/api/labs/games/multiplication-connect/gameLogic";
 import GameBoardBlock from "../components/math/multiplicationConnect/GameBoardBlock";
 
@@ -20,6 +21,7 @@ export interface MultiplicationConnectState {
   grid: GameBoardBlock[];
   stage: Stage;
   newGame: number;
+  hasWinner: null | WinType;
 }
 
 const initialState: MultiplicationConnectState = {
@@ -27,6 +29,7 @@ const initialState: MultiplicationConnectState = {
   grid: createGrid(),
   stage: Stage.WELCOME,
   newGame: 0,
+  hasWinner: null,
 };
 
 export const multiplicationConnectSlice: Slice = createSlice({
@@ -51,12 +54,15 @@ export const multiplicationConnectSlice: Slice = createSlice({
       );
       if (winningBlocks) {
         state.stage = Stage.GAME_WIN;
+        state.hasWinner = winType;
         state.grid.map((block) => {
           winningBlocks.map(
             (winBlock) =>
               block.id === winBlock && (block.selectedBy = SelectedBy.Winner)
           );
         });
+        console.log("hasWinner", state.hasWinner);
+        console.log("stage after blockClick action", state.stage);
       }
     },
     togglePlayer: (state: MultiplicationConnectState) => {

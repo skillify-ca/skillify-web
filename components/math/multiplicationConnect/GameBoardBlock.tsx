@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   calculateWinner,
   SelectedBy,
+  WinType,
 } from "../../../pages/api/labs/games/multiplication-connect/gameLogic";
 import {
   blockClick,
@@ -23,7 +24,7 @@ interface GameBoardBlockProps {
 }
 
 const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
-  const { isPlayerOne, grid, stage } = useSelector(
+  const { isPlayerOne, stage, hasWinner } = useSelector(
     multiplicationConnectSelector
   );
   const dispatch = useDispatch();
@@ -32,8 +33,6 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
     stage === Stage.GAME_PLAY && dispatch(blockClick(blockData)); // blocks can only be clicked in GAME_PLAY
     stage === Stage.GAME_PLAY && dispatch(togglePlayer(isPlayerOne)); // toggle if still in GAME_PLAY (!GAME_WIN, !GAME_OVER)
   };
-
-  console.log("isPlayerOne (GBB): ", isPlayerOne);
 
   return (
     <div
@@ -44,13 +43,9 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
           ${
             // Selected block colours
             blockData.selectedBy === SelectedBy.PlayerOne
-              ? `bg-[#F20000]/80 ${
-                  stage === Stage.GAME_WIN && "brightness-90 contrast-75"
-                }`
+              ? `bg-[#F20000]/80 ${stage === Stage.GAME_WIN && "contrast-75"}`
               : blockData.selectedBy === SelectedBy.PlayerTwo &&
-                `bg-[#FFDB00]/90 ${
-                  stage === Stage.GAME_WIN && "brightness-90 contrast-75"
-                }`
+                `bg-[#FFDB00]/90 ${stage === Stage.GAME_WIN && "contrast-75"}`
           }
           ${
             // Unselected hover animation
@@ -64,10 +59,11 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
           }
           ${
             // Game win styling
+            stage === Stage.GAME_WIN &&
             blockData.selectedBy === SelectedBy.Winner &&
-            (isPlayerOne
-              ? "bg-gradient-to-br from-[#FFDB00]/90 to-amber-700 scale-125 brightness-125"
-              : "bg-gradient-to-r from-[#F20000]/90 to-fuchsia-600/90 scale-125 contrast-150")
+            (hasWinner === WinType.PlayerOne
+              ? "bg-gradient-to-r from-[#F20000]/90 to-fuchsia-900 scale-125 contrast-150"
+              : "bg-gradient-to-br from-[#FFDB00]/90 to-amber-900 scale-125 brightness-150")
           }`}
     >
       <p>{blockData.gridNumber}</p>

@@ -1,7 +1,7 @@
 import React, { FC, Ref, useRef } from "react";
 
 interface ModalProps {
-  type: "centered" | "fullscreen" | "alert";
+  type: "rules" | "fullscreen-welcome" | "game-alert";
   closeModal: () => void;
   children: any;
 }
@@ -19,7 +19,7 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
 
   return (
     <>
-      {type === "centered" ? (
+      {type === "rules" ? (
         <section className="fixed z-50">
           {/* Overlay */}
           <div
@@ -46,7 +46,7 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
             </div>
           </div>
         </section>
-      ) : type === "fullscreen" ? (
+      ) : type === "fullscreen-welcome" ? (
         <section
           ref={ref}
           className="transition-opacity duration-200 ease-in"
@@ -65,30 +65,30 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
           </div>
         </section>
       ) : (
-        type === "alert" && (
+        type === "game-alert" && (
           <section className="flex justify-center">
             <div className="fixed z-50 p-8 mt-4 bg-white rounded-lg shadow-2xl">
-              <h2 className="text-lg font-bold text-black-500">
-                Are you sure you want to do that?
-              </h2>
-
-              <p className="mt-2 text-sm text-gray-500">
-                Doing that could have cause some issues elsewhere, are you 100%
-                sure it's OK?
-              </p>
+              {children}
 
               <div className="flex items-center justify-end mt-8 text-xs">
                 <button
                   type="button"
-                  className="px-4 py-2 font-medium text-green-600 rounded bg-green-50"
+                  className="px-4 py-2 font-medium text-red-600 rounded bg-red-50"
+                  onClick={() => closeModal()}
                 >
-                  Yes, I'm sure
+                  Close without saving
                 </button>
                 <button
                   type="button"
-                  className="px-4 py-2 ml-2 font-medium text-gray-600 rounded bg-gray-50"
+                  className="px-4 py-2 ml-2 font-medium text-green-600 rounded bg-green-50"
                 >
-                  No, go back
+                  Save & Close
+                </button>
+                <button
+                  type="button"
+                  className="px-4 py-2 ml-2 font-medium text-green-600 rounded bg-green-50"
+                >
+                  Save & Start New Game
                 </button>
               </div>
             </div>
