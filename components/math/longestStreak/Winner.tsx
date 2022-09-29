@@ -1,5 +1,7 @@
 import { useMutation } from "@apollo/client";
 import React from "react";
+import { FETCH_GAME_LEVEL } from "../../../graphql/longestStreak/fetchGameLevel";
+import { UPDATE_GAME_LEVEL } from "../../../graphql/longestStreak/updateGameLevel";
 import { UPSERT_GAME_LEVEL } from "../../../graphql/longestStreak/upsertGameLevel";
 import { Button } from "../../ui/Button";
 
@@ -9,9 +11,7 @@ export interface WinnerProps {
   winner: string;
   image: any;
   user: any;
-  queryCurrentLevel: number;
-  playerOneScore: number;
-  playerTwoScore: number;
+  showWinner: boolean;
 }
 
 export const Winner: React.FC<WinnerProps> = ({
@@ -20,26 +20,21 @@ export const Winner: React.FC<WinnerProps> = ({
   winner,
   image,
   user,
-  queryCurrentLevel,
-  playerOneScore,
-  playerTwoScore,
+  showWinner,
   ...props
 }) => {
-  const [upsertGameLevel] = useMutation(UPSERT_GAME_LEVEL);
+  const [updateGameLevel] = useMutation(UPDATE_GAME_LEVEL);
 
-  function shouldIncrementLevel() {
-    // TODO implement this
-    if (playerOneScore > playerTwoScore)
-      console.log("Score 1: " + playerOneScore);
-    return true;
-  }
+  function shouldIncrementLevel() {}
 
   function handleSaveGameClick() {
-    if (shouldIncrementLevel()) {
-      upsertGameLevel({
+    console.log("SW: " + showWinner);
+    if (showWinner === true) {
+      console.log("HERE");
+
+      updateGameLevel({
         variables: {
-          userId: user.uid,
-          currentLevel: queryCurrentLevel + 1,
+          userId: "BR9u18SJzvVNzcrkEIcJDPxv1ws1",
         },
         onCompleted: () => {
           alert("Your skill ratings have been saved successfully.");

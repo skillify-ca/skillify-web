@@ -107,6 +107,19 @@ export function calculateWinner(array: GameBlockState[], playerName: string) {
   }
 }
 
+export function showWinner(array: GameBlockState[]) {
+  let playerOneArray = longestSubarray(
+    array,
+    BlockState.PLAYER_ONE_SELECTED && BlockState.HIGHLIGHTED
+  );
+  let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
+  if (playerOneArray > playerTwoArray) {
+    return true
+  } else {
+    return false
+  }
+}
+
 export function calculatePlayerOneScore(array: GameBlockState[]) {
   let playerOneArray = longestSubarray(
     array,

@@ -27,14 +27,16 @@ import {
   checkNumberNotSelected,
   GameBlockState,
   longestSubarray,
+  showWinner,
 } from "../../../api/longestStreak";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   FetchGameLevelResponse,
   FETCH_GAME_LEVEL,
 } from "../../../../graphql/longestStreak/fetchGameLevel";
 import { useRouter } from "next/router";
 import { useAuth } from "../../../../lib/authContext";
+import { UPSERT_GAME_LEVEL } from "../../../../graphql/longestStreak/upsertGameLevel";
 
 export function showEndGameImage(array: GameBlockState[]) {
   let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
@@ -70,14 +72,22 @@ export default function BlockComponentGallery() {
 
   const router = useRouter();
   const { user } = useAuth();
+  const [upsertGameLevel] = useMutation(UPSERT_GAME_LEVEL);
 
   const { data } = useQuery<FetchGameLevelResponse>(FETCH_GAME_LEVEL, {
     variables: {
       userId: user.uid,
     },
     onCompleted: (data: FetchGameLevelResponse) => {
+      console.log(data);
       if (data.longestStreakUserData[0] !== undefined) {
         dispatch(initializeGame(data.longestStreakUserData[0].currentLevel));
+      } else {
+        upsertGameLevel({
+          variables: {
+            userId: user.uid,
+          },
+        });
       }
     },
   });
@@ -211,9 +221,7 @@ export default function BlockComponentGallery() {
           winner={calculateWinner(gameState, playerName)}
           image={showEndGameImage(gameState)}
           user={user}
-          queryCurrentLevel={data.longestStreakUserData[0].currentLevel}
-          playerOneScore={0}
-          playerTwoScore={0}
+          showWinner={showWinner(gameState)}
         />
       ) : null}
     </div>
