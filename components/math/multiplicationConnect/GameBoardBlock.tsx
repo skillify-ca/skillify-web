@@ -33,6 +33,8 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
     stage === Stage.GAME_PLAY && dispatch(togglePlayer(isPlayerOne)); // toggle if still in GAME_PLAY (!GAME_WIN, !GAME_OVER)
   };
 
+  console.log("isPlayerOne (GBB): ", isPlayerOne);
+
   return (
     <div
       onClick={handleBlockClick}
@@ -57,9 +59,10 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
                 "hover:bg-[#FFD500]/80 hover:animate-pulse")
           }
           ${
-            stage === Stage.GAME_WIN &&
             blockData.selectedBy === SelectedBy.Winner &&
-            "bg-fuchsia-500"
+            (isPlayerOne
+              ? "bg-[#FFDB00]/90 animate-pulse"
+              : "bg-[#F20000]/80 animate-pulse")
           }`}
       // highlight winning game selection here
       // lockout blocks on game over — should already be implemented w the check in onClick

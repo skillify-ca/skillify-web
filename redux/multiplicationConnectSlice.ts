@@ -62,6 +62,8 @@ export const multiplicationConnectSlice: Slice = createSlice({
           );
         });
         // console.log("Grid after double map", current(state.grid));
+        console.log("Stage (after calcWin()):", state.stage);
+        console.log("isPlayerOne", state.isPlayerOne);
       }
     },
     togglePlayer: (state: MultiplicationConnectState) => {
@@ -74,11 +76,6 @@ export const multiplicationConnectSlice: Slice = createSlice({
       const gameStage = action.payload as Stage;
       console.log(state.stage + " > " + gameStage);
       state.stage = gameStage;
-    },
-    setGameWin: (state: MultiplicationConnectState) => {
-      // TODO set winning blocks selectedBy property here & set the stage as well to game_win
-      state.stage = Stage.GAME_WIN;
-      console.log("game win and blocks styled here");
     },
     setNewGame: (state: MultiplicationConnectState) => {
       state.newGame++;
