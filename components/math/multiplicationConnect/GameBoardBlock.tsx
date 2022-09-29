@@ -61,8 +61,8 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
           ${
             blockData.selectedBy === SelectedBy.Winner &&
             (isPlayerOne
-              ? "bg-[#FFDB00]/90 animate-pulse"
-              : "bg-[#F20000]/80 animate-pulse")
+              ? "bg-gradient-to-br from-[#FFDB00]/90 to-amber-700 scale-125 brightness-125"
+              : "bg-gradient-to-r from-[#F20000]/90 to-fuchsia-800 scale-125 brightness-125")
           }`}
       // highlight winning game selection here
       // lockout blocks on game over — should already be implemented w the check in onClick
