@@ -6,13 +6,7 @@ interface ModalProps {
   children: any;
 }
 
-/* todo: 
-    - make modals responsive — overflowing as is & hiding button (esp on monitor)
-    - add typescript for inputs — this and PlayerAndDice
-*/
 const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
-  /*  - MORE: alert in corner, game win modal
-   */
   const ref = useRef<HTMLDivElement>();
 
   const fadeOut = (ref) => {
@@ -23,11 +17,6 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
     }, 750);
   };
 
-  // todo: on Modal open toggle this: document.body.classList.add("no-scroll")
-  /* todo: setup GAME_WIN & alert Modal
-      - trigger the game win state when passing to calculateWinner() in Slice
-      - pass Modal type in Index to get log to print
-  */
   return (
     <>
       {type === "centered" ? (
@@ -104,9 +93,7 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
               </div>
             </div>
           </section>
-          /* console.log("alert dialog triggered") */
         )
-        // Get alert Modal from HyperUI
       )}
     </>
   );

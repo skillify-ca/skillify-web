@@ -1,7 +1,6 @@
 import GameBoardBlock from "../../../../../components/math/multiplicationConnect/GameBoardBlock";
 import { getRandomItemFromArray } from "../../../random";
 
-//todo: if win return who won (p1, p1) & ***style the winning blocks***
 export enum SelectedBy {
   Unselected = "UNSELECTED",
   PlayerOne = "PLAYERONE",
@@ -16,7 +15,6 @@ export enum WinType {
   Draw = "DRAW",
 }
 
-// creating a new return type w TS union types
 type WinDetails = {
   winType: WinType;
   winningBlocks: null | number[];

@@ -25,8 +25,6 @@ const Index: FC = () => {
     !isPlayerOne && dispatch(togglePlayer(isPlayerOne));
   }, [newGame]);
 
-  // console.log(normalMode ? "normal" : "lazy");
-
   return (
     <main>
       {stage === Stage.WELCOME && (
@@ -76,11 +74,7 @@ const Index: FC = () => {
         <PlayerAndDice normalMode={normalMode} />
 
         <div className="flex items-stretch pt-5 pb-3 justify-evenly">
-          {/* Game settings: 
-              - build play solo/two player
-              - toggle dark mode (figure out how to toggle in TW)
-              - view stats (link to gQL and Hasura) */}
-          {/* Add the outlined diceRoll animation */}
+          {/* - build play solo/two player */}
           <Settings />
           <button
             type="button"

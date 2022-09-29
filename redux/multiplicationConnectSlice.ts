@@ -7,10 +7,6 @@ import {
 } from "../pages/api/labs/games/multiplication-connect/gameLogic";
 import GameBoardBlock from "../components/math/multiplicationConnect/GameBoardBlock";
 
-/* todo: flesh this out and implement in Index like Kari's game.tsx
-    - include this in State after
-    - add string like SelectedBy type (if it makes more sense when debugging)
- */
 export enum Stage {
   WELCOME = "WELCOME",
   GAME_PLAY = "GAME_PLAY",
@@ -61,9 +57,6 @@ export const multiplicationConnectSlice: Slice = createSlice({
               block.id === winBlock && (block.selectedBy = SelectedBy.Winner)
           );
         });
-        // console.log("Grid after double map", current(state.grid));
-        console.log("Stage (after calcWin()):", state.stage);
-        console.log("isPlayerOne", state.isPlayerOne);
       }
     },
     togglePlayer: (state: MultiplicationConnectState) => {
@@ -83,11 +76,6 @@ export const multiplicationConnectSlice: Slice = createSlice({
     },
   },
 });
-
-/* const blockClickHelper = (grid, isPlayerOne) => {
-  console.log("blockClickHelper()", calculateWinner(grid, isPlayerOne));
-  // setGameWin(stage);
-}; */
 
 export const {
   togglePlayer,
