@@ -48,8 +48,22 @@ export const multiplicationConnectSlice: Slice = createSlice({
       state.isPlayerOne
         ? (state.grid[block.id].selectedBy = SelectedBy.PlayerOne)
         : (state.grid[block.id].selectedBy = SelectedBy.PlayerTwo);
+
+      const { winType, winningBlocks } = calculateWinner(
+        state.grid,
+        state.isPlayerOne
+      );
+      if (winningBlocks) {
+        state.stage = Stage.GAME_WIN;
+        state.grid.map((block) => {
+          winningBlocks.map(
+            (winBlock) =>
+              block.id === winBlock && (block.selectedBy = SelectedBy.Winner)
+          );
+        });
+        // console.log("Grid after double map", current(state.grid));
+      }
     },
-    // setGameWin — change the selectedBy properties of the winning blocks to SelectedBy.Winner to be styled in the GameBoardBlock
     togglePlayer: (state: MultiplicationConnectState) => {
       state.isPlayerOne = !state.isPlayerOne;
     },
@@ -72,6 +86,11 @@ export const multiplicationConnectSlice: Slice = createSlice({
     },
   },
 });
+
+/* const blockClickHelper = (grid, isPlayerOne) => {
+  console.log("blockClickHelper()", calculateWinner(grid, isPlayerOne));
+  // setGameWin(stage);
+}; */
 
 export const {
   togglePlayer,

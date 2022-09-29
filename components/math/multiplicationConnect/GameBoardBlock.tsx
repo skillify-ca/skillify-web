@@ -29,15 +29,7 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
   const dispatch = useDispatch();
 
   const handleBlockClick = () => {
-    if (stage === Stage.GAME_PLAY) {
-      dispatch(blockClick(blockData)); // blocks can only be clicked in GAME_PLAY
-      // if calculateWinner() === Win (Loss, Draw)
-      // state.stage = Stage.GAME_WIN
-      const { winType, winningBlocks } = calculateWinner(grid, isPlayerOne);
-      console.log(winType, winningBlocks);
-      // don't set state here, pass to setGameWin
-      winningBlocks ? dispatch(setGameWin(grid)) : "";
-    }
+    stage === Stage.GAME_PLAY && dispatch(blockClick(blockData)); // blocks can only be clicked in GAME_PLAY
     stage === Stage.GAME_PLAY && dispatch(togglePlayer(isPlayerOne)); // toggle if still in GAME_PLAY (!GAME_WIN, !GAME_OVER)
   };
 
@@ -64,7 +56,11 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
               : blockData.selectedBy === SelectedBy.Unselected &&
                 "hover:bg-[#FFD500]/80 hover:animate-pulse")
           }
-          ${stage === Stage.GAME_WIN && ""}`}
+          ${
+            stage === Stage.GAME_WIN &&
+            blockData.selectedBy === SelectedBy.Winner &&
+            "bg-fuchsia-500"
+          }`}
       // highlight winning game selection here
       // lockout blocks on game over — should already be implemented w the check in onClick
     >
