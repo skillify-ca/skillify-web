@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Winner from "../../../../components/math/longestStreak/Winner";
 import MultiplicationBlock, {
@@ -9,7 +9,6 @@ import {
   setPlayerName,
   reset,
   GameLevel,
-  setLevel,
 } from "../../../../redux/longestStreakSlice";
 
 import { Button } from "../../../../components/ui/Button";
@@ -20,184 +19,16 @@ import {
   setStage,
   STAGE,
 } from "../../../../redux/longestStreakSlice";
-// import Firework from "../../../../components/math/longestStreak/Firework";
-import { shuffle } from "lodash";
-import { getRndInteger } from "../../../api/random";
-export type GameBlockState = {
-  text: string;
-  value: number;
-  isProduct: boolean;
-  state: BlockState;
-};
-
-export function initializeGameState(level: GameLevel): GameBlockState[] {
-  let dummyArray: GameBlockState[] = [];
-  for (let i = 0; i <= 19; i++) {
-    if (level === GameLevel.BEGINNER) {
-      let x = getRndInteger(1, 10);
-      let y = getRndInteger(1, 10);
-      let product: number = x * y;
-      let productString: string = x + " x " + y;
-      let initiateBlockState: GameBlockState = {
-        text: product.toString(),
-        value: product,
-        isProduct: true,
-        state: BlockState.NOT_SELECTED,
-      };
-      dummyArray.push(initiateBlockState);
-
-      initiateBlockState = {
-        text: productString,
-        value: product,
-        isProduct: false,
-        state: BlockState.NOT_SELECTED,
-      };
-      dummyArray.push(initiateBlockState);
-    } else if (level === GameLevel.BEGINNER_ADVANCED) {
-      let x = getRndInteger(10, 20);
-      let y = getRndInteger(10, 20);
-      let product: number = x * y;
-      let productString: string = x + " x " + y;
-      let initiateBlockState: GameBlockState = {
-        text: product.toString(),
-        value: product,
-        isProduct: true,
-        state: BlockState.NOT_SELECTED,
-      };
-      dummyArray.push(initiateBlockState);
-
-      initiateBlockState = {
-        text: productString,
-        value: product,
-        isProduct: false,
-        state: BlockState.NOT_SELECTED,
-      };
-      dummyArray.push(initiateBlockState);
-    } else if (level === GameLevel.INTERMEDIATE) {
-      let x = getRndInteger(20, 30);
-      let y = getRndInteger(20, 30);
-      let product: number = x * y;
-      let productString: string = x + " x " + y;
-      let initiateBlockState: GameBlockState = {
-        text: product.toString(),
-        value: product,
-        isProduct: true,
-        state: BlockState.NOT_SELECTED,
-      };
-      dummyArray.push(initiateBlockState);
-
-      initiateBlockState = {
-        text: productString,
-        value: product,
-        isProduct: false,
-        state: BlockState.NOT_SELECTED,
-      };
-      dummyArray.push(initiateBlockState);
-    } else if (level === GameLevel.INTERMEDIATE_ADVANCED) {
-      let x = getRndInteger(30, 40);
-      let y = getRndInteger(30, 40);
-      let product: number = x * y;
-      let productString: string = x + " x " + y;
-      let initiateBlockState: GameBlockState = {
-        text: product.toString(),
-        value: product,
-        isProduct: true,
-        state: BlockState.NOT_SELECTED,
-      };
-      dummyArray.push(initiateBlockState);
-
-      initiateBlockState = {
-        text: productString,
-        value: product,
-        isProduct: false,
-        state: BlockState.NOT_SELECTED,
-      };
-      dummyArray.push(initiateBlockState);
-    } else if (level === GameLevel.EXPERT) {
-      let x = getRndInteger(40, 50);
-      let y = getRndInteger(40, 50);
-      let product: number = x * y;
-      let productString: string = x + " x " + y;
-      let initiateBlockState: GameBlockState = {
-        text: product.toString(),
-        value: product,
-        isProduct: true,
-        state: BlockState.NOT_SELECTED,
-      };
-      dummyArray.push(initiateBlockState);
-
-      initiateBlockState = {
-        text: productString,
-        value: product,
-        isProduct: false,
-        state: BlockState.NOT_SELECTED,
-      };
-      dummyArray.push(initiateBlockState);
-    }
-  }
-
-  dummyArray = shuffle(dummyArray);
-
-  return dummyArray;
-}
-
-export function longestSubarray(array: GameBlockState[], x: BlockState) {
-  let maxlength = 0;
-  let sum = 0;
-  for (let i = 0; i < array.length; i++) {
-    if (array[i].state === x) {
-      sum++;
-    } else {
-      maxlength = Math.max(maxlength, sum);
-      sum = 0;
-      console.log("maxLength", maxlength, "currentSum", sum);
-    }
-  }
-  maxlength = Math.max(maxlength, sum);
-  sum = 0;
-  console.log("maxLength", maxlength, "currentSum", sum);
-  return maxlength;
-}
-
-export function calculateWinner(array: GameBlockState[], playerName: string) {
-  let playerOneArray = longestSubarray(
-    array,
-    BlockState.PLAYER_ONE_SELECTED && BlockState.HIGHLIGHTED
-  );
-  console.log("P1", playerOneArray);
-  let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
-  console.log("P2", playerTwoArray);
-  if (playerOneArray > playerTwoArray) {
-    return playerName + ", you have Conquered!";
-  } else if (playerTwoArray > playerOneArray) {
-    return (
-      "Sorry, " + playerName + " " + "This round goes to Computer the Great..."
-    );
-  } else if (playerOneArray === playerTwoArray) {
-    return "This mission has resulted in a Draw!";
-  }
-}
-
-export function calculatePlayerOneScore(array: GameBlockState[]) {
-  let playerOneArray = longestSubarray(
-    array,
-    BlockState.PLAYER_ONE_SELECTED && BlockState.HIGHLIGHTED
-  );
-  return playerOneArray;
-}
-
-export function calculatePlayerTwoScore(array: GameBlockState[]) {
-  let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
-  return playerTwoArray;
-}
-
-export function checkNumberNotSelected(array: GameBlockState[]) {
-  const ns = array.filter((block) => {
-    return block.state === BlockState.NOT_SELECTED;
-  });
-  let notSelectedNumber = ns.length;
-  return notSelectedNumber;
-}
+import Firework from "../../../../components/math/longestStreak/Firework";
+import {
+  calculatePlayerOneScore,
+  calculatePlayerTwoScore,
+  calculateWinner,
+  checkNumberNotSelected,
+  GameBlockState,
+  gameLevelsMetaData,
+  longestSubarray,
+} from "../../../api/longestStreak";
 
 export function showEndGameImage(array: GameBlockState[]) {
   let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
@@ -219,7 +50,6 @@ export default function BlockComponentGallery() {
     stage,
     blocks: gameState,
     playerName,
-    level,
   } = useSelector(longestStreakSelector);
 
   function handleSelect(index) {
@@ -230,8 +60,7 @@ export default function BlockComponentGallery() {
   }
 
   useEffect(() => {
-    dispatch(setLevel(GameLevel.INTERMEDIATE_ADVANCED));
-    dispatch(initializeGame(level));
+    dispatch(initializeGame(GameLevel.BEGINNER));
   }, []);
 
   function handlePlayGame() {
@@ -240,8 +69,8 @@ export default function BlockComponentGallery() {
 
   function handleResetGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
-    dispatch(reset(level));
-    dispatch(initializeGame(level));
+    dispatch(reset(GameLevel.BEGINNER));
+    dispatch(initializeGame(GameLevel.BEGINNER));
   }
   function handleCalculateWinner() {
     dispatch(setStage(STAGE.CALCULATE_WINNER));
@@ -299,7 +128,7 @@ export default function BlockComponentGallery() {
             </div>
             <div className="col-span-7 bg-gradient-to-r from-purple-300 ...">
               <div className="flex flex-col row-auto ">
-                <ul className="flex justify-center p-5 text-xl">
+                <ul className="flex justify-center text-xl p-5">
                   Number of Open Blocks: {"  "}
                   <span className="font-bold">
                     {checkNumberNotSelected(gameState)}
@@ -328,7 +157,7 @@ export default function BlockComponentGallery() {
                   type="string"
                   value={playerName}
                   onChange={(e) => dispatch(setPlayerName(e.target.value))}
-                  className="text-2xl font-bold text-center border-2 border-gray-300 place-self-center w-30"
+                  className="font-bold text-center text-2xl border-2 border-gray-300 place-self-center w-30"
                 ></input>
               </div>
             </div>

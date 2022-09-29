@@ -57,7 +57,7 @@ const Settings = () => {
               className="flex items-center w-full px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 dark:hover:bg-gray-800"
               role="menuitem"
             >
-              <span className="pr-2 text-2xl">👋🏼</span> Play Solo
+              <span className="pr-2 text-2xl">⚠️👋🏼</span> Play Solo
             </button>
 
             <button
@@ -71,14 +71,14 @@ const Settings = () => {
               className="flex items-center w-full px-4 py-2 text-sm text-left text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 dark:hover:bg-gray-800"
               role="menuitem"
             >
-              <span className="pr-2 text-2xl">🌓</span>Toggle Dark Mode
+              <span className="pr-2 text-2xl">⚠️🌓</span>Toggle Light/Dark Mode
             </button>
 
             <button
               className="flex items-center w-full px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 dark:hover:bg-gray-800"
               role="menuitem"
             >
-              <span className="pr-2 text-2xl">🙋🏽</span>Feature Request
+              <span className="pr-2 text-2xl">⚠️🙋🏽</span>Feature Request
             </button>
 
             <button
