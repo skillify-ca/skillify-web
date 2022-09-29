@@ -85,14 +85,20 @@ const Index: FC = () => {
 
         <div className="flex items-stretch pt-5 pb-3 justify-evenly">
           {/* - build play solo/two player */}
-          <Settings />
+          <div
+            className={`flex items-stretch ${
+              stage === Stage.GAME_OVER && "z-20"
+            }`}
+          >
+            <Settings />
+          </div>
           <button
             type="button"
-            className={`z-10 font-mono font-bold text-gray-600 bg-white border border-gray-300 focus:outline-none 
+            className={`font-mono font-bold text-gray-600 bg-white border border-gray-300 focus:outline-none 
                  focus:ring-1 focus:ring-gray-200 rounded-lg px-5 py-2.5 dark:hover:border-gray-600 dark:focus:ring-gray-700
                  dark:text-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:hover:text-gray-200 dark:hover:bg-gray-800 
                  hover:text-gray-700 hover:bg-gray-50 ${
-                   stage === Stage.WELCOME && "animate-bounce"
+                   stage === Stage.WELCOME && "z-20 animate-bounce"
                  }`}
             onClick={() => dispatch(setStage(Stage.GAME_RULES))}
           >
