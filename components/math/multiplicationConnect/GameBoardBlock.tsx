@@ -44,9 +44,13 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
           ${
             // Selected block colours
             blockData.selectedBy === SelectedBy.PlayerOne
-              ? "bg-[#F20000]/80"
+              ? `bg-[#F20000]/80 ${
+                  stage === Stage.GAME_WIN && "brightness-90 contrast-75"
+                }`
               : blockData.selectedBy === SelectedBy.PlayerTwo &&
-                "bg-[#FFDB00]/90"
+                `bg-[#FFDB00]/90 ${
+                  stage === Stage.GAME_WIN && "brightness-90 contrast-75"
+                }`
           }
           ${
             // Unselected hover animation
@@ -62,10 +66,8 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
             blockData.selectedBy === SelectedBy.Winner &&
             (isPlayerOne
               ? "bg-gradient-to-br from-[#FFDB00]/90 to-amber-700 scale-125 brightness-125"
-              : "bg-gradient-to-r from-[#F20000]/90 to-fuchsia-800 scale-125 brightness-125")
+              : "bg-gradient-to-r from-[#F20000]/90 to-fuchsia-800 scale-125 contrast-150")
           }`}
-      // highlight winning game selection here
-      // lockout blocks on game over — should already be implemented w the check in onClick
     >
       <p>{blockData.gridNumber}</p>
     </div>
