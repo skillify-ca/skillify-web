@@ -53,7 +53,7 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
           onMouseMove={() => fadeOut(ref)}
           onTransitionEnd={() => closeModal()}
         >
-          {/* Overlay */}
+          {/* Overlay (+'Rules' highlight) */}
           <div className="fixed top-0 bottom-0 left-0 right-0 z-20 -mb-[28rem] bg-gradient-to-b from-amber-600/5 to-black-500 backdrop-blur-lg" />
           {/* Modal */}
           <div
@@ -94,9 +94,8 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
         </section>
       ) : (
         type === "game-over-prompt" && (
-          // Black overlay on UI and highlight Settings
           <section>
-            {/* Overlay */}
+            {/* Overlay (+'Settings' highlight)*/}
             <div className="fixed top-0 bottom-0 left-0 right-0 -mb-[28rem] bg-black-500/30 z-20" />
             {/* Modal */}
             <div className="fixed z-50 w-8/12 p-8 text-2xl font-bold text-center text-white -translate-x-1/2 -translate-y-1/2 shadow-2xl rounded-2xl backdrop-blur-xl top-72 left-1/2">
