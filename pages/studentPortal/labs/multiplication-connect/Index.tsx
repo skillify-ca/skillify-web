@@ -12,10 +12,11 @@ import PlayerAndDice from "../../../../components/math/multiplicationConnect/Pla
 import GameBoard from "../../../../components/math/multiplicationConnect/GameBoard";
 import Modal from "../../../../components/math/multiplicationConnect/Modal";
 import Settings from "../../../../components/math/multiplicationConnect/Settings";
+import { WinType } from "../../../api/labs/games/multiplication-connect/gameLogic";
 
 const Index: FC = () => {
   const [normalMode, setIsNormalMode] = useState(true);
-  const { grid, isPlayerOne, stage, newGame } = useSelector(
+  const { grid, isPlayerOne, stage, newGame, hasWinner } = useSelector(
     multiplicationConnectSelector
   );
   const dispatch = useDispatch();
@@ -25,23 +26,25 @@ const Index: FC = () => {
     !isPlayerOne && dispatch(togglePlayer(isPlayerOne));
   }, [newGame]);
 
-  // console.log(normalMode ? "normal" : "lazy");
+  const handleDispatch = () => {
+    if (stage === Stage.GAME_WIN && hasWinner)
+      dispatch(setStage(Stage.GAME_OVER));
+    else {
+      !hasWinner
+        ? dispatch(setStage(Stage.GAME_PLAY))
+        : dispatch(setStage(Stage.GAME_WIN));
+    }
+  };
 
   return (
     <main>
       {stage === Stage.WELCOME && (
-        <Modal
-          type="fullscreen"
-          closeModal={() => dispatch(setStage(Stage.GAME_PLAY))}
-        >
+        <Modal type="fullscreen-welcome" closeModal={() => handleDispatch()}>
           <p>Welcome to Multiplication Connect Four!</p>
         </Modal>
       )}
       {stage === Stage.GAME_RULES && (
-        <Modal
-          type="centered"
-          closeModal={() => dispatch(setStage(Stage.GAME_PLAY))}
-        >
+        <Modal type="rules" closeModal={() => handleDispatch()}>
           <h2 className="text-4xl font-bold">Game Rules</h2>
           <ol className="space-y-2 list-decimal">
             <li>Roll two dice.</li>
@@ -56,16 +59,21 @@ const Index: FC = () => {
         </Modal>
       )}
       {stage === Stage.GAME_WIN && (
-        <Modal
-          type="alert"
-          closeModal={() => dispatch(setStage(Stage.GAME_OVER))}
-        >
-          <h1>Player __ win!</h1>
-          <p>get player name text and output here</p>
-          <button>Store progress</button>
-          <button>Restart</button>
-          <button>Save your win (download a screenshot)</button>
-          <button>Close</button>
+        <Modal type="game-alert" closeModal={() => handleDispatch()}>
+          <h2 className="text-3xl font-bold text-center text-black-500">
+            {hasWinner === WinType.PlayerOne
+              ? "Player One Win 🔴"
+              : "Player Two Win 🟡"}
+          </h2>
+          <p className="mt-2 text-sm text-gray-500">
+            Congratulations. Store your progress and save your stats for next
+            time!
+          </p>
+        </Modal>
+      )}
+      {stage === Stage.GAME_OVER && (
+        <Modal type="game-over-prompt">
+          <h2>Please start a new game</h2>
         </Modal>
       )}
 
@@ -76,19 +84,21 @@ const Index: FC = () => {
         <PlayerAndDice normalMode={normalMode} />
 
         <div className="flex items-stretch pt-5 pb-3 justify-evenly">
-          {/* Game settings: 
-              - build play solo/two player
-              - toggle dark mode (figure out how to toggle in TW)
-              - view stats (link to gQL and Hasura) */}
-          {/* Add the outlined diceRoll animation */}
-          <Settings />
+          {/* - build play solo/two player */}
+          <div
+            className={`flex items-stretch ${
+              stage === Stage.GAME_OVER && "z-20"
+            }`}
+          >
+            <Settings />
+          </div>
           <button
             type="button"
-            className={`z-20 font-mono font-bold text-gray-600 bg-white border border-gray-300 focus:outline-none 
+            className={`font-mono font-bold text-gray-600 bg-white border border-gray-300 focus:outline-none 
                  focus:ring-1 focus:ring-gray-200 rounded-lg px-5 py-2.5 dark:hover:border-gray-600 dark:focus:ring-gray-700
                  dark:text-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:hover:text-gray-200 dark:hover:bg-gray-800 
                  hover:text-gray-700 hover:bg-gray-50 ${
-                   stage === Stage.WELCOME && "animate-bounce"
+                   stage === Stage.WELCOME && "z-20 animate-bounce"
                  }`}
             onClick={() => dispatch(setStage(Stage.GAME_RULES))}
           >

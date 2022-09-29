@@ -1,18 +1,12 @@
 import React, { FC, Ref, useRef } from "react";
 
 interface ModalProps {
-  type: String;
-  closeModal: () => void;
+  type: "rules" | "fullscreen-welcome" | "game-alert" | "game-over-prompt";
+  closeModal?: () => void;
   children: any;
 }
 
-/* todo: 
-    - make modals responsive — overflowing as is
-    - add typescript for inputs — this and PlayerAndDice
-*/
 const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
-  /*  - MORE: alert in corner, game win modal
-   */
   const ref = useRef<HTMLDivElement>();
 
   const fadeOut = (ref) => {
@@ -23,14 +17,9 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
     }, 750);
   };
 
-  // todo: on Modal open toggle this: document.body.classList.add("no-scroll")
-  /* todo: setup GAME_WIN & alert Modal
-      - trigger the game win state when passing to calculateWinner() in Slice
-      - pass Modal type in Index to get log to print
-  */
   return (
     <>
-      {type === "centered" ? (
+      {type === "rules" ? (
         <section className="fixed z-50">
           {/* Overlay */}
           <div
@@ -57,27 +46,63 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
             </div>
           </div>
         </section>
-      ) : type === "fullscreen" ? (
+      ) : type === "fullscreen-welcome" ? (
         <section
           ref={ref}
           className="transition-opacity duration-200 ease-in"
           onMouseMove={() => fadeOut(ref)}
           onTransitionEnd={() => closeModal()}
         >
-          {/* Overlay */}
+          {/* Overlay (+'Rules' highlight) */}
           <div className="fixed top-0 bottom-0 left-0 right-0 z-20 -mb-[28rem] bg-gradient-to-b from-amber-600/5 to-black-500 backdrop-blur-lg" />
           {/* Modal */}
           <div
             className="fixed drop-shadow-2xl z-50 flex flex-col justify-center gap-10 font-bold text-transparent bg-clip-text 
                 bg-gradient-to-tr from-[#F20000]/80 via-[#ffcf00]/100 to-[#ffed5b]/100 text-5xl w-full text-center -translate-x-1/2 
-                -translate-y-1/2 top-[32%] left-1/2"
+                -translate-y-1/2 top-72 left-1/2 px-12"
           >
             {children}
           </div>
         </section>
+      ) : type === "game-alert" ? (
+        <section className="flex justify-center">
+          <div className="fixed z-50 p-8 mt-4 bg-white rounded-lg shadow-2xl">
+            {children}
+
+            <div className="flex items-center justify-end mt-8 text-xs">
+              <button
+                type="button"
+                className="px-4 py-2 font-medium text-red-600 rounded bg-red-50"
+                onClick={() => closeModal()}
+              >
+                Close without saving
+              </button>
+              <button
+                type="button"
+                className="px-4 py-2 ml-2 font-medium text-green-600 rounded bg-green-50"
+              >
+                Save & Close
+              </button>
+              <button
+                type="button"
+                className="px-4 py-2 ml-2 font-medium text-green-600 rounded bg-green-50"
+              >
+                Save & Start New Game
+              </button>
+            </div>
+          </div>
+        </section>
       ) : (
-        type === "alert" && console.log("alert dialog triggered")
-        // Get alert Modal from HyperUI
+        type === "game-over-prompt" && (
+          <section>
+            {/* Overlay (+'Settings' highlight)*/}
+            <div className="fixed top-0 bottom-0 left-0 right-0 -mb-[28rem] bg-black-500/30 z-20" />
+            {/* Modal */}
+            <div className="fixed z-50 w-8/12 p-8 text-2xl font-bold text-center text-white -translate-x-1/2 -translate-y-1/2 shadow-2xl rounded-2xl backdrop-blur-xl top-72 left-1/2">
+              {children}
+            </div>
+          </section>
+        )
       )}
     </>
   );
