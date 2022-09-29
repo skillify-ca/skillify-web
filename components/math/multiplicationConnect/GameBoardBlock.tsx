@@ -63,10 +63,11 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
                 "hover:bg-[#FFD500]/80 hover:animate-pulse")
           }
           ${
+            // Game win styling
             blockData.selectedBy === SelectedBy.Winner &&
             (isPlayerOne
               ? "bg-gradient-to-br from-[#FFDB00]/90 to-amber-700 scale-125 brightness-125"
-              : "bg-gradient-to-r from-[#F20000]/90 to-fuchsia-800 scale-125 contrast-150")
+              : "bg-gradient-to-r from-[#F20000]/90 to-fuchsia-600/90 scale-125 contrast-150")
           }`}
     >
       <p>{blockData.gridNumber}</p>
