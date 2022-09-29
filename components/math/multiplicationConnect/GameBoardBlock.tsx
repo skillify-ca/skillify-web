@@ -41,11 +41,12 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
         stage === Stage.GAME_PLAY && "cursor-pointer"
       }
           ${
+            stage !== Stage.GAME_OVER &&
             // Selected block colours
-            blockData.selectedBy === SelectedBy.PlayerOne
+            (blockData.selectedBy === SelectedBy.PlayerOne
               ? `bg-[#F20000]/80 ${stage === Stage.GAME_WIN && "contrast-75"}`
               : blockData.selectedBy === SelectedBy.PlayerTwo &&
-                `bg-[#FFDB00]/90 ${stage === Stage.GAME_WIN && "contrast-75"}`
+                `bg-[#FFDB00]/90 ${stage === Stage.GAME_WIN && "contrast-75"}`)
           }
           ${
             // Unselected hover animation

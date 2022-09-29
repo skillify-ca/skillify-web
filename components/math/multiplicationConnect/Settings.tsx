@@ -14,7 +14,7 @@ const Settings = () => {
 
   return (
     <section
-      className="inline-flex bg-white border border-gray-300 rounded-md cursor-pointer dark:bg-gray-900 dark:border-gray-700 dark:hover:border-gray-600"
+      className="z-20 inline-flex bg-white border border-gray-300 rounded-md cursor-pointer dark:bg-gray-900 dark:border-gray-700 dark:hover:border-gray-600"
       onMouseOver={() => setIsOpen(true)}
       onMouseOut={() => setIsOpen(false)}
       onClick={() => setIsOpen(!isOpen)}

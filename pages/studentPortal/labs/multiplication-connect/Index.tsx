@@ -27,7 +27,6 @@ const Index: FC = () => {
   }, [newGame]);
 
   const handleDispatch = () => {
-    //(for alert modal): reset GB state with locked blocks and dismissed alert. pop an alert to please start new game.
     if (stage === Stage.GAME_WIN && hasWinner)
       dispatch(setStage(Stage.GAME_OVER));
     else {
@@ -72,12 +71,11 @@ const Index: FC = () => {
           </p>
         </Modal>
       )}
-      {stage === Stage.GAME_OVER &&
-        // Black overlay on UI and highlight Settings
-        "" // <Modal type="fullscreen-welcome" closeModal={() => ""}>
-        //   <h2>Please start a new game</h2>
-        // </Modal>
-      }
+      {stage === Stage.GAME_OVER && (
+        <Modal type="game-over-prompt">
+          <h2>Please start a new game</h2>
+        </Modal>
+      )}
 
       <div className="flex flex-col justify-center max-w-5xl gap-4 mx-auto">
         <h1 className="mx-10 mb-3 text-3xl font-bold text-center drop-shadow-lg shadow-black-500">
@@ -90,7 +88,7 @@ const Index: FC = () => {
           <Settings />
           <button
             type="button"
-            className={`z-20 font-mono font-bold text-gray-600 bg-white border border-gray-300 focus:outline-none 
+            className={`z-10 font-mono font-bold text-gray-600 bg-white border border-gray-300 focus:outline-none 
                  focus:ring-1 focus:ring-gray-200 rounded-lg px-5 py-2.5 dark:hover:border-gray-600 dark:focus:ring-gray-700
                  dark:text-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:hover:text-gray-200 dark:hover:bg-gray-800 
                  hover:text-gray-700 hover:bg-gray-50 ${
