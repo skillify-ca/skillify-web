@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import * as fbq from "../../../../lib/fbPixel";
-import ActiveCampaignWaitlistOptin from "../ActiveCampaignWaitlistOptIn";
 
 export default function Modal({ handleClose }) {
   const [email, setEmail] = useState("");
@@ -64,7 +63,45 @@ export default function Modal({ handleClose }) {
           />
         </svg>
       </div>
-      <ActiveCampaignWaitlistOptin />
+      <div className="flex flex-col w-full bg-white rounded-xl">
+        <div className="grid grid-cols-1 p-8 bg-white sm:p-16">
+          <h1 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">
+            <span className="">Be the </span>
+            <span className=" text-charmander">first </span>
+            to know when the{" "}
+            <span className=" text-charmander"> next cohort</span> opens for
+            enrollment
+          </h1>
+          <input
+            id="bootcamper"
+            type="text"
+            autoComplete="off"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className={`p-4 mb-4 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500 text-charmander placeholder-charmander w-full`}
+            placeholder="Enter your full name"
+          />
+          <input
+            id="bootcamper"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            autoComplete="off"
+            className={`text-left mb-4 p-4 border rounded-md shadow-md focus:outline-none focus:ring-indigo-500  text-charmander placeholder-charmander w-full `}
+            placeholder="Enter your email address"
+          />
+          <div className="">
+            <div className="rounded-md">
+              <p
+                onClick={handleClick}
+                className="flex items-center justify-center w-full p-4 text-base font-bold text-white rounded-md cursor-pointer bg-charmander hover:bg-yellow-700 md:text-lg "
+              >
+                Join Waitlist
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

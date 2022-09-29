@@ -87,16 +87,6 @@ class MyDocument extends Document {
         <body style={this.bodyStyle}>
           <Main />
           <NextScript />
-          {/* <!-- Google Tag Manager (noscript) --> */}
-          <noscript>
-            <iframe
-              src="https://www.googletagmanager.com/ns.html?id=GTM-WD9273S"
-              height="0"
-              width="0"
-              style={{ display: "none", visibility: "hidden" }}
-            ></iframe>
-          </noscript>
-          {/* <!-- End Google Tag Manager (noscript) --> */}
         </body>
       </Html>
     );
