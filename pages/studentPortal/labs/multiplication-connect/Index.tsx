@@ -73,12 +73,11 @@ const Index: FC = () => {
         </Modal>
       )}
       {stage === Stage.GAME_OVER &&
-        {
-          // Black overlay on UI and highlight Settings
-          /* <Modal>
-          <h2>Please start a new game</h2>
-        </Modal> */
-        }}
+        // Black overlay on UI and highlight Settings
+        "" // <Modal type="fullscreen-welcome" closeModal={() => ""}>
+        //   <h2>Please start a new game</h2>
+        // </Modal>
+      }
 
       <div className="flex flex-col justify-center max-w-5xl gap-4 mx-auto">
         <h1 className="mx-10 mb-3 text-3xl font-bold text-center drop-shadow-lg shadow-black-500">
