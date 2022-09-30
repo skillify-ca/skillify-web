@@ -1,8 +1,7 @@
 import { useMutation } from "@apollo/client";
 import React from "react";
-import { FETCH_GAME_LEVEL } from "../../../graphql/longestStreak/fetchGameLevel";
+import { DOWNGRADE_GAME_LEVEL } from "../../../graphql/longestStreak/downGradeGameLevel";
 import { UPDATE_GAME_LEVEL } from "../../../graphql/longestStreak/updateGameLevel";
-import { UPSERT_GAME_LEVEL } from "../../../graphql/longestStreak/upsertGameLevel";
 import { Button } from "../../ui/Button";
 
 export interface WinnerProps {
@@ -24,12 +23,22 @@ export const Winner: React.FC<WinnerProps> = ({
   ...props
 }) => {
   const [updateGameLevel] = useMutation(UPDATE_GAME_LEVEL);
+  const [downGradeGameLevel] = useMutation(DOWNGRADE_GAME_LEVEL);
 
   function handleSaveGameClick() {
     if (showWinner === true) {
       updateGameLevel({
         variables: {
-          userId: "BR9u18SJzvVNzcrkEIcJDPxv1ws1",
+          userId: user.uid,
+        },
+        onCompleted: () => {
+          alert("Your skill ratings have been saved successfully.");
+        },
+      });
+    } else {
+      downGradeGameLevel({
+        variables: {
+          userId: user.uid,
         },
         onCompleted: () => {
           alert("Your skill ratings have been saved successfully.");
