@@ -3,7 +3,6 @@ import { RootState } from "./rootReducer";
 import { BlockState } from "../components/math/longestStreak/MultiplicationBlock";
 import { getRandomItemFromArray, getRndInteger } from "../pages/api/random";
 import { GameBlockState, initializeGameState } from "../pages/api/longestStreak";
-import { min } from "lodash";
 
 export interface LongestStreakState {
   stage: STAGE;
@@ -46,7 +45,6 @@ const resetInitialState: LongestStreakState = {
   stage: STAGE.PLAY_GAME,
   reset: false,
   blocks: initializeGameState(GameLevel.BEGINNER),
-
   handlePlayerSelect: 0,
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
@@ -155,7 +153,6 @@ function handleAISelection(state: LongestStreakState) {
     (block) =>
       block.state === BlockState.NOT_SELECTED && block.isProduct === true
   );
-  console.log("Product: " + unselectedBlocks.length);
   if (unselectedBlocks.length > 0) {
     let computerSelected: GameBlockState =
       getRandomItemFromArray(unselectedBlocks);
@@ -181,7 +178,6 @@ function handleAISelection(state: LongestStreakState) {
         state.stage = STAGE.CALCULATE_WINNER;  
     } 
   }
-  //find block that is "x * y" only
 }
 
 export const {

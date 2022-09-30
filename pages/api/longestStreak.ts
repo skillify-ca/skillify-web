@@ -1,5 +1,4 @@
 import { shuffle } from "lodash";
-import Firework from "../../components/math/longestStreak/Firework";
 import { BlockState } from "../../components/math/longestStreak/MultiplicationBlock";
 import { GameLevel } from "../../redux/longestStreakSlice";
 import { getRndInteger } from "./random";
@@ -45,7 +44,6 @@ export const gameLevelsMetaData: Record<GameLevel, GameLevelData> = {
 
 export function initializeGameState(currentLevel:GameLevel): GameBlockState[] {
   let dummyArray: GameBlockState[] = [];
-  console.log("CL: " + currentLevel)
   for (let i = 0; i <= 19; i++) {
       let x = getRndInteger(gameLevelsMetaData[currentLevel].min, gameLevelsMetaData[currentLevel].max);
       let y = getRndInteger(gameLevelsMetaData[currentLevel].min, gameLevelsMetaData[currentLevel].max);
@@ -96,9 +94,7 @@ export function longestSubarray(array: GameBlockState[], x: BlockState) {
 
 export function calculateWinner(array: GameBlockState[], functionName: () => void) {
   let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
-  console.log("P1", playerOneArray);
   let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
-  console.log("P2", playerTwoArray);
   let outcome = functionName()
   if (playerOneArray > playerTwoArray) {
     return outcome[0];

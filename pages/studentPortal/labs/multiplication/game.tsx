@@ -58,9 +58,6 @@ export default function BlockComponentGallery() {
   }
 
   function handleSelect(index) {
-    console.log("BLOCK WAS CLICKED: index ", index);
-    console.log(gameState[index].text);
-
     dispatch(handlePlayerSelect(index));
   }
 
@@ -73,7 +70,6 @@ export default function BlockComponentGallery() {
       userId: user.uid,
     },
     onCompleted: (data: FetchGameLevelResponse) => {
-      console.log(data);
       if (data.longestStreakUserData[0] !== undefined) {
         dispatch(initializeGame(data.longestStreakUserData[0].currentLevel));
       } else {
