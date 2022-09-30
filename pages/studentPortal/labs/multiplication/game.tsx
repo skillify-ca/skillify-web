@@ -1,9 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Winner from "../../../../components/math/longestStreak/Winner";
-import MultiplicationBlock, {
-  BlockState,
-} from "../../../../components/math/longestStreak/MultiplicationBlock";
+import MultiplicationBlock from "../../../../components/math/longestStreak/MultiplicationBlock";
 import Rules from "../../../../components/math/longestStreak/Rules";
 import {
   setPlayerName,
@@ -19,7 +17,6 @@ import {
   setStage,
   STAGE,
 } from "../../../../redux/longestStreakSlice";
-import Firework from "../../../../components/math/longestStreak/Firework";
 import {
   calculatePlayerScore,
   calculateWinner,
@@ -155,7 +152,7 @@ export default function BlockComponentGallery() {
                 </ul>
                 <h1 className="flex justify-between p-5 text-xl">
                   <ul>
-                    {playerName} Score:{" "}
+                    My Score:{" "}
                     <span className="font-bold">
                       {calculatePlayerScore(gameState, 1)}
                     </span>
