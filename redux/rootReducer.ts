@@ -19,6 +19,8 @@ import { lessonSlice, LessonState } from "./lessonSlice";
 import { sidebarSlice, SidebarState } from "./sidebarSlice";
 import { skillRatingsSlice, SkillRatingsState } from "./skillRatingsSlice";
 import { longestStreakSlice, LongestStreakState } from "./longestStreakSlice";
+import { multiplicationConnectSlice, MultiplicationConnectState } from "./multiplicationConnectSlice";
+
 
 type State = {
   [x: string]: any;
@@ -33,6 +35,7 @@ type State = {
   sidebarState: SidebarState;
   skillRatingsState: SkillRatingsState;
   longestStreakState: LongestStreakState;
+  multiplicationConnect: MultiplicationConnectState;
 };
 const diagnosticReducer: Reducer = diagnosticSlice.reducer;
 const practiceTrackerReducer = practiceTrackerSlice.reducer;
@@ -45,6 +48,7 @@ const lessonReducer = lessonSlice.reducer;
 const sidebarReducer = sidebarSlice.reducer;
 const skillRatingsReducer = skillRatingsSlice.reducer;
 const longestStreakReducer = longestStreakSlice.reducer;
+const multiplicationConnectReducer = multiplicationConnectSlice.reducer;
 
 const rootReducer = combineReducers({
   diagnostic: diagnosticReducer,
@@ -58,6 +62,7 @@ const rootReducer = combineReducers({
   sidebarState: sidebarReducer,
   skillRatingsState: skillRatingsReducer,
   longestStreakState: longestStreakReducer,
+  multiplicationConnect: multiplicationConnectReducer,
 });
 
 export type RootState = State;

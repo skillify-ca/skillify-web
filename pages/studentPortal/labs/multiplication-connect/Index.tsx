@@ -1,146 +1,138 @@
-import { indexOf } from "lodash";
-import React, { FC, useState, useEffect } from "react";
-import DiceSection from "../../../../components/math/multiplicationConnect/DiceSection";
+import React, { FC, useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  multiplicationConnectSelector,
+  reloadGrid,
+  setStage,
+  Stage,
+  togglePlayer,
+  setNewGame,
+} from "../../../../redux/multiplicationConnectSlice";
+import PlayerAndDice from "../../../../components/math/multiplicationConnect/PlayerAndDice";
 import GameBoard from "../../../../components/math/multiplicationConnect/GameBoard";
-import GameBoardBlock from "../../../../components/math/multiplicationConnect/GameBoardBlock";
-import PlayerSection from "../../../../components/math/multiplicationConnect/PlayerSection";
-import { getRandomItemFromArray } from "../../../api/random";
-
-enum SelectedBy {
-  Unselected = "UNSELECTED",
-  PlayerOne = "PLAYERONE",
-  PlayerTwo = "PLAYERTWO",
-}
-
-export const calculateWinner = (
-  grid: GameBoardBlock[],
-  isPlayerOne: boolean
-) => {
-  let rows = [
-    grid.filter((i) => i.id >= 0 && i.id < 5),
-    grid.filter((i) => i.id >= 5 && i.id < 10),
-    grid.filter((i) => i.id >= 10 && i.id < 15),
-    grid.filter((i) => i.id >= 15 && i.id < 20),
-    grid.filter((i) => i.id >= 20 && i.id < 25),
-    grid.filter((i) => i.id >= 25 && i.id < 30),
-    grid.filter((i) => i.id >= 30 && i.id < 35),
-  ];
-  let player: SelectedBy;
-  isPlayerOne
-    ? (player = SelectedBy.PlayerOne)
-    : (player = SelectedBy.PlayerTwo);
-  for (let i = 0; i < rows.length; i++) {
-    // rows.length == board height == 7
-    // rows[i].length == board width == 5
-    for (let index = 0; index < rows[i].length - 3; index++) {
-      // Horizontal check
-      rows[i][index].selectedBy == player &&
-      rows[i][index + 1].selectedBy == player &&
-      rows[i][index + 2].selectedBy == player &&
-      rows[i][index + 3].selectedBy == player
-        ? console.log(player, "(horizontal) Four in a row!")
-        : "";
-    }
-    if (i < rows.length - 3) {
-      // Vertical check
-      for (let index = 0; index < rows[i].length; index++) {
-        rows[i][index].selectedBy == player &&
-        rows[i + 1][index].selectedBy == player &&
-        rows[i + 2][index].selectedBy == player &&
-        rows[i + 3][index].selectedBy == player
-          ? console.log(player, "(vertical) Four in a row!")
-          : "";
-      }
-    }
-    if (i >= 3) {
-      // Ascending diagonal check
-      for (let index = 0; index < rows[i].length - 3; index++) {
-        rows[i][index].selectedBy == player &&
-        rows[i - 1][index + 1].selectedBy == player &&
-        rows[i - 2][index + 2].selectedBy == player &&
-        rows[i - 3][index + 3].selectedBy == player
-          ? console.log(player, "(ascending diagonal) Four in a row!")
-          : "";
-      }
-      // Descending diagonal check
-      for (let index = 3; index < rows[i].length; index++) {
-        rows[i][index].selectedBy == player &&
-        rows[i - 1][index - 1].selectedBy == player &&
-        rows[i - 2][index - 2].selectedBy == player &&
-        rows[i - 3][index - 3].selectedBy == player
-          ? console.log(player, "(descending diagonal) Four in a row!")
-          : "";
-      }
-    }
-  }
-};
-
-const createGrid = () => {
-  let arr = [];
-  let newGrid = [];
-  for (let i = 4; i < 25; i++) i % 2 === 0 ? arr.push(i) : "";
-  for (let i = 0; i < 35; i++) {
-    let gridNumber = getRandomItemFromArray(arr);
-    newGrid.push({
-      id: i,
-      gridNumber: gridNumber,
-      selectedBy: SelectedBy.Unselected,
-    });
-  }
-  return newGrid;
-};
+import Modal from "../../../../components/math/multiplicationConnect/Modal";
+import Settings from "../../../../components/math/multiplicationConnect/Settings";
+import { WinType } from "../../../api/labs/games/multiplication-connect/gameLogic";
 
 const Index: FC = () => {
-  const [grid, setGrid] = useState([]);
-  const [newGame, setNewGame] = useState(0);
-  const [isPlayerOne, setIsPlayerOne] = useState(true);
+  const [normalMode, setIsNormalMode] = useState(true);
+  const { grid, isPlayerOne, stage, newGame, hasWinner } = useSelector(
+    multiplicationConnectSelector
+  );
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(`newGame: ${newGame}`);
-    setGrid(createGrid);
-    setIsPlayerOne(true);
+    dispatch(reloadGrid(grid));
+    !isPlayerOne && dispatch(togglePlayer(isPlayerOne));
   }, [newGame]);
 
-  const blockClick = (block: GameBoardBlock) => {
-    let newGrid = Array.from(grid);
-    isPlayerOne
-      ? (newGrid[newGrid.indexOf(block)].selectedBy = SelectedBy.PlayerOne)
-      : (newGrid[newGrid.indexOf(block)].selectedBy = SelectedBy.PlayerTwo);
-
-    setGrid(newGrid);
-    calculateWinner(grid, isPlayerOne);
-    isPlayerOne ? setIsPlayerOne(false) : setIsPlayerOne(true);
+  const handleDispatch = () => {
+    if (stage === Stage.GAME_WIN && hasWinner)
+      dispatch(setStage(Stage.GAME_OVER));
+    else {
+      !hasWinner
+        ? dispatch(setStage(Stage.GAME_PLAY))
+        : dispatch(setStage(Stage.GAME_WIN));
+    }
   };
 
   return (
-    <div className="flex flex-col justify-center max-w-5xl gap-4 mx-auto">
-      <h1 className="mx-10 mb-3 text-4xl font-bold text-center drop-shadow-lg shadow-black-500">
-        Welcome to Multiplication Connect Four 🔴🟡
-      </h1>
-      <PlayerSection />
-      <DiceSection />
-      <div className="flex pt-5 pb-3 justify-evenly">
-        <button
-          type="button"
-          className="font-mono font-bold text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-          onClick={() => setNewGame((prev) => prev + 1)}
-        >
-          🔄 New Game
-        </button>
-        <button
-          type="button"
-          className="font-mono font-bold text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-          onClick={() => {}}
-        >
-          📝 Game Rules
-        </button>
+    <main>
+      {stage === Stage.WELCOME && (
+        <Modal type="fullscreen-welcome" closeModal={() => handleDispatch()}>
+          <p>Welcome to Multiplication Connect Four!</p>
+        </Modal>
+      )}
+      {stage === Stage.GAME_RULES && (
+        <Modal type="rules" closeModal={() => handleDispatch()}>
+          <h2 className="text-4xl font-bold">Game Rules</h2>
+          <ol className="space-y-2 list-decimal">
+            <li>Roll two dice.</li>
+            <li>Add the numbers together, and multiply by 2.</li>
+            <li>Select this number within a block in the game.</li>
+            <li>Repeat for the next player.</li>
+            <li>
+              Play until a player connects 4 squares in a row (vertically,
+              horizontally, or diagonally) to win the game.
+            </li>
+          </ol>
+        </Modal>
+      )}
+      {stage === Stage.GAME_WIN && (
+        <Modal type="game-alert" closeModal={() => handleDispatch()}>
+          <h2 className="text-3xl font-bold text-center text-black-500">
+            {hasWinner === WinType.PlayerOne
+              ? "Player One Win 🔴"
+              : "Player Two Win 🟡"}
+          </h2>
+          <p className="mt-2 text-sm text-gray-500">
+            Congratulations. Store your progress and save your stats for next
+            time!
+          </p>
+        </Modal>
+      )}
+      {stage === Stage.GAME_OVER && (
+        <Modal type="game-over-prompt">
+          <h2>Please start a new game</h2>
+        </Modal>
+      )}
+
+      <div className="flex flex-col justify-center max-w-5xl gap-4 mx-auto">
+        <h1 className="mx-10 mb-3 text-3xl font-bold text-center drop-shadow-lg shadow-black-500">
+          Multiplication Connect Four 🔴🟡
+        </h1>
+        <PlayerAndDice normalMode={normalMode} />
+
+        <div className="flex items-stretch pt-5 pb-3 justify-evenly">
+          {/* - build play solo/two player */}
+          <div
+            className={`flex items-stretch ${
+              stage === Stage.GAME_OVER && "z-20"
+            }`}
+          >
+            <Settings />
+          </div>
+          <button
+            type="button"
+            className={`font-mono font-bold text-gray-600 bg-white border border-gray-300 focus:outline-none 
+                 focus:ring-1 focus:ring-gray-200 rounded-lg px-5 py-2.5 dark:hover:border-gray-600 dark:focus:ring-gray-700
+                 dark:text-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:hover:text-gray-200 dark:hover:bg-gray-800 
+                 hover:text-gray-700 hover:bg-gray-50 ${
+                   stage === Stage.WELCOME && "z-20 animate-bounce"
+                 }`}
+            onClick={() => dispatch(setStage(Stage.GAME_RULES))}
+          >
+            📝 Rules
+          </button>
+          <div className="flex items-center self-center gap-2">
+            <p className="font-mono text-sm text-gray-600 dark:text-gray-300">
+              lazy
+            </p>
+            <label
+              htmlFor="AcceptConditions"
+              className="relative h-6 cursor-pointer w-14"
+            >
+              <input
+                type="checkbox"
+                checked={normalMode}
+                onChange={() => setIsNormalMode(!normalMode)}
+                id="AcceptConditions"
+                className="sr-only peer"
+              />
+              <span className="absolute inset-0 h-1.5 my-auto bg-red-500 rounded-full transition peer-checked:bg-lime-500"></span>
+              <span className="absolute inset-0 w-6 h-6 transition bg-white border border-red-600 rounded-full peer-checked:translate-x-8 peer-checked:border-lime-600 peer-checked:hover:border-gray-400 dark:bg-gray-900 hover:bg-gray-50 peer-checked:hover:bg-gray-50 hover:border-gray-400 dark:hover:bg-gray-800 dark:peer-checked:hover:bg-gray-800 dark:hover:border-gray-600 dark:peer-checked:hover:border-gray-600"></span>
+            </label>
+            <p className="font-mono text-sm text-gray-600 dark:text-gray-300">
+              normal
+            </p>
+          </div>
+        </div>
+
+        <div className="px-20 pb-10">
+          <GameBoard />
+        </div>
       </div>
-      <GameBoard
-        grid={grid}
-        blockClick={blockClick}
-        isPlayerOne={isPlayerOne}
-      />
-    </div>
+    </main>
   );
 };
 
