@@ -13,8 +13,10 @@ import GameBoard from "../../../../components/math/multiplicationConnect/GameBoa
 import Modal from "../../../../components/math/multiplicationConnect/Modal";
 import Settings from "../../../../components/math/multiplicationConnect/Settings";
 import { WinType } from "../../../api/labs/games/multiplication-connect/gameLogic";
+import { useAuth } from "../../../../lib/authContext";
 
 const Index: FC = () => {
+  const { user } = useAuth();
   const [normalMode, setIsNormalMode] = useState(true);
   const { grid, isPlayerOne, stage, newGame, hasWinner } = useSelector(
     multiplicationConnectSelector
@@ -81,6 +83,9 @@ const Index: FC = () => {
         <h1 className="mx-10 mb-3 text-3xl font-bold text-center drop-shadow-lg shadow-black-500">
           Multiplication Connect Four 🔴🟡
         </h1>
+
+        <p className="self-center">Welcome {user.displayName}</p>
+
         <PlayerAndDice normalMode={normalMode} />
 
         <div className="flex items-stretch pt-5 pb-3 justify-evenly">
