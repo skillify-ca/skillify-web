@@ -86,7 +86,7 @@ export function longestSubarray(array: GameBlockState[], x: BlockState) {
   }
   maxlength = Math.max(maxlength, sum);
   sum = 0;
-  if (array[0].state === x && array[39].state === x) {
+  if (array[0].state === x && array[array.length-1].state === x) {
     maxlength +=1
   }
   return maxlength;
