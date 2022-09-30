@@ -39,7 +39,7 @@ const initialState: LongestStreakState = {
   handlePlayerSelect: 0,
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
-  playerName: "Player 1",
+  playerName: "",
 };
 
 const resetInitialState: LongestStreakState = {
@@ -50,7 +50,7 @@ const resetInitialState: LongestStreakState = {
   handlePlayerSelect: 0,
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
-  playerName: "Player 1",
+  playerName: "",
 };
 
 export const longestStreakSlice: Slice = createSlice({

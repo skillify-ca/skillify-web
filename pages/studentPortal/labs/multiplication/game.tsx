@@ -179,6 +179,7 @@ export default function BlockComponentGallery() {
                 <input
                   id="input"
                   type="string"
+                  placeholder="Player 1"
                   value={playerName}
                   onChange={(e) => dispatch(setPlayerName(e.target.value))}
                   className="text-2xl font-bold text-center border-2 border-gray-300 place-self-center w-30"
