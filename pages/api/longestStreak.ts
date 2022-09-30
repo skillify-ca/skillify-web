@@ -1,4 +1,5 @@
 import { shuffle } from "lodash";
+import Firework from "../../components/math/longestStreak/Firework";
 import { BlockState } from "../../components/math/longestStreak/MultiplicationBlock";
 import { GameLevel } from "../../redux/longestStreakSlice";
 import { getRndInteger } from "./random";
@@ -85,52 +86,52 @@ export function longestSubarray(array: GameBlockState[], x: BlockState) {
   }
   maxlength = Math.max(maxlength, sum);
   sum = 0;
+  if (array[0].state === x && array[39].state === x) {
+    maxlength +=1
+  }
   return maxlength;
 }
 
-export function calculateWinner(array: GameBlockState[], playerName: string) {
-  let playerOneArray = longestSubarray(
-    array,
-    BlockState.PLAYER_ONE_SELECTED && BlockState.HIGHLIGHTED
-  );
+
+
+export function calculateWinner(array: GameBlockState[], functionName: () => void) {
+  let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
   console.log("P1", playerOneArray);
   let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
   console.log("P2", playerTwoArray);
+  let outcome = functionName()
   if (playerOneArray > playerTwoArray) {
-    return playerName + ", you have Conquered!";
+    return outcome[0];
   } else if (playerTwoArray > playerOneArray) {
-    return (
-      "Sorry, " + playerName + " " + "This round goes to Computer the Great..."
-    );
+    return outcome[1]
   } else if (playerOneArray === playerTwoArray) {
-    return "This mission has resulted in a Draw!";
+    return outcome[2];
   }
 }
 
-export function showWinner(array: GameBlockState[]) {
-  let playerOneArray = longestSubarray(
-    array,
-    BlockState.PLAYER_ONE_SELECTED && BlockState.HIGHLIGHTED
-  );
-  let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
-  if (playerOneArray > playerTwoArray) {
-    return true
+
+
+
+export function showWinner() {
+  let optionOne = true;
+  let optionTwo = false;
+  let optionThree = false;
+  let optionsArray = [optionOne, optionTwo, optionThree];
+  return optionsArray;
+}
+
+export function calculatePlayerScore(array: GameBlockState[], player) {
+  if (player===1) {
+    let playerOneArray = longestSubarray(
+      array,
+      BlockState.PLAYER_ONE_SELECTED && BlockState.HIGHLIGHTED
+    );
+    return playerOneArray;
   } else {
-    return false
+    let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
+    return playerTwoArray;
   }
-}
-
-export function calculatePlayerOneScore(array: GameBlockState[]) {
-  let playerOneArray = longestSubarray(
-    array,
-    BlockState.PLAYER_ONE_SELECTED && BlockState.HIGHLIGHTED
-  );
-  return playerOneArray;
-}
-
-export function calculatePlayerTwoScore(array: GameBlockState[]) {
-  let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
-  return playerTwoArray;
+  
 }
 
 export function checkNumberNotSelected(array: GameBlockState[]) {

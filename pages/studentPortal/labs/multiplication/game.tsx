@@ -21,12 +21,9 @@ import {
 } from "../../../../redux/longestStreakSlice";
 import Firework from "../../../../components/math/longestStreak/Firework";
 import {
-  calculatePlayerOneScore,
-  calculatePlayerTwoScore,
+  calculatePlayerScore,
   calculateWinner,
   checkNumberNotSelected,
-  GameBlockState,
-  longestSubarray,
   showWinner,
 } from "../../../api/longestStreak";
 import { useMutation, useQuery } from "@apollo/client";
@@ -37,20 +34,8 @@ import {
 import { useRouter } from "next/router";
 import { useAuth } from "../../../../lib/authContext";
 import { UPSERT_GAME_LEVEL } from "../../../../graphql/longestStreak/upsertGameLevel";
+import { showEndGameImage } from "../../../api/showEndGameImage";
 
-export function showEndGameImage(array: GameBlockState[]) {
-  let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
-  console.log("P1", playerOneArray);
-  let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
-  console.log("P2", playerTwoArray);
-  if (playerOneArray > playerTwoArray) {
-    return <Firework />;
-  } else if (playerTwoArray > playerOneArray) {
-    return <img src="/images/math1/longestStreak/playerTwoWinner.jpg" />;
-  } else if (playerOneArray === playerTwoArray) {
-    return <img src="/images/math1/longestStreak/drawWinner.png" />;
-  }
-}
 export type BlockComponentGalleryProps = {
   user: any;
 };
@@ -62,6 +47,15 @@ export default function BlockComponentGallery() {
     blocks: gameState,
     playerName,
   } = useSelector(longestStreakSelector);
+
+  function showEndGameMessage() {
+    let optionOne = playerName + ", you have Conquered!";
+    let optionTwo =
+      "Sorry, " + playerName + " " + "This round goes to Computer the Great...";
+    let optionThree = "This mission has resulted in a Draw!";
+    let optionsArray = [optionOne, optionTwo, optionThree];
+    return optionsArray;
+  }
 
   function handleSelect(index) {
     console.log("BLOCK WAS CLICKED: index ", index);
@@ -168,13 +162,13 @@ export default function BlockComponentGallery() {
                   <ul>
                     {playerName} Score:{" "}
                     <span className="font-bold">
-                      {calculatePlayerOneScore(gameState)}
+                      {calculatePlayerScore(gameState, 1)}
                     </span>
                   </ul>
                   <ul>
                     Computer Score:{" "}
                     <span className="font-bold">
-                      {calculatePlayerTwoScore(gameState)}
+                      {calculatePlayerScore(gameState, 2)}
                     </span>
                   </ul>
                 </h1>
@@ -218,10 +212,10 @@ export default function BlockComponentGallery() {
         <Winner
           text={""}
           onClick={handleResetGame}
-          winner={calculateWinner(gameState, playerName)}
-          image={showEndGameImage(gameState)}
+          winner={calculateWinner(gameState, showEndGameMessage)}
+          image={calculateWinner(gameState, showEndGameImage)}
           user={user}
-          showWinner={showWinner(gameState)}
+          showWinner={calculateWinner(gameState, showWinner)}
         />
       ) : null}
     </div>

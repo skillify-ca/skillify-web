@@ -9,7 +9,7 @@ export interface WinnerProps {
   text: string;
   onClick: () => void;
   winner: string;
-  image: any;
+  image: string;
   user: any;
   showWinner: boolean;
 }
@@ -25,13 +25,8 @@ export const Winner: React.FC<WinnerProps> = ({
 }) => {
   const [updateGameLevel] = useMutation(UPDATE_GAME_LEVEL);
 
-  function shouldIncrementLevel() {}
-
   function handleSaveGameClick() {
-    console.log("SW: " + showWinner);
     if (showWinner === true) {
-      console.log("HERE");
-
       updateGameLevel({
         variables: {
           userId: "BR9u18SJzvVNzcrkEIcJDPxv1ws1",
