@@ -17,24 +17,24 @@ export type GameLevelData = {
 }
 export const gameLevelsMetaData: Record<GameLevel, GameLevelData> = {
     1: {
-      min: 1,
-      max: 10
+      min: 0,
+      max: 3
     },
     2: {
-      min: 10,
-      max: 20,
+      min: 0,
+      max: 6,
     },
     3: {
-      min: 20,
-      max: 30,
+      min: 0,
+      max: 9,
     },
     4: {
-      min: 30, 
-      max: 40,
+      min: 0, 
+      max: 12,
     }, 
     5: {
-      min: 40, 
-      max: 50,
+      min: 0, 
+      max: 15,
     }
   }
 
