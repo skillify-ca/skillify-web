@@ -1,8 +1,14 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { RootState } from "./rootReducer";
 import { BlockState } from "../components/math/longestStreak/MultiplicationBlock";
+import { GameBlockState } from "../pages/studentPortal/labs/multiplication/game";
 import { getRandomItemFromArray, getRndInteger } from "../pages/api/random";
-import { GameBlockState, GameLevelsMetaData, gameLevelsMetaData, initializeGameState } from "../pages/api/longestStreak";
+import {
+  GameBlockState,
+  GameLevelsMetaData,
+  gameLevelsMetaData,
+  initializeGameState,
+} from "../pages/api/longestStreak";
 import { min } from "lodash";
 
 export interface LongestStreakState {
@@ -21,21 +27,39 @@ export enum STAGE {
   CALCULATE_WINNER,
 }
 
+function initializeGameState(): GameBlockState[] {
+  let dummyArray: GameBlockState[] = [];
+  for (let i = 0; i <= 19; i++) {
+    let x = getRndInteger(1, 10);
+    let y = getRndInteger(1, 10);
+    let product: number = x * y;
+    let productString: string = x + " x " + y;
 
-export enum GameLevel {
-  BEGINNER = "beginner",
-  BEGINNER_ADVANCED = "beginnerAdvanced",
-  INTERMEDIATE = "intermediate",
-  INTERMEDIATE_ADVANCED = "intermediateAdvanced",
-  EXPERT = "expert",
+    let initiateBlockState: GameBlockState = {
+      text: product.toString(),
+      value: product,
+      isProduct: true,
+      state: BlockState.NOT_SELECTED,
+    };
+    dummyArray.push(initiateBlockState);
+
+    initiateBlockState = {
+      text: productString,
+      value: product,
+      isProduct: false,
+      state: BlockState.NOT_SELECTED,
+    };
+    dummyArray.push(initiateBlockState);
+  }
+
+  dummyArray = shuffle(dummyArray);
+
+  return dummyArray;
 }
-
-//function that takes in GameLevel as input
-
 const initialState: LongestStreakState = {
   stage: STAGE.SET_RULES,
   reset: false,
-  blocks: initializeGameState(GameLevel.BEGINNER),
+  blocks: initializeGameState(),
   handlePlayerSelect: 0,
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
@@ -45,8 +69,7 @@ const initialState: LongestStreakState = {
 const resetInitialState: LongestStreakState = {
   stage: STAGE.PLAY_GAME,
   reset: false,
-  blocks: initializeGameState(GameLevel.BEGINNER),
-
+  blocks: initializeGameState(),
   handlePlayerSelect: 0,
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
@@ -72,11 +95,9 @@ export const longestStreakSlice: Slice = createSlice({
       state.blocks = selectedBlock;
     },
 
-    initializeGame: (state: LongestStreakState, action: PayloadAction<GameLevel>) => {
-      const currentLevel = action.payload
-      state.blocks = initializeGameState(currentLevel);
+    initializeGame: (state: LongestStreakState, action: PayloadAction) => {
+      state.blocks = initializeGameState();
     },
-
 
     isPlayerSelecting: (state, action: PayloadAction<boolean>) => {
       if (action.type === "longestStreak/isPlayerSelecting") {
@@ -100,7 +121,6 @@ export const longestStreakSlice: Slice = createSlice({
         state.playerName = playerName;
       }
     },
-    
     handlePlayerSelect: (state, action: PayloadAction<number>) => {
       if (action.type === "longestStreak/handlePlayerSelect") {
         const index = action.payload;
@@ -120,7 +140,7 @@ export const longestStreakSlice: Slice = createSlice({
             state.blocks[secondSelectedBlockIndex].state ===
               BlockState.PLAYER_ONE_SELECTED;
           }
-      } else if (
+        } else if (
           state.isPlayerSelecting === true &&
           unselectedBlocks.includes(state.blocks[index])
         ) {
@@ -128,30 +148,36 @@ export const longestStreakSlice: Slice = createSlice({
           if (
             state.blocks[index].value ===
             state.blocks[firstSelectedBlockIndex].value
-          ) 
-            {if(state.blocks[firstSelectedBlockIndex].isProduct===true && state.blocks[index].isProduct===false||state.blocks[firstSelectedBlockIndex].isProduct===false && state.blocks[index].isProduct===true){
+          ) {
+            if (
+              (state.blocks[firstSelectedBlockIndex].isProduct === true &&
+                state.blocks[index].isProduct === false) ||
+              (state.blocks[firstSelectedBlockIndex].isProduct === false &&
+                state.blocks[index].isProduct === true)
+            ) {
               state.blocks[index].state = BlockState.PLAYER_ONE_SELECTED;
               state.blocks[firstSelectedBlockIndex].state =
-              BlockState.PLAYER_ONE_SELECTED;
+                BlockState.PLAYER_ONE_SELECTED;
               state.isPlayerSelecting = false;
               console.log("Index: " + index);
               console.log("Unselected: " + unselectedBlocks.length);
-              console.log("Last Clicked Index: " + state.currentlySelectedBlock);
+              console.log(
+                "Last Clicked Index: " + state.currentlySelectedBlock
+              );
               handleAISelection(state);
             } else {
-              alert("Ouch...you're being tricky with me. Re-read the rules of the game.  That move shall not pass.")
+              alert(
+                "Ouch...you're being tricky with me. Re-read the rules of the game.  That move shall not pass."
+              );
             }
-              
-        } else {
-          alert("Whoops! You need two integers and their product!")
+          } else {
+            alert("Whoops! You need two integers and their product!");
           }
         }
       }
     },
   },
 });
-
-
 
 function handleAISelection(state: LongestStreakState) {
   const unselectedBlocks = state.blocks.filter(
@@ -180,11 +206,11 @@ function handleAISelection(state: LongestStreakState) {
     );
     state.blocks[indexOfSecondComputerSelected].state =
       BlockState.PLAYER_TWO_SELECTED;
-      if (unselectedBlocks.length <= 1) {
-        console.log("Unselected: " + unselectedBlocks.length);
-        console.log("STAGE: " + state.stage);
-        state.stage = STAGE.CALCULATE_WINNER;  
-    } 
+    if (unselectedBlocks.length <= 1) {
+      console.log("Unselected: " + unselectedBlocks.length);
+      console.log("STAGE: " + state.stage);
+      state.stage = STAGE.CALCULATE_WINNER;
+    }
   }
   //find block that is "x * y" only
 }
