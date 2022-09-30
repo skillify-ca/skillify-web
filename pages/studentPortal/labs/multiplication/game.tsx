@@ -5,7 +5,11 @@ import MultiplicationBlock, {
   BlockState,
 } from "../../../../components/math/longestStreak/MultiplicationBlock";
 import Rules from "../../../../components/math/longestStreak/Rules";
-import { setPlayerName, reset } from "../../../../redux/longestStreakSlice";
+import {
+  setPlayerName,
+  reset,
+  GameLevel,
+} from "../../../../redux/longestStreakSlice";
 
 import { Button } from "../../../../components/ui/Button";
 import {
@@ -16,70 +20,15 @@ import {
   STAGE,
 } from "../../../../redux/longestStreakSlice";
 import Firework from "../../../../components/math/longestStreak/Firework";
-export type GameBlockState = {
-  text: string;
-  value: number;
-  isProduct: boolean;
-  state: BlockState;
-};
-
-export function longestSubarray(array: GameBlockState[], x: BlockState) {
-  let maxlength = 0;
-  let sum = 0;
-  for (let i = 0; i < array.length; i++) {
-    if (array[i].state === x) {
-      sum++;
-    } else {
-      maxlength = Math.max(maxlength, sum);
-      sum = 0;
-      console.log("maxLength", maxlength, "currentSum", sum);
-    }
-  }
-  maxlength = Math.max(maxlength, sum);
-  sum = 0;
-  console.log("maxLength", maxlength, "currentSum", sum);
-  return maxlength;
-}
-
-export function calculateWinner(array: GameBlockState[], playerName: string) {
-  let playerOneArray = longestSubarray(
-    array,
-    BlockState.PLAYER_ONE_SELECTED && BlockState.HIGHLIGHTED
-  );
-  console.log("P1", playerOneArray);
-  let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
-  console.log("P2", playerTwoArray);
-  if (playerOneArray > playerTwoArray) {
-    return playerName + ", you have Conquered!";
-  } else if (playerTwoArray > playerOneArray) {
-    return (
-      "Sorry, " + playerName + " " + "This round goes to Computer the Great..."
-    );
-  } else if (playerOneArray === playerTwoArray) {
-    return "This mission has resulted in a Draw!";
-  }
-}
-
-export function calculatePlayerOneScore(array: GameBlockState[]) {
-  let playerOneArray = longestSubarray(
-    array,
-    BlockState.PLAYER_ONE_SELECTED && BlockState.HIGHLIGHTED
-  );
-  return playerOneArray;
-}
-
-export function calculatePlayerTwoScore(array: GameBlockState[]) {
-  let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
-  return playerTwoArray;
-}
-
-export function checkNumberNotSelected(array: GameBlockState[]) {
-  const ns = array.filter((block) => {
-    return block.state === BlockState.NOT_SELECTED;
-  });
-  let notSelectedNumber = ns.length;
-  return notSelectedNumber;
-}
+import {
+  calculatePlayerOneScore,
+  calculatePlayerTwoScore,
+  calculateWinner,
+  checkNumberNotSelected,
+  GameBlockState,
+  gameLevelsMetaData,
+  longestSubarray,
+} from "../../../api/longestStreak";
 
 export function showEndGameImage(array: GameBlockState[]) {
   let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
@@ -110,14 +59,18 @@ export default function BlockComponentGallery() {
     dispatch(handlePlayerSelect(index));
   }
 
+  useEffect(() => {
+    dispatch(initializeGame(GameLevel.BEGINNER));
+  }, []);
+
   function handlePlayGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
   }
 
   function handleResetGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
-    dispatch(reset(0));
-    dispatch(initializeGame(0));
+    dispatch(reset(GameLevel.BEGINNER));
+    dispatch(initializeGame(GameLevel.BEGINNER));
   }
   function handleCalculateWinner() {
     dispatch(setStage(STAGE.CALCULATE_WINNER));
