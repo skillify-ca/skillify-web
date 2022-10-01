@@ -14,10 +14,17 @@ import Modal from "../../../../components/math/multiplicationConnect/Modal";
 import Settings from "../../../../components/math/multiplicationConnect/Settings";
 import { WinType } from "../../../api/labs/games/multiplication-connect/gameLogic";
 import { useAuth } from "../../../../lib/authContext";
+import { useQuery } from "@apollo/client";
+import { FETCH_USER_MC_DATA } from "../../../../graphql/multiplication-connect/fetchUserData";
 
 const Index: FC = () => {
   const { user } = useAuth();
   const [normalMode, setIsNormalMode] = useState(true);
+  const { data } = useQuery(FETCH_USER_MC_DATA, {
+    variables: {
+      id: user.uid,
+    },
+  });
   const { grid, isPlayerOne, stage, newGame, hasWinner } = useSelector(
     multiplicationConnectSelector
   );
@@ -37,6 +44,8 @@ const Index: FC = () => {
         : dispatch(setStage(Stage.GAME_WIN));
     }
   };
+
+  console.log("data:", data);
 
   return (
     <main>
@@ -80,11 +89,10 @@ const Index: FC = () => {
       )}
 
       <div className="flex flex-col justify-center max-w-5xl gap-4 mx-auto">
+        <p className="self-center">Welcome {user.displayName}</p>
         <h1 className="mx-10 mb-3 text-3xl font-bold text-center drop-shadow-lg shadow-black-500">
           Multiplication Connect Four 🔴🟡
         </h1>
-
-        <p className="self-center">Welcome {user.displayName}</p>
 
         <PlayerAndDice normalMode={normalMode} />
 
