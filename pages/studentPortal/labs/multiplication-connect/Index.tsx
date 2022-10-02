@@ -88,7 +88,7 @@ const Index: FC = () => {
         </Modal>
       )}
 
-      <div className="flex flex-col justify-center max-w-5xl gap-4 mx-auto">
+      <div className="flex flex-col justify-center max-w-3xl gap-4 mx-auto">
         <p className="self-center">Welcome {user.displayName}</p>
         <h1 className="mx-10 mb-3 text-3xl font-bold text-center drop-shadow-lg shadow-black-500">
           Multiplication Connect Four 🔴🟡
@@ -96,7 +96,7 @@ const Index: FC = () => {
 
         <PlayerAndDice normalMode={normalMode} />
 
-        <div className="flex items-stretch pt-5 pb-3 justify-evenly">
+        <div className="flex items-stretch pb-2 justify-evenly">
           {/* - build play solo/two player */}
           <div
             className={`flex items-stretch ${
@@ -107,7 +107,7 @@ const Index: FC = () => {
           </div>
           <button
             type="button"
-            className={`font-mono font-bold text-gray-600 bg-white border border-gray-300 focus:outline-none 
+            className={`sm:text-md text-xs font-mono font-bold text-gray-600 bg-white border border-gray-300 focus:outline-none 
                  focus:ring-1 focus:ring-gray-200 rounded-lg px-5 py-2.5 dark:hover:border-gray-600 dark:focus:ring-gray-700
                  dark:text-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:hover:text-gray-200 dark:hover:bg-gray-800 
                  hover:text-gray-700 hover:bg-gray-50 ${
@@ -141,7 +141,7 @@ const Index: FC = () => {
           </div>
         </div>
 
-        <div className="px-20 pb-10">
+        <div className="px-[8%] pb-10">
           <GameBoard />
         </div>
       </div>
