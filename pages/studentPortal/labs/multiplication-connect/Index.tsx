@@ -22,6 +22,7 @@ import { CREATE_USER_MC_DATA } from "../../../../graphql/multiplication-connect/
 const Index: FC = () => {
   const { user } = useAuth();
   const [normalMode, setIsNormalMode] = useState(true);
+  const [userData, setUserData] = useState();
   const { error, data } = useQuery(FETCH_USER_MC_DATA, {
     variables: {
       id: user.uid,
@@ -40,8 +41,11 @@ const Index: FC = () => {
     if (data) {
       const result = !!data.multiplicationConnectData.length;
       if (result) {
-        console.log("user data:", data.multiplicationConnectData);
+        // for a returning user
+        setUserData(data.multiplicationConnectData[0]);
+        console.log("user data:", data.multiplicationConnectData[0]);
       } else {
+        // create data for a new user
         console.log(
           "user not found and should be created",
           data.multiplicationConnectData
@@ -113,7 +117,28 @@ const Index: FC = () => {
       )}
 
       <div className="flex flex-col justify-center max-w-3xl gap-4 mx-auto">
-        <p className="self-center">Welcome {user.displayName}</p>
+        <div className="flex flex-col items-center gap-3">
+          <h3 className="text-2xl">Welcome {user.displayName}</h3>
+          <div className="flex gap-2">
+            <h3 className="inline-block font-semibold">Game Data —</h3>
+            {/* - define a types for the data received */}
+            <p className="inline-block">
+              Wins: {userData ? userData.win : ""}, Losses:{" "}
+              {userData ? userData.loss : ""}, Games played:{" "}
+              {userData ? userData.games_played : ""}
+            </p>
+          </div>
+          <div className="flex gap-5">
+            <button className="p-2 border rounded-lg bg-black-500/30">
+              Win
+            </button>
+            <button className="p-2 border rounded-lg bg-black-500/30">
+              Loss
+            </button>
+          </div>
+        </div>
+        <hr></hr>
+
         <h1 className="mx-10 mb-3 text-3xl font-bold text-center drop-shadow-lg shadow-black-500">
           Multiplication Connect Four 🔴🟡
         </h1>
