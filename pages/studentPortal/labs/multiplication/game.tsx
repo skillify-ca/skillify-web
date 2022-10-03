@@ -97,7 +97,14 @@ export default function BlockComponentGallery() {
         variables: {
           userId: user.uid,
         },
-        refetchQueries: [{ query: FETCH_GAME_LEVEL }],
+        refetchQueries: [
+          {
+            query: FETCH_GAME_LEVEL,
+            variables: {
+              userId: user.uid,
+            },
+          },
+        ],
         onCompleted: () => {
           alert("Your skill ratings have been saved successfully.");
         },
@@ -107,20 +114,18 @@ export default function BlockComponentGallery() {
         variables: {
           userId: user.uid,
         },
-        refetchQueries: [{ query: FETCH_GAME_LEVEL }],
+        refetchQueries: [
+          {
+            query: FETCH_GAME_LEVEL,
+            variables: {
+              userId: user.uid,
+            },
+          },
+        ],
         onCompleted: () => {
           alert("Your skill ratings have been saved successfully.");
         },
       });
-    }
-    try {
-      setTimeout(() => {
-        document.location.reload();
-      }, 3000);
-    } catch {
-      dispatch(setStage(STAGE.PLAY_GAME));
-      dispatch(reset(data.longestStreakUserData[0].currentLevel));
-      dispatch(initializeGame(data.longestStreakUserData[0].currentLevel));
     }
   }
 
@@ -143,7 +148,7 @@ export default function BlockComponentGallery() {
             <Button
               backgroundColor="purple"
               label={"Reset Game"}
-              onClick={() => handleResetGame()}
+              onClick={() => handleNoSaveGame()}
             />
             <Button
               backgroundColor="purple"
