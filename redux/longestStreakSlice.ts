@@ -2,7 +2,7 @@ import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { RootState } from "./rootReducer";
 import { BlockState } from "../components/math/longestStreak/MultiplicationBlock";
 import { getRandomItemFromArray, getRndInteger } from "../pages/api/random";
-import { GameBlockState, initializeGameState } from "../pages/api/longestStreak";
+import { calculateWinner, GameBlockState, initializeGameState, showWinner } from "../pages/api/longestStreak";
 
 export interface LongestStreakState {
   stage: STAGE;
@@ -12,6 +12,7 @@ export interface LongestStreakState {
   isPlayerSelecting: boolean;
   currentlySelectedBlock?: number;
   playerName: string;
+  level: number;
 }
 
 export enum STAGE {
@@ -39,6 +40,7 @@ const initialState: LongestStreakState = {
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
   playerName: "",
+  level: 0,
 };
 
 const resetInitialState: LongestStreakState = {
@@ -49,6 +51,7 @@ const resetInitialState: LongestStreakState = {
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
   playerName: "",
+  level: 0,
 };
 
 export const longestStreakSlice: Slice = createSlice({
@@ -75,7 +78,11 @@ export const longestStreakSlice: Slice = createSlice({
       state.blocks = initializeGameState(currentLevel);
     },
 
-
+    setLevel: (state: LongestStreakState, action: PayloadAction<GameLevel>) => {
+      const newLevel = action.payload 
+      state.level = newLevel;
+    },
+    
     isPlayerSelecting: (state, action: PayloadAction<boolean>) => {
       if (action.type === "longestStreak/isPlayerSelecting") {
         state.isPlayerSelecting = action.payload;
@@ -189,6 +196,7 @@ export const {
   initializeGame,
   currentlySelectedBlock,
   setPlayerName,
+  setLevel
 } = longestStreakSlice.actions;
 
 export const longestStreakSelector = (state: RootState) =>

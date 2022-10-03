@@ -6,7 +6,7 @@ import Rules from "../../../../components/math/longestStreak/Rules";
 import {
   setPlayerName,
   reset,
-  GameLevel,
+  setLevel,
 } from "../../../../redux/longestStreakSlice";
 
 import { Button } from "../../../../components/ui/Button";
@@ -28,10 +28,11 @@ import {
   FetchGameLevelResponse,
   FETCH_GAME_LEVEL,
 } from "../../../../graphql/longestStreak/fetchGameLevel";
-import { useRouter } from "next/router";
 import { useAuth } from "../../../../lib/authContext";
 import { UPSERT_GAME_LEVEL } from "../../../../graphql/longestStreak/upsertGameLevel";
 import { showEndGameImage } from "../../../api/showEndGameImage";
+import { DOWNGRADE_GAME_LEVEL } from "../../../../graphql/longestStreak/downGradeGameLevel";
+import { UPDATE_GAME_LEVEL } from "../../../../graphql/longestStreak/updateGameLevel";
 
 export type BlockComponentGalleryProps = {
   user: any;
@@ -43,12 +44,15 @@ export default function BlockComponentGallery() {
     stage,
     blocks: gameState,
     playerName,
+    level,
   } = useSelector(longestStreakSelector);
 
   function showEndGameMessage() {
-    let optionOne = playerName + ", you have Conquered!";
+    let optionOne = playerName ? true : "Player 1" + ", you have Conquered!";
     let optionTwo =
-      "Sorry, " + playerName + " " + "This round goes to Computer the Great...";
+      "Sorry, " + playerName
+        ? true
+        : "Player 1" + " " + "This round goes to Computer the Great...";
     let optionThree = "This mission has resulted in a Draw!";
     let optionsArray = [optionOne, optionTwo, optionThree];
     return optionsArray;
@@ -58,9 +62,10 @@ export default function BlockComponentGallery() {
     dispatch(handlePlayerSelect(index));
   }
 
-  const router = useRouter();
   const { user } = useAuth();
   const [upsertGameLevel] = useMutation(UPSERT_GAME_LEVEL);
+  const [updateGameLevel] = useMutation(UPDATE_GAME_LEVEL);
+  const [downGradeGameLevel] = useMutation(DOWNGRADE_GAME_LEVEL);
 
   const { data } = useQuery<FetchGameLevelResponse>(FETCH_GAME_LEVEL, {
     variables: {
@@ -83,12 +88,42 @@ export default function BlockComponentGallery() {
     dispatch(setStage(STAGE.PLAY_GAME));
   }
 
-  function handleResetGame() {
-    dispatch(setStage(STAGE.PLAY_GAME));
-
-    dispatch(reset(GameLevel.BEGINNER));
-    dispatch(initializeGame(GameLevel.BEGINNER));
+  function handleNoSaveGame() {
+    dispatch(reset(data.longestStreakUserData[0].currentLevel));
   }
+  function handleResetGame() {
+    if (calculateWinner(gameState, showWinner) === true) {
+      updateGameLevel({
+        variables: {
+          userId: user.uid,
+        },
+        refetchQueries: [{ query: FETCH_GAME_LEVEL }],
+        onCompleted: () => {
+          alert("Your skill ratings have been saved successfully.");
+        },
+      });
+    } else {
+      downGradeGameLevel({
+        variables: {
+          userId: user.uid,
+        },
+        refetchQueries: [{ query: FETCH_GAME_LEVEL }],
+        onCompleted: () => {
+          alert("Your skill ratings have been saved successfully.");
+        },
+      });
+    }
+    try {
+      setTimeout(() => {
+        document.location.reload();
+      }, 3000);
+    } catch {
+      dispatch(setStage(STAGE.PLAY_GAME));
+      dispatch(reset(data.longestStreakUserData[0].currentLevel));
+      dispatch(initializeGame(data.longestStreakUserData[0].currentLevel));
+    }
+  }
+
   function handleCalculateWinner() {
     dispatch(setStage(STAGE.CALCULATE_WINNER));
     dispatch(setPlayerName(playerName));
@@ -101,7 +136,8 @@ export default function BlockComponentGallery() {
       ) : stage === STAGE.PLAY_GAME ? (
         <div className="grid grid-cols-6 grid-rows-7">
           <div className="pb-4 text-xl font-black col-start-1 col-end-6 flex justify-evenly w-[45rem]">
-            Your quest is to battle the computer. Let's see how you do!
+            {playerName ? true : "Player 1"}, Your quest is to battle the
+            computer. Let's see how you do!
           </div>
           <div className="pb-8 col-start-1 col-end-7 flex justify-evenly w-[45rem]">
             <Button
@@ -150,9 +186,16 @@ export default function BlockComponentGallery() {
                     {checkNumberNotSelected(gameState)}
                   </span>
                 </ul>
+                <ul className="flex justify-center p-5 text-xl">
+                  My Game Level is....
+                  <span className="font-bold">
+                    {" "}
+                    {data.longestStreakUserData[0].currentLevel}
+                  </span>
+                </ul>
                 <h1 className="flex justify-between p-5 text-xl">
                   <ul>
-                    My Score:{" "}
+                    {playerName ? true : "Player 1"} Score:{" "}
                     <span className="font-bold">
                       {calculatePlayerScore(gameState, 1)}
                     </span>
@@ -209,6 +252,8 @@ export default function BlockComponentGallery() {
           image={calculateWinner(gameState, showEndGameImage)}
           user={user}
           showWinner={calculateWinner(gameState, showWinner)}
+          level={level}
+          onClickNoSave={handleNoSaveGame}
         />
       ) : null}
     </div>
