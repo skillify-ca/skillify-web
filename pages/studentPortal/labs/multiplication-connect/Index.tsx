@@ -33,7 +33,7 @@ const Index: FC = () => {
     },
   });
   const [createUser] = useMutation(CREATE_USER_MC_DATA);
-  // to be executed onClick after game end
+  // todo: to be executed onClick after game end
   // const [updateUser] = useMutation(UPDATE_USER_MC_DATA);
 
   const { grid, isPlayerOne, stage, newGame, hasWinner } = useSelector(
@@ -132,10 +132,13 @@ const Index: FC = () => {
             </p>
           </div>
           <div className="flex gap-5">
+            {/* Move these to their respective game functions after working */}
             <button className="p-2 border rounded-lg bg-black-500/30">
+              {/* onClick UPDATE_USER_MC_DATA w an incremented win */}
               Win
             </button>
             <button className="p-2 border rounded-lg bg-black-500/30">
+              {/* onClick UPDATE_USER_MC_DATA w an incremented loss */}
               Loss
             </button>
           </div>
