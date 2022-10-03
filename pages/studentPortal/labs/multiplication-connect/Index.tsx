@@ -15,15 +15,19 @@ import Settings from "../../../../components/math/multiplicationConnect/Settings
 import { WinType } from "../../../api/labs/games/multiplication-connect/gameLogic";
 import { useAuth } from "../../../../lib/authContext";
 import { useMutation, useQuery } from "@apollo/client";
-import { FETCH_USER_MC_DATA } from "../../../../graphql/multiplication-connect/fetchUserData";
+import {
+  FetchUserMCDataRes,
+  FETCH_USER_MC_DATA,
+  UserMCData,
+} from "../../../../graphql/multiplication-connect/fetchUserData";
 import { UPDATE_USER_MC_DATA } from "../../../../graphql/multiplication-connect/updateUserData";
 import { CREATE_USER_MC_DATA } from "../../../../graphql/multiplication-connect/createUser";
 
 const Index: FC = () => {
   const { user } = useAuth();
   const [normalMode, setIsNormalMode] = useState(true);
-  const [userData, setUserData] = useState();
-  const { error, data } = useQuery(FETCH_USER_MC_DATA, {
+  const [userData, setUserData] = useState<UserMCData>();
+  const { error, data } = useQuery<FetchUserMCDataRes>(FETCH_USER_MC_DATA, {
     variables: {
       id: user.uid,
     },
@@ -121,7 +125,6 @@ const Index: FC = () => {
           <h3 className="text-2xl">Welcome {user.displayName}</h3>
           <div className="flex gap-2">
             <h3 className="inline-block font-semibold">Game Data —</h3>
-            {/* - define a types for the data received */}
             <p className="inline-block">
               Wins: {userData ? userData.win : ""}, Losses:{" "}
               {userData ? userData.loss : ""}, Games played:{" "}

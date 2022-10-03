@@ -21,3 +21,18 @@ export const FETCH_USER_MC_DATA = gql`
     }
   }
 `;
+
+export type FetchUserMCDataRes = {
+  multiplicationConnectData: Array<UserMCData>;
+};
+
+export type UserMCData = {
+  user_name: String;
+  id: String;
+  win: number;
+  loss: number;
+  games_played: number;
+  games_finished: number;
+  lazy_count: number;
+  user: object;
+};
