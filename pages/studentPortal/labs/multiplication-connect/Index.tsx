@@ -14,21 +14,47 @@ import Modal from "../../../../components/math/multiplicationConnect/Modal";
 import Settings from "../../../../components/math/multiplicationConnect/Settings";
 import { WinType } from "../../../api/labs/games/multiplication-connect/gameLogic";
 import { useAuth } from "../../../../lib/authContext";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { FETCH_USER_MC_DATA } from "../../../../graphql/multiplication-connect/fetchUserData";
+import { UPDATE_USER_MC_DATA } from "../../../../graphql/multiplication-connect/updateUserData";
+import { CREATE_USER_MC_DATA } from "../../../../graphql/multiplication-connect/createUser";
 
 const Index: FC = () => {
   const { user } = useAuth();
   const [normalMode, setIsNormalMode] = useState(true);
-  const { data } = useQuery(FETCH_USER_MC_DATA, {
+  const { error, data } = useQuery(FETCH_USER_MC_DATA, {
     variables: {
       id: user.uid,
     },
   });
+  const [createUser] = useMutation(CREATE_USER_MC_DATA);
+  // to be executed onClick after game end
+  // const [updateUser] = useMutation(UPDATE_USER_MC_DATA);
+
   const { grid, isPlayerOne, stage, newGame, hasWinner } = useSelector(
     multiplicationConnectSelector
   );
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (data) {
+      const result = !!data.multiplicationConnectData.length;
+      if (result) {
+        console.log("user data:", data.multiplicationConnectData);
+      } else {
+        console.log(
+          "user not found and should be created",
+          data.multiplicationConnectData
+        );
+        // comment id to send default kavez25
+        createUser({
+          variables: {
+            id: user.id,
+          },
+        });
+      }
+    }
+  }, [data]);
 
   useEffect(() => {
     dispatch(reloadGrid(grid));
@@ -44,8 +70,6 @@ const Index: FC = () => {
         : dispatch(setStage(Stage.GAME_WIN));
     }
   };
-
-  console.log("data:", data);
 
   return (
     <main>

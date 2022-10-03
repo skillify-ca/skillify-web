@@ -73,7 +73,7 @@ export const multiplicationConnectSlice: Slice = createSlice({
       action: PayloadAction<Stage>
     ) => {
       const gameStage = action.payload as Stage;
-      console.log(state.stage + " > " + gameStage);
+      // console.log(state.stage + " > " + gameStage);
       state.stage = gameStage;
     },
     setNewGame: (state: MultiplicationConnectState) => {
