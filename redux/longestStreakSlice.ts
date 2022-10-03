@@ -12,7 +12,6 @@ export interface LongestStreakState {
   isPlayerSelecting: boolean;
   currentlySelectedBlock?: number;
   playerName: string;
-  level: number;
 }
 
 export enum STAGE {
@@ -40,7 +39,6 @@ const initialState: LongestStreakState = {
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
   playerName: "",
-  level: 0,
 };
 
 const resetInitialState: LongestStreakState = {
@@ -51,7 +49,6 @@ const resetInitialState: LongestStreakState = {
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
   playerName: "",
-  level: 0,
 };
 
 export const longestStreakSlice: Slice = createSlice({
@@ -76,11 +73,6 @@ export const longestStreakSlice: Slice = createSlice({
     initializeGame: (state: LongestStreakState, action: PayloadAction<GameLevel>) => {
       const currentLevel = action.payload
       state.blocks = initializeGameState(currentLevel);
-    },
-
-    setLevel: (state: LongestStreakState, action: PayloadAction<GameLevel>) => {
-      const newLevel = action.payload 
-      state.level = newLevel;
     },
     
     isPlayerSelecting: (state, action: PayloadAction<boolean>) => {
@@ -196,7 +188,6 @@ export const {
   initializeGame,
   currentlySelectedBlock,
   setPlayerName,
-  setLevel
 } = longestStreakSlice.actions;
 
 export const longestStreakSelector = (state: RootState) =>

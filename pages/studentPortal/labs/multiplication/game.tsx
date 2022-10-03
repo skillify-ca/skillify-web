@@ -3,11 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Winner from "../../../../components/math/longestStreak/Winner";
 import MultiplicationBlock from "../../../../components/math/longestStreak/MultiplicationBlock";
 import Rules from "../../../../components/math/longestStreak/Rules";
-import {
-  setPlayerName,
-  reset,
-  setLevel,
-} from "../../../../redux/longestStreakSlice";
+import { setPlayerName, reset } from "../../../../redux/longestStreakSlice";
 
 import { Button } from "../../../../components/ui/Button";
 import {
@@ -24,16 +20,17 @@ import {
   showWinner,
 } from "../../../api/longestStreak";
 import { useMutation, useQuery } from "@apollo/client";
+
+import { UPSERT_GAME_LEVEL } from "../../../../graphql/longestStreak/upsertGameLevel";
+import { showEndGameImage } from "../../../api/showEndGameImage";
+import { DOWNGRADE_GAME_LEVEL } from "../../../../graphql/longestStreak/downGradeGameLevel";
 import {
   FetchGameLevelResponse,
   FETCH_GAME_LEVEL,
 } from "../../../../graphql/longestStreak/fetchGameLevel";
-import { useAuth } from "../../../../lib/authContext";
-import { UPSERT_GAME_LEVEL } from "../../../../graphql/longestStreak/upsertGameLevel";
-import { showEndGameImage } from "../../../api/showEndGameImage";
-import { DOWNGRADE_GAME_LEVEL } from "../../../../graphql/longestStreak/downGradeGameLevel";
 import { UPDATE_GAME_LEVEL } from "../../../../graphql/longestStreak/updateGameLevel";
-
+import { useAuth } from "../../../../lib/authContext";
+import { RESET_GAME_LEVEL } from "../../../../graphql/longestStreak/resetGameLevel";
 export type BlockComponentGalleryProps = {
   user: any;
 };
@@ -44,15 +41,11 @@ export default function BlockComponentGallery() {
     stage,
     blocks: gameState,
     playerName,
-    level,
   } = useSelector(longestStreakSelector);
 
   function showEndGameMessage() {
     let optionOne = playerName ? true : "Player 1" + ", you have Conquered!";
-    let optionTwo =
-      "Sorry, " + playerName
-        ? true
-        : "Player 1" + " " + "This round goes to Computer the Great...";
+    let optionTwo = "This round goes to Computer the Great...";
     let optionThree = "This mission has resulted in a Draw!";
     let optionsArray = [optionOne, optionTwo, optionThree];
     return optionsArray;
@@ -66,6 +59,7 @@ export default function BlockComponentGallery() {
   const [upsertGameLevel] = useMutation(UPSERT_GAME_LEVEL);
   const [updateGameLevel] = useMutation(UPDATE_GAME_LEVEL);
   const [downGradeGameLevel] = useMutation(DOWNGRADE_GAME_LEVEL);
+  const [resetGameLevel] = useMutation(RESET_GAME_LEVEL);
 
   const { data } = useQuery<FetchGameLevelResponse>(FETCH_GAME_LEVEL, {
     variables: {
@@ -84,14 +78,35 @@ export default function BlockComponentGallery() {
     },
   });
 
+  function handleResetGameLevel() {
+    resetGameLevel({
+      variables: {
+        userId: user.uid,
+      },
+      refetchQueries: [
+        {
+          query: FETCH_GAME_LEVEL,
+          variables: {
+            userId: user.uid,
+          },
+        },
+      ],
+    });
+    dispatch(setStage(STAGE.PLAY_GAME));
+    dispatch(initializeGame(data.longestStreakUserData[0].currentLevel));
+  }
+
   function handlePlayGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
   }
 
-  function handleNoSaveGame() {
-    dispatch(reset(data.longestStreakUserData[0].currentLevel));
-  }
   function handleResetGame() {
+    dispatch(setStage(STAGE.PLAY_GAME));
+    dispatch(reset(data.longestStreakUserData[0].currentLevel));
+    dispatch(initializeGame(data.longestStreakUserData[0].currentLevel));
+  }
+
+  function handlePlayAgain() {
     if (calculateWinner(gameState, showWinner) === true) {
       updateGameLevel({
         variables: {
@@ -105,9 +120,6 @@ export default function BlockComponentGallery() {
             },
           },
         ],
-        onCompleted: () => {
-          alert("Your skill ratings have been saved successfully.");
-        },
       });
     } else {
       downGradeGameLevel({
@@ -122,11 +134,9 @@ export default function BlockComponentGallery() {
             },
           },
         ],
-        onCompleted: () => {
-          alert("Your skill ratings have been saved successfully.");
-        },
       });
     }
+    dispatch(setStage(STAGE.PLAY_GAME));
   }
 
   function handleCalculateWinner() {
@@ -148,7 +158,7 @@ export default function BlockComponentGallery() {
             <Button
               backgroundColor="purple"
               label={"Reset Game"}
-              onClick={() => handleNoSaveGame()}
+              onClick={() => handleResetGame()}
             />
             <Button
               backgroundColor="purple"
@@ -252,13 +262,12 @@ export default function BlockComponentGallery() {
       ) : stage === STAGE.CALCULATE_WINNER ? (
         <Winner
           text={""}
-          onClick={handleResetGame}
+          onClick={handlePlayAgain}
+          onRestartClick={handleResetGameLevel}
+          onSameLevelClick={handleResetGame}
           winner={calculateWinner(gameState, showEndGameMessage)}
           image={calculateWinner(gameState, showEndGameImage)}
           user={user}
-          showWinner={calculateWinner(gameState, showWinner)}
-          level={level}
-          onClickNoSave={handleNoSaveGame}
         />
       ) : null}
     </div>
