@@ -159,7 +159,17 @@ const Index: FC = () => {
               {/* onClick UPDATE_USER_MC_DATA w an incremented win */}
               Win
             </button>
-            <button className="p-2 border rounded-lg bg-black-500/30">
+            <button
+              className="p-2 border rounded-lg bg-black-500/30"
+              onClick={() =>
+                updateUserLoss({
+                  variables: { id: user.uid },
+                  refetchQueries: [
+                    { query: FETCH_USER_MC_DATA, variables: { id: user.uid } },
+                  ],
+                })
+              }
+            >
               {/* onClick UPDATE_USER_MC_DATA w an incremented loss */}
               Loss
             </button>
