@@ -21,7 +21,7 @@ import {
   UserMCData,
 } from "../../../../graphql/multiplication-connect/fetchUserData";
 import { UPDATE_USER_MC_DATA } from "../../../../graphql/multiplication-connect/updateUserData";
-import { CREATE_USER_MC_DATA } from "../../../../graphql/multiplication-connect/createUser";
+import { CREATE_USER_MC_DATA } from "../../../../graphql/multiplication-connect/createUserData";
 
 const Index: FC = () => {
   const { user } = useAuth();
@@ -34,7 +34,7 @@ const Index: FC = () => {
   });
   const [createUser] = useMutation(CREATE_USER_MC_DATA);
   // todo: to be executed onClick after game end
-  // const [updateUser] = useMutation(UPDATE_USER_MC_DATA);
+  const [updateUser] = useMutation(UPDATE_USER_MC_DATA);
 
   const { grid, isPlayerOne, stage, newGame, hasWinner } = useSelector(
     multiplicationConnectSelector
@@ -47,6 +47,7 @@ const Index: FC = () => {
       if (result) {
         // for a returning user
         setUserData(data.multiplicationConnectData[0]);
+        // console.log(userData.id);
         console.log("user data:", data.multiplicationConnectData[0]);
       } else {
         // create data for a new user
@@ -63,6 +64,11 @@ const Index: FC = () => {
       }
     }
   }, [data]);
+
+  useEffect(() => {
+    // set the stats here — win, loss, games_played
+    // they aren't rerendering on button click
+  }, [userData]);
 
   useEffect(() => {
     dispatch(reloadGrid(grid));
@@ -133,7 +139,15 @@ const Index: FC = () => {
           </div>
           <div className="flex gap-5">
             {/* Move these to their respective game functions after working */}
-            <button className="p-2 border rounded-lg bg-black-500/30">
+            <button
+              className="p-2 border rounded-lg bg-black-500/30"
+              onClick={() => (
+                console.log("user:", user.uid),
+                updateUser({ variables: { id: user.uid } }),
+                setUserData(data.multiplicationConnectData[0]),
+                console.log(userData)
+              )}
+            >
               {/* onClick UPDATE_USER_MC_DATA w an incremented win */}
               Win
             </button>
