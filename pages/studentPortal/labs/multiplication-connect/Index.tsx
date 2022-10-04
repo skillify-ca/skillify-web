@@ -22,10 +22,17 @@ import {
 } from "../../../../graphql/multiplication-connect/fetchUserData";
 import { UPDATE_USER_WIN_MCDATA } from "../../../../graphql/multiplication-connect/updateUserWin";
 import { CREATE_USER_MC_DATA } from "../../../../graphql/multiplication-connect/createUserData";
+import { UPDATE_USER_LOSS_MCDATA } from "../../../../graphql/multiplication-connect/updateUserLoss";
+import { UPDATE_USER_GAMES_PLAYED_MCDATA } from "../../../../graphql/multiplication-connect/updateUserGamesPlayed";
 
 const Index: FC = () => {
-  const { user } = useAuth();
   const [normalMode, setIsNormalMode] = useState(true);
+  const { grid, isPlayerOne, stage, newGame, hasWinner } = useSelector(
+    multiplicationConnectSelector
+  );
+  const dispatch = useDispatch();
+
+  const { user } = useAuth();
   const [userData, setUserData] = useState<UserMCData>();
   const { error, data } = useQuery<FetchUserMCDataRes>(FETCH_USER_MC_DATA, {
     variables: {
@@ -34,12 +41,9 @@ const Index: FC = () => {
   });
   const [createUser] = useMutation(CREATE_USER_MC_DATA);
   // todo: to be executed onClick after game end
-  const [updateUser] = useMutation(UPDATE_USER_WIN_MCDATA);
-
-  const { grid, isPlayerOne, stage, newGame, hasWinner } = useSelector(
-    multiplicationConnectSelector
-  );
-  const dispatch = useDispatch();
+  const [updateUserWin] = useMutation(UPDATE_USER_WIN_MCDATA);
+  const [updateUserLoss] = useMutation(UPDATE_USER_LOSS_MCDATA);
+  const [updateUserGamesPlayed] = useMutation(UPDATE_USER_GAMES_PLAYED_MCDATA);
 
   useEffect(() => {
     if (data) {
@@ -47,19 +51,21 @@ const Index: FC = () => {
       if (result) {
         // for a returning user
         setUserData(data.multiplicationConnectData[0]);
-        // console.log(userData.id);
         console.log("user data:", data.multiplicationConnectData[0]);
+        // increment games_played here
       } else {
-        // create data for a new user
+        //fixme: create data for a new user — not displaying after creation
         console.log(
           "user not found and should be created",
           data.multiplicationConnectData
         );
-        // comment id to send default kavez25
         createUser({
           variables: {
-            id: user.id,
+            id: user.uid,
           },
+          refetchQueries: [
+            { query: FETCH_USER_MC_DATA, variables: { id: user.uid } },
+          ],
         });
       }
     }
@@ -138,7 +144,7 @@ const Index: FC = () => {
             <button
               className="p-2 border rounded-lg bg-black-500/30"
               onClick={() =>
-                updateUser({
+                updateUserWin({
                   variables: { id: user.uid },
                   refetchQueries: [
                     { query: FETCH_USER_MC_DATA, variables: { id: user.uid } },
