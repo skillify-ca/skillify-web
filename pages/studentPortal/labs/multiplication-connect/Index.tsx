@@ -53,12 +53,6 @@ const Index: FC = () => {
         // for a returning user (increment games_played on page load)
         setUserData(data.multiplicationConnectData[0]);
         console.log("user data:", data.multiplicationConnectData[0]);
-        // increment games_played here
-        updateUserGamesPlayed({
-          variables: {
-            id: user.uid,
-          },
-        });
       } else {
         console.log(
           "user not found and should be created",
@@ -79,6 +73,15 @@ const Index: FC = () => {
   useEffect(() => {
     dispatch(reloadGrid(grid));
     !isPlayerOne && dispatch(togglePlayer(isPlayerOne));
+    console.log("newGame useEffect()");
+    updateUserGamesPlayed({
+      variables: {
+        id: user.uid,
+      },
+      refetchQueries: [
+        { query: FETCH_USER_MC_DATA, variables: { id: user.uid } },
+      ],
+    });
   }, [newGame]);
 
   const handleDispatch = () => {
