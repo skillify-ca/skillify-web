@@ -66,11 +66,6 @@ const Index: FC = () => {
   }, [data]);
 
   useEffect(() => {
-    // set the stats here — win, loss, games_played
-    // they aren't rerendering on button click
-  }, [userData]);
-
-  useEffect(() => {
     dispatch(reloadGrid(grid));
     !isPlayerOne && dispatch(togglePlayer(isPlayerOne));
   }, [newGame]);
@@ -141,12 +136,14 @@ const Index: FC = () => {
             {/* Move these to their respective game functions after working */}
             <button
               className="p-2 border rounded-lg bg-black-500/30"
-              onClick={() => (
-                console.log("user:", user.uid),
-                updateUser({ variables: { id: user.uid } }),
-                setUserData(data.multiplicationConnectData[0]),
-                console.log(userData)
-              )}
+              onClick={() =>
+                updateUser({
+                  variables: { id: user.uid },
+                  refetchQueries: [
+                    { query: FETCH_USER_MC_DATA, variables: { id: user.uid } },
+                  ],
+                })
+              }
             >
               {/* onClick UPDATE_USER_MC_DATA w an incremented win */}
               Win
