@@ -49,12 +49,16 @@ const Index: FC = () => {
     if (data) {
       const result = !!data.multiplicationConnectData.length;
       if (result) {
-        // for a returning user
+        // for a returning user (increment games_played on page load)
         setUserData(data.multiplicationConnectData[0]);
         console.log("user data:", data.multiplicationConnectData[0]);
         // increment games_played here
+        updateUserGamesPlayed({
+          variables: {
+            id: user.uid,
+          },
+        });
       } else {
-        //fixme: create data for a new user — not displaying after creation
         console.log(
           "user not found and should be created",
           data.multiplicationConnectData
