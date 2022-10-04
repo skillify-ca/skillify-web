@@ -20,7 +20,7 @@ import {
   FETCH_USER_MC_DATA,
   UserMCData,
 } from "../../../../graphql/multiplication-connect/fetchUserData";
-import { UPDATE_USER_MC_DATA } from "../../../../graphql/multiplication-connect/updateUserData";
+import { UPDATE_USER_WIN_MCDATA } from "../../../../graphql/multiplication-connect/updateUserWin";
 import { CREATE_USER_MC_DATA } from "../../../../graphql/multiplication-connect/createUserData";
 
 const Index: FC = () => {
@@ -34,7 +34,7 @@ const Index: FC = () => {
   });
   const [createUser] = useMutation(CREATE_USER_MC_DATA);
   // todo: to be executed onClick after game end
-  const [updateUser] = useMutation(UPDATE_USER_MC_DATA);
+  const [updateUser] = useMutation(UPDATE_USER_WIN_MCDATA);
 
   const { grid, isPlayerOne, stage, newGame, hasWinner } = useSelector(
     multiplicationConnectSelector
@@ -127,9 +127,10 @@ const Index: FC = () => {
           <div className="flex gap-2">
             <h3 className="inline-block font-semibold">Game Data —</h3>
             <p className="inline-block">
-              Wins: {userData ? userData.win : ""}, Losses:{" "}
-              {userData ? userData.loss : ""}, Games played:{" "}
-              {userData ? userData.games_played : ""}
+              Wins: {userData && userData.win}, Losses:{" "}
+              {userData && userData.loss}, Games played:{" "}
+              {userData && userData.games_played}, Games finished:{" "}
+              {userData && userData.games_finished}
             </p>
           </div>
           <div className="flex gap-5">
