@@ -23,13 +23,13 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
         <section className="fixed z-50">
           {/* Overlay */}
           <div
-            className="fixed top-0 bottom-0 left-0 right-0 z-50 -mb-[28rem] bg-black-500/10"
+            className="fixed top-0 bottom-0 left-0 right-0 z-50 -mb-[28rem] bg-black-500/10 backdrop-blur-[1px]"
             onClick={() => closeModal()}
           />
           {/* Modal (pop-up with buttons) */}
           <div
-            className="fixed z-50 backdrop-blur-xl flex flex-col justify-center w-7/12 gap-10 p-14 -translate-x-1/2 -translate-y-1/2 
-              shadow-[0_0px_50px_40px_rgba(0,0,0,0.3)] rounded-xl h-1/2 top-1/2 left-1/2 bg-sky-700/60 text-white"
+            className="fixed z-50 backdrop-blur-xl flex flex-col justify-center w-7/12 gap-10 p-[7%] -translate-x-1/2 -translate-y-1/2 
+              shadow-[0_0px_50px_40px_rgba(0,0,0,0.3)] rounded-xl  top-1/2 left-1/2 bg-sky-700/60 text-white"
           >
             {children}
             <div className="flex justify-center">

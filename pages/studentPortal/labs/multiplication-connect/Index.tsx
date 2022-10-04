@@ -40,9 +40,9 @@ const Index: FC = () => {
     },
   });
   const [createUser] = useMutation(CREATE_USER_MC_DATA);
-  // fixme: to be executed after game win
+  // fixme: to be executed after game win & alert modal close
   const [updateUserWin] = useMutation(UPDATE_USER_WIN_MCDATA);
-  // fixme: to be executed after game loss
+  // fixme: to be executed after game loss & alert modal close
   const [updateUserLoss] = useMutation(UPDATE_USER_LOSS_MCDATA);
   const [updateUserGamesPlayed] = useMutation(UPDATE_USER_GAMES_PLAYED_MCDATA);
 
