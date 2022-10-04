@@ -40,8 +40,9 @@ const Index: FC = () => {
     },
   });
   const [createUser] = useMutation(CREATE_USER_MC_DATA);
-  // todo: to be executed onClick after game end
+  // fixme: to be executed after game win
   const [updateUserWin] = useMutation(UPDATE_USER_WIN_MCDATA);
+  // fixme: to be executed after game loss
   const [updateUserLoss] = useMutation(UPDATE_USER_LOSS_MCDATA);
   const [updateUserGamesPlayed] = useMutation(UPDATE_USER_GAMES_PLAYED_MCDATA);
 
@@ -134,8 +135,8 @@ const Index: FC = () => {
       <div className="flex flex-col justify-center max-w-3xl gap-4 mx-auto">
         <div className="flex flex-col items-center gap-3">
           <h3 className="text-2xl">Welcome {user.displayName}</h3>
-          <div className="flex gap-2">
-            <h3 className="inline-block font-semibold">Game Data —</h3>
+          <div className="flex flex-wrap gap-2">
+            <h3 className="inline-block font-semibold">Game Data: </h3>
             <p className="inline-block">
               Wins: {userData && userData.win}, Losses:{" "}
               {userData && userData.loss}, Games played:{" "}
@@ -144,7 +145,6 @@ const Index: FC = () => {
             </p>
           </div>
           <div className="flex gap-5">
-            {/* Move these to their respective game functions after working */}
             <button
               className="p-2 border rounded-lg bg-black-500/30"
               onClick={() =>
@@ -156,7 +156,6 @@ const Index: FC = () => {
                 })
               }
             >
-              {/* onClick UPDATE_USER_MC_DATA w an incremented win */}
               Win
             </button>
             <button
@@ -170,7 +169,6 @@ const Index: FC = () => {
                 })
               }
             >
-              {/* onClick UPDATE_USER_MC_DATA w an incremented loss */}
               Loss
             </button>
           </div>

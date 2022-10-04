@@ -63,6 +63,8 @@ export const multiplicationConnectSlice: Slice = createSlice({
         });
         console.log("hasWinner", state.hasWinner);
         console.log("stage after blockClick action", state.stage);
+      } else if (winType === WinType.Draw) {
+        state.stage = Stage.GAME_OVER;
       }
     },
     togglePlayer: (state: MultiplicationConnectState) => {
