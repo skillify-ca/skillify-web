@@ -122,7 +122,11 @@ const Index: FC = () => {
       )}
       {stage === Stage.GAME_OVER && (
         <Modal type="game-over-prompt">
-          <h2>Please start a new game</h2>
+          {/* 1fr 2fr */}
+          <div className="grid grid-cols-[1fr_3fr] gap-4">
+            <span className="text-6xl place-self-center">🔄</span>
+            <h2 className="">Please Restart Game</h2>
+          </div>
         </Modal>
       )}
 
