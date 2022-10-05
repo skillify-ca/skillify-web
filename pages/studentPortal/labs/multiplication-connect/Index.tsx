@@ -128,7 +128,7 @@ const Index: FC = () => {
 
       <div className="flex flex-col justify-center max-w-3xl gap-4 mx-auto">
         <div className="flex flex-col items-center gap-3">
-          <h3 className="text-2xl">Welcome {user.displayName}</h3>
+          <h3 className="text-2xl">Welcome, {user.displayName}!</h3>
           <div className="flex flex-wrap gap-2">
             <h3 className="inline-block font-semibold">Game Data: </h3>
             <p className="inline-block">
