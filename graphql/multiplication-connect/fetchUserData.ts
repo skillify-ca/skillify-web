@@ -5,7 +5,6 @@ import { gql } from "@apollo/client";
   - setup this file to look like other gQL requests in this folder */
 
 // Loads the data for the currently logged in user
-// if(!id) fetch for: Kavan (test)
 export const FETCH_USER_MC_DATA = gql`
   query fetchUserData($id: String = "wHZGkjB7CFf0cMrcGgI1pIHfke02") {
     multiplicationConnectData(where: { id: { _eq: $id } }) {

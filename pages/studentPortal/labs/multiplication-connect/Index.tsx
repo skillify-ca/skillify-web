@@ -118,7 +118,7 @@ const Index: FC = () => {
       )}
       {stage === Stage.GAME_WIN && (
         <Modal type="game-alert" closeModal={() => handleDispatch()}>
-          <h2 className="text-3xl font-bold text-center text-black-500">
+          <h2 className="text-3xl font-bold text-center dark:text-white text-black-500">
             {hasWinner === WinType.PlayerOne
               ? "Player One Win 🔴"
               : "Player Two Win 🟡"}
@@ -178,7 +178,7 @@ const Index: FC = () => {
         </div>
         <hr></hr>
 
-        <h1 className="mx-10 mb-3 text-3xl font-bold text-center drop-shadow-lg shadow-black-500">
+        <h1 className="mx-10 mb-3 text-2xl font-bold text-center sm:text-3xl drop-shadow-lg shadow-black-500">
           Multiplication Connect Four 🔴🟡
         </h1>
 
@@ -195,7 +195,7 @@ const Index: FC = () => {
           </div>
           <button
             type="button"
-            className={`sm:text-md text-xs font-mono font-bold text-gray-600 bg-white border border-gray-300 focus:outline-none 
+            className={`sm:text-base text-xs font-mono font-bold text-gray-600 bg-white border border-gray-300 focus:outline-none 
                  focus:ring-1 focus:ring-gray-200 rounded-lg px-5 py-2.5 dark:hover:border-gray-600 dark:focus:ring-gray-700
                  dark:text-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:hover:text-gray-200 dark:hover:bg-gray-800 
                  hover:text-gray-700 hover:bg-gray-50 ${

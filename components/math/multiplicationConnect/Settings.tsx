@@ -20,7 +20,7 @@ const Settings = () => {
       onClick={() => setIsOpen(!isOpen)}
       // onMouseOut={() => setTimeout(() => (click ? "" : setIsOpen(false)), 500)}
     >
-      <a className="inline-flex items-center pl-4 pr-1 font-mono text-xs text-gray-600 sm:text-md dark:text-gray-300 dark:hover:text-gray-200 dark:hover:bg-gray-800 hover:text-gray-700 hover:bg-gray-50 rounded-l-md">
+      <a className="inline-flex items-center pl-4 pr-1 font-mono text-xs text-gray-600 sm:text-base dark:text-gray-300 dark:hover:text-gray-200 dark:hover:bg-gray-800 hover:text-gray-700 hover:bg-gray-50 rounded-l-md">
         <span className="pr-2 ">🛠</span>
         <span className="mt-1 font-bold">Settings</span>
       </a>
