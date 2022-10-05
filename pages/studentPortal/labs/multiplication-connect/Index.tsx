@@ -147,34 +147,6 @@ const Index: FC = () => {
               {userData && userData.games_finished}
             </p>
           </div>
-          <div className="flex gap-5">
-            <button
-              className="p-2 border rounded-lg bg-black-500/30"
-              onClick={() =>
-                updateUserWin({
-                  variables: { id: user.uid },
-                  refetchQueries: [
-                    { query: FETCH_USER_MC_DATA, variables: { id: user.uid } },
-                  ],
-                })
-              }
-            >
-              Win
-            </button>
-            <button
-              className="p-2 border rounded-lg bg-black-500/30"
-              onClick={() =>
-                updateUserLoss({
-                  variables: { id: user.uid },
-                  refetchQueries: [
-                    { query: FETCH_USER_MC_DATA, variables: { id: user.uid } },
-                  ],
-                })
-              }
-            >
-              Loss
-            </button>
-          </div>
         </div>
         <hr></hr>
 
