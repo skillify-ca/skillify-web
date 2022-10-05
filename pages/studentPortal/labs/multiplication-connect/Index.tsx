@@ -40,24 +40,16 @@ const Index: FC = () => {
     },
   });
   const [createUser] = useMutation(CREATE_USER_MC_DATA);
-  // fixme: to be executed after game win & alert modal close
-  const [updateUserWin] = useMutation(UPDATE_USER_WIN_MCDATA);
-  // fixme: to be executed after game loss & alert modal close
-  const [updateUserLoss] = useMutation(UPDATE_USER_LOSS_MCDATA);
   const [updateUserGamesPlayed] = useMutation(UPDATE_USER_GAMES_PLAYED_MCDATA);
 
   useEffect(() => {
     if (data) {
       const result = !!data.multiplicationConnectData.length;
       if (result) {
-        // for a returning user (increment games_played on page load)
+        // for a returning user
         setUserData(data.multiplicationConnectData[0]);
-        console.log("user data:", data.multiplicationConnectData[0]);
       } else {
-        console.log(
-          "user not found and should be created",
-          data.multiplicationConnectData
-        );
+        // for a new user
         createUser({
           variables: {
             id: user.uid,
@@ -73,7 +65,6 @@ const Index: FC = () => {
   useEffect(() => {
     dispatch(reloadGrid(grid));
     !isPlayerOne && dispatch(togglePlayer(isPlayerOne));
-    console.log("newGame useEffect()");
     updateUserGamesPlayed({
       variables: {
         id: user.uid,
@@ -157,7 +148,6 @@ const Index: FC = () => {
         <PlayerAndDice normalMode={normalMode} />
 
         <div className="flex items-stretch pb-2 justify-evenly">
-          {/* - build play solo/two player */}
           <div
             className={`flex items-stretch ${
               stage === Stage.GAME_OVER && "z-20"

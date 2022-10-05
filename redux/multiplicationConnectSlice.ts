@@ -61,8 +61,8 @@ export const multiplicationConnectSlice: Slice = createSlice({
               block.id === winBlock && (block.selectedBy = SelectedBy.Winner)
           );
         });
-        console.log("hasWinner", state.hasWinner);
-        console.log("stage after blockClick action", state.stage);
+        // console.log("hasWinner", state.hasWinner);
+        // console.log("stage after blockClick action", state.stage);
       } else if (winType === WinType.Draw) {
         state.stage = Stage.GAME_OVER;
       }

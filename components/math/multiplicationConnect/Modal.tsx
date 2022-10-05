@@ -2,6 +2,7 @@ import { useMutation } from "@apollo/client";
 import React, { FC, Ref, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FETCH_USER_MC_DATA } from "../../../graphql/multiplication-connect/fetchUserData";
+import { UPDATE_USER_LOSS_MCDATA } from "../../../graphql/multiplication-connect/updateUserLoss";
 import { UPDATE_USER_WIN_MCDATA } from "../../../graphql/multiplication-connect/updateUserWin";
 import { useAuth } from "../../../lib/authContext";
 import {
@@ -21,6 +22,8 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
   const dispatch = useDispatch();
   const { user } = useAuth();
   const [updateUserWin] = useMutation(UPDATE_USER_WIN_MCDATA);
+  // fixme: to be executed after game loss & alert modal close
+  const [updateUserLoss] = useMutation(UPDATE_USER_LOSS_MCDATA);
 
   const fadeOut = (ref) => {
     setTimeout(() => {
@@ -122,7 +125,6 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
                     ],
                   });
                   dispatch(setNewGame(newGame));
-                  console.log("this ran");
                 }}
               >
                 Save & Start New Game
