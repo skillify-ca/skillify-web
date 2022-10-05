@@ -1,8 +1,13 @@
 import { useMutation } from "@apollo/client";
 import React, { FC, Ref, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FETCH_USER_MC_DATA } from "../../../graphql/multiplication-connect/fetchUserData";
 import { UPDATE_USER_WIN_MCDATA } from "../../../graphql/multiplication-connect/updateUserWin";
 import { useAuth } from "../../../lib/authContext";
+import {
+  multiplicationConnectSelector,
+  setNewGame,
+} from "../../../redux/multiplicationConnectSlice";
 
 interface ModalProps {
   type: "rules" | "fullscreen-welcome" | "game-alert" | "game-over-prompt";
@@ -12,6 +17,8 @@ interface ModalProps {
 
 const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
   const ref = useRef<HTMLDivElement>();
+  const { newGame } = useSelector(multiplicationConnectSelector);
+  const dispatch = useDispatch();
   const { user } = useAuth();
   const [updateUserWin] = useMutation(UPDATE_USER_WIN_MCDATA);
 
@@ -101,11 +108,22 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
               >
                 Save & Close
               </button>
-              {/* todo: Do this next, & refetchquery on game restart */}
               <button
                 type="button"
                 className="px-4 py-2 ml-2 font-medium text-green-600 rounded bg-green-50"
-                onClick={() => {}}
+                onClick={() => {
+                  updateUserWin({
+                    variables: { id: user.uid },
+                    refetchQueries: [
+                      {
+                        query: FETCH_USER_MC_DATA,
+                        variables: { id: user.uid },
+                      },
+                    ],
+                  });
+                  dispatch(setNewGame(newGame));
+                  console.log("this ran");
+                }}
               >
                 Save & Start New Game
               </button>
