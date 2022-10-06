@@ -30,8 +30,15 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
   const dispatch = useDispatch();
 
   const handleBlockClick = () => {
-    stage === Stage.GAME_PLAY && dispatch(blockClick(blockData)); // blocks can only be clicked in GAME_PLAY
-    stage === Stage.GAME_PLAY && dispatch(togglePlayer(isPlayerOne)); // toggle if still in GAME_PLAY (!GAME_WIN, !GAME_OVER)
+    // blockClick, togglePlayer only in GAME_PLAY
+    if (stage === Stage.GAME_PLAY) {
+      if (isPlayerOne) {
+        dispatch(blockClick(blockData));
+        dispatch(togglePlayer(isPlayerOne));
+      } else if (!isPlayerOne) {
+        console.log("Dispatch Computer Block Click Action Here");
+      }
+    }
   };
 
   return (
