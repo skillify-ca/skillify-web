@@ -20,7 +20,7 @@ const Settings = () => {
       onClick={() => setIsOpen(!isOpen)}
       // onMouseOut={() => setTimeout(() => (click ? "" : setIsOpen(false)), 500)}
     >
-      <a className="inline-flex items-center pl-4 pr-1 font-mono text-gray-600 dark:text-gray-300 dark:hover:text-gray-200 dark:hover:bg-gray-800 hover:text-gray-700 hover:bg-gray-50 rounded-l-md">
+      <a className="inline-flex items-center pl-4 pr-1 font-mono text-xs text-gray-600 sm:text-base dark:text-gray-300 dark:hover:text-gray-200 dark:hover:bg-gray-800 hover:text-gray-700 hover:bg-gray-50 rounded-l-md">
         <span className="pr-2 ">🛠</span>
         <span className="mt-1 font-bold">Settings</span>
       </a>
@@ -47,7 +47,7 @@ const Settings = () => {
 
         <div
           onMouseOut={() => setIsOpen(false)}
-          className={`transition-opacity duration-200 absolute right-0 z-10 w-56 origin-top-right bg-white border border-gray-100 rounded-md shadow-lg dark:bg-gray-900 dark:border-gray-800 ${
+          className={`transition-opacity duration-200 absolute right-0 z-10 w-32 md:w-52 sm:w-40 origin-top-right bg-white border border-gray-100 rounded-md shadow-lg dark:bg-gray-900 dark:border-gray-800 ${
             isOpen ? "opacity-100 visible" : " opacity-0 invisible"
           }`}
           role="menu"
