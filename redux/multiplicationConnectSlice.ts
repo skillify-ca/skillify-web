@@ -67,6 +67,14 @@ export const multiplicationConnectSlice: Slice = createSlice({
         state.stage = Stage.GAME_OVER;
       }
     },
+    /* Outline: 
+       - get computer block click to execute on each p2 move
+       - Roll dice — grab button w useRef hook & extract output to Redux to access in reducer action
+       - if(p2) — select block with matching number on the GameBoard if it exists
+      - else — roll again until it does 
+      — output a game loss if p2 (i.e. computer) wins the game
+    */
+    computerBlockClick: (state: MultiplicationConnectState) => {},
     togglePlayer: (state: MultiplicationConnectState) => {
       state.isPlayerOne = !state.isPlayerOne;
     },
