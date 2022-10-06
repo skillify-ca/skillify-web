@@ -133,6 +133,14 @@ export const calculateWinner = (
   return { winType, winningBlocks };
 };
 
+/* Outline: 
+   - Roll dice — grab button w useRef hook & extract output to Redux to access in reducer action
+   - if(p2) — select block with matching number on the GameBoard if it exists
+   - else — roll again until it does 
+   — output a game loss if p2 (i.e. computer) wins the game
+*/
+export const handleComputerSelection = () => {};
+
 export const createGrid = () => {
   let arr = [];
   let newGrid = [];
