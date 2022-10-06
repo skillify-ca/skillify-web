@@ -7,6 +7,7 @@ import {
 } from "../../../pages/api/labs/games/multiplication-connect/gameLogic";
 import {
   blockClick,
+  computerBlockClick,
   multiplicationConnectSelector,
   setGameWin,
   Stage,
@@ -33,10 +34,13 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
     // blockClick, togglePlayer only in GAME_PLAY
     if (stage === Stage.GAME_PLAY) {
       if (isPlayerOne) {
+        // user block click
         dispatch(blockClick(blockData));
         dispatch(togglePlayer(isPlayerOne));
       } else if (!isPlayerOne) {
-        console.log("Dispatch Computer Block Click Action Here");
+        // computer block click
+        dispatch(computerBlockClick(blockData));
+        dispatch(togglePlayer(isPlayerOne));
       }
     }
   };
