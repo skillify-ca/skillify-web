@@ -54,7 +54,7 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
           <input
             className="bg-inherit text-lg placeholder:text-inherit max-w-[150px] h-8 text-center cursor-pointer rounded-lg 
               bg-gradient-to-tr from-[#ffcf00]/30 to-[#ffed5b]/30 font-mono"
-            placeholder="Player 2"
+            placeholder="Computer"
             value={playerTwo}
             onChange={(e) => setPlayerTwo(e.target.value)}
           ></input>
