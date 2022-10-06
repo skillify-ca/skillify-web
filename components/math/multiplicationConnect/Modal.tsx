@@ -22,8 +22,6 @@ const Modal: FC<ModalProps> = ({ type, closeModal, children }) => {
   const dispatch = useDispatch();
   const { user } = useAuth();
   const [updateUserWin] = useMutation(UPDATE_USER_WIN_MCDATA);
-  // fixme: to be executed after game loss & alert modal close
-  const [updateUserLoss] = useMutation(UPDATE_USER_LOSS_MCDATA);
 
   const fadeOut = (ref) => {
     setTimeout(() => {
