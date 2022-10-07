@@ -70,8 +70,6 @@ export const multiplicationConnectSlice: Slice = createSlice({
       const block = action.payload as GameBoardBlock;
 
       console.log("computerBlockClick");
-      state.diceButtonRef.current.click();
-
       state.grid[block.id].selectedBy = SelectedBy.PlayerTwo;
     },
     addDiceButtonRef: (
@@ -80,6 +78,9 @@ export const multiplicationConnectSlice: Slice = createSlice({
     ) => {
       const diceButton = action.payload as HTMLDivElement;
       state.diceButtonRef = diceButton;
+    },
+    diceButtonClick: (state: MultiplicationConnectState) => {
+      state.diceButtonRef.current.click();
     },
     checkWin: (state: MultiplicationConnectState) => {
       const { winType, winningBlocks } = calculateWinner(
@@ -126,6 +127,7 @@ export const {
   blockClick,
   computerBlockClick,
   addDiceButtonRef,
+  diceButtonClick,
   checkWin,
   setStage,
   setNewGame,
