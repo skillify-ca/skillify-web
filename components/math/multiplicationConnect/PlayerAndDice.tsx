@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addDiceButtonRef,
   multiplicationConnectSelector,
+  setDiceState,
   Stage,
 } from "../../../redux/multiplicationConnectSlice";
 
-const diceRoll = () => {
+export const diceRoll = () => {
   return Math.floor(Math.random() * 6 + 1);
 };
 
@@ -25,7 +26,9 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
 
   const diceButtonRef = useRef<HTMLDivElement>();
   // diceState redux state
-  const { isPlayerOne, stage } = useSelector(multiplicationConnectSelector);
+  const { diceState, isPlayerOne, stage } = useSelector(
+    multiplicationConnectSelector
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -52,6 +55,13 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
       }
     }
   }, [stage]);
+
+  const handleDiceRollClick = () => {
+    setRoll1(diceRoll);
+    setRoll2(diceRoll);
+    setTimeout(() => dispatch(setDiceState(2 * (roll1 + roll2))));
+    setShake(true);
+  };
 
   return (
     <section className="flex flex-col gap-5">
@@ -127,10 +137,7 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
           <div
             className="z-10 scale-90 sm:scale-100"
             ref={diceButtonRef}
-            onClick={() => {
-              setRoll1(diceRoll), setRoll2(diceRoll);
-              setShake(true);
-            }}
+            onClick={handleDiceRollClick}
           >
             <Button label={"Roll Dice"} />
           </div>

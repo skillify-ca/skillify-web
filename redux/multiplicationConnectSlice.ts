@@ -23,6 +23,7 @@ export interface MultiplicationConnectState {
   newGame: number;
   hasWinner: null | WinType;
   diceButtonRef: any; // undefined | HTMLDivElement causing errors
+  diceState: null | number;
 }
 
 const initialState: MultiplicationConnectState = {
@@ -32,6 +33,7 @@ const initialState: MultiplicationConnectState = {
   newGame: 0,
   hasWinner: null,
   diceButtonRef: undefined,
+  diceState: null,
 };
 
 export const multiplicationConnectSlice: Slice = createSlice({
@@ -56,7 +58,7 @@ export const multiplicationConnectSlice: Slice = createSlice({
               OR create a new action (checkWin)
        - automate the BC:
           - Roll dice
-              - trigger button click inside computerBlockClick w useRef
+              - ✅ trigger button click inside computerBlockClick w useRef
               - create diceState — to contain the output of the dice roll
               - access the diceState to make an appropriate block selection in reducer action
           - if(p2) — select block with matching number on the GameBoard if it exists
@@ -81,6 +83,14 @@ export const multiplicationConnectSlice: Slice = createSlice({
     },
     diceButtonClick: (state: MultiplicationConnectState) => {
       state.diceButtonRef.current.click();
+    },
+    setDiceState: (
+      state: MultiplicationConnectState,
+      action: PayloadAction<Number>
+    ) => {
+      const diceState = action.payload as number;
+      state.diceState = diceState;
+      console.log("diceState:", diceState);
     },
     checkWin: (state: MultiplicationConnectState) => {
       const { winType, winningBlocks } = calculateWinner(
@@ -128,6 +138,7 @@ export const {
   computerBlockClick,
   addDiceButtonRef,
   diceButtonClick,
+  setDiceState,
   checkWin,
   setStage,
   setNewGame,
