@@ -1,7 +1,8 @@
 import { Button } from "../../ui/Button";
 import { useState, FC, useRef, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
+  addDiceButtonRef,
   multiplicationConnectSelector,
   Stage,
 } from "../../../redux/multiplicationConnectSlice";
@@ -25,6 +26,12 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
   const diceButtonRef = useRef<HTMLDivElement>();
   // diceState redux state
   const { isPlayerOne, stage } = useSelector(multiplicationConnectSelector);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // On page load, send diceButtonRef to redux
+    dispatch(addDiceButtonRef(diceButtonRef));
+  }, []);
 
   useEffect(() => {
     // Animation to prompt user to change name

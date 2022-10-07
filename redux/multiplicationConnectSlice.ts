@@ -71,7 +71,10 @@ export const multiplicationConnectSlice: Slice = createSlice({
       state.grid[block.id].selectedBy = SelectedBy.PlayerTwo;
       console.log("computerBlockClick");
     },
-    addDiceButtonRef: (state: MultiplicationConnectState) => {},
+    addDiceButtonRef: (state: MultiplicationConnectState) => {
+      console.log("addDiceButtonRef");
+      // log the ref
+    },
     checkWin: (state: MultiplicationConnectState) => {
       const { winType, winningBlocks } = calculateWinner(
         state.grid,
@@ -116,6 +119,7 @@ export const {
   reloadGrid,
   blockClick,
   computerBlockClick,
+  addDiceButtonRef,
   checkWin,
   setStage,
   setNewGame,
