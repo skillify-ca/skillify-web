@@ -18,11 +18,12 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
   const [shake, setShake] = useState(false);
   const [roll1, setRoll1] = useState(0);
   const [roll2, setRoll2] = useState(0);
-  // diceState redux state
   const [playerOne, setPlayerOne] = useState(String);
   const [playerTwo, setPlayerTwo] = useState(String);
   const changeNameRef = useRef<HTMLParagraphElement>();
+
   const diceButtonRef = useRef<HTMLDivElement>();
+  // diceState redux state
   const { isPlayerOne, stage } = useSelector(multiplicationConnectSelector);
 
   useEffect(() => {
