@@ -53,7 +53,10 @@ export const multiplicationConnectSlice: Slice = createSlice({
        - ✅ setup calculateWinner logic in computerBC — figure out how to extract to function to remove redundancy 
               OR create a new action (checkWin)
        - automate the BC:
-          - Roll dice — grab button w useRef hook & extract output to Redux to access in reducer action
+          - Roll dice
+              - trigger button click inside computerBlockClick w useRef
+              - create diceState — to contain the output of the dice roll
+              - access the diceState to make an appropriate block selection in reducer action
           - if(p2) — select block with matching number on the GameBoard if it exists
           - else — roll again until it does 
       — output a game loss if p2 (i.e. computer) wins the game

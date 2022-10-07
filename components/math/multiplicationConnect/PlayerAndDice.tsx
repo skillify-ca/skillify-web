@@ -18,23 +18,29 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
   const [shake, setShake] = useState(false);
   const [roll1, setRoll1] = useState(0);
   const [roll2, setRoll2] = useState(0);
+  // diceState redux state
   const [playerOne, setPlayerOne] = useState(String);
   const [playerTwo, setPlayerTwo] = useState(String);
-  const ref = useRef<HTMLParagraphElement>();
+  const changeNameRef = useRef<HTMLParagraphElement>();
+  const diceButtonRef = useRef<HTMLDivElement>();
   const { isPlayerOne, stage } = useSelector(multiplicationConnectSelector);
 
   useEffect(() => {
+    // Animation to prompt user to change name
     if (stage === Stage.GAME_PLAY) {
-      if (ref.current && !ref.current.classList.contains("hidden")) {
+      if (
+        changeNameRef.current &&
+        !changeNameRef.current.classList.contains("hidden")
+      ) {
         setTimeout(
           () => (
-            (ref.current.style.scale = "170%"),
-            ref.current.classList.add("animate-bounce")
+            (changeNameRef.current.style.scale = "170%"),
+            changeNameRef.current.classList.add("animate-bounce")
           ),
           200
         );
-        setTimeout(() => (ref.current.style.opacity = "0"), 3000);
-        setTimeout(() => ref.current.classList.add("hidden"), 3500);
+        setTimeout(() => (changeNameRef.current.style.opacity = "0"), 3000);
+        setTimeout(() => changeNameRef.current.classList.add("hidden"), 3500);
       }
     }
   }, [stage]);
@@ -58,14 +64,14 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
             value={playerTwo}
             onChange={(e) => setPlayerTwo(e.target.value)}
           ></input>
-          <p className="text-sm transition-all" ref={ref}>
+          <p className="text-sm transition-all" ref={changeNameRef}>
             👈🏼 Click to rename
           </p>
         </div>
       </div>
 
-      {/* Dice */}
       <div className="flex items-center justify-evenly">
+        {/* Dice */}
         <div
           className={`flex flex-col items-center justify-center md:w-36 md:h-36 sm:w-28 sm:h-28 w-24 h-24 gap-3 border-2 border-stone-500/25 z-10 rounded-3xl bg-stone-300 text-black-500 drop-shadow-md ${
             shake && "animate-shake"
@@ -87,8 +93,6 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
         {/* Player turn/number */}
         <div className="flex flex-col items-center gap-5">
           <div className="z-10 flex flex-col justify-center gap-2 p-5 text-center text-white bg-gradient-to-br from-blue-800/80 to-indigo-900/100 rounded-xl drop-shadow-xl">
-            {/* check whose turn it is and render name if it exists (from above input) */}
-            {/* todo: Make sure dice has been rolled before selecting a block */}
             <div className="max-w-[10rem] font-mono overflow-hidden">
               <span
                 className={`font-bold underline ${
@@ -111,7 +115,8 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
               {(roll1 + roll2) * 2}
             </p>
           </div>
-          <div className="z-10 scale-90 sm:scale-100">
+
+          <div className="z-10 scale-90 sm:scale-100" ref={diceButtonRef}>
             <Button
               label={"Roll Dice"}
               onClick={() => {
