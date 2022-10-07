@@ -22,7 +22,7 @@ export interface MultiplicationConnectState {
   stage: Stage;
   newGame: number;
   hasWinner: null | WinType;
-  diceButtonRef: null; //HTMLDivElement causing errors
+  diceButtonRef: any; // undefined | HTMLDivElement causing errors
 }
 
 const initialState: MultiplicationConnectState = {
@@ -31,7 +31,7 @@ const initialState: MultiplicationConnectState = {
   stage: Stage.WELCOME,
   newGame: 0,
   hasWinner: null,
-  diceButtonRef: null,
+  diceButtonRef: undefined,
 };
 
 export const multiplicationConnectSlice: Slice = createSlice({
@@ -68,12 +68,20 @@ export const multiplicationConnectSlice: Slice = createSlice({
       action: PayloadAction<GameBoardBlock>
     ) => {
       const block = action.payload as GameBoardBlock;
-      state.grid[block.id].selectedBy = SelectedBy.PlayerTwo;
+
       console.log("computerBlockClick");
+      console.log("state.diceButtonRef:", state.diceButtonRef.current);
+      state.diceButtonRef.current.click();
+      state.grid[block.id].selectedBy = SelectedBy.PlayerTwo;
     },
-    addDiceButtonRef: (state: MultiplicationConnectState) => {
-      console.log("addDiceButtonRef");
+    addDiceButtonRef: (
+      state: MultiplicationConnectState,
+      action: PayloadAction<HTMLButtonElement>
+    ) => {
+      const diceButton = action.payload as HTMLButtonElement;
+      console.log("diceButtonRef in action:", diceButton);
       // log the ref
+      state.diceButtonRef = diceButton;
     },
     checkWin: (state: MultiplicationConnectState) => {
       const { winType, winningBlocks } = calculateWinner(
