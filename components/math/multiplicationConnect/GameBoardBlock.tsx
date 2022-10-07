@@ -7,9 +7,9 @@ import {
 } from "../../../pages/api/labs/games/multiplication-connect/gameLogic";
 import {
   blockClick,
+  checkWin,
   computerBlockClick,
   multiplicationConnectSelector,
-  setGameWin,
   Stage,
   togglePlayer,
 } from "../../../redux/multiplicationConnectSlice";
@@ -31,17 +31,15 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
   const dispatch = useDispatch();
 
   const handleBlockClick = () => {
-    // blockClick, togglePlayer only in GAME_PLAY
+    // blockClick, togglePlayer, checkWin only when Stage.GAME_PLAY
     if (stage === Stage.GAME_PLAY) {
-      if (isPlayerOne) {
-        // user block click
-        dispatch(blockClick(blockData));
-        dispatch(togglePlayer(isPlayerOne));
-      } else if (!isPlayerOne) {
-        // computer block click
-        dispatch(computerBlockClick(blockData));
-        dispatch(togglePlayer(isPlayerOne));
-      }
+      isPlayerOne
+        ? dispatch(blockClick(blockData))
+        : dispatch(computerBlockClick(blockData));
+    }
+    if (stage === Stage.GAME_PLAY) {
+      dispatch(checkWin(blockData)); // **why does this work without sending grid state?
+      dispatch(togglePlayer(isPlayerOne));
     }
   };
 

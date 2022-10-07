@@ -47,11 +47,31 @@ export const multiplicationConnectSlice: Slice = createSlice({
       state.isPlayerOne
         ? (state.grid[block.id].selectedBy = SelectedBy.PlayerOne)
         : (state.grid[block.id].selectedBy = SelectedBy.PlayerTwo);
-
+    },
+    /* Outline: 
+       - ✅ get computer block click to execute on each p2 move
+       - ✅ setup calculateWinner logic in computerBC — figure out how to extract to function to remove redundancy 
+              OR create a new action (checkWin)
+       - automate the BC:
+          - Roll dice — grab button w useRef hook & extract output to Redux to access in reducer action
+          - if(p2) — select block with matching number on the GameBoard if it exists
+          - else — roll again until it does 
+      — output a game loss if p2 (i.e. computer) wins the game
+    */
+    computerBlockClick: (
+      state: MultiplicationConnectState,
+      action: PayloadAction<GameBoardBlock>
+    ) => {
+      const block = action.payload as GameBoardBlock;
+      state.grid[block.id].selectedBy = SelectedBy.PlayerTwo;
+      console.log("computerBlockClick");
+    },
+    checkWin: (state: MultiplicationConnectState) => {
       const { winType, winningBlocks } = calculateWinner(
         state.grid,
         state.isPlayerOne
       );
+      console.log("{winType, winningBlocks}", { winType, winningBlocks });
       if (winningBlocks) {
         state.stage = Stage.GAME_WIN;
         state.hasWinner = winType;
@@ -67,23 +87,6 @@ export const multiplicationConnectSlice: Slice = createSlice({
         state.stage = Stage.GAME_OVER;
       }
     },
-    /* Outline: 
-       - ✅ get computer block click to execute on each p2 move
-       - setup calculateWinner logic in computerBC — figure out how to extract to function to remove redundancy
-       - Roll dice — grab button w useRef hook & extract output to Redux to access in reducer action
-       - if(p2) — select block with matching number on the GameBoard if it exists
-      - else — roll again until it does 
-      — output a game loss if p2 (i.e. computer) wins the game
-    */
-    computerBlockClick: (
-      state: MultiplicationConnectState,
-      action: PayloadAction<GameBoardBlock>
-    ) => {
-      const block = action.payload as GameBoardBlock;
-      state.grid[block.id].selectedBy = SelectedBy.PlayerTwo;
-      console.log("computerBlockClick");
-      // calculateWinner()
-    },
     togglePlayer: (state: MultiplicationConnectState) => {
       state.isPlayerOne = !state.isPlayerOne;
     },
@@ -92,7 +95,7 @@ export const multiplicationConnectSlice: Slice = createSlice({
       action: PayloadAction<Stage>
     ) => {
       const gameStage = action.payload as Stage;
-      // console.log(state.stage + " > " + gameStage);
+      console.log(state.stage + " > " + gameStage);
       state.stage = gameStage;
     },
     setNewGame: (state: MultiplicationConnectState) => {
@@ -107,9 +110,9 @@ export const {
   reloadGrid,
   blockClick,
   computerBlockClick,
+  checkWin,
   setStage,
   setNewGame,
-  setGameWin,
 } = multiplicationConnectSlice.actions;
 
 export const multiplicationConnectSelector = (state: RootState) =>
