@@ -8,7 +8,7 @@ import {
   Stage,
 } from "../../../redux/multiplicationConnectSlice";
 
-export const diceRoll = () => {
+const diceRoll = () => {
   return Math.floor(Math.random() * 6 + 1);
 };
 
@@ -57,8 +57,17 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
   }, [stage]);
 
   const handleDiceRollClick = () => {
-    setRoll1(diceRoll);
-    setRoll2(diceRoll);
+    // if you need to access the next state you can save it to a variable before passing it to the set function
+    // const nextCount = count + 1;
+    // setCount(nextCount);
+
+    // console.log(count);     // 0
+    // console.log(nextCount); // 1
+
+    const roll1 = diceRoll();
+    const roll2 = diceRoll();
+    setRoll1(roll1);
+    setRoll2(roll2);
     setTimeout(() => dispatch(setDiceState(2 * (roll1 + roll2))));
     setShake(true);
   };
