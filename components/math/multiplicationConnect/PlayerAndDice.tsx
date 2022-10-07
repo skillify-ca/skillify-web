@@ -57,13 +57,7 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
   }, [stage]);
 
   const handleDiceRollClick = () => {
-    // if you need to access the next state you can save it to a variable before passing it to the set function
-    // const nextCount = count + 1;
-    // setCount(nextCount);
-
-    // console.log(count);     // 0
-    // console.log(nextCount); // 1
-
+    // accessing nextState by saving it before passing to setState
     const roll1 = diceRoll();
     const roll2 = diceRoll();
     setRoll1(roll1);

@@ -51,6 +51,7 @@ export const multiplicationConnectSlice: Slice = createSlice({
       state.isPlayerOne
         ? (state.grid[block.id].selectedBy = SelectedBy.PlayerOne)
         : (state.grid[block.id].selectedBy = SelectedBy.PlayerTwo);
+      console.log("blockClick", block);
     },
     /* Outline: 
        - ✅ get computer block click to execute on each p2 move
@@ -71,14 +72,13 @@ export const multiplicationConnectSlice: Slice = createSlice({
     ) => {
       // const block = action.payload as GameBoardBlock;
 
-      console.log("computerBlockClick");
       const diceRoll = state.diceState;
       const block = state.grid.find(
         (i) =>
           i.selectedBy === SelectedBy.Unselected && i.gridNumber === diceRoll
       );
       if (block) {
-        console.log(current(block));
+        console.log("computerBlockClick", current(block));
         state.grid[block.id].selectedBy = SelectedBy.PlayerTwo;
       } else {
         console.log("block not found!");
@@ -117,8 +117,8 @@ export const multiplicationConnectSlice: Slice = createSlice({
               block.id === winBlock && (block.selectedBy = SelectedBy.Winner)
           );
         });
-        // console.log("hasWinner", state.hasWinner);
-        // console.log("stage after blockClick action", state.stage);
+        console.log("hasWinner", state.hasWinner);
+        console.log("stage after blockClick action", state.stage);
       } else if (winType === WinType.Draw) {
         state.stage = Stage.GAME_OVER;
       }

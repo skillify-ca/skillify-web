@@ -26,30 +26,34 @@ interface GameBoardBlockProps {
 }
 
 const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
-  const { isPlayerOne, diceButtonRef, stage, hasWinner } = useSelector(
+  const { isPlayerOne, diceButtonRef, stage, hasWinner, grid } = useSelector(
     multiplicationConnectSelector
   );
   const dispatch = useDispatch();
 
-  const handleBlockClick = () => {
+  const waitForHalfSecond = () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve("resolved");
+      }, 500);
+    });
+  };
+
+  const handleBlockClick = async () => {
     // blockClick, togglePlayer, checkWin only when Stage.GAME_PLAY
     if (stage === Stage.GAME_PLAY) {
       if (isPlayerOne) {
         dispatch(blockClick(blockData));
-        dispatch(checkWin(blockData)); // **why does this work without sending grid state?
-        dispatch(togglePlayer(isPlayerOne));
+        console.log("user block click done");
       } else {
         dispatch(diceButtonClick(diceButtonRef));
-        setTimeout(() => dispatch(computerBlockClick(blockData)), 500);
+        await waitForHalfSecond();
+        dispatch(computerBlockClick(blockData));
         console.log("block click for computer done");
-        dispatch(checkWin(blockData)); // **why does this work without sending grid state?
-        dispatch(togglePlayer(isPlayerOne));
       }
+      dispatch(checkWin(blockData)); // **why does this work without sending grid state?
+      dispatch(togglePlayer(isPlayerOne));
     }
-    // if (stage === Stage.GAME_PLAY) {
-    //   dispatch(checkWin(blockData)); // **why does this work without sending grid state?
-    //   dispatch(togglePlayer(isPlayerOne));
-    // }
   };
 
   return (
