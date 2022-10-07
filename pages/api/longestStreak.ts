@@ -1,7 +1,9 @@
+import { PhoneMultiFactorGenerator } from "firebase/auth";
 import { shuffle } from "lodash";
 import { BlockState } from "../../components/math/longestStreak/MultiplicationBlock";
 import { GameLevel } from "../../redux/longestStreakSlice";
 import { getRndInteger } from "./random";
+import { showEndGameImage } from "./showEndGameImage";
 
 export type GameBlockState = {
   text: string;
@@ -13,11 +15,12 @@ export type GameBlockState = {
 export type GameLevelData = {
   min: number,
   max: number,
-}
+};
+
 export const gameLevelsMetaData: Record<GameLevel, GameLevelData> = {
     1: {
       min: 0,
-      max: 3
+      max: 3,
     },
     2: {
       min: 0,
@@ -48,7 +51,7 @@ export function initializeGameState(currentLevel:GameLevel): GameBlockState[] {
       let x = getRndInteger(gameLevelsMetaData[currentLevel].min, gameLevelsMetaData[currentLevel].max);
       let y = getRndInteger(gameLevelsMetaData[currentLevel].min, gameLevelsMetaData[currentLevel].max);
       let product: number = x * y;
-      let productString: string = x + " x " + y;
+      let productString: string = x + "x" + y;
       let initiateBlockState: GameBlockState = {
         text: product.toString(),
         value: product,
@@ -91,6 +94,11 @@ export function longestSubarray(array: GameBlockState[], x: BlockState) {
 }
 
 
+/*this calculateWinner function calculates the winner of the game with the basic logic that checks for the longest subArray.  
+it can receive an input of three functions: 
+the showWinner function, which will tell if levels should be incremented or not
+showEndGameMessage, which will determine which message should be displayed on the winner page
+or showEndGameImage, which displays a message depending on if the game is win/lose/draw*/
 
 export function calculateWinner(array: GameBlockState[], functionName: () => void) {
   let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
