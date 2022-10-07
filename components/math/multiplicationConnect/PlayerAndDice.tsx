@@ -23,14 +23,13 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
   const [playerTwo, setPlayerTwo] = useState(String);
   const changeNameRef = useRef<HTMLParagraphElement>();
 
-  const diceButtonRef = useRef<HTMLButtonElement>();
+  const diceButtonRef = useRef<HTMLDivElement>();
   // diceState redux state
   const { isPlayerOne, stage } = useSelector(multiplicationConnectSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {
     // On page load, send diceButtonRef to redux
-    // console.log("diceButtonRef", diceButtonRef);
     if (diceButtonRef.current) dispatch(addDiceButtonRef(diceButtonRef));
   }, []);
 
@@ -54,18 +53,8 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
     }
   }, [stage]);
 
-  const handleDiceRefClick = () => {
-    console.log("this executed");
-    // click the button here and see if it's working
-    if (diceButtonRef.current) diceButtonRef.current.click();
-  };
-
   return (
     <section className="flex flex-col gap-5">
-      <button className="text-2xl text-black-500" onClick={handleDiceRefClick}>
-        diceButtonRefClick
-      </button>
-
       {/* Player Name Input*/}
       <div>
         <div className="flex items-center justify-evenly">
@@ -135,23 +124,15 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
             </p>
           </div>
 
-          <div className="z-10 scale-90 sm:scale-100">
-            <Button
-              label={"Roll Dice"}
-              onClick={() => {
-                setRoll1(diceRoll), setRoll2(diceRoll);
-                setShake(true);
-              }}
-            />
-            <button
-              ref={diceButtonRef}
-              onClick={() => {
-                setRoll1(diceRoll), setRoll2(diceRoll);
-                setShake(true);
-              }}
-            >
-              Shaking button test
-            </button>
+          <div
+            className="z-10 scale-90 sm:scale-100"
+            ref={diceButtonRef}
+            onClick={() => {
+              setRoll1(diceRoll), setRoll2(diceRoll);
+              setShake(true);
+            }}
+          >
+            <Button label={"Roll Dice"} />
           </div>
         </div>
       </div>

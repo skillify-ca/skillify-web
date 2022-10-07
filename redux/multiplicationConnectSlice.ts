@@ -70,17 +70,15 @@ export const multiplicationConnectSlice: Slice = createSlice({
       const block = action.payload as GameBoardBlock;
 
       console.log("computerBlockClick");
-      console.log("state.diceButtonRef:", state.diceButtonRef.current);
       state.diceButtonRef.current.click();
+
       state.grid[block.id].selectedBy = SelectedBy.PlayerTwo;
     },
     addDiceButtonRef: (
       state: MultiplicationConnectState,
-      action: PayloadAction<HTMLButtonElement>
+      action: PayloadAction<HTMLDivElement>
     ) => {
-      const diceButton = action.payload as HTMLButtonElement;
-      console.log("diceButtonRef in action:", diceButton);
-      // log the ref
+      const diceButton = action.payload as HTMLDivElement;
       state.diceButtonRef = diceButton;
     },
     checkWin: (state: MultiplicationConnectState) => {
