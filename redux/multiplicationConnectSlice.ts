@@ -73,18 +73,16 @@ export const multiplicationConnectSlice: Slice = createSlice({
 
       console.log("computerBlockClick");
       const diceRoll = state.diceState;
-      // array of unselected blocks
-      /*       const blocks = state.grid.filter(
-        (i) =>
-          i.selectedBy === SelectedBy.Unselected && i.gridNumber === diceRoll
-      );
-      console.log(blocks.map((i) => current(i))); */
       const block = state.grid.find(
         (i) =>
           i.selectedBy === SelectedBy.Unselected && i.gridNumber === diceRoll
       );
-      console.log(current(block));
-      // state.grid[block.id].selectedBy = SelectedBy.PlayerTwo;
+      if (block) {
+        console.log(current(block));
+        state.grid[block.id].selectedBy = SelectedBy.PlayerTwo;
+      } else {
+        console.log("block not found!");
+      }
     },
     addDiceButtonRef: (
       state: MultiplicationConnectState,

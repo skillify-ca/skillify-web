@@ -34,17 +34,22 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
   const handleBlockClick = () => {
     // blockClick, togglePlayer, checkWin only when Stage.GAME_PLAY
     if (stage === Stage.GAME_PLAY) {
-      if (isPlayerOne) dispatch(blockClick(blockData));
-      else {
+      if (isPlayerOne) {
+        dispatch(blockClick(blockData));
+        dispatch(checkWin(blockData)); // **why does this work without sending grid state?
+        dispatch(togglePlayer(isPlayerOne));
+      } else {
         dispatch(diceButtonClick(diceButtonRef));
         setTimeout(() => dispatch(computerBlockClick(blockData)), 500);
         console.log("block click for computer done");
+        dispatch(checkWin(blockData)); // **why does this work without sending grid state?
+        dispatch(togglePlayer(isPlayerOne));
       }
     }
-    if (stage === Stage.GAME_PLAY) {
-      dispatch(checkWin(blockData)); // **why does this work without sending grid state?
-      dispatch(togglePlayer(isPlayerOne));
-    }
+    // if (stage === Stage.GAME_PLAY) {
+    //   dispatch(checkWin(blockData)); // **why does this work without sending grid state?
+    //   dispatch(togglePlayer(isPlayerOne));
+    // }
   };
 
   return (
