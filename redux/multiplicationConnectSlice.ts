@@ -59,20 +59,32 @@ export const multiplicationConnectSlice: Slice = createSlice({
        - automate the BC:
           - Roll dice
               - ✅ trigger button click inside computerBlockClick w useRef
-              - create diceState — to contain the output of the dice roll
+              - ✅ create diceState — to contain the output of the dice roll
               - access the diceState to make an appropriate block selection in reducer action
           - if(p2) — select block with matching number on the GameBoard if it exists
           - else — roll again until it does 
       — output a game loss if p2 (i.e. computer) wins the game
     */
     computerBlockClick: (
-      state: MultiplicationConnectState,
-      action: PayloadAction<GameBoardBlock>
+      state: MultiplicationConnectState
+      // action: PayloadAction<GameBoardBlock>
     ) => {
-      const block = action.payload as GameBoardBlock;
+      // const block = action.payload as GameBoardBlock;
 
       console.log("computerBlockClick");
-      state.grid[block.id].selectedBy = SelectedBy.PlayerTwo;
+      const diceRoll = state.diceState;
+      // array of unselected blocks
+      /*       const blocks = state.grid.filter(
+        (i) =>
+          i.selectedBy === SelectedBy.Unselected && i.gridNumber === diceRoll
+      );
+      console.log(blocks.map((i) => current(i))); */
+      const block = state.grid.find(
+        (i) =>
+          i.selectedBy === SelectedBy.Unselected && i.gridNumber === diceRoll
+      );
+      console.log(current(block));
+      // state.grid[block.id].selectedBy = SelectedBy.PlayerTwo;
     },
     addDiceButtonRef: (
       state: MultiplicationConnectState,
