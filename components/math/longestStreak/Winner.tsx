@@ -1,6 +1,4 @@
-import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
-import { RESET_GAME_LEVEL } from "../../../graphql/longestStreak/resetGameLevel";
 
 export interface WinnerProps {
   text: string;
@@ -22,35 +20,15 @@ export const Winner: React.FC<WinnerProps> = ({
   user,
   ...props
 }) => {
-  const [resetGameLevel] = useMutation(RESET_GAME_LEVEL);
-
-  function handleResetGameLevel() {
-    resetGameLevel({
-      variables: {
-        userId: user.uid,
-      },
-      refetchQueries: [
-        {
-          query: RESET_GAME_LEVEL,
-          variables: {
-            userId: user.uid,
-          },
-        },
-      ],
-    });
-  }
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="flex-row items-center">
-      <div className="flex justify-center animate-bounce space-y-6 py-4 bg-gradient-to-b bg-purple-700 hover:bg-purple-500 text-white px-3 font-bold text-xl border-b-4 rounded-lg active:border-b-2 cursor-pointer`">
+    <div className="flex flex-col items-center">
+      <div className="flex justify-center text-center animate-bounce space-y-6 py-4 bg-gradient-to-b bg-purple-700 hover:bg-purple-500 text-white px-3 font-bold text-md md:text-xl border-b-4 rounded-lg active:border-b-2 cursor-pointer`">
         {winner}
       </div>
-      <div className="flex justify-center"> {image}</div>
-      <p className=" flex justify-center py-8">
-        Remember... Practice makes perfect. Begin again!
-      </p>
+      <div className="flex justify-center md:p-6 p-2"> {image}</div>
       <section
-        className="inline-flex justify-center bg-white border border-gray-300 rounded-md cursor-pointer "
+        className="inline-flex ml:20 w-56 bg-purple-700 border border-gray-300 rounded-md cursor-pointer "
         onMouseOver={() => setIsOpen(true)}
         onMouseOut={() => setIsOpen(false)}
         onClick={() => setIsOpen(!isOpen)}
@@ -58,9 +36,12 @@ export const Winner: React.FC<WinnerProps> = ({
         <div className="relative">
           <button
             type="button"
-            className="inline-flex h-full px-2 text-gray-600 border-gray-100 hover:text-gray-700 rounded-r-md hover:bg-gray-50"
+            className="inline-flex h-full px-2 text-white border-gray-100 hover:text-gray-700 rounded-r-md hover:bg-purple-400"
             onClick={() => setIsOpen(!isOpen)}
           >
+            <p className="flex self-center text-base md:text-lg pt-4 font-bold">
+              Math Warrior, choose your next move!
+            </p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-4 h-4"
@@ -84,16 +65,16 @@ export const Winner: React.FC<WinnerProps> = ({
           >
             <div className="p-2">
               <button
-                className="flex items-center w-full px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 "
+                className="flex  items-center w-full px-4 py-2 text-sm md:text-lg text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 "
                 type="submit"
                 role="menuitem"
                 onClick={onRestartClick}
               >
-                <span className="pr-2 text-2xl"></span> Restart Game
+                <span className="pr-2 text-2xl"></span> Restart Game at Level 1
               </button>
 
               <button
-                className="flex items-center w-full px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 "
+                className="flex items-center w-full px-4 py-2 text-sm md:text-lg text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 "
                 type="submit"
                 role="menuitem"
                 onClick={onSameLevelClick}
@@ -103,7 +84,7 @@ export const Winner: React.FC<WinnerProps> = ({
 
               <button
                 type="submit"
-                className="flex items-center w-full gap-2 px-4 py-2 text-sm text-red-700 rounded-lg dark:text-red-500 dark:hover:bg-red-600/10 hover:bg-red-50"
+                className="flex items-center w-full gap-2 px-4 py-2 text-sm md:text-lg text-red-700 rounded-lg dark:text-red-500 dark:hover:bg-red-600/10 hover:bg-red-50"
                 role="menuitem"
                 onClick={() => onClick()}
               >
