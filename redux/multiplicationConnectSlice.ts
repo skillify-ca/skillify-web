@@ -24,6 +24,7 @@ export interface MultiplicationConnectState {
   hasWinner: null | WinType;
   diceButtonRef: any; // undefined | HTMLDivElement causing errors
   diceState: null | number;
+  foundBlock: null | boolean;
 }
 
 const initialState: MultiplicationConnectState = {
@@ -34,6 +35,7 @@ const initialState: MultiplicationConnectState = {
   hasWinner: null,
   diceButtonRef: undefined,
   diceState: null,
+  foundBlock: null,
 };
 
 export const multiplicationConnectSlice: Slice = createSlice({
@@ -61,17 +63,12 @@ export const multiplicationConnectSlice: Slice = createSlice({
           - Roll dice
               - ✅ trigger button click inside computerBlockClick w useRef
               - ✅ create diceState — to contain the output of the dice roll
-              - access the diceState to make an appropriate block selection in reducer action
-          - if(p2) — select block with matching number on the GameBoard if it exists
+              - ✅ access the diceState to make an appropriate block selection in reducer action
+          - ✅ if(p2) — select block with matching number on the GameBoard if it exists
           - else — roll again until it does 
       — output a game loss if p2 (i.e. computer) wins the game
     */
-    computerBlockClick: (
-      state: MultiplicationConnectState
-      // action: PayloadAction<GameBoardBlock>
-    ) => {
-      // const block = action.payload as GameBoardBlock;
-
+    computerBlockClick: (state: MultiplicationConnectState) => {
       const diceRoll = state.diceState;
       const block = state.grid.find(
         (i) =>
@@ -80,8 +77,11 @@ export const multiplicationConnectSlice: Slice = createSlice({
       if (block) {
         console.log("computerBlockClick", current(block));
         state.grid[block.id].selectedBy = SelectedBy.PlayerTwo;
+        state.foundBlock = true;
+        console.log("found block:", state.foundBlock);
       } else {
-        console.log("block not found!");
+        state.foundBlock = false;
+        console.log("found block:", state.foundBlock);
       }
     },
     addDiceButtonRef: (
@@ -107,7 +107,7 @@ export const multiplicationConnectSlice: Slice = createSlice({
         state.grid,
         state.isPlayerOne
       );
-      console.log("{winType, winningBlocks}", { winType, winningBlocks });
+      // console.log("{winType, winningBlocks}", { winType, winningBlocks });
       if (winningBlocks) {
         state.stage = Stage.GAME_WIN;
         state.hasWinner = winType;

@@ -26,9 +26,15 @@ interface GameBoardBlockProps {
 }
 
 const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
-  const { isPlayerOne, diceButtonRef, stage, hasWinner, grid } = useSelector(
-    multiplicationConnectSelector
-  );
+  const {
+    isPlayerOne,
+    diceButtonRef,
+    stage,
+    hasWinner,
+    grid,
+    diceState,
+    foundBlock,
+  } = useSelector(multiplicationConnectSelector);
   const dispatch = useDispatch();
 
   const waitForHalfSecond = () => {
@@ -44,12 +50,13 @@ const GameBoardBlock: FC<GameBoardBlockProps> = ({ blockData }) => {
     if (stage === Stage.GAME_PLAY) {
       if (isPlayerOne) {
         dispatch(blockClick(blockData));
-        console.log("user block click done");
       } else {
         dispatch(diceButtonClick(diceButtonRef));
         await waitForHalfSecond();
         dispatch(computerBlockClick(blockData));
-        console.log("block click for computer done");
+        // if (foundBlock === false) handleBlockClick();
+        console.log("foundBlock in handleBC", foundBlock);
+        console.log("computer check done");
       }
       dispatch(checkWin(blockData)); // **why does this work without sending grid state?
       dispatch(togglePlayer(isPlayerOne));
