@@ -1,15 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Winner from "../../../../components/math/longestStreak/Winner";
-import MultiplicationBlock, {
-  BlockState,
-} from "../../../../components/math/longestStreak/MultiplicationBlock";
+import MultiplicationBlock from "../../../../components/math/longestStreak/MultiplicationBlock";
 import Rules from "../../../../components/math/longestStreak/Rules";
-import {
-  setPlayerName,
-  reset,
-  GameLevel,
-} from "../../../../redux/longestStreakSlice";
+import { setPlayerName, reset } from "../../../../redux/longestStreakSlice";
 
 import { Button } from "../../../../components/ui/Button";
 import {
@@ -19,30 +13,27 @@ import {
   setStage,
   STAGE,
 } from "../../../../redux/longestStreakSlice";
-import Firework from "../../../../components/math/longestStreak/Firework";
 import {
-  calculatePlayerOneScore,
-  calculatePlayerTwoScore,
+  calculatePlayerScore,
   calculateWinner,
   checkNumberNotSelected,
-  GameBlockState,
-  gameLevelsMetaData,
-  longestSubarray,
+  showWinner,
 } from "../../../api/longestStreak";
+import { useMutation, useQuery } from "@apollo/client";
 
-export function showEndGameImage(array: GameBlockState[]) {
-  let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
-  console.log("P1", playerOneArray);
-  let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
-  console.log("P2", playerTwoArray);
-  if (playerOneArray > playerTwoArray) {
-    return <Firework />;
-  } else if (playerTwoArray > playerOneArray) {
-    return <img src="/images/math1/longestStreak/playerTwoWinner.jpg" />;
-  } else if (playerOneArray === playerTwoArray) {
-    return <img src="/images/math1/longestStreak/drawWinner.png" />;
-  }
-}
+import { UPSERT_GAME_LEVEL } from "../../../../graphql/longestStreak/upsertGameLevel";
+import { showEndGameImage } from "../../../api/showEndGameImage";
+import { DOWNGRADE_GAME_LEVEL } from "../../../../graphql/longestStreak/downGradeGameLevel";
+import {
+  FetchGameLevelResponse,
+  FETCH_GAME_LEVEL,
+} from "../../../../graphql/longestStreak/fetchGameLevel";
+import { UPDATE_GAME_LEVEL } from "../../../../graphql/longestStreak/updateGameLevel";
+import { useAuth } from "../../../../lib/authContext";
+import { RESET_GAME_LEVEL } from "../../../../graphql/longestStreak/resetGameLevel";
+export type BlockComponentGalleryProps = {
+  user: any;
+};
 
 export default function BlockComponentGallery() {
   const dispatch = useDispatch();
@@ -52,16 +43,58 @@ export default function BlockComponentGallery() {
     playerName,
   } = useSelector(longestStreakSelector);
 
-  function handleSelect(index) {
-    console.log("BLOCK WAS CLICKED: index ", index);
-    console.log(gameState[index].text);
+  function showEndGameMessage() {
+    let optionOne = playerName ? true : "Player 1" + ", you have Conquered!";
+    let optionTwo = "This round goes to Computer the Great...";
+    let optionThree = "This mission has resulted in a Draw!";
+    let optionsArray = [optionOne, optionTwo, optionThree];
+    return optionsArray;
+  }
 
+  function handleSelect(index) {
     dispatch(handlePlayerSelect(index));
   }
 
-  useEffect(() => {
-    dispatch(initializeGame(GameLevel.BEGINNER));
-  }, []);
+  const { user } = useAuth();
+  const [upsertGameLevel] = useMutation(UPSERT_GAME_LEVEL);
+  const [updateGameLevel] = useMutation(UPDATE_GAME_LEVEL);
+  const [downGradeGameLevel] = useMutation(DOWNGRADE_GAME_LEVEL);
+  const [resetGameLevel] = useMutation(RESET_GAME_LEVEL);
+
+  const { data } = useQuery<FetchGameLevelResponse>(FETCH_GAME_LEVEL, {
+    variables: {
+      userId: user.uid,
+    },
+    onCompleted: (data: FetchGameLevelResponse) => {
+      if (data.longestStreakUserData[0] !== undefined) {
+        dispatch(initializeGame(data.longestStreakUserData[0].currentLevel));
+      } else {
+        upsertGameLevel({
+          variables: {
+            userId: user.uid,
+          },
+        });
+      }
+    },
+  });
+
+  function handleResetGameLevel() {
+    resetGameLevel({
+      variables: {
+        userId: user.uid,
+      },
+      refetchQueries: [
+        {
+          query: FETCH_GAME_LEVEL,
+          variables: {
+            userId: user.uid,
+          },
+        },
+      ],
+    });
+    dispatch(setStage(STAGE.PLAY_GAME));
+    dispatch(initializeGame(data.longestStreakUserData[0].currentLevel));
+  }
 
   function handlePlayGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
@@ -69,9 +102,43 @@ export default function BlockComponentGallery() {
 
   function handleResetGame() {
     dispatch(setStage(STAGE.PLAY_GAME));
-    dispatch(reset(GameLevel.BEGINNER));
-    dispatch(initializeGame(GameLevel.BEGINNER));
+    dispatch(reset(data.longestStreakUserData[0].currentLevel));
+    dispatch(initializeGame(data.longestStreakUserData[0].currentLevel));
   }
+
+  function handlePlayAgain() {
+    if (calculateWinner(gameState, showWinner) === true) {
+      updateGameLevel({
+        variables: {
+          userId: user.uid,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_GAME_LEVEL,
+            variables: {
+              userId: user.uid,
+            },
+          },
+        ],
+      });
+    } else {
+      downGradeGameLevel({
+        variables: {
+          userId: user.uid,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_GAME_LEVEL,
+            variables: {
+              userId: user.uid,
+            },
+          },
+        ],
+      });
+    }
+    dispatch(setStage(STAGE.PLAY_GAME));
+  }
+
   function handleCalculateWinner() {
     dispatch(setStage(STAGE.CALCULATE_WINNER));
     dispatch(setPlayerName(playerName));
@@ -84,8 +151,8 @@ export default function BlockComponentGallery() {
       ) : stage === STAGE.PLAY_GAME ? (
         <div className="grid grid-cols-6 grid-rows-7">
           <div className="pb-4 text-xl font-black col-start-1 col-end-6 flex justify-evenly w-[45rem]">
-            {playerName}, your quest is to battle the computer. Let's see how
-            you do!
+            {playerName ? true : "Player 1"}, Your quest is to battle the
+            computer. Let's see how you do!
           </div>
           <div className="pb-8 col-start-1 col-end-7 flex justify-evenly w-[45rem]">
             <Button
@@ -134,17 +201,24 @@ export default function BlockComponentGallery() {
                     {checkNumberNotSelected(gameState)}
                   </span>
                 </ul>
+                <ul className="flex justify-center p-5 text-xl">
+                  My Game Level is....
+                  <span className="font-bold">
+                    {" "}
+                    {data.longestStreakUserData[0].currentLevel}
+                  </span>
+                </ul>
                 <h1 className="flex justify-between p-5 text-xl">
                   <ul>
-                    {playerName} Score:{" "}
+                    {playerName ? true : "Player 1"} Score:{" "}
                     <span className="font-bold">
-                      {calculatePlayerOneScore(gameState)}
+                      {calculatePlayerScore(gameState, 1)}
                     </span>
                   </ul>
                   <ul>
                     Computer Score:{" "}
                     <span className="font-bold">
-                      {calculatePlayerTwoScore(gameState)}
+                      {calculatePlayerScore(gameState, 2)}
                     </span>
                   </ul>
                 </h1>
@@ -155,6 +229,7 @@ export default function BlockComponentGallery() {
                 <input
                   id="input"
                   type="string"
+                  placeholder="Player 1"
                   value={playerName}
                   onChange={(e) => dispatch(setPlayerName(e.target.value))}
                   className="text-2xl font-bold text-center border-2 border-gray-300 place-self-center w-30"
@@ -187,9 +262,12 @@ export default function BlockComponentGallery() {
       ) : stage === STAGE.CALCULATE_WINNER ? (
         <Winner
           text={""}
-          onClick={handleResetGame}
-          winner={calculateWinner(gameState, playerName)}
-          image={showEndGameImage(gameState)}
+          onClick={handlePlayAgain}
+          onRestartClick={handleResetGameLevel}
+          onSameLevelClick={handleResetGame}
+          winner={calculateWinner(gameState, showEndGameMessage)}
+          image={calculateWinner(gameState, showEndGameImage)}
+          user={user}
         />
       ) : null}
     </div>

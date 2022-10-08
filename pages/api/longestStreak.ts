@@ -1,7 +1,9 @@
+import { PhoneMultiFactorGenerator } from "firebase/auth";
 import { shuffle } from "lodash";
 import { BlockState } from "../../components/math/longestStreak/MultiplicationBlock";
 import { GameLevel } from "../../redux/longestStreakSlice";
 import { getRndInteger } from "./random";
+import { showEndGameImage } from "./showEndGameImage";
 
 export type GameBlockState = {
   text: string;
@@ -13,40 +15,43 @@ export type GameBlockState = {
 export type GameLevelData = {
   min: number,
   max: number,
-}
+};
+
 export const gameLevelsMetaData: Record<GameLevel, GameLevelData> = {
-    beginner: {
-      min: 1,
-      max: 10
+    1: {
+      min: 0,
+      max: 3,
     },
-    beginnerAdvanced: {
-      min: 10,
-      max: 20,
+    2: {
+      min: 0,
+      max: 6,
     },
-    intermediate: {
-      min: 20,
-      max: 30,
+    3: {
+      min: 0,
+      max: 9,
     },
-    intermediateAdvanced: {
-      min: 30, 
-      max: 40,
+    4: {
+      min: 0, 
+      max: 12,
     }, 
-    expert: {
-      min: 40, 
-      max: 50,
+    5: {
+      min: 0, 
+      max: 15,
     }
   }
 
-
+  export function shuffleGameArray (array) {
+    let shuffledArray = shuffle(array)
+    return shuffledArray;
+  }
 
 export function initializeGameState(currentLevel:GameLevel): GameBlockState[] {
   let dummyArray: GameBlockState[] = [];
-  console.log("CL: " + currentLevel)
   for (let i = 0; i <= 19; i++) {
       let x = getRndInteger(gameLevelsMetaData[currentLevel].min, gameLevelsMetaData[currentLevel].max);
       let y = getRndInteger(gameLevelsMetaData[currentLevel].min, gameLevelsMetaData[currentLevel].max);
       let product: number = x * y;
-      let productString: string = x + " x " + y;
+      let productString: string = x + "x" + y;
       let initiateBlockState: GameBlockState = {
         text: product.toString(),
         value: product,
@@ -64,9 +69,9 @@ export function initializeGameState(currentLevel:GameLevel): GameBlockState[] {
       dummyArray.push(initiateBlockState);
     } 
 
-  dummyArray = shuffle(dummyArray);
+  let shuffledDummyArray = shuffleGameArray(dummyArray)
 
-  return dummyArray;
+  return shuffledDummyArray;
 }
 
 export function longestSubarray(array: GameBlockState[], x: BlockState) {
@@ -82,39 +87,55 @@ export function longestSubarray(array: GameBlockState[], x: BlockState) {
   }
   maxlength = Math.max(maxlength, sum);
   sum = 0;
+  if (array[0].state === x && array[array.length-1].state === x) {
+    maxlength +=1
+  }
   return maxlength;
 }
 
-export function calculateWinner(array: GameBlockState[], playerName: string) {
-  let playerOneArray = longestSubarray(
-    array,
-    BlockState.PLAYER_ONE_SELECTED && BlockState.HIGHLIGHTED
-  );
-  console.log("P1", playerOneArray);
+
+/*this calculateWinner function calculates the winner of the game with the basic logic that checks for the longest subArray.  
+it can receive an input of three functions: 
+the showWinner function, which will tell if levels should be incremented or not
+showEndGameMessage, which will determine which message should be displayed on the winner page
+or showEndGameImage, which displays a message depending on if the game is win/lose/draw*/
+
+export function calculateWinner(array: GameBlockState[], functionName: () => void) {
+  let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
   let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
-  console.log("P2", playerTwoArray);
+  let outcome = functionName()
   if (playerOneArray > playerTwoArray) {
-    return playerName + ", you have Conquered!";
+    return outcome[0];
   } else if (playerTwoArray > playerOneArray) {
-    return (
-      "Sorry, " + playerName + " " + "This round goes to Computer the Great..."
-    );
+    return outcome[1]
   } else if (playerOneArray === playerTwoArray) {
-    return "This mission has resulted in a Draw!";
+    return outcome[2];
   }
 }
 
-export function calculatePlayerOneScore(array: GameBlockState[]) {
-  let playerOneArray = longestSubarray(
-    array,
-    BlockState.PLAYER_ONE_SELECTED && BlockState.HIGHLIGHTED
-  );
-  return playerOneArray;
+
+
+
+export function showWinner() {
+  let optionOne = true;
+  let optionTwo = false;
+  let optionThree = false;
+  let optionsArray = [optionOne, optionTwo, optionThree];
+  return optionsArray;
 }
 
-export function calculatePlayerTwoScore(array: GameBlockState[]) {
-  let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
-  return playerTwoArray;
+export function calculatePlayerScore(array: GameBlockState[], player) {
+  if (player===1) {
+    let playerOneArray = longestSubarray(
+      array,
+      BlockState.PLAYER_ONE_SELECTED && BlockState.HIGHLIGHTED
+    );
+    return playerOneArray;
+  } else {
+    let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
+    return playerTwoArray;
+  }
+  
 }
 
 export function checkNumberNotSelected(array: GameBlockState[]) {

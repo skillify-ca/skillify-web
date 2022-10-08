@@ -1,6 +1,6 @@
 import { BlockState } from "../../components/math/longestStreak/MultiplicationBlock";
-import { GameLevel, handlePlayerSelect, isPlayerSelecting, reset, setPlayerName, STAGE } from "../../redux/longestStreakSlice";
-import { initializeGameState, longestSubarray, calculateWinner, getRangeValues } from "./longestStreak";
+import { calculateWinner, longestSubarray, showWinner } from "./longestStreak";
+import { showEndGameImage } from "./showEndGameImage";
 
 
 test("Test longest subarray - 1", async () => {
@@ -17,7 +17,7 @@ test("Test longest subarray - 1", async () => {
   //Act
   const result = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
   //Assert
-  expect(result).toBe(1);
+  expect(result).toBe(2);
 });
 
 test("Test the function outputs the longest consecutive line of elements", async () => {
@@ -108,9 +108,10 @@ test("Test that the player with the longest line of consecutive squares wins the
     },
   ];
   //Act
-  const result = calculateWinner(array, 'input'); 
+  const result = calculateWinner(array, showWinner); 
   //Assert
-  expect(result).toBe('input' + ", you have Conquered!");
+  expect(result).toBe(true);
+  
 
 });
 
@@ -156,8 +157,8 @@ test("Test that the player with the longest line of consecutive squares wins the
   ];
 
     //Act
-  const result = calculateWinner(array, 'input');
+  const result = calculateWinner(array, showWinner);
   //Assert
-  expect(result).toBe("Sorry, " + 'input' + " This round goes to Computer the Great...");
+  expect(result).toBe(false);
 });
 
