@@ -14,9 +14,13 @@ import {
 } from "../../../../redux/longestStreakSlice";
 import {
   calculatePlayerScore,
+  calculateWin,
   calculateWinner,
   checkNumberNotSelected,
+  gameWinsMetaData,
+  showEndGameMessage,
   showWinner,
+  WinnerOutcomes,
 } from "../../../api/longestStreak";
 import { useMutation, useQuery } from "@apollo/client";
 
@@ -40,16 +44,6 @@ export default function BlockComponentGallery() {
   const dispatch = useDispatch();
   const { stage, blocks: gameState } = useSelector(longestStreakSelector);
 
-  function showEndGameMessage() {
-    let optionOne = user.Displayname
-      ? true
-      : "Player 1" + ", you have Conquered!";
-    let optionTwo = "This round goes to Computer the Great...";
-    let optionThree = "This mission has resulted in a Draw!";
-    let optionsArray = [optionOne, optionTwo, optionThree];
-    return optionsArray;
-  }
-
   function handleSelect(index) {
     dispatch(handlePlayerSelect(index));
   }
@@ -59,6 +53,7 @@ export default function BlockComponentGallery() {
   const [updateGameLevel] = useMutation(UPDATE_GAME_LEVEL);
   const [downGradeGameLevel] = useMutation(DOWNGRADE_GAME_LEVEL);
   const [resetGameLevel] = useMutation(RESET_GAME_LEVEL);
+  const winningMove = calculateWin(gameState);
 
   const { data } = useQuery<FetchGameLevelResponse>(FETCH_GAME_LEVEL, {
     variables: {
@@ -148,7 +143,6 @@ export default function BlockComponentGallery() {
 
   return (
     <div>
-      {JSON.stringify(data)}
       {stage === STAGE.SET_RULES ? (
         <Rules text={""} onClick={handlePlayGame} />
       ) : stage === STAGE.PLAY_GAME ? (
@@ -158,28 +152,7 @@ export default function BlockComponentGallery() {
               Welcome, {user.displayName}. Your quest is to battle the computer.
               Let's see how you do!
             </div>
-            <div className="flex flex-rows ml-1.5 md:ml-0 md:pb-8 pb-2  col-start-1 col-end-7 content-between md:justify-evenly md:w-[45rem] w-[22rem]">
-              <Button
-                backgroundColor="purple"
-                label={"Reset"}
-                onClick={() => handleResetGame()}
-              />
-              <Button
-                backgroundColor="purple"
-                label={"Winner"}
-                onClick={handleCalculateWinner}
-              />
-              <Button
-                backgroundColor="purple"
-                label={"Stats"}
-                onClick={handleShowStats}
-              />
-              <Button
-                backgroundColor="purple"
-                label={"Rules"}
-                onClick={() => dispatch(setStage(STAGE.SET_RULES))}
-              />
-            </div>
+            <div className="flex flex-rows ml-1.5 md:ml-0 md:pb-8 pb-2  col-start-1 col-end-7 content-between md:justify-evenly md:w-[45rem] w-[22rem]"></div>
 
             <div className="flex flex-row">
               {gameState.slice(0, 9).map((item, index) => (
@@ -236,6 +209,32 @@ export default function BlockComponentGallery() {
                     </ul>
                   </h1>
                 </div>
+                <div>
+                  <div className="grid grid-cols-2 place-items-center space-y-4">
+                    <Button
+                      backgroundColor="purple"
+                      label={"Reset"}
+                      onClick={() => handleResetGame()}
+                    />
+                    <Button
+                      backgroundColor="purple"
+                      label={"Winner"}
+                      onClick={handleCalculateWinner}
+                    />
+                    <Button
+                      backgroundColor="purple"
+                      label={"Stats"}
+                      onClick={handleShowStats}
+                    />
+                    <Button
+                      backgroundColor="purple"
+                      label={"Rules"}
+                      onClick={() => dispatch(setStage(STAGE.SET_RULES))}
+                    />
+                  </div>
+
+                  <div className="flex justify-center bg-scroll background-image: /images/math1/longestStreak/chess.jpg"></div>
+                </div>
               </div>
               <div className="flex flex-col">
                 {gameState.slice(9, 20).map((item, index) => (
@@ -267,8 +266,8 @@ export default function BlockComponentGallery() {
           onClick={handlePlayAgain}
           onRestartClick={handleResetGameLevel}
           onSameLevelClick={handleResetGame}
-          winner={calculateWinner(gameState, showEndGameMessage)}
-          image={calculateWinner(gameState, showEndGameImage)}
+          endOfGame={calculateWin(gameState)}
+          image=""
           user={user}
         />
       ) : stage === STAGE.SHOW_STATS ? (

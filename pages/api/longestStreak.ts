@@ -1,9 +1,12 @@
 import { PhoneMultiFactorGenerator } from "firebase/auth";
 import { shuffle } from "lodash";
+import Firework from "../../components/math/longestStreak/Firework";
 import { BlockState } from "../../components/math/longestStreak/MultiplicationBlock";
 import { GameLevel } from "../../redux/longestStreakSlice";
 import { getRndInteger } from "./random";
 import { showEndGameImage } from "./showEndGameImage";
+import { useAuth } from "../../lib/authContext";
+
 
 export type GameBlockState = {
   text: string;
@@ -39,7 +42,7 @@ export const gameLevelsMetaData: Record<GameLevel, GameLevelData> = {
       max: 15,
     }
   }
-
+ 
   export function shuffleGameArray (array) {
     let shuffledArray = shuffle(array)
     return shuffledArray;
@@ -94,12 +97,6 @@ export function longestSubarray(array: GameBlockState[], x: BlockState) {
 }
 
 
-/*this calculateWinner function calculates the winner of the game with the basic logic that checks for the longest subArray.  
-it can receive an input of three functions: 
-the showWinner function, which will tell if levels should be incremented or not
-showEndGameMessage, which will determine which message should be displayed on the winner page
-or showEndGameImage, which displays a message depending on if the game is win/lose/draw*/
-
 export function calculateWinner(array: GameBlockState[], functionName: () => void) {
   let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
   let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
@@ -114,8 +111,46 @@ export function calculateWinner(array: GameBlockState[], functionName: () => voi
 }
 
 
+export function calculateWin(array:GameBlockState[]) {
+  let playerOneArray=longestSubarray(array, BlockState.PLAYER_ONE_SELECTED)
+  let playerTwoArray=longestSubarray(array, BlockState.PLAYER_TWO_SELECTED)
+  let winnerOutcomes:WinnerData
+      (playerOneArray > playerTwoArray)
+      ? winnerOutcomes = gameWinsMetaData.PLAYER_ONE
+      :  (playerTwoArray > playerOneArray)
+      ?  winnerOutcomes = gameWinsMetaData.COMPUTER
+      :  winnerOutcomes = gameWinsMetaData.DRAW
+      
+      return {winnerOutcomes};
+  };
 
 
+export enum WinnerOutcomes {
+  playerOne = "PLAYER_ONE",
+  computer = "COMPUTER",
+  draw = "DRAW",
+}
+export const gameWinsMetaData: Record<WinnerOutcomes, WinnerData> = {
+  
+  PLAYER_ONE: {
+    message: "Congratulations! You have conquered!",
+    image: null,
+  },
+  COMPUTER: {
+    message: "This round goes to Computer the Great...",
+    image: "/images/math1/longestStreak/playerTwoWinner.jpg",
+  },
+  DRAW: {
+    message: "This mission has resulted in a Draw!",
+    image: "/images/math1/longestStreak/drawWinner.png",
+  },
+}
+export type WinnerData = {
+  message: string,
+  image: any,
+}
+
+ 
 export function showWinner() {
   let optionOne = true;
   let optionTwo = false;

@@ -1,12 +1,19 @@
 import React, { useState } from "react";
+import {
+  calculateWin,
+  initializeGameState,
+  WinnerData,
+  WinnerOutcomes,
+} from "../../../pages/api/longestStreak";
+import Firework from "./Firework";
 
 export interface WinnerProps {
   text: string;
   onClick: () => void;
   onRestartClick: () => void;
   onSameLevelClick: () => void;
-  winner: string;
-  image: string;
+  endOfGame: any;
+  image: any;
   user: any;
 }
 
@@ -15,18 +22,24 @@ export const Winner: React.FC<WinnerProps> = ({
   onClick,
   onRestartClick,
   onSameLevelClick,
-  winner,
+  endOfGame,
   image,
   user,
   ...props
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="flex flex-col items-center">
       <div className="flex justify-center text-center animate-bounce space-y-6 py-4 bg-gradient-to-b bg-purple-700 hover:bg-purple-500 text-white px-3 font-bold text-md md:text-xl border-b-4 rounded-lg active:border-b-2 cursor-pointer`">
-        {winner}
+        {endOfGame.winnerOutcomes.message}
       </div>
-      <div className="flex justify-center md:p-6 p-2"> {image}</div>
+      <div className="flex justify-center md:p-6 p-2">
+        {endOfGame.winnerOutcomes.image != null && (
+          <img src={endOfGame.winnerOutcomes.image} />
+        )}
+        {endOfGame.winnerOutcomes.image == null && <Firework />}
+      </div>
       <section
         className="inline-flex ml:20 w-56 bg-purple-700 border border-gray-300 rounded-md cursor-pointer "
         onMouseOver={() => setIsOpen(true)}
