@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+
 import { ExecSyncOptionsWithBufferEncoding } from "child_process";
 
 export const FETCH_GAME_LEVEL = gql`
@@ -28,4 +29,5 @@ export type CurrentLevelData = {
 export type UserLongestStreak = {
   name: string;
 }
+
 
