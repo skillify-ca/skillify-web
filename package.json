@@ -49,6 +49,7 @@
     "next": "^12.1.4",
     "react": "^17.0.1",
     "react-beautiful-dnd": "^13.0.0",
+    "react-bootstrap": "^2.5.0",
     "react-card-flip": "^1.1.1",
     "react-confetti": "^6.0.1",
     "react-dnd": "^11.1.3",

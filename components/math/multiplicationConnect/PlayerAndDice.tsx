@@ -71,7 +71,7 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
             shake && "animate-shake"
           }`}
         >
-          <p className="text-sm">dice 1</p>
+          <p className="hidden text-sm sm:block">dice 1</p>
           <p className="text-4xl">{roll1}</p>
         </div>
         <div
@@ -80,7 +80,7 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
           }`}
           onAnimationEnd={() => setShake(false)}
         >
-          <p className="text-sm">dice 2</p>
+          <p className="hidden text-sm sm:block">dice 2</p>
           <p className="text-4xl">{roll2}</p>
         </div>
 
@@ -111,7 +111,7 @@ const PlayerAndDice: FC<PlayerAndDiceProps> = ({ normalMode }) => {
               {(roll1 + roll2) * 2}
             </p>
           </div>
-          <div className="z-10">
+          <div className="z-10 scale-90 sm:scale-100">
             <Button
               label={"Roll Dice"}
               onClick={() => {
