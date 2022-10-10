@@ -2,8 +2,10 @@ import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { RootState } from "./rootReducer";
 import { BlockState } from "../components/math/longestStreak/MultiplicationBlock";
 import { getRandomItemFromArray, getRndInteger } from "../pages/api/random";
+
 import { GameBlockState,gameLevelsMetaData, initializeGameState } from "../pages/api/longestStreak";
 import { min } from "lodash";
+
 
 export interface LongestStreakState {
   stage: STAGE;
@@ -23,11 +25,13 @@ export enum STAGE {
 
 
 export enum GameLevel {
+
   BEGINNER = "1",
   BEGINNER_ADVANCED = "2",
   INTERMEDIATE = "3",
   INTERMEDIATE_ADVANCED = "4",
   EXPERT = "5",
+
 }
 
 const initialState: LongestStreakState = {
@@ -37,6 +41,7 @@ const initialState: LongestStreakState = {
   handlePlayerSelect: 0,
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
+
 };
 
 const resetInitialState: LongestStreakState = {
@@ -46,6 +51,7 @@ const resetInitialState: LongestStreakState = {
   handlePlayerSelect: 0,
   isPlayerSelecting: false,
   currentlySelectedBlock: null,
+
 };
 
 export const longestStreakSlice: Slice = createSlice({
@@ -71,8 +77,7 @@ export const longestStreakSlice: Slice = createSlice({
       const currentLevel = action.payload
       state.blocks = initializeGameState(currentLevel);
     },
-
-
+    
     isPlayerSelecting: (state, action: PayloadAction<boolean>) => {
       if (action.type === "longestStreak/isPlayerSelecting") {
         state.isPlayerSelecting = action.payload;
@@ -122,9 +127,6 @@ export const longestStreakSlice: Slice = createSlice({
               state.blocks[firstSelectedBlockIndex].state =
               BlockState.PLAYER_ONE_SELECTED;
               state.isPlayerSelecting = false;
-              console.log("Index: " + index);
-              console.log("Unselected: " + unselectedBlocks.length);
-              console.log("Last Clicked Index: " + state.currentlySelectedBlock);
               handleAISelection(state);
             } else {
               alert("Ouch...you're being tricky with me. Re-read the rules of the game.  That move shall not pass.")
@@ -146,7 +148,6 @@ function handleAISelection(state: LongestStreakState) {
     (block) =>
       block.state === BlockState.NOT_SELECTED && block.isProduct === true
   );
-  console.log("Product: " + unselectedBlocks.length);
   if (unselectedBlocks.length > 0) {
     let computerSelected: GameBlockState =
       getRandomItemFromArray(unselectedBlocks);
@@ -169,12 +170,9 @@ function handleAISelection(state: LongestStreakState) {
     state.blocks[indexOfSecondComputerSelected].state =
       BlockState.PLAYER_TWO_SELECTED;
       if (unselectedBlocks.length <= 1) {
-        console.log("Unselected: " + unselectedBlocks.length);
-        console.log("STAGE: " + state.stage);
         state.stage = STAGE.CALCULATE_WINNER;  
     } 
   }
-  //find block that is "x * y" only
 }
 
 export const {

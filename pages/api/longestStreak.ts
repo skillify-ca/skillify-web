@@ -5,7 +5,6 @@ import { BlockState } from "../../components/math/longestStreak/MultiplicationBl
 import { GameLevel } from "../../redux/longestStreakSlice";
 import { getRndInteger } from "./random";
 import { showEndGameImage } from "./showEndGameImage";
-import { useAuth } from "../../lib/authContext";
 
 
 export type GameBlockState = {
@@ -42,7 +41,7 @@ export const gameLevelsMetaData: Record<GameLevel, GameLevelData> = {
       max: 15,
     }
   }
- 
+
   export function shuffleGameArray (array) {
     let shuffledArray = shuffle(array)
     return shuffledArray;
@@ -96,6 +95,7 @@ export function longestSubarray(array: GameBlockState[], x: BlockState) {
   return maxlength;
 }
 
+
 export function calculateWin(array:GameBlockState[]) {
   let playerOneArray=longestSubarray(array, BlockState.PLAYER_ONE_SELECTED)
   let playerTwoArray=longestSubarray(array, BlockState.PLAYER_TWO_SELECTED)
@@ -133,6 +133,7 @@ export const gameWinsMetaData: Record<WinnerOutcomes, WinnerData> = {
 export type WinnerData = {
   message: string,
   image: any,
+
 }
 
 export function calculatePlayerScore(array: GameBlockState[], player) {
