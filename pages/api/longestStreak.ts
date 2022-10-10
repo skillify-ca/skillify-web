@@ -96,21 +96,6 @@ export function longestSubarray(array: GameBlockState[], x: BlockState) {
   return maxlength;
 }
 
-
-export function calculateWinner(array: GameBlockState[], functionName: () => void) {
-  let playerOneArray = longestSubarray(array, BlockState.PLAYER_ONE_SELECTED);
-  let playerTwoArray = longestSubarray(array, BlockState.PLAYER_TWO_SELECTED);
-  let outcome = functionName()
-  if (playerOneArray > playerTwoArray) {
-    return outcome[0];
-  } else if (playerTwoArray > playerOneArray) {
-    return outcome[1]
-  } else if (playerOneArray === playerTwoArray) {
-    return outcome[2];
-  }
-}
-
-
 export function calculateWin(array:GameBlockState[]) {
   let playerOneArray=longestSubarray(array, BlockState.PLAYER_ONE_SELECTED)
   let playerTwoArray=longestSubarray(array, BlockState.PLAYER_TWO_SELECTED)
@@ -148,15 +133,6 @@ export const gameWinsMetaData: Record<WinnerOutcomes, WinnerData> = {
 export type WinnerData = {
   message: string,
   image: any,
-}
-
- 
-export function showWinner() {
-  let optionOne = true;
-  let optionTwo = false;
-  let optionThree = false;
-  let optionsArray = [optionOne, optionTwo, optionThree];
-  return optionsArray;
 }
 
 export function calculatePlayerScore(array: GameBlockState[], player) {

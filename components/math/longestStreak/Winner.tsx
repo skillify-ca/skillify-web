@@ -1,10 +1,4 @@
 import React, { useState } from "react";
-import {
-  calculateWin,
-  initializeGameState,
-  WinnerData,
-  WinnerOutcomes,
-} from "../../../pages/api/longestStreak";
 import Firework from "./Firework";
 
 export interface WinnerProps {
@@ -13,8 +7,6 @@ export interface WinnerProps {
   onRestartClick: () => void;
   onSameLevelClick: () => void;
   endOfGame: any;
-  image: any;
-  user: any;
 }
 
 export const Winner: React.FC<WinnerProps> = ({
@@ -23,8 +15,6 @@ export const Winner: React.FC<WinnerProps> = ({
   onRestartClick,
   onSameLevelClick,
   endOfGame,
-  image,
-  user,
   ...props
 }) => {
   const [isOpen, setIsOpen] = useState(false);

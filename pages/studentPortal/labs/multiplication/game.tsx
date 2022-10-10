@@ -15,12 +15,8 @@ import {
 import {
   calculatePlayerScore,
   calculateWin,
-  calculateWinner,
   checkNumberNotSelected,
   gameWinsMetaData,
-  showEndGameMessage,
-  showWinner,
-  WinnerOutcomes,
 } from "../../../api/longestStreak";
 import { useMutation, useQuery } from "@apollo/client";
 
@@ -34,7 +30,6 @@ import {
 import { RESET_GAME_LEVEL } from "../../../../graphql/longestStreak/resetGameLevel";
 import { UPDATE_GAME_LEVEL } from "../../../../graphql/longestStreak/updateGameLevel";
 import { UPSERT_GAME_LEVEL } from "../../../../graphql/longestStreak/upsertGameLevel";
-import { showEndGameImage } from "../../../api/showEndGameImage";
 import UserTableStats from "../../../../components/math/longestStreak/userTableStats";
 export type BlockComponentGalleryProps = {
   user: any;
@@ -53,7 +48,6 @@ export default function BlockComponentGallery() {
   const [updateGameLevel] = useMutation(UPDATE_GAME_LEVEL);
   const [downGradeGameLevel] = useMutation(DOWNGRADE_GAME_LEVEL);
   const [resetGameLevel] = useMutation(RESET_GAME_LEVEL);
-  const winningMove = calculateWin(gameState);
 
   const { data } = useQuery<FetchGameLevelResponse>(FETCH_GAME_LEVEL, {
     variables: {
@@ -101,7 +95,10 @@ export default function BlockComponentGallery() {
   }
 
   function handlePlayAgain() {
-    if (calculateWinner(gameState, showWinner) === true) {
+    calculateWin(gameState);
+    if (
+      calculatePlayerScore(gameState, 1) > calculatePlayerScore(gameState, 2)
+    ) {
       updateGameLevel({
         variables: {
           userId: user.uid,
@@ -178,12 +175,6 @@ export default function BlockComponentGallery() {
               </div>
               <div className="col-span-7 bg-gradient-to-r from-purple-300 ...">
                 <div className="flex flex-col row-7 ">
-                  <ul className="flex justify-center p-2 text-sm md:p-5 md:text-xl">
-                    Number of Open Blocks: {"  "}
-                    <span className="font-bold">
-                      {checkNumberNotSelected(gameState)}
-                    </span>
-                  </ul>
                   <ul className="flex justify-center p-1 text-sm md:p-5 md:text-xl">
                     My Game Level is....
                     {data && (
@@ -193,7 +184,12 @@ export default function BlockComponentGallery() {
                       </span>
                     )}
                   </ul>
-
+                  <ul className="flex justify-center p-2 text-xs md:p-5 md:text-large">
+                    Number of Open Blocks: {"  "}
+                    <span className="font-bold">
+                      {checkNumberNotSelected(gameState)}
+                    </span>
+                  </ul>
                   <h1 className="flex justify-between p-1 text-xs md:p-5 md:text-xl">
                     <ul className="px-3 text-center">
                       {user.Displayname ? true : "Player 1"} Score:{" "}
@@ -208,32 +204,32 @@ export default function BlockComponentGallery() {
                       </span>
                     </ul>
                   </h1>
-                </div>
-                <div>
-                  <div className="grid grid-cols-2 place-items-center space-y-4">
-                    <Button
-                      backgroundColor="purple"
-                      label={"Reset"}
-                      onClick={() => handleResetGame()}
-                    />
-                    <Button
-                      backgroundColor="purple"
-                      label={"Winner"}
-                      onClick={handleCalculateWinner}
-                    />
-                    <Button
-                      backgroundColor="purple"
-                      label={"Stats"}
-                      onClick={handleShowStats}
-                    />
-                    <Button
-                      backgroundColor="purple"
-                      label={"Rules"}
-                      onClick={() => dispatch(setStage(STAGE.SET_RULES))}
-                    />
+                  <div className="md:flex">
+                    <div className="flex px-10 space-x-2 py-4 md:pl-20 md:p-8 md:space-y-8">
+                      <Button
+                        backgroundColor="purple"
+                        label={"Rules"}
+                        onClick={() => dispatch(setStage(STAGE.SET_RULES))}
+                      />
+                      <Button
+                        backgroundColor="purple"
+                        label={"Reset"}
+                        onClick={() => handleResetGame()}
+                      />
+                    </div>
+                    <div className="flex px-10 space-x-2 md:pr-18 md:p-8 md:space-y-8">
+                      <Button
+                        backgroundColor="purple"
+                        label={"Winner"}
+                        onClick={handleCalculateWinner}
+                      />
+                      <Button
+                        backgroundColor="purple"
+                        label={"Stats"}
+                        onClick={handleShowStats}
+                      />
+                    </div>
                   </div>
-
-                  <div className="flex justify-center bg-scroll background-image: /images/math1/longestStreak/chess.jpg"></div>
                 </div>
               </div>
               <div className="flex flex-col">
@@ -267,8 +263,6 @@ export default function BlockComponentGallery() {
           onRestartClick={handleResetGameLevel}
           onSameLevelClick={handleResetGame}
           endOfGame={calculateWin(gameState)}
-          image=""
-          user={user}
         />
       ) : stage === STAGE.SHOW_STATS ? (
         <UserTableStats onClick={handlePlayGame} />

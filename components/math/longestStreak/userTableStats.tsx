@@ -1,10 +1,7 @@
 import { useQuery } from "@apollo/client";
 import React, { useEffect } from "react";
-import {
-  FetchGameLevelResponse,
-  FETCH_GAME_LEVEL,
-  FETCH_RANKED_GAME_LEVEL,
-} from "../../../graphql/longestStreak/fetchGameLevel";
+import { FetchGameLevelResponse } from "../../../graphql/longestStreak/fetchGameLevel";
+import { FETCH_RANKED_GAME_LEVEL } from "../../../graphql/longestStreak/fetchRankedGameLevel";
 import { Button } from "../../ui/Button";
 
 export interface UserTableStatsProps {
@@ -21,7 +18,6 @@ export const UserTableStats: React.FC<UserTableStatsProps> = ({ onClick }) => {
   return (
     <>
       <h1 className="flex text-center">Leader Board</h1>
-      {JSON.stringify(data)}
       <table
         className="w-full text-left border border-separate rounded border-slate-200"
         cellSpacing="0"
@@ -70,25 +66,25 @@ export const UserTableStats: React.FC<UserTableStatsProps> = ({ onClick }) => {
                     {row.user.name}
                   </td>
                   <td
-                    data-th="Title"
+                    data-th="Games Won"
                     className="before:w-24 before:inline-block before:font-medium before:text-slate-700 before:content-[attr(data-th)':'] sm:before:content-none flex items-center sm:table-cell h-12 px-6 text-sm transition duration-300 sm:border-t sm:border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 "
                   >
                     {row.gamesWon}
                   </td>
                   <td
-                    data-th="Company"
+                    data-th="Current Level"
                     className="before:w-24 before:inline-block before:font-medium before:text-slate-700 before:content-[attr(data-th)':'] sm:before:content-none flex items-center sm:table-cell h-12 px-6 text-sm transition duration-300 sm:border-t sm:border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 "
                   >
                     {row.currentLevel}
                   </td>
                   <td
-                    data-th="Role"
+                    data-th="Games Played"
                     className="before:w-24 before:inline-block before:font-medium before:text-slate-700 before:content-[attr(data-th)':'] sm:before:content-none flex items-center sm:table-cell h-12 px-6 text-sm transition duration-300 sm:border-t sm:border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 "
                   >
                     {row.gamesPlayed}
                   </td>
                   <td
-                    data-th="Username"
+                    data-th="Games Lost"
                     className="before:w-24 before:inline-block before:font-medium before:text-slate-700 before:content-[attr(data-th)':'] sm:before:content-none flex items-center sm:table-cell h-12 px-6 text-sm transition duration-300 sm:border-t sm:border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 "
                   >
                     {row.gamesLost}
