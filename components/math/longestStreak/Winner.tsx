@@ -42,7 +42,7 @@ export const Winner: React.FC<WinnerProps> = ({
             className="inline-flex h-full px-2 text-white border-gray-100 hover:text-gray-700 rounded-r-md hover:bg-purple-400"
             onClick={() => setIsOpen(!isOpen)}
           >
-            <p className="flex self-center text-base md:text-lg pt-4 font-bold">
+            <p className="flex self-center text-base md:text-lg md:pt-4 py-2 font-bold">
               Math Warrior, choose your next move!
             </p>
             <svg

@@ -17,7 +17,9 @@ export const UserTableStats: React.FC<UserTableStatsProps> = ({ onClick }) => {
 
   return (
     <>
-      <h1 className="flex text-center">Leader Board</h1>
+      <h1 className="flex justify-center md:bg-transparent md:p-none p-2 bg-purple-300">
+        Leader Dashboard
+      </h1>
       <table
         className="w-full text-left border border-separate rounded border-slate-200"
         cellSpacing="0"
