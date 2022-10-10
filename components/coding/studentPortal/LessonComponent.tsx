@@ -114,9 +114,4 @@ export default function LessonComponent({ data }: LessonComponentProps) {
       </div>
     );
   }
-  // if (data.component === "text-block-array") {
-  //   return data.textArray.map((text) => {
-  //     <p className="space-y-2">{text}</p>;
-  //   });
-  // }
 }
