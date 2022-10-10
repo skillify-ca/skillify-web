@@ -15,7 +15,6 @@ import {
 } from "../../../../redux/longestStreakSlice";
 import {
   calculatePlayerScore,
-
   calculateWin,
   checkNumberNotSelected,
   gameWinsMetaData,
@@ -23,7 +22,6 @@ import {
 import { useMutation, useQuery } from "@apollo/client";
 
 import { useAuth } from "../../../../lib/authContext";
-
 
 import { DOWNGRADE_GAME_LEVEL } from "../../../../graphql/longestStreak/downGradeGameLevel";
 import {
@@ -43,7 +41,6 @@ export type BlockComponentGalleryProps = {
 export default function BlockComponentGallery() {
   const dispatch = useDispatch();
   const { stage, blocks: gameState } = useSelector(longestStreakSelector);
-
 
   function handleSelect(index) {
     dispatch(handlePlayerSelect(index));
@@ -101,12 +98,10 @@ export default function BlockComponentGallery() {
   }
 
   function handlePlayAgain() {
-
     calculateWin(gameState);
     if (
       calculatePlayerScore(gameState, 1) > calculatePlayerScore(gameState, 2)
     ) {
-
       updateGameLevel({
         variables: {
           userId: user.uid,
@@ -151,7 +146,6 @@ export default function BlockComponentGallery() {
       {stage === STAGE.SET_RULES ? (
         <Rules text={""} onClick={handlePlayGame} />
       ) : stage === STAGE.PLAY_GAME ? (
-
         <div className="ml-1 md:mx-10">
           <div className="grid md:grid-cols-6 md:grid-rows-7">
             <div className=" text-center md:pb-4 pb-2 text-md md:text-xl font-bold md:col-start-1  md:col-end-6 flex justify-evenly w-[22rem] md:w-[45rem]">
@@ -193,7 +187,7 @@ export default function BlockComponentGallery() {
                       </span>
                     )}
                   </ul>
-                  <ul className="flex justify-center p-2 text-xs md:p-5 md:text-large">
+                  <ul className="flex justify-center p-2 text-xs md:p-5 md:text-lg">
                     Number of Open Blocks: {"  "}
                     <span className="font-bold">
                       {checkNumberNotSelected(gameState)}
@@ -213,8 +207,8 @@ export default function BlockComponentGallery() {
                       </span>
                     </ul>
                   </h1>
-                  <div className="md:flex">
-                    <div className="flex px-10 space-x-2 py-4 md:pl-20 md:p-8 md:space-y-8">
+                  <div className="flex md:flex">
+                    <div className="xs:flex xs:px-10 xs:space-x-2 py-4 md:pl-20 md:p-8 md:space-y-8">
                       <Button
                         backgroundColor="purple"
                         label={"Rules"}
@@ -226,7 +220,7 @@ export default function BlockComponentGallery() {
                         onClick={() => handleResetGame()}
                       />
                     </div>
-                    <div className="flex px-10 space-x-2 md:pr-18 md:p-8 md:space-y-8">
+                    <div className="xs:flex xs:px-10 xs:space-x-2 md:pr-18 md:p-8 md:space-y-8">
                       <Button
                         backgroundColor="purple"
                         label={"Winner"}
@@ -252,7 +246,6 @@ export default function BlockComponentGallery() {
               </div>
             </div>
             <div className="flex flex-row">
-
               {gameState
                 .slice(20, 29)
                 .map((item, index) => (
@@ -264,7 +257,6 @@ export default function BlockComponentGallery() {
                 ))
                 .reverse()}
             </div>
-
           </div>
         </div>
       ) : stage === STAGE.CALCULATE_WINNER ? (
@@ -273,9 +265,7 @@ export default function BlockComponentGallery() {
           onClick={handlePlayAgain}
           onRestartClick={handleResetGameLevel}
           onSameLevelClick={handleResetGame}
-
           endOfGame={calculateWin(gameState)}
-
         />
       ) : stage === STAGE.SHOW_STATS ? (
         <UserTableStats onClick={handlePlayGame} />
