@@ -18,7 +18,7 @@ enum SelectedBy {
 }
 
 interface AlienBoardBlockProps {
-  blockData: AlienBoardBlock;
+  blockData: any;
   newGame: number;
   submitGuess: (guess: GuessData) => void;
   answer: string;
@@ -30,25 +30,27 @@ function numberGenerator() {
   return problem;
 }
 
-const AlienBoardBlock: FC<AlienBoardBlockProps> = ({
+interface BlockComponent {
+  id: number;
+  newGame: number;
+  submitGuess: (guess: GuessData) => void;
+  answer: string;
+  gridNumber: number;
+  selectedBy: SelectedBy;
+}
+
+const BlockComponent: FC<AlienBoardBlockProps> = ({
   blockData,
   newGame,
   submitGuess,
   answer,
   isPlayerOne,
 }) => {
-  const [guess, setGuess] = useState("");
-  useEffect(() => {
-    setRandNumb((prev) => numberGenerator());
-    setRandNumb2((prev) => numberGenerator());
-  }, [newGame]);
   let [randNumb, setRandNumb] = useState(0);
   let [randNumb2, setRandNumb2] = useState(0);
+  const [guess, setGuess] = useState("");
   const problem = randNumb.toString() + " x " + randNumb2.toString();
   const product = (randNumb * randNumb2).toString();
-  useEffect(() => {
-    (document.getElementById("input") as HTMLInputElement).value = "";
-  }, []);
   const onSubmit = (guess: string) => {
     submitGuess({
       guess: guess.toString(),
@@ -56,6 +58,14 @@ const AlienBoardBlock: FC<AlienBoardBlockProps> = ({
     }),
       setGuess("");
   };
+  useEffect(() => {
+    setRandNumb((prev) => numberGenerator());
+    setRandNumb2((prev) => numberGenerator());
+  }, [newGame]);
+  useEffect(() => {
+    (document.getElementById("input") as HTMLInputElement).value = "";
+  }, []);
+
   return (
     <div className="flex justify-center items-center h-full w-full cursor-pointer rounded-full">
       {blockData.id % 7 === 6 ? (

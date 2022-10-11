@@ -1,26 +1,14 @@
 import React, { FC, useState, useEffect } from "react";
-import AlienBoard from "../../../../components/math/alienPathway/AlienBoard";
-import AlienBoardBlock from "../../../../components/math/alienPathway/AlienBoardBlock";
 import {
   getRndInteger,
   getRndTenthsDecimal,
   getRndHundredthsDecimal,
   getRandomItemFromArray,
 } from "../../../api/random";
-
-const diceRoll = () => {
-  Math.floor(Math.random() * 6 + 1);
-  const die = getRandomItemFromArray([
-    "⚀ 1 ⚀",
-    "⚁ 2 ⚁",
-    "⚂ 3 ⚂",
-    "⚃ 4 ⚃",
-    "⚄ 5 ⚄",
-    "⚅ 6 ⚅",
-  ]);
-  return die;
-};
-
+import { Button } from "../../../../components/ui/Button";
+import { BlockComponent } from "../../../../components/math/alienPathway/Block";
+import { GuessData } from "../../../api/guessData";
+import { DiceButtonComponent } from "../../../../components/math/alienPathway/DiceButton";
 export interface ButtonProps {
   /**
    * What background color to use
@@ -51,7 +39,7 @@ export interface ButtonProps {
   size?: "small" | "medium" | "large";
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const MainButton: React.FC<ButtonProps> = ({
   backgroundColor = "primary",
   textColor = "white",
   label,
@@ -117,165 +105,116 @@ export const Button: React.FC<ButtonProps> = ({
   );
 };
 
-interface AlienBoardBlock {
-  id: number;
-  newGame: number;
-  submitGuess: (guess: GuessData) => void;
-  answer: string;
-  gridNumber: number;
-  selectedBy: SelectedBy;
-}
-
-export const calculateWinner = (
-  grid: AlienBoardBlock[],
-  isPlayerOne: boolean
-) => {
-  let rows = [
-    grid.filter((i) => i.id >= 0 && i.id < 5),
-    grid.filter((i) => i.id >= 5 && i.id < 10),
-    grid.filter((i) => i.id >= 10 && i.id < 15),
-    grid.filter((i) => i.id >= 15 && i.id < 20),
-    grid.filter((i) => i.id >= 20 && i.id < 25),
-    grid.filter((i) => i.id >= 25 && i.id < 30),
-    grid.filter((i) => i.id >= 30 && i.id < 35),
-  ];
-  let player: SelectedBy;
-  isPlayerOne
-    ? (player = SelectedBy.PlayerOne)
-    : (player = SelectedBy.PlayerTwo);
-  for (let i = 0; i < rows.length; i++) {
-    // rows.length == board height == 7
-    // rows[i].length == board width == 5
-    for (let index = 0; index < rows[i].length - 3; index++) {
-      // Horizontal check
-      rows[i][index].selectedBy == player &&
-      rows[i][index + 1].selectedBy == player &&
-      rows[i][index + 2].selectedBy == player &&
-      rows[i][index + 3].selectedBy == player
-        ? console.log(player, "(horizontal) Four in a row!")
-        : "";
-    }
-    if (i < rows.length - 3) {
-      // Vertical check
-      for (let index = 0; index < rows[i].length; index++) {
-        rows[i][index].selectedBy == player &&
-        rows[i + 1][index].selectedBy == player &&
-        rows[i + 2][index].selectedBy == player &&
-        rows[i + 3][index].selectedBy == player
-          ? console.log(player, "(vertical) Four in a row!")
-          : "";
-      }
-    }
-    if (i >= 3) {
-      // Ascending diagonal check
-      for (let index = 0; index < rows[i].length - 3; index++) {
-        rows[i][index].selectedBy == player &&
-        rows[i - 1][index + 1].selectedBy == player &&
-        rows[i - 2][index + 2].selectedBy == player &&
-        rows[i - 3][index + 3].selectedBy == player
-          ? console.log(player, "(ascending diagonal) Four in a row!")
-          : "";
-      }
-      // Descending diagonal check
-      for (let index = 3; index < rows[i].length; index++) {
-        rows[i][index].selectedBy == player &&
-        rows[i - 1][index - 1].selectedBy == player &&
-        rows[i - 2][index - 2].selectedBy == player &&
-        rows[i - 3][index - 3].selectedBy == player
-          ? console.log(player, "(descending diagonal) Four in a row!")
-          : "";
-      }
-    }
-  }
-};
-
-const DiceSection: FC = () => {
-  const [roll1, setRoll1] = useState("⚀⚁⚂⚃⚄⚅");
-  const [roll2, setRoll2] = useState("⚀⚁⚂⚃⚄⚅");
-
-  return (
-    <div className="flex items-center justify-evenly text-2xl">
-      <div className="flex flex-col items-center justify-center w-52 h-48 gap-3 border-2">
-        <div className="flex flex-col gap-3">
-          <Button
-            label={"Roll Die"}
-            onClick={() => {
-              setRoll1(diceRoll);
-            }}
-          />
-        </div>
-        <p className="text-sm text-white place-content-center">
-          <input
-            className="bg-inherit placeholder:text-inherit text-center"
-            placeholder="Enter Player 1's Name"
-          ></input>
-        </p>
-        <p className="text-10xl text-white">{roll1}</p>
-      </div>
-
-      <div className="flex flex-col items-center justify-center w-52 h-48 gap-3 border-2">
-        <Button
-          label={"Roll Die"}
-          onClick={() => {
-            setRoll2(diceRoll);
-          }}
-        />
-        <p className="text-sm text-white place-content-center">
-          <input
-            className="bg-inherit placeholder:text-inherit text-center"
-            placeholder="Enter Player 2's Name"
-          ></input>
-        </p>
-        <h1 className="text-2xl text-white">{roll2}</h1>
-      </div>
-
-      <div className="flex flex-col items-center gap-5"></div>
-    </div>
-  );
-};
 enum SelectedBy {
   Unselected = "UNSELECTED",
   PlayerOne = "PLAYERONE",
   PlayerTwo = "PLAYERTWO",
 }
-const createGrid = () => {
-  let arr = [];
-  let newGrid = [];
-  for (let i = 6; i < 12; i++) {
-    arr.push(i);
-  }
-  for (let i = 0; i < 42; i++) {
-    let gridNumber = getRandomItemFromArray(arr);
-    newGrid.push({
-      id: i,
-      gridNumber: gridNumber,
-      selectedBy: SelectedBy.Unselected,
-    });
-  }
-  console.log(newGrid);
-  return newGrid;
+
+const diceRoll = () => {
+  return getRandomItemFromArray([
+    "⚀ 1 ⚀",
+    "⚁ 2 ⚁",
+    "⚂ 3 ⚂",
+    "⚃ 4 ⚃",
+    "⚄ 5 ⚄",
+    "⚅ 6 ⚅",
+  ]);
 };
 
-const Index = () => {
+export interface IndexProps {
+  submitGuess: (guess: GuessData) => void;
+  answer: string;
+}
+const Index: FC<IndexProps> = ({ submitGuess, answer }) => {
   const [grid, setGrid] = useState([]);
   const [newGame, setNewGame] = useState(0);
-  const [isPlayerOne, setIsPlayerOne] = useState(true);
-
+  const [roll1, setRoll1] = useState("⚀⚁⚂⚃⚄⚅");
+  const [roll2, setRoll2] = useState("⚀⚁⚂⚃⚄⚅");
+  const [indexNumber, setIndexNumber] = useState(0);
+  const handleDiceRoll = () => {
+    setRoll1(diceRoll());
+    console.log("hello");
+  };
+  useEffect(() => {
+    let counter = (parseInt(roll1.split("")[2]) - 1) * 7;
+    setIndexNumber(counter);
+  });
+  useEffect(() => {
+    console.log(`newGame: ${newGame}`);
+    setGrid(createGrid);
+  }, [newGame]);
   function newGameButton() {
     return setNewGame(newGame + 1);
   }
-
-  useEffect(() => {
-    setGrid(createGrid);
-    setIsPlayerOne(true);
-  }, [newGame]);
-
+  function createGrid() {
+    let gridList = [];
+    for (let i = 0; i < 42; i++) {
+      gridList.push({
+        id: i,
+      });
+    }
+    return gridList;
+  }
+  // useEffect(() => {
+  //   setGrid(createGrid);
+  //   setIsPlayerOne(true);
+  // }, [newGame]);
   return (
-    <div>
-      <button onClick={() => newGameButton()}>newGame</button>
-      <DiceSection />
-      <AlienBoard grid={grid} newGame={newGame} isPlayerOne={isPlayerOne} />
-      <AlienBoard grid={grid} newGame={newGame} isPlayerOne={isPlayerOne} />
+    <div className="">
+      {/* <p>{indexNumber}</p> */}
+      <Button label="New Game" onClick={() => newGameButton()}>
+        newGame
+      </Button>
+      <div className="grid grid-cols-2 place-content-center">
+        <DiceButtonComponent
+          rollNumber={roll1}
+          handleDiceRoll={handleDiceRoll}
+        />
+        <DiceButtonComponent
+          rollNumber={roll2}
+          handleDiceRoll={handleDiceRoll}
+        />
+      </div>
+      <div className="grid grid-rows-2 gap-8 px-20 pb-10">
+        <div className="grid grid-cols-7 border-2 text-white text-2xl">
+          {grid.map((gridData) => (
+            <div className="border-r-2 border-b-2 md:h-8 sm:h-8 h-8">
+              <BlockComponent
+                index={indexNumber}
+                currentRoll={parseInt(roll1.split("")[2])}
+                blockNumber={gridData.id}
+                newGame={0}
+                answer={""}
+                // submitGuess={{"", false}}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-7 border-2 text-white text-2xl">
+          {grid.map((gridData) => (
+            <div className="border-r-2 border-b-2 md:h-8 sm:h-8 h-8">
+              <BlockComponent
+                index={indexNumber}
+                currentRoll={0}
+                blockNumber={0}
+                newGame={0}
+                answer={""}
+                // submitGuess={""}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* <BlockComponent
+        blockNumber={0}
+        newGame={0}
+        answer={""}
+        submitGuess={function (guess: GuessData): void {
+          throw new Error("Function not implemented.");
+        }}
+      /> */}
     </div>
   );
 };
