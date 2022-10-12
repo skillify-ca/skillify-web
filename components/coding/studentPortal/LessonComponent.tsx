@@ -40,6 +40,11 @@ export type LessonComponentData =
   | {
       component: "custom";
       children: React.ReactNode;
+    }
+  | {
+      component: "code-snippet";
+      text?: string;
+      code: string;
     };
 
 export type LessonComponentProps = {
@@ -52,6 +57,17 @@ export default function LessonComponent({ data }: LessonComponentProps) {
   }
   if (data.component === "description") {
     return <p>{data.text}</p>;
+  }
+
+  if (data.component === "code-snippet") {
+    return (
+      <div className="mx-4 space-y-4">
+        {data.text && <p>{data.text}</p>}
+        <pre className="bg-slate-100 border-2 border-black-transparent rounded-xl p-4">
+          <code>{data.code}</code>
+        </pre>
+      </div>
+    );
   }
   if (data.component === "resource-list") {
     return (
@@ -78,14 +94,8 @@ export default function LessonComponent({ data }: LessonComponentProps) {
     return (
       <>
         <h1 className="font-bold">{data.title}</h1>
-        <div className="flex flex-col gap-8 px-4">
-          <iframe
-            src={data.link}
-            className="w-full overflow-hidden rounded-md h-108"
-            title={data.title}
-            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-          ></iframe>
+        <div className="aspect-w-16 aspect-h-9">
+          <iframe src={data.link} />
         </div>
       </>
     );
