@@ -37,7 +37,7 @@ export default function GoalsSection({
           <div
             className={`grid grid-cols-5 my-2 text-sm text-center md:grid-cols-12 md:text-lg place-items-center ${
               differenceInCalendarDays(new Date(goal.targetDate), new Date()) <=
-              2
+              1
                 ? "text-red-500 bg-yellow-100"
                 : differenceInCalendarDays(
                     new Date(goal.targetDate),
