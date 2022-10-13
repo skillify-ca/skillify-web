@@ -1,11 +1,5 @@
 import { PencilAltIcon, PencilIcon } from "@heroicons/react/outline";
-import {
-  differenceInCalendarDays,
-  differenceInDays,
-  format,
-  formatDistance,
-  isSameWeek,
-} from "date-fns";
+import { differenceInCalendarDays, format } from "date-fns";
 import moment from "moment";
 import Link from "next/link";
 import React from "react";
@@ -37,15 +31,26 @@ export default function GoalsSection({
           new Date(goal.targetDate),
           new Date()
         );
-        const goalStyle =
-          differenceInDays <= 1
-            ? `text-red-500 bg-yellow-100`
-            : differenceInDays <= 7
-            ? `text-red-500`
-            : "text-black-500 bg-none";
+        const returnGoalStyle = (targetDate: Date) => {
+          let goalStyle = "";
+          const daysRemaining = differenceInCalendarDays(
+            new Date(goal.targetDate),
+            new Date()
+          );
+          if (daysRemaining <= 1) {
+            goalStyle = " text-red-500 bg-yellow-100";
+          } else if (daysRemaining <= 7) {
+            goalStyle = " text-red-500";
+          } else {
+            goalStyle = " text-black-500";
+          }
+          return goalStyle;
+        };
         return (
           <div
-            className={`grid grid-cols-5 my-2 text-sm text-center md:grid-cols-12 md:text-lg place-items-center ${goalStyle}`}
+            className={`grid grid-cols-5 my-2 text-sm text-center md:grid-cols-12 md:text-lg place-items-center ${returnGoalStyle(
+              goal.targetDate
+            )}`}
           >
             <p>{index + 1}.</p>
             <p className="col-span-2 md:col-span-4">{goal.goalName}</p>
