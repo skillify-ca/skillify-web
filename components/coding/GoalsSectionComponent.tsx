@@ -33,19 +33,19 @@ export default function GoalsSection({
       )}
 
       {userGoals.map((goal, index) => {
+        const differenceInDays = differenceInCalendarDays(
+          new Date(goal.targetDate),
+          new Date()
+        );
+        const goalStyle =
+          differenceInDays <= 1
+            ? `text-red-500 bg-yellow-100`
+            : differenceInDays <= 7
+            ? `text-red-500`
+            : "text-black-500 bg-none";
         return (
           <div
-            className={`grid grid-cols-5 my-2 text-sm text-center md:grid-cols-12 md:text-lg place-items-center ${
-              differenceInCalendarDays(new Date(goal.targetDate), new Date()) <=
-              1
-                ? "text-red-500 bg-yellow-100"
-                : differenceInCalendarDays(
-                    new Date(goal.targetDate),
-                    new Date()
-                  ) <= 7
-                ? " text-red-500"
-                : "text-black-500 bg-none"
-            }`}
+            className={`grid grid-cols-5 my-2 text-sm text-center md:grid-cols-12 md:text-lg place-items-center ${goalStyle}`}
           >
             <p>{index + 1}.</p>
             <p className="col-span-2 md:col-span-4">{goal.goalName}</p>
@@ -55,9 +55,7 @@ export default function GoalsSection({
             <p className="md:col-span-2">
               {format(new Date(goal.targetDate), "MM/dd/yyyy")}
             </p>
-            <p className="hidden md:block md:col-span-2">
-              {differenceInCalendarDays(new Date(goal.targetDate), new Date())}
-            </p>
+            <p className="hidden md:block md:col-span-2">{differenceInDays}</p>
             <Link href={"/goals/" + goal.id}>
               <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
             </Link>
