@@ -16,6 +16,7 @@ type diceButtonProps = {
 export const DiceButtonComponent: FC<diceButtonProps> = ({
   handleDiceRoll,
   rollNumber,
+  rollDisplay,
 }) => {
   return (
     <div className="grid grid-rows2">
@@ -29,7 +30,7 @@ export const DiceButtonComponent: FC<diceButtonProps> = ({
             placeholder="Enter Player 1's Name"
           ></input>
         </p>
-        <p className="text-10xl text-white">{rollNumber}</p>
+        <p className="text-10xl text-white">{rollDisplay}</p>
       </div>
     </div>
   );

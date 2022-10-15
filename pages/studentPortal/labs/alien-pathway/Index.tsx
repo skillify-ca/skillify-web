@@ -56,8 +56,7 @@ const diceRoll = () => {
     "⚄ 5 ⚄",
     "⚅ 6 ⚅",
   ]);
-  console.log(diceDisp);
-  const diceNumb = parseInt(diceDisp.split()[2]);
+  const diceNumb = parseInt(diceDisp.substring(2, 3));
   const diceOutp: diceOutput = {
     diceNumber: diceNumb,
     diceDisplay: diceDisp,
@@ -79,22 +78,17 @@ const Index: FC<IndexProps> = ({ submitGuess, answer }) => {
   const [roll2Display, setRoll2Display] = useState("⚀⚁⚂⚃⚄⚅");
   const [roll1Number, setRoll1Number] = useState(0);
   const [roll2Number, setRoll2Number] = useState(0);
-  const [indexNumber, setIndexNumber] = useState(0);
+  const [indexNumber1, setIndexNumber1] = useState(0);
+  const [indexNumber2, setIndexNumber2] = useState(0);
   const handleDiceRoll = () => {
-    setRoll1Display(diceRoll().diceDisplay);
-    setRoll1Number(diceRoll().diceNumber);
+    // call this once not twice
+    const player1Dice = diceRoll();
+    const player2Dice = diceRoll();
+    setRoll1Display(player1Dice.diceDisplay);
+    setRoll1Number(player1Dice.diceNumber);
+    setRoll2Display(player2Dice.diceDisplay);
+    setRoll2Number(player2Dice.diceNumber);
   };
-  useEffect(() => {
-    let counter = (roll1Number - 1) * 7;
-    setIndexNumber(counter);
-  });
-  useEffect(() => {
-    setGrid(createGrid);
-  }, [newGame]);
-  function newGameButton() {
-    return setNewGame(newGame + 1);
-  }
-  // does this function need to use an object if there is only one output?
   function createGrid() {
     let gridList = [];
     for (let i = 0; i < 42; i++) {
@@ -104,13 +98,25 @@ const Index: FC<IndexProps> = ({ submitGuess, answer }) => {
     }
     return gridList;
   }
+  useEffect(() => {
+    let counter1 = (roll1Number - 1) * 7;
+    setIndexNumber1(counter1);
+    let counter2 = (roll2Number - 1) * 7;
+    setIndexNumber2(counter2);
+  });
+  useEffect(() => {
+    setGrid(createGrid);
+  }, [newGame]);
+  const newGameButton = () => {
+    setNewGame(newGame + 1);
+  };
+  // does this function need to use an object if there is only one output?
+
   console.log(roll1Number);
   return (
     <div className="">
-      {/* <p>{indexNumber}</p> */}
-      <Button label="New Game" onClick={() => newGameButton()}>
-        newGame
-      </Button>
+      {/* <p>{roll1Number}</p> */}
+      <Button label="New Game" onClick={() => newGameButton()}></Button>
       <div className="grid grid-cols-2 place-content-center">
         <DiceButtonComponent
           rollDisplay={roll1Display}
@@ -128,7 +134,7 @@ const Index: FC<IndexProps> = ({ submitGuess, answer }) => {
           {grid.map((gridData) => (
             <div className="border-r-2 border-b-2 md:h-8 sm:h-8 h-8">
               <BlockComponent
-                index={indexNumber}
+                index={indexNumber1}
                 // update current roll, just grab number roll from diceOutput obj
                 rollDisplay={roll1Display}
                 currentRoll={roll1Number}
@@ -145,9 +151,9 @@ const Index: FC<IndexProps> = ({ submitGuess, answer }) => {
             <div className="border-r-2 border-b-2 md:h-8 sm:h-8 h-8">
               <BlockComponent
                 rollDisplay={roll2Display}
-                index={indexNumber}
-                currentRoll={0}
-                blockNumber={0}
+                index={indexNumber2}
+                currentRoll={roll2Number}
+                blockNumber={gridData.id}
                 newGame={0}
                 answer={""}
                 // submitGuess={""}
