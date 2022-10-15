@@ -1,10 +1,7 @@
-import { PhoneMultiFactorGenerator } from "firebase/auth";
 import { shuffle } from "lodash";
-import Firework from "../../components/math/longestStreak/Firework";
 import { BlockState } from "../../components/math/longestStreak/MultiplicationBlock";
 import { GameLevel } from "../../redux/longestStreakSlice";
 import { getRndInteger } from "./random";
-import { showEndGameImage } from "./showEndGameImage";
 
 
 export type GameBlockState = {
@@ -110,6 +107,8 @@ export function calculateWin(array:GameBlockState[]) {
   };
 
 
+
+
 export enum WinnerOutcomes {
   playerOne = "PLAYER_ONE",
   computer = "COMPUTER",
@@ -132,8 +131,12 @@ export const gameWinsMetaData: Record<WinnerOutcomes, WinnerData> = {
 }
 export type WinnerData = {
   message: string,
-  image: any,
+  image: string,
 
+}
+
+export type WinningOutcomes = {
+  winnerOutcomes: WinnerData;
 }
 
 export function calculatePlayerScore(array: GameBlockState[], player) {

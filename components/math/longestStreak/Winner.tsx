@@ -1,16 +1,19 @@
-
-import React, { useState } from "react";
+import { Image } from "konva/lib/shapes/Image";
+import React, { Component, useState } from "react";
+import {
+  WinnerData,
+  winnerOutcomes,
+  WinnerOutcomes,
+  WinningOutcomes,
+} from "../../../pages/api/longestStreak";
 import Firework from "./Firework";
-
 
 export interface WinnerProps {
   text: string;
   onClick: () => void;
   onRestartClick: () => void;
   onSameLevelClick: () => void;
-
-  endOfGame: any;
-
+  endOfGame: WinningOutcomes;
 }
 
 export const Winner: React.FC<WinnerProps> = ({
@@ -37,7 +40,6 @@ export const Winner: React.FC<WinnerProps> = ({
       </div>
       <section
         className="inline-flex ml:20 w-56 bg-purple-700 border border-gray-300 rounded-md cursor-pointer "
-
         onMouseOver={() => setIsOpen(true)}
         onMouseOut={() => setIsOpen(false)}
         onClick={() => setIsOpen(!isOpen)}
@@ -45,7 +47,6 @@ export const Winner: React.FC<WinnerProps> = ({
         <div className="relative">
           <button
             type="button"
-
             className="inline-flex h-full px-2 text-white border-gray-100 hover:text-gray-700 rounded-r-md hover:bg-purple-400"
             onClick={() => setIsOpen(!isOpen)}
           >
@@ -76,20 +77,16 @@ export const Winner: React.FC<WinnerProps> = ({
           >
             <div className="p-2">
               <button
-
                 className="flex  items-center w-full px-4 py-2 text-sm md:text-lg text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 "
-
                 type="submit"
                 role="menuitem"
                 onClick={onRestartClick}
               >
-
                 <span className="pr-2 text-2xl"></span> Restart Game at Level 1
               </button>
 
               <button
                 className="flex items-center w-full px-4 py-2 text-sm md:text-lg text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 "
-
                 type="submit"
                 role="menuitem"
                 onClick={onSameLevelClick}
@@ -99,9 +96,7 @@ export const Winner: React.FC<WinnerProps> = ({
 
               <button
                 type="submit"
-
                 className="flex items-center w-full gap-2 px-4 py-2 text-sm md:text-lg text-red-700 rounded-lg dark:text-red-500 dark:hover:bg-red-600/10 hover:bg-red-50"
-
                 role="menuitem"
                 onClick={() => onClick()}
               >

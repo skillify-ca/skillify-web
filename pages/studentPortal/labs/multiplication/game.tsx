@@ -98,7 +98,6 @@ export default function BlockComponentGallery() {
   }
 
   function handlePlayAgain() {
-    calculateWin(gameState);
     if (
       calculatePlayerScore(gameState, 1) > calculatePlayerScore(gameState, 2)
     ) {

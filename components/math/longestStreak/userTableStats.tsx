@@ -106,24 +106,4 @@ export const UserTableStats: React.FC<UserTableStatsProps> = ({ onClick }) => {
     </>
   );
 };
-
-{
-  /* <div className="grid grid-cols-3">
-  <p>User Name</p>
-  <p>Games PLay</p>
-  <p>Games Lost</p>
-</div>; */
-}
-
 export default UserTableStats;
-//tailwind border styles
-
-// {"longestStreakUserData"
-// :[
-//   {"__typename":"longestStreakUserData",
-//   "user":{"__typename":"users","name":"Kari Wiedenhaupt"},
-//   "currentLevel":2,
-//   "gamesLost":6,
-//   "gamesPlayed":11,
-//   "gamesWon":4},
-//   {"__typename":"longestStreakUserData","user":{"__typename":"users","name":"Vithushan N"},"currentLevel":3,"gamesLost":0,"gamesPlayed":1,"gamesWon":0},{"__typename":"longestStreakUserData","user":{"__typename":"users","name":"Kavan Param"},"currentLevel":2,"gamesLost":0,"gamesPlayed":1,"gamesWon":0},{"__typename":"longestStreakUserData","user":{"__typename":"users","name":"Lucksson Namasivayasivam"},"currentLevel":2,"gamesLost":0,"gamesPlayed":1,"gamesWon":0},{"__typename":"longestStreakUserData","user":{"__typename":"users","name":"Kari Wiedenhaupt"},"currentLevel":1,"gamesLost":0,"gamesPlayed":1,"gamesWon":0},{"__typename":"longestStreakUserData","user":{"__typename":"users","name":"Vithushan Namasivayasivam"},"currentLevel":1,"gamesLost":0,"gamesPlayed":1,"gamesWon":0}]}
