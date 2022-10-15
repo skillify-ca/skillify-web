@@ -12,12 +12,6 @@ import { type } from "os";
 import input from "postcss/lib/input";
 import { current } from "@reduxjs/toolkit";
 
-enum SelectedBy {
-  Unselected = "UNSELECTED",
-  PlayerOne = "PLAYERONE",
-  PlayerTwo = "PLAYERTWO",
-}
-
 function numberGenerator() {
   const problem = getRandomItemFromArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
   return problem;
@@ -25,10 +19,10 @@ function numberGenerator() {
 
 interface BlockProps {
   index: number;
+  rollDisplay: string;
   currentRoll: number;
   blockNumber: number;
   newGame: number;
-  // submitGuess: (guess: GuessData) => string;
   answer: string;
 }
 export const BlockComponent: FC<BlockProps> = ({
@@ -36,7 +30,6 @@ export const BlockComponent: FC<BlockProps> = ({
   currentRoll,
   blockNumber,
   newGame,
-  // submitGuess,
   answer,
 }) => {
   const [randNumb, setRandNumb] = useState(0);
@@ -63,42 +56,29 @@ export const BlockComponent: FC<BlockProps> = ({
       setBlockCorrect(false);
       setBlockColor("bg-red-500 border-2");
     }
-    // submitGuess({
-    //   guess: guess.toString(),
-    //   isCorrect: guess === product,
-    // });
+
     setGuess("");
   };
   useEffect(() => {
     setDisableInput(blockNumber != index);
   });
-  // useEffect(() => {
-  //   !{ disableInput }
-  //     ? setBlockColor("bg-yellow-250 border2")
-  //     : setBlockColor("border 2");
-  // });
+
   useEffect(() => {
     setRandNumb(numberGenerator());
     setRandNumb2(numberGenerator());
   }, [newGame]);
 
-  // useEffect(() => {
-  //   setDieRoll(currentRoll);
-  // }, []);
   console.log({ disableInput });
 
   return (
     <div className={blockColor}>
-      <p>{/* {blockNumber} {indexNumber} */}</p>
       <input
         id="input"
         type="number"
         value={guess}
         className="text-sm text-white place-content-center bg-inherit w-12 placeholder:text-inherit text-center"
         onChange={(e) => setGuess(e.target.value)}
-        // placeholder={currentRoll}
         placeholder={problem}
-        // dynamic logic to disable unwanted row
         disabled={disableInput}
       ></input>
       <button

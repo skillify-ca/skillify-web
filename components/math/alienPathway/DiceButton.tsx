@@ -8,7 +8,8 @@ import {
   getRandomItemFromArray,
 } from "../../../pages/api/random";
 type diceButtonProps = {
-  rollNumber: string;
+  rollNumber: number;
+  rollDisplay: string;
   handleDiceRoll: () => void;
 };
 
@@ -30,17 +31,6 @@ export const DiceButtonComponent: FC<diceButtonProps> = ({
         </p>
         <p className="text-10xl text-white">{rollNumber}</p>
       </div>
-
-      {/* <div className="flex flex-col items-center justify-center w-52 h-48 gap-3 border-2">
-        <Button label={"Roll Die"} onClick={handleOnClick} />
-        <p className="text-sm text-white place-content-center">
-          <input
-            className="bg-inherit placeholder:text-inherit text-center"
-            placeholder="Enter Player 2's Name"
-          ></input>
-        </p>
-        <h1 className="text-2xl text-white">roll2</h1>
-      </div> */}
     </div>
   );
 };

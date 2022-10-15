@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
+import { GuessData } from "../../../pages/api/guessData";
 import { calculateWinner } from "../../../pages/studentPortal/labs/multiplication-connect/Index";
 
 enum SelectedBy {

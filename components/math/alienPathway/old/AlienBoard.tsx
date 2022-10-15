@@ -3,7 +3,7 @@ import { GuessData } from "../../../pages/api/guessData";
 import AlienBoardBlock from "./AlienBoardBlock";
 
 interface AlienBoardProps {
-  grid: AlienBoardBlock[];
+  grid: any;
   newGame: Number;
   submitGuess: (guess: GuessData) => void;
   blockClick(block: AlienBoardBlock): void;

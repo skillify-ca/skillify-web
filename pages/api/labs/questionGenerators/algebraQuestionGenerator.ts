@@ -32,7 +32,7 @@ export function algebraHelper(): AlgebraObject {
   const e = getRndInteger(2, 10);
   const f = getRndInteger(1, 10);
   const g = getRndInteger(2, 10) * e;
-  if (problemtype == "+") {
+  if (problemtype == "+") { 
     const problem: AlgebraObject = {
       algebraProblem:
         " " + problemtype + " " + a.toString() + " = " + d.toString(),

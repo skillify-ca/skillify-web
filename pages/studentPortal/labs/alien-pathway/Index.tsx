@@ -9,6 +9,7 @@ import { Button } from "../../../../components/ui/Button";
 import { BlockComponent } from "../../../../components/math/alienPathway/Block";
 import { GuessData } from "../../../api/guessData";
 import { DiceButtonComponent } from "../../../../components/math/alienPathway/DiceButton";
+import differenceInSecondsWithOptions from "date-fns/esm/fp/differenceInSecondsWithOptions/index.js";
 export interface ButtonProps {
   /**
    * What background color to use
@@ -39,80 +40,15 @@ export interface ButtonProps {
   size?: "small" | "medium" | "large";
 }
 
-export const MainButton: React.FC<ButtonProps> = ({
-  backgroundColor = "primary",
-  textColor = "white",
-  label,
-  disabled = false,
-  onClick,
-  size = "medium",
-  ...props
-}) => {
-  let backgroundStyles;
-  switch (backgroundColor) {
-    case "primary":
-      backgroundStyles = "bg-charmander hover:bg-pikachu-500";
-      break;
-    case "blue":
-      backgroundStyles = "bg-blue-500 border-blue-900 hover:bg-blue-400";
-      break;
-    case "green":
-      backgroundStyles =
-        "bg-green-500 via-green-400 to-green-500 border-green-900 hover:bg-green-400";
-      break;
-    case "red":
-      backgroundStyles =
-        "bg-red-500 via-red-400 to-red-500 border-red-900 hover:bg-red-400";
-      break;
-    case "purple":
-      backgroundStyles =
-        "bg-purple-500 via-purple-400 to-purple-500 border-purple-900 hover:bg-purple-400";
-      break;
-    case "pink":
-      backgroundStyles =
-        "bg-pink-500 via-pink-400 to-pink-500 border-pink-900 hover:bg-pink-400";
-      break;
-    case "yellow":
-      backgroundStyles =
-        "bg-yellow-500 via-yellow-400 to-yellow-500 border-yellow-900 hover:bg-yellow-400";
-      break;
-    case "white":
-      backgroundStyles = "bg-white border-gray-300 border-2 hover:bg-blue-400";
-      break;
-  }
-  return (
-    <button
-      disabled={disabled}
-      type="button"
-      onClick={disabled ? null : onClick}
-      className={`bg-gradient-to-b px-4 font-bold border-b-4 rounded-lg ${
-        size === "large" ? "w-48 py-4 h-16" : "w-36 py-2 h-12"
-      } 
-      ${disabled ? "bg-gray-400" : backgroundStyles}
-      ${disabled ? "" : "active:border-b-2"}
-      ${disabled ? "cursor-default" : "cursor-pointer"}
-      `}
-      {...props}
-    >
-      <p
-        className={`${disabled ? "text-gray-50" : "text-" + textColor} ${
-          size === "large" ? "text-xl" : "text-base"
-        }`}
-      >
-        {label}
-      </p>
-    </button>
-  );
+// create diceOutput object to return both integer roll and display string
+type diceOutput = {
+  diceNumber: number;
+  diceDisplay: string;
 };
 
-enum SelectedBy {
-  Unselected = "UNSELECTED",
-  PlayerOne = "PLAYERONE",
-  PlayerTwo = "PLAYERTWO",
-}
-
+// use parseint as a working solution -- find optimal way to convert
 const diceRoll = () => {
-  return getRandomItemFromArray([
+  const diceDisp = getRandomItemFromArray([
     "⚀ 1 ⚀",
     "⚁ 2 ⚁",
     "⚂ 3 ⚂",
@@ -120,33 +56,45 @@ const diceRoll = () => {
     "⚄ 5 ⚄",
     "⚅ 6 ⚅",
   ]);
+  console.log(diceDisp);
+  const diceNumb = parseInt(diceDisp.split()[2]);
+  const diceOutp: diceOutput = {
+    diceNumber: diceNumb,
+    diceDisplay: diceDisp,
+  };
+  return diceOutp;
 };
 
 export interface IndexProps {
   submitGuess: (guess: GuessData) => void;
   answer: string;
 }
+
+// need two separate rolls for a player, one for diceNumb, another for diceDisplay
+// how to think about the separate rolls?
 const Index: FC<IndexProps> = ({ submitGuess, answer }) => {
   const [grid, setGrid] = useState([]);
   const [newGame, setNewGame] = useState(0);
-  const [roll1, setRoll1] = useState("⚀⚁⚂⚃⚄⚅");
-  const [roll2, setRoll2] = useState("⚀⚁⚂⚃⚄⚅");
+  const [roll1Display, setRoll1Display] = useState("⚀⚁⚂⚃⚄⚅");
+  const [roll2Display, setRoll2Display] = useState("⚀⚁⚂⚃⚄⚅");
+  const [roll1Number, setRoll1Number] = useState(0);
+  const [roll2Number, setRoll2Number] = useState(0);
   const [indexNumber, setIndexNumber] = useState(0);
   const handleDiceRoll = () => {
-    setRoll1(diceRoll());
-    console.log("hello");
+    setRoll1Display(diceRoll().diceDisplay);
+    setRoll1Number(diceRoll().diceNumber);
   };
   useEffect(() => {
-    let counter = (parseInt(roll1.split("")[2]) - 1) * 7;
+    let counter = (roll1Number - 1) * 7;
     setIndexNumber(counter);
   });
   useEffect(() => {
-    console.log(`newGame: ${newGame}`);
     setGrid(createGrid);
   }, [newGame]);
   function newGameButton() {
     return setNewGame(newGame + 1);
   }
+  // does this function need to use an object if there is only one output?
   function createGrid() {
     let gridList = [];
     for (let i = 0; i < 42; i++) {
@@ -156,10 +104,7 @@ const Index: FC<IndexProps> = ({ submitGuess, answer }) => {
     }
     return gridList;
   }
-  // useEffect(() => {
-  //   setGrid(createGrid);
-  //   setIsPlayerOne(true);
-  // }, [newGame]);
+  console.log(roll1Number);
   return (
     <div className="">
       {/* <p>{indexNumber}</p> */}
@@ -168,11 +113,13 @@ const Index: FC<IndexProps> = ({ submitGuess, answer }) => {
       </Button>
       <div className="grid grid-cols-2 place-content-center">
         <DiceButtonComponent
-          rollNumber={roll1}
+          rollDisplay={roll1Display}
+          rollNumber={roll1Number}
           handleDiceRoll={handleDiceRoll}
         />
         <DiceButtonComponent
-          rollNumber={roll2}
+          rollDisplay={roll2Display}
+          rollNumber={roll2Number}
           handleDiceRoll={handleDiceRoll}
         />
       </div>
@@ -182,7 +129,9 @@ const Index: FC<IndexProps> = ({ submitGuess, answer }) => {
             <div className="border-r-2 border-b-2 md:h-8 sm:h-8 h-8">
               <BlockComponent
                 index={indexNumber}
-                currentRoll={parseInt(roll1.split("")[2])}
+                // update current roll, just grab number roll from diceOutput obj
+                rollDisplay={roll1Display}
+                currentRoll={roll1Number}
                 blockNumber={gridData.id}
                 newGame={0}
                 answer={""}
@@ -195,6 +144,7 @@ const Index: FC<IndexProps> = ({ submitGuess, answer }) => {
           {grid.map((gridData) => (
             <div className="border-r-2 border-b-2 md:h-8 sm:h-8 h-8">
               <BlockComponent
+                rollDisplay={roll2Display}
                 index={indexNumber}
                 currentRoll={0}
                 blockNumber={0}
@@ -206,15 +156,6 @@ const Index: FC<IndexProps> = ({ submitGuess, answer }) => {
           ))}
         </div>
       </div>
-
-      {/* <BlockComponent
-        blockNumber={0}
-        newGame={0}
-        answer={""}
-        submitGuess={function (guess: GuessData): void {
-          throw new Error("Function not implemented.");
-        }}
-      /> */}
     </div>
   );
 };

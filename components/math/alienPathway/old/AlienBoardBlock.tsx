@@ -30,6 +30,7 @@ function numberGenerator() {
   return problem;
 }
 
+<<<<<<< Updated upstream:components/math/alienPathway/old/AlienBoardBlock.tsx
 interface BlockComponent {
   id: number;
   newGame: number;
@@ -40,6 +41,9 @@ interface BlockComponent {
 }
 
 const BlockComponent: FC<AlienBoardBlockProps> = ({
+=======
+const AlienBoardBlockComponent: FC<AlienBoardBlockProps> = ({
+>>>>>>> Stashed changes:components/math/alienPathway/AlienBoardBlock.tsx
   blockData,
   newGame,
   submitGuess,
