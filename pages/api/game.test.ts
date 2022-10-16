@@ -1,4 +1,5 @@
 import { BlockState } from "../../components/math/longestStreak/MultiplicationBlock";
+import { calculateWin } from "./longestStreak";
 import { calculateWinner, longestSubarray, showWinner } from "./longestStreak";
 import { showEndGameImage } from "./showEndGameImage";
 
@@ -108,9 +109,10 @@ test("Test that the player with the longest line of consecutive squares wins the
     },
   ];
   //Act
-  const result = calculateWinner(array, showWinner); 
+  const prevResults = calculateWin(array);
   //Assert
-  expect(result).toBe(true);
+  const result = prevResults.winnerOutcomes.message
+ 
   
 
 });
@@ -157,8 +159,9 @@ test("Test that the player with the longest line of consecutive squares wins the
   ];
 
     //Act
-  const result = calculateWinner(array, showWinner);
+  const prevResults = calculateWin(array);
+  const result = prevResults.winnerOutcomes.message
   //Assert
-  expect(result).toBe(false);
+  expect(result).toBe("This round goes to Computer the Great...");
 });
 
