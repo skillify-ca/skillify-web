@@ -17,7 +17,6 @@ import {
   calculatePlayerScore,
   calculateWin,
   checkNumberNotSelected,
-  gameWinsMetaData,
 } from "../../../api/longestStreak";
 import { useMutation, useQuery } from "@apollo/client";
 
@@ -34,11 +33,11 @@ import { UPDATE_GAME_LEVEL } from "../../../../graphql/longestStreak/updateGameL
 import { UPSERT_GAME_LEVEL } from "../../../../graphql/longestStreak/upsertGameLevel";
 import UserTableStats from "../../../../components/math/longestStreak/userTableStats";
 
-export type BlockComponentGalleryProps = {
+export type LongestStreakGameProps = {
   user: any;
 };
 
-export default function BlockComponentGallery() {
+export default function LongestStreakGame() {
   const dispatch = useDispatch();
   const { stage, blocks: gameState } = useSelector(longestStreakSelector);
 

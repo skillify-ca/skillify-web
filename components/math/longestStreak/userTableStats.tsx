@@ -9,11 +9,7 @@ export interface UserTableStatsProps {
 }
 
 export const UserTableStats: React.FC<UserTableStatsProps> = ({ onClick }) => {
-  const { data } = useQuery<FetchGameLevelResponse>(FETCH_RANKED_GAME_LEVEL, {
-    onCompleted: (data: FetchGameLevelResponse) => {
-      console.log(data);
-    },
-  });
+  const { data } = useQuery<FetchGameLevelResponse>(FETCH_RANKED_GAME_LEVEL);
 
   return (
     <>
