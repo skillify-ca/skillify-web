@@ -43,7 +43,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
       dispatch(setActivePage("profile"));
     } else if (router.pathname.startsWith("/studentPortal/labs")) {
       dispatch(setActivePage("labs"));
-    } else if (router.pathname.startsWith("/studentPortal/goals")) {
+    } else if (router.pathname.startsWith("/goals")) {
       dispatch(setActivePage("goals"));
     } else if (router.pathname.startsWith("/workshops")) {
       dispatch(setActivePage("workshops"));
