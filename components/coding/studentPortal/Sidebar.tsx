@@ -4,21 +4,12 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  FetchUserGoalsDataResponse,
-  FETCH_USER_GOALS,
-} from "../../../graphql/fetchUserGoals";
 import { useAuth } from "../../../lib/authContext";
 import {
   activePageSelector,
   setActivePage,
   SidebarProps,
 } from "../../../redux/sidebarSlice";
-import {
-  userGoalsSelector,
-  setUserGoals,
-  UserGoalsSelected,
-} from "../../../redux/userGoalsSlice";
 
 const SidebarItem = ({ name, link, page, icon, number }) => {
   const { activePage } = useSelector(activePageSelector);
@@ -60,39 +51,6 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
       dispatch(setActivePage("dashboard"));
     }
   }, [router.pathname]);
-
-  const { userGoals } = useSelector(userGoalsSelector);
-  const {} = useQuery<FetchUserGoalsDataResponse>(FETCH_USER_GOALS, {
-    variables: {
-      userId: user.uid,
-    },
-    onCompleted: (data) => {
-      dispatch(setUserGoals(transformUserGoals(data.user_goals)));
-    },
-  });
-
-  const transformUserGoals = (userGoals: UserGoalsSelected[]) => {
-    // map to redux type
-    const mappedUserGoals: UserGoalsSelected[] = userGoals.map((goal) => {
-      return {
-        createdAt: new Date(goal.createdAt)["createdAt"],
-        goalName: goal.goalName["goalName"],
-        id: goal.id["id"],
-        updatedAt: new Date(goal.updatedAt)["updatedAt"],
-        userId: goal.userId["userId"],
-        isComplete: goal.isComplete["isComplete"],
-        targetDate: new Date(goal.targetDate)["targetDate"],
-        isArchived: goal.isArchived["isArchived"],
-      };
-    });
-
-    return mappedUserGoals;
-  };
-
-  const numberOfActiveGoals: number =
-    userGoals.length -
-    (userGoals.count(userGoals.goal.isComplete) +
-      userGoals.count(userGoals.goal.isComplete));
 
   return (
     //Full width then restrict in page
@@ -206,7 +164,6 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
           }
           number={undefined}
         />
-        <p>{numberOfActiveGoals}</p>
         <SidebarItem
           name={"Workshops"}
           link={"/workshops"}
