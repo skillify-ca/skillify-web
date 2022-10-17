@@ -5,7 +5,7 @@ import { isComplete } from "./evaluateExpressionSlice";
 import { RootState } from "./rootReducer";
 
 export type UserGoalsState = {
-  userGoals: UserGoalsData[]
+  userGoals: UserGoalsData[];
 };
 
 
@@ -29,29 +29,14 @@ export const userGoalsSlice: Slice = createSlice({
       }
     },
 
-    updateUserGoals: (
-      state: UserGoalsState,
-      action: PayloadAction<{ newTargetDate: Date; id: String; newIsComplete: boolean; newIsArchived: boolean }>
-    ) => {
-      if (action.type == "skillRatings/updateSkillRatings") {
-        const index = state.userGoals.findIndex(
-          (obj) => obj.id == action.payload.id
-        );
-        state.userGoals[index].targetDate =
-          action.payload.newTargetDate;
-        state.userGoals[index].isComplete =
-          action.payload.newIsComplete;
-        state.userGoals[index].isArchived =
-          action.payload.newIsArchived;
-      }
-    },
+    
   },
 });
 
-export const { setSkillRatings, updateSkillRatings } =
+export const { setUserGoals } =
   userGoalsSlice.actions;
 
 export default userGoalsSlice.reducer;
 
 export const userGoalsSelector = (state: RootState) =>
-  state.userGoalsSlice;
+  state.userGoalsState;
