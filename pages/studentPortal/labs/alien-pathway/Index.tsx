@@ -80,12 +80,15 @@ const Index: FC<IndexProps> = ({ submitGuess, answer }) => {
   const [roll2Number, setRoll2Number] = useState(0);
   const [indexNumber1, setIndexNumber1] = useState(0);
   const [indexNumber2, setIndexNumber2] = useState(0);
-  const handleDiceRoll = () => {
-    // call this once not twice
+
+  const handleDiceRoll1 = () => {
     const player1Dice = diceRoll();
-    const player2Dice = diceRoll();
     setRoll1Display(player1Dice.diceDisplay);
     setRoll1Number(player1Dice.diceNumber);
+  };
+
+  const handleDiceRoll2 = () => {
+    const player2Dice = diceRoll();
     setRoll2Display(player2Dice.diceDisplay);
     setRoll2Number(player2Dice.diceNumber);
   };
@@ -121,12 +124,12 @@ const Index: FC<IndexProps> = ({ submitGuess, answer }) => {
         <DiceButtonComponent
           rollDisplay={roll1Display}
           rollNumber={roll1Number}
-          handleDiceRoll={handleDiceRoll}
+          handleDiceRoll={handleDiceRoll1}
         />
         <DiceButtonComponent
           rollDisplay={roll2Display}
           rollNumber={roll2Number}
-          handleDiceRoll={handleDiceRoll}
+          handleDiceRoll={handleDiceRoll2}
         />
       </div>
       <div className="grid grid-rows-2 gap-8 px-20 pb-10">

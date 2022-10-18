@@ -60,9 +60,16 @@ export const BlockComponent: FC<BlockProps> = ({
     setGuess("");
   };
   useEffect(() => {
+    // if (blockCorrect) {
+    //   index = index + 1;
+    // }
     setDisableInput(blockNumber != index);
   });
-
+  useEffect(() => {
+    if (blockNumber === index && !blockCorrect) {
+      setBlockColor("bg-yellow-500 border-2");
+    }
+  });
   useEffect(() => {
     setRandNumb(numberGenerator());
     setRandNumb2(numberGenerator());
