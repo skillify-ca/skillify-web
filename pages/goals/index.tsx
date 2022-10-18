@@ -11,12 +11,15 @@ import { useQuery } from "@apollo/client";
 import GoalsSectionComponent from "../../components/coding/GoalsSectionComponent";
 import { Button } from "../../components/ui/Button";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { userGoalsSelector, setUserGoals } from "../../redux/userGoalsSlice";
 
 export default function Goals(props) {
   const { user } = useAuth();
   const router = useRouter();
+  const dispatch = useDispatch();
+  const { userGoals } = useSelector(userGoalsSelector);
 
-  const [userGoals, setUserGoals] = useState<UserGoalsData[]>([]);
   const { loading: userGoalsLoading } = useQuery<FetchUserGoalsDataResponse>(
     FETCH_USER_GOALS,
     {
@@ -26,7 +29,7 @@ export default function Goals(props) {
       fetchPolicy: "cache-and-network",
 
       onCompleted: (data: FetchUserGoalsDataResponse) => {
-        setUserGoals(data.user_goals);
+        dispatch(setUserGoals(data.user_goals));
       },
     }
   );
