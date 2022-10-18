@@ -61,7 +61,7 @@ export default function LessonComponent({ data }: LessonComponentProps) {
 
   if (data.component === "code-snippet") {
     return (
-      <div className="mx-4 space-y-4">
+      <div className="mx-4 space-y-4 w-1/2">
         {data.text && <p>{data.text}</p>}
         <pre className="bg-slate-100 border-2 border-black-transparent rounded-xl p-4">
           <code>{data.code}</code>
