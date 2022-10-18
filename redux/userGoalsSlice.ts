@@ -6,13 +6,18 @@ import { RootState } from "./rootReducer";
 
 export type UserGoalsState = {
   userGoals: UserGoalsData[];
+  // add goalsSections here with defined type
 };
 
+export type GoalSection = {
+  sectionName: string;
+  userGoals: UserGoalsData[];
+};
 
 const initialState: UserGoalsState = {
-    userGoals: [],
-  };
-
+  userGoals: [],
+  // add initial state for goalsSections here
+};
 
 export const userGoalsSlice: Slice = createSlice({
   name: "userGoals",
@@ -29,14 +34,12 @@ export const userGoalsSlice: Slice = createSlice({
       }
     },
 
-    
+    // add set goals sections reducer
   },
 });
 
-export const { setUserGoals } =
-  userGoalsSlice.actions;
+export const { setUserGoals } = userGoalsSlice.actions;
 
 export default userGoalsSlice.reducer;
 
-export const userGoalsSelector = (state: RootState) =>
-  state.userGoalsState;
+export const userGoalsSelector = (state: RootState) => state.userGoalsState;

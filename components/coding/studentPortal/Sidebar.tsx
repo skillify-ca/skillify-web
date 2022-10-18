@@ -1,8 +1,13 @@
+import { useQuery } from "@apollo/client";
 import { link } from "fs";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  FetchGoalCountResponse,
+  FETCH_USER_GOALS_COUNT,
+} from "../../../graphql/fetchUserGoalsCount";
 import { useAuth } from "../../../lib/authContext";
 import {
   activePageSelector,
@@ -35,6 +40,14 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
 
   const router = useRouter();
 
+  const { data } = useQuery<FetchGoalCountResponse>(FETCH_USER_GOALS_COUNT, {
+    variables: {
+      userId: user.uid,
+    },
+  });
+
+  console.log("this is the fetch user goals count", data);
+
   useEffect(() => {
     if (router.pathname.startsWith("/coaches")) {
       dispatch(setActivePage("coaches"));
@@ -52,6 +65,8 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   return (
     //Full width then restrict in page
     <div className="flex flex-col w-full h-full bg-gray-50 dark:bg-gray-900 dark:text-white">
+      Number Of Remaining Goals:{" "}
+      {data ? data.user_goals_aggregate.aggregate.count : "n/a"}
       <div className="grid">
         <div className="flex p-4">
           {user && (
