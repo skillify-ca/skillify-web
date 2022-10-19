@@ -95,7 +95,7 @@ export default function LessonComponent({ data }: LessonComponentProps) {
       <>
         <h1 className="font-bold">{data.title}</h1>
         <div className="aspect-w-16 aspect-h-9">
-          <iframe src={data.link} />
+          <iframe className="rounded-xl" src={data.link} />
         </div>
       </>
     );
