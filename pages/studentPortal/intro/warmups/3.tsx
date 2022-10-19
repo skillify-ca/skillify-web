@@ -99,7 +99,16 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "End Lesson",
+      text: "Although we're re-using one component, our code appears to be repeating itself. Although it's not within scope of this lesson, we can use Javascript's map functionality to only `write` this component one time. ",
+    },
+    {
+      component: "description",
+      text: "We can create a new object called expense items that's an array of objects, then map - or iterate - through the array and call the props dynamically inside the ExpenseRow component. With this approach, we only write out ExpenseRow one time and the result is an efficient block of code!",
+    },
+    {
+      component: "code-sandbox",
+      title: "Expense Table with Props and Map",
+      link: "https://codesandbox.io/embed/skillify-componentized-react-page-with-props-and-map-ghlp6r?fontsize=14&hidenavigation=1&theme=dark",
     },
   ];
   return { props: { lessonComponents } };
