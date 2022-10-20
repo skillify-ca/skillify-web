@@ -1,13 +1,14 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_USER_GOALS_COUNT = gql`
-  query fetchUserGoalsCount($userId: String = "") {
-    user_goals_aggregate(where: { userId: { _eq: $userId } }) {
-      aggregate {
-        count
-      }
+query fetchUserGoalsCount($userId: String = "", $urgentGoals: timestamptz = "urgentGoals") {
+  user_goals_aggregate(where: {userId: {_eq: $userId}, targetDate: {_lte: $urgentGoals}}) {
+    aggregate {
+      count
     }
   }
+}
+
 `;
 
 export type FetchGoalCountResponse = {
@@ -21,3 +22,11 @@ export type GoalAggregate = {
 export type GoalAggregateNested = {
   count: number;
 };
+
+// query fetchUserGoalsCount($userId: String = "") {
+//   user_goals_aggregate(where: { userId: { _eq: $userId } }) {
+//     aggregate {
+//       count
+//     }
+//   }
+// }

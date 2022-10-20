@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import { addDays, format } from "date-fns";
 import { link } from "fs";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -39,10 +40,13 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const { signOut, user } = useAuth();
 
   const router = useRouter();
+  const urgentGoals = format(addDays(new Date(), 7), "MM/dd/yyyy");
+  console.log("Urgent Goals Date: " + urgentGoals);
 
   const { data } = useQuery<FetchGoalCountResponse>(FETCH_USER_GOALS_COUNT, {
     variables: {
       userId: user.uid,
+      urgentGoals: urgentGoals,
     },
   });
 
