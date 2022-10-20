@@ -16,6 +16,7 @@ import {
   userGoalsSelector,
   setUserGoals,
   GoalSection,
+  setGoalsSections,
 } from "../../redux/userGoalsSlice";
 import { list } from "postcss";
 
@@ -27,13 +28,13 @@ export default function Goals(props) {
   const { user } = useAuth();
   const router = useRouter();
   const dispatch = useDispatch();
-  const { userGoals } = useSelector(userGoalsSelector);
+  const { userGoals, goalsSections } = useSelector(userGoalsSelector);
 
   // this is what your state would like like if you were only using "local" useState
   // const [userGoals, setUserGoals] = useState<UserGoalsData[]>([])
 
   // get rid of this line when redux is successfully implemented
-  const [goalsSections, setGoalsSections] = useState<GoalSection[]>([]);
+  //const [goalsSections, setGoalsSections] = useState<GoalSection[]>([]);
 
   const { loading: userGoalsLoading } = useQuery<FetchUserGoalsDataResponse>(
     FETCH_USER_GOALS,
@@ -55,24 +56,26 @@ export default function Goals(props) {
       console.log("useEffect is about to set the goalsSections");
       // dispatch(setGoalsSections())
 
-      setGoalsSections([
-        {
-          sectionName: "Current",
-          userGoals: userGoals.filter(
-            (goal) => !goal.isComplete && !goal.isArchived
-          ),
-        },
-        {
-          sectionName: "Completed",
-          userGoals: userGoals.filter(
-            (goal) => goal.isComplete && !goal.isArchived
-          ),
-        },
-        {
-          sectionName: "Archived",
-          userGoals: userGoals.filter((goal) => goal.isArchived),
-        },
-      ]);
+      dispatch(
+        setGoalsSections([
+          {
+            sectionName: "Current",
+            userGoals: userGoals.filter(
+              (goal) => !goal.isComplete && !goal.isArchived
+            ),
+          },
+          {
+            sectionName: "Completed",
+            userGoals: userGoals.filter(
+              (goal) => goal.isComplete && !goal.isArchived
+            ),
+          },
+          {
+            sectionName: "Archived",
+            userGoals: userGoals.filter((goal) => goal.isArchived),
+          },
+        ])
+      );
       console.log("goalsSections are set", goalsSections);
     }
   }, [userGoals]);
