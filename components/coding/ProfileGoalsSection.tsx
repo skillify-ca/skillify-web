@@ -24,7 +24,10 @@ export default function ProfileGoalsSection({ user }: GoalsSectionProps) {
       },
     }
   );
-  const slicedUserGoals = userGoals.slice(0, 5);
+  const currentUserGoals = userGoals.filter(
+    (goal) => !goal.isComplete && !goal.isArchived
+  );
+  const slicedUserGoals = currentUserGoals.slice(0, 5);
 
   return (
     <>
