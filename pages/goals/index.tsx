@@ -5,7 +5,6 @@ import { useAuth } from "../../lib/authContext";
 import {
   FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
-  UserGoalsData,
 } from "../../graphql/fetchUserGoals";
 import { useQuery } from "@apollo/client";
 import GoalsSectionComponent from "../../components/coding/GoalsSectionComponent";
@@ -20,21 +19,11 @@ import {
 } from "../../redux/userGoalsSlice";
 import { list } from "postcss";
 
-// to do list
-// 1. add goalsSections to userGoals redux slice
-// 2. dispatch goalsSections in useEffect
-
 export default function Goals(props) {
   const { user } = useAuth();
   const router = useRouter();
   const dispatch = useDispatch();
   const { userGoals, goalsSections } = useSelector(userGoalsSelector);
-
-  // this is what your state would like like if you were only using "local" useState
-  // const [userGoals, setUserGoals] = useState<UserGoalsData[]>([])
-
-  // get rid of this line when redux is successfully implemented
-  //const [goalsSections, setGoalsSections] = useState<GoalSection[]>([]);
 
   const { loading: userGoalsLoading } = useQuery<FetchUserGoalsDataResponse>(
     FETCH_USER_GOALS,
@@ -51,11 +40,7 @@ export default function Goals(props) {
   );
 
   useEffect(() => {
-    // create goal sections here, map through below to render
     if (userGoals.length > 0) {
-      console.log("useEffect is about to set the goalsSections");
-      // dispatch(setGoalsSections())
-
       dispatch(
         setGoalsSections([
           {
@@ -76,7 +61,6 @@ export default function Goals(props) {
           },
         ])
       );
-      console.log("goalsSections are set", goalsSections);
     }
   }, [userGoals]);
 

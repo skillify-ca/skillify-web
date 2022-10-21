@@ -40,17 +40,17 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const { signOut, user } = useAuth();
 
   const router = useRouter();
-  const urgentGoals = format(addDays(new Date(), 7), "MM/dd/yyyy");
-  console.log("Urgent Goals Date: " + urgentGoals);
+  //commented out code (goalDateThreshold) is for a feature that will show the number of goals due within 7 days
+  //feature will be implemented soon.
+  // const goalDateThreshold = format(addDays(new Date(), 7), "MM/dd/yyyy");
+  // code commented out in fetchUserGoalsCount query as well.
 
   const { data } = useQuery<FetchGoalCountResponse>(FETCH_USER_GOALS_COUNT, {
     variables: {
       userId: user.uid,
-      urgentGoals: urgentGoals,
+      // goalDateThreshold: goalDateThreshold,
     },
   });
-
-  console.log("this is the fetch user goals count", data);
 
   useEffect(() => {
     if (router.pathname.startsWith("/coaches")) {
@@ -69,8 +69,6 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   return (
     //Full width then restrict in page
     <div className="flex flex-col w-full h-full bg-gray-50 dark:bg-gray-900 dark:text-white">
-      Number Of Remaining Goals:{" "}
-      {data ? data.user_goals_aggregate.aggregate.count : "n/a"}
       <div className="grid">
         <div className="flex p-4">
           {user && (
