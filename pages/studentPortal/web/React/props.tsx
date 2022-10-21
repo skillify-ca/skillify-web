@@ -56,9 +56,9 @@ export async function getServerSideProps({ params }) {
       component: "code-snippet",
       text:
         "The `Hello` component from the last lesson took in no inputs or `props`. It will always return Hello World",
-      code: `export function HelloComponent() {
-        return <div>Hello World</div>;
-      }`,
+      code: `export default function HelloComponent() {
+  return <div>Hello World</div>;
+}`,
     },
     {
       component: "description",
@@ -69,9 +69,9 @@ export async function getServerSideProps({ params }) {
       component: "code-snippet",
       text:
         "We can pass the prop `name` into our component and call the prop inside so it says Hello to anyone",
-      code: `export function HelloComponent(name) => {
-        return <div>Hello {name}</div>;
-      }`,
+      code: `export default function HelloComponent(name) => {
+  return <div>Hello {name}</div>;
+}`,
     },
     {
       component: "description",
@@ -89,21 +89,25 @@ export async function getServerSideProps({ params }) {
       component: "code-snippet",
       text:
         "We can create an ExpenseRow component that takes a prop for each column.",
-      code: `export function ExpenseRow(
-        date, 
-        name, 
-        amount, 
-        type
-        ) {
-        return (
-          <div className="flex flex-row space-x-2">
-            <p>{date}</p>
-            <p>{name}</p>
-            <p>{amount}</p>
-            <p>{type}</p>
-          </div>
-        );
-      }`,
+      code: `export default function App() {
+  return <ExpenseRow name="Harry" date="" amount={30} type="Eating Out" />
+} 
+      
+  export function ExpenseRow({
+    date, 
+    name, 
+    amount, 
+    type
+  }) {
+    return (
+      <div className="flex flex-row space-x-2">
+        <p>{date}</p>
+        <p>{name}</p>
+        <p>{amount}</p>
+        <p>{type}</p>
+      </div>
+    );
+}`,
     },
     {
       component: "description",
