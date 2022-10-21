@@ -1,17 +1,27 @@
+import { Router, useRouter } from "next/router";
 import React from "react";
 import Card, { CardData } from "../../../../components/coding/Card";
 import LessonComponent, {
   LessonComponentData,
 } from "../../../../components/coding/studentPortal/LessonComponent";
+import { Button } from "../../../../components/ui/Button";
 import Navbar from "../../../../components/ui/Navbar";
 
 const React2 = ({ lessonComponents }) => {
+  const router = useRouter();
+
+  const handleContinue = () => {
+    router.push("/studentPortal/web/React/props");
+  };
   return (
     <>
       <div className="grid grid-cols-1 gap-8 px-4 pt-4 m-8 sm:px-12">
         {lessonComponents.map((it) => (
           <LessonComponent data={it} />
         ))}
+      </div>
+      <div className="flex mt-8 sm:justify-end">
+        <Button onClick={handleContinue} label="Continue" />
       </div>
     </>
   );
@@ -22,10 +32,6 @@ export async function getServerSideProps({ params }) {
     {
       component: "title",
       text: "Functional Components",
-    },
-    {
-      component: "description",
-      text: "Components are the building blocks of React apps. You can use components to split up the UI into independent, reusable pieces. In this tutorial we will take HTML that renders a table of expenses, and turn it into an efficient series of React components",
     },
     {
       component: "resource-list",
@@ -40,26 +46,34 @@ export async function getServerSideProps({ params }) {
         },
       ],
     },
+    {
+      component: "description",
+      text:
+        "Components are the building blocks of React apps. You can use components to split up the UI into independent, reusable pieces. In this tutorial we will take HTML that renders a table of expenses, and turn it into an efficient series of React components. A component - at its simplest form - is just a Javascript function that returns HTML to be rendered on a page. ",
+    },
 
     {
       component: "code-snippet",
-      text: "A component - at its simplest form - is just a Javascript function that returns HTML to be rendered on a page. The following is a function that returns the text `Hello World`:",
+      text: "The following is a function that returns the text `Hello World`:",
       code: `export function HelloComponent() {
         return <div>Hello World</div>;
       }`,
     },
     {
       component: "description",
-      text: "We can use functional components to make our code cleaner and less repeatable. Let's say we wanted to make a table of our personal expenses on a basic HTML page. It might look something like this:",
+      text:
+        "We can use functional components to make our code cleaner and less repeatable. Take a look at this basic HTML page displaying a table of expenses:",
     },
     {
       component: "code-sandbox",
       title: "HTML Budget",
-      link: "https://codesandbox.io/embed/skillify-messy-web-page-xk00mt?fontsize=14&hidenavigation=1&theme=dark",
+      link:
+        "https://codesandbox.io/embed/skillify-messy-web-page-xk00mt?fontsize=14&hidenavigation=1&theme=dark",
     },
     {
       component: "description",
-      text: "This code works but it might get tedious to repeat these <p> tags 100 times. What if we made a function component for each row?",
+      text:
+        "This code works but it's tedious. Imagine if we had to repeat the <p> tag 100 or 1000 times. What if we made a function component for each row?",
     },
     {
       component: "code-snippet",
@@ -91,16 +105,18 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Now we can put this all together and make a much cleaner HTML page:",
+      text: "Putting this all together, we have much cleaner code: ",
     },
     {
       component: "code-sandbox",
       title: "Cleaner, Componentized HTML Budget",
-      link: "https://codesandbox.io/embed/skillify-componentized-react-page-z1hego?fontsize=14&hidenavigation=1&theme=dark",
+      link:
+        "https://codesandbox.io/embed/skillify-componentized-react-page-z1hego?fontsize=14&hidenavigation=1&theme=dark",
     },
     {
       component: "description",
-      text: "Our HTML is much cleaner but we still need to write a component for each row with this approach. The next lesson will cover props which will help us make the row component reusable",
+      text:
+        "This is much cleaner but we still have to write a new component for each row. The next lesson will cover props, which will allow us to make a reusable row component",
     },
   ];
   return { props: { lessonComponents } };

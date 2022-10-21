@@ -10,6 +10,7 @@ import {
   FETCH_USER_GOALS_COUNT,
 } from "../../../graphql/fetchUserGoalsCount";
 import { useAuth } from "../../../lib/authContext";
+import { setCourse } from "../../../redux/courseSlice";
 import {
   activePageSelector,
   setActivePage,
@@ -88,7 +89,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
         </div>
         <SidebarItem
           name={"Dashboard"}
-          link={"/studentPortal/intro"}
+          link={"/studentPortal"}
           page={"dashboard"}
           icon={
             <svg
@@ -180,7 +181,11 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             </Link>
           </div>
           <div className="overflow-auto h-36">
-            <Link href="/studentPortal/intro">
+            <div
+              onClick={() => {
+                dispatch(setCourse("intro"));
+              }}
+            >
               <div className="flex p-4 bg-white shadow-sm cursor-pointer dark:bg-gray-900 hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -198,8 +203,12 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
                 </svg>
                 <p className="ml-3">Coding Basics</p>
               </div>
-            </Link>
-            <Link href="/studentPortal/react">
+            </div>
+            <div
+              onClick={() => {
+                dispatch(setCourse("react"));
+              }}
+            >
               <div className="flex p-4 bg-white shadow-sm cursor-pointer dark:bg-gray-900 hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -217,7 +226,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
                 </svg>
                 <p className="ml-3">Web Development</p>
               </div>
-            </Link>
+            </div>
           </div>
         </div>
         <div

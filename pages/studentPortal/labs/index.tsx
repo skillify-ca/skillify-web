@@ -3,7 +3,7 @@ import React from "react";
 import PageHeader from "../../../components/coding/PageHeader";
 import Card from "../../../components/ui/Card";
 
-export default function ClassroomPage() {
+export default function Labs() {
   return (
     <div className="flex flex-col items-center justify-center w-full p-4 space-y-4 text-murkrow">
       <PageHeader
@@ -103,3 +103,5 @@ export default function ClassroomPage() {
     </div>
   );
 }
+
+Labs.auth = true;
