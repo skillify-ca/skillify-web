@@ -24,6 +24,10 @@ export default function ProfileGoalsSection({ user }: GoalsSectionProps) {
       },
     }
   );
+  const currentUserGoals = userGoals.filter(
+    (goal) => !goal.isComplete && !goal.isArchived
+  );
+  const slicedUserGoals = currentUserGoals.slice(0, 5);
 
   return (
     <>
@@ -35,9 +39,9 @@ export default function ProfileGoalsSection({ user }: GoalsSectionProps) {
         </div>
       ) : (
         <div className="bg-slate-300 dark:bg-slate-900">
-          {userGoals.map((it) => {
+          {slicedUserGoals.map((it) => {
             return (
-              <div className="py-2 mx-5 mb-5 text-center text-white rounded-full bg-murkrow">
+              <div className="py-2 m-5 text-center text-white rounded-full bg-murkrow">
                 {it.goalName}
               </div>
             );
