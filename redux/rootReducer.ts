@@ -23,7 +23,9 @@ import {
   multiplicationConnectSlice,
   MultiplicationConnectState,
 } from "./multiplicationConnectSlice";
+import { UserGoalsState, userGoalsSlice } from "./userGoalsSlice";
 import { courseSlice, CourseState } from "./courseSlice";
+
 
 type State = {
   [x: string]: any;
@@ -39,6 +41,7 @@ type State = {
   skillRatingsState: SkillRatingsState;
   longestStreakState: LongestStreakState;
   multiplicationConnect: MultiplicationConnectState;
+  userGoalsState: UserGoalsState;
   courseState: CourseState;
 };
 const diagnosticReducer: Reducer = diagnosticSlice.reducer;
@@ -53,6 +56,7 @@ const sidebarReducer = sidebarSlice.reducer;
 const skillRatingsReducer = skillRatingsSlice.reducer;
 const longestStreakReducer = longestStreakSlice.reducer;
 const multiplicationConnectReducer = multiplicationConnectSlice.reducer;
+const userGoalsReducer = userGoalsSlice.reducer;
 const courseReducer = courseSlice.reducer;
 
 const rootReducer = combineReducers({
@@ -68,6 +72,7 @@ const rootReducer = combineReducers({
   skillRatingsState: skillRatingsReducer,
   longestStreakState: longestStreakReducer,
   multiplicationConnect: multiplicationConnectReducer,
+  userGoalsState: userGoalsReducer,
   courseState: courseReducer,
 });
 
