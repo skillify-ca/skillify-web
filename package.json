@@ -18,6 +18,7 @@
     "@apollo/react-hoc": "^4.0.0",
     "@babel/preset-env": "^7.14.2",
     "@babel/preset-typescript": "^7.13.0",
+    "@codesandbox/sandpack-react": "^1.15.1",
     "@contentful/rich-text-html-renderer": "^15.10.1",
     "@contentful/rich-text-react-renderer": "^15.10.1",
     "@headlessui/react": "^1.0.0",
