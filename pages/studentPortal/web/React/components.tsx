@@ -20,7 +20,7 @@ const React2 = ({ lessonComponents }) => {
           <LessonComponent data={it} />
         ))}
       </div>
-      <div className="flex mt-8 sm:justify-end">
+      <div className="flex my-8 mr-8 sm:justify-end">
         <Button onClick={handleContinue} label="Continue" />
       </div>
     </>
@@ -55,9 +55,9 @@ export async function getServerSideProps({ params }) {
     {
       component: "code-snippet",
       text: "The following is a function that returns the text `Hello World`:",
-      code: `export function HelloComponent() {
-        return <div>Hello World</div>;
-      }`,
+      code: `export default function HelloComponent() {
+  return <div>Hello World</div>;
+}`,
     },
     {
       component: "description",
@@ -78,30 +78,30 @@ export async function getServerSideProps({ params }) {
     {
       component: "code-snippet",
       text: "We could create a `Header` function component for the header:",
-      code: `export function ExpenseHeader() {
-        return (
-          <div className="flex flex-row space-x-2">
-            <p>date</p>
-            <p>name</p>
-            <p>amount</p>
-            <p>type</p>
-          </div>
-        );
-      }`,
+      code: `export default function ExpenseHeader() {
+  return (
+    <div className="flex flex-row space-x-2">
+      <p>date</p>
+      <p>name</p>
+      <p>amount</p>
+      <p>type</p>
+    </div>
+  );
+}`,
     },
     {
       component: "code-snippet",
       text: "We could create a `ExpenseRow` function component for each row:",
-      code: `export function ExpenseItemOne() {
-        return (
-          <div className="flex flex-row space-x-2">
-            <p>2022-10-01</p>
-            <p>Restaurant</p>
-            <p>50.23</p>
-            <p>Eating Out</p>
-          </div>
-        );
-      }`,
+      code: `export default function ExpenseItemOne() {
+  return (
+    <div className="flex flex-row space-x-2">
+      <p>2022-10-01</p>
+      <p>Restaurant</p>
+      <p>50.23</p>
+      <p>Eating Out</p>
+    </div>
+  );
+}`,
     },
     {
       component: "description",

@@ -1,8 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { lessonSelector } from "../../../redux/lessonSlice";
 import Quiz from "./quiz/Quiz";
 import ResourceRow from "./ResourceRow";
+import { Sandpack } from "@codesandbox/sandpack-react";
 
 export type Resource = {
   title: string;
@@ -61,10 +60,10 @@ export default function LessonComponent({ data }: LessonComponentProps) {
 
   if (data.component === "code-snippet") {
     return (
-      <div className="mx-4 space-y-4 w-1/2">
+      <div className="mx-4 space-y-4">
         {data.text && <p>{data.text}</p>}
-        <pre className="bg-slate-100 border-2 border-black-transparent rounded-xl p-4">
-          <code>{data.code}</code>
+        <pre className="p-4 border-2 bg-slate-100 border-black-transparent rounded-xl">
+          <Sandpack template="react-ts" files={{ "App.tsx": data.code }} />
         </pre>
       </div>
     );
