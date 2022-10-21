@@ -9,6 +9,7 @@ export type SidebarPage =
   | "goals"
   | "workshops"
   | "profile"
+  | "goals"
   | "labs";
 
 export interface SidebarState {
