@@ -1,8 +1,8 @@
-import { link } from "fs";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { useAuth } from "../../../lib/authContext";
 import { setCourse } from "../../../redux/courseSlice";
 import {
@@ -35,6 +35,18 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const { signOut, user } = useAuth();
 
   const router = useRouter();
+
+  //commented out code (goalDateThreshold) is for a feature that will show the number of goals due within 7 days
+  //feature will be implemented soon.
+  // const goalDateThreshold = format(addDays(new Date(), 7), "MM/dd/yyyy");
+  // code commented out in fetchUserGoalsCount query as well.
+
+  // const { data } = useQuery<FetchGoalCountResponse>(FETCH_USER_GOALS_COUNT, {
+  //   variables: {
+  //     userId: user.uid,
+  // goalDateThreshold: goalDateThreshold,
+  //   },
+  // });
 
   useEffect(() => {
     if (router.pathname.startsWith("/coaches")) {
