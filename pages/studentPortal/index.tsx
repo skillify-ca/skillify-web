@@ -2,13 +2,7 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/coding/studentPortal/Sidebar";
 import UnitView from "../../components/coding/studentPortal/UnitView";
 import { useAuth } from "../../lib/authContext";
-import {
-  androidUnits,
-  interviewUnits,
-  introUnits,
-  reactUnits,
-  Unit,
-} from "../api/studentPortal/units";
+import { interviewUnits, reactUnits, Unit } from "../api/studentPortal/units";
 
 import moment from "moment";
 import { useMutation, useQuery } from "@apollo/client";

@@ -17,7 +17,7 @@ export const UnitView: React.FC<UnitViewProps> = ({ data }: UnitViewProps) => {
         {data.nodes.map((it, index) => {
           if (!it.locked) {
             return (
-              <a href={it.link}>
+              <a href={"/studentPortal/" + it.link}>
                 <UnitNodeView
                   hiddenLine={index === data.nodes.length - 1}
                   completed={it.completed}
