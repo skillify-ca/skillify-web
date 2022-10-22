@@ -7,6 +7,7 @@ import { WordProblemQuestion } from "./labs/questionGenerators/wordProblemQuesti
 import { LongDivisionQuestion } from "./labs/questionGenerators/longDivisionQuestion";
 import { ItemCostModel } from "./labs/finance/money/itemCostModel";
 import { PersonData } from "./labs/finance/money/personData";
+import { Coin, CoinType } from "../../components/questionTypes/finance/Coin";
 
 export type Question =
   | VerticalEquationQuestion
@@ -85,6 +86,12 @@ export type Question =
       interestModel: InterestModel;
       answer: string;
       text: string;
+    }
+  | {
+      questionType: QuestionType.FINANCE_COUNTING_COINS_BILLS_PROBLEM;
+      countingModel: CountingModel;
+      answer: string;
+      text: string;
     };
 
 export type MCOption = {
@@ -127,3 +134,8 @@ export type InterestModel = {
   time: number;
   image1: string;
 };
+
+export type CountingModel = {
+  coins: CoinType[];
+   
+}
