@@ -12,48 +12,45 @@ import { randomize } from "./binaryQuestionGenerator";
 
 
 
-export type CountingCoinsQuestion = {
-    questionType: QuestionType.FINANCE_COUNTING_COINS_BILLS_PROBLEM;
-    //coins: CoinType[];
-    answer: string;
-    countingModel: CountingModel;
-    text: string;
-   };
-
-
 export type CountingModel = {
     coins: CoinType[];
     };
 
+export type CountingCoinsQuestion = {
+    questionType:QuestionType.FINANCE_COUNTING_COINS_BILLS_PROBLEM,
+    answer: string,
+    text: string,
+    countingModel: CountingModel, 
+    };
 
 export function generateCountingQuestion() {
-    // this below code is for randomizing the coins that show, need that, also need to limit value. look at for loops. 
+    // this below code is for randomizing the coins (between 1-6) that show, using for loop. 
     var coinsArray = [];
     
     var answerCoin = 0;
     for(var i=0;i<6;i++){
-        var randomNumber = randomize(1,6);        
-        if(randomNumber ==1){
+        var randomCoinChoice = randomize(1,6);        
+        if(randomCoinChoice ==1){
             coinsArray.push(CoinType.PENNY);
             answerCoin += 0.01;
         }
-        else if(randomNumber ==2){
+        else if(randomCoinChoice ==2){
             coinsArray.push (CoinType.NICKEL);
             answerCoin += 0.05;
         }
-        else if (randomNumber ==3){
+        else if (randomCoinChoice ==3){
             coinsArray.push (CoinType.DIME);
             answerCoin += 0.10; 
         }
-        else if (randomNumber ==4){
+        else if (randomCoinChoice ==4){
             coinsArray.push (CoinType.QUARTER);
             answerCoin += 0.25;
         }
-        else if (randomNumber ==5){
+        else if (randomCoinChoice ==5){
             coinsArray.push (CoinType.LOONIE);
             answerCoin += 1.00;             
         }
-        else if (randomNumber ==6){
+        else if (randomCoinChoice ==6){
             coinsArray.push (CoinType.TOONIE);
             answerCoin += 2.00;
         }
