@@ -8,7 +8,7 @@ import { Popover } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
 const navigation = [
-  { name: "Student Portal", href: "/studentPortal/intro" },
+  { name: "Student Portal", href: "/studentPortal" },
   { name: "Resources", href: "/resources" },
 ];
 
@@ -23,7 +23,8 @@ const articles: ArticleProps[] = [
   {
     image:
       "https://media.blogto.com/articles/20220119-1-password-toronto.jpg?w=2048&cmd=resize_then_crop&height=1365&quality=70",
-    link: "https://www.blogto.com/tech/2022/01/toronto-startup-hiring-1-password/",
+    link:
+      "https://www.blogto.com/tech/2022/01/toronto-startup-hiring-1-password/",
     title: "Toronto startup now worth $6.8B is hiring hundreds of people",
     description:
       "What do Justin Timberlake, Matthew McConaughey, Scarlett Johansson, Rita Wilson, Pharrell Williams, Robert Downey Jr., Trevor Noah, Chris Evans and...",
@@ -31,7 +32,8 @@ const articles: ArticleProps[] = [
   {
     image:
       "https://www.narcity.com/media-library/canada-s-top-remote-jobs-in-2022-were-unveiled-so-you-can-make-money-from-your-couch.jpg?id=28847731&width=1245&quality=85&coordinates=0%2C0%2C0%2C0&height=700",
-    link: "https://www.narcity.com/canada-top-remote-jobs-in-2022-were-unveiled-so-you-can-make-money-from-your-couch",
+    link:
+      "https://www.narcity.com/canada-top-remote-jobs-in-2022-were-unveiled-so-you-can-make-money-from-your-couch",
     title:
       "Canada's Top Remote Jobs In 2022 Were Unveiled So You Can Make Money From Your Couch",
     description: "No need to commute to an office!",
@@ -39,7 +41,8 @@ const articles: ArticleProps[] = [
   {
     image:
       "https://www.narcity.com/media-library/twitter-is-currently-hiring-in-toronto-there-are-so-many-different-positions-available.jpg?id=29206499&width=1245&quality=85&coordinates=2%2C0%2C3%2C0&height=700",
-    link: "https://www.narcity.com/toronto/twitter-is-currently-hiring-in-toronto-there-are-so-many-different-positions-available",
+    link:
+      "https://www.narcity.com/toronto/twitter-is-currently-hiring-in-toronto-there-are-so-many-different-positions-available",
     title:
       "Twitter Is Currently Hiring In Toronto & There Are So Many Different Positions Available",
     description: "Get your resume ready.",

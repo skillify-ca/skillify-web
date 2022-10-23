@@ -8,6 +8,7 @@ import { LongDivisionQuestion } from "./labs/questionGenerators/longDivisionQues
 import { ItemCostModel } from "./labs/finance/money/itemCostModel";
 import { PersonData } from "./labs/finance/money/personData";
 import { Coin, CoinType } from "../../components/questionTypes/finance/Coin";
+import { AlgebraSolveQuestion } from "./labs/questionGenerators/algebraQuestionGenerator";
 
 export type Question =
   | VerticalEquationQuestion
@@ -69,6 +70,7 @@ export type Question =
       answer: string;
       text: string;
     }
+  | AlgebraSolveQuestion
   | {
       questionType: QuestionType.FINANCE_SALES_TAX_PROBLEM;
       salesTaxModel: SalesTaxModel;
@@ -108,8 +110,8 @@ export type UnitPriceModel = {
   numberOfObjects: number;
   name: string;
   image: string;
-  singularFruit: string,
-  pluralFruit: string,
+  singularFruit: string;
+  pluralFruit: string;
 };
 export type SalesTaxModel = {
   price: number;
@@ -117,8 +119,8 @@ export type SalesTaxModel = {
   taxRate: number;
   personName: string;
   image1: string;
-  multipleAnimals: string,
-  numberOfToys: number,
+  multipleAnimals: string;
+  numberOfToys: number;
 };
 export type CommissionModel = {
   personName: string;

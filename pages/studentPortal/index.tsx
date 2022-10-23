@@ -2,13 +2,7 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/coding/studentPortal/Sidebar";
 import UnitView from "../../components/coding/studentPortal/UnitView";
 import { useAuth } from "../../lib/authContext";
-import {
-  androidUnits,
-  interviewUnits,
-  introUnits,
-  reactUnits,
-  Unit,
-} from "../api/studentPortal/units";
+import { interviewUnits, reactUnits, Unit } from "../api/studentPortal/units";
 
 import moment from "moment";
 import { useMutation, useQuery } from "@apollo/client";
@@ -21,11 +15,10 @@ import {
   transform,
 } from "../../graphql/coding/fetchUserIntroNodes";
 import { UPDATE_USER } from "../../graphql/updateUser";
+import { useSelector } from "react-redux";
+import { courseSelector } from "../../redux/courseSlice";
 
-interface StudentPortalPageProps {
-  slug: string;
-}
-export default function StudentPortalPage({ slug }: StudentPortalPageProps) {
+export default function StudentPortalPage() {
   const { user } = useAuth();
 
   const [initUserNodes] = useMutation(INIT_USER_INTRO_NODES);
@@ -55,15 +48,19 @@ export default function StudentPortalPage({ slug }: StudentPortalPageProps) {
     }
   }, [user]);
 
+  const course = useSelector(courseSelector);
+
   useEffect(() => {
-    if (slug === "react") {
+    console.log("current course", course.currentCourse);
+
+    if (course.currentCourse === "react") {
       setUnits(reactUnits);
-    } else if (slug === "interview") {
+    } else if (course.currentCourse === "interview") {
       setUnits(interviewUnits);
     } else if (data) {
       setUnits(transform(data));
     }
-  }, [data, slug]);
+  }, [data, course.currentCourse]);
 
   useEffect(() => {
     // TODO save profile photos to firebase storage and allow users to edit photos
@@ -91,25 +88,6 @@ export default function StudentPortalPage({ slug }: StudentPortalPageProps) {
       </div>
     </div>
   );
-}
-export async function getStaticProps({ params }) {
-  return {
-    props: {
-      slug: params.slug,
-    },
-  };
-}
-
-export async function getStaticPaths() {
-  return {
-    paths: [
-      { params: { slug: "intro" } },
-      { params: { slug: "react" } },
-      { params: { slug: "interview" } },
-      { params: { slug: "android" } },
-    ],
-    fallback: true,
-  };
 }
 
 StudentPortalPage.auth = true;
