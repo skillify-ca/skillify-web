@@ -21,7 +21,7 @@ export const reactUnits: Unit[] = [
         type: "lesson",
         completed: false,
         locked: false,
-        link: "/studentPortal/web/introduction",
+        link: "web/introduction",
       },
     ],
   },
@@ -33,7 +33,7 @@ export const reactUnits: Unit[] = [
         description: "Components",
         completed: false,
         locked: false,
-        link: "/studentPortal/web/React/components",
+        link: "web/React/components",
         type: "lesson",
       },
       {
@@ -41,7 +41,7 @@ export const reactUnits: Unit[] = [
         description: "Props",
         completed: false,
         locked: false,
-        link: "/studentPortal/web/React/props",
+        link: "web/React/props",
         type: "lesson",
       },
       {
