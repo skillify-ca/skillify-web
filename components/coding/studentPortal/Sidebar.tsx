@@ -1,52 +1,65 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useRef } from "react";
+import React, { ReactElement, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useAuth } from "../../../lib/authContext";
 import { setCourse } from "../../../redux/courseSlice";
+import { notificationsSelector } from "../../../redux/notificationsSlice";
 import {
   activePageSelector,
   setActivePage,
   SidebarProps,
 } from "../../../redux/sidebarSlice";
 
-const SidebarItem = ({ name, link, page, icon }) => {
+interface SidebarItemProps {
+  name: string;
+  link: string;
+  page: any;
+  icon: ReactElement;
+  notifications?: boolean;
+}
+const SidebarItem = ({
+  name,
+  link,
+  page,
+  icon,
+  notifications,
+}: SidebarItemProps) => {
   const { activePage } = useSelector(activePageSelector);
 
   return (
     <Link href={link}>
-      <div
-        className={`flex flex-wrap items-center p-4 cursor-pointer hover:border-l-4 ${
-          activePage === page ? "border-charmander text-charmander" : ""
-        } hover:border-charmander hover:text-charmander`}
-      >
-        {icon}
-        {name}
-      </div>
+      <>
+        <div
+          className={`flex flex-wrap items-center p-4 cursor-pointer hover:border-l-4 ${
+            activePage === page ? "border-charmander text-charmander" : ""
+          } hover:border-charmander hover:text-charmander`}
+        >
+          <div>
+            {notifications ? (
+              <div className="absolute left-10">
+                <div className="flex bg-red-500 rounded-full w-2 h-2"></div>
+              </div>
+            ) : null}
+            {icon}
+          </div>
+          {name}
+        </div>
+      </>
     </Link>
   );
 };
 
 export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const { activePage } = useSelector(activePageSelector);
+  const { goalApproaching } = useSelector(notificationsSelector);
+  // TODO const notifs = useSelector(notificationsSelector)
   const dispatch = useDispatch();
 
   const { signOut, user } = useAuth();
 
   const router = useRouter();
-
-  //commented out code (goalDateThreshold) is for a feature that will show the number of goals due within 7 days
-  //feature will be implemented soon.
-  // const goalDateThreshold = format(addDays(new Date(), 7), "MM/dd/yyyy");
-  // code commented out in fetchUserGoalsCount query as well.
-
-  // const { data } = useQuery<FetchGoalCountResponse>(FETCH_USER_GOALS_COUNT, {
-  //   variables: {
-  //     userId: user.uid,
-  // goalDateThreshold: goalDateThreshold,
-  //   },
-  // });
 
   useEffect(() => {
     if (router.pathname.startsWith("/coaches")) {
@@ -132,6 +145,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               />
             </svg>
           }
+          notifications={undefined}
         />
         <SidebarItem
           name={"Profile"}
@@ -151,9 +165,12 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               />
             </svg>
           }
+          notifications={dispatch(goalApproaching)}
         />
+        {/* TODO read from notifs selector instead of being true */}
         <SidebarItem
           name={"Goals"}
+          notifications={true}
           link={"/goals"}
           page={"goals"}
           icon={
@@ -185,6 +202,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
             </svg>
           }
+          notifications={undefined}
         />
 
         <div>

@@ -1,10 +1,40 @@
+import { useQuery } from "@apollo/client";
+import { format, addDays } from "date-fns";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  FetchGoalCountResponse,
+  FETCH_USER_GOALS_COUNT,
+} from "../../../graphql/fetchUserGoalsCount";
+import { useAuth } from "../../../lib/authContext";
+import {
+  isGoalApproaching,
+  notificationsSelector,
+} from "../../../redux/notificationsSlice";
 import Navbar from "../../ui/Navbar";
 import Sidebar from "./Sidebar";
 
 export const Layout: React.FC = ({ children }) => {
   const [active, setActive] = useState(false);
 
+  // TODO add useQuery and dispatch an action inside the on complete
+  const { user } = useAuth();
+  const goalDateThreshold = format(addDays(new Date(), 7), "MM/dd/yyyy");
+  const { goalApproaching } = useSelector(notificationsSelector);
+  // TODO const notifs = useSelector(notificationsSelector)
+  const dispatch = useDispatch();
+  const { data } = useQuery<FetchGoalCountResponse>(FETCH_USER_GOALS_COUNT, {
+    variables: {
+      userId: user.uid,
+      goalDateThreshold: goalDateThreshold,
+    },
+    onCompleted: (data: FetchGoalCountResponse) => {
+      if (data.user_goals_aggregate != null) {
+        dispatch(isGoalApproaching(goalApproaching));
+        console.log(goalApproaching);
+      }
+    },
+  });
   return (
     <div className="flex flex-col h-full bg-red-300">
       <style global jsx>{`
