@@ -9,8 +9,8 @@ import {
 import { useAuth } from "../../../lib/authContext";
 import {
   isGoalApproaching,
-  notificationsSelector,
-} from "../../../redux/notificationsSlice";
+  userGoalsSelector,
+} from "../../../redux/userGoalsSlice";
 import Navbar from "../../ui/Navbar";
 import Sidebar from "./Sidebar";
 
@@ -20,7 +20,7 @@ export const Layout: React.FC = ({ children }) => {
   // TODO add useQuery and dispatch an action inside the on complete
   const { user } = useAuth();
   const goalDateThreshold = format(addDays(new Date(), 7), "MM/dd/yyyy");
-  const { goalApproaching } = useSelector(notificationsSelector);
+  const goalApproaching = useSelector(userGoalsSelector);
   // TODO const notifs = useSelector(notificationsSelector)
   const dispatch = useDispatch();
   const { data } = useQuery<FetchGoalCountResponse>(FETCH_USER_GOALS_COUNT, {

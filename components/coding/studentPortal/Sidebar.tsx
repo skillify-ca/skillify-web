@@ -5,13 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { useAuth } from "../../../lib/authContext";
 import { setCourse } from "../../../redux/courseSlice";
-import { notificationsSelector } from "../../../redux/notificationsSlice";
 import {
   activePageSelector,
   setActivePage,
   SidebarProps,
 } from "../../../redux/sidebarSlice";
-
+import {
+  isGoalApproaching,
+  userGoalsSelector,
+} from "../../../redux/userGoalsSlice";
 interface SidebarItemProps {
   name: string;
   link: string;
@@ -53,7 +55,7 @@ const SidebarItem = ({
 
 export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const { activePage } = useSelector(activePageSelector);
-  const { goalApproaching } = useSelector(notificationsSelector);
+  const { goalApproaching } = useSelector(userGoalsSelector);
   // TODO const notifs = useSelector(notificationsSelector)
   const dispatch = useDispatch();
 
@@ -165,12 +167,12 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               />
             </svg>
           }
-          notifications={dispatch(goalApproaching)}
+          notifications={false}
         />
         {/* TODO read from notifs selector instead of being true */}
         <SidebarItem
           name={"Goals"}
-          notifications={true}
+          notifications={dispatch(isGoalApproaching(goalApproaching))}
           link={"/goals"}
           page={"goals"}
           icon={
