@@ -32,23 +32,21 @@ const SidebarItem = ({
 
   return (
     <Link href={link}>
-      <>
-        <div
-          className={`flex flex-wrap items-center p-4 cursor-pointer hover:border-l-4 ${
-            activePage === page ? "border-charmander text-charmander" : ""
-          } hover:border-charmander hover:text-charmander`}
-        >
-          <div>
-            {notifications ? (
-              <div className="absolute left-10">
-                <div className="flex bg-red-500 rounded-full w-2 h-2"></div>
-              </div>
-            ) : null}
-            {icon}
-          </div>
-          {name}
+      <div
+        className={`flex flex-wrap items-center p-4 cursor-pointer hover:border-l-4 ${
+          activePage === page ? "border-charmander text-charmander" : ""
+        } hover:border-charmander hover:text-charmander`}
+      >
+        <div>
+          {notifications ? (
+            <div className="absolute left-10">
+              <div className="flex bg-red-500 rounded-full w-2 h-2"></div>
+            </div>
+          ) : null}
+          {icon}
         </div>
-      </>
+        {name}
+      </div>
     </Link>
   );
 };
