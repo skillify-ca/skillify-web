@@ -56,7 +56,6 @@ const SidebarItem = ({
 export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const { activePage } = useSelector(activePageSelector);
   const { goalApproaching } = useSelector(userGoalsSelector);
-  // TODO const notifs = useSelector(notificationsSelector)
   const dispatch = useDispatch();
 
   const { signOut, user } = useAuth();
@@ -147,7 +146,6 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               />
             </svg>
           }
-          notifications={undefined}
         />
         <SidebarItem
           name={"Profile"}
@@ -167,9 +165,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               />
             </svg>
           }
-          notifications={false}
         />
-        {/* TODO read from notifs selector instead of being true */}
         <SidebarItem
           name={"Goals"}
           notifications={dispatch(isGoalApproaching(goalApproaching))}
@@ -204,7 +200,6 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
             </svg>
           }
-          notifications={undefined}
         />
 
         <div>

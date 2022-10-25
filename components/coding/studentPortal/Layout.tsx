@@ -17,11 +17,9 @@ import Sidebar from "./Sidebar";
 export const Layout: React.FC = ({ children }) => {
   const [active, setActive] = useState(false);
 
-  // TODO add useQuery and dispatch an action inside the on complete
   const { user } = useAuth();
   const goalDateThreshold = format(addDays(new Date(), 7), "MM/dd/yyyy");
   const goalApproaching = useSelector(userGoalsSelector);
-  // TODO const notifs = useSelector(notificationsSelector)
   const dispatch = useDispatch();
   const { data } = useQuery<FetchGoalCountResponse>(FETCH_USER_GOALS_COUNT, {
     variables: {
@@ -31,7 +29,6 @@ export const Layout: React.FC = ({ children }) => {
     onCompleted: (data: FetchGoalCountResponse) => {
       if (data.user_goals_aggregate != null) {
         dispatch(isGoalApproaching(goalApproaching));
-        console.log(goalApproaching);
       }
     },
   });
