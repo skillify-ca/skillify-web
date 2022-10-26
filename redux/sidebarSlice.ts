@@ -36,7 +36,7 @@ export const sidebarSlice: Slice = createSlice({
     },
 
     setIsGoalApproaching: (state, action: PayloadAction<boolean>) => {
-      if (action.type == "sidebar/isGoalApproaching") {
+      if (action.type == "sidebar/setIsGoalApproaching") {
         state.goalApproaching = action.payload;
       }
     },
