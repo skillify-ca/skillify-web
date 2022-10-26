@@ -59,10 +59,11 @@ export const BlockComponent: FC<BlockProps> = ({
 
     setGuess("");
   };
+  // Why doesnt this code correctly increment index?
+  if (blockCorrect) {
+    index = index + 1;
+  }
   useEffect(() => {
-    // if (blockCorrect) {
-    //   index = index + 1;
-    // }
     setDisableInput(blockNumber != index);
   });
   useEffect(() => {
@@ -75,11 +76,30 @@ export const BlockComponent: FC<BlockProps> = ({
     setRandNumb2(numberGenerator());
   }, [newGame]);
 
-  console.log({ disableInput });
-
+  useEffect(() => {
+    const listener = (event) => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        console.log("Enter key was pressed. Run your function.");
+        event.preventDefault();
+        // callMyFunction();
+      }
+    };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, []);
+  ``;
+  // const handleKeyPress = (e) => {
+  //   if (e.charCode === 13) {
+  //     onSubmit(guess);
+  //   }
+  // };
   return (
     <div className={blockColor}>
       <input
+        // onKeyPress={(e) => handleKeyPress(e)}
+        onBlur={(e) => onSubmit(guess)}
         id="input"
         type="number"
         value={guess}
@@ -88,16 +108,20 @@ export const BlockComponent: FC<BlockProps> = ({
         placeholder={problem}
         disabled={disableInput}
       ></input>
-      <button
+      {/* remove button, onBlur is enough? Any way to use onKeyPress to use enter */}
+      {/* <button
         hidden={disableInput}
         type="submit"
         className="text-xs"
         onClick={() => onSubmit(guess)}
       >
         ▢
-      </button>
+      </button> */}
     </div>
   );
 };
 
 export default BlockComponent;
+function handleSearch(): void {
+  throw new Error("Function not implemented.");
+}
