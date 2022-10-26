@@ -1,9 +1,40 @@
+import { useQuery } from "@apollo/client";
+import { format, addDays } from "date-fns";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  FetchGoalCountResponse,
+  FETCH_USER_GOALS_COUNT,
+} from "../../../graphql/fetchUserGoalsCount";
+import { useAuth } from "../../../lib/authContext";
+import {
+  activePageSelector,
+  setIsGoalApproaching,
+} from "../../../redux/sidebarSlice";
 import Navbar from "../../ui/Navbar";
 import Sidebar from "./Sidebar";
 
 export const Layout: React.FC = ({ children }) => {
   const [active, setActive] = useState(false);
+
+  const { user } = useAuth();
+  const dispatch = useDispatch();
+
+  const goalDateThreshold = format(addDays(new Date(), 7), "MM/dd/yyyy");
+  const {} = useQuery<FetchGoalCountResponse>(FETCH_USER_GOALS_COUNT, {
+    variables: {
+      userId: user.uid,
+      goalDateThreshold: goalDateThreshold,
+    },
+    onCompleted: (data) => {
+      if (data.user_goals_aggregate.aggregate.count) {
+        dispatch(setIsGoalApproaching(true));
+      } else {
+        dispatch(setIsGoalApproaching(false));
+      }
+    },
+    fetchPolicy: "cache-and-network",
+  });
 
   return (
     <div className="flex flex-col h-full bg-red-300">
