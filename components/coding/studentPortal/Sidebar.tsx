@@ -7,13 +7,9 @@ import { useAuth } from "../../../lib/authContext";
 import { setCourse } from "../../../redux/courseSlice";
 import {
   activePageSelector,
-  setActivePage,
   SidebarProps,
+  setActivePage,
 } from "../../../redux/sidebarSlice";
-import {
-  isGoalApproaching,
-  userGoalsSelector,
-} from "../../../redux/userGoalsSlice";
 interface SidebarItemProps {
   name: string;
   link: string;
@@ -39,7 +35,7 @@ const SidebarItem = ({
       >
         <div>
           {notifications ? (
-            <div className="absolute left-10">
+            <div className="relative left-6 top-1  ">
               <div className="flex bg-red-500 rounded-full w-2 h-2"></div>
             </div>
           ) : null}
@@ -53,7 +49,7 @@ const SidebarItem = ({
 
 export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const { activePage } = useSelector(activePageSelector);
-  const { goalApproaching } = useSelector(userGoalsSelector);
+  const { goalApproaching } = useSelector(activePageSelector);
   const dispatch = useDispatch();
 
   const { signOut, user } = useAuth();
@@ -166,7 +162,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
         />
         <SidebarItem
           name={"Goals"}
-          notifications={dispatch(isGoalApproaching(goalApproaching))}
+          notifications={goalApproaching}
           link={"/goals"}
           page={"goals"}
           icon={

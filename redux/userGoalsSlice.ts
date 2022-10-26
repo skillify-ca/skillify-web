@@ -6,7 +6,6 @@ import { RootState } from "./rootReducer";
 export type UserGoalsState = {
   userGoals: UserGoalsData[];
   goalsSections: GoalSection[];
-  goalApproaching: boolean;
 };
 
 export type GoalSection = {
@@ -17,7 +16,6 @@ export type GoalSection = {
 const initialState: UserGoalsState = {
   userGoals: [],
   goalsSections: [],
-  goalApproaching: false,
 };
 
 export const userGoalsSlice: Slice = createSlice({
@@ -33,12 +31,6 @@ export const userGoalsSlice: Slice = createSlice({
       }
     },
 
-    isGoalApproaching: (state, action: PayloadAction<boolean>) => {
-      if (action.type == "userGoals/isGoalApproaching") {
-        state.goalApproaching = action.payload;
-      }
-    },
-
     setGoalsSections: (
       state: UserGoalsState,
       action: PayloadAction<GoalSection[]>
@@ -50,7 +42,7 @@ export const userGoalsSlice: Slice = createSlice({
   },
 });
 
-export const { setUserGoals, setGoalsSections, isGoalApproaching } = userGoalsSlice.actions;
+export const { setUserGoals, setGoalsSections } = userGoalsSlice.actions;
 
 export default userGoalsSlice.reducer;
 

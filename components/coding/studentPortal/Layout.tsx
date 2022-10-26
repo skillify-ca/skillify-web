@@ -8,9 +8,9 @@ import {
 } from "../../../graphql/fetchUserGoalsCount";
 import { useAuth } from "../../../lib/authContext";
 import {
-  isGoalApproaching,
-  userGoalsSelector,
-} from "../../../redux/userGoalsSlice";
+  activePageSelector,
+  setIsGoalApproaching,
+} from "../../../redux/sidebarSlice";
 import Navbar from "../../ui/Navbar";
 import Sidebar from "./Sidebar";
 
@@ -18,20 +18,22 @@ export const Layout: React.FC = ({ children }) => {
   const [active, setActive] = useState(false);
 
   const { user } = useAuth();
-  const goalDateThreshold = format(addDays(new Date(), 7), "MM/dd/yyyy");
-  const goalApproaching = useSelector(userGoalsSelector);
+  const goalApproaching = useSelector(activePageSelector);
   const dispatch = useDispatch();
+
+  const goalDateThreshold = format(addDays(new Date(), 7), "MM/dd/yyyy");
   const { data } = useQuery<FetchGoalCountResponse>(FETCH_USER_GOALS_COUNT, {
     variables: {
       userId: user.uid,
       goalDateThreshold: goalDateThreshold,
     },
-    onCompleted: (data: FetchGoalCountResponse) => {
-      if (data.user_goals_aggregate != null) {
-        dispatch(isGoalApproaching(goalApproaching));
+    onCompleted: (data) => {
+      if (data.user_goals_aggregate.aggregate.count != undefined) {
+        dispatch(setIsGoalApproaching(true));
       }
     },
   });
+
   return (
     <div className="flex flex-col h-full bg-red-300">
       <style global jsx>{`
