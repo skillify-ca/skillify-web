@@ -18,20 +18,22 @@ export const Layout: React.FC = ({ children }) => {
   const [active, setActive] = useState(false);
 
   const { user } = useAuth();
-  const goalApproaching = useSelector(activePageSelector);
   const dispatch = useDispatch();
 
   const goalDateThreshold = format(addDays(new Date(), 7), "MM/dd/yyyy");
-  const { data } = useQuery<FetchGoalCountResponse>(FETCH_USER_GOALS_COUNT, {
+  const {} = useQuery<FetchGoalCountResponse>(FETCH_USER_GOALS_COUNT, {
     variables: {
       userId: user.uid,
       goalDateThreshold: goalDateThreshold,
     },
     onCompleted: (data) => {
-      if (data.user_goals_aggregate.aggregate.count != undefined) {
+      if (data.user_goals_aggregate.aggregate.count) {
         dispatch(setIsGoalApproaching(true));
+      } else {
+        dispatch(setIsGoalApproaching(false));
       }
     },
+    fetchPolicy: "cache-and-network",
   });
 
   return (
