@@ -11,6 +11,7 @@ import CommissionQuestion from "../../finance/CommissionQuestion";
 import UnitPriceQuestion from "../../finance/UnitPriceQuestion";
 import algebrasolvevariable from "../../math/algebra/algebrasolvevariable";
 import SimpleInterestQuestion from "../../finance/SimpleInterestQuestion";
+import { CountCoinsQuestion } from "../../questionTypes/finance/CountCoinsQuestion";
 import { HorizontalEquation } from "../../questionTypes/HorizontalEquation";
 import { LongDivision } from "../../questionTypes/LongDivision";
 import { MultipleChoice } from "../../questionTypes/MultipleChoice";
@@ -179,6 +180,13 @@ const QuestionComponent = ({ questionData, submitGuess }: QuestionProps) => {
       image1={questionData.interestModel.image1}
       answer={questionData.answer}
       text={""}
+    />
+  ) : questionData.questionType ===
+    QuestionType.FINANCE_COUNTING_COINS_BILLS_PROBLEM ? (
+    <CountCoinsQuestion
+      coins={questionData.countingModel.coins}
+      answer={questionData.answer}
+      submitGuess={submitGuess}
     />
   ) : (
     <HorizontalEquation

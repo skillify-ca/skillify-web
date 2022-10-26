@@ -6,10 +6,14 @@ import { generateWordProblemQuestion } from "../questionGenerators/wordProblemQu
 import { generateHorizontalEquationQuestion } from "../questionGenerators/horizontalEquationQuestion";
 import { generateLongDivisionQuestion } from "../questionGenerators/longDivisionQuestion";
 import { getRandomBinaryQuestion } from "../questionGenerators/binaryQuestionGenerator";
+import { CoinType, Coin, CoinProp } from "../../../../components/questionTypes/finance/Coin";
+import { generateCountingQuestion } from "../questionGenerators/coinsQuestionsGenerator";
+
 import {
   AlgebraSolveQuestion,
   generateAlgebraQuestion,
 } from "../questionGenerators/algebraQuestionGenerator";
+
 
 const DEFAULT_QUESTION_TYPES = [
   QuestionType.HORIZONTAL_EQUATION,
@@ -89,6 +93,11 @@ export const generateQuestionForMath1Skill = (skill: Skill): Question => {
         DEFAULT_QUESTION_TYPES
       );
   }
+
+
+  if (skill===Skill.FINANCE_COUNTING_COINS_BILLS)
+  return generateCountingQuestion();
+
 
   const multiply = (a: number, b: number) => a * b;
   // Multiplication Skills
