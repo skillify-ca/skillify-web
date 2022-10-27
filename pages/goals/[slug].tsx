@@ -76,6 +76,19 @@ const EditGoalsPage = () => {
                 }));
               }}
             />
+            <p className="font-bold">Write An Actionable Goal Outline</p>
+
+            <textarea
+              className={`text-left p-2 border rounded-md shadow-md w-full md:w-1/2 text-murkrow `}
+              placeholder={goalDetail.goalNotes}
+              value={editedGoalValues.goalNotes}
+              onChange={(e) => {
+                setEditedGoalValues((prevState) => ({
+                  ...prevState,
+                  goalName: e.target.value,
+                }));
+              }}
+            />
             {editedGoalValues.goalName.length > 60 && (
               <p className="text-xs text-red-600">
                 please keep your goal under 60 characters

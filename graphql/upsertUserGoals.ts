@@ -11,6 +11,7 @@ export const UPSERT_USER_GOALS = gql`
         constraint: user_goals_pkey
         update_columns: [
           goalName
+          goalNotes
           isArchived
           isComplete
           updatedAt
@@ -22,6 +23,7 @@ export const UPSERT_USER_GOALS = gql`
       returning {
         id
         goalName
+        goalNotes
         isArchived
         isComplete
         targetDate

@@ -22,6 +22,7 @@ export const FETCH_USER_GOAL_DETAIL = gql`
     ) {
       createdAt
       goalName
+      goalNotes
       id
       updatedAt
       userId
@@ -39,6 +40,7 @@ export type FetchUserGoalsDataResponse = {
 export type UserGoalsData = {
   createdAt: Date;
   goalName: string;
+  goalNotes?: string;
   id: string;
   updatedAt: Date;
   userId: string;
