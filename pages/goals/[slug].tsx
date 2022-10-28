@@ -76,6 +76,12 @@ const EditGoalsPage = () => {
                 }));
               }}
             />
+
+            {editedGoalValues.goalName.length > 60 && (
+              <p className="text-xs text-red-600">
+                please keep your goal under 60 characters
+              </p>
+            )}
             <p className="font-bold">Write An Actionable Goal Outline</p>
 
             <textarea
@@ -85,15 +91,11 @@ const EditGoalsPage = () => {
               onChange={(e) => {
                 setEditedGoalValues((prevState) => ({
                   ...prevState,
-                  goalName: e.target.value,
+                  goalNotes: e.target.value,
                 }));
               }}
             />
-            {editedGoalValues.goalName.length > 60 && (
-              <p className="text-xs text-red-600">
-                please keep your goal under 60 characters
-              </p>
-            )}
+
             <p className="font-bold">Created On</p>
             <input
               type="text"
