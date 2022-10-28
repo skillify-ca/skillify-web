@@ -5,6 +5,7 @@ export const FETCH_USER_GOALS = gql`
     user_goals(where: { userId: { _eq: $userId } }) {
       createdAt
       goalName
+      goalNotes
       id
       updatedAt
       userId

@@ -95,7 +95,6 @@ const EditGoalsPage = () => {
                 }));
               }}
             />
-
             <p className="font-bold">Created On</p>
             <input
               type="text"
@@ -176,6 +175,7 @@ const EditGoalsPage = () => {
                   // this is a workaround to remove __typename from the gql response which causes mutation to fail
                   const editedGoalValuesForHasura = {
                     goalName: editedGoalValues.goalName,
+                    goalNotes: editedGoalValues.goalNotes,
                     userId: editedGoalValues.userId,
                     id: editedGoalValues.id,
                     isArchived: editedGoalValues.isArchived,
