@@ -18,6 +18,7 @@ import { useAuth } from "../../lib/authContext";
 import { useMutation } from "@apollo/client";
 import { UPSERT_USER_GOALS } from "../../graphql/upsertUserGoals";
 import { REMOVE_USER_GOAL } from "../../graphql/removeUserGoal";
+import { ArrowCircleRightIcon } from "@heroicons/react/outline";
 
 const EditGoalsPage = () => {
   const { user } = useAuth();
@@ -26,6 +27,7 @@ const EditGoalsPage = () => {
   const { slug } = router.query;
 
   const [editedGoalValues, setEditedGoalValues] = useState<UserGoalsData>();
+  const [editGoalNotes, setEditGoalNotes] = useState<boolean>();
 
   const [saveEditedGoals] = useMutation(UPSERT_USER_GOALS, {
     refetchQueries: [{ query: FETCH_USER_GOALS }],
@@ -82,12 +84,22 @@ const EditGoalsPage = () => {
                 please keep your goal under 60 characters
               </p>
             )}
-            <p className="font-bold">Write An Actionable Goal Outline</p>
-
+            <div className="flex">
+              <ArrowCircleRightIcon
+                className={
+                  editGoalNotes
+                    ? "h-5 w-5 mr-2  text-yellow-600"
+                    : " mr-2 h-5 w-5 "
+                }
+                onClick={() => setEditGoalNotes(!editGoalNotes)}
+              />
+              <p className="font-bold">Write An Actionable Goal Outline</p>
+            </div>
             <textarea
               className={`text-left p-2 border rounded-md shadow-md w-full md:w-1/2 text-murkrow `}
               placeholder={goalDetail.goalNotes}
               value={editedGoalValues.goalNotes}
+              disabled={!editGoalNotes}
               onChange={(e) => {
                 setEditedGoalValues((prevState) => ({
                   ...prevState,
@@ -95,6 +107,7 @@ const EditGoalsPage = () => {
                 }));
               }}
             />
+
             <p className="font-bold">Created On</p>
             <input
               type="text"
