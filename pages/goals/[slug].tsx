@@ -6,7 +6,7 @@ import {
 } from "@heroicons/react/solid";
 import { format } from "date-fns";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Button } from "../../components/ui/Button";
 import {
   FetchUserGoalsDataResponse,
@@ -25,7 +25,11 @@ const EditGoalsPage = () => {
 
   const router = useRouter();
   const { slug } = router.query;
+  const inputRef = useRef(null);
 
+  const resetFileInput = () => {
+    inputRef.current.value = null;
+  };
   const [editedGoalValues, setEditedGoalValues] = useState<UserGoalsData>();
   const [editGoalNotes, setEditGoalNotes] = useState<boolean>();
 
@@ -100,6 +104,7 @@ const EditGoalsPage = () => {
               placeholder={goalDetail.goalNotes}
               value={editedGoalValues.goalNotes}
               disabled={!editGoalNotes}
+              ref={inputRef}
               onChange={(e) => {
                 setEditedGoalValues((prevState) => ({
                   ...prevState,
@@ -107,6 +112,11 @@ const EditGoalsPage = () => {
                 }));
               }}
             />
+            <Button
+              label="Clear Text"
+              onClick={resetFileInput}
+              disabled={!editGoalNotes}
+            ></Button>
 
             <p className="font-bold">Created On</p>
             <input
