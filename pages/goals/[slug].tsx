@@ -18,7 +18,7 @@ import { useAuth } from "../../lib/authContext";
 import { useMutation } from "@apollo/client";
 import { UPSERT_USER_GOALS } from "../../graphql/upsertUserGoals";
 import { REMOVE_USER_GOAL } from "../../graphql/removeUserGoal";
-import { ArrowCircleRightIcon } from "@heroicons/react/outline";
+import { ArrowCircleRightIcon, PencilAltIcon } from "@heroicons/react/outline";
 import { FETCH_USER_GOALS_COUNT } from "../../graphql/fetchUserGoalsCount";
 
 const EditGoalsPage = () => {
@@ -89,11 +89,11 @@ const EditGoalsPage = () => {
               </p>
             )}
             <div className="flex">
-              <ArrowCircleRightIcon
+              <PencilAltIcon
                 className={
                   editGoalNotes
-                    ? "h-5 w-5 mr-2  text-yellow-600"
-                    : " mr-2 h-5 w-5 "
+                    ? "h-5 w-5 mr-2  text-yellow-600 cursor-pointer hover:text-yellow-600"
+                    : " mr-2 h-5 w-5 cursor-pointer hover:text-yellow-600"
                 }
                 onClick={() => setEditGoalNotes(!editGoalNotes)}
               />
