@@ -80,11 +80,25 @@ const EditGoalsPage = () => {
                 }));
               }}
             />
+
             {editedGoalValues.goalName.length > 60 && (
               <p className="text-xs text-red-600">
                 please keep your goal under 60 characters
               </p>
             )}
+            <p className="font-bold">Goal Notes</p>
+
+            <textarea
+              className={`text-left p-2 border rounded-md shadow-md w-full md:w-1/2 text-murkrow `}
+              placeholder={"write an actionable goal outline"}
+              value={editedGoalValues.goalNotes}
+              onChange={(e) => {
+                setEditedGoalValues((prevState) => ({
+                  ...prevState,
+                  goalNotes: e.target.value,
+                }));
+              }}
+            />
             <p className="font-bold">Created On</p>
             <input
               type="text"
@@ -165,6 +179,7 @@ const EditGoalsPage = () => {
                   // this is a workaround to remove __typename from the gql response which causes mutation to fail
                   const editedGoalValuesForHasura = {
                     goalName: editedGoalValues.goalName,
+                    goalNotes: editedGoalValues.goalNotes,
                     userId: editedGoalValues.userId,
                     id: editedGoalValues.id,
                     isArchived: editedGoalValues.isArchived,
