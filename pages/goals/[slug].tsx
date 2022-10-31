@@ -101,27 +101,27 @@ const EditGoalsPage = () => {
                 }
                 onClick={() => setEditGoalNotes(!editGoalNotes)}
               />
-             
-            <p className="font-bold">Goal Notes</p>
-            <textarea
-              className={`text-left p-2 border rounded-md shadow-md w-full md:w-1/2 text-murkrow `}
-              placeholder={"write an actionable goal outline"}
-              value={editedGoalValues.goalNotes}
-              disabled={!editGoalNotes}
-              ref={inputRef}
-              onChange={(e) => {
-                setEditedGoalValues((prevState) => ({
-                  ...prevState,
-                  goalNotes: e.target.value,
-                }));
-              }}
-            />
-            <Button
-              label="Clear Text"
-              onClick={resetFileInput}
-              disabled={!editGoalNotes}
-            ></Button>
 
+              <p className="font-bold">Goal Notes</p>
+              <textarea
+                className={`text-left p-2 border rounded-md shadow-md w-full md:w-1/2 text-murkrow `}
+                placeholder={"write an actionable goal outline"}
+                value={editedGoalValues.goalNotes}
+                disabled={!editGoalNotes}
+                ref={inputRef}
+                onChange={(e) => {
+                  setEditedGoalValues((prevState) => ({
+                    ...prevState,
+                    goalNotes: e.target.value,
+                  }));
+                }}
+              />
+              <Button
+                label="Clear Text"
+                onClick={resetFileInput}
+                disabled={!editGoalNotes}
+              ></Button>
+            </div>
             <p className="font-bold">Created On</p>
             <input
               type="text"
