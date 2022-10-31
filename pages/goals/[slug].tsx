@@ -19,6 +19,7 @@ import { useMutation } from "@apollo/client";
 import { UPSERT_USER_GOALS } from "../../graphql/upsertUserGoals";
 import { REMOVE_USER_GOAL } from "../../graphql/removeUserGoal";
 import { ArrowCircleRightIcon } from "@heroicons/react/outline";
+import { FETCH_USER_GOALS_COUNT } from "../../graphql/fetchUserGoalsCount";
 
 const EditGoalsPage = () => {
   const { user } = useAuth();
@@ -30,7 +31,10 @@ const EditGoalsPage = () => {
   const [editGoalNotes, setEditGoalNotes] = useState<boolean>();
 
   const [saveEditedGoals] = useMutation(UPSERT_USER_GOALS, {
-    refetchQueries: [{ query: FETCH_USER_GOALS }],
+    refetchQueries: [
+      { query: FETCH_USER_GOALS },
+      { query: FETCH_USER_GOALS_COUNT },
+    ],
     onCompleted: () => router.push("/goals"),
   });
 
