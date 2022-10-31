@@ -6,7 +6,7 @@ import {
 } from "@heroicons/react/solid";
 import { format } from "date-fns";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Button } from "../../components/ui/Button";
 import {
   FetchUserGoalsDataResponse,
@@ -18,6 +18,7 @@ import { useAuth } from "../../lib/authContext";
 import { useMutation } from "@apollo/client";
 import { UPSERT_USER_GOALS } from "../../graphql/upsertUserGoals";
 import { REMOVE_USER_GOAL } from "../../graphql/removeUserGoal";
+import { ArrowCircleRightIcon } from "@heroicons/react/outline";
 import { FETCH_USER_GOALS_COUNT } from "../../graphql/fetchUserGoalsCount";
 
 const EditGoalsPage = () => {
@@ -25,8 +26,13 @@ const EditGoalsPage = () => {
 
   const router = useRouter();
   const { slug } = router.query;
+  const inputRef = useRef(null);
 
+  const resetFileInput = () => {
+    inputRef.current.value = null;
+  };
   const [editedGoalValues, setEditedGoalValues] = useState<UserGoalsData>();
+  const [editGoalNotes, setEditGoalNotes] = useState<boolean>();
 
   const [saveEditedGoals] = useMutation(UPSERT_USER_GOALS, {
     refetchQueries: [
@@ -86,12 +92,24 @@ const EditGoalsPage = () => {
                 please keep your goal under 60 characters
               </p>
             )}
-            <p className="font-bold">Goal Notes</p>
+            <div className="flex">
+              <ArrowCircleRightIcon
+                className={
+                  editGoalNotes
+                    ? "h-5 w-5 mr-2  text-yellow-600"
+                    : " mr-2 h-5 w-5 "
+                }
+                onClick={() => setEditGoalNotes(!editGoalNotes)}
+              />
 
+              <p className="font-bold">Goal Notes</p>
+            </div>
             <textarea
               className={`text-left p-2 border rounded-md shadow-md w-full md:w-1/2 text-murkrow `}
               placeholder={"write an actionable goal outline"}
               value={editedGoalValues.goalNotes}
+              disabled={!editGoalNotes}
+              ref={inputRef}
               onChange={(e) => {
                 setEditedGoalValues((prevState) => ({
                   ...prevState,
@@ -99,6 +117,12 @@ const EditGoalsPage = () => {
                 }));
               }}
             />
+            <Button
+              label="Clear Text"
+              onClick={resetFileInput}
+              disabled={!editGoalNotes}
+            ></Button>
+
             <p className="font-bold">Created On</p>
             <input
               type="text"
