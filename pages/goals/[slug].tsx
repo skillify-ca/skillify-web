@@ -86,7 +86,7 @@ const EditGoalsPage = () => {
                 please keep your goal under 60 characters
               </p>
             )}
-            <p className="font-bold">Write An Actionable Goal Outline</p>
+            <p className="font-bold">Goal Notes</p>
 
             <textarea
               className={`text-left p-2 border rounded-md shadow-md w-full md:w-1/2 text-murkrow `}
