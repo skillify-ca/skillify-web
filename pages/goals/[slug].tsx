@@ -97,11 +97,11 @@ const EditGoalsPage = () => {
                 }
                 onClick={() => setEditGoalNotes(!editGoalNotes)}
               />
-              <p className="font-bold">Write An Actionable Goal Outline</p>
+              <p className="font-bold">Goal Notes</p>
             </div>
             <textarea
               className={`text-left p-2 border rounded-md shadow-md w-full md:w-1/2 text-murkrow `}
-              placeholder={goalDetail.goalNotes}
+              placeholder={"write an actionable goal outline"}
               value={editedGoalValues.goalNotes}
               disabled={!editGoalNotes}
               onChange={(e) => {
