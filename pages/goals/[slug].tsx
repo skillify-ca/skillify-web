@@ -89,6 +89,7 @@ const EditGoalsPage = () => {
               </p>
             )}
             <div className="flex">
+              <p className="px-2 font-bold">Goal Notes</p>
               <PencilAltIcon
                 className={
                   editGoalNotes
@@ -97,7 +98,6 @@ const EditGoalsPage = () => {
                 }
                 onClick={() => setEditGoalNotes(!editGoalNotes)}
               />
-              <p className="font-bold">Goal Notes</p>
             </div>
             <textarea
               className={`text-left p-2 border rounded-md shadow-md w-full md:w-1/2 text-murkrow `}
