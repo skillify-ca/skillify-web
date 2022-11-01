@@ -111,7 +111,6 @@ const EditGoalsPage = () => {
                 }));
               }}
             />
-
             <p className="font-bold">Created On</p>
             <input
               type="text"
