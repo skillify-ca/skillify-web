@@ -38,13 +38,13 @@ export default function GoalsSection({
             new Date()
           );
           if (daysRemaining <= 0 && !goal.isComplete && !goal.isArchived) {
-            goalStyle = "text-black bg-red-500 rounded-xl p-2";
+            goalStyle = "text-black bg-red-400 rounded-xl p-2";
           } else if (
             daysRemaining <= 3 &&
             !goal.isComplete &&
             !goal.isArchived
           ) {
-            goalStyle = "text-black-500 bg-yellow-500 rounded-xl p-2";
+            goalStyle = "text-black-500 bg-yellow-300 rounded-xl p-2";
           } else {
             goalStyle = " text-black-500";
           }
