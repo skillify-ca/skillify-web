@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAuth } from "../../../lib/authContext";
-import { Course } from "../../../pages/api/explore";
+import { useAuth } from "../lib/authContext";
+import { Course } from "../pages/api/explore";
 
 type CourseListItemProps = {
   course: Course;

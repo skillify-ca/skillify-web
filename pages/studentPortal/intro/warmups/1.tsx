@@ -1,20 +1,17 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Card, { CardData } from "../../../../components/coding/Card";
 import LessonComponent, {
   LessonComponentData,
   Resource,
 } from "../../../../components/coding/studentPortal/LessonComponent";
 import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 import { Button } from "../../../../components/ui/Button";
-import Navbar from "../../../../components/ui/Navbar";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
 import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
-import { lessonSelector, setTotalSteps } from "../../../../redux/lessonSlice";
 
 const Warmups1 = ({ lessonComponents }) => {
   const { user } = useAuth();
@@ -41,17 +38,10 @@ const Warmups1 = ({ lessonComponents }) => {
       router.push("/studentPortal/intro/HTML/1");
     });
   };
-  const dispatch = useDispatch();
-  const lessonState = useSelector(lessonSelector);
 
-  useEffect(() => {
-    dispatch(setTotalSteps(4));
-  }, []);
   return (
     <div className="grid grid-cols-1 gap-8 px-4 pb-16 md:px-8 lg:px-12">
-      <ProgressBar
-        completed={(lessonState.currentStep * 100) / lessonState.totalSteps}
-      />
+      <ProgressBar completed={100} />
       {lessonComponents.map((it) => (
         <LessonComponent data={it} />
       ))}

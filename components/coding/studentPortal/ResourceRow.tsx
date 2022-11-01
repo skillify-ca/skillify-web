@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { incrementProgress } from "../../../redux/lessonSlice";
 import { Button } from "../../ui/Button";
 
 export type ResourceRowProps = {
@@ -19,11 +18,6 @@ export const ResourceRow: React.FC<ResourceRowProps> = ({
   disabled,
   link,
 }: ResourceRowProps) => {
-  const dispatch = useDispatch();
-
-  const handleViewClick = () => {
-    dispatch(incrementProgress(null));
-  };
   return (
     <div className="grid grid-cols-1 gap-4 p-6 bg-white shadow-lg dark:bg-gray-900 lg:grid-cols-resource-row">
       <div className="flex items-center">
@@ -35,7 +29,7 @@ export const ResourceRow: React.FC<ResourceRowProps> = ({
       </div>
       <div className="flex items-center sm:justify-end">
         <a target="_blank" href={link} rel="noopener noreferrer">
-          <Button label="View" disabled={disabled} onClick={handleViewClick} />
+          <Button label="View" disabled={disabled} />
         </a>
       </div>
     </div>
