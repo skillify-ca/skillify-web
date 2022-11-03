@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-import Quiz from "./quiz/Quiz";
+import React, {
+  HTMLInputTypeAttribute,
+  ReactComponentElement,
+  useState,
+} from "react";
 import { Sandpack } from "@codesandbox/sandpack-react";
 import HintRow from "./HintRow";
 
@@ -33,7 +36,7 @@ export type AssignmentComponentData =
       component: "submission";
       codeSandboxTitle: string;
       link: string;
-      submissionInputBox: HTMLInputElement | null;
+      submissionInputBox: React.ReactNode | null;
     }
   | {
       component: "loom-video";
