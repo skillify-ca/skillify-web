@@ -23,9 +23,9 @@ const HomePage = () => {
 
   const defaultCopy: LandingPageCopy = {
     headerText: [
-      { text: "Helping" },
-      { text: "people", highlight: true },
-      { text: "start a " },
+      { text: "Coaching" },
+      { text: "university graduates", highlight: true },
+      { text: "to start a " },
       { text: "career", highlight: true },
       { text: "in tech" },
     ],
