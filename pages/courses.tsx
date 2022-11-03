@@ -1,9 +1,7 @@
-import Link from "next/link";
-import Navbar from "../components/ui/Navbar";
-import CourseListItem from "../components/math/practiceTracker/CourseListItem";
 import courseData from "./api/explore";
 import { useAuth } from "../lib/authContext";
 import moment from "moment";
+import CourseListItem from "../components/CourseListeItem";
 
 const Courses = () => {
   const { user } = useAuth();
