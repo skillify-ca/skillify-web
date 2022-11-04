@@ -1,8 +1,4 @@
-import React, {
-  HTMLInputTypeAttribute,
-  ReactComponentElement,
-  useState,
-} from "react";
+import React, { useState } from "react";
 import { Sandpack } from "@codesandbox/sandpack-react";
 import HintRow from "./HintRow";
 
@@ -11,9 +7,6 @@ export type Hint = {
   icon?: string;
   link?: string;
 };
-
-const [submissionInput, setSubmissionInput] =
-  useState<AssignmentComponentData[]>();
 
 export type AssignmentComponentData =
   | {
@@ -36,7 +29,6 @@ export type AssignmentComponentData =
       component: "submission";
       codeSandboxTitle: string;
       link: string;
-      submissionInputBox: React.ReactNode | null;
     }
   | {
       component: "loom-video";
@@ -59,6 +51,9 @@ export type AssignmentComponentProps = {
 export default function AssignmentComponent({
   data,
 }: AssignmentComponentProps) {
+  //   const [submissionInput, setSubmissionInput] =
+  //     useState<AssignmentComponentData[]>();
+
   if (data.component === "title") {
     return <h1 className="text-5xl font-bold">{data.text}</h1>;
   }
@@ -79,7 +74,7 @@ export default function AssignmentComponent({
   if (data.component === "hint-list") {
     return (
       <>
-        <h1 className="font-bold">Resources</h1>
+        <h1 className="font-bold">Hints</h1>
         <div className="flex flex-col gap-8">
           {data.hintRow.map((it, index) => (
             <HintRow
@@ -100,19 +95,6 @@ export default function AssignmentComponent({
         <div className="aspect-w-16 aspect-h-9">
           <iframe className="rounded-xl" src={data.link} />
         </div>
-        <input
-          className={`text-left p-2 border rounded-md shadow-md w-full md:w-1/2 text-murkrow ${
-            data.submissionInputBox.maxLength <= 200 ? "" : " border-red-600"
-          }`}
-          placeholder={"enter your link here"}
-          value={data.submissionInputBox[0]}
-          onChange={(e) => {
-            setSubmissionInput((prevState) => ({
-              ...prevState,
-              submissionInputBox: e.target.value,
-            }));
-          }}
-        />
       </>
     );
   }

@@ -14,7 +14,7 @@ const React2 = ({ assignmentComponents }) => {
   return (
     <>
       <div className="grid grid-cols-1 gap-8 px-4 pt-4 m-8 sm:px-12">
-        {assignmentComponents.map((it) => (
+        {assignmentComponents.map((it: AssignmentComponentData) => (
           <AssignmentComponent data={it} />
         ))}
       </div>
@@ -63,13 +63,6 @@ export async function getServerSideProps({ params }) {
       component: "submission",
       codeSandboxTitle: "title",
       link: "https://codesandbox.io/embed/skillify-messy-web-page-xk00mt?fontsize=14&hidenavigation=1&theme=dark",
-      submissionInputBox: (
-        <input
-          className={`text-left p-2 border rounded-md shadow-md w-full md:w-1/2 text-murkrow 
-          }`}
-          placeholder={"enter your link here"}
-        />
-      ),
     },
     {
       component: "code-snippet",
