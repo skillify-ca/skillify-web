@@ -14,7 +14,7 @@ const React2 = ({ assignmentComponents }) => {
   return (
     <>
       <div className="grid grid-cols-1 gap-8 px-4 pt-4 m-8 sm:px-12">
-        {assignmentComponents.map((it: AssignmentComponentData) => (
+        {assignmentComponents.map((it) => (
           <AssignmentComponent data={it} />
         ))}
       </div>
