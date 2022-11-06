@@ -1,29 +1,30 @@
+import { useMutation } from "@apollo/client";
 import Link from "next/link";
+import router from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { incrementProgress } from "../../../redux/lessonSlice";
 import { Button } from "../../ui/Button";
+
+export interface AssignmentInputBoxProps {
+  assignmentInputBox: string;
+  placeholder: string;
+}
 
 export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
   assignmentInputBox,
-  id,
-  type,
-  value,
-  validate,
   placeholder,
-  onChange,
-}: AssingmentInputBoxProps) => {
+}: AssignmentInputBoxProps) => {
   const dispatch = useDispatch();
 
   const [submissionInput, setSubmissionInput] = useState("");
-  const [savedInput, setSavedInput] = useState<UserGoalsData>();
-  const [saveAssignmentInput] = useMutation(UPSERT_USER_GOALS, {
-    refetchQueries: [
-      { query: FETCH_USER_GOALS },
-      { query: FETCH_USER_GOALS_COUNT },
-    ],
-    onCompleted: () => router.push("/goals"),
-  });
+  const [savedInput, setSavedInput] = useState<AssignmentInputBoxProps>();
+  //   const [saveAssignmentInput] = useMutation(UPSERT_USER_GOALS, {
+  //     refetchQueries: [
+  //       { query: FETCH_USER_GOALS },
+  //       { query: FETCH_USER_GOALS_COUNT },
+  //     ],
+  // //     onCompleted: () => router.push("/studentPortal/web/React/assignments/test"),
+  //   });
   useEffect(() => {
     (document.getElementById("input") as HTMLInputElement).value = "";
   }, []);
@@ -35,12 +36,9 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
         id="input"
         type="string"
         value={submissionInput}
-        placeholder={"please paste your sandbox link here."}
+        placeholder={placeholder}
         onChange={(e) => {
-          setSubmissionInput((prevState) => ({
-            ...prevState,
-            assignmentInputBox: e.target.value,
-          }));
+          setSubmissionInput(e.target.value);
         }}
       />
       <div className="col-start-1 mt-8">

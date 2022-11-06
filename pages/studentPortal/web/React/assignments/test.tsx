@@ -1,5 +1,6 @@
 import { Router, useRouter } from "next/router";
 import React from "react";
+import AssignmentInputBox from "../../../../../components/coding/studentPortal/AssignmentInputBox";
 import AssignmentComponent, {
   AssignmentComponentData,
 } from "../../../../../components/coding/studentPortal/AssingmentComponent";
@@ -14,7 +15,7 @@ const React2 = ({ assignmentComponents }) => {
   return (
     <>
       <div className="grid grid-cols-1 gap-8 px-4 pt-4 m-8 sm:px-12">
-        {assignmentComponents.map((it) => (
+        {assignmentComponents.map((it: AssignmentComponentData) => (
           <AssignmentComponent data={it} />
         ))}
       </div>
@@ -63,6 +64,7 @@ export async function getServerSideProps({ params }) {
       component: "submission",
       codeSandboxTitle: "title",
       link: "https://codesandbox.io/embed/skillify-messy-web-page-xk00mt?fontsize=14&hidenavigation=1&theme=dark",
+      placeholder: "hello",
     },
     {
       component: "code-snippet",
