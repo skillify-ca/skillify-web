@@ -24,6 +24,7 @@ export type AssignmentComponentData =
     }
   | {
       component: "output";
+      title: string;
       screenshot: string;
     }
   | {
@@ -49,7 +50,6 @@ export type AssignmentComponentData =
 export type AssignmentComponentProps = {
   data: AssignmentComponentData;
 };
-// create input box component similar to hint row and call it into data so that I can manipulate it in this component.
 export default function AssignmentComponent({
   data,
 }: AssignmentComponentProps) {
@@ -106,6 +106,13 @@ export default function AssignmentComponent({
           allowFullScreen
           className="w-full h-96"
         ></iframe>
+      </div>
+    );
+  } else if (data.component === "output") {
+    return (
+      <div className="pb-56 mb-8 h-96">
+        <p>{data.title}</p>
+        <img src={data.screenshot} className="object-cover w-64 h-32 mb-4" />
       </div>
     );
   } else {

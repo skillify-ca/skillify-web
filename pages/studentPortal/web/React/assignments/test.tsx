@@ -30,69 +30,46 @@ export async function getServerSideProps({ params }) {
   const assignmentComponents: AssignmentComponentData[] = [
     {
       component: "title",
-      text: "Functional Components",
+      text: "Assignment Title Goes Here",
     },
     {
       component: "hint-list",
       hintRow: [
         {
-          description:
-            "The official React documentation explaining the concept of components.",
-          icon: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
-          link: "https://reactjs.org/docs/components-and-props.html",
+          description: "Write Hint #1 here.",
+          icon: "http://www.w3.org/2000/svg",
+          link: "",
+        },
+        {
+          description: "Write Hint #2 here.",
+          icon: "http://www.w3.org/2000/svg",
+          link: "",
         },
       ],
     },
     {
       component: "prompt",
-      text: "Components are the building blocks of React apps. You can use components to split up the UI into independent, reusable pieces. In this tutorial we will take HTML that renders a table of expenses, and turn it into an efficient series of React components. A component - at its simplest form - is just a Javascript function that returns HTML to be rendered on a page. ",
+      text: "Please outline the directions for what the student is expected to achieve. ",
     },
 
     {
       component: "code-snippet",
-      text: "The following is a function that returns the text `Hello World`:",
+      text: "If there is a snippet of code that will provide an example, it should go here",
       code: `export default function HelloComponent() {
   return <div>Hello World</div>;
 }`,
     },
     {
       component: "output",
-      screenshot:
-        "We can use functional components to make our code cleaner and less repeatable. Take a look at this basic HTML page displaying a table of expenses:",
+      title: "This is the desired output.",
+      screenshot: "/images/assignments/screenshotGoalNotes.png",
     },
     {
       component: "submission",
-      codeSandboxTitle: "title",
-      link: "https://codesandbox.io/embed/skillify-messy-web-page-xk00mt?fontsize=14&hidenavigation=1&theme=dark",
-      placeholder: "hello",
-    },
-    {
-      component: "code-snippet",
-      text: "We could create a `Header` function component for the header:",
-      code: `export default function ExpenseHeader() {
-  return (
-    <div className="flex flex-row space-x-2">
-      <p>date</p>
-      <p>name</p>
-      <p>amount</p>
-      <p>type</p>
-    </div>
-  );
-}`,
-    },
-    {
-      component: "code-snippet",
-      text: "We could create a `ExpenseRow` function component for each row:",
-      code: `export default function ExpenseItemOne() {
-  return (
-    <div className="flex flex-row space-x-2">
-      <p>2022-10-01</p>
-      <p>Restaurant</p>
-      <p>50.23</p>
-      <p>Eating Out</p>
-    </div>
-  );
-}`,
+      codeSandboxTitle:
+        "Please submit your assignment by pasting a link in the box below.",
+      link: "",
+      placeholder: "Assignment link goes here",
     },
     {
       component: "loom-video",
