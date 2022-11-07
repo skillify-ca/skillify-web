@@ -1,5 +1,6 @@
+import { ArrowCircleRightIcon } from "@heroicons/react/outline";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { incrementProgress } from "../../../redux/lessonSlice";
 import { Button } from "../../ui/Button";
@@ -17,24 +18,34 @@ export const HintRow: React.FC<HintRowProps> = ({
   disabled,
   link,
 }: HintRowProps) => {
-  const dispatch = useDispatch();
-
+  const [showHint, setShowHint] = useState<boolean>();
+  const [showDescription, setShowDescription] = useState<boolean>();
   const handleViewClick = () => {
-    dispatch(incrementProgress(null));
+    setShowHint(!showHint);
+    setShowDescription(!showDescription);
   };
   return (
     <div className="grid grid-cols-1 gap-4 p-6 bg-white shadow-lg dark:bg-gray-900 lg:grid-cols-resource-row">
       <div className="flex items-center">
-        <img src={icon} className="w-16 h-16 " />
+        <ArrowCircleRightIcon
+          className={
+            showHint
+              ? "h-8 w-8 mr-2  text-yellow-600 cursor-pointer hover:text-yellow-600"
+              : " mr-2 h-8 w-8 cursor-pointer hover:text-yellow-600"
+          }
+          onClick={handleViewClick}
+        />
       </div>
       <div className="flex flex-col">
-        <p className="dark:text-white">{description}</p>
+        <p
+          className={
+            showDescription ? "text-black dark: text-white" : "text-black"
+          }
+        >
+          {description}
+        </p>
       </div>
-      <div className="flex items-center sm:justify-end">
-        <a target="_blank" href={link} rel="noopener noreferrer">
-          <Button label="View" disabled={disabled} onClick={handleViewClick} />
-        </a>
-      </div>
+      <div className="flex items-center sm:justify-end"></div>
     </div>
   );
 };
