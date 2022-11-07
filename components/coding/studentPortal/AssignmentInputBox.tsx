@@ -29,9 +29,9 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
     (document.getElementById("input") as HTMLInputElement).value = "";
   }, []);
   return (
-    <div className="grid grid-cols-1 gap-4 p-6 bg-white shadow-lg dark:bg-gray-900 lg:grid-cols-resource-row">
+    <div className="grid grid-cols-1 gap-4 p-6 bg-white shadow-lg dark:bg-gray-900 ">
       <input
-        className={`text-left p-2 border rounded-md shadow-md w-full md:w-1/2 text-murkrow 
+        className={`text-left p-2 border rounded-md shadow-md w-full  text-murkrow 
               }`}
         id="input"
         type="string"
