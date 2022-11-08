@@ -37,12 +37,10 @@ export async function getServerSideProps({ params }) {
       hintRow: [
         {
           description: "Write Hint #1 here.",
-          icon: "http://www.w3.org/2000/svg",
           link: "",
         },
         {
           description: "Write Hint #2 here.",
-          icon: "http://www.w3.org/2000/svg",
           link: "",
         },
       ],
@@ -52,13 +50,6 @@ export async function getServerSideProps({ params }) {
       text: "Please outline the directions for what the student is expected to achieve. ",
     },
 
-    {
-      component: "code-snippet",
-      text: "If there is a snippet of code that will provide an example, it should go here",
-      code: `export default function HelloComponent() {
-  return <div>Hello World</div>;
-}`,
-    },
     {
       component: "output",
       title: "This is the desired output.",
