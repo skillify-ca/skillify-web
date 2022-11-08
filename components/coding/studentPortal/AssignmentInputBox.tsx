@@ -8,27 +8,21 @@ import { UPSERT_USER_CODING_ASSIGNMENTS } from "../../../graphql/upsertUserCodin
 import { Button } from "../../ui/Button";
 
 export interface AssignmentInputBoxProps {
-  assignmentInputBox: string;
   placeholder: string;
   submission_link: string;
 }
 
 export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
-  assignmentInputBox,
   placeholder,
   submission_link,
 }: AssignmentInputBoxProps) => {
-  const dispatch = useDispatch();
-
   const [submissionInput, setSubmissionInput] =
     useState<AssignmentInputBoxProps>();
   const [saveAssignmentInput] = useMutation(UPSERT_USER_CODING_ASSIGNMENTS, {
     refetchQueries: [{ query: FETCH_USER_CODING_ASSIGNMENTS }],
     onCompleted: () => router.push("/studentPortal/web/React/assignments/test"),
   });
-  useEffect(() => {
-    (document.getElementById("input") as HTMLInputElement).value = "";
-  }, []);
+
   return (
     <div className="grid grid-cols-1 gap-4 p-6 bg-white shadow-lg dark:bg-gray-900 ">
       <input

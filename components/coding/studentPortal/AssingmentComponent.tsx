@@ -87,8 +87,8 @@ export default function AssignmentComponent({
       <>
         <h1 className="font-bold">{data.codeSandboxTitle}</h1>
         <AssignmentInputBox
-          assignmentInputBox=""
           placeholder={data.placeholder}
+          submission_link={""}
         />
         <div className="aspect-w-16 aspect-h-9">
           <iframe className="rounded-xl" src={data.link} />
