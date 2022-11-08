@@ -1,10 +1,9 @@
 import { useMutation } from "@apollo/client";
-import Link from "next/link";
 import router from "next/router";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import { FETCH_USER_CODING_ASSIGNMENTS } from "../../../graphql/fetchUserCodingAssignments";
 import { UPSERT_USER_CODING_ASSIGNMENTS } from "../../../graphql/upsertUserCodingAssignments";
+import { useAuth } from "../../../lib/authContext";
 import { Button } from "../../ui/Button";
 
 export interface AssignmentInputBoxProps {
@@ -16,12 +15,13 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
   placeholder,
   submission_link,
 }: AssignmentInputBoxProps) => {
-  const [submissionInput, setSubmissionInput] =
-    useState<AssignmentInputBoxProps>();
+  const [submissionInput, setSubmissionInput] = useState("");
   const [saveAssignmentInput] = useMutation(UPSERT_USER_CODING_ASSIGNMENTS, {
     refetchQueries: [{ query: FETCH_USER_CODING_ASSIGNMENTS }],
     onCompleted: () => router.push("/studentPortal/web/React/assignments/test"),
   });
+
+  const { user } = useAuth();
 
   return (
     <div className="grid grid-cols-1 gap-4 p-6 bg-white shadow-lg dark:bg-gray-900 ">
@@ -30,13 +30,10 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
               }`}
         id="input"
         type="string"
-        value={submission_link}
+        value={submissionInput}
         placeholder={placeholder}
         onChange={(e) => {
-          setSubmissionInput((prevState) => ({
-            ...prevState,
-            submission_link: e.target.value,
-          }));
+          setSubmissionInput(e.target.value);
         }}
       />
       <div className="col-start-1 mt-8">

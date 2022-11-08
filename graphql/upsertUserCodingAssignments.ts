@@ -5,29 +5,21 @@ import { gql } from "@apollo/client";
 
 //question on how you decide what information to upsert -- which columns?
 export const UPSERT_USER_CODING_ASSIGNMENTS = gql`
-  mutation upsertUserCodingAssignments($objects: [user_coding_assignments_insert_input!]!) {
-    insert_user_coding_assignments(
+  mutation upsertUserCodingAssignments(
+    $objects: [user_assignment_submissions_insert_input!]!
+  ) {
+    insert_user_assignment_submissions(
       objects: $objects
       on_conflict: {
-        constraint: user_coding_assignments_pkey
-        update_columns: [
-          submission_link
-          assignment_id
-        ]
+        constraint: user_assignment_submissions_pkey
+        update_columns: [submission_link]
       }
     ) {
       affected_rows
       returning {
         user_id
-        assignment_id
-        hasViewed
-        id
-        node_id
         submission_link
-        template_link
-        unit_id
       }
     }
   }
 `;
-
