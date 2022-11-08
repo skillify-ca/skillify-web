@@ -34,10 +34,6 @@ export type AssignmentComponentData =
       placeholder: string;
     }
   | {
-      component: "loom-video";
-      videoId: string;
-    }
-  | {
       component: "custom";
       children: React.ReactNode;
     }
@@ -72,12 +68,7 @@ export default function AssignmentComponent({
         <h1 className="font-bold">Hints</h1>
         <div className="flex flex-col gap-8">
           {data.hintRow.map((it, index) => (
-            <HintRow
-              description={it.description}
-              disabled={false}
-              icon={it.icon}
-              link={it.link}
-            />
+            <HintRow description={it.description} link={it.link} />
           ))}
         </div>
       </>
@@ -94,19 +85,6 @@ export default function AssignmentComponent({
           <iframe className="rounded-xl" src={data.link} />
         </div>
       </>
-    );
-  } else if (data.component === "loom-video") {
-    return (
-      <div className="pb-56 mb-8 h-96">
-        <iframe
-          src={`https://www.loom.com/embed/${data.videoId}`}
-          frameBorder="0"
-          webkit-allowfullscreen
-          moz-allowfullscreen
-          allowFullScreen
-          className="w-full h-96"
-        ></iframe>
-      </div>
     );
   } else if (data.component === "output") {
     return (

@@ -62,11 +62,6 @@ export async function getServerSideProps({ params }) {
       link: "",
       placeholder: "Assignment link goes here",
     },
-    {
-      component: "loom-video",
-      videoId:
-        "https://codesandbox.io/embed/skillify-componentized-react-page-z1hego?fontsize=14&hidenavigation=1&theme=dark",
-    },
   ];
   return { props: { assignmentComponents } };
 }
