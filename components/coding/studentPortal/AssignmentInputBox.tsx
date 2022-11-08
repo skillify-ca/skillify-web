@@ -40,14 +40,9 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
         <Button
           label="Save"
           onClick={() => {
-            // this is a workaround to remove __typename from the gql response which causes mutation to fail
-            const savedInputForHasura = {
-              submission_link: submissionInput.submission_link,
-            };
-
             saveAssignmentInput({
               variables: {
-                objects: savedInputForHasura,
+                objects: "fill this in here",
               },
             });
           }}
