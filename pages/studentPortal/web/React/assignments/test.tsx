@@ -37,7 +37,7 @@ export async function getServerSideProps({ params }) {
       hintRow: [
         {
           description: "Write Hint #1 here.",
-          link: "",
+          link: "https://www.google.com",
         },
         {
           description: "Write Hint #2 here.",

@@ -1,8 +1,6 @@
 import { ArrowCircleRightIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Button } from "../../ui/Button";
 
 export type HintRowProps = {
   description: string;
@@ -30,7 +28,9 @@ export const HintRow: React.FC<HintRowProps> = ({
         />
       </div>
       <div className="flex flex-col">
-        <p className={showHint ? "text-black" : "text-white"}>{description}</p>
+        <p className={showHint ? "text-black" : "text-white"}>
+          {description} {link && <Link href={link}>(link)</Link>}
+        </p>
       </div>
       <div className="flex items-center sm:justify-end"></div>
     </div>
