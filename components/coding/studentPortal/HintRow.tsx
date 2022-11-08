@@ -2,7 +2,6 @@ import { ArrowCircleRightIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { incrementProgress } from "../../../redux/lessonSlice";
 import { Button } from "../../ui/Button";
 
 export type HintRowProps = {
@@ -23,6 +22,7 @@ export const HintRow: React.FC<HintRowProps> = ({
   const handleViewClick = () => {
     setShowHint(!showHint);
     setShowDescription(!showDescription);
+    console.log("hint" + showHint);
   };
   return (
     <div className="grid grid-cols-1 gap-4 p-6 bg-white shadow-lg dark:bg-gray-900 lg:grid-cols-resource-row">

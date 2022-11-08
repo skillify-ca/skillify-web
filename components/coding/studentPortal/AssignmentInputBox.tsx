@@ -3,28 +3,29 @@ import Link from "next/link";
 import router from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { FETCH_USER_CODING_ASSIGNMENTS } from "../../../graphql/fetchUserCodingAssignments";
+import { UPSERT_USER_CODING_ASSIGNMENTS } from "../../../graphql/upsertUserCodingAssignments";
 import { Button } from "../../ui/Button";
 
 export interface AssignmentInputBoxProps {
   assignmentInputBox: string;
   placeholder: string;
+  submission_link: string;
 }
 
 export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
   assignmentInputBox,
   placeholder,
+  submission_link,
 }: AssignmentInputBoxProps) => {
   const dispatch = useDispatch();
 
-  const [submissionInput, setSubmissionInput] = useState("");
-  const [savedInput, setSavedInput] = useState<AssignmentInputBoxProps>();
-  //   const [saveAssignmentInput] = useMutation(UPSERT_USER_GOALS, {
-  //     refetchQueries: [
-  //       { query: FETCH_USER_GOALS },
-  //       { query: FETCH_USER_GOALS_COUNT },
-  //     ],
-  // //     onCompleted: () => router.push("/studentPortal/web/React/assignments/test"),
-  //   });
+  const [submissionInput, setSubmissionInput] =
+    useState<AssignmentInputBoxProps>();
+  const [saveAssignmentInput] = useMutation(UPSERT_USER_CODING_ASSIGNMENTS, {
+    refetchQueries: [{ query: FETCH_USER_CODING_ASSIGNMENTS }],
+    onCompleted: () => router.push("/studentPortal/web/React/assignments/test"),
+  });
   useEffect(() => {
     (document.getElementById("input") as HTMLInputElement).value = "";
   }, []);
@@ -35,10 +36,13 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
               }`}
         id="input"
         type="string"
-        value={submissionInput}
+        value={submission_link}
         placeholder={placeholder}
         onChange={(e) => {
-          setSubmissionInput(e.target.value);
+          setSubmissionInput((prevState) => ({
+            ...prevState,
+            submission_link: e.target.value,
+          }));
         }}
       />
       <div className="col-start-1 mt-8">
@@ -47,7 +51,7 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
           onClick={() => {
             // this is a workaround to remove __typename from the gql response which causes mutation to fail
             const savedInputForHasura = {
-              assignmentInputBox: savedInput.assignmentInputBox,
+              submission_link: submissionInput.submission_link,
             };
 
             saveAssignmentInput({
