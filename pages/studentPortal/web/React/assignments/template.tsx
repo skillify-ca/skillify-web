@@ -1,5 +1,5 @@
 import { Router, useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import AssignmentComponent, {
   AssignmentComponentData, Stage,
 } from "../../../../../components/coding/studentPortal/AssignmentComponent";
@@ -7,7 +7,6 @@ import { Button } from "../../../../../components/ui/Button";
 
 const React2 = ({ assignmentComponents }) => {
   const router = useRouter();
-
   const handleContinue = () => {
     router.push("/studentPortal/web/React/assignments/template");
   };
@@ -26,6 +25,8 @@ const React2 = ({ assignmentComponents }) => {
 };
 
 export async function getServerSideProps({ params }) {
+
+  const [stage, setStage]=useState(0)
   const assignmentComponents: AssignmentComponentData[] = [
     {
       component: "title",
@@ -83,7 +84,7 @@ export async function getServerSideProps({ params }) {
       text: "Please outline the directions for what the student is expected to achieve. ",
     },
   ];
-  return { props: {stage === Stage.INCOMPLETE ? (assignmentComponents): stage === Stage.SUBMITTED ? (assignmentComponentsSubmittedStage): stage=== Stage.COMPLETED ?(assignmentComponentsCompletedStage) } };
+  return { props: stage === Stage.INCOMPLETE ? (assignmentComponents): stage === Stage.SUBMITTED ? (assignmentComponentsSubmittedStage): stage=== Stage.COMPLETED ?(assignmentComponentsCompletedStage)
 }
-
+}
 export default React2;
