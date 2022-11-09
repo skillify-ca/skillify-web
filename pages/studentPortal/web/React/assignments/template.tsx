@@ -10,7 +10,7 @@ const React2 = ({ assignmentComponents }) => {
   const router = useRouter();
 
   const handleContinue = () => {
-    router.push("/studentPortal/web/React/assignments/test");
+    router.push("/studentPortal/web/React/assignments/template");
   };
   return (
     <>
