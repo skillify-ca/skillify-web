@@ -1,7 +1,7 @@
 import { Router, useRouter } from "next/router";
 import React from "react";
 import AssignmentComponent, {
-  AssignmentComponentData,
+  AssignmentComponentData, Stage,
 } from "../../../../../components/coding/studentPortal/AssignmentComponent";
 import { Button } from "../../../../../components/ui/Button";
 
@@ -67,7 +67,23 @@ export async function getServerSideProps({ params }) {
       videoId: "e85860979abd403380cf9a8eb2438f5d",
     },
   ];
-  return { props: { assignmentComponents } };
+
+  const assignmentComponentsSubmittedStage: AssignmentComponentData[] = [
+    
+    {
+      component: "loom-video",
+      text: "This is where your feedback goes",
+      videoId: "e85860979abd403380cf9a8eb2438f5d",
+    },
+  ];
+  const assignmentComponentsCompletedStage: AssignmentComponentData[] = [
+    
+    {
+      component: "prompt",
+      text: "Please outline the directions for what the student is expected to achieve. ",
+    },
+  ];
+  return { props: {stage === Stage.INCOMPLETE ? (assignmentComponents): stage === Stage.SUBMITTED ? (assignmentComponentsSubmittedStage): stage=== Stage.COMPLETED ?(assignmentComponentsCompletedStage) } };
 }
 
 export default React2;

@@ -49,6 +49,12 @@ export type AssignmentComponentData =
       videoId: string;
     };
 
+export enum Stage {
+  INCOMPLETE,
+  SUBMITTED,
+  COMPLETED,
+}
+
 export type AssignmentComponentProps = {
   data: AssignmentComponentData;
 };
