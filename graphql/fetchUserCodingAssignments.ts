@@ -33,16 +33,16 @@ export const FETCH_USER_CODING_ASSIGNMENTS_DETAIL = gql`
 `;
 
 export type FetchUserCodingAssignmentsDataResponse = {
-  user_goals: Array<UserCodingAssignments>;
+  user_coding_assignments: Array<UserCodingAssignments>;
 };
 
 export type UserCodingAssignments = {
 userId: string;
-assignmentId: string;
+assignment_id: string;
 hasViewed: boolean;
 id: string;
-nodeId: number;  
-submissionLink: string;
-templateLink: string;
-unitId: number;
+node_id: number;  
+submission_link: string;
+template_link: string;
+unit_id: number;
 };

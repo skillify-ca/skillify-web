@@ -22,6 +22,10 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
   });
 
   const { user } = useAuth();
+  const submissionVariables = {
+    user_id: user.uid,
+    submission_link: submissionInput,
+  };
 
   return (
     <div className="grid grid-cols-1 gap-4 p-6 bg-white shadow-lg dark:bg-gray-900 ">
@@ -42,7 +46,7 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
           onClick={() => {
             saveAssignmentInput({
               variables: {
-                objects: "fill this in here",
+                objects: submissionVariables,
               },
             });
           }}
