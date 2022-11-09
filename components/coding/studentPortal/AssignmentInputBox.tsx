@@ -18,7 +18,7 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
   const [submissionInput, setSubmissionInput] = useState("");
   const [saveAssignmentInput] = useMutation(UPSERT_USER_CODING_ASSIGNMENTS, {
     refetchQueries: [{ query: FETCH_USER_CODING_ASSIGNMENTS }],
-    onCompleted: () => router.push("/studentPortal/web/React/assignments/test"),
+    onCompleted: () => router.push("/studentPortal"),
   });
 
   const { user } = useAuth();

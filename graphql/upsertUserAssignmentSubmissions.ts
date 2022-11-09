@@ -3,9 +3,8 @@ import { gql } from "@apollo/client";
 // updates goal with new values in $objects if existing id is provided; inserts new goal if no ID provided
 // userId in objects must exist in users table; if id is provided, it must exist in goals table
 
-//question on how you decide what information to upsert -- which columns?
-export const UPSERT_USER_CODING_ASSIGNMENTS = gql`
-  mutation upsertUserCodingAssignments(
+export const UPSERT_USER_ASSIGNMENT_SUBMISSIONS = gql`
+  mutation upsertUserAssignmentSubmissions(
     $objects: [user_assignment_submissions_insert_input!]!
   ) {
     insert_user_assignment_submissions(
