@@ -1,8 +1,8 @@
 import { useMutation } from "@apollo/client";
 import router from "next/router";
 import React, { useState } from "react";
-import { FETCH_USER_CODING_ASSIGNMENTS } from "../../../graphql/fetchUserCodingAssignments";
-import { UPSERT_USER_CODING_ASSIGNMENTS } from "../../../graphql/upsertUserCodingAssignments";
+import { FETCH_USER_ASSIGNMENT_SUBMISSIONS } from "../../../graphql/fetchUserAssignmentSubmissions";
+import { UPSERT_USER_ASSIGNMENT_SUBMISSIONS } from "../../../graphql/upsertUserAssignmentSubmissions";
 import { useAuth } from "../../../lib/authContext";
 import { Button } from "../../ui/Button";
 
@@ -16,10 +16,13 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
   submission_link,
 }: AssignmentInputBoxProps) => {
   const [submissionInput, setSubmissionInput] = useState("");
-  const [saveAssignmentInput] = useMutation(UPSERT_USER_CODING_ASSIGNMENTS, {
-    refetchQueries: [{ query: FETCH_USER_CODING_ASSIGNMENTS }],
-    onCompleted: () => router.push("/studentPortal"),
-  });
+  const [saveAssignmentInput] = useMutation(
+    UPSERT_USER_ASSIGNMENT_SUBMISSIONS,
+    {
+      refetchQueries: [{ query: FETCH_USER_ASSIGNMENT_SUBMISSIONS }],
+      onCompleted: () => router.push("/studentPortal"),
+    }
+  );
 
   const { user } = useAuth();
   const submissionVariables = {
