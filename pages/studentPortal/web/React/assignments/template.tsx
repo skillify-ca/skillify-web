@@ -3,7 +3,7 @@ import React from "react";
 import AssignmentInputBox from "../../../../../components/coding/studentPortal/AssignmentInputBox";
 import AssignmentComponent, {
   AssignmentComponentData,
-} from "../../../../../components/coding/studentPortal/AssingmentComponent";
+} from "../../../../../components/coding/studentPortal/AssignmentComponent";
 import { Button } from "../../../../../components/ui/Button";
 
 const React2 = ({ assignmentComponents }) => {
