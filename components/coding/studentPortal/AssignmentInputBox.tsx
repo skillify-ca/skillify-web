@@ -9,11 +9,13 @@ import { Button } from "../../ui/Button";
 export interface AssignmentInputBoxProps {
   placeholder: string;
   submission_link: string;
+  onClick: () => void;
 }
 
 export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
   placeholder,
   submission_link,
+  onClick,
 }: AssignmentInputBoxProps) => {
   const [submissionInput, setSubmissionInput] = useState("");
   const [saveAssignmentInput] = useMutation(
@@ -51,7 +53,7 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
               variables: {
                 objects: submissionVariables,
               },
-            });
+            }) && { onClick };
           }}
         />
       </div>
