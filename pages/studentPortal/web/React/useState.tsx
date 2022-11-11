@@ -48,11 +48,20 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "State refers to how an application changes over time. You can also think of it as what is displayed to the user at any given point in time. Take a single Instagram post for example which contains multiple pieces of state that are constantly changing. Likes, posts, and comments are constantly being added by users, updated, and re-rendered by application. The `state` of the application is constantly changing ",
+      text: "State refers to how an application changes over time. You can also think of it as what is displayed to the user at any given point in time.",
     },
     {
+      component: "description",
+      text: "Let's consider a single Instagram post. A post has likes, comments, etc. All of these are constantly changing as different users interact with the post.",
+    },
+    {
+      component: "description",
+      text: "In React terms, we can think of these likes and comments as part of the application state. The state of the application is constantly changing - it is being updated and re-rendered by application.",
+    },
+
+    {
       component: "code-snippet",
-      text: "In React, state is represented by an object. The state for a singular instagram post might look something like: ",
+      text: "In React, state is represented by an object. The state for a singular Instagram post might look something like: ",
       code: `const state = {
         likes: 4,
         numComments: 5,
@@ -77,12 +86,7 @@ export async function getServerSideProps({ params }) {
 
     {
       component: "description",
-      text: "State refers to how an application changes over time. You can also think of it as what is displayed to the user at any given point in time. Take a single Instagram post for example which contains multiple pieces of state that are constantly changing. Likes, posts, and comments are constantly being added by users, updated, and re-rendered by application. The `state` of the application is constantly changing ",
-    },
-
-    {
-      component: "description",
-      text: "React provides us with the useState hook to easily access and update state. The useState hook always follows this convention: ",
+      text: "React provides us with the useState hook to easily access and update state. The hook follows this convention: ",
     },
 
     {
@@ -92,7 +96,7 @@ export async function getServerSideProps({ params }) {
 
     {
       component: "description",
-      text: "The first variable in the state array is the current state at any given point in time. The second variable is a setter function which we can use to change the state in our application. There always needs to be an initial value set as well",
+      text: "The first variable in the state array is the current state at any given point in time. The second variable is a setter function that we can call to change the state in our application. Note that we set an initial value for each state variable",
     },
 
     {
