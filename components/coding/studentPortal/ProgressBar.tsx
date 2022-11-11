@@ -14,7 +14,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   };
   return (
     <div className="flex flex-row items-center">
-      <a href="/studentPortal/intro">
+      <a href="/studentPortal">
         <img src="/images/studentPortal/exitButton.svg" className="pb-8 mr-4" />
       </a>
 

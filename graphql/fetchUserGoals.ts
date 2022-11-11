@@ -5,6 +5,7 @@ export const FETCH_USER_GOALS = gql`
     user_goals(where: { userId: { _eq: $userId } }) {
       createdAt
       goalName
+      goalNotes
       id
       updatedAt
       userId
@@ -22,6 +23,7 @@ export const FETCH_USER_GOAL_DETAIL = gql`
     ) {
       createdAt
       goalName
+      goalNotes
       id
       updatedAt
       userId
@@ -39,6 +41,7 @@ export type FetchUserGoalsDataResponse = {
 export type UserGoalsData = {
   createdAt: Date;
   goalName: string;
+  goalNotes?: string;
   id: string;
   updatedAt: Date;
   userId: string;

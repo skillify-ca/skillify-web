@@ -1,16 +1,29 @@
-import { link } from "fs";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useRef } from "react";
+import React, { ReactElement, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { useAuth } from "../../../lib/authContext";
+import { setCourse } from "../../../redux/courseSlice";
 import {
   activePageSelector,
-  setActivePage,
   SidebarProps,
+  setActivePage,
 } from "../../../redux/sidebarSlice";
-
-const SidebarItem = ({ name, link, page, icon }) => {
+interface SidebarItemProps {
+  name: string;
+  link: string;
+  page: any;
+  icon: ReactElement;
+  notifications?: boolean;
+}
+const SidebarItem = ({
+  name,
+  link,
+  page,
+  icon,
+  notifications,
+}: SidebarItemProps) => {
   const { activePage } = useSelector(activePageSelector);
 
   return (
@@ -20,7 +33,14 @@ const SidebarItem = ({ name, link, page, icon }) => {
           activePage === page ? "border-charmander text-charmander" : ""
         } hover:border-charmander hover:text-charmander`}
       >
-        {icon}
+        <div>
+          {notifications ? (
+            <div className="relative left-6 top-1  ">
+              <div className="flex bg-red-500 rounded-full w-2 h-2"></div>
+            </div>
+          ) : null}
+          {icon}
+        </div>
         {name}
       </div>
     </Link>
@@ -29,6 +49,7 @@ const SidebarItem = ({ name, link, page, icon }) => {
 
 export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const { activePage } = useSelector(activePageSelector);
+  const { goalApproaching } = useSelector(activePageSelector);
   const dispatch = useDispatch();
 
   const { signOut, user } = useAuth();
@@ -40,6 +61,8 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
       dispatch(setActivePage("coaches"));
     } else if (router.pathname.startsWith("/profile")) {
       dispatch(setActivePage("profile"));
+    } else if (router.pathname.startsWith("/goals")) {
+      dispatch(setActivePage("goals"));
     } else if (router.pathname.startsWith("/studentPortal/labs")) {
       dispatch(setActivePage("labs"));
     } else if (router.pathname.startsWith("/workshops")) {
@@ -71,7 +94,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
         </div>
         <SidebarItem
           name={"Dashboard"}
-          link={"/studentPortal/intro"}
+          link={"/studentPortal"}
           page={"dashboard"}
           icon={
             <svg
@@ -138,6 +161,26 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
           }
         />
         <SidebarItem
+          name={"Goals"}
+          notifications={goalApproaching}
+          link={"/goals"}
+          page={"goals"}
+          icon={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-6 h-6 mr-4"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.166 2.621v.858c-1.035.148-2.059.33-3.071.543a.75.75 0 00-.584.859 6.753 6.753 0 006.138 5.6 6.73 6.73 0 002.743 1.346A6.707 6.707 0 019.279 15H8.54c-1.036 0-1.875.84-1.875 1.875V19.5h-.75a2.25 2.25 0 00-2.25 2.25c0 .414.336.75.75.75h15a.75.75 0 00.75-.75 2.25 2.25 0 00-2.25-2.25h-.75v-2.625c0-1.036-.84-1.875-1.875-1.875h-.739a6.706 6.706 0 01-1.112-3.173 6.73 6.73 0 002.743-1.347 6.753 6.753 0 006.139-5.6.75.75 0 00-.585-.858 47.077 47.077 0 00-3.07-.543V2.62a.75.75 0 00-.658-.744 49.22 49.22 0 00-6.093-.377c-2.063 0-4.096.128-6.093.377a.75.75 0 00-.657.744zm0 2.629c0 1.196.312 2.32.857 3.294A5.266 5.266 0 013.16 5.337a45.6 45.6 0 012.006-.343v.256zm13.5 0v-.256c.674.1 1.343.214 2.006.343a5.265 5.265 0 01-2.863 3.207 6.72 6.72 0 00.857-3.294z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          }
+        />
+        <SidebarItem
           name={"Workshops"}
           link={"/workshops"}
           page={"workshops"}
@@ -163,7 +206,11 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             </Link>
           </div>
           <div className="overflow-auto h-36">
-            <Link href="/studentPortal/intro">
+            <div
+              onClick={() => {
+                dispatch(setCourse("intro"));
+              }}
+            >
               <div className="flex p-4 bg-white shadow-sm cursor-pointer dark:bg-gray-900 hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -181,8 +228,12 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
                 </svg>
                 <p className="ml-3">Coding Basics</p>
               </div>
-            </Link>
-            <Link href="/studentPortal/react">
+            </div>
+            <div
+              onClick={() => {
+                dispatch(setCourse("react"));
+              }}
+            >
               <div className="flex p-4 bg-white shadow-sm cursor-pointer dark:bg-gray-900 hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -200,7 +251,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
                 </svg>
                 <p className="ml-3">Web Development</p>
               </div>
-            </Link>
+            </div>
           </div>
         </div>
         <div

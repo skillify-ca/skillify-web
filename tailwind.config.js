@@ -204,5 +204,8 @@ module.exports = {
     keyframes: true,
     fontFace: true,
   },
-  plugins: [require("tailwindcss-hero-patterns")],
+  plugins: [
+    require("tailwindcss-hero-patterns"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };
