@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Sandpack } from "@codesandbox/sandpack-react";
 import HintRow from "./HintRow";
 import AssignmentInputBox from "./AssignmentInputBox";
-import { Stringifier } from "postcss";
-import { Button } from "../../ui/Button";
 
 export type Hint = {
   description: string;
@@ -66,22 +64,12 @@ export type AssignmentComponentProps = {
 export default function AssignmentComponent({
   data,
 }: AssignmentComponentProps) {
-  const [stage, setStage] = useState(0);
-
-  const handleIncrementStage = () => {
-    setStage(stage + 1);
-  };
   if (data.component === "title") {
     return <h1 className="text-5xl font-bold">{data.text}</h1>;
   } else if (data.component === "prompt") {
     return <p>{data.text}</p>;
   } else if (data.component === "completed") {
-    return (
-      <div>
-        <p>{data.text}</p>
-        <Button label={"Next"} onClick={() => handleIncrementStage} />
-      </div>
-    );
+    return <p>{data.text}</p>;
   } else if (data.component === "code-snippet") {
     return (
       <div className="mx-4 space-y-4">
@@ -109,9 +97,6 @@ export default function AssignmentComponent({
         <AssignmentInputBox
           placeholder={data.placeholder}
           submission_link={""}
-          onClick={() => {
-            handleIncrementStage;
-          }}
         />
         <div className="aspect-w-16 aspect-h-9">
           <iframe className="rounded-xl" src={data.link} />

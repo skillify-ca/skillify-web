@@ -14,6 +14,11 @@ const React2 = ({
   const router = useRouter();
   const handleContinue = () => {
     router.push("/studentPortal/web/React/assignments/template");
+    if (stage <= 1) {
+      setStage(stage + 1);
+    } else {
+      setStage(Stage.INCOMPLETE);
+    }
   };
   const [stage, setStage] = useState(0);
 
@@ -81,17 +86,17 @@ export async function getServerSideProps({ params }) {
   const assignmentComponentsSubmittedStage: AssignmentComponentData[] =
     await Promise.all([
       {
-        component: "loom-video",
-        text: "This is where your feedback goes",
-        videoId: "e85860979abd403380cf9a8eb2438f5d",
+        component: "completed",
+        text: "Your assignment has been submitted. The instructor will follow-up with a loom video link upon review. ",
       },
     ]);
 
   const assignmentComponentsCompletedStage: AssignmentComponentData[] =
     await Promise.all([
       {
-        component: "completed",
-        text: "Your assignment has been submitted. The instructor will follow-up with a loom video link upon review. ",
+        component: "loom-video",
+        text: "This is where your feedback goes",
+        videoId: "e85860979abd403380cf9a8eb2438f5d",
       },
     ]);
   return {
