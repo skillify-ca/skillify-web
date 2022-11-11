@@ -1,6 +1,5 @@
 import { Router, useRouter } from "next/router";
 import React from "react";
-import AssignmentInputBox from "../../../../../components/coding/studentPortal/AssignmentInputBox";
 import AssignmentComponent, {
   AssignmentComponentData,
 } from "../../../../../components/coding/studentPortal/AssignmentComponent";
@@ -10,7 +9,7 @@ const React2 = ({ assignmentComponents }) => {
   const router = useRouter();
 
   const handleContinue = () => {
-    router.push("/studentPortal");
+    router.push("/studentPortal/web/React/assignments/template");
   };
   return (
     <>
@@ -61,6 +60,11 @@ export async function getServerSideProps({ params }) {
         "Please submit your assignment by pasting a link in the box below.",
       link: "",
       placeholder: "Assignment link goes here",
+    },
+    {
+      component: "loom-video",
+      text: "This is where your feedback goes",
+      videoId: "e85860979abd403380cf9a8eb2438f5d",
     },
   ];
   return { props: { assignmentComponents } };

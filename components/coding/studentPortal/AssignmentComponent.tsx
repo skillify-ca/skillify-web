@@ -41,6 +41,11 @@ export type AssignmentComponentData =
       component: "code-snippet";
       text?: string;
       code: string;
+    }
+  | {
+      component: "loom-video";
+      text?: string;
+      videoId: string;
     };
 
 export type AssignmentComponentProps = {
@@ -91,6 +96,20 @@ export default function AssignmentComponent({
       <div className="pb-56 mb-8 h-96">
         <p>{data.title}</p>
         <img src={data.screenshot} className="object-cover w-64 h-32 mb-4" />
+      </div>
+    );
+  } else if (data.component === "loom-video") {
+    return (
+      <div className="pb-56 mb-8 h-96">
+        {data.text && <p>{data.text}</p>}
+        <iframe
+          src={`https://www.loom.com/embed/${data.videoId}`}
+          frameBorder="0"
+          webkit-allowfullscreen
+          moz-allowfullscreen
+          allowFullScreen
+          className="w-full h-96"
+        ></iframe>
       </div>
     );
   } else {
