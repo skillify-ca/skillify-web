@@ -6,13 +6,6 @@ import LessonComponent, {
   LessonComponentData,
   Resource,
 } from "../../../../components/coding/studentPortal/LessonComponent";
-import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  lessonSelector,
-  resetCurrentSteps,
-  setTotalSteps,
-} from "../../../../redux/lessonSlice";
 import { useRouter } from "next/router";
 import { useAuth } from "../../../../lib/authContext";
 import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
@@ -20,13 +13,7 @@ import { useMutation } from "@apollo/client";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
 
-const CSS1 = ({ lessonComponents, totalSteps }) => {
-  const dispatch = useDispatch();
-  const lessonState = useSelector(lessonSelector);
-  useEffect(() => {
-    dispatch(setTotalSteps(totalSteps));
-    dispatch(resetCurrentSteps(null));
-  }, []);
+const CSS1 = ({ lessonComponents }) => {
   const router = useRouter();
   const { user } = useAuth();
   const [unlockUserNode] = useMutation(UNLOCK_USER_INTRO_NODE);
@@ -55,9 +42,7 @@ const CSS1 = ({ lessonComponents, totalSteps }) => {
   return (
     <>
       <div className="grid grid-cols-1 gap-8 p-8">
-        <ProgressBar
-          completed={(lessonState.currentStep * 100) / lessonState.totalSteps}
-        />
+        <ProgressBar completed={100} />
         {lessonComponents.map((it) => (
           <LessonComponent data={it} />
         ))}
@@ -92,7 +77,8 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "CSS stands for cascading style sheets. It's another language that you need to learn that has different rules and keywords compared to HTML. In this lesson you will learn about different styles that you can apply to your HTML elements.",
+      text:
+        "CSS stands for cascading style sheets. It's another language that you need to learn that has different rules and keywords compared to HTML. In this lesson you will learn about different styles that you can apply to your HTML elements.",
     },
     {
       component: "resource-list",

@@ -1,18 +1,11 @@
 import React, { useEffect } from "react";
-import CSSQuiz from "../../../../components/coding/CSSQuiz";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 import LessonComponent, {
   LessonComponentData,
   Resource,
 } from "../../../../components/coding/studentPortal/LessonComponent";
-import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  lessonSelector,
-  resetCurrentSteps,
-  setTotalSteps,
-} from "../../../../redux/lessonSlice";
+
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
@@ -20,14 +13,7 @@ import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntr
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
 
-const CSS1 = ({ lessonComponents, totalSteps }) => {
-  const dispatch = useDispatch();
-  const lessonState = useSelector(lessonSelector);
-  useEffect(() => {
-    dispatch(setTotalSteps(totalSteps));
-    dispatch(resetCurrentSteps(null));
-  }, []);
-
+const CSS1 = ({ lessonComponents }) => {
   const router = useRouter();
   const { user } = useAuth();
   const [unlockUserNode] = useMutation(UNLOCK_USER_INTRO_NODE);
@@ -56,9 +42,7 @@ const CSS1 = ({ lessonComponents, totalSteps }) => {
   return (
     <>
       <div className="grid grid-cols-1 gap-8 p-8">
-        <ProgressBar
-          completed={(lessonState.currentStep * 100) / lessonState.totalSteps}
-        />
+        <ProgressBar completed={100} />
         {lessonComponents.map((it) => (
           <LessonComponent data={it} />
         ))}
@@ -103,7 +87,8 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "CSS Flexbox is another new property of CSS. You can turn any <div> element into a flexbox using the 'display: flex' property. By using different flex properties you can tell the div how you want it to arrange it's children. Combining Flexbox with Grid will allow you to build the most advanced layouts that you can imagine on the internet.",
+      text:
+        "CSS Flexbox is another new property of CSS. You can turn any <div> element into a flexbox using the 'display: flex' property. By using different flex properties you can tell the div how you want it to arrange it's children. Combining Flexbox with Grid will allow you to build the most advanced layouts that you can imagine on the internet.",
     },
     {
       component: "resource-list",
