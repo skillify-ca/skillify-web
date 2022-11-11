@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/client";
 import router from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FETCH_USER_ASSIGNMENT_SUBMISSIONS } from "../../../graphql/fetchUserAssignmentSubmissions";
 import { UPSERT_USER_ASSIGNMENT_SUBMISSIONS } from "../../../graphql/upsertUserAssignmentSubmissions";
 import { useAuth } from "../../../lib/authContext";
@@ -16,14 +16,18 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
   submission_link,
 }: AssignmentInputBoxProps) => {
   const [submissionInput, setSubmissionInput] = useState("");
+
   const [saveAssignmentInput] = useMutation(
     UPSERT_USER_ASSIGNMENT_SUBMISSIONS,
     {
       refetchQueries: [{ query: FETCH_USER_ASSIGNMENT_SUBMISSIONS }],
-      onCompleted: () => router.push("/studentPortal"),
+      onCompleted: () =>
+        router.push("/studentPortal/web/React/assignments/template"),
     }
   );
-
+  useEffect(() => {
+    (document.getElementById("input") as HTMLInputElement).value = "";
+  }, []);
   const { user } = useAuth();
   const submissionVariables = {
     user_id: user.uid,
@@ -51,7 +55,13 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
               variables: {
                 objects: submissionVariables,
               },
+              onCompleted: () => {
+                alert(
+                  "You have successfully saved your link.  Press continue."
+                );
+              },
             });
+            setSubmissionInput("");
           }}
         />
       </div>

@@ -97,10 +97,7 @@ export default function AssignmentComponent({
         <AssignmentInputBox
           placeholder={data.placeholder}
           submission_link={""}
-        />
-        <div className="aspect-w-16 aspect-h-9">
-          <iframe className="rounded-xl" src={data.link} />
-        </div>
+        />{" "}
       </>
     );
   } else if (data.component === "output") {
