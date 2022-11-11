@@ -48,7 +48,9 @@ const React2 = ({
           : null}
       </div>
       <div className="flex place-content-evenly my-8 mr-8 sm:justify-end">
-        <Button onClick={handlePrevious} label="Previous" />
+        <div className="mx-4">
+          <Button onClick={handlePrevious} label="Previous" />
+        </div>
         <Button onClick={handleContinue} label="Next" />
       </div>
     </>
