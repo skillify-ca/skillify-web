@@ -20,6 +20,14 @@ const React2 = ({
       setStage(Stage.INCOMPLETE);
     }
   };
+  const handlePrevious = () => {
+    router.push("/studentPortal/web/React/assignments/template");
+    if (stage >= 1 && stage <= 2) {
+      setStage(stage - 1);
+    } else {
+      setStage(Stage.INCOMPLETE);
+    }
+  };
   const [stage, setStage] = useState(0);
 
   return (
@@ -39,8 +47,9 @@ const React2 = ({
             )
           : null}
       </div>
-      <div className="flex my-8 mr-8 sm:justify-end">
-        <Button onClick={handleContinue} label="Continue" />
+      <div className="flex place-content-evenly my-8 mr-8 sm:justify-end">
+        <Button onClick={handlePrevious} label="Previous" />
+        <Button onClick={handleContinue} label="Next" />
       </div>
     </>
   );
