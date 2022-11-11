@@ -6,11 +6,7 @@ import AssignmentComponent, {
 } from "../../../../../components/coding/studentPortal/AssignmentComponent";
 import { Button } from "../../../../../components/ui/Button";
 
-const React2 = ({
-  assignmentComponents,
-  assignmentComponentsSubmittedStage,
-  assignmentComponentsCompletedStage,
-}) => {
+const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
   const router = useRouter();
   const handleContinue = () => {
     router.push("/studentPortal/web/React/assignments/template");
@@ -34,17 +30,17 @@ const React2 = ({
     <>
       <div className="grid grid-cols-1 gap-8 px-4 pt-4 m-8 sm:px-12">
         {stage === Stage.INCOMPLETE
-          ? assignmentComponents.map((it: AssignmentComponentData) => (
+          ? incompleteStage.map((it: AssignmentComponentData) => (
               <AssignmentComponent data={it} />
             ))
           : stage === Stage.SUBMITTED
-          ? assignmentComponentsSubmittedStage.map(
-              (it: AssignmentComponentData) => <AssignmentComponent data={it} />
-            )
+          ? submittedStage.map((it: AssignmentComponentData) => (
+              <AssignmentComponent data={it} />
+            ))
           : stage === Stage.COMPLETED
-          ? assignmentComponentsCompletedStage.map(
-              (it: AssignmentComponentData) => <AssignmentComponent data={it} />
-            )
+          ? completedStage.map((it: AssignmentComponentData) => (
+              <AssignmentComponent data={it} />
+            ))
           : null}
       </div>
       <div className="flex place-content-evenly my-8 mr-8 sm:justify-end">
@@ -58,7 +54,7 @@ const React2 = ({
 };
 
 export async function getServerSideProps({ params }) {
-  const assignmentComponents: AssignmentComponentData[] = await Promise.all([
+  const incompleteStage: AssignmentComponentData[] = await Promise.all([
     {
       component: "title",
       text: "Assignment Title Goes Here",
@@ -94,27 +90,25 @@ export async function getServerSideProps({ params }) {
       placeholder: "Assignment link goes here",
     },
   ]);
-  const assignmentComponentsSubmittedStage: AssignmentComponentData[] =
-    await Promise.all([
-      {
-        component: "completed",
-        text: "Your assignment has been submitted. The instructor will follow-up with a loom video link upon review. ",
-      },
-    ]);
+  const submittedStage: AssignmentComponentData[] = await Promise.all([
+    {
+      component: "completed",
+      text: "Your assignment has been submitted. The instructor will follow-up with a loom video link upon review. ",
+    },
+  ]);
 
-  const assignmentComponentsCompletedStage: AssignmentComponentData[] =
-    await Promise.all([
-      {
-        component: "loom-video",
-        text: "This is where your feedback goes",
-        videoId: "e85860979abd403380cf9a8eb2438f5d",
-      },
-    ]);
+  const completedStage: AssignmentComponentData[] = await Promise.all([
+    {
+      component: "loom-video",
+      text: "This is where your feedback goes",
+      videoId: "e85860979abd403380cf9a8eb2438f5d",
+    },
+  ]);
   return {
     props: {
-      assignmentComponents,
-      assignmentComponentsSubmittedStage,
-      assignmentComponentsCompletedStage,
+      incompleteStage,
+      submittedStage,
+      completedStage,
     },
   };
 }
