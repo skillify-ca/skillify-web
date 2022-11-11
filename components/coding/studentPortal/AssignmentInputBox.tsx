@@ -19,7 +19,6 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
   const [saveAssignmentInput] = useMutation(
     UPSERT_USER_ASSIGNMENT_SUBMISSIONS,
     {
-      refetchQueries: [{ query: FETCH_USER_ASSIGNMENT_SUBMISSIONS }],
       onCompleted: () => router.push("/studentPortal"),
     }
   );
