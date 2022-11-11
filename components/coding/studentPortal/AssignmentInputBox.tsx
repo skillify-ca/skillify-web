@@ -1,7 +1,6 @@
 import { useMutation } from "@apollo/client";
 import router from "next/router";
 import React, { useState } from "react";
-import { FETCH_USER_ASSIGNMENT_SUBMISSIONS } from "../../../graphql/fetchUserAssignmentSubmissions";
 import { UPSERT_USER_ASSIGNMENT_SUBMISSIONS } from "../../../graphql/upsertUserAssignmentSubmissions";
 import { useAuth } from "../../../lib/authContext";
 import { Button } from "../../ui/Button";

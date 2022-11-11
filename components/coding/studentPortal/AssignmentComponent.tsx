@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Sandpack } from "@codesandbox/sandpack-react";
 import HintRow from "./HintRow";
 import AssignmentInputBox from "./AssignmentInputBox";
-import { Stringifier } from "postcss";
 
 export type Hint = {
   description: string;
