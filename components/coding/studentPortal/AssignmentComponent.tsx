@@ -8,6 +8,11 @@ export type Hint = {
   icon?: string;
   link?: string;
 };
+export enum Stage {
+  INCOMPLETE,
+  SUBMITTED,
+  COMPLETED,
+}
 
 export type AssignmentComponentData =
   | {
@@ -46,6 +51,12 @@ export type AssignmentComponentData =
       component: "loom-video";
       text?: string;
       videoId: string;
+
+    }
+  | {
+      component: "completed";
+      text: string;
+      image?: string;
     };
 
 export type AssignmentComponentProps = {
@@ -57,6 +68,8 @@ export default function AssignmentComponent({
   if (data.component === "title") {
     return <h1 className="text-5xl font-bold">{data.text}</h1>;
   } else if (data.component === "prompt") {
+    return <p>{data.text}</p>;
+  } else if (data.component === "completed") {
     return <p>{data.text}</p>;
   } else if (data.component === "code-snippet") {
     return (
@@ -85,10 +98,7 @@ export default function AssignmentComponent({
         <AssignmentInputBox
           placeholder={data.placeholder}
           submission_link={""}
-        />
-        <div className="aspect-w-16 aspect-h-9">
-          <iframe className="rounded-xl" src={data.link} />
-        </div>
+        />{" "}
       </>
     );
   } else if (data.component === "output") {

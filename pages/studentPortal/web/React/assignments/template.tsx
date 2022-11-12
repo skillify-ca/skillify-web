@@ -1,32 +1,62 @@
 import { Router, useRouter } from "next/router";
-import React from "react";
+
+import React, { useState } from "react";
+
 import AssignmentComponent, {
   AssignmentComponentData,
+  Stage,
 } from "../../../../../components/coding/studentPortal/AssignmentComponent";
 import { Button } from "../../../../../components/ui/Button";
 
-const React2 = ({ assignmentComponents }) => {
+const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
   const router = useRouter();
-
   const handleContinue = () => {
     router.push("/studentPortal/web/React/assignments/template");
+    if (stage <= 1) {
+      setStage(stage + 1);
+    } else {
+      setStage(Stage.INCOMPLETE);
+    }
   };
+  const handlePrevious = () => {
+    router.push("/studentPortal/web/React/assignments/template");
+    if (stage >= 1 && stage <= 2) {
+      setStage(stage - 1);
+    } else {
+      setStage(Stage.INCOMPLETE);
+    }
+  };
+  const [stage, setStage] = useState(0);
+
   return (
     <>
       <div className="grid grid-cols-1 gap-8 px-4 pt-4 m-8 sm:px-12">
-        {assignmentComponents.map((it: AssignmentComponentData) => (
-          <AssignmentComponent data={it} />
-        ))}
+        {stage === Stage.INCOMPLETE
+          ? incompleteStage.map((it: AssignmentComponentData) => (
+              <AssignmentComponent data={it} />
+            ))
+          : stage === Stage.SUBMITTED
+          ? submittedStage.map((it: AssignmentComponentData) => (
+              <AssignmentComponent data={it} />
+            ))
+          : stage === Stage.COMPLETED
+          ? completedStage.map((it: AssignmentComponentData) => (
+              <AssignmentComponent data={it} />
+            ))
+          : null}
       </div>
-      <div className="flex my-8 mr-8 sm:justify-end">
-        <Button onClick={handleContinue} label="Continue" />
+      <div className="flex place-content-evenly my-8 mr-8 sm:justify-end">
+        <div className="mx-4">
+          <Button onClick={handlePrevious} label="Previous" />
+        </div>
+        <Button onClick={handleContinue} label="Next" />
       </div>
     </>
   );
 };
 
 export async function getServerSideProps({ params }) {
-  const assignmentComponents: AssignmentComponentData[] = [
+  const incompleteStage: AssignmentComponentData[] = await Promise.all([
     {
       component: "title",
       text: "Assignment Title Goes Here",
@@ -61,13 +91,27 @@ export async function getServerSideProps({ params }) {
       link: "",
       placeholder: "Assignment link goes here",
     },
+  ]);
+  const submittedStage: AssignmentComponentData[] = await Promise.all([
+    {
+      component: "completed",
+      text: "Your assignment has been submitted. The instructor will follow-up with a loom video link upon review. ",
+    },
+  ]);
+
+  const completedStage: AssignmentComponentData[] = await Promise.all([
     {
       component: "loom-video",
       text: "This is where your feedback goes",
       videoId: "e85860979abd403380cf9a8eb2438f5d",
     },
-  ];
-  return { props: { assignmentComponents } };
+  ]);
+  return {
+    props: {
+      incompleteStage,
+      submittedStage,
+      completedStage,
+    },
+  };
 }
-
 export default React2;
