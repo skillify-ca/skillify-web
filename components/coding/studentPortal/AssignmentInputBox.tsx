@@ -15,19 +15,20 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
   submission_link,
 }: AssignmentInputBoxProps) => {
   const [submissionInput, setSubmissionInput] = useState("");
-
-  const [saveAssignmentInput] = useMutation(
-    UPSERT_USER_ASSIGNMENT_SUBMISSIONS,
-    {
-      onCompleted: () =>
-        router.push("/studentPortal/web/React/assignments/template"),
-    }
-  );
   const { user } = useAuth();
   const submissionVariables = {
     user_id: user.uid,
     submission_link: submissionInput,
   };
+  const [saveAssignmentInput] = useMutation(
+    UPSERT_USER_ASSIGNMENT_SUBMISSIONS,
+    {
+      onCompleted: () => {
+        router.push("/studentPortal/web/React/assignments/template");
+        alert("You have successfully saved your link.  Press continue.");
+      },
+    }
+  );
 
   return (
     <div className="grid grid-cols-1 gap-4 p-6 bg-white shadow-lg dark:bg-gray-900 ">
@@ -49,11 +50,6 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
             saveAssignmentInput({
               variables: {
                 objects: submissionVariables,
-              },
-              onCompleted: () => {
-                alert(
-                  "You have successfully saved your link.  Press continue."
-                );
               },
             });
             setSubmissionInput("");
