@@ -51,6 +51,7 @@ export type AssignmentComponentData =
       component: "loom-video";
       text?: string;
       videoId: string;
+
     }
   | {
       component: "completed";
