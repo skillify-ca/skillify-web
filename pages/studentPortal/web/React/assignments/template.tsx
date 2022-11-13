@@ -36,7 +36,10 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
     }
   );
   useEffect(() => {
-    if (assignments) {
+    let submittedAssignment = assignments.filter(
+      (assignment) => assignment.submission_link
+    );
+    if (submittedAssignment) {
       setStage(Stage.SUBMITTED);
     } else {
       setStage(Stage.INCOMPLETE);
