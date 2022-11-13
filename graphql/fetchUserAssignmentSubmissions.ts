@@ -10,9 +10,9 @@ export const FETCH_USER_ASSIGNMENT_SUBMISSIONS = gql`
   }
 `;
 export type FetchUserAssignmentSubmissionsDataResponse = {
-  user_assignment_submissions: Array<UserAssignmentSubmissions>;
+  user_assignment_submissions: Array<UserAssignmentSubmissionsData>;
 };
-export type UserAssignmentSubmissions = {
+export type UserAssignmentSubmissionsData = {
   id: string;
   user_id: string;
   submission_link: string;

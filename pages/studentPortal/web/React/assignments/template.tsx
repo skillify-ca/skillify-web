@@ -39,7 +39,7 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
     let submittedAssignment = assignments.filter(
       (assignment) => assignment.submission_link
     );
-    if (submittedAssignment) {
+    if (submittedAssignment.length > 0) {
       setStage(Stage.SUBMITTED);
     } else {
       setStage(Stage.INCOMPLETE);
