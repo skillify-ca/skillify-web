@@ -3,12 +3,17 @@ import { format, addDays } from "date-fns";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  FetchUserAssignmentSubmissionsDataResponse,
+  FETCH_USER_ASSIGNMENT_SUBMISSIONS,
+} from "../../../graphql/fetchUserAssignmentSubmissions";
+import {
   FetchGoalCountResponse,
   FETCH_USER_GOALS_COUNT,
 } from "../../../graphql/fetchUserGoalsCount";
 import { useAuth } from "../../../lib/authContext";
 import {
   activePageSelector,
+  setAssignmentReviewed,
   setIsGoalApproaching,
 } from "../../../redux/sidebarSlice";
 import Navbar from "../../ui/Navbar";
@@ -35,6 +40,28 @@ export const Layout: React.FC = ({ children }) => {
     },
     fetchPolicy: "cache-and-network",
   });
+
+  const { data } = useQuery<FetchUserAssignmentSubmissionsDataResponse>(
+    FETCH_USER_ASSIGNMENT_SUBMISSIONS,
+    {
+      variables: {
+        user_id: user.uid,
+      },
+      onCompleted: (data) => {
+        if (data.user_assignment_submissions) {
+          let instructorReviewed: any = data.user_assignment_submissions.filter(
+            (reviewed) => reviewed.hasViewed
+          );
+          if (instructorReviewed === true) {
+            dispatch(setAssignmentReviewed(true));
+          } else {
+            dispatch(setAssignmentReviewed(false));
+          }
+        }
+      },
+      fetchPolicy: "cache-and-network",
+    }
+  );
 
   return (
     <div className="flex flex-col h-full bg-red-300">
