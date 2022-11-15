@@ -73,6 +73,16 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
     }
   }, [router.pathname]);
 
+  const returnWebDevStyle = (assignmentReviewed: boolean) => {
+    let webDevStyle = "";
+    if (assignmentReviewed === true) {
+      webDevStyle = "ml-1";
+    } else {
+      webDevStyle = "ml-3";
+    }
+    return webDevStyle;
+  };
+
   return (
     //Full width then restrict in page
     <div className="flex flex-col w-full h-full bg-gray-50 dark:bg-gray-900 dark:text-white">
@@ -236,12 +246,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               }}
             >
               <div className="flex p-4 bg-white shadow-sm cursor-pointer dark:bg-gray-900 hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800">
-                <div>
-                  {assignmentReviewed ? (
-                    <div className="relative left-6 top-1.5 ">
-                      <div className="flex bg-red-500 rounded-full w-2 h-2"></div>
-                    </div>
-                  ) : null}
+                <div className="flex flex-wrap items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-6 h-6"
@@ -256,8 +261,15 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
                       d="M8 13v-1m4 1v-3m4 3V8M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
                     />
                   </svg>
+                  {assignmentReviewed ? (
+                    <div className="relative bottom-3">
+                      <div className="flex bg-red-500 rounded-full w-2 h-2"></div>
+                    </div>
+                  ) : null}
+                  <p className={`${returnWebDevStyle(assignmentReviewed)}`}>
+                    Web Development
+                  </p>
                 </div>
-                <p className="relative left-3 top-2">Web Development</p>
               </div>
             </div>
           </div>
