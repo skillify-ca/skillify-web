@@ -32,10 +32,7 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
 
       onCompleted: (data: FetchUserAssignmentSubmissionsDataResponse) => {
         setAssignments(data.user_assignment_submissions);
-        let submittedAssignment = assignments.filter(
-          (assignment) => assignment.submission_link
-        );
-        if (submittedAssignment.length > 0) {
+        if (data.user_assignment_submissions[0].submission_link.length > 0) {
           setStage(Stage.SUBMITTED);
         } else {
           setStage(Stage.INCOMPLETE);
