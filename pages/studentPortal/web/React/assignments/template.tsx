@@ -32,19 +32,17 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
 
       onCompleted: (data: FetchUserAssignmentSubmissionsDataResponse) => {
         setAssignments(data.user_assignment_submissions);
+        let submittedAssignment = assignments.filter(
+          (assignment) => assignment.submission_link
+        );
+        if (submittedAssignment.length > 0) {
+          setStage(Stage.SUBMITTED);
+        } else {
+          setStage(Stage.INCOMPLETE);
+        }
       },
     }
   );
-  useEffect(() => {
-    let submittedAssignment = assignments.filter(
-      (assignment) => assignment.submission_link
-    );
-    if (submittedAssignment.length > 0) {
-      setStage(Stage.SUBMITTED);
-    } else {
-      setStage(Stage.INCOMPLETE);
-    }
-  }, [assignments]);
 
   const handleContinue = () => {
     router.push("/studentPortal/web/React/assignments/template");
