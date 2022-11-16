@@ -49,7 +49,7 @@ export const Layout: React.FC = ({ children }) => {
       },
       onCompleted: (data) => {
         if (data.user_assignment_submissions) {
-          let instructorReviewed = data.user_assignment_submissions.filter(
+          const instructorReviewed = data.user_assignment_submissions.filter(
             (assignment) => assignment.hasViewed === true
           );
           if (instructorReviewed.length > 0) {
