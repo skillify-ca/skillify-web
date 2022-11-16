@@ -17,7 +17,7 @@ import { useAuth } from "../../../../../lib/authContext";
 
 const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
   const router = useRouter();
-
+  const [stage, setStage] = useState(0);
   const { user } = useAuth();
   const [assignments, setAssignments] = useState<
     UserAssignmentSubmissionsData[]
@@ -60,7 +60,6 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
       setStage(Stage.INCOMPLETE);
     }
   };
-  const [stage, setStage] = useState(0);
 
   return (
     <>
