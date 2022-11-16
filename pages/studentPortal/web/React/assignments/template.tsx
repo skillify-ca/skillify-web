@@ -1,15 +1,52 @@
+import { useQuery } from "@apollo/client";
 import { Router, useRouter } from "next/router";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import AssignmentComponent, {
   AssignmentComponentData,
   Stage,
 } from "../../../../../components/coding/studentPortal/AssignmentComponent";
 import { Button } from "../../../../../components/ui/Button";
+import {
+  FETCH_USER_ASSIGNMENT_SUBMISSIONS,
+  FetchUserAssignmentSubmissionsDataResponse,
+  UserAssignmentSubmissionsData,
+} from "../../../../../graphql/fetchUserAssignmentSubmissions";
+import { useAuth } from "../../../../../lib/authContext";
 
 const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
   const router = useRouter();
+  const [stage, setStage] = useState(0);
+  const { user } = useAuth();
+  const [assignments, setAssignments] = useState<
+    UserAssignmentSubmissionsData[]
+  >([]);
+
+  const { data } = useQuery<FetchUserAssignmentSubmissionsDataResponse>(
+    FETCH_USER_ASSIGNMENT_SUBMISSIONS,
+    {
+      variables: {
+        user_id: user.uid,
+      },
+
+      onCompleted: (data: FetchUserAssignmentSubmissionsDataResponse) => {
+        if (data.user_assignment_submissions.length > 0) {
+          setAssignments(data.user_assignment_submissions);
+          if (data.user_assignment_submissions[0].review_link != null) {
+            setStage(Stage.COMPLETED);
+          } else if (
+            data.user_assignment_submissions[0].submission_link.length > 0
+          ) {
+            setStage(Stage.SUBMITTED);
+          } else {
+            setStage(Stage.INCOMPLETE);
+          }
+        }
+      },
+    }
+  );
+
   const handleContinue = () => {
     router.push("/studentPortal/web/React/assignments/template");
     if (stage <= 1) {
@@ -26,7 +63,6 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
       setStage(Stage.INCOMPLETE);
     }
   };
-  const [stage, setStage] = useState(0);
 
   return (
     <>
