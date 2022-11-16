@@ -17,7 +17,7 @@ import { useAuth } from "../../../../../lib/authContext";
 
 const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
   const router = useRouter();
-
+  const [stage, setStage] = useState(0);
   const { user } = useAuth();
   const [assignments, setAssignments] = useState<
     UserAssignmentSubmissionsData[]
@@ -31,20 +31,21 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
       },
 
       onCompleted: (data: FetchUserAssignmentSubmissionsDataResponse) => {
-        setAssignments(data.user_assignment_submissions);
+        if (data.user_assignment_submissions.length > 0) {
+          setAssignments(data.user_assignment_submissions);
+          if (data.user_assignment_submissions[0].review_link != null) {
+            setStage(Stage.COMPLETED);
+          } else if (
+            data.user_assignment_submissions[0].submission_link.length > 0
+          ) {
+            setStage(Stage.SUBMITTED);
+          } else {
+            setStage(Stage.INCOMPLETE);
+          }
+        }
       },
     }
   );
-  useEffect(() => {
-    let submittedAssignment = assignments.filter(
-      (assignment) => assignment.submission_link
-    );
-    if (submittedAssignment.length > 0) {
-      setStage(Stage.SUBMITTED);
-    } else {
-      setStage(Stage.INCOMPLETE);
-    }
-  }, [assignments]);
 
   const handleContinue = () => {
     router.push("/studentPortal/web/React/assignments/template");
@@ -62,7 +63,6 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
       setStage(Stage.INCOMPLETE);
     }
   };
-  const [stage, setStage] = useState(0);
 
   return (
     <>
