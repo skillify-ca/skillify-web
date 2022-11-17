@@ -37,6 +37,7 @@ export type AssignmentComponentData =
       codeSandboxTitle: string;
       link: string;
       placeholder: string;
+      assignmentId: string;
     }
   | {
       component: "custom";
@@ -51,7 +52,6 @@ export type AssignmentComponentData =
       component: "loom-video";
       text?: string;
       videoId: string;
-
     }
   | {
       component: "completed";
@@ -97,7 +97,8 @@ export default function AssignmentComponent({
         <h1 className="font-bold">{data.codeSandboxTitle}</h1>
         <AssignmentInputBox
           placeholder={data.placeholder}
-          submission_link={""}
+          submissionLink={""}
+          assignmentId={data.assignmentId}
         />{" "}
       </>
     );
@@ -119,7 +120,7 @@ export default function AssignmentComponent({
           moz-allowfullscreen
           allowFullScreen
           className="w-full h-96"
-        ></iframe>
+        />
       </div>
     );
   } else {

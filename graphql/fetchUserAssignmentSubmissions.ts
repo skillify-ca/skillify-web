@@ -1,7 +1,15 @@
 import { gql } from "@apollo/client";
 export const FETCH_USER_ASSIGNMENT_SUBMISSIONS = gql`
-  query fetchUserAssignmentSubmissions($user_id: String = "") {
-    user_assignment_submissions(where: { user_id: { _eq: $user_id } }) {
+  query fetchUserAssignmentSubmissions(
+    $user_id: String = ""
+    $assignmentId: uuid = ""
+  ) {
+    user_assignment_submissions(
+      where: {
+        user_id: { _eq: $user_id }
+        assignment_id: { _eq: $assignmentId }
+      }
+    ) {
       submission_link
       id
       user_id
@@ -19,4 +27,5 @@ export type UserAssignmentSubmissionsData = {
   submission_link: string;
   last_updated: Date;
   review_link: string;
+  assignmentId: string;
 };
