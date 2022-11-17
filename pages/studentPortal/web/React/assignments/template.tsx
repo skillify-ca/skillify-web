@@ -22,12 +22,15 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
   const [assignments, setAssignments] = useState<
     UserAssignmentSubmissionsData[]
   >([]);
+  // REQUIRED: create assignment in coding_assignments table to generate ID and paste here
+  const assignmentId = "2cf9156a-4f6f-452d-b09a-2c54f19a7b40";
 
   const { data } = useQuery<FetchUserAssignmentSubmissionsDataResponse>(
     FETCH_USER_ASSIGNMENT_SUBMISSIONS,
     {
       variables: {
         user_id: user.uid,
+        assignmentId: assignmentId,
       },
 
       onCompleted: (data: FetchUserAssignmentSubmissionsDataResponse) => {
@@ -92,6 +95,9 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
 };
 
 export async function getServerSideProps({ params }) {
+  // REQUIRED: create assignment in coding_assignments table to generate ID and paste here
+  const assignmentId = "2cf9156a-4f6f-452d-b09a-2c54f19a7b40";
+
   const incompleteStage: AssignmentComponentData[] = await Promise.all([
     {
       component: "title",
@@ -126,6 +132,7 @@ export async function getServerSideProps({ params }) {
         "Please submit your assignment by pasting a link in the box below.",
       link: "",
       placeholder: "Assignment link goes here",
+      assignmentId: assignmentId,
     },
   ]);
   const submittedStage: AssignmentComponentData[] = await Promise.all([
