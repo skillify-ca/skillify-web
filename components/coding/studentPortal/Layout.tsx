@@ -50,7 +50,9 @@ export const Layout: React.FC = ({ children }) => {
       onCompleted: (data) => {
         if (data.user_assignment_submissions) {
           const instructorReviewed = data.user_assignment_submissions.filter(
-            (assignment) => assignment.hasViewed === true
+            (assignment) =>
+              assignment.review_link.length >= 0 &&
+              assignment.hasViewed === false
           );
           if (instructorReviewed.length > 0) {
             dispatch(setAssignmentReviewed(true));
