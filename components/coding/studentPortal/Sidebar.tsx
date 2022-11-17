@@ -4,6 +4,7 @@ import React, { ReactElement, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useAuth } from "../../../lib/authContext";
+import { returnWebDevStyle } from "../../../pages/api/studentPortal/helper";
 import { setCourse } from "../../../redux/courseSlice";
 import {
   activePageSelector,
@@ -72,16 +73,6 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
       dispatch(setActivePage("dashboard"));
     }
   }, [router.pathname]);
-
-  const returnWebDevStyle = (assignmentReviewed: boolean) => {
-    let webDevStyle = "";
-    if (assignmentReviewed === true) {
-      webDevStyle = "ml-1";
-    } else {
-      webDevStyle = "ml-3";
-    }
-    return webDevStyle;
-  };
 
   return (
     //Full width then restrict in page
