@@ -7,7 +7,7 @@ export default function LandingNavbar(props) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex items-center justify-between w-full px-4 py-4 bg-white border-b-2 text-murkrow">
+    <div className="flex items-center justify-between w-full px-4 py-2 bg-white border-b-2 text-murkrow">
       {isOpen && (
         <div className="fixed z-50 flex flex-col items-center justify-center w-full h-screen p-4 bg-black-transparent">
           <Modal handleClose={(e) => setIsOpen(false)} />
@@ -17,16 +17,16 @@ export default function LandingNavbar(props) {
         <img src="/images/logo.svg" className="cursor-pointer w-28 sm:w-40" />
       </Link>
       <div className="flex items-center gap-4">
-        <div className="">
-          <a href={"https://www.instagram.com/skillify.ca/"}>
-            <img src="/images/landingPage/linkedin.svg" className="w-8" />
-          </a>{" "}
-        </div>
-        <div className="">
-          <a href={"https://www.instagram.com/skillify.ca/"}>
-            <img src="/images/landingPage/ig.png" className="w-8" />
-          </a>{" "}
-        </div>
+        <button
+          type="button"
+          onClick={(e) =>
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+          }
+          className={`py-3 bg-gradient-to-b bg-charmander hover:bg-pikachu-500 text-white px-3 font-bold border-b-4 rounded-lg active:border-b-2 cursor-pointer`}
+          {...props}
+        >
+          <p className={`text-base"`}>Apply Now</p>
+        </button>
       </div>
     </div>
   );

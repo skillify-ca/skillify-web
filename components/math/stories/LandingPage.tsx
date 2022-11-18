@@ -8,6 +8,7 @@ import LandingFooter from "../../coding/landing/LandingFooter";
 import Credentials from "../../coding/landing/Credentials";
 import Hero, { HighlightableText } from "../../coding/landing/Hero";
 import WhoItsFor from "../../coding/landing/WhoItsFor";
+import LeadMagnets from "../../coding/landing/LeadMagnets";
 
 export type LandingPageCopy = {
   headerText: HighlightableText[];
@@ -35,7 +36,7 @@ export default function LandingPage({
         <Benefits headerText={benefitsText} benefits={benefits} />
         <Credentials headerText={credentialsText} />
         <WhoItsFor />
-        <EmailCapture headerText={emailCaptureText} description={""} />
+        <LeadMagnets />
         <TestimonialSect />
         <SubscribeBanner bannerText={bannerText} />
       </div>

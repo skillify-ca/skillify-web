@@ -5,6 +5,7 @@ import LandingNavbar from "../components/LandingNavbar";
 import LandingPage, {
   LandingPageCopy,
 } from "../components/math/stories/LandingPage";
+import LandingFooter from "../components/LandingFooter";
 
 const HomePage = () => {
   const [showNavBar, setShowNavBar] = useState(false);
@@ -24,7 +25,7 @@ const HomePage = () => {
   const defaultCopy: LandingPageCopy = {
     headerText: [
       { text: "Coaching" },
-      { text: "university graduates", highlight: true },
+      { text: "people", highlight: true },
       { text: "to start a " },
       { text: "career", highlight: true },
       { text: "in tech" },
@@ -83,14 +84,9 @@ const HomePage = () => {
         image={"https://www.skillify.ca/images/logo.svg"}
       />
 
-      <div
-        className={`sticky top-0 z-50 ${
-          showNavBar ? "opacity-100" : "opacity-0 h-0"
-        } overflow-hidden shadow-lg transform transition-all`}
-      >
-        <LandingNavbar />
-      </div>
       <Facebook />
+      <LandingNavbar />
+
       <LandingPage
         headerText={headerText}
         description={description}
@@ -101,6 +97,13 @@ const HomePage = () => {
         emailCaptureText={emailCaptureText}
         emailCaptureDescription={emailCaptureDescription}
       />
+      <div
+        className={`sticky bottom-0 z-50 ${
+          showNavBar ? "opacity-100" : "opacity-0 h-0"
+        } overflow-hidden shadow-lg border-t-2 transform transition-all`}
+      >
+        <LandingFooter />
+      </div>
     </div>
   );
 };
