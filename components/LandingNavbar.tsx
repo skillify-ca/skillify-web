@@ -18,7 +18,7 @@ export default function LandingNavbar(props) {
       </Link>
       <div className="flex items-center gap-4">
         <div className="">
-          <a href={"https://www.instagram.com/skillify.ca/"}>
+          <a href={"https://www.linkedin.com/in/vithushan/"}>
             <img src="/images/landingPage/linkedin.svg" className="w-8" />
           </a>{" "}
         </div>
