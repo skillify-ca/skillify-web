@@ -2,10 +2,9 @@ import { useQuery } from "@apollo/client";
 import { format, addDays } from "date-fns";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  FetchUserAssignmentSubmissionsDataResponse,
-  FETCH_USER_ASSIGNMENT_SUBMISSIONS,
-} from "../../../graphql/fetchUserAssignmentSubmissions";
+import { FetchUserAssignmentSubmissionsDataResponse } from "../../../graphql/fetchUserAssignmentSubmissions";
+
+import { FETCH_USER_ASSIGNMENT_SUBMISSIONS_NOTIFICATIONS } from "../../../graphql/fetchUserAssignmentSubmissionsNotifications";
 import {
   FetchGoalCountResponse,
   FETCH_USER_GOALS_COUNT,
@@ -42,23 +41,16 @@ export const Layout: React.FC = ({ children }) => {
   });
 
   const { data } = useQuery<FetchUserAssignmentSubmissionsDataResponse>(
-    FETCH_USER_ASSIGNMENT_SUBMISSIONS,
+    FETCH_USER_ASSIGNMENT_SUBMISSIONS_NOTIFICATIONS,
     {
       variables: {
         user_id: user.uid,
       },
       onCompleted: (data) => {
         if (data.user_assignment_submissions) {
-          const instructorReviewed = data.user_assignment_submissions.filter(
-            (assignment) =>
-              assignment.review_link.length >= 0 &&
-              assignment.hasViewed === false
-          );
-          if (instructorReviewed.length > 0) {
-            dispatch(setAssignmentReviewed(true));
-          } else {
-            dispatch(setAssignmentReviewed(false));
-          }
+          dispatch(setAssignmentReviewed(true));
+        } else {
+          dispatch(setAssignmentReviewed(false));
         }
       },
       fetchPolicy: "cache-and-network",
