@@ -8,7 +8,6 @@ import { Button } from "../../ui/Button";
 
 export interface AssignmentInputBoxProps {
   placeholder: string;
-  submissionLink: string;
   assignmentId: string;
 }
 

@@ -97,14 +97,13 @@ export default function AssignmentComponent({
         <h1 className="font-bold">{data.codeSandboxTitle}</h1>
         <AssignmentInputBox
           placeholder={data.placeholder}
-          submissionLink={""}
           assignmentId={data.assignmentId}
         />{" "}
       </>
     );
   } else if (data.component === "output") {
     return (
-      <div className="pb-56 mb-8 h-96">
+      <div>
         <p>{data.title}</p>
         <img src={data.screenshot} className="object-cover w-64 h-32 mb-4" />
       </div>
