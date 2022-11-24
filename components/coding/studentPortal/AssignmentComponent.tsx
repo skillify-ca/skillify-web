@@ -68,7 +68,7 @@ export default function AssignmentComponent({
   if (data.component === "title") {
     return <h1 className="text-5xl font-bold">{data.text}</h1>;
   } else if (data.component === "prompt") {
-    return <p>{data.text}</p>;
+    return <p className="text-lg">{data.text}</p>;
   } else if (data.component === "completed") {
     return <p>{data.text}</p>;
   } else if (data.component === "code-snippet") {
@@ -83,7 +83,7 @@ export default function AssignmentComponent({
   } else if (data.component === "hint-list") {
     return (
       <>
-        <h1 className="font-bold">Hints</h1>
+        <h1 className="font-bold text-lg">Hints</h1>
         <div className="flex flex-col gap-8">
           {data.hintRow.map((it, index) => (
             <HintRow description={it.description} link={it.link} />
@@ -94,7 +94,7 @@ export default function AssignmentComponent({
   } else if (data.component === "submission") {
     return (
       <>
-        <h1 className="font-bold">{data.codeSandboxTitle}</h1>
+        <h1 className="text-lg">{data.codeSandboxTitle}</h1>
         <AssignmentInputBox
           placeholder={data.placeholder}
           assignmentId={data.assignmentId}
@@ -104,7 +104,7 @@ export default function AssignmentComponent({
   } else if (data.component === "output") {
     return (
       <div>
-        <p>{data.title}</p>
+        <p className="text-lg">{data.title}</p>
         <img src={data.screenshot} className="object-cover w-64 h-32 mb-4" />
       </div>
     );

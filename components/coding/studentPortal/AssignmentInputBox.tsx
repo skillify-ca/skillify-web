@@ -34,7 +34,7 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
   );
 
   return (
-    <div className="grid grid-cols-1 gap-4 p-6 bg-white shadow-lg dark:bg-gray-900 ">
+    <div className="grid grid-cols-1 gap-4 dark:bg-gray-900 ">
       <input
         className={
           "text-left p-2 border rounded-md shadow-md w-full text-murkrow"
@@ -47,7 +47,7 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
           setSubmissionInput(e.target.value);
         }}
       />
-      <div className="col-start-1 mt-8">
+      <div className="col-start-1">
         <Button
           label="Save"
           onClick={() => {
