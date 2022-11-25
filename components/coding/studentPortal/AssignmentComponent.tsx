@@ -83,8 +83,13 @@ export default function AssignmentComponent({
   } else if (data.component === "hint-list") {
     return (
       <>
-        <h1 className="font-bold text-lg">Hints</h1>
-        <div className="flex flex-col gap-8">
+        <h1 className="font-bold text-lg">
+          Hints...{" "}
+          <p className="text-base font-normal italic">
+            Click the arrow below to reveal
+          </p>
+        </h1>
+        <div className="flex flex-col gap-2">
           {data.hintRow.map((it, index) => (
             <HintRow description={it.description} link={it.link} />
           ))}
