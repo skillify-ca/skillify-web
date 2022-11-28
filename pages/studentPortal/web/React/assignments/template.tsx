@@ -84,7 +84,7 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
             ))
           : null}
       </div>
-      <div className="flex place-content-evenly my-8 mr-8 sm:justify-end">
+      <div className="flex ml-16 my-8 sm:justify-beginning">
         <div className="mx-4">
           <Button onClick={handlePrevious} label="Previous" />
         </div>
