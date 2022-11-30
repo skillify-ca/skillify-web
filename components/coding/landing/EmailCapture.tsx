@@ -9,27 +9,6 @@ type EmailCaptureProps = {
 };
 
 const EmailCapture = ({ headerText, description }: EmailCaptureProps) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const router = useRouter();
-
-  const handleClick = async () => {
-    const url =
-      "https://math-app-1.herokuapp.com/notifications?product=new-lead-free-guide";
-    const options = {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      },
-      body: JSON.stringify({
-        email: `[Name] ${name} [Email] ${email}`,
-      }),
-    };
-    await fetch(url, options).then((res) => {
-      router.push("/guide-thank-you");
-    });
-  };
   return (
     <div>
       <div className="grid h-full grid-cols-1 bg-no-repeat sm:p-16 sm:grid-cols-2 bg-email-capture bg-charmander bg-blend-multiply">
