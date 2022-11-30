@@ -26,7 +26,7 @@ export default function Page() {
           headerText={[
             { text: "Get our" },
             { text: "top 12 secret tips ", highlight: true },
-            { text: "learning to code as and starting a career in " },
+            { text: "learning to code and starting a career in " },
             { text: "tech ", highlight: true },
           ]}
           description={
