@@ -1,6 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { format } from "date-fns";
 import React, { useState } from "react";
+
+import { FETCH_TOTAL_USER_BADGES_COUNT } from "../../graphql/fetchTotalUserBadgesCount";
 import {
   FetchUserBadgesCountResponse,
   FETCH_USER_BADGES_COUNT,
@@ -21,6 +23,7 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
     useState<UserProfileData>(Object);
 
   const [userBadgeCount, setUserBadgeCount] = useState<number>(0);
+  const [badgeCount, setTotalBadgeCount] = useState<number>(0);
 
   const { loading: userProfileLoading } =
     useQuery<FetchUserProfileDataResponse>(FETCH_USER_PROFILE_DATA, {
@@ -48,6 +51,15 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
       onCompleted: (data) => {
         if (data.user_coding_badges_aggregate.aggregate.count) {
           setUserBadgeCount(data.user_coding_badges_aggregate.aggregate.count);
+        }
+      },
+    });
+
+  const { loading: totalUserBadgeCountLoading } =
+    useQuery<FetchUserBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
+      onCompleted: (data) => {
+        if (data.user_coding_badges_aggregate.aggregate.count) {
+          setTotalBadgeCount(data.user_coding_badges_aggregate.aggregate.count);
         }
       },
     });
@@ -103,7 +115,9 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
                 />
               </svg>
 
-              <span className="ml-2">{userBadgeCount}/49 Unlocked Badges</span>
+              <span className="ml-2">
+                {userBadgeCount}/{badgeCount} Unlocked Badges
+              </span>
             </p>
           </div>
         </div>
