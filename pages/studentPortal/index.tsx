@@ -153,7 +153,7 @@ export default function StudentPortalPage() {
           </div>
         </div>
       </div>
-      {/* Coaching DashBoard Code */}
+      {/* Student DashBoard Code */}
       <div className="p-4 bg-white shadow-md mb-14 sm:p-8 dark:bg-gray-900">
         <p className="font-bold">{moment().format("MMM Do YYYY")}</p>
         <p className="text-3xl font-bold">
