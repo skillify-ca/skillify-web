@@ -66,11 +66,6 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
 
   return (
     <>
-      <div className="flex items-center justify-between">
-        {userProfileData && (
-          <h1 className="text-3xl font-bold">{userProfileData.name}</h1>
-        )}
-      </div>
       {userProfileLoading ? (
         <div>Loading...</div>
       ) : (
@@ -80,6 +75,7 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
             src={userProfileData.profileImage}
           />
           <div className="col-span-2 mt-2 ml-2">
+            <h1 className="text-3xl font-bold mt-2">{userProfileData.name}</h1>
             <div className="flex mt-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +112,7 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
               </svg>
 
               <span className="ml-2">
-                {userBadgeCount}/{badgeCount} Unlocked Badges
+                {userBadgeCount}/{badgeCount} Badges
               </span>
             </p>
           </div>
