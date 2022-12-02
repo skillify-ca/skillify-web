@@ -10,7 +10,7 @@ export const UPSERT_USER_ASSIGNMENT_SUBMISSIONS = gql`
     insert_user_assignment_submissions(
       objects: $objects
       on_conflict: {
-        constraint: user_assignment_submissions_pkey
+        constraint: user_assignment_submissions_user_id_assignment_id_key
         update_columns: [submission_link]
       }
     ) {

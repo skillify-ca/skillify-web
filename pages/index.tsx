@@ -5,6 +5,7 @@ import LandingNavbar from "../components/LandingNavbar";
 import LandingPage, {
   LandingPageCopy,
 } from "../components/math/stories/LandingPage";
+import LandingFooter from "../components/LandingFooter";
 
 const HomePage = () => {
   const [showNavBar, setShowNavBar] = useState(false);
@@ -30,7 +31,7 @@ const HomePage = () => {
       { text: "in tech" },
     ],
     description:
-      "Get personalized and flexible training for high-paying remote jobs. We customize our program to you and your unique interests.",
+      "Get personalized and flexible training for high-paying remote jobs from Silicon Valley instructors. We customize our program to you and your unique interests.",
     bannerText:
       "Traditional universities and coding bootcamps leave you in debt and unprepared for finding a real job. With our project-based courses, you can learn the fundamentals of coding and get hired.",
     credentialsText: "",
@@ -83,14 +84,9 @@ const HomePage = () => {
         image={"https://www.skillify.ca/images/logo.svg"}
       />
 
-      <div
-        className={`sticky top-0 z-50 ${
-          showNavBar ? "opacity-100" : "opacity-0 h-0"
-        } overflow-hidden shadow-lg transform transition-all`}
-      >
-        <LandingNavbar />
-      </div>
       <Facebook />
+      <LandingNavbar />
+
       <LandingPage
         headerText={headerText}
         description={description}
@@ -101,6 +97,13 @@ const HomePage = () => {
         emailCaptureText={emailCaptureText}
         emailCaptureDescription={emailCaptureDescription}
       />
+      <div
+        className={`sticky bottom-0 z-50 ${
+          showNavBar ? "opacity-100" : "opacity-0 h-0"
+        } overflow-hidden shadow-lg border-t-2 transform transition-all`}
+      >
+        <LandingFooter />
+      </div>
     </div>
   );
 };
