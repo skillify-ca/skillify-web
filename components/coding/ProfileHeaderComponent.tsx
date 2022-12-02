@@ -92,14 +92,14 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
                 />
               </svg>
 
-              <span className="ml-2 text-md md:text-xl">
+              <span className="ml-2 text-md md:text-lg">
                 {userProfileData.createdAt
                   ? "Joined " +
                     format(new Date(userProfileData.createdAt), "MMMM yyyy")
                   : userProfileData.createdAt}
               </span>
             </div>
-            <p className="flex text-md md:text-xl">
+            <p className="flex text-md md:text-lg">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
