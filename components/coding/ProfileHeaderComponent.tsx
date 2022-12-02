@@ -69,13 +69,15 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
       {userProfileLoading ? (
         <div>Loading...</div>
       ) : (
-        <div className="grid grid-cols-1 mt-12 sm:grid-cols-8">
+        <div className="grid grid-cols-4 col-span-5 mt-4 md:grid-cols-8">
           <img
-            className="w-32 rounded-full"
+            className="w-36 mt-6 mr-2 rounded-full"
             src={userProfileData.profileImage}
           />
-          <div className="col-span-2 mt-2 ml-2">
-            <h1 className="text-3xl font-bold mt-2">{userProfileData.name}</h1>
+          <div className="col-span-3 mt-2 ml-2">
+            <h1 className="text-2xl font-bold mt-2 md:text-4xl md:mt-6">
+              {userProfileData.name}
+            </h1>
             <div className="flex mt-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -90,14 +92,14 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
                 />
               </svg>
 
-              <span className="ml-2 text-lg">
+              <span className="ml-2 text-md md:text-xl">
                 {userProfileData.createdAt
                   ? "Joined " +
                     format(new Date(userProfileData.createdAt), "MMMM yyyy")
                   : userProfileData.createdAt}
               </span>
             </div>
-            <p className="flex text-lg">
+            <p className="flex text-md md:text-xl">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
