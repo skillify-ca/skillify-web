@@ -19,7 +19,7 @@ function ProfileDetailCard({
   nextGoal,
 }: ProfileDetailCard) {
   return (
-    <div className="bg-gray-900 text-sm w-60 p-6 space-y-8 rounded-md ">
+    <div className="bg-gray-900 text-sm w-60 p-6 h-full space-y-8 rounded-md ">
       <div className="flex flex-col grow items-center text-center gap-4 font-bold  ">
         <img className="rounded-full border-2 w-20 " src={avatar} />
         <p className=" text-black"> {name}</p>
@@ -30,11 +30,6 @@ function ProfileDetailCard({
         <p className="underline-offset-8">current focus: {currentFocus}</p>
         <p>next goal: {nextGoal}</p>
       </div>
-      {/* <a href={starterFile}>
-        <div className="mt-4">
-          {starterFile ? <Button label={"Starter Files"} /> : null}
-        </div>
-      </a> */}
     </div>
   );
 }

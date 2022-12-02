@@ -1,7 +1,31 @@
 import React from "react";
 import ProfileDetailCard from "../../components/coding/studentPortal/ProfileDetailCard";
 
-const coachingdashboard = () => {
+const coachingdashboard = ({ profileData }) => {
+  return (
+    <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
+      <div>
+        <div className="mb-8 text-3xl">Coaching Dashboard</div>
+        <h2 className="mb-4">Enrolled Students</h2>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {profileData.map((it) => (
+            <div className="rounded-md">
+              <ProfileDetailCard
+                avatar={it.avatar}
+                name={it.name}
+                joinDate={it.joinDate}
+                badges={it.badges}
+                currentFocus={it.currentFocus}
+                nextGoal={it.nextGoal}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+export async function getServerSideProps({ params }) {
   const profileData = [
     {
       avatar:
@@ -49,28 +73,6 @@ const coachingdashboard = () => {
       nextGoal: "learning javascript syntax",
     },
   ];
-  return (
-    <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
-      <div>
-        <div className="mb-8 text-3xl">Coaching Dashboard</div>
-        <h2 className="mb-4">Enrolled Students</h2>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {profileData.map((it) => (
-            <div className="rounded-md">
-              <ProfileDetailCard
-                avatar={it.avatar}
-                name={it.name}
-                joinDate={it.joinDate}
-                badges={it.badges}
-                currentFocus={it.currentFocus}
-                nextGoal={it.nextGoal}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
+  return { props: { profileData } };
+}
 export default coachingdashboard;
