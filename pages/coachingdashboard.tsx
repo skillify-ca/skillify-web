@@ -1,7 +1,8 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
-import ProfileDetailCard from "../../components/coding/studentPortal/ProfileDetailCard";
-import { FETCH_USER_PROFILE_CARD } from "../../graphql/fetchUserProfileCard";
+import ProfileDetailCard from "../components/coding/studentPortal/ProfileDetailCard";
+import { FETCH_USER_PROFILE_CARD } from "../graphql/fetchUserProfileCard";
+
 export type Users = {
   id: string;
   name: string;
