@@ -1,6 +1,6 @@
 import React from "react";
 import ProfileGoalsSection from "../../../components/coding/ProfileGoalsSection";
-import ProfileHeaderComponent from "../../../components/coding/ProfileHeaderComponent";
+import ProfileHeaderComponent from "../../../components/coding/profileV2/ProfileHeaderComponent";
 import ProjectsSection from "../../../components/coding/ProjectsSection";
 import UserProfileSection from "../../../components/coding/UserProfileSection";
 import BadgesSection from "../../../components/profile/BadgesSection";
