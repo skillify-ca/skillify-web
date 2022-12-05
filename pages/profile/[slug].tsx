@@ -54,8 +54,6 @@ export async function getStaticProps({ params }) {
     },
   });
 
-  console.log(params.slug, data.users[0].id);
-
   return {
     props: {
       slug: params.slug,
