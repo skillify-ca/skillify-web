@@ -17,10 +17,6 @@ const coachingdashboard = () => {
   const { data } = useQuery<ListofUsers>(FETCH_USER_PROFILE_CARD);
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
-      {/* {JSON.stringify(data)} */}
-      {/* {data?.users.map((x) => {
-        return <div>{x.profile_image}</div>;
-      })} */}
       <div>
         <div className="mb-8 text-3xl">Coaching Dashboard</div>
         <h2 className="mb-4">Enrolled Students</h2>
@@ -28,7 +24,11 @@ const coachingdashboard = () => {
           {data?.users.map((it) => (
             <div className="rounded-md">
               <ProfileDetailCard
-                avatar={it.profile_image}
+                avatar={
+                  it.profile_image == null
+                    ? "../../images/logo.png"
+                    : it.profile_image
+                }
                 name={it.name}
                 joinDate={it.created_at.substring(0, 10)}
                 badges={it.badges_earned}
