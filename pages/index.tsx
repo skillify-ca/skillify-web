@@ -25,13 +25,13 @@ const HomePage = () => {
   const defaultCopy: LandingPageCopy = {
     headerText: [
       { text: "Coaching" },
-      { text: "people", highlight: true },
+      { text: "university graduates", highlight: true },
       { text: "to start a " },
       { text: "career", highlight: true },
       { text: "in tech" },
     ],
     description:
-      "Get personalized and flexible training for high-paying remote jobs. We customize our program to you and your unique interests.",
+      "Get personalized and flexible training for high-paying remote jobs from Silicon Valley instructors. We customize our program to you and your unique interests.",
     bannerText:
       "Traditional universities and coding bootcamps leave you in debt and unprepared for finding a real job. With our project-based courses, you can learn the fundamentals of coding and get hired.",
     credentialsText: "",
