@@ -6,7 +6,6 @@ import {
   UserProjectData,
 } from "../../graphql/fetchUserProjects";
 import { Button } from "../ui/Button";
-import ExpandableContainer from "./Expandable";
 
 export type ProjectsSectionProps = {
   user: any;
@@ -31,9 +30,7 @@ export default function ProjectsSection({ user }: ProjectsSectionProps) {
         <div>Loading...</div>
       ) : userProjects.length === 0 ? (
         <div className="col-span-3 p-8 text-center shadow-md bg-slate-300 dark:bg-slate-900">
-          <ExpandableContainer open title={"No Active Projects"}>
-            Trying this on for size.{" "}
-          </ExpandableContainer>
+          No Active Projects
         </div>
       ) : (
         userProjects.map((it) => {
