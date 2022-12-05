@@ -84,7 +84,7 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
             ))
           : null}
       </div>
-      <div className="flex place-content-evenly my-8 mr-8 sm:justify-end">
+      <div className="flex ml-16 my-8 sm:justify-beginning">
         <div className="mx-4">
           <Button onClick={handlePrevious} label="Previous" />
         </div>
@@ -104,6 +104,10 @@ export async function getServerSideProps({ params }) {
       text: "Assignment Title Goes Here",
     },
     {
+      component: "prompt",
+      text: "Please outline the directions for what the student is expected to achieve. ",
+    },
+    {
       component: "hint-list",
       hintRow: [
         {
@@ -116,10 +120,6 @@ export async function getServerSideProps({ params }) {
         },
       ],
     },
-    {
-      component: "prompt",
-      text: "Please outline the directions for what the student is expected to achieve. ",
-    },
 
     {
       component: "output",
@@ -130,7 +130,6 @@ export async function getServerSideProps({ params }) {
       component: "submission",
       codeSandboxTitle:
         "Please submit your assignment by pasting a link in the box below.",
-      link: "",
       placeholder: "Assignment link goes here",
       assignmentId: assignmentId,
     },
