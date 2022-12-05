@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../../ui/Button";
-import logo from "../../images/logo.png";
+
 type ProfileDetailCard = {
   avatar: string;
   name: string;
@@ -64,6 +64,7 @@ function ProfileDetailCard({
           <p className="underline">next goal: {nextGoal}</p>
         </div>
       </a>
+
     </div>
   );
 }
