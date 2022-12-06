@@ -1,19 +1,33 @@
+import { useQuery } from "@apollo/client";
 import { PencilAltIcon, PencilIcon } from "@heroicons/react/outline";
 import { differenceInCalendarDays, format } from "date-fns";
 import moment from "moment";
 import Link from "next/link";
-import React from "react";
-import { UserGoalsData } from "../../graphql/fetchUserGoals";
+import React, { useState } from "react";
+import {
+  FetchUserGoalsDataResponse,
+  FETCH_USER_GOALS,
+  UserGoalsData,
+} from "../../graphql/fetchUserGoals";
+import { useAuth } from "../../lib/authContext";
+import { User } from "./profileV2/ProfileHeaderComponent";
 
 export type GoalsSectionProps = {
-  userGoals: UserGoalsData[];
-  sectionName: string;
+  sectionName?: string;
+  userGoals?: UserGoalsData[];
+  abridgedUserGoals: boolean;
 };
 
 export default function GoalsSection({
-  userGoals,
   sectionName,
+  userGoals,
+  abridgedUserGoals,
 }: GoalsSectionProps) {
+  const currentUserGoals = userGoals.filter(
+    (goal) => !goal.isComplete && !goal.isArchived
+  );
+  const slicedUserGoals = currentUserGoals.slice(0, 3);
+  abridgedUserGoals ? (userGoals = slicedUserGoals) : userGoals;
   return (
     <div>
       {userGoals.length > 0 && (
@@ -50,6 +64,7 @@ export default function GoalsSection({
           }
           return goalStyle;
         };
+
         return (
           <div
             className={`grid grid-cols-5 my-2 text-sm text-center md:grid-cols-12 md:text-lg place-items-center ${returnGoalStyle(

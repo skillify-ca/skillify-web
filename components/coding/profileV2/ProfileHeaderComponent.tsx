@@ -16,7 +16,7 @@ import BadgesDisplayedComponent from "./BadgesDisplayedComponent";
 import JoinedDateComponent from "./JoinedDateComponent";
 
 export type UserProfileSectionProps = {
-  user: User;
+  user: any;
 };
 
 export type User = {
