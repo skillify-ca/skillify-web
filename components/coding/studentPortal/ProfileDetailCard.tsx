@@ -1,6 +1,7 @@
 type ProfileDetailCard = {
   avatar: string;
   name: string;
+  link: string;
   joinDate: string;
   badges: number;
   currentFocus: string;
@@ -10,20 +11,22 @@ type ProfileDetailCard = {
 function ProfileDetailCard({
   avatar,
   name,
+  link,
   joinDate,
   badges,
   currentFocus,
   nextGoal,
 }: ProfileDetailCard) {
+  var profile = "profile/" + link;
   return (
     <div className="bg-gray-900 text-sm w-60 p-6 h-full space-y-8 rounded-md ">
-      <a href="profile">
+      <a href={profile}>
         <div className="flex flex-col grow items-center gap-4  hover:border-2 hover:rounded-md">
           <img
             className="rounded-full h-full border-2 w-20 flex "
             src={avatar}
           />
-          <p className=" font-bold "> {name}</p>
+          <p className=" font-bold ">{name}</p>
           <div className="flex flex-row">
             <svg
               xmlns="http://www.w3.org/2000/svg"

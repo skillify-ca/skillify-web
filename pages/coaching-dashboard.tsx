@@ -23,10 +23,11 @@ const coachingDashboard = () => {
               <ProfileDetailCard
                 avatar={
                   it.profile_image == null
-                    ? "../../images/logo.png"
+                    ? "../../images/logo-2.png"
                     : it.profile_image
                 }
                 name={it.name}
+                link={it.link}
                 joinDate={format(new Date(it.created_at), "yyyy-MM-dd")}
                 badges={it.badges_earned}
                 currentFocus={""}
