@@ -10,7 +10,8 @@ const coachingdashboard = () => {
   const { loading, data } = useQuery<FetchUserProfileCardResponse>(
     FETCH_USER_PROFILE_CARD
   );
-  if (loading) return "Loading...";
+  if (loading)
+    return <div className="flex place-content-center">"Loading..."</div>;
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
       <div>
