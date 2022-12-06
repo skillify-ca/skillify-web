@@ -31,6 +31,7 @@ const coachingDashboard = () => {
                 badges={it.badges_earned}
                 currentFocus={""}
                 nextGoal={""}
+                link={it.link}
               />
             </div>
           ))}
