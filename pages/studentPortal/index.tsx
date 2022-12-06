@@ -17,6 +17,7 @@ import {
 import { UPDATE_USER } from "../../graphql/updateUser";
 import { useSelector } from "react-redux";
 import { courseSelector } from "../../redux/courseSlice";
+import ProfileDetailCard from "../../components/coding/studentPortal/ProfileDetailCard";
 
 export default function StudentPortalPage() {
   const { user } = useAuth();

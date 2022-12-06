@@ -16,7 +16,7 @@ export const HintRow: React.FC<HintRowProps> = ({
     setShowHint(!showHint);
   };
   return (
-    <div className="grid grid-cols-1 gap-4 p-6 bg-white shadow-lg dark:bg-gray-900 lg:grid-cols-resource-row">
+    <div className="grid grid-cols-1 gap-2 p-3 bg-white shadow-lg dark:bg-gray-900 lg:grid-cols-resource-row">
       <div className="flex items-center">
         <ArrowCircleRightIcon
           className={
