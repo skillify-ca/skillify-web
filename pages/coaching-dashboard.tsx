@@ -23,7 +23,7 @@ const coachingDashboard = () => {
               <ProfileDetailCard
                 avatar={
                   it.profile_image == null
-                    ? "../../images/logo.png"
+                    ? "../../images/logo-2.png"
                     : it.profile_image
                 }
                 name={it.name}
