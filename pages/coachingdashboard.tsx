@@ -1,21 +1,16 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
 import ProfileDetailCard from "../components/coding/studentPortal/ProfileDetailCard";
-import { FETCH_USER_PROFILE_CARD } from "../graphql/fetchUserProfileCard";
-
-export type Users = {
-  id: string;
-  name: string;
-  profile_image: string;
-  badges_earned: number;
-  created_at: string;
-};
-
-export type ListofUsers = {
-  users: Array<Users>;
-};
+import {
+  FetchUserProfileCardResponse,
+  FETCH_USER_PROFILE_CARD,
+} from "../graphql/fetchUserProfileCard";
+import { format } from "date-fns";
 const coachingdashboard = () => {
-  const { data } = useQuery<ListofUsers>(FETCH_USER_PROFILE_CARD);
+  const { loading, data } = useQuery<FetchUserProfileCardResponse>(
+    FETCH_USER_PROFILE_CARD
+  );
+  if (loading) return "Loading...";
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
       <div>
@@ -31,7 +26,7 @@ const coachingdashboard = () => {
                     : it.profile_image
                 }
                 name={it.name}
-                joinDate={it.created_at.substring(0, 10)}
+                joinDate={format(new Date(it.created_at), "yyyy-MM-dd")}
                 badges={it.badges_earned}
                 currentFocus={""}
                 nextGoal={""}

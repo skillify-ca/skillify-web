@@ -1,6 +1,3 @@
-import React from "react";
-import { Button } from "../../ui/Button";
-
 type ProfileDetailCard = {
   avatar: string;
   name: string;
@@ -64,7 +61,6 @@ function ProfileDetailCard({
           <p className="underline">next goal: {nextGoal}</p>
         </div>
       </a>
-
     </div>
   );
 }
