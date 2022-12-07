@@ -3,19 +3,19 @@ import React, { useState } from "react";
 import { PlusCircleIcon } from "@heroicons/react/solid";
 import { MinusCircleIcon } from "@heroicons/react/solid";
 
-interface ExpandableProps {
+interface ExpandableContainerProps {
   open?: boolean;
   title: string;
 }
 
-const ExpandableContainer: React.FC<ExpandableProps> = ({
+const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
   open,
   children,
   title,
 }) => {
   const [isOpen, setIsOpen] = useState(open);
 
-  const handleOpenExpandable = () => {
+  const handleOpenExpandableContainer = () => {
     setIsOpen((prev) => !prev);
   };
 
@@ -27,7 +27,7 @@ const ExpandableContainer: React.FC<ExpandableProps> = ({
             <button
               className="mr-2"
               type="button"
-              onClick={handleOpenExpandable}
+              onClick={handleOpenExpandableContainer}
             >
               {!isOpen ? (
                 <PlusCircleIcon className="w-6 h-6 cursor-pointer hover:text-yellow-600" />
