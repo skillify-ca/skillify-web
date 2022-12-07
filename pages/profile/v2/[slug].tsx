@@ -1,13 +1,14 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import GoalsSectionComponent from "../../../components/coding/GoalsSectionComponent";
 import ProfileGoalsSection from "../../../components/coding/ProfileGoalsSection";
-import ProfileHeaderComponent from "../../../components/coding/ProfileHeaderComponent";
+import ProfileHeaderComponent from "../../../components/coding/profileV2/ProfileHeaderComponent";
 import ProjectsSection from "../../../components/coding/ProjectsSection";
 import UserProfileSection from "../../../components/coding/UserProfileSection";
 import LandingNavbar from "../../../components/LandingNavbar";
 import BadgesSection from "../../../components/profile/BadgesSection";
 import { FETCH_RECENT_USERS } from "../../../graphql/fetchRecentUsers";
 import { FETCH_USER } from "../../../graphql/fetchUser";
+import { userGoalsSelector } from "../../../redux/userGoalsSlice";
 
 export default function ExternalUserProfile({ slug, uid }) {
   const user = {
@@ -28,7 +29,7 @@ export default function ExternalUserProfile({ slug, uid }) {
         <h2 className="text-lg font-bold mt-14 mb-9">Goals</h2>
 
         <div className="grid grid-cols-1 mb-16 sm:grid-cols-3">
-          <GoalsSectionComponent />
+          <GoalsSectionComponent abridgedUserGoals={true} />
         </div>
 
         <h2 className="text-lg font-bold mb-9">Achievements</h2>
