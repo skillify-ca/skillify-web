@@ -1,17 +1,11 @@
-import { useQuery } from "@apollo/client";
-import { PencilAltIcon, PencilIcon } from "@heroicons/react/outline";
+
+import { PencilAltIcon } from "@heroicons/react/outline";
 import { differenceInCalendarDays, format } from "date-fns";
-import moment from "moment";
 import Link from "next/link";
 import React, { useState } from "react";
 import {
-  FetchUserGoalsDataResponse,
-  FETCH_USER_GOALS,
   UserGoalsData,
 } from "../../graphql/fetchUserGoals";
-import { useAuth } from "../../lib/authContext";
-import { User } from "./profileV2/ProfileHeaderComponent";
-
 export type GoalsSectionProps = {
   sectionName?: string;
   userGoals?: UserGoalsData[];
