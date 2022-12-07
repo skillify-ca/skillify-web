@@ -1,5 +1,4 @@
 import { useQuery } from "@apollo/client";
-import { format } from "date-fns";
 import React, { useState } from "react";
 import { FETCH_TOTAL_USER_BADGES_COUNT } from "../../../graphql/fetchTotalUserBadgesCount";
 import {
@@ -10,6 +9,7 @@ import {
   UserProfileData,
   FetchUserProfileDataResponse,
   FETCH_USER_PROFILE_DATA,
+  User,
 } from "../../../graphql/fetchUserProfile";
 import BadgesDisplayedComponent from "./BadgesDisplayedComponent";
 
@@ -17,32 +17,6 @@ import JoinedDateComponent from "./JoinedDateComponent";
 
 export type UserProfileSectionProps = {
   user: User;
-};
-
-export type User = {
-  uid: string;
-  email: string;
-  emailVerified: boolean;
-  displayName: string;
-  isAnonymous: boolean;
-  photoURL: string;
-  providerData: {
-    providerId: string;
-    uid: string;
-    displayName: string;
-    email: string;
-    phoneNumber: string | null;
-    photoURL: string;
-  }[];
-  stsTokenManager: {
-    refreshToken: string;
-    accessToken: string;
-    expirationTime: number;
-  };
-  createdAt: string;
-  lastLoginAt: string;
-  apiKey: string;
-  appName: string;
 };
 
 export default function UserProfileSection({ user }: UserProfileSectionProps) {
