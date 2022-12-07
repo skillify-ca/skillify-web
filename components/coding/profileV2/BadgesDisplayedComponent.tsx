@@ -1,18 +1,6 @@
-import { useQuery } from "@apollo/client";
-import { format } from "date-fns";
-import React, { useState } from "react";
-import { FETCH_TOTAL_USER_BADGES_COUNT } from "../../../graphql/fetchTotalUserBadgesCount";
-import {
-  FetchUserBadgesCountResponse,
-  FETCH_USER_BADGES_COUNT,
-} from "../../../graphql/fetchUserBadgesCount";
-import {
-  UserProfileData,
-  FetchUserProfileDataResponse,
-  FETCH_USER_PROFILE_DATA,
-} from "../../../graphql/fetchUserProfile";
 
-import JoinedDateComponent from "./JoinedDateComponent";
+import Reactfrom "react";
+
 import { User } from "./ProfileHeaderComponent";
 
 export type BadgesDisplayedComponentProps = {
@@ -21,7 +9,7 @@ export type BadgesDisplayedComponentProps = {
   totalBadges: number;
 };
 
-export default function UserProfileSection({
+export default function BadgesDisplayedComponent({
   user,
   earnedBadges,
   totalBadges,
