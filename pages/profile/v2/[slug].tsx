@@ -1,13 +1,12 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import ProfileGoalsSection from "../../components/coding/ProfileGoalsSection";
-import ProjectsSection from "../../components/coding/ProjectsSection";
-import UserProfileSection from "../../components/coding/UserProfileSection";
-import LandingNavbar from "../../components/LandingNavbar";
-import BadgesSection from "../../components/profile/BadgesSection";
-import Navbar from "../../components/ui/Navbar";
-import { FETCH_RECENT_USERS } from "../../graphql/fetchRecentUsers";
-import { FETCH_SKILLS } from "../../graphql/fetchSkills";
-import { FETCH_USER } from "../../graphql/fetchUser";
+import ProfileGoalsSection from "../../../components/coding/ProfileGoalsSection";
+import ProfileHeaderComponent from "../../../components/coding/profileV2/ProfileHeaderComponent";
+import ProjectsSection from "../../../components/coding/ProjectsSection";
+import UserProfileSection from "../../../components/coding/UserProfileSection";
+import LandingNavbar from "../../../components/LandingNavbar";
+import BadgesSection from "../../../components/profile/BadgesSection";
+import { FETCH_RECENT_USERS } from "../../../graphql/fetchRecentUsers";
+import { FETCH_USER } from "../../../graphql/fetchUser";
 
 export default function ExternalUserProfile({ slug, uid }) {
   const user = {
@@ -17,7 +16,7 @@ export default function ExternalUserProfile({ slug, uid }) {
     <div>
       <LandingNavbar />
       <div className="flex flex-col p-8 m-4 overflow-auto bg-scroll bg-slate-50 sm:m-auto max-w-7xl dark:bg-slate-800 dark:text-white">
-        <UserProfileSection user={user} />
+        <ProfileHeaderComponent user={user} />
 
         <h2 className="text-lg font-bold mt-14 mb-9">Projects</h2>
 
@@ -53,6 +52,8 @@ export async function getStaticProps({ params }) {
       link: params.slug,
     },
   });
+
+  console.log(params.slug, data.users[0].id);
 
   return {
     props: {
