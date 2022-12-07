@@ -40,11 +40,7 @@ export default function GoalsSection({
         </div>
       )}
 
-      {userGoals.map((goal, index) => {
-        const differenceInDays = differenceInCalendarDays(
-          new Date(goal.targetDate),
-          new Date()
-        );
+      
         const returnGoalStyle = (targetDate: Date) => {
           let goalStyle = "";
           const daysRemaining = differenceInCalendarDays(
@@ -64,6 +60,7 @@ export default function GoalsSection({
           }
           return goalStyle;
         };
+      {userGoals.map((goal, index) => {
 
         return (
           <div
@@ -79,7 +76,10 @@ export default function GoalsSection({
             <p className="md:col-span-2">
               {format(new Date(goal.targetDate), "MM/dd/yyyy")}
             </p>
-            <p className="hidden md:block md:col-span-2">{differenceInDays}</p>
+            <p className="hidden md:block md:col-span-2">{differenceInCalendarDays(
+          new Date(goal.targetDate),
+          new Date()
+        )}</p>
             <Link href={"/goals/" + goal.id}>
               <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
             </Link>
