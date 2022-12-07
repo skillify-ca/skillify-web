@@ -1,15 +1,28 @@
-
 import { PencilAltIcon } from "@heroicons/react/outline";
 import { differenceInCalendarDays, format } from "date-fns";
 import Link from "next/link";
 import React, { useState } from "react";
-import {
-  UserGoalsData,
-} from "../../graphql/fetchUserGoals";
+import { UserGoalsData } from "../../graphql/fetchUserGoals";
 export type GoalsSectionProps = {
   sectionName?: string;
   userGoals?: UserGoalsData[];
   abridgedUserGoals: boolean;
+};
+
+export const returnGoalStyle = (goal) => {
+  let goalStyle = "";
+  const daysRemaining = differenceInCalendarDays(
+    new Date(goal.targetDate),
+    new Date()
+  );
+  if (daysRemaining <= 0 && !goal.isComplete && !goal.isArchived) {
+    goalStyle = "text-black bg-red-400 rounded-xl p-2";
+  } else if (daysRemaining <= 3 && !goal.isComplete && !goal.isArchived) {
+    goalStyle = "text-black-500 bg-yellow-300 rounded-xl p-2";
+  } else {
+    goalStyle = " text-black-500";
+  }
+  return goalStyle;
 };
 
 export default function GoalsSection({
@@ -34,28 +47,7 @@ export default function GoalsSection({
         </div>
       )}
 
-      
-        const returnGoalStyle = (targetDate: Date) => {
-          let goalStyle = "";
-          const daysRemaining = differenceInCalendarDays(
-            new Date(goal.targetDate),
-            new Date()
-          );
-          if (daysRemaining <= 0 && !goal.isComplete && !goal.isArchived) {
-            goalStyle = "text-black bg-red-400 rounded-xl p-2";
-          } else if (
-            daysRemaining <= 3 &&
-            !goal.isComplete &&
-            !goal.isArchived
-          ) {
-            goalStyle = "text-black-500 bg-yellow-300 rounded-xl p-2";
-          } else {
-            goalStyle = " text-black-500";
-          }
-          return goalStyle;
-        };
       {userGoals.map((goal, index) => {
-
         return (
           <div
             className={`grid grid-cols-5 my-2 text-sm text-center md:grid-cols-12 md:text-lg place-items-center ${returnGoalStyle(
@@ -70,10 +62,9 @@ export default function GoalsSection({
             <p className="md:col-span-2">
               {format(new Date(goal.targetDate), "MM/dd/yyyy")}
             </p>
-            <p className="hidden md:block md:col-span-2">{differenceInCalendarDays(
-          new Date(goal.targetDate),
-          new Date()
-        )}</p>
+            <p className="hidden md:block md:col-span-2">
+              {differenceInCalendarDays(new Date(goal.targetDate), new Date())}
+            </p>
             <Link href={"/goals/" + goal.id}>
               <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
             </Link>
