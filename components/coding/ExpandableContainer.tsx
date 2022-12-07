@@ -4,7 +4,7 @@ import { PlusCircleIcon } from "@heroicons/react/solid";
 import { MinusCircleIcon } from "@heroicons/react/solid";
 
 interface ExpandableContainerProps {
-  open?: boolean;
+  open: boolean;
   title: string;
 }
 
