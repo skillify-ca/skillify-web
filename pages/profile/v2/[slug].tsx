@@ -30,7 +30,7 @@ export default function ExternalUserProfile({ slug, uid }) {
         <h2 className="text-lg font-bold mt-14 mb-9">Goals</h2>
 
         <div className="grid grid-cols-1 mb-16 sm:grid-cols-3">
-          <GoalsSectionComponent abridgedUserGoals={true} />
+          <GoalsSectionComponent />
         </div>
 
         <h2 className="text-lg font-bold mb-9">Achievements</h2>

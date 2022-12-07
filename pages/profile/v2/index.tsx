@@ -1,4 +1,3 @@
-
 import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
 import GoalsSectionComponent from "../../../components/coding/GoalsSectionComponent";
@@ -31,6 +30,7 @@ export default function Profile(props) {
       },
     }
   );
+
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
       <ProfileHeaderComponent user={user} />
@@ -43,10 +43,12 @@ export default function Profile(props) {
 
       <h2 className="text-lg font-bold mt-14 mb-9">Goals</h2>
 
-
       <div className="grid grid-cols-1">
-        <GoalsSectionComponent userGoals={userGoals} abridgedUserGoals={true} />
-
+        <GoalsSectionComponent
+          userGoals={userGoals
+            .filter((goal) => !goal.isComplete && !goal.isArchived)
+            .slice(0, 3)}
+        />
       </div>
 
       <h2 className="text-lg font-bold mb-9">Achievements</h2>

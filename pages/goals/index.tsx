@@ -80,7 +80,6 @@ export default function Goals(props) {
             <div className="mb-8">
               <GoalsSectionComponent
                 userGoals={section.userGoals}
-                abridgedUserGoals={false}
                 sectionName={section.sectionName}
               />
             </div>
