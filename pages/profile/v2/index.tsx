@@ -1,3 +1,4 @@
+
 import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
 import GoalsSectionComponent from "../../../components/coding/GoalsSectionComponent";
@@ -6,6 +7,7 @@ import ProfileHeaderComponent from "../../../components/coding/profileV2/Profile
 import ProjectsSection from "../../../components/coding/ProjectsSection";
 import UserProfileSection from "../../../components/coding/UserProfileSection";
 import BadgesSection from "../../../components/profile/BadgesSection";
+
 import {
   UserGoalsData,
   FetchUserGoalsDataResponse,
@@ -41,8 +43,10 @@ export default function Profile(props) {
 
       <h2 className="text-lg font-bold mt-14 mb-9">Goals</h2>
 
+
       <div className="grid grid-cols-1">
         <GoalsSectionComponent userGoals={userGoals} abridgedUserGoals={true} />
+
       </div>
 
       <h2 className="text-lg font-bold mb-9">Achievements</h2>
