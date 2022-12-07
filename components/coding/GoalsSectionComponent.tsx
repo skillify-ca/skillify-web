@@ -51,7 +51,7 @@ export default function GoalsSection({
         return (
           <div
             className={`grid grid-cols-5 my-2 text-sm text-center md:grid-cols-12 md:text-lg place-items-center ${returnGoalStyle(
-              goal.targetDate
+              goal
             )}`}
           >
             <p>{index + 1}.</p>
