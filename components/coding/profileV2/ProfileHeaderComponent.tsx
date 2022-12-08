@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+
 import React, { useState } from "react";
 import { FETCH_TOTAL_USER_BADGES_COUNT } from "../../../graphql/fetchTotalUserBadgesCount";
 import {
@@ -12,7 +13,6 @@ import {
   User,
 } from "../../../graphql/fetchUserProfile";
 import BadgesDisplayedComponent from "./BadgesDisplayedComponent";
-
 import JoinedDateComponent from "./JoinedDateComponent";
 
 export type UserProfileSectionProps = {
