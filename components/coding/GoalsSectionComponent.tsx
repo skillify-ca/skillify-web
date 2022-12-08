@@ -8,7 +8,7 @@ export type GoalsSectionProps = {
   userGoals?: UserGoalsData[];
 };
 
-export const returnGoalStyle = (goal) => {
+export const returnGoalStyle = (goal: UserGoalsData) => {
   let goalStyle = "";
   const daysRemaining = differenceInCalendarDays(
     new Date(goal.targetDate),

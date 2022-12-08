@@ -1,7 +1,5 @@
-
 import React from "react";
-
-import { User } from "./ProfileHeaderComponent";
+import { User } from "../../../graphql/fetchUserProfile";
 
 export type BadgesDisplayedComponentProps = {
   user: User;
@@ -9,9 +7,7 @@ export type BadgesDisplayedComponentProps = {
   totalBadges: number;
 };
 
-
 export default function BadgesDisplayedComponent({
-
   user,
   earnedBadges,
   totalBadges,
