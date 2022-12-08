@@ -1,21 +1,22 @@
 import { useQuery } from "@apollo/client";
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import GoalsSectionComponent from "../../../components/coding/GoalsSectionComponent";
 import ProfileHeaderComponent from "../../../components/coding/profileV2/ProfileHeaderComponent";
 import ProjectsSection from "../../../components/coding/ProjectsSection";
 import BadgesSection from "../../../components/profile/BadgesSection";
 
 import {
-  UserGoalsData,
   FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
 } from "../../../graphql/fetchUserGoals";
 import { useAuth } from "../../../lib/authContext";
-import { userGoalsSelector } from "../../../redux/userGoalsSlice";
+import { setUserGoals, userGoalsSelector } from "../../../redux/userGoalsSlice";
 
 export default function Profile(props) {
   const { user } = useAuth();
-  const [userGoals, setUserGoals] = useState<UserGoalsData[]>([]);
+  const dispatch = useDispatch();
+  const { userGoals } = useSelector(userGoalsSelector);
   const { loading: userGoalsLoading } = useQuery<FetchUserGoalsDataResponse>(
     FETCH_USER_GOALS,
     {
@@ -24,7 +25,7 @@ export default function Profile(props) {
       },
 
       onCompleted: (data: FetchUserGoalsDataResponse) => {
-        setUserGoals(data.user_goals);
+        dispatch(setUserGoals(data.user_goals));
       },
     }
   );
