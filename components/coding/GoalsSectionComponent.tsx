@@ -59,7 +59,7 @@ export default function GoalsSection({
             <p className="hidden md:block md:col-span-2">
               {format(new Date(goal.createdAt), "MM/dd/yyyy")}
             </p>
-            <p className="md:col-span-2">
+            <p className="hidden md:block col-span-1 md:col-span-2">
               {format(new Date(goal.targetDate), "MM/dd/yyyy")}
             </p>
             <p className="hidden md:block md:col-span-2">
