@@ -6,7 +6,6 @@ import { UserGoalsData } from "../../graphql/fetchUserGoals";
 export type GoalsSectionProps = {
   sectionName?: string;
   userGoals?: UserGoalsData[];
-  abridgedUserGoals: boolean;
 };
 
 export const returnGoalStyle = (goal) => {
@@ -28,13 +27,7 @@ export const returnGoalStyle = (goal) => {
 export default function GoalsSection({
   sectionName,
   userGoals,
-  abridgedUserGoals,
 }: GoalsSectionProps) {
-  const currentUserGoals = userGoals.filter(
-    (goal) => !goal.isComplete && !goal.isArchived
-  );
-  const slicedUserGoals = currentUserGoals.slice(0, 3);
-  abridgedUserGoals ? (userGoals = slicedUserGoals) : userGoals;
   return (
     <div>
       {userGoals.length > 0 && (
