@@ -62,6 +62,9 @@ export default function GoalsSection({
             <p className="hidden md:block col-span-1 md:col-span-2">
               {format(new Date(goal.targetDate), "MM/dd/yyyy")}
             </p>
+            <p className="md:hidden col-span-1">
+              {format(new Date(goal.targetDate), "MM/dd")}
+            </p>
             <p className="hidden md:block md:col-span-2">
               {differenceInCalendarDays(new Date(goal.targetDate), new Date())}
             </p>
