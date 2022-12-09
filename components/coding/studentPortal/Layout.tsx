@@ -2,6 +2,9 @@ import { useQuery } from "@apollo/client";
 import { format, addDays } from "date-fns";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { FetchUserAssignmentSubmissionsDataResponse } from "../../../graphql/fetchUserAssignmentSubmissions";
+
+import { FETCH_USER_ASSIGNMENT_SUBMISSIONS_NOTIFICATIONS } from "../../../graphql/fetchUserAssignmentSubmissionsNotifications";
 import {
   FetchGoalCountResponse,
   FETCH_USER_GOALS_COUNT,
@@ -9,6 +12,7 @@ import {
 import { useAuth } from "../../../lib/authContext";
 import {
   activePageSelector,
+  setAssignmentReviewed,
   setIsGoalApproaching,
 } from "../../../redux/sidebarSlice";
 import Navbar from "../../ui/Navbar";
@@ -35,6 +39,23 @@ export const Layout: React.FC = ({ children }) => {
     },
     fetchPolicy: "cache-and-network",
   });
+
+  const { data } = useQuery<FetchUserAssignmentSubmissionsDataResponse>(
+    FETCH_USER_ASSIGNMENT_SUBMISSIONS_NOTIFICATIONS,
+    {
+      variables: {
+        user_id: user.uid,
+      },
+      onCompleted: (data) => {
+        if (data.user_assignment_submissions) {
+          dispatch(setAssignmentReviewed(true));
+        } else {
+          dispatch(setAssignmentReviewed(false));
+        }
+      },
+      fetchPolicy: "cache-and-network",
+    }
+  );
 
   return (
     <div className="flex flex-col h-full bg-red-300">

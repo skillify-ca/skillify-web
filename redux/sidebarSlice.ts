@@ -15,11 +15,13 @@ export type SidebarPage =
 export interface SidebarState {
   activePage: SidebarPage;
   goalApproaching: boolean;
+  assignmentReviewed: boolean;
 }
 
 const initialState: SidebarState = {
   activePage: "dashboard",
   goalApproaching: false,
+  assignmentReviewed: false,
 };
 
 export const sidebarSlice: Slice = createSlice({
@@ -41,9 +43,15 @@ export const sidebarSlice: Slice = createSlice({
       }
     },
 
+    setAssignmentReviewed: (state, action: PayloadAction<boolean>) => {
+      if (action.type == "sidebar/setAssignmentReviewed") {
+        state.assignmentReviewed = action.payload;
+      }
+    },
+
   },
 });
 
-export const { setActivePage, setIsGoalApproaching } = sidebarSlice.actions;
+export const { setActivePage, setIsGoalApproaching, setAssignmentReviewed } = sidebarSlice.actions;
 
 export const activePageSelector = (state: RootState) => state.sidebarState;

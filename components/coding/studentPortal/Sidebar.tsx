@@ -4,6 +4,7 @@ import React, { ReactElement, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useAuth } from "../../../lib/authContext";
+import { returnWebDevStyle } from "../../../pages/api/studentPortal/helper";
 import { setCourse } from "../../../redux/courseSlice";
 import {
   activePageSelector,
@@ -49,7 +50,8 @@ const SidebarItem = ({
 
 export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const { activePage } = useSelector(activePageSelector);
-  const { goalApproaching } = useSelector(activePageSelector);
+  const { goalApproaching, assignmentReviewed } =
+    useSelector(activePageSelector);
   const dispatch = useDispatch();
 
   const { signOut, user } = useAuth();
@@ -235,21 +237,30 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
               }}
             >
               <div className="flex p-4 bg-white shadow-sm cursor-pointer dark:bg-gray-900 hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M8 13v-1m4 1v-3m4 3V8M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
-                  />
-                </svg>
-                <p className="ml-3">Web Development</p>
+                <div className="flex flex-wrap items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M8 13v-1m4 1v-3m4 3V8M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
+                    />
+                  </svg>
+                  {assignmentReviewed ? (
+                    <div className="relative bottom-3">
+                      <div className="flex bg-red-500 rounded-full w-2 h-2"></div>
+                    </div>
+                  ) : null}
+                  <p className={`${returnWebDevStyle(assignmentReviewed)}`}>
+                    Web Development
+                  </p>
+                </div>
               </div>
             </div>
           </div>
