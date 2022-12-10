@@ -30,7 +30,7 @@ function ProfileDetailCard({
         />
         <p className=" font-bold "> {name}</p>
       </div>
-      <div className="flex flex-col ml-4 gap-4 items-start">
+      <div className="flex flex-col ml-4 mb-4 gap-4 items-start">
         <JoinedDateComponent user={name} createdAt={joinDate} />
 
         <BadgesDisplayedComponent earnedBadges={badges} totalBadges={50} />
