@@ -1,5 +1,4 @@
 import { combineReducers, Reducer } from "@reduxjs/toolkit";
-import courseSlice, { CourseState } from "./courseSlice";
 import evaluateExpressionSlice, {
   EvaluateExpressionState,
 } from "./evaluateExpressionSlice";
@@ -15,14 +14,12 @@ type State = {
   sidebarState: SidebarState;
   skillRatingsState: SkillRatingsState;
   userGoalsState: UserGoalsState;
-  courseState: CourseState;
 };
 const evaluateExpressionReducer = evaluateExpressionSlice;
 const quizReducer = quizSlice.reducer;
 const sidebarReducer = sidebarSlice.reducer;
 const skillRatingsReducer = skillRatingsSlice;
 const userGoalsReducer = userGoalsSlice;
-const courseReducer = courseSlice;
 
 const rootReducer = combineReducers({
   evaluateExpressionHistory: evaluateExpressionReducer,
@@ -30,7 +27,6 @@ const rootReducer = combineReducers({
   sidebarState: sidebarReducer,
   skillRatingsState: skillRatingsReducer,
   userGoalsState: userGoalsReducer,
-  courseState: courseReducer,
 });
 
 export type RootState = State;
