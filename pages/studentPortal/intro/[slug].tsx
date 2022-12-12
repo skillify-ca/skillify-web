@@ -42,7 +42,6 @@ const LessonPage = ({ lessonComponents, currentNode, nextNode, nextSlug }) => {
       {lessonComponents.map((it) => (
         <LessonComponent data={it} />
       ))}
-
       <div className="grid grid-cols-1 gap-8"></div>
       {nextSlug && (
         <div className="flex mt-8 sm:justify-end">
@@ -68,7 +67,11 @@ export async function getServerSideProps({ params }) {
       `*[_type == "lesson" && slug == "${params.slug}"]{
     ...,
     nextNode->,
-    resources[]->}
+    resources[]->{
+      ...,
+      "image": image.asset->url
+    } 
+  }
     `
     )
     .then((lessons) => {
@@ -91,6 +94,8 @@ export async function getServerSideProps({ params }) {
     });
 
   function transform(lesson) {
+    console.log(lesson.resources);
+
     return {
       currentNode: lesson.hasuraNodeId,
       nextNode: lesson.nextNode?.hasuraNodeId ?? null,
@@ -107,6 +112,10 @@ export async function getServerSideProps({ params }) {
         {
           component: "video",
           url: lesson.video,
+        },
+        {
+          component: "resource-list",
+          resources: lesson.resources,
         },
       ],
     };

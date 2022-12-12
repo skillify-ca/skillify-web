@@ -1,11 +1,7 @@
 import { useMutation } from "@apollo/client";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import LessonComponent, {
-  LessonComponentData,
-} from "../../../../components/coding/studentPortal/LessonComponent";
 import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 import Quiz from "../../../../components/coding/studentPortal/quiz/Quiz";
 import { Button } from "../../../../components/ui/Button";
@@ -42,7 +38,8 @@ const HTML2 = () => {
     };
     const q3 = {
       text: "What is the difference between <h1> and <h2> tags?",
-      A: "<h1> tags are ranked higher in significance than <h2> and thus are slightly larger",
+      A:
+        "<h1> tags are ranked higher in significance than <h2> and thus are slightly larger",
       B: "<h2> is larger than <h1>",
       C: "There is no difference in significance",
       D: "None of the above",
