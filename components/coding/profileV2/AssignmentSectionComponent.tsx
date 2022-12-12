@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import {
   CheckCircleIcon,
+  ClockIcon,
   PencilAltIcon,
   XCircleIcon,
 } from "@heroicons/react/outline";
@@ -41,8 +42,7 @@ export default function AssignmentsSection({}: AssignmentSectionComponentProps) 
         {userAssignments.length > 0 && (
           <div className="grid grid-cols-5 text-sm font-semibold text-center border-b-2 md:grid-cols-12 md:text-lg">
             <p className="col-span-2 md:col-span-5">Assignment</p>
-            <p className="hidden md:block md:col-span-2">Completed</p>
-            <p className="font-semibold md:col-span-2">In Review</p>
+            <p className="font-semibold md:col-span-2">Status</p>
           </div>
         )}
 
@@ -62,17 +62,12 @@ export default function AssignmentsSection({}: AssignmentSectionComponentProps) 
                 <p className="col-span-2 md:col-span-4">{assignment.id}</p>
                 <p className="hidden md:block md:col-span-2">
                   {assignment.submission_link ? (
-                    <CheckCircleIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
-                  ) : (
-                    <XCircleIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
-                  )}
-                </p>
-                <p className="hidden md:block col-span-1 md:col-span-2">
-                  {assignment.review_link ? (
-                    <CheckCircleIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
-                  ) : (
-                    <XCircleIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
-                  )}
+                    assignment.review_link === null ? (
+                      <ClockIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
+                    ) : (
+                      <CheckCircleIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
+                    )
+                  ) : null}
                 </p>
                 <Link href={"/web/React/assignments/template/"}>
                   <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
