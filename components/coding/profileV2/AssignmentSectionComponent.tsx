@@ -7,6 +7,7 @@ import {
 import { differenceInCalendarDays, format } from "date-fns";
 import Link from "next/link";
 import React, { useState } from "react";
+import { FETCH_ALL_USER_ASSIGNMENTS } from "../../../graphql/fetchAllUserAssignments";
 import {
   FetchUserAssignmentSubmissionsDataResponse,
   FETCH_USER_ASSIGNMENT_SUBMISSIONS,
@@ -24,7 +25,7 @@ export default function AssignmentsSection({}: AssignmentSectionComponentProps) 
   >([]);
   const { loading: userAssignmentsLoading } =
     useQuery<FetchUserAssignmentSubmissionsDataResponse>(
-      FETCH_USER_ASSIGNMENT_SUBMISSIONS,
+      FETCH_ALL_USER_ASSIGNMENTS,
       {
         variables: {
           user_id: user.uid,
@@ -39,7 +40,7 @@ export default function AssignmentsSection({}: AssignmentSectionComponentProps) 
     <div>
       {userAssignments.length > 0 && (
         <div className="grid grid-cols-5 text-sm font-semibold text-center border-b-2 md:grid-cols-12 md:text-lg">
-          <p className="col-span-2 md:col-span-4">Assignment</p>
+          <p className="col-span-2 md:col-span-5">Assignment</p>
           <p className="hidden md:block md:col-span-2">Completed</p>
           <p className="font-semibold md:col-span-2">In Review</p>
         </div>
@@ -58,11 +59,13 @@ export default function AssignmentsSection({}: AssignmentSectionComponentProps) 
               className={`grid grid-cols-5 my-2 text-sm text-center md:grid-cols-12 md:text-lg place-items-center ${assignment}`}
             >
               <p>{index + 1}.</p>
-              <p className="col-span-2 md:col-span-4">
-                {assignment.assignmentId}
-              </p>
+              <p className="col-span-2 md:col-span-4">{assignment.id}</p>
               <p className="hidden md:block md:col-span-2">
-                {assignment.submission_link}
+                {assignment.submission_link ? (
+                  <CheckCircleIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
+                ) : (
+                  <XCircleIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
+                )}
               </p>
               <p className="hidden md:block col-span-1 md:col-span-2">
                 {assignment.review_link ? (
