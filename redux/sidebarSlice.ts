@@ -9,8 +9,7 @@ export type SidebarPage =
   | "goals"
   | "workshops"
   | "profile"
-  | "goals"
-  | "labs";
+  | "goals";
 
 export interface SidebarState {
   activePage: SidebarPage;
@@ -40,7 +39,6 @@ export const sidebarSlice: Slice = createSlice({
         state.goalApproaching = action.payload;
       }
     },
-
   },
 });
 
