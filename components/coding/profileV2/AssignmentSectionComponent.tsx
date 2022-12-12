@@ -4,13 +4,11 @@ import {
   PencilAltIcon,
   XCircleIcon,
 } from "@heroicons/react/outline";
-import { differenceInCalendarDays, format } from "date-fns";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FETCH_ALL_USER_ASSIGNMENTS } from "../../../graphql/fetchAllUserAssignments";
 import {
   FetchUserAssignmentSubmissionsDataResponse,
-  FETCH_USER_ASSIGNMENT_SUBMISSIONS,
   UserAssignmentSubmissionsData,
 } from "../../../graphql/fetchUserAssignmentSubmissions";
 import { User } from "../../../graphql/fetchUserProfile";
