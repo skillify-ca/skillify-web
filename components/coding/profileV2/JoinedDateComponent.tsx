@@ -6,12 +6,26 @@ import { User } from "./ProfileHeaderComponent";
 export type JoinedDateComponentProps = {
   user: User;
   createdAt: Date;
+  textSize: "small" | "medium" | "large";
 };
 
 export default function JoinedDateComponent({
   user,
   createdAt,
+  textSize,
 }: JoinedDateComponentProps) {
+  let textStyle;
+  switch (textSize) {
+    case "small":
+      textStyle = "ml-2 text-sm mg:text-sm";
+      break;
+    case "medium":
+      textStyle = "ml-2 text-base mg:text-base";
+      break;
+    case "large":
+      textStyle = "ml-2 text-md md:text-lg";
+      break;
+  }
   return (
     <>
       <div className="flex mt-4">
@@ -28,7 +42,7 @@ export default function JoinedDateComponent({
           />
         </svg>
 
-        <span className="ml-2 text-md md:text-lg">
+        <span className={textStyle}>
           {createdAt
             ? "Joined " + format(new Date(createdAt), "MMMM yyyy")
             : createdAt}
