@@ -31,7 +31,7 @@ export default function GoalsSection({
 }: GoalsSectionProps) {
   return (
     <ExpandableContainer open={true} title={""}>
-      <div>
+      <div className="dark:text-white">
         {userGoals.length > 0 && (
           <div className="grid grid-cols-5 text-sm font-semibold text-center border-b-2 md:grid-cols-12 md:text-lg">
             <p className="font-semibold">{sectionName}</p>
