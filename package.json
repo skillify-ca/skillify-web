@@ -40,6 +40,7 @@
     "fetch-retry": "^4.1.1",
     "firebase": "^9.1.2",
     "graphql": "^15.5.0",
+    "gsap": "^3.11.3",
     "immutability-helper": "^3.1.1",
     "kaboom": "^2000.1.0",
     "katex": "^0.13.16",
