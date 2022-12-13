@@ -70,7 +70,7 @@ export default function AssignmentsSection({}: AssignmentSectionComponentProps) 
                     )
                   ) : null}
                 </p>
-                <Link href={"/web/React/assignments/template/"}>
+                <Link href={"studentPortal/web/React/assignments/template/"}>
                   <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
                 </Link>
               </div>
