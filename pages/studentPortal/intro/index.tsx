@@ -1,24 +1,18 @@
-import React, { useEffect, useState } from "react";
-import Sidebar from "../../components/coding/studentPortal/Sidebar";
-import UnitView from "../../components/coding/studentPortal/UnitView";
-import { useAuth } from "../../lib/authContext";
-import { interviewUnits, reactUnits, Unit } from "../api/studentPortal/units";
-
-import moment from "moment";
 import { useMutation, useQuery } from "@apollo/client";
+import { transform } from "lodash";
+import moment from "moment";
+import React, { useEffect, useState } from "react";
+import UnitView from "../../../components/coding/studentPortal/UnitView";
+import { FETCH_USER_INTRO_NODES } from "../../../graphql/coding/fetchUserIntroNodes";
 import {
   INIT_USER_INTRO_NODES,
   objects,
-} from "../../graphql/coding/initUserIntroNodes";
-import {
-  FETCH_USER_INTRO_NODES,
-  transform,
-} from "../../graphql/coding/fetchUserIntroNodes";
-import { UPDATE_USER } from "../../graphql/updateUser";
-import { useSelector } from "react-redux";
-import { courseSelector } from "../../redux/courseSlice";
+} from "../../../graphql/coding/initUserIntroNodes";
+import { UPDATE_USER } from "../../../graphql/updateUser";
+import { useAuth } from "../../../lib/authContext";
+import { Unit } from "../../api/studentPortal/units";
 
-export default function StudentPortalPage() {
+export default function FundametalsCourse() {
   const { user } = useAuth();
 
   const [initUserNodes] = useMutation(INIT_USER_INTRO_NODES);
@@ -48,19 +42,11 @@ export default function StudentPortalPage() {
     }
   }, [user]);
 
-  const course = useSelector(courseSelector);
-
   useEffect(() => {
-    console.log("current course", course.currentCourse);
-
-    if (course.currentCourse === "react") {
-      setUnits(reactUnits);
-    } else if (course.currentCourse === "interview") {
-      setUnits(interviewUnits);
-    } else if (data) {
+    if (data) {
       setUnits(transform(data));
     }
-  }, [data, course.currentCourse]);
+  }, [data]);
 
   useEffect(() => {
     // TODO save profile photos to firebase storage and allow users to edit photos
@@ -90,4 +76,4 @@ export default function StudentPortalPage() {
   );
 }
 
-StudentPortalPage.auth = true;
+FundametalsCourse.auth = true;
