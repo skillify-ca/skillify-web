@@ -9,25 +9,10 @@ query fetchUserAssignmentSubmissions($user_id: String = "") {
       review_link
       coding_assignment {
         assignment_name
+        assignment_link
       }
     }
   }
 `;
 
-export type FetchAllUserAssignmentSubmissionsDataResponse = {
-    user_assignment_submissions: Array<AllUserAssignmentSubmissionsData>;
-  };
 
-export type AllUserAssignmentSubmissionsData = {
-    id: string;
-    user_id: string;
-    submission_link: string;
-    last_updated: Date;
-    review_link: string;
-    assignmentId: string;
-    coding_assignment: UserCodingAssignmentsData;
-  };
-
-export type UserCodingAssignmentsData = {
-    assignment_name: string;
-}

@@ -7,11 +7,11 @@ import {
 } from "@heroicons/react/outline";
 import Link from "next/link";
 import React, { useState } from "react";
+import { FETCH_ALL_USER_ASSIGNMENTS } from "../../../graphql/fetchAllUserAssignments";
 import {
-  AllUserAssignmentSubmissionsData,
-  FetchAllUserAssignmentSubmissionsDataResponse,
-  FETCH_ALL_USER_ASSIGNMENTS,
-} from "../../../graphql/fetchAllUserAssignments";
+  UserAssignmentSubmissionsData,
+  FetchUserAssignmentSubmissionsDataResponse,
+} from "../../../graphql/fetchUserAssignmentSubmissions";
 import { useAuth } from "../../../lib/authContext";
 import ExpandableContainer from "../ExpandableContainer";
 
@@ -20,17 +20,17 @@ export type AssignmentSectionComponentProps = {};
 export default function AssignmentsSection({}: AssignmentSectionComponentProps) {
   const { user } = useAuth();
   const [userAssignments, setUserAssignments] = useState<
-    AllUserAssignmentSubmissionsData[]
+    UserAssignmentSubmissionsData[]
   >([]);
   const { loading: userAssignmentsLoading } =
-    useQuery<FetchAllUserAssignmentSubmissionsDataResponse>(
+    useQuery<FetchUserAssignmentSubmissionsDataResponse>(
       FETCH_ALL_USER_ASSIGNMENTS,
       {
         variables: {
           user_id: user.uid,
         },
 
-        onCompleted: (data: FetchAllUserAssignmentSubmissionsDataResponse) => {
+        onCompleted: (data: FetchUserAssignmentSubmissionsDataResponse) => {
           setUserAssignments(data.user_assignment_submissions);
         },
       }
@@ -70,7 +70,7 @@ export default function AssignmentsSection({}: AssignmentSectionComponentProps) 
                     )
                   ) : null}
                 </p>
-                <Link href={"studentPortal/web/React/assignments/template/"}>
+                <Link href={assignment.coding_assignment.assignment_link}>
                   <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
                 </Link>
               </div>
