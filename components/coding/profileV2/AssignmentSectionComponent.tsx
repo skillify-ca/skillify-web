@@ -4,6 +4,7 @@ import {
   ClockIcon,
   PencilAltIcon,
   XCircleIcon,
+  XIcon,
 } from "@heroicons/react/outline";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -68,7 +69,9 @@ export default function AssignmentsSection({}: AssignmentSectionComponentProps) 
                     ) : (
                       <CheckCircleIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
                     )
-                  ) : null}
+                  ) : (
+                    <XIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
+                  )}
                 </p>
                 <Link href={assignment.coding_assignment.assignment_link}>
                   <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
