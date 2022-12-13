@@ -29,11 +29,28 @@ export const profileSlice: Slice = createSlice({
       }
     },
 
+    setUserBadgeCount: (
+        state: ProfileState,
+        action: PayloadAction<number>
+      ) => {
+        if (action.type == "profile/setUserBadgeCount") {
+          state.userBadgeCount = action.payload
+        }
+      },
     
+      setTotalBadgeCount: (
+        state: ProfileState,
+        action: PayloadAction<number>
+      ) => {
+        if (action.type == "profile/setTotalBadgeCount") {
+          state.totalBadgeCount = action.payload
+        }
+      },
+
   },
 });
 
-export const { setUserProfile } =
+export const { setUserProfile, setUserBadgeCount, setTotalBadgeCount } =
   profileSlice.actions;
 
 export default profileSlice.reducer;
