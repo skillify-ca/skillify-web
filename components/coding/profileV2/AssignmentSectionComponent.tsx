@@ -37,36 +37,34 @@ export default function AssignmentsSection({}: AssignmentSectionComponentProps) 
         },
 
         onCompleted: (data: FetchUserAssignmentSubmissionsDataResponse) => {
-          dispatch(
-            setUserAssignments(
-              transformUserAssignments(data.user_assignment_submissions)
-            )
-          );
+          dispatch(setUserAssignments(data.user_assignment_submissions));
+          console.log("UA" + userAssignments);
         },
       }
     );
 
-  const transformUserAssignments = (
-    userAssignments: UserAssignmentSubmissionsData[]
-  ) => {
-    // map to redux type
-    const mappedUserAssignments: UserAssignmentSubmissionsData[] =
-      userAssignments.map((assignment) => {
-        return {
-          id: assignment.id,
-          user_id: assignment.user_id,
-          submission_link: assignment.submission_link,
-          last_updated: assignment.last_updated,
-          review_link: assignment.review_link,
-          assignmentId: assignment.assignmentId,
-          coding_assignment: assignment.coding_assignment,
-          assignment_name: assignment.coding_assignment.assignment_name,
-          assignment_link: assignment.coding_assignment.assignment_link,
-        };
-      });
+  // const transformUserAssignments = (
+  //   userAssignments: UserAssignmentSubmissionsData[]
+  // ) => {
+  //   // map to redux type
+  //   const mappedUserAssignments: UserAssignmentSubmissionsData[] =
+  //     userAssignments.map((assignment) => {
+  //       return {
+  //         id: assignment.id,
+  //         user_id: assignment.user_id,
+  //         submission_link: assignment.submission_link,
+  //         last_updated: assignment.last_updated,
+  //         review_link: assignment.review_link,
+  //         assignmentId: assignment.assignmentId,
+  //         coding_assignment: assignment.coding_assignment,
+  //         assignment_name: assignment.coding_assignment.assignment_name,
+  //         assignment_link: assignment.coding_assignment.assignment_link,
+  //       };
+  //     });
 
-    return mappedUserAssignments;
-  };
+  //   return mappedUserAssignments;
+  // };
+
   return (
     <ExpandableContainer open={true} title={""}>
       <div>

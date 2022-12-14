@@ -9,7 +9,7 @@ export type AssignmentsState = {
 
 
 const initialState: AssignmentsState = {
-  userAssignments: {} as UserAssignmentSubmissionsData[],
+  userAssignments: [],
 };
 
 export const assignmentsSlice: Slice = createSlice({
@@ -21,9 +21,7 @@ export const assignmentsSlice: Slice = createSlice({
       action: PayloadAction<UserAssignmentSubmissionsData[]>
     ) => {
       if (action.type == "assignments/setUserAssignments") {
-        return {
-          userAssignments: [...action.payload],
-        };
+        state.userAssignments = action.payload
       }
     },
   },
