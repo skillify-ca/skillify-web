@@ -1,4 +1,5 @@
 import { combineReducers, Reducer } from "@reduxjs/toolkit";
+import { Users } from "../graphql/fetchUserProfileCard";
 import evaluateExpressionSlice, {
   EvaluateExpressionState,
 } from "./evaluateExpressionSlice";
@@ -16,6 +17,7 @@ type State = {
   skillRatingsState: SkillRatingsState;
   userGoalsState: UserGoalsState;
   profileState: ProfileState;
+  skillifyUsers: Users;
 };
 const evaluateExpressionReducer = evaluateExpressionSlice;
 const quizReducer = quizSlice.reducer;

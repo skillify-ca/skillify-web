@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ProfileDetailCard from "../components/coding/studentPortal/ProfileDetailCard";
 import {
   FetchUserProfileCardResponse,
@@ -9,6 +10,7 @@ import {
 import { format } from "date-fns";
 import Link from "next/link";
 const coachingDashboard = () => {
+  const dispatch = useDispatch();
   const [userList, setUserList] = useState<Users[]>([]);
 
   const { loading, data } = useQuery<FetchUserProfileCardResponse>(
