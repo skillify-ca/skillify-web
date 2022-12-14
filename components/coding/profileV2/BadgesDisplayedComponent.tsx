@@ -17,10 +17,10 @@ export default function BadgesDisplayedComponent({
   let textStyle;
   switch (textSize) {
     case "small":
-      textStyle = "flex text-sm mg:text-sm";
+      textStyle = "flex text-sm md:text-sm";
       break;
     case "medium":
-      textStyle = "flex text-base mg:text-md";
+      textStyle = "flex text-base md:text-md";
       break;
     case "large":
       textStyle = "flex text-base md:text-lg";
