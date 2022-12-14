@@ -1,6 +1,7 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import GoalsSectionComponent from "../../../components/coding/GoalsSectionComponent";
 import ProfileGoalsSection from "../../../components/coding/ProfileGoalsSection";
+import AssignmentSectionComponent from "../../../components/coding/profileV2/AssignmentSectionComponent";
 import ProfileHeaderComponent from "../../../components/coding/profileV2/ProfileHeaderComponent";
 
 import ProjectsSection from "../../../components/coding/ProjectsSection";
@@ -23,8 +24,8 @@ export default function ExternalUserProfile({ slug, uid }) {
 
         <h2 className="text-lg font-bold mt-14 mb-9">Projects</h2>
 
-        <div className="grid grid-cols-1 mb-16 sm:grid-cols-3">
-          <ProjectsSection user={user} />
+        <div className="grid grid-cols-1 mb-16">
+          <AssignmentSectionComponent />
         </div>
 
         <h2 className="text-lg font-bold mt-14 mb-9">Goals</h2>
