@@ -17,10 +17,10 @@ export default function JoinedDateComponent({
   let textStyle;
   switch (textSize) {
     case "small":
-      textStyle = "ml-2 text-sm mg:text-sm";
+      textStyle = "ml-2 text-sm md:text-sm";
       break;
     case "medium":
-      textStyle = "ml-2 text-base mg:text-base";
+      textStyle = "ml-2 text-base md:text-base";
       break;
     case "large":
       textStyle = "ml-2 text-md md:text-lg";
