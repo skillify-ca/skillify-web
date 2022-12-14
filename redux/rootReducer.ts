@@ -2,6 +2,7 @@ import { combineReducers, Reducer } from "@reduxjs/toolkit";
 import evaluateExpressionSlice, {
   EvaluateExpressionState,
 } from "./evaluateExpressionSlice";
+import profileSlice, { ProfileState } from "./profileSlice";
 import { QuizState, quizSlice } from "./quizSlice";
 import { SidebarState, sidebarSlice } from "./sidebarSlice";
 import skillRatingsSlice, { SkillRatingsState } from "./skillRatingsSlice";
@@ -14,12 +15,14 @@ type State = {
   sidebarState: SidebarState;
   skillRatingsState: SkillRatingsState;
   userGoalsState: UserGoalsState;
+  profileState: ProfileState;
 };
 const evaluateExpressionReducer = evaluateExpressionSlice;
 const quizReducer = quizSlice.reducer;
 const sidebarReducer = sidebarSlice.reducer;
 const skillRatingsReducer = skillRatingsSlice;
 const userGoalsReducer = userGoalsSlice;
+const profileReducer = profileSlice;
 
 const rootReducer = combineReducers({
   evaluateExpressionHistory: evaluateExpressionReducer,
@@ -27,6 +30,7 @@ const rootReducer = combineReducers({
   sidebarState: sidebarReducer,
   skillRatingsState: skillRatingsReducer,
   userGoalsState: userGoalsReducer,
+  profileState: profileReducer,
 });
 
 export type RootState = State;

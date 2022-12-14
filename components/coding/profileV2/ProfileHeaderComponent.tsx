@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FETCH_TOTAL_USER_BADGES_COUNT } from "../../../graphql/fetchTotalUserBadgesCount";
 import {
   FetchUserBadgesCountResponse,
@@ -12,6 +13,12 @@ import {
   FETCH_USER_PROFILE_DATA,
   User,
 } from "../../../graphql/fetchUserProfile";
+import {
+  profileSelector,
+  setTotalBadgeCount,
+  setUserBadgeCount,
+  setUserProfile,
+} from "../../../redux/profileSlice";
 import BadgesDisplayedComponent from "./BadgesDisplayedComponent";
 import JoinedDateComponent from "./JoinedDateComponent";
 
@@ -20,11 +27,9 @@ export type UserProfileSectionProps = {
 };
 
 export default function UserProfileSection({ user }: UserProfileSectionProps) {
-  const [userProfileData, setUserProfileData] =
-    useState<UserProfileData>(Object);
-
-  const [userBadgeCount, setUserBadgeCount] = useState<number>(0);
-  const [badgeCount, setTotalBadgeCount] = useState<number>(0);
+  const dispatch = useDispatch();
+  const { userProfileData, userBadgeCount, totalBadgeCount } =
+    useSelector(profileSelector);
 
   const { loading: userProfileLoading } =
     useQuery<FetchUserProfileDataResponse>(FETCH_USER_PROFILE_DATA, {
@@ -33,14 +38,16 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
       },
       onCompleted: (data) => {
         if (data.users.length > 0) {
-          setUserProfileData({
-            typeName: data.users[0].__typename,
-            createdAt: data.users[0].created_at,
-            email: data.users[0].email,
-            lastSeen: data.users[0].last_seen,
-            name: data.users[0].name,
-            profileImage: data.users[0].profile_image,
-          });
+          dispatch(
+            setUserProfile({
+              typeName: data.users[0].__typename,
+              createdAt: data.users[0].created_at,
+              email: data.users[0].email,
+              lastSeen: data.users[0].last_seen,
+              name: data.users[0].name,
+              profileImage: data.users[0].profile_image,
+            })
+          );
         }
       },
     });
@@ -51,7 +58,9 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
       },
       onCompleted: (data) => {
         if (data.user_coding_badges_aggregate.aggregate.count) {
-          setUserBadgeCount(data.user_coding_badges_aggregate.aggregate.count);
+          dispatch(
+            setUserBadgeCount(data.user_coding_badges_aggregate.aggregate.count)
+          );
         }
       },
     });
@@ -60,7 +69,11 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
     useQuery<FetchUserBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
       onCompleted: (data) => {
         if (data.user_coding_badges_aggregate.aggregate.count) {
-          setTotalBadgeCount(data.user_coding_badges_aggregate.aggregate.count);
+          dispatch(
+            setTotalBadgeCount(
+              data.user_coding_badges_aggregate.aggregate.count
+            )
+          );
         }
       },
     });
@@ -91,6 +104,7 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
               earnedBadges={userBadgeCount}
               totalBadges={badgeCount}
               textSize={"large"}
+
             />
           </div>
         </div>

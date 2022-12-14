@@ -28,4 +28,12 @@ export type UserAssignmentSubmissionsData = {
   last_updated: Date;
   review_link: string;
   assignmentId: string;
+  coding_assignment: CodingAssignment;
 };
+
+export type CodingAssignment = {
+  assignment_name: string;
+  assignment_link;
+}
+
+//add coding_assignment to this type
