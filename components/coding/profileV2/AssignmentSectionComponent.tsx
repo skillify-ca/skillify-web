@@ -8,21 +8,26 @@ import {
 } from "@heroicons/react/outline";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FETCH_ALL_USER_ASSIGNMENTS } from "../../../graphql/fetchAllUserAssignments";
 import {
   UserAssignmentSubmissionsData,
   FetchUserAssignmentSubmissionsDataResponse,
 } from "../../../graphql/fetchUserAssignmentSubmissions";
 import { useAuth } from "../../../lib/authContext";
+import {
+  assignmentsSelector,
+  setUserAssignments,
+} from "../../../redux/assignmentsSlice";
 import ExpandableContainer from "../ExpandableContainer";
 
 export type AssignmentSectionComponentProps = {};
 
 export default function AssignmentsSection({}: AssignmentSectionComponentProps) {
   const { user } = useAuth();
-  const [userAssignments, setUserAssignments] = useState<
-    UserAssignmentSubmissionsData[]
-  >([]);
+  const dispatch = useDispatch();
+  const { userAssignments } = useSelector(assignmentsSelector);
+
   const { loading: userAssignmentsLoading } =
     useQuery<FetchUserAssignmentSubmissionsDataResponse>(
       FETCH_ALL_USER_ASSIGNMENTS,
@@ -32,10 +37,36 @@ export default function AssignmentsSection({}: AssignmentSectionComponentProps) 
         },
 
         onCompleted: (data: FetchUserAssignmentSubmissionsDataResponse) => {
-          setUserAssignments(data.user_assignment_submissions);
+          dispatch(
+            setUserAssignments(
+              transformUserAssignments(data.user_assignment_submissions)
+            )
+          );
         },
       }
     );
+
+  const transformUserAssignments = (
+    userAssignments: UserAssignmentSubmissionsData[]
+  ) => {
+    // map to redux type
+    const mappedUserAssignments: UserAssignmentSubmissionsData[] =
+      userAssignments.map((assignment) => {
+        return {
+          id: assignment.id,
+          user_id: assignment.user_id,
+          submission_link: assignment.submission_link,
+          last_updated: assignment.last_updated,
+          review_link: assignment.review_link,
+          assignmentId: assignment.assignmentId,
+          coding_assignment: assignment.coding_assignment,
+          assignment_name: assignment.coding_assignment.assignment_name,
+          assignment_link: assignment.coding_assignment.assignment_link,
+        };
+      });
+
+    return mappedUserAssignments;
+  };
   return (
     <ExpandableContainer open={true} title={""}>
       <div>
