@@ -25,27 +25,42 @@ export const profileSlice: Slice = createSlice({
       action: PayloadAction<UserProfileData>
     ) => {
       if (action.type == "profile/setUserProfile") {
-        state.userProfileData = action.payload
+        return {
+          userProfile: action.payload,
+          userBadgeCount: state.userBadgeCount,
+          totalBadgeCount: state.totalBadgeCount,
+        };
       }
+      return state;
     },
 
     setUserBadgeCount: (
-        state: ProfileState,
-        action: PayloadAction<number>
-      ) => {
-        if (action.type == "profile/setUserBadgeCount") {
-          state.userBadgeCount = action.payload
-        }
-      },
+      state: ProfileState,
+      action: PayloadAction<number>
+    ) => {
+      if (action.type == "profile/setUserBadgeCount") {
+        return {
+          userProfile: state.userBadgeCount,
+          userBadgeCount: action.payload,
+          totalBadgeCount: state.totalBadgeCount,
+        };
+      }
+      return state;
+    },
     
-      setTotalBadgeCount: (
-        state: ProfileState,
-        action: PayloadAction<number>
-      ) => {
-        if (action.type == "profile/setTotalBadgeCount") {
-          state.totalBadgeCount = action.payload
-        }
-      },
+    setTotalBadgeCount: (
+      state: ProfileState,
+      action: PayloadAction<number>
+    ) => {
+      if (action.type == "profile/setTotalBadgeCount") {
+        return {
+          userProfile: state.userProfileData,
+          userBadgeCount: state.userBadgeCount,
+          totalBadgeCount: action.payload,
+        };
+      }
+      return state;
+    },
 
   },
 });
