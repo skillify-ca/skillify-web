@@ -9,13 +9,14 @@ import {
 } from "../graphql/fetchUserProfileCard";
 import { format } from "date-fns";
 import Link from "next/link";
+import { userListSelector, setUserList } from "../redux/skillifyUsersSlice";
 const coachingDashboard = () => {
   const dispatch = useDispatch();
-  const [userList, setUserList] = useState<Users[]>([]);
+  // const [userList, setUserList] = useState<Users[]>([]);
 
   const { loading, data } = useQuery<FetchUserProfileCardResponse>(
     FETCH_USER_PROFILE_CARD,
-    { onCompleted: (data) => setUserList(data.users) }
+    { onCompleted: (data) => dispatch(setUserList(data.users)) }
   );
 
   if (loading) {
@@ -28,8 +29,8 @@ const coachingDashboard = () => {
       <h2 className="mb-4">Enrolled Students</h2>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        {userList.length > 0 &&
-          userList.map((it) => (
+        {data.users.length > 0 &&
+          data.users.map((it) => (
             <Link href={"profile/" + it.link}>
               <div className="">
                 <ProfileDetailCard
