@@ -2,18 +2,18 @@ import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { Users } from "../graphql/fetchUserProfileCard";
 import { RootState } from "./rootReducer";
 
-export type SkillifyUsersState = {
+export type skillifyUsersState = {
   userList: Users[];
 };
 
-const initialState: SkillifyUsersState = { userList: [] };
+const initialState: skillifyUsersState = { userList: [] };
 
 export const skillifyUsersSlice: Slice = createSlice({
   name: "skillifyUsers",
   initialState,
   reducers: {
     setUserList: (
-      state: SkillifyUsersState,
+      state: skillifyUsersState,
       action: PayloadAction<Users[]>
     ) => {
       state.userList = action.payload;
