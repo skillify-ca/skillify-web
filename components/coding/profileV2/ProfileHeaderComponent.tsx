@@ -96,12 +96,15 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
               <JoinedDateComponent
                 user={user}
                 createdAt={userProfileData.createdAt}
+                textSize={"large"}
               />
             </div>
             <BadgesDisplayedComponent
               user={user}
               earnedBadges={userBadgeCount}
-              totalBadges={totalBadgeCount}
+              totalBadges={badgeCount}
+              textSize={"large"}
+
             />
           </div>
         </div>
