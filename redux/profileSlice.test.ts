@@ -3,7 +3,14 @@ import { UserProfileData } from "../graphql/fetchUserProfile";
 import { setUserProfile } from "./profileSlice";
 import reducer, { GoalSection, setGoalsSections, setUserGoals, UserGoalsState } from "./userGoalsSlice";
 
-const userProfileDataInitialState: UserProfileData = {} as UserProfileData;
+const userProfileDataInitialState: UserProfileData = {
+    typeName: "",
+    createdAt: new Date(),
+    email: "",
+    lastSeen: new Date(),
+    name: "",
+    profileImage: "",
+  };
 
 const userProfileDataTestState: UserProfileData = 
   {
