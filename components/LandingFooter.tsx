@@ -1,18 +1,8 @@
 import Link from "next/link";
-import { useState } from "react";
-import Modal from "./coding/landing/modal/Modal";
-import { Button } from "./ui/Button";
 
 export default function LandingNavbar(props) {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div className="flex items-center justify-between w-full px-4 py-2 bg-white border-b-2 text-murkrow">
-      {isOpen && (
-        <div className="fixed z-50 flex flex-col items-center justify-center w-full h-screen p-4 bg-black-transparent">
-          <Modal handleClose={(e) => setIsOpen(false)} />
-        </div>
-      )}
       <Link href={"/"}>
         <img src="/images/logo.svg" className="cursor-pointer w-28 sm:w-40" />
       </Link>
