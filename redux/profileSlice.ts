@@ -24,7 +24,6 @@ export const profileSlice: Slice = createSlice({
       state: ProfileState,
       action: PayloadAction<UserProfileData>
     ) => {
-      let updatedState:ProfileState;
       if (action.type == "profile/setUserProfile") {
         return {
           userProfileData: action.payload,
