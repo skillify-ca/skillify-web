@@ -29,7 +29,6 @@ export default function LandingPage({
     <div>
       <div className="flex flex-col w-full bg-gray-100">
         <Hero headerText={headerText} description={description} />
-        <WhoItsFor />
         <Credentials headerText={credentialsText} />
         <WhatYouGet />
         <TestimonialSect />

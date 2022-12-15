@@ -25,7 +25,7 @@ export default function Credentials({ headerText }: CredentialsProps) {
       <p className="mb-4 text-3xl font-bold ">
         Our expert coaches have worked at
       </p>
-      <div className="flex flex-wrap justify-between w-full ">
+      <div className="grid justify-between w-full grid-cols-2 sm:flex sm:flex-wrap ">
         {images.map((image) => (
           <div className="flex justify-center p-4 m-4 bg-white shadow-lg">
             <img
