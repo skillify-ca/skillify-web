@@ -21,11 +21,11 @@ export default function Credentials({ headerText }: CredentialsProps) {
     "/images/about/virgin.jpg",
   ];
   return (
-    <div className="flex flex-col items-center justify-center p-4 bg-white sm:p-16">
+    <div className="flex flex-col items-center justify-center p-4 bg-slate-200 sm:p-16">
       <p className="mb-4 text-3xl font-bold ">
         Our expert coaches have worked at
       </p>
-      <div className="flex flex-wrap justify-between w-full border-t-8 border-charmander">
+      <div className="flex flex-wrap justify-between w-full ">
         {images.map((image) => (
           <div className="flex justify-center p-4 m-4 bg-white shadow-lg">
             <img

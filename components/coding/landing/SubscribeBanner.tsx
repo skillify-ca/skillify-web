@@ -8,7 +8,7 @@ const SubscribeBanner = () => {
           Universities and Colleges are ripping you off and put you in debt.
         </p>
         <p className="mb-4 text-2xl text-center max-w-7xl text-charmander">
-          Coding bootcamps sell you on unrealistic timelines that leave you
+          Coding bootcamps sell you on unrealistic timelines then leave you
           unprepared for finding a real job.
         </p>
         <p className="mb-4 text-2xl text-center max-w-7xl text-charmander">
