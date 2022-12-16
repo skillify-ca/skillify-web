@@ -40,15 +40,15 @@ export default function WhatYouGet() {
     },
     {
       title: "FULL Library of Skillify Digital Trainings",
-      value: "$8,000 Value",
+      value: "$5,000 Value",
       description:
         "Access to ALL of our digital training including web development, artifical intelligence, VR/AR, cyber security, game development, blockchain development, algorithms, interviewing & MORE!...",
     },
     {
       title: "FREE Skillify Bootcamp Events",
-      value: "$500+ Value",
+      value: "$5000+ Value",
       description:
-        "Get FREE access to our Skillify Bootcamp Events that cost $1,00 - $5,00 to attend! Including micro-trainings for UX/UI Design, Agile Methodology, Product Management and Digital Marketing",
+        "Get FREE access to our Skillify Bootcamp Events that cost $100 - $500 to attend! Including micro-trainings for UX/UI Design, Agile Methodology, Product Management and Digital Marketing",
     },
     {
       title: "Quarterly Live Virtual 2-3 Day Hackathons",
