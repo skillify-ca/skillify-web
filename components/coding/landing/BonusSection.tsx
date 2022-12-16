@@ -38,6 +38,20 @@ export default function BonusSection() {
         "Demand a higher salary by mastering this highly coveted skillset",
       ],
     },
+    {
+      num: 3,
+      title: "Unlimited, MBA-quality Online Business Coaching",
+      value: "$16,000",
+      thumbnailImg: "",
+      feature: "Launch, Grow and Scale Your Digital Business",
+      benefits: [
+        "Turn Your Expertise Into A Wildly Profitable Digital Product",
+        "Bring Your Visions & Ideas To Market Much Faster",
+        "Acquire Customers And Clients Predicatably & Consistently",
+        "Create, Grow And Distribute Your Brand's Social Media Content",
+        "Launch Ad Campaigns On Your Favourite Social Media Platforms",
+      ],
+    },
   ];
   return (
     <div className="flex flex-col items-center w-full max-w-5xl p-4 rounded-xl bg-slate-200">
@@ -45,7 +59,7 @@ export default function BonusSection() {
         Plus a Bonus Package Worth Over
       </h2>
       <h1 className="mb-8 text-5xl font-bold text-center underline text-charmander">
-        $20,000
+        $30,000
       </h1>
       {bonuses.map((bonus) => {
         const { num, title, value, thumbnailImg, feature, benefits } = bonus;
