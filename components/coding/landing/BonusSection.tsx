@@ -79,7 +79,7 @@ function Bonus({
         className="flex flex-col items-center justify-between pb-4 border-b-4 sm:flex-row border-slate-500"
       >
         <div className="flex flex-col">
-          <p className="w-full font-bold text-center uppercase text-charmander">
+          <p className="w-full font-bold text-center uppercase sm:text-start text-charmander">
             Bonus #{num}
           </p>
           <p className="w-full mb-2 font-bold text-center sm:mb-0">{title}</p>
