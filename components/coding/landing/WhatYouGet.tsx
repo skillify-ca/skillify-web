@@ -59,8 +59,8 @@ export default function WhatYouGet() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center p-8 ">
-      <h2 className="w-full my-8 text-3xl font-bold text-center sm:p-4">
+    <div className="flex flex-col items-center justify-center p-4 ">
+      <h2 className="w-full px-2 my-8 text-3xl font-bold text-center sm:p-4">
         Here's Everything You Get as a Member of the Skillify Coding Academy
       </h2>
       <FeaturesSection
@@ -103,7 +103,7 @@ function FeaturesSection({
         isReversed ? "flex-col" : "flex-col-reverse"
       } md:grid md:grid-cols-2 place-items-center`}
     >
-      <div className="flex flex-col w-full p-8 m-4 text-white max-w-7xl bg-murkrow rounded-xl">
+      <div className="flex flex-col w-full m-4 text-white p-4c max-w-7xl bg-murkrow rounded-xl">
         {features.map((item) => (
           <div className="flex flex-col m-4">
             <p className="text-xl font-bold ">{item.title}</p>

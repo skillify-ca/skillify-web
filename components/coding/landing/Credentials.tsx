@@ -21,16 +21,16 @@ export default function Credentials({ headerText }: CredentialsProps) {
     "/images/about/virgin.jpg",
   ];
   return (
-    <div className="flex flex-col items-center justify-center p-4 bg-slate-200 sm:p-16">
-      <p className="mb-4 text-3xl font-bold ">
+    <div className="flex flex-col items-center justify-center p-8 bg-slate-200 sm:p-16">
+      <p className="mb-4 text-3xl font-bold text-center">
         Our expert coaches have worked at
       </p>
       <div className="grid justify-between w-full grid-cols-2 sm:flex sm:flex-wrap ">
         {images.map((image) => (
-          <div className="flex justify-center p-4 m-4 bg-white shadow-lg">
+          <div className="flex justify-center p-4 m-4 bg-white shadow-lg w-36">
             <img
               src={image}
-              className="h-24 transition-all transform hover:scale-110"
+              className="object-contain h-24 transition-all transform hover:scale-110"
             />
           </div>
         ))}
