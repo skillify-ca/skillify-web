@@ -11,14 +11,15 @@ export default function Credentials({ headerText }: CredentialsProps) {
     "/images/about/duolingo.png",
     "/images/about/shopify.png",
     "/images/about/nvidia.png",
-    "/images/about/sap.png",
+    "/images/about/samsung.jpg",
+    "/images/about/roblox.jpg",
     "/images/about/td.png",
     "/images/about/lumosity.png",
     "/images/about/wordsWithFriends.png",
     "/images/about/peloton.png",
     "/images/about/amd.png",
+    "/images/about/sap.png",
     "/images/about/box.jpg",
-    "/images/about/virgin.jpg",
   ];
   return (
     <div className="flex flex-col items-center justify-center w-full p-8 bg-slate-200 sm:p-16">

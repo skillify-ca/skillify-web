@@ -12,11 +12,31 @@ export default function BonusSection() {
   const bonuses: BonusProps[] = [
     {
       num: 1,
-      title: "Our Insiders Job Search Strategy",
-      value: "$5,000",
+      title: "Insiders Remote Job Search Strategy Bonus Training",
+      value: "$9,000",
       thumbnailImg: "",
-      feature: "Feature 1",
-      benefits: ["Benefit 1", "Benefit 2"],
+      feature:
+        "Prepare for your interviews with bonus coaching sessions for: Resume Critiques and Mock Interviews",
+      benefits: [
+        "Access our private job board to connect with employers who want to hire you and will provide you with mentorship",
+        "Learn our 6-step framework for dismantling any coding interview challenge",
+        "Discover our secret strategy for receiving multiple job offers and negotiating your highest possible salary",
+        "Access our exclusive partner tools that will get you referred into your dream company",
+      ],
+    },
+    {
+      num: 2,
+      title: "Mobile App Development Bonus Training",
+      value: "$12,000",
+      thumbnailImg: "",
+      feature: "Unlimited Access to our Mobile App Development Training",
+      benefits: [
+        "Build your own mobile games and applications for both iOS and Android devices",
+        "Differentiate yourself from every other bootcamp or university graduate who only knows web development",
+        "Fast track your path to working at FAANG companies",
+        "Get twice as many interviews for both web and mobile developer roles",
+        "Demand a higher salary by mastering this highly coveted skillset",
+      ],
     },
   ];
   return (
@@ -26,7 +46,7 @@ export default function BonusSection() {
           Plus a Bonus Package Worth Over
         </h2>
         <h1 className="mb-8 text-5xl font-bold text-center underline text-charmander">
-          $30, 000
+          $20, 000
         </h1>
         {bonuses.map((bonus) => {
           const { num, title, value, thumbnailImg, feature, benefits } = bonus;
@@ -58,29 +78,34 @@ function Bonus({
     <div className="w-full ">
       <div
         id="header"
-        className="flex justify-between pb-4 border-b-4 border-slate-500"
+        className="flex items-center justify-between pb-4 border-b-4 border-slate-500"
       >
         <div className="flex flex-col">
           <p className="font-bold uppercase text-charmander">Bonus #{num}</p>
           <p className="font-bold">{title}</p>
         </div>
-        <div className="flex items-center p-2 rounded-lg bg-charmander">
+        <div className="flex items-center h-12 p-2 rounded-lg bg-charmander">
           <p className="font-bold text-white">VALUE:</p>
           <p className="ml-2 font-bold text-white">{value}</p>
-          <p className="p-2 ml-2 font-bold bg-white rounded-lg text-charmander">
+          <p className="px-2 ml-2 font-bold bg-white rounded-lg text-charmander">
             FREE!
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-2 pt-4">
-        <div>
-          <img className="w-full h-24 bg-slate-300" src={thumbnailImg} />
+      <div className="flex flex-col pt-4 sm:grid sm:grid-cols-2">
+        <div className="flex flex-col items-center h-64 p-4 w-108 heropattern-squares-fuchsia-500 bg-stone-700">
+          <div className="flex flex-col items-center justify-center h-full p-4 bg-white rounded-xl">
+            <p className="font-bold uppercase font-3xl text-charmander">
+              Bonus #{num}
+            </p>
+            <p className="text-2xl font-bold text-center font-2xl">{title}</p>
+          </div>
         </div>
-        <div>
+        <div className="p-4">
           <p className="font-bold">{feature}</p>
-          <ul>
+          <ul className="list-disc list-inside">
             {benefits.map((b) => (
-              <ul>{b}</ul>
+              <li>{b}</li>
             ))}
           </ul>
         </div>
