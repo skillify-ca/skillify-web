@@ -12,7 +12,7 @@ export default function BonusSection() {
   const bonuses: BonusProps[] = [
     {
       num: 1,
-      title: "Insiders Remote Job Search Strategy Bonus Training",
+      title: "Insiders Job Search Strategy Bonus Training",
       value: "$9,000",
       thumbnailImg: "",
       feature:
@@ -26,7 +26,7 @@ export default function BonusSection() {
     },
     {
       num: 2,
-      title: "Mobile App Development Bonus Training",
+      title: "Expert Mobile App Development Bonus Training",
       value: "$12,000",
       thumbnailImg: "",
       feature: "Unlimited Access to our Mobile App Development Training",
@@ -40,28 +40,26 @@ export default function BonusSection() {
     },
   ];
   return (
-    <div className="flex flex-col items-center w-full p-4 rounded-xl bg-slate-200">
-      <div className="w-full max-w-5xl">
-        <h2 className="text-3xl font-bold text-center">
-          Plus a Bonus Package Worth Over
-        </h2>
-        <h1 className="mb-8 text-5xl font-bold text-center underline text-charmander">
-          $20,000
-        </h1>
-        {bonuses.map((bonus) => {
-          const { num, title, value, thumbnailImg, feature, benefits } = bonus;
-          return (
-            <Bonus
-              num={num}
-              title={title}
-              value={value}
-              thumbnailImg={thumbnailImg}
-              feature={feature}
-              benefits={benefits}
-            />
-          );
-        })}
-      </div>
+    <div className="flex flex-col items-center w-full max-w-5xl p-4 rounded-xl bg-slate-200">
+      <h2 className="text-3xl font-bold text-center">
+        Plus a Bonus Package Worth Over
+      </h2>
+      <h1 className="mb-8 text-5xl font-bold text-center underline text-charmander">
+        $20,000
+      </h1>
+      {bonuses.map((bonus) => {
+        const { num, title, value, thumbnailImg, feature, benefits } = bonus;
+        return (
+          <Bonus
+            num={num}
+            title={title}
+            value={value}
+            thumbnailImg={thumbnailImg}
+            feature={feature}
+            benefits={benefits}
+          />
+        );
+      })}
     </div>
   );
 }
@@ -78,11 +76,13 @@ function Bonus({
     <div className="w-full ">
       <div
         id="header"
-        className="flex items-center justify-between pb-4 border-b-4 border-slate-500"
+        className="flex flex-col items-center justify-between pb-4 border-b-4 sm:flex-row border-slate-500"
       >
         <div className="flex flex-col">
-          <p className="font-bold uppercase text-charmander">Bonus #{num}</p>
-          <p className="font-bold">{title}</p>
+          <p className="w-full font-bold text-center uppercase text-charmander">
+            Bonus #{num}
+          </p>
+          <p className="w-full mb-2 font-bold text-center sm:mb-0">{title}</p>
         </div>
         <div className="flex items-center h-12 p-2 rounded-lg bg-charmander">
           <p className="font-bold text-white">VALUE:</p>
@@ -93,7 +93,7 @@ function Bonus({
         </div>
       </div>
       <div className="flex flex-col pt-4 sm:grid sm:grid-cols-2">
-        <div className="flex flex-col items-center h-64 p-4 w-108 heropattern-squares-fuchsia-500 bg-stone-700">
+        <div className="flex flex-col items-center w-full h-64 p-4 sm:w-108 heropattern-squares-charmander bg-murkrow">
           <div className="flex flex-col items-center justify-center h-full p-4 bg-white rounded-xl">
             <p className="font-bold uppercase font-3xl text-charmander">
               Bonus #{num}
