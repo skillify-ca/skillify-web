@@ -81,7 +81,6 @@ const HomePage = () => {
         image={"https://www.skillify.ca/images/logo.svg"}
       />
 
-      <Facebook />
       <LandingNavbar />
 
       <LandingPage

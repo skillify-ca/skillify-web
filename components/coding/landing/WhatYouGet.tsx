@@ -59,7 +59,7 @@ export default function WhatYouGet() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center p-4 ">
+    <div className="flex flex-col items-center justify-center p-4 max-w-7xl ">
       <h2 className="w-full px-2 my-8 text-3xl font-bold text-center sm:p-4">
         Here's Everything You Get as a Member of the Skillify Coding Academy
       </h2>
@@ -101,9 +101,9 @@ function FeaturesSection({
     <div
       className={`flex flex-col ${
         isReversed ? "flex-col" : "flex-col-reverse"
-      } md:grid md:grid-cols-2 place-items-center`}
+      } md:grid md:grid-cols-2  w-full max-w-7xl place-items-center`}
     >
-      <div className="flex flex-col w-full m-4 text-white p-4c max-w-7xl bg-murkrow rounded-xl">
+      <div className="flex flex-col w-full p-4 m-4 text-white max-w-7xl bg-murkrow rounded-xl">
         {features.map((item) => (
           <div className="flex flex-col m-4">
             <p className="text-xl font-bold ">{item.title}</p>
@@ -112,12 +112,12 @@ function FeaturesSection({
           </div>
         ))}
       </div>
-      <img
-        className={`transition-all transform hover:scale-110 ${
-          isReversed ? "order-first" : ""
-        }`}
-        src={image}
-      />
+      <div className={`${isReversed ? "order-first" : ""} p-4`}>
+        <img
+          className={`transition-all transform hover:scale-110 `}
+          src={image}
+        />
+      </div>
     </div>
   );
 }
