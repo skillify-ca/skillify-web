@@ -46,7 +46,7 @@ export default function BonusSection() {
           Plus a Bonus Package Worth Over
         </h2>
         <h1 className="mb-8 text-5xl font-bold text-center underline text-charmander">
-          $20, 000
+          $20,000
         </h1>
         {bonuses.map((bonus) => {
           const { num, title, value, thumbnailImg, feature, benefits } = bonus;
