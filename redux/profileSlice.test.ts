@@ -1,7 +1,6 @@
 
 import { UserProfileData } from "../graphql/fetchUserProfile";
-import { setUserProfile } from "./profileSlice";
-import reducer, { GoalSection, setGoalsSections, setUserGoals, UserGoalsState } from "./userGoalsSlice";
+import reducer, { setTotalBadgeCount, setUserBadgeCount, setUserProfile } from "./profileSlice";
 
 const userProfileDataInitialState: UserProfileData = 
 {
@@ -39,13 +38,11 @@ test("set userProfileData to userProfileTestState from initialState", () => {
     userProfileDataInitialState,
     setUserProfile(userProfileDataTestState)
   );
-  console.log("UP" + userProfileDataInitialState)
-
-  console.log("UT" + userProfileDataTestState)
-
-  console.log("UN" + userProfileDataNextState)
+  console.log("initial state:", userProfileDataInitialState);
+  console.log("action payload:", userProfileDataTestState);
+  console.log("next state:", userProfileDataNextState);
   // Assert
- expect(userProfileDataNextState["userProfile"]).toEqual({
+ expect(userProfileDataNextState["userProfileData"]).toEqual({
     typeName: "type",
     createdAt: new Date(2022, 10, 22),
     email: "fun@fun.com",
@@ -69,22 +66,43 @@ const userBadgeCountTestState: number = 4;
   });
 
 
-test("set userProfileData to userProfileTestState from initialState", () => {
+test("set userBadgeCount to userBadgeCountTestState from initialState", () => {
   // Arrange
 
   // Act
   const userBadgeCountNextState = reducer(
     userBadgeCountInitialState,
-    setUserProfile(userBadgeCountTestState)
+    setUserBadgeCount(userBadgeCountTestState)
   );
-  console.log("UP" + userBadgeCountInitialState)
-
-  console.log("UT" + userBadgeCountTestState)
-
-  console.log("UN" + userBadgeCountNextState)
+  
   // Assert
- expect(userBadgeCountNextState["userProfile"]).toEqual(4);
+ expect(userBadgeCountNextState["userBadgeCount"]).toEqual(4);
 
 });
 
+const totalBadgeCountInitialState: number = 
+0;
 
+const totalBadgeCountTestState: number = 30;
+
+
+  test("should return the initial state", () => {
+    expect(reducer(totalBadgeCountInitialState, { type: "no action" })).toEqual(
+      totalBadgeCountInitialState
+    );
+  });
+
+
+test("set totalBadgeCount to totalBadgeCountTestState from initialState", () => {
+  // Arrange
+
+  // Act
+  const totalBadgeCountNextState = reducer(
+    totalBadgeCountInitialState,
+    setTotalBadgeCount(totalBadgeCountTestState)
+  );
+  
+  // Assert
+ expect(totalBadgeCountNextState["totalBadgeCount"]).toEqual(30);
+
+});

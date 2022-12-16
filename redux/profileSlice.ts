@@ -33,12 +33,10 @@ export const profileSlice: Slice = createSlice({
     ) => {
       if (action.type == "profile/setUserProfile") {
         return {
+          ...state,
           userProfileData: action.payload,
-          userBadgeCount: state.userBadgeCount,
-          totalBadgeCount: state.totalBadgeCount,
         };
       }
-      return state;
     },
 
     setUserBadgeCount: (
@@ -47,12 +45,10 @@ export const profileSlice: Slice = createSlice({
     ) => {
       if (action.type == "profile/setUserBadgeCount") {
         return {
-          userProfileData: state.userProfileData,
+          ...state,
           userBadgeCount: action.payload,
-          totalBadgeCount: state.totalBadgeCount,
         };
       }
-      return state;
     },
   
     
@@ -62,12 +58,10 @@ export const profileSlice: Slice = createSlice({
     ) => {
       if (action.type == "profile/setTotalBadgeCount") {
         return {
-          userProfileData: state.userProfileData,
-          userBadgeCount: state.userBadgeCount,
+          ...state,
           totalBadgeCount: action.payload,
         };
       }
-      return state;
     },
 
   },
