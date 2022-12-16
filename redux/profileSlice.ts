@@ -11,7 +11,14 @@ export type ProfileState = {
 
 
 const initialState: ProfileState = {
-  userProfileData: {} as UserProfileData,
+  userProfileData: {
+    typeName: "",
+    createdAt: new Date(),
+    email: "",
+    lastSeen: new Date(),
+    name: "",
+    profileImage: "",
+  },
   userBadgeCount: 0,
   totalBadgeCount: 0,
 };
@@ -31,6 +38,7 @@ export const profileSlice: Slice = createSlice({
           totalBadgeCount: state.totalBadgeCount,
         };
       }
+      return state;
     },
 
     setUserBadgeCount: (
@@ -44,6 +52,7 @@ export const profileSlice: Slice = createSlice({
           totalBadgeCount: state.totalBadgeCount,
         };
       }
+      return state;
     },
   
     
@@ -58,6 +67,7 @@ export const profileSlice: Slice = createSlice({
           totalBadgeCount: action.payload,
         };
       }
+      return state;
     },
 
   },

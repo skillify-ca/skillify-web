@@ -3,7 +3,8 @@ import { UserProfileData } from "../graphql/fetchUserProfile";
 import { setUserProfile } from "./profileSlice";
 import reducer, { GoalSection, setGoalsSections, setUserGoals, UserGoalsState } from "./userGoalsSlice";
 
-const userProfileDataInitialState: UserProfileData = {
+const userProfileDataInitialState: UserProfileData = 
+{
     typeName: "",
     createdAt: new Date(),
     email: "",
@@ -29,17 +30,22 @@ const userProfileDataTestState: UserProfileData =
     );
   });
 
+
 test("set userProfileData to userProfileTestState from initialState", () => {
   // Arrange
 
   // Act
-  const userProfileDataNextState = reducer(
+  const userProfileDataNextState:UserProfileData = reducer(
     userProfileDataInitialState,
     setUserProfile(userProfileDataTestState)
   );
+  console.log("UP" + userProfileDataInitialState)
 
+  console.log("UT" + userProfileDataTestState)
+
+  console.log("UN" + userProfileDataNextState)
   // Assert
-  expect(userProfileDataNextState["userProfileData"]).toEqual({
+ expect(userProfileDataNextState["userProfile"]).toEqual({
     typeName: "type",
     createdAt: new Date(2022, 10, 22),
     email: "fun@fun.com",
@@ -47,8 +53,38 @@ test("set userProfileData to userProfileTestState from initialState", () => {
     name: "John Doe",
     profileImage: "image.png",
   });
+
 });
 
+const userBadgeCountInitialState: number = 
+0;
 
+const userBadgeCountTestState: number = 4;
+
+
+  test("should return the initial state", () => {
+    expect(reducer(userBadgeCountInitialState, { type: "no action" })).toEqual(
+      userBadgeCountInitialState
+    );
+  });
+
+
+test("set userProfileData to userProfileTestState from initialState", () => {
+  // Arrange
+
+  // Act
+  const userBadgeCountNextState = reducer(
+    userBadgeCountInitialState,
+    setUserProfile(userBadgeCountTestState)
+  );
+  console.log("UP" + userBadgeCountInitialState)
+
+  console.log("UT" + userBadgeCountTestState)
+
+  console.log("UN" + userBadgeCountNextState)
+  // Assert
+ expect(userBadgeCountNextState["userProfile"]).toEqual(4);
+
+});
 
 
