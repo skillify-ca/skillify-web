@@ -29,7 +29,7 @@ export default function GoalsSection({
   sectionName,
   userGoals,
 }: GoalsSectionProps) {
-  return (
+  return userGoals.length > 0 ? (
     <ExpandableContainer open={true} title={""}>
       <div className="dark:text-white">
         {userGoals.length > 0 && (
@@ -74,5 +74,5 @@ export default function GoalsSection({
         })}
       </div>
     </ExpandableContainer>
-  );
+  ) : null;
 }
