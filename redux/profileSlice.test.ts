@@ -38,9 +38,7 @@ test("set userProfileData to userProfileTestState from initialState", () => {
     userProfileDataInitialState,
     setUserProfile(userProfileDataTestState)
   );
-  console.log("initial state:", userProfileDataInitialState);
-  console.log("action payload:", userProfileDataTestState);
-  console.log("next state:", userProfileDataNextState);
+  
   // Assert
  expect(userProfileDataNextState["userProfileData"]).toEqual({
     typeName: "type",
