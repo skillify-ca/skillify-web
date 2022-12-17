@@ -4,10 +4,7 @@ import { Users } from "../graphql/fetchUserProfileCard";
 import { RootState } from "./rootReducer";
 
 export type SkillifyUsersState = {
-  userList: SkillifyUsers;
-};
-export type SkillifyUsers = {
-  users: Users[];
+  userList: Users[];
 };
 
 // Create new type for skillifyUsers?
