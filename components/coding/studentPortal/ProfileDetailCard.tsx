@@ -31,9 +31,17 @@ function ProfileDetailCard({
         <p className=" font-bold "> {name}</p>
       </div>
       <div className="flex flex-col ml-4 mb-4 gap-4 items-start">
-        <JoinedDateComponent user={name} createdAt={joinDate} />
+        <JoinedDateComponent
+          user={name}
+          textSize={"small"}
+          createdAt={joinDate}
+        />
 
-        <BadgesDisplayedComponent earnedBadges={badges} totalBadges={50} />
+        <BadgesDisplayedComponent
+          earnedBadges={badges}
+          textSize={"small"}
+          totalBadges={50}
+        />
         <p className="underline ">current focus: {currentFocus}</p>
         <p className="underline">next goal: {nextGoal}</p>
       </div>

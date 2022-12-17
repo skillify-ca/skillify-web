@@ -1,10 +1,16 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
+import SkillCard from "../components/math/stories/SkillCard";
 import { Users } from "../graphql/fetchUserProfileCard";
 import { RootState } from "./rootReducer";
 
 export type SkillifyUsersState = {
-  userList: Users[];
+  userList: SkillifyUsers;
 };
+export type SkillifyUsers = {
+  users: Users[];
+};
+
+// Create new type for skillifyUsers?
 
 const initialState: SkillifyUsersState = { userList: [] };
 
