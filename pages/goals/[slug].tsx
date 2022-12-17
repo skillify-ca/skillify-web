@@ -131,10 +131,14 @@ const EditGoalsPage = () => {
               className="w-1/2 p-2 text-left border rounded-md shadow-md md:w-1/4 text-murkrow"
               value=""
               onChange={(e) => {
-                setEditedGoalValues((prevState) => ({
-                  ...prevState,
-                  targetDate: new Date(e.target.value + "T00:00:00"),
-                }));
+                if (new Date(e.target.value + "T00:00:00") > new Date()) {
+                  setEditedGoalValues((prevState) => ({
+                    ...prevState,
+                    targetDate: new Date(e.target.value + "T00:00:00"),
+                  }));
+                } else {
+                  alert("Please select a future date.");
+                }
               }}
             />
           </div>
