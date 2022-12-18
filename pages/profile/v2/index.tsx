@@ -45,6 +45,7 @@ export default function Profile(props) {
 
       <div className="grid grid-cols-1">
         <GoalsSectionComponent
+          profile={true}
           userGoals={userGoals
             .filter((goal) => !goal.isComplete && !goal.isArchived)
             .slice(0, 3)}

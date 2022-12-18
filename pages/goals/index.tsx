@@ -81,6 +81,7 @@ export default function Goals(props) {
               <GoalsSectionComponent
                 userGoals={section.userGoals}
                 sectionName={section.sectionName}
+                profile={false}
               />
             </div>
           );
