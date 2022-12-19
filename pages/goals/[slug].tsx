@@ -129,7 +129,10 @@ const EditGoalsPage = () => {
             <input
               type="date"
               className="w-1/2 p-2 text-left border rounded-md shadow-md md:w-1/4 text-murkrow"
-              value=""
+              value={format(
+                new Date(editedGoalValues.targetDate),
+                "yyyy-MM-dd"
+              )}
               onChange={(e) => {
                 if (new Date(e.target.value + "T00:00:00") > new Date()) {
                   setEditedGoalValues((prevState) => ({
