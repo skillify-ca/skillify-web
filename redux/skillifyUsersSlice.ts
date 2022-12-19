@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
+import { Action } from "lottie-react";
 import SkillCard from "../components/math/stories/SkillCard";
 import { Users } from "../graphql/fetchUserProfileCard";
 import { RootState } from "./rootReducer";
@@ -6,8 +7,6 @@ import { RootState } from "./rootReducer";
 export type SkillifyUsersState = {
   userList: Users[];
 };
-
-// Create new type for skillifyUsers?
 
 const initialState: SkillifyUsersState = { userList: [] };
 
@@ -19,7 +18,9 @@ export const skillifyUsersSlice: Slice = createSlice({
       state: SkillifyUsersState,
       action: PayloadAction<Users[]>
     ) => {
-      state.userList = action.payload;
+      if (action.type == "skillifyUsers/setUserList") {
+        return { userList: [...action.payload] };
+      }
     },
   },
 });
