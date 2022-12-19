@@ -26,4 +26,5 @@ export const skillifyUsersSlice: Slice = createSlice({
 
 export const { setUserList } = skillifyUsersSlice.actions;
 export default skillifyUsersSlice.reducer;
-export const userListSelector = (state: RootState) => state.skillifyUsersState;
+export const skillifyUsersSelector = (state: RootState) =>
+  state.skillifyUsersState;
