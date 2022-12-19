@@ -33,9 +33,7 @@ test("set userList from initial to teststate", () => {
 
   // Act
   const nextState = reducer(initialState, setUserList(testState));
-  console.log(initialState);
-  console.log(nextState);
-  console.log(testState);
+
   // Assert
   expect(nextState["userList"][0]).toEqual({
     id: "fakeid",
