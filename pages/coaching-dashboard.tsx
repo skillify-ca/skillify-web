@@ -15,7 +15,7 @@ import {
 } from "../redux/skillifyUsersSlice";
 const coachingDashboard = () => {
   const dispatch = useDispatch();
-  const userList = useSelector(skillifyUsersSelector).userList;
+  const { userList } = useSelector(skillifyUsersSelector);
   const { loading, data } = useQuery<FetchUserProfileCardResponse>(
     FETCH_USER_PROFILE_CARD,
     {
@@ -30,7 +30,7 @@ const coachingDashboard = () => {
       <p className="mb-8 text-3xl">Coaching Dashboard</p>
       <h2 className="mb-4">Enrolled Students</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        {userList?.map((it) => (
+        {userList.map((it) => (
           <Link href={"profile/" + it.link}>
             <div className="">
               <ProfileDetailCard

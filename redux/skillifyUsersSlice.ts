@@ -7,8 +7,6 @@ export type SkillifyUsersState = {
   userList: Users[];
 };
 
-// Create new type for skillifyUsers?
-
 const initialState: SkillifyUsersState = { userList: [] };
 
 export const skillifyUsersSlice: Slice = createSlice({
