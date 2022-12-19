@@ -42,8 +42,8 @@ function ProfileDetailCard({
           textSize={"small"}
           totalBadges={50}
         />
-        <p className="underline ">current focus: {currentFocus}</p>
-        <p className="underline">next goal: {nextGoal}</p>
+        <p className="underline ">Current Focus: {currentFocus}</p>
+        <p className="underline">Next Goal: {nextGoal}</p>
       </div>
     </div>
   );

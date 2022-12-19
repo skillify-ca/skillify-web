@@ -19,7 +19,6 @@ const coachingDashboard = () => {
       onCompleted: () => dispatch(setUserList(data.users)),
     }
   );
-  alert(JSON.stringify(userListState));
   if (loading) {
     return <div className="flex place-content-center">"Loading..."</div>;
   }
