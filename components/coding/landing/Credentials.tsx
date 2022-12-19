@@ -11,21 +11,22 @@ export default function Credentials({ headerText }: CredentialsProps) {
     "/images/about/duolingo.png",
     "/images/about/shopify.png",
     "/images/about/nvidia.png",
-    "/images/about/sap.png",
+    "/images/about/samsung.jpg",
+    "/images/about/roblox.jpg",
     "/images/about/td.png",
     "/images/about/lumosity.png",
     "/images/about/wordsWithFriends.png",
     "/images/about/peloton.png",
     "/images/about/amd.png",
+    "/images/about/sap.png",
     "/images/about/box.jpg",
-    "/images/about/virgin.jpg",
   ];
   return (
-    <div className="flex flex-col items-center justify-center p-8 bg-slate-200 sm:p-16">
+    <div className="flex flex-col items-center justify-center w-full p-8 bg-slate-200 sm:p-16">
       <p className="mb-4 text-3xl font-bold text-center">
         Our expert coaches have worked at
       </p>
-      <div className="grid justify-between w-full grid-cols-2 sm:flex sm:flex-wrap ">
+      <div className="grid justify-between w-full grid-cols-2 max-w-7xl sm:flex sm:flex-wrap ">
         {images.map((image) => (
           <div className="flex justify-center p-4 m-4 bg-white shadow-lg w-36">
             <img

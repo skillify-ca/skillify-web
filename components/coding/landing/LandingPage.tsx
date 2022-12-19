@@ -27,7 +27,7 @@ export default function LandingPage({
 }: LandingPageCopy) {
   return (
     <div>
-      <div className="flex flex-col w-full bg-gray-100">
+      <div className="flex flex-col items-center w-full bg-gray-100">
         <Hero headerText={headerText} description={description} />
         <Credentials headerText={credentialsText} />
         <WhatYouGet />

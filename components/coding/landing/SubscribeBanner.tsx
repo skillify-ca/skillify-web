@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const SubscribeBanner = () => {
   return (
-    <div className="bg-white">
+    <div className="w-full ">
       <div className="flex flex-col items-center justify-center p-4 text-xl lg:m-8 md:p-8 lg:rounded-md bg-murkrow">
         <p className="mb-4 text-center -xl max-w-7xl text-charmander">
           Universities and Colleges rip you off and put you in debt.
