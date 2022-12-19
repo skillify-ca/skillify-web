@@ -5,16 +5,30 @@ export type BadgesDisplayedComponentProps = {
   user: User;
   earnedBadges: number;
   totalBadges: number;
+  textSize: "small" | "medium" | "large";
 };
 
 export default function BadgesDisplayedComponent({
   user,
   earnedBadges,
   totalBadges,
+  textSize,
 }: BadgesDisplayedComponentProps) {
+  let textStyle;
+  switch (textSize) {
+    case "small":
+      textStyle = "flex text-sm md:text-sm";
+      break;
+    case "medium":
+      textStyle = "flex text-base md:text-md";
+      break;
+    case "large":
+      textStyle = "flex text-base md:text-lg";
+      break;
+  }
   return (
     <>
-      <p className="flex text-md md:text-lg">
+      <p className={textStyle}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"

@@ -4,7 +4,7 @@ import SEO from "../components/SEO";
 import LandingNavbar from "../components/LandingNavbar";
 import LandingPage, {
   LandingPageCopy,
-} from "../components/math/stories/LandingPage";
+} from "../components/coding/landing/LandingPage";
 import LandingFooter from "../components/LandingFooter";
 
 const HomePage = () => {
@@ -32,8 +32,6 @@ const HomePage = () => {
     ],
     description:
       "Get personalized and flexible training for high-paying remote jobs from Silicon Valley instructors. We customize our program to you and your unique interests.",
-    bannerText:
-      "Traditional universities and coding bootcamps leave you in debt and unprepared for finding a real job. With our project-based courses, you can learn the fundamentals of coding and get hired.",
     credentialsText: "",
     benefitsText: "Grow without limits",
     benefits: [
@@ -66,7 +64,6 @@ const HomePage = () => {
   const {
     headerText,
     description,
-    bannerText,
     credentialsText,
     benefitsText,
     benefits,
@@ -84,13 +81,11 @@ const HomePage = () => {
         image={"https://www.skillify.ca/images/logo.svg"}
       />
 
-      <Facebook />
-      <LandingNavbar />
+      <LandingNavbar showTimer={true} />
 
       <LandingPage
         headerText={headerText}
         description={description}
-        bannerText={bannerText}
         credentialsText={credentialsText}
         benefitsText={benefitsText}
         benefits={benefits}
