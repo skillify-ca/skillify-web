@@ -11,11 +11,11 @@ export default function WhoItsFor() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center p-8">
-      <h2 className="my-8 text-3xl font-bold">
+    <div className="flex flex-col items-center justify-center p-4 sm:p-8 bg-murkrow">
+      <h2 className="p-4 text-2xl font-bold text-charmander">
         If any of this strikes a chord, then it’s time to learn with Skillify...
       </h2>
-      <div className="flex flex-col items-center w-full p-8 max-w-7xl bg-slate-200 rounded-xl">
+      <div className="flex flex-col items-start w-full p-8 m-4 lg:items-center max-w-7xl bg-slate-200 rounded-xl">
         {listItems.map((item) => (
           <div className="flex items-center transition-all hover:scale-110 hover:font-bold">
             <svg
@@ -32,7 +32,7 @@ export default function WhoItsFor() {
                 d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
               />
             </svg>
-            <p className="p-4 text-xl ">{item}</p>
+            <p className="w-full p-4 text-xl">{item}</p>
           </div>
         ))}
       </div>
