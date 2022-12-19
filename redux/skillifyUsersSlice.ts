@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { Action } from "lottie-react";
+
 import SkillCard from "../components/math/stories/SkillCard";
 import { Users } from "../graphql/fetchUserProfileCard";
 import { RootState } from "./rootReducer";
