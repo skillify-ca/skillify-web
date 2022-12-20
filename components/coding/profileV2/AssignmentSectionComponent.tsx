@@ -32,8 +32,6 @@ export const returnParentStyling = (
   let parentStyle = "";
   if (assignment.coding_assignment.assignment_name.length >= 8) {
     parentStyle = "w-[100px] hover:w-full";
-  } else {
-    null;
   }
   return parentStyle;
 };
