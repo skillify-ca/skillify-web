@@ -160,6 +160,7 @@ export default function SkillifyCommandPalette() {
       {isOpen && (
         <CommandPalette
           open={isOpen}
+          hotKeys={"command+k"}
           resetInputOnOpen={true}
           onRequestClose={() => {
             setIsOpen(false);
