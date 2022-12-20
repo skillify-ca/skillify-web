@@ -27,9 +27,8 @@ const returnWrapStyling = (assignment: UserAssignmentSubmissionsData) => {
 const returnParentStyling = (assignment: UserAssignmentSubmissionsData) => {
   let parentStyle = "";
   if (assignment.coding_assignment.assignment_name.length >= 8) {
-    parentStyle = "w-1/8 hover:w-full";
-  }
-  return parentStyle;
+    parentStyle = "w-1/8";
+  } else return parentStyle;
 };
 
 export type AssignmentSectionComponentProps = {};
@@ -81,7 +80,7 @@ export default function AssignmentsSection({}: AssignmentSectionComponentProps) 
                     assignment
                   )}`}
                 >
-                  <p className={` ${returnWrapStyling(assignment)}`}>
+                  <p className={`${returnWrapStyling(assignment)}`}>
                     {assignment.coding_assignment.assignment_name}
                   </p>
                 </div>
