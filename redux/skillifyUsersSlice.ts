@@ -5,20 +5,17 @@ import SkillCard from "../components/math/stories/SkillCard";
 import { Users } from "../graphql/fetchUserProfileCard";
 import { RootState } from "./rootReducer";
 
-export type SkillifyUsersState = {
+export type userState = {
   userList: Users[];
 };
 
-const initialState: SkillifyUsersState = { userList: [] };
+const initialState: userState = { userList: [] };
 
 export const skillifyUsersSlice: Slice = createSlice({
   name: "skillifyUsers",
   initialState,
   reducers: {
-    setUserList: (
-      state: SkillifyUsersState,
-      action: PayloadAction<Users[]>
-    ) => {
+    setUserList: (state: userState, action: PayloadAction<Users[]>) => {
       if (action.type == "skillifyUsers/setUserList") {
         return { userList: [...action.payload] };
       }
@@ -28,5 +25,4 @@ export const skillifyUsersSlice: Slice = createSlice({
 
 export const { setUserList } = skillifyUsersSlice.actions;
 export default skillifyUsersSlice.reducer;
-export const skillifyUsersSelector = (state: RootState) =>
-  state.skillifyUsersState;
+export const skillifyUsersSelector = (state: RootState) => state.userState;

@@ -6,7 +6,7 @@ import evaluateExpressionSlice, {
 import profileSlice, { ProfileState } from "./profileSlice";
 import { QuizState, quizSlice } from "./quizSlice";
 import { SidebarState, sidebarSlice } from "./sidebarSlice";
-import skillifyUsersSlice, { SkillifyUsersState } from "./skillifyUsersSlice";
+import skillifyUsersSlice, { userState } from "./skillifyUsersSlice";
 import skillRatingsSlice, { SkillRatingsState } from "./skillRatingsSlice";
 import userGoalsSlice, { UserGoalsState } from "./userGoalsSlice";
 
@@ -18,7 +18,7 @@ type State = {
   skillRatingsState: SkillRatingsState;
   userGoalsState: UserGoalsState;
   profileState: ProfileState;
-  userState: SkillifyUsersState;
+  userState: userState;
 };
 const evaluateExpressionReducer = evaluateExpressionSlice;
 const quizReducer = quizSlice.reducer;
@@ -35,7 +35,7 @@ const rootReducer = combineReducers({
   skillRatingsState: skillRatingsReducer,
   userGoalsState: userGoalsReducer,
   profileState: profileReducer,
-  skillifyUsersState: skillifyUsersReducer,
+  userState: skillifyUsersReducer,
 });
 
 export type RootState = State;
