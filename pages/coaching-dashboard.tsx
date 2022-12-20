@@ -9,10 +9,7 @@ import {
 } from "../graphql/fetchUserProfileCard";
 import { format } from "date-fns";
 import Link from "next/link";
-import {
-  skillifyUsersSelector,
-  setUserList,
-} from "../redux/skillifyUsersSlice";
+import { skillifyUsersSelector, setUserList } from "../redux/userSlice";
 const coachingDashboard = () => {
   const dispatch = useDispatch();
 

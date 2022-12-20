@@ -1,8 +1,8 @@
 import { Users } from "../graphql/fetchUserProfileCard";
-import reducer from "./skillifyUsersSlice";
-import { SkillifyUsersState, setUserList } from "./skillifyUsersSlice";
+import reducer from "./userSlice";
+import { userState, setUserList } from "./userSlice";
 
-const initialState: SkillifyUsersState[] = [
+const initialState: userState[] = [
   {
     id: "",
     name: "",
