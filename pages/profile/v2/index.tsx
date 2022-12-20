@@ -1,7 +1,9 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import GoalsSectionComponent from "../../../components/coding/GoalsSectionComponent";
+import GoalsSectionComponent, {
+  GoalsComponentSection,
+} from "../../../components/coding/GoalsSectionComponent";
 import AssignmentSectionComponent from "../../../components/coding/profileV2/AssignmentSectionComponent";
 import ProfileHeaderComponent from "../../../components/coding/profileV2/ProfileHeaderComponent";
 import ProjectsSection from "../../../components/coding/ProjectsSection";
@@ -45,7 +47,7 @@ export default function Profile(props) {
 
       <div className="grid grid-cols-1">
         <GoalsSectionComponent
-          profile={true}
+          componentUsageType={GoalsComponentSection.PROFILE}
           userGoals={userGoals
             .filter((goal) => !goal.isComplete && !goal.isArchived)
             .slice(0, 3)}
