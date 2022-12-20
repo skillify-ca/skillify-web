@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { MultipleChoiceWord } from "../../components/questionTypes/MultipleChoiceWord";
 import SEO from "../../components/SEO";
+import { Button } from "../../components/ui/Button";
+import { Input } from "../../components/ui/Input";
 import { MCOption } from "../api/question";
 
 type Question =
@@ -15,6 +17,57 @@ type Question =
       text: string;
     };
 export default function Page() {
+  const WHAT_IS_A_HIGHER_PRIORITY =
+    "What is a higher training priority for you?";
+
+  const endScreens = {
+    "typescript-react": (
+      <div>
+        Talk about how this person should learn TypeScript so they can build
+        interactive web apps. Talk about how beginner friendly it is
+      </div>
+    ),
+    android: (
+      <div>
+        Talk about how Kotlin is a great language to learn to learn how to build
+        android apps
+      </div>
+    ),
+    swift: (
+      <div>
+        Talk about how Swift is a great language to learn to learn how to build
+        iphone apps
+      </div>
+    ),
+    "typescript-web": (
+      <div>
+        Overall, TypeScript is a great language to learn for building
+        interactive websites and web applications because it builds on top of
+        the strong foundations of JavaScript and adds powerful new features that
+        can help you write cleaner, more maintainable code.
+      </div>
+    ),
+    "python-ai": (
+      <div>
+        Talk about how Python is a great programming language to learn in order
+        to work with Artificial Intelligence. Pytorch is a popular framework to
+        get started with.
+      </div>
+    ),
+    "typescript-data-viz": (
+      <div>
+        Talk about how you can use can use TypeScript to fetch and visualize
+        data. Victory.js is a popular library to get started with for data
+        visualization.
+      </div>
+    ),
+    "typescript-api": (
+      <div>
+        Talk about how you can use TypeScript to fetch data from third-parties.
+        You can also update data on these platforms through your app.
+      </div>
+    ),
+  };
   const questions: Question[] = [
     // Question 0
     {
@@ -42,7 +95,7 @@ export default function Page() {
       },
     }, // Question 2
     {
-      text: "What is a higher priority?",
+      text: WHAT_IS_A_HIGHER_PRIORITY,
       type: "multiple-choice",
       options: [
         {
@@ -57,36 +110,12 @@ export default function Page() {
         },
       ],
       onNext: (id) => {
-        id === "a" ? goToQuestion(4) : goToQuestion(8);
+        id === "a" ? goToQuestion(3) : goToQuestion(6);
       },
     },
     // Question 3
     {
-      text: "What is a higher priority?",
-      type: "multiple-choice",
-      options: [
-        {
-          text:
-            "Storing personal data in a private database and connecting to it ",
-          image: "/images/quiz/first-language/database.jpg",
-          id: "a",
-        },
-        {
-          text:
-            "Connecting to and reading my data from third-party platforms (eg. Spotify, Twitter, Reddit, Discord, Todoist)",
-          image: "/images/quiz/first-language/api.jpg",
-          id: "b",
-        },
-      ],
-      onNext: (id) => {
-        id === "a"
-          ? goToEnd("typescript-airtable-db")
-          : goToEnd("typescript-api");
-      },
-    },
-    // Question 4
-    {
-      text: "What is a higher priority?",
+      text: WHAT_IS_A_HIGHER_PRIORITY,
       type: "multiple-choice",
       options: [
         {
@@ -96,18 +125,19 @@ export default function Page() {
           id: "a",
         },
         {
-          text: "Knowing how to store, read and and update data",
+          text:
+            "Knowing how to integrate with any third-party platform (eg. Spotify, Twitter, Discord, Reddit, Slack, Todoist, etc...)",
           image: "/images/quiz/first-language/api.jpg",
           id: "b",
         },
       ],
       onNext: (id) => {
-        id === "a" ? goToQuestion(5) : goToQuestion(3);
+        id === "a" ? goToQuestion(4) : goToEnd("typescript-api");
       },
     },
-    // QUestion 5
+    // QUestion 4
     {
-      text: "What is a higher priority?",
+      text: WHAT_IS_A_HIGHER_PRIORITY,
       type: "multiple-choice",
       options: [
         {
@@ -123,12 +153,12 @@ export default function Page() {
         },
       ],
       onNext: (id) => {
-        id === "a" ? goToQuestion(7) : goToQuestion(6);
+        id === "a" ? goToEnd("typescript-web") : goToQuestion(5);
       },
     },
-    // Question 6
+    // Question 5
     {
-      text: "What is a higher priority?",
+      text: WHAT_IS_A_HIGHER_PRIORITY,
       type: "multiple-choice",
       options: [
         {
@@ -146,33 +176,10 @@ export default function Page() {
         id === "a" ? goToEnd("swift") : goToEnd("android");
       },
     },
-    // Question 7
+
+    // Question 6
     {
-      text: "What is a higher priority?",
-      type: "multiple-choice",
-      options: [
-        {
-          text:
-            "Knowing how to build out websites for different internet browsers",
-          image: "/images/quiz/first-language/website.jpg",
-          id: "a",
-        },
-        {
-          text:
-            "Knowing how to build out apps for different desktop operating systems (eg. MacOS, Windows, Linux)",
-          image: "/images/quiz/first-language/desktops.jpg",
-          id: "b",
-        },
-      ],
-      onNext: (id) => {
-        id === "a"
-          ? goToEnd("typescript-react")
-          : goToEnd("typesript-react-desktop");
-      },
-    },
-    // Question 8
-    {
-      text: "What is a higher priority?",
+      text: WHAT_IS_A_HIGHER_PRIORITY,
       type: "multiple-choice",
       options: [
         {
@@ -194,6 +201,8 @@ export default function Page() {
   ];
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [endScreen, setEndScreen] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
   function goToQuestion(questionIndex) {
     setCurrentQuestion(questionIndex);
@@ -235,12 +244,29 @@ export default function Page() {
                 children={<p className="text-2xl font-bold">{question.text}</p>}
               />
             ) : questions[currentQuestion].type === "contact-info" ? (
-              <div onClick={() => goToQuestion(1)}>CONTACT FORM</div>
+              <div className="flex flex-col items-center w-full p-8 bg-slate-200">
+                <p>Enter Your Name:</p>
+                <Input
+                  value={name}
+                  setValue={setName}
+                  placeholder="Enter Name"
+                />
+                <p className="mt-4">Enter Your Email:</p>
+                <Input
+                  value={email}
+                  setValue={setEmail}
+                  placeholder="Enter Your Email"
+                />
+                <div className="mt-8">
+                  <Button label="Next" onClick={() => goToQuestion(1)} />
+                </div>
+              </div>
             ) : null}
           </div>
         ) : (
           <div>
             "ENDSCREEN" {endScreen}
+            {endScreen && endScreens[endScreen]}
             <div
               onClick={() => {
                 setEndScreen(undefined);
