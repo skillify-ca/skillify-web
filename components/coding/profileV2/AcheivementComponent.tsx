@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ExpandableContainer from "../ExpandableContainer";
-
+import { PencilAltIcon } from "@heroicons/react/outline";
 import { IntroCourseUnit } from "../../../graphql/coding/userBadges/fetchUserBadges";
 import Link from "next/link";
+import { User } from "../../../graphql/fetchUserProfile";
 
 export type BadgesSectionProps = {
-  user: any;
-  data: any;
+  user: User;
+  data: User;
 };
 
 const AcheivementComponent = ({ user, data }) => {
@@ -29,20 +30,7 @@ const AcheivementComponent = ({ user, data }) => {
                   </div>
                   <div className="grid grid-cols-2 sm:grid-cols-6 px-4">
                     <Link href={"/goals"}>
-                      <svg
-                        className="w-6 h-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                        ></path>
-                      </svg>
+                      <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
                     </Link>
                   </div>
                 </div>
