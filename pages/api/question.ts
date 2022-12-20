@@ -99,6 +99,7 @@ export type Question =
 export type MCOption = {
   id: string;
   text: string;
+  image?: string;
 };
 export type MCModel = {
   title?: string;
@@ -139,5 +140,4 @@ export type InterestModel = {
 
 export type CountingModel = {
   coins: CoinType[];
-   
-}
+};

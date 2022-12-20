@@ -20,34 +20,34 @@ export const MultipleChoiceWord: React.FC<MultipleChoiceWordProp> = ({
   children,
 }) => {
   const onSubmit = (guess: string) => {
-    submitGuess({
-      guess,
-      isCorrect: guess == answer,
-    });
+    submitGuess(guess);
   };
 
   return (
-    <div className="flex flex-col items-center space-y-16">
+    <div className="flex flex-col items-center w-full max-w-5xl p-8 my-16 bg-slate-300">
       {children}
-      <div className="flex flex-row  item-center space-x-4 ">
-        <Button
-          label={options[0].text}
-          backgroundColor="red"
-          onClick={() => onSubmit(options[0].id)}
-        ></Button>
-        {options[1] && (
-          <Button
-            label={options[1].text}
-            backgroundColor="blue"
-            onClick={() => onSubmit(options[1].id)}
-          ></Button>
+      <div className="grid grid-cols-2 space-x-4 item-center ">
+        {options[0] && (
+          <div
+            onClick={() => onSubmit(options[0].id)}
+            className="flex flex-col justify-around w-full p-4 px-4 mt-4 bg-orange-500 border-b-4 border-orange-900 rounded-lg cursor-pointer bg-gradient-to-b via-orange-400 to-orange-500 hover:bg-orange-400"
+          >
+            <img className="object-cover w-full h-64" src={options[0].image} />
+            <p className="p-4 mt-4 font-bold text-center text-white bg-murkrow">
+              {options[0].text}
+            </p>
+          </div>
         )}
-        {options[2] && (
-          <Button
-            label={options[2].text}
-            backgroundColor="yellow"
-            onClick={() => onSubmit(options[2].id)}
-          ></Button>
+        {options[1] && (
+          <div
+            onClick={() => onSubmit(options[1].id)}
+            className="flex flex-col justify-around w-full p-4 px-4 mt-4 bg-purple-500 border-b-4 border-purple-900 rounded-lg cursor-pointer bg-gradient-to-b via-purple-400 to-purple-500 hover:bg-purple-400"
+          >
+            <img className="object-cover w-full h-64" src={options[1].image} />
+            <p className="p-4 font-bold text-center text-white bg-murkrow">
+              {options[1].text}
+            </p>
+          </div>
         )}
       </div>
     </div>
