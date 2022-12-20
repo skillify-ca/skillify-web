@@ -16,9 +16,7 @@ import {
 import { useAuth } from "../../../lib/authContext";
 import ExpandableContainer from "../ExpandableContainer";
 
-export const returnWrapStyling = (
-  assignment: UserAssignmentSubmissionsData
-) => {
+const returnWrapStyling = (assignment: UserAssignmentSubmissionsData) => {
   let wrapStyle = "";
   if (assignment.coding_assignment.assignment_name.length >= 3) {
     wrapStyle = "truncate";
@@ -26,12 +24,10 @@ export const returnWrapStyling = (
   return wrapStyle;
 };
 
-export const returnParentStyling = (
-  assignment: UserAssignmentSubmissionsData
-) => {
+const returnParentStyling = (assignment: UserAssignmentSubmissionsData) => {
   let parentStyle = "";
   if (assignment.coding_assignment.assignment_name.length >= 8) {
-    parentStyle = "w-[100px] hover:w-full";
+    parentStyle = "w-1/8 hover:w-full";
   }
   return parentStyle;
 };
@@ -79,7 +75,7 @@ export default function AssignmentsSection({}: AssignmentSectionComponentProps) 
               <div
                 className={`grid grid-cols-7 my-2 text-sm text-left md:grid-cols-12 md:text-lg md:place-items-center  ${assignment}`}
               >
-                <p className="place-item-left col-span-1">{index + 1}.</p>
+                <p className="col-span-1">{index + 1}.</p>
                 <div
                   className={`col-span-3 md:col-span-4 ${returnParentStyling(
                     assignment
