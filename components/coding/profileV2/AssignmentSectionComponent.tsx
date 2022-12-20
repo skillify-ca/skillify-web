@@ -22,8 +22,6 @@ export const returnWrapStyling = (
   let wrapStyle = "";
   if (assignment.coding_assignment.assignment_name.length >= 3) {
     wrapStyle = "truncate";
-  } else {
-    null;
   }
   return wrapStyle;
 };
