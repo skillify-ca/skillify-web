@@ -1,19 +1,17 @@
 import { useQuery } from "@apollo/client";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileDetailCard from "../components/coding/studentPortal/ProfileDetailCard";
 import {
   FetchUserProfileCardResponse,
   FETCH_USER_PROFILE_CARD,
-  Users,
 } from "../graphql/fetchUserProfileCard";
-import { format } from "date-fns";
 import Link from "next/link";
-import { skillifyUsersSelector, setUserList } from "../redux/userSlice";
+import { userSelector, setUserList } from "../redux/userSlice";
 const coachingDashboard = () => {
   const dispatch = useDispatch();
 
-  const { userList } = useSelector(skillifyUsersSelector);
+  const { userList } = useSelector(userSelector);
 
   const { loading, data } = useQuery<FetchUserProfileCardResponse>(
     FETCH_USER_PROFILE_CARD,

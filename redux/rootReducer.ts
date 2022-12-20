@@ -6,7 +6,7 @@ import evaluateExpressionSlice, {
 import profileSlice, { ProfileState } from "./profileSlice";
 import { QuizState, quizSlice } from "./quizSlice";
 import { SidebarState, sidebarSlice } from "./sidebarSlice";
-import skillifyUsersSlice, { userState } from "./userSlice";
+import userSlice, { userState } from "./userSlice";
 import skillRatingsSlice, { SkillRatingsState } from "./skillRatingsSlice";
 import userGoalsSlice, { UserGoalsState } from "./userGoalsSlice";
 
@@ -26,7 +26,7 @@ const sidebarReducer = sidebarSlice.reducer;
 const skillRatingsReducer = skillRatingsSlice;
 const userGoalsReducer = userGoalsSlice;
 const profileReducer = profileSlice;
-const userReducer = skillifyUsersSlice;
+const userReducer = userSlice;
 
 const rootReducer = combineReducers({
   evaluateExpressionHistory: evaluateExpressionReducer,

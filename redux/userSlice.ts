@@ -9,18 +9,18 @@ export type userState = {
 
 const initialState: userState = { userList: [] };
 
-export const skillifyUsersSlice: Slice = createSlice({
-  name: "skillifyUsers",
+export const userSlice: Slice = createSlice({
+  name: "users",
   initialState,
   reducers: {
     setUserList: (state: userState, action: PayloadAction<Users[]>) => {
-      if (action.type == "skillifyUsers/setUserList") {
+      if (action.type == "users/setUserList") {
         return { userList: [...action.payload] };
       }
     },
   },
 });
 
-export const { setUserList } = skillifyUsersSlice.actions;
-export default skillifyUsersSlice.reducer;
-export const skillifyUsersSelector = (state: RootState) => state.userState;
+export const { setUserList } = userSlice.actions;
+export default userSlice.reducer;
+export const userSelector = (state: RootState) => state.userState;
