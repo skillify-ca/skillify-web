@@ -1,5 +1,4 @@
 import { useQuery, useMutation, useLazyQuery } from "@apollo/client";
-import { createHook } from "async_hooks";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,7 +12,6 @@ import {
   skillRatingsSelector,
   setSkillRatings,
   SkillRatingsRow,
-  updateSkillRatings,
 } from "../../redux/skillRatingsSlice";
 import SkillSection from "../skillRatings/SkillSection";
 import { Button } from "../ui/Button";
@@ -36,42 +34,46 @@ export default function SkillRatingsComponent(props) {
   const { user } = useAuth();
   const { skillRatings } = useSelector(skillRatingsSelector);
 
+  const {} = useQuery<FetchAllSkills>(FETCH_ALL_SKILLS, {
+    onCompleted: (data) => {
+      const skillIds = data.intro_course_skills.map((it) => it.id);
+
+      setSkillIds(skillIds);
+    },
+  });
+  const [skillIds, setSkillIds] = useState<string[]>([]);
+  const [currentSkills, setCurrentSkills] = useState<string[]>([]);
+
   const {} = useQuery<FetchUserSkillsRatings>(FETCH_USER_SKILLS_RATINGS, {
     variables: {
       userId: user.uid,
     },
     onCompleted: (data) => {
+      const currentSkillsFiltered = data.intro_course_skills_user.filter(
+        (it) => it.intro_course_skill.id
+      );
+      console.log("CSF", currentSkillsFiltered);
+      const currentSkillsMapped = data.intro_course_skills_user.map(
+        (it) => it.intro_course_skill.id
+      );
+      console.log("CSM", currentSkillsMapped);
+
+      console.log("skills", skillIds);
+      const currentSkills = skillIds.filter(
+        (it) => !currentSkillsMapped.includes(it)
+      );
+      console.log("CS", currentSkills);
+      setCurrentSkills(currentSkills);
+
       if (data.intro_course_skills_user !== null) {
         dispatch(
           setSkillRatings(transformSkillRating(data.intro_course_skills_user))
         );
       } else {
-        fetchAllUserAssignments();
+        null;
       }
     },
   });
-
-  const [fetchAllUserAssignments] = useLazyQuery<FetchAllSkills>(
-    FETCH_ALL_SKILLS,
-    {
-      onCompleted: (data) => {
-        const skillIds = data.intro_course_skills.map((it) => it.id);
-
-        setSkillIds(skillIds);
-      },
-    }
-  );
-  const [skillIds, setSkillIds] = useState<string[]>([]);
-  console.log("secondId", skillIds);
-
-  //   do these steps first to make sure we can initialize a new userss stkill ratings
-  //   1. store data from FetchAllSkills query into a local state
-  //   2. define the mutation function for UPSERT_USER_SKILL_RATINGS using the useMutation hook
-  //   3. transform the list of skill ids using the initalizeSkillRating function, and pass that into the mutation function
-
-  // 1. for FETCH_ALL_SKILLS, use the useLazyQuery hook to define a query function that you can call anywhere in your app
-  // 2. in the onComplete of the FETCH_USER_SKILLS_RATINGS, if there are no skill ratings, then call the query function to initialize a new user's skill ratings
-  // 3.
 
   const [saveSkillRatings] = useMutation(UPSERT_USER_SKILL_RATINGS, {
     refetchQueries: [{ query: FETCH_USER_SKILLS_RATINGS }],
@@ -106,7 +108,10 @@ export default function SkillRatingsComponent(props) {
           onClick={() =>
             saveSkillRatings({
               variables: {
-                objects: initializeSkillRating(skillIds, user.uid),
+                objects: initializeSkillRating(
+                  currentSkills !== null ? currentSkills : skillIds,
+                  user.uid
+                ),
               },
             })
           }
