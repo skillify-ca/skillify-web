@@ -36,34 +36,26 @@ export default function SkillRatingsComponent(props) {
 
   const {} = useQuery<FetchAllSkills>(FETCH_ALL_SKILLS, {
     onCompleted: (data) => {
-      const skillIds = data.intro_course_skills.map((it) => it.id);
+      const allSkills = data.intro_course_skills.map((it) => it.id);
 
-      setSkillIds(skillIds);
+      setSkillIds(allSkills);
     },
   });
-  const [skillIds, setSkillIds] = useState<string[]>([]);
-  const [currentSkills, setCurrentSkills] = useState<string[]>([]);
+  const [allSkills, setSkillIds] = useState<string[]>([]);
+  const [currentlyRatedSkills, setCurrentSkills] = useState<string[]>([]);
 
   const {} = useQuery<FetchUserSkillsRatings>(FETCH_USER_SKILLS_RATINGS, {
     variables: {
       userId: user.uid,
     },
     onCompleted: (data) => {
-      const currentSkillsFiltered = data.intro_course_skills_user.filter(
+      const missingSkills = data.intro_course_skills_user.map(
         (it) => it.intro_course_skill.id
       );
-      console.log("CSF", currentSkillsFiltered);
-      const currentSkillsMapped = data.intro_course_skills_user.map(
-        (it) => it.intro_course_skill.id
+      const currentlyRatedSkills = allSkills.filter(
+        (it) => !missingSkills.includes(it)
       );
-      console.log("CSM", currentSkillsMapped);
-
-      console.log("skills", skillIds);
-      const currentSkills = skillIds.filter(
-        (it) => !currentSkillsMapped.includes(it)
-      );
-      console.log("CS", currentSkills);
-      setCurrentSkills(currentSkills);
+      setCurrentSkills(currentlyRatedSkills);
 
       if (data.intro_course_skills_user !== null) {
         dispatch(
@@ -109,7 +101,9 @@ export default function SkillRatingsComponent(props) {
             saveSkillRatings({
               variables: {
                 objects: initializeSkillRating(
-                  currentSkills !== null ? currentSkills : skillIds,
+                  currentlyRatedSkills !== null
+                    ? currentlyRatedSkills
+                    : allSkills,
                   user.uid
                 ),
               },
