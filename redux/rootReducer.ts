@@ -21,7 +21,6 @@ type State = {
   userGoalsState: UserGoalsState;
   profileState: ProfileState;
   assignmentsState: AssignmentsState;
-  skillifyUsersState: SkillifyUsersState;
   userState: userState;
 };
 const evaluateExpressionReducer = evaluateExpressionSlice;
@@ -31,7 +30,6 @@ const skillRatingsReducer = skillRatingsSlice;
 const userGoalsReducer = userGoalsSlice;
 const profileReducer = profileSlice;
 const assignmentsReducer = assignmentsSlice;
-const skillifyUsersReducer = skillifyUsersSlice;
 const userReducer = userSlice;
 
 const rootReducer = combineReducers({
@@ -42,7 +40,6 @@ const rootReducer = combineReducers({
   userGoalsState: userGoalsReducer,
   profileState: profileReducer,
   assignmentsState: assignmentsReducer,
-  skillifyUsersState: skillifyUsersReducer,
   userState: userReducer,
 });
 
