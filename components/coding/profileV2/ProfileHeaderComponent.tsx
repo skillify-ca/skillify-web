@@ -102,9 +102,8 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
             <BadgesDisplayedComponent
               user={user}
               earnedBadges={userBadgeCount}
-              totalBadges={badgeCount}
+              totalBadges={totalBadgeCount}
               textSize={"large"}
-
             />
           </div>
         </div>
