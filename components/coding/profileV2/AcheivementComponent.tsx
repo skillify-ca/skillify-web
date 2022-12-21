@@ -20,6 +20,9 @@ const AcheivementComponent = ({ user, data }) => {
   return (
     <ExpandableContainer open={true} title={""}>
       <div className="p-4 shadow-md bg-slate-300 dark:bg-transparent">
+        <div className="absolute px-16 right-1">
+          <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
+        </div>
         {units.map((unit) => {
           if (unit.coding_badges.length > 0) {
             return (
@@ -27,11 +30,6 @@ const AcheivementComponent = ({ user, data }) => {
                 <div className="grid grid-cols-2 sm:grid-cols-6">
                   <div className="py-4 text-center text-gray-400 bg-gray-200 rounded-full">
                     {unit.title}
-                  </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-6 px-4">
-                    <Link href={"/goals"}>
-                      <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
-                    </Link>
                   </div>
                 </div>
                 <div className="grid grid-cols-1 mb-16 sm:grid-cols-3 mt-7">
