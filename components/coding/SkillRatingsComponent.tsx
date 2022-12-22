@@ -55,14 +55,31 @@ export default function SkillRatingsComponent(props) {
       const currentlyRatedSkills = allSkills.filter(
         (it) => !missingSkills.includes(it)
       );
-      setCurrentSkills(currentlyRatedSkills);
-
-      if (data.intro_course_skills_user !== null) {
+      if (
+        data.intro_course_skills_user.length !== null &&
+        data.intro_course_skills_user.length === allSkills.length
+      ) {
+        dispatch(
+          setSkillRatings(transformSkillRating(data.intro_course_skills_user))
+        );
+      } else if (data.intro_course_skills_user.length <= allSkills.length) {
+        saveSkillRatingsToInitialize({
+          variables: {
+            objects: initializeSkillRating(currentlyRatedSkills, user.uid),
+          },
+        });
         dispatch(
           setSkillRatings(transformSkillRating(data.intro_course_skills_user))
         );
       } else {
-        null;
+        saveSkillRatingsToInitialize({
+          variables: {
+            objects: initializeSkillRating(allSkills, user.uid),
+          },
+        });
+        dispatch(
+          setSkillRatings(transformSkillRating(data.intro_course_skills_user))
+        );
       }
     },
   });
@@ -73,6 +90,27 @@ export default function SkillRatingsComponent(props) {
       alert("Your skill ratings have been saved successfully.");
     },
   });
+
+  const [saveSkillRatingsToInitialize] = useMutation(
+    UPSERT_USER_SKILL_RATINGS,
+    {
+      refetchQueries: [{ query: FETCH_USER_SKILLS_RATINGS }],
+    }
+  );
+
+  const transformSkillRatingForDB = (skillRatings: SkillRatingsRow[]) => {
+    // map from redux type to write back to DB
+    const transformedOutput = skillRatings.map((row) => {
+      return {
+        userId: user.uid,
+        id: row.userSkillId,
+        skillId: row.skillId,
+        studentRating: row.studentRating,
+      };
+    });
+
+    return transformedOutput;
+  };
 
   const transformSkillRating = (skillRatings: UserSkillsRatings[]) => {
     // map to redux type
@@ -89,6 +127,11 @@ export default function SkillRatingsComponent(props) {
     return mappedSkillRating;
   };
 
+  const initializedSkillRating = initializeSkillRating(
+    currentlyRatedSkills !== null ? currentlyRatedSkills : allSkills,
+    user.uid
+  );
+
   return (
     <div className="flex flex-row overflow-auto-bg-scroll">
       <div className="flex flex-col p-4 m-4">
@@ -100,12 +143,7 @@ export default function SkillRatingsComponent(props) {
           onClick={() =>
             saveSkillRatings({
               variables: {
-                objects: initializeSkillRating(
-                  currentlyRatedSkills !== null
-                    ? currentlyRatedSkills
-                    : allSkills,
-                  user.uid
-                ),
+                objects: transformSkillRatingForDB(skillRatings),
               },
             })
           }
