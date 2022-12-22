@@ -84,7 +84,6 @@ export default function SkillRatingsComponent(props) {
   });
 
   const transformSkillRatingForDB = (skillRatings: SkillRatingsRow[]) => {
-    const { user } = useAuth();
     // map from redux type to write back to DB
     const transformedOutput = skillRatings.map((row) => {
       return {
