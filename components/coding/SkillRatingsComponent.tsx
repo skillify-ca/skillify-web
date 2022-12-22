@@ -52,13 +52,16 @@ export default function SkillRatingsComponent(props) {
       setCurrentlyRatedSkills(currentlyRatedSkills);
 
       if (
-        data.intro_course_skills_user.length !== null &&
+        data.intro_course_skills_user.length > 0 &&
         data.intro_course_skills_user.length === allSkills.length
       ) {
         dispatch(
           setSkillRatings(transformSkillRating(data.intro_course_skills_user))
         );
-      } else if (data.intro_course_skills_user.length <= allSkills.length) {
+      } else if (
+        data.intro_course_skills_user.length <= allSkills.length &&
+        data.intro_course_skills_user.length > 0
+      ) {
         saveSkillRatingsToInitialize({
           variables: {
             objects: initializeSkillRating(currentlyRatedSkills, user.uid),
