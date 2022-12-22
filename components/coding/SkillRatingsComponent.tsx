@@ -11,7 +11,6 @@ import { useAuth } from "../../lib/authContext";
 import {
   transformSkillRating,
   initializeSkillRating,
-  transformSkillRatingForDB,
 } from "../../pages/api/skillRatingsFunctions";
 import {
   skillRatingsSelector,
