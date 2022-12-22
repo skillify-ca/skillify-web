@@ -40,11 +40,46 @@ export default function Page() {
       </div>
     ),
     "typescript-web": (
-      <div>
-        Overall, TypeScript is a great language to learn for building
-        interactive websites and web applications because it builds on top of
-        the strong foundations of JavaScript and adds powerful new features that
-        can help you write cleaner, more maintainable code.
+      <div className="flex flex-col gap-4 p-4">
+        <p>
+          TypeScript is a popular programming language that is widely used for
+          building interactive websites and web applications.
+        </p>
+        <p>
+          It is a superset of JavaScript, which means that all valid JavaScript
+          code is also valid TypeScript code. However, TypeScript adds
+          additional features and capabilities that can help you write cleaner,
+          more maintainable code.
+        </p>
+        <p>
+          One of the main benefits of TypeScript is its strong type system. In
+          JavaScript, variables can be assigned any type of value, which can
+          lead to confusing and error-prone code. TypeScript allows you to
+          specify the type of a variable, which can help prevent common runtime
+          errors and make your code easier to understand. TypeScript also
+          includes features such as interfaces, classes, and modules, which can
+          help you organize and structure your code in a more modular and
+          reusable way. This can make it easier to scale and maintain your
+          codebase as it grows.
+        </p>
+        <p>
+          Another advantage of TypeScript is its integration with popular IDEs
+          (Integrated Development Environments) such as Visual Studio Code and
+          WebStorm. These IDEs provide features such as code completion, type
+          checking, and error highlighting, which can help you write and debug
+          code more efficiently.
+        </p>
+        <p>
+          Overall, TypeScript is a great language to learn for building
+          interactive websites and web applications. It builds on top of the
+          strong foundations of JavaScript and adds powerful new features that
+          can help you write cleaner, more maintainable code.{" "}
+        </p>
+        <p>
+          Whether you are a beginner or an experienced developer, learning
+          TypeScript can help you write better code and improve your skills as a
+          programmer.
+        </p>
       </div>
     ),
     "python-ai": (
@@ -214,9 +249,9 @@ export default function Page() {
   return (
     <div>
       <SEO
-        title={"Breaking into Tech Career Personality Quiz"}
+        title={"Your First Programming Language Quiz"}
         description={
-          "This quiz tells you best path to starting a career in tech"
+          "This quiz tells you what programming language that you should learn first."
         }
         image={"https://melv1n.com/img/learn-to-code-how-to-start.png"}
       />
@@ -264,7 +299,7 @@ export default function Page() {
             ) : null}
           </div>
         ) : (
-          <div>
+          <div className="flex flex-col items-center">
             "ENDSCREEN" {endScreen}
             {endScreen && endScreens[endScreen]}
             <div
