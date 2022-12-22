@@ -16,6 +16,7 @@ import {
 import {
   skillRatingsSelector,
   setSkillRatings,
+  SkillRatingsRow,
 } from "../../redux/skillRatingsSlice";
 import SkillSection from "../skillRatings/SkillSection";
 import { Button } from "../ui/Button";
@@ -25,6 +26,10 @@ export default function SkillRatingsComponent(props) {
   const dispatch = useDispatch();
   const { user } = useAuth();
   const { skillRatings } = useSelector(skillRatingsSelector);
+  const [allSkills, setSkillIds] = useState<string[]>([]);
+  const [currentlyRatedSkills, setCurrentlyRatedSkills] = useState<string[]>(
+    []
+  );
 
   const {} = useQuery<FetchAllSkills>(FETCH_ALL_SKILLS, {
     onCompleted: (data) => {
@@ -33,8 +38,6 @@ export default function SkillRatingsComponent(props) {
       setSkillIds(allSkills);
     },
   });
-  const [allSkills, setSkillIds] = useState<string[]>([]);
-  const [currentlyRatedSkills, setCurrentSkills] = useState<string[]>([]);
 
   const {} = useQuery<FetchUserSkillsRatings>(FETCH_USER_SKILLS_RATINGS, {
     variables: {
@@ -47,6 +50,8 @@ export default function SkillRatingsComponent(props) {
       const currentlyRatedSkills = allSkills.filter(
         (it) => !missingSkills.includes(it)
       );
+      setCurrentlyRatedSkills(currentlyRatedSkills);
+
       if (
         data.intro_course_skills_user.length !== null &&
         data.intro_course_skills_user.length === allSkills.length
@@ -75,6 +80,21 @@ export default function SkillRatingsComponent(props) {
       }
     },
   });
+
+  const transformSkillRatingForDB = (skillRatings: SkillRatingsRow[]) => {
+    const { user } = useAuth();
+    // map from redux type to write back to DB
+    const transformedOutput = skillRatings.map((row) => {
+      return {
+        userId: user.uid,
+        id: row.userSkillId,
+        skillId: row.skillId,
+        studentRating: row.studentRating,
+      };
+    });
+
+    return transformedOutput;
+  };
 
   const [saveSkillRatings] = useMutation(UPSERT_USER_SKILL_RATINGS, {
     refetchQueries: [{ query: FETCH_USER_SKILLS_RATINGS }],

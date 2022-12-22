@@ -1,8 +1,7 @@
 import { UserSkillsRatings } from "../../graphql/fetchUserSkillsRatings";
-import { useAuth } from "../../lib/authContext";
 import { SkillRatingsRow } from "../../redux/skillRatingsSlice";
 
-const { user } = useAuth();
+
 
 export const initializeSkillRating = (skillIds: string[], userId: string) => {
     const newSkillRatings = skillIds.map((skillId) => {
@@ -14,20 +13,6 @@ export const initializeSkillRating = (skillIds: string[], userId: string) => {
     });
   
     return newSkillRatings;
-  };
-
-  export const transformSkillRatingForDB = (skillRatings: SkillRatingsRow[]) => {
-    // map from redux type to write back to DB
-    const transformedOutput = skillRatings.map((row) => {
-      return {
-        userId: user.uid,
-        id: row.userSkillId,
-        skillId: row.skillId,
-        studentRating: row.studentRating,
-      };
-    });
-
-    return transformedOutput;
   };
 
   export const transformSkillRating = (skillRatings: UserSkillsRatings[]) => {
