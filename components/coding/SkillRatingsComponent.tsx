@@ -1,33 +1,25 @@
-import { useQuery, useMutation, useLazyQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
+import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   FetchUserSkillsRatings,
   FETCH_USER_SKILLS_RATINGS,
-  UserSkillsRatings,
 } from "../../graphql/fetchUserSkillsRatings";
 import { UPSERT_USER_SKILL_RATINGS } from "../../graphql/upsertUserSkillRatings";
 import { useAuth } from "../../lib/authContext";
 import {
+  transformSkillRating,
+  initializeSkillRating,
+  transformSkillRatingForDB,
+} from "../../pages/api/skillRatingsFunctions";
+import {
   skillRatingsSelector,
   setSkillRatings,
-  SkillRatingsRow,
 } from "../../redux/skillRatingsSlice";
 import SkillSection from "../skillRatings/SkillSection";
 import { Button } from "../ui/Button";
 import { FetchAllSkills, FETCH_ALL_SKILLS } from "./FetchAllSkills";
-
-const initializeSkillRating = (skillIds: string[], userId: string) => {
-  const newSkillRatings = skillIds.map((skillId) => {
-    return {
-      skillId: skillId,
-      userId: userId,
-      studentRating: 0,
-    };
-  });
-
-  return newSkillRatings;
-};
 
 export default function SkillRatingsComponent(props) {
   const dispatch = useDispatch();
@@ -97,35 +89,6 @@ export default function SkillRatingsComponent(props) {
       refetchQueries: [{ query: FETCH_USER_SKILLS_RATINGS }],
     }
   );
-
-  const transformSkillRatingForDB = (skillRatings: SkillRatingsRow[]) => {
-    // map from redux type to write back to DB
-    const transformedOutput = skillRatings.map((row) => {
-      return {
-        userId: user.uid,
-        id: row.userSkillId,
-        skillId: row.skillId,
-        studentRating: row.studentRating,
-      };
-    });
-
-    return transformedOutput;
-  };
-
-  const transformSkillRating = (skillRatings: UserSkillsRatings[]) => {
-    // map to redux type
-    const mappedSkillRating: SkillRatingsRow[] = skillRatings.map((row) => {
-      return {
-        userSkillId: row.id,
-        skillId: row.intro_course_skill["id"],
-        skillName: row.intro_course_skill["name"],
-        unitName: row.intro_course_skill["intro_course_unit"]["title"],
-        studentRating: parseInt(row.studentRating),
-      };
-    });
-
-    return mappedSkillRating;
-  };
 
   const initializedSkillRating = initializeSkillRating(
     currentlyRatedSkills !== null ? currentlyRatedSkills : allSkills,
