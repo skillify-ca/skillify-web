@@ -21,37 +21,124 @@ export default function Page() {
     "What is a higher training priority for you?";
 
   const endScreens = {
-    "typescript-react": (
+    "typescript-web": (
       <div>
-        Talk about how this person should learn TypeScript so they can build
-        interactive web apps. Talk about how beginner friendly it is
+        <h2>You should learn TypeScript!</h2>
+
+        <p>
+          With TypeScript you can build interactive web apps. It's a very
+          beginner-friendly language. TypeScript is an extension of the
+          JavaScript programming language, so if you know a little JavaScript
+          you can learn TypeScript easily.
+        </p>
+        <p>
+          Learning TypeScript can make it easier to write and maintain large and
+          complex JavaScript projects, and can also make it easier to
+          collaborate with other developers.
+        </p>
+        <p>
+          Many large organizations use TypeScript like Netflix, Microsoft and
+          Google
+        </p>
+        <p>
+          TypeScript was created and is maintained by Microsoft. It's
+          open-source and available on Github.
+        </p>
+        <p>
+          If you become proficient in TypeScript then you can apply for all
+          sorts of software developer roles: front-end developer, mobile
+          developer and backend developer.
+        </p>
       </div>
     ),
     android: (
       <div>
-        Talk about how Kotlin is a great language to learn to learn how to build
-        android apps
+        <h2>You should learn Kotlin!</h2>
+
+        <p>
+          With Kotlin you can build mobile apps for Android devices. It's an
+          easy first language to learn. Kotlin is an extension of the Java
+          programming language, so if you know a little Java you can learn
+          Kotlin easily. (Note: Java and JavaScript have nothing to do with each
+          other and are quite different)
+        </p>
+        <p>
+          Learning Kotlin can make it easier to write and maintain large and
+          complex Android & backend projects, and can also make it easier to
+          work with an existing Java codebase.
+        </p>
+        <p>
+          Most large organizations that have an Android app on the Google Play
+          Store use Kotlin like Netflix, Spotify and Meta
+        </p>
+        <p>
+          Kotlin was developed by JetBrains and has been officially support by
+          Google for Android development since 2017. Kotlin also has a strong
+          and growing community with many tools and frameworks to help you get
+          started.
+        </p>
+        <p>
+          If you become proficient in Kotlin then you can apply for different
+          kinds of software developer roles: Android developer and backend
+          developer.
+        </p>
       </div>
     ),
     swift: (
       <div>
-        Talk about how Swift is a great language to learn to learn how to build
-        iphone apps
-      </div>
-    ),
-    "typescript-web": (
-      <div>
-        Overall, TypeScript is a great language to learn for building
-        interactive websites and web applications because it builds on top of
-        the strong foundations of JavaScript and adds powerful new features that
-        can help you write cleaner, more maintainable code.
+        <h2>You should learn Swift!</h2>
+
+        <p>
+          With Swift you can build mobile apps for iOS devices. It's a powerful
+          and intuitive language but it's not the easiest first language to
+          learn.
+        </p>
+        <p>
+          Learning Swift can help you build applications for iOS, iPadOS, macOS,
+          watchOS, and tvOS.
+        </p>
+        <p>
+          Most large organizations that have an iPhone app on the App Play Store
+          use Swift like Netflix, Spotify and Meta
+        </p>
+        <p>
+          Swift was developed by Apple Inc. Swift also has a strong and growing
+          community with many tools and frameworks to help you get started.
+        </p>
+        <p>
+          If you become proficient in Swift then you can only apply for iOS
+          developer. Although this seems limiting, an iOS developer is a highly
+          specialized and valued role in most companies.
+        </p>
       </div>
     ),
     "python-ai": (
       <div>
-        Talk about how Python is a great programming language to learn in order
-        to work with Artificial Intelligence. Pytorch is a popular framework to
-        get started with.
+        <h2>You should learn Python!</h2>
+
+        <p>
+          With Python you can analyze different data sets and easily crunch
+          numbers. It's an easy first language to learn.
+        </p>
+        <p>
+          Learning Python can help you start working with Artificial
+          Intelligence frameworks.
+        </p>
+        <p>
+          There are quite a few organizations that leverage Python in the
+          workplace. Many financial companies use Python to analyze data sets
+          and generate insights.
+        </p>
+        <p>
+          PyTorch is an open-source Python library used in machine learning. It
+          was developed by Facebook's AI Research lab in January 2016. Although
+          Python is a beginner-friendly language, mastering it to a level where
+          you can start working with AI algorithms is quite hard.
+        </p>
+        <p>
+          If you become proficient in Python then you can try to build your own
+          Machine Learning algorithms with public datasets.
+        </p>
       </div>
     ),
     "typescript-data-viz": (
@@ -119,14 +206,12 @@ export default function Page() {
       type: "multiple-choice",
       options: [
         {
-          text:
-            "Knowing how to build out any User Interface (UI) design imaginable for an app",
+          text: "Knowing how to build out any User Interface (UI) design imaginable for an app",
           image: "/images/quiz/first-language/UI.jpg",
           id: "a",
         },
         {
-          text:
-            "Knowing how to integrate with any third-party platform (eg. Spotify, Twitter, Discord, Reddit, Slack, Todoist, etc...)",
+          text: "Knowing how to integrate with any third-party platform (eg. Spotify, Twitter, Discord, Reddit, Slack, Todoist, etc...)",
           image: "/images/quiz/first-language/api.jpg",
           id: "b",
         },
@@ -141,8 +226,7 @@ export default function Page() {
       type: "multiple-choice",
       options: [
         {
-          text:
-            "Knowing how to build out apps and websites for laptop, tablet and desktop devices",
+          text: "Knowing how to build out apps and websites for laptop, tablet and desktop devices",
           image: "/images/quiz/first-language/desktops.jpg",
           id: "a",
         },
@@ -188,8 +272,7 @@ export default function Page() {
           id: "a",
         },
         {
-          text:
-            "Being able to build and analyze algorithms for Machine Learning and Artifical Intelligence",
+          text: "Being able to build and analyze algorithms for Machine Learning and Artifical Intelligence",
           image: "/images/quiz/first-language/ai.jpg",
           id: "b",
         },
