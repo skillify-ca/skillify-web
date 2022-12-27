@@ -9,16 +9,16 @@ test("Test returnGoalStyle function - highlighted red", async () => {
         "goalNotes":null,
         "id":"a1b08c36-2c8a-49e5-b9c4-f653f826fcee",
         "updatedAt": new Date(2022-11-29),
-        "userId":"BR9u18SJzvVNzcrkEIcJDPxv1ws1",
+        "userId":"dummyId",
         "isComplete":false,
         "targetDate": new Date(2022-17-30),
         "isArchived":null};
 
-  
+    const redHighlightStyle = "text-black bg-red-400 rounded-xl p-2"
     //Act
     const result = returnGoalStyle(goal);
     //Assert
-    expect(result).toBe("text-black bg-red-400 rounded-xl p-2");
+    expect(result).toBe(redHighlightStyle);
   });
 
   test("Test returnGoalStyle function - no highlight for completed goals", async () => {
@@ -30,7 +30,7 @@ test("Test returnGoalStyle function - highlighted red", async () => {
         "goalNotes":null,
         "id":"a1b08c36-2c8a-49e5-b9c4-f653f826fcee",
         "updatedAt": new Date(2022-11-29),
-        "userId":"BR9u18SJzvVNzcrkEIcJDPxv1ws1",
+        "userId":"dummyId",
         "isComplete":true,
         "targetDate": new Date(2022-16-30),
         "isArchived":null};
@@ -51,14 +51,14 @@ test("Test returnGoalStyle function - highlighted red", async () => {
         "goalNotes":null,
         "id":"a1b08c36-2c8a-49e5-b9c4-f653f826fcee",
         "updatedAt": new Date(2022-11-29),
-        "userId":"BR9u18SJzvVNzcrkEIcJDPxv1ws1",
+        "userId":"dummyId",
         "isComplete":false,
         "targetDate": new Date(2022-16-30),
         "isArchived":true};
 
-  
+    const noHighlightStyle = " text-black-500"
     //Act
     const result = returnGoalStyle(goal);
     //Assert
-    expect(result).toBe(" text-black-500");
+    expect(result).toBe(noHighlightStyle);
   });
