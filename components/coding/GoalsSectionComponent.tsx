@@ -7,8 +7,13 @@ import ExpandableContainer from "./ExpandableContainer";
 export type GoalsSectionProps = {
   sectionName?: string;
   userGoals?: UserGoalsData[];
+  componentUsageType: GoalsComponentSection;
 };
 
+export enum GoalsComponentSection {
+  PROFILE = "profile",
+  GOALS = "goals",
+}
 export const returnGoalStyle = (goal: UserGoalsData) => {
   let goalStyle = "";
   const daysRemaining = differenceInCalendarDays(
@@ -28,8 +33,9 @@ export const returnGoalStyle = (goal: UserGoalsData) => {
 export default function GoalsSection({
   sectionName,
   userGoals,
+  componentUsageType,
 }: GoalsSectionProps) {
-  return (
+  return userGoals.length > 0 ? (
     <ExpandableContainer open={true} title={""}>
       <div className="dark:text-white">
         {userGoals.length > 0 && (
@@ -74,5 +80,14 @@ export default function GoalsSection({
         })}
       </div>
     </ExpandableContainer>
-  );
+  ) : userGoals.length <= 0 &&
+    componentUsageType === GoalsComponentSection.PROFILE ? (
+    <ExpandableContainer open={true} title={""}>
+      <div className="col-span-3 p-8 mb-8 text-center shadow-md bg-slate-300 dark:bg-slate-900">
+        Click on the "Goals" tab on the sidebar to get ahead by creating and
+        tracking your goals!
+      </div>
+    </ExpandableContainer>
+  ) : userGoals.length <= 0 &&
+    componentUsageType === GoalsComponentSection.GOALS ? null : null;
 }

@@ -13,7 +13,7 @@ export default function BonusSection() {
     {
       num: 1,
       title: "Insiders Job Search Strategy Bonus Training",
-      value: "$9,000",
+      value: "$3,200",
       thumbnailImg: "",
       feature:
         "Prepare for your interviews with bonus coaching sessions for: Resume Critiques and Mock Interviews",
@@ -26,22 +26,23 @@ export default function BonusSection() {
     },
     {
       num: 2,
-      title: "Expert Mobile App Development Bonus Training",
-      value: "$12,000",
+      title: "Become An App Builder Bonus Training",
+      value: "$2,400",
       thumbnailImg: "",
-      feature: "Unlimited Access to our Mobile App Development Training",
+      feature: "Turn your app ideas into a reality",
       benefits: [
         "Build your own mobile games and applications for both iOS and Android devices",
-        "Differentiate yourself from every other bootcamp or university graduate who only knows web development",
+        "Build from scratch or build on top of your favourite platforms (eg. Spotify, Twitter, Reddit, Discord, Todoist, and Much More...)",
+        "Unlimited Access to our Mobile App Development Training",
         "Fast track your path to working at FAANG companies",
-        "Get twice as many interviews for both web and mobile developer roles",
+        "Become twice as attractive to employers for web or mobile developer roles",
         "Demand a higher salary by mastering this highly coveted skillset",
       ],
     },
     {
       num: 3,
       title: "Unlimited, MBA-quality Online Business Coaching",
-      value: "$16,000",
+      value: "$10,000",
       thumbnailImg: "",
       feature: "Launch, Grow and Scale Your Digital Business",
       benefits: [
@@ -59,7 +60,7 @@ export default function BonusSection() {
         Plus a Bonus Package Worth Over
       </h2>
       <h1 className="mb-8 text-5xl font-bold text-center underline text-charmander">
-        $30,000
+        $15,000
       </h1>
       {bonuses.map((bonus) => {
         const { num, title, value, thumbnailImg, feature, benefits } = bonus;

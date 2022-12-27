@@ -8,21 +8,26 @@ import {
 } from "@heroicons/react/outline";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FETCH_ALL_USER_ASSIGNMENTS } from "../../../graphql/fetchAllUserAssignments";
 import {
   UserAssignmentSubmissionsData,
   FetchUserAssignmentSubmissionsDataResponse,
 } from "../../../graphql/fetchUserAssignmentSubmissions";
 import { useAuth } from "../../../lib/authContext";
+import {
+  assignmentsSelector,
+  setUserAssignments,
+} from "../../../redux/assignmentsSlice";
 import ExpandableContainer from "../ExpandableContainer";
 
 export type AssignmentSectionComponentProps = {};
 
 export default function AssignmentsSection({}: AssignmentSectionComponentProps) {
   const { user } = useAuth();
-  const [userAssignments, setUserAssignments] = useState<
-    UserAssignmentSubmissionsData[]
-  >([]);
+  const dispatch = useDispatch();
+  const { userAssignments } = useSelector(assignmentsSelector);
+
   const { loading: userAssignmentsLoading } =
     useQuery<FetchUserAssignmentSubmissionsDataResponse>(
       FETCH_ALL_USER_ASSIGNMENTS,
@@ -32,10 +37,11 @@ export default function AssignmentsSection({}: AssignmentSectionComponentProps) 
         },
 
         onCompleted: (data: FetchUserAssignmentSubmissionsDataResponse) => {
-          setUserAssignments(data.user_assignment_submissions);
+          dispatch(setUserAssignments(data.user_assignment_submissions));
         },
       }
     );
+
   return (
     <ExpandableContainer open={true} title={""}>
       <div>
