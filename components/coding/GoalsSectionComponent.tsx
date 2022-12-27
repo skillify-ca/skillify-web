@@ -10,6 +10,10 @@ export type GoalsSectionProps = {
   inProfile: boolean;
 };
 
+export enum GoalsComponentSection {
+  PROFILE = "profile",
+  GOALS = "goals",
+}
 export const returnGoalStyle = (goal: UserGoalsData) => {
   let goalStyle = "";
   const daysRemaining = differenceInCalendarDays(
