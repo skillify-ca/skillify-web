@@ -59,7 +59,7 @@ const EditGoalsPage = () => {
           onChange={(e) => {
             setNewGoalValues((prevState) => ({
               ...prevState,
-              targetDate: new Date(e.target.value),
+              targetDate: new Date(e.target.value + "T00:00:00"),
             }));
           }}
         />
