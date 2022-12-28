@@ -3,6 +3,11 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  FetchSkillsAndRatings,
+  FETCH_SKILLS_AND_RATINGS,
+  SkillsAndRatings,
+} from "../../graphql/fetchSkillsAndRatings";
+import {
   FetchUserSkillsRatings,
   FETCH_USER_SKILLS_RATINGS,
 } from "../../graphql/fetchUserSkillsRatings";
@@ -11,6 +16,7 @@ import { useAuth } from "../../lib/authContext";
 import {
   transformSkillRating,
   initializeSkillRating,
+  transformSkillsAndRatings,
 } from "../../pages/api/skillRatingsFunctions";
 import {
   skillRatingsSelector,
@@ -34,64 +40,14 @@ export default function SkillRatingsComponent(props) {
   // 2. write transformer function that takes response and transforms it into SkillRatingsRow[] type, sets studentRating to 0 if it doesn't exist in the nodes key
   // 3. dispatch
 
-  const newTransformFunction = (): SkillRatingsRow[] => {};
-
   const {} = useQuery<FetchSkillsAndRatings>(FETCH_SKILLS_AND_RATINGS, {
-    onCompleted: (data) => {
-      dispatch(setSkillRatings(newTransformFunction(data)));
-    },
-  });
-
-  const {} = useQuery<FetchAllSkills>(FETCH_ALL_SKILLS, {
-    onCompleted: (data) => {
-      const allSkills = data.intro_course_skills.map((it) => it.id);
-
-      setSkillIds(allSkills);
-    },
-  });
-
-  const {} = useQuery<FetchUserSkillsRatings>(FETCH_USER_SKILLS_RATINGS, {
     variables: {
       userId: user.uid,
     },
     onCompleted: (data) => {
-      const missingSkills = data.intro_course_skills_user.map(
-        (it) => it.intro_course_skill.id
+      dispatch(
+        setSkillRatings(transformSkillsAndRatings(data.intro_course_skills[0]))
       );
-      const currentlyRatedSkills = allSkills.filter(
-        (it) => !missingSkills.includes(it)
-      );
-      setCurrentlyRatedSkills(currentlyRatedSkills);
-
-      if (
-        data.intro_course_skills_user.length > 0 &&
-        data.intro_course_skills_user.length === allSkills.length
-      ) {
-        dispatch(
-          setSkillRatings(transformSkillRating(data.intro_course_skills_user))
-        );
-      } else if (
-        data.intro_course_skills_user.length <= allSkills.length &&
-        data.intro_course_skills_user.length > 0
-      ) {
-        saveSkillRatingsToInitialize({
-          variables: {
-            objects: initializeSkillRating(currentlyRatedSkills, user.uid),
-          },
-        });
-        dispatch(
-          setSkillRatings(transformSkillRating(data.intro_course_skills_user))
-        );
-      } else {
-        saveSkillRatingsToInitialize({
-          variables: {
-            objects: initializeSkillRating(allSkills, user.uid),
-          },
-        });
-        dispatch(
-          setSkillRatings(transformSkillRating(data.intro_course_skills_user))
-        );
-      }
     },
   });
 
