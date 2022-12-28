@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import ExpandableContainer from "../ExpandableContainer";
 import { PencilAltIcon } from "@heroicons/react/outline";
-import { IntroCourseUnit } from "../../../graphql/coding/userBadges/fetchUserBadges";
+import {
+  CodingBadge,
+  Data,
+  IntroCourseUnit,
+} from "../../../graphql/coding/userBadges/fetchUserBadges";
 import Link from "next/link";
 import { User } from "../../../graphql/fetchUserProfile";
+import _ from "lodash";
+import SingleQuestionInputStories from "../../ui/SingleQuestionInput.stories";
 
 export type BadgesSectionProps = {
   user: User;
@@ -12,16 +18,53 @@ export type BadgesSectionProps = {
 
 const AcheivementComponent = ({ user, data }) => {
   const [units, setUnits] = useState<IntroCourseUnit[]>([]);
+  const [editMode, setEditMode] = useState(false);
+
+  const handleBadgeClick = (badge: CodingBadge) => {
+    const updatedUnit = _.cloneDeep(units);
+
+    if (editMode) {
+      updatedUnit.map((unit: IntroCourseUnit) =>
+        unit.coding_badges.map((userBadge: CodingBadge) => {
+          if (userBadge.id == badge.id) {
+            // alert("hi");
+            userBadge.user_coding_badges.push({ id: 20 });
+          }
+        })
+      );
+    }
+    setUnits(updatedUnit);
+    // alert(JSON.stringify(units));
+
+    // updatedData.intro_course_unit.
+  };
+  // const awardedBadges = units.map((unit) =>
+  //   unit.coding_badges.filter((badge) => badge.user_coding_badges.length > 0)
+  // );
   useEffect(() => {
-    if (typeof data !== "undefined") {
-      setUnits(data.intro_course_unit);
+    if (data != undefined) {
+      const updatedData = _.cloneDeep(data);
+
+      setUnits(updatedData.intro_course_unit);
     }
   }, [data]);
   return (
     <ExpandableContainer open={true} title={""}>
+      {/* {JSON.stringify(units)} */}
+      {/* {JSON.stringify(units.map((units) => units.coding_badges))} */}
+
       <div className="p-4 shadow-md bg-slate-300 dark:bg-transparent">
         <div className="absolute px-16 right-1">
-          <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
+          <button
+            onClick={() => setEditMode(!editMode)}
+            className="w-5 h-5 cursor-pointer hover:text-yellow-600"
+          >
+            {editMode ? (
+              <PencilAltIcon className="w-5 h-5 cursor-pointer text-yellow-600" />
+            ) : (
+              <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
+            )}
+          </button>
         </div>
         {units.map((unit) => {
           if (unit.coding_badges.length > 0) {
@@ -35,19 +78,19 @@ const AcheivementComponent = ({ user, data }) => {
                 <div className="grid grid-cols-1 mb-16 sm:grid-cols-3 mt-7">
                   {unit.coding_badges.map((badge) => (
                     <div className="flex flex-col items-center justify-center">
-                      <div className="flex items-center justify-center p-8 bg-gray-200 rounded-full w-36 mb-7">
-                        {badge.user_coding_badges.length > 0 ? (
-                          <img
-                            className="w-28"
-                            src="/images/profile/achievement-badge-active.svg"
-                          ></img>
-                        ) : (
-                          <img
-                            className="w-28"
-                            src="/images/profile/achievement-badge.svg"
-                          ></img>
-                        )}
-                      </div>
+                      <button
+                        onClick={() => handleBadgeClick(badge)}
+                        // disabled={!editMode}
+                      >
+                        <img
+                          className="w-28"
+                          src={
+                            badge.user_coding_badges.length > 0
+                              ? "/images/profile/achievement-badge-active.svg"
+                              : "/images/profile/achievement-badge.svg"
+                          }
+                        />
+                      </button>
                       <p className="text-base">{unit.title}</p>
                       <p className="mb-8 text-base sm:mb-0">{badge.title}</p>
                     </div>
