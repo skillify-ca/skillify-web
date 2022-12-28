@@ -27,20 +27,14 @@ const AcheivementComponent = ({ user, data }) => {
       updatedUnit.map((unit: IntroCourseUnit) =>
         unit.coding_badges.map((userBadge: CodingBadge) => {
           if (userBadge.id == badge.id) {
-            // alert("hi");
             userBadge.user_coding_badges.push({ id: 20 });
           }
         })
       );
     }
     setUnits(updatedUnit);
-    // alert(JSON.stringify(units));
-
-    // updatedData.intro_course_unit.
   };
-  // const awardedBadges = units.map((unit) =>
-  //   unit.coding_badges.filter((badge) => badge.user_coding_badges.length > 0)
-  // );
+
   useEffect(() => {
     if (data != undefined) {
       const updatedData = _.cloneDeep(data);
@@ -50,9 +44,6 @@ const AcheivementComponent = ({ user, data }) => {
   }, [data]);
   return (
     <ExpandableContainer open={true} title={""}>
-      {/* {JSON.stringify(units)} */}
-      {/* {JSON.stringify(units.map((units) => units.coding_badges))} */}
-
       <div className="p-4 shadow-md bg-slate-300 dark:bg-transparent">
         <div className="absolute px-16 right-1">
           <button
@@ -78,10 +69,7 @@ const AcheivementComponent = ({ user, data }) => {
                 <div className="grid grid-cols-1 mb-16 sm:grid-cols-3 mt-7">
                   {unit.coding_badges.map((badge) => (
                     <div className="flex flex-col items-center justify-center">
-                      <button
-                        onClick={() => handleBadgeClick(badge)}
-                        // disabled={!editMode}
-                      >
+                      <button onClick={() => handleBadgeClick(badge)}>
                         <img
                           className="w-28"
                           src={
