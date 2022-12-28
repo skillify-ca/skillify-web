@@ -77,7 +77,6 @@ export const Layout: React.FC = ({ children }) => {
         >
           <div className="h-16" />
           <div className="min-h-screen">
-            <SkillifyCommandPalette />
             <div>{children}</div>
           </div>
         </div>
