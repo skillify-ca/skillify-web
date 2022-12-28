@@ -17,22 +17,24 @@ query fetchAllSkillsAndExistingRatings($userId: String = "") {
           }
         }
       }
-    }
+    }  
 `;
 
+
+
 export type FetchSkillsAndRatings = {
-  intro_course_skills: SkillsAndRatings[]
+  intro_course_skills: Array<SkillsAndRatings>
 };
 
 export type SkillsAndRatings = {
   id: string;
   name: string;
-  intro_course_skills_users: UserSkillId[];
+  intro_course_skills_users: Array<UserSkillIds>;
   intro_course_unit: SkillDescription;
-  intro_course_skills_users_aggregate: NodeSkillRatings;
+  intro_course_skills_users_aggregate: Array<NodeSkillRatings>;
 };
 
-export type UserSkillId = {
+export type UserSkillIds = {
     id: string;
   };
 
@@ -41,8 +43,8 @@ export type SkillDescription = {
 };
 
 export type NodeSkillRatings = {
-  nodes: StudentRatings[];
+  nodes: StudentRatings;
 };
 export type StudentRatings = {
-    studentRatings: string;
+    studentRating: string;
   };

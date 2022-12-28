@@ -31,10 +31,6 @@ export default function SkillRatingsComponent(props) {
   const dispatch = useDispatch();
   const { user } = useAuth();
   const { skillRatings } = useSelector(skillRatingsSelector);
-  const [allSkills, setSkillIds] = useState<string[]>([]);
-  const [currentlyRatedSkills, setCurrentlyRatedSkills] = useState<string[]>(
-    []
-  );
 
   // 1. define new types for FetchSkillsAndRatings
   // 2. write transformer function that takes response and transforms it into SkillRatingsRow[] type, sets studentRating to 0 if it doesn't exist in the nodes key
@@ -45,8 +41,9 @@ export default function SkillRatingsComponent(props) {
       userId: user.uid,
     },
     onCompleted: (data) => {
+      console.log("Data", data);
       dispatch(
-        setSkillRatings(transformSkillsAndRatings(data.intro_course_skills[0]))
+        setSkillRatings(transformSkillsAndRatings(data.intro_course_skills))
       );
     },
   });
@@ -72,17 +69,12 @@ export default function SkillRatingsComponent(props) {
     },
   });
 
-  const [saveSkillRatingsToInitialize] = useMutation(
-    UPSERT_USER_SKILL_RATINGS,
-    {
-      refetchQueries: [{ query: FETCH_USER_SKILLS_RATINGS }],
-    }
-  );
-
-  const initializedSkillRating = initializeSkillRating(
-    currentlyRatedSkills !== null ? currentlyRatedSkills : allSkills,
-    user.uid
-  );
+  //   const [saveSkillRatingsToInitialize] = useMutation(
+  //     UPSERT_USER_SKILL_RATINGS,
+  //     {
+  //       refetchQueries: [{ query: FETCH_USER_SKILLS_RATINGS }],
+  //     }
+  //   );
 
   return (
     <div className="flex flex-row overflow-auto-bg-scroll">

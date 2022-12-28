@@ -34,15 +34,27 @@ export const initializeSkillRating = (skillIds: string[], userId: string) => {
   export const transformSkillsAndRatings = (skillRatings: SkillsAndRatings[]) => {
     // map to redux type
     const mappedSkillRating: SkillRatingsRow[] = skillRatings.map((row) => {
-      return {
-        userSkillId: row.intro_course_skills_users.id["intro_course_skills_users"]["id"],
-        skillId: row.id,
-        skillName: row.name["name"],
-        unitName: row.intro_course_unit.unitTitle["intro_course_unit"]["unitTitle"],
-        studentRating: parseInt(row.intro_course_skills_users_aggregate.studentRating)["intro_course_skills_users_aggregate"]["studentRating"],
-        
-      };
+      if (row.intro_course_skills_users_aggregate["nodes"].studentRating !== null) {
+        return {
+            userSkillId: row.intro_course_skills_users["id"],
+            skillId: row.id,
+            skillName: row.name,
+            unitName: row.intro_course_unit["unitTitle"],
+            studentRating: parseInt(row.intro_course_skills_users_aggregate["nodes"].studentRating)
+        };
+      } else {
+        return {
+            userSkillId: row.intro_course_skills_users["id"],
+            skillId: row.id,
+            skillName: row.name,
+            unitName: row.intro_course_unit["unitTitle"],
+            studentRating: 0,
+        };
+      }
     });
-
+  
     return mappedSkillRating;
   };
+ 
+  
+  
