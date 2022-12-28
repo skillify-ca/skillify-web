@@ -26,8 +26,16 @@ const AcheivementComponent = ({ user, data }) => {
     if (editMode) {
       updatedUnit.map((unit: IntroCourseUnit) =>
         unit.coding_badges.map((userBadge: CodingBadge) => {
-          if (userBadge.id == badge.id) {
+          if (
+            userBadge.id == badge.id &&
+            userBadge.user_coding_badges.length == 0
+          ) {
             userBadge.user_coding_badges.push({ id: 20 });
+          } else if (
+            userBadge.id == badge.id &&
+            userBadge.user_coding_badges.length > 0
+          ) {
+            userBadge.user_coding_badges.pop();
           }
         })
       );
