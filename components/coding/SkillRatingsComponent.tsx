@@ -30,6 +30,18 @@ export default function SkillRatingsComponent(props) {
     []
   );
 
+  // 1. define new types for FetchSkillsAndRatings
+  // 2. write transformer function that takes response and transforms it into SkillRatingsRow[] type, sets studentRating to 0 if it doesn't exist in the nodes key
+  // 3. dispatch
+
+  const newTransformFunction = (): SkillRatingsRow[] => {};
+
+  const {} = useQuery<FetchSkillsAndRatings>(FETCH_SKILLS_AND_RATINGS, {
+    onCompleted: (data) => {
+      dispatch(setSkillRatings(newTransformFunction(data)));
+    },
+  });
+
   const {} = useQuery<FetchAllSkills>(FETCH_ALL_SKILLS, {
     onCompleted: (data) => {
       const allSkills = data.intro_course_skills.map((it) => it.id);
