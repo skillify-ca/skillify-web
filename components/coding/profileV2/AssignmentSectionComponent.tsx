@@ -33,7 +33,8 @@ const returnParentStyling = (assignment: UserAssignmentSubmissionsData) => {
   let parentStyle = "";
   if (assignment.coding_assignment.assignment_name.length >= 8) {
     parentStyle = "w-1/8";
-  } else return parentStyle;
+  }
+  return parentStyle;
 };
 
 export type AssignmentSectionComponentProps = {};
