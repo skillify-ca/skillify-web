@@ -1,4 +1,4 @@
-import { NodeSkillRatings, SkillsAndRatings } from "../../graphql/fetchSkillsAndRatings";
+import { SkillsAndRatings } from "../../graphql/fetchSkillsAndRatings";
 import { UserSkillsRatings } from "../../graphql/fetchUserSkillsRatings";
 import { SkillRatingsRow } from "../../redux/skillRatingsSlice";
 
@@ -17,7 +17,7 @@ export const initializeSkillRating = (skillIds: string[], userId: string) => {
   };
 
   export const transformSkillRating = (skillRatings: UserSkillsRatings[]) => {
-    // map to redux type
+    // map to redux type for skillRatings page
     const mappedSkillRating: SkillRatingsRow[] = skillRatings.map((row) => {
       return {
         userSkillId: row.id,
@@ -32,6 +32,7 @@ export const initializeSkillRating = (skillIds: string[], userId: string) => {
   };
 
   export const transformSkillsAndRatings = (skillRatings: SkillsAndRatings[]) => {
+     // map to redux type for profileV2 page
     return skillRatings.map((row) => {
       return {
         skillId: row.id,

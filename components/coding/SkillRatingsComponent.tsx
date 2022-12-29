@@ -1,23 +1,14 @@
 import { useQuery, useMutation } from "@apollo/client";
 import React from "react";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   FetchSkillsAndRatings,
   FETCH_SKILLS_AND_RATINGS,
-  SkillsAndRatings,
 } from "../../graphql/fetchSkillsAndRatings";
-import {
-  FetchUserSkillsRatings,
-  FETCH_USER_SKILLS_RATINGS,
-} from "../../graphql/fetchUserSkillsRatings";
+import { FETCH_USER_SKILLS_RATINGS } from "../../graphql/fetchUserSkillsRatings";
 import { UPSERT_USER_SKILL_RATINGS } from "../../graphql/upsertUserSkillRatings";
 import { useAuth } from "../../lib/authContext";
-import {
-  transformSkillRating,
-  initializeSkillRating,
-  transformSkillsAndRatings,
-} from "../../pages/api/skillRatingsFunctions";
+import { transformSkillsAndRatings } from "../../pages/api/skillRatingsFunctions";
 import {
   skillRatingsSelector,
   setSkillRatings,
@@ -25,23 +16,17 @@ import {
 } from "../../redux/skillRatingsSlice";
 import SkillSection from "../skillRatings/SkillSection";
 import { Button } from "../ui/Button";
-import { FetchAllSkills, FETCH_ALL_SKILLS } from "./FetchAllSkills";
 
 export default function SkillRatingsComponent(props) {
   const dispatch = useDispatch();
   const { user } = useAuth();
   const { skillRatings } = useSelector(skillRatingsSelector);
 
-  // 1. define new types for FetchSkillsAndRatings
-  // 2. write transformer function that takes response and transforms it into SkillRatingsRow[] type, sets studentRating to 0 if it doesn't exist in the nodes key
-  // 3. dispatch
-
   const {} = useQuery<FetchSkillsAndRatings>(FETCH_SKILLS_AND_RATINGS, {
     variables: {
       userId: user.uid,
     },
     onCompleted: (data) => {
-      console.log("Data", data);
       dispatch(
         setSkillRatings(transformSkillsAndRatings(data.intro_course_skills))
       );
@@ -68,13 +53,6 @@ export default function SkillRatingsComponent(props) {
       alert("Your skill ratings have been saved successfully.");
     },
   });
-
-  //   const [saveSkillRatingsToInitialize] = useMutation(
-  //     UPSERT_USER_SKILL_RATINGS,
-  //     {
-  //       refetchQueries: [{ query: FETCH_USER_SKILLS_RATINGS }],
-  //     }
-  //   );
 
   return (
     <div className="flex flex-row overflow-auto-bg-scroll">
