@@ -11,7 +11,14 @@ export type ProfileState = {
 
 
 const initialState: ProfileState = {
-  userProfileData: {} as UserProfileData,
+  userProfileData: {
+    typeName: "",
+    createdAt: new Date(),
+    email: "",
+    lastSeen: new Date(),
+    name: "",
+    profileImage: "",
+  },
   userBadgeCount: 0,
   totalBadgeCount: 0,
 };
@@ -25,27 +32,37 @@ export const profileSlice: Slice = createSlice({
       action: PayloadAction<UserProfileData>
     ) => {
       if (action.type == "profile/setUserProfile") {
-        state.userProfileData = action.payload
+        return {
+          ...state,
+          userProfileData: action.payload,
+        };
       }
     },
 
     setUserBadgeCount: (
-        state: ProfileState,
-        action: PayloadAction<number>
-      ) => {
-        if (action.type == "profile/setUserBadgeCount") {
-          state.userBadgeCount = action.payload
-        }
-      },
+      state: ProfileState,
+      action: PayloadAction<number>
+    ) => {
+      if (action.type == "profile/setUserBadgeCount") {
+        return {
+          ...state,
+          userBadgeCount: action.payload,
+        };
+      }
+    },
+  
     
-      setTotalBadgeCount: (
-        state: ProfileState,
-        action: PayloadAction<number>
-      ) => {
-        if (action.type == "profile/setTotalBadgeCount") {
-          state.totalBadgeCount = action.payload
-        }
-      },
+    setTotalBadgeCount: (
+      state: ProfileState,
+      action: PayloadAction<number>
+    ) => {
+      if (action.type == "profile/setTotalBadgeCount") {
+        return {
+          ...state,
+          totalBadgeCount: action.payload,
+        };
+      }
+    },
 
   },
 });

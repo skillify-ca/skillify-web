@@ -1,11 +1,14 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import GoalsSectionComponent from "../../../components/coding/GoalsSectionComponent";
+import AcheivementComponent from "../../../components/coding/profileV2/AcheivementComponent";
 import AssignmentSectionComponent from "../../../components/coding/profileV2/AssignmentSectionComponent";
 import ProfileHeaderComponent from "../../../components/coding/profileV2/ProfileHeaderComponent";
 import ProjectsSection from "../../../components/coding/ProjectsSection";
 import BadgesSection from "../../../components/profile/BadgesSection";
+import { FETCH_CODING_BADGES } from "../../../graphql/coding/userBadges/fetchUserBadges";
 
 import {
   FetchUserGoalsDataResponse,
@@ -31,6 +34,12 @@ export default function Profile(props) {
     }
   );
 
+  const { data } = useQuery(FETCH_CODING_BADGES, {
+    variables: {
+      userId: user.uid,
+    },
+  });
+
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
       <ProfileHeaderComponent user={user} />
@@ -45,6 +54,7 @@ export default function Profile(props) {
 
       <div className="grid grid-cols-1">
         <GoalsSectionComponent
+          componentUsageType={GoalsComponentSection.PROFILE}
           userGoals={userGoals
             .filter((goal) => !goal.isComplete && !goal.isArchived)
             .slice(0, 3)}
@@ -52,7 +62,7 @@ export default function Profile(props) {
       </div>
 
       <h2 className="text-lg font-bold mb-9">Achievements</h2>
-      <BadgesSection user={user} />
+      <AcheivementComponent user={user} data={data} />
     </div>
   );
 }

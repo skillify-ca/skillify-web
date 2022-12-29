@@ -27,7 +27,10 @@ export const userGoalsSlice: Slice = createSlice({
       action: PayloadAction<UserGoalsData[]>
     ) => {
       if (action.type == "userGoals/setUserGoals") {
-        state.userGoals = action.payload;
+        return {
+          userGoals: action.payload,
+          goalsSections: state.goalsSections,
+        };
       }
     },
 
@@ -36,7 +39,10 @@ export const userGoalsSlice: Slice = createSlice({
       action: PayloadAction<GoalSection[]>
     ) => {
       if (action.type == "userGoals/setGoalsSections") {
-        state.goalsSections = action.payload;
+        return {
+          userGoals: state.userGoals,
+          goalsSections: action.payload,
+        };
       }
     },
   },
