@@ -34,26 +34,18 @@ export const initializeSkillRating = (skillIds: string[], userId: string) => {
   export const transformSkillsAndRatings = (skillRatings: SkillsAndRatings[]) => {
     // map to redux type
     const mappedSkillRating: SkillRatingsRow[] = skillRatings.map((row) => {
-      if (row.intro_course_skills_users_aggregate["nodes"].studentRating !== null) {
+        const studentRating = row.intro_course_skills_users_aggregate["nodes"]["studentRating"] ?? 0;
         return {
             userSkillId: row.intro_course_skills_users["id"],
             skillId: row.id,
             skillName: row.name,
-            unitName: row.intro_course_unit["unitTitle"],
-            studentRating: parseInt(row.intro_course_skills_users_aggregate["nodes"].studentRating)
+            unitName: row.intro_course_unit.title,
+            studentRating: studentRating,
         };
-      } else {
-        return {
-            userSkillId: row.intro_course_skills_users["id"],
-            skillId: row.id,
-            skillName: row.name,
-            unitName: row.intro_course_unit["unitTitle"],
-            studentRating: 0,
-        };
-      }
     });
-  
+    console.log(mappedSkillRating)  
     return mappedSkillRating;
+
   };
  
   

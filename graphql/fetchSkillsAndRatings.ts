@@ -23,15 +23,15 @@ query fetchAllSkillsAndExistingRatings($userId: String = "") {
 
 
 export type FetchSkillsAndRatings = {
-  intro_course_skills: Array<SkillsAndRatings>
+  intro_course_skills: SkillsAndRatings[]
 };
 
 export type SkillsAndRatings = {
   id: string;
   name: string;
-  intro_course_skills_users: Array<UserSkillIds>;
+  intro_course_skills_users: UserSkillIds[];
   intro_course_unit: SkillDescription;
-  intro_course_skills_users_aggregate: Array<NodeSkillRatings>;
+  intro_course_skills_users_aggregate: NodeSkillRatings[];
 };
 
 export type UserSkillIds = {
@@ -39,7 +39,7 @@ export type UserSkillIds = {
   };
 
 export type SkillDescription = {
-  unitTitle: string;
+  title: string;
 };
 
 export type NodeSkillRatings = {
