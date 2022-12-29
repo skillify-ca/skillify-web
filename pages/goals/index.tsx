@@ -7,7 +7,6 @@ import {
   FETCH_USER_GOALS,
 } from "../../graphql/fetchUserGoals";
 import { useQuery } from "@apollo/client";
-import GoalsSectionComponent from "../../components/coding/GoalsSectionComponent";
 import { Button } from "../../components/ui/Button";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +17,9 @@ import {
   setGoalsSections,
 } from "../../redux/userGoalsSlice";
 import { list } from "postcss";
+import GoalsSectionComponent, {
+  GoalsComponentSection,
+} from "../../components/coding/GoalsSectionComponent";
 
 export default function Goals(props) {
   const { user } = useAuth();
@@ -81,6 +83,7 @@ export default function Goals(props) {
               <GoalsSectionComponent
                 userGoals={section.userGoals}
                 sectionName={section.sectionName}
+                componentUsageType={GoalsComponentSection.GOALS}
               />
             </div>
           );
