@@ -31,7 +31,7 @@ export type SkillsAndRatings = {
   name: string;
   intro_course_skills_users: UserSkillIds[];
   intro_course_unit: SkillDescription;
-  intro_course_skills_users_aggregate: NodeSkillRatings[];
+  intro_course_skills_users_aggregate: NodeSkillRatings;
 };
 
 export type UserSkillIds = {
@@ -43,7 +43,7 @@ export type SkillDescription = {
 };
 
 export type NodeSkillRatings = {
-  nodes: StudentRatings;
+  nodes: StudentRatings[];
 };
 export type StudentRatings = {
     studentRating: string;

@@ -1,4 +1,4 @@
-import { SkillsAndRatings } from "../../graphql/fetchSkillsAndRatings";
+import { NodeSkillRatings, SkillsAndRatings } from "../../graphql/fetchSkillsAndRatings";
 import { UserSkillsRatings } from "../../graphql/fetchUserSkillsRatings";
 import { SkillRatingsRow } from "../../redux/skillRatingsSlice";
 
@@ -32,21 +32,15 @@ export const initializeSkillRating = (skillIds: string[], userId: string) => {
   };
 
   export const transformSkillsAndRatings = (skillRatings: SkillsAndRatings[]) => {
-    // map to redux type
-    const mappedSkillRating: SkillRatingsRow[] = skillRatings.map((row) => {
-        const studentRating = row.intro_course_skills_users_aggregate["nodes"]["studentRating"] ?? 0;
-        return {
-            userSkillId: row.intro_course_skills_users["id"],
-            skillId: row.id,
-            skillName: row.name,
-            unitName: row.intro_course_unit.title,
-            studentRating: studentRating,
-        };
+    return skillRatings.map((row) => {
+      return {
+        skillId: row.id,
+        skillName: row.name,
+        unitName: row.intro_course_unit.title,
+        studentRating: row.intro_course_skills_users_aggregate.nodes.length > 0 && row.intro_course_skills_users_aggregate.nodes[0].studentRating
+        ? parseInt(row.intro_course_skills_users_aggregate.nodes[0].studentRating)
+        : 0,
+        userSkillId: row.intro_course_skills_users[0]?.id,
+      };
     });
-    console.log(mappedSkillRating)  
-    return mappedSkillRating;
-
   };
- 
-  
-  
