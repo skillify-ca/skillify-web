@@ -1,17 +1,14 @@
 import { useQuery } from "@apollo/client";
 import { format, addDays } from "date-fns";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   FetchGoalCountResponse,
   FETCH_USER_GOALS_COUNT,
 } from "../../../graphql/fetchUserGoalsCount";
 import { useAuth } from "../../../lib/authContext";
-import {
-  activePageSelector,
-  setIsGoalApproaching,
-} from "../../../redux/sidebarSlice";
-import Navbar from "../../ui/Navbar";
+import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
+import SkillifyCommandPalette from "../../CommandPalette";
 import Sidebar from "./Sidebar";
 
 export const Layout: React.FC = ({ children }) => {
@@ -79,7 +76,9 @@ export const Layout: React.FC = ({ children }) => {
           className={`dark:text-white overflow-auto w-full max-h-screen h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 gap-4 bg-gray-100 dark:bg-gray-800`}
         >
           <div className="h-16" />
-          <div className="min-h-screen">{children}</div>
+          <div className="min-h-screen">
+            <div>{children}</div>
+          </div>
         </div>
       </div>
       <div
