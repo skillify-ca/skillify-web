@@ -8,8 +8,8 @@ import {
 } from "../../../graphql/coding/userBadges/fetchUserBadges";
 import Link from "next/link";
 import { User } from "../../../graphql/fetchUserProfile";
-import _ from "lodash";
 import SingleQuestionInputStories from "../../ui/SingleQuestionInput.stories";
+import _ from "lodash";
 
 export type BadgesSectionProps = {
   user: User;
@@ -21,6 +21,7 @@ const AcheivementComponent = ({ user, data }) => {
   const [editMode, setEditMode] = useState(false);
 
   const handleBadgeClick = (badge: CodingBadge) => {
+    // Want to remove lodash, on Vithushan Rec
     const updatedUnit = _.cloneDeep(units);
 
     if (editMode) {
@@ -43,6 +44,22 @@ const AcheivementComponent = ({ user, data }) => {
     setUnits(updatedUnit);
   };
 
+  const transformData = (data: Data) => {
+    const transformedOutput = data.intro_course_unit.map((unit) => {
+      return {
+        unitTitle: unit.title,
+        badgeTitle: unit.coding_badges.map((badge) => badge.title),
+        badgeId: unit.coding_badges.map((badge) => badge.title),
+        userCodingBadge: unit.coding_badges.map((badge) =>
+          badge.user_coding_badges.map((badge) => badge.id)
+        ),
+        isAwarded: unit.coding_badges.map(
+          (badge) => badge.user_coding_badges.length > 0
+        ),
+      };
+    });
+    return transformedOutput;
+  };
   useEffect(() => {
     if (data != undefined) {
       const updatedData = _.cloneDeep(data);
@@ -53,6 +70,7 @@ const AcheivementComponent = ({ user, data }) => {
   return (
     <ExpandableContainer open={true} title={""}>
       <div className="p-4 shadow-md bg-slate-300 dark:bg-transparent">
+        {JSON.stringify(transformData(data))}
         <div className="absolute px-16 right-1">
           <button
             onClick={() => setEditMode(!editMode)}
