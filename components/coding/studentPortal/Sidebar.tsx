@@ -9,6 +9,7 @@ import {
   SidebarProps,
   setActivePage,
 } from "../../../redux/sidebarSlice";
+import SkillifyCommandPalette from "../../CommandPalette";
 interface SidebarItemProps {
   name: string;
   link: string;
@@ -173,6 +174,8 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
             </svg>
           }
         />
+
+        <SkillifyCommandPalette />
 
         <div>
           <div className="flex items-center justify-between p-4 ">
