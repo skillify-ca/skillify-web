@@ -1,7 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 
-import GoalsSectionComponent from "../../../components/coding/GoalsSectionComponent";
+import GoalsSectionComponent, {
+  GoalsComponentSection,
+} from "../../../components/coding/GoalsSectionComponent";
 import AcheivementComponent from "../../../components/coding/profileV2/AcheivementComponent";
 import AssignmentSectionComponent from "../../../components/coding/profileV2/AssignmentSectionComponent";
 import ProfileHeaderComponent from "../../../components/coding/profileV2/ProfileHeaderComponent";

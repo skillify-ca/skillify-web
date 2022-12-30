@@ -8,7 +8,10 @@ import {
 import { FETCH_USER_SKILLS_RATINGS } from "../../graphql/fetchUserSkillsRatings";
 import { UPSERT_USER_SKILL_RATINGS } from "../../graphql/upsertUserSkillRatings";
 import { useAuth } from "../../lib/authContext";
-import { transformSkillsAndRatings } from "../../pages/api/skillRatingsFunctions";
+import {
+  transformSkillRatingForDB,
+  transformSkillsAndRatings,
+} from "../../pages/api/skillRatingsFunctions";
 import {
   skillRatingsSelector,
   setSkillRatings,
@@ -34,20 +37,6 @@ export default function SkillRatingsComponent(props) {
     },
   });
 
-  const transformSkillRatingForDB = (skillRatings: SkillRatingsRow[]) => {
-    // map from redux type to write back to DB
-    const transformedOutput = skillRatings.map((row) => {
-      return {
-        userId: user.uid,
-        id: row.userSkillId,
-        skillId: row.skillId,
-        studentRating: row.studentRating,
-      };
-    });
-
-    return transformedOutput;
-  };
-
   const [saveSkillRatings] = useMutation(UPSERT_USER_SKILL_RATINGS, {
     refetchQueries: [{ query: FETCH_USER_SKILLS_RATINGS }],
     onCompleted: () => {
@@ -67,7 +56,7 @@ export default function SkillRatingsComponent(props) {
             onClick={() =>
               saveSkillRatings({
                 variables: {
-                  objects: transformSkillRatingForDB(skillRatings),
+                  objects: transformSkillRatingForDB(skillRatings, user),
                 },
               })
             }
