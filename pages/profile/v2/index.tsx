@@ -6,8 +6,6 @@ import GoalsSectionComponent from "../../../components/coding/GoalsSectionCompon
 import AcheivementComponent from "../../../components/coding/profileV2/AcheivementComponent";
 import AssignmentSectionComponent from "../../../components/coding/profileV2/AssignmentSectionComponent";
 import ProfileHeaderComponent from "../../../components/coding/profileV2/ProfileHeaderComponent";
-import ProjectsSection from "../../../components/coding/ProjectsSection";
-import BadgesSection from "../../../components/profile/BadgesSection";
 import { FETCH_CODING_BADGES } from "../../../graphql/coding/userBadges/fetchUserBadges";
 
 import {
@@ -54,7 +52,7 @@ export default function Profile(props) {
 
       <div className="grid grid-cols-1">
         <GoalsSectionComponent
-          componentUsageType={GoalsComponentSection.PROFILE}
+          inProfile={true}
           userGoals={userGoals
             .filter((goal) => !goal.isComplete && !goal.isArchived)
             .slice(0, 3)}
