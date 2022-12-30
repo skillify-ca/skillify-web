@@ -8,21 +8,42 @@ import {
 } from "@heroicons/react/outline";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FETCH_ALL_USER_ASSIGNMENTS } from "../../../graphql/fetchAllUserAssignments";
 import {
   UserAssignmentSubmissionsData,
   FetchUserAssignmentSubmissionsDataResponse,
 } from "../../../graphql/fetchUserAssignmentSubmissions";
 import { useAuth } from "../../../lib/authContext";
+import {
+  assignmentsSelector,
+  setUserAssignments,
+} from "../../../redux/assignmentsSlice";
 import ExpandableContainer from "../ExpandableContainer";
+
+const returnWrapStyling = (assignment: UserAssignmentSubmissionsData) => {
+  let wrapStyle = "";
+  if (assignment.coding_assignment.assignment_name.length >= 3) {
+    wrapStyle = "truncate";
+  }
+  return wrapStyle;
+};
+
+const returnParentStyling = (assignment: UserAssignmentSubmissionsData) => {
+  let parentStyle = "";
+  if (assignment.coding_assignment.assignment_name.length >= 8) {
+    parentStyle = "w-1/8";
+  }
+  return parentStyle;
+};
 
 export type AssignmentSectionComponentProps = {};
 
 export default function AssignmentsSection({}: AssignmentSectionComponentProps) {
   const { user } = useAuth();
-  const [userAssignments, setUserAssignments] = useState<
-    UserAssignmentSubmissionsData[]
-  >([]);
+  const dispatch = useDispatch();
+  const { userAssignments } = useSelector(assignmentsSelector);
+
   const { loading: userAssignmentsLoading } =
     useQuery<FetchUserAssignmentSubmissionsDataResponse>(
       FETCH_ALL_USER_ASSIGNMENTS,
@@ -32,17 +53,18 @@ export default function AssignmentsSection({}: AssignmentSectionComponentProps) 
         },
 
         onCompleted: (data: FetchUserAssignmentSubmissionsDataResponse) => {
-          setUserAssignments(data.user_assignment_submissions);
+          dispatch(setUserAssignments(data.user_assignment_submissions));
         },
       }
     );
+
   return (
     <ExpandableContainer open={true} title={""}>
       <div>
         {userAssignments.length > 0 && (
-          <div className="grid grid-cols-5 text-sm font-semibold text-center border-b-2 md:grid-cols-12 md:text-lg">
-            <p className="col-span-2 md:col-span-6">Assignment</p>
-            <p className="col-span-2 font-semibold md:col-span-2">Status</p>
+          <div className="grid grid-cols-9 text-sm font-semibold text-center border-b-2 md:grid-cols-12 md:text-lg">
+            <p className="col-span-4 md:col-span-6">Assignment</p>
+            <p className="col-span-3 font-semibold md:col-span-2">Status</p>
           </div>
         )}
 
@@ -56,12 +78,18 @@ export default function AssignmentsSection({}: AssignmentSectionComponentProps) 
           userAssignments.map((assignment, index) => {
             return (
               <div
-                className={`grid grid-cols-5 my-2 text-sm text-center md:grid-cols-12 md:text-lg place-items-center ${assignment}`}
+                className={`grid grid-cols-7 my-2 text-sm text-left md:grid-cols-12 md:text-lg md:place-items-center  ${assignment}`}
               >
                 <p className="col-span-1">{index + 1}.</p>
-                <p className="col-span-1 md:col-span-4">
-                  {assignment.coding_assignment.assignment_name}
-                </p>
+                <div
+                  className={`col-span-3 md:col-span-4 ${returnParentStyling(
+                    assignment
+                  )}`}
+                >
+                  <p className={`${returnWrapStyling(assignment)}`}>
+                    {assignment.coding_assignment.assignment_name}
+                  </p>
+                </div>
                 <p className="col-span-2 md:block md:col-span-4">
                   {assignment.submission_link ? (
                     assignment.review_link === null ? (
@@ -73,9 +101,11 @@ export default function AssignmentsSection({}: AssignmentSectionComponentProps) 
                     <XIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
                   )}
                 </p>
-                <Link href={assignment.coding_assignment.assignment_link}>
-                  <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
-                </Link>
+                <div className="col-span-1">
+                  <Link href={assignment.coding_assignment.assignment_link}>
+                    <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
+                  </Link>
+                </div>
               </div>
             );
           })
