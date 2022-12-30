@@ -16,6 +16,7 @@ import {
 } from "../../redux/skillRatingsSlice";
 import SkillSection from "../skillRatings/SkillSection";
 import { Button } from "../ui/Button";
+import ExpandableContainer from "./ExpandableContainer";
 
 export default function SkillRatingsComponent(props) {
   const dispatch = useDispatch();
@@ -56,21 +57,23 @@ export default function SkillRatingsComponent(props) {
 
   return (
     <div className="flex flex-row overflow-auto-bg-scroll">
-      <div className="flex flex-col p-4 m-4">
-        {skillRatings && <SkillSection skillSection={skillRatings} />}
-      </div>
-      <div className="p-4 mr-8 mt-8">
-        <Button
-          label="Save"
-          onClick={() =>
-            saveSkillRatings({
-              variables: {
-                objects: transformSkillRatingForDB(skillRatings),
-              },
-            })
-          }
-        />
-      </div>
+      <ExpandableContainer open={true} title={""}>
+        <div className="flex flex-col p-4 m-4">
+          {skillRatings && <SkillSection skillSection={skillRatings} />}
+        </div>
+        <div className="flex float-right p-4 mr-8 mt-8">
+          <Button
+            label="Save"
+            onClick={() =>
+              saveSkillRatings({
+                variables: {
+                  objects: transformSkillRatingForDB(skillRatings),
+                },
+              })
+            }
+          />
+        </div>
+      </ExpandableContainer>
     </div>
   );
 }
