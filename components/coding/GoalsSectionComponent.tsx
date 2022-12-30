@@ -1,7 +1,7 @@
 import { PencilAltIcon } from "@heroicons/react/outline";
 import { differenceInCalendarDays, format } from "date-fns";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import { UserGoalsData } from "../../graphql/fetchUserGoals";
 import ExpandableContainer from "./ExpandableContainer";
 export type GoalsSectionProps = {
@@ -10,10 +10,6 @@ export type GoalsSectionProps = {
   inProfile: boolean;
 };
 
-export enum GoalsComponentSection {
-  PROFILE = "profile",
-  GOALS = "goals",
-}
 export const returnGoalStyle = (goal: UserGoalsData) => {
   let goalStyle = "";
   const daysRemaining = differenceInCalendarDays(
@@ -80,12 +76,12 @@ export default function GoalsSection({
         })}
       </div>
     </ExpandableContainer>
-  ) : userGoals.length <= 0 && inProfile === true ? (
+  ) : userGoals.length <= 0 && inProfile ? (
     <ExpandableContainer open={true} title={""}>
       <div className="col-span-3 p-8 mb-8 text-center shadow-md bg-slate-300 dark:bg-slate-900">
         Click on the "Goals" tab on the sidebar to get ahead by creating and
         tracking your goals!
       </div>
     </ExpandableContainer>
-  ) : userGoals.length <= 0 && inProfile === false ? null : null;
+  ) : userGoals.length <= 0 && !inProfile ? null : null;
 }

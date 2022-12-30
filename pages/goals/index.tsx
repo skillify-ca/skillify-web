@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useAuth } from "../../lib/authContext";
 
@@ -13,10 +13,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   userGoalsSelector,
   setUserGoals,
-  GoalSection,
   setGoalsSections,
 } from "../../redux/userGoalsSlice";
-import { list } from "postcss";
 import GoalsSectionComponent from "../../components/coding/GoalsSectionComponent";
 
 export default function Goals(props) {
@@ -25,19 +23,16 @@ export default function Goals(props) {
   const dispatch = useDispatch();
   const { userGoals, goalsSections } = useSelector(userGoalsSelector);
 
-  const { loading: userGoalsLoading } = useQuery<FetchUserGoalsDataResponse>(
-    FETCH_USER_GOALS,
-    {
-      variables: {
-        userId: user.uid,
-      },
-      fetchPolicy: "cache-and-network",
+  const {} = useQuery<FetchUserGoalsDataResponse>(FETCH_USER_GOALS, {
+    variables: {
+      userId: user.uid,
+    },
+    fetchPolicy: "cache-and-network",
 
-      onCompleted: (data: FetchUserGoalsDataResponse) => {
-        dispatch(setUserGoals(data.user_goals));
-      },
-    }
-  );
+    onCompleted: (data: FetchUserGoalsDataResponse) => {
+      dispatch(setUserGoals(data.user_goals));
+    },
+  });
 
   useEffect(() => {
     if (userGoals.length > 0) {
