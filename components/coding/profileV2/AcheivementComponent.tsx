@@ -17,60 +17,61 @@ export type BadgesSectionProps = {
 };
 
 const AcheivementComponent = ({ user, data }) => {
-  const [units, setUnits] = useState<IntroCourseUnit[]>([]);
+  const [units, setUnits] = useState([]);
   const [editMode, setEditMode] = useState(false);
 
-  const handleBadgeClick = (badge: CodingBadge) => {
-    // Want to remove lodash, on Vithushan Rec
-    const updatedUnit = _.cloneDeep(units);
+  const handleBadgeClick = (badge) => {
+    // const updatedData = units;
 
-    if (editMode) {
-      updatedUnit.map((unit: IntroCourseUnit) =>
-        unit.coding_badges.map((userBadge: CodingBadge) => {
-          if (
-            userBadge.id == badge.id &&
-            userBadge.user_coding_badges.length == 0
-          ) {
-            userBadge.user_coding_badges.push({ id: 20 });
-          } else if (
-            userBadge.id == badge.id &&
-            userBadge.user_coding_badges.length > 0
-          ) {
-            userBadge.user_coding_badges.pop();
+    // setUnits(updatedData);
+    setUnits((prev) => {
+      console.log("prev", prev);
+
+      const test = prev.map((unit) => {
+        return unit.codingBadges.map((codingBadge) => {
+          if (codingBadge.id == badge.id) {
+            return {
+              ...codingBadge,
+              isAwarded: true,
+            };
+            // codingBadge.userCodingBadge.push({ id: 20 });
           }
-        })
-      );
-    }
-    setUnits(updatedUnit);
+        });
+      });
+      console.log("test", test);
+      return prev;
+    });
   };
 
   const transformData = (data: Data) => {
-    const transformedOutput = data.intro_course_unit.map((unit) => {
+    const transformedOutput = data?.intro_course_unit.map((unit) => {
       return {
         unitTitle: unit.title,
-        badgeTitle: unit.coding_badges.map((badge) => badge.title),
-        badgeId: unit.coding_badges.map((badge) => badge.title),
-        userCodingBadge: unit.coding_badges.map((badge) =>
-          badge.user_coding_badges.map((badge) => badge.id)
-        ),
-        isAwarded: unit.coding_badges.map(
-          (badge) => badge.user_coding_badges.length > 0
-        ),
+        codingBadges: unit.coding_badges.map((badge) => {
+          return {
+            id: badge.id,
+            title: badge.title,
+            userCodingBadge: badge.user_coding_badges.map((b) => b),
+            isAwarded: badge.user_coding_badges.length > 0,
+          };
+        }),
       };
     });
     return transformedOutput;
   };
   useEffect(() => {
     if (data != undefined) {
-      const updatedData = _.cloneDeep(data);
+      const updatedData = transformData(data);
 
-      setUnits(updatedData.intro_course_unit);
+      setUnits(updatedData);
     }
   }, [data]);
+
+  const oldData = _.cloneDeep(data);
   return (
     <ExpandableContainer open={true} title={""}>
+      {JSON.stringify(units)}
       <div className="p-4 shadow-md bg-slate-300 dark:bg-transparent">
-        {JSON.stringify(transformData(data))}
         <div className="absolute px-16 right-1">
           <button
             onClick={() => setEditMode(!editMode)}
@@ -83,36 +84,65 @@ const AcheivementComponent = ({ user, data }) => {
             )}
           </button>
         </div>
-        {units.map((unit) => {
-          if (unit.coding_badges.length > 0) {
+        {units &&
+          units.map((unit) => {
             return (
               <div>
                 <div className="grid grid-cols-2 sm:grid-cols-6">
                   <div className="py-4 text-center text-gray-400 bg-gray-200 rounded-full">
-                    {unit.title}
+                    {unit?.unitTitle}
                   </div>
                 </div>
-                <div className="grid grid-cols-1 mb-16 sm:grid-cols-3 mt-7">
-                  {unit.coding_badges.map((badge) => (
-                    <div className="flex flex-col items-center justify-center">
-                      <button onClick={() => handleBadgeClick(badge)}>
-                        <img
-                          className="w-28"
-                          src={
-                            badge.user_coding_badges.length > 0
-                              ? "/images/profile/achievement-badge-active.svg"
-                              : "/images/profile/achievement-badge.svg"
-                          }
-                        />
-                      </button>
-                      <p className="text-base">{unit.title}</p>
-                      <p className="mb-8 text-base sm:mb-0">{badge.title}</p>
-                    </div>
-                  ))}
+                <div>
+                  <div className="grid grid-cols-3 mb-8 text-base sm:mb-0  ">
+                    {unit.codingBadges.map((badge) => (
+                      <div className="flex flex-col items-center justify-center">
+                        <button
+                          disabled={!editMode}
+                          onClick={() => handleBadgeClick(badge)}
+                        >
+                          {/* <button onClick={() => handleBadgeClick(badge)}> */}
+                          <img
+                            className="w-28"
+                            src={
+                              badge.userCodingBadge.length > 0
+                                ? "/images/profile/achievement-badge-active.svg"
+                                : "/images/profile/achievement-badge.svg"
+                            }
+                          />
+                        </button>
+                        <p className="text-base">{unit.unitTitle}</p>
+                        <p className="mb-8 text-base sm:mb-0">{badge.title}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             );
-          }
+          })}
+        {oldData?.intro_course_unit.map((unit) => {
+          return (
+            <div>
+              <div className="grid grid-cols-1 mb-16 sm:grid-cols-3 mt-7">
+                {unit.coding_badges.map((badge) => (
+                  <div className="flex flex-col items-center justify-center">
+                    <button onClick={() => handleBadgeClick(badge)}>
+                      <img
+                        className="w-28"
+                        src={
+                          badge.user_coding_badges.length > 0
+                            ? "/images/profile/achievement-badge-active.svg"
+                            : "/images/profile/achievement-badge.svg"
+                        }
+                      />
+                    </button>
+                    <p className="text-base">{unit.title}</p>
+                    <p className="mb-8 text-base sm:mb-0">{badge.title}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
         })}
       </div>
     </ExpandableContainer>
