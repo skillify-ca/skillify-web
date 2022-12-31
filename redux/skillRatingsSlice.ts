@@ -6,7 +6,7 @@ export type SkillRatingsState = {
 };
 
 export type SkillRatingsRow = {
-  userSkillId: string|number;
+  userSkillId: String|number;
   skillId: String;
   skillName: String;
   unitName: String;

@@ -15,7 +15,6 @@ import {
 import {
   skillRatingsSelector,
   setSkillRatings,
-  SkillRatingsRow,
 } from "../../redux/skillRatingsSlice";
 import SkillSection from "../skillRatings/SkillSection";
 import { Button } from "../ui/Button";
