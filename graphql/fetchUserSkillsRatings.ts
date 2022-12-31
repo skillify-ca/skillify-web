@@ -24,7 +24,7 @@ export type FetchUserSkillsRatings = {
 export type UserSkillsRatings = {
   id: String;
   studentRating: string;
-  intro_course_skill: boolean;
+  intro_course_skill: SkillDescription;
 };
 
 export type SkillDescription = {
