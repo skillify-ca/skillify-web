@@ -1,45 +1,51 @@
 import React, { useEffect, useState } from "react";
 import ExpandableContainer from "../ExpandableContainer";
 import { PencilAltIcon } from "@heroicons/react/outline";
-import {
-  CodingBadge,
-  Data,
   IntroCourseUnit,
-} from "../../../graphql/coding/userBadges/fetchUserBadges";
-import Link from "next/link";
+import { Data } from "../../../graphql/coding/userBadges/fetchUserBadges";
 import { User } from "../../../graphql/fetchUserProfile";
-import SingleQuestionInputStories from "../../ui/SingleQuestionInput.stories";
 import _ from "lodash";
 
 export type BadgesSectionProps = {
   user: User;
   data: User;
 };
-
-const AcheivementComponent = ({ user, data }) => {
-  const [units, setUnits] = useState([]);
+export type userCodingBadge = {
+  id: number;
+};
+export type unitProps = {
+  unitTitle: string;
+  codingBadges: codingBadges[];
+};
+export type codingBadges = {
+  id: number;
+  title: string;
+  userCodingBadge: userCodingBadge[];
+  isAwarded: boolean;
+};
+export type unit = unitProps[];
+const AcheivementComponent = ({ data }) => {
+  const [transformedData, setTransformedData] = useState([]);
   const [editMode, setEditMode] = useState(false);
-
-  const handleBadgeClick = (badge) => {
-    // const updatedData = units;
-
-    // setUnits(updatedData);
-    setUnits((prev) => {
-      console.log("prev", prev);
-
-      const test = prev.map((unit) => {
-        return unit.codingBadges.map((codingBadge) => {
-          if (codingBadge.id == badge.id) {
-            return {
-              ...codingBadge,
-              isAwarded: true,
-            };
-            // codingBadge.userCodingBadge.push({ id: 20 });
-          }
-        });
+  const handleBadgeClick = (inputBadge: codingBadges) => {
+    setTransformedData((prev) => {
+      const updatedData = prev.map((unit: unitProps) => {
+        return {
+          ...unit,
+          codingBadges: unit.codingBadges.map((badge) => {
+            if (badge.id == inputBadge.id) {
+              return {
+                ...badge,
+                isAwarded: !badge.isAwarded,
+              };
+            } else {
+              return badge;
+            }
+          }),
+        };
       });
-      console.log("test", test);
-      return prev;
+
+      return updatedData;
     });
   };
 
@@ -63,14 +69,14 @@ const AcheivementComponent = ({ user, data }) => {
     if (data != undefined) {
       const updatedData = transformData(data);
 
-      setUnits(updatedData);
+      setTransformedData(updatedData);
     }
   }, [data]);
 
   const oldData = _.cloneDeep(data);
   return (
     <ExpandableContainer open={true} title={""}>
-      {JSON.stringify(units)}
+      {JSON.stringify(transformedData)}
       <div className="p-4 shadow-md bg-slate-300 dark:bg-transparent">
         <div className="absolute px-16 right-1">
           <button
@@ -84,42 +90,47 @@ const AcheivementComponent = ({ user, data }) => {
             )}
           </button>
         </div>
-        {units &&
-          units.map((unit) => {
-            return (
-              <div>
-                <div className="grid grid-cols-2 sm:grid-cols-6">
-                  <div className="py-4 text-center text-gray-400 bg-gray-200 rounded-full">
-                    {unit?.unitTitle}
-                  </div>
-                </div>
+        <div>
+          {transformedData.map((unit) => {
+            if (unit.codingBadges.length > 0) {
+              return (
                 <div>
-                  <div className="grid grid-cols-3 mb-8 text-base sm:mb-0  ">
-                    {unit.codingBadges.map((badge) => (
-                      <div className="flex flex-col items-center justify-center">
-                        <button
-                          disabled={!editMode}
-                          onClick={() => handleBadgeClick(badge)}
-                        >
-                          {/* <button onClick={() => handleBadgeClick(badge)}> */}
-                          <img
-                            className="w-28"
-                            src={
-                              badge.userCodingBadge.length > 0
-                                ? "/images/profile/achievement-badge-active.svg"
-                                : "/images/profile/achievement-badge.svg"
-                            }
-                          />
-                        </button>
-                        <p className="text-base">{unit.unitTitle}</p>
-                        <p className="mb-8 text-base sm:mb-0">{badge.title}</p>
-                      </div>
-                    ))}
+                  <div className="grid grid-cols-2 sm:grid-cols-6">
+                    <div className="py-4 text-center text-gray-400 bg-gray-200 rounded-full">
+                      {unit.unitTitle}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="grid grid-cols-3 mb-8 text-base sm:mb-0  ">
+                      {unit.codingBadges.map((badge) => (
+                        <div className="flex flex-col items-center justify-center">
+                          <button
+                            disabled={!editMode}
+                            onClick={() => handleBadgeClick(badge)}
+                          >
+                            {/* <button onClick={() => handleBadgeClick(badge)}> */}
+                            <img
+                              className="w-28"
+                              src={
+                                badge.isAwarded
+                                  ? "/images/profile/achievement-badge-active.svg"
+                                  : "/images/profile/achievement-badge.svg"
+                              }
+                            />
+                          </button>
+                          <p className="text-base">{unit.unitTitle}</p>
+                          <p className="mb-8 text-base sm:mb-0">
+                            {badge.title}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
+              );
+            }
           })}
+        </div>
         {oldData?.intro_course_unit.map((unit) => {
           return (
             <div>
