@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ExpandableContainer from "../ExpandableContainer";
 import { PencilAltIcon } from "@heroicons/react/outline";
-  IntroCourseUnit,
 import { Data } from "../../../graphql/coding/userBadges/fetchUserBadges";
 import { User } from "../../../graphql/fetchUserProfile";
 import _ from "lodash";
