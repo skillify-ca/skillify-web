@@ -18,6 +18,7 @@ import {
 import SkillSection from "../skillRatings/SkillSection";
 import { Button } from "../ui/Button";
 import ExpandableContainer from "./ExpandableContainer";
+import { Tabs } from "./Tabs";
 
 export default function SkillRatingsComponent(props) {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ export default function SkillRatingsComponent(props) {
       dispatch(
         setSkillRatings(transformSkillsAndRatings(data.intro_course_skills))
       );
+      console.log("skills", skillRatings);
     },
   });
 
@@ -45,6 +47,7 @@ export default function SkillRatingsComponent(props) {
   return (
     <div className="flex flex-row overflow-auto-bg-scroll">
       <ExpandableContainer open={true} title={""}>
+        <Tabs skillRatings={skillRatings} />
         <div className="flex flex-col p-4 m-4">
           {skillRatings && <SkillSection skillSection={skillRatings} />}
         </div>
