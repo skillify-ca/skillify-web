@@ -6,7 +6,6 @@ import { User } from "../../../graphql/fetchUserProfile";
 import _ from "lodash";
 
 export type BadgesSectionProps = {
-  user: User;
   data: User;
 };
 export type userCodingBadge = {
@@ -75,7 +74,6 @@ const AcheivementComponent = ({ data }) => {
   const oldData = _.cloneDeep(data);
   return (
     <ExpandableContainer open={true} title={""}>
-      {JSON.stringify(transformedData)}
       <div className="p-4 shadow-md bg-slate-300 dark:bg-transparent">
         <div className="absolute px-16 right-1">
           <button
