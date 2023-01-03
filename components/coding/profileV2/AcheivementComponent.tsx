@@ -71,7 +71,6 @@ const AcheivementComponent = ({ data }) => {
     }
   }, [data]);
 
-  const oldData = _.cloneDeep(data);
   return (
     <ExpandableContainer open={true} title={""}>
       <div className="p-4 shadow-md bg-slate-300 dark:bg-transparent">
@@ -128,30 +127,6 @@ const AcheivementComponent = ({ data }) => {
             }
           })}
         </div>
-        {oldData?.intro_course_unit.map((unit) => {
-          return (
-            <div>
-              <div className="grid grid-cols-1 mb-16 sm:grid-cols-3 mt-7">
-                {unit.coding_badges.map((badge) => (
-                  <div className="flex flex-col items-center justify-center">
-                    <button onClick={() => handleBadgeClick(badge)}>
-                      <img
-                        className="w-28"
-                        src={
-                          badge.user_coding_badges.length > 0
-                            ? "/images/profile/achievement-badge-active.svg"
-                            : "/images/profile/achievement-badge.svg"
-                        }
-                      />
-                    </button>
-                    <p className="text-base">{unit.title}</p>
-                    <p className="mb-8 text-base sm:mb-0">{badge.title}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          );
-        })}
       </div>
     </ExpandableContainer>
   );
