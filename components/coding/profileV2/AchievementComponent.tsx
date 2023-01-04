@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import ExpandableContainer from "../ExpandableContainer";
 import { PencilAltIcon } from "@heroicons/react/outline";
 import { User } from "../../../graphql/fetchUserProfile";
-import _ from "lodash";
 import { transformUserBadgeData } from "./AchievementTransformData";
 
 export type BadgesSectionProps = {
