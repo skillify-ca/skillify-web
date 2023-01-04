@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ExpandableContainer from "../ExpandableContainer";
 import { PencilAltIcon } from "@heroicons/react/outline";
-import { Data } from "../../../graphql/coding/userBadges/fetchUserBadges";
 import { User } from "../../../graphql/fetchUserProfile";
 import _ from "lodash";
+import { transformUserBadgeData } from "./AchievementTransformData";
 
 export type BadgesSectionProps = {
   data: User;
@@ -47,25 +47,9 @@ const AcheivementComponent = ({ data }) => {
     });
   };
 
-  const transformData = (data: Data) => {
-    const transformedOutput = data?.intro_course_unit.map((unit) => {
-      return {
-        unitTitle: unit.title,
-        codingBadges: unit.coding_badges.map((badge) => {
-          return {
-            id: badge.id,
-            title: badge.title,
-            userCodingBadge: badge.user_coding_badges.map((b) => b),
-            isAwarded: badge.user_coding_badges.length > 0,
-          };
-        }),
-      };
-    });
-    return transformedOutput;
-  };
   useEffect(() => {
-    if (data != undefined) {
-      const updatedData = transformData(data);
+    if (data) {
+      const updatedData = transformUserBadgeData(data);
 
       setTransformedData(updatedData);
     }
