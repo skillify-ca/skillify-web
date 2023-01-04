@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import GoalsSectionComponent from "../../../components/coding/GoalsSectionComponent";
-import AcheivementComponent from "../../../components/coding/profileV2/AcheivementComponent";
+import AchievementComponent from "../../../components/coding/profileV2/AchievementComponent";
 import AssignmentSectionComponent from "../../../components/coding/profileV2/AssignmentSectionComponent";
 import ProfileHeaderComponent from "../../../components/coding/profileV2/ProfileHeaderComponent";
 import SkillRatingsComponent from "../../../components/coding/SkillRatingsComponent";
@@ -62,7 +62,7 @@ export default function Profile(props) {
       </div>
 
       <h2 className="text-lg font-bold mb-9">Achievements</h2>
-      <AcheivementComponent user={user} data={data} />
+      <AchievementComponent data={data} />
     </div>
   );
 }
