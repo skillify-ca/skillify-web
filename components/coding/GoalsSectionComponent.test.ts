@@ -55,7 +55,32 @@ test("Test returnGoalStyle function - highlighted yellow", async () => {
 
 });
 
+test("Test returnGoalStyle function - no highlight for a further future target date", async () => {
+  //set Mock date using MockDate package
+  MockDate.set('2022-11-29');
 
+  const goal = {
+    __typename: "user_goals",
+    createdAt: new Date,
+    goalName: "work with Raveen on goals",
+    goalNotes: null,
+    id: "a1b08c36-2c8a-49e5-b9c4-f653f826fcee",
+    updatedAt: new Date("2022-11-29"),
+    userId: "dummyId",
+    isComplete: false,
+    targetDate: new Date("2022-12-10"),
+    isArchived: null
+  };
+
+  const noHighlightStyle = " text-black-500";
+
+  // Act
+  const result = returnGoalStyle(goal);
+
+  // Assert
+  expect(result).toBe(noHighlightStyle);
+
+});
 
 
   test("Test returnGoalStyle function - no highlight for completed goals", async () => {
@@ -87,7 +112,7 @@ test("Test returnGoalStyle function - highlighted yellow", async () => {
     //Arrange
     const goal =
         {"__typename":"user_goals",
-        "createdAt": new Date(2022-11-29),
+        "createdAt": new Date("2022-11-29"),
         "goalName":"work with Raveen on goals",
         "goalNotes":null,
         "id":"a1b08c36-2c8a-49e5-b9c4-f653f826fcee",
