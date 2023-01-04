@@ -13,7 +13,7 @@ export default function BonusSection() {
     {
       num: 1,
       title: "Insiders Job Search Strategy Bonus Training",
-      value: "$9,000",
+      value: "$3,200",
       thumbnailImg: "",
       feature:
         "Prepare for your interviews with bonus coaching sessions for: Resume Critiques and Mock Interviews",
@@ -27,7 +27,7 @@ export default function BonusSection() {
     {
       num: 2,
       title: "Become An App Builder Bonus Training",
-      value: "$12,000",
+      value: "$2,400",
       thumbnailImg: "",
       feature: "Turn your app ideas into a reality",
       benefits: [
@@ -42,7 +42,7 @@ export default function BonusSection() {
     {
       num: 3,
       title: "Unlimited, MBA-quality Online Business Coaching",
-      value: "$16,000",
+      value: "$10,000",
       thumbnailImg: "",
       feature: "Launch, Grow and Scale Your Digital Business",
       benefits: [
@@ -60,7 +60,7 @@ export default function BonusSection() {
         Plus a Bonus Package Worth Over
       </h2>
       <h1 className="mb-8 text-5xl font-bold text-center underline text-charmander">
-        $30,000
+        $15,000
       </h1>
       {bonuses.map((bonus) => {
         const { num, title, value, thumbnailImg, feature, benefits } = bonus;

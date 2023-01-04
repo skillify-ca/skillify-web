@@ -35,5 +35,3 @@ export type CodingAssignment = {
   assignment_name: string;
   assignment_link;
 }
-
-//add coding_assignment to this type

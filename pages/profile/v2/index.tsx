@@ -1,14 +1,11 @@
 import { useQuery } from "@apollo/client";
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GoalsSectionComponent from "../../../components/coding/GoalsSectionComponent";
 import AcheivementComponent from "../../../components/coding/profileV2/AcheivementComponent";
 import AssignmentSectionComponent from "../../../components/coding/profileV2/AssignmentSectionComponent";
 import ProfileHeaderComponent from "../../../components/coding/profileV2/ProfileHeaderComponent";
-import ProjectsSection from "../../../components/coding/ProjectsSection";
-import BadgesSection from "../../../components/profile/BadgesSection";
+import SkillRatingsComponent from "../../../components/coding/SkillRatingsComponent";
 import { FETCH_CODING_BADGES } from "../../../graphql/coding/userBadges/fetchUserBadges";
-
 import {
   FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
@@ -53,10 +50,15 @@ export default function Profile(props) {
 
       <div className="grid grid-cols-1">
         <GoalsSectionComponent
+          inProfile={true}
           userGoals={userGoals
             .filter((goal) => !goal.isComplete && !goal.isArchived)
             .slice(0, 3)}
         />
+      </div>
+      <h2 className="text-lg font-bold mt-14 mb-9">Skill Ratings</h2>
+      <div className="grid grid-cols-1">
+        <SkillRatingsComponent />
       </div>
 
       <h2 className="text-lg font-bold mb-9">Achievements</h2>
