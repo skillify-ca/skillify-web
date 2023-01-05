@@ -81,7 +81,7 @@ const HomePage = () => {
         image={"https://www.skillify.ca/images/logo.svg"}
       />
 
-      <LandingNavbar showTimer={true} />
+      <LandingNavbar />
 
       <LandingPage
         headerText={headerText}
