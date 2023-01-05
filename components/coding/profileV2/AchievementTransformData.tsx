@@ -1,5 +1,20 @@
 import { Data } from "../../../graphql/coding/userBadges/fetchUserBadges";
-
+export type BadgesSectionProps = {
+  data: User;
+};
+export type userCodingBadge = {
+  id: number;
+};
+export type unitProps = {
+  unitTitle: string;
+  codingBadges: codingBadges[];
+};
+export type codingBadges = {
+  id: number;
+  title: string;
+  userCodingBadge: userCodingBadge[];
+  isAwarded: boolean;
+};
 export const transformUserBadgeData = (data: Data) => {
   const transformedOutput = data?.intro_course_unit.map((unit) => {
     return {

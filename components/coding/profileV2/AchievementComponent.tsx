@@ -3,25 +3,13 @@ import ExpandableContainer from "../ExpandableContainer";
 import { PencilAltIcon } from "@heroicons/react/outline";
 import { User } from "../../../graphql/fetchUserProfile";
 import _ from "lodash";
-import { transformUserBadgeData } from "./AchievementTransformData";
+import {
+  codingBadges,
+  transformUserBadgeData,
+  unitProps,
+} from "./AchievementTransformData";
 import { Button } from "../../ui/Button";
 
-export type BadgesSectionProps = {
-  data: User;
-};
-export type userCodingBadge = {
-  id: number;
-};
-export type unitProps = {
-  unitTitle: string;
-  codingBadges: codingBadges[];
-};
-export type codingBadges = {
-  id: number;
-  title: string;
-  userCodingBadge: userCodingBadge[];
-  isAwarded: boolean;
-};
 export type unit = unitProps[];
 const AcheivementComponent = ({ data }) => {
   const [transformedData, setTransformedData] = useState([]);
