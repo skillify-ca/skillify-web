@@ -4,6 +4,7 @@ import { PencilAltIcon } from "@heroicons/react/outline";
 import { User } from "../../../graphql/fetchUserProfile";
 import _ from "lodash";
 import { transformUserBadgeData } from "./AchievementTransformData";
+import { Button } from "../../ui/Button";
 
 export type BadgesSectionProps = {
   data: User;
@@ -58,17 +59,21 @@ const AcheivementComponent = ({ data }) => {
   return (
     <ExpandableContainer open={true} title={""}>
       <div className="p-4 shadow-md bg-slate-300 dark:bg-transparent">
-        <div className="absolute px-16 right-1">
-          <button
-            onClick={() => setEditMode(!editMode)}
-            className="w-5 h-5 cursor-pointer hover:text-yellow-600"
-          >
-            {editMode ? (
-              <PencilAltIcon className="w-5 h-5 cursor-pointer text-yellow-600" />
-            ) : (
-              <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
-            )}
-          </button>
+        <div className="absolute right-1">
+          <div className="flex flex-row items-center space-x-4">
+            <Button label="Save Badges"></Button>
+
+            <button
+              onClick={() => setEditMode(!editMode)}
+              className="w-5 h-5 cursor-pointer hover:text-yellow-600"
+            >
+              {editMode ? (
+                <PencilAltIcon className="w-5 h-5 cursor-pointer text-yellow-600" />
+              ) : (
+                <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
+              )}
+            </button>
+          </div>
         </div>
         <div>
           {transformedData.map((unit) => {
