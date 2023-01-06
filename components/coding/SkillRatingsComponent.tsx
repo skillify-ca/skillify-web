@@ -60,14 +60,29 @@ export default function SkillRatingsComponent(props) {
     return <div>Loading...</div>;
   }
 
+  const setActiveTabStyling = (tab: string) => {
+    let styling = "";
+    if (tab === activeTab) {
+      styling =
+        "ml-8 justify-content-center text-2xl text-gray-500 w-36 py-2 h-12 text-black-500 underline decoration-[0.18rem] underline-offset-[16px]";
+    } else {
+      styling =
+        "ml-8 justify-content-center text-2xl text-gray-500 w-36 py-2 h-12 cursor-pointer hover:text-black-500 hover:underline hover:hover:decoration-[0.18rem] hover:underline-offset-[16px]";
+    }
+    return styling;
+  };
+
   return (
     <div className="flex flex-row overflow-auto-bg-scroll">
       <ExpandableContainer open={true} title={""}>
         <div className="space-x-10">
           {sections.map((it) => (
             <button
-              className="ml-8 justify-content-center text-2xl text-gray-500 w-36 py-2 h-12 cursor-pointer hover:text-black-500 hover:underline hover:hover:decoration-[0.18rem]"
-              onClick={() => setActiveTab(it)}
+              className={setActiveTabStyling(it)}
+              onClick={() => {
+                setActiveTab(it);
+                setActiveTabStyling(it);
+              }}
             >
               {it}
             </button>
@@ -105,3 +120,5 @@ export default function SkillRatingsComponent(props) {
     </div>
   );
 }
+
+//"ml-8 justify-content-center text-2xl text-gray-500 w-36 py-2 h-12 cursor-pointer hover:text-black-500 hover:underline hover:hover:decoration-[0.18rem] hover:underline-offset-[16px]"
