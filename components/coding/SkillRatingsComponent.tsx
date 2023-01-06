@@ -25,6 +25,7 @@ export default function SkillRatingsComponent(props) {
   const { user } = useAuth();
   const { skillRatings } = useSelector(skillRatingsSelector);
   const [activeTab, setActiveTab] = useState("");
+  const [sections, setSections] = useState<string[]>([]);
 
   const {} = useQuery<FetchSkillsAndRatings>(FETCH_SKILLS_AND_RATINGS, {
     variables: {
@@ -43,8 +44,6 @@ export default function SkillRatingsComponent(props) {
       alert("Your skill ratings have been saved successfully.");
     },
   });
-
-  const [sections, setSections] = useState([]);
 
   useEffect(() => {
     if (skillRatings.length > 0) {
