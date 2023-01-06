@@ -1,14 +1,10 @@
-import Link from "next/link";
 import React from "react";
-import Benefits, { BenefitData } from "./Benefits";
-import EmailCapture from "./EmailCapture";
+import { BenefitData } from "./Benefits";
 import TestimonialSect from "./TestimonialSect";
 import SubscribeBanner from "./SubscribeBanner";
 import LandingFooter from "./LandingFooter";
 import Credentials from "./Credentials";
 import Hero, { HighlightableText } from "./Hero";
-import WhoItsFor from "./WhoItsFor";
-import LeadMagnets from "./LeadMagnets";
 import WhatYouGet from "./WhatYouGet";
 
 export type LandingPageCopy = {
