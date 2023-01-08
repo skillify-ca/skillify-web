@@ -55,7 +55,7 @@ const AcheivementComponent = ({ data }) => {
   }, [data]);
 
   return (
-    <ExpandableContainer open={true} title={""}>
+    <ExpandableContainer open={true} title={"Achievements"}>
       <div className="p-4 shadow-md bg-slate-300 dark:bg-transparent">
         <div className="absolute px-16 right-1">
           <button

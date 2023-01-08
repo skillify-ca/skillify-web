@@ -32,7 +32,7 @@ export default function GoalsSection({
   inProfile,
 }: GoalsSectionProps) {
   return userGoals.length > 0 ? (
-    <ExpandableContainer open={true} title={""}>
+    <ExpandableContainer open={true} title={"Goals"}>
       <div className="dark:text-white">
         {userGoals.length > 0 && (
           <div className="grid grid-cols-5 text-sm font-semibold text-center border-b-2 md:grid-cols-12 md:text-lg">
@@ -77,7 +77,7 @@ export default function GoalsSection({
       </div>
     </ExpandableContainer>
   ) : userGoals.length <= 0 && inProfile ? (
-    <ExpandableContainer open={true} title={""}>
+    <ExpandableContainer open={true} title={"Goals"}>
       <div className="col-span-3 p-8 mb-8 text-center shadow-md bg-slate-300 dark:bg-slate-900">
         Click on the "Goals" tab on the sidebar to get ahead by creating and
         tracking your goals!

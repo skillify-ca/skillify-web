@@ -39,16 +39,10 @@ export default function Profile(props) {
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
       <ProfileHeaderComponent user={user} />
-
-      <h2 className="text-lg font-bold mt-14 mb-9">Assignments</h2>
-
-      <div className="grid grid-cols-1 mb-4">
+      <div className="grid grid-cols-1 my-9">
         <AssignmentSectionComponent />
       </div>
-
-      <h2 className="text-lg font-bold mt-14 mb-9">Goals</h2>
-
-      <div className="grid grid-cols-1">
+      <div className="grid grid-cols-1 my-9">
         <GoalsSectionComponent
           inProfile={true}
           userGoals={userGoals
@@ -56,13 +50,12 @@ export default function Profile(props) {
             .slice(0, 3)}
         />
       </div>
-      <h2 className="text-lg font-bold mt-14 mb-9">Skill Ratings</h2>
-      <div className="grid grid-cols-1">
+      <div className="grid grid-cols-1 my-9">
         <SkillRatingsComponent />
       </div>
-
-      <h2 className="text-lg font-bold mb-9">Achievements</h2>
-      <AchievementComponent data={data} />
+      <div className="grid grid-cols-1 my-9">
+        <AchievementComponent data={data} />
+      </div>
     </div>
   );
 }

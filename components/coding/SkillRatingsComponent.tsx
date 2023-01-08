@@ -43,8 +43,8 @@ export default function SkillRatingsComponent(props) {
   });
 
   return (
-    <div className="flex flex-row overflow-auto-bg-scroll">
-      <ExpandableContainer open={true} title={""}>
+    <div className="overflow-auto-bg-scroll">
+      <ExpandableContainer open={true} title={"Skill Ratings"}>
         <div className="flex flex-col p-4 m-4">
           {skillRatings && <SkillSection skillSection={skillRatings} />}
         </div>

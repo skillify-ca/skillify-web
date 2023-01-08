@@ -21,9 +21,13 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
 
   return (
     <>
-      <div>
+      <div
+        className={`border-4 border-gray-900 rounded-lg ${
+          isOpen ? "shadow-lg shadow-gray-900" : ""
+        } `}
+      >
         <div>
-          <div className="p-2 border-bottom flex float left">
+          <div className="flex flex-row items-center p-4 space-x-2">
             <button
               className="mr-2"
               type="button"
@@ -35,7 +39,9 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
                 <MinusCircleIcon className="w-6 h-6 cursor-pointer hover:text-yellow-600" />
               )}
             </button>
-            <h6 className="">{title}</h6>
+            <h6 className="text-3xl font-bold pb-2 md:text-4xl mt-3">
+              {title}
+            </h6>
           </div>
         </div>
 

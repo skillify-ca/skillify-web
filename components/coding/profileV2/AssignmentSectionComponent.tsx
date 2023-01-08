@@ -59,7 +59,7 @@ export default function AssignmentsSection({}: AssignmentSectionComponentProps) 
     );
 
   return (
-    <ExpandableContainer open={true} title={""}>
+    <ExpandableContainer open={true} title={"Assignments"}>
       <div>
         {userAssignments.length > 0 && (
           <div className="grid grid-cols-9 text-sm font-semibold text-center border-b-2 md:grid-cols-12 md:text-lg">
