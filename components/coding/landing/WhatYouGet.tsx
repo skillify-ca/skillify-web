@@ -83,7 +83,7 @@ export default function WhatYouGet() {
         isReversed={true}
         image="/images/landingPage/features-4.png"
       />
-      <BonusSection />
+      {/* <BonusSection /> */}
     </div>
   );
 }
