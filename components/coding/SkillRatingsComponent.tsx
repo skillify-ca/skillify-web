@@ -125,5 +125,3 @@ export default function SkillRatingsComponent(props) {
     </div>
   );
 }
-
-//"ml-8 justify-content-center text-2xl text-gray-500 w-36 py-2 h-12 cursor-pointer hover:text-black-500 hover:underline hover:hover:decoration-[0.18rem] hover:underline-offset-[16px]"
