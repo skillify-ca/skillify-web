@@ -21,36 +21,6 @@ export default function Page() {
     "What is a higher training priority for you?";
 
   const endScreens = {
-    "typescript-web": (
-      <div>
-        <h2>You should learn TypeScript!</h2>
-
-        <p>
-          With TypeScript you can build interactive web apps. It's a very
-          beginner-friendly language. TypeScript is an extension of the
-          JavaScript programming language, so if you know a little JavaScript
-          you can learn TypeScript easily.
-        </p>
-        <p>
-          Learning TypeScript can make it easier to write and maintain large and
-          complex JavaScript projects, and can also make it easier to
-          collaborate with other developers.
-        </p>
-        <p>
-          Many large organizations use TypeScript like Netflix, Microsoft and
-          Google
-        </p>
-        <p>
-          TypeScript was created and is maintained by Microsoft. It's
-          open-source and available on Github.
-        </p>
-        <p>
-          If you become proficient in TypeScript then you can apply for all
-          sorts of software developer roles: front-end developer, mobile
-          developer and backend developer.
-        </p>
-      </div>
-    ),
     android: (
       <div>
         <h2>You should learn Kotlin!</h2>
@@ -109,6 +79,55 @@ export default function Page() {
           If you become proficient in Swift then you can only apply for iOS
           developer. Although this seems limiting, an iOS developer is a highly
           specialized and valued role in most companies.
+        </p>
+      </div>
+    ),
+    "typescript-web": (
+      <div className="flex flex-col gap-4 p-4">
+        <h2>You should learn TypeScript!</h2>
+
+        <p>
+          With TypeScript you can build interactive web apps. It's a very
+          beginner-friendly language. TypeScript is an extension of the
+          JavaScript programming language, so if you know a little JavaScript
+          you can learn TypeScript easily.
+        </p>
+        <p>
+          Learning TypeScript can make it easier to write and maintain large and
+          complex JavaScript projects, and can also make it easier to
+          collaborate with other developers.
+        </p>
+        <p>
+          Many large organizations use TypeScript like Netflix, Microsoft and
+          Google
+        </p>
+        <p>
+          TypeScript was created and is maintained by Microsoft. It's
+          open-source and available on Github.
+        </p>
+        <p>
+          If you become proficient in TypeScript then you can apply for all
+          sorts of software developer roles: front-end developer, mobile
+          developer and backend developer.
+        </p>
+
+        <p>
+          Another advantage of TypeScript is its integration with popular IDEs
+          (Integrated Development Environments) such as Visual Studio Code and
+          WebStorm. These IDEs provide features such as code completion, type
+          checking, and error highlighting, which can help you write and debug
+          code more efficiently.
+        </p>
+        <p>
+          Overall, TypeScript is a great language to learn for building
+          interactive websites and web applications. It builds on top of the
+          strong foundations of JavaScript and adds powerful new features that
+          can help you write cleaner, more maintainable code.{" "}
+        </p>
+        <p>
+          Whether you are a beginner or an experienced developer, learning
+          TypeScript can help you write better code and improve your skills as a
+          programmer.
         </p>
       </div>
     ),
@@ -297,9 +316,9 @@ export default function Page() {
   return (
     <div>
       <SEO
-        title={"Breaking into Tech Career Personality Quiz"}
+        title={"Your First Programming Language Quiz"}
         description={
-          "This quiz tells you best path to starting a career in tech"
+          "This quiz tells you what programming language that you should learn first."
         }
         image={"https://melv1n.com/img/learn-to-code-how-to-start.png"}
       />
@@ -347,7 +366,7 @@ export default function Page() {
             ) : null}
           </div>
         ) : (
-          <div>
+          <div className="flex flex-col items-center">
             "ENDSCREEN" {endScreen}
             {endScreen && endScreens[endScreen]}
             <div
