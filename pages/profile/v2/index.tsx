@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
+import ExpandableContainer from "../../../components/coding/ExpandableContainer";
 import GoalsSectionComponent from "../../../components/coding/GoalsSectionComponent";
 import AchievementComponent from "../../../components/coding/profileV2/AchievementComponent";
 import AssignmentSectionComponent from "../../../components/coding/profileV2/AssignmentSectionComponent";
@@ -40,21 +41,29 @@ export default function Profile(props) {
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
       <ProfileHeaderComponent user={user} />
       <div className="grid grid-cols-1 my-9">
-        <AssignmentSectionComponent />
+        <ExpandableContainer open={true} title={"Assignments"}>
+          <AssignmentSectionComponent />{" "}
+        </ExpandableContainer>
       </div>
       <div className="grid grid-cols-1 my-9">
-        <GoalsSectionComponent
-          inProfile={true}
-          userGoals={userGoals
-            .filter((goal) => !goal.isComplete && !goal.isArchived)
-            .slice(0, 3)}
-        />
+        <ExpandableContainer open={true} title={"Goals"}>
+          <GoalsSectionComponent
+            inProfile={true}
+            userGoals={userGoals
+              .filter((goal) => !goal.isComplete && !goal.isArchived)
+              .slice(0, 3)}
+          />
+        </ExpandableContainer>
       </div>
       <div className="grid grid-cols-1 my-9">
-        <SkillRatingsComponent />
+        <ExpandableContainer open={true} title={"Skill Ratings"}>
+          <SkillRatingsComponent />
+        </ExpandableContainer>
       </div>
       <div className="grid grid-cols-1 my-9">
-        <AchievementComponent data={data} />
+        <ExpandableContainer open={false} title={"Achievements"}>
+          <AchievementComponent data={data} />
+        </ExpandableContainer>
       </div>
     </div>
   );
