@@ -26,7 +26,7 @@ export default function SkillRatingsComponent(props) {
   const { skillRatings } = useSelector(skillRatingsSelector);
   const [activeTab, setActiveTab] = useState("");
   const [sections, setSections] = useState<string[]>([]);
-  const [hasRun, setHasRun] = useState(false);
+  const [haveTabsLoaded, setHaveTabsLoaded] = useState(false);
 
   const {} = useQuery<FetchSkillsAndRatings>(FETCH_SKILLS_AND_RATINGS, {
     variables: {
@@ -47,14 +47,14 @@ export default function SkillRatingsComponent(props) {
   });
 
   useEffect(() => {
-    if (!hasRun && skillRatings.length > 0) {
+    if (!haveTabsLoaded && skillRatings.length > 0) {
       const unitNames = skillRatings.map((skill) => skill.unitName);
       const sections = unitNames.filter(
         (unitName, index, array) => array.indexOf(unitName) === index
       );
       setSections(sections);
       setActiveTab(sections[0]);
-      setHasRun(true);
+      setHaveTabsLoaded(true);
     }
   }, [skillRatings]);
 
