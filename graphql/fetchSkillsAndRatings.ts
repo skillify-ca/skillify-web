@@ -1,7 +1,6 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_SKILLS_AND_RATINGS = gql`
-
 query fetchAllSkillsAndExistingRatings($userId: String = "", $_eq: String = "") {
   intro_course_skills {
     id
