@@ -64,7 +64,7 @@ export default function SkillRatingsComponent(props) {
 
   const activeTabStyling = (tab: string) => {
     let styling =
-      "ml-8 justify-content-center text-2xl text-gray-500 w-36 py-2 h-12 cursor-pointer ";
+      "ml-8 justify-content-center md:text-2xl text-lg text-gray-500 md:w-36 w-20 py-2 md:h-12 h-6 cursor-pointer ";
     if (tab === activeTab) {
       styling =
         styling +

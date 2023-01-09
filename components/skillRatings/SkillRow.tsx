@@ -31,12 +31,16 @@ export default function SkillRow({ skillRow }: SkillRowProps) {
   };
 
   return (
-    <div className="grid grid-cols-8 justify-center items-center text-center">
+    <div className="grid md:grid-cols-8 grid-cols-1 justify-center items-center text-center">
       <div className="w-1/2 h-1/2 bg-murkrow/50 rounded-full flex p-12 shadow-xl justify-center items-center text-center text-6xl">
         {renderEmojiByRating(skillRatings[index].studentRating)}
       </div>
-      <p className="col-start-2 col-span-3 text-xl">{skillRow.skillName}</p>
-      <p className="text-xl">{skillRow.studentRating}</p>
+      <p className="md:col-start-2 md:col-span-3 md:text-xl text-md">
+        {skillRow.skillName}
+      </p>
+      <p className="col-span-1 md:text-xl text-base">
+        {skillRow.studentRating}
+      </p>
       <SkillRowEmoji
         userSkillId={skillRow.userSkillId}
         studentRating={skillRow.studentRating}
