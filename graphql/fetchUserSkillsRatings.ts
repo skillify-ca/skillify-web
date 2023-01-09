@@ -22,13 +22,13 @@ export type FetchUserSkillsRatings = {
 };
 
 export type UserSkillsRatings = {
-  id: String;
+  id: string;
   studentRating: string;
   intro_course_skill: SkillDescription;
 };
 
 export type SkillDescription = {
-  name: String;
+  name: string;
   id: string;
   unitId: boolean;
   intro_course_unit: CourseUnitDescription;
