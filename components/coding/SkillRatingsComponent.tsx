@@ -44,23 +44,21 @@ export default function SkillRatingsComponent(props) {
 
   return (
     <div className="overflow-auto-bg-scroll">
-      <ExpandableContainer open={true} title={"Skill Ratings"}>
-        <div className="flex flex-col p-4 m-4">
-          {skillRatings && <SkillSection skillSection={skillRatings} />}
-        </div>
-        <div className="flex float-right p-4 mr-8 mt-8">
-          <Button
-            label="Save"
-            onClick={() =>
-              saveSkillRatings({
-                variables: {
-                  objects: transformSkillRatingForDB(skillRatings, user),
-                },
-              })
-            }
-          />
-        </div>
-      </ExpandableContainer>
+      <div className="flex flex-col p-4 m-4">
+        {skillRatings && <SkillSection skillSection={skillRatings} />}
+      </div>
+      <div className="flex float-right p-4 mr-8 mt-8">
+        <Button
+          label="Save"
+          onClick={() =>
+            saveSkillRatings({
+              variables: {
+                objects: transformSkillRatingForDB(skillRatings, user),
+              },
+            })
+          }
+        />
+      </div>
     </div>
   );
 }

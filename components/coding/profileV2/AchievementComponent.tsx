@@ -55,63 +55,59 @@ const AcheivementComponent = ({ data }) => {
   }, [data]);
 
   return (
-    <ExpandableContainer open={true} title={"Achievements"}>
-      <div className="p-4 shadow-md bg-slate-300 dark:bg-transparent">
-        <div className="absolute px-16 right-1">
-          <button
-            onClick={() => setEditMode(!editMode)}
-            className="w-5 h-5 cursor-pointer hover:text-yellow-600"
-          >
-            {editMode ? (
-              <PencilAltIcon className="w-5 h-5 cursor-pointer text-yellow-600" />
-            ) : (
-              <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
-            )}
-          </button>
-        </div>
-        <div>
-          {transformedData.map((unit) => {
-            if (unit.codingBadges.length > 0) {
-              return (
-                <div>
-                  <div className="grid grid-cols-2 sm:grid-cols-6">
-                    <div className="py-4 text-center text-gray-400 bg-gray-200 rounded-full">
-                      {unit.unitTitle}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="grid grid-cols-3 mb-8 text-base sm:mb-0  ">
-                      {unit.codingBadges.map((badge) => (
-                        <div className="flex flex-col items-center justify-center">
-                          <button
-                            disabled={!editMode}
-                            onClick={() => handleBadgeClick(badge)}
-                          >
-                            {/* <button onClick={() => handleBadgeClick(badge)}> */}
-                            <img
-                              className="w-28"
-                              src={
-                                badge.isAwarded
-                                  ? "/images/profile/achievement-badge-active.svg"
-                                  : "/images/profile/achievement-badge.svg"
-                              }
-                            />
-                          </button>
-                          <p className="text-base">{unit.unitTitle}</p>
-                          <p className="mb-8 text-base sm:mb-0">
-                            {badge.title}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
+    <div className="p-4 shadow-md bg-slate-300 dark:bg-transparent">
+      <div className="absolute px-16 right-1">
+        <button
+          onClick={() => setEditMode(!editMode)}
+          className="w-5 h-5 cursor-pointer hover:text-yellow-600"
+        >
+          {editMode ? (
+            <PencilAltIcon className="w-5 h-5 cursor-pointer text-yellow-600" />
+          ) : (
+            <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
+          )}
+        </button>
+      </div>
+      <div>
+        {transformedData.map((unit) => {
+          if (unit.codingBadges.length > 0) {
+            return (
+              <div>
+                <div className="grid grid-cols-2 sm:grid-cols-6">
+                  <div className="py-4 text-center text-gray-400 bg-gray-200 rounded-full">
+                    {unit.unitTitle}
                   </div>
                 </div>
-              );
-            }
-          })}
-        </div>
+                <div>
+                  <div className="grid grid-cols-3 mb-8 text-base sm:mb-0  ">
+                    {unit.codingBadges.map((badge) => (
+                      <div className="flex flex-col items-center justify-center">
+                        <button
+                          disabled={!editMode}
+                          onClick={() => handleBadgeClick(badge)}
+                        >
+                          {/* <button onClick={() => handleBadgeClick(badge)}> */}
+                          <img
+                            className="w-28"
+                            src={
+                              badge.isAwarded
+                                ? "/images/profile/achievement-badge-active.svg"
+                                : "/images/profile/achievement-badge.svg"
+                            }
+                          />
+                        </button>
+                        <p className="text-base">{unit.unitTitle}</p>
+                        <p className="mb-8 text-base sm:mb-0">{badge.title}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          }
+        })}
       </div>
-    </ExpandableContainer>
+    </div>
   );
 };
 

@@ -39,7 +39,7 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
                 <MinusCircleIcon className="w-6 h-6 cursor-pointer hover:text-yellow-600" />
               )}
             </button>
-            <h6 className="text-3xl font-bold pb-2 md:text-4xl mt-3">
+            <h6 className="text-2xl font-bold pb-2 md:text-3xl mt-3">
               {title}
             </h6>
           </div>
