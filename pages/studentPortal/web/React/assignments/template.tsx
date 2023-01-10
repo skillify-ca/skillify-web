@@ -17,6 +17,7 @@ import {
   assignmentsSelector,
   setUserAssignments,
 } from "../../../../../redux/assignmentsSlice";
+import { selectionSetMatchesResult } from "@apollo/client/cache/inmemory/helpers";
 
 const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
   const router = useRouter();
@@ -29,13 +30,26 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
   const assignmentId = "2cf9156a-4f6f-452d-b09a-2c54f19a7b40";
 
   useEffect(() => {
-    userAssignments.length > 0
-      ? userAssignments.filter(
-          (assignment) => assignment.assignmentId === assignmentId
-        )
-      : fetchUserAssignmentSubmissions();
-
-    console.log("UA", userAssignments);
+    if (userAssignments) {
+      const currentAssignment = userAssignments.filter(
+        (assignment) => assignment.assignmentId === assignmentId
+      );
+      let assignmentReviewLink = currentAssignment.map(
+        (assignment) => assignment.review_link
+      );
+      let assignmentSubmissionLink = currentAssignment.map(
+        (assignment) => assignment.submission_link
+      );
+      if (assignmentReviewLink != null) {
+        setStage(Stage.COMPLETED);
+      } else if (assignmentSubmissionLink.length > 0) {
+        setStage(Stage.SUBMITTED);
+      } else {
+        setStage(Stage.INCOMPLETE);
+      }
+    } else {
+      fetchUserAssignmentSubmissions();
+    }
   }, [userAssignments]);
 
   const [fetchUserAssignmentSubmissions] =
