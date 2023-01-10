@@ -15,13 +15,15 @@ export default function CoachesPage() {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div className="grid w-full grid-cols-1 gap-4 px-4 sm:px-8">
-          <PageHeader
-            title={"Coaches"}
-            description={
-              "Book time with our expert coaches to get 1:1 help. Use them to catch up or to get ahead!"
-            }
-          />
+        <div className="grid w-full grid-cols-1 gap-4 px-4 sm:grid-cols-2 sm:px-8">
+          <div className="col-span-2">
+            <PageHeader
+              title={"Coaches"}
+              description={
+                "Book time with our expert coaches to get 1:1 help. Use them to catch up or to get ahead!"
+              }
+            />
+          </div>
           {data.coaches.map((coach) => (
             <CoachCard coach={coach} />
           ))}
