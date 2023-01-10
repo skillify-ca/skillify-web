@@ -3,6 +3,8 @@ import ExpandableContainer from "../ExpandableContainer";
 import { PencilAltIcon } from "@heroicons/react/outline";
 import { User } from "../../../graphql/fetchUserProfile";
 import { transformUserBadgeData } from "./AchievementTransformData";
+import { useQuery } from "@apollo/client";
+import { FETCH_CODING_BADGES } from "../../../graphql/coding/userBadges/fetchUserBadges";
 
 export type BadgesSectionProps = {
   data: User;
@@ -21,7 +23,12 @@ export type codingBadges = {
   isAwarded: boolean;
 };
 export type unit = unitProps[];
-const AcheivementComponent = ({ data }) => {
+const AcheivementComponent = ({ user }) => {
+  const { data } = useQuery(FETCH_CODING_BADGES, {
+    variables: {
+      userId: user.uid,
+    },
+  });
   const [transformedData, setTransformedData] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const handleBadgeClick = (inputBadge: codingBadges) => {
@@ -56,7 +63,7 @@ const AcheivementComponent = ({ data }) => {
 
   return (
     <ExpandableContainer open={true} title={""}>
-      <div className="p-4 shadow-md bg-slate-300 dark:bg-transparent">
+      <div className="sm:shadow-md sm:p-4 sm:bg-slate-300 dark:bg-transparent">
         <div className="flex justify-end w-full mb-4">
           <button
             onClick={() => setEditMode(!editMode)}
@@ -73,7 +80,7 @@ const AcheivementComponent = ({ data }) => {
           {transformedData.map((unit) => {
             if (unit.codingBadges.length > 0) {
               return (
-                <div className="m-4">
+                <div className="mb-4 sm:m-4">
                   <UnitBadgeSection
                     unit={unit}
                     editMode={editMode}
@@ -100,14 +107,14 @@ function UnitBadgeSection({ unit, editMode, handleBadgeClick }) {
 
   return (
     <div>
-      <div className="grid grid-cols-2 sm:grid-cols-1">
+      <div className="grid grid-cols-1">
         <div
           className="flex p-4 cursor-pointer bg-slate-800 hover:bg-slate-700 group"
           onClick={() => setIsOpen(!isOpen)}
         >
           <img
             src={unit.image}
-            className="object-cover w-24 h-24 bg-red-300 rounded-lg group-hover:scale-110"
+            className="object-cover w-24 h-24 transition-all transform bg-red-300 rounded-lg group-hover:scale-110"
           />
           <div className="flex flex-col justify-center px-4">
             <h3 className="text-xl font-bold text-white">{unit.unitTitle}</h3>
@@ -118,7 +125,7 @@ function UnitBadgeSection({ unit, editMode, handleBadgeClick }) {
         </div>
       </div>
       {isOpen && (
-        <div className="grid grid-cols-3 mb-8 text-base bg-slate-800 sm:mb-0 ">
+        <div className="grid grid-cols-1 mb-8 text-base sm:grid-cols-3 bg-slate-800 sm:mb-0 ">
           {unit.codingBadges.map((badge) => (
             <div className="m-4">
               <CodingBadge
@@ -136,7 +143,6 @@ function UnitBadgeSection({ unit, editMode, handleBadgeClick }) {
 }
 
 function CodingBadge({ disabled, handleBadgeClick, badge, unit }) {
-
   return (
     <div className="flex flex-col items-center justify-center h-full p-4 text-white bg-slate-600 border-slate-300">
       <button
@@ -146,7 +152,7 @@ function CodingBadge({ disabled, handleBadgeClick, badge, unit }) {
       >
         {/* <button onClick={() => handleBadgeClick(badge)}> */}
         <img
-          className="w-28 h-28"
+          className="transition-all transform border-4 rounded-full shadow-lg w-28 h-28 hover:scale-110"
           src={
             badge.isAwarded
               ? badge.image
@@ -156,8 +162,8 @@ function CodingBadge({ disabled, handleBadgeClick, badge, unit }) {
           }
         />
       </button>
-      <div className="flex flex-col items-center justify-center h-full">
-        <p className="h-full mb-8 text-base sm:mb-0">{badge.title}</p>
+      <div className="flex flex-col items-center justify-center h-full mt-4 ">
+        <p className="h-full text-base sm:mb-0">{badge.title}</p>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import GoalsSectionComponent from "../../../components/coding/GoalsSectionComponent";
 import ProfileGoalsSection from "../../../components/coding/ProfileGoalsSection";
+import AcheivementComponent from "../../../components/coding/profileV2/AchievementComponent";
 import AssignmentSectionComponent from "../../../components/coding/profileV2/AssignmentSectionComponent";
 import ProfileHeaderComponent from "../../../components/coding/profileV2/ProfileHeaderComponent";
 
@@ -36,6 +37,7 @@ export default function ExternalUserProfile({ slug, uid }) {
 
         <h2 className="text-lg font-bold mb-9">Achievements</h2>
         <BadgesSection user={user} />
+        <AcheivementComponent data={undefined} />
       </div>
     </div>
   );

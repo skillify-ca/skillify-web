@@ -23,7 +23,7 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
     <>
       <div>
         <div>
-          <div className="p-2 border-bottom flex float left">
+          <div className="flex p-2 border-bottom float left">
             <button
               className="mr-2"
               type="button"
@@ -40,7 +40,7 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
         </div>
 
         <div className="border-bottom">
-          <div>{isOpen && <div className="p-2">{children}</div>}</div>
+          <div>{isOpen && <div className="p-0 sm:p-2">{children}</div>}</div>
         </div>
       </div>
     </>
