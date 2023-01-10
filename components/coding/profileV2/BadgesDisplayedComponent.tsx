@@ -2,14 +2,12 @@ import React from "react";
 import { User } from "../../../graphql/fetchUserProfile";
 
 export type BadgesDisplayedComponentProps = {
-  user: User;
   earnedBadges: number;
   totalBadges: number;
   textSize: "small" | "medium" | "large";
 };
 
 export default function BadgesDisplayedComponent({
-  user,
   earnedBadges,
   totalBadges,
   textSize,
