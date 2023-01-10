@@ -55,7 +55,7 @@ export default function Profile(props) {
         </ExpandableContainer>
       </div>
       <div className="grid grid-cols-1 my-9">
-        <ExpandableContainer open={false} title={"Achievements"}>
+        <ExpandableContainer open={true} title={"Achievements"}>
           <AchievementComponent user={user} />
         </ExpandableContainer>
       </div>
