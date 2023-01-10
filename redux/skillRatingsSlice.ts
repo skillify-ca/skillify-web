@@ -6,10 +6,10 @@ export type SkillRatingsState = {
 };
 
 export type SkillRatingsRow = {
-  userSkillId: String;
-  skillId: String;
-  skillName: String;
-  unitName: String;
+  userSkillId: string;
+  skillId: string;
+  skillName: string;
+  unitName: string;
   studentRating: number;
 };
 
