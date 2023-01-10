@@ -24,7 +24,7 @@
     "react/react-in-jsx-scope": "warn",
     "react/prop-types": "warn",
     "react/no-unescaped-entities": "warn",
-    "@typescript-eslint/no-empty-function": "warn",
-    
+    "no-unused-vars": "warn",
+    "@typescript-eslint/no-empty-function": "warn"
   }
 }
