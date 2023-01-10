@@ -1,6 +1,6 @@
-import { useQuery } from "@apollo/client";
-import { Router, useRouter } from "next/router";
-
+import { useLazyQuery } from "@apollo/client";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 
 import AssignmentComponent, {
@@ -11,44 +11,58 @@ import { Button } from "../../../../../components/ui/Button";
 import {
   FETCH_USER_ASSIGNMENT_SUBMISSIONS,
   FetchUserAssignmentSubmissionsDataResponse,
-  UserAssignmentSubmissionsData,
 } from "../../../../../graphql/fetchUserAssignmentSubmissions";
 import { useAuth } from "../../../../../lib/authContext";
+import {
+  assignmentsSelector,
+  setUserAssignments,
+} from "../../../../../redux/assignmentsSlice";
 
 const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
   const router = useRouter();
   const [stage, setStage] = useState(0);
   const { user } = useAuth();
-  const [assignments, setAssignments] = useState<
-    UserAssignmentSubmissionsData[]
-  >([]);
+  const { userAssignments } = useSelector(assignmentsSelector);
+  const dispatch = useDispatch();
+
   // REQUIRED: create assignment in coding_assignments table to generate ID and paste here
   const assignmentId = "2cf9156a-4f6f-452d-b09a-2c54f19a7b40";
 
-  const { data } = useQuery<FetchUserAssignmentSubmissionsDataResponse>(
-    FETCH_USER_ASSIGNMENT_SUBMISSIONS,
-    {
-      variables: {
-        user_id: user.uid,
-        assignmentId: assignmentId,
-      },
+  useEffect(() => {
+    userAssignments.length > 0
+      ? userAssignments.filter(
+          (assignment) => assignment.assignmentId === assignmentId
+        )
+      : fetchUserAssignmentSubmissions();
 
-      onCompleted: (data: FetchUserAssignmentSubmissionsDataResponse) => {
-        if (data.user_assignment_submissions.length > 0) {
-          setAssignments(data.user_assignment_submissions);
-          if (data.user_assignment_submissions[0].review_link != null) {
-            setStage(Stage.COMPLETED);
-          } else if (
-            data.user_assignment_submissions[0].submission_link.length > 0
-          ) {
-            setStage(Stage.SUBMITTED);
-          } else {
-            setStage(Stage.INCOMPLETE);
+    console.log("UA", userAssignments);
+  }, [userAssignments]);
+
+  const [fetchUserAssignmentSubmissions] =
+    useLazyQuery<FetchUserAssignmentSubmissionsDataResponse>(
+      FETCH_USER_ASSIGNMENT_SUBMISSIONS,
+      {
+        variables: {
+          user_id: user.uid,
+          assignmentId: assignmentId,
+        },
+
+        onCompleted: (data: FetchUserAssignmentSubmissionsDataResponse) => {
+          if (data.user_assignment_submissions.length > 0) {
+            dispatch(setUserAssignments(data.user_assignment_submissions));
+            if (data.user_assignment_submissions[0].review_link != null) {
+              setStage(Stage.COMPLETED);
+            } else if (
+              data.user_assignment_submissions[0].submission_link.length > 0
+            ) {
+              setStage(Stage.SUBMITTED);
+            } else {
+              setStage(Stage.INCOMPLETE);
+            }
           }
-        }
-      },
-    }
-  );
+        },
+      }
+    );
 
   const handleContinue = () => {
     router.push("/studentPortal/web/React/assignments/template");
@@ -132,6 +146,7 @@ export async function getServerSideProps({ params }) {
         "Please submit your assignment by pasting a link in the box below.",
       placeholder: "Assignment link goes here",
       assignmentId: assignmentId,
+      link: "",
     },
   ]);
   const submittedStage: AssignmentComponentData[] = await Promise.all([
