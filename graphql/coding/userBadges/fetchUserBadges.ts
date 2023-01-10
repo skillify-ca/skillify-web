@@ -6,11 +6,13 @@ export const FETCH_CODING_BADGES = gql`
       coding_badges(order_by: { id: asc }) {
         title
         id
+        image
         user_coding_badges(where: { userId: { _eq: $userId } }) {
           id
         }
       }
       title
+      image
     }
   }
 `;
@@ -25,11 +27,13 @@ export type Data = {
 
 export type IntroCourseUnit = {
   title: string;
+  image: string;
   coding_badges: CodingBadge[];
 };
 
 export type CodingBadge = {
   title: string;
+  image: string;
   id: number;
   user_coding_badges: UserCodingBadge[];
 };
