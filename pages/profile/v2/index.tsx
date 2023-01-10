@@ -31,12 +31,6 @@ export default function Profile(props) {
     }
   );
 
-  const { data } = useQuery(FETCH_CODING_BADGES, {
-    variables: {
-      userId: user.uid,
-    },
-  });
-
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
       <ProfileHeaderComponent user={user} />
@@ -62,7 +56,7 @@ export default function Profile(props) {
       </div>
       <div className="grid grid-cols-1 my-9">
         <ExpandableContainer open={false} title={"Achievements"}>
-          <AchievementComponent data={data} />
+          <AchievementComponent user={user} />
         </ExpandableContainer>
       </div>
     </div>

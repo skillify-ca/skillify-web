@@ -46,7 +46,7 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
         </div>
 
         <div className="border-bottom">
-          <div>{isOpen && <div className="p-2">{children}</div>}</div>
+          <div>{isOpen && <div className="p-0 sm:p-2">{children}</div>}</div>
         </div>
       </div>
     </>
