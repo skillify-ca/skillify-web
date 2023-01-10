@@ -63,7 +63,7 @@ const AcheivementComponent = ({ user }) => {
 
   return (
     <ExpandableContainer open={true} title={""}>
-      <div className="p-4 shadow-md bg-slate-300 dark:bg-transparent">
+      <div className="sm:shadow-md sm:p-4 sm:bg-slate-300 dark:bg-transparent">
         <div className="flex justify-end w-full mb-4">
           <button
             onClick={() => setEditMode(!editMode)}
@@ -80,7 +80,7 @@ const AcheivementComponent = ({ user }) => {
           {transformedData.map((unit) => {
             if (unit.codingBadges.length > 0) {
               return (
-                <div className="m-4">
+                <div className="mb-4 sm:m-4">
                   <UnitBadgeSection
                     unit={unit}
                     editMode={editMode}
@@ -107,7 +107,7 @@ function UnitBadgeSection({ unit, editMode, handleBadgeClick }) {
 
   return (
     <div>
-      <div className="grid grid-cols-2 sm:grid-cols-1">
+      <div className="grid grid-cols-1">
         <div
           className="flex p-4 cursor-pointer bg-slate-800 hover:bg-slate-700 group"
           onClick={() => setIsOpen(!isOpen)}
@@ -125,7 +125,7 @@ function UnitBadgeSection({ unit, editMode, handleBadgeClick }) {
         </div>
       </div>
       {isOpen && (
-        <div className="grid grid-cols-3 mb-8 text-base bg-slate-800 sm:mb-0 ">
+        <div className="grid grid-cols-1 mb-8 text-base sm:grid-cols-3 bg-slate-800 sm:mb-0 ">
           {unit.codingBadges.map((badge) => (
             <div className="m-4">
               <CodingBadge
@@ -162,8 +162,8 @@ function CodingBadge({ disabled, handleBadgeClick, badge, unit }) {
           }
         />
       </button>
-      <div className="flex flex-col items-center justify-center h-full mt-4">
-        <p className="h-full mb-8 text-base sm:mb-0">{badge.title}</p>
+      <div className="flex flex-col items-center justify-center h-full mt-4 ">
+        <p className="h-full text-base sm:mb-0">{badge.title}</p>
       </div>
     </div>
   );
