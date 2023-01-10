@@ -57,13 +57,13 @@ const AcheivementComponent = ({ data }) => {
   return (
     <ExpandableContainer open={true} title={""}>
       <div className="p-4 shadow-md bg-slate-300 dark:bg-transparent">
-        <div className="absolute px-16 right-1">
+        <div className="flex justify-end w-full mb-4">
           <button
             onClick={() => setEditMode(!editMode)}
             className="w-5 h-5 cursor-pointer hover:text-yellow-600"
           >
             {editMode ? (
-              <PencilAltIcon className="w-5 h-5 cursor-pointer text-yellow-600" />
+              <PencilAltIcon className="w-5 h-5 text-yellow-600 cursor-pointer" />
             ) : (
               <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
             )}
@@ -73,38 +73,12 @@ const AcheivementComponent = ({ data }) => {
           {transformedData.map((unit) => {
             if (unit.codingBadges.length > 0) {
               return (
-                <div>
-                  <div className="grid grid-cols-2 sm:grid-cols-6">
-                    <div className="py-4 text-center text-gray-400 bg-gray-200 rounded-full">
-                      {unit.unitTitle}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="grid grid-cols-3 mb-8 text-base sm:mb-0  ">
-                      {unit.codingBadges.map((badge) => (
-                        <div className="flex flex-col items-center justify-center">
-                          <button
-                            disabled={!editMode}
-                            onClick={() => handleBadgeClick(badge)}
-                          >
-                            {/* <button onClick={() => handleBadgeClick(badge)}> */}
-                            <img
-                              className="w-28"
-                              src={
-                                badge.isAwarded
-                                  ? "/images/profile/achievement-badge-active.svg"
-                                  : "/images/profile/achievement-badge.svg"
-                              }
-                            />
-                          </button>
-                          <p className="text-base">{unit.unitTitle}</p>
-                          <p className="mb-8 text-base sm:mb-0">
-                            {badge.title}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                <div className="m-4">
+                  <UnitBadgeSection
+                    unit={unit}
+                    editMode={editMode}
+                    handleBadgeClick={handleBadgeClick}
+                  />
                 </div>
               );
             }
@@ -116,3 +90,75 @@ const AcheivementComponent = ({ data }) => {
 };
 
 export default AcheivementComponent;
+
+function UnitBadgeSection({ unit, editMode, handleBadgeClick }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  function getNumEarnedBadgesForUnit(codingBages) {
+    return codingBages.filter((badge) => badge.isAwarded).length;
+  }
+
+  return (
+    <div>
+      <div className="grid grid-cols-2 sm:grid-cols-1">
+        <div
+          className="flex p-4 cursor-pointer bg-slate-800 hover:bg-slate-700 group"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <img
+            src={unit.image}
+            className="object-cover w-24 h-24 bg-red-300 rounded-lg group-hover:scale-110"
+          />
+          <div className="flex flex-col justify-center px-4">
+            <h3 className="text-xl font-bold text-white">{unit.unitTitle}</h3>
+            <p className="font-bold text-charmander">
+              {getNumEarnedBadgesForUnit(unit.codingBadges)} Badges Earned
+            </p>
+          </div>
+        </div>
+      </div>
+      {isOpen && (
+        <div className="grid grid-cols-3 mb-8 text-base bg-slate-800 sm:mb-0 ">
+          {unit.codingBadges.map((badge) => (
+            <div className="m-4">
+              <CodingBadge
+                disabled={!editMode}
+                handleBadgeClick={handleBadgeClick}
+                badge={badge}
+                unit={unit}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function CodingBadge({ disabled, handleBadgeClick, badge, unit }) {
+
+  return (
+    <div className="flex flex-col items-center justify-center h-full p-4 text-white bg-slate-600 border-slate-300">
+      <button
+        className=" h-28"
+        disabled={disabled}
+        onClick={() => handleBadgeClick(badge)}
+      >
+        {/* <button onClick={() => handleBadgeClick(badge)}> */}
+        <img
+          className="w-28 h-28"
+          src={
+            badge.isAwarded
+              ? badge.image
+                ? badge.image
+                : "/images/profile/achievement-badge-active.svg"
+              : "/images/profile/achievement-badge.svg"
+          }
+        />
+      </button>
+      <div className="flex flex-col items-center justify-center h-full">
+        <p className="h-full mb-8 text-base sm:mb-0">{badge.title}</p>
+      </div>
+    </div>
+  );
+}
