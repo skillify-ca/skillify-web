@@ -6,6 +6,7 @@ import ProfileGoalsSection from "../../components/coding/ProfileGoalsSection";
 import UserProfileSection from "../../components/coding/UserProfileSection";
 import BadgesSection from "../../components/profile/BadgesSection";
 import ProjectsSection from "../../components/coding/ProjectsSection";
+import AcheivementComponent from "../../components/coding/profileV2/AchievementComponent";
 
 export default function Profile(props) {
   const { user } = useAuth();
@@ -27,7 +28,7 @@ export default function Profile(props) {
       </div>
 
       <h2 className="text-lg font-bold mb-9">Achievements</h2>
-      <BadgesSection user={user} />
+      <AcheivementComponent user={user} />
     </div>
   );
 }
