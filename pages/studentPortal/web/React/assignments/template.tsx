@@ -11,13 +11,13 @@ import { Button } from "../../../../../components/ui/Button";
 import {
   FETCH_USER_ASSIGNMENT_SUBMISSIONS,
   FetchUserAssignmentSubmissionsDataResponse,
+  UserAssignmentSubmissionsData,
 } from "../../../../../graphql/fetchUserAssignmentSubmissions";
 import { useAuth } from "../../../../../lib/authContext";
 import {
   assignmentsSelector,
   setUserAssignments,
 } from "../../../../../redux/assignmentsSlice";
-import { selectionSetMatchesResult } from "@apollo/client/cache/inmemory/helpers";
 
 const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
   const router = useRouter();
@@ -29,24 +29,22 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
   // REQUIRED: create assignment in coding_assignments table to generate ID and paste here
   const assignmentId = "2cf9156a-4f6f-452d-b09a-2c54f19a7b40";
 
+  const deployCurrentStage = (assignment: UserAssignmentSubmissionsData) => {
+    if (assignment.review_link != null) {
+      setStage(Stage.COMPLETED);
+    } else if (assignment.submission_link.length > 0) {
+      setStage(Stage.SUBMITTED);
+    } else {
+      setStage(Stage.INCOMPLETE);
+    }
+  };
+
   useEffect(() => {
     if (userAssignments) {
-      const currentAssignment = userAssignments.filter(
+      const currentAssignment = userAssignments.find(
         (assignment) => assignment.assignmentId === assignmentId
       );
-      let assignmentReviewLink = currentAssignment.map(
-        (assignment) => assignment.review_link
-      );
-      let assignmentSubmissionLink = currentAssignment.map(
-        (assignment) => assignment.submission_link
-      );
-      if (assignmentReviewLink != null) {
-        setStage(Stage.COMPLETED);
-      } else if (assignmentSubmissionLink.length > 0) {
-        setStage(Stage.SUBMITTED);
-      } else {
-        setStage(Stage.INCOMPLETE);
-      }
+      deployCurrentStage(currentAssignment);
     } else {
       fetchUserAssignmentSubmissions();
     }
@@ -64,15 +62,7 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
         onCompleted: (data: FetchUserAssignmentSubmissionsDataResponse) => {
           if (data.user_assignment_submissions.length > 0) {
             dispatch(setUserAssignments(data.user_assignment_submissions));
-            if (data.user_assignment_submissions[0].review_link != null) {
-              setStage(Stage.COMPLETED);
-            } else if (
-              data.user_assignment_submissions[0].submission_link.length > 0
-            ) {
-              setStage(Stage.SUBMITTED);
-            } else {
-              setStage(Stage.INCOMPLETE);
-            }
+            deployCurrentStage(data.user_assignment_submissions[0]);
           }
         },
       }
