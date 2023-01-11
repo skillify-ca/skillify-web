@@ -1,12 +1,10 @@
 import React from "react";
+import ProfileGoalsSection from "../../components/coding/ProfileGoalsSection";
+import AcheivementComponent from "../../components/coding/profileV2/AchievementComponent";
+import ProjectsSection from "../../components/coding/ProjectsSection";
+import UserProfileSection from "../../components/coding/UserProfileSection";
 
 import { useAuth } from "../../lib/authContext";
-
-import ProfileGoalsSection from "../../components/coding/ProfileGoalsSection";
-import UserProfileSection from "../../components/coding/UserProfileSection";
-import BadgesSection from "../../components/profile/BadgesSection";
-import ProjectsSection from "../../components/coding/ProjectsSection";
-import AcheivementComponent from "../../components/coding/profileV2/AchievementComponent";
 
 export default function Profile(props) {
   const { user } = useAuth();

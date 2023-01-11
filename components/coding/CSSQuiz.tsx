@@ -2,9 +2,7 @@ import React from "react";
 import { MultipleChoiceSentenceProp } from "../questionTypes/MultipleChoiceSentence";
 import MCQuiz from "./MCQuiz";
 
-export interface CSSQuizProp {}
-
-const CSSQuiz = ({}: CSSQuizProp) => {
+const CSSQuiz = () => {
   //We can add CSS questions here
   const questionData: MultipleChoiceSentenceProp[] = [
     {

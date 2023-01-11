@@ -39,10 +39,10 @@ export default function ProjectsSection({ user }: ProjectsSectionProps) {
               <p className="font-bold">{it.name}</p>
               <img src={it.image} className="w-24 h-24 bg-white rounded-full" />
               <div className="flex justify-around w-full">
-                <a href={it.githubLink} target="_blank">
+                <a href={it.githubLink} target="_blank" rel="noreferrer">
                   <Button label="Github" backgroundColor="green" />
                 </a>
-                <a href={it.projectLink} target="_blank">
+                <a href={it.projectLink} target="_blank" rel="noreferrer">
                   <Button label="Project" backgroundColor="purple" />
                 </a>
               </div>

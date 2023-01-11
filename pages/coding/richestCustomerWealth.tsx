@@ -1,3 +1,4 @@
+/* eslint-disable no-irregular-whitespace */
 import Link from "next/link";
 import React, { useState } from "react";
 import { Button } from "../../components/ui/Button";
@@ -108,9 +109,9 @@ export default function richestCustomerWealth(props) {
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-2 items-center justify-center gap-4 heropattern-bamboo-gray-300 pt-8">
+      <div className="grid items-center justify-center grid-cols-2 gap-4 pt-8 heropattern-bamboo-gray-300">
         <div className="flex flex-col gap-4 p-4 bg-white shadow-lg rounded-xl">
-          <p className="font-bold text  border-b-2 border-black">
+          <p className="font-bold border-b-2 border-black text">
             Code to Evaluate
           </p>
 
@@ -144,7 +145,7 @@ export default function richestCustomerWealth(props) {
           })}
         </div>
         <div className="flex flex-col gap-4 p-4 bg-white shadow-lg rounded-xl">
-          <p className="font-bold text border-b-2 border-black">Controls</p>
+          <p className="font-bold border-b-2 border-black text">Controls</p>
           <div className="grid grid-cols-4 gap-4">
             <Button
               disabled={lineNum == linesOfCode.length}
@@ -172,7 +173,7 @@ export default function richestCustomerWealth(props) {
               }}
             />
           </div>
-          <p className="font-bold text border-b-2 border-black">Inputs</p>
+          <p className="font-bold border-b-2 border-black text">Inputs</p>
           <div className="flex flex-row gap-2 text-2xl">
             {renderAccounts.map((elem) => {
               return (
@@ -186,8 +187,8 @@ export default function richestCustomerWealth(props) {
               );
             })}
           </div>
-          <p className="font-bold text border-b-2 border-black">Outputs</p>
-          <div className="flex flex-col text-lg gap-4">
+          <p className="font-bold border-b-2 border-black text">Outputs</p>
+          <div className="flex flex-col gap-4 text-lg">
             <p>Balances: [{balancesState}]</p>
             <p>account_sum: {accountSumState}</p>
             <p>
@@ -195,7 +196,7 @@ export default function richestCustomerWealth(props) {
               Final Answer: {finalAnswerState == 0 ? "" : finalAnswerState}
             </p>
           </div>
-          <p className="font-bold text border-b-2 border-black">
+          <p className="font-bold border-b-2 border-black text">
             Solution Progress
           </p>
 
