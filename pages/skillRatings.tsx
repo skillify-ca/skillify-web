@@ -55,6 +55,8 @@ export default function SkillRatings(props) {
     return mappedSkillRatings;
   };
 
+  console.log("hello");
+
   const transformSkillRatingForDB = (skillRatings: SkillRatingsRow[]) => {
     // map from redux type to write back to DB
     const transformedOutput = skillRatings.map((row) => {
