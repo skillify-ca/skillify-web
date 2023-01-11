@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export type CarouselProp = {};
-
-export const Carousel: React.FC<CarouselProp> = () => {
+export const Carousel: React.FC = () => {
   const [index, setIndex] = useState(2);
   const onButtonClick = (index: number) => {
     // this will be called when the user clicks between photos in the carousel
@@ -11,7 +9,7 @@ export const Carousel: React.FC<CarouselProp> = () => {
 
   return (
     <div>
-      <div className="bg-blue-200 m-auto relative">
+      <div className="relative m-auto bg-blue-200">
         <h1 className="font-bold">CSS Carousel</h1>
         {index == 0 && (
           <div>
@@ -40,10 +38,10 @@ export const Carousel: React.FC<CarouselProp> = () => {
             <div> Caption </div>
           </div>
         )}
-        <a className="cursor-pointer absolute top-1/2 w-auto p-auto font-bold text-base rounded-bl-xl select-none">
+        <a className="absolute w-auto text-base font-bold cursor-pointer select-none top-1/2 p-auto rounded-bl-xl">
           &#10094;
         </a>
-        <a className="cursor-pointer absolute top-1/2 w-auto p-auto font-bold text-base rounded-tr-xl select-none right-0">
+        <a className="absolute right-0 w-auto text-base font-bold cursor-pointer select-none top-1/2 p-auto rounded-tr-xl">
           &#10095;
         </a>
       </div>
