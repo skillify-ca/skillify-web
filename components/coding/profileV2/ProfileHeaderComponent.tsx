@@ -23,10 +23,12 @@ import BadgesDisplayedComponent from "./BadgesDisplayedComponent";
 import JoinedDateComponent from "./JoinedDateComponent";
 
 export type UserProfileSectionProps = {
-  user: User;
+  userId: string;
 };
 
-export default function UserProfileSection({ user }: UserProfileSectionProps) {
+export default function UserProfileSection({
+  userId,
+}: UserProfileSectionProps) {
   const dispatch = useDispatch();
   const { userProfileData, userBadgeCount, totalBadgeCount } =
     useSelector(profileSelector);
@@ -34,7 +36,7 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
   const { loading: userProfileLoading } =
     useQuery<FetchUserProfileDataResponse>(FETCH_USER_PROFILE_DATA, {
       variables: {
-        userId: user.uid,
+        userId: userId,
       },
       onCompleted: (data) => {
         if (data.users.length > 0) {
@@ -54,7 +56,7 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
   const { loading: userBadgeCountLoading } =
     useQuery<FetchUserBadgesCountResponse>(FETCH_USER_BADGES_COUNT, {
       variables: {
-        userId: user.uid,
+        userId: userId,
       },
       onCompleted: (data) => {
         if (data.user_coding_badges_aggregate.aggregate.count) {
@@ -85,22 +87,20 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
       ) : (
         <div className="grid grid-cols-4 col-span-5 mt-4 md:grid-cols-8">
           <img
-            className="w-36 mt-6 mr-2 rounded-full"
+            className="mt-6 mr-2 rounded-full w-36"
             src={userProfileData.profileImage}
           />
           <div className="col-span-3 mt-2 ml-2">
-            <h1 className="text-2xl font-bold mt-2 md:text-4xl md:mt-6">
+            <h1 className="mt-2 text-2xl font-bold md:text-4xl md:mt-6">
               {userProfileData.name}
             </h1>
             <div className="flex mt-4">
               <JoinedDateComponent
-                user={user}
                 createdAt={userProfileData.createdAt}
                 textSize={"large"}
               />
             </div>
             <BadgesDisplayedComponent
-              user={user}
               earnedBadges={userBadgeCount}
               totalBadges={totalBadgeCount}
               textSize={"large"}
