@@ -25,7 +25,7 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
   const { user } = useAuth();
   const { userAssignments } = useSelector(assignmentsSelector);
   const dispatch = useDispatch();
-
+  console.log("user assignments initial render", userAssignments);
   // REQUIRED: create assignment in coding_assignments table to generate ID and paste here
   const assignmentId = "2cf9156a-4f6f-452d-b09a-2c54f19a7b40";
 
@@ -40,12 +40,14 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
   };
 
   useEffect(() => {
-    if (userAssignments) {
+    if (userAssignments.length > 0) {
+      console.log("redux found", userAssignments);
       const currentAssignment = userAssignments.find(
-        (assignment) => assignment.assignmentId === assignmentId
+        (assignment) => assignment.assignment_id === assignmentId
       );
       deployCurrentStage(currentAssignment);
     } else {
+      console.log("running query", userAssignments);
       fetchUserAssignmentSubmissions();
     }
   }, [userAssignments]);

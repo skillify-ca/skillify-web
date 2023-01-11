@@ -1,16 +1,16 @@
 import { useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
-import GoalsSectionComponent from "../../components/coding/GoalsSectionComponent";
-import AchievementComponent from "../../components/coding/profileV2/AchievementComponent";
-import AssignmentSectionComponent from "../../components/coding/profileV2/AssignmentSectionComponent";
-import ProfileHeaderComponent from "../../components/coding/profileV2/ProfileHeaderComponent";
-import SkillRatingsComponent from "../../components/coding/SkillRatingsComponent";
+import GoalsSectionComponent from "../../../components/coding/GoalsSectionComponent";
+import AchievementComponent from "../../../components/coding/profileV2/AchievementComponent";
+import AssignmentSectionComponent from "../../../components/coding/profileV2/AssignmentSectionComponent";
+import ProfileHeaderComponent from "../../../components/coding/profileV2/ProfileHeaderComponent";
+import SkillRatingsComponent from "../../../components/coding/SkillRatingsComponent";
 import {
   FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
-} from "../../graphql/fetchUserGoals";
-import { useAuth } from "../../lib/authContext";
-import { userGoalsSelector, setUserGoals } from "../../redux/userGoalsSlice";
+} from "../../../graphql/fetchUserGoals";
+import { useAuth } from "../../../lib/authContext";
+import { userGoalsSelector, setUserGoals } from "../../../redux/userGoalsSlice";
 
 export default function Profile(props) {
   const { user } = useAuth();
