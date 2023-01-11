@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-export const Carousel: React.FC = () => {
+export function Carousel() {
   const [index, setIndex] = useState(2);
   const onButtonClick = (index: number) => {
     // this will be called when the user clicks between photos in the carousel
@@ -67,4 +67,4 @@ export const Carousel: React.FC = () => {
       </div>
     </div>
   );
-};
+}
