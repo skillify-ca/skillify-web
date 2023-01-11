@@ -1,7 +1,7 @@
 export const measureTime = (timeStart: number, timeEnd: number) => {
-  var secondsString = "";
-  var minutes = Math.floor((timeEnd - timeStart) / 60000);
-  var seconds = Math.floor(((timeEnd - timeStart) % 60000) / 1000);
+  let secondsString = "";
+  let minutes = Math.floor((timeEnd - timeStart) / 60000);
+  const seconds = Math.floor(((timeEnd - timeStart) % 60000) / 1000);
   if (seconds == 60) {
     minutes = minutes + 1;
     secondsString = "00";

@@ -10,9 +10,7 @@ import MCOption, { OptionState } from "./MCOption";
 import Lottie from "lottie-react";
 import quizCompleteAnimation from "../../../../public/anims/quiz-complete.json";
 
-export type QuizProps = {};
-
-export default function Quiz({}: QuizProps) {
+export default function Quiz() {
   const {
     questions,
     currentQuestion,

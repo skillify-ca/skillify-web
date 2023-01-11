@@ -37,9 +37,7 @@ const returnParentStyling = (assignment: UserAssignmentSubmissionsData) => {
   return parentStyle;
 };
 
-export type AssignmentSectionComponentProps = {};
-
-export default function AssignmentsSection({}: AssignmentSectionComponentProps) {
+export default function AssignmentsSection() {
   const { user } = useAuth();
   const dispatch = useDispatch();
   const { userAssignments } = useSelector(assignmentsSelector);
