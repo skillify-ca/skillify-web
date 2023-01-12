@@ -19,7 +19,17 @@ import {
   setUserAssignments,
 } from "../../../../../redux/assignmentsSlice";
 
-const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
+export type templateProps = {
+  incompleteStage: AssignmentComponentData[];
+  submittedStage: AssignmentComponentData[];
+  completedStage: AssignmentComponentData[];
+};
+
+const React2 = ({
+  incompleteStage,
+  submittedStage,
+  completedStage,
+}: templateProps) => {
   const router = useRouter();
   const [stage, setStage] = useState(0);
   const { user } = useAuth();
@@ -91,16 +101,16 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
     <>
       <div className="grid grid-cols-1 gap-8 px-4 pt-4 m-8 sm:px-12">
         {stage === Stage.INCOMPLETE
-          ? incompleteStage.map((it: AssignmentComponentData) => (
-              <AssignmentComponent data={it} />
+          ? incompleteStage.map((it: AssignmentComponentData, index) => (
+              <AssignmentComponent key={index} data={it} />
             ))
           : stage === Stage.SUBMITTED
-          ? submittedStage.map((it: AssignmentComponentData) => (
-              <AssignmentComponent data={it} />
+          ? submittedStage.map((it: AssignmentComponentData, index) => (
+              <AssignmentComponent key={index} data={it} />
             ))
           : stage === Stage.COMPLETED
-          ? completedStage.map((it: AssignmentComponentData) => (
-              <AssignmentComponent data={it} />
+          ? completedStage.map((it: AssignmentComponentData, index) => (
+              <AssignmentComponent key={index} data={it} />
             ))
           : null}
       </div>
@@ -114,7 +124,7 @@ const React2 = ({ incompleteStage, submittedStage, completedStage }) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps() {
   // REQUIRED: create assignment in coding_assignments table to generate ID and paste here
   const assignmentId = "2cf9156a-4f6f-452d-b09a-2c54f19a7b40";
 
