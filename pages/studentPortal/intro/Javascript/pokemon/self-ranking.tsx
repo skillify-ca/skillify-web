@@ -25,6 +25,7 @@ const JS6 = () => {
                     className="underline cursor-pointer text-charmander"
                     target="_blank"
                     href="https://docs.google.com/forms/d/e/1FAIpQLSc9uMgy9iVG9cXnXiZTl9yGbAfg26LCTXofqLc8BoBY_FBMmQ/viewform?usp=sf_link"
+                    rel="noreferrer"
                   >
                     form
                   </a>{" "}

@@ -18,7 +18,7 @@ export default function CoachCard({ coach }: CoachCardProps) {
         </p>
       </div>
       <div className="flex items-center justify-center ">
-        <a href={coach.link} target="_blank">
+        <a href={coach.link} target="_blank" rel="noreferrer">
           <Button label="Book Time" />
         </a>
       </div>

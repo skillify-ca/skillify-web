@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-export type LeaderboardProp = {};
-
 export interface StudentRow {
   name: string;
   score: number;
@@ -25,15 +23,15 @@ const studentTable: StudentRow[] = [
   },
 ];
 
-export const Leaderboard: React.FC<LeaderboardProp> = () => {
+export const Leaderboard: React.FC = () => {
   return (
     <div>
-      <div className="bg-green-300 grid grid-cols-2">
-        <div className="bg-green-700 text-white border-2 border-white">
+      <div className="grid grid-cols-2 bg-green-300">
+        <div className="text-white bg-green-700 border-2 border-white">
           {" "}
           Name
         </div>
-        <div className="bg-green-700 text-white border-2 border-white">
+        <div className="text-white bg-green-700 border-2 border-white">
           {" "}
           Score
         </div>
