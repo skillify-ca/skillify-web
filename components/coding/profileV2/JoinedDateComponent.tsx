@@ -1,16 +1,12 @@
 import { format } from "date-fns";
 import React from "react";
 
-import { User } from "./ProfileHeaderComponent";
-
 export type JoinedDateComponentProps = {
-  user: User;
   createdAt: Date;
   textSize: "small" | "medium" | "large";
 };
 
 export default function JoinedDateComponent({
-  user,
   createdAt,
   textSize,
 }: JoinedDateComponentProps) {

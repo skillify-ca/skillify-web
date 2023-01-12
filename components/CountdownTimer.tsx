@@ -9,8 +9,8 @@ export default function CountdownTimer() {
   useEffect(() => {
     const interval = setInterval(() => {
       const now = Date.now();
-      var countDownDate = new Date("Dec 30, 2022 00:00:00").getTime();
-      var timeleft = countDownDate - now;
+      const countDownDate = new Date("Dec 30, 2022 00:00:00").getTime();
+      const timeleft = countDownDate - now;
       if (timeleft > 0) {
         setDays(Math.floor(timeleft / (1000 * 60 * 60 * 24)));
         setHours(

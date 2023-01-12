@@ -5,8 +5,11 @@ export type SkillRatingsState = {
   skillRatings: SkillRatingsRow[];
 };
 
+// both number and string types are needed for proper working of functions transformSkillRatings and transformSkillRatingsForDB
+//transformSkillRatingForDB function checks type of userSkillId and sends it to DB to update skillRating if a string, but skips sending it if a number 
+//and allows the DB to generate userSkillId correctly.
 export type SkillRatingsRow = {
-  userSkillId: string;
+  userSkillId: string|number;
   skillId: string;
   skillName: string;
   unitName: string;

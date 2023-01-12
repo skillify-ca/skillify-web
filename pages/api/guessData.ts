@@ -1,4 +1,4 @@
 export type GuessData = {
   isCorrect: boolean;
-  guess: string | Array<Number>;
+  guess: string | Array<number>;
 };

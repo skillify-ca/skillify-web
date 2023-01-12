@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { updateSkillRatings } from "../../redux/skillRatingsSlice";
 
 export interface EmojiSliderProps {
-  userSkillId: String;
+  userSkillId: string;
   studentRating: number;
 }
 
