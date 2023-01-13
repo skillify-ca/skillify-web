@@ -1,3 +1,4 @@
+import React from "react";
 import { useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import ExpandableContainer from "../../../components/coding/ExpandableContainer";
@@ -13,7 +14,7 @@ import {
 import { useAuth } from "../../../lib/authContext";
 import { userGoalsSelector, setUserGoals } from "../../../redux/userGoalsSlice";
 
-export default function Profile(props) {
+export default function Profile() {
   const { user } = useAuth();
   const dispatch = useDispatch();
   const { userGoals } = useSelector(userGoalsSelector);
@@ -40,12 +41,16 @@ export default function Profile(props) {
       </div>
       <div className="grid">
         <ExpandableContainer open={true} title={"Goals"}>
-          <GoalsSectionComponent
-            inProfile={true}
-            userGoals={userGoals
-              .filter((goal) => !goal.isComplete && !goal.isArchived)
-              .slice(0, 3)}
-          />
+          {userGoalsLoading ? (
+            <div>Loading...</div>
+          ) : (
+            <GoalsSectionComponent
+              inProfile={true}
+              userGoals={userGoals
+                .filter((goal) => !goal.isComplete && !goal.isArchived)
+                .slice(0, 3)}
+            />
+          )}
         </ExpandableContainer>
       </div>
       <div className="grid">
