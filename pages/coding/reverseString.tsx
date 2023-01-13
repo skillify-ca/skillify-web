@@ -31,7 +31,7 @@ export default function ReverseString(props) {
     setIsSwapping(true);
     const next = [...s];
 
-    var currentChar = next[head];
+    const currentChar = next[head];
     next[head] = next[tail]; //o l l e o
     next[tail] = currentChar; // o l l e h
     setStr(next);
@@ -60,16 +60,15 @@ export default function ReverseString(props) {
         <h1 className="w-full p-4 text-2xl font-bold text-center bg-blue-300">
           344. Reverse String
         </h1>
-     
       </div>
-      <div className="grid grid-cols-1 items-center justify-center gap-4 heropattern-bamboo-gray-300">
+      <div className="grid items-center justify-center grid-cols-1 gap-4 heropattern-bamboo-gray-300">
         <div className="grid w-full gap-4 p-4">
-        <p className="w-full p-4 text-center bg-white col-span-1 rounded-lg shadow-lg">
-          Write a function that reverses a string. The input string is given as
-          an array of characters s. You must do this by modifying the input
-          array in-place with O(1) extra memory.
-        </p>
-          
+          <p className="w-full col-span-1 p-4 text-center bg-white rounded-lg shadow-lg">
+            Write a function that reverses a string. The input string is given
+            as an array of characters s. You must do this by modifying the input
+            array in-place with O(1) extra memory.
+          </p>
+
           <div className="flex flex-col gap-4 p-4 bg-white shadow-lg rounded-xl">
             <p className="font-bold">Algorithm</p>
             Use a head and a tail pointer to traverse the string. Swap the head

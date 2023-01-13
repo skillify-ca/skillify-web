@@ -1,5 +1,6 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import GoalsSectionComponent from "../../../components/coding/GoalsSectionComponent";
+
 import ProfileGoalsSection from "../../../components/coding/ProfileGoalsSection";
 import AcheivementComponent from "../../../components/coding/profileV2/AchievementComponent";
 import AssignmentSectionComponent from "../../../components/coding/profileV2/AssignmentSectionComponent";
@@ -17,11 +18,12 @@ export default function ExternalUserProfile({ slug, uid }) {
   const user = {
     uid,
   };
+
   return (
     <div>
       <LandingNavbar />
       <div className="flex flex-col p-8 m-4 overflow-auto bg-scroll bg-slate-50 sm:m-auto max-w-7xl dark:bg-slate-800 dark:text-white">
-        <ProfileHeaderComponent user={user} />
+        <ProfileHeaderComponent userId={user.uid} />
 
         <h2 className="text-lg font-bold mt-14 mb-9">Projects</h2>
 
@@ -32,12 +34,12 @@ export default function ExternalUserProfile({ slug, uid }) {
         <h2 className="text-lg font-bold mt-14 mb-9">Goals</h2>
 
         <div className="grid grid-cols-1 mb-16 sm:grid-cols-3">
-          <GoalsSectionComponent />
+          <GoalsSectionComponent inProfile={true} />
         </div>
 
         <h2 className="text-lg font-bold mb-9">Achievements</h2>
         <BadgesSection user={user} />
-        <AcheivementComponent data={undefined} />
+        <AcheivementComponent user={user} />
       </div>
     </div>
   );

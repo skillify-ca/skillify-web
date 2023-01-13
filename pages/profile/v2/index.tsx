@@ -5,13 +5,12 @@ import AchievementComponent from "../../../components/coding/profileV2/Achieveme
 import AssignmentSectionComponent from "../../../components/coding/profileV2/AssignmentSectionComponent";
 import ProfileHeaderComponent from "../../../components/coding/profileV2/ProfileHeaderComponent";
 import SkillRatingsComponent from "../../../components/coding/SkillRatingsComponent";
-import { FETCH_CODING_BADGES } from "../../../graphql/coding/userBadges/fetchUserBadges";
 import {
   FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
 } from "../../../graphql/fetchUserGoals";
 import { useAuth } from "../../../lib/authContext";
-import { setUserGoals, userGoalsSelector } from "../../../redux/userGoalsSlice";
+import { userGoalsSelector, setUserGoals } from "../../../redux/userGoalsSlice";
 
 export default function Profile(props) {
   const { user } = useAuth();
@@ -32,7 +31,7 @@ export default function Profile(props) {
 
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
-      <ProfileHeaderComponent user={user} />
+      <ProfileHeaderComponent userId={user.uid} />
 
       <h2 className="text-lg font-bold mt-14 mb-9">Assignments</h2>
 
