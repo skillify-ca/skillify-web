@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import ExpandableContainer from "../ExpandableContainer";
 import { PencilAltIcon } from "@heroicons/react/outline";
 import { User } from "../../../graphql/fetchUserProfile";
-import _ from "lodash";
 import { transformUserBadgeData } from "./AchievementTransformData";
 import { useQuery } from "@apollo/client";
 import { FETCH_CODING_BADGES } from "../../../graphql/coding/userBadges/fetchUserBadges";
@@ -10,21 +9,42 @@ import { FETCH_CODING_BADGES } from "../../../graphql/coding/userBadges/fetchUse
 export type BadgesSectionProps = {
   data: User;
 };
-export type userCodingBadge = {
-  id: number;
-};
-export type unitProps = {
+// Use these setter types, refactor transformedData
+export type Unit = {
   unitTitle: string;
-  codingBadges: codingBadges[];
+  codingBadges: CodingBadge[];
 };
-export type codingBadges = {
+
+export type CodingBadge = {
   id: number;
   title: string;
-  userCodingBadge: userCodingBadge[];
-  isAwarded: boolean;
+  userCodingBadge: UserCodingBadge[];
 };
-export type unit = unitProps[];
-const AcheivementComponent = ({ user }) => {
+
+export type UserCodingBadge = {
+  id: number;
+};
+
+type AchievementComponentProps = {
+  user: User;
+};
+
+type TransformedBadgeDataTemp = {
+  unit: Unit;
+  codingBadges: CodingBadgeFlattened[];
+};
+
+// feature is using flattened type
+type CodingBadgeFlattened = {
+  // remove isAwarded type, move
+  isAwarded: boolean;
+  id: number;
+  title: string;
+  userCodingBadge: UserCodingBadge[];
+  unitTitle: string;
+};
+
+const AchievementComponent = ({ user }: AchievementComponentProps) => {
   const { data } = useQuery(FETCH_CODING_BADGES, {
     variables: {
       userId: user.uid,
@@ -32,26 +52,26 @@ const AcheivementComponent = ({ user }) => {
   });
   const [transformedData, setTransformedData] = useState([]);
   const [editMode, setEditMode] = useState(false);
-  const handleBadgeClick = (inputBadge: codingBadges) => {
-    setTransformedData((prev) => {
-      const updatedData = prev.map((unit: unitProps) => {
-        return {
-          ...unit,
-          codingBadges: unit.codingBadges.map((badge) => {
-            if (badge.id == inputBadge.id) {
-              return {
-                ...badge,
-                isAwarded: !badge.isAwarded,
-              };
-            } else {
-              return badge;
-            }
-          }),
-        };
-      });
-
-      return updatedData;
-    });
+  const handleBadgeClick = (inputBadge: CodingBadge) => {
+    // rewrite the setter to
+    // setTransformedData((prev) => {
+    //   const updatedData = prev.map((unit: Unit) => {
+    //     return {
+    //       ...unit,
+    //       codingBadges: unit.codingBadges.map((badge) => {
+    //         if (badge.id == inputBadge.id) {
+    //           return {
+    //             ...badge,
+    //             isAwarded: !badge.isAwarded,
+    //           };
+    //         } else {
+    //           return badge;
+    //         }
+    //       }),
+    //     };
+    //   });
+    //   return updatedData;
+    // });
   };
 
   useEffect(() => {
@@ -83,6 +103,7 @@ const AcheivementComponent = ({ user }) => {
               return (
                 <div className="mb-4 sm:m-4">
                   <UnitBadgeSection
+                    key={unit}
                     unit={unit}
                     editMode={editMode}
                     handleBadgeClick={handleBadgeClick}
@@ -97,12 +118,22 @@ const AcheivementComponent = ({ user }) => {
   );
 };
 
-export default AcheivementComponent;
+export default AchievementComponent;
 
-function UnitBadgeSection({ unit, editMode, handleBadgeClick }) {
+export type UnitBadgeSectionProps = {
+  unit: Unit;
+  editMode: boolean;
+  handleBadgeClick: () => void;
+};
+function UnitBadgeSection({
+  unit,
+  editMode,
+  handleBadgeClick,
+}: UnitBadgeSectionProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   function getNumEarnedBadgesForUnit(codingBages) {
+    // Refactor to use usercodingbadge
     return codingBages.filter((badge) => badge.isAwarded).length;
   }
 
