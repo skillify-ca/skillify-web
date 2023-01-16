@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Sandpack } from "@codesandbox/sandpack-react";
 import HintRow from "./HintRow";
 import AssignmentInputBox from "./AssignmentInputBox";
@@ -8,9 +8,13 @@ export type Hint = {
   icon?: string;
   link?: string;
 };
+
 export enum Stage {
+  // eslint-disable-next-line no-unused-vars
   INCOMPLETE,
+  // eslint-disable-next-line no-unused-vars
   SUBMITTED,
+  // eslint-disable-next-line no-unused-vars
   COMPLETED,
 }
 
@@ -95,7 +99,7 @@ export default function AssignmentComponent({
         </h1>
         <div className="flex flex-col gap-2">
           {data.hintRow.map((it, index) => (
-            <HintRow description={it.description} link={it.link} />
+            <HintRow key={index} description={it.description} link={it.link} />
           ))}
         </div>
       </>
