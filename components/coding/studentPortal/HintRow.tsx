@@ -17,7 +17,7 @@ export const HintRow: React.FC<HintRowProps> = ({
   };
   return (
     <div className="grid grid-cols-1 gap-2 p-3 bg-white shadow-lg dark:bg-gray-900">
-      <div className="flex items-center">
+      <div className="flex items-center space-x-2">
         <ArrowCircleRightIcon
           className={
             showHint
@@ -27,7 +27,7 @@ export const HintRow: React.FC<HintRowProps> = ({
           onClick={handleViewClick}
         />
 
-        <div className="flex flex-col">
+        <div className="flex flex-col transition-all transform hover:scale-110">
           <p className={showHint ? "text-black" : "text-white"}>
             {description} {link && <Link href={link}>(link)</Link>}
           </p>

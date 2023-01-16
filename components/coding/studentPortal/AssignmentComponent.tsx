@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Sandpack } from "@codesandbox/sandpack-react";
 import HintRow from "./HintRow";
 import AssignmentInputBox from "./AssignmentInputBox";
@@ -73,6 +73,8 @@ export type AssignmentComponentProps = {
 export default function AssignmentComponent({
   data,
 }: AssignmentComponentProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
   if (data.component === "title") {
     return <h1 className="text-5xl font-bold">{data.text}</h1>;
   } else if (data.component === "prompt") {
@@ -91,17 +93,23 @@ export default function AssignmentComponent({
   } else if (data.component === "hint-list") {
     return (
       <>
-        <h1 className="font-bold text-lg">
-          Hints...{" "}
-          <p className="text-base font-normal italic">
-            Click the arrow below to reveal
-          </p>
-        </h1>
-        <div className="flex flex-col gap-2">
-          {data.hintRow.map((it, index) => (
-            <HintRow key={index} description={it.description} link={it.link} />
-          ))}
+        <div
+          className="flex p-4 cursor-pointer  bg-slate-300 hover:bg-slate-100"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <h1 className="font-bold text-lg">Hints... </h1>
         </div>
+        {isOpen && (
+          <div className="flex flex-col gap-2">
+            {data.hintRow.map((it, index) => (
+              <HintRow
+                key={index}
+                description={it.description}
+                link={it.link}
+              />
+            ))}
+          </div>
+        )}
       </>
     );
   } else if (data.component === "submission") {
