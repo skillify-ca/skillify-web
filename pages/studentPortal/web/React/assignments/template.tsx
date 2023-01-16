@@ -169,20 +169,20 @@ export async function getServerSideProps() {
       link: "",
     },
   ];
-  const submittedStage: AssignmentComponentData[] = await Promise.all([
+  const submittedStage: AssignmentComponentData[] = [
     {
       component: "completed",
       text: "Your assignment has been submitted. The instructor will follow-up with a loom video link upon review. ",
     },
-  ]);
+  ];
 
-  const completedStage: AssignmentComponentData[] = await Promise.all([
+  const completedStage: AssignmentComponentData[] = [
     {
       component: "loom-video",
       text: "This is where your feedback goes",
       videoId: "e85860979abd403380cf9a8eb2438f5d",
     },
-  ]);
+  ];
   return {
     props: {
       incompleteStage,
