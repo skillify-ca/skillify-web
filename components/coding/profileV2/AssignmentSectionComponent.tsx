@@ -55,7 +55,7 @@ export default function AssignmentsSection() {
         },
       }
     );
-
+  console.log("userAssignments profile redux", userAssignments);
   return (
     <ExpandableContainer open={true} title={""}>
       <div>
