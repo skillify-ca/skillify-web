@@ -79,49 +79,47 @@ export default function SkillRatingsComponent(props) {
 
   return (
     <div className="flex flex-row overflow-auto-bg-scroll">
-      <ExpandableContainer open={true} title={""}>
-        <div className="space-x-10">
-          {sections.map((it) => (
-            <button
-              className={activeTabStyling(it)}
-              onClick={() => {
-                setActiveTab(it);
-                activeTabStyling(it);
-              }}
-            >
-              {it}
-            </button>
-          ))}
-          <div className={`${activeTab ? "flex flex-col p-4 m-4" : "hidden"} `}>
-            {skillRatings &&
-              skillRatings
-                .filter((skill) => skill.unitName === activeTab)
-                .map((it) => (
-                  <SkillRow
-                    skillRow={{
-                      userSkillId: it.userSkillId,
-                      skillId: it.skillId,
-                      skillName: it.skillName,
-                      unitName: it.unitName,
-                      studentRating: it.studentRating,
-                    }}
-                  />
-                ))}
-          </div>
+      <div className="space-x-10">
+        {sections.map((it) => (
+          <button
+            className={activeTabStyling(it)}
+            onClick={() => {
+              setActiveTab(it);
+              activeTabStyling(it);
+            }}
+          >
+            {it}
+          </button>
+        ))}
+        <div className={`${activeTab ? "flex flex-col p-4 m-4" : "hidden"} `}>
+          {skillRatings &&
+            skillRatings
+              .filter((skill) => skill.unitName === activeTab)
+              .map((it) => (
+                <SkillRow
+                  skillRow={{
+                    userSkillId: it.userSkillId,
+                    skillId: it.skillId,
+                    skillName: it.skillName,
+                    unitName: it.unitName,
+                    studentRating: it.studentRating,
+                  }}
+                />
+              ))}
         </div>
-        <div className="flex float-right p-4 mr-8 mt-8">
-          <Button
-            label="Save"
-            onClick={() =>
-              saveSkillRatings({
-                variables: {
-                  objects: transformSkillRatingForDB(skillRatings, user),
-                },
-              })
-            }
-          />
-        </div>
-      </ExpandableContainer>
+      </div>
+      <div className="flex float-right p-4 mr-8 mt-8">
+        <Button
+          label="Save"
+          onClick={() =>
+            saveSkillRatings({
+              variables: {
+                objects: transformSkillRatingForDB(skillRatings, user),
+              },
+            })
+          }
+        />
+      </div>
     </div>
   );
 }
