@@ -1,64 +1,60 @@
-import React, { useEffect, useState } from "react";
-import { PencilAltIcon } from "@heroicons/react/outline";
-import { User } from "../../../graphql/fetchUserProfile";
-import { transformUserBadgeData } from "./AchievementTransformData";
-import { useQuery } from "@apollo/client";
-import { FETCH_CODING_BADGES } from "../../../graphql/coding/userBadges/fetchUserBadges";
+// we're going to use the response structure instead of transforming to a new type
 
-export type BadgesSectionProps = {
-  data: User;
+import React, { useState } from "react";
+import { PencilAltIcon } from "@heroicons/react/outline";
+
+import { useQuery } from "@apollo/client";
+import {
+  CodingBadge,
+  FetchBadgeResponse,
+  FETCH_CODING_BADGES,
+  IntroCourseUnit,
+} from "../../../graphql/coding/userBadges/fetchUserBadges";
+
+export type AchievementComponentProps = {
+  userId: string;
 };
-export type userCodingBadge = {
-  id: number;
-};
-export type unitProps = {
-  unitTitle: string;
-  codingBadges: codingBadges[];
-};
-export type codingBadges = {
-  id: number;
-  title: string;
-  userCodingBadge: userCodingBadge[];
-  isAwarded: boolean;
-};
-export type unit = unitProps[];
-const AcheivementComponent = ({ user }) => {
-  const { data } = useQuery(FETCH_CODING_BADGES, {
+
+const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
+  const [unitBadges, setUnitBadges] = useState<IntroCourseUnit[]>();
+  const [editMode, setEditMode] = useState(false);
+
+  const { data } = useQuery<FetchBadgeResponse>(FETCH_CODING_BADGES, {
     variables: {
-      userId: user.uid,
+      userId: userId,
+    },
+    onCompleted: (data) => {
+      setUnitBadges(data.intro_course_unit);
     },
   });
-  const [transformedData, setTransformedData] = useState([]);
-  const [editMode, setEditMode] = useState(false);
-  const handleBadgeClick = (inputBadge: codingBadges) => {
-    setTransformedData((prev) => {
-      const updatedData = prev.map((unit: unitProps) => {
-        return {
-          ...unit,
-          codingBadges: unit.codingBadges.map((badge) => {
-            if (badge.id == inputBadge.id) {
-              return {
-                ...badge,
-                isAwarded: !badge.isAwarded,
-              };
-            } else {
-              return badge;
-            }
-          }),
-        };
-      });
 
-      return updatedData;
-    });
+  const handleBadgeClick = (inputBadge: CodingBadge) => {
+    // setTransformedData((prev) => {
+    //   const updatedData = prev.map((unit) => {
+    //     return {
+    //       ...unit,
+    //       codingBadges: unit.codingBadges.map((badge) => {
+    //         if (badge.id == inputBadge.id) {
+    //           return {
+    //             ...badge,
+    //             isAwarded: !badge.isAwarded,
+    //           };
+    //         } else {
+    //           return badge;
+    //         }
+    //       }),
+    //     };
+    //   });
+    //   return updatedData;
+    // });
   };
 
-  useEffect(() => {
-    if (data) {
-      const updatedData = transformUserBadgeData(data);
-
-      setTransformedData(updatedData);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     const updatedData = transformUserBadgeData(data);
+  //     setTransformedData(updatedData);
+  //   }
+  // }, [data]);
 
   return (
     <div className="sm:shadow-md sm:p-4 sm:bg-slate-300 dark:bg-transparent">
@@ -74,32 +70,45 @@ const AcheivementComponent = ({ user }) => {
           )}
         </button>
       </div>
-      <div>
-        {transformedData.map((unit) => {
-          if (unit.codingBadges.length > 0) {
-            return (
-              <div className="mb-4 sm:m-4">
-                <UnitBadgeSection
-                  unit={unit}
-                  editMode={editMode}
-                  handleBadgeClick={handleBadgeClick}
-                />
-              </div>
-            );
-          }
-        })}
-      </div>
+      {data && (
+        <div>
+          {data.intro_course_unit.map((unit) => {
+            if (unit.coding_badges.length > 0) {
+              return (
+                <div className="mb-4 sm:m-4">
+                  <UnitBadgeSection
+                    unit={unit}
+                    editMode={editMode}
+                    handleBadgeClick={handleBadgeClick}
+                  />
+                </div>
+              );
+            }
+          })}
+        </div>
+      )}
     </div>
   );
 };
 
 export default AcheivementComponent;
 
-function UnitBadgeSection({ unit, editMode, handleBadgeClick }) {
+type UnitBadgeSectionProps = {
+  unit: IntroCourseUnit;
+  editMode: boolean;
+  handleBadgeClick: (inputBadge: CodingBadge) => void;
+};
+
+function UnitBadgeSection({
+  unit,
+  editMode,
+  handleBadgeClick,
+}: UnitBadgeSectionProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  function getNumEarnedBadgesForUnit(codingBages) {
-    return codingBages.filter((badge) => badge.isAwarded).length;
+  function getNumEarnedBadgesForUnit(codingBages: CodingBadge[]) {
+    return codingBages.filter((badge) => badge.user_coding_badges.length > 0)
+      .length;
   }
 
   return (
@@ -114,22 +123,21 @@ function UnitBadgeSection({ unit, editMode, handleBadgeClick }) {
             className="object-cover w-24 h-24 transition-all transform bg-red-300 rounded-lg group-hover:scale-110"
           />
           <div className="flex flex-col justify-center px-4">
-            <h3 className="text-xl font-bold text-white">{unit.unitTitle}</h3>
+            <h3 className="text-xl font-bold text-white">{unit.title}</h3>
             <p className="font-bold text-charmander">
-              {getNumEarnedBadgesForUnit(unit.codingBadges)} Badges Earned
+              {getNumEarnedBadgesForUnit(unit.coding_badges)} Badges Earned
             </p>
           </div>
         </div>
       </div>
       {isOpen && (
         <div className="grid grid-cols-1 mb-8 text-base sm:grid-cols-3 bg-slate-800 sm:mb-0 ">
-          {unit.codingBadges.map((badge) => (
-            <div className="m-4">
-              <CodingBadge
+          {unit.coding_badges.map((badge) => (
+            <div key={badge.id} className="m-4">
+              <CodingBadgeUnit
                 disabled={!editMode}
                 handleBadgeClick={handleBadgeClick}
                 badge={badge}
-                unit={unit}
               />
             </div>
           ))}
@@ -139,7 +147,17 @@ function UnitBadgeSection({ unit, editMode, handleBadgeClick }) {
   );
 }
 
-function CodingBadge({ disabled, handleBadgeClick, badge, unit }) {
+type CodingBadgeUnitProps = {
+  disabled: boolean;
+  handleBadgeClick: (inputBadge: CodingBadge) => void;
+  badge: CodingBadge;
+};
+
+function CodingBadgeUnit({
+  disabled,
+  handleBadgeClick,
+  badge,
+}: CodingBadgeUnitProps) {
   return (
     <div className="flex flex-col items-center justify-center h-full p-4 text-white bg-slate-600 border-slate-300">
       <button
@@ -151,7 +169,7 @@ function CodingBadge({ disabled, handleBadgeClick, badge, unit }) {
         <img
           className="transition-all transform border-4 rounded-full shadow-lg w-28 h-28 hover:scale-110"
           src={
-            badge.isAwarded
+            badge.user_coding_badges.length > 0
               ? badge.image
                 ? badge.image
                 : "/images/profile/achievement-badge-active.svg"

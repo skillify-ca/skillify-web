@@ -17,11 +17,15 @@ export const FETCH_CODING_BADGES = gql`
   }
 `;
 
-type Response = {
+export type Response = {
   data: Data;
 };
 
 export type Data = {
+  intro_course_unit: IntroCourseUnit[];
+};
+
+export type FetchBadgeResponse = {
   intro_course_unit: IntroCourseUnit[];
 };
 
