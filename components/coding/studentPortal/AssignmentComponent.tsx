@@ -114,11 +114,14 @@ export default function AssignmentComponent({
     return (
       <div>
         <p className="text-lg">{data.title}</p>
-        {data.screenshot ? (
-          <img src={data.screenshot} className="object-cover w-64 h-32 mb-4" />
+        {data.screenshotOrVideoId.kind === "screenshot" ? (
+          <img
+            src={data.screenshotOrVideoId.value}
+            className="object-cover w-64 h-32 mb-4"
+          />
         ) : (
           <iframe
-            src={`https://www.loom.com/embed/${data.videoId}`}
+            src={`https://www.loom.com/embed/${data.screenshotOrVideoId.value}`}
             frameBorder="0"
             webkit-allowfullscreen
             moz-allowfullscreen
