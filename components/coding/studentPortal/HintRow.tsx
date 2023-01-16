@@ -16,7 +16,7 @@ export const HintRow: React.FC<HintRowProps> = ({
     setShowHint(!showHint);
   };
   return (
-    <div className="grid grid-cols-1 gap-2 p-3 bg-white shadow-lg dark:bg-gray-900 lg:grid-cols-resource-row">
+    <div className="grid grid-cols-1 gap-2 p-3 bg-white shadow-lg dark:bg-gray-900">
       <div className="flex items-center">
         <ArrowCircleRightIcon
           className={
@@ -26,11 +26,12 @@ export const HintRow: React.FC<HintRowProps> = ({
           }
           onClick={handleViewClick}
         />
-      </div>
-      <div className="flex flex-col">
-        <p className={showHint ? "text-black" : "text-white"}>
-          {description} {link && <Link href={link}>(link)</Link>}
-        </p>
+
+        <div className="flex flex-col">
+          <p className={showHint ? "text-black" : "text-white"}>
+            {description} {link && <Link href={link}>(link)</Link>}
+          </p>
+        </div>
       </div>
       <div className="flex items-center sm:justify-end"></div>
     </div>
