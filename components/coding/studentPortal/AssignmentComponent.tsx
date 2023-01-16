@@ -14,6 +14,10 @@ export enum Stage {
   COMPLETED,
 }
 
+export type Screenshot = { kind: "screenshot"; value: string };
+export type VideoId = { kind: "videoId"; value: string };
+export type ScreenshotOrVideoId = Screenshot | VideoId;
+
 export type AssignmentComponentData =
   | {
       component: "title";
@@ -30,7 +34,7 @@ export type AssignmentComponentData =
   | {
       component: "output";
       title: string;
-      screenshot: string;
+      screenshotOrVideoId: ScreenshotOrVideoId;
     }
   | {
       component: "submission";
@@ -110,7 +114,18 @@ export default function AssignmentComponent({
     return (
       <div>
         <p className="text-lg">{data.title}</p>
-        <img src={data.screenshot} className="object-cover w-64 h-32 mb-4" />
+        {data.screenshot ? (
+          <img src={data.screenshot} className="object-cover w-64 h-32 mb-4" />
+        ) : (
+          <iframe
+            src={`https://www.loom.com/embed/${data.videoId}`}
+            frameBorder="0"
+            webkit-allowfullscreen
+            moz-allowfullscreen
+            allowFullScreen
+            className="w-full h-96"
+          />
+        )}
       </div>
     );
   } else if (data.component === "loom-video") {

@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 
 import AssignmentComponent, {
   AssignmentComponentData,
+  ScreenshotOrVideoId,
   Stage,
 } from "../../../../../components/coding/studentPortal/AssignmentComponent";
 import { Button } from "../../../../../components/ui/Button";
@@ -154,7 +155,10 @@ export async function getServerSideProps() {
     {
       component: "output",
       title: "This is the desired output.",
-      screenshot: "/images/assignments/screenshotGoalNotes.png",
+      screenshotOrVideoId: {
+        kind: "videoId",
+        value: "e85860979abd403380cf9a8eb2438f5d",
+      } as ScreenshotOrVideoId,
     },
     {
       component: "submission",
