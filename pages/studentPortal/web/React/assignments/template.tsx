@@ -128,7 +128,7 @@ export async function getServerSideProps() {
   // REQUIRED: create assignment in coding_assignments table to generate ID and paste here
   const assignmentId = "2cf9156a-4f6f-452d-b09a-2c54f19a7b40";
 
-  const incompleteStage: AssignmentComponentData[] = await Promise.all([
+  const incompleteStage: AssignmentComponentData[] = [
     {
       component: "title",
       text: "Assignment Title Goes Here",
@@ -164,7 +164,7 @@ export async function getServerSideProps() {
       assignmentId: assignmentId,
       link: "",
     },
-  ]);
+  ];
   const submittedStage: AssignmentComponentData[] = await Promise.all([
     {
       component: "completed",
