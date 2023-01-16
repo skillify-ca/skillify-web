@@ -28,33 +28,38 @@ const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
     },
   });
 
-  const handleBadgeClick = (inputBadge: CodingBadge) => {
-    // setTransformedData((prev) => {
-    //   const updatedData = prev.map((unit) => {
-    //     return {
-    //       ...unit,
-    //       codingBadges: unit.codingBadges.map((badge) => {
-    //         if (badge.id == inputBadge.id) {
-    //           return {
-    //             ...badge,
-    //             isAwarded: !badge.isAwarded,
-    //           };
-    //         } else {
-    //           return badge;
-    //         }
-    //       }),
-    //     };
-    //   });
-    //   return updatedData;
-    // });
-  };
+  // this function will take in the original list of badge data (fetched from the query), and the edited badge data
+  // it should output an object containing two arrays: a list of badgeIds to add, and a list of userBadgeIds to remove
+  // you need to find the diff between the two input arrays, then send them to the database to delete and upsert
 
-  // useEffect(() => {
-  //   if (data) {
-  //     const updatedData = transformUserBadgeData(data);
-  //     setTransformedData(updatedData);
-  //   }
-  // }, [data]);
+  const findBadgeDiff = (
+    initialSet: IntroCourseUnit[],
+    currentSet: IntroCourseUnit[]
+  ) => {
+    // give you some ideas on how you might be able to make this easier to compare but I didn't figure it out yet
+    const initialBadgeArray = initialSet.map((unit) => {
+      return unit.coding_badges.map((badge) => {
+        return {
+          badgeId: badge.id,
+          userBadgeId: badge.user_coding_badges[0].id,
+        };
+      });
+    });
+
+    const finalBadgeArray = currentSet.map((unit) => {
+      return unit.coding_badges.map((badge) => {
+        return {
+          badgeId: badge.id,
+          userBadgeId: badge.user_coding_badges[0].id,
+        };
+      });
+    });
+
+    // final lists here
+    const badgesToAdd = [];
+    const badgesToDelete = [];
+    return { badgesToAdd, badgesToDelete };
+  };
 
   return (
     <div className="sm:shadow-md sm:p-4 sm:bg-slate-300 dark:bg-transparent">
@@ -70,16 +75,16 @@ const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
           )}
         </button>
       </div>
-      {data && (
+      {unitBadges && (
         <div>
-          {data.intro_course_unit.map((unit) => {
+          {unitBadges.map((unit) => {
             if (unit.coding_badges.length > 0) {
               return (
                 <div className="mb-4 sm:m-4">
                   <UnitBadgeSection
                     unit={unit}
                     editMode={editMode}
-                    handleBadgeClick={handleBadgeClick}
+                    setUnitBadges={setUnitBadges}
                   />
                 </div>
               );
@@ -96,13 +101,13 @@ export default AcheivementComponent;
 type UnitBadgeSectionProps = {
   unit: IntroCourseUnit;
   editMode: boolean;
-  handleBadgeClick: (inputBadge: CodingBadge) => void;
+  setUnitBadges: React.Dispatch<React.SetStateAction<IntroCourseUnit[]>>;
 };
 
 function UnitBadgeSection({
   unit,
   editMode,
-  handleBadgeClick,
+  setUnitBadges,
 }: UnitBadgeSectionProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -130,14 +135,14 @@ function UnitBadgeSection({
           </div>
         </div>
       </div>
-      {isOpen && (
+      {isOpen && unit && (
         <div className="grid grid-cols-1 mb-8 text-base sm:grid-cols-3 bg-slate-800 sm:mb-0 ">
           {unit.coding_badges.map((badge) => (
             <div key={badge.id} className="m-4">
               <CodingBadgeUnit
                 disabled={!editMode}
-                handleBadgeClick={handleBadgeClick}
                 badge={badge}
+                setUnitBadges={setUnitBadges}
               />
             </div>
           ))}
@@ -149,15 +154,42 @@ function UnitBadgeSection({
 
 type CodingBadgeUnitProps = {
   disabled: boolean;
-  handleBadgeClick: (inputBadge: CodingBadge) => void;
   badge: CodingBadge;
+  setUnitBadges: React.Dispatch<React.SetStateAction<IntroCourseUnit[]>>;
 };
 
 function CodingBadgeUnit({
   disabled,
-  handleBadgeClick,
   badge,
+  setUnitBadges,
 }: CodingBadgeUnitProps) {
+  const handleBadgeClick = (inputBadge: CodingBadge) => {
+    setUnitBadges((prev) => {
+      const updatedUnitBadges: IntroCourseUnit[] = prev.map((unit) => {
+        return {
+          ...unit,
+          coding_badges: unit.coding_badges.map((badge) => {
+            if (inputBadge.id == badge.id) {
+              if (badge.user_coding_badges.length > 0) {
+                return {
+                  ...badge,
+                  user_coding_badges: [],
+                };
+              } else {
+                return {
+                  ...badge,
+                  user_coding_badges: [{ id: Math.random() }],
+                };
+              }
+            }
+            return badge;
+          }),
+        };
+      });
+      return updatedUnitBadges;
+    });
+  };
+
   return (
     <div className="flex flex-col items-center justify-center h-full p-4 text-white bg-slate-600 border-slate-300">
       <button
@@ -165,7 +197,6 @@ function CodingBadgeUnit({
         disabled={disabled}
         onClick={() => handleBadgeClick(badge)}
       >
-        {/* <button onClick={() => handleBadgeClick(badge)}> */}
         <img
           className="transition-all transform border-4 rounded-full shadow-lg w-28 h-28 hover:scale-110"
           src={
