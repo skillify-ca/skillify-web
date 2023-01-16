@@ -39,7 +39,7 @@ const coachingDashboard = () => {
                 name={it.name}
                 joinDate={it.created_at}
                 badges={it.badges_earned}
-                currentFocus={""}
+                currentBadge={it.coding_badge}
                 nextGoal={""}
                 link={it.link}
               />

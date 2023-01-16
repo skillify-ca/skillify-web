@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ExpandableContainer from "../ExpandableContainer";
 import { PencilAltIcon } from "@heroicons/react/outline";
 import { User } from "../../../graphql/fetchUserProfile";
 import _ from "lodash";
@@ -63,37 +62,35 @@ const AcheivementComponent = ({ user }) => {
   }, [data]);
 
   return (
-    <ExpandableContainer open={true} title={""}>
-      <div className="sm:shadow-md sm:p-4 sm:bg-slate-300 dark:bg-transparent">
-        <div className="flex justify-end w-full mb-4">
-          <button
-            onClick={() => setEditMode(!editMode)}
-            className="w-5 h-5 cursor-pointer hover:text-yellow-600"
-          >
-            {editMode ? (
-              <PencilAltIcon className="w-5 h-5 text-yellow-600 cursor-pointer" />
-            ) : (
-              <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
-            )}
-          </button>
-        </div>
-        <div>
-          {transformedData.map((unit) => {
-            if (unit.codingBadges.length > 0) {
-              return (
-                <div className="mb-4 sm:m-4">
-                  <UnitBadgeSection
-                    unit={unit}
-                    editMode={editMode}
-                    handleBadgeClick={handleBadgeClick}
-                  />
-                </div>
-              );
-            }
-          })}
-        </div>
+    <div className="sm:shadow-md sm:p-4 sm:bg-slate-300 dark:bg-transparent">
+      <div className="flex justify-end w-full mb-4">
+        <button
+          onClick={() => setEditMode(!editMode)}
+          className="w-5 h-5 cursor-pointer hover:text-yellow-600"
+        >
+          {editMode ? (
+            <PencilAltIcon className="w-5 h-5 text-yellow-600 cursor-pointer" />
+          ) : (
+            <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
+          )}
+        </button>
       </div>
-    </ExpandableContainer>
+      <div>
+        {transformedData.map((unit) => {
+          if (unit.codingBadges.length > 0) {
+            return (
+              <div className="mb-4 sm:m-4">
+                <UnitBadgeSection
+                  unit={unit}
+                  editMode={editMode}
+                  handleBadgeClick={handleBadgeClick}
+                />
+              </div>
+            );
+          }
+        })}
+      </div>
+    </div>
   );
 };
 
