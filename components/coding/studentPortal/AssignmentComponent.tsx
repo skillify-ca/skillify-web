@@ -78,7 +78,19 @@ export default function AssignmentComponent({
   if (data.component === "title") {
     return <h1 className="text-5xl font-bold">{data.text}</h1>;
   } else if (data.component === "prompt") {
-    return <p className="text-lg">{data.text}</p>;
+    return (
+      <>
+        <div
+          className="flex p-4 cursor-pointer  w-1/6"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <h1 className="font-bold text-2xl text-black-500 underline decoration-[0.18rem] underline-offset-[12px] hover:text-gray-500">
+            Directions
+          </h1>
+        </div>
+        {isOpen && <p className="text-lg">{data.text}</p>}
+      </>
+    );
   } else if (data.component === "completed") {
     return <p>{data.text}</p>;
   } else if (data.component === "code-snippet") {
@@ -94,10 +106,10 @@ export default function AssignmentComponent({
     return (
       <>
         <div
-          className="flex p-4 cursor-pointer  bg-slate-300 hover:bg-slate-100"
+          className="flex p-4 cursor-pointer text-black-500 underline decoration-[0.18rem] underline-offset-[12px] hover:text-gray-500 w-1/6"
           onClick={() => setIsOpen(!isOpen)}
         >
-          <h1 className="font-bold text-lg">Hints... </h1>
+          <h1 className="font-bold text-2xl">Hints... </h1>
         </div>
         {isOpen && (
           <div className="flex flex-col gap-2">
@@ -115,33 +127,57 @@ export default function AssignmentComponent({
   } else if (data.component === "submission") {
     return (
       <>
-        <h1 className="text-lg">{data.codeSandboxTitle}</h1>
-        <AssignmentInputBox
-          placeholder={data.placeholder}
-          assignmentId={data.assignmentId}
-        />{" "}
+        <div
+          className="flex p-4 cursor-pointer  w-1/6"
+          onClick={() => setDefaultOpen(!isOpen)}
+        >
+          <h1 className="font-bold text-2xl text-black-500 underline decoration-[0.18rem] underline-offset-[12px] hover:text-gray-500">
+            Submission
+          </h1>
+        </div>
+        {!isOpen && (
+          <>
+            <h1 className="text-lg">{data.codeSandboxTitle}</h1>
+            <AssignmentInputBox
+              placeholder={data.placeholder}
+              assignmentId={data.assignmentId}
+            />{" "}
+          </>
+        )}
       </>
     );
   } else if (data.component === "output") {
     return (
-      <div>
-        <p className="text-lg">{data.title}</p>
-        {data.screenshotOrVideoId.kind === "screenshot" ? (
-          <img
-            src={data.screenshotOrVideoId.value}
-            className="object-cover w-64 h-32 mb-4"
-          />
-        ) : (
-          <iframe
-            src={`https://www.loom.com/embed/${data.screenshotOrVideoId.value}`}
-            frameBorder="0"
-            webkit-allowfullscreen
-            moz-allowfullscreen
-            allowFullScreen
-            className="w-full h-96"
-          />
+      <>
+        <div
+          className="flex p-4 cursor-pointer  w-1/6"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <h1 className="font-bold text-2xl text-black-500 underline decoration-[0.18rem] underline-offset-[12px] hover:text-gray-500">
+            Example
+          </h1>
+        </div>
+        {!isOpen && (
+          <div>
+            <p className="text-lg">{data.title}</p>
+            {data.screenshotOrVideoId.kind === "screenshot" ? (
+              <img
+                src={data.screenshotOrVideoId.value}
+                className="object-cover w-64 h-32 mb-4"
+              />
+            ) : (
+              <iframe
+                src={`https://www.loom.com/embed/${data.screenshotOrVideoId.value}`}
+                frameBorder="0"
+                webkit-allowfullscreen
+                moz-allowfullscreen
+                allowFullScreen
+                className="w-full h-96"
+              />
+            )}
+          </div>
         )}
-      </div>
+      </>
     );
   } else if (data.component === "loom-video") {
     return (

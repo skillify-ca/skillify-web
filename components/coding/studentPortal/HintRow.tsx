@@ -21,13 +21,13 @@ export const HintRow: React.FC<HintRowProps> = ({
         <ArrowCircleRightIcon
           className={
             showHint
-              ? "h-8 w-8 mr-2  text-yellow-600 cursor-pointer hover:text-yellow-600"
-              : " mr-2 h-8 w-8 cursor-pointer hover:text-yellow-600"
+              ? "h-8 w-8 mr-2  text-yellow-600 cursor-pointer hover:text-yellow-600  transition-all transform hover:scale-110"
+              : " mr-2 h-8 w-8 cursor-pointer hover:text-yellow-600  transition-all transform hover:scale-110"
           }
           onClick={handleViewClick}
         />
 
-        <div className="flex flex-col transition-all transform hover:scale-110">
+        <div className="flex flex-col">
           <p className={showHint ? "text-black" : "text-white"}>
             {description} {link && <Link href={link}>(link)</Link>}
           </p>
