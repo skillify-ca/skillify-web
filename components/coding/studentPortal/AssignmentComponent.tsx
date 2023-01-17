@@ -18,10 +18,6 @@ export enum Stage {
   COMPLETED,
 }
 
-export type Screenshot = { kind: "screenshot"; value: string };
-export type VideoId = { kind: "videoId"; value: string };
-export type ScreenshotOrVideoId = Screenshot | VideoId;
-
 export type AssignmentComponentData =
   | {
       component: "title";
@@ -37,8 +33,8 @@ export type AssignmentComponentData =
     }
   | {
       component: "output";
-      title: string;
-      screenshotOrVideoId: ScreenshotOrVideoId;
+      title?: string;
+      screenshotOrVideoId: string;
     }
   | {
       component: "submission";
@@ -129,7 +125,7 @@ export default function AssignmentComponent({
       <>
         <div
           className="flex p-4 cursor-pointer  w-1/6"
-          onClick={() => setDefaultOpen(!isOpen)}
+          onClick={() => setIsOpen(!isOpen)}
         >
           <h1 className="font-bold text-2xl text-black-500 underline decoration-[0.18rem] underline-offset-[12px] hover:text-gray-500">
             Submission
@@ -159,15 +155,15 @@ export default function AssignmentComponent({
         </div>
         {!isOpen && (
           <div>
-            <p className="text-lg">{data.title}</p>
-            {data.screenshotOrVideoId.kind === "screenshot" ? (
+            {data.title ? <p className="text-lg">{data.title}</p> : null}
+            {data.screenshotOrVideoId.includes(".") ? (
               <img
-                src={data.screenshotOrVideoId.value}
+                src={data.screenshotOrVideoId}
                 className="object-cover w-64 h-32 mb-4"
               />
             ) : (
               <iframe
-                src={`https://www.loom.com/embed/${data.screenshotOrVideoId.value}`}
+                src={`https://www.loom.com/embed/${data.screenshotOrVideoId}`}
                 frameBorder="0"
                 webkit-allowfullscreen
                 moz-allowfullscreen

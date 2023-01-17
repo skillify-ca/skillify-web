@@ -50,27 +50,18 @@ const React2 = ({
     }
   };
 
-  const [isDataLoaded, setIsDataLoaded] = useState(false);
-
   useEffect(() => {
     if (userAssignments.length > 0) {
-      setIsDataLoaded(true);
       console.log("redux found", userAssignments);
       const currentAssignment = userAssignments.find(
         (assignment) => assignment.assignment_id === assignmentId
       );
       deployCurrentStage(currentAssignment);
     } else {
-      console.log("data not yet loaded from redux, running query...");
-      setIsDataLoaded(false);
-    }
-  }, [userAssignments]);
-
-  useEffect(() => {
-    if (!isDataLoaded) {
+      console.log("running query", userAssignments);
       fetchUserAssignmentSubmissions();
     }
-  }, [isDataLoaded]);
+  }, [userAssignments]);
 
   const [fetchUserAssignmentSubmissions] =
     useLazyQuery<FetchUserAssignmentSubmissionsDataResponse>(
@@ -163,12 +154,9 @@ export async function getServerSideProps() {
 
     {
       component: "output",
-      title: "This is the desired output.",
-      screenshotOrVideoId: {
-        kind: "videoId",
-        value: "e85860979abd403380cf9a8eb2438f5d",
-      } as ScreenshotOrVideoId,
+      screenshotOrVideoId: "e85860979abd403380cf9a8eb2438f5d",
     },
+
     {
       component: "submission",
       codeSandboxTitle:
