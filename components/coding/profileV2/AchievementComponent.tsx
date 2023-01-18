@@ -1,7 +1,9 @@
+Flat lists
+
 // we're going to use the response structure instead of transforming to a new type
 
 import React, { useState } from "react";
-import { PencilAltIcon } from "@heroicons/react/outline";
+import { BadgeCheckIcon, PencilAltIcon } from "@heroicons/react/outline";
 
 import { useQuery } from "@apollo/client";
 import {
@@ -9,12 +11,17 @@ import {
   FetchBadgeResponse,
   FETCH_CODING_BADGES,
   IntroCourseUnit,
+  UserCodingBadge,
 } from "../../../graphql/coding/userBadges/fetchUserBadges";
 
 export type AchievementComponentProps = {
   userId: string;
 };
 
+type FlatBadge = {
+  badgeId: number;
+  userBadgeId: UserCodingBadge;
+};
 const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
   const [unitBadges, setUnitBadges] = useState<IntroCourseUnit[]>();
   const [editMode, setEditMode] = useState(false);
@@ -41,7 +48,7 @@ const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
       return unit.coding_badges.map((badge) => {
         return {
           badgeId: badge.id,
-          userBadgeId: badge.user_coding_badges[0].id,
+          userBadgeId: badge.user_coding_badges[0],
         };
       });
     });
@@ -50,16 +57,34 @@ const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
       return unit.coding_badges.map((badge) => {
         return {
           badgeId: badge.id,
-          userBadgeId: badge.user_coding_badges[0].id,
+          userBadgeId: badge.user_coding_badges[0],
         };
       });
     });
 
     // final lists here
-    const badgesToAdd = [];
-    const badgesToDelete = [];
-    return { badgesToAdd, badgesToDelete };
+    const flatInitialBadgeArray = initialBadgeArray
+      .flatMap((badge: FlatBadge[]) => badge)
+      .flatMap((badge) => badge.badgeId);
+    const flatFinalBadgeArray = finalBadgeArray
+      .flatMap((badge: FlatBadge[]) => badge)
+      .flatMap((badge) => badge.badgeId);
+    const badgesToAdd = flatFinalBadgeArray.filter((id: number) => {
+      return !flatInitialBadgeArray.includes(id)
+      });
+    };
+
+
+  return {
+      flatInitialBadgeArray,
+      flatFinalBadgeArray,
+      badgesToAdd,
+      badgesToDelete,
+      finalBadgeArray,
+      initialBadgeArray,
+    };
   };
+  console.log(unitBadges && findBadgeDiff(data.intro_course_unit, unitBadges));
 
   return (
     <div className="sm:shadow-md sm:p-4 sm:bg-slate-300 dark:bg-transparent">
@@ -80,8 +105,11 @@ const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
           {unitBadges.map((unit) => {
             if (unit.coding_badges.length > 0) {
               return (
+                // eslint-disable-next-line react/jsx-key
                 <div className="mb-4 sm:m-4">
                   <UnitBadgeSection
+                    key={userId}
+                    userId={userId}
                     unit={unit}
                     editMode={editMode}
                     setUnitBadges={setUnitBadges}
@@ -100,12 +128,14 @@ export default AcheivementComponent;
 
 type UnitBadgeSectionProps = {
   unit: IntroCourseUnit;
+  userId: string;
   editMode: boolean;
   setUnitBadges: React.Dispatch<React.SetStateAction<IntroCourseUnit[]>>;
 };
 
 function UnitBadgeSection({
   unit,
+  userId,
   editMode,
   setUnitBadges,
 }: UnitBadgeSectionProps) {
@@ -140,6 +170,7 @@ function UnitBadgeSection({
           {unit.coding_badges.map((badge) => (
             <div key={badge.id} className="m-4">
               <CodingBadgeUnit
+                userId={userId}
                 disabled={!editMode}
                 badge={badge}
                 setUnitBadges={setUnitBadges}
@@ -153,6 +184,7 @@ function UnitBadgeSection({
 }
 
 type CodingBadgeUnitProps = {
+  userId: string;
   disabled: boolean;
   badge: CodingBadge;
   setUnitBadges: React.Dispatch<React.SetStateAction<IntroCourseUnit[]>>;
