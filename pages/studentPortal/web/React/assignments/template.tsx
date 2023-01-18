@@ -120,11 +120,11 @@ export async function getServerSideProps() {
   const incompleteStage: AssignmentComponentData[] = [
     {
       component: "title",
-      text: "Assignment Title Goes Here",
+      text: "Get Hooked on useQuery Hooks",
     },
     {
       component: "prompt",
-      text: "Please outline the directions for what the student is expected to achieve. ",
+      text: "useQuery and useLazyQuery hooks are used to retrieve data from hasura so that you can use it in your project.  The EXAMPLE below will outline your assignment.  Your submission will be done through pasting a codesandbox link in the submission box below.  Only use the hints if you must!",
     },
     {
       component: "hint-list",

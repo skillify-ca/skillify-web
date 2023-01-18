@@ -71,27 +71,32 @@ export default function AssignmentComponent({
 }: AssignmentComponentProps) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const activeSectionStyling = () => {
+    let styling = "font-thin text-2xl";
+    if (!isOpen) {
+      styling = styling + " text-black-500 hover:text-slate-500";
+    } else {
+      styling = styling + " text-slate-500 hover:text-black-500";
+    }
+    return styling;
+  };
+
   if (data.component === "title") {
-    return <h1 className="text-5xl font-bold">{data.text}</h1>;
+    return <h1 className="text-5xl font-thin">{data.text}</h1>;
   } else if (data.component === "prompt") {
     return (
       <>
-        <div
-          className="flex p-4 cursor-pointer  w-1/6"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <h1 className="font-bold text-2xl text-black-500 underline decoration-[0.18rem] underline-offset-[12px] hover:text-gray-500">
-            Directions
-          </h1>
+        <div className="flex cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+          <h1 className={activeSectionStyling()}>Directions</h1>
         </div>
-        {isOpen && <p className="text-lg">{data.text}</p>}
+        {!isOpen && <p className="text-lg">{data.text}</p>}
       </>
     );
   } else if (data.component === "completed") {
     return <p>{data.text}</p>;
   } else if (data.component === "code-snippet") {
     return (
-      <div className="mx-4 space-y-4">
+      <div className="flex cursor-pointer">
         {data.text && <p>{data.text}</p>}
         <pre className="p-4 border-2 bg-slate-100 border-black-transparent rounded-xl">
           <Sandpack template="react-ts" files={{ "App.tsx": data.code }} />
@@ -101,14 +106,19 @@ export default function AssignmentComponent({
   } else if (data.component === "hint-list") {
     return (
       <>
-        <div
-          className="flex p-4 cursor-pointer text-black-500 underline decoration-[0.18rem] underline-offset-[12px] hover:text-gray-500 w-1/6"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <h1 className="font-bold text-2xl">Hints... </h1>
+        <div className="flex cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+          <h1
+            className={
+              isOpen
+                ? "font-thin text-2xl text-black-500 animate-none hover:text-slate-500"
+                : "font-thin text-2xl text-slate-500 animate-pulse hover:text-black-500"
+            }
+          >
+            Hints...{" "}
+          </h1>
         </div>
         {isOpen && (
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col">
             {data.hintRow.map((it, index) => (
               <HintRow
                 key={index}
@@ -123,13 +133,8 @@ export default function AssignmentComponent({
   } else if (data.component === "submission") {
     return (
       <>
-        <div
-          className="flex p-4 cursor-pointer  w-1/6"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <h1 className="font-bold text-2xl text-black-500 underline decoration-[0.18rem] underline-offset-[12px] hover:text-gray-500">
-            Submission
-          </h1>
+        <div className="flex cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+          <h1 className={activeSectionStyling()}>Submission</h1>
         </div>
         {!isOpen && (
           <>
@@ -145,13 +150,8 @@ export default function AssignmentComponent({
   } else if (data.component === "output") {
     return (
       <>
-        <div
-          className="flex p-4 cursor-pointer  w-1/6"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <h1 className="font-bold text-2xl text-black-500 underline decoration-[0.18rem] underline-offset-[12px] hover:text-gray-500">
-            Example
-          </h1>
+        <div className="flex cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+          <h1 className={activeSectionStyling()}>Example</h1>
         </div>
         {!isOpen && (
           <div>
@@ -159,7 +159,7 @@ export default function AssignmentComponent({
             {data.screenshotOrVideoId.includes(".") ? (
               <img
                 src={data.screenshotOrVideoId}
-                className="object-cover w-64 h-32 mb-4"
+                className="object-cover w-64 h-32 mb-8"
               />
             ) : (
               <iframe
