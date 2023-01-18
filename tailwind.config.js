@@ -188,6 +188,7 @@ module.exports = {
       "text-yellow-500",
       "text-yellow-800",
       "text-gray-400",
+      "text-orange-400",
       "bg-pink-300",
       "bg-pink-600",
       "hover:bg-pink-400",
