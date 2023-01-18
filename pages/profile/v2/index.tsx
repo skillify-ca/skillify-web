@@ -1,5 +1,7 @@
+import React from "react";
 import { useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
+import ExpandableContainer from "../../../components/coding/ExpandableContainer";
 import GoalsSectionComponent from "../../../components/coding/GoalsSectionComponent";
 import AchievementComponent from "../../../components/coding/profileV2/AchievementComponent";
 import AssignmentSectionComponent from "../../../components/coding/profileV2/AssignmentSectionComponent";
@@ -12,7 +14,7 @@ import {
 import { useAuth } from "../../../lib/authContext";
 import { userGoalsSelector, setUserGoals } from "../../../redux/userGoalsSlice";
 
-export default function Profile(props) {
+export default function Profile() {
   const { user } = useAuth();
   const dispatch = useDispatch();
   const { userGoals } = useSelector(userGoalsSelector);
@@ -30,32 +32,37 @@ export default function Profile(props) {
   );
 
   return (
-    <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
+    <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll space-y-9">
       <ProfileHeaderComponent userId={user.uid} />
-
-      <h2 className="text-lg font-bold mt-14 mb-9">Assignments</h2>
-
-      <div className="grid grid-cols-1 mb-4">
-        <AssignmentSectionComponent />
+      <div>
+        <ExpandableContainer open={true} title={"Assignments"}>
+          <AssignmentSectionComponent />{" "}
+        </ExpandableContainer>
       </div>
-
-      <h2 className="text-lg font-bold mt-14 mb-9">Goals</h2>
-
-      <div className="grid grid-cols-1">
-        <GoalsSectionComponent
-          inProfile={true}
-          userGoals={userGoals
-            .filter((goal) => !goal.isComplete && !goal.isArchived)
-            .slice(0, 3)}
-        />
+      <div className="grid">
+        <ExpandableContainer open={true} title={"Goals"}>
+          {userGoalsLoading ? (
+            <div>Loading...</div>
+          ) : (
+            <GoalsSectionComponent
+              inProfile={true}
+              userGoals={userGoals
+                .filter((goal) => !goal.isComplete && !goal.isArchived)
+                .slice(0, 3)}
+            />
+          )}
+        </ExpandableContainer>
       </div>
-      <h2 className="text-lg font-bold mt-14 mb-9">Skill Ratings</h2>
-      <div className="grid grid-cols-1">
-        <SkillRatingsComponent />
+      <div className="grid">
+        <ExpandableContainer open={true} title={"Skill Ratings"}>
+          <SkillRatingsComponent />
+        </ExpandableContainer>
       </div>
-
-      <h2 className="text-lg font-bold mb-9">Achievements</h2>
-      <AchievementComponent user={user} />
+      <div className="grid">
+        <ExpandableContainer open={true} title={"Achievements"}>
+          <AchievementComponent user={user} />
+        </ExpandableContainer>
+      </div>
     </div>
   );
 }
