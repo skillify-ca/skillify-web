@@ -33,17 +33,27 @@ export default function ProjectsSection({ user }: ProjectsSectionProps) {
           No Active Projects
         </div>
       ) : (
-        userProjects.map((it) => {
+        userProjects.map((it, i) => {
           return (
-            <div className="flex flex-col items-center gap-4 p-4 bg-slate-300 dark:bg-slate-900">
+            <div
+              key={i}
+              className="flex flex-col items-center gap-4 p-4 bg-slate-300 dark:bg-slate-900"
+            >
               <p className="font-bold">{it.name}</p>
-              <img src={it.image} className="w-24 h-24 bg-white rounded-full" />
+              <img
+                src={it.image}
+                className="object-cover w-24 h-24 bg-white rounded-full"
+              />
               <div className="flex justify-around w-full">
                 <a href={it.githubLink} target="_blank" rel="noreferrer">
-                  <Button label="Github" backgroundColor="green" />
+                  <Button
+                    label="Github"
+                    backgroundColor="white"
+                    textColor="orange-400"
+                  />
                 </a>
                 <a href={it.projectLink} target="_blank" rel="noreferrer">
-                  <Button label="Project" backgroundColor="purple" />
+                  <Button label="Project" />
                 </a>
               </div>
             </div>
