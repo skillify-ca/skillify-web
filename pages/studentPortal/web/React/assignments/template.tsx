@@ -1,11 +1,10 @@
-import { useLazyQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import AssignmentComponent, {
   AssignmentComponentData,
-  ScreenshotOrVideoId,
   Stage,
 } from "../../../../../components/coding/studentPortal/AssignmentComponent";
 import { Button } from "../../../../../components/ui/Button";
@@ -50,21 +49,8 @@ const React2 = ({
     }
   };
 
-  useEffect(() => {
-    if (userAssignments.length > 0) {
-      console.log("redux found", userAssignments);
-      const currentAssignment = userAssignments.find(
-        (assignment) => assignment.assignment_id === assignmentId
-      );
-      deployCurrentStage(currentAssignment);
-    } else {
-      console.log("running query", userAssignments);
-      fetchUserAssignmentSubmissions();
-    }
-  }, [userAssignments]);
-
-  const [fetchUserAssignmentSubmissions] =
-    useLazyQuery<FetchUserAssignmentSubmissionsDataResponse>(
+  const { loading: userAssignmentsLoading } =
+    useQuery<FetchUserAssignmentSubmissionsDataResponse>(
       FETCH_USER_ASSIGNMENT_SUBMISSIONS,
       {
         variables: {
@@ -101,19 +87,21 @@ const React2 = ({
   return (
     <>
       <div className="grid grid-cols-1 gap-8 px-4 pt-4 m-8 sm:px-12">
-        {stage === Stage.INCOMPLETE
-          ? incompleteStage.map((it: AssignmentComponentData, index) => (
-              <AssignmentComponent key={index} data={it} />
-            ))
-          : stage === Stage.SUBMITTED
-          ? submittedStage.map((it: AssignmentComponentData, index) => (
-              <AssignmentComponent key={index} data={it} />
-            ))
-          : stage === Stage.COMPLETED
-          ? completedStage.map((it: AssignmentComponentData, index) => (
-              <AssignmentComponent key={index} data={it} />
-            ))
-          : null}
+        {userAssignmentsLoading ? (
+          <div>Loading...</div>
+        ) : stage === Stage.INCOMPLETE ? (
+          incompleteStage.map((it: AssignmentComponentData, index) => (
+            <AssignmentComponent key={index} data={it} />
+          ))
+        ) : stage === Stage.SUBMITTED ? (
+          submittedStage.map((it: AssignmentComponentData, index) => (
+            <AssignmentComponent key={index} data={it} />
+          ))
+        ) : stage === Stage.COMPLETED ? (
+          completedStage.map((it: AssignmentComponentData, index) => (
+            <AssignmentComponent key={index} data={it} />
+          ))
+        ) : null}
       </div>
       <div className="flex ml-16 my-8 sm:justify-beginning">
         <div className="mx-4">
