@@ -7,6 +7,13 @@ export type Users = {
   profile_image: string;
   badges_earned: number;
   created_at: string;
+  current_badge: number;
+  coding_badge: CodingBadge;
+};
+
+export type CodingBadge = {
+  title: string;
+  image: string;
 };
 
 export type FetchUserProfileCardResponse = {
@@ -21,6 +28,11 @@ export const FETCH_USER_PROFILE_CARD = gql`
       profile_image
       badges_earned
       created_at
+      current_badge
+      coding_badge {
+        title
+        image
+      }
     }
   }
 `;
