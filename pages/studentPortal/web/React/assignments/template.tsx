@@ -5,7 +5,6 @@ import React, { useState } from "react";
 
 import AssignmentComponent, {
   AssignmentComponentData,
-  Stage,
 } from "../../../../../components/coding/studentPortal/AssignmentComponent";
 import { Button } from "../../../../../components/ui/Button";
 import {
@@ -18,6 +17,12 @@ import {
   assignmentsSelector,
   setUserAssignments,
 } from "../../../../../redux/assignmentsSlice";
+
+export enum Stage {
+  INCOMPLETE,
+  SUBMITTED,
+  COMPLETED,
+}
 
 export type templateProps = {
   incompleteStage: AssignmentComponentData[];
