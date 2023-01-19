@@ -98,8 +98,11 @@ export default AcheivementComponent;
 function UnitBadgeSection({ unit, editMode, handleBadgeClick }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  function getNumEarnedBadgesForUnit(codingBages) {
-    return codingBages.filter((badge) => badge.isAwarded).length;
+  function getEarnedBadgesText(codingBages) {
+    const badgesEarned = codingBages.filter((badge) => badge.isAwarded).length;
+    return badgesEarned === 1
+      ? `1 Badge Earned`
+      : `${badgesEarned} Badges Earned`;
   }
 
   return (
@@ -116,7 +119,7 @@ function UnitBadgeSection({ unit, editMode, handleBadgeClick }) {
           <div className="flex flex-col justify-center px-4">
             <h3 className="text-xl font-bold text-white">{unit.unitTitle}</h3>
             <p className="font-bold text-charmander">
-              {getNumEarnedBadgesForUnit(unit.codingBadges)} Badges Earned
+              {getEarnedBadgesText(unit.codingBadges)}
             </p>
           </div>
         </div>

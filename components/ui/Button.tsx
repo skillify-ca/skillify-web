@@ -71,7 +71,8 @@ export const Button: React.FC<ButtonProps> = ({
         "bg-yellow-500 via-yellow-400 to-yellow-500 border-yellow-900 hover:bg-yellow-400";
       break;
     case "white":
-      backgroundStyles = "bg-white border-gray-300 border-2 hover:bg-gray-200";
+      backgroundStyles =
+        "bg-white border-gray-300 border-2 hover:bg-gray-200 text-orange-400";
       break;
   }
   return (
