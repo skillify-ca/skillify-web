@@ -17,12 +17,10 @@ export enum Stage {
   // eslint-disable-next-line no-unused-vars
   COMPLETED,
 }
+export type Screenshot = string;
+export type VideoId = string;
 
 export type AssignmentComponentData =
-  | {
-      component: "title";
-      text: string;
-    }
   | {
       component: "prompt";
       text: string;
@@ -34,7 +32,7 @@ export type AssignmentComponentData =
   | {
       component: "output";
       title?: string;
-      screenshotOrVideoId: string;
+      screenshotOrVideoId: Screenshot | VideoId;
     }
   | {
       component: "submission";
@@ -155,7 +153,6 @@ export default function AssignmentComponent({
         </div>
         {!isOpen && (
           <div>
-            {data.title ? <p className="text-lg">{data.title}</p> : null}
             {data.screenshotOrVideoId.includes(".") ? (
               <img
                 src={data.screenshotOrVideoId}
