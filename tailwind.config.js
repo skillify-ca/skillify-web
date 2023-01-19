@@ -113,6 +113,7 @@ module.exports = {
      * bg-yellow-300
      * bg-green-300
      * bg-pink-300
+     * bg-orange-400
      * bg-purple-600
      * bg-pink-600
      * bg-blue-600

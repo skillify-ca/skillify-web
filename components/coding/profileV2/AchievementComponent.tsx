@@ -22,7 +22,7 @@ export type codingBadges = {
   isAwarded: boolean;
 };
 export type unit = unitProps[];
-const AcheivementComponent = ({ user }) => {
+const AcheivementComponent = ({ user, isEditable = false }) => {
   const { data } = useQuery(FETCH_CODING_BADGES, {
     variables: {
       userId: user.uid,
@@ -63,16 +63,18 @@ const AcheivementComponent = ({ user }) => {
   return (
     <div className="sm:p-4 sm:shadow-md bg-slate-300 dark:bg-slate-900">
       <div className="flex justify-end w-full mb-4">
-        <button
-          onClick={() => setEditMode(!editMode)}
-          className="w-5 h-5 cursor-pointer hover:text-yellow-600"
-        >
-          {editMode ? (
-            <PencilAltIcon className="w-5 h-5 text-yellow-600 cursor-pointer" />
-          ) : (
-            <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
-          )}
-        </button>
+        {isEditable && (
+          <button
+            onClick={() => setEditMode(!editMode)}
+            className="w-5 h-5 cursor-pointer hover:text-yellow-600"
+          >
+            {editMode ? (
+              <PencilAltIcon className="w-5 h-5 text-yellow-600 cursor-pointer" />
+            ) : (
+              <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
+            )}
+          </button>
+        )}
       </div>
       <div>
         {transformedData.map((unit) => {

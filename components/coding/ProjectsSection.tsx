@@ -46,7 +46,11 @@ export default function ProjectsSection({ user }: ProjectsSectionProps) {
               />
               <div className="flex justify-around w-full">
                 <a href={it.githubLink} target="_blank" rel="noreferrer">
-                  <Button label="Github" backgroundColor="white" />
+                  <Button
+                    label="Github"
+                    backgroundColor="white"
+                    textColor="text-orange-400"
+                  />
                 </a>
                 <a href={it.projectLink} target="_blank" rel="noreferrer">
                   <Button label="Project" />

@@ -35,7 +35,7 @@ export interface ButtonProps {
  */
 export const Button: React.FC<ButtonProps> = ({
   backgroundColor = "primary",
-  textColor = "white",
+  textColor = "text-white",
   label,
   disabled = false,
   onClick,
@@ -90,7 +90,7 @@ export const Button: React.FC<ButtonProps> = ({
       {...props}
     >
       <p
-        className={`${disabled ? "text-gray-50" : "text-" + textColor} ${
+        className={`${disabled ? "text-gray-50" : textColor} ${
           size === "large" ? "text-xl" : "text-base"
         }`}
       >
