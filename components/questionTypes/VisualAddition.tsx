@@ -78,12 +78,7 @@ export const VisualAddition: React.FC<VisualAdditionProp> = ({
           setValue={setGuess}
           handleKeypress={handleKeypress}
         />
-        <Button
-          label="Submit"
-          backgroundColor="blue"
-          textColor="white"
-          onClick={onSubmit}
-        />
+        <Button label="Submit" backgroundColor="blue" onClick={onSubmit} />
       </div>
     </div>
   );
