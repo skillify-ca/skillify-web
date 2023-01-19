@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import ExpandableContainer from "../../../components/coding/ExpandableContainer";
 import GoalsSectionComponent from "../../../components/coding/GoalsSectionComponent";
 import AchievementComponent from "../../../components/coding/profileV2/AchievementComponent";
-import AssignmentSectionComponent from "../../../components/coding/profileV2/AssignmentSectionComponent";
 import ProfileHeaderComponent from "../../../components/coding/profileV2/ProfileHeaderComponent";
 import SkillRatingsComponent from "../../../components/coding/SkillRatingsComponent";
 import {
@@ -13,6 +12,7 @@ import {
 } from "../../../graphql/fetchUserGoals";
 import { useAuth } from "../../../lib/authContext";
 import { userGoalsSelector, setUserGoals } from "../../../redux/userGoalsSlice";
+import ProjectsSection from "../../../components/coding/ProjectsSection";
 
 export default function Profile() {
   const { user } = useAuth();
@@ -35,8 +35,8 @@ export default function Profile() {
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll space-y-9">
       <ProfileHeaderComponent userId={user.uid} />
       <div>
-        <ExpandableContainer open={true} title={"Assignments"}>
-          <AssignmentSectionComponent />{" "}
+        <ExpandableContainer open={true} title={"Projects"}>
+          <ProjectsSection user={user} />
         </ExpandableContainer>
       </div>
       <div className="grid">

@@ -6,65 +6,75 @@ import { Button } from "../../components/ui/Button";
 export default function WordPattern(props) {
   const onResetRequested = () => {
     setIndex(0);
-    setDictionary(new Map())
-    setResult(undefined)
-    setIsComplete(false)
-    setMessage("")
+    setDictionary(new Map());
+    setResult(undefined);
+    setIsComplete(false);
+    setMessage("");
   };
   const words = () => {
     if (str.length === 0) return [];
-    return str.split(" ")
-  }
+    return str.split(" ");
+  };
 
   const onAdvanceRequested = () => {
     if (index === pattern.length - 1) {
       setIsComplete(true);
       setResult(true);
-      setMessage("You got to the end of the string, so the pattern match this list of words. Congrats!")
+      setMessage(
+        "You got to the end of the string, so the pattern match this list of words. Congrats!"
+      );
     } else {
-      setIndex(index + 1)
+      setIndex(index + 1);
     }
   };
 
   const onCheckDictionaryRequested = () => {
-    const c = dictionary.get(pattern.charAt(index))
-    const word = dictionary.get(words()[index])
+    const c = dictionary.get(pattern.charAt(index));
+    const word = dictionary.get(words()[index]);
 
     if (c !== word) {
       if (c === undefined) {
-        setMessage("The word is already in the dictionary with a different character value. The pattern does not match.")
+        setMessage(
+          "The word is already in the dictionary with a different character value. The pattern does not match."
+        );
       }
       if (word === undefined) {
-        setMessage("The character is already in the dictionary with a different word value. The pattern does not match.")
+        setMessage(
+          "The character is already in the dictionary with a different word value. The pattern does not match."
+        );
       }
     } else {
       if (c === undefined && word === undefined) {
-        setMessage("Dictionary doesn't contain current character or word. It is safe to add both to the dictionary.")
+        setMessage(
+          "Dictionary doesn't contain current character or word. It is safe to add both to the dictionary."
+        );
       } else {
-        setMessage("The character and word are mapped to each other already in the dictionary. It is safe to continue.")
+        setMessage(
+          "The character and word are mapped to each other already in the dictionary. It is safe to continue."
+        );
       }
     }
-  }
+  };
 
   const onSetDictionaryRequested = () => {
-    const c = dictionary.get(pattern.charAt(index))
-    const word = dictionary.get(words()[index])
-    setMessage("")
+    const c = dictionary.get(pattern.charAt(index));
+    const word = dictionary.get(words()[index]);
+    setMessage("");
     if (c === undefined && word === undefined) {
       const newDictionary = new Map(dictionary);
-      newDictionary.set(pattern.charAt(index), index)
-      newDictionary.set(words()[index], index)
-      setDictionary(newDictionary)
+      newDictionary.set(pattern.charAt(index), index);
+      newDictionary.set(words()[index], index);
+      setDictionary(newDictionary);
     }
-  }
+  };
 
   const onClearRequested = () => {
     setPattern("");
     setStr("");
-    setDictionary(new Map())
+    setDictionary(new Map());
     setIndex(0);
-    setResult(undefined)
-    setIsComplete(false)
+    setResult(undefined);
+    setIsComplete(false);
   };
 
   const onStrInputChangeRequested = (val) => {
@@ -81,7 +91,6 @@ export default function WordPattern(props) {
   const [pattern, setPattern] = useState("");
   const [message, setMessage] = useState("");
   const [dictionary, setDictionary] = useState(new Map<string, number>());
-
 
   return (
     <>
@@ -123,7 +132,9 @@ export default function WordPattern(props) {
           </div>
           <div className="flex flex-col gap-4 p-4 bg-white shadow-lg rounded-xl">
             <p className="font-bold">Algorithm</p>
-            Iterate through the string and build up a dictionary of key-value pairs. Save both the current character and the current word in the dictionary along with the current index.
+            Iterate through the string and build up a dictionary of key-value
+            pairs. Save both the current character and the current word in the
+            dictionary along with the current index.
           </div>
           <div className="flex flex-col gap-2 p-4 bg-white shadow-lg rounded-xl">
             <h2 className="font-bold">Pattern Input</h2>
@@ -141,25 +152,24 @@ export default function WordPattern(props) {
               onChange={(e) => onStrInputChangeRequested(e.target.value)}
             />
           </div>
-          <div className="flex flex-col space-y-4 p-4 bg-white shadow-lg rounded-xl">
+          <div className="flex flex-col p-4 space-y-4 bg-white shadow-lg rounded-xl">
             <p className="font-bold ">Interactive</p>
             <div className="flex flex-col space-y-2 bg-white">
-              <p className="font-bold text-sm">Pattern</p>
+              <p className="text-sm font-bold">Pattern</p>
               <ArrayIteration data={pattern.split("")} currentIndex={index} />
             </div>
             <div className="flex flex-col space-y-2 bg-white">
-              <p className="font-bold text-sm">Words</p>
+              <p className="text-sm font-bold">Words</p>
               <ArrayIteration data={words()} currentIndex={index} />
             </div>
             <div className="flex flex-col space-y-2 bg-white">
-              <p className="font-bold text-sm">Dictionary</p>
+              <p className="text-sm font-bold">Dictionary</p>
 
               <HashMap data={dictionary} />
             </div>
             <div className="flex flex-col space-y-2 bg-white">
-              <p className="font-bold text-sm">Message</p>
-              <p className="font-bold text-sm">{message}</p>
-
+              <p className="text-sm font-bold">Message</p>
+              <p className="text-sm font-bold">{message}</p>
             </div>
           </div>
 
@@ -170,39 +180,33 @@ export default function WordPattern(props) {
                 disabled={isComplete}
                 label="Check Dictionary"
                 backgroundColor="blue"
-                textColor="white"
                 onClick={onCheckDictionaryRequested}
               />
               <Button
                 disabled={isComplete}
                 label="Set Dictionary"
                 backgroundColor="blue"
-                textColor="white"
                 onClick={onSetDictionaryRequested}
               />
               <Button
                 disabled={isComplete}
                 label="Advance"
                 backgroundColor="blue"
-                textColor="white"
                 onClick={onAdvanceRequested}
               />
 
               <Button
                 label="Reset"
                 backgroundColor="blue"
-                textColor="white"
                 onClick={onResetRequested}
               />
               <Button
                 label="Clear"
                 backgroundColor="blue"
-                textColor="white"
                 onClick={onClearRequested}
               />
             </div>
           </div>
-
         </div>
       </div>
     </>

@@ -22,7 +22,7 @@ export type codingBadges = {
   isAwarded: boolean;
 };
 export type unit = unitProps[];
-const AcheivementComponent = ({ user }) => {
+const AcheivementComponent = ({ user, isEditable = false }) => {
   const { data } = useQuery(FETCH_CODING_BADGES, {
     variables: {
       userId: user.uid,
@@ -61,18 +61,20 @@ const AcheivementComponent = ({ user }) => {
   }, [data]);
 
   return (
-    <div className="sm:shadow-md sm:p-4 sm:bg-slate-300 dark:bg-transparent">
+    <div className="sm:p-4 sm:shadow-md bg-slate-300 dark:bg-slate-900">
       <div className="flex justify-end w-full mb-4">
-        <button
-          onClick={() => setEditMode(!editMode)}
-          className="w-5 h-5 cursor-pointer hover:text-yellow-600"
-        >
-          {editMode ? (
-            <PencilAltIcon className="w-5 h-5 text-yellow-600 cursor-pointer" />
-          ) : (
-            <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
-          )}
-        </button>
+        {isEditable && (
+          <button
+            onClick={() => setEditMode(!editMode)}
+            className="w-5 h-5 cursor-pointer hover:text-yellow-600"
+          >
+            {editMode ? (
+              <PencilAltIcon className="w-5 h-5 text-yellow-600 cursor-pointer" />
+            ) : (
+              <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
+            )}
+          </button>
+        )}
       </div>
       <div>
         {transformedData.map((unit) => {
@@ -98,8 +100,11 @@ export default AcheivementComponent;
 function UnitBadgeSection({ unit, editMode, handleBadgeClick }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  function getNumEarnedBadgesForUnit(codingBages) {
-    return codingBages.filter((badge) => badge.isAwarded).length;
+  function getEarnedBadgesText(codingBages) {
+    const badgesEarned = codingBages.filter((badge) => badge.isAwarded).length;
+    return badgesEarned === 1
+      ? `1 Badge Earned`
+      : `${badgesEarned} Badges Earned`;
   }
 
   return (
@@ -116,7 +121,7 @@ function UnitBadgeSection({ unit, editMode, handleBadgeClick }) {
           <div className="flex flex-col justify-center px-4">
             <h3 className="text-xl font-bold text-white">{unit.unitTitle}</h3>
             <p className="font-bold text-charmander">
-              {getNumEarnedBadgesForUnit(unit.codingBadges)} Badges Earned
+              {getEarnedBadgesText(unit.codingBadges)}
             </p>
           </div>
         </div>
