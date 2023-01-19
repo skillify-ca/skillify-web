@@ -9,14 +9,6 @@ export type Hint = {
   link?: string;
 };
 
-export enum Stage {
-  // eslint-disable-next-line no-unused-vars
-  INCOMPLETE,
-  // eslint-disable-next-line no-unused-vars
-  SUBMITTED,
-  // eslint-disable-next-line no-unused-vars
-  COMPLETED,
-}
 export type Screenshot = string;
 export type VideoId = string;
 

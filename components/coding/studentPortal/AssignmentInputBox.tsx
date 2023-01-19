@@ -36,11 +36,12 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
 
   const validateInput = () => {
     if (
-      !submissionInput.includes("codesandbox") ||
-      !submissionInput.includes("https")
+      !submissionInput.includes("codesandbox.com") ||
+      submissionInput.length == 0 ||
+      submissionInput.length > 80
     ) {
-      alert("Please submit a valid submission link.");
       return false;
+      alert("Please submit a valid submission link.");
     }
     return true;
   };
@@ -72,6 +73,7 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
               setSubmissionInput("");
             }
           }}
+          disabled={!validateInput()}
         />
       </div>
     </div>
