@@ -51,12 +51,7 @@ export const VerticalEquation: React.FC<VerticalEquationProp> = ({
         setValue={setGuess}
         handleKeypress={handleKeypress}
       />
-      <Button
-        onClick={onSubmit}
-        label="Submit"
-        backgroundColor="blue"
-        textColor="white"
-      />
+      <Button onClick={onSubmit} label="Submit" backgroundColor="blue" />
     </div>
   );
 };

@@ -18,7 +18,7 @@ import {
 } from "../../redux/skillRatingsSlice";
 import SkillRow from "../skillRatings/SkillRow";
 import { Button } from "../ui/Button";
-import ExpandableContainer from "./ExpandableContainer";
+import React from "react";
 
 export default function SkillRatingsComponent(props) {
   const dispatch = useDispatch();
@@ -64,51 +64,22 @@ export default function SkillRatingsComponent(props) {
 
   const activeTabStyling = (tab: string) => {
     let styling =
-      "ml-8 justify-content-center text-2xl text-gray-500 w-36 py-2 h-12 cursor-pointer ";
+      "ml-8 justify-content-center text-2xl dark:text-white text-gray-500 w-36 py-2 h-12 cursor-pointer ";
     if (tab === activeTab) {
       styling =
         styling +
-        "text-black-500 underline decoration-[0.18rem] underline-offset-[18px]";
+        "text-black-500 underline dark:hover:text-orange-300 decoration-[0.18rem] underline-offset-[18px]";
     } else {
       styling =
         styling +
-        "hover:text-black-500 hover:underline hover:decoration-[0.18rem] hover:underline-offset-[18px]";
+        "hover:text-black-500 dark:hover:text-orange-300 hover:underline hover:decoration-[0.18rem] hover:underline-offset-[18px] dark:hover:und";
     }
     return styling;
   };
 
   return (
-    <div className="flex flex-row overflow-auto-bg-scroll">
-      <div className="space-x-10">
-        {sections.map((it) => (
-          <button
-            className={activeTabStyling(it)}
-            onClick={() => {
-              setActiveTab(it);
-              activeTabStyling(it);
-            }}
-          >
-            {it}
-          </button>
-        ))}
-        <div className={`${activeTab ? "flex flex-col p-4 m-4" : "hidden"} `}>
-          {skillRatings &&
-            skillRatings
-              .filter((skill) => skill.unitName === activeTab)
-              .map((it) => (
-                <SkillRow
-                  skillRow={{
-                    userSkillId: it.userSkillId,
-                    skillId: it.skillId,
-                    skillName: it.skillName,
-                    unitName: it.unitName,
-                    studentRating: it.studentRating,
-                  }}
-                />
-              ))}
-        </div>
-      </div>
-      <div className="flex float-right p-4 mr-8 mt-8">
+    <div className="flex flex-col w-full overflow-auto-bg-scroll">
+      <div className="flex justify-center p-4">
         <Button
           label="Save"
           onClick={() =>
@@ -119,6 +90,40 @@ export default function SkillRatingsComponent(props) {
             })
           }
         />
+      </div>
+      <div className="">
+        {sections.map((it, i) => (
+          <button
+            key={i}
+            className={activeTabStyling(it)}
+            onClick={() => {
+              setActiveTab(it);
+              activeTabStyling(it);
+            }}
+          >
+            {it}
+          </button>
+        ))}
+      </div>
+
+      <div
+        className={`${activeTab ? "flex flex-col sm:p-4 sm:m-4" : "hidden"} `}
+      >
+        {skillRatings &&
+          skillRatings
+            .filter((skill) => skill.unitName === activeTab)
+            .map((it, i) => (
+              <SkillRow
+                key={i}
+                skillRow={{
+                  userSkillId: it.userSkillId,
+                  skillId: it.skillId,
+                  skillName: it.skillName,
+                  unitName: it.unitName,
+                  studentRating: it.studentRating,
+                }}
+              />
+            ))}
       </div>
     </div>
   );
