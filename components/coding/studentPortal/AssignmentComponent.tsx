@@ -8,17 +8,11 @@ export type Hint = {
   icon?: string;
   link?: string;
 };
-export enum Stage {
-  INCOMPLETE,
-  SUBMITTED,
-  COMPLETED,
-}
+
+export type Screenshot = string;
+export type VideoId = string;
 
 export type AssignmentComponentData =
-  | {
-      component: "title";
-      text: string;
-    }
   | {
       component: "prompt";
       text: string;
@@ -29,8 +23,8 @@ export type AssignmentComponentData =
     }
   | {
       component: "output";
-      title: string;
-      screenshot: string;
+      title?: string;
+      screenshotOrVideoId: Screenshot | VideoId;
     }
   | {
       component: "submission";
@@ -65,15 +59,34 @@ export type AssignmentComponentProps = {
 export default function AssignmentComponent({
   data,
 }: AssignmentComponentProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const activeSectionStyling = () => {
+    let styling = "font-thin text-2xl";
+    if (!isOpen) {
+      styling = styling + " text-black-500 hover:text-slate-500";
+    } else {
+      styling = styling + " text-slate-500 hover:text-black-500";
+    }
+    return styling;
+  };
+
   if (data.component === "title") {
-    return <h1 className="text-5xl font-bold">{data.text}</h1>;
+    return <h1 className="text-5xl font-thin">{data.text}</h1>;
   } else if (data.component === "prompt") {
-    return <p className="text-lg">{data.text}</p>;
+    return (
+      <>
+        <div className="flex cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+          <h1 className={activeSectionStyling()}>Directions</h1>
+        </div>
+        {!isOpen && <p className="text-lg">{data.text}</p>}
+      </>
+    );
   } else if (data.component === "completed") {
     return <p>{data.text}</p>;
   } else if (data.component === "code-snippet") {
     return (
-      <div className="mx-4 space-y-4">
+      <div className="flex cursor-pointer">
         {data.text && <p>{data.text}</p>}
         <pre className="p-4 border-2 bg-slate-100 border-black-transparent rounded-xl">
           <Sandpack template="react-ts" files={{ "App.tsx": data.code }} />
@@ -83,35 +96,73 @@ export default function AssignmentComponent({
   } else if (data.component === "hint-list") {
     return (
       <>
-        <h1 className="font-bold text-lg">
-          Hints...{" "}
-          <p className="text-base font-normal italic">
-            Click the arrow below to reveal
-          </p>
-        </h1>
-        <div className="flex flex-col gap-2">
-          {data.hintRow.map((it, index) => (
-            <HintRow description={it.description} link={it.link} />
-          ))}
+        <div className="flex cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+          <h1
+            className={
+              isOpen
+                ? "font-thin text-2xl text-black-500 animate-none hover:text-slate-500"
+                : "font-thin text-2xl text-slate-500 animate-pulse hover:text-black-500"
+            }
+          >
+            Hints...{" "}
+          </h1>
         </div>
+        {isOpen && (
+          <div className="flex flex-col">
+            {data.hintRow.map((it, index) => (
+              <HintRow
+                key={index}
+                description={it.description}
+                link={it.link}
+              />
+            ))}
+          </div>
+        )}
       </>
     );
   } else if (data.component === "submission") {
     return (
       <>
-        <h1 className="text-lg">{data.codeSandboxTitle}</h1>
-        <AssignmentInputBox
-          placeholder={data.placeholder}
-          assignmentId={data.assignmentId}
-        />{" "}
+        <div className="flex cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+          <h1 className={activeSectionStyling()}>Submission</h1>
+        </div>
+        {!isOpen && (
+          <>
+            <h1 className="text-lg">{data.codeSandboxTitle}</h1>
+            <AssignmentInputBox
+              placeholder={data.placeholder}
+              assignmentId={data.assignmentId}
+            />{" "}
+          </>
+        )}
       </>
     );
   } else if (data.component === "output") {
     return (
-      <div>
-        <p className="text-lg">{data.title}</p>
-        <img src={data.screenshot} className="object-cover w-64 h-32 mb-4" />
-      </div>
+      <>
+        <div className="flex cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+          <h1 className={activeSectionStyling()}>Example</h1>
+        </div>
+        {!isOpen && (
+          <div>
+            {data.screenshotOrVideoId.includes(".") ? (
+              <img
+                src={data.screenshotOrVideoId}
+                className="object-cover w-64 h-32 mb-8"
+              />
+            ) : (
+              <iframe
+                src={`https://www.loom.com/embed/${data.screenshotOrVideoId}`}
+                frameBorder="0"
+                webkit-allowfullscreen
+                moz-allowfullscreen
+                allowFullScreen
+                className="w-full h-96"
+              />
+            )}
+          </div>
+        )}
+      </>
     );
   } else if (data.component === "loom-video") {
     return (

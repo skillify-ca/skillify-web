@@ -3,7 +3,6 @@ import { differenceInCalendarDays, format } from "date-fns";
 import Link from "next/link";
 import React from "react";
 import { UserGoalsData } from "../../graphql/fetchUserGoals";
-import ExpandableContainer from "./ExpandableContainer";
 export type GoalsSectionProps = {
   sectionName?: string;
   userGoals?: UserGoalsData[];
@@ -21,7 +20,7 @@ export const returnGoalStyle = (goal: UserGoalsData) => {
   } else if (daysRemaining <= 3 && !goal.isComplete && !goal.isArchived) {
     goalStyle = "text-black-500 bg-yellow-300 rounded-xl p-2";
   } else {
-    goalStyle = "dark:text-white text-black-500";
+    goalStyle = "text-black-500";
   }
   return goalStyle;
 };
@@ -56,10 +55,10 @@ export default function GoalsSection({
             <p className="hidden md:block md:col-span-2">
               {format(new Date(goal.createdAt), "MM/dd/yyyy")}
             </p>
-            <p className="hidden col-span-1 md:block md:col-span-2">
+            <p className="hidden md:block col-span-1 md:col-span-2">
               {format(new Date(goal.targetDate), "MM/dd/yyyy")}
             </p>
-            <p className="col-span-1 md:hidden">
+            <p className="md:hidden col-span-1">
               {format(new Date(goal.targetDate), "MM/dd")}
             </p>
             <p className="hidden md:block md:col-span-2">
