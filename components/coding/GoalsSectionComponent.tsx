@@ -3,7 +3,6 @@ import { differenceInCalendarDays, format } from "date-fns";
 import Link from "next/link";
 import React from "react";
 import { UserGoalsData } from "../../graphql/fetchUserGoals";
-import ExpandableContainer from "./ExpandableContainer";
 export type GoalsSectionProps = {
   sectionName?: string;
   userGoals?: UserGoalsData[];
@@ -46,6 +45,7 @@ export default function GoalsSection({
       {userGoals.map((goal, index) => {
         return (
           <div
+            key={index}
             className={`grid grid-cols-5 my-2 text-sm text-center md:grid-cols-12 md:text-lg place-items-center ${returnGoalStyle(
               goal
             )}`}
