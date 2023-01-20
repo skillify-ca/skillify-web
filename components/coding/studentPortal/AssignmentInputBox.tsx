@@ -41,7 +41,6 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
       submissionInput.length > 80
     ) {
       return false;
-      alert("Please submit a valid submission link.");
     }
     return true;
   };
