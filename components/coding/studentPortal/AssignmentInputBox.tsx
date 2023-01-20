@@ -22,6 +22,7 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
     submission_link: submissionInput,
     assignment_id: assignmentId,
   };
+
   const [saveAssignmentInput] = useMutation(
     UPSERT_USER_ASSIGNMENT_SUBMISSIONS,
     {
@@ -32,6 +33,18 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
       refetchQueries: [FETCH_USER_ASSIGNMENT_SUBMISSIONS],
     }
   );
+
+  const validateInput = () => {
+    if (
+      !submissionInput.includes("codesandbox.com") ||
+      submissionInput.length == 0 ||
+      submissionInput.length > 80
+    ) {
+      return false;
+      alert("Please submit a valid submission link.");
+    }
+    return true;
+  };
 
   return (
     <div className="grid grid-cols-1 gap-4 dark:bg-gray-900 ">
@@ -51,13 +64,16 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
         <Button
           label="Save"
           onClick={() => {
-            saveAssignmentInput({
-              variables: {
-                objects: submissionVariables,
-              },
-            });
-            setSubmissionInput("");
+            if (validateInput()) {
+              saveAssignmentInput({
+                variables: {
+                  objects: submissionVariables,
+                },
+              });
+              setSubmissionInput("");
+            }
           }}
+          disabled={!validateInput()}
         />
       </div>
     </div>
