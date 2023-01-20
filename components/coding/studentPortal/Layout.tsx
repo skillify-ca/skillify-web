@@ -8,7 +8,6 @@ import {
 } from "../../../graphql/fetchUserGoalsCount";
 import { useAuth } from "../../../lib/authContext";
 import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
-import SkillifyCommandPalette from "../../CommandPalette";
 import Sidebar from "./Sidebar";
 
 export const Layout: React.FC = ({ children }) => {
