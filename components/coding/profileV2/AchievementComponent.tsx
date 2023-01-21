@@ -2,23 +2,30 @@
 
 import React, { useState } from "react";
 import { PencilAltIcon } from "@heroicons/react/outline";
-
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   CodingBadge,
   FetchBadgeResponse,
   FETCH_CODING_BADGES,
   IntroCourseUnit,
 } from "../../../graphql/coding/userBadges/fetchUserBadges";
+import { Button } from "../../ui/Button";
+import { INSERT_USER_CODING_BADGES } from "../../../graphql/coding/userBadges/insertUserCodingBadges";
+import { useAuth } from "../../../lib/authContext";
 
 export type AchievementComponentProps = {
   userId: string;
 };
 
+type BadgesForQuery = {
+  BadgeId: number;
+  UserId: string;
+};
+
 const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
   const [unitBadges, setUnitBadges] = useState<IntroCourseUnit[]>();
   const [editMode, setEditMode] = useState(false);
-
+  const { user } = useAuth();
   const { data } = useQuery<FetchBadgeResponse>(FETCH_CODING_BADGES, {
     variables: {
       userId: userId,
@@ -28,42 +35,117 @@ const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
     },
   });
 
+  const [saveAddedBadges] = useMutation(INSERT_USER_CODING_BADGES, {
+    refetchQueries: [{ query: FETCH_CODING_BADGES }],
+    onCompleted: () => {
+      alert("Your selected badges have been updated.");
+    },
+  });
+
+  const handleOnSaveButtonClick = () => {
+    saveAddedBadges({
+      variables: {
+        objects: separateBadges(
+          findBadgeDiff(data.intro_course_unit, unitBadges).changedBadgesList,
+          findBadgeDiff(data.intro_course_unit, unitBadges).initialBadgeArray
+        ).addBadges,
+      },
+    });
+  };
+
+  const separateBadges = (
+    changedBadgesList: CodingBadge[],
+    initialBadgeList: CodingBadge[]
+  ) => {
+    const addBadgesTemp: CodingBadge[] = [];
+    const removeBadgesTemp: CodingBadge[] = [];
+    changedBadgesList.forEach((badge: CodingBadge) => {
+      const index = initialBadgeList.findIndex(
+        (initialBadge) => initialBadge.id === badge.id
+      );
+      if (
+        badge.user_coding_badges.length > 0 &&
+        initialBadgeList.find((initBadge) => badge.id == initBadge.id)
+          .user_coding_badges.length === 0
+      ) {
+        addBadgesTemp.push(badge);
+      } else if (
+        badge.user_coding_badges.length === 0 &&
+        initialBadgeList[index].user_coding_badges.length > 0
+      ) {
+        removeBadgesTemp.push(changedBadgesList[index]);
+      }
+    });
+    const addBadges = addBadgesTemp.map((badge) => {
+      return { id: badge.id, userId: userId };
+    });
+    return { addBadges, removeBadgesTemp };
+  };
+
   // this function will take in the original list of badge data (fetched from the query), and the edited badge data
   // it should output an object containing two arrays: a list of badgeIds to add, and a list of userBadgeIds to remove
   // you need to find the diff between the two input arrays, then send them to the database to delete and upsert
-
+  // map badges to active badges and map through to only select badgeid
   const findBadgeDiff = (
     initialSet: IntroCourseUnit[],
     currentSet: IntroCourseUnit[]
   ) => {
     // give you some ideas on how you might be able to make this easier to compare but I didn't figure it out yet
-    const initialBadgeArray = initialSet.map((unit) => {
-      return unit.coding_badges.map((badge) => {
-        return {
-          badgeId: badge.id,
-          userBadgeId: badge.user_coding_badges[0].id,
-        };
-      });
-    });
+    const initialBadgeArray = initialSet.flatMap((unit) =>
+      unit.coding_badges.map((badge) => badge)
+    );
+    const finalBadgeArray = currentSet.flatMap((unit) =>
+      unit.coding_badges.map((badge) => badge)
+    );
 
-    const finalBadgeArray = currentSet.map((unit) => {
-      return unit.coding_badges.map((badge) => {
-        return {
-          badgeId: badge.id,
-          userBadgeId: badge.user_coding_badges[0].id,
-        };
-      });
+    // final lists here -- change badgestoadd to changelog and feed into function that reads user coding badge
+    // instead final use current
+    // prev instead of initial
+    const changedBadgesList = finalBadgeArray.filter((finalBadge) => {
+      const initialBadge = initialBadgeArray.find(
+        (initialBadge) =>
+          // try just checking the status of usercodingbadge
+          finalBadge.id === initialBadge.id &&
+          finalBadge.user_coding_badges === initialBadge.user_coding_badges
+      );
+      return !initialBadge;
     });
+    //
 
-    // final lists here
-    const badgesToAdd = [];
-    const badgesToDelete = [];
-    return { badgesToAdd, badgesToDelete };
+    return {
+      initialBadgeArray,
+      finalBadgeArray,
+      changedBadgesList,
+    };
   };
+  unitBadges &&
+    console.log(
+      "findbadgeDiff",
+      findBadgeDiff(data.intro_course_unit, unitBadges)
+    );
+  unitBadges &&
+    console.log(
+      "separateBadges",
+      separateBadges(
+        findBadgeDiff(data.intro_course_unit, unitBadges).changedBadgesList,
+        findBadgeDiff(data.intro_course_unit, unitBadges).initialBadgeArray
+      )
+    );
 
+  // unitBadges &&
+  //   console.log(
+  //     "query",
+  //     separateBadges(
+  //       findBadgeDiff(data.intro_course_unit, unitBadges).changedBadgesList,
+  //       findBadgeDiff(data.intro_course_unit, unitBadges).initialBadgeArray
+  //     ).addBadges.map((badges) => {
+  //       return badges.id;
+  //     })
+  //   );
   return (
     <div className="sm:shadow-md sm:p-4 sm:bg-slate-300 dark:bg-transparent">
       <div className="flex justify-end w-full mb-4">
+        <Button label={"Save"} onClick={handleOnSaveButtonClick}></Button>
         <button
           onClick={() => setEditMode(!editMode)}
           className="w-5 h-5 cursor-pointer hover:text-yellow-600"
@@ -77,10 +159,10 @@ const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
       </div>
       {unitBadges && (
         <div>
-          {unitBadges.map((unit) => {
+          {unitBadges.map((unit, index) => {
             if (unit.coding_badges.length > 0) {
               return (
-                <div className="mb-4 sm:m-4">
+                <div className="mb-4 sm:m-4" key={index}>
                   <UnitBadgeSection
                     unit={unit}
                     editMode={editMode}
@@ -135,7 +217,7 @@ function UnitBadgeSection({
           </div>
         </div>
       </div>
-      {isOpen && unit && (
+      {isOpen && (
         <div className="grid grid-cols-1 mb-8 text-base sm:grid-cols-3 bg-slate-800 sm:mb-0 ">
           {unit.coding_badges.map((badge) => (
             <div key={badge.id} className="m-4">
@@ -157,7 +239,7 @@ type CodingBadgeUnitProps = {
   badge: CodingBadge;
   setUnitBadges: React.Dispatch<React.SetStateAction<IntroCourseUnit[]>>;
 };
-
+// maybe use IndividualCodingBadge
 function CodingBadgeUnit({
   disabled,
   badge,
