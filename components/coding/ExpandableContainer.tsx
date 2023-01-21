@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { useSpring, animated, useTransition } from "react-spring";
 import { PlusCircleIcon } from "@heroicons/react/solid";
 import { MinusCircleIcon } from "@heroicons/react/solid";
 
@@ -18,6 +18,15 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
   const handleOpenExpandableContainer = () => {
     setIsOpen((prev) => !prev);
   };
+
+  const spring = useSpring({
+    opacity: isOpen ? 1 : 0,
+    config: { duration: 600 },
+  });
+
+  const springHeight = useSpring({
+    height: isOpen ? "auto" : 0,
+  });
 
   return (
     <>
@@ -44,10 +53,11 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
             </h6>
           </div>
         </div>
-
-        <div className="border-bottom">
-          <div>{isOpen && <div className="p-0 sm:p-2">{children}</div>}</div>
-        </div>
+        <animated.div style={springHeight} className="border-bottom">
+          <animated.div style={spring}>
+            <div className="p-0 sm:p-2">{children}</div>
+          </animated.div>
+        </animated.div>
       </div>
     </>
   );
