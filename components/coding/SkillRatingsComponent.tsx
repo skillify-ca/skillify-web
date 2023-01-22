@@ -19,14 +19,24 @@ import {
 import SkillRow from "../skillRatings/SkillRow";
 import { Button } from "../ui/Button";
 import React from "react";
+import { animated, useSpring } from "@react-spring/web";
 
 export default function SkillRatingsComponent(props) {
   const dispatch = useDispatch();
   const { user } = useAuth();
   const { skillRatings } = useSelector(skillRatingsSelector);
-  const [activeTab, setActiveTab] = useState("");
   const [sections, setSections] = useState<string[]>([]);
+  const [activeTab, setActiveTab] = useState("");
   const [haveTabsLoaded, setHaveTabsLoaded] = useState(false);
+  const [springProps, set] = useSpring(() => ({ opacity: 1 }));
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+    set({ opacity: 0 });
+    setTimeout(() => {
+      set({ opacity: 1 });
+    }, 300);
+  };
 
   const {} = useQuery<FetchSkillsAndRatings>(FETCH_SKILLS_AND_RATINGS, {
     variables: {
@@ -91,39 +101,43 @@ export default function SkillRatingsComponent(props) {
           }
         />
       </div>
-      <div className="">
+      <div>
         {sections.map((it, i) => (
-          <button
+          <animated.button
             key={i}
             className={activeTabStyling(it)}
             onClick={() => {
-              setActiveTab(it);
+              handleTabClick(it);
               activeTabStyling(it);
             }}
           >
             {it}
-          </button>
+          </animated.button>
         ))}
       </div>
 
-      <div
-        className={`${activeTab ? "flex flex-col sm:p-4 sm:m-4" : "hidden"} `}
-      >
-        {skillRatings &&
-          skillRatings
-            .filter((skill) => skill.unitName === activeTab)
-            .map((it, i) => (
-              <SkillRow
-                key={i}
-                skillRow={{
-                  userSkillId: it.userSkillId,
-                  skillId: it.skillId,
-                  skillName: it.skillName,
-                  unitName: it.unitName,
-                  studentRating: it.studentRating,
-                }}
-              />
-            ))}
+      <div>
+        <div
+          className={`${activeTab ? "flex flex-col sm:p-4 sm:m-4" : "hidden"} `}
+        >
+          <animated.div style={springProps}>
+            {skillRatings &&
+              skillRatings
+                .filter((skill) => skill.unitName === activeTab)
+                .map((it, i) => (
+                  <SkillRow
+                    key={i}
+                    skillRow={{
+                      userSkillId: it.userSkillId,
+                      skillId: it.skillId,
+                      skillName: it.skillName,
+                      unitName: it.unitName,
+                      studentRating: it.studentRating,
+                    }}
+                  />
+                ))}
+          </animated.div>
+        </div>
       </div>
     </div>
   );
