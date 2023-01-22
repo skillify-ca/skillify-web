@@ -10,8 +10,10 @@ import {
   IntroCourseUnit,
 } from "../../../graphql/coding/userBadges/fetchUserBadges";
 import { Button } from "../../ui/Button";
-import { INSERT_USER_CODING_BADGES } from "../../../graphql/coding/userBadges/insertUserCodingBadges";
-import { useAuth } from "../../../lib/authContext";
+import {
+  INSERT_USER_CODING_BADGES,
+  DELETE_USER_CODING_BADGES,
+} from "../../../graphql/coding/userBadges/updateUserCodingBadges";
 
 export type AchievementComponentProps = {
   userId: string;
@@ -20,7 +22,6 @@ export type AchievementComponentProps = {
 const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
   const [unitBadges, setUnitBadges] = useState<IntroCourseUnit[]>();
   const [editMode, setEditMode] = useState(false);
-  const { user } = useAuth();
   const { data } = useQuery<FetchBadgeResponse>(FETCH_CODING_BADGES, {
     variables: {
       userId: userId,
@@ -32,28 +33,46 @@ const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
 
   const [saveAddedBadges] = useMutation(INSERT_USER_CODING_BADGES, {
     refetchQueries: [{ query: FETCH_CODING_BADGES }],
-    onCompleted: () => {
-      alert("Your selected badges have been updated.");
-    },
+  });
+  const [saveRemovedBadges] = useMutation(DELETE_USER_CODING_BADGES, {
+    refetchQueries: [{ query: FETCH_CODING_BADGES }],
   });
 
   const handleOnSaveButtonClick = () => {
-    saveAddedBadges({
-      variables: {
-        objects: separateBadges(
-          findBadgeDiff(data.intro_course_unit, unitBadges).changedBadgesList,
-          findBadgeDiff(data.intro_course_unit, unitBadges).initialBadgeArray
-        ).addBadges,
-      },
-    });
+    const addedBadges = separateBadges(
+      findBadgeDiff(data.intro_course_unit, unitBadges).changedBadgesList,
+      findBadgeDiff(data.intro_course_unit, unitBadges).initialBadgeArray
+    ).addedBadges;
+    const removedBadges = separateBadges(
+      findBadgeDiff(data.intro_course_unit, unitBadges).changedBadgesList,
+      findBadgeDiff(data.intro_course_unit, unitBadges).initialBadgeArray
+    ).removedBadges;
+    if (addedBadges.length > 0) {
+      saveAddedBadges({
+        variables: {
+          objects: addedBadges,
+        },
+      });
+    }
+    if (removedBadges.length > 0) {
+      removedBadges.forEach((badge) => {
+        saveRemovedBadges({
+          variables: {
+            badgeId: badge.badgeId,
+            userId: badge.userId,
+          },
+        });
+      });
+    }
+    alert("Your badge selections have been updated.");
   };
 
   const separateBadges = (
     changedBadgesList: CodingBadge[],
     initialBadgeList: CodingBadge[]
   ) => {
-    const addBadgesTemp: CodingBadge[] = [];
-    const removeBadgesTemp: CodingBadge[] = [];
+    const addedBadgesTemp: CodingBadge[] = [];
+    const removedBadgesTemp: CodingBadge[] = [];
     changedBadgesList.forEach((badge: CodingBadge) => {
       const index = initialBadgeList.findIndex(
         (initialBadge) => initialBadge.id === badge.id
@@ -63,21 +82,21 @@ const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
         initialBadgeList.find((initBadge) => badge.id == initBadge.id)
           .user_coding_badges.length === 0
       ) {
-        addBadgesTemp.push(badge);
+        addedBadgesTemp.push(badge);
       } else if (
         badge.user_coding_badges.length === 0 &&
         initialBadgeList[index].user_coding_badges.length > 0
       ) {
-        removeBadgesTemp.push(changedBadgesList[index]);
+        removedBadgesTemp.push(badge);
       }
     });
-    const addBadges = addBadgesTemp.map((badge) => {
+    const addedBadges = addedBadgesTemp.map((badge) => {
       return { badgeId: badge.id, userId: userId };
     });
-    const removeBadges = addBadgesTemp.map((badge) => {
+    const removedBadges = removedBadgesTemp.map((badge) => {
       return { badgeId: badge.id, userId: userId };
     });
-    return { addBadges, removeBadges };
+    return { addedBadges, removedBadges };
   };
 
   // this function will take in the original list of badge data (fetched from the query), and the edited badge data
