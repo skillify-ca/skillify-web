@@ -5,7 +5,7 @@ export const DELETE_USER_BADGES = gql`
     delete_user_coding_badges(
       where: {
         _and: {
-          badgeId: { _eq: 16 }
+          badgeId: { _eq: 8 }
           userId: { _eq: "R7nzMKiRewgJuLm54eQ1KdHV3g82" }
         }
       }

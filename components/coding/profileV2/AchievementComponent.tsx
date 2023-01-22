@@ -17,11 +17,6 @@ export type AchievementComponentProps = {
   userId: string;
 };
 
-type BadgesForQuery = {
-  BadgeId: number;
-  UserId: string;
-};
-
 const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
   const [unitBadges, setUnitBadges] = useState<IntroCourseUnit[]>();
   const [editMode, setEditMode] = useState(false);
@@ -77,9 +72,12 @@ const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
       }
     });
     const addBadges = addBadgesTemp.map((badge) => {
-      return { id: badge.id, userId: userId };
+      return { badgeId: badge.id, userId: userId };
     });
-    return { addBadges, removeBadgesTemp };
+    const removeBadges = addBadgesTemp.map((badge) => {
+      return { badgeId: badge.id, userId: userId };
+    });
+    return { addBadges, removeBadges };
   };
 
   // this function will take in the original list of badge data (fetched from the query), and the edited badge data
