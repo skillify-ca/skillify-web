@@ -151,7 +151,6 @@ export default function richestCustomerWealth(props) {
               disabled={lineNum == linesOfCode.length}
               label="Next"
               backgroundColor="blue"
-              textColor="white"
               onClick={() => {
                 setLineNum(lineNum + 1);
                 iterateOnSolution();
@@ -161,7 +160,6 @@ export default function richestCustomerWealth(props) {
             <Button
               label="Reset"
               backgroundColor="blue"
-              textColor="white"
               onClick={() => {
                 setLineNum(0);
                 setLoopNum(1);

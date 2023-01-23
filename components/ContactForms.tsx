@@ -49,19 +49,19 @@ const ContactForms = (props) => {
   return (
     <div className="flex flex-col ">
       <div className="lg:text-center">
-        <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">
+        <h2 className="text-base font-semibold tracking-wide text-blue-600 uppercase">
           Contact Us
         </h2>
       </div>
       <div className="flex flex-col items-center justify-center space-y-8">
-        <div className="bg-white rounded-lg w-full">
+        <div className="w-full bg-white rounded-lg">
           <div className="flex flex-col space-y-4">
             <p className="font-bold">Want to stay in touch?</p>
             <p className="">
               Enter your email below to learn more about our courses and
               services!
             </p>
-            <div className="bg-white flex sm:flex-row gap-4 items-center rounded-lg">
+            <div className="flex items-center gap-4 bg-white rounded-lg sm:flex-row">
               <input
                 id="bootcamper"
                 type="text"
@@ -74,7 +74,6 @@ const ContactForms = (props) => {
               <Button
                 disabled={!bootcamperButtonEnabled}
                 backgroundColor="blue"
-                textColor="white"
                 label="Subscribe"
                 onClick={notifyBootcamperSignup}
               />

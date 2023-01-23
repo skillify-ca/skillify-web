@@ -27,6 +27,7 @@ const AcheivementComponent = ({
   const [unitBadges, setUnitBadges] = useState<IntroCourseUnit[]>();
   const [editMode, setEditMode] = useState(false);
   const { data } = useQuery<FetchBadgeResponse>(FETCH_CODING_BADGES, {
+
     variables: {
       userId: userId,
     },
@@ -106,7 +107,7 @@ const AcheivementComponent = ({
   };
 
   return (
-    <div className="sm:shadow-md sm:p-4 sm:bg-slate-300 dark:bg-transparent">
+    <div className="sm:p-4 sm:shadow-md bg-slate-300 dark:bg-slate-900">
       <div className="flex justify-end w-full mb-4">
         {isEditable && (
           <div>

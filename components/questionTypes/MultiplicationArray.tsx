@@ -37,8 +37,8 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
       second: parts[2],
     };
   };
-  let horizontal = Array.from(Array(Number.parseInt(parse().second)).keys());
-  let columns = Array.from(Array(Number.parseInt(parse().first)).keys());
+  const horizontal = Array.from(Array(Number.parseInt(parse().second)).keys());
+  const columns = Array.from(Array(Number.parseInt(parse().first)).keys());
 
   const getColourStyles = () => {
     let colorStyle;
@@ -111,12 +111,7 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
           setValue={setGuess}
           handleKeypress={handleKeypress}
         />
-        <Button
-          onClick={onSubmit}
-          label="Submit"
-          backgroundColor="blue"
-          textColor="white"
-        />
+        <Button onClick={onSubmit} label="Submit" backgroundColor="blue" />
       </div>
     </div>
   );

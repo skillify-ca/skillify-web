@@ -72,7 +72,7 @@ test("Test returnGoalStyle function - no highlight for a further future target d
     isArchived: null
   };
 
-  const noHighlightStyle = " text-black-500";
+  const noHighlightStyle = "text-black-500";
 
   // Act
   const result = returnGoalStyle(goal);
@@ -103,7 +103,7 @@ test("Test returnGoalStyle function - no highlight for a further future target d
     //Act
     const result = returnGoalStyle(goal);
     //Assert
-    expect(result).toBe(" text-black-500");
+    expect(result).toBe("text-black-500");
   });
 
   test("Test returnGoalStyle function - no red highlight for archived goals", async () => {
@@ -122,7 +122,7 @@ test("Test returnGoalStyle function - no highlight for a further future target d
         "targetDate": new Date("2022-16-30"),
         "isArchived":true};
 
-    const noHighlightStyle = " text-black-500"
+    const noHighlightStyle = "text-black-500"
     //Act
     const result = returnGoalStyle(goal);
     //Assert

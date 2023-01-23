@@ -15,6 +15,7 @@ export const FETCH_USER_ASSIGNMENT_SUBMISSIONS = gql`
       user_id
       last_updated
       review_link
+      assignment_id
     }
   }
 `;
@@ -27,11 +28,11 @@ export type UserAssignmentSubmissionsData = {
   submission_link: string;
   last_updated: Date;
   review_link: string;
-  assignmentId: string;
+  assignment_id: string;
   coding_assignment: CodingAssignment;
 };
 
 export type CodingAssignment = {
   assignment_name: string;
-  assignment_link;
+  assignment_link: string;
 }
