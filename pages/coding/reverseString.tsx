@@ -89,26 +89,22 @@ export default function ReverseString(props) {
                 disabled={isComplete()}
                 label="Swap"
                 backgroundColor="blue"
-                textColor="white"
                 onClick={onSwapRequested}
               />
               <Button
                 disabled={isComplete()}
                 label="Advance"
                 backgroundColor="blue"
-                textColor="white"
                 onClick={onAdvanceRequested}
               />
               <Button
                 label="Reset"
                 backgroundColor="blue"
-                textColor="white"
                 onClick={onResetRequested}
               />
               <Button
                 label="Clear"
                 backgroundColor="blue"
-                textColor="white"
                 onClick={onClearRequested}
               />
             </div>

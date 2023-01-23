@@ -7,6 +7,7 @@ query fetchUserAssignmentSubmissions($user_id: String = "") {
       user_id
       last_updated
       review_link
+      assignment_id
       coding_assignment {
         assignment_name
         assignment_link

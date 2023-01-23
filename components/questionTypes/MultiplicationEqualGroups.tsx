@@ -42,8 +42,8 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
         second: parts[2],
       };
     };
-    let groups = Array.from(Array(Number.parseInt(parse().first)).keys());
-    let itemsInGroup = Array.from(
+    const groups = Array.from(Array(Number.parseInt(parse().first)).keys());
+    const itemsInGroup = Array.from(
       Array(Number.parseInt(parse().second)).keys()
     );
 
@@ -131,12 +131,7 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
           />
         </div>
         <div className="mt-4 text-sm">
-          <Button
-            onClick={onSubmit}
-            label="Submit"
-            backgroundColor="blue"
-            textColor="white"
-          />
+          <Button onClick={onSubmit} label="Submit" backgroundColor="blue" />
         </div>
       </div>
     );
