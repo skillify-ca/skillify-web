@@ -41,7 +41,7 @@ export const Layout: React.FC = ({ children }) => {
 
   const {} = useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
     variables: {
-      id: user.uid,
+      _id: user.uid,
     },
     onCompleted: (data) => {
       if (data.users[0].userRole.value === "coach") {
