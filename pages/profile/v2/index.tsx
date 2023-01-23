@@ -60,7 +60,7 @@ export default function Profile() {
       </div>
       <div className="grid">
         <ExpandableContainer open={true} title={"Achievements"}>
-          <AchievementComponent userId={user.uid} />
+          <AchievementComponent userId={user.uid} isEditable={true} />
         </ExpandableContainer>
       </div>
     </div>

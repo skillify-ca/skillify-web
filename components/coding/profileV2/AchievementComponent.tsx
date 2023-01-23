@@ -1,5 +1,3 @@
-// we're going to use the response structure instead of transforming to a new type
-
 import React, { useState } from "react";
 import { PencilAltIcon } from "@heroicons/react/outline";
 import { useMutation, useQuery } from "@apollo/client";
@@ -14,12 +12,18 @@ import {
   INSERT_USER_CODING_BADGES,
   DELETE_USER_CODING_BADGES,
 } from "../../../graphql/coding/userBadges/updateUserCodingBadges";
+import UnitBadgeSection from "./achievementcomponenets/UnitBadgeSection";
+import handleOnSaveButtonClick from "./achievementcomponenets/handleSaveOnClick";
 
 export type AchievementComponentProps = {
   userId: string;
+  isEditable: boolean;
 };
 
-const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
+const AcheivementComponent = ({
+  userId,
+  isEditable,
+}: AchievementComponentProps) => {
   const [unitBadges, setUnitBadges] = useState<IntroCourseUnit[]>();
   const [editMode, setEditMode] = useState(false);
   const { data } = useQuery<FetchBadgeResponse>(FETCH_CODING_BADGES, {
@@ -37,35 +41,6 @@ const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
   const [saveRemovedBadges] = useMutation(DELETE_USER_CODING_BADGES, {
     refetchQueries: [{ query: FETCH_CODING_BADGES }],
   });
-
-  const handleOnSaveButtonClick = () => {
-    const addedBadges = separateBadges(
-      findBadgeDiff(data.intro_course_unit, unitBadges).changedBadgesList,
-      findBadgeDiff(data.intro_course_unit, unitBadges).initialBadgeArray
-    ).addedBadges;
-    const removedBadges = separateBadges(
-      findBadgeDiff(data.intro_course_unit, unitBadges).changedBadgesList,
-      findBadgeDiff(data.intro_course_unit, unitBadges).initialBadgeArray
-    ).removedBadges;
-    if (addedBadges.length > 0) {
-      saveAddedBadges({
-        variables: {
-          objects: addedBadges,
-        },
-      });
-    }
-    if (removedBadges.length > 0) {
-      removedBadges.forEach((badge) => {
-        saveRemovedBadges({
-          variables: {
-            badgeId: badge.badgeId,
-            userId: badge.userId,
-          },
-        });
-      });
-    }
-    alert("Your badge selections have been updated.");
-  };
 
   const separateBadges = (
     changedBadgesList: CodingBadge[],
@@ -101,13 +76,11 @@ const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
 
   // this function will take in the original list of badge data (fetched from the query), and the edited badge data
   // it should output an object containing two arrays: a list of badgeIds to add, and a list of userBadgeIds to remove
-  // you need to find the diff between the two input arrays, then send them to the database to delete and upsert
-  // map badges to active badges and map through to only select badgeid
+  //  the diff between the two input arrays are then send them to the database to delete and upsert
   const findBadgeDiff = (
     initialSet: IntroCourseUnit[],
     currentSet: IntroCourseUnit[]
   ) => {
-    // give you some ideas on how you might be able to make this easier to compare but I didn't figure it out yet
     const initialBadgeArray = initialSet.flatMap((unit) =>
       unit.coding_badges.map((badge) => badge)
     );
@@ -115,13 +88,9 @@ const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
       unit.coding_badges.map((badge) => badge)
     );
 
-    // final lists here -- change badgestoadd to changelog and feed into function that reads user coding badge
-    // instead final use current
-    // prev instead of initial
     const changedBadgesList = finalBadgeArray.filter((finalBadge) => {
       const initialBadge = initialBadgeArray.find(
         (initialBadge) =>
-          // try just checking the status of usercodingbadge
           finalBadge.id === initialBadge.id &&
           finalBadge.user_coding_badges === initialBadge.user_coding_badges
       );
@@ -135,44 +104,37 @@ const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
       changedBadgesList,
     };
   };
-  unitBadges &&
-    console.log(
-      "findbadgeDiff",
-      findBadgeDiff(data.intro_course_unit, unitBadges)
-    );
-  unitBadges &&
-    console.log(
-      "separateBadges",
-      separateBadges(
-        findBadgeDiff(data.intro_course_unit, unitBadges).changedBadgesList,
-        findBadgeDiff(data.intro_course_unit, unitBadges).initialBadgeArray
-      )
-    );
 
-  // unitBadges &&
-  //   console.log(
-  //     "query",
-  //     separateBadges(
-  //       findBadgeDiff(data.intro_course_unit, unitBadges).changedBadgesList,
-  //       findBadgeDiff(data.intro_course_unit, unitBadges).initialBadgeArray
-  //     ).addBadges.map((badges) => {
-  //       return badges.id;
-  //     })
-  //   );
   return (
     <div className="sm:shadow-md sm:p-4 sm:bg-slate-300 dark:bg-transparent">
       <div className="flex justify-end w-full mb-4">
-        <Button label={"Save"} onClick={handleOnSaveButtonClick}></Button>
-        <button
-          onClick={() => setEditMode(!editMode)}
-          className="w-5 h-5 cursor-pointer hover:text-yellow-600"
-        >
-          {editMode ? (
-            <PencilAltIcon className="w-5 h-5 text-yellow-600 cursor-pointer" />
-          ) : (
-            <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
-          )}
-        </button>
+        {isEditable && (
+          <div>
+            <Button
+              label={"Save"}
+              onClick={() =>
+                handleOnSaveButtonClick(
+                  separateBadges,
+                  findBadgeDiff,
+                  data,
+                  unitBadges,
+                  saveAddedBadges,
+                  saveRemovedBadges
+                )
+              }
+            ></Button>
+            <button
+              onClick={() => setEditMode(!editMode)}
+              className="w-5 h-5 cursor-pointer hover:text-yellow-600"
+            >
+              {editMode ? (
+                <PencilAltIcon className="w-5 h-5 text-yellow-600 cursor-pointer" />
+              ) : (
+                <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
+              )}
+            </button>
+          </div>
+        )}
       </div>
       {unitBadges && (
         <div>
@@ -196,120 +158,3 @@ const AcheivementComponent = ({ userId }: AchievementComponentProps) => {
 };
 
 export default AcheivementComponent;
-
-type UnitBadgeSectionProps = {
-  unit: IntroCourseUnit;
-  editMode: boolean;
-  setUnitBadges: React.Dispatch<React.SetStateAction<IntroCourseUnit[]>>;
-};
-
-function UnitBadgeSection({
-  unit,
-  editMode,
-  setUnitBadges,
-}: UnitBadgeSectionProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  function getNumEarnedBadgesForUnit(codingBages: CodingBadge[]) {
-    return codingBages.filter((badge) => badge.user_coding_badges.length > 0)
-      .length;
-  }
-
-  return (
-    <div>
-      <div className="grid grid-cols-1">
-        <div
-          className="flex p-4 cursor-pointer bg-slate-800 hover:bg-slate-700 group"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <img
-            src={unit.image}
-            className="object-cover w-24 h-24 transition-all transform bg-red-300 rounded-lg group-hover:scale-110"
-          />
-          <div className="flex flex-col justify-center px-4">
-            <h3 className="text-xl font-bold text-white">{unit.title}</h3>
-            <p className="font-bold text-charmander">
-              {getNumEarnedBadgesForUnit(unit.coding_badges)} Badges Earned
-            </p>
-          </div>
-        </div>
-      </div>
-      {isOpen && (
-        <div className="grid grid-cols-1 mb-8 text-base sm:grid-cols-3 bg-slate-800 sm:mb-0 ">
-          {unit.coding_badges.map((badge) => (
-            <div key={badge.id} className="m-4">
-              <CodingBadgeUnit
-                disabled={!editMode}
-                badge={badge}
-                setUnitBadges={setUnitBadges}
-              />
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-type CodingBadgeUnitProps = {
-  disabled: boolean;
-  badge: CodingBadge;
-  setUnitBadges: React.Dispatch<React.SetStateAction<IntroCourseUnit[]>>;
-};
-// maybe use IndividualCodingBadge
-function CodingBadgeUnit({
-  disabled,
-  badge,
-  setUnitBadges,
-}: CodingBadgeUnitProps) {
-  const handleBadgeClick = (inputBadge: CodingBadge) => {
-    setUnitBadges((prev) => {
-      const updatedUnitBadges: IntroCourseUnit[] = prev.map((unit) => {
-        return {
-          ...unit,
-          coding_badges: unit.coding_badges.map((badge) => {
-            if (inputBadge.id == badge.id) {
-              if (badge.user_coding_badges.length > 0) {
-                return {
-                  ...badge,
-                  user_coding_badges: [],
-                };
-              } else {
-                return {
-                  ...badge,
-                  user_coding_badges: [{ id: Math.random() }],
-                };
-              }
-            }
-            return badge;
-          }),
-        };
-      });
-      return updatedUnitBadges;
-    });
-  };
-
-  return (
-    <div className="flex flex-col items-center justify-center h-full p-4 text-white bg-slate-600 border-slate-300">
-      <button
-        className=" h-28"
-        disabled={disabled}
-        onClick={() => handleBadgeClick(badge)}
-      >
-        <img
-          className="transition-all transform border-4 rounded-full shadow-lg w-28 h-28 hover:scale-110"
-          src={
-            badge.user_coding_badges.length > 0
-              ? badge.image
-                ? badge.image
-                : "/images/profile/achievement-badge-active.svg"
-              : "/images/profile/achievement-badge.svg"
-          }
-        />
-      </button>
-      <div className="flex flex-col items-center justify-center h-full mt-4 ">
-        <p className="h-full text-base sm:mb-0">{badge.title}</p>
-      </div>
-    </div>
-  );
-}
