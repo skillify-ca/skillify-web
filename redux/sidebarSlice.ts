@@ -5,7 +5,7 @@ export type SidebarProps = {};
 
 export type SidebarPage =
   | "dashboard"
-  | "coaching dashboard"
+  | "coachingDashboard"
   | "coaches"
   | "goals"
   | "workshops"

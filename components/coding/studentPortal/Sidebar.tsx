@@ -110,7 +110,7 @@ export const Sidebar: React.FC = () => {
           <SidebarItem
             name={"Coaching Dashboard"}
             link={"/coaching-dashboard"}
-            page={"coaching dashboard"}
+            page={"coachingDashboard"}
             icon={
               <svg
                 xmlns="http://www.w3.org/2000/svg"
