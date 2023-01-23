@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Sandpack } from "@codesandbox/sandpack-react";
 import HintRow from "./HintRow";
 import AssignmentInputBox from "./AssignmentInputBox";
+import { animated, useSpring } from "@react-spring/web";
 
 export type Hint = {
   description: string;
@@ -60,6 +61,17 @@ export default function AssignmentComponent({
   data,
 }: AssignmentComponentProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isPulsing, setIsPulsing] = useState(false);
+  const styleProps = useSpring({
+    color: isOpen ? "#000000" : "#708090",
+    transform: isPulsing ? "scale(1.1)" : "scale(1.0)",
+    config: { duration: 500 },
+  });
+
+  const spring = useSpring({
+    opacity: isOpen ? 1 : 0,
+    config: { duration: 600 },
+  });
 
   const activeSectionStyling = () => {
     let styling = "font-thin text-2xl";
@@ -96,19 +108,26 @@ export default function AssignmentComponent({
   } else if (data.component === "hint-list") {
     return (
       <>
-        <div className="flex cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
-          <h1
+        <div
+          className="flex cursor-pointer"
+          onClick={() => {
+            setIsOpen(!isOpen);
+            setIsPulsing(!isPulsing);
+          }}
+        >
+          <animated.div
+            style={styleProps}
             className={
               isOpen
-                ? "font-thin text-2xl text-black-500 animate-none hover:text-slate-500"
-                : "font-thin text-2xl text-slate-500 animate-pulse hover:text-black-500"
+                ? "font-thin text-2xl text-black-500 hover:text-slate-500"
+                : "font-thin text-2xl text-slate-500 hover:text-black-500"
             }
           >
             Hints...{" "}
-          </h1>
+          </animated.div>
         </div>
         {isOpen && (
-          <div className="flex flex-col">
+          <animated.div style={spring} className="flex flex-col">
             {data.hintRow.map((it, index) => (
               <HintRow
                 key={index}
@@ -116,7 +135,7 @@ export default function AssignmentComponent({
                 link={it.link}
               />
             ))}
-          </div>
+          </animated.div>
         )}
       </>
     );
