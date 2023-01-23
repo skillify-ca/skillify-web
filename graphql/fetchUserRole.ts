@@ -13,12 +13,6 @@ query FetchUserRole($_id: String = "") {
 export type FetchUserRoleData = {
     users: UserRoleData;
 }
-
-
 export type UserRoleData = {
-    userRole: UserRole;
-}
-
-export type UserRole = {
-    value: string
+    userRole: "student"|"coach";
 }
