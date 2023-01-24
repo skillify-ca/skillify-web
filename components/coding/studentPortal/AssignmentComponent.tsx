@@ -70,7 +70,7 @@ export default function AssignmentComponent({
 
   const spring = useSpring({
     opacity: isOpen ? 1 : 0,
-    config: { duration: 600 },
+    config: { duration: 800 },
   });
 
   const activeSectionStyling = () => {
