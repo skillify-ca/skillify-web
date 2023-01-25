@@ -20,7 +20,7 @@ export type AchievementComponentProps = {
   isEditable: boolean;
 };
 
-const AcheivementComponent = ({
+const AchievementComponent = ({
   userId,
   isEditable,
 }: AchievementComponentProps) => {
@@ -41,43 +41,8 @@ const AcheivementComponent = ({
   const [saveRemovedBadges] = useMutation(DELETE_USER_CODING_BADGES, {
     refetchQueries: [{ query: FETCH_CODING_BADGES }],
   });
-
+  type MutationVariable = { badgeId: number; userId: string };
   const separateBadges = (
-    changedBadgesList: CodingBadge[],
-    initialBadgeList: CodingBadge[]
-  ) => {
-    const addedBadgesTemp: CodingBadge[] = [];
-    const removedBadgesTemp: CodingBadge[] = [];
-    changedBadgesList.forEach((badge: CodingBadge) => {
-      const index = initialBadgeList.findIndex(
-        (initialBadge) => initialBadge.id === badge.id
-      );
-      if (
-        badge.user_coding_badges.length > 0 &&
-        initialBadgeList.find((initBadge) => badge.id == initBadge.id)
-          .user_coding_badges.length === 0
-      ) {
-        addedBadgesTemp.push(badge);
-      } else if (
-        badge.user_coding_badges.length === 0 &&
-        initialBadgeList[index].user_coding_badges.length > 0
-      ) {
-        removedBadgesTemp.push(badge);
-      }
-    });
-    const addedBadges = addedBadgesTemp.map((badge) => {
-      return { badgeId: badge.id, userId: userId };
-    });
-    const removedBadges = removedBadgesTemp.map((badge) => {
-      return { badgeId: badge.id, userId: userId };
-    });
-    return { addedBadges, removedBadges };
-  };
-
-  // this function will take in the original list of badge data (fetched from the query), and the edited badge data
-  // it should output an object containing two arrays: a list of badgeIds to add, and a list of userBadgeIds to remove
-  //  the diff between the two input arrays are then send them to the database to delete and upsert
-  const findBadgeDiff = (
     initialSet: IntroCourseUnit[],
     currentSet: IntroCourseUnit[]
   ) => {
@@ -96,15 +61,41 @@ const AcheivementComponent = ({
       );
       return !initialBadge;
     });
-    //
 
-    return {
-      initialBadgeArray,
-      finalBadgeArray,
-      changedBadgesList,
-    };
+    const addedBadgesTemp: CodingBadge[] = [];
+    const removedBadgesTemp: CodingBadge[] = [];
+    changedBadgesList.forEach((badge: CodingBadge) => {
+      const index = initialBadgeArray.findIndex(
+        (initialBadge) => initialBadge.id === badge.id
+      );
+      if (
+        badge.user_coding_badges.length > 0 &&
+        initialBadgeArray.find((initBadge) => badge.id == initBadge.id)
+          .user_coding_badges.length === 0
+      ) {
+        addedBadgesTemp.push(badge);
+      } else if (
+        badge.user_coding_badges.length === 0 &&
+        initialBadgeArray[index].user_coding_badges.length > 0
+      ) {
+        removedBadgesTemp.push(badge);
+      }
+    });
+    const addedBadges: MutationVariable[] = addedBadgesTemp.map((badge) => {
+      return { badgeId: badge.id, userId: userId };
+    });
+    const removedBadges = removedBadgesTemp.map((badge) => {
+      return {
+        badgeId: { _eq: badge.id },
+        userId: { _eq: userId },
+      };
+    });
+
+    unitBadges && console.log("removedBadges", { removedBadges });
+    unitBadges && console.log("removedBadgestemp", { removedBadgesTemp });
+
+    return { addedBadges, removedBadges };
   };
-
   return (
     <div className="sm:p-4 sm:shadow-md bg-slate-300 dark:bg-slate-900">
       <div className="flex justify-end w-full mb-4">
@@ -115,7 +106,6 @@ const AcheivementComponent = ({
               onClick={() =>
                 handleOnSaveButtonClick(
                   separateBadges,
-                  findBadgeDiff,
                   data,
                   unitBadges,
                   saveAddedBadges,
@@ -157,4 +147,4 @@ const AcheivementComponent = ({
   );
 };
 
-export default AcheivementComponent;
+export default AchievementComponent;

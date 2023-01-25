@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { IntroCourseUnit } from "../../../graphql/coding/userBadges/fetchUserBadges";
-import { CodingBadge } from "../../../graphql/coding/userBadges/fetchUserBadges";
+import { IntroCourseUnit } from "../../../../graphql/coding/userBadges/fetchUserBadges";
+import { CodingBadge } from "../../../../graphql/coding/userBadges/fetchUserBadges";
 import CodingBadgeUnit from "./CodingBadgeUnit";
 
 type UnitBadgeSectionProps = {

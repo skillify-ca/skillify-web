@@ -1,19 +1,19 @@
 const handleOnSaveButtonClick = (
   separateBadges,
-  findBadgeDiff,
   data,
   unitBadges,
   saveAddedBadges,
   saveRemovedBadges
 ) => {
   const addedBadges = separateBadges(
-    findBadgeDiff(data.intro_course_unit, unitBadges).changedBadgesList,
-    findBadgeDiff(data.intro_course_unit, unitBadges).initialBadgeArray
+    data.intro_course_unit,
+    unitBadges
   ).addedBadges;
   const removedBadges = separateBadges(
-    findBadgeDiff(data.intro_course_unit, unitBadges).changedBadgesList,
-    findBadgeDiff(data.intro_course_unit, unitBadges).initialBadgeArray
+    data.intro_course_unit,
+    unitBadges
   ).removedBadges;
+
   if (addedBadges.length > 0) {
     saveAddedBadges({
       variables: {
@@ -22,13 +22,10 @@ const handleOnSaveButtonClick = (
     });
   }
   if (removedBadges.length > 0) {
-    removedBadges.forEach((badge) => {
-      saveRemovedBadges({
-        variables: {
-          badgeId: badge.badgeId,
-          userId: badge.userId,
-        },
-      });
+    saveRemovedBadges({
+      variables: {
+        objects: removedBadges,
+      },
     });
   }
   alert("Your badge selections have been updated.");

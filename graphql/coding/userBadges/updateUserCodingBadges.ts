@@ -1,12 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const DELETE_USER_CODING_BADGES = gql`
-  mutation DELETE_USER_CODING_BADGES($badgeId: Int!, $userId: String!) {
-    delete_user_coding_badges(
-      where: {
-        _and: [{ badgeId: { _eq: $badgeId } }, { userId: { _eq: $userId } }]
-      }
-    ) {
+  mutation DELETE_USER_CODING_BADGES($objects: [user_coding_badges_bool_exp!]) {
+    delete_user_coding_badges(where: { _and: $objects }) {
       returning {
         id
       }
