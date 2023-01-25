@@ -6,14 +6,14 @@ import {
   FetchBadgeResponse,
   FETCH_CODING_BADGES,
   IntroCourseUnit,
-} from "../../../graphql/coding/userBadges/fetchUserBadges";
-import { Button } from "../../ui/Button";
+} from "../../../../graphql/coding/userBadges/fetchUserBadges";
+import { Button } from "../../../ui/Button";
 import {
   INSERT_USER_CODING_BADGES,
   DELETE_USER_CODING_BADGES,
-} from "../../../graphql/coding/userBadges/updateUserCodingBadges";
-import UnitBadgeSection from "./achievementcomponenets/UnitBadgeSection";
-import handleOnSaveButtonClick from "./achievementcomponenets/handleSaveOnClick";
+} from "../../../../graphql/coding/userBadges/updateUserCodingBadges";
+import UnitBadgeSection from "./UnitBadgeSection";
+import handleOnSaveButtonClick from "./handleSaveOnClick";
 
 export type AchievementComponentProps = {
   userId: string;

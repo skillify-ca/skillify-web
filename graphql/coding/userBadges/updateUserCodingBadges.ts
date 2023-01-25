@@ -1,8 +1,4 @@
 import { gql } from "@apollo/client";
-export type user_coding_badges_insert_input = {
-  badgeId: number;
-  userId: string;
-};
 
 export const DELETE_USER_CODING_BADGES = gql`
   mutation DELETE_USER_CODING_BADGES($badgeId: Int!, $userId: String!) {

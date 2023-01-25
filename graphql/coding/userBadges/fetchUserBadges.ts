@@ -17,7 +17,7 @@ export const FETCH_CODING_BADGES = gql`
   }
 `;
 
-export type Response = {
+type Response = {
   data: Data;
 };
 
