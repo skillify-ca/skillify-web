@@ -16,7 +16,8 @@ const coachingDashboard = () => {
   const { loading, data } = useQuery<FetchUserProfileCardResponse>(
     FETCH_USER_PROFILE_CARD,
     {
-      onCompleted: () => dispatch(setUserList(data.users)),
+      onCompleted: () =>
+        data.users.length > 0 ? dispatch(setUserList(data.users)) : loading,
     }
   );
   if (loading) {
