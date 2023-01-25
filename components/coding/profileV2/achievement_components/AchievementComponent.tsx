@@ -42,7 +42,7 @@ const AchievementComponent = ({
     refetchQueries: [{ query: FETCH_CODING_BADGES }],
   });
   type MutationVariable = { badgeId: number; userId: string };
-  const constructBadgesForMutation = (
+  const findBadgeDiff = (
     initialSet: IntroCourseUnit[],
     currentSet: IntroCourseUnit[]
   ) => {
@@ -105,7 +105,7 @@ const AchievementComponent = ({
               label={"Save"}
               onClick={() =>
                 handleOnSaveButtonClick(
-                  constructBadgesForMutation,
+                  findBadgeDiff,
                   data,
                   unitBadges,
                   saveAddedBadges,

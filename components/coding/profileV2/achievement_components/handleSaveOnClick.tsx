@@ -1,15 +1,17 @@
+// move handler inside AC component, and add type props
+// keep findBadgeDiff
 const handleOnSaveButtonClick = (
-  constructBadgesForMutation,
+  findBadgeDiff,
   data,
   unitBadges,
   saveAddedBadges,
   saveRemovedBadges
 ) => {
-  const addedBadges = constructBadgesForMutation(
+  const addedBadges = findBadgeDiff(
     data.intro_course_unit,
     unitBadges
   ).addedBadges;
-  const removedBadges = constructBadgesForMutation(
+  const removedBadges = findBadgeDiff(
     data.intro_course_unit,
     unitBadges
   ).removedBadges;
