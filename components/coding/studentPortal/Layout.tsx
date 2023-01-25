@@ -11,10 +11,8 @@ import {
   FETCH_USER_ROLE,
 } from "../../../graphql/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
-import {
-  setIsGoalApproaching,
-  setIsRoleCoach,
-} from "../../../redux/sidebarSlice";
+import { setIsRoleCoach } from "../../../redux/profileSlice";
+import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
 import Sidebar from "./Sidebar";
 
 export const Layout: React.FC = ({ children }) => {

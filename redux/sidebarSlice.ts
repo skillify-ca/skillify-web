@@ -1,11 +1,8 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { RootState } from "./rootReducer";
 
-export type SidebarProps = {};
-
 export type SidebarPage =
   | "dashboard"
-  | "coachingDashboard"
   | "coaches"
   | "goals"
   | "workshops"
@@ -15,13 +12,11 @@ export type SidebarPage =
 export interface SidebarState {
   activePage: SidebarPage;
   goalApproaching: boolean;
-  isRoleCoach: boolean;
 }
 
 const initialState: SidebarState = {
   activePage: "dashboard",
   goalApproaching: false,
-  isRoleCoach: false,
 };
 
 export const sidebarSlice: Slice = createSlice({
@@ -43,14 +38,10 @@ export const sidebarSlice: Slice = createSlice({
       }
     },
 
-    setIsRoleCoach: (state, action: PayloadAction<boolean>) => {
-      if (action.type == "sidebar/setIsRoleCoach") {
-        state.isRoleCoach = action.payload;
-      }
-    },
+    
   },
 });
 
-export const { setActivePage, setIsGoalApproaching, setIsRoleCoach } = sidebarSlice.actions;
+export const { setActivePage, setIsGoalApproaching } = sidebarSlice.actions;
 
 export const activePageSelector = (state: RootState) => state.sidebarState;
