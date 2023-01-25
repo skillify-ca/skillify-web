@@ -81,6 +81,7 @@ export const Sidebar: React.FC = () => {
           {user && (
             <div className="w-full">
               <p className="w-full ml-4 font-bold">{user.displayName}</p>
+              <p className="ml-4 font-medium">Student</p>
             </div>
           )}
         </div>
