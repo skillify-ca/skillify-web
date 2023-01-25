@@ -1,15 +1,15 @@
 const handleOnSaveButtonClick = (
-  separateBadges,
+  constructBadgesForMutation,
   data,
   unitBadges,
   saveAddedBadges,
   saveRemovedBadges
 ) => {
-  const addedBadges = separateBadges(
+  const addedBadges = constructBadgesForMutation(
     data.intro_course_unit,
     unitBadges
   ).addedBadges;
-  const removedBadges = separateBadges(
+  const removedBadges = constructBadgesForMutation(
     data.intro_course_unit,
     unitBadges
   ).removedBadges;

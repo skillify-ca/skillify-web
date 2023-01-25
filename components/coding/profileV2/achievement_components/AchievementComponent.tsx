@@ -42,7 +42,7 @@ const AchievementComponent = ({
     refetchQueries: [{ query: FETCH_CODING_BADGES }],
   });
   type MutationVariable = { badgeId: number; userId: string };
-  const separateBadges = (
+  const constructBadgesForMutation = (
     initialSet: IntroCourseUnit[],
     currentSet: IntroCourseUnit[]
   ) => {
@@ -105,7 +105,7 @@ const AchievementComponent = ({
               label={"Save"}
               onClick={() =>
                 handleOnSaveButtonClick(
-                  separateBadges,
+                  constructBadgesForMutation,
                   data,
                   unitBadges,
                   saveAddedBadges,
