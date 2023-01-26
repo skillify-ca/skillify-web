@@ -6,7 +6,7 @@ export type ProfileState = {
   userProfileData: UserProfileData;
   userBadgeCount: number;
   totalBadgeCount: number;
-  isRoleCoach: boolean;
+  userRole: string;
 };
 
 
@@ -23,7 +23,7 @@ const initialState: ProfileState = {
   },
   userBadgeCount: 0,
   totalBadgeCount: 0,
-  isRoleCoach: false,
+  userRole: "student",
 };
 
 export const profileSlice: Slice = createSlice({
@@ -67,16 +67,16 @@ export const profileSlice: Slice = createSlice({
       }
     },
 
-    setIsRoleCoach: (state, action: PayloadAction<boolean>) => {
-      if (action.type == "profile/setIsRoleCoach") {
-        state.isRoleCoach = action.payload;
+    setUserRole: (state, action: PayloadAction<string>) => {
+      if (action.type == "profile/userRole") {
+        state.userRole = action.payload;
       }
     },
 
   },
 });
 
-export const { setUserProfile, setUserBadgeCount, setTotalBadgeCount, setIsRoleCoach } =
+export const { setUserProfile, setUserBadgeCount, setTotalBadgeCount, setUserRole } =
   profileSlice.actions;
 
 export default profileSlice.reducer;

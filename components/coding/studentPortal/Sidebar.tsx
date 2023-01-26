@@ -9,7 +9,7 @@ import {
 } from "../../../graphql/fetchUserRole";
 
 import { useAuth } from "../../../lib/authContext";
-import { profileSelector, setIsRoleCoach } from "../../../redux/profileSlice";
+import { profileSelector, setUserRole } from "../../../redux/profileSlice";
 import { activePageSelector, setActivePage } from "../../../redux/sidebarSlice";
 import SkillifyCommandPalette from "../../CommandPalette";
 interface SidebarItemProps {
@@ -29,6 +29,7 @@ const SidebarItem = ({
   const { activePage } = useSelector(activePageSelector);
   const { user } = useAuth();
   const dispatch = useDispatch();
+  const { userRole } = useSelector(profileSelector);
 
   const {} = useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
     variables: {
@@ -36,9 +37,9 @@ const SidebarItem = ({
     },
     onCompleted: (data) => {
       if (data.users[0].userRole.value === "coach") {
-        dispatch(setIsRoleCoach(true));
+        dispatch(setUserRole(userRole));
       } else {
-        dispatch(setIsRoleCoach(false));
+        dispatch(setUserRole(userRole));
       }
     },
     fetchPolicy: "cache-and-network",
@@ -67,7 +68,7 @@ const SidebarItem = ({
 
 export const Sidebar: React.FC = () => {
   const { goalApproaching } = useSelector(activePageSelector);
-  const { isRoleCoach } = useSelector(profileSelector);
+  const { userRole } = useSelector(profileSelector);
   const dispatch = useDispatch();
 
   const { signOut, user } = useAuth();
@@ -104,9 +105,7 @@ export const Sidebar: React.FC = () => {
           {user && (
             <div className="w-full">
               <p className="w-full ml-4 font-bold">{user.displayName}</p>
-              <p className="ml-4 font-medium">
-                {isRoleCoach === true ? "Coach" : "Student"}
-              </p>
+              <p className="ml-4 font-medium">{userRole.toUpperCase()}</p>
             </div>
           )}
         </div>
