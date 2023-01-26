@@ -6,12 +6,7 @@ import {
   FetchGoalCountResponse,
   FETCH_USER_GOALS_COUNT,
 } from "../../../graphql/fetchUserGoalsCount";
-import {
-  FetchUserRoleData,
-  FETCH_USER_ROLE,
-} from "../../../graphql/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
-import { setIsRoleCoach } from "../../../redux/profileSlice";
 import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
 import Sidebar from "./Sidebar";
 
@@ -32,20 +27,6 @@ export const Layout: React.FC = ({ children }) => {
         dispatch(setIsGoalApproaching(true));
       } else {
         dispatch(setIsGoalApproaching(false));
-      }
-    },
-    fetchPolicy: "cache-and-network",
-  });
-
-  const {} = useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
-    variables: {
-      _id: user.uid,
-    },
-    onCompleted: (data) => {
-      if (data.users[0].userRole.value === "coach") {
-        dispatch(setIsRoleCoach(true));
-      } else {
-        dispatch(setIsRoleCoach(false));
       }
     },
     fetchPolicy: "cache-and-network",

@@ -1,9 +1,15 @@
+import { useQuery } from "@apollo/client/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  FetchUserRoleData,
+  FETCH_USER_ROLE,
+} from "../../../graphql/fetchUserRole";
 
 import { useAuth } from "../../../lib/authContext";
+import { setIsRoleCoach } from "../../../redux/profileSlice";
 import { activePageSelector, setActivePage } from "../../../redux/sidebarSlice";
 import SkillifyCommandPalette from "../../CommandPalette";
 interface SidebarItemProps {
@@ -21,6 +27,22 @@ const SidebarItem = ({
   notifications,
 }: SidebarItemProps) => {
   const { activePage } = useSelector(activePageSelector);
+  const { user } = useAuth();
+  const dispatch = useDispatch();
+
+  const {} = useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
+    variables: {
+      _id: user.uid,
+    },
+    onCompleted: (data) => {
+      if (data.users[0].userRole.value === "coach") {
+        dispatch(setIsRoleCoach(true));
+      } else {
+        dispatch(setIsRoleCoach(false));
+      }
+    },
+    fetchPolicy: "cache-and-network",
+  });
 
   return (
     <Link href={link}>
