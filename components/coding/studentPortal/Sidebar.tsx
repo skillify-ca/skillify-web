@@ -9,7 +9,7 @@ import {
 } from "../../../graphql/fetchUserRole";
 
 import { useAuth } from "../../../lib/authContext";
-import { setIsRoleCoach } from "../../../redux/profileSlice";
+import { profileSelector, setIsRoleCoach } from "../../../redux/profileSlice";
 import { activePageSelector, setActivePage } from "../../../redux/sidebarSlice";
 import SkillifyCommandPalette from "../../CommandPalette";
 interface SidebarItemProps {
@@ -67,6 +67,7 @@ const SidebarItem = ({
 
 export const Sidebar: React.FC = () => {
   const { goalApproaching } = useSelector(activePageSelector);
+  const { isRoleCoach } = useSelector(profileSelector);
   const dispatch = useDispatch();
 
   const { signOut, user } = useAuth();
@@ -103,7 +104,9 @@ export const Sidebar: React.FC = () => {
           {user && (
             <div className="w-full">
               <p className="w-full ml-4 font-bold">{user.displayName}</p>
-              <p className="ml-4 font-medium">Student</p>
+              <p className="ml-4 font-medium">
+                {isRoleCoach === true ? "Coach" : "Student"}
+              </p>
             </div>
           )}
         </div>
