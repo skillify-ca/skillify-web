@@ -1,7 +1,8 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
 import { PlusCircleIcon } from "@heroicons/react/solid";
 import { MinusCircleIcon } from "@heroicons/react/solid";
+import { useHeight } from "../../pages/api/useHeight";
 
 interface ExpandableContainerProps {
   open: boolean;
@@ -58,26 +59,3 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
 };
 
 export default ExpandableContainer;
-
-export function useHeight({ on = true } = {} as any) {
-  const ref = useRef<any>();
-  const [height, set] = useState(0);
-  const heightRef = useRef(height);
-  const [ro] = useState(
-    () =>
-      new ResizeObserver((packet) => {
-        if (ref.current && heightRef.current !== ref.current.offsetHeight) {
-          heightRef.current = ref.current.offsetHeight;
-          set(ref.current.offsetHeight);
-        }
-      })
-  );
-  useLayoutEffect(() => {
-    if (on && ref.current) {
-      set(ref.current.offsetHeight);
-      ro.observe(ref.current, {});
-    }
-    return () => ro.disconnect();
-  }, [on, ref.current]);
-  return [ref, height as any];
-}
