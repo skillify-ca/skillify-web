@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { PencilAltIcon } from "@heroicons/react/outline";
 import { useMutation, useQuery } from "@apollo/client";
 import {
-  CodingBadge,
   FetchBadgeResponse,
   FETCH_CODING_BADGES,
   IntroCourseUnit,
@@ -13,7 +12,7 @@ import {
   DELETE_USER_CODING_BADGES,
 } from "../../../../graphql/coding/userBadges/updateUserCodingBadges";
 import UnitBadgeSection from "./UnitBadgeSection";
-import handleOnSaveButtonClick from "./handleSaveOnClick";
+import findBadgeDiff from "./findBadgeDiff";
 
 export type AchievementComponentProps = {
   userId: string;
@@ -41,61 +40,40 @@ const AchievementComponent = ({
   const [saveRemovedBadges] = useMutation(DELETE_USER_CODING_BADGES, {
     refetchQueries: [{ query: FETCH_CODING_BADGES }],
   });
-  type MutationVariable = { badgeId: number; userId: string };
-  const findBadgeDiff = (
-    initialSet: IntroCourseUnit[],
-    currentSet: IntroCourseUnit[]
-  ) => {
-    const initialBadgeArray = initialSet.flatMap((unit) =>
-      unit.coding_badges.map((badge) => badge)
-    );
-    const finalBadgeArray = currentSet.flatMap((unit) =>
-      unit.coding_badges.map((badge) => badge)
-    );
+  // move handler inside AC component, and add type props
+  // keep findBadgeDiff
+  const handleOnSaveButtonClick = () => {
+    const addedBadges = findBadgeDiff(
+      data.intro_course_unit,
+      unitBadges,
+      userId
+    ).addedBadges;
+    const removedBadges = findBadgeDiff(
+      data.intro_course_unit,
+      unitBadges,
+      userId
+    ).removedBadges;
 
-    const changedBadgesList = finalBadgeArray.filter((finalBadge) => {
-      const initialBadge = initialBadgeArray.find(
-        (initialBadge) =>
-          finalBadge.id === initialBadge.id &&
-          finalBadge.user_coding_badges === initialBadge.user_coding_badges
-      );
-      return !initialBadge;
-    });
-
-    const addedBadgesTemp: CodingBadge[] = [];
-    const removedBadgesTemp: CodingBadge[] = [];
-    changedBadgesList.forEach((badge: CodingBadge) => {
-      const index = initialBadgeArray.findIndex(
-        (initialBadge) => initialBadge.id === badge.id
-      );
-      if (
-        badge.user_coding_badges.length > 0 &&
-        initialBadgeArray.find((initBadge) => badge.id == initBadge.id)
-          .user_coding_badges.length === 0
-      ) {
-        addedBadgesTemp.push(badge);
-      } else if (
-        badge.user_coding_badges.length === 0 &&
-        initialBadgeArray[index].user_coding_badges.length > 0
-      ) {
-        removedBadgesTemp.push(badge);
-      }
-    });
-    const addedBadges: MutationVariable[] = addedBadgesTemp.map((badge) => {
-      return { badgeId: badge.id, userId: userId };
-    });
-    const removedBadges = removedBadgesTemp.map((badge) => {
-      return {
-        badgeId: { _eq: badge.id },
-        userId: { _eq: userId },
-      };
-    });
-
-    unitBadges && console.log("removedBadges", { removedBadges });
-    unitBadges && console.log("removedBadgestemp", { removedBadgesTemp });
-
-    return { addedBadges, removedBadges };
+    if (addedBadges.length > 0) {
+      saveAddedBadges({
+        variables: {
+          objects: addedBadges,
+        },
+      });
+    }
+    if (removedBadges.length > 0) {
+      removedBadges.forEach((badge) => {
+        saveRemovedBadges({
+          variables: {
+            badgeId: badge.badgeId,
+            userId: badge.userId,
+          },
+        });
+      });
+    }
+    alert("Your badge selections have been updated.");
   };
+
   return (
     <div className="sm:p-4 sm:shadow-md bg-slate-300 dark:bg-slate-900">
       <div className="flex justify-end w-full mb-4">
@@ -103,15 +81,7 @@ const AchievementComponent = ({
           <div>
             <Button
               label={"Save"}
-              onClick={() =>
-                handleOnSaveButtonClick(
-                  findBadgeDiff,
-                  data,
-                  unitBadges,
-                  saveAddedBadges,
-                  saveRemovedBadges
-                )
-              }
+              onClick={() => handleOnSaveButtonClick()}
             ></Button>
             <button
               onClick={() => setEditMode(!editMode)}
