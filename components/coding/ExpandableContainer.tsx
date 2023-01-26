@@ -22,7 +22,7 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
       opacity: isOpen ? 1 : 0,
       height: isOpen ? height : 0,
     },
-    config: { tension: 100 },
+    config: { mass: 5, tension: 2000, friction: 200, duration: 600 },
   });
 
   return (
@@ -59,7 +59,7 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
 
 export default ExpandableContainer;
 
-export function useHeight({ on = true /* no value means on */ } = {} as any) {
+export function useHeight({ on = true } = {} as any) {
   const ref = useRef<any>();
   const [height, set] = useState(0);
   const heightRef = useRef(height);
