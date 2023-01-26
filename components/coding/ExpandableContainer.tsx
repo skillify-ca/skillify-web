@@ -1,9 +1,8 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { useSpring, animated } from "react-spring";
 import { PlusCircleIcon } from "@heroicons/react/solid";
 import { MinusCircleIcon } from "@heroicons/react/solid";
-import useMeasure from "react-use-measure";
-import { Trail } from "./Trail";
+
 interface ExpandableContainerProps {
   open: boolean;
   title: string;
