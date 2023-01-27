@@ -10,12 +10,16 @@ import {
 
 import { useAuth } from "../../../lib/authContext";
 import { profileSelector, setUserRole } from "../../../redux/profileSlice";
-import { activePageSelector, setActivePage } from "../../../redux/sidebarSlice";
+import {
+  activePageSelector,
+  setActivePage,
+  SidebarPage,
+} from "../../../redux/sidebarSlice";
 import SkillifyCommandPalette from "../../CommandPalette";
 interface SidebarItemProps {
   name: string;
   link: string;
-  page: any;
+  page: SidebarPage;
   icon: ReactElement;
   notifications?: boolean;
 }
@@ -27,23 +31,6 @@ const SidebarItem = ({
   notifications,
 }: SidebarItemProps) => {
   const { activePage } = useSelector(activePageSelector);
-  const { user } = useAuth();
-  const dispatch = useDispatch();
-  const { userRole } = useSelector(profileSelector);
-
-  const {} = useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
-    variables: {
-      _id: user.uid,
-    },
-    onCompleted: (data) => {
-      if (data.users[0].userRole.value === "coach") {
-        dispatch(setUserRole(userRole));
-      } else {
-        dispatch(setUserRole(userRole));
-      }
-    },
-    fetchPolicy: "cache-and-network",
-  });
 
   return (
     <Link href={link}>
@@ -72,6 +59,20 @@ export const Sidebar: React.FC = () => {
   const dispatch = useDispatch();
 
   const { signOut, user } = useAuth();
+
+  const {} = useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
+    variables: {
+      _id: user.uid,
+    },
+    onCompleted: (data) => {
+      if (data.users[0].userRole.value === "coach") {
+        dispatch(setUserRole("coach"));
+      } else {
+        dispatch(setUserRole("student"));
+      }
+    },
+    fetchPolicy: "cache-and-network",
+  });
 
   const router = useRouter();
 
@@ -105,7 +106,7 @@ export const Sidebar: React.FC = () => {
           {user && (
             <div className="w-full">
               <p className="w-full ml-4 font-bold">{user.displayName}</p>
-              <p className="ml-4 font-medium">{userRole.toUpperCase()}</p>
+              <p className="ml-4 font-medium capitalize">{userRole}</p>
             </div>
           )}
         </div>
@@ -182,6 +183,25 @@ export const Sidebar: React.FC = () => {
               fill="currentColor"
             >
               <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+            </svg>
+          }
+        />
+        <SidebarItem
+          name={"Admin"}
+          link={"/coaching-dashboard"}
+          page={"admin"}
+          icon={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-6 h-6 mr-4"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
+                clip-rule="evenodd"
+              />
             </svg>
           }
         />
