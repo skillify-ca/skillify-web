@@ -24,7 +24,7 @@ const coachingDashboard = () => {
   }
   return (
     <div className="flex flex-col p-4 m-4 ">
-      <p className="mb-8 text-3xl">Coaching Dashboard</p>
+      <p className="mb-8 text-3xl font-bold">Coaching Dashboard</p>
       <h2 className="mb-4">Enrolled Students</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {userList.map((it) => (
