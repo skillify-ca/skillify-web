@@ -16,6 +16,9 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(open);
   const [heightRef, height] = useHeight();
+  const handleOpenExpandableContainer = () => {
+    setIsOpen((prev) => !prev);
+  };
 
   const mapSpring = useSpring({
     from: { opacity: 0, height: 0 },
@@ -29,18 +32,22 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
   return (
     <>
       <div
-        className={`border-4 border-gray-900 rounded-lg max-h-full ${
+        className={`border-4 border-gray-900 rounded-lg ${
           isOpen ? "shadow-lg shadow-gray-900" : ""
         } `}
-        onClick={() => setIsOpen((prev) => !prev)}
       >
         <div className="flex flex-row items-center p-4 space-x-2">
-          {!isOpen ? (
-            <PlusCircleIcon className="w-6 h-6 cursor-pointer hover:text-yellow-600" />
-          ) : (
-            <MinusCircleIcon className="w-6 h-6 cursor-pointer hover:text-yellow-600" />
-          )}
-
+          <button
+            className="mr-2"
+            type="button"
+            onClick={handleOpenExpandableContainer}
+          >
+            {!isOpen ? (
+              <PlusCircleIcon className="w-6 h-6 cursor-pointer hover:text-yellow-600" />
+            ) : (
+              <MinusCircleIcon className="w-6 h-6 cursor-pointer hover:text-yellow-600" />
+            )}
+          </button>
           <h6 className="text-2xl font-bold pb-2 md:text-3xl mt-3">{title}</h6>
         </div>
         <animated.div
