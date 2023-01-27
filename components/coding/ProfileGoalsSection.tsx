@@ -33,7 +33,7 @@ export default function ProfileGoalsSection({ user }: GoalsSectionProps) {
     <>
       {userGoalsLoading ? (
         <div>Loading...</div>
-      ) : userGoals.length === 0 ? (
+      ) : currentUserGoals.length === 0 ? (
         <div className="col-span-3 p-8 text-center shadow-md bg-slate-300 dark:bg-slate-900">
           No Active Goals
         </div>
