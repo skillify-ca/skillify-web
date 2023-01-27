@@ -25,6 +25,10 @@ export type Data = {
   intro_course_unit: IntroCourseUnit[];
 };
 
+export type FetchBadgeResponse = {
+  intro_course_unit: IntroCourseUnit[];
+};
+
 export type IntroCourseUnit = {
   title: string;
   image: string;
