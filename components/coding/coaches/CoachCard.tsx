@@ -11,7 +11,7 @@ export default function CoachCard({ coach }: CoachCardProps) {
       <div className="flex flex-col items-center justify-center mb-4">
         <img
           src={coach.user.profile_image}
-          className="object-cover w-full h-64"
+          className="object-cover w-40 h-40 rounded-full"
         />
         <p className="text-lg font-bold text-center">{coach.user.name}</p>
       </div>
