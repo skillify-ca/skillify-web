@@ -19,7 +19,7 @@ export default function CoachesPage() {
         <p>Loading...</p>
       ) : (
         <div className="grid w-full grid-cols-1 gap-4 px-4 sm:grid-cols-2 sm:px-8">
-          <div className="col-span-2">
+          <div className="sm:col-span-2">
             <PageHeader
               title={"Coaches"}
               description={
