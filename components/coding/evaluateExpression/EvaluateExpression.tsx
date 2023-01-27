@@ -1,5 +1,8 @@
 import React, { ReactNode } from "react";
-import { EvaluateExpressionState, Stage } from "../../../redux/evaluateExpressionSlice";
+import {
+  EvaluateExpressionState,
+  Stage,
+} from "../../../redux/evaluateExpressionSlice";
 import { Button } from "../../ui/Button";
 import Stack from "../dataStructures/Stack";
 
@@ -35,9 +38,10 @@ const EvaluateExpression = ({
 
   return (
     <>
-      <p className="w-full sticky top-0 col-span-12 text-center font-bold text-white p-4 z-10 bg-blue-500">Evaluate an expression</p>
-      <div className="grid justify-center grid-cols-1 space-y-8 p-4">
-
+      <p className="sticky top-0 z-10 w-full col-span-12 p-4 font-bold text-center text-white bg-blue-500">
+        Evaluate an expression
+      </p>
+      <div className="grid justify-center grid-cols-1 p-4 space-y-8">
         <div className="col-span-12 lg:col-span-8">
           <div className="grid grid-cols-12 col-span-12 gap-8">
             <div className="flex flex-col items-center justify-center col-span-12 gap-8 p-8 bg-white shadow-lg rounded-xl 2xl:col-span-6">
@@ -54,19 +58,16 @@ const EvaluateExpression = ({
                 <Button
                   label="Previous"
                   backgroundColor="purple"
-                  textColor="white"
                   onClick={handlePreviousClick}
                 />
                 <Button
                   label="Next"
                   backgroundColor="blue"
-                  textColor="white"
                   onClick={handleNextClick}
                 />
                 <Button
                   label="Reset"
                   backgroundColor="green"
-                  textColor="white"
                   onClick={handleResetClick}
                 />
               </div>
@@ -83,20 +84,20 @@ const EvaluateExpression = ({
             <div className="col-span-12 lg:col-span-6">
               <Interactive state={state} />
             </div>
-            <div className="col-span-12 lg:col-span-6 h-96 overflow-auto">
-            <History stateHistory={stateHistory} />
+            <div className="col-span-12 overflow-auto lg:col-span-6 h-96">
+              <History stateHistory={stateHistory} />
             </div>
-            <div className="space-y-8 flex flex-col justify-center col-span-12 p-8 bg-white shadow-lg rounded-xl lg:col-span-6">
+            <div className="flex flex-col justify-center col-span-12 p-8 space-y-8 bg-white shadow-lg rounded-xl lg:col-span-6">
               <p className="font-bold">Algorithm</p>
               <Algorithm state={state} />
             </div>
             <div className="col-span-12 lg:col-span-6">
-            <Resources />
+              <Resources />
             </div>
           </div>
-    
         </div>
-      </div></>
+      </div>
+    </>
   );
 };
 

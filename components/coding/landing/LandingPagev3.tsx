@@ -6,22 +6,18 @@ import { Button } from "../../ui/Button";
 
 const LandingPagev3 = ({ curriculumLink, title, description, images }) => {
   return (
-    <div className=" bg-white grid grid-cols-1">
+    <div className="grid grid-cols-1 bg-white ">
       <Navbar />
-      <div className="p-4 flex flex-col w-full space-y-4">
+      <div className="flex flex-col w-full p-4 space-y-4">
         <HeroHome title={title} description={description} />
-        <div className="flex-col items-center flex justify-center">
-          <p className="font-bold text-xl mb-4">What will you learn?</p>
+        <div className="flex flex-col items-center justify-center">
+          <p className="mb-4 text-xl font-bold">What will you learn?</p>
           <Link href={curriculumLink}>
-            <Button
-              label="See the curriculum"
-              backgroundColor="blue"
-              textColor="white"
-            />
+            <Button label="See the curriculum" backgroundColor="blue" />
           </Link>
         </div>
-        <div className="p-8 flex justify-center flex-col items-center">
-          <p className="font-bold text-xl mb-4">
+        <div className="flex flex-col items-center justify-center p-8">
+          <p className="mb-4 text-xl font-bold">
             Our instructors have worked at
           </p>
           <div className="grid grid-cols-3 gap-4">

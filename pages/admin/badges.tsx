@@ -10,12 +10,12 @@ type Badge = {
   image: string;
   visibility: boolean;
 };
-let studentBadges: Badge[][] = [];
-let emptyBadge: Badge = {
+const studentBadges: Badge[][] = [];
+const emptyBadge: Badge = {
   image: "/images/Addition5.png",
   visibility: false,
 };
-let Student: Badge[] = [];
+const Student: Badge[] = [];
 Student.push(emptyBadge);
 Student.push(emptyBadge);
 Student.push(emptyBadge);
@@ -82,8 +82,8 @@ const Studentbadges = () => {
   const [unlockBadge, unlockBadgeData] = useMutation(LOCK_USER_BADGES);
 
   const onButtonClick = (student: string, badge: number) => {
-    let newStudentBadges = JSON.parse(JSON.stringify(allStudentBadges)); //Deep copy
-    let studentId = getStudentId();
+    const newStudentBadges = JSON.parse(JSON.stringify(allStudentBadges)); //Deep copy
+    const studentId = getStudentId();
     newStudentBadges[studentId][badge].visibility =
       !newStudentBadges[studentId][badge].visibility;
     setallStudentBadges(newStudentBadges);
@@ -103,7 +103,6 @@ const Studentbadges = () => {
                 <Button
                   label={"Kishan"}
                   backgroundColor="blue"
-                  textColor="white"
                   onClick={() => setStudent("Kishan")}
                 ></Button>
               </li>
@@ -111,7 +110,6 @@ const Studentbadges = () => {
                 <Button
                   label={"Mithulan"}
                   backgroundColor="blue"
-                  textColor="white"
                   onClick={() => setStudent("Mithulan")}
                 ></Button>
               </li>
@@ -119,7 +117,6 @@ const Studentbadges = () => {
                 <Button
                   label={"Raveen"}
                   backgroundColor="blue"
-                  textColor="white"
                   onClick={() => setStudent("Raveen")}
                 ></Button>
               </li>
@@ -127,7 +124,6 @@ const Studentbadges = () => {
                 <Button
                   label={"Vinon"}
                   backgroundColor="blue"
-                  textColor="white"
                   onClick={() => setStudent("Vinon")}
                 ></Button>
               </li>
@@ -135,7 +131,6 @@ const Studentbadges = () => {
                 <Button
                   label={"Sujee"}
                   backgroundColor="blue"
-                  textColor="white"
                   onClick={() => setStudent("Sujee")}
                 ></Button>
               </li>
@@ -143,7 +138,6 @@ const Studentbadges = () => {
                 <Button
                   label={"Mau"}
                   backgroundColor="blue"
-                  textColor="white"
                   onClick={() => setStudent("Mau")}
                 ></Button>
               </li>
@@ -191,7 +185,6 @@ const Studentbadges = () => {
             <Button
               label={"Save Changes"}
               backgroundColor="green"
-              textColor="white"
               onClick={() => saveChanges()}
             ></Button>
           </div>

@@ -1,8 +1,8 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache, useQuery } from "@apollo/client";
 import GoalsSectionComponent from "../../../components/coding/GoalsSectionComponent";
-
+import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import ProfileGoalsSection from "../../../components/coding/ProfileGoalsSection";
-import AcheivementComponent from "../../../components/coding/profileV2/AchievementComponent";
 import AssignmentSectionComponent from "../../../components/coding/profileV2/AssignmentSectionComponent";
 import ProfileHeaderComponent from "../../../components/coding/profileV2/ProfileHeaderComponent";
 
@@ -12,34 +12,76 @@ import LandingNavbar from "../../../components/LandingNavbar";
 import BadgesSection from "../../../components/profile/BadgesSection";
 import { FETCH_RECENT_USERS } from "../../../graphql/fetchRecentUsers";
 import { FETCH_USER } from "../../../graphql/fetchUser";
-import { userGoalsSelector } from "../../../redux/userGoalsSlice";
+import { setUserGoals, userGoalsSelector } from "../../../redux/userGoalsSlice";
+import ExpandableContainer from "../../../components/coding/ExpandableContainer";
+import AchievementComponent from "../../../components/coding/profileV2/achievement_components/AchievementComponent";
+import SkillRatingsComponent from "../../../components/coding/SkillRatingsComponent";
+import {
+  FetchUserGoalsDataResponse,
+  FETCH_USER_GOALS,
+} from "../../../graphql/fetchUserGoals";
+import { useAuth } from "../../../lib/authContext";
 
 export default function ExternalUserProfile({ slug, uid }) {
-  const user = {
+  const userToDisplay = {
     uid,
   };
+  const { user: loggedInUser } = useAuth();
 
+  const dispatch = useDispatch();
+  const { userGoals } = useSelector(userGoalsSelector);
+  const { loading: userGoalsLoading } = useQuery<FetchUserGoalsDataResponse>(
+    FETCH_USER_GOALS,
+    {
+      variables: {
+        userId: uid,
+      },
+
+      onCompleted: (data: FetchUserGoalsDataResponse) => {
+        dispatch(setUserGoals(data.user_goals));
+      },
+    }
+  );
   return (
-    <div>
-      <LandingNavbar />
-      <div className="flex flex-col p-8 m-4 overflow-auto bg-scroll bg-slate-50 sm:m-auto max-w-7xl dark:bg-slate-800 dark:text-white">
-        <ProfileHeaderComponent userId={user.uid} />
-
-        <h2 className="text-lg font-bold mt-14 mb-9">Projects</h2>
-
-        <div className="grid grid-cols-1 mb-16">
-          <AssignmentSectionComponent />
+    <div
+      className={`dark:text-white overflow-auto w-full max-h-screen h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 gap-4 bg-gray-100 dark:bg-gray-800`}
+    >
+      <div className="sticky top-0 shadow-lg">
+        <LandingNavbar />
+      </div>
+      <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll space-y-9">
+        <ProfileHeaderComponent userId={userToDisplay.uid} />
+        <div>
+          <ExpandableContainer open={true} title={"Projects"}>
+            <ProjectsSection user={userToDisplay} />
+          </ExpandableContainer>
         </div>
-
-        <h2 className="text-lg font-bold mt-14 mb-9">Goals</h2>
-
-        <div className="grid grid-cols-1 mb-16 sm:grid-cols-3">
-          <GoalsSectionComponent inProfile={true} />
+        {loggedInUser && (
+          <div className="grid">
+            <ExpandableContainer open={true} title={"Goals"}>
+              {userGoalsLoading ? (
+                <div>Loading...</div>
+              ) : (
+                <GoalsSectionComponent
+                  inProfile={true}
+                  userGoals={userGoals
+                    .filter((goal) => !goal.isComplete && !goal.isArchived)
+                    .slice(0, 3)}
+                />
+              )}
+            </ExpandableContainer>
+          </div>
+        )}
+        <div className="grid">
+          <ExpandableContainer open={true} title={"Skill Ratings"}>
+            <SkillRatingsComponent />
+          </ExpandableContainer>
         </div>
-
-        <h2 className="text-lg font-bold mb-9">Achievements</h2>
-        <BadgesSection user={user} />
-        <AcheivementComponent user={user} />
+        <div className="grid">
+          <ExpandableContainer open={true} title={"Achievements"}>
+            <AchievementComponent user={userToDisplay} />
+          </ExpandableContainer>
+        </div>
       </div>
     </div>
   );
