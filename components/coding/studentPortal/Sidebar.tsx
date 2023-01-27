@@ -92,7 +92,7 @@ export const Sidebar: React.FC = () => {
 
   return (
     //Full width then restrict in page
-    <div className="flex flex-col w-full h-full bg-gray-50 dark:bg-gray-900 dark:text-white">
+    <div className="flex flex-col w-full h-full bg-white border-r-2 dark:bg-gray-900 dark:text-white">
       <div className="grid">
         <div className="flex p-4">
           {user && (
@@ -186,25 +186,28 @@ export const Sidebar: React.FC = () => {
             </svg>
           }
         />
-        <SidebarItem
-          name={"Admin"}
-          link={"/coaching-dashboard"}
-          page={"admin"}
-          icon={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-6 h-6 mr-4"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          }
-        />
+
+        {userRole === "coach" && (
+          <SidebarItem
+            name={"Admin"}
+            link={"/coaching-dashboard"}
+            page={"admin"}
+            icon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-6 h-6 mr-4"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            }
+          />
+        )}
 
         <SkillifyCommandPalette />
 
@@ -233,7 +236,7 @@ export const Sidebar: React.FC = () => {
               </div>
             </Link>
             <Link href="/studentPortal/web">
-              <div className="flex p-4 bg-white shadow-sm cursor-pointer dark:bg-gray-900 hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800">
+              <div className="flex p-4 bg-white cursor-pointer dark:bg-gray-900 hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6"
