@@ -8,7 +8,6 @@ import {
 } from "../../../graphql/fetchUserGoalsCount";
 import { useAuth } from "../../../lib/authContext";
 import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
-import SkillifyCommandPalette from "../../CommandPalette";
 import Sidebar from "./Sidebar";
 
 export const Layout: React.FC = ({ children }) => {
@@ -45,7 +44,7 @@ export const Layout: React.FC = ({ children }) => {
         }
       `}</style>
       <div className="fixed z-20 flex justify-between w-full h-16 col-span-12 p-4 bg-white border-b-2 dark:bg-gray-900">
-        <div onClick={(e) => setActive(!active)}>
+        <div onClick={() => setActive(!active)}>
           <div className="cursor-pointer dark:text-white lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -53,11 +52,7 @@ export const Layout: React.FC = ({ children }) => {
               viewBox="0 0 20 20"
               fill="currentColor"
             >
-              <path
-                fill-rule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clip-rule="evenodd"
-              />
+              <path d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" />
             </svg>
           </div>
         </div>
