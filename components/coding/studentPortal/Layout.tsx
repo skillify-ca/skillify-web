@@ -33,7 +33,7 @@ export const Layout: React.FC = ({ children }) => {
   });
 
   return (
-    <div className="flex flex-col h-full bg-red-300">
+    <div className="flex flex-col h-full bg-white">
       <style global jsx>{`
         html,
         body,
@@ -68,7 +68,7 @@ export const Layout: React.FC = ({ children }) => {
           <Sidebar />
         </div>
         <div
-          className={`dark:text-white overflow-auto w-full max-h-screen h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 gap-4 bg-gray-100 dark:bg-gray-800`}
+          className={`dark:text-white overflow-auto w-full max-h-screen h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 gap-4 bg-white dark:bg-gray-800`}
         >
           <div className="h-16" />
           <div className="min-h-screen">
