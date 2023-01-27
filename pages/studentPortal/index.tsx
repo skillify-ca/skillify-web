@@ -14,13 +14,15 @@ import {
   transform,
 } from "../../graphql/coding/fetchUserIntroNodes";
 import { UPDATE_USER } from "../../graphql/updateUser";
+import ErrorMessage from "../../components/ui/ErrorMessage";
+import PageHeader from "../../components/coding/PageHeader";
 
 export default function StudentPortalPage() {
   const { user } = useAuth();
 
   const [initUserNodes] = useMutation(INIT_USER_INTRO_NODES);
   const [updateUser] = useMutation(UPDATE_USER);
-  const { data } = useQuery(FETCH_USER_INTRO_NODES, {
+  const { data, error } = useQuery(FETCH_USER_INTRO_NODES, {
     variables: {
       userId: user.uid,
     },
@@ -69,9 +71,11 @@ export default function StudentPortalPage() {
         description={moment().format("MMM Do YYYY")}
       />
       <div className="grid grid-cols-1 gap-4">
-        {units.map((it) => (
-          <UnitView data={it} />
-        ))}
+        {error ? (
+          <ErrorMessage message={"Failed to fetch student dashboard"} />
+        ) : (
+          units.map((it, i) => <UnitView key={i} data={it} />)
+        )}
       </div>
     </div>
   );
