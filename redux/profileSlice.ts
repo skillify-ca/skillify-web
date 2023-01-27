@@ -6,7 +6,7 @@ export type ProfileState = {
   userProfileData: UserProfileData;
   userBadgeCount: number;
   totalBadgeCount: number;
-  userRole: string;
+  userRole: "student"|"coach";
 };
 
 
