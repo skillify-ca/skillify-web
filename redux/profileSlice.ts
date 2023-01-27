@@ -6,9 +6,8 @@ export type ProfileState = {
   userProfileData: UserProfileData;
   userBadgeCount: number;
   totalBadgeCount: number;
+  userRole: "student" | "coach";
 };
-
-
 
 const initialState: ProfileState = {
   userProfileData: {
@@ -21,6 +20,7 @@ const initialState: ProfileState = {
   },
   userBadgeCount: 0,
   totalBadgeCount: 0,
+  userRole: "student",
 };
 
 export const profileSlice: Slice = createSlice({
@@ -39,10 +39,7 @@ export const profileSlice: Slice = createSlice({
       }
     },
 
-    setUserBadgeCount: (
-      state: ProfileState,
-      action: PayloadAction<number>
-    ) => {
+    setUserBadgeCount: (state: ProfileState, action: PayloadAction<number>) => {
       if (action.type == "profile/setUserBadgeCount") {
         return {
           ...state,
@@ -50,8 +47,7 @@ export const profileSlice: Slice = createSlice({
         };
       }
     },
-  
-    
+
     setTotalBadgeCount: (
       state: ProfileState,
       action: PayloadAction<number>
@@ -64,13 +60,27 @@ export const profileSlice: Slice = createSlice({
       }
     },
 
+    setUserRole: (
+      state: ProfileState,
+      action: PayloadAction<"coach" | "student">
+    ) => {
+      if (action.type == "profile/setUserRole") {
+        return {
+          ...state,
+          userRole: action.payload,
+        };
+      }
+    },
   },
 });
 
-export const { setUserProfile, setUserBadgeCount, setTotalBadgeCount } =
-  profileSlice.actions;
+export const {
+  setUserProfile,
+  setUserBadgeCount,
+  setTotalBadgeCount,
+  setUserRole,
+} = profileSlice.actions;
 
 export default profileSlice.reducer;
 
-export const profileSelector = (state: RootState) =>
-  state.profileState;
+export const profileSelector = (state: RootState) => state.profileState;

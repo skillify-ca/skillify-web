@@ -1,15 +1,14 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { RootState } from "./rootReducer";
 
-export type SidebarProps = {};
-
 export type SidebarPage =
   | "dashboard"
   | "coaches"
   | "goals"
   | "workshops"
   | "profile"
-  | "goals";
+  | "goals"
+  | "admin";
 
 export interface SidebarState {
   activePage: SidebarPage;
