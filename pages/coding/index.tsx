@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function Coding() {
@@ -9,12 +10,16 @@ export default function Coding() {
     },
     { name: "Reverse String", link: "reverseString" },
     { name: "Richest Customer Wealth", link: "richestCustomerWealth" },
-    { name: "Word Pattern", link: "Word Pattern" },
+    { name: "Word Pattern", link: "wordPattern" },
   ];
   return (
     <div>
       {lessons.map((lesson) => (
-        <div className="p-4">{lesson.name}</div>
+        <Link key={lesson.link} href={`/coding/${lesson.link}`}>
+          <div className="p-4 border cursor-pointer hover:bg-sky-300">
+            {lesson.name}
+          </div>
+        </Link>
       ))}
     </div>
   );
