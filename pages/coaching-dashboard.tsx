@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileDetailCard from "../components/coding/studentPortal/ProfileDetailCard";
 import {
@@ -7,11 +7,16 @@ import {
   FETCH_USER_PROFILE_CARD,
 } from "../graphql/fetchUserProfileCard";
 import Link from "next/link";
-import { userSelector, setUserList } from "../redux/userSlice";
+import { userSelector, setUserList, setEarnedBadges } from "../redux/userSlice";
+import {
+  FetchEarnedBadges,
+  FETCH_EARNED_BADGES,
+} from "../graphql/fetchEarnedBadges";
+import { transformBadgesEarned } from "./api/coachingDashboard";
 const coachingDashboard = () => {
   const dispatch = useDispatch();
 
-  const { userList } = useSelector(userSelector);
+  const { userList, earnedBadges } = useSelector(userSelector);
 
   const { loading, data } = useQuery<FetchUserProfileCardResponse>(
     FETCH_USER_PROFILE_CARD,
@@ -20,6 +25,32 @@ const coachingDashboard = () => {
         data.users.length > 0 ? dispatch(setUserList(data.users)) : loading,
     }
   );
+
+  const enrolledUsers = userList.map((user) => user.id);
+
+  const {} = useQuery<FetchEarnedBadges>(FETCH_EARNED_BADGES, {
+    variables: {
+      enrolledIds: enrolledUsers,
+    },
+    onCompleted: (data) => {
+      dispatch(setEarnedBadges(data.user_coding_badges));
+    },
+  });
+
+  useEffect(() => {
+    const aggregatedBadgeCount = earnedBadges.reduce((acc, badgeId) => {
+      if (acc[badgeId.userId]) {
+        acc[badgeId.userId] += 1;
+      } else {
+        acc[badgeId.userId] = 1;
+      }
+      return acc;
+    }, {});
+    dispatch(
+      setUserList(transformBadgesEarned(userList, aggregatedBadgeCount))
+    );
+  }, [earnedBadges]);
+
   if (loading) {
     return <div className="flex place-content-center">"Loading..."</div>;
   }

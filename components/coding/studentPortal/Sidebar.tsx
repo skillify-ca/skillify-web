@@ -1,9 +1,13 @@
+import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { ReactElement, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { FETCH_TOTAL_USER_BADGES_COUNT } from "../../../graphql/fetchTotalUserBadgesCount";
+import { FetchUserBadgesCountResponse } from "../../../graphql/fetchUserBadgesCount";
 
 import { useAuth } from "../../../lib/authContext";
+import { setTotalBadgeCount } from "../../../redux/profileSlice";
 import {
   activePageSelector,
   SidebarProps,
@@ -55,6 +59,19 @@ export const Sidebar: React.FC<SidebarProps> = ({}: SidebarProps) => {
   const { signOut, user } = useAuth();
 
   const router = useRouter();
+
+  const { loading: totalUserBadgeCountLoading } =
+    useQuery<FetchUserBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
+      onCompleted: (data) => {
+        if (data.user_coding_badges_aggregate.aggregate.count) {
+          dispatch(
+            setTotalBadgeCount(
+              data.user_coding_badges_aggregate.aggregate.count
+            )
+          );
+        }
+      },
+    });
 
   useEffect(() => {
     if (router.pathname.startsWith("/coaches")) {

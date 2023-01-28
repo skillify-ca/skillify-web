@@ -1,6 +1,7 @@
-import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
+import { Slice, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserProfileData } from "../graphql/fetchUserProfile";
 import { RootState } from "./rootReducer";
+
 
 export type ProfileState = {
   userProfileData: UserProfileData;
@@ -19,8 +20,8 @@ const initialState: ProfileState = {
     name: "",
     profileImage: "",
   },
-  userBadgeCount: 0,
   totalBadgeCount: 0,
+  userBadgeCount: 0,
 };
 
 export const profileSlice: Slice = createSlice({
@@ -31,10 +32,22 @@ export const profileSlice: Slice = createSlice({
       state: ProfileState,
       action: PayloadAction<UserProfileData>
     ) => {
-      if (action.type == "profile/setUserProfile") {
+      if (action.type === "profile/setUserProfile") {
         return {
           ...state,
           userProfileData: action.payload,
+        };
+      }
+    },
+
+    setTotalBadgeCount: (
+      state: ProfileState,
+      action: PayloadAction<number>
+    ) => {
+      if (action.type === "profile/setTotalBadgeCount") {
+        return {
+          ...state,
+          totalBadgeCount: action.payload,
         };
       }
     },
@@ -43,7 +56,7 @@ export const profileSlice: Slice = createSlice({
       state: ProfileState,
       action: PayloadAction<number>
     ) => {
-      if (action.type == "profile/setUserBadgeCount") {
+      if (action.type === "profile/setUserBadgeCount") {
         return {
           ...state,
           userBadgeCount: action.payload,
@@ -51,18 +64,8 @@ export const profileSlice: Slice = createSlice({
       }
     },
   
-    
-    setTotalBadgeCount: (
-      state: ProfileState,
-      action: PayloadAction<number>
-    ) => {
-      if (action.type == "profile/setTotalBadgeCount") {
-        return {
-          ...state,
-          totalBadgeCount: action.payload,
-        };
-      }
-    },
+   
+   
 
   },
 });
