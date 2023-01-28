@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { FETCH_BADGE } from "../../graphql/fetchBadge";
 import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
 import { Canvas } from "react-three-fiber";
@@ -10,63 +10,38 @@ import { useAuth } from "../../lib/authContext";
 
 // const Box = dynamic(() => import("../../components/stories/Box"));
 
+type Badge = {
+  title: string;
+  description: string;
+  image: string;
+};
 const BadgeDetailsPage = ({ slug }) => {
   const { user } = useAuth();
+  const [badgeDetail, setBadgeData] = useState<Badge>();
 
-  const badgeDetailResults = useQuery(FETCH_BADGE, {
+  useQuery(FETCH_BADGE, {
     variables: {
       badgeId: slug,
     },
-  });
-
-  let badgeDetail;
-  if (badgeDetailResults.data) {
-    badgeDetail = badgeDetailResults.data.badges[0];
-  }
-  const userQuizzesQuery = useQuery(FETCH_USER_QUIZZES, {
-    variables: {
-      userId: user.uid,
-      badgeId: slug,
+    onCompleted: (data) => {
+      setBadgeData(data.coding_badges[0]);
     },
   });
-  let userQuizzes;
-  let accuracyList = [];
-  let maxAccuracy;
-  if (userQuizzesQuery.data) {
-    userQuizzes = userQuizzesQuery.data.user_quizzes;
-    accuracyList = userQuizzes.map((it) => it.accuracy);
-    if (accuracyList.length == 0) {
-      maxAccuracy = "Not Attempted";
-    } else {
-      maxAccuracy = Math.max(...accuracyList);
-    }
-  }
-
-  const formatDate = (date: string) => {
-    const d = new Date(date);
-    return d.toLocaleDateString("en");
-  };
-  const getColourForAccuracy = (accuracy: any) => {
-    if (accuracy >= 75) {
-      return "text-green-500";
-    } else if (accuracy >= 50) {
-      return "text-yellow-500";
-    } else {
-      return "text-red-500";
-    }
-  };
 
   return (
     <div>
-      <div className="heropattern-hideout-blue-100 bg-gray-100 h-screen p-4">
+      <div className="h-screen p-4 bg-gray-100 heropattern-hideout-blue-100">
         {badgeDetail && (
-          <div className="flex flex-col justify-center md:w-1/2 ml-auto mr-auto bg-white p-8 rounded-3xl">
-            <p className="text-center text-3xl mb-4 font-semibold">
+          <div className="flex flex-col justify-center p-8 ml-auto mr-auto bg-white md:w-1/2 rounded-3xl">
+            <p className="mb-4 text-3xl font-semibold text-center">
               {" "}
               {badgeDetail.title}{" "}
             </p>
-            <div className="bg-blue-900 h-64">
-              <img src={badgeDetail.image} className="transition-all transform hover:animate-shake w-full h-full object-contain p-4" />
+            <div className="h-64 bg-blue-900">
+              <img
+                src={badgeDetail.image}
+                className="object-contain w-full h-full p-4 transition-all transform hover:animate-shake"
+              />
               {/* <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
                 <Preload all />
                 <group>
@@ -83,45 +58,9 @@ const BadgeDetailsPage = ({ slug }) => {
                 </group>
               </Canvas> */}
             </div>
-            <p className="text-center mt-4"> {badgeDetail.description} </p>
-            <div className="flex flex-row">
-              <p className="text-center mt-4 font-bold">
-                Your Best Attempt is:
-              </p>
-              <p
-                className={`${getColourForAccuracy(maxAccuracy)} p-4 font-bold`}
-              >
-                {maxAccuracy}
-                {maxAccuracy != "Not Attempted" ? "%" : ""}
-              </p>
-            </div>
+            <p className="mt-4 text-center"> {badgeDetail.description} </p>
           </div>
         )}
-
-        <div className="flex flex-col justify-center md:w-1/2 ml-auto mr-auto mt-8 bg-white p-8 rounded-3xl">
-          <p className="text-center text-3xl mb-4 font-semibold">
-            {" "}
-            Quiz Attempts{" "}
-          </p>
-          <table className="border-b-2 text-center">
-            <tr className="border-b-2">
-              <th>Attempt</th>
-              <th>Score</th>
-              <th>Date</th>
-            </tr>
-            {userQuizzes &&
-              userQuizzes.map(
-                (it) =>
-                  it && (
-                    <tr>
-                      <td>{userQuizzes.indexOf(it) + 1}</td>
-                      <td>{it.accuracy}</td>
-                      <td>{formatDate(it.createdAt)}</td>
-                    </tr>
-                  )
-              )}
-          </table>
-        </div>
       </div>
     </div>
   );
