@@ -64,11 +64,13 @@ export const Layout: React.FC = ({ children }) => {
         <div />
       </div>
       <div className="flex">
-        <div className="hidden max-h-screen mt-16 w-96 lg:flex">
+        {/* Desktop Sidebar */}
+        <div className="hidden h-full max-h-screen grid-cols-1 overflow-scroll w-96 lg:grid">
+          <div className="h-16" />
           <Sidebar />
         </div>
         <div
-          className={`dark:text-white overflow-auto w-full max-h-screen h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 gap-4 bg-white dark:bg-gray-800`}
+          className={` dark:text-white overflow-auto w-full max-h-screen h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 bg-white dark:bg-gray-800`}
         >
           <div className="h-16" />
           <div className="min-h-screen">
@@ -76,6 +78,8 @@ export const Layout: React.FC = ({ children }) => {
           </div>
         </div>
       </div>
+
+      {/* Mobile Sidebar */}
       <div
         className={`fixed z-10 w-56 top-16 lg:hidden ${
           active ? "left-0" : "-left-56"
