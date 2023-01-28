@@ -65,31 +65,42 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
       userId
     ).removedBadges;
 
-    if (addedBadges.length > 0) {
-      saveAddedBadges({
-        variables: {
-          objects: addedBadges,
-        },
-      });
-    }
-    if (removedBadges.length > 0) {
-      removedBadges.forEach((badge) => {
-        saveRemovedBadges({
-          variables: {
-            badgeId: badge.badgeId,
-            userId: badge.userId,
-          },
-        });
-      });
-    }
-    alert("Your badge selections have been updated.");
+    Promise.all([
+      addedBadges.length > 0
+        ? saveAddedBadges({ variables: { objects: addedBadges } }).catch(
+            (error) => {
+              console.error(error);
+            }
+          )
+        : Promise.resolve(),
+      removedBadges.length > 0
+        ? Promise.all(
+            removedBadges.map((badge) =>
+              saveRemovedBadges({
+                variables: {
+                  badgeId: badge.badgeId,
+                  userId: badge.userId,
+                },
+              }).catch((error) => {
+                console.error(error);
+              })
+            )
+          )
+        : Promise.resolve(),
+    ]).then(() => {
+      alert("Your badge selections have been updated.");
+    });
   };
 
   return (
     <div className="sm:p-4 sm:shadow-md bg-slate-300 dark:bg-slate-900">
       <div className="w-full mb-4">
         {isEditable && (
-          <div className="flex place-content-end space-x-4 px-4">
+          <div className="flex place-content-between space-x-4 px-4">
+            <Button
+              label={"Save"}
+              onClick={() => handleOnSaveButtonClick()}
+            ></Button>
             <button
               onClick={() => setEditMode(!editMode)}
               className="w-5 h-5 cursor-pointer hover:text-yellow-600"
@@ -120,11 +131,21 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
           })}
         </div>
       )}
-      <div className="px-4">
+      <div className="flex place-content-between space-x-4 px-4">
         <Button
           label={"Save"}
           onClick={() => handleOnSaveButtonClick()}
         ></Button>
+        <button
+          onClick={() => setEditMode(!editMode)}
+          className="w-5 h-5 cursor-pointer hover:text-yellow-600"
+        >
+          {editMode ? (
+            <PencilAltIcon className="w-5 h-5 text-yellow-600 cursor-pointer" />
+          ) : (
+            <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
+          )}
+        </button>
       </div>
     </div>
   );
