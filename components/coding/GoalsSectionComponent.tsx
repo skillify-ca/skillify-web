@@ -46,7 +46,7 @@ export default function GoalsSection({
         return (
           <div
             key={index}
-            className={`grid grid-cols-5 my-2 text-sm text-center md:grid-cols-12 md:text-lg place-items-center ${returnGoalStyle(
+            className={`grid grid-cols-5 my-2 text-sm text-center md:grid-cols-12 dark:text-white md:text-lg place-items-center ${returnGoalStyle(
               goal
             )}`}
           >
@@ -55,10 +55,10 @@ export default function GoalsSection({
             <p className="hidden md:block md:col-span-2">
               {format(new Date(goal.createdAt), "MM/dd/yyyy")}
             </p>
-            <p className="hidden md:block col-span-1 md:col-span-2">
+            <p className="hidden col-span-1 md:block md:col-span-2">
               {format(new Date(goal.targetDate), "MM/dd/yyyy")}
             </p>
-            <p className="md:hidden col-span-1">
+            <p className="col-span-1 md:hidden">
               {format(new Date(goal.targetDate), "MM/dd")}
             </p>
             <p className="hidden md:block md:col-span-2">

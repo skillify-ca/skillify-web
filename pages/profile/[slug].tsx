@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import ProfileGoalsSection from "../../components/coding/ProfileGoalsSection";
-import AcheivementComponent from "../../components/coding/profileV2/AchievementComponent";
+import AcheivementComponent from "../../components/coding/profileV2/achievement_components/AchievementComponent";
 import ProjectsSection from "../../components/coding/ProjectsSection";
 import UserProfileSection from "../../components/coding/UserProfileSection";
 import LandingNavbar from "../../components/LandingNavbar";

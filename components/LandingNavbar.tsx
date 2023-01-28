@@ -13,13 +13,33 @@ export default function LandingNavbar({ showTimer }: LandingNavbarProps) {
         </Link>
         <div className="flex items-center gap-4">
           <div className="">
-            <a href={"https://www.linkedin.com/in/vithushan/"}>
+            <a
+              href={"https://www.linkedin.com/in/vithushan/"}
+              target="_blank"
+              rel="noreferrer"
+            >
               <img src="/images/landingPage/linkedin.svg" className="w-8" />
             </a>{" "}
           </div>
           <div className="">
-            <a href={"https://www.instagram.com/skillify.ca/"}>
+            <a
+              href={"https://www.instagram.com/skillify.ca/"}
+              target="_blank"
+              rel="noreferrer"
+            >
               <img src="/images/landingPage/ig.png" className="w-8" />
+            </a>{" "}
+          </div>
+          <div className="">
+            <a
+              href={"https://www.tiktok.com/@skillify.ca"}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src="/images/landingPage/tiktok.png"
+                className="w-8 rounded"
+              />
             </a>{" "}
           </div>
         </div>

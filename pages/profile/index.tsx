@@ -1,6 +1,6 @@
 import React from "react";
 import ProfileGoalsSection from "../../components/coding/ProfileGoalsSection";
-import AcheivementComponent from "../../components/coding/profileV2/AchievementComponent";
+import AcheivementComponent from "../../components/coding/profileV2/achievement_components/AchievementComponent";
 import ProjectsSection from "../../components/coding/ProjectsSection";
 import UserProfileSection from "../../components/coding/UserProfileSection";
 
@@ -15,7 +15,7 @@ export default function Profile(props) {
 
       <h2 className="text-lg font-bold mt-14 mb-9">Projects</h2>
 
-      <div className="grid grid-cols-1 mb-4 sm:grid-cols-3">
+      <div className="grid grid-cols-1 mb-4 sm:grid-cols-2">
         <ProjectsSection user={user} />
       </div>
 
