@@ -13,18 +13,19 @@ import {
 } from "../../../../graphql/coding/userBadges/updateUserCodingBadges";
 import UnitBadgeSection from "./UnitBadgeSection";
 import findBadgeDiff from "./findBadgeDiff";
+import {
+  FetchUserRoleData,
+  FETCH_USER_ROLE,
+} from "../../../../graphql/fetchUserRole";
 
 export type AchievementComponentProps = {
   userId: string;
-  isEditable: boolean;
 };
 
-const AchievementComponent = ({
-  userId,
-  isEditable,
-}: AchievementComponentProps) => {
+const AchievementComponent = ({ userId }: AchievementComponentProps) => {
   const [unitBadges, setUnitBadges] = useState<IntroCourseUnit[]>();
   const [editMode, setEditMode] = useState(false);
+  const [isEditable, setIsEditable] = useState(false);
   const { data } = useQuery<FetchBadgeResponse>(FETCH_CODING_BADGES, {
     variables: {
       userId: userId,
@@ -33,13 +34,23 @@ const AchievementComponent = ({
       setUnitBadges(data.intro_course_unit);
     },
   });
-
+  const {} = useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
+    variables: {
+      _id: userId,
+    },
+    onCompleted: (roleData) => {
+      if (roleData.users[0].userRole.value === "coach") {
+        setIsEditable(true);
+      }
+    },
+  });
   const [saveAddedBadges] = useMutation(INSERT_USER_CODING_BADGES, {
     refetchQueries: [{ query: FETCH_CODING_BADGES }],
   });
   const [saveRemovedBadges] = useMutation(DELETE_USER_CODING_BADGES, {
     refetchQueries: [{ query: FETCH_CODING_BADGES }],
   });
+
   // move handler inside AC component, and add type props
   // keep findBadgeDiff
   const handleOnSaveButtonClick = () => {
@@ -76,13 +87,9 @@ const AchievementComponent = ({
 
   return (
     <div className="sm:p-4 sm:shadow-md bg-slate-300 dark:bg-slate-900">
-      <div className="flex justify-end w-full mb-4">
+      <div className="w-full mb-4">
         {isEditable && (
-          <div>
-            <Button
-              label={"Save"}
-              onClick={() => handleOnSaveButtonClick()}
-            ></Button>
+          <div className="flex place-content-end space-x-4 px-4">
             <button
               onClick={() => setEditMode(!editMode)}
               className="w-5 h-5 cursor-pointer hover:text-yellow-600"
@@ -113,6 +120,12 @@ const AchievementComponent = ({
           })}
         </div>
       )}
+      <div className="px-4">
+        <Button
+          label={"Save"}
+          onClick={() => handleOnSaveButtonClick()}
+        ></Button>
+      </div>
     </div>
   );
 };
