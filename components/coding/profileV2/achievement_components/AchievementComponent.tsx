@@ -89,6 +89,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
       <div className="w-full mb-4">
         {isEditable && (
           <div className="flex place-content-between space-x-4 px-4">
+
             <Button
               label={"Save"}
               onClick={() => handleOnSaveButtonClick()}
@@ -111,7 +112,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
           {unitBadges.map((unit, index) => {
             if (unit.coding_badges.length > 0) {
               return (
-                <div className="mb-4 sm:m-4" key={index}>
+                <div className="mb-4" key={index}>
                   <UnitBadgeSection
                     unit={unit}
                     editMode={editMode}

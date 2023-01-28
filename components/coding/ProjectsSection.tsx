@@ -13,16 +13,17 @@ export type ProjectsSectionProps = {
 
 export default function ProjectsSection({ user }: ProjectsSectionProps) {
   const [userProjects, setUserProjects] = useState<UserProjectData[]>([]);
-  const { loading: userProjectsLoading } =
-    useQuery<FetchUserProjectsDataResponse>(FETCH_USER_PROJECTS, {
-      variables: {
-        userId: user.uid,
-      },
+  const {
+    loading: userProjectsLoading,
+  } = useQuery<FetchUserProjectsDataResponse>(FETCH_USER_PROJECTS, {
+    variables: {
+      userId: user.uid,
+    },
 
-      onCompleted: (data: FetchUserProjectsDataResponse) => {
-        setUserProjects(data.user_projects);
-      },
-    });
+    onCompleted: (data: FetchUserProjectsDataResponse) => {
+      setUserProjects(data.user_projects);
+    },
+  });
 
   return (
     <>
@@ -37,7 +38,7 @@ export default function ProjectsSection({ user }: ProjectsSectionProps) {
           return (
             <div
               key={i}
-              className="flex flex-col items-center gap-4 p-4 bg-slate-300 dark:bg-slate-900"
+              className="flex flex-col items-center gap-4 p-4 m-4 bg-slate-300 dark:bg-slate-900"
             >
               <p className="font-bold">{it.name}</p>
               <img
