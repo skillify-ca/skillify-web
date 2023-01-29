@@ -37,6 +37,17 @@ const coachingDashboard = () => {
     },
   });
 
+  const emptyBadge = () => {
+    return (
+      <div
+        className="w-20 my-3 border-3 rounded-full bg-slate-400
+      border-slate-800"
+      >
+        NA
+      </div>
+    );
+  };
+
   useEffect(() => {
     const aggregatedBadgeCount = earnedBadges.reduce((acc, badgeId) => {
       if (acc[badgeId.userId]) {
@@ -58,7 +69,7 @@ const coachingDashboard = () => {
     <div className="flex flex-col p-4 m-4 ">
       <p className="mb-8 text-3xl font-bold">Coaching Dashboard</p>
       <h2 className="mb-4">Enrolled Students</h2>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
         {userList.map((it, index) => {
           return (
             <div key={index}>
@@ -73,7 +84,14 @@ const coachingDashboard = () => {
                     name={it.name}
                     joinDate={it.created_at}
                     badges={it.badges_earned}
-                    currentBadge={it.coding_badge}
+                    currentBadge={
+                      it.coding_badge == null
+                        ? {
+                            title: "No badges earned.",
+                            image: "../../images/logo-2.png",
+                          }
+                        : it.coding_badge
+                    }
                     nextGoal={""}
                     link={it.link}
                   />
