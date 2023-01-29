@@ -30,7 +30,7 @@ function ProfileDetailCard({
     <div className="flex flex-col h-full gap-2 text-sm border-2 bg-slate-50 text-slate-800 border-slate-800 hover:bg-violet-100">
       <div className="flex flex-col items-center">
         <img
-          className="items-center w-20 my-3 border-2 rounded-full border-slate-800 "
+          className="items-center w-20 my-3 border-3 rounded-full border-slate-800 "
           src={avatar}
         />
         <p className="font-bold "> {name}</p>
