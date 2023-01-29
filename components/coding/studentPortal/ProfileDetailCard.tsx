@@ -27,15 +27,15 @@ function ProfileDetailCard({
   const { totalBadgeCount } = useSelector(profileSelector);
 
   return (
-    <div className="flex flex-col h-full gap-4 text-sm border-2 bg-slate-50 text-slate-800 border-slate-800 hover:bg-violet-100">
+    <div className="flex flex-col h-full gap-2 text-sm border-2 bg-slate-50 text-slate-800 border-slate-800 hover:bg-violet-100">
       <div className="flex flex-col items-center">
         <img
-          className="items-center w-20 mt-4 border-2 rounded-full border-slate-800 "
+          className="items-center w-20 my-3 border-2 rounded-full border-slate-800 "
           src={avatar}
         />
         <p className="font-bold "> {name}</p>
       </div>
-      <div className="flex flex-col items-start gap-4 mx-4 mb-4">
+      <div className="flex flex-col items-start gap-1 mx-4 mb-4">
         <JoinedDateComponent
           user={name}
           textSize={"small"}
