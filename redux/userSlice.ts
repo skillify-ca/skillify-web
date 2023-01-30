@@ -5,6 +5,7 @@ import { RootState } from "./rootReducer";
 
 export type userState = {
   userList: Users[];
+
 };
 
 const initialState: userState = { userList: []};

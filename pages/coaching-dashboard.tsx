@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileDetailCard from "../components/coding/studentPortal/ProfileDetailCard";
 import {
@@ -8,11 +8,6 @@ import {
 } from "../graphql/fetchUserProfileCard";
 import Link from "next/link";
 import { userSelector, setUserList } from "../redux/userSlice";
-import {
-  EarnedBadges,
-  FetchEarnedBadges,
-  FETCH_EARNED_BADGES,
-} from "../graphql/fetchEarnedBadges";
 import { FETCH_TOTAL_USER_BADGES_COUNT } from "../graphql/fetchTotalUserBadgesCount";
 import { FetchUserBadgesCountResponse } from "../graphql/fetchUserBadgesCount";
 import { profileSelector, setTotalBadgeCount } from "../redux/profileSlice";
@@ -21,7 +16,6 @@ const coachingDashboard = () => {
 
   const { userList } = useSelector(userSelector);
   const { totalBadgeCount } = useSelector(profileSelector);
-  const [earnedBadges, setEarnedBadges] = useState({});
 
   const { loading, data } = useQuery<FetchUserProfileCardResponse>(
     FETCH_USER_PROFILE_CARD,
@@ -43,27 +37,6 @@ const coachingDashboard = () => {
         }
       },
     });
-  const enrolledUsers = userList.map((user) => user.id);
-
-  const {} = useQuery<FetchEarnedBadges>(FETCH_EARNED_BADGES, {
-    variables: {
-      enrolledIds: enrolledUsers,
-    },
-    onCompleted: (data) => {
-      const aggregatedBadgeCount = data.user_coding_badges.reduce(
-        (acc, badgeId) => {
-          if (acc[badgeId.userId]) {
-            acc[badgeId.userId] += 1;
-          } else {
-            acc[badgeId.userId] = 1;
-          }
-          return acc;
-        },
-        {}
-      );
-      setEarnedBadges(aggregatedBadgeCount);
-    },
-  });
 
   if (loading) {
     return <div className="flex place-content-center">"Loading..."</div>;
@@ -74,8 +47,6 @@ const coachingDashboard = () => {
       <h2 className="mb-4">Enrolled Students</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {userList.map((it, index) => {
-          const badgeKey = Object.keys(earnedBadges)[index];
-          const badgeCount = earnedBadges[badgeKey];
           return (
             <div key={index}>
               <Link href={"profile/" + it.link}>
@@ -88,7 +59,7 @@ const coachingDashboard = () => {
                     }
                     name={it.name}
                     joinDate={it.created_at}
-                    badges={badgeCount ? badgeCount : 0}
+                    badges={it.user_coding_badges_aggregate.aggregate.count}
                     currentBadge={it.coding_badge}
                     nextGoal={""}
                     link={it.link}

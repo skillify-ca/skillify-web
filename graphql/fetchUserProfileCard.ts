@@ -1,19 +1,27 @@
 import { gql } from "@apollo/client";
-import React from "react";
+
 export type Users = {
   id: string;
   name: string;
   link: string;
   profile_image: string;
-  badges_earned: number;
   created_at: string;
   current_badge: number;
   coding_badge: CodingBadge;
+  user_coding_badges_aggregate: BadgesEarnedCount;
 };
 
 export type CodingBadge = {
   title: string;
   image: string;
+};
+
+export type BadgesEarnedCount = {
+aggregate: BadgesEarnedNested;
+}
+
+export type BadgesEarnedNested = {
+  count: number;
 };
 
 export type FetchUserProfileCardResponse = {
@@ -26,12 +34,16 @@ query fetchUsers {
     name
     link
     profile_image
-    badges_earned
     created_at
     current_badge
     coding_badge {
       title
       image
+    }
+    user_coding_badges_aggregate {
+      aggregate {
+        count
+      }
     }
   }
 }
