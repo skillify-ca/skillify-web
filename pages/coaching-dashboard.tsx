@@ -70,9 +70,6 @@ const coachingDashboard = () => {
     },
   });
 
-  console.log(enrolledUsers);
-  console.log("NG", nextGoals);
-
   useEffect(() => {
     const aggregatedBadgeCount = earnedBadges.reduce((acc, badgeId) => {
       if (acc[badgeId.userId]) {
