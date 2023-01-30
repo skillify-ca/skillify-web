@@ -73,7 +73,6 @@ export default function SkillRatings(props) {
 
   return (
     <div className="flex flex-row overflow-auto-bg-scroll">
-      {totalBadgeCount}
       <div className="flex flex-col p-4 m-4">
         {skillRatings && <SkillSection skillSection={skillRatings} />}
       </div>
