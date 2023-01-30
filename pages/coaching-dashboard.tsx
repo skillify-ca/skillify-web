@@ -74,7 +74,8 @@ const coachingDashboard = () => {
       <h2 className="mb-4">Enrolled Students</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {userList.map((it, index) => {
-          const badgeCount = earnedBadges[index];
+          const badgeKey = Object.keys(earnedBadges)[index];
+          const badgeCount = earnedBadges[badgeKey];
           return (
             <div key={index}>
               <Link href={"profile/" + it.link}>
@@ -87,9 +88,7 @@ const coachingDashboard = () => {
                     }
                     name={it.name}
                     joinDate={it.created_at}
-                    badges={
-                      earnedBadges && earnedBadges[Object.keys(earnedBadges)[0]]
-                    }
+                    badges={badgeCount}
                     currentBadge={it.coding_badge}
                     nextGoal={""}
                     link={it.link}
