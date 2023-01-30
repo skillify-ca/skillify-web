@@ -91,7 +91,7 @@ export default function UserProfileSection({
             src={userProfileData.profileImage}
           />
           <div className="col-span-3 mt-2 ml-2">
-            <h1 className="mt-2 text-2xl font-bold md:text-4xl ">
+            <h1 className="mt-2 text-2xl font-bold md:text-3xl ">
               {userProfileData.name}
             </h1>
             <div className="flex ">
