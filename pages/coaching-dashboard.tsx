@@ -35,11 +35,6 @@ const coachingDashboard = () => {
   );
   const enrolledUsers = userList.map((user) => user.id);
 
-  // const goalTitle = userGoals?.filter((goal) => goal.goalName[0]);
-  // const targetDate = userGoals?.filter((goal) =>
-  //   format(new Date(goal.targetDate[0]), "MM/dd")
-  // );
-
   const {} = useQuery<FetchEarnedBadges>(FETCH_EARNED_BADGES, {
     variables: {
       enrolledIds: enrolledUsers,
