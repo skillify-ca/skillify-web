@@ -88,7 +88,7 @@ const coachingDashboard = () => {
                     }
                     name={it.name}
                     joinDate={it.created_at}
-                    badges={badgeCount}
+                    badges={badgeCount ? badgeCount : 0}
                     currentBadge={it.coding_badge}
                     nextGoal={""}
                     link={it.link}
