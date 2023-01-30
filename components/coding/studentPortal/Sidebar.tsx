@@ -3,6 +3,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { FETCH_TOTAL_USER_BADGES_COUNT } from "../../../graphql/fetchTotalUserBadgesCount";
+import { FetchUserBadgesCountResponse } from "../../../graphql/fetchUserBadgesCount";
+import { setTotalBadgeCount } from "../../../redux/profileSlice";
 import {
   FetchUserRoleData,
   FETCH_USER_ROLE,
@@ -75,6 +78,19 @@ export const Sidebar: React.FC = () => {
   });
 
   const router = useRouter();
+
+  const { loading: totalUserBadgeCountLoading } =
+    useQuery<FetchUserBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
+      onCompleted: (data) => {
+        if (data.user_coding_badges_aggregate.aggregate.count) {
+          dispatch(
+            setTotalBadgeCount(
+              data.user_coding_badges_aggregate.aggregate.count
+            )
+          );
+        }
+      },
+    });
 
   useEffect(() => {
     if (router.pathname.startsWith("/coaches")) {
