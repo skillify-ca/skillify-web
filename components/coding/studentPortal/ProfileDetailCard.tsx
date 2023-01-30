@@ -57,7 +57,7 @@ function ProfileDetailCard({
           <img src={currentBadge?.image} className="w-16 mr-4 rounded-full" />
           <p className="underline "> {currentBadge?.title}</p>
         </div>
-        <p className="font-bold">Next Goal:</p>
+        <p className="font-bold">Most Recently Completed Goal:</p>
         <div className="flex items-center p-1 pl-5 ">
           <div className="mr-9 rounded-full">{targetDate} </div>
           <p className="underline "> {nextGoal}</p>
