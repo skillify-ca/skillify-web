@@ -75,10 +75,10 @@ const AchievementComponent = ({
   };
 
   return (
-    <div className="sm:p-4 sm:shadow-md bg-slate-300 dark:bg-slate-900">
-      <div className="flex justify-end w-full mb-4">
+    <div className="dark:bg-slate-900">
+      <div className="flex justify-end w-full ">
         {isEditable && (
-          <div>
+          <div className="mb-4">
             <Button
               label={"Save"}
               onClick={() => handleOnSaveButtonClick()}
@@ -101,7 +101,7 @@ const AchievementComponent = ({
           {unitBadges.map((unit, index) => {
             if (unit.coding_badges.length > 0) {
               return (
-                <div className="mb-4 sm:m-4" key={index}>
+                <div className="mb-4" key={index}>
                   <UnitBadgeSection
                     unit={unit}
                     editMode={editMode}

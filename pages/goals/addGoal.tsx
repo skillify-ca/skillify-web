@@ -26,6 +26,8 @@ const EditGoalsPage = () => {
     refetchQueries: [{ query: FETCH_USER_GOALS }],
   });
 
+  const GOAL_CHAR_LIMIT = 500;
+
   return (
     <div className="flex flex-col p-4 m-4 space-y-8 overflow-auto bg-scroll">
       <h1 className="text-3xl font-bold">Add New Goal</h1>
@@ -44,9 +46,9 @@ const EditGoalsPage = () => {
             }));
           }}
         />
-        {newGoalValues.goalName.length > 60 && (
+        {newGoalValues.goalName.length > GOAL_CHAR_LIMIT && (
           <p className="text-xs text-red-600">
-            please keep your goal under 60 characters
+            please keep your goal under {GOAL_CHAR_LIMIT} characters
           </p>
         )}
         <p className="font-bold">Target Completion Date</p>
@@ -82,7 +84,7 @@ const EditGoalsPage = () => {
           }}
           disabled={
             newGoalValues.goalName.length == 0 ||
-            newGoalValues.goalName.length > 60 ||
+            newGoalValues.goalName.length > GOAL_CHAR_LIMIT ||
             newGoalValues.targetDate < new Date()
           }
         />

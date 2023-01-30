@@ -19,20 +19,26 @@ export default function CoachesPage() {
         <p>Loading...</p>
       ) : (
         <div className="grid w-full grid-cols-1 gap-4 px-4 sm:grid-cols-2 sm:px-8">
-          <div className="col-span-2">
-            <PageHeader
-              title={"Coaches"}
-              description={
-                "Book time with our expert coaches to get 1:1 help. Use them to catch up or to get ahead!"
-              }
-            />
-          </div>
           {error ? (
             <div className="col-span-2">
               <ErrorMessage message="Failed to fetch coaching data" />
             </div>
           ) : (
-            data.coaches.map((coach) => <CoachCard coach={coach} />)
+            <>
+              <div className="sm:col-span-2">
+                <PageHeader
+                  title={"Coaches"}
+                  description={
+                    "Book time with our expert coaches to get 1:1 help. Use them to catch up or to get ahead!"
+                  }
+                />
+              </div>
+              {data.coaches.map((coach) => (
+                <div className="mx-4" key={coach.user.name}>
+                  <CoachCard coach={coach} />
+                </div>
+              ))}
+            </>
           )}
         </div>
       )}
