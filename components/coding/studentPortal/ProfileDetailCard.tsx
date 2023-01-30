@@ -13,6 +13,7 @@ type ProfileDetailCard = {
   joinDate: string;
   badges: number;
   currentBadge: CodingBadge;
+  totalBadgeCount: number;
   nextGoal: string;
 };
 
@@ -21,11 +22,10 @@ function ProfileDetailCard({
   name,
   joinDate,
   badges,
+  totalBadgeCount,
   currentBadge,
   nextGoal,
 }: ProfileDetailCard) {
-  const { totalBadgeCount } = useSelector(profileSelector);
-
   return (
     <div className="flex flex-col h-full gap-4 text-sm border-2 bg-slate-50 text-slate-800 border-slate-800 hover:bg-violet-100">
       <div className="flex flex-col items-center">

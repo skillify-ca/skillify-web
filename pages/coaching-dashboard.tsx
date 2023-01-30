@@ -13,10 +13,14 @@ import {
   FETCH_EARNED_BADGES,
 } from "../graphql/fetchEarnedBadges";
 import { transformBadgesEarned } from "./api/coachingDashboard";
+import { FETCH_TOTAL_USER_BADGES_COUNT } from "../graphql/fetchTotalUserBadgesCount";
+import { FetchUserBadgesCountResponse } from "../graphql/fetchUserBadgesCount";
+import { profileSelector, setTotalBadgeCount } from "../redux/profileSlice";
 const coachingDashboard = () => {
   const dispatch = useDispatch();
 
   const { userList, earnedBadges } = useSelector(userSelector);
+  const { totalBadgeCount } = useSelector(profileSelector);
 
   const { loading, data } = useQuery<FetchUserProfileCardResponse>(
     FETCH_USER_PROFILE_CARD,
@@ -26,6 +30,18 @@ const coachingDashboard = () => {
     }
   );
 
+  const { loading: totalUserBadgeCountLoading } =
+    useQuery<FetchUserBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
+      onCompleted: (data) => {
+        if (data.user_coding_badges_aggregate.aggregate.count) {
+          dispatch(
+            setTotalBadgeCount(
+              data.user_coding_badges_aggregate.aggregate.count
+            )
+          );
+        }
+      },
+    });
   const enrolledUsers = userList.map((user) => user.id);
 
   const {} = useQuery<FetchEarnedBadges>(FETCH_EARNED_BADGES, {
@@ -76,6 +92,7 @@ const coachingDashboard = () => {
                     currentBadge={it.coding_badge}
                     nextGoal={""}
                     link={it.link}
+                    totalBadgeCount={totalBadgeCount}
                   />
                 </div>
               </Link>

@@ -12,6 +12,7 @@ import {
 } from "../../../graphql/fetchUserProfile";
 import {
   profileSelector,
+  setTotalBadgeCount,
   setUserBadgeCount,
   setUserProfile,
 } from "../../../redux/profileSlice";
@@ -58,6 +59,19 @@ export default function UserProfileSection({
         if (data.user_coding_badges_aggregate.aggregate.count) {
           dispatch(
             setUserBadgeCount(data.user_coding_badges_aggregate.aggregate.count)
+          );
+        }
+      },
+    });
+
+  const { loading: totalUserBadgeCountLoading } =
+    useQuery<FetchUserBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
+      onCompleted: (data) => {
+        if (data.user_coding_badges_aggregate.aggregate.count) {
+          dispatch(
+            setTotalBadgeCount(
+              data.user_coding_badges_aggregate.aggregate.count
+            )
           );
         }
       },
