@@ -1,10 +1,7 @@
-import Link from "next/link";
-import { useSelector } from "react-redux";
 import { CodingBadge } from "../../../graphql/fetchUserProfileCard";
 import BadgesDisplayedComponent from "../profileV2/BadgesDisplayedComponent";
 import JoinedDateComponent from "../profileV2/JoinedDateComponent";
 import React from "react";
-import { profileSelector } from "../../../redux/profileSlice";
 
 type ProfileDetailCard = {
   avatar: string;
