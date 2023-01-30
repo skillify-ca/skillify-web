@@ -85,7 +85,7 @@ export default function UserProfileSection({
       {userProfileLoading ? (
         <div>Loading...</div>
       ) : (
-        <div className="grid grid-cols-4 col-span-5  md:grid-cols-8">
+        <div className="grid items-center  grid-cols-4 col-span-5  md:grid-cols-8">
           <img
             className="mt-6 mr-2 rounded-full w-36"
             src={userProfileData.profileImage}
