@@ -1,10 +1,10 @@
-import Link from "next/link";
 import { useSelector } from "react-redux";
 import { CodingBadge } from "../../../graphql/fetchUserProfileCard";
 import BadgesDisplayedComponent from "../profileV2/BadgesDisplayedComponent";
 import JoinedDateComponent from "../profileV2/JoinedDateComponent";
 import React from "react";
 import { profileSelector } from "../../../redux/profileSlice";
+import { userGoalsSelector } from "../../../redux/userGoalsSlice";
 
 type ProfileDetailCard = {
   avatar: string;
@@ -14,6 +14,7 @@ type ProfileDetailCard = {
   badges: number;
   currentBadge: CodingBadge;
   nextGoal: string;
+  targetDate: string;
 };
 
 function ProfileDetailCard({
@@ -23,8 +24,10 @@ function ProfileDetailCard({
   badges,
   currentBadge,
   nextGoal,
+  targetDate,
 }: ProfileDetailCard) {
   const { totalBadgeCount } = useSelector(profileSelector);
+  const { userGoals } = useSelector(userGoalsSelector);
 
   return (
     <div className="grid grid-cols-8 h-full text-sm border-2 bg-slate-50 text-slate-800 border-slate-800 hover:bg-violet-100">
@@ -48,16 +51,16 @@ function ProfileDetailCard({
           />
         </div>
       </div>
-      <div className="ml-8 col-span-6 mb-2">
+      <div className="ml-4 col-span-8 p-1 mb-4">
         <p className="font-bold">Current Focus:</p>
         <div className="flex items-center p-2 ">
           <img src={currentBadge?.image} className="w-16 mr-4 rounded-full" />
           <p className="underline "> {currentBadge?.title}</p>
         </div>
         <p className="font-bold">Next Goal:</p>
-        <div className="flex items-center p-2 ">
-          <img src={currentBadge?.image} className="w-16 mr-4 rounded-full" />
-          <p className="underline "> {currentBadge?.title}</p>
+        <div className="flex items-center p-1 pl-5 ">
+          <div className="mr-9 rounded-full">{targetDate} </div>
+          <p className="underline "> {nextGoal}</p>
         </div>
       </div>
     </div>

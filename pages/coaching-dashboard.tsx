@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileDetailCard from "../components/coding/studentPortal/ProfileDetailCard";
 import {
@@ -13,9 +13,17 @@ import {
   FETCH_EARNED_BADGES,
 } from "../graphql/fetchEarnedBadges";
 import { transformBadgesEarned } from "./api/coachingDashboard";
+import { format } from "date-fns";
+import {
+  FetchAllUserGoalsDataResponse,
+  FETCH_ALL_USER_GOALS,
+} from "../graphql/fetchAllUserGoals";
+
 const coachingDashboard = () => {
   const dispatch = useDispatch();
 
+  const [nextGoals, setNextGoals] = useState({});
+  const [targetDates, setTargetDates] = useState({});
   const { userList, earnedBadges } = useSelector(userSelector);
 
   const { loading, data } = useQuery<FetchUserProfileCardResponse>(
@@ -25,8 +33,12 @@ const coachingDashboard = () => {
         data.users.length > 0 ? dispatch(setUserList(data.users)) : loading,
     }
   );
-
   const enrolledUsers = userList.map((user) => user.id);
+
+  // const goalTitle = userGoals?.filter((goal) => goal.goalName[0]);
+  // const targetDate = userGoals?.filter((goal) =>
+  //   format(new Date(goal.targetDate[0]), "MM/dd")
+  // );
 
   const {} = useQuery<FetchEarnedBadges>(FETCH_EARNED_BADGES, {
     variables: {
@@ -37,16 +49,34 @@ const coachingDashboard = () => {
     },
   });
 
-  const emptyBadge = () => {
-    return (
-      <div
-        className="w-20 my-3 border-3 rounded-full bg-slate-400
-      border-slate-800"
-      >
-        NA
-      </div>
-    );
-  };
+  const {} = useQuery<FetchAllUserGoalsDataResponse>(FETCH_ALL_USER_GOALS, {
+    variables: {
+      enrolledIds: enrolledUsers,
+    },
+    onCompleted: (data) => {
+      const firstGoals = data.user_goals.reduce((result, user) => {
+        result[user.userId] = user.goalName;
+        return result;
+      }, {});
+      const nextGoalsList = enrolledUsers.map((userId) => {
+        const goalName = firstGoals[userId] || "No goals listed.";
+        return { [userId]: goalName };
+      });
+      const firstTargetDate = data.user_goals.reduce((result, user) => {
+        result[user.userId] = user.targetDate;
+        return result;
+      }, {});
+      const targetDateList = enrolledUsers.map((userId) => {
+        const targetDate = firstTargetDate[userId] || null;
+        return { [userId]: targetDate };
+      });
+      setNextGoals(nextGoalsList);
+      setTargetDates(targetDateList);
+    },
+  });
+
+  console.log(enrolledUsers);
+  console.log("NG", nextGoals);
 
   useEffect(() => {
     const aggregatedBadgeCount = earnedBadges.reduce((acc, badgeId) => {
@@ -68,9 +98,11 @@ const coachingDashboard = () => {
   return (
     <div className="flex flex-col p-4 m-4 ">
       <p className="mb-8 text-3xl font-bold">Coaching Dashboard</p>
-      <h2 className="mb-4">Enrolled Students</h2>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {userList.map((it, index) => {
+          const goal = nextGoals[index];
+          const targetDate = targetDates[index];
+
           return (
             <div key={index}>
               <Link href={"profile/" + it.link}>
@@ -92,8 +124,16 @@ const coachingDashboard = () => {
                           }
                         : it.coding_badge
                     }
-                    nextGoal={""}
+                    nextGoal={goal && goal[Object.keys(goal)[0]]}
                     link={it.link}
+                    targetDate={
+                      targetDate
+                        ? format(
+                            new Date(targetDate[Object.keys(targetDate)[0]]),
+                            "MM/dd"
+                          )
+                        : "NA"
+                    }
                   />
                 </div>
               </Link>
