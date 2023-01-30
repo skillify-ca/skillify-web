@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileDetailCard from "../components/coding/studentPortal/ProfileDetailCard";
 import {
@@ -7,20 +7,21 @@ import {
   FETCH_USER_PROFILE_CARD,
 } from "../graphql/fetchUserProfileCard";
 import Link from "next/link";
-import { userSelector, setUserList, setEarnedBadges } from "../redux/userSlice";
+import { userSelector, setUserList } from "../redux/userSlice";
 import {
+  EarnedBadges,
   FetchEarnedBadges,
   FETCH_EARNED_BADGES,
 } from "../graphql/fetchEarnedBadges";
-import { transformBadgesEarned } from "./api/coachingDashboard";
 import { FETCH_TOTAL_USER_BADGES_COUNT } from "../graphql/fetchTotalUserBadgesCount";
 import { FetchUserBadgesCountResponse } from "../graphql/fetchUserBadgesCount";
 import { profileSelector, setTotalBadgeCount } from "../redux/profileSlice";
 const coachingDashboard = () => {
   const dispatch = useDispatch();
 
-  const { userList, earnedBadges } = useSelector(userSelector);
+  const { userList } = useSelector(userSelector);
   const { totalBadgeCount } = useSelector(profileSelector);
+  const [earnedBadges, setEarnedBadges] = useState({});
 
   const { loading, data } = useQuery<FetchUserProfileCardResponse>(
     FETCH_USER_PROFILE_CARD,
@@ -49,23 +50,20 @@ const coachingDashboard = () => {
       enrolledIds: enrolledUsers,
     },
     onCompleted: (data) => {
-      dispatch(setEarnedBadges(data.user_coding_badges));
+      const aggregatedBadgeCount = data.user_coding_badges.reduce(
+        (acc, badgeId) => {
+          if (acc[badgeId.userId]) {
+            acc[badgeId.userId] += 1;
+          } else {
+            acc[badgeId.userId] = 1;
+          }
+          return acc;
+        },
+        {}
+      );
+      setEarnedBadges(aggregatedBadgeCount);
     },
   });
-
-  useEffect(() => {
-    const aggregatedBadgeCount = earnedBadges.reduce((acc, badgeId) => {
-      if (acc[badgeId.userId]) {
-        acc[badgeId.userId] += 1;
-      } else {
-        acc[badgeId.userId] = 1;
-      }
-      return acc;
-    }, {});
-    dispatch(
-      setUserList(transformBadgesEarned(userList, aggregatedBadgeCount))
-    );
-  }, [earnedBadges]);
 
   if (loading) {
     return <div className="flex place-content-center">"Loading..."</div>;
@@ -76,6 +74,7 @@ const coachingDashboard = () => {
       <h2 className="mb-4">Enrolled Students</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {userList.map((it, index) => {
+          const badgeCount = earnedBadges[index];
           return (
             <div key={index}>
               <Link href={"profile/" + it.link}>
@@ -88,7 +87,9 @@ const coachingDashboard = () => {
                     }
                     name={it.name}
                     joinDate={it.created_at}
-                    badges={it.badges_earned}
+                    badges={
+                      earnedBadges && earnedBadges[Object.keys(earnedBadges)[0]]
+                    }
                     currentBadge={it.coding_badge}
                     nextGoal={""}
                     link={it.link}
