@@ -22,7 +22,6 @@ export default function SkillRatings(props) {
   const dispatch = useDispatch();
   const { skillRatings } = useSelector(skillRatingsSelector);
   const { user } = useAuth();
-  const { totalBadgeCount } = useSelector(profileSelector);
 
   const {} = useQuery<FetchUserSkillsRatings>(FETCH_USER_SKILLS_RATINGS, {
     variables: {
