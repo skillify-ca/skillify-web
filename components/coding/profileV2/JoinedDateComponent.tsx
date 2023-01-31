@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import React from "react";
 
 export type JoinedDateComponentProps = {
-  createdAt: Date;
+  createdAt: string;
   textSize: "small" | "medium" | "large";
 };
 
