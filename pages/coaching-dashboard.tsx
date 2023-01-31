@@ -8,20 +8,23 @@ import {
 } from "../graphql/fetchUserProfileCard";
 import Link from "next/link";
 import { userSelector, setUserList } from "../redux/userSlice";
-import { FETCH_TOTAL_USER_BADGES_COUNT } from "../graphql/fetchTotalUserBadgesCount";
 import { FetchUserBadgesCountResponse } from "../graphql/fetchUserBadgesCount";
 import { profileSelector, setTotalBadgeCount } from "../redux/profileSlice";
+import {
+  FetchTotalBadgesCountResponse,
+  FETCH_TOTAL_USER_BADGES_COUNT,
+} from "../graphql/fetchTotalUserBadgesCount";
 const coachingDashboard = () => {
   const dispatch = useDispatch();
 
   const { userList } = useSelector(userSelector);
   const { totalBadgeCount } = useSelector(profileSelector);
 
-  const { loading, data } = useQuery<FetchUserProfileCardResponse>(
+  const { loading } = useQuery<FetchUserProfileCardResponse>(
     FETCH_USER_PROFILE_CARD,
     {
-      onCompleted: () => {
-        if (data.users.length > 0) {
+      onCompleted: (data) => {
+        if (data.users?.length > 0) {
           dispatch(setUserList(data.users));
         }
       },
@@ -29,13 +32,11 @@ const coachingDashboard = () => {
   );
 
   const { loading: totalUserBadgeCountLoading } =
-    useQuery<FetchUserBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
+    useQuery<FetchTotalBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
       onCompleted: (data) => {
-        if (data.user_coding_badges_aggregate.aggregate.count) {
+        if (data) {
           dispatch(
-            setTotalBadgeCount(
-              data.user_coding_badges_aggregate.aggregate.count
-            )
+            setTotalBadgeCount(data.coding_badges_aggregate.aggregate.count)
           );
         }
       },
