@@ -32,7 +32,7 @@ export default function Profile() {
   );
 
   return (
-    <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll space-y-4">
+    <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll space-y-9">
       <ProfileHeaderComponent userId={user.uid} />
       <div>
         <ExpandableContainer open={true} title={"Projects"}>
