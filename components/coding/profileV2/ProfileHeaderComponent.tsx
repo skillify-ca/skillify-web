@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { FETCH_TOTAL_USER_BADGES_COUNT } from "../../../graphql/fetchTotalUserBadgesCount";
 import {
   FetchUserBadgesCountResponse,
   FETCH_USER_BADGES_COUNT,
