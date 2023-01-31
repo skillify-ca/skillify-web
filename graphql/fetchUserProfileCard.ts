@@ -8,7 +8,11 @@ export type Users = {
   created_at: string;
   current_badge: number;
   coding_badge: CodingBadge;
-  user_coding_badges_aggregate: BadgesEarnedCount;
+  user_coding_badges_aggregate: {
+    aggregate: {
+      count: number;
+    };
+  };
 };
 
 export type CodingBadge = {
@@ -16,13 +20,6 @@ export type CodingBadge = {
   image: string;
 };
 
-export type BadgesEarnedCount = {
-aggregate: BadgesEarnedNested;
-}
-
-export type BadgesEarnedNested = {
-  count: number;
-};
 
 export type FetchUserProfileCardResponse = {
   users: Array<Users>;

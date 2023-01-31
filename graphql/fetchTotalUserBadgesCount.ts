@@ -11,13 +11,9 @@ query fetchTotalUserBadgesCount {
 `;
 
 export type FetchTotalBadgesCountResponse = {
-  coding_badges_aggregate: CodingBadgesCount;
-};
-
-export type CodingBadgesCount = {
-  aggregate: CountData;
-};
-
-export type CountData = {
-  count: number;
-};
+  coding_badges_aggregate: {
+    aggregate: {
+      count: number;
+    };
+  };
+}
