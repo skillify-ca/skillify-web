@@ -1,13 +1,13 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_ALL_USER_GOALS = gql`
-query fetchAllUserGoals($enrolledIds: [String!]) {
-    user_goals(where: {userId: {_in: $enrolledIds}, isComplete: {_eq: true}}, order_by: {userId: asc}) {
-      goalName
-      targetDate
-      userId
-    }
+query fetchAllUserGoals {
+  user_goals(order_by: {updatedAt: asc, userId: asc}, where: {usersTable: {enrolled: {_eq: true}}, isComplete: {_eq: true}}) {
+    updatedAt
+    goalName
+    userId
   }
+}
 `;
 
 export type FetchAllUserGoalsDataResponse = {
@@ -17,5 +17,5 @@ export type FetchAllUserGoalsDataResponse = {
 export type AllUserGoalsData = {
   goalName: string;
   userId: string;
-  targetDate: Date;
+  updatedAt: Date;
 };

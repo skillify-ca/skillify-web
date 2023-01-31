@@ -13,8 +13,8 @@ type ProfileDetailCard = {
   joinDate: string;
   badges: number;
   currentBadge: CodingBadge;
-  nextGoal: string;
-  targetDate: string;
+  completedDate: string;
+  completedGoal: string;
 };
 
 function ProfileDetailCard({
@@ -23,8 +23,8 @@ function ProfileDetailCard({
   joinDate,
   badges,
   currentBadge,
-  nextGoal,
-  targetDate,
+  completedGoal,
+  completedDate,
 }: ProfileDetailCard) {
   const { totalBadgeCount } = useSelector(profileSelector);
   const { userGoals } = useSelector(userGoalsSelector);
@@ -59,8 +59,8 @@ function ProfileDetailCard({
         </div>
         <p className="font-bold">Most Recently Completed Goal:</p>
         <div className="flex items-center p-1 pl-5 ">
-          <div className="mr-9 rounded-full">{targetDate} </div>
-          <p className="underline "> {nextGoal}</p>
+          <div className="mr-9 rounded-full">{completedDate} </div>
+          <p className="underline "> {completedGoal}</p>
         </div>
       </div>
     </div>

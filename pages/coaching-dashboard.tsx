@@ -15,6 +15,7 @@ import {
 import { transformBadgesEarned } from "./api/coachingDashboard";
 import { format } from "date-fns";
 import {
+  AllUserGoalsData,
   FetchAllUserGoalsDataResponse,
   FETCH_ALL_USER_GOALS,
 } from "../graphql/fetchAllUserGoals";
@@ -22,8 +23,9 @@ import {
 const coachingDashboard = () => {
   const dispatch = useDispatch();
 
-  const [nextGoals, setNextGoals] = useState({});
-  const [targetDates, setTargetDates] = useState({});
+  const [goalsList, setGoalsList] = useState<AllUserGoalsData[]>();
+  const [completedGoalsList, setCompletedGoalsList] = useState([]);
+  const [goalCompletionDateList, setGoalCompletionDateList] = useState([]);
   const { userList, earnedBadges } = useSelector(userSelector);
 
   const { loading, data } = useQuery<FetchUserProfileCardResponse>(
@@ -45,28 +47,27 @@ const coachingDashboard = () => {
   });
 
   const {} = useQuery<FetchAllUserGoalsDataResponse>(FETCH_ALL_USER_GOALS, {
-    variables: {
-      enrolledIds: enrolledUsers,
-    },
     onCompleted: (data) => {
-      const firstGoals = data.user_goals.reduce((result, user) => {
+      setGoalsList(data.user_goals);
+      const goalNames = data.user_goals.reduce((result, user) => {
         result[user.userId] = user.goalName;
         return result;
       }, {});
-      const nextGoalsList = enrolledUsers.map((userId) => {
-        const goalName = firstGoals[userId] || "No goals listed.";
+      const completedGoals = enrolledUsers.map((userId) => {
+        const goalName = goalNames[userId] || "No goals listed.";
         return { [userId]: goalName };
       });
-      const firstTargetDate = data.user_goals.reduce((result, user) => {
-        result[user.userId] = user.targetDate;
+      const completionDates = data.user_goals.reduce((result, user) => {
+        result[user.userId] = user.updatedAt;
         return result;
       }, {});
-      const targetDateList = enrolledUsers.map((userId) => {
-        const targetDate = firstTargetDate[userId] || null;
-        return { [userId]: targetDate };
+
+      const goalCompletionDates = enrolledUsers.map((userId) => {
+        const updatedAt = completionDates[userId] || null;
+        return { [userId]: updatedAt };
       });
-      setNextGoals(nextGoalsList);
-      setTargetDates(targetDateList);
+      setCompletedGoalsList(completedGoals);
+      setGoalCompletionDateList(goalCompletionDates);
     },
   });
 
@@ -92,9 +93,8 @@ const coachingDashboard = () => {
       <p className="mb-8 text-3xl font-bold">Coaching Dashboard</p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {userList.map((it, index) => {
-          const goal = nextGoals[index];
-          const targetDate = targetDates[index];
-
+          const completionDate = goalCompletionDateList[index];
+          const completedGoal = completedGoalsList[index];
           return (
             <div key={index}>
               <Link href={"profile/" + it.link}>
@@ -116,12 +116,18 @@ const coachingDashboard = () => {
                           }
                         : it.coding_badge
                     }
-                    nextGoal={goal && goal[Object.keys(goal)[0]]}
+                    completedGoal={
+                      completedGoal &&
+                      completedGoal[Object.keys(completedGoal)[0]]
+                    }
                     link={it.link}
-                    targetDate={
-                      targetDate
+                    completedDate={
+                      completionDate &&
+                      completionDate[Object.keys(completionDate)[0]] != null
                         ? format(
-                            new Date(targetDate[Object.keys(targetDate)[0]]),
+                            new Date(
+                              completionDate[Object.keys(completionDate)[0]]
+                            ),
                             "MM/dd"
                           )
                         : "NA"
