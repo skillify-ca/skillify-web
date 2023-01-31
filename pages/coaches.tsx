@@ -9,12 +9,12 @@ import {
 } from "../graphql/coding/coaches/fetchCoaches";
 
 export default function CoachesPage() {
-  const { data, loading, error } = useQuery<FetchCoachesResponse>(
-    FETCH_COACHES
-  );
+  const { data, loading, error } =
+    useQuery<FetchCoachesResponse>(FETCH_COACHES);
 
   return (
     <div className="flex flex-col items-center justify-center w-full">
+      <p>Test 2</p>
       {loading ? (
         <p>Loading...</p>
       ) : (
