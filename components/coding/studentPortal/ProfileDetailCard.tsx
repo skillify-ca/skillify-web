@@ -36,7 +36,7 @@ function ProfileDetailCard({
           className=" w-20 my-3 border-3 rounded-full border-slate-800 "
           src={avatar}
         />
-        <div className="flex items-center gap-1 mx-4 mb-4">
+        <div className="items-center gap-1 mx-4">
           <p className="font-bold mb-1"> {name}</p>
 
           <JoinedDateComponent
