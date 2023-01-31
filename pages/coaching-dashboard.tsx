@@ -98,7 +98,7 @@ const coachingDashboard = () => {
           return (
             <div key={index}>
               <Link href={"profile/" + it.link}>
-                <div className="">
+                <div className="flex">
                   <ProfileDetailCard
                     avatar={
                       it.profile_image == null

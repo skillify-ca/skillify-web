@@ -30,7 +30,10 @@ function ProfileDetailCard({
   const { userGoals } = useSelector(userGoalsSelector);
 
   return (
-    <div className="grid grid-cols-8 h-full text-sm border-2 bg-slate-50 text-slate-800 border-slate-800 hover:bg-violet-100">
+    <div
+      className="grid grid-cols-8 h-full w-full text-sm border-2 bg-slate-50 text-slate-800 border-slate-800 hover:bg-violet-100"
+      style={{ height: "320px", objectFit: "contain" }}
+    >
       <div className="flex ml-3 place-items-center col-span-8 mt-4">
         <img
           className=" w-20 my-3 border-3 rounded-full border-slate-800 "
@@ -54,7 +57,10 @@ function ProfileDetailCard({
       <div className="ml-4 col-span-8 p-1 mb-4">
         <p className="font-bold">Current Focus:</p>
         <div className="flex items-center p-2 ">
-          <img src={currentBadge?.image} className="w-16 mr-4 rounded-full" />
+          <img
+            src={currentBadge?.image}
+            className="flex items-center w-16 mr-4 rounded-full"
+          />
           <p className="underline "> {currentBadge?.title}</p>
         </div>
         <p className="font-bold">Most Recently Completed Goal:</p>
