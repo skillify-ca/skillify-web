@@ -98,7 +98,7 @@ const coachingDashboard = () => {
           return (
             <div key={index}>
               <Link href={"profile/" + it.link}>
-                <div className="flex">
+                <div className="container">
                   <ProfileDetailCard
                     avatar={
                       it.profile_image == null
@@ -130,7 +130,7 @@ const coachingDashboard = () => {
                             ),
                             "MM/dd"
                           )
-                        : "NA"
+                        : "‎ N/A‎ "
                     }
                   />
                 </div>
