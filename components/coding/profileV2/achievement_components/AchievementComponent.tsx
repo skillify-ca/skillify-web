@@ -110,7 +110,8 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
             >
               <PencilAltIcon
                 className={
-                  'w-5 h-5 cursor-pointer ${editMode ? "text-yellow-600" : "hover:text-yellow-600"} '
+                  "w-5 h-5 cursor-pointer " +
+                  (editMode ? "text-yellow-600" : "hover:text-yellow-600")
                 }
               />
             </button>
