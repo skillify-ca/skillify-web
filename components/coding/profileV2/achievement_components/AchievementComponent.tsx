@@ -78,7 +78,7 @@ const AchievementComponent = ({
     <div className="dark:bg-slate-900">
       <div className="flex justify-end w-full ">
         {isEditable && (
-          <div className="">
+          <div>
             <button
               onClick={() => setEditMode(!editMode)}
               className="w-5 h-5 cursor-pointer hover:text-yellow-600"
