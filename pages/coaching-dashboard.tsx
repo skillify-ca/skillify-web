@@ -38,7 +38,6 @@ const coachingDashboard = () => {
       },
     }
   );
-  const enrolledUsers = userList.map((user) => user.id);
 
   const {} = useQuery<FetchAllUserGoalsDataResponse>(FETCH_ALL_USER_GOALS, {
     onCompleted: (data) => {
@@ -95,47 +94,45 @@ const coachingDashboard = () => {
           const completionDate = goalCompletionDateList[index];
           const completedGoal = completedGoalsList[index];
           return (
-            <div key={index}>
-              <Link href={"profile/" + it.link}>
-                <div className="container">
-                  <ProfileDetailCard
-                    avatar={
-                      it.profile_image == null
-                        ? "../../images/logo-2.png"
-                        : it.profile_image
-                    }
-                    name={it.name}
-                    joinDate={it.created_at}
-                    badges={it.user_coding_badges_aggregate.aggregate.count}
-                    currentBadge={
-                      it.coding_badge == null
-                        ? {
-                            title: "No badges earned.",
-                            image: "../../images/logo-2.png",
-                          }
-                        : it.coding_badge
-                    }
-                    completedGoal={
-                      completedGoal &&
-                      completedGoal[Object.keys(completedGoal)[0]]
-                    }
-                    link={it.link}
-                    completedDate={
-                      completionDate &&
-                      completionDate[Object.keys(completionDate)[0]] != null
-                        ? format(
-                            new Date(
-                              completionDate[Object.keys(completionDate)[0]]
-                            ),
-                            "MM/dd"
-                          )
-                        : "‎ N/A‎ "
-                    }
-                    totalBadgeCount={totalBadgeCount}
-                  />
-                </div>
-              </Link>
-            </div>
+            <Link href={"profile/" + it.link} key={index}>
+              <div className="container">
+                <ProfileDetailCard
+                  avatar={
+                    it.profile_image == null
+                      ? "../../images/logo-2.png"
+                      : it.profile_image
+                  }
+                  name={it.name}
+                  joinDate={it.created_at}
+                  badges={it.user_coding_badges_aggregate.aggregate.count}
+                  currentBadge={
+                    it.coding_badge == null
+                      ? {
+                          title: "No badges earned.",
+                          image: "../../images/logo-2.png",
+                        }
+                      : it.coding_badge
+                  }
+                  completedGoal={
+                    completedGoal &&
+                    completedGoal[Object.keys(completedGoal)[0]]
+                  }
+                  link={it.link}
+                  completedDate={
+                    completionDate &&
+                    completionDate[Object.keys(completionDate)[0]] != null
+                      ? format(
+                          new Date(
+                            completionDate[Object.keys(completionDate)[0]]
+                          ),
+                          "MM/dd"
+                        )
+                      : "‎ N/A‎ "
+                  }
+                  totalBadgeCount={totalBadgeCount}
+                />
+              </div>
+            </Link>
           );
         })}
       </div>
