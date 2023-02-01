@@ -24,7 +24,9 @@ export type AchievementComponentProps = {
 
 const AchievementComponent = ({ userId }: AchievementComponentProps) => {
   const [unitBadges, setUnitBadges] = useState<IntroCourseUnit[]>();
+  // editMode set to true only when a coach accesses the page
   const [editMode, setEditMode] = useState(false);
+  // isEditable set to true only when a coach clicks the PencilAltIcon Component
   const [isEditable, setIsEditable] = useState(false);
   const { data } = useQuery<FetchBadgeResponse>(FETCH_CODING_BADGES, {
     variables: {
@@ -34,13 +36,12 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
       setUnitBadges(data.intro_course_unit);
     },
   });
-  const {} = useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
+  const fetchUserQuery = useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
     variables: {
       _id: userId,
     },
     onCompleted: (roleData) => {
       if (roleData.users[0].userRole.value === "coach") {
-        alert(roleData.users[0].userRole.value);
         setIsEditable(true);
       }
     },
