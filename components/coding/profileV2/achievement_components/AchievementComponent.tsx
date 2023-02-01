@@ -79,10 +79,6 @@ const AchievementComponent = ({
       <div className="flex justify-end w-full ">
         {isEditable && (
           <div className="mb-4">
-            <Button
-              label={"Save"}
-              onClick={() => handleOnSaveButtonClick()}
-            ></Button>
             <button
               onClick={() => setEditMode(!editMode)}
               className="w-5 h-5 cursor-pointer hover:text-yellow-600"
@@ -113,6 +109,7 @@ const AchievementComponent = ({
           })}
         </div>
       )}
+      <Button label={"Save"} onClick={() => handleOnSaveButtonClick()}></Button>
     </div>
   );
 };
