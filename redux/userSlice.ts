@@ -5,9 +5,10 @@ import { RootState } from "./rootReducer";
 
 export type userState = {
   userList: Users[];
+
 };
 
-const initialState: userState = { userList: [] };
+const initialState: userState = { userList: []};
 
 export const userSlice: Slice = createSlice({
   name: "users",
@@ -15,7 +16,7 @@ export const userSlice: Slice = createSlice({
   reducers: {
     setUserList: (state: userState, action: PayloadAction<Users[]>) => {
       if (action.type == "users/setUserList") {
-        return { userList: [...action.payload] };
+        return { userList: [...action.payload]};
       }
     },
   },
