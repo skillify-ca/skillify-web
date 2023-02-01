@@ -36,7 +36,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
       setUnitBadges(data.intro_course_unit);
     },
   });
-  const fetchUserQuery = useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
+  const {} = useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
     variables: {
       _id: userId,
     },
