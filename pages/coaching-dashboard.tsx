@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileDetailCard from "../components/coding/studentPortal/ProfileDetailCard";
 import {
@@ -43,7 +43,13 @@ const coachingDashboard = () => {
   const {} = useQuery<FetchAllUserGoalsDataResponse>(FETCH_ALL_USER_GOALS, {
     onCompleted: (data) => {
       setGoalsList(data.user_goals);
-      const goalNames = data.user_goals.reduce((result, user) => {
+    },
+  });
+
+  useEffect(() => {
+    if (goalsList && userList) {
+      const enrolledUsers = userList.map((user) => user.id);
+      const goalNames = goalsList.reduce((result, user) => {
         result[user.userId] = user.goalName;
         return result;
       }, {});
@@ -51,7 +57,7 @@ const coachingDashboard = () => {
         const goalName = goalNames[userId] || "No goals listed.";
         return { [userId]: goalName };
       });
-      const completionDates = data.user_goals.reduce((result, user) => {
+      const completionDates = goalsList.reduce((result, user) => {
         result[user.userId] = user.updatedAt;
         return result;
       }, {});
@@ -62,8 +68,8 @@ const coachingDashboard = () => {
       });
       setCompletedGoalsList(completedGoals);
       setGoalCompletionDateList(goalCompletionDates);
-    },
-  });
+    }
+  }, [goalsList, userList]);
 
   const { loading: totalUserBadgeCountLoading } =
     useQuery<FetchTotalBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
