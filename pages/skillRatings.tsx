@@ -11,6 +11,7 @@ import {
 import { UPSERT_USER_SKILL_RATINGS } from "../graphql/upsertUserSkillRatings";
 
 import { useAuth } from "../lib/authContext";
+import { profileSelector } from "../redux/profileSlice";
 import {
   setSkillRatings,
   skillRatingsSelector,

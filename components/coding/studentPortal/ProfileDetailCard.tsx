@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { CodingBadge } from "../../../graphql/fetchUserProfileCard";
 import BadgesDisplayedComponent from "../profileV2/BadgesDisplayedComponent";
 import JoinedDateComponent from "../profileV2/JoinedDateComponent";
+import React from "react";
 
 type ProfileDetailCard = {
   avatar: string;
@@ -10,15 +10,16 @@ type ProfileDetailCard = {
   joinDate: string;
   badges: number;
   currentBadge: CodingBadge;
+  totalBadgeCount: number;
   nextGoal: string;
 };
 
 function ProfileDetailCard({
   avatar,
   name,
-  link,
   joinDate,
   badges,
+  totalBadgeCount,
   currentBadge,
   nextGoal,
 }: ProfileDetailCard) {
@@ -26,7 +27,7 @@ function ProfileDetailCard({
     <div className="flex flex-col h-full gap-4 text-sm border-2 bg-slate-50 text-slate-800 border-slate-800 hover:bg-violet-100">
       <div className="flex flex-col items-center">
         <img
-          className="items-center w-20 mt-4 border-2 rounded-full border-slate-800 "
+          className="items-center w-20 mt-4 border-3 rounded-full border-slate-800 "
           src={avatar}
         />
         <p className="font-bold "> {name}</p>
@@ -40,7 +41,7 @@ function ProfileDetailCard({
         <BadgesDisplayedComponent
           earnedBadges={badges}
           textSize={"small"}
-          totalBadges={50}
+          totalBadges={totalBadgeCount}
         />
         <p className="font-bold">Current Focus:</p>
         <div className="flex items-center p-2 ">
