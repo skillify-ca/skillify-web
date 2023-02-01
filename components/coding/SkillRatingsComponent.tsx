@@ -78,8 +78,7 @@ export default function SkillRatingsComponent(props) {
   };
 
   return (
-    <div className="flex bg-slate-900 flex-col w-full overflow-auto-bg-scroll">
-      <div className="flex justify-center p-4"></div>
+    <div className="flex bg-slate-900 py-8 flex-col w-full overflow-auto-bg-scroll">
       <div className="">
         {sections.map((it, i) => (
           <button
