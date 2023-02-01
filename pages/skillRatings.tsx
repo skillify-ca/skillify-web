@@ -22,7 +22,6 @@ export default function SkillRatings(props) {
   const dispatch = useDispatch();
   const { skillRatings } = useSelector(skillRatingsSelector);
   const { user } = useAuth();
-  const { totalBadgeCount } = useSelector(profileSelector);
 
   const {} = useQuery<FetchUserSkillsRatings>(FETCH_USER_SKILLS_RATINGS, {
     variables: {
@@ -73,7 +72,6 @@ export default function SkillRatings(props) {
 
   return (
     <div className="flex flex-row overflow-auto-bg-scroll">
-      {totalBadgeCount}
       <div className="flex flex-col p-4 m-4">
         {skillRatings && <SkillSection skillSection={skillRatings} />}
       </div>

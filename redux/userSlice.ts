@@ -20,6 +20,6 @@ export const userSlice: Slice = createSlice({
   },
 });
 
-export const { setUserList, setEarnedBadges } = userSlice.actions;
+export const { setUserList} = userSlice.actions;
 export default userSlice.reducer;
 export const userSelector = (state: RootState) => state.userState;
