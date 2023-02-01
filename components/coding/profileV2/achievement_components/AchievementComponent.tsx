@@ -40,6 +40,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
     },
     onCompleted: (roleData) => {
       if (roleData.users[0].userRole.value === "coach") {
+        alert(roleData.users[0].userRole.value);
         setIsEditable(true);
       }
     },
@@ -132,22 +133,26 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
           })}
         </div>
       )}
-      <div className="flex place-content-between space-x-4 px-4">
-        <Button
-          label={"Save"}
-          onClick={() => handleOnSaveButtonClick()}
-        ></Button>
-        <button
-          onClick={() => setEditMode(!editMode)}
-          className="w-5 h-5 cursor-pointer hover:text-yellow-600"
-        >
-          {editMode ? (
-            <PencilAltIcon className="w-5 h-5 text-yellow-600 cursor-pointer" />
-          ) : (
-            <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
-          )}
-        </button>
-      </div>
+      {editMode && (
+        <div className="flex place-content-between space-x-4 px-4">
+          <Button
+            label={"Save"}
+            onClick={() => handleOnSaveButtonClick()}
+          ></Button>
+          <button
+            onClick={() => setEditMode(!editMode)}
+            className="w-5 h-5 cursor-pointer hover:text-yellow-600"
+          >
+            (
+            <PencilAltIcon
+              className={
+                'w-5 h-5 cursor-pointer ${editMode ? "text-yellow-600" : "hover:text-yellow-600"} '
+              }
+            />
+            )
+          </button>
+        </div>
+      )}
     </div>
   );
 };
