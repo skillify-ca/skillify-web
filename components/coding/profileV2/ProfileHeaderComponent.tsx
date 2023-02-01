@@ -68,16 +68,16 @@ export default function UserProfileSection({
       {userProfileLoading ? (
         <div>Loading...</div>
       ) : (
-        <div className="grid grid-cols-4 col-span-5 mt-4 md:grid-cols-8">
+        <div className="grid items-center  grid-cols-4 col-span-5  md:grid-cols-8">
           <img
             className="mt-6 mr-2 rounded-full w-36"
             src={userProfileData.profileImage}
           />
           <div className="col-span-3 mt-2 ml-2">
-            <h1 className="mt-2 text-2xl font-bold md:text-4xl md:mt-6">
+            <h1 className="mt-2 text-2xl font-bold md:text-3xl ">
               {userProfileData.name}
             </h1>
-            <div className="flex mt-4">
+            <div className="flex ">
               <JoinedDateComponent
                 createdAt={userProfileData.createdAt}
                 textSize={"large"}
