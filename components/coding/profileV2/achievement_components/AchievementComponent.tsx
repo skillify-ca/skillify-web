@@ -109,7 +109,12 @@ const AchievementComponent = ({
           })}
         </div>
       )}
-      <Button label={"Save"} onClick={() => handleOnSaveButtonClick()}></Button>
+      <div className="p-4 md-8">
+        <Button
+          label={"Save"}
+          onClick={() => handleOnSaveButtonClick()}
+        ></Button>
+      </div>
     </div>
   );
 };
