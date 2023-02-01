@@ -3,6 +3,10 @@ import { useQuery } from "@apollo/client";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  FetchTotalBadgesCountResponse,
+  FETCH_TOTAL_USER_BADGES_COUNT,
+} from "../../../graphql/fetchTotalUserBadgesCount";
+import {
   FetchUserBadgesCountResponse,
   FETCH_USER_BADGES_COUNT,
 } from "../../../graphql/fetchUserBadgesCount";
@@ -12,6 +16,7 @@ import {
 } from "../../../graphql/fetchUserProfile";
 import {
   profileSelector,
+  setTotalBadgeCount,
   setUserBadgeCount,
   setUserProfile,
 } from "../../../redux/profileSlice";
@@ -58,6 +63,17 @@ export default function UserProfileSection({
         if (data.user_coding_badges_aggregate.aggregate.count) {
           dispatch(
             setUserBadgeCount(data.user_coding_badges_aggregate.aggregate.count)
+          );
+        }
+      },
+    });
+
+  const { loading: totalUserBadgeCountLoading } =
+    useQuery<FetchTotalBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
+      onCompleted: (data) => {
+        if (data.coding_badges_aggregate) {
+          dispatch(
+            setTotalBadgeCount(data.coding_badges_aggregate.aggregate.count)
           );
         }
       },

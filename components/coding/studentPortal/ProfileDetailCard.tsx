@@ -1,10 +1,7 @@
-import { useSelector } from "react-redux";
 import { CodingBadge } from "../../../graphql/fetchUserProfileCard";
 import BadgesDisplayedComponent from "../profileV2/BadgesDisplayedComponent";
 import JoinedDateComponent from "../profileV2/JoinedDateComponent";
 import React from "react";
-import { profileSelector } from "../../../redux/profileSlice";
-import { userGoalsSelector } from "../../../redux/userGoalsSlice";
 
 type ProfileDetailCard = {
   avatar: string;
@@ -15,6 +12,7 @@ type ProfileDetailCard = {
   currentBadge: CodingBadge;
   completedDate: string;
   completedGoal: string;
+  totalBadgeCount: number;
 };
 
 function ProfileDetailCard({
@@ -22,13 +20,11 @@ function ProfileDetailCard({
   name,
   joinDate,
   badges,
+  totalBadgeCount,
   currentBadge,
   completedGoal,
   completedDate,
 }: ProfileDetailCard) {
-  const { totalBadgeCount } = useSelector(profileSelector);
-  const { userGoals } = useSelector(userGoalsSelector);
-
   return (
     <div
       className="grid grid-cols-4 h-full w-full text-sm border-2 bg-slate-50 text-slate-800 border-slate-800 hover:bg-violet-100"
@@ -67,7 +63,10 @@ function ProfileDetailCard({
         <div className="flex items-center p-2">
           <div className="col-span-1 mr-5">
             <div className="col-span-1 bg-slate-800 w-16 h-16 border-black rounded-full flex items-center justify-center">
-              <p className="text-center text-slate-100"> {completedDate}</p>
+              <p className="text-center font-thin text-slate-100">
+                {" "}
+                {completedDate}
+              </p>
             </div>
           </div>
           <p className="col-span-3 underline"> {completedGoal}</p>

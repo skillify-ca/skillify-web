@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileDetailCard from "../components/coding/studentPortal/ProfileDetailCard";
 import {
@@ -7,44 +7,38 @@ import {
   FETCH_USER_PROFILE_CARD,
 } from "../graphql/fetchUserProfileCard";
 import Link from "next/link";
-import { userSelector, setUserList, setEarnedBadges } from "../redux/userSlice";
-import {
-  FetchEarnedBadges,
-  FETCH_EARNED_BADGES,
-} from "../graphql/fetchEarnedBadges";
-import { transformBadgesEarned } from "./api/coachingDashboard";
+import { userSelector, setUserList } from "../redux/userSlice";
 import { format } from "date-fns";
 import {
   AllUserGoalsData,
   FetchAllUserGoalsDataResponse,
   FETCH_ALL_USER_GOALS,
 } from "../graphql/fetchAllUserGoals";
+import { profileSelector, setTotalBadgeCount } from "../redux/profileSlice";
+import {
+  FetchTotalBadgesCountResponse,
+  FETCH_TOTAL_USER_BADGES_COUNT,
+} from "../graphql/fetchTotalUserBadgesCount";
 
 const coachingDashboard = () => {
   const dispatch = useDispatch();
-
+  const { userList } = useSelector(userSelector);
+  const { totalBadgeCount } = useSelector(profileSelector);
   const [goalsList, setGoalsList] = useState<AllUserGoalsData[]>();
   const [completedGoalsList, setCompletedGoalsList] = useState([]);
   const [goalCompletionDateList, setGoalCompletionDateList] = useState([]);
-  const { userList, earnedBadges } = useSelector(userSelector);
 
-  const { loading, data } = useQuery<FetchUserProfileCardResponse>(
+  const { loading } = useQuery<FetchUserProfileCardResponse>(
     FETCH_USER_PROFILE_CARD,
     {
-      onCompleted: () =>
-        data.users.length > 0 ? dispatch(setUserList(data.users)) : loading,
+      onCompleted: (data) => {
+        if (data.users?.length > 0) {
+          dispatch(setUserList(data.users));
+        }
+      },
     }
   );
   const enrolledUsers = userList.map((user) => user.id);
-
-  const {} = useQuery<FetchEarnedBadges>(FETCH_EARNED_BADGES, {
-    variables: {
-      enrolledIds: enrolledUsers,
-    },
-    onCompleted: (data) => {
-      dispatch(setEarnedBadges(data.user_coding_badges));
-    },
-  });
 
   const {} = useQuery<FetchAllUserGoalsDataResponse>(FETCH_ALL_USER_GOALS, {
     onCompleted: (data) => {
@@ -71,19 +65,16 @@ const coachingDashboard = () => {
     },
   });
 
-  useEffect(() => {
-    const aggregatedBadgeCount = earnedBadges.reduce((acc, badgeId) => {
-      if (acc[badgeId.userId]) {
-        acc[badgeId.userId] += 1;
-      } else {
-        acc[badgeId.userId] = 1;
-      }
-      return acc;
-    }, {});
-    dispatch(
-      setUserList(transformBadgesEarned(userList, aggregatedBadgeCount))
-    );
-  }, [earnedBadges]);
+  const { loading: totalUserBadgeCountLoading } =
+    useQuery<FetchTotalBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
+      onCompleted: (data) => {
+        if (data) {
+          dispatch(
+            setTotalBadgeCount(data.coding_badges_aggregate.aggregate.count)
+          );
+        }
+      },
+    });
 
   if (loading) {
     return <div className="flex place-content-center">"Loading..."</div>;
@@ -107,7 +98,7 @@ const coachingDashboard = () => {
                     }
                     name={it.name}
                     joinDate={it.created_at}
-                    badges={it.badges_earned}
+                    badges={it.user_coding_badges_aggregate.aggregate.count}
                     currentBadge={
                       it.coding_badge == null
                         ? {
@@ -132,6 +123,7 @@ const coachingDashboard = () => {
                           )
                         : "‎ N/A‎ "
                     }
+                    totalBadgeCount={totalBadgeCount}
                   />
                 </div>
               </Link>

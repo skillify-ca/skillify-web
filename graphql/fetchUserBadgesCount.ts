@@ -11,13 +11,9 @@ export const FETCH_USER_BADGES_COUNT = gql`
 `;
 
 export type FetchUserBadgesCountResponse = {
-  user_coding_badges_aggregate: UserCodingBadgesCount;
-};
-
-export type UserCodingBadgesCount = {
-  aggregate: CountData;
-};
-
-export type CountData = {
-  count: number;
+  user_coding_badges_aggregate: {
+    aggregate: {
+      count: number;
+    };
+  }
 };
