@@ -42,7 +42,9 @@ const coachingDashboard = () => {
 
   const {} = useQuery<FetchAllUserGoalsDataResponse>(FETCH_ALL_USER_GOALS, {
     onCompleted: (data) => {
-      setGoalsList(data.user_goals);
+      if (data.user_goals?.length > 0) {
+        setGoalsList(data.user_goals);
+      }
     },
   });
 
