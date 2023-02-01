@@ -15,6 +15,10 @@ export type VideoId = string;
 
 export type AssignmentComponentData =
   | {
+      component: "title";
+      text: string;
+    }
+  | {
       component: "prompt";
       text: string;
     }

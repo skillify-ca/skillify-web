@@ -1,17 +1,18 @@
 import { useQuery } from "@apollo/client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FETCH_TOTAL_USER_BADGES_COUNT } from "../../../graphql/fetchTotalUserBadgesCount";
+import {
+  FetchTotalBadgesCountResponse,
+  FETCH_TOTAL_USER_BADGES_COUNT,
+} from "../../../graphql/fetchTotalUserBadgesCount";
 import {
   FetchUserBadgesCountResponse,
   FETCH_USER_BADGES_COUNT,
 } from "../../../graphql/fetchUserBadgesCount";
 import {
-  UserProfileData,
   FetchUserProfileDataResponse,
   FETCH_USER_PROFILE_DATA,
-  User,
 } from "../../../graphql/fetchUserProfile";
 import {
   profileSelector,
@@ -68,13 +69,11 @@ export default function UserProfileSection({
     });
 
   const { loading: totalUserBadgeCountLoading } =
-    useQuery<FetchUserBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
+    useQuery<FetchTotalBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
       onCompleted: (data) => {
-        if (data.user_coding_badges_aggregate.aggregate.count) {
+        if (data.coding_badges_aggregate) {
           dispatch(
-            setTotalBadgeCount(
-              data.user_coding_badges_aggregate.aggregate.count
-            )
+            setTotalBadgeCount(data.coding_badges_aggregate.aggregate.count)
           );
         }
       },
@@ -85,16 +84,16 @@ export default function UserProfileSection({
       {userProfileLoading ? (
         <div>Loading...</div>
       ) : (
-        <div className="grid grid-cols-4 col-span-5 mt-4 md:grid-cols-8">
+        <div className="grid items-center  grid-cols-4 col-span-5  md:grid-cols-8">
           <img
             className="mt-6 mr-2 rounded-full w-36"
             src={userProfileData.profileImage}
           />
           <div className="col-span-3 mt-2 ml-2">
-            <h1 className="mt-2 text-2xl font-bold md:text-4xl md:mt-6">
+            <h1 className="mt-2 text-2xl font-bold md:text-3xl ">
               {userProfileData.name}
             </h1>
-            <div className="flex mt-4">
+            <div className="flex ">
               <JoinedDateComponent
                 createdAt={userProfileData.createdAt}
                 textSize={"large"}

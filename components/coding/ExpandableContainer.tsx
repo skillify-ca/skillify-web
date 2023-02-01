@@ -32,7 +32,7 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
   return (
     <>
       <div
-        className={`border-4 border-gray-900 rounded-lg ${
+        className={`border-2 border-gray-900 rounded-lg ${
           isOpen ? "shadow-lg shadow-gray-900" : ""
         } `}
       >

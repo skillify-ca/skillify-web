@@ -3,7 +3,6 @@ import GoalsSectionComponent from "../../../components/coding/GoalsSectionCompon
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import ProfileGoalsSection from "../../../components/coding/ProfileGoalsSection";
-import AcheivementComponent from "../../../components/coding/profileV2/AchievementComponent";
 import AssignmentSectionComponent from "../../../components/coding/profileV2/AssignmentSectionComponent";
 import ProfileHeaderComponent from "../../../components/coding/profileV2/ProfileHeaderComponent";
 
@@ -15,7 +14,7 @@ import { FETCH_RECENT_USERS } from "../../../graphql/fetchRecentUsers";
 import { FETCH_USER } from "../../../graphql/fetchUser";
 import { setUserGoals, userGoalsSelector } from "../../../redux/userGoalsSlice";
 import ExpandableContainer from "../../../components/coding/ExpandableContainer";
-import AchievementComponent from "../../../components/coding/profileV2/AchievementComponent";
+import AchievementComponent from "../../../components/coding/profileV2/achievement_components/AchievementComponent";
 import SkillRatingsComponent from "../../../components/coding/SkillRatingsComponent";
 import {
   FetchUserGoalsDataResponse,
