@@ -17,7 +17,6 @@ import {
   FetchUserRoleData,
   FETCH_USER_ROLE,
 } from "../../../../graphql/fetchUserRole";
-import enableCoachEditing from "./EditFlow";
 
 export type AchievementComponentProps = {
   userId: string;
@@ -35,7 +34,17 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
       setUnitBadges(data.intro_course_unit);
     },
   });
-  enableCoachEditing(userId, setIsEditable);
+  const {} = useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
+    variables: {
+      _id: userId,
+    },
+    onCompleted: (roleData) => {
+      if (roleData.users[0].userRole.value === "coach") {
+        setIsEditable(true);
+      }
+    },
+  });
+
   const [saveAddedBadges] = useMutation(INSERT_USER_CODING_BADGES, {
     refetchQueries: [{ query: FETCH_CODING_BADGES }],
   });
@@ -89,7 +98,6 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
       <div className="w-full mb-4">
         {isEditable && (
           <div className="flex place-content-between space-x-4 px-4">
-
             <Button
               label={"Save"}
               onClick={() => handleOnSaveButtonClick()}
