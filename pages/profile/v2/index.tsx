@@ -53,14 +53,15 @@ export default function Profile() {
           )}
         </ExpandableContainer>
       </div>
-      <div className="grid">
-        <ExpandableContainer open={true} title={"Skill Ratings"}>
-          <SkillRatingsComponent />
-        </ExpandableContainer>
-      </div>
+
       <div className="grid">
         <ExpandableContainer open={true} title={"Achievements"}>
           <AchievementComponent userId={user.uid} isEditable={true} />
+        </ExpandableContainer>
+      </div>
+      <div className="grid">
+        <ExpandableContainer open={true} title={"Skill Ratings"}>
+          <SkillRatingsComponent />
         </ExpandableContainer>
       </div>
     </div>
