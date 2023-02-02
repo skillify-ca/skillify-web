@@ -28,10 +28,10 @@ const coachingDashboard = () => {
   const [completedGoalsList, setCompletedGoalsList] = useState([]);
   const [goalCompletionDateList, setGoalCompletionDateList] = useState([]);
 
-  const { loading } = useQuery<FetchUserProfileCardResponse>(
+  const { data, loading } = useQuery<FetchUserProfileCardResponse>(
     FETCH_USER_PROFILE_CARD,
     {
-      onCompleted: (data) => {
+      onCompleted: () => {
         if (data.users?.length > 0) {
           dispatch(setUserList(data.users));
         }
