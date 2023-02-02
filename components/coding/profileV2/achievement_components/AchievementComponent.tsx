@@ -75,7 +75,7 @@ const AchievementComponent = ({
   };
 
   return (
-    <div className="dark:bg-slate-900">
+    <div className="">
       <div className="flex justify-end w-full ">
         {isEditable && (
           <div>
