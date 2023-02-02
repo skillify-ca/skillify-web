@@ -26,8 +26,8 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
   const [unitBadges, setUnitBadges] = useState<IntroCourseUnit[]>();
   // editMode set to true only when a coach accesses the page
   const [editMode, setEditMode] = useState(false);
-  // isEditable set to true only when a coach clicks the PencilAltIcon Component
-  const [isEditable, setIsEditable] = useState(false);
+  // isEditButtonVisible set to true only when a coach clicks the PencilAltIcon Component
+  const [isEditButtonVisible, setisEditButtonVisible] = useState(false);
   const { data } = useQuery<FetchBadgeResponse>(FETCH_CODING_BADGES, {
     variables: {
       userId: userId,
@@ -42,7 +42,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
     },
     onCompleted: (roleData) => {
       if (roleData.users[0].userRole.value === "coach") {
-        setIsEditable(true);
+        setisEditButtonVisible(true);
       }
     },
   });
@@ -98,7 +98,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
   return (
     <div className="sm:p-4 sm:shadow-md bg-slate-300 dark:bg-slate-900">
       <div className="w-full mb-4">
-        {isEditable && (
+        {isEditButtonVisible && (
           <div className="flex place-content-between space-x-4 px-4">
             <Button
               label={"Save"}
