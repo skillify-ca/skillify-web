@@ -44,13 +44,8 @@ export default function InternalProfile({
   const router = useRouter();
   const dispatch = useDispatch();
 
-  let userId;
-
-  if (userIdFromLink) {
-    userId = userIdFromLink;
-  } else {
-    userId = router.query.userId;
-  }
+  // set userId to prop if navigating from /profile/x/[linkName], otherwise set as url parameter
+  const userId = userIdFromLink ? userIdFromLink : router.query.userId;
 
   const { userGoals } = useSelector(userGoalsSelector);
   const { userProfileData, userBadgeCount, totalBadgeCount } =
