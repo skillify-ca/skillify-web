@@ -104,6 +104,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
               label={"Save"}
               onClick={() => handleOnSaveButtonClick()}
             ></Button>
+
             <button
               onClick={() => setEditMode(!editMode)}
               className="w-5 h-5 cursor-pointer hover:text-yellow-600"
@@ -114,6 +115,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
                   (editMode ? "text-yellow-600" : "hover:text-yellow-600")
                 }
               />
+
             </button>
           </div>
         )}
@@ -155,6 +157,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
           </button>
         </div>
       )}
+
     </div>
   );
 };

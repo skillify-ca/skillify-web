@@ -78,19 +78,7 @@ export default function SkillRatingsComponent(props) {
   };
 
   return (
-    <div className="flex flex-col w-full overflow-auto-bg-scroll">
-      <div className="flex justify-center p-4">
-        <Button
-          label="Save"
-          onClick={() =>
-            saveSkillRatings({
-              variables: {
-                objects: transformSkillRatingForDB(skillRatings, user),
-              },
-            })
-          }
-        />
-      </div>
+    <div className="flex bg-slate-900 py-8 flex-col w-full overflow-auto-bg-scroll">
       <div className="">
         {sections.map((it, i) => (
           <button
@@ -124,6 +112,18 @@ export default function SkillRatingsComponent(props) {
                 }}
               />
             ))}
+      </div>
+      <div className="p-4">
+        <Button
+          label="Save"
+          onClick={() =>
+            saveSkillRatings({
+              variables: {
+                objects: transformSkillRatingForDB(skillRatings, user),
+              },
+            })
+          }
+        />
       </div>
     </div>
   );
