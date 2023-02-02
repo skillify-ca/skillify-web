@@ -33,7 +33,7 @@ export default function ExternalUserProfile({ slug, uid }) {
         </div>
 
         <h2 className="text-lg font-bold mb-9">Achievements</h2>
-        <AchievementComponent userId={user.uid} isEditable={false} />
+        <AchievementComponent userId={user.uid} />
       </div>
     </div>
   );

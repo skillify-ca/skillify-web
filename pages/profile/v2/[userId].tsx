@@ -135,7 +135,7 @@ export default function InternalProfile({
       <div className="grid">
         <ExpandableContainer open={true} title={"Achievements"}>
           {typeof userId == "string" && (
-            <AchievementComponent userId={userId} isEditable={true} />
+            <AchievementComponent userId={userId} />
           )}
         </ExpandableContainer>
       </div>
