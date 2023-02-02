@@ -1,32 +1,17 @@
-import { useQuery } from "@apollo/client";
-import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { GetServerSideProps } from "next";
+import React from "react";
 import Header404 from "../../../components/Header404";
 import { FETCH_USER } from "../../../graphql/fetchUser";
 import InternalProfile from "../v2/[userId]";
 
-export default function ProfileGateway() {
-  const router = useRouter();
-  const { userName } = router.query;
-  const [validUserId, setValidUserId] = useState<string>();
+type ProfileGatewayProps = {
+  userId: string;
+};
 
-  const { loading } = useQuery<{ users: Array<{ id: string }> }>(FETCH_USER, {
-    variables: {
-      link: userName,
-    },
-    onCompleted: (data) => {
-      if (data.users.length > 0) {
-        setValidUserId(data.users[0].id);
-      }
-    },
-  });
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (validUserId) {
-    return <InternalProfile userIdFromLink={validUserId} />;
+function ProfileGateway({ userId }: ProfileGatewayProps) {
+  if (userId) {
+    return <InternalProfile userIdFromLink={userId} />;
   } else {
     return (
       <div>
@@ -36,3 +21,35 @@ export default function ProfileGateway() {
     );
   }
 }
+
+export default ProfileGateway;
+
+export const getServerSideProps: GetServerSideProps<ProfileGatewayProps> =
+  async (ctx) => {
+    const userName = ctx.params?.userName as string;
+
+    const client = new ApolloClient({
+      uri: "https://talented-duckling-40.hasura.app/v1/graphql/",
+      cache: new InMemoryCache(),
+    });
+
+    const { data } = await client.query<{ users: Array<{ id: string }> }>({
+      query: FETCH_USER,
+      variables: {
+        link: userName,
+      },
+    });
+
+    if (!data.users[0]) {
+      return {
+        notFound: true,
+      };
+    } else {
+      const validUserId = data.users[0].id;
+      return {
+        props: {
+          userId: validUserId,
+        },
+      };
+    }
+  };
