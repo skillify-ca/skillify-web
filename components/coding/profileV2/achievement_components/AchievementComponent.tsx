@@ -96,14 +96,10 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
   };
 
   return (
-    <div className="sm:p-4 sm:shadow-md bg-slate-300 dark:bg-slate-900">
-      <div className="w-full mb-4">
+    <div className="">
+      <div className="flex justify-end w-full ">
         {isEditButtonVisible && (
-          <div className="flex place-content-between space-x-4 px-4">
-            <Button
-              label={"Save"}
-              onClick={() => handleOnSaveButtonClick()}
-            ></Button>
+          <div>
 
             <button
               onClick={() => setEditMode(!editMode)}
