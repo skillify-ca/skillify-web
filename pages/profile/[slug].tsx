@@ -1,14 +1,14 @@
+import React from "react";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import ProfileGoalsSection from "../../components/coding/ProfileGoalsSection";
-import AcheivementComponent from "../../components/coding/profileV2/achievement_components/AchievementComponent";
 import ProjectsSection from "../../components/coding/ProjectsSection";
 import UserProfileSection from "../../components/coding/UserProfileSection";
 import LandingNavbar from "../../components/LandingNavbar";
-import BadgesSection from "../../components/profile/BadgesSection";
-import Navbar from "../../components/ui/Navbar";
+
 import { FETCH_RECENT_USERS } from "../../graphql/fetchRecentUsers";
-import { FETCH_SKILLS } from "../../graphql/fetchSkills";
+
 import { FETCH_USER } from "../../graphql/fetchUser";
+import AchievementComponent from "../../components/coding/profileV2/achievement_components/AchievementComponent";
 
 export default function ExternalUserProfile({ slug, uid }) {
   const user = {
@@ -33,7 +33,7 @@ export default function ExternalUserProfile({ slug, uid }) {
         </div>
 
         <h2 className="text-lg font-bold mb-9">Achievements</h2>
-        <AcheivementComponent user={user} />
+        <AchievementComponent userId={user.uid} isEditable={false} />
       </div>
     </div>
   );
