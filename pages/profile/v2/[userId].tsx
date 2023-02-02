@@ -127,16 +127,17 @@ export default function InternalProfile({
           />
         </ExpandableContainer>
       </div>
-      <div className="grid">
-        <ExpandableContainer open={true} title={"Skill Ratings"}>
-          <SkillRatingsComponent />
-        </ExpandableContainer>
-      </div>
+
       <div className="grid">
         <ExpandableContainer open={true} title={"Achievements"}>
           {typeof userId == "string" && (
             <AchievementComponent userId={userId} />
           )}
+        </ExpandableContainer>
+      </div>
+      <div className="grid">
+        <ExpandableContainer open={true} title={"Skill Ratings"}>
+          <SkillRatingsComponent />
         </ExpandableContainer>
       </div>
     </div>
