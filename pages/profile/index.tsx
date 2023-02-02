@@ -26,7 +26,7 @@ export default function Profile(props) {
       </div>
 
       <h2 className="text-lg font-bold mb-9">Achievements</h2>
-      <AcheivementComponent user={user} />
+      <AcheivementComponent userId={user.uid} />
     </div>
   );
 }

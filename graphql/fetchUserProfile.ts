@@ -57,7 +57,6 @@ export type UserProfileResponse = {
 };
 
 export type UserProfileData = {
-  typeName: string;
   createdAt: Date;
   email: string;
   lastSeen: Date;
