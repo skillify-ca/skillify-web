@@ -58,9 +58,9 @@ function ProfileDetailCard({
         </div>
         <p className="ml-2 font-bold">Last Goal</p>
         <div className="flex items-center p-1 gap-5">
-          <div className="">
+          <div className="col-span-1 items-center">
             <svg
-              className="col-span-1 items-center rounded-full h-16 w-16 text-slate-100"
+              className="rounded-full h-16 w-16 text-slate-100"
               fill="bg-slate-900"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -77,7 +77,7 @@ function ProfileDetailCard({
                 shapeRendering="geometricPrecision"
                 textRendering="optimizeLegibility"
                 imageRendering="optimizeQuality"
-                fontWeight="thin"
+                fontWeight="100"
               >
                 {completedDate}
               </text>
