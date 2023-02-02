@@ -2,7 +2,6 @@ import { Slice, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserProfileData } from "../graphql/fetchUserProfile";
 import { RootState } from "./rootReducer";
 
-
 export type ProfileState = {
   userProfileData: UserProfileData;
   userBadgeCount: number;
@@ -12,7 +11,6 @@ export type ProfileState = {
 
 const initialState: ProfileState = {
   userProfileData: {
-    typeName: "",
     createdAt: new Date(),
     email: "",
     lastSeen: new Date(),
