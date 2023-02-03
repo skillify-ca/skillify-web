@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import ExpandableContainer from "../../../components/coding/ExpandableContainer";
@@ -32,6 +32,15 @@ import {
   setUserBadgeCount,
   setTotalBadgeCount,
 } from "../../../redux/profileSlice";
+import {
+  FetchSkillsAndRatings,
+  FETCH_SKILLS_AND_RATINGS,
+} from "../../../graphql/fetchSkillsAndRatings";
+import {
+  setSkillRatings,
+  skillRatingsSelector,
+} from "../../../redux/skillRatingsSlice";
+import { transformSkillsAndRatings } from "../../api/skillRatingsFunctions";
 
 type InternalProfileProps = {
   userIdFromLink?: string;
@@ -48,8 +57,10 @@ export default function InternalProfile({
   const userId = userIdFromLink ? userIdFromLink : router.query.userId;
 
   const { userGoals } = useSelector(userGoalsSelector);
+  const { skillRatings } = useSelector(skillRatingsSelector);
   const { userProfileData, userBadgeCount, totalBadgeCount } =
     useSelector(profileSelector);
+  const [isEditable, setIsEditable] = useState(false);
 
   if (userId) {
     useQuery<FetchUserProfileDataResponse>(FETCH_USER_PROFILE_DATA, {
@@ -75,9 +86,22 @@ export default function InternalProfile({
       variables: {
         userId: userId,
       },
-
       onCompleted: (data: FetchUserGoalsDataResponse) => {
         dispatch(setUserGoals(data.user_goals));
+      },
+    });
+
+    useQuery<FetchSkillsAndRatings>(FETCH_SKILLS_AND_RATINGS, {
+      variables: {
+        userId: userId,
+      },
+      onCompleted: (data) => {
+        dispatch(
+          setSkillRatings(transformSkillsAndRatings(data.intro_course_skills))
+        );
+        if (userId == user.uid) {
+          setIsEditable(true);
+        }
       },
     });
 
@@ -129,7 +153,10 @@ export default function InternalProfile({
       </div>
       <div className="grid">
         <ExpandableContainer open={true} title={"Skill Ratings"}>
-          <SkillRatingsComponent />
+          <SkillRatingsComponent
+            skillRatings={skillRatings}
+            isEditable={isEditable}
+          />
         </ExpandableContainer>
       </div>
       <div className="grid">

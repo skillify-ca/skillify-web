@@ -1,30 +1,25 @@
-import { useQuery, useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  FetchSkillsAndRatings,
-  FETCH_SKILLS_AND_RATINGS,
-} from "../../graphql/fetchSkillsAndRatings";
 import { FETCH_USER_SKILLS_RATINGS } from "../../graphql/fetchUserSkillsRatings";
 import { UPSERT_USER_SKILL_RATINGS } from "../../graphql/upsertUserSkillRatings";
 import { useAuth } from "../../lib/authContext";
-import {
-  transformSkillRatingForDB,
-  transformSkillsAndRatings,
-} from "../../pages/api/skillRatingsFunctions";
-import {
-  skillRatingsSelector,
-  setSkillRatings,
-} from "../../redux/skillRatingsSlice";
+import { transformSkillRatingForDB } from "../../pages/api/skillRatingsFunctions";
+import { SkillRatingsRow } from "../../redux/skillRatingsSlice";
 import SkillRow from "../skillRatings/SkillRow";
 import { Button } from "../ui/Button";
 import React from "react";
 import { animated, useSpring } from "@react-spring/web";
+import { useMutation } from "@apollo/client";
+export type SkillRatingsProps = {
+  skillRatings: SkillRatingsRow[];
+  isEditable: boolean;
+};
 
-export default function SkillRatingsComponent(props) {
-  const dispatch = useDispatch();
+export default function SkillRatingsComponent({
+  skillRatings,
+  isEditable,
+}: SkillRatingsProps) {
   const { user } = useAuth();
-  const { skillRatings } = useSelector(skillRatingsSelector);
+  const [activeTab, setActiveTab] = useState("");
   const [sections, setSections] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState("");
   const [haveTabsLoaded, setHaveTabsLoaded] = useState(false);
@@ -37,17 +32,6 @@ export default function SkillRatingsComponent(props) {
       set({ opacity: 1 });
     }, 300);
   };
-
-  const {} = useQuery<FetchSkillsAndRatings>(FETCH_SKILLS_AND_RATINGS, {
-    variables: {
-      userId: user.uid,
-    },
-    onCompleted: (data) => {
-      dispatch(
-        setSkillRatings(transformSkillsAndRatings(data.intro_course_skills))
-      );
-    },
-  });
 
   const [saveSkillRatings] = useMutation(UPSERT_USER_SKILL_RATINGS, {
     refetchQueries: [{ query: FETCH_USER_SKILLS_RATINGS }],
@@ -88,7 +72,7 @@ export default function SkillRatingsComponent(props) {
   };
 
   return (
-    <div className="flex bg-slate-900 py-8 flex-col w-full overflow-auto-bg-scroll">
+    <div className="flex  py-8 flex-col w-full overflow-auto-bg-scroll">
       <div className="">
         {sections.map((it, i) => (
           <animated.button
@@ -103,7 +87,6 @@ export default function SkillRatingsComponent(props) {
           </animated.button>
         ))}
       </div>
-
       <div>
         <div
           className={`${activeTab ? "flex flex-col sm:p-4 sm:m-4" : "hidden"} `}
@@ -122,22 +105,26 @@ export default function SkillRatingsComponent(props) {
                       unitName: it.unitName,
                       studentRating: it.studentRating,
                     }}
+                    isEditable={isEditable}
                   />
                 ))}
           </animated.div>
         </div>
+
       </div>
       <div className="p-4">
-        <Button
-          label="Save"
-          onClick={() =>
-            saveSkillRatings({
-              variables: {
-                objects: transformSkillRatingForDB(skillRatings, user),
-              },
-            })
-          }
-        />
+        {isEditable ? (
+          <Button
+            label="Save"
+            onClick={() =>
+              saveSkillRatings({
+                variables: {
+                  objects: transformSkillRatingForDB(skillRatings, user),
+                },
+              })
+            }
+          />
+        ) : null}
       </div>
     </div>
   );
