@@ -103,7 +103,7 @@ const coachingDashboard = () => {
                       : it.profile_image
                   }
                   name={it.name}
-                  joinDate={it.created_at}
+                  joinDate={new Date(it.created_at)}
                   badges={it.user_coding_badges_aggregate.aggregate.count}
                   currentBadge={
                     it.coding_badge == null

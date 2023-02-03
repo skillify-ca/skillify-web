@@ -26,8 +26,8 @@ function ProfileDetailCard({
   completedDate,
 }: ProfileDetailCard) {
   return (
-    <div className="grid grid-cols-4 h-full w-full text-sm border-2 bg-slate-50 text-slate-800 border-slate-800 hover:bg-violet-100">
-      <div className="flex ml-3 place-items-center col-span-4 mt-4">
+    <div className="grid grid-cols-4 h-full w-full text-sm border-2 bg-slate-50 text-slate-800 border-slate-800 hover:bg-violet-100 ">
+      <div className="flex place-items-center col-span-4 m-4">
         <img
           className="col-span-1 w-20 h-20 border-3 rounded-full border-slate-800 "
           src={avatar}
@@ -35,11 +35,7 @@ function ProfileDetailCard({
         <div className="col-span-3 ml-2 items-center gap-1">
           <p className="font-bold"> {name}</p>
 
-          <JoinedDateComponent
-            user={name}
-            textSize={"small"}
-            createdAt={joinDate}
-          />
+          <JoinedDateComponent textSize={"small"} createdAt={joinDate} />
           <BadgesDisplayedComponent
             earnedBadges={badges}
             textSize={"small"}
