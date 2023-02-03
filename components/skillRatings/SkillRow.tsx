@@ -8,9 +8,10 @@ import SkillRowEmoji from "./SkillRowEmoji";
 
 export type SkillRowProps = {
   skillRow: SkillRatingsRow;
+  isEditable: boolean;
 };
 
-export default function SkillRow({ skillRow }: SkillRowProps) {
+export default function SkillRow({ skillRow, isEditable }: SkillRowProps) {
   const { skillRatings } = useSelector(skillRatingsSelector);
   const index = skillRatings.findIndex(
     (obj) => obj.userSkillId == skillRow.userSkillId
@@ -42,6 +43,7 @@ export default function SkillRow({ skillRow }: SkillRowProps) {
       <SkillRowEmoji
         userSkillId={skillRow.userSkillId}
         studentRating={skillRow.studentRating}
+        isEditable={isEditable}
       />
     </div>
   );
