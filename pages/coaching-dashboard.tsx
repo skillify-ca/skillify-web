@@ -54,7 +54,7 @@ const coachingDashboard = () => {
         {userList.map((it, index) => {
           return (
             <div key={index}>
-              <Link href={"profile/v2/" + it.id}>
+              <Link href={"profile/" + it.id}>
                 <div className="">
                   <ProfileDetailCard
                     avatar={
