@@ -52,13 +52,13 @@ function ProfileDetailCard({
         <div className="flex items-center space-x-4">
           <img
             src={currentBadge?.image}
-            className="col-span-1 border-3 shadow-xl items-center w-16 h-16 rounded-full"
+            className="border-3 shadow-xl items-center w-16 h-16 rounded-full"
           />
-          <p className="col-span-3"> {currentBadge?.title}</p>
+          <p> {currentBadge?.title}</p>
         </div>
         <p className="font-bold">Last Goal</p>
         <div className="flex items-center space-x-4">
-          <div className="col-span-1 items-center">
+          <div className="items-center">
             <svg
               className="rounded-full h-16 w-16 text-slate-200"
               fill="bg-slate-900"
