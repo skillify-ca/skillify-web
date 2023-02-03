@@ -1,43 +1,26 @@
-import { useQuery, useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  FetchSkillsAndRatings,
-  FETCH_SKILLS_AND_RATINGS,
-} from "../../graphql/fetchSkillsAndRatings";
 import { FETCH_USER_SKILLS_RATINGS } from "../../graphql/fetchUserSkillsRatings";
 import { UPSERT_USER_SKILL_RATINGS } from "../../graphql/upsertUserSkillRatings";
 import { useAuth } from "../../lib/authContext";
-import {
-  transformSkillRatingForDB,
-  transformSkillsAndRatings,
-} from "../../pages/api/skillRatingsFunctions";
-import {
-  skillRatingsSelector,
-  setSkillRatings,
-} from "../../redux/skillRatingsSlice";
+import { transformSkillRatingForDB } from "../../pages/api/skillRatingsFunctions";
+import { SkillRatingsRow } from "../../redux/skillRatingsSlice";
 import SkillRow from "../skillRatings/SkillRow";
 import { Button } from "../ui/Button";
 import React from "react";
+import { useMutation } from "@apollo/client";
+export type SkillRatingsProps = {
+  skillRatings: SkillRatingsRow[];
+  isEditable: boolean;
+};
 
-export default function SkillRatingsComponent(props) {
-  const dispatch = useDispatch();
+export default function SkillRatingsComponent({
+  skillRatings,
+  isEditable,
+}: SkillRatingsProps) {
   const { user } = useAuth();
-  const { skillRatings } = useSelector(skillRatingsSelector);
   const [activeTab, setActiveTab] = useState("");
   const [sections, setSections] = useState<string[]>([]);
   const [haveTabsLoaded, setHaveTabsLoaded] = useState(false);
-
-  const {} = useQuery<FetchSkillsAndRatings>(FETCH_SKILLS_AND_RATINGS, {
-    variables: {
-      userId: user.uid,
-    },
-    onCompleted: (data) => {
-      dispatch(
-        setSkillRatings(transformSkillsAndRatings(data.intro_course_skills))
-      );
-    },
-  });
 
   const [saveSkillRatings] = useMutation(UPSERT_USER_SKILL_RATINGS, {
     refetchQueries: [{ query: FETCH_USER_SKILLS_RATINGS }],
@@ -110,20 +93,23 @@ export default function SkillRatingsComponent(props) {
                   unitName: it.unitName,
                   studentRating: it.studentRating,
                 }}
+                isEditable={isEditable}
               />
             ))}
       </div>
       <div className="p-4">
-        <Button
-          label="Save"
-          onClick={() =>
-            saveSkillRatings({
-              variables: {
-                objects: transformSkillRatingForDB(skillRatings, user),
-              },
-            })
-          }
-        />
+        {isEditable ? (
+          <Button
+            label="Save"
+            onClick={() =>
+              saveSkillRatings({
+                variables: {
+                  objects: transformSkillRatingForDB(skillRatings, user),
+                },
+              })
+            }
+          />
+        ) : null}
       </div>
     </div>
   );

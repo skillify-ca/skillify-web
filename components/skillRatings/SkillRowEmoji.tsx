@@ -5,9 +5,14 @@ import { updateSkillRatings } from "../../redux/skillRatingsSlice";
 export interface EmojiSliderProps {
   userSkillId: string;
   studentRating: number;
+  isEditable: boolean;
 }
 
-const EmojiSlider = ({ userSkillId, studentRating }: EmojiSliderProps) => {
+const EmojiSlider = ({
+  userSkillId,
+  studentRating,
+  isEditable,
+}: EmojiSliderProps) => {
   const dispatch = useDispatch();
 
   function handleChange(e) {
@@ -22,6 +27,7 @@ const EmojiSlider = ({ userSkillId, studentRating }: EmojiSliderProps) => {
         onChange={handleChange}
         className="w-44"
         value={studentRating}
+        disabled={!isEditable}
       />
     </div>
   );
