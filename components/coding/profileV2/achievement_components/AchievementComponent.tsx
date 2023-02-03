@@ -36,7 +36,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
       setUnitBadges(data.intro_course_unit);
     },
   });
-  const {} = useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
+  useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
     variables: {
       _id: userId,
     },
@@ -100,7 +100,6 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
       <div className="flex justify-end w-full ">
         {isEditButtonVisible && (
           <div>
-
             <button
               onClick={() => setEditMode(!editMode)}
               className="w-5 h-5 cursor-pointer hover:text-yellow-600"
@@ -111,7 +110,6 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
                   (editMode ? "text-yellow-600" : "hover:text-yellow-600")
                 }
               />
-
             </button>
           </div>
         )}
@@ -153,7 +151,6 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
           </button>
         </div>
       )}
-
     </div>
   );
 };
