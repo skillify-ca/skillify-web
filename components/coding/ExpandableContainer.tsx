@@ -26,7 +26,7 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
       opacity: isOpen ? 1 : 0,
       height: isOpen ? height : 0,
     },
-    config: { mass: 5, tension: 2000, friction: 200, duration: 600 },
+    config: { mass: 5, tension: 2000, friction: 200, duration: 200 },
   });
 
   return (

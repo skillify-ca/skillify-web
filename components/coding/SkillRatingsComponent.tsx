@@ -21,7 +21,6 @@ export default function SkillRatingsComponent({
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState("");
   const [sections, setSections] = useState<string[]>([]);
-  const [activeTab, setActiveTab] = useState("");
   const [haveTabsLoaded, setHaveTabsLoaded] = useState(false);
   const [springProps, set] = useSpring(() => ({ opacity: 1 }));
 
@@ -110,7 +109,6 @@ export default function SkillRatingsComponent({
                 ))}
           </animated.div>
         </div>
-
       </div>
       <div className="p-4">
         {isEditable ? (
