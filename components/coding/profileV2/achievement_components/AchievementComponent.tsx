@@ -100,7 +100,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
   };
 
   return (
-    <div className="">
+    <div className="bg-slate-900">
       <div className="flex justify-end w-full ">
         {isEditButtonVisible && (
           <div>

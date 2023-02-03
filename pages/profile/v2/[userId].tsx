@@ -137,12 +137,12 @@ export default function InternalProfile({
         totalBadgeCount={totalBadgeCount}
       />
       <div>
-        <ExpandableContainer open={true} title={"Projects"}>
+        <ExpandableContainer open={false} title={"Projects"}>
           <ProjectsSection user={userId} />
         </ExpandableContainer>
       </div>
       <div className="grid">
-        <ExpandableContainer open={true} title={"Goals"}>
+        <ExpandableContainer open={false} title={"Goals"}>
           <GoalsSectionComponent
             inProfile={true}
             userGoals={userGoals
@@ -152,7 +152,7 @@ export default function InternalProfile({
         </ExpandableContainer>
       </div>
       <div className="grid">
-        <ExpandableContainer open={true} title={"Skill Ratings"}>
+        <ExpandableContainer open={false} title={"Skill Ratings"}>
           <SkillRatingsComponent
             skillRatings={skillRatings}
             isEditable={isEditable}
@@ -160,7 +160,7 @@ export default function InternalProfile({
         </ExpandableContainer>
       </div>
       <div className="grid">
-        <ExpandableContainer open={true} title={"Achievements"}>
+        <ExpandableContainer open={false} title={"Achievements"}>
           {typeof userId == "string" && (
             <AchievementComponent userId={userId} />
           )}
