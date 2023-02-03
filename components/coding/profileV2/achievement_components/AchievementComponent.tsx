@@ -17,6 +17,7 @@ import {
   FetchUserRoleData,
   FETCH_USER_ROLE,
 } from "../../../../graphql/fetchUserRole";
+import { useAuth } from "../../../../lib/authContext";
 
 export type AchievementComponentProps = {
   userId: string;
@@ -28,6 +29,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
   const [editMode, setEditMode] = useState(false);
   // isEditButtonVisible set to true only when a coach clicks the PencilAltIcon Component
   const [isEditButtonVisible, setisEditButtonVisible] = useState(false);
+
   const { data } = useQuery<FetchBadgeResponse>(FETCH_CODING_BADGES, {
     variables: {
       userId: userId,
@@ -36,9 +38,11 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
       setUnitBadges(data.intro_course_unit);
     },
   });
+  const { user } = useAuth();
+
   useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
     variables: {
-      _id: userId,
+      _id: user.uid,
     },
     onCompleted: (roleData) => {
       if (roleData.users[0].userRole.value === "coach") {
