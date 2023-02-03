@@ -29,7 +29,7 @@ function ProfileDetailCard({
     <div className="grid grid-cols-4 h-full w-full text-sm border-2 bg-slate-50 text-slate-800 border-slate-800 hover:bg-violet-100">
       <div className="flex ml-3 place-items-center col-span-4 mt-4">
         <img
-          className="col-span-1 w-20 h-20 my-3 border-3 rounded-full border-slate-800 "
+          className="col-span-1 w-20 h-20 border-3 rounded-full border-slate-800 "
           src={avatar}
         />
         <div className="col-span-3 ml-2 items-center gap-1">
@@ -47,37 +47,38 @@ function ProfileDetailCard({
           />
         </div>
       </div>
-      <div className="ml-4 col-span-4 mb-4">
+      <div className="ml-2 col-span-4 my-3 space-x-4 space-y-2">
         <p className="font-bold">Current Focus</p>
-        <div className="flex items-center p-1 gap-5">
+        <div className="flex items-center space-x-4">
           <img
             src={currentBadge?.image}
-            className="col-span-1 items-center w-16 h-16 rounded-full"
+            className="col-span-1 border-3 shadow-xl items-center w-16 h-16 rounded-full"
           />
           <p className="col-span-3"> {currentBadge?.title}</p>
         </div>
-        <p className="ml-2 font-bold">Last Goal</p>
-        <div className="flex items-center p-1 gap-5">
+        <p className="font-bold">Last Goal</p>
+        <div className="flex items-center space-x-4">
           <div className="col-span-1 items-center">
             <svg
-              className="rounded-full h-16 w-16 text-slate-100"
+              className="rounded-full h-16 w-16 text-slate-200"
               fill="bg-slate-900"
               viewBox="0 0 24 24"
               stroke="currentColor"
               shapeRendering="geometricPrecision"
             >
-              <circle cx="12" cy="12" r="16" strokeWidth="4" />
+              <circle cx="12" cy="12" r="16" strokeWidth="2" />
               <text
                 x="50%"
                 y="50%"
+                strokeWidth="0.4"
                 dominantBaseline="central"
                 textAnchor="middle"
-                fontFamily="Poppins"
+                fontFamily="Arial"
                 fontSize="5"
-                shapeRendering="geometricPrecision"
-                textRendering="optimizeLegibility"
+                shapeRendering="crispEdges"
+                textRendering="auto"
                 imageRendering="optimizeQuality"
-                fontWeight="100"
+                fontWeight="light"
               >
                 {completedDate}
               </text>
