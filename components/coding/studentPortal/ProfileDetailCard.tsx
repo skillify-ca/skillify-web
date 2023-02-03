@@ -7,7 +7,7 @@ type ProfileDetailCard = {
   avatar: string;
   name: string;
   link: string;
-  joinDate: string;
+  joinDate: Date;
   badges: number;
   currentBadge: CodingBadge;
   completedDate: string;
