@@ -138,7 +138,7 @@ export default function InternalProfile({
       />
       <div>
         <ExpandableContainer open={true} title={"Projects"}>
-          <ProjectsSection user={user} />
+          <ProjectsSection user={userId} />
         </ExpandableContainer>
       </div>
       <div className="grid">
