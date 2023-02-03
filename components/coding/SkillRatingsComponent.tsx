@@ -103,7 +103,6 @@ export default function SkillRatingsComponent(props) {
           </animated.button>
         ))}
       </div>
-
       <div>
         <div
           className={`${activeTab ? "flex flex-col sm:p-4 sm:m-4" : "hidden"} `}
