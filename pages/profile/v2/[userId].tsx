@@ -137,36 +137,26 @@ export default function InternalProfile({
         userBadgeCount={userBadgeCount}
         totalBadgeCount={totalBadgeCount}
       />
-      <div>
-        <ExpandableContainer open={false} title={"Projects"}>
-          <ProjectsSection user={userId} />
-        </ExpandableContainer>
-      </div>
-      <div className="grid">
-        <ExpandableContainer open={false} title={"Goals"}>
-          <GoalsSectionComponent
-            inProfile={true}
-            userGoals={userGoals
-              .filter((goal) => !goal.isComplete && !goal.isArchived)
-              .slice(0, 3)}
-          />
-        </ExpandableContainer>
-      </div>
-      <div className="grid">
-        <ExpandableContainer open={false} title={"Achievements"}>
-          {typeof userId == "string" && (
-            <AchievementComponent userId={userId} />
-          )}
-        </ExpandableContainer>
-      </div>
-      <div className="grid">
-        <ExpandableContainer open={false} title={"Skill Ratings"}>
-          <SkillRatingsComponent
-            skillRatings={skillRatings}
-            isEditable={isEditable}
-          />
-        </ExpandableContainer>
-      </div>
+      <ExpandableContainer open={false} title={"Projects"}>
+        <ProjectsSection user={userId} />
+      </ExpandableContainer>
+      <ExpandableContainer open={false} title={"Goals"}>
+        <GoalsSectionComponent
+          inProfile={true}
+          userGoals={userGoals
+            .filter((goal) => !goal.isComplete && !goal.isArchived)
+            .slice(0, 3)}
+        />
+      </ExpandableContainer>
+      <ExpandableContainer open={false} title={"Achievements"}>
+        {typeof userId == "string" && <AchievementComponent userId={userId} />}
+      </ExpandableContainer>
+      <ExpandableContainer open={false} title={"Skill Ratings"}>
+        <SkillRatingsComponent
+          skillRatings={skillRatings}
+          isEditable={isEditable}
+        />
+      </ExpandableContainer>
     </div>
   );
 }
