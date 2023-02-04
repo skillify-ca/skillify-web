@@ -21,7 +21,6 @@
     "@codesandbox/sandpack-react": "^1.17.0",
     "@contentful/rich-text-html-renderer": "^15.10.1",
     "@contentful/rich-text-react-renderer": "^15.10.1",
-    "@headlessui/react": "^1.0.0",
     "@heroicons/react": "^1.0.1",
     "@hotjar/browser": "^1.0.6",
     "@magic-ext/oauth": "^2.1.1",
