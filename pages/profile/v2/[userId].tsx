@@ -58,8 +58,9 @@ export default function InternalProfile({
 
   const { userGoals } = useSelector(userGoalsSelector);
   const { skillRatings } = useSelector(skillRatingsSelector);
-  const { userProfileData, userBadgeCount, totalBadgeCount } =
-    useSelector(profileSelector);
+  const { userProfileData, userBadgeCount, totalBadgeCount } = useSelector(
+    profileSelector
+  );
   const [isEditable, setIsEditable] = useState(false);
 
   if (userId) {
@@ -130,7 +131,7 @@ export default function InternalProfile({
   }
 
   return (
-    <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll space-y-4">
+    <div className="flex flex-col p-4 m-4 space-y-4 overflow-auto bg-scroll">
       <ProfileHeaderComponent
         userProfileData={userProfileData}
         userBadgeCount={userBadgeCount}
@@ -152,18 +153,18 @@ export default function InternalProfile({
         </ExpandableContainer>
       </div>
       <div className="grid">
+        <ExpandableContainer open={false} title={"Achievements"}>
+          {typeof userId == "string" && (
+            <AchievementComponent userId={userId} />
+          )}
+        </ExpandableContainer>
+      </div>
+      <div className="grid">
         <ExpandableContainer open={false} title={"Skill Ratings"}>
           <SkillRatingsComponent
             skillRatings={skillRatings}
             isEditable={isEditable}
           />
-        </ExpandableContainer>
-      </div>
-      <div className="grid">
-        <ExpandableContainer open={false} title={"Achievements"}>
-          {typeof userId == "string" && (
-            <AchievementComponent userId={userId} />
-          )}
         </ExpandableContainer>
       </div>
     </div>
