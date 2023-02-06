@@ -14,6 +14,7 @@ import {
   FetchTotalBadgesCountResponse,
   FETCH_TOTAL_USER_BADGES_COUNT,
 } from "../graphql/fetchTotalUserBadgesCount";
+
 const coachingDashboard = () => {
   const dispatch = useDispatch();
 
@@ -53,7 +54,7 @@ const coachingDashboard = () => {
         {userList.map((it, index) => {
           return (
             <div key={index}>
-              <Link href={"profile/" + it.link}>
+              <Link href={"profile/" + it.id}>
                 <div className="">
                   <ProfileDetailCard
                     avatar={
