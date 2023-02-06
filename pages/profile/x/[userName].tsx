@@ -3,7 +3,7 @@ import { GetServerSideProps } from "next";
 import React from "react";
 import Header404 from "../../../components/Header404";
 import { FETCH_USER } from "../../../graphql/fetchUser";
-import InternalProfile from "../v2/[userId]";
+import InternalProfile from "../[userId]";
 
 type ProfileGatewayProps = {
   userId: string;

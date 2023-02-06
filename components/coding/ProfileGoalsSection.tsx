@@ -41,7 +41,10 @@ export default function ProfileGoalsSection({ user }: GoalsSectionProps) {
         <div className="bg-slate-300 dark:bg-slate-900">
           {slicedUserGoals.map((it) => {
             return (
-              <div className="py-2 m-5 text-center text-white rounded-full bg-murkrow">
+              <div
+                key={it.id}
+                className="py-2 m-5 text-center text-white rounded-full bg-murkrow"
+              >
                 {it.goalName}
               </div>
             );
