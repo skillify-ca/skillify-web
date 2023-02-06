@@ -94,7 +94,7 @@ const coachingDashboard = () => {
           const completionDate = goalCompletionDateList[index];
           const completedGoal = completedGoalsList[index];
           return (
-            <Link href={"profile/" + it.link} key={index}>
+            <Link href={"profile/" + it.id} key={index}>
               <div className="container">
                 <ProfileDetailCard
                   avatar={
@@ -133,7 +133,6 @@ const coachingDashboard = () => {
                 />
               </div>
             </Link>
-
           );
         })}
       </div>
