@@ -100,18 +100,18 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
   };
 
   return (
-    <div className="bg-slate-900">
-      <div className="flex justify-end w-full ">
+    <div className="bg-slate-900 p-4 ">
+      <div className="flex justify-end w-full py-4">
         {isEditButtonVisible && (
           <div>
             <button
               onClick={() => setEditMode(!editMode)}
-              className="w-5 h-5 cursor-pointer hover:text-yellow-600"
+              className="w-5 h-5 cursor-pointer text-yellow-500"
             >
               <PencilAltIcon
                 className={
-                  "w-5 h-5 cursor-pointer " +
-                  (editMode ? "text-yellow-600" : "hover:text-yellow-600")
+                  " w-7 h-7 cursor-pointer hover:scale-125 " +
+                  (editMode ? "text-yellow-700" : "hover:text-yellow-500")
                 }
               />
             </button>
@@ -136,23 +136,11 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
         </div>
       )}
       {editMode && (
-        <div className="flex place-content-between space-x-4 px-4">
+        <div className="flex place-content-between space-x-4 py-4">
           <Button
             label={"Save"}
             onClick={() => handleOnSaveButtonClick()}
           ></Button>
-          <button
-            onClick={() => setEditMode(!editMode)}
-            className="w-5 h-5 cursor-pointer hover:text-yellow-600"
-          >
-            (
-            <PencilAltIcon
-              className={
-                'w-5 h-5 cursor-pointer ${editMode ? "text-yellow-600" : "hover:text-yellow-600"} '
-              }
-            />
-            )
-          </button>
         </div>
       )}
     </div>

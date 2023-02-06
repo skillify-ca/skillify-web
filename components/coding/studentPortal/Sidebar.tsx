@@ -142,7 +142,7 @@ export const Sidebar: React.FC = () => {
         />
         <SidebarItem
           name={"Profile"}
-          link={"/profile"}
+          link={`/profile/${user.uid}`}
           page={"profile"}
           icon={
             <svg
