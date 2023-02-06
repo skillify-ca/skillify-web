@@ -15,5 +15,5 @@ export type FetchTotalBadgesCountResponse = {
     aggregate: {
       count: number;
     };
-  };
+  }
 }
