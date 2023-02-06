@@ -1,14 +1,12 @@
 import React from "react";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import ProfileGoalsSection from "../../components/coding/ProfileGoalsSection";
-import ProjectsSection from "../../components/coding/ProjectsSection";
-import UserProfileSection from "../../components/coding/UserProfileSection";
-import LandingNavbar from "../../components/LandingNavbar";
-
-import { FETCH_RECENT_USERS } from "../../graphql/fetchRecentUsers";
-
-import { FETCH_USER } from "../../graphql/fetchUser";
-import AchievementComponent from "../../components/coding/profileV2/achievement_components/AchievementComponent";
+import ProfileGoalsSection from "../../../../components/coding/ProfileGoalsSection";
+import AchievementComponent from "../../../../components/coding/profileV2/achievement_components/AchievementComponent";
+import ProjectsSection from "../../../../components/coding/ProjectsSection";
+import UserProfileSection from "../../../../components/coding/UserProfileSection";
+import LandingNavbar from "../../../../components/LandingNavbar";
+import { FETCH_RECENT_USERS } from "../../../../graphql/fetchRecentUsers";
+import { FETCH_USER } from "../../../../graphql/fetchUser";
 
 export default function ExternalUserProfile({ slug, uid }) {
   const user = {
