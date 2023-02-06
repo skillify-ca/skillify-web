@@ -32,7 +32,7 @@ const coachingDashboard = () => {
     FETCH_USER_PROFILE_CARD,
     {
       onCompleted: () => {
-        if (data.users?.length > 0) {
+        if (data?.users?.length > 0) {
           dispatch(setUserList(data.users));
         }
       },
@@ -41,7 +41,7 @@ const coachingDashboard = () => {
 
   const {} = useQuery<FetchAllUserGoalsDataResponse>(FETCH_ALL_USER_GOALS, {
     onCompleted: (data) => {
-      if (data.user_goals?.length > 0) {
+      if (data?.user_goals?.length > 0) {
         setGoalsList(data.user_goals);
       }
     },
