@@ -16,14 +16,13 @@ export default function ProjectsSection({ user }: ProjectsSectionProps) {
   const { loading: userProjectsLoading } =
     useQuery<FetchUserProjectsDataResponse>(FETCH_USER_PROJECTS, {
       variables: {
-        userId: user.uid,
+        userId: user,
       },
 
       onCompleted: (data: FetchUserProjectsDataResponse) => {
         setUserProjects(data.user_projects);
       },
     });
-
   return (
     <>
       {userProjectsLoading ? (
