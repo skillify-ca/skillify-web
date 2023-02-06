@@ -15,7 +15,7 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
   title,
 }) => {
   const [isOpen, setIsOpen] = useState(open);
-  const [heightRef, height] = useHeight();
+  const [heightRef, height] = useHeight({ on: isOpen });
   const handleOpenExpandableContainer = () => {
     setIsOpen((prev) => !prev);
   };
