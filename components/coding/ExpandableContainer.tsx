@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
 import { PlusCircleIcon } from "@heroicons/react/solid";
 import { MinusCircleIcon } from "@heroicons/react/solid";
-import { useHeight } from "../../pages/api/profile/useHeight";
+import useMeasure from "react-use-measure";
 
 interface ExpandableContainerProps {
   open: boolean;
@@ -15,18 +15,18 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
   title,
 }) => {
   const [isOpen, setIsOpen] = useState(open);
-  const [heightRef, height] = useHeight({ on: isOpen });
   const handleOpenExpandableContainer = () => {
     setIsOpen((prev) => !prev);
   };
+  const [ref, bounds] = useMeasure();
 
   const mapSpring = useSpring({
     from: { opacity: 0, height: 0 },
     to: {
       opacity: isOpen ? 1 : 0,
-      height: isOpen ? height : 0,
+      height: isOpen ? bounds.height : 0,
     },
-    config: { mass: 5, tension: 2000, friction: 200, duration: 500 },
+    config: { mass: 5, tension: 2000, friction: 200, duration: 200 },
   });
 
   const mapContentSpring = useSpring({
@@ -34,7 +34,7 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
     to: {
       opacity: isOpen ? 1 : 0,
     },
-    delay: isOpen ? 500 : 0,
+    delay: isOpen ? 200 : 0,
   });
 
   return (
@@ -65,7 +65,7 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
           <animated.div style={{ ...mapSpring }} className="max-height-full">
             {isOpen && (
               <animated.div style={{ ...mapContentSpring }}>
-                <div ref={heightRef} className="p-0 sm:p-2">
+                <div ref={ref} className="p-0 sm:p-2">
                   {children}
                 </div>
               </animated.div>
