@@ -26,8 +26,17 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
       opacity: isOpen ? 1 : 0,
       height: isOpen ? height : 0,
     },
-    config: { mass: 5, tension: 2000, friction: 200, duration: 200 },
+    config: { mass: 5, tension: 2000, friction: 200, duration: 500 },
   });
+
+  const mapContentSpring = useSpring({
+    from: { opacity: 0 },
+    to: {
+      opacity: isOpen ? 1 : 0,
+    },
+    delay: isOpen ? 500 : 0,
+  });
+
   return (
     <>
       <div
@@ -55,9 +64,11 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
         <div className="border-bottom">
           <animated.div style={{ ...mapSpring }} className="max-height-full">
             {isOpen && (
-              <div ref={heightRef} className="p-0 sm:p-2">
-                {children}
-              </div>
+              <animated.div style={{ ...mapContentSpring }}>
+                <div ref={heightRef} className="p-0 sm:p-2">
+                  {children}
+                </div>
+              </animated.div>
             )}
           </animated.div>
         </div>

@@ -1,6 +1,6 @@
 import { useRef, useState, useLayoutEffect } from "react";
 
-export function useHeight({ on = true } = {} as any) {
+export function useHeight({ on = true, delay = 50 } = {} as any) {
   const ref = useRef<any>();
   const [height, setHeight] = useState(0);
   const heightRef = useRef(height);
@@ -15,10 +15,12 @@ export function useHeight({ on = true } = {} as any) {
   );
   useLayoutEffect(() => {
     if (on && ref.current) {
-      setHeight(ref.current.offsetHeight);
-      ro.observe(ref.current, {});
+      setTimeout(() => {
+        setHeight(ref.current.offsetHeight);
+        ro.observe(ref.current, {});
+      }, delay);
     }
     return () => ro.disconnect();
-  }, [on, ref.current]);
+  }, [on, ref.current, delay]);
   return [ref, height as any];
 }
