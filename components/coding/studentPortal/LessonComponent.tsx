@@ -48,11 +48,6 @@ export type LessonComponentData =
       component: "code-snippet";
       text?: string;
       code: string;
-    }
-  | {
-      component: "image";
-      text?: string;
-      image: string;
     };
 
 export type LessonComponentProps = {
@@ -66,7 +61,9 @@ export default function LessonComponent({ data }: LessonComponentProps) {
   if (data.component === "description") {
     return <p className="whitespace-pre-line">{data.text}</p>;
   }
-
+  if (data.component === "custom") {
+    return <p className="whitespace-pre-line">{data.children}</p>;
+  }
   if (data.component === "code-snippet") {
     return (
       <div className="mx-4 space-y-4">
@@ -93,14 +90,6 @@ export default function LessonComponent({ data }: LessonComponentProps) {
           ))}
         </div>
       </>
-    );
-  }
-  if (data.component === "image") {
-    return (
-      <div className="flex items-center">
-        <img src={data.image} className="w-16 h-16 " />
-        {data.text && <p>{data.text}</p>}
-      </div>
     );
   }
   if (data.component === "quiz") {
