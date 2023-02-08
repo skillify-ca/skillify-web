@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import React, { useState } from "react";
 
 import AssignmentComponent, {
@@ -13,10 +13,7 @@ import {
   UserAssignmentSubmissionsData,
 } from "../../../../../graphql/fetchUserAssignmentSubmissions";
 import { useAuth } from "../../../../../lib/authContext";
-import {
-  assignmentsSelector,
-  setUserAssignments,
-} from "../../../../../redux/assignmentsSlice";
+import { setUserAssignments } from "../../../../../redux/assignmentsSlice";
 
 export enum Stage {
   INCOMPLETE,
@@ -38,11 +35,12 @@ const React2 = ({
   const router = useRouter();
   const [stage, setStage] = useState(0);
   const { user } = useAuth();
-  const { userAssignments } = useSelector(assignmentsSelector);
+
   const dispatch = useDispatch();
-  console.log("user assignments initial render", userAssignments);
+
   // REQUIRED: create assignment in coding_assignments table to generate ID and paste here
   const assignmentId = "2cf9156a-4f6f-452d-b09a-2c54f19a7b40";
+  const assignmentName = "template";
 
   const deployCurrentStage = (assignment: UserAssignmentSubmissionsData) => {
     if (assignment.review_link != null) {
@@ -73,7 +71,7 @@ const React2 = ({
     );
 
   const handleContinue = () => {
-    router.push("/studentPortal/web/React/assignments/template");
+    router.push(`/studentPortal/web/React/assignments/${assignmentName}`);
     if (stage <= 1) {
       setStage(stage + 1);
     } else {
@@ -81,7 +79,7 @@ const React2 = ({
     }
   };
   const handlePrevious = () => {
-    router.push("/studentPortal/web/React/assignments/template");
+    router.push(`/studentPortal/web/React/assignments/${assignmentName}`);
     if (stage >= 1 && stage <= 2) {
       setStage(stage - 1);
     } else {
@@ -129,7 +127,9 @@ export async function getServerSideProps() {
     },
     {
       component: "prompt",
-      text: "useQuery and useLazyQuery hooks are used to retrieve data from hasura so that you can use it in your project.  The EXAMPLE below will outline your assignment.  Your submission will be done through pasting a codesandbox link in the submission box below.  Only use the hints if you must!",
+      header:
+        "useQuery and useLazyQuery hooks are used to retrieve data from hasura so that you can use it in your project.  The EXAMPLE below will outline your assignment.  Your submission will be done through pasting a codesandbox link in the submission box below.  Only use the hints if you must!",
+      bullets: ["bullet1", "bullet2", "bullet3"],
     },
     {
       component: "hint-list",
