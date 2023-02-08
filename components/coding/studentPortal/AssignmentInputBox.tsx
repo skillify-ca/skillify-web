@@ -46,10 +46,10 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
   };
 
   return (
-    <div className="grid grid-cols-1 gap-4 dark:bg-gray-900 ">
+    <div className="flex flex-row dark:bg-gray-900 my-4 space-x-4">
       <input
         className={
-          "text-left p-2 border rounded-md shadow-md w-full text-murkrow"
+          "text-left px-2 border rounded-md shadow-md text-murkrow w-1/2"
         }
         id="input"
         type="string"
