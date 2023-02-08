@@ -48,6 +48,11 @@ export type LessonComponentData =
       component: "code-snippet";
       text?: string;
       code: string;
+    }
+  | {
+      component: "image";
+      text?: string;
+      image: string;
     };
 
 export type LessonComponentProps = {
@@ -88,6 +93,14 @@ export default function LessonComponent({ data }: LessonComponentProps) {
           ))}
         </div>
       </>
+    );
+  }
+  if (data.component === "image") {
+    return (
+      <div className="flex items-center">
+        <img src={data.image} className="w-16 h-16 " />
+        {data.text && <p>{data.text}</p>}
+      </div>
     );
   }
   if (data.component === "quiz") {
