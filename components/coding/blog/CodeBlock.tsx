@@ -116,11 +116,7 @@ export default function CodeBlock(props) {
               }}
             >
               <div className="flex min-w-[375px] max-w-[900px]">
-                <SandpackCodeViewer
-                  // readOnly={false}
-                  // showReadOnly={false}
-                  ref={codemirrorInstance}
-                />
+                <SandpackCodeViewer ref={codemirrorInstance} />
               </div>
               <Prettier codemirrorInstance={codemirrorInstance} />
             </SandpackLayout>
