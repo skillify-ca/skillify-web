@@ -106,7 +106,7 @@ export const evaluateExpressionSlice: Slice = createSlice({
     ) => {
       const prevState = stateHistory[stateHistory.length - 1];
       const state = JSON.parse(JSON.stringify(prevState));
-      let currentChar = getCurrentChar(state);
+      const currentChar = getCurrentChar(state);
       if (isComplete(prevState)) {
         return;
       } else if (state.stage === Stage.CLEARING_STACK) {

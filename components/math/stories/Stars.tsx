@@ -9,7 +9,7 @@ export interface BoxProps {
 
 /** Adapted from https://codesandbox.io/s/9y8vkjykyy?file=/src/index.js */
 const Stars = () => {
-  let group = useRef(null)
+  const group = useRef(null)
   let theta = 0
   // Some things maybe shouldn't be declarative, we're in the render-loop here with full access to the instance
   const r = 0.1 * Math.sin(THREE.Math.degToRad((theta += 0.1)))

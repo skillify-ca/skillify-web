@@ -51,10 +51,10 @@ test("set userProfileData to userProfileTestState from initialState", () => {
 
 });
 
-const userBadgeCountInitialState: number = 
+const userBadgeCountInitialState = 
 0;
 
-const userBadgeCountTestState: number = 4;
+const userBadgeCountTestState = 4;
 
 
   test("should return the initial state", () => {
@@ -78,10 +78,10 @@ test("set userBadgeCount to userBadgeCountTestState from initialState", () => {
 
 });
 
-const totalBadgeCountInitialState: number = 
+const totalBadgeCountInitialState = 
 0;
 
-const totalBadgeCountTestState: number = 30;
+const totalBadgeCountTestState = 30;
 
 
   test("should return the initial state", () => {

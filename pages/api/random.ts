@@ -19,7 +19,7 @@ export function getRndHundredthsDecimal(min: number, max: number) {
 }
 
 export function getRndColour() {
-  let colourArray = ["red", "blue", "green", "yellow", "purple"];
-  let colour = getRandomItemFromArray(colourArray);
+  const colourArray = ["red", "blue", "green", "yellow", "purple"];
+  const colour = getRandomItemFromArray(colourArray);
   return colour;
 }
