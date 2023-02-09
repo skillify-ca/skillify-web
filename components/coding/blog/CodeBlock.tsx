@@ -25,21 +25,12 @@ const yourTheme = {
   },
   syntax: {
     plain: "#d6deeb",
-    comment: {
-      color: "#374151",
-      fontStyle: "italic",
-    },
-    keyword: {
-      color: "#c792ea",
-      fontStyle: "italic",
-    },
+    comment: "#374151",
+    keyword: "#c792ea",
     tag: "#93C5FD",
     punctuation: "#64748B",
     definition: "#93C5FD",
-    property: {
-      color: "#FBBF24",
-      fontStyle: "italic",
-    },
+    property: "#FBBF24",
     static: "#38BDF8",
     string: "#64748B",
   },
@@ -65,7 +56,9 @@ const Prettier = ({ codemirrorInstance }) => {
         });
 
         setPrettierCode(formatted);
-      } catch {}
+      } catch (error) {
+        console.error(`An error occurred: ${error.message}`);
+      }
     }
   }, [activeCode.code]);
 
