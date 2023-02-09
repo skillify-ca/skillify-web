@@ -1,6 +1,4 @@
-//imports
 import {
-  SandpackCodeEditor,
   SandpackCodeViewer,
   SandpackLayout,
   SandpackProvider,
@@ -10,8 +8,8 @@ import {
 import prettier from "prettier";
 import parserBabel from "prettier/parser-babel";
 import { useCallback, useEffect, useRef, useState } from "react";
+import React from "react";
 
-//👇CSS
 const yourTheme = {
   colors: {
     surface1: "#011627",
