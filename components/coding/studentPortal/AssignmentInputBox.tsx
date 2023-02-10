@@ -1,5 +1,4 @@
 import { useMutation } from "@apollo/client";
-import router from "next/router";
 import React, { useState } from "react";
 import { FETCH_USER_ASSIGNMENT_SUBMISSIONS } from "../../../graphql/fetchUserAssignmentSubmissions";
 import { UPSERT_USER_ASSIGNMENT_SUBMISSIONS } from "../../../graphql/upsertUserAssignmentSubmissions";
@@ -27,7 +26,6 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
     UPSERT_USER_ASSIGNMENT_SUBMISSIONS,
     {
       onCompleted: () => {
-        router.push("/studentPortal/web/React/assignments/template");
         alert("You have successfully saved your link.  Press continue.");
       },
       refetchQueries: [FETCH_USER_ASSIGNMENT_SUBMISSIONS],
