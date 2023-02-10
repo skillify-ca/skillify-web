@@ -25,14 +25,14 @@ const yourTheme = {
   },
   syntax: {
     plain: "#d6deeb",
-    comment: "#374151",
+    comment: "#006700",
     keyword: "#c792ea",
     tag: "#93C5FD",
     punctuation: "#64748B",
-    definition: "#93C5FD",
-    property: "#FBBF24",
+    definition: "#ffff80",
+    property: "#add8e6",
     static: "#38BDF8",
-    string: "#64748B",
+    string: "#ffa280",
   },
   font: {
     body: '-apple-system,  BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -100,7 +100,7 @@ export default function CodeBlock(props) {
 
   return (
     <>
-      <div className="m-2 flex flex-col rounded-2xl border border-gray-200 p-0 dark:border-gray-800">
+      <div className="md:m-2 md:flex md:flex-col md:rounded-2xl border border-gray-200 p-0 dark:border-gray-800">
         <SandpackProvider
           theme={yourTheme}
           files={{

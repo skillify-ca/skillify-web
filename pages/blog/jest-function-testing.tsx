@@ -15,7 +15,7 @@ export default function Page() {
         }
         image={"/images/blog/jest-function-testing/software_testing.jpeg"}
       />
-      <div className="flex flex-col gap-4 p-4">
+      <div className="flex flex-col gap-4 px-4">
         <h1 className="text-4xl font-thin">
           Jest + Function Testing: A Creative & Cheap Approach to Testing
           Tailwind/CSS Classes
@@ -271,7 +271,7 @@ export default function Page() {
   expect(result).toBe(yellowHighlightStyle);`}
         </CodeBlock>
       </div>
-      <div className="flex flex-col gap-4 p-4">
+      <div className="flex place-items-center gap-4">
         <img
           src={"/images/blog/jest-function-testing/kari.jpg"}
           className="w-1/6 h-1/6"
