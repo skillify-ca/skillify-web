@@ -21,7 +21,7 @@ export const TemplateInputBox: React.FC<TemplateInputBoxProps> = ({
   };
 
   return (
-    <div className="flex flex-col space-y-4 mx-4">
+    <div className="flex flex-col space-y-4 mx-4 text-lg">
       <p>Copy the Codesandbox link below to get started</p>
       <div className="flex flex-row space-x-2">
         <input
