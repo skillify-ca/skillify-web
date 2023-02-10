@@ -1,6 +1,9 @@
 import LandingNavbar from "../../LandingNavbar";
-
-export default function PostLayout({ children }) {
+import React from "react";
+export type PostLayoutProps = {
+  children: React.ReactNode;
+};
+export default function PostLayout({ children }: PostLayoutProps) {
   return (
     <div className="md:flex md:flex-col items-center bg-gray-100 heropattern-hideout-gray-300">
       <LandingNavbar />
