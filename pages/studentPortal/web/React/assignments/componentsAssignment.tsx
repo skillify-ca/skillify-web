@@ -72,23 +72,6 @@ const React2 = ({
       }
     );
 
-  const handleContinue = () => {
-    router.push(`/studentPortal/web/React/assignments/${assignmentName}`);
-    if (stage <= 1) {
-      setStage(stage + 1);
-    } else {
-      setStage(Stage.INCOMPLETE);
-    }
-  };
-  const handlePrevious = () => {
-    router.push(`/studentPortal/web/React/assignments/${assignmentName}`);
-    if (stage >= 1 && stage <= 2) {
-      setStage(stage - 1);
-    } else {
-      setStage(Stage.INCOMPLETE);
-    }
-  };
-
   const completedStage: AssignmentComponentData[] = [
     {
       component: "loom-video",
@@ -115,12 +98,6 @@ const React2 = ({
             <AssignmentComponent key={index} data={it} />
           ))
         ) : null}
-      </div>
-      <div className="flex ml-16 my-8 sm:justify-beginning">
-        <div className="mx-4">
-          <Button onClick={handlePrevious} label="Previous" />
-        </div>
-        <Button onClick={handleContinue} label="Next" />
       </div>
     </>
   );
