@@ -1,3 +1,4 @@
+import React from "react";
 import LandingNavbar from "../../LandingNavbar";
 
 export default function PostLayout({ children }) {

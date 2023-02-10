@@ -1,6 +1,5 @@
-import Link from "next/link";
+import React from "react";
 import PostLayout from "../../components/coding/blog/PostLayout";
-import { LessonComponentData } from "../../components/coding/studentPortal/LessonComponent";
 import SEO from "../../components/SEO";
 
 export default function Page() {
@@ -12,6 +11,10 @@ export default function Page() {
         image={"https://melv1n.com/img/learn-to-code-how-to-start.png"}
       />
       <div className="flex flex-col gap-4 p-4">
+        <img
+          src={"https://melv1n.com/img/learn-to-code-how-to-start.png"}
+          className="object-cover h-48"
+        />
         <h1 className="text-5xl font-bold">Making The Leap Into Development</h1>
         <h2 className="text-xl font-bold"> Lucky Hariharan</h2>
         <p>
