@@ -34,15 +34,18 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
     }
   );
 
-  const validateInput = () => {
-    if (
-      !submissionInput.includes("codesandbox.com") ||
-      submissionInput.length == 0 ||
-      submissionInput.length > 80
-    ) {
-      return false;
+  const handleValidationOnClick = () => {
+    const isValidSubmission = submissionInput.includes("codesandbox.io/");
+
+    if (isValidSubmission) {
+      saveAssignmentInput({
+        variables: {
+          objects: submissionVariables,
+        },
+      });
+    } else {
+      alert("Please submit a valid codesandbox link");
     }
-    return true;
   };
 
   return (
@@ -60,20 +63,7 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
         }}
       />
       <div className="col-start-1">
-        <Button
-          label="Save"
-          onClick={() => {
-            if (validateInput()) {
-              saveAssignmentInput({
-                variables: {
-                  objects: submissionVariables,
-                },
-              });
-              setSubmissionInput("");
-            }
-          }}
-          disabled={!validateInput()}
-        />
+        <Button label="Save" onClick={handleValidationOnClick} />
       </div>
     </div>
   );

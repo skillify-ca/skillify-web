@@ -1,12 +1,11 @@
 import { useQuery } from "@apollo/client";
-import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 
 import AssignmentComponent, {
   AssignmentComponentData,
 } from "../../../../../components/coding/studentPortal/AssignmentComponent";
-import { Button } from "../../../../../components/ui/Button";
+
 import {
   FETCH_USER_ASSIGNMENT_SUBMISSIONS,
   FetchUserAssignmentSubmissionsDataResponse,
@@ -28,16 +27,13 @@ export type AssignmentTemplateProps = {
   incompleteStage: AssignmentComponentData[];
   submittedStage: AssignmentComponentData[];
   assignmentId: string;
-  assignmentName: string;
 };
 
 const React2 = ({
   incompleteStage,
   submittedStage,
   assignmentId,
-  assignmentName,
 }: AssignmentTemplateProps) => {
-  const router = useRouter();
   const [stage, setStage] = useState(0);
   const { user } = useAuth();
 
@@ -47,7 +43,7 @@ const React2 = ({
   const deployCurrentStage = (assignment: UserAssignmentSubmissionsData) => {
     if (assignment.review_link != null) {
       setStage(Stage.COMPLETED);
-    } else if (assignment.submission_link.length > 0) {
+    } else if (assignment.submission_link) {
       setStage(Stage.SUBMITTED);
     } else {
       setStage(Stage.INCOMPLETE);
@@ -106,7 +102,6 @@ const React2 = ({
 export async function getServerSideProps() {
   // REQUIRED: create assignment in coding_assignments table to generate ID and paste here
   const assignmentId = "2cf9156a-4f6f-452d-b09a-2c54f19a7b40";
-  const assignmentName = "componentsAssignment";
 
   const incompleteStage: AssignmentComponentData[] = [
     {
@@ -167,7 +162,6 @@ export async function getServerSideProps() {
       incompleteStage,
       submittedStage,
       assignmentId,
-      assignmentName,
     },
   };
 }
