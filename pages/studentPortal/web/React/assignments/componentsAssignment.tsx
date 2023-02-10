@@ -128,35 +128,24 @@ export async function getServerSideProps() {
     },
     {
       component: "prompt",
-      header: "Use React components to render a table of sample data.",
+      header:
+        "Use React components to build a table off the provided array of city population data",
       bullets: [
-        "Create a sample array of data that contains three items and has at least three properties.",
-        "Render the data as a table. You can use Tailwind CSS classes to style the table",
-        "You should create a reusable component for each row that takes in props for each 'column'",
+        "You should create reusable components that utilize props for the 'columns'",
+        "You can use Tailwind CSS classes to style the table",
       ],
     },
 
     {
       component: "output",
       screenshotOrVideoId:
-        "/images/assignments/componentsAssignmentExample.jpg",
-    },
-
-    {
-      component: "hint-list",
-      hintRow: [
-        {
-          description:
-            "You can use the Javascript map function to avoid calling the same 'row' component several times",
-          link: "https://beta.reactjs.org/learn/rendering-lists",
-        },
-      ],
+        "/images/assignments/componentsAssignmentTableOnly.png",
     },
 
     {
       component: "template",
       templateLink:
-        "https://codesandbox.io/s/skillify-assignment-template-69pgsu",
+        "https://codesandbox.io/s/skillify-components-assignment-template-2k19r7",
     },
 
     {
@@ -166,6 +155,17 @@ export async function getServerSideProps() {
       placeholder: "Assignment link goes here",
       assignmentId: assignmentId,
       link: "",
+    },
+
+    {
+      component: "hint-list",
+      hintRow: [
+        {
+          description:
+            "You can use the map function to avoid calling the same 'row' component several times",
+          link: "https://beta.reactjs.org/learn/rendering-lists",
+        },
+      ],
     },
   ];
   const submittedStage: AssignmentComponentData[] = [
