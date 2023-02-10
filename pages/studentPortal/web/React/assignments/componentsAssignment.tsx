@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 
 import AssignmentComponent, {
@@ -13,7 +13,10 @@ import {
   UserAssignmentSubmissionsData,
 } from "../../../../../graphql/fetchUserAssignmentSubmissions";
 import { useAuth } from "../../../../../lib/authContext";
-import { setUserAssignments } from "../../../../../redux/assignmentsSlice";
+import {
+  assignmentsSelector,
+  setUserAssignments,
+} from "../../../../../redux/assignmentsSlice";
 
 export enum Stage {
   INCOMPLETE,
@@ -21,10 +24,9 @@ export enum Stage {
   COMPLETED,
 }
 
-export type templateProps = {
+export type AssignmentTemplateProps = {
   incompleteStage: AssignmentComponentData[];
   submittedStage: AssignmentComponentData[];
-  completedStage: AssignmentComponentData[];
   assignmentId: string;
   assignmentName: string;
 };
@@ -32,15 +34,15 @@ export type templateProps = {
 const React2 = ({
   incompleteStage,
   submittedStage,
-  completedStage,
   assignmentId,
   assignmentName,
-}: templateProps) => {
+}: AssignmentTemplateProps) => {
   const router = useRouter();
   const [stage, setStage] = useState(0);
   const { user } = useAuth();
 
   const dispatch = useDispatch();
+  const { userAssignments } = useSelector(assignmentsSelector);
 
   const deployCurrentStage = (assignment: UserAssignmentSubmissionsData) => {
     if (assignment.review_link != null) {
@@ -86,6 +88,14 @@ const React2 = ({
       setStage(Stage.INCOMPLETE);
     }
   };
+
+  const completedStage: AssignmentComponentData[] = [
+    {
+      component: "loom-video",
+      text: "Your assignment has been reviewed! Watch the video below for feedback:",
+      videoId: userAssignments.length > 0 ? userAssignments[0].review_link : "",
+    },
+  ];
 
   return (
     <>
@@ -175,18 +185,10 @@ export async function getServerSideProps() {
     },
   ];
 
-  const completedStage: AssignmentComponentData[] = [
-    {
-      component: "loom-video",
-      text: "This is where your feedback goes",
-      videoId: "e85860979abd403380cf9a8eb2438f5d",
-    },
-  ];
   return {
     props: {
       incompleteStage,
       submittedStage,
-      completedStage,
       assignmentId,
       assignmentName,
     },

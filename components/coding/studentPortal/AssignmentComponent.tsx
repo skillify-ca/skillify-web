@@ -155,8 +155,8 @@ export default function AssignmentComponent({
     );
   } else if (data.component === "loom-video") {
     return (
-      <div className="pb-56 mb-8 h-96">
-        {data.text && <p>{data.text}</p>}
+      <div className="flex flex-col space-y-4 text-xl font-bold ">
+        <p>{data.text}</p>
         <iframe
           src={`https://www.loom.com/embed/${data.videoId}`}
           webkit-allowfullscreen
