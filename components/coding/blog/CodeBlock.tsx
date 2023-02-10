@@ -42,7 +42,10 @@ const yourTheme = {
   },
 };
 
-const Prettier = ({ codemirrorInstance }) => {
+export type PrettierProps = {
+  codemirrorInstance: React.RefObject<typeof CodeMirror>;
+};
+const Prettier = ({ codemirrorInstance }: PrettierProps) => {
   const [prettierCode, setPrettierCode] = useState("");
   const { sandpack } = useSandpack();
   const activeCode = useActiveCode();
@@ -94,8 +97,10 @@ const Prettier = ({ codemirrorInstance }) => {
 
   return null;
 };
-
-export default function CodeBlock(props) {
+export type CodeBlockProps = {
+  children: string;
+};
+export default function CodeBlock(props: CodeBlockProps) {
   const codemirrorInstance = useRef();
 
   return (
