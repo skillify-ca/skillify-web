@@ -58,15 +58,14 @@ export const Layout: React.FC = ({ children }) => {
         </div>
         <img className="visible w-48 h-8 dark:hidden" src="/images/logo.svg" />
         <img
-          className="hidden w-48 h-8 dark:visible"
+          className="visible w-48 h-8 light:hidden"
           src="/images/logo-dark.svg"
         />
         <div />
       </div>
       <div className="flex">
         {/* Desktop Sidebar */}
-        <div className="hidden h-full max-h-screen grid-cols-1 overflow-scroll w-96 lg:grid">
-          <div className="h-16" />
+        <div className="hidden h-full max-h-screen grid-cols-1 overflow-auto w-96 lg:grid">
           <Sidebar />
         </div>
         <div
