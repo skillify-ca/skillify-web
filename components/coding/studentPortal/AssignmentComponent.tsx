@@ -103,8 +103,9 @@ export default function AssignmentComponent({
     );
   } else if (data.component === "hint-list") {
     return (
-      <ExpandableContainer open={true} title="Hints">
-        <div className="flex flex-col">
+      <ExpandableContainer open={false} title="Hints">
+        <div className="flex flex-col mx-4 space-y-4">
+          <p>Click below to reveal hints</p>
           {data.hintRow.map((it, index) => (
             <HintRow key={index} description={it.description} link={it.link} />
           ))}
@@ -134,10 +135,12 @@ export default function AssignmentComponent({
   } else if (data.component === "output") {
     return (
       <ExpandableContainer open={true} title="Example">
-        <div className="flex flex-col space-y-4 m-4">
-          Your submission should look something like this:
+        <div className="flex flex-col space-y-4 mx-4">
+          <p>Your submission should look close to the following:</p>
           {data.screenshotOrVideoId.includes(".") ? (
-            <Image src={data.screenshotOrVideoId} height={300} width={200} />
+            <div className="h-96 w-96 relative">
+              <Image src={data.screenshotOrVideoId} layout="fill" />
+            </div>
           ) : (
             <iframe
               src={`https://www.loom.com/embed/${data.screenshotOrVideoId}`}
