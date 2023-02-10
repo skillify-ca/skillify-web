@@ -79,6 +79,7 @@ export default function LessonComponent({ data }: LessonComponentProps) {
         <div className="flex flex-col gap-8">
           {data.resources.map((it, index) => (
             <ResourceRow
+              key={index}
               title={it.title}
               description={it.description}
               disabled={false}
