@@ -41,14 +41,14 @@ export async function getServerSideProps({ params }) {
           description:
             "The official TailwindCSS documentation, detailed with each tailwindcss class.",
           image:
-            "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+            "https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fd%2Fd5%2FTailwind_CSS_Logo.svg%2F2048px-Tailwind_CSS_Logo.svg.png&sp=1676136942T161af00f85757eab1253380acdae7c38bb976ca04add7da867c5ace2e99b146e",
           link: "https://tailwindcss.com/docs/installation",
         },
       ],
     },
     {
       component: "description",
-      text: "Components are the building blocks of React apps. You can use components to split up the UI into independent, reusable pieces. In this tutorial we will take HTML that renders a table of expenses, and turn it into an efficient series of React components. A component - at its simplest form - is just a Javascript function that returns HTML to be rendered on a page. ",
+      text: "TailwindCSS is a flexible tool to style webpages. Tailwind is similar to in-line CSS.",
     },
 
     {
