@@ -1,12 +1,11 @@
 import { useQuery } from "@apollo/client";
-import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 
 import AssignmentComponent, {
   AssignmentComponentData,
 } from "../../../../../components/coding/studentPortal/AssignmentComponent";
-import { Button } from "../../../../../components/ui/Button";
+
 import {
   FETCH_USER_ASSIGNMENT_SUBMISSIONS,
   FetchUserAssignmentSubmissionsDataResponse,
@@ -24,30 +23,27 @@ export enum Stage {
   COMPLETED,
 }
 
-export type templateProps = {
+export type AssignmentTemplateProps = {
   incompleteStage: AssignmentComponentData[];
   submittedStage: AssignmentComponentData[];
-  completedStage: AssignmentComponentData[];
+  assignmentId: string;
 };
 
 const React2 = ({
   incompleteStage,
   submittedStage,
-  completedStage,
-}: templateProps) => {
-  const router = useRouter();
+  assignmentId,
+}: AssignmentTemplateProps) => {
   const [stage, setStage] = useState(0);
   const { user } = useAuth();
-  const { userAssignments } = useSelector(assignmentsSelector);
+
   const dispatch = useDispatch();
-  console.log("user assignments initial render", userAssignments);
-  // REQUIRED: create assignment in coding_assignments table to generate ID and paste here
-  const assignmentId = "2cf9156a-4f6f-452d-b09a-2c54f19a7b40";
+  const { userAssignments } = useSelector(assignmentsSelector);
 
   const deployCurrentStage = (assignment: UserAssignmentSubmissionsData) => {
     if (assignment.review_link != null) {
       setStage(Stage.COMPLETED);
-    } else if (assignment.submission_link.length > 0) {
+    } else if (assignment.submission_link) {
       setStage(Stage.SUBMITTED);
     } else {
       setStage(Stage.INCOMPLETE);
@@ -72,26 +68,17 @@ const React2 = ({
       }
     );
 
-  const handleContinue = () => {
-    router.push("/studentPortal/web/React/assignments/template");
-    if (stage <= 1) {
-      setStage(stage + 1);
-    } else {
-      setStage(Stage.INCOMPLETE);
-    }
-  };
-  const handlePrevious = () => {
-    router.push("/studentPortal/web/React/assignments/template");
-    if (stage >= 1 && stage <= 2) {
-      setStage(stage - 1);
-    } else {
-      setStage(Stage.INCOMPLETE);
-    }
-  };
+  const completedStage: AssignmentComponentData[] = [
+    {
+      component: "loom-video",
+      text: "Your assignment has been reviewed! Watch the video below for feedback:",
+      videoId: userAssignments.length > 0 ? userAssignments[0].review_link : "",
+    },
+  ];
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-8 px-4 pt-4 m-8 sm:px-12">
+      <div className="flex flex-col m-8 sm:px-12 space-y-4">
         {userAssignmentsLoading ? (
           <div>Loading...</div>
         ) : stage === Stage.INCOMPLETE ? (
@@ -108,12 +95,6 @@ const React2 = ({
           ))
         ) : null}
       </div>
-      <div className="flex ml-16 my-8 sm:justify-beginning">
-        <div className="mx-4">
-          <Button onClick={handlePrevious} label="Previous" />
-        </div>
-        <Button onClick={handleContinue} label="Next" />
-      </div>
     </>
   );
 };
@@ -125,29 +106,28 @@ export async function getServerSideProps() {
   const incompleteStage: AssignmentComponentData[] = [
     {
       component: "title",
-      text: "Get Hooked on useQuery Hooks",
+      text: "Assignment: Components and Prompts",
     },
     {
       component: "prompt",
-      text: "useQuery and useLazyQuery hooks are used to retrieve data from hasura so that you can use it in your project.  The EXAMPLE below will outline your assignment.  Your submission will be done through pasting a codesandbox link in the submission box below.  Only use the hints if you must!",
-    },
-    {
-      component: "hint-list",
-      hintRow: [
-        {
-          description: "Write Hint #1 here.",
-          link: "https://www.google.com",
-        },
-        {
-          description: "Write Hint #2 here.",
-          link: "",
-        },
+      header:
+        "Use React components to build a table off the provided array of city population data",
+      bullets: [
+        "You should create reusable components that utilize props for the 'columns'",
+        "You can use Tailwind CSS classes to style the table",
       ],
     },
 
     {
       component: "output",
-      screenshotOrVideoId: "e85860979abd403380cf9a8eb2438f5d",
+      screenshotOrVideoId:
+        "/images/assignments/componentsAssignmentTableOnly.png",
+    },
+
+    {
+      component: "template",
+      templateLink:
+        "https://codesandbox.io/s/skillify-components-assignment-template-2k19r7",
     },
 
     {
@@ -158,6 +138,17 @@ export async function getServerSideProps() {
       assignmentId: assignmentId,
       link: "",
     },
+
+    {
+      component: "hint-list",
+      hintRow: [
+        {
+          description:
+            "You can use the map function to avoid calling the same 'row' component several times",
+          link: "https://beta.reactjs.org/learn/rendering-lists",
+        },
+      ],
+    },
   ];
   const submittedStage: AssignmentComponentData[] = [
     {
@@ -166,18 +157,11 @@ export async function getServerSideProps() {
     },
   ];
 
-  const completedStage: AssignmentComponentData[] = [
-    {
-      component: "loom-video",
-      text: "This is where your feedback goes",
-      videoId: "e85860979abd403380cf9a8eb2438f5d",
-    },
-  ];
   return {
     props: {
       incompleteStage,
       submittedStage,
-      completedStage,
+      assignmentId,
     },
   };
 }
