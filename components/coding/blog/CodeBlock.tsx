@@ -10,6 +10,9 @@ import parserBabel from "prettier/parser-babel";
 import { useCallback, useEffect, useRef, useState } from "react";
 import React from "react";
 
+//please note that this component is for use in the jest-function-testing blog post only
+//and should not be used in other portions of the code base!
+
 const yourTheme = {
   colors: {
     surface1: "#011627",
@@ -42,10 +45,7 @@ const yourTheme = {
   },
 };
 
-export type PrettierProps = {
-  codemirrorInstance: React.RefObject<typeof CodeMirror>;
-};
-const Prettier = ({ codemirrorInstance }: PrettierProps) => {
+const Prettier = ({ codemirrorInstance }) => {
   const [prettierCode, setPrettierCode] = useState("");
   const { sandpack } = useSandpack();
   const activeCode = useActiveCode();
