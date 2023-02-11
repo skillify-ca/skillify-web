@@ -45,6 +45,15 @@ export const reactUnits: Unit[] = [
         type: "lesson",
       },
       {
+        title: "Lesson 3",
+        description: "TailwindCSS",
+        completed: false,
+        locked: false,
+        link: "web/React/tailwindcss",
+        type: "lesson",
+      },
+
+      {
         title: "Quiz 1",
         description: "Components and Props",
         completed: false,

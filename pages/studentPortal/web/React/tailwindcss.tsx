@@ -11,7 +11,7 @@ const React1 = ({ lessonComponents }) => {
   const router = useRouter();
 
   const handleContinue = () => {
-    router.push("/studentPortal/web/React/props");
+    router.push("/studentPortal/web/React/tailwind");
   };
   return (
     <>
@@ -37,12 +37,12 @@ export async function getServerSideProps({ params }) {
       component: "resource-list",
       resources: [
         {
-          title: "Components and Props",
+          title: "Official TailwindCSS Documentation",
           description:
-            "The official React documentation explaining the concept of components.",
+            "The official TailwindCSS documentation, detailed with each tailwindcss class.",
           image:
             "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
-          link: "https://reactjs.org/docs/components-and-props.html",
+          link: "https://tailwindcss.com/docs/installation",
         },
       ],
     },
