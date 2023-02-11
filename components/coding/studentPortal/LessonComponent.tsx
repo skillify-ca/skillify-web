@@ -61,7 +61,9 @@ export default function LessonComponent({ data }: LessonComponentProps) {
   if (data.component === "description") {
     return <p className="whitespace-pre-line">{data.text}</p>;
   }
-
+  if (data.component === "custom") {
+    return <p className="whitespace-pre-line">{data.children}</p>;
+  }
   if (data.component === "code-snippet") {
     return (
       <div className="mx-4 space-y-4">
