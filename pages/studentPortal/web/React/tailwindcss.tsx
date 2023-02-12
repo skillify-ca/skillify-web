@@ -48,7 +48,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "TailwindCSS is a flexible tool to style webpages. Tailwind is similar to in-line CSS.",
+      text: "TailwindCSS is a flexible tool to style webpages. Similar to inline CSS, Tailwind classes are written directly in the `className` attribute.",
     },
 
     {
