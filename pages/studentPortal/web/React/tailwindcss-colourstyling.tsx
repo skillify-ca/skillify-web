@@ -34,20 +34,20 @@ export async function getServerSideProps({ params }) {
 
     {
       component: "description",
-      text: "TailwindCSS has many classes used to style a webpaeg by adding colour to the backgroud, and to the text.  ",
+      text: "TailwindCSS can add colour to the backgroud of a page, and style the font colour, size, and other font-styling properties.  ",
     },
     {
       component: "code-sandbox",
       title: "Background Colour Example",
-      link: "https://codesandbox.io/embed/cocky-surf-2x7k1c?fontsize=14&hidenavigation=1&theme=dark",
+      link: "https://codesandbox.io/embed/backgroundstyling-02elf9?fontsize=14&hidenavigation=1&theme=dark",
     },
     {
       component: "description",
-      text: "bg-blue-500 is used above to style the background of the webpage. bg-color-numfrom0to900 is used to style the background. Additionally, you can specify using RGB values the exact colour of the background.",
+      text: "Notice that on line 5, bg-blue-500 is used above to style the background colour of the webpage. In general, bg-COLOR-NUMFROM0TO900 is the syntax used to style the background, where the final number represents the shade value for the chosen color. Additionally, you can specify using RGB values the exact colour of the background.",
     },
     {
       component: "description",
-      text: "Change the 'bg-blue-500' class to 'bg-gradient-to-r from-blue-500 to-sky-900' and notice what happens to the background.",
+      text: "Change the 'bg-blue-500' class to 'bg-gradient-to-r from-blue-300 to-blue-800' and notice what happens to the background.",
     },
 
     {
