@@ -46,10 +46,10 @@ export const reactUnits: Unit[] = [
       },
       {
         title: "Lesson 3",
-        description: "TailwindCSS",
+        description: "TailwindCSS - Grid & Flexbox",
         completed: false,
         locked: false,
-        link: "web/React/tailwindcss",
+        link: "web/React/tailwindcss-gridflex",
         type: "lesson",
       },
 
