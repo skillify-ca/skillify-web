@@ -3,8 +3,8 @@ import ExpandableContainer from "../ExpandableContainer";
 export default function FAQ() {
   const faqItems = [
     {
-      question: "I graduated from a degree that I have ZERO interest in.",
-      answer: "answer",
+      question: "What if I've never coded before? Do I need any experience?",
+      answer: "Many of our students have never coded before Skillify. Our curriculum will help anyone learn the fundamentals of coding from scratch. Our expert coaches will provide a unique process that will accelerate your career growth and help you start a career in tech.",
     },
     {
       question: "My job prevents me from spending more time with my family.",
