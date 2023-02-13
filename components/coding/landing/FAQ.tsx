@@ -7,16 +7,16 @@ export default function FAQ() {
       answer: "Many of our students have never coded before Skillify. Our curriculum will help anyone learn the fundamentals of coding from scratch. Our expert coaches will provide a unique process that will accelerate your career growth and help you start a career in tech.",
     },
     {
-      question: "My job prevents me from spending more time with my family.",
-      answer: "answer",
+      question: "What if I already have some coding experience or background in tech?",
+      answer: "Whether you're at a beginner or advanced level, our program will work for you. It is customized to fit your learning needs so if you already have some experience with coding, you can skip the basics.",
     },
     {
-      question: "Life is too expensive and I'm overwhelmed!",
-      answer: "answer",
+      question: "How long does the program take to complete?",
+      answer: "We offer a customized and flexible program for every student, so there is no strict timeframe or deadline like typical coding bootcamps or school. Typically, our students put in anywhere from 10 to 40 hours a week and complete the program within 3-6 months. To provide a rough time frame: if you have never coded before, our program will prepare you for a software developer job in 6 months.",
     },
     {
-      question: "University and college takes too much time and money.",
-      answer: "answer",
+      question: "What does the program include?",
+      answer: " - 1:1 and small group coaching\n - An internship experience where you build digital products on a team under the leadership of ex-Spotify engineers \n - Full access to Skillify online learning platform \n - Opportunities to build your own ideas! (e.g., a storefront) \n - Job hunting support and career guidance",
     },
     { question: "I will never be able to afford a home.", answer: "answer" },
     {
