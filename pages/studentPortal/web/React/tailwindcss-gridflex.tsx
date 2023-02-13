@@ -73,7 +73,11 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "In general, flex is used to style the inner elements of the page. The code sandbox example above demonstrates how to style a navbar to be on the top-right of the page. Change the flex-end class on line_ to flex-center to move the navbar to the middle of the page. Search flex in the tailwind docs to see What other flex classes you can apply to style this navbar. ",
+      text: "Flex, on the other hand, is usually used to style the inner elements of the page. The code sandbox example above demonstrates how to style a navbar to be on the top-right of the page. ",
+    },
+    {
+      component: "description",
+      text: "Change the justify-end class on line 6 to justify-center to move the navbar to the middle of the page. Search flex in the tailwind docs to see What other flex classes you can apply to style this navbar. ",
     },
   ];
   return { props: { lessonComponents } };
