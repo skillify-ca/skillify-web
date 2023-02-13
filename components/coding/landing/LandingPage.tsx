@@ -6,6 +6,7 @@ import LandingFooter from "./LandingFooter";
 import Credentials from "./Credentials";
 import Hero, { HighlightableText } from "./Hero";
 import WhatYouGet from "./WhatYouGet";
+import WhoItsFor from "./WhoItsFor";
 
 export type LandingPageCopy = {
   headerText: HighlightableText[];
@@ -25,6 +26,7 @@ export default function LandingPage({
     <div>
       <div className="flex flex-col items-center w-full bg-gray-100">
         <Hero headerText={headerText} description={description} />
+        <WhoItsFor />
         <Credentials headerText={credentialsText} />
         <WhatYouGet />
         <TestimonialSect />

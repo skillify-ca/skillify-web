@@ -1,7 +1,6 @@
-import Link from "next/link";
 import PostLayout from "../../components/coding/blog/PostLayout";
-import { LessonComponentData } from "../../components/coding/studentPortal/LessonComponent";
 import SEO from "../../components/SEO";
+import React from "react";
 
 export default function Page() {
   return (
@@ -27,25 +26,24 @@ export default function Page() {
         <h2 className="text-xl font-bold">Learning the basics</h2>
 
         <p>
-          While learning Java, you may see syntaxc that seems confusing or
-          unfamiliar initially. Soe of the introductory concepts in Java, such
+          While learning Java, you may see syntax that seems confusing or
+          unfamiliar initially. Some of the introductory concepts in Java, such
           as user input through the scanner and the concept of classes will make
           much more sense as you move further through your journey.
         </p>
 
         <p>
           Getting familiar with Java syntax is important, especially if you come
-          form a different programming language. For beginners, try tp=o
+          from a different programming language. For beginners, try to
           understand all the programming fundaementals, including loops,
           primitves vs non-primitves and conditional statements. You can then
-          move onto classes aand objects, exception handling and inheritance,
+          move on to classes aand objects, exception handling and inheritance,
           which are slightly more difficult concepts. Below, is a video with a
           suggested roadmap to master Java.
         </p>
 
         <iframe
-          width="560"
-          height="315"
+          className="w-full max-h-sm md:w-3/4 md:h-96"
           src="https://www.youtube.com/embed/p15xzjzR9j0"
           title="YouTube video player"
           frameBorder={"0"}
@@ -55,7 +53,7 @@ export default function Page() {
 
         <h2 className="text-xl font-bold">Practice</h2>
         <p>
-          Practice makes perfect and alongwith making your own projects, I
+          Practice makes perfect and along with making your own projects, I
           believe problem-solving is a great way to wrap your head around Java
           throughly. You can start by doing a couple simple exercises to
           reinforce the core programming fundaementals. Learning data structures
@@ -65,8 +63,7 @@ export default function Page() {
         </p>
 
         <iframe
-          width="560"
-          height="315"
+          className="w-full max-h-sm md:w-3/4 md:h-96"
           src="https://www.youtube.com/embed/OWCao3Ul6n4"
           title="YouTube video player"
           frameBorder={"0"}
@@ -89,8 +86,7 @@ export default function Page() {
         </p>
 
         <iframe
-          width="560"
-          height="315"
+          className="w-full max-h-sm md:w-3/4 md:h-96"
           src="https://www.youtube.com/embed/xk4_1vDrzzo"
           title="YouTube video player"
           frameBorder={"0"}
