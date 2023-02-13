@@ -9,7 +9,7 @@ const React1 = ({ lessonComponents }) => {
   const router = useRouter();
 
   const handleContinue = () => {
-    router.push("/studentPortal/web/React/tailwind");
+    router.push("/studentPortal/web/React/tailwindcss-colourstyling");
   };
   return (
     <>
@@ -45,7 +45,7 @@ export async function getServerSideProps({ params }) {
         {
           title: "HTML TailwindCSS Easy Setup",
           description:
-            "If you want to configure TailwindCSS for an HTML document you want to play with, simply follow step1 in the installation setup instructions under Play CDN.",
+            "Configure TailwindCSS for an HTML document to practice using tailwind clsses. To do this, complete step one in the installation setup instructions under Play CDN.",
           image:
             "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1200px-Tailwind_CSS_Logo.svg.png?20211001194333",
           link: "https://tailwindcss.com/docs/installation/play-cdn",
