@@ -58,7 +58,7 @@ export const Layout: React.FC = ({ children }) => {
         </div>
         <img className="visible w-48 h-8 dark:hidden" src="/images/logo.svg" />
         <img
-          className="visible w-48 h-8 light:hidden"
+          className="hidden w-48 h-8 dark:visible"
           src="/images/logo-dark.svg"
         />
         <div />
