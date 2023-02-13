@@ -11,7 +11,7 @@ export default function WhoItsFor() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center p-4 sm:p-8 bg-murkrow">
+    <div className="flex flex-col items-center justify-center p-4 sm:p-8 bg-murkrow w-full">
       <h2 className="p-4 text-2xl font-bold text-charmander">
         If any of this strikes a chord, then it’s time to learn with Skillify...
       </h2>
