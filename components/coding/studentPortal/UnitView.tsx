@@ -1,5 +1,4 @@
-import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import { Unit } from "../../../pages/api/studentPortal/units";
 import UnitNodeView from "./UnitNodeView";
 

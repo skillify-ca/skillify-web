@@ -8,6 +8,7 @@ export interface MultipleChoiceProp {
   option2: MCOption;
   option3: MCOption;
   answer: string;
+  // eslint-disable-next-line no-unused-vars
   submitGuess: (e) => void;
 }
 

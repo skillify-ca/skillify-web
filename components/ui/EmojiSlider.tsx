@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 export interface EmojiSliderProps {
+  // eslint-disable-next-line no-unused-vars
   callback: (val: number) => void;
 }
 

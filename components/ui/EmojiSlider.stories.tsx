@@ -8,7 +8,7 @@ export default {
   argTypes: {},
 } as Meta;
 
-const Template: Story = (args) => (
+const Template: Story = () => (
   <EmojiSlider
     callback={() => {
       // empty

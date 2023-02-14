@@ -1,10 +1,6 @@
 import React from "react";
 
-type CredentialsProps = {
-  headerText: string;
-};
-
-export default function Credentials({ headerText }: CredentialsProps) {
+export default function Credentials() {
   const images = [
     "/images/about/spotify.png",
     "/images/about/meta.png",

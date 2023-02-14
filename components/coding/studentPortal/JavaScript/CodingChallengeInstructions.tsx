@@ -1,6 +1,3 @@
-import Link from "next/link";
-import { Button } from "../../../ui/Button";
-
 export default function CodingChallengeInstructions() {
   return (
     <div className="p-8 mt-8 bg-white dark:bg-gray-900">

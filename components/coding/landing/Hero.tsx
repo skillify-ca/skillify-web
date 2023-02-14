@@ -1,7 +1,4 @@
-import Link from "next/link";
-import { useEffect, useState } from "react";
 import { Button } from "../../ui/Button";
-import Modal from "./modal/Modal";
 
 type HeroProps = {
   headerText: HighlightableText[];

@@ -1,8 +1,6 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
-import UnitNodeView, { UnitNodeViewProps } from "./UnitNodeView";
-import UnitView, { UnitViewProps } from "./UnitView";
-import UnitHeader, { ProgressBar, ProgressBarProps } from "./ProgressBar";
+import { ProgressBar, ProgressBarProps } from "./ProgressBar";
 
 export default {
   title: "coding/ProgressBar",

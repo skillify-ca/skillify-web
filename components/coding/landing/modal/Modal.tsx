@@ -1,48 +1,6 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
-import * as fbq from "../../../../lib/fbPixel";
 import ActiveCampaignWaitlistOptin from "../ActiveCampaignWaitlistOptIn";
 
 export default function Modal({ handleClose }) {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-
-  const router = useRouter();
-
-  const handleClick = async () => {
-    if (email.length > 0) {
-      fbq.event("Lead");
-
-      // TODO (vithushan) delete this once emails are confirmed to be sending
-      const slackURL =
-        "https://math-app-1.herokuapp.com/notifications?product=request-demo";
-      const slackOptions = {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8",
-        },
-        body: JSON.stringify({
-          email: email,
-        }),
-      };
-      fetch(slackURL, slackOptions);
-
-      const url = "/api/email/join-waitlist";
-      const options = {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8",
-        },
-        body: JSON.stringify({
-          email,
-          name,
-        }),
-      };
-      fetch(url, options).then((res) => router.push("/waitlist-thank-you"));
-    }
-  };
   return (
     <div>
       <div

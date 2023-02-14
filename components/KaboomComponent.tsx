@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-import Head from "next/head";
-import kaboom, { KaboomCtx, KaboomOpt } from "kaboom";
-import Script from "next/script";
+import { KaboomCtx } from "kaboom";
 import run from "../pages/api/kaboom/rpg";
 
 type KaboomComponentProps = {

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
-import { Question } from "../../pages/api/question";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 
 export interface MultiplicationArrayProp {
+  // eslint-disable-next-line no-unused-vars
   submitGuess: (guess: GuessData) => void;
   colour: "red" | "purple" | "blue" | "green" | "yellow";
   text: string;

@@ -1,6 +1,5 @@
 /* eslint-disable no-useless-escape */
-import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React from "react";
 
 const ActiveCampaignWaitlistOptin = () => {
   return (

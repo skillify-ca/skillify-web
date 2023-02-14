@@ -5,6 +5,7 @@ import { EqualGroupsInput } from "./EqualGroupsInput";
 
 export interface MultiplicationEqualGroupsProp {
   colour: 0 | 1 | 2 | 3; // color is a random number between 0 - 3
+  // eslint-disable-next-line no-unused-vars
   submitGuess: (guess: GuessData) => void;
   text: string;
   answer: string;

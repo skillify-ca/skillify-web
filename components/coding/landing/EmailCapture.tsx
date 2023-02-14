@@ -1,5 +1,4 @@
-import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React from "react";
 import ActiveCampaignEmailCapture from "./ActiveCampaignEmailCapture";
 import { HighlightableText } from "./Hero";
 

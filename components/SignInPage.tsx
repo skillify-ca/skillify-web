@@ -1,13 +1,12 @@
 import { getRedirectResult } from "@firebase/auth";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "../lib/authContext";
 import { auth } from "../lib/firebase";
 import { useRouter } from "next/router";
 
 export default function SignInPage() {
-  const { signIn, user } = useAuth();
+  const { signIn } = useAuth();
   const router = useRouter();
-  const [email, setEmail] = useState("");
 
   useEffect(() => {
     async function checkAuth() {

@@ -1,6 +1,4 @@
-import Link from "next/link";
 import React from "react";
-import { useDispatch } from "react-redux";
 import { Button } from "../../ui/Button";
 
 export type ResourceRowProps = {

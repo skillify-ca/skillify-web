@@ -1,6 +1,6 @@
 type ToggleProps = {
-  onClick: () => void
-}
+  onClick: () => void;
+};
 const Toggle = ({ onClick }: ToggleProps) => {
   return (
     <div className="flex items-start">
@@ -9,7 +9,8 @@ const Toggle = ({ onClick }: ToggleProps) => {
           id="candidates"
           name="candidates"
           type="checkbox"
-          onClick={e => onClick()}
+          // eslint-disable-next-line no-unused-vars
+          onClick={(e) => onClick()}
           className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded"
         />
       </div>

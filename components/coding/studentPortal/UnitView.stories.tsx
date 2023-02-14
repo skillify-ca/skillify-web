@@ -1,6 +1,5 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
-import UnitNodeView, { UnitNodeViewProps } from "./UnitNodeView";
 import UnitView, { UnitViewProps } from "./UnitView";
 
 export default {

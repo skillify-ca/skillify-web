@@ -5,6 +5,7 @@ import { Button } from "../ui/Button";
 export interface MultipleChoiceWordProp {
   options: MCOption[];
   answer: string;
+  // eslint-disable-next-line no-unused-vars
   submitGuess: (e) => void;
   children: ReactNode;
 }

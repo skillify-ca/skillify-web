@@ -1,5 +1,3 @@
-import BonusSection from "./BonusSection";
-
 type Feature = {
   title: string;
   value: string;

@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
-import { Stage, Layer, Line, Text } from "react-konva";
+import { Stage, Layer, Line } from "react-konva";
 import useWindowSize from "../../hooks/UseWindowSizeHook";
 import { Button } from "./Button";
 

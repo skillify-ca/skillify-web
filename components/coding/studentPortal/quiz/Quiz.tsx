@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   quizSelector,
@@ -76,7 +76,7 @@ export default function Quiz() {
           )}
           <div className="grid grid-cols-1 gap-6 px-4 sm:grid-cols-2 sm:px-32">
             <div
-              onClick={(e) => dispatch(selectOptionRequested("A"))}
+              onClick={() => dispatch(selectOptionRequested("A"))}
               className="cursor-pointer"
             >
               <MCOption
@@ -85,7 +85,7 @@ export default function Quiz() {
               />
             </div>
             <div
-              onClick={(e) => dispatch(selectOptionRequested("B"))}
+              onClick={() => dispatch(selectOptionRequested("B"))}
               className="cursor-pointer"
             >
               <MCOption
@@ -94,7 +94,7 @@ export default function Quiz() {
               />
             </div>
             <div
-              onClick={(e) => dispatch(selectOptionRequested("C"))}
+              onClick={() => dispatch(selectOptionRequested("C"))}
               className="cursor-pointer"
             >
               <MCOption
@@ -103,7 +103,7 @@ export default function Quiz() {
               />
             </div>
             <div
-              onClick={(e) => dispatch(selectOptionRequested("D"))}
+              onClick={() => dispatch(selectOptionRequested("D"))}
               className="cursor-pointer"
             >
               <MCOption

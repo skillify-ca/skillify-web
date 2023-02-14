@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import {
   EvaluateExpressionState,
   Stage,
@@ -15,14 +15,12 @@ export interface EvaluateExpressionProps {
   onNextRequested: () => void;
   onPreviousRequested: () => void;
   onResetRequested: () => void;
-  onInputChangeRequested: (val: string) => void;
 }
 const EvaluateExpression = ({
   stateHistory,
   onNextRequested,
   onPreviousRequested,
   onResetRequested,
-  onInputChangeRequested,
 }: EvaluateExpressionProps) => {
   const handleNextClick = () => {
     onNextRequested();
@@ -50,7 +48,6 @@ const EvaluateExpression = ({
                 <input
                   className="p-4 text-xl bg-gray-100"
                   value={state.inputExpression}
-                  onChange={(e) => onInputChangeRequested(e.target.value)}
                 />
               </div>
 

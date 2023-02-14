@@ -1,5 +1,4 @@
 import React from "react";
-import { User } from "../../../graphql/fetchUserProfile";
 
 export type BadgesDisplayedComponentProps = {
   earnedBadges: number;

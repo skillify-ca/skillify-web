@@ -1,6 +1,5 @@
-import { useTexture } from "@react-three/drei";
-import { ReactNode, useMemo, useRef } from "react";
-import { extend, useFrame } from "react-three-fiber";
+import { useMemo, useRef } from "react";
+import { useFrame } from "react-three-fiber";
 import * as THREE from "three";
 
 export interface BoxProps {
@@ -8,7 +7,7 @@ export interface BoxProps {
 }
 
 /** A 3D Image Box that rotates every frame */
-const Box = ({url}: BoxProps) => {
+const Box = ({ url }: BoxProps) => {
   const mesh = useRef(null);
   useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
 

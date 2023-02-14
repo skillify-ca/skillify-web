@@ -7,6 +7,7 @@ export interface VerticalEquationProp {
   text: string;
   answer: string;
   operator: string;
+  // eslint-disable-next-line no-unused-vars
   submitGuess?: (guess: GuessData) => void;
 }
 

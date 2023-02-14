@@ -140,13 +140,13 @@ export default function SkillifyCommandPalette() {
     },
   ];
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [, set] = useState(false);
   // CommandPalette.jsx
   useEffect(() => {
     const onKeydown = (e) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
-        setIsOpen(true);
+        set(true);
       }
     };
     window.addEventListener("keydown", onKeydown);
@@ -183,7 +183,7 @@ export default function SkillifyCommandPalette() {
         hotKeys={"command+k"}
         resetInputOnOpen={true}
         onRequestClose={() => {
-          setIsOpen(false);
+          set(false);
         }}
         closeOnSelect={true}
         commands={commands}

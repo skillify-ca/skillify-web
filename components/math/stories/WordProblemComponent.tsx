@@ -10,6 +10,7 @@ import { WordProblemSub } from "../../questionTypes/wordProblems/WordProblemSub"
 type WordProblemComponentProps = {
   questionData: Question;
   inputElement?: any;
+  // eslint-disable-next-line no-unused-vars
   submitGuess: (guessData: GuessData) => void;
 };
 const WordProblemComponent = ({

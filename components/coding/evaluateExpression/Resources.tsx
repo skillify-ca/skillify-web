@@ -1,7 +1,3 @@
-interface ResourcesProps {
-  videoUrl: string;
-}
-
 const Resources = () => {
   return (
     <div className="flex flex-col justify-center gap-4 p-8 bg-white shadow-lg rounded-xl">

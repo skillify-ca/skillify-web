@@ -1,9 +1,8 @@
-import { ReactNode } from "react";
-
 export interface SingleQuestionInputProps {
   value: number | string;
   type: string;
   name: string;
+  // eslint-disable-next-line no-unused-vars
   onChange: (e: any) => void;
 }
 

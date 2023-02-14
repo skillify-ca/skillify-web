@@ -3,11 +3,10 @@ import {
   CheckCircleIcon,
   ClockIcon,
   PencilAltIcon,
-  XCircleIcon,
   XIcon,
 } from "@heroicons/react/outline";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FETCH_ALL_USER_ASSIGNMENTS } from "../../../graphql/fetchAllUserAssignments";
 import {
@@ -19,7 +18,6 @@ import {
   assignmentsSelector,
   setUserAssignments,
 } from "../../../redux/assignmentsSlice";
-import ExpandableContainer from "../ExpandableContainer";
 
 const returnWrapStyling = (assignment: UserAssignmentSubmissionsData) => {
   let wrapStyle = "";

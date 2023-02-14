@@ -1,9 +1,9 @@
 import React from "react";
 import { GuessData } from "../../pages/api/guessData";
-import { Question } from "../../pages/api/question";
 import { Button } from "../ui/Button";
 
 export interface TrueorFalseProp {
+  // eslint-disable-next-line no-unused-vars
   submitGuess: (guess: GuessData) => void;
   answer: boolean;
   text: string;
@@ -30,12 +30,12 @@ export const TrueorFalse: React.FC<TrueorFalseProp> = ({
         <Button
           label="True"
           backgroundColor="green"
-          onClick={(_) => onSubmit(true)}
+          onClick={() => onSubmit(true)}
         />
         <Button
           label="False"
           backgroundColor="red"
-          onClick={(_) => onSubmit(false)}
+          onClick={() => onSubmit(false)}
         />
       </div>
     </div>

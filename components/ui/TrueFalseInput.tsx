@@ -1,11 +1,10 @@
-import { StringNullableChain } from "lodash";
-import { ReactNode } from "react";
 import { MaritalStatus } from "../../pages/api/finance/profile";
 
 export interface TrueFalseProps {
   option1: string; // Yes, True or Optional
   option2: string; // No, False or Optional
   name: string;
+  // eslint-disable-next-line no-unused-vars
   onChange: (e: any) => void;
   value: string | boolean | MaritalStatus;
 }
@@ -15,7 +14,6 @@ export const TrueFalse = ({
   option2,
   name,
   onChange,
-  value,
 }: TrueFalseProps) => {
   return (
     <div>

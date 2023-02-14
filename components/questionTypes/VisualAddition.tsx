@@ -9,6 +9,7 @@ import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 
 export interface VisualAdditionProp {
+  // eslint-disable-next-line no-unused-vars
   submitGuess: (guess: GuessData) => void;
   question: VisualDotsQuestion;
   visualDisplay: number;

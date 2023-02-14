@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "../../ui/Button";
 
 function HeroHome({ title, description }) {
-  const [videoModalOpen, setVideoModalOpen] = useState(false);
-
   return (
     <section className="">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -97,7 +95,6 @@ function HeroHome({ title, description }) {
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  setVideoModalOpen(true);
                 }}
                 aria-controls="modal"
               >

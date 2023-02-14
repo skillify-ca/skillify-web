@@ -1,31 +1,10 @@
 import React, { useState } from "react";
 import { Button } from "./ui/Button";
 
-const ContactForms = (props) => {
-  const [teacherInput, setTeacherInput] = useState("");
+const ContactForms = () => {
   const [bootcamperInput, setBootcamperInput] = useState("");
-  const [teacherButtonEnabled, setTeacherButtonEnabled] = useState(true);
   const [bootcamperButtonEnabled, setBootcamperButtonEnabled] = useState(true);
 
-  const notifyTeacherSignup = async () => {
-    if (teacherInput.length > 0) {
-      setTeacherButtonEnabled(false);
-      setTeacherInput("");
-      const url =
-        "https://math-app-1.herokuapp.com/notifications?product=teacher";
-      const options = {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8",
-        },
-        body: JSON.stringify({
-          email: teacherInput,
-        }),
-      };
-      await fetch(url, options);
-    }
-  };
   const notifyBootcamperSignup = async () => {
     if (bootcamperInput.length > 0) {
       setBootcamperButtonEnabled(false);

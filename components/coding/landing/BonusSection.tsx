@@ -1,10 +1,7 @@
-import { Stringifier } from "postcss";
-
 type BonusProps = {
   num: number;
   title: string;
   value: string;
-  thumbnailImg: string;
   feature: string;
   benefits: string[];
 };
@@ -14,7 +11,6 @@ export default function BonusSection() {
       num: 1,
       title: "Insiders Job Search Strategy Bonus Training",
       value: "$3,200",
-      thumbnailImg: "",
       feature:
         "Prepare for your interviews with bonus coaching sessions for: Resume Critiques and Mock Interviews",
       benefits: [
@@ -28,7 +24,6 @@ export default function BonusSection() {
       num: 2,
       title: "Become An App Builder Bonus Training",
       value: "$2,400",
-      thumbnailImg: "",
       feature: "Turn your app ideas into a reality",
       benefits: [
         "Build your own mobile games and applications for both iOS and Android devices",
@@ -43,7 +38,6 @@ export default function BonusSection() {
       num: 3,
       title: "Unlimited, MBA-quality Online Business Coaching",
       value: "$10,000",
-      thumbnailImg: "",
       feature: "Launch, Grow and Scale Your Digital Business",
       benefits: [
         "Turn Your Expertise Into A Wildly Profitable Digital Product",
@@ -63,13 +57,12 @@ export default function BonusSection() {
         $15,000
       </h1>
       {bonuses.map((bonus) => {
-        const { num, title, value, thumbnailImg, feature, benefits } = bonus;
+        const { num, title, value, feature, benefits } = bonus;
         return (
           <Bonus
             num={num}
             title={title}
             value={value}
-            thumbnailImg={thumbnailImg}
             feature={feature}
             benefits={benefits}
           />
@@ -79,14 +72,7 @@ export default function BonusSection() {
   );
 }
 
-function Bonus({
-  num,
-  title,
-  value,
-  thumbnailImg,
-  feature,
-  benefits,
-}: BonusProps) {
+function Bonus({ num, title, value, feature, benefits }: BonusProps) {
   return (
     <div className="w-full ">
       <div

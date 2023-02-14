@@ -1,5 +1,5 @@
 import React from "react";
-import Testimonial, { TestimonialProps } from "./Testimonial";
+import Testimonial from "./Testimonial";
 
 const TestimonialSect = () => {
   const testimonialData = [
