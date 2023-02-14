@@ -63,9 +63,12 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "In general, grid is used to describe the outer level elements of the page. The code sandbox example above demonstrates how to use grid-cols-5 on line 5, to create a table with 5 columns. Try changing the grid styling to grid-cols-4 in the code sandbox above to display four columns instead, and modify the code so each column only contains four elements.",
+      text: "In general, grid is used to describe the outer level elements of the page. The code sandbox example above demonstrates how to use grid-cols-5 on line 5, to create a table with 5 columns. .",
     },
-
+    {
+      component: "description",
+      text: "Try changing the grid styling to grid-cols-4 in the code sandbox above to display four columns instead, and delete any unnecesary elements so each column only contains four elements",
+    },
     {
       component: "code-sandbox",
       title: "Flex Navbar Example",

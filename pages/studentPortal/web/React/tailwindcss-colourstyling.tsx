@@ -34,7 +34,7 @@ export async function getServerSideProps({ params }) {
 
     {
       component: "description",
-      text: "TailwindCSS can add colour to the backgroud of a page, and style the font colour, size, and other font-styling properties.  ",
+      text: "TailwindCSS can add colour to the backgroud of a page, and can modify the text colour, size, and emphasis. ",
     },
     {
       component: "code-sandbox",
@@ -43,11 +43,11 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Notice that on line 5, bg-blue-500 is used above to style the background colour of the webpage. In general, bg-COLOR-NUMFROM0TO900 is the syntax used to style the background, where the final number represents the shade value for the chosen color. Additionally, you can specify using rgb(x,y,z) values the exact colour of the background.",
+      text: "Notice that on line 5, bg-blue-500 is used above to style the background colour of the webpage. In general, bg-colour-numberbetween0and900 is the syntax used to style the background, where the final number represents the shade value for the chosen color. Additionally, you can use rgb(x,y,z) values to specify the exact colour of the background.",
     },
     {
       component: "description",
-      text: "Change the 'bg-blue-500' class to 'bg-gradient-to-r from-blue-300 to-blue-800' and notice what happens to the background. Change the colour of the author tag, on line 16, to green-500. Change the colour of different tags on the page, so the page is has atleast 5 colours.",
+      text: "Change the bg-blue-500 class to bg-gradient-to-r from-blue-300 to-blue-800 and notice what happens to the background. Change the colour of the author tag, on line 16, to green-500. Change the colour of different tags on the page, so the page is has atleast 5 colours.",
     },
 
     {
