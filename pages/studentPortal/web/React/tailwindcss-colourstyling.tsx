@@ -5,7 +5,7 @@ import LessonComponent, {
 } from "../../../../components/coding/studentPortal/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
 
-const React1 = ({ lessonComponents }) => {
+const TailwindColourStyling = ({ lessonComponents }) => {
   const router = useRouter();
 
   const handleContinue = () => {
@@ -47,7 +47,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Change the 'bg-blue-500' class to 'bg-gradient-to-r from-blue-300 to-blue-800' and notice what happens to the background.",
+      text: "Change the 'bg-blue-500' class to 'bg-gradient-to-r from-blue-300 to-blue-800' and notice what happens to the background. Change the colour of the author tag, on line 16, to green-500. Change the colour of different tags on the page, so the page is has atleast 5 colours.",
     },
 
     {
@@ -67,4 +67,4 @@ export async function getServerSideProps({ params }) {
   return { props: { lessonComponents } };
 }
 
-export default React1;
+export default TailwindColourStyling;

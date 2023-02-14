@@ -5,7 +5,7 @@ import LessonComponent, {
 } from "../../../../components/coding/studentPortal/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
 
-const React1 = ({ lessonComponents }) => {
+const TailwindGridFlex = ({ lessonComponents }) => {
   const router = useRouter();
 
   const handleContinue = () => {
@@ -83,4 +83,4 @@ export async function getServerSideProps({ params }) {
   return { props: { lessonComponents } };
 }
 
-export default React1;
+export default TailwindGridFlex;
