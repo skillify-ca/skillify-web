@@ -80,7 +80,11 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Change the justify-end class on line 6 to justify-center to move the navbar to the middle of the page. Search flex in the tailwind docs to see What other flex classes you can apply to style this navbar. ",
+      text: "Change the justify-end class on line 6 to justify-center to move the navbar to the middle of the page.  ",
+    },
+    {
+      component: "description",
+      text: "Change the justify-center to flex-col, or flex-col-reverse and notice what happens to the alignment of the navbar",
     },
   ];
   return { props: { lessonComponents } };
