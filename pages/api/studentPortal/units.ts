@@ -45,11 +45,11 @@ export const reactUnits: Unit[] = [
         type: "lesson",
       },
       {
-        title: "Quiz 1",
+        title: "Assignment 1",
         description: "Components and Props",
         completed: false,
-        locked: true,
-        link: "react/React/1",
+        locked: false,
+        link: "web/React/assignments/componentsAssignment",
         type: "lesson",
       },
       {

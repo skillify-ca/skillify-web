@@ -1,5 +1,4 @@
 import { useMutation } from "@apollo/client";
-import router from "next/router";
 import React, { useState } from "react";
 import { FETCH_USER_ASSIGNMENT_SUBMISSIONS } from "../../../graphql/fetchUserAssignmentSubmissions";
 import { UPSERT_USER_ASSIGNMENT_SUBMISSIONS } from "../../../graphql/upsertUserAssignmentSubmissions";
@@ -27,29 +26,31 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
     UPSERT_USER_ASSIGNMENT_SUBMISSIONS,
     {
       onCompleted: () => {
-        router.push("/studentPortal/web/React/assignments/template");
         alert("You have successfully saved your link.  Press continue.");
       },
       refetchQueries: [FETCH_USER_ASSIGNMENT_SUBMISSIONS],
     }
   );
 
-  const validateInput = () => {
-    if (
-      !submissionInput.includes("codesandbox.com") ||
-      submissionInput.length == 0 ||
-      submissionInput.length > 80
-    ) {
-      return false;
+  const handleValidationOnClick = () => {
+    const isValidSubmission = submissionInput.includes("codesandbox.io/");
+
+    if (isValidSubmission) {
+      saveAssignmentInput({
+        variables: {
+          objects: submissionVariables,
+        },
+      });
+    } else {
+      alert("Please submit a valid codesandbox link");
     }
-    return true;
   };
 
   return (
-    <div className="grid grid-cols-1 gap-4 dark:bg-gray-900 ">
+    <div className="flex flex-row dark:bg-gray-900 my-4 space-x-4">
       <input
         className={
-          "text-left p-2 border rounded-md shadow-md w-full text-murkrow"
+          "text-left px-2 border rounded-md shadow-md text-murkrow w-1/2"
         }
         id="input"
         type="string"
@@ -60,20 +61,7 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
         }}
       />
       <div className="col-start-1">
-        <Button
-          label="Save"
-          onClick={() => {
-            if (validateInput()) {
-              saveAssignmentInput({
-                variables: {
-                  objects: submissionVariables,
-                },
-              });
-              setSubmissionInput("");
-            }
-          }}
-          disabled={!validateInput()}
-        />
+        <Button label="Save" onClick={handleValidationOnClick} />
       </div>
     </div>
   );
