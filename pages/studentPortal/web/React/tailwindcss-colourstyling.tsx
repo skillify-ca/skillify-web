@@ -43,7 +43,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Notice that on line 5, bg-blue-500 is used above to style the background colour of the webpage. In general, bg-COLOR-NUMFROM0TO900 is the syntax used to style the background, where the final number represents the shade value for the chosen color. Additionally, you can specify using RGB values the exact colour of the background.",
+      text: "Notice that on line 5, bg-blue-500 is used above to style the background colour of the webpage. In general, bg-COLOR-NUMFROM0TO900 is the syntax used to style the background, where the final number represents the shade value for the chosen color. Additionally, you can specify using rgb(x,y,z) values the exact colour of the background.",
     },
     {
       component: "description",
@@ -53,15 +53,15 @@ export async function getServerSideProps({ params }) {
     {
       component: "code-sandbox",
       title: "Font Styling Example",
-      link: "https://codesandbox.io/embed/flex-navbar-t18uqx?fontsize=14&hidenavigation=1&theme=dark",
+      link: "https://codesandbox.io/embed/flamboyant-bash-33bbqy?fontsize=14&hidenavigation=1&theme=dark",
     },
     {
       component: "description",
-      text: "Flex, on the other hand, is usually used to style the inner elements of the page. The code sandbox example above demonstrates how to style a navbar to be on the top-right of the page. ",
+      text: "Tailwind has many font styling options including font colour, size, spacing, and hover effects. Sizing options incllude text-sm, text-md, text-lg, text-xl, text-2xl, etc. Font colour is styled using text-colour-numfrom0to900. ",
     },
     {
       component: "description",
-      text: "Change the justify-end class on line 6 to justify-center to move the navbar to the middle of the page. Search flex in the tailwind docs to see What other flex classes you can apply to style this navbar. ",
+      text: "Hover your mouse over the second last paragraph. Modify line 15 so the text colour is purple-500 when you hover over it.  ",
     },
   ];
   return { props: { lessonComponents } };
