@@ -65,8 +65,9 @@ export const Layout: React.FC = ({ children }) => {
       </div>
       <div className="flex">
         {/* Desktop Sidebar */}
-        <div className="hidden h-full max-h-screen grid-cols-1 overflow-scroll w-96 lg:grid">
+        <div className="hidden h-full max-h-screen grid-cols-1 overflow-auto w-96 lg:grid">
           <div className="h-16" />
+
           <Sidebar />
         </div>
         <div

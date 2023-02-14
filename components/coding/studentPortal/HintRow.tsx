@@ -17,12 +17,12 @@ export const HintRow: React.FC<HintRowProps> = ({
   };
   return (
     <div className="grid grid-cols-1 gap-2 p-3 bg-white shadow-lg dark:bg-gray-900">
-      <div className="flex items-center space-x-2 animate-pulse">
+      <div className="flex items-center space-x-2">
         <ArrowCircleRightIcon
           className={
             showHint
               ? "h-8 w-8 mr-2  text-yellow-600 cursor-pointer hover:text-yellow-600  transition-all transform hover:scale-110"
-              : " mr-2 h-8 w-8 cursor-pointer hover:text-yellow-600  transition-all transform hover:scale-110"
+              : " mr-2 h-8 w-8 cursor-pointer hover:text-yellow-600  transition-all transform hover:scale-110 animate-pulse"
           }
           onClick={handleViewClick}
         />

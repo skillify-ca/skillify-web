@@ -1,4 +1,5 @@
 import { HeartIcon } from "@heroicons/react/solid";
+import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Card from "../../components/coding/Card";
@@ -32,6 +33,18 @@ export default function Blog() {
         <div className="absolute top-0 w-full h-full p-8 md:p-16 opacity-5"></div>
 
         <div className="grid items-center w-full grid-cols-1 gap-16 p-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <h4>February 10, 2023</h4>
+            <Card
+              title={
+                "Jest + Function Testing: A Creative & Cheap Approach to Testing Tailwind/CSS Classes"
+              }
+              image={"/images/blog/jest-function-testing/software_testing.jpeg"}
+              description={"Cheap Unit Testing"}
+              link={"/blog/jest-function-testing"}
+              color={5}
+            />
+          </div>
           <div>
             <h4>August 15, 2022</h4>
             <Card

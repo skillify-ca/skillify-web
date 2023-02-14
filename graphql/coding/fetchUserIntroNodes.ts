@@ -20,10 +20,6 @@ export const FETCH_USER_INTRO_NODES = gql`
   }
 `;
 
-type Response = {
-  data: Data;
-};
-
 type Data = {
   intro_course_unit: IntroCourseUnit[];
 };
