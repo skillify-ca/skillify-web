@@ -66,7 +66,7 @@ export default function LessonComponent({ data }: LessonComponentProps) {
     return (
       <div className="mx-4 space-y-4">
         {data.text && <div>{data.text}</div>}
-        <pre className="p-4 border-2 bg-slate-100 border-black-transparent text-4xl rounded-xl">
+        <pre className="p-4 border-2 bg-slate-100 border-black-transparent rounded-xl">
           <Sandpack template="react-ts" files={{ "App.tsx": data.code }} />
         </pre>
       </div>
