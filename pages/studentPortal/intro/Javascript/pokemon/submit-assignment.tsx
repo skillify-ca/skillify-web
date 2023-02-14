@@ -1,5 +1,4 @@
 import { useMutation } from "@apollo/client";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
@@ -22,7 +21,7 @@ const JS_A1 = () => {
         node_id: 46,
         completed: true,
       },
-    }).then((res) => {
+    }).then(() => {
       unlockUserNode({
         variables: {
           user_id: user.uid,

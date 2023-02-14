@@ -11,14 +11,13 @@ import {
 import { UPSERT_USER_SKILL_RATINGS } from "../graphql/upsertUserSkillRatings";
 
 import { useAuth } from "../lib/authContext";
-import { profileSelector } from "../redux/profileSlice";
 import {
   setSkillRatings,
   skillRatingsSelector,
   SkillRatingsRow,
 } from "../redux/skillRatingsSlice";
 
-export default function SkillRatings(props) {
+export default function SkillRatings() {
   const dispatch = useDispatch();
   const { skillRatings } = useSelector(skillRatingsSelector);
   const { user } = useAuth();

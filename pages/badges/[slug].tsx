@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useQuery } from "@apollo/client";
 import React, { useRef, useState } from "react";
 import { FETCH_BADGE } from "../../graphql/fetchBadge";

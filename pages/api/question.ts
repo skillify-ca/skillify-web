@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { QuestionType } from "./questionTypes";
 import { HorizontalEquationQuestion } from "./labs/questionGenerators/horizontalEquationQuestion";
 import { TrueOrFalseQuestion } from "./labs/questionGenerators/trueOrFalseQuestion";
@@ -139,5 +140,4 @@ export type InterestModel = {
 
 export type CountingModel = {
   coins: CoinType[];
-   
-}
+};

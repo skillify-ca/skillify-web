@@ -23,7 +23,7 @@ const HTML1 = ({ lessonComponents }) => {
         node_id: 2,
         completed: true,
       },
-    }).then((res) => {
+    }).then(() => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
@@ -79,7 +79,7 @@ const HTML1 = ({ lessonComponents }) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps() {
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
@@ -87,8 +87,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text:
-        "HTML is a basic language that all web pages are built on top of. HTML stands for Hyper Text Markup Language. Just like any other language, HTML is made up of a limited number of words that mean different things. You will gain experience with all the possible HTML elements over time.",
+      text: "HTML is a basic language that all web pages are built on top of. HTML stands for Hyper Text Markup Language. Just like any other language, HTML is made up of a limited number of words that mean different things. You will gain experience with all the possible HTML elements over time.",
     },
     {
       component: "resource-list",

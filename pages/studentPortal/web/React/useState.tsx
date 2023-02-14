@@ -1,11 +1,9 @@
 import { useRouter } from "next/router";
 import React from "react";
-import Card, { CardData } from "../../../../components/coding/Card";
 import LessonComponent, {
   LessonComponentData,
 } from "../../../../components/coding/studentPortal/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
-import Navbar from "../../../../components/ui/Navbar";
 
 const React3 = ({ lessonComponents }) => {
   const router = useRouter();
@@ -27,7 +25,7 @@ const React3 = ({ lessonComponents }) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({}) {
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",

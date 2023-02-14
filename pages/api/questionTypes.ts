@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export enum QuestionType {
   HORIZONTAL_EQUATION = "horizantal equation",
   VERTICAL_EQUATION = "vertical equation",
@@ -16,7 +17,7 @@ export enum QuestionType {
   FINANCE_UNIT_PRICE_PROBLEM = "unit price problem",
   FINANCE_SALES_TAX_PROBLEM = "calculate sales tax",
   FINANCE_COMMISSION_PROBLEM = "calculate commission on sales",
-  ALGEBRA_SOLVE_VARIABLE =  "solve for unknown variable",
+  ALGEBRA_SOLVE_VARIABLE = "solve for unknown variable",
   FINANCE_SIMPLE_INTEREST_PROBLEM = "calculate simple interest",
-  FINANCE_COUNTING_COINS_BILLS_PROBLEM = "add coins"
+  FINANCE_COUNTING_COINS_BILLS_PROBLEM = "add coins",
 }

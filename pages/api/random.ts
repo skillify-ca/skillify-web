@@ -1,5 +1,4 @@
-import { Skill } from "./skill";
-
+/* eslint-disable no-unused-vars */
 export function getRandomItemFromArray(arr: any[]) {
   const randomIndex = getRndInteger(0, arr.length);
   return arr[randomIndex];

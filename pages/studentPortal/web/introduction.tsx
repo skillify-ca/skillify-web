@@ -24,7 +24,7 @@ const Introduction = ({ lessonComponents }) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({}) {
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
@@ -54,8 +54,7 @@ export async function getServerSideProps({ params }) {
           description: "Re-use your components from other places.",
           image:
             "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
-          link:
-            "https://beta.reactjs.org/learn/importing-and-exporting-components",
+          link: "https://beta.reactjs.org/learn/importing-and-exporting-components",
         },
         {
           title:
@@ -63,8 +62,7 @@ export async function getServerSideProps({ params }) {
           description: "React.js Basics 101 for Beginners",
           image:
             "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F1000logos.net%2Fwp-content%2Fuploads%2F2017%2F05%2FNew-YouTube-logo.jpg&f=1&nofb=1&ipt=be874732ffc03436eaa6bc7c098dc1403ff4f7864b472b1a378051fecdab52bc&ipo=images",
-          link:
-            "https://beta.reactjs.org/learn/importing-and-exporting-components",
+          link: "https://beta.reactjs.org/learn/importing-and-exporting-components",
         },
         {
           title:
@@ -72,8 +70,7 @@ export async function getServerSideProps({ params }) {
           description: "React.js Basics 101 for Beginners",
           image:
             "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F1000logos.net%2Fwp-content%2Fuploads%2F2017%2F05%2FNew-YouTube-logo.jpg&f=1&nofb=1&ipt=be874732ffc03436eaa6bc7c098dc1403ff4f7864b472b1a378051fecdab52bc&ipo=images",
-          link:
-            "https://www.youtube.com/watch?v=kkuq0gTGRFQ&list=PLf16UKl7nR5ARPKtuI76E-ShyaiKH50IF&index=4",
+          link: "https://www.youtube.com/watch?v=kkuq0gTGRFQ&list=PLf16UKl7nR5ARPKtuI76E-ShyaiKH50IF&index=4",
         },
       ],
     },

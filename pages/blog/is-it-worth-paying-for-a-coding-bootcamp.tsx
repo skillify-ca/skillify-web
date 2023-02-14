@@ -1,9 +1,7 @@
-import Link from "next/link";
 import PostLayout from "../../components/coding/blog/PostLayout";
 import LessonComponent, {
   LessonComponentData,
 } from "../../components/coding/studentPortal/LessonComponent";
-import LnadingNavbar from "../../components/LandingNavbar";
 import SEO from "../../components/SEO";
 
 interface PageProps {
@@ -26,7 +24,7 @@ export default function Page({ blogComponents }: PageProps) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps() {
   const blogComponents: LessonComponentData[] = [
     {
       component: "title",

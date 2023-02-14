@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import ProfileGoalsSection from "../../../../components/coding/ProfileGoalsSection";
@@ -8,7 +9,7 @@ import LandingNavbar from "../../../../components/LandingNavbar";
 import { FETCH_RECENT_USERS } from "../../../../graphql/fetchRecentUsers";
 import { FETCH_USER } from "../../../../graphql/fetchUser";
 
-export default function ExternalUserProfile({ slug, uid }) {
+export default function ExternalUserProfile({ uid }) {
   const user = {
     uid,
   };

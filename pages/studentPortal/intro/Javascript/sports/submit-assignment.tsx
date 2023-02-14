@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "../../../../../components/ui/Button";
 import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
@@ -21,7 +20,7 @@ const JS12 = () => {
         node_id: 47,
         completed: true,
       },
-    }).then((res) => {
+    }).then(() => {
       unlockUserNode({
         variables: {
           user_id: user.uid,

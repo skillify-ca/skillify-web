@@ -96,13 +96,13 @@ export const MultiplicationEqualGroups: React.FC<MultiplicationEqualGroupsProp> 
     return (
       <div className="flex flex-col items-center justify-between w-full h-full">
         <div className="flex flex-row flex-wrap items-center justify-around w-full gap-1">
-          {groups.map((it) => (
+          {groups.map(() => (
             <div
               className={`flex flew-row flex-wrap items-center justify-center gap-1 ${
                 getColors(colour).groupColor
               } w-24 h-24 p-4 rounded-full`}
             >
-              {itemsInGroup.map((it) => (
+              {itemsInGroup.map(() => (
                 <div
                   className={`flex ${
                     getColors(colour).itemColor

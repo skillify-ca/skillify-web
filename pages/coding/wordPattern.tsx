@@ -3,11 +3,10 @@ import ArrayIteration from "../../components/coding/dataStructures/ArrayIteratio
 import HashMap from "../../components/coding/dataStructures/HashMap";
 import { Button } from "../../components/ui/Button";
 
-export default function WordPattern(props) {
+export default function WordPattern() {
   const onResetRequested = () => {
     setIndex(0);
     setDictionary(new Map());
-    setResult(undefined);
     setIsComplete(false);
     setMessage("");
   };
@@ -19,7 +18,6 @@ export default function WordPattern(props) {
   const onAdvanceRequested = () => {
     if (index === pattern.length - 1) {
       setIsComplete(true);
-      setResult(true);
       setMessage(
         "You got to the end of the string, so the pattern match this list of words. Congrats!"
       );
@@ -73,7 +71,6 @@ export default function WordPattern(props) {
     setStr("");
     setDictionary(new Map());
     setIndex(0);
-    setResult(undefined);
     setIsComplete(false);
   };
 
@@ -85,7 +82,6 @@ export default function WordPattern(props) {
   };
 
   const [isComplete, setIsComplete] = useState(false);
-  const [result, setResult] = useState<boolean>();
   const [index, setIndex] = useState(0);
   const [str, setStr] = useState("");
   const [pattern, setPattern] = useState("");

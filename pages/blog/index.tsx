@@ -1,7 +1,5 @@
-import { HeartIcon } from "@heroicons/react/solid";
 import React from "react";
 import Head from "next/head";
-import Link from "next/link";
 import Card from "../../components/coding/Card";
 import LandingNavbar from "../../components/LandingNavbar";
 

@@ -72,6 +72,7 @@ const coachingDashboard = () => {
     }
   }, [goalsList, userList]);
 
+  // eslint-disable-next-line no-unused-vars
   const { loading: totalUserBadgeCountLoading } =
     useQuery<FetchTotalBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
       onCompleted: (data) => {

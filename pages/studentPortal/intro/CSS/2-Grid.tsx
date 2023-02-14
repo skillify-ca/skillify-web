@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 import LessonComponent, {
@@ -26,7 +26,7 @@ const CSS1 = ({ lessonComponents }) => {
         node_id: 48,
         completed: true,
       },
-    }).then((res) => {
+    }).then(() => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
@@ -55,7 +55,7 @@ const CSS1 = ({ lessonComponents }) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps() {
   const resources: Resource[] = [
     {
       title: "CSS Grid Garden",
@@ -86,8 +86,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text:
-        "CSS Grid is a newer property of CSS that lets developer create more complex layouts or force yourself to use a single column layout. Without Grid, you had to position elements using coordinates on the screen. Although that technique worked in the 90s, it quickly became out of date as the world started to adopt a wide variety of screen sizes. CSS Grid allows you to position different HTML elements on your screen in a dynamic way that can adjust to the size of your screen.",
+      text: "CSS Grid is a newer property of CSS that lets developer create more complex layouts or force yourself to use a single column layout. Without Grid, you had to position elements using coordinates on the screen. Although that technique worked in the 90s, it quickly became out of date as the world started to adopt a wide variety of screen sizes. CSS Grid allows you to position different HTML elements on your screen in a dynamic way that can adjust to the size of your screen.",
     },
     {
       component: "resource-list",

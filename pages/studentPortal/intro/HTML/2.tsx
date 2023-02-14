@@ -38,8 +38,7 @@ const HTML2 = () => {
     };
     const q3 = {
       text: "What is the difference between <h1> and <h2> tags?",
-      A:
-        "<h1> tags are ranked higher in significance than <h2> and thus are slightly larger",
+      A: "<h1> tags are ranked higher in significance than <h2> and thus are slightly larger",
       B: "<h2> is larger than <h1>",
       C: "There is no difference in significance",
       D: "None of the above",
@@ -80,7 +79,7 @@ const HTML2 = () => {
         node_id: 3,
         completed: true,
       },
-    }).then((res) => {
+    }).then(() => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
@@ -116,7 +115,7 @@ const HTML2 = () => {
               <Button
                 label="Continue"
                 disabled={false}
-                onClick={(e) => dispatch(continueRequested(null))}
+                onClick={() => dispatch(continueRequested(null))}
               />
             )}
           </div>

@@ -10,7 +10,6 @@ import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUse
 import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
-import Link from "next/link";
 
 const HTML3 = ({ lessonComponents }) => {
   const { user } = useAuth();
@@ -25,7 +24,7 @@ const HTML3 = ({ lessonComponents }) => {
         node_id: 4,
         completed: true,
       },
-    }).then((res) => {
+    }).then(() => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
@@ -129,7 +128,7 @@ const HTML3 = ({ lessonComponents }) => {
     </>
   );
 };
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps() {
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",

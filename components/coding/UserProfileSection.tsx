@@ -1,10 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { useQuery } from "@apollo/client";
 import { format } from "date-fns";
 import React, { useState } from "react";
-import {
-  FetchUserBadgesCountResponse,
-  FETCH_USER_BADGES_COUNT,
-} from "../../graphql/fetchUserBadgesCount";
 
 import {
   FetchUserProfileDataResponse,
@@ -37,17 +34,6 @@ export default function UserProfileSection({ user }: UserProfileSectionProps) {
             name: data.users[0].name,
             profileImage: data.users[0].profile_image,
           });
-        }
-      },
-    });
-  const { loading: userBadgeCountLoading } =
-    useQuery<FetchUserBadgesCountResponse>(FETCH_USER_BADGES_COUNT, {
-      variables: {
-        userId: user.uid,
-      },
-      onCompleted: (data) => {
-        if (data.user_coding_badges_aggregate.aggregate.count) {
-          setUserBadgeCount(data.user_coding_badges_aggregate.aggregate.count);
         }
       },
     });

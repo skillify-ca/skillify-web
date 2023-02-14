@@ -8,8 +8,6 @@ import LessonComponent, {
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
-import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
-import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
 
 const Summary = ({ lessonComponents }) => {
@@ -25,7 +23,7 @@ const Summary = ({ lessonComponents }) => {
         node_id: 53,
         completed: true,
       },
-    }).then((res) => {
+    }).then(() => {
       router.push("/studentPortal/intro");
     });
   };
@@ -52,7 +50,7 @@ const Summary = ({ lessonComponents }) => {
     </>
   );
 };
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({}) {
   const resources: Resource[] = [
     {
       title: "Self-Ranking Form",

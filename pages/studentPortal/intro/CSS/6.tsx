@@ -17,14 +17,6 @@ const CSS6 = ({ lessonComponents }) => {
   const [unlockUserNode] = useMutation(UNLOCK_USER_INTRO_NODE);
   const [completeUserNode] = useMutation(COMPLETE_USER_INTRO_NODE);
 
-  const assignments = [
-    { link: "/coding/css/sujee-week-1/index.html", title: "Sujee-Week1" },
-    { link: "/coding/css/mau-week-1/index.html", title: "Mau-Week1" },
-    { link: "/coding/css/vinon-week-1/indexflower.html", title: "Vinon-Week1" },
-    { link: "/coding/css/jacky-week-1/index.html", title: "Jacky-Week1" },
-    { link: "/coding/css/mithulan-week-1/index.html", title: "Mithulan-Week1" },
-  ];
-
   const handleContinue = () => {
     completeUserNode({
       variables: {
@@ -32,7 +24,7 @@ const CSS6 = ({ lessonComponents }) => {
         node_id: 52,
         completed: true,
       },
-    }).then((res) => {
+    }).then(() => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
@@ -138,7 +130,7 @@ const CSS6 = ({ lessonComponents }) => {
     </>
   );
 };
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps() {
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
@@ -146,13 +138,11 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text:
-        "Previously you made a blog using HTML but it may look very boring.",
+      text: "Previously you made a blog using HTML but it may look very boring.",
     },
     {
       component: "description",
-      text:
-        "We are going to change that using CSS styling! You will now use CSS styling to bring your page to life!",
+      text: "We are going to change that using CSS styling! You will now use CSS styling to bring your page to life!",
     },
     { component: "loom-video", videoId: "ed935cc53123419695e9f6b97f5589e9" },
   ];

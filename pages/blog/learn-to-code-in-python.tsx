@@ -1,6 +1,4 @@
-import Link from "next/link";
 import PostLayout from "../../components/coding/blog/PostLayout";
-import { LessonComponentData } from "../../components/coding/studentPortal/LessonComponent";
 import SEO from "../../components/SEO";
 
 export default function Page() {

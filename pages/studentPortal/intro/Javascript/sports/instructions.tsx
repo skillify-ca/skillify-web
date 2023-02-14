@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   ArrowCircleDownIcon,
   ArrowCircleUpIcon,
@@ -6,7 +6,7 @@ import {
 } from "@heroicons/react/solid";
 import { Button } from "../../../../../components/ui/Button";
 
-const JS11 = ({ lessonComponents }) => {
+const JS11 = ({}) => {
   const playerDataURL = `https://api.sportsdata.io/api/nba/fantasy/json/Players?key=${process.env.NEXT_PUBLIC_NBA_DATA_API_KEY}`;
 
   const fantasyProjectionDataURL = `https://api.sportsdata.io/api/nba/fantasy/json/PlayerSeasonProjectionStats/2022?key=${process.env.NEXT_PUBLIC_NBA_DATA_API_KEY}`;

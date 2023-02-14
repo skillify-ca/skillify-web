@@ -23,7 +23,7 @@ const LessonPage = ({ lessonComponents, currentNode, nextNode, nextSlug }) => {
         node_id: currentNode,
         completed: true,
       },
-    }).then((res) => {
+    }).then(() => {
       unlockUserNode({
         variables: {
           user_id: user.uid,

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";

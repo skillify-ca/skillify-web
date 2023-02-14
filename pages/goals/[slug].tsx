@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import {
   ArchiveIcon,
   CheckCircleIcon,
+  PencilAltIcon,
   TrashIcon,
 } from "@heroicons/react/solid";
 import { format } from "date-fns";
@@ -18,7 +19,6 @@ import { useAuth } from "../../lib/authContext";
 import { useMutation } from "@apollo/client";
 import { UPSERT_USER_GOALS } from "../../graphql/upsertUserGoals";
 import { REMOVE_USER_GOAL } from "../../graphql/removeUserGoal";
-import { ArrowCircleRightIcon, PencilAltIcon } from "@heroicons/react/outline";
 import { FETCH_USER_GOALS_COUNT } from "../../graphql/fetchUserGoalsCount";
 
 const EditGoalsPage = () => {

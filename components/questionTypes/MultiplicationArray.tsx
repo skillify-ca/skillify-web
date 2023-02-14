@@ -83,9 +83,9 @@ export const MultiplicationArray: React.FC<MultiplicationArrayProp> = ({
   return (
     <div>
       <div className="flex flex-col items-center gap-2">
-        {horizontal.map((it) => (
+        {horizontal.map(() => (
           <div className="flex gap-2 flew-row">
-            {columns.map((it) => (
+            {columns.map(() => (
               <div
                 className={`${getColourStyles().colorStyle} ${
                   getColourStyles().hoverColour

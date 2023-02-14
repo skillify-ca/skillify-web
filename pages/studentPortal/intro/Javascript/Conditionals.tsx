@@ -25,7 +25,7 @@ const Conditionals = ({ lessonComponents }) => {
         node_id: 39,
         completed: true,
       },
-    }).then((res) => {
+    }).then(() => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
@@ -58,7 +58,7 @@ const Conditionals = ({ lessonComponents }) => {
     </>
   );
 };
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps() {
   const resources: Resource[] = [
     {
       title: "Codecademy",
@@ -100,7 +100,7 @@ export async function getServerSideProps({ params }) {
       link: "/coding/JavaScript/JsFunctions/Basketball/basketball-Practice.js",
       image: "/images/basketball.jpg",
       description:
-        "A problem involving calculating the score of a basketball game!"
+        "A problem involving calculating the score of a basketball game!",
     },
     {
       title: "Basketball Solution",
@@ -110,7 +110,7 @@ export async function getServerSideProps({ params }) {
         "Don't watch this solution, until you've attempted the challenge above",
     },
   ];
-  
+
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",

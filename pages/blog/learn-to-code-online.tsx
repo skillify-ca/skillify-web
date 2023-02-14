@@ -1,9 +1,7 @@
-import Link from "next/link";
 import PostLayout from "../../components/coding/blog/PostLayout";
-import { LessonComponentData } from "../../components/coding/studentPortal/LessonComponent";
 import SEO from "../../components/SEO";
 
-export default function Page() { 
+export default function Page() {
   return (
     <div>
       <SEO
@@ -27,35 +25,47 @@ export default function Page() {
           make an impact on the world. In today's world, learning online is your
           best and most cost effective method of learning to code.
         </p>
-        
+
         <h2 className="text-xl font-bold">Purpose</h2>
 
         <p>
-        The coding/programming space is enormous, with many different languages and applications with these languages. It may seem overwhelming at first, but a great way to overcome this to think about why you want to learn coding. For example, you may be interested in gaming and want to create games, or you may want to start a business and create a website for it. Whatever it may be, make sure you have a vision before you go on this journey.
-
+          The coding/programming space is enormous, with many different
+          languages and applications with these languages. It may seem
+          overwhelming at first, but a great way to overcome this to think about
+          why you want to learn coding. For example, you may be interested in
+          gaming and want to create games, or you may want to start a business
+          and create a website for it. Whatever it may be, make sure you have a
+          vision before you go on this journey.
         </p>
-        
 
         <h2 className="text-xl font-bold">Which Language should you learn ?</h2>
         <p>
-        Once you have an idea of what you want to do, start by finding out which language is used for it. Below is a website which displays the different programming.
-
+          Once you have an idea of what you want to do, start by finding out
+          which language is used for it. Below is a website which displays the
+          different programming.
         </p>
-        <a href="https://raygun.com/blog/programming-languages/">https://raygun.com/blog/programming-languages/</a>
+        <a href="https://raygun.com/blog/programming-languages/">
+          https://raygun.com/blog/programming-languages/
+        </a>
 
         <h2 className="text-xl font-bold">Learning Online</h2>
 
-        <p> Learning online may be daunting and difficult at first, but there are many resources available to you. The best way to start is to learn the core programming fundamentals(loops, variables, conditionals). Then move onto more advanced concepts. Below are some useful resources.
-</p>
-<a href="https://www.youtube.com/c/BroCodez">https://www.youtube.com/c/BroCodez</a>
+        <p>
+          {" "}
+          Learning online may be daunting and difficult at first, but there are
+          many resources available to you. The best way to start is to learn the
+          core programming fundamentals(loops, variables, conditionals). Then
+          move onto more advanced concepts. Below are some useful resources.
+        </p>
+        <a href="https://www.youtube.com/c/BroCodez">
+          https://www.youtube.com/c/BroCodez
+        </a>
 
-<a href="https://www.freecodecamp.org/">https://www.freecodecamp.org/</a>
+        <a href="https://www.freecodecamp.org/">
+          https://www.freecodecamp.org/
+        </a>
 
-<a href="https://www.edx.org/">https://www.edx.org/</a>
-
-
-
-        
+        <a href="https://www.edx.org/">https://www.edx.org/</a>
       </div>
     </div>
   );

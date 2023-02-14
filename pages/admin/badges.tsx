@@ -1,5 +1,6 @@
-import { useMutation, useQuery } from "@apollo/client";
-import React, { useEffect, useState } from "react";
+/* eslint-disable no-unused-vars */
+import { useMutation } from "@apollo/client";
+import React, { useState } from "react";
 import { Button } from "../../components/ui/Button";
 import Navbar from "../../components/ui/Navbar";
 import { LOCK_USER_BADGES } from "../../graphql/lockUserCodingBadges";

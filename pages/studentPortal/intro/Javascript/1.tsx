@@ -1,8 +1,6 @@
 import { useMutation } from "@apollo/client";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import Card, { CardData } from "../../../../components/coding/Card";
 import CodingChallengeInstructions from "../../../../components/coding/studentPortal/JavaScript/CodingChallengeInstructions";
 import LessonComponent, {
   LessonComponentData,
@@ -10,7 +8,6 @@ import LessonComponent, {
 } from "../../../../components/coding/studentPortal/LessonComponent";
 import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 import { Button } from "../../../../components/ui/Button";
-import Navbar from "../../../../components/ui/Navbar";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
 import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
@@ -29,7 +26,7 @@ const JS1 = ({ lessonComponents }) => {
         node_id: 7,
         completed: true,
       },
-    }).then((res) => {
+    }).then(() => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
@@ -67,7 +64,7 @@ const JS1 = ({ lessonComponents }) => {
     </>
   );
 };
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps() {
   const resources: Resource[] = [
     {
       title: "Grasshopper",

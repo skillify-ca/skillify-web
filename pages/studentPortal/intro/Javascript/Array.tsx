@@ -25,7 +25,7 @@ const Array = ({ lessonComponents }) => {
         node_id: 41,
         completed: true,
       },
-    }).then((res) => {
+    }).then(() => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
@@ -59,7 +59,7 @@ const Array = ({ lessonComponents }) => {
     </>
   );
 };
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps() {
   const resources: Resource[] = [
     {
       title: "Codecademy",

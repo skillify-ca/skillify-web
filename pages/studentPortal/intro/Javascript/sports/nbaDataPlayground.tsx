@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const nbaDataPlayground = ({ lessonComponents }) => {
+const nbaDataPlayground = ({}) => {
   const playerDataURL = `https://api.sportsdata.io/api/nba/fantasy/json/Players?key=${process.env.NEXT_PUBLIC_NBA_DATA_API_KEY}`;
 
   const fantasyProjectionDataURL = `https://api.sportsdata.io/api/nba/fantasy/json/PlayerSeasonProjectionStats/2022?key=${process.env.NEXT_PUBLIC_NBA_DATA_API_KEY}`;
@@ -8,12 +8,7 @@ const nbaDataPlayground = ({ lessonComponents }) => {
   const [playerData, setPlayerData] = useState(null);
   const [fantasyProjectionData, setFantasyProjectionData] = useState(null);
 
-  const findTopXbyState = (
-    fantasyProjectionData,
-    rankStatistic,
-    minGames,
-    numPlayers
-  ) => {
+  const findTopXbyState = (fantasyProjectionData, rankStatistic, minGames) => {
     const topXArray = fantasyProjectionData
       .filter((criteria) => criteria.Games > minGames)
       .sort(

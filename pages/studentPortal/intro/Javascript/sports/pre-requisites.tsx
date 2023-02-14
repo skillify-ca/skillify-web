@@ -38,7 +38,7 @@ const JS10 = ({ lessonComponents }) => {
     </>
   );
 };
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({}) {
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",

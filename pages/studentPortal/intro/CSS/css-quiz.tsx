@@ -1,12 +1,7 @@
 import { useMutation } from "@apollo/client";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CSSQuiz from "../../../../components/coding/CSSQuiz";
-import LessonComponent, {
-  LessonComponentData,
-} from "../../../../components/coding/studentPortal/LessonComponent";
 import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 import Quiz from "../../../../components/coding/studentPortal/quiz/Quiz";
 import { Button } from "../../../../components/ui/Button";
@@ -33,7 +28,7 @@ const CSS_QUIZ = () => {
         node_id: 51,
         completed: true,
       },
-    }).then((res) => {
+    }).then(() => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
@@ -115,7 +110,7 @@ const CSS_QUIZ = () => {
               <Button
                 label="Continue"
                 disabled={false}
-                onClick={(e) => dispatch(continueRequested(null))}
+                onClick={() => dispatch(continueRequested(null))}
               />
             )}
           </div>

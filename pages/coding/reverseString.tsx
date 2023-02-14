@@ -1,8 +1,7 @@
-import Link from "next/link";
 import React, { useState } from "react";
 import { Button } from "../../components/ui/Button";
 
-export default function ReverseString(props) {
+export default function ReverseString() {
   const onResetRequested = () => {
     setIsSwapping(false);
     setStr(original.split(""));

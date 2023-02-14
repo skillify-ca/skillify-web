@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import CSSQuiz from "../../../../components/coding/CSSQuiz";
+import React from "react";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 import LessonComponent, {
@@ -26,7 +25,7 @@ const CSS1 = ({ lessonComponents }) => {
         node_id: 5,
         completed: true,
       },
-    }).then((res) => {
+    }).then(() => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
@@ -54,7 +53,7 @@ const CSS1 = ({ lessonComponents }) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps() {
   const resources: Resource[] = [
     {
       title: "W3Schools CSS tutorial",
@@ -77,8 +76,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text:
-        "CSS stands for cascading style sheets. It's another language that you need to learn that has different rules and keywords compared to HTML. In this lesson you will learn about different styles that you can apply to your HTML elements.",
+      text: "CSS stands for cascading style sheets. It's another language that you need to learn that has different rules and keywords compared to HTML. In this lesson you will learn about different styles that you can apply to your HTML elements.",
     },
     {
       component: "resource-list",

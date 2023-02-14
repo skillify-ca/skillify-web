@@ -49,7 +49,8 @@ const JS7 = ({ lessonComponents }) => {
     </>
   );
 };
-export async function getServerSideProps({ params }) {
+// eslint-disable-next-line no-unused-vars
+export async function getServerSideProps({}) {
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
@@ -57,8 +58,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text:
-        "In the previous modules, you were introduced to the concept of iterators, which include, .map and .filter. These iterators are actually used in a profesional setting all the time! That means, you must be confortable with using .map and .filter in order to apply them in your future job opprotunities. In this assignment, you will work with big JSON objects and apply iterators to narrow down to specific data.",
+      text: "In the previous modules, you were introduced to the concept of iterators, which include, .map and .filter. These iterators are actually used in a profesional setting all the time! That means, you must be confortable with using .map and .filter in order to apply them in your future job opprotunities. In this assignment, you will work with big JSON objects and apply iterators to narrow down to specific data.",
     },
   ];
   return { props: { lessonComponents } };

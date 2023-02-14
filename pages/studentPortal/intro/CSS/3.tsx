@@ -22,7 +22,7 @@ const CSS3 = () => {
         node_id: 5,
         completed: true,
       },
-    }).then((res) => {
+    }).then(() => {
       unlockUserNode({
         variables: {
           user_id: user.uid,

@@ -17,7 +17,7 @@ import {
 } from "../../redux/userGoalsSlice";
 import GoalsSectionComponent from "../../components/coding/GoalsSectionComponent";
 
-export default function Goals(props) {
+export default function Goals() {
   const { user } = useAuth();
   const router = useRouter();
   const dispatch = useDispatch();

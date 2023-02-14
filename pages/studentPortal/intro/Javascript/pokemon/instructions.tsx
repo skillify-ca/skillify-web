@@ -2,7 +2,7 @@ import React from "react";
 import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
 import { Button } from "../../../../../components/ui/Button";
 
-const JS8 = ({ lessonComponents }) => {
+const JS8 = ({}) => {
   return (
     <>
       <div className="col-span-7">

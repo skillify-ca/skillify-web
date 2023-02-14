@@ -1,4 +1,3 @@
-import EmailCapture from "../components/coding/landing/EmailCapture";
 import SEO from "../components/SEO";
 
 export default function Page() {

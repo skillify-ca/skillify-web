@@ -2,6 +2,7 @@ import Link from "next/link";
 
 export default function Navbar({
   active = false,
+  // eslint-disable-next-line no-unused-vars
   setActive = (val: boolean) => {},
 }) {
   const handleClick = () => {

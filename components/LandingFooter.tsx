@@ -1,5 +1,4 @@
 import Link from "next/link";
-import CountdownTimer from "./CountdownTimer";
 
 export default function LandingFooter(props) {
   return (
@@ -12,7 +11,7 @@ export default function LandingFooter(props) {
         <div className="flex items-center gap-4">
           <button
             type="button"
-            onClick={(e) =>
+            onClick={() =>
               window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
             }
             className={`py-3 bg-gradient-to-b bg-charmander hover:bg-pikachu-500 text-white px-3 font-bold border-b-4 rounded-lg active:border-b-2 cursor-pointer`}

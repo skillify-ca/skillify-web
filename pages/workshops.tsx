@@ -1,9 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { useAuth } from "../lib/authContext";
-
-import { Button } from "../components/ui/Button";
-import { useRouter } from "next/router";
 import WorkshopsCard from "../components/coding/studentPortal/WorkshopsCard";
 
 const WorkshopsPage = () => {
@@ -37,9 +33,6 @@ const WorkshopsPage = () => {
       video: "https://www.loom.com/embed/ab0c13b6bf4e43cea43303ee0494f0ad",
     },
   ];
-
-  const { user } = useAuth();
-  const router = useRouter();
 
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
