@@ -16,7 +16,7 @@ export default function Page() {
           className="object-cover h-48"
         />
         <h1 className="text-5xl font-bold">Making The Leap Into Development</h1>
-        <h2 className="text-xl font-bold"> Lucky Hariharan</h2>
+        <h2 className="text-xl font-bold"> Lakshman 'Lucky' Hariharan</h2>
         <p>
           Thinking that coding was ‘too hard’, the fear of the unknown, and
           believing that I had missed the boat left me feeling stuck in my job.
