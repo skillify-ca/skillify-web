@@ -50,6 +50,14 @@ export async function getServerSideProps({ params }) {
             "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1200px-Tailwind_CSS_Logo.svg.png?20211001194333",
           link: "https://tailwindcss.com/docs/installation/play-cdn",
         },
+        {
+          title: "Grid vs Flexbox",
+          description:
+            "Read more about grid and flexbox to learn about how they are used.",
+          image:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1200px-Tailwind_CSS_Logo.svg.png?20211001194333",
+          link: "https://webdesign.tutsplus.com/articles/flexbox-vs-css-grid-which-should-you-use--cms-30184",
+        },
       ],
     },
     {
@@ -63,11 +71,11 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "In general, grid is used to describe the outer level elements of the page. The code sandbox example above demonstrates how to use grid-cols-5 on line 5, to create a table with 5 columns. .",
+      text: "Grid can be used to format a two-dimensional layout while Flexbox is designed to style only a one-dimensional layout. Additionally, if you are looking to carefully place an element on the page in a specific location you should use grid. The code sandbox example above demonstrates how to use grid-cols-5 on line 5, to create a table with 5 columns.",
     },
     {
       component: "description",
-      text: "Try changing the grid styling to grid-cols-4 in the code sandbox above to display four columns instead, and delete any unnecesary elements so each column only contains four elements",
+      text: "Try changing the grid styling to grid-cols-4 in the code sandbox above to display four columns instead, and delete any unnecesary elements so each column only contains four elements.",
     },
     {
       component: "code-sandbox",
@@ -76,7 +84,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Flex, on the other hand, is usually used to style the inner elements of the page. The code sandbox example above demonstrates how to style a navbar to be on the top-right of the page. ",
+      text: "Flexbox controls the flow of elements. In the code sandbox example above, flex justify-end is being used to style a navbar to be justified on the top-right of the page. ",
     },
     {
       component: "description",
@@ -86,6 +94,12 @@ export async function getServerSideProps({ params }) {
       component: "description",
       text: "Change the justify-center to flex-col, or flex-col-reverse and notice what happens to the alignment of the navbar",
     },
+    // {
+    //   component: "resource-list",
+    //   resources: [
+
+    //   ],
+    // },
   ];
   return { props: { lessonComponents } };
 }
