@@ -58,7 +58,7 @@ export const Layout: React.FC = ({ children }) => {
         </div>
         <img className="visible w-48 h-8 dark:hidden" src="/images/logo.svg" />
         <img
-          className="visible w-48 h-8 light:hidden"
+          className="hidden w-48 h-8 dark:visible"
           src="/images/logo-dark.svg"
         />
         <div />
@@ -66,6 +66,8 @@ export const Layout: React.FC = ({ children }) => {
       <div className="flex">
         {/* Desktop Sidebar */}
         <div className="hidden h-full max-h-screen grid-cols-1 overflow-auto w-96 lg:grid">
+          <div className="h-16" />
+
           <Sidebar />
         </div>
         <div
