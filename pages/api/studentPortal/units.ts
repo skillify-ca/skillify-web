@@ -26,10 +26,31 @@ export const reactUnits: Unit[] = [
     ],
   },
   {
-    title: "React",
+    title: "TailwindCSS",
     nodes: [
       {
         title: "Lesson 1",
+        description: "TailwindCSS - Grid & Flexbox",
+        completed: false,
+        locked: false,
+        link: "web/React/tailwindcss-gridflex",
+        type: "lesson",
+      },
+      {
+        title: "Lesson 2",
+        description: "TailwindCSS - General Styling",
+        completed: false,
+        locked: false,
+        link: "web/React/tailwindcss-colourstyling",
+        type: "lesson",
+      },
+    ],
+  },
+  {
+    title: "React",
+    nodes: [
+      {
+        title: "Lesson 3",
         description: "Components",
         completed: false,
         locked: false,
@@ -37,7 +58,7 @@ export const reactUnits: Unit[] = [
         type: "lesson",
       },
       {
-        title: "Lesson 2",
+        title: "Lesson 4",
         description: "Props",
         completed: false,
         locked: false,
@@ -50,22 +71,6 @@ export const reactUnits: Unit[] = [
         completed: false,
         locked: false,
         link: "web/React/assignments/componentsAssignment",
-        type: "lesson",
-      },
-      {
-        title: "Lesson 3",
-        description: "TailwindCSS - Grid & Flexbox",
-        completed: false,
-        locked: false,
-        link: "web/React/tailwindcss-gridflex",
-        type: "lesson",
-      },
-      {
-        title: "Lesson 3",
-        description: "TailwindCSS - Font Styling & Colour",
-        completed: false,
-        locked: false,
-        link: "web/React/tailwindcss-colourstyling",
         type: "lesson",
       },
 
