@@ -40,7 +40,7 @@ export async function getServerSideProps({ params }) {
             "The official TailwindCSS documentation for flexbox and grid. Use CTRL+K to quick search for styling classes.",
           image:
             "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1200px-Tailwind_CSS_Logo.svg.png?20211001194333",
-          link: "https://tailwindcss.com/docs/flex",
+          link: "https://tailwindcss.com/docs/",
         },
         {
           title: "HTML TailwindCSS Easy Setup",
@@ -93,6 +93,25 @@ export async function getServerSideProps({ params }) {
     {
       component: "description",
       text: "Change the justify-center to flex-col, or flex-col-reverse and notice what happens to the alignment of the navbar.",
+    },
+    {
+      component: "resource-list",
+      resources: [
+        {
+          title: "TailwindCSS Documentation",
+          description: "TailwindCSS Documentation -- Flexbox.",
+          image:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1200px-Tailwind_CSS_Logo.svg.png?20211001194333",
+          link: "https://tailwindcss.com/docs/flex",
+        },
+        {
+          title: "TailwindCSS Documentation",
+          description: "TailwindCSS Documentation -- Grid.",
+          image:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1200px-Tailwind_CSS_Logo.svg.png?20211001194333",
+          link: "https://tailwindcss.com/docs/grid-template-rows",
+        },
+      ],
     },
     // {
     //   component: "resource-list",
