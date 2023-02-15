@@ -26,7 +26,7 @@ const JS1 = ({ lessonComponents }) => {
         node_id: 7,
         completed: true,
       },
-    }).then(() => {
+    }).then((res) => {
       unlockUserNode({
         variables: {
           user_id: user.uid,
@@ -64,7 +64,7 @@ const JS1 = ({ lessonComponents }) => {
     </>
   );
 };
-export async function getServerSideProps() {
+export async function getServerSideProps({ params }) {
   const resources: Resource[] = [
     {
       title: "Grasshopper",
