@@ -43,11 +43,11 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Notice that on line 5, bg-blue-500 is used above to style the background colour of the webpage. In general, bg-[colour]-[0-900] is the syntax used to style the background, and a larger final value denotes a darker shade for the chosen color. Additionally, you can use rgb(x,y,z) values to specify the exact colour of the background.",
+      text: "Notice that on line 5, bg-blue-500 is being used to style the background colour of the webpage. In general, bg-[colour]-[0-900] is the syntax used to style the background, and a larger final value denotes a darker shade for the chosen color. Additionally, you can use rgb(x,y,z) values to specify the exact colour of the background.",
     },
     {
       component: "description",
-      text: "Change the bg-blue-500 class to bg-gradient-to-r from-blue-300 to-blue-800 and notice what happens to the background. Change the colour of the author tag, on line 16, to green-500. Change the colour of three other different tags on the page, so the page is has five distinct background colours.",
+      text: "Change the bg-blue-500 class to bg-gradient-to-r from-blue-300 to-blue-800 and notice what happens to the background colour. Change the colour of the author tag, on line 16, to green-500. Change the colour of three other different tags on the page, so the page is has five distinct background colours.",
     },
 
     {

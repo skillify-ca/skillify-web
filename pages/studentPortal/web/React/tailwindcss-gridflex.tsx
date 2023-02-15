@@ -45,7 +45,7 @@ export async function getServerSideProps({ params }) {
         {
           title: "HTML TailwindCSS Easy Setup",
           description:
-            "Configure TailwindCSS for an HTML document to practice using tailwind clsses. To do this, complete step one in the installation setup instructions under Play CDN.",
+            "Configure TailwindCSS for an HTML document to practice using tailwind classes. To do this, complete step one in the installation setup instructions under Play CDN.",
           image:
             "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1200px-Tailwind_CSS_Logo.svg.png?20211001194333",
           link: "https://tailwindcss.com/docs/installation/play-cdn",
@@ -62,7 +62,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "TailwindCSS is used to style webpages. Similar to inline CSS, Tailwind classes are written directly in the `className` attribute. The official tailwindcss documentation linked above is well designed and thorough, but can feel overwhelming for new users. We recommend that as you read this lesson, you solidify what you have learned by exploring the tailwind documentation.",
+      text: "TailwindCSS is used to style web pages. Similar to inline CSS, Tailwind classes are written directly in the `className` attribute. The official tailwindcss documentation linked above is well designed and thorough, but can feel overwhelming for new users. We recommend that as you read this lesson, you solidify what you have learned by exploring the tailwind documentation.",
     },
     {
       component: "code-sandbox",
@@ -75,7 +75,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Try changing the grid styling to grid-cols-4 in the code sandbox above to display four columns instead, and delete any unnecesary elements so each column only contains four elements.",
+      text: "Try changing the grid styling to grid-cols-4 in the code sandbox above to display four columns instead, and delete any unnecessary elements so each column only contains four elements.",
     },
     {
       component: "code-sandbox",
@@ -92,7 +92,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Change the justify-center to flex-col, or flex-col-reverse and notice what happens to the alignment of the navbar",
+      text: "Change the justify-center to flex-col, or flex-col-reverse and notice what happens to the alignment of the navbar.",
     },
     // {
     //   component: "resource-list",
