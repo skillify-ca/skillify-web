@@ -36,11 +36,11 @@ export default function Blog() {
           <div>
             <h4>February 10, 2023</h4>
             <Card
-              title={
-                "Jest + Function Testing: A Creative & Cheap Approach to Testing Tailwind/CSS Classes"
-              }
+              title={"Jest + Function Testing"}
               image={"/images/blog/jest-function-testing/software_testing.jpeg"}
-              description={"Cheap Unit Testing"}
+              description={
+                "A Creative & Cheap Approach to Testing Tailwind/CSS Classes"
+              }
               link={"/blog/jest-function-testing"}
               color={5}
             />

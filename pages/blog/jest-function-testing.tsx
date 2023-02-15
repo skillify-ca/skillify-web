@@ -25,22 +25,33 @@ export default function Page() {
       <div className="flex flex-col gap-4 p-4">
         <p>
           {" "}
-          Sometimes there’s no way around it. End-to-end testing with a tool
-          like Cypress is necessary to ensure your UI features work as expected
-          and don’t break down when changes/updates are made to your code. But
-          end-to-end tests are costly in processing power and runtime. Is there
-          another way to test business critical UI without end-to-end-tests?
-          This article describes a creative approach to ensuring your
-          Tailwind/CSS styles display as intended. Sometimes you can ensure your
-          UI is well tested with a few simple and inexpensive unit tests.
+          Sometimes end-to-end testing with a tool like Cypress is necessary to
+          ensure your UI features work as expected. But this type of testing can
+          be costly in terms of processing power and runtime. Is there another
+          way to test business critical UI without end-to-end-tests?
+          Fortunately, there is. A creative approach to ensuring your
+          Tailwind/CSS styles display as intended is to use a few simple and
+          inexpensive unit tests. This method of testing can save both time and
+          resources, while still ensuring the UI remains functional and
+          up-to-date. By running a few well-crafted unit tests, you can make
+          sure your UI is well tested without the need for expensive end-to-end
+          testing.
         </p>
         <p>
-          Let’s take a look at the Jest + Function approach to UI testing in
-          action. I work at the edtech startup, Skillify, and as part of their
-          coaching program, students are required to set regular goals that are
-          shared with the instructors in order to help students track their
-          progress. My responsibility over the past month was to ship this
-          feature and ensure the code was well protected with tests.
+          At Skillify, we believe in providing our students with all the support
+          they need to reach their goals. As part of our coaching program,
+          students are required to set regular goals, which are then shared with
+          instructors to help with tracking progress. To ensure the code is
+          well-protected, we shipped this feature with the help of Jest +
+          Function testing.
+        </p>
+        <p>
+          Here’s how we did it at Skillify: first, we created a series of tests
+          to ensure the UI was working as expected. This included verifying user
+          input fields, making sure data was being stored correctly and that any
+          changes made to the code didn't alter the intended UI. We then ran the
+          tests and checked the output to make sure everything was functioning
+          as it should.
         </p>
         <p>
           This is how the goals feature appears for instructors and students
@@ -106,17 +117,13 @@ export default function Page() {
           tailwind classes?
         </h2>
         <p>
-          Jest is quick, cheap and effective. It’s not exhaustive, but it’s a
-          great sanity check. In this case I can set a jest test up in a matter
-          of minutes and through multiple tests can check any number of
-          scenarios by changing the properties of the “Goal” object in my test
-          that I run through my returnGoalStyle function. This assuages my fears
-          concerning “what happens if something gets changed in the codebase and
-          my tailwind classes get slightly altered and don’t work?” or “what
-          happens if my ‘daysRemaining’ calculation breaks?” or “what happens if
-          my future forgetful self or blissfully unaware fellow coder-in-arms
-          changes the parameters of my function and it accidentally breaks”?
-          Fear not, my fellow jester. The jest unit test is on our side!
+          Jest testing is a quick, cheap, and effective way to test your code
+          and provide you with a great sanity check. With Jest testing, you can
+          quickly set up a testing environment that will check your code before
+          production for errors or bugs to ensure that the logic of your
+          function is returning the correct Tailwind classes. This eliminates
+          the need for manual testing and allows you to deploy your code faster
+          and with fewer mistakes.
         </p>
         <h2 className="text-3xl font-thin">So let’s do some jesting!</h2>
         <p>
@@ -174,17 +181,6 @@ export default function Page() {
         checking for the existence of strings. At the least, that’s a win for me
         as a rather cheap additional line of defense protecting my customers’
         experience and the brand of my employer.
-        <div>
-          <p>
-            Writing these UI unit tests really shifted how I looked at things.
-          </p>
-          <p>
-            I would ask questions like… What does the user expect and how do I
-            ensure a high quality user experience? How can I give my PM/tech
-            lead/teammates confidence in code that I write? How do I deliver
-            features quickly and with quality?
-          </p>
-        </div>
         <h2 className="text-3xl font-thin">FAQ/Additional Notes</h2>
         <ol>
           <li>
@@ -270,6 +266,12 @@ export default function Page() {
   // Assert
   expect(result).toBe(yellowHighlightStyle);`}
         </CodeBlock>
+        <p>
+          If you’re looking for an efficient way to test complex user interfaces
+          and ensure the best customer experience, consider using a Jest unit
+          test. It’s a powerful tool that can save you time and effort, and
+          provide an additional layer of protection for your customers.
+        </p>
       </div>
       <div className="flex place-items-center gap-4">
         <img
