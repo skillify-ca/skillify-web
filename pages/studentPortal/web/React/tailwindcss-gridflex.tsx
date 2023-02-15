@@ -37,10 +37,10 @@ export async function getServerSideProps({ params }) {
         {
           title: "Official TailwindCSS Documentation",
           description:
-            "The official TailwindCSS documentation. Use CTRL+K to quick search for styling classes.",
+            "The official TailwindCSS documentation for flexbox and grid. Use CTRL+K to quick search for styling classes.",
           image:
             "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1200px-Tailwind_CSS_Logo.svg.png?20211001194333",
-          link: "https://tailwindcss.com",
+          link: "https://tailwindcss.com/docs/flex",
         },
         {
           title: "HTML TailwindCSS Easy Setup",

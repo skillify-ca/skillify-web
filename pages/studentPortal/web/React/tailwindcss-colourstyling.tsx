@@ -43,7 +43,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Notice that on line 5, bg-blue-500 is used above to style the background colour of the webpage. In general, bg-[colour]-[0-900] is the syntax used to style the background, where [0-900] represents the amount of shade for the chosen color. Additionally, you can use rgb(x,y,z) values to specify the exact colour of the background.",
+      text: "Notice that on line 5, bg-blue-500 is used above to style the background colour of the webpage. In general, bg-[colour]-[0-900] is the syntax used to style the background, and a larger final value denotes a darker shade for the chosen color. Additionally, you can use rgb(x,y,z) values to specify the exact colour of the background.",
     },
     {
       component: "description",
@@ -55,10 +55,7 @@ export async function getServerSideProps({ params }) {
       title: "Font Styling Example",
       link: "https://codesandbox.io/embed/flamboyant-bash-33bbqy?fontsize=14&hidenavigation=1&theme=dark",
     },
-    {
-      component: "description",
-      text: "Tailwind has many font styling options including font colour, size, spacing, and hover effects. Sizing options incllude text-sm, text-md, text-lg, text-xl, text-2xl, etc. Font colour is styled using text-colour-numfrom0to900. ",
-    },
+
     {
       component: "description",
       text: "Hover your mouse over the second last paragraph. Modify line 15 so the text colour is purple-500 when you hover over it.  ",
