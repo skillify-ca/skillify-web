@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import Image from "next/image";
+import React from "react";
 import { Sandpack } from "@codesandbox/sandpack-react";
 import HintRow from "./HintRow";
 import AssignmentInputBox from "./AssignmentInputBox";
+import ExpandableContainer from "../ExpandableContainer";
+import TemplateInputBox from "./TemplateInputBox";
 
 export type Hint = {
   description: string;
@@ -19,11 +22,16 @@ export type AssignmentComponentData =
     }
   | {
       component: "prompt";
-      text: string;
+      header: string;
+      bullets: string[];
     }
   | {
       component: "hint-list";
       hintRow: Hint[];
+    }
+  | {
+      component: "description";
+      text: string;
     }
   | {
       component: "output";
@@ -55,6 +63,10 @@ export type AssignmentComponentData =
       component: "completed";
       text: string;
       image?: string;
+    }
+  | {
+      component: "template";
+      templateLink: string;
     };
 
 export type AssignmentComponentProps = {
@@ -63,28 +75,20 @@ export type AssignmentComponentProps = {
 export default function AssignmentComponent({
   data,
 }: AssignmentComponentProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const activeSectionStyling = () => {
-    let styling = "font-thin text-2xl";
-    if (!isOpen) {
-      styling = styling + " text-black-500 hover:text-slate-500";
-    } else {
-      styling = styling + " text-slate-500 hover:text-black-500";
-    }
-    return styling;
-  };
-
   if (data.component === "title") {
-    return <h1 className="text-5xl font-thin">{data.text}</h1>;
+    return <h1 className="text-3xl font-semibold">{data.text}</h1>;
   } else if (data.component === "prompt") {
     return (
-      <>
-        <div className="flex cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
-          <h1 className={activeSectionStyling()}>Directions</h1>
+      <ExpandableContainer open={true} title="Directions">
+        <div className="flex flex-col mx-4">
+          <p className="text-lg">{data.header}</p>
+          <ul className="text-md list-outside list-disc ml-10 space-y-2">
+            {data.bullets.map((item, index) => {
+              return <li key={index}>{item}</li>;
+            })}
+          </ul>
         </div>
-        {!isOpen && <p className="text-lg">{data.text}</p>}
-      </>
+      </ExpandableContainer>
     );
   } else if (data.component === "completed") {
     return <p>{data.text}</p>;
@@ -99,82 +103,62 @@ export default function AssignmentComponent({
     );
   } else if (data.component === "hint-list") {
     return (
-      <>
-        <div className="flex cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
-          <h1
-            className={
-              isOpen
-                ? "font-thin text-2xl text-black-500 animate-none hover:text-slate-500"
-                : "font-thin text-2xl text-slate-500 animate-pulse hover:text-black-500"
-            }
-          >
-            Hints...{" "}
-          </h1>
+      <ExpandableContainer open={false} title="Hints">
+        <div className="flex flex-col mx-4 space-y-4 text-lg">
+          <p>Click below to reveal hints</p>
+          {data.hintRow.map((it, index) => (
+            <HintRow key={index} description={it.description} link={it.link} />
+          ))}
         </div>
-        {isOpen && (
-          <div className="flex flex-col">
-            {data.hintRow.map((it, index) => (
-              <HintRow
-                key={index}
-                description={it.description}
-                link={it.link}
-              />
-            ))}
-          </div>
-        )}
-      </>
+      </ExpandableContainer>
+    );
+  } else if (data.component === "template") {
+    return (
+      <ExpandableContainer open={true} title="Assignment Template">
+        <TemplateInputBox templateLink={data.templateLink} />
+      </ExpandableContainer>
     );
   } else if (data.component === "submission") {
     return (
       <>
-        <div className="flex cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
-          <h1 className={activeSectionStyling()}>Submission</h1>
-        </div>
-        {!isOpen && (
-          <>
-            <h1 className="text-lg">{data.codeSandboxTitle}</h1>
+        <ExpandableContainer open={true} title="Submission">
+          <div className="mx-4">
+            <p className="text-lg">{data.codeSandboxTitle}</p>
             <AssignmentInputBox
               placeholder={data.placeholder}
               assignmentId={data.assignmentId}
-            />{" "}
-          </>
-        )}
+            />
+          </div>
+        </ExpandableContainer>
       </>
     );
   } else if (data.component === "output") {
     return (
-      <>
-        <div className="flex cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
-          <h1 className={activeSectionStyling()}>Example</h1>
+      <ExpandableContainer open={true} title="Example">
+        <div className="flex flex-col space-y-4 mx-4 text-lg">
+          <p>Your submission should look close to the following:</p>
+          {data.screenshotOrVideoId.includes(".") ? (
+            <div className="h-96 w-96 relative">
+              <Image src={data.screenshotOrVideoId} layout="fill" />
+            </div>
+          ) : (
+            <iframe
+              src={`https://www.loom.com/embed/${data.screenshotOrVideoId}`}
+              webkit-allowfullscreen
+              moz-allowfullscreen
+              allowFullScreen
+              className="w-full h-96"
+            />
+          )}
         </div>
-        {!isOpen && (
-          <div>
-            {data.screenshotOrVideoId.includes(".") ? (
-              <img
-                src={data.screenshotOrVideoId}
-                className="object-cover w-64 h-32 mb-8"
-              />
-            ) : (
-              <iframe
-                src={`https://www.loom.com/embed/${data.screenshotOrVideoId}`}
-                frameBorder="0"
-                webkit-allowfullscreen
-                moz-allowfullscreen
-                allowFullScreen
-                className="w-full h-96"
-              />
-            )}
-          </div>
-        )}
-      </>
+      </ExpandableContainer>
     );
   } else if (data.component === "loom-video") {
     return (
-      <div className="pb-56 mb-8 h-96">
-        {data.text && <p>{data.text}</p>}
+      <div className="flex flex-col space-y-4 text-xl font-bold ">
+        <p>{data.text}</p>
         <iframe
           src={`https://www.loom.com/embed/${data.videoId}`}
-          frameBorder="0"
           webkit-allowfullscreen
           moz-allowfullscreen
           allowFullScreen
@@ -182,6 +166,8 @@ export default function AssignmentComponent({
         />
       </div>
     );
+  } else if (data.component === "description") {
+    return <p className="whitespace-pre-line">{data.text}</p>;
   } else {
     return <h1>{data.component}</h1>;
   }

@@ -1,3 +1,5 @@
+
+import { HeartIcon } from "@heroicons/react/solid";
 import React from "react";
 import Head from "next/head";
 import Card from "../../components/coding/Card";
@@ -43,6 +45,7 @@ export default function Blog() {
               }
               link={"/blog/making-the-leap-into-development"}
               color={2}
+
             />
           </div>
           <div>

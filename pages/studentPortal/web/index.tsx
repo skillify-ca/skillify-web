@@ -1,24 +1,15 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { transform } from "lodash";
+
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 
-import { useSelector } from "react-redux";
 import PageHeader from "../../../components/coding/PageHeader";
 import UnitView from "../../../components/coding/studentPortal/UnitView";
 import { FETCH_USER_INTRO_NODES } from "../../../graphql/coding/fetchUserIntroNodes";
-import {
-  INIT_USER_INTRO_NODES,
-  objects,
-} from "../../../graphql/coding/initUserIntroNodes";
+
 import { UPDATE_USER } from "../../../graphql/updateUser";
 import { useAuth } from "../../../lib/authContext";
-import { courseSelector } from "../../../redux/courseSlice";
-import {
-  reactUnits,
-  interviewUnits,
-  Unit,
-} from "../../api/studentPortal/units";
+import { reactUnits, Unit } from "../../api/studentPortal/units";
 
 export default function StudentPortalPage() {
   const { user } = useAuth();
@@ -53,8 +44,8 @@ export default function StudentPortalPage() {
         description={moment().format("MMM Do YYYY")}
       />
       <div className="grid grid-cols-1 gap-4">
-        {units.map((it) => (
-          <UnitView data={it} />
+        {units.map((it, index) => (
+          <UnitView key={index} data={it} />
         ))}
       </div>
     </div>

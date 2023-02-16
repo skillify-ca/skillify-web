@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Facebook from "../components/Facebook";
 import SEO from "../components/SEO";
 import LandingNavbar from "../components/LandingNavbar";
 import LandingPage, {
