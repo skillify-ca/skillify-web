@@ -33,25 +33,23 @@ export default function Page() {
           Tailwind/CSS styles display as intended is to use a few simple and
           inexpensive unit tests. This method of testing can save both time and
           resources, while still ensuring the UI remains functional and
-          up-to-date. By running a few well-crafted unit tests, you can make
-          sure your UI is well tested without the need for expensive end-to-end
-          testing.
+          up-to-date.
         </p>
         <p>
           At Skillify, we believe in providing our students with all the support
           they need to reach their goals. As part of our coaching program,
           students are required to set regular goals, which are then shared with
           instructors to help with tracking progress. To ensure the code is
-          well-protected, we shipped this feature with the help of Jest +
+          well-protected, we shipped the goals feature with the help of jest +
           Function testing.
         </p>
         <p>
-          Here’s how we did it at Skillify: first, we created a series of tests
+          Here’s how we did it at Skillify: first, I created a series of tests
           to ensure the UI was working as expected. This included verifying user
           input fields, making sure data was being stored correctly and that any
           changes made to the code didn't alter the intended UI. We then ran the
-          tests and checked the output to make sure everything was functioning
-          as it should.
+          tests and checked the output of our function to make sure everything
+          was working as expected.
         </p>
         <p>
           This is how the goals feature appears for instructors and students
@@ -88,12 +86,12 @@ export default function Page() {
           I query a list of user goals from our GraphQL API and pass each goal
           in the list through a function called returnGoalStyle. Goals have
           various properties like Title, Date Added, and Target Completion Date.
-          It is based off of the Target Completion Date that we conditionally
-          highlight the goal with Tailwind classes.
+          The Target Completion Date property controls the conditional
+          highlighting for each goal with Tailwind classes.
         </p>
         <p>
-          How can I test that the correct colour is used for a specific goal?
-          How can I validate this behaviour in fast-to-run unit tests, vs slower
+          How can I test that the correct color is used for a specific goal? How
+          can I validate this behavior in fast-to-run unit tests, vs slower
           end-to-end tests?
         </p>
         <p>
@@ -102,8 +100,8 @@ export default function Page() {
           yellow background.
         </p>
         <p>
-          More specifically I wrote tests that ensure that the styles of the
-          goals contained the tailwind class `bg-yellow-300`. Checking for the
+          More specifically, I wrote tests that ensure that the styles of the
+          goals contained the Tailwind class `bg-yellow-300`. Checking for the
           existence of a string inside a unit test is so much faster than having
           to spin up an entire end-to-end test to verify that a
           {JSON.stringify("<div>")} element has a yellow background.
@@ -111,19 +109,6 @@ export default function Page() {
         <p>
           The full returnGoalStyle function I attached in the End Notes for
           additional context and your full viewing pleasure!
-        </p>
-        <h2 className="text-3xl font-thin">
-          Give it to me straight. What’s the UPSIDE for jest testing for
-          tailwind classes?
-        </h2>
-        <p>
-          Jest testing is a quick, cheap, and effective way to test your code
-          and provide you with a great sanity check. With Jest testing, you can
-          quickly set up a testing environment that will check your code before
-          production for errors or bugs to ensure that the logic of your
-          function is returning the correct Tailwind classes. This eliminates
-          the need for manual testing and allows you to deploy your code faster
-          and with fewer mistakes.
         </p>
         <h2 className="text-3xl font-thin">So let’s do some jesting!</h2>
         <p>
@@ -140,7 +125,7 @@ export default function Page() {
         </CodeBlock>
         <p>
           Next, to make my jesting experience readable to other jester coders, I
-          define the tailwind class I expect to get as follows:
+          define the Tailwind class I expect to get as follows:
         </p>
         <CodeBlock>
           {`const yellowHighlightStyle = "text-black-500 bg-yellow-300 rounded-xl p-2";`}
@@ -268,7 +253,7 @@ export default function Page() {
         </CodeBlock>
         <p>
           If you’re looking for an efficient way to test complex user interfaces
-          and ensure the best customer experience, consider using a Jest unit
+          and ensure the best customer experience, consider using a jest unit
           test. It’s a powerful tool that can save you time and effort, and
           provide an additional layer of protection for your customers.
         </p>
