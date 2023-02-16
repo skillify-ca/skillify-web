@@ -5,7 +5,11 @@ import LessonComponent, {
 } from "../../../../components/coding/studentPortal/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
 
-const TailwindGridFlex = ({ lessonComponents }) => {
+type LessonProps = {
+  lessonComponents: LessonComponentData[];
+};
+
+const TailwindGridFlex = ({ lessonComponents }: LessonProps) => {
   const router = useRouter();
 
   const handleContinue = () => {
@@ -25,7 +29,7 @@ const TailwindGridFlex = ({ lessonComponents }) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps() {
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
