@@ -77,6 +77,7 @@ export async function getServerSideProps() {
       component: "description",
       text: "Grid can be used to format a two-dimensional layout while Flexbox is designed to style only a one-dimensional layout. Additionally, if you are looking to carefully place an element on the page in a specific location you should use grid. The code sandbox example above demonstrates how to use grid-cols-5 on line 5, to create a table with 5 columns.",
     },
+
     {
       component: "description",
       text: "Try changing the grid styling to grid-cols-4 in the code sandbox above to display four columns instead, and delete any unnecessary elements so each column only contains four elements.",
@@ -86,9 +87,14 @@ export async function getServerSideProps() {
       title: "Flex Navbar Example",
       link: "https://codesandbox.io/embed/flex-navbar-t18uqx?fontsize=14&hidenavigation=1&theme=dark",
     },
+
     {
       component: "description",
-      text: "Flexbox controls the flow of elements. In the code sandbox example above, flex justify-end is being used to style a navbar to be justified on the top-right of the page. ",
+      text: "Flexbox controls the flow of elements. It differs from a grid in that it's not fixed to a number of columns. If you put six elements inside a flex container, it will space them all within that same row. If you do the same in a five column grid, the 6th element will shift into the next row.",
+    },
+    {
+      component: "description",
+      text: "You can add different Tailwind classes to adjust the positioning of items in a flex container. In the code sandbox example above, flex justify-end is being used to style a navbar to be justified on the top-right of the page. ",
     },
     {
       component: "description",

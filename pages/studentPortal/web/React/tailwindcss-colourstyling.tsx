@@ -58,7 +58,7 @@ export async function getServerSideProps() {
     },
     {
       component: "description",
-      text: "TailwindCSS can add colour to the backgroud of a page, and can modify the text colour, size, and emphasis. ",
+      text: "TailwindCSS can add colour to the background of a page, and can modify the text colour, size, and emphasis. ",
     },
     {
       component: "code-sandbox",
