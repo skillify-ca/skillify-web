@@ -1,6 +1,5 @@
 import React from "react";
 import LandingNavbar from "../../LandingNavbar";
-import React from "react";
 export type PostLayoutProps = {
   children: React.ReactNode;
 };
