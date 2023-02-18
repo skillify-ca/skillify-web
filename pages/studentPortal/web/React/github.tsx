@@ -44,6 +44,13 @@ export async function getServerSideProps({ params }) {
           link: "https://github.com/login",
         },
         {
+          title: "Github Desktop",
+          description:
+            "Click 'View' for the download links for Github Desktop.",
+          image: "https://desktop.github.com/images/desktop-icon.svg",
+          link: "https://desktop.github.com/",
+        },
+        {
           title: "Vercel",
           description:
             "The official Vercel site.  Click 'View' to Login and create an account.",
@@ -53,15 +60,8 @@ export async function getServerSideProps({ params }) {
       ],
     },
     {
-      component: "code-snippet",
-      text: "The following is a function that returns the text `Hello World`:",
-      code: `export default function HelloComponent() {
-  return <div>Hello World</div>;
-}`,
-    },
-    {
       component: "description",
-      text: "We can use functional components to make our code cleaner and less repeatable. Take a look at this basic HTML page displaying a table of expenses:",
+      text: "Lucky has become the master of deployment for Skillify.  Watch the video below and follow his steps to deploy your first project!",
     },
     {
       component: "loom-video",
@@ -69,48 +69,11 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "This code works but it's tedious. Imagine if we had to repeat the <p> tag 100 or 1000 times. What if we made a function component for each row?",
-    },
-    {
-      component: "code-snippet",
-      text: "We could create a `Header` function component for the header:",
-      code: `export default function ExpenseHeader() {
-  return (
-    <div className="flex flex-row space-x-2">
-      <p>date</p>
-      <p>name</p>
-      <p>amount</p>
-      <p>type</p>
-    </div>
-  );
-}`,
-    },
-    {
-      component: "code-snippet",
-      text: "We could create a `ExpenseRow` function component for each row:",
-      code: `export default function ExpenseItemOne() {
-  return (
-    <div className="flex flex-row space-x-2">
-      <p>2022-10-01</p>
-      <p>Restaurant</p>
-      <p>50.23</p>
-      <p>Eating Out</p>
-    </div>
-  );
-}`,
+      text: "If you saw the confetti on Vercel after following Lucky's directions, congratulations!! You're up and running and all you need to do is send your vercel link to your instructor to submit your first deployed assignment!",
     },
     {
       component: "description",
-      text: "Putting this all together, we have much cleaner code: ",
-    },
-    {
-      component: "code-sandbox",
-      title: "Cleaner, Componentized HTML Budget",
-      link: "https://codesandbox.io/embed/skillify-componentized-react-page-z1hego?fontsize=14&hidenavigation=1&theme=dark",
-    },
-    {
-      component: "description",
-      text: "This is much cleaner but we still have to write a new component for each row. The next lesson will cover props, which will allow us to make a reusable row component",
+      text: "If you're still having trouble, no worries!  Feel free to reach out to troubleshoot by slack messaging a fellow classmate or booking a coaching session through the portal.",
     },
   ];
   return { props: { lessonComponents } };
