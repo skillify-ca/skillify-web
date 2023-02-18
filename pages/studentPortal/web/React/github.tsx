@@ -43,16 +43,14 @@ export async function getServerSideProps({ params }) {
           image: "/images/lessons/github-mark.png",
           link: "https://github.com/login",
         },
+        {
+          title: "Vercel",
+          description:
+            "The official Vercel site.  Click 'View' to Login and create an account.",
+          image: "https://assets.vercel.com/image/upload/front/zeit/og.png",
+          link: "https://vercel.com/login",
+        },
       ],
-    },
-    {
-      component: "image",
-      image: "/images/lessons/createRepository.png",
-    },
-    {
-      component: "list",
-      title: "Follow the steps below to create a repository.",
-      items: ["Click on the green button labeled 'New'", "Hello", "You"],
     },
     {
       component: "code-snippet",
@@ -66,9 +64,8 @@ export async function getServerSideProps({ params }) {
       text: "We can use functional components to make our code cleaner and less repeatable. Take a look at this basic HTML page displaying a table of expenses:",
     },
     {
-      component: "code-sandbox",
-      title: "HTML Budget",
-      link: "https://codesandbox.io/embed/skillify-messy-web-page-xk00mt?fontsize=14&hidenavigation=1&theme=dark",
+      component: "loom-video",
+      videoId: "afe5fda5eb4a485282a115efd5efb212",
     },
     {
       component: "description",
