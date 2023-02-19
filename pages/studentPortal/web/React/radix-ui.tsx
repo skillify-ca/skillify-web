@@ -19,6 +19,7 @@ import {
   Close,
 } from "@radix-ui/react-dialog";
 import React, { useEffect, useState } from "react";
+import TooltipComponent from "../../../../components/coding/studentPortal/radix/TooltipComponent";
 
 const ProgressDemo = () => {
   const [progress, setProgress] = useState(13);
@@ -45,26 +46,12 @@ const ProgressDemo = () => {
           />
         </Root>
       </div>
-      <div>
-        <Provider>
-          <TooltipRoot>
-            <Trigger asChild>
-              <button className="text-blue-500 shadow-black-500 hover:bg-purple-200 inline-flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0_2px_10px] outline-none focus:shadow-[0_0_0_2px] focus:shadow-black-300">
-                <PlusCircleIcon />
-              </button>
-            </Trigger>
-            <Portal>
-              <Content
-                className="data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade text-blue-500 select-none rounded-[4px] bg-white px-[15px] py-[10px] text-[15px] leading-none shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] will-change-[transform,opacity]"
-                sideOffset={5}
-              >
-                Access Denied. Pony up the cash, please.
-                <Arrow className="fill-white" />
-              </Content>
-            </Portal>
-          </TooltipRoot>
-        </Provider>
-      </div>
+      <TooltipComponent message="Help me." userRole={"student"} open={false}>
+        <button className="text-blue-500 shadow-black-500 hover:bg-purple-200 inline-flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0_2px_10px] outline-none focus:shadow-[0_0_0_2px] focus:shadow-black-300">
+          <PlusCircleIcon />
+        </button>
+      </TooltipComponent>
+
       <div>
         <DialogRoot>
           <DialogTrigger asChild>
