@@ -2,6 +2,7 @@ import React from "react";
 import Quiz from "./quiz/Quiz";
 import ResourceRow from "./ResourceRow";
 import { Sandpack } from "@codesandbox/sandpack-react";
+import AssignmentInputBox from "./AssignmentInputBox";
 
 export type Resource = {
   title: string;
@@ -35,6 +36,13 @@ export type LessonComponentData =
   | {
       component: "loom-video";
       videoId: string;
+    }
+  | {
+      component: "submission";
+      codeSandboxTitle: string;
+      link: string;
+      placeholder: string;
+      assignmentId: string;
     }
   | {
       component: "video";
@@ -72,6 +80,19 @@ export default function LessonComponent({ data }: LessonComponentProps) {
           <Sandpack template="react-ts" files={{ "App.tsx": data.code }} />
         </pre>
       </div>
+    );
+  }
+  if (data.component === "submission") {
+    return (
+      <>
+        <div className="mx-4">
+          <p className="text-lg">{data.codeSandboxTitle}</p>
+          <AssignmentInputBox
+            placeholder={data.placeholder}
+            assignmentId={data.assignmentId}
+          />
+        </div>
+      </>
     );
   }
   if (data.component === "resource-list") {

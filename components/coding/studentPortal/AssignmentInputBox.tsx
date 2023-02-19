@@ -33,7 +33,9 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
   );
 
   const handleValidationOnClick = () => {
-    const isValidSubmission = submissionInput.includes("codesandbox.io/");
+    const isValidSubmission =
+      submissionInput.includes("codesandbox.io/") ||
+      submissionInput.includes("vercel.app");
 
     if (isValidSubmission) {
       saveAssignmentInput({
@@ -42,7 +44,7 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
         },
       });
     } else {
-      alert("Please submit a valid codesandbox link");
+      alert("Please submit a valid codesandbox/vercel link");
     }
   };
 

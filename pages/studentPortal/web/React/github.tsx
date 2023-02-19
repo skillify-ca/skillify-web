@@ -61,7 +61,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Lucky has become the master of deployment for Skillify.  Watch the video below and follow his steps to deploy your first project!",
+      text: "After helping many fellow Skillifyers, Lucky has become Skillify's master of deployment.  Watch the video below and follow his steps to deploy your test project!",
     },
     {
       component: "loom-video",
@@ -69,11 +69,19 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "If you saw the confetti on Vercel after following Lucky's directions, congratulations!! You're up and running and all you need to do is send your vercel link to your instructor to submit your first deployed assignment!",
+      text: "Got confetti of your own? Congratulations!! You're up and running.",
+    },
+
+    {
+      component: "submission",
+      codeSandboxTitle: "Submit your link below",
+      link: "",
+      placeholder: "Vercel Link",
+      assignmentId: "f738a8da-fb43-4728-9622-8064ab14be2e",
     },
     {
       component: "description",
-      text: "If you're still having trouble, no worries!  Feel free to reach out to troubleshoot by slack messaging a fellow classmate or booking a coaching session through the portal.",
+      text: "Still having trouble? No worries! Feel free to slack message a fellow classmate or book a coaching session through the portal via the Coaches tab.",
     },
   ];
   return { props: { lessonComponents } };
