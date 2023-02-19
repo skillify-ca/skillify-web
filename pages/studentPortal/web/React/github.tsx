@@ -7,7 +7,7 @@ import LessonComponent, {
 import { Button } from "../../../../components/ui/Button";
 import Navbar from "../../../../components/ui/Navbar";
 
-const React2 = ({ lessonComponents }) => {
+const Github = ({ lessonComponents }) => {
   const router = useRouter();
 
   const handleContinue = () => {
@@ -61,7 +61,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "After helping many fellow Skillifyers, Lucky has become Skillify's master of deployment.  Watch the video below and follow his steps to deploy your test project!",
+      text: "Watch the video below and follow Lucky's steps to deploy your test assignment!",
     },
     {
       component: "loom-video",
@@ -69,7 +69,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Got confetti of your own? Congratulations!! You're up and running.",
+      text: "Saw your own confetti? Congratulations!! You're up and running.",
     },
 
     {
@@ -87,4 +87,4 @@ export async function getServerSideProps({ params }) {
   return { props: { lessonComponents } };
 }
 
-export default React2;
+export default Github;
