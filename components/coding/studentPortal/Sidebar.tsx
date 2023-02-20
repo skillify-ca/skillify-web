@@ -16,6 +16,7 @@ import {
   SidebarPage,
 } from "../../../redux/sidebarSlice";
 import SkillifyCommandPalette from "../../CommandPalette";
+import ProgressBarComponent from "./radix/ProgressBarComponent";
 import TooltipComponent from "./radix/TooltipComponent";
 interface SidebarItemProps {
   name: string;
@@ -132,6 +133,14 @@ export const Sidebar: React.FC = () => {
             <div className="w-full">
               <p className="w-full ml-4 font-bold">{user.displayName}</p>
               <p className="ml-4 font-medium capitalize">{userRole}</p>
+              <div>
+                {" "}
+                <ProgressBarComponent
+                  elapsedDays={2}
+                  totalTrialDays={30}
+                  size={"small"}
+                />
+              </div>
             </div>
           )}
         </div>

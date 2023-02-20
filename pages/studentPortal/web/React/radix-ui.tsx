@@ -20,6 +20,8 @@ import {
 } from "@radix-ui/react-dialog";
 import React, { useEffect, useState } from "react";
 import TooltipComponent from "../../../../components/coding/studentPortal/radix/TooltipComponent";
+import ProgressBarComponent from "../../../../components/coding/studentPortal/radix/ProgressBarComponent";
+import ProgressSlider from "../../../../components/coding/studentPortal/radix/ProgressSlider";
 
 const ProgressDemo = () => {
   const [progress, setProgress] = useState(13);
@@ -31,6 +33,12 @@ const ProgressDemo = () => {
 
   return (
     <div className="space-y-10">
+      <ProgressBarComponent
+        elapsedDays={24}
+        totalTrialDays={30}
+        size={"medium"}
+      />
+      <ProgressSlider />
       <div className="items-center bg-gray-400">
         This is the progress bar
         <Root
@@ -46,7 +54,7 @@ const ProgressDemo = () => {
           />
         </Root>
       </div>
-      <TooltipComponent message="Help me." userRole={"student"} open={false}>
+      <TooltipComponent message="Help me." active={false}>
         <button className="text-blue-500 shadow-black-500 hover:bg-purple-200 inline-flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0_2px_10px] outline-none focus:shadow-[0_0_0_2px] focus:shadow-black-300">
           <PlusCircleIcon />
         </button>
