@@ -33,6 +33,20 @@ export default function Blog() {
         <div className="flex flex-col items-center w-full">
           <div className="grid items-center w-full grid-cols-1 gap-16 p-4 sm:grid-cols-2 lg:grid-cols-3">
             <div>
+              <h4>February 8, 2023</h4>
+              <Card
+                title={"Making The Leap into Development"}
+                image={
+                  "https://images.unsplash.com/photo-1520371764250-8213f40bc3ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGVhcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=2000&q=60"
+                }
+                description={
+                  "Skillify students experience transitioning into software development"
+                }
+                link={"/blog/making-the-leap-into-development"}
+                color={2}
+              />
+            </div>
+            <div>
               <h4>February 10, 2023</h4>
               <Card
                 title={

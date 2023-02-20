@@ -21,8 +21,8 @@ export default function Page() {
             ones that don't
           </h1>
           <p className="pt-10 font-semibold text-center ">
-            The system I provide in The Skillify Bootcamp helps you learn to
-            code in a way that eliminates stress and will impress employers. By
+            The system I provide in The Skillify Academy helps you learn to code
+            in a way that eliminates stress and will impress employers. By
             simply working through our course content and meeting with our
             expert mentors, you instantly set yourself up for a career in tech.
           </p>
@@ -39,11 +39,8 @@ export default function Page() {
             <h1 className="p-16 text-4xl font-bold text-center text-gray-900  ">
               Traditional coding bootcamps don't deliver on their promises
             </h1>
-            <h2 className = "mx-16 border-t-2  border-solid border-black-500">
+            <h2 className="mx-16 border-t-2  border-solid border-black-500"></h2>
 
-            </h2>
-
-          
             <div className="pt-16 pb-16 pl-16">
               <p className="font-bold">
                 Because they realized that it was too easy to make a quick sale
@@ -76,23 +73,17 @@ export default function Page() {
               get a job at your dream company... it's also the fastest way to
               get hired at ANY company
             </h1>
-            <h2 className = "mx-16 border-t-2 border-solid border-black-500">
-
-            </h2>
+            <h2 className="mx-16 border-t-2 border-solid border-black-500"></h2>
 
             <h1 className="pt-20 pb-16 text-4xl font-bold text-center text-gray-900 ">
               What if you don't adapt ?
             </h1>
-            <h2 className = "mx-16 border-t-2  border-solid border-black-500">
-
-            </h2>
+            <h2 className="mx-16 border-t-2  border-solid border-black-500"></h2>
             <h1 className="pt-20 pb-16 text-4xl text-center text-gray-900 ">
               We are in the midst of The Great Resignation
             </h1>
-            <h2 className = "mx-16 border-t-2 border-solid border-black-500">
+            <h2 className="mx-16 border-t-2 border-solid border-black-500"></h2>
 
-            </h2>
-            
             <p className="pt-16 text-center">
               <b>
                 {" "}
