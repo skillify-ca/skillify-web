@@ -1,7 +1,5 @@
-import Link from "next/link";
-import { useEffect, useState } from "react";
 import { Button } from "../../ui/Button";
-import Modal from "./modal/Modal";
+import React from "react";
 
 type HeroProps = {
   headerText: HighlightableText[];
@@ -19,8 +17,11 @@ export default function Hero({ headerText, description }: HeroProps) {
       <div className="grid grid-cols-1 sm:grid-cols-2">
         <div className="p-8 lg:p-16 md:text-center lg:text-left">
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-            {headerText.map((line) => (
-              <span className={`${line.highlight ? "text-charmander" : ""}`}>
+            {headerText.map((line, i) => (
+              <span
+                key={i}
+                className={`${line.highlight ? "text-charmander" : ""}`}
+              >
                 {line.text}{" "}
               </span>
             ))}

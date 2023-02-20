@@ -21,6 +21,8 @@ module.exports = {
         hit: "hit 1s ease-in-out",
         fadeIn: "fadeIn 2s ease-in-out",
         fadeIn_half: "fadeInHalf 1s ease-in-out",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
       colors: {
         charmander: "#F18701",
@@ -64,6 +66,14 @@ module.exports = {
         "resource-row": "100px 1fr 236px",
       },
       keyframes: {
+        "accordion-down": {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
+        },
         shake: {
           "0%, 100%": { transform: "rotate(0deg)" },
           "25%, 75%": { transform: "rotate(-3deg)" },
