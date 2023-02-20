@@ -15,10 +15,10 @@ const ProgressBarComponent: React.FC<ProgressBarComponentProps> = ({
   let barSize;
   switch (size) {
     case "small":
-      barSize = "w-[120px] h-[8px]";
+      barSize = "w-[100x] h-[8px]";
       break;
     case "medium":
-      barSize = "w-[150px] h-[14px]";
+      barSize = "w-[225px] h-[14px]";
       break;
     case "large":
       barSize = "w-[300px] h-[25px]";

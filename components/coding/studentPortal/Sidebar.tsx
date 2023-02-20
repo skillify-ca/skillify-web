@@ -133,13 +133,14 @@ export const Sidebar: React.FC = () => {
             <div className="w-full">
               <p className="w-full ml-4 font-bold">{user.displayName}</p>
               <p className="ml-4 font-medium capitalize">{userRole}</p>
-              <div>
+              <div className="space-y-1 items-start">
                 {" "}
                 <ProgressBarComponent
-                  elapsedDays={2}
+                  elapsedDays={20}
                   totalTrialDays={30}
                   size={"small"}
                 />
+                <p className="text-xs">10/30 days remaining</p>
               </div>
             </div>
           )}
