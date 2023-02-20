@@ -1,8 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import Card from "../../components/coding/Card";
 import LandingNavbar from "../../components/LandingNavbar";
-import Image from "next/image";
 import BlogPostCard from "../../components/coding/BlogPostCard";
 export default function Blog() {
   const blogData = [

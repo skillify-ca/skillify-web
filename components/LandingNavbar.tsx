@@ -1,15 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import CountdownTimer from "./CountdownTimer";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "./NavigationMenu";
 
 type LandingNavbarProps = {
   showTimer?: boolean;
@@ -21,19 +12,7 @@ export default function LandingNavbar({ showTimer }: LandingNavbarProps) {
         <Link href={"/"}>
           <img src="/images/logo.svg" className="cursor-pointer w-28 sm:w-40" />
         </Link>
-        <div>
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <Link href="/blog" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    <p className="font-bold text-md text-murkrow">Blog</p>
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-        </div>
+        <div></div>
         <div className="flex items-center gap-4">
           <div className="">
             <a
