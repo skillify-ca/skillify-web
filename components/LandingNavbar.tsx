@@ -27,7 +27,7 @@ export default function LandingNavbar({ showTimer }: LandingNavbarProps) {
               <NavigationMenuItem>
                 <Link href="/blog" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    <p className="text-md">Blog</p>
+                    <p className="font-bold text-md text-murkrow">Blog</p>
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
