@@ -2,7 +2,7 @@ import React from "react";
 import Quiz from "./quiz/Quiz";
 import ResourceRow from "./ResourceRow";
 import { Sandpack } from "@codesandbox/sandpack-react";
-import AssignmentInputBox from "./AssignmentInputBox";
+import WebhookInputBox from "../../ui/WebhookInputBox";
 
 export type Resource = {
   title: string;
@@ -87,7 +87,7 @@ export default function LessonComponent({ data }: LessonComponentProps) {
       <>
         <div className="mx-4">
           <p className="text-lg">{data.codeSandboxTitle}</p>
-          <AssignmentInputBox
+          <WebhookInputBox
             placeholder={data.placeholder}
             assignmentId={data.assignmentId}
           />

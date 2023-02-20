@@ -77,7 +77,7 @@ export async function getServerSideProps({ params }) {
       codeSandboxTitle: "Submit your link below",
       link: "",
       placeholder: "Vercel Link",
-      assignmentId: "f738a8da-fb43-4728-9622-8064ab14be2e",
+      assignmentId: "github-vercel",
     },
     {
       component: "description",
