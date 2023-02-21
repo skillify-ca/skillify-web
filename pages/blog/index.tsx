@@ -1,7 +1,7 @@
+
 import { HeartIcon } from "@heroicons/react/solid";
 import React from "react";
 import Head from "next/head";
-import Link from "next/link";
 import Card from "../../components/coding/Card";
 import LandingNavbar from "../../components/LandingNavbar";
 
@@ -34,7 +34,7 @@ export default function Blog() {
 
         <div className="grid items-center w-full grid-cols-1 gap-16 p-4 sm:grid-cols-2 lg:grid-cols-3">
           <div>
-            <h4>February 10, 2023</h4>
+            <h4>February 8, 2023</h4>
             <Card
               title={"Jest + Function Testing"}
               image={"/images/blog/jest-function-testing/software_testing.jpeg"}
@@ -43,6 +43,7 @@ export default function Blog() {
               }
               link={"/blog/jest-function-testing"}
               color={5}
+=
             />
           </div>
           <div>
@@ -57,6 +58,7 @@ export default function Blog() {
               color={2}
             />
           </div>
+
           <div>
             <h4>August 14, 2022</h4>
             <Card
