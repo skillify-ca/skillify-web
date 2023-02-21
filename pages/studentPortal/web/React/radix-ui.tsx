@@ -54,7 +54,7 @@ const ProgressDemo = () => {
           />
         </Root>
       </div>
-      <TooltipComponent message="Help me." active={false}>
+      <TooltipComponent message="Help me." active={true}>
         <button className="text-blue-500 shadow-black-500 hover:bg-purple-200 inline-flex h-[35px] w-[35px] items-center justify-center rounded-full bg-white shadow-[0_2px_10px] outline-none focus:shadow-[0_0_0_2px] focus:shadow-black-300">
           <PlusCircleIcon />
         </button>
