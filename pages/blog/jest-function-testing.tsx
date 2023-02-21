@@ -2,7 +2,6 @@ import React from "react";
 import CodeBlock from "../../components/coding/blog/CodeBlock";
 import PostLayout from "../../components/coding/blog/PostLayout";
 import SEO from "../../components/SEO";
-
 export default function Page() {
   return (
     <div>
