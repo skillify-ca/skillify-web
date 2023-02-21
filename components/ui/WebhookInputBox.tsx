@@ -18,7 +18,7 @@ export const WebhookInputBox: React.FC<WebhookInputBoxProps> = ({
 
     if (isValidSubmission) {
       const webhookUrl =
-        "https://hooks.slack.com/services/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";
+        "https://hooks.slack.com/services/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";
 
       axios
         .post(webhookUrl, {
