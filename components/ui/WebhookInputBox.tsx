@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Button } from "./Button";
 
 export interface WebhookInputBoxProps {
@@ -13,25 +12,15 @@ export const WebhookInputBox: React.FC<WebhookInputBoxProps> = ({
 }: WebhookInputBoxProps) => {
   const [submissionInput, setSubmissionInput] = useState("");
 
-  const handleValidationOnClick = () => {
+  const sendSlackNotification = async () => {
     const isValidSubmission = submissionInput.includes("vercel.app");
 
     if (isValidSubmission) {
-      const webhookUrl =
-        "https://hooks.slack.com/services/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";
+      const response = await fetch(`/api/slack/${submissionInput}`);
 
-      axios
-        .post(webhookUrl, {
-          text: `New submission for assignment ${assignmentId}: ${submissionInput}`,
-        })
-        .then((response) => {
-          console.log(response);
-          alert("Success!  A coach will be updated on your progress!");
-        })
-        .catch((error) => {
-          console.log(error);
-          alert("There was an error sending your submission.");
-        });
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
     } else {
       alert("Please submit a valid codesandbox/vercel link");
     }
@@ -52,7 +41,7 @@ export const WebhookInputBox: React.FC<WebhookInputBoxProps> = ({
         }}
       />
       <div className="col-start-1">
-        <Button label="Save" onClick={handleValidationOnClick} />
+        <Button label="Save" onClick={sendSlackNotification} />
       </div>
     </div>
   );
