@@ -75,7 +75,7 @@ const HomePage = () => {
       <SEO
         title={"Skillify"}
         description={
-          "Toronto's best coding bootcamp for online learning! We teach high demand skills to help you get hired in the tech industry."
+          "Toronto's best coding academy for online learning! We teach high demand skills to help you get hired in the tech industry."
         }
         image={"https://www.skillify.ca/images/logo.svg"}
       />

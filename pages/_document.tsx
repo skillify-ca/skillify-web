@@ -26,7 +26,7 @@ class MyDocument extends Document {
           <meta
             name="description"
             content={
-              "Toronto's best coding bootcamp for online learning! We teach high demand skills to help you get hired in the tech industry."
+              "Toronto's best coding academy for online learning! We teach high demand skills to help you get hired in the tech industry."
             }
           />
           <meta property="og:title" content={"Skillify"} />
@@ -37,7 +37,7 @@ class MyDocument extends Document {
           <meta
             property="og:description"
             content={
-              "Toronto's best coding bootcamp for online learning! We teach high demand skills to help you get hired in the tech industry."
+              "Toronto's best coding academy for online learning! We teach high demand skills to help you get hired in the tech industry."
             }
           />
           <meta property="og:url" content="https://skillify.ca/" />
