@@ -89,7 +89,7 @@ export default function LessonComponent({ data }: LessonComponentProps) {
           <p className="text-lg">{data.codeSandboxTitle}</p>
           <WebhookInputBox
             placeholder={data.placeholder}
-            assignmentId={data.assignmentId}
+            validationRequirement={"vercel.app"}
           />
         </div>
       </>

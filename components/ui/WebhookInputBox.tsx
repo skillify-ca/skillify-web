@@ -3,17 +3,17 @@ import { Button } from "./Button";
 
 export interface WebhookInputBoxProps {
   placeholder: string;
-  assignmentId: string;
+  validationRequirement: string;
 }
 
 export const WebhookInputBox: React.FC<WebhookInputBoxProps> = ({
   placeholder,
-  assignmentId,
+  validationRequirement,
 }: WebhookInputBoxProps) => {
   const [submissionInput, setSubmissionInput] = useState("");
 
   const sendSlackNotification = async () => {
-    const isValidSubmission = submissionInput.includes("vercel.app");
+    const isValidSubmission = submissionInput.includes(validationRequirement);
 
     if (isValidSubmission) {
       const response = await fetch(`/api/slack/${submissionInput}`);
@@ -22,7 +22,7 @@ export const WebhookInputBox: React.FC<WebhookInputBoxProps> = ({
         throw new Error(`HTTP error: ${response.status}`);
       }
     } else {
-      alert("Please submit a valid codesandbox/vercel link");
+      alert(`Please submit a valid ${validationRequirement} link`);
     }
   };
 
