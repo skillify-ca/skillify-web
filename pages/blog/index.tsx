@@ -1,4 +1,3 @@
-
 import { HeartIcon } from "@heroicons/react/solid";
 import React from "react";
 import Head from "next/head";
@@ -43,7 +42,6 @@ export default function Blog() {
               }
               link={"/blog/jest-function-testing"}
               color={5}
-=
             />
           </div>
           <div>
