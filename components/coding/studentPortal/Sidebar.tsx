@@ -16,6 +16,8 @@ import {
   SidebarPage,
 } from "../../../redux/sidebarSlice";
 import SkillifyCommandPalette from "../../CommandPalette";
+import ProgressBarComponent from "./radix/ProgressBarComponent";
+import TooltipComponent from "./radix/TooltipComponent";
 interface SidebarItemProps {
   name: string;
   link: string;
@@ -32,24 +34,48 @@ const SidebarItem = ({
 }: SidebarItemProps) => {
   const { activePage } = useSelector(activePageSelector);
 
+  let tooltipMessage = "";
+
+  // Set the tooltip message based on the SidebarItem
+  if (page === "dashboard") {
+    tooltipMessage = "Go to Dashboard";
+  } else if (page === "profile") {
+    tooltipMessage = "Go to Profile";
+  } else if (page === "coaches") {
+    tooltipMessage = "Go to Coaches";
+  }
+
   return (
-    <Link href={link}>
-      <div
-        className={`flex flex-wrap items-center p-4 cursor-pointer hover:border-l-4 ${
-          activePage === page ? "border-charmander text-charmander" : ""
-        } hover:border-charmander hover:text-charmander`}
+    <div>
+      <TooltipComponent
+        message={
+          tooltipMessage
+            ? tooltipMessage
+            : "Contact us for info on a paid subscription. I really love coding and I think I want to sign up for the best coding school in the world."
+        }
+        active={true}
       >
         <div>
-          {notifications ? (
-            <div className="relative left-6 top-1 ">
-              <div className="flex w-2 h-2 bg-red-500 rounded-full"></div>
+          <Link href={link}>
+            <div
+              className={`flex flex-wrap items-center p-4 cursor-pointer hover:border-l-4 ${
+                activePage === page ? "border-charmander text-charmander" : ""
+              } hover:border-charmander hover:text-charmander`}
+            >
+              <div>
+                {notifications ? (
+                  <div className="relative left-6 top-1 ">
+                    <div className="flex w-2 h-2 bg-red-500 rounded-full"></div>
+                  </div>
+                ) : null}
+                {icon}
+              </div>
+              {name}
             </div>
-          ) : null}
-          {icon}
+          </Link>
         </div>
-        {name}
-      </div>
-    </Link>
+      </TooltipComponent>
+    </div>
   );
 };
 
@@ -107,6 +133,15 @@ export const Sidebar: React.FC = () => {
             <div className="w-full">
               <p className="w-full ml-4 font-bold">{user.displayName}</p>
               <p className="ml-4 font-medium capitalize">{userRole}</p>
+              <div className="space-y-1 items-start">
+                {" "}
+                <ProgressBarComponent
+                  elapsedDays={20}
+                  totalTrialDays={30}
+                  size={"small"}
+                />
+                <p className="text-xs">10/30 days remaining</p>
+              </div>
             </div>
           )}
         </div>

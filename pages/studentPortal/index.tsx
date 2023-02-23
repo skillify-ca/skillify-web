@@ -16,6 +16,8 @@ import {
 import { UPDATE_USER } from "../../graphql/updateUser";
 import ErrorMessage from "../../components/ui/ErrorMessage";
 import PageHeader from "../../components/coding/PageHeader";
+import DialogComponent from "../../components/coding/studentPortal/radix/DialogComponent";
+import { Portal } from "@radix-ui/react-dialog";
 
 export default function StudentPortalPage() {
   const { user } = useAuth();
@@ -28,6 +30,7 @@ export default function StudentPortalPage() {
     },
   });
   const [units, setUnits] = useState<Unit[]>([]);
+
   useEffect(() => {
     // TODO move this to user onboarding, so we're not re-initializing the nodes on every page load
     if (user) {
@@ -70,6 +73,7 @@ export default function StudentPortalPage() {
         title={`Let's start learning, ${user.displayName}`}
         description={moment().format("MMM Do YYYY")}
       />
+      <DialogComponent />
       <div className="grid grid-cols-1 gap-4">
         {error ? (
           <ErrorMessage message={"Failed to fetch student dashboard"} />
