@@ -45,6 +45,12 @@ const TestimonialSect = () => {
       text: "I have a degree in IT, however, I'm not working in the tech industry. In the course, I got to expand my skills with the help of professionals and was encouraged to ask plenty of questions. The demos and projects were great to showcase what I learned every week.",
       completionDate: "Feb 2022",
     },
+    {
+      studentName: "Lucky H ",
+      img: "/images/landingPage/lakshman.jpg",
+      text: "Skillify helped me transition careers to front end development. Within just 6 months I have become a capable candidate, and I am confident in my ability to secure a software engineering role with Skillify's support! Thank you Vithushan for developing my technical skills, and helping me secure interviews!",
+      completionDate: "Feb 2023",
+    },
   ];
 
   return (
