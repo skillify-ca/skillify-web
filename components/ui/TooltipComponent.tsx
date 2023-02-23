@@ -8,17 +8,15 @@ import {
   Arrow,
 } from "@radix-ui/react-tooltip";
 
-interface TooltipComponentProps {
+export interface TooltipComponentProps {
   message: string;
-  active: boolean;
 }
 
 const TooltipComponent: React.FC<TooltipComponentProps> = ({
   children,
   message,
-  active,
 }) => {
-  return active ? (
+  return (
     <Provider>
       <Root>
         <Trigger asChild>{children}</Trigger>
@@ -35,7 +33,7 @@ const TooltipComponent: React.FC<TooltipComponentProps> = ({
         </Portal>
       </Root>
     </Provider>
-  ) : null;
+  );
 };
 
 export default TooltipComponent;
