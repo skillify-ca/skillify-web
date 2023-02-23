@@ -48,7 +48,7 @@ const TestimonialSect = () => {
     {
       studentName: "Lucky H ",
       img: "/images/landingPage/lakshman.jpg",
-      text: "Skillify helped me transition careers to front end development. Within just 6 months I have become a capable candidate, and I am confident in my ability to secure a software engineering role with Skillify's support! Thank you Vithushan for developing my technical skills, and helping me secure interviews!",
+      text: "Skillify helped me transition careers with their full-stack development coaching. Six monts later I have become a capable candidate for remote frontend engineering roles. Thank you Vithushan for developing my technical skills, and helping me secure interviews!",
       completionDate: "Feb 2023",
     },
   ];
