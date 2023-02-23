@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Button } from "./Button";
+import { Button } from "../../ui/Button";
 
 export interface WebhookInputBoxProps {
   placeholder: string;
   validationRequirement: string;
 }
 
+// Use this input box to send slack notifications
 export const WebhookInputBox: React.FC<WebhookInputBoxProps> = ({
   placeholder,
   validationRequirement,
@@ -27,7 +28,7 @@ export const WebhookInputBox: React.FC<WebhookInputBoxProps> = ({
   };
 
   return (
-    <div className="flex flex-row dark:bg-gray-900 my-4 space-x-4">
+    <div className="flex flex-row my-4 space-x-4 dark:bg-gray-900">
       <input
         className={
           "text-left px-2 border rounded-md shadow-md text-murkrow w-1/2"

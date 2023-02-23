@@ -5,6 +5,7 @@ import { UPSERT_USER_ASSIGNMENT_SUBMISSIONS } from "../../../graphql/upsertUserA
 import { useAuth } from "../../../lib/authContext";
 import { Button } from "../../ui/Button";
 
+// Use this input box to submit assignments and save them to the database
 export interface AssignmentInputBoxProps {
   placeholder: string;
   assignmentId: string;
@@ -47,7 +48,7 @@ export const AssignmentInputBox: React.FC<AssignmentInputBoxProps> = ({
   };
 
   return (
-    <div className="flex flex-row dark:bg-gray-900 my-4 space-x-4">
+    <div className="flex flex-row my-4 space-x-4 dark:bg-gray-900">
       <input
         className={
           "text-left px-2 border rounded-md shadow-md text-murkrow w-1/2"
