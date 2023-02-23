@@ -7,6 +7,7 @@ import {
   Content,
   Arrow,
 } from "@radix-ui/react-tooltip";
+import { getTooltipClass } from "../../../../pages/api/radixClasses/getTooltipClass";
 
 interface TooltipComponentProps {
   message: string;
@@ -18,15 +19,13 @@ const TooltipComponent: React.FC<TooltipComponentProps> = ({
   message,
   active,
 }) => {
-  let tooltipClass =
-    "text-red-500 select-none rounded-[4px] bg-white px-[10px] py-[10px] text-[15px] leading-none shadow-md ring-1 ring-gray-300 will-change-[transform,opacity]";
   return active ? (
     <Provider>
       <Root>
         <Trigger asChild>{children}</Trigger>
         <Portal>
           <Content
-            className={`${tooltipClass} `}
+            className={`${getTooltipClass()} `}
             sideOffset={0}
             align="center"
             style={{ whiteSpace: "normal", width: "200px", lineHeight: "1.5" }}
