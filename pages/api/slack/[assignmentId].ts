@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const url = `https://hooks.slack.com/services/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`;
+  const url = process.env.NEXT_PUBLIC_SLACK_WEBHOOK_SUBMIT_ASSIGNMENT;
 
   const { assignmentId } = req.query;
 
