@@ -6,6 +6,7 @@ import {
 } from "@heroicons/react/solid";
 import { Button } from "../../../../../components/ui/Button";
 
+// eslint-disable-next-line react/prop-types
 const JS11 = ({ lessonComponents }) => {
   const playerDataURL = `https://api.sportsdata.io/api/nba/fantasy/json/Players?key=${process.env.NEXT_PUBLIC_NBA_DATA_API_KEY}`;
 

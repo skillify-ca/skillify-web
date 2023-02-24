@@ -15,6 +15,7 @@ export interface EvaluateExpressionProps {
   onNextRequested: () => void;
   onPreviousRequested: () => void;
   onResetRequested: () => void;
+  // eslint-disable-next-line no-unused-vars
   onInputChangeRequested: (val: string) => void;
 }
 const EvaluateExpression = ({
