@@ -15,4 +15,18 @@
   src: url("/fonts/Poppins/Poppins-Bold.ttf");
 }
 
+.theme-default {
+  --color-text-primary: rgb(238, 231, 9);
+  --color-text-secondary: rgb(238, 231, 9);
+  --color-background-primary: rgb(255, 106, 0);
+  --color-background-secondary: rgb(32, 129, 255);
+}
+
+.theme-dark {
+  --color-text-primary: rgb(43, 217, 136);
+  --color-text-secondary: rgb(238, 231, 9);
+  --color-background-primary: rgb(255, 11, 178);
+  --color-background-secondary: rgb(32, 129, 255);
+}
+
 @tailwind utilities;

@@ -84,7 +84,7 @@ class MyDocument extends Document {
             src="https://www.googletagmanager.com/gtag/js?id=UA-235433930-1"
           ></script>
         </Head>
-        <body style={this.bodyStyle}>
+        <body className="theme-default" style={this.bodyStyle}>
           <Main />
           <NextScript />
           {/* <!-- Google Tag Manager (noscript) --> */}

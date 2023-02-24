@@ -74,8 +74,10 @@ export const Layout: React.FC = ({ children }) => {
 };
 
 function Header({ handleMenuIconClick }) {
+  const [darkToggle, setDarkToggle] = useState(false);
+
   return (
-    <div className="flex justify-between w-full h-16 p-4 bg-white border-b-2 dark:bg-gray-900">
+    <div className="flex justify-between w-full h-16 p-4 border-b-2 bg-primary">
       <div onClick={handleMenuIconClick}>
         <div className="cursor-pointer dark:text-white lg:hidden">
           <svg
@@ -93,7 +95,12 @@ function Header({ handleMenuIconClick }) {
         className="hidden w-48 h-8 dark:visisble"
         src="/images/logo-dark.svg"
       />
-      <div />
+      <div>
+        <label className="toggleDarkBtn">
+          <input type="checkbox" onClick={() => setDarkToggle(!darkToggle)} />
+          <span className="slideBtnTg round"></span>
+        </label>
+      </div>
     </div>
   );
 }
