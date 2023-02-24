@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "./Button";
 
+// Use this input box to send messages on slack for small assignments
 export interface WebhookInputBoxProps {
   placeholder: string;
   validationRequirement: string;
