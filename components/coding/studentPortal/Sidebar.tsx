@@ -35,9 +35,11 @@ const SidebarItem = ({
   return (
     <Link href={link}>
       <div
-        className={`flex flex-wrap items-center p-4 cursor-pointer hover:border-l-4 ${
-          activePage === page ? "border-charmander text-charmander" : ""
-        } hover:border-charmander hover:text-charmander`}
+        className={`flex flex-wrap items-center p-4 hover:border-l-4 ${
+          activePage === page
+            ? "border-l-4 border-brandPrimary text-brandPrimary cursor-default"
+            : "cursor-pointer hover:bg-backgroundSecondary"
+        } hover:border-brandPrimary hover:text-brandPrimary `}
       >
         <div>
           {notifications ? (
@@ -92,7 +94,7 @@ export const Sidebar: React.FC = () => {
 
   return (
     //Full width then restrict in page
-    <div className="flex flex-col w-full bg-white dark:bg-gray-900 dark:text-white">
+    <div className="flex flex-col w-full bg-backgroundPrimary text-textPrimary">
       <div className="grid">
         <div className="flex p-4">
           {user && (
@@ -217,7 +219,7 @@ export const Sidebar: React.FC = () => {
           </div>
           <div className="overflow-auto h-36">
             <Link href="/studentPortal">
-              <div className="flex p-4 bg-white shadow-sm cursor-pointer dark:bg-gray-900 hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800">
+              <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6"
@@ -236,7 +238,7 @@ export const Sidebar: React.FC = () => {
               </div>
             </Link>
             <Link href="/studentPortal/web">
-              <div className="flex p-4 bg-white cursor-pointer dark:bg-gray-900 hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800">
+              <div className="flex p-4 cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6"

@@ -15,4 +15,20 @@
   src: url("/fonts/Poppins/Poppins-Bold.ttf");
 }
 
+.theme-default {
+  --color-text-primary: rgb(0, 0, 0);
+  --color-background-primary: rgb(255, 255, 255);
+  --color-background-hover: rgb(254 252 232);
+  --color-background-secondary: rgb(255 255 255);
+  --color-brand-primary: rgb(241, 135, 1);
+}
+
+.theme-dracula {
+  --color-text-primary: rgb(255, 255, 255);
+  --color-background-primary: rgb(17 24 39);
+  --color-background-hover: rgb(30 41 59);
+  --color-background-secondary: rgb(30 41 59);
+  --color-brand-primary: rgb(241, 135, 1);
+}
+
 @tailwind utilities;

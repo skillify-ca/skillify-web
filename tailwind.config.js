@@ -1,5 +1,5 @@
-const { backgroundColor } = require("tailwindcss/defaultTheme");
 const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
 
 module.exports = {
   mode: "jit",
@@ -23,6 +23,10 @@ module.exports = {
         fadeIn_half: "fadeInHalf 1s ease-in-out",
       },
       colors: {
+        textPrimary: "var(--color-text-primary)",
+        brandPrimary: "var(--color-brand-primary)",
+        backgroundPrimary: "var(--color-background-primary)",
+        backgroundSecondary: "var(--color-background-secondary)",
         charmander: "#F18701",
         rattata: "#7678ED",
         pikachu: {
@@ -99,28 +103,28 @@ module.exports = {
           "100%": { opacity: "1", transform: "scale(1)" },
         },
         slideDownAndFade: {
-          from: { opacity: 0, transform: 'translateY(-2px)' },
-          to: { opacity: 1, transform: 'translateY(0)' },
+          from: { opacity: 0, transform: "translateY(-2px)" },
+          to: { opacity: 1, transform: "translateY(0)" },
         },
         slideLeftAndFade: {
-          from: { opacity: 0, transform: 'translateX(2px)' },
-          to: { opacity: 1, transform: 'translateX(0)' },
+          from: { opacity: 0, transform: "translateX(2px)" },
+          to: { opacity: 1, transform: "translateX(0)" },
         },
         slideUpAndFade: {
-          from: { opacity: 0, transform: 'translateY(2px)' },
-          to: { opacity: 1, transform: 'translateY(0)' },
+          from: { opacity: 0, transform: "translateY(2px)" },
+          to: { opacity: 1, transform: "translateY(0)" },
         },
         slideRightAndFade: {
-          from: { opacity: 0, transform: 'translateX(2px)' },
-          to: { opacity: 1, transform: 'translateX(0)' },
+          from: { opacity: 0, transform: "translateX(2px)" },
+          to: { opacity: 1, transform: "translateX(0)" },
         },
         overlayShow: {
           from: { opacity: 0 },
           to: { opacity: 1 },
         },
         contentShow: {
-          from: { opacity: 0, transform: 'translate(-50%, -48%) scale(0.96)' },
-          to: { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
+          from: { opacity: 0, transform: "translate(-50%, -48%) scale(0.96)" },
+          to: { opacity: 1, transform: "translate(-50%, -50%) scale(1)" },
         },
       },
       outline: {
@@ -130,18 +134,26 @@ module.exports = {
       secondary: "#ff8e4f",
     },
     animation: {
-      slideDownAndFade: 'slideDownAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
-      slideLeftAndFade: 'slideLeftAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
-      slideUpAndFade: 'slideUpAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
-      slideRightAndFade: 'slideRightAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
-      overlayShow: 'overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
-        contentShow: 'contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
+      slideDownAndFade: "slideDownAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)",
+      slideLeftAndFade: "slideLeftAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)",
+      slideUpAndFade: "slideUpAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)",
+      slideRightAndFade:
+        "slideRightAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)",
+      overlayShow: "overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+      contentShow: "contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
     },
   },
-  
+
   options: {
     /**
      * PurgeCSS:
+     * bg-backgroundSecondary
+     * bg-backgroundPrimary
+     * bg-textPrimary
+     * bg-textSecondary
+     * text-textPrimary
+     * text-textSecondary
+     * hover:text-textSecondary
      * bg-blue-300
      * bg-yellow-300
      * bg-green-300
@@ -216,6 +228,7 @@ module.exports = {
       "bg-yellow-700",
       "border-yellow-900",
       "hover:bg-yellow-400",
+      "hover:text-textSecondary",
       "text-yellow-100",
       "text-yellow-200",
       "text-yellow-400",

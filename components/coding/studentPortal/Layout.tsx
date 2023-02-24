@@ -8,9 +8,17 @@ import {
 } from "../../../graphql/fetchUserGoalsCount";
 import { useAuth } from "../../../lib/authContext";
 import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
+import { Button } from "../../ui/Button";
 import Sidebar from "./Sidebar";
 
+enum Theme {
+  DEFAULT = "theme-default",
+  DRACULA = "theme-dracula",
+}
+
 export const Layout: React.FC = ({ children }) => {
+  const [theme, setTheme] = useState<Theme>(Theme.DEFAULT);
+
   const [active, setActive] = useState(false);
 
   const { user } = useAuth();
@@ -33,7 +41,7 @@ export const Layout: React.FC = ({ children }) => {
   });
 
   return (
-    <div className="flex flex-col h-full bg-white">
+    <div className={`flex flex-col h-full bg-white ${theme}`}>
       <style global jsx>{`
         html,
         body,
@@ -45,7 +53,15 @@ export const Layout: React.FC = ({ children }) => {
       `}</style>
 
       <div className="fixed z-20 w-full">
-        <Header handleMenuIconClick={() => setActive(!active)} />
+        <Header
+          handleMenuIconClick={() => setActive(!active)}
+          handleToggleClick={() =>
+            setTheme((prev) =>
+              prev === Theme.DEFAULT ? Theme.DRACULA : Theme.DEFAULT
+            )
+          }
+          theme={theme}
+        />
       </div>
       <div className="flex">
         {/* Desktop Sidebar */}
@@ -53,7 +69,7 @@ export const Layout: React.FC = ({ children }) => {
           <Sidebar />
         </div>
         <div
-          className={` dark:text-white overflow-auto pt-16 w-full max-h-screen h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 bg-white dark:bg-gray-800`}
+          className={`overflow-auto pt-16 w-full max-h-screen h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 bg-backgroundPrimary text-textPrimary`}
         >
           <div className="min-h-screen">
             <div>{children}</div>
@@ -73,11 +89,16 @@ export const Layout: React.FC = ({ children }) => {
   );
 };
 
-function Header({ handleMenuIconClick }) {
+function Header({
+  handleMenuIconClick,
+  handleToggleClick,
+  theme = Theme.DEFAULT,
+}) {
   return (
-    <div className="flex justify-between w-full h-16 p-4 bg-white border-b-2 dark:bg-gray-900">
-      <div onClick={handleMenuIconClick}>
-        <div className="cursor-pointer dark:text-white lg:hidden">
+    <div className="grid w-full h-16 grid-cols-3 border-b-2 bg-backgroundPrimary">
+      {/* <div /> */}
+      <div onClick={handleMenuIconClick} className="flex items-center pl-4">
+        <div className="cursor-pointer text-textPrimary lg:hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-8 h-8"
@@ -88,12 +109,32 @@ function Header({ handleMenuIconClick }) {
           </svg>
         </div>
       </div>
-      <img className="visible w-48 h-8 dark:hidden" src="/images/logo.svg" />
-      <img
-        className="hidden w-48 h-8 dark:visisble"
-        src="/images/logo-dark.svg"
-      />
-      <div />
+      <div className="place-self-center">
+        {theme === Theme.DEFAULT ? (
+          <img className="w-48 h-8 " src="/images/logo.svg" />
+        ) : theme === Theme.DRACULA ? (
+          <img className="w-48 h-8" src="/images/logo-dark.svg" />
+        ) : null}
+      </div>
+      <div
+        onClick={handleToggleClick}
+        className="flex items-center justify-end pr-4"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="1.5"
+          stroke="currentColor"
+          className="w-6 h-6 text-textPrimary"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
+          />
+        </svg>
+      </div>
     </div>
   );
 }

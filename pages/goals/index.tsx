@@ -72,7 +72,7 @@ export default function Goals(props) {
         </div>
         {goalsSections.map((section) => {
           return (
-            <div className="mb-8">
+            <div className="mb-8" key={section.sectionName}>
               <GoalsSectionComponent
                 userGoals={section.userGoals}
                 sectionName={section.sectionName}
