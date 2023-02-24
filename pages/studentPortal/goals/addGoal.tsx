@@ -1,11 +1,11 @@
+import { useMutation } from "@apollo/client";
 import { format } from "date-fns";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { Button } from "../../components/ui/Button";
-import { useAuth } from "../../lib/authContext";
-import { useMutation } from "@apollo/client";
-import { UPSERT_USER_GOALS } from "../../graphql/upsertUserGoals";
-import { FETCH_USER_GOALS } from "../../graphql/fetchUserGoals";
+import { Button } from "../../../components/ui/Button";
+import { FETCH_USER_GOALS } from "../../../graphql/fetchUserGoals";
+import { UPSERT_USER_GOALS } from "../../../graphql/upsertUserGoals";
+import { useAuth } from "../../../lib/authContext";
 
 const EditGoalsPage = () => {
   const { user } = useAuth();

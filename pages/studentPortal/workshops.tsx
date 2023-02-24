@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
-import WorkshopsCard from "../components/studentPortal/WorkshopsCard";
-import { useAuth } from "../lib/authContext";
+import WorkshopsCard from "../../components/studentPortal/WorkshopsCard";
+import { useAuth } from "../../lib/authContext";
 
 const WorkshopsPage = () => {
   const workshopsData = [
@@ -45,7 +45,7 @@ const WorkshopsPage = () => {
 
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           {workshopsData.map((it) => (
-            <div>
+            <div key={it.title}>
               <WorkshopsCard
                 title={it.title}
                 video={it.video}

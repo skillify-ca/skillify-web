@@ -64,7 +64,7 @@ export default function GoalsSection({
             <p className="hidden md:block md:col-span-2">
               {differenceInCalendarDays(new Date(goal.targetDate), new Date())}
             </p>
-            <Link href={"/goals/" + goal.id}>
+            <Link href={"/studentPortal/goals/" + goal.id}>
               <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
             </Link>
           </div>

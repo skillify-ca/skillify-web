@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ArrayIteration from "../../components/studentPortal/challenges/dataStructures/ArrayIteration";
-import HashMap from "../../components/studentPortal/challenges/dataStructures/HashMap";
-import { Button } from "../../components/ui/Button";
+import ArrayIteration from "../../../components/studentPortal/challenges/dataStructures/ArrayIteration";
+import HashMap from "../../../components/studentPortal/challenges/dataStructures/HashMap";
+import { Button } from "../../../components/ui/Button";
 
 export default function WordPattern(props) {
   const onResetRequested = () => {

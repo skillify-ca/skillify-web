@@ -1,15 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import EvaluateExpression from "../../components/coding/evaluateExpression/EvaluateExpression";
+import EvaluateExpression from "../../../components/studentPortal/challenges/evaluateExpression/EvaluateExpression";
 import {
   evaluateExpressionSelector,
   onNext,
   onPrevious,
   reset,
   setInput,
-} from "../../redux/evaluateExpressionSlice";
-
-import { useAppDispatch } from "../../redux/store";
+} from "../../../redux/evaluateExpressionSlice";
+import { useAppDispatch } from "../../../redux/store";
 
 export default function EvaluateExpressionPage(props) {
   const dispatch = useAppDispatch();

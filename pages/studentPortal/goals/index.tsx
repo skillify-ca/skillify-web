@@ -2,18 +2,18 @@ import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import GoalsSectionComponent from "../../components/studentPortal/GoalsSectionComponent";
-import { Button } from "../../components/ui/Button";
+import GoalsSectionComponent from "../../../components/studentPortal/GoalsSectionComponent";
+import { Button } from "../../../components/ui/Button";
 import {
   FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
-} from "../../graphql/fetchUserGoals";
-import { useAuth } from "../../lib/authContext";
+} from "../../../graphql/fetchUserGoals";
+import { useAuth } from "../../../lib/authContext";
 import {
   setGoalsSections,
   setUserGoals,
   userGoalsSelector,
-} from "../../redux/userGoalsSlice";
+} from "../../../redux/userGoalsSlice";
 
 export default function Goals(props) {
   const { user } = useAuth();
@@ -64,7 +64,7 @@ export default function Goals(props) {
           <Button
             label={"Create Goal"}
             onClick={() => {
-              router.push("/goals/addGoal");
+              router.push("/studentPortal/goals/addGoal");
             }}
           />
         </div>

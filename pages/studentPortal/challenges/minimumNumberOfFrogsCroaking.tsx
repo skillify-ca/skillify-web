@@ -1,10 +1,10 @@
 import { useState } from "react";
-import ArrayIteration from "../../components/studentPortal/challenges/dataStructures/ArrayIteration";
-import HashMap from "../../components/studentPortal/challenges/dataStructures/HashMap";
-import FrogsOutput from "../../components/studentPortal/challenges/minimumFrogs/FrogsOutput";
-import { Button } from "../../components/ui/Button";
-import CollapsibleCard from "../../components/ui/CollapsibleCard";
-import { Input } from "../../components/ui/Input";
+import ArrayIteration from "../../../components/studentPortal/challenges/dataStructures/ArrayIteration";
+import HashMap from "../../../components/studentPortal/challenges/dataStructures/HashMap";
+import FrogsOutput from "../../../components/studentPortal/challenges/minimumFrogs/FrogsOutput";
+import { Button } from "../../../components/ui/Button";
+import CollapsibleCard from "../../../components/ui/CollapsibleCard";
+import { Input } from "../../../components/ui/Input";
 
 export default function Page() {
   return (

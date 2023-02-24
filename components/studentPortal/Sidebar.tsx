@@ -79,13 +79,13 @@ export const Sidebar: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (router.pathname.startsWith("/coaches")) {
+    if (router.pathname.startsWith("/studentPortal/coaches")) {
       dispatch(setActivePage("coaches"));
-    } else if (router.pathname.startsWith("/profile")) {
+    } else if (router.pathname.startsWith("/studentPortal/profile")) {
       dispatch(setActivePage("profile"));
-    } else if (router.pathname.startsWith("/goals")) {
+    } else if (router.pathname.startsWith("/studentPortal/goals")) {
       dispatch(setActivePage("goals"));
-    } else if (router.pathname.startsWith("/workshops")) {
+    } else if (router.pathname.startsWith("/studentPortal/workshops")) {
       dispatch(setActivePage("workshops"));
     } else {
       dispatch(setActivePage("dashboard"));
@@ -129,7 +129,7 @@ export const Sidebar: React.FC = () => {
         />
         <SidebarItem
           name={"Coaches"}
-          link={"/coaches"}
+          link={"/studentPortal/coaches"}
           page={"coaches"}
           icon={
             <svg
@@ -160,7 +160,7 @@ export const Sidebar: React.FC = () => {
         <SidebarItem
           name={"Goals"}
           notifications={goalApproaching}
-          link={"/goals"}
+          link={"/studentPortal/goals"}
           page={"goals"}
           icon={
             <svg
@@ -175,7 +175,7 @@ export const Sidebar: React.FC = () => {
         />
         <SidebarItem
           name={"Workshops"}
-          link={"/workshops"}
+          link={"/studentPortal/workshops"}
           page={"workshops"}
           icon={
             <svg

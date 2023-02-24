@@ -1,12 +1,7 @@
 import { useQuery } from "@apollo/client";
-import React, { useRef, useState } from "react";
-import { FETCH_BADGE } from "../../graphql/fetchBadge";
-import { FETCH_USER_QUIZZES } from "../../graphql/fetchUserQuiz";
-import { Canvas } from "react-three-fiber";
-import { Preload, Stars } from "@react-three/drei";
-import dynamic from "next/dynamic";
-import { OrbitControls } from "@react-three/drei";
-import { useAuth } from "../../lib/authContext";
+import React, { useState } from "react";
+import { FETCH_BADGE } from "../../../graphql/fetchBadge";
+import { useAuth } from "../../../lib/authContext";
 
 // const Box = dynamic(() => import("../../components/stories/Box"));
 

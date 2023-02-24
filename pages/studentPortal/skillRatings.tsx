@@ -1,20 +1,20 @@
 import { useMutation, useQuery } from "@apollo/client";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SkillSection from "../components/studentPortal/skillRatings/SkillSection";
-import { Button } from "../components/ui/Button";
+import SkillSection from "../../components/studentPortal/skillRatings/SkillSection";
+import { Button } from "../../components/ui/Button";
 import {
   FetchUserSkillsRatings,
   FETCH_USER_SKILLS_RATINGS,
   UserSkillsRatings,
-} from "../graphql/fetchUserSkillsRatings";
-import { UPSERT_USER_SKILL_RATINGS } from "../graphql/upsertUserSkillRatings";
-import { useAuth } from "../lib/authContext";
+} from "../../graphql/fetchUserSkillsRatings";
+import { UPSERT_USER_SKILL_RATINGS } from "../../graphql/upsertUserSkillRatings";
+import { useAuth } from "../../lib/authContext";
 import {
   setSkillRatings,
   SkillRatingsRow,
   skillRatingsSelector,
-} from "../redux/skillRatingsSlice";
+} from "../../redux/skillRatingsSlice";
 
 export default function SkillRatings(props) {
   const dispatch = useDispatch();

@@ -1,4 +1,5 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
+import { PencilAltIcon } from "@heroicons/react/outline";
 import {
   ArchiveIcon,
   CheckCircleIcon,
@@ -7,19 +8,17 @@ import {
 import { format } from "date-fns";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { Button } from "../../components/ui/Button";
+import { Button } from "../../../components/ui/Button";
 import {
   FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
   FETCH_USER_GOAL_DETAIL,
   UserGoalsData,
-} from "../../graphql/fetchUserGoals";
-import { useAuth } from "../../lib/authContext";
-import { useMutation } from "@apollo/client";
-import { UPSERT_USER_GOALS } from "../../graphql/upsertUserGoals";
-import { REMOVE_USER_GOAL } from "../../graphql/removeUserGoal";
-import { ArrowCircleRightIcon, PencilAltIcon } from "@heroicons/react/outline";
-import { FETCH_USER_GOALS_COUNT } from "../../graphql/fetchUserGoalsCount";
+} from "../../../graphql/fetchUserGoals";
+import { FETCH_USER_GOALS_COUNT } from "../../../graphql/fetchUserGoalsCount";
+import { REMOVE_USER_GOAL } from "../../../graphql/removeUserGoal";
+import { UPSERT_USER_GOALS } from "../../../graphql/upsertUserGoals";
+import { useAuth } from "../../../lib/authContext";
 
 const EditGoalsPage = () => {
   const { user } = useAuth();
@@ -35,12 +34,12 @@ const EditGoalsPage = () => {
       { query: FETCH_USER_GOALS },
       { query: FETCH_USER_GOALS_COUNT },
     ],
-    onCompleted: () => router.push("/goals"),
+    onCompleted: () => router.push("/studentPortal/goals"),
   });
 
   const [removeUserGoal] = useMutation(REMOVE_USER_GOAL, {
     refetchQueries: [{ query: FETCH_USER_GOALS }],
-    onCompleted: () => router.push("/goals"),
+    onCompleted: () => router.push("/studentPortal/goals"),
   });
 
   const goalDetailResults = useQuery<FetchUserGoalsDataResponse>(
