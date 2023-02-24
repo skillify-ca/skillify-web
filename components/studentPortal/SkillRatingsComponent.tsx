@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import React from "react";
 import { useMutation } from "@apollo/client";
-import { useSpring, animated } from "react-spring";
+import React, { useEffect, useState } from "react";
+import { animated, useSpring } from "react-spring";
 import { FETCH_USER_SKILLS_RATINGS } from "../../graphql/fetchUserSkillsRatings";
 import { UPSERT_USER_SKILL_RATINGS } from "../../graphql/upsertUserSkillRatings";
 import { useAuth } from "../../lib/authContext";

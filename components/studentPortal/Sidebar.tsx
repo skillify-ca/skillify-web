@@ -192,7 +192,7 @@ export const Sidebar: React.FC = () => {
         {userRole === "coach" && (
           <SidebarItem
             name={"Admin"}
-            link={"/coaching-dashboard"}
+            link={"/studentPortal/admin"}
             page={"admin"}
             icon={
               <svg

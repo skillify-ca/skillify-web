@@ -1,14 +1,12 @@
 import { useQuery } from "@apollo/client";
-import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
 import AssignmentComponent, {
   AssignmentComponentData,
-} from "../../../../../components/coding/studentPortal/assignments/AssignmentComponent";
-
+} from "../../../../../components/studentPortal/assignments/AssignmentComponent";
 import {
-  FETCH_USER_ASSIGNMENT_SUBMISSIONS,
   FetchUserAssignmentSubmissionsDataResponse,
+  FETCH_USER_ASSIGNMENT_SUBMISSIONS,
   UserAssignmentSubmissionsData,
 } from "../../../../../graphql/fetchUserAssignmentSubmissions";
 import { useAuth } from "../../../../../lib/authContext";

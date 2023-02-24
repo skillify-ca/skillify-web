@@ -1,4 +1,5 @@
-import { Button } from "../../ui/Button";
+import React from "react";
+import { Button } from "../ui/Button";
 
 type WorkshopsCardProps = {
   title: string;
@@ -12,7 +13,7 @@ export default function WorkshopsCard({
   starterFile,
 }: WorkshopsCardProps) {
   return (
-    <div className="bg-white p-6 rounded-md shadow-md">
+    <div className="p-6 bg-white rounded-md shadow-md">
       <h2 className="font-bold">{title}</h2>
       <video src={video} controls={true} />
       <a href={starterFile}>

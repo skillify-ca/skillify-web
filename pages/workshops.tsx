@@ -1,10 +1,7 @@
-import React, { useState } from "react";
-
-import { useAuth } from "../lib/authContext";
-
-import { Button } from "../components/ui/Button";
 import { useRouter } from "next/router";
-import WorkshopsCard from "../components/coding/studentPortal/WorkshopsCard";
+import React from "react";
+import WorkshopsCard from "../components/studentPortal/WorkshopsCard";
+import { useAuth } from "../lib/authContext";
 
 const WorkshopsPage = () => {
   const workshopsData = [

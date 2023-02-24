@@ -4,7 +4,6 @@ import {
   SkillRatingsRow,
   skillRatingsSelector,
 } from "../../../redux/skillRatingsSlice";
-
 import SkillRowEmoji from "./SkillRowEmoji";
 
 export type SkillRowProps = {

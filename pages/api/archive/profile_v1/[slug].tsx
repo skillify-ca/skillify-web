@@ -1,10 +1,10 @@
-import React from "react";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import ProfileGoalsSection from "../../../../components/coding/studentPortal/ProfileGoalsSection";
-import AchievementComponent from "../../../../components/coding/studentPortal/profileV2/achievement_components/AchievementComponent";
-import ProjectsSection from "../../../../components/coding/studentPortal/ProjectsSection";
-import UserProfileSection from "../../../../components/coding/studentPortal/UserProfileSection";
-import LandingNavbar from "../../../../components/coding/landing/LandingNavbar";
+import React from "react";
+import LandingNavbar from "../../../../components/landingPage/LandingNavbar";
+import ProfileGoalsSection from "../../../../components/studentPortal/ProfileGoalsSection";
+import AchievementComponent from "../../../../components/studentPortal/profileV2/achievement_components/AchievementComponent";
+import ProjectsSection from "../../../../components/studentPortal/ProjectsSection";
+import UserProfileSection from "../../../../components/studentPortal/UserProfileSection";
 import { FETCH_RECENT_USERS } from "../../../../graphql/fetchRecentUsers";
 import { FETCH_USER } from "../../../../graphql/fetchUser";
 

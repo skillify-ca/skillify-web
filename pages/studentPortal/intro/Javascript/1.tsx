@@ -1,16 +1,13 @@
 import { useMutation } from "@apollo/client";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import Card, { CardData } from "../../../../components/coding/Card";
-import CodingChallengeInstructions from "../../../../components/coding/studentPortal/lessons/JavaScript/CodingChallengeInstructions";
 import LessonComponent, {
   LessonComponentData,
   Resource,
-} from "../../../../components/coding/studentPortal/LessonComponent";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
+} from "../../../../components/studentPortal/LessonComponent";
+import CodingChallengeInstructions from "../../../../components/studentPortal/lessons/JavaScript/CodingChallengeInstructions";
+import ProgressBar from "../../../../components/studentPortal/ProgressBar";
 import { Button } from "../../../../components/ui/Button";
-import Navbar from "../../../../components/ui/Navbar";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
 import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";

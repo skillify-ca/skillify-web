@@ -1,14 +1,10 @@
-import React, { useState } from "react";
+import Lottie from "lottie-react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  quizSelector,
-  selectOptionRequested,
-} from "../../../../redux/quizSlice";
+import quizCompleteAnimation from "../../../public/anims/quiz-complete.json";
+import { quizSelector, selectOptionRequested } from "../../../redux/quizSlice";
 import GradingRibbon from "./GradingRibbon";
 import MCOption, { OptionState } from "./MCOption";
-
-import Lottie from "lottie-react";
-import quizCompleteAnimation from "../../../../public/anims/quiz-complete.json";
 
 export default function Quiz() {
   const {

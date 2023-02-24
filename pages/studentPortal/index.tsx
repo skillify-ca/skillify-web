@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useAuth } from "../../lib/authContext";
-import { Unit } from "../api/studentPortal/units";
-
-import moment from "moment";
 import { useMutation, useQuery } from "@apollo/client";
-import {
-  INIT_USER_INTRO_NODES,
-  objects,
-} from "../../graphql/coding/initUserIntroNodes";
+import moment from "moment";
+import React, { useEffect, useState } from "react";
+import PageHeader from "../../components/studentPortal/PageHeader";
+import UnitView from "../../components/studentPortal/UnitView";
+import ErrorMessage from "../../components/ui/ErrorMessage";
 import {
   FETCH_USER_INTRO_NODES,
   transform,
 } from "../../graphql/coding/fetchUserIntroNodes";
+import {
+  INIT_USER_INTRO_NODES,
+  objects,
+} from "../../graphql/coding/initUserIntroNodes";
 import { UPDATE_USER } from "../../graphql/updateUser";
-import ErrorMessage from "../../components/ui/ErrorMessage";
-import PageHeader from "../../components/studentPortal/PageHeader";
-import UnitView from "../../components/studentPortal/UnitView";
+import { useAuth } from "../../lib/authContext";
+import { Unit } from "../api/studentPortal/units";
 
 export default function StudentPortalPage() {
   const { user } = useAuth();

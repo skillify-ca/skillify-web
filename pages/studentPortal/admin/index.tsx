@@ -1,34 +1,34 @@
 import { useQuery } from "@apollo/client";
+import { format } from "date-fns";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  FetchUserProfileCardResponse,
-  FETCH_USER_PROFILE_CARD,
-} from "../../../graphql/fetchUserProfileCard";
-import Link from "next/link";
-import { userSelector, setUserList } from "../../../redux/userSlice";
-import { format } from "date-fns";
+import ProfileDetailCard from "../../../components/studentPortal/ProfileDetailCard";
+import { Button } from "../../../components/ui/Button";
 import {
   AllUserGoalsData,
   FetchAllUserGoalsDataResponse,
   FETCH_ALL_USER_GOALS,
 } from "../../../graphql/fetchAllUserGoals";
 import {
-  profileSelector,
-  setTotalBadgeCount,
-} from "../../../redux/profileSlice";
-import {
   FetchTotalBadgesCountResponse,
   FETCH_TOTAL_USER_BADGES_COUNT,
 } from "../../../graphql/fetchTotalUserBadgesCount";
-import { useAuth } from "../../../lib/authContext";
-import { useRouter } from "next/router";
+import {
+  FetchUserProfileCardResponse,
+  FETCH_USER_PROFILE_CARD,
+} from "../../../graphql/fetchUserProfileCard";
 import {
   FetchUserRoleData,
   FETCH_USER_ROLE,
 } from "../../../graphql/fetchUserRole";
-import { Button } from "../../../components/ui/Button";
-import ProfileDetailCard from "../../../components/studentPortal/ProfileDetailCard";
+import { useAuth } from "../../../lib/authContext";
+import {
+  profileSelector,
+  setTotalBadgeCount,
+} from "../../../redux/profileSlice";
+import { setUserList, userSelector } from "../../../redux/userSlice";
 
 const coachingDashboard = () => {
   const { user } = useAuth();

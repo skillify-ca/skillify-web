@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { PencilAltIcon } from "@heroicons/react/outline";
 import { useMutation, useQuery } from "@apollo/client";
+import { PencilAltIcon } from "@heroicons/react/outline";
+import React, { useState } from "react";
 import {
-  IntroCourseUnit,
   FetchBadgeResponse,
   FETCH_CODING_BADGES,
+  IntroCourseUnit,
 } from "../../../../graphql/coding/userBadges/fetchUserBadges";
 import {
-  INSERT_USER_CODING_BADGES,
   DELETE_USER_CODING_BADGES,
+  INSERT_USER_CODING_BADGES,
 } from "../../../../graphql/coding/userBadges/updateUserCodingBadges";
 import {
   FetchUserRoleData,

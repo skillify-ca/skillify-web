@@ -1,10 +1,8 @@
-import Link from "next/link";
 import PostLayout from "../../components/blog/PostLayout";
+import SEO from "../../components/SEO";
 import LessonComponent, {
   LessonComponentData,
-} from "../../components/coding/studentPortal/LessonComponent";
-import LnadingNavbar from "../../components/coding/landing/LandingNavbar";
-import SEO from "../../components/SEO";
+} from "../../components/studentPortal/LessonComponent";
 
 interface PageProps {
   blogComponents: LessonComponentData[];

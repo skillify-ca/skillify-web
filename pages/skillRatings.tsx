@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SkillSection from "../components/coding/studentPortal/skillRatings/SkillSection";
+import SkillSection from "../components/studentPortal/skillRatings/SkillSection";
 import { Button } from "../components/ui/Button";
 import {
   FetchUserSkillsRatings,
@@ -9,13 +9,11 @@ import {
   UserSkillsRatings,
 } from "../graphql/fetchUserSkillsRatings";
 import { UPSERT_USER_SKILL_RATINGS } from "../graphql/upsertUserSkillRatings";
-
 import { useAuth } from "../lib/authContext";
-import { profileSelector } from "../redux/profileSlice";
 import {
   setSkillRatings,
-  skillRatingsSelector,
   SkillRatingsRow,
+  skillRatingsSelector,
 } from "../redux/skillRatingsSlice";
 
 export default function SkillRatings(props) {

@@ -1,21 +1,19 @@
+import { useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-
-import { useAuth } from "../../lib/authContext";
-
+import { useDispatch, useSelector } from "react-redux";
+import GoalsSectionComponent from "../../components/studentPortal/GoalsSectionComponent";
+import { Button } from "../../components/ui/Button";
 import {
   FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
 } from "../../graphql/fetchUserGoals";
-import { useQuery } from "@apollo/client";
-import { Button } from "../../components/ui/Button";
-import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
+import { useAuth } from "../../lib/authContext";
 import {
-  userGoalsSelector,
-  setUserGoals,
   setGoalsSections,
+  setUserGoals,
+  userGoalsSelector,
 } from "../../redux/userGoalsSlice";
-import GoalsSectionComponent from "../../components/coding/GoalsSectionComponent";
 
 export default function Goals(props) {
   const { user } = useAuth();
