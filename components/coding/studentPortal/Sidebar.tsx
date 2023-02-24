@@ -35,9 +35,11 @@ const SidebarItem = ({
   return (
     <Link href={link}>
       <div
-        className={`flex flex-wrap items-center p-4 cursor-pointer hover:border-l-4 ${
-          activePage === page ? "border-charmander text-charmander" : ""
-        } hover:border-charmander hover:text-charmander`}
+        className={`flex flex-wrap items-center p-4 hover:border-l-4 ${
+          activePage === page
+            ? "border-l-4 border-brandPrimary text-brandPrimary cursor-default"
+            : "cursor-pointer hover:bg-backgroundSecondary"
+        } hover:border-brandPrimary hover:text-brandPrimary `}
       >
         <div>
           {notifications ? (
@@ -92,7 +94,7 @@ export const Sidebar: React.FC = () => {
 
   return (
     //Full width then restrict in page
-    <div className="flex flex-col w-full h-full bg-white border-r-2 dark:bg-gray-900 dark:text-white">
+    <div className="flex flex-col w-full bg-backgroundPrimary text-textPrimary">
       <div className="grid">
         <div className="flex p-4">
           {user && (
@@ -200,9 +202,9 @@ export const Sidebar: React.FC = () => {
                 className="w-6 h-6 mr-4"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 />
               </svg>
             }
@@ -217,7 +219,7 @@ export const Sidebar: React.FC = () => {
           </div>
           <div className="overflow-auto h-36">
             <Link href="/studentPortal">
-              <div className="flex p-4 bg-white shadow-sm cursor-pointer dark:bg-gray-900 hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800">
+              <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6"
@@ -236,14 +238,14 @@ export const Sidebar: React.FC = () => {
               </div>
             </Link>
             <Link href="/studentPortal/web">
-              <div className="flex p-4 bg-white cursor-pointer dark:bg-gray-900 hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800">
+              <div className="flex p-4 cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                 >
                   <path d="M8 13v-1m4 1v-3m4 3V8M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
                 </svg>
