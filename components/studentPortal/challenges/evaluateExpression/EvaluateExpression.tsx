@@ -1,11 +1,10 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import {
   EvaluateExpressionState,
   Stage,
-} from "../../../redux/evaluateExpressionSlice";
-import { Button } from "../../ui/Button";
+} from "../../../../redux/evaluateExpressionSlice";
+import { Button } from "../../../ui/Button";
 import Stack from "../dataStructures/Stack";
-
 import Algorithm from "./Algorithm";
 import Resources from "./Resources";
 import SimpleCalculator from "./SimpleCalculator";
