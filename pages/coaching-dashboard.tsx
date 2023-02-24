@@ -19,8 +19,15 @@ import {
   FetchTotalBadgesCountResponse,
   FETCH_TOTAL_USER_BADGES_COUNT,
 } from "../graphql/fetchTotalUserBadgesCount";
+import { useAuth } from "../lib/authContext";
+import { useRouter } from "next/router";
+import { FetchUserRoleData, FETCH_USER_ROLE } from "../graphql/fetchUserRole";
+import { Button } from "../components/ui/Button";
 
 const coachingDashboard = () => {
+  const { user } = useAuth();
+  const router = useRouter();
+
   const dispatch = useDispatch();
   const { userList } = useSelector(userSelector);
   const { totalBadgeCount } = useSelector(profileSelector);
@@ -38,6 +45,19 @@ const coachingDashboard = () => {
       },
     }
   );
+  useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
+    variables: {
+      _id: user.uid,
+    },
+    if(loading) {
+      return <div>Loading...</div>;
+    },
+    onCompleted: (roleData) => {
+      if (roleData.users[0].userRole.value !== "coach") {
+        router.replace("/studentPortal");
+      }
+    },
+  });
 
   const {} = useQuery<FetchAllUserGoalsDataResponse>(FETCH_ALL_USER_GOALS, {
     onCompleted: (data) => {
@@ -89,6 +109,9 @@ const coachingDashboard = () => {
   return (
     <div className="flex flex-col p-4 m-4 ">
       <p className="mb-8 text-3xl font-bold">Coaching Dashboard</p>
+      <Link href="/studentPortal/admin/badges">
+        <Button label="New Badge" />
+      </Link>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {userList.map((it, index) => {
           const completionDate = goalCompletionDateList[index];

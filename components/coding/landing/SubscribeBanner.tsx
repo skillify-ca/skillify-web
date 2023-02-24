@@ -12,7 +12,7 @@ const SubscribeBanner = () => {
           unprepared for finding or keeping a real job.
         </p>
         <p className="mb-4 text-center max-w-7xl text-charmander">
-          Our exlusive strategies and frameworks are designed to help you learn
+          Our exclusive strategies and frameworks are designed to help you learn
           the fundamentals of coding, get hired and succeed on the job.
         </p>
       </div>
