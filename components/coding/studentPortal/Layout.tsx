@@ -90,7 +90,7 @@ function Header({ handleMenuIconClick }) {
       </div>
       <img className="visible w-48 h-8 dark:hidden" src="/images/logo.svg" />
       <img
-        className="hidden w-48 h-8 dark:visible"
+        className="w-48 h-8 opacity-0 dark:opacity-100"
         src="/images/logo-dark.svg"
       />
       <div />
