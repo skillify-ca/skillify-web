@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import LandingFooter from "../components/landing/LandingFooter";
-import LandingNavbar from "../components/landing/LandingNavbar";
+import LandingFooter from "../components/landingPage/LandingFooter";
+import LandingNavbar from "../components/landingPage/LandingNavbar";
 import LandingPage, {
   LandingPageCopy,
-} from "../components/landing/LandingPage";
+} from "../components/landingPage/LandingPage";
 import SEO from "../components/SEO";
 
 const HomePage = () => {
