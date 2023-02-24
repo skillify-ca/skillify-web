@@ -26,7 +26,7 @@ export default function SignInPage() {
       <div className="z-0 grid grid-cols-1 sm:grid-cols-2">
         <div className="w-full h-0 px-16 pt-16 -mt-16 sm:pt-64 sm:h-screen bg-signInBackground">
           <h2 className="text-2xl font-bold text-white">
-            Skillify is a coding bootcamp that specializes in mobile and web
+            Skillify is a coding academy that specializes in mobile and web
             development.
           </h2>
         </div>

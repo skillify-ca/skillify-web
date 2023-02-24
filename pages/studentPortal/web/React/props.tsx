@@ -8,7 +8,7 @@ import { Button } from "../../../../components/ui/Button";
 const React3 = ({ lessonComponents }) => {
   const router = useRouter();
   const handleContinue = () => {
-    router.push("/studentPortal/web/React/components");
+    router.push("/studentPortal/web/React/tailwindcss");
   };
 
   return (

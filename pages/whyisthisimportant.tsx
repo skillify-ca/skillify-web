@@ -20,8 +20,8 @@ export default function Page() {
             ones that don't
           </h1>
           <p className="pt-10 font-semibold text-center ">
-            The system I provide in The Skillify Bootcamp helps you learn to
-            code in a way that eliminates stress and will impress employers. By
+            The system I provide in The Skillify Academy helps you learn to code
+            in a way that eliminates stress and will impress employers. By
             simply working through our course content and meeting with our
             expert mentors, you instantly set yourself up for a career in tech.
           </p>

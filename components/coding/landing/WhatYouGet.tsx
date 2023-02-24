@@ -43,10 +43,10 @@ export default function WhatYouGet() {
         "Access to ALL of our digital training including web development, artifical intelligence, VR/AR, cyber security, game development, blockchain development, algorithms, interviewing & MORE!...",
     },
     {
-      title: "FREE Skillify Bootcamp Events",
+      title: "FREE Skillify Academy Events",
       value: "$5000+ Value",
       description:
-        "Get FREE access to our Skillify Bootcamp Events that cost $100 - $500 to attend! Including micro-trainings for UX/UI Design, Agile Methodology, Product Management and Digital Marketing",
+        "Get FREE access to our Skillify Academy Events that cost $100 - $500 to attend! Including micro-trainings for UX/UI Design, Agile Methodology, Product Management and Digital Marketing",
     },
     {
       title: "Quarterly Live Virtual 2-3 Day Hackathons",

@@ -4,9 +4,9 @@ export default function Page() {
   return (
     <div>
       <SEO
-        title={"Skillify Bootcamp Joined Waitlist"}
+        title={"Skillify Academy Joined Waitlist"}
         description={
-          "Thank you for joining the waitlist for the Skillify Bootcamp"
+          "Thank you for joining the waitlist for the Skillify Academy"
         }
         image={"https://melv1n.com/img/learn-to-code-how-to-start.png"}
       />
