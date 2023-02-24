@@ -1,6 +1,6 @@
 import { Sandpack } from "@codesandbox/sandpack-react";
 import React from "react";
-import { WebhookInputBox } from "../../ui/WebhookInputBox";
+import WebhookInputBox from "../ui/WebhookInputBox";
 import Quiz from "./quiz/Quiz";
 import ResourceRow from "./ResourceRow";
 
