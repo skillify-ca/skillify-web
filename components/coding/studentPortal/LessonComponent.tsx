@@ -2,7 +2,7 @@ import React from "react";
 import Quiz from "./quiz/Quiz";
 import ResourceRow from "./ResourceRow";
 import { Sandpack } from "@codesandbox/sandpack-react";
-import WebhookInputBox from "./WebhookInputBox";
+import { WebhookInputBox } from "../../ui/WebhookInputBox";
 
 export type Resource = {
   title: string;
