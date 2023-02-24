@@ -12,7 +12,6 @@ export default function AdminBadges() {
 
   const [createBadge] = useMutation(CREATE_CODING_BADGE);
   function handleSaveClick() {
-
     createBadge({
       variables: {
         title,
@@ -26,6 +25,7 @@ export default function AdminBadges() {
   }
   return (
     <div className="flex flex-col gap-4 p-4">
+      <h1 className="text-3xl font-bold">Create Badge</h1>
       <p>Title</p>
       <Input value={title} setValue={setTitle} placeholder="Enter Title" />
       <p>Description</p>
