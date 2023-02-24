@@ -1,28 +1,34 @@
 import { useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ProfileDetailCard from "../components/coding/studentPortal/ProfileDetailCard";
 import {
   FetchUserProfileCardResponse,
   FETCH_USER_PROFILE_CARD,
-} from "../graphql/fetchUserProfileCard";
+} from "../../../graphql/fetchUserProfileCard";
 import Link from "next/link";
-import { userSelector, setUserList } from "../redux/userSlice";
+import { userSelector, setUserList } from "../../../redux/userSlice";
 import { format } from "date-fns";
 import {
   AllUserGoalsData,
   FetchAllUserGoalsDataResponse,
   FETCH_ALL_USER_GOALS,
-} from "../graphql/fetchAllUserGoals";
-import { profileSelector, setTotalBadgeCount } from "../redux/profileSlice";
+} from "../../../graphql/fetchAllUserGoals";
+import {
+  profileSelector,
+  setTotalBadgeCount,
+} from "../../../redux/profileSlice";
 import {
   FetchTotalBadgesCountResponse,
   FETCH_TOTAL_USER_BADGES_COUNT,
-} from "../graphql/fetchTotalUserBadgesCount";
-import { useAuth } from "../lib/authContext";
+} from "../../../graphql/fetchTotalUserBadgesCount";
+import { useAuth } from "../../../lib/authContext";
 import { useRouter } from "next/router";
-import { FetchUserRoleData, FETCH_USER_ROLE } from "../graphql/fetchUserRole";
-import { Button } from "../components/ui/Button";
+import {
+  FetchUserRoleData,
+  FETCH_USER_ROLE,
+} from "../../../graphql/fetchUserRole";
+import { Button } from "../../../components/ui/Button";
+import ProfileDetailCard from "../../../components/studentPortal/ProfileDetailCard";
 
 const coachingDashboard = () => {
   const { user } = useAuth();
@@ -48,9 +54,6 @@ const coachingDashboard = () => {
   useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
     variables: {
       _id: user.uid,
-    },
-    if(loading) {
-      return <div>Loading...</div>;
     },
     onCompleted: (roleData) => {
       if (roleData.users[0].userRole.value !== "coach") {
@@ -92,16 +95,17 @@ const coachingDashboard = () => {
     }
   }, [goalsList, userList]);
 
-  const { loading: totalUserBadgeCountLoading } =
-    useQuery<FetchTotalBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
-      onCompleted: (data) => {
-        if (data) {
-          dispatch(
-            setTotalBadgeCount(data.coding_badges_aggregate.aggregate.count)
-          );
-        }
-      },
-    });
+  const {
+    loading: totalUserBadgeCountLoading,
+  } = useQuery<FetchTotalBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
+    onCompleted: (data) => {
+      if (data) {
+        dispatch(
+          setTotalBadgeCount(data.coding_badges_aggregate.aggregate.count)
+        );
+      }
+    },
+  });
 
   if (loading) {
     return <div className="flex place-content-center">"Loading..."</div>;

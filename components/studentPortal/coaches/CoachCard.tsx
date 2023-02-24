@@ -1,6 +1,6 @@
-import { Coach } from "../../../../graphql/coding/coaches/fetchCoaches";
-import { Button } from "../../../ui/Button";
 import React from "react";
+import { Coach } from "../../../graphql/coding/coaches/fetchCoaches";
+import { Button } from "../../ui/Button";
 
 type CoachCardProps = {
   coach: Coach;

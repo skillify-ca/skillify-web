@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import { PencilAltIcon } from "@heroicons/react/outline";
 import { useMutation, useQuery } from "@apollo/client";
 import {
+  IntroCourseUnit,
   FetchBadgeResponse,
   FETCH_CODING_BADGES,
-  IntroCourseUnit,
-} from "../../../../../graphql/coding/userBadges/fetchUserBadges";
-import { Button } from "../../../../ui/Button";
+} from "../../../../graphql/coding/userBadges/fetchUserBadges";
 import {
   INSERT_USER_CODING_BADGES,
   DELETE_USER_CODING_BADGES,
-} from "../../../../../graphql/coding/userBadges/updateUserCodingBadges";
-import UnitBadgeSection from "./UnitBadgeSection";
-import findBadgeDiff from "./findBadgeDiff";
+} from "../../../../graphql/coding/userBadges/updateUserCodingBadges";
 import {
   FetchUserRoleData,
   FETCH_USER_ROLE,
-} from "../../../../../graphql/fetchUserRole";
-import { useAuth } from "../../../../../lib/authContext";
+} from "../../../../graphql/fetchUserRole";
+import { useAuth } from "../../../../lib/authContext";
+import { Button } from "../../../ui/Button";
+import findBadgeDiff from "./findBadgeDiff";
+import UnitBadgeSection from "./UnitBadgeSection";
 
 export type AchievementComponentProps = {
   userId: string;

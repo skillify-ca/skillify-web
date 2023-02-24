@@ -1,8 +1,5 @@
-import { link } from "fs";
-import Link from "next/link";
-import React, { useState } from "react";
-import { UnitNode } from "../../../pages/api/studentPortal/units";
-import { Button } from "../../ui/Button";
+import React from "react";
+import { Button } from "../ui/Button";
 
 export type UnitNodeViewProps = {
   title: string;

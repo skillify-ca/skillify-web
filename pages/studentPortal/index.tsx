@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import UnitView from "../../components/coding/studentPortal/UnitView";
 import { useAuth } from "../../lib/authContext";
 import { Unit } from "../api/studentPortal/units";
 
@@ -15,7 +14,8 @@ import {
 } from "../../graphql/coding/fetchUserIntroNodes";
 import { UPDATE_USER } from "../../graphql/updateUser";
 import ErrorMessage from "../../components/ui/ErrorMessage";
-import PageHeader from "../../components/coding/studentPortal/PageHeader";
+import PageHeader from "../../components/studentPortal/PageHeader";
+import UnitView from "../../components/studentPortal/UnitView";
 
 export default function StudentPortalPage() {
   const { user } = useAuth();
