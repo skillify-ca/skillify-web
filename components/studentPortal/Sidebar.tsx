@@ -6,16 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   FetchUserRoleData,
   FETCH_USER_ROLE,
-} from "../../../graphql/fetchUserRole";
-
-import { useAuth } from "../../../lib/authContext";
-import { profileSelector, setUserRole } from "../../../redux/profileSlice";
+} from "../../graphql/fetchUserRole";
+import { useAuth } from "../../lib/authContext";
+import { profileSelector, setUserRole } from "../../redux/profileSlice";
 import {
   activePageSelector,
   setActivePage,
   SidebarPage,
-} from "../../../redux/sidebarSlice";
+} from "../../redux/sidebarSlice";
 import SkillifyCommandPalette from "./CommandPalette";
+
 interface SidebarItemProps {
   name: string;
   link: string;

@@ -9,17 +9,16 @@ import {
 import Link from "next/link";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FETCH_ALL_USER_ASSIGNMENTS } from "../../../../graphql/fetchAllUserAssignments";
+import { FETCH_ALL_USER_ASSIGNMENTS } from "../../../graphql/fetchAllUserAssignments";
 import {
   UserAssignmentSubmissionsData,
   FetchUserAssignmentSubmissionsDataResponse,
-} from "../../../../graphql/fetchUserAssignmentSubmissions";
-import { useAuth } from "../../../../lib/authContext";
+} from "../../../graphql/fetchUserAssignmentSubmissions";
+import { useAuth } from "../../../lib/authContext";
 import {
   assignmentsSelector,
   setUserAssignments,
-} from "../../../../redux/assignmentsSlice";
-import ExpandableContainer from "../../ExpandableContainer";
+} from "../../../redux/assignmentsSlice";
 
 const returnWrapStyling = (assignment: UserAssignmentSubmissionsData) => {
   let wrapStyle = "";
@@ -76,6 +75,7 @@ export default function AssignmentsSection() {
         userAssignments.map((assignment, index) => {
           return (
             <div
+              key={assignment.id}
               className={`grid grid-cols-7 my-2 text-sm text-left md:grid-cols-12 md:text-lg md:place-items-center  ${assignment}`}
             >
               <p className="col-span-1">{index + 1}.</p>

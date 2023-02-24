@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import SignInPage from "../components/SignInPage";
+import SignInPage from "../components/welcome/SignInPage";
 
 const Welcome = () => {
   return (

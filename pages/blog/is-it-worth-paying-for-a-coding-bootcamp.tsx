@@ -1,5 +1,5 @@
 import Link from "next/link";
-import PostLayout from "../../components/coding/blog/PostLayout";
+import PostLayout from "../../components/blog/PostLayout";
 import LessonComponent, {
   LessonComponentData,
 } from "../../components/coding/studentPortal/LessonComponent";

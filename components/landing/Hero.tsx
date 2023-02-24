@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../../ui/Button";
+import { Button } from "../ui/Button";
 
 type HeroProps = {
   headerText: HighlightableText[];
@@ -30,7 +30,15 @@ export default function Hero({ headerText, description }: HeroProps) {
             {description}
           </p>
           <a href="https://www.joinskillify.com/call">
-            <Button label={"Apply Now"} size="large" />
+            <button
+              type="button"
+              onClick={(e) =>
+                window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+              }
+              className={`w-48 py-4 h-16 bg-gradient-to-b bg-charmander hover:bg-pikachu-500 text-white px-3 font-bold border-b-4 rounded-lg active:border-b-2 cursor-pointer`}
+            >
+              <p className={`text-base"`}>Apply Now</p>
+            </button>
           </a>
         </div>
         <div className="">

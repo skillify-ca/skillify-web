@@ -11,7 +11,7 @@ import store from "../redux/store";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Script from "next/script";
-import Layout from "../components/coding/studentPortal/Layout";
+import Layout from "../components/studentPortal/Layout";
 import * as fbq from "../lib/fbPixel"
 import * as ga from "../lib/googleAnalytics"
 import Hotjar from '@hotjar/browser';

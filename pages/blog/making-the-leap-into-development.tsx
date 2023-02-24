@@ -1,5 +1,5 @@
 import React from "react";
-import PostLayout from "../../components/coding/blog/PostLayout";
+import PostLayout from "../../components/blog/PostLayout";
 import SEO from "../../components/SEO";
 
 export default function Page() {

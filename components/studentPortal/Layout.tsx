@@ -5,10 +5,10 @@ import { useDispatch } from "react-redux";
 import {
   FetchGoalCountResponse,
   FETCH_USER_GOALS_COUNT,
-} from "../../../graphql/fetchUserGoalsCount";
-import { useAuth } from "../../../lib/authContext";
-import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
-import { Button } from "../../ui/Button";
+} from "../../graphql/fetchUserGoalsCount";
+import { useAuth } from "../../lib/authContext";
+import { setIsGoalApproaching } from "../../redux/sidebarSlice";
+
 import Sidebar from "./Sidebar";
 
 enum Theme {

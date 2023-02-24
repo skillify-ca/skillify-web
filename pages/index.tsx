@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import SEO from "../components/SEO";
-import LandingNavbar from "../components/coding/landing/LandingNavbar";
+import LandingFooter from "../components/landing/LandingFooter";
+import LandingNavbar from "../components/landing/LandingNavbar";
 import LandingPage, {
   LandingPageCopy,
-} from "../components/coding/landing/LandingPage";
-import LandingFooter from "../components/coding/landing/LandingFooter";
+} from "../components/landing/LandingPage";
+import SEO from "../components/SEO";
 
 const HomePage = () => {
   const [showNavBar, setShowNavBar] = useState(false);

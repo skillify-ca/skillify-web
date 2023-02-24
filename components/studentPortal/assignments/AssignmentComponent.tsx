@@ -3,8 +3,8 @@ import React from "react";
 import { Sandpack } from "@codesandbox/sandpack-react";
 import HintRow from "../HintRow";
 import AssignmentInputBox from "./AssignmentInputBox";
-import ExpandableContainer from "../../ExpandableContainer";
 import TemplateInputBox from "../TemplateInputBox";
+import ExpandableContainer from "../../ui/ExpandableContainer";
 
 export type Hint = {
   description: string;

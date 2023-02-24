@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "./ui/Button";
+import { Button } from "../ui/Button";
 
 const ContactForms = (props) => {
   const [teacherInput, setTeacherInput] = useState("");
