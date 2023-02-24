@@ -66,7 +66,6 @@ const coachingDashboard = () => {
     },
   });
 
-  // alert(user && JSON.stringify(user));
   useEffect(() => {
     if (goalsList && userList) {
       const enrolledUsers = userList.map((user) => user.id);
