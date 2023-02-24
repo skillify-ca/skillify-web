@@ -49,7 +49,7 @@ export const Layout: React.FC = ({ children }) => {
       </div>
       <div className="flex">
         {/* Desktop Sidebar */}
-        <div className="hidden h-full max-h-screen grid-cols-1 pt-16 overflow-auto bg-blue-500 border-r-2 w-96 lg:grid">
+        <div className="hidden h-full max-h-screen grid-cols-1 pt-16 overflow-auto border-r-2 w-96 lg:grid">
           <Sidebar />
         </div>
         <div
@@ -90,7 +90,7 @@ function Header({ handleMenuIconClick }) {
       </div>
       <img className="visible w-48 h-8 dark:hidden" src="/images/logo.svg" />
       <img
-        className="w-48 h-8 opacity-0 dark:opacity-100"
+        className="hidden w-48 h-8 dark:visisble"
         src="/images/logo-dark.svg"
       />
       <div />
