@@ -25,7 +25,7 @@ export const Input: React.FC<InputProps> = ({
       autoComplete="off"
       value={guess}
       onChange={(e) => setGuess(e.target.value)}
-      className="w-full py-4 text-center bg-white border rounded-md shadow-lg appearance-none sm:w-64 focus:outline-none focus:ring-indigo-500 focus:z-10 sm:text-sm"
+      className="w-full py-4 text-center bg-white border rounded-md shadow-lg appearance-none text-inputTextPrimary sm:w-64 focus:outline-none focus:ring-indigo-500 focus:z-10 sm:text-sm"
       placeholder={placeholder ? placeholder : "Enter Answer"}
       onKeyPress={handleKeypress}
     />
