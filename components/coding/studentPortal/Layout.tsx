@@ -8,9 +8,17 @@ import {
 } from "../../../graphql/fetchUserGoalsCount";
 import { useAuth } from "../../../lib/authContext";
 import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
+import { Button } from "../../ui/Button";
 import Sidebar from "./Sidebar";
 
+enum Theme {
+  DEFAULT = "theme-default",
+  DRACULA = "theme-dracula",
+}
+
 export const Layout: React.FC = ({ children }) => {
+  const [theme, setTheme] = useState<Theme>(Theme.DEFAULT);
+
   const [active, setActive] = useState(false);
 
   const { user } = useAuth();
@@ -33,7 +41,7 @@ export const Layout: React.FC = ({ children }) => {
   });
 
   return (
-    <div className="flex flex-col h-full bg-white">
+    <div className={`flex flex-col h-full bg-white ${theme}`}>
       <style global jsx>{`
         html,
         body,
@@ -45,7 +53,15 @@ export const Layout: React.FC = ({ children }) => {
       `}</style>
 
       <div className="fixed z-20 w-full">
-        <Header handleMenuIconClick={() => setActive(!active)} />
+        <Header
+          handleMenuIconClick={() => setActive(!active)}
+          handleToggleClick={() =>
+            setTheme((prev) =>
+              prev === Theme.DEFAULT ? Theme.DRACULA : Theme.DEFAULT
+            )
+          }
+          theme={theme}
+        />
       </div>
       <div className="flex">
         {/* Desktop Sidebar */}
@@ -53,7 +69,7 @@ export const Layout: React.FC = ({ children }) => {
           <Sidebar />
         </div>
         <div
-          className={` dark:text-white overflow-auto pt-16 w-full max-h-screen h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 bg-white dark:bg-gray-800`}
+          className={`overflow-auto pt-16 w-full max-h-screen h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 bg-backgroundPrimary text-textPrimary`}
         >
           <div className="min-h-screen">
             <div>{children}</div>
@@ -73,11 +89,14 @@ export const Layout: React.FC = ({ children }) => {
   );
 };
 
-function Header({ handleMenuIconClick }) {
-  const [darkToggle, setDarkToggle] = useState(false);
-
+function Header({
+  handleMenuIconClick,
+  handleToggleClick,
+  theme = Theme.DEFAULT,
+}) {
   return (
-    <div className="flex justify-between w-full h-16 p-4 border-b-2 bg-primary">
+    <div className="grid w-full h-16 grid-cols-3 border-b-2 bg-backgroundPrimary">
+      {/* <div /> */}
       <div onClick={handleMenuIconClick}>
         <div className="cursor-pointer dark:text-white lg:hidden">
           <svg
@@ -90,16 +109,18 @@ function Header({ handleMenuIconClick }) {
           </svg>
         </div>
       </div>
-      <img className="visible w-48 h-8 dark:hidden" src="/images/logo.svg" />
-      <img
-        className="hidden w-48 h-8 dark:visisble"
-        src="/images/logo-dark.svg"
-      />
-      <div>
-        <label className="toggleDarkBtn">
-          <input type="checkbox" onClick={() => setDarkToggle(!darkToggle)} />
-          <span className="slideBtnTg round"></span>
-        </label>
+      <div className="place-self-center">
+        {theme === Theme.DEFAULT ? (
+          <img className="w-48 h-8 " src="/images/logo.svg" />
+        ) : theme === Theme.DRACULA ? (
+          <img className="w-48 h-8" src="/images/logo-dark.svg" />
+        ) : null}
+      </div>
+      <div
+        onClick={handleToggleClick}
+        className="flex items-center justify-end pr-4"
+      >
+        <Button backgroundColor="primary" label="Theme" />
       </div>
     </div>
   );

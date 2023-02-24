@@ -8,16 +8,6 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    textColor: {
-      primary: "var(--color-text-primary)",
-      secondary: "var(--color-text-secondary)",
-      ...colors,
-    },
-    backgroundColor: {
-      primary: "var(--color-background-primary)",
-      secondary: "var(--color-background-secondary)",
-      ...colors,
-    },
     extend: {
       width: {
         108: "27rem",
@@ -33,6 +23,10 @@ module.exports = {
         fadeIn_half: "fadeInHalf 1s ease-in-out",
       },
       colors: {
+        textPrimary: "var(--color-text-primary)",
+        brandPrimary: "var(--color-brand-primary)",
+        backgroundPrimary: "var(--color-background-primary)",
+        backgroundSecondary: "var(--color-background-secondary)",
         charmander: "#F18701",
         rattata: "#7678ED",
         pikachu: {
@@ -153,6 +147,13 @@ module.exports = {
   options: {
     /**
      * PurgeCSS:
+     * bg-backgroundSecondary
+     * bg-backgroundPrimary
+     * bg-textPrimary
+     * bg-textSecondary
+     * text-textPrimary
+     * text-textSecondary
+     * hover:text-textSecondary
      * bg-blue-300
      * bg-yellow-300
      * bg-green-300
@@ -227,6 +228,7 @@ module.exports = {
       "bg-yellow-700",
       "border-yellow-900",
       "hover:bg-yellow-400",
+      "hover:text-textSecondary",
       "text-yellow-100",
       "text-yellow-200",
       "text-yellow-400",

@@ -16,17 +16,19 @@
 }
 
 .theme-default {
-  --color-text-primary: rgb(238, 231, 9);
-  --color-text-secondary: rgb(238, 231, 9);
-  --color-background-primary: rgb(255, 106, 0);
-  --color-background-secondary: rgb(32, 129, 255);
+  --color-text-primary: rgb(0, 0, 0);
+  --color-background-primary: rgb(255, 255, 255);
+  --color-background-hover: rgb(254 252 232);
+  --color-background-secondary: rgb(255 255 255);
+  --color-brand-primary: rgb(241, 135, 1);
 }
 
-.theme-dark {
-  --color-text-primary: rgb(43, 217, 136);
-  --color-text-secondary: rgb(238, 231, 9);
-  --color-background-primary: rgb(255, 11, 178);
-  --color-background-secondary: rgb(32, 129, 255);
+.theme-dracula {
+  --color-text-primary: rgb(255, 255, 255);
+  --color-background-primary: rgb(17 24 39);
+  --color-background-hover: rgb(30 41 59);
+  --color-background-secondary: rgb(30 41 59);
+  --color-brand-primary: rgb(241, 135, 1);
 }
 
 @tailwind utilities;

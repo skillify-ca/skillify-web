@@ -19,15 +19,15 @@ export const ResourceRow: React.FC<ResourceRowProps> = ({
   link,
 }: ResourceRowProps) => {
   return (
-    <div className="grid grid-cols-1 gap-4 p-6 bg-white shadow-lg dark:bg-gray-900 lg:grid-cols-resource-row">
-      <div className="flex items-center">
-        <img src={image} className="w-16 h-16 " />
+    <div className="grid grid-cols-1 gap-4 border-2 rounded shadow-lg bg-backgroundPrimary lg:grid-cols-resource-row border-textPrimary">
+      <div className="flex items-center justify-center bg-white rounded-l-sm border-l-textPrimary">
+        <img src={image} className="object-cover w-16" />
       </div>
-      <div className="flex flex-col">
-        <h2 className="font-bold dark:text-white">{title}</h2>
-        <p className="dark:text-white">{description}</p>
+      <div className="flex flex-col p-6 ">
+        <h2 className="font-bold">{title}</h2>
+        <p className="">{description}</p>
       </div>
-      <div className="flex items-center sm:justify-end">
+      <div className="flex items-center p-6 sm:justify-end">
         <a target="_blank" href={link} rel="noopener noreferrer">
           <Button label="View" disabled={disabled} />
         </a>
