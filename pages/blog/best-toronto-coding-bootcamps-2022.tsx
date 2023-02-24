@@ -1,7 +1,8 @@
 import PostLayout from "../../components/blog/PostLayout";
-
 import SEO from "../../components/SEO";
-import { LessonComponentData } from "../../components/studentPortal/LessonComponent";
+import LessonComponent, {
+  LessonComponentData,
+} from "../../components/studentPortal/LessonComponent";
 
 interface PageProps {
   blogComponents: LessonComponentData[];
