@@ -1,7 +1,7 @@
 /* eslint-disable no-irregular-whitespace */
 import React, { useState } from "react";
 import { Button } from "../../../components/ui/Button";
-import { linesOfCode } from "../../api/coding/LinesOfCode";
+import { linesOfCode } from "../../api/studentPortal/challenges/richestCustomer/LinesOfCode";
 
 export default function richestCustomerWealth(props) {
   const [lineNum, setLineNum] = useState(0);
