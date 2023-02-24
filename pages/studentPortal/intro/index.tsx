@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { transform } from "lodash";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import UnitView from "../../../components/coding/studentPortal/UnitView";
+import UnitView from "../../../components/studentPortal/UnitView";
 import { FETCH_USER_INTRO_NODES } from "../../../graphql/coding/fetchUserIntroNodes";
 import {
   INIT_USER_INTRO_NODES,

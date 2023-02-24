@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
-import { Button } from "../../../../components/ui/Button";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
+import { useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
+import React from "react";
 import LessonComponent, {
   LessonComponentData,
   Resource,
-} from "../../../../components/coding/studentPortal/LessonComponent";
-
-import { useMutation } from "@apollo/client";
-import { useRouter } from "next/router";
+} from "../../../../components/studentPortal/LessonComponent";
+import ProgressBar from "../../../../components/studentPortal/ProgressBar";
+import { Button } from "../../../../components/ui/Button";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
 import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";

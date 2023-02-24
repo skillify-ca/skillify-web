@@ -1,13 +1,9 @@
 import { useMutation } from "@apollo/client";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import LessonComponent, {
-  LessonComponentData,
-} from "../../../../components/coding/studentPortal/LessonComponent";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
-import Quiz from "../../../../components/coding/studentPortal/quiz/Quiz";
+import ProgressBar from "../../../../components/studentPortal/ProgressBar";
+import Quiz from "../../../../components/studentPortal/quiz/Quiz";
 import { Button } from "../../../../components/ui/Button";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
 import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
@@ -41,7 +37,8 @@ const JSQuiz1 = () => {
       answer: "D",
     };
     const q3 = {
-      text: "Which one of the following is an incorrect way of declaring a variable",
+      text:
+        "Which one of the following is an incorrect way of declaring a variable",
       A: "variable x;",
       B: "var x;",
       C: "let x;",
