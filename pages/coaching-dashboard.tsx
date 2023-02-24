@@ -48,9 +48,7 @@ const coachingDashboard = () => {
     variables: {
       _id: user.uid,
     },
-    if(loading) {
-      return <div>Loading...</div>;
-    },
+
     onCompleted: (roleData) => {
       if (roleData.users[0].userRole.value !== "coach") {
         router.replace("/studentPortal");
