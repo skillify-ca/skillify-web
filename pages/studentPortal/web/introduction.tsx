@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import LessonComponent, {
   LessonComponentData,
-} from "../../../components/coding/studentPortal/LessonComponent";
+} from "../../../components/studentPortal/LessonComponent";
 import { Button } from "../../../components/ui/Button";
 
 const Introduction = ({ lessonComponents }) => {

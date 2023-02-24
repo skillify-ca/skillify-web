@@ -1,8 +1,8 @@
 import React from "react";
 import LessonComponent, {
   LessonComponentData,
-} from "../../../../../components/coding/studentPortal/LessonComponent";
-import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
+} from "../../../../../components/studentPortal/LessonComponent";
+import ProgressBar from "../../../../../components/studentPortal/ProgressBar";
 import { Button } from "../../../../../components/ui/Button";
 
 const JS7 = ({ lessonComponents }) => {

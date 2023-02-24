@@ -1,9 +1,9 @@
-import React from "react";
-import { Button } from "../../../../components/ui/Button";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
-import Link from "next/link";
 import { useMutation } from "@apollo/client";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import React from "react";
+import ProgressBar from "../../../../components/studentPortal/ProgressBar";
+import { Button } from "../../../../components/ui/Button";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
 import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
@@ -53,7 +53,7 @@ const CSS3 = () => {
                 <div className="mt-24">
                   <p className="text-center mr-80">Up Next:</p>
                   <div className="grid grid-cols-1 place-items-center">
-                    <div className="p-12 mt-4 bg-white dark:bg-gray-500 border-2 border-gray-200 rounded-lg px-36">
+                    <div className="p-12 mt-4 bg-white border-2 border-gray-200 rounded-lg dark:bg-gray-500 px-36">
                       <p className="text-xl font-bold text-center">Quiz</p>
                       <p className="text-center">What is CSS?</p>
                     </div>

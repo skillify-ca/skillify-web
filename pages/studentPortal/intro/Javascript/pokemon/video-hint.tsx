@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
+import ProgressBar from "../../../../../components/studentPortal/ProgressBar";
 import { Button } from "../../../../../components/ui/Button";
 
 const JS_A1 = () => {

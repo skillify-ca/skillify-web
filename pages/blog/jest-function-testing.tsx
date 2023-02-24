@@ -1,6 +1,6 @@
 import React from "react";
-import CodeBlock from "../../components/coding/blog/CodeBlock";
-import PostLayout from "../../components/coding/blog/PostLayout";
+import CodeBlock from "../../components/blog/CodeBlock";
+import PostLayout from "../../components/blog/PostLayout";
 import SEO from "../../components/SEO";
 
 export default function Page() {
@@ -20,7 +20,7 @@ export default function Page() {
           Jest + Function Testing: A Creative & Cheap Approach to Testing
           Tailwind/CSS Classes
         </h1>
-        <h2 className="font-thin italic">By: Kari Wiedenhaupt</h2>
+        <h2 className="italic font-thin">By: Kari Wiedenhaupt</h2>
       </div>
       <div className="flex flex-col gap-4 p-4">
         <p>
@@ -49,7 +49,7 @@ export default function Page() {
         <div className="flex items-center">
           <img
             src={"/images/blog/jest-function-testing/goalTesting.png"}
-            className="w-full  "
+            className="w-full "
           />
         </div>
         <p>
@@ -271,7 +271,7 @@ export default function Page() {
   expect(result).toBe(yellowHighlightStyle);`}
         </CodeBlock>
       </div>
-      <div className="flex place-items-center gap-4">
+      <div className="flex gap-4 place-items-center">
         <img
           src={"/images/blog/jest-function-testing/kari.jpg"}
           className="w-1/6 h-1/6"

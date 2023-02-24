@@ -1,13 +1,9 @@
 import { useMutation } from "@apollo/client";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import LessonComponent, {
-  LessonComponentData,
-} from "../../../../components/coding/studentPortal/LessonComponent";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
-import Quiz from "../../../../components/coding/studentPortal/quiz/Quiz";
+import ProgressBar from "../../../../components/studentPortal/ProgressBar";
+import Quiz from "../../../../components/studentPortal/quiz/Quiz";
 import { Button } from "../../../../components/ui/Button";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
 import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
@@ -25,7 +21,8 @@ const JSQuiz2 = () => {
 
   useEffect(() => {
     const q1 = {
-      text: "How many times will this loop run? \nfor (int i = 1; i <= 10; i++)",
+      text:
+        "How many times will this loop run? \nfor (int i = 1; i <= 10; i++)",
       A: "10",
       B: "5",
       C: "9",
@@ -33,7 +30,8 @@ const JSQuiz2 = () => {
       answer: "A",
     };
     const q2 = {
-      text: 'What value does phone[3] have in the following Array. const phones = [ "BlackBerry", "Samsung", "iPhone", "Pixel"];',
+      text:
+        'What value does phone[3] have in the following Array. const phones = [ "BlackBerry", "Samsung", "iPhone", "Pixel"];',
       A: "Samsung",
       B: "iPhone",
       C: "Pixel",
