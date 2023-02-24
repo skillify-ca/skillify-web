@@ -19,8 +19,14 @@ import {
   FetchTotalBadgesCountResponse,
   FETCH_TOTAL_USER_BADGES_COUNT,
 } from "../graphql/fetchTotalUserBadgesCount";
+import { useAuth } from "../lib/authContext";
+import { useRouter } from "next/router";
+import { FetchUserRoleData, FETCH_USER_ROLE } from "../graphql/fetchUserRole";
 
 const coachingDashboard = () => {
+  const { user } = useAuth();
+  const router = useRouter();
+
   const dispatch = useDispatch();
   const { userList } = useSelector(userSelector);
   const { totalBadgeCount } = useSelector(profileSelector);
@@ -38,6 +44,19 @@ const coachingDashboard = () => {
       },
     }
   );
+  useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
+    variables: {
+      _id: user.uid,
+    },
+    if(loading) {
+      return <div>Loading...</div>;
+    },
+    onCompleted: (roleData) => {
+      if (roleData.users[0].userRole.value === "student") {
+        router.replace("/studentPortal");
+      }
+    },
+  });
 
   const {} = useQuery<FetchAllUserGoalsDataResponse>(FETCH_ALL_USER_GOALS, {
     onCompleted: (data) => {
@@ -47,6 +66,7 @@ const coachingDashboard = () => {
     },
   });
 
+  // alert(user && JSON.stringify(user));
   useEffect(() => {
     if (goalsList && userList) {
       const enrolledUsers = userList.map((user) => user.id);
