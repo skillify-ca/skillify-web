@@ -13,7 +13,7 @@ const Github = ({ lessonComponents }: LessonProps) => {
   const router = useRouter();
 
   const handleContinue = () => {
-    router.push("/studentPortal/web/tailwindcss-colourstyling");
+    router.push("/studentPortal/web/React/tailwindcss-gridflex");
   };
   return (
     <>
