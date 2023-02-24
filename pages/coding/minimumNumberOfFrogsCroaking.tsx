@@ -1,8 +1,8 @@
 import { useState } from "react";
-import ArrayIteration from "../../components/coding/dataStructures/ArrayIteration";
-import Expression from "../../components/coding/dataStructures/Expression";
-import HashMap from "../../components/coding/dataStructures/HashMap";
-import FrogsOutput from "../../components/coding/minimumFrogs/FrogsOutput";
+import ArrayIteration from "../../components/coding/studentPortal/challenges/dataStructures/ArrayIteration";
+import Expression from "../../components/coding/studentPortal/challenges/dataStructures/Expression";
+import HashMap from "../../components/coding/studentPortal/challenges/dataStructures/HashMap";
+import FrogsOutput from "../../components/coding/studentPortal/challenges/minimumFrogs/FrogsOutput";
 import { Button } from "../../components/ui/Button";
 import CollapsibleCard from "../../components/ui/CollapsibleCard";
 import { Input } from "../../components/ui/Input";

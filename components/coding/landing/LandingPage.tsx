@@ -2,7 +2,7 @@ import React from "react";
 import { BenefitData } from "./Benefits";
 import TestimonialSect from "./TestimonialSect";
 import SubscribeBanner from "./SubscribeBanner";
-import LandingFooter from "./LandingFooter";
+import TermsAndConditions from "./TermsAndConditions";
 import Credentials from "./Credentials";
 import Hero, { HighlightableText } from "./Hero";
 import WhatYouGet from "./WhatYouGet";
@@ -32,7 +32,7 @@ export default function LandingPage({
         <TestimonialSect />
         <SubscribeBanner />
       </div>
-      <LandingFooter />
+      <TermsAndConditions />
     </div>
   );
 }

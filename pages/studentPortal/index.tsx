@@ -15,7 +15,7 @@ import {
 } from "../../graphql/coding/fetchUserIntroNodes";
 import { UPDATE_USER } from "../../graphql/updateUser";
 import ErrorMessage from "../../components/ui/ErrorMessage";
-import PageHeader from "../../components/coding/PageHeader";
+import PageHeader from "../../components/coding/studentPortal/PageHeader";
 
 export default function StudentPortalPage() {
   const { user } = useAuth();

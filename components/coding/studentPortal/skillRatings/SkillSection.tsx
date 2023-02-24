@@ -1,5 +1,5 @@
 import React from "react";
-import { SkillRatingsRow } from "../../redux/skillRatingsSlice";
+import { SkillRatingsRow } from "../../../../redux/skillRatingsSlice";
 import SkillRow from "./SkillRow";
 
 type SkillSectionProps = {
@@ -11,7 +11,7 @@ export default function SkillSection({ skillSection }: SkillSectionProps) {
     <div>
       {skillSection && skillSection.length > 0 && (
         <div>
-          <div className="text-white bg-murkrow text-center rounded-full py-4 w-1/6 mt-4">
+          <div className="w-1/6 py-4 mt-4 text-center text-white rounded-full bg-murkrow">
             {skillSection[0].unitName}
           </div>
           {skillSection.map((row) => {

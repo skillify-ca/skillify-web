@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import SEO from "../components/SEO";
-import LandingNavbar from "../components/LandingNavbar";
+import LandingNavbar from "../components/coding/landing/LandingNavbar";
 import LandingPage, {
   LandingPageCopy,
 } from "../components/coding/landing/LandingPage";
-import LandingFooter from "../components/LandingFooter";
+import LandingFooter from "../components/coding/landing/LandingFooter";
 
 const HomePage = () => {
   const [showNavBar, setShowNavBar] = useState(false);
@@ -79,9 +79,7 @@ const HomePage = () => {
         }
         image={"https://www.skillify.ca/images/logo.svg"}
       />
-
       <LandingNavbar />
-
       <LandingPage
         headerText={headerText}
         description={description}

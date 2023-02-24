@@ -6,23 +6,23 @@ function HeroHome({ title, description }) {
 
   return (
     <section className="">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl px-4 mx-auto sm:px-6">
         {/* Hero content */}
         <div className="pt-16 pb-12 md:pt-16 md:pb-20">
           {/* Section header */}
-          <div className="text-center pb-12 md:pb-16">
+          <div className="pb-12 text-center md:pb-16">
             <h1
-              className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4"
+              className="mb-4 text-5xl font-extrabold tracking-tighter md:text-6xl leading-tighter"
               data-aos="zoom-y-out"
             >
               Learn{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-300">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-300">
                 {title}
               </span>
             </h1>
             <div className="max-w-3xl mx-auto">
               <p
-                className="text-xl text-gray-600 mb-8"
+                className="mb-8 text-xl text-gray-600"
                 data-aos="zoom-y-out"
                 data-aos-delay="150"
               >
@@ -35,7 +35,7 @@ function HeroHome({ title, description }) {
               >
                 <div>
                   <a
-                    className="btn p-4 rounded-md text-white w-full mb-4 sm:w-auto sm:mb-0"
+                    className="w-full p-4 mb-4 text-white rounded-md btn sm:w-auto sm:mb-0"
                     href="mailto:admin@vithushan.ca?subject=Learn to Code"
                   >
                     <Button backgroundColor="blue" label="Pre-order Now" />
@@ -63,7 +63,7 @@ function HeroHome({ title, description }) {
                   alt="Hero"
                 />
                 <svg
-                  className="absolute inset-0 max-w-full mx-auto md:max-w-none h-auto"
+                  className="absolute inset-0 h-auto max-w-full mx-auto md:max-w-none"
                   width="768"
                   height="432"
                   viewBox="0 0 768 432"
@@ -93,7 +93,7 @@ function HeroHome({ title, description }) {
                 </svg>
               </div>
               <button
-                className="absolute top-full flex items-center transform -translate-y-1/2 bg-white rounded-full font-medium group p-4 shadow-lg"
+                className="absolute flex items-center p-4 font-medium transform -translate-y-1/2 bg-white rounded-full shadow-lg top-full group"
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
@@ -102,7 +102,7 @@ function HeroHome({ title, description }) {
                 aria-controls="modal"
               >
                 <svg
-                  className="w-6 h-6 fill-current text-gray-400 group-hover:text-blue-600 flex-shrink-0"
+                  className="flex-shrink-0 w-6 h-6 text-gray-400 fill-current group-hover:text-blue-600"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >

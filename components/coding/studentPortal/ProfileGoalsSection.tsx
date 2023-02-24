@@ -4,7 +4,7 @@ import {
   FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
   UserGoalsData,
-} from "../../graphql/fetchUserGoals";
+} from "../../../graphql/fetchUserGoals";
 
 export type GoalsSectionProps = {
   user: any;

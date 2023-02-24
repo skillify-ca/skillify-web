@@ -9,17 +9,17 @@ import {
 import Link from "next/link";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FETCH_ALL_USER_ASSIGNMENTS } from "../../../graphql/fetchAllUserAssignments";
+import { FETCH_ALL_USER_ASSIGNMENTS } from "../../../../graphql/fetchAllUserAssignments";
 import {
   UserAssignmentSubmissionsData,
   FetchUserAssignmentSubmissionsDataResponse,
-} from "../../../graphql/fetchUserAssignmentSubmissions";
-import { useAuth } from "../../../lib/authContext";
+} from "../../../../graphql/fetchUserAssignmentSubmissions";
+import { useAuth } from "../../../../lib/authContext";
 import {
   assignmentsSelector,
   setUserAssignments,
-} from "../../../redux/assignmentsSlice";
-import ExpandableContainer from "../ExpandableContainer";
+} from "../../../../redux/assignmentsSlice";
+import ExpandableContainer from "../../ExpandableContainer";
 
 const returnWrapStyling = (assignment: UserAssignmentSubmissionsData) => {
   let wrapStyle = "";
@@ -42,19 +42,20 @@ export default function AssignmentsSection() {
   const dispatch = useDispatch();
   const { userAssignments } = useSelector(assignmentsSelector);
 
-  const { loading: userAssignmentsLoading } =
-    useQuery<FetchUserAssignmentSubmissionsDataResponse>(
-      FETCH_ALL_USER_ASSIGNMENTS,
-      {
-        variables: {
-          user_id: user.uid,
-        },
+  const {
+    loading: userAssignmentsLoading,
+  } = useQuery<FetchUserAssignmentSubmissionsDataResponse>(
+    FETCH_ALL_USER_ASSIGNMENTS,
+    {
+      variables: {
+        user_id: user.uid,
+      },
 
-        onCompleted: (data: FetchUserAssignmentSubmissionsDataResponse) => {
-          dispatch(setUserAssignments(data.user_assignment_submissions));
-        },
-      }
-    );
+      onCompleted: (data: FetchUserAssignmentSubmissionsDataResponse) => {
+        dispatch(setUserAssignments(data.user_assignment_submissions));
+      },
+    }
+  );
   console.log("userAssignments profile redux", userAssignments);
   return (
     <div>

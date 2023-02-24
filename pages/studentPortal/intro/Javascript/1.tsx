@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import Card, { CardData } from "../../../../components/coding/Card";
-import CodingChallengeInstructions from "../../../../components/coding/studentPortal/JavaScript/CodingChallengeInstructions";
+import CodingChallengeInstructions from "../../../../components/coding/studentPortal/lessons/JavaScript/CodingChallengeInstructions";
 import LessonComponent, {
   LessonComponentData,
   Resource,
@@ -98,7 +98,8 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "JavaScript is yet another language that you need to learn. This lesson will teach you the main concepts of JavaScript.",
+      text:
+        "JavaScript is yet another language that you need to learn. This lesson will teach you the main concepts of JavaScript.",
     },
     {
       component: "resource-list",

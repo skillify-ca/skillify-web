@@ -4,53 +4,56 @@ import React, { useState } from "react";
 import {
   FetchUserBadgesCountResponse,
   FETCH_USER_BADGES_COUNT,
-} from "../../graphql/fetchUserBadgesCount";
+} from "../../../graphql/fetchUserBadgesCount";
 
 import {
   FetchUserProfileDataResponse,
   FETCH_USER_PROFILE_DATA,
   UserProfileData,
-} from "../../graphql/fetchUserProfile";
+} from "../../../graphql/fetchUserProfile";
 
 export type UserProfileSectionProps = {
   user: any;
 };
 
 export default function UserProfileSection({ user }: UserProfileSectionProps) {
-  const [userProfileData, setUserProfileData] =
-    useState<UserProfileData>(Object);
+  const [userProfileData, setUserProfileData] = useState<UserProfileData>(
+    Object
+  );
 
   const [userBadgeCount, setUserBadgeCount] = useState<number>(0);
 
-  const { loading: userProfileLoading } =
-    useQuery<FetchUserProfileDataResponse>(FETCH_USER_PROFILE_DATA, {
-      variables: {
-        userId: user.uid,
-      },
-      onCompleted: (data) => {
-        if (data.users.length > 0) {
-          setUserProfileData({
-            typeName: data.users[0].__typename,
-            createdAt: data.users[0].created_at,
-            email: data.users[0].email,
-            lastSeen: data.users[0].last_seen,
-            name: data.users[0].name,
-            profileImage: data.users[0].profile_image,
-          });
-        }
-      },
-    });
-  const { loading: userBadgeCountLoading } =
-    useQuery<FetchUserBadgesCountResponse>(FETCH_USER_BADGES_COUNT, {
-      variables: {
-        userId: user.uid,
-      },
-      onCompleted: (data) => {
-        if (data.user_coding_badges_aggregate.aggregate.count) {
-          setUserBadgeCount(data.user_coding_badges_aggregate.aggregate.count);
-        }
-      },
-    });
+  const {
+    loading: userProfileLoading,
+  } = useQuery<FetchUserProfileDataResponse>(FETCH_USER_PROFILE_DATA, {
+    variables: {
+      userId: user.uid,
+    },
+    onCompleted: (data) => {
+      if (data.users.length > 0) {
+        setUserProfileData({
+          typeName: data.users[0].__typename,
+          createdAt: data.users[0].created_at,
+          email: data.users[0].email,
+          lastSeen: data.users[0].last_seen,
+          name: data.users[0].name,
+          profileImage: data.users[0].profile_image,
+        });
+      }
+    },
+  });
+  const {
+    loading: userBadgeCountLoading,
+  } = useQuery<FetchUserBadgesCountResponse>(FETCH_USER_BADGES_COUNT, {
+    variables: {
+      userId: user.uid,
+    },
+    onCompleted: (data) => {
+      if (data.user_coding_badges_aggregate.aggregate.count) {
+        setUserBadgeCount(data.user_coding_badges_aggregate.aggregate.count);
+      }
+    },
+  });
 
   return (
     <>

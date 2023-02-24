@@ -1,10 +1,10 @@
 import Image from "next/image";
 import React from "react";
 import { Sandpack } from "@codesandbox/sandpack-react";
-import HintRow from "./HintRow";
+import HintRow from "../HintRow";
 import AssignmentInputBox from "./AssignmentInputBox";
-import ExpandableContainer from "../ExpandableContainer";
-import TemplateInputBox from "./TemplateInputBox";
+import ExpandableContainer from "../../ExpandableContainer";
+import TemplateInputBox from "../TemplateInputBox";
 
 export type Hint = {
   description: string;
@@ -82,7 +82,7 @@ export default function AssignmentComponent({
       <ExpandableContainer open={true} title="Directions">
         <div className="flex flex-col mx-4">
           <p className="text-lg">{data.header}</p>
-          <ul className="text-md list-outside list-disc ml-10 space-y-2">
+          <ul className="ml-10 space-y-2 list-disc list-outside text-md">
             {data.bullets.map((item, index) => {
               return <li key={index}>{item}</li>;
             })}
@@ -135,10 +135,10 @@ export default function AssignmentComponent({
   } else if (data.component === "output") {
     return (
       <ExpandableContainer open={true} title="Example">
-        <div className="flex flex-col space-y-4 mx-4 text-lg">
+        <div className="flex flex-col mx-4 space-y-4 text-lg">
           <p>Your submission should look close to the following:</p>
           {data.screenshotOrVideoId.includes(".") ? (
-            <div className="h-96 w-96 relative">
+            <div className="relative h-96 w-96">
               <Image src={data.screenshotOrVideoId} layout="fill" />
             </div>
           ) : (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { IntroCourseUnit } from "../../../../graphql/coding/userBadges/fetchUserBadges";
-import { CodingBadge } from "../../../../graphql/coding/userBadges/fetchUserBadges";
+import { IntroCourseUnit } from "../../../../../graphql/coding/userBadges/fetchUserBadges";
+import { CodingBadge } from "../../../../../graphql/coding/userBadges/fetchUserBadges";
 import CodingBadgeUnit from "./CodingBadgeUnit";
 
 type UnitBadgeSectionProps = {
@@ -25,7 +25,7 @@ function UnitBadgeSection({
     <div>
       <div className="grid grid-cols-1">
         <div
-          className="flex p-4 cursor-pointer  hover:bg-slate-700 group"
+          className="flex p-4 cursor-pointer hover:bg-slate-700 group"
           onClick={() => setIsOpen(!isOpen)}
         >
           <img

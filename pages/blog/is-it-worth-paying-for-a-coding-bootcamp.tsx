@@ -3,7 +3,7 @@ import PostLayout from "../../components/coding/blog/PostLayout";
 import LessonComponent, {
   LessonComponentData,
 } from "../../components/coding/studentPortal/LessonComponent";
-import LnadingNavbar from "../../components/LandingNavbar";
+import LnadingNavbar from "../../components/coding/landing/LandingNavbar";
 import SEO from "../../components/SEO";
 
 interface PageProps {
@@ -38,15 +38,18 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Yes, a Toronto coding bootcamp is worth it for anyone looking for an independent or cohort-based tech training program to help jumpstart your software career.",
+      text:
+        "Yes, a Toronto coding bootcamp is worth it for anyone looking for an independent or cohort-based tech training program to help jumpstart your software career.",
     },
     {
       component: "description",
-      text: "According to the New York Times, Toronto ranked as the third largest tech-hub in North America. Coding bootcamps can offer affordable in-demand tech skills training. Toronto coding bootcamps can also help you get hired and start your career in software devevlopment.",
+      text:
+        "According to the New York Times, Toronto ranked as the third largest tech-hub in North America. Coding bootcamps can offer affordable in-demand tech skills training. Toronto coding bootcamps can also help you get hired and start your career in software devevlopment.",
     },
     {
       component: "description",
-      text: "Most Toronto bootcamps will cost you around $15000 with fees and taxes. The Skillify program is an affordable option with much more personalized attention and mentorship.",
+      text:
+        "Most Toronto bootcamps will cost you around $15000 with fees and taxes. The Skillify program is an affordable option with much more personalized attention and mentorship.",
     },
   ];
   return { props: { blogComponents } };

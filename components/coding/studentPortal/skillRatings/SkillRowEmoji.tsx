@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { updateSkillRatings } from "../../redux/skillRatingsSlice";
+import { updateSkillRatings } from "../../../../redux/skillRatingsSlice";
 
 export interface EmojiSliderProps {
   userSkillId: string;

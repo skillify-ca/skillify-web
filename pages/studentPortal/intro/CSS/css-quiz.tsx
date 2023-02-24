@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CSSQuiz from "../../../../components/coding/CSSQuiz";
+import CSSQuiz from "../../../../components/coding/studentPortal/CSSQuiz";
 import LessonComponent, {
   LessonComponentData,
 } from "../../../../components/coding/studentPortal/LessonComponent";

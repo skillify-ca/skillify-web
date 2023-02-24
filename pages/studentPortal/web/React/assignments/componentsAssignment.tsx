@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 import AssignmentComponent, {
   AssignmentComponentData,
-} from "../../../../../components/coding/studentPortal/AssignmentComponent";
+} from "../../../../../components/coding/studentPortal/assignments/AssignmentComponent";
 
 import {
   FETCH_USER_ASSIGNMENT_SUBMISSIONS,
@@ -50,35 +50,37 @@ const React2 = ({
     }
   };
 
-  const { loading: userAssignmentsLoading } =
-    useQuery<FetchUserAssignmentSubmissionsDataResponse>(
-      FETCH_USER_ASSIGNMENT_SUBMISSIONS,
-      {
-        variables: {
-          user_id: user.uid,
-          assignmentId: assignmentId,
-        },
+  const {
+    loading: userAssignmentsLoading,
+  } = useQuery<FetchUserAssignmentSubmissionsDataResponse>(
+    FETCH_USER_ASSIGNMENT_SUBMISSIONS,
+    {
+      variables: {
+        user_id: user.uid,
+        assignmentId: assignmentId,
+      },
 
-        onCompleted: (data: FetchUserAssignmentSubmissionsDataResponse) => {
-          if (data.user_assignment_submissions.length > 0) {
-            dispatch(setUserAssignments(data.user_assignment_submissions));
-            deployCurrentStage(data.user_assignment_submissions[0]);
-          }
-        },
-      }
-    );
+      onCompleted: (data: FetchUserAssignmentSubmissionsDataResponse) => {
+        if (data.user_assignment_submissions.length > 0) {
+          dispatch(setUserAssignments(data.user_assignment_submissions));
+          deployCurrentStage(data.user_assignment_submissions[0]);
+        }
+      },
+    }
+  );
 
   const completedStage: AssignmentComponentData[] = [
     {
       component: "loom-video",
-      text: "Your assignment has been reviewed! Watch the video below for feedback:",
+      text:
+        "Your assignment has been reviewed! Watch the video below for feedback:",
       videoId: userAssignments.length > 0 ? userAssignments[0].review_link : "",
     },
   ];
 
   return (
     <>
-      <div className="flex flex-col m-8 sm:px-12 space-y-4">
+      <div className="flex flex-col m-8 space-y-4 sm:px-12">
         {userAssignmentsLoading ? (
           <div>Loading...</div>
         ) : stage === Stage.INCOMPLETE ? (
@@ -153,7 +155,8 @@ export async function getServerSideProps() {
   const submittedStage: AssignmentComponentData[] = [
     {
       component: "completed",
-      text: "Your assignment has been submitted. The instructor will follow-up with a loom video link upon review. ",
+      text:
+        "Your assignment has been submitted. The instructor will follow-up with a loom video link upon review. ",
     },
   ];
 

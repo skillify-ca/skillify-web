@@ -1,8 +1,8 @@
 import React from "react";
-import ProfileGoalsSection from "../../../../components/coding/ProfileGoalsSection";
-import AchievementComponent from "../../../../components/coding/profileV2/achievement_components/AchievementComponent";
-import ProjectsSection from "../../../../components/coding/ProjectsSection";
-import UserProfileSection from "../../../../components/coding/UserProfileSection";
+import ProfileGoalsSection from "../../../../components/coding/studentPortal/ProfileGoalsSection";
+import AchievementComponent from "../../../../components/coding/studentPortal/profileV2/achievement_components/AchievementComponent";
+import ProjectsSection from "../../../../components/coding/studentPortal/ProjectsSection";
+import UserProfileSection from "../../../../components/coding/studentPortal/UserProfileSection";
 import { useAuth } from "../../../../lib/authContext";
 
 export default function Profile() {

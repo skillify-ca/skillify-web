@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import CSSQuiz from "../../../../components/coding/CSSQuiz";
+import CSSQuiz from "../../../../components/coding/studentPortal/CSSQuiz";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 import LessonComponent, {

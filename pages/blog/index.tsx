@@ -1,9 +1,7 @@
-
-import { HeartIcon } from "@heroicons/react/solid";
 import React from "react";
 import Head from "next/head";
 import Card from "../../components/coding/Card";
-import LandingNavbar from "../../components/LandingNavbar";
+import LandingNavbar from "../../components/coding/landing/LandingNavbar";
 
 export default function Blog() {
   return (
@@ -45,7 +43,6 @@ export default function Blog() {
               }
               link={"/blog/making-the-leap-into-development"}
               color={2}
-
             />
           </div>
           <div>

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import {
   SkillRatingsRow,
   skillRatingsSelector,
-} from "../../redux/skillRatingsSlice";
+} from "../../../../redux/skillRatingsSlice";
 import SkillRowEmoji from "./SkillRowEmoji";
 
 export type SkillRowProps = {

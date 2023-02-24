@@ -1,6 +1,6 @@
 import React from "react";
 
-import { UserProfileData } from "../../../graphql/fetchUserProfile";
+import { UserProfileData } from "../../../../graphql/fetchUserProfile";
 import BadgesDisplayedComponent from "./BadgesDisplayedComponent";
 import JoinedDateComponent from "./JoinedDateComponent";
 
@@ -16,7 +16,7 @@ export default function UserProfileSection({
   totalBadgeCount,
 }: UserProfileSectionProps) {
   return (
-    <div className="grid items-center  grid-cols-4 col-span-5  md:grid-cols-8">
+    <div className="grid items-center grid-cols-4 col-span-5 md:grid-cols-8">
       <img
         className="mt-6 mr-2 rounded-full w-36"
         src={userProfileData.profileImage}

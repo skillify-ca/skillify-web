@@ -1,7 +1,7 @@
 import React from "react";
-import { IntroCourseUnit } from "../../../../graphql/coding/userBadges/fetchUserBadges";
+import { IntroCourseUnit } from "../../../../../graphql/coding/userBadges/fetchUserBadges";
 
-import { CodingBadge } from "../../../../graphql/coding/userBadges/fetchUserBadges";
+import { CodingBadge } from "../../../../../graphql/coding/userBadges/fetchUserBadges";
 
 type CodingBadgeUnitProps = {
   disabled: boolean;

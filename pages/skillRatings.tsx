@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SkillSection from "../components/skillRatings/SkillSection";
+import SkillSection from "../components/coding/studentPortal/skillRatings/SkillSection";
 import { Button } from "../components/ui/Button";
 import {
   FetchUserSkillsRatings,
@@ -75,7 +75,7 @@ export default function SkillRatings(props) {
       <div className="flex flex-col p-4 m-4">
         {skillRatings && <SkillSection skillSection={skillRatings} />}
       </div>
-      <div className="p-4 mr-8 mt-8">
+      <div className="p-4 mt-8 mr-8">
         <Button
           label="Save"
           onClick={() =>

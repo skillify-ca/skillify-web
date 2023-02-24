@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { FETCH_USER_SKILLS_RATINGS } from "../../graphql/fetchUserSkillsRatings";
-import { UPSERT_USER_SKILL_RATINGS } from "../../graphql/upsertUserSkillRatings";
-import { useAuth } from "../../lib/authContext";
-import { transformSkillRatingForDB } from "../../pages/api/skillRatingsFunctions";
-import { SkillRatingsRow } from "../../redux/skillRatingsSlice";
-import SkillRow from "../skillRatings/SkillRow";
-import { Button } from "../ui/Button";
+import { FETCH_USER_SKILLS_RATINGS } from "../../../graphql/fetchUserSkillsRatings";
+import { UPSERT_USER_SKILL_RATINGS } from "../../../graphql/upsertUserSkillRatings";
+import { useAuth } from "../../../lib/authContext";
+import { transformSkillRatingForDB } from "../../../pages/api/skillRatingsFunctions";
+import { SkillRatingsRow } from "../../../redux/skillRatingsSlice";
+import SkillRow from "./skillRatings/SkillRow";
+import { Button } from "../../ui/Button";
 import React from "react";
 import { animated, useSpring } from "@react-spring/web";
 import { useMutation } from "@apollo/client";

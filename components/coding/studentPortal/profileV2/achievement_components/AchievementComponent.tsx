@@ -5,19 +5,19 @@ import {
   FetchBadgeResponse,
   FETCH_CODING_BADGES,
   IntroCourseUnit,
-} from "../../../../graphql/coding/userBadges/fetchUserBadges";
-import { Button } from "../../../ui/Button";
+} from "../../../../../graphql/coding/userBadges/fetchUserBadges";
+import { Button } from "../../../../ui/Button";
 import {
   INSERT_USER_CODING_BADGES,
   DELETE_USER_CODING_BADGES,
-} from "../../../../graphql/coding/userBadges/updateUserCodingBadges";
+} from "../../../../../graphql/coding/userBadges/updateUserCodingBadges";
 import UnitBadgeSection from "./UnitBadgeSection";
 import findBadgeDiff from "./findBadgeDiff";
 import {
   FetchUserRoleData,
   FETCH_USER_ROLE,
-} from "../../../../graphql/fetchUserRole";
-import { useAuth } from "../../../../lib/authContext";
+} from "../../../../../graphql/fetchUserRole";
+import { useAuth } from "../../../../../lib/authContext";
 
 export type AchievementComponentProps = {
   userId: string;
@@ -100,13 +100,13 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
   };
 
   return (
-    <div className="bg-slate-900 p-4 ">
+    <div className="p-4 bg-slate-900 ">
       <div className="flex justify-end w-full py-4">
         {isEditButtonVisible && (
           <div>
             <button
               onClick={() => setEditMode(!editMode)}
-              className="w-5 h-5 cursor-pointer text-yellow-500"
+              className="w-5 h-5 text-yellow-500 cursor-pointer"
             >
               <PencilAltIcon
                 className={
@@ -136,7 +136,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
         </div>
       )}
       {editMode && (
-        <div className="flex place-content-between space-x-4 py-4">
+        <div className="flex py-4 space-x-4 place-content-between">
           <Button
             label={"Save"}
             onClick={() => handleOnSaveButtonClick()}

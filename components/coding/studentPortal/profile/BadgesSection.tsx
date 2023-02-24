@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import {
   FETCH_CODING_BADGES,
   IntroCourseUnit,
-} from "../../graphql/coding/userBadges/fetchUserBadges";
+} from "../../../../graphql/coding/userBadges/fetchUserBadges";
 
 export type BadgesSectionProps = {
   user: any;
@@ -28,7 +28,7 @@ export default function BadgesSection({ user }: BadgesSectionProps) {
       {units.map((unit) => {
         if (unit.coding_badges.length > 0) {
           return (
-            <div>
+            <div key={unit.title}>
               <div className="grid grid-cols-1 sm:grid-cols-6">
                 <div className="py-4 text-center text-gray-400 bg-gray-200 rounded-full">
                   {unit.title}
@@ -36,7 +36,10 @@ export default function BadgesSection({ user }: BadgesSectionProps) {
               </div>
               <div className="grid grid-cols-1 mb-16 sm:grid-cols-3 mt-7">
                 {unit.coding_badges.map((badge) => (
-                  <div className="flex flex-col items-center justify-center">
+                  <div
+                    key={badge.id}
+                    className="flex flex-col items-center justify-center"
+                  >
                     <div className="flex items-center justify-center p-8 bg-gray-200 rounded-full w-36 mb-7">
                       {badge.user_coding_badges.length > 0 ? (
                         <img

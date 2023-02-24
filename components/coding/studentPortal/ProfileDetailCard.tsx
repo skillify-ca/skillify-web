@@ -1,6 +1,6 @@
 import { CodingBadge } from "../../../graphql/fetchUserProfileCard";
-import BadgesDisplayedComponent from "../profileV2/BadgesDisplayedComponent";
-import JoinedDateComponent from "../profileV2/JoinedDateComponent";
+import BadgesDisplayedComponent from "./profileV2/BadgesDisplayedComponent";
+import JoinedDateComponent from "./profileV2/JoinedDateComponent";
 import React from "react";
 
 type ProfileDetailCard = {
@@ -26,13 +26,13 @@ function ProfileDetailCard({
   completedDate,
 }: ProfileDetailCard) {
   return (
-    <div className="grid grid-cols-4 h-full w-full text-sm border-2 bg-slate-50 text-slate-800 border-slate-800 hover:bg-violet-100 ">
-      <div className="flex place-items-center col-span-4 m-4">
+    <div className="grid w-full h-full grid-cols-4 text-sm border-2 bg-slate-50 text-slate-800 border-slate-800 hover:bg-violet-100 ">
+      <div className="flex col-span-4 m-4 place-items-center">
         <img
-          className="col-span-1 w-20 h-20 border-3 rounded-full border-slate-800 "
+          className="w-20 h-20 col-span-1 rounded-full border-3 border-slate-800 "
           src={avatar}
         />
-        <div className="col-span-3 ml-2 items-center gap-1">
+        <div className="items-center col-span-3 gap-1 ml-2">
           <p className="font-bold"> {name}</p>
 
           <JoinedDateComponent textSize={"small"} createdAt={joinDate} />
@@ -43,12 +43,12 @@ function ProfileDetailCard({
           />
         </div>
       </div>
-      <div className="ml-2 col-span-4 my-3 space-x-4 space-y-2">
+      <div className="col-span-4 my-3 ml-2 space-x-4 space-y-2">
         <p className="font-bold">Current Focus</p>
         <div className="flex items-center space-x-4">
           <img
             src={currentBadge?.image}
-            className="border-3 shadow-xl items-center w-16 h-16 rounded-full"
+            className="items-center w-16 h-16 rounded-full shadow-xl border-3"
           />
           <p> {currentBadge?.title}</p>
         </div>
@@ -56,7 +56,7 @@ function ProfileDetailCard({
         <div className="flex items-center space-x-4">
           <div className="items-center">
             <svg
-              className="rounded-full h-16 w-16 text-slate-200"
+              className="w-16 h-16 rounded-full text-slate-200"
               fill="bg-slate-900"
               viewBox="0 0 24 24"
               stroke="currentColor"

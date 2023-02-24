@@ -4,8 +4,8 @@ import {
   FetchUserProjectsDataResponse,
   FETCH_USER_PROJECTS,
   UserProjectData,
-} from "../../graphql/fetchUserProjects";
-import { Button } from "../ui/Button";
+} from "../../../graphql/fetchUserProjects";
+import { Button } from "../../ui/Button";
 
 export type ProjectsSectionProps = {
   user: any;
@@ -13,16 +13,17 @@ export type ProjectsSectionProps = {
 
 export default function ProjectsSection({ user }: ProjectsSectionProps) {
   const [userProjects, setUserProjects] = useState<UserProjectData[]>([]);
-  const { loading: userProjectsLoading } =
-    useQuery<FetchUserProjectsDataResponse>(FETCH_USER_PROJECTS, {
-      variables: {
-        userId: user,
-      },
+  const {
+    loading: userProjectsLoading,
+  } = useQuery<FetchUserProjectsDataResponse>(FETCH_USER_PROJECTS, {
+    variables: {
+      userId: user,
+    },
 
-      onCompleted: (data: FetchUserProjectsDataResponse) => {
-        setUserProjects(data.user_projects);
-      },
-    });
+    onCompleted: (data: FetchUserProjectsDataResponse) => {
+      setUserProjects(data.user_projects);
+    },
+  });
   return (
     <>
       {userProjectsLoading ? (

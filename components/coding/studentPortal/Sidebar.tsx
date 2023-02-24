@@ -15,7 +15,7 @@ import {
   setActivePage,
   SidebarPage,
 } from "../../../redux/sidebarSlice";
-import SkillifyCommandPalette from "../../CommandPalette";
+import SkillifyCommandPalette from "./CommandPalette";
 interface SidebarItemProps {
   name: string;
   link: string;
