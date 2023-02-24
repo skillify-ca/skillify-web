@@ -1,23 +1,25 @@
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React from "react";
-import Card, { CardData } from "../../../../components/coding/Card";
 import LessonComponent, {
   LessonComponentData,
 } from "../../../../components/coding/studentPortal/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
-import Navbar from "../../../../components/ui/Navbar";
 
-const Github = ({ lessonComponents }) => {
+type LessonProps = {
+  lessonComponents: LessonComponentData[];
+};
+
+const Github = ({ lessonComponents }: LessonProps) => {
   const router = useRouter();
 
   const handleContinue = () => {
-    router.push("/studentPortal/web/React");
+    router.push("/studentPortal/web/tailwindcss-colourstyling");
   };
   return (
     <>
       <div className="grid grid-cols-1 gap-8 px-4 pt-4 m-8 sm:px-12">
-        {lessonComponents.map((it) => (
-          <LessonComponent data={it} />
+        {lessonComponents.map((it, index) => (
+          <LessonComponent data={it} key={index} />
         ))}
       </div>
       <div className="flex my-8 mr-8 sm:justify-end">
@@ -27,7 +29,7 @@ const Github = ({ lessonComponents }) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps() {
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
