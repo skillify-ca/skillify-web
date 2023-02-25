@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Card from "../../components/blog/BlogCard";
 import LandingNavbar from "../../components/landingPage/LandingNavbar";
-
+import React from "react";
 export default function Blog() {
   return (
     <div>
