@@ -1,4 +1,4 @@
-import Header404 from "../components/Header404";
+import Header404 from "../components/notFound/Header404";
 
 const FourOhFour = () => {
   return (

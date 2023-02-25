@@ -1,12 +1,9 @@
 import { useMutation, useQuery } from "@apollo/client";
-
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-
-import PageHeader from "../../../components/coding/PageHeader";
-import UnitView from "../../../components/coding/studentPortal/UnitView";
+import UnitView from "../../../components/studentPortal/lessons/UnitView";
+import PageHeader from "../../../components/ui/PageHeader";
 import { FETCH_USER_INTRO_NODES } from "../../../graphql/coding/fetchUserIntroNodes";
-
 import { UPDATE_USER } from "../../../graphql/updateUser";
 import { useAuth } from "../../../lib/authContext";
 import { reactUnits, Unit } from "../../api/studentPortal/units";

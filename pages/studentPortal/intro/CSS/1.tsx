@@ -1,17 +1,16 @@
-import React, { useEffect } from "react";
-import CSSQuiz from "../../../../components/coding/CSSQuiz";
-import { Button } from "../../../../components/ui/Button";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
+import { useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
+import React from "react";
 import LessonComponent, {
   LessonComponentData,
   Resource,
-} from "../../../../components/coding/studentPortal/LessonComponent";
-import { useRouter } from "next/router";
-import { useAuth } from "../../../../lib/authContext";
-import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
-import { useMutation } from "@apollo/client";
+} from "../../../../components/studentPortal/lessons/LessonComponent";
+import { Button } from "../../../../components/ui/Button";
+import ProgressBar from "../../../../components/ui/ProgressBar";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
+import { useAuth } from "../../../../lib/authContext";
 
 const CSS1 = ({ lessonComponents }) => {
   const router = useRouter();

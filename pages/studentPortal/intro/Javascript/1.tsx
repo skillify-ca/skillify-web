@@ -1,16 +1,13 @@
 import { useMutation } from "@apollo/client";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import Card, { CardData } from "../../../../components/coding/Card";
-import CodingChallengeInstructions from "../../../../components/coding/studentPortal/JavaScript/CodingChallengeInstructions";
+import CodingChallengeInstructions from "../../../../components/studentPortal/lessons/JavaScript/CodingChallengeInstructions";
 import LessonComponent, {
   LessonComponentData,
   Resource,
-} from "../../../../components/coding/studentPortal/LessonComponent";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
+} from "../../../../components/studentPortal/lessons/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
-import Navbar from "../../../../components/ui/Navbar";
+import ProgressBar from "../../../../components/ui/ProgressBar";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
 import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
@@ -98,7 +95,8 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "JavaScript is yet another language that you need to learn. This lesson will teach you the main concepts of JavaScript.",
+      text:
+        "JavaScript is yet another language that you need to learn. This lesson will teach you the main concepts of JavaScript.",
     },
     {
       component: "resource-list",

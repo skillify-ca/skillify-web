@@ -1,8 +1,6 @@
-import { HeartIcon } from "@heroicons/react/solid";
-import React from "react";
 import Head from "next/head";
-import Card from "../../components/coding/Card";
-import LandingNavbar from "../../components/LandingNavbar";
+import Card from "../../components/blog/BlogCard";
+import LandingNavbar from "../../components/landingPage/LandingNavbar";
 
 export default function Blog() {
   return (

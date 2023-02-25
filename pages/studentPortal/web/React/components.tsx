@@ -1,11 +1,9 @@
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React from "react";
-import Card, { CardData } from "../../../../components/coding/Card";
 import LessonComponent, {
   LessonComponentData,
-} from "../../../../components/coding/studentPortal/LessonComponent";
+} from "../../../../components/studentPortal/lessons/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
-import Navbar from "../../../../components/ui/Navbar";
 
 const React2 = ({ lessonComponents }) => {
   const router = useRouter();

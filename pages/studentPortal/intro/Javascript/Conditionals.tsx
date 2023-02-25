@@ -1,12 +1,12 @@
+import { useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
 import React from "react";
-import { Button } from "../../../../components/ui/Button";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
 import LessonComponent, {
   LessonComponentData,
   Resource,
-} from "../../../../components/coding/studentPortal/LessonComponent";
-import { useMutation } from "@apollo/client";
-import { useRouter } from "next/router";
+} from "../../../../components/studentPortal/lessons/LessonComponent";
+import { Button } from "../../../../components/ui/Button";
+import ProgressBar from "../../../../components/ui/ProgressBar";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
 import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
@@ -64,7 +64,8 @@ export async function getServerSideProps({ params }) {
       title: "Codecademy",
       image:
         "https://icons-for-free.com/download-icon-codecademy-1324440139458906558_512.png",
-      link: "https://www.codecademy.com/courses/introduction-to-javascript/lessons/control-flow/exercises/else-if",
+      link:
+        "https://www.codecademy.com/courses/introduction-to-javascript/lessons/control-flow/exercises/else-if",
       description:
         "This is a deeper dive into what conditional statements are in Javascript",
     },
@@ -100,7 +101,7 @@ export async function getServerSideProps({ params }) {
       link: "/coding/JavaScript/JsFunctions/Basketball/basketball-Practice.js",
       image: "/images/basketball.jpg",
       description:
-        "A problem involving calculating the score of a basketball game!"
+        "A problem involving calculating the score of a basketball game!",
     },
     {
       title: "Basketball Solution",
@@ -110,7 +111,7 @@ export async function getServerSideProps({ params }) {
         "Don't watch this solution, until you've attempted the challenge above",
     },
   ];
-  
+
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
@@ -118,7 +119,8 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "Conditionals allows us to create programs that can make decisions based on if expressions are true or false. This helps programmers to produce different outputs based on the input provided by the user.",
+      text:
+        "Conditionals allows us to create programs that can make decisions based on if expressions are true or false. This helps programmers to produce different outputs based on the input provided by the user.",
     },
     {
       component: "resource-list",
