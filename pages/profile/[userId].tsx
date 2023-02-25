@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import GoalsSectionComponent from "../../components/studentPortal/goals/GoalsSectionComponent";
 import AchievementComponent from "../../components/studentPortal/profileV2/achievement_components/AchievementComponent";
 import ProfileHeaderComponent from "../../components/studentPortal/profileV2/ProfileHeaderComponent";
-import ProjectsSection from "../../components/studentPortal/ProjectsSection";
+import ProjectsSection from "../../components/studentPortal/profileV2/ProjectsSection";
 import SkillRatingsComponent from "../../components/studentPortal/skillRatings/SkillRatingsComponent";
 import ExpandableContainer from "../../components/ui/ExpandableContainer";
 import {

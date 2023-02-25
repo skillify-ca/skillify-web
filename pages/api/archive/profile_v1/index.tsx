@@ -1,7 +1,7 @@
 import React from "react";
 import ProfileGoalsSection from "../../../../components/studentPortal/ProfileGoalsSection";
 import AchievementComponent from "../../../../components/studentPortal/profileV2/achievement_components/AchievementComponent";
-import ProjectsSection from "../../../../components/studentPortal/ProjectsSection";
+import ProjectsSection from "../../../../components/studentPortal/profileV2/ProjectsSection";
 import UserProfileSection from "../../../../components/studentPortal/UserProfileSection";
 import { useAuth } from "../../../../lib/authContext";
 

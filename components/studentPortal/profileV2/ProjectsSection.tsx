@@ -1,11 +1,11 @@
 import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
 import {
-  UserProjectData,
   FetchUserProjectsDataResponse,
   FETCH_USER_PROJECTS,
-} from "../../graphql/fetchUserProjects";
-import { Button } from "../ui/Button";
+  UserProjectData,
+} from "../../../graphql/fetchUserProjects";
+import { Button } from "../../ui/Button";
 
 export type ProjectsSectionProps = {
   user: any;
