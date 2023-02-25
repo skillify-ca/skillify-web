@@ -3,7 +3,7 @@ import { GuessData } from "../../pages/api/guessData";
 import {
   MultipleChoiceSentence,
   MultipleChoiceSentenceProp,
-} from "../questionTypes/MultipleChoiceSentence";
+} from "../studentPortal/quiz/MultipleChoiceSentence";
 
 export interface MCQuiz {
   questionData: MultipleChoiceSentenceProp[];

@@ -1,6 +1,10 @@
 import React from "react";
-import { MCOption } from "../../pages/api/question";
-import { Button } from "../ui/Button";
+import { Button } from "../../ui/Button";
+
+export type MCOption = {
+  id: string;
+  text: string;
+};
 
 export interface MultipleChoiceSentenceProp {
   displayQuestion?: string;

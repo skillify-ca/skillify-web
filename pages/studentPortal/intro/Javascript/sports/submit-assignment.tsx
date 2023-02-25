@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import React from "react";
-import ProgressBar from "../../../../../components/studentPortal/ProgressBar";
+import ProgressBar from "../../../../../components/ui/ProgressBar";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../../graphql/coding/completeUserIntroNode";
 import { FETCH_USER_INTRO_NODES } from "../../../../../graphql/coding/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../../graphql/coding/unlockUserIntroNode";
@@ -29,7 +29,7 @@ const JS12 = () => {
         },
         refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
       });
-      router.push("/studentPortal/intro");
+      router.push("/studentPortal");
     });
   };
 

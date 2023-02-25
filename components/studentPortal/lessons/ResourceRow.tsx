@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../ui/Button";
+import { Button } from "../../ui/Button";
 
 export type ResourceRowProps = {
   title: string;

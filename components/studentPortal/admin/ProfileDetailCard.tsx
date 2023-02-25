@@ -1,7 +1,7 @@
-import { CodingBadge } from "../../../graphql/fetchUserProfileCard";
-import BadgesDisplayedComponent from "./profileV2/BadgesDisplayedComponent";
-import JoinedDateComponent from "./profileV2/JoinedDateComponent";
 import React from "react";
+import { CodingBadge } from "../../../graphql/fetchUserProfileCard";
+import BadgesDisplayedComponent from "../profileV2/BadgesDisplayedComponent";
+import JoinedDateComponent from "../profileV2/JoinedDateComponent";
 
 type ProfileDetailCard = {
   avatar: string;
