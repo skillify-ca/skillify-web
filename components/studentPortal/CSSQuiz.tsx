@@ -1,6 +1,6 @@
 import React from "react";
-import { MultipleChoiceSentenceProp } from "../../questionTypes/MultipleChoiceSentence";
-import MCQuiz from "../MCQuiz";
+import MCQuiz from "../ui/MCQuiz";
+import { MultipleChoiceSentenceProp } from "./quiz/MultipleChoiceSentence";
 
 const CSSQuiz = () => {
   //We can add CSS questions here

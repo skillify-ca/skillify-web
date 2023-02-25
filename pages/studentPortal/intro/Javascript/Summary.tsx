@@ -4,9 +4,9 @@ import React from "react";
 import LessonComponent, {
   LessonComponentData,
   Resource,
-} from "../../../../components/studentPortal/LessonComponent";
-import ProgressBar from "../../../../components/studentPortal/ProgressBar";
+} from "../../../../components/studentPortal/lessons/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
+import ProgressBar from "../../../../components/ui/ProgressBar";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
 

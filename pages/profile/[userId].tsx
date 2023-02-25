@@ -1,14 +1,17 @@
-import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import GoalsSectionComponent from "../../components/studentPortal/goals/GoalsSectionComponent";
+import AchievementComponent from "../../components/studentPortal/profileV2/achievement_components/AchievementComponent";
+import ProfileHeaderComponent from "../../components/studentPortal/profileV2/ProfileHeaderComponent";
+import ProjectsSection from "../../components/studentPortal/ProjectsSection";
+import SkillRatingsComponent from "../../components/studentPortal/skillRatings/SkillRatingsComponent";
 import ExpandableContainer from "../../components/ui/ExpandableContainer";
 import {
-  FetchUserGoalsDataResponse,
-  FETCH_USER_GOALS,
-} from "../../graphql/fetchUserGoals";
-import { useAuth } from "../../lib/authContext";
-import { userGoalsSelector, setUserGoals } from "../../redux/userGoalsSlice";
-import { useRouter } from "next/router";
+  FetchSkillsAndRatings,
+  FETCH_SKILLS_AND_RATINGS,
+} from "../../graphql/fetchSkillsAndRatings";
 import {
   FetchTotalBadgesCountResponse,
   FETCH_TOTAL_USER_BADGES_COUNT,
@@ -18,29 +21,26 @@ import {
   FETCH_USER_BADGES_COUNT,
 } from "../../graphql/fetchUserBadgesCount";
 import {
+  FetchUserGoalsDataResponse,
+  FETCH_USER_GOALS,
+} from "../../graphql/fetchUserGoals";
+import {
   FetchUserProfileDataResponse,
   FETCH_USER_PROFILE_DATA,
 } from "../../graphql/fetchUserProfile";
+import { useAuth } from "../../lib/authContext";
 import {
   profileSelector,
-  setUserProfile,
-  setUserBadgeCount,
   setTotalBadgeCount,
+  setUserBadgeCount,
+  setUserProfile,
 } from "../../redux/profileSlice";
-import {
-  FetchSkillsAndRatings,
-  FETCH_SKILLS_AND_RATINGS,
-} from "../../graphql/fetchSkillsAndRatings";
 import {
   setSkillRatings,
   skillRatingsSelector,
 } from "../../redux/skillRatingsSlice";
+import { setUserGoals, userGoalsSelector } from "../../redux/userGoalsSlice";
 import { transformSkillsAndRatings } from "../api/skillRatingsFunctions";
-import GoalsSectionComponent from "../../components/studentPortal/GoalsSectionComponent";
-import AchievementComponent from "../../components/studentPortal/profileV2/achievement_components/AchievementComponent";
-import ProfileHeaderComponent from "../../components/studentPortal/profileV2/ProfileHeaderComponent";
-import ProjectsSection from "../../components/studentPortal/ProjectsSection";
-import SkillRatingsComponent from "../../components/studentPortal/SkillRatingsComponent";
 
 type InternalProfileProps = {
   userIdFromLink?: string;

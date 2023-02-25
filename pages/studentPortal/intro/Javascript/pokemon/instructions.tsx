@@ -1,6 +1,6 @@
 import React from "react";
-import ProgressBar from "../../../../../components/studentPortal/ProgressBar";
 import { Button } from "../../../../../components/ui/Button";
+import ProgressBar from "../../../../../components/ui/ProgressBar";
 
 const JS8 = ({ lessonComponents }) => {
   return (

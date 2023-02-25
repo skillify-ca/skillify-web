@@ -1,14 +1,13 @@
 import { useQuery } from "@apollo/client";
-import { format, addDays } from "date-fns";
+import { addDays, format } from "date-fns";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   FetchGoalCountResponse,
   FETCH_USER_GOALS_COUNT,
-} from "../../graphql/fetchUserGoalsCount";
-import { useAuth } from "../../lib/authContext";
-import { setIsGoalApproaching } from "../../redux/sidebarSlice";
-
+} from "../../../graphql/fetchUserGoalsCount";
+import { useAuth } from "../../../lib/authContext";
+import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
 import Sidebar from "./Sidebar";
 
 enum Theme {
