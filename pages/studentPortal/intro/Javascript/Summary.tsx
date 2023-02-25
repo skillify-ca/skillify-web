@@ -24,7 +24,7 @@ const Summary = ({ lessonComponents }) => {
         completed: true,
       },
     }).then((res) => {
-      router.push("/studentPortal/intro");
+      router.push("/studentPortal");
     });
   };
   return (
