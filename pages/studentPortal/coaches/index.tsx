@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
 import CoachCard from "../../../components/studentPortal/coaches/CoachCard";
-import PageHeader from "../../../components/studentPortal/PageHeader";
 import ErrorMessage from "../../../components/ui/ErrorMessage";
+import PageHeader from "../../../components/ui/PageHeader";
 import {
   FetchCoachesResponse,
   FETCH_COACHES,

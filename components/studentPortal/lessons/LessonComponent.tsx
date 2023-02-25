@@ -1,6 +1,6 @@
 import { Sandpack } from "@codesandbox/sandpack-react";
 import React from "react";
-import Quiz from "./quiz/Quiz";
+import Quiz from "../quiz/Quiz";
 import ResourceRow from "./ResourceRow";
 
 export type Resource = {

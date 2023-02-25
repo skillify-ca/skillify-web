@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
-import WorkshopsCard from "../../../components/studentPortal/WorkshopsCard";
+import WorkshopsCard from "../../../components/studentPortal/workshops/WorkshopsCard";
 import { useAuth } from "../../../lib/authContext";
 
 const WorkshopsPage = () => {

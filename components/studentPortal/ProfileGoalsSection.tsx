@@ -10,6 +10,7 @@ export type GoalsSectionProps = {
   user: any;
 };
 
+// TODO remove this file when the archived profile is removed
 export default function ProfileGoalsSection({ user }: GoalsSectionProps) {
   const [userGoals, setUserGoals] = useState<UserGoalsData[]>([]);
   const { loading: userGoalsLoading } = useQuery<FetchUserGoalsDataResponse>(

@@ -1,13 +1,13 @@
 import { useMutation } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { animated, useSpring } from "react-spring";
-import { FETCH_USER_SKILLS_RATINGS } from "../../graphql/fetchUserSkillsRatings";
-import { UPSERT_USER_SKILL_RATINGS } from "../../graphql/upsertUserSkillRatings";
-import { useAuth } from "../../lib/authContext";
-import { transformSkillRatingForDB } from "../../pages/api/skillRatingsFunctions";
-import { SkillRatingsRow } from "../../redux/skillRatingsSlice";
-import { Button } from "../ui/Button";
-import SkillRow from "./skillRatings/SkillRow";
+import { FETCH_USER_SKILLS_RATINGS } from "../../../graphql/fetchUserSkillsRatings";
+import { UPSERT_USER_SKILL_RATINGS } from "../../../graphql/upsertUserSkillRatings";
+import { useAuth } from "../../../lib/authContext";
+import { transformSkillRatingForDB } from "../../../pages/api/skillRatingsFunctions";
+import { SkillRatingsRow } from "../../../redux/skillRatingsSlice";
+import { Button } from "../../ui/Button";
+import SkillRow from "./SkillRow";
 
 export type SkillRatingsProps = {
   skillRatings: SkillRatingsRow[];

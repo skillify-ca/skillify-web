@@ -21,11 +21,11 @@ export const TemplateInputBox: React.FC<TemplateInputBoxProps> = ({
   };
 
   return (
-    <div className="flex flex-col space-y-4 mx-4 text-lg">
+    <div className="flex flex-col mx-4 space-y-4 text-lg">
       <p>Copy the Codesandbox link below to get started</p>
       <div className="flex flex-row space-x-2">
         <input
-          className="text-left p-2 border rounded-md shadow-md text-murkrow w-1/2"
+          className="w-1/2 p-2 text-left border rounded-md shadow-md text-murkrow"
           ref={inputRef}
           value={templateLink}
         />

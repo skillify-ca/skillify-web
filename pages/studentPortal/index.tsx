@@ -1,9 +1,9 @@
 import { useMutation, useQuery } from "@apollo/client";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import PageHeader from "../../components/studentPortal/PageHeader";
-import UnitView from "../../components/studentPortal/UnitView";
+import UnitView from "../../components/studentPortal/lessons/UnitView";
 import ErrorMessage from "../../components/ui/ErrorMessage";
+import PageHeader from "../../components/ui/PageHeader";
 import {
   FETCH_USER_INTRO_NODES,
   transform,
