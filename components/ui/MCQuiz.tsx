@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { GuessData } from "../../pages/api/guessData";
-import { MultipleChoiceSentenceProp } from "../studentPortal/quiz/MultipleChoiceSentence";
+import {
+  MultipleChoiceSentence,
+  MultipleChoiceSentenceProp,
+} from "../studentPortal/quiz/MultipleChoiceSentence";
 
 export interface MCQuiz {
   questionData: MultipleChoiceSentenceProp[];
