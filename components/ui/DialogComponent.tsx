@@ -38,10 +38,10 @@ const DialogComponent: React.FC<DialogComponentProps> = ({
   };
 
   return (
-    <Root defaultOpen={true}>
-      {trigger ? (
+    <Root defaultOpen={!trigger}>
+      {trigger && triggerTitle ? (
         <Trigger asChild>
-          <button className="hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none">
+          <button className="hover:bg-gray-200 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-gray-200 focus:outline-none">
             {triggerTitle}
           </button>
         </Trigger>
@@ -64,7 +64,11 @@ const DialogComponent: React.FC<DialogComponentProps> = ({
             <p className="max-w-md px-2 mx-auto text-xl leading-8 ">
               {children}
             </p>
-            <Button onClick={handleContinue} label={buttonLabel} />
+            <Button
+              backgroundColor="orange"
+              onClick={handleContinue}
+              label={buttonLabel}
+            ></Button>
             <span className="font-mono text-sm font-bold">{message}</span>
           </div>
         </Content>
