@@ -1,5 +1,6 @@
 import { Sandpack } from "@codesandbox/sandpack-react";
 import React from "react";
+import WebhookInputBox from "../../ui/WebhookInputBox";
 import Quiz from "../quiz/Quiz";
 import ResourceRow from "./ResourceRow";
 
@@ -37,6 +38,13 @@ export type LessonComponentData =
       videoId: string;
     }
   | {
+      component: "submission";
+      codeSandboxTitle: string;
+      link: string;
+      placeholder: string;
+      assignmentId: string;
+    }
+  | {
       component: "video";
       url: string;
     }
@@ -72,6 +80,19 @@ export default function LessonComponent({ data }: LessonComponentProps) {
           <Sandpack template="react-ts" files={{ "App.tsx": data.code }} />
         </pre>
       </div>
+    );
+  }
+  if (data.component === "submission") {
+    return (
+      <>
+        <div className="mx-4">
+          <p className="text-lg">{data.codeSandboxTitle}</p>
+          <WebhookInputBox
+            placeholder={data.placeholder}
+            validationRequirement={"vercel.app"}
+          />
+        </div>
+      </>
     );
   }
   if (data.component === "resource-list") {
