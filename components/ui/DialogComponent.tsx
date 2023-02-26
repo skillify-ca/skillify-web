@@ -65,10 +65,10 @@ const DialogComponent: React.FC<DialogComponentProps> = ({
               {children}
             </p>
             <Button
-              backgroundColor="orange"
-              onClick={handleContinue}
               label={buttonLabel}
-            ></Button>
+              onClick={handleContinue}
+              backgroundColor="DialogComponent"
+            />
             <span className="font-mono text-sm font-bold">{message}</span>
           </div>
         </Content>
