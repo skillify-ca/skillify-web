@@ -1,10 +1,10 @@
+import { Sandpack } from "@codesandbox/sandpack-react";
 import Image from "next/image";
 import React from "react";
-import { Sandpack } from "@codesandbox/sandpack-react";
-import HintRow from "../HintRow";
-import AssignmentInputBox from "./AssignmentInputBox";
-import TemplateInputBox from "../TemplateInputBox";
 import ExpandableContainer from "../../ui/ExpandableContainer";
+import AssignmentInputBox from "./AssignmentInputBox";
+import HintRow from "./HintRow";
+import TemplateInputBox from "./TemplateInputBox";
 
 export type Hint = {
   description: string;

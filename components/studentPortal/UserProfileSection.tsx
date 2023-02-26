@@ -15,6 +15,7 @@ export type UserProfileSectionProps = {
   user: any;
 };
 
+// TODO remove this component once we remove the archived profile page
 export default function UserProfileSection({ user }: UserProfileSectionProps) {
   const [userProfileData, setUserProfileData] = useState<UserProfileData>(
     Object

@@ -1,9 +1,9 @@
 import React from "react";
 import LessonComponent, {
   LessonComponentData,
-} from "../../../../../components/studentPortal/LessonComponent";
-import ProgressBar from "../../../../../components/studentPortal/ProgressBar";
+} from "../../../../../components/studentPortal/lessons/LessonComponent";
 import { Button } from "../../../../../components/ui/Button";
+import ProgressBar from "../../../../../components/ui/ProgressBar";
 
 const JS10 = ({ lessonComponents }) => {
   return (

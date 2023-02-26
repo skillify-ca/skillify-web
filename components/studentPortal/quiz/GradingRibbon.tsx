@@ -1,5 +1,4 @@
 import React from "react";
-import MCOption from "./MCOption";
 
 export type GradingRibbonProps = {
   correct: boolean;

@@ -2,7 +2,7 @@ import PostLayout from "../../components/blog/PostLayout";
 import SEO from "../../components/SEO";
 import LessonComponent, {
   LessonComponentData,
-} from "../../components/studentPortal/LessonComponent";
+} from "../../components/studentPortal/lessons/LessonComponent";
 
 interface PageProps {
   blogComponents: LessonComponentData[];

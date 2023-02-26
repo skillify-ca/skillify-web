@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import GoalsSectionComponent from "../../../components/studentPortal/GoalsSectionComponent";
+import GoalsSectionComponent from "../../../components/studentPortal/goals/GoalsSectionComponent";
 import { Button } from "../../../components/ui/Button";
 import {
   FetchUserGoalsDataResponse,
