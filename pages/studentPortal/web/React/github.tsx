@@ -1,8 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
-import LessonComponent, {
-  LessonComponentData,
-} from "../../../../components/studentPortal/LessonComponent";
+import LessonComponent from "../../../../components/studentPortal/lessons/LessonComponent";
 
 import { Button } from "../../../../components/ui/Button";
 
