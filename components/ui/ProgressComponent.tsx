@@ -1,6 +1,8 @@
 import { Indicator, Root } from "@radix-ui/react-progress";
 import React from "react";
 
+//currently being used for on the Sidebar component in conjunction with Freemium feature.
+//but is written for multiple use cases.
 export interface ProgressComponentProps {
   currentValue: number;
   totalValue: number;
