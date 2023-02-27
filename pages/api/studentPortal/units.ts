@@ -26,6 +26,19 @@ export const reactUnits: Unit[] = [
     ],
   },
   {
+    title: "Github",
+    nodes: [
+      {
+        title: "Lesson 1",
+        description: "Deploying a Project on Github & Vercel",
+        completed: false,
+        locked: false,
+        link: "web/React/github",
+        type: "lesson",
+      },
+    ],
+  },
+  {
     title: "TailwindCSS",
     nodes: [
       {
