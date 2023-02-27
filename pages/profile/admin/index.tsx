@@ -95,17 +95,16 @@ const coachingDashboard = () => {
     }
   }, [goalsList, userList]);
 
-  const {
-    loading: totalUserBadgeCountLoading,
-  } = useQuery<FetchTotalBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
-    onCompleted: (data) => {
-      if (data) {
-        dispatch(
-          setTotalBadgeCount(data.coding_badges_aggregate.aggregate.count)
-        );
-      }
-    },
-  });
+  const { loading: totalUserBadgeCountLoading } =
+    useQuery<FetchTotalBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
+      onCompleted: (data) => {
+        if (data) {
+          dispatch(
+            setTotalBadgeCount(data.coding_badges_aggregate.aggregate.count)
+          );
+        }
+      },
+    });
 
   if (loading) {
     return <div className="flex place-content-center">"Loading..."</div>;
@@ -121,7 +120,7 @@ const coachingDashboard = () => {
           const completionDate = goalCompletionDateList[index];
           const completedGoal = completedGoalsList[index];
           return (
-            <Link href={"profile/" + it.id} key={index}>
+            <Link href={it.id} key={index}>
               <div className="container">
                 <ProfileDetailCard
                   avatar={
