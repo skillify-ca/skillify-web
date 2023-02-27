@@ -12,6 +12,6 @@ const Template: Story<ProgressComponentProps> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  elapsedDays: 15,
-  totalTrialDays: 30,
+  currentValue: 15,
+  totalValue: 30,
 };
