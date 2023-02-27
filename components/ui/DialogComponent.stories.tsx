@@ -18,10 +18,10 @@ const Template: Story<DialogComponentProps> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {
   trigger: true,
-  message: "Her's an extra message",
+  message: "Here's an extra message",
   link: "string/studentPortal",
   buttonLabel: "Click Me",
   header: "Here is the Header",
   triggerTitle: "This is the Trigger",
-  size: "w-[90vw] h-[45vh]",
+  size: "w-1/2 h-2/3",
 };

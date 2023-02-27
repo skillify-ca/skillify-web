@@ -51,7 +51,7 @@ const DialogComponent: React.FC<DialogComponentProps> = ({
         <Overlay className="bg-gray-300 data-[state=open]:animate-overlayShow fixed inset-0" />
         <Content className="flex items-center justify-center">
           <div
-            className={`fixed flex flex-col space-y-4 items-center justify-center w-full max-w-${size} px-3 py-32 mx-auto text-center transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg md:max-w-3xl lg:max-w-4xl sm:rounded-3xl left-1/2 top-1/2`}
+            className={`fixed flex flex-col space-y-4 items-center justify-center ${size} px-3 py-32 mx-auto text-center transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg md:max-w-3xl lg:max-w-4xl sm:rounded-3xl left-1/2 top-1/2`}
           >
             <Close asChild>
               <button className="absolute top-3 right-3 w-6 h-6 flex items-center justify-center rounded-md text-gray-100 duration-500 bg-gray-900 bg-opacity-50 outline-none cursor-pointer hover:bg-opacity-100">
