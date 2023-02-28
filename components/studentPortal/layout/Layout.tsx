@@ -1,24 +1,20 @@
 import { useQuery } from "@apollo/client";
 import { addDays, format } from "date-fns";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   FetchGoalCountResponse,
   FETCH_USER_GOALS_COUNT,
 } from "../../../graphql/fetchUserGoalsCount";
 import { useAuth } from "../../../lib/authContext";
 import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
+import { setTheme, Theme, themeSelector } from "../../../redux/themeSlice";
+import { Button } from "../../ui/Button";
 import Sidebar from "./Sidebar";
 
-enum Theme {
-  DEFAULT = "theme-default",
-  DRACULA = "theme-dracula",
-}
-
 export const Layout: React.FC = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(Theme.DEFAULT);
-
   const [active, setActive] = useState(false);
+  const { currentTheme } = useSelector(themeSelector);
 
   const { user } = useAuth();
   const dispatch = useDispatch();
@@ -40,7 +36,7 @@ export const Layout: React.FC = ({ children }) => {
   });
 
   return (
-    <div className={`flex flex-col h-full bg-white ${theme}`}>
+    <div className={`flex flex-col h-full bg-white ${currentTheme}`}>
       <style global jsx>{`
         html,
         body,
@@ -55,11 +51,13 @@ export const Layout: React.FC = ({ children }) => {
         <Header
           handleMenuIconClick={() => setActive(!active)}
           handleToggleClick={() =>
-            setTheme((prev) =>
-              prev === Theme.DEFAULT ? Theme.DRACULA : Theme.DEFAULT
+            dispatch(
+              currentTheme === Theme.DEFAULT
+                ? setTheme(Theme.DRACULA)
+                : setTheme(Theme.DEFAULT)
             )
           }
-          theme={theme}
+          theme={currentTheme}
         />
       </div>
       <div className="flex">
