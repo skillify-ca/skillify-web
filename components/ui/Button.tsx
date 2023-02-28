@@ -13,8 +13,7 @@ export interface ButtonProps {
     | "pink"
     | "yellow"
     | "orange"
-    | "white"
-    | "DialogComponent";
+    | "white";
   /**
    * What text color to use
    * Can be white, black, gray-500, blue-200, blue-900, red-500, etc..
@@ -75,9 +74,6 @@ export const Button: React.FC<ButtonProps> = ({
     case "white":
       backgroundStyles =
         "bg-white border-gray-300 border-2 hover:bg-gray-200 text-orange-400";
-      break;
-    case "DialogComponent":
-      backgroundStyles = "bg-charmander hover:bg-pikachu-500";
       break;
   }
   return (

@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import UnitView from "../../components/studentPortal/lessons/UnitView";
+import DialogComponent from "../../components/ui/DialogComponent";
 import ErrorMessage from "../../components/ui/ErrorMessage";
 import PageHeader from "../../components/ui/PageHeader";
 import {
@@ -65,6 +66,15 @@ export default function StudentPortalPage() {
 
   return (
     <div className="flex flex-col w-full px-4 pb-4 sm:px-8 sm:pb-8 ">
+      <DialogComponent
+        header="Header"
+        trigger={false}
+        link={""}
+        buttonLabel={"Click Here"}
+        size={"w-1/4 h-1/2"}
+      >
+        <p>text inside dialog componentn</p>
+      </DialogComponent>
       <PageHeader
         title={`Let's start learning, ${user.displayName}`}
         description={moment().format("MMM Do YYYY")}
