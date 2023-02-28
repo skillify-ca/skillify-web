@@ -1,3 +1,4 @@
+import React from "react";
 import { useMutation } from "@apollo/client";
 import getClient from "@sanity/client";
 import { useRouter } from "next/router";
