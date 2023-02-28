@@ -1,9 +1,9 @@
 import React from "react";
 import LessonComponent, {
   LessonComponentData,
-} from "../../../../../components/coding/studentPortal/LessonComponent";
-import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
+} from "../../../../../components/studentPortal/lessons/LessonComponent";
 import { Button } from "../../../../../components/ui/Button";
+import ProgressBar from "../../../../../components/ui/ProgressBar";
 
 const JS10 = ({ lessonComponents }) => {
   return (
@@ -46,7 +46,8 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text: "In the previous modules, you were introduced to the concept of iterators, which include, .map and .filter. These iterators are actually used in a profesional setting all the time! That means, you must be confortable with using .map and .filter in order to apply them in your future job opprotunities. In this assignment, you will work with big JSON objects and apply iterators to narrow down to specific data.",
+      text:
+        "In the previous modules, you were introduced to the concept of iterators, which include, .map and .filter. These iterators are actually used in a profesional setting all the time! That means, you must be confortable with using .map and .filter in order to apply them in your future job opprotunities. In this assignment, you will work with big JSON objects and apply iterators to narrow down to specific data.",
     },
   ];
   return { props: { lessonComponents } };

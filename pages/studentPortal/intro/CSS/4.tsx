@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../../../../components/ui/Button";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
+import ProgressBar from "../../../../components/ui/ProgressBar";
 
 const CSS4 = () => {
   return (

@@ -5,6 +5,7 @@ export interface ButtonProps {
    * What background color to use
    */
   backgroundColor?:
+    | "primary"
     | "blue"
     | "green"
     | "red"
@@ -45,7 +46,7 @@ export const Button: React.FC<ButtonProps> = ({
   let backgroundStyles;
   switch (backgroundColor) {
     case "primary":
-      backgroundStyles = "bg-charmander hover:bg-pikachu-500";
+      backgroundStyles = "bg-brandPrimary hover:bg-pikachu-500";
       break;
     case "blue":
       backgroundStyles = "bg-blue-500 border-blue-900 hover:bg-blue-400";

@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_USER_ROLE = gql`
-query FetchUserRole($_id: String = "") {
-    users(where: {id: {_eq: $_id}}) {
+  query FetchUserRole($_id: String = "") {
+    users(where: { id: { _eq: $_id } }) {
       userRole {
         value
       }
@@ -11,8 +11,8 @@ query FetchUserRole($_id: String = "") {
 `;
 
 export type FetchUserRoleData = {
-    users: UserRoleData;
-}
+  users: UserRoleData;
+};
 export type UserRoleData = {
-    userRole: "student"|"coach";
-}
+  userRole: "student" | "coach";
+};
