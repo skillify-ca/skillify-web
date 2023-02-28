@@ -1,6 +1,6 @@
 import React from "react";
+import { UserProfileData } from "../../../graphql/studentPortal/profile/fetchUserProfile";
 
-import { UserProfileData } from "../../../../graphql/fetchUserProfile";
 import BadgesDisplayedComponent from "./BadgesDisplayedComponent";
 import JoinedDateComponent from "./JoinedDateComponent";
 

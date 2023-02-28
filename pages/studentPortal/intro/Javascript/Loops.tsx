@@ -7,9 +7,9 @@ import LessonComponent, {
 } from "../../../../components/studentPortal/lessons/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/ui/ProgressBar";
-import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
-import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
-import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/studentPortal/courses/fetchUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
 
 const Loops = ({ lessonComponents }) => {
@@ -65,8 +65,7 @@ export async function getServerSideProps({ params }) {
       title: "Codecademy",
       image:
         "https://icons-for-free.com/download-icon-codecademy-1324440139458906558_512.png",
-      link:
-        "https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-loops",
+      link: "https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-loops",
       description: "This is a deeper dive into what loops are in Javascript",
     },
     {
@@ -84,8 +83,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text:
-        "Loops is way to allow programs to re-iterate their code while minimizing the times we copy and paste code. There are many different types of loops, but the most common are, for loops and while loops.",
+      text: "Loops is way to allow programs to re-iterate their code while minimizing the times we copy and paste code. There are many different types of loops, but the most common are, for loops and while loops.",
     },
     {
       component: "resource-list",

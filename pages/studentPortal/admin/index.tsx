@@ -10,19 +10,19 @@ import {
   AllUserGoalsData,
   FetchAllUserGoalsDataResponse,
   FETCH_ALL_USER_GOALS,
-} from "../../../graphql/fetchAllUserGoals";
+} from "../../../graphql/studentPortal/goals/fetchAllUserGoals";
 import {
   FetchTotalBadgesCountResponse,
   FETCH_TOTAL_USER_BADGES_COUNT,
-} from "../../../graphql/fetchTotalUserBadgesCount";
+} from "../../../graphql/studentPortal/achievements/fetchTotalUserBadgesCount";
 import {
   FetchUserProfileCardResponse,
   FETCH_USER_PROFILE_CARD,
-} from "../../../graphql/fetchUserProfileCard";
+} from "../../../graphql/studentPortal/admin/fetchUserProfileCard";
 import {
   FetchUserRoleData,
   FETCH_USER_ROLE,
-} from "../../../graphql/fetchUserRole";
+} from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
 import {
   profileSelector,

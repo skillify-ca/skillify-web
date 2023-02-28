@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import {
   FETCH_CODING_BADGES,
   IntroCourseUnit,
-} from "../../../../graphql/coding/userBadges/fetchUserBadges";
+} from "../../../graphql/studentPortal/achievements/fetchUserBadges";
 
 export type BadgesSectionProps = {
   user: any;

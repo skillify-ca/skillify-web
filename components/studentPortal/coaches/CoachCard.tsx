@@ -1,5 +1,5 @@
 import React from "react";
-import { Coach } from "../../../graphql/coding/coaches/fetchCoaches";
+import { Coach } from "../../../graphql/studentPortal/coaches/fetchCoaches";
 import { Button } from "../../ui/Button";
 
 type CoachCardProps = {
