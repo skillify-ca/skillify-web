@@ -1,7 +1,8 @@
+import router from "next/router";
 import React from "react";
-import { IntroCourseUnit } from "../../../../../graphql/coding/userBadges/fetchUserBadges";
+import { IntroCourseUnit } from "../../../../graphql/coding/userBadges/fetchUserBadges";
 
-import { CodingBadge } from "../../../../../graphql/coding/userBadges/fetchUserBadges";
+import { CodingBadge } from "../../../../graphql/coding/userBadges/fetchUserBadges";
 
 type CodingBadgeUnitProps = {
   disabled: boolean;
@@ -42,7 +43,14 @@ function CodingBadgeUnit({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full p-4 text-white bg-slate-600 border-slate-300">
+    <div
+      className="flex flex-col items-center justify-center h-full p-4 text-white bg-slate-600 border-slate-300"
+      onClick={() => {
+        if (disabled) {
+          router.push("/studentPortal/badges/" + badge.id);
+        }
+      }}
+    >
       <button
         className=" h-28"
         disabled={disabled}
