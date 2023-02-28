@@ -1,4 +1,4 @@
-import '../styles/globals.css';
+import "../styles/globals.css";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -8,4 +8,11 @@ export const parameters = {
       date: /Date$/,
     },
   },
-}
+  themes: {
+    default: "default",
+    list: [
+      { name: "default", class: "theme-default", color: "#ffffff" },
+      { name: "dracula", class: "theme-dracula", color: "#000000" },
+    ],
+  },
+};
