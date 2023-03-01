@@ -1,5 +1,5 @@
-import { IntroCourseUnit } from "../../../../../graphql/coding/userBadges/fetchUserBadges";
-import { CodingBadge } from "../../../../../graphql/coding/userBadges/fetchUserBadges";
+import { IntroCourseUnit } from "../../../../graphql/studentPortal/achievements/fetchUserBadges";
+import { CodingBadge } from "../../../../graphql/studentPortal/admin/fetchUserProfileCard";
 
 const findBadgeDiff = (
   initialSet: IntroCourseUnit[],

@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { Unit } from "../../pages/api/studentPortal/units";
+import { Unit } from "../../../pages/api/studentPortal/units";
 
 // Ignore unit 34 (The Community Unit)
 export const FETCH_USER_INTRO_NODES = gql`

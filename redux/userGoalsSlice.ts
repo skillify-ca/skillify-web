@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
-import { UserGoalsData } from "../graphql/fetchUserGoals";
+import { UserGoalsData } from "../graphql/studentPortal/goals/fetchUserGoals";
 
 import { RootState } from "./rootReducer";
 

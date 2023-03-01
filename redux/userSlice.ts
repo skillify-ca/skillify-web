@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
-import { Users } from "../graphql/fetchUserProfileCard";
+import { Users } from "../graphql/studentPortal/admin/fetchUserProfileCard";
 import { RootState } from "./rootReducer";
 export type userState = {
   userList: Users[];
 };
-const initialState: userState = { userList: []};
+const initialState: userState = { userList: [] };
 
 export const userSlice: Slice = createSlice({
   name: "users",
@@ -12,12 +12,12 @@ export const userSlice: Slice = createSlice({
   reducers: {
     setUserList: (state: userState, action: PayloadAction<Users[]>) => {
       if (action.type == "users/setUserList") {
-        return { userList: [...action.payload]};
+        return { userList: [...action.payload] };
       }
     },
   },
 });
 
-export const { setUserList} = userSlice.actions;
+export const { setUserList } = userSlice.actions;
 export default userSlice.reducer;
 export const userSelector = (state: RootState) => state.userState;

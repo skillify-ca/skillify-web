@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
 import {
+  UserProjectData,
   FetchUserProjectsDataResponse,
   FETCH_USER_PROJECTS,
-  UserProjectData,
-} from "../../../graphql/fetchUserProjects";
+} from "../../../graphql/studentPortal/profile/fetchUserProjects";
 import { Button } from "../../ui/Button";
 
 export type ProjectsSectionProps = {
@@ -13,17 +13,16 @@ export type ProjectsSectionProps = {
 
 export default function ProjectsSection({ user }: ProjectsSectionProps) {
   const [userProjects, setUserProjects] = useState<UserProjectData[]>([]);
-  const {
-    loading: userProjectsLoading,
-  } = useQuery<FetchUserProjectsDataResponse>(FETCH_USER_PROJECTS, {
-    variables: {
-      userId: user,
-    },
+  const { loading: userProjectsLoading } =
+    useQuery<FetchUserProjectsDataResponse>(FETCH_USER_PROJECTS, {
+      variables: {
+        userId: user,
+      },
 
-    onCompleted: (data: FetchUserProjectsDataResponse) => {
-      setUserProjects(data.user_projects);
-    },
-  });
+      onCompleted: (data: FetchUserProjectsDataResponse) => {
+        setUserProjects(data.user_projects);
+      },
+    });
   return (
     <>
       {userProjectsLoading ? (

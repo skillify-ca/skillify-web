@@ -1,7 +1,7 @@
 import { combineReducers, Reducer } from "@reduxjs/toolkit";
 
 import assignmentsSlice, { AssignmentsState } from "./assignmentsSlice";
-import { Users } from "../graphql/fetchUserProfileCard";
+import { Users } from "../graphql/studentPortal/admin/fetchUserProfileCard";
 import evaluateExpressionSlice, {
   EvaluateExpressionState,
 } from "./evaluateExpressionSlice";

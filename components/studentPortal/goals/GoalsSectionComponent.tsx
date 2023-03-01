@@ -2,7 +2,7 @@ import { PencilAltIcon } from "@heroicons/react/outline";
 import { differenceInCalendarDays, format } from "date-fns";
 import Link from "next/link";
 import React from "react";
-import { UserGoalsData } from "../../../graphql/fetchUserGoals";
+import { UserGoalsData } from "../../../graphql/studentPortal/goals/fetchUserGoals";
 export type GoalsSectionProps = {
   sectionName?: string;
   userGoals?: UserGoalsData[];
