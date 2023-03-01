@@ -1,11 +1,12 @@
 import moment from "moment";
 import PageHeader from "../../../components/ui/PageHeader";
+// import React from 'react'
 const quizcomponent = () => {
   return <div>quizComponent</div>;
 };
 
 export default quizcomponent;
-quizcomponent.getLayout = function getLayout(page) {
+quizcomponent.getLayout = function getLayout() {
   return (
     // return <div>{page}</div>;
     <div className="flex flex-col w-full px-4 pb-4 sm:px-8 sm:pb-8 ">
