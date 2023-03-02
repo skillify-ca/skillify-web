@@ -7,11 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import ProfileDetailCard from "../../../components/studentPortal/admin/ProfileDetailCard";
 import { Button } from "../../../components/ui/Button";
 import {
-  AllUserGoalsData,
-  FetchAllUserGoalsDataResponse,
-  FETCH_ALL_USER_GOALS,
-} from "../../../graphql/studentPortal/goals/fetchAllUserGoals";
-import {
   FetchTotalBadgesCountResponse,
   FETCH_TOTAL_USER_BADGES_COUNT,
 } from "../../../graphql/studentPortal/achievements/fetchTotalUserBadgesCount";
@@ -19,6 +14,11 @@ import {
   FetchUserProfileCardResponse,
   FETCH_USER_PROFILE_CARD,
 } from "../../../graphql/studentPortal/admin/fetchUserProfileCard";
+import {
+  AllUserGoalsData,
+  FetchAllUserGoalsDataResponse,
+  FETCH_ALL_USER_GOALS,
+} from "../../../graphql/studentPortal/goals/fetchAllUserGoals";
 import {
   FetchUserRoleData,
   FETCH_USER_ROLE,
@@ -116,51 +116,58 @@ const coachingDashboard = () => {
         <Button label="New Badge" />
       </Link>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        {userList.map((it, index) => {
-          const completionDate = goalCompletionDateList[index];
-          const completedGoal = completedGoalsList[index];
-          return (
-            <Link href={"/profile/" + it.id} key={index}>
-              <div className="container">
-                <ProfileDetailCard
-                  avatar={
-                    it.profile_image == null
-                      ? "../../images/logo-2.png"
-                      : it.profile_image
-                  }
-                  name={it.name}
-                  joinDate={new Date(it.created_at)}
-                  badges={it.user_coding_badges_aggregate.aggregate.count}
-                  currentBadge={
-                    it.coding_badge == null
-                      ? {
-                          title: "No badges earned.",
-                          image: "../../images/logo-2.png",
-                        }
-                      : it.coding_badge
-                  }
-                  completedGoal={
-                    completedGoal &&
-                    completedGoal[Object.keys(completedGoal)[0]]
-                  }
-                  link={it.link}
-                  completedDate={
-                    completionDate &&
-                    completionDate[Object.keys(completionDate)[0]] != null
-                      ? format(
-                          new Date(
-                            completionDate[Object.keys(completionDate)[0]]
-                          ),
-                          "MM/dd"
-                        )
-                      : "‎ N/A‎ "
-                  }
-                  totalBadgeCount={totalBadgeCount}
-                />
-              </div>
-            </Link>
-          );
-        })}
+        {userList
+          .map((it) => it)
+          .sort(
+            (a, b) =>
+              b.user_coding_badges_aggregate.aggregate.count -
+              a.user_coding_badges_aggregate.aggregate.count
+          )
+          .map((it, index) => {
+            const completionDate = goalCompletionDateList[index];
+            const completedGoal = completedGoalsList[index];
+            return (
+              <Link href={"/profile/" + it.id} key={index}>
+                <div className="container">
+                  <ProfileDetailCard
+                    avatar={
+                      it.profile_image == null
+                        ? "../../images/logo-2.png"
+                        : it.profile_image
+                    }
+                    name={it.name}
+                    joinDate={new Date(it.created_at)}
+                    badges={it.user_coding_badges_aggregate.aggregate.count}
+                    currentBadge={
+                      it.coding_badge == null
+                        ? {
+                            title: "No badges earned.",
+                            image: "../../images/logo-2.png",
+                          }
+                        : it.coding_badge
+                    }
+                    completedGoal={
+                      completedGoal &&
+                      completedGoal[Object.keys(completedGoal)[0]]
+                    }
+                    link={it.link}
+                    completedDate={
+                      completionDate &&
+                      completionDate[Object.keys(completionDate)[0]] != null
+                        ? format(
+                            new Date(
+                              completionDate[Object.keys(completionDate)[0]]
+                            ),
+                            "MM/dd"
+                          )
+                        : "‎ N/A‎ "
+                    }
+                    totalBadgeCount={totalBadgeCount}
+                  />
+                </div>
+              </Link>
+            );
+          })}
       </div>
     </div>
   );

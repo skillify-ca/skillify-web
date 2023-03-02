@@ -7,11 +7,6 @@ import AchievementComponent from "../../components/studentPortal/profileV2/achie
 import ProfileHeaderComponent from "../../components/studentPortal/profileV2/ProfileHeaderComponent";
 import ProjectsSection from "../../components/studentPortal/profileV2/ProjectsSection";
 import SkillRatingsComponent from "../../components/studentPortal/skillRatings/SkillRatingsComponent";
-import ExpandableContainer from "../../components/ui/ExpandableContainer";
-import {
-  FetchSkillsAndRatings,
-  FETCH_SKILLS_AND_RATINGS,
-} from "../../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
 import {
   FetchTotalBadgesCountResponse,
   FETCH_TOTAL_USER_BADGES_COUNT,
@@ -28,6 +23,10 @@ import {
   FetchUserProfileDataResponse,
   FETCH_USER_PROFILE_DATA,
 } from "../../graphql/studentPortal/profile/fetchUserProfile";
+import {
+  FetchSkillsAndRatings,
+  FETCH_SKILLS_AND_RATINGS,
+} from "../../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
 import { useAuth } from "../../lib/authContext";
 import {
   profileSelector,
@@ -131,33 +130,46 @@ export default function InternalProfile({
 
   return (
     <div className="flex flex-col p-4 m-4 space-y-4 overflow-auto bg-scroll">
-      <ProfileHeaderComponent
-        userProfileData={userProfileData}
-        userBadgeCount={userBadgeCount}
-        totalBadgeCount={totalBadgeCount}
-      />
-      <ExpandableContainer open={false} title={"Projects"}>
+      <Section title={""}>
+        <ProfileHeaderComponent
+          userProfileData={userProfileData}
+          userBadgeCount={userBadgeCount}
+          totalBadgeCount={totalBadgeCount}
+        />
+      </Section>
+      <Section title={"Projects"}>
         <ProjectsSection user={userId} />
-      </ExpandableContainer>
-      <ExpandableContainer open={false} title={"Goals"}>
+      </Section>
+      <Section title={"Goals"}>
         <GoalsSectionComponent
           inProfile={true}
           userGoals={userGoals
             .filter((goal) => !goal.isComplete && !goal.isArchived)
             .slice(0, 3)}
         />
-      </ExpandableContainer>
-      <ExpandableContainer open={false} title={"Achievements"}>
+      </Section>
+      <Section title={"Achievements"}>
         {typeof userId == "string" && <AchievementComponent userId={userId} />}
-      </ExpandableContainer>
-      <ExpandableContainer open={false} title={"Skill Ratings"}>
+      </Section>
+      <Section title={"Skill Ratings"}>
         <SkillRatingsComponent
           skillRatings={skillRatings}
           isEditable={isEditable}
         />
-      </ExpandableContainer>
+      </Section>
     </div>
   );
 }
 
 InternalProfile.auth = true;
+
+function Section({ title, children }) {
+  return (
+    <div className="">
+      <h6 className="mb-4 text-lg font-bold">{title}</h6>
+      <div className="p-0 border bg-backgroundSecondary rounded-xl border-brandPrimary">
+        {children}
+      </div>
+    </div>
+  );
+}

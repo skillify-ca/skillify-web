@@ -27,6 +27,7 @@ module.exports = {
         brandPrimary: "var(--color-brand-primary)",
         backgroundPrimary: "var(--color-background-primary)",
         backgroundSecondary: "var(--color-background-secondary)",
+        backgroundHover: "var(--color-background-hover)",
         inputTextPrimary: "var(--color-input-text-primary)",
         charmander: "#F18701",
         rattata: "#7678ED",

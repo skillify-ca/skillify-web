@@ -16,9 +16,9 @@ export default function UserProfileSection({
   totalBadgeCount,
 }: UserProfileSectionProps) {
   return (
-    <div className="grid items-center grid-cols-4 col-span-5 md:grid-cols-8">
+    <div className="grid items-center grid-cols-4 col-span-5 p-4 m-4 bg-backgroundPrimary rounded-xl md:grid-cols-8">
       <img
-        className="mt-6 mr-2 rounded-full w-36"
+        className="mr-2 rounded-full shadow border-brandPrimary w-36"
         src={userProfileData.profileImage}
       />
       <div className="col-span-3 mt-2 ml-2">

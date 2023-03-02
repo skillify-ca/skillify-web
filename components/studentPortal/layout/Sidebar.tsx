@@ -81,7 +81,7 @@ export const Sidebar: React.FC = () => {
   useEffect(() => {
     if (router.pathname.startsWith("/studentPortal/coaches")) {
       dispatch(setActivePage("coaches"));
-    } else if (router.pathname.startsWith("/studentPortal/profile")) {
+    } else if (router.pathname.startsWith("/profile")) {
       dispatch(setActivePage("profile"));
     } else if (router.pathname.startsWith("/studentPortal/goals")) {
       dispatch(setActivePage("goals"));
