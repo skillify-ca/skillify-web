@@ -1,8 +1,7 @@
-import React from "react";
 import Head from "next/head";
 import Card from "../../components/blog/BlogCard";
 import LandingNavbar from "../../components/landingPage/LandingNavbar";
-
+import React from "react";
 export default function Blog() {
   return (
     <div>
@@ -34,15 +33,13 @@ export default function Blog() {
           <div>
             <h4>February 8, 2023</h4>
             <Card
-              title={"Making The Leap into Development"}
-              image={
-                "https://images.unsplash.com/photo-1520371764250-8213f40bc3ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGVhcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=2000&q=60"
-              }
+              title={"Jest + Function Testing"}
+              image={"/images/blog/jest-function-testing/software_testing.jpeg"}
               description={
-                "Skillify students experience transitioning into software development"
+                "A Creative & Cheap Approach to Testing Tailwind/CSS Classes"
               }
-              link={"/blog/making-the-leap-into-development"}
-              color={2}
+              link={"/blog/jest-function-testing"}
+              color={5}
             />
           </div>
           <div>

@@ -1,7 +1,6 @@
 import React from "react";
-import { IntroCourseUnit } from "../../../../../graphql/coding/userBadges/fetchUserBadges";
-
-import { CodingBadge } from "../../../../../graphql/coding/userBadges/fetchUserBadges";
+import { IntroCourseUnit } from "../../../../graphql/studentPortal/achievements/fetchUserBadges";
+import { CodingBadge } from "../../../../graphql/studentPortal/admin/fetchUserProfileCard";
 
 type CodingBadgeUnitProps = {
   disabled: boolean;

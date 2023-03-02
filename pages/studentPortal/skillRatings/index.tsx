@@ -7,8 +7,8 @@ import {
   FetchUserSkillsRatings,
   FETCH_USER_SKILLS_RATINGS,
   UserSkillsRatings,
-} from "../../../graphql/fetchUserSkillsRatings";
-import { UPSERT_USER_SKILL_RATINGS } from "../../../graphql/upsertUserSkillRatings";
+} from "../../../graphql/studentPortal/skillRatings/fetchUserSkillsRatings";
+import { UPSERT_USER_SKILL_RATINGS } from "../../../graphql/studentPortal/skillRatings/upsertUserSkillRatings";
 import { useAuth } from "../../../lib/authContext";
 import {
   setSkillRatings,

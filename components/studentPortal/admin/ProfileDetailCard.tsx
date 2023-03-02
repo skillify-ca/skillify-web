@@ -1,5 +1,5 @@
 import React from "react";
-import { CodingBadge } from "../../../graphql/fetchUserProfileCard";
+import { CodingBadge } from "../../../graphql/studentPortal/admin/fetchUserProfileCard";
 import BadgesDisplayedComponent from "../profileV2/BadgesDisplayedComponent";
 import JoinedDateComponent from "../profileV2/JoinedDateComponent";
 

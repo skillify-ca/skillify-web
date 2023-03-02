@@ -1,12 +1,10 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
-import { UserAssignmentSubmissionsData } from "../graphql/fetchUserAssignmentSubmissions";
+import { UserAssignmentSubmissionsData } from "../graphql/studentPortal/assignments/fetchUserAssignmentSubmissions";
 import { RootState } from "./rootReducer";
 
 export type AssignmentsState = {
   userAssignments: UserAssignmentSubmissionsData[];
 };
-
-
 
 const initialState: AssignmentsState = {
   userAssignments: [],
@@ -21,16 +19,14 @@ export const assignmentsSlice: Slice = createSlice({
       action: PayloadAction<UserAssignmentSubmissionsData[]>
     ) => {
       if (action.type == "assignments/setUserAssignments") {
-        state.userAssignments = action.payload
+        state.userAssignments = action.payload;
       }
     },
   },
 });
 
-export const { setUserAssignments} =
-  assignmentsSlice.actions;
+export const { setUserAssignments } = assignmentsSlice.actions;
 
 export default assignmentsSlice.reducer;
 
-export const assignmentsSelector = (state: RootState) =>
-  state.assignmentsState;
+export const assignmentsSelector = (state: RootState) => state.assignmentsState;

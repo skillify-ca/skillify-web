@@ -10,19 +10,19 @@ import {
   AllUserGoalsData,
   FetchAllUserGoalsDataResponse,
   FETCH_ALL_USER_GOALS,
-} from "../../../graphql/fetchAllUserGoals";
+} from "../../../graphql/studentPortal/goals/fetchAllUserGoals";
 import {
   FetchTotalBadgesCountResponse,
   FETCH_TOTAL_USER_BADGES_COUNT,
-} from "../../../graphql/fetchTotalUserBadgesCount";
+} from "../../../graphql/studentPortal/achievements/fetchTotalUserBadgesCount";
 import {
   FetchUserProfileCardResponse,
   FETCH_USER_PROFILE_CARD,
-} from "../../../graphql/fetchUserProfileCard";
+} from "../../../graphql/studentPortal/admin/fetchUserProfileCard";
 import {
   FetchUserRoleData,
   FETCH_USER_ROLE,
-} from "../../../graphql/fetchUserRole";
+} from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
 import {
   profileSelector,
@@ -95,17 +95,16 @@ const coachingDashboard = () => {
     }
   }, [goalsList, userList]);
 
-  const {
-    loading: totalUserBadgeCountLoading,
-  } = useQuery<FetchTotalBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
-    onCompleted: (data) => {
-      if (data) {
-        dispatch(
-          setTotalBadgeCount(data.coding_badges_aggregate.aggregate.count)
-        );
-      }
-    },
-  });
+  const { loading: totalUserBadgeCountLoading } =
+    useQuery<FetchTotalBadgesCountResponse>(FETCH_TOTAL_USER_BADGES_COUNT, {
+      onCompleted: (data) => {
+        if (data) {
+          dispatch(
+            setTotalBadgeCount(data.coding_badges_aggregate.aggregate.count)
+          );
+        }
+      },
+    });
 
   if (loading) {
     return <div className="flex place-content-center">"Loading..."</div>;
@@ -121,7 +120,7 @@ const coachingDashboard = () => {
           const completionDate = goalCompletionDateList[index];
           const completedGoal = completedGoalsList[index];
           return (
-            <Link href={"profile/" + it.id} key={index}>
+            <Link href={"/profile/" + it.id} key={index}>
               <div className="container">
                 <ProfileDetailCard
                   avatar={

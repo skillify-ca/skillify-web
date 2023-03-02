@@ -1,6 +1,10 @@
-
-import { UserGoalsData } from "../graphql/fetchUserGoals";
-import reducer, { GoalSection, setGoalsSections, setUserGoals, UserGoalsState } from "./userGoalsSlice";
+import { UserGoalsData } from "../graphql/studentPortal/goals/fetchUserGoals";
+import reducer, {
+  GoalSection,
+  setGoalsSections,
+  setUserGoals,
+  UserGoalsState,
+} from "./userGoalsSlice";
 
 const userGoalsInitialState: UserGoalsData[] = [];
 
@@ -47,63 +51,59 @@ test("set userGoals to userGoalsTestState from initialState", () => {
   });
 });
 
-
-
-
 const goalsSectionsInitialState: GoalSection[] = [
-    { sectionName: "",
-      userGoals: [],
-    },
-  ];
-  
-  const goalsSectionsTestState: GoalSection[] = [
-  {
-        sectionName: "Archived",
-        userGoals: [
-                {
-                createdAt: new Date(2022, 12, 14),
-                goalName: "Write Functions",
-                goalNotes: "recurring goal",
-                id: "12345",
-                updatedAt: new Date(2022, 12, 10),
-                userId: "BR9u18SJzvVNzcrkEIcJDPxv1ws1",
-                isComplete: true,
-                targetDate: new Date(2022, 12, 14),
-                isArchived: false,
-                },
-              ],
-            }
+  { sectionName: "", userGoals: [] },
+];
 
-  ];
-  
-  test("should return the initial state", () => {
-    expect(reducer(goalsSectionsInitialState, { type: "no action" })).toEqual(goalsSectionsInitialState);
+const goalsSectionsTestState: GoalSection[] = [
+  {
+    sectionName: "Archived",
+    userGoals: [
+      {
+        createdAt: new Date(2022, 12, 14),
+        goalName: "Write Functions",
+        goalNotes: "recurring goal",
+        id: "12345",
+        updatedAt: new Date(2022, 12, 10),
+        userId: "BR9u18SJzvVNzcrkEIcJDPxv1ws1",
+        isComplete: true,
+        targetDate: new Date(2022, 12, 14),
+        isArchived: false,
+      },
+    ],
+  },
+];
+
+test("should return the initial state", () => {
+  expect(reducer(goalsSectionsInitialState, { type: "no action" })).toEqual(
+    goalsSectionsInitialState
+  );
+});
+
+test("set goalsSections to goalsSectionsState from initialState", () => {
+  // Arrange
+
+  // Act
+  const goalsSectionsNextState = reducer(
+    goalsSectionsInitialState,
+    setGoalsSections(goalsSectionsTestState)
+  );
+
+  // Assert
+  expect(goalsSectionsNextState["goalsSections"][0]).toEqual({
+    sectionName: "Archived",
+    userGoals: [
+      {
+        createdAt: new Date(2022, 12, 14),
+        goalName: "Write Functions",
+        goalNotes: "recurring goal",
+        id: "12345",
+        updatedAt: new Date(2022, 12, 10),
+        userId: "BR9u18SJzvVNzcrkEIcJDPxv1ws1",
+        isComplete: true,
+        targetDate: new Date(2022, 12, 14),
+        isArchived: false,
+      },
+    ],
   });
-  
-  test("set goalsSections to goalsSectionsState from initialState", () => {
-    // Arrange
-  
-    // Act
-    const goalsSectionsNextState = reducer(
-      goalsSectionsInitialState,
-      setGoalsSections(goalsSectionsTestState)
-    );
-  
-    // Assert
-    expect(goalsSectionsNextState["goalsSections"][0]).toEqual({
-        sectionName: "Archived",
-        userGoals: [
-                {
-                createdAt: new Date(2022, 12, 14),
-                goalName: "Write Functions",
-                goalNotes: "recurring goal",
-                id: "12345",
-                updatedAt: new Date(2022, 12, 10),
-                userId: "BR9u18SJzvVNzcrkEIcJDPxv1ws1",
-                isComplete: true,
-                targetDate: new Date(2022, 12, 14),
-                isArchived: false,
-                },
-              ],
-            });
-  });
+});

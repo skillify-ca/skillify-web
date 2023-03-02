@@ -7,7 +7,7 @@ import { Button } from "../../../components/ui/Button";
 import {
   FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
-} from "../../../graphql/fetchUserGoals";
+} from "../../../graphql/studentPortal/goals/fetchUserGoals";
 import { useAuth } from "../../../lib/authContext";
 import {
   setGoalsSections,

@@ -3,8 +3,8 @@ import { format } from "date-fns";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { Button } from "../../../components/ui/Button";
-import { FETCH_USER_GOALS } from "../../../graphql/fetchUserGoals";
-import { UPSERT_USER_GOALS } from "../../../graphql/upsertUserGoals";
+import { FETCH_USER_GOALS } from "../../../graphql/studentPortal/goals/fetchUserGoals";
+import { UPSERT_USER_GOALS } from "../../../graphql/studentPortal/goals/upsertUserGoals";
 import { useAuth } from "../../../lib/authContext";
 
 const EditGoalsPage = () => {

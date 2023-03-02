@@ -5,15 +5,15 @@ import {
   FetchBadgeResponse,
   FETCH_CODING_BADGES,
   IntroCourseUnit,
-} from "../../../../graphql/coding/userBadges/fetchUserBadges";
+} from "../../../../graphql/studentPortal/achievements/fetchUserBadges";
 import {
-  DELETE_USER_CODING_BADGES,
   INSERT_USER_CODING_BADGES,
-} from "../../../../graphql/coding/userBadges/updateUserCodingBadges";
+  DELETE_USER_CODING_BADGES,
+} from "../../../../graphql/studentPortal/achievements/updateUserCodingBadges";
 import {
   FetchUserRoleData,
   FETCH_USER_ROLE,
-} from "../../../../graphql/fetchUserRole";
+} from "../../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../../lib/authContext";
 import { Button } from "../../../ui/Button";
 import findBadgeDiff from "./findBadgeDiff";
