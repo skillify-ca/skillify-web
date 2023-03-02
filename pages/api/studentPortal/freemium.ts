@@ -15,5 +15,13 @@ export const trialDaysRemaining = (user: UserRoleData, trialLength, daysOld) => 
   return null;
 };
 
+export const elapsedDays = (user: UserRoleData) => {
+  if (user.createdAt) {
+    const currentDate = new Date();
+      const elapsedDays = differenceInCalendarDays(currentDate, new Date(user.createdAt));
+      return elapsedDays;
+    }
+  return null;
+};
 
 
