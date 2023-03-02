@@ -11,7 +11,7 @@ export type ThemeState = {
 };
 
 const initialState: ThemeState = {
-  currentTheme: Theme.DRACULA,
+  currentTheme: Theme.DEFAULT,
 };
 
 export const themeSlice: Slice = createSlice({
