@@ -1,4 +1,4 @@
-import { Users } from "../graphql/fetchUserProfileCard";
+import { Users } from "../graphql/studentPortal/admin/fetchUserProfileCard";
 import reducer from "./userSlice";
 import { userState, setUserList } from "./userSlice";
 

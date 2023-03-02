@@ -8,9 +8,9 @@ import LessonComponent, {
 } from "../../../../components/studentPortal/lessons/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/ui/ProgressBar";
-import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
-import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
-import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/studentPortal/courses/fetchUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
 
 const JS1 = ({ lessonComponents }) => {
@@ -95,8 +95,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text:
-        "JavaScript is yet another language that you need to learn. This lesson will teach you the main concepts of JavaScript.",
+      text: "JavaScript is yet another language that you need to learn. This lesson will teach you the main concepts of JavaScript.",
     },
     {
       component: "resource-list",

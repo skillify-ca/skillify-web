@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   FetchUserRoleData,
   FETCH_USER_ROLE,
-} from "../../../graphql/fetchUserRole";
+} from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
 import { profileSelector, setUserRole } from "../../../redux/profileSlice";
 import {

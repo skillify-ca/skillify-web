@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Quiz from "../../../../components/studentPortal/quiz/Quiz";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/ui/ProgressBar";
-import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
-import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
-import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/studentPortal/courses/fetchUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
 import {
   continueRequested,
@@ -37,8 +37,7 @@ const JSQuiz1 = () => {
       answer: "D",
     };
     const q3 = {
-      text:
-        "Which one of the following is an incorrect way of declaring a variable",
+      text: "Which one of the following is an incorrect way of declaring a variable",
       A: "variable x;",
       B: "var x;",
       C: "let x;",

@@ -11,23 +11,23 @@ import ExpandableContainer from "../../components/ui/ExpandableContainer";
 import {
   FetchSkillsAndRatings,
   FETCH_SKILLS_AND_RATINGS,
-} from "../../graphql/fetchSkillsAndRatings";
+} from "../../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
 import {
   FetchTotalBadgesCountResponse,
   FETCH_TOTAL_USER_BADGES_COUNT,
-} from "../../graphql/fetchTotalUserBadgesCount";
+} from "../../graphql/studentPortal/achievements/fetchTotalUserBadgesCount";
 import {
   FetchUserBadgesCountResponse,
   FETCH_USER_BADGES_COUNT,
-} from "../../graphql/fetchUserBadgesCount";
+} from "../../graphql/studentPortal/achievements/fetchUserBadgesCount";
 import {
   FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
-} from "../../graphql/fetchUserGoals";
+} from "../../graphql/studentPortal/goals/fetchUserGoals";
 import {
   FetchUserProfileDataResponse,
   FETCH_USER_PROFILE_DATA,
-} from "../../graphql/fetchUserProfile";
+} from "../../graphql/studentPortal/profile/fetchUserProfile";
 import { useAuth } from "../../lib/authContext";
 import {
   profileSelector,
@@ -58,9 +58,8 @@ export default function InternalProfile({
 
   const { userGoals } = useSelector(userGoalsSelector);
   const { skillRatings } = useSelector(skillRatingsSelector);
-  const { userProfileData, userBadgeCount, totalBadgeCount } = useSelector(
-    profileSelector
-  );
+  const { userProfileData, userBadgeCount, totalBadgeCount } =
+    useSelector(profileSelector);
   const [isEditable, setIsEditable] = useState(false);
 
   if (userId) {

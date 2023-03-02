@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   FetchGoalCountResponse,
   FETCH_USER_GOALS_COUNT,
-} from "../../../graphql/fetchUserGoalsCount";
+} from "../../../graphql/studentPortal/goals/fetchUserGoalsCount";
 import { useAuth } from "../../../lib/authContext";
 import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
 import { setTheme, Theme, themeSelector } from "../../../redux/themeSlice";

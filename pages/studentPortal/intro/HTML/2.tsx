@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Quiz from "../../../../components/studentPortal/quiz/Quiz";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/ui/ProgressBar";
-import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
-import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
-import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/studentPortal/courses/fetchUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
 import {
   continueRequested,
@@ -38,8 +38,7 @@ const HTML2 = () => {
     };
     const q3 = {
       text: "What is the difference between <h1> and <h2> tags?",
-      A:
-        "<h1> tags are ranked higher in significance than <h2> and thus are slightly larger",
+      A: "<h1> tags are ranked higher in significance than <h2> and thus are slightly larger",
       B: "<h2> is larger than <h1>",
       C: "There is no difference in significance",
       D: "None of the above",
