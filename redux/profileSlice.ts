@@ -1,4 +1,4 @@
-import { Slice, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { UserProfileData } from "../graphql/studentPortal/profile/fetchUserProfile";
 import { RootState } from "./rootReducer";
 
@@ -6,7 +6,7 @@ export type ProfileState = {
   userProfileData: UserProfileData;
   userBadgeCount: number;
   totalBadgeCount: number;
-  userRole: "student" | "coach";
+  userRole: "student" | "coach"|"freemium";
 };
 
 const initialState: ProfileState = {
@@ -19,7 +19,7 @@ const initialState: ProfileState = {
   },
   totalBadgeCount: 0,
   userBadgeCount: 0,
-  userRole: "student",
+  userRole: "freemium",
 };
 
 export const profileSlice: Slice = createSlice({

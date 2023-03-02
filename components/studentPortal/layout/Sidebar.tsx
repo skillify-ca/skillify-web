@@ -69,8 +69,11 @@ export const Sidebar: React.FC = () => {
     onCompleted: (data) => {
       if (data.users[0].userRole.value === "coach") {
         dispatch(setUserRole("coach"));
-      } else {
+      }
+      if (data.users[0].userRole.value === "student") {
         dispatch(setUserRole("student"));
+      } else {
+        dispatch(setUserRole("freemium"));
       }
     },
     fetchPolicy: "cache-and-network",
