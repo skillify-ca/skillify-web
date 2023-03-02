@@ -37,7 +37,7 @@ export default function ProjectsSection({ user }: ProjectsSectionProps) {
             return (
               <div
                 key={i}
-                className="flex flex-col items-center gap-4 p-4 m-4 border-2 rounded-xl"
+                className="flex flex-col items-center gap-4 p-4 m-4 shadow bg-backgroundPrimary rounded-xl"
               >
                 <p className="font-bold">{it.name}</p>
                 <img

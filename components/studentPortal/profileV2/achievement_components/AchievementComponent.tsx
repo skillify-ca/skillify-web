@@ -100,7 +100,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
   };
 
   return (
-    <div className="p-4 bg-backgroundPrimary">
+    <div className="p-4 rounded-xl bg-backgroundSecondary">
       <div className="flex justify-end w-full">
         {isEditButtonVisible && (
           <div>
@@ -123,7 +123,10 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
           {unitBadges.map((unit, index) => {
             if (unit.coding_badges.length > 0) {
               return (
-                <div className="mb-4" key={index}>
+                <div
+                  className="mb-4 shadow bg-backgroundPrimary rounded-xl"
+                  key={index}
+                >
                   <UnitBadgeSection
                     unit={unit}
                     editMode={editMode}

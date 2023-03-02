@@ -27,7 +27,7 @@ function UnitBadgeSection({
     <div>
       <div className="grid grid-cols-1">
         <div
-          className="flex p-4 cursor-pointer hover:bg-backgroundSecondary group rounded-xl"
+          className="flex p-4 cursor-pointer hover:bg-backgroundHover group rounded-xl"
           onClick={() => setIsOpen(!isOpen)}
         >
           <img
