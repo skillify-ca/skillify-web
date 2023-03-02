@@ -151,6 +151,7 @@ module.exports = {
      * PurgeCSS:
      * bg-backgroundSecondary
      * bg-backgroundPrimary
+     * bg-brandPrimary
      * bg-textPrimary
      * bg-textSecondary
      * text-textPrimary
@@ -231,6 +232,7 @@ module.exports = {
       "border-yellow-900",
       "hover:bg-yellow-400",
       "hover:text-textSecondary",
+      "bg-brandPrimary",
       "text-yellow-100",
       "text-yellow-200",
       "text-yellow-400",
