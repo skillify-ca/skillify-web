@@ -1,9 +1,9 @@
 import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
 import {
-  UserProjectData,
   FetchUserProjectsDataResponse,
   FETCH_USER_PROJECTS,
+  UserProjectData,
 } from "../../../graphql/studentPortal/profile/fetchUserProjects";
 import { Button } from "../../ui/Button";
 
@@ -32,32 +32,34 @@ export default function ProjectsSection({ user }: ProjectsSectionProps) {
           No Active Projects
         </div>
       ) : (
-        userProjects.map((it, i) => {
-          return (
-            <div
-              key={i}
-              className="flex flex-col items-center gap-4 p-4 m-4 border-2 rounded-xl"
-            >
-              <p className="font-bold">{it.name}</p>
-              <img
-                src={it.image}
-                className="object-cover w-24 h-24 bg-white rounded-full"
-              />
-              <div className="flex justify-around w-full">
-                <a href={it.githubLink} target="_blank" rel="noreferrer">
-                  <Button
-                    label="Github"
-                    backgroundColor="white"
-                    textColor="text-orange-400"
-                  />
-                </a>
-                <a href={it.projectLink} target="_blank" rel="noreferrer">
-                  <Button label="Project" />
-                </a>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {userProjects.map((it, i) => {
+            return (
+              <div
+                key={i}
+                className="flex flex-col items-center gap-4 p-4 m-4 border-2 rounded-xl"
+              >
+                <p className="font-bold">{it.name}</p>
+                <img
+                  src={it.image}
+                  className="object-cover w-24 h-24 bg-white rounded-full"
+                />
+                <div className="flex justify-around w-full">
+                  <a href={it.githubLink} target="_blank" rel="noreferrer">
+                    <Button
+                      label="Github"
+                      backgroundColor="white"
+                      textColor="text-orange-400"
+                    />
+                  </a>
+                  <a href={it.projectLink} target="_blank" rel="noreferrer">
+                    <Button label="Project" />
+                  </a>
+                </div>
               </div>
-            </div>
-          );
-        })
+            );
+          })}
+        </div>
       )}
     </>
   );

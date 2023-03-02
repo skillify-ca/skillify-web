@@ -7,8 +7,8 @@ import {
   IntroCourseUnit,
 } from "../../../../graphql/studentPortal/achievements/fetchUserBadges";
 import {
-  INSERT_USER_CODING_BADGES,
   DELETE_USER_CODING_BADGES,
+  INSERT_USER_CODING_BADGES,
 } from "../../../../graphql/studentPortal/achievements/updateUserCodingBadges";
 import {
   FetchUserRoleData,
@@ -100,8 +100,8 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
   };
 
   return (
-    <div className="p-4 bg-slate-900 ">
-      <div className="flex justify-end w-full py-4">
+    <div className="p-4 bg-backgroundPrimary">
+      <div className="flex justify-end w-full">
         {isEditButtonVisible && (
           <div>
             <button

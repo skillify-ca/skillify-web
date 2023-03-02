@@ -9,10 +9,6 @@ import ProjectsSection from "../../components/studentPortal/profileV2/ProjectsSe
 import SkillRatingsComponent from "../../components/studentPortal/skillRatings/SkillRatingsComponent";
 import ExpandableContainer from "../../components/ui/ExpandableContainer";
 import {
-  FetchSkillsAndRatings,
-  FETCH_SKILLS_AND_RATINGS,
-} from "../../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
-import {
   FetchTotalBadgesCountResponse,
   FETCH_TOTAL_USER_BADGES_COUNT,
 } from "../../graphql/studentPortal/achievements/fetchTotalUserBadgesCount";
@@ -28,6 +24,10 @@ import {
   FetchUserProfileDataResponse,
   FETCH_USER_PROFILE_DATA,
 } from "../../graphql/studentPortal/profile/fetchUserProfile";
+import {
+  FetchSkillsAndRatings,
+  FETCH_SKILLS_AND_RATINGS,
+} from "../../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
 import { useAuth } from "../../lib/authContext";
 import {
   profileSelector,
@@ -136,10 +136,10 @@ export default function InternalProfile({
         userBadgeCount={userBadgeCount}
         totalBadgeCount={totalBadgeCount}
       />
-      <ExpandableContainer open={false} title={"Projects"}>
+      <ExpandableContainer open={true} title={"Projects"}>
         <ProjectsSection user={userId} />
       </ExpandableContainer>
-      <ExpandableContainer open={false} title={"Goals"}>
+      <ExpandableContainer open={true} title={"Goals"}>
         <GoalsSectionComponent
           inProfile={true}
           userGoals={userGoals
@@ -147,10 +147,10 @@ export default function InternalProfile({
             .slice(0, 3)}
         />
       </ExpandableContainer>
-      <ExpandableContainer open={false} title={"Achievements"}>
+      <ExpandableContainer open={true} title={"Achievements"}>
         {typeof userId == "string" && <AchievementComponent userId={userId} />}
       </ExpandableContainer>
-      <ExpandableContainer open={false} title={"Skill Ratings"}>
+      <ExpandableContainer open={true} title={"Skill Ratings"}>
         <SkillRatingsComponent
           skillRatings={skillRatings}
           isEditable={isEditable}

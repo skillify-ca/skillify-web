@@ -72,7 +72,7 @@ export default function GoalsSection({
       })}
     </div>
   ) : userGoals.length <= 0 && inProfile ? (
-    <div className="col-span-3 p-8 mb-8 text-center shadow-md bg-slate-300 dark:bg-slate-900">
+    <div className="col-span-3 p-8 mb-8 text-center bg-backgroundPrimary">
       Click on the "Goals" tab on the sidebar to get ahead by creating and
       tracking your goals!
     </div>
