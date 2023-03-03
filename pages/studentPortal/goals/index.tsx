@@ -70,7 +70,14 @@ export default function Goals(props) {
         </div>
         {goalsSections.map((section) => {
           return (
-            <div className="mb-8" key={section.sectionName}>
+            <div
+              className="p-4 mb-8 rounded bg-backgroundSecondary"
+              key={section.sectionName}
+            >
+              <h6 className="p-2 text-center shadow text-brandPrimary bg-backgroundPrimary w-28 rounded-xl">
+                {section.sectionName}
+              </h6>
+
               <GoalsSectionComponent
                 userGoals={section.userGoals}
                 sectionName={section.sectionName}
