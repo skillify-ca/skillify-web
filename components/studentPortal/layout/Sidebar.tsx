@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   FetchUserRoleData,
   FETCH_USER_ROLE,
-} from "../../../graphql/fetchUserRole";
+} from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
 import { profileSelector, setUserRole } from "../../../redux/profileSlice";
 import {
@@ -81,7 +81,7 @@ export const Sidebar: React.FC = () => {
   useEffect(() => {
     if (router.pathname.startsWith("/studentPortal/coaches")) {
       dispatch(setActivePage("coaches"));
-    } else if (router.pathname.startsWith("/studentPortal/profile")) {
+    } else if (router.pathname.startsWith("/profile")) {
       dispatch(setActivePage("profile"));
     } else if (router.pathname.startsWith("/studentPortal/goals")) {
       dispatch(setActivePage("goals"));

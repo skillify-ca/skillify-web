@@ -1,7 +1,7 @@
 import { combineReducers, Reducer } from "@reduxjs/toolkit";
 
 import assignmentsSlice, { AssignmentsState } from "./assignmentsSlice";
-import { Users } from "../graphql/fetchUserProfileCard";
+import { Users } from "../graphql/studentPortal/admin/fetchUserProfileCard";
 import evaluateExpressionSlice, {
   EvaluateExpressionState,
 } from "./evaluateExpressionSlice";
@@ -11,6 +11,7 @@ import { SidebarState, sidebarSlice } from "./sidebarSlice";
 import userSlice, { userState } from "./userSlice";
 import skillRatingsSlice, { SkillRatingsState } from "./skillRatingsSlice";
 import userGoalsSlice, { UserGoalsState } from "./userGoalsSlice";
+import themeSlice, { ThemeState } from "./themeSlice";
 
 type State = {
   [x: string]: any;
@@ -22,6 +23,7 @@ type State = {
   profileState: ProfileState;
   assignmentsState: AssignmentsState;
   userState: userState;
+  themeState: ThemeState;
 };
 const evaluateExpressionReducer = evaluateExpressionSlice;
 const quizReducer = quizSlice.reducer;
@@ -31,6 +33,7 @@ const userGoalsReducer = userGoalsSlice;
 const profileReducer = profileSlice;
 const assignmentsReducer = assignmentsSlice;
 const userReducer = userSlice;
+const themeReducer = themeSlice;
 
 const rootReducer = combineReducers({
   evaluateExpressionHistory: evaluateExpressionReducer,
@@ -41,6 +44,7 @@ const rootReducer = combineReducers({
   profileState: profileReducer,
   assignmentsState: assignmentsReducer,
   userState: userReducer,
+  themeState: themeReducer,
 });
 
 export type RootState = State;

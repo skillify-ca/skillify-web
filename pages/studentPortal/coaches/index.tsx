@@ -6,12 +6,11 @@ import PageHeader from "../../../components/ui/PageHeader";
 import {
   FetchCoachesResponse,
   FETCH_COACHES,
-} from "../../../graphql/coding/coaches/fetchCoaches";
+} from "../../../graphql/studentPortal/coaches/fetchCoaches";
 
 export default function CoachesPage() {
-  const { data, loading, error } = useQuery<FetchCoachesResponse>(
-    FETCH_COACHES
-  );
+  const { data, loading, error } =
+    useQuery<FetchCoachesResponse>(FETCH_COACHES);
 
   return (
     <div className="flex flex-col items-center justify-center w-full">

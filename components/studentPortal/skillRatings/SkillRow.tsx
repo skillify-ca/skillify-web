@@ -32,7 +32,7 @@ export default function SkillRow({ skillRow, isEditable }: SkillRowProps) {
   };
 
   return (
-    <div className="grid items-center justify-center w-full grid-cols-1 text-center sm:grid-cols-8">
+    <div className="grid justify-center w-full grid-cols-1 p-4 my-4 text-center shadow place-items-center bg-backgroundPrimary sm:grid-cols-6 rounded-xl">
       <div className="flex items-center justify-center p-12 text-6xl text-center border-4 border-white rounded-full shadow-xl sm:w-1/2 h-1/2 bg-murkrow/50">
         {renderEmojiByRating(skillRatings[index].studentRating)}
       </div>

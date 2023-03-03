@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import React from "react";
-import LessonComponent from "../../../../components/studentPortal/lessons/LessonComponent";
+import LessonComponent, {
+  LessonComponentData,
+} from "../../../../components/studentPortal/lessons/LessonComponent";
 
 import { Button } from "../../../../components/ui/Button";
 
@@ -18,7 +20,9 @@ const Github = ({ lessonComponents }: LessonProps) => {
     <>
       <div className="grid grid-cols-1 gap-8 px-4 pt-4 m-8 sm:px-12">
         {lessonComponents.map((it, index) => (
-          <LessonComponent data={it} key={index} />
+          <div key={index}>
+            <LessonComponent data={it} />
+          </div>
         ))}
       </div>
       <div className="flex my-8 mr-8 sm:justify-end">

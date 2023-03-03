@@ -1,7 +1,7 @@
 import Head from "next/head";
+import React from "react";
 import Card from "../../components/blog/BlogCard";
 import LandingNavbar from "../../components/landingPage/LandingNavbar";
-import React from "react";
 export default function Blog() {
   return (
     <div>
@@ -30,6 +30,18 @@ export default function Blog() {
         <div className="absolute top-0 w-full h-full p-8 md:p-16 opacity-5"></div>
 
         <div className="grid items-center w-full grid-cols-1 gap-16 p-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <h4>February 20, 2023</h4>
+            <Card
+              title={"Switching to Software Engineering"}
+              image={"/images/blog/make-the-leap/softwareeng.jpg"}
+              description={
+                "A Skillify Student's Account of Switching Careers from Actuarial Science to Software Engineering"
+              }
+              link={"/blog/making-the-leap-into-development"}
+              color={5}
+            />
+          </div>
           <div>
             <h4>February 8, 2023</h4>
             <Card
