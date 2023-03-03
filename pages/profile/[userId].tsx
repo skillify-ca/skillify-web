@@ -167,9 +167,7 @@ function Section({ title, children }) {
   return (
     <div className="">
       <h6 className="mb-4 text-lg font-bold">{title}</h6>
-      <div className="p-0 border bg-backgroundSecondary rounded-xl border-brandPrimary">
-        {children}
-      </div>
+      <div className="p-0 bg-backgroundSecondary rounded-xl">{children}</div>
     </div>
   );
 }

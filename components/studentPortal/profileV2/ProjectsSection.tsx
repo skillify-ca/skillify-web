@@ -32,7 +32,7 @@ export default function ProjectsSection({ user }: ProjectsSectionProps) {
           No Active Projects
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-2">
           {userProjects.map((it, i) => {
             return (
               <div

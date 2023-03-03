@@ -88,9 +88,7 @@ export default function SkillRatingsComponent({
         ))}
       </div>
       <div>
-        <div
-          className={`${activeTab ? "flex flex-col sm:p-4 sm:m-4" : "hidden"} `}
-        >
+        <div className={`"flex flex-col p-4 sm:m-4"} `}>
           <animated.div style={springProps}>
             {skillRatings &&
               skillRatings
