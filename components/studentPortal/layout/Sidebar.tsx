@@ -72,7 +72,7 @@ export const Sidebar: React.FC = () => {
       }
       if (data.users[0].userRole.value === "student") {
         dispatch(setUserRole("student"));
-      } else {
+      } else if (data.users[0].userRole.value === "freemium") {
         dispatch(setUserRole("freemium"));
       }
     },
@@ -90,6 +90,10 @@ export const Sidebar: React.FC = () => {
       dispatch(setActivePage("goals"));
     } else if (router.pathname.startsWith("/studentPortal/workshops")) {
       dispatch(setActivePage("workshops"));
+    } else if (router.pathname.startsWith("/studentPortal/web")) {
+      dispatch(setActivePage("web"));
+    } else if (router.pathname.startsWith("/studentPortal")) {
+      dispatch(setActivePage("coding_basics"));
     } else {
       dispatch(setActivePage("dashboard"));
     }
@@ -216,62 +220,83 @@ export const Sidebar: React.FC = () => {
 
         <SkillifyCommandPalette />
 
+        <SidebarItem
+          name={"Admin"}
+          link={"/studentPortal/admin"}
+          page={"admin"}
+          icon={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-6 h-6 mr-4"
+            >
+              <path
+                fillRule="evenodd"
+                d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
+                clipRule="evenodd"
+              />
+            </svg>
+          }
+        />
         <div>
           <div className="flex items-center justify-between p-4 ">
             <p className="font-bold">Courses</p>
           </div>
-          <div className="overflow-auto h-36">
-            <Link href="/studentPortal">
-              <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                  />
-                </svg>
-                <p className="ml-3">Coding Basics</p>
-              </div>
-            </Link>
-            <Link href="/studentPortal/web">
-              <div className="flex p-4 cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M8 13v-1m4 1v-3m4 3V8M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-                </svg>
-                <p className="ml-3">Web Development</p>
-              </div>
-            </Link>
-          </div>
+          <SidebarItem
+            name={"Coding Basics"}
+            link={"/studentPortal"}
+            page={"coding_basics"}
+            icon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6 mr-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                />
+              </svg>
+            }
+          />
+          <SidebarItem
+            name={"Web Development"}
+            link={"/studentPortal/web"}
+            page={"web"}
+            icon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6 mr-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M8 13v-1m4 1v-3m4 3V8M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+              </svg>
+            }
+          />
         </div>
-        <div
-          className="flex flex-wrap p-4 cursor-pointer hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800"
-          onClick={signOut}
+      </div>
+      <div
+        className="flex flex-wrap p-4 cursor-pointer hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800"
+        onClick={signOut}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-6 h-6 mr-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-6 h-6 mr-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-          </svg>
-          Logout
-        </div>
+          <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
+        Logout
       </div>
     </div>
   );
