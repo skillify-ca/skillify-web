@@ -1,7 +1,6 @@
 import React from "react";
-import { IntroCourseUnit } from "../../../../../graphql/coding/userBadges/fetchUserBadges";
-
-import { CodingBadge } from "../../../../../graphql/coding/userBadges/fetchUserBadges";
+import { IntroCourseUnit } from "../../../../graphql/studentPortal/achievements/fetchUserBadges";
+import { CodingBadge } from "../../../../graphql/studentPortal/admin/fetchUserProfileCard";
 
 type CodingBadgeUnitProps = {
   disabled: boolean;
@@ -42,14 +41,14 @@ function CodingBadgeUnit({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full p-4 text-white bg-slate-600 border-slate-300">
+    <div className="flex flex-col items-center justify-center h-full p-4 rounded-xl text-textPrimary bg-backgroundSecondary border-slate-300">
       <button
         className=" h-28"
         disabled={disabled}
         onClick={() => handleBadgeClick(badge)}
       >
         <img
-          className="transition-all transform border-4 rounded-full shadow-lg w-28 h-28 hover:scale-110"
+          className="transition-all transform bg-white border-4 rounded-full shadow-lg w-28 h-28 hover:scale-110"
           src={
             badge.user_coding_badges.length > 0
               ? badge.image

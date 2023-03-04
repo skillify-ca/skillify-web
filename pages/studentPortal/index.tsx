@@ -7,12 +7,13 @@ import PageHeader from "../../components/ui/PageHeader";
 import {
   FETCH_USER_INTRO_NODES,
   transform,
-} from "../../graphql/coding/fetchUserIntroNodes";
+} from "../../graphql/studentPortal/courses/fetchUserIntroNodes";
 import {
   INIT_USER_INTRO_NODES,
   objects,
-} from "../../graphql/coding/initUserIntroNodes";
-import { UPDATE_USER } from "../../graphql/updateUser";
+} from "../../graphql/studentPortal/courses/initUserIntroNodes";
+import { UPDATE_USER } from "../../graphql/studentPortal/users/updateUser";
+
 import { useAuth } from "../../lib/authContext";
 import { Unit } from "../api/studentPortal/units";
 
@@ -48,6 +49,7 @@ export default function StudentPortalPage() {
 
   useEffect(() => {
     if (data) {
+      console.log("units is set to:", data);
       setUnits(transform(data));
     }
   }, [data]);
