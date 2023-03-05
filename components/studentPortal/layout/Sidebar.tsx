@@ -84,6 +84,8 @@ export const Sidebar: React.FC = () => {
   useEffect(() => {
     if (router.pathname.startsWith("/studentPortal/coaches")) {
       dispatch(setActivePage("coaches"));
+    } else if (router.pathname.startsWith("/studentPortal/admin")) {
+      dispatch(setActivePage("admin"));
     } else if (router.pathname.startsWith("/studentPortal/profile")) {
       dispatch(setActivePage("profile"));
     } else if (router.pathname.startsWith("/studentPortal/goals")) {
@@ -219,26 +221,6 @@ export const Sidebar: React.FC = () => {
         )}
 
         <SkillifyCommandPalette />
-
-        <SidebarItem
-          name={"Admin"}
-          link={"/studentPortal/admin"}
-          page={"admin"}
-          icon={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-6 h-6 mr-4"
-            >
-              <path
-                fillRule="evenodd"
-                d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
-                clipRule="evenodd"
-              />
-            </svg>
-          }
-        />
         <div>
           <div className="flex items-center justify-between p-4 ">
             <p className="font-bold">Courses</p>
