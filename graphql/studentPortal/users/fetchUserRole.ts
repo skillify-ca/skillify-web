@@ -3,12 +3,13 @@ import { gql } from "@apollo/client";
 export const FETCH_USER_ROLE = gql`
 query FetchUserRole($_id: String = "") {
   users(where: {id: {_eq: $_id}}) {
+    created_at
     userRole {
       value
     }
-    created_at
   }
 }
+
 `;
 
 export type FetchUserRoleData = {
@@ -16,5 +17,5 @@ export type FetchUserRoleData = {
 };
 export type UserRoleData = {
   userRole: "student" | "coach"| "freemium";
-  createdAt: "string"
+  created_at: Date;
 };

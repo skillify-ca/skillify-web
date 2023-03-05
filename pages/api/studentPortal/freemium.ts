@@ -1,26 +1,25 @@
 import { addDays, differenceInCalendarDays, isWithinInterval, subDays } from 'date-fns';
-import { UserRoleData } from '../../../graphql/studentPortal/users/fetchUserRole';
 
 //used for freemium feature calculations
 //daysOld used as a variable to check users that are "x" days old
-export const trialDaysRemaining = (user: UserRoleData, trialLength, daysOld) => {
-  if (user.userRole === "freemium") {
+export const trialDaysRemaining = (createdAt:Date, trialLength, daysOld) => {
     const daysOldForUser = subDays(new Date(), daysOld);
-    const daysFromUserCreation = addDays(new Date(user.createdAt), trialLength);
-    if (isWithinInterval(new Date(user.createdAt), { start: daysOldForUser, end: new Date() })) {
+    const daysFromUserCreation = addDays(new Date(createdAt), trialLength);
+    if (isWithinInterval(new Date(createdAt), { start: daysOldForUser, end: new Date() })) {
       const daysRemaining = differenceInCalendarDays(daysFromUserCreation, new Date());
       return daysRemaining;
     }
-  }
-  return null;
+    return null;
 };
 
-export const elapsedDays = (user: UserRoleData) => {
-  if (user.userRole === "freemium") {
+export const elapsedDays = (createdAt:Date, trialLength:number) => {
     const currentDate = new Date();
-      const elapsedDays = differenceInCalendarDays(currentDate, new Date(user.createdAt));
-      return elapsedDays;
+      const elapsedDays = differenceInCalendarDays(currentDate, new Date(createdAt));
+      if (elapsedDays>trialLength){
+        return trialLength
+      } else {
+        return elapsedDays
+      }
     }
-};
 
 

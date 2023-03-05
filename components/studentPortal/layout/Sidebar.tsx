@@ -8,12 +8,18 @@ import {
   FETCH_USER_ROLE,
 } from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
-import { profileSelector, setUserRole } from "../../../redux/profileSlice";
+import { elapsedDays } from "../../../pages/api/studentPortal/freemium";
+import {
+  profileSelector,
+  setCreatedAt,
+  setUserRole,
+} from "../../../redux/profileSlice";
 import {
   activePageSelector,
   setActivePage,
   SidebarPage,
 } from "../../../redux/sidebarSlice";
+import ProgressComponent from "../../ui/ProgressComponent";
 import SkillifyCommandPalette from "./CommandPalette";
 
 interface SidebarItemProps {
@@ -64,10 +70,10 @@ const SidebarItem = ({
 
 export const Sidebar: React.FC = () => {
   const { goalApproaching } = useSelector(activePageSelector);
-  const { userRole } = useSelector(profileSelector);
+  const { userRole, createdAt } = useSelector(profileSelector);
   const dispatch = useDispatch();
-
   const { signOut, user } = useAuth();
+  const totalTrialDays = 30;
 
   const {} = useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
     variables: {
@@ -76,10 +82,10 @@ export const Sidebar: React.FC = () => {
     onCompleted: (data) => {
       if (data.users[0].userRole.value === "coach") {
         dispatch(setUserRole("coach"));
-      }
-      if (data.users[0].userRole.value === "student") {
+      } else if (data.users[0].userRole.value === "student") {
         dispatch(setUserRole("student"));
       } else if (data.users[0].userRole.value === "freemium") {
+        dispatch(setCreatedAt(data.users[0].created_at));
         dispatch(setUserRole("freemium"));
       }
     },
@@ -112,22 +118,46 @@ export const Sidebar: React.FC = () => {
     //Full width then restrict in page
     <div className="flex flex-col w-full bg-backgroundPrimary text-textPrimary">
       <div className="grid">
-        <div className="flex p-4">
-          {user && (
+        {user && userRole === "freemium" ? (
+          <div className="flex items-center p-4">
             <img
-              className="w-12 h-12 rounded-full"
+              className="rounded-full h-16 w-16 hidden md:block"
               src={user.photoURL}
               alt=""
             />
-          )}
-
-          {user && (
-            <div className="w-full">
-              <p className="w-full ml-4 font-bold">{user.displayName}</p>
-              <p className="ml-4 font-medium capitalize">{userRole}</p>
+            <div className="w-full ml-4">
+              <p className="font-bold text-lg">{user.displayName}</p>
+              <p className="font-medium capitalize text-gray-500">
+                {"Prospective Student"}{" "}
+              </p>
+              <ProgressComponent
+                currentValue={elapsedDays(createdAt, totalTrialDays)}
+                totalValue={totalTrialDays}
+              />
+              <p className="text-xs mt-1 text-gray-500">
+                {elapsedDays(createdAt, totalTrialDays)}/{totalTrialDays} days
+                remaining
+              </p>
             </div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="flex p-4">
+            {user && (
+              <img
+                className="w-12 h-12 rounded-full"
+                src={user.photoURL}
+                alt=""
+              />
+            )}
+            {user && (
+              <div className="w-full">
+                <p className="w-full ml-4 font-bold">{user.displayName}</p>
+                <p className="ml-4 font-medium capitalize">{userRole}</p>
+              </div>
+            )}
+          </div>
+        )}
+
         <SidebarItem
           name={"Dashboard"}
           link={"/studentPortal"}
