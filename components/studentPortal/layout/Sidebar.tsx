@@ -86,7 +86,7 @@ export const Sidebar: React.FC = () => {
       dispatch(setActivePage("coaches"));
     } else if (router.pathname.startsWith("/studentPortal/admin")) {
       dispatch(setActivePage("admin"));
-    } else if (router.pathname.startsWith("/studentPortal/profile")) {
+    } else if (router.pathname.startsWith("/profile")) {
       dispatch(setActivePage("profile"));
     } else if (router.pathname.startsWith("/studentPortal/goals")) {
       dispatch(setActivePage("goals"));
