@@ -12,10 +12,10 @@ query FetchUserRole($_id: String = "") {
 
 `;
 
-export type FetchUserRoleData = {
-  users: UserRoleData;
+export type FetchRoleData = {
+  users: UserData;
 };
-export type UserRoleData = {
+export type UserData = {
   userRole: "student" | "coach"| "freemium";
   created_at: Date;
 };

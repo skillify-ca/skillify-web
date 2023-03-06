@@ -27,7 +27,7 @@ export const Sidebar: React.FC = () => {
   const { userRole, createdAt } = useSelector(profileSelector);
   const dispatch = useDispatch();
   const { signOut, user } = useAuth();
-  const totalTrialDays = 30;
+  const TOTAL_TRIAL_DAYS = 30;
   const [isDisabled, setIsDisabled] = useState(false);
 
   const {} = useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
@@ -87,12 +87,12 @@ export const Sidebar: React.FC = () => {
                 {"Prospective Student"}{" "}
               </p>
               <ProgressComponent
-                currentValue={elapsedDays(createdAt, totalTrialDays)}
-                totalValue={totalTrialDays}
+                currentValue={elapsedDays(createdAt, TOTAL_TRIAL_DAYS)}
+                totalValue={TOTAL_TRIAL_DAYS}
               />
               <p className="text-xs mt-1 text-gray-500">
-                {trialDaysRemaining(createdAt, totalTrialDays)}/{totalTrialDays}{" "}
-                days remaining
+                {trialDaysRemaining(createdAt, TOTAL_TRIAL_DAYS)}/
+                {TOTAL_TRIAL_DAYS} days remaining
               </p>
             </div>
           </div>
