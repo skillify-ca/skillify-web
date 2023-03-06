@@ -3,17 +3,18 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FETCH_USER_ROLE } from "../../../graphql/studentPortal/users/fetchUserRole";
+import {
+  FetchRoleData,
+  FETCH_USER_ROLE,
+} from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
-import { elapsedDays } from "../../../pages/api/studentPortal/freemium/elapsedDays";
-import { trialDaysRemaining } from "../../../pages/api/studentPortal/freemium/trialDaysRemaining";
 import {
   profileSelector,
   setCreatedAt,
   setUserRole,
 } from "../../../redux/profileSlice";
 import { activePageSelector, setActivePage } from "../../../redux/sidebarSlice";
-import ProgressComponent from "../../ui/ProgressComponent";
+import FreemiumSidebarHeader from "../freemium/FreemiumSidebarHeader";
 import SkillifyCommandPalette from "./CommandPalette";
 import SidebarItem from "./SidebarItem";
 
@@ -22,10 +23,9 @@ export const Sidebar: React.FC = () => {
   const { userRole, createdAt } = useSelector(profileSelector);
   const dispatch = useDispatch();
   const { signOut, user } = useAuth();
-  const TOTAL_TRIAL_DAYS = 30;
   const [isDisabled, setIsDisabled] = useState(false);
 
-  const {} = useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
+  const {} = useQuery<FetchRoleData>(FETCH_USER_ROLE, {
     variables: {
       _id: user.uid,
     },
@@ -70,27 +70,7 @@ export const Sidebar: React.FC = () => {
     <div className="flex flex-col w-full bg-backgroundPrimary text-textPrimary">
       <div className="grid">
         {user && userRole === "freemium" ? (
-          <div className="flex items-center p-4">
-            <img
-              className="rounded-full h-16 w-16 hidden md:block"
-              src={user.photoURL}
-              alt=""
-            />
-            <div className="w-full ml-4">
-              <p className="font-bold text-lg">{user.displayName}</p>
-              <p className="font-medium capitalize text-gray-500">
-                {"Prospective Student"}{" "}
-              </p>
-              <ProgressComponent
-                currentValue={elapsedDays(createdAt, TOTAL_TRIAL_DAYS)}
-                totalValue={TOTAL_TRIAL_DAYS}
-              />
-              <p className="text-xs mt-1 text-gray-500">
-                {trialDaysRemaining(createdAt, TOTAL_TRIAL_DAYS)}/
-                {TOTAL_TRIAL_DAYS} days remaining
-              </p>
-            </div>
-          </div>
+          <FreemiumSidebarHeader createdAt={createdAt} />
         ) : (
           <div className="flex p-4">
             {user && (
