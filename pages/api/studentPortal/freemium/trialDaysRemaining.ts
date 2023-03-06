@@ -11,15 +11,3 @@ export const trialDaysRemaining = (createdAt:Date, trialLength:number) => {
         return daysRemaining
       }
 };
-
-export const elapsedDays = (createdAt:Date, trialLength:number) => {
-    const currentDate = new Date();
-      const elapsedDays = differenceInCalendarDays(currentDate, new Date(createdAt));
-      if (elapsedDays>trialLength){
-        return trialLength
-      } else {
-        return elapsedDays
-      }
-    }
-
-
