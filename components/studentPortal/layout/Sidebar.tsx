@@ -3,15 +3,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  FetchUserRoleData,
-  FETCH_USER_ROLE,
-} from "../../../graphql/studentPortal/users/fetchUserRole";
+import { FETCH_USER_ROLE } from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
-import {
-  elapsedDays,
-  trialDaysRemaining,
-} from "../../../pages/api/studentPortal/freemium";
+import { elapsedDays } from "../../../pages/api/studentPortal/freemium/elapsedDays";
+import { trialDaysRemaining } from "../../../pages/api/studentPortal/freemium/trialDaysRemaining";
 import {
   profileSelector,
   setCreatedAt,
