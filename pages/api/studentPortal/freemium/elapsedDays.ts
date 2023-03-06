@@ -8,6 +8,8 @@ export const elapsedDays = (createdAt:Date, trialLength:number) => {
       const elapsedDays = differenceInCalendarDays(currentDate, new Date(createdAt));
       if (elapsedDays>trialLength){
         return trialLength
+      } else if (elapsedDays <0) {
+        return 0
       } else {
         return elapsedDays
       }
