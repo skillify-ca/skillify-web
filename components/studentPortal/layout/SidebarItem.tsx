@@ -9,7 +9,7 @@ interface SidebarItemProps {
   page: SidebarPage;
   icon: ReactElement;
   notifications?: boolean;
-  userRole: "freemium" | "student" | "coach";
+  isDisabled: boolean;
 }
 const SidebarItem = ({
   name,
@@ -17,10 +17,9 @@ const SidebarItem = ({
   page,
   icon,
   notifications,
-  userRole,
+  isDisabled,
 }: SidebarItemProps) => {
   const { activePage } = useSelector(activePageSelector);
-  const isDisabled = userRole === "freemium";
   const href = isDisabled ? "" : link;
   const onClick = isDisabled ? (e) => e.preventDefault() : undefined;
 
