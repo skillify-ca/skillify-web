@@ -8,7 +8,10 @@ import {
   FETCH_USER_ROLE,
 } from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
-import { elapsedDays } from "../../../pages/api/studentPortal/freemium";
+import {
+  elapsedDays,
+  trialDaysRemaining,
+} from "../../../pages/api/studentPortal/freemium";
 import {
   profileSelector,
   setCreatedAt,
@@ -135,8 +138,8 @@ export const Sidebar: React.FC = () => {
                 totalValue={totalTrialDays}
               />
               <p className="text-xs mt-1 text-gray-500">
-                {elapsedDays(createdAt, totalTrialDays)}/{totalTrialDays} days
-                remaining
+                {trialDaysRemaining(createdAt, totalTrialDays)}/{totalTrialDays}{" "}
+                days remaining
               </p>
             </div>
           </div>

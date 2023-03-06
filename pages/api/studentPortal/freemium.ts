@@ -1,15 +1,15 @@
-import { addDays, differenceInCalendarDays, isWithinInterval, subDays } from 'date-fns';
+import { addDays, differenceInCalendarDays } from 'date-fns';
 
-//used for freemium feature calculations
-//daysOld used as a variable to check users that are "x" days old
-export const trialDaysRemaining = (createdAt:Date, trialLength, daysOld) => {
-    const daysOldForUser = subDays(new Date(), daysOld);
+//used for freemium feature calculations.
+//createdAt comes from fetchUserRole query and trialLength is manually inputted.
+export const trialDaysRemaining = (createdAt:Date, trialLength:number) => {
     const daysFromUserCreation = addDays(new Date(createdAt), trialLength);
-    if (isWithinInterval(new Date(createdAt), { start: daysOldForUser, end: new Date() })) {
       const daysRemaining = differenceInCalendarDays(daysFromUserCreation, new Date());
-      return daysRemaining;
-    }
-    return null;
+      if (daysRemaining<=0){
+        return 0
+      } else {
+        return daysRemaining
+      }
 };
 
 export const elapsedDays = (createdAt:Date, trialLength:number) => {
