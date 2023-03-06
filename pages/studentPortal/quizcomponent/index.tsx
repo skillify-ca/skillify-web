@@ -25,8 +25,8 @@ const SkillSelection: React.FC<SkillSelectionProps> = ({ selections }) => {
           key={index}
           className={`flex   items-start justify-start w-full px-4 py-2 my-2  cursor-pointer ${
             selected.includes(selection)
-              ? "bg-violet-300 text-black-500 border-2 border-black-500 rounded-[14px]"
-              : "bg-white text-black-600 border-2 border-black-500 rounded-[14px]"
+              ? "bg-violet-300 text-black-500 border-2 border-black-500 rounded-xl"
+              : "bg-white text-black-600 border-2 border-black-500 rounded-xl"
           }`}
           onClick={() => handleSelection(selection)}
         >
