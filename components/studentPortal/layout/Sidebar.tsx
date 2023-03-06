@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { ReactElement, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   FetchUserRoleData,
@@ -17,59 +17,10 @@ import {
   setCreatedAt,
   setUserRole,
 } from "../../../redux/profileSlice";
-import {
-  activePageSelector,
-  setActivePage,
-  SidebarPage,
-} from "../../../redux/sidebarSlice";
+import { activePageSelector, setActivePage } from "../../../redux/sidebarSlice";
 import ProgressComponent from "../../ui/ProgressComponent";
 import SkillifyCommandPalette from "./CommandPalette";
-
-interface SidebarItemProps {
-  name: string;
-  link: string;
-  page: SidebarPage;
-  icon: ReactElement;
-  notifications?: boolean;
-  userRole: "freemium" | "student" | "coach";
-}
-const SidebarItem = ({
-  name,
-  link,
-  page,
-  icon,
-  notifications,
-  userRole,
-}: SidebarItemProps) => {
-  const { activePage } = useSelector(activePageSelector);
-  const isDisabled = userRole === "freemium";
-  const href = isDisabled ? "" : link;
-  const onClick = isDisabled ? (e) => e.preventDefault() : undefined;
-
-  return (
-    <>
-      <Link onClick={onClick} href={href}>
-        <div
-          className={`flex flex-wrap items-center p-4 cursor-pointer hover:border-l-4 ${
-            activePage === page ? "border-charmander text-charmander" : ""
-          } hover:border-charmander hover:text-charmander ${
-            isDisabled ? "border-gray-500 text-gray-500" : ""
-          }`}
-        >
-          <div>
-            {notifications ? (
-              <div className="relative left-6 top-1 ">
-                <div className="flex w-2 h-2 bg-red-500 rounded-full"></div>
-              </div>
-            ) : null}
-            {icon}
-          </div>
-          {name}
-        </div>
-      </Link>
-    </>
-  );
-};
+import SidebarItem from "./SidebarItem";
 
 export const Sidebar: React.FC = () => {
   const { goalApproaching } = useSelector(activePageSelector);
