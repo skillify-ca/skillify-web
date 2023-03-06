@@ -44,6 +44,14 @@ export const reactUnits: Unit[] = [
         link: "web/React/tailwindcss-colourstyling",
         type: "lesson",
       },
+      {
+        title: "Assignment 1",
+        description: "Tailwind Assignment",
+        completed: false,
+        locked: false,
+        link: "web/React/assignments/tailwindAssignment",
+        type: "lesson",
+      },
     ],
   },
   {
@@ -66,7 +74,7 @@ export const reactUnits: Unit[] = [
         type: "lesson",
       },
       {
-        title: "Assignment 1",
+        title: "Assignment 2",
         description: "Components and Props",
         completed: false,
         locked: false,
