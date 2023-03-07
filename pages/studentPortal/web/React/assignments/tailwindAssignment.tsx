@@ -14,6 +14,7 @@ import {
   assignmentsSelector,
   setUserAssignments,
 } from "../../../../../redux/assignmentsSlice";
+import React from "react";
 
 export enum Stage {
   INCOMPLETE,
@@ -27,7 +28,7 @@ export type AssignmentTemplateProps = {
   assignmentId: string;
 };
 
-const React2 = ({
+const TailwindAssignment = ({
   incompleteStage,
   submittedStage,
   assignmentId,
@@ -96,38 +97,26 @@ const React2 = ({
     </>
   );
 };
-
 export async function getServerSideProps() {
-  // REQUIRED: create assignment in coding_assignments table to generate ID and paste here
   const assignmentId = "2cf9156a-4f6f-452d-b09a-2c54f19a7b40";
 
   const incompleteStage: AssignmentComponentData[] = [
     {
       component: "title",
-      text: "Assignment: Components and Prompts",
+      text: "Assignment: Tailwind CSS",
     },
     {
       component: "prompt",
-      header:
-        "Use React components to build a table off the provided array of city population data",
+      header: "Build a page using Tailwind CSS",
       bullets: [
-        "You should create reusable components that utilize props for the 'columns'",
-        "You can use Tailwind CSS classes to style the table",
+        "Use this Tailwind Play CDN page https://play.tailwindcss.com/ and follow step 1 to add Tailwind CSS to your own index.html file.",
+        "Create a page with atleast 5 different background colors",
+        "3 different text sizes",
+        "Add an on-hover effect",
+        "Create a table with 4 columns and 5 rows",
+        "Stretch challenge: Build a page like this e-commerce template (https://www.tailwindawesome.com/resources/e-commerce-template)",
       ],
     },
-
-    {
-      component: "output",
-      screenshotOrVideoId:
-        "/images/assignments/componentsAssignmentTableOnly.png",
-    },
-
-    {
-      component: "template",
-      templateLink:
-        "https://codesandbox.io/s/skillify-components-assignment-template-2k19r7",
-    },
-
     {
       component: "submission",
       codeSandboxTitle:
@@ -136,14 +125,23 @@ export async function getServerSideProps() {
       assignmentId: assignmentId,
       link: "",
     },
-
     {
       component: "hint-list",
       hintRow: [
         {
           description:
-            "You can use the map function to avoid calling the same 'row' component several times",
-          link: "https://beta.reactjs.org/learn/rendering-lists",
+            "You can use the 'bg-' and 'text-' classes in Tailwind CSS to set background colors and text sizes",
+          link: "https://tailwindcss.com/docs/background-color",
+        },
+        {
+          description:
+            "You can use the 'hover:' prefix to add on-hover effects to elements",
+          link: "https://tailwindcss.com/docs/hover-focus-and-other-states",
+        },
+        {
+          description:
+            "You can use the 'table' and 'table-auto' classes in Tailwind CSS to create tables",
+          link: "https://tailwindcss.com/docs/table-layout",
         },
       ],
     },
@@ -163,4 +161,5 @@ export async function getServerSideProps() {
     },
   };
 }
-export default React2;
+
+export default TailwindAssignment;
