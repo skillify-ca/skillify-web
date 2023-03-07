@@ -110,12 +110,12 @@ export async function getServerSideProps() {
       component: "prompt",
       header: "Style a web page using Tailwind CSS",
       bullets: [
-        "Use this Tailwind Play CDN page https://play.tailwindcss.com/ and follow step 1 to add Tailwind CSS to your own index.html file.",
+        "Use the link in the first hint to setup TailwindCSS in your own index.html file for this assignment.",
         "Your page must have atleast 5 different background colors",
         "Add a Navbar at the top-right of the page",
         "Add a title, a heading and a paragraph so your page has atleast 3 different text sizes",
         "Add an on-hover effect to the title, so it bounces when you hover over it",
-        "Add a table with 4 columns and 5 rows",
+        "Add a table with 5 columns and 4 rows, ",
         "Stretch challenge: Find and build a webpage using TailwindCSS. Start from the top and work your way downwards. Speak to a coach if you get stuck!",
       ],
     },
@@ -130,6 +130,10 @@ export async function getServerSideProps() {
     {
       component: "hint-list",
       hintRow: [
+        {
+          description: "Setup TailwindCSS using Play CDN, follow step one",
+          link: " https://tailwindcss.com/docs/installation/play-cdn ",
+        },
         {
           description:
             "You can use the 'bg-' and 'text-' classes in Tailwind CSS to set background colors and text sizes",
