@@ -123,7 +123,7 @@ export async function getServerSideProps() {
         "Add a Navbar at the top-right of the page",
         "Add a title, a heading and a paragraph so your page has atleast 3 different text sizes",
         "Add an on-hover effect to the title, so it bounces when you hover over it",
-        "Add a table with 5 columns and 4 rows, ",
+        "Add a table with 5 columns and 4 rows, below the paragraph",
         "Stretch challenge: Find and build a webpage using TailwindCSS. Start from the top and work your way downwards. Speak to a coach if you get stuck!",
       ],
     },
