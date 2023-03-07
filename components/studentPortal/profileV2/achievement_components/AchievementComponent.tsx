@@ -5,15 +5,15 @@ import {
   FetchBadgeResponse,
   FETCH_CODING_BADGES,
   IntroCourseUnit,
-} from "../../../../graphql/coding/userBadges/fetchUserBadges";
+} from "../../../../graphql/studentPortal/achievements/fetchUserBadges";
 import {
   DELETE_USER_CODING_BADGES,
   INSERT_USER_CODING_BADGES,
-} from "../../../../graphql/coding/userBadges/updateUserCodingBadges";
+} from "../../../../graphql/studentPortal/achievements/updateUserCodingBadges";
 import {
   FetchUserRoleData,
   FETCH_USER_ROLE,
-} from "../../../../graphql/fetchUserRole";
+} from "../../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../../lib/authContext";
 import { Button } from "../../../ui/Button";
 import findBadgeDiff from "./findBadgeDiff";
@@ -100,8 +100,8 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
   };
 
   return (
-    <div className="p-4 bg-slate-900 ">
-      <div className="flex justify-end w-full py-4">
+    <div className="p-4 rounded-xl bg-backgroundSecondary">
+      <div className="flex justify-end w-full">
         {isEditButtonVisible && (
           <div>
             <button
@@ -123,7 +123,10 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
           {unitBadges.map((unit, index) => {
             if (unit.coding_badges.length > 0) {
               return (
-                <div className="mb-4" key={index}>
+                <div
+                  className="mb-4 shadow bg-backgroundPrimary rounded-xl"
+                  key={index}
+                >
                   <UnitBadgeSection
                     unit={unit}
                     editMode={editMode}

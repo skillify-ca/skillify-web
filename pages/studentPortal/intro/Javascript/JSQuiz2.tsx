@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Quiz from "../../../../components/studentPortal/quiz/Quiz";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/ui/ProgressBar";
-import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
-import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
-import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/studentPortal/courses/fetchUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
 import {
   continueRequested,
@@ -21,8 +21,7 @@ const JSQuiz2 = () => {
 
   useEffect(() => {
     const q1 = {
-      text:
-        "How many times will this loop run? \nfor (int i = 1; i <= 10; i++)",
+      text: "How many times will this loop run? \nfor (int i = 1; i <= 10; i++)",
       A: "10",
       B: "5",
       C: "9",
@@ -30,8 +29,7 @@ const JSQuiz2 = () => {
       answer: "A",
     };
     const q2 = {
-      text:
-        'What value does phone[3] have in the following Array. const phones = [ "BlackBerry", "Samsung", "iPhone", "Pixel"];',
+      text: 'What value does phone[3] have in the following Array. const phones = [ "BlackBerry", "Samsung", "iPhone", "Pixel"];',
       A: "Samsung",
       B: "iPhone",
       C: "Pixel",

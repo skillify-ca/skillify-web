@@ -1,5 +1,5 @@
 import { Slice, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserProfileData } from "../graphql/fetchUserProfile";
+import { UserProfileData } from "../graphql/studentPortal/profile/fetchUserProfile";
 import { RootState } from "./rootReducer";
 
 export type ProfileState = {

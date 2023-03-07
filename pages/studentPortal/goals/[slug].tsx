@@ -14,10 +14,10 @@ import {
   FETCH_USER_GOALS,
   FETCH_USER_GOAL_DETAIL,
   UserGoalsData,
-} from "../../../graphql/fetchUserGoals";
-import { FETCH_USER_GOALS_COUNT } from "../../../graphql/fetchUserGoalsCount";
-import { REMOVE_USER_GOAL } from "../../../graphql/removeUserGoal";
-import { UPSERT_USER_GOALS } from "../../../graphql/upsertUserGoals";
+} from "../../../graphql/studentPortal/goals/fetchUserGoals";
+import { FETCH_USER_GOALS_COUNT } from "../../../graphql/studentPortal/goals/fetchUserGoalsCount";
+import { REMOVE_USER_GOAL } from "../../../graphql/studentPortal/goals/removeUserGoal";
+import { UPSERT_USER_GOALS } from "../../../graphql/studentPortal/goals/upsertUserGoals";
 import { useAuth } from "../../../lib/authContext";
 
 const EditGoalsPage = () => {

@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import { Button } from "../../../components/ui/Button";
 import { Input } from "../../../components/ui/Input";
-import { CREATE_CODING_BADGE } from "../../../graphql/coding/admin/badges/createBadge";
+import { CREATE_CODING_BADGE } from "../../../graphql/studentPortal/admin/createBadge";
 
 export default function AdminBadges() {
   const [title, setTitle] = useState("");
