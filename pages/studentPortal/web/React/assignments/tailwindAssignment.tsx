@@ -105,16 +105,18 @@ export async function getServerSideProps() {
       component: "title",
       text: "Assignment: Tailwind CSS",
     },
+
     {
       component: "prompt",
-      header: "Build a page using Tailwind CSS",
+      header: "Style a web page using Tailwind CSS",
       bullets: [
         "Use this Tailwind Play CDN page https://play.tailwindcss.com/ and follow step 1 to add Tailwind CSS to your own index.html file.",
-        "Create a page with atleast 5 different background colors",
-        "3 different text sizes",
-        "Add an on-hover effect",
-        "Create a table with 4 columns and 5 rows",
-        "Stretch challenge: Build a page like this e-commerce template (https://www.tailwindawesome.com/resources/e-commerce-template)",
+        "Your page must have atleast 5 different background colors",
+        "Add a Navbar at the top-right of the page",
+        "Add a title, a heading and a paragraph so your page has atleast 3 different text sizes",
+        "Add an on-hover effect to the title, so it bounces when you hover over it",
+        "Add a table with 4 columns and 5 rows",
+        "Stretch challenge: Find and build a webpage using TailwindCSS. Start from the top and work your way downwards. Speak to a coach if you get stuck!",
       ],
     },
     {
@@ -142,6 +144,11 @@ export async function getServerSideProps() {
           description:
             "You can use the 'table' and 'table-auto' classes in Tailwind CSS to create tables",
           link: "https://tailwindcss.com/docs/table-layout",
+        },
+        {
+          description:
+            "Learn more about Tailwind CSS by visiting the official documentation",
+          link: "https://tailwindcss.com/docs",
         },
       ],
     },
