@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from "react";
 
 const Card = ({ title, image, description, link, color }) => {
   const getBorderColour = () => {
@@ -16,7 +17,7 @@ const Card = ({ title, image, description, link, color }) => {
   return (
     <Link href={link}>
       <div
-        className={`flex flex-col items-center justify-center h-full p-12 transition-all transform border-t-8 dark:bg-murkrow dark:text-white bg-white shadow-lg cursor-pointer rounded-xl hover:scale-110 ${getBorderColour()}`}
+        className={`flex flex-col items-center justify-center h-full p-12 transition-all transform border-t-8 text-textPrimary bg-backgroundPrimary shadow-lg cursor-pointer rounded-xl hover:scale-110 ${getBorderColour()}`}
       >
         <div className="flex flex-col items-center">
           <h4 className="mb-4 font-bold">{title}</h4>
