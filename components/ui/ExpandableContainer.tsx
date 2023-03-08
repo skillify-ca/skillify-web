@@ -1,10 +1,9 @@
+import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/solid";
 import React, { useState } from "react";
-import { useSpring, animated } from "react-spring";
-import { PlusCircleIcon } from "@heroicons/react/solid";
-import { MinusCircleIcon } from "@heroicons/react/solid";
+import { animated, useSpring } from "react-spring";
 import useMeasure from "react-use-measure";
 
-interface ExpandableContainerProps {
+export interface ExpandableContainerProps {
   open: boolean;
   title: string;
 }

@@ -39,7 +39,7 @@ export default function Blog() {
                 "A Skillify Student's Account of Switching Careers from Actuarial Science to Software Engineering"
               }
               link={"/blog/making-the-leap-into-development"}
-              color={5}
+              color={0}
             />
           </div>
           <div>
@@ -51,7 +51,7 @@ export default function Blog() {
                 "A Creative & Cheap Approach to Testing Tailwind/CSS Classes"
               }
               link={"/blog/jest-function-testing"}
-              color={5}
+              color={3}
             />
           </div>
           <div>
@@ -122,7 +122,7 @@ export default function Blog() {
             <Card
               title={"Are Toronto coding bootcamps worth it?"}
               image={
-                "https://www.trilogyed.com/blog/wp-content/uploads/2018/05/columbia_coding_boot_camp2_brandon_colbert.jpg"
+                "https://images.unsplash.com/photo-1555421689-d68471e189f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHdvcnRoJTIwaXR8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60"
               }
               description={
                 "This resource lists the top coding bootcamps in Toronto"
