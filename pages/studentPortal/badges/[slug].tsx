@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
-import { FETCH_BADGE } from "../../../graphql/fetchBadge";
+import { FETCH_BADGE } from "../../../graphql/studentPortal/achievements/fetchBadge";
 import { useAuth } from "../../../lib/authContext";
 
 // const Box = dynamic(() => import("../../components/stories/Box"));

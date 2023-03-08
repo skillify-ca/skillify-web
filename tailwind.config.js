@@ -27,6 +27,7 @@ module.exports = {
         brandPrimary: "var(--color-brand-primary)",
         backgroundPrimary: "var(--color-background-primary)",
         backgroundSecondary: "var(--color-background-secondary)",
+        backgroundHover: "var(--color-background-hover)",
         inputTextPrimary: "var(--color-input-text-primary)",
         charmander: "#F18701",
         rattata: "#7678ED",
@@ -150,6 +151,7 @@ module.exports = {
      * PurgeCSS:
      * bg-backgroundSecondary
      * bg-backgroundPrimary
+     * bg-brandPrimary
      * bg-textPrimary
      * bg-textSecondary
      * text-textPrimary
@@ -230,6 +232,7 @@ module.exports = {
       "border-yellow-900",
       "hover:bg-yellow-400",
       "hover:text-textSecondary",
+      "bg-brandPrimary",
       "text-yellow-100",
       "text-yellow-200",
       "text-yellow-400",

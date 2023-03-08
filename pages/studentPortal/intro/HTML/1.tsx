@@ -5,9 +5,9 @@ import LessonComponent, {
 } from "../../../../components/studentPortal/lessons/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/ui/ProgressBar";
-import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
-import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
-import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/studentPortal/courses/fetchUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
 
 const HTML1 = ({ lessonComponents }) => {
@@ -87,8 +87,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text:
-        "HTML is a basic language that all web pages are built on top of. HTML stands for Hyper Text Markup Language. Just like any other language, HTML is made up of a limited number of words that mean different things. You will gain experience with all the possible HTML elements over time.",
+      text: "HTML is a basic language that all web pages are built on top of. HTML stands for Hyper Text Markup Language. Just like any other language, HTML is made up of a limited number of words that mean different things. You will gain experience with all the possible HTML elements over time.",
     },
     {
       component: "resource-list",

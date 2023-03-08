@@ -1,5 +1,5 @@
 import React from "react";
-import { Coach } from "../../../graphql/coding/coaches/fetchCoaches";
+import { Coach } from "../../../graphql/studentPortal/coaches/fetchCoaches";
 import { Button } from "../../ui/Button";
 
 type CoachCardProps = {
@@ -7,11 +7,11 @@ type CoachCardProps = {
 };
 export default function CoachCard({ coach }: CoachCardProps) {
   return (
-    <div className="flex flex-col justify-between bg-white shadow-lg dark:bg-gray-900">
+    <div className="flex flex-col justify-between p-8 shadow-lg bg-backgroundSecondary">
       <div className="flex flex-col items-center justify-center mb-4">
         <img
           src={coach.user.profile_image}
-          className="object-cover w-40 h-40 rounded-full"
+          className="object-cover w-40 h-40 border-8 rounded-full border-brandPrimary"
         />
         <p className="text-lg font-bold text-center">{coach.user.name}</p>
       </div>

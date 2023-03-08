@@ -1,16 +1,19 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { transform } from "lodash";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import UnitView from "../../../components/studentPortal/lessons/UnitView";
 import ErrorMessage from "../../../components/ui/ErrorMessage";
 import PageHeader from "../../../components/ui/PageHeader";
-import { FETCH_USER_INTRO_NODES } from "../../../graphql/coding/fetchUserIntroNodes";
+import {
+  FETCH_USER_INTRO_NODES,
+  transform,
+} from "../../../graphql/studentPortal/courses/fetchUserIntroNodes";
 import {
   INIT_USER_INTRO_NODES,
   objects,
-} from "../../../graphql/coding/initUserIntroNodes";
-import { UPDATE_USER } from "../../../graphql/updateUser";
+} from "../../../graphql/studentPortal/courses/initUserIntroNodes";
+import { UPDATE_USER } from "../../../graphql/studentPortal/users/updateUser";
+
 import { useAuth } from "../../../lib/authContext";
 import { Unit } from "../../api/studentPortal/units";
 

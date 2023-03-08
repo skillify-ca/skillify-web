@@ -3,8 +3,8 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import UnitView from "../../../components/studentPortal/lessons/UnitView";
 import PageHeader from "../../../components/ui/PageHeader";
-import { FETCH_USER_INTRO_NODES } from "../../../graphql/coding/fetchUserIntroNodes";
-import { UPDATE_USER } from "../../../graphql/updateUser";
+import { FETCH_USER_INTRO_NODES } from "../../../graphql/studentPortal/courses/fetchUserIntroNodes";
+import { UPDATE_USER } from "../../../graphql/studentPortal/users/updateUser";
 import { useAuth } from "../../../lib/authContext";
 import { reactUnits, Unit } from "../../api/studentPortal/units";
 

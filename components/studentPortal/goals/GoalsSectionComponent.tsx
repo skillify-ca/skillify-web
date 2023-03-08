@@ -2,7 +2,7 @@ import { PencilAltIcon } from "@heroicons/react/outline";
 import { differenceInCalendarDays, format } from "date-fns";
 import Link from "next/link";
 import React from "react";
-import { UserGoalsData } from "../../../graphql/fetchUserGoals";
+import { UserGoalsData } from "../../../graphql/studentPortal/goals/fetchUserGoals";
 export type GoalsSectionProps = {
   sectionName?: string;
   userGoals?: UserGoalsData[];
@@ -31,7 +31,7 @@ export default function GoalsSection({
   inProfile,
 }: GoalsSectionProps) {
   return userGoals.length > 0 ? (
-    <div className="dark:text-white">
+    <div className="p-4 text-textPrimary">
       {userGoals.length > 0 && (
         <div className="grid grid-cols-5 text-sm font-semibold text-center border-b-2 md:grid-cols-12 md:text-lg">
           <p className="font-semibold">{sectionName}</p>
@@ -46,7 +46,7 @@ export default function GoalsSection({
         return (
           <div
             key={index}
-            className={`grid grid-cols-5 my-2 text-sm text-center md:grid-cols-12 dark:text-white md:text-lg place-items-center ${returnGoalStyle(
+            className={`text-textPrimary grid grid-cols-5 my-2 text-sm text-center md:grid-cols-12 md:text-lg place-items-center ${returnGoalStyle(
               goal
             )}`}
           >
@@ -72,7 +72,7 @@ export default function GoalsSection({
       })}
     </div>
   ) : userGoals.length <= 0 && inProfile ? (
-    <div className="col-span-3 p-8 mb-8 text-center shadow-md bg-slate-300 dark:bg-slate-900">
+    <div className="col-span-3 p-8 text-center rounded-xl bg-backgroundSecondary">
       Click on the "Goals" tab on the sidebar to get ahead by creating and
       tracking your goals!
     </div>

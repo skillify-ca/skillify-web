@@ -1,8 +1,9 @@
 import { useMutation } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { animated, useSpring } from "react-spring";
-import { FETCH_USER_SKILLS_RATINGS } from "../../../graphql/fetchUserSkillsRatings";
-import { UPSERT_USER_SKILL_RATINGS } from "../../../graphql/upsertUserSkillRatings";
+import { FETCH_USER_SKILLS_RATINGS } from "../../../graphql/studentPortal/skillRatings/fetchUserSkillsRatings";
+import { UPSERT_USER_SKILL_RATINGS } from "../../../graphql/studentPortal/skillRatings/upsertUserSkillRatings";
+
 import { useAuth } from "../../../lib/authContext";
 import { transformSkillRatingForDB } from "../../../pages/api/skillRatingsFunctions";
 import { SkillRatingsRow } from "../../../redux/skillRatingsSlice";
@@ -87,9 +88,7 @@ export default function SkillRatingsComponent({
         ))}
       </div>
       <div>
-        <div
-          className={`${activeTab ? "flex flex-col sm:p-4 sm:m-4" : "hidden"} `}
-        >
+        <div className={`"flex flex-col p-4 sm:m-4"} `}>
           <animated.div style={springProps}>
             {skillRatings &&
               skillRatings
