@@ -8,7 +8,9 @@ export type SidebarPage =
   | "workshops"
   | "profile"
   | "goals"
-  | "admin";
+  | "admin"
+  | "coding_basics"
+  | "web";
 
 export interface SidebarState {
   activePage: SidebarPage;
