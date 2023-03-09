@@ -14,7 +14,7 @@ const ResultsPage: React.FC = () => {
           The Skillify Blueprint
         </div>
       </div>
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-[1fr_3fr]">
         <div className="grid grid-cols-1">
           <NumberedCircles />
         </div>
