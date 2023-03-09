@@ -18,7 +18,7 @@ const ResultsPage: React.FC = () => {
         <div className="grid grid-cols-1">
           <NumberedCircles />
         </div>
-        <div className="grid grid-cols-1 ">
+        <div className="grid grid-cols-1 mr-12 ">
           <div className="text-black-600 font-bold ">
             Learn the fundamentals of coding
           </div>
