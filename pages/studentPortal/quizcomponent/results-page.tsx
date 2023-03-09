@@ -5,7 +5,7 @@ import NumberedCircles from "./results/numberedcircles";
 
 const ResultsPage: React.FC = () => {
   return (
-    <div className="flex flex-col w-full max-w-4xl mx-auto py-8 ">
+    <div className="flex flex-col w-full max-w-4xl mx-auto py-8 md:mr-12">
       <div className="w-full mb-4 text-center">
         <div className="w-full h-2 bg-black-600 rounded-lg mb-2">
           <ProgressBar progress={100} />
@@ -18,7 +18,7 @@ const ResultsPage: React.FC = () => {
         <div className="grid grid-cols-1 ml-8">
           <NumberedCircles />
         </div>
-        <div className="grid grid-cols-1 mx-4 mr-16  space-y-8  ">
+        <div className="grid grid-cols-1 mx-4 mr-16  space-y-8 md:space-y-12  md:mt-2">
           <div className="text-black-600 font-bold ">
             Learn the fundamentals of coding
           </div>
