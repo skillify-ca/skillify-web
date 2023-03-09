@@ -1,5 +1,5 @@
-import React from "react";
 import Link from "next/link";
+import React from "react";
 import CountdownTimer from "./CountdownTimer";
 
 type LandingNavbarProps = {
@@ -8,11 +8,31 @@ type LandingNavbarProps = {
 export default function LandingNavbar({ showTimer }: LandingNavbarProps) {
   return (
     <div className="flex flex-col w-full">
-      <div className="flex items-center justify-between w-full px-4 py-4 bg-white border-b-2 text-murkrow">
+      <div className="flex items-center justify-between w-full px-4 bg-white border-b-2 text-murkrow">
         <Link href={"/"}>
-          <img src="/images/logo.svg" className="cursor-pointer w-28 sm:w-40" />
+          <img
+            src="/images/logo.svg"
+            className="p-4 cursor-pointer w-28 sm:w-40"
+          />
         </Link>
-        <div className="flex items-center gap-4">
+        <div className="flex gap-4">
+          <Link href={"/blog"}>
+            <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
+              <p>Blog</p>
+            </div>
+          </Link>
+          <Link href={"/guide"}>
+            <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
+              <p>Guide</p>
+            </div>
+          </Link>
+          <Link href={"/quiz"}>
+            <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
+              <p>Quiz</p>
+            </div>
+          </Link>
+        </div>
+        <div className="flex items-center gap-4 p-4">
           <div className="">
             <a
               href={"https://www.linkedin.com/in/vithushan/"}
