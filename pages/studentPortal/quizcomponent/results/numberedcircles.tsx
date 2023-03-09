@@ -1,6 +1,6 @@
 const NumberedCircles = () => {
   return (
-    <div className="grid px-8 grid-cols-1 space-y-8 justify-center items-center">
+    <div className="grid px-4 grid-cols-1 space-y-8 justify-center items-center">
       <div className="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold mb-2">
         1
       </div>
