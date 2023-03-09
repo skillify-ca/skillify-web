@@ -14,10 +14,6 @@ const EducationBackground = () => {
         });
     };
 
-    const handleSubmit = (e) => {
-        // e.preventDefault();
-        console.log(eduBg);
-    };
 
     return (
         <div className="flex flex-col items-center text-center space-y-2 px-5">

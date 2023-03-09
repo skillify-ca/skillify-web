@@ -14,11 +14,6 @@ const Intake = () => {
         });
     };
 
-    const handleSubmit = (e) => {
-        // e.preventDefault();
-        console.log(onBoarding);
-    };
-
     return (
         <div className="flex flex-col items-center text-center space-y-6 px-4">
             <h1 className="text-3xl font-semibold">What Coding Language Should I Learn First?</h1>
