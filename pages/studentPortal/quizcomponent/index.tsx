@@ -1,10 +1,12 @@
 import React from "react";
 import ProgressBar from "./progressbar";
+import QuizNavbar from "./quiznavbar";
 import SkillSelection from "./skillselection";
 
 const QuizComponent = () => {
   return (
-    <div className="flex flex-col items-center justify-center place-content-center w-full px-4 py-8">
+    <div className="flex flex-col place-content-center w-full ">
+      <QuizNavbar />
       <ProgressBar progress={50} />
 
       <div className="p-4 flex flex-col items-center space-y-2 ">
