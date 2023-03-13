@@ -25,6 +25,8 @@ export const FreemiumUnitNodeView: React.FC<FreemiumUnitNodeViewProps> = ({
   const imageSrc = (completed, locked, type, freemiumMessage) => {
     if (completed) {
       return "/images/studentPortal/checkmark.svg";
+    } else if (description === "") {
+      return "/images/studentPortal/lesson_inactive.svg";
     } else if (freemiumMessage) {
       return "../../images/logo-2.png";
     } else if (locked && type === "lesson") {
