@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "../../ui/Button";
 import NodeIcon from "../../ui/NodeIcon";
+import FreemiumMessage from "./FreemiumMessage";
 
 export type FreemiumUnitNodeViewProps = {
   title: string;
@@ -50,28 +51,21 @@ export const FreemiumUnitNodeView: React.FC<FreemiumUnitNodeViewProps> = ({
             }{" "}
           </div>
         </div>
-        {grayedOut === true ? (
-          <div className="flex flex-col justify-center space-y-2 w-full col-span-10 ml-4 sm:ml-0 sm:col-span-6">
-            <div className="bg-gray-300 h-6 w-2/3 rounded-full"></div>
-            <div className="bg-gray-300 h-6 w-1/2 rounded-full"></div>
-          </div>
-        ) : (
-          <div className="flex flex-col justify-center w-full col-span-10 ml-4 sm:ml-0 sm:col-span-6">
-            {freemiumMessage ? (
-              <div className="">
-                <p className="font-bold text-2xl">
-                  Enjoying the Skillify Experience?
-                </p>
-                <p>Access the full community and program by applying today!</p>
-              </div>
-            ) : (
-              <div>
-                <p className="">{title}</p>
-                <p>{description}</p>
-              </div>
-            )}
-          </div>
-        )}
+        <div className="flex flex-col justify-center w-full col-span-10 ml-4 sm:ml-0 sm:col-span-6">
+          {grayedOut === true ? (
+            <div className="space-y-2">
+              <div className="w-2/3 h-6 bg-gray-300 rounded-full"></div>
+              <div className="w-1/2 h-6 bg-gray-300 rounded-full"></div>
+            </div>
+          ) : freemiumMessage === true ? (
+            <FreemiumMessage />
+          ) : (
+            <div>
+              <p className="">{title}</p>
+              <p>{description}</p>
+            </div>
+          )}
+        </div>
         <div
           className={`${
             active ? "" : "hidden"
