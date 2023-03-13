@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import moment from "moment";
-import { useEffect, useState } from "react";
-import React from "React";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { freemiumUnits } from "../../../components/studentPortal/freemium/FreemiumUnits";
 import FreemiumUnitView from "../../../components/studentPortal/freemium/FreemiumUnitView";
