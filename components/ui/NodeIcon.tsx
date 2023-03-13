@@ -2,7 +2,7 @@ import React from "react";
 import {
   freemiumImageSrc,
   imageSrc,
-} from "../../pages/api/studentPortal/WebDevNodeIcon";
+} from "../../pages/api/studentPortal/nodeIcons";
 export type NodeIconProps = {
   description?: string;
   completed: boolean;
