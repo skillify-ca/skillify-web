@@ -131,6 +131,14 @@ export const freemiumUnits: Unit[] = [
         link: "",
         type: "lesson",
       },
+      {
+        title: "",
+        description: "",
+        completed: false,
+        locked: false,
+        link: "",
+        type: "lesson",
+      },
     ],
   },
 ];
