@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../../ui/Button";
+import NodeIcon from "../../ui/NodeIcon";
 
 export type UnitNodeViewProps = {
   title: string;
@@ -18,24 +19,6 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
   description,
   type,
 }: UnitNodeViewProps) => {
-  const imageSrc = (completed, locked, type) => {
-    if (completed) {
-      return "/images/studentPortal/checkmark.svg";
-    } else if (locked && type === "lesson") {
-      return "/images/studentPortal/lesson_inactive.svg";
-    } else if (locked && type === "quiz") {
-      return "/images/studentPortal/quiz_inactive.svg";
-    } else if (locked && type === "assignment") {
-      return "/images/studentPortal/assignment_inactive.svg";
-    } else if (type === "lesson") {
-      return "/images/studentPortal/lesson_active.svg";
-    } else if (type === "quiz") {
-      return "/images/studentPortal/quiz_active.svg";
-    } else if (type === "assignment") {
-      return "/images/studentPortal/assignment_active.svg";
-    }
-    return "";
-  };
   const active = !completed && !locked;
 
   return (
@@ -53,12 +36,7 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
       >
         <div className="flex flex-col items-center col-span-2">
           <div className="flex items-center rounded-full">
-            {
-              <img
-                src={`${imageSrc(completed, locked, type)}`}
-                className="w-12 h-12"
-              />
-            }{" "}
+            {<NodeIcon completed={completed} locked={locked} type={type} />}{" "}
           </div>
         </div>
         <div className="flex flex-col justify-center w-full col-span-10 ml-4 sm:ml-0 sm:col-span-6">
