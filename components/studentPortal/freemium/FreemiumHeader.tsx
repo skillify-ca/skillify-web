@@ -20,15 +20,15 @@ export const FreemiumHeader = ({
   const TOTAL_TRIAL_DAYS = 30;
 
   return (
-    <div className="grid w-full h-16 grid-cols-4 border-b-2 bg-backgroundPrimary">
-      <div className="col-span-1 flex items-center pl-4">
+    <div className="grid w-full h-16 grid-cols-6 border-b-2 bg-backgroundPrimary">
+      <div className="col-span-2 flex items-center pl-4">
         {theme === Theme.DEFAULT ? (
           <img className="w-48 h-8 " src="/images/logo.svg" />
         ) : theme === Theme.DRACULA ? (
           <img className="w-48 h-8" src="/images/logo-dark.svg" />
         ) : null}
       </div>
-      <div className="col-span-2 flex items-center justify-end space-x-6 pr-4">
+      <div className="col-span-3 flex items-center justify-end space-x-6 pr-2">
         <div className="hidden lg:block">
           <p className="font-bold">Enjoying the Skillify Experience?</p>
           <ProgressComponent
