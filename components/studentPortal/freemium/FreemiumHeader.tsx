@@ -40,7 +40,14 @@ export const FreemiumHeader = ({
             days remaining
           </p>
         </div>
-        <Button label="Apply Now!" />
+        <a href="https://www.joinskillify.com/call">
+          <Button
+            label="Apply Now!"
+            onClick={(e) =>
+              window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+            }
+          />
+        </a>
       </div>
       <div
         onClick={handleToggleClick}
