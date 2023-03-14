@@ -123,7 +123,7 @@ export async function getServerSideProps() {
       component: "prompt",
       header: "Style a web page using Tailwind CSS",
       bullets: [
-        "Use the resource link above and edit the page to create forked a copy of the template for this assignment.",
+        "Use the resource link above and edit the page to create a forked copy of the template for this assignment.",
         "Your page should have the following:",
         "atleast 5 different background colors.",
         "Add a Navbar at the top-right of the page.",
