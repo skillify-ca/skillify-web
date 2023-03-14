@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../../../components/ui/Button";
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "./progressbar";
 import NumberedCircles from "./results/numberedcircles";
 
 const ResultsPage: React.FC = () => {
