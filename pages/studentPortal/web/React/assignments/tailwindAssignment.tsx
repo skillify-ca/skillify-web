@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import router from "next/router";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AssignmentComponent, {
   AssignmentComponentData,
@@ -113,13 +113,19 @@ export async function getServerSideProps() {
       component: "title",
       text: "Assignment: Tailwind CSS",
     },
+    {
+      component: "template",
+      templateLink:
+        "https://codesandbox.io/s/tailwindassignment-template-5shj0o?file=/src/App.tsx",
+    },
 
     {
       component: "prompt",
       header: "Style a web page using Tailwind CSS",
       bullets: [
-        "Use the link in the first hint to setup TailwindCSS in your own index.html file for this assignment.",
-        "Your page must have atleast 5 different background colors.",
+        "Use the resource link above and edit the page to create forked a copy of the template for this assignment.",
+        "Your page should have the following:",
+        "atleast 5 different background colors.",
         "Add a Navbar at the top-right of the page.",
         "Add a title, a heading and a paragraph so your page has atleast 3 different text sizes.",
         "Add an on-hover effect to the title, so it bounces when you hover over it.",
