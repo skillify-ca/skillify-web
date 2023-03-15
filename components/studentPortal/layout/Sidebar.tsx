@@ -17,6 +17,7 @@ import { activePageSelector, setActivePage } from "../../../redux/sidebarSlice";
 import JSIcon from "../../ui/JSIcon";
 import ReactIcon from "../../ui/ReactIcon";
 import FreemiumSidebarHeader from "../freemium/FreemiumSidebarHeader";
+import PaidSidebarHeader from "../freemium/PaidSidebarHeader";
 import SkillifyCommandPalette from "./CommandPalette";
 import SidebarItem from "./SidebarItem";
 
@@ -36,6 +37,8 @@ export const Sidebar: React.FC = () => {
         dispatch(setUserRole("coach"));
       } else if (data.users[0].userRole.value === "student") {
         dispatch(setUserRole("student"));
+      } else if (data.users[0].userRole.value === "paid") {
+        dispatch(setUserRole("paid"));
       } else if (data.users[0].userRole.value === "freemium") {
         dispatch(setCreatedAt(data.users[0].created_at));
         dispatch(setUserRole("freemium"));
@@ -73,6 +76,8 @@ export const Sidebar: React.FC = () => {
       <div className="grid">
         {user && userRole === "freemium" ? (
           <FreemiumSidebarHeader createdAt={createdAt} />
+        ) : userRole === "paid" ? (
+          <PaidSidebarHeader />
         ) : (
           <div className="flex p-4">
             {user && (
@@ -90,7 +95,6 @@ export const Sidebar: React.FC = () => {
             )}
           </div>
         )}
-
         <SidebarItem
           name={"Dashboard"}
           link={"/studentPortal"}
