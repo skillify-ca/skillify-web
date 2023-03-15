@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { freemiumUnits } from "../../../components/studentPortal/freemium/freemiumUnits";
+import { freemiumUnits } from "../../../components/studentPortal/freemium/FreemiumUnits";
 import FreemiumUnitView from "../../../components/studentPortal/freemium/FreemiumUnitView";
 import { paidUnits } from "../../../components/studentPortal/freemium/PaidUnits";
 import UnitView from "../../../components/studentPortal/lessons/UnitView";
