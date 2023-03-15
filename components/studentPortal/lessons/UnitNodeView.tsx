@@ -34,7 +34,7 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
             : "grid grid-cols-12"
         }  `}
       >
-        <div className="flex flex-col md:items-center items-start ml-4 col-span-2">
+        <div className="flex flex-col md:items-center ml-4 col-span-2">
           <div className="flex rounded-full">
             {<NodeIcon completed={completed} locked={locked} type={type} />}{" "}
           </div>
