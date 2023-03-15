@@ -8,11 +8,11 @@ type LandingNavbarProps = {
 export default function LandingNavbar({ showTimer }: LandingNavbarProps) {
   return (
     <div className="flex flex-col w-full">
-      <div className="flex items-center justify-between w-full px-4 bg-white border-b-2 text-murkrow">
+      <div className="grid items-center justify-between w-full grid-cols-1 px-4 bg-white border-b-2 md:flex place-items-center text-murkrow">
         <Link href={"/"}>
           <img
             src="/images/logo.svg"
-            className="p-4 cursor-pointer w-28 sm:w-40"
+            className="mt-4 cursor-pointer md:mt-0 md:p-4 w-28 sm:w-40"
           />
         </Link>
         <div className="flex gap-4">
