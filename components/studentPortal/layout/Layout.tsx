@@ -60,6 +60,7 @@ export const Layout: React.FC = ({ children }) => {
               )
             }
             createdAt={createdAt}
+            theme={currentTheme}
           />
         ) : (
           <Header
