@@ -5,18 +5,17 @@ import { Theme } from "../../../redux/themeSlice";
 import { Button } from "../../ui/Button";
 import ProgressComponent from "../../ui/ProgressComponent";
 
-export type FreemiumHeader = {
+export type FreemiumHeaderProps = {
   handleMenuIconClick: () => void;
   handleToggleClick: () => void;
   theme: Theme;
   createdAt: Date;
 };
 export const FreemiumHeader = ({
-  handleMenuIconClick,
   handleToggleClick,
   theme = Theme.DEFAULT,
   createdAt,
-}) => {
+}: FreemiumHeaderProps) => {
   const TOTAL_TRIAL_DAYS = 30;
 
   return (
