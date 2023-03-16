@@ -7,15 +7,6 @@ import Skills from "../components/quizzes/careerQuiz/Skills";
 import StartQuiz from "../components/quizzes/careerQuiz/StartQuiz";
 import Tasks from "../components/quizzes/careerQuiz/Tasks";
 
-export type CareerQuizProps = {
-  start: string;
-  education: string;
-  industries: string;
-  skills: string;
-  tasks: string;
-  blueprint: string;
-  results: string;
-};
 enum Stage {
   START,
   EDUCATION,
@@ -26,15 +17,9 @@ enum Stage {
   RESULTS,
 }
 
-const CareerQuiz = ({
-  start,
-  education,
-  industries,
-  skills,
-  tasks,
-  blueprint,
-  results,
-}: CareerQuizProps) => {
+const CareerQuiz = () => {
+  // create results state object that
+  // create custom type -- based on schema type in database
   const [stage, setStage] = useState(Stage.START);
 
   const handleNextClick = () => {
