@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   freemiumImageSrc,
   imageSrc,
@@ -19,7 +19,8 @@ export const NodeIcon: React.FC<NodeIconProps> = ({
   freemiumMessage,
 }: NodeIconProps) => {
   let src;
-
+  const grayFilter = "grayscale(100%)";
+  const [isHovered, setIsHovered] = useState(false);
   if (freemiumMessage || description === "") {
     src = freemiumImageSrc(
       completed,
@@ -32,14 +33,19 @@ export const NodeIcon: React.FC<NodeIconProps> = ({
     src = imageSrc(completed, locked, type);
   }
   if (description === "") {
+    src = isHovered ? "../../images/freemium/hoverCircleLock.svg" : src;
     return (
       <img
         src={src}
-        className="w-12 h-12 bg-gray-400 rounded-full p-2 hover:bg-backgroundHover"
+        className="w-12 h-12 bg-gray-400 hover:bg-white rounded-full p-2"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       />
     );
   } else {
-    return <img src={src} className="w-12 h-12 bg-backgroundHover" />;
+    return (
+      <img src={src} className="w-12 h-12 bg-backgroundHover rounded-full" />
+    );
   }
 };
 
