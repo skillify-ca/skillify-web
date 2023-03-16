@@ -1,3 +1,5 @@
+import React from "react";
+
 const NumberedCircles = () => {
   return (
     <div className="relative grid grid-cols-1 gap-y-8 justify-center items-center">

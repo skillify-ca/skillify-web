@@ -1,13 +1,13 @@
 import React from "react";
+import NumberedCircles from "../../../components/quizzes/numberedcircles";
 import { Button } from "../../../components/ui/Button";
 import ProgressBar from "./progressbar";
-import NumberedCircles from "./results/numberedcircles";
 
 const ResultsPage: React.FC = () => {
   return (
     <div className="flex flex-col w-full max-w-4xl mx-auto py-8 md:mr-12">
       <div className="w-full mb-4 text-center">
-        <div className="w-full h-2 bg-black-600 rounded-lg mb-2">
+        <div className="w-full h-2 bg-black-600 px-4 rounded-lg mb-2">
           <ProgressBar progress={100} />
         </div>
         <div className="font-bold mt-8 text-2xl text-black-600 mb-2">
