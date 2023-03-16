@@ -4,7 +4,13 @@ import { Button } from "../../ui/Button";
 import ProgressBar from "../ProgressBar";
 import QuizNavbar from "../QuizNavbar";
 import SkillSelection from "../SkillSelection";
-const TasksComponent = () => {
+
+type TasksProps = {
+  onNextClick: () => void;
+  onBackClick: () => void;
+};
+
+const Tasks = ({ onNextClick, onBackClick }: TasksProps) => {
   const router = useRouter();
 
   return (
@@ -32,17 +38,13 @@ const TasksComponent = () => {
             "Write code to solve problems",
           ]}
         />
-        <Button
-          backgroundColor="yellow"
-          label="Next"
-          onClick={() => router.push("/careerQuiz/blueprint")}
-        />{" "}
+        <Button backgroundColor="yellow" label="Next" onClick={onNextClick} />{" "}
       </div>
     </div>
   );
 };
 
-export default TasksComponent;
-TasksComponent.getLayout = function getLayout(page) {
+export default Tasks;
+Tasks.getLayout = function getLayout(page) {
   return <div>{page}</div>;
 };

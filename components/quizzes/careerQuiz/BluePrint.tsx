@@ -5,7 +5,12 @@ import NumberedCircles from "../NumberedCicles";
 import ProgressBar from "../ProgressBar";
 import QuizNavbar from "../QuizNavbar";
 
-const Blueprint = () => {
+type BluePrintProps = {
+  onNextClick: () => void;
+  onBackClick: () => void;
+};
+
+const Blueprint = ({ onNextClick, onBackClick }: BluePrintProps) => {
   const router = useRouter();
   return (
     <div className="w-full  space-y-4">
@@ -40,7 +45,7 @@ const Blueprint = () => {
       <div className="grid py-8 place-items-center">
         <Button
           label="View results"
-          onClick={() => router.push("/careerQuiz/results")}
+          onClick={onNextClick}
           backgroundColor="yellow"
         />
       </div>

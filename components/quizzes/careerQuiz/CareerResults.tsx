@@ -2,7 +2,10 @@ import React from "react";
 import { Button } from "../../ui/Button";
 import QuizNavbar from "../QuizNavbar";
 
-const CareerResults = () => {
+type CareerResultsProps = {
+  onBackClick: () => void;
+};
+const CareerResults = ({ onBackClick }: CareerResultsProps) => {
   return (
     <div className="  w-full mx-auto ">
       <QuizNavbar />

@@ -2,11 +2,11 @@ import { useRouter } from "next/router";
 import React from "react";
 import { Button } from "../../ui/Button";
 
-type Props = {
+type IntakeProps = {
   onNextClick: () => void;
 };
 
-const Intake = ({ onNextClick }: Props) => {
+const Intake = ({ onNextClick }: IntakeProps) => {
   const router = useRouter();
 
   return (

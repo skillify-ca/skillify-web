@@ -4,7 +4,11 @@ import { Button } from "../../ui/Button";
 import ProgressBar from "../ProgressBar";
 import QuizNavbar from "../QuizNavbar";
 import SkillSelection from "../SkillSelection";
-const QuizComponent = () => {
+type IndustriesProps = {
+  onNextClick: () => void;
+  onBackClick: () => void;
+};
+const Industries = ({ onNextClick, onBackClick }: IndustriesProps) => {
   const router = useRouter();
   return (
     <div className="w-full  space-y-4 ">
@@ -37,17 +41,13 @@ const QuizComponent = () => {
             ]}
           />
         </div>
-        <Button
-          backgroundColor="yellow"
-          label="Next"
-          onClick={() => router.push("/careerQuiz/skills")}
-        />
+        <Button backgroundColor="yellow" label="Next" onClick={onNextClick} />
       </div>
     </div>
   );
 };
 
-QuizComponent.getLayout = function getLayout(page) {
+Industries.getLayout = function getLayout(page) {
   return <div>{page}</div>;
 };
-export default QuizComponent;
+export default Industries;

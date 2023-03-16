@@ -3,7 +3,15 @@ import React from "react";
 import { Button } from "../../ui/Button";
 import ProgressBar from "../ProgressBar";
 import QuizNavbar from "../QuizNavbar";
-const EducationBackground = () => {
+
+type EduBacgroundProps = {
+  onNextClick: () => void;
+  onBackClick: () => void;
+};
+const EducationBackground = ({
+  onNextClick,
+  onBackClick,
+}: EduBacgroundProps) => {
   const router = useRouter();
 
   return (
@@ -36,11 +44,7 @@ const EducationBackground = () => {
           </div>
         </div>
         <div className="py-8">
-          <Button
-            backgroundColor="yellow"
-            label="Next"
-            onClick={() => router.push("/careerQuiz/industries")}
-          />
+          <Button backgroundColor="yellow" label="Next" onClick={onNextClick} />
         </div>
       </div>
     </div>

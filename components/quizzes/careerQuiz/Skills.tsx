@@ -4,7 +4,12 @@ import { Button } from "../../ui/Button";
 import ProgressBar from "../ProgressBar";
 import QuizNavbar from "../QuizNavbar";
 import SkillSelection from "../SkillSelection";
-const Skills = () => {
+
+type SkillsProps = {
+  onNextClick: () => void;
+  onBackClick: () => void;
+};
+const Skills = ({ onNextClick, onBackClick }: SkillsProps) => {
   const router = useRouter();
 
   return (
@@ -35,11 +40,7 @@ const Skills = () => {
             "Planning",
           ]}
         />
-        <Button
-          backgroundColor="yellow"
-          label="Next"
-          onClick={() => router.push("/careerQuiz/tasks")}
-        />
+        <Button backgroundColor="yellow" label="Next" onClick={onNextClick} />
       </div>{" "}
     </div>
   );
