@@ -7,19 +7,17 @@ import QuizNavbar from "../studentPortal/quizcomponent/quiznavbar";
 const QuizComponent = () => {
   const router = useRouter();
   return (
-    <div className="w-full px-4 space-y-4 ">
+    <div className="w-full  space-y-4 ">
       <QuizNavbar />
-      <div className="flex flex-col items-center">
+      <div className="px-4 flex flex-col items-center ">
         <ProgressBar progress={35} />
 
-        <div className=" flex flex-col items-center space-y-2 ">
+        <div className=" flex flex-col items-center  py-4 ">
           <h1 className="text-2xl font-bold text-center">
             What industries are you interested in working?
           </h1>
 
-          <p className="">Select 1-3 choices</p>
-        </div>
-        <div className="w-full">
+          <p className="text-lg font-medium px-4 ">Select 1-3 choices</p>
           <SkillSelection
             selections={[
               "Advertising",
@@ -42,7 +40,7 @@ const QuizComponent = () => {
         <Button
           backgroundColor="yellow"
           label="Next"
-          onClick={() => router.push("/skills")}
+          onClick={() => router.push("/careerQuiz/skills")}
         />
       </div>
     </div>

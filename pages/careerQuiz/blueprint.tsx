@@ -1,11 +1,15 @@
+import { useRouter } from "next/router";
 import React from "react";
-import NumberedCircles from "../../../components/quizzes/numberedcircles";
-import { Button } from "../../../components/ui/Button";
-import ProgressBar from "./progressbar";
+import NumberedCircles from "../../components/quizzes/numberedcircles";
+import { Button } from "../../components/ui/Button";
+import ProgressBar from "../studentPortal/quizcomponent/progressbar";
+import QuizNavbar from "../studentPortal/quizcomponent/quiznavbar";
 
-const ResultsPage: React.FC = () => {
+const Blueprint = () => {
+  const router = useRouter();
   return (
-    <div className="flex flex-col w-full max-w-4xl mx-auto py-8 md:mr-12">
+    <div className="w-full  space-y-4">
+      <QuizNavbar></QuizNavbar>
       <div className="w-full mb-4 text-center">
         <div className="w-full h-2 bg-black-600 px-4 rounded-lg mb-2">
           <ProgressBar progress={100} />
@@ -34,10 +38,17 @@ const ResultsPage: React.FC = () => {
         </div>
       </div>
       <div className="grid py-8 place-items-center">
-        <Button label="View results" />
+        <Button
+          label="View results"
+          onClick={() => router.push("/careerQuiz/results")}
+          backgroundColor="yellow"
+        />
       </div>
     </div>
   );
 };
 
-export default ResultsPage;
+Blueprint.getLayout = function getLayout(page) {
+  return <div>{page}</div>;
+};
+export default Blueprint;

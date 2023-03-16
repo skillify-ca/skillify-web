@@ -7,14 +7,16 @@ const EducationBackground = () => {
   const router = useRouter();
 
   return (
-    <div className=" px-4 space-y-4">
+    <div className="space-y-4">
       <QuizNavbar></QuizNavbar>
-      <ProgressBar progress={15}></ProgressBar>
+      <div className="px-4">
+        <ProgressBar progress={15}></ProgressBar>
+      </div>
       <div className="flex flex-col items-center text-center  ">
         <h1 className="text-2xl font-semibold">
           What's your educational background?
         </h1>
-        <p className="text-lg font-medium px-3 pb-4">Fill in the blanks</p>
+        <p className="text-lg font-medium px-4 ">Fill in the blanks</p>
         <div className="text-lg text-left space-y-2">
           <div>
             <h3>Institution</h3>{" "}

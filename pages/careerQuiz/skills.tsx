@@ -1,32 +1,51 @@
+import { useRouter } from "next/router";
 import React from "react";
 import SkillSelection from "../../components/quizzes/skillselection";
 import { Button } from "../../components/ui/Button";
 import ProgressBar from "../studentPortal/quizcomponent/progressbar";
 import QuizNavbar from "../studentPortal/quizcomponent/quiznavbar";
-const SkillComponent = () => {
-  const router = userRouter();
+const Skills = () => {
+  const router = useRouter();
 
   return (
-    <div className="flex flex-col w-full px-4">
+    <div className="w-full  space-y-4">
       <QuizNavbar />
-      <ProgressBar progress={50} />
+      <div className="px-4 flex flex-col items-center">
+        <ProgressBar progress={60} />
+        <div className="flex flex-col items-center  py-4 ">
+          <h1 className="text-2xl font-bold text-center">
+            What are your strongest skills?
+          </h1>
+          <p className="text-lg font-medium px-4 ">Select 1-3 choices</p>
+        </div>
 
-      <div className="p-4 flex flex-col items-center space-y-2 py-8">
-        <h1 className="text-2xl font-bold text-center">
-          What industries are you interested in working?
-        </h1>
-
-        <p className="">Select 1-3 choices</p>
-      </div>
-
-      <SkillSelection
-        selections={["One", "Two", "Three", "Four", "Five", "Six", "Seven"]}
-      />
-      <Button label="Start Quiz" onClick={() => ""} />
+        <SkillSelection
+          selections={[
+            "Writing code",
+            "Drawing",
+            "Design",
+            "Writing",
+            "Leading a team",
+            "Organization",
+            "Public speaking",
+            "Time Management",
+            "Math",
+            "Analyzing data",
+            "Critical thinking",
+            "Planning",
+          ]}
+        />
+        <Button
+          backgroundColor="yellow"
+          label="Next"
+          onClick={() => router.push("/careerQuiz/tasks")}
+        />
+      </div>{" "}
     </div>
   );
 };
 
-SkillComponent.getLayout = function getLayout(page) {
+Skills.getLayout = function getLayout(page) {
   return <div>{page}</div>;
 };
+export default Skills;
