@@ -20,7 +20,7 @@ export const NodeIcon: React.FC<NodeIconProps> = ({
 }: NodeIconProps) => {
   let src;
 
-  if (freemiumMessage) {
+  if (freemiumMessage || description === "") {
     src = freemiumImageSrc(
       completed,
       description,
@@ -31,8 +31,16 @@ export const NodeIcon: React.FC<NodeIconProps> = ({
   } else {
     src = imageSrc(completed, locked, type);
   }
-
-  return <img src={src} className="w-12 h-12" />;
+  if (description === "") {
+    return (
+      <img
+        src={src}
+        className="w-12 h-12 bg-gray-400 rounded-full p-2 hover:bg-backgroundHover"
+      />
+    );
+  } else {
+    return <img src={src} className="w-12 h-12 bg-backgroundHover" />;
+  }
 };
 
 export default NodeIcon;
