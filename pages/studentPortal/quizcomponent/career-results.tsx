@@ -1,11 +1,11 @@
 import React from "react";
+import QuizNavbar from "../../../components/quizzes/QuizNavbar";
 import { Button } from "../../../components/ui/Button";
-import QuizNavbar from "./quiznavbar";
 
-const Career_Results = () => {
+const CareerResults = () => {
   return (
     <div className="  w-full mx-auto ">
-      <QuizNavbar></QuizNavbar>
+      <QuizNavbar />
       <div className="grid text-center justify-items-center">
         <div className="font-bold mt-4 text-2xl ">YOUR RESULTS</div>
         <div className=" text-lg font-semibolds ">
@@ -13,9 +13,9 @@ const Career_Results = () => {
           learn more!
         </div>
         <img
-          src="/images/software-engineer.png"
+          src="/images/career-quiz/software-engineer.png"
           alt="Software Engineer"
-          className=" p-4 rounded-[40px]  md:h-60 md:w-80 "
+          className=" p-4 object-scalded-down  md:h-60 md:w-80 "
         />
         <div className="mt-4 mx-4 text-2xl font-semibold ">
           Start your career with a Skillify coach today!
@@ -34,4 +34,4 @@ const Career_Results = () => {
   );
 };
 
-export default Career_Results;
+export default CareerResults;
