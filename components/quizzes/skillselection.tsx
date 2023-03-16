@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-type SkillSelectionProps = {
+type skillSelectionProps = {
   selections: string[];
 };
 
-const SkillSelection: React.FC<SkillSelectionProps> = ({ selections }) => {
+const skillSelection: React.FC<skillSelectionProps> = ({ selections }) => {
   const [selected, setSelected] = useState<string[]>([]);
 
   const handleSelection = (selection: string) => {
@@ -35,4 +35,4 @@ const SkillSelection: React.FC<SkillSelectionProps> = ({ selections }) => {
     </div>
   );
 };
-export default SkillSelection;
+export default skillSelection;

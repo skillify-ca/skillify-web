@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import React from "react";
-import NumberedCircles from "../../components/quizzes/NumberedCircles";
-import ProgressBar from "../../components/quizzes/ProgressBar";
-import QuizNavbar from "../../components/quizzes/QuizNavbar";
-import { Button } from "../../components/ui/Button";
+import { Button } from "../../ui/Button";
+import NumberedCircles from "../NumberedCicles";
+import ProgressBar from "../ProgressBar";
+import QuizNavbar from "../QuizNavbar";
 
 const Blueprint = () => {
   const router = useRouter();

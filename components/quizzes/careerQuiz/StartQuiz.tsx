@@ -1,14 +1,19 @@
 import { useRouter } from "next/router";
 import React from "react";
-import QuizNavbar from "../../components/quizzes/quiznavbar";
-import { Button } from "../../components/ui/Button";
+import { Button } from "../../ui/Button";
 
-const Intake = () => {
+type Props = {
+  onNextClick: () => void;
+};
+
+const Intake = ({ onNextClick }: Props) => {
   const router = useRouter();
 
   return (
-    <div className="w-full space-y-4 ">
-      <QuizNavbar />
+    <div className="w-full space-y-4  ">
+      <div className="flex justify-center p-4 ml-16">
+        <img src="/images/logo.svg" className="w-40 mr-8" />
+      </div>
       <div className="flex flex-col items-center text-center space-y-6 px-4">
         <h1 className="text-3xl font-semibold">
           Career in Tech Personality Quiz{" "}
@@ -33,7 +38,7 @@ const Intake = () => {
         <Button
           backgroundColor="yellow"
           label="Start Quiz"
-          onClick={() => router.push("/careerQuiz/edu-background")}
+          onClick={onNextClick}
         />
       </div>
     </div>

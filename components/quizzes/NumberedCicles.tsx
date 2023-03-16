@@ -1,6 +1,6 @@
 import React from "react";
 
-const NumberedCircles = () => {
+const numberedCircles = () => {
   return (
     <div className="relative grid grid-cols-1 gap-y-8 justify-center items-center">
       <div className="h-12 w-0.5 bg-gray-400 absolute top-12 left-6"></div>
@@ -28,4 +28,4 @@ const NumberedCircles = () => {
   );
 };
 
-export default NumberedCircles;
+export default numberedCircles;

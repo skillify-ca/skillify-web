@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import React from "react";
-import ProgressBar from "../../components/quizzes/progressbar";
-import QuizNavbar from "../../components/quizzes/quiznavbar";
-import { Button } from "../../components/ui/Button";
+import { Button } from "../../ui/Button";
+import ProgressBar from "../ProgressBar";
+import QuizNavbar from "../QuizNavbar";
 const EducationBackground = () => {
   const router = useRouter();
 
