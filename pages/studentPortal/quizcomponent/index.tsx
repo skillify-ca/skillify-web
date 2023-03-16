@@ -1,7 +1,7 @@
+import React from "react";
+import QuizNavbar from "../../../components/quizzes/QuizNavbar";
 import ProgressBar from "./progressbar";
-import QuizNavbar from "./quiznavbar";
 import SkillSelection from "./skillselection";
-
 const QuizComponent = () => {
   return (
     <div className="flex flex-col w-full px-4">
