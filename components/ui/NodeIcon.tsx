@@ -36,7 +36,7 @@ export const NodeIcon: React.FC<NodeIconProps> = ({
     return (
       <img
         src={src}
-        className="w-12 h-12 bg-gray-400 hover:bg-white rounded-full p-2"
+        className="w-12 h-12 bg-gray-300 hover:bg-white rounded-full p-2"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       />
