@@ -40,7 +40,7 @@ export const FreemiumUnitNodeView: React.FC<FreemiumUnitNodeViewProps> = ({
         }  `}
       >
         <div className="flex flex-col md:items-center ml-4 col-span-2">
-          <TooltipComponent message={"This is a premium feature."}>
+          {freemiumMessage ? (
             <div className="flex rounded-full">
               <NodeIcon
                 completed={completed}
@@ -50,7 +50,19 @@ export const FreemiumUnitNodeView: React.FC<FreemiumUnitNodeViewProps> = ({
                 freemiumMessage={freemiumMessage}
               />
             </div>
-          </TooltipComponent>
+          ) : (
+            <TooltipComponent message={"This is a premium feature."}>
+              <div className="flex rounded-full">
+                <NodeIcon
+                  completed={completed}
+                  locked={locked}
+                  type={type}
+                  description={description}
+                  freemiumMessage={freemiumMessage}
+                />
+              </div>
+            </TooltipComponent>
+          )}
         </div>
         <div className="flex flex-col justify-center w-full col-span-10 ml-4 sm:ml-0 sm:col-span-6">
           {grayedOut === true ? (
