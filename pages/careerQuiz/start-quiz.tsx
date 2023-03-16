@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import QuizNavbar from "../../components/quizzes/quiznavbar";
 import { Button } from "../../components/ui/Button";
-import QuizNavbar from "../studentPortal/quizcomponent/quiznavbar";
 
 const Intake = () => {
   const router = useRouter();
