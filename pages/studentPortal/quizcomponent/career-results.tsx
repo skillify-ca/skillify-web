@@ -4,7 +4,7 @@ import QuizNavbar from "./quiznavbar";
 
 const Career_Results = () => {
   return (
-    <div className="flex flex-col w-full max-w-4xl mx-auto md:mr-12 text-center">
+    <div className="grid  w-full mx-auto text-center justify-items-center">
       <QuizNavbar></QuizNavbar>
       <div className="font-bold mt-4 text-2xl ">YOUR RESULTS</div>
       <div className=" text-lg font-semibolds ">
@@ -14,7 +14,7 @@ const Career_Results = () => {
       <img
         src="/images/software-engineer.png"
         alt="Software Engineer"
-        className=" p-4 rounded-[40px]"
+        className=" p-4 rounded-[40px]  md:h-60 md:w-80 "
       />
       <div className="mt-4 mx-4 text-2xl font-semibold ">
         Start your career with a Skillify coach today!
