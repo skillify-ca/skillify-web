@@ -16,6 +16,6 @@ export type FetchRoleData = {
   users: UserData;
 };
 export type UserData = {
-  userRole: "student" | "coach"| "freemium";
+  userRole: "student" | "coach"| "freemium"|"paid";
   created_at: Date;
 };
