@@ -16,6 +16,7 @@ const Intake = () => {
 
   return (
     <div className="flex flex-col items-center text-center space-y-6 px-4">
+      <img src="/images/logo.svg" className="w-36 mt-4" />
       <h1 className="text-3xl font-semibold">
         What Coding Language Should I Learn First?
       </h1>

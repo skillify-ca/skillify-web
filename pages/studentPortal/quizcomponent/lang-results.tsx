@@ -1,9 +1,10 @@
+import QuizNavbar from "../../../components/quizzes/QuizNavbar";
 import { Button } from "../../../components/ui/Button";
-//import QuizNavbar from "./quiznavbar";
 
 const LangResults = () => {
   return (
     <div className="flex flex-col w-full max-w-4xl mx-auto text-center md:mr-12">
+      <QuizNavbar />
       <div className="mt-4 text-2xl font-bold text-black-600">YOUR RESULTS</div>
       <div className="text-lg font-semibolds px-3">
         The first coding language you should learn is...
@@ -21,7 +22,7 @@ const LangResults = () => {
         <Button label="Book a call" />
         <Button label="Learn more" backgroundColor="blue" />
       </div>
-      <div className="px-2">
+      <div className="mx-4">
         Skillify Coding Academy coaches university graduates to start a career
         in tech. Book a free call with one of our expert coaches to discuss the
         best strategy plan for you.
