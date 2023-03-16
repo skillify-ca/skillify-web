@@ -29,11 +29,10 @@ const SkillSelection: React.FC<SkillSelectionProps> = ({ selections }) => {
           }`}
           onClick={() => handleSelection(selection)}
         >
-          Input Text Selection {index + 1}
+          {selections[index]}
         </div>
       ))}
     </div>
   );
 };
-
 export default SkillSelection;
