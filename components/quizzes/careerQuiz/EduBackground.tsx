@@ -1,22 +1,19 @@
-import { useRouter } from "next/router";
 import React from "react";
 import { Button } from "../../ui/Button";
 import ProgressBar from "../ProgressBar";
 import QuizNavbar from "../QuizNavbar";
 
-type EduBacgroundProps = {
+type EduBackgroundProps = {
   onNextClick: () => void;
   onBackClick: () => void;
 };
 const EducationBackground = ({
   onNextClick,
   onBackClick,
-}: EduBacgroundProps) => {
-  const router = useRouter();
-
+}: EduBackgroundProps) => {
   return (
     <div className="space-y-4">
-      <QuizNavbar></QuizNavbar>
+      <QuizNavbar onBackClick={onBackClick}></QuizNavbar>
       <div className="px-4">
         <ProgressBar progress={15}></ProgressBar>
       </div>

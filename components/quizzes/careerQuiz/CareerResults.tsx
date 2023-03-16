@@ -8,7 +8,7 @@ type CareerResultsProps = {
 const CareerResults = ({ onBackClick }: CareerResultsProps) => {
   return (
     <div className="  w-full mx-auto ">
-      <QuizNavbar />
+      <QuizNavbar onBackClick={onBackClick} />
       <div className="grid text-center justify-items-center">
         <div className="font-bold mt-4 text-2xl ">YOUR RESULTS</div>
         <div className=" text-lg font-semibolds ">

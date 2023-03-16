@@ -1,14 +1,17 @@
 import { useRouter } from "next/router";
 import React from "react";
 
-const quizNavbar = () => {
+type QuizNavbarProps = {
+  onBackClick: () => void;
+};
+const quizNavbar = ({ onBackClick }: QuizNavbarProps) => {
   const router = useRouter();
   return (
     <div className="flex justify-between">
       <div className="flex justify-start">
         <img
           src="/images/backarrow.svg"
-          onClick={() => router.back()}
+          onClick={onBackClick}
           className="w-16 p-4"
         />
       </div>

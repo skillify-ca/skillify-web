@@ -15,7 +15,7 @@ const Tasks = ({ onNextClick, onBackClick }: TasksProps) => {
 
   return (
     <div className="w-full  space-y-4">
-      <QuizNavbar />
+      <QuizNavbar onBackClick={onBackClick} />
       <div className="px-4 flex flex-col items-center">
         <ProgressBar progress={85} />
         <div className=" flex flex-col items-center py-4">

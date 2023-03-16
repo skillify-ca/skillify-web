@@ -12,7 +12,7 @@ const Industries = ({ onNextClick, onBackClick }: IndustriesProps) => {
   const router = useRouter();
   return (
     <div className="w-full  space-y-4 ">
-      <QuizNavbar />
+      <QuizNavbar onBackClick={onBackClick} />
       <div className="px-4 flex flex-col items-center ">
         <ProgressBar progress={35} />
 
