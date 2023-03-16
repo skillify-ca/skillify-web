@@ -11,7 +11,7 @@ const TasksComponent = () => {
     <div className="w-full  space-y-4">
       <QuizNavbar />
       <div className="px-4 flex flex-col items-center">
-        <ProgressBar progress={50} />
+        <ProgressBar progress={85} />
         <div className=" flex flex-col items-center py-4">
           <h1 className="text-2xl font-bold text-center mx-8">
             What tasks would you prefer at work?
