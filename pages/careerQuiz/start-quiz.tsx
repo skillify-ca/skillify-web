@@ -1,22 +1,10 @@
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React from "react";
 import QuizNavbar from "../../components/quizzes/quiznavbar";
 import { Button } from "../../components/ui/Button";
 
 const Intake = () => {
   const router = useRouter();
-
-  const [onBoarding, setOnBoarding] = useState({
-    name: "",
-    email: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setOnBoarding((prev) => {
-      return { ...prev, [name]: value };
-    });
-  };
 
   return (
     <div className="w-full space-y-4 ">
@@ -33,14 +21,12 @@ const Intake = () => {
           <input
             type="text"
             name="name"
-            onChange={handleChange}
             className="shadow appearance-none border border-gray-500 rounded-lg px-6"
           ></input>
           <h3>Email Address</h3>{" "}
           <input
             type="email"
             name="email"
-            onChange={handleChange}
             className="shadow appearance-none border border-gray-500 rounded-lg px-6"
           ></input>
         </div>

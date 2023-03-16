@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import React from "react";
-import ProgressBar from "../../components/quizzes/progressbar";
-import QuizNavbar from "../../components/quizzes/quiznavbar";
-import SkillSelection from "../../components/quizzes/skillselection";
+import ProgressBar from "../../components/quizzes/ProgressBar";
+import QuizNavbar from "../../components/quizzes/QuizNavbar";
+import SkillSelection from "../../components/quizzes/SkillSelection";
 import { Button } from "../../components/ui/Button";
 const TasksComponent = () => {
   const router = useRouter();

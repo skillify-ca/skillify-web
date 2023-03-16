@@ -14,7 +14,7 @@ const EducationBackground = () => {
       </div>
       <div className="flex flex-col items-center text-center  ">
         <h1 className="text-2xl font-semibold">
-          What's your educational background?
+          What is your educational background?
         </h1>
         <p className="text-lg font-medium px-4 ">Fill in the blanks</p>
         <div className="text-lg text-left space-y-2">
