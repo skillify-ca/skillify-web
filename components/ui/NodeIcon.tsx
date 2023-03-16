@@ -19,7 +19,6 @@ export const NodeIcon: React.FC<NodeIconProps> = ({
   freemiumMessage,
 }: NodeIconProps) => {
   let src;
-  const grayFilter = "grayscale(100%)";
   const [isHovered, setIsHovered] = useState(false);
   if (freemiumMessage || description === "") {
     src = freemiumImageSrc(
