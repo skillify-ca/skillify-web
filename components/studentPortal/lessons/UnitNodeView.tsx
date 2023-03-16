@@ -30,12 +30,12 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
             : "hover:bg-backgroundSecondary hover:shadow-lg hover:py-4 transform transition-all"
         } ${
           active
-            ? "px-4 sm:px-0 py-4 border-2 flex flex-col sm:grid sm:grid-cols-12 bg-backgroundPrimary"
+            ? "sm:px-0 py-4 border-2 flex flex-col sm:grid sm:grid-cols-12 bg-backgroundPrimary"
             : "grid grid-cols-12"
         }  `}
       >
-        <div className="flex flex-col items-center col-span-2">
-          <div className="flex items-center rounded-full">
+        <div className="flex flex-col md:items-center ml-4 col-span-2">
+          <div className="flex rounded-full">
             {<NodeIcon completed={completed} locked={locked} type={type} />}{" "}
           </div>
         </div>
@@ -58,7 +58,7 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
           } flex flex-col items-center col-span-2 w-full`}
         >
           <div
-            className={`h-16 w-1 ${
+            className={`h-16 w-1 ml-4 ${
               completed ? "bg-bulbasaur-500" : "bg-gray-500"
             }`}
           />
