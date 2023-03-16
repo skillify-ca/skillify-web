@@ -7,15 +7,16 @@ import {
   FETCH_USER_GOALS_COUNT,
 } from "../../../graphql/studentPortal/goals/fetchUserGoalsCount";
 import { useAuth } from "../../../lib/authContext";
+import { profileSelector } from "../../../redux/profileSlice";
 import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
 import { setTheme, Theme, themeSelector } from "../../../redux/themeSlice";
-import { Button } from "../../ui/Button";
+import { FreemiumHeader } from "../freemium/FreemiumHeader";
 import Sidebar from "./Sidebar";
 
 export const Layout: React.FC = ({ children }) => {
   const [active, setActive] = useState(false);
   const { currentTheme } = useSelector(themeSelector);
-
+  const { userRole, createdAt } = useSelector(profileSelector);
   const { user } = useAuth();
   const dispatch = useDispatch();
 
@@ -48,17 +49,31 @@ export const Layout: React.FC = ({ children }) => {
       `}</style>
 
       <div className="fixed z-20 w-full">
-        <Header
-          handleMenuIconClick={() => setActive(!active)}
-          handleToggleClick={() =>
-            dispatch(
-              currentTheme === Theme.DEFAULT
-                ? setTheme(Theme.DRACULA)
-                : setTheme(Theme.DEFAULT)
-            )
-          }
-          theme={currentTheme}
-        />
+        {userRole === "freemium" ? (
+          <FreemiumHeader
+            handleMenuIconClick={() => setActive(!active)}
+            handleToggleClick={() =>
+              dispatch(
+                currentTheme === Theme.DEFAULT
+                  ? setTheme(Theme.DRACULA)
+                  : setTheme(Theme.DEFAULT)
+              )
+            }
+            createdAt={createdAt}
+          />
+        ) : (
+          <Header
+            handleMenuIconClick={() => setActive(!active)}
+            handleToggleClick={() =>
+              dispatch(
+                currentTheme === Theme.DEFAULT
+                  ? setTheme(Theme.DRACULA)
+                  : setTheme(Theme.DEFAULT)
+              )
+            }
+            theme={currentTheme}
+          />
+        )}
       </div>
       <div className="flex">
         {/* Desktop Sidebar */}
