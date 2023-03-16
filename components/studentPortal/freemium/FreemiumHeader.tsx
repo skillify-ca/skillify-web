@@ -29,7 +29,9 @@ export const FreemiumHeader = ({
       </div>
       <div className="col-span-3 flex items-center justify-end space-x-6 pr-2">
         <div className="hidden lg:block">
-          <p className="font-bold">Enjoying the Skillify Experience?</p>
+          <p className="font-bold text-textPrimary">
+            Enjoying the Skillify Experience?
+          </p>
           <ProgressComponent
             currentValue={elapsedDays(createdAt, TOTAL_TRIAL_DAYS)}
             totalValue={TOTAL_TRIAL_DAYS}

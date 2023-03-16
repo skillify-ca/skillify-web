@@ -11,7 +11,7 @@ import {
   INSERT_USER_CODING_BADGES,
 } from "../../../../graphql/studentPortal/achievements/updateUserCodingBadges";
 import {
-  FetchUserRoleData,
+  FetchRoleData,
   FETCH_USER_ROLE,
 } from "../../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../../lib/authContext";
@@ -40,7 +40,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
   });
   const { user } = useAuth();
 
-  useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
+  useQuery<FetchRoleData>(FETCH_USER_ROLE, {
     variables: {
       _id: user.uid,
     },
