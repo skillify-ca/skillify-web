@@ -1,8 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import moment from "moment";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import FreemiumUnitView from "../../../components/studentPortal/freemium/FreemiumUnitView";
 import UnitView from "../../../components/studentPortal/lessons/UnitView";
 import PageHeader from "../../../components/ui/PageHeader";
 import { FETCH_USER_INTRO_NODES } from "../../../graphql/studentPortal/courses/fetchUserIntroNodes";
@@ -47,13 +46,13 @@ export default function StudentPortalPage() {
       {userRole === "freemium" ? (
         <div className="grid grid-cols-1 gap-4">
           {freemiumUnits.map((it, index) => (
-            <FreemiumUnitView key={index} data={it} />
+            <UnitView key={index} data={it} />
           ))}
         </div>
       ) : userRole === "paid" ? (
         <div className="grid grid-cols-1 gap-4">
           {paidUnits.map((it, index) => (
-            <FreemiumUnitView key={index} data={it} />
+            <UnitView key={index} data={it} />
           ))}
         </div>
       ) : (

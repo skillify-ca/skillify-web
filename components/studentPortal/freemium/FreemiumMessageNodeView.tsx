@@ -51,4 +51,4 @@ export const FreemiumMessageNodeView: React.FC<FreemiumMessageNodeViewProps> =
     );
   };
 
-export default FreemiumMessageNodeViewProps;
+export default FreemiumMessageNodeView;
