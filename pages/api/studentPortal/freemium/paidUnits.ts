@@ -1,139 +1,38 @@
-import { githubUnit, introUnit, tailwindUnit, Unit } from "../units";
+import { backendUnit, githubUnit, introUnit, reactUnit, tailwindUnit, Unit } from "../units";
 
 export const paidUnits: Unit[] = [
   introUnit,
   githubUnit,
   tailwindUnit,
-  {
-    title: "React",
-    nodes: [
-      {
-        title: "Lesson 3",
-        description: "Components",
-        completed: false,
-        locked: false,
-        link: "web/React/components",
-        type: "lesson",
-      },
-      {
-        title: "Lesson 4",
-        description: "Props",
-        completed: false,
-        locked: false,
-        link: "web/React/props",
-        type: "lesson",
-      },
-      {
-        title: "Assignment 2",
-        description: "Components and Props",
-        completed: false,
-        locked: false,
-        link: "web/React/assignments/componentsAssignment",
-        type: "lesson",
-      },
+  transformReactUnit(reactUnit),
+  transformBackendUnit(backendUnit),
+]
 
-      {
-        title: "Lesson 4",
-        description: "Hooks - useState",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-        type: "lesson",
-      },
+function transformReactUnit(unit: Unit): Unit {
+  return {
+    title: unit.title,
+    nodes: unit.nodes.map((node, index) => {
+      if (index === unit.nodes.length-1) {
+        return {
+          description: "Enjoying the Skillify Experience?",
+          link: "https://www.joinskillify.com/call",
+          type: "freemiumMessage",
+        };
+      } else {
+        return node;
+      }
+    }),
+  };
+}
 
-      {
-        title: "Lesson 5",
-        description: "Hooks - useEffect",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-        type: "lesson",
-      },
-      {
-        title: "Lesson 6",
-        description: "Conditional Rendering",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-        type: "lesson",
-      },
-      {
-        title: "Lesson 7",
-        description: "Handling Events",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-        type: "lesson",
-      },
-      {
-        title: "Assignment 1",
-        description: "Building a tic tac toe game",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-        type: "lesson",
-      },
-      {
-        title: "Assignment 2",
-        description: "Build a K-12 Math Quiz",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-        type: "lesson",
-      },
-      {
-        title: "Assignment 3",
-        description: "Build a tutorial to a Leetcode question",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-        type: "lesson",
-      },
-      {
-        title: "",
-        description: "Enjoying the Skillify Experience?",
-        completed: false,
-        locked: false,
-        link: "https://www.joinskillify.com/call",
-        type: "lesson",
-      },
-    ],
-  },
-  {
-    title: "Backend",
-    nodes: [
-      {
-        title: "",
-        description: "",
-        completed: false,
-        locked: true,
-        link: "",
-        type: "lesson",
-      },
-      {
-        title: "",
-        description: "",
-        completed: false,
-        locked: true,
-        link: "",
-        type: "lesson",
-      },
-      {
-        title: "",
-        description: "",
-        completed: false,
-        locked: true,
-        link: "",
-        type: "lesson",
-      },
-      {
-        title: "",
-        description: "",
-        completed: false,
-        locked: true,
-        link: "",
-        type: "lesson",
-      },
-    ],
-  },
-];
+function transformBackendUnit(unit: Unit): Unit {
+  return {
+    title: unit.title,
+    nodes: unit.nodes.map(() => {
+      return {
+        type: "grayedOut",
+      };
+    }
+ ),
+  };
+}
