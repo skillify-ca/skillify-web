@@ -1,61 +1,9 @@
-import { Unit } from "../../../pages/api/studentPortal/units";
+import { githubUnit, introUnit, tailwindUnit, Unit } from "../units";
 
 export const paidUnits: Unit[] = [
-  {
-    title: "Introduction",
-    nodes: [
-      {
-        title: "Lesson",
-        description: "Intro to Web Development",
-        type: "lesson",
-        completed: false,
-        locked: false,
-        link: "web/introduction",
-      },
-    ],
-  },
-  {
-    title: "Github",
-    nodes: [
-      {
-        title: "Lesson 1",
-        description: "Deploying a Project on Github & Vercel",
-        completed: false,
-        locked: false,
-        link: "web/React/github",
-        type: "lesson",
-      },
-    ],
-  },
-  {
-    title: "TailwindCSS",
-    nodes: [
-      {
-        title: "Lesson 1",
-        description: "TailwindCSS - Grid & Flexbox",
-        completed: false,
-        locked: false,
-        link: "web/React/tailwindcss-gridflex",
-        type: "lesson",
-      },
-      {
-        title: "Lesson 2",
-        description: "TailwindCSS - General Styling",
-        completed: false,
-        locked: false,
-        link: "web/React/tailwindcss-colourstyling",
-        type: "lesson",
-      },
-      {
-        title: "Assignment 1",
-        description: "TailwindCSS Assignment",
-        completed: false,
-        locked: false,
-        link: "web/React/assignments/tailwindAssignment",
-        type: "lesson",
-      },
-    ],
-  },
+  introUnit,
+  githubUnit,
+  tailwindUnit,
   {
     title: "React",
     nodes: [
