@@ -79,7 +79,7 @@ export default function StudentPortalPage() {
           units.map((it, i) => <UnitView key={i} data={it} />)
         )}
       </div>
-      <FreemiumDialogComponent size={"w-full h-3/4"} />
+      <FreemiumDialogComponent />
     </div>
   );
 }
