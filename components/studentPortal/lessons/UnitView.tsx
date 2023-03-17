@@ -14,9 +14,26 @@ export const UnitView: React.FC<UnitViewProps> = ({ data }: UnitViewProps) => {
       </p>
       <div>
         {data.nodes.map((it, index) => {
-          if (!it.locked) {
-            return (
-              <a href={"/studentPortal/" + it.link}>
+          if (
+            it.type === "assignment" ||
+            it.type === "lesson" ||
+            it.type === "quiz"
+          ) {
+            if (!it.locked) {
+              return (
+                <a href={"/studentPortal/" + it.link}>
+                  <UnitNodeView
+                    hiddenLine={index === data.nodes.length - 1}
+                    completed={it.completed}
+                    locked={it.locked}
+                    title={it.title}
+                    description={it.description}
+                    type={it.type}
+                  />
+                </a>
+              );
+            } else {
+              return (
                 <UnitNodeView
                   hiddenLine={index === data.nodes.length - 1}
                   completed={it.completed}
@@ -25,19 +42,8 @@ export const UnitView: React.FC<UnitViewProps> = ({ data }: UnitViewProps) => {
                   description={it.description}
                   type={it.type}
                 />
-              </a>
-            );
-          } else {
-            return (
-              <UnitNodeView
-                hiddenLine={index === data.nodes.length - 1}
-                completed={it.completed}
-                locked={it.locked}
-                title={it.title}
-                description={it.description}
-                type={it.type}
-              />
-            );
+              );
+            }
           }
         })}
       </div>
