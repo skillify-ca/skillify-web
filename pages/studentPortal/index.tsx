@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
+import FreemiumDialogComponent from "../../components/studentPortal/freemium/FreemiumDialogComponent";
 import UnitView from "../../components/studentPortal/lessons/UnitView";
 import ErrorMessage from "../../components/ui/ErrorMessage";
 import PageHeader from "../../components/ui/PageHeader";
@@ -78,6 +79,7 @@ export default function StudentPortalPage() {
           units.map((it, i) => <UnitView key={i} data={it} />)
         )}
       </div>
+      <FreemiumDialogComponent size={"w-full h-3/4"} />
     </div>
   );
 }
