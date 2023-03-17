@@ -12,7 +12,6 @@ export type UnitNode =
     }
   | {
       type: "freemiumMessage";
-      description: string;
       link: string;
     };
 export interface Unit {

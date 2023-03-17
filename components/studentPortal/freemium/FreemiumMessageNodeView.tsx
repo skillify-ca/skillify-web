@@ -4,12 +4,11 @@ import NodeIcon from "../../ui/NodeIcon";
 import FreemiumMessage from "./FreemiumMessage";
 
 export type FreemiumMessageNodeViewProps = {
-  description: string;
   hiddenLine: boolean;
 };
 
 export const FreemiumMessageNodeView: React.FC<FreemiumMessageNodeViewProps> =
-  ({ hiddenLine, description }: FreemiumMessageNodeViewProps) => {
+  ({ hiddenLine }: FreemiumMessageNodeViewProps) => {
     return (
       <div className="">
         <div
@@ -21,7 +20,6 @@ export const FreemiumMessageNodeView: React.FC<FreemiumMessageNodeViewProps> =
                 completed={false}
                 locked={false}
                 type={"lesson"}
-                description={description}
                 freemiumMessage={true}
               />
             </div>
