@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "../../ui/Button";
-import ProgressBar from "../ProgressBar";
-import QuizNavbar from "../QuizNavbar";
+import ProgressBar from "../progressbar";
+import SkillifyNavbar from "../SkillifyNavbar";
 
 type EduBackgroundProps = {
   onNextClick: () => void;
@@ -13,7 +13,7 @@ const EducationBackground = ({
 }: EduBackgroundProps) => {
   return (
     <div className="space-y-4">
-      <QuizNavbar onBackClick={onBackClick}></QuizNavbar>
+      <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
       <div className="px-4">
         <ProgressBar progress={15}></ProgressBar>
       </div>

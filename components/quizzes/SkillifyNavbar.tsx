@@ -1,18 +1,18 @@
-import { useRouter } from "next/router";
 import React from "react";
 
-type QuizNavbarProps = {
+type SkillifyNavbarProps = {
+  hidden: boolean;
   onBackClick: () => void;
 };
-const quizNavbar = ({ onBackClick }: QuizNavbarProps) => {
-  const router = useRouter();
+const SkillifyNavbar = ({ hidden, onBackClick }: SkillifyNavbarProps) => {
+  const className = hidden ? "w-16 p-4 opacity-0" : "w-16 p-4";
   return (
     <div className="flex justify-between">
       <div className="flex justify-start">
         <img
           src="/images/backarrow.svg"
           onClick={onBackClick}
-          className="w-16 p-4"
+          className={className}
         />
       </div>
       <div className="flex justify-center">
@@ -23,4 +23,4 @@ const quizNavbar = ({ onBackClick }: QuizNavbarProps) => {
   );
 };
 
-export default quizNavbar;
+export default SkillifyNavbar;

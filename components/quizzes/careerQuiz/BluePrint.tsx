@@ -1,9 +1,8 @@
-import { useRouter } from "next/router";
 import React from "react";
 import { Button } from "../../ui/Button";
 import NumberedCircles from "../NumberedCicles";
 import ProgressBar from "../ProgressBar";
-import QuizNavbar from "../QuizNavbar";
+import SkillifyNavbar from "../SkillifyNavbar";
 
 type BluePrintProps = {
   onNextClick: () => void;
@@ -11,10 +10,10 @@ type BluePrintProps = {
 };
 
 const Blueprint = ({ onNextClick, onBackClick }: BluePrintProps) => {
-  const router = useRouter();
   return (
     <div className="w-full  space-y-4">
-      <QuizNavbar></QuizNavbar>
+      <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
+
       <div className="w-full mb-4 text-center">
         <div className="w-full h-2 bg-black-600 px-4 rounded-lg mb-2">
           <ProgressBar progress={100} />

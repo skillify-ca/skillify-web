@@ -7,7 +7,7 @@ import Skills from "../components/quizzes/careerQuiz/Skills";
 import StartQuiz from "../components/quizzes/careerQuiz/StartQuiz";
 import Tasks from "../components/quizzes/careerQuiz/Tasks";
 
-enum Stage {
+export enum Stage {
   START,
   EDUCATION,
   INDUSTRIES,
@@ -64,12 +64,7 @@ const CareerQuiz = () => {
           />
         );
       case Stage.RESULTS:
-        return (
-          <CareerResults
-            onNextClick={handleNextClick}
-            onBackClick={handleBackClick}
-          />
-        );
+        return <CareerResults onBackClick={handleBackClick} />;
       default:
         return null;
     }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../../ui/Button";
-import QuizNavbar from "../QuizNavbar";
+import SkillifyNavbar from "../SkillifyNavbar";
 
 type CareerResultsProps = {
   onBackClick: () => void;
@@ -8,7 +8,8 @@ type CareerResultsProps = {
 const CareerResults = ({ onBackClick }: CareerResultsProps) => {
   return (
     <div className="  w-full mx-auto ">
-      <QuizNavbar onBackClick={onBackClick} />
+      <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
+
       <div className="grid text-center justify-items-center">
         <div className="font-bold mt-4 text-2xl ">YOUR RESULTS</div>
         <div className=" text-lg font-semibolds ">
@@ -24,7 +25,7 @@ const CareerResults = ({ onBackClick }: CareerResultsProps) => {
           Start your career with a Skillify coach today!
         </div>
         <div className="flex flex-col items-center space-y-4 py-4">
-          <Button label="Book a call" />
+          <Button label="Book a call" backgroundColor="yellow" />
           <Button label="Learn more" backgroundColor="blue" />
         </div>
         <div className="mx-4">

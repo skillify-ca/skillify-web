@@ -1,19 +1,13 @@
-import { useRouter } from "next/router";
 import React from "react";
 import { Button } from "../ui/Button";
-
 type IntakeProps = {
   onNextClick: () => void;
 };
 
 const Intake = ({ onNextClick }: IntakeProps) => {
-  const router = useRouter();
-
   return (
     <div className="w-full space-y-4  ">
-      <div className="flex justify-center p-4 ml-16">
-        <img src="/images/logo.svg" className="w-40 mr-8" />
-      </div>
+      <div className="flex justify-center p-4 ml-16"></div>
       <div className="flex flex-col items-center text-center space-y-6 px-4">
         <h1 className="text-3xl font-semibold">
           Career in Tech Personality Quiz{" "}

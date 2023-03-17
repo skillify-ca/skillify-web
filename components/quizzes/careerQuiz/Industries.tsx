@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { Button } from "../../ui/Button";
 import ProgressBar from "../ProgressBar";
-import QuizNavbar from "../QuizNavbar";
+import SkillifyNavbar from "../SkillifyNavbar";
 import SkillSelection from "../SkillSelection";
 type IndustriesProps = {
   onNextClick: () => void;
@@ -12,7 +12,7 @@ const Industries = ({ onNextClick, onBackClick }: IndustriesProps) => {
   const router = useRouter();
   return (
     <div className="w-full  space-y-4 ">
-      <QuizNavbar onBackClick={onBackClick} />
+      <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
       <div className="px-4 flex flex-col items-center ">
         <ProgressBar progress={35} />
 
