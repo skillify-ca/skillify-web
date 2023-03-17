@@ -5,10 +5,11 @@ import FreemiumMessage from "./FreemiumMessage";
 
 export type FreemiumMessageNodeViewProps = {
   hiddenLine: boolean;
+  type: "lesson" | "quiz" | "assignment" | "freemiumMessage" | "grayedOut";
 };
 
 export const FreemiumMessageNodeView: React.FC<FreemiumMessageNodeViewProps> =
-  ({ hiddenLine }: FreemiumMessageNodeViewProps) => {
+  ({ hiddenLine, type }: FreemiumMessageNodeViewProps) => {
     return (
       <div className="">
         <div
@@ -16,12 +17,7 @@ export const FreemiumMessageNodeView: React.FC<FreemiumMessageNodeViewProps> =
         >
           <div className="flex flex-col col-span-2 ml-4 md:items-center">
             <div className="flex rounded-full">
-              <NodeIcon
-                completed={false}
-                locked={false}
-                type={"lesson"}
-                freemiumMessage={true}
-              />
+              <NodeIcon type={type} />
             </div>
           </div>
           <div className="flex flex-col justify-center w-full col-span-10 ml-4 sm:ml-0 sm:col-span-6">

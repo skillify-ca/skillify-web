@@ -20,11 +20,15 @@ export const UnitView: React.FC<UnitViewProps> = ({ data }: UnitViewProps) => {
             return (
               <FreemiumMessageNodeView
                 hiddenLine={index === data.nodes.length - 1}
+                type={it.type}
               />
             );
           } else if (it.type === "grayedOut") {
             return (
-              <SkeletonNodeView hiddenLine={index === data.nodes.length - 1} />
+              <SkeletonNodeView
+                hiddenLine={index === data.nodes.length - 1}
+                type={it.type}
+              />
             );
           } else {
             if (!it.locked) {
