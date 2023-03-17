@@ -21,12 +21,13 @@ export const FreemiumUnitView: React.FC<FreemiumUnitViewProps> = ({
           if (node.type === "freemiumMessage") {
             return (
               <FreemiumMessageNodeView
-                description={"hello"}
-                hiddenLine={false}
+                hiddenLine={index === data.nodes.length - 1}
               />
             );
           } else if (node.type === "grayedOut") {
-            return <SkeletonNodeView hiddenLine={false} />
+            return (
+              <SkeletonNodeView hiddenLine={index === data.nodes.length - 1} />
+            );
           } else if (node.locked === true) {
             return (
               <UnitNodeView
@@ -34,7 +35,7 @@ export const FreemiumUnitView: React.FC<FreemiumUnitViewProps> = ({
                 description={node.description}
                 completed={node.completed}
                 locked={node.locked}
-                hiddenLine={false}
+                hiddenLine={index === data.nodes.length - 1}
                 type={node.type}
               />
             );
@@ -46,7 +47,7 @@ export const FreemiumUnitView: React.FC<FreemiumUnitViewProps> = ({
                   description={node.description}
                   completed={node.completed}
                   locked={node.locked}
-                  hiddenLine={false}
+                  hiddenLine={index === data.nodes.length - 1}
                   type={node.type}
                 />
               </a>
