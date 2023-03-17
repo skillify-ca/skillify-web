@@ -22,9 +22,9 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
   const { currentTheme } = useSelector(themeSelector);
   const [activeModal, setActiveModal] = useState(ModalStage.ONE);
 
-  const activeModalStyling = (modal: ModalStage) => {
+  const activeModalStyling = (currentStage: ModalStage) => {
     let styling = "w-6 h-6 rounded-full";
-    if (modal === activeModal) {
+    if (currentStage === activeModal) {
       styling = styling + " bg-rattata";
     } else {
       styling = styling + " bg-gray-300";
@@ -38,8 +38,14 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
         setCurrentStage((currentStage) =>
           currentStage > ModalStage.ONE ? currentStage - 1 : ModalStage.ONE
         );
+        setActiveModal((currentStage) =>
+          currentStage > ModalStage.ONE ? currentStage - 1 : ModalStage.ONE
+        );
       } else if (event.code === "ArrowRight") {
         setCurrentStage((currentStage) =>
+          currentStage < ModalStage.FIVE ? currentStage + 1 : ModalStage.FIVE
+        );
+        setActiveModal((currentStage) =>
           currentStage < ModalStage.FIVE ? currentStage + 1 : ModalStage.FIVE
         );
       }
