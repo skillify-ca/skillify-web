@@ -5,9 +5,9 @@ export default function Welcome() {
       <h1 className="text-3xl font-bold text-center">
         Welcome to Skillify Coding Academy!
       </h1>
-      <div className="flex">
-        <div className="flex flex-col p-32 space-y-8">
-          <p className="">
+      <div className="flex items-center">
+        <div className="flex flex-col space-y-8">
+          <p>
             Your free trial includes access to lessons, quizzes, and assignments
             from our beginner and advanced coding courses.
           </p>

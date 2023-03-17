@@ -60,7 +60,7 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
         <Overlay className="bg-gray-300 data-[state=open]:animate-overlayShow fixed inset-0" />
         <Content className={`${currentTheme}`}>
           <div
-            className={`fixed flex flex-col items-center w-3/4 h-2/3 p-4 text-center transform -translate-x-1/2 -translate-y-1/2 ${
+            className={`fixed w-3/4 h-2/3 p-20 transform -translate-x-1/2 -translate-y-1/2 ${
               currentStage === ModalStage.TWO ||
               currentStage === ModalStage.THREE
                 ? "bg-blue-900"
@@ -77,10 +77,7 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
             {currentStage === ModalStage.THREE && <Upgrade />}
             {currentStage === ModalStage.FOUR && <WhereToStart />}
             {currentStage === ModalStage.FIVE && <OffYouGo />}
-            <div
-              className="flex flex-row space-x-2"
-              style={{ position: "absolute", bottom: 30 }}
-            >
+            <div className="flex flex-row justify-center space-x-2 absolute bottom-8 w-full">
               <div
                 className={activeModalStyling(ModalStage.ONE)}
                 onClick={() => {
