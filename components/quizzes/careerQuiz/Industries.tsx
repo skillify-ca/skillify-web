@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import React from "react";
 import { Button } from "../../ui/Button";
 import ProgressBar from "../ProgressBar";
@@ -9,7 +8,6 @@ type IndustriesProps = {
   onBackClick: () => void;
 };
 const Industries = ({ onNextClick, onBackClick }: IndustriesProps) => {
-  const router = useRouter();
   return (
     <div className="w-full  space-y-4 ">
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
