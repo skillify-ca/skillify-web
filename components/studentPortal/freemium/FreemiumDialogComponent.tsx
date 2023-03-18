@@ -63,7 +63,7 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
             className={`fixed w-3/4 h-2/3 p-20 transform -translate-x-1/2 -translate-y-1/2 ${
               currentStage === ModalStage.TWO ||
               currentStage === ModalStage.THREE
-                ? "bg-blue-900"
+                ? "bg-[#18124C]"
                 : "bg-white"
             } rounded-lg left-1/2 top-1/2`}
           >
@@ -77,7 +77,7 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
             {currentStage === ModalStage.THREE && <Upgrade />}
             {currentStage === ModalStage.FOUR && <WhereToStart />}
             {currentStage === ModalStage.FIVE && <OffYouGo />}
-            <div className="flex flex-row justify-center space-x-2 absolute bottom-8 w-full">
+            <div className="flex flex-row justify-center space-x-2 absolute bottom-8 inset-x-0">
               <div
                 className={activeModalStyling(ModalStage.ONE)}
                 onClick={() => {
