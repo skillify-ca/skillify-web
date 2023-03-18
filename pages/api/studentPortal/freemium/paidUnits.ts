@@ -14,7 +14,6 @@ function transformReactUnit(unit: Unit): Unit {
     nodes: unit.nodes.map((node, index) => {
       if (index === unit.nodes.length-1) {
         return {
-          description: "Enjoying the Skillify Experience?",
           link: "https://www.joinskillify.com/call",
           type: "freemiumMessage",
         };

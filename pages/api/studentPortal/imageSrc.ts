@@ -1,6 +1,10 @@
 export const imageSrc = (completed, locked, type) => {
     if (completed) {
       return "/images/studentPortal/checkmark.svg";
+    }  else if (type === "grayedOut") {
+      return "../../images/freemium/circleLock.svg";
+    } else if (type === "freemiumMessage") {
+      return "../../images/logo-2.png";
     } else if (locked && type === "lesson") {
       return "/images/studentPortal/lesson_inactive.svg";
     } else if (locked && type === "quiz") {
@@ -17,12 +21,3 @@ export const imageSrc = (completed, locked, type) => {
     return "";
   };
 
-  export const freemiumImageSrc = (completed, description, locked, type, freemiumMessage) => {
-    if (description === "") {
-        return "../../images/freemium/circleLock.svg";
-    } else if (freemiumMessage) {
-        return "../../images/logo-2.png";
-    } else {
-        return imageSrc(completed, locked, type);
-    }
-};

@@ -17,7 +17,6 @@ function transformReactUnit(unit: Unit): Unit {
         };
       } else if (index === 3) {
         return {
-          description: "Enjoying the Skillify Experience?",
           link: "https://www.joinskillify.com/call",
           type: "freemiumMessage",
         };
