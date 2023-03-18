@@ -2,6 +2,7 @@ import { XIcon } from "@heroicons/react/outline";
 import { Close, Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { animated, useSpring } from "react-spring";
 import { themeSelector } from "../../../redux/themeSlice";
 import OffYouGo from "./Modals/OffYouGo";
 import PremiumFeatures from "./Modals/PremiumFeatures";
@@ -21,6 +22,7 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
   const [currentStage, setCurrentStage] = useState(ModalStage.ONE); // using useState and ModalStage
   const { currentTheme } = useSelector(themeSelector);
   const [activeModal, setActiveModal] = useState(ModalStage.ONE);
+  const [springProps, set] = useSpring(() => ({ opacity: 1 }));
 
   const activeModalStyling = (currentStage: ModalStage) => {
     let styling = "md:w-6 md:h-6 w-4 h-4 rounded-full";
@@ -72,11 +74,31 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
                 <XIcon />
               </button>
             </Close>
-            {currentStage === ModalStage.ONE && <Welcome />}
-            {currentStage === ModalStage.TWO && <PremiumFeatures />}
-            {currentStage === ModalStage.THREE && <Upgrade />}
-            {currentStage === ModalStage.FOUR && <WhereToStart />}
-            {currentStage === ModalStage.FIVE && <OffYouGo />}
+            {currentStage === ModalStage.ONE && (
+              <animated.div style={springProps}>
+                <Welcome />
+              </animated.div>
+            )}
+            {currentStage === ModalStage.TWO && (
+              <animated.div style={springProps}>
+                <PremiumFeatures />
+              </animated.div>
+            )}
+            {currentStage === ModalStage.THREE && (
+              <animated.div style={springProps}>
+                <Upgrade />
+              </animated.div>
+            )}
+            {currentStage === ModalStage.FOUR && (
+              <animated.div style={springProps}>
+                <WhereToStart />
+              </animated.div>
+            )}
+            {currentStage === ModalStage.FIVE && (
+              <animated.div style={springProps}>
+                <OffYouGo />
+              </animated.div>
+            )}
             <div className="flex flex-row justify-center space-x-2 absolute bottom-4 md:bottom-8 inset-x-0">
               <div
                 className={activeModalStyling(ModalStage.ONE)}
@@ -90,6 +112,10 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
                 onClick={() => {
                   setCurrentStage(ModalStage.TWO);
                   setActiveModal(ModalStage.TWO);
+                  set({ opacity: 0 });
+                  setTimeout(() => {
+                    set({ opacity: 1 });
+                  }, 500);
                 }}
               ></div>
               <div
