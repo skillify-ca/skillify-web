@@ -23,7 +23,7 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
   const [activeModal, setActiveModal] = useState(ModalStage.ONE);
 
   const activeModalStyling = (currentStage: ModalStage) => {
-    let styling = "w-6 h-6 rounded-full";
+    let styling = "md:w-6 md:h-6 w-4 h-4 rounded-full";
     if (currentStage === activeModal) {
       styling = styling + " bg-rattata";
     } else {
@@ -60,7 +60,7 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
         <Overlay className="bg-gray-300 data-[state=open]:animate-overlayShow fixed inset-0" />
         <Content className={`${currentTheme}`}>
           <div
-            className={`fixed w-3/4 h-2/3 p-20 transform -translate-x-1/2 -translate-y-1/2 ${
+            className={`fixed w-3/4 h-2/3 p-8 md:p-20 transform -translate-x-1/2 -translate-y-1/2 ${
               currentStage === ModalStage.TWO ||
               currentStage === ModalStage.THREE
                 ? "bg-[#18124C]"
@@ -77,7 +77,7 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
             {currentStage === ModalStage.THREE && <Upgrade />}
             {currentStage === ModalStage.FOUR && <WhereToStart />}
             {currentStage === ModalStage.FIVE && <OffYouGo />}
-            <div className="flex flex-row justify-center space-x-2 absolute bottom-8 inset-x-0">
+            <div className="flex flex-row justify-center space-x-2 absolute bottom-4 md:bottom-8 inset-x-0">
               <div
                 className={activeModalStyling(ModalStage.ONE)}
                 onClick={() => {
