@@ -19,7 +19,7 @@ export const imageSrc = (completed, locked, type) => {
 
   export const freemiumImageSrc = (completed, description, locked, type, freemiumMessage) => {
     if (description === "") {
-        return "/images/studentPortal/lesson_inactive.svg";
+        return "../../images/freemium/circleLock.svg";
     } else if (freemiumMessage) {
         return "../../images/logo-2.png";
     } else {

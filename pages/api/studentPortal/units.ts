@@ -1,196 +1,215 @@
-export interface UnitNode {
-  title: string;
-  description: string;
-  completed: boolean;
-  locked: boolean;
-  link: string;
-  type: "lesson" | "quiz" | "assignment";
-}
+export type UnitNode =
+  | {
+      title: string;
+      description: string;
+      completed: boolean;
+      locked: boolean;
+      link: string;
+      type: "lesson" | "quiz" | "assignment";
+    }
+  | {
+      type: "grayedOut";
+    }
+  | {
+      type: "freemiumMessage";
+      description: string;
+      link: string;
+    };
 export interface Unit {
   title: string;
   nodes: UnitNode[];
 }
 
+// Database Layer
+export const introUnit: Unit = {
+  title: "Introduction",
+  nodes: [
+    {
+      title: "Lesson",
+      description: "Intro to Web Development",
+      type: "lesson",
+      completed: false,
+      locked: false,
+      link: "web/introduction",
+    },
+  ],
+};
+
+export const githubUnit: Unit = {
+  title: "Github",
+  nodes: [
+    {
+      title: "Lesson",
+      description: "Deploying a Project on Github & Vercel",
+      completed: false,
+      locked: false,
+      link: "web/React/github",
+      type: "lesson",
+    },
+  ],
+};
+
+export const tailwindUnit: Unit = {
+  title: "TailwindCSS",
+  nodes: [
+    {
+      title: "Lesson",
+      description: "TailwindCSS - Grid & Flexbox",
+      completed: false,
+      locked: false,
+      link: "web/React/tailwindcss-gridflex",
+      type: "lesson",
+    },
+    {
+      title: "Lesson",
+      description: "TailwindCSS - General Styling",
+      completed: false,
+      locked: false,
+      link: "web/React/tailwindcss-colourstyling",
+      type: "lesson",
+    },
+    {
+      title: "Assignment 1",
+      description: "TailwindCSS Assignment",
+      completed: false,
+      locked: false,
+      link: "web/React/assignments/tailwindAssignment",
+      type: "lesson",
+    },
+  ],
+};
+
+export const reactUnit: Unit = {
+  title: "React",
+  nodes: [
+    {
+      title: "Lesson",
+      description: "Components",
+      completed: false,
+      locked: false,
+      link: "web/React/components",
+      type: "lesson",
+    },
+    {
+      title: "Lesson",
+      description: "Props",
+      completed: false,
+      locked: false,
+      link: "web/React/props",
+      type: "lesson",
+    },
+    {
+      title: "Assignment 2",
+      description: "Components and Props",
+      completed: false,
+      locked: false,
+      link: "web/React/assignments/componentsAssignment",
+      type: "lesson",
+    },
+
+    {
+      title: "Lesson",
+      description: "Hooks - useState",
+      completed: false,
+      locked: true,
+      link: "react/React/1",
+      type: "lesson",
+    },
+    {
+      title: "Lesson",
+      description: "Hooks - useEffect",
+      completed: false,
+      locked: true,
+      link: "react/React/1",
+      type: "lesson",
+    },
+    {
+      title: "Lesson",
+      description: "Conditional Rendering",
+      completed: false,
+      locked: true,
+      link: "react/React/1",
+      type: "lesson",
+    },
+    {
+      title: "Lesson",
+      description: "Handling Events",
+      completed: false,
+      locked: true,
+      link: "react/React/1",
+      type: "lesson",
+    },
+    {
+      title: "Assignment 3",
+      description: "Building a tic tac toe game",
+      completed: false,
+      locked: true,
+      link: "react/React/1",
+      type: "lesson",
+    },
+    {
+      title: "Assignment 4",
+      description: "Build a K-12 Math Quiz",
+      completed: false,
+      locked: true,
+      link: "react/React/1",
+      type: "lesson",
+    },
+    {
+      title: "Assignment 5",
+      description: "Build a tutorial to a Leetcode question",
+      completed: false,
+      locked: true,
+      link: "react/React/1",
+      type: "lesson",
+    },
+  ],
+};
+
+export const backendUnit: Unit = {
+  title: "Backend",
+  nodes: [
+    {
+      title: "Lesson",
+      description: "Intro to Databases",
+      type: "lesson",
+      completed: false,
+      locked: true,
+      link: "react/React/1",
+    },
+    {
+      title: "Lesson",
+      description: "Database Reads",
+      type: "lesson",
+      completed: false,
+      locked: true,
+      link: "react/React/1",
+    },
+    {
+      title: "Lesson",
+      description: "Database Writes",
+      type: "lesson",
+      completed: false,
+      locked: true,
+      link: "react/React/1",
+    },
+    {
+      title: "Assignment 6",
+      description: "Capstone Project",
+      completed: false,
+      locked: true,
+      link: "react/React/1",
+      type: "assignment",
+    },
+  ],
+};
+
 export const reactUnits: Unit[] = [
-  {
-    title: "Introduction",
-    nodes: [
-      {
-        title: "Lesson",
-        description: "Intro to Web Development",
-        type: "lesson",
-        completed: false,
-        locked: false,
-        link: "web/introduction",
-      },
-    ],
-  },
-  {
-    title: "Github",
-    nodes: [
-      {
-        title: "Lesson 1",
-        description: "Deploying a Project on Github & Vercel",
-        completed: false,
-        locked: false,
-        link: "web/React/github",
-        type: "lesson",
-      },
-    ],
-  },
-  {
-    title: "TailwindCSS",
-    nodes: [
-      {
-        title: "Lesson 1",
-        description: "TailwindCSS - Grid & Flexbox",
-        completed: false,
-        locked: false,
-        link: "web/React/tailwindcss-gridflex",
-        type: "lesson",
-      },
-      {
-        title: "Lesson 2",
-        description: "TailwindCSS - General Styling",
-        completed: false,
-        locked: false,
-        link: "web/React/tailwindcss-colourstyling",
-        type: "lesson",
-      },
-      {
-        title: "Assignment 1",
-        description: "TailwindCSS Assignment",
-        completed: false,
-        locked: false,
-        link: "web/React/assignments/tailwindAssignment",
-        type: "lesson",
-      },
-    ],
-  },
-  {
-    title: "React",
-    nodes: [
-      {
-        title: "Lesson 3",
-        description: "Components",
-        completed: false,
-        locked: false,
-        link: "web/React/components",
-        type: "lesson",
-      },
-      {
-        title: "Lesson 4",
-        description: "Props",
-        completed: false,
-        locked: false,
-        link: "web/React/props",
-        type: "lesson",
-      },
-      {
-        title: "Assignment 2",
-        description: "Components and Props",
-        completed: false,
-        locked: false,
-        link: "web/React/assignments/componentsAssignment",
-        type: "lesson",
-      },
-
-      {
-        title: "Lesson 4",
-        description: "Hooks - useState",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-        type: "lesson",
-      },
-
-      {
-        title: "Lesson 5",
-        description: "Hooks - useEffect",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-        type: "lesson",
-      },
-      {
-        title: "Lesson 6",
-        description: "Conditional Rendering",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-        type: "lesson",
-      },
-      {
-        title: "Lesson 7",
-        description: "Handling Events",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-        type: "lesson",
-      },
-      {
-        title: "Assignment 1",
-        description: "Building a tic tac toe game",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-        type: "lesson",
-      },
-      {
-        title: "Assignment 2",
-        description: "Build a K-12 Math Quiz",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-        type: "lesson",
-      },
-      {
-        title: "Assignment 3",
-        description: "Build a tutorial to a Leetcode question",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-        type: "lesson",
-      },
-    ],
-  },
-  {
-    title: "Backend",
-    nodes: [
-      {
-        title: "Lesson 1",
-        description: "Intro to Databases",
-        type: "lesson",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-      },
-      {
-        title: "Lesson 2",
-        description: "Database Reads",
-        type: "lesson",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-      },
-      {
-        title: "Lesson 3",
-        description: "Database Writes",
-        type: "lesson",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-      },
-      {
-        title: "Assignment 1",
-        description: "Capstone Project",
-        completed: false,
-        locked: true,
-        link: "react/React/1",
-        type: "assignment",
-      },
-    ],
-  },
+  introUnit,
+  githubUnit,
+  tailwindUnit,
+  reactUnit,
+  backendUnit,
 ];
 
 export const interviewUnits: Unit[] = [

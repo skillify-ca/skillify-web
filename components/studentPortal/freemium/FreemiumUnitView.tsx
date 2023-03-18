@@ -1,12 +1,13 @@
 import React from "react";
 import { Unit } from "../../../pages/api/studentPortal/units";
-import FreemiumUnitNodeView from "./FreemiumUnitNodeView";
+import UnitNodeView from "../lessons/UnitNodeView";
+import { FreemiumMessageNodeView } from "./FreemiumMessageNodeView";
+import SkeletonNodeView from "./SkeletonNodeView";
 
 export type FreemiumUnitViewProps = {
   data: Unit;
 };
 
-const freemiumNodes = [""];
 export const FreemiumUnitView: React.FC<FreemiumUnitViewProps> = ({
   data,
 }: FreemiumUnitViewProps) => {
@@ -17,33 +18,37 @@ export const FreemiumUnitView: React.FC<FreemiumUnitViewProps> = ({
       </p>
       <div>
         {data.nodes.map((node, index) => {
-          const grayedOut = freemiumNodes.some(
-            (str) =>
-              node.description.indexOf(str) !== -1 && node.description === str
-          );
-          const nodeProps = {
-            hiddenLine: index === data.nodes.length - 1,
-            completed: node.completed,
-            locked: node.locked,
-            title: node.title,
-            description: node.description,
-            type: node.type,
-            grayedOut: grayedOut,
-            freemiumMessage:
-              node.description === "Enjoying the Skillify Experience?"
-                ? true
-                : false,
-          };
-          if (
-            node.locked ||
-            nodeProps.grayedOut === true ||
-            nodeProps.freemiumMessage === true
-          ) {
-            return <FreemiumUnitNodeView {...nodeProps} />;
+          if (node.type === "freemiumMessage") {
+            return (
+              <FreemiumMessageNodeView
+                description={"hello"}
+                hiddenLine={false}
+              />
+            );
+          } else if (node.type === "grayedOut") {
+            return <SkeletonNodeView hiddenLine={false} />
+          } else if (node.locked === true) {
+            return (
+              <UnitNodeView
+                title={node.title}
+                description={node.description}
+                completed={node.completed}
+                locked={node.locked}
+                hiddenLine={false}
+                type={node.type}
+              />
+            );
           } else {
             return (
               <a href={"/studentPortal/" + node.link}>
-                <FreemiumUnitNodeView {...nodeProps} />
+                <UnitNodeView
+                  title={node.title}
+                  description={node.description}
+                  completed={node.completed}
+                  locked={node.locked}
+                  hiddenLine={false}
+                  type={node.type}
+                />
               </a>
             );
           }
