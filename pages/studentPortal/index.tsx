@@ -16,11 +16,11 @@ import {
 import { UPDATE_USER } from "../../graphql/studentPortal/users/updateUser";
 
 import { useAuth } from "../../lib/authContext";
+import { showModal } from "../api/studentPortal/freemium/showModal";
 import { Unit } from "../api/studentPortal/units";
 
 export default function StudentPortalPage() {
   const { user } = useAuth();
-
   const [initUserNodes] = useMutation(INIT_USER_INTRO_NODES);
   const [updateUser] = useMutation(UPDATE_USER);
   const { data, error } = useQuery(FETCH_USER_INTRO_NODES, {
@@ -79,7 +79,7 @@ export default function StudentPortalPage() {
           units.map((it, i) => <UnitView key={i} data={it} />)
         )}
       </div>
-      <FreemiumDialogComponent />
+      {showModal() === true ? <FreemiumDialogComponent /> : null}
     </div>
   );
 }
