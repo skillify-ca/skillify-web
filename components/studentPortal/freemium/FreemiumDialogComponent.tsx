@@ -67,7 +67,7 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
   return (
     <Root defaultOpen={true}>
       <Portal>
-        <Overlay className="bg-gradient-to-r from-white data-[state=open]:animate-overlayShow fixed inset-0" />
+        <Overlay className="bg-gradient-to-r from-gray-300 data-[state=open]:animate-overlayShow fixed inset-0" />
         <Content className={`${currentTheme}`}>
           <div
             className={`fixed w-3/4 h-2/3 p-8 md:p-20 transform -translate-x-1/2 -translate-y-1/2 ${
