@@ -11,7 +11,7 @@ export default function PremiumFeatures() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 md:gap-8 gap-4 items-start w-full md:max-w-6xl">
         <div className="flex flex-col items-center justify-center space-y-2 md:space-y-6">
-          <div className="bg-white rounded-full md:p-4 p-1 md:w-3/4 w-1/4">
+          <div className="bg-white rounded-full md:p-4 p-1 md:w-48 w-12">
             <img className="" src="/images/freemium/buildRealProjects.svg" />
           </div>
           <p className="text-charmander md:text-xl text-md font-bold">
@@ -23,7 +23,7 @@ export default function PremiumFeatures() {
           </p>
         </div>
         <div className="flex flex-col items-center justify-center space-y-2 md:space-y-6">
-          <div className="bg-white rounded-full md:p-4 p-1 md:w-3/4 w-1/4">
+          <div className="bg-white rounded-full md:p-4 p-1 md:w-48 w-12">
             <img className="" src="/images/freemium/communityOfLearners.svg" />
           </div>
           <p className="text-charmander md:text-xl text-md font-bold">
@@ -35,7 +35,7 @@ export default function PremiumFeatures() {
           </p>
         </div>
         <div className="flex flex-col items-center justify-center space-y-2 md:space-y-6">
-          <div className="bg-white rounded-full md:p-4 p-1 md:w-3/4 w-1/4">
+          <div className="bg-white rounded-full md:p-4 p-1 md:w-48 w-12">
             <img className="" src="/images/freemium/industryExperts.svg" />
           </div>
           <p className="text-charmander md:text-xl text-md font-bold">

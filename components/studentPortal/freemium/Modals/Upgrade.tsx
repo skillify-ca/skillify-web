@@ -3,7 +3,7 @@ import { Button } from "../../../ui/Button";
 
 export default function Upgrade() {
   return (
-    <div className="flex flex-col gap-4 text-white items-center justify-center">
+    <div className="flex flex-col gap-4 text-white items-center justify-center max-h-80 md:mt-20">
       <h1 className="flex font-bold text-base md:text-2xl max-w-xl text-center">
         Upgrade your plan at any time to unlock premium features.
       </h1>
