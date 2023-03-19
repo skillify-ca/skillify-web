@@ -1,7 +1,7 @@
-import React from "react";
 import { useMutation } from "@apollo/client";
 import getClient from "@sanity/client";
 import { useRouter } from "next/router";
+import React from "react";
 import LessonComponent from "../../../components/studentPortal/lessons/LessonComponent";
 import { Button } from "../../../components/ui/Button";
 import ProgressBar from "../../../components/ui/ProgressBar";
@@ -11,6 +11,13 @@ import { UNLOCK_USER_INTRO_NODE } from "../../../graphql/studentPortal/courses/u
 import { useAuth } from "../../../lib/authContext";
 
 const LessonPage = ({ lessonComponents, currentNode, nextNode, nextSlug }) => {
+  const props = {
+    lessonComponents,
+    currentNode,
+    nextNode,
+    nextSlug,
+  };
+
   const { user } = useAuth();
   const router = useRouter();
   const [unlockUserNode] = useMutation(UNLOCK_USER_INTRO_NODE);
@@ -94,8 +101,6 @@ export async function getServerSideProps({ params }) {
     });
 
   function transform(lesson) {
-    console.log(lesson.resources);
-
     return {
       currentNode: lesson.hasuraNodeId,
       nextNode: lesson.nextNode?.hasuraNodeId ?? null,

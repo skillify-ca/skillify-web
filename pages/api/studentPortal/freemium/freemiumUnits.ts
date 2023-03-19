@@ -1,7 +1,13 @@
-import { githubUnit, introUnit, reactUnit, tailwindUnit, Unit } from "../units";
+import {
+  githubUnit,
+  reactUnit,
+  tailwindUnit,
+  Unit,
+  webIntroUnit,
+} from "../units";
 
 export const freemiumUnits: Unit[] = [
-  introUnit,
+  webIntroUnit,
   githubUnit,
   tailwindUnit,
   transformReactUnit(reactUnit),

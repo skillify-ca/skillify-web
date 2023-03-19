@@ -20,7 +20,7 @@ export interface Unit {
 }
 
 // Database Layer
-export const introUnit: Unit = {
+export const webIntroUnit: Unit = {
   title: "Introduction",
   nodes: [
     {
@@ -204,7 +204,7 @@ export const backendUnit: Unit = {
 };
 
 export const reactUnits: Unit[] = [
-  introUnit,
+  webIntroUnit,
   githubUnit,
   tailwindUnit,
   reactUnit,
