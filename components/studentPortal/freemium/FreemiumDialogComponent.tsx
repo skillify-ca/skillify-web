@@ -43,6 +43,10 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
         setActiveModal((currentStage) =>
           currentStage > ModalStage.ONE ? currentStage - 1 : ModalStage.ONE
         );
+        set({ opacity: 0 });
+        setTimeout(() => {
+          set({ opacity: 1 });
+        }, 500);
       } else if (event.code === "ArrowRight") {
         setCurrentStage((currentStage) =>
           currentStage < ModalStage.FIVE ? currentStage + 1 : ModalStage.FIVE
@@ -50,6 +54,10 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
         setActiveModal((currentStage) =>
           currentStage < ModalStage.FIVE ? currentStage + 1 : ModalStage.FIVE
         );
+        set({ opacity: 0 });
+        setTimeout(() => {
+          set({ opacity: 1 });
+        }, 500);
       }
     };
     document.addEventListener("keydown", handleKeyPress);
@@ -59,7 +67,7 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
   return (
     <Root defaultOpen={true}>
       <Portal>
-        <Overlay className="bg-gray-300 data-[state=open]:animate-overlayShow fixed inset-0" />
+        <Overlay className="bg-gradient-to-r from-white data-[state=open]:animate-overlayShow fixed inset-0" />
         <Content className={`${currentTheme}`}>
           <div
             className={`fixed w-3/4 h-2/3 p-8 md:p-20 transform -translate-x-1/2 -translate-y-1/2 ${
@@ -105,6 +113,10 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
                 onClick={() => {
                   setCurrentStage(ModalStage.ONE);
                   setActiveModal(ModalStage.ONE);
+                  set({ opacity: 0 });
+                  setTimeout(() => {
+                    set({ opacity: 1 });
+                  }, 500);
                 }}
               ></div>
               <div
@@ -123,6 +135,10 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
                 onClick={() => {
                   setCurrentStage(ModalStage.THREE);
                   setActiveModal(ModalStage.THREE);
+                  set({ opacity: 0 });
+                  setTimeout(() => {
+                    set({ opacity: 1 });
+                  }, 500);
                 }}
               ></div>
               <div
@@ -130,6 +146,10 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
                 onClick={() => {
                   setCurrentStage(ModalStage.FOUR);
                   setActiveModal(ModalStage.FOUR);
+                  set({ opacity: 0 });
+                  setTimeout(() => {
+                    set({ opacity: 1 });
+                  }, 500);
                 }}
               ></div>
               <div
@@ -137,6 +157,10 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
                 onClick={() => {
                   setCurrentStage(ModalStage.FIVE);
                   setActiveModal(ModalStage.FIVE);
+                  set({ opacity: 0 });
+                  setTimeout(() => {
+                    set({ opacity: 1 });
+                  }, 500);
                 }}
               ></div>
             </div>
