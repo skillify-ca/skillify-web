@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { testimonialData } from "../../../../pages/api/testimonial";
 import Testimonial from "../../../landingPage/Testimonial";
 
@@ -9,15 +9,6 @@ const filteredTestimonials = [
 ];
 
 export default function OffYouGo() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 768);
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
     <div>
       <div className="flex flex-col space-y-4">
