@@ -39,7 +39,7 @@ export default function MCOption({ text, state }: MCOptionProps) {
 
   return (
     <div
-      className={`flex items-center h-16 px-6 bg-backgroundSecondary rounded-md w-full ${getBorderColour(
+      className={`flex items-center h-20 px-6 bg-backgroundSecondary rounded-md w-full ${getBorderColour(
         state
       )}`}
     >

@@ -1,7 +1,13 @@
-import { githubUnit, introUnit, reactUnit, tailwindUnit, Unit } from "../units";
+import {
+  githubUnit,
+  reactUnit,
+  tailwindUnit,
+  Unit,
+  webIntroUnit,
+} from "../units";
 
 export const freemiumUnits: Unit[] = [
-  introUnit,
+  webIntroUnit,
   githubUnit,
   tailwindUnit,
   transformReactUnit(reactUnit),
@@ -17,7 +23,6 @@ function transformReactUnit(unit: Unit): Unit {
         };
       } else if (index === 3) {
         return {
-          description: "Enjoying the Skillify Experience?",
           link: "https://www.joinskillify.com/call",
           type: "freemiumMessage",
         };

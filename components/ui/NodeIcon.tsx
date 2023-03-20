@@ -1,37 +1,19 @@
 import React, { useState } from "react";
-import {
-  freemiumImageSrc,
-  imageSrc,
-} from "../../pages/api/studentPortal/nodeIcons";
+import { imageSrc } from "../../pages/api/studentPortal/imageSrc";
 export type NodeIconProps = {
-  description?: string;
-  completed: boolean;
-  locked: boolean;
-  type: "lesson" | "quiz" | "assignment";
-  freemiumMessage?: boolean;
+  completed?: boolean;
+  locked?: boolean;
+  type: "lesson" | "quiz" | "assignment" | "freemiumMessage" | "grayedOut";
 };
 
 export const NodeIcon: React.FC<NodeIconProps> = ({
   completed,
   locked,
-  description,
   type,
-  freemiumMessage,
 }: NodeIconProps) => {
-  let src;
   const [isHovered, setIsHovered] = useState(false);
-  if (freemiumMessage || description === "") {
-    src = freemiumImageSrc(
-      completed,
-      description,
-      locked,
-      type,
-      freemiumMessage
-    );
-  } else {
-    src = imageSrc(completed, locked, type);
-  }
-  if (description === "") {
+  let src = imageSrc(completed, locked, type);
+  if (type === "grayedOut") {
     src = isHovered ? "../../images/freemium/hoverCircleLock.svg" : src;
     return (
       <img

@@ -1,12 +1,22 @@
 import Lottie from "lottie-react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import quizCompleteAnimation from "../../../public/anims/quiz-complete.json";
-import { quizSelector, selectOptionRequested } from "../../../redux/quizSlice";
+import {
+  continueRequested,
+  quizSelector,
+  selectOptionRequested,
+  setQuizQuestions,
+} from "../../../redux/quizSlice";
+import { Button } from "../../ui/Button";
+import { QuizData } from "../lessons/LessonComponent";
 import GradingRibbon from "./GradingRibbon";
 import MCOption, { OptionState } from "./MCOption";
 
-export default function Quiz() {
+type QuizProps = {
+  quizData: QuizData;
+};
+export default function Quiz({ quizData }: QuizProps) {
   const {
     questions,
     currentQuestion,
@@ -17,6 +27,9 @@ export default function Quiz() {
     showSessionEnd,
   } = useSelector(quizSelector);
 
+  useEffect(() => {
+    dispatch(setQuizQuestions(quizData.questions));
+  }, []);
   const dispatch = useDispatch();
 
   const getOptionState = (option: string) => {
@@ -70,7 +83,7 @@ export default function Quiz() {
           ) : (
             ""
           )}
-          <div className="grid grid-cols-1 gap-6 px-4 sm:grid-cols-2 sm:px-32">
+          <div className="grid grid-cols-1 gap-6 px-4 sm:grid-cols-2 ">
             <div
               onClick={(e) => dispatch(selectOptionRequested("A"))}
               className="cursor-pointer"
@@ -107,6 +120,11 @@ export default function Quiz() {
                 state={getOptionState("D")}
               />
             </div>
+            <Button
+              label="Continue"
+              disabled={false}
+              onClick={(e) => dispatch(continueRequested(null))}
+            />
           </div>
 
           {/* TODO: Create grading ribbons on mobile */}

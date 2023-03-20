@@ -12,7 +12,6 @@ export type UnitNode =
     }
   | {
       type: "freemiumMessage";
-      description: string;
       link: string;
     };
 export interface Unit {
@@ -21,7 +20,7 @@ export interface Unit {
 }
 
 // Database Layer
-export const introUnit: Unit = {
+export const webIntroUnit: Unit = {
   title: "Introduction",
   nodes: [
     {
@@ -205,7 +204,7 @@ export const backendUnit: Unit = {
 };
 
 export const reactUnits: Unit[] = [
-  introUnit,
+  webIntroUnit,
   githubUnit,
   tailwindUnit,
   reactUnit,
