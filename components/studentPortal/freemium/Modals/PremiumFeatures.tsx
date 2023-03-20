@@ -24,7 +24,7 @@ export default function PremiumFeatures() {
         </div>
         <div className="flex flex-col items-center justify-center space-y-2 md:space-y-6">
           <div className="bg-white rounded-full md:p-4 p-1 md:w-48 w-12">
-            <img className="" src="/images/freemium/communityOfLearners.svg" />
+            <img src="/images/freemium/communityOfLearners.svg" />
           </div>
           <p className="text-charmander md:text-xl text-md font-bold">
             Community of Learners
@@ -36,7 +36,7 @@ export default function PremiumFeatures() {
         </div>
         <div className="flex flex-col items-center justify-center space-y-2 md:space-y-6">
           <div className="bg-white rounded-full md:p-4 p-1 md:w-48 w-12">
-            <img className="" src="/images/freemium/industryExperts.svg" />
+            <img src="/images/freemium/industryExperts.svg" />
           </div>
           <p className="text-charmander md:text-xl text-md font-bold">
             Industry Experts
