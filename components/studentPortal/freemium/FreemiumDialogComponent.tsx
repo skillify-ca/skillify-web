@@ -7,11 +7,11 @@ import { themeSelector } from "../../../redux/themeSlice";
 import TrailAnimation from "../../ui/TrailAnimation";
 
 export enum ModalStage {
-  ONE = 1,
-  TWO = 2,
-  THREE = 3,
-  FOUR = 4,
-  FIVE = 5,
+  ONE,
+  TWO,
+  THREE,
+  FOUR,
+  FIVE,
 }
 
 const FreemiumDialogComponent: React.FC = () => {
