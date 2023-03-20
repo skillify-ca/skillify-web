@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "../../ui/Button";
 import SkillifyNavbar from "../SkillifyNavbar";
-import SkillSelection from "../SkillSelection";
+import SkillSelection from "../SkillSelections";
 
 type SkillsProps = {
   onNextClick: () => void;
