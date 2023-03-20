@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "../../ui/Button";
 import NumberedCircles from "../NumberedCicles";
-import ProgressBar from "../ProgressBar";
+import ProgressBar from "../progressbar";
 import SkillifyNavbar from "../SkillifyNavbar";
 
 type BluePrintProps = {
