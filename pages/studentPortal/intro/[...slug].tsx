@@ -1,5 +1,4 @@
 import { useMutation } from "@apollo/client";
-import getClient from "@sanity/client";
 import { useRouter } from "next/router";
 import React from "react";
 import LessonComponent from "../../../components/studentPortal/lessons/LessonComponent";
@@ -60,71 +59,17 @@ const LessonPage = ({ lessonComponents, currentNode, nextNode, nextSlug }) => {
 };
 
 export async function getServerSideProps({ params }) {
-  // Create a client instance
-  const client = getClient({
-    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-    dataset: "production",
-    token: process.env.NEXT_PUBLIC_SANITY_API_KEY,
-    useCdn: true, // optional
-  });
+  const slug = params.slug.join("/");
 
-  // Use the client instance to fetch data from your Sanity.io dataset
-  return await client
-    .fetch(
-      `*[_type == "lesson" && slug == "${params.slug}"]{
-    ...,
-    nextNode->,
-    resources[]->{
-      ...,
-      "image": image.asset->url
-    } 
-  }
-    `
-    )
-    .then((lessons) => {
-      if (lessons && lessons.length > 0) {
-        const { lessonComponents, nextNode, currentNode, nextSlug } = transform(
-          lessons[0]
-        );
-        return {
-          props: {
-            lessonComponents,
-            slug: params.slug,
-            currentNode,
-            nextNode,
-            nextSlug,
-          },
-        };
-      } else {
-        return { props: { lessonComponents: [], slug: params.slug } };
-      }
+  return await fetch(
+    process.env.HOST_URL + "studentPortal/lessons/basics/" + slug
+  )
+    .then((res) => res.json())
+    .then((res) => {
+      return {
+        props: res,
+      };
     });
-
-  function transform(lesson) {
-    return {
-      currentNode: lesson.hasuraNodeId,
-      nextNode: lesson.nextNode?.hasuraNodeId ?? null,
-      nextSlug: lesson.nextNode?.slug ?? null,
-      lessonComponents: [
-        {
-          component: "title",
-          text: lesson.title,
-        },
-        {
-          component: "description",
-          text: lesson.description,
-        },
-        {
-          component: "video",
-          url: lesson.video,
-        },
-        {
-          component: "resource-list",
-          resources: lesson.resources,
-        },
-      ],
-    };
-  }
 }
 
 export default LessonPage;

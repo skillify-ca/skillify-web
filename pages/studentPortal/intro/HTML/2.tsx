@@ -15,6 +15,19 @@ import {
   setQuizQuestions,
 } from "../../../../redux/quizSlice";
 
+type Question = {
+  text: string;
+  A: string;
+  B: string;
+  C: string;
+  D: string;
+  answer: string;
+};
+
+type QuizData = {
+  data: Question[];
+};
+
 const HTML2 = () => {
   const dispatch = useDispatch();
   const { showSessionEnd } = useSelector(quizSelector);
@@ -38,7 +51,8 @@ const HTML2 = () => {
     };
     const q3 = {
       text: "What is the difference between <h1> and <h2> tags?",
-      A: "<h1> tags are ranked higher in significance than <h2> and thus are slightly larger",
+      A:
+        "<h1> tags are ranked higher in significance than <h2> and thus are slightly larger",
       B: "<h2> is larger than <h1>",
       C: "There is no difference in significance",
       D: "None of the above",

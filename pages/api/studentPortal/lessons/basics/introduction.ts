@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { LessonComponentData } from "../../../../../components/studentPortal/lessons/LessonComponent";
 
-type ResponseData = {
+export type ResponseData = {
   lessonComponents: LessonComponentData[];
   currentNode: number;
   nextNode: number;
@@ -32,31 +32,31 @@ export default function handler(
         resources: [
           {
             title: "Visual Studio Code",
-            image:
+            description:
               "Just like how Microsoft Word is a text editor for editing text, Visual Studio Code is a code editor for editing code and also made by Microsoft.",
-            description: "",
-            link: "/images/studentPortal/basics/introduction/vs-code.png",
+            link: "https://code.visualstudio.com/",
+            image: "/images/studentPortal/basics/introduction/vs-code.png",
           },
           {
             title: "Grasshopper",
-            image:
+            description:
               "A game with different challenges. You won't deeply understand coding from this game, but you will start to get your head in the coder mindset which is based on problem solving.",
-            description: "",
-            link: "/images/studentPortal/basics/introduction/grasshopper.svg",
+            link: "https://grasshopper.app/",
+            image: "/images/studentPortal/basics/introduction/grasshopper.svg",
           },
           {
             title: "Codecademy",
-            image:
+            description:
               "A free resource to learn HTML, CSS and JavaScript. Start working through the courses and ask for help when you get stuck.",
-            description: "",
-            link: "/images/studentPortal/basics/introduction/codecademy.png",
+            link: "https://www.codecademy.com/learn/learn-html",
+            image: "/images/studentPortal/basics/introduction/codecademy.png",
           },
         ],
       },
     ],
     currentNode: 1,
     nextNode: 2,
-    nextSlug: "html-1",
+    nextSlug: "html/lesson1",
   };
 
   res.status(200).json(data);
