@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../../ui/Button";
-import ProgressBar from "../progressbar";
+import ProgressBar from "../ProgressBar";
 import SkillifyNavbar from "../SkillifyNavbar";
 import SkillSelection from "../SkillSelection";
 type IndustriesProps = {
