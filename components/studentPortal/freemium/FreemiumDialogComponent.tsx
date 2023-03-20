@@ -14,8 +14,8 @@ export enum ModalStage {
   FIVE = 5,
 }
 
-const FreemiumDialogComponent: React.FC = ({ children }) => {
-  const [currentStage, setCurrentStage] = useState(ModalStage.ONE); // using useState and ModalStage
+const FreemiumDialogComponent: React.FC = () => {
+  const [currentStage, setCurrentStage] = useState(ModalStage.ONE);
   const { currentTheme } = useSelector(themeSelector);
   const [activeModal, setActiveModal] = useState(ModalStage.ONE);
 
@@ -84,13 +84,13 @@ const FreemiumDialogComponent: React.FC = ({ children }) => {
                 ModalStage.THREE,
                 ModalStage.FOUR,
                 ModalStage.FIVE,
-              ].map((currentStage) => (
+              ].map((stage) => (
                 <div
-                  key={currentStage}
-                  className={activeModalStyling(currentStage)}
+                  key={stage}
+                  className={activeModalStyling(stage)}
                   onClick={() => {
-                    setCurrentStage(currentStage);
-                    setActiveModal(currentStage);
+                    setCurrentStage(stage);
+                    setActiveModal(stage);
                   }}
                 ></div>
               ))}
