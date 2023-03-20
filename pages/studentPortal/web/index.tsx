@@ -2,15 +2,14 @@ import { useMutation, useQuery } from "@apollo/client";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { freemiumUnits } from "../../../components/studentPortal/freemium/FreemiumUnits";
-import FreemiumUnitView from "../../../components/studentPortal/freemium/FreemiumUnitView";
-import { paidUnits } from "../../../components/studentPortal/freemium/PaidUnits";
 import UnitView from "../../../components/studentPortal/lessons/UnitView";
 import PageHeader from "../../../components/ui/PageHeader";
 import { FETCH_USER_INTRO_NODES } from "../../../graphql/studentPortal/courses/fetchUserIntroNodes";
 import { UPDATE_USER } from "../../../graphql/studentPortal/users/updateUser";
 import { useAuth } from "../../../lib/authContext";
 import { profileSelector } from "../../../redux/profileSlice";
+import { freemiumUnits } from "../../api/studentPortal/freemium/freemiumUnits";
+import { paidUnits } from "../../api/studentPortal/freemium/paidUnits";
 import { reactUnits, Unit } from "../../api/studentPortal/units";
 export default function StudentPortalPage() {
   const { user } = useAuth();
@@ -47,13 +46,13 @@ export default function StudentPortalPage() {
       {userRole === "freemium" ? (
         <div className="grid grid-cols-1 gap-4">
           {freemiumUnits.map((it, index) => (
-            <FreemiumUnitView key={index} data={it} />
+            <UnitView key={index} data={it} />
           ))}
         </div>
       ) : userRole === "paid" ? (
         <div className="grid grid-cols-1 gap-4">
           {paidUnits.map((it, index) => (
-            <FreemiumUnitView key={index} data={it} />
+            <UnitView key={index} data={it} />
           ))}
         </div>
       ) : (
