@@ -14,9 +14,11 @@ const EducationBackground = ({
   return (
     <div className="space-y-4">
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
-      <ProgressBar progress={15} />
 
-      <div className="px-4"></div>
+      <div className="px-4">
+        {" "}
+        <ProgressBar progress={15} />
+      </div>
       <div className="flex flex-col items-center text-center  ">
         <h1 className="text-2xl font-semibold">
           What is your educational background?
