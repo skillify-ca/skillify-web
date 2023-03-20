@@ -1,11 +1,11 @@
 import React from "react";
 import { Button } from "../../ui/Button";
 import SkillifyNavbar from "../SkillifyNavbar";
-type IntakeProps = {
+type StartQuizProps = {
   onNextClick: () => void;
 };
 
-const Intake = ({ onNextClick }: IntakeProps) => {
+const StartQuiz = ({ onNextClick }: StartQuizProps) => {
   return (
     <div className="w-full space-y-4  ">
       <SkillifyNavbar hidden={true} onBackClick={() => ""} />
@@ -41,8 +41,8 @@ const Intake = ({ onNextClick }: IntakeProps) => {
     </div>
   );
 };
-Intake.getLayout = function getLayout(page) {
+StartQuiz.getLayout = function getLayout(page) {
   return <div>{page}</div>;
 };
 
-export default Intake;
+export default StartQuiz;

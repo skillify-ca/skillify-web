@@ -37,5 +37,7 @@ const CareerResults = ({ onBackClick }: CareerResultsProps) => {
     </div>
   );
 };
-
+CareerResults.getLayout = function getLayout(page) {
+  return <div>{page}</div>;
+};
 export default CareerResults;
