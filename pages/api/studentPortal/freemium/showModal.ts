@@ -14,7 +14,7 @@ export function showModal() {
       lastSeenDateTime
     );
     if (
-      timeDifferenceInHours <= 24 &&
+      timeDifferenceInHours >= 24 &&
       (userRole === "freemium" || userRole === "paid")
     ) {
       return true;
