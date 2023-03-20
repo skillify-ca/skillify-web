@@ -1,3 +1,4 @@
+import React from "react";
 import PostLayout from "../../components/blog/PostLayout";
 import SEO from "../../components/SEO";
 import LessonComponent, {
@@ -32,8 +33,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text:
-        "If you are looking to learn to code in Toronto there are a few solid options. We definitely recommend the program at Skillify for being more afforable and more personalized compared to our competitors on this list.",
+      text: "If you are looking to learn to code in Toronto there are a few solid options. We definitely recommend the program at Skillify for being more afforable and more personalized compared to our competitors on this list.",
     },
     {
       component: "resource-list",
