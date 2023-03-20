@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../../ui/Button";
+import ProgressBar from "../Progress";
 import SkillifyNavbar from "../SkillifyNavbar";
 import SkillSelection from "../SkillSelections";
 
@@ -13,6 +14,7 @@ const Tasks = ({ onNextClick, onBackClick }: TasksProps) => {
     <div className="w-full  space-y-4">
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
       <div className="px-4 flex flex-col items-center">
+        <ProgressBar progress={85} />
         <div className=" flex flex-col items-center py-4">
           <h1 className="text-2xl font-bold text-center mx-8">
             What tasks would you prefer at work?
