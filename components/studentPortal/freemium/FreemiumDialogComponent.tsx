@@ -22,8 +22,6 @@ export const modalStageMappedArray = (
   return ModalStage[key];
 });
 
-console.log(modalStageMappedArray);
-
 const FreemiumDialogComponent: React.FC = () => {
   const [currentStage, setCurrentStage] = useState(ModalStage.ONE);
   const { currentTheme } = useSelector(themeSelector);
@@ -40,8 +38,11 @@ const FreemiumDialogComponent: React.FC = () => {
   };
 
   useEffect(() => {
+    //handles the cycling through of modals with left/right arrows
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.code === "ArrowLeft") {
+        //setCurrentStage decreases ModalStage by 1 unless it's 1, in which case it stays 1
+        //setActiveStage controls the mirrored moving of the color of the circles to display the change
         setCurrentStage((currentStage) =>
           currentStage > ModalStage.ONE ? currentStage - 1 : ModalStage.ONE
         );
@@ -49,6 +50,8 @@ const FreemiumDialogComponent: React.FC = () => {
           currentStage > ModalStage.ONE ? currentStage - 1 : ModalStage.ONE
         );
       } else if (event.code === "ArrowRight") {
+        //setCurrentStage increases ModalStage by 1 unless it's 5, in which case it stays 1
+        //setActiveStage controls the mirrored moving of the color of the circles to display the change
         setCurrentStage((currentStage) =>
           currentStage < ModalStage.FIVE ? currentStage + 1 : ModalStage.FIVE
         );
@@ -57,6 +60,7 @@ const FreemiumDialogComponent: React.FC = () => {
         );
       }
     };
+    //the eventListeners track key movements and attach them to my handleKeyPress function
     document.addEventListener("keydown", handleKeyPress);
     return () => document.removeEventListener("keydown", handleKeyPress);
   }, []);
