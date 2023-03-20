@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "../../ui/Button";
 import NumberedCircles from "../NumberedCicles";
-import ProgressBar from "../ProgressBar";
 import SkillifyNavbar from "../SkillifyNavbar";
 
 type BluePrintProps = {
@@ -15,9 +14,7 @@ const Blueprint = ({ onNextClick, onBackClick }: BluePrintProps) => {
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
 
       <div className="w-full mb-4 text-center">
-        <div className="w-full h-2 bg-black-600 px-4 rounded-lg mb-2">
-          <ProgressBar progress={100} />
-        </div>
+        <div className="w-full h-2 bg-black-600 px-4 rounded-lg mb-2"></div>
         <div className="font-bold mt-8 text-2xl text-black-600 mb-2">
           The Skillify Blueprint
         </div>
