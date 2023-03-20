@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "../../ui/Button";
 import NumberedCircles from "../NumberedCircles";
+import ProgressBar from "../Progress";
 import SkillifyNavbar from "../SkillifyNavbar";
 
 type BluePrintProps = {
@@ -8,15 +9,18 @@ type BluePrintProps = {
   onBackClick: () => void;
 };
 
-const Blueprint = ({ onNextClick, onBackClick }: BluePrintProps) => {
+const BluePrint = ({ onNextClick, onBackClick }: BluePrintProps) => {
   return (
     <div className="w-full  space-y-4">
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
 
       <div className="w-full mb-4 text-center">
-        <div className="w-full h-2 bg-black-600 px-4 rounded-lg mb-2"></div>
+        <div className="w-full h-2 bg-black-600 px-4 rounded-lg mb-2">
+          {" "}
+          <ProgressBar progress={100} />
+        </div>
         <div className="font-bold mt-8 text-2xl text-black-600 mb-2">
-          The Skillify Blueprint
+          The Skillify BluePrint
         </div>
       </div>
       <div className="grid grid-cols-[1fr_3fr] md:grid-cols-[1fr_7fr]">
@@ -49,7 +53,7 @@ const Blueprint = ({ onNextClick, onBackClick }: BluePrintProps) => {
   );
 };
 
-Blueprint.getLayout = function getLayout(page) {
+BluePrint.getLayout = function getLayout(page) {
   return <div>{page}</div>;
 };
-export default Blueprint;
+export default BluePrint;
