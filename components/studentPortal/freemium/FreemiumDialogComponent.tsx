@@ -14,6 +14,16 @@ export enum ModalStage {
   FIVE,
 }
 
+export const modalStageMappedArray = (
+  Object.keys(ModalStage).filter((stage) =>
+    isNaN(Number(stage))
+  ) as (keyof typeof ModalStage)[]
+).map((key, index) => {
+  return ModalStage[key];
+});
+
+console.log(modalStageMappedArray);
+
 const FreemiumDialogComponent: React.FC = () => {
   const [currentStage, setCurrentStage] = useState(ModalStage.ONE);
   const { currentTheme } = useSelector(themeSelector);
@@ -78,13 +88,7 @@ const FreemiumDialogComponent: React.FC = () => {
                 )
             )}
             <div className="flex flex-row justify-center space-x-2 absolute bottom-4 md:bottom-8 inset-x-0">
-              {[
-                ModalStage.ONE,
-                ModalStage.TWO,
-                ModalStage.THREE,
-                ModalStage.FOUR,
-                ModalStage.FIVE,
-              ].map((stage) => (
+              {modalStageMappedArray.map((stage) => (
                 <div
                   key={stage}
                   className={activeModalStyling(stage)}
