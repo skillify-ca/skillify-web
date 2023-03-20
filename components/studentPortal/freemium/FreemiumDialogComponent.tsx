@@ -2,7 +2,7 @@ import { XIcon } from "@heroicons/react/outline";
 import { Close, Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { getModalContent } from "../../../pages/api/studentPortal/freemium/GetModalContent";
+import { getModalContent } from "../../../pages/api/studentPortal/freemium/getModalContent";
 import { themeSelector } from "../../../redux/themeSlice";
 import TrailAnimation from "../../ui/TrailAnimation";
 
