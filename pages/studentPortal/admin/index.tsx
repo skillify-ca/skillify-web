@@ -20,7 +20,7 @@ import {
   FETCH_ALL_USER_GOALS,
 } from "../../../graphql/studentPortal/goals/fetchAllUserGoals";
 import {
-  FetchUserRoleData,
+  FetchRoleData,
   FETCH_USER_ROLE,
 } from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
@@ -51,7 +51,7 @@ const coachingDashboard = () => {
       },
     }
   );
-  useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
+  useQuery<FetchRoleData>(FETCH_USER_ROLE, {
     variables: {
       _id: user.uid,
     },

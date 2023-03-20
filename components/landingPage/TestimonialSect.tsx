@@ -15,7 +15,7 @@ const TestimonialSect = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-8 mt-8">
             {testimonialData.map((it, index) => (
-              <div>
+              <div key={index}>
                 <Testimonial
                   text={it.text}
                   img={it.img}
