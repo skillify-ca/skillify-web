@@ -2,7 +2,7 @@ import { differenceInHours } from "date-fns";
 import { useSelector } from "react-redux";
 import { profileSelector } from "../../../../redux/profileSlice";
 
-
+export function convertDateToUTC(date) { return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()); }
 
 export function showModal() {
     const { userRole, userProfileData } = useSelector(profileSelector);
@@ -11,10 +11,11 @@ export function showModal() {
     const currentDateTime = new Date();
     const timeDifferenceInHours = differenceInHours(
       currentDateTime,
-      lastSeenDateTime
+      lastSeenDateTime,
     );
+
     if (
-      timeDifferenceInHours >= 24 &&
+      timeDifferenceInHours <= 24 &&
       (userRole === "freemium" || userRole === "paid")
     ) {
       return true;

@@ -71,7 +71,7 @@ const FreemiumDialogComponent: React.FC = () => {
         <Overlay className="bg-gradient-to-r from-gray-300 data-[state=open]:animate-overlayShow fixed inset-0" />
         <Content className={`${currentTheme}`}>
           <div
-            className={`fixed w-3/4 h-2/3 p-8 md:p-20 transform -translate-x-1/2 -translate-y-1/2 ${
+            className={`fixed h-[450px] w-[300px] md:h-[700px] md:w-[1000px] p-8 md:p-20 transform -translate-x-1/2 -translate-y-1/2 ${
               currentStage === ModalStage.TWO ||
               currentStage === ModalStage.THREE
                 ? "bg-[#18124C]"
