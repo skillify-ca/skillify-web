@@ -10,6 +10,11 @@ export type Resource = {
   image: string;
   link: string;
 };
+
+export type QuizData = {
+  questions: QuizQuestion[];
+};
+
 export type LessonComponentData =
   | {
       component: "title";
@@ -23,7 +28,7 @@ export type LessonComponentData =
       component: "resource-list";
       resources: Resource[];
     }
-  | { component: "quiz" }
+  | { component: "quiz"; data: QuizData }
   | {
       component: "code-sandbox";
       title: string;
@@ -115,7 +120,7 @@ export default function LessonComponent({ data }: LessonComponentProps) {
     );
   }
   if (data.component === "quiz") {
-    return <Quiz />;
+    return <Quiz quizData={data.data} />;
   }
   if (data.component === "code-sandbox") {
     return (

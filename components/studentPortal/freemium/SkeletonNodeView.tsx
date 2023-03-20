@@ -4,10 +4,12 @@ import TooltipComponent from "../../ui/TooltipComponent";
 
 export type SkeletonNodeViewProps = {
   hiddenLine: boolean;
+  type: "lesson" | "quiz" | "assignment" | "freemiumMessage" | "grayedOut";
 };
 
 export const SkeletonNodeView: React.FC<SkeletonNodeViewProps> = ({
   hiddenLine,
+  type,
 }: SkeletonNodeViewProps) => {
   return (
     <div className="">
@@ -15,13 +17,7 @@ export const SkeletonNodeView: React.FC<SkeletonNodeViewProps> = ({
         <div className="flex flex-col col-span-2 ml-4 md:items-center">
           <TooltipComponent message={"This is a premium feature."}>
             <div className="flex rounded-full">
-              <NodeIcon
-                completed={false}
-                locked={false}
-                type={"lesson"}
-                description={""}
-                freemiumMessage={false}
-              />
+              <NodeIcon type={type} />
             </div>
           </TooltipComponent>
         </div>

@@ -1,5 +1,7 @@
 import React from "react";
 import { Unit } from "../../../pages/api/studentPortal/units";
+import FreemiumMessageNodeView from "../freemium/FreemiumMessageNodeView";
+import SkeletonNodeView from "../freemium/SkeletonNodeView";
 import UnitNodeView from "./UnitNodeView";
 
 export type UnitViewProps = {
@@ -14,11 +16,21 @@ export const UnitView: React.FC<UnitViewProps> = ({ data }: UnitViewProps) => {
       </p>
       <div>
         {data.nodes.map((it, index) => {
-          if (
-            it.type === "assignment" ||
-            it.type === "lesson" ||
-            it.type === "quiz"
-          ) {
+          if (it.type === "freemiumMessage") {
+            return (
+              <FreemiumMessageNodeView
+                hiddenLine={index === data.nodes.length - 1}
+                type={it.type}
+              />
+            );
+          } else if (it.type === "grayedOut") {
+            return (
+              <SkeletonNodeView
+                hiddenLine={index === data.nodes.length - 1}
+                type={it.type}
+              />
+            );
+          } else {
             if (!it.locked) {
               return (
                 <a href={"/studentPortal/" + it.link}>
