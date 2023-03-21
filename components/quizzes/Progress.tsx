@@ -1,9 +1,9 @@
 import React from "react";
-type ProgressBarProps = {
+type ProgressProps = {
   progress: number;
 };
 
-const ProgressBar: React.FC<ProgressBarProps> = ({ progress }) => {
+const Progress: React.FC<ProgressProps> = ({ progress }) => {
   return (
     <div className="relative w-full h-4 rounded-full bg-gray-300">
       <div
@@ -14,4 +14,4 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ progress }) => {
   );
 };
 
-export default ProgressBar;
+export default Progress;

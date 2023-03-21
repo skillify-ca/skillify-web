@@ -1,11 +1,15 @@
 import React from "react";
-import QuizNavbar from "../../../components/quizzes/QuizNavbar";
-import { Button } from "../../../components/ui/Button";
+import { Button } from "../../ui/Button";
+import SkillifyNavbar from "../SkillifyNavbar";
 
-const CareerResults = () => {
+type CareerResultsProps = {
+  onBackClick: () => void;
+};
+const CareerResults = ({ onBackClick }: CareerResultsProps) => {
   return (
     <div className="  w-full mx-auto ">
-      <QuizNavbar />
+      <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
+
       <div className="grid text-center justify-items-center">
         <div className="font-bold mt-4 text-2xl ">YOUR RESULTS</div>
         <div className=" text-lg font-semibolds ">
@@ -21,7 +25,7 @@ const CareerResults = () => {
           Start your career with a Skillify coach today!
         </div>
         <div className="flex flex-col items-center space-y-4 py-4">
-          <Button label="Book a call" />
+          <Button label="Book a call" backgroundColor="yellow" />
           <Button label="Learn more" backgroundColor="blue" />
         </div>
         <div className="mx-4">
@@ -33,5 +37,7 @@ const CareerResults = () => {
     </div>
   );
 };
-
+CareerResults.getLayout = function getLayout(page) {
+  return <div>{page}</div>;
+};
 export default CareerResults;
