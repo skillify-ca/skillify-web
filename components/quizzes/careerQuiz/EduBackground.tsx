@@ -11,14 +11,14 @@ const EducationBackground = ({
   onBackClick,
 }: EduBackgroundProps) => {
   return (
-    <div className="space-y-4">
+    <div className="">
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
 
-      <div className="px-4">
+      <div className="flex flex-col items-center px-8">
         {" "}
         <ProgressBar progress={15} />
       </div>
-      <div className="flex flex-col items-center text-center  ">
+      <div className="flex flex-col items-center text-center mt-4">
         <h1 className="text-2xl font-semibold">
           What is your educational background?
         </h1>
