@@ -1,19 +1,19 @@
 import { useMutation, useQuery } from "@apollo/client";
-
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-
-import PageHeader from "../../../components/coding/PageHeader";
-import UnitView from "../../../components/coding/studentPortal/UnitView";
-import { FETCH_USER_INTRO_NODES } from "../../../graphql/coding/fetchUserIntroNodes";
-
-import { UPDATE_USER } from "../../../graphql/updateUser";
+import { useSelector } from "react-redux";
+import UnitView from "../../../components/studentPortal/lessons/UnitView";
+import PageHeader from "../../../components/ui/PageHeader";
+import { FETCH_USER_INTRO_NODES } from "../../../graphql/studentPortal/courses/fetchUserIntroNodes";
+import { UPDATE_USER } from "../../../graphql/studentPortal/users/updateUser";
 import { useAuth } from "../../../lib/authContext";
+import { profileSelector } from "../../../redux/profileSlice";
+import { freemiumUnits } from "../../api/studentPortal/freemium/freemiumUnits";
+import { paidUnits } from "../../api/studentPortal/freemium/paidUnits";
 import { reactUnits, Unit } from "../../api/studentPortal/units";
-
 export default function StudentPortalPage() {
   const { user } = useAuth();
-
+  const { userRole } = useSelector(profileSelector);
   const [updateUser] = useMutation(UPDATE_USER);
   const { data } = useQuery(FETCH_USER_INTRO_NODES, {
     variables: {
@@ -43,11 +43,25 @@ export default function StudentPortalPage() {
         title={`Let's start learning, ${user.displayName}`}
         description={moment().format("MMM Do YYYY")}
       />
-      <div className="grid grid-cols-1 gap-4">
-        {units.map((it, index) => (
-          <UnitView key={index} data={it} />
-        ))}
-      </div>
+      {userRole === "freemium" ? (
+        <div className="grid grid-cols-1 gap-4">
+          {freemiumUnits.map((it, index) => (
+            <UnitView key={index} data={it} />
+          ))}
+        </div>
+      ) : userRole === "paid" ? (
+        <div className="grid grid-cols-1 gap-4">
+          {paidUnits.map((it, index) => (
+            <UnitView key={index} data={it} />
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 gap-4">
+          {units.map((it, index) => (
+            <UnitView key={index} data={it} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

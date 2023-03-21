@@ -1,12 +1,13 @@
-import { Slice, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserProfileData } from "../graphql/fetchUserProfile";
+import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
+import { UserProfileData } from "../graphql/studentPortal/profile/fetchUserProfile";
 import { RootState } from "./rootReducer";
 
 export type ProfileState = {
   userProfileData: UserProfileData;
   userBadgeCount: number;
   totalBadgeCount: number;
-  userRole: "student" | "coach";
+  userRole: "student" | "coach"|"freemium"|"paid";
+  createdAt: Date;
 };
 
 const initialState: ProfileState = {
@@ -19,7 +20,8 @@ const initialState: ProfileState = {
   },
   totalBadgeCount: 0,
   userBadgeCount: 0,
-  userRole: "student",
+  userRole: "freemium",
+  createdAt: new Date()
 };
 
 export const profileSlice: Slice = createSlice({
@@ -61,12 +63,24 @@ export const profileSlice: Slice = createSlice({
 
     setUserRole: (
       state: ProfileState,
-      action: PayloadAction<"coach" | "student">
+      action: PayloadAction<"coach" | "student"|"freemium">
     ) => {
       if (action.type == "profile/setUserRole") {
         return {
           ...state,
           userRole: action.payload,
+        };
+      }
+    },
+
+    setCreatedAt: (
+      state: ProfileState,
+      action: PayloadAction<Date>
+    ) => {
+      if (action.type == "profile/setCreatedAt") {
+        return {
+          ...state,
+          createdAt: action.payload,
         };
       }
     },
@@ -78,6 +92,7 @@ export const {
   setUserBadgeCount,
   setTotalBadgeCount,
   setUserRole,
+  setCreatedAt,
 } = profileSlice.actions;
 
 export default profileSlice.reducer;

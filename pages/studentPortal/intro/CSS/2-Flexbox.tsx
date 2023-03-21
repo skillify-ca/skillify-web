@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
-import { Button } from "../../../../components/ui/Button";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
+import { useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
+import React from "react";
 import LessonComponent, {
   LessonComponentData,
   Resource,
-} from "../../../../components/coding/studentPortal/LessonComponent";
-
-import { useMutation } from "@apollo/client";
-import { useRouter } from "next/router";
-import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
-import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
-import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
+} from "../../../../components/studentPortal/lessons/LessonComponent";
+import { Button } from "../../../../components/ui/Button";
+import ProgressBar from "../../../../components/ui/ProgressBar";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/studentPortal/courses/fetchUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
 
 const CSS1 = ({ lessonComponents }) => {
@@ -87,8 +86,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text:
-        "CSS Flexbox is another new property of CSS. You can turn any <div> element into a flexbox using the 'display: flex' property. By using different flex properties you can tell the div how you want it to arrange it's children. Combining Flexbox with Grid will allow you to build the most advanced layouts that you can imagine on the internet.",
+      text: "CSS Flexbox is another new property of CSS. You can turn any <div> element into a flexbox using the 'display: flex' property. By using different flex properties you can tell the div how you want it to arrange it's children. Combining Flexbox with Grid will allow you to build the most advanced layouts that you can imagine on the internet.",
     },
     {
       component: "resource-list",

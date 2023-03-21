@@ -2,18 +2,31 @@ import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
-import Quiz from "../../../../components/coding/studentPortal/quiz/Quiz";
+import Quiz from "../../../../components/studentPortal/quiz/Quiz";
 import { Button } from "../../../../components/ui/Button";
-import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
-import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
-import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
+import ProgressBar from "../../../../components/ui/ProgressBar";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/studentPortal/courses/fetchUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
 import {
   continueRequested,
   quizSelector,
   setQuizQuestions,
 } from "../../../../redux/quizSlice";
+
+type Question = {
+  text: string;
+  A: string;
+  B: string;
+  C: string;
+  D: string;
+  answer: string;
+};
+
+type QuizData = {
+  data: Question[];
+};
 
 const HTML2 = () => {
   const dispatch = useDispatch();

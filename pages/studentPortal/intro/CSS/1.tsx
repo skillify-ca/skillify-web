@@ -1,17 +1,16 @@
-import React, { useEffect } from "react";
-import CSSQuiz from "../../../../components/coding/CSSQuiz";
-import { Button } from "../../../../components/ui/Button";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
+import { useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
+import React from "react";
 import LessonComponent, {
   LessonComponentData,
   Resource,
-} from "../../../../components/coding/studentPortal/LessonComponent";
-import { useRouter } from "next/router";
+} from "../../../../components/studentPortal/lessons/LessonComponent";
+import { Button } from "../../../../components/ui/Button";
+import ProgressBar from "../../../../components/ui/ProgressBar";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/studentPortal/courses/fetchUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
-import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
-import { useMutation } from "@apollo/client";
-import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
-import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
 
 const CSS1 = ({ lessonComponents }) => {
   const router = useRouter();
@@ -77,8 +76,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text:
-        "CSS stands for cascading style sheets. It's another language that you need to learn that has different rules and keywords compared to HTML. In this lesson you will learn about different styles that you can apply to your HTML elements.",
+      text: "CSS stands for cascading style sheets. It's another language that you need to learn that has different rules and keywords compared to HTML. In this lesson you will learn about different styles that you can apply to your HTML elements.",
     },
     {
       component: "resource-list",

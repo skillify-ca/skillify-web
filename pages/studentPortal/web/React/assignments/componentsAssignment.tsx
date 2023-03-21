@@ -1,16 +1,14 @@
 import { useQuery } from "@apollo/client";
-import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
 import AssignmentComponent, {
   AssignmentComponentData,
-} from "../../../../../components/coding/studentPortal/AssignmentComponent";
-
+} from "../../../../../components/studentPortal/assignments/AssignmentComponent";
 import {
-  FETCH_USER_ASSIGNMENT_SUBMISSIONS,
   FetchUserAssignmentSubmissionsDataResponse,
+  FETCH_USER_ASSIGNMENT_SUBMISSIONS,
   UserAssignmentSubmissionsData,
-} from "../../../../../graphql/fetchUserAssignmentSubmissions";
+} from "../../../../../graphql/studentPortal/assignments/fetchUserAssignmentSubmissions";
 import { useAuth } from "../../../../../lib/authContext";
 import {
   assignmentsSelector,
@@ -78,7 +76,7 @@ const React2 = ({
 
   return (
     <>
-      <div className="flex flex-col m-8 sm:px-12 space-y-4">
+      <div className="flex flex-col m-8 space-y-4 sm:px-12">
         {userAssignmentsLoading ? (
           <div>Loading...</div>
         ) : stage === Stage.INCOMPLETE ? (

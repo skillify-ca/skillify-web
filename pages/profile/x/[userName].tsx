@@ -1,8 +1,8 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { GetServerSideProps } from "next";
 import React from "react";
-import Header404 from "../../../components/Header404";
-import { FETCH_USER } from "../../../graphql/fetchUser";
+import Header404 from "../../../components/notFound/Header404";
+import { FETCH_USER } from "../../../graphql/studentPortal/users/fetchUser";
 import InternalProfile from "../[userId]";
 
 type ProfileGatewayProps = {

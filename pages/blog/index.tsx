@@ -1,10 +1,7 @@
-import { HeartIcon } from "@heroicons/react/solid";
-import React from "react";
 import Head from "next/head";
-import Link from "next/link";
-import Card from "../../components/coding/Card";
-import LandingNavbar from "../../components/LandingNavbar";
-
+import React from "react";
+import Card from "../../components/blog/BlogCard";
+import LandingNavbar from "../../components/landingPage/LandingNavbar";
 export default function Blog() {
   return (
     <div>
@@ -34,15 +31,27 @@ export default function Blog() {
 
         <div className="grid items-center w-full grid-cols-1 gap-16 p-4 sm:grid-cols-2 lg:grid-cols-3">
           <div>
-            <h4>February 10, 2023</h4>
+            <h4>February 20, 2023</h4>
             <Card
-              title={
-                "Jest + Function Testing: A Creative & Cheap Approach to Testing Tailwind/CSS Classes"
+              title={"Switching to Software Engineering"}
+              image={"/images/blog/make-the-leap/softwareeng.jpg"}
+              description={
+                "A Skillify Student's Account of Switching Careers from Actuarial Science to Software Engineering"
               }
+              link={"/blog/making-the-leap-into-development"}
+              color={0}
+            />
+          </div>
+          <div>
+            <h4>February 8, 2023</h4>
+            <Card
+              title={"Jest + Function Testing"}
               image={"/images/blog/jest-function-testing/software_testing.jpeg"}
-              description={"Cheap Unit Testing"}
+              description={
+                "A Creative & Cheap Approach to Testing Tailwind/CSS Classes"
+              }
               link={"/blog/jest-function-testing"}
-              color={5}
+              color={3}
             />
           </div>
           <div>
@@ -57,6 +66,7 @@ export default function Blog() {
               color={2}
             />
           </div>
+
           <div>
             <h4>August 14, 2022</h4>
             <Card
@@ -112,7 +122,7 @@ export default function Blog() {
             <Card
               title={"Are Toronto coding bootcamps worth it?"}
               image={
-                "https://www.trilogyed.com/blog/wp-content/uploads/2018/05/columbia_coding_boot_camp2_brandon_colbert.jpg"
+                "https://images.unsplash.com/photo-1555421689-d68471e189f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHdvcnRoJTIwaXR8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60"
               }
               description={
                 "This resource lists the top coding bootcamps in Toronto"

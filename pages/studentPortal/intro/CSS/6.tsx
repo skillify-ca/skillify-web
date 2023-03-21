@@ -1,14 +1,14 @@
-import React from "react";
-import { Button } from "../../../../components/ui/Button";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
-import LessonComponent, {
-  LessonComponentData,
-} from "../../../../components/coding/studentPortal/LessonComponent";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
-import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
-import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
+import React from "react";
+import LessonComponent, {
+  LessonComponentData,
+} from "../../../../components/studentPortal/lessons/LessonComponent";
+import { Button } from "../../../../components/ui/Button";
+import ProgressBar from "../../../../components/ui/ProgressBar";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/studentPortal/courses/fetchUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
 
 const CSS6 = ({ lessonComponents }) => {
@@ -41,7 +41,7 @@ const CSS6 = ({ lessonComponents }) => {
         },
         refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
       });
-      router.push("/studentPortal/intro");
+      router.push("/studentPortal");
     });
   };
   return (
@@ -146,13 +146,11 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text:
-        "Previously you made a blog using HTML but it may look very boring.",
+      text: "Previously you made a blog using HTML but it may look very boring.",
     },
     {
       component: "description",
-      text:
-        "We are going to change that using CSS styling! You will now use CSS styling to bring your page to life!",
+      text: "We are going to change that using CSS styling! You will now use CSS styling to bring your page to life!",
     },
     { component: "loom-video", videoId: "ed935cc53123419695e9f6b97f5589e9" },
   ];

@@ -1,11 +1,10 @@
-import React from "react";
-import { Button } from "../../../../../components/ui/Button";
-import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { COMPLETE_USER_INTRO_NODE } from "../../../../../graphql/coding/completeUserIntroNode";
-import { FETCH_USER_INTRO_NODES } from "../../../../../graphql/coding/fetchUserIntroNodes";
-import { UNLOCK_USER_INTRO_NODE } from "../../../../../graphql/coding/unlockUserIntroNode";
+import React from "react";
+import ProgressBar from "../../../../../components/ui/ProgressBar";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../../graphql/studentPortal/courses/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../../graphql/studentPortal/courses/fetchUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../../../lib/authContext";
 
 const JS12 = () => {
@@ -30,7 +29,7 @@ const JS12 = () => {
         },
         refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
       });
-      router.push("/studentPortal/intro");
+      router.push("/studentPortal");
     });
   };
 

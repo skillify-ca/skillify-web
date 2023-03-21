@@ -1,45 +1,44 @@
-import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
-import { useDispatch, useSelector } from "react-redux";
-import ExpandableContainer from "../../components/coding/ExpandableContainer";
-import GoalsSectionComponent from "../../components/coding/GoalsSectionComponent";
-import ProfileHeaderComponent from "../../components/coding/profileV2/ProfileHeaderComponent";
-import SkillRatingsComponent from "../../components/coding/SkillRatingsComponent";
-import {
-  FetchUserGoalsDataResponse,
-  FETCH_USER_GOALS,
-} from "../../graphql/fetchUserGoals";
-import { useAuth } from "../../lib/authContext";
-import { userGoalsSelector, setUserGoals } from "../../redux/userGoalsSlice";
-import ProjectsSection from "../../components/coding/ProjectsSection";
-import AchievementComponent from "../../components/coding/profileV2/achievement_components/AchievementComponent";
 import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import GoalsSectionComponent from "../../components/studentPortal/goals/GoalsSectionComponent";
+import AchievementComponent from "../../components/studentPortal/profileV2/achievement_components/AchievementComponent";
+import ProfileHeaderComponent from "../../components/studentPortal/profileV2/ProfileHeaderComponent";
+import ProjectsSection from "../../components/studentPortal/profileV2/ProjectsSection";
+import SkillRatingsComponent from "../../components/studentPortal/skillRatings/SkillRatingsComponent";
 import {
   FetchTotalBadgesCountResponse,
   FETCH_TOTAL_USER_BADGES_COUNT,
-} from "../../graphql/fetchTotalUserBadgesCount";
+} from "../../graphql/studentPortal/achievements/fetchTotalUserBadgesCount";
 import {
   FetchUserBadgesCountResponse,
   FETCH_USER_BADGES_COUNT,
-} from "../../graphql/fetchUserBadgesCount";
+} from "../../graphql/studentPortal/achievements/fetchUserBadgesCount";
+import {
+  FetchUserGoalsDataResponse,
+  FETCH_USER_GOALS,
+} from "../../graphql/studentPortal/goals/fetchUserGoals";
 import {
   FetchUserProfileDataResponse,
   FETCH_USER_PROFILE_DATA,
-} from "../../graphql/fetchUserProfile";
-import {
-  profileSelector,
-  setUserProfile,
-  setUserBadgeCount,
-  setTotalBadgeCount,
-} from "../../redux/profileSlice";
+} from "../../graphql/studentPortal/profile/fetchUserProfile";
 import {
   FetchSkillsAndRatings,
   FETCH_SKILLS_AND_RATINGS,
-} from "../../graphql/fetchSkillsAndRatings";
+} from "../../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
+import { useAuth } from "../../lib/authContext";
+import {
+  profileSelector,
+  setTotalBadgeCount,
+  setUserBadgeCount,
+  setUserProfile,
+} from "../../redux/profileSlice";
 import {
   setSkillRatings,
   skillRatingsSelector,
 } from "../../redux/skillRatingsSlice";
+import { setUserGoals, userGoalsSelector } from "../../redux/userGoalsSlice";
 import { transformSkillsAndRatings } from "../api/skillRatingsFunctions";
 
 type InternalProfileProps = {
@@ -58,9 +57,8 @@ export default function InternalProfile({
 
   const { userGoals } = useSelector(userGoalsSelector);
   const { skillRatings } = useSelector(skillRatingsSelector);
-  const { userProfileData, userBadgeCount, totalBadgeCount } = useSelector(
-    profileSelector
-  );
+  const { userProfileData, userBadgeCount, totalBadgeCount } =
+    useSelector(profileSelector);
   const [isEditable, setIsEditable] = useState(false);
 
   if (userId) {
@@ -132,33 +130,44 @@ export default function InternalProfile({
 
   return (
     <div className="flex flex-col p-4 m-4 space-y-4 overflow-auto bg-scroll">
-      <ProfileHeaderComponent
-        userProfileData={userProfileData}
-        userBadgeCount={userBadgeCount}
-        totalBadgeCount={totalBadgeCount}
-      />
-      <ExpandableContainer open={false} title={"Projects"}>
+      <Section title={""}>
+        <ProfileHeaderComponent
+          userProfileData={userProfileData}
+          userBadgeCount={userBadgeCount}
+          totalBadgeCount={totalBadgeCount}
+        />
+      </Section>
+      <Section title={"Projects"}>
         <ProjectsSection user={userId} />
-      </ExpandableContainer>
-      <ExpandableContainer open={false} title={"Goals"}>
+      </Section>
+      <Section title={"Goals"}>
         <GoalsSectionComponent
           inProfile={true}
           userGoals={userGoals
             .filter((goal) => !goal.isComplete && !goal.isArchived)
             .slice(0, 3)}
         />
-      </ExpandableContainer>
-      <ExpandableContainer open={false} title={"Achievements"}>
+      </Section>
+      <Section title={"Achievements"}>
         {typeof userId == "string" && <AchievementComponent userId={userId} />}
-      </ExpandableContainer>
-      <ExpandableContainer open={false} title={"Skill Ratings"}>
+      </Section>
+      <Section title={"Skill Ratings"}>
         <SkillRatingsComponent
           skillRatings={skillRatings}
           isEditable={isEditable}
         />
-      </ExpandableContainer>
+      </Section>
     </div>
   );
 }
 
 InternalProfile.auth = true;
+
+function Section({ title, children }) {
+  return (
+    <div className="">
+      <h6 className="mb-4 text-lg font-bold">{title}</h6>
+      <div className="p-0 bg-backgroundSecondary rounded-xl">{children}</div>
+    </div>
+  );
+}

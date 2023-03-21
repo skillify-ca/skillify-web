@@ -1,12 +1,11 @@
 import { useMutation } from "@apollo/client";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import ProgressBar from "../../../../../components/coding/studentPortal/ProgressBar";
 import { Button } from "../../../../../components/ui/Button";
-import { COMPLETE_USER_INTRO_NODE } from "../../../../../graphql/coding/completeUserIntroNode";
-import { FETCH_USER_INTRO_NODES } from "../../../../../graphql/coding/fetchUserIntroNodes";
-import { UNLOCK_USER_INTRO_NODE } from "../../../../../graphql/coding/unlockUserIntroNode";
+import ProgressBar from "../../../../../components/ui/ProgressBar";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../../graphql/studentPortal/courses/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../../graphql/studentPortal/courses/fetchUserIntroNodes";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../../../lib/authContext";
 
 const JS_A1 = () => {

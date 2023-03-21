@@ -1,20 +1,20 @@
-import "../styles/globals.css";
-
-import { DndProvider } from "react-dnd";
-import { TouchBackend } from "react-dnd-touch-backend";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import initializeApollo from "../lib/apollo";
-import { AuthProvider, useAuth } from "../lib/authContext";
 import { ApolloProvider } from "@apollo/client";
-import { Provider as ReduxProvider } from "react-redux";
-import store from "../redux/store";
-import React, { useEffect } from "react";
+import Hotjar from '@hotjar/browser';
 import { useRouter } from "next/router";
 import Script from "next/script";
-import Layout from "../components/coding/studentPortal/Layout";
-import * as fbq from "../lib/fbPixel"
-import * as ga from "../lib/googleAnalytics"
-import Hotjar from '@hotjar/browser';
+import React, { useEffect } from "react";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { TouchBackend } from "react-dnd-touch-backend";
+import { Provider as ReduxProvider } from "react-redux";
+import Layout from "../components/studentPortal/layout/Layout";
+import initializeApollo from "../lib/apollo";
+import { AuthProvider, useAuth } from "../lib/authContext";
+import * as fbq from "../lib/fbPixel";
+import * as ga from "../lib/googleAnalytics";
+import store from "../redux/store";
+import "../styles/globals.css";
+
 
 function MyApp({ Component, pageProps: { ...pageProps } }) {
   const router = useRouter();

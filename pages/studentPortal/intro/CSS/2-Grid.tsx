@@ -1,16 +1,14 @@
-import React, { useEffect } from "react";
-import { Button } from "../../../../components/ui/Button";
-import ProgressBar from "../../../../components/coding/studentPortal/ProgressBar";
+import { useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
+import React from "react";
 import LessonComponent, {
   LessonComponentData,
   Resource,
-} from "../../../../components/coding/studentPortal/LessonComponent";
-
-import { useMutation } from "@apollo/client";
-import { useRouter } from "next/router";
-import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/coding/completeUserIntroNode";
-import { FETCH_USER_INTRO_NODES } from "../../../../graphql/coding/fetchUserIntroNodes";
-import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/coding/unlockUserIntroNode";
+} from "../../../../components/studentPortal/lessons/LessonComponent";
+import { Button } from "../../../../components/ui/Button";
+import ProgressBar from "../../../../components/ui/ProgressBar";
+import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/completeUserIntroNode";
+import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
 
 const CSS1 = ({ lessonComponents }) => {
@@ -86,8 +84,7 @@ export async function getServerSideProps({ params }) {
     },
     {
       component: "description",
-      text:
-        "CSS Grid is a newer property of CSS that lets developer create more complex layouts or force yourself to use a single column layout. Without Grid, you had to position elements using coordinates on the screen. Although that technique worked in the 90s, it quickly became out of date as the world started to adopt a wide variety of screen sizes. CSS Grid allows you to position different HTML elements on your screen in a dynamic way that can adjust to the size of your screen.",
+      text: "CSS Grid is a newer property of CSS that lets developer create more complex layouts or force yourself to use a single column layout. Without Grid, you had to position elements using coordinates on the screen. Although that technique worked in the 90s, it quickly became out of date as the world started to adopt a wide variety of screen sizes. CSS Grid allows you to position different HTML elements on your screen in a dynamic way that can adjust to the size of your screen.",
     },
     {
       component: "resource-list",
