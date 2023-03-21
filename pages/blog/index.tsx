@@ -104,7 +104,7 @@ export default function Blog() {
             />
           </div>
           <div>
-            <h4>Apriil 13, 2022</h4>
+            <h4>April 13, 2022</h4>
             <Card
               title={"Do Product Manager Need Coding Skills?"}
               image={
@@ -118,7 +118,7 @@ export default function Blog() {
             />
           </div>
           <div>
-            <h4>Apriil 2, 2022</h4>
+            <h4>April 2, 2022</h4>
             <Card
               title={"Are Toronto coding bootcamps worth it?"}
               image={
