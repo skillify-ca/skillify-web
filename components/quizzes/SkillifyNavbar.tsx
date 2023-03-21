@@ -1,10 +1,10 @@
 import React from "react";
 
-type skillifyNavbarProps = {
+type SkillifyNavbarProps = {
   hidden: boolean;
   onBackClick: () => void;
 };
-const skillifyNavbar = ({ hidden, onBackClick }: skillifyNavbarProps) => {
+const SkillifyNavbar = ({ hidden, onBackClick }: SkillifyNavbarProps) => {
   const className = hidden ? "w-16 p-4 opacity-0" : "w-16 p-4";
   return (
     <div className="flex justify-between">
@@ -23,4 +23,4 @@ const skillifyNavbar = ({ hidden, onBackClick }: skillifyNavbarProps) => {
   );
 };
 
-export default skillifyNavbar;
+export default SkillifyNavbar;
