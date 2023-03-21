@@ -1,5 +1,7 @@
 import React from "react";
 import { Unit } from "../../../pages/api/studentPortal/units";
+import FreemiumMessageNodeView from "../freemium/FreemiumMessageNodeView";
+import SkeletonNodeView from "../freemium/SkeletonNodeView";
 import UnitNodeView from "./UnitNodeView";
 
 export type UnitViewProps = {
@@ -14,9 +16,36 @@ export const UnitView: React.FC<UnitViewProps> = ({ data }: UnitViewProps) => {
       </p>
       <div>
         {data.nodes.map((it, index) => {
-          if (!it.locked) {
+          if (it.type === "freemiumMessage") {
             return (
-              <a href={"/studentPortal/" + it.link}>
+              <FreemiumMessageNodeView
+                hiddenLine={index === data.nodes.length - 1}
+                type={it.type}
+              />
+            );
+          } else if (it.type === "grayedOut") {
+            return (
+              <SkeletonNodeView
+                hiddenLine={index === data.nodes.length - 1}
+                type={it.type}
+              />
+            );
+          } else {
+            if (!it.locked) {
+              return (
+                <a href={"/studentPortal/" + it.link}>
+                  <UnitNodeView
+                    hiddenLine={index === data.nodes.length - 1}
+                    completed={it.completed}
+                    locked={it.locked}
+                    title={it.title}
+                    description={it.description}
+                    type={it.type}
+                  />
+                </a>
+              );
+            } else {
+              return (
                 <UnitNodeView
                   hiddenLine={index === data.nodes.length - 1}
                   completed={it.completed}
@@ -25,19 +54,8 @@ export const UnitView: React.FC<UnitViewProps> = ({ data }: UnitViewProps) => {
                   description={it.description}
                   type={it.type}
                 />
-              </a>
-            );
-          } else {
-            return (
-              <UnitNodeView
-                hiddenLine={index === data.nodes.length - 1}
-                completed={it.completed}
-                locked={it.locked}
-                title={it.title}
-                description={it.description}
-                type={it.type}
-              />
-            );
+              );
+            }
           }
         })}
       </div>
