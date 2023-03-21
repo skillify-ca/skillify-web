@@ -1,7 +1,7 @@
-import Progress from "../../../components/quizzes/langQuiz/Progress";
 import Skills from "../../../components/quizzes/langQuiz/SkillSelections";
 import QuizNavbar from "../../../components/quizzes/QuizNavbar";
 import { Button } from "../../../components/ui/Button";
+import Progress from "../shared/Progress";
 
 function BuildTarget() {
   return (

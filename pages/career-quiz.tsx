@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import BluePrint from "../components/quizzes/careerQuiz/BluePrint";
 import CareerResults from "../components/quizzes/careerQuiz/CareerResults";
 import EduBackground from "../components/quizzes/careerQuiz/EduBackground";
 import Industries from "../components/quizzes/careerQuiz/Industries";
 import Skills from "../components/quizzes/careerQuiz/Skills";
-import StartQuiz from "../components/quizzes/careerQuiz/StartQuiz";
 import Tasks from "../components/quizzes/careerQuiz/Tasks";
+import BluePrint from "../components/quizzes/shared/BluePrint";
+import StartQuiz from "../components/quizzes/shared/StartQuiz";
 
-export enum Stage {
+enum Stage {
   START,
   EDUCATION,
   INDUSTRIES,
@@ -20,7 +20,7 @@ export enum Stage {
 const CareerQuiz = () => {
   // create results state object that
   // create custom type -- based on schema type in database
-  const [stage, setStage] = useState(Stage.START);
+  const [stage, setStage] = useState<Stage>(Stage.START);
 
   const handleNextClick = () => {
     setStage((prevStage) => prevStage + 1);
@@ -33,7 +33,15 @@ const CareerQuiz = () => {
   const renderStage = () => {
     switch (stage) {
       case Stage.START:
-        return <StartQuiz onNextClick={handleNextClick} />;
+        return (
+          <StartQuiz
+            onNextClick={handleNextClick}
+            title={"Career in Tech Personality Quiz"}
+            body={
+              "Take this free quiz to find out what jobs in tech fit you best!"
+            }
+          />
+        );
       case Stage.EDUCATION:
         return (
           <EduBackground
@@ -74,6 +82,7 @@ const CareerQuiz = () => {
 };
 
 export default CareerQuiz;
+
 CareerQuiz.getLayout = function getLayout(page) {
   return <div>{page}</div>;
 };

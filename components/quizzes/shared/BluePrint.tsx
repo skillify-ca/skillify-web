@@ -1,8 +1,7 @@
-import React from "react";
 import { Button } from "../../ui/Button";
-import NumberedCircles from "../NumberedCircles";
 import ProgressBar from "../Progress";
 import SkillifyNavbar from "../SkillifyNavbar";
+import NumberedCircles from "./NumberedCircles";
 
 type BluePrintProps = {
   onNextClick: () => void;
@@ -11,15 +10,15 @@ type BluePrintProps = {
 
 const BluePrint = ({ onNextClick, onBackClick }: BluePrintProps) => {
   return (
-    <div className="w-full  space-y-4">
+    <div className="w-full space-y-4">
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
 
       <div className="w-full mb-4 text-center">
-        <div className="w-full h-2 bg-black-600 px-4 rounded-lg mb-2">
+        <div className="w-full h-2 px-4 mb-2 rounded-lg bg-black-600">
           {" "}
           <ProgressBar progress={100} />
         </div>
-        <div className="font-bold mt-8 text-2xl text-black-600 mb-2">
+        <div className="mt-8 mb-2 text-2xl font-bold text-black-600">
           The Skillify BluePrint
         </div>
       </div>
@@ -27,17 +26,17 @@ const BluePrint = ({ onNextClick, onBackClick }: BluePrintProps) => {
         <div className="grid grid-cols-1 ml-8">
           <NumberedCircles />
         </div>
-        <div className="grid grid-cols-1 mx-4 mr-16  space-y-8 md:space-y-12  md:mt-2">
-          <div className="text-black-600 font-bold ">
+        <div className="grid grid-cols-1 mx-4 mr-16 space-y-8 md:space-y-12 md:mt-2">
+          <div className="font-bold text-black-600 ">
             Learn the fundamentals of coding
           </div>
-          <div className="text-black-600 font-bold">
+          <div className="font-bold text-black-600">
             Work on group projects with a team
           </div>
-          <div className="text-black-600 font-bold">
+          <div className="font-bold text-black-600">
             Network with expert mentors in the industry
           </div>
-          <div className="text-black-600 font-bold ">
+          <div className="font-bold text-black-600 ">
             Ace coding interviews and get hired
           </div>
         </div>

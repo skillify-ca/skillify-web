@@ -1,9 +1,10 @@
-import { useState } from "react";
-import BluePrint from "../../../components/quizzes/langQuiz/BluePrint";
+import React, { useState } from "react";
+import Industries from "../../../components/quizzes/careerQuiz/Industries";
+import Skills from "../../../components/quizzes/careerQuiz/Skills";
+import Tasks from "../../../components/quizzes/careerQuiz/Tasks";
 import LangResults from "../../../components/quizzes/langQuiz/LangResults";
-import Skills from "../../../components/quizzes/langQuiz/SkillSelections";
 import StartQuiz from "../../../components/quizzes/langQuiz/StartQuiz";
-import Tasks from "../../../components/quizzes/langQuiz/Tasks";
+import BluePrint from "../../../components/quizzes/shared/NumberedCircles";
 
 export enum Stage {
   START,
@@ -14,6 +15,7 @@ export enum Stage {
   RESULTS,
 }
 const LangQuiz = () => {
+  const quizQuestions = [];
   // create results state object that
   // create custom type -- based on schema type in database
   const [stage, setStage] = useState(Stage.START);

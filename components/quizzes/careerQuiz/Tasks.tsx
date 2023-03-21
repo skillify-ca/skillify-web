@@ -1,8 +1,7 @@
-import React from "react";
 import { Button } from "../../ui/Button";
 import ProgressBar from "../Progress";
+import SkillSelection from "../shared/SkillSelections";
 import SkillifyNavbar from "../SkillifyNavbar";
-import SkillSelection from "../SkillSelections";
 
 type TasksProps = {
   onNextClick: () => void;
