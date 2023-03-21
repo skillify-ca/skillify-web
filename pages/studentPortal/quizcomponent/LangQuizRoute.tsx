@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import LangResults from "../../../components/quizzes/langQuiz/LangResults";
 import BluePrint from "../../../components/quizzes/shared/BluePrint";
 import SkillSelections from "../../../components/quizzes/shared/SkillSelections";
@@ -23,26 +23,27 @@ const LangQuiz = () => {
       "Start a side hustle",
     ],
     [
-      "Front end development",
-      "Back end development",
-      "Game development",
-      "Mobile development",
-      "Data analytics",
-      "Product management",
-      "Digital marketing",
-      "UX/UI design",
-      "I don't know / Not sure yet",
+      ["Front end development", "JavaScript", 1],
+      ["Back end development", "JavaScript", 1],
+      ["Game development", "JavaScript", 1],
+      ["Mobile development", "JavaScript", 1],
+      ["Data analytics", "Python", 1],
+      ["Product management", "JavaScript", 1],
+      ["Digital marketing", "JavaScript", 1],
+      ["UX/UI design", "JavaScript", 1],
+      ["I don't know / Not sure yet", "JavaScript", 1],
     ],
     [
-      "Websites",
-      "Storefront",
-      "Mobile apps",
-      "Games",
-      "Email",
-      "Tools to automate your life",
-      "I don't know / Not sure yet",
+      ["Websites", "JavaScript", 1],
+      ["Storefront", "HTML/CSS", 1],
+      ["Mobile apps", "JavaScript", 1],
+      ["Games", "JavaScript", 1],
+      ["Email", "HTML/CSS", 1],
+      ["Tools to automate your life", "JavaScript", 1],
+      ["I don't know / Not sure yet", "JavaScript", 1],
     ],
   ];
+
   // create results state object that
   // create custom type -- based on schema type in database
   const [stage, setStage] = useState(Stage.START);
