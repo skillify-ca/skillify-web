@@ -1,7 +1,7 @@
 import { Button } from "../../ui/Button";
 import ProgressBar from "../Progress";
+import SkillifyNavbar from "../shared/SkillifyNavbar";
 import SkillSelection from "../shared/SkillSelections";
-import SkillifyNavbar from "../SkillifyNavbar";
 type IndustriesProps = {
   onNextClick: () => void;
   onBackClick: () => void;

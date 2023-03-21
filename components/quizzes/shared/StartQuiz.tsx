@@ -1,5 +1,6 @@
 import { Button } from "../../ui/Button";
-import SkillifyNavbar from "../SkillifyNavbar";
+
+import SkillifyNavbar from "./SkillifyNavbar";
 type StartQuizProps = {
   onNextClick: () => void;
   title: string;

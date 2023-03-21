@@ -1,7 +1,7 @@
 import { Button } from "../../ui/Button";
-import ProgressBar from "../Progress";
-import SkillifyNavbar from "../SkillifyNavbar";
 import NumberedCircles from "./NumberedCircles";
+import ProgressBar from "./Progress";
+import SkillifyNavbar from "./SkillifyNavbar";
 
 type BluePrintProps = {
   onNextClick: () => void;

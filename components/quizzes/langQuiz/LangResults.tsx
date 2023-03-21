@@ -1,10 +1,14 @@
 import { Button } from "../../ui/Button";
-import QuizNavbar from "../QuizNavbar";
+import SkillifyNavbar from "../shared/SkillifyNavbar";
 
-const LangResults = () => {
+type LangResultsProps = {
+  onBackClick: () => void;
+};
+
+const LangResults = ({ onBackClick }: LangResultsProps) => {
   return (
     <div className="flex flex-col w-full max-w-4xl mx-auto text-center md:mr-12">
-      <QuizNavbar />
+      <SkillifyNavbar onBackClick={onBackClick} hidden={false} />
       <div className="mt-4 text-2xl font-bold text-black-600">YOUR RESULTS</div>
       <div className="text-lg font-semibolds px-3">
         The first coding language you should learn is...
@@ -19,7 +23,7 @@ const LangResults = () => {
         Start learning to code with a Skillify coach today!
       </div>
       <div className="flex flex-col items-center py-4 space-y-3 rounded-full">
-        <Button label="Book a call" />
+        <Button label="Book a call" backgroundColor="yellow" />
         <Button label="Learn more" backgroundColor="blue" />
       </div>
       <div className="mx-4">

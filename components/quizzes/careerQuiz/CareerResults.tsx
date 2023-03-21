@@ -1,6 +1,5 @@
-import React from "react";
 import { Button } from "../../ui/Button";
-import SkillifyNavbar from "../SkillifyNavbar";
+import SkillifyNavbar from "../shared/SkillifyNavbar";
 
 type CareerResultsProps = {
   onBackClick: () => void;
