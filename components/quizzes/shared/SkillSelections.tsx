@@ -1,18 +1,9 @@
 import React, { useState } from "react";
-<<<<<<<< HEAD:components/quizzes/langQuiz/SkillSelections.tsx
-
-type skillSelectionProps = {
-  selections: string[];
-};
-
-const skillSelection: React.FC<skillSelectionProps> = ({ selections }) => {
-========
 type SkillSelectionsProps = {
   selections: string[];
 };
 
 const SkillSelections: React.FC<SkillSelectionsProps> = ({ selections }) => {
->>>>>>>> main:components/quizzes/SkillSelections.tsx
   const [selected, setSelected] = useState<string[]>([]);
   const handleSelection = (selection: string) => {
     if (selected.includes(selection)) {
@@ -24,7 +15,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({ selections }) => {
   return (
     <div className="flex flex-col w-full max-w-4xl mx-auto">
       <div className="w-full mb-4 text-center">
-        <div className="font-bold text-2xl text-black-600"></div>
+        <div className="text-2xl font-bold text-black-600"></div>
       </div>
       {selections.map((selection, index) => (
         <div
@@ -42,8 +33,4 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({ selections }) => {
     </div>
   );
 };
-<<<<<<<< HEAD:components/quizzes/langQuiz/SkillSelections.tsx
-export default skillSelection;
-========
 export default SkillSelections;
->>>>>>>> main:components/quizzes/SkillSelections.tsx
