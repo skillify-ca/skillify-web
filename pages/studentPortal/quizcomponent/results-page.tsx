@@ -1,7 +1,7 @@
 import React from "react";
 import NumberedCircles from "../../../components/quizzes/numberedcircles";
 import { Button } from "../../../components/ui/Button";
-import ProgressBar from "./progressbar";
+import ProgressBar from "./ProgressBar";
 
 const ResultsPage: React.FC = () => {
   return (

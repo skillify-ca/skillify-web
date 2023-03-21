@@ -1,5 +1,5 @@
-import QuizNavbar from "../../../components/quizzes/QuizNavbar";
-import { Button } from "../../../components/ui/Button";
+import { Button } from "../../ui/Button";
+import QuizNavbar from "../QuizNavbar";
 
 const LangResults = () => {
   return (
