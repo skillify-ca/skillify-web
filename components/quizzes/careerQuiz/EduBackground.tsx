@@ -1,7 +1,7 @@
+import React from "react";
 import { Button } from "../../ui/Button";
-import ProgressBar from "../Progress";
+import ProgressBar from "../shared/Progress";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
-
 type EduBackgroundProps = {
   onNextClick: () => void;
   onBackClick: () => void;
