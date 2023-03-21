@@ -62,7 +62,7 @@ export async function getServerSideProps({ params }) {
   const slug = params.slug.join("/");
 
   return await fetch(
-    process.env.HOST_URL + "studentPortal/lessons/basics/" + slug
+    process.env.NEXT_PUBLIC_HOST_URL + "studentPortal/lessons/basics/" + slug
   )
     .then((res) => res.json())
     .then((res) => {
