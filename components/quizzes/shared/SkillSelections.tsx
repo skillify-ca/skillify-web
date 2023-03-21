@@ -37,9 +37,6 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
         </div>
         <div className="text-lg font-semibolds px-3">{body}</div>
         <div className="flex flex-col w-full max-w-4xl mx-auto">
-          <div className="w-full mb-4 text-center">
-            <div className="text-2xl font-bold text-black-600"></div>
-          </div>
           {selections.map((selection, index) => (
             <div
               key={index}
@@ -54,7 +51,9 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
             </div>
           ))}
         </div>
-        <Button label="Next" onClick={onNextClick} backgroundColor="yellow" />
+        <div className="mt-4">
+          <Button label="Next" onClick={onNextClick} backgroundColor="yellow" />
+        </div>
       </div>
     </>
   );

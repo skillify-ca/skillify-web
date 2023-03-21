@@ -10,15 +10,11 @@ type BluePrintProps = {
 
 const BluePrint = ({ onNextClick, onBackClick }: BluePrintProps) => {
   return (
-    <div className="w-full space-y-4">
+    <div>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
-
-      <div className="w-full mb-4 text-center">
-        <div className="w-full h-2 px-4 mb-2 rounded-lg bg-black-600">
-          {" "}
-          <ProgressBar progress={100} />
-        </div>
-        <div className="mt-8 mb-2 text-2xl font-bold text-black-600">
+      <div className="w-full mb-4 px-8 text-center">
+        <ProgressBar progress={100} />
+        <div className="mt-4 mb-2 text-2xl font-bold text-black-600">
           The Skillify BluePrint
         </div>
       </div>
@@ -41,7 +37,7 @@ const BluePrint = ({ onNextClick, onBackClick }: BluePrintProps) => {
           </div>
         </div>
       </div>
-      <div className="grid py-8 place-items-center">
+      <div className="grid py-6 place-items-center">
         <Button
           label="View results"
           onClick={onNextClick}
@@ -52,7 +48,4 @@ const BluePrint = ({ onNextClick, onBackClick }: BluePrintProps) => {
   );
 };
 
-BluePrint.getLayout = function getLayout(page) {
-  return <div>{page}</div>;
-};
 export default BluePrint;
