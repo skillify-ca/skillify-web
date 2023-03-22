@@ -1,25 +1,32 @@
+import { useMutation } from "@apollo/client";
 import { differenceInHours } from "date-fns";
-import { useSelector } from "react-redux";
-import { profileSelector } from "../../../../redux/profileSlice";
-
-export function convertDateToUTC(date) { return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()); }
+import { useDispatch, useSelector } from "react-redux";
+import { UPSERT_LAST_SEEN_MODAL } from "../../../../graphql/studentPortal/freemium/upsertLastSeenModal";
+import { useAuth } from "../../../../lib/authContext";
+import { profileSelector, setLastSeenModal } from "../../../../redux/profileSlice";
 
 export function showModal() {
-    const { userRole, userProfileData } = useSelector(profileSelector);
-    const lastSeenTime = userProfileData.lastSeen;
-    const lastSeenDateTime = new Date(lastSeenTime);
-    const currentDateTime = new Date();
-    const timeDifferenceInHours = differenceInHours(
-      currentDateTime,
-      lastSeenDateTime,
-    );
+  const [updateLastSeenModal] = useMutation(UPSERT_LAST_SEEN_MODAL);
+  const { userRole, lastSeenModal } = useSelector(profileSelector)
+  const { user } = useAuth();
+  const dispatch = useDispatch()
 
-    if (
-      timeDifferenceInHours <= 24 &&
-      (userRole === "freemium" || userRole === "paid")
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+  const currentDateTime = new Date();
+  const timeDifferenceInHours = lastSeenModal
+    ? differenceInHours(currentDateTime, new Date(lastSeenModal))
+    : null;
+
+  if (
+    timeDifferenceInHours !== null &&
+    timeDifferenceInHours >= 24 &&
+    (userRole === "freemium" || userRole === "paid")
+  ) {
+    dispatch(setLastSeenModal(currentDateTime))
+  updateLastSeenModal({ variables: { userId: user.uid, lastSeenModal: currentDateTime } });
+    return true;
+  } else {
+    dispatch(setLastSeenModal(currentDateTime))
+  updateLastSeenModal({ variables: { userId: user.uid, lastSeenModal: currentDateTime } });
+    return false;
   }
+}

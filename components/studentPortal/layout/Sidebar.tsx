@@ -11,6 +11,7 @@ import { useAuth } from "../../../lib/authContext";
 import {
   profileSelector,
   setCreatedAt,
+  setLastSeenModal,
   setUserRole,
 } from "../../../redux/profileSlice";
 import { activePageSelector, setActivePage } from "../../../redux/sidebarSlice";
@@ -39,10 +40,12 @@ export const Sidebar: React.FC = () => {
         dispatch(setUserRole("student"));
       } else if (data.users[0].userRole.value === "paid") {
         dispatch(setUserRole("paid"));
+        dispatch(setLastSeenModal(data.users[0].freemium_user.lastSeenModal));
         setIsDisabled(true);
       } else if (data.users[0].userRole.value === "freemium") {
         dispatch(setCreatedAt(data.users[0].created_at));
         dispatch(setUserRole("freemium"));
+        dispatch(setLastSeenModal(data.users[0].freemium_user.lastSeenModal));
         setIsDisabled(true);
       }
     },
