@@ -7,6 +7,7 @@ import Credentials from "./Credentials";
 import Hero, { HighlightableText } from "./Hero";
 import WhatYouGet from "./WhatYouGet";
 import WhoItsFor from "./WhoItsFor";
+import FAQ from "./FAQ";
 
 export type LandingPageCopy = {
   headerText: HighlightableText[];
@@ -30,6 +31,7 @@ export default function LandingPage({
         <Credentials headerText={credentialsText} />
         <WhatYouGet />
         <TestimonialSect />
+        <FAQ />
         <SubscribeBanner />
       </div>
       <TermsAndConditions />
