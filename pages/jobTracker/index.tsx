@@ -1,4 +1,5 @@
 import React from "react";
+import LandingNavbar from "../../components/landingPage/LandingNavbar";
 import JobTrackerComponent from "../../components/resources/jobTracker/JobTrackerComponent";
 
 export default function JobTrackerPage() {
@@ -10,5 +11,10 @@ export default function JobTrackerPage() {
 }
 
 JobTrackerPage.getLayout = function getLayout(page) {
-  return <div>{page}</div>;
+  return (
+    <div className="theme-default">
+      <LandingNavbar />
+      {page}
+    </div>
+  );
 };

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import LandingNavbar from "../../landingPage/LandingNavbar";
 import { Button } from "../../ui/Button";
 
 export default function JobTrackerComponent() {
@@ -338,8 +337,7 @@ export default function JobTrackerComponent() {
   });
 
   return (
-    <div className="theme-default">
-      <LandingNavbar />
+    <div>
       <h2 className="p-4 text-3xl font-bold">Tech Salary Guide 2023</h2>
       <p className="p-4">
         One of our coaches recently spent a few months interviewing with various
