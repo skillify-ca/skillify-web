@@ -1,9 +1,9 @@
-import BonusSection from "./BonusSection";
+import React from "react";
 
 type Feature = {
   title: string;
   value: string;
-  description: string;
+  description: string | string[];
 };
 
 export default function WhatYouGet() {
@@ -18,25 +18,33 @@ export default function WhatYouGet() {
       title: "Comprehensive Program Onboarding",
       value: "$1,500 Value",
       description:
-        "Coding Coaching Profile Assessment, Plus a Hand-Picked Coach for you based on your specific careeer goals, Getting Started video orientation, and 1:1 Kick off Call to get you moving forward.",
+        "Coding Coaching Profile Assessment, Plus a Hand-Picked Coach for you based on your specific career goals, Getting Started video orientation, and 1:1 Kick off Call to get you moving forward.",
     },
     {
       title: "Direct Feedback and Guidance",
       value: "$5,000 Value",
-      description:
-        "Private community group with lots of personal attention, Get real-time answers to your questions by our team of Coding Experts & Coaches, Model best industry practices and access proven strategies to get fast results - including Skillify exclusive frameworks",
+      description: [
+        "Private community group with lots of personal attention",
+        "Get real-time answers to your questions by our team of Coding Experts & Coaches",
+        "Model best industry practices and access proven strategies to get fast results - including Skillify exclusive frameworks",
+      ],
     },
     {
       title: "1:1 Accountability Coaching",
       value: "$3,000 Value",
-      description:
-        "Private monthly ongoing 1-on-1 calls, Work directly with your Coach to create goals, develop a clear plan to achieve them, and work through any obstacles, Accelerate your success as your Coach helps you measure and track progress, and keeps you accountable for following through",
+      description: [
+        "Private monthly ongoing 1-on-1 calls",
+        "Work directly with your Coach to create goals, develop a clear plan to achieve them, and work through any obstacles",
+        "Accelerate your success with a dedicated Coach that helps measure your progress and holds you accountable",
+      ],
     },
     {
       title: "Success Path Group Coaching, Training & Networking",
       value: "$4,500 Value",
-      description:
-        "Success Path Small Group Calls, Work with other members at a similar stage in the success path to benefit from more time with a Coach in a smaller group setting, Group Training Calls are balanced mix of Teaching + Implementation + Q&A each month, led by me, our coaching team, and hand-picked industry-leading experts.",
+      description: [
+        "Success Path Small Group Calls: work with other members at a similar stage in the success path to benefit from more time with a Coach in a smaller group setting",
+        "Group Training Calls are balanced mix of Teaching + Implementation + Q&A each month, led by me, our coaching team, and hand-picked industry-leading experts.",
+      ],
     },
     {
       title: "FULL Library of Skillify Digital Trainings",
@@ -61,7 +69,7 @@ export default function WhatYouGet() {
   return (
     <div className="flex flex-col items-center justify-center p-4 max-w-7xl ">
       <h2 className="w-full px-2 my-8 text-3xl font-bold text-center sm:p-4">
-        Here's Everything You Get as a Member of the Skillify Coding Academy
+        Everything You Get as a Member of the Skillify Coding Academy
       </h2>
       <FeaturesSection
         features={features.slice(0, 2)}
@@ -105,11 +113,12 @@ function FeaturesSection({
       } md:grid md:grid-cols-2  w-full max-w-7xl place-items-center`}
     >
       <div className="flex flex-col w-full p-4 m-4 text-white max-w-7xl bg-murkrow rounded-xl">
-        {features.map((item) => (
-          <div className="flex flex-col m-4">
+        {features.map((item, index) => (
+          <div key={index} className="flex flex-col m-4">
             <p className="text-xl font-bold ">{item.title}</p>
             <p className="mb-2 text-xl text-charmander">({item.value})</p>
-            <p className="mb-2 text-xl ">{item.description}</p>
+            <Description description={item.description} />
+            {/* <p className="mb-2 text-xl ">{item.description}</p> */}
           </div>
         ))}
       </div>
@@ -122,3 +131,22 @@ function FeaturesSection({
     </div>
   );
 }
+
+type DescriptionProps = {
+  description: string | string[];
+};
+
+const Description = ({ description }: DescriptionProps) => {
+  if (Array.isArray(description)) {
+    return (
+      <div className="space-y-2">
+        <ul className="list-disc ml-4">
+          {description.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+  return <ul className="mb-2 text-xl">{description}</ul>;
+};
