@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../../ui/Button";
+import { Button } from "../../../ui/Button";
 import ProgressBar from "../shared/Progress";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
 type EduBackgroundProps = {
