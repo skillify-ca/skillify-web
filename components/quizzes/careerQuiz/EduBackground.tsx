@@ -1,45 +1,121 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../../ui/Button";
 import ProgressBar from "../shared/Progress";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
+
 type EduBackgroundProps = {
   onNextClick: () => void;
   onBackClick: () => void;
 };
+
+enum EducationLevel {
+  BLANK = "",
+  NA = "N/A",
+  HighSchoolDiploma = "High School Diploma",
+  GED = "GED",
+  UndergraduateDegree = "Undergraduate Degree",
+  PostgraduateDegree = "Postgraduate Degree",
+  PHD = "PHD",
+}
+
 const EducationBackground = ({
   onNextClick,
   onBackClick,
 }: EduBackgroundProps) => {
+  const [selectedEducationLevel, setSelectedEducationLevel] =
+    useState<EducationLevel | null>(null);
+  const [showExperienceDialog, setShowExperienceDialog] = useState(false);
+  const [institution, setInstitution] = useState("");
+  const [degree, setDegree] = useState("");
+
+  const handleEducationLevelChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const selectedValue = event.target.value;
+    setSelectedEducationLevel(selectedValue as EducationLevel);
+
+    switch (selectedValue) {
+      case EducationLevel.NA:
+      case EducationLevel.HighSchoolDiploma:
+      case EducationLevel.GED:
+        setShowExperienceDialog(true);
+        break;
+      default:
+        setShowExperienceDialog(false);
+        break;
+    }
+  };
+
   return (
     <div className="">
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
 
-      <div className="flex flex-col items-center px-8">
+      <div className="flex flex-col items-center px-8 ">
         {" "}
         <ProgressBar progress={15} />
       </div>
-      <div className="flex flex-col items-center text-center mt-4">
-        <h1 className="text-2xl font-semibold">
-          What is your educational background?
+      <div className="flex flex-col items-center text-center  mx-4  mt-4">
+        <h1 className="text-2xl font-semibold ">
+          What level of education have you received?
         </h1>
-        <p className="text-lg font-medium px-4 ">Fill in the blanks</p>
-        <div className="text-lg text-left space-y-2">
-          <div>
-            <h3>Institution</h3>{" "}
-            <input
-              type="text"
-              name="institution"
-              className="shadow appearance-none border border-gray-500 rounded-lg px-6"
-            ></input>
+        <p className="text-lg font-medium px-4">
+          Select your highest level of education.
+        </p>
+        <div className="text-lg space-y-4">
+          <div className="text-left">
+            <h3>Education</h3>
+            <select
+              value={selectedEducationLevel || ""}
+              onChange={handleEducationLevelChange}
+              className="shadow appearance-none border border-gray-500 rounded-lg px-12"
+            >
+              {Object.values(EducationLevel).map((educationLevel) => (
+                <option key={educationLevel} value={educationLevel}>
+                  {educationLevel}
+                </option>
+              ))}
+            </select>
           </div>
-          <div>
-            <h3>Degree</h3>{" "}
-            <input
-              type="text"
-              name="degree"
-              className="shadow appearance-none border border-gray-500 rounded-lg px-6"
-            ></input>
-          </div>
+          {selectedEducationLevel &&
+            selectedEducationLevel !== EducationLevel.NA &&
+            selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
+            selectedEducationLevel !== EducationLevel.GED && (
+              <div className="text-left">
+                <h3>Institution</h3>{" "}
+                <input
+                  type="text"
+                  name="institution"
+                  value={institution}
+                  onChange={(e) => setInstitution(e.target.value)}
+                  className="border border-gray-500 rounded-lg  px-10"
+                ></input>
+              </div>
+            )}
+          {selectedEducationLevel &&
+            selectedEducationLevel !== EducationLevel.NA &&
+            selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
+            selectedEducationLevel !== EducationLevel.GED && (
+              <div className="text-left">
+                <h3 className="font-medium">Field of study</h3>{" "}
+                <input
+                  type="text"
+                  name="degree"
+                  value={degree}
+                  onChange={(e) => setDegree(e.target.value)}
+                  className="shadow appearance-none border border-gray-500 rounded-lg px-10"
+                />
+              </div>
+            )}
+          {showExperienceDialog && (
+            <div className="">
+              <div className="text-left ">Do you have experience coding?</div>
+              <input
+                type="text"
+                onChange={(e) => setDegree(e.target.value)}
+                className="shadow appearance-none border border-gray-500 h-32 rounded-lg px-10"
+              />
+            </div>
+          )}
         </div>
         <div className="py-8">
           <Button backgroundColor="yellow" label="Next" onClick={onNextClick} />
@@ -48,6 +124,7 @@ const EducationBackground = ({
     </div>
   );
 };
+
 EducationBackground.getLayout = function getLayout(page) {
   return <div>{page}</div>;
 };
