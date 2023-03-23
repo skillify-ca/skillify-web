@@ -28,6 +28,7 @@ const CareerQuiz = () => {
       industries: ["Advertising", "Design", "Fashion"],
       skills: ["Writing code", "Writing", "Math"],
       result: "Software Engineer",
+      tasks: ["Find trends in data"],
     },
   ];
   // create results state object that
