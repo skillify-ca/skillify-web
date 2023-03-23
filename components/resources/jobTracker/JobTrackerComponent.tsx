@@ -440,7 +440,7 @@ function OfferTable({ isCAD }) {
             onClick={() => sortData("timeSpentHours")}
             className="p-4 cursor-pointer hover:bg-slate-200"
           >
-            Time Spent
+            Time Spent Interviewing
           </th>
           <th
             onClick={() => sortData("Result")}
