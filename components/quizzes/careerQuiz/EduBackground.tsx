@@ -45,7 +45,6 @@ const EducationBackground = ({
         break;
     }
   };
-
   return (
     <div className="">
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
@@ -67,7 +66,7 @@ const EducationBackground = ({
             <select
               value={selectedEducationLevel || ""}
               onChange={handleEducationLevelChange}
-              className="shadow appearance-none border border-gray-500 rounded-lg px-12"
+              className="shadow appearance-none border border-gray-500 rounded-lg px-12 max-w-xs"
             >
               {Object.values(EducationLevel).map((educationLevel) => (
                 <option key={educationLevel} value={educationLevel}>
@@ -112,7 +111,7 @@ const EducationBackground = ({
               <input
                 type="text"
                 onChange={(e) => setDegree(e.target.value)}
-                className="shadow appearance-none border border-gray-500 h-32 rounded-lg px-10"
+                className="w-full border border-gray-500 rounded-lg  px-10 resize-none"
               />
             </div>
           )}
