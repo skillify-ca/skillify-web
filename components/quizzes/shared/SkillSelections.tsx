@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { Button } from "../../ui/Button";
 import Progress from "./Progress";
 import SkillifyNavbar from "./SkillifyNavbar";
+
 type SkillSelectionsProps = {
   selections: string[];
+  setStageResponses: Dispatch<SetStateAction<any[]>>;
+  currentStage: number;
   onNextClick: () => void;
   onBackClick: () => void;
   progress: number;
@@ -13,13 +16,15 @@ type SkillSelectionsProps = {
 
 const SkillSelections: React.FC<SkillSelectionsProps> = ({
   selections,
+  setStageResponses,
+  currentStage,
   onNextClick,
   onBackClick,
   progress,
   title,
   body,
 }) => {
-  const [selected, setSelected] = useState<string[]>([]);
+  const [selected, setSelected] = useState([]);
   const handleSelection = (selection: string) => {
     if (selected.includes(selection)) {
       setSelected(selected.filter((s) => s !== selection));
@@ -27,8 +32,15 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
       setSelected([...selected, selection]);
     }
   };
+
+  const handleStage = () => {
+    setStageResponses((prev) => [...prev, (prev[currentStage] = selected)]);
+    //setSelected([]);
+  };
+
   return (
     <>
+      <div>{JSON.stringify(selected)}</div>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
       <div className="flex flex-col items-center px-8">
         <Progress progress={progress} />
@@ -52,7 +64,14 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
           ))}
         </div>
         <div className="mt-4">
-          <Button label="Next" onClick={onNextClick} backgroundColor="yellow" />
+          <Button
+            label="Next"
+            onClick={() => {
+              handleStage();
+              onNextClick();
+            }}
+            backgroundColor="yellow"
+          />
         </div>
       </div>
     </>

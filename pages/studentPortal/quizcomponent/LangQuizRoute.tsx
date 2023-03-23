@@ -12,37 +12,47 @@ export enum Stage {
   RESULTS,
 }
 const LangQuiz = () => {
-  const quizQuestions = [
+  const selectFields = [
     [
-      "Learn an in-demand skill",
-      "Work in tech",
-      "Build programs for fun",
-      "I run a startup",
-      "Become a professional developer",
-      "Communicate better with technical coworkers",
-      "Start a side hustle",
+      { name: "Learn an in-demand skill" },
+      { name: "Work in tech" },
+      { name: "Build programs for fun" },
+      { name: "I run a startup" },
+      { name: "Become a professional developer" },
+      { name: "Communicate better with technical coworkers" },
+      { name: "Start a side hustle" },
     ],
     [
-      ["Front end development", "JavaScript", 1],
-      ["Back end development", "JavaScript", 1],
-      ["Game development", "JavaScript", 1],
-      ["Mobile development", "JavaScript", 1],
-      ["Data analytics", "Python", 1],
-      ["Product management", "JavaScript", 1],
-      ["Digital marketing", "JavaScript", 1],
-      ["UX/UI design", "JavaScript", 1],
-      ["I don't know / Not sure yet", "JavaScript", 1],
+      { name: "Front end development", lang: "JavaScript", weight: 1 },
+      { name: "Back end development", lang: "JavaScript", weight: 1 },
+      { name: "Game development", lang: "JavaScript", weight: 1 },
+      { name: "Mobile development", lang: "JavaScript", weight: 1 },
+      { name: "Data analytics", lang: "Python", weight: 1 },
+      { name: "Product management", lang: "JavaScript", weight: 1 },
+      { name: "Digital marketing", lang: "JavaScript", weight: 1 },
+      { name: "UX/UI design", lang: "JavaScript", weight: 1 },
+      { name: "I don't know / Not sure yet", lang: "JavaScript", weight: 1 },
     ],
     [
-      ["Websites", "JavaScript", 1],
-      ["Storefront", "HTML/CSS", 1],
-      ["Mobile apps", "JavaScript", 1],
-      ["Games", "JavaScript", 1],
-      ["Email", "HTML/CSS", 1],
-      ["Tools to automate your life", "JavaScript", 1],
-      ["I don't know / Not sure yet", "JavaScript", 1],
+      { name: "Websites", lang: "JavaScript", weight: 1 },
+      { name: "Storefront", lang: "HTML/CSS", weight: 1 },
+      { name: "Mobile apps", lang: "JavaScript", weight: 1 },
+      { name: "Games", lang: "JavaScript", weight: 1 },
+      { name: "Email", lang: "HTML/CSS", weight: 1 },
+      { name: "Tools to automate your life", lang: "JavaScript", weight: 1 },
+      { name: "I don't know / Not sure yet", lang: "JavaScript", weight: 1 },
     ],
   ];
+
+  const selectFieldName = selectFields.map((outerItem) => {
+    return outerItem.map((innerItem) => {
+      return innerItem.name;
+    });
+  });
+
+  const [stageResponses, setStageResponses] = useState([]);
+
+  const [score, setScore] = useState(0);
 
   // create results state object that
   // create custom type -- based on schema type in database
@@ -74,7 +84,9 @@ const LangQuiz = () => {
             title={"Why do you want to learn coding?"}
             body={"Select all that apply."}
             progress={20}
-            selections={quizQuestions[0]}
+            selections={selectFieldName[0]}
+            setStageResponses={setStageResponses}
+            currentStage={Stage.LEARNCODING}
           />
         );
       case Stage.WORKFIELDS:
@@ -85,7 +97,9 @@ const LangQuiz = () => {
             title={"What field of work are you interested in?"}
             body={"Select 1-3 choices."}
             progress={50}
-            selections={quizQuestions[1]}
+            selections={selectFieldName[1]}
+            setStageResponses={setStageResponses}
+            currentStage={Stage.WORKFIELDS}
           />
         );
       case Stage.BUILDTARGET:
@@ -96,7 +110,9 @@ const LangQuiz = () => {
             title={"What are you interested in building?"}
             body={"Select all that apply."}
             progress={80}
-            selections={quizQuestions[2]}
+            selections={selectFieldName[2]}
+            setStageResponses={setStageResponses}
+            currentStage={Stage.BUILDTARGET}
           />
         );
       case Stage.BLUEPRINT:
@@ -112,7 +128,12 @@ const LangQuiz = () => {
         return null;
     }
   };
-  return <div>{renderStage()}</div>;
+  return (
+    <div>
+      <p>{JSON.stringify(stageResponses)}</p>
+      {renderStage()}
+    </div>
+  );
 };
 
 export default LangQuiz;
