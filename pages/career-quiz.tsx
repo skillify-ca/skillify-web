@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CareerResults from "../components/quizzes/careerQuiz/CareerResults";
 import EduBackground from "../components/quizzes/careerQuiz/EduBackground";
 import BluePrint from "../components/quizzes/shared/BluePrint";
@@ -41,11 +41,7 @@ const CareerQuiz = () => {
   const handleBackClick = () => {
     setStage((prevStage) => prevStage - 1);
   };
-  useEffect(() => {
-    if (stage === Stage.RESULTS) {
-      saveUserPreferences({ variables: { objects: exampleUserPreferences } });
-    }
-  }, [stage, saveUserPreferences]);
+
   // Render the appropriate component based on the stage
   const renderStage = () => {
     window.scrollTo({
@@ -151,6 +147,8 @@ const CareerQuiz = () => {
           />
         );
       case Stage.RESULTS:
+        saveUserPreferences({ variables: { objects: exampleUserPreferences } });
+
         return <CareerResults onBackClick={handleBackClick} />;
       default:
         return null;
