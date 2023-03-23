@@ -2,6 +2,73 @@ import React, { useState } from "react";
 import { Button } from "../../ui/Button";
 
 export default function JobTrackerComponent() {
+  const [isCAD, setIsCAD] = useState(true);
+
+  return (
+    <div>
+      <h2 className="p-4 text-3xl font-bold">Tech Salary Guide 2023</h2>
+      <p className="p-4">
+        One of our coaches recently spent a few months interviewing with various
+        tech companies from January to March of 2023. Here is a list of outcomes
+        from the interviews.
+      </p>
+      <ul className="p-4 list-disc list-inside">
+        <li>
+          Our coach has 10 years of experience in the field working on various
+          tech stacks
+        </li>
+        <li>Many roles were remote friendly</li>
+        <li>
+          Roles that required relocation to an SF or NYC office were
+          considerably higher than remote roles
+        </li>
+        <li>
+          Android roles were easier to get compared to frontend or fullstack
+          roles. The market is competitive for JavaScript developers.
+        </li>
+        <li>
+          Some companies offered additional stock equity bonuses as part of
+          total compensation but this is harder to value given that you can not
+          easily sell your stock. The value of the stock depends on the value of
+          the company which is hard to predict.
+        </li>
+
+        <li>
+          Lots of roles got cancelled after starting the interview process. This
+          could mean many companies are actively trying to pull back and slow
+          down hiring.
+        </li>
+        <li>
+          The best tool for applying online by far was using{" "}
+          <a className="text-blue-800 underline" href="www.otta.com">
+            www.otta.com
+          </a>
+        </li>
+        <li>
+          Many companies pay based on geographic location of the employee even
+          if the work is remote. The Canadian market is lower than the US market
+          so a candidate applying to the same roles from the US could earn a
+          higher salary.
+        </li>
+      </ul>
+      <div className="flex items-center gap-4 p-4">
+        <p className="font-bold">Currency:</p>
+        <Button label="CAD" onClick={() => setIsCAD(true)} />
+        <Button
+          label="USD"
+          onClick={() => setIsCAD(false)}
+          backgroundColor="white"
+          textColor="text-orange-500"
+        />
+      </div>
+      <div className="w-full px-4 mb-4 overflow-x-auto">
+        <OfferTable isCAD={isCAD} />
+      </div>
+    </div>
+  );
+}
+
+function OfferTable({ isCAD }) {
   type Offer = {
     Company: string;
     companyUrl: string;
@@ -285,25 +352,6 @@ export default function JobTrackerComponent() {
     },
   ];
 
-  const [isCAD, setIsCAD] = useState(true);
-
-  const formatCurrency = (amount: number) => {
-    if (amount === undefined) {
-      return "";
-    }
-    const amountForCurrency = isCAD
-      ? amount
-      : amount / USD_TO_CAD_EXCHANGE_RATE;
-
-    const formattedAmount = amountForCurrency
-      .toFixed(0)
-      .toString()
-      .slice(0, -3)
-      .concat("K");
-
-    return isCAD ? `$${formattedAmount} CAD` : `$${formattedAmount} USD`;
-  };
-
   const [sortColumn, setSortColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState("asc");
 
@@ -336,143 +384,98 @@ export default function JobTrackerComponent() {
     return 0;
   });
 
+  const formatCurrency = (amount: number) => {
+    if (amount === undefined) {
+      return "";
+    }
+    const amountForCurrency = isCAD
+      ? amount
+      : amount / USD_TO_CAD_EXCHANGE_RATE;
+
+    const formattedAmount = amountForCurrency
+      .toFixed(0)
+      .toString()
+      .slice(0, -3)
+      .concat("K");
+
+    return isCAD ? `$${formattedAmount} CAD` : `$${formattedAmount} USD`;
+  };
+
   return (
-    <div>
-      <h2 className="p-4 text-3xl font-bold">Tech Salary Guide 2023</h2>
-      <p className="p-4">
-        One of our coaches recently spent a few months interviewing with various
-        tech companies from January to March of 2023. Here is a list of outcomes
-        from the interviews.
-      </p>
-      <ul className="p-4 list-disc list-inside">
-        <li>
-          Our coach has 10 years of experience in the field working on various
-          tech stacks
-        </li>
-        <li>Many roles were remote friendly</li>
-        <li>
-          Roles that required relocation to an SF or NYC office were
-          considerably higher than remote roles
-        </li>
-        <li>
-          Android roles were easier to get compared to frontend or fullstack
-          roles. The market is competitive for JavaScript developers.
-        </li>
-        <li>
-          Some companies offered additional stock equity bonuses as part of
-          total compensation but this is harder to value given that you can not
-          easily sell your stock. The value of the stock depends on the value of
-          the company which is hard to predict.
-        </li>
+    <table className="min-w-full bg-white border-2 table-auto rounded-xl">
+      <thead>
+        <tr className="border-b-2 bg-slate-100">
+          <th className="p-4"></th>
+          <th
+            onClick={() => sortData("Company")}
+            className="p-4 cursor-pointer hover:bg-slate-200"
+          >
+            Company
+          </th>
+          <th
+            onClick={() => sortData("Location")}
+            className="p-4 cursor-pointer hover:bg-slate-200"
+          >
+            Location
+          </th>
+          <th
+            onClick={() => sortData("industry")}
+            className="p-4 cursor-pointer hover:bg-slate-200"
+          >
+            Industry
+          </th>
+          <th
+            onClick={() => sortData("Base")}
+            className="p-4 cursor-pointer hover:bg-slate-200"
+          >
+            Base Salary
+          </th>
+          <th
+            onClick={() => sortData("Role")}
+            className="p-4 cursor-pointer hover:bg-slate-200"
+          >
+            Role
+          </th>
+          <th
+            onClick={() => sortData("timeSpentHours")}
+            className="p-4 cursor-pointer hover:bg-slate-200"
+          >
+            Time Spent
+          </th>
+          <th
+            onClick={() => sortData("Result")}
+            className="p-4 cursor-pointer hover:bg-slate-200"
+          >
+            Result
+          </th>
+          <th
+            onClick={() => sortData("opportunitySource")}
+            className="p-4 cursor-pointer hover:bg-slate-200"
+          >
+            Opportunity Source
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {sortedData.map((offer, index) => (
+          <tr key={offer.Company} className="text-center hover:bg-slate-300">
+            <td className="p-4">{index + 1}</td>
 
-        <li>
-          Lots of roles got cancelled after starting the interview process. This
-          could mean many companies are actively trying to pull back and slow
-          down hiring.
-        </li>
-        <li>
-          The best tool for applying online by far was using{" "}
-          <a className="text-blue-800 underline" href="www.otta.com">
-            www.otta.com
-          </a>
-        </li>
-        <li>
-          Many companies pay based on geographic location of the employee even
-          if the work is remote. The Canadian market is lower than the US market
-          so a candidate applying to the same roles from the US could earn a
-          higher salary.
-        </li>
-      </ul>
-      <div className="flex items-center gap-4 p-4">
-        <p className="font-bold">Currency:</p>
-        <Button label="CAD" onClick={() => setIsCAD(true)} />
-        <Button
-          label="USD"
-          onClick={() => setIsCAD(false)}
-          backgroundColor="white"
-          textColor="text-orange-500"
-        />
-      </div>
-      <div className="px-4 mb-4">
-        <table className="bg-white border-2 rounded-xl">
-          <thead>
-            <tr className="border-b-2 bg-slate-100">
-              <th className="p-4"></th>
-              <th
-                onClick={() => sortData("Company")}
-                className="p-4 cursor-pointer hover:bg-slate-200"
-              >
-                Company
-              </th>
-              <th
-                onClick={() => sortData("Location")}
-                className="p-4 cursor-pointer hover:bg-slate-200"
-              >
-                Location
-              </th>
-              <th
-                onClick={() => sortData("industry")}
-                className="p-4 cursor-pointer hover:bg-slate-200"
-              >
-                Industry
-              </th>
-              <th
-                onClick={() => sortData("Base")}
-                className="p-4 cursor-pointer hover:bg-slate-200"
-              >
-                Base Salary
-              </th>
-              <th
-                onClick={() => sortData("Role")}
-                className="p-4 cursor-pointer hover:bg-slate-200"
-              >
-                Role
-              </th>
-              <th
-                onClick={() => sortData("timeSpentHours")}
-                className="p-4 cursor-pointer hover:bg-slate-200"
-              >
-                Time Spent
-              </th>
-              <th
-                onClick={() => sortData("Result")}
-                className="p-4 cursor-pointer hover:bg-slate-200"
-              >
-                Result
-              </th>
-              <th
-                onClick={() => sortData("opportunitySource")}
-                className="p-4 cursor-pointer hover:bg-slate-200"
-              >
-                Opportunity Source
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {sortedData.map((offer, index) => (
-              <tr
-                key={offer.Company}
-                className="text-center hover:bg-slate-300"
-              >
-                <td className="p-4">{index + 1}</td>
-
-                <td className="p-4 hover:underline hover:text-blue-800">
-                  <a href={offer.companyUrl} target="_blank" rel="noreferrer">
-                    {offer.Company}
-                  </a>
-                </td>
-                <td className="p-4">{offer.Location}</td>
-                <td className="p-4">{offer.industry}</td>
-                <td className="p-4">{formatCurrency(offer.Base)}</td>
-                <td className="p-4">{offer.Role}</td>
-                <td className="p-4">{offer["Time Spent"]}</td>
-                <td className="p-4">{offer.Result}</td>
-                <td className="p-4">{offer.opportunitySource}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+            <td className="p-4 hover:underline hover:text-blue-800">
+              <a href={offer.companyUrl} target="_blank" rel="noreferrer">
+                {offer.Company}
+              </a>
+            </td>
+            <td className="p-4">{offer.Location}</td>
+            <td className="p-4">{offer.industry}</td>
+            <td className="p-4">{formatCurrency(offer.Base)}</td>
+            <td className="p-4">{offer.Role}</td>
+            <td className="p-4">{offer["Time Spent"]}</td>
+            <td className="p-4">{offer.Result}</td>
+            <td className="p-4">{offer.opportunitySource}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }
