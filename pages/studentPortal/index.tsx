@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
+import { differenceInSeconds } from "date-fns";
 import moment from "moment";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import FreemiumDialogComponent from "../../components/studentPortal/freemium/FreemiumDialogComponent";
 import UnitView from "../../components/studentPortal/lessons/UnitView";
 import ErrorMessage from "../../components/ui/ErrorMessage";
@@ -17,16 +18,18 @@ import {
   FetchModalData,
   FETCH_LAST_SEEN_MODAL,
 } from "../../graphql/studentPortal/freemium/fetchLastSeenModal";
+import { UPSERT_LAST_SEEN_MODAL } from "../../graphql/studentPortal/freemium/upsertLastSeenModal";
 import { UPDATE_USER } from "../../graphql/studentPortal/users/updateUser";
 
 import { useAuth } from "../../lib/authContext";
-import { showModal } from "../api/studentPortal/freemium/showModal";
 import { Unit } from "../api/studentPortal/units";
 
 export default function StudentPortalPage() {
   const { user } = useAuth();
   const [initUserNodes] = useMutation(INIT_USER_INTRO_NODES);
   const [updateUser] = useMutation(UPDATE_USER);
+
+  const [showModal, setShowModal] = useState(false);
 
   const { data, error } = useQuery(FETCH_USER_INTRO_NODES, {
     variables: {
@@ -71,19 +74,35 @@ export default function StudentPortalPage() {
     });
   }, [user]);
 
-  const { data: modalData } = useQuery<FetchModalData>(FETCH_LAST_SEEN_MODAL, {
+  const [updateLastSeenModal] = useMutation(UPSERT_LAST_SEEN_MODAL);
+
+  useQuery<FetchModalData>(FETCH_LAST_SEEN_MODAL, {
     variables: {
       _id: user.uid,
     },
+
+    onCompleted: (data) => {
+      if (data.users[0].freemium_user) {
+        const lastSeenValue = data.users[0].freemium_user?.lastSeenModal;
+        const lastSeenDifference = differenceInSeconds(
+          new Date(),
+          new Date(lastSeenValue)
+        );
+
+        if (lastSeenDifference > 60) {
+          setShowModal(true);
+          updateLastSeenModal({
+            variables: { userId: user.uid, lastSeenModal: new Date() },
+          });
+        }
+      } else {
+        setShowModal(true);
+        updateLastSeenModal({
+          variables: { userId: user.uid, lastSeenModal: new Date() },
+        });
+      }
+    },
   });
-
-  const [lastSeenModal, setLastSeenModal] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (modalData) {
-      setLastSeenModal(modalData?.users[0]?.freemium_user?.lastSeenModal);
-    }
-  }, [modalData]);
 
   return (
     <div className="flex flex-col w-full px-4 pb-4 sm:px-8 sm:pb-8 ">
@@ -98,7 +117,7 @@ export default function StudentPortalPage() {
           units.map((it, i) => <UnitView key={i} data={it} />)
         )}
       </div>
-      {showModal(lastSeenModal) === true ? <FreemiumDialogComponent /> : null}
+      {showModal && <FreemiumDialogComponent />}
     </div>
   );
 }

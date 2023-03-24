@@ -23,6 +23,8 @@ export const modalStageMappedArray = (
 });
 
 const FreemiumDialogComponent: React.FC = () => {
+  // delete this log when ready to merge
+  console.log("freemium modal has rendered");
   const [currentStage, setCurrentStage] = useState(ModalStage.ONE);
   const { currentTheme } = useSelector(themeSelector);
   const [activeModal, setActiveModal] = useState(ModalStage.ONE);
@@ -86,7 +88,7 @@ const FreemiumDialogComponent: React.FC = () => {
             {Object.values(ModalStage).map(
               (stage) =>
                 currentStage === stage && (
-                  <TrailAnimation open={true}>
+                  <TrailAnimation key={stage} open={true}>
                     {getModalContent(stage)}
                   </TrailAnimation>
                 )
