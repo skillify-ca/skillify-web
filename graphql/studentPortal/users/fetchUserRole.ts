@@ -7,9 +7,6 @@ query FetchUserRole($_id: String = "") {
     userRole {
       value
     }
-    freemium_user {
-      lastSeenModal
-    }
   }
 }
 `;
@@ -23,7 +20,4 @@ export type UserData = {
     value: "student" | "coach" | "freemium" | "paid";
   };
   created_at: Date;
-  freemium_user?: {
-    lastSeenModal: string;
-  };
   };

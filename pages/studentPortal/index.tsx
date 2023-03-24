@@ -13,6 +13,10 @@ import {
   INIT_USER_INTRO_NODES,
   objects,
 } from "../../graphql/studentPortal/courses/initUserIntroNodes";
+import {
+  FetchModalData,
+  FETCH_LAST_SEEN_MODAL,
+} from "../../graphql/studentPortal/freemium/fetchLastSeenModal";
 import { UPDATE_USER } from "../../graphql/studentPortal/users/updateUser";
 
 import { useAuth } from "../../lib/authContext";
@@ -23,6 +27,7 @@ export default function StudentPortalPage() {
   const { user } = useAuth();
   const [initUserNodes] = useMutation(INIT_USER_INTRO_NODES);
   const [updateUser] = useMutation(UPDATE_USER);
+
   const { data, error } = useQuery(FETCH_USER_INTRO_NODES, {
     variables: {
       userId: user.uid,
@@ -66,6 +71,20 @@ export default function StudentPortalPage() {
     });
   }, [user]);
 
+  const { data: modalData } = useQuery<FetchModalData>(FETCH_LAST_SEEN_MODAL, {
+    variables: {
+      _id: user.uid,
+    },
+  });
+
+  const [lastSeenModal, setLastSeenModal] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (modalData) {
+      setLastSeenModal(modalData?.users[0]?.freemium_user?.lastSeenModal);
+    }
+  }, [modalData]);
+
   return (
     <div className="flex flex-col w-full px-4 pb-4 sm:px-8 sm:pb-8 ">
       <PageHeader
@@ -79,7 +98,7 @@ export default function StudentPortalPage() {
           units.map((it, i) => <UnitView key={i} data={it} />)
         )}
       </div>
-      {showModal() === true ? <FreemiumDialogComponent /> : null}
+      {showModal(lastSeenModal) === true ? <FreemiumDialogComponent /> : null}
     </div>
   );
 }

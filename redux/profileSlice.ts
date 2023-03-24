@@ -8,7 +8,6 @@ export type ProfileState = {
   totalBadgeCount: number;
   userRole: "student" | "coach"|"freemium"|"paid";
   createdAt: Date;
-  lastSeenModal: Date;
 };
 
 const initialState: ProfileState = {
@@ -23,7 +22,6 @@ const initialState: ProfileState = {
   userBadgeCount: 0,
   userRole: "freemium",
   createdAt: new Date(),
-  lastSeenModal: new Date(),
 };
 
 export const profileSlice: Slice = createSlice({
@@ -65,7 +63,7 @@ export const profileSlice: Slice = createSlice({
 
     setUserRole: (
       state: ProfileState,
-      action: PayloadAction<"coach" | "student"|"freemium">
+      action: PayloadAction<"coach" | "student"|"freemium"|"paid">
     ) => {
       if (action.type == "profile/setUserRole") {
         return {
@@ -86,17 +84,6 @@ export const profileSlice: Slice = createSlice({
         };
       }
     },
-    setLastSeenModal: (
-      state: ProfileState,
-      action: PayloadAction<Date>
-    ) => {
-      if (action.type == "profile/setCreatedAt") {
-        return {
-          ...state,
-          lastSeenModal: action.payload,
-        };
-      }
-    },
   },
 });
 
@@ -106,7 +93,6 @@ export const {
   setTotalBadgeCount,
   setUserRole,
   setCreatedAt,
-  setLastSeenModal,
 } = profileSlice.actions;
 
 export default profileSlice.reducer;
