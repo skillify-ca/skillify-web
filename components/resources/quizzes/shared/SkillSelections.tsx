@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../../../ui/Button";
 import Progress from "./Progress";
 import SkillifyNavbar from "./SkillifyNavbar";
+
 type SkillSelectionsProps = {
   selections: string[];
   onNextClick: () => void;
@@ -9,6 +10,7 @@ type SkillSelectionsProps = {
   progress: number;
   title: string;
   body: string;
+  maxSelections: number;
 };
 
 const SkillSelections: React.FC<SkillSelectionsProps> = ({
@@ -18,15 +20,22 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   progress,
   title,
   body,
+  maxSelections,
 }) => {
   const [selected, setSelected] = useState<string[]>([]);
+  useEffect(() => {
+    setSelected([]);
+  }, [progress]);
   const handleSelection = (selection: string) => {
     if (selected.includes(selection)) {
       setSelected(selected.filter((s) => s !== selection));
-    } else {
+    } else if (maxSelections === 1) {
+      setSelected([selection]);
+    } else if (selected.length < maxSelections) {
       setSelected([...selected, selection]);
     }
   };
+
   return (
     <>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
@@ -58,4 +67,5 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
     </>
   );
 };
+
 export default SkillSelections;

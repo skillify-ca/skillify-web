@@ -27,6 +27,8 @@ const CareerQuiz = () => {
     setStage((prevStage) => prevStage - 1);
   };
 
+  const [maxSelections, setMaxSelections] = useState<number>(0);
+
   // Render the appropriate component based on the stage
   const renderStage = () => {
     switch (stage) {
@@ -50,6 +52,7 @@ const CareerQuiz = () => {
       case Stage.INDUSTRIES:
         return (
           <SkillSelections
+            maxSelections={3}
             onNextClick={handleNextClick}
             onBackClick={handleBackClick}
             title={"What industries are you interested in working?"}
@@ -76,6 +79,7 @@ const CareerQuiz = () => {
       case Stage.SKILLS:
         return (
           <SkillSelections
+            maxSelections={3}
             onNextClick={handleNextClick}
             onBackClick={handleBackClick}
             title={"What are your strongest skills?"}
@@ -100,6 +104,7 @@ const CareerQuiz = () => {
       case Stage.TASKS:
         return (
           <SkillSelections
+            maxSelections={3}
             onNextClick={handleNextClick}
             onBackClick={handleBackClick}
             title={" What tasks would you prefer at work?"}
