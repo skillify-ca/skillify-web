@@ -27,8 +27,8 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
 
   // Save selected skills to pageSelections whenever progress changes
   useEffect(() => {
-    setPageSelections(selected);
-  }, [progress, selected]);
+    setSelected([]);
+  }, [progress]);
 
   // Restore selected skills from pageSelections whenever the component mounts
   useEffect(() => {
