@@ -27,8 +27,6 @@ const CareerQuiz = () => {
     setStage((prevStage) => prevStage - 1);
   };
 
-  const [maxSelections, setMaxSelections] = useState<number>(0);
-
   // Render the appropriate component based on the stage
   const renderStage = () => {
     switch (stage) {
