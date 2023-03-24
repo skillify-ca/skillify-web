@@ -23,9 +23,18 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   maxSelections,
 }) => {
   const [selected, setSelected] = useState<string[]>([]);
+  const [pageSelections, setPageSelections] = useState<string[]>([]);
+
+  // Save selected skills to pageSelections whenever progress changes
   useEffect(() => {
-    setSelected([]);
-  }, [progress]);
+    setPageSelections(selected);
+  }, [progress, selected]);
+
+  // Restore selected skills from pageSelections whenever the component mounts
+  useEffect(() => {
+    setSelected(pageSelections);
+  }, []);
+
   const handleSelection = (selection: string) => {
     if (selected.includes(selection)) {
       setSelected(selected.filter((s) => s !== selection));
