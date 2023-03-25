@@ -141,12 +141,11 @@ const LangQuiz = () => {
         return (
           <StartQuiz
             onNextClick={handleNextClick}
-            title={`${context[Stage.START].title}`}
-            body={`${context[Stage.START].body}`}
+            title={context[Stage.START].title}
+            body={context[Stage.START].body}
           />
         );
       case Stage.LEARNCODING:
-        console.log("reached");
         return (
           <SkillSelections
             onNextClick={handleNextClick}
@@ -201,7 +200,6 @@ const LangQuiz = () => {
   return (
     <div>
       <p>{JSON.stringify(stageResponses)}</p>
-      <p>{context}</p>
       {renderStage()}
     </div>
   );
