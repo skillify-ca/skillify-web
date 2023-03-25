@@ -3,6 +3,12 @@ import { Button } from "../../../ui/Button";
 import Progress from "./Progress";
 import SkillifyNavbar from "./SkillifyNavbar";
 
+type QuizObject = {
+  industries: string[];
+  skills: string[];
+  tasks: string[];
+};
+
 type SkillSelectionsProps = {
   selections: string[];
   onNextClick: () => void;
@@ -11,6 +17,9 @@ type SkillSelectionsProps = {
   title: string;
   body: string;
   maxSelections: number;
+  setQuizObject: React.Dispatch<React.SetStateAction<QuizObject>>;
+  quizObject: QuizObject;
+  page: string;
 };
 
 const SkillSelections: React.FC<SkillSelectionsProps> = ({
@@ -21,19 +30,26 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   title,
   body,
   maxSelections,
+  setQuizObject,
+  quizObject,
+  page,
 }) => {
   const [selected, setSelected] = useState<string[]>([]);
-  const [pageSelections, setPageSelections] = useState<string[]>([]);
 
-  // Save selected skills to pageSelections whenever progress changes
+  // Save selected skills to quizObject whenever selected changes
   useEffect(() => {
-    setSelected([]);
+    setQuizObject((prev) => {
+      return {
+        ...prev,
+        [page]: selected,
+      };
+    });
+  }, [selected]);
+
+  // Restore selected skills from quizObject whenever the component mounts
+  useEffect(() => {
+    setSelected(quizObject[page] || []);
   }, [progress]);
-
-  // Restore selected skills from pageSelections whenever the component mounts
-  useEffect(() => {
-    setSelected(pageSelections);
-  }, []);
 
   const handleSelection = (selection: string) => {
     if (selected.includes(selection)) {
@@ -65,7 +81,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
               }`}
               onClick={() => handleSelection(selection)}
             >
-              {selections[index]}
+              {selection}
             </div>
           ))}
         </div>
@@ -76,5 +92,4 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
     </>
   );
 };
-
 export default SkillSelections;

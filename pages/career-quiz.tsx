@@ -27,6 +27,13 @@ const CareerQuiz = () => {
     setStage((prevStage) => prevStage - 1);
   };
 
+  // Define the object and initialize it with empty values
+  const [quizObject, setQuizObject] = useState({
+    industries: [],
+    skills: [],
+    tasks: [],
+  });
+
   // Render the appropriate component based on the stage
   const renderStage = () => {
     switch (stage) {
@@ -50,6 +57,8 @@ const CareerQuiz = () => {
       case Stage.INDUSTRIES:
         return (
           <SkillSelections
+            page={"industries"}
+            quizObject={quizObject}
             maxSelections={3}
             onNextClick={handleNextClick}
             onBackClick={handleBackClick}
@@ -72,11 +81,14 @@ const CareerQuiz = () => {
               "Science",
               "Not Sure Yet",
             ]}
+            setQuizObject={setQuizObject}
           />
         );
       case Stage.SKILLS:
         return (
           <SkillSelections
+            page={"skills"}
+            quizObject={quizObject}
             maxSelections={3}
             onNextClick={handleNextClick}
             onBackClick={handleBackClick}
@@ -97,12 +109,14 @@ const CareerQuiz = () => {
               "Critical thinking",
               "Planning",
             ]}
+            setQuizObject={setQuizObject}
           />
         );
       case Stage.TASKS:
         return (
           <SkillSelections
             maxSelections={3}
+            quizObject={quizObject}
             onNextClick={handleNextClick}
             onBackClick={handleBackClick}
             title={" What tasks would you prefer at work?"}
@@ -119,6 +133,8 @@ const CareerQuiz = () => {
               "Spot patterns in data",
               "Write code to solve problems",
             ]}
+            setQuizObject={setQuizObject}
+            page={"tasks"}
           />
         );
       case Stage.BLUEPRINT:
