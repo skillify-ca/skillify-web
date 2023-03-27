@@ -18,13 +18,11 @@ export const modalStageMappedArray = (
   Object.keys(ModalStage).filter((stage) =>
     isNaN(Number(stage))
   ) as (keyof typeof ModalStage)[]
-).map((key, index) => {
+).map((key) => {
   return ModalStage[key];
 });
 
 const FreemiumDialogComponent: React.FC = () => {
-  // delete this log when ready to merge
-  console.log("freemium modal has rendered");
   const [currentStage, setCurrentStage] = useState(ModalStage.ONE);
   const { currentTheme } = useSelector(themeSelector);
   const [activeModal, setActiveModal] = useState(ModalStage.ONE);

@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { differenceInSeconds } from "date-fns";
 import moment from "moment";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import FreemiumDialogComponent from "../../components/studentPortal/freemium/FreemiumDialogComponent";
 import UnitView from "../../components/studentPortal/lessons/UnitView";
 import ErrorMessage from "../../components/ui/ErrorMessage";
@@ -28,8 +28,6 @@ export default function StudentPortalPage() {
   const { user } = useAuth();
   const [initUserNodes] = useMutation(INIT_USER_INTRO_NODES);
   const [updateUser] = useMutation(UPDATE_USER);
-
-  const [showModal, setShowModal] = useState(false);
 
   const { data, error } = useQuery(FETCH_USER_INTRO_NODES, {
     variables: {
@@ -75,6 +73,7 @@ export default function StudentPortalPage() {
   }, [user]);
 
   const [updateLastSeenModal] = useMutation(UPSERT_LAST_SEEN_MODAL);
+  const [showModal, setShowModal] = useState(false);
 
   useQuery<FetchModalData>(FETCH_LAST_SEEN_MODAL, {
     variables: {
