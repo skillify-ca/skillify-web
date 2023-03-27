@@ -7,22 +7,47 @@ export default function JobTrackerComponent() {
   const [showData, setShowData] = useState(false);
 
   return (
-    <div>
-      <h2 className="p-4 text-3xl font-bold">Tech Salary Guide 2023</h2>
-      <p className="p-4">
-        One of our coaches recently spent a few months interviewing with various
-        tech companies from January to March of 2023. Here is a list of outcomes
-        from the interviews.
+    <div className="p-4">
+      <h2 className="text-3xl font-bold">Tech Job Tracker 2023</h2>
+      <p className="">
+        One of our expert coaches recently spent a few months interviewing with
+        various tech companies from January to March of 2023. Here is a list of
+        outcomes from the interviews.
       </p>
-      <ul className="p-4 list-disc list-inside">
+      <h3 className="mt-4 text-xl font-bold">Recommendations</h3>
+      <ul className="list-disc list-inside">
+        <li>
+          Find a niche eg. Mobile, Blockchain, or Game Dev. There are so many
+          JavaScript developers and the market is competitive.
+        </li>
+        <li>
+          When applying to jobs online, the best tool to use by far was{" "}
+          <a className="text-blue-800 underline" href="www.otta.com">
+            Otta
+          </a>{" "}
+          compared to applying on LinkedIn or Google
+        </li>
+        <li>
+          Prioritize reaching out to your network to get referrals. That was the
+          easiest way to get interviews.
+        </li>
+        <li>
+          Don't spend all your time on Leetcode. Many companies are moving away
+          from that style of interviewing in favour of live project
+          building/debugging.
+        </li>
+      </ul>
+      <h3 className="mt-4 text-xl font-bold">Observations</h3>
+      <ul className="list-disc list-inside">
         <li>
           Our coach has 10 years of experience in the field working on various
-          tech stacks
+          tech stacks. This was good enough to get several senior level
+          interviews, but not good enough for staff level roles.
         </li>
-        <li>Many roles were remote friendly</li>
         <li>
-          Roles that required relocation to an SF or NYC office were
-          considerably higher than remote roles
+          Although a large number of companies are remote friendly and let you
+          work from anywhere, roles that required relocation to an SF or NYC
+          office had considerably higher compensation than most remote roles
         </li>
         <li>
           Android roles were easier to get compared to frontend or fullstack
@@ -37,15 +62,10 @@ export default function JobTrackerComponent() {
 
         <li>
           Lots of roles got cancelled after starting the interview process. This
-          could mean many companies are actively trying to pull back and slow
-          down hiring.
+          was frustrating as a job seeker, but this could mean many companies
+          are actively trying to pull back and slow down hiring.
         </li>
-        <li>
-          The best tool for applying online by far was using{" "}
-          <a className="text-blue-800 underline" href="www.otta.com">
-            www.otta.com
-          </a>
-        </li>
+
         <li>
           Many companies pay based on geographic location of the employee even
           if the work is remote. The Canadian market is lower than the US market
@@ -102,7 +122,7 @@ function OfferTable({ isCAD }) {
       "Time Spent": "8 hours",
       timeSpentHours: 8,
       Result: "Offer",
-      opportunitySource: "I reached out to recruiter on LinkedIn DMs",
+      opportunitySource: "LinkedIn DMs",
       industry: "E-Commerce",
     },
     {
@@ -138,7 +158,7 @@ function OfferTable({ isCAD }) {
       "Time Spent": "2 weeks paid work trial",
       timeSpentHours: 80,
       Result: "No Offer: Did not meet expectations during work trial",
-      opportunitySource: "Referred by network",
+      opportunitySource: "Referral",
       industry: "Web3",
     },
     {
@@ -150,7 +170,7 @@ function OfferTable({ isCAD }) {
       "Time Spent": "3 hours",
       timeSpentHours: 3,
       Result: "No Offer: Did not pass final round interviews",
-      opportunitySource: "Recruiter reached out on LinkedIn DMs",
+      opportunitySource: "LinkedIn DMs",
       industry: "Insurance",
     },
     {
@@ -173,7 +193,7 @@ function OfferTable({ isCAD }) {
       "Time Spent": "4 hours",
       timeSpentHours: 4,
       Result: "No Offer: Did not pass final round interviews",
-      opportunitySource: "Referred by current employee",
+      opportunitySource: "Referral",
       industry: "Developer Tools",
     },
     {
@@ -219,7 +239,7 @@ function OfferTable({ isCAD }) {
       "Time Spent": "2 hours",
       timeSpentHours: 2,
       Result: "No Offer: Did not pass technical screen",
-      opportunitySource: "Referred by current employee",
+      opportunitySource: "Referral",
       industry: "Education",
     },
     {
@@ -242,7 +262,7 @@ function OfferTable({ isCAD }) {
       "Time Spent": "1 hours",
       timeSpentHours: 1,
       Result: "No Offer: Did not pass technical screen",
-      opportunitySource: "Referred by current employee",
+      opportunitySource: "Referral",
       industry: "Education",
     },
     {
@@ -321,7 +341,7 @@ function OfferTable({ isCAD }) {
       timeSpentHours: 2,
       Base: 180000,
       Result: "No Offer: Did not pass final round",
-      opportunitySource: "Recruiter reached out on LinkedIn DMs",
+      opportunitySource: "LinkedIn DMs",
       industry: "Future of Work",
     },
     {
@@ -344,7 +364,7 @@ function OfferTable({ isCAD }) {
       "Time Spent": "15 minutes",
       timeSpentHours: 0.25,
       Result: "No Offer: Role Cancelled",
-      opportunitySource: "Recruiter reached out on LinkedIn DMs",
+      opportunitySource: "LinkedIn DMs",
       industry: "Finance",
     },
     {
@@ -355,7 +375,7 @@ function OfferTable({ isCAD }) {
       "Time Spent": "15 minutes",
       timeSpentHours: 0.25,
       Result: "No Offer: Role Cancelled",
-      opportunitySource: "Recruiter reached out on LinkedIn DMs",
+      opportunitySource: "LinkedIn DMs",
       industry: "Web3",
     },
   ];
