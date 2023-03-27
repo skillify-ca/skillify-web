@@ -18,7 +18,7 @@ type QuizSelection = {
   weight?: number;
 };
 
-const LangQuiz = () => {
+const FirstProgrammingLanguageQuiz = () => {
   const quiz: QuizSelection[][] = [
     [
       { name: "Learn an in-demand skill" },
@@ -51,12 +51,18 @@ const LangQuiz = () => {
     ],
   ];
 
+  const pageOptions = quiz.map((pages) => {
+    return pages.map((options) => {
+      return options.name;
+    });
+  });
+
   type QuizContext = {
     title: string;
     body: string;
   };
 
-  const context: QuizContext[] = [
+  const quizQuestions: QuizContext[] = [
     {
       title: "What Coding Language Should I Learn First?",
       body: "Take this free quiz to find out what coding language you should learn first.",
@@ -75,13 +81,7 @@ const LangQuiz = () => {
     },
   ];
 
-  const selectFieldName = quiz.map((outerItem) => {
-    return outerItem.map((innerItem) => {
-      return innerItem.name;
-    });
-  });
-
-  const [stageResponses, setStageResponses] = useState([]);
+  const [quizResponses, setQuizResponses] = useState([]);
 
   const [score, setScore] = useState({
     JavaScript: 0,
@@ -89,38 +89,46 @@ const LangQuiz = () => {
     Python: 0,
   });
 
-  const finalScore = (userSelections: string | any[]) => {
-    for (let i = 0; i < userSelections.length; i++) {
-      if (userSelections[i] && userSelections[i].result === "JavaScript") {
+  const finalScore = (filteredQuizSelectionArr: string | any[]) => {
+    for (let i = 0; i < filteredQuizSelectionArr.length; i++) {
+      if (
+        filteredQuizSelectionArr[i] &&
+        filteredQuizSelectionArr[i].result === "JavaScript"
+      ) {
         setScore((score) => ({
           ...score,
-          JavaScript: score.JavaScript + userSelections[i].weight,
+          JavaScript: score.JavaScript + filteredQuizSelectionArr[i].weight,
         }));
       }
-      if (userSelections[i] && userSelections[i].result === "HTMLCSS") {
+      if (
+        filteredQuizSelectionArr[i] &&
+        filteredQuizSelectionArr[i].result === "HTMLCSS"
+      ) {
         setScore((score) => ({
           ...score,
-          HTMLCSS: score.HTMLCSS + userSelections[i].weight,
+          HTMLCSS: score.HTMLCSS + filteredQuizSelectionArr[i].weight,
         }));
       }
-      if (userSelections[i] && userSelections[i].result === "Python") {
+      if (
+        filteredQuizSelectionArr[i] &&
+        filteredQuizSelectionArr[i].result === "Python"
+      ) {
         setScore((score) => ({
           ...score,
-          Python: score.Python + userSelections[i].weight,
+          Python: score.Python + filteredQuizSelectionArr[i].weight,
         }));
       }
     }
   };
-  const userSelections: QuizSelection[] = [];
+  const filteredQuizSelectionArr: QuizSelection[] = [];
   const productResult = () => {
-    for (let i = 0; i < stageResponses.length; i++) {
+    for (let i = 0; i < quizResponses.length; i++) {
       const check = quiz[i].filter((item) =>
-        stageResponses[i].includes(item.name)
+        quizResponses[i].includes(item.name)
       );
-      userSelections.push(...check);
+      filteredQuizSelectionArr.push(...check);
     }
-    finalScore(userSelections);
-    console.log(userSelections);
+    finalScore(filteredQuizSelectionArr);
   };
 
   useEffect(() => {
@@ -141,8 +149,8 @@ const LangQuiz = () => {
         return (
           <StartQuiz
             onNextClick={handleNextClick}
-            title={context[Stage.START].title}
-            body={context[Stage.START].body}
+            title={quizQuestions[Stage.START].title}
+            body={quizQuestions[Stage.START].body}
           />
         );
       case Stage.LEARNCODING:
@@ -150,11 +158,11 @@ const LangQuiz = () => {
           <SkillSelections
             onNextClick={handleNextClick}
             onBackClick={handleBackClick}
-            title={context[Stage.LEARNCODING].title}
-            body={context[Stage.LEARNCODING].body}
+            title={quizQuestions[Stage.LEARNCODING].title}
+            body={quizQuestions[Stage.LEARNCODING].body}
             progress={20}
-            selections={selectFieldName[Stage.LEARNCODING - 1]}
-            setStageResponses={setStageResponses}
+            selections={pageOptions[Stage.LEARNCODING - 1]}
+            setQuizResponses={setQuizResponses}
             currentStage={Stage.LEARNCODING}
           />
         );
@@ -163,11 +171,11 @@ const LangQuiz = () => {
           <SkillSelections
             onNextClick={handleNextClick}
             onBackClick={handleBackClick}
-            title={context[Stage.WORKFIELDS].title}
-            body={context[Stage.WORKFIELDS].body}
+            title={quizQuestions[Stage.WORKFIELDS].title}
+            body={quizQuestions[Stage.WORKFIELDS].body}
             progress={50}
-            selections={selectFieldName[Stage.WORKFIELDS - 1]}
-            setStageResponses={setStageResponses}
+            selections={pageOptions[Stage.WORKFIELDS - 1]}
+            setQuizResponses={setQuizResponses}
             currentStage={Stage.WORKFIELDS}
           />
         );
@@ -176,11 +184,11 @@ const LangQuiz = () => {
           <SkillSelections
             onNextClick={handleNextClick}
             onBackClick={handleBackClick}
-            title={context[Stage.BUILDTARGET].title}
-            body={context[Stage.BUILDTARGET].body}
+            title={quizQuestions[Stage.BUILDTARGET].title}
+            body={quizQuestions[Stage.BUILDTARGET].body}
             progress={80}
-            selections={selectFieldName[Stage.BUILDTARGET - 1]}
-            setStageResponses={setStageResponses}
+            selections={pageOptions[Stage.BUILDTARGET - 1]}
+            setQuizResponses={setQuizResponses}
             currentStage={Stage.BUILDTARGET}
           />
         );
@@ -197,15 +205,10 @@ const LangQuiz = () => {
         return null;
     }
   };
-  return (
-    <div>
-      <p>{JSON.stringify(stageResponses)}</p>
-      {renderStage()}
-    </div>
-  );
+  return <div>{renderStage()}</div>;
 };
 
-export default LangQuiz;
-LangQuiz.getLayout = function getLayout(page) {
+export default FirstProgrammingLanguageQuiz;
+FirstProgrammingLanguageQuiz.getLayout = function getLayout(page) {
   return <div>{page}</div>;
 };

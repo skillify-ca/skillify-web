@@ -5,7 +5,7 @@ import SkillifyNavbar from "./SkillifyNavbar";
 
 type SkillSelectionsProps = {
   selections: string[];
-  setStageResponses: Dispatch<SetStateAction<any[]>>;
+  setQuizResponses: Dispatch<SetStateAction<any[]>>;
   currentStage: number;
   onNextClick: () => void;
   onBackClick: () => void;
@@ -16,7 +16,7 @@ type SkillSelectionsProps = {
 
 const SkillSelections: React.FC<SkillSelectionsProps> = ({
   selections,
-  setStageResponses,
+  setQuizResponses,
   currentStage,
   onNextClick,
   onBackClick,
@@ -34,8 +34,8 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   };
 
   const handleStage = () => {
-    setStageResponses((prev) => [...prev, (prev[currentStage] = selected)]);
-    //setSelected([]);
+    setQuizResponses((prev) => [...prev, (prev[currentStage] = selected)]);
+    setSelected([]);
   };
 
   return (
