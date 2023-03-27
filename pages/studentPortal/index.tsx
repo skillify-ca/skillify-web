@@ -1,7 +1,8 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { differenceInSeconds } from "date-fns";
+import { differenceInHours } from "date-fns";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import FreemiumDialogComponent from "../../components/studentPortal/freemium/FreemiumDialogComponent";
 import UnitView from "../../components/studentPortal/lessons/UnitView";
 import ErrorMessage from "../../components/ui/ErrorMessage";
@@ -22,6 +23,7 @@ import { UPSERT_LAST_SEEN_MODAL } from "../../graphql/studentPortal/freemium/ups
 import { UPDATE_USER } from "../../graphql/studentPortal/users/updateUser";
 
 import { useAuth } from "../../lib/authContext";
+import { profileSelector } from "../../redux/profileSlice";
 import { Unit } from "../api/studentPortal/units";
 
 export default function StudentPortalPage() {
@@ -74,27 +76,21 @@ export default function StudentPortalPage() {
 
   const [updateLastSeenModal] = useMutation(UPSERT_LAST_SEEN_MODAL);
   const [showModal, setShowModal] = useState(false);
+  const { userRole } = useSelector(profileSelector);
 
   useQuery<FetchModalData>(FETCH_LAST_SEEN_MODAL, {
     variables: {
-      _id: user.uid,
+      userId: user.uid,
     },
+    skip: userRole != "paid" && userRole != "freemium",
 
     onCompleted: (data) => {
-      if (data.users[0].freemium_user) {
-        const lastSeenValue = data.users[0].freemium_user?.lastSeenModal;
-        const lastSeenDifference = differenceInSeconds(
-          new Date(),
-          new Date(lastSeenValue)
-        );
+      const lastSeenValue = data.freemium_users[0]?.lastSeenModal;
+      const lastSeenDifference = lastSeenValue
+        ? differenceInHours(new Date(), new Date(lastSeenValue))
+        : null;
 
-        if (lastSeenDifference > 60) {
-          setShowModal(true);
-          updateLastSeenModal({
-            variables: { userId: user.uid, lastSeenModal: new Date() },
-          });
-        }
-      } else {
+      if (lastSeenDifference === null || lastSeenDifference > 24) {
         setShowModal(true);
         updateLastSeenModal({
           variables: { userId: user.uid, lastSeenModal: new Date() },

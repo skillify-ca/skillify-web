@@ -1,21 +1,17 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_LAST_SEEN_MODAL = gql`
-query fetchLastSeenModal($_id: String = "") {
-    users(where: {id: {_eq: $_id}, userRole: {value: {_in: ["freemium", "paid"]}}}) {
-      freemium_user {
-        lastSeenModal
-      }
+query fetchLastSeenModal($userId: String = "") {
+    freemium_users(where: {userId: {_eq: $userId}}) {
+      lastSeenModal
     }
   }
 `;
 
 export type FetchModalData = {
-  users: ModalData[];
+  freemium_users: ModalData[];
 };
 
 export type ModalData = {
-  freemium_user?: {
     lastSeenModal: string;
-  };
   };
