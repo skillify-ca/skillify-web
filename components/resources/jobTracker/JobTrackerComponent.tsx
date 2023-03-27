@@ -518,7 +518,7 @@ function EmailCapture({ onSubmit }) {
     if (isValid) {
       onSubmit();
 
-      const url = "/api/notifications?product=TechSalaryGuide2023";
+      const url = `/api/slack/TechSalaryGuide2023|${email}`;
       const options = {
         method: "POST",
         headers: {
