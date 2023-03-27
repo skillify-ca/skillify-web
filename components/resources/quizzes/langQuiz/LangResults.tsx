@@ -1,4 +1,4 @@
-import { Button } from "../../ui/Button";
+import { Button } from "../../../ui/Button";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
 
 type LangResultsProps = {

@@ -7,6 +7,7 @@ import SkillSelections from "../components/quizzes/shared/SkillSelections";
 import StartQuiz from "../components/quizzes/shared/StartQuiz";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../graphql/quizzes/insertCareer";
 
+
 enum Stage {
   START,
   EDUCATION,
