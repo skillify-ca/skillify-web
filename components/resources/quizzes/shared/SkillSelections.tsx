@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "../../ui/Button";
+import { Button } from "../../../ui/Button";
 import Progress from "./Progress";
 import SkillifyNavbar from "./SkillifyNavbar";
 type SkillSelectionsProps = {

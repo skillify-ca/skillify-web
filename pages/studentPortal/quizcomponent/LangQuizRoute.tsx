@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import LangResults from "../../../components/quizzes/langQuiz/LangResults";
-import BluePrint from "../../../components/quizzes/shared/BluePrint";
-import SkillSelections from "../../../components/quizzes/shared/SkillSelections";
-import StartQuiz from "../../../components/quizzes/shared/StartQuiz";
+import LangResults from "../../../components/resources/quizzes/langQuiz/LangResults";
+import BluePrint from "../../../components/resources/quizzes/shared/BluePrint";
+import SkillSelections from "../../../components/resources/quizzes/shared/SkillSelections";
+import StartQuiz from "../../../components/resources/quizzes/shared/StartQuiz";
 export enum Stage {
   START,
   LEARNCODING,

@@ -1,4 +1,4 @@
-import { Button } from "../../ui/Button";
+import { Button } from "../../../ui/Button";
 import NumberedCircles from "./NumberedCircles";
 import ProgressBar from "./Progress";
 import SkillifyNavbar from "./SkillifyNavbar";
