@@ -6,9 +6,14 @@ import SkillifyNavbar from "./SkillifyNavbar";
 type BluePrintProps = {
   onNextClick: () => void;
   onBackClick: () => void;
+  computeScore: () => void;
 };
 
-const BluePrint = ({ onNextClick, onBackClick }: BluePrintProps) => {
+const BluePrint = ({
+  onNextClick,
+  onBackClick,
+  computeScore,
+}: BluePrintProps) => {
   return (
     <div>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
@@ -40,7 +45,9 @@ const BluePrint = ({ onNextClick, onBackClick }: BluePrintProps) => {
       <div className="grid py-6 place-items-center">
         <Button
           label="View results"
-          onClick={onNextClick}
+          onClick={() => {
+            onNextClick(), computeScore();
+          }}
           backgroundColor="yellow"
         />
       </div>

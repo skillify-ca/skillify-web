@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import LangResults from "../../../components/quizzes/langQuiz/LangResults";
 import BluePrint from "../../../components/quizzes/shared/BluePrint";
 import SkillSelections from "../../../components/quizzes/shared/SkillSelections";
@@ -90,51 +90,55 @@ const FirstProgrammingLanguageQuiz = () => {
     Python: 0,
   });
 
-  const finalScore = (filteredQuizSelectionArr: string | any[]) => {
-    for (let i = 0; i < filteredQuizSelectionArr.length; i++) {
-      if (
-        filteredQuizSelectionArr[i] &&
-        filteredQuizSelectionArr[i].result === "JavaScript"
-      ) {
-        setScore((score) => ({
-          ...score,
-          JavaScript: score.JavaScript + filteredQuizSelectionArr[i].weight,
-        }));
+  const computeScore = () => {
+    const finalScore = (filteredQuizSelectionArr: string | any[]) => {
+      for (let i = 0; i < filteredQuizSelectionArr.length; i++) {
+        if (
+          filteredQuizSelectionArr[i] &&
+          filteredQuizSelectionArr[i].result === "JavaScript"
+        ) {
+          setScore((score) => ({
+            ...score,
+            JavaScript: score.JavaScript + filteredQuizSelectionArr[i].weight,
+          }));
+        }
+        if (
+          filteredQuizSelectionArr[i] &&
+          filteredQuizSelectionArr[i].result === "HTMLCSS"
+        ) {
+          setScore((score) => ({
+            ...score,
+            HTMLCSS: score.HTMLCSS + filteredQuizSelectionArr[i].weight,
+          }));
+        }
+        if (
+          filteredQuizSelectionArr[i] &&
+          filteredQuizSelectionArr[i].result === "Python"
+        ) {
+          setScore((score) => ({
+            ...score,
+            Python: score.Python + filteredQuizSelectionArr[i].weight,
+          }));
+        }
       }
-      if (
-        filteredQuizSelectionArr[i] &&
-        filteredQuizSelectionArr[i].result === "HTMLCSS"
-      ) {
-        setScore((score) => ({
-          ...score,
-          HTMLCSS: score.HTMLCSS + filteredQuizSelectionArr[i].weight,
-        }));
+    };
+    const filteredQuizSelectionArr: QuizSelection[] = [];
+    const productResult = () => {
+      for (let i = 0; i < quizResponses.length; i++) {
+        const check = quiz[i].filter((item) =>
+          quizResponses[i].includes(item.name)
+        );
+        filteredQuizSelectionArr.push(...check);
       }
-      if (
-        filteredQuizSelectionArr[i] &&
-        filteredQuizSelectionArr[i].result === "Python"
-      ) {
-        setScore((score) => ({
-          ...score,
-          Python: score.Python + filteredQuizSelectionArr[i].weight,
-        }));
-      }
-    }
-  };
-  const filteredQuizSelectionArr: QuizSelection[] = [];
-  const productResult = () => {
-    for (let i = 0; i < quizResponses.length; i++) {
-      const check = quiz[i].filter((item) =>
-        quizResponses[i].includes(item.name)
-      );
-      filteredQuizSelectionArr.push(...check);
-    }
-    finalScore(filteredQuizSelectionArr);
-  };
+      finalScore(filteredQuizSelectionArr);
+    };
 
-  useEffect(() => {
     productResult();
-  }, []);
+
+    // useEffect(() => {
+    //   productResult();
+    // }, []);
+  };
 
   const [stage, setStage] = useState(Stage.START);
   const handleNextClick = () => {
@@ -212,6 +216,7 @@ const FirstProgrammingLanguageQuiz = () => {
           <BluePrint
             onNextClick={handleNextClick}
             onBackClick={handleBackClick}
+            computeScore={computeScore}
           />
         );
       case Stage.RESULTS:
@@ -223,6 +228,7 @@ const FirstProgrammingLanguageQuiz = () => {
   return (
     <div>
       <p> {JSON.stringify(quizResponses)}</p>
+      <p>{JSON.stringify(score)}</p>
       {renderStage()}
     </div>
   );

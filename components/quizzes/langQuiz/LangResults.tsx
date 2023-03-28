@@ -16,7 +16,15 @@ const LangResults = ({ onBackClick, score }: LangResultsProps) => {
     }
   }
 
-  const results = {
+  type resultData = {
+    body: string;
+    src: string;
+    alt: string;
+    lang: string;
+    size: string;
+  };
+
+  const results: { [key: string]: resultData } = {
     JavaScript: {
       body: "The first coding language you should learn is...",
       src: "/images/quiz/languages-quiz/javascript.png",
@@ -29,7 +37,7 @@ const LangResults = ({ onBackClick, score }: LangResultsProps) => {
       src: "/images/quiz/languages-quiz/python.png",
       alt: "Python",
       lang: "Python",
-      size: "scale-75",
+      size: "scale-50",
     },
     HTMLCSS: {
       body: "The first coding languages you should learn are...",
@@ -40,7 +48,12 @@ const LangResults = ({ onBackClick, score }: LangResultsProps) => {
     },
   };
 
-  const { body, src, alt, lang, size } = results[preferredLang];
+  const resultData = results[preferredLang];
+  if (!resultData) {
+    return <div>Error: Language not found.</div>;
+  }
+
+  const { body, src, alt, size, lang } = resultData;
 
   return (
     <div className="flex flex-col w-full max-w-4xl mx-auto text-center md:mr-12">
