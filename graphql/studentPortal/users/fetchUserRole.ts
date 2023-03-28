@@ -9,15 +9,13 @@ query FetchUserRole($_id: String = "") {
     }
   }
 }
+
 `;
 
 export type FetchRoleData = {
-  users: UserData[];
+  users: UserData;
 };
-
 export type UserData = {
-  userRole: {
-    value: "student" | "coach" | "freemium" | "paid";
-  };
+  userRole: "student" | "coach"| "freemium"|"paid";
   created_at: Date;
-  };
+};
