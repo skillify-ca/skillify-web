@@ -24,7 +24,7 @@ const EducationBackground = ({
 }: EduBackgroundProps) => {
   const [selectedEducationLevel, setSelectedEducationLevel] =
     useState<EducationLevel | null>(null);
-  const [showExperienceDialog, setShowExperienceDialog] = useState(false);
+  const [showExperienceInput, setShowExperienceInput] = useState(false);
   const [institution, setInstitution] = useState("");
   const [degree, setDegree] = useState("");
 
@@ -38,10 +38,10 @@ const EducationBackground = ({
       case EducationLevel.NA:
       case EducationLevel.HighSchoolDiploma:
       case EducationLevel.GED:
-        setShowExperienceDialog(true);
+        setShowExperienceInput(true);
         break;
       default:
-        setShowExperienceDialog(false);
+        setShowExperienceInput(false);
         break;
     }
   };
@@ -67,7 +67,7 @@ const EducationBackground = ({
               id="education-select"
               value={selectedEducationLevel || ""}
               onChange={handleEducationLevelChange}
-              className="shadow appearance-none border border-gray-500 rounded-lg px-12 max-w-xs"
+              className=" border border-gray-500 rounded-lg "
             >
               {Object.values(EducationLevel).map((educationLevel) => (
                 <option key={educationLevel} value={educationLevel}>
@@ -108,7 +108,7 @@ const EducationBackground = ({
                 />
               </div>
             )}
-          {showExperienceDialog && (
+          {showExperienceInput && (
             <div className="">
               <div className="text-left ">Do you have experience coding?</div>
               <input
