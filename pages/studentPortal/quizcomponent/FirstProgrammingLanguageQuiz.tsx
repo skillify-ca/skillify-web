@@ -82,6 +82,7 @@ const FirstProgrammingLanguageQuiz = () => {
   ];
 
   const [quizResponses, setQuizResponses] = useState([]);
+  const [selectedSkill, setSelectedSkill] = useState<Array<Array<string>>>([]);
 
   const [score, setScore] = useState({
     JavaScript: 0,
@@ -140,7 +141,15 @@ const FirstProgrammingLanguageQuiz = () => {
     setStage((prevStage) => prevStage + 1);
   };
   const handleBackClick = () => {
-    setStage((prevStage) => prevStage - 1);
+    setStage((prevStage) => {
+      const newStage = prevStage - 1;
+      setQuizResponses((prev) => {
+        const resetResponseIndex = [...prev];
+        console.log(`this is the value of stage: ${newStage}`);
+        return resetResponseIndex;
+      });
+      return newStage;
+    });
   };
 
   const renderStage = () => {
@@ -149,8 +158,8 @@ const FirstProgrammingLanguageQuiz = () => {
         return (
           <StartQuiz
             onNextClick={handleNextClick}
-            title={quizQuestions[Stage.START].title}
-            body={quizQuestions[Stage.START].body}
+            title={quizQuestions[stage].title}
+            body={quizQuestions[stage].body}
           />
         );
       case Stage.LEARNCODING:
@@ -158,12 +167,14 @@ const FirstProgrammingLanguageQuiz = () => {
           <SkillSelections
             onNextClick={handleNextClick}
             onBackClick={handleBackClick}
-            title={quizQuestions[Stage.LEARNCODING].title}
-            body={quizQuestions[Stage.LEARNCODING].body}
+            title={quizQuestions[stage].title}
+            body={quizQuestions[stage].body}
+            selected={selectedSkill}
+            setSelected={setSelectedSkill}
             progress={20}
-            selections={pageOptions[Stage.LEARNCODING - 1]}
+            selections={pageOptions[stage - 1]}
             setQuizResponses={setQuizResponses}
-            currentStage={Stage.LEARNCODING}
+            currentStage={stage}
           />
         );
       case Stage.WORKFIELDS:
@@ -171,12 +182,14 @@ const FirstProgrammingLanguageQuiz = () => {
           <SkillSelections
             onNextClick={handleNextClick}
             onBackClick={handleBackClick}
-            title={quizQuestions[Stage.WORKFIELDS].title}
-            body={quizQuestions[Stage.WORKFIELDS].body}
+            title={quizQuestions[stage].title}
+            body={quizQuestions[stage].body}
+            selected={selectedSkill}
+            setSelected={setSelectedSkill}
             progress={50}
-            selections={pageOptions[Stage.WORKFIELDS - 1]}
+            selections={pageOptions[stage - 1]}
             setQuizResponses={setQuizResponses}
-            currentStage={Stage.WORKFIELDS}
+            currentStage={stage}
           />
         );
       case Stage.BUILDTARGET:
@@ -184,12 +197,14 @@ const FirstProgrammingLanguageQuiz = () => {
           <SkillSelections
             onNextClick={handleNextClick}
             onBackClick={handleBackClick}
-            title={quizQuestions[Stage.BUILDTARGET].title}
-            body={quizQuestions[Stage.BUILDTARGET].body}
+            title={quizQuestions[stage].title}
+            body={quizQuestions[stage].body}
+            selected={selectedSkill}
+            setSelected={setSelectedSkill}
             progress={80}
-            selections={pageOptions[Stage.BUILDTARGET - 1]}
+            selections={pageOptions[stage - 1]}
             setQuizResponses={setQuizResponses}
-            currentStage={Stage.BUILDTARGET}
+            currentStage={stage}
           />
         );
       case Stage.BLUEPRINT:
@@ -200,12 +215,17 @@ const FirstProgrammingLanguageQuiz = () => {
           />
         );
       case Stage.RESULTS:
-        return <LangResults onBackClick={handleBackClick} />;
+        return <LangResults onBackClick={handleBackClick} score={score} />;
       default:
         return null;
     }
   };
-  return <div>{renderStage()}</div>;
+  return (
+    <div>
+      <p> {JSON.stringify(quizResponses)}</p>
+      {renderStage()}
+    </div>
+  );
 };
 
 export default FirstProgrammingLanguageQuiz;
