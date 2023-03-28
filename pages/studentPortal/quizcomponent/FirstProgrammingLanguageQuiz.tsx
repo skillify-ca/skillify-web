@@ -57,12 +57,12 @@ const FirstProgrammingLanguageQuiz = () => {
     });
   });
 
-  type QuizContext = {
+  type PageContent = {
     title: string;
     body: string;
   };
 
-  const quizQuestions: QuizContext[] = [
+  const quizQuestions: PageContent[] = [
     {
       title: "What Coding Language Should I Learn First?",
       body: "Take this free quiz to find out what coding language you should learn first.",
