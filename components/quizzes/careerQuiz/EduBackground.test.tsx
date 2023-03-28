@@ -16,9 +16,9 @@ describe("EducationBackground component", () => {
     expect(screen.getByText("N/A")).toBeInTheDocument();
     expect(screen.getByText("High School Diploma")).toBeInTheDocument();
     expect(screen.getByText("GED")).toBeInTheDocument();
-    // expect(screen.getByText("Undergraduate Degree")).toBeInTheDocument();
-    // expect(screen.getByText("Postgraduate Degree")).toBeInTheDocument();
-    // expect(screen.getByText("PHD")).toBeInTheDocument();
+    expect(screen.getByText("Undergraduate Degree")).toBeInTheDocument();
+    expect(screen.getByText("Postgraduate Degree")).toBeInTheDocument();
+    expect(screen.getByText("PHD")).toBeInTheDocument();
   });
 
   const testCases = [
