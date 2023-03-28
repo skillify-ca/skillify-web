@@ -1,12 +1,12 @@
 import React from "react";
 export default function Welcome() {
   return (
-    <div className="md:space-y-10 space-y-2">
-      <h1 className="md:text-3xl text-sm font-bold text-center">
+    <div className="md:space-y-10 space-y-2 mt-4">
+      <h1 className="md:text-4xl text-lg font-bold text-center">
         Welcome to Skillify Coding Academy!
       </h1>
       <div className="flex flex-col md:flex-row overflow-y-auto h-80 md:h-full items-center">
-        <div className="flex flex-col space-y-2 md:space-y-8 text-sm md:text-lg">
+        <div className="flex flex-col space-y-2 md:space-y-8 text-sm md:text-2xl">
           <p>
             Your free trial includes access to lessons, quizzes, and assignments
             from our beginner and advanced coding courses.
@@ -16,7 +16,10 @@ export default function Welcome() {
             assignment and get personalized feedback from one of our coaches.
           </p>
         </div>
-        <img className="w-3/4" src="/images/freemium/welcomeModal.svg"></img>
+        <img
+          className="md:w-96 w-52"
+          src="/images/freemium/welcomeModal.svg"
+        ></img>
       </div>
     </div>
   );
