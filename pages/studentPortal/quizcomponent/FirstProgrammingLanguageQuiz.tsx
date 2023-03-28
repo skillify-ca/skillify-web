@@ -99,7 +99,6 @@ const FirstProgrammingLanguageQuiz = () => {
       const newStage = prevStage - 1;
       setQuizResponses((prev) => {
         const resetResponseIndex = [...prev];
-        console.log(`this is the value of stage: ${newStage}`);
         return resetResponseIndex;
       });
       return newStage;
