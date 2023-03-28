@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Button } from "../../ui/Button";
+import { Input } from "../../ui/Input";
 
 export default function JobTrackerComponent() {
   const [isCAD, setIsCAD] = useState(true);
+  const [showData, setShowData] = useState(false);
 
   return (
     <div className="p-4">
@@ -71,23 +73,25 @@ export default function JobTrackerComponent() {
           higher salary.
         </li>
       </ul>
-      <h3 className="mt-4 text-xl font-bold">Data</h3>
-
-      <div className="">
-        <div className="flex items-center gap-4 my-4">
-          <p className="font-bold">Currency:</p>
-          <Button label="CAD" onClick={() => setIsCAD(true)} />
-          <Button
-            label="USD"
-            onClick={() => setIsCAD(false)}
-            backgroundColor="white"
-            textColor="text-orange-500"
-          />
-        </div>
+      <div className="flex items-center gap-4 p-4">
+        <p className="font-bold">Currency:</p>
+        <Button label="CAD" onClick={() => setIsCAD(true)} />
+        <Button
+          label="USD"
+          onClick={() => setIsCAD(false)}
+          backgroundColor="white"
+          textColor="text-orange-500"
+        />
+      </div>
+      {showData ? (
         <div className="w-full px-4 mb-4 overflow-x-auto">
           <OfferTable isCAD={isCAD} />
         </div>
-      </div>
+      ) : (
+        <div className="p-4 m-4 border-2 shadow-xl rounded-xl">
+          <EmailCapture onSubmit={() => setShowData(true)} />
+        </div>
+      )}
     </div>
   );
 }
@@ -480,6 +484,7 @@ function OfferTable({ isCAD }) {
           </th>
         </tr>
       </thead>
+
       <tbody>
         {sortedData.map((offer, index) => (
           <tr key={offer.Company} className="text-center hover:bg-slate-300">
@@ -501,5 +506,49 @@ function OfferTable({ isCAD }) {
         ))}
       </tbody>
     </table>
+  );
+}
+
+function EmailCapture({ onSubmit }) {
+  const [showError, setShowError] = useState(false);
+  const [email, setEmail] = useState("");
+
+  async function handleSubmit() {
+    const isValid = isValidEmail(email);
+    if (isValid) {
+      onSubmit();
+
+      const url = `/api/slack/TechSalaryGuide2023|${email}`;
+      const options = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+        body: JSON.stringify({
+          email: email,
+        }),
+      };
+      await fetch(url, options);
+    } else {
+      setShowError(true);
+    }
+  }
+
+  function isValidEmail(email) {
+    const emailRegex = /\S+@\S+\.\S+/;
+    return emailRegex.test(email);
+  }
+  return (
+    <div className="flex flex-col items-center justify-center w-full h-64">
+      <p className="text-center sm:w-full">Enter your email to view the data</p>
+      <Input value={email} setValue={setEmail} placeholder="Enter Email" />
+      <div className="my-4">
+        <Button label="Submit" onClick={handleSubmit} />
+      </div>
+      {showError ? (
+        <p className="text-red-400">Please enter a valid email</p>
+      ) : null}
+    </div>
   );
 }
