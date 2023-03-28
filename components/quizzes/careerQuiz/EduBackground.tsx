@@ -3,12 +3,12 @@ import { Button } from "../../ui/Button";
 import ProgressBar from "../shared/Progress";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
 
-type EduBackgroundProps = {
+export type EduBackgroundProps = {
   onNextClick: () => void;
   onBackClick: () => void;
 };
 
-enum EducationLevel {
+export enum EducationLevel {
   BLANK = "",
   NA = "N/A",
   HighSchoolDiploma = "High School Diploma",
@@ -62,8 +62,9 @@ const EducationBackground = ({
         </p>
         <div className="text-lg space-y-4">
           <div className="text-left">
-            <h3>Education</h3>
+            <label htmlFor="education-select">Education</label>
             <select
+              id="education-select"
               value={selectedEducationLevel || ""}
               onChange={handleEducationLevelChange}
               className="shadow appearance-none border border-gray-500 rounded-lg px-12 max-w-xs"
@@ -80,7 +81,7 @@ const EducationBackground = ({
             selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
             selectedEducationLevel !== EducationLevel.GED && (
               <div className="text-left">
-                <h3>Institution</h3>{" "}
+                <label htmlFor="institution">Institution</label>{" "}
                 <input
                   type="text"
                   name="institution"
@@ -95,7 +96,9 @@ const EducationBackground = ({
             selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
             selectedEducationLevel !== EducationLevel.GED && (
               <div className="text-left">
-                <h3 className="font-medium">Field of study</h3>{" "}
+                <label htmlFor="degree" className="font-medium">
+                  Field of study
+                </label>
                 <input
                   type="text"
                   name="degree"
