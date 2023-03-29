@@ -73,25 +73,12 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
         <div className="flex flex-col w-full max-w-4xl mx-auto">
           {selections.map((selection, index) => {
             const isSelected = currentSelections.includes(selection);
-            const className = [
-              "flex",
-              "items-start",
-              "justify-start",
-              "w-full",
-              "px-4",
-              "py-2",
-              "my-2",
-              "cursor-pointer",
-              "text-black-600",
-              "border-2",
-              "border-black-500",
-              "rounded-xl",
-              isSelected ? "bg-violet-300" : "bg-white",
-            ].join(" ");
             return (
               <div
                 key={index}
-                className={className}
+                className={`flex items-start justify-start w-full px-4 py-2 my-2 cursor-pointer text-black-600 border-2 border-black-500 rounded-xl ${
+                  isSelected ? "bg-violet-300" : "bg-white"
+                }`}
                 onClick={() => handleSelection(selection)}
               >
                 {selection}
