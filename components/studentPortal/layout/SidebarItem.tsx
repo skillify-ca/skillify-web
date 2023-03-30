@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { activePageSelector, SidebarPage } from "../../../redux/sidebarSlice";
 import FreemiumSidebarItem from "../freemium/FreemiumSidebarItem";
 
-interface SidebarItemProps {
+export interface SidebarItemProps {
   name: string;
   link: string;
   page: SidebarPage;

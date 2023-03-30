@@ -5,7 +5,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const SLACK_WEBHOOK_URL =
-    "https://hooks.slack.com/services/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";
+    "https://hooks.slack.com/services/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";
 
   const email = req.body.email;
   const product = req.query["product"];
