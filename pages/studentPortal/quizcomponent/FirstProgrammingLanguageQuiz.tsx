@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import LangResults from "../../../components/resources/quizzes/langQuiz/LangResults";
 import BluePrint from "../../../components/resources/quizzes/shared/BluePrint";
 import SkillSelections from "../../../components/resources/quizzes/shared/SkillSelections";
@@ -81,8 +81,9 @@ const FirstProgrammingLanguageQuiz = () => {
     },
   ];
 
-  const [quizResponses, setQuizResponses] = useState([]);
-  const [selectedSkill, setSelectedSkill] = useState<Array<Array<string>>>([]);
+  const [selectedSkill, setSelectedSkill] = useState<string[][]>(
+    Array.from({ length: pageOptions.length }, () => [])
+  );
 
   const [score, setScore] = useState({
     JavaScript: 0,
@@ -91,18 +92,12 @@ const FirstProgrammingLanguageQuiz = () => {
   });
 
   const [stage, setStage] = useState(Stage.START);
+
   const handleNextClick = () => {
     setStage((prevStage) => prevStage + 1);
   };
   const handleBackClick = () => {
-    setStage((prevStage) => {
-      const newStage = prevStage - 1;
-      setQuizResponses((prev) => {
-        const resetResponseIndex = [...prev];
-        return resetResponseIndex;
-      });
-      return newStage;
-    });
+    setStage((prevStage) => prevStage - 1);
   };
 
   const renderStage = () => {
@@ -126,8 +121,7 @@ const FirstProgrammingLanguageQuiz = () => {
             setSelected={setSelectedSkill}
             progress={20}
             selections={pageOptions[stage - 1]}
-            setQuizResponses={setQuizResponses}
-            currentStage={stage}
+            currentStage={stage - 1}
           />
         );
       case Stage.WORKFIELDS:
@@ -141,8 +135,7 @@ const FirstProgrammingLanguageQuiz = () => {
             setSelected={setSelectedSkill}
             progress={50}
             selections={pageOptions[stage - 1]}
-            setQuizResponses={setQuizResponses}
-            currentStage={stage}
+            currentStage={stage - 1}
           />
         );
       case Stage.BUILDTARGET:
@@ -156,8 +149,7 @@ const FirstProgrammingLanguageQuiz = () => {
             setSelected={setSelectedSkill}
             progress={80}
             selections={pageOptions[stage - 1]}
-            setQuizResponses={setQuizResponses}
-            currentStage={stage}
+            currentStage={stage - 1}
           />
         );
       case Stage.BLUEPRINT:
@@ -173,7 +165,12 @@ const FirstProgrammingLanguageQuiz = () => {
         return null;
     }
   };
-  return <div>{renderStage()}</div>;
+  return (
+    <>
+      <div>{JSON.stringify(selectedSkill)}</div>
+      <div>{renderStage()}</div>;
+    </>
+  );
 };
 
 export default FirstProgrammingLanguageQuiz;

@@ -7,7 +7,6 @@ type SkillSelectionsProps = {
   selections: string[];
   selected: string[][];
   setSelected: Dispatch<SetStateAction<string[][]>>;
-  setQuizResponses: Dispatch<SetStateAction<any[]>>;
   currentStage: number;
   onNextClick: () => void;
   onBackClick: () => void;
@@ -20,7 +19,6 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   selections,
   selected,
   setSelected,
-  setQuizResponses,
   currentStage,
   onNextClick,
   onBackClick,
@@ -29,7 +27,6 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   body,
 }) => {
   const currentSelections = selected[currentStage] || [];
-
   const handleSelection = (selection: string) => {
     const selectionIndex = currentSelections.indexOf(selection);
     if (selectionIndex !== -1) {
@@ -49,20 +46,8 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
     }
   };
 
-  const handleStage = () => {
-    setQuizResponses((prev) => {
-      const updatedResponses = [...prev];
-      updatedResponses[currentStage - 1] = selected[currentStage];
-      return updatedResponses;
-    });
-    setSelected((prev) => {
-      const updatedSelections = [...prev];
-      return updatedSelections;
-    });
-  };
-
   return (
-    <>
+    <div>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
       <div className="flex flex-col items-center px-8">
         <Progress progress={progress} />
@@ -90,14 +75,13 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
           <Button
             label="Next"
             onClick={() => {
-              handleStage();
               onNextClick();
             }}
             backgroundColor="yellow"
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default SkillSelections;
