@@ -60,64 +60,67 @@ const EducationBackground = ({
         <p className="text-lg font-medium px-4">
           Select your highest level of education.
         </p>
-        <div className="text-lg space-y-4">
-          <div className="text-left">
-            <label htmlFor="education-select">Education</label>
-            <select
-              id="education-select"
-              value={selectedEducationLevel || ""}
-              onChange={handleEducationLevelChange}
-              className=" border border-gray-500 rounded-lg "
-            >
-              {Object.values(EducationLevel).map((educationLevel) => (
-                <option key={educationLevel} value={educationLevel}>
-                  {educationLevel}
-                </option>
-              ))}
-            </select>
+        <div className="text-lg text-left">
+          <label htmlFor="education-select">Education</label>
+
+          <select
+            id="education-select"
+            value={selectedEducationLevel || ""}
+            onChange={handleEducationLevelChange}
+            className=" border  w-full border-gray-500 rounded-lg "
+          >
+            {Object.values(EducationLevel).map((educationLevel) => (
+              <option key={educationLevel} value={educationLevel}>
+                {educationLevel}
+              </option>
+            ))}
+          </select>
+          <div>
+            {selectedEducationLevel &&
+              selectedEducationLevel !== EducationLevel.NA &&
+              selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
+              selectedEducationLevel !== EducationLevel.GED && (
+                <div className="text-left">
+                  <label htmlFor="institution">Institution</label>{" "}
+                  <input
+                    type="text"
+                    name="institution"
+                    value={institution}
+                    onChange={(e) => setInstitution(e.target.value)}
+                    className="border  w-full border-gray-500 rounded-lg  px-10"
+                  ></input>
+                </div>
+              )}
           </div>
-          {selectedEducationLevel &&
-            selectedEducationLevel !== EducationLevel.NA &&
-            selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
-            selectedEducationLevel !== EducationLevel.GED && (
-              <div className="text-left">
-                <label htmlFor="institution">Institution</label>{" "}
+          <div>
+            {selectedEducationLevel &&
+              selectedEducationLevel !== EducationLevel.NA &&
+              selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
+              selectedEducationLevel !== EducationLevel.GED && (
+                <div className="text-left">
+                  <label htmlFor="degree" className="font-medium">
+                    Field of study
+                  </label>
+                  <input
+                    type="text"
+                    name="degree"
+                    value={degree}
+                    onChange={(e) => setDegree(e.target.value)}
+                    className="shadow  w-full appearance-none border border-gray-500 rounded-lg px-10"
+                  />
+                </div>
+              )}
+            {showExperienceInput && (
+              <div className="">
+                <div className="text-left ">Do you have experience coding?</div>
                 <input
                   type="text"
-                  name="institution"
-                  value={institution}
-                  onChange={(e) => setInstitution(e.target.value)}
-                  className="border border-gray-500 rounded-lg  px-10"
-                ></input>
-              </div>
-            )}
-          {selectedEducationLevel &&
-            selectedEducationLevel !== EducationLevel.NA &&
-            selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
-            selectedEducationLevel !== EducationLevel.GED && (
-              <div className="text-left">
-                <label htmlFor="degree" className="font-medium">
-                  Field of study
-                </label>
-                <input
-                  type="text"
-                  name="degree"
-                  value={degree}
                   onChange={(e) => setDegree(e.target.value)}
-                  className="shadow appearance-none border border-gray-500 rounded-lg px-10"
+                  className="w-full border border-gray-500 rounded-lg  px-10 resize-none"
                 />
               </div>
             )}
-          {showExperienceInput && (
-            <div className="">
-              <div className="text-left ">Do you have experience coding?</div>
-              <input
-                type="text"
-                onChange={(e) => setDegree(e.target.value)}
-                className="w-full border border-gray-500 rounded-lg  px-10 resize-none"
-              />
-            </div>
-          )}
+          </div>
         </div>
         <div className="py-8">
           <Button backgroundColor="yellow" label="Next" onClick={onNextClick} />
