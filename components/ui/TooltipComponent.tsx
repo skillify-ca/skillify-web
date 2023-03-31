@@ -31,10 +31,12 @@ const TooltipComponent: React.FC<TooltipComponentProps> = ({
           >
             <div className="flex flex-row items-center">
               {message}
-              <img
-                src={icon}
-                className="w-10 h-10 hover:bg-backgroundhover rounded-full p-2"
-              />
+              {icon && (
+                <img
+                  src={icon}
+                  className="w-10 h-10 info-icon animate-iconPulse hover:bg-backgroundhover rounded-full p-2"
+                />
+              )}
             </div>
             <Arrow className="fill-white w-4 h-2" />
           </Content>
