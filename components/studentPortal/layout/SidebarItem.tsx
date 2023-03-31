@@ -3,7 +3,7 @@ import React, { ReactElement } from "react";
 import { useSelector } from "react-redux";
 import { activePageSelector, SidebarPage } from "../../../redux/sidebarSlice";
 
-interface SidebarItemProps {
+export interface SidebarItemProps {
   name: string;
   link: string;
   page: SidebarPage;

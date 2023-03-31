@@ -1,9 +1,11 @@
+import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
-import CareerResults from "../components/quizzes/careerQuiz/CareerResults";
-import EduBackground from "../components/quizzes/careerQuiz/EduBackground";
-import BluePrint from "../components/quizzes/shared/BluePrint";
-import SkillSelections from "../components/quizzes/shared/SkillSelections";
-import StartQuiz from "../components/quizzes/shared/StartQuiz";
+import CareerResults from "../components/resources/quizzes/careerQuiz/CareerResults";
+import EduBackground from "../components/resources/quizzes/careerQuiz/EduBackground";
+import BluePrint from "../components/resources/quizzes/shared/BluePrint";
+import SkillSelections from "../components/resources/quizzes/shared/SkillSelections";
+import StartQuiz from "../components/resources/quizzes/shared/StartQuiz";
+import { INSERT_CAREER_QUIZ_RESPONSE } from "../graphql/quizzes/insertCareer";
 
 enum Stage {
   START,
@@ -16,6 +18,19 @@ enum Stage {
 }
 
 const CareerQuiz = () => {
+  const [saveUserPreferences] = useMutation(INSERT_CAREER_QUIZ_RESPONSE, {});
+  const exampleUserPreferences = [
+    {
+      degree: "Bachelor of Arts",
+      institution: "University of Waterloo",
+      name: "Angela",
+      email: "example@example.com",
+      industries: ["Advertising", "Design", "Fashion"],
+      skills: ["Writing code", "Writing", "Math"],
+      result: "Software Engineer",
+      tasks: ["Find trends in data"],
+    },
+  ];
   // create results state object that
   // create custom type -- based on schema type in database
   const [stage, setStage] = useState<Stage>(Stage.START);
@@ -29,6 +44,12 @@ const CareerQuiz = () => {
 
   // Render the appropriate component based on the stage
   const renderStage = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+
     switch (stage) {
       case Stage.START:
         return (
@@ -126,6 +147,8 @@ const CareerQuiz = () => {
           />
         );
       case Stage.RESULTS:
+        saveUserPreferences({ variables: { objects: exampleUserPreferences } });
+
         return <CareerResults onBackClick={handleBackClick} />;
       default:
         return null;
