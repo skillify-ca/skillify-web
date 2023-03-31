@@ -113,7 +113,7 @@ const EducationBackground = ({
             {showExperienceInput && (
               <div className="">
                 <div className="text-left ">Do you have experience coding?</div>
-                <input
+                <textarea
                   type="text"
                   onChange={(e) => setDegree(e.target.value)}
                   className="w-full border border-gray-500 rounded-lg  px-10 resize-none"
