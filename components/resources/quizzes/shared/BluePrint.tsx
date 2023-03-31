@@ -1,8 +1,8 @@
+import React from "react";
 import { Button } from "../../../ui/Button";
 import NumberedCircles from "./NumberedCircles";
 import ProgressBar from "./Progress";
 import SkillifyNavbar from "./SkillifyNavbar";
-
 type BluePrintProps = {
   onNextClick: () => void;
   onBackClick: () => void;
