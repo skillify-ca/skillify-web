@@ -1,3 +1,4 @@
+import React from "react";
 type SkillifyNavbarProps = {
   hidden: boolean;
   onBackClick: () => void;
