@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "../../ui/Button";
+import { Button } from "../../../ui/Button";
 import ProgressBar from "../shared/Progress";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
 
@@ -114,7 +114,6 @@ const EducationBackground = ({
               <div className="">
                 <div className="text-left ">Do you have experience coding?</div>
                 <textarea
-                  type="text"
                   onChange={(e) => setDegree(e.target.value)}
                   className="w-full border border-gray-500 rounded-lg  px-10 resize-none"
                 />
