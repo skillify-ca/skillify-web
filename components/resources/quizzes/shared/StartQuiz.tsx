@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "../../../ui/Button";
 
 import SkillifyNavbar from "./SkillifyNavbar";
@@ -39,9 +38,6 @@ const StartQuiz = ({ onNextClick, body, title }: StartQuizProps) => {
       </div>
     </div>
   );
-};
-StartQuiz.getLayout = function getLayout(page) {
-  return <div>{page}</div>;
 };
 
 export default StartQuiz;
