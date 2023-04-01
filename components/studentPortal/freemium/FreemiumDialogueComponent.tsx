@@ -15,7 +15,6 @@ const FreemiumDialogComponent: React.FC = () => {
   const { currentTheme } = useSelector(themeSelector);
   const [activeModal, setActiveModal] = useState(ModalStage.ONE);
 
-  // Handler functions for navigating between modal stages
   const handleClickBack = () => setActiveModal(activeModal - 1);
   const handleClickNext = () => setActiveModal(activeModal + 1);
   const handleClickModal = (stage: ModalStage) => setActiveModal(stage);
@@ -75,7 +74,9 @@ const FreemiumDialogComponent: React.FC = () => {
                   onClick={handleClickNext}
                 />
               ) : (
-                <img src="../../images/freemium/done.svg" />
+                <Close asChild>
+                  <img src="../../images/freemium/done.svg" />
+                </Close>
               )}
             </div>
           </div>
