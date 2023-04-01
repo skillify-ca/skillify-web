@@ -39,7 +39,7 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
   return (
     <>
       <div
-        className={`border-2 border-gray-900 rounded-lg ${
+        className={`border-2 border-gray-900 rounded-lg w-full ${
           isOpen ? "shadow-lg shadow-gray-900" : ""
         } `}
       >
@@ -56,7 +56,7 @@ const ExpandableContainer: React.FC<ExpandableContainerProps> = ({
                 <MinusCircleIcon className="w-6 h-6 cursor-pointer hover:text-yellow-600" />
               )}
             </button>
-            <h6 className="text-lg pb-2 md:text-2xl mt-3">{title}</h6>
+            <h6 className="pb-2 mt-3 text-lg md:text-2xl">{title}</h6>
           </div>
         </div>
 
