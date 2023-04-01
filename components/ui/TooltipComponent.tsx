@@ -10,11 +10,13 @@ import React from "react";
 
 export interface TooltipComponentProps {
   message: string;
+  icon?: string;
 }
 
 const TooltipComponent: React.FC<TooltipComponentProps> = ({
   children,
   message,
+  icon,
 }) => {
   return (
     <Provider>
@@ -27,7 +29,15 @@ const TooltipComponent: React.FC<TooltipComponentProps> = ({
             align="center"
             style={{ whiteSpace: "normal", width: "200px", lineHeight: "1.5" }}
           >
-            {message}
+            <div className="flex flex-row items-center">
+              {message}
+              {icon && (
+                <img
+                  src={icon}
+                  className="w-10 h-10 info-icon animate-iconPulse hover:bg-backgroundhover rounded-full p-2"
+                />
+              )}
+            </div>
             <Arrow className="fill-white w-4 h-2" />
           </Content>
         </Portal>
