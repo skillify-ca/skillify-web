@@ -35,6 +35,23 @@ const FreemiumDialogComponent: React.FC = () => {
     return styling;
   };
 
+  const handleClickBack = () => {
+    const previousStage = currentStage - 1;
+    setCurrentStage(previousStage);
+    setActiveModal(previousStage);
+  };
+
+  const handleClickNext = () => {
+    const nextStage = currentStage + 1;
+    setCurrentStage(nextStage);
+    setActiveModal(nextStage);
+  };
+
+  const handleClickModal = (stage) => {
+    setCurrentStage(stage);
+    setActiveModal(stage);
+  };
+
   return (
     <Root defaultOpen={true}>
       <Portal>
@@ -57,11 +74,7 @@ const FreemiumDialogComponent: React.FC = () => {
               {currentStage > ModalStage.ONE ? (
                 <img
                   src="../../images/freemium/back.svg"
-                  onClick={() => {
-                    const previousStage = currentStage - 1;
-                    setCurrentStage(previousStage);
-                    setActiveModal(previousStage);
-                  }}
+                  onClick={handleClickBack}
                 />
               ) : (
                 <img
@@ -73,22 +86,15 @@ const FreemiumDialogComponent: React.FC = () => {
                 {modalStageMappedArray.map((stage) => (
                   <div
                     key={stage}
-                    className={activeModalStyling(stage)}
-                    onClick={() => {
-                      setCurrentStage(stage);
-                      setActiveModal(stage);
-                    }}
+                    className={activeModalStyling(stage as ModalStage)}
+                    onClick={() => handleClickModal(stage as ModalStage)}
                   ></div>
                 ))}
               </div>
               {currentStage < ModalStage.THREE ? (
                 <img
                   src="../../images/freemium/next.svg"
-                  onClick={() => {
-                    const nextStage = currentStage + 1;
-                    setCurrentStage(nextStage);
-                    setActiveModal(nextStage);
-                  }}
+                  onClick={handleClickNext}
                 />
               ) : (
                 <img src="../../images/freemium/done.svg" />
