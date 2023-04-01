@@ -25,5 +25,7 @@
     "src",
     "pages/course/[courseId]/explore/addition/1.mdx"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
