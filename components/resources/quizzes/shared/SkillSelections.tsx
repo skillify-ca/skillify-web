@@ -1,49 +1,44 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
+import { QuizOption } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage";
 import { Button } from "../../../ui/Button";
 import Progress from "./Progress";
 import SkillifyNavbar from "./SkillifyNavbar";
 
-type SkillSelectionsProps = {
-  selections: string[];
-  selected: string[][];
-  setSelected: Dispatch<SetStateAction<string[][]>>;
-  currentStage: number;
-  onNextClick: () => void;
-  onBackClick: () => void;
-  progress: number;
+export type QuizViewState = {
   title: string;
   body: string;
+  questions: QuizQuestionViewState[];
+  currentQuestion: number;
+  progress: number;
+};
+
+export type QuizQuestionViewState = {
+  title: string;
+  body: string;
+  options: QuizOptionViewState[];
+};
+
+export type QuizOptionViewState = QuizOption & {
+  isSelected: boolean;
+};
+
+type SkillSelectionsProps = {
+  quizViewState: QuizViewState;
+  handleOptionClick: (option: QuizOptionViewState) => void;
+  onNextClick: () => void;
+  onBackClick: () => void;
 };
 
 const SkillSelections: React.FC<SkillSelectionsProps> = ({
-  selections,
-  selected,
-  setSelected,
-  currentStage,
+  handleOptionClick,
   onNextClick,
   onBackClick,
-  progress,
-  title,
-  body,
+  quizViewState,
 }) => {
-  const currentSelections = selected[currentStage] || [];
-  const handleSelection = (selection: string) => {
-    const selectionIndex = currentSelections.indexOf(selection);
-    if (selectionIndex !== -1) {
-      setSelected((prev) => {
-        const updatedSelections = [...prev];
-        updatedSelections[currentStage] = currentSelections.filter(
-          (s, index) => index !== selectionIndex
-        );
-        return updatedSelections;
-      });
-    } else {
-      setSelected((prev) => {
-        const updatedSelections = [...prev];
-        updatedSelections[currentStage] = [...currentSelections, selection];
-        return updatedSelections;
-      });
-    }
+  const { currentQuestion, questions, title, body, progress } = quizViewState;
+  const optionsForCurrentQuestions = questions[currentQuestion].options || [];
+  const handleClick = (option: QuizOptionViewState) => {
+    handleOptionClick(option);
   };
 
   return (
@@ -54,19 +49,18 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
         <div className="mt-4 text-2xl font-bold text-center text-black-600">
           {title}
         </div>
-        <div className="text-lg font-semibolds px-3">{body}</div>
+        <div className="px-3 text-lg font-semibolds">{body}</div>
         <div className="flex flex-col w-full max-w-4xl mx-auto">
-          {selections.map((selection, index) => {
-            const isSelected = currentSelections.includes(selection);
+          {optionsForCurrentQuestions.map((option, index) => {
             return (
               <div
                 key={index}
                 className={`flex items-start justify-start w-full px-4 py-2 my-2 cursor-pointer text-black-600 border-2 border-black-500 rounded-xl ${
-                  isSelected ? "bg-violet-300" : "bg-white"
+                  option.isSelected ? "bg-violet-300" : "bg-white"
                 }`}
-                onClick={() => handleSelection(selection)}
+                onClick={() => handleClick(option)}
               >
-                {selection}
+                {option.name}
               </div>
             );
           })}

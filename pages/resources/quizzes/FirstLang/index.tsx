@@ -1,32 +1,39 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import LangResults from "../../../../components/resources/quizzes/langQuiz/LangResults";
 import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
-import SkillSelections from "../../../../components/resources/quizzes/shared/SkillSelections";
+import SkillSelections, {
+  QuizOptionViewState,
+  QuizViewState,
+} from "../../../../components/resources/quizzes/shared/SkillSelections";
 import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz";
-import {
-  quizQuestions,
-  selectionsPerPage,
-} from "../../../api/studentPortal/quizzes/FirstLang";
+import { quizData } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage";
 
 export enum Stage {
   START,
-  LEARNCODING,
-  WORKFIELDS,
-  BUILDTARGET,
+  QUESTIONS,
   BLUEPRINT,
   RESULTS,
 }
 
 const FirstProgrammingLanguageQuiz = () => {
-  const [selectedSkill, setSelectedSkill] = useState([]);
-
   const [stage, setStage] = useState(Stage.START);
+  const [quizViewState, setQuizViewState] = useState<QuizViewState>();
+
+  // TODO useEffect hook to read the initial quiz data and create your initial view state
 
   const handleNextClick = () => {
+    // TODO handle differently for the QUESTIONS stage
+    // TODO know when to move on to the blueprint stage
     setStage((prevStage) => prevStage + 1);
   };
   const handleBackClick = () => {
     setStage((prevStage) => prevStage - 1);
+  };
+
+  const handleOptionClick = (option: QuizOptionViewState) => {
+    // TODO create a new quizViewState and then call setQuizViewState
+    console.log(option, quizViewState);
+    // TODO generate a new quiz state based off the old state plus the clicked option
   };
 
   const renderStage = () => {
@@ -35,50 +42,17 @@ const FirstProgrammingLanguageQuiz = () => {
         return (
           <StartQuiz
             onNextClick={handleNextClick}
-            title={quizQuestions[stage][stage].title}
-            body={quizQuestions[stage][stage].body}
+            title={quizData.title}
+            body={quizData.body}
           />
         );
-      case Stage.LEARNCODING:
+      case Stage.QUESTIONS:
         return (
           <SkillSelections
             onNextClick={handleNextClick}
             onBackClick={handleBackClick}
-            title={quizQuestions[stage][stage - 1].title}
-            body={quizQuestions[stage][stage - 1].body}
-            selected={selectedSkill}
-            setSelected={setSelectedSkill}
-            progress={20}
-            selections={selectionsPerPage[stage]}
-            currentStage={stage - 1}
-          />
-        );
-      case Stage.WORKFIELDS:
-        return (
-          <SkillSelections
-            onNextClick={handleNextClick}
-            onBackClick={handleBackClick}
-            title={quizQuestions[stage][stage - 2].title}
-            body={quizQuestions[stage][stage - 2].body}
-            selected={selectedSkill}
-            setSelected={setSelectedSkill}
-            progress={50}
-            selections={selectionsPerPage[stage]}
-            currentStage={stage - 1}
-          />
-        );
-      case Stage.BUILDTARGET:
-        return (
-          <SkillSelections
-            onNextClick={handleNextClick}
-            onBackClick={handleBackClick}
-            title={quizQuestions[stage][stage - 3].title}
-            body={quizQuestions[stage][stage - 3].body}
-            selected={selectedSkill}
-            setSelected={setSelectedSkill}
-            progress={80}
-            selections={selectionsPerPage[stage]}
-            currentStage={stage - 1}
+            handleOptionClick={handleOptionClick}
+            quizViewState={quizViewState}
           />
         );
       case Stage.BLUEPRINT:
