@@ -3,7 +3,7 @@ import { differenceInHours } from "date-fns";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import FreemiumDialogComponent from "../../components/studentPortal/freemium/FreemiumDialogComponent";
+import FreemiumDialogComponent from "../../components/studentPortal/freemium/FreemiumDialogueComponent";
 import UnitView from "../../components/studentPortal/lessons/UnitView";
 import ErrorMessage from "../../components/ui/ErrorMessage";
 import PageHeader from "../../components/ui/PageHeader";
@@ -21,7 +21,6 @@ import {
 } from "../../graphql/studentPortal/freemium/fetchLastSeenModal";
 import { UPSERT_LAST_SEEN_MODAL } from "../../graphql/studentPortal/freemium/upsertLastSeenModal";
 import { UPDATE_USER } from "../../graphql/studentPortal/users/updateUser";
-
 import { useAuth } from "../../lib/authContext";
 import { profileSelector } from "../../redux/profileSlice";
 import { Unit } from "../api/studentPortal/units";
