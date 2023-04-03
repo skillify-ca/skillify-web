@@ -52,13 +52,11 @@ const CareerQuiz = () => {
       setOpen(true);
     }, 250); // adjust the delay time based on the animation duration
   };
-  setTimeout(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-  }, 350);
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
   const items = [
     <StartQuiz
       onNextClick={handleNextClick}
