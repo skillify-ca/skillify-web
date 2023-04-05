@@ -3,7 +3,7 @@ import React, { ReactElement } from "react";
 import { useSelector } from "react-redux";
 import { activePageSelector, SidebarPage } from "../../../redux/sidebarSlice";
 
-interface SidebarItemProps {
+export interface SidebarItemProps {
   name: string;
   link: string;
   page: SidebarPage;
@@ -25,13 +25,11 @@ const SidebarItem = ({
 
   return (
     <>
-      <Link onClick={onClick} href={href}>
+      <Link href={link}>
         <div
           className={`flex flex-wrap items-center p-4 cursor-pointer hover:border-l-4 ${
             activePage === page ? "border-charmander text-charmander" : ""
-          } hover:border-charmander hover:text-charmander ${
-            isDisabled ? "border-gray-500 text-gray-500" : ""
-          }`}
+          } hover:border-charmander hover:text-charmander`}
         >
           <div>
             {notifications ? (
