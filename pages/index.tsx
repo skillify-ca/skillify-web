@@ -57,7 +57,7 @@ const HomePage = () => {
       { text: "tech ", highlight: true },
     ],
     emailCaptureDescription:
-      "Think learning to code is too hard? Drop us your email and we will send you our free guide on avoiding overhwhelm.",
+      "Think learning to code is too hard? Drop us your email and we will send you our free guide on avoiding overwhelmed.",
   };
 
   const {

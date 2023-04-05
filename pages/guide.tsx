@@ -31,7 +31,7 @@ export default function Page() {
             { text: "tech ", highlight: true },
           ]}
           description={
-            "Think learning to code is too hard? Drop us your email and we will send you our free guide on avoiding overhwhelm."
+            "Think learning to code is too hard? Drop us your email and we will send you our free guide on avoiding overwhelmed."
           }
         />
         <div className="p-8 bg-gray-200 border-t-2">
