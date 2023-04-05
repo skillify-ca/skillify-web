@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import LangResults from "../../../../components/resources/quizzes/langQuiz/LangResults";
 import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
 import SkillSelections, {
@@ -19,15 +19,49 @@ const FirstProgrammingLanguageQuiz = () => {
   const [stage, setStage] = useState(Stage.START);
   const [quizViewState, setQuizViewState] = useState<QuizViewState>();
 
-  // TODO useEffect hook to read the initial quiz data and create your initial view state
+  useEffect(() => {
+    const quizViewState = {
+      title: quizData.title,
+      body: quizData.body,
+      questions: [],
+      currentQuestion: 0,
+      progress: 0,
+    };
+
+    for (let i = 0; i < quizData.questions.length; i++) {
+      const question = quizData.questions[i];
+      const options = question.options;
+
+      const quizQuestion = {
+        title: question.title,
+        body: question.body,
+        options: options,
+      };
+
+      quizViewState.questions.push(quizQuestion);
+    }
+
+    setQuizViewState(quizViewState);
+  }, []);
 
   const handleNextClick = () => {
-    // TODO handle differently for the QUESTIONS stage
-    // TODO know when to move on to the blueprint stage
-    setStage((prevStage) => prevStage + 1);
+    if (
+      stage == Stage.QUESTIONS &&
+      quizViewState.currentQuestion < quizData.questions.length - 1
+    ) {
+      setQuizViewState({
+        ...quizViewState,
+        currentQuestion: quizViewState.currentQuestion + 1,
+      });
+    } else setStage((prevStage) => prevStage + 1);
   };
   const handleBackClick = () => {
-    setStage((prevStage) => prevStage - 1);
+    if (stage == Stage.QUESTIONS && quizViewState.currentQuestion > 0) {
+      setQuizViewState({
+        ...quizViewState,
+        currentQuestion: quizViewState.currentQuestion - 1,
+      });
+    } else setStage((prevStage) => prevStage - 1);
   };
 
   const handleOptionClick = (option: QuizOptionViewState) => {
@@ -70,6 +104,7 @@ const FirstProgrammingLanguageQuiz = () => {
   };
   return (
     <>
+      <div>{quizViewState?.currentQuestion}</div>
       <div>{renderStage()}</div>
     </>
   );

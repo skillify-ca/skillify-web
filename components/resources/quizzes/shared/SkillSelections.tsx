@@ -36,6 +36,8 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   quizViewState,
 }) => {
   const { currentQuestion, questions, title, body, progress } = quizViewState;
+  const titleForCurrentQuestion = questions[currentQuestion].title;
+  const bodyForCurrentQuestion = questions[currentQuestion].body;
   const optionsForCurrentQuestions = questions[currentQuestion].options || [];
   const handleClick = (option: QuizOptionViewState) => {
     handleOptionClick(option);
@@ -47,9 +49,11 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
       <div className="flex flex-col items-center px-8">
         <Progress progress={progress} />
         <div className="mt-4 text-2xl font-bold text-center text-black-600">
-          {title}
+          {titleForCurrentQuestion}
         </div>
-        <div className="px-3 text-lg font-semibolds">{body}</div>
+        <div className="px-3 text-lg font-semibolds">
+          {bodyForCurrentQuestion}
+        </div>
         <div className="flex flex-col w-full max-w-4xl mx-auto">
           {optionsForCurrentQuestions.map((option, index) => {
             return (
