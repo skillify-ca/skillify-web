@@ -8,7 +8,10 @@ import {
   FETCH_USER_INTRO_NODES,
   transform,
 } from "../../graphql/studentPortal/courses/fetchUserIntroNodes";
-import { INIT_USER_INTRO_NODES } from "../../graphql/studentPortal/courses/initUserIntroNodes";
+import {
+  INIT_USER_INTRO_NODES,
+  objects,
+} from "../../graphql/studentPortal/courses/initUserIntroNodes";
 import { UPDATE_USER } from "../../graphql/studentPortal/users/updateUser";
 
 import { useAuth } from "../../lib/authContext";
