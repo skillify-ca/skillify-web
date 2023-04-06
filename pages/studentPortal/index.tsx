@@ -9,10 +9,7 @@ import {
   FETCH_USER_INTRO_NODES,
   transform,
 } from "../../graphql/studentPortal/courses/fetchUserIntroNodes";
-import {
-  INIT_USER_INTRO_NODES,
-  objects,
-} from "../../graphql/studentPortal/courses/initUserIntroNodes";
+import { INIT_USER_INTRO_NODES } from "../../graphql/studentPortal/courses/initUserIntroNodes";
 import { UPDATE_USER } from "../../graphql/studentPortal/users/updateUser";
 
 import { useAuth } from "../../lib/authContext";
@@ -29,24 +26,24 @@ export default function StudentPortalPage() {
     },
   });
   const [units, setUnits] = useState<Unit[]>([]);
-  useEffect(() => {
-    // TODO move this to user onboarding, so we're not re-initializing the nodes on every page load
-    if (user) {
-      initUserNodes({
-        variables: {
-          objects: objects(user),
-        },
-        refetchQueries: [
-          {
-            query: FETCH_USER_INTRO_NODES,
-            variables: {
-              userId: user.uid,
-            },
-          },
-        ],
-      });
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   // TODO move this to user onboarding, so we're not re-initializing the nodes on every page load
+  //   if (user) {
+  //     initUserNodes({
+  //       variables: {
+  //         objects: objects(user),
+  //       },
+  //       refetchQueries: [
+  //         {
+  //           query: FETCH_USER_INTRO_NODES,
+  //           variables: {
+  //             userId: user.uid,
+  //           },
+  //         },
+  //       ],
+  //     });
+  //   }
+  // }, [user]);
 
   useEffect(() => {
     if (data) {
