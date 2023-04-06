@@ -23,23 +23,16 @@ const FirstProgrammingLanguageQuiz = () => {
     const quizViewState = {
       title: quizData.title,
       body: quizData.body,
-      questions: [],
+      questions: quizData.questions.map((question) => {
+        return {
+          title: question.title,
+          body: question.body,
+          options: question.options,
+        };
+      }),
       currentQuestion: 0,
       progress: 0,
     };
-
-    for (let i = 0; i < quizData.questions.length; i++) {
-      const question = quizData.questions[i];
-      const options = question.options;
-
-      const quizQuestion = {
-        title: question.title,
-        body: question.body,
-        options: options,
-      };
-
-      quizViewState.questions.push(quizQuestion);
-    }
 
     setQuizViewState(quizViewState);
   }, []);
@@ -55,6 +48,7 @@ const FirstProgrammingLanguageQuiz = () => {
       });
     } else setStage((prevStage) => prevStage + 1);
   };
+
   const handleBackClick = () => {
     if (stage == Stage.QUESTIONS && quizViewState.currentQuestion > 0) {
       setQuizViewState({
@@ -65,9 +59,21 @@ const FirstProgrammingLanguageQuiz = () => {
   };
 
   const handleOptionClick = (option: QuizOptionViewState) => {
-    // TODO create a new quizViewState and then call setQuizViewState
-    console.log(option, quizViewState);
-    // TODO generate a new quiz state based off the old state plus the clicked option
+    const selectedQuizOption = quizViewState.questions.map((question) => ({
+      ...question,
+      options: question.options.map((questionOption) =>
+        questionOption.name === option.name
+          ? { ...questionOption, isSelected: true }
+          : questionOption
+      ),
+    }));
+
+    const updatedQuizViewState = {
+      ...quizViewState,
+      questions: selectedQuizOption,
+    };
+
+    setQuizViewState(updatedQuizViewState);
   };
 
   const renderStage = () => {
@@ -104,7 +110,6 @@ const FirstProgrammingLanguageQuiz = () => {
   };
   return (
     <>
-      <div>{quizViewState?.currentQuestion}</div>
       <div>{renderStage()}</div>
     </>
   );

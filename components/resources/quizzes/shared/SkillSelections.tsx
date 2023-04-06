@@ -1,5 +1,5 @@
 import React from "react";
-import { QuizOption } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage";
+import { QuizOption } from "../../../resources/quizzes/shared/types";
 import { Button } from "../../../ui/Button";
 import Progress from "./Progress";
 import SkillifyNavbar from "./SkillifyNavbar";
@@ -35,7 +35,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   onBackClick,
   quizViewState,
 }) => {
-  const { currentQuestion, questions, title, body, progress } = quizViewState;
+  const { currentQuestion, questions, progress } = quizViewState;
   const titleForCurrentQuestion = questions[currentQuestion].title;
   const bodyForCurrentQuestion = questions[currentQuestion].body;
   const optionsForCurrentQuestions = questions[currentQuestion].options || [];
