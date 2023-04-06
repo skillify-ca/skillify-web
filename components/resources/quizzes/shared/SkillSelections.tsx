@@ -1,61 +1,85 @@
-import React, { useState } from "react";
+import React from "react";
+import { QuizOption } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage";
 import { Button } from "../../../ui/Button";
 import Progress from "./Progress";
 import SkillifyNavbar from "./SkillifyNavbar";
-type SkillSelectionsProps = {
-  selections: string[];
-  onNextClick: () => void;
-  onBackClick: () => void;
-  progress: number;
+
+export type QuizViewState = {
   title: string;
   body: string;
+  questions: QuizQuestionViewState[];
+  currentQuestion: number;
+  progress: number;
+};
+
+export type QuizQuestionViewState = {
+  title: string;
+  body: string;
+  options: QuizOptionViewState[];
+};
+
+export type QuizOptionViewState = QuizOption & {
+  isSelected: boolean;
+};
+
+type SkillSelectionsProps = {
+  quizViewState: QuizViewState;
+  handleOptionClick: (option: QuizOptionViewState) => void;
+  onNextClick: () => void;
+  onBackClick: () => void;
 };
 
 const SkillSelections: React.FC<SkillSelectionsProps> = ({
-  selections,
+  handleOptionClick,
   onNextClick,
   onBackClick,
-  progress,
-  title,
-  body,
+  quizViewState,
 }) => {
-  const [selected, setSelected] = useState<string[]>([]);
-  const handleSelection = (selection: string) => {
-    if (selected.includes(selection)) {
-      setSelected(selected.filter((s) => s !== selection));
-    } else {
-      setSelected([...selected, selection]);
-    }
+  const { currentQuestion, questions, title, body, progress } = quizViewState;
+  const titleForCurrentQuestion = questions[currentQuestion].title;
+  const bodyForCurrentQuestion = questions[currentQuestion].body;
+  const optionsForCurrentQuestions = questions[currentQuestion].options || [];
+  const handleClick = (option: QuizOptionViewState) => {
+    handleOptionClick(option);
   };
+
   return (
-    <>
+    <div>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
       <div className="flex flex-col items-center px-8">
         <Progress progress={progress} />
         <div className="mt-4 text-2xl font-bold text-center text-black-600">
-          {title}
+          {titleForCurrentQuestion}
         </div>
-        <div className="text-lg font-semibolds px-3">{body}</div>
+        <div className="px-3 text-lg font-semibolds">
+          {bodyForCurrentQuestion}
+        </div>
         <div className="flex flex-col w-full max-w-4xl mx-auto">
-          {selections.map((selection, index) => (
-            <div
-              key={index}
-              className={`flex items-start justify-start w-full px-4 py-2 my-2 cursor-pointer ${
-                selected.includes(selection)
-                  ? "bg-violet-300 text-black-500 border-2 border-black-500 rounded-xl"
-                  : "bg-white text-black-600 border-2 border-black-500 rounded-xl"
-              }`}
-              onClick={() => handleSelection(selection)}
-            >
-              {selections[index]}
-            </div>
-          ))}
+          {optionsForCurrentQuestions.map((option, index) => {
+            return (
+              <div
+                key={index}
+                className={`flex items-start justify-start w-full px-4 py-2 my-2 cursor-pointer text-black-600 border-2 border-black-500 rounded-xl ${
+                  option.isSelected ? "bg-violet-300" : "bg-white"
+                }`}
+                onClick={() => handleClick(option)}
+              >
+                {option.name}
+              </div>
+            );
+          })}
         </div>
         <div className="mt-4">
-          <Button label="Next" onClick={onNextClick} backgroundColor="yellow" />
+          <Button
+            label="Next"
+            onClick={() => {
+              onNextClick();
+            }}
+            backgroundColor="yellow"
+          />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default SkillSelections;
