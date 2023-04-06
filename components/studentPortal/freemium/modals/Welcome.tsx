@@ -5,7 +5,7 @@ export default function Welcome() {
       <h1 className="md:text-3xl text-lg font-bold text-center mt-6 md:mt-0">
         Welcome to Skillify Coding Academy!
       </h1>
-      <div className="flex flex-col md:flex-row overflow-y-auto h-80 md:h-full items-center">
+      <div className="flex flex-col md:flex-row h-80 md:h-full items-center">
         <div className="flex flex-col space-y-2 md:space-y-8 text-sm md:text-base bg-[#E2E3FB] p-6 rounded-lg md:mt-0 mt-4">
           <p>
             Your free trial includes access to lessons, quizzes, and assignments
@@ -17,7 +17,7 @@ export default function Welcome() {
           </p>
         </div>
         <img
-          className="md:w-[475px] hidden"
+          className="md:w-[475px] md:visible invisible"
           src="/images/freemium/welcomeModal.svg"
         ></img>
       </div>
