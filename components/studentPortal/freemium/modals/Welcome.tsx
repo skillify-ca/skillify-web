@@ -2,7 +2,7 @@ import React from "react";
 export default function Welcome() {
   return (
     <div className="md:space-y-10 space-y-2">
-      <h1 className="md:text-3xl text-sm font-bold text-center">
+      <h1 className="md:text-3xl text-lg font-bold text-center mt-6 md:mt-0">
         Welcome to Skillify Coding Academy!
       </h1>
       <div className="flex flex-col md:flex-row overflow-y-auto h-80 md:h-full items-center">
@@ -17,7 +17,7 @@ export default function Welcome() {
           </p>
         </div>
         <img
-          className="w-[475px]"
+          className="md:w-[475px] hidden"
           src="/images/freemium/welcomeModal.svg"
         ></img>
       </div>
