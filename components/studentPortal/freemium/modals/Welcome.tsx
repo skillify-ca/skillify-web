@@ -6,7 +6,7 @@ export default function Welcome() {
         Welcome to Skillify Coding Academy!
       </h1>
       <div className="flex flex-col md:flex-row overflow-y-auto h-80 md:h-full items-center">
-        <div className="flex flex-col space-y-2 md:space-y-8 text-sm md:text-base bg-[#E2E3FB] p-6 rounded-lg">
+        <div className="flex flex-col space-y-2 md:space-y-8 text-sm md:text-base bg-[#E2E3FB] p-6 rounded-lg md:mt-0 mt-4">
           <p>
             Your free trial includes access to lessons, quizzes, and assignments
             from our beginner and advanced coding courses.
