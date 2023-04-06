@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import FreemiumDialogComponent from "../../components/studentPortal/freemium/FreemiumDialogueComponent";
 import UnitView from "../../components/studentPortal/lessons/UnitView";
 import ErrorMessage from "../../components/ui/ErrorMessage";
 import PageHeader from "../../components/ui/PageHeader";
@@ -26,24 +25,24 @@ export default function StudentPortalPage() {
     },
   });
   const [units, setUnits] = useState<Unit[]>([]);
-  // useEffect(() => {
-  //   // TODO move this to user onboarding, so we're not re-initializing the nodes on every page load
-  //   if (user) {
-  //     initUserNodes({
-  //       variables: {
-  //         objects: objects(user),
-  //       },
-  //       refetchQueries: [
-  //         {
-  //           query: FETCH_USER_INTRO_NODES,
-  //           variables: {
-  //             userId: user.uid,
-  //           },
-  //         },
-  //       ],
-  //     });
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    // TODO move this to user onboarding, so we're not re-initializing the nodes on every page load
+    if (user) {
+      initUserNodes({
+        variables: {
+          objects: objects(user),
+        },
+        refetchQueries: [
+          {
+            query: FETCH_USER_INTRO_NODES,
+            variables: {
+              userId: user.uid,
+            },
+          },
+        ],
+      });
+    }
+  }, [user]);
 
   useEffect(() => {
     if (data) {
@@ -76,7 +75,6 @@ export default function StudentPortalPage() {
           units.map((it, i) => <UnitView key={i} data={it} />)
         )}
       </div>
-      <FreemiumDialogComponent />
     </div>
   );
 }
