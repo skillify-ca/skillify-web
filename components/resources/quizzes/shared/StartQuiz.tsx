@@ -40,8 +40,5 @@ const StartQuiz = ({ onNextClick, body, title }: StartQuizProps) => {
     </div>
   );
 };
-StartQuiz.getLayout = function getLayout(page) {
-  return <div>{page}</div>;
-};
 
 export default StartQuiz;
