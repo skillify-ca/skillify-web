@@ -1,4 +1,5 @@
 import React from "react";
+
 export default function Welcome() {
   return (
     <div className="md:space-y-10 space-y-2">
@@ -6,7 +7,7 @@ export default function Welcome() {
         Welcome to Skillify Coding Academy!
       </h1>
       <div className="flex flex-col md:flex-row h-80 md:h-full items-center">
-        <div className="flex flex-col space-y-2 md:space-y-8 text-sm md:text-base bg-sky p-6 rounded-lg md:mt-0 mt-4">
+        <div className="flex flex-col space-y-2 md:space-y-8 text-sm md:text-base bg-sky-200 p-6 rounded-lg md:mt-0 mt-4">
           <p>
             Your free trial includes access to lessons, quizzes, and assignments
             from our beginner and advanced coding courses.

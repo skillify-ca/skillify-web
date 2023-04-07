@@ -49,7 +49,11 @@ module.exports = {
           transparent: "#000000e1",
           500: "#000000",
         },
-        sky: "#E2E3FB"
+        sky: {
+          200:"#E2E3FB",
+          500:"#7678ED",
+          900:"#18124C",
+        },
       },
       backgroundImage: (theme) => ({
         "email-capture": "url('/images/landingPage/Rectangle5.png')",
