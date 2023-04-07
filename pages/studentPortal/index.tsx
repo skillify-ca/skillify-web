@@ -90,7 +90,7 @@ export default function StudentPortalPage() {
         ? differenceInHours(new Date(), new Date(lastSeenValue))
         : null;
 
-      if (lastSeenDifference === null || lastSeenDifference > 24) {
+      if (lastSeenDifference === null || lastSeenDifference < 24) {
         setShowModal(true);
         updateLastSeenModal({
           variables: { userId: user.uid, lastSeenModal: new Date() },
