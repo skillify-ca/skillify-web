@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
+import React, { useState } from "react";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
-import { TrailAnimation } from "../../../ui/TrailAnimation";
+import { SpringAnimation } from "../../../ui/SpringAnimation";
 import BluePrint from "../shared/BluePrint";
 import SkillSelections from "../shared/SkillSelections";
 import StartQuiz from "../shared/StartQuiz";
@@ -135,9 +135,11 @@ const CareerQuiz = () => {
 
   // Render the appropriate component based on the stage
 
-  return <TrailAnimation open={open}>{items[stage]}</TrailAnimation>;
+  return <SpringAnimation open={open}>{items[stage]}</SpringAnimation>;
 };
 
 export default CareerQuiz;
 
-CareerQuiz.getLayout = function getLayout(page) {};
+CareerQuiz.getLayout = function getLayout(page) {
+  return <div>{page}</div>;
+};
