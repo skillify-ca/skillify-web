@@ -42,7 +42,7 @@ const FreemiumDialogComponent: React.FC = () => {
             </Close>
             {/* content rendered based on enum */}
             {getModalContent(activeModal)}
-            <div className="flex flex-row justify-center items-center space-x-12 absolute bottom-4 md:bottom-8 inset-x-0">
+            <div className="flex flex-row justify-center items-center space-x-12 absolute bottom-0 bg-white p-4 inset-x-0">
               {/* no button/back button */}
               {activeModal > ModalStage.ONE ? (
                 <img
