@@ -3,22 +3,30 @@ import React from "react";
 export default function WhereToStart() {
   return (
     <div className="flex flex-col md:flex-row items-center justify-center space-x-8 text-start">
-      <div className="flex flex-col md:p-4 p-2 space-y-4 md:space-y-8 md:max-w-md w-full">
-        <h1 className="text-lg md:text-3xl font-bold">
+      <div className="flex flex-col md:p-4 p-2 space-y-1 md:space-y-8 md:max-w-md w-full">
+        <h1 className="text-lg md:text-3xl font-bold mt-2">
           Which Course Should You Start With?
         </h1>
         <img
           src="/images/freemium/coursesMobile.svg"
-          className="block md:hidden"
+          className="block h-32 md:hidden"
         />
-        <div className="bg-sky rounded-xl p-6 text-xs md:text-lg space-y-4 w-full">
-          <div className="flex flex-row md:flex-col">
-            <p>For beginners with little to no coding experience: </p>
-            <p className="font-bold">Coding Basics Course!</p>
+        <div className="md:p-4 p-0 text-xs md:text-lg space-y-2 w-full md:bg-sky md:rounded-xl">
+          <div className="grid grid-cols-5 md:flex gap-4 md:gap-0 placeholder:flex-row md:flex-col bg-sky md:bg-none rounded-xl md:rounded-none p-3">
+            <p className="col-span-3">
+              For beginners with little to no coding experience:{" "}
+            </p>
+            <p className="flex items-center col-span-2 font-bold">
+              Coding Basics Course!
+            </p>
           </div>
-          <div className="flex flex-row md:flex-col">
-            <p>If you have intermediate or advanced coding experience: </p>
-            <p className="font-bold">Web Development Course!</p>
+          <div className="grid grid-cols-5 md:flex md:gap-0 gap-4 md:flex-col bg-sky rounded-xl p-3">
+            <p className="col-span-3">
+              If you have intermediate or advanced coding experience:{" "}
+            </p>
+            <p className="flex items-center font-bold col-span-2">
+              Web Development Course!
+            </p>
           </div>
         </div>
       </div>
