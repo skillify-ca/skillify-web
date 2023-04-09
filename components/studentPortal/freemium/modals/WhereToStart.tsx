@@ -12,7 +12,7 @@ export default function WhereToStart() {
           className="block h-32 md:hidden"
         />
         <div className="md:p-4 p-0 text-xs md:text-lg space-y-2 w-full md:bg-mewtew md:rounded-xl">
-          <div className="grid grid-cols-5 md:flex gap-4 md:gap-0 placeholder:flex-row md:flex-col bg-sky md:bg-none rounded-xl md:rounded-none p-3">
+          <div className="grid grid-cols-5 md:flex gap-4 md:gap-0 placeholder:flex-row md:flex-col bg-mewtew md:bg-none rounded-xl md:rounded-none p-3">
             <p className="col-span-3">
               For beginners with little to no coding experience:{" "}
             </p>
