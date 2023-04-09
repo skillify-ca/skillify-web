@@ -31,7 +31,7 @@ const FreemiumDialogComponent: React.FC = () => {
         <Content className={`${currentTheme}`}>
           <div
             className={`fixed h-[450px] w-[300px] md:h-[600px] md:w-[900px] p-4 md:p-20 transform -translate-x-1/2 -translate-y-1/2 ${
-              activeModal === ModalStage.TWO ? "bg-[#18124C]" : "bg-white"
+              activeModal === ModalStage.TWO ? "bg-murkrow" : "bg-white"
             } rounded-lg left-1/2 top-1/2`}
           >
             {/* content rendered based on enum */}
