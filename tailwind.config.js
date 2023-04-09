@@ -49,12 +49,8 @@ module.exports = {
           transparent: "#000000e1",
           500: "#000000",
         },
-        freemium: {
-          200:"#E2E3FB",
-          500:"rgba(118, 120, 237, 0.28)",
-          900:"#18124C",
-        },
-      },
+        mewtew: "#E2E3FB",
+            },
       backgroundImage: (theme) => ({
         "email-capture": "url('/images/landingPage/Rectangle5.png')",
         "hero-student":

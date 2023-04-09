@@ -7,7 +7,7 @@ export default function Upgrade() {
         Upgrade your plan at any time to unlock premium features.
       </h1>
       <img className="w-full" src="/images/freemium/gatedContentRow.svg" />
-      <p className="max-w-3xl md:text-lg text-xs bg-freemium-500 rounded-lg p-6">
+      <p className="max-w-3xl md:text-lg text-xs bg-rattata/20 rounded-lg p-6">
         Locked features are part of the premium plan, which you can easily
         upgrade to at any point in your free trial by clicking on the following
         link to book a call:{" "}
