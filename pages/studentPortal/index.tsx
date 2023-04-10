@@ -17,8 +17,8 @@ import {
   objects,
 } from "../../graphql/studentPortal/courses/initUserIntroNodes";
 import {
-  FetchModalData,
   FETCH_LAST_SEEN_MODAL,
+  FetchModalData,
 } from "../../graphql/studentPortal/freemium/fetchLastSeenModal";
 import { UPSERT_LAST_SEEN_MODAL } from "../../graphql/studentPortal/freemium/upsertLastSeenModal";
 import { UPDATE_USER } from "../../graphql/studentPortal/users/updateUser";
@@ -90,7 +90,7 @@ export default function StudentPortalPage() {
         ? differenceInHours(new Date(), new Date(lastSeenValue))
         : null;
 
-      if (lastSeenDifference === null || lastSeenDifference > 24) {
+      if (lastSeenDifference === null || lastSeenDifference < 24) {
         setShowModal(true);
         updateLastSeenModal({
           variables: { userId: user.uid, lastSeenModal: new Date() },
