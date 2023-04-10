@@ -15,7 +15,10 @@ export const SkeletonNodeView: React.FC<SkeletonNodeViewProps> = ({
     <div className="">
       <div className={` ${"grid grid-cols-12"}  `}>
         <div className="flex flex-col col-span-2 ml-4 md:items-center">
-          <TooltipComponent message={"This is a premium feature."}>
+          <TooltipComponent
+            message={"This is a premium feature."}
+            icon="../../images/freemium/info.svg"
+          >
             <div className="flex rounded-full">
               <NodeIcon type={type} />
             </div>

@@ -17,6 +17,7 @@ import { activePageSelector, setActivePage } from "../../../redux/sidebarSlice";
 import JSIcon from "../../ui/JSIcon";
 import ReactIcon from "../../ui/ReactIcon";
 import FreemiumSidebarHeader from "../freemium/FreemiumSidebarHeader";
+import FreemiumSidebarItem from "../freemium/FreemiumSidebarItem";
 import PaidSidebarHeader from "../freemium/PaidSidebarHeader";
 import SkillifyCommandPalette from "./CommandPalette";
 import SidebarItem, { SidebarItemProps } from "./SidebarItem";
@@ -204,19 +205,31 @@ export const Sidebar: React.FC = () => {
           if (it.name === "Admin" && userRole !== "coach") {
             return null;
           } else {
-            return (
-              <SidebarItem
-                name={it.name}
-                notifications={it.notifications}
-                link={it.link}
-                page={it.page}
-                icon={it.icon}
-                isDisabled={it.isDisabled}
-              />
-            );
+            if (userRole && (userRole === "paid" || userRole === "freemium")) {
+              return (
+                <FreemiumSidebarItem
+                  name={it.name}
+                  notifications={it.notifications}
+                  link={it.link}
+                  page={it.page}
+                  icon={it.icon}
+                  isDisabled={it.isDisabled}
+                />
+              );
+            } else {
+              return (
+                <SidebarItem
+                  name={it.name}
+                  notifications={it.notifications}
+                  link={it.link}
+                  page={it.page}
+                  icon={it.icon}
+                  isDisabled={it.isDisabled}
+                />
+              );
+            }
           }
         })}
-
         <SkillifyCommandPalette />
         <div>
           <div className="flex items-center justify-between p-4 ">
