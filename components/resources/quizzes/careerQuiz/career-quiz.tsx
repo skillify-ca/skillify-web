@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/jsx-key */
 import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
@@ -57,85 +55,116 @@ const CareerQuiz = () => {
     left: 0,
     behavior: "smooth",
   });
-  const items = [
-    <StartQuiz
-      onNextClick={handleNextClick}
-      title={"Career in Tech Personality Quiz"}
-      body={"Take this free quiz to find out what jobs in tech fit you best!"}
-    />,
-    <EduBackground
-      onNextClick={handleNextClick}
-      onBackClick={handleBackClick}
-    />,
-    <SkillSelections
-      onNextClick={handleNextClick}
-      onBackClick={handleBackClick}
-      title={"What industries are you interested in working?"}
-      body={"Select 1-3 choices."}
-      progress={35}
-      selections={[
-        "Advertising",
-        "Cybersecurity",
-        "Digital Media",
-        "Design",
-        "E-commerce",
-        "Entertainment",
-        "Fashion",
-        "Finance",
-        "Healthcare",
-        "Real Estate",
-        "Technology",
-        "Video Games",
-        "Science",
-        "Not Sure Yet",
-      ]}
-    />,
-    <SkillSelections
-      onNextClick={handleNextClick}
-      onBackClick={handleBackClick}
-      title={"What are your strongest skills?"}
-      body={"Select 1-3 choices."}
-      progress={60}
-      selections={[
-        "Writing code",
-        "Drawing",
-        "Design",
-        "Writing",
-        "Leading a team",
-        "Organization",
-        "Public speaking",
-        "Time Management",
-        "Math",
-        "Analyzing data",
-        "Critical thinking",
-        "Planning",
-      ]}
-    />,
-    <SkillSelections
-      onNextClick={handleNextClick}
-      onBackClick={handleBackClick}
-      title={" What tasks would you prefer at work?"}
-      body={"Select 1-3 choices."}
-      progress={85}
-      selections={[
-        "Coordinate the launch of a product",
-        "Analyze social media campaigns",
-        "Find was to automate processes",
-        "Find trends in data",
-        "Study how people use apps",
-        "Build a company's brand",
-        "Lead a project from start to finish",
-        "Spot patterns in data",
-        "Write code to solve problems",
-      ]}
-    />,
-    <BluePrint onNextClick={handleNextClick} onBackClick={handleBackClick} />,
-    <CareerResults onBackClick={handleBackClick} />,
-  ];
 
   // Render the appropriate component based on the stage
 
-  return <SpringAnimation open={open}>{items[stage]}</SpringAnimation>;
+  return (
+    <SpringAnimation open={open}>
+      {(() => {
+        switch (stage) {
+          case Stage.START:
+            return (
+              <StartQuiz
+                onNextClick={handleNextClick}
+                title={"Career in Tech Personality Quiz"}
+                body={
+                  "Take this free quiz to find out what jobs in tech fit you best!"
+                }
+              />
+            );
+          case Stage.EDUCATION:
+            return (
+              <EduBackground
+                onNextClick={handleNextClick}
+                onBackClick={handleBackClick}
+              />
+            );
+          case Stage.INDUSTRIES:
+            return (
+              <SkillSelections
+                onNextClick={handleNextClick}
+                onBackClick={handleBackClick}
+                title={"What industries are you interested in working?"}
+                body={"Select 1-3 choices."}
+                progress={35}
+                selections={[
+                  "Advertising",
+                  "Cybersecurity",
+                  "Digital Media",
+                  "Design",
+                  "E-commerce",
+                  "Entertainment",
+                  "Fashion",
+                  "Finance",
+                  "Healthcare",
+                  "Real Estate",
+                  "Technology",
+                  "Video Games",
+                  "Science",
+                  "Not Sure Yet",
+                ]}
+              />
+            );
+          case Stage.SKILLS:
+            return (
+              <SkillSelections
+                onNextClick={handleNextClick}
+                onBackClick={handleBackClick}
+                title={"What are your strongest skills?"}
+                body={"Select 1-3 choices."}
+                progress={60}
+                selections={[
+                  "Writing code",
+                  "Drawing",
+                  "Design",
+                  "Writing",
+                  "Leading a team",
+                  "Organization",
+                  "Public speaking",
+                  "Time Management",
+                  "Math",
+                  "Analyzing data",
+                  "Critical thinking",
+                  "Planning",
+                ]}
+              />
+            );
+          case Stage.TASKS:
+            return (
+              <SkillSelections
+                onNextClick={handleNextClick}
+                onBackClick={handleBackClick}
+                title={" What tasks would you prefer at work?"}
+                body={"Select 1-3 choices."}
+                progress={85}
+                selections={[
+                  "Coordinate the launch of a product",
+                  "Analyze social media campaigns",
+                  "Find was to automate processes",
+                  "Find trends in data",
+                  "Study how people use apps",
+                  "Build a company's brand",
+                  "Lead a project from start to finish",
+                  "Spot patterns in data",
+                  "Write code to solve problems",
+                ]}
+              />
+            );
+          case Stage.BLUEPRINT:
+            return (
+              <BluePrint
+                onNextClick={handleNextClick}
+                onBackClick={handleBackClick}
+              />
+            );
+          case Stage.RESULTS:
+            return <CareerResults onBackClick={handleBackClick} />;
+          default:
+            return null;
+        }
+      })()}
+    </SpringAnimation>
+  );
 };
 
 export default CareerQuiz;
