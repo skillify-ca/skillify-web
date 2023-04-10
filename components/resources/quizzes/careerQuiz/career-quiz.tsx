@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
-import { SpringAnimation } from "../../../ui/SpringAnimation";
+import { QuizTransition } from "../../../ui/animations/QuizTransition";
 import BluePrint from "../shared/BluePrint";
 import SkillSelections from "../shared/SkillSelections";
 import StartQuiz from "../shared/StartQuiz";
@@ -35,19 +35,19 @@ const CareerQuiz = () => {
   // create results state object that
   // create custom type -- based on schema type in database
   const [stage, setStage] = useState<Stage>(Stage.START);
-  const [open, setOpen] = useState(true);
+  const [triggerAnimation, setTriggerAnimation] = useState(true);
   const handleNextClick = () => {
-    setOpen(false);
+    setTriggerAnimation(false);
     setTimeout(() => {
       setStage((prevStage) => prevStage + 1);
-      setOpen(true);
+      setTriggerAnimation(true);
     }, 250); // adjust the delay time based on the animation duration
   };
   const handleBackClick = () => {
-    setOpen(false);
+    setTriggerAnimation(false);
     setTimeout(() => {
       setStage((prevStage) => prevStage - 1);
-      setOpen(true);
+      setTriggerAnimation(true);
     }, 250); // adjust the delay time based on the animation duration
   };
   window.scrollTo({
@@ -59,7 +59,7 @@ const CareerQuiz = () => {
   // Render the appropriate component based on the stage
 
   return (
-    <SpringAnimation open={open}>
+    <QuizTransition triggerAnimation={triggerAnimation}>
       {(() => {
         switch (stage) {
           case Stage.START:
@@ -163,7 +163,7 @@ const CareerQuiz = () => {
             return null;
         }
       })()}
-    </SpringAnimation>
+    </QuizTransition>
   );
 };
 
