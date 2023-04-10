@@ -45,7 +45,7 @@ const PlansCard = ({
   onClick,
 }: PlansCardProps) => {
   return (
-    <div className="flex flex-col w-[500px] h-[1000px] space-y-8 transition-all transform border-t-2 text-textPrimary bg-backgroundPrimary shadow-lg cursor-pointer rounded-xl hover:scale-105">
+    <div className="flex flex-col w-[375px] md:w-[500px] space-y-8 transition-all transform border-t-2 text-textPrimary bg-backgroundPrimary shadow-lg cursor-pointer rounded-xl hover:scale-105 mb-4">
       <div className="flex items-center justify-center bg-rattata p-8 text-white font-bold text-2xl rounded-xl">
         {title}
       </div>
@@ -62,7 +62,7 @@ const PlansCard = ({
             />
           );
         })}
-        <div className="mt-8">
+        <div className="my-8">
           <Button onClick={onClick} label={buttonLabel} />
         </div>
       </div>

@@ -44,12 +44,12 @@ const Plans = ({ children }: PlansProps) => {
       ) : (
         <div>
           <div className="flex flex-col mt-24 items-center justify-center space-y-10 mb-12">
-            <h1 className="text-charmander text-3xl font-bold">
+            <h1 className=" text-charmander text-3xl font-bold text-center p-4">
               Pick the Plan That's Right For You
             </h1>
             <p>Reserve your spot today!</p>
           </div>
-          <div className="flex flex-row space-x-10 justify-center">
+          <div className="flex md:flex-row flex-col md:space-x-10 space-x-0 items-center justify-center">
             {plansCardData.map((card) => (
               <PlansCard
                 key={card.title}
