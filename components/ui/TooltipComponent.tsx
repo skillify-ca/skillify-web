@@ -6,7 +6,8 @@ import {
   Root,
   Trigger,
 } from "@radix-ui/react-tooltip";
-import React from "react";
+import React, { useState } from "react";
+import FreemiumDialogComponent from "../studentPortal/freemium/FreemiumDialogueComponent";
 
 export interface TooltipComponentProps {
   message: string;
@@ -18,9 +19,14 @@ const TooltipComponent: React.FC<TooltipComponentProps> = ({
   message,
   icon,
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpenChange = (open: boolean) => {
+    setIsOpen(open);
+  };
   return (
     <Provider>
-      <Root>
+      <Root onOpenChange={handleOpenChange}>
         <Trigger asChild>{children}</Trigger>
         <Portal>
           <Content
@@ -32,10 +38,12 @@ const TooltipComponent: React.FC<TooltipComponentProps> = ({
             <div className="flex flex-row items-center">
               {message}
               {icon && (
-                <img
-                  src={icon}
-                  className="w-10 h-10 info-icon animate-iconPulse hover:bg-backgroundhover rounded-full p-2"
-                />
+                <FreemiumDialogComponent trigger={true}>
+                  <img
+                    src={icon}
+                    className="w-10 h-10 info-icon animate-iconPulse hover:bg-backgroundhover rounded-full p-2"
+                  />
+                </FreemiumDialogComponent>
               )}
             </div>
             <Arrow className="fill-white w-4 h-2" />

@@ -1,5 +1,11 @@
-import { XIcon } from "@heroicons/react/outline";
-import { Close, Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
+import {
+  Close,
+  Content,
+  Overlay,
+  Portal,
+  Root,
+  Trigger,
+} from "@radix-ui/react-dialog";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { getModalContent } from "../../../pages/api/studentPortal/freemium/getModalContent";
@@ -11,7 +17,15 @@ export enum ModalStage {
   THREE,
 }
 
-const FreemiumDialogComponent: React.FC = () => {
+export interface FreemiumDialogComponentProps {
+  trigger: boolean;
+  triggerTitle?: string;
+}
+
+const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
+  trigger,
+  children,
+}) => {
   const { currentTheme } = useSelector(themeSelector);
   const [activeModal, setActiveModal] = useState(ModalStage.ONE);
 
@@ -26,7 +40,8 @@ const FreemiumDialogComponent: React.FC = () => {
   const lastStage = stagesArray[stagesArray.length - 1];
 
   return (
-    <Root defaultOpen={true}>
+    <Root defaultOpen={!trigger}>
+      {trigger ? <Trigger asChild>{children}</Trigger> : null}
       <Portal>
         <Overlay className="bg-opacity-90 bg-gray-500 data-[state=open]:animate-overlayShow fixed inset-0" />
         <Content className={`${currentTheme}`}>
@@ -35,11 +50,6 @@ const FreemiumDialogComponent: React.FC = () => {
               activeModal === ModalStage.TWO ? "bg-[#18124C]" : "bg-white"
             } rounded-lg left-1/2 top-1/2`}
           >
-            <Close asChild>
-              <button className="absolute flex items-center justify-center w-6 h-6 text-gray-100 duration-500 bg-gray-900 bg-opacity-50 rounded-md outline-none cursor-pointer top-3 right-3 hover:bg-opacity-100">
-                <XIcon />
-              </button>
-            </Close>
             {/* content rendered based on enum */}
             {getModalContent(activeModal)}
             <div className="flex flex-row justify-center items-center space-x-12 absolute bottom-4 md:bottom-8 inset-x-0">
