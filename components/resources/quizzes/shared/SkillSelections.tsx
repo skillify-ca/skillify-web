@@ -23,6 +23,11 @@ export type QuizQuestionViewState = {
 export type QuizOptionViewState = QuizOption & {
   isSelected: boolean;
 };
+export type QuizObject = {
+  industries: string[];
+  skills: string[];
+  tasks: string[];
+};
 
 type SkillSelectionsProps = {
   quizViewState: QuizViewState;

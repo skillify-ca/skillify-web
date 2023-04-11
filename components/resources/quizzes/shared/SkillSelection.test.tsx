@@ -4,30 +4,43 @@ import React from "react";
 import SkillSelections from "./SkillSelections";
 
 describe("SkillSelections component", () => {
-  it("should select and deselect options", () => {
-    const selections = ["Option 1", "Option 2", "Option 3"];
-    const onNextClick = jest.fn();
-    const onBackClick = jest.fn();
-    const progress = 1;
-    const title = "Test title";
-    const body = "Test body";
-    const maxSelections = 2;
-    const setQuizObject = jest.fn();
-    const quizObject = { industries: [], skills: [], tasks: [] };
-    const page = "skills";
+  const selections = ["Option 1", "Option 2", "Option 3"];
+  const onNextClick = jest.fn();
+  const onBackClick = jest.fn();
+  const progress = 1;
+  const title = "Test title";
+  const body = "Test body";
+  const maxSelections = 2;
+  const page = "skills";
 
+  const options = selections.map((selection) => ({
+    id: selection,
+    name: selection,
+    isSelected: false,
+  }));
+
+  const quizViewState = {
+    title,
+    body,
+    currentQuestion: 0,
+    questions: [
+      {
+        title,
+        body,
+        options,
+        progress,
+        maxSelections,
+      },
+    ],
+  };
+
+  it("should select and deselect options", () => {
     const { getByText } = render(
       <SkillSelections
-        selections={selections}
         onNextClick={onNextClick}
         onBackClick={onBackClick}
-        progress={progress}
-        title={title}
-        body={body}
-        maxSelections={maxSelections}
-        setQuizObject={setQuizObject}
-        quizObject={quizObject}
-        page={page}
+        handleOptionClick={jest.fn()}
+        quizViewState={quizViewState}
       />
     );
 
@@ -35,44 +48,46 @@ describe("SkillSelections component", () => {
     const option2 = getByText("Option 2");
     const option3 = getByText("Option 3");
 
+    // ACT
     fireEvent.click(option1);
+
+    // ASSERT
     expect(option1).toHaveClass(
       "bg-violet-300 text-black-500 border-2 border-black-500 rounded-xl"
     );
-    expect(setQuizObject).toHaveBeenCalledWith({
-      industries: [],
-      skills: ["Option 1"],
-      tasks: [],
-    });
+    expect(option2).toHaveClass(
+      "bg-white text-black-600 border-2 border-black-500 rounded-xl"
+    );
+    expect(option3).toHaveClass(
+      "bg-white text-black-600 border-2 border-black-500 rounded-xl"
+    );
 
     fireEvent.click(option2);
+
+    // ASSERT
+    expect(option1).toHaveClass(
+      "bg-violet-300 text-black-500 border-2 border-black-500 rounded-xl"
+    );
     expect(option2).toHaveClass(
       "bg-violet-300 text-black-500 border-2 border-black-500 rounded-xl"
     );
-    expect(setQuizObject).toHaveBeenCalledWith({
-      industries: [],
-      skills: ["Option 1", "Option 2"],
-      tasks: [],
-    });
+    expect(option3).toHaveClass(
+      "bg-white text-black-600 border-2 border-black-500 rounded-xl"
+    );
 
     fireEvent.click(option1);
+
+    // ASSERT
     expect(option1).toHaveClass(
       "bg-white text-black-600 border-2 border-black-500 rounded-xl"
     );
-    expect(setQuizObject).toHaveBeenCalledWith({
-      industries: [],
-      skills: ["Option 2"],
-      tasks: [],
-    });
-
-    fireEvent.click(option3);
-    expect(option3).toHaveClass(
+    expect(option2).toHaveClass(
       "bg-violet-300 text-black-500 border-2 border-black-500 rounded-xl"
     );
-    expect(setQuizObject).toHaveBeenCalledWith({
-      industries: [],
-      skills: ["Option 2", "Option 3"],
-      tasks: [],
-    });
+    expect(option3).toHaveClass(
+      "bg-white text-black-600 border-2 border-black-500 rounded-xl"
+    );
+
+    fireEvent.click(option3);
   });
 });
