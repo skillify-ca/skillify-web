@@ -8,27 +8,17 @@ export type QuizViewState = {
   title: string;
   body: string;
   questions: QuizQuestionViewState[];
-
   currentQuestion: number;
+  progress: number;
 };
-
 export type QuizQuestionViewState = {
   title: string;
   body: string;
   options: QuizOptionViewState[];
-  progress: number;
-  maxSelections: number;
 };
-
 export type QuizOptionViewState = QuizOption & {
   isSelected: boolean;
 };
-export type QuizObject = {
-  industries: string[];
-  skills: string[];
-  tasks: string[];
-};
-
 type SkillSelectionsProps = {
   quizViewState: QuizViewState;
   handleOptionClick: (option: QuizOptionViewState) => void;
@@ -43,6 +33,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   quizViewState,
 }) => {
   const { currentQuestion, questions } = quizViewState;
+  const progress = 20;
   const titleForCurrentQuestion = questions[currentQuestion].title;
   const bodyForCurrentQuestion = questions[currentQuestion].body;
   const optionsForCurrentQuestions = questions[currentQuestion].options || [];
@@ -54,7 +45,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
     <div>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
       <div className="flex flex-col items-center px-8">
-        <Progress progress={0} />
+        <Progress progress={progress} />
         <div className="mt-4 text-2xl font-bold text-center text-black-600">
           {titleForCurrentQuestion}
         </div>

@@ -70,6 +70,11 @@ const CareerQuiz = () => {
         });
       } else setStage((prevStage) => prevStage + 1);
     }, 250); // adjust the delay time based on the animation duration
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
   const handleBackClick = () => {
     setTriggerAnimation(false);
@@ -82,9 +87,15 @@ const CareerQuiz = () => {
       } else setStage((prevStage) => prevStage - 1);
       setTriggerAnimation(true);
     }, 250); // adjust the delay time based on the animation duration
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   const handleOptionClick = (option: QuizOptionViewState) => {
+    alert(JSON.stringify(option));
     const selectedQuizOption = quizViewState.questions.map((question) => ({
       ...question,
       options: question.options.map((questionOption) =>
@@ -101,12 +112,6 @@ const CareerQuiz = () => {
 
     setQuizViewState(updatedQuizViewState);
   };
-
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth",
-  });
 
   // Render the appropriate component based on the stage
 
