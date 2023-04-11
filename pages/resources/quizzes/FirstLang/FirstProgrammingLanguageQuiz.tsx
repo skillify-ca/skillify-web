@@ -7,6 +7,7 @@ import SkillSelections, {
 } from "../../../../components/resources/quizzes/shared/SkillSelections";
 import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz";
 import { quizData } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage";
+import { computeScore } from "../../../api/studentPortal/quizzes/scoringLogicFPL";
 
 export enum Stage {
   START,
@@ -18,7 +19,20 @@ export enum Stage {
 const FirstProgrammingLanguageQuiz = () => {
   const [stage, setStage] = useState(Stage.START);
   const [quizViewState, setQuizViewState] = useState<QuizViewState>();
+  const [score, setScore] = useState({
+    JavaScript: 0,
+    "HTML/CSS": 0,
+    Python: 0,
+  });
 
+  //utilized to compute scores
+  useEffect(() => {
+    if (quizViewState) {
+      setScore(computeScore(quizViewState));
+    }
+  }, [quizViewState]);
+
+  //utilized to intialize the quizViewState
   useEffect(() => {
     const quizViewState = {
       title: quizData.title,
@@ -112,6 +126,7 @@ const FirstProgrammingLanguageQuiz = () => {
   };
   return (
     <>
+      <div>{JSON.stringify(score)}</div>
       <div>{renderStage()}</div>
     </>
   );

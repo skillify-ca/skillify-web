@@ -13,6 +13,7 @@ export type QuizViewState = {
 };
 
 export type QuizQuestionViewState = {
+  lang: any;
   title: string;
   body: string;
   options: QuizOptionViewState[];
