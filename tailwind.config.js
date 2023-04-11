@@ -51,6 +51,7 @@ module.exports = {
         },
         mewtwo: "#E2E3FB"
       },
+
       backgroundImage: (theme) => ({
         "email-capture": "url('/images/landingPage/Rectangle5.png')",
         "hero-student":
