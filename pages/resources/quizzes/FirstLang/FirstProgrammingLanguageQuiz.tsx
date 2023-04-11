@@ -31,7 +31,7 @@ const FirstProgrammingLanguageQuiz = () => {
         };
       }),
       currentQuestion: 0,
-      progress: 0,
+      progress: quizData.questions.length,
     };
 
     setQuizViewState(quizViewState);
