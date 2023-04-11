@@ -23,7 +23,7 @@ const PlansCard = ({
 }: PlansCardProps) => {
   return (
     <div className="flex flex-col w-[325px] md:w-[400px] space-y-4 transition-all transform border-t-2 text-textPrimary bg-backgroundPrimary shadow-lg cursor-pointer rounded-xl hover:scale-105 mb-4">
-      <div className="flex items-center justify-center bg-rattata p-8 text-white font-bold text-2xl rounded-xl">
+      <div className="flex items-center justify-center bg-rattata p-6 text-white font-bold text-2xl rounded-xl">
         {title}
       </div>
       <div className="flex flex-col items-center w-full">
