@@ -10,7 +10,6 @@ import SkillSelections, {
 } from "../shared/SkillSelections";
 import StartQuiz from "../shared/StartQuiz";
 import CareerResults from "./CareerResults";
-import EduBackground from "./EduBackground";
 
 export enum Stage {
   START,
@@ -123,13 +122,6 @@ const CareerQuiz = () => {
                 body={
                   "Take this free quiz to find out what jobs in tech fit you best!"
                 }
-              />
-            );
-          case Stage.EDUCATION:
-            return (
-              <EduBackground
-                onNextClick={handleNextClick}
-                onBackClick={handleBackClick}
               />
             );
 
