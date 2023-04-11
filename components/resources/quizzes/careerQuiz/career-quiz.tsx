@@ -134,7 +134,7 @@ const CareerQuiz = () => {
               <SkillSelections
                 onNextClick={handleNextClick}
                 onBackClick={handleBackClick}
-                title={" What tasks would you prefer at work?"}
+                title={"What tasks would you prefer at work?"}
                 body={"Select 1-3 choices."}
                 progress={85}
                 selections={[
