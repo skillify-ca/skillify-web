@@ -16,7 +16,7 @@ export const FreemiumHeader = ({
   theme = Theme.DEFAULT,
   createdAt,
 }: FreemiumHeaderProps) => {
-  const TOTAL_TRIAL_DAYS = 30;
+  const TOTAL_TRIAL_DAYS = 14;
 
   return (
     <div className="grid w-full h-16 grid-cols-6 border-b-2 bg-backgroundPrimary">

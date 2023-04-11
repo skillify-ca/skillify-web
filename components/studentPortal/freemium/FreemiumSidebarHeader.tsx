@@ -12,7 +12,7 @@ export default function UserProfileSection({
   createdAt,
 }: UserProfileSectionProps) {
   const { user } = useAuth();
-  const TOTAL_TRIAL_DAYS = 30;
+  const TOTAL_TRIAL_DAYS = 14;
   return (
     //Full width then restrict in page
     <div className="flex flex-col w-full bg-backgroundPrimary text-textPrimary">
