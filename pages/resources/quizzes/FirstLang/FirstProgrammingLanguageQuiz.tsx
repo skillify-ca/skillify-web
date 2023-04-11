@@ -126,7 +126,6 @@ const FirstProgrammingLanguageQuiz = () => {
   };
   return (
     <>
-      <div>{JSON.stringify(score)}</div>
       <div>{renderStage()}</div>
     </>
   );
