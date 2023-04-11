@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
-import { quizData } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage";
+import { quizData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz";
 import { QuizTransition } from "../../../ui/animations/QuizTransition";
 import BluePrint from "../shared/BluePrint";
 import SkillSelections, {
@@ -12,17 +12,12 @@ import StartQuiz from "../shared/StartQuiz";
 import CareerResults from "./CareerResults";
 import EduBackground from "./EduBackground";
 
-enum Stage {
+export enum Stage {
   START,
-  EDUCATION,
-  INDUSTRIES,
-  SKILLS,
-  TASKS,
+  QUESTIONS,
   BLUEPRINT,
   RESULTS,
-  QUESTIONS,
 }
-
 const CareerQuiz = () => {
   const [saveUserPreferences] = useMutation(INSERT_CAREER_QUIZ_RESPONSE, {});
   const exampleUserPreferences = [
@@ -137,7 +132,8 @@ const CareerQuiz = () => {
                 onBackClick={handleBackClick}
               />
             );
-          case Stage.INDUSTRIES:
+
+          case Stage.QUESTIONS:
             return (
               <SkillSelections
                 onNextClick={handleNextClick}
@@ -146,24 +142,7 @@ const CareerQuiz = () => {
                 quizViewState={quizViewState}
               />
             );
-          case Stage.SKILLS:
-            return (
-              <SkillSelections
-                onNextClick={handleNextClick}
-                onBackClick={handleBackClick}
-                handleOptionClick={handleOptionClick}
-                quizViewState={quizViewState}
-              />
-            );
-          case Stage.TASKS:
-            return (
-              <SkillSelections
-                onNextClick={handleNextClick}
-                onBackClick={handleBackClick}
-                handleOptionClick={handleOptionClick}
-                quizViewState={quizViewState}
-              />
-            );
+
           case Stage.BLUEPRINT:
             return (
               <BluePrint

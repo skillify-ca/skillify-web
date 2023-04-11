@@ -8,7 +8,6 @@ export const quizData: QuizViewState = {
       title: "What industries are you interested in working?",
       body: "Select 1-3 choices.",
       maxSelections: 3,
-
       progress: 35,
       options: [
         {
