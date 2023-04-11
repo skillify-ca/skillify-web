@@ -21,6 +21,7 @@ module.exports = {
         hit: "hit 1s ease-in-out",
         fadeIn: "fadeIn 2s ease-in-out",
         fadeIn_half: "fadeInHalf 1s ease-in-out",
+        iconPulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
       colors: {
         textPrimary: "var(--color-text-primary)",
@@ -48,7 +49,8 @@ module.exports = {
           transparent: "#000000e1",
           500: "#000000",
         },
-      },
+        mewtew: "#E2E3FB",
+            },
       backgroundImage: (theme) => ({
         "email-capture": "url('/images/landingPage/Rectangle5.png')",
         "hero-student":
@@ -128,6 +130,11 @@ module.exports = {
           from: { opacity: 0, transform: "translate(-50%, -48%) scale(0.96)" },
           to: { opacity: 1, transform: "translate(-50%, -50%) scale(1)" },
         },
+        iconPulse: {
+          '0%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.5)' },
+          '100%': { transform: 'scale(1)' },
+        },        
       },
       outline: {
         black: "2px solid #000000",

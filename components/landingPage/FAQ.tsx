@@ -77,7 +77,7 @@ export default function FAQ() {
       <h2 className="p-4 text-2xl font-bold text-charmander">Skillify FAQs</h2>
       <div className="flex flex-col items-start w-full p-8 m-4 max-w-7xl bg-slate-200 rounded-xl">
         {faqItems.map((item) => (
-          <div key={item.question} className="flex items-center mb-4">
+          <div key={item.question} className="flex items-center w-full mb-4">
             <ExpandableContainer open={false} title={item.question}>
               <div className="px-4 pb-4">
                 <p className="whitespace-pre-wrap">{item.answer}</p>

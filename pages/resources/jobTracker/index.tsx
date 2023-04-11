@@ -1,6 +1,6 @@
 import React from "react";
-import LandingNavbar from "../../components/landingPage/LandingNavbar";
-import JobTrackerComponent from "../../components/resources/jobTracker/JobTrackerComponent";
+import LandingNavbar from "../../../components/landingPage/LandingNavbar";
+import JobTrackerComponent from "../../../components/resources/jobTracker/JobTrackerComponent";
 
 export default function JobTrackerPage() {
   return (

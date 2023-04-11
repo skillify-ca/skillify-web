@@ -1,3 +1,4 @@
+import React from "react";
 import { Button } from "../../../ui/Button";
 
 import SkillifyNavbar from "./SkillifyNavbar";
@@ -17,17 +18,17 @@ const StartQuiz = ({ onNextClick, body, title }: StartQuizProps) => {
         <h1 className="text-3xl font-semibold">{title}</h1>
         <p className="px-3 text-xl font-medium">{body}</p>
         <div className="space-y-2 text-xl text-left">
-          <h3>First Name</h3>{" "}
+          <h3 className="ml-8">First Name</h3>{" "}
           <input
             type="text"
             name="name"
-            className="px-6 border border-gray-500 rounded-lg shadow appearance-none"
+            className="w-4/5 ml-8 border border-gray-500 rounded-lg shadow appearance-none"
           ></input>
-          <h3>Email Address</h3>{" "}
+          <h3 className="ml-8">Email Address</h3>{" "}
           <input
             type="email"
             name="email"
-            className="px-6 border border-gray-500 rounded-lg shadow appearance-none"
+            className="w-4/5 ml-8 border border-gray-500 rounded-lg shadow appearance-none"
           ></input>
         </div>
         <Button
@@ -38,9 +39,6 @@ const StartQuiz = ({ onNextClick, body, title }: StartQuizProps) => {
       </div>
     </div>
   );
-};
-StartQuiz.getLayout = function getLayout(page) {
-  return <div>{page}</div>;
 };
 
 export default StartQuiz;
