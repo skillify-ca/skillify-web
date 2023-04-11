@@ -119,7 +119,7 @@ const FirstProgrammingLanguageQuiz = () => {
           />
         );
       case Stage.RESULTS:
-        return <LangResults onBackClick={handleBackClick} />;
+        return <LangResults onBackClick={handleBackClick} score={score} />;
       default:
         return null;
     }
