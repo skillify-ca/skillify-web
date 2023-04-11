@@ -75,11 +75,11 @@ import React, { useState } from "react";
 import PlansCard from "../components/studentPortal/freemium/PlansCard";
 import SignInPage from "../components/welcomePage/SignInPage";
 
-const Plans = ({ plansData }) => {
+const Plans = ({ plansCardData }) => {
   const [showSignInPage, setShowSignInPage] = useState(false);
 
   const handlePremium = () => {
-    router.push(plansData[1].onClick);
+    router.push(plansCardData[1].onClick);
   };
 
   const handleTrial = () => {
@@ -99,7 +99,7 @@ const Plans = ({ plansData }) => {
             <p>Reserve your spot today!</p>
           </div>
           <div className="flex flex-wrap justify-center align-items-stretch md:space-x-10 space-x-0">
-            {plansData.map((card) => (
+            {plansCardData.map((card) => (
               <PlansCard
                 key={card.title}
                 title={card.title}
@@ -123,7 +123,7 @@ const Plans = ({ plansData }) => {
 export async function getServerSideProps() {
   return {
     props: {
-      plansData: plansCardData,
+      plansCardData: plansCardData,
     },
   };
 }
