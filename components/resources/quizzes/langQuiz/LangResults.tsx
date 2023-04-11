@@ -1,3 +1,4 @@
+import React from "react";
 import { Button } from "../../../ui/Button";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
 
@@ -6,6 +7,8 @@ type LangResultsProps = {
 };
 
 const LangResults = ({ onBackClick }: LangResultsProps) => {
+  const finalLang = () => {};
+
   return (
     <div className="flex flex-col w-full max-w-4xl mx-auto text-center md:mr-12">
       <SkillifyNavbar onBackClick={onBackClick} hidden={false} />
