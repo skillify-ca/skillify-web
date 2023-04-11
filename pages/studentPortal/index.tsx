@@ -17,13 +17,14 @@ import {
   objects,
 } from "../../graphql/studentPortal/courses/initUserIntroNodes";
 import {
-  FetchModalData,
   FETCH_LAST_SEEN_MODAL,
+  FetchModalData,
 } from "../../graphql/studentPortal/freemium/fetchLastSeenModal";
 import { UPSERT_LAST_SEEN_MODAL } from "../../graphql/studentPortal/freemium/upsertLastSeenModal";
 import { UPDATE_USER } from "../../graphql/studentPortal/users/updateUser";
 import { useAuth } from "../../lib/authContext";
 import { profileSelector } from "../../redux/profileSlice";
+import { trialDaysRemaining } from "../api/studentPortal/freemium/trialDaysRemaining";
 import { Unit } from "../api/studentPortal/units";
 
 export default function StudentPortalPage() {
@@ -76,7 +77,8 @@ export default function StudentPortalPage() {
 
   const [updateLastSeenModal] = useMutation(UPSERT_LAST_SEEN_MODAL);
   const [showModal, setShowModal] = useState(false);
-  const { userRole } = useSelector(profileSelector);
+  const [showExitModal, setShowExitModal] = useState(false);
+  const { userRole, createdAt } = useSelector(profileSelector);
 
   useQuery<FetchModalData>(FETCH_LAST_SEEN_MODAL, {
     variables: {
@@ -98,6 +100,11 @@ export default function StudentPortalPage() {
       }
     },
   });
+  const TOTAL_TRIAL_DAYS = 14;
+  const trialRemaining = trialDaysRemaining(createdAt, TOTAL_TRIAL_DAYS);
+  if (user && userRole === "freemium" && trialRemaining < 0) {
+    setShowExitModal(true);
+  }
 
   return (
     <div className="flex flex-col w-full px-4 pb-4 sm:px-8 sm:pb-8 ">
