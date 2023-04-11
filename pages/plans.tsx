@@ -8,28 +8,28 @@ export const plansCardData = [
     planRowData: [
       {
         icon: "../../images/freemium/greenCheck.svg",
-        description: "First Description",
+        description: "Two weeks access to our Coding Basics course",
       },
       {
         icon: "../../images/freemium/greenCheck.svg",
-        description: "Second Description",
-      },
-      {
-        icon: "../../images/freemium/greenCheck.svg",
-        description: "Third Description",
-      },
-      {
-        icon: "../../images/freemium/redX.svg",
-        description: "Fourth Description",
-      },
-      {
-        icon: "../../images/freemium/redX.svg",
-        description: "Fifth Description",
-      },
-      {
-        icon: "../../images/freemium/redX.svg",
         description:
-          "Sixth Description what happens if this is really long to do",
+          "Two weeks access to the first section of our Web Development course",
+      },
+      {
+        icon: "../../images/freemium/greenCheck.svg",
+        description: "Receive personalized feedback on one assignment",
+      },
+      {
+        icon: "../../images/freemium/redX.svg",
+        description: "1:1 and small group coaching",
+      },
+      {
+        icon: "../../images/freemium/redX.svg",
+        description: "Mentorship from our experienced coaches",
+      },
+      {
+        icon: "../../images/freemium/redX.svg",
+        description: "Job hunting support and career guidance",
       },
     ],
   },
@@ -39,31 +39,32 @@ export const plansCardData = [
     price: "Custom",
     buttonLabel: "Book a Call",
     onClick: "https://joinskillify.com/call",
+    optionalMessage: "...and more!",
     planRowData: [
       {
         icon: "../../images/freemium/greenCheck.svg",
-        description: "FirstA Description",
+        description: "Unlimited access to our Coding Basics course",
       },
       {
         icon: "../../images/freemium/greenCheck.svg",
-        description: "SecondA Description",
+        description: "Unlimited access to our Web Development Course",
       },
       {
         icon: "../../images/freemium/greenCheck.svg",
-        description: "ThirdA Description",
+        description: "Receive personalized feedback for assignments",
       },
       {
-        icon: "../../images/freemium/redX.svg",
-        description: "FourthA Description",
-      },
-      {
-        icon: "../../images/freemium/redX.svg",
-        description: "FifthA Description",
-      },
-      {
-        icon: "../../images/freemium/redX.svg",
+        icon: "../../images/freemium/greenCheck.svg",
         description:
-          "SixthA Description what happens if this is really long to do",
+          "Build digital products under the leadership of ex-Spotify engineers",
+      },
+      {
+        icon: "../../images/freemium/greenCheck.svg",
+        description: "Mentorship from our experienced coaches",
+      },
+      {
+        icon: "../../images/freemium/greenCheck.svg",
+        description: "Job hunting support and career guidance",
       },
     ],
   },
@@ -91,13 +92,13 @@ const Plans = ({ plansData }) => {
         <SignInPage />
       ) : (
         <div>
-          <div className="flex flex-col mt-24 items-center justify-center space-y-10 mb-12">
-            <h1 className=" text-charmander text-3xl font-bold text-center p-4">
+          <div className="flex flex-col items-center justify-center space-y-2 mb-8">
+            <h1 className="text-charmander text-3xl font-bold text-center p-4">
               Pick the Plan That's Right For You
             </h1>
             <p>Reserve your spot today!</p>
           </div>
-          <div className="flex md:flex-row flex-col md:space-x-10 space-x-0 items-center justify-center">
+          <div className="flex flex-wrap justify-center align-items-stretch md:space-x-10 space-x-0">
             {plansData.map((card) => (
               <PlansCard
                 key={card.title}
@@ -108,8 +109,9 @@ const Plans = ({ plansData }) => {
                 onClick={
                   card.onClick === "/sign-up" ? handleTrial : handlePremium
                 }
+                optionalMessage={card.optionalMessage}
                 planRowData={card.planRowData}
-              ></PlansCard>
+              />
             ))}
           </div>
         </div>
@@ -118,7 +120,7 @@ const Plans = ({ plansData }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   return {
     props: {
       plansData: plansCardData,
