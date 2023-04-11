@@ -9,13 +9,14 @@ export type QuizViewState = {
   body: string;
   questions: QuizQuestionViewState[];
   currentQuestion: number;
-  progress: number;
 };
 
 export type QuizQuestionViewState = {
   title: string;
   body: string;
   options: QuizOptionViewState[];
+  maxSelections: number;
+  progress: number;
 };
 
 export type QuizOptionViewState = QuizOption & {
