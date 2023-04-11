@@ -100,11 +100,14 @@ export default function StudentPortalPage() {
       }
     },
   });
-  const TOTAL_TRIAL_DAYS = 14;
-  const trialRemaining = trialDaysRemaining(createdAt, TOTAL_TRIAL_DAYS);
-  if (user && userRole === "freemium" && trialRemaining < 0) {
-    setShowExitModal(true);
-  }
+
+  useEffect(() => {
+    const TOTAL_TRIAL_DAYS = 14;
+    const trialRemaining = trialDaysRemaining(createdAt, TOTAL_TRIAL_DAYS);
+    if (user && userRole === "freemium" && trialRemaining === 0) {
+      setShowExitModal(true);
+    }
+  }, [user, userRole, createdAt]);
 
   return (
     <div className="flex flex-col w-full px-4 pb-4 sm:px-8 sm:pb-8 ">
@@ -120,6 +123,7 @@ export default function StudentPortalPage() {
         )}
       </div>
       {showModal && <FreemiumDialogComponent />}
+      {showExitModal && <FreemiumDialogComponent />}
     </div>
   );
 }
