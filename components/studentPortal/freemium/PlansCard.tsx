@@ -8,34 +8,8 @@ export type PlansCardProps = {
   description: string;
   buttonLabel: string;
   onClick: () => void;
+  planRowData: PlanRowProps[];
 };
-
-const planRowData: PlanRowProps[] = [
-  {
-    icon: "../../images/freemium/greenCheck.svg",
-    description: "First Description",
-  },
-  {
-    icon: "../../images/freemium/greenCheck.svg",
-    description: "Second Description",
-  },
-  {
-    icon: "../../images/freemium/greenCheck.svg",
-    description: "Third Description",
-  },
-  {
-    icon: "../../images/freemium/redX.svg",
-    description: "Fourth Description",
-  },
-  {
-    icon: "../../images/freemium/redX.svg",
-    description: "Fifth Description",
-  },
-  {
-    icon: "../../images/freemium/redX.svg",
-    description: "Sixth Description what happens if this is really long to do ",
-  },
-];
 
 const PlansCard = ({
   price,
@@ -43,6 +17,7 @@ const PlansCard = ({
   buttonLabel,
   title,
   onClick,
+  planRowData,
 }: PlansCardProps) => {
   return (
     <div className="flex flex-col w-[375px] md:w-[500px] space-y-8 transition-all transform border-t-2 text-textPrimary bg-backgroundPrimary shadow-lg cursor-pointer rounded-xl hover:scale-105 mb-4">
@@ -69,4 +44,5 @@ const PlansCard = ({
     </div>
   );
 };
+
 export default PlansCard;
