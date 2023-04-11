@@ -32,7 +32,7 @@ const FreemiumDialogComponent: React.FC = () => {
         <Content className={`${currentTheme}`}>
           <div
             className={`fixed h-[450px] w-[300px] md:h-[600px] md:w-[900px] p-8 md:p-20 transform -translate-x-1/2 -translate-y-1/2 ${
-              activeModal === ModalStage.TWO ? "bg-[#18124C]" : "bg-white"
+              activeModal === ModalStage.TWO ? "bg-murkrow" : "bg-white"
             } rounded-lg left-1/2 top-1/2`}
           >
             <Close asChild>
@@ -42,7 +42,7 @@ const FreemiumDialogComponent: React.FC = () => {
             </Close>
             {/* content rendered based on enum */}
             {getModalContent(activeModal)}
-            <div className="flex flex-row justify-center items-center space-x-12 absolute bottom-4 md:bottom-8 inset-x-0">
+            <div className="flex flex-row justify-center items-center space-x-12 absolute bottom-0 bg-white p-4 inset-x-0">
               {/* no button/back button */}
               {activeModal > ModalStage.ONE ? (
                 <img

@@ -8,14 +8,16 @@ export type QuizViewState = {
   title: string;
   body: string;
   questions: QuizQuestionViewState[];
+
   currentQuestion: number;
-  progress: number;
 };
 
 export type QuizQuestionViewState = {
   title: string;
   body: string;
   options: QuizOptionViewState[];
+  progress: number;
+  maxSelections: number;
 };
 
 export type QuizOptionViewState = QuizOption & {
@@ -35,7 +37,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   onBackClick,
   quizViewState,
 }) => {
-  const { currentQuestion, questions, progress } = quizViewState;
+  const { currentQuestion, questions } = quizViewState;
   const titleForCurrentQuestion = questions[currentQuestion].title;
   const bodyForCurrentQuestion = questions[currentQuestion].body;
   const optionsForCurrentQuestions = questions[currentQuestion].options || [];
@@ -47,7 +49,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
     <div>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
       <div className="flex flex-col items-center px-8">
-        <Progress progress={progress} />
+        <Progress progress={0} />
         <div className="mt-4 text-2xl font-bold text-center text-black-600">
           {titleForCurrentQuestion}
         </div>

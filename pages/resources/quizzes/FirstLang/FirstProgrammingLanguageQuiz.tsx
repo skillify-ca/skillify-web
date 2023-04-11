@@ -63,7 +63,10 @@ const FirstProgrammingLanguageQuiz = () => {
       ...question,
       options: question.options.map((questionOption) =>
         questionOption.name === option.name
-          ? { ...questionOption, isSelected: true }
+          ? {
+              ...questionOption,
+              isSelected: questionOption.isSelected ? false : true,
+            }
           : questionOption
       ),
     }));
@@ -72,7 +75,6 @@ const FirstProgrammingLanguageQuiz = () => {
       ...quizViewState,
       questions: selectedQuizOption,
     };
-
     setQuizViewState(updatedQuizViewState);
   };
 
