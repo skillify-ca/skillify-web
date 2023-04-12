@@ -199,3 +199,5 @@ export const quizData: QuizData = {
     },
   ],
 };
+
+export default quizData;
