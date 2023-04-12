@@ -17,8 +17,8 @@ import {
   objects,
 } from "../../graphql/studentPortal/courses/initUserIntroNodes";
 import {
-  FetchModalData,
   FETCH_LAST_SEEN_MODAL,
+  FetchModalData,
 } from "../../graphql/studentPortal/freemium/fetchLastSeenModal";
 import { UPSERT_LAST_SEEN_MODAL } from "../../graphql/studentPortal/freemium/upsertLastSeenModal";
 import { UPDATE_USER } from "../../graphql/studentPortal/users/updateUser";
