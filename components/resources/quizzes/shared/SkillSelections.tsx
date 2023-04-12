@@ -8,8 +8,8 @@ export type QuizViewState = {
   title: string;
   body: string;
   questions: QuizQuestionViewState[];
-
   currentQuestion: number;
+  progress: number;
 };
 
 export type QuizQuestionViewState = {
@@ -17,10 +17,7 @@ export type QuizQuestionViewState = {
   title: string;
   body: string;
   options: QuizOptionViewState[];
-  progress: number;
-  maxSelections: number;
 };
-
 export type QuizOptionViewState = QuizOption & {
   isSelected: boolean;
 };
