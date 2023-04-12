@@ -35,7 +35,13 @@ const CareerQuiz = () => {
   // create custom type -- based on schema type in database
   const [stage, setStage] = useState<Stage>(Stage.START);
   const [triggerAnimation, setTriggerAnimation] = useState(true);
-  const [quizViewState, setQuizViewState] = useState<QuizViewState>();
+  const [quizViewState, setQuizViewState] = useState<QuizViewState>({
+    title: quizData.title,
+    body: quizData.body,
+    questions: [],
+    currentQuestion: 0,
+    progress: 0,
+  });
 
   useEffect(() => {
     const quizViewState = {
