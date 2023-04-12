@@ -39,6 +39,9 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   const handleClick = (option: QuizOptionViewState) => {
     handleOptionClick(option);
   };
+  if (!questions) {
+    return <div>There are no questions available.</div>;
+  }
 
   return (
     <div>
