@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
 import { quizData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz";
 import { QuizTransition } from "../../../ui/animations/QuizTransition";
@@ -101,12 +101,42 @@ const CareerQuiz = () => {
   };
 
   const handleOptionClick = (option: QuizOptionViewState) => {
-    alert(JSON.stringify(option));
+    const currentQuestion =
+      quizViewState.questions[quizViewState.currentQuestion];
+    const selectedOptions = currentQuestion.options.filter(
+      (option) => option.isSelected
+    );
+    const maxSelection =
+      quizData.questions[quizViewState.currentQuestion].maxSelections;
+    // MaxSelection ===1 edgecase
+    if (maxSelection === 1) {
+      // Set all other options to false and set the selected option to true
+      const selectedQuizOption = quizViewState.questions.map((question) => ({
+        ...question,
+        options: question.options.map((questionOption) =>
+          questionOption === option
+            ? { ...questionOption, isSelected: true }
+            : { ...questionOption, isSelected: false }
+        ),
+      }));
+
+      const updatedQuizViewState = {
+        ...quizViewState,
+        questions: selectedQuizOption,
+      };
+      setQuizViewState(updatedQuizViewState);
+      return;
+    } else if (selectedOptions.length >= maxSelection && !option.isSelected) {
+      return;
+    }
     const selectedQuizOption = quizViewState.questions.map((question) => ({
       ...question,
       options: question.options.map((questionOption) =>
         questionOption.name === option.name
-          ? { ...questionOption, isSelected: true }
+          ? {
+              ...questionOption,
+              isSelected: questionOption.isSelected ? false : true,
+            }
           : questionOption
       ),
     }));
@@ -115,7 +145,6 @@ const CareerQuiz = () => {
       ...quizViewState,
       questions: selectedQuizOption,
     };
-
     setQuizViewState(updatedQuizViewState);
   };
 
@@ -164,5 +193,3 @@ const CareerQuiz = () => {
 };
 
 export default CareerQuiz;
-
-CareerQuiz.getLayout = function getLayout(page) {};
