@@ -38,6 +38,7 @@ const FirstProgrammingLanguageQuiz = () => {
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(
     initializeQuizViewState
   );
+
   const [score, setScore] = useState({
     JavaScript: 0,
     "HTML/CSS": 0,
