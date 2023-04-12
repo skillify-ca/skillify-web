@@ -1,7 +1,10 @@
 import React from "react";
 import { useAuth } from "../../../lib/authContext";
-import { elapsedDays } from "../../../pages/api/studentPortal/freemium/elapsedDays";
-import { trialDaysRemaining } from "../../../pages/api/studentPortal/freemium/trialDaysRemaining";
+import {
+  TOTAL_TRIAL_DAYS,
+  elapsedDays,
+  trialDaysRemaining,
+} from "../../../pages/api/studentPortal/freemium/helpers";
 import ProgressComponent from "../../ui/ProgressComponent";
 
 export type UserProfileSectionProps = {
@@ -12,7 +15,6 @@ export default function UserProfileSection({
   createdAt,
 }: UserProfileSectionProps) {
   const { user } = useAuth();
-  const TOTAL_TRIAL_DAYS = 14;
   return (
     //Full width then restrict in page
     <div className="flex flex-col w-full bg-backgroundPrimary text-textPrimary">

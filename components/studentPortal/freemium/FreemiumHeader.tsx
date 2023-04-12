@@ -1,6 +1,9 @@
 import React from "react";
-import { elapsedDays } from "../../../pages/api/studentPortal/freemium/elapsedDays";
-import { trialDaysRemaining } from "../../../pages/api/studentPortal/freemium/trialDaysRemaining";
+import {
+  TOTAL_TRIAL_DAYS,
+  elapsedDays,
+  trialDaysRemaining,
+} from "../../../pages/api/studentPortal/freemium/helpers";
 import { Theme } from "../../../redux/themeSlice";
 import { Button } from "../../ui/Button";
 import ProgressComponent from "../../ui/ProgressComponent";
@@ -16,8 +19,6 @@ export const FreemiumHeader = ({
   theme = Theme.DEFAULT,
   createdAt,
 }: FreemiumHeaderProps) => {
-  const TOTAL_TRIAL_DAYS = 14;
-
   return (
     <div className="grid w-full h-16 grid-cols-6 border-b-2 bg-backgroundPrimary">
       <div className="col-span-2 flex items-center pl-4">
