@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
 import { quizData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz";
 import { QuizTransition } from "../../../ui/animations/QuizTransition";

@@ -7,6 +7,7 @@ export const quizData: QuizData = {
     {
       title: "What industries are you interested in working?",
       body: "Select 1-3 choices.",
+      maxSelections: 3,
       options: [
         {
           name: "Advertising",
