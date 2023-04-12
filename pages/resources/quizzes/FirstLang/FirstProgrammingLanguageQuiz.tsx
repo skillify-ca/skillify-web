@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import LangResults from "../../../../components/resources/quizzes/langQuiz/LangResults";
 import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
-import SkillSelections, {
+import SkillSelections from "../../../../components/resources/quizzes/shared/SkillSelections";
+import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz";
+import {
   QuizOptionViewState,
   QuizViewState,
-} from "../../../../components/resources/quizzes/shared/SkillSelections";
-import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz";
+} from "../../../../components/resources/quizzes/shared/types";
 import { quizData } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage";
 import { computeScore } from "../../../api/studentPortal/quizzes/scoringLogicFPL";
 
@@ -23,7 +24,9 @@ const initializeQuizViewState = {
     return {
       title: question.title,
       body: question.body,
-      options: question.options,
+      options: question.options.map((option) => {
+        return { ...option, isSelected: false };
+      }),
     };
   }),
   currentQuestion: 0,
@@ -47,11 +50,6 @@ const FirstProgrammingLanguageQuiz = () => {
       setScore(computeScore(quizViewState));
     }
   }, [quizViewState]);
-
-  //utilized to intialize the quizViewState
-  useEffect(() => {
-    setQuizViewState(quizViewState);
-  }, []);
 
   const handleNextClick = () => {
     if (
