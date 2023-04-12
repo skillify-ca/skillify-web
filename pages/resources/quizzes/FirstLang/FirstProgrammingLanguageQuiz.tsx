@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import LangResults from "../../../../components/resources/quizzes/langQuiz/LangResults";
 import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
 import SkillSelections, {
@@ -16,9 +16,25 @@ export enum Stage {
   RESULTS,
 }
 
+const initializeQuizViewState = {
+  title: quizData.title,
+  body: quizData.body,
+  questions: quizData.questions.map((question) => {
+    return {
+      title: question.title,
+      body: question.body,
+      options: question.options,
+    };
+  }),
+  currentQuestion: 0,
+  progress: 0,
+};
+
 const FirstProgrammingLanguageQuiz = () => {
   const [stage, setStage] = useState(Stage.START);
-  const [quizViewState, setQuizViewState] = useState<QuizViewState>();
+  const [quizViewState, setQuizViewState] = useState<QuizViewState>(
+    initializeQuizViewState
+  );
   const [score, setScore] = useState({
     JavaScript: 0,
     "HTML/CSS": 0,
@@ -34,20 +50,6 @@ const FirstProgrammingLanguageQuiz = () => {
 
   //utilized to intialize the quizViewState
   useEffect(() => {
-    const quizViewState = {
-      title: quizData.title,
-      body: quizData.body,
-      questions: quizData.questions.map((question) => {
-        return {
-          title: question.title,
-          body: question.body,
-          options: question.options,
-        };
-      }),
-      currentQuestion: 0,
-      progress: 0,
-    };
-
     setQuizViewState(quizViewState);
   }, []);
 

@@ -21,7 +21,7 @@ const LangResults = ({ onBackClick, score }: LangResultsProps) => {
 
   const preferredLang = maxLangScore(score);
 
-  type resultData = {
+  type ResultData = {
     body: string;
     src: string;
     alt: string;
@@ -29,7 +29,7 @@ const LangResults = ({ onBackClick, score }: LangResultsProps) => {
     size: string;
   };
 
-  const results: { [key: string]: resultData } = {
+  const results: { [key: string]: ResultData } = {
     JavaScript: {
       body: "The first coding language you should learn is...",
       src: "/images/quiz/languages-quiz/javascript.png",
