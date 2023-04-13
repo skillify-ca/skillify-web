@@ -76,7 +76,7 @@ const EducationBackground = ({
               selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
               selectedEducationLevel !== EducationLevel.GED && (
                 <div className="text-left">
-                  <div className="text-left">
+                  <div className="text-left mt-2">
                     <label htmlFor="institution">Institution</label>{" "}
                     <input
                       type="text"
@@ -95,7 +95,7 @@ const EducationBackground = ({
               selectedEducationLevel !== EducationLevel.NA &&
               selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
               selectedEducationLevel !== EducationLevel.GED && (
-                <div className="text-left">
+                <div className="text-left mt-2">
                   <label htmlFor="degree" className="font-medium">
                     Field of study
                   </label>
@@ -111,7 +111,9 @@ const EducationBackground = ({
               )}
             {showExperienceInput && (
               <div className="">
-                <div className="text-left ">Do you have experience coding?</div>
+                <div className="text-left mt-4 ">
+                  Do you have experience coding?
+                </div>
                 <textarea
                   onChange={(e) => setDegree(e.target.value)}
                   className="w-full border border-gray-500 rounded-lg  px-10 resize-none"
