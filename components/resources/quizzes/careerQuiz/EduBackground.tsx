@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button } from "../../../ui/Button";
-import ProgressBar from "../shared/Progress";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
 
 export type EduBackgroundProps = {
@@ -49,10 +48,7 @@ const EducationBackground = ({
     <div className="">
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
 
-      <div className="flex flex-col items-center px-8 ">
-        {" "}
-        <ProgressBar progress={15} />
-      </div>
+      <div className="flex flex-col items-center px-8 "></div>
       <div className="flex flex-col items-center text-center  mx-4  mt-4">
         <h1 className="text-2xl font-semibold ">
           What level of education have you received?
