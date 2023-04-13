@@ -26,7 +26,7 @@ const EducationBackground = ({
   const [showExperienceInput, setShowExperienceInput] = useState(false);
   const [institution, setInstitution] = useState("");
   const [degree, setDegree] = useState("");
-
+  const isFormValid = selectedEducationLevel;
   const handleEducationLevelChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -48,7 +48,6 @@ const EducationBackground = ({
     <div className="">
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
 
-      <div className="flex flex-col items-center px-8 "></div>
       <div className="flex flex-col items-center text-center  mx-4  mt-4">
         <h1 className="text-2xl font-semibold ">
           What level of education have you received?
@@ -77,14 +76,17 @@ const EducationBackground = ({
               selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
               selectedEducationLevel !== EducationLevel.GED && (
                 <div className="text-left">
-                  <label htmlFor="institution">Institution</label>{" "}
-                  <input
-                    type="text"
-                    name="institution"
-                    value={institution}
-                    onChange={(e) => setInstitution(e.target.value)}
-                    className="border  w-full border-gray-500 rounded-lg  px-10"
-                  ></input>
+                  <div className="text-left">
+                    <label htmlFor="institution">Institution</label>{" "}
+                    <input
+                      type="text"
+                      name="institution"
+                      id="institution"
+                      value={institution}
+                      onChange={(e) => setInstitution(e.target.value)}
+                      className="border w-full border-gray-500 rounded-lg px-10"
+                    />
+                  </div>
                 </div>
               )}
           </div>
@@ -118,7 +120,12 @@ const EducationBackground = ({
           </div>
         </div>
         <div className="py-8">
-          <Button backgroundColor="yellow" label="Next" onClick={onNextClick} />
+          <Button
+            backgroundColor="yellow"
+            label="Next"
+            onClick={isFormValid ? onNextClick : undefined}
+            disabled={!isFormValid}
+          />{" "}
         </div>
       </div>
     </div>
