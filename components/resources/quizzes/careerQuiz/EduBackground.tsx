@@ -102,6 +102,7 @@ const EducationBackground = ({
                   <input
                     type="text"
                     name="degree"
+                    id="degree"
                     value={degree}
                     onChange={(e) => setDegree(e.target.value)}
                     className="shadow  w-full appearance-none border border-gray-500 rounded-lg px-10"

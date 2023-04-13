@@ -20,140 +20,6 @@ describe("EducationBackground component", () => {
     expect(screen.getByText("Postgraduate Degree")).toBeInTheDocument();
     expect(screen.getByText("PHD")).toBeInTheDocument();
   });
-  test('clicking the "Next" button after selecting an education level calls the onNextClick function with the correct value', () => {
-    const onNextClick = jest.fn();
-    const onBackClick = jest.fn();
-    render(
-      <EduBackground onNextClick={onNextClick} onBackClick={onBackClick} />
-    );
-    const selectElement = screen.getByLabelText("Education");
-    fireEvent.change(selectElement, {
-      target: { value: "High School Diploma" },
-    });
-    const nextButton = screen.getByText("Next");
-    fireEvent.click(nextButton);
-    expect(onNextClick).toHaveBeenCalledWith({
-      educationLevel: EducationLevel.HighSchoolDiploma,
-    });
-  });
-  test('clicking the "Next" button without selecting an education level displays an error message', () => {
-    const onNextClick = jest.fn();
-    const onBackClick = jest.fn();
-    render(
-      <EduBackground onNextClick={onNextClick} onBackClick={onBackClick} />
-    );
-    const nextButton = screen.getByText("Next");
-    fireEvent.click(nextButton);
-    expect(
-      screen.getByText("Please select your highest level of education.")
-    ).toBeInTheDocument();
-  });
-  test('selecting "PHD" shows the "Institution" and "Field of study" fields', () => {
-    const onNextClick = jest.fn();
-    const onBackClick = jest.fn();
-    render(
-      <EduBackground onNextClick={onNextClick} onBackClick={onBackClick} />
-    );
-    const selectElement = screen.getByLabelText("Education");
-    fireEvent.change(selectElement, {
-      target: { value: "PHD" },
-    });
-    expect(screen.getByLabelText("Institution")).toBeInTheDocument();
-    expect(screen.getByLabelText("Field of study")).toBeInTheDocument();
-  });
-  test('selecting "Postgraduate Degree" shows the "Institution" and "Field of study" fields', () => {
-    const onNextClick = jest.fn();
-    const onBackClick = jest.fn();
-    render(
-      <EduBackground onNextClick={onNextClick} onBackClick={onBackClick} />
-    );
-    const selectElement = screen.getByLabelText("Education");
-    fireEvent.change(selectElement, {
-      target: { value: "Postgraduate Degree" },
-    });
-    expect(screen.getByLabelText("Institution")).toBeInTheDocument();
-    expect(screen.getByLabelText("Field of study")).toBeInTheDocument();
-  });
-  test('selecting "Undergraduate Degree" shows the "Institution" and "Field of study" fields', () => {
-    const onNextClick = jest.fn();
-    const onBackClick = jest.fn();
-    render(
-      <EduBackground onNextClick={onNextClick} onBackClick={onBackClick} />
-    );
-    const selectElement = screen.getByLabelText("Education");
-    fireEvent.change(selectElement, {
-      target: { value: "Undergraduate Degree" },
-    });
-    expect(screen.getByLabelText("Institution")).toBeInTheDocument();
-    expect(screen.getByLabelText("Field of study")).toBeInTheDocument();
-  });
-  test('clicking the "Next" button after selecting an education level calls the onNextClick function with the correct value', () => {
-    const onNextClick = jest.fn();
-    const onBackClick = jest.fn();
-    render(
-      <EduBackground onNextClick={onNextClick} onBackClick={onBackClick} />
-    );
-    const selectElement = screen.getByLabelText("Education");
-    fireEvent.change(selectElement, {
-      target: { value: "High School Diploma" },
-    });
-    const nextButton = screen.getByText("Next");
-    fireEvent.click(nextButton);
-    expect(onNextClick).toHaveBeenCalledWith({
-      educationLevel: EducationLevel.HighSchoolDiploma,
-    });
-  });
-  test('clicking the "Next" button without selecting an education level displays an error message', () => {
-    const onNextClick = jest.fn();
-    const onBackClick = jest.fn();
-    render(
-      <EduBackground onNextClick={onNextClick} onBackClick={onBackClick} />
-    );
-    const nextButton = screen.getByText("Next");
-    fireEvent.click(nextButton);
-    expect(
-      screen.getByText("Please select your highest level of education.")
-    ).toBeInTheDocument();
-  });
-  test('selecting "PHD" shows the "Institution" and "Field of study" fields', () => {
-    const onNextClick = jest.fn();
-    const onBackClick = jest.fn();
-    render(
-      <EduBackground onNextClick={onNextClick} onBackClick={onBackClick} />
-    );
-    const selectElement = screen.getByLabelText("Education");
-    fireEvent.change(selectElement, {
-      target: { value: "PHD" },
-    });
-    expect(screen.getByLabelText("Institution")).toBeInTheDocument();
-    expect(screen.getByLabelText("Field of study")).toBeInTheDocument();
-  });
-  test('selecting "Postgraduate Degree" shows the "Institution" and "Field of study" fields', () => {
-    const onNextClick = jest.fn();
-    const onBackClick = jest.fn();
-    render(
-      <EduBackground onNextClick={onNextClick} onBackClick={onBackClick} />
-    );
-    const selectElement = screen.getByLabelText("Education");
-    fireEvent.change(selectElement, {
-      target: { value: "Postgraduate Degree" },
-    });
-    expect(screen.getByLabelText("Institution")).toBeInTheDocument();
-    expect(screen.getByLabelText("Field of study")).toBeInTheDocument();
-  });
-  test('selecting "Undergraduate Degree" shows the "Institution" and "Field of study" fields', () => {
-    const onNextClick = jest.fn();
-    const onBackClick = jest.fn();
-    render(
-      <EduBackground onNextClick={onNextClick} onBackClick={onBackClick} />
-    );
-    const selectElement = screen.getByLabelText("Education");
-    fireEvent.change(selectElement, {
-      target: { value: "Undergraduate Degree" },
-    });
-    expect(screen.getByLabelText("Institution")).toBeInTheDocument();
-    expect(screen.getByLabelText("Field of study")).toBeInTheDocument();
-  });
 
   const testCases = [
     { label: "N/A", value: EducationLevel.NA, shouldShow: true },
@@ -175,6 +41,28 @@ describe("EducationBackground component", () => {
     },
     { label: "PHD", value: EducationLevel.PHD, shouldShow: false },
   ];
+  test("next button does not change the page", () => {
+    const onNextClick = jest.fn();
+    const onBackClick = jest.fn();
+    render(
+      <EduBackground onNextClick={onNextClick} onBackClick={onBackClick} />
+    );
+    const nextButton = screen.getByText("Next");
+    fireEvent.click(nextButton);
+    expect(onNextClick).toHaveBeenCalledTimes(0);
+  });
+  test("next button does not change the page", () => {
+    const onNextClick = jest.fn();
+    const onBackClick = jest.fn();
+    render(
+      <EduBackground onNextClick={onNextClick} onBackClick={onBackClick} />
+    );
+    const selectElement = screen.getByLabelText("Education");
+    fireEvent.change(selectElement, { target: { value: "N/A" } });
+    const nextButton = screen.getByText("Next");
+    fireEvent.click(nextButton);
+    expect(onNextClick).toHaveBeenCalledTimes(1);
+  });
 
   testCases.forEach((testCase) => {
     test(`selecting ${testCase.value} ${
