@@ -1,36 +1,26 @@
 import { LanguageQuizResultsMap } from "../../../../components/resources/quizzes/langQuiz/LanguageResults";
 import { QuizViewState } from "../../../../components/resources/quizzes/shared/types";
 
+
 export const computeScore = (quizViewState: QuizViewState) => {
-    const updatedScore = quizViewState.questions.reduce(
-      (score, { options }) =>
-        options.reduce(
-          (score, { isSelected, weight, result }) => ({
-            ...score,
-            [result]:
-              isSelected && weight !== undefined
-                ? score[result] + weight
-                : score[result],
-          }),
-          score
-        ),
-      { JavaScript: 0, "HTML/CSS": 0, Python: 0 }
-    );
-    return updatedScore;
+const score = { JavaScript: 0, "HTML/CSS": 0, Python: 0 };
+  
+  quizViewState.questions.map((question) => {
+    question.options.map((option) => {
+      if (option.isSelected && option.result) {
+        score[option.result] += option.weight;
+      }
+    });
+  });
+  return score;
   };
 
-  export const getPreferredLanguageForQuizResults = (
+// This function finds the preferred programming language based on a score object
+export const getPreferredLanguageForQuizResults = (
     score: LanguageQuizResultsMap
   ) => {
-    let maxScore = 0;
-    let preferredLanguage = "";
-    for (const [key, value] of Object.entries(score)) {
-      if (value > maxScore) {
-        maxScore = value;
-        preferredLanguage = key;
-      }
-    }
+    const preferredLanguage = Object.keys(score).reduce((a, b) => score[a] > score[b] ? a : b);
     return preferredLanguage;
-  };
+    }
 
 

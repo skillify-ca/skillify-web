@@ -1,4 +1,5 @@
-import React from "react";
+import { quizResultsData } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage";
+import { getPreferredLanguageForQuizResults } from "../../../../pages/api/studentPortal/quizzes/scoringLogicFPL";
 import { Button } from "../../../ui/Button";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
 
@@ -7,54 +8,12 @@ type LanguageResultsProps = {
   score: LanguageQuizResultsMap;
 };
 
-type LanguageQuizResultsMap = Record<string, number>;
+export type LanguageQuizResultsMap = Record<string, number>;
 
 const LanguageResults = ({ onBackClick, score }: LanguageResultsProps) => {
-  const getPreferredLanguageForQuizResults = (
-    score: LanguageQuizResultsMap
-  ) => {
-    let maxScore = 0;
-    let preferredLang = "";
-    for (const [key, value] of Object.entries(score)) {
-      if (value > maxScore) {
-        maxScore = value;
-        preferredLang = key;
-      }
-    }
-    return preferredLanguage;
-  };
-
   const preferredLanguage = getPreferredLanguageForQuizResults(score);
 
-  type ResultData = {
-    body: string;
-    src: string;
-    alt: string;
-    language: string;
-  };
-
-  const results: { [key: string]: ResultData } = {
-    JavaScript: {
-      body: "The first coding language you should learn is...",
-      src: "/images/quiz/languages-quiz/javascript.png",
-      alt: "JavaScript",
-      language: "JavaScript",
-    },
-    Python: {
-      body: "The first coding language you should learn is...",
-      src: "/images/quiz/languages-quiz/python.png",
-      alt: "Python",
-      language: "Python",
-    },
-    "HTML/CSS": {
-      body: "The first coding languages you should learn are...",
-      src: "/images/quiz/languages-quiz/htmlcss.png",
-      alt: "HTML/CSS",
-      language: "HTML/CSS",
-    },
-  };
-
-  const resultData = results[preferredLanguage];
+  const resultData = quizResultsData[preferredLanguage];
   if (!resultData) {
     return <div>Error: Language not found.</div>;
   }

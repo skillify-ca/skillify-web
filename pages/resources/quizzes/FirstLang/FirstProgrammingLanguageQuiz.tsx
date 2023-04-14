@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import LangResults from "../../../../components/resources/quizzes/langQuiz/LangResults";
+import { useEffect, useState } from "react";
+import LanguageResults from "../../../../components/resources/quizzes/langQuiz/LanguageResults";
 import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
 import SkillSelections from "../../../../components/resources/quizzes/shared/SkillSelections";
 import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz";
@@ -120,7 +120,7 @@ const FirstProgrammingLanguageQuiz = () => {
           />
         );
       case Stage.RESULTS:
-        return <LangResults onBackClick={handleBackClick} score={score} />;
+        return <LanguageResults onBackClick={handleBackClick} score={score} />;
       default:
         return null;
     }
