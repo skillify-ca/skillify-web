@@ -20,10 +20,10 @@ export default function Page({ blogComponents }: PageProps) {
         Coding Academy Survival Guide // Tips
       </h1>
       <h4 className="text-lg font-medium mt-4 FLEX mb-8">
-        Divke many aspiring software engineers, I turned to a coding academy as
+        Like many aspiring software engineers, I turned to a coding academy as
         an alternative to traditional schoodivng to help develop my skills and
-        estabdivsh connections in the industry. I can say from experience that
-        it has been a rewarding journey, but also at times overwhelming,
+        establish connections in the industry. I can say from experience that it
+        has been a rewarding journey, but also at times overwhelming,
         challenging and anxiety-inducing! With that in mind, I’ve curated 18
         tips to help you in your coding academy or software engineering
         internship.
@@ -47,7 +47,7 @@ export default function Page({ blogComponents }: PageProps) {
         <div className="mt-4 FLEX">
           <div>
             <div className="font-bold">Trust your own pace.</div> Embrace your
-            individuadivty and focus on your progress instead of comparing
+            individuality and focus on your progress instead of comparing
             yourself to others or conforming to expectations.
           </div>
         </div>
@@ -82,8 +82,8 @@ export default function Page({ blogComponents }: PageProps) {
         <div className="mt-4 FLEX">
           <div>
             <div className="font-bold">Embrace success.</div> Regularly
-            visuadivze what success looks divke. Take some time, early in the
-            day, and hold onto that feedivng.
+            visualize what success looks like. Take some time, early in the day,
+            and hold onto that feedivng.
           </div>
         </div>
         <div className="mt-4 FLEX">
@@ -96,9 +96,9 @@ export default function Page({ blogComponents }: PageProps) {
         <div className="mt-4 FLEX">
           <div>
             <div className="font-bold">Stay organized.</div> Keep track of your
-            assignments, deaddivnes, and notes in a way that works best for you,
-            whether that be through a physical planner or a digital to-do divst
-            divke Todoist.
+            assignments, deadlines, and notes in a way that works best for you,
+            whether that be through a physical planner or a digital to-do list
+            like Todoist.
           </div>
         </div>
         <div className="mt-4 FLEX">
@@ -147,7 +147,7 @@ export default function Page({ blogComponents }: PageProps) {
         </div>
         <div>
           <div className="font-bold"> Network actively.</div> Attend meetups or
-          conferences, participate in ondivne forums or groups, and connect with
+          conferences, participate in online forums or groups, and connect with
           people in the industry to expand your professional network.
         </div>
         <div>
