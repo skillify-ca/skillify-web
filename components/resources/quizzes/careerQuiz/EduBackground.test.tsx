@@ -51,7 +51,7 @@ describe("EducationBackground component", () => {
     fireEvent.click(nextButton);
     expect(onNextClick).toHaveBeenCalledTimes(0);
   });
-  test("next button does not change the page", () => {
+  test("next button changes the page", () => {
     const onNextClick = jest.fn();
     const onBackClick = jest.fn();
     render(
