@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import LanguageResults from "../../../../components/resources/quizzes/langQuiz/LanguageResults";
+import React, { useState } from "react";
+import LanguageResults from "../../../../components/resources/quizzes/firstProgrammingLanguageQuiz/LanguageResults";
 import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
 import SkillSelections from "../../../../components/resources/quizzes/shared/SkillSelections";
 import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz";
@@ -8,7 +8,6 @@ import {
   QuizViewState,
 } from "../../../../components/resources/quizzes/shared/types";
 import { quizData } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage";
-import { computeScore } from "../../../api/studentPortal/quizzes/scoringLogicFPL/computeScore";
 
 export enum Stage {
   START,
@@ -38,19 +37,6 @@ const FirstProgrammingLanguageQuiz = () => {
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(
     initializeQuizViewState
   );
-
-  const [score, setScore] = useState({
-    JavaScript: 0,
-    "HTML/CSS": 0,
-    Python: 0,
-  });
-
-  //utilized to compute scores
-  useEffect(() => {
-    if (quizViewState) {
-      setScore(computeScore(quizViewState));
-    }
-  }, [quizViewState]);
 
   const handleNextClick = () => {
     if (
@@ -120,7 +106,12 @@ const FirstProgrammingLanguageQuiz = () => {
           />
         );
       case Stage.RESULTS:
-        return <LanguageResults onBackClick={handleBackClick} score={score} />;
+        return (
+          <LanguageResults
+            onBackClick={handleBackClick}
+            quizViewState={quizViewState}
+          />
+        );
       default:
         return null;
     }

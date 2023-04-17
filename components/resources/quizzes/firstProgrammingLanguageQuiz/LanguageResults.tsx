@@ -1,17 +1,23 @@
+import React from "react";
 import { quizResultsData } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage";
-import { getPreferredLanguageForQuizResults } from "../../../../pages/api/studentPortal/quizzes/scoringLogicFPL/computeScore";
+import { computeLanguageScore } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/computeScore";
+import { getPreferredLanguageForQuizResults } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/getPreferredLanguage";
 import { Button } from "../../../ui/Button";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
+import { QuizViewState } from "../shared/types";
 
 type LanguageResultsProps = {
   onBackClick: () => void;
-  score: LanguageQuizResultsMap;
+  quizViewState: QuizViewState;
 };
 
-export type LanguageQuizResultsMap = Record<string, number>;
-
-const LanguageResults = ({ onBackClick, score }: LanguageResultsProps) => {
-  const preferredLanguage = getPreferredLanguageForQuizResults(score);
+const LanguageResults = ({
+  onBackClick,
+  quizViewState,
+}: LanguageResultsProps) => {
+  const languageQuizScore = computeLanguageScore(quizViewState);
+  const preferredLanguage =
+    getPreferredLanguageForQuizResults(languageQuizScore);
 
   const resultData = quizResultsData[preferredLanguage];
   if (!resultData) {

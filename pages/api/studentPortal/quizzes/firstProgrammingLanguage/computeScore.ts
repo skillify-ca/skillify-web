@@ -1,6 +1,6 @@
 import { QuizViewState } from "../../../../../components/resources/quizzes/shared/types";
 
-export const computeScore = (quizViewState: QuizViewState) => {
+export const computeLanguageScore = (quizViewState: QuizViewState) => {
 const score = { JavaScript: 0, "HTML/CSS": 0, Python: 0 };
   
   quizViewState.questions.forEach((question) => {

@@ -1,4 +1,4 @@
-//Types for static Data Structure
+//Types for quiz data structure
 export type QuizData = {
   title: string;
   body: string;
