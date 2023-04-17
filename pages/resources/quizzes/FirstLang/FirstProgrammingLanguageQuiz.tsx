@@ -8,7 +8,7 @@ import {
   QuizViewState,
 } from "../../../../components/resources/quizzes/shared/types";
 import { quizData } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage";
-import { computeScore } from "../../../api/studentPortal/quizzes/scoringLogicFPL";
+import { computeScore } from "../../../api/studentPortal/quizzes/scoringLogicFPL/computeScore";
 
 export enum Stage {
   START,

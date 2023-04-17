@@ -1,5 +1,5 @@
 import { quizResultsData } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage";
-import { getPreferredLanguageForQuizResults } from "../../../../pages/api/studentPortal/quizzes/scoringLogicFPL";
+import { getPreferredLanguageForQuizResults } from "../../../../pages/api/studentPortal/quizzes/scoringLogicFPL/computeScore";
 import { Button } from "../../../ui/Button";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
 
