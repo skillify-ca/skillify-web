@@ -13,6 +13,7 @@ import CareerResults from "./CareerResults";
 
 export enum Stage {
   START,
+  EDUCATION,
   QUESTIONS,
   BLUEPRINT,
   RESULTS,
