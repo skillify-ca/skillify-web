@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { QuizOption } from "../../../resources/quizzes/shared/types";
 import { Button } from "../../../ui/Button";
 import Progress from "./Progress";
@@ -36,6 +36,13 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   const titleForCurrentQuestion = questions[currentQuestion].title;
   const bodyForCurrentQuestion = questions[currentQuestion].body;
   const optionsForCurrentQuestions = questions[currentQuestion].options || [];
+  const [progressVal, setProgressVal] = useState(0);
+  useEffect(() => {
+    const progressCalculation = (currentQuestion * 100) / questions.length;
+    if (progressCalculation === 0) {
+      setProgressVal(5);
+    } else setProgressVal(progressCalculation);
+  }, [currentQuestion]);
   const handleClick = (option: QuizOptionViewState) => {
     handleOptionClick(option);
   };
@@ -47,7 +54,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
     <div>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
       <div className="flex flex-col items-center px-8">
-        <Progress progress={progress} index={currentQuestion} />
+        <Progress progress={progressVal} />
         <div className="mt-4 text-2xl font-bold text-center text-black-600">
           {titleForCurrentQuestion}
         </div>

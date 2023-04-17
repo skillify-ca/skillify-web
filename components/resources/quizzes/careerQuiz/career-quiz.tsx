@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
 import { quizData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz";
 import { QuizTransition } from "../../../ui/animations/QuizTransition";
@@ -19,6 +19,22 @@ export enum Stage {
   BLUEPRINT,
   RESULTS,
 }
+const initializeQuizViewState = {
+  title: quizData.title,
+  body: quizData.body,
+  questions: quizData.questions.map((question) => {
+    return {
+      title: question.title,
+      body: question.body,
+      options: question.options.map((option) => {
+        return { ...option, isSelected: false };
+      }),
+    };
+  }),
+  currentQuestion: 0,
+  progress: 0,
+};
+
 const CareerQuiz = () => {
   const [saveUserPreferences] = useMutation(INSERT_CAREER_QUIZ_RESPONSE, {});
   const exampleUserPreferences = [
@@ -37,31 +53,9 @@ const CareerQuiz = () => {
   // create custom type -- based on schema type in database
   const [stage, setStage] = useState<Stage>(Stage.START);
   const [triggerAnimation, setTriggerAnimation] = useState(true);
-  const [quizViewState, setQuizViewState] = useState<QuizViewState>({
-    title: quizData.title,
-    body: quizData.body,
-    questions: [],
-    currentQuestion: 0,
-    progress: 0,
-  });
-
-  useEffect(() => {
-    const quizViewState = {
-      title: quizData.title,
-      body: quizData.body,
-      questions: quizData.questions.map((question) => {
-        return {
-          title: question.title,
-          body: question.body,
-          options: question.options,
-        };
-      }),
-      currentQuestion: 0,
-      progress: quizData.questions.length,
-    };
-
-    setQuizViewState(quizViewState);
-  }, []);
+  const [quizViewState, setQuizViewState] = useState<QuizViewState>(
+    initializeQuizViewState
+  );
 
   const handleNextClick = () => {
     setTriggerAnimation(false);
