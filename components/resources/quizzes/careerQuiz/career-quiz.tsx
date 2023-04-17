@@ -110,7 +110,7 @@ const CareerQuiz = () => {
     );
     const maxSelection =
       quizData.questions[quizViewState.currentQuestion].maxSelections;
-    // MaxSelection ===1 edgecase
+
     if (maxSelection === 1) {
       // Set all other options to false and set the selected option to true
       const selectedQuizOption = quizViewState.questions.map((question) => ({
@@ -128,26 +128,33 @@ const CareerQuiz = () => {
       };
       setQuizViewState(updatedQuizViewState);
       return;
-    } else if (selectedOptions.length >= maxSelection && !option.isSelected) {
+    } else if (
+      maxSelection &&
+      selectedOptions.length >= maxSelection &&
+      !option.isSelected
+    ) {
+      // Do nothing if the maximum number of options has already been selected and the clicked option is not already selected
       return;
-    }
-    const selectedQuizOption = quizViewState.questions.map((question) => ({
-      ...question,
-      options: question.options.map((questionOption) =>
-        questionOption.name === option.name
-          ? {
-              ...questionOption,
-              isSelected: questionOption.isSelected ? false : true,
-            }
-          : questionOption
-      ),
-    }));
+    } else {
+      // Toggle the selected state of the clicked option
+      const selectedQuizOption = quizViewState.questions.map((question) => ({
+        ...question,
+        options: question.options.map((questionOption) =>
+          questionOption.name === option.name
+            ? {
+                ...questionOption,
+                isSelected: questionOption.isSelected ? false : true,
+              }
+            : questionOption
+        ),
+      }));
 
-    const updatedQuizViewState = {
-      ...quizViewState,
-      questions: selectedQuizOption,
-    };
-    setQuizViewState(updatedQuizViewState);
+      const updatedQuizViewState = {
+        ...quizViewState,
+        questions: selectedQuizOption,
+      };
+      setQuizViewState(updatedQuizViewState);
+    }
   };
 
   // Render the appropriate component based on the stage
