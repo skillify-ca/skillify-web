@@ -41,6 +41,28 @@ describe("EducationBackground component", () => {
     },
     { label: "PHD", value: EducationLevel.PHD, shouldShow: false },
   ];
+  test("next button does not change the page", () => {
+    const onNextClick = jest.fn();
+    const onBackClick = jest.fn();
+    render(
+      <EduBackground onNextClick={onNextClick} onBackClick={onBackClick} />
+    );
+    const nextButton = screen.getByText("Next");
+    fireEvent.click(nextButton);
+    expect(onNextClick).toHaveBeenCalledTimes(0);
+  });
+  test("next button changes the page", () => {
+    const onNextClick = jest.fn();
+    const onBackClick = jest.fn();
+    render(
+      <EduBackground onNextClick={onNextClick} onBackClick={onBackClick} />
+    );
+    const selectElement = screen.getByLabelText("Education");
+    fireEvent.change(selectElement, { target: { value: "N/A" } });
+    const nextButton = screen.getByText("Next");
+    fireEvent.click(nextButton);
+    expect(onNextClick).toHaveBeenCalledTimes(1);
+  });
 
   testCases.forEach((testCase) => {
     test(`selecting ${testCase.value} ${
