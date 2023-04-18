@@ -87,27 +87,30 @@ export default function StudentPortalPage() {
     skip: userRole != "paid" && userRole != "freemium",
 
     onCompleted: (data) => {
+      const TOTAL_TRIAL_DAYS = 14;
+      const trialRemaining = trialDaysRemaining(createdAt, TOTAL_TRIAL_DAYS);
       const lastSeenValue = data.freemium_users[0]?.lastSeenModal;
       const lastSeenDifference = lastSeenValue
         ? differenceInHours(new Date(), new Date(lastSeenValue))
         : null;
 
-      if (lastSeenDifference === null || lastSeenDifference > 24) {
-        setShowModal(true);
-        updateLastSeenModal({
-          variables: { userId: user.uid, lastSeenModal: new Date() },
-        });
+      if (!showExitModal) {
+        console.log(trialRemaining);
+        if (trialRemaining === 0) {
+          setShowExitModal(true);
+          console.log("show", showExitModal);
+        } else if (
+          !showModal &&
+          (lastSeenDifference === null || lastSeenDifference > 24)
+        ) {
+          setShowModal(true);
+          updateLastSeenModal({
+            variables: { userId: user.uid, lastSeenModal: new Date() },
+          });
+        }
       }
     },
   });
-
-  useEffect(() => {
-    const TOTAL_TRIAL_DAYS = 14;
-    const trialRemaining = trialDaysRemaining(createdAt, TOTAL_TRIAL_DAYS);
-    if (userRole === "freemium" && trialRemaining === 0) {
-      setShowExitModal(true);
-    }
-  }, [userRole, createdAt]);
 
   return (
     <div className="flex flex-col w-full px-4 pb-4 sm:px-8 sm:pb-8 ">
