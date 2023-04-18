@@ -98,7 +98,7 @@ export default function StudentPortalPage() {
         console.log(trialRemaining);
         if (trialRemaining === 0) {
           setShowExitModal(true);
-          console.log("show", showExitModal);
+          console.log("show exit", showExitModal);
         } else if (
           !showModal &&
           (lastSeenDifference === null || lastSeenDifference > 24)
@@ -111,6 +111,10 @@ export default function StudentPortalPage() {
       }
     },
   });
+
+  useEffect(() => {
+    console.log("showExitModal is now:", showExitModal);
+  }, [showExitModal]);
 
   return (
     <div className="flex flex-col w-full px-4 pb-4 sm:px-8 sm:pb-8 ">
