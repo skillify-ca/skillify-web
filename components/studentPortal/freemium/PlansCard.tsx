@@ -8,7 +8,6 @@ export type PlansCardProps = {
   description: string;
   buttonLabel: string;
   onClick: () => void;
-  optionalMessage?: string;
   planRowData: PlanRowProps[];
 };
 
@@ -18,7 +17,6 @@ const PlansCard = ({
   buttonLabel,
   title,
   onClick,
-  optionalMessage,
   planRowData,
 }: PlansCardProps) => {
   return (
@@ -39,7 +37,6 @@ const PlansCard = ({
             />
           );
         })}
-        {optionalMessage && <p>{optionalMessage}</p>}
         <div className="my-4">
           <Button onClick={onClick} label={buttonLabel} />
         </div>

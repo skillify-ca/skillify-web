@@ -39,7 +39,6 @@ export const plansCardData = [
     price: "Custom",
     buttonLabel: "Book a Call",
     onClick: "https://joinskillify.com/call",
-    optionalMessage: "...and more!",
     planRowData: [
       {
         icon: "../../images/freemium/greenCheck.svg",
@@ -109,7 +108,6 @@ const Plans = ({ plansCardData }) => {
                 onClick={
                   card.onClick === "/sign-up" ? handleTrial : handlePremium
                 }
-                optionalMessage={card.optionalMessage}
                 planRowData={card.planRowData}
               />
             ))}
