@@ -1,4 +1,4 @@
-import { QuizData } from "../../../../components/resources/quizzes/shared/types";
+import { QuizData } from "../../../../../components/resources/quizzes/shared/types";
 
 export const quizData: QuizData = {
   title: "Career in Tech Personality Quiz?",
@@ -199,4 +199,31 @@ export const quizData: QuizData = {
       ],
     },
   ],
+};
+type QuizResultData = {
+  body: string;
+  src: string;
+  alt: string;
+  language: string;
+};
+
+export const quizResultsData: { [key: string]: QuizResultData } = {
+  JavaScript: {
+    body: "The first coding language you should learn is...",
+    src: "/images/quiz/languages-quiz/javascript.png",
+    alt: "JavaScript",
+    language: "JavaScript",
+  },
+  Python: {
+    body: "The first coding language you should learn is...",
+    src: "/images/quiz/languages-quiz/python.png",
+    alt: "Python",
+    language: "Python",
+  },
+  "HTML/CSS": {
+    body: "The first coding languages you should learn are...",
+    src: "/images/quiz/languages-quiz/htmlcss.png",
+    alt: "HTML/CSS",
+    language: "HTML/CSS",
+  },
 };
