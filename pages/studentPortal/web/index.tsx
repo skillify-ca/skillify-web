@@ -9,8 +9,8 @@ import { UPDATE_USER } from "../../../graphql/studentPortal/users/updateUser";
 import { useAuth } from "../../../lib/authContext";
 import { profileSelector } from "../../../redux/profileSlice";
 import { freemiumUnits } from "../../api/studentPortal/freemium/freemiumUnits";
-import { paidUnits } from "../../api/studentPortal/freemium/paidUnits";
-import { reactUnits, Unit } from "../../api/studentPortal/units";
+import { paidUnits } from "../../api/studentPortal/freemium/helpers";
+import { Unit, reactUnits } from "../../api/studentPortal/units";
 export default function StudentPortalPage() {
   const { user } = useAuth();
   const { userRole } = useSelector(profileSelector);
