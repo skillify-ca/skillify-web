@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
-import { quizData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz";
+import { quizData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz/careerQuiz";
 import { QuizTransition } from "../../../ui/animations/QuizTransition";
 import BluePrint from "../shared/BluePrint";
 import SkillSelections, {
