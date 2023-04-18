@@ -14,6 +14,7 @@ import EduBackground from "./EduBackground";
 
 export enum Stage {
   START,
+  EDUCATION,
   QUESTIONS,
   BLUEPRINT,
   RESULTS,
