@@ -10,11 +10,10 @@ import SkillSelections, {
 } from "../shared/SkillSelections";
 import StartQuiz from "../shared/StartQuiz";
 import CareerResults from "./CareerResults";
-import EduBackground from "./EduBackground";
 
 export enum Stage {
   START,
-  EDUCATION,
+  // EDUCATION,
   QUESTIONS,
   BLUEPRINT,
   RESULTS,
@@ -126,13 +125,13 @@ const CareerQuiz = () => {
                 }
               />
             );
-          case Stage.EDUCATION:
-            return (
-              <EduBackground
-                onNextClick={handleNextClick}
-                onBackClick={handleBackClick}
-              />
-            );
+          // case Stage.EDUCATION:
+          //   return (
+          //     <EduBackground
+          //       onNextClick={handleNextClick}
+          //       onBackClick={handleBackClick}
+          //     />
+          //   );
 
           case Stage.QUESTIONS:
             return (
@@ -152,7 +151,12 @@ const CareerQuiz = () => {
               />
             );
           case Stage.RESULTS:
-            return <CareerResults onBackClick={handleBackClick} />;
+            return (
+              <CareerResults
+                quizViewState={quizViewState}
+                onBackClick={handleBackClick}
+              />
+            );
           default:
             return null;
         }

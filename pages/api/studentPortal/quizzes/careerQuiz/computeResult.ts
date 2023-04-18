@@ -1,30 +1,32 @@
 import { QuizViewState } from "../../../../../components/resources/quizzes/shared/types";
 
 const ComputeResult = (quizViewState: QuizViewState) => {
-  const score = { JavaScript: 0, "HTML/CSS": 0, Python: 0 };
+  if (!quizViewState) {
+    // handle the error here
+    return "Error: Invalid QuizViewState object";
+  }
 
-  quizViewState.questions.forEach((question) => {
-    question.options.forEach((option) => {
-      if (option.isSelected && option.result) {
-        score[option.result] += option.weight;
-      }
+  const score: Record<string, number> = {
+    "Software Engineer": 0,
+    "Product Manager": 0,
+    "UX/UI Designer": 0,
+  };
+
+  quizViewState &&
+    quizViewState.questions.forEach((question) => {
+      question.options.forEach((option) => {
+        if (option.isSelected && option.result) {
+          score[option.result] += option.weight;
+        }
+      });
     });
-  });
 
-  const maxLanguageQuizScore = Math.max(...Object.values(score));
-  const preferredLanguagesArray = Object.keys(score).filter(
-    (language) => score[language] === maxLanguageQuizScore
+  const maxQuizScore = Math.max(...Object.values(score));
+  const preferredArray: string[] = Object.keys(score).filter(
+    (language) => score[language] === maxQuizScore
   );
 
-  return maxLanguageQuizScore == 0 // if no quiz question options are selected return sample output of "JavaScript"!
-    ? "JavaScript"
-    : preferredLanguagesArray.length > 1 &&
-      preferredLanguagesArray.includes("JavaScript")
-    ? "JavaScript"
-    : preferredLanguagesArray.length > 1 &&
-      preferredLanguagesArray.includes("HTML/CSS")
-    ? "HTML/CSS"
-    : preferredLanguagesArray[0];
+  return preferredArray;
 };
 
 export default ComputeResult;

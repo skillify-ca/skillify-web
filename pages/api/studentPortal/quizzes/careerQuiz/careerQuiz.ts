@@ -2,7 +2,7 @@ import { QuizData } from "../../../../../components/resources/quizzes/shared/typ
 
 export const quizData: QuizData = {
   title: "Career in Tech Personality Quiz?",
-  body: "Take this free quiz to find out what coding language you should learn first.",
+  body: "Take this free quiz to find out what coding career you should learn first.",
   questions: [
     {
       title: "What industries are you interested in working?",
@@ -12,72 +12,72 @@ export const quizData: QuizData = {
         {
           name: "Advertising",
           result: "Software Engineer",
-          weight: 1,
+          weight: 0,
         },
         {
           name: "Cybersecurity",
           result: "Software Engineer",
-          weight: 1,
+          weight: 0,
         },
         {
           name: "Digital Media",
           result: "Software Engineer",
-          weight: 1,
+          weight: 0,
         },
         {
           name: "Design",
           result: "Software Engineer",
-          weight: 1,
+          weight: 0,
         },
         {
           name: "E-commerce",
           result: "Software Engineer",
-          weight: 1,
+          weight: 0,
         },
         {
           name: "Entertainment",
           result: "Software Engineer",
-          weight: 1,
+          weight: 0,
         },
         {
           name: "Fashion",
           result: "Software Engineer",
-          weight: 1,
+          weight: 0,
         },
         {
           name: "Finance",
           result: "Software Engineer",
-          weight: 1,
+          weight: 0,
         },
         {
           name: "Healthcare",
           result: "Software Engineer",
-          weight: 1,
+          weight: 0,
         },
         {
           name: "Real Estate",
           result: "Software Engineer",
-          weight: 1,
+          weight: 0,
         },
         {
           name: "Technology",
           result: "Software Engineer",
-          weight: 1,
+          weight: 0,
         },
         {
           name: "Video Games",
           result: "Software Engineer",
-          weight: 1,
+          weight: 0,
         },
         {
           name: "Science",
           result: "Software Engineer",
-          weight: 1,
+          weight: 0,
         },
         {
           name: "Not Sure Yet",
           result: "Software Engineer",
-          weight: 1,
+          weight: 0,
         },
       ],
     },
@@ -104,7 +104,7 @@ export const quizData: QuizData = {
         },
         {
           name: "Writing",
-          result: "Content Creator",
+          result: "UX/UI Designer",
           weight: 1,
         },
         {
@@ -114,7 +114,7 @@ export const quizData: QuizData = {
         },
         {
           name: "Organization",
-          result: "Project Manager",
+          result: "Product Manager",
           weight: 1,
         },
         {
@@ -124,7 +124,7 @@ export const quizData: QuizData = {
         },
         {
           name: "Time Management",
-          result: "Project Manager",
+          result: "Product Manager",
           weight: 1,
         },
         { name: "Math", result: "Data Analyst", weight: 1 },
@@ -140,7 +140,7 @@ export const quizData: QuizData = {
         },
         {
           name: "Planning",
-          result: "Project Manager",
+          result: "Product Manager",
           weight: 1,
         },
       ],
@@ -200,30 +200,30 @@ export const quizData: QuizData = {
     },
   ],
 };
-type QuizResultData = {
+export type QuizResultData = {
   body: string;
   src: string;
   alt: string;
-  language: string;
+  career: string;
 };
 
 export const quizResultsData: { [key: string]: QuizResultData } = {
-  JavaScript: {
-    body: "The first coding language you should learn is...",
-    src: "/images/quiz/languages-quiz/javascript.png",
-    alt: "JavaScript",
-    language: "JavaScript",
+  "Software Engineer": {
+    body: "The first coding career you should learn is...",
+    src: "/images/career-quiz/software-engineer.png",
+    alt: "Software Engineer",
+    career: "Software Engineer",
   },
-  Python: {
-    body: "The first coding language you should learn is...",
-    src: "/images/quiz/languages-quiz/python.png",
-    alt: "Python",
-    language: "Python",
+  "Product Manager": {
+    body: "The first coding career you should learn is...",
+    src: "/images/career-quiz/product-manager.png",
+    alt: "Product Manager",
+    career: "Product Manager",
   },
-  "HTML/CSS": {
-    body: "The first coding languages you should learn are...",
-    src: "/images/quiz/languages-quiz/htmlcss.png",
-    alt: "HTML/CSS",
-    language: "HTML/CSS",
+  "UX/UI Designer": {
+    body: "The first coding careers you should learn are...",
+    src: "/images/career-quiz/designer.png",
+    alt: "UX/UI Designer",
+    career: "UX/UI Designer",
   },
 };
