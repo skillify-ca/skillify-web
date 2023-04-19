@@ -1,10 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { differenceInHours } from "date-fns";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import FreemiumDialogComponent from "../../components/studentPortal/freemium/FreemiumDialogueComponent";
-import FreemiumExitComponent from "../../components/studentPortal/freemium/FreemiumExitComponent";
 
 import UnitView from "../../components/studentPortal/lessons/UnitView";
 import ErrorMessage from "../../components/ui/ErrorMessage";
@@ -17,16 +13,10 @@ import {
   INIT_USER_INTRO_NODES,
   objects,
 } from "../../graphql/studentPortal/courses/initUserIntroNodes";
-import {
-  FetchModalData,
-  FETCH_LAST_SEEN_MODAL,
-} from "../../graphql/studentPortal/freemium/fetchLastSeenModal";
-import { UPSERT_LAST_SEEN_MODAL } from "../../graphql/studentPortal/freemium/upsertLastSeenModal";
 import { UPDATE_USER } from "../../graphql/studentPortal/users/updateUser";
 import { useAuth } from "../../lib/authContext";
-import { profileSelector } from "../../redux/profileSlice";
-import { calculateRemainingTrialDays } from "../api/studentPortal/freemium/helpers";
 
+import React from "react";
 import { Unit } from "../api/studentPortal/units";
 
 export default function StudentPortalPage() {
@@ -77,41 +67,6 @@ export default function StudentPortalPage() {
     });
   }, [user]);
 
-  const [updateLastSeenModal] = useMutation(UPSERT_LAST_SEEN_MODAL);
-  const [showOnboardingModal, setShowOnboardingModal] = useState(false);
-  const [showExitModal, setShowExitModal] = useState(false);
-  const { userRole, createdAt } = useSelector(profileSelector);
-
-  useQuery<FetchModalData>(FETCH_LAST_SEEN_MODAL, {
-    variables: {
-      userId: user.uid,
-    },
-    skip: userRole != "paid" && userRole != "freemium",
-
-    onCompleted: (data) => {
-      const trialDaysRemaining = calculateRemainingTrialDays(createdAt);
-
-      const lastSeenValue = data.freemium_users[0]?.lastSeenModal;
-
-      const lastSeenDifference = lastSeenValue
-        ? differenceInHours(new Date(), new Date(lastSeenValue))
-        : null;
-
-      // check whether trial has expired and show exit modal
-      if (trialDaysRemaining === 0) {
-        setShowExitModal(true);
-      } else {
-        // check whether user has seen onboarding modal in the last 24 hours
-        if (lastSeenDifference > 24 || !lastSeenValue) {
-          setShowOnboardingModal(true);
-          updateLastSeenModal({
-            variables: { userId: user.uid, lastSeenModal: new Date() },
-          });
-        }
-      }
-    },
-  });
-
   return (
     <div className="flex flex-col w-full px-4 pb-4 sm:px-8 sm:pb-8 ">
       <PageHeader
@@ -125,8 +80,6 @@ export default function StudentPortalPage() {
           units.map((it, i) => <UnitView key={i} data={it} />)
         )}
       </div>
-      {showOnboardingModal && <FreemiumDialogComponent />}
-      {showExitModal && <FreemiumExitComponent />}
     </div>
   );
 }
