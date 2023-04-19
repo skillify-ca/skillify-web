@@ -1,28 +1,11 @@
 import React from "react";
-import { QuizOption } from "../../../resources/quizzes/shared/types";
+import {
+  QuizOptionViewState,
+  QuizViewState,
+} from "../../../resources/quizzes/shared/types";
 import { Button } from "../../../ui/Button";
 import Progress from "./Progress";
 import SkillifyNavbar from "./SkillifyNavbar";
-
-export type QuizViewState = {
-  title: string;
-  body: string;
-  questions: QuizQuestionViewState[];
-
-  currentQuestion: number;
-};
-
-export type QuizQuestionViewState = {
-  title: string;
-  body: string;
-  options: QuizOptionViewState[];
-  progress: number;
-  maxSelections: number;
-};
-
-export type QuizOptionViewState = QuizOption & {
-  isSelected: boolean;
-};
 
 type SkillSelectionsProps = {
   quizViewState: QuizViewState;
