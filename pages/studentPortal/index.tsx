@@ -94,20 +94,15 @@ export default function StudentPortalPage() {
         ? differenceInHours(new Date(), new Date(lastSeenValue))
         : null;
 
-      if (!showExitModal) {
-        console.log(trialRemaining);
-        if (trialRemaining === 0) {
-          setShowExitModal(true);
-          console.log("show exit", showExitModal);
-        } else if (
-          !showModal &&
-          (lastSeenDifference === null || lastSeenDifference > 24)
-        ) {
-          setShowModal(true);
-          updateLastSeenModal({
-            variables: { userId: user.uid, lastSeenModal: new Date() },
-          });
-        }
+      console.log(trialRemaining);
+      if (trialRemaining === 0) {
+        setShowExitModal(true);
+        console.log("show exit", showExitModal);
+      } else if (lastSeenDifference === null || lastSeenDifference > 24) {
+        setShowModal(true);
+        updateLastSeenModal({
+          variables: { userId: user.uid, lastSeenModal: new Date() },
+        });
       }
     },
   });
