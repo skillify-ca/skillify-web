@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import LanguageResults from "../../../../components/resources/quizzes/firstProgrammingLanguageQuiz/LanguageResults";
 import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
 import SkillSelections from "../../../../components/resources/quizzes/shared/SkillSelections";
@@ -7,6 +7,7 @@ import {
   QuizOptionViewState,
   QuizViewState,
 } from "../../../../components/resources/quizzes/shared/types";
+import QuizTransition from "../../../../components/ui/animations/QuizTransition";
 import { quizData } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage";
 
 export enum Stage {
@@ -37,26 +38,37 @@ const FirstProgrammingLanguageQuiz = () => {
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(
     initializeQuizViewState
   );
+  const [triggerAnimation, setTriggerAnimation] = useState(true);
 
   const handleNextClick = () => {
-    if (
-      stage == Stage.QUESTIONS &&
-      quizViewState.currentQuestion < quizData.questions.length - 1
-    ) {
-      setQuizViewState({
-        ...quizViewState,
-        currentQuestion: quizViewState.currentQuestion + 1,
-      });
-    } else setStage((prevStage) => prevStage + 1);
+    setTriggerAnimation(false);
+
+    setTimeout(() => {
+      setTriggerAnimation(true);
+      if (
+        stage == Stage.QUESTIONS &&
+        quizViewState.currentQuestion < quizData.questions.length - 1
+      ) {
+        setQuizViewState({
+          ...quizViewState,
+          currentQuestion: quizViewState.currentQuestion + 1,
+        });
+      } else setStage((prevStage) => prevStage + 1);
+    }, 200);
   };
 
   const handleBackClick = () => {
-    if (stage == Stage.QUESTIONS && quizViewState.currentQuestion > 0) {
-      setQuizViewState({
-        ...quizViewState,
-        currentQuestion: quizViewState.currentQuestion - 1,
-      });
-    } else setStage((prevStage) => prevStage - 1);
+    setTriggerAnimation(false);
+
+    setTimeout(() => {
+      setTriggerAnimation(true);
+      if (stage == Stage.QUESTIONS && quizViewState.currentQuestion > 0) {
+        setQuizViewState({
+          ...quizViewState,
+          currentQuestion: quizViewState.currentQuestion - 1,
+        });
+      } else setStage((prevStage) => prevStage - 1);
+    }, 200);
   };
 
   const handleOptionClick = (option: QuizOptionViewState) => {
@@ -79,51 +91,59 @@ const FirstProgrammingLanguageQuiz = () => {
     setQuizViewState(updatedQuizViewState);
   };
 
-  const renderStage = () => {
-    switch (stage) {
-      case Stage.START:
-        return (
-          <StartQuiz
-            onNextClick={handleNextClick}
-            title={quizData.title}
-            body={quizData.body}
-          />
-        );
-      case Stage.QUESTIONS:
-        return (
-          <SkillSelections
-            onNextClick={handleNextClick}
-            onBackClick={handleBackClick}
-            handleOptionClick={handleOptionClick}
-            quizViewState={quizViewState}
-          />
-        );
-      case Stage.BLUEPRINT:
-        return (
-          <BluePrint
-            onNextClick={handleNextClick}
-            onBackClick={handleBackClick}
-          />
-        );
-      case Stage.RESULTS:
-        return (
-          <LanguageResults
-            onBackClick={handleBackClick}
-            quizViewState={quizViewState}
-          />
-        );
-      default:
-        return null;
-    }
-  };
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
+
   return (
-    <>
-      <div>{renderStage()}</div>
-    </>
+    <QuizTransition triggerAnimation={triggerAnimation}>
+      {(() => {
+        switch (stage) {
+          case Stage.START:
+            return (
+              <StartQuiz
+                onNextClick={handleNextClick}
+                title={quizData.title}
+                body={quizData.body}
+              />
+            );
+          case Stage.QUESTIONS:
+            return (
+              <SkillSelections
+                onNextClick={handleNextClick}
+                onBackClick={handleBackClick}
+                handleOptionClick={handleOptionClick}
+                quizViewState={quizViewState}
+              />
+            );
+          case Stage.BLUEPRINT:
+            return (
+              <BluePrint
+                onNextClick={handleNextClick}
+                onBackClick={handleBackClick}
+              />
+            );
+          case Stage.RESULTS:
+            return (
+              <LanguageResults
+                onBackClick={handleBackClick}
+                quizViewState={quizViewState}
+              />
+            );
+          default:
+            return null;
+        }
+      })()}
+    </QuizTransition>
   );
 };
 
 export default FirstProgrammingLanguageQuiz;
-FirstProgrammingLanguageQuiz.getLayout = function getLayout(page) {
+
+function getLayout(page: React.ReactNode) {
   return <div>{page}</div>;
-};
+}
+
+FirstProgrammingLanguageQuiz.getLayout = getLayout;
