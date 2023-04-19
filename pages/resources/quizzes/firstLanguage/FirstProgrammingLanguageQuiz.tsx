@@ -91,51 +91,47 @@ const FirstProgrammingLanguageQuiz = () => {
     setQuizViewState(updatedQuizViewState);
   };
 
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth",
-  });
+  const renderStage = () => {
+    switch (stage) {
+      case Stage.START:
+        return (
+          <StartQuiz
+            onNextClick={handleNextClick}
+            title={quizData.title}
+            body={quizData.body}
+          />
+        );
+      case Stage.QUESTIONS:
+        return (
+          <SkillSelections
+            onNextClick={handleNextClick}
+            onBackClick={handleBackClick}
+            handleOptionClick={handleOptionClick}
+            quizViewState={quizViewState}
+          />
+        );
+      case Stage.BLUEPRINT:
+        return (
+          <BluePrint
+            onNextClick={handleNextClick}
+            onBackClick={handleBackClick}
+          />
+        );
+      case Stage.RESULTS:
+        return (
+          <LanguageResults
+            onBackClick={handleBackClick}
+            quizViewState={quizViewState}
+          />
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <QuizTransition triggerAnimation={triggerAnimation}>
-      {(() => {
-        switch (stage) {
-          case Stage.START:
-            return (
-              <StartQuiz
-                onNextClick={handleNextClick}
-                title={quizData.title}
-                body={quizData.body}
-              />
-            );
-          case Stage.QUESTIONS:
-            return (
-              <SkillSelections
-                onNextClick={handleNextClick}
-                onBackClick={handleBackClick}
-                handleOptionClick={handleOptionClick}
-                quizViewState={quizViewState}
-              />
-            );
-          case Stage.BLUEPRINT:
-            return (
-              <BluePrint
-                onNextClick={handleNextClick}
-                onBackClick={handleBackClick}
-              />
-            );
-          case Stage.RESULTS:
-            return (
-              <LanguageResults
-                onBackClick={handleBackClick}
-                quizViewState={quizViewState}
-              />
-            );
-          default:
-            return null;
-        }
-      })()}
+      {renderStage()}
     </QuizTransition>
   );
 };
