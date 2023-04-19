@@ -15,8 +15,9 @@ export const TOTAL_TRIAL_DAYS = 14;
 //used for freemium feature calculations.
 //createdAt comes from fetchUserRole query and trialLength is manually inputted.
 
-export const elapsedDays = (createdAt: Date, trialLength: number) => {
+export const elapsedDays = (createdAt: Date) => {
   const currentDate = new Date();
+  const trialLength = TOTAL_TRIAL_DAYS;
   const elapsedDays = differenceInCalendarDays(
     currentDate,
     new Date(createdAt)
