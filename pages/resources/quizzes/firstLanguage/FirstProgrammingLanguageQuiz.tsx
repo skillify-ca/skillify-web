@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
-import LangResults from "../../../../components/resources/quizzes/langQuiz/LangResults";
+import React, { useState } from "react";
+import LanguageResults from "../../../../components/resources/quizzes/firstProgrammingLanguageQuiz/LanguageResults";
 import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
-import SkillSelections, {
+import SkillSelections from "../../../../components/resources/quizzes/shared/SkillSelections";
+import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz";
+import {
   QuizOptionViewState,
   QuizViewState,
-} from "../../../../components/resources/quizzes/shared/SkillSelections";
-import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz";
+} from "../../../../components/resources/quizzes/shared/types";
 import { quizData } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage";
 
 export enum Stage {
@@ -15,27 +16,27 @@ export enum Stage {
   RESULTS,
 }
 
+const initializeQuizViewState = {
+  title: quizData.title,
+  body: quizData.body,
+  questions: quizData.questions.map((question) => {
+    return {
+      title: question.title,
+      body: question.body,
+      options: question.options.map((option) => {
+        return { ...option, isSelected: false };
+      }),
+    };
+  }),
+  currentQuestion: 0,
+  progress: 0,
+};
+
 const FirstProgrammingLanguageQuiz = () => {
   const [stage, setStage] = useState(Stage.START);
-  const [quizViewState, setQuizViewState] = useState<QuizViewState>();
-
-  useEffect(() => {
-    const quizViewState = {
-      title: quizData.title,
-      body: quizData.body,
-      questions: quizData.questions.map((question) => {
-        return {
-          title: question.title,
-          body: question.body,
-          options: question.options,
-        };
-      }),
-      currentQuestion: 0,
-      progress: 0,
-    };
-
-    setQuizViewState(quizViewState);
-  }, []);
+  const [quizViewState, setQuizViewState] = useState<QuizViewState>(
+    initializeQuizViewState
+  );
 
   const handleNextClick = () => {
     if (
@@ -105,7 +106,12 @@ const FirstProgrammingLanguageQuiz = () => {
           />
         );
       case Stage.RESULTS:
-        return <LangResults onBackClick={handleBackClick} />;
+        return (
+          <LanguageResults
+            onBackClick={handleBackClick}
+            quizViewState={quizViewState}
+          />
+        );
       default:
         return null;
     }
