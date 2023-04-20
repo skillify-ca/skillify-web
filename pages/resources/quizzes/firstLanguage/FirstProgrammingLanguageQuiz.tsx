@@ -33,12 +33,44 @@ const initializeQuizViewState = {
   progress: 0,
 };
 
+// export type UserInput = {
+//   name: string;
+//   email: string;
+// };
+
 const FirstProgrammingLanguageQuiz = () => {
   const [stage, setStage] = useState(Stage.START);
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(
     initializeQuizViewState
   );
   const [triggerAnimation, setTriggerAnimation] = useState(true);
+
+  const [userInput, setUserInput] = useState({
+    name: "",
+    email: "",
+  });
+
+  // const [saveUserPreferences] = useMutation(INSERT_CODING_QUIZ_RESPONSE);
+
+  // const handleStartQuiz = () => {
+  //   saveUserPreferences({
+  //     variables: {
+  //       objects: [userInput],
+  //     },
+  //   });
+  // };
+
+  /// shower thoughts - quizViewState contains all selected values. Just traverse quizViewState and leverage the index to update the appropriate db colomns. with the index.
+  // const exampleUserPreferences = [
+  //   {
+  //     name: "Angela",
+  //     email: "example@example.com",
+  //     industries: quizViewState.questions[0],
+  //     skills: ["Writing code", "Writing", "Math"],
+  //     tasks: ["Find trends in data"],
+  //     result: "Software Engineer",
+  //   },
+  // ];
 
   const handleNextClick = () => {
     setTriggerAnimation(false);
@@ -97,6 +129,8 @@ const FirstProgrammingLanguageQuiz = () => {
         return (
           <StartQuiz
             onNextClick={handleNextClick}
+            setUserInput={setUserInput}
+            startQuiz={startQuiz}
             title={quizData.title}
             body={quizData.body}
           />
@@ -130,9 +164,12 @@ const FirstProgrammingLanguageQuiz = () => {
   };
 
   return (
-    <QuizTransition triggerAnimation={triggerAnimation}>
-      {renderStage()}
-    </QuizTransition>
+    <>
+      <div>{JSON.stringify(userInput)}</div>
+      <QuizTransition triggerAnimation={triggerAnimation}>
+        {renderStage()}
+      </QuizTransition>
+    </>
   );
 };
 

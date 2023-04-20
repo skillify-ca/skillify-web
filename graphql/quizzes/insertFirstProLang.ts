@@ -5,8 +5,8 @@ export const INSERT_CODING_QUIZ_RESPONSE = gql`
     insert_coding_quiz(objects: $objects) {
       returning {
         name
-        result
         email
+        result
       }
     }
   }
