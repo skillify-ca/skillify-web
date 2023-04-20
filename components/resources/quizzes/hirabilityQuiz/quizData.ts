@@ -1,0 +1,250 @@
+import { QuizData } from "../shared/types";
+
+export const hirabilityQuizData: QuizData = {
+  title: "How hireable are you?",
+  body: "Take this free quiz to find out your hireability score for different software engineering roles.",
+  questions: [
+    {
+      title: "What role are you interested in?",
+      body: "Select the most relevant field.",
+      options: [
+        { name: "Frontend Engineer" },
+        { name: "Backend Engineer" },
+        { name: "Game Engineer" },
+        { name: "Mobile Engineer" },
+      ],
+    },
+    {
+      title: "I have a strong understanding of testing principles.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "Professional", weight: 1 },
+        { name: "Disagree", result: "Professional", weight: 1 },
+        { name: "Neutral", result: "Professional", weight: 1 },
+        { name: "Agree", result: "Professional", weight: 1 },
+        { name: "Strongly Agree", result: "Professional", weight: 1 },
+      ],
+    },
+    {
+      title: "I have a strong understanding of CI/CD principles.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "Professional", weight: 1 },
+        { name: "Disagree", result: "Professional", weight: 1 },
+        { name: "Neutral", result: "Professional", weight: 1 },
+        { name: "Agree", result: "Professional", weight: 1 },
+        { name: "Strongly Agree", result: "Professional", weight: 1 },
+      ],
+    },
+    {
+      title: "I write clean and elegant code that is easy for others to read.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "Professional", weight: 1 },
+        { name: "Disagree", result: "Professional", weight: 1 },
+        { name: "Neutral", result: "Professional", weight: 1 },
+        { name: "Agree", result: "Professional", weight: 1 },
+        { name: "Strongly Agree", result: "Professional", weight: 1 },
+      ],
+    },
+    {
+      title:
+        "I think through multiple details and edge cases when I build products.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "Professional", weight: 1 },
+        { name: "Disagree", result: "Professional", weight: 1 },
+        { name: "Neutral", result: "Professional", weight: 1 },
+        { name: "Agree", result: "Professional", weight: 1 },
+        { name: "Strongly Agree", result: "Professional", weight: 1 },
+      ],
+    },
+    {
+      title: "I write clean and elegant code that is easy for others to read.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "Professional", weight: 1 },
+        { name: "Disagree", result: "Professional", weight: 1 },
+        { name: "Neutral", result: "Professional", weight: 1 },
+        { name: "Agree", result: "Professional", weight: 1 },
+        { name: "Strongly Agree", result: "Professional", weight: 1 },
+      ],
+    },
+    {
+      title:
+        "I have published a personal portfolio with at least 5 public projects.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "Professional", weight: 1 },
+        { name: "Disagree", result: "Professional", weight: 1 },
+        { name: "Neutral", result: "Professional", weight: 1 },
+        { name: "Agree", result: "Professional", weight: 1 },
+        { name: "Strongly Agree", result: "Professional", weight: 1 },
+      ],
+    },
+    {
+      title: "I collaborate well with design and product team members.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "Professional", weight: 1 },
+        { name: "Disagree", result: "Professional", weight: 1 },
+        { name: "Neutral", result: "Professional", weight: 1 },
+        { name: "Agree", result: "Professional", weight: 1 },
+        { name: "Strongly Agree", result: "Professional", weight: 1 },
+      ],
+    },
+    {
+      title: "I can independently ship a product end-to-end.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "Professional", weight: 1 },
+        { name: "Disagree", result: "Professional", weight: 1 },
+        { name: "Neutral", result: "Professional", weight: 1 },
+        { name: "Agree", result: "Professional", weight: 1 },
+        { name: "Strongly Agree", result: "Professional", weight: 1 },
+      ],
+    },
+    {
+      title:
+        "I can accurately estimate how long a piece of work will take to complete.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "Professional", weight: 1 },
+        { name: "Disagree", result: "Professional", weight: 1 },
+        { name: "Neutral", result: "Professional", weight: 1 },
+        { name: "Agree", result: "Professional", weight: 1 },
+        { name: "Strongly Agree", result: "Professional", weight: 1 },
+      ],
+    },
+    {
+      title: "I can use AI tools to improve my workflow.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "Professional", weight: 1 },
+        { name: "Disagree", result: "Professional", weight: 1 },
+        { name: "Neutral", result: "Professional", weight: 1 },
+        { name: "Agree", result: "Professional", weight: 1 },
+        { name: "Strongly Agree", result: "Professional", weight: 1 },
+      ],
+    },
+    {
+      title:
+        "I can communicate conisely and effectively through Github Pull Requests.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "HTML", weight: 1 },
+        { name: "Disagree", result: "HTML", weight: 1 },
+        { name: "Neutral", result: "HTML", weight: 1 },
+        { name: "Agree", result: "HTML", weight: 1 },
+        { name: "Strongly Agree", result: "HTML", weight: 1 },
+      ],
+    },
+    {
+      title: "I can use <h1> tags to display text.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "HTML", weight: 1 },
+        { name: "Disagree", result: "HTML", weight: 1 },
+        { name: "Neutral", result: "HTML", weight: 1 },
+        { name: "Agree", result: "HTML", weight: 1 },
+        { name: "Strongly Agree", result: "HTML", weight: 1 },
+      ],
+    },
+    {
+      title: "I can use <p> tags to display text.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "HTML", weight: 1 },
+        { name: "Disagree", result: "HTML", weight: 1 },
+        { name: "Neutral", result: "HTML", weight: 1 },
+        { name: "Agree", result: "HTML", weight: 1 },
+        { name: "Strongly Agree", result: "HTML", weight: 1 },
+      ],
+    },
+    {
+      title: "I can use <img> tags to display images.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "HTML", weight: 1 },
+        { name: "Disagree", result: "HTML", weight: 1 },
+        { name: "Neutral", result: "HTML", weight: 1 },
+        { name: "Agree", result: "HTML", weight: 1 },
+        { name: "Strongly Agree", result: "HTML", weight: 1 },
+      ],
+    },
+    {
+      title: "I can use <li> tags to display lists.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "JavaScript", weight: 1 },
+        { name: "Disagree", result: "JavaScript", weight: 1 },
+        { name: "Neutral", result: "JavaScript", weight: 1 },
+        { name: "Agree", result: "JavaScript", weight: 1 },
+        { name: "Strongly Agree", result: "JavaScript", weight: 1 },
+      ],
+    },
+    {
+      title: "I can manipulate strings with methods.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "JavaScript", weight: 1 },
+        { name: "Disagree", result: "JavaScript", weight: 1 },
+        { name: "Neutral", result: "JavaScript", weight: 1 },
+        { name: "Agree", result: "JavaScript", weight: 1 },
+        { name: "Strongly Agree", result: "JavaScript", weight: 1 },
+      ],
+    },
+    {
+      title: "I can write simple functions.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "JavaScript", weight: 1 },
+        { name: "Disagree", result: "JavaScript", weight: 1 },
+        { name: "Neutral", result: "JavaScript", weight: 1 },
+        { name: "Agree", result: "JavaScript", weight: 1 },
+        { name: "Strongly Agree", result: "JavaScript", weight: 1 },
+      ],
+    },
+    {
+      title: "I can use ternary operators.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "JavaScript", weight: 1 },
+        { name: "Disagree", result: "JavaScript", weight: 1 },
+        { name: "Neutral", result: "JavaScript", weight: 1 },
+        { name: "Agree", result: "JavaScript", weight: 1 },
+        { name: "Strongly Agree", result: "JavaScript", weight: 1 },
+      ],
+    },
+    {
+      title: "I can use a map to transform objects.",
+      body: "",
+      maxSelections: 1,
+      options: [
+        { name: "Strongly Disagree", result: "JavaScript", weight: 1 },
+        { name: "Disagree", result: "JavaScript", weight: 1 },
+        { name: "Neutral", result: "JavaScript", weight: 1 },
+        { name: "Agree", result: "JavaScript", weight: 1 },
+        { name: "Strongly Agree", result: "JavaScript", weight: 1 },
+      ],
+    },
+  ],
+};
