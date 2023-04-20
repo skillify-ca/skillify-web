@@ -8,8 +8,8 @@ import { COMPLETE_USER_INTRO_NODE } from "../../../graphql/studentPortal/courses
 import { FETCH_USER_INTRO_NODES } from "../../../graphql/studentPortal/courses/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../lib/authContext";
-import { getLessonForBasicsCourse } from "../../api/studentPortal/lessons/basics";
 import { ResponseData } from "../../api/studentPortal/lessons/basics/introduction";
+import { getLessonForWebCourse } from "../../api/studentPortal/lessons/web";
 
 const LessonPage = ({
   lessonComponents,
@@ -17,13 +17,6 @@ const LessonPage = ({
   nextNode,
   nextSlug,
 }: ResponseData) => {
-  const props = {
-    lessonComponents,
-    currentNode,
-    nextNode,
-    nextSlug,
-  };
-
   const { user } = useAuth();
   const router = useRouter();
   const [unlockUserNode] = useMutation(UNLOCK_USER_INTRO_NODE);
@@ -45,7 +38,7 @@ const LessonPage = ({
         },
         refetchQueries: [{ query: FETCH_USER_INTRO_NODES }],
       });
-      router.push(`/studentPortal/intro/${nextSlug}`);
+      router.push(`/studentPortal/web/${nextSlug}`);
     });
   };
 
@@ -68,7 +61,7 @@ const LessonPage = ({
 export async function getServerSideProps({ params }) {
   const slug = params.slug.join("/");
   return {
-    props: getLessonForBasicsCourse(slug),
+    props: getLessonForWebCourse(slug),
   };
 }
 
