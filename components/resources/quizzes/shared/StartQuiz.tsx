@@ -6,9 +6,16 @@ type StartQuizProps = {
   onNextClick: () => void;
   title: string;
   body: string;
+  nameSetter: React.Dispatch<React.SetStateAction<string>>;
+  emailSetter: React.Dispatch<React.SetStateAction<string>>;
 };
-
-const StartQuiz = ({ onNextClick, body, title }: StartQuizProps) => {
+const StartQuiz = ({
+  onNextClick,
+  body,
+  title,
+  nameSetter,
+  emailSetter,
+}: StartQuizProps) => {
   return (
     <div className="w-full space-y-4 ">
       <SkillifyNavbar hidden={true} onBackClick={() => ""} />
@@ -22,12 +29,14 @@ const StartQuiz = ({ onNextClick, body, title }: StartQuizProps) => {
           <input
             type="text"
             name="name"
+            onChange={(e) => nameSetter(e.target.value)}
             className="w-4/5 ml-8 border border-gray-500 rounded-lg shadow appearance-none"
           ></input>
           <h3 className="ml-8">Email Address</h3>{" "}
           <input
             type="email"
             name="email"
+            onChange={(e) => emailSetter(e.target.value)}
             className="w-4/5 ml-8 border border-gray-500 rounded-lg shadow appearance-none"
           ></input>
         </div>

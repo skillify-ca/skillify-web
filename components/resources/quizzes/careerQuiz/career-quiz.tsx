@@ -1,17 +1,30 @@
 import { useMutation } from "@apollo/client";
-import React, { useEffect, useState } from "react";
-import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
+import React, { useState } from "react";
+import { UPSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
+
 import { quizData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz";
 import { QuizTransition } from "../../../ui/animations/QuizTransition";
 import BluePrint from "../shared/BluePrint";
-import SkillSelections, {
-  QuizOptionViewState,
-  QuizViewState,
-} from "../shared/SkillSelections";
+import SkillSelections from "../shared/SkillSelections";
 import StartQuiz from "../shared/StartQuiz";
+import { QuizOptionViewState, QuizViewState } from "../shared/types";
 import CareerResults from "./CareerResults";
-import EduBackground from "./EduBackground";
-
+import EduBackground, { EducationLevel } from "./EduBackground";
+const initializeQuizViewState = {
+  title: quizData.title,
+  body: quizData.body,
+  questions: quizData.questions.map((question) => {
+    return {
+      title: question.title,
+      body: question.body,
+      options: question.options.map((option) => {
+        return { ...option, isSelected: false };
+      }),
+    };
+  }),
+  currentQuestion: 0,
+  progress: 0,
+};
 export enum Stage {
   START,
   EDUCATION,
@@ -20,48 +33,61 @@ export enum Stage {
   RESULTS,
 }
 const CareerQuiz = () => {
-  const [saveUserPreferences] = useMutation(INSERT_CAREER_QUIZ_RESPONSE, {});
-  const exampleUserPreferences = [
+  const [name, setName] = useState<string>("");
+
+  const [education, setEducation] = useState<string>("");
+  const [degree, setDegree] = useState<string>("");
+  const [institution, setInstitution] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [industries, setIndustries] = useState<string[]>([]);
+  const [skills, setSkills] = useState<string[]>([]);
+  const [result, setResult] = useState<string>("");
+  const [tasks, setTasks] = useState<string[]>([]);
+
+  const [highestEducation, setHighestEducation] =
+    useState<EducationLevel | null>(null);
+  const [experienceCoding, setExperienceCoding] = useState<string>();
+  const [id, setId] = useState();
+
+  const [saveUserSelections, { data }] = useMutation(
+    UPSERT_CAREER_QUIZ_RESPONSE,
     {
-      degree: "Bachelor of Arts",
-      institution: "University of Waterloo",
-      name: "Angela",
-      email: "example@example.com",
-      industries: ["Advertising", "Design", "Fashion"],
-      skills: ["Writing code", "Writing", "Math"],
-      result: "Software Engineer",
-      tasks: ["Find trends in data"],
-    },
-  ];
+      onCompleted: () => {
+        setId(data.id);
+      },
+    }
+  );
+
   // create results state object that
   // create custom type -- based on schema type in database
   const [stage, setStage] = useState<Stage>(Stage.START);
   const [triggerAnimation, setTriggerAnimation] = useState(true);
-  const [quizViewState, setQuizViewState] = useState<QuizViewState>();
-
-  useEffect(() => {
-    const quizViewState = {
-      title: quizData.title,
-      body: quizData.body,
-      questions: quizData.questions.map((question) => {
-        return {
-          title: question.title,
-          body: question.body,
-          options: question.options,
-        };
-      }),
-      currentQuestion: 0,
-      progress: 0,
-    };
-
-    setQuizViewState(quizViewState);
-  }, []);
+  const [quizViewState, setQuizViewState] = useState<QuizViewState>(
+    initializeQuizViewState
+  );
 
   const handleNextClick = () => {
     setTriggerAnimation(false);
 
     setTimeout(() => {
       setTriggerAnimation(true);
+      alert("this broke");
+      saveUserSelections({
+        variables: {
+          objects: {
+            degree: degree,
+            institution: institution,
+            name: name,
+            email: email,
+            industries: industries,
+            skills: skills,
+            result: result,
+            tasks: tasks,
+            highestEducation: highestEducation,
+            experienceCoding: experienceCoding,
+          },
+        },
+      });
       if (
         stage == Stage.QUESTIONS &&
         quizViewState.currentQuestion < quizData.questions.length - 1
@@ -124,6 +150,8 @@ const CareerQuiz = () => {
                 body={
                   "Take this free quiz to find out what jobs in tech fit you best!"
                 }
+                nameSetter={setName}
+                emailSetter={setEmail}
               />
             );
           case Stage.EDUCATION:
@@ -131,6 +159,11 @@ const CareerQuiz = () => {
               <EduBackground
                 onNextClick={handleNextClick}
                 onBackClick={handleBackClick}
+                setInstitution={setInstitution}
+                setDegree={setDegree}
+                setExperienceCoding={setExperienceCoding}
+                setHighestEducation={setHighestEducation}
+                highestEducation={highestEducation}
               />
             );
 
@@ -162,5 +195,3 @@ const CareerQuiz = () => {
 };
 
 export default CareerQuiz;
-
-CareerQuiz.getLayout = function getLayout(page) {};
