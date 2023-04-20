@@ -85,22 +85,98 @@ const CareerQuiz = () => {
     }, 250); // adjust the delay time based on the animation duration
   };
 
+  const handleNextClick = () => {
+    setTriggerAnimation(false);
+
+    setTimeout(() => {
+      setTriggerAnimation(true);
+      if (
+        stage == Stage.QUESTIONS &&
+        quizViewState.currentQuestion < quizData.questions.length - 1
+      ) {
+        setQuizViewState({
+          ...quizViewState,
+          currentQuestion: quizViewState.currentQuestion + 1,
+        });
+      } else setStage((prevStage) => prevStage + 1);
+    }, 250); // adjust the delay time based on the animation duration
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+  const handleBackClick = () => {
+    setTriggerAnimation(false);
+    setTimeout(() => {
+      if (stage == Stage.QUESTIONS && quizViewState.currentQuestion > 0) {
+        setQuizViewState({
+          ...quizViewState,
+          currentQuestion: quizViewState.currentQuestion - 1,
+        });
+      } else setStage((prevStage) => prevStage - 1);
+      setTriggerAnimation(true);
+    }, 250); // adjust the delay time based on the animation duration
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+
   const handleOptionClick = (option: QuizOptionViewState) => {
-    const selectedQuizOption = quizViewState.questions.map((question) => ({
-      ...question,
-      options: question.options.map((questionOption) =>
-        questionOption.name === option.name
-          ? { ...questionOption, isSelected: true }
-          : questionOption
-      ),
-    }));
+    const currentQuestion =
+      quizViewState.questions[quizViewState.currentQuestion];
+    const selectedOptions = currentQuestion.options.filter(
+      (option) => option.isSelected
+    );
+    const maxSelection =
+      quizData.questions[quizViewState.currentQuestion].maxSelections;
 
-    const updatedQuizViewState = {
-      ...quizViewState,
-      questions: selectedQuizOption,
-    };
+    if (maxSelection === 1) {
+      // Set all other options to false and set the selected option to true
+      const selectedQuizOption = quizViewState.questions.map((question) => ({
+        ...question,
+        options: question.options.map((questionOption) =>
+          questionOption === option
+            ? { ...questionOption, isSelected: true }
+            : { ...questionOption, isSelected: false }
+        ),
+      }));
 
-    setQuizViewState(updatedQuizViewState);
+      const updatedQuizViewState = {
+        ...quizViewState,
+        questions: selectedQuizOption,
+      };
+      setQuizViewState(updatedQuizViewState);
+      return;
+    } else if (
+      maxSelection &&
+      selectedOptions.length >= maxSelection &&
+      !option.isSelected
+    ) {
+      // Do nothing if the maximum number of options has already been selected and the clicked option is not already selected
+      return;
+    } else {
+      // Toggle the selected state of the clicked option
+      const selectedQuizOption = quizViewState.questions.map((question) => ({
+        ...question,
+        options: question.options.map((questionOption) =>
+          questionOption.name === option.name
+            ? {
+                ...questionOption,
+                isSelected: questionOption.isSelected ? false : true,
+              }
+            : questionOption
+        ),
+      }));
+
+      const updatedQuizViewState = {
+        ...quizViewState,
+        questions: selectedQuizOption,
+      };
+      setQuizViewState(updatedQuizViewState);
+    }
   };
 
   window.scrollTo({
