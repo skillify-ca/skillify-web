@@ -72,40 +72,7 @@ const CareerQuiz = () => {
       } else setStage((prevStage) => prevStage + 1);
     }, 250); // adjust the delay time based on the animation duration
   };
-  const handleBackClick = () => {
-    setTriggerAnimation(false);
-    setTimeout(() => {
-      if (stage == Stage.QUESTIONS && quizViewState.currentQuestion > 0) {
-        setQuizViewState({
-          ...quizViewState,
-          currentQuestion: quizViewState.currentQuestion - 1,
-        });
-      } else setStage((prevStage) => prevStage - 1);
-      setTriggerAnimation(true);
-    }, 250); // adjust the delay time based on the animation duration
-  };
 
-  const handleNextClick = () => {
-    setTriggerAnimation(false);
-
-    setTimeout(() => {
-      setTriggerAnimation(true);
-      if (
-        stage == Stage.QUESTIONS &&
-        quizViewState.currentQuestion < quizData.questions.length - 1
-      ) {
-        setQuizViewState({
-          ...quizViewState,
-          currentQuestion: quizViewState.currentQuestion + 1,
-        });
-      } else setStage((prevStage) => prevStage + 1);
-    }, 250); // adjust the delay time based on the animation duration
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-  };
   const handleBackClick = () => {
     setTriggerAnimation(false);
     setTimeout(() => {
