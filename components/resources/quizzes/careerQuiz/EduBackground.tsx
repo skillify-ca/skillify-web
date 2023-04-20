@@ -7,9 +7,9 @@ export type EduBackgroundProps = {
   onBackClick: () => void;
   setDegree: React.Dispatch<React.SetStateAction<string>>;
   setInstitution: React.Dispatch<React.SetStateAction<string>>;
-  setExperienceCoding: React.Dispatch<React.SetStateAction<string>>;
-  highestEducation: EducationLevel;
-  setHighestEducation: React.Dispatch<React.SetStateAction<string>>;
+  setExperience: React.Dispatch<React.SetStateAction<string>>;
+  education: EducationLevel;
+  setEducation: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export enum EducationLevel {
@@ -27,17 +27,17 @@ const EducationBackground = ({
   onBackClick,
   setInstitution,
   setDegree,
-  setHighestEducation,
-  highestEducation,
-  setExperienceCoding,
+  setEducation,
+  education,
+  setExperience,
 }: EduBackgroundProps) => {
   const [showExperienceInput, setShowExperienceInput] = useState(false);
-  const isFormValid = highestEducation;
+  const isFormValid = education;
   const handleEducationLevelChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const selectedValue = event.target.value;
-    setHighestEducation(selectedValue as EducationLevel);
+    setEducation(selectedValue as EducationLevel);
     switch (selectedValue) {
       case EducationLevel.NA:
       case EducationLevel.HighSchoolDiploma:
@@ -65,7 +65,7 @@ const EducationBackground = ({
 
           <select
             id="education-select"
-            value={highestEducation || ""}
+            value={education || ""}
             onChange={handleEducationLevelChange}
             className=" border  w-full border-gray-500 rounded-lg "
           >
@@ -76,10 +76,10 @@ const EducationBackground = ({
             ))}
           </select>
           <div>
-            {highestEducation &&
-              highestEducation !== EducationLevel.NA &&
-              highestEducation !== EducationLevel.HighSchoolDiploma &&
-              highestEducation !== EducationLevel.GED && (
+            {education &&
+              education !== EducationLevel.NA &&
+              education !== EducationLevel.HighSchoolDiploma &&
+              education !== EducationLevel.GED && (
                 <div className="text-left">
                   <div className="text-left mt-2">
                     <label htmlFor="institution">Institution</label>{" "}
@@ -95,10 +95,10 @@ const EducationBackground = ({
               )}
           </div>
           <div>
-            {highestEducation &&
-              highestEducation !== EducationLevel.NA &&
-              highestEducation !== EducationLevel.HighSchoolDiploma &&
-              highestEducation !== EducationLevel.GED && (
+            {education &&
+              education !== EducationLevel.NA &&
+              education !== EducationLevel.HighSchoolDiploma &&
+              education !== EducationLevel.GED && (
                 <div className="text-left mt-2">
                   <label htmlFor="degree" className="font-medium">
                     Field of study
@@ -118,7 +118,7 @@ const EducationBackground = ({
                   Do you have experience coding?
                 </div>
                 <textarea
-                  onChange={(e) => setExperienceCoding(e.target.value)}
+                  onChange={(e) => setExperience(e.target.value)}
                   className="w-full border border-gray-500 rounded-lg  px-10 resize-none"
                 />
               </div>

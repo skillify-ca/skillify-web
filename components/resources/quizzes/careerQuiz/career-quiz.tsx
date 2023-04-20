@@ -1,6 +1,4 @@
-import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
-import { UPSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
 
 import { quizData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz";
 import { QuizTransition } from "../../../ui/animations/QuizTransition";
@@ -35,7 +33,6 @@ export enum Stage {
 const CareerQuiz = () => {
   const [name, setName] = useState<string>("");
 
-  const [education, setEducation] = useState<string>("");
   const [degree, setDegree] = useState<string>("");
   const [institution, setInstitution] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -44,19 +41,18 @@ const CareerQuiz = () => {
   const [result, setResult] = useState<string>("");
   const [tasks, setTasks] = useState<string[]>([]);
 
-  const [highestEducation, setHighestEducation] =
-    useState<EducationLevel | null>(null);
-  const [experienceCoding, setExperienceCoding] = useState<string>();
+  const [education, setEducation] = useState<EducationLevel | null>(null);
+  const [experience, setExperience] = useState<string>();
   const [id, setId] = useState();
 
-  const [saveUserSelections, { data }] = useMutation(
-    UPSERT_CAREER_QUIZ_RESPONSE,
-    {
-      onCompleted: () => {
-        setId(data.id);
-      },
-    }
-  );
+  // const [saveUserSelections, { data }] = useMutation(
+  //   UPSERT_CAREER_QUIZ_RESPONSE,
+  //   {
+  //     onCompleted: () => {
+  //       setId(data.id);
+  //     },
+  //   }
+  // );
 
   // create results state object that
   // create custom type -- based on schema type in database
@@ -71,23 +67,34 @@ const CareerQuiz = () => {
 
     setTimeout(() => {
       setTriggerAnimation(true);
-      alert("this broke");
-      saveUserSelections({
-        variables: {
-          objects: {
-            degree: degree,
-            institution: institution,
-            name: name,
-            email: email,
-            industries: industries,
-            skills: skills,
-            result: result,
-            tasks: tasks,
-            highestEducation: highestEducation,
-            experienceCoding: experienceCoding,
-          },
-        },
+      console.log("saveUsers", {
+        degree: degree,
+        institution: institution,
+        name: name,
+        email: email,
+        industries: industries,
+        skills: skills,
+        result: result,
+        tasks: tasks,
+        education: education,
+        experience: experience,
       });
+      // saveUserSelections({
+      //   variables: {
+      //     objects: {
+      //       degree: degree,
+      //       institution: institution,
+      //       name: name,
+      //       email: email,
+      //       industries: industries,
+      //       skills: skills,
+      //       result: result,
+      //       tasks: tasks,
+      //       education: education,
+      //       experience: experience,
+      //     },
+      //   },
+      // });
       if (
         stage == Stage.QUESTIONS &&
         quizViewState.currentQuestion < quizData.questions.length - 1
@@ -161,9 +168,9 @@ const CareerQuiz = () => {
                 onBackClick={handleBackClick}
                 setInstitution={setInstitution}
                 setDegree={setDegree}
-                setExperienceCoding={setExperienceCoding}
-                setHighestEducation={setHighestEducation}
-                highestEducation={highestEducation}
+                setExperience={setExperience}
+                setEducation={setEducation}
+                education={education}
               />
             );
 
