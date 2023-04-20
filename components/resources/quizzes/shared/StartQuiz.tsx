@@ -1,10 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "../../../ui/Button";
 import SkillifyNavbar from "./SkillifyNavbar";
 
 type StartQuizProps = {
   onNextClick: () => void;
-  startQuiz: () => void;
+  handleStartQuiz: () => void;
   title: string;
   body: string;
   setUserInput: any;
@@ -12,7 +12,7 @@ type StartQuizProps = {
 
 const StartQuiz = ({
   onNextClick,
-  startQuiz,
+  handleStartQuiz,
   body,
   title,
   setUserInput,
@@ -58,7 +58,7 @@ const StartQuiz = ({
           onClick={() => {
             onNextClick();
             setUserInput(userInputStartQuiz);
-            startQuiz();
+            handleStartQuiz();
           }}
         />
       </div>

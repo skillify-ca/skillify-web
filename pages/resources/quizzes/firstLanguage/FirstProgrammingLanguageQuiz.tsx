@@ -1,3 +1,4 @@
+import { useMutation } from "@apollo/client/react/hooks/useMutation";
 import React, { useState } from "react";
 import LanguageResults from "../../../../components/resources/quizzes/firstProgrammingLanguageQuiz/LanguageResults";
 import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
@@ -8,6 +9,7 @@ import {
   QuizViewState,
 } from "../../../../components/resources/quizzes/shared/types";
 import QuizTransition from "../../../../components/ui/animations/QuizTransition";
+import { INSERT_CODING_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertFirstProLang";
 import { quizData } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage";
 
 export enum Stage {
@@ -50,27 +52,37 @@ const FirstProgrammingLanguageQuiz = () => {
     email: "",
   });
 
-  // const [saveUserPreferences] = useMutation(INSERT_CODING_QUIZ_RESPONSE);
+  const [saveUserPreferences] = useMutation(INSERT_CODING_QUIZ_RESPONSE);
 
-  // const handleStartQuiz = () => {
-  //   saveUserPreferences({
-  //     variables: {
-  //       objects: [userInput],
-  //     },
-  //   });
-  // };
+  const handleStartQuiz = () => {
+    saveUserPreferences({
+      variables: {
+        objects: [userInput],
+      },
+    });
+  };
 
   /// shower thoughts - quizViewState contains all selected values. Just traverse quizViewState and leverage the index to update the appropriate db colomns. with the index.
-  // const exampleUserPreferences = [
-  //   {
-  //     name: "Angela",
-  //     email: "example@example.com",
-  //     industries: quizViewState.questions[0],
-  //     skills: ["Writing code", "Writing", "Math"],
-  //     tasks: ["Find trends in data"],
-  //     result: "Software Engineer",
-  //   },
-  // ];
+  // const handleFinalResults = () => {
+  //   const exampleUserPreferences = [
+  //     {
+  //       name: "Angela",
+  //       email: "example@example.com",
+  //       reasons: quizViewState.questions[0].options.map(
+  //         (option) => option.isSelected == true
+  //       ),
+  //       fields: quizViewState.questions[1].options.map(
+  //         (option) => option.isSelected == true
+  //       ),
+  //       interests: quizViewState.questions[2].options.map(
+  //         (option) => option.isSelected == true
+  //       ),
+  //       result: getPreferredLanguageForQuizResults(
+  //         computeLanguageScore(quizViewState)
+  //       ),
+  //     },
+  //   ];
+  // };
 
   const handleNextClick = () => {
     setTriggerAnimation(false);
@@ -130,7 +142,7 @@ const FirstProgrammingLanguageQuiz = () => {
           <StartQuiz
             onNextClick={handleNextClick}
             setUserInput={setUserInput}
-            startQuiz={startQuiz}
+            handleStartQuiz={handleStartQuiz}
             title={quizData.title}
             body={quizData.body}
           />
