@@ -10,15 +10,7 @@ export enum ModalStage {
   THREE,
 }
 
-export interface FreemiumDialogComponentProps {
-  trigger: boolean;
-  triggerTitle?: string;
-}
-
-const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
-  trigger,
-  children,
-}) => {
+const FreemiumDialogComponent: React.FC = () => {
   const { currentTheme } = useSelector(themeSelector);
   const [activeModal, setActiveModal] = useState(ModalStage.ONE);
 
@@ -33,8 +25,7 @@ const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
   const lastStage = stagesArray[stagesArray.length - 1];
 
   return (
-    <Root defaultOpen={!trigger}>
-      {trigger ? <Trigger asChild>{children}</Trigger> : null}
+    <Root defaultOpen={true}>
       <Portal>
         <Overlay className="bg-opacity-90 bg-gray-500 data-[state=open]:animate-overlayShow fixed inset-0" />
         <Content className={`${currentTheme}`}>
@@ -43,6 +34,7 @@ const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
               activeModal === ModalStage.TWO ? "bg-murkrow" : "bg-white"
             } rounded-lg left-1/2 top-1/2`}
           >
+            <div className="text-4xl">EXIT</div>
             {/* content rendered based on enum */}
             {getModalContent(activeModal)}
             <div className="flex flex-row justify-center items-center space-x-12 absolute bottom-0 bg-white p-4 inset-x-0">

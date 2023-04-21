@@ -1,6 +1,8 @@
-import React from "react";
-import { elapsedDays } from "../../../pages/api/studentPortal/freemium/elapsedDays";
-import { trialDaysRemaining } from "../../../pages/api/studentPortal/freemium/trialDaysRemaining";
+import {
+  calculateRemainingTrialDays,
+  elapsedDays,
+  TOTAL_TRIAL_DAYS,
+} from "../../../pages/api/studentPortal/freemium/helpers";
 import { Theme } from "../../../redux/themeSlice";
 import { Button } from "../../ui/Button";
 import ProgressComponent from "../../ui/ProgressComponent";
@@ -16,8 +18,6 @@ export const FreemiumHeader = ({
   theme = Theme.DEFAULT,
   createdAt,
 }: FreemiumHeaderProps) => {
-  const TOTAL_TRIAL_DAYS = 30;
-
   return (
     <div className="grid w-full h-16 grid-cols-6 border-b-2 bg-backgroundPrimary">
       <div className="col-span-2 flex items-center pl-4">
@@ -37,8 +37,8 @@ export const FreemiumHeader = ({
             totalValue={TOTAL_TRIAL_DAYS}
           />
           <p className="text-xs mt-1 text-gray-500">
-            {trialDaysRemaining(createdAt, TOTAL_TRIAL_DAYS)}/{TOTAL_TRIAL_DAYS}{" "}
-            days remaining
+            {calculateRemainingTrialDays(createdAt)}/{TOTAL_TRIAL_DAYS} days
+            remaining
           </p>
         </div>
         <a href="https://www.joinskillify.com/call">
