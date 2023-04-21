@@ -10,8 +10,11 @@ import { useAuth } from "../../../lib/authContext";
 import { profileSelector } from "../../../redux/profileSlice";
 import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
 import { setTheme, Theme, themeSelector } from "../../../redux/themeSlice";
+import FreemiumDialogComponent from "../freemium/FreemiumDialogueComponent";
+import FreemiumExitComponent from "../freemium/FreemiumExitComponent";
 import { FreemiumHeader } from "../freemium/FreemiumHeader";
 import Sidebar from "./Sidebar";
+import { useLastSeenModal } from "./useLastSeenModal";
 
 export const Layout: React.FC = ({ children }) => {
   const [active, setActive] = useState(false);
@@ -35,6 +38,12 @@ export const Layout: React.FC = ({ children }) => {
     },
     fetchPolicy: "cache-and-network",
   });
+
+  const { showOnboardingModal, showExitModal } = useLastSeenModal(
+    user.uid,
+    userRole,
+    createdAt
+  );
 
   return (
     <div className={`flex flex-col h-full bg-white ${currentTheme}`}>
@@ -98,6 +107,8 @@ export const Layout: React.FC = ({ children }) => {
       >
         <Sidebar />
       </div>
+      {showOnboardingModal && <FreemiumDialogComponent />}
+      {showExitModal && <FreemiumExitComponent />}
     </div>
   );
 };
