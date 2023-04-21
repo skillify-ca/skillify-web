@@ -1,4 +1,11 @@
-import { Close, Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
+import {
+  Close,
+  Content,
+  Overlay,
+  Portal,
+  Root,
+  Trigger,
+} from "@radix-ui/react-dialog";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { getModalContent } from "../../../pages/api/studentPortal/freemium/getModalContent";
