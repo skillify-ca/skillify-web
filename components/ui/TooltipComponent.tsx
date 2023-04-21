@@ -14,42 +14,48 @@ export interface TooltipComponentProps {
   icon?: string;
 }
 
-const TooltipComponent: React.FC<TooltipComponentProps> = ({
+export const TooltipComponent: React.FC<TooltipComponentProps> = ({
   children,
   message,
   icon,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
 
-  const handleOpenChange = (open: boolean) => {
-    setIsOpen(open);
+  const handleModalToggle = () => {
+    setModalOpen(!isModalOpen);
   };
+
   return (
     <Provider>
-      <Root onOpenChange={handleOpenChange}>
+      <Root>
         <Trigger asChild>{children}</Trigger>
         <Portal>
           <Content
             className={`data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade select-none rounded-lg bg-white p-2 text-base leading-none shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] will-change-[transform,opacity]`}
             sideOffset={0}
             align="center"
-            style={{ whiteSpace: "normal", width: "200px", lineHeight: "1.5" }}
+            style={{
+              whiteSpace: "normal",
+              width: "200px",
+              lineHeight: "1.5",
+            }}
           >
             <div className="flex flex-row items-center">
               {message}
               {icon && (
-                <FreemiumDialogComponent trigger={true}>
+                <div onClick={handleModalToggle}>
                   <img
                     src={icon}
-                    className="w-10 h-10 info-icon animate-iconPulse hover:bg-backgroundhover rounded-full p-2"
+                    className="w-12 h-12 info-icon animate-iconPulse hover:bg-backgroundhover rounded-full p-2"
                   />
-                </FreemiumDialogComponent>
+                </div>
               )}
             </div>
             <Arrow className="fill-white w-4 h-2" />
           </Content>
         </Portal>
       </Root>
+      {isModalOpen && <FreemiumDialogComponent trigger={false} />}
     </Provider>
   );
 };
