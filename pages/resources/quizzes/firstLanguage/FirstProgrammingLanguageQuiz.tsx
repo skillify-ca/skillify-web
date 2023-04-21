@@ -9,8 +9,10 @@ import {
   QuizViewState,
 } from "../../../../components/resources/quizzes/shared/types";
 import QuizTransition from "../../../../components/ui/animations/QuizTransition";
-import { INSERT_CODING_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertFirstProLang";
+import { UPSERT_CODING_LANGUAGE_QUIZ_RESPONSE } from "../../../../graphql/quizzes/upsertCodingLanguageQuiz";
 import { quizData } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage";
+import { computeLanguageScore } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage/computeScore";
+import { getPreferredLanguageForQuizResults } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage/getPreferredLanguage";
 
 export enum Stage {
   START,
@@ -35,11 +37,6 @@ const initializeQuizViewState = {
   progress: 0,
 };
 
-// export type UserInput = {
-//   name: string;
-//   email: string;
-// };
-
 const FirstProgrammingLanguageQuiz = () => {
   const [stage, setStage] = useState(Stage.START);
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(
@@ -47,12 +44,11 @@ const FirstProgrammingLanguageQuiz = () => {
   );
   const [triggerAnimation, setTriggerAnimation] = useState(true);
 
-  const [userInput, setUserInput] = useState({
-    name: "",
-    email: "",
-  });
+  const [userInput, setUserInput] = useState<{ name: string; email: string }>();
 
-  const [saveUserPreferences] = useMutation(INSERT_CODING_QUIZ_RESPONSE);
+  const [saveUserPreferences] = useMutation(
+    UPSERT_CODING_LANGUAGE_QUIZ_RESPONSE
+  );
 
   const handleStartQuiz = () => {
     saveUserPreferences({
@@ -62,27 +58,29 @@ const FirstProgrammingLanguageQuiz = () => {
     });
   };
 
-  /// shower thoughts - quizViewState contains all selected values. Just traverse quizViewState and leverage the index to update the appropriate db colomns. with the index.
-  // const handleFinalResults = () => {
-  //   const exampleUserPreferences = [
-  //     {
-  //       name: "Angela",
-  //       email: "example@example.com",
-  //       reasons: quizViewState.questions[0].options.map(
-  //         (option) => option.isSelected == true
-  //       ),
-  //       fields: quizViewState.questions[1].options.map(
-  //         (option) => option.isSelected == true
-  //       ),
-  //       interests: quizViewState.questions[2].options.map(
-  //         (option) => option.isSelected == true
-  //       ),
-  //       result: getPreferredLanguageForQuizResults(
-  //         computeLanguageScore(quizViewState)
-  //       ),
-  //     },
-  //   ];
-  // };
+  const handleDBLogic = (
+    quizViewState: QuizViewState,
+    userInput: { name: string; email: string }
+  ) => {
+    const finalResponseObject = [
+      {
+        name: userInput.name,
+        email: userInput.email,
+        reasons: quizViewState.questions[0].options.map(
+          (option) => option.isSelected == true
+        ),
+        fields: quizViewState.questions[1].options.map(
+          (option) => option.isSelected == true
+        ),
+        interests: quizViewState.questions[2].options.map(
+          (option) => option.isSelected == true
+        ),
+        result: getPreferredLanguageForQuizResults(
+          computeLanguageScore(quizViewState)
+        ),
+      },
+    ];
+  };
 
   const handleNextClick = () => {
     setTriggerAnimation(false);
