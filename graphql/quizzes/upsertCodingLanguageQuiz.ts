@@ -13,9 +13,7 @@ export const UPSERT_CODING_LANGUAGE_QUIZ_RESPONSE = gql`
     ) {
       affected_rows
       returning {
-        name
-        result
-        email
+        id
       }
     }
   }
