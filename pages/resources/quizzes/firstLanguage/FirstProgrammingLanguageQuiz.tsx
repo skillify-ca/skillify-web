@@ -44,19 +44,9 @@ const FirstProgrammingLanguageQuiz = () => {
   );
   const [triggerAnimation, setTriggerAnimation] = useState(true);
 
-  const [userInput, setUserInput] = useState<{ name: string; email: string }>();
-
   const [saveUserPreferences] = useMutation(
     UPSERT_CODING_LANGUAGE_QUIZ_RESPONSE
   );
-
-  const handleStartQuiz = () => {
-    saveUserPreferences({
-      variables: {
-        objects: [userInput],
-      },
-    });
-  };
 
   const handleDBLogic = (
     quizViewState: QuizViewState,
@@ -139,8 +129,6 @@ const FirstProgrammingLanguageQuiz = () => {
         return (
           <StartQuiz
             onNextClick={handleNextClick}
-            setUserInput={setUserInput}
-            handleStartQuiz={handleStartQuiz}
             title={quizData.title}
             body={quizData.body}
           />
@@ -175,7 +163,6 @@ const FirstProgrammingLanguageQuiz = () => {
 
   return (
     <>
-      <div>{JSON.stringify(userInput)}</div>
       <QuizTransition triggerAnimation={triggerAnimation}>
         {renderStage()}
       </QuizTransition>

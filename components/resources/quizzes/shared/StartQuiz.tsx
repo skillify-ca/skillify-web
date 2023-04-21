@@ -1,30 +1,30 @@
+import { useMutation } from "@apollo/client/react/hooks/useMutation";
 import React, { useState } from "react";
+import { UPSERT_CODING_LANGUAGE_QUIZ_RESPONSE } from "../../../../graphql/quizzes/upsertCodingLanguageQuiz";
 import { Button } from "../../../ui/Button";
 import SkillifyNavbar from "./SkillifyNavbar";
 
 type StartQuizProps = {
   onNextClick: () => void;
-  handleStartQuiz: () => void;
   title: string;
   body: string;
-  setUserInput: any;
 };
 
-const StartQuiz = ({
-  onNextClick,
-  handleStartQuiz,
-  body,
-  title,
-  setUserInput,
-}: StartQuizProps) => {
-  const [userInputStartQuiz, setUserInputStartQuiz] = useState({
+const StartQuiz = ({ onNextClick, body, title }: StartQuizProps) => {
+  const [userInput, setUserInput] = useState({
     name: "",
     email: "",
   });
 
+  const [saveUserInputs] = useMutation(UPSERT_CODING_LANGUAGE_QUIZ_RESPONSE);
+
+  const handleSaveUserInputs = (userInput: { name: string; email: string }) => {
+    saveUserInputs({ variables: { objects: userInput } });
+  };
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setUserInputStartQuiz({ ...userInputStartQuiz, [name]: value });
+    setUserInput({ ...userInput, [name]: value });
   };
 
   return (
@@ -39,7 +39,7 @@ const StartQuiz = ({
           <input
             type="text"
             name="name"
-            value={userInputStartQuiz.name}
+            value={userInput.name}
             onChange={handleInputChange}
             className="w-4/5 ml-8 border border-gray-500 rounded-lg shadow appearance-none"
           ></input>
@@ -47,7 +47,7 @@ const StartQuiz = ({
           <input
             type="email"
             name="email"
-            value={userInputStartQuiz.email}
+            value={userInput.email}
             onChange={handleInputChange}
             className="w-4/5 ml-8 border border-gray-500 rounded-lg shadow appearance-none"
           ></input>
@@ -55,10 +55,10 @@ const StartQuiz = ({
         <Button
           backgroundColor="yellow"
           label="Start Quiz"
+          disabled={userInput.name.length == 0 && userInput.email.length == 0}
           onClick={() => {
             onNextClick();
-            setUserInput(userInputStartQuiz);
-            handleStartQuiz();
+            handleSaveUserInputs(userInput);
           }}
         />
       </div>
