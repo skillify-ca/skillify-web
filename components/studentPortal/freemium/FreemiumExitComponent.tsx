@@ -1,3 +1,4 @@
+
 import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -9,6 +10,7 @@ const FreemiumDialogComponent: React.FC = () => {
 
   return (
     <Root open={true}>
+
       <Portal>
         <Overlay className="bg-opacity-90 bg-gray-500 data-[state=open]:animate-overlayShow fixed inset-0" />
         <Content className={`${currentTheme}`}>
@@ -17,6 +19,7 @@ const FreemiumDialogComponent: React.FC = () => {
              bg-murkrow rounded-lg left-1/2 top-1/2"
           >
             <Exit />
+
           </div>
         </Content>
       </Portal>

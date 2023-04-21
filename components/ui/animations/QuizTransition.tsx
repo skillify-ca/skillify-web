@@ -7,11 +7,16 @@ export const QuizTransition: React.FC<{
 }> = ({ triggerAnimation, children }) => {
   const items = React.Children.toArray(children);
   const spring = useSpring({
-    config: { mass: 2, tension: 400, friction: 160, duration: 100 },
+    config: {
+      mass: 1,
+      tension: 120,
+      friction: 14,
+      duration: 300,
+      ease: "easeInOut",
+    },
     opacity: triggerAnimation ? 1 : 0,
-    x: open ? 0 : 0,
-    height: open ? "auto" : 0,
-    from: { opacity: 0, y: 0, height: 0 },
+    transform: triggerAnimation ? "translateX(0)" : "translateX(-100%)",
+    from: { opacity: 0, transform: "translateX(-100%)" },
   });
   return (
     <div>
