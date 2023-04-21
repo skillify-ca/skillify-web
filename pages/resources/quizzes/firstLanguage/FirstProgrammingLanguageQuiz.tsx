@@ -39,6 +39,7 @@ const initializeQuizViewState = {
 
 const FirstProgrammingLanguageQuiz = () => {
   const [stage, setStage] = useState(Stage.START);
+  const [quizResponseId, setQuizResponseId] = useState<number>();
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(
     initializeQuizViewState
   );
@@ -131,6 +132,8 @@ const FirstProgrammingLanguageQuiz = () => {
             onNextClick={handleNextClick}
             title={quizData.title}
             body={quizData.body}
+            quizResponseId={quizResponseId}
+            setQuizResponsedId={setQuizResponseId}
           />
         );
       case Stage.QUESTIONS:
@@ -147,6 +150,7 @@ const FirstProgrammingLanguageQuiz = () => {
           <BluePrint
             onNextClick={handleNextClick}
             onBackClick={handleBackClick}
+            quizResponseId={quizResponseId}
           />
         );
       case Stage.RESULTS:
