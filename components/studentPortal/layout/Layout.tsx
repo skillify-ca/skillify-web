@@ -1,25 +1,20 @@
-import { useMutation, useQuery } from "@apollo/client";
-import { addDays, differenceInHours, format } from "date-fns";
+import { useQuery } from "@apollo/client";
+import { addDays, format } from "date-fns";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  FETCH_LAST_SEEN_MODAL,
-  FetchModalData,
-} from "../../../graphql/studentPortal/freemium/fetchLastSeenModal";
-import { UPSERT_LAST_SEEN_MODAL } from "../../../graphql/studentPortal/freemium/upsertLastSeenModal";
-import {
-  FETCH_USER_GOALS_COUNT,
   FetchGoalCountResponse,
+  FETCH_USER_GOALS_COUNT,
 } from "../../../graphql/studentPortal/goals/fetchUserGoalsCount";
 import { useAuth } from "../../../lib/authContext";
-import { calculateRemainingTrialDays } from "../../../pages/api/studentPortal/freemium/helpers";
 import { profileSelector } from "../../../redux/profileSlice";
 import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
-import { Theme, setTheme, themeSelector } from "../../../redux/themeSlice";
+import { setTheme, Theme, themeSelector } from "../../../redux/themeSlice";
 import FreemiumDialogComponent from "../freemium/FreemiumDialogueComponent";
 import FreemiumExitComponent from "../freemium/FreemiumExitComponent";
 import { FreemiumHeader } from "../freemium/FreemiumHeader";
 import Sidebar from "./Sidebar";
+import { useLastSeenModal } from "./useLastSeenModal";
 
 export const Layout: React.FC = ({ children }) => {
   const [active, setActive] = useState(false);
@@ -44,40 +39,11 @@ export const Layout: React.FC = ({ children }) => {
     fetchPolicy: "cache-and-network",
   });
 
-  const [updateLastSeenModal] = useMutation(UPSERT_LAST_SEEN_MODAL);
-  const [showOnboardingModal, setShowOnboardingModal] = useState(false);
-  const [showExitModal, setShowExitModal] = useState(false);
-
-  useQuery<FetchModalData>(FETCH_LAST_SEEN_MODAL, {
-    variables: {
-      userId: user.uid,
-    },
-    skip: userRole != "paid" && userRole != "freemium",
-
-    onCompleted: (data) => {
-      const trialDaysRemaining = calculateRemainingTrialDays(createdAt);
-
-      const lastSeenValue = data.freemium_users[0]?.lastSeenModal;
-
-      const lastSeenDifference = lastSeenValue
-        ? differenceInHours(new Date(), new Date(lastSeenValue))
-        : null;
-
-      // check whether trial has expired and show exit modal
-      if (trialDaysRemaining === 0) {
-        console.log("createdAt", createdAt);
-        setShowExitModal(true);
-      } else {
-        // check whether user has seen onboarding modal in the last 24 hours
-        if (lastSeenDifference > 24 || !lastSeenValue) {
-          setShowOnboardingModal(true);
-          updateLastSeenModal({
-            variables: { userId: user.uid, lastSeenModal: new Date() },
-          });
-        }
-      }
-    },
-  });
+  const { showOnboardingModal, showExitModal } = useLastSeenModal(
+    user.uid,
+    userRole,
+    createdAt
+  );
 
   return (
     <div className={`flex flex-col h-full bg-white ${currentTheme}`}>
