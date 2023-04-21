@@ -8,15 +8,36 @@ type StartQuizProps = {
   onNextClick: () => void;
   title: string;
   body: string;
+  quizResponseId: number | undefined;
+  setQuizResponsedId: (id: number) => void;
 };
 
-const StartQuiz = ({ onNextClick, body, title }: StartQuizProps) => {
+const StartQuiz = ({
+  onNextClick,
+  body,
+  title,
+  quizResponseId,
+  setQuizResponsedId,
+}: StartQuizProps) => {
   const [userInput, setUserInput] = useState({
     name: "",
     email: "",
   });
 
-  const [saveUserInputs] = useMutation(UPSERT_CODING_LANGUAGE_QUIZ_RESPONSE);
+  const [saveUserInputs] = useMutation(UPSERT_CODING_LANGUAGE_QUIZ_RESPONSE, {
+    onCompleted: (data) => {
+      console.log("quiz response id before setting", quizResponseId);
+      if (!quizResponseId) {
+        console.log(
+          "quiz response inside if statement from query",
+          data.insert_coding_language_quiz.returning[0].id
+        );
+        setQuizResponsedId(
+          parseInt(data.insert_coding_language_quiz.returning[0].id)
+        );
+      }
+    },
+  });
 
   const handleSaveUserInputs = (userInput: { name: string; email: string }) => {
     saveUserInputs({ variables: { objects: userInput } });

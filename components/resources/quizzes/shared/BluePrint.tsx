@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "../../../ui/Button";
 import NumberedCircles from "./NumberedCircles";
 import ProgressBar from "./Progress";
@@ -6,11 +5,17 @@ import SkillifyNavbar from "./SkillifyNavbar";
 type BluePrintProps = {
   onNextClick: () => void;
   onBackClick: () => void;
+  quizResponseId: number | undefined;
 };
 
-const BluePrint = ({ onNextClick, onBackClick }: BluePrintProps) => {
+const BluePrint = ({
+  onNextClick,
+  onBackClick,
+  quizResponseId,
+}: BluePrintProps) => {
   return (
     <div>
+      <p>quiz respone id: {quizResponseId}</p>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
       <div className="w-full mb-4 px-8 text-center">
         <ProgressBar progress={100} />
