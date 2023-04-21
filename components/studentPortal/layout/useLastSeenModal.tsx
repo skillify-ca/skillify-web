@@ -48,5 +48,5 @@ export const useLastSeenModal = (
     },
   });
 
-  return { showOnboardingModal, setShowOnboardingModal, showExitModal };
+  return { showOnboardingModal, showExitModal };
 };
