@@ -25,7 +25,7 @@ const FreemiumDialogComponent: React.FC = () => {
   const lastStage = stagesArray[stagesArray.length - 1];
 
   return (
-    <Root open={true}>
+    <Root defaultOpen={true}>
       <Portal>
         <Overlay className="bg-opacity-90 bg-gray-500 data-[state=open]:animate-overlayShow fixed inset-0" />
         <Content className={`${currentTheme}`}>
