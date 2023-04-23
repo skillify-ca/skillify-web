@@ -49,28 +49,27 @@ const FirstProgrammingLanguageQuiz = () => {
     UPSERT_CODING_LANGUAGE_QUIZ_RESPONSE
   );
 
-  const handleDBLogic = (
-    quizViewState: QuizViewState,
-    userInput: { name: string; email: string }
-  ) => {
+  const handleDBLogic = () => {
     const finalResponseObject = [
       {
-        name: userInput.name,
-        email: userInput.email,
-        reasons: quizViewState.questions[0].options.map(
-          (option) => option.isSelected == true
-        ),
-        fields: quizViewState.questions[1].options.map(
-          (option) => option.isSelected == true
-        ),
-        interests: quizViewState.questions[2].options.map(
-          (option) => option.isSelected == true
-        ),
+        name: "sunny",
+        email: "suri",
+        id: quizResponseId,
+        reasons: quizViewState.questions[0].options
+          .filter((option) => option.isSelected)
+          .map((option) => option.name),
+        fields: quizViewState.questions[1].options
+          .filter((option) => option.isSelected)
+          .map((option) => option.name),
+        interests: quizViewState.questions[2].options
+          .filter((option) => option.isSelected)
+          .map((option) => option.name),
         result: getPreferredLanguageForQuizResults(
           computeLanguageScore(quizViewState)
         ),
       },
     ];
+    saveUserPreferences({ variables: { objects: finalResponseObject } });
   };
 
   const handleNextClick = () => {
@@ -150,6 +149,7 @@ const FirstProgrammingLanguageQuiz = () => {
           <BluePrint
             onNextClick={handleNextClick}
             onBackClick={handleBackClick}
+            handleDBLogic={handleDBLogic}
             quizResponseId={quizResponseId}
           />
         );

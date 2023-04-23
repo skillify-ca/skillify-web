@@ -6,11 +6,13 @@ type BluePrintProps = {
   onNextClick: () => void;
   onBackClick: () => void;
   quizResponseId: number | undefined;
+  handleDBLogic: () => void;
 };
 
 const BluePrint = ({
   onNextClick,
   onBackClick,
+  handleDBLogic,
   quizResponseId,
 }: BluePrintProps) => {
   return (
@@ -45,7 +47,10 @@ const BluePrint = ({
       <div className="grid py-6 place-items-center">
         <Button
           label="View results"
-          onClick={onNextClick}
+          onClick={() => {
+            onNextClick();
+            handleDBLogic();
+          }}
           backgroundColor="yellow"
         />
       </div>
