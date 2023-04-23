@@ -1,5 +1,6 @@
 import router from "next/router";
-import React, { useState } from "react";
+import { useState } from "react";
+import LandingNavbar from "../components/landingPage/LandingNavbar";
 import PlansCard from "../components/studentPortal/freemium/PlansCard";
 import SignInPage from "../components/welcomePage/SignInPage";
 
@@ -20,6 +21,7 @@ const Plans = ({ plansCardData }) => {
         <SignInPage />
       ) : (
         <div>
+          <LandingNavbar />
           <div className="flex flex-col items-center justify-center space-y-2 mb-8">
             <h1 className="text-charmander text-3xl font-bold text-center p-4">
               Pick the Plan That's Right For You
@@ -126,3 +128,7 @@ export async function getServerSideProps() {
 }
 
 export default Plans;
+
+Plans.getLayout = function getLayout(page) {
+  return <div>{page}</div>;
+};
