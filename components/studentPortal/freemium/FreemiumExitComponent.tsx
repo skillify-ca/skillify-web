@@ -34,6 +34,7 @@ const FreemiumDialogComponent: React.FC = () => {
               activeModal === ModalStage.TWO ? "bg-murkrow" : "bg-white"
             } rounded-lg left-1/2 top-1/2`}
           >
+            <div className="text-4xl">EXIT</div>
             {/* content rendered based on enum */}
             {getModalContent(activeModal)}
             <div className="flex flex-row justify-center items-center space-x-12 absolute bottom-0 bg-white p-4 inset-x-0">
