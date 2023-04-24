@@ -6,7 +6,7 @@ const handlePlansSignUp = () => {
   router.push("/plans");
 };
 
-export default function Exit() {
+export default function ExitModal() {
   return (
     <div className="flex flex-col justify-center items-center space-y-8 h-full">
       <div className="text-white text-center text-lg md:text-3xl font-bold my-10 md:my-0">
