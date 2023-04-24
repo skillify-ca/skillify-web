@@ -54,12 +54,7 @@ const FirstProgrammingLanguageQuiz = () => {
 
   const [saveUserInputs] = useMutation(UPSERT_CODING_LANGUAGE_QUIZ_RESPONSE, {
     onCompleted: (data) => {
-      console.log("quiz response id before setting", quizResponseId);
       if (!quizResponseId) {
-        console.log(
-          "quiz response inside if statement from query",
-          data.insert_coding_language_quiz.returning[0].id
-        );
         setQuizResponseId(
           parseInt(data.insert_coding_language_quiz.returning[0].id)
         );
