@@ -1,5 +1,5 @@
 import router from "next/router";
-import { useState } from "react";
+import React, { useState } from "react";
 import LandingNavbar from "../components/landingPage/LandingNavbar";
 import PlansCard from "../components/studentPortal/freemium/PlansCard";
 import SignInPage from "../components/welcomePage/SignInPage";
