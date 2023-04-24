@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { getModalContent } from "../../../pages/api/studentPortal/freemium/getModalContent";
 import { themeSelector } from "../../../redux/themeSlice";
+import FadeAnimation from "../../ui/animations/FadeAnimation";
 
 export enum ModalStage {
   ONE,
@@ -49,6 +50,7 @@ const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
       {trigger ? <Trigger asChild>{children}</Trigger> : null}
       <Portal>
         <Overlay className="bg-opacity-90 bg-gray-500 data-[state=open]:animate-overlayShow fixed inset-0" />
+
         <Content className={`${currentTheme}`}>
           <div
             className={`fixed h-[450px] w-[300px] md:h-[600px] md:w-[900px] p-4 md:p-20 transform -translate-x-1/2 -translate-y-1/2 ${
@@ -56,7 +58,9 @@ const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
             } rounded-lg left-1/2 top-1/2`}
           >
             {/* content rendered based on enum */}
-            {getModalContent(activeModal)}
+            <FadeAnimation key={activeModal} triggerAnimation={true}>
+              {getModalContent(activeModal)}
+            </FadeAnimation>
             <div className="flex flex-row justify-center items-center space-x-12 absolute bottom-0 bg-white p-4 inset-x-0">
               {/* no button/back button */}
               {activeModal > ModalStage.ONE ? (
