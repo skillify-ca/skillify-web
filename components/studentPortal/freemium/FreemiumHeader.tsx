@@ -22,7 +22,10 @@ export const FreemiumHeader = ({
 }: FreemiumHeaderProps) => {
   return (
     <div className="grid w-full h-16 grid-cols-7 border-b-2 bg-backgroundPrimary">
-      <div onClick={handleMenuIconClick} className="flex items-center pl-4">
+      <div
+        onClick={handleMenuIconClick}
+        className="flex md:hidden items-center pl-4"
+      >
         <div className="cursor-pointer text-textPrimary lg:hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +37,7 @@ export const FreemiumHeader = ({
           </svg>
         </div>
       </div>
-      <div className="col-span-2 flex items-center pl-4">
+      <div className="md:col-span-3 col-span-2 flex items-center pl-4">
         {theme === Theme.DEFAULT ? (
           <img className="w-48 h-8 " src="/images/logo.svg" />
         ) : theme === Theme.DRACULA ? (
