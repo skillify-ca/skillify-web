@@ -21,7 +21,7 @@ export const FreemiumHeader = ({
   createdAt,
 }: FreemiumHeaderProps) => {
   return (
-    <div className="grid w-full h-16 grid-cols-6 border-b-2 bg-backgroundPrimary">
+    <div className="grid w-full h-16 grid-cols-7 border-b-2 bg-backgroundPrimary">
       <div onClick={handleMenuIconClick} className="flex items-center pl-4">
         <div className="cursor-pointer text-textPrimary lg:hidden">
           <svg
