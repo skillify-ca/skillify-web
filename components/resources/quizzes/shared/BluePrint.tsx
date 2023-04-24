@@ -1,23 +1,32 @@
+import { computeLanguageScore } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/computeScore";
+import { getPreferredLanguageForQuizResults } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/getPreferredLanguage";
 import { Button } from "../../../ui/Button";
 import NumberedCircles from "./NumberedCircles";
 import ProgressBar from "./Progress";
 import SkillifyNavbar from "./SkillifyNavbar";
+import { QuizViewState } from "./types";
 type BluePrintProps = {
   onNextClick: () => void;
   onBackClick: () => void;
-  quizResponseId: number | undefined;
-  handleDBLogic: () => void;
+  quizViewState: QuizViewState;
+  handleQuizResponseMutations: (
+    quizViewState: QuizViewState,
+    result: string
+  ) => void;
 };
 
 const BluePrint = ({
   onNextClick,
   onBackClick,
-  handleDBLogic,
-  quizResponseId,
+  handleQuizResponseMutations,
+  quizViewState,
 }: BluePrintProps) => {
+  const result = getPreferredLanguageForQuizResults(
+    computeLanguageScore(quizViewState)
+  );
+
   return (
     <div>
-      <p>quiz respone id: {quizResponseId}</p>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
       <div className="w-full mb-4 px-8 text-center">
         <ProgressBar progress={100} />
@@ -49,7 +58,7 @@ const BluePrint = ({
           label="View results"
           onClick={() => {
             onNextClick();
-            handleDBLogic();
+            handleQuizResponseMutations(quizViewState, result);
           }}
           backgroundColor="yellow"
         />

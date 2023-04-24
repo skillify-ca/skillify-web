@@ -1,6 +1,4 @@
-import { useMutation } from "@apollo/client/react/hooks/useMutation";
-import React, { useState } from "react";
-import { UPSERT_CODING_LANGUAGE_QUIZ_RESPONSE } from "../../../../graphql/quizzes/upsertCodingLanguageQuiz";
+import React from "react";
 import { Button } from "../../../ui/Button";
 import SkillifyNavbar from "./SkillifyNavbar";
 
@@ -8,41 +6,25 @@ type StartQuizProps = {
   onNextClick: () => void;
   title: string;
   body: string;
-  quizResponseId: number | undefined;
-  setQuizResponsedId: (id: number) => void;
+  userInput: {
+    name: string;
+    email: string;
+  };
+  setUserInput: (userInput: { name: string; email: string }) => void;
+  handleUserInputMutations: (userInput: {
+    name: string;
+    email: string;
+  }) => void;
 };
 
 const StartQuiz = ({
   onNextClick,
   body,
   title,
-  quizResponseId,
-  setQuizResponsedId,
+  userInput,
+  setUserInput,
+  handleUserInputMutations,
 }: StartQuizProps) => {
-  const [userInput, setUserInput] = useState({
-    name: "",
-    email: "",
-  });
-
-  const [saveUserInputs] = useMutation(UPSERT_CODING_LANGUAGE_QUIZ_RESPONSE, {
-    onCompleted: (data) => {
-      console.log("quiz response id before setting", quizResponseId);
-      if (!quizResponseId) {
-        console.log(
-          "quiz response inside if statement from query",
-          data.insert_coding_language_quiz.returning[0].id
-        );
-        setQuizResponsedId(
-          parseInt(data.insert_coding_language_quiz.returning[0].id)
-        );
-      }
-    },
-  });
-
-  const handleSaveUserInputs = (userInput: { name: string; email: string }) => {
-    saveUserInputs({ variables: { objects: userInput } });
-  };
-
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setUserInput({ ...userInput, [name]: value });
@@ -79,7 +61,7 @@ const StartQuiz = ({
           disabled={userInput.name.length == 0 && userInput.email.length == 0}
           onClick={() => {
             onNextClick();
-            handleSaveUserInputs(userInput);
+            handleUserInputMutations(userInput);
           }}
         />
       </div>
