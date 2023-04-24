@@ -1,9 +1,8 @@
-import React from "react";
 import { useAuth } from "../../../lib/authContext";
 import {
-  TOTAL_TRIAL_DAYS,
+  calculateRemainingTrialDays,
   elapsedDays,
-  trialDaysRemaining,
+  TOTAL_TRIAL_DAYS,
 } from "../../../pages/api/studentPortal/freemium/helpers";
 import ProgressComponent from "../../ui/ProgressComponent";
 
@@ -36,8 +35,8 @@ export default function UserProfileSection({
                 totalValue={TOTAL_TRIAL_DAYS}
               />
               <p className="text-xs mt-1 text-gray-500">
-                {trialDaysRemaining(createdAt, TOTAL_TRIAL_DAYS)}/
-                {TOTAL_TRIAL_DAYS} days remaining
+                {calculateRemainingTrialDays(createdAt)}/{TOTAL_TRIAL_DAYS} days
+                remaining
               </p>
             </div>
           </div>

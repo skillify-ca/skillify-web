@@ -1,8 +1,7 @@
-import React from "react";
 import {
-  TOTAL_TRIAL_DAYS,
+  calculateRemainingTrialDays,
   elapsedDays,
-  trialDaysRemaining,
+  TOTAL_TRIAL_DAYS,
 } from "../../../pages/api/studentPortal/freemium/helpers";
 import { Theme } from "../../../redux/themeSlice";
 import { Button } from "../../ui/Button";
@@ -38,8 +37,8 @@ export const FreemiumHeader = ({
             totalValue={TOTAL_TRIAL_DAYS}
           />
           <p className="text-xs mt-1 text-gray-500">
-            {trialDaysRemaining(createdAt, TOTAL_TRIAL_DAYS)}/{TOTAL_TRIAL_DAYS}{" "}
-            days remaining
+            {calculateRemainingTrialDays(createdAt)}/{TOTAL_TRIAL_DAYS} days
+            remaining
           </p>
         </div>
         <a href="https://www.joinskillify.com/call">
