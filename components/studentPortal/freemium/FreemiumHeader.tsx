@@ -1,3 +1,4 @@
+import React from "react";
 import {
   calculateRemainingTrialDays,
   elapsedDays,
@@ -15,11 +16,24 @@ export type FreemiumHeaderProps = {
 };
 export const FreemiumHeader = ({
   handleToggleClick,
+  handleMenuIconClick,
   theme = Theme.DEFAULT,
   createdAt,
 }: FreemiumHeaderProps) => {
   return (
     <div className="grid w-full h-16 grid-cols-6 border-b-2 bg-backgroundPrimary">
+      <div onClick={handleMenuIconClick} className="flex items-center pl-4">
+        <div className="cursor-pointer text-textPrimary lg:hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-8 h-8"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" />
+          </svg>
+        </div>
+      </div>
       <div className="col-span-2 flex items-center pl-4">
         {theme === Theme.DEFAULT ? (
           <img className="w-48 h-8 " src="/images/logo.svg" />
