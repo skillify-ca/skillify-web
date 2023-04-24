@@ -16,7 +16,6 @@ export enum ModalStage {
   TWO,
   THREE,
 }
-
 export interface FreemiumDialogComponentProps {
   trigger: boolean;
   triggerTitle?: string;
@@ -39,7 +38,7 @@ const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
   const stagesArray = Object.values(ModalStage).filter(
     (stage) => !isNaN(Number(stage))
   );
-  const lastStage = stagesArray[stagesArray.length - 1];
+  const lastStage = stagesArray[stagesArray.length - 1] as ModalStage;
 
   return (
     <Root defaultOpen={!trigger} onOpenChange={onClose}>

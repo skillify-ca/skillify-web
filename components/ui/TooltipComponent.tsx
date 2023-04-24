@@ -23,7 +23,6 @@ export const TooltipComponent: React.FC<TooltipComponentProps> = ({
 
   const handleModalToggle = () => {
     setModalOpen(!isModalOpen);
-    console.log(isModalOpen);
   };
 
   const handleModalClose = () => {
