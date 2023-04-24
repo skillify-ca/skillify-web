@@ -20,15 +20,19 @@ export interface FreemiumDialogComponentProps {
   trigger: boolean;
   triggerTitle?: string;
   onClose: () => void;
+  startOnUpgradeModal: boolean;
 }
 
 const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
   trigger,
   children,
   onClose,
+  startOnUpgradeModal,
 }) => {
   const { currentTheme } = useSelector(themeSelector);
-  const [activeModal, setActiveModal] = useState(ModalStage.ONE);
+  const [activeModal, setActiveModal] = useState(
+    startOnUpgradeModal === true ? ModalStage.TWO : ModalStage.ONE
+  );
 
   const handleClickBack = () => setActiveModal(activeModal - 1);
   const handleClickNext = () => setActiveModal(activeModal + 1);

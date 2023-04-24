@@ -60,7 +60,11 @@ export const TooltipComponent: React.FC<TooltipComponentProps> = ({
         </Portal>
       </Root>
       {isModalOpen && (
-        <FreemiumDialogComponent trigger={false} onClose={handleModalClose} />
+        <FreemiumDialogComponent
+          trigger={false}
+          onClose={handleModalClose}
+          startOnUpgradeModal={true}
+        />
       )}
     </Provider>
   );
