@@ -23,6 +23,11 @@ export const TooltipComponent: React.FC<TooltipComponentProps> = ({
 
   const handleModalToggle = () => {
     setModalOpen(!isModalOpen);
+    console.log(isModalOpen);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -55,7 +60,9 @@ export const TooltipComponent: React.FC<TooltipComponentProps> = ({
           </Content>
         </Portal>
       </Root>
-      {isModalOpen && <FreemiumDialogComponent trigger={false} />}
+      {isModalOpen && (
+        <FreemiumDialogComponent trigger={false} onClose={handleModalClose} />
+      )}
     </Provider>
   );
 };
