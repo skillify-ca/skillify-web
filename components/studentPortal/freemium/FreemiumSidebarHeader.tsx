@@ -1,3 +1,4 @@
+import React from "react";
 import { useAuth } from "../../../lib/authContext";
 import {
   calculateRemainingTrialDays,
@@ -31,7 +32,7 @@ export default function UserProfileSection({
                 {"Prospective Student"}{" "}
               </p>
               <ProgressComponent
-                currentValue={elapsedDays(createdAt, TOTAL_TRIAL_DAYS)}
+                currentValue={elapsedDays(createdAt)}
                 totalValue={TOTAL_TRIAL_DAYS}
               />
               <p className="text-xs mt-1 text-gray-500">
