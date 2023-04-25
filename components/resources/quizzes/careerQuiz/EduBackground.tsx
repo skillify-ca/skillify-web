@@ -8,7 +8,7 @@ export type EduBackgroundProps = {
   setDegree: React.Dispatch<React.SetStateAction<string>>;
   setInstitution: React.Dispatch<React.SetStateAction<string>>;
   setExperience: React.Dispatch<React.SetStateAction<string>>;
-  education: EducationLevel;
+  selectedEducationLevel: EducationLevel;
   setEducation: React.Dispatch<React.SetStateAction<string>>;
 };
 
@@ -28,11 +28,11 @@ const EducationBackground = ({
   setInstitution,
   setDegree,
   setEducation,
-  education,
+  selectedEducationLevel,
   setExperience,
 }: EduBackgroundProps) => {
   const [showExperienceInput, setShowExperienceInput] = useState(false);
-  const isFormValid = education;
+  const isFormValid = selectedEducationLevel;
   const handleEducationLevelChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -65,7 +65,7 @@ const EducationBackground = ({
 
           <select
             id="education-select"
-            value={education || ""}
+            value={selectedEducationLevel || ""}
             onChange={handleEducationLevelChange}
             className=" border  w-full border-gray-500 rounded-lg "
           >
@@ -76,10 +76,10 @@ const EducationBackground = ({
             ))}
           </select>
           <div>
-            {education &&
-              education !== EducationLevel.NA &&
-              education !== EducationLevel.HighSchoolDiploma &&
-              education !== EducationLevel.GED && (
+            {selectedEducationLevel &&
+              selectedEducationLevel !== EducationLevel.NA &&
+              selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
+              selectedEducationLevel !== EducationLevel.GED && (
                 <div className="text-left">
                   <div className="text-left mt-2">
                     <label htmlFor="institution">Institution</label>{" "}
@@ -95,10 +95,10 @@ const EducationBackground = ({
               )}
           </div>
           <div>
-            {education &&
-              education !== EducationLevel.NA &&
-              education !== EducationLevel.HighSchoolDiploma &&
-              education !== EducationLevel.GED && (
+            {selectedEducationLevel &&
+              selectedEducationLevel !== EducationLevel.NA &&
+              selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
+              selectedEducationLevel !== EducationLevel.GED && (
                 <div className="text-left mt-2">
                   <label htmlFor="degree" className="font-medium">
                     Field of study
