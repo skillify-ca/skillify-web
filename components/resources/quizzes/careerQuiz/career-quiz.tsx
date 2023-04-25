@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { useMutation } from "@apollo/client";
 import { UPSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
@@ -81,6 +81,7 @@ const CareerQuiz = () => {
         degree: degree,
         institution: institution,
         id: quizResponseId,
+        experience: experience,
         industries: quizViewState.questions[0].options
           .filter((option) => option.isSelected)
           .map((option) => option.name),
