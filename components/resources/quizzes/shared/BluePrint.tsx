@@ -3,12 +3,24 @@ import { Button } from "../../../ui/Button";
 import NumberedCircles from "./NumberedCircles";
 import ProgressBar from "./Progress";
 import SkillifyNavbar from "./SkillifyNavbar";
+import { QuizViewState } from "./types";
 type BluePrintProps = {
   onNextClick: () => void;
   onBackClick: () => void;
+  quizViewState: QuizViewState;
+  handleQuizResponseMutations: (
+    quizViewState: QuizViewState,
+    result: string
+  ) => void;
 };
 
-const BluePrint = ({ onNextClick, onBackClick }: BluePrintProps) => {
+const BluePrint = ({
+  onNextClick,
+  onBackClick,
+  handleQuizResponseMutations,
+  quizViewState,
+}: BluePrintProps) => {
+  const result = "Software Engineer";
   return (
     <div>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
@@ -40,7 +52,10 @@ const BluePrint = ({ onNextClick, onBackClick }: BluePrintProps) => {
       <div className="grid py-6 place-items-center">
         <Button
           label="View results"
-          onClick={onNextClick}
+          onClick={() => {
+            onNextClick();
+            handleQuizResponseMutations(quizViewState, result);
+          }}
           backgroundColor="yellow"
         />
       </div>
