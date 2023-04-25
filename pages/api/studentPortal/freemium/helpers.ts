@@ -1,12 +1,12 @@
 import { addDays, differenceInCalendarDays } from "date-fns";
 
 import {
-    backendUnit,
-    githubUnit,
-    reactUnit,
-    tailwindUnit,
-    Unit,
-    webIntroUnit,
+  backendUnit,
+  githubUnit,
+  reactUnit,
+  tailwindUnit,
+  Unit,
+  webIntroUnit,
 } from "../units";
 
 //hard code TRIAL LENGTH DATE saved in this file. It is saved in only this place and then imported throughout the code base.
