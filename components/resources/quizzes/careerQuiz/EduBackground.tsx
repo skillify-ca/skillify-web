@@ -5,6 +5,11 @@ import SkillifyNavbar from "../shared/SkillifyNavbar";
 export type EduBackgroundProps = {
   onNextClick: () => void;
   onBackClick: () => void;
+  setDegree: React.Dispatch<React.SetStateAction<string>>;
+  setInstitution: React.Dispatch<React.SetStateAction<string>>;
+  setExperience: React.Dispatch<React.SetStateAction<string>>;
+  education: EducationLevel;
+  setEducation: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export enum EducationLevel {
@@ -20,19 +25,19 @@ export enum EducationLevel {
 const EducationBackground = ({
   onNextClick,
   onBackClick,
+  setInstitution,
+  setDegree,
+  setEducation,
+  education,
+  setExperience,
 }: EduBackgroundProps) => {
-  const [selectedEducationLevel, setSelectedEducationLevel] =
-    useState<EducationLevel | null>(null);
   const [showExperienceInput, setShowExperienceInput] = useState(false);
-  const [institution, setInstitution] = useState("");
-  const [degree, setDegree] = useState("");
-  const isFormValid = selectedEducationLevel;
+  const isFormValid = education;
   const handleEducationLevelChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const selectedValue = event.target.value;
-    setSelectedEducationLevel(selectedValue as EducationLevel);
-
+    setEducation(selectedValue as EducationLevel);
     switch (selectedValue) {
       case EducationLevel.NA:
       case EducationLevel.HighSchoolDiploma:
@@ -60,7 +65,7 @@ const EducationBackground = ({
 
           <select
             id="education-select"
-            value={selectedEducationLevel || ""}
+            value={education || ""}
             onChange={handleEducationLevelChange}
             className=" border  w-full border-gray-500 rounded-lg "
           >
@@ -71,10 +76,10 @@ const EducationBackground = ({
             ))}
           </select>
           <div>
-            {selectedEducationLevel &&
-              selectedEducationLevel !== EducationLevel.NA &&
-              selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
-              selectedEducationLevel !== EducationLevel.GED && (
+            {education &&
+              education !== EducationLevel.NA &&
+              education !== EducationLevel.HighSchoolDiploma &&
+              education !== EducationLevel.GED && (
                 <div className="text-left">
                   <div className="text-left mt-2">
                     <label htmlFor="institution">Institution</label>{" "}
@@ -82,7 +87,6 @@ const EducationBackground = ({
                       type="text"
                       name="institution"
                       id="institution"
-                      value={institution}
                       onChange={(e) => setInstitution(e.target.value)}
                       className="border w-full border-gray-500 rounded-lg px-10"
                     />
@@ -91,10 +95,10 @@ const EducationBackground = ({
               )}
           </div>
           <div>
-            {selectedEducationLevel &&
-              selectedEducationLevel !== EducationLevel.NA &&
-              selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
-              selectedEducationLevel !== EducationLevel.GED && (
+            {education &&
+              education !== EducationLevel.NA &&
+              education !== EducationLevel.HighSchoolDiploma &&
+              education !== EducationLevel.GED && (
                 <div className="text-left mt-2">
                   <label htmlFor="degree" className="font-medium">
                     Field of study
@@ -103,7 +107,6 @@ const EducationBackground = ({
                     type="text"
                     name="degree"
                     id="degree"
-                    value={degree}
                     onChange={(e) => setDegree(e.target.value)}
                     className="shadow  w-full appearance-none border border-gray-500 rounded-lg px-10"
                   />
@@ -115,7 +118,7 @@ const EducationBackground = ({
                   Do you have experience coding?
                 </div>
                 <textarea
-                  onChange={(e) => setDegree(e.target.value)}
+                  onChange={(e) => setExperience(e.target.value)}
                   className="w-full border border-gray-500 rounded-lg  px-10 resize-none"
                 />
               </div>
