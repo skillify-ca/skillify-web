@@ -32,7 +32,7 @@ const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
 }) => {
   const { currentTheme } = useSelector(themeSelector);
   const [activeModal, setActiveModal] = useState(
-    startOnUpgradeModal === true ? ModalStage.TWO : ModalStage.ONE
+    startOnUpgradeModal ? ModalStage.TWO : ModalStage.ONE
   );
 
   const handleClickBack = () => setActiveModal(activeModal - 1);
