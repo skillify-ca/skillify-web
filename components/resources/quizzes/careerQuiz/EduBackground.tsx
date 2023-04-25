@@ -8,7 +8,7 @@ export type EduBackgroundProps = {
   setDegree: React.Dispatch<React.SetStateAction<string>>;
   setInstitution: React.Dispatch<React.SetStateAction<string>>;
   setExperience: React.Dispatch<React.SetStateAction<string>>;
-  selectedEducationLevel: EducationLevel;
+  selectedEducationLevel: EducationLevel | string;
   setEducation: React.Dispatch<React.SetStateAction<string>>;
 };
 

@@ -33,14 +33,10 @@ export enum Stage {
   RESULTS,
 }
 const CareerQuiz = () => {
-  const [name, setName] = useState<string>("");
-
   const [degree, setDegree] = useState<string>("");
   const [institution, setInstitution] = useState<string>("");
-
-  const [education, setEducation] = useState<EducationLevel | null>(null);
-  const [experience, setExperience] = useState<string>();
-
+  const [education, setEducation] = useState<EducationLevel | string>("");
+  const [experience, setExperience] = useState<string>("");
   // create results state object that
   // create custom type -- based on schema type in database
   const [stage, setStage] = useState<Stage>(Stage.START);
