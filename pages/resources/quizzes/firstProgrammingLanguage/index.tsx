@@ -48,11 +48,7 @@ const FirstProgrammingLanguageQuiz = () => {
 
   const [triggerAnimation, setTriggerAnimation] = useState(true);
 
-  const [saveUserPreferences] = useMutation(
-    UPSERT_CODING_LANGUAGE_QUIZ_RESPONSE
-  );
-
-  const [saveUserInputs] = useMutation(UPSERT_CODING_LANGUAGE_QUIZ_RESPONSE, {
+  const [saveQuizResponse] = useMutation(UPSERT_CODING_LANGUAGE_QUIZ_RESPONSE, {
     onCompleted: (data) => {
       if (!quizResponseId) {
         setQuizResponseId(
@@ -66,7 +62,7 @@ const FirstProgrammingLanguageQuiz = () => {
     name: string;
     email: string;
   }) => {
-    saveUserInputs({ variables: { objects: userInput } });
+    saveQuizResponse({ variables: { objects: userInput } });
   };
 
   const handleQuizResponseMutations = (
@@ -90,7 +86,7 @@ const FirstProgrammingLanguageQuiz = () => {
         result: result,
       },
     ];
-    saveUserPreferences({ variables: { objects: finalResponseObject } });
+    saveQuizResponse({ variables: { objects: finalResponseObject } });
   };
 
   const handleNextClick = () => {
