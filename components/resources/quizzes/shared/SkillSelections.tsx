@@ -32,8 +32,9 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
     } else if (numberSelected < maxSelections) {
       setNumberSelected((prev) => prev + 1);
     }
-    if (numberSelected < maxSelections || option.isSelected)
+    if (numberSelected < maxSelections || option.isSelected) {
       handleOptionClick(option);
+    }
   };
 
   useEffect(
