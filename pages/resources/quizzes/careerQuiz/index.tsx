@@ -11,15 +11,8 @@ import {
 } from "../../../../components/resources/quizzes/shared/types";
 import { QuizTransition } from "../../../../components/ui/animations/QuizTransition";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
-import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz";
 
-export enum Stage {
-  START,
-  EDUCATION,
-  QUESTIONS,
-  BLUEPRINT,
-  RESULTS,
-}
+import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz/careerQuiz";
 const initializeQuizViewState = {
   title: quizData.title,
   body: quizData.body,
@@ -28,6 +21,7 @@ const initializeQuizViewState = {
       title: question.title,
       body: question.body,
       maxSelections: 3,
+
       options: question.options.map((option) => {
         return { ...option, isSelected: false };
       }),
@@ -36,6 +30,14 @@ const initializeQuizViewState = {
   currentQuestion: 0,
   progress: 0,
 };
+
+export enum Stage {
+  START,
+  EDUCATION,
+  QUESTIONS,
+  BLUEPRINT,
+  RESULTS,
+}
 const CareerQuiz = () => {
   const [saveUserPreferences] = useMutation(INSERT_CAREER_QUIZ_RESPONSE, {});
   const exampleUserPreferences = [
@@ -73,6 +75,12 @@ const CareerQuiz = () => {
         });
       } else setStage((prevStage) => prevStage + 1);
     }, 250); // adjust the delay time based on the animation duration
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
   const handleBackClick = () => {
     setTriggerAnimation(false);
@@ -94,7 +102,8 @@ const CareerQuiz = () => {
         questionOption.name === option.name
           ? {
               ...questionOption,
-              isSelected: !questionOption.isSelected,
+
+              isSelected: questionOption.isSelected ? false : true,
             }
           : questionOption
       ),
@@ -105,13 +114,8 @@ const CareerQuiz = () => {
       questions: selectedQuizOption,
     };
     setQuizViewState(updatedQuizViewState);
-    return;
+
   };
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth",
-  });
 
   // Render the appropriate component based on the stage
 
@@ -155,7 +159,13 @@ const CareerQuiz = () => {
               />
             );
           case Stage.RESULTS:
-            return <CareerResults onBackClick={handleBackClick} />;
+
+            return (
+              <CareerResults
+                quizViewState={quizViewState}
+                onBackClick={handleBackClick}
+              />
+            );
           default:
             return null;
         }
