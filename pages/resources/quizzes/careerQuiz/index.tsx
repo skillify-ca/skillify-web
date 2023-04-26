@@ -1,17 +1,32 @@
 import { useMutation } from "@apollo/client";
-import React, { useEffect, useState } from "react";
-import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
-import { quizData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz";
-import { QuizTransition } from "../../../ui/animations/QuizTransition";
-import BluePrint from "../shared/BluePrint";
-import SkillSelections, {
+import React, { useState } from "react";
+import CareerResults from "../../../../components/resources/quizzes/careerQuiz/CareerResults";
+import EduBackground from "../../../../components/resources/quizzes/careerQuiz/EduBackground";
+import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
+import SkillSelections from "../../../../components/resources/quizzes/shared/SkillSelections";
+import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz";
+import {
   QuizOptionViewState,
   QuizViewState,
-} from "../shared/SkillSelections";
-import StartQuiz from "../shared/StartQuiz";
-import CareerResults from "./CareerResults";
-import EduBackground from "./EduBackground";
-
+} from "../../../../components/resources/quizzes/shared/types";
+import { QuizTransition } from "../../../../components/ui/animations/QuizTransition";
+import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
+import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz/careerQuiz";
+const initializeQuizViewState = {
+  title: quizData.title,
+  body: quizData.body,
+  questions: quizData.questions.map((question) => {
+    return {
+      title: question.title,
+      body: question.body,
+      options: question.options.map((option) => {
+        return { ...option, isSelected: false };
+      }),
+    };
+  }),
+  currentQuestion: 0,
+  progress: 0,
+};
 export enum Stage {
   START,
   EDUCATION,
@@ -37,25 +52,9 @@ const CareerQuiz = () => {
   // create custom type -- based on schema type in database
   const [stage, setStage] = useState<Stage>(Stage.START);
   const [triggerAnimation, setTriggerAnimation] = useState(true);
-  const [quizViewState, setQuizViewState] = useState<QuizViewState>();
-
-  useEffect(() => {
-    const quizViewState = {
-      title: quizData.title,
-      body: quizData.body,
-      questions: quizData.questions.map((question) => {
-        return {
-          title: question.title,
-          body: question.body,
-          options: question.options,
-        };
-      }),
-      currentQuestion: 0,
-      progress: 0,
-    };
-
-    setQuizViewState(quizViewState);
-  }, []);
+  const [quizViewState, setQuizViewState] = useState<QuizViewState>(
+    initializeQuizViewState
+  );
 
   const handleNextClick = () => {
     setTriggerAnimation(false);
@@ -72,6 +71,11 @@ const CareerQuiz = () => {
         });
       } else setStage((prevStage) => prevStage + 1);
     }, 250); // adjust the delay time based on the animation duration
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
   const handleBackClick = () => {
     setTriggerAnimation(false);
@@ -91,7 +95,10 @@ const CareerQuiz = () => {
       ...question,
       options: question.options.map((questionOption) =>
         questionOption.name === option.name
-          ? { ...questionOption, isSelected: true }
+          ? {
+              ...questionOption,
+              isSelected: questionOption.isSelected ? false : true,
+            }
           : questionOption
       ),
     }));
@@ -100,15 +107,8 @@ const CareerQuiz = () => {
       ...quizViewState,
       questions: selectedQuizOption,
     };
-
     setQuizViewState(updatedQuizViewState);
   };
-
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth",
-  });
 
   // Render the appropriate component based on the stage
 
@@ -152,7 +152,12 @@ const CareerQuiz = () => {
               />
             );
           case Stage.RESULTS:
-            return <CareerResults onBackClick={handleBackClick} />;
+            return (
+              <CareerResults
+                quizViewState={quizViewState}
+                onBackClick={handleBackClick}
+              />
+            );
           default:
             return null;
         }
@@ -163,4 +168,8 @@ const CareerQuiz = () => {
 
 export default CareerQuiz;
 
-CareerQuiz.getLayout = function getLayout(page) {};
+function getLayout(page: React.ReactNode) {
+  return <div>{page}</div>;
+}
+
+CareerQuiz.getLayout = getLayout;
