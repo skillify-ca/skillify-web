@@ -67,7 +67,9 @@ const FirstProgrammingLanguageQuiz = () => {
   );
 
   //Update Mutation - Store the rest of the columns via id.
-  const [finalQuizResponse] = useMutation(UPDATE_CODING_LANGUAGE_QUIZ_RESPONSE);
+  const [updateQuizResponse] = useMutation(
+    UPDATE_CODING_LANGUAGE_QUIZ_RESPONSE
+  );
 
   const finalResponseObject = {
     id: quizResponseId || 0,
@@ -92,7 +94,7 @@ const FirstProgrammingLanguageQuiz = () => {
     if (stage == Stage.START) {
       createQuizResponse({ variables: userInput });
     } else if (stage == Stage.BLUEPRINT) {
-      finalQuizResponse({ variables: finalResponseObject });
+      updateQuizResponse({ variables: finalResponseObject });
     }
 
     setTimeout(() => {
