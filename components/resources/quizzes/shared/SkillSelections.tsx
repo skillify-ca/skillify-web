@@ -22,7 +22,6 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
 }) => {
   const { currentQuestion, questions } = quizViewState;
   const [numberSelected, setNumberSelected] = useState(0);
-
   const maxSelections = questions[currentQuestion].maxSelections;
   const titleForCurrentQuestion = questions[currentQuestion].title;
   const bodyForCurrentQuestion = questions[currentQuestion].body;
@@ -59,7 +58,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
         <div className="flex flex-col w-full max-w-4xl mx-auto">
           {optionsForCurrentQuestions.map((option, index) => {
             return (
-              <button
+              <div
                 key={index}
                 className={`flex items-start justify-start w-full px-4 py-2 my-2 cursor-pointer text-black-600 border-2 border-black-500 rounded-xl ${
                   option.isSelected ? "bg-violet-300" : "bg-white"
@@ -67,8 +66,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
                 onClick={() => handleClick(option)}
               >
                 {option.name}
-                {numberSelected}
-              </button>
+              </div>
             );
           })}
         </div>
