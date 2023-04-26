@@ -7,10 +7,14 @@ import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz
 import {
   QuizOptionViewState,
   QuizViewState,
+  UserInput,
 } from "../../../../components/resources/quizzes/shared/types";
 import QuizTransition from "../../../../components/ui/animations/QuizTransition";
-import { UPSERT_CODING_LANGUAGE_QUIZ_RESPONSE } from "../../../../graphql/quizzes/upsertCodingLanguageQuiz";
+import { INSERT_CODING_LANGUAGE_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCodingLanguageQuiz";
+import { UPDATE_CODING_LANGUAGE_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCodingLanguageQuiz";
 import { quizData } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage";
+import { computeLanguageScore } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage/computeScore";
+import { getPreferredLanguageForQuizResults } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage/getPreferredLanguage";
 
 export enum Stage {
   START,
@@ -19,6 +23,7 @@ export enum Stage {
   RESULTS,
 }
 
+//Initializing QuizViewState
 const initializeQuizViewState = {
   title: quizData.title,
   body: quizData.body,
@@ -41,56 +46,54 @@ const FirstProgrammingLanguageQuiz = () => {
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(
     initializeQuizViewState
   );
-  const [userInput, setUserInput] = useState({
+  const [triggerAnimation, setTriggerAnimation] = useState(true);
+  const [userInput, setUserInput] = useState<UserInput>({
     name: "",
     email: "",
   });
 
-  const [triggerAnimation, setTriggerAnimation] = useState(true);
-
-  const [saveQuizResponse] = useMutation(UPSERT_CODING_LANGUAGE_QUIZ_RESPONSE, {
-    onCompleted: (data) => {
-      if (!quizResponseId) {
-        setQuizResponseId(
-          parseInt(data.insert_coding_language_quiz.returning[0].id)
-        );
-      }
-    },
-  });
-
-  const handleUserInputMutations = (userInput: {
-    name: string;
-    email: string;
-  }) => {
-    saveQuizResponse({ variables: { objects: userInput } });
-  };
-
-  const handleQuizResponseMutations = (
-    quizViewState: QuizViewState,
-    result: string
-  ) => {
-    const finalResponseObject = [
-      {
-        name: userInput.name,
-        email: userInput.email,
-        id: quizResponseId,
-        reasons: quizViewState.questions[0].options
-          .filter((option) => option.isSelected)
-          .map((option) => option.name),
-        fields: quizViewState.questions[1].options
-          .filter((option) => option.isSelected)
-          .map((option) => option.name),
-        interests: quizViewState.questions[2].options
-          .filter((option) => option.isSelected)
-          .map((option) => option.name),
-        result: result,
+  //Insert mutation - Store Name & Email. Returns id.
+  const [createQuizResponse] = useMutation(
+    INSERT_CODING_LANGUAGE_QUIZ_RESPONSE,
+    {
+      onCompleted: (data) => {
+        if (!quizResponseId) {
+          setQuizResponseId(
+            parseInt(data.insert_coding_language_quiz.returning[0].id)
+          );
+        }
       },
-    ];
-    saveQuizResponse({ variables: { objects: finalResponseObject } });
+    }
+  );
+
+  //Update Mutation - Store the rest of the columns via id.
+  const [finalQuizResponse] = useMutation(UPDATE_CODING_LANGUAGE_QUIZ_RESPONSE);
+
+  const finalResponseObject = {
+    id: quizResponseId || 0,
+    reasons: quizViewState.questions[0].options
+      .filter((option) => option.isSelected)
+      .map((option) => option.name),
+    fields: quizViewState.questions[1].options
+      .filter((option) => option.isSelected)
+      .map((option) => option.name),
+    interests: quizViewState.questions[2].options
+      .filter((option) => option.isSelected)
+      .map((option) => option.name),
+    result: getPreferredLanguageForQuizResults(
+      computeLanguageScore(quizViewState)
+    ),
   };
 
   const handleNextClick = () => {
     setTriggerAnimation(false);
+
+    //triggering mutations via onNextClick
+    if (stage == Stage.START) {
+      createQuizResponse({ variables: userInput });
+    } else if (stage == Stage.BLUEPRINT) {
+      finalQuizResponse({ variables: finalResponseObject });
+    }
 
     setTimeout(() => {
       setTriggerAnimation(true);
@@ -148,9 +151,8 @@ const FirstProgrammingLanguageQuiz = () => {
             onNextClick={handleNextClick}
             title={quizData.title}
             body={quizData.body}
-            handleUserInputMutations={handleUserInputMutations}
-            setUserInput={setUserInput}
             userInput={userInput}
+            setUserInput={setUserInput}
           />
         );
       case Stage.QUESTIONS:
@@ -167,8 +169,6 @@ const FirstProgrammingLanguageQuiz = () => {
           <BluePrint
             onNextClick={handleNextClick}
             onBackClick={handleBackClick}
-            handleQuizResponseMutations={handleQuizResponseMutations}
-            quizViewState={quizViewState}
           />
         );
       case Stage.RESULTS:

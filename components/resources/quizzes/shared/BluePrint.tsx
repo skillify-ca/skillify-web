@@ -1,30 +1,13 @@
-import { computeLanguageScore } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/computeScore";
-import { getPreferredLanguageForQuizResults } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/getPreferredLanguage";
 import { Button } from "../../../ui/Button";
 import NumberedCircles from "./NumberedCircles";
 import ProgressBar from "./Progress";
 import SkillifyNavbar from "./SkillifyNavbar";
-import { QuizViewState } from "./types";
 type BluePrintProps = {
   onNextClick: () => void;
   onBackClick: () => void;
-  quizViewState: QuizViewState;
-  handleQuizResponseMutations: (
-    quizViewState: QuizViewState,
-    result: string
-  ) => void;
 };
 
-const BluePrint = ({
-  onNextClick,
-  onBackClick,
-  handleQuizResponseMutations,
-  quizViewState,
-}: BluePrintProps) => {
-  const result = getPreferredLanguageForQuizResults(
-    computeLanguageScore(quizViewState)
-  );
-
+const BluePrint = ({ onNextClick, onBackClick }: BluePrintProps) => {
   return (
     <div>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
@@ -58,7 +41,6 @@ const BluePrint = ({
           label="View results"
           onClick={() => {
             onNextClick();
-            handleQuizResponseMutations(quizViewState, result);
           }}
           backgroundColor="yellow"
         />

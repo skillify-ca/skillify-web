@@ -1,20 +1,14 @@
 import React from "react";
 import { Button } from "../../../ui/Button";
 import SkillifyNavbar from "./SkillifyNavbar";
+import { UserInput } from "./types";
 
 type StartQuizProps = {
   onNextClick: () => void;
   title: string;
   body: string;
-  userInput: {
-    name: string;
-    email: string;
-  };
-  setUserInput: (userInput: { name: string; email: string }) => void;
-  handleUserInputMutations: (userInput: {
-    name: string;
-    email: string;
-  }) => void;
+  userInput: UserInput;
+  setUserInput: (userInput: UserInput) => void;
 };
 
 const StartQuiz = ({
@@ -23,7 +17,6 @@ const StartQuiz = ({
   title,
   userInput,
   setUserInput,
-  handleUserInputMutations,
 }: StartQuizProps) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -61,7 +54,6 @@ const StartQuiz = ({
           disabled={userInput.name.length == 0 && userInput.email.length == 0}
           onClick={() => {
             onNextClick();
-            handleUserInputMutations(userInput);
           }}
         />
       </div>

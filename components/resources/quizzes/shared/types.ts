@@ -37,3 +37,10 @@ export type QuizQuestionViewState = {
 export type QuizOptionViewState = QuizOption & {
     isSelected: boolean;
   };
+
+
+//Types to handle UserInputs for StartQuiz component
+export type UserInput = {
+  name: string;
+  email: string;
+}
