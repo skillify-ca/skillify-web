@@ -1,16 +1,17 @@
 import { useMutation } from "@apollo/client";
-import React, { useEffect, useState } from "react";
-import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
-import { quizData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz";
-import { QuizTransition } from "../../../ui/animations/QuizTransition";
-import BluePrint from "../shared/BluePrint";
-import SkillSelections, {
+import React, { useState } from "react";
+import CareerResults from "../../../../components/resources/quizzes/careerQuiz/CareerResults";
+import EduBackground from "../../../../components/resources/quizzes/careerQuiz/EduBackground";
+import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
+import SkillSelections from "../../../../components/resources/quizzes/shared/SkillSelections";
+import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz";
+import {
   QuizOptionViewState,
   QuizViewState,
-} from "../shared/SkillSelections";
-import StartQuiz from "../shared/StartQuiz";
-import CareerResults from "./CareerResults";
-import EduBackground from "./EduBackground";
+} from "../../../../components/resources/quizzes/shared/types";
+import { QuizTransition } from "../../../../components/ui/animations/QuizTransition";
+import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
+import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz";
 
 export enum Stage {
   START,
@@ -19,6 +20,21 @@ export enum Stage {
   BLUEPRINT,
   RESULTS,
 }
+const initializeQuizViewState = {
+  title: quizData.title,
+  body: quizData.body,
+  questions: quizData.questions.map((question) => {
+    return {
+      title: question.title,
+      body: question.body,
+      options: question.options.map((option) => {
+        return { ...option, isSelected: false };
+      }),
+    };
+  }),
+  currentQuestion: 0,
+  progress: 0,
+};
 const CareerQuiz = () => {
   const [saveUserPreferences] = useMutation(INSERT_CAREER_QUIZ_RESPONSE, {});
   const exampleUserPreferences = [
@@ -37,25 +53,9 @@ const CareerQuiz = () => {
   // create custom type -- based on schema type in database
   const [stage, setStage] = useState<Stage>(Stage.START);
   const [triggerAnimation, setTriggerAnimation] = useState(true);
-  const [quizViewState, setQuizViewState] = useState<QuizViewState>();
-
-  useEffect(() => {
-    const quizViewState = {
-      title: quizData.title,
-      body: quizData.body,
-      questions: quizData.questions.map((question) => {
-        return {
-          title: question.title,
-          body: question.body,
-          options: question.options,
-        };
-      }),
-      currentQuestion: 0,
-      progress: 0,
-    };
-
-    setQuizViewState(quizViewState);
-  }, []);
+  const [quizViewState, setQuizViewState] = useState<QuizViewState>(
+    initializeQuizViewState
+  );
 
   const handleNextClick = () => {
     setTriggerAnimation(false);
@@ -163,4 +163,8 @@ const CareerQuiz = () => {
 
 export default CareerQuiz;
 
-CareerQuiz.getLayout = function getLayout(page) {};
+function getLayout(page: React.ReactNode) {
+  return <div>{page}</div>;
+}
+
+CareerQuiz.getLayout = getLayout;
