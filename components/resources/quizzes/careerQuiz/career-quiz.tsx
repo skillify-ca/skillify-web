@@ -1,17 +1,29 @@
 import { useMutation } from "@apollo/client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
 import { quizData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz";
 import { QuizTransition } from "../../../ui/animations/QuizTransition";
 import BluePrint from "../shared/BluePrint";
-import SkillSelections, {
-  QuizOptionViewState,
-  QuizViewState,
-} from "../shared/SkillSelections";
+import SkillSelections from "../shared/SkillSelections";
 import StartQuiz from "../shared/StartQuiz";
+import { QuizOptionViewState, QuizViewState } from "../shared/types";
 import CareerResults from "./CareerResults";
 import EduBackground from "./EduBackground";
-
+const initializeQuizViewState = {
+  title: quizData.title,
+  body: quizData.body,
+  questions: quizData.questions.map((question) => {
+    return {
+      title: question.title,
+      body: question.body,
+      options: question.options.map((option) => {
+        return { ...option, isSelected: false };
+      }),
+    };
+  }),
+  currentQuestion: 0,
+  progress: 0,
+};
 export enum Stage {
   START,
   EDUCATION,
@@ -37,25 +49,9 @@ const CareerQuiz = () => {
   // create custom type -- based on schema type in database
   const [stage, setStage] = useState<Stage>(Stage.START);
   const [triggerAnimation, setTriggerAnimation] = useState(true);
-  const [quizViewState, setQuizViewState] = useState<QuizViewState>();
-
-  useEffect(() => {
-    const quizViewState = {
-      title: quizData.title,
-      body: quizData.body,
-      questions: quizData.questions.map((question) => {
-        return {
-          title: question.title,
-          body: question.body,
-          options: question.options,
-        };
-      }),
-      currentQuestion: 0,
-      progress: 0,
-    };
-
-    setQuizViewState(quizViewState);
-  }, []);
+  const [quizViewState, setQuizViewState] = useState<QuizViewState>(
+    initializeQuizViewState
+  );
 
   const handleNextClick = () => {
     setTriggerAnimation(false);
@@ -91,7 +87,10 @@ const CareerQuiz = () => {
       ...question,
       options: question.options.map((questionOption) =>
         questionOption.name === option.name
-          ? { ...questionOption, isSelected: true }
+          ? {
+              ...questionOption,
+              isSelected: questionOption.isSelected ? false : true,
+            }
           : questionOption
       ),
     }));
@@ -100,7 +99,6 @@ const CareerQuiz = () => {
       ...quizViewState,
       questions: selectedQuizOption,
     };
-
     setQuizViewState(updatedQuizViewState);
   };
 
@@ -152,7 +150,12 @@ const CareerQuiz = () => {
               />
             );
           case Stage.RESULTS:
-            return <CareerResults onBackClick={handleBackClick} />;
+            return (
+              <CareerResults
+                quizViewState={quizViewState}
+                onBackClick={handleBackClick}
+              />
+            );
           default:
             return null;
         }
