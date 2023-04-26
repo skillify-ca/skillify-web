@@ -27,6 +27,7 @@ const initializeQuizViewState = {
     return {
       title: question.title,
       body: question.body,
+      maxSelections: 3,
       options: question.options.map((option) => {
         return { ...option, isSelected: false };
       }),
@@ -34,7 +35,6 @@ const initializeQuizViewState = {
   }),
   currentQuestion: 0,
   progress: 0,
-  maxSelection: 3,
 };
 const CareerQuiz = () => {
   const [saveUserPreferences] = useMutation(INSERT_CAREER_QUIZ_RESPONSE, {});
