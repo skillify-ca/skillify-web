@@ -23,7 +23,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   const { currentQuestion, questions } = quizViewState;
   // const maxSelections = questions[currentQuestion].maxSelections;
   const [numberSelected, setNumberSelected] = useState(0);
-  const maxSelections = 3;
+  const maxSelections = 4;
   const titleForCurrentQuestion = questions[currentQuestion].title;
   const bodyForCurrentQuestion = questions[currentQuestion].body;
   const optionsForCurrentQuestions = questions[currentQuestion].options || [];
@@ -31,7 +31,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   const handleClick = (option: QuizOptionViewState) => {
     if (option.isSelected) {
       setNumberSelected((prev) => prev - 1);
-    } else {
+    } else if (numberSelected < maxSelections) {
       setNumberSelected((prev) => prev + 1);
     }
     if (numberSelected < maxSelections || option.isSelected)
@@ -60,6 +60,8 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
                 onClick={() => handleClick(option)}
               >
                 {option.name}
+                {option.isSelected ? 1 : 0}
+                {numberSelected}
               </button>
             );
           })}
