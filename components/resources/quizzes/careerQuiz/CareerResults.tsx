@@ -1,5 +1,5 @@
 import React from "react";
-import { quizResultsData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz";
+import { quizResultsData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz/careerQuiz";
 import ComputeResult from "../../../../pages/api/studentPortal/quizzes/careerQuiz/computeCareerResults";
 import { Button } from "../../../ui/Button";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
@@ -11,7 +11,6 @@ type CareerResultsProps = {
 const CareerResults = ({ onBackClick, quizViewState }: CareerResultsProps) => {
   const preferredArray = quizViewState && ComputeResult(quizViewState);
   const quizResult = preferredArray && quizResultsData[preferredArray[0]];
-  // alert(quizResult);
   return (
     <div className="  w-full mx-auto ">
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />

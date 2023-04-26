@@ -11,7 +11,7 @@ import {
 } from "../../../../components/resources/quizzes/shared/types";
 import { QuizTransition } from "../../../../components/ui/animations/QuizTransition";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
-import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz";
+import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz/careerQuiz";
 const initializeQuizViewState = {
   title: quizData.title,
   body: quizData.body,
