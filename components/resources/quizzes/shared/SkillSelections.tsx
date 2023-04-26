@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   QuizOptionViewState,
   QuizViewState,
@@ -27,12 +27,18 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   const handleClick = (option: QuizOptionViewState) => {
     handleOptionClick(option);
   };
-
+  const [progressVal, setProgressVal] = useState(0);
+  useEffect(() => {
+    const progressCalculation = (currentQuestion * 100) / questions.length;
+    if (progressCalculation === 0) {
+      setProgressVal(5);
+    } else setProgressVal(progressCalculation);
+  }, [currentQuestion]);
   return (
     <div>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
       <div className="flex flex-col items-center px-8">
-        <Progress progress={0} />
+        <Progress progress={progressVal} />
         <div className="mt-4 text-2xl font-bold text-center text-black-600">
           {titleForCurrentQuestion}
         </div>
