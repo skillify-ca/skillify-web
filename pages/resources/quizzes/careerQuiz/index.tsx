@@ -34,6 +34,7 @@ const initializeQuizViewState = {
   }),
   currentQuestion: 0,
   progress: 0,
+  maxSelection: 3,
 };
 const CareerQuiz = () => {
   const [saveUserPreferences] = useMutation(INSERT_CAREER_QUIZ_RESPONSE, {});
