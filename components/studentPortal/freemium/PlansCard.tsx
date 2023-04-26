@@ -1,5 +1,8 @@
+import { getRedirectResult } from "firebase/auth";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useAuth } from "../../../lib/authContext";
+import { auth } from "../../../lib/firebase";
 import { PlanCard } from "../../../pages/plans";
 import { Button } from "../../ui/Button";
 import PlanRow from "./PlanRow";
@@ -12,7 +15,7 @@ const PlansCard = ({ planCard }: PlansCardProps) => {
   const { planName, title, price, description, planCardRow, buttonLabel } =
     planCard;
 
-  const { signIn } = useAuth();
+  const { signIn, user } = useAuth();
   const router = useRouter();
 
   const handleSignUp = (planName: string) => {
@@ -22,6 +25,16 @@ const PlansCard = ({ planCard }: PlansCardProps) => {
       signIn();
     }
   };
+
+  useEffect(() => {
+    async function checkAuth() {
+      const result = await getRedirectResult(auth);
+      if (result) {
+        router.push("/studentPortal");
+      }
+    }
+    checkAuth();
+  }, []);
 
   return (
     <div className="flex flex-col w-[325px] md:w-[400px] space-y-4 shadow-lg cursor-pointer rounded-xl hover:scale-105">

@@ -1,6 +1,5 @@
 import LandingNavbar from "../components/landingPage/LandingNavbar";
 import PlansCard from "../components/studentPortal/freemium/PlansCard";
-import { useAuth } from "../lib/authContext";
 
 export type PlanCard = {
   planName: "freeTrial" | "premium";
@@ -13,7 +12,6 @@ export type PlanCard = {
 
 const Plans = (props: { planCardData: PlanCard[] }) => {
   const { planCardData } = props;
-  const { signIn } = useAuth();
 
   return (
     <div>
