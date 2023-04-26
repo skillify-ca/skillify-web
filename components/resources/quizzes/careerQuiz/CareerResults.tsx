@@ -19,8 +19,7 @@ const CareerResults = ({ onBackClick, quizViewState }: CareerResultsProps) => {
       <div className="grid text-center justify-items-center">
         <div className="font-bold mt-4 text-2xl ">YOUR RESULTS</div>
         <div className=" text-lg font-semibolds ">
-          Here are jobs in tech you’re compatible with. Click on a career to
-          learn more!
+          Here are jobs in tech you’re compatible with. Click below learn more!
         </div>
         <img
           src={quizResult && quizResult.src}

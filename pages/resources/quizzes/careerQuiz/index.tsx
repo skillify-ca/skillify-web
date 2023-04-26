@@ -1,14 +1,17 @@
 import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
+import CareerResults from "../../../../components/resources/quizzes/careerQuiz/CareerResults";
+import EduBackground from "../../../../components/resources/quizzes/careerQuiz/EduBackground";
+import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
+import SkillSelections from "../../../../components/resources/quizzes/shared/SkillSelections";
+import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz";
+import {
+  QuizOptionViewState,
+  QuizViewState,
+} from "../../../../components/resources/quizzes/shared/types";
+import { QuizTransition } from "../../../../components/ui/animations/QuizTransition";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
-import { quizData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz";
-import { QuizTransition } from "../../../ui/animations/QuizTransition";
-import BluePrint from "../shared/BluePrint";
-import SkillSelections from "../shared/SkillSelections";
-import StartQuiz from "../shared/StartQuiz";
-import { QuizOptionViewState, QuizViewState } from "../shared/types";
-import CareerResults from "./CareerResults";
-import EduBackground from "./EduBackground";
+import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz";
 const initializeQuizViewState = {
   title: quizData.title,
   body: quizData.body,
@@ -68,6 +71,11 @@ const CareerQuiz = () => {
         });
       } else setStage((prevStage) => prevStage + 1);
     }, 250); // adjust the delay time based on the animation duration
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
   const handleBackClick = () => {
     setTriggerAnimation(false);
@@ -101,12 +109,6 @@ const CareerQuiz = () => {
     };
     setQuizViewState(updatedQuizViewState);
   };
-
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth",
-  });
 
   // Render the appropriate component based on the stage
 
@@ -166,4 +168,8 @@ const CareerQuiz = () => {
 
 export default CareerQuiz;
 
-CareerQuiz.getLayout = function getLayout(page) {};
+function getLayout(page: React.ReactNode) {
+  return <div>{page}</div>;
+}
+
+CareerQuiz.getLayout = getLayout;
