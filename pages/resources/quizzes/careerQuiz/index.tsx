@@ -8,6 +8,7 @@ import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz
 import {
   QuizOptionViewState,
   QuizViewState,
+  UserInput,
 } from "../../../../components/resources/quizzes/shared/types";
 import { QuizTransition } from "../../../../components/ui/animations/QuizTransition";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
@@ -39,6 +40,10 @@ export enum Stage {
   RESULTS,
 }
 const CareerQuiz = () => {
+  const [userInput, setUserInput] = useState<UserInput>({
+    name: "",
+    email: "",
+  });
   const [saveUserPreferences] = useMutation(INSERT_CAREER_QUIZ_RESPONSE, {});
   const exampleUserPreferences = [
     {
@@ -114,7 +119,6 @@ const CareerQuiz = () => {
       questions: selectedQuizOption,
     };
     setQuizViewState(updatedQuizViewState);
-
   };
 
   // Render the appropriate component based on the stage
@@ -131,6 +135,8 @@ const CareerQuiz = () => {
                 body={
                   "Take this free quiz to find out what jobs in tech fit you best!"
                 }
+                userInput={userInput}
+                setUserInput={setUserInput}
               />
             );
           case Stage.EDUCATION:
@@ -159,7 +165,6 @@ const CareerQuiz = () => {
               />
             );
           case Stage.RESULTS:
-
             return (
               <CareerResults
                 quizViewState={quizViewState}

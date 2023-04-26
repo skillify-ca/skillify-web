@@ -9,6 +9,7 @@ export type QuizQuestion = {
   title: string;
   body: string;
   options: QuizOption[];
+  maxSelections?: number;
 };
 
 export type QuizOption = {
@@ -29,17 +30,15 @@ export type QuizViewState = {
 export type QuizQuestionViewState = {
   title: string;
   body: string;
-  maxSelections?: number;
   options: QuizOptionViewState[];
 };
 
-
-    isSelected: boolean;
-  };
-
+export type QuizOptionViewState = QuizOption & {
+  isSelected: boolean;
+};
 
 //Types to handle UserInputs for StartQuiz component
 export type UserInput = {
   name: string;
   email: string;
-}
+};
