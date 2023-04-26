@@ -1,11 +1,17 @@
 import React from "react";
+import { quizResultsData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz";
+import ComputeResult from "../../../../pages/api/studentPortal/quizzes/careerQuiz/computeCareerResults";
 import { Button } from "../../../ui/Button";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
-
+import { QuizViewState } from "../shared/types";
 type CareerResultsProps = {
   onBackClick: () => void;
+  quizViewState: QuizViewState;
 };
-const CareerResults = ({ onBackClick }: CareerResultsProps) => {
+const CareerResults = ({ onBackClick, quizViewState }: CareerResultsProps) => {
+  const preferredArray = quizViewState && ComputeResult(quizViewState);
+  const quizResult = preferredArray && quizResultsData[preferredArray[0]];
+  // alert(quizResult);
   return (
     <div className="  w-full mx-auto ">
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
@@ -17,8 +23,8 @@ const CareerResults = ({ onBackClick }: CareerResultsProps) => {
           learn more!
         </div>
         <img
-          src="/images/career-quiz/software-engineer.png"
-          alt="Software Engineer"
+          src={quizResult && quizResult.src}
+          alt={quizResult && quizResult.alt}
           className=" p-4 object-scalded-down  md:h-60 md:w-80 "
         />
         <div className="mt-4 mx-4 text-2xl font-semibold ">
