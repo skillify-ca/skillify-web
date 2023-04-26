@@ -1,17 +1,26 @@
-import { useQuery } from "@apollo/client";
-import { addDays, format } from "date-fns";
+import { useMutation, useQuery } from "@apollo/client";
+import { addDays, differenceInHours, format } from "date-fns";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  FetchGoalCountResponse,
+  FETCH_LAST_SEEN_MODAL,
+  FetchModalData,
+} from "../../../graphql/studentPortal/freemium/fetchLastSeenModal";
+import { UPSERT_LAST_SEEN_MODAL } from "../../../graphql/studentPortal/freemium/upsertLastSeenModal";
+import {
   FETCH_USER_GOALS_COUNT,
+  FetchGoalCountResponse,
 } from "../../../graphql/studentPortal/goals/fetchUserGoalsCount";
 import { useAuth } from "../../../lib/authContext";
+import { calculateRemainingTrialDays } from "../../../pages/api/studentPortal/freemium/helpers";
 import { profileSelector } from "../../../redux/profileSlice";
 import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
 import { setTheme, Theme, themeSelector } from "../../../redux/themeSlice";
+import FreemiumDialogComponent from "../freemium/FreemiumDialogueComponent";
+import FreemiumExitComponent from "../freemium/FreemiumExitComponent";
 import { FreemiumHeader } from "../freemium/FreemiumHeader";
 import Sidebar from "./Sidebar";
+import { useLastSeenModal } from "./useLastSeenModal";
 
 export const Layout: React.FC = ({ children }) => {
   const [active, setActive] = useState(false);
@@ -35,6 +44,12 @@ export const Layout: React.FC = ({ children }) => {
     },
     fetchPolicy: "cache-and-network",
   });
+
+  const { showOnboardingModal, showExitModal } = useLastSeenModal(
+    user.uid,
+    userRole,
+    createdAt
+  );
 
   return (
     <div className={`flex flex-col h-full bg-white ${currentTheme}`}>
@@ -98,6 +113,8 @@ export const Layout: React.FC = ({ children }) => {
       >
         <Sidebar />
       </div>
+      {showOnboardingModal && <FreemiumDialogComponent />}
+      {showExitModal && <FreemiumExitComponent />}
     </div>
   );
 };
