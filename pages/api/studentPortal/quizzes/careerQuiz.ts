@@ -307,7 +307,7 @@ export const quizResultsData: { [key: string]: QuizResultData } = {
   },
   "UX/UI Designer": {
     body: "The first coding careers you should learn are...",
-    src: "/images/career-quiz/designer.png",
+    src: "/images/career-quiz/uxui-designer.png",
     alt: "UX/UI Designer",
     career: "UX/UI Designer",
   },
