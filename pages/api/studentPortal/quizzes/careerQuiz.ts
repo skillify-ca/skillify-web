@@ -1,4 +1,4 @@
-import { QuizViewState } from "../../../../components/resources/quizzes/shared/SkillSelections";
+import { QuizViewState } from "../../../../components/resources/quizzes/shared/types";
 
 export const quizData: QuizViewState = {
   title: "Career in Tech Personality Quiz?",

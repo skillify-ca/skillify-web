@@ -29,6 +29,7 @@ export type QuizViewState = {
 export type QuizQuestionViewState = {
   title: string;
   body: string;
+  maxSelections?: number;
   options: QuizOptionViewState[];
 };
 

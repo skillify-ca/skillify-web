@@ -91,7 +91,10 @@ const CareerQuiz = () => {
       ...question,
       options: question.options.map((questionOption) =>
         questionOption.name === option.name
-          ? { ...questionOption, isSelected: true }
+          ? {
+              ...questionOption,
+              isSelected: !questionOption.isSelected,
+            }
           : questionOption
       ),
     }));
@@ -100,10 +103,9 @@ const CareerQuiz = () => {
       ...quizViewState,
       questions: selectedQuizOption,
     };
-
     setQuizViewState(updatedQuizViewState);
+    return;
   };
-
   window.scrollTo({
     top: 0,
     left: 0,

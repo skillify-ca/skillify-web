@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   QuizOptionViewState,
   QuizViewState,
@@ -21,11 +21,21 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   quizViewState,
 }) => {
   const { currentQuestion, questions } = quizViewState;
+  // const maxSelections = questions[currentQuestion].maxSelections;
+  const [numberSelected, setNumberSelected] = useState(0);
+  const maxSelections = 3;
   const titleForCurrentQuestion = questions[currentQuestion].title;
   const bodyForCurrentQuestion = questions[currentQuestion].body;
   const optionsForCurrentQuestions = questions[currentQuestion].options || [];
+  // alert(maxSelections == undefined ? 1 : maxSelections);
   const handleClick = (option: QuizOptionViewState) => {
-    handleOptionClick(option);
+    if (option.isSelected) {
+      setNumberSelected((prev) => prev - 1);
+    } else {
+      setNumberSelected((prev) => prev + 1);
+    }
+    if (numberSelected < maxSelections || option.isSelected)
+      handleOptionClick(option);
   };
 
   return (
@@ -42,7 +52,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
         <div className="flex flex-col w-full max-w-4xl mx-auto">
           {optionsForCurrentQuestions.map((option, index) => {
             return (
-              <div
+              <button
                 key={index}
                 className={`flex items-start justify-start w-full px-4 py-2 my-2 cursor-pointer text-black-600 border-2 border-black-500 rounded-xl ${
                   option.isSelected ? "bg-violet-300" : "bg-white"
@@ -50,7 +60,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
                 onClick={() => handleClick(option)}
               >
                 {option.name}
-              </div>
+              </button>
             );
           })}
         </div>
@@ -59,6 +69,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
             label="Next"
             onClick={() => {
               onNextClick();
+              setNumberSelected(0);
             }}
             backgroundColor="yellow"
           />
