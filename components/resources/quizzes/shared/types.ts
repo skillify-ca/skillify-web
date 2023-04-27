@@ -8,8 +8,8 @@ export type QuizData = {
 export type QuizQuestion = {
   title: string;
   body: string;
-  options: QuizOption[];
   maxSelections?: number;
+  options: QuizOption[];
 };
 
 export type QuizOption = {
@@ -30,6 +30,7 @@ export type QuizViewState = {
 export type QuizQuestionViewState = {
   title: string;
   body: string;
+  maxSelections?: number;
   options: QuizOptionViewState[];
 };
 

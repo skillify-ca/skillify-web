@@ -1,6 +1,6 @@
 import React from "react";
-import { quizResultsData } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage";
 import { computeLanguageScore } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/computeScore";
+import { quizResultsData } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/firstProgrammingLanguage";
 import { getPreferredLanguageForQuizResults } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/getPreferredLanguage";
 import { Button } from "../../../ui/Button";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
