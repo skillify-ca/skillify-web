@@ -12,7 +12,7 @@ const BluePrint = ({ onNextClick, onBackClick }: BluePrintProps) => {
   return (
     <div>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
-      <div className="w-full mb-4 px-8 text-center">
+      <div className="w-full mb-4 px-8 text-center md:w-full max-w-4xl md:mx-auto">
         <ProgressBar progress={100} />
         <div className="mt-4 mb-2 text-2xl font-bold text-black-600">
           The Skillify BluePrint

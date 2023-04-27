@@ -23,7 +23,7 @@ const CareerResults = ({ onBackClick, quizViewState }: CareerResultsProps) => {
         <img
           src={quizResult && quizResult.src}
           alt={quizResult && quizResult.alt}
-          className=" p-4 object-scalded-down  md:h-60 md:w-80 "
+          className=" p-4 object-scalded-down  md:h-full md:w-1/4 "
         />
         <div className="mt-4 mx-4 text-2xl font-semibold ">
           Start your career with a Skillify coach today!
@@ -32,7 +32,7 @@ const CareerResults = ({ onBackClick, quizViewState }: CareerResultsProps) => {
           <Button label="Book a call" backgroundColor="yellow" />
           <Button label="Learn more" backgroundColor="blue" />
         </div>
-        <div className="mx-4">
+        <div className="mx-4 md:w-full max-w-4xl md:mx-auto">
           Skillify Coding Academy coaches university graduates to start a career
           in tech. Book a free call with one of our expert coaches to discuss
           the best strategy plan for you.
