@@ -20,8 +20,8 @@ export enum ModalStage {
 export interface FreemiumDialogComponentProps {
   trigger: boolean;
   triggerTitle?: string;
-  onClose: () => void;
-  startOnUpgradeModal: boolean;
+  onClose?: () => void;
+  startOnUpgradeModal?: boolean;
 }
 
 const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({

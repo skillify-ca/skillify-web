@@ -1,21 +1,16 @@
-import { useMutation, useQuery } from "@apollo/client";
-import { addDays, differenceInHours, format } from "date-fns";
+import { useQuery } from "@apollo/client";
+import { addDays, format } from "date-fns";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  FETCH_LAST_SEEN_MODAL,
-  FetchModalData,
-} from "../../../graphql/studentPortal/freemium/fetchLastSeenModal";
-import { UPSERT_LAST_SEEN_MODAL } from "../../../graphql/studentPortal/freemium/upsertLastSeenModal";
+
 import {
   FETCH_USER_GOALS_COUNT,
   FetchGoalCountResponse,
 } from "../../../graphql/studentPortal/goals/fetchUserGoalsCount";
 import { useAuth } from "../../../lib/authContext";
-import { calculateRemainingTrialDays } from "../../../pages/api/studentPortal/freemium/helpers";
 import { profileSelector } from "../../../redux/profileSlice";
 import { setIsGoalApproaching } from "../../../redux/sidebarSlice";
-import { setTheme, Theme, themeSelector } from "../../../redux/themeSlice";
+import { Theme, setTheme, themeSelector } from "../../../redux/themeSlice";
 import FreemiumDialogComponent from "../freemium/FreemiumDialogueComponent";
 import FreemiumExitComponent from "../freemium/FreemiumExitComponent";
 import { FreemiumHeader } from "../freemium/FreemiumHeader";
@@ -113,7 +108,7 @@ export const Layout: React.FC = ({ children }) => {
       >
         <Sidebar />
       </div>
-      {showOnboardingModal && <FreemiumDialogComponent />}
+      {showOnboardingModal && <FreemiumDialogComponent trigger={false} />}
       {showExitModal && <FreemiumExitComponent />}
     </div>
   );
