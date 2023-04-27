@@ -13,7 +13,7 @@ import { QuizTransition } from "../../../../components/ui/animations/QuizTransit
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
 import { UPDATE_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCareer";
 import { UPDATE_CAREER_QUIZ_EDUCATION_RESPONSE } from "../../../../graphql/quizzes/updateCareerEducation";
-import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz";
+import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz/careerQuiz";
 
 const initializeQuizViewState = {
   title: quizData.title,
@@ -156,11 +156,6 @@ const CareerQuiz = () => {
         });
       } else setStage((prevStage) => prevStage - 1);
       setTriggerAnimation(true);
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-      });
     }, 250); // adjust the delay time based on the animation duration
   };
 
@@ -198,7 +193,6 @@ const CareerQuiz = () => {
                 body={
                   "Take this free quiz to find out what jobs in tech fit you best!"
                 }
-                handleUserInputMutations={handleUserInputMutations}
                 setUserInput={setUserInput}
                 userInput={userInput}
               />
@@ -233,7 +227,12 @@ const CareerQuiz = () => {
               />
             );
           case Stage.RESULTS:
-            return <CareerResults onBackClick={handleBackClick} />;
+            return (
+              <CareerResults
+                onBackClick={handleBackClick}
+                quizViewState={quizViewState}
+              />
+            );
           default:
             return null;
         }
@@ -247,3 +246,5 @@ export default CareerQuiz;
 function getLayout(page: React.ReactNode) {
   return <div>{page}</div>;
 }
+
+CareerQuiz.getLayout = getLayout;

@@ -1,4 +1,11 @@
-import { Close, Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
+import {
+  Close,
+  Content,
+  Overlay,
+  Portal,
+  Root,
+  Trigger,
+} from "@radix-ui/react-dialog";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { getModalContent } from "../../../pages/api/studentPortal/freemium/getModalContent";
@@ -10,10 +17,23 @@ export enum ModalStage {
   TWO,
   THREE,
 }
+export interface FreemiumDialogComponentProps {
+  trigger: boolean;
+  triggerTitle?: string;
+  onClose: () => void;
+  startOnUpgradeModal: boolean;
+}
 
-const FreemiumDialogComponent: React.FC = () => {
+const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
+  trigger,
+  children,
+  onClose,
+  startOnUpgradeModal,
+}) => {
   const { currentTheme } = useSelector(themeSelector);
-  const [activeModal, setActiveModal] = useState(ModalStage.ONE);
+  const [activeModal, setActiveModal] = useState(
+    startOnUpgradeModal ? ModalStage.TWO : ModalStage.ONE
+  );
 
   const handleClickBack = () => setActiveModal(activeModal - 1);
   const handleClickNext = () => setActiveModal(activeModal + 1);
@@ -23,10 +43,11 @@ const FreemiumDialogComponent: React.FC = () => {
   const stagesArray = Object.values(ModalStage).filter(
     (stage) => !isNaN(Number(stage))
   );
-  const lastStage = stagesArray[stagesArray.length - 1];
+  const lastStage = stagesArray[stagesArray.length - 1] as ModalStage;
 
   return (
-    <Root defaultOpen={true}>
+    <Root defaultOpen={!trigger} onOpenChange={onClose}>
+      {trigger ? <Trigger asChild>{children}</Trigger> : null}
       <Portal>
         <Overlay className="bg-opacity-90 bg-gray-500 data-[state=open]:animate-overlayShow fixed inset-0" />
 
