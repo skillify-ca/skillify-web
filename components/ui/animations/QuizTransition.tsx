@@ -15,8 +15,6 @@ export const QuizTransition: React.FC<{
       ease: "easeInOut",
     },
     opacity: triggerAnimation ? 1 : 0,
-    transform: triggerAnimation ? "translateX(0)" : "translateX(-100%)",
-    from: { opacity: 0, transform: "translateX(-100%)" },
   });
   return (
     <div>
