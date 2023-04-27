@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 
 import { useMutation } from "@apollo/client";
+import CareerResults from "../../../../components/resources/quizzes/careerQuiz/CareerResults";
+import EduBackground from "../../../../components/resources/quizzes/careerQuiz/EduBackground";
+import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
+import SkillSelections from "../../../../components/resources/quizzes/shared/SkillSelections";
+import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz";
+import {
+  QuizOptionViewState,
+  QuizViewState,
+} from "../../../../components/resources/quizzes/shared/types";
+import { QuizTransition } from "../../../../components/ui/animations/QuizTransition";
 import { UPSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
-import { quizData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz";
-import { QuizTransition } from "../../../ui/animations/QuizTransition";
-import BluePrint from "../shared/BluePrint";
-import SkillSelections from "../shared/SkillSelections";
-import StartQuiz from "../shared/StartQuiz";
-import { QuizOptionViewState, QuizViewState } from "../shared/types";
-import CareerResults from "./CareerResults";
-import EduBackground, { EducationLevel } from "./EduBackground";
+import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz";
 const initializeQuizViewState = {
   title: quizData.title,
   body: quizData.body,
@@ -32,16 +35,24 @@ export enum Stage {
   BLUEPRINT,
   RESULTS,
 }
+
+export type EducationState = {
+  degree: string;
+  institution: string;
+  education: string;
+  experience: string;
+};
 const CareerQuiz = () => {
-  const [degree, setDegree] = useState<string>("");
-  const [institution, setInstitution] = useState<string>("");
-  const [education, setEducation] = useState<EducationLevel | string>("");
-  const [experience, setExperience] = useState<string>("");
+  const [educationState, setEducationState] = useState<EducationState>({
+    degree: "",
+    institution: "",
+    education: "",
+    experience: "",
+  });
   // create results state object that
   // create custom type -- based on schema type in database
   const [stage, setStage] = useState<Stage>(Stage.START);
   const [quizResponseId, setQuizResponseId] = useState<number>();
-
   const [triggerAnimation, setTriggerAnimation] = useState(true);
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(
     initializeQuizViewState
@@ -74,10 +85,11 @@ const CareerQuiz = () => {
       {
         name: userInput.name,
         email: userInput.email,
-        degree: degree,
-        institution: institution,
+        degree: educationState.degree,
+        institution: educationState.institution,
         id: quizResponseId,
-        experience: experience,
+        experience: educationState.experience,
+        education: educationState.education,
         industries: quizViewState.questions[0].options
           .filter((option) => option.isSelected)
           .map((option) => option.name),
@@ -109,6 +121,11 @@ const CareerQuiz = () => {
         });
       } else setStage((prevStage) => prevStage + 1);
     }, 250); // adjust the delay time based on the animation duration
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
   const handleBackClick = () => {
     setTriggerAnimation(false);
@@ -120,69 +137,33 @@ const CareerQuiz = () => {
         });
       } else setStage((prevStage) => prevStage - 1);
       setTriggerAnimation(true);
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
     }, 250); // adjust the delay time based on the animation duration
   };
 
   const handleOptionClick = (option: QuizOptionViewState) => {
-    const currentQuestion =
-      quizViewState.questions[quizViewState.currentQuestion];
-    const selectedOptions = currentQuestion.options.filter(
-      (option) => option.isSelected
-    );
-    const maxSelection =
-      quizData.questions[quizViewState.currentQuestion].maxSelections;
+    const selectedQuizOption = quizViewState.questions.map((question) => ({
+      ...question,
+      options: question.options.map((questionOption) =>
+        questionOption.name === option.name
+          ? {
+              ...questionOption,
+              isSelected: questionOption.isSelected ? false : true,
+            }
+          : questionOption
+      ),
+    }));
 
-    if (maxSelection === 1) {
-      // Set all other options to false and set the selected option to true
-      const selectedQuizOption = quizViewState.questions.map((question) => ({
-        ...question,
-        options: question.options.map((questionOption) =>
-          questionOption === option
-            ? { ...questionOption, isSelected: true }
-            : { ...questionOption, isSelected: false }
-        ),
-      }));
-
-      const updatedQuizViewState = {
-        ...quizViewState,
-        questions: selectedQuizOption,
-      };
-      setQuizViewState(updatedQuizViewState);
-      return;
-    } else if (
-      maxSelection &&
-      selectedOptions.length >= maxSelection &&
-      !option.isSelected
-    ) {
-      // Do nothing if the maximum number of options has already been selected and the clicked option is not already selected
-      return;
-    } else {
-      // Toggle the selected state of the clicked option
-      const selectedQuizOption = quizViewState.questions.map((question) => ({
-        ...question,
-        options: question.options.map((questionOption) =>
-          questionOption.name === option.name
-            ? {
-                ...questionOption,
-                isSelected: questionOption.isSelected ? false : true,
-              }
-            : questionOption
-        ),
-      }));
-
-      const updatedQuizViewState = {
-        ...quizViewState,
-        questions: selectedQuizOption,
-      };
-      setQuizViewState(updatedQuizViewState);
-    }
+    const updatedQuizViewState = {
+      ...quizViewState,
+      questions: selectedQuizOption,
+    };
+    setQuizViewState(updatedQuizViewState);
   };
-
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth",
-  });
 
   // Render the appropriate component based on the stage
 
@@ -208,11 +189,8 @@ const CareerQuiz = () => {
               <EduBackground
                 onNextClick={handleNextClick}
                 onBackClick={handleBackClick}
-                setInstitution={setInstitution}
-                setDegree={setDegree}
-                setExperience={setExperience}
-                setEducation={setEducation}
-                selectedEducationLevel={education}
+                setEducationState={setEducationState}
+                educationState={educationState}
               />
             );
 
@@ -246,3 +224,9 @@ const CareerQuiz = () => {
 };
 
 export default CareerQuiz;
+
+function getLayout(page: React.ReactNode) {
+  return <div>{page}</div>;
+}
+
+CareerQuiz.getLayout = getLayout;

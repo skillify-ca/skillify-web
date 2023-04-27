@@ -1,15 +1,13 @@
 import React, { useState } from "react";
+import { EducationState } from "../../../../pages/resources/quizzes/careerQuiz";
 import { Button } from "../../../ui/Button";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
 
 export type EduBackgroundProps = {
   onNextClick: () => void;
   onBackClick: () => void;
-  setDegree: React.Dispatch<React.SetStateAction<string>>;
-  setInstitution: React.Dispatch<React.SetStateAction<string>>;
-  setExperience: React.Dispatch<React.SetStateAction<string>>;
-  selectedEducationLevel: EducationLevel | string;
-  setEducation: React.Dispatch<React.SetStateAction<string>>;
+  educationState: EducationState;
+  setEducationState: (educationState: EducationState) => void;
 };
 
 export enum EducationLevel {
@@ -25,20 +23,27 @@ export enum EducationLevel {
 const EducationBackground = ({
   onNextClick,
   onBackClick,
-  setInstitution,
-  setDegree,
-  setEducation,
-  selectedEducationLevel,
-  setExperience,
+  educationState,
+  setEducationState,
 }: EduBackgroundProps) => {
+  const handleInputChange = (
+    name,
+    event:
+      | React.ChangeEvent<HTMLSelectElement>
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const { value } = event.target;
+    setEducationState({ ...educationState, [name]: value });
+  };
   const [showExperienceInput, setShowExperienceInput] = useState(false);
-  const isFormValid = selectedEducationLevel;
+  const isFormValid = educationState.education;
   const handleEducationLevelChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const selectedValue = event.target.value;
-    setEducation(selectedValue as EducationLevel);
-    switch (selectedValue) {
+    const selectedValue = event;
+    handleInputChange("education", selectedValue);
+    switch (selectedValue.target.value) {
       case EducationLevel.NA:
       case EducationLevel.HighSchoolDiploma:
       case EducationLevel.GED:
@@ -65,7 +70,7 @@ const EducationBackground = ({
 
           <select
             id="education-select"
-            value={selectedEducationLevel || ""}
+            value={educationState.education || ""}
             onChange={handleEducationLevelChange}
             className=" border  w-full border-gray-500 rounded-lg "
           >
@@ -76,10 +81,10 @@ const EducationBackground = ({
             ))}
           </select>
           <div>
-            {selectedEducationLevel &&
-              selectedEducationLevel !== EducationLevel.NA &&
-              selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
-              selectedEducationLevel !== EducationLevel.GED && (
+            {educationState.education &&
+              educationState.education !== EducationLevel.NA &&
+              educationState.education !== EducationLevel.HighSchoolDiploma &&
+              educationState.education !== EducationLevel.GED && (
                 <div className="text-left">
                   <div className="text-left mt-2">
                     <label htmlFor="institution">Institution</label>{" "}
@@ -87,7 +92,7 @@ const EducationBackground = ({
                       type="text"
                       name="institution"
                       id="institution"
-                      onChange={(e) => setInstitution(e.target.value)}
+                      onChange={(e) => handleInputChange("institution", e)}
                       className="border w-full border-gray-500 rounded-lg px-10"
                     />
                   </div>
@@ -95,10 +100,10 @@ const EducationBackground = ({
               )}
           </div>
           <div>
-            {selectedEducationLevel &&
-              selectedEducationLevel !== EducationLevel.NA &&
-              selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
-              selectedEducationLevel !== EducationLevel.GED && (
+            {educationState.education &&
+              educationState.education !== EducationLevel.NA &&
+              educationState.education !== EducationLevel.HighSchoolDiploma &&
+              educationState.education !== EducationLevel.GED && (
                 <div className="text-left mt-2">
                   <label htmlFor="degree" className="font-medium">
                     Field of study
@@ -107,7 +112,7 @@ const EducationBackground = ({
                     type="text"
                     name="degree"
                     id="degree"
-                    onChange={(e) => setDegree(e.target.value)}
+                    onChange={(e) => handleInputChange("degree", e)}
                     className="shadow  w-full appearance-none border border-gray-500 rounded-lg px-10"
                   />
                 </div>
@@ -118,7 +123,7 @@ const EducationBackground = ({
                   Do you have experience coding?
                 </div>
                 <textarea
-                  onChange={(e) => setExperience(e.target.value)}
+                  onChange={(e) => handleInputChange("experience", e)}
                   className="w-full border border-gray-500 rounded-lg  px-10 resize-none"
                 />
               </div>
@@ -136,10 +141,6 @@ const EducationBackground = ({
       </div>
     </div>
   );
-};
-
-EducationBackground.getLayout = function getLayout(page) {
-  return <div>{page}</div>;
 };
 
 export default EducationBackground;
