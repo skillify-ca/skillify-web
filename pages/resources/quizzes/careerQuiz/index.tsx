@@ -11,7 +11,9 @@ import {
   QuizViewState,
 } from "../../../../components/resources/quizzes/shared/types";
 import { QuizTransition } from "../../../../components/ui/animations/QuizTransition";
-import { UPSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
+import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
+import { UPDATE_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCareer";
+import { UPDATE_CAREER_QUIZ_EDUCATION_RESPONSE } from "../../../../graphql/quizzes/updateCareerEducation";
 import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz";
 const initializeQuizViewState = {
   title: quizData.title,
@@ -57,39 +59,54 @@ const CareerQuiz = () => {
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(
     initializeQuizViewState
   );
-  const [saveUserPreferences] = useMutation(UPSERT_CAREER_QUIZ_RESPONSE);
-
-  const [saveUserInputs] = useMutation(UPSERT_CAREER_QUIZ_RESPONSE, {
+  const [createQuizResponse] = useMutation(INSERT_CAREER_QUIZ_RESPONSE, {
     onCompleted: (data) => {
       if (!quizResponseId) {
         setQuizResponseId(parseInt(data.insert_career_quiz.returning[0].id));
+        alert(quizResponseId);
       }
     },
   });
+  const [saveEducationInputs] = useMutation(
+    UPDATE_CAREER_QUIZ_EDUCATION_RESPONSE
+  );
+  const [saveCompletedUserPreferences] = useMutation(
+    UPDATE_CAREER_QUIZ_RESPONSE
+  );
 
   const handleUserInputMutations = (userInput: {
     name: string;
     email: string;
   }) => {
-    saveUserInputs({ variables: { objects: userInput } });
+    createQuizResponse({ variables: { objects: userInput } });
   };
   const [userInput, setUserInput] = useState({
     name: "",
     email: "",
   });
   const handleQuizResponseMutations = (
-    quizViewState: QuizViewState,
-    result: string
+    quizViewState: QuizViewState
+    // result: string
   ) => {
-    const finalResponseObject = [
-      {
-        name: userInput.name,
-        email: userInput.email,
-        degree: educationState.degree,
-        institution: educationState.institution,
-        id: quizResponseId,
-        experience: educationState.experience,
-        education: educationState.education,
+    if (stage === Stage.START) {
+      createQuizResponse({
+        variables: { name: userInput.name, email: userInput.email },
+      });
+    } else if (stage === Stage.EDUCATION) {
+      saveEducationInputs({
+        variables: {
+          id: quizResponseId,
+          degree: educationState.degree,
+          institution: educationState.institution,
+          experience: educationState.experience,
+          education: educationState.education,
+        },
+      });
+      alert(quizResponseId);
+    } else {
+      alert(quizResponseId + " finalresponse");
+      const finalResponseObject = {
+        id: quizResponseId || 0,
         industries: quizViewState.questions[0].options
           .filter((option) => option.isSelected)
           .map((option) => option.name),
@@ -99,15 +116,17 @@ const CareerQuiz = () => {
         tasks: quizViewState.questions[2].options
           .filter((option) => option.isSelected)
           .map((option) => option.name),
-        result: result,
-      },
-    ];
-    saveUserPreferences({ variables: { objects: finalResponseObject } });
+      };
+      alert(finalResponseObject.id);
+      saveCompletedUserPreferences({
+        variables: { objects: finalResponseObject },
+      });
+    }
   };
 
   const handleNextClick = () => {
     setTriggerAnimation(false);
-
+    handleQuizResponseMutations(quizViewState);
     setTimeout(() => {
       setTriggerAnimation(true);
 

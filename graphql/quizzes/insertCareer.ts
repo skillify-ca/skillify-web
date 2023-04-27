@@ -1,26 +1,8 @@
 import { gql } from "@apollo/client";
 
-export const UPSERT_CAREER_QUIZ_RESPONSE = gql`
-  mutation UpsertCareerQuizResponse($objects: [career_quiz_insert_input!]!) {
-    insert_career_quiz(
-      objects: $objects
-      on_conflict: {
-        constraint: career_quiz_pkey
-        update_columns: [
-          name
-          email
-          institution
-          degree
-          result
-          industries
-          skills
-          tasks
-          education
-          experience
-        ]
-      }
-    ) {
-      affected_rows
+export const INSERT_CAREER_QUIZ_RESPONSE = gql`
+  mutation INSERT_CAREER_QUIZ_RESPONSE($name: String!, $email: String!) {
+    insert_career_quiz(objects: { name: $name, email: $email }) {
       returning {
         id
       }

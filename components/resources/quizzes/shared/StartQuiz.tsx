@@ -43,7 +43,7 @@ const StartQuiz = ({
             type="text"
             name="name"
             value={userInput.name}
-            onChange={handleInputChange}
+            onChange={(e) => handleInputChange(e)}
             className="w-4/5 ml-8 border border-gray-500 rounded-lg shadow appearance-none"
           ></input>
           <h3 className="ml-8">Email Address</h3>{" "}
@@ -51,7 +51,7 @@ const StartQuiz = ({
             type="email"
             name="email"
             value={userInput.email}
-            onChange={handleInputChange}
+            onChange={(e) => handleInputChange(e)}
             className="w-4/5 ml-8 border border-gray-500 rounded-lg shadow appearance-none"
           ></input>
         </div>
@@ -61,7 +61,6 @@ const StartQuiz = ({
           disabled={userInput.name.length == 0 && userInput.email.length == 0}
           onClick={() => {
             onNextClick();
-            handleUserInputMutations(userInput);
           }}
         />
       </div>
