@@ -8,11 +8,13 @@ import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz
 import {
   QuizOptionViewState,
   QuizViewState,
+  UserInput,
 } from "../../../../components/resources/quizzes/shared/types";
 import { QuizTransition } from "../../../../components/ui/animations/QuizTransition";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
 import { UPDATE_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCareer";
 import { UPDATE_CAREER_QUIZ_EDUCATION_RESPONSE } from "../../../../graphql/quizzes/updateCareerEducation";
+
 import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz/careerQuiz";
 import ComputeCareerResult from "../../../api/studentPortal/quizzes/careerQuiz/computeCareerResults";
 
@@ -23,6 +25,8 @@ const initializeQuizViewState = {
     return {
       title: question.title,
       body: question.body,
+      maxSelections: 3,
+
       options: question.options.map((option) => {
         return { ...option, isSelected: false };
       }),
@@ -31,6 +35,7 @@ const initializeQuizViewState = {
   currentQuestion: 0,
   progress: 0,
 };
+
 export enum Stage {
   START,
   EDUCATION,
@@ -52,6 +57,7 @@ const CareerQuiz = () => {
     education: "",
     experience: "",
   });
+
   // create results state object that
   // create custom type -- based on schema type in database
   const [stage, setStage] = useState<Stage>(Stage.START);
@@ -133,6 +139,7 @@ const CareerQuiz = () => {
         });
       } else setStage((prevStage) => prevStage + 1);
     }, 250); // adjust the delay time based on the animation duration
+
     window.scrollTo({
       top: 0,
       left: 0,
@@ -159,6 +166,7 @@ const CareerQuiz = () => {
         questionOption.name === option.name
           ? {
               ...questionOption,
+
               isSelected: questionOption.isSelected ? false : true,
             }
           : questionOption
@@ -186,8 +194,9 @@ const CareerQuiz = () => {
                 body={
                   "Take this free quiz to find out what jobs in tech fit you best!"
                 }
-                setUserInput={setUserInput}
+
                 userInput={userInput}
+                setUserInput={setUserInput}
               />
             );
           case Stage.EDUCATION:
