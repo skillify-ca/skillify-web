@@ -8,9 +8,9 @@ export default function Upgrade() {
       </h1>
       <img className="w-full" src="/images/freemium/gatedContentRow.svg" />
       <p className="max-w-3xl md:text-lg text-xs bg-rattata/20 rounded-lg p-6">
-        Locked features are part of the premium plan, which you can easily
-        upgrade to at any point in your free trial by clicking on the following
-        link to book a call:{" "}
+        Locked features are part of the premium plan, but never fear! You can
+        easily upgrade at any point during your free trial to PREMIUM access by
+        clicking on the link below to book a call:{" "}
         <a href="http://www.joinskillify.com/call">
           {" "}
           www.joinskillify.com/call

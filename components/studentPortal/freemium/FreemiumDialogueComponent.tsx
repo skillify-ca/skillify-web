@@ -61,7 +61,11 @@ const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
             <FadeAnimation key={activeModal} triggerAnimation={true}>
               {getModalContent(activeModal)}
             </FadeAnimation>
-            <div className="flex flex-row justify-center items-center space-x-12 absolute bottom-0 bg-white p-4 inset-x-0">
+            <div
+              className={`flex flex-row justify-center items-center space-x-12 absolute bottom-0 ${
+                activeModal === ModalStage.TWO ? "bg-white" : "bg-murkrow"
+              } p-4 inset-x-0`}
+            >
               {/* no button/back button */}
               {activeModal > ModalStage.ONE ? (
                 <img
