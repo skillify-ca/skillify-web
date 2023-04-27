@@ -48,7 +48,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   return (
     <div>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
-      <div className="flex flex-col items-center px-8">
+      <div className="flex flex-col items-center px-8 md:w-full max-w-4xl md:mx-auto">
         <Progress progress={0} />
         <div className="mt-4 text-2xl font-bold text-center text-black-600">
           {titleForCurrentQuestion}

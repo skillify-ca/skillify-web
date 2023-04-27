@@ -54,7 +54,7 @@ const EducationBackground = ({
         </h1>
       </div>
 
-      <div className="text-lg text-left mx-8 ">
+      <div className="text-lg text-left mx-8 md:w-full max-w-4xl text-center md:mx-auto">
         <label htmlFor="education-select">Education</label>
 
         <select
