@@ -3,11 +3,14 @@ import { useState } from "react";
 
 import { differenceInHours } from "date-fns";
 import {
-  FetchModalData,
   FETCH_LAST_SEEN_MODAL,
+  FetchModalData,
 } from "../../../graphql/studentPortal/freemium/fetchLastSeenModal";
 import { UPSERT_LAST_SEEN_MODAL } from "../../../graphql/studentPortal/freemium/upsertLastSeenModal";
-import { calculateRemainingTrialDays } from "../../../pages/api/studentPortal/freemium/helpers";
+import {
+  calculateRemainingTrialDays,
+  sendSlackNotification,
+} from "../../../pages/api/studentPortal/freemium/helpers";
 
 export const useLastSeenModal = (
   userId: string,
@@ -40,6 +43,7 @@ export const useLastSeenModal = (
         // check whether user has seen onboarding modal in the last 24 hours
         if (lastSeenDifference > 24 || !lastSeenValue) {
           setShowOnboardingModal(true);
+          sendSlackNotification();
           updateLastSeenModal({
             variables: { userId: userId, lastSeenModal: new Date() },
           });
