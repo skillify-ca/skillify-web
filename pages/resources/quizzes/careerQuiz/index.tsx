@@ -23,6 +23,8 @@ const initializeQuizViewState = {
     return {
       title: question.title,
       body: question.body,
+      maxSelections: 3,
+
       options: question.options.map((option) => {
         return { ...option, isSelected: false };
       }),
@@ -31,6 +33,7 @@ const initializeQuizViewState = {
   currentQuestion: 0,
   progress: 0,
 };
+
 export enum Stage {
   START,
   EDUCATION,
@@ -52,6 +55,20 @@ const CareerQuiz = () => {
     education: "",
     experience: "",
   });
+
+  const [saveUserPreferences] = useMutation(INSERT_CAREER_QUIZ_RESPONSE, {});
+  const exampleUserPreferences = [
+    {
+      degree: "Bachelor of Arts",
+      institution: "University of Waterloo",
+      name: "Angela",
+      email: "example@example.com",
+      industries: ["Advertising", "Design", "Fashion"],
+      skills: ["Writing code", "Writing", "Math"],
+      result: "Software Engineer",
+      tasks: ["Find trends in data"],
+    },
+  ];
   // create results state object that
   // create custom type -- based on schema type in database
   const [stage, setStage] = useState<Stage>(Stage.START);
@@ -133,6 +150,7 @@ const CareerQuiz = () => {
         });
       } else setStage((prevStage) => prevStage + 1);
     }, 250); // adjust the delay time based on the animation duration
+
     window.scrollTo({
       top: 0,
       left: 0,
@@ -159,6 +177,7 @@ const CareerQuiz = () => {
         questionOption.name === option.name
           ? {
               ...questionOption,
+
               isSelected: questionOption.isSelected ? false : true,
             }
           : questionOption

@@ -16,15 +16,17 @@ const Plans = (props: { planCardData: PlanCard[] }) => {
   return (
     <div>
       <LandingNavbar />
-      <div className="flex flex-col items-center justify-center space-y-2 mb-8">
-        <h1 className="text-charmander text-3xl font-bold text-center p-4">
+      <div className="flex flex-col items-center justify-center mb-8 space-y-2">
+        <h1 className="p-4 text-3xl font-bold text-center text-charmander">
           Pick the plan that is right for you
         </h1>
         <p>Reserve your spot today!</p>
       </div>
-      <div className="flex flex-wrap justify-center align-items-stretch md:space-x-10 space-x-0">
+      <div className="flex flex-wrap justify-center my-16 space-x-0 align-items-stretch md:space-x-10">
         {planCardData.map((card, index) => (
-          <PlansCard key={index} planCard={card} />
+          <div className="mb-16 last:mb-0 sm:mb-0">
+            <PlansCard key={index} planCard={card} />
+          </div>
         ))}
       </div>
     </div>
