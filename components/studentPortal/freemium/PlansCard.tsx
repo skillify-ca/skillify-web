@@ -12,8 +12,14 @@ export type PlansCardProps = {
 };
 
 const PlansCard = ({ planCard }: PlansCardProps) => {
-  const { planName, title, price, description, planCardRow, buttonLabel } =
-    planCard;
+  const {
+    planName,
+    title,
+    price,
+    description,
+    planCardRow,
+    buttonLabel,
+  } = planCard;
 
   const { signIn, user }: { signIn: () => void; user: User | null } = useAuth();
   const router = useRouter();
@@ -39,14 +45,14 @@ const PlansCard = ({ planCard }: PlansCardProps) => {
   }, []);
 
   return (
-    <div className="flex flex-col w-[325px] md:w-[400px] space-y-4 shadow-lg cursor-pointer rounded-xl hover:scale-105">
-      <div className="flex justify-center bg-rattata p-6 text-white font-bold text-2xl rounded-xl">
+    <div className="flex flex-col w-[325px] md:w-[400px] space-y-4 shadow-lg cursor-pointer rounded-xl transition-all hover:scale-105">
+      <div className="flex justify-center p-6 text-2xl font-bold text-white bg-rattata rounded-t-xl">
         {title}
       </div>
-      <div className="flex flex-col items-center w-full">
-        <p className="mb-4 font-bold text-2xl">{price}</p>
+      <div className="flex flex-col items-center w-full bg-white">
+        <p className="mb-4 text-2xl font-bold">{price}</p>
         <p>{description}</p>
-        <p className="font-bold text-center p-4">WHAT'S INCLUDED</p>
+        <p className="p-4 font-bold text-center">WHAT'S INCLUDED</p>
         {planCardRow.map((item, index) => {
           return (
             <PlanRow
