@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-
 import { useMutation } from "@apollo/client";
+import React, { useState } from "react";
 import CareerResults from "../../../../components/resources/quizzes/careerQuiz/CareerResults";
 import EduBackground from "../../../../components/resources/quizzes/careerQuiz/EduBackground";
 import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
@@ -15,6 +14,7 @@ import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertC
 import { UPDATE_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCareer";
 import { UPDATE_CAREER_QUIZ_EDUCATION_RESPONSE } from "../../../../graphql/quizzes/updateCareerEducation";
 import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz";
+
 const initializeQuizViewState = {
   title: quizData.title,
   body: quizData.body,
@@ -119,7 +119,7 @@ const CareerQuiz = () => {
       };
       alert(finalResponseObject.id);
       saveCompletedUserPreferences({
-        variables: { objects: finalResponseObject },
+        variables: finalResponseObject,
       });
     }
   };
@@ -247,5 +247,3 @@ export default CareerQuiz;
 function getLayout(page: React.ReactNode) {
   return <div>{page}</div>;
 }
-
-CareerQuiz.getLayout = getLayout;
