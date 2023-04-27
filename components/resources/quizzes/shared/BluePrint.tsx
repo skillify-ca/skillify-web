@@ -18,11 +18,11 @@ const BluePrint = ({ onNextClick, onBackClick }: BluePrintProps) => {
           The Skillify BluePrint
         </div>
       </div>
-      <div className="grid grid-cols-[1fr_3fr] md:grid-cols-[1fr_7fr]">
+      <div className="grid grid-cols-[1fr_3fr] md:flex md:justify-center">
         <div className="grid grid-cols-1 ml-8">
           <NumberedCircles />
         </div>
-        <div className="grid grid-cols-1 mx-4 mr-16 space-y-8 md:space-y-12 md:mt-2">
+        <div className="grid grid-cols-1 mx-4 mr-16 md:mx-8 space-y-8 md:space-y-12 md:mt-2">
           <div className="font-bold text-black-600 ">
             Learn the fundamentals of coding
           </div>
