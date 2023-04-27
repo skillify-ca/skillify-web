@@ -86,7 +86,7 @@ const EducationBackground = ({
                     id="institution"
                     value={institution}
                     onChange={(e) => setInstitution(e.target.value)}
-                    className="border w-full border-gray-500 rounded-lg px-10"
+                    className="border w-full border-gray-500 rounded-lg px-2"
                   />
                 </div>
               )}
