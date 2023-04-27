@@ -69,15 +69,16 @@ export async function getServerSideProps() {
         },
         {
           icon: "../../images/freemium/greenCheck.svg",
-          description: "Receive personalized feedback on one assignment",
+          description: "Personalized feedback on ONE assignment",
+        },
+        {
+          icon: "../../images/freemium/redX.svg",
+          description:
+            "Build digital products under the guidance of ex-Spotify engineers",
         },
         {
           icon: "../../images/freemium/redX.svg",
           description: "1 on 1 mentorship and small group coaching",
-        },
-        {
-          icon: "../../images/freemium/redX.svg",
-          description: "Mentorship from our experienced coaches",
         },
         {
           icon: "../../images/freemium/redX.svg",
@@ -102,7 +103,7 @@ export async function getServerSideProps() {
         },
         {
           icon: "../../images/freemium/greenCheck.svg",
-          description: "Personalized feedback for assignments",
+          description: "Personalized feedback for ALL assignments",
         },
         {
           icon: "../../images/freemium/greenCheck.svg",
@@ -111,7 +112,7 @@ export async function getServerSideProps() {
         },
         {
           icon: "../../images/freemium/greenCheck.svg",
-          description: "Mentorship from our experienced coaches",
+          description: "1 on 1 mentorship and small group coaching",
         },
         {
           icon: "../../images/freemium/greenCheck.svg",
