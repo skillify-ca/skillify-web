@@ -26,6 +26,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   const titleForCurrentQuestion = questions[currentQuestion].title;
   const bodyForCurrentQuestion = questions[currentQuestion].body;
   const optionsForCurrentQuestions = questions[currentQuestion].options || [];
+  const [progressVal, setProgressVal] = useState(0);
   const handleClick = (option: QuizOptionViewState) => {
     if (option.isSelected) {
       setNumberSelected((prev) => prev - 1);
@@ -37,6 +38,15 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
     }
   };
 
+  //Sets progress bar as question changes
+  useEffect(() => {
+    const progressCalculation = (currentQuestion * 100) / questions.length;
+    if (progressCalculation === 0) {
+      setProgressVal(5);
+    } else setProgressVal(progressCalculation);
+  }, [currentQuestion]);
+
+  //To monitor selected options on each page
   useEffect(
     () =>
       setNumberSelected(
@@ -45,11 +55,12 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
       ),
     [currentQuestion]
   );
+
   return (
     <div>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
       <div className="flex flex-col items-center px-8">
-        <Progress progress={0} />
+        <Progress progress={progressVal} />
         <div className="mt-4 text-2xl font-bold text-center text-black-600">
           {titleForCurrentQuestion}
         </div>
