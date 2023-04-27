@@ -40,9 +40,7 @@ const BluePrint = ({ onNextClick, onBackClick }: BluePrintProps) => {
       <div className="grid py-6 place-items-center">
         <Button
           label="View results"
-          onClick={() => {
-            onNextClick();
-          }}
+          onClick={onNextClick}
           backgroundColor="yellow"
         />
       </div>
