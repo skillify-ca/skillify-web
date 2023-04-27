@@ -8,6 +8,7 @@ export type ProfileState = {
   totalBadgeCount: number;
   userRole: "student" | "coach"|"freemium"|"paid";
   createdAt: Date;
+  email: string;
 };
 
 const initialState: ProfileState = {
@@ -21,7 +22,8 @@ const initialState: ProfileState = {
   totalBadgeCount: 0,
   userBadgeCount: 0,
   userRole: "freemium",
-  createdAt: new Date()
+  createdAt: new Date(),
+  email: "",
 };
 
 export const profileSlice: Slice = createSlice({
@@ -84,6 +86,18 @@ export const profileSlice: Slice = createSlice({
         };
       }
     },
+
+    setEmail: (
+      state: ProfileState,
+      action: PayloadAction<string>
+    ) => {
+      if (action.type == "profile/setEmail") {
+        return {
+          ...state,
+          email: action.payload,
+        };
+      }
+    },
   },
 });
 
@@ -93,6 +107,7 @@ export const {
   setTotalBadgeCount,
   setUserRole,
   setCreatedAt,
+  setEmail,
 } = profileSlice.actions;
 
 export default profileSlice.reducer;

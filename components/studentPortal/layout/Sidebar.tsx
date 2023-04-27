@@ -4,13 +4,14 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  FetchRoleData,
   FETCH_USER_ROLE,
+  FetchRoleData,
 } from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
 import {
   profileSelector,
   setCreatedAt,
+  setEmail,
   setUserRole,
 } from "../../../redux/profileSlice";
 import { activePageSelector, setActivePage } from "../../../redux/sidebarSlice";
@@ -44,6 +45,7 @@ export const Sidebar: React.FC = () => {
       } else if (data.users[0].userRole.value === "freemium") {
         dispatch(setCreatedAt(data.users[0].created_at));
         dispatch(setUserRole("freemium"));
+        dispatch(setEmail(data.users[0].email));
         setIsDisabled(true);
       }
     },

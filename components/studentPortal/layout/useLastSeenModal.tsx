@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
 
 import { differenceInHours } from "date-fns";
+import { useSelector } from "react-redux";
 import {
   FETCH_LAST_SEEN_MODAL,
   FetchModalData,
@@ -11,6 +12,7 @@ import {
   calculateRemainingTrialDays,
   sendSlackNotification,
 } from "../../../pages/api/studentPortal/freemium/helpers";
+import { profileSelector } from "../../../redux/profileSlice";
 
 export const useLastSeenModal = (
   userId: string,
@@ -20,6 +22,7 @@ export const useLastSeenModal = (
   const [updateLastSeenModal] = useMutation(UPSERT_LAST_SEEN_MODAL);
   const [showOnboardingModal, setShowOnboardingModal] = useState(false);
   const [showExitModal, setShowExitModal] = useState(false);
+  const { email } = useSelector(profileSelector);
 
   useQuery<FetchModalData>(FETCH_LAST_SEEN_MODAL, {
     variables: {
@@ -31,6 +34,9 @@ export const useLastSeenModal = (
       const trialDaysRemaining = calculateRemainingTrialDays(createdAt);
 
       const lastSeenValue = data.freemium_users[0]?.lastSeenModal;
+      if (!lastSeenValue) {
+        sendSlackNotification(email);
+      }
 
       const lastSeenDifference = lastSeenValue
         ? differenceInHours(new Date(), new Date(lastSeenValue))
@@ -43,7 +49,6 @@ export const useLastSeenModal = (
         // check whether user has seen onboarding modal in the last 24 hours
         if (lastSeenDifference > 24 || !lastSeenValue) {
           setShowOnboardingModal(true);
-          sendSlackNotification();
           updateLastSeenModal({
             variables: { userId: userId, lastSeenModal: new Date() },
           });

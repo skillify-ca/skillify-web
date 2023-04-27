@@ -20,7 +20,7 @@ import { useLastSeenModal } from "./useLastSeenModal";
 export const Layout: React.FC = ({ children }) => {
   const [active, setActive] = useState(false);
   const { currentTheme } = useSelector(themeSelector);
-  const { userRole, createdAt } = useSelector(profileSelector);
+  const { userRole, createdAt, email } = useSelector(profileSelector);
   const { user } = useAuth();
   const dispatch = useDispatch();
 
@@ -109,6 +109,7 @@ export const Layout: React.FC = ({ children }) => {
         <Sidebar />
       </div>
       {showOnboardingModal && <FreemiumDialogComponent trigger={false} />}
+
       {showExitModal && <FreemiumExitComponent />}
     </div>
   );
