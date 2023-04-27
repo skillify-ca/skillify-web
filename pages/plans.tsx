@@ -52,7 +52,7 @@ const Plans = ({ plansCardData }) => {
 export async function getServerSideProps() {
   const plansCardData = [
     {
-      title: "Free 14-day Trial",
+      title: "Free 14-Day Trial",
       description: "No credit card required",
       price: "$0",
       buttonLabel: "Sign Up",
@@ -73,7 +73,7 @@ export async function getServerSideProps() {
         },
         {
           icon: "../../images/freemium/redX.svg",
-          description: "1:1 mentorship and small group coaching",
+          description: "1 on 1 mentorship and small group coaching",
         },
         {
           icon: "../../images/freemium/redX.svg",
@@ -102,12 +102,12 @@ export async function getServerSideProps() {
         },
         {
           icon: "../../images/freemium/greenCheck.svg",
-          description: "Receive personalized feedback for assignments",
+          description: "Personalized feedback for assignments",
         },
         {
           icon: "../../images/freemium/greenCheck.svg",
           description:
-            "Build digital products under the leadership of ex-Spotify engineers",
+            "Build digital products under the guidance of ex-Spotify engineers",
         },
         {
           icon: "../../images/freemium/greenCheck.svg",
