@@ -9,12 +9,11 @@ export default function Upgrade() {
       <img className="w-full" src="/images/freemium/gatedContentRow.svg" />
       <p className="max-w-3xl md:text-lg text-xs bg-rattata/20 rounded-lg p-6">
         Locked features are part of the premium plan, but never fear! You can
-        easily upgrade at any point during your free trial to PREMIUM access by
-        clicking on the link below to book a call:{" "}
-        <a href="http://www.joinskillify.com/call">
-          {" "}
-          www.joinskillify.com/call
-        </a>
+        easily upgrade at any point during your free trial to PREMIUM access.
+        Let's chat. Get started by clicking on the link below:
+      </p>
+      <p className="font-bold text-xs md:text-lg">
+        <a href="http://www.joinskillify.com/call">www.joinskillify.com/call</a>
       </p>
     </div>
   );
