@@ -56,19 +56,6 @@ const CareerQuiz = () => {
     experience: "",
   });
 
-  const [saveUserPreferences] = useMutation(INSERT_CAREER_QUIZ_RESPONSE, {});
-  const exampleUserPreferences = [
-    {
-      degree: "Bachelor of Arts",
-      institution: "University of Waterloo",
-      name: "Angela",
-      email: "example@example.com",
-      industries: ["Advertising", "Design", "Fashion"],
-      skills: ["Writing code", "Writing", "Math"],
-      result: "Software Engineer",
-      tasks: ["Find trends in data"],
-    },
-  ];
   // create results state object that
   // create custom type -- based on schema type in database
   const [stage, setStage] = useState<Stage>(Stage.START);
