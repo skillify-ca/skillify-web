@@ -50,11 +50,8 @@ const EducationBackground = ({
 
       <div className="flex flex-col items-center text-center  mx-4  mt-4">
         <h1 className="text-2xl font-semibold ">
-          What level of education have you received?
-        </h1>
-        <p className="text-lg font-medium px-4">
           Select your highest level of education.
-        </p>
+        </h1>
       </div>
 
       <div className="text-lg text-left mx-8 ">
