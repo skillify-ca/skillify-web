@@ -9,7 +9,6 @@ export type QuizQuestion = {
   title: string;
   body: string;
   options: QuizOption[];
-  maxSelections?: number;
 };
 
 export type QuizOption = {
@@ -30,6 +29,7 @@ export type QuizViewState = {
 export type QuizQuestionViewState = {
   title: string;
   body: string;
+  maxSelections?: number;
   options: QuizOptionViewState[];
 };
 
