@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useAuth } from "../../../lib/authContext";
 import { auth } from "../../../lib/firebase";
+import { sendSlackNotification } from "../../../pages/api/studentPortal/freemium/helpers";
 import { PlanCard } from "../../../pages/plans";
 import { Button } from "../../ui/Button";
 import PlanRow from "./PlanRow";
@@ -23,6 +24,7 @@ const PlansCard = ({ planCard }: PlansCardProps) => {
       router.push("https://www.joinskillify.com/call");
     } else {
       signIn();
+      sendSlackNotification();
     }
   };
 

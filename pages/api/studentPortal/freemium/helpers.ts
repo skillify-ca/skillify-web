@@ -75,3 +75,17 @@ function transformBackendUnit(unit: Unit): Unit {
     }),
   };
 }
+
+export const sendSlackNotification = async () => {
+  try {
+    const response = await fetch(
+      `/api/slack/${"new free trial registration"}`
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
