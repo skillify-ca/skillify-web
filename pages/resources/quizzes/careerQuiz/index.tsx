@@ -14,6 +14,7 @@ import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertC
 import { UPDATE_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCareer";
 import { UPDATE_CAREER_QUIZ_EDUCATION_RESPONSE } from "../../../../graphql/quizzes/updateCareerEducation";
 import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz/careerQuiz";
+import ComputeCareerResult from "../../../api/studentPortal/quizzes/careerQuiz/computeCareerResults";
 
 const initializeQuizViewState = {
   title: quizData.title,
@@ -63,7 +64,6 @@ const CareerQuiz = () => {
     onCompleted: (data) => {
       if (!quizResponseId) {
         setQuizResponseId(parseInt(data.insert_career_quiz.returning[0].id));
-        alert(quizResponseId);
       }
     },
   });
@@ -74,12 +74,6 @@ const CareerQuiz = () => {
     UPDATE_CAREER_QUIZ_RESPONSE
   );
 
-  const handleUserInputMutations = (userInput: {
-    name: string;
-    email: string;
-  }) => {
-    createQuizResponse({ variables: { objects: userInput } });
-  };
   const [userInput, setUserInput] = useState({
     name: "",
     email: "",
@@ -102,9 +96,8 @@ const CareerQuiz = () => {
           education: educationState.education,
         },
       });
-      alert(quizResponseId);
     } else {
-      alert(quizResponseId + " finalresponse");
+      const result = ComputeCareerResult(quizViewState)[0];
       const finalResponseObject = {
         id: quizResponseId || 0,
         industries: quizViewState.questions[0].options
@@ -116,8 +109,8 @@ const CareerQuiz = () => {
         tasks: quizViewState.questions[2].options
           .filter((option) => option.isSelected)
           .map((option) => option.name),
+        result: result,
       };
-      alert(finalResponseObject.id);
       saveCompletedUserPreferences({
         variables: finalResponseObject,
       });
@@ -222,8 +215,6 @@ const CareerQuiz = () => {
               <BluePrint
                 onNextClick={handleNextClick}
                 onBackClick={handleBackClick}
-                handleQuizResponseMutations={handleQuizResponseMutations}
-                quizViewState={quizViewState}
               />
             );
           case Stage.RESULTS:

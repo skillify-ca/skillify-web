@@ -6,10 +6,16 @@ export const UPDATE_CAREER_QUIZ_RESPONSE = gql`
     $industries: jsonb
     $skills: jsonb
     $tasks: jsonb
+    $result: String
   ) {
     update_career_quiz(
       where: { id: { _eq: $id } }
-      _set: { industries: $industries, skills: $skills, tasks: $tasks }
+      _set: {
+        industries: $industries
+        skills: $skills
+        tasks: $tasks
+        result: $result
+      }
     ) {
       affected_rows
     }
