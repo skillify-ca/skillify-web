@@ -55,38 +55,39 @@ const EducationBackground = ({
         <p className="text-lg font-medium px-4">
           Select your highest level of education.
         </p>
-        <div className="text-lg text-left">
-          <label htmlFor="education-select">Education</label>
+      </div>
 
-          <select
-            id="education-select"
-            value={selectedEducationLevel || ""}
-            onChange={handleEducationLevelChange}
-            className=" border  w-full border-gray-500 rounded-lg "
-          >
-            {Object.values(EducationLevel).map((educationLevel) => (
-              <option key={educationLevel} value={educationLevel}>
-                {educationLevel}
-              </option>
-            ))}
-          </select>
+      <div className="text-lg text-left mx-8 ">
+        <label htmlFor="education-select">Education</label>
+
+        <select
+          id="education-select"
+          value={selectedEducationLevel || ""}
+          onChange={handleEducationLevelChange}
+          className=" border  w-full border-gray-500 rounded-lg "
+        >
+          {Object.values(EducationLevel).map((educationLevel) => (
+            <option key={educationLevel} value={educationLevel}>
+              {educationLevel}
+            </option>
+          ))}
+        </select>
+        <div>
           <div>
             {selectedEducationLevel &&
               selectedEducationLevel !== EducationLevel.NA &&
               selectedEducationLevel !== EducationLevel.HighSchoolDiploma &&
               selectedEducationLevel !== EducationLevel.GED && (
-                <div className="text-left">
-                  <div className="text-left mt-2">
-                    <label htmlFor="institution">Institution</label>{" "}
-                    <input
-                      type="text"
-                      name="institution"
-                      id="institution"
-                      value={institution}
-                      onChange={(e) => setInstitution(e.target.value)}
-                      className="border w-full border-gray-500 rounded-lg px-10"
-                    />
-                  </div>
+                <div className="text-left mt-2">
+                  <label htmlFor="institution">Institution</label>{" "}
+                  <input
+                    type="text"
+                    name="institution"
+                    id="institution"
+                    value={institution}
+                    onChange={(e) => setInstitution(e.target.value)}
+                    className="border w-full border-gray-500 rounded-lg px-10"
+                  />
                 </div>
               )}
           </div>
@@ -105,7 +106,7 @@ const EducationBackground = ({
                     id="degree"
                     value={degree}
                     onChange={(e) => setDegree(e.target.value)}
-                    className="shadow  w-full appearance-none border border-gray-500 rounded-lg px-10"
+                    className="shadow  w-full  border border-gray-500 rounded-lg px-2"
                   />
                 </div>
               )}
@@ -116,20 +117,20 @@ const EducationBackground = ({
                 </div>
                 <textarea
                   onChange={(e) => setDegree(e.target.value)}
-                  className="w-full border border-gray-500 rounded-lg  px-10 resize-none"
+                  className="w-full border border-gray-500 rounded-lg  px-2 resize-none"
                 />
               </div>
             )}
           </div>
         </div>
-        <div className="py-8">
-          <Button
-            backgroundColor="yellow"
-            label="Next"
-            onClick={isFormValid ? onNextClick : undefined}
-            disabled={!isFormValid}
-          />{" "}
-        </div>
+      </div>
+      <div className="py-8 flex place-content-center">
+        <Button
+          backgroundColor="yellow"
+          label="Next"
+          onClick={isFormValid ? onNextClick : undefined}
+          disabled={!isFormValid}
+        />{" "}
       </div>
     </div>
   );
