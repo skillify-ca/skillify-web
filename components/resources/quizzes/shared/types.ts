@@ -8,6 +8,7 @@ export type QuizData = {
 export type QuizQuestion = {
   title: string;
   body: string;
+  maxSelections?: number;
   options: QuizOption[];
 };
 
