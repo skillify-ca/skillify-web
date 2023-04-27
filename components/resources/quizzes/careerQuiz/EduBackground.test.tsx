@@ -7,16 +7,19 @@ describe("EducationBackground component", () => {
   test("renders select element with EducationLevel options", () => {
     const onNextClick = jest.fn();
     const onBackClick = jest.fn();
-    const education = "";
+    const educationState = {
+      degree: "",
+      institution: "",
+      education: "",
+      experience: "",
+    };
+    const setEducationState = () => "";
     render(
       <EduBackground
-        selectedEducationLevel={education}
-        setDegree={setDegree}
-        setInstitution={setInstitution}
-        setEducation={setEducation}
-        setExperience={setExperience}
         onNextClick={onNextClick}
         onBackClick={onBackClick}
+        setEducationState={setEducationState}
+        educationState={educationState}
       />
     );
     const selectElement = screen.getByLabelText("Education");
@@ -57,15 +60,19 @@ describe("EducationBackground component", () => {
   test("next button does not change the page", () => {
     const onNextClick = jest.fn();
     const onBackClick = jest.fn();
+    const educationState = {
+      degree: "",
+      institution: "",
+      education: "",
+      experience: "",
+    };
+    const setEducationState = () => "";
     render(
       <EduBackground
-        selectedEducationLevel={""}
-        setDegree={setDegree}
-        setInstitution={setInstitution}
-        setEducation={setEducation}
-        setExperience={setExperience}
         onNextClick={onNextClick}
         onBackClick={onBackClick}
+        setEducationState={setEducationState}
+        educationState={educationState}
       />
     );
     const nextButton = screen.getByText("Next");
@@ -75,15 +82,19 @@ describe("EducationBackground component", () => {
   test("next button changes the page", () => {
     const onNextClick = jest.fn();
     const onBackClick = jest.fn();
+    const educationState = {
+      degree: "",
+      institution: "",
+      education: "N/A",
+      experience: "",
+    };
+    const setEducationState = () => "";
     render(
       <EduBackground
-        selectedEducationLevel={"N/A"}
-        setDegree={setDegree}
-        setInstitution={setInstitution}
-        setEducation={setEducation}
-        setExperience={setExperience}
         onNextClick={onNextClick}
         onBackClick={onBackClick}
+        setEducationState={setEducationState}
+        educationState={educationState}
       />
     );
     const selectElement = screen.getByLabelText("Education");
@@ -100,15 +111,19 @@ describe("EducationBackground component", () => {
       const onNextClick = jest.fn();
       const onBackClick = jest.fn();
 
+      const educationState = {
+        degree: "",
+        institution: "",
+        education: testCase.label,
+        experience: "",
+      };
+      const setEducationState = () => "";
       render(
         <EduBackground
-          selectedEducationLevel={testCase.label}
-          setDegree={setDegree}
-          setInstitution={setInstitution}
-          setEducation={setEducation}
-          setExperience={setExperience}
           onNextClick={onNextClick}
           onBackClick={onBackClick}
+          setEducationState={setEducationState}
+          educationState={educationState}
         />
       );
       const selectElement = screen.getByLabelText("Education");
@@ -118,7 +133,6 @@ describe("EducationBackground component", () => {
           screen.getByText("Do you have experience coding?")
         ).toBeInTheDocument();
       } else {
-        const education = "PHD";
         expect(screen.getByText("Institution")).toBeInTheDocument();
         expect(screen.getByText("Field of study")).toBeInTheDocument();
       }
