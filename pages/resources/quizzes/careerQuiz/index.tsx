@@ -8,9 +8,11 @@ import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz
 import {
   QuizOptionViewState,
   QuizViewState,
+  UserInput,
 } from "../../../../components/resources/quizzes/shared/types";
 import { QuizTransition } from "../../../../components/ui/animations/QuizTransition";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
+
 import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz/careerQuiz";
 const initializeQuizViewState = {
   title: quizData.title,
@@ -19,6 +21,8 @@ const initializeQuizViewState = {
     return {
       title: question.title,
       body: question.body,
+      maxSelections: 3,
+
       options: question.options.map((option) => {
         return { ...option, isSelected: false };
       }),
@@ -27,6 +31,7 @@ const initializeQuizViewState = {
   currentQuestion: 0,
   progress: 0,
 };
+
 export enum Stage {
   START,
   EDUCATION,
@@ -35,6 +40,10 @@ export enum Stage {
   RESULTS,
 }
 const CareerQuiz = () => {
+  const [userInput, setUserInput] = useState<UserInput>({
+    name: "",
+    email: "",
+  });
   const [saveUserPreferences] = useMutation(INSERT_CAREER_QUIZ_RESPONSE, {});
   const exampleUserPreferences = [
     {
@@ -71,6 +80,7 @@ const CareerQuiz = () => {
         });
       } else setStage((prevStage) => prevStage + 1);
     }, 250); // adjust the delay time based on the animation duration
+
     window.scrollTo({
       top: 0,
       left: 0,
@@ -97,6 +107,7 @@ const CareerQuiz = () => {
         questionOption.name === option.name
           ? {
               ...questionOption,
+
               isSelected: questionOption.isSelected ? false : true,
             }
           : questionOption
@@ -124,6 +135,8 @@ const CareerQuiz = () => {
                 body={
                   "Take this free quiz to find out what jobs in tech fit you best!"
                 }
+                userInput={userInput}
+                setUserInput={setUserInput}
               />
             );
           case Stage.EDUCATION:

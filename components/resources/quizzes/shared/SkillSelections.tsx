@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   QuizOptionViewState,
   QuizViewState,
@@ -21,13 +21,30 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
   quizViewState,
 }) => {
   const { currentQuestion, questions } = quizViewState;
+  const [numberSelected, setNumberSelected] = useState(0);
+  const maxSelections = questions[currentQuestion].maxSelections;
   const titleForCurrentQuestion = questions[currentQuestion].title;
   const bodyForCurrentQuestion = questions[currentQuestion].body;
   const optionsForCurrentQuestions = questions[currentQuestion].options || [];
   const handleClick = (option: QuizOptionViewState) => {
-    handleOptionClick(option);
+    if (option.isSelected) {
+      setNumberSelected((prev) => prev - 1);
+    } else if (numberSelected < maxSelections) {
+      setNumberSelected((prev) => prev + 1);
+    }
+    if (numberSelected < maxSelections || option.isSelected) {
+      handleOptionClick(option);
+    }
   };
 
+  useEffect(
+    () =>
+      setNumberSelected(
+        questions[currentQuestion].options.filter((option) => option.isSelected)
+          .length
+      ),
+    [currentQuestion]
+  );
   return (
     <div>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
