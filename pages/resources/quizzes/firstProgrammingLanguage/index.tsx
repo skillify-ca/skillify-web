@@ -12,8 +12,8 @@ import {
 import QuizTransition from "../../../../components/ui/animations/QuizTransition";
 import { INSERT_CODING_LANGUAGE_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCodingLanguageQuiz";
 import { UPDATE_CODING_LANGUAGE_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCodingLanguageQuiz";
-import { quizData } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage";
 import { computeLanguageScore } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage/computeScore";
+import { quizData } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage/firstProgrammingLanguage";
 import { getPreferredLanguageForQuizResults } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage/getPreferredLanguage";
 
 export enum Stage {
@@ -31,6 +31,7 @@ const initializeQuizViewState = {
     return {
       title: question.title,
       body: question.body,
+      maxSelections: question.maxSelections,
       options: question.options.map((option) => {
         return { ...option, isSelected: false };
       }),
