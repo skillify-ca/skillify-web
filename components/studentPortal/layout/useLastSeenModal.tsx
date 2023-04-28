@@ -2,17 +2,16 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
 
 import { differenceInHours } from "date-fns";
-import { useSelector } from "react-redux";
 import {
   FETCH_LAST_SEEN_MODAL,
   FetchModalData,
 } from "../../../graphql/studentPortal/freemium/fetchLastSeenModal";
 import { UPSERT_LAST_SEEN_MODAL } from "../../../graphql/studentPortal/freemium/upsertLastSeenModal";
+import { useAuth } from "../../../lib/authContext";
 import {
   calculateRemainingTrialDays,
   sendSlackNotification,
 } from "../../../pages/api/studentPortal/freemium/helpers";
-import { profileSelector } from "../../../redux/profileSlice";
 
 export const useLastSeenModal = (
   userId: string,
@@ -22,7 +21,8 @@ export const useLastSeenModal = (
   const [updateLastSeenModal] = useMutation(UPSERT_LAST_SEEN_MODAL);
   const [showOnboardingModal, setShowOnboardingModal] = useState(false);
   const [showExitModal, setShowExitModal] = useState(false);
-  const { email } = useSelector(profileSelector);
+  const { user } = useAuth();
+  const email = user.email;
 
   useQuery<FetchModalData>(FETCH_LAST_SEEN_MODAL, {
     variables: {
