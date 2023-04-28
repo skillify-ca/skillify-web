@@ -23,7 +23,7 @@ const initializeQuizViewState = {
     return {
       title: question.title,
       body: question.body,
-      maxSelections: 3,
+      maxSelections: question.maxSelections,
 
       options: question.options.map((option) => {
         return { ...option, isSelected: false };

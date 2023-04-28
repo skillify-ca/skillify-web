@@ -122,7 +122,7 @@ const EducationBackground = ({
                 </div>
                 <textarea
                   onChange={(e) => handleInputChange("experience", e)}
-                  className="w-full border border-gray-500 rounded-lg  px-10 resize-none"
+                  className="w-full border border-gray-500 rounded-lg  px-2 resize-none"
                 />
               </div>
             )}
