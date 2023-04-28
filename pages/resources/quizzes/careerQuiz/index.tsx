@@ -8,12 +8,14 @@ import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz
 import {
   QuizOptionViewState,
   QuizViewState,
-  UserInput,
 } from "../../../../components/resources/quizzes/shared/types";
 import { QuizTransition } from "../../../../components/ui/animations/QuizTransition";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
-
+import { UPDATE_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCareer";
+import { UPDATE_CAREER_QUIZ_EDUCATION_RESPONSE } from "../../../../graphql/quizzes/updateCareerEducation";
 import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz/careerQuiz";
+import ComputeCareerResult from "../../../api/studentPortal/quizzes/careerQuiz/computeCareerResults";
+
 const initializeQuizViewState = {
   title: quizData.title,
   body: quizData.body,
@@ -21,7 +23,7 @@ const initializeQuizViewState = {
     return {
       title: question.title,
       body: question.body,
-      maxSelections: 3,
+      maxSelections: question.maxSelections,
 
       options: question.options.map((option) => {
         return { ...option, isSelected: false };
@@ -39,37 +41,92 @@ export enum Stage {
   BLUEPRINT,
   RESULTS,
 }
+
+export type EducationState = {
+  degree: string;
+  institution: string;
+  education: string;
+  experience: string;
+};
 const CareerQuiz = () => {
-  const [userInput, setUserInput] = useState<UserInput>({
-    name: "",
-    email: "",
+  const [educationState, setEducationState] = useState<EducationState>({
+    degree: "",
+    institution: "",
+    education: "",
+    experience: "",
   });
-  const [saveUserPreferences] = useMutation(INSERT_CAREER_QUIZ_RESPONSE, {});
-  const exampleUserPreferences = [
-    {
-      degree: "Bachelor of Arts",
-      institution: "University of Waterloo",
-      name: "Angela",
-      email: "example@example.com",
-      industries: ["Advertising", "Design", "Fashion"],
-      skills: ["Writing code", "Writing", "Math"],
-      result: "Software Engineer",
-      tasks: ["Find trends in data"],
-    },
-  ];
+
   // create results state object that
   // create custom type -- based on schema type in database
   const [stage, setStage] = useState<Stage>(Stage.START);
+  const [quizResponseId, setQuizResponseId] = useState<number>();
   const [triggerAnimation, setTriggerAnimation] = useState(true);
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(
     initializeQuizViewState
   );
+  const [createQuizResponse] = useMutation(INSERT_CAREER_QUIZ_RESPONSE, {
+    onCompleted: (data) => {
+      if (!quizResponseId) {
+        setQuizResponseId(parseInt(data.insert_career_quiz.returning[0].id));
+      }
+    },
+  });
+  const [saveEducationInputs] = useMutation(
+    UPDATE_CAREER_QUIZ_EDUCATION_RESPONSE
+  );
+  const [saveCompletedUserPreferences] = useMutation(
+    UPDATE_CAREER_QUIZ_RESPONSE
+  );
+
+  const [userInput, setUserInput] = useState({
+    name: "",
+    email: "",
+  });
+  const handleQuizResponseMutations = (
+    quizViewState: QuizViewState
+    // result: string
+  ) => {
+    if (stage === Stage.START) {
+      createQuizResponse({
+        variables: { name: userInput.name, email: userInput.email },
+      });
+    } else if (stage === Stage.EDUCATION) {
+      saveEducationInputs({
+        variables: {
+          id: quizResponseId,
+          degree: educationState.degree,
+          institution: educationState.institution,
+          experience: educationState.experience,
+          education: educationState.education,
+        },
+      });
+    } else {
+      const result = ComputeCareerResult(quizViewState)[0];
+      const finalResponseObject = {
+        id: quizResponseId || 0,
+        industries: quizViewState.questions[0].options
+          .filter((option) => option.isSelected)
+          .map((option) => option.name),
+        skills: quizViewState.questions[1].options
+          .filter((option) => option.isSelected)
+          .map((option) => option.name),
+        tasks: quizViewState.questions[2].options
+          .filter((option) => option.isSelected)
+          .map((option) => option.name),
+        result: result,
+      };
+      saveCompletedUserPreferences({
+        variables: finalResponseObject,
+      });
+    }
+  };
 
   const handleNextClick = () => {
     setTriggerAnimation(false);
-
+    handleQuizResponseMutations(quizViewState);
     setTimeout(() => {
       setTriggerAnimation(true);
+
       if (
         stage == Stage.QUESTIONS &&
         quizViewState.currentQuestion < quizData.questions.length - 1
@@ -138,8 +195,8 @@ const CareerQuiz = () => {
                 body={
                   "Take this free quiz to find out what jobs in tech fit you best!"
                 }
-                userInput={userInput}
                 setUserInput={setUserInput}
+                userInput={userInput}
               />
             );
           case Stage.EDUCATION:
@@ -147,6 +204,8 @@ const CareerQuiz = () => {
               <EduBackground
                 onNextClick={handleNextClick}
                 onBackClick={handleBackClick}
+                setEducationState={setEducationState}
+                educationState={educationState}
               />
             );
 
@@ -170,8 +229,8 @@ const CareerQuiz = () => {
           case Stage.RESULTS:
             return (
               <CareerResults
-                quizViewState={quizViewState}
                 onBackClick={handleBackClick}
+                quizViewState={quizViewState}
               />
             );
           default:
