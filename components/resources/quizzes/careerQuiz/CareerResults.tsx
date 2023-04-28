@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { quizResultsData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz/careerQuiz";
 import ComputeResult from "../../../../pages/api/studentPortal/quizzes/careerQuiz/computeCareerResults";
@@ -29,12 +30,12 @@ const CareerResults = ({ onBackClick, quizViewState }: CareerResultsProps) => {
           Start your career with a Skillify coach today!
         </div>
         <div className="flex flex-col items-center space-y-4 py-4">
-          <a href="https://www.joinskillify.com/call">
+          <Link href="https://www.joinskillify.com/call">
             <Button label="Book a call" backgroundColor="yellow" />
-          </a>
-          <a href="https://www.skillify.ca">
+          </Link>
+          <Link href="https://www.skillify.ca">
             <Button label="Learn more" backgroundColor="blue" />
-          </a>
+          </Link>
         </div>
         <div className="mx-4 md:w-full max-w-4xl md:mx-auto">
           Skillify Coding Academy coaches university graduates to start a career
