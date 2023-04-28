@@ -1,4 +1,3 @@
-import React from "react";
 import { computeLanguageScore } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/computeScore";
 import { quizResultsData } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/firstProgrammingLanguage";
 import { getPreferredLanguageForQuizResults } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/getPreferredLanguage";
@@ -37,8 +36,12 @@ const LanguageResults = ({
         Start learning to code with a Skillify coach today!
       </div>
       <div className="flex flex-col items-center py-4 space-y-3 rounded-full">
-        <Button label="Book a call" backgroundColor="yellow" />
-        <Button label="Learn more" backgroundColor="blue" />
+        <a href="https://www.joinskillify.com/call">
+          <Button label="Book a call" backgroundColor="yellow" />
+        </a>
+        <a href="https://skillify.ca/">
+          <Button label="Learn more" backgroundColor="blue" />
+        </a>
       </div>
       <div className="mx-4">
         Skillify Coding Academy coaches university graduates to start a career
