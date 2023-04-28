@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function WhereToStart() {
   return (
     <div className="flex flex-col md:flex-row items-center justify-center space-x-8 text-start text-murkrow">
@@ -14,7 +12,7 @@ export default function WhereToStart() {
               For beginners with little to no coding experience:{" "}
             </p>
             <p className="flex items-center col-span-2 font-bold ">
-              Coding Basics Course!
+              Coding Basics
             </p>
           </div>
           <div className="grid grid-cols-5 md:flex md:gap-0 gap-4 md:flex-col  bg-mewtwo rounded-xl p-3">
@@ -22,7 +20,7 @@ export default function WhereToStart() {
               If you have intermediate or advanced coding experience:{" "}
             </p>
             <p className="flex items-center font-bold col-span-2">
-              Web Development Course!
+              Web Development
             </p>
           </div>
           <img

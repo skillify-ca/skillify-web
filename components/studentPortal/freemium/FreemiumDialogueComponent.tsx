@@ -69,6 +69,7 @@ const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
               {/* no button/back button */}
               {activeModal > ModalStage.ONE ? (
                 <img
+                  className="hover:scale-110 hover:cursor-pointer"
                   src="../../images/freemium/back.svg"
                   onClick={handleClickBack}
                 />
@@ -76,7 +77,7 @@ const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
                 <img
                   src="../../images/freemium/back.svg"
                   className="invisible"
-                ></img>
+                />
               )}
               {/* Map over enum values to render highlighted dots */}
               <div className="flex flex-row items-center space-x-2">
@@ -87,18 +88,22 @@ const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
                       stage === activeModal ? "bg-rattata" : "bg-gray-300"
                     }`}
                     onClick={() => handleClickModal(stage as ModalStage)}
-                  ></div>
+                  />
                 ))}
               </div>
               {/* Next/done button */}
               {activeModal < lastStage ? (
                 <img
+                  className="hover:scale-110 hover:cursor-pointer"
                   src="../../images/freemium/next.svg"
                   onClick={handleClickNext}
                 />
               ) : (
                 <Close asChild>
-                  <img src="../../images/freemium/done.svg" />
+                  <img
+                    className="hover:scale-110 hover:cursor-pointer"
+                    src="../../images/freemium/done.svg"
+                  />
                 </Close>
               )}
             </div>
