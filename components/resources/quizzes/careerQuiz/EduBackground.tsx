@@ -91,7 +91,7 @@ const EducationBackground = ({
                       name="institution"
                       id="institution"
                       onChange={(e) => handleInputChange("institution", e)}
-                      className="border w-full border-gray-500 rounded-lg px-10"
+                      className="border w-full border-gray-500 rounded-lg px-2"
                     />
                   </div>
                 </div>
@@ -111,7 +111,7 @@ const EducationBackground = ({
                     name="degree"
                     id="degree"
                     onChange={(e) => handleInputChange("degree", e)}
-                    className="shadow  w-full appearance-none border border-gray-500 rounded-lg px-10"
+                    className="shadow  w-full appearance-none border border-gray-500 rounded-lg px-2"
                   />
                 </div>
               )}
