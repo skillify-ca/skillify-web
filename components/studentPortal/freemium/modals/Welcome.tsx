@@ -3,7 +3,7 @@ import React from "react";
 export default function Welcome() {
   return (
     <div className="md:space-y-10 space-y-2">
-      <h1 className="md:text-3xl text-lg font-bold text-center mt-4 md:mt-10 text-murkrow">
+      <h1 className="md:text-3xl text-lg font-bold text-center mt-4 text-murkrow">
         Welcome to Skillify Coding Academy!
       </h1>
       <div className="flex flex-col md:flex-row h-80 md:h-full items-center">

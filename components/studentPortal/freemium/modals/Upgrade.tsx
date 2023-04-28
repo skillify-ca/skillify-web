@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Upgrade() {
   return (
-    <div className="flex flex-col text-white items-center justify-center max-h-80 space-y-2 md:mt-20 mt-8">
+    <div className="flex flex-col text-white items-center justify-center max-h-80 space-y-2 mt-8">
       <h1 className="flex font-bold text-base md:text-3xl max-w-xl text-center">
         Upgrade your plan at any time to unlock premium features.
       </h1>
