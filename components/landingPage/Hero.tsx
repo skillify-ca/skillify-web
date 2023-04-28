@@ -1,4 +1,4 @@
-import React from "react";
+import Link from "next/link";
 
 type HeroProps = {
   headerText: HighlightableText[];
@@ -28,17 +28,19 @@ export default function Hero({ headerText, description }: HeroProps) {
           <p className="my-4 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
             {description}
           </p>
-          <a href="https://www.joinskillify.com/call">
-            <button
-              type="button"
-              onClick={(e) =>
-                window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
-              }
-              className={`w-48 py-4 h-16 bg-gradient-to-b bg-charmander hover:bg-pikachu-500 text-white px-3 font-bold border-b-4 rounded-lg active:border-b-2 cursor-pointer`}
-            >
-              <p className={`text-base"`}>Apply Now</p>
-            </button>
-          </a>
+          <div className="space-x-4">
+            <Link href={"/plans"}>
+              <button
+                type="button"
+                onClick={(e) =>
+                  window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+                }
+                className={`w-48 py-4 h-16 bg-gradient-to-b bg-charmander hover:bg-pikachu-500 text-white px-3 font-bold border-b-4 rounded-lg active:border-b-2 cursor-pointer`}
+              >
+                <p className={`text-base"`}>Sign Up</p>
+              </button>
+            </Link>
+          </div>
         </div>
         <div className="">
           <img
