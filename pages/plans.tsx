@@ -1,4 +1,3 @@
-import React from "react";
 import LandingNavbar from "../components/landingPage/LandingNavbar";
 import PlansCard from "../components/studentPortal/freemium/PlansCard";
 
@@ -17,11 +16,11 @@ const Plans = (props: { planCardData: PlanCard[] }) => {
   return (
     <div>
       <LandingNavbar />
-      <div className="flex flex-col items-center justify-center space-y-2 mb-8">
-        <h1 className="text-charmander text-3xl font-bold text-center p-4">
+      <div className="flex flex-col items-center justify-center space-y-2 py-8">
+        <h1 className="text-charmander text-4xl font-bold text-center mt-4">
           Pick the plan that is right for you
         </h1>
-        <p>Reserve your spot today!</p>
+        <p className="font-bold text-xl">Reserve your spot today!</p>
       </div>
       <div className="flex flex-wrap justify-center align-items-stretch md:space-x-10 space-x-0">
         {planCardData.map((card, index) => (
