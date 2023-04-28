@@ -8,7 +8,6 @@ export const quizData: QuizViewState = {
       title: "What industries are you interested in working?",
       body: "Select 1-3 choices.",
       maxSelections: 3,
-      progress: 35,
       options: [
         {
           name: "Advertising",
@@ -29,7 +28,7 @@ export const quizData: QuizViewState = {
           isSelected: false,
         },
         {
-          name: "Design",
+          name: "Design ",
           result: "Software Engineer",
           weight: 0,
           isSelected: false,
@@ -100,7 +99,6 @@ export const quizData: QuizViewState = {
       title: "What are your strongest skills?",
       body: "Select 1-3 choices.",
       maxSelections: 3,
-      progress: 60,
 
       options: [
         {
@@ -181,7 +179,6 @@ export const quizData: QuizViewState = {
     {
       title: "What tasks would you prefer at work?",
       body: "Select 1-3 choices.",
-      progress: 85,
       maxSelections: 3,
       options: [
         {
