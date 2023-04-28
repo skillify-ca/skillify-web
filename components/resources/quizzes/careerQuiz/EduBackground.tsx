@@ -60,26 +60,24 @@ const EducationBackground = ({
 
       <div className="flex flex-col items-center text-center  mx-4  mt-4">
         <h1 className="text-2xl font-semibold ">
-          What level of education have you received?
-        </h1>
-        <p className="text-lg font-medium px-4">
           Select your highest level of education.
-        </p>
-        <div className="text-lg text-left">
-          <label htmlFor="education-select">Education</label>
-
-          <select
-            id="education-select"
-            value={educationState.education || ""}
-            onChange={handleEducationLevelChange}
-            className=" border  w-full border-gray-500 rounded-lg "
-          >
-            {Object.values(EducationLevel).map((educationLevel) => (
-              <option key={educationLevel} value={educationLevel}>
-                {educationLevel}
-              </option>
-            ))}
-          </select>
+        </h1>
+      </div>
+      <div className="text-lg text-left mx-8 md:w-full max-w-xl  md:mx-auto">
+        <label htmlFor="education-select">Education</label>
+        <select
+          id="education-select"
+          value={educationState.education || ""}
+          onChange={handleEducationLevelChange}
+          className=" border  w-full border-gray-500 rounded-lg "
+        >
+          {Object.values(EducationLevel).map((educationLevel) => (
+            <option key={educationLevel} value={educationLevel}>
+              {educationLevel}
+            </option>
+          ))}
+        </select>
+        <div>
           <div>
             {educationState.education &&
               educationState.education !== EducationLevel.NA &&
@@ -130,14 +128,14 @@ const EducationBackground = ({
             )}
           </div>
         </div>
-        <div className="py-8">
-          <Button
-            backgroundColor="yellow"
-            label="Next"
-            onClick={isFormValid ? onNextClick : undefined}
-            disabled={!isFormValid}
-          />{" "}
-        </div>
+      </div>
+      <div className="py-8 flex place-content-center">
+        <Button
+          backgroundColor="yellow"
+          label="Next"
+          onClick={isFormValid ? onNextClick : undefined}
+          disabled={!isFormValid}
+        />{" "}
       </div>
     </div>
   );

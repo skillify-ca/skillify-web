@@ -177,7 +177,10 @@ const CareerQuiz = () => {
     };
     setQuizViewState(updatedQuizViewState);
   };
-
+  // Smoothly load the page
+  if (initializeQuizViewState == undefined) {
+    return "loading...";
+  }
   // Render the appropriate component based on the stage
 
   return (
