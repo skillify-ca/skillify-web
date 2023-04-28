@@ -29,8 +29,12 @@ const CareerResults = ({ onBackClick, quizViewState }: CareerResultsProps) => {
           Start your career with a Skillify coach today!
         </div>
         <div className="flex flex-col items-center space-y-4 py-4">
-          <Button label="Book a call" backgroundColor="yellow" />
-          <Button label="Learn more" backgroundColor="blue" />
+          <a href="https://www.joinskillify.com/call">
+            <Button label="Book a call" backgroundColor="yellow" />
+          </a>
+          <a href="https://www.skillify.ca">
+            <Button label="Learn more" backgroundColor="blue" />
+          </a>
         </div>
         <div className="mx-4 md:w-full max-w-4xl md:mx-auto">
           Skillify Coding Academy coaches university graduates to start a career
