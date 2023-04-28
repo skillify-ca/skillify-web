@@ -15,7 +15,7 @@ export default function Welcome() {
           <p>
             <span className="font-bold text-murkrow">BONUS:</span> Submit one
             intro assignment and get personalized feedback from a Skillify
-            coaches.
+            coach.
           </p>
         </div>
         <img
