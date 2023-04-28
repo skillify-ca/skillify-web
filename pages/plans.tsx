@@ -22,9 +22,11 @@ const Plans = (props: { planCardData: PlanCard[] }) => {
         </h1>
         <p className="font-bold text-xl">Reserve your spot today!</p>
       </div>
-      <div className="flex flex-wrap justify-center align-items-stretch md:space-x-10 space-x-0">
+      <div className="flex flex-wrap justify-center my-16 space-x-0 align-items-stretch md:space-x-10">
         {planCardData.map((card, index) => (
-          <PlansCard key={index} planCard={card} />
+          <div className="mb-16 last:mb-0 sm:mb-0">
+            <PlansCard key={index} planCard={card} />
+          </div>
         ))}
       </div>
     </div>

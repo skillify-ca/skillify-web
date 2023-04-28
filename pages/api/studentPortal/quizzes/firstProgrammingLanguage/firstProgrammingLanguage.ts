@@ -1,4 +1,4 @@
-import { QuizData } from "../../../../components/resources/quizzes/shared/types";
+import { QuizData } from "../../../../../components/resources/quizzes/shared/types";
 
 export const quizData: QuizData = {
   title: "What Coding Language Should I Learn First?",

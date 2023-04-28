@@ -12,17 +12,17 @@ const BluePrint = ({ onNextClick, onBackClick }: BluePrintProps) => {
   return (
     <div>
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
-      <div className="w-full mb-4 px-8 text-center">
+      <div className="w-full mb-4 px-8 text-center md:w-full max-w-4xl md:mx-auto">
         <ProgressBar progress={100} />
         <div className="mt-4 mb-2 text-2xl font-bold text-black-600">
           The Skillify BluePrint
         </div>
       </div>
-      <div className="grid grid-cols-[1fr_3fr] md:grid-cols-[1fr_7fr]">
+      <div className="grid grid-cols-[1fr_3fr] md:flex md:justify-center">
         <div className="grid grid-cols-1 ml-8">
           <NumberedCircles />
         </div>
-        <div className="grid grid-cols-1 mx-4 mr-16 space-y-8 md:space-y-12 md:mt-2">
+        <div className="grid grid-cols-1 mx-4 mr-16 md:mx-8 space-y-8 md:space-y-12 md:mt-2">
           <div className="font-bold text-black-600 ">
             Learn the fundamentals of coding
           </div>
