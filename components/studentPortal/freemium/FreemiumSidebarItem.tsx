@@ -2,8 +2,7 @@ import Link from "next/link";
 import React, { ReactElement } from "react";
 import { useSelector } from "react-redux";
 import { activePageSelector, SidebarPage } from "../../../redux/sidebarSlice";
-import TooltipComponent from "../../ui/TooltipComponent";
-
+import { TooltipComponent } from "../../ui/TooltipComponent";
 interface FreemiumSidebarItemProps {
   name: string;
   link: string;

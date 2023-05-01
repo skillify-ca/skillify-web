@@ -1,61 +1,47 @@
-import router from "next/router";
-import React, { useState } from "react";
+import LandingNavbar from "../components/landingPage/LandingNavbar";
 import PlansCard from "../components/studentPortal/freemium/PlansCard";
-import SignInPage from "../components/welcomePage/SignInPage";
 
-const Plans = ({ plansCardData }) => {
-  const [showSignInPage, setShowSignInPage] = useState(false);
+export type PlanCard = {
+  planName: "freeTrial" | "premium";
+  title: string;
+  description: string;
+  price: string;
+  buttonLabel: string;
+  planCardRow: Array<{ icon: string; description: string }>;
+};
 
-  const handlePremium = () => {
-    router.push(plansCardData[1].onClick);
-  };
-
-  const handleTrial = () => {
-    setShowSignInPage(true);
-  };
+const Plans = (props: { planCardData: PlanCard[] }) => {
+  const { planCardData } = props;
 
   return (
     <div>
-      {showSignInPage ? (
-        <SignInPage />
-      ) : (
-        <div>
-          <div className="flex flex-col items-center justify-center space-y-2 mb-8">
-            <h1 className="text-charmander text-3xl font-bold text-center p-4">
-              Pick the Plan That's Right For You
-            </h1>
-            <p>Reserve your spot today!</p>
+      <LandingNavbar />
+      <div className="flex flex-col items-center justify-center space-y-2 py-8">
+        <h1 className="text-charmander text-4xl font-bold text-center mt-4">
+          Pick the plan that is right for you
+        </h1>
+        <p className="font-bold text-xl">Reserve your spot today!</p>
+      </div>
+      <div className="flex flex-wrap justify-center my-16 space-x-0 align-items-stretch md:space-x-10">
+        {planCardData.map((card, index) => (
+          <div className="mb-16 last:mb-0 sm:mb-0">
+            <PlansCard key={index} planCard={card} />
           </div>
-          <div className="flex flex-wrap justify-center align-items-stretch md:space-x-10 space-x-0">
-            {plansCardData.map((card) => (
-              <PlansCard
-                key={card.title}
-                title={card.title}
-                description={card.description}
-                price={card.price}
-                buttonLabel={card.buttonLabel}
-                onClick={
-                  card.onClick === "/sign-up" ? handleTrial : handlePremium
-                }
-                planRowData={card.planRowData}
-              />
-            ))}
-          </div>
-        </div>
-      )}
+        ))}
+      </div>
     </div>
   );
 };
 
 export async function getServerSideProps() {
-  const plansCardData = [
+  const planCardData: PlanCard[] = [
     {
-      title: "Free 14-day Trial",
+      planName: "freeTrial",
+      title: "Free 14-Day Trial",
       description: "No credit card required",
       price: "$0",
       buttonLabel: "Sign Up",
-      onClick: "/sign-up",
-      planRowData: [
+      planCardRow: [
         {
           icon: "../../images/freemium/greenCheck.svg",
           description: "Two weeks access to our Coding Basics course",
@@ -67,15 +53,16 @@ export async function getServerSideProps() {
         },
         {
           icon: "../../images/freemium/greenCheck.svg",
-          description: "Receive personalized feedback on one assignment",
+          description: "Personalized feedback on ONE assignment",
         },
         {
           icon: "../../images/freemium/redX.svg",
-          description: "1:1 mentorship and small group coaching",
+          description:
+            "Build digital products under the guidance of ex-Spotify engineers",
         },
         {
           icon: "../../images/freemium/redX.svg",
-          description: "Mentorship from our experienced coaches",
+          description: "1 on 1 mentorship and small group coaching",
         },
         {
           icon: "../../images/freemium/redX.svg",
@@ -84,12 +71,12 @@ export async function getServerSideProps() {
       ],
     },
     {
+      planName: "premium",
       title: "Premium",
       description: "Contact us for pricing",
       price: "Custom",
       buttonLabel: "Book a Call",
-      onClick: "https://joinskillify.com/call",
-      planRowData: [
+      planCardRow: [
         {
           icon: "../../images/freemium/greenCheck.svg",
           description: "Unlimited access to our Coding Basics course",
@@ -100,16 +87,16 @@ export async function getServerSideProps() {
         },
         {
           icon: "../../images/freemium/greenCheck.svg",
-          description: "Receive personalized feedback for assignments",
+          description: "Personalized feedback for ALL assignments",
         },
         {
           icon: "../../images/freemium/greenCheck.svg",
           description:
-            "Build digital products under the leadership of ex-Spotify engineers",
+            "Build digital products under the guidance of ex-Spotify engineers",
         },
         {
           icon: "../../images/freemium/greenCheck.svg",
-          description: "Mentorship from our experienced coaches",
+          description: "1 on 1 mentorship and small group coaching",
         },
         {
           icon: "../../images/freemium/greenCheck.svg",
@@ -120,9 +107,13 @@ export async function getServerSideProps() {
   ];
   return {
     props: {
-      plansCardData: plansCardData,
+      planCardData: planCardData,
     },
   };
 }
 
 export default Plans;
+
+Plans.getLayout = function getLayout(page) {
+  return <div>{page}</div>;
+};
