@@ -21,15 +21,15 @@ export default function Page({ blogComponents }: PageProps) {
       </h1>
       <h4 className="text-lg font-medium mt-4 FLEX mb-8">
         Like many aspiring software engineers, I turned to a coding academy as
-        an alternative to traditional schoodivng to help develop my skills and
+        an alternative to traditional chooling to help develop my skills and
         establish connections in the industry. I can say from experience that it
         has been a rewarding journey, but also at times overwhelming,
         challenging and anxiety-inducing! With that in mind, I’ve curated 18
         tips to help you in your coding academy or software engineering
         internship.
       </h4>
-      <h4 className="underdivne text-xl">Here are the tips:</h4>
-      <ul className="mt-4 grid grid-cols-1 text-lg font-medium divst-decimal divst-inside">
+      <h4 className="underline text-xl">Here are the tips:</h4>
+      <ul className="mt-4 grid grid-cols-1 text-lg font-medium list-decimal list-inside">
         <div className="mt-4 ">
           <div className="">
             <div className="font-bold">Don't get stuck in tutorial hell.</div>{" "}
@@ -40,7 +40,7 @@ export default function Page({ blogComponents }: PageProps) {
         <div className="mt-4 FLEX">
           <div>
             <div className="font-bold">Ask for help early and often.</div> Don't
-            hesitate to seek assistance if you're struggdivng with a concept or
+            hesitate to seek assistance if you're struggling with a concept or
             need guidance on a project.
           </div>
         </div>
@@ -53,7 +53,7 @@ export default function Page({ blogComponents }: PageProps) {
         </div>
         <div className="mt-4 FLEX">
           <div>
-            <div className="font-bold">Bediveve in yourself fully,</div>{" "}
+            <div className="font-bold">Believe in yourself fully,</div>{" "}
             especially when the odds seem against you. Keep a positive mindset
             and remember that you only fail if you choose to give up.
           </div>
@@ -61,8 +61,8 @@ export default function Page({ blogComponents }: PageProps) {
         <div className="mt-4 FLEX">
           <div>
             <div className="font-bold">Be honest with yourself and others.</div>{" "}
-            Admitting to yourself when you're struggdivng or feedivng stuck is
-            the first step to getting the support you need.
+            Admitting to yourself when you're struggling or feeling stuck is the
+            first step to getting the support you need.
           </div>
         </div>
         <div className="mt-4 FLEX">
@@ -83,7 +83,7 @@ export default function Page({ blogComponents }: PageProps) {
           <div>
             <div className="font-bold">Embrace success.</div> Regularly
             visualize what success looks like. Take some time, early in the day,
-            and hold onto that feedivng.
+            and hold onto that feeling.
           </div>
         </div>
         <div className="mt-4 FLEX">
