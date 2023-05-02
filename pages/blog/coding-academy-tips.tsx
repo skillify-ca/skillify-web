@@ -19,7 +19,7 @@ export default function Page({ blogComponents }: PageProps) {
       <h1 className="text-3xl font-bold">
         Coding Academy Survival Guide // Tips
       </h1>
-      <h4 className="text-lg font-medium mt-4 FLEX mb-8">
+      <h4 className="text-lg font-medium mt-4  mb-8">
         Like many aspiring software engineers, I turned to a coding academy as
         an alternative to traditional chooling to help develop my skills and
         establish connections in the industry. I can say from experience that it
@@ -37,63 +37,63 @@ export default function Page({ blogComponents }: PageProps) {
             own projects and learning from your mistakes.
           </div>
         </div>
-        <div className="mt-4 FLEX">
+        <div className="mt-4 ">
           <div>
             <div className="font-bold">Ask for help early and often.</div> Don't
             hesitate to seek assistance if you're struggling with a concept or
             need guidance on a project.
           </div>
         </div>
-        <div className="mt-4 FLEX">
+        <div className="mt-4 ">
           <div>
             <div className="font-bold">Trust your own pace.</div> Embrace your
             individuality and focus on your progress instead of comparing
             yourself to others or conforming to expectations.
           </div>
         </div>
-        <div className="mt-4 FLEX">
+        <div className="mt-4 ">
           <div>
             <div className="font-bold">Believe in yourself fully,</div>{" "}
             especially when the odds seem against you. Keep a positive mindset
             and remember that you only fail if you choose to give up.
           </div>
         </div>
-        <div className="mt-4 FLEX">
+        <div className="mt-4 ">
           <div>
             <div className="font-bold">Be honest with yourself and others.</div>{" "}
             Admitting to yourself when you're struggling or feeling stuck is the
             first step to getting the support you need.
           </div>
         </div>
-        <div className="mt-4 FLEX">
+        <div className="mt-4 ">
           <div>
             <div className="font-bold">Celebrate bite-sized progress.</div>{" "}
             Focus on making small improvements every day, and over time, they
             will add up to significant progress.
           </div>
         </div>
-        <div className="mt-4 FLEX">
+        <div className="mt-4 ">
           <div>
             <div className="font-bold">Take care of yourself.</div> Prioritize
             self-care by taking breaks, exercising, eating well, and maintaining
             your mental health.
           </div>
         </div>
-        <div className="mt-4 FLEX">
+        <div className="mt-4 ">
           <div>
             <div className="font-bold">Embrace success.</div> Regularly
             visualize what success looks like. Take some time, early in the day,
             and hold onto that feeling.
           </div>
         </div>
-        <div className="mt-4 FLEX">
+        <div className="mt-4 ">
           <div>
             <div className="font-bold">Embrace failure.</div> Don't be afraid to
             try new things or take risks, even if they result in failure.
             Failure is a valuable learning experience.
           </div>
         </div>
-        <div className="mt-4 FLEX">
+        <div className="mt-4 ">
           <div>
             <div className="font-bold">Stay organized.</div> Keep track of your
             assignments, deadlines, and notes in a way that works best for you,
@@ -101,7 +101,7 @@ export default function Page({ blogComponents }: PageProps) {
             like Todoist.
           </div>
         </div>
-        <div className="mt-4 FLEX">
+        <div className="mt-4 ">
           <div>
             <div className="font-bold">Read documentation thoroughly.</div>{" "}
             Understanding how to navigate documentation is an essential skill
@@ -109,21 +109,21 @@ export default function Page({ blogComponents }: PageProps) {
             documentation carefully.
           </div>
         </div>
-        <div className="mt-4 FLEX">
+        <div className="mt-4 ">
           <div>
             <div className="font-bold">Follow the revision rule of 3's.</div>{" "}
             Reinforce your understanding of the new concept or material by
             reviewing it on three separate occasions.
           </div>
         </div>
-        <div className="mt-4 FLEX">
+        <div className="mt-4 ">
           <div>
             <div className="font-bold">Practice consistently.</div> Dedicate
             time every day to coding, even if it's just for a few minutes, to
             keep your skills sharp and maintain momentum.
           </div>
         </div>
-        <div className="mt-4 FLEX">
+        <div className="mt-4 ">
           <div>
             <div className="font-bold">Collaborate with others.</div> Working
             with classmates or colleagues on projects can help you learn from
@@ -131,7 +131,7 @@ export default function Page({ blogComponents }: PageProps) {
             skills.
           </div>
         </div>
-        <div className="mt-4 FLEX">
+        <div className="mt-4 ">
           <div className="font-bold"> Practice intentional communicating.</div>{" "}
           Clear and effective communication is critical in any professional
           field, so don’t be afraid to work on developing your communication
