@@ -19,6 +19,16 @@ export default function Page({ blogComponents }: PageProps) {
       <h1 className="text-3xl font-bold">
         Coding Academy Survival Guide // Tips
       </h1>
+      <h2 className="text-xl font-bold">
+        {" "}
+        <a
+          className="underline text-blue-500"
+          href="https://www.linkedin.com/in/lakshman-hariharan/"
+        >
+          Lakshman 'Lucky' Hariharan{" "}
+        </a>
+      </h2>
+
       <h4 className="text-lg font-medium mt-4  mb-8">
         Like many aspiring software engineers, I turned to a coding academy as
         an alternative to traditional chooling to help develop my skills and
