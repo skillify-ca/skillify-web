@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { EducationState } from "../../../../pages/resources/quizzes/careerQuiz";
 import { Button } from "../../../ui/Button";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
@@ -26,6 +26,8 @@ const EducationBackground = ({
   educationState,
   setEducationState,
 }: EduBackgroundProps) => {
+  const isFormValid = educationState.education;
+
   const handleInputChange = (
     name,
     event:
@@ -37,7 +39,16 @@ const EducationBackground = ({
     setEducationState({ ...educationState, [name]: value });
   };
   const [showExperienceInput, setShowExperienceInput] = useState(false);
-  const isFormValid = educationState.education;
+  useEffect(() => {
+    if (
+      educationState.education == "N/A" ||
+      educationState.education == "GED" ||
+      educationState.education == "High School Diploma"
+    ) {
+      setShowExperienceInput(true);
+    }
+  }, [isFormValid]);
+
   const handleEducationLevelChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -69,7 +80,7 @@ const EducationBackground = ({
           id="education-select"
           value={educationState.education || ""}
           onChange={handleEducationLevelChange}
-          className=" border  w-full border-gray-500 rounded-lg "
+          className=" border px-4 w-full border-gray-500 rounded-lg "
         >
           {Object.values(EducationLevel).map((educationLevel) => (
             <option key={educationLevel} value={educationLevel}>
@@ -90,8 +101,9 @@ const EducationBackground = ({
                       type="text"
                       name="institution"
                       id="institution"
+                      value={educationState.institution}
                       onChange={(e) => handleInputChange("institution", e)}
-                      className="border w-full border-gray-500 rounded-lg px-2"
+                      className="border w-full border-gray-500 rounded-lg px-4"
                     />
                   </div>
                 </div>
@@ -109,9 +121,10 @@ const EducationBackground = ({
                   <input
                     type="text"
                     name="degree"
+                    value={educationState.degree}
                     id="degree"
                     onChange={(e) => handleInputChange("degree", e)}
-                    className="shadow  w-full appearance-none border border-gray-500 rounded-lg px-2"
+                    className="shadow  w-full appearance-none border border-gray-500 rounded-lg px-4"
                   />
                 </div>
               )}
@@ -122,7 +135,8 @@ const EducationBackground = ({
                 </div>
                 <textarea
                   onChange={(e) => handleInputChange("experience", e)}
-                  className="w-full border border-gray-500 rounded-lg  px-2 resize-none"
+                  className="w-full border border-gray-500 rounded-lg  px-4 resize-none"
+                  value={educationState.experience}
                 />
               </div>
             )}
