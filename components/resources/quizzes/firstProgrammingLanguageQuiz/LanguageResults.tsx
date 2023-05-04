@@ -1,11 +1,10 @@
-import React from "react";
+import Link from "next/link";
 import { computeLanguageScore } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/computeScore";
 import { quizResultsData } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/firstProgrammingLanguage";
 import { getPreferredLanguageForQuizResults } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/getPreferredLanguage";
 import { Button } from "../../../ui/Button";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
 import { QuizViewState } from "../shared/types";
-
 type LanguageResultsProps = {
   onBackClick: () => void;
   quizViewState: QuizViewState;
@@ -31,14 +30,18 @@ const LanguageResults = ({
       <SkillifyNavbar onBackClick={onBackClick} hidden={false} />
       <div className="mt-4 text-2xl font-bold text-black-600">YOUR RESULTS</div>
       <div className="text-lg font-semibolds px-3">{body}</div>
-      <img src={src} alt={alt} className="scale-75" />
+      <img src={src} alt={alt} className="mx-auto my-6" />
       <div className="text-4xl font-bold text-amber-500">{language}</div>
       <div className="mx-4 mt-4 text-xl font-semibold">
         Start learning to code with a Skillify coach today!
       </div>
-      <div className="flex flex-col items-center py-4 space-y-3 rounded-full">
-        <Button label="Book a call" backgroundColor="yellow" />
-        <Button label="Learn more" backgroundColor="blue" />
+      <div className="flex flex-col items-center py-4 space-y-2 rounded-full">
+        <Link href="https://www.joinskillify.com/call">
+          <Button label="Book a call" backgroundColor="yellow" />
+        </Link>
+        <Link href="https://skillify.ca/">
+          <Button label="Learn more" backgroundColor="blue" />
+        </Link>
       </div>
       <div className="mx-4">
         Skillify Coding Academy coaches university graduates to start a career

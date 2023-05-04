@@ -66,7 +66,7 @@ const PlansCard = ({ planCard }: PlansCardProps) => {
           <Button
             onClick={() => handleSignUp(planName)}
             label={buttonLabel}
-            backgroundColor="white"
+            backgroundColor={planName === "premium" ? "white" : "yellow"}
             textColor="text-gray-800"
             size="large"
           />

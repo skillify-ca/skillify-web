@@ -53,7 +53,7 @@ const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
 
         <Content className={`${currentTheme}`}>
           <div
-            className={`fixed h-[450px] w-[300px] md:h-[600px] md:w-[900px] p-4 md:p-20 transform -translate-x-1/2 -translate-y-1/2 ${
+            className={`fixed h-[450px] w-[300px] md:h-[600px] md:w-[900px] px-4 md:p-10 transform -translate-x-1/2 -translate-y-1/2 ${
               activeModal === ModalStage.TWO ? "bg-murkrow" : "bg-white"
             } rounded-lg left-1/2 top-1/2`}
           >
@@ -61,10 +61,15 @@ const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
             <FadeAnimation key={activeModal} triggerAnimation={true}>
               {getModalContent(activeModal)}
             </FadeAnimation>
-            <div className="flex flex-row justify-center items-center space-x-12 absolute bottom-0 bg-white p-4 inset-x-0">
+            <div
+              className={`flex flex-row justify-center items-center space-x-12 absolute bottom-0 ${
+                activeModal === ModalStage.TWO ? "bg-white" : "bg-murkrow"
+              } p-4 inset-x-0`}
+            >
               {/* no button/back button */}
               {activeModal > ModalStage.ONE ? (
                 <img
+                  className="hover:scale-110 hover:cursor-pointer"
                   src="../../images/freemium/back.svg"
                   onClick={handleClickBack}
                 />
@@ -72,7 +77,7 @@ const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
                 <img
                   src="../../images/freemium/back.svg"
                   className="invisible"
-                ></img>
+                />
               )}
               {/* Map over enum values to render highlighted dots */}
               <div className="flex flex-row items-center space-x-2">
@@ -83,18 +88,22 @@ const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
                       stage === activeModal ? "bg-rattata" : "bg-gray-300"
                     }`}
                     onClick={() => handleClickModal(stage as ModalStage)}
-                  ></div>
+                  />
                 ))}
               </div>
               {/* Next/done button */}
               {activeModal < lastStage ? (
                 <img
+                  className="hover:scale-110 hover:cursor-pointer"
                   src="../../images/freemium/next.svg"
                   onClick={handleClickNext}
                 />
               ) : (
                 <Close asChild>
-                  <img src="../../images/freemium/done.svg" />
+                  <img
+                    className="hover:scale-110 hover:cursor-pointer"
+                    src="../../images/freemium/done.svg"
+                  />
                 </Close>
               )}
             </div>
