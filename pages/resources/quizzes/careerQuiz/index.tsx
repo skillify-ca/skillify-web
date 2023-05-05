@@ -134,7 +134,6 @@ const CareerQuiz = () => {
         currentQuestion: quizViewState.currentQuestion + 1,
       });
     } else setStage((prevStage) => prevStage + 1);
-
     window.scrollTo({
       top: 0,
       left: 0,
