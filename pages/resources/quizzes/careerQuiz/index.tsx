@@ -60,7 +60,7 @@ const CareerQuiz = () => {
   // create custom type -- based on schema type in database
   const [stage, setStage] = useState<Stage>(Stage.START);
   const [quizResponseId, setQuizResponseId] = useState<number>();
-  const [triggerAnimation, setTriggerAnimation] = useState(true);
+  const [animationComplete, setAnimationComplete] = useState(true);
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(
     initializeQuizViewState
   );
@@ -122,7 +122,7 @@ const CareerQuiz = () => {
   };
 
   const handleNextClick = () => {
-    setTriggerAnimation(false);
+    setAnimationComplete(false);
 
     handleQuizResponseMutations(quizViewState);
     if (
@@ -141,7 +141,7 @@ const CareerQuiz = () => {
     });
   };
   const handleBackClick = () => {
-    setTriggerAnimation(false);
+    setAnimationComplete(false);
     if (stage == Stage.QUESTIONS && quizViewState.currentQuestion > 0) {
       setQuizViewState({
         ...quizViewState,
@@ -180,27 +180,29 @@ const CareerQuiz = () => {
     case Stage.START:
       return (
         <QuizTransition
-          triggerAnimation={triggerAnimation}
-          setTriggerAnimation={setTriggerAnimation}
+          animationComplete={animationComplete}
+          setAnimationComplete={setAnimationComplete}
         >
-          <StartQuiz
-            onNextClick={handleNextClick}
-            title={"Career in Tech Personality Quiz"}
-            body={
-              "Take this free quiz to find out what jobs in tech fit you best!"
-            }
-            setUserInput={setUserInput}
-            userInput={userInput}
-          />
+          {animationComplete && (
+            <StartQuiz
+              onNextClick={handleNextClick}
+              title={"Career in Tech Personality Quiz"}
+              body={
+                "Take this free quiz to find out what jobs in tech fit you best!"
+              }
+              setUserInput={setUserInput}
+              userInput={userInput}
+            />
+          )}
         </QuizTransition>
       );
     case Stage.EDUCATION:
       return (
         <QuizTransition
-          triggerAnimation={triggerAnimation}
-          setTriggerAnimation={setTriggerAnimation}
+          animationComplete={animationComplete}
+          setAnimationComplete={setAnimationComplete}
         >
-          {triggerAnimation && (
+          {animationComplete && (
             <EduBackground
               onNextClick={handleNextClick}
               onBackClick={handleBackClick}
@@ -214,10 +216,10 @@ const CareerQuiz = () => {
     case Stage.QUESTIONS:
       return (
         <QuizTransition
-          triggerAnimation={triggerAnimation}
-          setTriggerAnimation={setTriggerAnimation}
+          animationComplete={animationComplete}
+          setAnimationComplete={setAnimationComplete}
         >
-          {triggerAnimation && (
+          {animationComplete && (
             <SkillSelections
               onNextClick={handleNextClick}
               onBackClick={handleBackClick}
@@ -231,10 +233,10 @@ const CareerQuiz = () => {
     case Stage.BLUEPRINT:
       return (
         <QuizTransition
-          triggerAnimation={triggerAnimation}
-          setTriggerAnimation={setTriggerAnimation}
+          animationComplete={animationComplete}
+          setAnimationComplete={setAnimationComplete}
         >
-          {!triggerAnimation && (
+          {animationComplete && (
             <BluePrint
               onNextClick={handleNextClick}
               onBackClick={handleBackClick}
@@ -245,10 +247,10 @@ const CareerQuiz = () => {
     case Stage.RESULTS:
       return (
         <QuizTransition
-          triggerAnimation={triggerAnimation}
-          setTriggerAnimation={setTriggerAnimation}
+          animationComplete={animationComplete}
+          setAnimationComplete={setAnimationComplete}
         >
-          {!triggerAnimation && (
+          {animationComplete && (
             <CareerResults
               onBackClick={handleBackClick}
               quizViewState={quizViewState}
@@ -259,10 +261,10 @@ const CareerQuiz = () => {
     default:
       return (
         <QuizTransition
-          triggerAnimation={triggerAnimation}
-          setTriggerAnimation={setTriggerAnimation}
+          animationComplete={animationComplete}
+          setAnimationComplete={setAnimationComplete}
         >
-          {!triggerAnimation && (
+          {animationComplete && (
             <StartQuiz
               onNextClick={handleNextClick}
               title={"Career in Tech Personality Quiz"}

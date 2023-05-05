@@ -2,10 +2,10 @@ import React from "react";
 import { animated, useSpring } from "react-spring";
 
 export const QuizTransition: React.FC<{
-  setTriggerAnimation: (triggerAnimation: boolean) => void;
-  triggerAnimation: boolean;
+  setAnimationComplete: (animationComplete: boolean) => void;
+  animationComplete: boolean;
   children: React.ReactNode;
-}> = ({ setTriggerAnimation, triggerAnimation, children }) => {
+}> = ({ setAnimationComplete, animationComplete, children }) => {
   const items = React.Children.toArray(children);
   const spring = useSpring({
     config: {
@@ -15,9 +15,9 @@ export const QuizTransition: React.FC<{
       duration: 200,
       ease: "easeInOut",
     },
-    opacity: triggerAnimation ? 1 : 0,
+    opacity: animationComplete ? 1 : 0,
     onRest: () => {
-      setTriggerAnimation(true);
+      setAnimationComplete(true);
     },
   });
   return (
