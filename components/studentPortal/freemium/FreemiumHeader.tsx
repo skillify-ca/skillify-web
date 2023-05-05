@@ -1,6 +1,9 @@
 import React from "react";
-import { elapsedDays } from "../../../pages/api/studentPortal/freemium/elapsedDays";
-import { trialDaysRemaining } from "../../../pages/api/studentPortal/freemium/trialDaysRemaining";
+import {
+  calculateRemainingTrialDays,
+  elapsedDays,
+  TOTAL_TRIAL_DAYS,
+} from "../../../pages/api/studentPortal/freemium/helpers";
 import { Theme } from "../../../redux/themeSlice";
 import { Button } from "../../ui/Button";
 import ProgressComponent from "../../ui/ProgressComponent";
@@ -13,14 +16,28 @@ export type FreemiumHeaderProps = {
 };
 export const FreemiumHeader = ({
   handleToggleClick,
+  handleMenuIconClick,
   theme = Theme.DEFAULT,
   createdAt,
 }: FreemiumHeaderProps) => {
-  const TOTAL_TRIAL_DAYS = 30;
-
   return (
-    <div className="grid w-full h-16 grid-cols-6 border-b-2 bg-backgroundPrimary">
-      <div className="col-span-2 flex items-center pl-4">
+    <div className="grid w-full h-16 grid-cols-7 border-b-2 bg-backgroundPrimary">
+      <div
+        onClick={handleMenuIconClick}
+        className="flex md:hidden items-center pl-4"
+      >
+        <div className="cursor-pointer text-textPrimary lg:hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-8 h-8"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" />
+          </svg>
+        </div>
+      </div>
+      <div className="md:col-span-3 col-span-2 flex items-center pl-4">
         {theme === Theme.DEFAULT ? (
           <img className="w-48 h-8 " src="/images/logo.svg" />
         ) : theme === Theme.DRACULA ? (
@@ -33,12 +50,12 @@ export const FreemiumHeader = ({
             Enjoying the Skillify Experience?
           </p>
           <ProgressComponent
-            currentValue={elapsedDays(createdAt, TOTAL_TRIAL_DAYS)}
+            currentValue={elapsedDays(createdAt)}
             totalValue={TOTAL_TRIAL_DAYS}
           />
           <p className="text-xs mt-1 text-gray-500">
-            {trialDaysRemaining(createdAt, TOTAL_TRIAL_DAYS)}/{TOTAL_TRIAL_DAYS}{" "}
-            days remaining
+            {calculateRemainingTrialDays(createdAt)}/{TOTAL_TRIAL_DAYS} days
+            remaining
           </p>
         </div>
         <a href="https://www.joinskillify.com/call">

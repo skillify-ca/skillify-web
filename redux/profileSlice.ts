@@ -21,7 +21,7 @@ const initialState: ProfileState = {
   totalBadgeCount: 0,
   userBadgeCount: 0,
   userRole: "freemium",
-  createdAt: new Date()
+  createdAt: new Date(),
 };
 
 export const profileSlice: Slice = createSlice({
