@@ -2,19 +2,24 @@ import React from "react";
 import { animated, useSpring } from "react-spring";
 
 export const QuizTransition: React.FC<{
+  setTriggerAnimation: (triggerAnimation: boolean) => void;
   triggerAnimation: boolean;
   children: React.ReactNode;
-}> = ({ triggerAnimation, children }) => {
+}> = ({ setTriggerAnimation, triggerAnimation, children }) => {
   const items = React.Children.toArray(children);
   const spring = useSpring({
     config: {
       mass: 1,
       tension: 120,
       friction: 14,
-      duration: 200,
+      duration: 250,
+      delay: 200,
       ease: "easeInOut",
     },
     opacity: triggerAnimation ? 1 : 0,
+    onRest: () => {
+      setTriggerAnimation(true);
+    },
   });
   return (
     <div>

@@ -9,7 +9,7 @@ import {
   QuizOptionViewState,
   QuizViewState,
 } from "../../../../components/resources/quizzes/shared/types";
-import { QuizTransition } from "../../../../components/ui/animations/QuizTransition";
+import QuizTransition from "../../../../components/ui/animations/QuizTransition";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
 import { UPDATE_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCareer";
 import { UPDATE_CAREER_QUIZ_EDUCATION_RESPONSE } from "../../../../graphql/quizzes/updateCareerEducation";
@@ -121,22 +121,23 @@ const CareerQuiz = () => {
     }
   };
 
+  // useEffect(() => {
+  //   setTriggerAnimation((prev) => !prev);
+  // }, [stage, quizViewState.currentQuestion]);
+
   const handleNextClick = () => {
     setTriggerAnimation(false);
-    handleQuizResponseMutations(quizViewState);
-    setTimeout(() => {
-      setTriggerAnimation(true);
 
-      if (
-        stage == Stage.QUESTIONS &&
-        quizViewState.currentQuestion < quizData.questions.length - 1
-      ) {
-        setQuizViewState({
-          ...quizViewState,
-          currentQuestion: quizViewState.currentQuestion + 1,
-        });
-      } else setStage((prevStage) => prevStage + 1);
-    }, 250); // adjust the delay time based on the animation duration
+    handleQuizResponseMutations(quizViewState);
+    if (
+      stage == Stage.QUESTIONS &&
+      quizViewState.currentQuestion < quizData.questions.length - 1
+    ) {
+      setQuizViewState({
+        ...quizViewState,
+        currentQuestion: quizViewState.currentQuestion + 1,
+      });
+    } else setStage((prevStage) => prevStage + 1);
 
     window.scrollTo({
       top: 0,
@@ -146,15 +147,12 @@ const CareerQuiz = () => {
   };
   const handleBackClick = () => {
     setTriggerAnimation(false);
-    setTimeout(() => {
-      if (stage == Stage.QUESTIONS && quizViewState.currentQuestion > 0) {
-        setQuizViewState({
-          ...quizViewState,
-          currentQuestion: quizViewState.currentQuestion - 1,
-        });
-      } else setStage((prevStage) => prevStage - 1);
-      setTriggerAnimation(true);
-    }, 250); // adjust the delay time based on the animation duration
+    if (stage == Stage.QUESTIONS && quizViewState.currentQuestion > 0) {
+      setQuizViewState({
+        ...quizViewState,
+        currentQuestion: quizViewState.currentQuestion - 1,
+      });
+    } else setStage((prevStage) => prevStage - 1);
   };
 
   const handleOptionClick = (option: QuizOptionViewState) => {
@@ -183,62 +181,107 @@ const CareerQuiz = () => {
   }
   // Render the appropriate component based on the stage
 
-  return (
-    <QuizTransition triggerAnimation={triggerAnimation}>
-      {(() => {
-        switch (stage) {
-          case Stage.START:
-            return (
-              <StartQuiz
-                onNextClick={handleNextClick}
-                title={"Career in Tech Personality Quiz"}
-                body={
-                  "Take this free quiz to find out what jobs in tech fit you best!"
-                }
-                setUserInput={setUserInput}
-                userInput={userInput}
-              />
-            );
-          case Stage.EDUCATION:
-            return (
-              <EduBackground
-                onNextClick={handleNextClick}
-                onBackClick={handleBackClick}
-                setEducationState={setEducationState}
-                educationState={educationState}
-              />
-            );
+  switch (stage) {
+    case Stage.START:
+      return (
+        <QuizTransition
+          triggerAnimation={triggerAnimation}
+          setTriggerAnimation={setTriggerAnimation}
+        >
+          <StartQuiz
+            onNextClick={handleNextClick}
+            title={"Career in Tech Personality Quiz"}
+            body={
+              "Take this free quiz to find out what jobs in tech fit you best!"
+            }
+            setUserInput={setUserInput}
+            userInput={userInput}
+          />
+        </QuizTransition>
+      );
+    case Stage.EDUCATION:
+      return (
+        <QuizTransition
+          triggerAnimation={triggerAnimation}
+          setTriggerAnimation={setTriggerAnimation}
+        >
+          {triggerAnimation && (
+            <EduBackground
+              onNextClick={handleNextClick}
+              onBackClick={handleBackClick}
+              setEducationState={setEducationState}
+              educationState={educationState}
+            />
+          )}
+        </QuizTransition>
+      );
 
-          case Stage.QUESTIONS:
-            return (
-              <SkillSelections
-                onNextClick={handleNextClick}
-                onBackClick={handleBackClick}
-                handleOptionClick={handleOptionClick}
-                quizViewState={quizViewState}
-              />
-            );
+    case Stage.QUESTIONS:
+      return (
+        <QuizTransition
+          triggerAnimation={triggerAnimation}
+          setTriggerAnimation={setTriggerAnimation}
+        >
+          {triggerAnimation && (
+            <SkillSelections
+              onNextClick={handleNextClick}
+              onBackClick={handleBackClick}
+              handleOptionClick={handleOptionClick}
+              quizViewState={quizViewState}
+            />
+          )}
+        </QuizTransition>
+      );
 
-          case Stage.BLUEPRINT:
-            return (
-              <BluePrint
-                onNextClick={handleNextClick}
-                onBackClick={handleBackClick}
-              />
-            );
-          case Stage.RESULTS:
-            return (
-              <CareerResults
-                onBackClick={handleBackClick}
-                quizViewState={quizViewState}
-              />
-            );
-          default:
-            return null;
-        }
-      })()}
-    </QuizTransition>
-  );
+    case Stage.BLUEPRINT:
+      return (
+        <QuizTransition
+          triggerAnimation={triggerAnimation}
+          setTriggerAnimation={setTriggerAnimation}
+        >
+          {!triggerAnimation && (
+            <BluePrint
+              onNextClick={handleNextClick}
+              onBackClick={handleBackClick}
+            />
+          )}
+        </QuizTransition>
+      );
+    case Stage.RESULTS:
+      return (
+        <QuizTransition
+          triggerAnimation={triggerAnimation}
+          setTriggerAnimation={setTriggerAnimation}
+        >
+          {!triggerAnimation && (
+            <CareerResults
+              onBackClick={handleBackClick}
+              quizViewState={quizViewState}
+            />
+          )}
+        </QuizTransition>
+      );
+    default:
+      return (
+        <QuizTransition
+          triggerAnimation={triggerAnimation}
+          setTriggerAnimation={setTriggerAnimation}
+        >
+          {" "}
+          {!triggerAnimation && (
+            <StartQuiz
+              onNextClick={handleNextClick}
+              title={"Career in Tech Personality Quiz"}
+              body={
+                "Take this free quiz to find out what jobs in tech fit you best!"
+              }
+              setUserInput={setUserInput}
+              userInput={userInput}
+            />
+          )}
+        </QuizTransition>
+      );
+  }
 };
 
 export default CareerQuiz;
