@@ -121,10 +121,6 @@ const CareerQuiz = () => {
     }
   };
 
-  // useEffect(() => {
-  //   setTriggerAnimation((prev) => !prev);
-  // }, [stage, quizViewState.currentQuestion]);
-
   const handleNextClick = () => {
     setTriggerAnimation(false);
 
@@ -267,7 +263,6 @@ const CareerQuiz = () => {
           triggerAnimation={triggerAnimation}
           setTriggerAnimation={setTriggerAnimation}
         >
-          {" "}
           {!triggerAnimation && (
             <StartQuiz
               onNextClick={handleNextClick}
