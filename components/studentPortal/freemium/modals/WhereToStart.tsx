@@ -1,8 +1,10 @@
+import React from "react";
+
 export default function WhereToStart() {
   return (
     <div className="flex flex-col md:flex-row items-center justify-center space-x-8 text-start text-murkrow">
       <div className="flex flex-col md:p-4 p-2 space-y-1 md:space-y-6 md:max-w-md w-full">
-        <h1 className="text-lg md:text-3xl font-bold ">
+        <h1 className="text-lg md:text-3xl font-bold md:mt-[-30px] mt-2 ">
           Which Course Should You Start With?
         </h1>
 
@@ -12,7 +14,7 @@ export default function WhereToStart() {
               For beginners with little to no coding experience:{" "}
             </p>
             <p className="flex items-center col-span-2 font-bold ">
-              Coding Basics
+              Coding Basics Course!
             </p>
           </div>
           <div className="grid grid-cols-5 md:flex md:gap-0 gap-4 md:flex-col  bg-mewtwo rounded-xl p-3">
@@ -20,7 +22,7 @@ export default function WhereToStart() {
               If you have intermediate or advanced coding experience:{" "}
             </p>
             <p className="flex items-center font-bold col-span-2">
-              Web Development
+              Web Development Course!
             </p>
           </div>
           <img
