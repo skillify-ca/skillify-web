@@ -1,6 +1,6 @@
-import { getDataForComponentsLesson } from "./react/components";
+import { getDataForComponentsLesson } from "./components";
 
-export function getLessonForWebCourse(lessonId: string) {
+export function getLessonForReactCourse(lessonId: string) {
   if (lessonId === "components") {
     return getDataForComponentsLesson();
   }
