@@ -31,6 +31,18 @@ export default function Blog() {
 
         <div className="grid items-center w-full grid-cols-1 gap-16 p-4 sm:grid-cols-2 lg:grid-cols-3">
           <div>
+            <h4>April 13, 2023</h4>
+            <Card
+              title={"Coding Academy Survival Guide"}
+              image={"/images/blog/jest-function-testing/software_testing.jpeg"}
+              description={
+                "18 Relevant and helpful tips for exceling in your coding academy or engineering internship`"
+              }
+              link={"/blog/coding-academy-tips"}
+              color={3}
+            />
+          </div>
+          <div>
             <h4>February 20, 2023</h4>
             <Card
               title={"Switching to Software Engineering"}
@@ -42,18 +54,7 @@ export default function Blog() {
               color={0}
             />
           </div>
-          <div>
-            <h4>February 8, 2023</h4>
-            <Card
-              title={"Jest + Function Testing"}
-              image={"/images/blog/jest-function-testing/software_testing.jpeg"}
-              description={
-                "A Creative & Cheap Approach to Testing Tailwind/CSS Classes"
-              }
-              link={"/blog/jest-function-testing"}
-              color={3}
-            />
-          </div>
+
           <div>
             <h4>August 15, 2022</h4>
             <Card

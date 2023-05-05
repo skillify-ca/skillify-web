@@ -1,4 +1,4 @@
-import { getRedirectResult } from "firebase/auth";
+import { getRedirectResult, User } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useAuth } from "../../../lib/authContext";
@@ -21,7 +21,7 @@ const PlansCard = ({ planCard }: PlansCardProps) => {
     buttonLabel,
   } = planCard;
 
-  const { signIn, user } = useAuth();
+  const { signIn, user }: { signIn: () => void; user: User | null } = useAuth();
   const router = useRouter();
 
   const handleSignUp = (planName: string) => {
@@ -35,10 +35,12 @@ const PlansCard = ({ planCard }: PlansCardProps) => {
   useEffect(() => {
     async function checkAuth() {
       const result = await getRedirectResult(auth);
+
       if (result) {
         router.push("/studentPortal");
       }
     }
+
     checkAuth();
   }, []);
 

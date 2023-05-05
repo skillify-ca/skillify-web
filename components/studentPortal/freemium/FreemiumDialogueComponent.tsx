@@ -20,8 +20,8 @@ export enum ModalStage {
 export interface FreemiumDialogComponentProps {
   trigger: boolean;
   triggerTitle?: string;
-  onClose: () => void;
-  startOnUpgradeModal: boolean;
+  onClose?: () => void;
+  startOnUpgradeModal?: boolean;
 }
 
 const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
@@ -53,9 +53,9 @@ const FreemiumDialogComponent: React.FC<FreemiumDialogComponentProps> = ({
 
         <Content className={`${currentTheme}`}>
           <div
-            className={`fixed h-[450px] w-[300px] md:h-[600px] md:w-[900px] px-4 md:p-10 transform -translate-x-1/2 -translate-y-1/2 ${
+            className={`fixed h-[450px] w-[300px] md:h-[550px] md:w-[900px] md:p-10 px-4 transform -translate-x-1/2 md:-translate-y-3/4 -translate-y-1/2 ${
               activeModal === ModalStage.TWO ? "bg-murkrow" : "bg-white"
-            } rounded-lg left-1/2 top-1/2`}
+            } rounded-lg left-1/2 top-1/2 md:top-3/4`}
           >
             {/* content rendered based on enum */}
             <FadeAnimation key={activeModal} triggerAnimation={true}>
