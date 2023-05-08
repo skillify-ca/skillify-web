@@ -1,9 +1,11 @@
+import OpenAI from "@openai/api";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import CommandPalette from "react-command-palette";
 
 export default function SkillifyCommandPalette() {
   const router = useRouter();
+  const openai = new OpenAI("sk-...A9HT");
 
   const commands = [
     {
@@ -203,3 +205,16 @@ function RenderCommand(suggestion) {
     </div>
   );
 }
+
+// Replace RenderCommand on 198 with the function below
+// async function generateResponse(query) {
+//   const response = await openAI.complete({
+//     engine: 'text-davinci-002',
+//     prompt: query,
+//     maxTokens: 150,
+//     n: 1,
+//     stop: '\n',
+//     temperature: 0.5,
+//   });
+//   return response.choices[0].text.trim();
+// }
