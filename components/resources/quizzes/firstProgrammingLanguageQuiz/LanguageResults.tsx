@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 import { computeLanguageScore } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/computeScore";
 import { quizResultsData } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/firstProgrammingLanguage";
 import { getPreferredLanguageForQuizResults } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/getPreferredLanguage";
@@ -31,12 +30,12 @@ const LanguageResults = ({
       <SkillifyNavbar onBackClick={onBackClick} hidden={false} />
       <div className="mt-4 text-2xl font-bold text-black-600">YOUR RESULTS</div>
       <div className="text-lg font-semibolds px-3">{body}</div>
-      <img src={src} alt={alt} className="scale-75" />
+      <img src={src} alt={alt} className="mx-auto my-6" />
       <div className="text-4xl font-bold text-amber-500">{language}</div>
       <div className="mx-4 mt-4 text-xl font-semibold">
         Start learning to code with a Skillify coach today!
       </div>
-      <div className="flex flex-col items-center py-4 space-y-3 rounded-full">
+      <div className="flex flex-col items-center py-4 space-y-2 rounded-full">
         <Link href="https://www.joinskillify.com/call">
           <Button label="Book a call" backgroundColor="yellow" />
         </Link>

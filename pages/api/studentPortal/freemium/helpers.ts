@@ -9,6 +9,7 @@ import {
   webIntroUnit,
 } from "../units";
 
+
 //hard code TRIAL LENGTH DATE saved in this file. It is saved in only this place and then imported throughout the code base.
 export const TOTAL_TRIAL_DAYS = 14;
 
@@ -75,3 +76,16 @@ function transformBackendUnit(unit: Unit): Unit {
     }),
   };
 }
+
+export const sendSlackNotification = async (email: string) => {
+  try {
+    const response = await fetch(`/api/slack/${"Freemium registration by "}${email}`)
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
