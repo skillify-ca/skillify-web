@@ -97,33 +97,26 @@ const FirstProgrammingLanguageQuiz = () => {
     } else if (stage == Stage.BLUEPRINT) {
       updateQuizResponse({ variables: finalResponseObject });
     }
-
-    setTimeout(() => {
-      setTriggerAnimation(true);
-      if (
-        stage == Stage.QUESTIONS &&
-        quizViewState.currentQuestion < quizData.questions.length - 1
-      ) {
-        setQuizViewState({
-          ...quizViewState,
-          currentQuestion: quizViewState.currentQuestion + 1,
-        });
-      } else setStage((prevStage) => prevStage + 1);
-    }, 200);
+    if (
+      stage == Stage.QUESTIONS &&
+      quizViewState.currentQuestion < quizData.questions.length - 1
+    ) {
+      setQuizViewState({
+        ...quizViewState,
+        currentQuestion: quizViewState.currentQuestion + 1,
+      });
+    } else setStage((prevStage) => prevStage + 1);
   };
 
   const handleBackClick = () => {
     setTriggerAnimation(false);
 
-    setTimeout(() => {
-      setTriggerAnimation(true);
-      if (stage == Stage.QUESTIONS && quizViewState.currentQuestion > 0) {
-        setQuizViewState({
-          ...quizViewState,
-          currentQuestion: quizViewState.currentQuestion - 1,
-        });
-      } else setStage((prevStage) => prevStage - 1);
-    }, 200);
+    if (stage == Stage.QUESTIONS && quizViewState.currentQuestion > 0) {
+      setQuizViewState({
+        ...quizViewState,
+        currentQuestion: quizViewState.currentQuestion - 1,
+      });
+    } else setStage((prevStage) => prevStage - 1);
   };
 
   const handleOptionClick = (option: QuizOptionViewState) => {
@@ -188,8 +181,11 @@ const FirstProgrammingLanguageQuiz = () => {
 
   return (
     <>
-      <QuizTransition triggerAnimation={triggerAnimation}>
-        {renderStage()}
+      <QuizTransition
+        animationComplete={triggerAnimation}
+        setAnimationComplete={setTriggerAnimation}
+      >
+        {triggerAnimation && renderStage()}
       </QuizTransition>
     </>
   );
