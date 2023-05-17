@@ -1,5 +1,3 @@
-import React from "react";
-
 type CredentialsProps = {
   headerText: string;
 };
@@ -18,6 +16,7 @@ export default function Credentials({ headerText }: CredentialsProps) {
     "/images/about/wordsWithFriends.png",
     "/images/about/peloton.png",
     "/images/about/amd.png",
+    "/images/about/faire.png",
     "/images/about/sap.png",
     "/images/about/box.jpg",
   ];
