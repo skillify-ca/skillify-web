@@ -9,7 +9,7 @@ export default function handler(
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
-      text: "HTML",
+      text: "HTML Lesson Two",
     },
     {
       component: "description",
