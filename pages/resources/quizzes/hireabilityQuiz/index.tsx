@@ -11,7 +11,7 @@ import QuizTransition from "../../../../components/ui/animations/QuizTransition"
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
 import { UPDATE_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCareer";
 import { UPDATE_CAREER_QUIZ_EDUCATION_RESPONSE } from "../../../../graphql/quizzes/updateCareerEducation";
-import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz/careerQuiz";
+import { quizData } from "../../../api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuiz";
 import { EducationState } from "../careerQuiz";
 
 export enum Stage {
@@ -134,10 +134,8 @@ export default function HireabilityQuiz() {
           {animationComplete && (
             <StartQuiz
               onNextClick={handleNextClick}
-              title={"Career in Tech Personality Quiz"}
-              body={
-                "Take this free quiz to find out what jobs in tech fit you best!"
-              }
+              title={quizData.title}
+              body={quizData.body}
               setUserInput={setUserInput}
               userInput={userInput}
             />
