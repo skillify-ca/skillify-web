@@ -1,6 +1,5 @@
-import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
-import CareerResults from "../../../../components/resources/quizzes/careerQuiz/CareerResults";
+import HireabilityResults from "../../../../components/resources/quizzes/hirabilityQuiz/HireabilityResults";
 import SkillSelections from "../../../../components/resources/quizzes/shared/SkillSelections";
 import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz";
 import {
@@ -8,11 +7,7 @@ import {
   QuizViewState,
 } from "../../../../components/resources/quizzes/shared/types";
 import QuizTransition from "../../../../components/ui/animations/QuizTransition";
-import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
-import { UPDATE_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCareer";
-import { UPDATE_CAREER_QUIZ_EDUCATION_RESPONSE } from "../../../../graphql/quizzes/updateCareerEducation";
 import { quizData } from "../../../api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuiz";
-import { EducationState } from "../careerQuiz";
 
 export enum Stage {
   START,
@@ -37,33 +32,12 @@ const initializeQuizViewState = {
   progress: 0,
 };
 export default function HireabilityQuiz() {
-  const [educationState, setEducationState] = useState<EducationState>({
-    degree: "",
-    institution: "",
-    education: "",
-    experience: "",
-  });
-
   // create results state object that
   // create custom type -- based on schema type in database
-  const [stage, setStage] = useState<Stage>(Stage.START);
-  const [quizResponseId, setQuizResponseId] = useState<number>();
+  const [stage, setStage] = useState<Stage>(2);
   const [animationComplete, setAnimationComplete] = useState(true);
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(
     initializeQuizViewState
-  );
-  const [createQuizResponse] = useMutation(INSERT_CAREER_QUIZ_RESPONSE, {
-    onCompleted: (data) => {
-      if (!quizResponseId) {
-        setQuizResponseId(parseInt(data.insert_career_quiz.returning[0].id));
-      }
-    },
-  });
-  const [saveEducationInputs] = useMutation(
-    UPDATE_CAREER_QUIZ_EDUCATION_RESPONSE
-  );
-  const [saveCompletedUserPreferences] = useMutation(
-    UPDATE_CAREER_QUIZ_RESPONSE
   );
 
   const [userInput, setUserInput] = useState({
@@ -167,7 +141,7 @@ export default function HireabilityQuiz() {
           setAnimationComplete={setAnimationComplete}
         >
           {animationComplete && (
-            <CareerResults
+            <HireabilityResults
               onBackClick={handleBackClick}
               quizViewState={quizViewState}
             />
