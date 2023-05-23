@@ -59,7 +59,7 @@ export default function WhatYouGet() {
         "Get FREE access to our Skillify Academy Events that cost $100 - $500 to attend! Including micro-trainings for UX/UI Design, Agile Methodology, Product Management and Digital Marketing",
     },
     {
-      title: "Quarterly Live Virtual 2-3 Day Hackathons",
+      title: "Annual Live Virtual 2-3 Day Hackathons",
       value: "$2,000 Value",
       description:
         "Get access to Cutting Edge Training from Vithushan, the Skillify Faculty, and special subject matter experts on the most impactful practices that are used by Skillify and our most successful students. These events give you the chance to make HUGE progress in just a few days with guided learning, implementation sessions, and real time direct support",
@@ -140,7 +140,7 @@ const Description = ({ description }: DescriptionProps) => {
   if (Array.isArray(description)) {
     return (
       <div className="space-y-2">
-        <ul className="list-disc ml-4">
+        <ul className="ml-4 list-disc">
           {description.map((item, index) => (
             <li key={index}>{item}</li>
           ))}
