@@ -1,17 +1,19 @@
 import router from "next/router";
 import React from "react";
-import { IntroCourseUnit } from "../../../../graphql/coding/userBadges/fetchUserBadges";
+import { IntroCourseUnit } from "../../../../graphql/studentPortal/achievements/fetchUserBadges";
 
-import { CodingBadge } from "../../../../graphql/coding/userBadges/fetchUserBadges";
+import { CodingBadge } from "../../../../graphql/studentPortal/achievements/fetchUserBadges";
 
 type CodingBadgeUnitProps = {
   disabled: boolean;
+  badgePortalEnabled: boolean;
   badge: CodingBadge;
   setUnitBadges: React.Dispatch<React.SetStateAction<IntroCourseUnit[]>>;
 };
 // maybe use IndividualCodingBadge
 function CodingBadgeUnit({
   disabled,
+  badgePortalEnabled,
   badge,
   setUnitBadges,
 }: CodingBadgeUnitProps) {
@@ -46,7 +48,7 @@ function CodingBadgeUnit({
     <div
       className="flex flex-col items-center justify-center h-full p-4 text-white bg-slate-600 border-slate-300"
       onClick={() => {
-        if (disabled) {
+        if (badgePortalEnabled) {
           router.push("/studentPortal/badges/" + badge.id);
         }
       }}
