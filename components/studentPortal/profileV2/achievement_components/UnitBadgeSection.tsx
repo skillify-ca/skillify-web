@@ -48,6 +48,7 @@ function UnitBadgeSection({
             <div key={badge.id} className="m-4">
               <CodingBadgeUnit
                 disabled={!editMode}
+                badgePortalEnabled={!editMode}
                 badge={badge}
                 setUnitBadges={setUnitBadges}
               />
