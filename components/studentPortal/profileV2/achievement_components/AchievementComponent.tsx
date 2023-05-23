@@ -2,8 +2,8 @@ import { useMutation, useQuery } from "@apollo/client";
 import { PencilAltIcon } from "@heroicons/react/outline";
 import React, { useState } from "react";
 import {
-  FetchBadgeResponse,
   FETCH_CODING_BADGES,
+  FetchBadgeResponse,
   IntroCourseUnit,
 } from "../../../../graphql/studentPortal/achievements/fetchUserBadges";
 import {
@@ -11,13 +11,13 @@ import {
   INSERT_USER_CODING_BADGES,
 } from "../../../../graphql/studentPortal/achievements/updateUserCodingBadges";
 import {
-  FetchRoleData,
   FETCH_USER_ROLE,
+  FetchRoleData,
 } from "../../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../../lib/authContext";
 import { Button } from "../../../ui/Button";
-import findBadgeDiff from "./findBadgeDiff";
 import UnitBadgeSection from "./UnitBadgeSection";
+import findBadgeDiff from "./findBadgeDiff";
 
 export type AchievementComponentProps = {
   userId: string;
@@ -111,7 +111,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
               <PencilAltIcon
                 className={
                   " w-7 h-7 cursor-pointer hover:scale-125 " +
-                  (editMode ? "text-yellow-700" : "hover:text-yellow-500")
+                  (editMode ? "hover:text-yellow-500" : "text-yellow-700")
                 }
               />
             </button>

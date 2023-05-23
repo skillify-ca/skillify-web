@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
+import ExpandableContainer from "../../../components/ui/ExpandableContainer";
 import { FETCH_BADGE } from "../../../graphql/studentPortal/achievements/fetchBadge";
 import { useAuth } from "../../../lib/authContext";
 
@@ -25,35 +26,43 @@ const BadgeDetailsPage = ({ slug }) => {
 
   return (
     <div>
-      <div className="h-screen p-4 bg-gray-100 heropattern-hideout-blue-100">
+      <div className="h-full p-4 bg-gray-100 heropattern-hideout-blue-100">
         {badgeDetail && (
           <div className="flex flex-col justify-center p-8 ml-auto mr-auto bg-white md:w-1/2 rounded-3xl">
             <p className="mb-4 text-3xl font-semibold text-center">
               {" "}
               {badgeDetail.title}{" "}
             </p>
-            <div className="h-64 bg-blue-900">
-              <img
-                src={badgeDetail.image}
-                className="object-contain w-full h-full p-4 transition-all transform hover:animate-shake"
-              />
-              {/* <Canvas camera={{ position: [10, 2, -10], fov: 60 }}>
-                <Preload all />
-                <group>
-                  <Box
-                    url={badgeDetail ? badgeDetail.image : "/images/lock.png"}
-                  />
-                  <OrbitControls
-                    hasEventListener={false}
-                    removeEventListener={() => {}}
-                    addEventListener={() => {}}
-                    dispatchEvent={() => {}}
-                  />
-                  <Stars />
-                </group>
-              </Canvas> */}
+            <div className="grid grid-cols-2 space-x-4 mx-auto ">
+              <div className="md:bg-blue-900">
+                <img
+                  src={badgeDetail.image}
+                  className="object-contain md:w-full md:h-full  md:p-4 transition-all transform hover:animate-shake"
+                />
+              </div>
+              <div>
+                <p className=" text-center  "> {badgeDetail.description} </p>
+              </div>
             </div>
-            <p className="mt-4 text-center"> {badgeDetail.description} </p>
+            <div className="space-y-8 py-4">
+              {" "}
+              <ExpandableContainer open={false} title={"Getting Started"}>
+                <div className="px-8 mb-8 ">
+                  <li>Step one to getting started on this badge</li>
+                  <li>Do this next, after you have finished step one</li>
+                  <li>Step three is the final step</li>
+                  <li>...</li>
+                </div>
+              </ExpandableContainer>
+              <ExpandableContainer open={false} title={"Resources"}>
+                <div className="px-8 mb-8  ">
+                  <li className="">Helpful resource one</li>
+                  <li>Helpful resource two</li>
+                  <li>Helpful resource three</li>
+                  <li>...</li>
+                </div>
+              </ExpandableContainer>
+            </div>
           </div>
         )}
       </div>
