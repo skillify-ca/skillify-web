@@ -32,9 +32,7 @@ const initializeQuizViewState = {
   progress: 0,
 };
 export default function HireabilityQuiz() {
-  // create results state object that
-  // create custom type -- based on schema type in database
-  const [stage, setStage] = useState<Stage>(2);
+  const [stage, setStage] = useState<Stage>(Stage.START);
   const [animationComplete, setAnimationComplete] = useState(true);
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(
     initializeQuizViewState
@@ -93,10 +91,7 @@ export default function HireabilityQuiz() {
     };
     setQuizViewState(updatedQuizViewState);
   };
-  // Smoothly load the page
-  if (initializeQuizViewState == undefined) {
-    return "loading...";
-  }
+
   // Render the appropriate component based on the stage
   switch (stage) {
     case Stage.START:
