@@ -1,76 +1,177 @@
 import React, { useState } from "react";
-import SkillSelections from "../shared/SkillSelections";
-import StartQuiz from "../shared/StartQuiz";
+import HireabilityResults from "../../../../components/resources/quizzes/hirabilityQuiz/HireabilityResults";
+import SkillSelections from "../../../../components/resources/quizzes/shared/SkillSelections";
+import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz";
+import {
+  QuizOptionViewState,
+  QuizViewState,
+} from "../../../../components/resources/quizzes/shared/types";
+import QuizTransition from "../../../../components/ui/animations/QuizTransition";
+import { quizData } from "../../../../pages/api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuiz";
 
-enum QuizStages {
-  EMAIL_CAPTURE,
-  ROLE,
-  SKILL_RATING,
-  RESULT,
+export enum Stage {
+  START,
+  QUESTIONS,
+  RESULTS,
 }
-const skills = {
-  frontend: [
-    "I have read through the React JS documentations and I deeply understand it",
-    "I am confident building complex and mobile responsive user interfaces",
-    "I am comfortable building UI components inside a ReactJS application and integrating them with Storybook",
-    "I am comfortable managing state using the useState hook",
-    "I am comfortable using effects with the useEffect hook",
-    "I am comfortable managing state using Redux",
-    "I have built a full stack application using ReactJS and a backend",
-    "I am comfortable using Jest to write unit tests for my React applications",
-    "I am confident using TypeScript to write features my React applications, as opposed to JavaScript",
-    "I am confident building advanced UI layouts using CSS Grid and Flexbox",
-    "I am comfortable writing custom CSS animations using keyframes",
-    "I am comfortable working with Promises and asynchronous code (async/await)",
-  ],
+const initializeQuizViewState = {
+  title: quizData.title,
+  body: quizData.body,
+  questions: quizData.questions.map((question) => {
+    return {
+      title: question.title,
+      body: question.body,
+      maxSelections: question.maxSelections,
+
+      options: question.options.map((option) => {
+        return { ...option, isSelected: false };
+      }),
+    };
+  }),
+  currentQuestion: 0,
+  progress: 0,
 };
-export default function HirabilityQuizComponent() {
-  const [quizStage, setQuizStage] = useState(QuizStages.EMAIL_CAPTURE);
-  const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
-
-  function handleNextClickFromEmailCapture() {
-    setQuizStage(QuizStages.ROLE);
-  }
-
-  return (
-    <div>
-      {quizStage === QuizStages.EMAIL_CAPTURE ? (
-        <StartQuiz
-          onNextClick={handleNextClickFromEmailCapture}
-          title={"How hireable are you?"}
-          body={
-            "Take this free quiz to reveal your hireability score for software engineering, product, marketing or design roles"
-          }
-        />
-      ) : quizStage === QuizStages.ROLE ? (
-        <div>
-          <SkillSelections
-            selections={["Frontend Developer", "Mobile Developer"]}
-            onNextClick={() => setQuizStage(QuizStages.SKILL_RATING)}
-            onBackClick={() => setQuizStage(QuizStages.EMAIL_CAPTURE)}
-            progress={0}
-            title={""}
-            body={""}
-          />
-        </div>
-      ) : quizStage === QuizStages.SKILL_RATING ? (
-        <div>
-          <SkillSelections
-            selections={[
-              "Strongly Agree",
-              "Agree",
-              "Neutral",
-              "Disagree",
-              "Strongly Disagree",
-            ]}
-            onNextClick={() => setCurrentSkillIndex((prev) => prev + 1)}
-            onBackClick={() => setCurrentSkillIndex((prev) => prev - 1)}
-            progress={1}
-            title={skills["frontend"][currentSkillIndex]}
-            body={""}
-          />
-        </div>
-      ) : null}
-    </div>
+export default function HireabilityQuiz() {
+  // create results state object that
+  // create custom type -- based on schema type in database
+  const [stage, setStage] = useState<Stage>(2);
+  const [animationComplete, setAnimationComplete] = useState(true);
+  const [quizViewState, setQuizViewState] = useState<QuizViewState>(
+    initializeQuizViewState
   );
+
+  const [userInput, setUserInput] = useState({
+    name: "",
+    email: "",
+  });
+
+  const handleNextClick = () => {
+    setAnimationComplete(false);
+
+    if (
+      stage == Stage.QUESTIONS &&
+      quizViewState.currentQuestion < quizData.questions.length - 1
+    ) {
+      setQuizViewState({
+        ...quizViewState,
+        currentQuestion: quizViewState.currentQuestion + 1,
+      });
+    } else setStage((prevStage) => prevStage + 1);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+  const handleBackClick = () => {
+    setAnimationComplete(false);
+    if (stage == Stage.QUESTIONS && quizViewState.currentQuestion > 0) {
+      setQuizViewState({
+        ...quizViewState,
+        currentQuestion: quizViewState.currentQuestion - 1,
+      });
+    } else setStage((prevStage) => prevStage - 1);
+  };
+
+  const handleOptionClick = (option: QuizOptionViewState) => {
+    const selectedQuizOption = quizViewState.questions.map((question) => ({
+      ...question,
+      options: question.options.map((questionOption) =>
+        questionOption.name === option.name
+          ? {
+              ...questionOption,
+
+              isSelected: questionOption.isSelected ? false : true,
+            }
+          : questionOption
+      ),
+    }));
+
+    const updatedQuizViewState = {
+      ...quizViewState,
+      questions: selectedQuizOption,
+    };
+    setQuizViewState(updatedQuizViewState);
+  };
+  // Smoothly load the page
+  if (initializeQuizViewState == undefined) {
+    return "loading...";
+  }
+  // Render the appropriate component based on the stage
+  switch (stage) {
+    case Stage.START:
+      return (
+        <QuizTransition
+          animationComplete={animationComplete}
+          setAnimationComplete={setAnimationComplete}
+        >
+          {animationComplete && (
+            <StartQuiz
+              onNextClick={handleNextClick}
+              title={quizData.title}
+              body={quizData.body}
+              setUserInput={setUserInput}
+              userInput={userInput}
+            />
+          )}
+        </QuizTransition>
+      );
+
+    case Stage.QUESTIONS:
+      return (
+        <QuizTransition
+          animationComplete={animationComplete}
+          setAnimationComplete={setAnimationComplete}
+        >
+          {animationComplete && (
+            <SkillSelections
+              onNextClick={handleNextClick}
+              onBackClick={handleBackClick}
+              handleOptionClick={handleOptionClick}
+              quizViewState={quizViewState}
+            />
+          )}
+        </QuizTransition>
+      );
+
+    case Stage.RESULTS:
+      return (
+        <QuizTransition
+          animationComplete={animationComplete}
+          setAnimationComplete={setAnimationComplete}
+        >
+          {animationComplete && (
+            <HireabilityResults
+              onBackClick={handleBackClick}
+              quizViewState={quizViewState}
+            />
+          )}
+        </QuizTransition>
+      );
+    default:
+      return (
+        <QuizTransition
+          animationComplete={animationComplete}
+          setAnimationComplete={setAnimationComplete}
+        >
+          {animationComplete && (
+            <StartQuiz
+              onNextClick={handleNextClick}
+              title={"Career in Tech Personality Quiz"}
+              body={
+                "Take this free quiz to find out what jobs in tech fit you best!"
+              }
+              setUserInput={setUserInput}
+              userInput={userInput}
+            />
+          )}
+        </QuizTransition>
+      );
+  }
 }
+
+function getLayout(page: React.ReactNode) {
+  return <div>{page}</div>;
+}
+
+HireabilityQuiz.getLayout = getLayout;
