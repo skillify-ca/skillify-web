@@ -1,5 +1,4 @@
 import React from "react";
-import LandingNavbar from "../../../../components/landingPage/LandingNavbar";
 import HirabilityQuizComponent from "../../../../components/resources/quizzes/hirabilityQuiz/HirabilityQuizComponent";
 
 export default function HirabilityQuizPage() {
@@ -11,10 +10,5 @@ export default function HirabilityQuizPage() {
 }
 
 HirabilityQuizPage.getLayout = function getLayout(page) {
-  return (
-    <div className="theme-default">
-      <LandingNavbar />
-      {page}
-    </div>
-  );
+  return <div className="theme-default">{page}</div>;
 };
