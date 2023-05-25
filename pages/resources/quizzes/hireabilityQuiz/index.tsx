@@ -18,6 +18,7 @@ export enum Stage {
 export default function HireabilityQuiz() {
   const [selectedQuizData, setSelectedQuizData] = useState(quizData);
 
+  // Step1: useEffect with selectedQuizData in the dependency array
   const initializeQuizViewState = {
     title: quizData.title,
     body: quizData.body,
@@ -35,6 +36,8 @@ export default function HireabilityQuiz() {
     currentQuestion: 0,
     progress: 0,
   };
+  // Step2: build handleEngineeringOption to setSelectedQuizData to the selected engineering option
+  // Step2a: prevent user from navigating forward unless they select an engineering quiz
   const [stage, setStage] = useState<Stage>(Stage.START);
   const [animationComplete, setAnimationComplete] = useState(true);
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(

@@ -18,4 +18,5 @@ export const quizData: QuizViewState = {
     },
   ],
   currentQuestion: 0,
+  progress: 0,
 };
