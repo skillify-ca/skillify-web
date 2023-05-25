@@ -1,4 +1,3 @@
-import React from "react";
 import ExpandableContainer from "../ui/ExpandableContainer";
 
 export default function FAQ() {
@@ -32,12 +31,12 @@ export default function FAQ() {
     {
       question: "How long will it take to get a job?",
       answer:
-        "Our graduates are employed as software developers within 6 months of completing the program.",
+        "Our graduates are employed as software developers within 6 months of completing the program. The job market for software engineers has gotten harder so you might need to spend a bit longer honing your craft and elevating your digital skills to a more intermediate level",
     },
     {
       question: "What kind of job can I get after this program?",
       answer:
-        "You can get a job as a software developer. There are many different types of software developer positions that you could apply to, including but not limited to:\n - Web Developer\n - Backend Developer\n - Mobile Developer\n - Game Developer\n - Fullstack Developer",
+        "You can get a job as a software developer. There are many different types of software developer positions that you could apply to, including but not limited to:\n - Web Developer\n - Backend Developer\n - Mobile Developer\n - Game Developer\n - Fullstack Developer\n - Dev Ops Engineer\n - Sales Engineer",
     },
     {
       question: "What salary can I get after this program?",
@@ -47,12 +46,12 @@ export default function FAQ() {
     {
       question: "Will you help me find a job?",
       answer:
-        "Our coaches have a deep network of technical professionals in the industry all over the world. We will leverage our network to introduce you to potential employers. We can provide resume critique and mock-interview training to help you ace your interviews.",
+        "Our coaches have a deep network of technical professionals in companies all over the world. We leverage our network to introduce you to potential employers. We provide resume critique and mock-interview training to help you ace your interviews.",
     },
     {
       question: "Why should I pick your program over another coding bootcamp?",
       answer:
-        " - Our teachers are the best. We've worked at top companies in Silicon Valley, Toronto, and New York: Instagram, Spotify, Duolingo, Shopify, PagerDuty, Roblox, NVIDIA, and more!\n - Our program provides twice as much support compared to traditional bootcamps to ensure you're actually prepared to succeed on the job.\n - Our program is customized to your experience and interests. You're working with a team of coaches who all want to see you succeed. You will not find a personalized educational experience anywhere else.\n - Based on your interests, we place you on a track that you're most likely to succeed and get hired.",
+        " - Our teachers are the best. We've worked at top companies in Silicon Valley, Toronto, and New York: Instagram, Spotify, Duolingo, Shopify, PagerDuty, Roblox, NVIDIA, and more!\n - Our program provides twice as much support compared to traditional bootcamps to ensure you're actually prepared to succeed on the job.\n - Our program is customized to your experience and interests. You're working with a team of senior engineers, designers and product managers who all want to see you succeed. You will not find a personalized educational experience anywhere else.\n - Based on your interests, we place you on a track that you're most likely to succeed and get hired.",
     },
     {
       question: "How much does the program cost?",
@@ -60,10 +59,19 @@ export default function FAQ() {
         "We offer varying programs of different lengths and intensities depending on your learning needs. We customize a plan for each student based on their learning and career goals, which will determine the cost. Book a call with one of our coaches to learn more about costs, payment plans, and scholarships.",
     },
     {
-      question:
-        "Are there any financing options or scholarships available? Can I use my RESP for this?",
+      question: "Can I use my RESP or OSAP to pay for this?",
       answer:
-        "There are no financing or RESP options at the moment, but we have limited scholarships available for people from underrepresented communities, such as POC and women in tech.",
+        "There are no OSAP or RESP options at the moment, but we are working to change this.",
+    },
+    {
+      question: "Are there any financing options? Can my company pay for this?",
+      answer:
+        "Some students are able to get reimbursed for their Skillify training costs by their employer through a professional development benefit.",
+    },
+    {
+      question: "Do you provide any scholarships or financial aid?",
+      answer:
+        "We have limited scholarships available for people from underrepresented communities, such as POC and women in tech.",
     },
     {
       question: "Can I complete the course on my phone?",
@@ -74,10 +82,13 @@ export default function FAQ() {
 
   return (
     <div className="flex flex-col items-center justify-center w-full p-4 sm:p-8 bg-murkrow">
-      <h2 className="p-4 text-2xl font-bold text-charmander">Skillify FAQs</h2>
+      <h2 className="p-4 text-3xl font-bold text-charmander">Skillify FAQs</h2>
       <div className="flex flex-col items-start w-full p-8 m-4 max-w-7xl bg-slate-200 rounded-xl">
         {faqItems.map((item) => (
-          <div key={item.question} className="flex items-center w-full mb-4">
+          <div
+            key={item.question}
+            className="flex items-center w-full mb-4 bg-slate-100"
+          >
             <ExpandableContainer open={false} title={item.question}>
               <div className="px-4 pb-4">
                 <p className="whitespace-pre-wrap">{item.answer}</p>
