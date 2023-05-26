@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HireabilityResults from "../../../../components/resources/quizzes/hirabilityQuiz/HireabilityResults";
 import SkillSelections from "../../../../components/resources/quizzes/shared/SkillSelections";
 import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz";
@@ -7,7 +7,10 @@ import {
   QuizViewState,
 } from "../../../../components/resources/quizzes/shared/types";
 import QuizTransition from "../../../../components/ui/animations/QuizTransition";
+import { quizDataBE } from "../../../api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuizBE";
 import { quizDataFE } from "../../../api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuizFE";
+import { quizDataGE } from "../../../api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuizGE";
+import { quizDataME } from "../../../api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuizME";
 
 export enum Stage {
   START,
@@ -16,18 +19,15 @@ export enum Stage {
 }
 
 export default function HireabilityQuiz() {
-  const [selectedquizDataFE, setSelectedquizDataFE] = useState(quizDataFE);
-
-  // Step1: useEffect with selectedquizDataFE in the dependency array
+  const [selectedQuizData, setSelectedQuizData] = useState(quizDataFE);
   const initializeQuizViewState = {
-    title: quizDataFE.title,
-    body: quizDataFE.body,
-    questions: selectedquizDataFE.questions.map((question) => {
+    title: selectedQuizData.title,
+    body: selectedQuizData.body,
+    questions: selectedQuizData.questions.map((question) => {
       return {
         title: question.title,
         body: question.body,
         maxSelections: question.maxSelections,
-
         options: question.options.map((option) => {
           return { ...option, isSelected: false };
         }),
@@ -36,6 +36,25 @@ export default function HireabilityQuiz() {
     currentQuestion: 0,
     progress: 0,
   };
+  // Step1: useEffect with selectedquizDataFE in the dependency array
+  useEffect(() => {
+    const initializeQuizViewState = {
+      title: selectedQuizData.title,
+      body: selectedQuizData.body,
+      questions: selectedQuizData.questions.map((question) => {
+        return {
+          title: question.title,
+          body: question.body,
+          maxSelections: question.maxSelections,
+
+          options: question.options,
+        };
+      }),
+      currentQuestion: 0,
+      progress: 0,
+    };
+    setQuizViewState(initializeQuizViewState);
+  }, [selectedQuizData]);
   // Step2: build handleEngineeringOption to setSelectedquizDataFE to the selected engineering option
   // Step2a: prevent user from navigating forward unless they select an engineering quiz
   const [stage, setStage] = useState<Stage>(Stage.START);
@@ -43,7 +62,6 @@ export default function HireabilityQuiz() {
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(
     initializeQuizViewState
   );
-
   const [userInput, setUserInput] = useState({
     name: "",
     email: "",
@@ -78,24 +96,34 @@ export default function HireabilityQuiz() {
   };
 
   const handleOptionClick = (option: QuizOptionViewState) => {
-    const selectedQuizOption = quizViewState.questions.map((question) => ({
-      ...question,
-      options: question.options.map((questionOption) =>
-        questionOption.name === option.name
-          ? {
-              ...questionOption,
+    if (option.name === "Backend Engineer") {
+      setSelectedQuizData(quizDataBE);
+    } else if (option.name === "Game Engineer") {
+      setSelectedQuizData(quizDataGE);
+    } else if (option.name === "Mobile Engineer") {
+      setSelectedQuizData(quizDataME);
+    }
 
-              isSelected: questionOption.isSelected ? false : true,
-            }
-          : questionOption
-      ),
-    }));
+    setQuizViewState((prevQuizViewState) => {
+      const selectedQuizOption = prevQuizViewState.questions.map(
+        (question) => ({
+          ...question,
+          options: question.options.map((questionOption) =>
+            questionOption.name === option.name
+              ? {
+                  ...questionOption,
+                  isSelected: !questionOption.isSelected,
+                }
+              : questionOption
+          ),
+        })
+      );
 
-    const updatedQuizViewState = {
-      ...quizViewState,
-      questions: selectedQuizOption,
-    };
-    setQuizViewState(updatedQuizViewState);
+      return {
+        ...prevQuizViewState,
+        questions: selectedQuizOption,
+      };
+    });
   };
 
   // Render the appropriate component based on the stage
