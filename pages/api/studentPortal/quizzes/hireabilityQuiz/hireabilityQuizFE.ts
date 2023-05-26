@@ -7,6 +7,7 @@ export const quizDataFE: QuizViewState = {
     {
       title: "What role are you interested in?",
       body: "Select the most relevant role.",
+      maxSelections: 1,
       options: [
         {
           name: "Frontend Engineer",
