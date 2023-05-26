@@ -1,6 +1,6 @@
 import { QuizViewState } from "../../../../../components/resources/quizzes/shared/types";
 
-export const quizData: QuizViewState = {
+export const quizDataBE: QuizViewState = {
   title: "How hireable are you?",
   body: "Take this free quiz to reveal your hireability score for software engineering, product, or design roles.",
   questions: [

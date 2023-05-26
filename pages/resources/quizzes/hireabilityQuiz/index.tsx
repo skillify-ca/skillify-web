@@ -7,7 +7,7 @@ import {
   QuizViewState,
 } from "../../../../components/resources/quizzes/shared/types";
 import QuizTransition from "../../../../components/ui/animations/QuizTransition";
-import { quizData } from "../../../api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuiz";
+import { quizDataFE } from "../../../api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuizFE";
 
 export enum Stage {
   START,
@@ -16,13 +16,13 @@ export enum Stage {
 }
 
 export default function HireabilityQuiz() {
-  const [selectedQuizData, setSelectedQuizData] = useState(quizData);
+  const [selectedquizDataFE, setSelectedquizDataFE] = useState(quizDataFE);
 
-  // Step1: useEffect with selectedQuizData in the dependency array
+  // Step1: useEffect with selectedquizDataFE in the dependency array
   const initializeQuizViewState = {
-    title: quizData.title,
-    body: quizData.body,
-    questions: selectedQuizData.questions.map((question) => {
+    title: quizDataFE.title,
+    body: quizDataFE.body,
+    questions: selectedquizDataFE.questions.map((question) => {
       return {
         title: question.title,
         body: question.body,
@@ -36,7 +36,7 @@ export default function HireabilityQuiz() {
     currentQuestion: 0,
     progress: 0,
   };
-  // Step2: build handleEngineeringOption to setSelectedQuizData to the selected engineering option
+  // Step2: build handleEngineeringOption to setSelectedquizDataFE to the selected engineering option
   // Step2a: prevent user from navigating forward unless they select an engineering quiz
   const [stage, setStage] = useState<Stage>(Stage.START);
   const [animationComplete, setAnimationComplete] = useState(true);
@@ -54,7 +54,7 @@ export default function HireabilityQuiz() {
 
     if (
       stage == Stage.QUESTIONS &&
-      quizViewState.currentQuestion < quizData.questions.length - 1
+      quizViewState.currentQuestion < quizDataFE.questions.length - 1
     ) {
       setQuizViewState({
         ...quizViewState,
@@ -109,8 +109,8 @@ export default function HireabilityQuiz() {
           {animationComplete && (
             <StartQuiz
               onNextClick={handleNextClick}
-              title={quizData.title}
-              body={quizData.body}
+              title={quizDataFE.title}
+              body={quizDataFE.body}
               setUserInput={setUserInput}
               userInput={userInput}
             />
