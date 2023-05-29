@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
-import React from "react";
 import LessonComponent, {
   LessonComponentData,
 } from "../../../../components/studentPortal/lessons/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
-import { getComponentsLessonData } from "../../../api/studentPortal/web/react/components";
+import { getCourseForWebSection } from "../../../api/studentPortal/lessons/web";
+import LessonPage from "../../intro/[...slug]";
 
 const React2 = (props: { lessonComponents: LessonComponentData[] }) => {
   const { lessonComponents } = props;
@@ -31,9 +31,13 @@ const React2 = (props: { lessonComponents: LessonComponentData[] }) => {
   );
 };
 
-export async function getServerSideProps() {
-  const lessonComponents = getComponentsLessonData();
-  return { props: { lessonComponents } };
+export async function getServerSideProps({ params }) {
+  const courseId = params.slug[0];
+  const lessonId = params.slug[1];
+
+  return {
+    props: getCourseForWebSection(courseId, lessonId),
+  };
 }
 
-export default React2;
+export default LessonPage;
