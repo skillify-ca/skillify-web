@@ -1,32 +1,8 @@
-import { useRouter } from "next/router";
-import React from "react";
-import LessonComponent, {
-  LessonComponentData,
-} from "../../../../components/studentPortal/lessons/LessonComponent";
-import { Button } from "../../../../components/ui/Button";
+import { NextApiRequest, NextApiResponse } from "next";
+import { LessonComponentData } from "../../../../../../components/studentPortal/lessons/LessonComponent";
 
-const React3 = ({ lessonComponents }) => {
-  const router = useRouter();
-  const handleContinue = () => {
-    router.push("/studentPortal/web/React/components");
-  };
-
-  return (
-    <>
-      <div className="grid grid-cols-1 gap-8 px-4 pt-4 m-8 sm:px-12">
-        {lessonComponents.map((it) => (
-          <LessonComponent data={it} />
-        ))}
-      </div>
-      <div className="flex mt-8 sm:justify-end">
-        <Button onClick={handleContinue} label="Continue" />
-      </div>
-    </>
-  );
-};
-
-export async function getServerSideProps({ params }) {
-  const lessonComponents: LessonComponentData[] = [
+export const getUseStateLessonData = () => {
+const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
       text: "State and the useState hook",
@@ -116,7 +92,10 @@ export async function getServerSideProps({ params }) {
         "https://codesandbox.io/embed/usestate-example-yzm4k5?fontsize=14&hidenavigation=1&theme=dark",
     },
   ];
-  return { props: { lessonComponents } };
+  return {lessonComponents};
 }
 
-export default React3;
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+    const lessonData = getUseStateLessonData();
+    return res.status(200).json(lessonData);
+  };

@@ -1,36 +1,8 @@
-import { useRouter } from "next/router";
-import React from "react";
-import LessonComponent, {
-  LessonComponentData,
-} from "../../../../components/studentPortal/lessons/LessonComponent";
-import { Button } from "../../../../components/ui/Button";
+import { NextApiRequest, NextApiResponse } from "next";
+import { LessonComponentData } from "../../../../../../components/studentPortal/lessons/LessonComponent";
 
-type LessonProps = {
-  lessonComponents: LessonComponentData[];
-};
-
-const TailwindColourStyling = ({ lessonComponents }: LessonProps) => {
-  const router = useRouter();
-
-  const handleContinue = () => {
-    router.push("/studentPortal/web/React/assignments/tailwindAssignment");
-  };
-  return (
-    <>
-      <div className="grid grid-cols-1 gap-8 px-4 pt-4 m-8 sm:px-12">
-        {lessonComponents.map((it, index) => (
-          <LessonComponent data={it} key={index} />
-        ))}
-      </div>
-      <div className="flex my-8 mr-8 sm:justify-end">
-        <Button onClick={handleContinue} label="Continue" />
-      </div>
-    </>
-  );
-};
-
-export async function getServerSideProps() {
-  const lessonComponents: LessonComponentData[] = [
+export const getTailwindColourStylingLessonData = () => {
+const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
       text: "Tailwind Lesson 2: Background Color & Font Styling",
@@ -86,7 +58,10 @@ export async function getServerSideProps() {
       text: "Hover your mouse over the second last paragraph. Modify line 15 so the text colour is purple-500 when you hover over it.  ",
     },
   ];
-  return { props: { lessonComponents } };
+  return { lessonComponents };
 }
 
-export default TailwindColourStyling;
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+    const lessonData = getTailwindColourStylingLessonData();
+    return res.status(200).json(lessonData);
+  };

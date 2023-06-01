@@ -1,39 +1,9 @@
-import { useRouter } from "next/router";
-import React from "react";
-import LessonComponent, {
-  LessonComponentData,
-} from "../../../../components/studentPortal/lessons/LessonComponent";
+import { NextApiRequest, NextApiResponse } from "next";
+import { LessonComponentData } from "../../../../../../components/studentPortal/lessons/LessonComponent";
 
-import { Button } from "../../../../components/ui/Button";
 
-type LessonProps = {
-  lessonComponents: LessonComponentData[];
-};
-
-const Github = ({ lessonComponents }: LessonProps) => {
-  const router = useRouter();
-
-  const handleContinue = () => {
-    router.push("/studentPortal/web/React/tailwindcss-gridflex");
-  };
-  return (
-    <>
-      <div className="grid grid-cols-1 gap-8 px-4 pt-4 m-8 sm:px-12">
-        {lessonComponents.map((it, index) => (
-          <div key={index}>
-            <LessonComponent data={it} />
-          </div>
-        ))}
-      </div>
-      <div className="flex my-8 mr-8 sm:justify-end">
-        <Button onClick={handleContinue} label="Continue" />
-      </div>
-    </>
-  );
-};
-
-export async function getServerSideProps() {
-  const lessonComponents: LessonComponentData[] = [
+export const getGithubLessonData = () => {
+const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
       text: "Deploying a Project on Github & Vercel",
@@ -89,7 +59,11 @@ export async function getServerSideProps() {
       text: "Still having trouble? No worries! Feel free to slack message a fellow classmate or book a coaching session through the portal via the Coaches tab.",
     },
   ];
-  return { props: { lessonComponents } };
+  
+  return { lessonComponents };
 }
 
-export default Github;
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+    const lessonData = getGithubLessonData();
+    return res.status(200).json(lessonData);
+  };

@@ -8,10 +8,7 @@ export type ResponseData = {
   nextSlug: string;
 };
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<ResponseData>
-) {
+export function getDataForIntroductionLesson() {
   const data: ResponseData = {
     lessonComponents: [
       {
@@ -58,6 +55,15 @@ export default function handler(
     nextNode: 2,
     nextSlug: "html/lesson1",
   };
+
+  return data;
+}
+
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<ResponseData>
+) {
+  const data = getLessonDataForIntroduction();
 
   res.status(200).json(data);
 }
