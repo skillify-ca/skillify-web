@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import EngineerSelection from "../../../../components/resources/quizzes/hirabilityQuiz/EngineerSelection";
 import HireabilityResults from "../../../../components/resources/quizzes/hirabilityQuiz/HireabilityResults";
 import SkillSelections from "../../../../components/resources/quizzes/shared/SkillSelections";
 import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz";
@@ -7,19 +8,17 @@ import {
   QuizViewState,
 } from "../../../../components/resources/quizzes/shared/types";
 import QuizTransition from "../../../../components/ui/animations/QuizTransition";
-import { quizDataBE } from "../../../api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuizBE";
-import { quizDataFE } from "../../../api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuizFE";
-import { quizDataGE } from "../../../api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuizGE";
-import { quizDataME } from "../../../api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuizME";
+import { quizData } from "../../../api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuizEngineer";
 
 export enum Stage {
   START,
+  ENGINEERING,
   QUESTIONS,
   RESULTS,
 }
 
 export default function HireabilityQuiz() {
-  const [selectedQuizData, setSelectedQuizData] = useState(quizDataFE);
+  const [selectedQuizData, setSelectedQuizData] = useState(quizData);
   const initializeQuizViewState = {
     title: selectedQuizData.title,
     body: selectedQuizData.body,
@@ -36,7 +35,6 @@ export default function HireabilityQuiz() {
     currentQuestion: 0,
     progress: 0,
   };
-  // Step1: useEffect with selectedquizDataFE in the dependency array
   useEffect(() => {
     const initializeQuizViewState = {
       title: selectedQuizData.title,
@@ -55,8 +53,6 @@ export default function HireabilityQuiz() {
     };
     setQuizViewState(initializeQuizViewState);
   }, [selectedQuizData]);
-  // Step2: build handleEngineeringOption to setSelectedquizDataFE to the selected engineering option
-  // Step2a: prevent user from navigating forward unless they select an engineering quiz
   const [stage, setStage] = useState<Stage>(Stage.START);
   const [animationComplete, setAnimationComplete] = useState(true);
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(
@@ -66,18 +62,25 @@ export default function HireabilityQuiz() {
     name: "",
     email: "",
   });
-
+  useEffect(() => {
+    if (selectedQuizData != quizData && stage === Stage.ENGINEERING) {
+      setStage(Stage.QUESTIONS);
+    }
+  });
   const handleNextClick = () => {
     setAnimationComplete(false);
 
     if (
       stage == Stage.QUESTIONS &&
-      quizViewState.currentQuestion < quizDataFE.questions.length - 1
+      quizViewState.currentQuestion < quizViewState.questions.length - 1
     ) {
       setQuizViewState({
         ...quizViewState,
         currentQuestion: quizViewState.currentQuestion + 1,
       });
+    } else if (stage == Stage.START) {
+      setSelectedQuizData(quizData);
+      setStage(Stage.ENGINEERING);
     } else setStage((prevStage) => prevStage + 1);
     window.scrollTo({
       top: 0,
@@ -87,7 +90,9 @@ export default function HireabilityQuiz() {
   };
   const handleBackClick = () => {
     setAnimationComplete(false);
-    if (stage == Stage.QUESTIONS && quizViewState.currentQuestion > 0) {
+    if (stage === Stage.QUESTIONS && quizViewState.currentQuestion == 0) {
+      setStage(Stage.START);
+    } else if (stage == Stage.QUESTIONS && quizViewState.currentQuestion > 0) {
       setQuizViewState({
         ...quizViewState,
         currentQuestion: quizViewState.currentQuestion - 1,
@@ -96,25 +101,36 @@ export default function HireabilityQuiz() {
   };
 
   const handleOptionClick = (option: QuizOptionViewState) => {
-    if (option.name === "Backend Engineer") {
-      setSelectedQuizData(quizDataBE);
-    } else if (option.name === "Game Engineer") {
-      setSelectedQuizData(quizDataGE);
-    } else if (option.name === "Mobile Engineer") {
-      setSelectedQuizData(quizDataME);
-    }
-
+    const initializeQuizViewState = {
+      title: selectedQuizData.title,
+      body: selectedQuizData.body,
+      questions: selectedQuizData.questions.map((question) => {
+        return {
+          title: question.title,
+          body: question.body,
+          maxSelections: question.maxSelections,
+          options: question.options.map((option) => {
+            return { ...option, isSelected: false };
+          }),
+        };
+      }),
+      currentQuestion: 0,
+      progress: 0,
+    };
+    setQuizViewState(initializeQuizViewState);
     setQuizViewState((prevQuizViewState) => {
       const selectedQuizOption = prevQuizViewState.questions.map(
         (question) => ({
           ...question,
-          options: question.options.map((questionOption) =>
-            questionOption.name === option.name
-              ? {
-                  ...questionOption,
-                  isSelected: !questionOption.isSelected,
-                }
-              : questionOption
+          options: question.options.map(
+            (questionOption) =>
+              questionOption.name === option.name
+                ? {
+                    ...questionOption,
+                    isSelected: !questionOption.isSelected,
+                  }
+                : questionOption
+            // alert("selected option")
           ),
         })
       );
@@ -137,10 +153,27 @@ export default function HireabilityQuiz() {
           {animationComplete && (
             <StartQuiz
               onNextClick={handleNextClick}
-              title={quizDataFE.title}
-              body={quizDataFE.body}
+              title={quizData.title}
+              body={quizData.body}
               setUserInput={setUserInput}
               userInput={userInput}
+            />
+          )}
+        </QuizTransition>
+      );
+    case Stage.ENGINEERING:
+      return (
+        <QuizTransition
+          animationComplete={animationComplete}
+          setAnimationComplete={setAnimationComplete}
+        >
+          {animationComplete && (
+            <EngineerSelection
+              setSelectedQuizData={setSelectedQuizData}
+              onNextClick={handleNextClick}
+              onBackClick={handleBackClick}
+              handleOptionClick={handleOptionClick}
+              quizViewState={quizViewState}
             />
           )}
         </QuizTransition>
@@ -184,14 +217,12 @@ export default function HireabilityQuiz() {
           setAnimationComplete={setAnimationComplete}
         >
           {animationComplete && (
-            <StartQuiz
+            <EngineerSelection
+              setSelectedQuizData={setSelectedQuizData}
               onNextClick={handleNextClick}
-              title={"Career in Tech Personality Quiz"}
-              body={
-                "Take this free quiz to find out what jobs in tech fit you best!"
-              }
-              setUserInput={setUserInput}
-              userInput={userInput}
+              onBackClick={handleBackClick}
+              handleOptionClick={handleOptionClick}
+              quizViewState={quizViewState}
             />
           )}
         </QuizTransition>

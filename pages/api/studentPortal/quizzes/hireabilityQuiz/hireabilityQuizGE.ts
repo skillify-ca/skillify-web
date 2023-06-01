@@ -5,32 +5,6 @@ export const quizDataGE: QuizViewState = {
   body: "Take this free quiz to reveal your hireability score for software engineering, product, or design roles.",
   questions: [
     {
-      title: "What role are you interested in?",
-      body: "Select the most relevant role.",
-      options: [
-        {
-          name: "Frontend Engineer",
-          weight: 0,
-          isSelected: false,
-        },
-        {
-          name: "Backend Engineer",
-          weight: 0,
-          isSelected: false,
-        },
-        {
-          name: "Game Engineer",
-          weight: 0,
-          isSelected: false,
-        },
-        {
-          name: "Mobile Engineer",
-          weight: 0,
-          isSelected: false,
-        },
-      ],
-    },
-    {
       title: "GE Question 1",
       body: "Select the most relevant options for this question",
       options: [
