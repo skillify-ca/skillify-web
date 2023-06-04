@@ -4,6 +4,11 @@ export const FETCH_LAST_SEEN_MODAL = gql`
 query fetchLastSeenModal($userId: String = "") {
     freemium_users(where: {userId: {_eq: $userId}}) {
       lastSeenModal
+      user {
+        userRole {
+          value
+        }
+      }
     }
   }
 `;
