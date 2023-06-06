@@ -8,17 +8,19 @@ import {
   QuizViewState,
 } from "../../../../components/resources/quizzes/shared/types";
 import QuizTransition from "../../../../components/ui/animations/QuizTransition";
-import { quizData } from "../../../api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuizEngineer";
+import { quizData } from "../../../api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuiz";
 
 export enum Stage {
   START,
-  ENGINEERING,
+  ENGINEERING_ROLES,
   QUESTIONS,
   RESULTS,
 }
 
 export default function HireabilityQuiz() {
   const [selectedQuizData, setSelectedQuizData] = useState(quizData);
+  const [stage, setStage] = useState<Stage>(Stage.START);
+  const [animationComplete, setAnimationComplete] = useState(true);
   const initializeQuizViewState = {
     title: selectedQuizData.title,
     body: selectedQuizData.body,
@@ -35,6 +37,14 @@ export default function HireabilityQuiz() {
     currentQuestion: 0,
     progress: 0,
   };
+  const [quizViewState, setQuizViewState] = useState<QuizViewState>(
+    initializeQuizViewState
+  );
+  const [userInput, setUserInput] = useState({
+    name: "",
+    email: "",
+  });
+
   useEffect(() => {
     const initializeQuizViewState = {
       title: selectedQuizData.title,
@@ -52,21 +62,11 @@ export default function HireabilityQuiz() {
       progress: 0,
     };
     setQuizViewState(initializeQuizViewState);
-  }, [selectedQuizData]);
-  const [stage, setStage] = useState<Stage>(Stage.START);
-  const [animationComplete, setAnimationComplete] = useState(true);
-  const [quizViewState, setQuizViewState] = useState<QuizViewState>(
-    initializeQuizViewState
-  );
-  const [userInput, setUserInput] = useState({
-    name: "",
-    email: "",
-  });
-  useEffect(() => {
-    if (selectedQuizData != quizData && stage === Stage.ENGINEERING) {
+    if (selectedQuizData != quizData && stage === Stage.ENGINEERING_ROLES) {
       setStage(Stage.QUESTIONS);
     }
-  });
+  }, [selectedQuizData, stage]);
+
   const handleNextClick = () => {
     setAnimationComplete(false);
 
@@ -78,9 +78,6 @@ export default function HireabilityQuiz() {
         ...quizViewState,
         currentQuestion: quizViewState.currentQuestion + 1,
       });
-    } else if (stage == Stage.START) {
-      setSelectedQuizData(quizData);
-      setStage(Stage.ENGINEERING);
     } else setStage((prevStage) => prevStage + 1);
     window.scrollTo({
       top: 0,
@@ -88,49 +85,35 @@ export default function HireabilityQuiz() {
       behavior: "smooth",
     });
   };
+
+  // replace with useMemo
   const handleBackClick = () => {
     setAnimationComplete(false);
+    console.log("stage before increment", stage);
     if (stage === Stage.QUESTIONS && quizViewState.currentQuestion == 0) {
-      setStage(Stage.START);
+      setSelectedQuizData(quizData);
+      setStage(Stage.ENGINEERING_ROLES);
     } else if (stage == Stage.QUESTIONS && quizViewState.currentQuestion > 0) {
       setQuizViewState({
         ...quizViewState,
         currentQuestion: quizViewState.currentQuestion - 1,
       });
     } else setStage((prevStage) => prevStage - 1);
+    console.log("stage after decrement", stage);
   };
 
   const handleOptionClick = (option: QuizOptionViewState) => {
-    const initializeQuizViewState = {
-      title: selectedQuizData.title,
-      body: selectedQuizData.body,
-      questions: selectedQuizData.questions.map((question) => {
-        return {
-          title: question.title,
-          body: question.body,
-          maxSelections: question.maxSelections,
-          options: question.options.map((option) => {
-            return { ...option, isSelected: false };
-          }),
-        };
-      }),
-      currentQuestion: 0,
-      progress: 0,
-    };
-    setQuizViewState(initializeQuizViewState);
     setQuizViewState((prevQuizViewState) => {
       const selectedQuizOption = prevQuizViewState.questions.map(
         (question) => ({
           ...question,
-          options: question.options.map(
-            (questionOption) =>
-              questionOption.name === option.name
-                ? {
-                    ...questionOption,
-                    isSelected: !questionOption.isSelected,
-                  }
-                : questionOption
-            // alert("selected option")
+          options: question.options.map((questionOption) =>
+            questionOption.name === option.name
+              ? {
+                  ...questionOption,
+                  isSelected: !questionOption.isSelected,
+                }
+              : questionOption
           ),
         })
       );
@@ -161,7 +144,7 @@ export default function HireabilityQuiz() {
           )}
         </QuizTransition>
       );
-    case Stage.ENGINEERING:
+    case Stage.ENGINEERING_ROLES:
       return (
         <QuizTransition
           animationComplete={animationComplete}
@@ -205,23 +188,6 @@ export default function HireabilityQuiz() {
           {animationComplete && (
             <HireabilityResults
               onBackClick={handleBackClick}
-              quizViewState={quizViewState}
-            />
-          )}
-        </QuizTransition>
-      );
-    default:
-      return (
-        <QuizTransition
-          animationComplete={animationComplete}
-          setAnimationComplete={setAnimationComplete}
-        >
-          {animationComplete && (
-            <EngineerSelection
-              setSelectedQuizData={setSelectedQuizData}
-              onNextClick={handleNextClick}
-              onBackClick={handleBackClick}
-              handleOptionClick={handleOptionClick}
               quizViewState={quizViewState}
             />
           )}

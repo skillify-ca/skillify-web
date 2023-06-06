@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { quizDataBE } from "../../../../pages/api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuizBE";
-import { quizDataFE } from "../../../../pages/api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuizFE";
-import { quizDataGE } from "../../../../pages/api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuizGE";
-import { quizDataME } from "../../../../pages/api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuizME";
+import {
+  quizDataBE,
+  quizDataFE,
+  quizDataGE,
+  quizDataME,
+} from "../../../../pages/api/studentPortal/quizzes/hireabilityQuiz/hireabilityQuiz";
 import {
   QuizOptionViewState,
   QuizViewState,
