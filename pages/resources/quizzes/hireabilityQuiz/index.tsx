@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import EngineerSelection from "../../../../components/resources/quizzes/hirabilityQuiz/EngineerSelection";
 import HireabilityResults from "../../../../components/resources/quizzes/hirabilityQuiz/HireabilityResults";
 import SkillSelections from "../../../../components/resources/quizzes/shared/SkillSelections";
@@ -21,22 +21,25 @@ export default function HireabilityQuiz() {
   const [selectedQuizData, setSelectedQuizData] = useState(quizData);
   const [stage, setStage] = useState<Stage>(Stage.START);
   const [animationComplete, setAnimationComplete] = useState(true);
-  const initializeQuizViewState = {
-    title: selectedQuizData.title,
-    body: selectedQuizData.body,
-    questions: selectedQuizData.questions.map((question) => {
-      return {
+  const initializeQuizViewState = useMemo(
+    () => ({
+      title: selectedQuizData.title,
+      body: selectedQuizData.body,
+      questions: selectedQuizData.questions.map((question) => ({
         title: question.title,
         body: question.body,
         maxSelections: question.maxSelections,
-        options: question.options.map((option) => {
-          return { ...option, isSelected: false };
-        }),
-      };
+        options: question.options.map((option) => ({
+          ...option,
+          isSelected: false,
+        })),
+      })),
+      currentQuestion: 0,
+      progress: 0,
     }),
-    currentQuestion: 0,
-    progress: 0,
-  };
+    [selectedQuizData]
+  );
+
   const [quizViewState, setQuizViewState] = useState<QuizViewState>(
     initializeQuizViewState
   );
