@@ -3,12 +3,7 @@
 ## How to install
 
 
-- Give Vithushan your github username so he can invite you to the react repo
-- clone the skillify-web repo to your desktop
-- run `npm install --legacy-peer-deps
-- get environment variables from Vithushan
-- run npm run dev
-- open localhost:3000
+0. Give Vithushan your github username so he can invite you to the react repo and then clone the skillify-web repo to your desktop.
 
 1. Open a new external terminal. Type `Command + SHIFT + P ` on Mac and `Control + SHIFT + `P on windows from inside <b>VSCODE</b>. 
 
