@@ -1,6 +1,5 @@
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import React from "react";
 import LessonComponent, {
   LessonComponentData,
   Resource,
@@ -8,6 +7,7 @@ import LessonComponent, {
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/ui/ProgressBar";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/completeUserIntroNode";
+import { FETCH_USER_INTRO_NODES } from "../../../../graphql/studentPortal/courses/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
 

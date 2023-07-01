@@ -19,6 +19,20 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
+ 
+  const lessonComponents = getLessonComponentsForHTMLQuiz()
+  
+  const data: ResponseData = {
+    lessonComponents,
+    currentNode: 3,
+    nextNode: 4,
+    nextSlug: "HTML/3",
+  };
+  res.status(200).json(data);
+}
+
+
+export function getLessonComponentsForHTMLQuiz() {
   const q1 = {
     text: "Which element is used to display text?",
     A: "<a>",
@@ -74,12 +88,5 @@ export default function handler(
       data: quizData,
     },
   ];
-
-  const data: ResponseData = {
-    lessonComponents,
-    currentNode: 3,
-    nextNode: 4,
-    nextSlug: "HTML/3",
-  };
-  res.status(200).json(data);
+  return lessonComponents
 }

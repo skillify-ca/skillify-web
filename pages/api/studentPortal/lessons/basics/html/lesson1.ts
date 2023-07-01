@@ -6,10 +6,22 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
+  
+  const lessonComponents = getLessonComponentsForHTML1()
+  const data: ResponseData = {
+    lessonComponents,
+    currentNode: 2,
+    nextNode: 3,
+    nextSlug: "html/quiz1",
+  };
+  res.status(200).json(data);
+}
+
+export function  getLessonComponentsForHTML1() {
   const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
-      text: "HTML Lesson Two",
+      text: "HTML Lesson",
     },
     {
       component: "description",
@@ -35,11 +47,5 @@ export default function handler(
     },
   ];
 
-  const data: ResponseData = {
-    lessonComponents,
-    currentNode: 2,
-    nextNode: 3,
-    nextSlug: "html/quiz1",
-  };
-  res.status(200).json(data);
+  return lessonComponents
 }

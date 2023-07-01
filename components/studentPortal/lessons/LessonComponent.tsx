@@ -15,6 +15,18 @@ export type QuizData = {
   questions: QuizQuestion[];
 };
 
+export type QuizQuestion = {
+  A : string,
+  B : string, 
+  C : string,
+  D : string,
+  text: string,
+  answer: string,
+  image? : string
+}
+
+
+
 export type LessonComponentData =
   | {
       component: "title";
