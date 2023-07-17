@@ -1,7 +1,9 @@
 import React from 'react';
 import LandingNavbar from '../../../components/landingPage/LandingNavbar';
 
-export default function InterviewCoursePage() {
+export default InterviewCoursePage;
+
+function InterviewCoursePage() {
   return <div>Interview</div>;
 }
 
