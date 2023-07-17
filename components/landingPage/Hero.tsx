@@ -1,4 +1,5 @@
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 
 type HeroProps = {
   headerText: HighlightableText[];
@@ -19,9 +20,9 @@ export default function Hero({ headerText, description }: HeroProps) {
             {headerText.map((line) => (
               <span
                 key={line.text}
-                className={`${line.highlight ? "text-charmander" : ""}`}
+                className={`${line.highlight ? 'text-charmander' : ''}`}
               >
-                {line.text}{" "}
+                {line.text}{' '}
               </span>
             ))}
           </h1>
@@ -29,11 +30,11 @@ export default function Hero({ headerText, description }: HeroProps) {
             {description}
           </p>
           <div className="space-x-4">
-            <Link href={"/plans"}>
+            <Link href={'/plans'}>
               <button
                 type="button"
-                onClick={(e) =>
-                  window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+                onClick={() =>
+                  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
                 }
                 className={`w-48 py-4 h-16 bg-gradient-to-b bg-charmander hover:bg-pikachu-500 text-white px-3 font-bold border-b-4 rounded-lg active:border-b-2 cursor-pointer`}
               >
