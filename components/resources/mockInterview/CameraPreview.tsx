@@ -1,13 +1,14 @@
 import { useEffect, useRef } from 'react';
 
-const CameraPreview = ({ stream, cameraEnabled }) => {
+
+const CameraPreview = ({ stream }) => {
   const videoRef = useRef(null);
 
   useEffect(() => {
     if (videoRef.current && stream) {
-      videoRef.current.srcObject = cameraEnabled ? stream : null;
+      videoRef.current.srcObject = stream;
     }
-  }, [stream, cameraEnabled]);
+  }, [stream]);
 
   return (
     <div className="relative w-96 h-72 mb-4">
