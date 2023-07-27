@@ -124,3 +124,4 @@ function Auth({ children }) {
   // If no user, useEffect() will redirect.
   return <div>Loading...</div>;
 }
+
