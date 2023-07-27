@@ -63,12 +63,26 @@ const RecordedInterview = ( {onNext} ) => {
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-200">
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center mt-8">
+        <div
+          className="bg-green-200 rounded-lg p-4 mb-4"
+          style={{
+            position: 'fixed',
+            top: '100px', // Adjust the top position as needed
+            left: '50%', // Center the box horizontally
+            transform: 'translateX(-50%)', // Center the box horizontally
+            zIndex: 999, // Ensure the box is on top of other elements
+          }}
+        >
+          <h2 className="text-xl">Question: Tell me a bit about yourself?</h2>
+        </div>
+
         {!showRecordingEnded ? (
           <CameraPreview stream={stream} />
         ) : (
           <h1 style={{ fontSize: '32px', marginBottom: '20px' }}>Recording Ended</h1>
         )}
+
         <VideoRecorder
           stream={stream}
           onStartRecording={handleStartRecording}
@@ -78,11 +92,9 @@ const RecordedInterview = ( {onNext} ) => {
           showStopButton={showStopButton}
           showDownloadButton={showDownloadButton}
         />
+
         {showRecordingEnded && (
-          <button
-            style={{ background: 'blue', color: 'white', borderRadius: '0.5rem', padding: '1rem' }}
-            onClick={onNext}
-          >
+          <button className="bg-orange-500 text-white rounded-md px-4 py-2 mt-4" onClick={onNext}>
             Next
           </button>
         )}

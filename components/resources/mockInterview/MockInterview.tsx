@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import MainPage from './MainPage';
 import Modes from './Modes';
 import RecordedInterview from './RecordedInterview';
-import Feedback from './Feedback';
+import GetFeedback from './GetFeedback';
 
 const numberOfStages = 4;
 
@@ -29,7 +29,7 @@ const FullScreenComponent = () => {
         return <RecordedInterview onNext={handleNext}/>;
       case 3:
         return (
-          <Feedback />
+          <GetFeedback />
         );
       default:
         return null;
