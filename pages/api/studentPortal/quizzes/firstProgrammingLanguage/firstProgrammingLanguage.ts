@@ -92,9 +92,6 @@ export const quizResultsData: { [key: string]: QuizResultData } = {
 
 // Define the route handler function
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  // Here, you can perform any logic related to handling the request and processing the quiz data
-  // For example, you can fetch data from a database, manipulate the quiz data, etc.
-  // For this example, let's simply return the quiz data as is.
-
+  // Add router to firstProgrammingLanguage quiz data
   return res.status(200).json(quizData);
 };
