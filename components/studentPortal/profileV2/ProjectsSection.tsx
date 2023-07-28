@@ -1,8 +1,11 @@
 import { useQuery } from "@apollo/client";
+import { PencilAltIcon } from "@heroicons/react/outline";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import {
-  FetchUserProjectsDataResponse,
   FETCH_USER_PROJECTS,
+  FetchUserProjectsDataResponse,
   UserProjectData,
 } from "../../../graphql/studentPortal/profile/fetchUserProjects";
 import { Button } from "../../ui/Button";
@@ -12,6 +15,7 @@ export type ProjectsSectionProps = {
 };
 
 export default function ProjectsSection({ user }: ProjectsSectionProps) {
+  const router = useRouter();
   const [userProjects, setUserProjects] = useState<UserProjectData[]>([]);
   const { loading: userProjectsLoading } =
     useQuery<FetchUserProjectsDataResponse>(FETCH_USER_PROJECTS, {
@@ -27,10 +31,6 @@ export default function ProjectsSection({ user }: ProjectsSectionProps) {
     <>
       {userProjectsLoading ? (
         <div>Loading...</div>
-      ) : userProjects.length === 0 ? (
-        <div className="col-span-3 p-8 text-center shadow-md">
-          No Active Projects
-        </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2">
           {userProjects.map((it, i) => {
@@ -39,7 +39,16 @@ export default function ProjectsSection({ user }: ProjectsSectionProps) {
                 key={i}
                 className="flex flex-col items-center gap-4 p-4 m-4 shadow bg-backgroundPrimary rounded-xl"
               >
-                <p className="font-bold">{it.name}</p>
+                <div className="flex justify-between w-full">
+                  {/* empty div to put the title and edit button at the center and middle respectively*/}
+                  <div className="w-6"></div>
+                  <p className="font-bold text-center">{it.name}</p>
+                  <Link
+                    href={"/resources/sideProjectHub/editProject/" + it.name}
+                  >
+                    <PencilAltIcon className="w-6 h-6 cursor-pointer hover:text-yellow-600" />
+                  </Link>
+                </div>
                 <img
                   src={it.image}
                   className="object-cover w-24 h-24 bg-white rounded-full"
@@ -59,6 +68,16 @@ export default function ProjectsSection({ user }: ProjectsSectionProps) {
               </div>
             );
           })}
+          {/* TODO: this should not be displayed for everyone */}
+          <div className="flex justify-around items-center p-4 m-4 shadow bg-backgroundPrimary rounded-xl">
+            <Button
+              label="Add Project"
+              size="large"
+              onClick={() =>
+                router.push("/resources/sideProjectHub/addProject")
+              }
+            />
+          </div>
         </div>
       )}
     </>
