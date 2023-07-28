@@ -1,9 +1,9 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import { QuizData } from "../../../../../components/resources/quizzes/shared/types";
 
 export const quizData: QuizData = {
   title: "What Coding Language Should I Learn First?",
-  body:
-    "Take this free quiz to find out what coding language you should learn first.",
+  body: "Take this free quiz to find out what coding language you should learn first.",
   questions: [
     {
       title: "Why do you want to learn coding?",
@@ -88,4 +88,13 @@ export const quizResultsData: { [key: string]: QuizResultData } = {
     alt: "HTML/CSS",
     language: "HTML/CSS",
   },
+};
+
+// Define the route handler function
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  // Here, you can perform any logic related to handling the request and processing the quiz data
+  // For example, you can fetch data from a database, manipulate the quiz data, etc.
+  // For this example, let's simply return the quiz data as is.
+
+  return res.status(200).json(quizData);
 };
