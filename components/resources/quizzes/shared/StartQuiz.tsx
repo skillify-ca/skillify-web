@@ -16,8 +16,7 @@ const StartQuiz = ({
   body,
   title,
   userInput,
-  setUserInput,
-}: StartQuizProps) => {
+  setUserInput, }: StartQuizProps) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setUserInput({ ...userInput, [name]: value });
