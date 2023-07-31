@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import LandingNavbar from "../../components/landingPage/LandingNavbar";
 
@@ -7,7 +8,10 @@ export default function AjevanSuccessStory() {
       <LandingNavbar />
       <div className="bg-[#18124D] w-full grid grid-rows-3 grid-flow-col gap-4">
         <div className="row-span-3">
-          <p className="text-yellow-400 p-2 ml-20 mt-10"> &lt; ALL SUCCESS STORIES</p>
+          <p className="text-yellow-400 p-2 ml-20 mt-10">
+            {" "}
+            &lt; ALL SUCCESS STORIES
+          </p>
           <h2 className="text-white text-3xl p-2 ml-20 mt-10 font-bold">
             Ajevan M.
           </h2>
@@ -34,7 +38,9 @@ export default function AjevanSuccessStory() {
           </div>
         </div>
         <div className="row-span-1"></div>
-        <div className="bg-white row-span-2 col-span-2 m-10"></div>
+        <div className="row-span-2 col-span-2 m-10">
+          <img src="/images/landingPage/ajevan.png" />
+        </div>
       </div>
       <div className="bg-white grid gap-8 grid-cols-1 p-10">
         <h4 className="text-black text-sm font-semibold px-60">
@@ -139,9 +145,14 @@ export default function AjevanSuccessStory() {
         <h1 className="text-white text-3xl font-bold pb-8">
           Ready to become the next success story?
         </h1>
-        <button className="bg-orange-400 text-white p-2 pr-6 pl-6 rounded-md">
-          Apply Now
-        </button>
+        <Link href={"/plans"}>
+          <button
+            type="button"
+            className="py-3 bg-charmander hover:bg-pikachu-500 text-white px-8 font-bold rounded-lg cursor-pointer"
+          >
+            <p className={`text-base"`}>Apply Now</p>
+          </button>
+        </Link>
       </div>
     </div>
   );
