@@ -1,9 +1,11 @@
 import React from "react";
+import LandingNavbar from "../../components/landingPage/LandingNavbar";
 
 export default function AjevanSuccessStory() {
   return (
     <div className=" flex flex-col items-center justify-center">
-      <div className="bg-indigo-950 w-full grid grid-rows-3 grid-flow-col gap-4">
+      <LandingNavbar />
+      <div className="bg-[#18124D] w-full grid grid-rows-3 grid-flow-col gap-4">
         <div className="row-span-3">
           <p className="text-yellow-400 p-2 ml-20 mt-10"> &lt; ALL SUCCESS STORIES</p>
           <h2 className="text-white text-3xl p-2 ml-20 mt-10 font-bold">

@@ -1,9 +1,11 @@
 import React from "react";
+import LandingNavbar from "../../components/landingPage/LandingNavbar";
 
 export default function MayuSuccessStory() {
   return (
-    <div className=" flex flex-col items-center justify-center">
-      <div className="bg-indigo-950 w-full grid grid-rows-3 grid-flow-col gap-4">
+<div className=" flex flex-col items-center justify-center">
+    <LandingNavbar/>
+    <div className="bg-[#18124D] w-full grid grid-rows-3 grid-flow-col gap-4">
         <div className="row-span-3">
           <p className="text-yellow-400 p-2 ml-20 mt-10">
             {" "}
