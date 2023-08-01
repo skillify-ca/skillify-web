@@ -3,11 +3,11 @@ import { Button } from "../../ui/Button";
 import { Input } from "../../ui/Input";
 
 type EditFeedbackRequestProps = {
-  id: string;
+  feedbackRequestId: string;
 };
 
 export default function EditFeedbackRequestComponent({
-  id,
+  feedbackRequestId,
 }: EditFeedbackRequestProps) {
   const [projectName, setProjectName] = useState("");
   const [githubLink, setGithubLink] = useState("");

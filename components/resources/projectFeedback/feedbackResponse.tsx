@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Button } from "../../ui/Button";
 
 type FeedbackResponseProps = {
-  id: string;
+  feedbackRequestId: string;
 };
 
-export default function FeedbackResponse({ id }: FeedbackResponseProps) {
+export default function FeedbackResponse({
+  feedbackRequestId,
+}: FeedbackResponseProps) {
   const projectName = "my_project";
   const coachName = "John Doe";
   const [recordedFeedback, setRecordedFeedback] = useState(true);

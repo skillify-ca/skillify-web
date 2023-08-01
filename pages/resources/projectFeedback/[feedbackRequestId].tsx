@@ -5,7 +5,11 @@ import FeedbackResponse from "../../../components/resources/projectFeedback/feed
 
 export default function EditFeedbackRequestPage() {
   const router = useRouter();
-  return <FeedbackResponse id={router.query.slug as string} />;
+  return (
+    <FeedbackResponse
+      feedbackRequestId={router.query.feedbackRequestId as string}
+    />
+  );
 }
 
 EditFeedbackRequestPage.getLayout = function getLayout(page) {

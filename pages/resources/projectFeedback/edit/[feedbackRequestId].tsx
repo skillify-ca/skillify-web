@@ -5,7 +5,11 @@ import EditFeedbackRequestComponent from "../../../../components/resources/proje
 
 export default function EditFeedbackRequestPage() {
   const router = useRouter();
-  return <EditFeedbackRequestComponent id={router.query.slug as string} />;
+  return (
+    <EditFeedbackRequestComponent
+      feedbackRequestId={router.query.feedbackRequestId as string}
+    />
+  );
 }
 
 EditFeedbackRequestPage.getLayout = function getLayout(page) {
