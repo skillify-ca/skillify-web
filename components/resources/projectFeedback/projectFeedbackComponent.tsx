@@ -1,11 +1,14 @@
-import { useRouter } from "next/router";
+import Link from "next/link";
 import React, { useState } from "react";
 import { Button } from "../../ui/Button";
-import FeedbackRequestsSectionComponent, { FeedbackRequestsData } from "./feedbackRequestsSectionComponent";
+import FeedbackRequestsSectionComponent, {
+  FeedbackRequestsData,
+} from "./feedbackRequestsSectionComponent";
 
 export default function ProjectFeedbackComponent() {
-  const router = useRouter();
-  const [feedbackRequests, setFeedbackRequests] = useState<FeedbackRequestsData[]>([]);
+  const [feedbackRequests, setFeedbackRequests] = useState<
+    FeedbackRequestsData[]
+  >([]);
 
   const fillMockData = () => {
     setFeedbackRequests([
@@ -49,13 +52,9 @@ export default function ProjectFeedbackComponent() {
 
       <FeedbackRequestsSectionComponent feedbackRequests={feedbackRequests} />
 
-      <Button
-        label="Get Feedback"
-        size="large"
-        onClick={() => {
-          router.push("/resources/projectFeedback/createRequest");
-        }}
-      />
+      <Link href={"/resources/projectFeedback/createRequest"}>
+        <Button label="Get Feedback" size="large" />
+      </Link>
 
       <br />
       <p>for demonstration purposes (i.e. to be deleted later)</p>
