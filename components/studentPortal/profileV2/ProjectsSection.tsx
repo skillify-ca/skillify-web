@@ -1,7 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { PencilAltIcon } from "@heroicons/react/outline";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import {
   FETCH_USER_PROJECTS,
@@ -15,7 +14,6 @@ export type ProjectsSectionProps = {
 };
 
 export default function ProjectsSection({ user }: ProjectsSectionProps) {
-  const router = useRouter();
   const [userProjects, setUserProjects] = useState<UserProjectData[]>([]);
   const { loading: userProjectsLoading } =
     useQuery<FetchUserProjectsDataResponse>(FETCH_USER_PROJECTS, {
@@ -70,13 +68,9 @@ export default function ProjectsSection({ user }: ProjectsSectionProps) {
           })}
           {/* TODO: this should not be displayed for everyone */}
           <div className="flex justify-around items-center p-4 m-4 shadow bg-backgroundPrimary rounded-xl">
-            <Button
-              label="Add Project"
-              size="large"
-              onClick={() =>
-                router.push("/resources/sideProjectHub/addProject")
-              }
-            />
+            <Link href={"/resources/sideProjectHub/addProject"}>
+              <Button label="Add Project" size="large" />
+            </Link>
           </div>
         </div>
       )}
