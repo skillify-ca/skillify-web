@@ -1,10 +1,11 @@
-import LandingNavbar from "../../../../components/landingPage/LandingNavbar";
-import JobListComponent from "../../../../components/resources/jobExample/jobList/JobListComponent";
+import React from "react";
+import LandingNavbar from "../../../components/landingPage/LandingNavbar";
+import FrontEndDevComponent from "../../../components/resources/jobExplorer/frontEndDev/FrontEndDevComponent";
 
 export default function JobListPage() {
   return (
     <div>
-      <JobListComponent />
+      <FrontEndDevComponent />
     </div>
   );
 }

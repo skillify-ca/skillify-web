@@ -1,5 +1,9 @@
-import { useEffect, useState } from 'react';
-import { allSkills, filters, projectItem } from './data';
+import React, { useEffect, useState } from "react";
+import {
+  allSkills,
+  filters,
+  projectItem,
+} from "../../../../pages/api/resources/jobExplorer/data";
 
 const FrontEndDevComponent = () => {
   const [selectedFilters, setSelectedFilters] = useState([]);
@@ -27,33 +31,40 @@ const FrontEndDevComponent = () => {
   return (
     <div className="flex flex-wrap p-4">
       <div className="w-full">
-        <div className="text-center mb-6">
-          <h1 className="text-4xl font-bold mb-4">Front-End Developer</h1>
+        <div className="mb-6 text-center">
+          <h1 className="mb-4 text-4xl font-bold">Front-End Developer</h1>
           <p>
-            As a Front-End Developer, you will be at the forefront of web development, responsible for bringing to life the visual and interactive elements of websites and web applications. Your expertise in HTML, CSS, and JavaScript will enable you to create seamless and user-friendly interfaces that captivate and engage users.
+            As a Front-End Developer, you will be at the forefront of web
+            development, responsible for bringing to life the visual and
+            interactive elements of websites and web applications. Your
+            expertise in HTML, CSS, and JavaScript will enable you to create
+            seamless and user-friendly interfaces that captivate and engage
+            users.
           </p>
         </div>
       </div>
       <div className="w-full lg:w-1/2">
         <div className="mb-6">
-          <h2 className="text-xl font-bold mb-2">Mandatory Requirements:</h2>
+          <h2 className="mb-2 text-xl font-bold">Mandatory Requirements:</h2>
           <ul>
             {allSkills.map((skill) => (
-              <li key={skill.name} className="list-disc ml-6">
+              <li key={skill.name} className="ml-6 list-disc">
                 {skill.name}
               </li>
             ))}
           </ul>
         </div>
         <div className="mb-6">
-          <h2 className="text-xl font-bold mb-2">Possible Additional Requirements:</h2>
+          <h2 className="mb-2 text-xl font-bold">
+            Possible Additional Requirements:
+          </h2>
           <ul>
             {filters.map((filter) => (
               <li key={filter.name} className="mb-2">
                 <label className="flex items-center">
                   <input
                     type="checkbox"
-                    className="form-checkbox mr-2"
+                    className="mr-2 form-checkbox"
                     value={filter.name}
                     onChange={handleFilterChange}
                   />
@@ -66,13 +77,13 @@ const FrontEndDevComponent = () => {
       </div>
       <div className="w-full lg:w-1/2">
         <div className="mb-6">
-          <h2 className="text-xl font-bold mb-2">All Requirements:</h2>
+          <h2 className="mb-2 text-xl font-bold">All Requirements:</h2>
           <ul>
             {filteredRequirements.map((req) => (
-              <li key={req.name} className="list-disc ml-6">
+              <li key={req.name} className="ml-6 list-disc">
                 <a
                   href={req.link}
-                  className="underline-on-hover text-blue-500"
+                  className="text-blue-500 underline-on-hover"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -83,12 +94,12 @@ const FrontEndDevComponent = () => {
           </ul>
         </div>
         <div>
-          <h2 className="text-xl font-bold mb-2">Project:</h2>
+          <h2 className="mb-2 text-xl font-bold">Project:</h2>
           <ul>
-            <li className="list-disc ml-6">
+            <li className="ml-6 list-disc">
               <a
                 href={projectItem.link}
-                className="underline-on-hover text-blue-500"
+                className="text-blue-500 underline-on-hover"
                 target="_blank"
                 rel="noopener noreferrer"
               >
