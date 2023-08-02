@@ -31,6 +31,11 @@ export default function LandingNavbar({ showTimer }: LandingNavbarProps) {
               <p>Quiz</p>
             </div>
           </Link>
+          <Link href={"/successStories"}>
+            <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
+              <p>Success Stories</p>
+            </div>
+          </Link>
         </div>
         <div className="flex items-center gap-4 p-4">
           <div className="">

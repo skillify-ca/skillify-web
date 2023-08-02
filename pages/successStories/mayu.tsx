@@ -4,13 +4,12 @@ import LandingNavbar from "../../components/landingPage/LandingNavbar";
 
 export default function MayuSuccessStory() {
   return (
-    <div className=" flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center">
       <LandingNavbar />
-      <div className="bg-[#18124D] w-full grid grid-rows-3 grid-flow-col gap-4">
-        <div className="row-span-3">
+      <div className="bg-[#18124D] w-full grid grid-cols-2">
+        <div className="col-span-1">
           <p className="text-yellow-400 p-2 ml-20 mt-10">
-            {" "}
-            &lt; ALL SUCCESS STORIES
+            <Link href={"/successStories"}>&lt; ALL SUCCESS STORIES</Link>
           </p>
           <h2 className="text-white text-3xl p-2 ml-20 mt-10 font-bold">
             Mayu G.
@@ -18,7 +17,7 @@ export default function MayuSuccessStory() {
           <h4 className="text-yellow-400 p-2 ml-20 text-xl">
             Software Engineer at Hedge Labs
           </h4>
-          <div className="bg-[#7678ED] rounded-md ml-20 mr-20 mb-10 mt-5 p-6">
+          <div className="bg-[#7678ED] col-span-1 rounded-md ml-20 mr-20 mb-10 mt-5 p-6">
             <h2 className="text-white p-2 text-sm font-semibold">
               COMPLETED IN
             </h2>
@@ -37,9 +36,8 @@ export default function MayuSuccessStory() {
             </ul>
           </div>
         </div>
-        <div className="row-span-1"></div>
-        <div className="row-span-2 col-span-2 m-10">
-          <img src="/images/landingPage/mayu.png" />
+        <div className="col-start-2 place-self-center">
+          <img src="/images/successStories/mayu.png" />
         </div>
       </div>
       <div className="bg-white grid gap-8 grid-cols-1 p-10">
