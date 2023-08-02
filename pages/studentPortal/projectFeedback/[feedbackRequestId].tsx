@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import React from "react";
-import LandingNavbar from "../../../components/landingPage/LandingNavbar";
 import FeedbackResponse from "../../../components/resources/projectFeedback/feedbackResponse";
 
 export default function EditFeedbackRequestPage() {
@@ -12,11 +11,4 @@ export default function EditFeedbackRequestPage() {
   );
 }
 
-EditFeedbackRequestPage.getLayout = function getLayout(page) {
-  return (
-    <div className="theme-default">
-      <LandingNavbar />
-      {page}
-    </div>
-  );
-};
+EditFeedbackRequestPage.auth = true;

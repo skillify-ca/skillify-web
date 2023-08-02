@@ -49,7 +49,7 @@ export default function FeedbackRequestsSectionComponent({
               <p>{format(new Date(request.createdAt), "MM/dd/yyyy")}</p>
               <p>{format(new Date(request.updatedAt), "MM/dd/yyyy")}</p>
               {request.feedbackAvailable ? (
-                <Link href={"/resources/projectFeedback/" + request.id}>
+                <Link href={"/studentPortal/projectFeedback/" + request.id}>
                   <div
                     className={`rounded-full h-6 w-6 border-2 cursor-pointer ${
                       request.read
@@ -61,7 +61,7 @@ export default function FeedbackRequestsSectionComponent({
               ) : (
                 <div></div>
               )}
-              <Link href={"/resources/projectFeedback/edit/" + request.id}>
+              <Link href={"/studentPortal/projectFeedback/edit/" + request.id}>
                 <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
               </Link>
             </div>

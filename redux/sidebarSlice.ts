@@ -8,6 +8,7 @@ export type SidebarPage =
   | "workshops"
   | "profile"
   | "goals"
+  | "projectFeedback"
   | "admin"
   | "coding_basics"
   | "web";

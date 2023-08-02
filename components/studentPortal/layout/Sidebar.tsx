@@ -63,6 +63,8 @@ export const Sidebar: React.FC = () => {
       dispatch(setActivePage("goals"));
     } else if (router.pathname.startsWith("/studentPortal/workshops")) {
       dispatch(setActivePage("workshops"));
+    } else if (router.pathname.startsWith("/studentPortal/projectFeedback")) {
+      dispatch(setActivePage("projectFeedback"));
     } else if (router.pathname.startsWith("/studentPortal/web")) {
       dispatch(setActivePage("web"));
     } else if (router.pathname.startsWith("/studentPortal")) {
@@ -150,6 +152,28 @@ export const Sidebar: React.FC = () => {
           fill="currentColor"
         >
           <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+        </svg>
+      ),
+      isDisabled: isDisabled,
+    },
+    {
+      name: "Project Feedback",
+      link: "/studentPortal/projectFeedback",
+      page: "projectFeedback",
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6 mr-4"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+          />
         </svg>
       ),
       isDisabled: isDisabled,

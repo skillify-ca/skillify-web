@@ -52,7 +52,7 @@ export default function ProjectFeedbackComponent() {
 
       <FeedbackRequestsSectionComponent feedbackRequests={feedbackRequests} />
 
-      <Link href={"/resources/projectFeedback/createRequest"}>
+      <Link href={"/studentPortal/projectFeedback/createRequest"}>
         <Button label="Get Feedback" size="large" />
       </Link>
 
