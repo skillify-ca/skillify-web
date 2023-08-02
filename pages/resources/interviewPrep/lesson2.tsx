@@ -122,11 +122,6 @@ const Lesson2Content = () => {
           <strong>Employer Expectations:</strong> Ask thoughtful questions that
           showcase genuine interest in joining the company.
         </p>
-        <Link href="./lesson3">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
-            Next
-          </button>
-        </Link>
       </div>
     </div>
   );

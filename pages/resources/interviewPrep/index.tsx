@@ -1,3 +1,12 @@
+//Next Steps:
+// Next Step for Try2Page:
+// let the user create their own exemplary answer.
+// When clicking on a prompt, only the selected one should light up
+// consider saving answers throughout the course, so user can return back to the page
+//
+// fix the clear button and make sure it clears properly
+
+//https://leetcode.com/assessment/ for ref
 import React from 'react';
 import PropTypes from 'prop-types';
 import LandingNavbar from '../../../components/landingPage/LandingNavbar';

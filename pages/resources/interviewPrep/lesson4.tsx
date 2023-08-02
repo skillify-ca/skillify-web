@@ -2,6 +2,10 @@ import React from 'react';
 import LandingNavbar from '../../../components/landingPage/LandingNavbar';
 import Link from 'next/link';
 
+// ref https://www.simplilearn.com/how-to-introduce-yourself-in-a-job-interview-article#:~:text=%22Good%20day%2C%20I%20am%20%5B,the%20requirements%20of%20this%20position.
+
+// Add recording platform for practice
+
 export default function Lesson4Page() {
   return (
     <div className="theme-default">
