@@ -1,4 +1,3 @@
-import React from "react";
 import Testimonial from "./Testimonial";
 
 const TestimonialSect = () => {
@@ -15,12 +14,7 @@ const TestimonialSect = () => {
       text: "With no prior knowledge of coding, I was able to develop my first website within weeks. Most importantly, Skillify made the whole learning experience fun and enjoyable. Now I can code websites for my own clients.",
       completionDate: "May 2022",
     },
-    {
-      studentName: "Raveen R",
-      img: "/images/landingPage/raveen.jpg",
-      text: "Skillify customized my curriculum so I could build out my own product ideas during the course. They helped me land interviews for software engineering and technical founder roles. Learning how to code has given me a flexible lifestyle that I couldn't live without.",
-      completionDate: "May 2022",
-    },
+
     {
       studentName: "Mayu G",
       img: "/images/landingPage/mayu.png",
@@ -37,12 +31,6 @@ const TestimonialSect = () => {
       studentName: "Mithulan M",
       img: "/images/landingPage/mithulan.jpg",
       text: "The team at Skillify did an excellent job in this course to facilitate the fundamentals and give each student the confidence to succeed in the field of coding. Thank you to Vithushan and his team for a wonderful experience.",
-      completionDate: "Feb 2022",
-    },
-    {
-      studentName: "Jacky H ",
-      img: "/images/landingPage/jacky.jpg",
-      text: "I have a degree in IT, however, I'm not working in the tech industry. In the course, I got to expand my skills with the help of professionals and was encouraged to ask plenty of questions. The demos and projects were great to showcase what I learned every week.",
       completionDate: "Feb 2022",
     },
     {
