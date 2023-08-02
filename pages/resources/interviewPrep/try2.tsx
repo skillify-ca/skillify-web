@@ -1,6 +1,7 @@
 //Next Step: when adding prompts to a new section, the text box shows the input being typed in all text boxes, but all other features work, so it's very minor
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { InterviewPrepCourse } from '.';
 import LandingNavbar from '../../../components/landingPage/LandingNavbar';
 
 export default function Try2Page() {
@@ -118,7 +119,7 @@ export default function Try2Page() {
           <div className="flex justify-between">
             <div>
               <Link href="./try1">
-                <button className="bg-gray-500 text-white px-4 py-2 rounded-lg mr-2">
+                <button className="px-4 py-2 mr-2 text-white bg-gray-500 rounded-lg">
                   Back
                 </button>
               </Link>
@@ -126,7 +127,7 @@ export default function Try2Page() {
             <h1 className="text-3xl font-bold">Technical Questions</h1>
             <div>
               <Link href="./try3">
-                <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+                <button className="px-4 py-2 text-white bg-blue-500 rounded-lg">
                   Next
                 </button>
               </Link>
@@ -134,27 +135,27 @@ export default function Try2Page() {
           </div>
         </div>
 
-        <div className="border-b my-4"></div>
+        <div className="my-4 border-b"></div>
         <div className="flex justify-center mt-4">
           <input
             type="text"
-            className="w-full h-10 border rounded-lg p-2 mr-4"
+            className="w-full h-10 p-2 mr-4 border rounded-lg"
             placeholder="Enter a new section title..."
             value={newSectionTitle}
             onChange={(e) => setNewSectionTitle(e.target.value)}
           />
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+            className="px-4 py-2 text-white bg-blue-500 rounded-lg"
             onClick={handleAddSection}
           >
             Add Section
           </button>
         </div>
         <div className="flex flex-col">
-          <div className="w-full overflow-y-auto max-h-80 mb-4">
+          <div className="w-full mb-4 overflow-y-auto max-h-80">
             {sections.map((section, sectionIndex) => (
-              <div key={sectionIndex} className="border p-4 mb-4">
-                <h2 className="text-xl font-bold mb-4">{section.title}</h2>
+              <div key={sectionIndex} className="p-4 mb-4 border">
+                <h2 className="mb-4 text-xl font-bold">{section.title}</h2>
                 {section.prompts.map((prompt, promptIndex) => (
                   <div
                     key={promptIndex}
@@ -175,14 +176,14 @@ export default function Try2Page() {
                 <div className="flex justify-between">
                   <input
                     type="text"
-                    className="w-full h-10 border rounded-lg p-2 mr-4"
+                    className="w-full h-10 p-2 mr-4 border rounded-lg"
                     placeholder="Enter a new prompt..."
                     value={newPrompt}
                     onChange={(e) => setNewPrompt(e.target.value)}
                   />
 
                   <button
-                    className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+                    className="px-4 py-2 text-white bg-blue-500 rounded-lg"
                     onClick={() => handleAddPrompt(sectionIndex)}
                   >
                     Add Prompt
@@ -194,7 +195,7 @@ export default function Try2Page() {
           {currentPrompt !== null && (
             <div className="w-full p-4">
               <textarea
-                className="w-full h-32 border rounded-lg p-2 mb-4"
+                className="w-full h-32 p-2 mb-4 border rounded-lg"
                 placeholder="Your answer..."
                 value={sectionPrompts[currentSection][currentPrompt] || ''}
                 onChange={(e) => {
@@ -206,7 +207,7 @@ export default function Try2Page() {
               />
               <div className="flex justify-between">
                 <button
-                  className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+                  className="px-4 py-2 text-white bg-blue-500 rounded-lg"
                   onClick={() =>
                     handleSaveAnswer(
                       sectionPrompts[currentSection][currentPrompt]
@@ -216,20 +217,20 @@ export default function Try2Page() {
                   Save
                 </button>
                 <button
-                  className="bg-gray-500 text-white px-4 py-2 rounded-lg"
+                  className="px-4 py-2 text-white bg-gray-500 rounded-lg"
                   onClick={() => setCurrentPrompt(null)}
                 >
                   Clear
                 </button>
               </div>
               <button
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4"
+                className="px-4 py-2 mt-4 text-white bg-blue-500 rounded-lg"
                 onClick={() => setShowExemplaryAnswer(!showExemplaryAnswer)}
               >
                 {showExemplaryAnswer ? 'Hide Hint' : 'Hint'}
               </button>
               {showExemplaryAnswer && (
-                <div className="border rounded-lg p-4 mt-4 bg-gray-200">
+                <div className="p-4 mt-4 bg-gray-200 border rounded-lg">
                   Exemplary Answer:{' '}
                   {
                     sections[currentSection].prompts[currentPrompt]
@@ -249,7 +250,13 @@ Try2Page.getLayout = function getLayout(page) {
   return (
     <div className="theme-default">
       <LandingNavbar />
-      {page}
+
+      <div className="grid h-screen grid-cols-1 lg:grid-cols-12">
+        <div className="hidden col-span-5 overflow-scroll lg:block">
+          <InterviewPrepCourse />
+        </div>
+        <div className="col-span-7 p-4 overflow-scroll">{page}</div>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { InterviewPrepCourse } from '.';
 import LandingNavbar from '../../../components/landingPage/LandingNavbar';
 
 export default function Try1Page() {
@@ -66,7 +67,7 @@ export default function Try1Page() {
           <div className="flex justify-between">
             <div>
               <Link href="./lesson4">
-                <button className="bg-gray-500 text-white px-4 py-2 rounded-lg mr-2">
+                <button className="px-4 py-2 mr-2 text-white bg-gray-500 rounded-lg">
                   Back
                 </button>
               </Link>
@@ -74,7 +75,7 @@ export default function Try1Page() {
             <h1 className="text-3xl font-bold">Behavioral Questions</h1>
             <div>
               <Link href="./try2">
-                <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+                <button className="px-4 py-2 text-white bg-blue-500 rounded-lg">
                   Next
                 </button>
               </Link>
@@ -82,10 +83,10 @@ export default function Try1Page() {
           </div>
         </div>
 
-        <div className="border-b my-4"></div>
+        <div className="my-4 border-b"></div>
         <div className="flex">
-          <div className="w-1/3 overflow-y-auto max-h-80 pr-2">
-            <div className="border p-4">
+          <div className="w-1/3 pr-2 overflow-y-auto max-h-80">
+            <div className="p-4 border">
               {prompts.map((prompt, index) => (
                 <div
                   key={index}
@@ -111,14 +112,14 @@ export default function Try1Page() {
             >
               <input
                 type="text"
-                className="w-full h-10 border rounded-lg p-2 mb-4"
+                className="w-full h-10 p-2 mb-4 border rounded-lg"
                 placeholder="Enter a new prompt..."
                 value={newPrompt}
                 onChange={(e) => setNewPrompt(e.target.value)}
               />
               <button
                 type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+                className="px-4 py-2 text-white bg-blue-500 rounded-lg"
               >
                 Add Prompt
               </button>
@@ -128,7 +129,7 @@ export default function Try1Page() {
             {currentPrompt !== null && (
               <>
                 <textarea
-                  className="w-full h-32 border rounded-lg p-2 mb-4"
+                  className="w-full h-32 p-2 mb-4 border rounded-lg"
                   placeholder="Your answer..."
                   value={answers[prompts[currentPrompt]] || ''}
                   onChange={(e) =>
@@ -140,7 +141,7 @@ export default function Try1Page() {
                 />
                 <div className="flex justify-between">
                   <button
-                    className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+                    className="px-4 py-2 text-white bg-blue-500 rounded-lg"
                     onClick={() =>
                       handleSaveAnswer(answers[prompts[currentPrompt]])
                     }
@@ -148,20 +149,20 @@ export default function Try1Page() {
                     Save
                   </button>
                   <button
-                    className="bg-gray-500 text-white px-4 py-2 rounded-lg"
+                    className="px-4 py-2 text-white bg-gray-500 rounded-lg"
                     onClick={() => setCurrentPrompt(null)}
                   >
                     Clear
                   </button>
                 </div>
                 <button
-                  className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4"
+                  className="px-4 py-2 mt-4 text-white bg-blue-500 rounded-lg"
                   onClick={() => setShowExemplaryAnswer(!showExemplaryAnswer)}
                 >
                   {showExemplaryAnswer ? 'Hide Hint' : 'Hint'}
                 </button>
                 {showExemplaryAnswer && (
-                  <div className="border rounded-lg p-4 mt-4 bg-gray-200">
+                  <div className="p-4 mt-4 bg-gray-200 border rounded-lg">
                     {exemplaryAnswers[currentPrompt]}
                   </div>
                 )}
@@ -178,7 +179,13 @@ Try1Page.getLayout = function getLayout(page) {
   return (
     <div className="theme-default">
       <LandingNavbar />
-      {page}
+
+      <div className="grid h-screen grid-cols-1 lg:grid-cols-12">
+        <div className="hidden col-span-5 overflow-scroll lg:block">
+          <InterviewPrepCourse />
+        </div>
+        <div className="col-span-7 p-4 overflow-scroll">{page}</div>
+      </div>
     </div>
   );
 };

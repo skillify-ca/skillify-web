@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import LandingNavbar from '../../../components/landingPage/LandingNavbar';
 import Link from 'next/link';
+import { InterviewPrepCourse } from '.';
+import LandingNavbar from '../../../components/landingPage/LandingNavbar';
 
 export default function Assign1Page() {
   const [experiences, setExperiences] = useState([]);
@@ -24,13 +25,13 @@ export default function Assign1Page() {
       <div className="max-w-3xl mx-auto mt-8">
         <div className="flex items-center justify-between mb-4">
           <Link href="./lesson3">
-            <button className="bg-gray-500 text-white px-4 py-2 rounded-lg">
+            <button className="px-4 py-2 text-white bg-gray-500 rounded-lg">
               Back
             </button>
           </Link>
           <h1 className="text-3xl font-bold">Bullet all your experiences</h1>
           <Link href="./lesson4">
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+            <button className="px-4 py-2 text-white bg-blue-500 rounded-lg">
               Next
             </button>
           </Link>
@@ -44,7 +45,7 @@ export default function Assign1Page() {
             onChange={(e) => setNewExperience(e.target.value)}
           />
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded-r"
+            className="px-4 py-2 text-white bg-blue-500 rounded-r"
             onClick={handleAddExperience}
           >
             Add
@@ -59,7 +60,7 @@ export default function Assign1Page() {
               >
                 <span>{experience}</span>
                 <button
-                  className="bg-red-500 text-white px-3 py-1 rounded"
+                  className="px-3 py-1 text-white bg-red-500 rounded"
                   onClick={() => handleRemoveExperience(index)}
                 >
                   Remove
@@ -77,7 +78,13 @@ Assign1Page.getLayout = function getLayout(page) {
   return (
     <div className="theme-default">
       <LandingNavbar />
-      {page}
+
+      <div className="grid grid-cols-1 lg:grid-cols-12">
+        <div className="hidden h-screen col-span-5 -mb-16 overflow-scroll lg:block">
+          <InterviewPrepCourse />
+        </div>
+        <div className="col-span-7 p-4">{page}</div>
+      </div>
     </div>
   );
 };

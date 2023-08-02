@@ -1,6 +1,7 @@
 import React from 'react';
-import LandingNavbar from '../../../components/landingPage/LandingNavbar';
 import Link from 'next/link';
+import { InterviewPrepCourse } from '.';
+import LandingNavbar from '../../../components/landingPage/LandingNavbar';
 
 export default function WrapUpPage() {
   return (
@@ -8,7 +9,7 @@ export default function WrapUpPage() {
       <div className="max-w-3xl mx-auto mt-8">
         <div className="flex items-center justify-between mb-6">
           <Link href="./assign2">
-            <button className="bg-gray-500 text-white px-4 py-2 rounded-lg mr-2">
+            <button className="px-4 py-2 mr-2 text-white bg-gray-500 rounded-lg">
               Back
             </button>
           </Link>
@@ -16,13 +17,13 @@ export default function WrapUpPage() {
             Wrap Up: Are You Interview Ready?
           </h1>
           <Link href="./">
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+            <button className="px-4 py-2 text-white bg-blue-500 rounded-lg">
               Next
             </button>
           </Link>
         </div>
 
-        <div className="max-w-3xl mx-auto bg-white border border-gray-300 p-4 rounded-lg mb-6">
+        <div className="max-w-3xl p-4 mx-auto mb-6 bg-white border border-gray-300 rounded-lg">
           <p className="mb-6">
             {`Congratulations on completing our interview preparation course! By
             now, you've gained valuable insights and honed your skills for a
@@ -30,15 +31,15 @@ export default function WrapUpPage() {
             truly interview-ready? Here are some key indicators to consider:`}
           </p>
 
-          <div className="bg-gray-100 border border-gray-300 p-4 rounded-lg mb-6">
-            <h2 className="text-xl font-bold mb-4">1. Self-Confidence:</h2>
+          <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+            <h2 className="mb-4 text-xl font-bold">1. Self-Confidence:</h2>
             <p className="mb-6">
               {`A crucial sign of being interview-ready is feeling confident in your abilities. Reflect on your preparation journey and acknowledge the progress you've made. Trust in yourself and your knowledge to tackle interview questions with poise and composure.`}
             </p>
           </div>
 
-          <div className="bg-gray-100 border border-gray-300 p-4 rounded-lg mb-6">
-            <h2 className="text-xl font-bold mb-4">
+          <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+            <h2 className="mb-4 text-xl font-bold">
               2. Understanding Job Requirements:
             </h2>
             <p className="mb-6">
@@ -46,15 +47,15 @@ export default function WrapUpPage() {
             </p>
           </div>
 
-          <div className="bg-gray-100 border border-gray-300 p-4 rounded-lg mb-6">
-            <h2 className="text-xl font-bold mb-4">3. Practicing Responses:</h2>
+          <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+            <h2 className="mb-4 text-xl font-bold">3. Practicing Responses:</h2>
             <p className="mb-6">
               {`Practice answering common interview questions, both behavioral and technical. Use the STAR method (Situation, Task, Action, Result) for behavioral questions, and provide specific examples to support your answers.`}
             </p>
           </div>
 
-          <div className="bg-gray-100 border border-gray-300 p-4 rounded-lg mb-6">
-            <h2 className="text-xl font-bold mb-4">
+          <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+            <h2 className="mb-4 text-xl font-bold">
               4. Handling Technical Questions:
             </h2>
             <p className="mb-6">
@@ -62,8 +63,8 @@ export default function WrapUpPage() {
             </p>
           </div>
 
-          <div className="bg-gray-100 border border-gray-300 p-4 rounded-lg mb-6">
-            <h2 className="text-xl font-bold mb-4">
+          <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+            <h2 className="mb-4 text-xl font-bold">
               5. Demonstrating Soft Skills:
             </h2>
             <p className="mb-6">
@@ -71,25 +72,25 @@ export default function WrapUpPage() {
             </p>
           </div>
 
-          <div className="bg-gray-100 border border-gray-300 p-4 rounded-lg mb-6">
-            <h2 className="text-xl font-bold mb-4">6. Asking Questions:</h2>
+          <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+            <h2 className="mb-4 text-xl font-bold">6. Asking Questions:</h2>
             <p className="mb-6">
               {`Prepare thoughtful questions to ask the interviewer. This demonstrates your interest in the role and company, and it's an opportunity to gather valuable information about the position.`}
             </p>
           </div>
 
-          <div className="bg-gray-100 border border-gray-300 p-4 rounded-lg mb-6">
-            <h2 className="text-xl font-bold mb-4">7. Handling Nervousness:</h2>
+          <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+            <h2 className="mb-4 text-xl font-bold">7. Handling Nervousness:</h2>
             <p className="mb-6">
               {`Feeling nervous before an interview is normal. Practice relaxation techniques to manage nervousness. Take deep breaths, visualize a successful interview, and remember that interviews are opportunities to showcase your skills.`}
             </p>
           </div>
 
-          <div className="bg-gray-100 border border-gray-300 p-4 rounded-lg mb-6">
-            <h2 className="text-xl font-bold mb-4">
+          <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+            <h2 className="mb-4 text-xl font-bold">
               General Tips for Interview Preparation:
             </h2>
-            <ul className="list-disc pl-6 mb-6">
+            <ul className="pl-6 mb-6 list-disc">
               <li>{`Research the company: Understand the company's values, culture, and recent developments. This knowledge will help you tailor your responses and demonstrate your genuine interest.`}</li>
               <li>{`Practice with mock interviews: Ask a friend or mentor to conduct mock interviews. Practice answering various types of questions to boost your confidence.`}</li>
               <li>{`Dress appropriately: Choose professional attire that aligns with the company culture. Dressing well shows respect for the interview process.`}</li>
@@ -115,7 +116,13 @@ WrapUpPage.getLayout = function getLayout(page) {
   return (
     <div className="theme-default">
       <LandingNavbar />
-      {page}
+
+      <div className="grid h-screen grid-cols-1 lg:grid-cols-12">
+        <div className="hidden col-span-5 overflow-scroll lg:block">
+          <InterviewPrepCourse />
+        </div>
+        <div className="col-span-7 p-4 overflow-scroll">{page}</div>
+      </div>
     </div>
   );
 };

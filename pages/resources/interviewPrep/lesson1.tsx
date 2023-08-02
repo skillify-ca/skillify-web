@@ -1,6 +1,7 @@
 import React from 'react';
-import LandingNavbar from '../../../components/landingPage/LandingNavbar';
 import Link from 'next/link';
+import { InterviewPrepCourse } from '.';
+import LandingNavbar from '../../../components/landingPage/LandingNavbar';
 
 export default Lesson1Page;
 function Lesson1Page() {
@@ -18,7 +19,7 @@ const Lesson1Content = () => {
         <div className="flex justify-between">
           <div>
             <Link href="./">
-              <button className="bg-gray-500 text-white px-4 py-2 rounded-lg mr-2">
+              <button className="px-4 py-2 mr-2 text-white bg-gray-500 rounded-lg">
                 Back
               </button>
             </Link>
@@ -28,14 +29,14 @@ const Lesson1Content = () => {
           </h1>
           <div>
             <Link href="./lesson2">
-              <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+              <button className="px-4 py-2 text-white bg-blue-500 rounded-lg">
                 Next
               </button>
             </Link>
           </div>
         </div>
       </div>
-      <div className="border-b my-4"></div>
+      <div className="my-4 border-b"></div>
       <div className="prose">
         <p>
           {`Preparing for job interviews is a crucial step in your career journey.
@@ -44,8 +45,8 @@ const Lesson1Content = () => {
           success. Here are some reasons why interview preparation is essential:`}
         </p>
 
-        <div className="section-box border border-black rounded p-4 my-4">
-          <h2 className="text-xl font-bold mb-2">1. Confidence Boost</h2>
+        <div className="p-4 my-4 border border-black rounded section-box">
+          <h2 className="mb-2 text-xl font-bold">1. Confidence Boost</h2>
           <p>
             {`Thorough preparation boosts your confidence. When you know you've
             researched the company, practiced answering common interview
@@ -56,8 +57,8 @@ const Lesson1Content = () => {
           </p>
         </div>
 
-        <div className="section-box border border-black rounded p-4 my-4">
-          <h2 className="text-xl font-bold mb-2">2. Showcasing Your Skills</h2>
+        <div className="p-4 my-4 border border-black rounded section-box">
+          <h2 className="mb-2 text-xl font-bold">2. Showcasing Your Skills</h2>
           <p>
             {`Interview preparation allows you to showcase your skills
             effectively. By understanding the job requirements and aligning your
@@ -68,8 +69,8 @@ const Lesson1Content = () => {
           </p>
         </div>
 
-        <div className="section-box border border-black rounded p-4 my-4">
-          <h2 className="text-xl font-bold mb-2">
+        <div className="p-4 my-4 border border-black rounded section-box">
+          <h2 className="mb-2 text-xl font-bold">
             3. Handling Tough Questions
           </h2>
           <p>
@@ -82,8 +83,8 @@ const Lesson1Content = () => {
           </p>
         </div>
 
-        <div className="section-box border border-black rounded p-4 my-4">
-          <h2 className="text-xl font-bold mb-2">
+        <div className="p-4 my-4 border border-black rounded section-box">
+          <h2 className="mb-2 text-xl font-bold">
             4. Understanding the Company
           </h2>
           <p>
@@ -96,8 +97,8 @@ const Lesson1Content = () => {
           </p>
         </div>
 
-        <div className="section-box border border-black rounded p-4 my-4">
-          <h2 className="text-xl font-bold mb-2">5. Avoiding Mistakes</h2>
+        <div className="p-4 my-4 border border-black rounded section-box">
+          <h2 className="mb-2 text-xl font-bold">5. Avoiding Mistakes</h2>
           <p>
             {`Proper preparation can help you avoid common interview mistakes.
             Being well-prepared ensures that you arrive on time, dress
@@ -107,8 +108,8 @@ const Lesson1Content = () => {
           </p>
         </div>
 
-        <div className="section-box border border-black rounded p-4 my-4">
-          <h2 className="text-xl font-bold mb-2">
+        <div className="p-4 my-4 border border-black rounded section-box">
+          <h2 className="mb-2 text-xl font-bold">
             6. Making a Lasting Impression
           </h2>
           <p>
@@ -120,8 +121,8 @@ const Lesson1Content = () => {
           </p>
         </div>
 
-        <div className="section-box border border-black rounded p-4 my-4">
-          <h2 className="text-xl font-bold mb-2">
+        <div className="p-4 my-4 border border-black rounded section-box">
+          <h2 className="mb-2 text-xl font-bold">
             7. Negotiating with Confidence
           </h2>
           <p>
@@ -134,7 +135,7 @@ const Lesson1Content = () => {
           </p>
         </div>
 
-        <div className="section-divider my-4"></div>
+        <div className="my-4 section-divider"></div>
         <p>
           {`In conclusion, interview preparation is a critical aspect of the job
           search process. It helps you stand out from other candidates,
@@ -152,7 +153,13 @@ Lesson1Page.getLayout = function getLayout(page) {
   return (
     <div className="theme-default">
       <LandingNavbar />
-      {page}
+
+      <div className="grid h-screen grid-cols-1 lg:grid-cols-12">
+        <div className="hidden col-span-5 -mb-16 overflow-scroll lg:block">
+          <InterviewPrepCourse />
+        </div>
+        <div className="col-span-7 p-4 overflow-scroll">{page}</div>
+      </div>
     </div>
   );
 };

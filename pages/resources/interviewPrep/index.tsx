@@ -1,16 +1,7 @@
-//Next Steps:
-// Next Step for Try2Page:
-// let the user create their own exemplary answer.
-// When clicking on a prompt, only the selected one should light up
-// consider saving answers throughout the course, so user can return back to the page
-//
-// fix the clear button and make sure it clears properly
-
-//https://leetcode.com/assessment/ for ref
 import React from 'react';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import LandingNavbar from '../../../components/landingPage/LandingNavbar';
-import Link from 'next/link';
 
 const InterviewCoursePage = () => {
   return (
@@ -20,9 +11,10 @@ const InterviewCoursePage = () => {
   );
 };
 
-const InterviewPrepCourse = () => {
+export const InterviewPrepCourse = () => {
   const progressBarStyle = 'h-2 bg-gray-300 mt-4 mb-8';
   const sectionStyle = 'border rounded mb-4 p-4 w-full';
+  const unitStyle = 'border bg-orange-100 font-bold rounded mb-4 p-4 w-full';
   const headingStyle =
     'flex items-center justify-between px-4 mb-4 whitespace-nowrap';
   const continueButtonStyle =
@@ -39,7 +31,7 @@ const InterviewPrepCourse = () => {
         <div className="h-full bg-green-500" style={{ width: '60%' }}></div>
       </div>
 
-      <div className={sectionStyle}>
+      <div className={unitStyle}>
         <h2 className={headingStyle}>Introduction</h2>
       </div>
 
@@ -70,7 +62,16 @@ const InterviewPrepCourse = () => {
         link={'interviewPrep/lesson3'}
       />
 
-      <div className={sectionStyle}>
+      <ContentRow
+        sectionStyle={sectionStyle}
+        headingStyle={headingStyle}
+        circleIconStyle={circleIconStyle}
+        continueButtonStyle={continueButtonStyle}
+        title={'Tools: Technical Terms'}
+        link={'interviewPrep/tools'}
+      />
+
+      <div className={unitStyle}>
         <h2 className={headingStyle}>Tell Me About Yourself</h2>
       </div>
 
@@ -92,7 +93,7 @@ const InterviewPrepCourse = () => {
         link={'interviewPrep/lesson4'}
       />
 
-      <div className={sectionStyle}>
+      <div className={unitStyle}>
         <h2 className={headingStyle}>Practice</h2>
       </div>
 
@@ -123,7 +124,7 @@ const InterviewPrepCourse = () => {
         link={'interviewPrep/try3'}
       />
 
-      <div className={sectionStyle}>
+      <div className={unitStyle}>
         <h2 className={headingStyle}>Mock Interview</h2>
       </div>
 
@@ -171,7 +172,7 @@ const ContentRow = ({
         <h3 className={headingStyle}>
           <span className={circleIconStyle}></span>
           {title}
-          <Link href={link}>
+          <Link href={`/resources/${link}`}>
             <button className={`${continueButtonStyle} ml-auto`}>
               Continue
             </button>

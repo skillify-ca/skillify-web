@@ -1,6 +1,7 @@
 import React from 'react';
-import LandingNavbar from '../../../components/landingPage/LandingNavbar';
 import Link from 'next/link';
+import { InterviewPrepCourse } from '.';
+import LandingNavbar from '../../../components/landingPage/LandingNavbar';
 
 // ref https://www.simplilearn.com/how-to-introduce-yourself-in-a-job-interview-article#:~:text=%22Good%20day%2C%20I%20am%20%5B,the%20requirements%20of%20this%20position.
 
@@ -12,18 +13,18 @@ export default function Lesson4Page() {
       <div className="max-w-3xl mx-auto mt-8">
         <div className="flex items-center justify-between mb-6">
           <Link href="./assign1">
-            <button className="bg-gray-500 text-white px-4 py-2 rounded-lg mr-2">
+            <button className="px-4 py-2 mr-2 text-white bg-gray-500 rounded-lg">
               Back
             </button>
           </Link>
           <h1 className="text-3xl font-bold">How should I introduce myself?</h1>
           <Link href="./try1">
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+            <button className="px-4 py-2 text-white bg-blue-500 rounded-lg">
               Next
             </button>
           </Link>
         </div>
-        <div className="border-b my-4"></div>
+        <div className="my-4 border-b"></div>
         <div className="lesson-content">
           <p>Welcome, aspiring developers!</p>
           <p>
@@ -39,8 +40,8 @@ export default function Lesson4Page() {
             passion, and potential to prospective employers. Let&apos;s dive in!
           </p>
 
-          <div className="border border-black rounded p-4 my-4">
-            <h2 className="text-xl font-bold mb-2">
+          <div className="p-4 my-4 border border-black rounded">
+            <h2 className="mb-2 text-xl font-bold">
               1. Keep it concise and focused
             </h2>
             <p>
@@ -52,8 +53,8 @@ export default function Lesson4Page() {
             </p>
           </div>
 
-          <div className="border border-black rounded p-4 my-4">
-            <h2 className="text-xl font-bold mb-2">
+          <div className="p-4 my-4 border border-black rounded">
+            <h2 className="mb-2 text-xl font-bold">
               2. Start with a compelling hook
             </h2>
             <p>
@@ -65,8 +66,8 @@ export default function Lesson4Page() {
             </p>
           </div>
 
-          <div className="border border-black rounded p-4 my-4">
-            <h2 className="text-xl font-bold mb-2">
+          <div className="p-4 my-4 border border-black rounded">
+            <h2 className="mb-2 text-xl font-bold">
               3. Highlight your relevant skills and projects
             </h2>
             <p>
@@ -79,8 +80,8 @@ export default function Lesson4Page() {
             </p>
           </div>
 
-          <div className="border border-black rounded p-4 my-4">
-            <h2 className="text-xl font-bold mb-2">
+          <div className="p-4 my-4 border border-black rounded">
+            <h2 className="mb-2 text-xl font-bold">
               4. Emphasize your eagerness to learn and grow
             </h2>
             <p>
@@ -92,8 +93,8 @@ export default function Lesson4Page() {
             </p>
           </div>
 
-          <div className="border border-black rounded p-4 my-4">
-            <h2 className="text-xl font-bold mb-2">
+          <div className="p-4 my-4 border border-black rounded">
+            <h2 className="mb-2 text-xl font-bold">
               5. Personalize your introduction
             </h2>
             <p>
@@ -105,8 +106,8 @@ export default function Lesson4Page() {
             </p>
           </div>
 
-          <div className="border border-black rounded p-4 my-4">
-            <h2 className="text-xl font-bold mb-2">
+          <div className="p-4 my-4 border border-black rounded">
+            <h2 className="mb-2 text-xl font-bold">
               6. Practice makes perfect
             </h2>
             <p>
@@ -118,8 +119,8 @@ export default function Lesson4Page() {
             </p>
           </div>
 
-          <div className="border border-black rounded p-4 my-4">
-            <h2 className="text-xl font-bold mb-2">
+          <div className="p-4 my-4 border border-black rounded">
+            <h2 className="mb-2 text-xl font-bold">
               7. Tailor your introduction for each opportunity
             </h2>
             <p>
@@ -131,7 +132,7 @@ export default function Lesson4Page() {
             </p>
           </div>
 
-          <div className="border-b my-4"></div>
+          <div className="my-4 border-b"></div>
           <p>Conclusion:</p>
           <p>
             Introducing yourself effectively is a crucial step in the internship
@@ -153,7 +154,13 @@ Lesson4Page.getLayout = function getLayout(page) {
   return (
     <div className="theme-default">
       <LandingNavbar />
-      {page}
+
+      <div className="grid h-screen grid-cols-1 lg:grid-cols-12">
+        <div className="hidden col-span-5 overflow-scroll lg:block">
+          <InterviewPrepCourse />
+        </div>
+        <div className="col-span-7 p-4 overflow-scroll">{page}</div>
+      </div>
     </div>
   );
 };
