@@ -11,49 +11,77 @@ const JobListComponent = () => {
       link: "././frontEndDev",
     },
     {
-      title: "Job 2",
+      title: "Back End Developer",
       image: "/images/resources/jobExplorer/frontEndDev.jpg",
       width: 100,
       height: 100,
       link: "././frontEndDev",
     },
     {
-      title: "Job 3",
+      title: "Fullstack Developer",
       image: "/images/resources/jobExplorer/frontEndDev.jpg",
       width: 100,
       height: 100,
       link: "././frontEndDev",
     },
     {
-      title: "Job 4",
+      title: "AI Engineer",
       image: "/images/resources/jobExplorer/frontEndDev.jpg",
       width: 100,
       height: 100,
       link: "././frontEndDev",
     },
     {
-      title: "Job 5",
+      title: "Data Scientist",
       image: "/images/resources/jobExplorer/frontEndDev.jpg",
       width: 100,
       height: 100,
       link: "././frontEndDev",
     },
     {
-      title: "Job 6",
+      title: "DevOps Engineer",
       image: "/images/resources/jobExplorer/frontEndDev.jpg",
       width: 100,
       height: 100,
       link: "././frontEndDev",
     },
     {
-      title: "Job 7",
+      title: "Cyber Security Analyst",
       image: "/images/resources/jobExplorer/frontEndDev.jpg",
       width: 100,
       height: 100,
       link: "././frontEndDev",
     },
     {
-      title: "Job 8",
+      title: "Mobile App Developer",
+      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      width: 100,
+      height: 100,
+      link: "././frontEndDev",
+    },
+    {
+      title: "Game Developer",
+      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      width: 100,
+      height: 100,
+      link: "././frontEndDev",
+    },
+    {
+      title: "UX Designer",
+      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      width: 100,
+      height: 100,
+      link: "././frontEndDev",
+    },
+    {
+      title: "Product Manager",
+      image: "/images/resources/jobExplorer/frontEndDev.jpg",
+      width: 100,
+      height: 100,
+      link: "././frontEndDev",
+    },
+    {
+      title: "UX Researcher",
       image: "/images/resources/jobExplorer/frontEndDev.jpg",
       width: 100,
       height: 100,
@@ -67,7 +95,9 @@ const JobListComponent = () => {
         {jobs.map((job, index) => (
           <div
             key={job.title}
-            className="flex flex-col items-center justify-center w-full h-64 p-6 bg-orange-500 rounded"
+            className={`flex flex-col items-center justify-center w-full h-64 p-6  rounded ${
+              index < 5 ? "bg-orange-500 cursor-pointer" : "bg-gray-100"
+            }`}
           >
             <h2 className="mb-4 text-lg font-semibold">
               <a href={job.link} className="text-blue-600 hover:underline">
