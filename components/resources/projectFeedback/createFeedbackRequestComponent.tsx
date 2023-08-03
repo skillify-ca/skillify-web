@@ -34,7 +34,7 @@ export default function CreateFeedbackRequestComponent() {
         className=" resize-y w-full p-4 bg-white border rounded-md shadow-lg appearance-none text-inputTextPrimary focus:outline-none focus:z-10 sm:text-sm"
         placeholder="Enter Answer"
       />
-      <p className={`${notes.length > 1000 ? "text-red-500" : ""}`}>
+      <p className={`mb-4 ${notes.length > 1000 ? "text-red-500" : ""}`}>
         {notes.length}/1000 characters
       </p>
 
