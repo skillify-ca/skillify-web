@@ -26,7 +26,7 @@ export default function FeedbackRequestsSectionComponent({
     <div className="my-4 p-4 rounded text-center bg-backgroundSecondary">
       {feedbackRequests.length === 0 ? (
         <p className="p-2 bg-backgroundSecondary">
-          Click on &quot;Get Feedback&quot; to create your first feedback
+          Click on &quot;Create Request&quot; to create your first feedback
           request!
         </p>
       ) : (

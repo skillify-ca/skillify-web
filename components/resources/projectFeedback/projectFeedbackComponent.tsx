@@ -48,13 +48,13 @@ export default function ProjectFeedbackComponent() {
   return (
     <div className="p-4">
       <h2 className="text-3xl font-bold mb-2">Project Feedback</h2>
-      <p>Get feedback on your side projects.</p>
-
-      <FeedbackRequestsSectionComponent feedbackRequests={feedbackRequests} />
+      <p className="mb-2">Get feedback on your side projects.</p>
 
       <Link href={"/studentPortal/projectFeedback/createRequest"}>
-        <Button label="Get Feedback" size="large" />
+        <Button label="Create Request" size="large" />
       </Link>
+
+      <FeedbackRequestsSectionComponent feedbackRequests={feedbackRequests} />
 
       <br />
       <p>for demonstration purposes (i.e. to be deleted later)</p>
