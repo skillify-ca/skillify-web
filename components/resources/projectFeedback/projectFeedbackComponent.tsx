@@ -6,47 +6,44 @@ import FeedbackRequestsSectionComponent, {
 } from "./feedbackRequestsSectionComponent";
 
 export default function ProjectFeedbackComponent() {
-  const [feedbackRequests, setFeedbackRequests] = useState<
-    FeedbackRequestsData[]
-  >([]);
+  const mockData: FeedbackRequestsData[] = [
+    {
+      id: "3_feedback",
+      createdAt: new Date("2023-07-12T04:00:06.906088+00:00"),
+      updatedAt: new Date("2023-07-12T04:00:06.906088+00:00"),
+      userId: "WDTMtD5YqdgLl4ILXhBy5LlII352",
+      projectName: "Project with unread feedback",
+      projectNotes: "",
+      feedbackAvailable: true,
+      read: false,
+      isArchived: false,
+    },
+    {
+      id: "2_read_feedback",
+      createdAt: new Date("2023-07-12T04:00:06.906088+00:00"),
+      updatedAt: new Date("2023-07-12T04:00:06.906088+00:00"),
+      userId: "WDTMtD5YqdgLl4ILXhBy5LlII352",
+      projectName: "Project with read feedback",
+      projectNotes: "",
+      feedbackAvailable: true,
+      read: true,
+      isArchived: false,
+    },
+    {
+      id: "1",
+      createdAt: new Date("2023-07-12T04:00:06.906088+00:00"),
+      updatedAt: new Date("2023-07-12T04:00:06.906088+00:00"),
+      userId: "WDTMtD5YqdgLl4ILXhBy5LlII352",
+      projectName: "Project with no feedback",
+      projectNotes: "",
+      feedbackAvailable: false,
+      read: false,
+      isArchived: false,
+    },
+  ];
 
-  const fillMockData = () => {
-    setFeedbackRequests([
-      {
-        id: "3_feedback",
-        createdAt: new Date("2023-07-12T04:00:06.906088+00:00"),
-        updatedAt: new Date("2023-07-12T04:00:06.906088+00:00"),
-        userId: "WDTMtD5YqdgLl4ILXhBy5LlII352",
-        projectName: "Project with unread feedback",
-        projectNotes: "",
-        feedbackAvailable: true,
-        read: false,
-        isArchived: false,
-      },
-      {
-        id: "2_read_feedback",
-        createdAt: new Date("2023-07-12T04:00:06.906088+00:00"),
-        updatedAt: new Date("2023-07-12T04:00:06.906088+00:00"),
-        userId: "WDTMtD5YqdgLl4ILXhBy5LlII352",
-        projectName: "Project with read feedback",
-        projectNotes: "",
-        feedbackAvailable: true,
-        read: true,
-        isArchived: false,
-      },
-      {
-        id: "1",
-        createdAt: new Date("2023-07-12T04:00:06.906088+00:00"),
-        updatedAt: new Date("2023-07-12T04:00:06.906088+00:00"),
-        userId: "WDTMtD5YqdgLl4ILXhBy5LlII352",
-        projectName: "Project with no feedback",
-        projectNotes: "",
-        feedbackAvailable: false,
-        read: false,
-        isArchived: false,
-      },
-    ]);
-  };
+  const [feedbackRequests, setFeedbackRequests] =
+    useState<FeedbackRequestsData[]>(mockData);
 
   return (
     <div className="p-4">
@@ -63,7 +60,7 @@ export default function ProjectFeedbackComponent() {
       <p>for demonstration purposes (i.e. to be deleted later)</p>
       <button
         className="bg-slate-500 hover:bg-slate-700 text-white py-2 px-4 rounded"
-        onClick={fillMockData}
+        onClick={() => setFeedbackRequests(mockData)}
       >
         Add mock data
       </button>
