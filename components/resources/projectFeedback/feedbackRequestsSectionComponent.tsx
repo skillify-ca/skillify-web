@@ -61,9 +61,15 @@ export default function FeedbackRequestsSectionComponent({
               ) : (
                 <div></div>
               )}
-              <Link href={"/studentPortal/projectFeedback/edit/" + request.id}>
-                <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
-              </Link>
+              {!request.feedbackAvailable ? (
+                <Link
+                  href={"/studentPortal/projectFeedback/edit/" + request.id}
+                >
+                  <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
+                </Link>
+              ) : (
+                <div></div>
+              )}
             </div>
           ))}
         </>
