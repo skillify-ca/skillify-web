@@ -13,17 +13,7 @@ export default function ProjectFeedbackComponent() {
   const fillMockData = () => {
     setFeedbackRequests([
       {
-        id: "1",
-        createdAt: new Date("2023-07-12T04:00:06.906088+00:00"),
-        updatedAt: new Date("2023-07-12T04:00:06.906088+00:00"),
-        userId: "WDTMtD5YqdgLl4ILXhBy5LlII352",
-        projectName: "Project with read feedback",
-        feedbackAvailable: true,
-        read: true,
-        isArchived: false,
-      },
-      {
-        id: "2",
+        id: "3",
         createdAt: new Date("2023-07-12T04:00:06.906088+00:00"),
         updatedAt: new Date("2023-07-12T04:00:06.906088+00:00"),
         userId: "WDTMtD5YqdgLl4ILXhBy5LlII352",
@@ -33,7 +23,17 @@ export default function ProjectFeedbackComponent() {
         isArchived: false,
       },
       {
-        id: "3",
+        id: "2",
+        createdAt: new Date("2023-07-12T04:00:06.906088+00:00"),
+        updatedAt: new Date("2023-07-12T04:00:06.906088+00:00"),
+        userId: "WDTMtD5YqdgLl4ILXhBy5LlII352",
+        projectName: "Project with read feedback",
+        feedbackAvailable: true,
+        read: true,
+        isArchived: false,
+      },
+      {
+        id: "1",
         createdAt: new Date("2023-07-12T04:00:06.906088+00:00"),
         updatedAt: new Date("2023-07-12T04:00:06.906088+00:00"),
         userId: "WDTMtD5YqdgLl4ILXhBy5LlII352",
