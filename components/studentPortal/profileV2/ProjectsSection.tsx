@@ -41,9 +41,7 @@ export default function ProjectsSection({ user }: ProjectsSectionProps) {
                   {/* empty div to put the title and edit button at the center and middle respectively*/}
                   <div className="w-6"></div>
                   <p className="font-bold text-center">{it.name}</p>
-                  <Link
-                    href={"/resources/sideProjectHub/editProject/" + it.name}
-                  >
+                  <Link href={"/profile/sideProjectHub/editProject/" + it.name}>
                     <PencilAltIcon className="w-6 h-6 cursor-pointer hover:text-yellow-600" />
                   </Link>
                 </div>
@@ -68,7 +66,7 @@ export default function ProjectsSection({ user }: ProjectsSectionProps) {
           })}
           {/* TODO: this should not be displayed for everyone */}
           <div className="flex justify-around items-center p-4 m-4 shadow bg-backgroundPrimary rounded-xl">
-            <Link href={"/resources/sideProjectHub/addProject"}>
+            <Link href={"/profile/sideProjectHub/addProject"}>
               <Button label="Add Project" size="large" />
             </Link>
           </div>
