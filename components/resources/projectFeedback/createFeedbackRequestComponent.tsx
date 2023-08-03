@@ -27,6 +27,15 @@ export default function CreateFeedbackRequestComponent() {
         </div>
       </div>
 
+      <h3 className="my-4 text-xl font-bold">Feedback Type</h3>
+      <form className="mb-4">
+        <input type="radio" name="feedbackType" />
+        <label>Live</label>
+        <br />
+        <input type="radio" name="feedbackType" />
+        <label>Recorded</label>
+      </form>
+
       <h3 className="mb-4 text-xl font-bold">Additional Notes</h3>
       <textarea
         value={notes}
