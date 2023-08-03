@@ -53,8 +53,8 @@ export default function FeedbackRequestsSectionComponent({
                   <div
                     className={`rounded-full h-6 w-6 border-2 cursor-pointer ${
                       request.read
-                        ? "bg-green-500 border-green-500"
-                        : "border-slate-500"
+                        ? "border-slate-500"
+                        : "bg-green-500 border-green-500"
                     }`}
                   ></div>
                 </Link>
