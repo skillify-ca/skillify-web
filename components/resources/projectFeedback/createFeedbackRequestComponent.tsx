@@ -5,7 +5,7 @@ import { Input } from "../../ui/Input";
 export default function CreateFeedbackRequestComponent() {
   const [projectName, setProjectName] = useState("");
   const [githubLink, setGithubLink] = useState("");
-  const [description, setDescription] = useState("");
+  const [notes, setNotes] = useState("");
 
   return (
     <div className="p-4 flex flex-col">
@@ -13,9 +13,6 @@ export default function CreateFeedbackRequestComponent() {
 
       <h3 className="my-4 text-xl font-bold">Project Name</h3>
       <Input value={projectName} setValue={setProjectName} />
-
-      <h3 className="my-4 text-xl font-bold">Brief Description</h3>
-      <Input value={description} setValue={setDescription} />
 
       <h3 className="my-4 text-xl font-bold">Share Project</h3>
       <div className="mb-4 p-2 flex flex-col rounded bg-backgroundSecondary">
@@ -29,6 +26,17 @@ export default function CreateFeedbackRequestComponent() {
           <input type="file" accept=".zip" />
         </div>
       </div>
+
+      <h3 className="mb-4 text-xl font-bold">Additional Notes</h3>
+      <textarea
+        value={notes}
+        onChange={(e) => setNotes(e.target.value)}
+        className=" resize-y w-full p-4 bg-white border rounded-md shadow-lg appearance-none text-inputTextPrimary focus:outline-none focus:z-10 sm:text-sm"
+        placeholder="Enter Answer"
+      />
+      <p className={`${notes.length > 1000 ? "text-red-500" : ""}`}>
+        {notes.length}/1000 characters
+      </p>
 
       <Button label="Create" />
     </div>

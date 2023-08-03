@@ -9,7 +9,7 @@ export type FeedbackRequestsData = {
   updatedAt: Date;
   userId: string;
   projectName: string;
-  projectDescription?: string;
+  projectNotes: string;
   feedbackAvailable: boolean;
   read: boolean;
   isArchived: boolean;
