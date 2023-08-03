@@ -45,7 +45,14 @@ export default function EditFeedbackRequestComponent({
       </p>
 
       <div className="my-4">
-        <Button label="Save" />
+        <Button
+          label="Save"
+          // Grey out save button if the feedbackRequestId includes the substring "feedback"
+          // Only for demonstration purposes, really this should be retrieving the feedback request
+          // from the backend and checking if the feedbackAvailable field is true
+          // i.e. only allow users to save edits if no feedback has been received yet
+          disabled={feedbackRequestId.includes("feedback")}
+        />
       </div>
     </div>
   );
