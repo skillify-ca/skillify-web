@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { computeLanguageScore } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/computeScore";
-import { quizResultsData } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/firstProgrammingLanguage";
 import { getPreferredLanguageForQuizResults } from "../../../../pages/api/studentPortal/quizzes/firstProgrammingLanguage/getPreferredLanguage";
+import { quizResultsData } from "../../../../pages/api/studentPortal/quizzes/quizData/firstProgrammingLanguage";
 import { Button } from "../../../ui/Button";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
 import { QuizViewState } from "../shared/types";
