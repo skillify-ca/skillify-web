@@ -29,6 +29,7 @@ export default function FeedbackResponse({
               "https://d3jppm0n5ndqu2.cloudfront.net/header-section-workshop.mp4"
             }
             controls={true}
+            className="rounded-xl"
           />
         </div>
       ) : (
