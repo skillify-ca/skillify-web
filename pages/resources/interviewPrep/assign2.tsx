@@ -13,9 +13,7 @@ export default function Assign2Page() {
               Back
             </button>
           </Link>
-          <h1 className="text-3xl font-bold">
-            Real Interview Simulation - Kira
-          </h1>
+          <h1 className="text-3xl font-bold">Real Interview Simulation</h1>
           <Link href="./lesson5">
             <button className="px-4 py-2 text-white bg-blue-500 rounded-lg">
               Next
@@ -29,35 +27,88 @@ export default function Assign2Page() {
           rel="noopener noreferrer"
           className="block px-6 py-3 mx-auto mb-6 text-center text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600"
         >
-          Go to Kira Platform
+          Go to Recording Platform
         </a>
 
-        <div className="max-w-3xl mx-auto">
-          {' '}
-          {/* Update the width here */}
+        <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
           <h2 className="mb-4 text-xl font-bold">Overview:</h2>
-          <p className="mb-6">
+          <p>
             {` In this mock interview, we will conduct a real interview simulation using Kira. The interview will consist of three sections: Behavioral, Technical, and Coding Hands-On. Each section will evaluate different aspects of your skills and suitability for the role you're applying for.`}
           </p>
-          <h2 className="mb-4 text-xl font-bold">Behavioral Questions:</h2>
-          <p className="mb-6">
-            {` In the Behavioral section, you'll be asked questions about your past experiences, how you handle challenges, and your problem-solving abilities. We'll assess your communication skills, teamwork, and how you react to different situations.`}
-          </p>
-          <h2 className="mb-4 text-xl font-bold">Technical Questions:</h2>
-          <p className="mb-6">
-            {` The Technical section will focus on your domain knowledge and expertise. You may encounter questions related to specific technologies, tools, or methodologies relevant to the job you're applying for. We'll evaluate your technical understanding and problem-solving capabilities.`}
-          </p>
-          <h2 className="mb-4 text-xl font-bold">Coding Hands-On:</h2>
-          <p className="mb-6">
-            {`In the Coding Hands-On section, you'll be given realistic coding challenges to solve within a specified time frame. This is an opportunity to showcase your coding skills, algorithmic thinking, and ability to write clean and efficient code.`}
-          </p>
-          <h2 className="mb-4 text-xl font-bold">Kira Recording:</h2>
-          <p className="mb-6">
-            {` To provide constructive feedback and accurate evaluation, the mock interview will be recorded using Kira. This will help us review your performance and provide personalized insights to enhance your interview skills.`}
-          </p>
-          <h2 className="mb-4 text-xl font-bold">Important Note:</h2>
+        </div>
+        <div className="my-4 border-b"></div>
+        <div>
+          <div className="w-full">
+            <table className="w-full border-collapse border border-gray-300 text-base rounded-lg">
+              <thead>
+                <tr>
+                  <th className="px-6 py-3 border border-gray-300 bg-gray-100 font-semibold">
+                    Behavioral
+                  </th>
+                  <th className="px-6 py-3 border border-gray-300 bg-gray-100 font-semibold">
+                    Technical
+                  </th>
+                  <th className="px-6 py-3 border border-gray-300 bg-gray-100 font-semibold">
+                    Coding Hands-on
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="px-6 py-3 border border-gray-300 whitespace-normal">
+                    {`Questions about your experiences, challenges, and problem-solving skills.`}
+                    {'   '}
+                    <br />
+                    <br />
+                    {'   '}
+                    {`We'll assess communication, teamwork, and reactions to situations.`}
+                  </td>
+                  <td className="px-6 py-3 border border-gray-300 whitespace-normal">
+                    {`Focus on your knowledge and expertise in specific technologies, tools, or methodologies.`}{' '}
+                    <br />
+                    <br />{' '}
+                    {`We'll evaluate technical understanding and problem-solving abilities.`}
+                  </td>
+                  <td className="px-6 py-3 border border-gray-300 whitespace-normal">
+                    {`Realistic coding challenges to showcase skills. `} <br />
+                    <br />{' '}
+                    {`Algorithmic thinking, and writing efficient code within time constraints.`}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="my-4 border-b"></div>
+          <div className="p-4 mt-6 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+            <h2 className="mb-4 text-xl font-bold">Recording:</h2>
+            <p>
+              {` To provide constructive feedback and accurate evaluation, the mock interview will be recorded using Kira. This will help us review your performance and provide personalized insights to enhance your interview skills.`}
+            </p>
+          </div>
+          <div className="p-4 mb-6 bg-red-100 border border-red-300 rounded-lg">
+            <h2 className="mb-4 text-xl font-bold">Important Note:</h2>
+            <p>
+              {` Please ensure you have a stable internet connection and access to a webcam for the Kira recording. Feel free to reach out if you have any questions or concerns before the mock interview. Good luck, and we look forward to seeing you shine in the simulation!`}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Additional Notes for Next Steps */}
+      <div className="my-4 border-b"></div>
+      <div className="prose">
+        <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+          <h2 className="mb-4 text-xl font-bold">Notes:</h2>
           <p>
-            {` Please ensure you have a stable internet connection and access to a webcam for the Kira recording. Feel free to reach out if you have any questions or concerns before the mock interview. Good luck, and we look forward to seeing you shine in the simulation!`}
+            {`Ideally link should go to our own recording feature (Max's tool).`}
+            <br />
+            {`Create another page for mock interviews.`}
+            <br />
+            {`In coding part, have link to leetcode and start a timer on the page (Very realistic, since employers will have u click on a link to another platform.) Add common coding platforms`}
+            <br />
+            {`Can also use leetcode's pre-existng create own code interview feature: https://interview.leetcode.com/interview/`}
+            <br />
+            {`Gamify the recording feature`}
           </p>
         </div>
       </div>

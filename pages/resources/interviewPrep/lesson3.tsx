@@ -40,7 +40,7 @@ function Lesson3Page() {
           </button>
         </Link>
         <h1 className="mx-4 text-3xl font-bold">{`Employer's Expectations`}</h1>
-        <Link href="./assign1">
+        <Link href="./tools">
           <button className="px-4 py-2 text-white bg-blue-500 rounded-lg">
             Next
           </button>
@@ -97,6 +97,15 @@ function Lesson3Page() {
           </ul>
         </div>
       ))}
+
+      {/* Additional Notes for Next Steps */}
+      <div className="my-4 border-b"></div>
+      <div className="prose">
+        <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+          <h2 className="mb-4 text-xl font-bold">Notes:</h2>
+          <p>Remove this page</p>
+        </div>
+      </div>
     </div>
   );
 }

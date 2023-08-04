@@ -34,8 +34,8 @@ const Lesson2Content = () => {
       </div>
 
       <div className="my-4 border-b"></div>
-      <div className="p-4 mb-6 border rounded">
-        <h2 className="mb-2 text-2xl font-semibold">1. Greetings</h2>
+      <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+        <h2 className="mb-2 text-xl font-semibold">1. Greetings</h2>
         <p>
           <strong>Purpose:</strong> Set the tone for a friendly and welcoming
           atmosphere.
@@ -46,8 +46,8 @@ const Lesson2Content = () => {
         </p>
       </div>
 
-      <div className="p-4 mb-6 border rounded">
-        <h2 className="mb-2 text-2xl font-semibold">
+      <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+        <h2 className="mb-2 text-xl font-semibold">
           2. Tell me about yourself
         </h2>
         <p>
@@ -61,8 +61,8 @@ const Lesson2Content = () => {
         </p>
       </div>
 
-      <div className="p-4 mb-6 border rounded">
-        <h2 className="mb-2 text-2xl font-semibold">3. Company Description</h2>
+      <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+        <h2 className="mb-2 text-xl font-semibold">3. Company Description</h2>
         <p>
           <strong>Purpose:</strong> Introduce the company, its values, and
           mission to the candidate.
@@ -73,8 +73,8 @@ const Lesson2Content = () => {
         </p>
       </div>
 
-      <div className="p-4 mb-6 border rounded">
-        <h2 className="mb-2 text-2xl font-semibold">4. Behavioral Questions</h2>
+      <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+        <h2 className="mb-2 text-xl font-semibold">4. Behavioral Questions</h2>
         <p>
           <strong>Purpose:</strong> Assess how a candidate behaves in different
           situations.
@@ -85,10 +85,8 @@ const Lesson2Content = () => {
         </p>
       </div>
 
-      <div className="p-4 mb-6 border rounded">
-        <h2 className="mb-2 text-2xl font-semibold">
-          5. Experience/Technical Questions
-        </h2>
+      <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+        <h2 className="mb-2 text-xl font-semibold">5. Technical Questions</h2>
         <p>
           <strong>Purpose:</strong> Evaluate the candidate&apos;s technical
           knowledge and relevant experiences.
@@ -99,8 +97,8 @@ const Lesson2Content = () => {
         </p>
       </div>
 
-      <div className="p-4 mb-6 border rounded">
-        <h2 className="mb-2 text-2xl font-semibold">6. Coding Questions</h2>
+      <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+        <h2 className="mb-2 text-xl font-semibold">6. Coding Questions</h2>
         <p>
           <strong>Purpose:</strong> Assess the candidate&apos;s ability to solve
           problems using code and algorithms.
@@ -111,8 +109,8 @@ const Lesson2Content = () => {
         </p>
       </div>
 
-      <div className="p-4 mb-6 border rounded">
-        <h2 className="mb-2 text-2xl font-semibold">
+      <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+        <h2 className="mb-2 text-xl font-semibold">
           7. Questions for the Company
         </h2>
         <p>
@@ -124,6 +122,15 @@ const Lesson2Content = () => {
           showcase genuine interest in joining the company.
         </p>
       </div>
+
+      {/* Additional Notes for Next Steps */}
+      <div className="my-4 border-b"></div>
+      <div className="prose">
+        <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+          <h2 className="mb-4 text-xl font-bold">Notes:</h2>
+          <p className="mb-6"></p>
+        </div>
+      </div>
     </div>
   );
 };
@@ -133,11 +140,11 @@ Lesson2Page.getLayout = function getLayout(page) {
     <div className="theme-default">
       <LandingNavbar />
 
-      <div className="grid grid-cols-1 lg:grid-cols-12">
-        <div className="hidden h-screen col-span-5 -mb-16 overflow-scroll lg:block">
+      <div className="grid h-screen grid-cols-1 lg:grid-cols-12">
+        <div className="hidden col-span-5 -mb-16 overflow-scroll lg:block">
           <InterviewPrepCourse />
         </div>
-        <div className="col-span-7 p-4">{page}</div>
+        <div className="col-span-7 p-4 overflow-scroll">{page}</div>
       </div>
     </div>
   );

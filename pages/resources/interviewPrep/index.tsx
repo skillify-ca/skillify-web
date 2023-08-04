@@ -67,7 +67,7 @@ export const InterviewPrepCourse = () => {
         headingStyle={headingStyle}
         circleIconStyle={circleIconStyle}
         continueButtonStyle={continueButtonStyle}
-        title={'Tools: Technical Terms'}
+        title={'Tools: Software Dictionary'}
         link={'interviewPrep/tools'}
       />
 
@@ -133,7 +133,7 @@ export const InterviewPrepCourse = () => {
         headingStyle={headingStyle}
         circleIconStyle={circleIconStyle}
         continueButtonStyle={continueButtonStyle}
-        title={'Assignment 2: Real Interview Simulation - Kira'}
+        title={'Assignment 2: Real Interview Simulation'}
         link={'interviewPrep/assign2'}
       />
 

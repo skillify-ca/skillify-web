@@ -5,17 +5,30 @@ import LandingNavbar from '../../../components/landingPage/LandingNavbar';
 
 export default function Assign1Page() {
   const [experiences, setExperiences] = useState([]);
-  const [newExperience, setNewExperience] = useState('');
+  const [editIndex, setEditIndex] = useState(-1);
+  const [editedExperience, setEditedExperience] = useState('');
 
   const handleAddExperience = () => {
-    if (newExperience.trim() === '') {
-      return;
+    if (editIndex !== -1) {
+      // If editIndex is not -1, we are updating an existing experience
+      const updatedExperiences = [...experiences];
+      updatedExperiences[editIndex] = editedExperience;
+      setExperiences(updatedExperiences);
+      setEditedExperience('');
+      setEditIndex(-1);
+    } else {
+      // If editIndex is -1, we are adding a new experience
+      if (editedExperience.trim() === '') {
+        return;
+      }
+      setExperiences([...experiences, editedExperience]);
+      setEditedExperience('');
     }
-    setExperiences([...experiences, newExperience]);
-    setNewExperience('');
   };
 
   const handleRemoveExperience = (index) => {
+    setEditedExperience(experiences[index]);
+    setEditIndex(index);
     const updatedExperiences = experiences.filter((_, i) => i !== index);
     setExperiences(updatedExperiences);
   };
@@ -24,7 +37,7 @@ export default function Assign1Page() {
     <div className="theme-default">
       <div className="max-w-3xl mx-auto mt-8">
         <div className="flex items-center justify-between mb-4">
-          <Link href="./lesson3">
+          <Link href="./tools">
             <button className="px-4 py-2 text-white bg-gray-500 rounded-lg">
               Back
             </button>
@@ -36,19 +49,20 @@ export default function Assign1Page() {
             </button>
           </Link>
         </div>
-        <div className="flex items-center">
+        {/* Add the textbox and button here */}
+        <div className="mb-4 flex items-center">
           <input
             type="text"
-            className="w-full px-4 py-2 border rounded-l"
+            className="flex-1 px-4 py-2 border rounded-l"
             placeholder="Add an experience..."
-            value={newExperience}
-            onChange={(e) => setNewExperience(e.target.value)}
+            value={editedExperience}
+            onChange={(e) => setEditedExperience(e.target.value)}
           />
           <button
             className="px-4 py-2 text-white bg-blue-500 rounded-r"
             onClick={handleAddExperience}
           >
-            Add
+            {editIndex !== -1 ? 'Save' : 'Add'}
           </button>
         </div>
         <div>
@@ -59,15 +73,32 @@ export default function Assign1Page() {
                 className="flex items-center justify-between py-2"
               >
                 <span>{experience}</span>
-                <button
-                  className="px-3 py-1 text-white bg-red-500 rounded"
-                  onClick={() => handleRemoveExperience(index)}
-                >
-                  Remove
-                </button>
+                <div>
+                  <button
+                    className="px-3 py-1 mr-2 text-white bg-blue-500 rounded"
+                    onClick={() => handleRemoveExperience(index)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="px-3 py-1 text-white bg-red-500 rounded"
+                    onClick={() => handleRemoveExperience(index)}
+                  >
+                    Remove
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
+        </div>
+      </div>
+
+      {/* Additional Notes for Next Steps */}
+      <div className="my-4 border-b"></div>
+      <div className="prose">
+        <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+          <h2 className="mb-4 text-xl font-bold">Notes:</h2>
+          <p>{`Add a points system so the user gains points for listing an experience.`}</p>
         </div>
       </div>
     </div>

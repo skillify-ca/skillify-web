@@ -50,7 +50,6 @@ export default function Try1Page() {
         ...prevAnswers,
         [prompts[currentPrompt]]: answer,
       }));
-      setCurrentPrompt(null);
       setShowExemplaryAnswer(false);
     }
   };
@@ -58,6 +57,15 @@ export default function Try1Page() {
   const handleSetCurrentPrompt = (index) => {
     setCurrentPrompt(index);
     setShowExemplaryAnswer(false);
+  };
+
+  const handleClearAnswer = () => {
+    if (currentPrompt !== null) {
+      setAnswers((prevAnswers) => ({
+        ...prevAnswers,
+        [prompts[currentPrompt]]: '',
+      }));
+    }
   };
 
   return (
@@ -84,25 +92,26 @@ export default function Try1Page() {
         </div>
 
         <div className="my-4 border-b"></div>
-        <div className="flex">
-          <div className="w-1/3 pr-2 overflow-y-auto max-h-80">
-            <div className="p-4 border">
-              {prompts.map((prompt, index) => (
-                <div
-                  key={index}
-                  className={`p-4 my-2 cursor-pointer ${
-                    index === currentPrompt
-                      ? 'bg-red-300'
-                      : answers[prompt]
-                      ? 'bg-green-300'
-                      : 'bg-gray-300'
-                  }`}
-                  onClick={() => handleSetCurrentPrompt(index)}
-                >
-                  {prompt}
-                </div>
-              ))}
-            </div>
+        <div className="flex flex-col">
+          <div
+            className="w-full p-4 border"
+            style={{ maxHeight: '50vh', overflowY: 'auto' }}
+          >
+            {prompts.map((prompt, index) => (
+              <div
+                key={index}
+                className={`p-4 my-2 cursor-pointer ${
+                  index === currentPrompt
+                    ? 'bg-red-300'
+                    : answers[prompt]
+                    ? 'bg-green-300'
+                    : 'bg-gray-300'
+                }`}
+                onClick={() => handleSetCurrentPrompt(index)}
+              >
+                {prompt}
+              </div>
+            ))}
             {/* Add a form to add new prompts */}
             <form
               onSubmit={(e) => {
@@ -125,7 +134,7 @@ export default function Try1Page() {
               </button>
             </form>
           </div>
-          <div className="w-2/3 p-4">
+          <div className="w-full p-4 mt-4">
             {currentPrompt !== null && (
               <>
                 <textarea
@@ -150,7 +159,7 @@ export default function Try1Page() {
                   </button>
                   <button
                     className="px-4 py-2 text-white bg-gray-500 rounded-lg"
-                    onClick={() => setCurrentPrompt(null)}
+                    onClick={() => handleClearAnswer()}
                   >
                     Clear
                   </button>
@@ -171,6 +180,20 @@ export default function Try1Page() {
           </div>
         </div>
       </div>
+
+      {/* Additional Notes for Next Steps */}
+      <div className="my-4 border-b"></div>
+      <div className="prose">
+        <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+          <h2 className="mb-4 text-xl font-bold">Notes:</h2>
+          <p>
+            Add a record button for each prompt <br /> Import Experiences and
+            checklist experiences that apply. <br /> These experiences will be
+            displayed when recording. <br /> Add a points system so user gains
+            points for answering every question.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -181,10 +204,10 @@ Try1Page.getLayout = function getLayout(page) {
       <LandingNavbar />
 
       <div className="grid h-screen grid-cols-1 lg:grid-cols-12">
-        <div className="hidden col-span-5 overflow-scroll lg:block">
+        <div className="lg:col-span-5 overflow-scroll lg:block">
           <InterviewPrepCourse />
         </div>
-        <div className="col-span-7 p-4 overflow-scroll">{page}</div>
+        <div className="lg:col-span-7 p-4 overflow-scroll">{page}</div>
       </div>
     </div>
   );

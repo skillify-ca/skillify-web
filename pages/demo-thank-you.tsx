@@ -1,15 +1,16 @@
-import EmailCapture from "../components/coding/landing/EmailCapture";
-import SEO from "../components/SEO";
+import React from 'react';
+import EmailCapture from '../components/coding/landing/EmailCapture';
+import SEO from '../components/SEO';
 
 export default function Page() {
   return (
     <div>
       <SEO
-        title={"Learning to Code Guide"}
+        title={'Learning to Code Guide'}
         description={
-          "This guide teaches you our top strategies for learning how to code"
+          'This guide teaches you our top strategies for learning how to code'
         }
-        image={"https://melv1n.com/img/learn-to-code-how-to-start.png"}
+        image={'https://melv1n.com/img/learn-to-code-how-to-start.png'}
       />
       <div className="flex justify-center w-full p-4 bg-murkrow">
         <img src="/images/logo-dark.svg" className="w-36" />
@@ -35,13 +36,13 @@ export default function Page() {
           you and see how I can help!
         </p>
         <p className="p-4 text-center text-white bg-murkrow">
-          No email? Be sure to check your spam folder. You can contact me at{" "}
+          No email? Be sure to check your spam folder. You can contact me at{' '}
           <a
             href="mailto:vithushan@skillify.ca"
             className="underline text-charmander"
           >
             vithushan@skillify.ca
-          </a>{" "}
+          </a>{' '}
           if you need additional assistance.
         </p>
       </div>

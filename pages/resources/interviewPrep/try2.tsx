@@ -101,7 +101,11 @@ export default function Try2Page() {
         newSections[currentSection].prompts[currentPrompt].answer = answer;
         return newSections;
       });
-      setCurrentPrompt(null);
+      setSectionPrompts((prevSectionPrompts) => {
+        const newSectionPrompts = [...prevSectionPrompts];
+        newSectionPrompts[currentSection][currentPrompt] = answer; // Set the corresponding prompt's answer
+        return newSectionPrompts;
+      });
       setShowExemplaryAnswer(false);
     }
   };
@@ -160,6 +164,7 @@ export default function Try2Page() {
                   <div
                     key={promptIndex}
                     className={`p-4 my-2 cursor-pointer ${
+                      sectionIndex === currentSection &&
                       promptIndex === currentPrompt
                         ? 'bg-red-300'
                         : prompt.answer
@@ -218,7 +223,13 @@ export default function Try2Page() {
                 </button>
                 <button
                   className="px-4 py-2 text-white bg-gray-500 rounded-lg"
-                  onClick={() => setCurrentPrompt(null)}
+                  onClick={() => {
+                    setSectionPrompts((prevSectionPrompts) => {
+                      const newSectionPrompts = [...prevSectionPrompts];
+                      newSectionPrompts[currentSection][currentPrompt] = ''; // Set the corresponding prompt's answer to an empty string
+                      return newSectionPrompts;
+                    });
+                  }}
                 >
                   Clear
                 </button>
@@ -240,6 +251,20 @@ export default function Try2Page() {
               )}
             </div>
           )}
+        </div>
+      </div>
+
+      {/* Additional Notes for Next Steps */}
+      <div className="my-4 border-b"></div>
+      <div className="prose">
+        <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+          <h2 className="mb-4 text-xl font-bold">Notes:</h2>
+          <p>
+            {`Add AI feedback for written responses`} <br />
+            {`Change to Chris' format with the different jobs and clicking on each one of them will bring me to a page with generated questions for that job`}{' '}
+            <br /> {`Similar to the previous page.`} <br />{' '}
+            {`Add a points system so user gains points for answering every question.`}
+          </p>
         </div>
       </div>
     </div>

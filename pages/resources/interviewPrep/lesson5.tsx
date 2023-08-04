@@ -108,6 +108,15 @@ export default function WrapUpPage() {
           </p>
         </div>
       </div>
+
+      {/* Additional Notes for Next Steps */}
+      <div className="my-4 border-b"></div>
+      <div className="prose">
+        <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+          <h2 className="mb-4 text-xl font-bold">Notes:</h2>
+          <p>Video format recommended add-on</p>
+        </div>
+      </div>
     </div>
   );
 }
