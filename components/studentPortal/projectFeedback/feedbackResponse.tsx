@@ -16,11 +16,11 @@ export default function FeedbackResponse({
     <div className="p-4">
       <h2 className="text-3xl font-bold">Feedback for: {projectName}</h2>
 
-      <p className="font-semibold my-2">
+      <p className="my-2">
         Feedback type: {recordedFeedback ? "Recorded" : "Live"}
       </p>
 
-      <p className="my-2 font-semibold">Coach: {coachName}</p>
+      <p className="my-2">Coach: {coachName}</p>
 
       {recordedFeedback ? (
         <div className="my-2">
