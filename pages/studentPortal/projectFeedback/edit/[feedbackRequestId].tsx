@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
-import EditFeedbackRequestComponent from "../../../../components/resources/projectFeedback/editFeedbackRequestComponent";
+import EditFeedbackRequestComponent from "../../../../components/studentPortal/projectFeedback/editFeedbackRequestComponent";
 
 export default function EditFeedbackRequestPage() {
   const router = useRouter();

@@ -1,5 +1,5 @@
 import React from "react";
-import CreateFeedbackRequestComponent from "../../../../components/resources/projectFeedback/createFeedbackRequestComponent";
+import CreateFeedbackRequestComponent from "../../../../components/studentPortal/projectFeedback/createFeedbackRequestComponent";
 
 export default function CreateRequest() {
   return <CreateFeedbackRequestComponent />;

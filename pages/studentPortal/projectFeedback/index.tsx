@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectFeedbackComponent from "../../../components/resources/projectFeedback/projectFeedbackComponent";
+import ProjectFeedbackComponent from "../../../components/studentPortal/projectFeedback/projectFeedbackComponent";
 
 export default function ProjectFeedback() {
   return <ProjectFeedbackComponent />;
