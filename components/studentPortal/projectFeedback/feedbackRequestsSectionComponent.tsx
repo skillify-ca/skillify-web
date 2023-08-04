@@ -32,7 +32,6 @@ export default function FeedbackRequestsSectionComponent({
       ) : (
         <>
           <div className="grid grid-cols-5">
-            {/* name created updated dropdown for description*/}
             <p className="font-semibold">Project Name</p>
             <p className="font-semibold">Date Created</p>
             <p className="font-semibold">Date Updated</p>
