@@ -45,9 +45,7 @@ export default function FeedbackRequestsSectionComponent({
               key={request.id}
             >
               {request.feedbackAvailable ? (
-                <Link
-                  href={"/studentPortal/projectFeedback/edit/" + request.id}
-                >
+                <Link href={"/studentPortal/projectFeedback/" + request.id}>
                   <p className="cursor-pointer">{request.projectName}</p>
                 </Link>
               ) : (
