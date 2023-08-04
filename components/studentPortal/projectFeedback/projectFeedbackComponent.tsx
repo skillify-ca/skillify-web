@@ -57,20 +57,22 @@ export default function ProjectFeedbackComponent() {
       <FeedbackRequestsSectionComponent feedbackRequests={feedbackRequests} />
 
       <br />
-      <p>for demonstration purposes (i.e. to be deleted later)</p>
-      <button
-        className="bg-slate-500 hover:bg-slate-700 text-white py-2 px-4 rounded"
-        onClick={() => setFeedbackRequests(mockData)}
-      >
-        Add mock data
-      </button>
       <br />
-      <button
-        className="bg-slate-500 hover:bg-slate-700 text-white py-2 px-4 rounded"
+      <br />
+      <br />
+      <br />
+      <p>for demonstration purposes (i.e. to be deleted later)</p>
+      <Button
+        label="Mock data"
+        onClick={() => setFeedbackRequests(mockData)}
+        backgroundColor="blue"
+      />
+      <br />
+      <Button
+        label="Clear data"
         onClick={() => setFeedbackRequests([])}
-      >
-        Clear data
-      </button>
+        backgroundColor="blue"
+      />
     </div>
   );
 }
