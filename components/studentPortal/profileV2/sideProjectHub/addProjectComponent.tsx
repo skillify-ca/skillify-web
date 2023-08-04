@@ -6,6 +6,7 @@ export default function AddProjectComponent() {
   const [projectName, setProjectName] = useState("");
   const [githubLink, setGithubLink] = useState("");
   const [projectLink, setProjectLink] = useState("");
+  const [imageLink, setImageLink] = useState("");
 
   return (
     <div className="p-4 flex flex-col">
@@ -37,8 +38,8 @@ export default function AddProjectComponent() {
         <div className="mt-2 mb-2">
           <h4 className="font-bold">Image link</h4>
           <Input
-            value={githubLink}
-            setValue={setGithubLink}
+            value={imageLink}
+            setValue={setImageLink}
             placeholder="https://xyz.vercel.app/image.jpeg"
           />
         </div>
