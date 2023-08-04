@@ -41,10 +41,18 @@ export default function FeedbackRequestsSectionComponent({
 
           {feedbackRequests.map((request) => (
             <div
-              className="grid grid-cols-5 my-2 p-2 rounded-xl place-items-center"
+              className="grid grid-cols-5 my-2 p-2 rounded-xl place-items-center hover:bg-backgroundHover"
               key={request.id}
             >
-              <p>{request.projectName}</p>
+              {request.feedbackAvailable ? (
+                <Link
+                  href={"/studentPortal/projectFeedback/edit/" + request.id}
+                >
+                  <p className="cursor-pointer">{request.projectName}</p>
+                </Link>
+              ) : (
+                <p>{request.projectName}</p>
+              )}
               <p>{format(new Date(request.createdAt), "MM/dd/yyyy")}</p>
               <p>{format(new Date(request.updatedAt), "MM/dd/yyyy")}</p>
               {request.feedbackAvailable ? (
