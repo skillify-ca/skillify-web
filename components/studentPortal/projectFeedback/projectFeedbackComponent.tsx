@@ -68,6 +68,7 @@ export default function ProjectFeedbackComponent() {
         backgroundColor="blue"
       />
       <br />
+      <br />
       <Button
         label="Clear data"
         onClick={() => setFeedbackRequests([])}
