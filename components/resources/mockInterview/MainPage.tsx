@@ -10,7 +10,7 @@ const MainPage = ({ onNext }) => {
       <h1 className="text-2xl">Welcome to Mock Interview Prep. </h1>
       <p>
         Use this tool to record yourself answering questions to the most common
-        interview questions.
+        interview questions, and showcase your personality, skills, and experiences.
       </p>
       <select
         value={selectedMode}

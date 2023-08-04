@@ -95,7 +95,7 @@ const RecordedInterview = ( {onNext} ) => {
 
         {showRecordingEnded && (
           <button className="bg-orange-500 text-white rounded-md px-4 py-2 mt-4" onClick={onNext}>
-            Next
+            Finish
           </button>
         )}
       </div>

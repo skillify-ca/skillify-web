@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import GetFeedback from './EndingInfo';
 import MainPage from './MainPage';
-import Modes from './Modes';
+import Info from './PreRecordingInfo';
 import RecordedInterview from './RecordedInterview';
-import GetFeedback from './GetFeedback';
 
 const numberOfStages = 4;
 
@@ -24,7 +24,7 @@ const FullScreenComponent = () => {
       case 0:
         return <MainPage onNext={handleNext} />;
       case 1:
-        return <Modes onNext={handleNext} />;
+        return <Info onNext={handleNext} />;
       case 2:
         return <RecordedInterview onNext={handleNext}/>;
       case 3:
@@ -38,7 +38,7 @@ const FullScreenComponent = () => {
 
   return (
     <div>
-      {currentStage !== 0 && (
+      {currentStage !== 0 && currentStage !== numberOfStages - 1 && (
         <button
           className="fixed bottom-4 left-4 px-4 py-2 bg-gray-500 text-white rounded"
           onClick={handleBack}

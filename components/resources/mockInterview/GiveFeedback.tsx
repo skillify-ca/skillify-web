@@ -23,11 +23,20 @@ export default function GiveFeedback() {
       {stage === 1 ? ( // Render Stage 1 content
         <div className="flex items-center">
           {/* Red shape fixed to the left */}
-          <div
+          <iframe
+            width="360"
+            height="315"
+            src="https://www.youtube.com/embed/NWWaOWRRR38"
+            title="YouTube Video"
+            className="fixed left-8 top-1/2 transform -translate-y-1/3"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+          />
+          {/* <div
             className="fixed left-8 top-1/2 transform -translate-y-1/3 w-96 h-80 bg-red-500 rounded-lg flex items-center justify-center text-white font-bold text-xl"
           >
             Video
-          </div>
+          </div> */}
 
           {videoUrl ? (
             <div className="flex flex-col items-center ml-4 h-80">
@@ -70,7 +79,7 @@ export default function GiveFeedback() {
         </div>
       ) : (
         <div>
-          <h1>Thank you for your feedback!</h1>
+          <h1>Thank you for providing your feedback to the student!</h1>
         </div>
       )}
     </div>
