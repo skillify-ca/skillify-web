@@ -28,6 +28,7 @@
     "@radix-ui/react-dialog": "^1.0.2",
     "@radix-ui/react-progress": "^1.0.1",
     "@radix-ui/react-tooltip": "^1.0.3",
+    "@react-pdf/renderer": "^3.1.10",
     "@react-spring/web": "^9.6.1",
     "@react-three/drei": "^7.27.5",
     "@react-three/fiber": "^7.0.25",
@@ -35,6 +36,11 @@
     "@sanity/client": "^3.4.1",
     "@sendgrid/mail": "^7.6.0",
     "@types/react-redux": "^7.1.16",
+  
+    "react-pdf": "7.3.3",
+    "pdfjs": "^2.5.0",
+    "pdfjs-dist": "^3.7.107",
+
     "babel-jest": "^26.6.3",
     "colyseus.js": "^0.14.12",
     "contentful": "^9.1.5",

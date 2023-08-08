@@ -2,10 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 
-interface InputProps<K extends string, V extends string | string[]> {
-  label: string;
-  labelClassName?: string;
-  name: K;
+interface InputProps<K extends string, V extends string | string[]> { label: string; labelClassName?: string; name: K;
   value?: V;
   placeholder: string;
   onChange: (name: K, value: V) => void;

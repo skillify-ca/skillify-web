@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Input } from "./ParentComponents/Input";
 import { useAppDispatch, useAppSelector } from "../redux_lib/hook";
 import { ResumeProfile } from "../redux_lib/types"

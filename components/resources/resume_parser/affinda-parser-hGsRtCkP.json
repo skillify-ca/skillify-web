@@ -1,0 +1,1094 @@
+{
+    "identifier": "hGsRtCkP",
+    "ready": true,
+    "email": "",
+    "proportionComplete": 100,
+    "processing": false,
+    "resumes": [
+        {
+            "data": {
+                "certifications": [],
+                "dateOfBirth": null,
+                "education": [
+                    {
+                        "id": 29612294,
+                        "organization": "Southwestern University",
+                        "accreditation": {
+                            "education": "Bachelor of Arts",
+                            "educationLevel": "bachelors",
+                            "inputStr": "Bachelor of Arts in Computer Science, Minor in Business",
+                            "matchStr": ""
+                        },
+                        "grade": null,
+                        "location": {
+                            "formatted": "Georgetown, TX, USA",
+                            "streetNumber": null,
+                            "street": null,
+                            "apartmentNumber": null,
+                            "city": "Georgetown",
+                            "postalCode": null,
+                            "state": "Texas",
+                            "country": "United States",
+                            "rawInput": "Georgetown, TX",
+                            "countryCode": "US",
+                            "latitude": 30.6332618,
+                            "longitude": -97.6779842
+                        },
+                        "dates": {
+                            "startDate": "2018-08-01",
+                            "completionDate": "2021-05-01",
+                            "isCurrent": false,
+                            "rawText": "Aug. 2018 – May 2021"
+                        }
+                    },
+                    {
+                        "id": 29612295,
+                        "organization": "Blinn College",
+                        "accreditation": {
+                            "education": "Master of Liberal Arts",
+                            "educationLevel": "masters",
+                            "inputStr": "Associate's in Liberal Arts",
+                            "matchStr": ""
+                        },
+                        "grade": null,
+                        "location": {
+                            "formatted": "Bryan, TX, USA",
+                            "streetNumber": null,
+                            "street": null,
+                            "apartmentNumber": null,
+                            "city": "Bryan",
+                            "postalCode": null,
+                            "state": "Texas",
+                            "country": "United States",
+                            "rawInput": "Bryan, TX",
+                            "countryCode": "US",
+                            "latitude": 30.6743643,
+                            "longitude": -96.3699632
+                        },
+                        "dates": {
+                            "startDate": "2014-08-01",
+                            "completionDate": "2018-05-01",
+                            "isCurrent": false,
+                            "rawText": "Aug. 2014 – May 2018"
+                        }
+                    }
+                ],
+                "emails": [
+                    "jake@su.edu",
+                    "x@x.com"
+                ],
+                "location": null,
+                "name": {
+                    "raw": "Jake Ryan",
+                    "last": "Ryan",
+                    "first": "Jake",
+                    "title": "",
+                    "middle": ""
+                },
+                "objective": "",
+                "phoneNumbers": [
+                    "123-456-7890"
+                ],
+                "phoneNumberDetails": [
+                    {
+                        "rawText": "123-456-7890",
+                        "formattedNumber": null,
+                        "countryCode": null,
+                        "internationalCountryCode": null,
+                        "nationalNumber": null
+                    }
+                ],
+                "publications": [],
+                "referees": [],
+                "sections": [
+                    {
+                        "bbox": [
+                            157.41866904497147,
+                            36.01068,
+                            455.1074,
+                            69.97772
+                        ],
+                        "text": "Jake Ryan 123-456-7890 | jake@su.edu | linkedin.com/in/jake | github.com/jake",
+                        "pageIndex": 0,
+                        "sectionType": "PersonalDetails"
+                    },
+                    {
+                        "bbox": [
+                            36.657536,
+                            87.064514,
+                            570.30664,
+                            160.83136
+                        ],
+                        "text": "Education Southwestern University Georgetown, TX Bachelor of Arts in Computer Science, Minor in Business Aug. 2018 – May 2021 Blinn College Bryan, TX Associate's in Liberal Arts Aug. 2014 – May 2018",
+                        "pageIndex": 0,
+                        "sectionType": "Education"
+                    },
+                    {
+                        "bbox": [
+                            36.657494,
+                            170.97449,
+                            570.0764,
+                            443.20135
+                        ],
+                        "text": "Experience Undergraduate Research Assistant June 2020 – Present Texas A&M University College Station, TX • Developed a REST API using FastAPI and PostgreSQL to store data from learning management systems • Developed a full-stack web application using Flask, React, PostgreSQL and Docker to analyze GitHub data • Explored ways to visualize GitHub collaboration in a classroom setting Information Technology Support Specialist Sep. 2018 – Present Southwestern University Georgetown, TX • Communicate with managers to set up campus computers used on campus • Assess and troubleshoot computer problems brought by students, faculty and staf • Maintain upkeep of computers, classroom equipment, and 200 printers across campus Artificial Intelligence Research Assistant May 2019 – July 2019 Southwestern University Georgetown, TX • Explored methods to generate video game dungeons based of of The Legend of Zelda • Developed a game in Java to test the generated dungeons • Contributed 50K+ lines of code to an established codebase via Git • Conducted a human subject study to determine which video game dungeon generation technique is enjoyable • Wrote an 8-page paper and gave multiple presentations on-campus • Presented virtually to the World Conference on Computational Intelligence",
+                        "pageIndex": 0,
+                        "sectionType": "WorkExperience"
+                    },
+                    {
+                        "bbox": [
+                            36.68148,
+                            456.90463,
+                            570.1352,
+                            618.6253
+                        ],
+                        "text": "Projects Gitlytics | Python, Flask, React, PostgreSQL, Docker June 2020 – Present • Developed a full-stack web application using with Flask serving a REST API with React as the frontend • Implemented GitHub OAuth to get data from user's repositories • Visualized GitHub data to show collaboration • Used Celery and Redis for asynchronous tasks Simple Paintball | Spigot API, Java, Maven, TravisCI, Git May 2018 – May 2020 • Developed a Minecraft server plugin to entertain kids during free time for a previous job • Published plugin to websites gaining 2K+ downloads and an average 4.5/5-star review • Implemented continuous delivery using TravisCI to build the plugin upon new a release • Collaborated with Minecraft server administrators to suggest features and get feedback about the plugin",
+                        "pageIndex": 0,
+                        "sectionType": "Projects"
+                    },
+                    {
+                        "bbox": [
+                            36.621674,
+                            632.06555,
+                            567.8097,
+                            696.2684
+                        ],
+                        "text": "Technical Skills Languages: Java, Python, C/C++, SQL (Postgres), JavaScript, HTML/CSS, R Frameworks: React, Node.js, Flask, JUnit, WordPress, Material-UI, FastAPI Developer Tools: Git, Docker, TravisCI, Google Cloud Platform, VS Code, Visual Studio, PyCharm, IntelliJ, Eclipse Libraries: pandas, NumPy, Matplotlib",
+                        "pageIndex": 0,
+                        "sectionType": "Skills/Interests/Languages"
+                    }
+                ],
+                "skills": [
+                    {
+                        "id": 309740165,
+                        "emsiId": "KS124DQ6JX0NX9DBFDM8",
+                        "name": "R (Programming Language)",
+                        "lastUsed": "2023-08-07",
+                        "numberOfMonths": 99,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "PersonalDetails",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "WorkExperience",
+                                "position": 0,
+                                "workExperienceId": 52906042
+                            },
+                            {
+                                "section": "WorkExperience",
+                                "position": 1,
+                                "workExperienceId": 52906043
+                            },
+                            {
+                                "section": "WorkExperience",
+                                "position": 2,
+                                "workExperienceId": 52906044
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740166,
+                        "emsiId": "KS120BV6SR75RBKQH0G3",
+                        "name": "Artificial Intelligence",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "WorkExperience",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740167,
+                        "emsiId": "KS12274718CQS23MLN4R",
+                        "name": "Computational Intelligence",
+                        "lastUsed": "2019-07-01",
+                        "numberOfMonths": 2,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "WorkExperience",
+                                "position": 2,
+                                "workExperienceId": 52906044
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740168,
+                        "emsiId": "KS1200771D9CR9LB4MWW",
+                        "name": "JavaScript (Programming Language)",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740169,
+                        "emsiId": "KS1208P6ZMZ4N872Y7X5",
+                        "name": "Application Programming Interface (API)",
+                        "lastUsed": "2023-08-07",
+                        "numberOfMonths": 38,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "WorkExperience",
+                                "position": 0,
+                                "workExperienceId": 52906042
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740170,
+                        "emsiId": "KS124CH623PFBJS8T5KM",
+                        "name": "Github",
+                        "lastUsed": "2023-08-07",
+                        "numberOfMonths": 38,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "PersonalDetails",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "WorkExperience",
+                                "position": 0,
+                                "workExperienceId": 52906042
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740171,
+                        "emsiId": "KS1218W78FGVPVP2KXPX",
+                        "name": "Management",
+                        "lastUsed": "2023-08-07",
+                        "numberOfMonths": 38,
+                        "type": "soft_skill",
+                        "sources": [
+                            {
+                                "section": "WorkExperience",
+                                "position": 0,
+                                "workExperienceId": 52906042
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740172,
+                        "emsiId": "KS121F45VPV8C9W3QFYH",
+                        "name": "Cascading Style Sheets (CSS)",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740174,
+                        "emsiId": "KS7G3YQ62YJG4LX9QFZT",
+                        "name": "Google Cloud",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740176,
+                        "emsiId": "KS1227V6WBR3BH3SJYSZ",
+                        "name": "Information Technology",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "soft_skill",
+                        "sources": [
+                            {
+                                "section": "WorkExperience",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740178,
+                        "emsiId": "KS1280B68GD79P4WMVYW",
+                        "name": "Presentations",
+                        "lastUsed": "2019-07-01",
+                        "numberOfMonths": 2,
+                        "type": "soft_skill",
+                        "sources": [
+                            {
+                                "section": "WorkExperience",
+                                "position": 2,
+                                "workExperienceId": 52906044
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740180,
+                        "emsiId": "KS1200578T5QCYT0Z98G",
+                        "name": "HyperText Markup Language (HTML)",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740184,
+                        "emsiId": "KSOJDFKU3P4CQ25VCU4T",
+                        "name": "Codebase",
+                        "lastUsed": "2019-07-01",
+                        "numberOfMonths": 2,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "WorkExperience",
+                                "position": 2,
+                                "workExperienceId": 52906044
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740189,
+                        "emsiId": "KS122C46Q68397G8TBNW",
+                        "name": "Continuous Delivery",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740191,
+                        "emsiId": "KS7AASDV6UOE7VFBGF4D",
+                        "name": "Collaboration",
+                        "lastUsed": "2023-08-07",
+                        "numberOfMonths": 38,
+                        "type": "soft_skill",
+                        "sources": [
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "WorkExperience",
+                                "position": 0,
+                                "workExperienceId": 52906042
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740193,
+                        "emsiId": "KS440W865GC4VRBW6LJP",
+                        "name": "SQL (Programming Language)",
+                        "lastUsed": "2023-08-07",
+                        "numberOfMonths": 38,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "WorkExperience",
+                                "position": 0,
+                                "workExperienceId": 52906042
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740194,
+                        "emsiId": "KSGWPO6DSN70GRY20JFT",
+                        "name": "Pandas (Python Package)",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740195,
+                        "emsiId": "KS127296VDYS7ZFWVC46",
+                        "name": "Node.js",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740196,
+                        "emsiId": "KS1200364C9C1LK3V5Q1",
+                        "name": "C (Programming Language)",
+                        "lastUsed": "2023-08-07",
+                        "numberOfMonths": 99,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "PersonalDetails",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "WorkExperience",
+                                "position": 0,
+                                "workExperienceId": 52906042
+                            },
+                            {
+                                "section": "WorkExperience",
+                                "position": 1,
+                                "workExperienceId": 52906043
+                            },
+                            {
+                                "section": "WorkExperience",
+                                "position": 2,
+                                "workExperienceId": 52906044
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740197,
+                        "emsiId": "KS1203C6N9B52QGB4H67",
+                        "name": "Research",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "soft_skill",
+                        "sources": [
+                            {
+                                "section": "WorkExperience",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740200,
+                        "emsiId": "KS125LS6N7WP4S6SFTCK",
+                        "name": "Python (Programming Language)",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740201,
+                        "emsiId": "KS441MW6M14QMH34W3DW",
+                        "name": "Undergraduate Research",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "WorkExperience",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740202,
+                        "emsiId": "KS120076FGP5WGWYMP0F",
+                        "name": "Java (Programming Language)",
+                        "lastUsed": "2019-07-01",
+                        "numberOfMonths": 2,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "WorkExperience",
+                                "position": 2,
+                                "workExperienceId": 52906044
+                            },
+                            {
+                                "section": "WorkExperience",
+                                "position": 2,
+                                "workExperienceId": 52906044
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740173,
+                        "emsiId": "KS1239L6X7VKWZNYHNYZ",
+                        "name": "Eclipse (Software)",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740175,
+                        "emsiId": "KS128836KV2F3BRZK1ZG",
+                        "name": "PyCharm",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740177,
+                        "emsiId": "ES46B2FBE34B5D3E45D5",
+                        "name": "Flask (Web Framework)",
+                        "lastUsed": "2023-08-07",
+                        "numberOfMonths": 38,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "WorkExperience",
+                                "position": 0,
+                                "workExperienceId": 52906042
+                            },
+                            {
+                                "section": "WorkExperience",
+                                "position": 0,
+                                "workExperienceId": 52906042
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740179,
+                        "emsiId": "KS125LJ6SDQF89N2J4ZP",
+                        "name": "Junit",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740181,
+                        "emsiId": "KS1264669X43NJFLT6SN",
+                        "name": "Management Systems",
+                        "lastUsed": "2023-08-07",
+                        "numberOfMonths": 38,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "WorkExperience",
+                                "position": 0,
+                                "workExperienceId": 52906042
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740182,
+                        "emsiId": "KS126HD6VL9XVJ2V08HC",
+                        "name": "Microsoft Visual Studio",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740183,
+                        "emsiId": "KS4424P6G7QVWXC3B756",
+                        "name": "WordPress",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740185,
+                        "emsiId": "KS125TB6YR6236RKM563",
+                        "name": "PostgreSQL",
+                        "lastUsed": "2023-08-07",
+                        "numberOfMonths": 38,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "WorkExperience",
+                                "position": 0,
+                                "workExperienceId": 52906042
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740186,
+                        "emsiId": "KS128G66RG96FZNHFCXY",
+                        "name": "Redis",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740187,
+                        "emsiId": "KS126796RG0M9JRLKDQY",
+                        "name": "Matplotlib",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740188,
+                        "emsiId": "KSY4WFI1S164RQUBSPCC",
+                        "name": "Docker (Software)",
+                        "lastUsed": "2023-08-07",
+                        "numberOfMonths": 38,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            },
+                            {
+                                "section": "WorkExperience",
+                                "position": 0,
+                                "workExperienceId": 52906042
+                            },
+                            {
+                                "section": "WorkExperience",
+                                "position": 0,
+                                "workExperienceId": 52906042
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740190,
+                        "emsiId": "KS7N5PJR3FG6BOSEFN7I",
+                        "name": "Minecraft",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740192,
+                        "emsiId": "KS1275J6Z37CB9HL67TC",
+                        "name": "OAuth",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Projects",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740198,
+                        "emsiId": "KS122FY73SVQX6J22KR1",
+                        "name": "Learning Management Systems",
+                        "lastUsed": "2023-08-07",
+                        "numberOfMonths": 38,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "WorkExperience",
+                                "position": 0,
+                                "workExperienceId": 52906042
+                            }
+                        ]
+                    },
+                    {
+                        "id": 309740199,
+                        "emsiId": "ESC7869CF7378283E0AA",
+                        "name": "Google Cloud Platform (GCP)",
+                        "lastUsed": null,
+                        "numberOfMonths": null,
+                        "type": "hard_skill",
+                        "sources": [
+                            {
+                                "section": "Skills/Interests/Languages",
+                                "position": null,
+                                "workExperienceId": null
+                            }
+                        ]
+                    }
+                ],
+                "languages": [
+                    "English"
+                ],
+                "summary": "",
+                "websites": [
+                    "linkedin.com/in/jake",
+                    "https://github.com/...",
+                    "https://linkedin.com/in/..."
+                ],
+                "linkedin": "linkedin.com/in/jake",
+                "totalYearsExperience": 5,
+                "profession": "Artificial Intelligence Research Assistant",
+                "workExperience": [
+                    {
+                        "id": 52906042,
+                        "jobTitle": "Undergraduate Research Assistant",
+                        "organization": "Texas A&M University",
+                        "location": {
+                            "formatted": "College Station, TX, USA",
+                            "streetNumber":  null,
+                            "street": null,
+                            "apartmentNumber": null,
+                            "city": "College Station",
+                            "postalCode": null,
+                            "state": "Texas",
+                            "country": "United States",
+                            "rawInput": "College Station, TX",
+                            "countryCode": "US",
+                            "latitude": 30.627977,
+                            "longitude": -96.3344068
+                        },
+                        "dates": {
+                            "startDate": "2020-06-01",
+                            "endDate": "2023-08-07",
+                            "monthsInPosition": 38,
+                            "isCurrent": true,
+                            "rawText": "June 2020 – Present"
+                        },
+                        "jobDescription": "• Developed a REST API using FastAPI and PostgreSQL to store data from learning management systems \n• Developed a full-stack web application using Flask, React, PostgreSQL and Docker to analyze GitHub data \n• Explored ways to visualize GitHub collaboration in a classroom setting ",
+                        "occupation": {
+                            "jobTitle": "Undergraduate Research Assistant",
+                            "jobTitleNormalized": "Undergraduate Research Assistant",
+                            "classification": {
+                                "socCode": 2434,
+                                "title": "Business and related research professionals",
+                                "minorGroup": "Business, Research and Administrative Professionals",
+                                "subMajorGroup": "BUSINESS, MEDIA AND PUBLIC SERVICE PROFESSIONALS",
+                                "majorGroup": "PROFESSIONAL OCCUPATIONS"
+                            },
+                            "managementLevel": "Low",
+                            "emsiId": "ET53CE7EBA84E3FE44"
+                        }
+                    },
+                    {
+                        "id": 52906043,
+                        "jobTitle": "Information Technology Support Specialist",
+                        "organization": "Southwestern University",
+                        "location": {
+                            "formatted": "Georgetown, TX, USA",
+                            "streetNumber": null,
+                            "street": null,
+                            "apartmentNumber": null,
+                            "city": "Georgetown",
+                            "postalCode": null,
+                            "state": "Texas",
+                            "country": "United States",
+                            "rawInput": "Georgetown, TX",
+                            "countryCode": "US",
+                            "latitude": 30.6332618,
+                            "longitude": -97.6779842
+                        },
+                        "dates": {
+                            "startDate": "2018-09-01",
+                            "endDate": "2023-08-07",
+                            "monthsInPosition": 59,
+                            "isCurrent": true,
+                            "rawText": "Sep. 2018 – Present"
+                        },
+                        "jobDescription": "• Communicate with managers to set up campus computers used on campus \n• Assess and troubleshoot computer problems brought by students, faculty and staf \n• Maintain upkeep of computers, classroom equipment, and 200 printers across campus ",
+                        "occupation": {
+                            "jobTitle": "Information Technology Support Specialist",
+                            "jobTitleNormalized": "Information Support Specialist",
+                            "classification": {
+                                "socCode": 3131,
+                                "title": "IT operations technicians",
+                                "minorGroup": "Information Technology Technicians",
+                                "subMajorGroup": "SCIENCE, ENGINEERING AND TECHNOLOGY ASSOCIATE PROFESSIONALS",
+                                "majorGroup": "ASSOCIATE PROFESSIONAL OCCUPATIONS"
+                            },
+                            "managementLevel": null,
+                            "emsiId": "ET563D0006E5F51F12"
+                        }
+                    },
+                    {
+                        "id": 52906044,
+                        "jobTitle": "Artificial Intelligence Research Assistant",
+                        "organization": "Southwestern University",
+                        "location": {
+                            "formatted": "Georgetown, TX, USA",
+                            "streetNumber": null,
+                            "street": null,
+                            "apartmentNumber": null,
+                            "city": "Georgetown",
+                            "postalCode": null,
+                            "state": "Texas",
+                            "country": "United States",
+                            "rawInput": "Georgetown, TX",
+                            "countryCode": "US",
+                            "latitude": 30.6332618,
+                            "longitude": -97.6779842
+                        },
+                        "dates": {
+                            "startDate": "2019-05-01",
+                            "endDate": "2019-07-01",
+                            "monthsInPosition": 2,
+                            "isCurrent": false,
+                            "rawText": "May 2019 – July 2019"
+                        },
+                        "jobDescription": "• Explored methods to generate video game dungeons based of of The Legend of Zelda \n• Developed a game in Java to test the generated dungeons \n• Contributed 50K+ lines of code to an established codebase via Git \n• Conducted a human subject study to determine which video game dungeon generation technique is enjoyable \n• Wrote an 8-page paper and gave multiple presentations on-campus \n• Presented virtually to the World Conference on Computational Intelligence ",
+                        "occupation": {
+                            "jobTitle": "Artificial Intelligence Research Assistant",
+                            "jobTitleNormalized": "Artificial Intelligence Programmer",
+                            "classification": {
+                                "socCode": 2134,
+                                "title": "Programmers and software development professionals ",
+                                "minorGroup": "Information Technology Professionals",
+                                "subMajorGroup": "SCIENCE, RESEARCH, ENGINEERING AND TECHNOLOGY PROFESSIONALS",
+                                "majorGroup": "PROFESSIONAL OCCUPATIONS"
+                            },
+                            "managementLevel": "Low",
+                            "emsiId": "ETF34DCA268859E150"
+                        }
+                    }
+                ],
+                "headShot": null,
+                "isResumeProbability": 99,
+                "rawText": "Jake Ryan 123-456-7890 | jake@su.edu | linkedin.com/in/jake | github.com/jake\nEducation Southwestern University Georgetown, TX Bachelor of Arts in Computer Science, Minor in Business Aug. 2018 – May 2021 Blinn College Bryan, TX Associate's in Liberal Arts Aug. 2014 – May 2018\nExperience Undergraduate Research Assistant June 2020 – Present Texas A&M University College Station, TX • Developed a REST API using FastAPI and PostgreSQL to store data from learning management systems • Developed a full-stack web application using Flask, React, PostgreSQL and Docker to analyze GitHub data • Explored ways to visualize GitHub collaboration in a classroom setting Information Technology Support Specialist Sep. 2018 – Present Southwestern University Georgetown, TX • Communicate with managers to set up campus computers used on campus • Assess and troubleshoot computer problems brought by students, faculty and staf • Maintain upkeep of computers, classroom equipment, and 200 printers across campus Artificial Intelligence Research Assistant May 2019 – July 2019 Southwestern University Georgetown, TX • Explored methods to generate video game dungeons based of of The Legend of Zelda • Developed a game in Java to test the generated dungeons • Contributed 50K+ lines of code to an established codebase via Git • Conducted a human subject study to determine which video game dungeon generation technique is enjoyable • Wrote an 8-page paper and gave multiple presentations on-campus • Presented virtually to the World Conference on Computational Intelligence\nProjects Gitlytics | Python, Flask, React, PostgreSQL, Docker June 2020 – Present • Developed a full-stack web application using with Flask serving a REST API with React as the frontend • Implemented GitHub OAuth to get data from user's repositories • Visualized GitHub data to show collaboration • Used Celery and Redis for asynchronous tasks Simple Paintball | Spigot API, Java, Maven, TravisCI, Git May 2018 – May 2020 • Developed a Minecraft server plugin to entertain kids during free time for a previous job • Published plugin to websites gaining 2K+ downloads and an average 4.5/5-star review • Implemented continuous delivery using TravisCI to build the plugin upon new a release • Collaborated with Minecraft server administrators to suggest features and get feedback about the plugin\nTechnical Skills Languages: Java, Python, C/C++, SQL (Postgres), JavaScript, HTML/CSS, R Frameworks: React, Node.js, Flask, JUnit, WordPress, Material-UI, FastAPI Developer Tools: Git, Docker, TravisCI, Google Cloud Platform, VS Code, Visual Studio, PyCharm, IntelliJ, Eclipse Libraries: pandas, NumPy, Matplotlib",
+                "redactedText": "**** **** ************ | *********** | ******************** | ***************\nEducation Southwestern University *********** ** Bachelor of Arts in Computer Science, Minor in Business **** **** * *** **** Blinn College ****** ** Associate's in Liberal Arts **** **** * *** ****\nExperience Undergraduate Research Assistant **** **** * ******* Texas A&* University ******* ******** ** • Developed a REST API using FastAPI and PostgreSQL to store data from learning management systems • Developed a full-stack web application using Flask, React, PostgreSQL and Docker to analyze GitHub data • Explored ways to visualize GitHub collaboration in a classroom setting Information Technology Support Specialist **** **** * ******* Southwestern University *********** ** • Communicate with managers to set up campus computers used on campus • Assess and troubleshoot computer problems brought by students, faculty and staf • Maintain upkeep of computers, classroom equipment, and 200 printers across campus Artificial Intelligence Research Assistant *** **** * **** **** Southwestern University *********** ** • Explored methods to generate video game dungeons based of of The Legend of Zelda • Developed a game in Java to test the generated dungeons • Contributed 50K+ lines of code to an established codebase via Git • Conducted a human subject study to determine which video game dungeon generation technique is enjoyable • Wrote an 8-page paper and gave multiple presentations on-campus • Presented virtually to the World Conference on Computational Intelligence\nProjects Gitlytics | Python, Flask, React, PostgreSQL, Docker **** **** – Present • Developed a full-stack web application using with Flask serving a REST API with React as the frontend • Implemented GitHub OAuth to get data from user's repositories • Visualized GitHub data to show collaboration • Used Celery and Redis for asynchronous tasks Simple Paintball | Spigot API, Java, Maven, TravisCI, Git *** **** – *** **** • Developed a Minecraft server plugin to entertain kids during free time for a previous job • Published plugin to websites gaining 2K+ downloads and an average 4.5/5-star review • Implemented continuous delivery using TravisCI to build the plugin upon new a release • Collaborated with Minecraft server administrators to suggest features and get feedback about the plugin\nTechnical Skills Languages: Java, Python, C/C++, SQL (Postgres), JavaScript, HTML/CSS, R Frameworks: React, Node.js, Flask, JUnit, WordPress, Material-UI, FastAPI Developer Tools: Git, Docker, TravisCI, Google Cloud Platform, VS Code, Visual Studio, PyCharm, IntelliJ, Eclipse Libraries: pandas, NumPy, Matplotlib"
+            },
+            "meta": {
+                "identifier": "SyygsmQI",
+                "ready": true,
+                "failed": false,
+                "readyDt": "2023-08-07T07:51:32.825978Z",
+                "fileName": "jakes-resume.pdf",
+                "expiryTime": null,
+                "language": "en",
+                "pdf": "https://affinda-api-data-prod-ap1.s3.amazonaws.com/media/documents/jakes-resume_VB5d2rH.pdf?versionId=BOeBgUMlRgDMm_FBEwCBch6fX.zPSYxh&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAU4IX6YWNMPFY7E43%2F20230807%2Fap-southeast-2%2Fs3%2Faws4_request&X-Amz-Date=20230807T075135Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMj%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLXNvdXRoZWFzdC0yIkcwRQIhAIUEafQoNFhyeG%2BWUa90gHTgzeA0zHM8%2FwH70ztd6YNwAiAq4ayUmWYp%2BkwcBi266GtoKz9O6Ls52GKMWfDXWqOoUiqJBQhxEAIaDDMzNTU5NDU3MTE2MiIMN1TlC3Zz33B%2BNOGHKuYE8lF9GdT4nwJPmxN7Q84FKG17h8CxoiDlw2k87WyjbG%2BsOurKPUr75UPB7rg%2BlWuGUH53sWcvoAjowpGAiMf%2Ff7niFck%2BLbvQDzyCQDuTmRqJ%2BsgY6BIeHldeLznNmRftcxyg%2FkboVlxuI8F3R09c0C3%2Fa5dCDE0HiuMyslrySQEftF0q7PTX4JTtQQjVB1IKQ9lQCYkJm43Wl4lUMrXJ%2B8I70XbsQfP4qi%2FjqNjHjPvqk0tGUCc88RT3X2kDVJa0oC8nSJatCC3ZlW7RjU2dq88FLzCLpbB5p7Im5j%2FcxCflcQxb7DspLKMmj6aebbhtJrvf7O5PISHqu1EySza1iEC9CcswldD%2BbrjGtoeqI3rYfkK1njxPCZM0RUA869CanSIwRUx6xj0Bmg2f6iOXz0DztApA3I0Rr2iGqIMaZ8nIcikAv7D3XblLJOyK8N%2Bw0kI4aCiGjVlEt%2BH9EQP85gZkVXOMbkd08BgGQufSWszLYQBVPCqC2xNhQe%2BibbnaA78fQCtGObyffuF%2FEZst1uw7lvF2QUjjjJ%2BCN4L7qrg5QWL0fNdr2d2A%2BFiuhxG4wflGOKl%2FGLU5sAn%2B6ypq4kL9%2FFvC3KWNnya2e3xe4TArkWKYVl5YYQ5ySgljyHUxx7eNEuKYtJcVup%2FcwGiGN573jnV9fXaZqydk0UI1LuR2AZCgiTu6a10AlZqLae0W8O5nC%2F%2FK5oAQt2lS447%2FpGqYvqQ%2FgC55kO4W3JesYuaL%2BqOpfPvEDDmjw0jl%2BG9I7Erx8vZpKxBuJBFED4pjHizBDrxdDZ0YndfcKUPSxJGJmj8hM9sw57jCpgY6mgFrEv1ZJmwhlpmlBrvwwCUU%2Fcvof4RoDDiDv6ZltumKWXbVWvTxutEF9F%2BseqfPRyw2tFCUZUWCsFTV1TkGM9w%2FLxMYSEraoU%2FHMy3zHqaLZlrwYHlHVbG%2BwvGru5VenWItavVVBo4ySbhdqBHWsUqFQTJ7IexEJ5WInCHmit0%2Bp1HiT0KwL0Opqw5PZ5HL1pd9e22WU70zHWPw&X-Amz-Signature=a366db66efc9e2ec7e65acdb0ac1ea030d28960de8c8518879f8cc5b4becaa1b",
+                "parentDocument": null,
+                "childDocuments": [],
+                "pages": [
+                    {
+                        "id": 30669900,
+                        "pageIndex": 0,
+                        "image": null,
+                        "height": 792.0,
+                        "width": 612.0,
+                        "rotation": 0
+                    }
+                ],
+                "ocrConfidence": null,
+                "reviewUrl": "https://app.affinda.com/review/SyygsmQI?signature=eyJ1c2VyX2lkIjo1NzB9:1qSv1b:l2M8NcZJHrBRl3ZyUEqLy-o0LsXbl0OVtQt4kMeiGdY:1qSv1b:kHsjvTszlQfadFPX0dS7MC8UbFORR4_V3siznPGla2g",
+                "validatedDt": null,
+                "isVerified": false,
+                "exportedDt": null,
+                "isExported": false,
+                "createdDt": "2023-08-07T07:51:27.748710Z",
+                "errorDetail": null,
+                "documentType": "resume",
+                "file": "https://affinda-api-data-prod-ap1.s3.amazonaws.com/media/documents/jakes-resume_VB5d2rH.pdf?versionId=BOeBgUMlRgDMm_FBEwCBch6fX.zPSYxh&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAU4IX6YWNMPFY7E43%2F20230807%2Fap-southeast-2%2Fs3%2Faws4_request&X-Amz-Date=20230807T075135Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMj%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLXNvdXRoZWFzdC0yIkcwRQIhAIUEafQoNFhyeG%2BWUa90gHTgzeA0zHM8%2FwH70ztd6YNwAiAq4ayUmWYp%2BkwcBi266GtoKz9O6Ls52GKMWfDXWqOoUiqJBQhxEAIaDDMzNTU5NDU3MTE2MiIMN1TlC3Zz33B%2BNOGHKuYE8lF9GdT4nwJPmxN7Q84FKG17h8CxoiDlw2k87WyjbG%2BsOurKPUr75UPB7rg%2BlWuGUH53sWcvoAjowpGAiMf%2Ff7niFck%2BLbvQDzyCQDuTmRqJ%2BsgY6BIeHldeLznNmRftcxyg%2FkboVlxuI8F3R09c0C3%2Fa5dCDE0HiuMyslrySQEftF0q7PTX4JTtQQjVB1IKQ9lQCYkJm43Wl4lUMrXJ%2B8I70XbsQfP4qi%2FjqNjHjPvqk0tGUCc88RT3X2kDVJa0oC8nSJatCC3ZlW7RjU2dq88FLzCLpbB5p7Im5j%2FcxCflcQxb7DspLKMmj6aebbhtJrvf7O5PISHqu1EySza1iEC9CcswldD%2BbrjGtoeqI3rYfkK1njxPCZM0RUA869CanSIwRUx6xj0Bmg2f6iOXz0DztApA3I0Rr2iGqIMaZ8nIcikAv7D3XblLJOyK8N%2Bw0kI4aCiGjVlEt%2BH9EQP85gZkVXOMbkd08BgGQufSWszLYQBVPCqC2xNhQe%2BibbnaA78fQCtGObyffuF%2FEZst1uw7lvF2QUjjjJ%2BCN4L7qrg5QWL0fNdr2d2A%2BFiuhxG4wflGOKl%2FGLU5sAn%2B6ypq4kL9%2FFvC3KWNnya2e3xe4TArkWKYVl5YYQ5ySgljyHUxx7eNEuKYtJcVup%2FcwGiGN573jnV9fXaZqydk0UI1LuR2AZCgiTu6a10AlZqLae0W8O5nC%2F%2FK5oAQt2lS447%2FpGqYvqQ%2FgC55kO4W3JesYuaL%2BqOpfPvEDDmjw0jl%2BG9I7Erx8vZpKxBuJBFED4pjHizBDrxdDZ0YndfcKUPSxJGJmj8hM9sw57jCpgY6mgFrEv1ZJmwhlpmlBrvwwCUU%2Fcvof4RoDDiDv6ZltumKWXbVWvTxutEF9F%2BseqfPRyw2tFCUZUWCsFTV1TkGM9w%2FLxMYSEraoU%2FHMy3zHqaLZlrwYHlHVbG%2BwvGru5VenWItavVVBo4ySbhdqBHWsUqFQTJ7IexEJ5WInCHmit0%2Bp1HiT0KwL0Opqw5PZ5HL1pd9e22WU70zHWPw&X-Amz-Signature=a366db66efc9e2ec7e65acdb0ac1ea030d28960de8c8518879f8cc5b4becaa1b",
+                "regionBias": {
+                    "country": null,
+                    "countries": null,
+                    "squareCoordinates": null
+                }
+            },
+            "error": {
+                "errorCode": null,
+                "errorDetail": null
+            }
+        }
+    ]
+}
