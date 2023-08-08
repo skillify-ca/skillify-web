@@ -1,56 +1,46 @@
 import React from "react";
 
-const FrontEndProject = () => (
-  <div className="p-6 bg-white rounded-lg shadow-lg">
-    <h2 className="mb-4 text-2xl font-bold">Assignment: Card Gallery</h2>
-    <h3 className="mb-2 text-xl font-semibold">Description</h3>
-    <p className="mb-4">
-      Your task is to build a small React application that displays a gallery of
-      trading cards. Users should be able to view card details and filter cards
-      by type. The app will make use of PokeAPI to fetch card data.
-    </p>
-    <h3 className="mb-2 text-xl font-semibold">Features</h3>
-    <ul className="pl-5 mb-4 list-disc">
-      <li>Display a grid of trading cards with an image, name and type(s).</li>
-      <li>
-        Clicking on a card will open a modal with more information about the
-        card, including its description and stats.
-      </li>
-      <li>
-        A dropdown filter that allows users to view cards by their type (e.g.,
-        Fire, Water, Electric).
-      </li>
-    </ul>
-    <h3 className="mb-2 text-xl font-semibold">Project Structure</h3>
-    <p className="mb-2">You should have the following components at least:</p>
-    <ul className="pl-5 mb-4 list-disc">
-      <li>
-        <b>App:</b> This is your main component.
-      </li>
-      <li>
-        <b>CardGrid:</b> This is the component that will display the grid of
-        cards.
-      </li>
-      <li>
-        <b>Card:</b> This is the individual card component.
-      </li>
-      <li>
-        <b>CardModal:</b> This is the modal that will display more detailed info
-        about the card.
-      </li>
-      <li>
-        <b>Filter:</b> This is the component that will allow the user to filter
-        cards by type.
-      </li>
-    </ul>
-    <div className="flex flex-col">
-      <p className="font-bold">Submission</p>
-      <p>
-        To submit your assignment you will need to create a GitHub repository
-        and share the link with us.
+const FrontEndProject = () => {
+  return (
+    <div className="bg-gray-100 p-8 rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold mb-4">Front-End Project</h2>
+      <p className="text-gray-800">
+        The goal of this project is to create a responsive portfolio website using basic front-end technologies. The website should showcase your skills, projects, and experience.
       </p>
+      <p className="text-gray-800 mt-2">
+        Follow the objectives and requirements mentioned below to complete the project within 1-2 weeks.
+      </p>
+      <h3 className="text-xl font-bold mt-4">Project Objectives:</h3>
+      <ul className="list-disc list-inside text-gray-800 pl-4">
+        <li>Build a multi-page portfolio website with a home page, projects page, about page, and contact page.</li>
+        <li>Implement responsive web design to ensure the website looks great on various devices.</li>
+        <li>Showcase a collection of your projects with brief descriptions and links to view them.</li>
+        <li>Create a visually appealing and user-friendly navigation menu.</li>
+        <li>Utilize CSS animations or transitions to add subtle visual enhancements.</li>
+        <li>Implement a contact form on the contact page with form validation.</li>
+        <li>Optimize the website's performance for faster load times.</li>
+        <li>Ensure the website is accessible and complies with basic accessibility guidelines.</li>
+      </ul>
+      <h3 className="text-xl font-bold mt-4">Requirements:</h3>
+      <ul className="list-disc list-inside text-gray-800 pl-4">
+        <li>Strong understanding of HTML, CSS, and JavaScript.</li>
+        <li>Knowledge of responsive web design principles and media queries.</li>
+        <li>Experience in form validation and handling form submissions with JavaScript.</li>
+        <li>Basic knowledge of SEO best practices and meta tags.</li>
+        <li>Ensuring the website is accessible to a wide range of users.</li>
+      </ul>
+
+      <div className="mt-6">
+        <h3 className="text-xl font-bold">Submission</h3>
+        <p className="text-gray-800 mt-2">
+          To submit your assignment, you will need to create a GitHub repository and share the link with us.
+        </p>
+        <p className="text-gray-800 mt-2">
+          Please ensure that your repository includes all the necessary files and instructions to run your portfolio website locally.
+        </p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default FrontEndProject;
