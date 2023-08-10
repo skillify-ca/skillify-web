@@ -1,6 +1,6 @@
 export interface Resume {
-    userResume: File;
-    jobDescription: String;
+    userResumeURL: string;
+    jobDescription: string;
 }
 
 export type ResumeKey = keyof Resume

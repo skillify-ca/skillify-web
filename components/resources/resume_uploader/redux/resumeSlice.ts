@@ -3,34 +3,35 @@ import { RootState } from "./store";
 import type { Resume } from "./types";
 
 export const initialState: Resume = {
-    userResume: null,
+    userResumeURL: "https://laverne.edu/careers/wp-content/uploads/sites/15/2010/12/Undergraduate-Student-Resume-Examples.pdf",
     jobDescription: "",
 };
 
 export const selectResume = (state: RootState) => state.resume;
 
-
-export default function resumeReducer(state = initialState, action: PayloadAction<{ value: any }>) {
+export default function resumeReducer(state = initialState, action: PayloadAction<string>) {
     switch (action.type) {
         case "uploadPDF": {
             return {
-                userResume: action.payload,
+                ...state,
+                userResumeURL: action.payload,
                 jobDescription: state.jobDescription
             }
         }
         case "updateText": {
             return {
-                userResume: state.userResume,
+                ...state,
+                userResumeURL: state.userResumeURL,
                 jobDescription: action.payload
             }
         }
+        // case "updateURL": {
+        //     return {
+        //         userResumeURL: state.userResumeURL,
+        //         jobDescription: state.jobDescription
+        //     }
+        // }
         default:
             return state
     }
 };
-
-
-// export const { changeResume, changeJobDescription } = resumeSlice.actions;
-// export const selectJobDescription = (state: RootState) => state.resume.jobDescription;
-// export const selectUserResume = (state: RootState) => state.resume.userResume;
-// export default resumeSlice.reducer;

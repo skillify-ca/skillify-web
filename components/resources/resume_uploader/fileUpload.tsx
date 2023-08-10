@@ -20,7 +20,7 @@ export const FileUpload = ({}) => {
 
     return (
         <div>
-            <h1>PDF Upload Button</h1>
+            <h1>Upload your PDF</h1>
             <input type="file" accept=".pdf" onChange={handleFileChange} />
             <button onClick={handleUpload}>Upload PDF</button>
         </div>
