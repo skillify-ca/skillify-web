@@ -1,3 +1,4 @@
+import React from "react";
 import LandingNavbar from "../components/landingPage/LandingNavbar";
 
 const StudentProjectsPage = () => {
@@ -6,7 +7,7 @@ const StudentProjectsPage = () => {
       <LandingNavbar />
       <div className="flex flex-col items-center justify-center space-y-2 py-8">
         <h1 className="text-charmander text-4xl font-bold text-center mt-4">
-          Hello
+          Student Projects
         </h1>
       </div>
     </div>
