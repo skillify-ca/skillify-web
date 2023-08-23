@@ -6,7 +6,9 @@ import {
 
 export type Lesson1ResponseData = {
   lessonComponents: LessonComponentData[];
-  // Other properties specific to Lesson 1 data
+  currentNode: number;
+  nextNode: number;
+  nextSlug: string;
 };
 
 export function getDataForLesson1() {
@@ -49,12 +51,14 @@ export function getDataForLesson1() {
     },
   ];
 
-  // Additional properties specific to Lesson 1 data
-  const additionalLesson1Data = {
-    // Add any other properties here if needed
+  const data: Lesson1ResponseData = {
+    lessonComponents: lessonComponents,
+    currentNode: 5,
+    nextNode: 6,
+    nextSlug: "css/lesson2",
   };
 
-  return { lessonComponents, ...additionalLesson1Data };
+  return data;
 }
 
 export default function handler(
