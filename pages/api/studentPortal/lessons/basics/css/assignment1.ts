@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { ResponseData } from "../introduction";
 
-export function getDataForLesson1() {
+export function getDataForAssignment() {
   const data: ResponseData = {
     lessonComponents: [
       {
@@ -29,7 +29,7 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  const data = getDataForLesson1();
+  const data = getDataForAssignment();
 
   res.status(200).json(data);
 }
