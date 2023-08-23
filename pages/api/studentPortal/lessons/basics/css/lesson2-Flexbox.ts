@@ -1,15 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import {
-  LessonComponentData,
-  Resource,
-} from "../../../../../../components/studentPortal/lessons/LessonComponent";
-
-export type ResponseData = {
-  lessonComponents: LessonComponentData[];
-  currentNode: number;
-  nextNode: number;
-  nextSlug: string;
-};
+import { Resource } from "../../../../../../components/studentPortal/lessons/LessonComponent";
+import { ResponseData } from "../introduction";
 
 export function getDataForLesson2Flexbox() {
   const resources: Resource[] = [
