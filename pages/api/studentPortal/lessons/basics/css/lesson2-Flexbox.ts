@@ -6,9 +6,12 @@ import {
 
 export type ResponseData = {
   lessonComponents: LessonComponentData[];
+  currentNode: number;
+  nextNode: number;
+  nextSlug: string;
 };
 
-export function getDataForLesson2() {
+export function getDataForLesson2Flexbox() {
   const resources: Resource[] = [
     {
       title: "CSS Flexbox Froggy",
@@ -34,33 +37,37 @@ export function getDataForLesson2() {
       description: "Optional - A 30 minute video explaining CSS Flexbox.",
     },
   ];
-  const lessonComponents: LessonComponentData[] = [
-    {
-      component: "title",
-      text: "CSS Flexbox",
-    },
-    {
-      component: "description",
-      text: "CSS Flexbox is another new property of CSS. You can turn any <div> element into a flexbox using the 'display: flex' property. By using different flex properties you can tell the div how you want it to arrange it's children. Combining Flexbox with Grid will allow you to build the most advanced layouts that you can imagine on the internet.",
-    },
-    {
-      component: "resource-list",
-      resources,
-    },
-    {
-      component: "loom-video",
-      videoId: "3ccdfc795e2648b697356e15fa1e67f3",
-    },
-  ];
-
-  return { resources, lessonComponents };
+  const data: ResponseData = {
+    lessonComponents: [
+      {
+        component: "title",
+        text: "CSS Flexbox",
+      },
+      {
+        component: "description",
+        text: "CSS Flexbox is another new property of CSS. You can turn any <div> element into a flexbox using the 'display: flex' property. By using different flex properties you can tell the div how you want it to arrange it's children. Combining Flexbox with Grid will allow you to build the most advanced layouts that you can imagine on the internet.",
+      },
+      {
+        component: "resource-list",
+        resources,
+      },
+      {
+        component: "loom-video",
+        videoId: "3ccdfc795e2648b697356e15fa1e67f3",
+      },
+    ],
+    currentNode: 49,
+    nextNode: 51,
+    nextSlug: "css/quiz1",
+  };
+  return data;
 }
 
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  const data = getDataForLesson2();
+  const data = getDataForLesson2Flexbox();
 
   res.status(200).json(data);
 }
