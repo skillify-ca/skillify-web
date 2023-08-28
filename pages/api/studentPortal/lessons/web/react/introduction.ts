@@ -1,6 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { LessonComponentData } from "../../../../../../components/studentPortal/lessons/LessonComponent";
-
+export interface ReactResponseData {
+  nextSlug: string;
+  lessonComponents: LessonComponentData[];
+}
 export const getIntroToWebDevLessonData = () => {
   const lessonComponents: LessonComponentData[] = [
     {
@@ -51,10 +54,15 @@ export const getIntroToWebDevLessonData = () => {
       ],
     },
   ];
-  return { lessonComponents };
+  const nextSlug = "react/components";
+
+  return { lessonComponents, nextSlug };
 };
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async (
+  req: NextApiRequest,
+  res: NextApiResponse<ReactResponseData>
+) => {
   const lessonData = getIntroToWebDevLessonData();
   return res.status(200).json(lessonData);
 };
