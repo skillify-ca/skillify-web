@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import SkillSection from "../../../components/studentPortal/skillRatings/SkillSection";
 import { Button } from "../../../components/ui/Button";
 import {
-  FetchUserSkillsRatings,
   FETCH_USER_SKILLS_RATINGS,
+  FetchUserSkillsRatings,
   UserSkillsRatings,
 } from "../../../graphql/studentPortal/skillRatings/fetchUserSkillsRatings";
 import { UPSERT_USER_SKILL_RATINGS } from "../../../graphql/studentPortal/skillRatings/upsertUserSkillRatings";
 import { useAuth } from "../../../lib/authContext";
 import {
-  setSkillRatings,
   SkillRatingsRow,
+  setSkillRatings,
   skillRatingsSelector,
 } from "../../../redux/skillRatingsSlice";
 
