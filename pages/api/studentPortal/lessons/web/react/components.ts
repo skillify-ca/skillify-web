@@ -88,8 +88,9 @@ export const getDataForComponentsLesson = () => {
       text: "This is much cleaner but we still have to write a new component for each row. The next lesson will cover props, which will allow us to make a reusable row component",
     },
   ];
+  const nextSlug = "react/props"
 
-  return { lessonComponents };
+  return { lessonComponents, nextSlug };
 };
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
