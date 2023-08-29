@@ -73,23 +73,23 @@ export default function WhatYouGet() {
       </h2>
       <FeaturesSection
         features={features.slice(0, 2)}
-        image="/images/landingPage/features-1.png"
+        image="/images/landingPage/test-1.svg"
       />
 
       <FeaturesSection
         features={features.slice(2, 4)}
-        image="/images/landingPage/features-2.png"
+        image="/images/landingPage/test-2.svg"
         isReversed={true}
       />
 
       <FeaturesSection
         features={features.slice(4, 6)}
-        image="/images/landingPage/features-3.png"
+        image="/images/landingPage/test-3.svg"
       />
       <FeaturesSection
         features={features.slice(6, 8)}
         isReversed={true}
-        image="/images/landingPage/features-4.png"
+        image="/images/landingPage/test-4.svg"
       />
       {/* <BonusSection /> */}
     </div>

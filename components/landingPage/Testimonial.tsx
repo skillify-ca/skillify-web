@@ -1,5 +1,4 @@
-import { ReactNode, useState } from "react";
-import { Skill } from "../../../pages/api/skill";
+import React from "react";
 
 export interface TestimonialProps {
   text: string;
