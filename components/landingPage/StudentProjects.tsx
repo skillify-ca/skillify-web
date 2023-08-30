@@ -25,7 +25,15 @@ export default function StudentProjects() {
           <h1>Raveen R.</h1>
         </div>
         <div className="flex flex-col items-center relative">
-          <div className="bg-charmander h-80 w-72 flex flex-col justify-center items-center rounded-lg shadow-md">
+          <div
+            className="bg-charmander h-80 w-72 flex flex-col justify-center items-center rounded-lg shadow-md"
+            style={{
+              backgroundImage:
+                'url("https://media.istockphoto.com/vectors/comment-writing-icon-feedback-review-submit-orange-color-vector-vector-id1215688195?k=6&m=1215688195&s=612x612&w=0&h=nhTK8Y_uIWiswdmbQrPLzKA37Ao5KR4GZZDJ5BFn6v0=")',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
             <div>Project Feedback</div>
           </div>
           <img
