@@ -10,12 +10,8 @@ const StudentProjectsPage = () => {
           Student Projects
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          <div className="flex flex-col items-center relative"></div>
-          <div className="flex flex-col items-center relative"></div>
-          <div className="flex flex-col items-center relative"></div>
-
           <div className="flex flex-col items-center relative">
-            <div className="bg-zinc-400 h-80 w-72 flex flex-col justify-center items-center rounded-lg shadow-lg">
+            <div className="bg-zinc-400 h-80 w-72 flex flex-col justify-center items-center rounded-lg shadow-2xl">
               <h1>Stock News</h1>
             </div>
             <img
