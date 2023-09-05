@@ -99,7 +99,9 @@ const lessonComponents: LessonComponentData[] = [
       link: "https://codesandbox.io/embed/skillify-componentized-react-page-with-props-and-map-ghlp6r?fontsize=14&hidenavigation=1&theme=dark",
     },
   ];
-  return { lessonComponents };
+
+  const nextSlug = "assignments/componentsAssignment"
+  return { lessonComponents, nextSlug };
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
