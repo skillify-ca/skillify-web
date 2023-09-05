@@ -1,9 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { LessonComponentData } from "../../../../../../components/studentPortal/lessons/LessonComponent";
 
-
 export const getGithubLessonData = () => {
-const lessonComponents: LessonComponentData[] = [
+  const lessonComponents: LessonComponentData[] = [
     {
       component: "title",
       text: "Deploying a Project on Github & Vercel",
@@ -59,11 +58,12 @@ const lessonComponents: LessonComponentData[] = [
       text: "Still having trouble? No worries! Feel free to slack message a fellow classmate or book a coaching session through the portal via the Coaches tab.",
     },
   ];
-  
-  return { lessonComponents };
-}
+  const nextSlug = "react/tailwindcss-gridflex";
+
+  return { lessonComponents, nextSlug };
+};
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-    const lessonData = getGithubLessonData();
-    return res.status(200).json(lessonData);
-  };
+  const lessonData = getGithubLessonData();
+  return res.status(200).json(lessonData);
+};
