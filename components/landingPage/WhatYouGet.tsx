@@ -2,7 +2,6 @@ import React from "react";
 
 type Feature = {
   title: string;
-  value: string;
   description: string | string[];
 };
 
@@ -10,19 +9,16 @@ export default function WhatYouGet() {
   const features: Feature[] = [
     {
       title: "Access To World Class Tech Professionals",
-      value: "$25,000 Value",
       description:
         "Our incredible Coaching Team of Accountability Coaches & Coding Experts trained directly by me personally who have mastered the entire Skillify Success Path...",
     },
     {
       title: "Comprehensive Program Onboarding",
-      value: "$1,500 Value",
       description:
         "Coding Coaching Profile Assessment, Plus a Hand-Picked Coach for you based on your specific career goals, Getting Started video orientation, and 1:1 Kick off Call to get you moving forward.",
     },
     {
       title: "Direct Feedback and Guidance",
-      value: "$5,000 Value",
       description: [
         "Private community group with lots of personal attention",
         "Get real-time answers to your questions by our team of Coding Experts & Coaches",
@@ -31,7 +27,6 @@ export default function WhatYouGet() {
     },
     {
       title: "1:1 Accountability Coaching",
-      value: "$3,000 Value",
       description: [
         "Private monthly ongoing 1-on-1 calls",
         "Work directly with your Coach to create goals, develop a clear plan to achieve them, and work through any obstacles",
@@ -40,7 +35,6 @@ export default function WhatYouGet() {
     },
     {
       title: "Success Path Group Coaching, Training & Networking",
-      value: "$4,500 Value",
       description: [
         "Success Path Small Group Calls: work with other members at a similar stage in the success path to benefit from more time with a Coach in a smaller group setting",
         "Group Training Calls are balanced mix of Teaching + Implementation + Q&A each month, led by me, our coaching team, and hand-picked industry-leading experts.",
@@ -48,19 +42,16 @@ export default function WhatYouGet() {
     },
     {
       title: "FULL Library of Skillify Digital Trainings",
-      value: "$5,000 Value",
       description:
         "Access to ALL of our digital training including web development, artifical intelligence, VR/AR, cyber security, game development, blockchain development, algorithms, interviewing & MORE!...",
     },
     {
       title: "FREE Skillify Academy Events",
-      value: "$5000+ Value",
       description:
         "Get FREE access to our Skillify Academy Events that cost $100 - $500 to attend! Including micro-trainings for UX/UI Design, Agile Methodology, Product Management and Digital Marketing",
     },
     {
       title: "Annual Live Virtual 2-3 Day Hackathons",
-      value: "$2,000 Value",
       description:
         "Get access to Cutting Edge Training from Vithushan, the Skillify Faculty, and special subject matter experts on the most impactful practices that are used by Skillify and our most successful students. These events give you the chance to make HUGE progress in just a few days with guided learning, implementation sessions, and real time direct support",
     },
@@ -73,23 +64,23 @@ export default function WhatYouGet() {
       </h2>
       <FeaturesSection
         features={features.slice(0, 2)}
-        image="/images/landingPage/features-1.png"
+        image="/images/landingPage/new.svg"
       />
 
       <FeaturesSection
         features={features.slice(2, 4)}
-        image="/images/landingPage/features-2.png"
+        image="/images/landingPage/new1.svg"
         isReversed={true}
       />
 
       <FeaturesSection
         features={features.slice(4, 6)}
-        image="/images/landingPage/features-3.png"
+        image="/images/landingPage/new2.svg"
       />
       <FeaturesSection
         features={features.slice(6, 8)}
         isReversed={true}
-        image="/images/landingPage/features-4.png"
+        image="/images/landingPage/new3.svg"
       />
       {/* <BonusSection /> */}
     </div>
@@ -116,7 +107,7 @@ function FeaturesSection({
         {features.map((item, index) => (
           <div key={index} className="flex flex-col m-4">
             <p className="text-xl font-bold ">{item.title}</p>
-            <p className="mb-2 text-xl text-charmander">({item.value})</p>
+            
             <Description description={item.description} />
             {/* <p className="mb-2 text-xl ">{item.description}</p> */}
           </div>
