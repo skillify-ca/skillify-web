@@ -29,13 +29,13 @@ export default function Blog() {
         <div className="absolute top-0 w-full h-full p-8 md:p-16 opacity-5"></div>
 
         <div className="grid items-center w-full grid-cols-1 gap-16 p-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div>        
+          <div>
             <Card
               date={"April 13, 2023"}
               title={"Coding Academy Survival Guide"}
               image={"/images/blog/jest-function-testing/software_testing.jpeg"}
               description={
-                "18 Relevant and helpful tips for exceling in your coding academy or engineering internship`"
+                "18 Relevant and helpful tips for exceling in your coding academy or engineering internship"
               }
               link={"/blog/coding-academy-tips"}
               color={3}
@@ -68,7 +68,7 @@ export default function Blog() {
           </div>
 
           <div>
-            <Card          
+            <Card
               date={"August 14, 2022"}
               title={"How to learn to code in Java?"}
               image={
@@ -80,7 +80,6 @@ export default function Blog() {
             />
           </div>
           <div>
-            
             <Card
               date={"August 13, 2022"}
               title={"How to learn to code in Python?"}
@@ -93,7 +92,6 @@ export default function Blog() {
             />
           </div>
           <div>
-            
             <Card
               date={"July 11, 2022"}
               title={"How to stand out to coop employers?"}
@@ -106,7 +104,6 @@ export default function Blog() {
             />
           </div>
           <div>
-            
             <Card
               date={"April 13, 2022"}
               title={"Do Product Manager Need Coding Skills?"}
@@ -121,7 +118,6 @@ export default function Blog() {
             />
           </div>
           <div>
-            
             <Card
               date={"April 2, 2022"}
               title={"Are Toronto coding bootcamps worth it?"}
@@ -136,7 +132,6 @@ export default function Blog() {
             />
           </div>
           <div>
-            
             <Card
               date={"March 30, 2022"}
               title={"Where can I learn to code in Toronto?"}
