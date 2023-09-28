@@ -44,12 +44,12 @@ export default function Quiz() {
           <div>
             <Card
               date={"March 3, 2023"}
-              title={"Crack the Code: Discover Your First Programming Language"}
+              title={"Discover Your First Programming Language!"}
               image={
                 "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
               }
               description={
-                "A Personality Quiz for Choosing a Programming Language."
+                "Use this quiz to pick a language that's right for you."
               }
               link={"/resources/quizzes/firstProgrammingLanguage"}
               color={3}
