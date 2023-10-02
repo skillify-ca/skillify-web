@@ -7,6 +7,7 @@ import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/studentPortal/cour
 import { FETCH_USER_INTRO_NODES } from "../../../../graphql/studentPortal/courses/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
+import { getLessonComponentsForHTML1 } from "../../../api/studentPortal/lessons/basics/html/lesson1";
 
 const HTML1 = ({ lessonComponents }) => {
   const { user } = useAuth();
@@ -51,6 +52,8 @@ const HTML1 = ({ lessonComponents }) => {
 };
 
 export async function getServerSideProps({ params }) {
-  return await fetch();
+  const lessonComponents =  getLessonComponentsForHTML1();
+  return { props: { lessonComponents } };
 }
+
 export default HTML1;

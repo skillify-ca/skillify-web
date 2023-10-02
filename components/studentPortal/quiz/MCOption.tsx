@@ -1,4 +1,3 @@
-import React from "react";
 
 export enum OptionState {
   DEFAULT,
@@ -27,7 +26,7 @@ export default function MCOption({ text, state }: MCOptionProps) {
   const getRadioButtonColour = (state) => {
     switch (+state) {
       case OptionState.DEFAULT:
-        return "";
+        return "bg-white border-2 border-gray-500";
       case OptionState.SELECTED:
         return "bg-rattata";
       case OptionState.INCORRECT:

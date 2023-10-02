@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const Card = ({ title, image, description, link, color }) => {
+const Card = ({ date, title, image, description, link, color }) => {
   const getBorderColour = () => {
     if (color === 0) {
       return "border-charmander";
@@ -17,13 +17,15 @@ const Card = ({ title, image, description, link, color }) => {
   return (
     <Link href={link}>
       <div
-        className={`flex flex-col items-center justify-center h-full p-12 transition-all transform border-t-8 text-textPrimary bg-backgroundPrimary shadow-lg cursor-pointer rounded-xl hover:scale-110 ${getBorderColour()}`}
+        className={`flex flex-col h-80 transition-all transform border-t-8 text-textPrimary bg-backgroundPrimary shadow-lg cursor-pointer rounded-xl hover:scale-110 ${getBorderColour()}`}
       >
-        <div className="flex flex-col items-center">
+        <img src={image} className="object-cover w-full h-32 mb-4" />
+
+        <div className="flex flex-col items-center p-4">
           <h4 className="mb-4 font-bold">{title}</h4>
-          <img src={image} className="object-cover w-64 h-32 mb-4" />
+          <p className="mb-4 text-sm">{date}</p>
+          <p>{description}</p>
         </div>
-        {description}
       </div>
     </Link>
   );

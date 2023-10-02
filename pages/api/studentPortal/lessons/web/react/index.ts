@@ -6,19 +6,20 @@ import { getTailwindGridFlexLessonData } from "./tailwindcss-gridflex";
 import { getUseStateLessonData } from "./useState";
 
 export function getLessonForReactCourse(lessonId: string) {
-  if (lessonId === "components") {
+  if (lessonId === "React/components") {
     return getDataForComponentsLesson();
-  } else if (lessonId === "github") {
+  } else if (lessonId === "React/github") {
     return getGithubLessonData();
-  } else if (lessonId === "props") {
+  } else if (lessonId === "React/props") {
     return getPropsLessonData();
-  } else if (lessonId === "tailwindcss-colourstyling") {
+  } else if (lessonId === "React/tailwindcss-colourstyling") {
     return getTailwindColourStylingLessonData();
-  } else if (lessonId === "tailwindcss-gridflex") {
+  } else if (lessonId === "React/tailwindcss-gridflex") {
     return getTailwindGridFlexLessonData();
-  } else if (lessonId === "useState") {
+  } else if (lessonId === "React/useState") {
     return getUseStateLessonData();
   }
-
-  throw new Error(`Could not find lessons`);
+  
+  console.log("lessonId", lessonId);
+  // throw new Error(`Could not find lessons for ${lessonId}`);
 }

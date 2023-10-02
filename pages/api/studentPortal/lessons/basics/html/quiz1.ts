@@ -19,6 +19,18 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
+  const lessonComponents = getLessonComponentsForHTMLQuiz();
+
+  const data: ResponseData = {
+    lessonComponents,
+    currentNode: 3,
+    nextNode: 4,
+    nextSlug: "html/assignment",
+  };
+  res.status(200).json(data);
+}
+
+export function getLessonComponentsForHTMLQuiz() {
   const q1 = {
     text: "Which element is used to display text?",
     A: "<a>",
@@ -37,8 +49,7 @@ export default function handler(
   };
   const q3 = {
     text: "What is the difference between <h1> and <h2> tags?",
-    A:
-      "<h1> tags are ranked higher in significance than <h2> and thus are slightly larger",
+    A: "<h1> tags are ranked higher in significance than <h2> and thus are slightly larger",
     B: "<h2> is larger than <h1>",
     C: "There is no difference in significance",
     D: "None of the above",
@@ -74,12 +85,5 @@ export default function handler(
       data: quizData,
     },
   ];
-
-  const data: ResponseData = {
-    lessonComponents,
-    currentNode: 3,
-    nextNode: 4,
-    nextSlug: "HTML/3",
-  };
-  res.status(200).json(data);
+  return lessonComponents;
 }

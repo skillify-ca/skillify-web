@@ -58,7 +58,8 @@ const lessonComponents: LessonComponentData[] = [
       text: "Hover your mouse over the second last paragraph. Modify line 15 so the text colour is purple-500 when you hover over it.  ",
     },
   ];
-  return { lessonComponents };
+  const nextSlug = "assignments/tailwindAssignment"
+  return { lessonComponents, nextSlug  };
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
