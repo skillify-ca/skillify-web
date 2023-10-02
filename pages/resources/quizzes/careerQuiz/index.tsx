@@ -6,15 +6,15 @@ import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint
 import SkillSelections from "../../../../components/resources/quizzes/shared/SkillSelections";
 import StartQuiz from "../../../../components/resources/quizzes/shared/StartQuiz";
 import {
-  QuizOptionViewState,
-  QuizViewState,
+    QuizOptionViewState,
+    QuizViewState,
 } from "../../../../components/resources/quizzes/shared/types";
 import QuizTransition from "../../../../components/ui/animations/QuizTransition";
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
 import { UPDATE_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCareer";
 import { UPDATE_CAREER_QUIZ_EDUCATION_RESPONSE } from "../../../../graphql/quizzes/updateCareerEducation";
-import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz/careerQuiz";
 import ComputeCareerResult from "../../../api/studentPortal/quizzes/careerQuiz/computeCareerResults";
+import { quizData } from "../../../api/studentPortal/quizzes/quizData/careerQuiz";
 
 const initializeQuizViewState = {
   title: quizData.title,

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import { quizResultsData } from "../../../../pages/api/studentPortal/quizzes/careerQuiz/careerQuiz";
 import ComputeResult from "../../../../pages/api/studentPortal/quizzes/careerQuiz/computeCareerResults";
+import { quizResultsData } from "../../../../pages/api/studentPortal/quizzes/quizData/careerQuiz";
 import { Button } from "../../../ui/Button";
 import SkillifyNavbar from "../shared/SkillifyNavbar";
 import { QuizViewState } from "../shared/types";
