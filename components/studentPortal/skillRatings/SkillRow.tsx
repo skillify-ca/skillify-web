@@ -32,19 +32,21 @@ export default function SkillRow({ skillRow, isEditable }: SkillRowProps) {
   };
 
   return (
-    <div className="grid justify-center w-full grid-cols-1 p-4 my-4 text-center shadow place-items-center bg-backgroundPrimary sm:grid-cols-6 rounded-xl">
-      <div className="flex items-center justify-center p-12 text-6xl text-center border-4 border-white rounded-full shadow-xl sm:w-1/2 h-1/2 bg-murkrow/50">
+    <div className="grid justify-center w-full grid-cols-1 px-4 my-4 text-center shadow place-items-center bg-backgroundPrimary sm:grid-cols-6 rounded-xl">
+      <div className="flex items-center justify-center p-4 text-5xl text-center rounded-full ">
         {renderEmojiByRating(skillRatings[index].studentRating)}
       </div>
       <p className="text-xl sm:col-span-3 sm:col-start-2">
         {skillRow.skillName}
       </p>
-      <p className="text-xl">{skillRow.studentRating}</p>
-      <SkillRowEmoji
-        userSkillId={skillRow.userSkillId}
-        studentRating={skillRow.studentRating}
-        isEditable={isEditable}
-      />
+      <div className="flex items-center space-x-4 sm:col-span-2">
+        <p className="text-xl">{skillRow.studentRating}</p>
+        <SkillRowEmoji
+          userSkillId={skillRow.userSkillId}
+          studentRating={skillRow.studentRating}
+          isEditable={isEditable}
+        />
+      </div>
     </div>
   );
 }
