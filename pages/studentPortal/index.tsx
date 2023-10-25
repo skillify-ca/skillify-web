@@ -51,8 +51,14 @@ export default function StudentPortalPage() {
 
   useEffect(() => {
     if (data) {
-      console.log("units is set to:", data);
-      setUnits(transform(data));
+      setUnits(
+        transform(data).filter(
+          (it) =>
+            it.title !== "React" &&
+            it.title !== "Backend" &&
+            it.title !== "Sales"
+        )
+      );
     }
   }, [data]);
 
