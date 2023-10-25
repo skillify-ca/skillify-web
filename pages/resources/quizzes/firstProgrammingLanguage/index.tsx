@@ -13,6 +13,7 @@ import {
 import QuizTransition from "../../../../components/ui/animations/QuizTransition";
 import { INSERT_CODING_LANGUAGE_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCodingLanguageQuiz";
 import { UPDATE_CODING_LANGUAGE_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCodingLanguageQuiz";
+import { logToSlack } from "../../../api/slack/slackLogger";
 import { computeLanguageScore } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage/computeScore";
 import { quizData } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage/firstProgrammingLanguage";
 import { getPreferredLanguageForQuizResults } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage/getPreferredLanguage";
@@ -95,18 +96,8 @@ const FirstProgrammingLanguageQuiz = () => {
     //triggering mutations via onNextClick
     if (stage == Stage.START) {
       createQuizResponse({ variables: userInput });
-      fetch(
-        "https://hooks.slack.com/services/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",
-        {
-          mode: "no-cors",
-          method: "POST",
-          body: JSON.stringify({
-            text: `New FPL Quiz Response: ${userInput.name} - ${userInput.email}`,
-          }),
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-          },
-        }
+      logToSlack(
+        `New FPL Quiz Response: ${userInput.name} - ${userInput.email}`
       );
     } else if (stage == Stage.BLUEPRINT) {
       updateQuizResponse({ variables: finalResponseObject });

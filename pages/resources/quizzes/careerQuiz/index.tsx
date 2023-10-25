@@ -14,6 +14,7 @@ import QuizTransition from "../../../../components/ui/animations/QuizTransition"
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
 import { UPDATE_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCareer";
 import { UPDATE_CAREER_QUIZ_EDUCATION_RESPONSE } from "../../../../graphql/quizzes/updateCareerEducation";
+import { logToSlack } from "../../../api/slack/slackLogger";
 import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz/careerQuiz";
 import ComputeCareerResult from "../../../api/studentPortal/quizzes/careerQuiz/computeCareerResults";
 
@@ -91,18 +92,9 @@ const CareerQuiz = () => {
       createQuizResponse({
         variables: { name: userInput.name, email: userInput.email },
       });
-      fetch(
-        "https://hooks.slack.com/services/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",
-        {
-          mode: "no-cors",
-          method: "POST",
-          body: JSON.stringify({
-            text: `New Career Quiz Response: ${userInput.name} - ${userInput.email}`,
-          }),
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-          },
-        }
+
+      logToSlack(
+        `New Career Quiz Response: ${userInput.name} - ${userInput.email}`
       );
     } else if (stage === Stage.EDUCATION) {
       saveEducationInputs({
