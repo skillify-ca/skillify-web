@@ -1,5 +1,6 @@
 import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
+import LandingNavbar from "../../../../components/landingPage/LandingNavbar";
 import CareerResults from "../../../../components/resources/quizzes/careerQuiz/CareerResults";
 import EduBackground from "../../../../components/resources/quizzes/careerQuiz/EduBackground";
 import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
@@ -296,7 +297,15 @@ const CareerQuiz = () => {
 export default CareerQuiz;
 
 function getLayout(page: React.ReactNode) {
-  return <div>{page}</div>;
+  return (
+    <div className="flex flex-col items-center h-screen bg-orange-50">
+      <LandingNavbar />
+      <div className="flex justify-center w-full h-screen max-w-xl bg-white shadow">
+        {page}
+      </div>
+      ;
+    </div>
+  );
 }
 
 CareerQuiz.getLayout = getLayout;
