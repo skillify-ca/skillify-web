@@ -40,7 +40,7 @@ export default function Quiz() {
       <div className="absolute w-full ">
         <div className="absolute top-0 w-full h-full p-8 md:p-16 opacity-5"></div>
 
-        <div className="grid items-center w-full grid-cols-1 gap-16 p-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid items-center w-full grid-cols-1 gap-16 p-16 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <Card
               date={""}
