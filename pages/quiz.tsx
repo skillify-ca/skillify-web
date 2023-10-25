@@ -5,7 +5,7 @@ import Card from "../components/blog/BlogCard";
 import LandingNavbar from "../components/landingPage/LandingNavbar";
 export default function Quiz() {
   return (
-    <div>
+    <div className="h-full">
       <Head>
         <title>{"Quizzes"}</title>
         <meta
@@ -35,12 +35,11 @@ export default function Quiz() {
       />
 
       <LandingNavbar />
-      <h1 className="w-full p-4 text-5xl font-bold text-center ">Quizzes</h1>
 
-      <div className="absolute w-full ">
-        <div className="absolute top-0 w-full h-full p-8 md:p-16 opacity-5"></div>
+      <div className="w-full h-screen mx-auto bg-slate-100 max-w-7xl">
+        <h1 className="w-full py-8 text-5xl font-bold text-center ">Quizzes</h1>
 
-        <div className="grid items-center w-full grid-cols-1 gap-16 p-16 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid items-center w-full grid-cols-1 gap-16 px-16 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <Card
               date={""}
@@ -76,5 +75,5 @@ export default function Quiz() {
 }
 
 Quiz.getLayout = function getLayout(page) {
-  return <div>{page}</div>;
+  return <div className="theme-default">{page}</div>;
 };

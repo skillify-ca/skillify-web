@@ -5,12 +5,17 @@ const StoryCard = ({ title, image, description, link }) => {
   return (
     <Link href={link}>
       <div
-        className={`flex flex-col transition-all transform text-textPrimary bg-backgroundPrimary shadow-lg cursor-pointer hover:scale-110`}
+        className={`flex flex-col text-textPrimary bg-white shadow-lg cursor-pointer group overflow-clip`}
       >
-        <img src={image} className="object-cover w-full h-80" />
+        <div className="h-80 overflow-clip">
+          <img
+            src={image}
+            className="object-cover w-full transition-all transform h-80 group-hover:scale-110 overflow-clip"
+          />
+        </div>
 
-        <div className="flex flex-col h-24 p-4">
-          <h4 className=" pb-4 font-bold">{title}</h4>
+        <div className="flex flex-col p-4 h-28">
+          <h4 className="pb-2 font-bold ">{title}</h4>
           <p>{description}</p>
         </div>
       </div>
