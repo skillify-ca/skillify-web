@@ -43,7 +43,7 @@ export default function Quiz() {
         <div className="grid items-center w-full grid-cols-1 gap-16 p-4 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <Card
-              date={"March 3, 2023"}
+              date={""}
               title={"Discover Your First Programming Language!"}
               image={
                 "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
@@ -57,7 +57,7 @@ export default function Quiz() {
           </div>
           <div>
             <Card
-              date={"March 2, 2023"}
+              date={""}
               title={"Which Career in tech is Meant for You?"}
               image={
                 "https://images.unsplash.com/photo-1459180129673-eefb56f79b45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80"
