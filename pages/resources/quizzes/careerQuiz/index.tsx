@@ -90,6 +90,19 @@ const CareerQuiz = () => {
       createQuizResponse({
         variables: { name: userInput.name, email: userInput.email },
       });
+      fetch(
+        "https://hooks.slack.com/services/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",
+        {
+          mode: "no-cors",
+          method: "POST",
+          body: JSON.stringify({
+            text: `New Career Quiz Response: ${userInput.name} - ${userInput.email}`,
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        }
+      );
     } else if (stage === Stage.EDUCATION) {
       saveEducationInputs({
         variables: {

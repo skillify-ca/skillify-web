@@ -1,4 +1,4 @@
-import { useMutation } from "@apollo/client/react/hooks/useMutation";
+import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import LanguageResults from "../../../../components/resources/quizzes/firstProgrammingLanguageQuiz/LanguageResults";
 import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
@@ -94,6 +94,19 @@ const FirstProgrammingLanguageQuiz = () => {
     //triggering mutations via onNextClick
     if (stage == Stage.START) {
       createQuizResponse({ variables: userInput });
+      fetch(
+        "https://hooks.slack.com/services/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",
+        {
+          mode: "no-cors",
+          method: "POST",
+          body: JSON.stringify({
+            text: `New FPL Quiz Response: ${userInput.name} - ${userInput.email}`,
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        }
+      );
     } else if (stage == Stage.BLUEPRINT) {
       updateQuizResponse({ variables: finalResponseObject });
     }
