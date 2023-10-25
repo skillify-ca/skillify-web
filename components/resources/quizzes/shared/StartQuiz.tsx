@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../../../ui/Button";
 import { UserInput } from "./types";
 
@@ -17,9 +17,22 @@ const StartQuiz = ({
   userInput,
   setUserInput,
 }: StartQuizProps) => {
+  const [showEmailError, setShowEmailError] = useState(false);
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setUserInput({ ...userInput, [name]: value });
+    setShowEmailError(false);
+  };
+
+  const startQuiz = () => {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    const isValidEmail = emailPattern.test(userInput.email);
+    if (isValidEmail) {
+      onNextClick();
+    } else {
+      setShowEmailError(true);
+    }
   };
 
   return (
@@ -47,14 +60,18 @@ const StartQuiz = ({
             onChange={handleInputChange}
             className="w-4/5 p-2 ml-8 border border-gray-500 rounded-lg shadow appearance-none"
           ></input>
+          {showEmailError && (
+            <p className="ml-8 text-red-500">Invalid email address</p>
+          )}
         </div>
         <Button
-          backgroundColor="yellow"
           label="Start Quiz"
-          disabled={userInput.name.length == 0 && userInput.email.length == 0}
-          onClick={() => {
-            onNextClick();
-          }}
+          disabled={
+            userInput.name.length == 0 ||
+            userInput.email.length == 0 ||
+            showEmailError
+          }
+          onClick={startQuiz}
         />
       </div>
     </div>

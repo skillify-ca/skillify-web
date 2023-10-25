@@ -200,7 +200,7 @@ export default FirstProgrammingLanguageQuiz;
 
 function getLayout(page: React.ReactNode) {
   return (
-    <div className="flex flex-col items-center h-screen bg-orange-50">
+    <div className="flex flex-col items-center h-screen bg-orange-50 theme-default">
       <LandingNavbar />
       <div className="flex justify-center w-full h-screen max-w-xl bg-white shadow">
         {page}
