@@ -36,7 +36,7 @@ export default function Quiz() {
 
       <LandingNavbar />
 
-      <div className="w-full h-screen mx-auto bg-slate-100 max-w-7xl">
+      <div className="w-full h-screen mx-auto bg-slate-50 max-w-7xl">
         <h1 className="w-full py-8 text-5xl font-bold text-center ">Quizzes</h1>
 
         <div className="grid items-center w-full grid-cols-1 gap-16 px-16 sm:grid-cols-2 lg:grid-cols-3">

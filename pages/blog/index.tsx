@@ -5,7 +5,7 @@ import LandingNavbar from "../../components/landingPage/LandingNavbar";
 
 export default function Blog() {
   return (
-    <div className="bg-slate-100">
+    <div className="bg-white">
       <Head>
         <title>{"Skillify Blog"}</title>
         <meta
@@ -26,9 +26,21 @@ export default function Blog() {
       </Head>
       <LandingNavbar />
 
-      <div className="w-full mx-auto bg-white max-w-7xl">
+      <div className="w-full mx-auto bg-slate-50 max-w-7xl">
         <h1 className="w-full py-8 text-5xl font-bold text-center">Blog</h1>
         <div className="grid items-center w-full grid-cols-1 gap-16 px-16 pb-16 sm:grid-cols-2 lg:grid-cols-3">
+          <Card
+            date={"September 19, 2023"}
+            title={"What is a good tech salary in Canada?"}
+            image={
+              "https://images.unsplash.com/photo-1641932971241-df935a6d16e1"
+            }
+            description={
+              "A summary of tech interview stats and salaries in Canada"
+            }
+            link={"/resources/jobTracker"}
+            color={2}
+          />
           <div>
             <Card
               date={"April 13, 2023"}
@@ -152,5 +164,5 @@ export default function Blog() {
 }
 
 Blog.getLayout = function getLayout(page) {
-  return <div>{page}</div>;
+  return <div className="theme-default">{page}</div>;
 };

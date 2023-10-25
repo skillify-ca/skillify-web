@@ -8,7 +8,7 @@ export default function SuccessStories() {
     <div>
       <LandingNavbar />
 
-      <div className="w-full mx-auto max-w-7xl bg-slate-100">
+      <div className="w-full mx-auto max-w-7xl bg-slate-50">
         <h1 className="w-full pt-10 text-5xl font-bold text-center ">
           Student Success Stories
         </h1>

@@ -9,7 +9,9 @@ export default function JobTrackerComponent() {
 
   return (
     <div className="p-4">
-      <h2 className="text-3xl font-bold">Tech Job Tracker 2023</h2>
+      <h2 className="mb-4 text-3xl font-bold text-center">
+        Tech Job Tracker 2023
+      </h2>
       <p className="">
         One of our expert coaches recently spent a few months interviewing with
         various tech companies from January to March of 2023. Here is a list of
