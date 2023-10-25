@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { logToSlack } from "../../../pages/api/slack/slackLogger";
 import { Button } from "../../ui/Button";
 import { Input } from "../../ui/Input";
 
@@ -518,18 +519,7 @@ function EmailCapture({ onSubmit }) {
     if (isValid) {
       onSubmit();
 
-      const url = `/api/slack/TechSalaryGuide2023|${email}`;
-      const options = {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8",
-        },
-        body: JSON.stringify({
-          email: email,
-        }),
-      };
-      await fetch(url, options);
+      logToSlack(`Email: ${email} has downloaded the Tech Salary Guide 2023`);
     } else {
       setShowError(true);
     }
