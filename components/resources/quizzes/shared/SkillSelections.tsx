@@ -62,7 +62,7 @@ const SkillSelections: React.FC<SkillSelectionsProps> = ({
       <div className="flex flex-col items-center max-w-4xl px-8 md:w-full md:mx-auto">
         <Progress progress={progressVal} />
         <div className="mt-4 text-2xl font-bold text-center text-black-600">
-          {titleForCurrentQuestion}
+          <p className="w-[28rem]">{titleForCurrentQuestion}</p>
         </div>
         <div className="px-3 text-lg font-semibolds">
           {bodyForCurrentQuestion}

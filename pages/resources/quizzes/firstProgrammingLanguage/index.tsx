@@ -205,7 +205,6 @@ function getLayout(page: React.ReactNode) {
       <div className="flex justify-center w-full h-screen max-w-xl bg-white shadow">
         {page}
       </div>
-      ;
     </div>
   );
 }

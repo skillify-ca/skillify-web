@@ -5,7 +5,7 @@ import LandingNavbar from "../../components/landingPage/LandingNavbar";
 
 export default function Blog() {
   return (
-    <div>
+    <div className="bg-slate-100">
       <Head>
         <title>{"Skillify Blog"}</title>
         <meta
@@ -25,12 +25,10 @@ export default function Blog() {
         <meta property="og:type" content="website" />
       </Head>
       <LandingNavbar />
-      <h1 className="w-full p-4 text-5xl font-bold text-center ">Blog</h1>
 
-      <div className="absolute w-full ">
-        <div className="absolute top-0 w-full h-full p-8 md:p-16 opacity-5"></div>
-
-        <div className="grid items-center w-full grid-cols-1 gap-16 p-16 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="w-full mx-auto bg-white max-w-7xl">
+        <h1 className="w-full py-8 text-5xl font-bold text-center">Blog</h1>
+        <div className="grid items-center w-full grid-cols-1 gap-16 px-16 pb-16 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <Card
               date={"April 13, 2023"}
