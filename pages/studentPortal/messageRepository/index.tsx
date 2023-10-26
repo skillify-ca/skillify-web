@@ -1,6 +1,8 @@
+import { useMutation } from "@apollo/client";
 import { format } from "date-fns";
 import React, { useState } from "react";
 import { Button } from "../../../components/ui/Button";
+import { insert_Message } from "../../../graphql/studentPortal/messageRepo/insertMessage";
 import { useAuth } from "../../../lib/authContext";
 
 function MessageRepository() {
@@ -15,6 +17,9 @@ function MessageRepository() {
     targetDate: new Date(),
   });
 
+  // route back to goals overview page on complete
+  const [saveNewMessage] = useMutation(insert_Message);
+
   // Function to update the 'message' state when the input changes
   const handleMessageChange = (e) => {
     setGoal(e.target.value);
@@ -27,6 +32,12 @@ function MessageRepository() {
     //log the current message
     console.log("Goal:", goal);
     // Clear the input after submission.
+    saveNewMessage({
+      variables: {
+        date: "2023-10-15",
+        reachout_message: goal,
+      },
+    });
     setGoal("");
   };
   // Render a form with an input field and a submit button.
@@ -41,7 +52,7 @@ function MessageRepository() {
       </div>
 
       <textarea
-        className="shadow-lg w-1/2"
+        className="text-left p-2 border rounded-md shadow-md w-1/2 dark:text-murkrow"
         placeholder="Enter your reachout message..."
         value={goal}
         onChange={handleMessageChange}
@@ -60,7 +71,9 @@ function MessageRepository() {
           }));
         }}
       />
-      <Button label="Add Goal">Add Goal</Button>
+      <Button label="Add Goal" onClick={handleSubmit}>
+        Add Goal
+      </Button>
     </div>
   );
 }
