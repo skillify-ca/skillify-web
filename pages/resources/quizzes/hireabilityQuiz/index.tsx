@@ -107,23 +107,23 @@ export default function HireabilityQuiz() {
 
   const handleOptionClick = (option: QuizOptionViewState) => {
     setQuizViewState((prevQuizViewState) => {
-      const selectedQuizOption = prevQuizViewState.questions.map(
-        (question) => ({
-          ...question,
-          options: question.options.map((questionOption) =>
-            questionOption.name === option.name
-              ? {
-                  ...questionOption,
-                  isSelected: !questionOption.isSelected,
-                }
-              : questionOption
-          ),
-        })
-      );
+      const updatedQuestions = prevQuizViewState.questions.map((question) => ({
+        ...question,
+        options: question.options.map((questionOption) => ({
+          ...questionOption,
+          isSelected: false, // Deselect all options
+        })),
+      }));
 
       return {
         ...prevQuizViewState,
-        questions: selectedQuizOption,
+        questions: updatedQuestions.map((question) => ({
+          ...question,
+          options: question.options.map((questionOption) => ({
+            ...questionOption,
+            isSelected: questionOption.name === option.name, // Set the selected option to true
+          })),
+        })),
       };
     });
   };

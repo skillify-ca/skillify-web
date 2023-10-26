@@ -1,5 +1,25 @@
 import { QuizViewState } from "../../../../../components/resources/quizzes/shared/types";
+export type QuizDataHire = {
+  title: string;
+  body: string;
+  questions: QuizQuestionHire[];
+  currentQuestion: number;
+  progress: number;
+};
 
+export type QuizQuestionHire = {
+  title: string;
+  body: string;
+  maxSelections?: number;
+  options: QuizOptionHire[];
+};
+
+export type QuizOptionHire = {
+  name: string;
+  weight: number;
+  isSelected: boolean;
+  isCorrect: boolean;
+};
 export const quizData: QuizViewState = {
   title: "How hireable are you?",
   body: "Take this free quiz to reveal your hireability score for software engineering, product, or design roles.",
@@ -7,7 +27,6 @@ export const quizData: QuizViewState = {
     {
       title: "What role are you interested in?",
       body: "Select the most relevant role.",
-      maxSelections: 1,
 
       options: [
         {
@@ -37,148 +56,158 @@ export const quizData: QuizViewState = {
   progress: 0,
 };
 
-// Frontend Engineer Quiz Data
-export const quizDataFE: QuizViewState = {
+const quizDataFE: QuizDataHire = {
   title: "Frontend Engineer Quiz",
   body: "Test your knowledge and skills as a Frontend Engineer.",
   questions: [
     {
-      title:
-        "What is the purpose of CSS media queries in responsive web design?",
-      body: "Explain the purpose and usage of CSS media queries.",
-      maxSelections: 1,
+      title: "What are HTML meta tags used for?",
+      body: "Explain the purpose and usage of HTML meta tags.",
       options: [
         {
-          name: "To apply styles based on the device's screen size and characteristics.",
+          name: "To create animations in CSS.",
           weight: 0,
           isSelected: false,
-        },
-        {
-          name: "To query the DOM for specific elements.",
-          weight: 0,
-          isSelected: false,
+          isCorrect: false,
         },
         {
           name: "To fetch data from an API.",
           weight: 0,
           isSelected: false,
+          isCorrect: false,
         },
         {
-          name: "To create animations in CSS.",
+          name: "To define block-level and inline elements.",
           weight: 0,
           isSelected: false,
-        },
-      ],
-    },
-    {
-      title:
-        "Explain the difference between stateful and stateless components in React.",
-      body: "Provide a clear distinction between stateful and stateless components in React.",
-      maxSelections: 1,
-      options: [
-        {
-          name: "Stateful components can manage and change their own state, while stateless components cannot.",
-          weight: 0,
-          isSelected: false,
+          isCorrect: false,
         },
         {
-          name: "Stateless components are faster than stateful components.",
+          name: "To provide data about encoding, document title, and character description.",
           weight: 0,
           isSelected: false,
-        },
-        {
-          name: "Stateful components can only be used in class-based components, while stateless components are used in functional components.",
-          weight: 0,
-          isSelected: false,
-        },
-        {
-          name: "Stateless components have a render method, while stateful components do not.",
-          weight: 0,
-          isSelected: false,
+          isCorrect: true,
         },
       ],
     },
     {
-      title:
-        "How do you optimize web performance, and what techniques can be used to reduce page load times?",
-      body: "Discuss web performance optimization strategies and techniques.",
+      title: "Differentiate between div and span in HTML and CSS.",
+      body: "Explain the key differences and use cases of div and span.",
       maxSelections: 1,
       options: [
         {
-          name: "Optimization techniques include code splitting, lazy loading, and image compression.",
+          name: "Div and span are interchangeable and serve the same purpose.",
           weight: 0,
           isSelected: false,
+          isCorrect: false,
         },
         {
-          name: "Performance can be improved by using larger images and fewer JavaScript libraries.",
+          name: "Div is used for block-level elements, while span is used for inline elements.",
           weight: 0,
           isSelected: false,
+          isCorrect: true,
         },
         {
-          name: "Web performance is primarily improved by increasing the number of third-party scripts.",
+          name: "Div is used for creating animations, and span is used for styling text.",
           weight: 0,
           isSelected: false,
+          isCorrect: false,
         },
         {
-          name: "Performance optimizations are not necessary in web development.",
+          name: "Div and span are used for making API requests in web development.",
           weight: 0,
           isSelected: false,
+          isCorrect: false,
         },
       ],
     },
     {
-      title:
-        "Describe the importance of JavaScript closures and provide an example of their use.",
-      body: "Explain what JavaScript closures are and illustrate their significance with an example.",
-      maxSelections: 1,
+      title: "What are the advantages of using REST web services?",
+      body: "Discuss the benefits of RESTful web services in web development.",
       options: [
         {
-          name: "Closures allow functions to retain access to their lexical scope even after the parent function has completed execution.",
+          name: "REST is a heavyweight protocol for web development.",
           weight: 0,
           isSelected: false,
+          isCorrect: false,
         },
         {
-          name: "Closures are used to close a web page after it has been opened using JavaScript.",
+          name: "REST web services can only transfer images and JSON data.",
           weight: 0,
           isSelected: false,
+          isCorrect: false,
         },
         {
-          name: "Closures are a way to prevent memory leaks in JavaScript applications.",
+          name: "REST enforces a strict contract between the server and client.",
           weight: 0,
           isSelected: false,
+          isCorrect: false,
         },
         {
-          name: "Closures are used for creating global variables in JavaScript.",
+          name: "REST web services have a simple learning curve and work on the HTTP protocol.",
           weight: 0,
           isSelected: false,
+          isCorrect: true,
         },
       ],
     },
     {
-      title:
-        "What are the advantages and disadvantages of using CSS preprocessors like SASS or LESS?",
-      body: "Discuss the pros and cons of using CSS preprocessors in web development.",
-      maxSelections: 1,
+      title: "Explain the key differences between CSS Grid and Flexbox.",
+      body: "Compare and contrast CSS Grid and Flexbox layout systems.",
       options: [
         {
-          name: "Advantages include variables, nesting, and mixins, while disadvantages may include a learning curve and compilation step.",
+          name: "CSS Grid is primarily used for creating responsive web design, while Flexbox is used for animations.",
           weight: 0,
           isSelected: false,
+          isCorrect: false,
         },
         {
-          name: "CSS preprocessors have no advantages over plain CSS.",
+          name: "CSS Grid and Flexbox are interchangeable and serve the same purpose.",
           weight: 0,
           isSelected: false,
+          isCorrect: false,
         },
         {
-          name: "CSS preprocessors can only be used for server-side rendering (SSR) applications.",
+          name: "CSS Grid is a 2D layout system for grid-based layouts, while Flexbox is a 1D layout system for arranging items in a single direction.",
           weight: 0,
           isSelected: false,
+          isCorrect: true,
         },
         {
-          name: "CSS preprocessors can be used without any additional setup or tooling.",
+          name: "CSS Grid and Flexbox are both obsolete in modern web development.",
           weight: 0,
           isSelected: false,
+          isCorrect: false,
+        },
+      ],
+    },
+    {
+      title: "What is TypeScript and why is it used in web development?",
+      body: "Explain what TypeScript is and its significance in web development.",
+      options: [
+        {
+          name: "TypeScript is a superset of JavaScript that adds static typing and other features, making it more robust for large-scale applications.",
+          weight: 0,
+          isSelected: false,
+          isCorrect: true,
+        },
+        {
+          name: "TypeScript is a standalone language that replaces JavaScript in all web development projects.",
+          weight: 0,
+          isSelected: false,
+          isCorrect: false,
+        },
+        {
+          name: "TypeScript is used for creating RESTful web services.",
+          weight: 0,
+          isSelected: false,
+          isCorrect: false,
+        },
+        {
+          name: "TypeScript is primarily used for styling web pages.",
+          weight: 0,
+          isSelected: false,
+          isCorrect: false,
         },
       ],
     },
