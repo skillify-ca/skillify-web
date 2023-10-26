@@ -27,6 +27,7 @@ export const quizData: QuizViewState = {
     {
       title: "What role are you interested in?",
       body: "Select the most relevant role.",
+      maxSelections: 1,
 
       options: [
         {
@@ -63,6 +64,7 @@ const quizDataFE: QuizDataHire = {
     {
       title: "What are HTML meta tags used for?",
       body: "Explain the purpose and usage of HTML meta tags.",
+      maxSelections: 1,
       options: [
         {
           name: "To create animations in CSS.",
@@ -124,6 +126,7 @@ const quizDataFE: QuizDataHire = {
     {
       title: "What are the advantages of using REST web services?",
       body: "Discuss the benefits of RESTful web services in web development.",
+      maxSelections: 1,
       options: [
         {
           name: "REST is a heavyweight protocol for web development.",
@@ -154,6 +157,7 @@ const quizDataFE: QuizDataHire = {
     {
       title: "Explain the key differences between CSS Grid and Flexbox.",
       body: "Compare and contrast CSS Grid and Flexbox layout systems.",
+      maxSelections: 1,
       options: [
         {
           name: "CSS Grid is primarily used for creating responsive web design, while Flexbox is used for animations.",
@@ -184,6 +188,7 @@ const quizDataFE: QuizDataHire = {
     {
       title: "What is TypeScript and why is it used in web development?",
       body: "Explain what TypeScript is and its significance in web development.",
+      maxSelections: 1,
       options: [
         {
           name: "TypeScript is a superset of JavaScript that adds static typing and other features, making it more robust for large-scale applications.",
