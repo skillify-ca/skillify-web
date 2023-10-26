@@ -7,10 +7,11 @@ export default function SuccessStories() {
   return (
     <div>
       <LandingNavbar />
-      <h1 className="w-full pt-10 text-5xl font-bold text-center ">
-        Student Success Stories
-      </h1>
-      <div className="w-full ">
+
+      <div className="w-full mx-auto max-w-7xl bg-slate-50">
+        <h1 className="w-full pt-10 text-5xl font-bold text-center ">
+          Student Success Stories
+        </h1>
         <div className="grid items-center w-full grid-cols-3 gap-16 p-20 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <StoryCard
@@ -30,14 +31,14 @@ export default function SuccessStories() {
           </div>
         </div>
       </div>
-      <div className="bg-indigo-950 w-full p-20 flex flex-col items-center justify-center">
-        <h1 className="text-white text-3xl font-bold pb-8">
+      <div className="flex flex-col items-center justify-center w-full p-20 bg-indigo-950">
+        <h1 className="pb-8 text-3xl font-bold text-white">
           Ready to become the next success story?
         </h1>
         <Link href={"/plans"}>
           <button
             type="button"
-            className="py-3 bg-charmander hover:bg-pikachu-500 text-white px-8 font-bold rounded-lg cursor-pointer"
+            className="px-8 py-3 font-bold text-white rounded-lg cursor-pointer bg-charmander hover:bg-pikachu-500"
           >
             <p className={`text-base"`}>Apply Now</p>
           </button>
@@ -48,5 +49,5 @@ export default function SuccessStories() {
 }
 
 SuccessStories.getLayout = function getLayout(page) {
-  return <div>{page}</div>;
+  return <div className="theme-default">{page}</div>;
 };

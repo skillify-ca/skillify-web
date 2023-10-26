@@ -14,9 +14,7 @@ const SkillifyNavbar = ({ hidden, onBackClick }: SkillifyNavbarProps) => {
           className={className}
         />
       </div>
-      <div className="flex justify-center mr-4">
-        <img src="/images/logo.svg" className="w-40 mr-8" />
-      </div>
+      <div className="flex justify-center mr-4"></div>
       <div></div>
     </div>
   );

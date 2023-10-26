@@ -5,7 +5,7 @@ import Card from "../components/blog/BlogCard";
 import LandingNavbar from "../components/landingPage/LandingNavbar";
 export default function Quiz() {
   return (
-    <div>
+    <div className="h-full">
       <Head>
         <title>{"Quizzes"}</title>
         <meta
@@ -35,15 +35,14 @@ export default function Quiz() {
       />
 
       <LandingNavbar />
-      <h1 className="w-full p-4 text-5xl font-bold text-center ">Quizzes</h1>
 
-      <div className="absolute w-full ">
-        <div className="absolute top-0 w-full h-full p-8 md:p-16 opacity-5"></div>
+      <div className="w-full h-screen mx-auto bg-slate-50 max-w-7xl">
+        <h1 className="w-full py-8 text-5xl font-bold text-center ">Quizzes</h1>
 
-        <div className="grid items-center w-full grid-cols-1 gap-16 p-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid items-center w-full grid-cols-1 gap-16 px-16 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <Card
-              date={"March 3, 2023"}
+              date={""}
               title={"Discover Your First Programming Language!"}
               image={
                 "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
@@ -57,7 +56,7 @@ export default function Quiz() {
           </div>
           <div>
             <Card
-              date={"March 2, 2023"}
+              date={""}
               title={"Which Career in tech is Meant for You?"}
               image={
                 "https://images.unsplash.com/photo-1459180129673-eefb56f79b45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80"
@@ -76,5 +75,5 @@ export default function Quiz() {
 }
 
 Quiz.getLayout = function getLayout(page) {
-  return <div>{page}</div>;
+  return <div className="theme-default">{page}</div>;
 };

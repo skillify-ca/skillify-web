@@ -17,6 +17,7 @@ import { UPDATE_USER } from "../../graphql/studentPortal/users/updateUser";
 import { useAuth } from "../../lib/authContext";
 
 import React from "react";
+import GoalsFeed from "../../components/studentPortal/goals/feed/GoalsFeed";
 import { Unit } from "../api/studentPortal/units";
 
 export default function StudentPortalPage() {
@@ -51,8 +52,14 @@ export default function StudentPortalPage() {
 
   useEffect(() => {
     if (data) {
-      console.log("units is set to:", data);
-      setUnits(transform(data));
+      setUnits(
+        transform(data).filter(
+          (it) =>
+            it.title !== "React" &&
+            it.title !== "Backend" &&
+            it.title !== "Sales"
+        )
+      );
     }
   }, [data]);
 
@@ -68,17 +75,22 @@ export default function StudentPortalPage() {
   }, [user]);
 
   return (
-    <div className="flex flex-col w-full px-4 pb-4 sm:px-8 sm:pb-8 ">
-      <PageHeader
-        title={`Let's start learning, ${user.displayName}`}
-        description={moment().format("MMM Do YYYY")}
-      />
-      <div className="grid grid-cols-1 gap-4">
-        {error ? (
-          <ErrorMessage message={"Failed to fetch student dashboard"} />
-        ) : (
-          units.map((it, i) => <UnitView key={i} data={it} />)
-        )}
+    <div className="grid w-full grid-cols-12 ">
+      <div className="flex flex-col h-screen col-span-8 px-4 pb-4 overflow-y-auto sm:px-8 sm:pb-8">
+        <PageHeader
+          title={`Let's start learning, ${user.displayName}`}
+          description={moment().format("MMM Do YYYY")}
+        />
+        <div className="grid grid-cols-1 gap-4">
+          {error ? (
+            <ErrorMessage message={"Failed to fetch student dashboard"} />
+          ) : (
+            units.map((it, i) => <UnitView key={i} data={it} />)
+          )}
+        </div>
+      </div>
+      <div className="hidden col-span-4 overflow-y-auto sm:flex">
+        <GoalsFeed />
       </div>
     </div>
   );
