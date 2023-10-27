@@ -1,31 +1,33 @@
 import { useQuery } from "@apollo/client";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GoalsSectionComponent from "../../components/studentPortal/goals/GoalsSectionComponent";
-import AchievementComponent from "../../components/studentPortal/profileV2/achievement_components/AchievementComponent";
 import ProfileHeaderComponent from "../../components/studentPortal/profileV2/ProfileHeaderComponent";
 import ProjectsSection from "../../components/studentPortal/profileV2/ProjectsSection";
+import AchievementComponent from "../../components/studentPortal/profileV2/achievement_components/AchievementComponent";
 import SkillRatingsComponent from "../../components/studentPortal/skillRatings/SkillRatingsComponent";
+import { Button } from "../../components/ui/Button";
 import {
-  FetchTotalBadgesCountResponse,
   FETCH_TOTAL_USER_BADGES_COUNT,
+  FetchTotalBadgesCountResponse,
 } from "../../graphql/studentPortal/achievements/fetchTotalUserBadgesCount";
 import {
-  FetchUserBadgesCountResponse,
   FETCH_USER_BADGES_COUNT,
+  FetchUserBadgesCountResponse,
 } from "../../graphql/studentPortal/achievements/fetchUserBadgesCount";
 import {
-  FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
+  FetchUserGoalsDataResponse,
 } from "../../graphql/studentPortal/goals/fetchUserGoals";
 import {
-  FetchUserProfileDataResponse,
   FETCH_USER_PROFILE_DATA,
+  FetchUserProfileDataResponse,
 } from "../../graphql/studentPortal/profile/fetchUserProfile";
 import {
-  FetchSkillsAndRatings,
   FETCH_SKILLS_AND_RATINGS,
+  FetchSkillsAndRatings,
 } from "../../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
 import { useAuth } from "../../lib/authContext";
 import {
@@ -57,8 +59,9 @@ export default function InternalProfile({
 
   const { userGoals } = useSelector(userGoalsSelector);
   const { skillRatings } = useSelector(skillRatingsSelector);
-  const { userProfileData, userBadgeCount, totalBadgeCount } =
-    useSelector(profileSelector);
+  const { userProfileData, userBadgeCount, totalBadgeCount } = useSelector(
+    profileSelector
+  );
   const [isEditable, setIsEditable] = useState(false);
 
   if (userId) {
@@ -138,6 +141,11 @@ export default function InternalProfile({
         />
       </Section>
       <Section title={"Projects"}>
+        <div className="p-4">
+          <Link href="/studentPortal/projects/create">
+            <Button label="Create Project" />
+          </Link>
+        </div>
         <ProjectsSection user={userId} />
       </Section>
       <Section title={"Goals"}>
