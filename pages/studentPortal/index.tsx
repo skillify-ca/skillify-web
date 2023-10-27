@@ -55,9 +55,9 @@ export default function StudentPortalPage() {
       setUnits(
         transform(data).filter(
           (it) =>
-            it.title !== "React" &&
-            it.title !== "Backend" &&
-            it.title !== "Sales"
+            it.title === "HTML" ||
+            it.title === "CSS" ||
+            it.title === "JavaScript"
         )
       );
     }
