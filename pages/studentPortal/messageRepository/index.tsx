@@ -10,12 +10,15 @@ function MessageRepository() {
   const [goal, setGoal] = useState("");
   const { user } = useAuth();
 
+  //change from new goal to new reachout
   const [newGoalValues, setNewGoalValues] = useState({
     userId: user.uid,
     isComplete: false,
     goalName: "",
     targetDate: new Date(),
   });
+
+  const [targetDate, setTargetDate] = useState({});
 
   // route back to goals overview page on complete
   const [saveNewMessage] = useMutation(insert_Message);
@@ -30,11 +33,10 @@ function MessageRepository() {
     //prevent default
     e.preventDefault();
     //log the current message
-    console.log("Goal:", goal);
     // Clear the input after submission.
     saveNewMessage({
       variables: {
-        date: "2023-10-15",
+        date: newGoalValues.targetDate,
         reachout_message: goal,
       },
     });
