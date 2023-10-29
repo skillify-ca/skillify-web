@@ -4,19 +4,17 @@ import React, { useState } from "react";
 import { Button } from "../../../components/ui/Button";
 import { insert_Message } from "../../../graphql/studentPortal/messageRepo/insertMessage";
 import { useAuth } from "../../../lib/authContext";
-
+type Message = {
+  message: string;
+  date: string;
+};
 function MessageRepository() {
   // Initialize state for the message input.
-  const [goal, setGoal] = useState("");
+  const [message, setMessage] = useState("");
   const { user } = useAuth();
 
-  //change from new goal to new reachout
-  const [newGoalValues, setNewGoalValues] = useState({
-    userId: user.uid,
-    isComplete: false,
-    goalName: "",
-    targetDate: new Date(),
-  });
+  //date for state var
+  const [date, setDate] = useState(new Date());
 
   const [targetDate, setTargetDate] = useState({});
 
@@ -25,7 +23,7 @@ function MessageRepository() {
 
   // Function to update the 'message' state when the input changes
   const handleMessageChange = (e) => {
-    setGoal(e.target.value);
+    setMessage(e.target.value);
   };
 
   // Function to handle form submission.
@@ -36,11 +34,11 @@ function MessageRepository() {
     // Clear the input after submission.
     saveNewMessage({
       variables: {
-        date: newGoalValues.targetDate,
-        reachout_message: goal,
+        date: date,
+        reachout_message: message,
       },
     });
-    setGoal("");
+    setMessage("");
   };
   // Render a form with an input field and a submit button.
   return (
@@ -56,21 +54,16 @@ function MessageRepository() {
       <textarea
         className="text-left p-2 border rounded-md shadow-md w-1/2 dark:text-murkrow"
         placeholder="Enter your reachout message..."
-        value={goal}
+        value={message}
         onChange={handleMessageChange}
       />
       <h1 className="font-bold text-xl">Target Completion Date</h1>
       <input
         type="date"
-        className={`text-left p-2 border rounded-md w-1/2 dark:text-murkrow shadow-lg ${
-          newGoalValues.targetDate >= new Date() ? "" : " border-red-600"
-        }`}
-        value={format(new Date(newGoalValues.targetDate), "yyyy-MM-dd")}
+        className={`text-left p-2 border rounded-md w-1/2 dark:text-murkrow shadow-lg `}
+        value={format(date, "yyyy-MM-dd")}
         onChange={(e) => {
-          setNewGoalValues((prevState) => ({
-            ...prevState,
-            targetDate: new Date(e.target.value + "T00:00:00"),
-          }));
+          setDate(new Date(e.target.value));
         }}
       />
       <Button label="Add Goal" onClick={handleSubmit}>
