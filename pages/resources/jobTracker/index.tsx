@@ -4,7 +4,7 @@ import JobTrackerComponent from "../../../components/resources/jobTracker/JobTra
 
 export default function JobTrackerPage() {
   return (
-    <div>
+    <div className="mx-auto max-w-7xl bg-slate-50">
       <JobTrackerComponent />
     </div>
   );

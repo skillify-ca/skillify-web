@@ -55,8 +55,13 @@
         <lastmod>2022-08-15T23:23:47.440Z</lastmod>
         <changefreq>daily</changefreq>
     </url>
-        <url>        
+    <url>        
         <loc>https://skillify.ca/blog/making-the-leap-into-development</loc>
+        <lastmod>2023-02-11T23:23:47.440Z</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>        
+        <loc>https://skillify.ca/resources/jobTracker</loc>
         <lastmod>2023-02-11T23:23:47.440Z</lastmod>
         <changefreq>daily</changefreq>
     </url>

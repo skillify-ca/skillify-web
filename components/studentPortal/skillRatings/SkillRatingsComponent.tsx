@@ -1,9 +1,10 @@
-import { useMutation } from "@apollo/client";
-import React, { useEffect, useState } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import React, { useState } from "react";
 import { animated, useSpring } from "react-spring";
 import { FETCH_USER_SKILLS_RATINGS } from "../../../graphql/studentPortal/skillRatings/fetchUserSkillsRatings";
 import { UPSERT_USER_SKILL_RATINGS } from "../../../graphql/studentPortal/skillRatings/upsertUserSkillRatings";
 
+import { FETCH_UNITS } from "../../../graphql/studentPortal/skillRatings/fetchUnits";
 import { useAuth } from "../../../lib/authContext";
 import { transformSkillRatingForDB } from "../../../pages/api/skillRatingsFunctions";
 import { SkillRatingsRow } from "../../../redux/skillRatingsSlice";
@@ -40,17 +41,17 @@ export default function SkillRatingsComponent({
     },
   });
 
-  useEffect(() => {
-    if (!haveTabsLoaded && skillRatings.length > 0) {
-      const unitNames = skillRatings.map((skill) => skill.unitName);
-      const sections = unitNames.filter(
-        (unitName, index, array) => array.indexOf(unitName) === index
-      );
-      setSections(sections);
-      setActiveTab(sections[0]);
+  // fetch units and set as tabs
+  useQuery(FETCH_UNITS, {
+    onCompleted: (data) => {
+      const unitNames = data.intro_course_unit
+        .map((unit) => unit.title)
+        .filter((it) => it !== "Introduction");
+      setSections(unitNames);
+      setActiveTab(unitNames[0]);
       setHaveTabsLoaded(true);
-    }
-  }, [skillRatings]);
+    },
+  });
 
   if (activeTab === "") {
     return <div>Loading...</div>;
@@ -58,22 +59,22 @@ export default function SkillRatingsComponent({
 
   const activeTabStyling = (tab: string) => {
     let styling =
-      "ml-8 justify-content-center text-2xl text-textPrimary w-36 py-2 h-12 cursor-pointer ";
+      "text-2xl text-textPrimary py-2 h-12 cursor-pointer bg-backgroundPrimary mx-2 rounded ";
     if (tab === activeTab) {
       styling =
         styling +
-        "text-black-500 underline hover:text-brandPrimary decoration-[0.18rem] underline-offset-[18px]";
+        "text-primary underline hover:text-brandPrimary decoration-[0.18rem] underline-offset-[18px]";
     } else {
       styling =
         styling +
-        "hover:text-black-500 hover:text-brandPrimary hover:underline hover:decoration-[0.18rem] hover:underline-offset-[18px]";
+        "hover:text-primary hover:text-brandPrimary hover:underline hover:decoration-[0.18rem] hover:underline-offset-[18px]";
     }
     return styling;
   };
 
   return (
-    <div className="flex flex-col w-full py-8 overflow-auto-bg-scroll">
-      <div className="">
+    <div className="flex flex-col w-full overflow-auto-bg-scroll">
+      <div className="grid grid-cols-4 gap-4 px-2 py-8 rounded-t-lg shadow bg-backgroundSecondary lg:grid-cols-4">
         {sections.map((it, i) => (
           <animated.button
             key={i}

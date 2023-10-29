@@ -1,6 +1,7 @@
 import React from "react";
-import EmailCapture from "../components/landingPage/EmailCapture";
 import SEO from "../components/SEO";
+import EmailCapture from "../components/landingPage/EmailCapture";
+import LandingNavbar from "../components/landingPage/LandingNavbar";
 
 export default function Page() {
   return (
@@ -13,9 +14,9 @@ export default function Page() {
         image={"https://melv1n.com/img/learn-to-code-how-to-start.png"}
       />
       <div className="flex flex-col bg-white">
+        <LandingNavbar />
         <div className="flex flex-col items-center py-4 text-white bg-murkrow">
-          <img src="/images/logo-dark.svg" className="w-36" />
-          <h1 className="mt-4 text-3xl font-bold text-center">
+          <h1 className="my-4 text-3xl font-bold text-center">
             Breaking into Tech Strategy Guide
           </h1>
           <p className="text-center">
@@ -31,14 +32,14 @@ export default function Page() {
             { text: "tech ", highlight: true },
           ]}
           description={
-            "Think learning to code is too hard? Drop us your email and we will send you our free guide on avoiding overwhelmed."
+            "Think learning to code is too hard? Drop us your email and we will send you our free guide on avoiding overwhelm."
           }
         />
         <div className="p-8 bg-gray-200 border-t-2">
           <h2 className="mb-4 text-3xl font-bold text-center">
             Who is this guide for
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
             <div className="flex flex-col items-center p-4 m-4 transition-all transform bg-white rounded-lg shadow-lg hover:scale-110">
               <p className="mb-4 text-5xl">💼</p>
               <p>
@@ -70,7 +71,7 @@ export default function Page() {
           <h2 className="mb-4 text-3xl font-bold text-center">
             What you'll learn
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
             <div className="flex flex-col items-center p-4 m-4 transition-all transform bg-white rounded-lg shadow-lg hover:scale-110">
               <p className="mb-4 text-5xl">👶</p>
               <p>

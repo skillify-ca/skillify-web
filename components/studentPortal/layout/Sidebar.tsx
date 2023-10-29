@@ -34,17 +34,19 @@ export const Sidebar: React.FC = () => {
       _id: user.uid,
     },
     onCompleted: (data) => {
-      if (data.users[0].userRole.value === "coach") {
-        dispatch(setUserRole("coach"));
-      } else if (data.users[0].userRole.value === "student") {
-        dispatch(setUserRole("student"));
-      } else if (data.users[0].userRole.value === "paid") {
-        dispatch(setUserRole("paid"));
-        setIsDisabled(true);
-      } else if (data.users[0].userRole.value === "freemium") {
-        dispatch(setCreatedAt(data.users[0].created_at));
-        dispatch(setUserRole("freemium"));
-        setIsDisabled(true);
+      if (data && data.users) {
+        if (data.users[0].userRole.value === "coach") {
+          dispatch(setUserRole("coach"));
+        } else if (data.users[0].userRole.value === "student") {
+          dispatch(setUserRole("student"));
+        } else if (data.users[0].userRole.value === "paid") {
+          dispatch(setUserRole("paid"));
+          setIsDisabled(true);
+        } else if (data.users[0].userRole.value === "freemium") {
+          dispatch(setCreatedAt(data.users[0].created_at));
+          dispatch(setUserRole("freemium"));
+          setIsDisabled(true);
+        }
       }
     },
     fetchPolicy: "cache-and-network",
