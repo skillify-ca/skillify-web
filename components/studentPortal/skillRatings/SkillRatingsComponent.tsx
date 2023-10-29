@@ -59,22 +59,22 @@ export default function SkillRatingsComponent({
 
   const activeTabStyling = (tab: string) => {
     let styling =
-      "text-2xl text-textPrimary py-2 h-12 cursor-pointer bg-slate-300 mx-2 rounded ";
+      "text-2xl text-textPrimary py-2 h-12 cursor-pointer bg-backgroundPrimary mx-2 rounded ";
     if (tab === activeTab) {
       styling =
         styling +
-        "text-black-500 underline hover:text-brandPrimary decoration-[0.18rem] underline-offset-[18px]";
+        "text-primary underline hover:text-brandPrimary decoration-[0.18rem] underline-offset-[18px]";
     } else {
       styling =
         styling +
-        "hover:text-black-500 hover:text-brandPrimary hover:underline hover:decoration-[0.18rem] hover:underline-offset-[18px]";
+        "hover:text-primary hover:text-brandPrimary hover:underline hover:decoration-[0.18rem] hover:underline-offset-[18px]";
     }
     return styling;
   };
 
   return (
-    <div className="flex flex-col w-full py-8 overflow-auto-bg-scroll">
-      <div className="grid grid-cols-4 px-2 lg:grid-cols-7">
+    <div className="flex flex-col w-full overflow-auto-bg-scroll">
+      <div className="grid grid-cols-4 gap-4 px-2 py-8 rounded-t-lg shadow bg-backgroundSecondary lg:grid-cols-4">
         {sections.map((it, i) => (
           <animated.button
             key={i}
