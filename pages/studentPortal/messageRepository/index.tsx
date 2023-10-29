@@ -1,13 +1,16 @@
 import { useMutation } from "@apollo/client";
 import { format } from "date-fns";
 import React, { useState } from "react";
+import MessageFeed from "../../../components/studentPortal/messageRepository/messageFeed";
 import { Button } from "../../../components/ui/Button";
-import { insert_Message } from "../../../graphql/studentPortal/messageRepo/insertMessage";
+import { insert_Message } from "../../../graphql/studentPortal/messageRepository/insertMessage";
 import { useAuth } from "../../../lib/authContext";
-type Message = {
+
+export type Message = {
   message: string;
   date: string;
 };
+
 function MessageRepository() {
   // Initialize state for the message input.
   const [message, setMessage] = useState("");
@@ -35,40 +38,45 @@ function MessageRepository() {
     saveNewMessage({
       variables: {
         date: date,
-        reachout_message: message,
+        message: message,
       },
     });
     setMessage("");
   };
   // Render a form with an input field and a submit button.
   return (
-    <div
-      onSubmit={handleSubmit}
-      className="ml-4 p-2 rounded-lg space-y-6 flex flex-col"
-    >
-      <div className="pt-6">
-        <h1 className="font-bold text-4xl">Message Repo</h1>
-        <h1 className="font-bold text-xl pt-12">Reachout Message</h1>
-      </div>
+    <div className="grid grid-cols-3 w-full ">
+      <div
+        onSubmit={handleSubmit}
+        className="ml-4 p-2 rounded-lg space-y-6 flex flex-col col-span-2"
+      >
+        <div className="pt-6">
+          <h1 className="font-bold text-4xl">Message Repo</h1>
+          <h1 className="font-bold text-xl pt-12">Reachout Message</h1>
+        </div>
 
-      <textarea
-        className="text-left p-2 border rounded-md shadow-md w-1/2 dark:text-murkrow"
-        placeholder="Enter your reachout message..."
-        value={message}
-        onChange={handleMessageChange}
-      />
-      <h1 className="font-bold text-xl">Target Completion Date</h1>
-      <input
-        type="date"
-        className={`text-left p-2 border rounded-md w-1/2 dark:text-murkrow shadow-lg `}
-        value={format(date, "yyyy-MM-dd")}
-        onChange={(e) => {
-          setDate(new Date(e.target.value));
-        }}
-      />
-      <Button label="Add Goal" onClick={handleSubmit}>
-        Add Goal
-      </Button>
+        <textarea
+          className="text-left p-2 border rounded-md shadow-md w-1/2 dark:text-murkrow"
+          placeholder="Enter your reachout message..."
+          value={message}
+          onChange={handleMessageChange}
+        />
+        <h1 className="font-bold text-xl">Target Completion Date</h1>
+        <input
+          type="date"
+          className={`text-left p-2 border rounded-md w-1/2 dark:text-murkrow shadow-lg `}
+          value={format(date, "yyyy-MM-dd")}
+          onChange={(e) => {
+            setDate(new Date(e.target.value));
+          }}
+        />
+        <Button label="Add Goal" onClick={handleSubmit}>
+          Add Goal
+        </Button>
+      </div>
+      <div className="hidden overflow-y-auto sm:flex">
+        <MessageFeed />
+      </div>
     </div>
   );
 }
