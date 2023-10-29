@@ -1,10 +1,9 @@
-import { useMutation } from "@apollo/client";
+import { useApolloClient, useMutation } from "@apollo/client";
 import { format } from "date-fns";
 import React, { useState } from "react";
 import MessageFeed from "../../../components/studentPortal/messageRepository/messageFeed";
 import { Button } from "../../../components/ui/Button";
 import { insert_Message } from "../../../graphql/studentPortal/messageRepository/insertMessage";
-import { useAuth } from "../../../lib/authContext";
 
 export type Message = {
   message: string;
@@ -14,12 +13,12 @@ export type Message = {
 function MessageRepository() {
   // Initialize state for the message input.
   const [message, setMessage] = useState("");
-  const { user } = useAuth();
+
+  const client = useApolloClient();
+  client.clearStore();
 
   //date for state var
   const [date, setDate] = useState(new Date());
-
-  const [targetDate, setTargetDate] = useState({});
 
   // route back to goals overview page on complete
   const [saveNewMessage] = useMutation(insert_Message);
@@ -31,13 +30,14 @@ function MessageRepository() {
 
   // Function to handle form submission.
   const handleSubmit = (e) => {
+    console.log(message);
     //prevent default
     e.preventDefault();
     //log the current message
     // Clear the input after submission.
     saveNewMessage({
       variables: {
-        date: date,
+        date: format(date, "yyyy-MM-dd"),
         message: message,
       },
     });
