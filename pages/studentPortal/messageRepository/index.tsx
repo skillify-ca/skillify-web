@@ -43,7 +43,7 @@ function MessageRepository() {
   };
   // Render a form with an input field and a submit button.
   return (
-    <div className="grid-cols-3 w-full">
+    <div className="grid grid-cols-3 w-full">
       <div
         onSubmit={handleSubmit}
         className="ml-4 p-2 rounded-lg space-y-6 flex flex-col col-span-2"
@@ -72,7 +72,7 @@ function MessageRepository() {
           Add Goal
         </Button>
       </div>
-      <div className="hidden col-span-4 overflow-y-auto sm:flex">
+      <div className="hidden overflow-y-auto sm:flex">
         <MessageFeed />
       </div>
     </div>
