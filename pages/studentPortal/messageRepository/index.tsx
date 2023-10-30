@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client";
 import { format } from "date-fns";
 import React, { useState } from "react";
 import { Button } from "../../../components/ui/Button";
-import { insert_Message } from "../../../graphql/studentPortal/messageRepo/insertMessage";
+import { insert_Message } from "../../../graphql/studentPortal/messageRepository/insertMessage";
 import { useAuth } from "../../../lib/authContext";
 type Message = {
   message: string;
@@ -35,7 +35,7 @@ function MessageRepository() {
     saveNewMessage({
       variables: {
         date: date,
-        reachout_message: message,
+        message: message,
       },
     });
     setMessage("");
