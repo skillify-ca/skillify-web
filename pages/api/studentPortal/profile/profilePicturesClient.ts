@@ -27,8 +27,18 @@ export const fetchProfilePicture = async (
     .send(new ListObjectsV2Command(params))
     .then(async (res) => {
       if (res.Contents && res.Contents.length > 0) {
-        const firstImage = res.Contents.filter((x) => !x.Key?.endsWith("/"))[0]
-          .Key;
+        const bucketObjects = res.Contents.filter((x) => !x.Key?.endsWith("/"));
+
+        // sort by last modified date
+        bucketObjects.sort((a, b) => {
+          if (a.LastModified && b.LastModified) {
+            return b.LastModified.getTime() - a.LastModified.getTime();
+          }
+          return 0;
+        });
+
+        const firstImage = bucketObjects[0].Key;
+
         const imageUrl = await getSignedUrl(
           s3,
           new GetObjectCommand({
