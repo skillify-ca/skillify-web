@@ -8,7 +8,7 @@ import {
   FetchRoleData,
 } from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
-import { fetchProfilePicture } from "../../../pages/profile/profilePicturesClient";
+import { fetchProfilePicture } from "../../../pages/api/studentPortal/profile/profilePicturesClient";
 import {
   profileSelector,
   setCreatedAt,
@@ -22,8 +22,6 @@ import FreemiumSidebarItem from "../freemium/FreemiumSidebarItem";
 import PaidSidebarHeader from "../freemium/PaidSidebarHeader";
 import SkillifyCommandPalette from "./CommandPalette";
 import SidebarItem, { SidebarItemProps } from "./SidebarItem";
-
-// import aws s3
 
 export const Sidebar: React.FC = () => {
   const { goalApproaching } = useSelector(activePageSelector);
@@ -85,6 +83,7 @@ export const Sidebar: React.FC = () => {
         if (imageUrl !== null) {
           setUserProfileImage(imageUrl);
         } else {
+          // If no profile picture, use the one from Google
           setUserProfileImage(user.photoURL);
         }
       });

@@ -12,8 +12,8 @@ export const fetchProfilePicture = async (
   const s3 = new S3Client({
     region: "us-east-1",
     credentials: {
-      accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
+      accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID || "",
+      secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY || "",
     },
   });
 
@@ -25,7 +25,7 @@ export const fetchProfilePicture = async (
     .send(new ListObjectsV2Command(params))
     .then(async (res) => {
       if (res.Contents && res.Contents.length > 0) {
-        const firstImage = res.Contents.filter((x) => !x.Key.endsWith("/"))[0]
+        const firstImage = res.Contents.filter((x) => !x.Key?.endsWith("/"))[0]
           .Key;
         const imageUrl = await getSignedUrl(
           s3,
