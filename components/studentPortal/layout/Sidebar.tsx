@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client/react";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -22,6 +23,13 @@ import PaidSidebarHeader from "../freemium/PaidSidebarHeader";
 import SkillifyCommandPalette from "./CommandPalette";
 import SidebarItem, { SidebarItemProps } from "./SidebarItem";
 
+// import aws s3
+import {
+  GetObjectCommand,
+  ListObjectsV2Command,
+  S3Client,
+} from "@aws-sdk/client-s3";
+
 export const Sidebar: React.FC = () => {
   const { goalApproaching } = useSelector(activePageSelector);
   const { userRole, createdAt } = useSelector(profileSelector);
@@ -29,7 +37,9 @@ export const Sidebar: React.FC = () => {
   const { signOut, user } = useAuth();
   const [isDisabled, setIsDisabled] = useState(false);
 
-  const {} = useQuery<FetchRoleData>(FETCH_USER_ROLE, {
+  const [userProfileImage, setUserProfileImage] = useState<string>("");
+
+  useQuery<FetchRoleData>(FETCH_USER_ROLE, {
     variables: {
       _id: user.uid,
     },
@@ -73,6 +83,49 @@ export const Sidebar: React.FC = () => {
       dispatch(setActivePage("dashboard"));
     }
   }, [router.pathname]);
+
+  const fetchProfilePicture = async () => {
+    // fetch profile picture from aws s3 bucket
+    const s3 = new S3Client({
+      region: "us-east-1",
+      credentials: {
+        accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
+      },
+    });
+
+    const params = {
+      Bucket: "student-profile-pictures",
+      Prefix: `${user.uid}/`,
+    };
+    await s3
+      .send(new ListObjectsV2Command(params))
+      .then(async (res) => {
+        if (res.Contents && res.Contents.length > 0) {
+          const firstImage = res.Contents.filter((x) => !x.Key.endsWith("/"))[0]
+            .Key;
+          const imageUrl = await getSignedUrl(
+            s3,
+            new GetObjectCommand({
+              Bucket: "student-profile-pictures",
+              Key: firstImage,
+            })
+          );
+          setUserProfileImage(imageUrl);
+        } else {
+          setUserProfileImage(user.photoURL);
+        }
+      })
+      .catch((err) => {
+        console.log("Error fetching image from bucket", err);
+      });
+  };
+
+  useEffect(() => {
+    if (user) {
+      fetchProfilePicture();
+    }
+  }, [user]);
 
   const sideBarItemsData: SidebarItemProps[] = [
     {
@@ -190,8 +243,8 @@ export const Sidebar: React.FC = () => {
           <div className="flex p-4">
             {user && (
               <img
-                className="w-12 h-12 rounded-full"
-                src={user.photoURL}
+                className="w-16 h-16 rounded-full"
+                src={userProfileImage}
                 alt=""
               />
             )}
@@ -203,13 +256,14 @@ export const Sidebar: React.FC = () => {
             )}
           </div>
         )}
-        {sideBarItemsData.map((it, index) => {
+        {sideBarItemsData.map((it) => {
           if (it.name === "Admin" && userRole !== "coach") {
             return null;
           } else {
             if (userRole && (userRole === "paid" || userRole === "freemium")) {
               return (
                 <FreemiumSidebarItem
+                  key={it.name}
                   name={it.name}
                   notifications={it.notifications}
                   link={it.link}
@@ -221,6 +275,7 @@ export const Sidebar: React.FC = () => {
             } else {
               return (
                 <SidebarItem
+                  key={it.name}
                   name={it.name}
                   notifications={it.notifications}
                   link={it.link}
