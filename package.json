@@ -16,6 +16,8 @@
     "@apollo/client": "^3.3.13",
     "@apollo/react-components": "^4.0.0",
     "@apollo/react-hoc": "^4.0.0",
+    "@aws-sdk/client-s3": "^3.438.0",
+    "@aws-sdk/s3-request-presigner": "^3.438.0",
     "@babel/preset-env": "^7.14.2",
     "@babel/preset-typescript": "^7.13.0",
     "@codesandbox/sandpack-react": "^1.17.0",
