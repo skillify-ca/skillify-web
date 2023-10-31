@@ -42,6 +42,7 @@ import {
 } from "../../redux/skillRatingsSlice";
 import { setUserGoals, userGoalsSelector } from "../../redux/userGoalsSlice";
 import { transformSkillsAndRatings } from "../api/skillRatingsFunctions";
+import { fetchProfilePicture } from "../api/studentPortal/profile/profilePicturesClient";
 
 type InternalProfileProps = {
   userIdFromLink?: string;
@@ -70,15 +71,17 @@ export default function InternalProfile({
       variables: {
         userId: userId,
       },
-      onCompleted: (data) => {
+      onCompleted: async (data) => {
         if (data.users.length > 0) {
+          const profileImage = await fetchProfilePicture(data.users[0].id);
           dispatch(
             setUserProfile({
               createdAt: data.users[0].created_at,
               email: data.users[0].email,
+              id: data.users[0].id,
               lastSeen: data.users[0].last_seen,
               name: data.users[0].name,
-              profileImage: data.users[0].profile_image,
+              profileImage: profileImage,
             })
           );
         }
@@ -139,6 +142,7 @@ export default function InternalProfile({
           userProfileData={userProfileData}
           userBadgeCount={userBadgeCount}
           totalBadgeCount={totalBadgeCount}
+          isEditable={!isExternal}
         />
       </Section>
       <Section title={"Projects"}>
