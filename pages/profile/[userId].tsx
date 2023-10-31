@@ -59,9 +59,8 @@ export default function InternalProfile({
 
   const { userGoals } = useSelector(userGoalsSelector);
   const { skillRatings } = useSelector(skillRatingsSelector);
-  const { userProfileData, userBadgeCount, totalBadgeCount } = useSelector(
-    profileSelector
-  );
+  const { userProfileData, userBadgeCount, totalBadgeCount } =
+    useSelector(profileSelector);
   const [isEditable, setIsEditable] = useState(false);
 
   if (userId) {
@@ -143,7 +142,7 @@ export default function InternalProfile({
       <Section title={"Projects"}>
         <div className="p-4">
           <Link href="/studentPortal/projects/create">
-            <Button label="Create Project" />
+            <Button label="Create" />
           </Link>
         </div>
         <ProjectsSection user={userId} />
