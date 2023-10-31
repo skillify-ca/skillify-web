@@ -9,7 +9,13 @@ export default function EditProfilePage() {
   return (
     <div className="p-16">
       <h1 className="mb-4 text-xl font-bold">Edit Profile Picture</h1>
-      <Dropzone onDrop={(acceptedFiles) => ondrop(acceptedFiles)}>
+      <Dropzone
+        accept={{
+          "image/png": [".png", ".jpeg", ".jpg", ".gif"],
+        }}
+        maxFiles={1}
+        onDrop={(acceptedFiles) => ondrop(acceptedFiles)}
+      >
         {({ getRootProps, getInputProps }) => (
           <div
             {...getRootProps()}
