@@ -12,7 +12,7 @@ type ProfileGatewayProps = {
 
 function ProfileGateway({ userId }: ProfileGatewayProps) {
   if (userId) {
-    return <InternalProfile userIdFromLink={userId} />;
+    return <InternalProfile userIdFromLink={userId} isExternal={false} />;
   } else {
     return (
       <div>

@@ -45,10 +45,12 @@ import { transformSkillsAndRatings } from "../api/skillRatingsFunctions";
 
 type InternalProfileProps = {
   userIdFromLink?: string;
+  isExternal: boolean;
 };
 
 export default function InternalProfile({
   userIdFromLink,
+  isExternal,
 }: InternalProfileProps) {
   const { user } = useAuth();
   const router = useRouter();
@@ -100,7 +102,7 @@ export default function InternalProfile({
         dispatch(
           setSkillRatings(transformSkillsAndRatings(data.intro_course_skills))
         );
-        if (userId == user.uid) {
+        if (!isExternal && userId == user.uid) {
           setIsEditable(true);
         }
       },
@@ -140,23 +142,29 @@ export default function InternalProfile({
         />
       </Section>
       <Section title={"Projects"}>
-        <div className="p-4">
-          <Link href="/studentPortal/projects/create">
-            <Button label="Create" />
-          </Link>
-        </div>
+        {isEditable && (
+          <div className="p-4">
+            <Link href="/studentPortal/projects/create">
+              <Button label="Create" />
+            </Link>
+          </div>
+        )}
         <ProjectsSection user={userId} />
       </Section>
-      <Section title={"Goals"}>
-        <GoalsSectionComponent
-          inProfile={true}
-          userGoals={userGoals
-            .filter((goal) => !goal.isComplete && !goal.isArchived)
-            .slice(0, 3)}
-        />
-      </Section>
+      {isEditable && (
+        <Section title={"Goals"}>
+          <GoalsSectionComponent
+            inProfile={true}
+            userGoals={userGoals
+              .filter((goal) => !goal.isComplete && !goal.isArchived)
+              .slice(0, 3)}
+          />
+        </Section>
+      )}
       <Section title={"Achievements"}>
-        {typeof userId == "string" && <AchievementComponent userId={userId} />}
+        {typeof userId == "string" && (
+          <AchievementComponent userId={userId} isEditable={isEditable} />
+        )}
       </Section>
       <Section title={"Skill Ratings"}>
         <SkillRatingsComponent

@@ -21,9 +21,13 @@ import findBadgeDiff from "./findBadgeDiff";
 
 export type AchievementComponentProps = {
   userId: string;
+  isEditable: boolean;
 };
 
-const AchievementComponent = ({ userId }: AchievementComponentProps) => {
+const AchievementComponent = ({
+  userId,
+  isEditable,
+}: AchievementComponentProps) => {
   const [unitBadges, setUnitBadges] = useState<IntroCourseUnit[]>();
   // editMode set to true only when a coach accesses the page
   const [editMode, setEditMode] = useState(false);
@@ -46,7 +50,7 @@ const AchievementComponent = ({ userId }: AchievementComponentProps) => {
     },
     onCompleted: (roleData) => {
       if (roleData.users[0].userRole.value === "coach") {
-        setisEditButtonVisible(true);
+        setisEditButtonVisible(true && isEditable);
       }
     },
   });
