@@ -8,6 +8,7 @@ import {
   FetchRoleData,
 } from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
+import { fetchProfilePicture } from "../../../pages/api/studentPortal/profile/profilePicturesClient";
 import {
   profileSelector,
   setCreatedAt,
@@ -29,7 +30,9 @@ export const Sidebar: React.FC = () => {
   const { signOut, user } = useAuth();
   const [isDisabled, setIsDisabled] = useState(false);
 
-  const {} = useQuery<FetchRoleData>(FETCH_USER_ROLE, {
+  const [userProfileImage, setUserProfileImage] = useState<string>("");
+
+  useQuery<FetchRoleData>(FETCH_USER_ROLE, {
     variables: {
       _id: user.uid,
     },
@@ -73,6 +76,19 @@ export const Sidebar: React.FC = () => {
       dispatch(setActivePage("dashboard"));
     }
   }, [router.pathname]);
+
+  useEffect(() => {
+    if (user) {
+      fetchProfilePicture(user.uid).then((imageUrl) => {
+        if (imageUrl !== null) {
+          setUserProfileImage(imageUrl);
+        } else {
+          // If no profile picture, use the one from Google
+          setUserProfileImage(user.photoURL);
+        }
+      });
+    }
+  }, [user]);
 
   const sideBarItemsData: SidebarItemProps[] = [
     {
@@ -190,8 +206,8 @@ export const Sidebar: React.FC = () => {
           <div className="flex p-4">
             {user && (
               <img
-                className="w-12 h-12 rounded-full"
-                src={user.photoURL}
+                className="w-16 h-16 rounded-full"
+                src={userProfileImage}
                 alt=""
               />
             )}
@@ -203,13 +219,14 @@ export const Sidebar: React.FC = () => {
             )}
           </div>
         )}
-        {sideBarItemsData.map((it, index) => {
+        {sideBarItemsData.map((it) => {
           if (it.name === "Admin" && userRole !== "coach") {
             return null;
           } else {
             if (userRole && (userRole === "paid" || userRole === "freemium")) {
               return (
                 <FreemiumSidebarItem
+                  key={it.name}
                   name={it.name}
                   notifications={it.notifications}
                   link={it.link}
@@ -221,6 +238,7 @@ export const Sidebar: React.FC = () => {
             } else {
               return (
                 <SidebarItem
+                  key={it.name}
                   name={it.name}
                   notifications={it.notifications}
                   link={it.link}
