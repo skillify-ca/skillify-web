@@ -1,10 +1,12 @@
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import React, { useState } from "react";
 import { FETCH_ALL_MESSAGES } from "../../../graphql/studentPortal/messageRepository/fetchMessages";
+import MessageCard from "./MessageCard";
 
-type Message = {
+export type Message = {
   message: string;
   date: string;
+  userId:string;
   userName: string;
 };
 
@@ -21,6 +23,7 @@ export default function MessageFeed() {
           message: message.message,
           date: message.date,
           userName : message.user.name,
+          userId: message.userId
         };
       });
 
@@ -32,20 +35,7 @@ export default function MessageFeed() {
     <div className="h-screen p-4 overflow-y-auto border-l-2 bg-backgroundPrimary">
       <h1 className="mb-4 text-2xl font-bold">Message Repository Messages</h1>
       {message.map((message) => (
-        <div
-          key={message.message}
-          className="p-2 mb-4 border-2 rounded bg-backgroundSecondary"
-        >
-          <p>{message.message}</p>
-          <p>
-            {new Date (message.date).toLocaleDateString("en-US", {
-              month: "short",
-              day: "numeric",
-              year: "numeric",
-            })}
-          </p>
-          <p>{message.userName}</p>
-        </div>
+        <MessageCard message={message} />
       ))}
     </div>
   );
