@@ -4,13 +4,33 @@ import CoachCard from "../../../components/studentPortal/coaches/CoachCard";
 import ErrorMessage from "../../../components/ui/ErrorMessage";
 import PageHeader from "../../../components/ui/PageHeader";
 import {
-  FetchCoachesResponse,
+  Coach,
   FETCH_COACHES,
+  FetchCoachesResponse,
 } from "../../../graphql/studentPortal/coaches/fetchCoaches";
+import { fetchProfilePicture } from "../../api/studentPortal/profile/profilePicturesClient";
 
 export default function CoachesPage() {
-  const { data, loading, error } =
-    useQuery<FetchCoachesResponse>(FETCH_COACHES);
+  const { data, loading, error } = useQuery<FetchCoachesResponse>(
+    FETCH_COACHES,
+    {
+      onCompleted: async (data) => {
+        Promise.all(
+          data.coaches.map(async (coach) => {
+            return {
+              ...coach,
+              user: {
+                ...coach.user,
+                profile_image: await fetchProfilePicture(coach.user.id),
+              },
+            };
+          })
+        ).then((coachesWithImages) => setCoaches(coachesWithImages));
+      },
+    }
+  );
+
+  const [coaches, setCoaches] = React.useState<Coach[]>([]);
 
   return (
     <div className="flex flex-col items-center justify-center w-full">
@@ -32,7 +52,7 @@ export default function CoachesPage() {
                   }
                 />
               </div>
-              {data.coaches.map((coach) => (
+              {coaches.map((coach) => (
                 <div className="mx-4" key={coach.user.name}>
                   <CoachCard coach={coach} />
                 </div>

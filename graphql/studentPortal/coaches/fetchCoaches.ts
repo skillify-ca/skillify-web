@@ -5,8 +5,8 @@ export const FETCH_COACHES = gql`
   query fetchCoaches {
     coaches {
       user {
+        id
         name
-        profile_image
       }
       competencies
       link
@@ -30,5 +30,5 @@ export type Coach = {
 
 type User = {
   name: string;
-  profile_image: string;
+  id: string;
 };

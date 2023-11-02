@@ -1,6 +1,7 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { GetServerSideProps } from "next";
 import React from "react";
+import LandingNavbar from "../../../components/landingPage/LandingNavbar";
 import Header404 from "../../../components/notFound/Header404";
 import { FETCH_USER } from "../../../graphql/studentPortal/users/fetchUser";
 import InternalProfile from "../[userId]";
@@ -11,7 +12,7 @@ type ProfileGatewayProps = {
 
 function ProfileGateway({ userId }: ProfileGatewayProps) {
   if (userId) {
-    return <InternalProfile userIdFromLink={userId} />;
+    return <InternalProfile userIdFromLink={userId} isExternal={true} />;
   } else {
     return (
       <div>
@@ -53,3 +54,16 @@ export const getServerSideProps: GetServerSideProps<ProfileGatewayProps> =
       };
     }
   };
+
+// create custom nextjs layout
+ProfileGateway.getLayout = function getLayout(page: any) {
+  return (
+    <div>
+      <div className="flex flex-col min-h-screen theme-default">
+        <LandingNavbar />
+
+        <main className="flex-grow mx-auto max-w-7xl">{page}</main>
+      </div>
+    </div>
+  );
+};
