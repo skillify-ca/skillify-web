@@ -2,9 +2,9 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 import React from "react";
 import LandingNavbar from "../../../../components/landingPage/LandingNavbar";
 import ProfileGoalsSection from "../../../../components/studentPortal/ProfileGoalsSection";
-import AchievementComponent from "../../../../components/studentPortal/profileV2/achievement_components/AchievementComponent";
+import UserProfileSection from "../../../../components/studentPortal/profileV2/ProfileHeaderComponent";
 import ProjectsSection from "../../../../components/studentPortal/profileV2/ProjectsSection";
-import UserProfileSection from "../../../../components/studentPortal/UserProfileSection";
+import AchievementComponent from "../../../../components/studentPortal/profileV2/achievement_components/AchievementComponent";
 import { FETCH_RECENT_USERS } from "../../../../graphql/studentPortal/users/fetchRecentUsers";
 import { FETCH_USER } from "../../../../graphql/studentPortal/users/fetchUser";
 
@@ -31,7 +31,7 @@ export default function ExternalUserProfile({ slug, uid }) {
         </div>
 
         <h2 className="text-lg font-bold mb-9">Achievements</h2>
-        <AchievementComponent userId={user.uid} />
+        <AchievementComponent userId={user.uid} isEditable={false} />
       </div>
     </div>
   );
