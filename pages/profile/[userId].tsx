@@ -42,13 +42,16 @@ import {
 } from "../../redux/skillRatingsSlice";
 import { setUserGoals, userGoalsSelector } from "../../redux/userGoalsSlice";
 import { transformSkillsAndRatings } from "../api/skillRatingsFunctions";
+import { fetchProfilePicture } from "../api/studentPortal/profile/profilePicturesClient";
 
 type InternalProfileProps = {
   userIdFromLink?: string;
+  isExternal: boolean;
 };
 
 export default function InternalProfile({
   userIdFromLink,
+  isExternal,
 }: InternalProfileProps) {
   const { user } = useAuth();
   const router = useRouter();
@@ -59,9 +62,8 @@ export default function InternalProfile({
 
   const { userGoals } = useSelector(userGoalsSelector);
   const { skillRatings } = useSelector(skillRatingsSelector);
-  const { userProfileData, userBadgeCount, totalBadgeCount } = useSelector(
-    profileSelector
-  );
+  const { userProfileData, userBadgeCount, totalBadgeCount } =
+    useSelector(profileSelector);
   const [isEditable, setIsEditable] = useState(false);
 
   if (userId) {
@@ -69,15 +71,17 @@ export default function InternalProfile({
       variables: {
         userId: userId,
       },
-      onCompleted: (data) => {
+      onCompleted: async (data) => {
         if (data.users.length > 0) {
+          const profileImage = await fetchProfilePicture(data.users[0].id);
           dispatch(
             setUserProfile({
               createdAt: data.users[0].created_at,
               email: data.users[0].email,
+              id: data.users[0].id,
               lastSeen: data.users[0].last_seen,
               name: data.users[0].name,
-              profileImage: data.users[0].profile_image,
+              profileImage: profileImage,
             })
           );
         }
@@ -101,7 +105,7 @@ export default function InternalProfile({
         dispatch(
           setSkillRatings(transformSkillsAndRatings(data.intro_course_skills))
         );
-        if (userId == user.uid) {
+        if (!isExternal && userId == user.uid) {
           setIsEditable(true);
         }
       },
@@ -138,26 +142,33 @@ export default function InternalProfile({
           userProfileData={userProfileData}
           userBadgeCount={userBadgeCount}
           totalBadgeCount={totalBadgeCount}
+          isEditable={!isExternal}
         />
       </Section>
       <Section title={"Projects"}>
-        <div className="p-4">
-          <Link href="/studentPortal/projects/create">
-            <Button label="Create Project" />
-          </Link>
-        </div>
+        {isEditable && (
+          <div className="p-4">
+            <Link href="/studentPortal/projects/create">
+              <Button label="Create" />
+            </Link>
+          </div>
+        )}
         <ProjectsSection user={userId} />
       </Section>
-      <Section title={"Goals"}>
-        <GoalsSectionComponent
-          inProfile={true}
-          userGoals={userGoals
-            .filter((goal) => !goal.isComplete && !goal.isArchived)
-            .slice(0, 3)}
-        />
-      </Section>
+      {isEditable && (
+        <Section title={"Goals"}>
+          <GoalsSectionComponent
+            inProfile={true}
+            userGoals={userGoals
+              .filter((goal) => !goal.isComplete && !goal.isArchived)
+              .slice(0, 3)}
+          />
+        </Section>
+      )}
       <Section title={"Achievements"}>
-        {typeof userId == "string" && <AchievementComponent userId={userId} />}
+        {typeof userId == "string" && (
+          <AchievementComponent userId={userId} isEditable={isEditable} />
+        )}
       </Section>
       <Section title={"Skill Ratings"}>
         <SkillRatingsComponent
