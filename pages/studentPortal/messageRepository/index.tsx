@@ -1,10 +1,10 @@
 import { useMutation } from "@apollo/client";
 import { format } from "date-fns";
-import React, { useState } from "react";
+import { useState } from "react";
 import MessageFeed from "../../../components/studentPortal/messageRepository/MessageFeed";
 import { Button } from "../../../components/ui/Button";
+import { FETCH_ALL_MESSAGES } from "../../../graphql/studentPortal/messageRepository/fetchMessages";
 import { insert_Message } from "../../../graphql/studentPortal/messageRepository/insertMessage";
-import { useAuth } from "../../../lib/authContext";
 type Message = {
   message: string;
   date: string;
@@ -12,7 +12,7 @@ type Message = {
 function MessageRepository() {
   // Initialize state for the message input.
   const [message, setMessage] = useState("");
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
   //date for state var
   const [date, setDate] = useState(new Date());
@@ -20,7 +20,9 @@ function MessageRepository() {
   const [targetDate, setTargetDate] = useState({});
 
   // route back to goals overview page on complete
-  const [saveNewMessage] = useMutation(insert_Message);
+  const [saveNewMessage] = useMutation(insert_Message, {
+    refetchQueries: [{ query: FETCH_ALL_MESSAGES }],
+  });
 
   // Function to update the 'message' state when the input changes
   const handleMessageChange = (e) => {
@@ -43,23 +45,22 @@ function MessageRepository() {
   };
   // Render a form with an input field and a submit button.
   return (
-    <div className="grid grid-cols-3 w-full">
+    <div className="grid w-full grid-cols-3">
       <div
         onSubmit={handleSubmit}
-        className="ml-4 p-2 rounded-lg space-y-6 flex flex-col col-span-2"
+        className="flex flex-col col-span-2 p-2 ml-4 space-y-6 rounded-lg"
       >
         <div className="pt-6">
-          <h1 className="font-bold text-4xl">Message Repo</h1>
-          <h1 className="font-bold text-xl pt-12">Reachout Message</h1>
+          <h1 className="text-4xl font-bold">Message Repo</h1>
+          <h1 className="pt-12 text-xl font-bold">Reachout Message</h1>
         </div>
-
         <textarea
-          className="text-left p-2 border rounded-md shadow-md w-1/2 dark:text-murkrow"
+          className="w-1/2 p-2 text-left border rounded-md shadow-md dark:text-murkrow"
           placeholder="Enter your reachout message..."
           value={message}
           onChange={handleMessageChange}
         />
-        <h1 className="font-bold text-xl">Target Completion Date</h1>
+        <h1 className="text-xl font-bold">Target Completion Date</h1>
         <input
           type="date"
           className={`text-left p-2 border rounded-md w-1/2 dark:text-murkrow shadow-lg `}
@@ -72,6 +73,7 @@ function MessageRepository() {
           Add Goal
         </Button>
       </div>
+
       <div className="hidden overflow-y-auto sm:flex">
         <MessageFeed />
       </div>
