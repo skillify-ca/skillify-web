@@ -34,7 +34,13 @@ export default function MessageFeed() {
           className="p-2 mb-4 border-2 rounded bg-backgroundSecondary"
         >
           <p>{message.message}</p>
-          <p>{message.date}</p>
+          <p>
+            {new Date (message.date).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}
+          </p>
         </div>
       ))}
     </div>

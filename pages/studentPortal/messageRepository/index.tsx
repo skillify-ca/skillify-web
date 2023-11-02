@@ -16,10 +16,11 @@ function MessageRepository() {
   //date for state var
   const [date, setDate] = useState(new Date());
 
-  // route back to goals overview page on complete
+  //query to refetch the page without having to refresh the page 
   const [saveNewMessage] = useMutation(insert_Message, {
     refetchQueries: [{ query: FETCH_ALL_MESSAGES }],
   });
+  
 
   // Function to update the 'message' state when the input changes
   const handleMessageChange = (e) => {
@@ -37,8 +38,8 @@ function MessageRepository() {
         date: date,
         message: message,
       },
-    });
-    setMessage("");  
+    }); 
+    setMessage(""); 
   };
   // Render a form with an input field and a submit button.
   return (
@@ -63,7 +64,10 @@ function MessageRepository() {
           className={`text-left p-2 border rounded-md w-1/2 dark:text-murkrow shadow-lg `}
           value={format(date, "yyyy-MM-dd")}
           onChange={(e) => {
-            setDate(new Date(e.target.value));
+            setDate((prevState) => ({
+              ...prevState,
+              targetDate: new Date(e.target.value)
+            }));
           }}
         />
         <Button label="Add Goal" onClick={handleSubmit}>
