@@ -1,10 +1,11 @@
 import { useMutation } from "@apollo/client";
 import { format } from "date-fns";
-import React, { useState } from "react";
+import { useState } from "react";
 import MessageFeed from "../../../components/studentPortal/messageRepository/MessageFeed";
 import { Button } from "../../../components/ui/Button";
 import { FETCH_ALL_MESSAGES } from "../../../graphql/studentPortal/messageRepository/fetchMessages";
 import { insert_Message } from "../../../graphql/studentPortal/messageRepository/insertMessage";
+import { useAuth } from "../../../lib/authContext";
 type Message = {
   message: string;
   date: string;
@@ -15,6 +16,8 @@ function MessageRepository() {
 
   //date for state var
   const [date, setDate] = useState(new Date());
+
+  const { user } = useAuth();
 
   //query to refetch the page without having to refresh the page 
   const [saveNewMessage] = useMutation(insert_Message, {
@@ -37,6 +40,7 @@ function MessageRepository() {
       variables: {
         date: date,
         message: message,
+        userId: user.uid 
       },
     }); 
     setMessage(""); 

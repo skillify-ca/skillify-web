@@ -1,11 +1,13 @@
 import { useQuery } from "@apollo/client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { FETCH_ALL_MESSAGES } from "../../../graphql/studentPortal/messageRepository/fetchMessages";
 
 type Message = {
   message: string;
   date: string;
+  userName: string;
 };
+
  
 export default function MessageFeed() {
   const [message, setMessage] = useState<Message[]>([]);
@@ -18,6 +20,7 @@ export default function MessageFeed() {
         return {
           message: message.message,
           date: message.date,
+          userName : message.user.name,
         };
       });
 
@@ -41,6 +44,7 @@ export default function MessageFeed() {
               year: "numeric",
             })}
           </p>
+          <p>{message.userName}</p>
         </div>
       ))}
     </div>
