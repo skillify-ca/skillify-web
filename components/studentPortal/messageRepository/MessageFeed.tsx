@@ -1,12 +1,12 @@
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import React, { useState } from "react";
 import { FETCH_ALL_MESSAGES } from "../../../graphql/studentPortal/messageRepository/fetchMessages";
 
 type Message = {
   message: string;
   date: string;
 };
-
+ 
 export default function MessageFeed() {
   const [message, setMessage] = useState<Message[]>([]);
 
