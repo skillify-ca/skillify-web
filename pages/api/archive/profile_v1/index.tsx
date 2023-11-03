@@ -1,8 +1,8 @@
 import React from "react";
 import ProfileGoalsSection from "../../../../components/studentPortal/ProfileGoalsSection";
-import AchievementComponent from "../../../../components/studentPortal/profileV2/achievement_components/AchievementComponent";
+import UserProfileSection from "../../../../components/studentPortal/profileV2/ProfileHeaderComponent";
 import ProjectsSection from "../../../../components/studentPortal/profileV2/ProjectsSection";
-import UserProfileSection from "../../../../components/studentPortal/UserProfileSection";
+import AchievementComponent from "../../../../components/studentPortal/profileV2/achievement_components/AchievementComponent";
 import { useAuth } from "../../../../lib/authContext";
 
 export default function Profile() {
@@ -25,7 +25,7 @@ export default function Profile() {
       </div>
 
       <h2 className="text-lg font-bold mb-9">Achievements</h2>
-      <AchievementComponent userId={user.uid} />
+      <AchievementComponent userId={user.uid} isEditable={false} />
     </div>
   );
 }
