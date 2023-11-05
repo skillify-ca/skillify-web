@@ -55,6 +55,7 @@
     "magic-sdk": "^8.1.1",
     "moment": "^2.29.1",
     "next": "^12.1.4",
+    "openai": "^4.15.3",
     "react": "^17.0.1",
     "react-beautiful-dnd": "^13.0.0",
     "react-bootstrap": "^2.5.0",

@@ -28,7 +28,7 @@ export default function UserProfileSection({
             </div>
           )}
           <img
-            className="z-0 mr-2 rounded-full shadow border-brandPrimary w-36 group-hover:opacity-40"
+            className="z-0 mr-2 rounded-full shadow border-brandPrimary w-36 h-36 group-hover:opacity-40"
             src={
               userProfileData.profileImage ?? "/images/profile/user-avatar.png"
             }
