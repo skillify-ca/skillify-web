@@ -157,42 +157,6 @@ export const Sidebar: React.FC = () => {
       ),
       isDisabled: isDisabled,
     },
-    {
-      name: "Workshops",
-      link: "/studentPortal/workshops",
-      page: "workshops",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-6 h-6 mr-4"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
-        </svg>
-      ),
-      isDisabled: isDisabled,
-    },
-    {
-      name: "Admin",
-      link: "/studentPortal/admin",
-      page: "admin",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="w-6 h-6 mr-4"
-        >
-          <path
-            fillRule="evenodd"
-            d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
-            clipRule="evenodd"
-          />
-        </svg>
-      ),
-      isDisabled: isDisabled,
-    },
   ];
 
   return (
@@ -251,7 +215,6 @@ export const Sidebar: React.FC = () => {
             }
           }
         })}
-        <SkillifyCommandPalette />
         <div>
           <div className="flex items-center justify-between p-4 ">
             <p className="font-bold">Courses</p>
@@ -273,6 +236,7 @@ export const Sidebar: React.FC = () => {
           <div className="flex items-center justify-between p-4 ">
             <p className="font-bold">Experimental</p>
           </div>
+          <SkillifyCommandPalette />
 
           <Link href="/studentPortal/games">
             <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
@@ -284,6 +248,36 @@ export const Sidebar: React.FC = () => {
             <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
               <StarIcon className="w-6" />
               <p className="ml-3">Challenges</p>
+            </div>
+          </Link>
+          <Link href="/studentPortal/workshops">
+            <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6 mr-4"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+              </svg>
+              <p>Workshops</p>
+            </div>
+          </Link>
+          <Link href="/studentPortal/admin">
+            <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-6 h-6 mr-4"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <p>Admin</p>
             </div>
           </Link>
         </div>
