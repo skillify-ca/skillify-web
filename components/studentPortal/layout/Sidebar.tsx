@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client/react";
-import { PlayIcon } from "@heroicons/react/solid";
+import { PlayIcon, StarIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -278,6 +278,12 @@ export const Sidebar: React.FC = () => {
             <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
               <PlayIcon className="w-6" />
               <p className="ml-3">Games</p>
+            </div>
+          </Link>
+          <Link href="/studentPortal/challenges">
+            <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
+              <StarIcon className="w-6" />
+              <p className="ml-3">Challenges</p>
             </div>
           </Link>
         </div>

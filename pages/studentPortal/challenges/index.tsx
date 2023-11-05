@@ -15,7 +15,10 @@ export default function Coding() {
   return (
     <div>
       {lessons.map((lesson) => (
-        <Link key={lesson.link} href={`/coding/${lesson.link}`}>
+        <Link
+          key={lesson.link}
+          href={`/studentPortal/challenges/${lesson.link}`}
+        >
           <div className="p-4 border cursor-pointer hover:bg-sky-300">
             {lesson.name}
           </div>
