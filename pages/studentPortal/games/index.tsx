@@ -1,6 +1,6 @@
+import Link from "next/link";
 import React from "react";
-import GenerateQuestionAnswerPairs from "../../../components/studentPortal/games/matching/GenerateQuestionAnswerPairs";
-import MatchingBoardGame from "../../../components/studentPortal/games/matching/MatchingBoardGame";
+import Card from "../../../components/ui/Card";
 
 export type QuestionAnswerPair = {
   question: string;
@@ -8,42 +8,20 @@ export type QuestionAnswerPair = {
 };
 
 export default function GamePage() {
-  const [questionAnswerPairs, setQuestionAnswerPairs] = React.useState<
-    QuestionAnswerPair[]
-  >([]);
-
-  const getCardData = (questionAnswerPairs: QuestionAnswerPair[]): string[] => {
-    const cardValues = questionAnswerPairs.reduce(
-      (acc: string[], curr: QuestionAnswerPair) => {
-        acc.push(curr.question, curr.answer);
-        return acc;
-      },
-      []
-    );
-
-    // shuffle the array
-    const shuffledCardValues = cardValues.sort(() => Math.random() - 0.5);
-    return shuffledCardValues;
-  };
-
-  const [stage, setStage] = React.useState<"review" | "game">("review");
-
   return (
-    <div className="max-w-5xl p-4">
-      <h1 className="mb-4 text-5xl font-bold text-center">Matching Game</h1>
-      {stage === "review" && (
-        <GenerateQuestionAnswerPairs
-          questionAnswerPairs={questionAnswerPairs}
-          setQuestionAnswerPairs={setQuestionAnswerPairs}
-          setStage={setStage}
-        />
-      )}
-      {stage === "game" && (
-        <MatchingBoardGame
-          cardData={getCardData(questionAnswerPairs)}
-          questionAnswerPairs={questionAnswerPairs}
-        />
-      )}
+    <div className="p-4 bg-backgroundSecondary">
+      <h1 className="mb-4 text-5xl font-bold">Games</h1>
+      <div className="grid grid-cols-3">
+        <Link href="/studentPortal/games/matching">
+          <div className="cursor-pointer">
+            <Card size={"medium"}>
+              <h1 className="mb-4 text-2xl font-bold text-center">
+                Matching Game
+              </h1>
+            </Card>
+          </div>
+        </Link>
+      </div>
     </div>
   );
 }
