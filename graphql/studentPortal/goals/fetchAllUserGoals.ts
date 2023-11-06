@@ -13,7 +13,6 @@ export const FETCH_ALL_USER_GOALS = gql`
       goalName
       usersTable {
         name
-        id
       }
     }
   }

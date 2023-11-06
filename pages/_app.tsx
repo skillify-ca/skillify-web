@@ -10,7 +10,7 @@ import { TouchBackend } from "react-dnd-touch-backend";
 import { Provider as ReduxProvider } from "react-redux";
 import Layout from "../components/studentPortal/layout/Layout";
 import initializeApollo from "../lib/apollo";
-import { AuthProvider, useAuth } from "../lib/authContext";
+import { AuthProvider } from "../lib/authContext";
 import * as fbq from "../lib/fbPixel";
 import * as ga from "../lib/googleAnalytics";
 import store from "../redux/store";
@@ -93,11 +93,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
         <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
           <ReduxProvider store={store}>
             <AuthProvider>
-              {Component.auth ? (
-                <Auth>{getLayout(<Component {...pageProps} />)}</Auth>
-              ) : (
-                getLayout(<Component {...pageProps} />)
-              )}
+              {getLayout(<Component {...pageProps} />)}
             </AuthProvider>
           </ReduxProvider>
         </DndProvider>
@@ -107,21 +103,3 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
 }
 
 export default MyApp;
-
-function Auth({ children }) {
-  const { user, loading } = useAuth();
-  const router = useRouter();
-
-  React.useEffect(() => {
-    if (loading) return; // Do nothing while loading
-    if (!user) router.push("/welcome"); // If not authenticated, force log in
-  }, [user, loading]);
-
-  if (user) {
-    return children;
-  }
-
-  // Session is being fetched, or no user.
-  // If no user, useEffect() will redirect.
-  return <div>Loading...</div>;
-}
