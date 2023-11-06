@@ -2,14 +2,30 @@ import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react";
 import { upsertUserQuery } from "../graphql/studentPortal/users/initializeUser";
-import { auth } from "../lib/firebase";
-export const AuthContext = createContext(null);
+import { auth } from "./firebase";
+
+export interface User {
+  uid: string;
+  email: string;
+  displayName: string;
+  photoURL: string;
+}
+
+export interface SkillifyAuth {
+  user: User;
+  loading: boolean;
+  signIn: () => void;
+  signOut: () => void;
+  signInWithGoogle: (credentialResponse) => void;
+}
+export const AuthContext = createContext<SkillifyAuth>(null);
+
 export const useAuth = () => {
   return useContext(AuthContext);
 };
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState(true);
   const provider = new GoogleAuthProvider();
   const router = useRouter();
@@ -39,8 +55,18 @@ export const AuthProvider = ({ children }) => {
 
   const signIn = async () => {
     setLoading(true);
+
+    //
+
     await signInWithRedirect(auth, provider);
     setLoading(false);
+  };
+
+  const signInWithGoogle = async (credentialResponse) => {
+    setLoading(true);
+    console.log(credentialResponse);
+    await signInWithRedirect(auth, provider);
+    // auth.signInWithCredential(credentialResponse);
   };
 
   const signOut = () => {
@@ -53,6 +79,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
       if (user) {
         userSync(user);
+        router.push("/studentPortal");
       }
     });
     return unsubscribe;
@@ -63,6 +90,7 @@ export const AuthProvider = ({ children }) => {
     loading,
     signIn,
     signOut,
+    signInWithGoogle,
   };
 
   return (

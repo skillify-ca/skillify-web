@@ -35,7 +35,7 @@ export const Sidebar: React.FC = () => {
 
   useQuery<FetchRoleData>(FETCH_USER_ROLE, {
     variables: {
-      _id: user.uid,
+      _id: user?.uid,
     },
     onCompleted: (data) => {
       if (data && data.users) {
@@ -126,7 +126,7 @@ export const Sidebar: React.FC = () => {
     },
     {
       name: "Profile",
-      link: `/profile/${user.uid}`,
+      link: `/profile/${user?.uid}`,
       page: "profile",
       icon: (
         <svg

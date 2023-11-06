@@ -27,7 +27,7 @@ export const Layout: React.FC = ({ children }) => {
   const goalDateThreshold = format(addDays(new Date(), 7), "MM/dd/yyyy");
   const {} = useQuery<FetchGoalCountResponse>(FETCH_USER_GOALS_COUNT, {
     variables: {
-      userId: user.uid,
+      userId: user?.uid,
       goalDateThreshold: goalDateThreshold,
     },
     onCompleted: (data) => {
@@ -41,7 +41,7 @@ export const Layout: React.FC = ({ children }) => {
   });
 
   const { showOnboardingModal, showExitModal } = useLastSeenModal(
-    user.uid,
+    user?.uid,
     userRole,
     createdAt
   );
