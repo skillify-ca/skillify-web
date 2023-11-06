@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client/react";
 import { PlayIcon, StarIcon } from "@heroicons/react/solid";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -28,10 +29,11 @@ export const Sidebar: React.FC = () => {
   const { goalApproaching } = useSelector(activePageSelector);
   const { userRole, createdAt } = useSelector(profileSelector);
   const dispatch = useDispatch();
-  const { signOut, user } = useAuth();
   const [isDisabled, setIsDisabled] = useState(false);
 
   const [userProfileImage, setUserProfileImage] = useState<string>("");
+
+  const { user } = useAuth();
 
   useQuery<FetchRoleData>(FETCH_USER_ROLE, {
     variables: {
@@ -284,7 +286,7 @@ export const Sidebar: React.FC = () => {
       </div>
       <div
         className="flex flex-wrap p-4 cursor-pointer hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800"
-        onClick={signOut}
+        onClick={() => signOut()}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
