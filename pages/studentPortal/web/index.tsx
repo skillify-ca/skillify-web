@@ -27,6 +27,7 @@ export default function StudentPortalPage() {
   }, [data]);
 
   useEffect(() => {
+    // TODO save profile photos to firebase storage and allow users to edit photos
     updateUser({
       variables: {
         userId: user.uid,
