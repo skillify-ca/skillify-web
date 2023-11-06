@@ -1,23 +1,7 @@
-import { getRedirectResult } from "@firebase/auth";
-import { useRouter } from "next/router";
-import React, { useEffect } from "react";
-import { useAuth } from "../../lib/authContext";
-import { auth } from "../../lib/firebase";
+import { signIn } from "next-auth/react";
+import React from "react";
 
 export default function SignInPage() {
-  const { signIn, user } = useAuth();
-  const router = useRouter();
-
-  useEffect(() => {
-    async function checkAuth() {
-      const result = await getRedirectResult(auth);
-      if (result && user) {
-        router.push("/studentPortal");
-      }
-    }
-    checkAuth();
-  }, []);
-
   return (
     <div className="flex flex-col bg-white">
       <div className="z-10 bg-white shadow-lg">
@@ -38,7 +22,7 @@ export default function SignInPage() {
             <p className="">Let's start learning</p>
           </div>
           <button
-            onClick={() => signIn()}
+            onClick={() => signIn("google", { callbackUrl: "/studentPortal" })}
             className="flex items-center justify-between w-64 p-4 bg-white border border-black shadow-lg rounded-2xl hover:bg-gray-100"
           >
             Sign in with Google

@@ -1,8 +1,6 @@
-import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
-import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { upsertUserQuery } from "../graphql/studentPortal/users/initializeUser";
-import { auth } from "./firebase";
 
 export interface User {
   uid: string;
@@ -14,8 +12,6 @@ export interface User {
 export interface SkillifyAuth {
   user: User;
   loading: boolean;
-  signIn: () => void;
-  signOut: () => void;
 }
 export const AuthContext = createContext<SkillifyAuth | undefined>(undefined);
 
@@ -26,8 +22,8 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState(true);
-  const provider = new GoogleAuthProvider();
-  const router = useRouter();
+
+  const { data: session } = useSession();
 
   const userSync = async (user) => {
     const userId = user.uid;
@@ -52,34 +48,22 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
-  const signIn = async () => {
-    setLoading(true);
-
-    await signInWithRedirect(auth, provider);
-    setLoading(false);
-  };
-
-  const signOut = () => {
-    auth.signOut();
-  };
-
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user);
+    if (session?.user) {
+      setUser({
+        uid: session?.uid,
+        email: session?.user?.email,
+        displayName: session?.user.name,
+        photoURL: session?.user.image,
+      });
       setLoading(false);
-      if (user) {
-        userSync(user);
-        router.push("/studentPortal");
-      }
-    });
-    return unsubscribe;
-  }, []);
+      userSync(session.user);
+    }
+  }, [session]);
 
   const value = {
     user,
     loading,
-    signIn,
-    signOut,
   };
 
   return (
