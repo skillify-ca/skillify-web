@@ -21,9 +21,8 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState<User>();
-  const [loading, setLoading] = useState(true);
 
-  const { data: session } = useSession();
+  const { status, data: session } = useSession();
 
   const userSync = async (user) => {
     const userId = user.uid;
@@ -56,19 +55,14 @@ export const AuthProvider = ({ children }) => {
         displayName: session?.user.name,
         photoURL: session?.user.image,
       });
-      setLoading(false);
       userSync(session.user);
     }
   }, [session]);
 
   const value = {
     user,
-    loading,
+    loading: status === "loading",
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {!loading && children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

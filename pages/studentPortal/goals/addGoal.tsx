@@ -24,7 +24,7 @@ const EditGoalsPage = () => {
 
   // route back to goals overview page on complete
   const [saveNewGoal] = useMutation(UPSERT_USER_GOALS, {
-    onCompleted: () => router.push("/goals"),
+    onCompleted: () => router.push("/studentPortal/goals"),
     refetchQueries: [{ query: FETCH_USER_GOALS }],
   });
 
