@@ -136,7 +136,7 @@ export default function InternalProfile({
   }
 
   return (
-    <div className="flex flex-col p-4 m-4 space-y-4 overflow-auto bg-scroll">
+    <div className="flex flex-col m-4 space-y-4 overflow-auto bg-scroll sm:p-4">
       <Section title={""}>
         <ProfileHeaderComponent
           userProfileData={userProfileData}
