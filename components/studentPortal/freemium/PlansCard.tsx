@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import React from "react";
 import { useAuth } from "../../../lib/authContext";
 import { PlanCard } from "../../../pages/plans";
 import { Button } from "../../ui/Button";
@@ -12,7 +13,7 @@ const PlansCard = ({ planCard }: PlansCardProps) => {
   const { planName, title, price, description, planCardRow, buttonLabel } =
     planCard;
 
-  const { signIn, user }: { signIn: () => void; user: User | null } = useAuth();
+  const { signIn, user } = useAuth();
   const router = useRouter();
 
   const handleSignUp = (planName: string) => {

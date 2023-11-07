@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, [session, status]);
 
-  const signInSkillify = async () => {
+  const signInSkillify = () => {
     signIn("google", { callbackUrl: "/studentPortal" });
   };
 

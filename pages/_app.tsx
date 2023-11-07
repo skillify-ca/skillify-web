@@ -1,5 +1,4 @@
 import { ApolloProvider } from "@apollo/client";
-import Hotjar from "@hotjar/browser";
 import { SessionProvider } from "next-auth/react";
 import { useRouter } from "next/router";
 import Script from "next/script";
@@ -22,7 +21,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
   // HotJar setup
   const siteId = 3063697;
   const hotjarVersion = 6;
-  Hotjar.init(siteId, hotjarVersion);
+  // Hotjar.init(siteId, hotjarVersion);
 
   const handleRouteChange = (url) => {
     if (window.gtag) {
@@ -92,8 +91,10 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
       <SessionProvider session={pageProps.session}>
         <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
           <ReduxProvider store={store}>
+            {JSON.stringify(router.pathname)}
             <AuthProvider>
-              {Component.auth ? (
+              {Component.auth ||
+              router.pathname.startsWith("/studentPortal") ? (
                 <Auth>{getLayout(<Component {...pageProps} />)}</Auth>
               ) : (
                 getLayout(<Component {...pageProps} />)
