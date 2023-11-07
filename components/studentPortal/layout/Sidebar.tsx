@@ -161,7 +161,7 @@ export const Sidebar: React.FC = () => {
 
   return (
     //Full width then restrict in page
-    <div className="flex flex-col w-full bg-backgroundPrimary text-textPrimary">
+    <div className="flex flex-col w-full overflow-auto bg-backgroundPrimary text-textPrimary">
       <div className="grid">
         {user && userRole === "freemium" ? (
           <FreemiumSidebarHeader createdAt={createdAt} />
@@ -281,21 +281,21 @@ export const Sidebar: React.FC = () => {
             </div>
           </Link>
         </div>
-      </div>
-      <div
-        className="flex flex-wrap p-4 cursor-pointer hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800"
-        onClick={signOut}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-6 h-6 mr-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+        <div
+          className="flex flex-wrap p-4 mb-16 cursor-pointer hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800"
+          onClick={signOut}
         >
-          <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-        </svg>
-        Logout
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6 mr-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          Logout
+        </div>
       </div>
     </div>
   );

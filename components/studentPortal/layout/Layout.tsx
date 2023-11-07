@@ -102,7 +102,7 @@ export const Layout: React.FC = ({ children }) => {
 
       {/* Mobile Sidebar */}
       <div
-        className={`fixed z-10 w-56 top-16 lg:hidden ${
+        className={`fixed z-10 w-56 top-16 lg:hidden overflow-auto ${
           active ? "left-0" : "-left-56"
         } h-full transition-all transform duration-500 ease-in-out bg-white dark:bg-gray-900 border-r-2`}
       >
