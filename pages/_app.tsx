@@ -1,5 +1,6 @@
 import { ApolloProvider } from "@apollo/client";
-import Hotjar from '@hotjar/browser';
+import Hotjar from "@hotjar/browser";
+import { SessionProvider } from "next-auth/react";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import React, { useEffect } from "react";
@@ -14,7 +15,6 @@ import * as fbq from "../lib/fbPixel";
 import * as ga from "../lib/googleAnalytics";
 import store from "../redux/store";
 import "../styles/globals.css";
-
 
 function MyApp({ Component, pageProps: { ...pageProps } }) {
   const router = useRouter();
@@ -34,8 +34,8 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
   };
 
   useEffect(() => {
-    fbq.pageview()
-    ga.load()
+    fbq.pageview();
+    ga.load();
 
     router.events.on("routeChangeComplete", handleRouteChange);
     return () => {
@@ -75,7 +75,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
         }}
       />
       {/* <!-- Google Tag Manager --> */}
-       <Script
+      <Script
         id="google-tag-manager"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
@@ -89,18 +89,19 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
         }}
       />
       {/* <!-- End Google Tag Manager --> */}
-
-      <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
-        <ReduxProvider store={store}>
-          <AuthProvider>
-            {Component.auth ? (
-              <Auth>{getLayout(<Component {...pageProps} />)}</Auth>
-            ) : (
-              getLayout(<Component {...pageProps} />)
-            )}
-          </AuthProvider>
-        </ReduxProvider>
-      </DndProvider>
+      <SessionProvider session={pageProps.session}>
+        <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
+          <ReduxProvider store={store}>
+            <AuthProvider>
+              {Component.auth ? (
+                <Auth>{getLayout(<Component {...pageProps} />)}</Auth>
+              ) : (
+                getLayout(<Component {...pageProps} />)
+              )}
+            </AuthProvider>
+          </ReduxProvider>
+        </DndProvider>
+      </SessionProvider>
     </ApolloProvider>
   );
 }

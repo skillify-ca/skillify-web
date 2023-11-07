@@ -1,8 +1,7 @@
-import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { upsertUserQuery } from "../graphql/studentPortal/users/initializeUser";
-import { auth } from "./firebase";
 
 export interface User {
   uid: string;
@@ -25,9 +24,8 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState<User>();
-  const [loading, setLoading] = useState(true);
-  const provider = new GoogleAuthProvider();
   const router = useRouter();
+  const { status, data: session } = useSession();
 
   const userSync = async (user) => {
     const userId = user.uid;
@@ -52,39 +50,33 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
-  const signIn = async () => {
-    setLoading(true);
-
-    await signInWithRedirect(auth, provider);
-    setLoading(false);
-  };
-
-  const signOut = () => {
-    auth.signOut();
-  };
-
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user);
-      setLoading(false);
-      if (user) {
-        userSync(user);
-        router.push("/studentPortal");
-      }
-    });
-    return unsubscribe;
-  }, []);
+    if (session?.user) {
+      setUser({
+        uid: session?.uid,
+        email: session?.user?.email,
+        displayName: session?.user?.name,
+        photoURL: session?.user?.image,
+      });
+      userSync(session?.user);
+    }
+  }, [session, status]);
+
+  const signInSkillify = async () => {
+    signIn("google", { callbackUrl: "/studentPortal" });
+  };
+
+  const signOutSkillify = () => {
+    setUser(undefined);
+    signOut({ callbackUrl: "/welcome" });
+  };
 
   const value = {
-    user,
-    loading,
-    signIn,
-    signOut,
+    user: user,
+    loading: status === "loading",
+    signIn: signInSkillify,
+    signOut: signOutSkillify,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {!loading && children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
