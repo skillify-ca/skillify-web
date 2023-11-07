@@ -91,7 +91,6 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
       <SessionProvider session={pageProps.session}>
         <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
           <ReduxProvider store={store}>
-            {JSON.stringify(router.pathname)}
             <AuthProvider>
               {Component.auth ||
               router.pathname.startsWith("/studentPortal") ? (
