@@ -1,9 +1,9 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import NextAuth from "next-auth";
+import NextAuth, { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { FETCH_USER_BY_EMAIL } from "../../../graphql/studentPortal/users/fetchUserByEmail";
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? "",
@@ -43,6 +43,10 @@ export const authOptions = {
     },
   },
   session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
+  jwt: {
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
 };
