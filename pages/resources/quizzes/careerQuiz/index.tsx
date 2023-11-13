@@ -290,12 +290,11 @@ export default CareerQuiz;
 
 function getLayout(page: React.ReactNode) {
   return (
-    <div className="flex flex-col items-center h-screen bg-orange-50 theme-default">
+    <div className="flex flex-col items-center h-screen  theme-default">
       <LandingNavbar />
-      <div className="flex justify-center w-full h-screen max-w-xl bg-white shadow">
+      <div className="flex justify-center w-full h-screen max-w-xl bg-white ">
         {page}
       </div>
-      ;
     </div>
   );
 }
