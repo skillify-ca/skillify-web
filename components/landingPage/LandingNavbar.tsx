@@ -7,7 +7,7 @@ type LandingNavbarProps = {
 };
 export default function LandingNavbar({ showTimer }: LandingNavbarProps) {
   return (
-    <div className="flex flex-col w-full">
+    <div className="hidden md:flex md:flex-col w-full">
       <div className="grid items-center justify-between w-full grid-cols-1 px-4 bg-white border-b-2 md:flex place-items-center text-murkrow">
         <Link href={"/"}>
           <img
