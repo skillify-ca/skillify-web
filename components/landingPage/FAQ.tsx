@@ -21,7 +21,7 @@ export default function FAQ() {
     {
       question: "What does the program include?",
       answer:
-        " - 1:1 and small group coaching\n - An internship experience where you build digital products on a team under the leadership of ex-Spotify engineers\n - Full access to Skillify online learning platform\n - Opportunities to build your own ideas! (e.g., a storefront)\n - Job hunting support and career guidance",
+        " - 1:1 and small group coaching\n - An internship experience where you build digital products on a team under the leadership of ex-Spotify engineers\n - Full access to Skillify online learning platform\n - Opportunities to build your own ideas! (e.g., an e-commerce store, a mobile app)\n - Job hunting support and career guidance",
     },
     {
       question: "How do I enroll/apply?",
@@ -51,7 +51,7 @@ export default function FAQ() {
     {
       question: "Why should I pick your program over another coding bootcamp?",
       answer:
-        " - Our teachers are the best. We've worked at top companies in Silicon Valley, Toronto, and New York: Instagram, Spotify, Duolingo, Shopify, PagerDuty, Roblox, NVIDIA, and more!\n - Our program provides twice as much support compared to traditional bootcamps to ensure you're actually prepared to succeed on the job.\n - Our program is customized to your experience and interests. You're working with a team of senior engineers, designers and product managers who all want to see you succeed. You will not find a personalized educational experience anywhere else.\n - Based on your interests, we place you on a track that you're most likely to succeed and get hired.",
+        "- Our teachers are the best. We've worked at top companies in Silicon Valley, Toronto, and New York: Instagram, Spotify, Duolingo, Shopify, PagerDuty, Roblox, NVIDIA, and more! We connect our top students with hiring managers from these companies.\n- We customize our program based on your personal needs.\n- You are not just a number to us. We match you with expert instructors who care about you and want to see you succeed.\n- You can actually talk to us. Most other schools make it hard to connect with your instructor until you pay them a huge amount of money. Get to know who you'll be learning from before making such a big purchase.",
     },
     {
       question: "How much does the program cost?",
