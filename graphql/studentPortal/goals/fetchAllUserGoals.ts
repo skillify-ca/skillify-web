@@ -9,6 +9,7 @@ export const FETCH_ALL_USER_GOALS = gql`
         isComplete: { _eq: true }
       }
     ) {
+      id
       updatedAt
       goalName
       usersTable {
