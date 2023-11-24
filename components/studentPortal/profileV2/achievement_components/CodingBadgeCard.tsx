@@ -42,7 +42,7 @@ const CodingBadgeCard = ({ badge }: CodingBadgeProps) => {
 
         <Content className={`theme-default`}>
           <div
-            className={`fixed h-[450px] w-[300px] md:h-[550px] md:w-[900px] md:p-10 px-4 transform -translate-x-1/2 md:-translate-y-3/4 -translate-y-1/2 ${"bg-white"} rounded-lg left-1/2 top-1/2 md:top-3/4`}
+            className={`fixed h-[450px] w-[300px] md:h-[550px] md:w-[900px] md:p-10 px-4 transform -translate-x-1/2 md:-translate-y-1/2 -translate-y-1/2 ${"bg-white"} rounded-lg left-1/2 top-1/2 md:top-1/2`}
           >
             <CodingBadgeCardContent badge={badge} />
           </div>
@@ -51,6 +51,8 @@ const CodingBadgeCard = ({ badge }: CodingBadgeProps) => {
     </Root>
   );
 };
+
+export default CodingBadgeCard;
 
 function CodingBadgeCardContent({ badge }: CodingBadgeProps) {
   function formatDate(date) {
@@ -61,20 +63,14 @@ function CodingBadgeCardContent({ badge }: CodingBadgeProps) {
     return `${da}-${mo}-${ye}`;
   }
   return (
-    <div className="h-full p-4 bg-orange-900 heropattern-topography-orange-500 w-72">
-      <img src={badge.coding_badge.image} className="w-64 h-64 border shadow" />
+    <div className="grid h-full grid-cols-2 gap-4 p-4">
+      <img src={badge.coding_badge.image} className="w-full border shadow" />
 
-      <div className="py-2 mt-4 bg-[#FFFFFF] h-40 px-2">
-        <p className="text-lg font-bold line-clamp-2">
-          {badge.coding_badge.title}
-        </p>
+      <div className="h-full px-2 ">
+        <p className="text-lg font-bold ">{badge.coding_badge.title}</p>
         <p className="text-xs">{formatDate(badge.created_at)}</p>
-        <p className="transition-all transform hover:line-clamp-none line-clamp-3">
-          {badge.coding_badge.description}
-        </p>
+        <p className="mt-4">{badge.coding_badge.description}</p>
       </div>
     </div>
   );
 }
-
-export default CodingBadgeCard;
