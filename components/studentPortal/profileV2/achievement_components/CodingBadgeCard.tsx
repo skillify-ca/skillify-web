@@ -65,7 +65,9 @@ function CodingBadgeCardContent({ badge }: CodingBadgeProps) {
       <img src={badge.coding_badge.image} className="w-64 h-64 border shadow" />
 
       <div className="py-2 mt-4 bg-[#FFFFFF] h-40 px-2">
-        <p className="text-lg font-bold">{badge.coding_badge.title}</p>
+        <p className="text-lg font-bold line-clamp-2">
+          {badge.coding_badge.title}
+        </p>
         <p className="text-xs">{formatDate(badge.created_at)}</p>
         <p className="transition-all transform hover:line-clamp-none line-clamp-3">
           {badge.coding_badge.description}
