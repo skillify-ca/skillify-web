@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GoalsSectionComponent from "../../components/studentPortal/goals/GoalsSectionComponent";
 import ProfileHeaderComponent from "../../components/studentPortal/profileV2/ProfileHeaderComponent";
@@ -105,9 +105,6 @@ export default function InternalProfile({
         dispatch(
           setSkillRatings(transformSkillsAndRatings(data.intro_course_skills))
         );
-        if (!isExternal && userId == user.uid) {
-          setIsEditable(true);
-        }
       },
     });
 
