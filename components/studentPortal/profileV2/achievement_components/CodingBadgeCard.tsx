@@ -54,7 +54,7 @@ const CodingBadgeCard = ({ badge }: CodingBadgeProps) => {
 
 export default CodingBadgeCard;
 
-function CodingBadgeCardContent({ badge }: CodingBadgeProps) {
+export function CodingBadgeCardContent({ badge }: CodingBadgeProps) {
   function formatDate(date) {
     const d = new Date(date);
     const ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
@@ -64,7 +64,11 @@ function CodingBadgeCardContent({ badge }: CodingBadgeProps) {
   }
   return (
     <div className="grid h-full grid-cols-2 gap-4 p-4">
-      <img src={badge.coding_badge.image} className="w-full border shadow" />
+      {badge.coding_badge.image ? (
+        <img src={badge.coding_badge.image} className="w-full border shadow" />
+      ) : (
+        <div className="w-36 h-36 bg-slate-400" />
+      )}
 
       <div className="h-full px-2 ">
         <p className="text-lg font-bold ">{badge.coding_badge.title}</p>

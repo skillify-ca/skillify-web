@@ -112,7 +112,7 @@ const coachingDashboard = () => {
   return (
     <div className="flex flex-col p-4 m-4 ">
       <p className="mb-8 text-3xl font-bold">Coaching Dashboard</p>
-      <Link href="/studentPortal/admin/badges">
+      <Link href="/studentPortal/admin/badges/create">
         <Button label="New Badge" />
       </Link>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
