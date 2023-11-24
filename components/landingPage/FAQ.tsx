@@ -1,3 +1,4 @@
+import React from "react";
 import ExpandableContainer from "../ui/ExpandableContainer";
 
 export default function FAQ() {
@@ -16,7 +17,7 @@ export default function FAQ() {
     {
       question: "How long does the program take to complete?",
       answer:
-        "We offer a customized and flexible program for every student, so there is no strict timeframe or deadline like typical coding bootcamps or school. Typically, our students put in anywhere from 10 to 40 hours a week and complete the program within 3-6 months. To provide a rough time frame: if you have never coded before, our program will prepare you for a software developer job in 6 months.",
+        "We offer a customized and flexible program for every student, so there is no strict timeframe or deadline like typical coding bootcamps or school. Typically, our students put in anywhere from 10 to 40 hours a week and complete the program within 3-8 months. To provide a rough time frame: if you have never coded before, our program will prepare you for a software developer job in 8 months. If you already have some coding experience and you're a fast learner, you can complete the program in 3-6 months. If you are a slower learner or have other comittments, you can complete the program in 6-10 months. We will work with you to create a customized plan that fits your learning needs and career goals.",
     },
     {
       question: "What does the program include?",
@@ -31,12 +32,12 @@ export default function FAQ() {
     {
       question: "How long will it take to get a job?",
       answer:
-        "Our graduates are employed as software developers within 6 months of completing the program. The job market for software engineers has gotten harder so you might need to spend a bit longer honing your craft and elevating your digital skills to a more intermediate level",
+        "Our graduates are employed as software developers within 6 months of completing the program. The job market for software engineers has gotten harder so you might need to spend a bit longer honing your craft and elevating your digital skills to a more intermediate level. The path to software engineering does require hard work, but for those of you who are willing to put in the effort, we will be there to support you every step of the way and make sure that you don't waste your time.",
     },
     {
       question: "What kind of job can I get after this program?",
       answer:
-        "You can get a job as a software developer. There are many different types of software developer positions that you could apply to, including but not limited to:\n - Web Developer\n - Backend Developer\n - Mobile Developer\n - Game Developer\n - Fullstack Developer\n - Dev Ops Engineer\n - Sales Engineer",
+        "You can get a job as a software developer. There are many different types of software developer positions that you could apply to, including but not limited to:\n - Web Developer\n - Backend Developer\n - Mobile Developer\n - Game Developer\n - Fullstack Developer\n - Dev Ops Engineer\n - Sales Engineer\n\nCheck out our job personality quiz to see which role is best for you!",
     },
     {
       question: "What salary can I get after this program?",
@@ -46,7 +47,7 @@ export default function FAQ() {
     {
       question: "Will you help me find a job?",
       answer:
-        "Our coaches have a deep network of technical professionals in companies all over the world. We leverage our network to introduce you to potential employers. We provide resume critique and mock-interview training to help you ace your interviews.",
+        "Our coaches have a deep network of technical professionals in companies all over the world. We leverage our network to introduce you to potential employers. We provide resume critique and mock-interview training to help you ace your interviews. As long as you don't give up on the program, we won't give up on you until you get a job that you're happy with. If you have questions or concerns, schedule a call with us and we'll be happy to answer them.",
     },
     {
       question: "Why should I pick your program over another coding bootcamp?",
