@@ -12,7 +12,6 @@ type ProfileDetailCard = {
   currentBadge: CodingBadge;
   completedDate: string;
   completedGoal: string;
-  totalBadgeCount: number;
 };
 
 function ProfileDetailCard({
@@ -20,7 +19,6 @@ function ProfileDetailCard({
   name,
   joinDate,
   badges,
-  totalBadgeCount,
   currentBadge,
   completedGoal,
   completedDate,
@@ -36,11 +34,7 @@ function ProfileDetailCard({
           <p className="font-bold"> {name}</p>
 
           <JoinedDateComponent textSize={"small"} createdAt={joinDate} />
-          <BadgesDisplayedComponent
-            earnedBadges={badges}
-            textSize={"small"}
-            totalBadges={totalBadgeCount}
-          />
+          <BadgesDisplayedComponent earnedBadges={badges} textSize={"small"} />
         </div>
       </div>
       <div className="col-span-4 my-3 ml-2 space-x-4 space-y-2">

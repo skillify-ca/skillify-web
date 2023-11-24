@@ -7,21 +7,21 @@ import { useDispatch, useSelector } from "react-redux";
 import ProfileDetailCard from "../../../components/studentPortal/admin/ProfileDetailCard";
 import { Button } from "../../../components/ui/Button";
 import {
-  FetchTotalBadgesCountResponse,
   FETCH_TOTAL_USER_BADGES_COUNT,
+  FetchTotalBadgesCountResponse,
 } from "../../../graphql/studentPortal/achievements/fetchTotalUserBadgesCount";
 import {
-  FetchUserProfileCardResponse,
   FETCH_USER_PROFILE_CARD,
+  FetchUserProfileCardResponse,
 } from "../../../graphql/studentPortal/admin/fetchUserProfileCard";
 import {
   AllUserGoalsData,
-  FetchAllUserGoalsDataResponse,
   FETCH_ALL_USER_GOALS,
+  FetchAllUserGoalsDataResponse,
 } from "../../../graphql/studentPortal/goals/fetchAllUserGoals";
 import {
-  FetchUserRoleData,
   FETCH_USER_ROLE,
+  FetchUserRoleData,
 } from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
 import {
@@ -162,7 +162,6 @@ const coachingDashboard = () => {
                           )
                         : "‎ N/A‎ "
                     }
-                    totalBadgeCount={totalBadgeCount}
                   />
                 </div>
               </Link>

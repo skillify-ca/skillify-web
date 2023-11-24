@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import {
   FETCH_CODING_BADGES,
   FetchBadgeResponse,
-  IntroCourseUnit,
+  UserCodingBadge,
 } from "../../../../graphql/studentPortal/achievements/fetchUserBadges";
 import {
   DELETE_USER_CODING_BADGES,
@@ -16,8 +16,7 @@ import {
 } from "../../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../../lib/authContext";
 import { Button } from "../../../ui/Button";
-import UnitBadgeSection from "./UnitBadgeSection";
-import findBadgeDiff from "./findBadgeDiff";
+import CodingBadgeCard from "./CodingBadgeCard";
 
 export type AchievementComponentProps = {
   userId: string;
@@ -28,7 +27,9 @@ const AchievementComponent = ({
   userId,
   isEditable,
 }: AchievementComponentProps) => {
-  const [unitBadges, setUnitBadges] = useState<IntroCourseUnit[]>();
+  const [userBadges, setUserBadges] = useState<UserCodingBadge[]>([]);
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
+
   // editMode set to true only when a coach accesses the page
   const [editMode, setEditMode] = useState(false);
   // isEditButtonVisible set to true only when a coach clicks the PencilAltIcon Component
@@ -39,7 +40,7 @@ const AchievementComponent = ({
       userId: userId,
     },
     onCompleted: (data) => {
-      setUnitBadges(data.intro_course_unit);
+      setUserBadges(data.user_coding_badges);
     },
   });
   const { user } = useAuth();
@@ -65,42 +66,7 @@ const AchievementComponent = ({
   // move handler inside AC component, and add type props
   // keep findBadgeDiff
   const handleOnSaveButtonClick = () => {
-    const addedBadges = findBadgeDiff(
-      data.intro_course_unit,
-      unitBadges,
-      userId
-    ).addedBadges;
-    const removedBadges = findBadgeDiff(
-      data.intro_course_unit,
-      unitBadges,
-      userId
-    ).removedBadges;
-
-    Promise.all([
-      addedBadges.length > 0
-        ? saveAddedBadges({ variables: { objects: addedBadges } }).catch(
-            (error) => {
-              console.error(error);
-            }
-          )
-        : Promise.resolve(),
-      removedBadges.length > 0
-        ? Promise.all(
-            removedBadges.map((badge) =>
-              saveRemovedBadges({
-                variables: {
-                  badgeId: badge.badgeId,
-                  userId: badge.userId,
-                },
-              }).catch((error) => {
-                console.error(error);
-              })
-            )
-          )
-        : Promise.resolve(),
-    ]).then(() => {
-      alert("Your badge selections have been updated.");
-    });
+    alert("Your badge selections have been updated.");
   };
 
   return (
@@ -122,26 +88,34 @@ const AchievementComponent = ({
           </div>
         )}
       </div>
-      {unitBadges && (
-        <div>
-          {unitBadges.map((unit, index) => {
-            if (unit.coding_badges.length > 0) {
+      {userBadges && (
+        <div className="grid grid-cols-3 gap-4">
+          {[]
+            .concat(userBadges)
+            .sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
+            .filter((badge, index) => {
+              if (isCollapsed) {
+                return index < 3;
+              } else {
+                return true;
+              }
+            })
+            .map((badge, index) => {
               return (
                 <div
                   className="mb-4 shadow bg-backgroundPrimary rounded-xl"
                   key={index}
                 >
-                  <UnitBadgeSection
-                    unit={unit}
-                    editMode={editMode}
-                    setUnitBadges={setUnitBadges}
-                  />
+                  <CodingBadgeCard badge={badge} />
                 </div>
               );
-            }
-          })}
+            })}
         </div>
       )}
+      <Button
+        label={isCollapsed ? "Show More" : "Show Less"}
+        onClick={() => setIsCollapsed(!isCollapsed)}
+      ></Button>
       {editMode && (
         <div className="flex py-4 space-x-4 place-content-between">
           <Button
