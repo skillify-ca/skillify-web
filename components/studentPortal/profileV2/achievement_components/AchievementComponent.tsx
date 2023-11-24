@@ -89,13 +89,13 @@ const AchievementComponent = ({
         )}
       </div>
       {userBadges && (
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {[]
             .concat(userBadges)
             .sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
             .filter((badge, index) => {
               if (isCollapsed) {
-                return index < 3;
+                return index < 5;
               } else {
                 return true;
               }
@@ -103,7 +103,7 @@ const AchievementComponent = ({
             .map((badge, index) => {
               return (
                 <div
-                  className="mb-4 shadow bg-backgroundPrimary rounded-xl"
+                  className="shadow bg-backgroundPrimary rounded-xl"
                   key={index}
                 >
                   <CodingBadgeCard badge={badge} />
@@ -112,10 +112,12 @@ const AchievementComponent = ({
             })}
         </div>
       )}
-      <Button
-        label={isCollapsed ? "Show More" : "Show Less"}
-        onClick={() => setIsCollapsed(!isCollapsed)}
-      ></Button>
+      <div className="mt-4">
+        <Button
+          label={isCollapsed ? "Show More" : "Show Less"}
+          onClick={() => setIsCollapsed(!isCollapsed)}
+        ></Button>
+      </div>
       {editMode && (
         <div className="flex py-4 space-x-4 place-content-between">
           <Button
