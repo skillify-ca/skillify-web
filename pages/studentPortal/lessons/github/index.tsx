@@ -4,6 +4,11 @@ export default function index() {
   return (
     <div className="grid grid-cols-1 px-10 pt-6">
       <h1 className="font-bold text-4xl ">Deploying a Website using Vercel</h1>
+      <div className="grid grid-cols-1 border-2 rounded shadow-lg gap-6">
+        <div className="flex items-center p-4 bg-white">
+          <img src="/images/lessons/vercel.png" width={300} height={150}></img>
+        </div>
+      </div>
       <div className="flex flex-col">
         <h1 className="text-3xl pt-4 ">Intro</h1>
         <p className="pt-4 w-1/2 ">
