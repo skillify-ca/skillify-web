@@ -8,6 +8,10 @@ export default function index() {
         <div className="flex items-center p-4 bg-white">
           <img src="/images/lessons/vercel.png" width={300} height={150}></img>
         </div>
+        <div className="flex flex-col p-6">
+          <h1 className="font-bold">Vercel</h1>
+          <p>Vercel Link</p>
+        </div>
       </div>
       <div className="flex flex-col">
         <h1 className="text-3xl pt-4 ">Intro</h1>
