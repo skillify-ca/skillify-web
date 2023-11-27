@@ -1,3 +1,4 @@
+import { useState } from "react";
 import HeartOutLineIcon from "../HeartOutLineIcon";
 import HeartSolidLineIcon from "../HeartSolidLineIcon";
 import { Goal } from "./GoalsFeed";
@@ -8,6 +9,11 @@ type GoalCardProps = {
 };
 
 export default function GoalCard({ goal, isLiked }: GoalCardProps) {
+  const [showIsLiked, setShowIsLiked] = useState<Boolean>(isLiked);
+
+  function handleClick() {
+    setShowIsLiked((prev) => !prev);
+  }
   return (
     <div
       key={goal.description}
@@ -23,10 +29,9 @@ export default function GoalCard({ goal, isLiked }: GoalCardProps) {
           year: "numeric",
         })}
       </p>
-      {isLiked ?
-        <HeartSolidLineIcon /> :
-        <HeartOutLineIcon />}
-
+      <div onClick={() => handleClick()}>
+        {showIsLiked ? <HeartSolidLineIcon /> : <HeartOutLineIcon />}
+      </div>
     </div>
   );
 }

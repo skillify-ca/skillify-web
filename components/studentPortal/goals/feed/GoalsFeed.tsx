@@ -15,7 +15,7 @@ export type Goal = {
 export type Likes = {
   goal_id: string;
   user_id: string;
-}
+};
 
 export default function GoalsFeed() {
   const [goals, setGoals] = useState<Goal[]>([]);
@@ -43,7 +43,7 @@ export default function GoalsFeed() {
     },
     onCompleted: (data) => {
       //  log what data hasura sends us
-      console.log("og data", data)
+      console.log("og data", data);
 
       // transform the data into a type we can use in react
       const transformedLikes = data.goals_likes.map((like) => {
@@ -53,25 +53,22 @@ export default function GoalsFeed() {
         };
       });
 
-      console.log("transformed data", transformedLikes)
-      setlikes(transformedLikes)
+      console.log("transformed data", transformedLikes);
+      setlikes(transformedLikes);
       // set some state variable
-
-    }
-  })
+    },
+  });
 
   // returns true if the passed in goal is a part of the likes array
   function isGoalLikedByUser(goal) {
-    return likes.map(like => like.goal_id).includes(goal.id)
+    return likes.map((like) => like.goal_id).includes(goal.id);
   }
 
   return (
     <div className="h-screen p-4 overflow-y-auto border-l-2 bg-backgroundPrimary">
       <h1 className="mb-4 text-2xl font-bold">Goals Feed</h1>
       {goals.map((goal) => (
-        <GoalCard goal={goal} isLiked={
-          isGoalLikedByUser(goal)
-        } />
+        <GoalCard goal={goal} isLiked={isGoalLikedByUser(goal)} />
       ))}
     </div>
   );
