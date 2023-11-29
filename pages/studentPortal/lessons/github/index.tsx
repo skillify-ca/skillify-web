@@ -1,16 +1,23 @@
-import React from "react";
+import { Button } from "../../../../components/ui/Button";
 
 export default function index() {
   return (
     <div className="grid grid-cols-1 px-10 pt-6">
       <h1 className="font-bold text-4xl ">Deploying a Website using Vercel</h1>
-      <div className="flex flex-row border-2 rounded shadow-lg gap-6">
+      <div className="flex flex-row border-2 border-black rounded shadow-lg gap-6">
         <div className="items-center p-4 bg-white">
-          <img src="/images/lessons/vercel.png" width={300} height={150}></img>
+          <img src="/images/lessons/vercel.png" width={200} height={100}></img>
         </div>
-        <div className="p-4">
+        <div className="p-10">
           <h1 className="font-bold">Vercel</h1>
-          <p>This is the Link to Vercel to create your account.</p>
+        </div>
+        <div>
+          <p className="p-10">
+            This is the Link to Vercel to create your account.
+          </p>
+        </div>
+        <div className="p-10">
+          <Button label={"View"} />
         </div>
       </div>
       <div className="flex flex-col">
