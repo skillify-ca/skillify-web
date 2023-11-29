@@ -1,25 +1,35 @@
+import React from "react";
 import { Button } from "../../../../components/ui/Button";
 
 export default function index() {
   return (
     <div className="grid grid-cols-1 px-10 pt-6">
       <h1 className="font-bold text-4xl ">Deploying a Website using Vercel</h1>
-      <div className="flex flex-row border-2 border-black rounded shadow-lg gap-6">
-        <div className="items-center p-4 bg-white">
-          <img src="/images/lessons/vercel.png" width={200} height={100}></img>
+      <div className="flex flex-row justify-between border-2 border-black rounded shadow-lg gap-4 mt-4">
+        <div className="flex flex-row">
+          <div className="items-center p-4 bg-white">
+            <img
+              src="/images/lessons/vercel.png"
+              width={200}
+              height={100}
+            ></img>
+          </div>
+          <div className="p-10">
+            <h1 className="font-bold">Vercel</h1>
+          </div>
+          <div>
+            <p className="p-10">
+              This is the Link to Vercel to create your account.
+            </p>
+          </div>
         </div>
-        <div className="p-10">
-          <h1 className="font-bold">Vercel</h1>
-        </div>
-        <div>
-          <p className="p-10">
-            This is the Link to Vercel to create your account.
-          </p>
-        </div>
-        <div className="p-10">
-          <Button label={"View"} />
+        <div className="flex justify-end p-10">
+          <a href="https://vercel.com/login">
+            <Button label={"View"} />
+          </a>
         </div>
       </div>
+
       <div className="flex flex-col">
         <h1 className="text-3xl pt-4 ">Intro</h1>
         <p className="pt-4 w-1/2 ">
