@@ -15,7 +15,7 @@ export default function Page() {
       />
       <div className="flex flex-col bg-white">
         <LandingNavbar />
-        <div className="flex flex-col items-center py-4 text-white bg-murkrow">
+        <div className="flex flex-col py-4 pt-16 text-white item s-center sm:pt-0 bg-murkrow">
           <h1 className="my-4 text-3xl font-bold text-center">
             Breaking into Tech Strategy Guide
           </h1>
@@ -100,5 +100,5 @@ export default function Page() {
 }
 
 Page.getLayout = function getLayout(page) {
-  return <div>{page}</div>;
+  return <div className="theme-default">{page}</div>;
 };

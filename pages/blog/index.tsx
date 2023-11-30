@@ -132,7 +132,7 @@ export default function Blog() {
       </Head>
       <LandingNavbar />
 
-      <div className="w-full mx-auto bg-slate-50 max-w-7xl">
+      <div className="w-full pt-16 mx-auto bg-slate-50 max-w-7xl sm:pt-0">
         <div className="p-8 ">
           <h1 className="p-8 text-5xl font-bold text-center text-white bg-murkrow ">
             Blog
@@ -180,5 +180,5 @@ export default function Blog() {
 }
 
 Blog.getLayout = function getLayout(page) {
-  return <div className="theme-default">{page}</div>;
+  return <div className=" theme-default">{page}</div>;
 };
