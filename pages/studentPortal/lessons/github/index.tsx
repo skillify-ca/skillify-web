@@ -23,17 +23,14 @@ export default function index() {
         <div className="flex justify-end p-10 items-center">
           <a href="https://vercel.com/login">
             <Button label={"View"} />
-          </a> 
+          </a>
         </div>
       </div>
 
       <div className="flex flex-col">
         <h1 className="text-3xl pt-4 font-bold ">Intro</h1>
         <p className="pt-4 w-1/2 ">
-          Let's say you've created a protfolio website that display's your
-          projects and skills. To be able for everyone wanting to check out your
-          projects you would have to have a link to your website, that you can
-          do by using Vercel.
+          Imagine you've created a website - be it a personal blog, an e-commerce store, or a portfolio showcasing your projects and skills. To share your work with the world, you'll need a straightforward way for people to access it. This is where Vercel comes into play. By utilizing Vercel, you can easily obtain a link to your website, ensuring that anyone interested can explore your work with just a click.
         </p>
       </div>
       <h1 className="text-3xl pt-4 font-bold">Getting Started with Vercel</h1>
@@ -64,7 +61,6 @@ export default function index() {
         width={650}
         height={450}
       />
-    </div>
+    </div> 
   );
 }
-//make sure to add in that u need github for the vercel thing
