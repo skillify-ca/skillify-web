@@ -1,5 +1,6 @@
-import PostLayout from "../../components/blog/PostLayout";
+import React from "react";
 import SEO from "../../components/SEO";
+import PostLayout from "../../components/blog/PostLayout";
 import LessonComponent, {
   LessonComponentData,
 } from "../../components/studentPortal/lessons/LessonComponent";
@@ -11,7 +12,7 @@ export default function Page({ blogComponents }: PageProps) {
   return (
     <div>
       <SEO
-        title={"Best Toronto Coding Bootcamps in 2022"}
+        title={"Best Toronto Coding Bootcamps in 2024"}
         description={"We break down where you can learn to code in Toronto."}
         image={"https://melv1n.com/img/learn-to-code-how-to-start.png"}
       />
@@ -28,12 +29,11 @@ export async function getServerSideProps({ params }) {
   const blogComponents: LessonComponentData[] = [
     {
       component: "title",
-      text: "Best Toronto Coding Bootcamps in 2022",
+      text: "Best Toronto Coding Bootcamps in 2024",
     },
     {
       component: "description",
-      text:
-        "If you are looking to learn to code in Toronto there are a few solid options. We definitely recommend the program at Skillify for being more afforable and more personalized compared to our competitors on this list.",
+      text: "If you are looking to learn to code in Toronto there are a few solid options. We definitely recommend the program at Skillify for being the most valuable. Skillify offers more personalized training and support compared to others on this list. Three months is not enough time to learn to code, so we recommend the 8-month program at Skillify. All of the programs in the list offer financing options.",
     },
     {
       component: "resource-list",
@@ -41,39 +41,41 @@ export async function getServerSideProps({ params }) {
         {
           title: "Skillify",
           image: "/images/logo-2.png",
-          description: "Cost: $3000 for a 3 months. $50 for self-paced courses",
+          description:
+            "Cost: $12000 for 8 months. $2000 for a 1 month introduction.",
           link: "https://skillify.ca",
-        },
-        {
-          title: "Brainstation",
-          image:
-            "https://coursereport-s3-production.global.ssl.fastly.net/uploads/school/logo/62/original/blacksquare-logo.jpg",
-          description: "Cost: $12500 for 3 months",
-
-          link: "https://brainstation.io",
         },
         {
           title: "Lighthouse Labs",
           image:
             "https://www.lighthouselabs.ca/uploads/testimonial/company_logo/32/lighthouselabs.jpg",
-          description: "Cost: $12500 for 3 months.",
+          description:
+            "Cost: $14000 for 3 months. They are our top pick among our competitors.",
 
-          link: "https://lighthouselabs.ca",
+          link: "https://www.lighthouselabs.ca/en/web-development",
         },
         {
           title: "General Assembly",
           image:
             "https://coursereport-s3-production.global.ssl.fastly.net/uploads/school/logo/2/original/CMYK-Red_Small_GeneralAssembly-Cog__1_.png",
-          description: "Cost: $15000 for 3 months.",
-          link: "https://generalassemb.ly",
+          description: "Cost: $14000 for 3 months.",
+          link: "https://generalassemb.ly/education/software-engineering-immersive",
+        },
+        {
+          title: "Brainstation",
+          image:
+            "https://coursereport-s3-production.global.ssl.fastly.net/uploads/school/logo/62/original/blacksquare-logo.jpg",
+          description: "Cost: $16500 for 3 months",
+
+          link: "https://brainstation.io/course-package/software-engineering-bootcamp/online",
         },
         {
           title: "UofT Coding Bootcamp",
           image:
             "https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Utoronto_coa.svg/1200px-Utoronto_coa.svg.png",
           description:
-            "Cost: $12000 for a 6-month program. The program teaches you PHP, and jQuery, which are more outdated languages than what is in demand in the current workforce.",
-          link: "https://bootcamp.learn.utoronto.ca/",
+            "Cost: $14000 for a 3-month program. The program teaches you PHP, and jQuery, which are more outdated languages than what is in demand in the current workforce.",
+          link: "https://bootcamp.learn.utoronto.ca/faq/",
         },
       ],
     },
