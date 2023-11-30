@@ -1,3 +1,4 @@
+import React from "react";
 import { Button } from "../../../../components/ui/Button";
 
 export default function index() {
@@ -6,7 +7,7 @@ export default function index() {
       <h1 className="font-bold text-4xl ">Deploying a Website using Vercel</h1>
       <div className="flex flex-row justify-between border-2 border-black rounded shadow-lg gap-4 mt-4">
         <div className="flex flex-row">
-          <div className="items-center p-4 bg-white">
+          <div className="flex items-center p-4 bg-white">
             <img
               src="/images/lessons/vercel.png"
               width={200}
@@ -19,10 +20,10 @@ export default function index() {
             </p>
           </div>
         </div>
-        <div className="flex justify-end p-10">
+        <div className="flex justify-end p-10 items-center">
           <a href="https://vercel.com/login">
             <Button label={"View"} />
-          </a>
+          </a> 
         </div>
       </div>
 
