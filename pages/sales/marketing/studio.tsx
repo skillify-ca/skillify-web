@@ -1,11 +1,11 @@
 import html2canvas from "html2canvas";
 import React from "react";
-import CoverPostForCarouselWithBrand from "../../../components/sales/marketing/CoverPostForCarouselWithBrand";
-import PostWithTitleBodyAndFooterCentered from "../../../components/sales/marketing/PostWithTitleBodyAndFooterCentered";
-import PostWithTitleBodyAndFooterSpread from "../../../components/sales/marketing/PostWithTitleBodyAndFooterCenteredSpread";
+import InstagramPost, {
+  Post,
+} from "../../../components/sales/marketing/InstagramPost";
 
 const MarketingStudioPage = () => {
-  const whatIsSkillify = [
+  const whatIsSkillify: Post[] = [
     {
       title: "What is Skillify?",
       type: "coverPostForCarouselWithBrand",
@@ -32,27 +32,21 @@ const MarketingStudioPage = () => {
       type: "postWithTitleBodyAndFooterCentered",
     },
   ];
+
+  const transformYourCareer: Post[] = [
+    {
+      title: "Transform your career",
+      type: "coverPostForCarouselWithBrand",
+    },
+  ];
+
   return (
     // make each column 300px wide
     <div className="flex flex-wrap gap-4">
       {whatIsSkillify.map((post, index) => {
         return (
           <div key={index}>
-            {post.type === "coverPostForCarouselWithBrand" ? (
-              <CoverPostForCarouselWithBrand title={post.title} />
-            ) : post.type === "postWithTitleBodyAndFooterCentered" ? (
-              <PostWithTitleBodyAndFooterCentered
-                title={post.title}
-                description={post.description}
-                footer={post.footer}
-              />
-            ) : post.type === "postWithTitleBodyAndFooterSpread" ? (
-              <PostWithTitleBodyAndFooterSpread
-                title={post.title}
-                description={post.description}
-                footer={post.footer}
-              />
-            ) : null}
+            <InstagramPost post={post} />
           </div>
         );
       })}
