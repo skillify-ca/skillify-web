@@ -19,11 +19,10 @@ function MessageRepository() {
 
   const { user } = useAuth();
 
-  //query to refetch the page without having to refresh the page 
+  //query to refetch the page without having to refresh the page
   const [saveNewMessage] = useMutation(insert_Message, {
     refetchQueries: [{ query: FETCH_ALL_MESSAGES }],
   });
-  
 
   // Function to update the 'message' state when the input changes
   const handleMessageChange = (e) => {
@@ -40,10 +39,10 @@ function MessageRepository() {
       variables: {
         date: date,
         message: message,
-        userId: user.uid 
+        userId: user.uid,
       },
-    }); 
-    setMessage(""); 
+    });
+    setMessage("");
   };
   // Render a form with an input field and a submit button.
   return (
@@ -70,7 +69,7 @@ function MessageRepository() {
           onChange={(e) => {
             setDate((prevState) => ({
               ...prevState,
-              targetDate: new Date(e.target.value)
+              targetDate: new Date(e.target.value),
             }));
           }}
         />

@@ -9,10 +9,12 @@ export default function SuccessStories() {
       <LandingNavbar />
 
       <div className="w-full mx-auto max-w-7xl bg-slate-50">
-        <h1 className="w-full pt-10 text-5xl font-bold text-center ">
-          Student Success Stories
-        </h1>
-        <div className="grid items-center w-full grid-cols-3 gap-16 p-20 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="p-8 ">
+          <h1 className="p-8 text-5xl font-bold text-center text-white bg-murkrow ">
+            Student Success Stories
+          </h1>
+        </div>
+        <div className="grid items-center w-full grid-cols-1 gap-8 p-8 md:p-20 md:gap-16 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <StoryCard
               title={"Ajevan M."}

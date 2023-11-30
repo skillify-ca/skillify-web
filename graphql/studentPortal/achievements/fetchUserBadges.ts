@@ -1,18 +1,15 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_CODING_BADGES = gql`
-  query FETCH_CODING_BADGES($userId: String = "Yxe3yn3BNhbSulbrnT3DI5bfrU93") {
-    intro_course_unit(order_by: { order: asc }) {
-      coding_badges(order_by: { id: asc }) {
+  query fetchUserCodingBadges($userId: String = "") {
+    user_coding_badges(where: { userId: { _eq: $userId } }) {
+      coding_badge {
+        image
+        description
         title
         id
-        image
-        user_coding_badges(where: { userId: { _eq: $userId } }) {
-          id
-        }
       }
-      title
-      image
+      created_at
     }
   }
 `;
@@ -26,7 +23,7 @@ export type Data = {
 };
 
 export type FetchBadgeResponse = {
-  intro_course_unit: IntroCourseUnit[];
+  user_coding_badges: UserCodingBadge[];
 };
 
 export type IntroCourseUnit = {
@@ -38,10 +35,11 @@ export type IntroCourseUnit = {
 export type CodingBadge = {
   title: string;
   image: string;
+  description: string;
   id: number;
-  user_coding_badges: UserCodingBadge[];
 };
 
 export type UserCodingBadge = {
-  id: number;
+  coding_badge: CodingBadge;
+  created_at: string;
 };

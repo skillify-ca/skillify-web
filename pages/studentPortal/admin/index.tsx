@@ -3,40 +3,33 @@ import { format } from "date-fns";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import ProfileDetailCard from "../../../components/studentPortal/admin/ProfileDetailCard";
 import { Button } from "../../../components/ui/Button";
 import {
-  FetchTotalBadgesCountResponse,
   FETCH_TOTAL_USER_BADGES_COUNT,
+  FetchTotalBadgesCountResponse,
 } from "../../../graphql/studentPortal/achievements/fetchTotalUserBadgesCount";
 import {
-  FetchUserProfileCardResponse,
   FETCH_USER_PROFILE_CARD,
+  FetchUserProfileCardResponse,
+  Users,
 } from "../../../graphql/studentPortal/admin/fetchUserProfileCard";
 import {
   AllUserGoalsData,
-  FetchAllUserGoalsDataResponse,
   FETCH_ALL_USER_GOALS,
+  FetchAllUserGoalsDataResponse,
 } from "../../../graphql/studentPortal/goals/fetchAllUserGoals";
-import {
-  FetchUserRoleData,
-  FETCH_USER_ROLE,
-} from "../../../graphql/studentPortal/users/fetchUserRole";
+import { FETCH_USER_ROLE } from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
-import {
-  profileSelector,
-  setTotalBadgeCount,
-} from "../../../redux/profileSlice";
-import { setUserList, userSelector } from "../../../redux/userSlice";
+import { setTotalBadgeCount } from "../../../redux/profileSlice";
 
 const coachingDashboard = () => {
   const { user } = useAuth();
   const router = useRouter();
 
   const dispatch = useDispatch();
-  const { userList } = useSelector(userSelector);
-  const { totalBadgeCount } = useSelector(profileSelector);
+  const [userList, setUserList] = useState<Users[]>([]);
   const [goalsList, setGoalsList] = useState<AllUserGoalsData[]>();
   const [completedGoalsList, setCompletedGoalsList] = useState([]);
   const [goalCompletionDateList, setGoalCompletionDateList] = useState([]);
@@ -46,12 +39,12 @@ const coachingDashboard = () => {
     {
       onCompleted: () => {
         if (data?.users?.length > 0) {
-          dispatch(setUserList(data.users));
+          setUserList(data.users);
         }
       },
     }
   );
-  useQuery<FetchUserRoleData>(FETCH_USER_ROLE, {
+  useQuery(FETCH_USER_ROLE, {
     variables: {
       _id: user.uid,
     },
@@ -112,9 +105,18 @@ const coachingDashboard = () => {
   return (
     <div className="flex flex-col p-4 m-4 ">
       <p className="mb-8 text-3xl font-bold">Coaching Dashboard</p>
-      <Link href="/studentPortal/admin/badges">
-        <Button label="New Badge" />
-      </Link>
+      <div className="flex gap-4 mb-4">
+        <Link href="/studentPortal/admin/badges/create">
+          <Button label="New Badge" />
+        </Link>
+        <Link href="/studentPortal/admin/badges/assign">
+          <Button
+            label="Assign Badge"
+            backgroundColor="white"
+            textColor="primary"
+          />
+        </Link>
+      </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {userList
           .map((it) => it)
@@ -162,7 +164,6 @@ const coachingDashboard = () => {
                           )
                         : "‎ N/A‎ "
                     }
-                    totalBadgeCount={totalBadgeCount}
                   />
                 </div>
               </Link>
