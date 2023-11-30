@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "../../../../components/ui/Button";
 
 export default function index() {
@@ -14,11 +13,8 @@ export default function index() {
               height={100}
             ></img>
           </div>
-          <div className="p-10">
-            <h1 className="font-bold">Vercel</h1>
-          </div>
           <div>
-            <p className="p-10">
+            <p className="p-12">
               This is the Link to Vercel to create your account.
             </p>
           </div>
@@ -31,7 +27,7 @@ export default function index() {
       </div>
 
       <div className="flex flex-col">
-        <h1 className="text-3xl pt-4 ">Intro</h1>
+        <h1 className="text-3xl pt-4 font-bold ">Intro</h1>
         <p className="pt-4 w-1/2 ">
           Let's say you've created a protfolio website that display's your
           projects and skills. To be able for everyone wanting to check out your
@@ -39,29 +35,29 @@ export default function index() {
           do by using Vercel.
         </p>
       </div>
-      <h1 className="text-3xl pt-4">Getting Started with Vercel</h1>
-      <p className="pt-4">
+      <h1 className="text-3xl pt-4 font-bold">Getting Started with Vercel</h1>
+      <p className="pt-4 mb-6">
         Step 1: First create a account in Vercel using your Github account so
         that they're linked together.
       </p>
       <img src="/images/lessons/login.png" width={250} height={100} />
-      <p className="pt-4">Step 2: Next press the add new button</p>
+      <p className="pt-4 mb-6">Step 2: Next press the add new button</p>
       <img src="/images/lessons/addnew.png" width={250} height={100} />
-      <p className="pt-4">Step 3: Then click on project</p>
+      <p className="pt-4 mb-6">Step 3: Then click on project</p>
       <img src="/images/lessons/project.png" width={250} height={100} />
-      <h1 className="p-4 font-bold text-2xl">Deploying your website</h1>
-      <p className="pt-4">
+      <h1 className="pt-4 font-bold text-2xl">Deploying your website</h1>
+      <p className="pt-4 mb-6">
         It will take you to a screen like this, here you can select the project
         that you want to import and press import.
       </p>
       <img src="/images/lessons/import.png" width={650} height={450} />
-      <p className="pt-4">Next you will have to deploy your project.</p>
+      <p className="pt-4 mb-6">Next you will have to deploy your project.</p>
       <img src="/images/lessons/deploy.png" width={650} height={450} />
-      <p className="pt-4">
+      <p className="pt-4 mb-6">
         Congratulations now your done deploying your website using Vercel!
       </p>
       <img src="/images/lessons/deployed.png" width={650} height={450} />
-      <p>Now you can use the link to share your project with others!</p>
+      <p className="pt-4 mb-6">Now you can use the link to share your project with others!</p>
       <img
         src="/images/lessons/projectDeployment.png"
         width={650}
