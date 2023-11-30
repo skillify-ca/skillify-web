@@ -1,5 +1,4 @@
-import { useRef } from "react";
-import VirtualHangout from "../../../components/virtualHangout/virtualHangout";
+import React, { useRef } from "react";
 
 const index = () => {
   const canvasRef = useRef(null);
@@ -7,7 +6,10 @@ const index = () => {
   return (
     <div ref={canvasRef} className="relative">
       {" "}
-      <VirtualHangout></VirtualHangout>
+      <iframe
+        src="https://kaboom-js-luckyhariharan.vercel.app/"
+        className="w-full h-[800px]"
+      />
     </div>
   );
 };
