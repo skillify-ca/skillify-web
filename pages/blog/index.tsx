@@ -1,4 +1,4 @@
-import Head from "next/head";
+import { Head } from "next/document";
 import React from "react";
 import BlogCard from "../../components/blog/BlogCard";
 import BlogPost from "../../components/blog/BlogPost";
@@ -131,8 +131,7 @@ export default function Blog() {
         <meta property="og:type" content="website" />
       </Head>
       <LandingNavbar />
-
-      <div className="w-full pt-16 mx-auto bg-slate-50 max-w-7xl sm:pt-0">
+      <div className="w-full mx-auto bg-slate-50 max-w-7xl">
         <div className="p-8 ">
           <h1 className="p-8 text-5xl font-bold text-center text-white bg-murkrow ">
             Blog
