@@ -1,4 +1,4 @@
-import { Head } from "next/document";
+import Head from "next/head";
 import React from "react";
 import BlogCard from "../../components/blog/BlogCard";
 import BlogPost from "../../components/blog/BlogPost";
