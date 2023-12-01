@@ -32,7 +32,7 @@ export default function FAQ() {
     {
       question: "What projects will I build inside the program?",
       answer:
-        "Project 1: An online marketing website\nProject 2: An e-commerce store\nProject 3: A full-stack web application \nProject 4: A multiplayer game\nProject 5: A mobile application\nProject 6: An AI-powered digital product\n\n PS. You also have the opportunity to bring your own ideas and build them out under the leadership of ex-Spotify engineers!",
+        "The journey to becoming employable will require you to be able to build a variety of different digital products. We will help you build the following projects:\n\nProject 1: An online marketing website\nProject 2: An e-commerce store\nProject 3: A full-stack web application \nProject 4: A multiplayer game\nProject 5: A mobile application\nProject 6: An AI-powered digital product\n\n PS. You will also have the opportunity to bring your own ideas and build them out under the leadership of ex-Spotify engineers!",
     },
     {
       question: "How do I enroll/apply?",
@@ -62,7 +62,7 @@ export default function FAQ() {
     {
       question: "Why should I pick your program over another coding bootcamp?",
       answer:
-        "- Our teachers are the best. We've worked at top companies in Silicon Valley, Toronto, and New York: Instagram, Spotify, Duolingo, Shopify, PagerDuty, Roblox, NVIDIA, and more! We connect our top students with hiring managers from these companies.\n- We customize our program based on your personal needs.\n- You are not just a number to us. We match you with expert instructors who care about you and want to see you succeed.\n- You can actually talk to us. Most other schools make it hard to connect with your instructor until you pay them a huge amount of money. Get to know who you'll be learning from before making such a big purchase.",
+        "- Our teachers are the best. We've worked at top companies in Silicon Valley, Toronto, and New York: Instagram, Spotify, Duolingo, Shopify, PagerDuty, Roblox, NVIDIA, and more! We connect our top students with hiring managers from these companies.\n- We will do whatever it takes to help you acheive your career goals.\n- Our program is like working out with a personal trainer. We will push you when needed, but also readjust your goals when needed\n- Other bootcamps will leave you behind if you get sick, or need to take a vacation. We understand life happens and we will work with you to get you back on track.\n- We customize our program based on your personal needs.\n- You are not just a number to us. We match you with expert instructors who care about you and want to see you succeed.\n- You can actually talk to us. Most other schools make it hard to connect with your instructor until you pay them a huge amount of money. Get to know who you'll be learning from before making such a big purchase.",
     },
     {
       question: "How much does the program cost?",
