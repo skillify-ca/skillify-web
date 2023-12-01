@@ -15,6 +15,16 @@ export default function FAQ() {
         "Whether you're at a beginner or advanced level, our program will work for you. It is customized to fit your learning needs so if you already have some experience with coding, you can skip the basics.",
     },
     {
+      question: "Why does Skillify cater to University of Waterloo students?",
+      answer:
+        "A majority of Skillify instructors are UW alumni. We have a deep network of UW grads who are working at top tech companies in Silicon Valley, Toronto, and New York. We can leverage our network to help you get hired because the Waterloo brand carriers a lot of weight even if your degree is not in Computer Science or Software Engineering.",
+    },
+    {
+      question: "What if I didn't attend the University of Waterloo?",
+      answer:
+        "We reserve a select number of seats for students who didn't go to the University of Waterloo. If you're passionate about learning to code, book a call with us and we'll see if you're a good fit.",
+    },
+    {
       question: "How long does the program take to complete?",
       answer:
         "We offer a customized and flexible program for every student, so there is no strict timeframe or deadline like typical coding bootcamps or school. Typically, our students put in anywhere from 10 to 40 hours a week and complete the program within 3-8 months. To provide a rough time frame: if you have never coded before, our program will prepare you for a software developer job in 8 months. If you already have some coding experience and you're a fast learner, you can complete the program in 3-6 months. If you are a slower learner or have other comittments, you can complete the program in 6-10 months. We will work with you to create a customized plan that fits your learning needs and career goals.",
@@ -57,7 +67,7 @@ export default function FAQ() {
     {
       question: "How much does the program cost?",
       answer:
-        "We offer varying programs of different lengths and intensities depending on your learning needs. We customize a plan for each student based on their learning and career goals, which will determine the cost. Book a call with one of our coaches to learn more about costs, payment plans, and scholarships.",
+        'Check out our prices and prices for our competitors at <a class="underline text-brandPrimary" href="/blog/best-toronto-coding-bootcamps-2024">this blog post.</a> Book a call with one of our coaches to learn more about costs, payment plans, and scholarships.',
     },
     {
       question: "Can I use my RESP or OSAP to pay for this?",
@@ -82,7 +92,7 @@ export default function FAQ() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center w-full p-4 sm:p-8 bg-murkrow">
+    <div className="flex flex-col items-center justify-center w-full p-4 sm:p-8 bg-murkrow theme-default">
       <h2 className="p-4 text-3xl font-bold text-charmander">Skillify FAQs</h2>
       <div className="flex flex-col items-start w-full p-8 m-4 max-w-7xl bg-slate-200 rounded-xl">
         {faqItems.map((item) => (
@@ -92,7 +102,10 @@ export default function FAQ() {
           >
             <ExpandableContainer open={false} title={item.question}>
               <div className="px-4 pb-4">
-                <p className="whitespace-pre-wrap">{item.answer}</p>
+                <p
+                  dangerouslySetInnerHTML={{ __html: item.answer }}
+                  className="whitespace-pre-wrap"
+                ></p>
               </div>
             </ExpandableContainer>
           </div>
