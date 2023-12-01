@@ -75,9 +75,9 @@ export default function FAQ() {
         "There are no OSAP or RESP options at the moment, but we are working to change this.",
     },
     {
-      question: "Are there any financing options? Can my company pay for this?",
+      question: "Are there any financing options?",
       answer:
-        "Some students are able to get reimbursed for their Skillify training costs by their employer through a professional development benefit.",
+        "Yes! We partner with select financial institutions that can provide you with flexible financing options to help you break down your payment. Email us or book a call to learn more.",
     },
     {
       question: "Do you provide any scholarships or financial aid?",
