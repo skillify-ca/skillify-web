@@ -15,24 +15,24 @@ export default function FAQ() {
         "Whether you're at a beginner or advanced level, our program will work for you. It is customized to fit your learning needs so if you already have some experience with coding, you can skip the basics.",
     },
     {
-      question: "Why does Skillify cater to University of Waterloo students?",
+      question: "What if I didn't graduate from university or college?",
       answer:
-        "A majority of Skillify instructors are UW alumni. We have a deep network of UW grads who are working at top tech companies in Silicon Valley, Toronto, and New York. We can leverage our network to help you get hired because the Waterloo brand carriers a lot of weight even if your degree is not in Computer Science or Software Engineering.",
-    },
-    {
-      question: "What if I didn't attend the University of Waterloo?",
-      answer:
-        "We reserve a select number of seats for students who didn't go to the University of Waterloo. If you're passionate about learning to code, book a call with us and we'll see if you're a good fit.",
+        "We reserve a select number of seats for students who didn't go to university or college. If you're passionate about learning to code, book a call with us and we'll see if you're a good fit. If we decide that you're not a good fit at this moment, we will send you free resources and training to help you level up your skills until you're ready to work with us.",
     },
     {
       question: "How long does the program take to complete?",
       answer:
-        "We offer a customized and flexible program for every student, so there is no strict timeframe or deadline like typical coding bootcamps or school. Typically, our students put in anywhere from 10 to 40 hours a week and complete the program within 3-8 months. To provide a rough time frame: if you have never coded before, our program will prepare you for a software developer job in 8 months. If you already have some coding experience and you're a fast learner, you can complete the program in 3-6 months. If you are a slower learner or have other comittments, you can complete the program in 6-10 months. We will work with you to create a customized plan that fits your learning needs and career goals.",
+        "We offer a customized and flexible program for every student, so there is no strict timeframe or deadline like typical coding bootcamps or school. Typically, our students put in anywhere from 10 to 40 hours a week and complete the program within 5-10 months. To provide a rough time frame: If you already have some coding experience and you're a fast learner, you can complete the program in 5-7 months. If you have no experience, are a slower learner, or have other comittments, you can complete the program in 8-10 months. We will work with you to create a customized plan that fits your learning needs and career goals.",
     },
     {
       question: "What does the program include?",
       answer:
-        " - 1:1 and small group coaching\n - An internship experience where you build digital products on a team under the leadership of ex-Spotify engineers\n - Full access to Skillify online learning platform\n - Opportunities to build your own ideas! (e.g., an e-commerce store, a mobile app)\n - Job hunting support and career guidance",
+        " - 1:1 and small group coaching\n - An internship experience where you build products on a team under the leadership of senior software engineers\n - Full access to Skillify online learning platform\n - Job hunting support and career guidance",
+    },
+    {
+      question: "What projects will I build inside the program?",
+      answer:
+        "Project 1: An online marketing website\nProject 2: An e-commerce store\nProject 3: A full-stack web application \nProject 4: A multiplayer game\nProject 5: A mobile application\nProject 6: An AI-powered digital product\n\n PS. You also have the opportunity to bring your own ideas and build them out under the leadership of ex-Spotify engineers!",
     },
     {
       question: "How do I enroll/apply?",
