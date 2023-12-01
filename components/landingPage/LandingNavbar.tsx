@@ -19,11 +19,11 @@ export default function LandingNavbar({
   return (
     <div className="w-full">
       <div className="shadow md:hidden">
-        <div
-          onClick={handleMenuIconClick}
-          className="z-20 grid w-full h-16 grid-cols-3 p-4 md:hidden "
-        >
-          <div className="cursor-pointer text-textPrimary">
+        <div className="z-20 grid w-full h-16 grid-cols-3 p-4 md:hidden ">
+          <div
+            className="cursor-pointer text-textPrimary"
+            onClick={handleMenuIconClick}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-8 h-8"
@@ -33,12 +33,14 @@ export default function LandingNavbar({
               <path d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" />
             </svg>
           </div>
-          <div className="">
-            {theme === Theme.DEFAULT ? (
-              <img className="h-8 w-28 " src="/images/logo.svg" />
-            ) : theme === Theme.DRACULA ? (
-              <img className="h-8 w-28" src="/images/logo-dark.svg" />
-            ) : null}
+          <div className="cursor-pointer">
+            <Link href={"/"}>
+              {theme === Theme.DEFAULT ? (
+                <img className="h-8 w-28 " src="/images/logo.svg" />
+              ) : theme === Theme.DRACULA ? (
+                <img className="h-8 w-28" src="/images/logo-dark.svg" />
+              ) : null}
+            </Link>
           </div>
           <div />
         </div>
