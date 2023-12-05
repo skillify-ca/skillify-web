@@ -132,7 +132,7 @@ export default function Blog() {
       </Head>
       <LandingNavbar />
       <div className="w-full mx-auto bg-slate-50 max-w-7xl">
-        <div className="p-8 ">
+        <div className="sm:p-8 ">
           <h1 className="p-8 text-5xl font-bold text-center text-white bg-murkrow ">
             Blog
           </h1>
@@ -140,7 +140,7 @@ export default function Blog() {
         <h2 className="w-full px-4 my-8 text-3xl font-bold text-center">
           Featured Posts
         </h2>
-        <div className="grid items-center w-full grid-cols-1 gap-16 px-16 pb-16 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid items-center w-full grid-cols-1 gap-16 px-8 pb-16 sm:px-16 sm:grid-cols-2 lg:grid-cols-3">
           {featuredPosts.map((blogCard, index) => {
             return (
               <BlogCard
@@ -158,7 +158,7 @@ export default function Blog() {
         <h2 className="w-full px-4 mb-8 text-3xl font-bold text-center">
           All Posts
         </h2>
-        <div className="grid items-center w-full grid-cols-1 gap-8 px-16 pb-16">
+        <div className="grid items-center w-full grid-cols-1 gap-8 px-8 pb-16 sm:px-16">
           {blogCards.map((blogCard, index) => {
             return (
               <BlogPost

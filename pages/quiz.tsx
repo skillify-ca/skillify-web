@@ -36,14 +36,14 @@ export default function Quiz() {
 
       <LandingNavbar />
 
-      <div className="w-full h-screen pt-16 mx-auto bg-slate-50 max-w-7xl sm:pt-0">
-        <div className="p-8 ">
+      <div className="w-full h-screen pt-0 mx-auto bg-slate-50 max-w-7xl">
+        <div className="p-0 mb-8 sm:p-8">
           <h1 className="p-8 text-5xl font-bold text-center text-white bg-murkrow ">
             Quizzes
           </h1>
         </div>
 
-        <div className="grid items-center w-full grid-cols-1 gap-16 px-16 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid items-center w-full grid-cols-1 gap-16 px-8 sm:px-16 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <Card
               date={""}
