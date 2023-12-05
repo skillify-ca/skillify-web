@@ -41,8 +41,7 @@ export async function getServerSideProps({ params }) {
         {
           title: "Skillify",
           image: "/images/logo-2.png",
-          description:
-            "Cost: $12000 for 8 months. $2000 for a 1 month introduction.",
+          description: "Cost: $12000 for 8 months.",
           link: "https://skillify.ca",
         },
         {
