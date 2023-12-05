@@ -12,7 +12,7 @@ export default function Page({ blogComponents }: PageProps) {
   return (
     <div>
       <SEO
-        title={"Best Coding Bootcamps in Toronto 2024"}
+        title={"Best Coding Bootcamp in Toronto 2024"}
         description={"We break down where you can learn to code in Toronto."}
         image={"https://melv1n.com/img/learn-to-code-how-to-start.png"}
       />
@@ -29,7 +29,7 @@ export async function getServerSideProps({ params }) {
   const blogComponents: LessonComponentData[] = [
     {
       component: "title",
-      text: "Best Coding Bootcamps in Toronto 2024",
+      text: "Best Coding Bootcamp in Toronto 2024",
     },
     {
       component: "description",

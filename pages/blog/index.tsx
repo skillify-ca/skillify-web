@@ -32,6 +32,15 @@ export default function Blog() {
       link: "/resources/jobTracker",
       color: 2,
     },
+    {
+      date: "December 5, 2023",
+      title: "Best Coding Bootcamps in Toronto According to Redding",
+      image: "/images/blog/best-coding-bootcamps-toronto-reddit/reddit.png",
+      description:
+        "A list of Reddit threads discussing coding bootcamps in Toronto",
+      link: "/blog/best-coding-bootcamps-toronto-reddit",
+      color: 1,
+    },
   ];
 
   const blogCards = [
