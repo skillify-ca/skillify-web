@@ -17,8 +17,8 @@ export default function Page({ blogComponents }: PageProps) {
         image={"https://melv1n.com/img/learn-to-code-how-to-start.png"}
       />
       <div className="flex flex-col gap-4 p-4">
-        {blogComponents.map((it) => (
-          <LessonComponent data={it} />
+        {blogComponents.map((it, index) => (
+          <LessonComponent data={it} key={index} />
         ))}
       </div>
     </div>
@@ -77,6 +77,14 @@ export async function getServerSideProps({ params }) {
           link: "https://bootcamp.learn.utoronto.ca/faq/",
         },
       ],
+    },
+    {
+      component: "description",
+      text: "Check out our video breakdown below!",
+    },
+    {
+      component: "youtube",
+      url: "https://www.youtube.com/embed/8ilKHd1tfO0?si=gGqB8mjAI9-GekB5",
     },
   ];
   return { props: { blogComponents } };
