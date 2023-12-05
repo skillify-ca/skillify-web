@@ -1,13 +1,13 @@
 import React from "react";
 import { BenefitData } from "./Benefits";
-import TestimonialSect from "./TestimonialSect";
+import Credentials from "./Credentials";
+import FAQ from "./FAQ";
+import Hero, { HighlightableText } from "./Hero";
 import SubscribeBanner from "./SubscribeBanner";
 import TermsAndConditions from "./TermsAndConditions";
-import Credentials from "./Credentials";
-import Hero, { HighlightableText } from "./Hero";
+import TestimonialSect from "./TestimonialSect";
 import WhatYouGet from "./WhatYouGet";
 import WhoItsFor from "./WhoItsFor";
-import FAQ from "./FAQ";
 
 export type LandingPageCopy = {
   headerText: HighlightableText[];

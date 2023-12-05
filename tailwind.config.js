@@ -142,6 +142,10 @@ module.exports = {
       },
       primary: "#4495f0",
       secondary: "#ff8e4f",
+      transitionProperty: {
+        height: "height",
+        spacing: "margin, padding",
+      },
     },
     animation: {
       slideDownAndFade: "slideDownAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)",

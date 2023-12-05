@@ -32,6 +32,15 @@ export default function Blog() {
       link: "/resources/jobTracker",
       color: 2,
     },
+    {
+      date: "December 5, 2023",
+      title: "Best Coding Bootcamps in Toronto According to Redding",
+      image: "/images/blog/best-coding-bootcamps-toronto-reddit/reddit.png",
+      description:
+        "A list of Reddit threads discussing coding bootcamps in Toronto",
+      link: "/blog/best-coding-bootcamps-toronto-reddit",
+      color: 1,
+    },
   ];
 
   const blogCards = [
@@ -131,9 +140,8 @@ export default function Blog() {
         <meta property="og:type" content="website" />
       </Head>
       <LandingNavbar />
-
-      <div className="w-full pt-16 mx-auto bg-slate-50 max-w-7xl sm:pt-0">
-        <div className="p-8 ">
+      <div className="w-full mx-auto bg-slate-50 max-w-7xl">
+        <div className="sm:p-8 ">
           <h1 className="p-8 text-5xl font-bold text-center text-white bg-murkrow ">
             Blog
           </h1>
@@ -141,7 +149,7 @@ export default function Blog() {
         <h2 className="w-full px-4 my-8 text-3xl font-bold text-center">
           Featured Posts
         </h2>
-        <div className="grid items-center w-full grid-cols-1 gap-16 px-16 pb-16 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid items-center w-full grid-cols-1 gap-16 px-8 pb-16 sm:px-16 sm:grid-cols-2 lg:grid-cols-3">
           {featuredPosts.map((blogCard, index) => {
             return (
               <BlogCard
@@ -159,7 +167,7 @@ export default function Blog() {
         <h2 className="w-full px-4 mb-8 text-3xl font-bold text-center">
           All Posts
         </h2>
-        <div className="grid items-center w-full grid-cols-1 gap-8 px-16 pb-16">
+        <div className="grid items-center w-full grid-cols-1 gap-8 px-8 pb-16 sm:px-16">
           {blogCards.map((blogCard, index) => {
             return (
               <BlogPost

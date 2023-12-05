@@ -17,7 +17,7 @@ const BlogPost = ({ date, title, image, description, link, color }) => {
   return (
     <Link href={link}>
       <div
-        className={`flex group p-2 justify-between items-center border-t-0 hover:bg-backgroundHover transition-all transform text-textPrimary bg-backgroundPrimary shadow cursor-pointer overflow-hidden ${getBorderColour()}`}
+        className={`flex flex-col-reverse sm:flex-row group p-2 justify-between items-center border-t-0 hover:bg-backgroundHover transition-all transform text-textPrimary bg-backgroundPrimary shadow cursor-pointer overflow-hidden ${getBorderColour()}`}
       >
         <div className="flex flex-col px-4">
           <h4 className="mb-0 font-bold">{title}</h4>

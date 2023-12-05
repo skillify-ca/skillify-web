@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
+import SEO from "../components/SEO";
 import LandingFooter from "../components/landingPage/LandingFooter";
 import LandingNavbar from "../components/landingPage/LandingNavbar";
 import LandingPage, {
   LandingPageCopy,
 } from "../components/landingPage/LandingPage";
-import SEO from "../components/SEO";
 
 const HomePage = () => {
   const [showNavBar, setShowNavBar] = useState(false);
@@ -73,7 +73,7 @@ const HomePage = () => {
   return (
     <div>
       <SEO
-        title={"Skillify"}
+        title={"Skillify - Toronto's diverse coding bootcamp"}
         description={
           "Toronto's best coding academy for online learning! We teach high demand skills to help you get hired in the tech industry."
         }
