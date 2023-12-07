@@ -84,7 +84,9 @@
     "react-use-measure": "^2.1.1",
     "react-youtube": "^7.13.1",
     "slick-carousel": "^1.8.1",
-    "tailwindcss-hero-patterns": "0.0.1"
+    "tailwindcss-hero-patterns": "0.0.1",
+    "three": "^0.130.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
