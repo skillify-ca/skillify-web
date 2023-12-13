@@ -15,14 +15,24 @@ export default function FAQ() {
         "Whether you're at a beginner or advanced level, our program will work for you. It is customized to fit your learning needs so if you already have some experience with coding, you can skip the basics.",
     },
     {
+      question: "What if I didn't graduate from university or college?",
+      answer:
+        "We reserve a select number of seats for students who didn't go to university or college. If you're passionate about learning to code, book a call with us and we'll see if you're a good fit. If we decide that you're not a good fit at this moment, we will send you free resources and training to help you level up your skills until you're ready to work with us.",
+    },
+    {
       question: "How long does the program take to complete?",
       answer:
-        "We offer a customized and flexible program for every student, so there is no strict timeframe or deadline like typical coding bootcamps or school. Typically, our students put in anywhere from 10 to 40 hours a week and complete the program within 3-8 months. To provide a rough time frame: if you have never coded before, our program will prepare you for a software developer job in 8 months. If you already have some coding experience and you're a fast learner, you can complete the program in 3-6 months. If you are a slower learner or have other comittments, you can complete the program in 6-10 months. We will work with you to create a customized plan that fits your learning needs and career goals.",
+        "We offer a customized and flexible program for every student, so there is no strict timeframe or deadline like typical coding bootcamps or school. Typically, our students put in anywhere from 10 to 40 hours a week and complete the program within 5-10 months. To provide a rough time frame: If you already have some coding experience and you're a fast learner, you can complete the program in 5-7 months. If you have no experience, are a slower learner, or have other comittments, you can complete the program in 8-10 months. We will work with you to create a customized plan that fits your learning needs and career goals.",
     },
     {
       question: "What does the program include?",
       answer:
-        " - 1:1 and small group coaching\n - An internship experience where you build digital products on a team under the leadership of ex-Spotify engineers\n - Full access to Skillify online learning platform\n - Opportunities to build your own ideas! (e.g., an e-commerce store, a mobile app)\n - Job hunting support and career guidance",
+        " - 1:1 and small group coaching\n - An internship experience where you build products on a team under the leadership of senior software engineers\n - Full access to Skillify online learning platform\n - Job hunting support and career guidance",
+    },
+    {
+      question: "What projects will I build inside the program?",
+      answer:
+        "The journey to becoming employable will require you to be able to build a variety of different digital products. We will help you build the following projects:\n\nProject 1: An online marketing website\nProject 2: An e-commerce store\nProject 3: A full-stack web application \nProject 4: A multiplayer game\nProject 5: A mobile application\nProject 6: An AI-powered digital product\n\n PS. You will also have the opportunity to bring your own ideas and build them out under the leadership of ex-Spotify engineers!",
     },
     {
       question: "How do I enroll/apply?",
@@ -52,12 +62,12 @@ export default function FAQ() {
     {
       question: "Why should I pick your program over another coding bootcamp?",
       answer:
-        "- Our teachers are the best. We've worked at top companies in Silicon Valley, Toronto, and New York: Instagram, Spotify, Duolingo, Shopify, PagerDuty, Roblox, NVIDIA, and more! We connect our top students with hiring managers from these companies.\n- We customize our program based on your personal needs.\n- You are not just a number to us. We match you with expert instructors who care about you and want to see you succeed.\n- You can actually talk to us. Most other schools make it hard to connect with your instructor until you pay them a huge amount of money. Get to know who you'll be learning from before making such a big purchase.",
+        "- Our teachers are the best. We've worked at top companies in Silicon Valley, Toronto, and New York: Instagram, Spotify, Duolingo, Shopify, PagerDuty, Roblox, NVIDIA, and more! We connect our top students with hiring managers from these companies.\n- We will do whatever it takes to help you acheive your career goals.\n- Our program is like working out with a personal trainer. We will push you when needed, but also readjust your goals when needed\n- Other bootcamps will leave you behind if you get sick, or need to take a vacation. We understand life happens and we will work with you to get you back on track.\n- We customize our program based on your personal needs.\n- You are not just a number to us. We match you with expert instructors who care about you and want to see you succeed.\n- You can actually talk to us. Most other schools make it hard to connect with your instructor until you pay them a huge amount of money. Get to know who you'll be learning from before making such a big purchase.",
     },
     {
       question: "How much does the program cost?",
       answer:
-        "We offer varying programs of different lengths and intensities depending on your learning needs. We customize a plan for each student based on their learning and career goals, which will determine the cost. Book a call with one of our coaches to learn more about costs, payment plans, and scholarships.",
+        'Check out our prices and prices for our competitors at <a class="underline text-brandPrimary" href="/blog/best-toronto-coding-bootcamps-2024">this blog post.</a> Book a call with one of our coaches to learn more about costs, payment plans, and scholarships.',
     },
     {
       question: "Can I use my RESP or OSAP to pay for this?",
@@ -65,9 +75,9 @@ export default function FAQ() {
         "There are no OSAP or RESP options at the moment, but we are working to change this.",
     },
     {
-      question: "Are there any financing options? Can my company pay for this?",
+      question: "Are there any financing options?",
       answer:
-        "Some students are able to get reimbursed for their Skillify training costs by their employer through a professional development benefit.",
+        "Yes! We partner with select financial institutions that can provide you with flexible financing options to help you break down your payment. Email us or book a call to learn more.",
     },
     {
       question: "Do you provide any scholarships or financial aid?",
@@ -82,7 +92,7 @@ export default function FAQ() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center w-full p-4 sm:p-8 bg-murkrow">
+    <div className="flex flex-col items-center justify-center w-full p-4 sm:p-8 bg-murkrow theme-default">
       <h2 className="p-4 text-3xl font-bold text-charmander">Skillify FAQs</h2>
       <div className="flex flex-col items-start w-full p-8 m-4 max-w-7xl bg-slate-200 rounded-xl">
         {faqItems.map((item) => (
@@ -92,7 +102,10 @@ export default function FAQ() {
           >
             <ExpandableContainer open={false} title={item.question}>
               <div className="px-4 pb-4">
-                <p className="whitespace-pre-wrap">{item.answer}</p>
+                <p
+                  dangerouslySetInnerHTML={{ __html: item.answer }}
+                  className="whitespace-pre-wrap"
+                ></p>
               </div>
             </ExpandableContainer>
           </div>
