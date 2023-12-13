@@ -1,12 +1,12 @@
 import React from "react";
+import MessageComponent from "./MessageComponent";
 
-const ConversationComponent = () => {
+const ConversationScreen = () => {
   return (
-    <div>
-      use this component to provid the screen for the ConversationComponent
-      inside of this compnent crease athe chatcomponent
+    <div className="h-full">
+      <MessageComponent />{" "}
     </div>
   );
 };
 
-export default ConversationComponent;
+export default ConversationScreen;
