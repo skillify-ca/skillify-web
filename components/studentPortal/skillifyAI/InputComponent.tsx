@@ -3,9 +3,12 @@ import { Button } from "../../ui/Button";
 
 const InputComponent = () => {
   return (
-    <div className="absolute md:relative bottom-0 left-40 ">
-      <div className="flex space-x-12 ">
-        <textarea className="w-2/3"></textarea>
+    <div className="relative bottom-0 left-40 ">
+      <div className="flex  ">
+        <textarea
+          className="w-2/3 mr-12 "
+          style={{ resize: "none" }}
+        ></textarea>
         <Button label="submit "> </Button>
       </div>
     </div>
