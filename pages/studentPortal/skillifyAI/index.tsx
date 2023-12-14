@@ -4,11 +4,9 @@ import InputComponent from "../../../components/studentPortal/skillifyAI/InputCo
 
 const SkillifyAI = () => {
   return (
-    <div>
-      <div className="bg-backgroundSecondary scale-115 h-screen mb-12 w-full flex flex-col ">
-        <ConversationScreen />
-        <InputComponent />
-      </div>
+    <div className="bg-backgroundSecondary md:scale-115 h-screen mb-12 w-full flex flex-col ">
+      <ConversationScreen />
+      <InputComponent />
     </div>
   );
 };

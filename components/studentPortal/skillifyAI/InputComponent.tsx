@@ -15,9 +15,9 @@ const InputComponent = () => {
 
   return (
     <div className="relative bottom-0 left-20">
-      <div className="flex lg:mr-44">
+      <div className="flex lg:mr-44 mr-32 md:mt-10 mt-20">
         <textarea
-          className="w-2/3 mr-6"
+          className="md:w-2/3 w-4/5  mr-4"
           style={{ resize: "none" }}
           onChange={handleTextareaChange}
           value={prompt}
