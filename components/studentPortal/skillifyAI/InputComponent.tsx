@@ -39,7 +39,7 @@ const InputComponent: React.FC<InputComponentProps> = ({ onSubmitMessage }) => {
           onChange={handleTextareaChange}
           value={prompt}
         ></textarea>
-        <div className="flex  md:flex-col md:space-x-0 justify-content-between space-x-20 md:space-y-12  md:ml-0  ">
+        <div className="flex md:flex-col md:space-x-0 justify-between md:space-y-4 md:ml-0">
           <Button
             label="Clear"
             backgroundColor="blue"
