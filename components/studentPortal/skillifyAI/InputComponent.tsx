@@ -15,18 +15,18 @@ const InputComponent = () => {
 
   return (
     <div className="relative bottom-0 md:left-20">
-      <div className="flex lg:mr-44 mr-4 md:mt-10 mt-20">
+      <div className="flex flex-col md:flex-row lg:mr-44 mr-4 md:mt-10 mt-20">
         <textarea
-          className="md:w-2/3 w-4/5 md:h-32  mr-4 rounded-xl"
+          className="md:w-2/3 ml-4 h-28 mb-4  md:h-32 md:mr-4 rounded-xl"
           style={{ resize: "none" }}
           onChange={handleTextareaChange}
           value={prompt}
         ></textarea>
-        <div className="flex flex-col space-y-4 mt-2">
-          <Button label="Submit" onClick={handleSubmit}>
+        <div className="flex md:flex-col my-4 md:space-y-4 justify-around mt-2">
+          <Button label="Clear" backgroundColor="blue" onClick={handleSubmit}>
             {" "}
           </Button>
-          <Button label="Clear" backgroundColor="blue" onClick={handleSubmit}>
+          <Button size="medium" label="Submit" onClick={handleSubmit}>
             {" "}
           </Button>
         </div>
