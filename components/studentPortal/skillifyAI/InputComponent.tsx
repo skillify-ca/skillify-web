@@ -17,7 +17,7 @@ const InputComponent = () => {
     <div className="relative bottom-0 md:left-20">
       <div className="flex flex-col md:flex-row lg:mr-44 mr-4 md:mt-10 mt-20">
         <textarea
-          className="md:w-2/3 ml-4 h-28 mb-4  md:h-32 md:mr-4 rounded-xl"
+          className="md:w-2/3 p-4 ml-4 h-28 mb-4  md:h-32 md:mr-4 rounded-xl"
           style={{ resize: "none" }}
           onChange={handleTextareaChange}
           value={prompt}
@@ -26,7 +26,7 @@ const InputComponent = () => {
           <Button label="Clear" backgroundColor="blue" onClick={handleSubmit}>
             {" "}
           </Button>
-          <Button size="medium" label="Submit" onClick={handleSubmit}>
+          <Button label="Submit" onClick={handleSubmit}>
             {" "}
           </Button>
         </div>
