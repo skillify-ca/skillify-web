@@ -1,4 +1,3 @@
-// InputComponent.tsx
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "../../ui/Button";
 
@@ -8,17 +7,21 @@ interface InputComponentProps {
 
 const InputComponent: React.FC<InputComponentProps> = ({ onSubmitMessage }) => {
   const [prompt, setPrompt] = useState("");
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleTextareaChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
+    const newPrompt = event.target.value.trim();
     setPrompt(event.target.value);
+    setIsSubmitDisabled(!newPrompt);
   };
 
   const handleSubmit = () => {
     onSubmitMessage(prompt);
     setPrompt("");
+    setIsSubmitDisabled(true);
   };
 
   useEffect(() => {
@@ -28,22 +31,28 @@ const InputComponent: React.FC<InputComponentProps> = ({ onSubmitMessage }) => {
   });
 
   return (
-    <div className="fixed bottom-0 left-0 w-screen">
-      <div className="flex flex-col md:flex-row mr-4  space-x-4 mt-20">
+    <div className="fixed -bottom-20 left-0 w-full md:w-screen mb-4">
+      <div className="flex flex-col md:flex-row mx-2 md:mx-4 space-y-4 md:space-y-0">
         <textarea
           ref={textareaRef}
-          className=" p-4 md:ml-4   h-40 mb-4 md:w-2/3 w-full rounded-xl"
-          style={{ resize: "none" }}
+          className="p-4 w-full md:w-2/3 h-40 rounded-xl resize-none"
           onChange={handleTextareaChange}
           value={prompt}
         ></textarea>
-        <div className="flex md:flex-col my-4 md:space-y-4 justify-around mt-2">
+        <div className="flex justify-conten-center items-center space-x-20 md:space-x-4 ml-4 ">
           <Button
             label="Clear"
             backgroundColor="blue"
-            onClick={() => setPrompt("")}
+            onClick={() => {
+              setPrompt("");
+              setIsSubmitDisabled(true);
+            }}
           />
-          <Button label="Submit" onClick={handleSubmit} />
+          <Button
+            label="Submit"
+            onClick={handleSubmit}
+            disabled={isSubmitDisabled}
+          />
         </div>
       </div>
     </div>
