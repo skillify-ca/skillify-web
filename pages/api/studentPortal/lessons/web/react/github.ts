@@ -31,6 +31,13 @@ export const getGithubLessonData = () => {
           image: "https://assets.vercel.com/image/upload/front/zeit/og.png",
           link: "https://vercel.com/login",
         },
+        {
+          title: "Vercel Lesson",
+          description:
+            "This is the link to the Vercel Lesson", 
+            image:"/images/logo.png",
+            link: "skillify.ca/studentPortal/lessons/github",   
+        },
       ],
     },
     {
