@@ -1,4 +1,3 @@
-// InputComponent.tsx
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "../../ui/Button";
 
@@ -29,7 +28,7 @@ const InputComponent: React.FC<InputComponentProps> = ({ onSubmitMessage }) => {
   });
 
   return (
-    <div className=" relative bottom-0 right-0">
+    <div className="fixed-bottom fixed-right">
       <div className="flex flex-col md:flex-row lg:mr-44 mr-4 md:mt-10 mt-20">
         <textarea
           ref={textareaRef}

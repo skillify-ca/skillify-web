@@ -1,4 +1,3 @@
-// ConversationScreen.tsx
 import React, { useEffect, useRef, useState } from "react";
 import { useAuth } from "../../../lib/authContext";
 import { fetchProfilePicture } from "../../../pages/api/studentPortal/profile/profilePicturesClient";
@@ -46,7 +45,7 @@ const ConversationScreen: React.FC<ConversationScreenProps> = ({
           key={index}
           name={message.name}
           message={message.message}
-          image={userProfileImage}
+          image={userProfileImage || "/default-avatar.png"}
         />
       ))}
     </div>
