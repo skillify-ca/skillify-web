@@ -1,3 +1,4 @@
+// SkillifyAI.tsx
 import React, { useEffect, useState } from "react";
 import ConversationScreen from "../../../components/studentPortal/skillifyAI/ConversationComponent";
 import InputComponent from "../../../components/studentPortal/skillifyAI/InputComponent";
@@ -8,19 +9,9 @@ const SkillifyAI = () => {
   const { user } = useAuth();
   const [messages, setMessages] = useState([
     {
-      name: "John Doe",
-      message: "Hello, this is the first message!",
-      image: "/images/john_avatar.png",
-    },
-    {
-      name: "Jane Smith",
-      message: "Hi there! This is another message.",
-      image: "/images/jane_avatar.png",
-    },
-    {
-      name: "Bob Johnson",
-      message: "Hey! Nice to meet you.",
-      image: "/images/bob_avatar.png",
+      name: "Skillify",
+      message: "Hello, this is the first message! Welcome to Skillify AI Chat!",
+      image: "/images/logo.png",
     },
   ]);
   const [userProfileImage, setUserProfileImage] = useState<string | null>(null);
@@ -29,7 +20,7 @@ const SkillifyAI = () => {
     const fetchUserImage = async () => {
       if (user) {
         const imageUrl = await fetchProfilePicture(user.uid);
-        setUserProfileImage(imageUrl !== null ? imageUrl : user.photoURL || "");
+        setUserProfileImage(imageUrl || user.photoURL || "/default-avatar.png");
       }
     };
 

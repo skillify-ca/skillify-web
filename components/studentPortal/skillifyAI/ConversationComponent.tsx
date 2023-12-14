@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useAuth } from "../../../lib/authContext";
-import { fetchProfilePicture } from "../../../pages/api/studentPortal/profile/profilePicturesClient";
+// ConversationScreen.tsx
+import React, { useEffect, useRef } from "react";
 import MessageComponent from "./MessageComponent";
 
 interface Message {
@@ -11,27 +10,15 @@ interface Message {
 
 interface ConversationScreenProps {
   messages: Message[];
+  userProfileImage: string | null;
 }
 
 const ConversationScreen: React.FC<ConversationScreenProps> = ({
   messages,
+  userProfileImage,
 }) => {
-  const { user } = useAuth();
-  const [userProfileImage, setUserProfileImage] = useState<string | null>(null);
   const conversationRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const fetchUserImage = async () => {
-      if (user) {
-        const imageUrl = await fetchProfilePicture(user.uid);
-        setUserProfileImage(imageUrl !== null ? imageUrl : user.photoURL || "");
-      }
-    };
-
-    fetchUserImage();
-  }, [user]);
-
-  // Scroll to the bottom of the conversationRef when messages change
   useEffect(() => {
     if (conversationRef.current) {
       conversationRef.current.scrollTop = conversationRef.current.scrollHeight;
