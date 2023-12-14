@@ -30,8 +30,10 @@ const SkillifyAI = () => {
   };
 
   return (
-    <div className="bg-backgroundSecondary md:scale-115 h-screen w-screen mb-12  flex flex-col mx-auto ">
-      <ConversationScreen messages={messages} />
+    <div className="bg-backgroundSecondary  h-screen w-screen mb-12  flex flex-col mx-auto ">
+      <div className="overflow-auto">
+        <ConversationScreen messages={messages} />
+      </div>
       <InputComponent onSubmitMessage={handleInputSubmit} />
     </div>
   );

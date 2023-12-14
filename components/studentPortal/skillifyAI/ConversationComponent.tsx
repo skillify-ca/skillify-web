@@ -1,5 +1,5 @@
 // ConversationScreen.tsx
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAuth } from "../../../lib/authContext";
 import { fetchProfilePicture } from "../../../pages/api/studentPortal/profile/profilePicturesClient";
 import MessageComponent from "./MessageComponent";
@@ -19,6 +19,7 @@ const ConversationScreen: React.FC<ConversationScreenProps> = ({
 }) => {
   const { user } = useAuth();
   const [userProfileImage, setUserProfileImage] = useState<string | null>(null);
+  const conversationRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchUserImage = async () => {
@@ -31,8 +32,15 @@ const ConversationScreen: React.FC<ConversationScreenProps> = ({
     fetchUserImage();
   }, [user]);
 
+  // Scroll to the bottom of the conversationRef when messages change
+  useEffect(() => {
+    if (conversationRef.current) {
+      conversationRef.current.scrollTop = conversationRef.current.scrollHeight;
+    }
+  }, [messages]);
+
   return (
-    <div className="h-4/5  lg:w-4/5 ">
+    <div ref={conversationRef} className="h-4/5 overflow-auto lg:w-4/5">
       {messages.map((message, index) => (
         <MessageComponent
           key={index}
