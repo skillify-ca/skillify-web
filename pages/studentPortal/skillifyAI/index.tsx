@@ -7,13 +7,7 @@ import { fetchProfilePicture } from "../../../pages/api/studentPortal/profile/pr
 
 const SkillifyAI = () => {
   const { user } = useAuth();
-  const [messages, setMessages] = useState([
-    {
-      name: "Skillify",
-      message: "Hello, this is the first message! Welcome to Skillify AI Chat!",
-      image: "/images/logo.png",
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [userProfileImage, setUserProfileImage] = useState<string | null>(null);
 
   useEffect(() => {
