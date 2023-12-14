@@ -3,7 +3,7 @@ import MessageComponent from "./MessageComponent";
 
 const ConversationScreen = () => {
   return (
-    <div className="h-4/5">
+    <div className="h-4/5 lg:w-4/5">
       <MessageComponent />{" "}
     </div>
   );

@@ -5,7 +5,7 @@ import InputComponent from "../../../components/studentPortal/skillifyAI/InputCo
 const SkillifyAI = () => {
   return (
     <div>
-      <div className="bg-backgroundSecondary h-screen w-full flex flex-col ">
+      <div className="bg-backgroundSecondary scale-115 h-screen mb-12 w-full flex flex-col ">
         <ConversationScreen />
         <InputComponent />
       </div>
