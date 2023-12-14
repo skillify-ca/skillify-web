@@ -1,7 +1,12 @@
+// InputComponent.tsx
 import React, { useState } from "react";
 import { Button } from "../../ui/Button";
 
-const InputComponent = () => {
+interface InputComponentProps {
+  onSubmitMessage: (formattedMessage: string) => void;
+}
+
+const InputComponent: React.FC<InputComponentProps> = ({ onSubmitMessage }) => {
   const [prompt, setPrompt] = useState("");
 
   const handleTextareaChange = (event) => {
@@ -9,8 +14,10 @@ const InputComponent = () => {
   };
 
   const handleSubmit = () => {
-    // Do something with the prompt, e.g., send it to an API or process it in some way
-    console.log("Prompt:", prompt);
+    // Call the onSubmitMessage prop with the formatted message
+    onSubmitMessage(prompt);
+    // Optionally, clear the prompt or perform other actions
+    setPrompt("");
   };
 
   return (
