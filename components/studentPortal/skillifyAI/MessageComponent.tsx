@@ -13,7 +13,7 @@ const MessageComponent: React.FC<MessageComponentProps> = ({
   image,
 }) => {
   return (
-    <div className="px-8 text-lg border-2 rounded bg-backgroundSecondary">
+    <div className="px-8 md:text-lg text-md border-2 rounded bg-backgroundSecondary">
       <div>
         <div className="px-2 mt-12 flex items-center space-x-8 border-2 rounded-full hover:bg-charmander">
           <img

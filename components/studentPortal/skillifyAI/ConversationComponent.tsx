@@ -26,7 +26,7 @@ const ConversationScreen: React.FC<ConversationScreenProps> = ({
   }, [messages]);
 
   return (
-    <div ref={conversationRef} className="h-4/5 overflow-auto lg:w-4/5">
+    <div ref={conversationRef} className="h-4/5 overflow-auto lg:w-4/5 my-2">
       {messages.map((message, index) => (
         <MessageComponent
           key={index}

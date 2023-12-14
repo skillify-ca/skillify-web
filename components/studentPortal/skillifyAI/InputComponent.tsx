@@ -32,14 +32,14 @@ const InputComponent: React.FC<InputComponentProps> = ({ onSubmitMessage }) => {
 
   return (
     <div className="fixed -bottom-20 left-0 w-full md:w-screen mb-4">
-      <div className="flex flex-col md:flex-row mx-2 md:mx-4 space-y-4 md:space-y-0">
+      <div className="flex flex-col md:flex-row md:justify-start md:space-x-4 mx-2 md:mx-4 space-y-4 md:space-y-0">
         <textarea
           ref={textareaRef}
-          className="p-4 w-full md:w-2/3 h-40 rounded-xl resize-none"
+          className="p-4 w-full md:w-2/3 h-36 rounded-xl resize-none"
           onChange={handleTextareaChange}
           value={prompt}
         ></textarea>
-        <div className="flex justify-conten-center items-center space-x-20 md:space-x-4 ml-4 ">
+        <div className="flex  md:flex-col md:space-x-0 justify-content-between space-x-20 md:space-y-12  md:ml-0  ">
           <Button
             label="Clear"
             backgroundColor="blue"

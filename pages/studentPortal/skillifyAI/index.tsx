@@ -29,7 +29,7 @@ const SkillifyAI = () => {
   };
 
   return (
-    <div className="bg-backgroundSecondary h-screen w-screen mb-12 flex flex-col mx-auto">
+    <div className="bg-backgroundSecondary h-screen w-screen max-w-94 mb-12 flex flex-col mx-auto">
       <div className="overflow-auto">
         <ConversationScreen
           messages={messages}
