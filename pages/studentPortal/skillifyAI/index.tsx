@@ -7,9 +7,25 @@ import { fetchProfilePicture } from "../../../pages/api/studentPortal/profile/pr
 
 const SkillifyAI = () => {
   const { user } = useAuth();
+  // state variables for openAI prompt and result
+  const [prompt, setPrompt] = useState("");
+  const [result, setResult] = useState("");
   const [messages, setMessages] = useState([]);
   const [userProfileImage, setUserProfileImage] = useState<string | null>(null);
 
+  // handleSubmit for openAI response
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const response = await fetch("/api/openai", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt }),
+    });
+
+    const data = await response.json();
+    setResult(data.text);
+  };
   useEffect(() => {
     const fetchUserImage = async () => {
       if (user) {
