@@ -9,20 +9,23 @@ export default function Quote() {
         {/* Add meta tags for SEO if needed */}
       </Head>
       <LandingNavbar />
-      <div className="w-full mx-auto bg-charmander h-full max-w-7xl">
-        <div className="sm:p-8 ">
+      <div className="w-full mx-auto bg-charmander text-white text-center h-screen max-w-7xl">
+        <div className="sm:p-8 flex flex-col space-y-4 ">
           <img
             src="/images/quoteCalculator/person-studying-online.png"
-            className="h-1/4 w-1/2"
+            className="py-4"
           ></img>
-          <p> We're thrilled you want to learn with Skillify</p>
+          <h1 className="text-2xl font-bold">
+            {" "}
+            We're thrilled you want to learn with Skillify
+          </h1>
           <p> Complete our brief questionnaire to receive a quote.</p>
           <button>Start</button>
-          <p>
-            Due to the personalized nature of our program, please note that the
-            prices generated are an estimate.
-          </p>
-        </div>
+        </div>{" "}
+        <p className="justify-end text-xs">
+          Due to the personalized nature of our program, please note that the
+          prices generated are an estimate.
+        </p>
       </div>
     </div>
   );
