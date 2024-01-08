@@ -1,1 +1,1 @@
-const quizData = ["Selections"];
+const quizData = ["Selection1"];
