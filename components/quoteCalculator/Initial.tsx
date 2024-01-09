@@ -3,7 +3,11 @@ import React from "react";
 import LandingNavbar from "../../components/landingPage/LandingNavbar";
 import Button from "../../components/quoteCalculator/Button";
 
-export default function Quote() {
+type InitialProps = {
+  onNextClick: () => void;
+};
+
+const Initial: React.FC<InitialProps> = ({ onNextClick }) => {
   return (
     <div className="bg-charmander h-full">
       <Head>
@@ -25,7 +29,7 @@ export default function Quote() {
           Complete our brief questionnaire to receive a quote.
         </p>
         <div className="">
-          <Button>Start</Button>
+          <Button label="Start"></Button>
         </div>
       </div>
       <p className="bottom-0 text-white text-center">
@@ -34,8 +38,6 @@ export default function Quote() {
       </p>
     </div>
   );
-}
-
-Quote.getLayout = function getLayout(page) {
-  return <div className=" theme-default">{page}</div>;
 };
+
+export default Initial;
