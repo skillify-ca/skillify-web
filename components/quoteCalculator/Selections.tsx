@@ -58,7 +58,7 @@ const Selections: React.FC<SelectionsProps> = ({
   };
 
   return (
-    <div className="flex flex-col mx-auto bg-slate-50 h-screen my-auto p-8 md:space-y-12 space-y-8 items-center">
+    <div className="flex flex-col mx-auto bg-slate-50 h-screen my-auto  md:space-y-12 space-y-8 items-center">
       <LandingNavbar />
       <div className="md:w-2/3 w-full items-center mx-40 flex flex-col space-y-4 md:space-y-6">
         <Progress progress={currentQuestion?.progress} />
