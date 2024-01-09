@@ -13,10 +13,9 @@ const Contact: React.FC<ContactProps> = ({ handleClick }) => {
   const [email, setEmail] = useState("");
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
-
   const validateEmail = (email: string) => {
     // Check if the email ends with @----.com or @----.ca
-    const validEmailRegex = /^[^\s@]+@[^\s@]+\.(com|ca)$/;
+    const validEmailRegex = /^[^\s@]+@[^\s@]+\.(com|ca)$/i;
 
     return validEmailRegex.test(email);
   };

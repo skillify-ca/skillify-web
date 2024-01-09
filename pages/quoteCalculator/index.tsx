@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { default as Contact } from "../../components/quoteCalculator/Contact";
+import Contact from "../../components/quoteCalculator/Contact";
 import Initial from "../../components/quoteCalculator/Initial";
 import QuoteScreen from "../../components/quoteCalculator/QuoteScreen";
 import Selections from "../../components/quoteCalculator/Selections";
@@ -14,6 +14,8 @@ enum Stages {
 export default function Quote() {
   const [stage, setStage] = useState<Stages>(Stages.Initial);
   const [questionId, setQuestionId] = useState<number>(1);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleNextClick = () => {
     const nextQuestionId = questionId + 1;
@@ -34,6 +36,7 @@ export default function Quote() {
       setStage(Stages.Selections);
     }
   };
+
   switch (stage) {
     case Stages.Initial:
       return (
@@ -44,7 +47,13 @@ export default function Quote() {
     case Stages.Contact:
       return (
         <div>
-          <Contact handleClick={() => setStage(Stages.Selections)} />
+          <Contact
+            handleClick={() => setStage(Stages.Selections)}
+            nameProp={name}
+            emailProp={email}
+            setName={setName}
+            setEmail={setEmail}
+          />
         </div>
       );
     case Stages.Selections:
@@ -54,6 +63,8 @@ export default function Quote() {
             questionId={questionId}
             handleNextClick={handleNextClick}
             handleBackClick={handleBackClick}
+            name={name}
+            email={email}
           />
         </div>
       );
