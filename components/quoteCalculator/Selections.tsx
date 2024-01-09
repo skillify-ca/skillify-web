@@ -14,8 +14,6 @@ const Selections: React.FC<SelectionsProps> = ({
   handleNextClick,
   handleBackClick,
 }) => {
-  const [progress] = useState(75);
-
   const questions = [
     {
       id: 1,
@@ -26,7 +24,7 @@ const Selections: React.FC<SelectionsProps> = ({
         "Fully transition into a tech career",
         "Other (Please specify)",
       ],
-      progress: 25,
+      progress: 45,
     },
     {
       id: 2,
@@ -37,13 +35,13 @@ const Selections: React.FC<SelectionsProps> = ({
         "Completed moderately complex self-guided projects",
         "Other (Please Specify)",
       ],
-      progress: 55,
+      progress: 80,
     },
     {
       id: 3,
       question: "How long would you like to learn with Skillify?",
       options: ["~1 month", "3-6 months", "6+ months"],
-      progress: 75,
+      progress: 100,
     },
   ];
   const currentQuestion = questions.find((q) => q.id === questionId);
@@ -63,10 +61,12 @@ const Selections: React.FC<SelectionsProps> = ({
     <div className="flex flex-col mx-auto bg-slate-50 h-screen my-auto p-8 md:space-y-12 space-y-8 items-center">
       <LandingNavbar />
       <div className="md:w-2/3 w-full items-center mx-40 flex flex-col space-y-4 md:space-y-6">
-        <Progress progress={progress} />
-        <div className="text-sm">{questionId}/4</div>
+        <Progress progress={currentQuestion?.progress} />
+        <div className="text-sm">{questionId + 1}/4</div>
       </div>
-      <div className="mt-8 text-xl font-bold">{currentQuestion?.question}</div>
+      <div className="mt-8 text-lg text-center font-bold">
+        {currentQuestion?.question}
+      </div>
       <div className="flex flex-col space-y-6 items-center mt-4">
         {currentQuestion?.options?.map((option, index) => (
           <div

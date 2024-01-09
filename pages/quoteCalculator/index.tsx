@@ -27,14 +27,13 @@ export default function Quote() {
   };
 
   const handleBackClick = () => {
-    setQuestionId((prevQuestionId) => Math.max(1, prevQuestionId - 1));
-    setStage(Stages.Selections);
+    if (questionId === 1) {
+      setStage(Stages.Contact);
+    } else {
+      setQuestionId((prevQuestionId) => Math.max(1, prevQuestionId - 1));
+      setStage(Stages.Selections);
+    }
   };
-
-  const handleBackToSelectionsClick = () => {
-    setStage(Stages.Selections);
-  };
-
   switch (stage) {
     case Stages.Initial:
       return (

@@ -16,7 +16,7 @@ const Contact: React.FC<ContactProps> = ({ handleClick }) => {
         <Progress progress={progress} />
         <div className="text-sm">1/4</div>
       </div>{" "}
-      <div className=" text-xl font-bold">
+      <div className="text-center text-xl font-bold">
         Please enter your name and email:
       </div>
       <div className="space-y-12">
