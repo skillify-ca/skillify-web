@@ -24,20 +24,20 @@ const Contact: React.FC<ContactProps> = ({ handleClick }) => {
   };
 
   return (
-    <div className="flex flex-col bg-slate-50 h-screen my-auto p-8 md:space-y-12 space-y-8 items-center">
+    <div className="flex flex-col mx-auto bg-slate-50 h-screen my-auto p-8 md:space-y-12 space-y-8 items-center">
       <LandingNavbar />
-      <div className="w-full items-center flex flex-col space-y-2 md:space-y-6">
+      <div className="md:w-2/3 w-full items-center mx-40 flex flex-col space-y-4 md:space-y-6">
         <Progress progress={progress} />
         <div className="text-sm">2/4</div>
       </div>
       <div className="mt-8 text-xl font-bold">
         What are your learning goals?
       </div>
-      <div className="flex flex-col items-center mt-4">
+      <div className="flex flex-col space-y-8 items-center mt-4">
         {options.map((option, index) => (
           <div
             key={index}
-            className={`w-80 px-4 py-2 mt-2 border rounded-full cursor-pointer ${
+            className={`w-full px-4 py-2 text-sm mt-2 border rounded-full cursor-pointer ${
               selectedOption === option
                 ? "bg-charmander text-white"
                 : "bg-white text-black-600 border-black-300"
