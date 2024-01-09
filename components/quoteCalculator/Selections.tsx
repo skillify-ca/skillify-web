@@ -1,4 +1,3 @@
-// Selections.tsx
 import React, { useState } from "react";
 import LandingNavbar from "../landingPage/LandingNavbar";
 import Progress from "../resources/quizzes/shared/Progress";
@@ -6,10 +5,15 @@ import { Button } from "../ui/Button";
 
 type SelectionsProps = {
   questionId: number;
-  handleClick: () => void;
+  handleNextClick: () => void;
+  handleBackClick: () => void;
 };
 
-const Selections: React.FC<SelectionsProps> = ({ questionId, handleClick }) => {
+const Selections: React.FC<SelectionsProps> = ({
+  questionId,
+  handleNextClick,
+  handleBackClick,
+}) => {
   const [progress] = useState(75);
 
   const questions = [
@@ -22,6 +26,7 @@ const Selections: React.FC<SelectionsProps> = ({ questionId, handleClick }) => {
         "Fully transition into a tech career",
         "Other (Please specify)",
       ],
+      progress: 25,
     },
     {
       id: 2,
@@ -32,14 +37,15 @@ const Selections: React.FC<SelectionsProps> = ({ questionId, handleClick }) => {
         "Completed moderately complex self-guided projects",
         "Other (Please Specify)",
       ],
+      progress: 55,
     },
     {
       id: 3,
       question: "How long would you like to learn with Skillify?",
       options: ["~1 month", "3-6 months", "6+ months"],
+      progress: 75,
     },
   ];
-
   const currentQuestion = questions.find((q) => q.id === questionId);
 
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
@@ -81,10 +87,15 @@ const Selections: React.FC<SelectionsProps> = ({ questionId, handleClick }) => {
           </div>
         ))}
       </div>
-      <button onClick={handleClick} className="space-x-12 mt-8">
-        <Button label="Next" />
-        <Button label="Back" backgroundColor="white" textColor="text-black" />
-      </button>
+      <div className="space-x-12 mt-8">
+        <Button
+          label="Back"
+          onClick={handleBackClick}
+          backgroundColor="white"
+          textColor="text-black"
+        />
+        <Button label="Next" onClick={handleNextClick} />
+      </div>
     </div>
   );
 };
