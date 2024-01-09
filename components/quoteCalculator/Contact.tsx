@@ -9,10 +9,9 @@ const Contact: React.FC<ContactProps> = ({ handleClick }) => {
   const [progress] = useState(25);
 
   return (
-    <div className="flex flex-col mx-auto bg-slate-50 h-screen my-auto  md:space-y-12 space-y-8 items-center">
+    <div className="flex flex-col mx-auto bg-slate-50 h-screen my-auto space-y-8 items-center">
       <LandingNavbar />
-      <div className="md:w-2/3 w-full items-center mx-40 flex flex-col space-y-4 md:space-y-6">
-        {" "}
+      <div className=" w-full items-center mx-40 flex flex-col space-y-4 md:w-4/5 md:space-y-12 ">
         <Progress progress={progress} />
         <div className="text-sm">1/4</div>
       </div>{" "}

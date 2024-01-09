@@ -58,16 +58,16 @@ const Selections: React.FC<SelectionsProps> = ({
   };
 
   return (
-    <div className="flex flex-col mx-auto bg-slate-50 h-screen my-auto  md:space-y-12 space-y-8 items-center">
+    <div className="flex flex-col mx-auto bg-slate-50 h-screen my-auto space-y-8 items-center">
       <LandingNavbar />
-      <div className="md:w-2/3 w-full items-center mx-40 flex flex-col space-y-4 md:space-y-6">
+      <div className=" w-full items-center mx-40 flex flex-col space-y-4 md:w-4/5 md:space-y-12 ">
         <Progress progress={currentQuestion?.progress} />
         <div className="text-sm">{questionId + 1}/4</div>
       </div>
       <div className="mt-8 text-lg text-center font-bold">
         {currentQuestion?.question}
       </div>
-      <div className="flex flex-col space-y-6 items-center mt-4">
+      <div className="flex flex-col space-y-6 items-center mt-4 w-full max-w-lg mx-auto">
         {currentQuestion?.options?.map((option, index) => (
           <div
             key={index}
@@ -83,7 +83,7 @@ const Selections: React.FC<SelectionsProps> = ({
             ) : (
               <div className="text-black-600 text-2xl w-12">□</div>
             )}
-            <div>{option}</div>
+            <div className="flex-grow">{option}</div>
           </div>
         ))}
       </div>

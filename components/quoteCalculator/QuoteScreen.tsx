@@ -5,7 +5,7 @@ import { Button } from "../ui/Button";
 
 const QuoteScreen = () => {
   return (
-    <div className="bg-slate-50 md:space-y-28 space-y-20 h-screen p-8 flex flex-col items-center">
+    <div className="bg-slate-50 md:space-y-28 space-y-20 h-screen flex flex-col items-center">
       <LandingNavbar />
       <div className="text-2xl font-bold text-black mt-8 mb-4">
         Estimated Cost: $5000
