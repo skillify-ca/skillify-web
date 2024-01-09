@@ -16,12 +16,22 @@ export default function Quote() {
   const [questionId, setQuestionId] = useState<number>(1);
 
   const handleNextClick = () => {
-    setQuestionId((prevQuestionId) => prevQuestionId + 1);
-    setStage(Stages.Selections);
+    const nextQuestionId = questionId + 1;
+
+    if (nextQuestionId <= 3) {
+      setQuestionId(nextQuestionId);
+      setStage(Stages.Selections);
+    } else {
+      setStage(Stages.QuoteScreen);
+    }
   };
 
   const handleBackClick = () => {
-    setQuestionId((prevQuestionId) => prevQuestionId - 1);
+    setQuestionId((prevQuestionId) => Math.max(1, prevQuestionId - 1));
+    setStage(Stages.Selections);
+  };
+
+  const handleBackToSelectionsClick = () => {
     setStage(Stages.Selections);
   };
 
