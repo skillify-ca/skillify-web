@@ -60,7 +60,7 @@ const Selections: React.FC<SelectionsProps> = ({
   return (
     <div className="flex flex-col mx-auto bg-slate-50 h-screen my-auto space-y-8 items-center">
       <LandingNavbar />
-      <div className=" w-full items-center mx-40 flex flex-col space-y-4 md:w-4/5 md:space-y-12 ">
+      <div className=" items-center mx-40 flex flex-col space-y-4 md:w-4/5 md:space-y-12 w-2/3">
         <Progress progress={currentQuestion?.progress} />
         <div className="text-sm">{questionId + 1}/4</div>
       </div>
