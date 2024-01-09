@@ -1,21 +1,46 @@
+// Selections.tsx
 import React, { useState } from "react";
 import LandingNavbar from "../landingPage/LandingNavbar";
 import Progress from "../resources/quizzes/shared/Progress";
 import { Button } from "../ui/Button";
 
-type ContactProps = {
+type SelectionsProps = {
+  questionId: number;
   handleClick: () => void;
 };
 
-const Contact: React.FC<ContactProps> = ({ handleClick }) => {
-  const [progress] = useState(55);
+const Selections: React.FC<SelectionsProps> = ({ questionId, handleClick }) => {
+  const [progress] = useState(75);
 
-  const options = [
-    "Learn foundational programming concepts and build simple projects",
-    "Further my skills in programming and build more complex projects",
-    "Fully transition into a tech career",
-    "Other (Please specify)",
+  const questions = [
+    {
+      id: 1,
+      question: "What are your learning goals?",
+      options: [
+        "Learn foundational programming concepts and build simple projects",
+        "Further my skills in programming and build more complex projects",
+        "Fully transition into a tech career",
+        "Other (Please specify)",
+      ],
+    },
+    {
+      id: 2,
+      question: "What is your programming ability?",
+      options: [
+        "No experience or have very briefly been exposed to programming",
+        "Introduced to programming fundamentals and written simple programs",
+        "Completed moderately complex self-guided projects",
+        "Other (Please Specify)",
+      ],
+    },
+    {
+      id: 3,
+      question: "How long would you like to learn with Skillify?",
+      options: ["~1 month", "3-6 months", "6+ months"],
+    },
   ];
+
+  const currentQuestion = questions.find((q) => q.id === questionId);
 
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
@@ -33,13 +58,11 @@ const Contact: React.FC<ContactProps> = ({ handleClick }) => {
       <LandingNavbar />
       <div className="md:w-2/3 w-full items-center mx-40 flex flex-col space-y-4 md:space-y-6">
         <Progress progress={progress} />
-        <div className="text-sm">2/4</div>
+        <div className="text-sm">{questionId}/4</div>
       </div>
-      <div className="mt-8 text-xl font-bold">
-        What are your learning goals?
-      </div>
+      <div className="mt-8 text-xl font-bold">{currentQuestion?.question}</div>
       <div className="flex flex-col space-y-6 items-center mt-4">
-        {options.map((option, index) => (
+        {currentQuestion?.options?.map((option, index) => (
           <div
             key={index}
             className={`w-full space-x-4 px-4 py-2 flex items-center justify-between text-sm mt-2 border rounded-full cursor-pointer ${
@@ -54,7 +77,6 @@ const Contact: React.FC<ContactProps> = ({ handleClick }) => {
             ) : (
               <div className="text-black-600 text-2xl w-12">□</div>
             )}
-
             <div>{option}</div>
           </div>
         ))}
@@ -67,4 +89,4 @@ const Contact: React.FC<ContactProps> = ({ handleClick }) => {
   );
 };
 
-export default Contact;
+export default Selections;

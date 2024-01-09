@@ -7,13 +7,16 @@ enum Stages {
   Contact,
   Selections,
 }
+// Import statements...
 
 export default function Quote() {
   const [stage, setStage] = useState<Stages>(Stages.Initial);
+  const [questionId, setQuestionId] = useState<number>(1); // Initial question id
 
   // Function to switch between stages
   const handleStartClick = () => {
     setStage((prevStage) => prevStage + 1);
+    setQuestionId((prevQuestionId) => prevQuestionId + 1); // Move to the next question
   };
 
   switch (stage) {
@@ -32,7 +35,7 @@ export default function Quote() {
     case Stages.Selections:
       return (
         <div>
-          <Selections />
+          <Selections questionId={questionId} handleClick={handleStartClick} />
         </div>
       );
     default:
