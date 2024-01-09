@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { default as Contact } from "../../components/quoteCalculator/Contact";
 import Initial from "../../components/quoteCalculator/Initial";
 import Selections from "../../components/quoteCalculator/Selections";
 enum Stages {
   Initial,
+  Contact,
   Selections,
 }
 
@@ -14,15 +16,17 @@ export default function Quote() {
     setStage((prevStage) => prevStage + 1);
   };
 
-  useEffect(() => {
-    console.log(stage);
-  }, [stage]);
-
   switch (stage) {
     case Stages.Initial:
       return (
         <div>
           <Initial handleClick={handleStartClick} />
+        </div>
+      );
+    case Stages.Contact:
+      return (
+        <div>
+          <Contact handleClick={handleStartClick} />
         </div>
       );
     case Stages.Selections:
