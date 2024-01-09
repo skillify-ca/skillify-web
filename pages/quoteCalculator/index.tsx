@@ -33,6 +33,7 @@ export default function Quote() {
       setStage(Stages.Contact);
     } else {
       setQuestionId((prevQuestionId) => Math.max(1, prevQuestionId - 1));
+      // Pass the setName and setEmail functions to update the state
       setStage(Stages.Selections);
     }
   };
@@ -63,8 +64,6 @@ export default function Quote() {
             questionId={questionId}
             handleNextClick={handleNextClick}
             handleBackClick={handleBackClick}
-            name={name}
-            email={email}
           />
         </div>
       );

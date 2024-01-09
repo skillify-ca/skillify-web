@@ -5,33 +5,41 @@ import { Button } from "../ui/Button";
 
 type ContactProps = {
   handleClick: () => void;
+  nameProp?: string;
+  emailProp?: string;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Contact: React.FC<ContactProps> = ({ handleClick }) => {
+const Contact: React.FC<ContactProps> = ({
+  handleClick,
+  nameProp = "",
+  emailProp = "",
+  setName,
+  setEmail,
+}) => {
   const [progress] = useState(25);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setNameLocal] = useState(nameProp);
+  const [email, setEmailLocal] = useState(emailProp);
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
-  const validateEmail = (email: string) => {
-    // Check if the email ends with @----.com or @----.ca
-    const validEmailRegex = /^[^\s@]+@[^\s@]+\.(com|ca)$/i;
 
+  const validateEmail = (email: string) => {
+    const validEmailRegex = /^[^\s@]+@[^\s@]+\.(com|ca)$/i;
     return validEmailRegex.test(email);
   };
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
+    setNameLocal(event.target.value);
     setNameError(false);
   };
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
+    setEmailLocal(event.target.value);
     setEmailError(false);
   };
 
   const handleNextClick = () => {
-    // Validate name and email
     if (!name.trim()) {
       setNameError(true);
       return;
@@ -42,7 +50,9 @@ const Contact: React.FC<ContactProps> = ({ handleClick }) => {
       return;
     }
 
-    // Continue to the next step if everything is valid
+    setName(name); // Update the state in the Quote component
+    setEmail(email); // Update the state in the Quote component
+
     handleClick();
   };
 
