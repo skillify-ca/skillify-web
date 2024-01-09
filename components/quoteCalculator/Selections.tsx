@@ -9,10 +9,13 @@ const Contact: React.FC<ContactProps> = ({ handleClick }) => {
   const [progress] = useState(55);
 
   return (
-    <div className="flex flex-col my-auto p-8 space-y-12 items-center">
+    <div className="flex flex-col bg-slate-50  h-screen my-auto p-8  md:space-y-12 space-y-8 items-center">
       {" "}
       <LandingNavbar />
-      <Progress progress={progress} />
+      <div className="w-full items-center flex flex-col space-y-2 md:space-y-6">
+        <Progress progress={progress} />
+        <div className="text-sm">2/4</div>
+      </div>{" "}
       <div className="mt-8 text-xl font-bold">
         Please enter your name and email:
       </div>
@@ -24,7 +27,7 @@ const Contact: React.FC<ContactProps> = ({ handleClick }) => {
           type="text"
           id="name"
           placeholder="Enter name"
-          className="w-40 px-2 py-1 mt-2 border border-gray-300 rounded"
+          className="w-80 px-2 h-12  py-1 mt-2 border border-gray-300 rounded-lg"
         />
       </div>
       <div className="flex flex-col items-center mt-4">
@@ -35,7 +38,7 @@ const Contact: React.FC<ContactProps> = ({ handleClick }) => {
           type="text"
           id="email"
           placeholder="Enter email address"
-          className="w-40 px-2 py-1 mt-2 border border-gray-300 rounded"
+          className="w-80 px-2 h-12  py-1 mt-2 border border-gray-300 rounded-lg"
         />
       </div>
       <button onClick={handleClick} className="space-x-12 mt-8">
