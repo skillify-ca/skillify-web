@@ -4,10 +4,10 @@ import LandingNavbar from "../../components/landingPage/LandingNavbar";
 import Button from "../../components/quoteCalculator/Button";
 
 type InitialProps = {
-  onNextClick: () => void;
+  handleClick: () => void;
 };
 
-const Initial: React.FC<InitialProps> = ({ onNextClick }) => {
+const Initial: React.FC<InitialProps> = ({ handleClick }) => {
   return (
     <div className="bg-charmander h-full">
       <Head>
@@ -28,9 +28,9 @@ const Initial: React.FC<InitialProps> = ({ onNextClick }) => {
         <p className="text-xl">
           Complete our brief questionnaire to receive a quote.
         </p>
-        <div className="">
+        <button className="" onClick={handleClick}>
           <Button label="Start"></Button>
-        </div>
+        </button>
       </div>
       <p className="bottom-0 text-white text-center">
         Due to the personalized nature of our program, please note that the

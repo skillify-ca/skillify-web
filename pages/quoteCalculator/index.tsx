@@ -1,25 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Initial from "../../components/quoteCalculator/Initial";
 import Selections from "../../components/quoteCalculator/Selections";
 enum Stages {
-  Initial = "initial",
-  Selections = "selections",
+  Initial,
+  Selections,
 }
 
 export default function Quote() {
   const [stage, setStage] = useState<Stages>(Stages.Initial);
 
   // Function to switch between stages
-  const handleStageChange = (newStage: Stages) => {
-    const nextStage = Stages.Selections;
-    setStage(nextStage);
+  const handleStartClick = () => {
+    setStage((prevStage) => prevStage + 1);
   };
+
+  useEffect(() => {
+    console.log(stage);
+  }, [stage]);
 
   switch (stage) {
     case Stages.Initial:
       return (
         <div>
-          <Initial onNextClick={() => handleStageChange(Stages.Selections)} />
+          <Initial handleClick={handleStartClick} />
         </div>
       );
     case Stages.Selections:
