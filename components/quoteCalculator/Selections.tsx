@@ -17,10 +17,15 @@ const Contact: React.FC<ContactProps> = ({ handleClick }) => {
     "Other (Please specify)",
   ];
 
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
   const handleOptionClick = (option: string) => {
-    setSelectedOption(option);
+    const isSelected = selectedOptions.includes(option);
+    if (isSelected) {
+      setSelectedOptions((prev) => prev.filter((item) => item !== option));
+    } else {
+      setSelectedOptions((prev) => [...prev, option]);
+    }
   };
 
   return (
@@ -33,18 +38,24 @@ const Contact: React.FC<ContactProps> = ({ handleClick }) => {
       <div className="mt-8 text-xl font-bold">
         What are your learning goals?
       </div>
-      <div className="flex flex-col space-y-8 items-center mt-4">
+      <div className="flex flex-col space-y-2 items-center mt-4">
         {options.map((option, index) => (
           <div
             key={index}
-            className={`w-full px-4 py-2 text-sm mt-2 border rounded-full cursor-pointer ${
-              selectedOption === option
+            className={`w-full space-x-4 px-4 py-2 flex items-center justify-between text-sm mt-2 border rounded-full cursor-pointer ${
+              selectedOptions.includes(option)
                 ? "bg-charmander text-white"
                 : "bg-white text-black-600 border-black-300"
             }`}
             onClick={() => handleOptionClick(option)}
           >
-            {option}
+            {selectedOptions.includes(option) ? (
+              <div className="text-white text-2xl w-12">✓</div>
+            ) : (
+              <div className="text-black-600 text-2xl w-12">□</div>
+            )}
+
+            <div>{option}</div>
           </div>
         ))}
       </div>
