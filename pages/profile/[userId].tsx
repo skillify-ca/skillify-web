@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GoalsSectionComponent from "../../components/studentPortal/goals/GoalsSectionComponent";
 import ProfileHeaderComponent from "../../components/studentPortal/profileV2/ProfileHeaderComponent";
@@ -10,6 +10,12 @@ import StudentFeedbackComponent from "../../components/studentPortal/profileV2/S
 import AchievementComponent from "../../components/studentPortal/profileV2/achievement_components/AchievementComponent";
 import SkillRatingsComponent from "../../components/studentPortal/skillRatings/SkillRatingsComponent";
 import { Button } from "../../components/ui/Button";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "../../components/ui/Collapsible";
+import { Progress } from "../../components/ui/Progress";
 import {
   FETCH_TOTAL_USER_BADGES_COUNT,
   FetchTotalBadgesCountResponse,
@@ -151,7 +157,6 @@ export default function InternalProfile({
   }
 
   function getSkillRatingProgress(skillRatings: SkillRatingsRow[]) {
-    console.log(skillRatings);
     let total = 0;
     let count = 0;
     skillRatings.forEach((skill) => {
@@ -163,18 +168,20 @@ export default function InternalProfile({
 
   return (
     <div className="flex flex-col m-4 space-y-4 overflow-auto bg-scroll sm:p-4">
-      <Section title={""}>
-        <ProfileHeaderComponent
-          userProfileData={userProfileData}
-          isEditable={!isExternal}
-        />
-      </Section>
+      <ProfileHeaderComponent
+        userProfileData={userProfileData}
+        isEditable={!isExternal}
+      />
       {userProfileData.name.startsWith("G") && (
-        <Section title={"Summary"}>
+        <Section title={"Summary"} hasProgress={false}>
           <StudentFeedbackComponent />
         </Section>
       )}
-      <Section title={`Projects (${userProjects.length}/5 Complete)`}>
+      <Section
+        title={`Projects (${userProjects.length}/5 Complete)`}
+        hasProgress
+        value={(userProjects.length * 100) / 5}
+      >
         {isEditable && (
           <div className="p-4">
             <Link href="/studentPortal/projects/create">
@@ -195,16 +202,25 @@ export default function InternalProfile({
         </Section>
       )}
       <Section
-        title={`Skill Ratings (${getSkillRatingProgress(
-          skillRatings
-        )}% Complete)`}
+        title={`Skill Ratings (${
+          skillRatings.filter((it) => it.studentRating === 100).length
+        } / ${skillRatings.length} Mastered)`}
+        hasProgress
+        value={
+          (skillRatings.filter((it) => it.studentRating === 100).length * 100) /
+          skillRatings.length
+        }
       >
         <SkillRatingsComponent
           skillRatings={skillRatings}
           isEditable={isEditable}
         />
       </Section>
-      <Section title={`Badges (${userBadgeCount}/${totalBadgeCount} Unlocked)`}>
+      <Section
+        hasProgress
+        value={(userBadgeCount * 100) / totalBadgeCount}
+        title={`Badges (${userBadgeCount}/${totalBadgeCount} Unlocked)`}
+      >
         {typeof userId == "string" && <AchievementComponent userId={userId} />}
       </Section>
     </div>
@@ -213,11 +229,20 @@ export default function InternalProfile({
 
 InternalProfile.auth = true;
 
-function Section({ title, children }) {
+function Section({ title, hasProgress = false, value = 0, children }) {
   return (
-    <div className="">
-      <h6 className="mb-4 text-lg font-bold">{title}</h6>
-      <div className="p-0 bg-backgroundSecondary rounded-xl">{children}</div>
+    <div className="w-full">
+      <Collapsible className="w-full rounded-xl">
+        <div className="p-0 bg-backgroundSecondary rounded-xl">
+          <CollapsibleTrigger className="flex flex-col items-start justify-start w-full gap-4 p-4 mb-4 bg-sky-300 hover:bg-sky-200 rounded-xl">
+            <h6 className="text-lg font-bold">{title}</h6>
+            {hasProgress && (
+              <Progress value={value} className="w-[60%] text-blue-400" />
+            )}
+          </CollapsibleTrigger>
+          <CollapsibleContent>{children}</CollapsibleContent>
+        </div>
+      </Collapsible>
     </div>
   );
 }
