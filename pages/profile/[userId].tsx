@@ -207,7 +207,7 @@ export default function InternalProfile({
         />
       </Section>
       <Section
-        title={`Skill Ratings (${
+        title={`Skills (${
           skillRatings.filter((it) => it.studentRating === 100).length
         } / ${skillRatings.length} Mastered)`}
         hasProgress
