@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import GoalsSectionComponent from "../../components/studentPortal/goals/GoalsSectionComponent";
 import ProfileHeaderComponent from "../../components/studentPortal/profileV2/ProfileHeaderComponent";
 import ProjectsSection from "../../components/studentPortal/profileV2/ProjectsSection";
+import StudentFeedbackComponent from "../../components/studentPortal/profileV2/StudentFeedbackComponent";
 import AchievementComponent from "../../components/studentPortal/profileV2/achievement_components/AchievementComponent";
 import SkillRatingsComponent from "../../components/studentPortal/skillRatings/SkillRatingsComponent";
 import { Button } from "../../components/ui/Button";
@@ -150,6 +151,7 @@ export default function InternalProfile({
   }
 
   function getSkillRatingProgress(skillRatings: SkillRatingsRow[]) {
+    console.log(skillRatings);
     let total = 0;
     let count = 0;
     skillRatings.forEach((skill) => {
@@ -167,6 +169,11 @@ export default function InternalProfile({
           isEditable={!isExternal}
         />
       </Section>
+      {userProfileData.name.startsWith("G") && (
+        <Section title={"Summary"}>
+          <StudentFeedbackComponent />
+        </Section>
+      )}
       <Section title={`Projects (${userProjects.length}/5 Complete)`}>
         {isEditable && (
           <div className="p-4">
