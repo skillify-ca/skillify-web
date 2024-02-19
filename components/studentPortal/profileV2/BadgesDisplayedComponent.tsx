@@ -2,11 +2,13 @@ import React from "react";
 
 export type BadgesDisplayedComponentProps = {
   earnedBadges: number;
+  totalBadges: number;
   textSize: "small" | "medium" | "large";
 };
 
 export default function BadgesDisplayedComponent({
   earnedBadges,
+  totalBadges,
   textSize,
 }: BadgesDisplayedComponentProps) {
   let textStyle;
@@ -37,7 +39,9 @@ export default function BadgesDisplayedComponent({
           />
         </svg>
 
-        <span className="ml-2">{earnedBadges} Badges Unlocked</span>
+        <span className="ml-2">
+          {earnedBadges}/{totalBadges} Badges Unlocked
+        </span>
       </p>
     </>
   );

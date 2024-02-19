@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GoalsSectionComponent from "../../components/studentPortal/goals/GoalsSectionComponent";
 import ProfileHeaderComponent from "../../components/studentPortal/profileV2/ProfileHeaderComponent";

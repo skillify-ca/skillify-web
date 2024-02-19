@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProfileDetailCard from "../../../components/studentPortal/admin/ProfileDetailCard";
 import { Button } from "../../../components/ui/Button";
 import {
@@ -22,7 +22,10 @@ import {
 } from "../../../graphql/studentPortal/goals/fetchAllUserGoals";
 import { FETCH_USER_ROLE } from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
-import { setTotalBadgeCount } from "../../../redux/profileSlice";
+import {
+  profileSelector,
+  setTotalBadgeCount,
+} from "../../../redux/profileSlice";
 
 const coachingDashboard = () => {
   const { user } = useAuth();
@@ -33,6 +36,7 @@ const coachingDashboard = () => {
   const [goalsList, setGoalsList] = useState<AllUserGoalsData[]>();
   const [completedGoalsList, setCompletedGoalsList] = useState([]);
   const [goalCompletionDateList, setGoalCompletionDateList] = useState([]);
+  const { totalBadgeCount } = useSelector(profileSelector);
 
   const { data, loading } = useQuery<FetchUserProfileCardResponse>(
     FETCH_USER_PROFILE_CARD,
@@ -153,6 +157,7 @@ const coachingDashboard = () => {
                       completedGoal[Object.keys(completedGoal)[0]]
                     }
                     link={it.link}
+                    totalBadgeCount={totalBadgeCount}
                     completedDate={
                       completionDate &&
                       completionDate[Object.keys(completionDate)[0]] != null
