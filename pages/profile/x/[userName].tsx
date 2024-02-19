@@ -1,5 +1,6 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { GetServerSideProps } from "next";
+import React from "react";
 import LandingNavbar from "../../../components/landingPage/LandingNavbar";
 import Header404 from "../../../components/notFound/Header404";
 import { FETCH_USER } from "../../../graphql/studentPortal/users/fetchUser";

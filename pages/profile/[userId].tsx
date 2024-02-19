@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GoalsSectionComponent from "../../components/studentPortal/goals/GoalsSectionComponent";
 import ProfileHeaderComponent from "../../components/studentPortal/profileV2/ProfileHeaderComponent";
@@ -56,6 +56,7 @@ import {
 import { setUserGoals, userGoalsSelector } from "../../redux/userGoalsSlice";
 import { transformSkillsAndRatings } from "../api/skillRatingsFunctions";
 import { fetchProfilePicture } from "../api/studentPortal/profile/profilePicturesClient";
+import ProfileGoalBadge from "../../components/studentPortal/profileV2/ProfileGoalBadge";
 
 type InternalProfileProps = {
   userIdFromLink?: string;
@@ -66,7 +67,6 @@ export default function InternalProfile({
   userIdFromLink,
   isExternal,
 }: InternalProfileProps) {
-  const { user } = useAuth();
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -191,16 +191,21 @@ export default function InternalProfile({
         )}
         <ProjectsSection userProjects={userProjects} />
       </Section>
-      {isEditable && (
-        <Section title={"Goals"}>
-          <GoalsSectionComponent
-            inProfile={true}
-            userGoals={userGoals
-              .filter((goal) => !goal.isComplete && !goal.isArchived)
-              .slice(0, 3)}
-          />
-        </Section>
-      )}
+      <Section
+        title={
+          <div className="flex items-center justify-center gap-4">
+            Goals
+            <ProfileGoalBadge />
+          </div>
+        }
+      >
+        <GoalsSectionComponent
+          inProfile={true}
+          userGoals={userGoals
+            .filter((goal) => !goal.isComplete && !goal.isArchived)
+            .slice(0, 3)}
+        />
+      </Section>
       <Section
         title={`Skill Ratings (${
           skillRatings.filter((it) => it.studentRating === 100).length
