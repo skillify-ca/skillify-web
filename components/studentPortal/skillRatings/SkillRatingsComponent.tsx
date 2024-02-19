@@ -4,6 +4,7 @@ import { animated, useSpring } from "react-spring";
 import { FETCH_USER_SKILLS_RATINGS } from "../../../graphql/studentPortal/skillRatings/fetchUserSkillsRatings";
 import { UPSERT_USER_SKILL_RATINGS } from "../../../graphql/studentPortal/skillRatings/upsertUserSkillRatings";
 
+import { CheckCircleIcon } from "@heroicons/react/outline";
 import { FETCH_UNITS } from "../../../graphql/studentPortal/skillRatings/fetchUnits";
 import { useAuth } from "../../../lib/authContext";
 import { transformSkillRatingForDB } from "../../../pages/api/skillRatingsFunctions";
@@ -59,7 +60,7 @@ export default function SkillRatingsComponent({
 
   const activeTabStyling = (tab: string) => {
     let styling =
-      "text-2xl text-textPrimary py-2 h-12 cursor-pointer bg-backgroundPrimary mx-2 rounded ";
+      "text-2xl group text-textPrimary py-2 h-12 cursor-pointer bg-backgroundPrimary mx-2 rounded transition-all";
     if (tab === activeTab) {
       styling =
         styling +
@@ -84,7 +85,17 @@ export default function SkillRatingsComponent({
               activeTabStyling(it);
             }}
           >
-            {it}
+            <div className="flex items-center justify-center w-full gap-2">
+              <p className="">{it}</p>
+              {skillRatings &&
+              skillRatings.filter(
+                (skill) => skill.unitName === it && skill.studentRating !== 100
+              ).length === 0 ? (
+                <CheckCircleIcon className="w-6 h-6 text-green-500 transition-all rounded-full group-hover:text-brandPrimary" />
+              ) : (
+                ""
+              )}
+            </div>
           </animated.button>
         ))}
       </div>

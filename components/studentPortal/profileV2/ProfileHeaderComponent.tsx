@@ -2,20 +2,15 @@ import React from "react";
 import { UserProfileData } from "../../../graphql/studentPortal/profile/fetchUserProfile";
 
 import Link from "next/link";
-import BadgesDisplayedComponent from "./BadgesDisplayedComponent";
 import JoinedDateComponent from "./JoinedDateComponent";
 
 export type UserProfileSectionProps = {
   userProfileData: UserProfileData;
-  userBadgeCount: number;
-  totalBadgeCount: number;
   isEditable: boolean;
 };
 
 export default function UserProfileSection({
   userProfileData,
-  userBadgeCount,
-  totalBadgeCount,
   isEditable,
 }: UserProfileSectionProps) {
   return (
@@ -55,11 +50,6 @@ export default function UserProfileSection({
             textSize={"large"}
           />
         </div>
-        <BadgesDisplayedComponent
-          totalBadges={totalBadgeCount}
-          earnedBadges={userBadgeCount}
-          textSize={"large"}
-        />
       </div>
     </div>
   );

@@ -26,6 +26,11 @@ import {
   FetchUserProfileDataResponse,
 } from "../../graphql/studentPortal/profile/fetchUserProfile";
 import {
+  FETCH_USER_PROJECTS,
+  FetchUserProjectsDataResponse,
+  UserProjectData,
+} from "../../graphql/studentPortal/profile/fetchUserProjects";
+import {
   FETCH_SKILLS_AND_RATINGS,
   FetchSkillsAndRatings,
 } from "../../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
@@ -37,6 +42,7 @@ import {
   setUserProfile,
 } from "../../redux/profileSlice";
 import {
+  SkillRatingsRow,
   setSkillRatings,
   skillRatingsSelector,
 } from "../../redux/skillRatingsSlice";
@@ -65,6 +71,7 @@ export default function InternalProfile({
   const { userProfileData, userBadgeCount, totalBadgeCount } =
     useSelector(profileSelector);
   const [isEditable, setIsEditable] = useState(false);
+  const [userProjects, setUserProjects] = useState<UserProjectData[]>([]);
 
   if (userId) {
     useQuery<FetchUserProfileDataResponse>(FETCH_USER_PROFILE_DATA, {
@@ -130,6 +137,26 @@ export default function InternalProfile({
         }
       },
     });
+
+    useQuery<FetchUserProjectsDataResponse>(FETCH_USER_PROJECTS, {
+      variables: {
+        userId: userId,
+      },
+
+      onCompleted: (data: FetchUserProjectsDataResponse) => {
+        setUserProjects(data.user_projects);
+      },
+    });
+  }
+
+  function getSkillRatingProgress(skillRatings: SkillRatingsRow[]) {
+    let total = 0;
+    let count = 0;
+    skillRatings.forEach((skill) => {
+      total += skill.studentRating;
+      count++;
+    });
+    return (total / count).toFixed(0);
   }
 
   return (
@@ -137,12 +164,10 @@ export default function InternalProfile({
       <Section title={""}>
         <ProfileHeaderComponent
           userProfileData={userProfileData}
-          userBadgeCount={userBadgeCount}
-          totalBadgeCount={totalBadgeCount}
           isEditable={!isExternal}
         />
       </Section>
-      <Section title={"Projects"}>
+      <Section title={`Projects (${userProjects.length}/5 Complete)`}>
         {isEditable && (
           <div className="p-4">
             <Link href="/studentPortal/projects/create">
@@ -150,7 +175,7 @@ export default function InternalProfile({
             </Link>
           </div>
         )}
-        <ProjectsSection user={userId} />
+        <ProjectsSection userProjects={userProjects} />
       </Section>
       {isEditable && (
         <Section title={"Goals"}>
@@ -162,16 +187,18 @@ export default function InternalProfile({
           />
         </Section>
       )}
-      <Section title={"Achievements"}>
-        {typeof userId == "string" && (
-          <AchievementComponent userId={userId} isEditable={isEditable} />
-        )}
-      </Section>
-      <Section title={"Skill Ratings"}>
+      <Section
+        title={`Skill Ratings (${getSkillRatingProgress(
+          skillRatings
+        )}% Complete)`}
+      >
         <SkillRatingsComponent
           skillRatings={skillRatings}
           isEditable={isEditable}
         />
+      </Section>
+      <Section title={`Badges (${userBadgeCount}/${totalBadgeCount} Unlocked)`}>
+        {typeof userId == "string" && <AchievementComponent userId={userId} />}
       </Section>
     </div>
   );
