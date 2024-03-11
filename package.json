@@ -57,6 +57,7 @@
     "next": "^12.1.4",
     "next-auth": "^4.24.4",
     "openai": "^4.15.3",
+    "posthog-js": "^1.112.0",
     "radix-ui": "^1.0.1",
     "react": "^17.0.1",
     "react-beautiful-dnd": "^13.0.0",

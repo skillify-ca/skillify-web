@@ -2,6 +2,7 @@ import { ApolloProvider } from "@apollo/client";
 import { SessionProvider } from "next-auth/react";
 import { useRouter } from "next/router";
 import Script from "next/script";
+import posthog from "posthog-js";
 import React, { useEffect } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -35,6 +36,10 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
   useEffect(() => {
     fbq.pageview();
     ga.load();
+
+    posthog.init(process.env.NEXT_PUBLIC_POSTHOG_ID, {
+      api_host: "https://app.posthog.com",
+    });
 
     router.events.on("routeChangeComplete", handleRouteChange);
     return () => {
