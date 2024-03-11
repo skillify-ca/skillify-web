@@ -1,11 +1,11 @@
-import { useRouter } from 'next/router';
-import React from 'react';
+import { useRouter } from "next/router";
+import React from "react";
 import LessonComponent, {
   LessonComponentData,
-} from '../../../../components/studentPortal/lessons/LessonComponent';
-import { Button } from '../../../../components/ui/Button';
-import { getCourseForWebSection } from '../../../api/studentPortal/lessons/web';
-import LessonPage from '../../intro/[...slug]';
+} from "../../../../components/studentPortal/lessons/LessonComponent";
+import { Button } from "../../../../components/ui/Button";
+import { getCourseForWebSection } from "../../../api/studentPortal/lessons/web";
+import LessonPage from "../../intro/[...slug]";
 
 const React2 = (props: { lessonComponents: LessonComponentData[] }) => {
   const { lessonComponents } = props;
@@ -13,7 +13,7 @@ const React2 = (props: { lessonComponents: LessonComponentData[] }) => {
   const router = useRouter();
 
   const handleContinue = () => {
-    router.push('/studentPortal/web/React/props');
+    router.push("/studentPortal/web/React/props");
   };
 
   if (!lessonComponents) return <div>Loading...</div>;
