@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from "react";
 
 type HeroProps = {
   headerText: HighlightableText[];
@@ -32,7 +33,7 @@ export default function Hero({ headerText, description }: HeroProps) {
             <Link href={"/plans"}>
               <button
                 type="button"
-                onClick={(e) =>
+                onClick={() =>
                   window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
                 }
                 className={`w-48 py-4 h-16 bg-gradient-to-b bg-charmander hover:bg-pikachu-500 text-white px-3 font-bold border-b-4 rounded-lg active:border-b-2 cursor-pointer`}
