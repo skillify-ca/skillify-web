@@ -41,7 +41,7 @@ export async function getServerSideProps({ params }) {
         {
           title: "Skillify",
           image: "/images/logo-2.png",
-          description: "Cost: $12000 for 8 months.",
+          description: "Cost: $6000 for 3 months.",
           link: "https://skillify.ca",
         },
         {
@@ -77,14 +77,6 @@ export async function getServerSideProps({ params }) {
           link: "https://bootcamp.learn.utoronto.ca/faq/",
         },
       ],
-    },
-    {
-      component: "description",
-      text: "Check out our video breakdown below!",
-    },
-    {
-      component: "youtube",
-      url: "https://www.youtube.com/embed/8ilKHd1tfO0?si=gGqB8mjAI9-GekB5",
     },
   ];
   return { props: { blogComponents } };
