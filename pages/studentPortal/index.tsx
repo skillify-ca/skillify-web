@@ -76,7 +76,7 @@ export default function StudentPortalPage() {
 
   return (
     <div className="grid w-full grid-cols-12 ">
-      <div className="flex flex-col h-screen col-span-12 px-4 pb-4 overflow-y-auto sm:px-8 sm:pb-8">
+      <div className="flex flex-col h-screen col-span-12 px-4 pb-4 overflow-y-auto lg:col-span-8 sm:px-8 sm:pb-8">
         <PageHeader
           title={`Let's start learning, ${user.displayName}`}
           description={moment().format("MMM Do YYYY")}
