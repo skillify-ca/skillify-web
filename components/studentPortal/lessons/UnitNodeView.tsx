@@ -24,22 +24,24 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
   return (
     <div className="">
       <div
-        className={`${
+        className={`
+        ${completed ? "ml-5 md:ml-2" : ""}
+        ${
           locked
-            ? ""
+            ? "ml-5 md:ml-2"
             : "hover:bg-backgroundSecondary hover:shadow-lg hover:py-4 transform transition-all"
         } ${
           active
-            ? "sm:px-0 py-4 border-2 flex flex-col sm:grid sm:grid-cols-12 bg-backgroundPrimary"
+            ? "px-4 md:px-0 py-4 border-2 flex flex-col sm:grid sm:grid-cols-12 bg-backgroundPrimary"
             : "grid grid-cols-12"
         }  `}
       >
-        <div className="flex flex-col md:items-center ml-4 col-span-2">
+        <div className="flex flex-col col-span-2 md:items-center">
           <div className="flex rounded-full">
             {<NodeIcon completed={completed} locked={locked} type={type} />}{" "}
           </div>
         </div>
-        <div className="flex flex-col justify-center w-full col-span-10 ml-4 sm:ml-0 sm:col-span-6">
+        <div className="flex flex-col justify-center w-full col-span-10 sm:ml-0 sm:col-span-6">
           <p className="">{title}</p>
           <p className="">{description}</p>
         </div>
