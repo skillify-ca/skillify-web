@@ -17,8 +17,7 @@ export function getDataForIntroductionLesson() {
       },
       {
         component: "description",
-        text:
-          "Welcome to the Skillify learning path! Let me start by congratulating you on this journey. You are learning an in-demand skill that will future-proof your career. Just like learning to play the guitar, coding is a skill that requires practice, but mastering a few key competencies will unlock high-paying and remote career opportunities from all over the world.  \n\nMake sure you download or sign up for these programs to start. Message Vithushan if you're having trouble.",
+        text: "Welcome to the Skillify learning path! Let me start by congratulating you on this journey. You are learning an in-demand skill that will future-proof your career. Just like learning to play the guitar, coding is a skill that requires practice, but mastering a few key competencies will unlock high-paying and remote career opportunities from all over the world.  \n\nMake sure you download or sign up for these programs to start. Message Vithushan if you're having trouble.",
       },
       {
         component: "video",
@@ -63,7 +62,7 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  const data = getLessonDataForIntroduction();
+  const data = getDataForIntroductionLesson();
 
   res.status(200).json(data);
 }

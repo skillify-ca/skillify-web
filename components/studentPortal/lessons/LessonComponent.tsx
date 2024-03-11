@@ -16,16 +16,14 @@ export type QuizData = {
 };
 
 export type QuizQuestion = {
-  A : string,
-  B : string, 
-  C : string,
-  D : string,
-  text: string,
-  answer: string,
-  image? : string
-}
-
-
+  A: string;
+  B: string;
+  C: string;
+  D: string;
+  text: string;
+  answer: string;
+  image?: string;
+};
 
 export type LessonComponentData =
   | {
@@ -73,6 +71,10 @@ export type LessonComponentData =
       component: "code-snippet";
       text?: string;
       code: string;
+    }
+  | {
+      component: "youtube";
+      url: string;
     };
 
 export type LessonComponentProps = {
@@ -168,6 +170,21 @@ export default function LessonComponent({ data }: LessonComponentProps) {
           moz-allowfullscreen
           allowFullScreen
           className="w-full h-96"
+        ></iframe>
+      </div>
+    );
+  }
+  if (data.component === "youtube") {
+    return (
+      <div className="w-full overflow-scroll">
+        <iframe
+          width="560"
+          height="315"
+          src={data.url}
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
         ></iframe>
       </div>
     );

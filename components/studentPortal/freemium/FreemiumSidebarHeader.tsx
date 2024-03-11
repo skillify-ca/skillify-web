@@ -5,6 +5,7 @@ import {
   elapsedDays,
   TOTAL_TRIAL_DAYS,
 } from "../../../pages/api/studentPortal/freemium/helpers";
+import { Avatar, AvatarFallback, AvatarImage } from "../../ui/Avatar";
 import ProgressComponent from "../../ui/ProgressComponent";
 
 export type UserProfileSectionProps = {
@@ -21,21 +22,20 @@ export default function UserProfileSection({
       <div className="grid">
         {user && (
           <div className="flex items-center p-4">
-            <img
-              className="rounded-full h-16 w-16 hidden md:block"
-              src={user.photoURL}
-              alt=""
-            />
+            <Avatar className="bg-slate-200">
+              <AvatarImage src={user.photoURL} alt="user avatar" />
+              <AvatarFallback>{user.displayName.charAt(0)}</AvatarFallback>
+            </Avatar>
             <div className="w-full ml-4">
-              <p className="font-bold text-lg">{user.displayName}</p>
-              <p className="font-medium capitalize text-gray-500">
+              <p className="text-lg font-bold">{user.displayName}</p>
+              <p className="font-medium text-gray-500 capitalize">
                 {"Prospective Student"}{" "}
               </p>
               <ProgressComponent
                 currentValue={elapsedDays(createdAt)}
                 totalValue={TOTAL_TRIAL_DAYS}
               />
-              <p className="text-xs mt-1 text-gray-500">
+              <p className="mt-1 text-xs text-gray-500">
                 {calculateRemainingTrialDays(createdAt)}/{TOTAL_TRIAL_DAYS} days
                 remaining
               </p>

@@ -9,10 +9,10 @@ type ProfileDetailCard = {
   link: string;
   joinDate: Date;
   badges: number;
+  totalBadgeCount: number;
   currentBadge: CodingBadge;
   completedDate: string;
   completedGoal: string;
-  totalBadgeCount: number;
 };
 
 function ProfileDetailCard({
@@ -20,8 +20,8 @@ function ProfileDetailCard({
   name,
   joinDate,
   badges,
-  totalBadgeCount,
   currentBadge,
+  totalBadgeCount,
   completedGoal,
   completedDate,
 }: ProfileDetailCard) {

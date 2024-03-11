@@ -34,6 +34,7 @@ export const FETCH_USER_PROFILE = gql`
 export const FETCH_USER_PROFILE_DATA = gql`
   query fetchUserProfileData($userId: String = "") {
     users(where: { id: { _eq: $userId } }) {
+      id
       created_at
       email
       last_seen
@@ -51,17 +52,18 @@ export type UserProfileResponse = {
   __typename: string;
   created_at: Date;
   email: string;
+  id: string;
   last_seen: Date;
   name: string;
-  profile_image: string;
 };
 
 export type UserProfileData = {
   createdAt: Date;
   email: string;
+  id: string;
   lastSeen: Date;
   name: string;
-  profileImage: string;
+  profileImage?: string;
 };
 
 export type User = {

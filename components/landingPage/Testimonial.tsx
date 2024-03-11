@@ -1,5 +1,4 @@
-import { ReactNode, useState } from "react";
-import { Skill } from "../../../pages/api/skill";
+import React from "react";
 
 export interface TestimonialProps {
   text: string;
@@ -7,6 +6,7 @@ export interface TestimonialProps {
   studentName: string;
   color: number;
   completionDate: string;
+  degree?: string;
 }
 
 const Testimonial = ({
@@ -15,6 +15,7 @@ const Testimonial = ({
   studentName,
   color,
   completionDate,
+  degree,
 }: TestimonialProps) => {
   const getBorderColour = () => {
     if (color === 0) {
@@ -43,7 +44,7 @@ const Testimonial = ({
         <img src={img} alt="student" className="rounded-full" />
         <div className="flex flex-col justify-center col-span-4 ml-4">
           <p className="text-xl font-bold">{studentName}</p>
-          <p>Completed in {completionDate}</p>
+          {degree && <p className="text-xs ">{degree}</p>}
         </div>
         <div className="flex flex-col items-center justify-center">
           {false && (

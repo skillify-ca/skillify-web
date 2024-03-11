@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const Card = ({ date, title, image, description, link, color }) => {
+const BlogCard = ({ date, title, image, description, link, color }) => {
   const getBorderColour = () => {
     if (color === 0) {
       return "border-charmander";
@@ -17,11 +17,14 @@ const Card = ({ date, title, image, description, link, color }) => {
   return (
     <Link href={link}>
       <div
-        className={`flex flex-col h-80 transition-all transform border-t-8 text-textPrimary bg-backgroundPrimary shadow-lg cursor-pointer rounded-xl hover:scale-110 ${getBorderColour()}`}
+        className={`flex flex-col h-80 group border-t-8 hover:bg-backgroundHover transform transition-all text-textPrimary bg-backgroundPrimary shadow cursor-pointer overflow-hidden ${getBorderColour()}`}
       >
-        <img src={image} className="object-cover w-full h-32 mb-4" />
+        <img
+          src={image}
+          className="object-cover w-full h-32 mb-4 transition-all transform group-hover:scale-110"
+        />
 
-        <div className="flex flex-col items-center p-4">
+        <div className="flex flex-col items-center px-4">
           <h4 className="mb-4 font-bold">{title}</h4>
           <p className="mb-4 text-sm">{date}</p>
           <p>{description}</p>
@@ -30,7 +33,7 @@ const Card = ({ date, title, image, description, link, color }) => {
     </Link>
   );
 };
-export default Card;
+export default BlogCard;
 
 export type CardData = {
   title: string;

@@ -7,6 +7,8 @@ import { FETCH_USER_GOALS } from "../../../graphql/studentPortal/goals/fetchUser
 import { UPSERT_USER_GOALS } from "../../../graphql/studentPortal/goals/upsertUserGoals";
 import { useAuth } from "../../../lib/authContext";
 
+export const GOAL_CHAR_LIMIT = 1500;
+
 const EditGoalsPage = () => {
   const { user } = useAuth();
 
@@ -22,11 +24,9 @@ const EditGoalsPage = () => {
 
   // route back to goals overview page on complete
   const [saveNewGoal] = useMutation(UPSERT_USER_GOALS, {
-    onCompleted: () => router.push("/goals"),
+    onCompleted: () => router.push("/studentPortal/goals"),
     refetchQueries: [{ query: FETCH_USER_GOALS }],
   });
-
-  const GOAL_CHAR_LIMIT = 500;
 
   return (
     <div className="flex flex-col p-4 m-4 space-y-8 overflow-auto bg-scroll">

@@ -22,7 +22,7 @@ export const useLastSeenModal = (
   const [showOnboardingModal, setShowOnboardingModal] = useState(false);
   const [showExitModal, setShowExitModal] = useState(false);
   const { user } = useAuth();
-  const email = user.email;
+  const email = user?.email;
 
   useQuery<FetchModalData>(FETCH_LAST_SEEN_MODAL, {
     variables: {
@@ -31,12 +31,12 @@ export const useLastSeenModal = (
     skip: userRole != "paid" && userRole != "freemium",
 
     onCompleted: (data) => {
-      const userRole = data.freemium_users[0]?.user.userRole.value
-      
+      const userRole = data.freemium_users[0]?.user.userRole.value;
+
       if (userRole !== "paid" && userRole !== "freemium") {
-        return
+        return;
       }
-      
+
       const trialDaysRemaining = calculateRemainingTrialDays(createdAt);
 
       const lastSeenValue = data.freemium_users[0]?.lastSeenModal;
