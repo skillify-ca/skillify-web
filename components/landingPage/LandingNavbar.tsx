@@ -148,7 +148,7 @@ export default function LandingNavbar({
             </div>
             <div className="">
               <a
-                href={"https://www.instagram.com/skillify.ca/"}
+                href={"https://www.instagram.com/skillifyca/"}
                 target="_blank"
                 rel="noreferrer"
               >
