@@ -90,13 +90,7 @@ export const Button: React.FC<ButtonProps> = ({
       `}
       {...props}
     >
-      <p
-        className={`${disabled ? "text-gray-50" : textColor} ${
-          size === "large" ? "text-xl" : "text-base"
-        }`}
-      >
-        {label}
-      </p>
+      <p className={`${disabled ? "text-gray-50" : textColor}`}>{label}</p>
     </button>
   );
 };
