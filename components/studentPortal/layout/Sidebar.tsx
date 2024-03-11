@@ -1,5 +1,4 @@
 import { useQuery } from "@apollo/client/react";
-import { PlayIcon, StarIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -21,7 +20,7 @@ import ReactIcon from "../../ui/ReactIcon";
 import FreemiumSidebarHeader from "../freemium/FreemiumSidebarHeader";
 import FreemiumSidebarItem from "../freemium/FreemiumSidebarItem";
 import PaidSidebarHeader from "../freemium/PaidSidebarHeader";
-import SkillifyCommandPalette from "./CommandPalette";
+import ExperimentalSidebarSection from "./ExperimentalSidebarSection";
 import SidebarItem, { SidebarItemProps } from "./SidebarItem";
 
 export const Sidebar: React.FC = () => {
@@ -122,7 +121,7 @@ export const Sidebar: React.FC = () => {
           <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
         </svg>
       ),
-      isDisabled: userRole === "paid" ? false : isDisabled,
+      isDisabled: userRole === "freemium" ? true : isDisabled,
     },
     {
       name: "Profile",
@@ -233,71 +232,29 @@ export const Sidebar: React.FC = () => {
               </div>
             </Link>
           </div>
-          <div className="flex items-center justify-between p-4 ">
-            <p className="font-bold">Experimental</p>
-          </div>
-          <SkillifyCommandPalette />
 
-          <Link href="/studentPortal/messageRepository">
-            <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover ">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="w-6 h-6"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M4.848 2.771A49.144 49.144 0 0112 2.25c2.43 0 4.817.178 7.152.52 1.978.292 3.348 2.024 3.348 3.97v6.02c0 1.946-1.37 3.678-3.348 3.97a48.901 48.901 0 01-3.476.383.39.39 0 00-.297.17l-2.755 4.133a.75.75 0 01-1.248 0l-2.755-4.133a.39.39 0 00-.297-.17 48.9 48.9 0 01-3.476-.384c-1.978-.29-3.348-2.024-3.348-3.97V6.741c0-1.946 1.37-3.68 3.348-3.97zM6.75 8.25a.75.75 0 01.75-.75h9a.75.75 0 010 1.5h-9a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5H12a.75.75 0 000-1.5H7.5z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <p className="ml-3">Message Repository</p>
-            </div>
-          </Link>
-
-          <Link href="/studentPortal/games">
-            <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
-              <PlayIcon className="w-6" />
-              <p className="ml-3">Games</p>
-            </div>
-          </Link>
-          <Link href="/studentPortal/challenges">
-            <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
-              <StarIcon className="w-6" />
-              <p className="ml-3">Challenges</p>
-            </div>
-          </Link>
-          <Link href="/studentPortal/workshops">
-            <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6 mr-4"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
-              </svg>
-              <p>Workshops</p>
-            </div>
-          </Link>
-          <Link href="/studentPortal/admin">
-            <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-6 h-6 mr-4"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <p>Admin</p>
-            </div>
-          </Link>
+          {userRole === "student" ? (
+            <ExperimentalSidebarSection userRole={userRole} />
+          ) : null}
+          {userRole === "coach" ? (
+            <Link href="/studentPortal/admin">
+              <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-6 h-6 mr-4"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <p>Admin</p>
+              </div>
+            </Link>
+          ) : null}
         </div>
         <div
           className="flex flex-wrap p-4 mb-16 cursor-pointer hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800"

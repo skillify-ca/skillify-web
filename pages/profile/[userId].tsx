@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GoalsSectionComponent from "../../components/studentPortal/goals/GoalsSectionComponent";
+import ProfileGoalBadge from "../../components/studentPortal/profileV2/ProfileGoalBadge";
 import ProfileHeaderComponent from "../../components/studentPortal/profileV2/ProfileHeaderComponent";
 import ProjectsSection from "../../components/studentPortal/profileV2/ProjectsSection";
 import StudentFeedbackComponent from "../../components/studentPortal/profileV2/StudentFeedbackComponent";
@@ -41,7 +42,6 @@ import {
   FETCH_SKILLS_AND_RATINGS,
   FetchSkillsAndRatings,
 } from "../../graphql/studentPortal/skillRatings/fetchSkillsAndRatings";
-import { useAuth } from "../../lib/authContext";
 import {
   profileSelector,
   setTotalBadgeCount,
@@ -56,7 +56,6 @@ import {
 import { setUserGoals, userGoalsSelector } from "../../redux/userGoalsSlice";
 import { transformSkillsAndRatings } from "../api/skillRatingsFunctions";
 import { fetchProfilePicture } from "../api/studentPortal/profile/profilePicturesClient";
-import ProfileGoalBadge from "../../components/studentPortal/profileV2/ProfileGoalBadge";
 
 type InternalProfileProps = {
   userIdFromLink?: string;
@@ -237,10 +236,17 @@ InternalProfile.auth = true;
 function Section({ title, hasProgress = false, value = 0, children }) {
   return (
     <div className="w-full">
-      <Collapsible className="w-full rounded-xl">
+      <Collapsible className="w-full group rounded-xl">
         <div className="p-0 bg-backgroundSecondary rounded-xl">
           <CollapsibleTrigger className="flex flex-col items-start justify-start w-full gap-4 p-4 mb-4 bg-sky-300 hover:bg-sky-200 rounded-xl">
-            <h6 className="text-lg font-bold">{title}</h6>
+            <h6 className="flex text-lg font-bold">
+              <span
+                className={`group-data-[state=open]:rotate-180 transition-all rotate-90 mr-2`}
+              >
+                ▲
+              </span>
+              {title}
+            </h6>
             {hasProgress && (
               <Progress value={value} className="w-[60%] text-blue-400" />
             )}
