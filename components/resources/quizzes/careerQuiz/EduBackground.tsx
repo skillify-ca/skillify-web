@@ -69,18 +69,18 @@ const EducationBackground = ({
     <div className="">
       <SkillifyNavbar hidden={false} onBackClick={onBackClick} />
 
-      <div className="flex flex-col items-center text-center  mx-4  mt-4">
+      <div className="flex flex-col items-center mx-4 mt-4 text-center">
         <h1 className="text-2xl font-semibold ">
           Select your highest level of education.
         </h1>
       </div>
-      <div className="text-lg text-left mx-8 md:w-full max-w-xl  md:mx-auto">
+      <div className="max-w-xl mx-8 text-lg text-left md:w-full md:mx-auto">
         <label htmlFor="education-select">Education</label>
         <select
           id="education-select"
           value={educationState.education || ""}
           onChange={handleEducationLevelChange}
-          className=" border px-4 w-full border-gray-500 rounded-lg "
+          className="w-full p-2 border border-gray-500 rounded-lg "
         >
           {Object.values(EducationLevel).map((educationLevel) => (
             <option key={educationLevel} value={educationLevel}>
@@ -95,7 +95,7 @@ const EducationBackground = ({
               educationState.education !== EducationLevel.HighSchoolDiploma &&
               educationState.education !== EducationLevel.GED && (
                 <div className="text-left">
-                  <div className="text-left mt-2">
+                  <div className="mt-2 text-left">
                     <label htmlFor="institution">Institution</label>{" "}
                     <input
                       type="text"
@@ -103,7 +103,7 @@ const EducationBackground = ({
                       id="institution"
                       value={educationState.institution}
                       onChange={(e) => handleInputChange("institution", e)}
-                      className="border w-full border-gray-500 rounded-lg px-4"
+                      className="w-full p-4 border border-gray-500 rounded-lg"
                     />
                   </div>
                 </div>
@@ -114,7 +114,7 @@ const EducationBackground = ({
               educationState.education !== EducationLevel.NA &&
               educationState.education !== EducationLevel.HighSchoolDiploma &&
               educationState.education !== EducationLevel.GED && (
-                <div className="text-left mt-2">
+                <div className="mt-2 text-left">
                   <label htmlFor="degree" className="font-medium">
                     Field of study
                   </label>
@@ -124,18 +124,18 @@ const EducationBackground = ({
                     value={educationState.degree}
                     id="degree"
                     onChange={(e) => handleInputChange("degree", e)}
-                    className="shadow  w-full appearance-none border border-gray-500 rounded-lg px-4"
+                    className="w-full px-4 border border-gray-500 rounded-lg shadow appearance-none"
                   />
                 </div>
               )}
             {showExperienceInput && (
               <div className="">
-                <div className="text-left mt-4 ">
+                <div className="mt-4 text-left ">
                   Do you have experience coding?
                 </div>
                 <textarea
                   onChange={(e) => handleInputChange("experience", e)}
-                  className="w-full border border-gray-500 rounded-lg  px-4 resize-none"
+                  className="w-full px-4 border border-gray-500 rounded-lg resize-none"
                   value={educationState.experience}
                 />
               </div>
@@ -143,7 +143,7 @@ const EducationBackground = ({
           </div>
         </div>
       </div>
-      <div className="py-8 flex place-content-center">
+      <div className="flex py-8 place-content-center">
         <Button
           backgroundColor="yellow"
           label="Next"

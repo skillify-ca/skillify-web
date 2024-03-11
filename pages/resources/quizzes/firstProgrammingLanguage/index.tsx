@@ -1,5 +1,6 @@
-import { useMutation } from "@apollo/client/react/hooks/useMutation";
+import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
+import LandingNavbar from "../../../../components/landingPage/LandingNavbar";
 import LanguageResults from "../../../../components/resources/quizzes/firstProgrammingLanguageQuiz/LanguageResults";
 import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
 import SkillSelections from "../../../../components/resources/quizzes/shared/SkillSelections";
@@ -12,6 +13,7 @@ import {
 import QuizTransition from "../../../../components/ui/animations/QuizTransition";
 import { INSERT_CODING_LANGUAGE_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCodingLanguageQuiz";
 import { UPDATE_CODING_LANGUAGE_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCodingLanguageQuiz";
+import { logToSlack } from "../../../api/slack/slackLogger";
 import { computeLanguageScore } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage/computeScore";
 import { quizData } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage/firstProgrammingLanguage";
 import { getPreferredLanguageForQuizResults } from "../../../api/studentPortal/quizzes/firstProgrammingLanguage/getPreferredLanguage";
@@ -94,6 +96,9 @@ const FirstProgrammingLanguageQuiz = () => {
     //triggering mutations via onNextClick
     if (stage == Stage.START) {
       createQuizResponse({ variables: userInput });
+      logToSlack(
+        `New FPL Quiz Response: ${userInput.name} - ${userInput.email}`
+      );
     } else if (stage == Stage.BLUEPRINT) {
       updateQuizResponse({ variables: finalResponseObject });
     }
@@ -194,7 +199,12 @@ const FirstProgrammingLanguageQuiz = () => {
 export default FirstProgrammingLanguageQuiz;
 
 function getLayout(page: React.ReactNode) {
-  return <div>{page}</div>;
+  return (
+    <div className="flex flex-col items-center h-screen theme-default">
+      <LandingNavbar />
+      <div className="flex justify-center w-full h-screen max-w-xl">{page}</div>
+    </div>
+  );
 }
 
 FirstProgrammingLanguageQuiz.getLayout = getLayout;

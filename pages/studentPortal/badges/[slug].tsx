@@ -2,7 +2,6 @@ import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
 import ExpandableContainer from "../../../components/ui/ExpandableContainer";
 import { FETCH_BADGE } from "../../../graphql/studentPortal/achievements/fetchBadge";
-import { useAuth } from "../../../lib/authContext";
 
 // const Box = dynamic(() => import("../../components/stories/Box"));
 
@@ -12,7 +11,6 @@ type Badge = {
   image: string;
 };
 const BadgeDetailsPage = ({ slug }) => {
-  const { user } = useAuth();
   const [badgeDetail, setBadgeData] = useState<Badge>();
 
   useQuery(FETCH_BADGE, {
@@ -33,18 +31,18 @@ const BadgeDetailsPage = ({ slug }) => {
               {" "}
               {badgeDetail.title}{" "}
             </p>
-            <div className="grid grid-cols-2 space-x-4 mx-auto ">
+            <div className="grid grid-cols-2 mx-auto space-x-4 ">
               <div className="md:bg-blue-900">
                 <img
                   src={badgeDetail.image}
-                  className="object-contain md:w-full md:h-full  md:p-4 transition-all transform hover:animate-shake"
+                  className="object-contain transition-all transform md:w-full md:h-full md:p-4 hover:animate-shake"
                 />
               </div>
               <div>
-                <p className=" text-center  "> {badgeDetail.description} </p>
+                <p className="text-center "> {badgeDetail.description} </p>
               </div>
             </div>
-            <div className="space-y-8 py-4">
+            <div className="py-4 space-y-8">
               {" "}
               <ExpandableContainer open={false} title={"Getting Started"}>
                 <div className="px-8 mb-8 ">
@@ -55,7 +53,7 @@ const BadgeDetailsPage = ({ slug }) => {
                 </div>
               </ExpandableContainer>
               <ExpandableContainer open={false} title={"Resources"}>
-                <div className="px-8 mb-8  ">
+                <div className="px-8 mb-8 ">
                   <li className="">Helpful resource one</li>
                   <li>Helpful resource two</li>
                   <li>Helpful resource three</li>

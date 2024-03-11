@@ -1,8 +1,8 @@
 import Link from "next/link";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import { useSelector } from "react-redux";
-import { activePageSelector, SidebarPage } from "../../../redux/sidebarSlice";
-import { TooltipComponent } from "../../ui/TooltipComponent";
+import { SidebarPage, activePageSelector } from "../../../redux/sidebarSlice";
+import FreemiumDialogComponent from "./FreemiumDialogueComponent";
 interface FreemiumSidebarItemProps {
   name: string;
   link: string;
@@ -20,39 +20,80 @@ const FreemiumSidebarItem = ({
   isDisabled,
 }: FreemiumSidebarItemProps) => {
   const { activePage } = useSelector(activePageSelector);
-  const href = isDisabled ? "" : link;
-  const onClick = isDisabled ? (e) => e.preventDefault() : undefined;
+  const onClick = isDisabled
+    ? () => {
+        setIsModalOpen(true);
+      }
+    : undefined;
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
-      <TooltipComponent
-        message={"This is a premium feature."}
-        icon="../../images/freemium/info.svg"
-      >
-        <div>
-          <Link onClick={onClick} href={href}>
-            <div
-              className={`flex flex-wrap items-center p-4 cursor-pointer hover:border-l-4 ${
-                activePage === page ? "border-charmander text-charmander" : ""
-              } hover:border-charmander hover:text-charmander ${
-                isDisabled ? "border-gray-500 text-gray-500" : ""
-              }`}
-            >
-              <div>
-                {notifications ? (
-                  <div className="relative left-6 top-1 ">
-                    <div className="flex w-2 h-2 bg-red-500 rounded-full"></div>
-                  </div>
-                ) : null}
-                {icon}
-              </div>
-              {name}
+      <div>
+        {isDisabled ? (
+          <div onClick={onClick}>
+            <CoachLinkContent
+              activePage={activePage}
+              page={page}
+              isDisabled={isDisabled}
+              notifications={notifications}
+              icon={icon}
+              name={name}
+            />
+          </div>
+        ) : (
+          <Link href={link}>
+            <div>
+              <CoachLinkContent
+                activePage={activePage}
+                page={page}
+                isDisabled={isDisabled}
+                notifications={notifications}
+                icon={icon}
+                name={name}
+              />
             </div>
           </Link>
-        </div>
-      </TooltipComponent>
+        )}
+        {isModalOpen && (
+          <FreemiumDialogComponent
+            trigger={false}
+            onClose={() => setIsModalOpen(false)}
+          />
+        )}
+      </div>
     </>
   );
 };
 
+function CoachLinkContent({
+  activePage,
+  page,
+  isDisabled,
+  notifications,
+  icon,
+  name,
+}) {
+  return (
+    <div
+      className={`flex flex-wrap items-center p-4 cursor-pointer hover:border-l-4 ${
+        activePage === page ? "border-charmander text-charmander" : ""
+      }  ${
+        isDisabled
+          ? "border-gray-500 text-gray-500"
+          : " hover:border-charmander hover:text-charmander"
+      }`}
+    >
+      <div>
+        {notifications ? (
+          <div className="relative left-6 top-1 ">
+            <div className="flex w-2 h-2 bg-red-500 rounded-full"></div>
+          </div>
+        ) : null}
+        {icon}
+      </div>
+      {name}
+    </div>
+  );
+}
 export default FreemiumSidebarItem;

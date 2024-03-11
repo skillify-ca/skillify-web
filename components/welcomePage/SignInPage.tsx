@@ -1,22 +1,10 @@
-import { getRedirectResult } from "@firebase/auth";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React from "react";
 import { useAuth } from "../../lib/authContext";
-import { auth } from "../../lib/firebase";
 
 export default function SignInPage() {
   const { signIn, user } = useAuth();
   const router = useRouter();
-
-  useEffect(() => {
-    async function checkAuth() {
-      const result = await getRedirectResult(auth);
-      if (result && user) {
-        router.push("/studentPortal");
-      }
-    }
-    checkAuth();
-  }, []);
 
   return (
     <div className="flex flex-col bg-white">

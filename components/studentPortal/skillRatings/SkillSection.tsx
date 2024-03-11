@@ -11,7 +11,7 @@ export default function SkillSection({ skillSection }: SkillSectionProps) {
     <div>
       {skillSection && skillSection.length > 0 && (
         <div>
-          <div className="w-1/6 py-4 mt-4 text-center text-white rounded-full bg-murkrow">
+          <div className="py-4 mt-4 text-center text-white rounded-full bg-murkrow">
             {skillSection[0].unitName}
           </div>
           {skillSection.map((row) => {
