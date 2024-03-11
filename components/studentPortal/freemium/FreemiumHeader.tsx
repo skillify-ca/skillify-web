@@ -1,12 +1,6 @@
 import React, { useState } from "react";
-import {
-  calculateRemainingTrialDays,
-  elapsedDays,
-  TOTAL_TRIAL_DAYS,
-} from "../../../pages/api/studentPortal/freemium/helpers";
 import { Theme } from "../../../redux/themeSlice";
 import { Button } from "../../ui/Button";
-import ProgressComponent from "../../ui/ProgressComponent";
 import FreemiumDialogComponent from "./FreemiumDialogueComponent";
 
 export type FreemiumHeaderProps = {
@@ -48,22 +42,8 @@ export const FreemiumHeader = ({
         ) : null}
       </div>
       <div className="flex items-center justify-end col-span-3 pr-2 space-x-6">
-        <div className="hidden lg:block">
-          <p className="font-bold text-textPrimary">
-            Enjoying the Skillify Experience?
-          </p>
-          <ProgressComponent
-            currentValue={elapsedDays(createdAt)}
-            totalValue={TOTAL_TRIAL_DAYS}
-          />
-          <p className="mt-1 text-xs text-gray-500">
-            {calculateRemainingTrialDays(createdAt)}/{TOTAL_TRIAL_DAYS} days
-            remaining
-          </p>
-        </div>
-
         <Button
-          label="Upgrade Now!"
+          label="Join"
           onClick={(e) => {
             window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
             setIsModalOpen(true);

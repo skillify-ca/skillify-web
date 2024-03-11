@@ -2,6 +2,7 @@ import React from "react";
 import { UserProfileData } from "../../../graphql/studentPortal/profile/fetchUserProfile";
 
 import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "../../ui/Avatar";
 import JoinedDateComponent from "./JoinedDateComponent";
 
 export type UserProfileSectionProps = {
@@ -17,15 +18,10 @@ export default function UserProfileSection({
     <div className="flex items-center p-4 bg-backgroundSecondary rounded-xl ">
       {isEditable ? (
         <Link href="/studentPortal/profile/edit">
-          <div className="w-32 h-32 overflow-hidden cursor-pointer group">
-            <img
-              className="z-0 object-cover w-full h-full rounded-full shadow border-brandPrimary group-hover:opacity-40"
-              src={
-                userProfileData.profileImage ??
-                "/images/profile/user-avatar.png"
-              }
-            />
-          </div>
+          <Avatar className="w-16 h-16 border-2 bg-slate-300">
+            <AvatarImage src={userProfileData.profileImage} />
+            <AvatarFallback>{userProfileData.name.charAt(0)}</AvatarFallback>
+          </Avatar>
         </Link>
       ) : (
         <div>

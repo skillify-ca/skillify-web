@@ -5,7 +5,7 @@ export default function WhereToStart() {
     <div className="flex flex-col items-center justify-center space-x-8 md:flex-row text-start text-murkrow">
       <div className="flex flex-col w-full p-2 space-y-1 md:p-4 md:space-y-6 md:max-w-md">
         <h1 className="text-lg md:text-3xl font-bold md:mt-[-30px] mt-2 ">
-          Which Free Course Should You Start With?
+          Where Should I Start?
         </h1>
 
         <div className="w-full p-0 space-y-2 text-xs md:p-4 md:text-lg md:bg-mewtwo md:rounded-xl">

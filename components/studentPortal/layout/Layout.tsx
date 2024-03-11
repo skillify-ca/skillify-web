@@ -89,7 +89,7 @@ export const Layout: React.FC = ({ children }) => {
       <div className="flex">
         {/* Desktop Sidebar */}
         <div className="hidden h-full max-h-screen grid-cols-1 pt-16 overflow-auto border-r-2 w-96 lg:grid">
-          <Sidebar />
+          <Sidebar closeSidebar={() => setActive(false)} />
         </div>
         <div
           className={`overflow-auto pt-16 w-full max-h-screen h-full transition-all transform duration-500 ease-in-out grid grid-cols-1 bg-backgroundPrimary text-textPrimary`}
@@ -106,7 +106,7 @@ export const Layout: React.FC = ({ children }) => {
           active ? "left-0" : "-left-56"
         } h-full transition-all transform duration-500 ease-in-out bg-white dark:bg-gray-900 border-r-2`}
       >
-        <Sidebar />
+        <Sidebar closeSidebar={() => setActive(false)} />
       </div>
       {showOnboardingModal && <FreemiumDialogComponent trigger={false} />}
 

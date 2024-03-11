@@ -10,6 +10,7 @@ interface FreemiumSidebarItemProps {
   icon: ReactElement;
   notifications?: boolean;
   isDisabled: boolean;
+  closeSidebar: () => void;
 }
 const FreemiumSidebarItem = ({
   name,
@@ -18,10 +19,12 @@ const FreemiumSidebarItem = ({
   icon,
   notifications,
   isDisabled,
+  closeSidebar,
 }: FreemiumSidebarItemProps) => {
   const { activePage } = useSelector(activePageSelector);
   const onClick = isDisabled
     ? () => {
+        closeSidebar();
         setIsModalOpen(true);
       }
     : undefined;
@@ -43,7 +46,7 @@ const FreemiumSidebarItem = ({
           </div>
         ) : (
           <Link href={link}>
-            <div>
+            <div onClick={closeSidebar}>
               <CoachLinkContent
                 activePage={activePage}
                 page={page}
