@@ -1,3 +1,4 @@
+import React from "react";
 import LandingNavbar from "../components/landingPage/LandingNavbar";
 import PlansCard from "../components/studentPortal/freemium/PlansCard";
 
@@ -16,15 +17,15 @@ const Plans = (props: { planCardData: PlanCard[] }) => {
   return (
     <div>
       <LandingNavbar />
-      <div className="flex flex-col items-center justify-center space-y-2 py-8">
-        <h1 className="text-charmander text-4xl font-bold text-center mt-4">
+      <div className="flex flex-col items-center justify-center py-8 space-y-2">
+        <h1 className="mt-4 text-4xl font-bold text-center text-charmander">
           Pick the plan that is right for you
         </h1>
-        <p className="font-bold text-xl">Reserve your spot today!</p>
+        <p className="text-xl font-bold">Reserve your spot today!</p>
       </div>
       <div className="flex flex-wrap justify-center my-16 space-x-0 align-items-stretch md:space-x-10">
         {planCardData.map((card, index) => (
-          <div className="mb-16 last:mb-0 sm:mb-0">
+          <div key={card.title} className="mb-16 last:mb-0 sm:mb-0">
             <PlansCard key={index} planCard={card} />
           </div>
         ))}
@@ -37,23 +38,24 @@ export async function getServerSideProps() {
   const planCardData: PlanCard[] = [
     {
       planName: "freeTrial",
-      title: "Free 14-Day Trial",
+      title: "Free",
       description: "No credit card required",
       price: "$0",
-      buttonLabel: "Sign Up",
+      buttonLabel: "Start Learning",
       planCardRow: [
         {
           icon: "../../images/freemium/greenCheck.svg",
-          description: "Two weeks access to our Coding Basics course",
+          description: "Unlimited access to our Coding Basics course",
         },
         {
           icon: "../../images/freemium/greenCheck.svg",
           description:
-            "Two weeks access to the first section of our Web Development course",
+            "Unlimited access to the first section of our Web Development course",
         },
         {
           icon: "../../images/freemium/greenCheck.svg",
-          description: "Personalized feedback on ONE assignment",
+          description:
+            "Personalized feedback on ONE website assignment or project",
         },
         {
           icon: "../../images/freemium/redX.svg",
@@ -62,7 +64,8 @@ export async function getServerSideProps() {
         },
         {
           icon: "../../images/freemium/redX.svg",
-          description: "1 on 1 mentorship and small group coaching",
+          description:
+            "1-on-1 mentorship, student community and small group coaching",
         },
         {
           icon: "../../images/freemium/redX.svg",
@@ -73,8 +76,8 @@ export async function getServerSideProps() {
     {
       planName: "premium",
       title: "Premium",
-      description: "Contact us for pricing",
-      price: "Custom",
+      description: "Contact us to learn more. Limited scholarships available.",
+      price: "$6000 / semester",
       buttonLabel: "Book a Call",
       planCardRow: [
         {
@@ -96,7 +99,8 @@ export async function getServerSideProps() {
         },
         {
           icon: "../../images/freemium/greenCheck.svg",
-          description: "1 on 1 mentorship and small group coaching",
+          description:
+            "1-on-1 mentorship, student community and small group coaching",
         },
         {
           icon: "../../images/freemium/greenCheck.svg",

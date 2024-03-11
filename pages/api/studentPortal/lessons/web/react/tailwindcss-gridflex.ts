@@ -106,8 +106,8 @@ const lessonComponents: LessonComponentData[] = [
       ],
     },
   ];
-
-  return {lessonComponents};
+  const nextSlug="react/tailwindcss-colourstyling"
+  return {lessonComponents, nextSlug};
 }
 
   export default async (req: NextApiRequest, res: NextApiResponse) => {

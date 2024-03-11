@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   calculateRemainingTrialDays,
   elapsedDays,
@@ -7,6 +7,7 @@ import {
 import { Theme } from "../../../redux/themeSlice";
 import { Button } from "../../ui/Button";
 import ProgressComponent from "../../ui/ProgressComponent";
+import FreemiumDialogComponent from "./FreemiumDialogueComponent";
 
 export type FreemiumHeaderProps = {
   handleMenuIconClick: () => void;
@@ -20,11 +21,13 @@ export const FreemiumHeader = ({
   theme = Theme.DEFAULT,
   createdAt,
 }: FreemiumHeaderProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="grid w-full h-16 grid-cols-7 border-b-2 bg-backgroundPrimary">
       <div
         onClick={handleMenuIconClick}
-        className="flex md:hidden items-center pl-4"
+        className="flex items-center pl-4 md:hidden"
       >
         <div className="cursor-pointer text-textPrimary lg:hidden">
           <svg
@@ -37,14 +40,14 @@ export const FreemiumHeader = ({
           </svg>
         </div>
       </div>
-      <div className="md:col-span-3 col-span-2 flex items-center pl-4">
+      <div className="flex items-center col-span-2 pl-4 md:col-span-3">
         {theme === Theme.DEFAULT ? (
           <img className="w-48 h-8 " src="/images/logo.svg" />
         ) : theme === Theme.DRACULA ? (
           <img className="w-48 h-8" src="/images/logo-dark.svg" />
         ) : null}
       </div>
-      <div className="col-span-3 flex items-center justify-end space-x-6 pr-2">
+      <div className="flex items-center justify-end col-span-3 pr-2 space-x-6">
         <div className="hidden lg:block">
           <p className="font-bold text-textPrimary">
             Enjoying the Skillify Experience?
@@ -53,19 +56,26 @@ export const FreemiumHeader = ({
             currentValue={elapsedDays(createdAt)}
             totalValue={TOTAL_TRIAL_DAYS}
           />
-          <p className="text-xs mt-1 text-gray-500">
+          <p className="mt-1 text-xs text-gray-500">
             {calculateRemainingTrialDays(createdAt)}/{TOTAL_TRIAL_DAYS} days
             remaining
           </p>
         </div>
-        <a href="https://www.joinskillify.com/call">
-          <Button
-            label="Apply Now!"
-            onClick={(e) =>
-              window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
-            }
+
+        <Button
+          label="Upgrade Now!"
+          onClick={(e) => {
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+            setIsModalOpen(true);
+          }}
+        />
+        {isModalOpen && (
+          <FreemiumDialogComponent
+            trigger={false}
+            onClose={() => setIsModalOpen(false)}
+            startOnUpgradeModal={true}
           />
-        </a>
+        )}
       </div>
       <div
         onClick={handleToggleClick}

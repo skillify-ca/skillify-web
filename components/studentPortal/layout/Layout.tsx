@@ -27,7 +27,7 @@ export const Layout: React.FC = ({ children }) => {
   const goalDateThreshold = format(addDays(new Date(), 7), "MM/dd/yyyy");
   const {} = useQuery<FetchGoalCountResponse>(FETCH_USER_GOALS_COUNT, {
     variables: {
-      userId: user.uid,
+      userId: user?.uid,
       goalDateThreshold: goalDateThreshold,
     },
     onCompleted: (data) => {
@@ -41,7 +41,7 @@ export const Layout: React.FC = ({ children }) => {
   });
 
   const { showOnboardingModal, showExitModal } = useLastSeenModal(
-    user.uid,
+    user?.uid,
     userRole,
     createdAt
   );
@@ -102,7 +102,7 @@ export const Layout: React.FC = ({ children }) => {
 
       {/* Mobile Sidebar */}
       <div
-        className={`fixed z-10 w-56 top-16 lg:hidden ${
+        className={`fixed z-10 w-56 top-16 lg:hidden overflow-auto ${
           active ? "left-0" : "-left-56"
         } h-full transition-all transform duration-500 ease-in-out bg-white dark:bg-gray-900 border-r-2`}
       >

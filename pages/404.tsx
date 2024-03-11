@@ -1,3 +1,4 @@
+import React from "react";
 import Header404 from "../components/notFound/Header404";
 
 const FourOhFour = () => {
@@ -9,3 +10,5 @@ const FourOhFour = () => {
 };
 
 export default FourOhFour;
+
+FourOhFour.auth = true;

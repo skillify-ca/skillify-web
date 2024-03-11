@@ -15,7 +15,7 @@ export const QuizTransition: React.FC<{
       duration: 200,
       ease: "easeInOut",
     },
-    opacity: animationComplete ? 1 : 0,
+    opacity: animationComplete ? 0.75 : 0,
     onRest: () => {
       setAnimationComplete(true);
     },

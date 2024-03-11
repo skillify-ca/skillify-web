@@ -49,7 +49,7 @@ module.exports = {
           transparent: "#000000e1",
           500: "#000000",
         },
-        mewtwo: "#E2E3FB"
+        mewtwo: "#E2E3FB",
       },
 
       backgroundImage: (theme) => ({
@@ -132,16 +132,20 @@ module.exports = {
           to: { opacity: 1, transform: "translate(-50%, -50%) scale(1)" },
         },
         iconPulse: {
-          '0%': { transform: 'scale(1)' },
-          '50%': { transform: 'scale(1.5)' },
-          '100%': { transform: 'scale(1)' },
-        },        
+          "0%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.5)" },
+          "100%": { transform: "scale(1)" },
+        },
       },
       outline: {
         black: "2px solid #000000",
       },
       primary: "#4495f0",
       secondary: "#ff8e4f",
+      transitionProperty: {
+        height: "height",
+        spacing: "margin, padding",
+      },
     },
     animation: {
       slideDownAndFade: "slideDownAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)",
@@ -267,5 +271,6 @@ module.exports = {
   plugins: [
     require("tailwindcss-hero-patterns"),
     require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/line-clamp"),
   ],
 };

@@ -1,3 +1,4 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import { QuizViewState } from "../../../../../components/resources/quizzes/shared/types";
 
 export const quizData: QuizViewState = {
@@ -338,4 +339,10 @@ export const quizResultsData: { [key: string]: QuizResultData } = {
     alt: "Quality Assurance",
     career: "Quality Assurance",
   },
+};
+
+// Define the route handler function
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  // Add router to careerQuiz quiz data
+  return res.status(200).json(quizData);
 };
