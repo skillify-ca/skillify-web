@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { UserProjectData } from "../../../graphql/studentPortal/profile/fetchUserProjects";
 import { Button } from "../../ui/Button";
@@ -45,6 +46,12 @@ export default function ProjectsSection({
           })}
         </div>
       )}
+      {/* this should be displayed only if the user is on their own profile page */}
+      <Link href={"/profile/sideProjectHub/addProject"}>
+        <div className="absolute flex items-center justify-center w-8 h-8 text-3xl text-center text-white rounded-full shadow cursor-pointer top-1 right-1 bg-brandPrimary hover:bg-pikachu-500">
+          +
+        </div>
+      </Link>
     </>
   );
 }
