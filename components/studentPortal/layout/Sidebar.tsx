@@ -233,7 +233,7 @@ export const Sidebar: React.FC = () => {
             </Link>
           </div>
 
-          {userRole === "student" ? (
+          {userRole === "student" || userRole === "coach" ? (
             <ExperimentalSidebarSection userRole={userRole} />
           ) : null}
           {userRole === "coach" ? (
