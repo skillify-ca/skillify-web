@@ -31,8 +31,6 @@
     "@radix-ui/react-progress": "^1.0.1",
     "@radix-ui/react-tooltip": "^1.0.3",
     "@react-spring/web": "^9.6.1",
-    "@react-three/drei": "^7.27.5",
-    "@react-three/fiber": "^7.0.25",
     "@reduxjs/toolkit": "^1.5.1",
     "@sanity/client": "^3.4.1",
     "@sendgrid/mail": "^7.6.0",
@@ -80,7 +78,6 @@
     "react-simple-hook-modal": "^1.1.0",
     "react-slick": "^0.28.1",
     "react-spring": "^9.2.3",
-    "react-three-fiber": "^6.0.13",
     "react-transition-group": "^4.4.2",
     "react-use-firework": "^1.0.2",
     "react-use-measure": "^2.1.1",
@@ -88,7 +85,6 @@
     "slick-carousel": "^1.8.1",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-hero-patterns": "0.0.1",
-    "three": "^0.130.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
