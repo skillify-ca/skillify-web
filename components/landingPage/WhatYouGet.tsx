@@ -116,7 +116,7 @@ function FeaturesSection({
         {features.map((item, index) => (
           <div key={index} className="flex flex-col m-4">
             <p className="text-xl font-bold ">{item.title}</p>
-            <p className="mb-2 text-xl text-charmander">({item.value})</p>
+            {/* <p className="mb-2 text-xl text-charmander">({item.value})</p> */}
             <Description description={item.description} />
             {/* <p className="mb-2 text-xl ">{item.description}</p> */}
           </div>

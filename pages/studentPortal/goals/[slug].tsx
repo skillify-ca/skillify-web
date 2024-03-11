@@ -10,15 +10,16 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { Button } from "../../../components/ui/Button";
 import {
-  FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
   FETCH_USER_GOAL_DETAIL,
+  FetchUserGoalsDataResponse,
   UserGoalsData,
 } from "../../../graphql/studentPortal/goals/fetchUserGoals";
 import { FETCH_USER_GOALS_COUNT } from "../../../graphql/studentPortal/goals/fetchUserGoalsCount";
 import { REMOVE_USER_GOAL } from "../../../graphql/studentPortal/goals/removeUserGoal";
 import { UPSERT_USER_GOALS } from "../../../graphql/studentPortal/goals/upsertUserGoals";
 import { useAuth } from "../../../lib/authContext";
+import { GOAL_CHAR_LIMIT } from "./addGoal";
 
 const EditGoalsPage = () => {
   const { user } = useAuth();
@@ -82,9 +83,9 @@ const EditGoalsPage = () => {
               }}
             />
 
-            {editedGoalValues.goalName.length > 60 && (
+            {editedGoalValues.goalName.length > GOAL_CHAR_LIMIT && (
               <p className="text-xs text-red-600">
-                please keep your goal under 60 characters
+                please keep your goal under {GOAL_CHAR_LIMIT} characters
               </p>
             )}
             <div className="flex">

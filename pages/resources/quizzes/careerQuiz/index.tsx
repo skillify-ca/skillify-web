@@ -1,5 +1,6 @@
 import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
+import LandingNavbar from "../../../../components/landingPage/LandingNavbar";
 import CareerResults from "../../../../components/resources/quizzes/careerQuiz/CareerResults";
 import EduBackground from "../../../../components/resources/quizzes/careerQuiz/EduBackground";
 import BluePrint from "../../../../components/resources/quizzes/shared/BluePrint";
@@ -13,6 +14,7 @@ import QuizTransition from "../../../../components/ui/animations/QuizTransition"
 import { INSERT_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/insertCareer";
 import { UPDATE_CAREER_QUIZ_RESPONSE } from "../../../../graphql/quizzes/updateCareer";
 import { UPDATE_CAREER_QUIZ_EDUCATION_RESPONSE } from "../../../../graphql/quizzes/updateCareerEducation";
+import { logToSlack } from "../../../api/slack/slackLogger";
 import { quizData } from "../../../api/studentPortal/quizzes/careerQuiz/careerQuiz";
 import ComputeCareerResult from "../../../api/studentPortal/quizzes/careerQuiz/computeCareerResults";
 
@@ -90,6 +92,10 @@ const CareerQuiz = () => {
       createQuizResponse({
         variables: { name: userInput.name, email: userInput.email },
       });
+
+      logToSlack(
+        `New Career Quiz Response: ${userInput.name} - ${userInput.email}`
+      );
     } else if (stage === Stage.EDUCATION) {
       saveEducationInputs({
         variables: {
@@ -283,7 +289,14 @@ const CareerQuiz = () => {
 export default CareerQuiz;
 
 function getLayout(page: React.ReactNode) {
-  return <div>{page}</div>;
+  return (
+    <div className="flex flex-col items-center h-screen  theme-default">
+      <LandingNavbar />
+      <div className="flex justify-center w-full h-screen max-w-xl bg-white ">
+        {page}
+      </div>
+    </div>
+  );
 }
 
 CareerQuiz.getLayout = getLayout;

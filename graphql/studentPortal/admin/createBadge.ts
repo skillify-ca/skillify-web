@@ -5,17 +5,9 @@ export const CREATE_CODING_BADGE = gql`
     $title: String = ""
     $description: String = ""
     $image: String = ""
-    $unitId: Int = 0
   ) {
     insert_coding_badges(
-      objects: [
-        {
-          title: $title
-          description: $description
-          image: $image
-          intro_course_unit_id: $unitId
-        }
-      ]
+      objects: [{ title: $title, description: $description, image: $image }]
     ) {
       returning {
         id

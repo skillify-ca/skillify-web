@@ -92,7 +92,9 @@ const lessonComponents: LessonComponentData[] = [
         "https://codesandbox.io/embed/usestate-example-yzm4k5?fontsize=14&hidenavigation=1&theme=dark",
     },
   ];
-  return {lessonComponents};
+
+  const nextSlug = "react/useeffect"
+  return {lessonComponents, nextSlug};
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {

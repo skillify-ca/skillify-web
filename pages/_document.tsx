@@ -22,13 +22,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>{"Skillify"}</title>
-          <meta
-            name="description"
-            content={
-              "Toronto's best coding academy for online learning! We teach high demand skills to help you get hired in the tech industry."
-            }
-          />
           <meta property="og:title" content={"Skillify"} />
           <meta
             property="og:image"

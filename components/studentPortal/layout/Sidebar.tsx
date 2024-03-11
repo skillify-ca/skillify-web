@@ -8,6 +8,7 @@ import {
   FetchRoleData,
 } from "../../../graphql/studentPortal/users/fetchUserRole";
 import { useAuth } from "../../../lib/authContext";
+import { fetchProfilePicture } from "../../../pages/api/studentPortal/profile/profilePicturesClient";
 import {
   profileSelector,
   setCreatedAt,
@@ -19,7 +20,7 @@ import ReactIcon from "../../ui/ReactIcon";
 import FreemiumSidebarHeader from "../freemium/FreemiumSidebarHeader";
 import FreemiumSidebarItem from "../freemium/FreemiumSidebarItem";
 import PaidSidebarHeader from "../freemium/PaidSidebarHeader";
-import SkillifyCommandPalette from "./CommandPalette";
+import ExperimentalSidebarSection from "./ExperimentalSidebarSection";
 import SidebarItem, { SidebarItemProps } from "./SidebarItem";
 
 export const Sidebar: React.FC = () => {
@@ -29,22 +30,26 @@ export const Sidebar: React.FC = () => {
   const { signOut, user } = useAuth();
   const [isDisabled, setIsDisabled] = useState(false);
 
-  const {} = useQuery<FetchRoleData>(FETCH_USER_ROLE, {
+  const [userProfileImage, setUserProfileImage] = useState<string>("");
+
+  useQuery<FetchRoleData>(FETCH_USER_ROLE, {
     variables: {
-      _id: user.uid,
+      _id: user?.uid,
     },
     onCompleted: (data) => {
-      if (data.users[0].userRole.value === "coach") {
-        dispatch(setUserRole("coach"));
-      } else if (data.users[0].userRole.value === "student") {
-        dispatch(setUserRole("student"));
-      } else if (data.users[0].userRole.value === "paid") {
-        dispatch(setUserRole("paid"));
-        setIsDisabled(true);
-      } else if (data.users[0].userRole.value === "freemium") {
-        dispatch(setCreatedAt(data.users[0].created_at));
-        dispatch(setUserRole("freemium"));
-        setIsDisabled(true);
+      if (data && data.users) {
+        if (data.users[0].userRole.value === "coach") {
+          dispatch(setUserRole("coach"));
+        } else if (data.users[0].userRole.value === "student") {
+          dispatch(setUserRole("student"));
+        } else if (data.users[0].userRole.value === "paid") {
+          dispatch(setUserRole("paid"));
+          setIsDisabled(true);
+        } else if (data.users[0].userRole.value === "freemium") {
+          dispatch(setCreatedAt(data.users[0].created_at));
+          dispatch(setUserRole("freemium"));
+          setIsDisabled(true);
+        }
       }
     },
     fetchPolicy: "cache-and-network",
@@ -71,6 +76,19 @@ export const Sidebar: React.FC = () => {
       dispatch(setActivePage("dashboard"));
     }
   }, [router.pathname]);
+
+  useEffect(() => {
+    if (user) {
+      fetchProfilePicture(user.uid).then((imageUrl) => {
+        if (imageUrl !== null) {
+          setUserProfileImage(imageUrl);
+        } else {
+          // If no profile picture, use the one from Google
+          setUserProfileImage(user.photoURL);
+        }
+      });
+    }
+  }, [user]);
 
   const sideBarItemsData: SidebarItemProps[] = [
     {
@@ -103,11 +121,11 @@ export const Sidebar: React.FC = () => {
           <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
         </svg>
       ),
-      isDisabled: userRole === "paid" ? false : isDisabled,
+      isDisabled: userRole === "freemium" ? true : isDisabled,
     },
     {
       name: "Profile",
-      link: `/profile/${user.uid}`,
+      link: `/profile/${user?.uid}`,
       page: "profile",
       icon: (
         <svg
@@ -138,47 +156,11 @@ export const Sidebar: React.FC = () => {
       ),
       isDisabled: isDisabled,
     },
-    {
-      name: "Workshops",
-      link: "/studentPortal/workshops",
-      page: "workshops",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-6 h-6 mr-4"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
-        </svg>
-      ),
-      isDisabled: isDisabled,
-    },
-    {
-      name: "Admin",
-      link: "/studentPortal/admin",
-      page: "admin",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="w-6 h-6 mr-4"
-        >
-          <path
-            fillRule="evenodd"
-            d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
-            clipRule="evenodd"
-          />
-        </svg>
-      ),
-      isDisabled: isDisabled,
-    },
   ];
 
   return (
     //Full width then restrict in page
-    <div className="flex flex-col w-full bg-backgroundPrimary text-textPrimary">
+    <div className="flex flex-col w-full overflow-auto bg-backgroundPrimary text-textPrimary">
       <div className="grid">
         {user && userRole === "freemium" ? (
           <FreemiumSidebarHeader createdAt={createdAt} />
@@ -188,8 +170,8 @@ export const Sidebar: React.FC = () => {
           <div className="flex p-4">
             {user && (
               <img
-                className="w-12 h-12 rounded-full"
-                src={user.photoURL}
+                className="w-16 h-16 rounded-full"
+                src={userProfileImage}
                 alt=""
               />
             )}
@@ -201,13 +183,14 @@ export const Sidebar: React.FC = () => {
             )}
           </div>
         )}
-        {sideBarItemsData.map((it, index) => {
+        {sideBarItemsData.map((it) => {
           if (it.name === "Admin" && userRole !== "coach") {
             return null;
           } else {
             if (userRole && (userRole === "paid" || userRole === "freemium")) {
               return (
                 <FreemiumSidebarItem
+                  key={it.name}
                   name={it.name}
                   notifications={it.notifications}
                   link={it.link}
@@ -219,6 +202,7 @@ export const Sidebar: React.FC = () => {
             } else {
               return (
                 <SidebarItem
+                  key={it.name}
                   name={it.name}
                   notifications={it.notifications}
                   link={it.link}
@@ -230,7 +214,6 @@ export const Sidebar: React.FC = () => {
             }
           }
         })}
-        <SkillifyCommandPalette />
         <div>
           <div className="flex items-center justify-between p-4 ">
             <p className="font-bold">Courses</p>
@@ -249,22 +232,45 @@ export const Sidebar: React.FC = () => {
               </div>
             </Link>
           </div>
+
+          {userRole === "student" ? (
+            <ExperimentalSidebarSection userRole={userRole} />
+          ) : null}
+          {userRole === "coach" ? (
+            <Link href="/studentPortal/admin">
+              <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-6 h-6 mr-4"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <p>Admin</p>
+              </div>
+            </Link>
+          ) : null}
         </div>
-      </div>
-      <div
-        className="flex flex-wrap p-4 cursor-pointer hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800"
-        onClick={signOut}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-6 h-6 mr-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+        <div
+          className="flex flex-wrap p-4 mb-16 cursor-pointer hover:text-charmander hover:bg-yellow-50 dark:hover:bg-gray-800"
+          onClick={signOut}
         >
-          <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-        </svg>
-        Logout
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6 mr-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          Logout
+        </div>
       </div>
     </div>
   );

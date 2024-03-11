@@ -38,7 +38,9 @@ export default function GoalsSection({
           <p className="col-span-2 md:col-span-4">Goal</p>
           <p className="hidden md:block md:col-span-2">Date Added</p>
           <p className="font-semibold md:col-span-2">Target Date</p>
-          <p className="hidden md:block md:col-span-2">Days Remaining</p>
+          {sectionName === "Current" && (
+            <p className="hidden md:block md:col-span-2">Days Remaining</p>
+          )}
         </div>
       )}
 
@@ -61,9 +63,14 @@ export default function GoalsSection({
             <p className="col-span-1 md:hidden">
               {format(new Date(goal.targetDate), "MM/dd")}
             </p>
-            <p className="hidden md:block md:col-span-2">
-              {differenceInCalendarDays(new Date(goal.targetDate), new Date())}
-            </p>
+            {sectionName === "Current" && (
+              <p className="hidden md:block md:col-span-2">
+                {differenceInCalendarDays(
+                  new Date(goal.targetDate),
+                  new Date()
+                )}
+              </p>
+            )}
             <Link href={"/studentPortal/goals/" + goal.id}>
               <PencilAltIcon className="w-5 h-5 cursor-pointer hover:text-yellow-600" />
             </Link>
