@@ -1,4 +1,4 @@
-import { PlayIcon, StarIcon } from "@heroicons/react/outline";
+import { CogIcon, PlayIcon, StarIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import React from "react";
 import SkillifyCommandPalette from "./CommandPalette";
@@ -52,6 +52,12 @@ function ExperimentalSidebarSection({ userRole }) {
             <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
           </svg>
           <p>Workshops</p>
+        </div>
+      </Link>
+      <Link href="/resources/mockInterview">
+        <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
+          <CogIcon className="w-6 mr-4" />
+          <p>Mock Interview Bot</p>
         </div>
       </Link>
     </div>
