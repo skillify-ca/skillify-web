@@ -89,7 +89,7 @@ export default function StudentPortalPage() {
           )}
         </div>
       </div>
-      <div className="hidden col-span-4 overflow-y-auto sm:flex">
+      <div className="hidden col-span-4 overflow-y-auto lg:flex">
         <GoalsFeed />
       </div>
     </div>

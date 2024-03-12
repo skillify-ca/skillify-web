@@ -81,7 +81,7 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       type="button"
       onClick={disabled ? null : onClick}
-      className={`bg-gradient-to-b px-4 font-bold border-b-4 rounded-lg ${
+      className={`max-w-full bg-gradient-to-b px-4 font-bold border-b-4 rounded-lg ${
         size === "large" ? "w-48 py-4 h-16" : "w-36 py-2 h-12"
       } 
       ${disabled ? "bg-gray-400" : backgroundStyles}

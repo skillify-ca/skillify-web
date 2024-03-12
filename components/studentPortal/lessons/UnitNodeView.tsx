@@ -22,49 +22,41 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
   const active = !completed && !locked;
 
   return (
-    <div className="">
+    <div className="grid grid-cols-12 h-36">
       <div
         className={`
-        ${completed ? "ml-5 md:ml-2" : ""}
+        col-span-12 grid grid-cols-12 h-20
         ${
           locked
-            ? "ml-5 md:ml-2"
+            ? ""
             : "hover:bg-backgroundSecondary hover:shadow-lg hover:py-4 transform transition-all"
-        } ${
-          active
-            ? "px-4 md:px-0 py-4 border-2 flex flex-col sm:grid sm:grid-cols-12 bg-backgroundPrimary"
-            : "grid grid-cols-12"
-        }  `}
+        } ${active ? "border-2 shadow bg-backgroundPrimary" : ""}  `}
       >
-        <div className="flex flex-col col-span-2 md:items-center">
-          <div className="flex rounded-full">
-            {<NodeIcon completed={completed} locked={locked} type={type} />}{" "}
-          </div>
+        <div className="flex flex-col items-center justify-center col-span-2 ">
+          {<NodeIcon completed={completed} locked={locked} type={type} />}{" "}
         </div>
-        <div className="flex flex-col justify-center w-full col-span-10 sm:ml-0 sm:col-span-6">
+        <div className="flex flex-col justify-center w-full col-span-6">
           <p className="">{title}</p>
           <p className="">{description}</p>
         </div>
         <div
           className={`${
             active ? "" : "hidden"
-          } flex flex-col col-span-4 justify-center sm:mr-4`}
+          } flex flex-col col-span-4 justify-center`}
         >
           <Button label="Continue" />
         </div>
       </div>
-      <div className="grid grid-cols-12">
+      <div
+        className={`${
+          hiddenLine ? "hidden" : ""
+        } col-span-2  flex flex-col items-center w-full`}
+      >
         <div
-          className={`${
-            hiddenLine ? "hidden" : ""
-          } flex flex-col items-center col-span-2 w-full`}
-        >
-          <div
-            className={`h-16 w-1 ml-4 ${
-              completed ? "bg-bulbasaur-500" : "bg-gray-500"
-            }`}
-          />
-        </div>
+          className={`h-16 w-1 ${
+            completed ? "bg-bulbasaur-500" : "bg-gray-500"
+          }`}
+        />
       </div>
     </div>
   );
