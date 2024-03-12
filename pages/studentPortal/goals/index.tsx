@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import GoalsSectionComponent from "../../../components/studentPortal/goals/GoalsSectionComponent";
 import { Button } from "../../../components/ui/Button";
 import {
-  FetchUserGoalsDataResponse,
   FETCH_USER_GOALS,
+  FetchUserGoalsDataResponse,
 } from "../../../graphql/studentPortal/goals/fetchUserGoals";
 import { useAuth } from "../../../lib/authContext";
 import {
@@ -60,7 +60,12 @@ export default function Goals(props) {
   return (
     <div className="flex flex-col p-4 m-4 overflow-auto bg-scroll">
       <div>
-        <div className="mb-8">
+        <div className="flex flex-col p-4 mb-8 bg-slate-100">
+          <h2 className="text-xl font-bold">Create a goal</h2>
+          <p className="mt-2 mb-4">
+            Did you know that you can double your chances of achieving a goal
+            just by writing it down somewhere?
+          </p>
           <Button
             label={"Create Goal"}
             onClick={() => {
@@ -68,6 +73,7 @@ export default function Goals(props) {
             }}
           />
         </div>
+
         {goalsSections.map((section) => {
           return (
             <div
@@ -90,5 +96,3 @@ export default function Goals(props) {
     </div>
   );
 }
-
-Goals.auth = true;
