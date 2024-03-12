@@ -4,7 +4,7 @@ import LessonComponent, {
   LessonComponentData,
 } from "../../../../components/studentPortal/lessons/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
-import { getCourseForWebSection } from "../../../api/studentPortal/lessons/web";
+import { getCourseForWebSection } from "../../../api/studentPortal/courses/web";
 import LessonPage from "../../intro/[...slug]";
 
 const React2 = (props: { lessonComponents: LessonComponentData[] }) => {

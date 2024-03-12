@@ -24,14 +24,12 @@ export const FreemiumMessageNodeView: React.FC<FreemiumMessageNodeViewProps> =
             <FreemiumMessage />
           </div>
           <div className={`flex flex-col col-span-4 justify-center sm:mr-4`}>
-            <a href="https://www.joinskillify.com/call">
-              <Button
-                label="Apply Now!"
-                onClick={(e) =>
-                  window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
-                }
-              />
-            </a>
+            <Button
+              label="Join Now!"
+              onClick={(e) =>
+                window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+              }
+            />
           </div>
         </div>
         <div className="grid grid-cols-12">

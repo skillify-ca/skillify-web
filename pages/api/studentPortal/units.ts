@@ -2,8 +2,6 @@ export type UnitNode =
   | {
       title: string;
       description: string;
-      completed: boolean;
-      locked: boolean;
       link: string;
       type: "lesson" | "quiz" | "assignment";
     }
@@ -19,7 +17,170 @@ export interface Unit {
   nodes: UnitNode[];
 }
 
+type Course = {
+  title: string;
+  units: Unit[];
+};
+
 // Database Layer
+export const codingBasicsCourse: Course = {
+  title: "Coding Basics",
+  units: [
+    {
+      title: "Introduction",
+      nodes: [
+        {
+          type: "lesson",
+          title: "Introduction",
+          description: "",
+          link: "/intro/introduction",
+        },
+      ],
+    },
+    {
+      title: "HTML",
+      nodes: [
+        {
+          type: "lesson",
+          title: "HTML Lesson",
+          description: "",
+          link: "/intro/HTML/1",
+        },
+        {
+          type: "quiz",
+          title: "HTML Quiz",
+          description: "",
+          link: "/intro/HTML/2",
+        },
+        {
+          type: "assignment",
+          title: "HTML Assignment",
+          description: "",
+          link: "/intro/HTML/3",
+        },
+      ],
+    },
+    {
+      title: "CSS",
+      nodes: [
+        {
+          type: "lesson",
+          title: "CSS Lesson",
+          description: "",
+          link: "/intro/CSS/1",
+        },
+        {
+          type: "lesson",
+          title: "CSS Grid",
+          description: "",
+          link: "/intro/CSS/2-Grid",
+        },
+        {
+          type: "lesson",
+          title: "CSS Flexbox",
+          description: "",
+          link: "/intro/CSS/2-Flexbox",
+        },
+        {
+          type: "quiz",
+          title: "CSS Quiz",
+          description: "",
+          link: "/intro/CSS/4",
+        },
+        {
+          type: "assignment",
+          title: "CSS Assignment",
+          description: "",
+          link: "/intro/CSS/6",
+        },
+      ],
+    },
+    {
+      title: "JavaScript",
+      nodes: [
+        {
+          type: "lesson",
+          title: "JavaScript Introduction",
+          description: "",
+          link: "intro/Javascript/1",
+        },
+        {
+          type: "lesson",
+          title: "JavaScript Variables",
+          description: "",
+          link: "intro/Javascript/Variables",
+        },
+        {
+          type: "lesson",
+          title: "JavaScript Functions",
+          description: "",
+          link: "intro/Javascript/Functions",
+        },
+        {
+          type: "lesson",
+          title: "JavaScript Conditionals",
+          description: "",
+          link: "intro/Javascript/Conditionals",
+        },
+        {
+          type: "quiz",
+          title: "JavaScript Quiz 1",
+          description: "",
+          link: "intro/Javascript/JSQuiz1",
+        },
+        {
+          type: "lesson",
+          title: "JavaScript Arrays",
+          description: "",
+          link: "intro/Javascript/Array",
+        },
+        {
+          type: "lesson",
+          title: "JavaScript Loops",
+          description: "",
+          link: "intro/Javascript/Loops",
+        },
+        {
+          type: "lesson",
+          title: "JavaScript Objects",
+          description: "",
+          link: "intro/Javascript/Objects",
+        },
+        {
+          type: "lesson",
+          title: "JavaScript Iterators",
+          description: "",
+          link: "intro/Javascript/Iterators",
+        },
+        {
+          type: "quiz",
+          title: "JavaScript Quiz 2",
+          description: "",
+          link: "intro/Javascript/JSQuiz2",
+        },
+        {
+          type: "assignment",
+          title: "Pokemon Assignment",
+          description: "",
+          link: "intro/Javascript/pokemon/self-ranking",
+        },
+        {
+          type: "assignment",
+          title: "NBA Assignment",
+          description: "",
+          link: "intro/Javascript/sports/introduction",
+        },
+        {
+          type: "lesson",
+          title: "JavaScript Summary",
+          description: "",
+          link: "intro/Javascript/summary",
+        },
+      ],
+    },
+  ],
+};
+
 export const webIntroUnit: Unit = {
   title: "Introduction",
   nodes: [
@@ -27,8 +188,6 @@ export const webIntroUnit: Unit = {
       title: "Lesson",
       description: "Intro to Web Development",
       type: "lesson",
-      completed: false,
-      locked: false,
       link: "web/introduction",
     },
   ],
@@ -40,8 +199,6 @@ export const githubUnit: Unit = {
     {
       title: "Lesson",
       description: "Deploying a Project on Github & Vercel",
-      completed: false,
-      locked: false,
       link: "web/React/github",
       type: "lesson",
     },
@@ -54,26 +211,23 @@ export const tailwindUnit: Unit = {
     {
       title: "Lesson",
       description: "TailwindCSS - Grid & Flexbox",
-      completed: false,
-      locked: false,
+
       link: "web/React/tailwindcss-gridflex",
       type: "lesson",
     },
     {
       title: "Lesson",
       description: "TailwindCSS - General Styling",
-      completed: false,
-      locked: false,
+
       link: "web/React/tailwindcss-colourstyling",
       type: "lesson",
     },
     {
       title: "Assignment 1",
       description: "TailwindCSS Assignment",
-      completed: false,
-      locked: false,
+
       link: "web/React/assignments/tailwindAssignment",
-      type: "lesson",
+      type: "assignment",
     },
   ],
 };
@@ -84,81 +238,71 @@ export const reactUnit: Unit = {
     {
       title: "Lesson",
       description: "Components",
-      completed: false,
-      locked: false,
+
       link: "web/React/components",
       type: "lesson",
     },
     {
       title: "Lesson",
       description: "Props",
-      completed: false,
-      locked: false,
+
       link: "web/React/props",
       type: "lesson",
     },
     {
       title: "Assignment 2",
       description: "Components and Props",
-      completed: false,
-      locked: false,
+
       link: "web/React/assignments/componentsAssignment",
-      type: "lesson",
+      type: "assignment",
     },
 
     {
       title: "Lesson",
       description: "Hooks - useState",
-      completed: false,
-      locked: true,
+
       link: "react/React/1",
       type: "lesson",
     },
     {
       title: "Lesson",
       description: "Hooks - useEffect",
-      completed: false,
-      locked: true,
+
       link: "react/React/1",
       type: "lesson",
     },
     {
       title: "Lesson",
       description: "Conditional Rendering",
-      completed: false,
-      locked: true,
+
       link: "react/React/1",
       type: "lesson",
     },
     {
       title: "Lesson",
       description: "Handling Events",
-      completed: false,
-      locked: true,
+
       link: "react/React/1",
       type: "lesson",
     },
     {
       title: "Assignment 3",
       description: "Building a tic tac toe game",
-      completed: false,
-      locked: true,
+
       link: "react/React/1",
       type: "lesson",
     },
     {
       title: "Assignment 4",
       description: "Build a K-12 Math Quiz",
-      completed: false,
-      locked: true,
+
       link: "react/React/1",
       type: "lesson",
     },
     {
       title: "Assignment 5",
       description: "Build a tutorial to a Leetcode question",
-      completed: false,
-      locked: true,
+
       link: "react/React/1",
       type: "lesson",
     },
@@ -172,31 +316,27 @@ export const backendUnit: Unit = {
       title: "Lesson",
       description: "Intro to Databases",
       type: "lesson",
-      completed: false,
-      locked: true,
+
       link: "react/React/1",
     },
     {
       title: "Lesson",
       description: "Database Reads",
       type: "lesson",
-      completed: false,
-      locked: true,
+
       link: "react/React/1",
     },
     {
       title: "Lesson",
       description: "Database Writes",
       type: "lesson",
-      completed: false,
-      locked: true,
+
       link: "react/React/1",
     },
     {
       title: "Assignment 6",
       description: "Capstone Project",
-      completed: false,
-      locked: true,
+
       link: "react/React/1",
       type: "assignment",
     },
@@ -219,23 +359,21 @@ export const interviewUnits: Unit[] = [
         title: "Lesson 1",
         type: "lesson",
         description: "Arrays",
-        completed: false,
-        locked: true,
+
         link: "",
       },
       {
         title: "Lesson 2",
         description: "Strings",
-        completed: false,
+
         type: "lesson",
-        locked: true,
+
         link: "",
       },
       {
         title: "Lesson 3",
         description: "Maps",
-        completed: false,
-        locked: true,
+
         type: "lesson",
         link: "",
       },
@@ -243,48 +381,43 @@ export const interviewUnits: Unit[] = [
         title: "Lesson 4",
         description: "Linked Lists",
         type: "lesson",
-        completed: false,
-        locked: true,
+
         link: "",
       },
       {
         title: "Lesson 5",
         type: "lesson",
         description: "Trees",
-        completed: false,
-        locked: true,
+
         link: "",
       },
       {
         title: "Lesson 6",
         description: "Graphs",
         type: "lesson",
-        completed: false,
-        locked: true,
+
         link: "",
       },
       {
         type: "lesson",
         title: "Lesson 7",
         description: "Stacks",
-        completed: false,
-        locked: true,
+
         link: "",
       },
       {
         title: "Lesson 8",
         type: "lesson",
         description: "Queues",
-        completed: false,
-        locked: true,
+
         link: "",
       },
       {
         title: "Lesson 9",
         description: "Heaps",
-        completed: false,
+
         type: "lesson",
-        locked: true,
+
         link: "",
       },
     ],
@@ -296,23 +429,20 @@ export const interviewUnits: Unit[] = [
         title: "Lesson 1",
         description: "Sliding Window",
         type: "lesson",
-        completed: false,
-        locked: true,
+
         link: "",
       },
       {
         title: "Lesson 2",
         description: "Two Pointers",
-        completed: false,
-        locked: true,
+
         type: "lesson",
         link: "",
       },
       {
         title: "Lesson 3",
         description: "Fast and Slow Pointers",
-        completed: false,
-        locked: true,
+
         link: "",
         type: "lesson",
       },
@@ -320,16 +450,14 @@ export const interviewUnits: Unit[] = [
       {
         title: "Lesson 4",
         description: "Binary Search",
-        completed: false,
-        locked: true,
+
         type: "lesson",
         link: "",
       },
       {
         title: "Lesson 5",
         description: "Greedy",
-        completed: false,
-        locked: true,
+
         type: "lesson",
         link: "",
       },
@@ -337,9 +465,9 @@ export const interviewUnits: Unit[] = [
       {
         title: "Lesson 6",
         description: "In-place reversal of linked list",
-        completed: false,
+
         type: "lesson",
-        locked: true,
+
         link: "",
       },
     ],
@@ -350,8 +478,7 @@ export const interviewUnits: Unit[] = [
       {
         title: "Lesson 1",
         description: "Tree BFS",
-        completed: false,
-        locked: true,
+
         link: "",
         type: "lesson",
       },
@@ -359,24 +486,21 @@ export const interviewUnits: Unit[] = [
         title: "Lesson 2",
         description: "Tree DFS",
         type: "lesson",
-        completed: false,
-        locked: true,
+
         link: "",
       },
       {
         title: "Lesson 3",
         type: "lesson",
         description: "Dynamic Programming",
-        completed: false,
-        locked: true,
+
         link: "",
       },
       {
         title: "Lesson 4",
         type: "lesson",
         description: "Backtracking",
-        completed: false,
-        locked: true,
+
         link: "",
       },
     ],
@@ -388,47 +512,41 @@ export const interviewUnits: Unit[] = [
         title: "Lesson 1",
         description: "Intervals",
         type: "lesson",
-        completed: false,
-        locked: true,
+
         link: "",
       },
       {
         title: "Lesson 2",
         type: "lesson",
         description: "Toplogical Sort",
-        completed: false,
-        locked: true,
+
         link: "",
       },
       {
         title: "Lesson 3",
         type: "lesson",
         description: "Union Find",
-        completed: false,
-        locked: true,
+
         link: "",
       },
       {
         title: "Lesson 4",
         description: "Cyclic Sort",
         type: "lesson",
-        completed: false,
-        locked: true,
+
         link: "",
       },
       {
         title: "Lesson 5",
         description: "Two Heaps",
         type: "lesson",
-        completed: false,
-        locked: true,
+
         link: "",
       },
       {
         title: "Lesson 6",
         description: "Subsets",
-        completed: false,
-        locked: true,
+
         type: "lesson",
         link: "",
       },
@@ -436,16 +554,14 @@ export const interviewUnits: Unit[] = [
         title: "Lesson 7",
         description: "Top K Elements",
         type: "lesson",
-        completed: false,
-        locked: true,
+
         link: "",
       },
       {
         title: "Lesson 8",
         type: "lesson",
         description: "K-way Merge",
-        completed: false,
-        locked: true,
+
         link: "",
       },
     ],
@@ -460,47 +576,41 @@ export const androidUnits = [
         title: "Lesson 1",
         type: "lesson",
         description: "Activities",
-        completed: false,
-        locked: true,
+
         link: "",
       },
       {
         title: "Lesson 2",
         description: "Fragments",
-        completed: false,
-        locked: true,
+
         link: "",
         type: "lesson",
       },
       {
         title: "Lesson 3",
         description: "Lists and RecyclerViews",
-        completed: false,
-        locked: true,
+
         link: "",
         type: "lesson",
       },
       {
         title: "Lesson 4",
         description: "Strings and Resources",
-        completed: false,
-        locked: true,
+
         link: "",
         type: "lesson",
       },
       {
         title: "Lesson 5",
         description: "Retrofit and Networking",
-        completed: false,
-        locked: true,
+
         link: "",
         type: "lesson",
       },
       {
         title: "Lesson 6",
         description: "MVVM",
-        completed: false,
-        locked: true,
+
         link: "",
         type: "lesson",
       },

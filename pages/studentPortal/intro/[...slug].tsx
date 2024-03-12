@@ -8,8 +8,8 @@ import { COMPLETE_USER_INTRO_NODE } from "../../../graphql/studentPortal/courses
 import { FETCH_USER_INTRO_NODES } from "../../../graphql/studentPortal/courses/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../lib/authContext";
-import { getLessonForBasicsCourse } from "../../api/studentPortal/lessons/basics";
-import { ResponseData } from "../../api/studentPortal/lessons/basics/introduction";
+import { getLessonForBasicsCourse } from "../../api/studentPortal/courses/basics";
+import { ResponseData } from "../../api/studentPortal/courses/basics/introduction";
 
 const LessonPage = ({
   lessonComponents,

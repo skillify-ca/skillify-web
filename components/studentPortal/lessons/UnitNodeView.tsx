@@ -29,7 +29,7 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
         ${
           locked
             ? ""
-            : "hover:bg-backgroundSecondary hover:shadow-lg hover:py-4 transform transition-all"
+            : "hover:bg-backgroundSecondary hover:shadow-lg transform transition-all"
         } ${active ? "border-2 shadow bg-backgroundPrimary" : ""}  `}
       >
         <div className="flex flex-col items-center justify-center col-span-2">

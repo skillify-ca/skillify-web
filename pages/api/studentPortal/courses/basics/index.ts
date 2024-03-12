@@ -1,7 +1,7 @@
 import { getDataForIntroductionLesson } from "./introduction";
 
 export function getLessonForBasicsCourse(lessonId: string) {
-  if (lessonId === "introduction") {
+  if (lessonId.toLocaleLowerCase() === "introduction") {
     return getDataForIntroductionLesson();
   }
 
