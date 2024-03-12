@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Unit } from "../../../pages/api/studentPortal/units";
+import FreemiumDialogComponent from "../freemium/FreemiumDialogueComponent";
 import FreemiumMessageNodeView from "../freemium/FreemiumMessageNodeView";
 import SkeletonNodeView from "../freemium/SkeletonNodeView";
 import UnitNodeView from "./UnitNodeView";
@@ -9,6 +10,8 @@ export type UnitViewProps = {
 };
 
 export const UnitView: React.FC<UnitViewProps> = ({ data }: UnitViewProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="grid grid-cols-1 gap-4">
       <p className="w-48 p-4 text-center text-white bg-blue-900 rounded-full">
@@ -16,19 +19,30 @@ export const UnitView: React.FC<UnitViewProps> = ({ data }: UnitViewProps) => {
       </p>
       <div>
         {data.nodes.map((it, index) => {
-          if (it.type === "freemiumMessage") {
+          if (it.type === "grayedOut") {
             return (
-              <FreemiumMessageNodeView
+              <SkeletonNodeView
+                key={index}
                 hiddenLine={index === data.nodes.length - 1}
                 type={it.type}
               />
             );
-          } else if (it.type === "grayedOut") {
+          } else if (it.type === "freemiumMessage") {
             return (
-              <SkeletonNodeView
-                hiddenLine={index === data.nodes.length - 1}
-                type={it.type}
-              />
+              <div key={index}>
+                <FreemiumMessageNodeView
+                  hiddenLine={false}
+                  type={"freemiumMessage"}
+                  onClick={() => setIsModalOpen(true)}
+                />
+                {isModalOpen && (
+                  <FreemiumDialogComponent
+                    trigger={false}
+                    startOnUpgradeModal
+                    onClose={() => setIsModalOpen(false)}
+                  />
+                )}
+              </div>
             );
           } else {
             if (!it.locked) {

@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import FreemiumDialogComponent from "../../../components/studentPortal/freemium/FreemiumDialogueComponent";
 import UnitView from "../../../components/studentPortal/lessons/UnitView";
 import PageHeader from "../../../components/ui/PageHeader";
 import { FETCH_USER_INTRO_NODES } from "../../../graphql/studentPortal/courses/fetchUserIntroNodes";
@@ -21,6 +22,7 @@ export default function StudentPortalPage() {
     },
   });
   const [units, setUnits] = useState<Unit[]>([]);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     setUnits(reactUnits);
@@ -48,6 +50,7 @@ export default function StudentPortalPage() {
           {freemiumUnits.map((it, index) => (
             <UnitView key={index} data={it} />
           ))}
+          {isModalOpen && <FreemiumDialogComponent trigger={false} />}
         </div>
       ) : userRole === "paid" ? (
         <div className="grid grid-cols-1 gap-4">

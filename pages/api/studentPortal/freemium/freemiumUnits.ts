@@ -23,7 +23,9 @@ function transformReactUnit(unit: Unit): Unit {
         };
       } else if (index === 3) {
         return {
-          link: "https://www.joinskillify.com/call",
+          link: "",
+          title: "Enjoying the Skillify Experience?",
+          description: "Access the full community and program!",
           type: "freemiumMessage",
         };
       } else {
