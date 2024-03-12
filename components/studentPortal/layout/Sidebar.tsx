@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client/react";
-import { LightBulbIcon } from "@heroicons/react/solid";
+import { CashIcon, LightBulbIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -217,7 +217,7 @@ export default function Sidebar({ closeSidebar }) {
           <div className="flex items-center justify-between p-4 ">
             <p className="font-bold">Courses</p>
           </div>
-          <div className="h-48 overflow-auto">
+          <div className="h-64 overflow-auto">
             <Link href="/studentPortal">
               <div className="flex p-4 shadow-sm cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
                 <JSIcon />
@@ -243,6 +243,23 @@ export default function Sidebar({ closeSidebar }) {
                 link={""}
                 page={"dashboard"}
                 icon={<LightBulbIcon className="w-6 h-6 mr-4" />}
+                isDisabled={true}
+                closeSidebar={closeSidebar}
+              />
+            )}
+            {userRole && userRole !== "freemium" ? (
+              <Link href="/resources/interviewPrep">
+                <div className="flex p-4 cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
+                  <LightBulbIcon className="w-6 h-6" />
+                  <p className="ml-4">Financial Literacy</p>
+                </div>
+              </Link>
+            ) : (
+              <FreemiumSidebarItem
+                name={"Financial Literacy"}
+                link={""}
+                page={"dashboard"}
+                icon={<CashIcon className="w-6 h-6 mr-4" />}
                 isDisabled={true}
                 closeSidebar={closeSidebar}
               />

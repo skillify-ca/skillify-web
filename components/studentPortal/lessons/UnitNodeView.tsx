@@ -32,17 +32,17 @@ export const UnitNodeView: React.FC<UnitNodeViewProps> = ({
             : "hover:bg-backgroundSecondary hover:shadow-lg hover:py-4 transform transition-all"
         } ${active ? "border-2 shadow bg-backgroundPrimary" : ""}  `}
       >
-        <div className="flex flex-col items-center justify-center col-span-2 ">
+        <div className="flex flex-col items-center justify-center col-span-2">
           {<NodeIcon completed={completed} locked={locked} type={type} />}{" "}
         </div>
-        <div className="flex flex-col justify-center w-full col-span-6">
+        <div className="flex flex-col justify-center w-full col-span-5 p-4">
           <p className="">{title}</p>
           <p className="">{description}</p>
         </div>
         <div
           className={`${
             active ? "" : "hidden"
-          } flex flex-col col-span-4 justify-center`}
+          } flex flex-col col-span-5 justify-center p-4`}
         >
           <Button label="Continue" />
         </div>
