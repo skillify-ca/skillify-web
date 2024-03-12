@@ -1,5 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
+import React from "react";
 import LessonComponent from "../../../../components/studentPortal/lessons/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/ui/ProgressBar";
@@ -7,7 +8,7 @@ import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/studentPortal/cour
 import { FETCH_USER_INTRO_NODES } from "../../../../graphql/studentPortal/courses/fetchUserIntroNodes";
 import { UNLOCK_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/unlockUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
-import { getLessonComponentsForHTML1 } from "../../../api/studentPortal/lessons/basics/html/lesson1";
+import { getLessonComponentsForHTML1 } from "../../../api/studentPortal/courses/basics/html/lesson1";
 
 const HTML1 = ({ lessonComponents }) => {
   const { user } = useAuth();
@@ -39,8 +40,8 @@ const HTML1 = ({ lessonComponents }) => {
     <>
       <div className="grid grid-cols-1 gap-8 px-4 pt-4 sm:px-12">
         <ProgressBar completed={100} />
-        {lessonComponents.map((it) => (
-          <LessonComponent data={it} />
+        {lessonComponents.map((it, i) => (
+          <LessonComponent key={i} data={it} />
         ))}
 
         <div className="flex mt-8 sm:justify-end">
@@ -52,7 +53,7 @@ const HTML1 = ({ lessonComponents }) => {
 };
 
 export async function getServerSideProps({ params }) {
-  const lessonComponents =  getLessonComponentsForHTML1();
+  const lessonComponents = getLessonComponentsForHTML1();
   return { props: { lessonComponents } };
 }
 

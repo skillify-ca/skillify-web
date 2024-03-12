@@ -189,4 +189,5 @@ export default function LessonComponent({ data }: LessonComponentProps) {
       </div>
     );
   }
+  return null;
 }
