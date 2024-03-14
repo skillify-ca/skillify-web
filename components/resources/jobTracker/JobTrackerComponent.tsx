@@ -1,3 +1,4 @@
+import { ExternalLinkIcon } from "@heroicons/react/outline";
 import React, { useState } from "react";
 import { logToSlack } from "../../../pages/api/slack/slackLogger";
 import { Button } from "../../ui/Button";
@@ -5,16 +6,15 @@ import { Input } from "../../ui/Input";
 
 export default function JobTrackerComponent() {
   const [isCAD, setIsCAD] = useState(true);
-  const [showData, setShowData] = useState(false);
+  const [showData, setShowData] = useState(true);
+  const [year, setYear] = useState(2023);
 
   return (
     <div className="p-4">
-      <h2 className="mb-4 text-3xl font-bold text-center">
-        Tech Job Tracker 2023
-      </h2>
+      <h2 className="mb-4 text-3xl font-bold text-center">Tech Job Tracker</h2>
       <p className="">
-        One of our expert coaches recently spent a few months interviewing with
-        various tech companies from January to March of 2023. Here is a list of
+        Over the years our students and coaches spend time interviewing with
+        various tech companies for senior developer roles. Here is a list of
         outcomes from the interviews.
       </p>
       <h3 className="mt-4 text-xl font-bold">Recommendations</h3>
@@ -43,8 +43,8 @@ export default function JobTrackerComponent() {
       <h3 className="mt-4 text-xl font-bold">Observations</h3>
       <ul className="list-disc list-inside">
         <li>
-          Our coach has 10 years of experience in the field working on various
-          tech stacks. This was good enough to get several senior level
+          Our coaches have 10 years of experience in the field working on
+          various tech stacks. This was good enough to get several senior level
           interviews, but not good enough for staff level roles.
         </li>
         <li>
@@ -76,7 +76,7 @@ export default function JobTrackerComponent() {
           higher salary.
         </li>
       </ul>
-      <div className="flex items-center gap-4 p-4">
+      <div className="grid items-center grid-cols-3 gap-4 p-4 w-96">
         <p className="font-bold">Currency:</p>
         <Button label="CAD" onClick={() => setIsCAD(true)} />
         <Button
@@ -86,9 +86,19 @@ export default function JobTrackerComponent() {
           textColor="text-orange-500"
         />
       </div>
+      <div className="grid items-center grid-cols-3 gap-4 p-4 w-96">
+        <p className="font-bold">Year:</p>
+        <Button label="2023" onClick={() => setYear(2023)} />
+        <Button
+          label="2024"
+          onClick={() => setYear(2024)}
+          backgroundColor="white"
+          textColor="text-orange-500"
+        />
+      </div>
       {showData ? (
         <div className="w-full px-4 mb-4 overflow-x-auto">
-          <OfferTable isCAD={isCAD} />
+          <OfferTable isCAD={isCAD} year={year} />
         </div>
       ) : (
         <div className="p-4 m-4 border-2 shadow-xl rounded-xl">
@@ -99,7 +109,7 @@ export default function JobTrackerComponent() {
   );
 }
 
-function OfferTable({ isCAD }) {
+function OfferTable({ isCAD, year }) {
   type Offer = {
     Company: string;
     companyUrl: string;
@@ -115,7 +125,7 @@ function OfferTable({ isCAD }) {
 
   const USD_TO_CAD_EXCHANGE_RATE = 1.37;
 
-  const offers: Offer[] = [
+  const offers2023: Offer[] = [
     {
       Company: "Faire",
       companyUrl: "https://www.faire.com/",
@@ -192,6 +202,7 @@ function OfferTable({ isCAD }) {
       Company: "Sanity",
       companyUrl: "https://www.sanity.io/",
       Location: "Remote",
+      Base: 125000,
       Role: "Senior Frontend",
       "Time Spent": "4 hours",
       timeSpentHours: 4,
@@ -215,6 +226,7 @@ function OfferTable({ isCAD }) {
       Company: "Deep Genomics",
       companyUrl: "https://www.deepgenomics.com/",
       Location: "Toronto",
+      Base: 190000,
       Role: "Senior Frontend",
       "Time Spent": "2 hours",
       timeSpentHours: 2,
@@ -226,6 +238,7 @@ function OfferTable({ isCAD }) {
       Company: "Maven",
       companyUrl: "https://maven.com/",
       Location: "Toronto",
+      Base: 175000,
       Role: "Senior Fullstack",
       "Time Spent": "2 hours",
       timeSpentHours: 2,
@@ -249,6 +262,7 @@ function OfferTable({ isCAD }) {
       Company: "TeachFX",
       companyUrl: "https://teachfx.com/",
       Location: "Remote",
+      Base: 200000,
       Role: "Senior Frontend",
       "Time Spent": "2 hours",
       timeSpentHours: 2,
@@ -272,6 +286,7 @@ function OfferTable({ isCAD }) {
       Company: "League",
       companyUrl: "https://league.com/",
       Location: "Toronto",
+      Base: 175000,
       Role: "Senior Android",
       "Time Spent": "2 hours",
       timeSpentHours: 2,
@@ -295,6 +310,7 @@ function OfferTable({ isCAD }) {
       Company: "Baby List",
       companyUrl: "https://www.babylist.com/?",
       Location: "Remote",
+      Base: 200000,
       Role: "Staff Android",
       "Time Spent": "15 minutes",
       timeSpentHours: 0.25,
@@ -305,7 +321,8 @@ function OfferTable({ isCAD }) {
     {
       Company: "Aritizia",
       companyUrl: "https://www.aritzia.com/en/home",
-      Location: "",
+      Location: "Vancouver",
+      Base: 135000,
       Role: "Senior Fullstack",
       "Time Spent": "15 minutes",
       timeSpentHours: 0.25,
@@ -317,6 +334,7 @@ function OfferTable({ isCAD }) {
       Company: "Retool",
       companyUrl: "https://retool.com/",
       Location: "Remote",
+      Base: 205000,
       Role: "Senior Fullstack",
       "Time Spent": "15 minutes",
       timeSpentHours: 0.25,
@@ -328,6 +346,7 @@ function OfferTable({ isCAD }) {
       Company: "Old Mission",
       companyUrl: "https://www.oldmissionbank.com/",
       Location: "Remote",
+      Base: 275000,
       Role: "Senior Frontend",
       "Time Spent": "2 hours",
       timeSpentHours: 2,
@@ -363,6 +382,7 @@ function OfferTable({ isCAD }) {
       Company: "Jane Street",
       companyUrl: "https://www.janestreet.com/",
       Location: "NYC",
+      Base: 275000,
       Role: "Senior Frontend",
       "Time Spent": "15 minutes",
       timeSpentHours: 0.25,
@@ -374,6 +394,7 @@ function OfferTable({ isCAD }) {
       Company: "Rabbithole",
       companyUrl: "https://www.rabbithole.gg/",
       Location: "NYC",
+      Base: 235000,
       Role: "Senior Frontend",
       "Time Spent": "15 minutes",
       timeSpentHours: 0.25,
@@ -382,6 +403,155 @@ function OfferTable({ isCAD }) {
       industry: "Web3",
     },
   ];
+
+  const offers2024: Offer[] = [
+    {
+      Company: "Magic Eden",
+      companyUrl: "https://www.magiceden.io/",
+      Base: 270000,
+      Location: "Remote",
+      Role: "Senior Frontend Developer",
+      "Time Spent": "8 hours",
+      timeSpentHours: 8,
+      Result: "No Offer: Did not pass final round with CTO",
+      opportunitySource: "Referral",
+      industry: "Crypto",
+    },
+    {
+      Company: "Anthropic Labs",
+      companyUrl: "https://www.anthropic.com/",
+      Base: 330000,
+      Location: "Remote",
+      Role: "Forward Deployed Engineer",
+      "Time Spent": "2 hours",
+      timeSpentHours: 2,
+      Result: "No Offer: Did not pass initial tech screen",
+      opportunitySource: "Applied Online",
+      industry: "AI",
+    },
+    {
+      Company: "Braze",
+      companyUrl: "https://www.braze.com/",
+      Base: 220000,
+      Location: "Remote",
+      Role: "Senior Frontend Engineer",
+      "Time Spent": "6 hours",
+      timeSpentHours: 6,
+      Result: "No Offer: Did not pass final round",
+      opportunitySource: "Applied Online",
+      industry: "Marketing",
+    },
+    {
+      Company: "Gloss Genius",
+      companyUrl: "https://www.glossgenius.com/",
+      Base: 220000,
+      Location: "Remote",
+      Role: "Senior Frontend Engineer",
+      "Time Spent": "6 hours",
+      timeSpentHours: 6,
+      Result: "No Offer: Did not pass final round",
+      opportunitySource: "Applied Online",
+      industry: "Beauty",
+    },
+    {
+      Company: "Grammarly",
+      companyUrl: "https://www.grammarly.com/",
+      Base: 240000,
+      Location: "Remote",
+      Role: "Senior Frontend Engineer",
+      "Time Spent": "8 hours",
+      timeSpentHours: 8,
+      Result: "No Offer: Did not pass final round",
+      opportunitySource: "Referral",
+      industry: "Education",
+    },
+    {
+      Company: "Cent ML",
+      companyUrl: "https://centml.ai/",
+      Base: 170000,
+      Location: "Toronto",
+      Role: "Senior Frontend Engineer",
+      "Time Spent": "3 hours",
+      timeSpentHours: 3,
+      Result: "No Offer: Did not pass tech screen",
+      opportunitySource: "Applied Online",
+      industry: "AI",
+    },
+    {
+      Company: "Console AI",
+      companyUrl: "https://console.co/",
+      Base: 190000,
+      Location: "Remote",
+      Role: "Senior Frontend Engineer",
+      "Time Spent": "6 hours",
+      timeSpentHours: 6,
+      Result: "No Offer: Did not pass take home assignment",
+      opportunitySource: "Applied Online",
+      industry: "AI",
+    },
+    {
+      Company: "Trait",
+      companyUrl: "https://www.verifiedbytrait.com/",
+      Base: 220000,
+      Location: "Remote",
+      Role: "Senior Frontend Engineer",
+      "Time Spent": "1 hour",
+      timeSpentHours: 1,
+      Result: "No Offer: Did not pass hiring manager call",
+      opportunitySource: "Applied Online",
+      industry: "Identity Verification",
+    },
+    {
+      Company: "Life360",
+      companyUrl: "https://www.life360.com/",
+      Base: 140000,
+      Location: "Toronto",
+      Role: "Senior Android Engineer",
+      "Time Spent": "2 hours",
+      timeSpentHours: 2,
+      Result: "No Offer: Declined to Continue",
+      opportunitySource: "Applied Online",
+      industry: "Family Safety",
+    },
+    {
+      Company: "When I Work",
+      companyUrl: "https://wheniwork.com/",
+      Base: 165000,
+      Location: "Toronto",
+      Role: "Senior Frontend Engineer",
+      "Time Spent": "2 hours",
+      timeSpentHours: 2,
+      Result: "No Offer: Declined to Continue",
+      opportunitySource: "Applied Online",
+      industry: "Employee Scheduling",
+    },
+    {
+      Company: "Sanity",
+      companyUrl: "https://www.sanity.io/",
+      Base: 135000,
+      Location: "Remote",
+      Role: "Senior Frontend Engineer",
+      "Time Spent": "2 hours",
+      timeSpentHours: 2,
+      Result: "No Offer: Declined to Continue",
+      opportunitySource: "Applied Online",
+      industry: "Content Management",
+    },
+    {
+      Company: "Snowflake",
+      companyUrl: "https://www.snowflake.com/",
+      Base: 335000,
+      Location: "Remote",
+      Role: "Senior Frontend Engineer",
+      "Time Spent": "2 hours",
+      timeSpentHours: 2,
+      Result: "No Offer: Did Not Pass Recruiter Call",
+      opportunitySource: "Applied Online",
+      industry: "Data Warehousing",
+    },
+  ];
+
+  const offers = year === 2023 ? offers2023 : offers2024;
 
   const [sortColumn, setSortColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState("asc");
@@ -490,12 +660,21 @@ function OfferTable({ isCAD }) {
 
       <tbody>
         {sortedData.map((offer, index) => (
-          <tr key={offer.Company} className="text-center hover:bg-slate-300">
+          <tr
+            key={offer.Company}
+            className="text-center hover:bg-slate-300 group"
+          >
             <td className="p-4">{index + 1}</td>
 
             <td className="p-4 hover:underline hover:text-blue-800">
-              <a href={offer.companyUrl} target="_blank" rel="noreferrer">
-                {offer.Company}
+              <a
+                href={offer.companyUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="flex justify-between gap-2 group-hover:underline group-hover:text-blue-800"
+              >
+                <p className="text-left">{offer.Company}</p>
+                <ExternalLinkIcon className="w-4" />
               </a>
             </td>
             <td className="p-4">{offer.Location}</td>
