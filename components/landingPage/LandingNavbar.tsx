@@ -47,7 +47,7 @@ export default function LandingNavbar({
 
         <div
           className={`z-10 w-full flex flex-col justify-between overflow-hidden transition-all transform bg-white bg-backgroundSecondary ${
-            active ? "h-96" : "h-0"
+            active ? "h-[24rem]" : "h-0"
           } duration-500 ease-in-out md:hidden`}
         >
           <div className="flex flex-col gap-4">
@@ -56,14 +56,16 @@ export default function LandingNavbar({
                 <p>Blog</p>
               </div>
             </Link>
-            <Link href={"/guide"}>
-              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-                <p>Guide</p>
-              </div>
-            </Link>
+
             <Link href={"/quiz"}>
               <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
                 <p>Quiz</p>
+              </div>
+            </Link>
+
+            <Link href={"/resources"}>
+              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
+                <p>Resources</p>
               </div>
             </Link>
             <Link href={"/successStories"}>
@@ -120,14 +122,16 @@ export default function LandingNavbar({
                 <p>Blog</p>
               </div>
             </Link>
-            <Link href={"/guide"}>
-              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
-                <p>Guide</p>
-              </div>
-            </Link>
+
             <Link href={"/quiz"}>
               <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
                 <p>Quiz</p>
+              </div>
+            </Link>
+
+            <Link href={"/resources"}>
+              <div className="p-4 rounded-lg cursor-pointer hover:bg-indigo-200">
+                <p>Resources</p>
               </div>
             </Link>
             <Link href={"/successStories"}>

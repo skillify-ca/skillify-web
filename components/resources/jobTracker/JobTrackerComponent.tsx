@@ -13,9 +13,9 @@ export default function JobTrackerComponent() {
     <div className="p-4">
       <h2 className="mb-4 text-3xl font-bold text-center">Tech Job Tracker</h2>
       <p className="">
-        Over the years our students and coaches spend time interviewing with
+        Over the years our students and coaches spent time interviewing with
         various tech companies for senior developer roles. Here is a list of
-        outcomes from the interviews.
+        outcomes from past interviews.
       </p>
       <h3 className="mt-4 text-xl font-bold">Recommendations</h3>
       <ul className="list-disc list-inside">
@@ -727,7 +727,12 @@ function EmailCapture({ onSubmit }) {
   return (
     <div className="flex flex-col items-center justify-center w-full h-64">
       <p className="text-center sm:w-full">Enter your email to view the data</p>
-      <Input value={email} setValue={setEmail} placeholder="Enter Email" />
+      <Input
+        autoFocus={false}
+        value={email}
+        setValue={setEmail}
+        placeholder="Enter Email"
+      />
       <div className="my-4">
         <Button label="Submit" onClick={handleSubmit} />
       </div>

@@ -1,5 +1,5 @@
-import React from "react";
 import Head from "next/head";
+import React from "react";
 
 type SEOProps = {
   title: string;
@@ -17,6 +17,7 @@ export default function SEO(props: SEOProps) {
       <meta property="og:description" content={description} />
       <meta property="og:url" content="https://skillify.ca/" />
       <meta property="og:type" content="website" />
+      <link rel="icon" href="/favicon.ico" />
     </Head>
   );
 }
