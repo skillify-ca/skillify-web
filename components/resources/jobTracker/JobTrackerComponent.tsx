@@ -3,6 +3,13 @@ import React, { useState } from "react";
 import { logToSlack } from "../../../pages/api/slack/slackLogger";
 import { Button } from "../../ui/Button";
 import { Input } from "../../ui/Input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../ui/Select";
 
 export default function JobTrackerComponent() {
   const [isCAD, setIsCAD] = useState(true);
@@ -92,23 +99,33 @@ export default function JobTrackerComponent() {
       </ul>
       <div className="grid items-center grid-cols-3 gap-4 p-4 w-96">
         <p className="font-bold">Currency:</p>
-        <Button label="CAD" onClick={() => setIsCAD(true)} />
-        <Button
-          label="USD"
-          onClick={() => setIsCAD(false)}
-          backgroundColor="white"
-          textColor="text-orange-500"
-        />
+        <Select
+          value={isCAD ? "CAD" : "USD"}
+          onValueChange={(v) => setIsCAD(v === "CAD" ? true : false)}
+        >
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Currency" />
+          </SelectTrigger>
+          <SelectContent className="bg-white">
+            <SelectItem value={"CAD"}>CAD</SelectItem>
+            <SelectItem value={"USD"}>USD</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
       <div className="grid items-center grid-cols-3 gap-4 p-4 w-96">
         <p className="font-bold">Year:</p>
-        <Button label="2023" onClick={() => setYear(2023)} />
-        <Button
-          label="2024"
-          onClick={() => setYear(2024)}
-          backgroundColor="white"
-          textColor="text-orange-500"
-        />
+        <Select
+          value={year.toString()}
+          onValueChange={(v) => setYear(Number.parseInt(v))}
+        >
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Year" />
+          </SelectTrigger>
+          <SelectContent className="bg-white">
+            <SelectItem value={"2023"}>2023</SelectItem>
+            <SelectItem value={"2024"}>2024</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
       {showData ? (
         <div className="w-full px-4 mb-4 overflow-x-auto">
