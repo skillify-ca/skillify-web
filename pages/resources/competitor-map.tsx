@@ -62,3 +62,7 @@ export default function CompetitorMapPage() {
     </div>
   );
 }
+
+CompetitorMapPage.getLayout = function getLayout(page) {
+  return <div className="theme-default">{page}</div>;
+};
