@@ -6,7 +6,7 @@ import { Input } from "../../ui/Input";
 
 export default function JobTrackerComponent() {
   const [isCAD, setIsCAD] = useState(true);
-  const [showData, setShowData] = useState(true);
+  const [showData, setShowData] = useState(false);
   const [year, setYear] = useState(2023);
 
   return (
@@ -20,8 +20,8 @@ export default function JobTrackerComponent() {
       <h3 className="mt-4 text-xl font-bold">Recommendations</h3>
       <ul className="list-disc list-inside">
         <li>
-          Find a niche eg. Mobile, Blockchain, or Game Dev. There are so many
-          JavaScript developers and the market is competitive.
+          Find a niche eg. Mobile, AI, Blockchain, or Game Dev. There are so
+          many JavaScript developers and the market is competitive.
         </li>
         <li>
           When applying to jobs online, the best tool to use by far was{" "}
@@ -35,6 +35,12 @@ export default function JobTrackerComponent() {
           easiest way to get interviews.
         </li>
         <li>
+          In order to maximize your salary, look for remote jobs in US cities.
+          Note that there are some disadvantages to remote work and there is
+          value in going into an office regularly with people and working on
+          projects together in person with your team.
+        </li>
+        <li>
           Don't spend all your time on Leetcode. Many companies are moving away
           from that style of interviewing in favour of live project
           building/debugging.
@@ -43,14 +49,22 @@ export default function JobTrackerComponent() {
       <h3 className="mt-4 text-xl font-bold">Observations</h3>
       <ul className="list-disc list-inside">
         <li>
-          Our coaches have 10 years of experience in the field working on
-          various tech stacks. This was good enough to get several senior level
-          interviews, but not good enough for staff level roles.
+          The job market is heavily skewed towards senior level developer roles.
         </li>
         <li>
-          Although a large number of companies are remote friendly and let you
-          work from anywhere, roles that required relocation to an SF or NYC
-          office had considerably higher compensation than most remote roles
+          A large number of companies are remote friendly and let you work from
+          anywhere in the world. These companies save money on office space and
+          also get to hire good people regardless of where they live.
+        </li>
+        <li>
+          A select number of remote companies provide location agnostic pay.
+          These companies hire the best people from anywhere in the world and
+          offer a Bay Area salary to all employees.
+        </li>
+        <li>
+          Most companies offer a salary that is dependent on where you live.
+          These companies look at the supply and demand for developers in your
+          local area and pay you accordingly.
         </li>
         <li>
           Android roles were easier to get compared to frontend or fullstack
@@ -118,7 +132,7 @@ function OfferTable({ isCAD, year }) {
     "Time Spent": string;
     timeSpentHours: number;
     Result: string;
-    Base?: number;
+    Base: number;
     opportunitySource: string;
     industry: string;
   };
