@@ -53,7 +53,7 @@ const coachingDashboard = () => {
       _id: user.uid,
     },
     onCompleted: (roleData) => {
-      if (roleData.users[0].userRole.value !== "coach") {
+      if (roleData.users[0].userRole !== "coach") {
         router.replace("/studentPortal");
       }
     },

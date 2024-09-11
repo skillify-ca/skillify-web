@@ -38,13 +38,13 @@ export default function Sidebar({ closeSidebar }) {
     },
     onCompleted: (data) => {
       if (data && data.users) {
-        if (data.users[0].userRole.value === "coach") {
+        if (data.users[0].userRole === "coach") {
           dispatch(setUserRole("coach"));
-        } else if (data.users[0].userRole.value === "student") {
+        } else if (data.users[0].userRole === "student") {
           dispatch(setUserRole("student"));
-        } else if (data.users[0].userRole.value === "paid") {
+        } else if (data.users[0].userRole === "paid") {
           dispatch(setUserRole("paid"));
-        } else if (data.users[0].userRole.value === "freemium") {
+        } else if (data.users[0].userRole === "freemium") {
           dispatch(setCreatedAt(data.users[0].created_at));
           dispatch(setUserRole("freemium"));
         }
