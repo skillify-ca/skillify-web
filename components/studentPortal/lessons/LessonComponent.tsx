@@ -35,6 +35,10 @@ export type LessonComponentData =
       text: string;
     }
   | {
+      component: "caption";
+      text: string;
+    }
+  | {
       component: "resource-list";
       resources: Resource[];
     }
@@ -87,6 +91,9 @@ export default function LessonComponent({ data }: LessonComponentProps) {
   }
   if (data.component === "description") {
     return <p className="whitespace-pre-line">{data.text}</p>;
+  }
+  if (data.component === "caption") {
+    return <p className="italic whitespace-pre-line">{data.text}</p>;
   }
   if (data.component === "custom") {
     return <p className="whitespace-pre-line">{data.children}</p>;

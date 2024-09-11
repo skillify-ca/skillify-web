@@ -1,5 +1,4 @@
 import Head from "next/head";
-import React from "react";
 import BlogCard from "../../components/blog/BlogCard";
 import BlogPost from "../../components/blog/BlogPost";
 import LandingNavbar from "../../components/landingPage/LandingNavbar";
@@ -44,6 +43,15 @@ export default function Blog() {
   ];
 
   const blogCards = [
+    {
+      date: "September 11, 2024",
+      title: "The Problem Solving Mindset",
+      image: "/images/blog/problem-solving-mindset/mindset.jpg",
+      description:
+        "The secret mindset that will help any engineer to grow in their career",
+      link: "/blog/problem-solving-mindset",
+      color: 2,
+    },
     {
       date: "April 13, 2023",
       title: "Coding Academy Survival Guide",
