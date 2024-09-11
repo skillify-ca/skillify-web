@@ -1,8 +1,12 @@
+import dynamic from "next/dynamic";
 import SEO from "../../components/SEO";
 import PostLayout from "../../components/blog/PostLayout";
-import LessonComponent, {
-  LessonComponentData,
-} from "../../components/studentPortal/lessons/LessonComponent";
+import { LessonComponentData } from "../../components/studentPortal/lessons/LessonComponent";
+
+const LessonComponent = dynamic(
+  () => import("../../components/studentPortal/lessons/LessonComponent"),
+  { ssr: false }
+);
 
 interface PageProps {
   blogComponents: LessonComponentData[];
@@ -26,7 +30,7 @@ export default function Page({ blogComponents }: PageProps) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps() {
   const lines: LessonComponentData[] = [
     "I'm good at solving problems. I like challenges and I meet them head on.",
     "Problems are my teachers. They help me to learn and grow. Without them, I would be going nowhere. With them, I am moving forward in the direction of my own goals.",
