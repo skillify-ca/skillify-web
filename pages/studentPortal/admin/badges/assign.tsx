@@ -29,11 +29,11 @@ export default function AssignBadges() {
       .catch((error) => console.error(error));
   }, [selectedUser]);
 
-  const { data, loading } = useQuery<FetchUserProfileCardResponse>(
+  const { loading } = useQuery<FetchUserProfileCardResponse>(
     FETCH_USER_PROFILE_CARD,
     {
-      onCompleted: () => {
-        if (data?.users?.length > 0) {
+      onCompleted: (data) => {
+        if (data?.users && data?.users?.length > 0) {
           setUserList(data.users);
         }
       },

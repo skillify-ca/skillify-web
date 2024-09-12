@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GoalsSectionComponent from "../../components/studentPortal/goals/GoalsSectionComponent";
 import ProfileGoalBadge from "../../components/studentPortal/profileV2/ProfileGoalBadge";
@@ -49,7 +49,6 @@ import {
   setUserProfile,
 } from "../../redux/profileSlice";
 import {
-  SkillRatingsRow,
   setSkillRatings,
   skillRatingsSelector,
 } from "../../redux/skillRatingsSlice";
@@ -66,6 +65,8 @@ export default function InternalProfile({
   userIdFromLink,
   isExternal,
 }: InternalProfileProps) {
+  const { userRole } = useSelector(profileSelector);
+
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -78,6 +79,12 @@ export default function InternalProfile({
     useSelector(profileSelector);
   const [isEditable, setIsEditable] = useState(false);
   const [userProjects, setUserProjects] = useState<UserProjectData[]>([]);
+
+  useEffect(() => {
+    if (userRole === "coach" && !isExternal) {
+      setIsEditable(true);
+    }
+  }, [userRole]);
 
   if (userId) {
     useQuery<FetchUserProfileDataResponse>(FETCH_USER_PROFILE_DATA, {
@@ -153,16 +160,6 @@ export default function InternalProfile({
         setUserProjects(data.user_projects);
       },
     });
-  }
-
-  function getSkillRatingProgress(skillRatings: SkillRatingsRow[]) {
-    let total = 0;
-    let count = 0;
-    skillRatings.forEach((skill) => {
-      total += skill.studentRating;
-      count++;
-    });
-    return (total / count).toFixed(0);
   }
 
   return (

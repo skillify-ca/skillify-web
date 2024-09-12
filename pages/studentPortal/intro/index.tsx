@@ -51,7 +51,7 @@ export default function StudentPortalPage() {
         {error ? (
           <ErrorMessage message={"Failed to fetch student dashboard"} />
         ) : (
-          units.map((it, i) => <UnitView key={i} data={it} />)
+          units.map((it, i) => <UnitView key={it.title} data={it} />)
         )}
       </div>
     </div>
