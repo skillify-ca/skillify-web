@@ -119,7 +119,7 @@ function Auth({ children }) {
 
   React.useEffect(() => {
     if (loading) return; // Do nothing while loading
-    if (!user) router.push("/welcome"); // If not authenticated, force log in
+    // if (!user) router.push("/welcome"); // If not authenticated, force log in
   }, [user, loading]);
 
   if (user) {
