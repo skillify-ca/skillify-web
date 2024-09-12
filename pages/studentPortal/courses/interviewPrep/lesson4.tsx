@@ -1,7 +1,4 @@
-import React from 'react';
-import Link from 'next/link';
-import { InterviewPrepCourse } from '.';
-import LandingNavbar from '../../../components/landingPage/LandingNavbar';
+import Link from "next/link";
 
 // ref https://www.simplilearn.com/how-to-introduce-yourself-in-a-job-interview-article#:~:text=%22Good%20day%2C%20I%20am%20%5B,the%20requirements%20of%20this%20position.
 
@@ -107,25 +104,10 @@ export default function Lesson4Page() {
         <div className="prose">
           <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
             <h2 className="mb-4 text-xl font-bold">Notes:</h2>
-            <p>Add a recording feature to answer this question.</p>
+            <textarea className="w-full"></textarea>
           </div>
         </div>
       </div>
     </div>
   );
 }
-
-Lesson4Page.getLayout = function getLayout(page) {
-  return (
-    <div className="theme-default">
-      <LandingNavbar />
-
-      <div className="grid h-screen grid-cols-1 lg:grid-cols-12">
-        <div className="hidden col-span-5 overflow-scroll lg:block">
-          <InterviewPrepCourse />
-        </div>
-        <div className="col-span-7 p-4 overflow-scroll">{page}</div>
-      </div>
-    </div>
-  );
-};

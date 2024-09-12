@@ -231,7 +231,7 @@ export default function Sidebar({ closeSidebar }) {
               </div>
             </Link>
             {userRole && userRole !== "freemium" ? (
-              <Link href="/resources/interviewPrep">
+              <Link href="/studentPortal/courses/interviewPrep">
                 <div className="flex p-4 cursor-pointer bg-backgroundPrimary hover:text-charmander hover:bg-backgroundHover">
                   <LightBulbIcon className="w-6 h-6" />
                   <p className="ml-4">Interview Prep</p>

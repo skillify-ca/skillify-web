@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { InterviewPrepCourse } from '.';
-import LandingNavbar from '../../../components/landingPage/LandingNavbar';
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Assign1Page() {
   const [experiences, setExperiences] = useState([]);
   const [editIndex, setEditIndex] = useState(-1);
-  const [editedExperience, setEditedExperience] = useState('');
+  const [editedExperience, setEditedExperience] = useState("");
 
   const handleAddExperience = () => {
     if (editIndex !== -1) {
@@ -14,15 +12,15 @@ export default function Assign1Page() {
       const updatedExperiences = [...experiences];
       updatedExperiences[editIndex] = editedExperience;
       setExperiences(updatedExperiences);
-      setEditedExperience('');
+      setEditedExperience("");
       setEditIndex(-1);
     } else {
       // If editIndex is -1, we are adding a new experience
-      if (editedExperience.trim() === '') {
+      if (editedExperience.trim() === "") {
         return;
       }
       setExperiences([...experiences, editedExperience]);
-      setEditedExperience('');
+      setEditedExperience("");
     }
   };
 
@@ -50,7 +48,7 @@ export default function Assign1Page() {
           </Link>
         </div>
         {/* Add the textbox and button here */}
-        <div className="mb-4 flex items-center">
+        <div className="flex items-center mb-4">
           <input
             type="text"
             className="flex-1 px-4 py-2 border rounded-l"
@@ -62,7 +60,7 @@ export default function Assign1Page() {
             className="px-4 py-2 text-white bg-blue-500 rounded-r"
             onClick={handleAddExperience}
           >
-            {editIndex !== -1 ? 'Save' : 'Add'}
+            {editIndex !== -1 ? "Save" : "Add"}
           </button>
         </div>
         <div>
@@ -104,18 +102,3 @@ export default function Assign1Page() {
     </div>
   );
 }
-
-Assign1Page.getLayout = function getLayout(page) {
-  return (
-    <div className="theme-default">
-      <LandingNavbar />
-
-      <div className="grid grid-cols-1 lg:grid-cols-12">
-        <div className="hidden h-screen col-span-5 -mb-16 overflow-scroll lg:block">
-          <InterviewPrepCourse />
-        </div>
-        <div className="col-span-7 p-4">{page}</div>
-      </div>
-    </div>
-  );
-};

@@ -1,7 +1,4 @@
-import React from 'react';
-import Link from 'next/link';
-import { InterviewPrepCourse } from '.';
-import LandingNavbar from '../../../components/landingPage/LandingNavbar';
+import Link from "next/link";
 
 export default Lesson2Page;
 function Lesson2Page() {
@@ -14,7 +11,7 @@ function Lesson2Page() {
 
 const Lesson2Content = () => {
   return (
-    <div className="max-w-3xl mx-auto mt-8">
+    <div className="max-w-3xl p-8 mx-auto">
       <div className="flex justify-between mb-6">
         <div>
           <Link href="./lesson1">
@@ -128,23 +125,8 @@ const Lesson2Content = () => {
       <div className="prose">
         <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
           <h2 className="mb-4 text-xl font-bold">Notes:</h2>
-          <p className="mb-6"></p>
+          <textarea className="w-full mb-6"></textarea>
         </div>
-      </div>
-    </div>
-  );
-};
-
-Lesson2Page.getLayout = function getLayout(page) {
-  return (
-    <div className="theme-default">
-      <LandingNavbar />
-
-      <div className="grid h-screen grid-cols-1 lg:grid-cols-12">
-        <div className="hidden col-span-5 -mb-16 overflow-scroll lg:block">
-          <InterviewPrepCourse />
-        </div>
-        <div className="col-span-7 p-4 overflow-scroll">{page}</div>
       </div>
     </div>
   );

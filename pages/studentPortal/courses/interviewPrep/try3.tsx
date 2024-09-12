@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { InterviewPrepCourse } from '.';
-import LandingNavbar from '../../../components/landingPage/LandingNavbar';
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Try3Page() {
   const questions = [
     {
-      title: 'Question 1',
+      title: "Question 1",
       prompt:
-        'Write a function that takes an array of integers and returns the sum of all even numbers in the array.',
-      dmojLink: 'https://www.dmoj.ca/problem/example',
-      leetCodeLink: 'https://leetcode.com/problems/example',
+        "Write a function that takes an array of integers and returns the sum of all even numbers in the array.",
+      dmojLink: "https://www.dmoj.ca/problem/example",
+      leetCodeLink: "https://leetcode.com/problems/example",
     },
     // Add more questions as needed
   ];
@@ -42,9 +40,9 @@ export default function Try3Page() {
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs
+    return `${mins.toString().padStart(2, "0")}:${secs
       .toString()
-      .padStart(2, '0')}`;
+      .padStart(2, "0")}`;
   };
 
   const handleStartTimer = () => {
@@ -178,10 +176,10 @@ export default function Try3Page() {
         <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
           <h2 className="mb-4 text-xl font-bold">Notes:</h2>
           <p>
-            {' '}
+            {" "}
             {`Do some webscraping with this link: https://leetcode.com/studyplan/top-interview-150/`}
             <br />
-            {`3 modes of difficulty`} <br />{' '}
+            {`3 modes of difficulty`} <br />{" "}
             {`Add a points system so user gains points for answering every question.`}
           </p>
         </div>
@@ -189,18 +187,3 @@ export default function Try3Page() {
     </div>
   );
 }
-
-Try3Page.getLayout = function getLayout(page) {
-  return (
-    <div className="theme-default">
-      <LandingNavbar />
-
-      <div className="grid grid-cols-1 lg:grid-cols-12">
-        <div className="hidden h-screen col-span-5 mb-8 overflow-scroll lg:block">
-          <InterviewPrepCourse />
-        </div>
-        <div className="col-span-7 p-4">{page}</div>
-      </div>
-    </div>
-  );
-};

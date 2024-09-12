@@ -1,7 +1,4 @@
-import React from 'react';
-import Link from 'next/link';
-import { InterviewPrepCourse } from '.';
-import LandingNavbar from '../../../components/landingPage/LandingNavbar';
+import Link from "next/link";
 
 export default function Assign2Page() {
   return (
@@ -39,39 +36,39 @@ export default function Assign2Page() {
         <div className="my-4 border-b"></div>
         <div>
           <div className="w-full">
-            <table className="w-full border-collapse border border-gray-300 text-base rounded-lg">
+            <table className="w-full text-base border border-collapse border-gray-300 rounded-lg">
               <thead>
                 <tr>
-                  <th className="px-6 py-3 border border-gray-300 bg-gray-100 font-semibold">
+                  <th className="px-6 py-3 font-semibold bg-gray-100 border border-gray-300">
                     Behavioral
                   </th>
-                  <th className="px-6 py-3 border border-gray-300 bg-gray-100 font-semibold">
+                  <th className="px-6 py-3 font-semibold bg-gray-100 border border-gray-300">
                     Technical
                   </th>
-                  <th className="px-6 py-3 border border-gray-300 bg-gray-100 font-semibold">
+                  <th className="px-6 py-3 font-semibold bg-gray-100 border border-gray-300">
                     Coding Hands-on
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="px-6 py-3 border border-gray-300 whitespace-normal">
+                  <td className="px-6 py-3 whitespace-normal border border-gray-300">
                     {`Questions about your experiences, challenges, and problem-solving skills.`}
-                    {'   '}
+                    {"   "}
                     <br />
                     <br />
-                    {'   '}
+                    {"   "}
                     {`We'll assess communication, teamwork, and reactions to situations.`}
                   </td>
-                  <td className="px-6 py-3 border border-gray-300 whitespace-normal">
-                    {`Focus on your knowledge and expertise in specific technologies, tools, or methodologies.`}{' '}
+                  <td className="px-6 py-3 whitespace-normal border border-gray-300">
+                    {`Focus on your knowledge and expertise in specific technologies, tools, or methodologies.`}{" "}
                     <br />
-                    <br />{' '}
+                    <br />{" "}
                     {`We'll evaluate technical understanding and problem-solving abilities.`}
                   </td>
-                  <td className="px-6 py-3 border border-gray-300 whitespace-normal">
+                  <td className="px-6 py-3 whitespace-normal border border-gray-300">
                     {`Realistic coding challenges to showcase skills. `} <br />
-                    <br />{' '}
+                    <br />{" "}
                     {`Algorithmic thinking, and writing efficient code within time constraints.`}
                   </td>
                 </tr>
@@ -115,18 +112,3 @@ export default function Assign2Page() {
     </div>
   );
 }
-
-Assign2Page.getLayout = function getLayout(page) {
-  return (
-    <div className="theme-default">
-      <LandingNavbar />
-
-      <div className="grid h-screen grid-cols-1 lg:grid-cols-12">
-        <div className="hidden col-span-5 overflow-scroll lg:block">
-          <InterviewPrepCourse />
-        </div>
-        <div className="col-span-7 p-4 overflow-scroll">{page}</div>
-      </div>
-    </div>
-  );
-};

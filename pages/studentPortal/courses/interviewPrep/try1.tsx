@@ -1,46 +1,44 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { InterviewPrepCourse } from '.';
-import LandingNavbar from '../../../components/landingPage/LandingNavbar';
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Try1Page() {
   const [prompts, setPrompts] = useState([
-    'Tell me about a time when you faced a difficult technical challenge.',
-    'Describe a situation where you had to work as part of a team to achieve a common goal.',
-    'Discuss a time when you had to handle a conflict with a colleague or team member.',
-    'Share an experience when you had to meet tight deadlines.',
-    'Describe a project you worked on that you are most proud of.',
-    'Discuss a time when you had to give constructive feedback to a team member.',
-    'Share an experience when you had to adapt to unexpected changes in a project.',
-    'Describe a situation where you had to take the lead in a team project.',
-    'Discuss a time when you had to resolve a complex technical problem.',
-    'Share an experience when you had to collaborate with a diverse team.',
+    "Tell me about a time when you faced a difficult technical challenge.",
+    "Describe a situation where you had to work as part of a team to achieve a common goal.",
+    "Discuss a time when you had to handle a conflict with a colleague or team member.",
+    "Share an experience when you had to meet tight deadlines.",
+    "Describe a project you worked on that you are most proud of.",
+    "Discuss a time when you had to give constructive feedback to a team member.",
+    "Share an experience when you had to adapt to unexpected changes in a project.",
+    "Describe a situation where you had to take the lead in a team project.",
+    "Discuss a time when you had to resolve a complex technical problem.",
+    "Share an experience when you had to collaborate with a diverse team.",
     // Add more prompts as needed
   ]);
 
   const exemplaryAnswers = [
-    'In my previous internship, I faced a difficult technical challenge when...',
-    'During a group project at university, I had to work as part of a team to achieve a common goal by...',
-    'In one of my previous jobs, I had to handle a conflict with a colleague when...',
-    'When working on a tight deadline for a client project, I...',
-    'One project I am particularly proud of is...',
-    'In my previous role, I had to provide constructive feedback to a team member...',
-    'During a project, unexpected changes occurred, and I adapted by...',
-    'In a team project, I took the lead by...',
-    'I encountered a complex technical problem when...',
-    'When collaborating with a diverse team, I...',
+    "In my previous internship, I faced a difficult technical challenge when...",
+    "During a group project at university, I had to work as part of a team to achieve a common goal by...",
+    "In one of my previous jobs, I had to handle a conflict with a colleague when...",
+    "When working on a tight deadline for a client project, I...",
+    "One project I am particularly proud of is...",
+    "In my previous role, I had to provide constructive feedback to a team member...",
+    "During a project, unexpected changes occurred, and I adapted by...",
+    "In a team project, I took the lead by...",
+    "I encountered a complex technical problem when...",
+    "When collaborating with a diverse team, I...",
     // Add more exemplary answers as needed
   ];
 
   const [answers, setAnswers] = useState({});
   const [currentPrompt, setCurrentPrompt] = useState(null);
   const [showExemplaryAnswer, setShowExemplaryAnswer] = useState(false);
-  const [newPrompt, setNewPrompt] = useState('');
+  const [newPrompt, setNewPrompt] = useState("");
 
   const handleAddPrompt = () => {
-    if (newPrompt.trim() !== '') {
+    if (newPrompt.trim() !== "") {
       setPrompts((prevPrompts) => [...prevPrompts, newPrompt]);
-      setNewPrompt('');
+      setNewPrompt("");
     }
   };
 
@@ -63,7 +61,7 @@ export default function Try1Page() {
     if (currentPrompt !== null) {
       setAnswers((prevAnswers) => ({
         ...prevAnswers,
-        [prompts[currentPrompt]]: '',
+        [prompts[currentPrompt]]: "",
       }));
     }
   };
@@ -95,17 +93,17 @@ export default function Try1Page() {
         <div className="flex flex-col">
           <div
             className="w-full p-4 border"
-            style={{ maxHeight: '50vh', overflowY: 'auto' }}
+            style={{ maxHeight: "50vh", overflowY: "auto" }}
           >
             {prompts.map((prompt, index) => (
               <div
                 key={index}
                 className={`p-4 my-2 cursor-pointer ${
                   index === currentPrompt
-                    ? 'bg-red-300'
+                    ? "bg-red-300"
                     : answers[prompt]
-                    ? 'bg-green-300'
-                    : 'bg-gray-300'
+                    ? "bg-green-300"
+                    : "bg-gray-300"
                 }`}
                 onClick={() => handleSetCurrentPrompt(index)}
               >
@@ -140,7 +138,7 @@ export default function Try1Page() {
                 <textarea
                   className="w-full h-32 p-2 mb-4 border rounded-lg"
                   placeholder="Your answer..."
-                  value={answers[prompts[currentPrompt]] || ''}
+                  value={answers[prompts[currentPrompt]] || ""}
                   onChange={(e) =>
                     setAnswers((prevAnswers) => ({
                       ...prevAnswers,
@@ -168,7 +166,7 @@ export default function Try1Page() {
                   className="px-4 py-2 mt-4 text-white bg-blue-500 rounded-lg"
                   onClick={() => setShowExemplaryAnswer(!showExemplaryAnswer)}
                 >
-                  {showExemplaryAnswer ? 'Hide Hint' : 'Hint'}
+                  {showExemplaryAnswer ? "Hide Hint" : "Hint"}
                 </button>
                 {showExemplaryAnswer && (
                   <div className="p-4 mt-4 bg-gray-200 border rounded-lg">
@@ -197,18 +195,3 @@ export default function Try1Page() {
     </div>
   );
 }
-
-Try1Page.getLayout = function getLayout(page) {
-  return (
-    <div className="theme-default">
-      <LandingNavbar />
-
-      <div className="grid h-screen grid-cols-1 lg:grid-cols-12">
-        <div className="lg:col-span-5 overflow-scroll lg:block">
-          <InterviewPrepCourse />
-        </div>
-        <div className="lg:col-span-7 p-4 overflow-scroll">{page}</div>
-      </div>
-    </div>
-  );
-};

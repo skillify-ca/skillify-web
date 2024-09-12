@@ -1,7 +1,4 @@
-import React from 'react';
-import Link from 'next/link';
-import { InterviewPrepCourse } from '.';
-import LandingNavbar from '../../../components/landingPage/LandingNavbar';
+import Link from "next/link";
 
 export default function WrapUpPage() {
   return (
@@ -120,18 +117,3 @@ export default function WrapUpPage() {
     </div>
   );
 }
-
-WrapUpPage.getLayout = function getLayout(page) {
-  return (
-    <div className="theme-default">
-      <LandingNavbar />
-
-      <div className="grid h-screen grid-cols-1 lg:grid-cols-12">
-        <div className="hidden col-span-5 overflow-scroll lg:block">
-          <InterviewPrepCourse />
-        </div>
-        <div className="col-span-7 p-4 overflow-scroll">{page}</div>
-      </div>
-    </div>
-  );
-};

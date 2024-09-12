@@ -351,6 +351,95 @@ export const reactUnits: Unit[] = [
   backendUnit,
 ];
 
+export const interviewBasicUnits: Unit[] = [
+  {
+    title: "Introduction",
+    nodes: [
+      {
+        title: "Lesson 1",
+        description: "Importance of Interview Preparation",
+        type: "lesson",
+        link: "courses/interviewPrep/lesson1",
+      },
+      {
+        title: "Lesson 2",
+        description: "Stages of the Interview",
+        type: "lesson",
+        link: "courses/interviewPrep/lesson2",
+      },
+      {
+        title: "Lesson 3",
+        description: "Employer's Expectations",
+        type: "lesson",
+        link: "courses/interviewPrep/lesson3",
+      },
+      {
+        title: "Lesson 4",
+        description: "Tools: Software Dictionary",
+        type: "lesson",
+        link: "courses/interviewPrep/tools",
+      },
+    ],
+  },
+  {
+    title: "Tell Me About Yourself",
+    nodes: [
+      {
+        title: "Assignment 1",
+        description: "Bullet all your experiences",
+        type: "assignment",
+        link: "courses/interviewPrep/assign1",
+      },
+      {
+        title: "Lesson 4",
+        description: "How should I introduce myself?",
+        type: "lesson",
+        link: "courses/interviewPrep/lesson4",
+      },
+    ],
+  },
+  {
+    title: "Practice",
+    nodes: [
+      {
+        title: "Lesson 5",
+        description: "Try Yourself: Behavioral Questions",
+        type: "lesson",
+        link: "courses/interviewPrep/try1",
+      },
+      {
+        title: "Lesson 6",
+        description: "Try Yourself: Technical Questions",
+        type: "lesson",
+        link: "courses/interviewPrep/try2",
+      },
+      {
+        title: "Lesson 7",
+        description: "Try Yourself: Hands-On Coding Questions",
+        type: "lesson",
+        link: "courses/interviewPrep/try3",
+      },
+    ],
+  },
+  {
+    title: "Mock Interview",
+    nodes: [
+      {
+        title: "Assignment 2",
+        description: "Real Interview Simulation",
+        type: "assignment",
+        link: "courses/interviewPrep/assign2",
+      },
+      {
+        title: "Lesson 4",
+        description: "How do I know if I'm ready?",
+        type: "lesson",
+        link: "courses/interviewPrep/lesson5",
+      },
+    ],
+  },
+];
+
 export const interviewUnits: Unit[] = [
   {
     title: "Data Structures",
