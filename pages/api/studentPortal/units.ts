@@ -343,11 +343,48 @@ export const backendUnit: Unit = {
   ],
 };
 
+const projectUnit: Unit = {
+  title: "Projects",
+  nodes: [
+    {
+      title: "Assignment 1",
+      description: "Yelp Clone",
+      type: "assignment",
+      link: "web/React/yelp",
+    },
+    {
+      title: "Assignment 2",
+      description: "Netflix Clone",
+      type: "assignment",
+      link: "web/React/netflix",
+    },
+    {
+      title: "Assignment 3",
+      description: "Instagram Clone",
+      type: "assignment",
+      link: "web/React/instagram",
+    },
+    {
+      title: "Assignment 4",
+      description: "Spotify Clone",
+      type: "assignment",
+      link: "web/React/spotify",
+    },
+    {
+      title: "Assignment 5",
+      description: "Duolingo Clone",
+      type: "assignment",
+      link: "web/React/duolingo",
+    },
+  ],
+};
+
 export const reactUnits: Unit[] = [
   webIntroUnit,
   githubUnit,
   tailwindUnit,
   reactUnit,
+  projectUnit,
   backendUnit,
 ];
 
