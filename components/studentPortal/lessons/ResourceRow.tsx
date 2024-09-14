@@ -21,8 +21,8 @@ export const ResourceRow: React.FC<ResourceRowProps> = ({
       <div className="flex items-center">
         <img src={image} className="object-cover w-16 h-16" />
         <div className="flex flex-col p-6 ">
-          <h2 className="font-bold">{title}</h2>
-          <p className="">{description}</p>
+          <h2 className="font-bold text-textPrimary">{title}</h2>
+          <p className="text-textPrimary">{description}</p>
         </div>
       </div>
       <a target="_blank" href={link} rel="noopener noreferrer">
