@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 
 export default function Coding() {
   const lessons = [
@@ -11,6 +10,7 @@ export default function Coding() {
     { name: "Reverse String", link: "reverseString" },
     { name: "Richest Customer Wealth", link: "richestCustomerWealth" },
     { name: "Word Pattern", link: "wordPattern" },
+    { name: "Reverse Linked List", link: "reverseLinkedList" },
   ];
   return (
     <div>
