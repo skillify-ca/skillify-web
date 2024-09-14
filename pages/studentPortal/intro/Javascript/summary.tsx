@@ -1,13 +1,15 @@
 import { useMutation } from "@apollo/client";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import LessonComponent, {
-  LessonComponentData,
-  Resource,
-} from "../../../../components/studentPortal/lessons/LessonComponent";
+import { LessonComponentData } from "../../../../components/studentPortal/lessons/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/ui/ProgressBar";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/completeUserIntroNode";
 import { useAuth } from "../../../../lib/authContext";
+const LessonComponent = dynamic(
+  () => import("../../../../components/studentPortal/lessons/LessonComponent"),
+  { ssr: false }
+);
 
 const Summary = ({ lessonComponents }) => {
   const router = useRouter();
@@ -49,7 +51,7 @@ const Summary = ({ lessonComponents }) => {
     </>
   );
 };
-export async function getServerSideProps({ params }) {
+export async function getStaticProps() {
   const resources: Resource[] = [
     {
       title: "Self-Ranking Form",
