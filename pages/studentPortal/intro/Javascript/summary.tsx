@@ -1,7 +1,10 @@
 import { useMutation } from "@apollo/client";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { LessonComponentData } from "../../../../components/studentPortal/lessons/LessonComponent";
+import {
+  LessonComponentData,
+  Resource,
+} from "../../../../components/studentPortal/lessons/LessonComponent";
 import { Button } from "../../../../components/ui/Button";
 import ProgressBar from "../../../../components/ui/ProgressBar";
 import { COMPLETE_USER_INTRO_NODE } from "../../../../graphql/studentPortal/courses/completeUserIntroNode";
@@ -31,7 +34,7 @@ const Summary = ({ lessonComponents }) => {
   return (
     <>
       <div className="col-span-7">
-        <div className="grid h-full grid-cols-1 px-4 pt-4 text-gray-700 bg-gray-100 sm:p-12 dark:bg-gray-800 dark:text-white">
+        <div className="grid h-full grid-cols-1 px-4 pt-4 text-textPrimary bg-backgroundPrimary sm:p-12 ">
           <div className="space-y-4">
             <ProgressBar completed={100} />
             {lessonComponents.map((it) => (
@@ -51,6 +54,7 @@ const Summary = ({ lessonComponents }) => {
     </>
   );
 };
+
 export async function getStaticProps() {
   const resources: Resource[] = [
     {
