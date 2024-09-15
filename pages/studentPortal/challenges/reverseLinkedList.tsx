@@ -40,7 +40,10 @@ export default function EvaluateExpressionPage(props) {
       setStep(3);
     } else if (step === 3) {
       setPrev(curr);
+      setStep(4);
+    } else if (step === 4) {
       setCurr(next);
+      setNext(null);
       setStep(1);
     }
   };
@@ -61,33 +64,30 @@ export default function EvaluateExpressionPage(props) {
         next={next?.value}
         previous={prev?.value}
       />
-      <div className="flex gap-8 my-8">
+      <div className="flex flex-col gap-8 my-8">
         <div className="flex flex-col">
           <p>Next</p>
-          <LinkedList head={next} next={next?.value} />
+          {<LinkedList head={next} next={next?.value} />}
         </div>
         <div className="flex flex-col">
           <p>Current</p>
-          <LinkedList
-            head={curr}
-            current={curr?.value}
-            next={next?.value}
-            previous={prev?.value}
-          />
+          <LinkedList head={curr} current={curr?.value} next={next?.value} />
         </div>
         <div className="flex flex-col">
           <p>Previous</p>
           <LinkedList head={prev} previous={prev?.value} />
         </div>
       </div>
-      <Button label="Next" onClick={handleClick} />
+      <Button label="Next" onClick={handleClick} disabled={curr === null} />
       <p>
         {step === 1
           ? "Set Next Pointer"
           : step === 2
-          ? "Reverse current node's next pointer"
+          ? "Set Current -> Next to Previous"
           : step === 3
-          ? "Advance pointers"
+          ? "Set Prev pointer"
+          : step === 4
+          ? "Set Current pointer"
           : ""}
       </p>
       <Button label="Reset" onClick={handleReset} />
@@ -106,7 +106,7 @@ const LinkedList = ({ head, current, next, previous }: LinkedListProps) => {
   if (head === null || head.value === null) {
     return (
       <div className="flex items-center justify-center w-16 h-16 bg-blue-400">
-        Empty
+        NULL
       </div>
     );
   }
@@ -140,7 +140,7 @@ const Node = ({
   if (value === null) {
     return (
       <div className="flex items-center justify-center w-16 h-16 bg-blue-400">
-        Empty
+        NULL
       </div>
     );
   }
@@ -175,7 +175,7 @@ const Node = ({
         />
       ) : (
         <div className="flex items-center justify-center w-16 h-16 bg-blue-400">
-          Empty
+          NULL
         </div>
       )}
     </div>
