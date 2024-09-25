@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "../../../components/ui/Button";
+import Dropdown from "../../../components/ui/Dropdown";
 import { useAuth } from "../../../lib/authContext";
-import Dropdown from "./Dropdown";
 
 const accountabilityMenuData = {
   "Building Software": [
@@ -14,7 +14,13 @@ const accountabilityMenuData = {
     "Testing",
     "UI/UX Design",
   ],
-  "Building Connections": ["Mentorship", "Networking", "Peer Swarming"],
+  "Building Connections": [
+    "Job Applications",
+    "Resume Building",
+    "Mentorship",
+    "Networking",
+    "Peer Swarming",
+  ],
 };
 
 const initialTaskState = (user) => ({
