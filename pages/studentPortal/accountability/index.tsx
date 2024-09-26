@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AccountabilityHeatmap from "../../../components/accountability/AccountabilityHeatmap";
 import { Button } from "../../../components/ui/Button";
 import Dropdown from "../../../components/ui/Dropdown";
 import { useAuth } from "../../../lib/authContext";
@@ -99,6 +100,9 @@ function AccountabilityDashboard() {
 
       <div className="flex justify-end">
         <Button label="Submit" onClick={handleSubmit} />
+      </div>
+      <div className="flex justify-center">
+        <AccountabilityHeatmap />
       </div>
     </div>
   );
