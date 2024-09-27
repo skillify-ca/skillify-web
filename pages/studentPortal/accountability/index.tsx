@@ -122,8 +122,9 @@ function AccountabilityDashboard() {
       <div className="flex justify-end">
         <Button label="Submit" onClick={handleSubmit} />
       </div>
-
-      <AccountabilityHeatmap entries={mockEntries} />
+      <div className="flex justify-center">
+        <AccountabilityHeatmap entries={mockEntries} />
+      </div>
     </div>
   );
 }

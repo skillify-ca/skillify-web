@@ -6,7 +6,7 @@ import {
   startOfWeek,
   startOfYear,
 } from "date-fns";
-import React from "react";
+import React, { useMemo } from "react";
 
 interface Entry {
   creationDate: string;
@@ -32,9 +32,9 @@ const AccountabilityHeatmap: React.FC<AccountabilityHeatmapProps> = ({
   cellSize = 16,
   cellGap = 2,
   colors = {
-    completed: "#28a745", // Green
-    notCompleted: "#dc3545", // Red
-    noData: "#6c757d", // Grey
+    completed: "rgb(241, 135, 1)", // Skillfy Orange
+    notCompleted: "rgb(17 24 39)", // Skillfy Black
+    noData: "rgb(215, 215, 215)", // Grey
     empty: "transparent", // Transparent
   },
 }) => {
@@ -54,91 +54,105 @@ const AccountabilityHeatmap: React.FC<AccountabilityHeatmapProps> = ({
     "Nov",
     "Dec",
   ];
+  const DATE_FORMAT = "yyyy-MM-dd";
 
-  // Generate all dates of the year, starting from the first Sunday before or on Jan 1
-  const startDate = startOfWeek(startOfYear(new Date(year, 0, 1)), {
-    weekStartsOn: 0,
-  });
-  const endDate = endOfYear(new Date(year, 0, 1));
+  /**
+   * Generate all dates of the year, starting from the first Sunday before or on Jan 1.
+   */
+  const startDate = useMemo(
+    () => startOfWeek(startOfYear(new Date(year, 0, 1)), { weekStartsOn: 0 }),
+    [year]
+  );
+  const endDate = useMemo(() => endOfYear(new Date(year, 0, 1)), [year]);
 
-  const datesOfYear = eachDayOfInterval({ start: startDate, end: endDate });
+  const datesOfYear = useMemo(
+    () => eachDayOfInterval({ start: startDate, end: endDate }),
+    [startDate, endDate]
+  );
 
-  // Map entries by date for quick lookup
-  const dateToEntryMap: Record<string, Entry> = entries.reduce((acc, entry) => {
-    const dateKey = entry.creationDate.slice(0, 10); // YYYY-MM-DD
-    acc[dateKey] = entry;
-    return acc;
-  }, {} as Record<string, Entry>);
+  /**
+   * Map entries by date for quick lookup.
+   */
+  const dateToEntryMap = useMemo(() => {
+    return entries.reduce<Record<string, Entry>>((acc, entry) => {
+      const dateKey = entry.creationDate.slice(0, 10); // Extract YYYY-MM-DD
+      acc[dateKey] = entry;
+      return acc;
+    }, {});
+  }, [entries]);
 
-  // Build weeks array
-  const weeks: Array<Array<Date | null>> = [];
-  let currentWeek: Array<Date | null> = [];
+  /**
+   * Build weeks array, where each week contains up to 7 days.
+   */
+  const weeks = useMemo(() => {
+    const weeksArray: Array<Array<Date>> = [];
+    let currentWeek: Array<Date> = [];
 
-  datesOfYear.forEach((date, index) => {
-    const dayOfWeek = getDay(date); // 0 (Sunday) to 6 (Saturday)
+    datesOfYear.forEach((date, index) => {
+      currentWeek.push(date);
 
-    if (dayOfWeek === 0 && currentWeek.length > 0) {
-      weeks.push(currentWeek);
-      currentWeek = [];
-    }
-
-    currentWeek.push(date);
-
-    // Add the last week when reaching the end
-    if (index === datesOfYear.length - 1) {
-      weeks.push(currentWeek);
-    }
-  });
-
-  // Build months array with grid positions
-  const monthGridPositions: Array<{
-    name: string;
-    startWeekIndex: number;
-    endWeekIndex: number;
-  }> = [];
-  const monthWeeksMap: Record<number, number[]> = {}; // month index (0-11) to week indices
-
-  weeks.forEach((week, weekIndex) => {
-    week.forEach((date) => {
-      const dateYear = date.getFullYear();
-      const dateMonth = date.getMonth();
-      if (dateYear === year) {
-        if (!monthWeeksMap[dateMonth]) {
-          monthWeeksMap[dateMonth] = [];
-        }
-        if (!monthWeeksMap[dateMonth].includes(weekIndex)) {
-          monthWeeksMap[dateMonth].push(weekIndex);
-        }
+      // If it's Saturday or the last date, push the current week
+      if (getDay(date) === 6 || index === datesOfYear.length - 1) {
+        weeksArray.push(currentWeek);
+        currentWeek = [];
       }
     });
-  });
 
-  const sortedMonthIndices = Object.keys(monthWeeksMap)
-    .map(Number)
-    .sort((a, b) => a - b);
+    return weeksArray;
+  }, [datesOfYear]);
 
-  sortedMonthIndices.forEach((monthIndex, idx) => {
-    const weekIndices = monthWeeksMap[monthIndex];
-    const startWeekIndex = Math.min(...weekIndices);
-    let endWeekIndex: number;
+  /**
+   * Build months array with grid positions for labeling.
+   */
+  const monthGridPositions = useMemo(() => {
+    const monthPositions: Array<{
+      name: string;
+      startWeekIndex: number;
+      endWeekIndex: number;
+    }> = [];
+    const monthWeeksMap: Record<number, number[]> = {}; // Map of month index to week indices
 
-    if (idx < sortedMonthIndices.length - 1) {
-      const nextMonthIndex = sortedMonthIndices[idx + 1];
-      endWeekIndex = Math.min(...monthWeeksMap[nextMonthIndex]);
-    } else {
-      endWeekIndex = weeks.length;
-    }
-
-    monthGridPositions.push({
-      name: MONTH_NAMES[monthIndex],
-      startWeekIndex,
-      endWeekIndex,
+    weeks.forEach((week, weekIndex) => {
+      week.forEach((date) => {
+        if (date.getFullYear() === year) {
+          const month = date.getMonth();
+          if (!monthWeeksMap[month]) {
+            monthWeeksMap[month] = [];
+          }
+          if (!monthWeeksMap[month].includes(weekIndex)) {
+            monthWeeksMap[month].push(weekIndex);
+          }
+        }
+      });
     });
-  });
 
-  // Helper function to get background color
+    const sortedMonths = Object.keys(monthWeeksMap)
+      .map(Number)
+      .sort((a, b) => a - b);
+
+    sortedMonths.forEach((monthIndex, idx) => {
+      const weekIndices = monthWeeksMap[monthIndex];
+      const startWeekIndex = Math.min(...weekIndices);
+      const endWeekIndex =
+        idx < sortedMonths.length - 1
+          ? Math.min(...monthWeeksMap[sortedMonths[idx + 1]])
+          : weeks.length;
+
+      monthPositions.push({
+        name: MONTH_NAMES[monthIndex],
+        startWeekIndex,
+        endWeekIndex,
+      });
+    });
+
+    return monthPositions;
+  }, [weeks, year]);
+
+  /**
+   * Helper function to get the background color based on the entry's status.
+   */
   const getBackgroundColor = (date: Date): string => {
-    const dateString = format(date, "yyyy-MM-dd");
+    const dateString = format(date, DATE_FORMAT);
     const entry = dateToEntryMap[dateString];
 
     if (entry) {
@@ -152,67 +166,65 @@ const AccountabilityHeatmap: React.FC<AccountabilityHeatmapProps> = ({
   };
 
   return (
-    <>
-      <div style={{ overflowX: "auto" }}>
-        {/* Year Header */}
-        <div style={{ textAlign: "center", marginBottom: "10px" }}>{year}</div>
-
-        {/* Container Grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateRows: `auto repeat(${WEEK_DAYS}, ${cellSize}px)`,
-            gridTemplateColumns: `repeat(${weeks.length}, ${cellSize}px)`,
-            gap: `${cellGap}px`,
-          }}
-        >
-          {/* Month Labels */}
-          {monthGridPositions.map((month) => (
-            <div
-              key={month.name}
-              style={{
-                gridColumnStart: month.startWeekIndex + 1,
-                gridColumnEnd: month.endWeekIndex + 1,
-                gridRowStart: 1,
-                textAlign: "center",
-                fontSize: `${cellSize * 0.75}px`,
-              }}
-            >
-              {month.name}
-            </div>
-          ))}
-
-          {/* Heatmap Cells */}
-          {weeks.map((week, weekIndex) =>
-            week.map((date, dayIndex) => {
-              const key = `week-${weekIndex}-day-${dayIndex}`;
-              let backgroundColor = colors.empty;
-              let tooltip = "";
-
-              if (date.getFullYear() === year) {
-                backgroundColor = getBackgroundColor(date);
-                tooltip = format(date, "yyyy-MM-dd");
-              }
-
-              return (
-                <div
-                  key={key}
-                  title={tooltip}
-                  style={{
-                    width: `${cellSize}px`,
-                    height: `${cellSize}px`,
-                    backgroundColor,
-                    gridColumnStart: weekIndex + 1,
-                    gridRowStart: dayIndex + 2, // +2 because first row is month labels
-                    borderRadius: "2px",
-                  }}
-                />
-              );
-            })
-          )}
-        </div>
+    <div style={{ overflowX: "auto" }}>
+      {/* Year Header */}
+      <div style={{ textAlign: "center", marginBottom: "10px" }}>
+        Contribution Heatmap - {year}
       </div>
-    </>
+
+      {/* Container Grid */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateRows: `auto repeat(${WEEK_DAYS}, ${cellSize}px)`,
+          gridTemplateColumns: `repeat(${weeks.length}, ${cellSize}px)`,
+          gap: `${cellGap}px`,
+        }}
+      >
+        {/* Month Labels */}
+        {monthGridPositions.map((month) => (
+          <div
+            key={month.name}
+            style={{
+              gridColumnStart: month.startWeekIndex + 1,
+              gridColumnEnd: month.endWeekIndex + 1,
+              gridRowStart: 1,
+              textAlign: "center",
+              fontSize: `${cellSize * 0.75}px`,
+            }}
+          >
+            {month.name}
+          </div>
+        ))}
+
+        {/* Heatmap Cells */}
+        {weeks.map((week, weekIndex) =>
+          week.map((date, dayIndex) => {
+            const key = `week-${weekIndex}-day-${dayIndex}`;
+            const isCurrentYear = date.getFullYear() === year;
+            const backgroundColor = isCurrentYear
+              ? getBackgroundColor(date)
+              : colors.empty;
+            const tooltip = isCurrentYear ? format(date, DATE_FORMAT) : "";
+
+            return (
+              <div
+                key={key}
+                title={tooltip}
+                style={{
+                  width: `${cellSize}px`,
+                  height: `${cellSize}px`,
+                  backgroundColor,
+                  gridColumnStart: weekIndex + 1,
+                  gridRowStart: dayIndex + 2, // +2 to account for month labels
+                  borderRadius: "2px",
+                }}
+              />
+            );
+          })
+        )}
+      </div>
+    </div>
   );
 };
 
