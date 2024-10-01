@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AccountabilityHeatmap from "../../../components/accountability/AccountabilityHeatmap";
 import { Button } from "../../../components/ui/Button";
 import Dropdown from "../../../components/ui/Dropdown";
 import { useAuth } from "../../../lib/authContext";
@@ -22,6 +23,27 @@ const accountabilityMenuData = {
     "Peer Swarming",
   ],
 };
+
+interface Entry {
+  creationDate: string;
+  isCompleted: boolean | null;
+}
+
+const mockEntries: Entry[] = [
+  // Add your mock data here
+  { creationDate: "2024-01-01T12:00:00Z", isCompleted: true },
+  { creationDate: "2024-02-05T12:00:00Z", isCompleted: false },
+  { creationDate: "2024-03-10T12:00:00Z", isCompleted: true },
+  { creationDate: "2024-04-15T12:00:00Z", isCompleted: false },
+  { creationDate: "2024-05-20T12:00:00Z", isCompleted: true },
+  { creationDate: "2024-06-25T12:00:00Z", isCompleted: false },
+  { creationDate: "2024-07-30T12:00:00Z", isCompleted: true },
+  { creationDate: "2024-08-05T12:00:00Z", isCompleted: false },
+  { creationDate: "2024-09-10T12:00:00Z", isCompleted: true },
+  { creationDate: "2024-10-15T12:00:00Z", isCompleted: false },
+  { creationDate: "2024-11-20T12:00:00Z", isCompleted: true },
+  { creationDate: "2024-12-25T12:00:00Z", isCompleted: false },
+];
 
 const initialTaskState = (user) => ({
   user_id: user.uid,
@@ -99,6 +121,9 @@ function AccountabilityDashboard() {
 
       <div className="flex justify-end">
         <Button label="Submit" onClick={handleSubmit} />
+      </div>
+      <div className="flex justify-center">
+        <AccountabilityHeatmap entries={mockEntries} />
       </div>
     </div>
   );
