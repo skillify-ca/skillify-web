@@ -6,6 +6,7 @@ import Dropdown from "../../../components/ui/Dropdown";
 import { INSERT_ACCOUNTABILITY_MUTATION } from "../../../graphql/studentPortal/accountability/insertAccountabilityTask";
 import { useAuth } from "../../../lib/authContext";
 
+// Accountability menu data
 const accountabilityMenuData = {
   "Building Software": [
     "Architectural/System Design",
@@ -32,7 +33,6 @@ interface Entry {
 }
 
 const mockEntries: Entry[] = [
-  // Add your mock data here
   { creationDate: "2024-01-01T12:00:00Z", isCompleted: true },
   { creationDate: "2024-02-05T12:00:00Z", isCompleted: false },
   { creationDate: "2024-03-10T12:00:00Z", isCompleted: true },
@@ -52,21 +52,15 @@ const initialAccountabilityTaskState = (user) => ({
   topic: "",
   subfield: "",
   description: "",
-  validator: "", // Can be auto-filled later
+  validator: "", // TODO: Auto-fill this later if needed
 });
 
-// Utility function to reset state
-const resetTaskState = (user, setTaskState) => {
-  setTimeout(() => {
-    setTaskState(initialAccountabilityTaskState(user));
-  }, 1000);
-};
-
-function AccountabilityDashboard() {
+const AccountabilityDashboard = () => {
   const { user } = useAuth();
   const [accountabilityTask, setAccountabilityTask] = useState(
     initialAccountabilityTaskState(user)
   );
+
   const [insertAccountabilityTask, { loading, error }] = useMutation(
     INSERT_ACCOUNTABILITY_MUTATION
   );
@@ -85,6 +79,7 @@ function AccountabilityDashboard() {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async () => {
     const variables = { user_id, topic, subfield, description };
 
@@ -97,7 +92,14 @@ function AccountabilityDashboard() {
     }
   };
 
-  // Consolidate error handling logic
+  // Utility function to reset the task state
+  const resetTaskState = (user, setTaskState) => {
+    setTimeout(() => {
+      setTaskState(initialAccountabilityTaskState(user));
+    }, 1000);
+  };
+
+  // Centralized error handling
   const handleError = (error) => {
     if (error.graphQLErrors) {
       console.error("GraphQL Errors:", error.graphQLErrors);
@@ -156,6 +158,6 @@ function AccountabilityDashboard() {
       )}
     </div>
   );
-}
+};
 
 export default AccountabilityDashboard;
