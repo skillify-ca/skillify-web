@@ -1,7 +1,9 @@
+import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import AccountabilityHeatmap from "../../../components/accountability/AccountabilityHeatmap";
 import { Button } from "../../../components/ui/Button";
 import Dropdown from "../../../components/ui/Dropdown";
+import { INSERT_ACCOUNTABILITY_MUTATION } from "../../../graphql/studentPortal/accountability/insertAccountabilityTask";
 import { useAuth } from "../../../lib/authContext";
 
 const accountabilityMenuData = {
@@ -45,21 +47,31 @@ const mockEntries: Entry[] = [
   { creationDate: "2024-12-25T12:00:00Z", isCompleted: false },
 ];
 
-const initialTaskState = (user) => ({
+const initialAccountabilityTaskState = (user) => ({
   user_id: user.uid,
   topic: "",
   subfield: "",
   description: "",
-  validator: "slack channel",
-  creationDate: new Date(),
-  isCompleted: false,
+  validator: "", // Can be auto-filled later
 });
+
+// Utility function to reset state
+const resetTaskState = (user, setTaskState) => {
+  setTimeout(() => {
+    setTaskState(initialAccountabilityTaskState(user));
+  }, 1000);
+};
 
 function AccountabilityDashboard() {
   const { user } = useAuth();
   const [accountabilityTask, setAccountabilityTask] = useState(
-    initialTaskState(user)
+    initialAccountabilityTaskState(user)
   );
+  const [insertAccountabilityTask, { loading, error }] = useMutation(
+    INSERT_ACCOUNTABILITY_MUTATION
+  );
+
+  const { user_id, topic, subfield, description } = accountabilityTask;
 
   const handleChange = (name, value) => {
     setAccountabilityTask((prevTask) => {
@@ -73,9 +85,26 @@ function AccountabilityDashboard() {
     });
   };
 
-  const handleSubmit = () => {
-    console.log("Accountability Task Submitted:", accountabilityTask);
-    // Further logic for submitting the task (e.g., API call)
+  const handleSubmit = async () => {
+    const variables = { user_id, topic, subfield, description };
+
+    try {
+      const { data } = await insertAccountabilityTask({ variables });
+      console.log("Task inserted:", data.insert_accountability_one);
+      resetTaskState(user, setAccountabilityTask);
+    } catch (error) {
+      handleError(error);
+    }
+  };
+
+  // Consolidate error handling logic
+  const handleError = (error) => {
+    if (error.graphQLErrors) {
+      console.error("GraphQL Errors:", error.graphQLErrors);
+    }
+    if (error.networkError) {
+      console.error("Network Error:", error.networkError);
+    }
   };
 
   return (
@@ -88,20 +117,15 @@ function AccountabilityDashboard() {
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
           <div className="flex-1">
             <Dropdown
-              label={accountabilityTask.topic || "Select Topic"}
+              label={topic || "Select Topic"}
               options={Object.keys(accountabilityMenuData)}
               onSelect={(value) => handleChange("topic", value)}
             />
           </div>
-
           <div className="flex-1">
             <Dropdown
-              label={accountabilityTask.subfield || "Select Subfield"}
-              options={
-                accountabilityTask.topic
-                  ? accountabilityMenuData[accountabilityTask.topic]
-                  : []
-              }
+              label={subfield || "Select Subfield"}
+              options={topic ? accountabilityMenuData[topic] : []}
               onSelect={(value) => handleChange("subfield", value)}
             />
           </div>
@@ -113,18 +137,23 @@ function AccountabilityDashboard() {
         <textarea
           className="block w-full p-2 border border-gray-300 rounded"
           rows={4}
-          value={accountabilityTask.description}
+          value={description}
           onChange={(e) => handleChange("description", e.target.value)}
           placeholder="Enter task description..."
         />
       </div>
 
       <div className="flex justify-end">
-        <Button label="Submit" onClick={handleSubmit} />
+        <Button label="Submit" onClick={handleSubmit} disabled={loading} />
       </div>
+
       <div className="flex justify-center">
         <AccountabilityHeatmap entries={mockEntries} />
       </div>
+
+      {error && (
+        <div className="text-red-500">An error occurred. Please try again.</div>
+      )}
     </div>
   );
 }
