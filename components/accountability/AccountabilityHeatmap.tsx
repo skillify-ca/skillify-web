@@ -6,7 +6,7 @@ import {
   startOfWeek,
   startOfYear,
 } from "date-fns";
-import React, { useMemo } from "react";
+import React from "react";
 
 interface Entry {
   creationDate: string;
@@ -32,8 +32,8 @@ const AccountabilityHeatmap: React.FC<AccountabilityHeatmapProps> = ({
   cellSize = 16,
   cellGap = 2,
   colors = {
-    completed: "rgb(241, 135, 1)", // Skillfy Orange
-    notCompleted: "rgb(17 24 39)", // Skillfy Black
+    completed: "var(--color-brand-primary)", // Skillfy Orange
+    notCompleted: "var(--color-text-primary)", // Skillfy Black
     noData: "rgb(215, 215, 215)", // Grey
     empty: "transparent", // Transparent
   },
@@ -59,52 +59,42 @@ const AccountabilityHeatmap: React.FC<AccountabilityHeatmapProps> = ({
   /**
    * Generate all dates of the year, starting from the first Sunday before or on Jan 1.
    */
-  const startDate = useMemo(
-    () => startOfWeek(startOfYear(new Date(year, 0, 1)), { weekStartsOn: 0 }),
-    [year]
-  );
-  const endDate = useMemo(() => endOfYear(new Date(year, 0, 1)), [year]);
+  const startDate = startOfWeek(startOfYear(new Date(year, 0, 1)), {
+    weekStartsOn: 0,
+  });
+  const endDate = endOfYear(new Date(year, 0, 1));
 
-  const datesOfYear = useMemo(
-    () => eachDayOfInterval({ start: startDate, end: endDate }),
-    [startDate, endDate]
-  );
+  const datesOfYear = eachDayOfInterval({ start: startDate, end: endDate });
 
   /**
    * Map entries by date for quick lookup.
    */
-  const dateToEntryMap = useMemo(() => {
-    return entries.reduce<Record<string, Entry>>((acc, entry) => {
-      const dateKey = entry.creationDate.slice(0, 10); // Extract YYYY-MM-DD
-      acc[dateKey] = entry;
-      return acc;
-    }, {});
-  }, [entries]);
+  const dateToEntryMap = entries.reduce<Record<string, Entry>>((acc, entry) => {
+    const dateKey = entry.creationDate.slice(0, 10); // Extract YYYY-MM-DD
+    acc[dateKey] = entry;
+    return acc;
+  }, {});
 
   /**
    * Build weeks array, where each week contains up to 7 days.
    */
-  const weeks = useMemo(() => {
-    const weeksArray: Array<Array<Date>> = [];
-    let currentWeek: Array<Date> = [];
+  const weeks: Array<Array<Date>> = [];
+  let currentWeek: Array<Date> = [];
 
-    datesOfYear.forEach((date, index) => {
-      currentWeek.push(date);
+  datesOfYear.forEach((date, index) => {
+    currentWeek.push(date);
 
-      // If it's Saturday or the last date, push the current week
-      if (getDay(date) === 6 || index === datesOfYear.length - 1) {
-        weeksArray.push(currentWeek);
-        currentWeek = [];
-      }
-    });
-
-    return weeksArray;
-  }, [datesOfYear]);
+    // If it's Saturday or the last date, push the current week
+    if (getDay(date) === 6 || index === datesOfYear.length - 1) {
+      weeks.push(currentWeek);
+      currentWeek = [];
+    }
+  });
 
   /**
    * Build months array with grid positions for labeling.
    */
-  const monthGridPositions = useMemo(() => {
+  const monthGridPositions = (() => {
     const monthPositions: Array<{
       name: string;
       startWeekIndex: number;
@@ -146,7 +136,7 @@ const AccountabilityHeatmap: React.FC<AccountabilityHeatmapProps> = ({
     });
 
     return monthPositions;
-  }, [weeks, year]);
+  })();
 
   /**
    * Helper function to get the background color based on the entry's status.
