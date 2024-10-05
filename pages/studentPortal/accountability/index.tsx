@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import AccountabilityHeatmap from "../../../components/accountability/AccountabilityHeatmap";
 import { Button } from "../../../components/ui/Button";
 import Dropdown from "../../../components/ui/Dropdown";
+import LoadingComponent from "../../../components/ui/loader";
 import { GET_ACCOUNTABILITY_TASKS_BY_USER } from "../../../graphql/studentPortal/accountability/fetchAccountabilityTasks";
 import { INSERT_ACCOUNTABILITY_MUTATION } from "../../../graphql/studentPortal/accountability/insertAccountabilityTask";
 import { useAuth } from "../../../lib/authContext";
@@ -87,7 +88,7 @@ const AccountabilityDashboard: React.FC = () => {
 
   const handleSubmit = async () => {
     if (!validateForm()) {
-      alert("Please fill in all fields before submitting.");
+      alert("Please fill in all fields before submitting."); // Seems effective, but might not be the best UX Decision
       return;
     }
 
@@ -98,7 +99,6 @@ const AccountabilityDashboard: React.FC = () => {
       resetTaskState();
     } catch (error) {
       console.error("An error occurred while submitting the task:", error);
-      alert("An error occurred while submitting the task. Please try again.");
     }
   };
 
@@ -152,11 +152,11 @@ const AccountabilityDashboard: React.FC = () => {
       {/* Accountability Heatmap */}
       <div className="flex justify-center">
         {accountabilityLoading ? (
-          <p>Loading accountability data...</p>
+          <LoadingComponent />
         ) : accountabilityError ? (
-          <p className="text-red-500">An error occurred while fetching data.</p>
+          <p>An error occurred while fetching data.</p>
         ) : (
-          <AccountabilityHeatmap entries={data?.accountability || []} />
+          <AccountabilityHeatmap entries={data?.accountability} />
         )}
       </div>
     </div>
