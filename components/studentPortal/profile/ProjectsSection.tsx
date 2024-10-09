@@ -11,7 +11,7 @@ export default function ProjectsSection({
   userProjects,
 }: ProjectsSectionProps) {
   return (
-    <>
+    <div className="bg-backgroundSecondary">
       {userProjects.length === 0 ? (
         <div className="col-span-3 p-8 text-center shadow-md">
           No Active Projects
@@ -52,6 +52,6 @@ export default function ProjectsSection({
           +
         </div>
       </Link>
-    </>
+    </div>
   );
 }
