@@ -13,6 +13,7 @@ export type SidebarPage =
   | "web_development"
   | "interviewPrep1"
   | "interviewPrep2"
+  | "crypto"
   | "financialLiteracy";
 
 export interface SidebarState {

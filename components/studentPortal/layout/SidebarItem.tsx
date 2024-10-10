@@ -13,6 +13,14 @@ export default function SidebarItem({
   it,
   closeSidebar,
 }: SidebarItemProps) {
+  if (it.isDisabled) {
+    return (
+      <div className="flex flex-wrap items-center p-4 bg-gray-300 cursor-not-allowed">
+        <div>{it.icon}</div>
+        {it.name}
+      </div>
+    );
+  }
   if (
     it.isPremium &&
     userRole &&

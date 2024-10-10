@@ -1,4 +1,4 @@
-import { CashIcon, LightBulbIcon } from "@heroicons/react/outline";
+import { LightBulbIcon, LockClosedIcon } from "@heroicons/react/outline";
 import React from "react";
 import JSIcon from "../../ui/JSIcon";
 import ReactIcon from "../../ui/ReactIcon";
@@ -111,8 +111,16 @@ export const premiumCourses: PaidSidebarItemProps[] = [
     name: "Financial Literacy",
     link: "/studentPortal/",
     page: "financialLiteracy",
-    icon: <CashIcon className="w-6 h-6 mr-4" />,
-    isDisabled: false,
+    icon: <LockClosedIcon className="w-6 h-6 mr-4" />,
+    isDisabled: true,
+    isPremium: true,
+  },
+  {
+    name: "Crypto and Web3",
+    link: "/studentPortal/",
+    page: "crypto",
+    icon: <LockClosedIcon className="w-6 h-6 mr-4" />,
+    isDisabled: true,
     isPremium: true,
   },
 ];
