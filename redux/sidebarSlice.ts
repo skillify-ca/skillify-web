@@ -10,7 +10,10 @@ export type SidebarPage =
   | "goals"
   | "admin"
   | "coding_basics"
-  | "web";
+  | "web_development"
+  | "interviewPrep1"
+  | "interviewPrep2"
+  | "financialLiteracy";
 
 export interface SidebarState {
   activePage: SidebarPage;
