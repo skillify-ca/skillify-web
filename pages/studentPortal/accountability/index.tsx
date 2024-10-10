@@ -95,7 +95,6 @@ const AccountabilityDashboard: React.FC = () => {
     try {
       const variables = { user_id: userId, topic, subfield, description };
       const response = await insertAccountabilityTask({ variables });
-      console.log("Task inserted:", response.data.insert_accountability_one);
       resetTaskState();
     } catch (error) {
       console.error("An error occurred while submitting the task:", error);
