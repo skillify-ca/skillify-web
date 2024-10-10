@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
-import { CodingBadgeCardContent } from "../../../../components/studentPortal/profileV2/achievement_components/CodingBadgeCard";
+import { CodingBadgeCardContent } from "../../../../components/studentPortal/profile/badges/CodingBadgeCard";
 import { Button } from "../../../../components/ui/Button";
 import { Input } from "../../../../components/ui/Input";
 import { CREATE_CODING_BADGE } from "../../../../graphql/studentPortal/admin/createBadge";

@@ -4,19 +4,14 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GoalsSectionComponent from "../../components/studentPortal/goals/GoalsSectionComponent";
-import ProfileGoalBadge from "../../components/studentPortal/profileV2/ProfileGoalBadge";
-import ProfileHeaderComponent from "../../components/studentPortal/profileV2/ProfileHeaderComponent";
-import ProjectsSection from "../../components/studentPortal/profileV2/ProjectsSection";
-import StudentFeedbackComponent from "../../components/studentPortal/profileV2/StudentFeedbackComponent";
-import AchievementComponent from "../../components/studentPortal/profileV2/achievement_components/AchievementComponent";
+import ProfileGoalBadge from "../../components/studentPortal/profile/ProfileGoalBadge";
+import ProfileHeaderComponent from "../../components/studentPortal/profile/ProfileHeaderComponent";
+import ProjectsSection from "../../components/studentPortal/profile/ProjectsSection";
+import Section from "../../components/studentPortal/profile/Section";
+import StudentFeedbackComponent from "../../components/studentPortal/profile/StudentFeedbackComponent";
+import AchievementComponent from "../../components/studentPortal/profile/badges/AchievementComponent";
 import SkillRatingsComponent from "../../components/studentPortal/skillRatings/SkillRatingsComponent";
 import { Button } from "../../components/ui/Button";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "../../components/ui/Collapsible";
-import { Progress } from "../../components/ui/Progress";
 import {
   FETCH_TOTAL_USER_BADGES_COUNT,
   FetchTotalBadgesCountResponse,
@@ -162,95 +157,100 @@ export default function InternalProfile({
     });
   }
 
-  return (
-    <div className="flex flex-col m-4 space-y-4 overflow-auto bg-scroll sm:p-4">
-      <ProfileHeaderComponent
-        userProfileData={userProfileData}
-        isEditable={!isExternal}
-      />
-      {userProfileData.name.startsWith("G") && (
-        <Section title={"Summary"} hasProgress={false}>
-          <StudentFeedbackComponent />
-        </Section>
-      )}
-      <Section
-        title={`Projects (${userProjects.length}/5 Complete)`}
-        hasProgress
-        value={(userProjects.length * 100) / 5}
-      >
-        {isEditable && (
-          <div className="p-4">
-            <Link href="/studentPortal/projects/create">
-              <Button label="Create" />
-            </Link>
-          </div>
-        )}
-        <ProjectsSection userProjects={userProjects} />
-      </Section>
-      <Section
-        title={
-          <div className="flex items-center justify-center gap-4">
-            Goals
-            <ProfileGoalBadge />
-          </div>
-        }
-      >
+  const sections = [
+    {
+      shouldShow: userProfileData.name.startsWith("G"),
+      title: "Summary",
+      hasProgress: false,
+      value: 0,
+      component: <StudentFeedbackComponent />,
+    },
+    {
+      shouldShow: true,
+      title: `Projects (${userProjects.length}/5 Complete)`,
+      hasProgress: true,
+      value: (userProjects.length * 100) / 5,
+      component: (
+        <>
+          {isEditable && (
+            <div className="p-4">
+              <Link href="/studentPortal/projects/create">
+                <Button label="Create" />
+              </Link>
+            </div>
+          )}
+          <ProjectsSection userProjects={userProjects} />
+        </>
+      ),
+    },
+    {
+      shouldShow: true,
+      title: (
+        <div className="flex items-center justify-center gap-4">
+          Goals
+          <ProfileGoalBadge />
+          {` (${userGoals.filter((it) => it.isComplete).length}/${
+            userGoals.length
+          } Complete)`}
+        </div>
+      ),
+      hasProgress: true,
+      value:
+        (userGoals.filter((it) => it.isComplete).length * 100) /
+        userGoals.length,
+      component: (
         <GoalsSectionComponent
           inProfile={true}
           userGoals={userGoals
             .filter((goal) => !goal.isComplete && !goal.isArchived)
             .slice(0, 3)}
         />
-      </Section>
-      <Section
-        title={`Skills (${
-          skillRatings.filter((it) => it.studentRating === 100).length
-        } / ${skillRatings.length} Mastered)`}
-        hasProgress
-        value={
-          (skillRatings.filter((it) => it.studentRating === 100).length * 100) /
-          skillRatings.length
-        }
-      >
+      ),
+    },
+    {
+      shouldShow: true,
+      title: `Skills (${
+        skillRatings.filter((it) => it.studentRating === 100).length
+      } / ${skillRatings.length} Mastered)`,
+      hasProgress: true,
+      value:
+        (skillRatings.filter((it) => it.studentRating === 100).length * 100) /
+        skillRatings.length,
+      component: (
         <SkillRatingsComponent
           skillRatings={skillRatings}
           isEditable={isEditable}
         />
-      </Section>
-      <Section
-        hasProgress
-        value={(userBadgeCount * 100) / totalBadgeCount}
-        title={`Badges (${userBadgeCount}/${totalBadgeCount} Unlocked)`}
-      >
-        {typeof userId == "string" && <AchievementComponent userId={userId} />}
-      </Section>
-    </div>
-  );
-}
+      ),
+    },
+    {
+      shouldShow: true,
+      title: `Badges (${userBadgeCount}/${totalBadgeCount} Unlocked)`,
+      hasProgress: true,
+      value: (userBadgeCount * 100) / totalBadgeCount,
+      component: typeof userId == "string" && (
+        <AchievementComponent userId={userId} />
+      ),
+    },
+  ];
 
-InternalProfile.auth = true;
-
-function Section({ title, hasProgress = false, value = 0, children }) {
   return (
-    <div className="w-full">
-      <Collapsible className="w-full group rounded-xl">
-        <div className="p-0 bg-backgroundSecondary rounded-xl">
-          <CollapsibleTrigger className="flex flex-col items-start justify-start w-full gap-4 p-4 mb-4 bg-sky-300 hover:bg-sky-200 rounded-xl">
-            <h6 className="flex text-lg font-bold">
-              <span
-                className={`group-data-[state=open]:rotate-180 transition-all rotate-90 mr-2`}
-              >
-                ▲
-              </span>
-              {title}
-            </h6>
-            {hasProgress && (
-              <Progress value={value} className="w-[60%] text-blue-400" />
-            )}
-          </CollapsibleTrigger>
-          <CollapsibleContent>{children}</CollapsibleContent>
-        </div>
-      </Collapsible>
+    <div className="flex flex-col m-4 space-y-4 overflow-auto bg-scroll sm:p-4">
+      <ProfileHeaderComponent
+        userProfileData={userProfileData}
+        isEditable={!isExternal}
+      />
+      {sections.map((section) => {
+        return section.shouldShow ? (
+          <Section
+            title={section.title}
+            hasProgress={section.hasProgress}
+            value={section.value}
+          >
+            {section.component}
+          </Section>
+        ) : null;
+      })}
     </div>
   );
 }

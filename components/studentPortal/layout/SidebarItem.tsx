@@ -1,49 +1,54 @@
-import Link from "next/link";
-import React, { ReactElement } from "react";
-import { useSelector } from "react-redux";
-import { activePageSelector, SidebarPage } from "../../../redux/sidebarSlice";
+import React from "react";
+import FreemiumSidebarItem from "../freemium/FreemiumSidebarItem";
+import PaidSidebarItem, { PaidSidebarItemProps } from "./PaidSidebarItem";
 
-export interface SidebarItemProps {
-  name: string;
-  link: string;
-  page: SidebarPage;
-  icon: ReactElement;
-  notifications?: boolean;
-  isDisabled: boolean;
-}
-const SidebarItem = ({
-  name,
-  link,
-  page,
-  icon,
-  notifications,
-  isDisabled,
-}: SidebarItemProps) => {
-  const { activePage } = useSelector(activePageSelector);
-  const href = isDisabled ? "" : link;
-  const onClick = isDisabled ? (e) => e.preventDefault() : undefined;
-
-  return (
-    <>
-      <Link href={link}>
-        <div
-          className={`flex flex-wrap items-center p-4 cursor-pointer hover:border-l-4 ${
-            activePage === page ? "border-charmander text-charmander" : ""
-          } hover:border-charmander hover:text-charmander`}
-        >
-          <div>
-            {notifications ? (
-              <div className="relative left-6 top-1 ">
-                <div className="flex w-2 h-2 bg-red-500 rounded-full"></div>
-              </div>
-            ) : null}
-            {icon}
-          </div>
-          {name}
-        </div>
-      </Link>
-    </>
-  );
+type SidebarItemProps = {
+  userRole: string;
+  it: PaidSidebarItemProps;
+  closeSidebar: () => void;
 };
 
-export default SidebarItem;
+export default function SidebarItem({
+  userRole,
+  it,
+  closeSidebar,
+}: SidebarItemProps) {
+  if (it.isDisabled) {
+    return (
+      <div className="flex flex-wrap items-center p-4 bg-gray-300 cursor-not-allowed">
+        <div>{it.icon}</div>
+        {it.name}
+      </div>
+    );
+  }
+  if (
+    it.isPremium &&
+    userRole &&
+    (userRole === "paid" || userRole === "freemium")
+  ) {
+    return (
+      <FreemiumSidebarItem
+        key={it.name}
+        name={it.name}
+        notifications={it.notifications}
+        link={it.link}
+        page={it.page}
+        icon={it.icon}
+        isDisabled={it.isDisabled}
+        closeSidebar={closeSidebar}
+      />
+    );
+  } else {
+    return (
+      <PaidSidebarItem
+        key={it.name}
+        name={it.name}
+        notifications={it.notifications}
+        link={it.link}
+        page={it.page}
+        icon={it.icon}
+        isDisabled={it.isDisabled}
+      />
+    );
+  }
+}

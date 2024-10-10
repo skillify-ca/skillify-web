@@ -414,23 +414,6 @@ export const interviewBasicUnits: Unit[] = [
         title: "Lesson 4",
         description: "Tools: Software Dictionary",
         type: "lesson",
-        link: "courses/interviewPrep/tools",
-      },
-    ],
-  },
-  {
-    title: "Tell Me About Yourself",
-    nodes: [
-      {
-        title: "Assignment 1",
-        description: "Bullet all your experiences",
-        type: "assignment",
-        link: "courses/interviewPrep/assign1",
-      },
-      {
-        title: "Lesson 4",
-        description: "How should I introduce myself?",
-        type: "lesson",
         link: "courses/interviewPrep/lesson4",
       },
     ],
@@ -440,21 +423,27 @@ export const interviewBasicUnits: Unit[] = [
     nodes: [
       {
         title: "Lesson 5",
-        description: "Try Yourself: Behavioral Questions",
+        description: "How should I introduce myself?",
         type: "lesson",
-        link: "courses/interviewPrep/try1",
+        link: "courses/interviewPrep/lesson5",
       },
       {
         title: "Lesson 6",
-        description: "Try Yourself: Technical Questions",
+        description: "Try Yourself: Behavioral Questions",
         type: "lesson",
-        link: "courses/interviewPrep/try2",
+        link: "courses/interviewPrep/lesson6",
       },
       {
         title: "Lesson 7",
+        description: "Try Yourself: Technical Questions",
+        type: "lesson",
+        link: "courses/interviewPrep/lesson7",
+      },
+      {
+        title: "Lesson 8",
         description: "Try Yourself: Hands-On Coding Questions",
         type: "lesson",
-        link: "courses/interviewPrep/try3",
+        link: "courses/interviewPrep/lesson8",
       },
     ],
   },
@@ -462,16 +451,16 @@ export const interviewBasicUnits: Unit[] = [
     title: "Mock Interview",
     nodes: [
       {
-        title: "Assignment 2",
+        title: "Assignment",
         description: "Real Interview Simulation",
         type: "assignment",
-        link: "courses/interviewPrep/assign2",
+        link: "courses/interviewPrep/assignment1",
       },
       {
-        title: "Lesson 4",
+        title: "Lesson 9",
         description: "How do I know if I'm ready?",
         type: "lesson",
-        link: "courses/interviewPrep/lesson5",
+        link: "courses/interviewPrep/lesson9",
       },
     ],
   },

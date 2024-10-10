@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState } from "react";
 import { Unit } from "../../../pages/api/studentPortal/units";
 import FreemiumDialogComponent from "../freemium/FreemiumDialogueComponent";
@@ -47,16 +48,18 @@ export const UnitView: React.FC<UnitViewProps> = ({ data }: UnitViewProps) => {
           } else {
             if (!it.locked) {
               return (
-                <a href={"/studentPortal/" + it.link}>
-                  <UnitNodeView
-                    hiddenLine={index === data.nodes.length - 1}
-                    completed={it.completed}
-                    locked={it.locked}
-                    title={it.title}
-                    description={it.description}
-                    type={it.type}
-                  />
-                </a>
+                <Link key={it.title} href={"/studentPortal/" + it.link}>
+                  <a>
+                    <UnitNodeView
+                      hiddenLine={index === data.nodes.length - 1}
+                      completed={it.completed}
+                      locked={it.locked}
+                      title={it.title}
+                      description={it.description}
+                      type={it.type}
+                    />
+                  </a>
+                </Link>
               );
             } else {
               return (

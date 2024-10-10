@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from "react";
 
 export default Lesson1Page;
 function Lesson1Page() {
@@ -11,8 +12,8 @@ function Lesson1Page() {
 
 const Lesson1Content = () => {
   return (
-    <div className="max-w-3xl p-4 mx-auto">
-      <div className="mb-6">
+    <div className="p-4">
+      <div className="mb-4">
         <div className="flex justify-between">
           <div>
             <Link href="./">

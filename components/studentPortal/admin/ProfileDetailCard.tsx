@@ -1,7 +1,7 @@
 import React from "react";
 import { CodingBadge } from "../../../graphql/studentPortal/admin/fetchUserProfileCard";
-import BadgesDisplayedComponent from "../profileV2/BadgesDisplayedComponent";
-import JoinedDateComponent from "../profileV2/JoinedDateComponent";
+import BadgesDisplayedComponent from "../profile/BadgesDisplayedComponent";
+import JoinedDateComponent from "../profile/JoinedDateComponent";
 
 type ProfileDetailCard = {
   avatar: string;
