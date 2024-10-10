@@ -1,117 +1,111 @@
 import Link from "next/link";
 
-export default function WrapUpPage() {
+// ref https://www.simplilearn.com/how-to-introduce-yourself-in-a-job-interview-article#:~:text=%22Good%20day%2C%20I%20am%20%5B,the%20requirements%20of%20this%20position.
+
+// Add recording feature for practice
+
+export default function Lesson4Page() {
   return (
     <div className="theme-default">
       <div className="max-w-3xl mx-auto mt-8">
         <div className="flex items-center justify-between mb-6">
-          <Link href="./assign2">
+          <Link href="./assign1">
             <button className="px-4 py-2 mr-2 text-white bg-gray-500 rounded-lg">
               Back
             </button>
           </Link>
-          <h1 className="text-3xl font-bold">
-            Wrap Up: Are You Interview Ready?
-          </h1>
-          <Link href="./">
+          <h1 className="text-3xl font-bold">How should I introduce myself?</h1>
+          <Link href="./try1">
             <button className="px-4 py-2 text-white bg-blue-500 rounded-lg">
               Next
             </button>
           </Link>
         </div>
-
+        <div className="my-4 border-b"></div>
         <div className="max-w-3xl p-4 mx-auto mb-6 bg-white border border-gray-300 rounded-lg">
-          <p className="mb-6">
-            {`Congratulations on completing our interview preparation course! By
-            now, you've gained valuable insights and honed your skills for a
-            successful job interview experience. But how do you know if you're
-            truly interview-ready? Here are some key indicators to consider:`}
-          </p>
+          <div className="lesson-content">
+            <p>
+              {`Creating a great self-introduction is crucial for impressing potential employers and landing your dream internship. Here are essential tips to showcase your skills and passion. Let's get started!`}
+            </p>
 
-          <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
-            <h2 className="mb-4 text-xl font-bold">1. Self-Confidence:</h2>
-            <p className="mb-6">
-              {`A crucial sign of being interview-ready is feeling confident in your abilities. Reflect on your preparation journey and acknowledge the progress you've made. Trust in yourself and your knowledge to tackle interview questions with poise and composure.`}
+            <div className="p-4 mt-6 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+              <h2 className="mb-2 text-xl font-bold">
+                {`1. Keep it concise and focused`}
+              </h2>
+              <p>
+                {`When introducing yourself, aim for a 30 to 60-second elevator pitch that highlights your key attributes and accomplishments. Avoid excessive detail to maintain the listener's attention.`}
+              </p>
+            </div>
+
+            <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+              <h2 className="mb-2 text-xl font-bold">
+                {`2. Start with a compelling hook`}
+              </h2>
+              <p>
+                {`Begin with an attention-grabbing hook that summarizes your unique selling proposition, like an intriguing statement or relevant achievement.`}
+              </p>
+            </div>
+
+            <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+              <h2 className="mb-2 text-xl font-bold">
+                {`3. Highlight relevant skills and projects`}
+              </h2>
+              <p>
+                {`Focus on skills and projects most relevant to the positions you're applying for, mentioning specific languages, frameworks, and tools you are proficient in.`}
+              </p>
+            </div>
+
+            <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+              <h2 className="mb-2 text-xl font-bold">
+                {`4. Emphasize eagerness to learn and grow`}
+              </h2>
+              <p>
+                {`Express your eagerness to learn from experienced professionals, take on challenges, and contribute to meaningful projects.`}
+              </p>
+            </div>
+
+            <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+              <h2 className="mb-2 text-xl font-bold">
+                {`5. Personalize your introduction`}
+              </h2>
+              <p>
+                {`Add a touch of personality by sharing a brief coding-related anecdote that reflects your passion or motivation.`}
+              </p>
+            </div>
+
+            <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+              <h2 className="mb-2 text-xl font-bold">
+                {`6. Practice makes perfect`}
+              </h2>
+              <p>
+                {`Practice your self-introduction in front of a mirror, with friends, or record yourself to improve your tone, clarity, and confidence.`}
+              </p>
+            </div>
+
+            <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+              <h2 className="mb-2 text-xl font-bold">
+                {`7. Tailor your introduction for each opportunity`}
+              </h2>
+              <p>
+                {`Customize your self-introduction for each application by researching the company's values, projects, and goals to demonstrate genuine interest.`}
+              </p>
+            </div>
+
+            <div className="my-4 border-b"></div>
+            <p>Conclusion:</p>
+            <p>
+              {`By following these tips, you'll make a strong impression on potential employers and increase your chances of landing the desired internship. Be confident, concise, and authentic when highlighting your coding skills and passion. Good luck!`}
             </p>
           </div>
-
-          <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
-            <h2 className="mb-4 text-xl font-bold">
-              2. Understanding Job Requirements:
-            </h2>
-            <p className="mb-6">
-              {`Ensure you have a clear understanding of the job requirements and the skills the employer is seeking. Tailor your responses to highlight your relevant experiences and how you can contribute to the organization.`}
-            </p>
-          </div>
-
-          <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
-            <h2 className="mb-4 text-xl font-bold">3. Practicing Responses:</h2>
-            <p className="mb-6">
-              {`Practice answering common interview questions, both behavioral and technical. Use the STAR method (Situation, Task, Action, Result) for behavioral questions, and provide specific examples to support your answers.`}
-            </p>
-          </div>
-
-          <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
-            <h2 className="mb-4 text-xl font-bold">
-              4. Handling Technical Questions:
-            </h2>
-            <p className="mb-6">
-              {`For technical roles, be prepared to discuss technical concepts and demonstrate your problem-solving skills. Practice coding challenges and review fundamental concepts related to the role you're applying for.`}
-            </p>
-          </div>
-
-          <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
-            <h2 className="mb-4 text-xl font-bold">
-              5. Demonstrating Soft Skills:
-            </h2>
-            <p className="mb-6">
-              {`Employers value soft skills such as communication, teamwork, adaptability, and leadership. Be ready to provide examples of how you've utilized these skills in past experiences.`}
-            </p>
-          </div>
-
-          <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
-            <h2 className="mb-4 text-xl font-bold">6. Asking Questions:</h2>
-            <p className="mb-6">
-              {`Prepare thoughtful questions to ask the interviewer. This demonstrates your interest in the role and company, and it's an opportunity to gather valuable information about the position.`}
-            </p>
-          </div>
-
-          <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
-            <h2 className="mb-4 text-xl font-bold">7. Handling Nervousness:</h2>
-            <p className="mb-6">
-              {`Feeling nervous before an interview is normal. Practice relaxation techniques to manage nervousness. Take deep breaths, visualize a successful interview, and remember that interviews are opportunities to showcase your skills.`}
-            </p>
-          </div>
-
-          <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
-            <h2 className="mb-4 text-xl font-bold">
-              General Tips for Interview Preparation:
-            </h2>
-            <ul className="pl-6 mb-6 list-disc">
-              <li>{`Research the company: Understand the company's values, culture, and recent developments. This knowledge will help you tailor your responses and demonstrate your genuine interest.`}</li>
-              <li>{`Practice with mock interviews: Ask a friend or mentor to conduct mock interviews. Practice answering various types of questions to boost your confidence.`}</li>
-              <li>{`Dress appropriately: Choose professional attire that aligns with the company culture. Dressing well shows respect for the interview process.`}</li>
-              <li>{`Review your resume: Be prepared to discuss your experiences, skills, and achievements mentioned on your resume. Highlight relevant accomplishments for the role.`}</li>
-              <li>{`Prepare for different interview formats: Be ready for phone interviews, video interviews, or in-person interviews. Adjust your communication style accordingly.`}</li>
-              <li>{`Arrive early: Plan your travel in advance and aim to arrive a few minutes early for the interview. Punctuality is essential.`}</li>
-              <li>{`Bring necessary materials: Carry extra copies of your resume, a notepad, and a pen. You may also bring a portfolio to showcase your work.`}</li>
-              <li>{`Follow up: Send a thank-you email to the interviewer(s) after the interview. Express your gratitude for the opportunity and reiterate your interest in the position.`}</li>
-              <li>{`Stay positive: Interviews may not always lead to job offers. Regardless of the outcome, view each interview as a learning experience and an opportunity to grow.`}</li>
-            </ul>
-          </div>
-
-          <p>
-            {`Remember, preparation is key to a successful interview. Good luck, and we wish you all the best in your job search!`}
-          </p>
         </div>
-      </div>
 
-      {/* Additional Notes for Next Steps */}
-      <div className="my-4 border-b"></div>
-      <div className="prose">
-        <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
-          <h2 className="mb-4 text-xl font-bold">Notes:</h2>
-          <p>Video format recommended add-on</p>
+        {/* Additional Notes for Next Steps */}
+        <div className="my-4 border-b"></div>
+        <div className="prose">
+          <div className="p-4 mb-6 bg-gray-100 border border-gray-300 rounded-lg">
+            <h2 className="mb-4 text-xl font-bold">Notes:</h2>
+            <textarea className="w-full"></textarea>
+          </div>
         </div>
       </div>
     </div>
